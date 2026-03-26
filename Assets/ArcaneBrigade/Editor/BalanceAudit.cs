@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         /// <summary>Stat-only budget each rarity should carry (Common, Uncommon, Rare, Mythic, Crimson=unused, Prismatic).</summary>
         public static readonly float[] RarityTarget = { 12, 19, 28, 40, 40, 55 };
         public const float Tolerance = .3f;
-        public const float HpPaidWeight = .3f; // one HP of CURRENT health paid at the altar: lost for one wave only
+        public const float HpPaidWeight = .75f; // round 4: an altar HP price is lost from MAXIMUM HP for the run, worth as much as an HP gift
 
         /// <summary>VU per 1.0 of the modifier's value.</summary>
         public static float Weight(ItemEffect effect)
@@ -258,7 +258,8 @@ namespace ArcaneBrigade.Editor
             {
                 // round 2: never pay the altar below 70% of max HP in one shop (the bot once entered waves at half health and died in seconds)
                 float maximum = c.StatRevision > 0 ? K10StatRules.MaximumHealth(s, c) : s.State.Health;
-                if (o.Price > s.State.Health * .3f || s.State.Health - o.Price < .7f * maximum) return -1;
+                // round 4: the cut is permanent, so the bot never gives up more than 30% of its uncut maximum over a run
+                if (o.Price > s.State.Health * .3f || s.State.Health - o.Price < .7f * maximum || s.State.BloodPaid + o.Price > .3f * s.UncutMaximumHealth) return -1;
                 v -= o.Price * HpPaidWeight;
             }
             return v;

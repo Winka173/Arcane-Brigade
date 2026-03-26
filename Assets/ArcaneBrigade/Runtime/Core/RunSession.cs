@@ -186,6 +186,7 @@ namespace ArcaneBrigade
             ValidateOutsideStage(snapshot);
             ValidateNightmare(snapshot);
             ValidateRelicState(snapshot);
+            if (snapshot != null && (!float.IsFinite(snapshot.BloodPaid) || snapshot.BloodPaid < 0)) throw new InvalidOperationException("Invalid altar HP record");
             ValidateOctoberState(snapshot);
             if (snapshot != null && snapshot.SchemaRevision >= 3 && (snapshot.Difficulty < 0 || snapshot.Difficulty >= RunMeta.DifficultyNames.Length || !Array.Exists(RunMeta.ChallengeIds, id => id == snapshot.ChallengeId) || snapshot.StartHall < 1 || snapshot.StartHall > snapshot.Wave + (long)1 || snapshot.DefeatedBosses == null || !float.IsFinite(snapshot.LastDamageAmount) || snapshot.LastDamageAmount < 0)) throw new InvalidOperationException("Invalid run meta identity");
             if (snapshot != null && snapshot.SchemaRevision >= 3)
@@ -699,7 +700,7 @@ namespace ArcaneBrigade
                 OctoberBoughtRelic(item);
             }
             if (offer.Currency == ShopCurrency.Eggs) State.Eggs -= offer.Price;
-            else if (offer.Currency == ShopCurrency.Health) State.Health -= offer.Price;
+            else if (offer.Currency == ShopCurrency.Health) State.BloodPaid += offer.Price; // round 4: maximum HP drops for good; ReconcileHealth below takes the same amount off current HP
             else State.Gold -= offer.Price;
             offer.Sold = true;
             KitBought(offer);
@@ -720,7 +721,7 @@ namespace ArcaneBrigade
             if (CompanionCapacityBlocks(offer)) return false;
             if (offer == null || offer.Sold || State.Phase != SessionPhase.Shop) return false;
             if (offer.Kind == OfferKind.Companion && catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw && !OctoberAbsorbs) return false;
-            if (offer.Currency == ShopCurrency.Health ? State.Health - offer.Price < 1f : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
+            if (offer.Currency == ShopCurrency.Health ? !BloodAffordable(offer.Price) : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
             if (offer.Kind == OfferKind.Item) return StackCount(offer.Id) < catalog.Item(offer.Id).StackLimit;
             return Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(offer.Id, weapon) && VariantFree(offer.Id, weapon));
         }
@@ -940,9 +941,10 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Balance pass round 2 (19/10/2026): an altar item paid in current HP costs a share of the hero's maximum HP
-        /// (Common 8%, Uncommon 12%, Rare 18%, Mythic 25%, Prismatic 32%), never less than its authored price (floors 8/13/18/27).</summary>
-        private static readonly float[] AltarHealthShare = { .08f, .12f, .18f, .25f, .25f, .32f };
+        /// <summary>An altar item paid in HP costs a share of the hero's maximum HP, never less than its authored price. Round 2:
+        /// 8/12/18/25/32% (floors 8/13/18/27) of current HP. Round 4: the price is now taken from MAXIMUM HP for the run (BloodPrice),
+        /// so the shares are 5/8/12/18/24% (floors 5/9/12/18): about a third of what the item is worth, and each purchase lowers the next.</summary>
+        private static readonly float[] AltarHealthShare = { .05f, .08f, .12f, .18f, .18f, .24f };
         public int SpecialItemPrice(ItemDefinition item)
         {
             int authored = Mathf.Max(1, Mathf.CeilToInt((catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice) * (1 + (int)item.Rarity * 0.25f) * SpecialStagePriceFactor));
@@ -1015,7 +1017,7 @@ namespace ArcaneBrigade
             return choices[Next(ref State.WeaponRandom, choices.Count)];
         }
 
-        private float MaximumHealth() => catalog.StatRevision > 0 ? K10StatRules.MaximumHealth(this, catalog) : Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
+        private float MaximumHealth() => catalog.StatRevision > 0 ? K10StatRules.MaximumHealth(this, catalog) : BloodPrice.Apply(Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health)), State.BloodPaid);
 
         private void ReconcileHealth(float previousMaximum)
         {

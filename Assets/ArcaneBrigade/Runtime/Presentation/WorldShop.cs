@@ -434,7 +434,7 @@ namespace ArcaneBrigade
                         cover.AddComponent<RareUnveil>().Configure(owner, station.Actor.View, arriving, landingAt);
                     }
                 }
-                if (offer.Currency == ShopCurrency.Health) station.Description += " · Costs current HP, not maximum HP; must leave at least 1 HP.";
+                if (offer.Currency == ShopCurrency.Health) station.Description += " · −" + offer.Price + " max HP for the run · leaves 1 HP";
                 ItemRarity offerRarity = offer.Kind == OfferKind.Item ? catalog.Item(offer.Id).Rarity : catalog.Unit(offer.Id).Rarity;
                 if (!offer.Sold && offerRarity != ItemRarity.Common)
                 {
@@ -498,7 +498,7 @@ namespace ArcaneBrigade
         public string DescribeOffer(ShopOffer offer)
         {
             if (offer == null) return "";
-            return ShortOfferCopy.PurchaseDelta(owner.Session, owner.Content, offer) + (offer.Currency == ShopCurrency.Health ? "\nPay current HP. Leave at least 1 HP" : "");
+            return ShortOfferCopy.PurchaseDelta(owner.Session, owner.Content, offer) + (offer.Currency == ShopCurrency.Health ? "\n−" + offer.Price + " max HP for the run" : "");
         }
         public string DescribeOfferDetails(ShopOffer offer)
         {
@@ -520,7 +520,7 @@ namespace ArcaneBrigade
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
             }
-            if (offer.Currency == ShopCurrency.Health) result += "\nCosts HP · leaves at least 1";
+            if (offer.Currency == ShopCurrency.Health) result += "\n−" + offer.Price + " max HP";
             return result;
         }
         public void DrawMerchantDialogue()

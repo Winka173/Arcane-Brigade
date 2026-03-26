@@ -1,6 +1,6 @@
 # Hero mechanic and approach descriptions
 
-Generated from the current runtime: 31 heroes, 93 approaches.
+Generated from the current runtime: 36 heroes, 108 approaches.
 
 ## Lantern Knight / LanternKnight
 
@@ -72,6 +72,7 @@ The gauge beside you fills from walking and your attacks and climbs three tiers;
 
 HERO PASSIVES
 - Stand still for 0.5s and your next attack deals +30%.
+- Dream veil: you take 30% less damage.
 
 TEAM AND RUN PASSIVES
 - Dream eggs: every third wave you get an extra egg.
@@ -196,6 +197,7 @@ The gauge beside you fills from coins you collect and climbs three tiers; when f
 
 HERO PASSIVES
 - Every 2 drinks bought add 1s to the tide (max +3s).
+- Sea foam: you take 20% less damage.
 
 TEAM AND RUN PASSIVES
 - Drinks cost 25% less.
@@ -590,10 +592,10 @@ Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; co
 
 THE LAST DECREE
 TRANSFORMATION: CORONATION
-The gauge beside you fills from injuries and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A last decree crosses the field as a verdict line; ordinary enemies under 15% health on it are executed.
+The gauge beside you fills from injuries and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A last decree crosses the field as a verdict line; ordinary enemies under 25% health on it are executed.
 
 HERO PASSIVES
-- Royal health: 16 HP and each blow costs only 1.
+- Royal health: 18 HP and each blow costs only 1.
 
 TEAM AND RUN PASSIVES
 - Royal pick: each shop's rarest item costs 30% less.
@@ -615,7 +617,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
-Start each wave with 16 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.
+Start each wave with 18 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.
 
 ## Petal Citadel / PetalCitadel
 
@@ -625,6 +627,7 @@ The gauge beside you fills from your attacks and climbs three tiers; when full y
 
 HERO PASSIVES
 - Four petals grow from the relics you own.
+- Petal guard: you take 15% less damage.
 
 TEAM AND RUN PASSIVES
 - A second copy of a relic gives 50% more of its effect.
@@ -686,6 +689,7 @@ The gauge beside you fills from new species recorded and climbs three tiers; whe
 
 HERO PASSIVES
 - You deal +15% damage to species you have recorded.
+- Vellum binding: you take 15% less damage.
 
 TEAM AND RUN PASSIVES
 - Every 5 new species recorded pay 2 gold.
@@ -952,4 +956,155 @@ Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. 
 
 INNATE TRAITS
 Base weapon and all listed run modifiers still apply.
+
+## Kite Admiral / KiteAdmiral
+
+THE PAPER FLEET
+TRANSFORMATION: KITE FLEET
+The gauge beside you fills from your hits beyond 4 units and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Four kites fly over your four nearest ranged friends: each of their shots splits in two; +20% attack speed.
+
+HERO PASSIVES
+- Your hits beyond 4 units deal +15%.
+
+TEAM AND RUN PASSIVES
+- Paper Wings counts one level higher.
+- Ranged friends +10% range.
+- While your gauge is full, ranged friends' shots pierce 1 more.
+
+1. Tight formation
+KITE FLEET focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
+
+2. Wide formation
+KITE FLEET spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
+
+3. Long voyage
+KITE FLEET lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
+
+DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
+
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
+
+INNATE TRAITS
+Kite Spool: a kite loops ahead, its string cuts, then it dives. Starts with Paper Plane Pigeon.
+
+## Sundae Duchess / SundaeDuchess
+
+THE MELTING SUNDAE
+TRANSFORMATION: SUNDAE STORM
+The gauge beside you fills from time, blows you take and frozen enemies felled and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Giant scoops drop on enemies; each one freezes what it lands on (bosses are only chilled).
+
+HERO PASSIVES
+- Each food bought: +5 max HP (max +40).
+
+TEAM AND RUN PASSIVES
+- Sweet Tooth counts one level higher.
+- Each frozen enemy felled: +1 gold (max 5 per wave).
+- A crit on a frozen enemy takes 5% of its max HP (not bosses).
+- Food costs 15% less.
+
+1. Single scoop
+SUNDAE STORM focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
+
+2. Banana split
+SUNDAE STORM spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
+
+3. Slow melt
+SUNDAE STORM lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
+
+DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
+
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
+
+INNATE TRAITS
+Scoop Launcher: scoops splat and slow; the frost scoop freezes. Starts with Baker Mouse.
+
+## Bonsai Clocksmith / BonsaiClocksmith
+
+THE CLOCKWORK GARDEN
+TRANSFORMATION: TIME GARDEN
+The gauge beside you fills from your hits, time and kills and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A clockwork bonsai is planted ahead: its hand sweeps once round, striking and slowing what it crosses; friends near it +40% attack speed.
+
+HERO PASSIVES
+- After transforming, half a tier stays filled.
+
+TEAM AND RUN PASSIVES
+- Clockwork Union counts one level higher.
+- Every merge pays 2 gold.
+- Friends +4% attack speed per Clock or Orchard bond level (max 16%).
+
+1. Pruned hand
+TIME GARDEN focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
+
+2. Wide canopy
+TIME GARDEN spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
+
+3. Evergreen
+TIME GARDEN lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
+
+DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
+
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
+
+INNATE TRAITS
+Cuckoo Cannon: pendulum shots; every third, a cuckoo dives on the farthest enemy. Starts with Top Beetle.
+
+## Juggling Jester / JugglingJester
+
+THE FIVE-BALL ACT
+TRANSFORMATION: GRAND CIRCUS
+The gauge beside you fills from friends' crits and your hits and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Five balls slam down on five enemies, then every throw tosses two pins; +30% attack speed.
+
+HERO PASSIVES
+- Your crits toss a ball that drops on a random enemy for 50% damage.
+
+TEAM AND RUN PASSIVES
+- Big Top counts one level higher.
+- A Big Top friend you recruit: 10% chance to arrive at two stars.
+- Friends +6% crit chance.
+
+1. Solo act
+GRAND CIRCUS focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
+
+2. Full troupe
+GRAND CIRCUS spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
+
+3. Encore
+GRAND CIRCUS lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
+
+DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
+
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
+
+INNATE TRAITS
+Juggling Pins: each pin strikes going up and coming down. Starts with Lens Owl.
+
+## Bell Diver / BellDiver
+
+THE DEPTH GAUGE
+TRANSFORMATION: DIVING BELL
+The gauge beside you fills from time near enemies and your hits (more on probed ones) and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You ride inside a brass bell: it rams and probes what is ahead and drops depth charges behind; +25% move speed, 50% less damage taken.
+
+HERO PASSIVES
+- Your hits on probed enemies: 15% chance to drop a coin (max 5 per wave).
+
+TEAM AND RUN PASSIVES
+- Rain Script counts one level higher.
+- Friends deal +8% damage to probed enemies.
+- Friends' shots bounce once more off probed enemies.
+
+1. Deep strike
+DIVING BELL focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
+
+2. Wide sonar
+DIVING BELL spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
+
+3. Long dive
+DIVING BELL lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
+
+DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
+
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
+
+INNATE TRAITS
+Sonar Harpoon: pierces two and probes them. Starts with Raincoat Frog.
 

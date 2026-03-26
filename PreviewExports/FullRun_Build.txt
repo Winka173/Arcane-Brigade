@@ -1,4 +1,4 @@
 Result: Succeeded
 Errors: 0
-Warnings: 0
-Size: 4770622266
+Warnings: 27
+Size: 1107442806

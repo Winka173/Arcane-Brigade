@@ -33,16 +33,34 @@ namespace ArcaneBrigade.Editor
                     float unpaidMaximum = session.PrepareCombat().Champion.Health; // maximum HP is compiled (wave scaling, hero rules), not the raw definition
                     string before = JsonUtility.ToJson(session.State);
                     require(!RunTransaction.TryCommit(session, catalog, "HP fail", () => session.Buy(offer.Token), () => false, out _) && before == JsonUtility.ToJson(session.State), "Failed HP save restores health, item, offer, receipt and RNG");
-                    require(RunTransaction.TryCommit(session, catalog, "HP purchase", () => session.Buy(offer.Token), () => true, out _) && session.State.Health == 15 && session.State.Gold == 100 && session.State.Eggs == 8, "HP offer spends only current health");
+                    require(RunTransaction.TryCommit(session, catalog, "HP purchase", () => session.Buy(offer.Token), () => true, out _) && session.State.Health == 15 && session.State.Gold == 100 && session.State.Eggs == 8, "HP offer spends health, not gold or eggs");
                     require(session.State.Receipts[0].Changes.Exists(change => change == "Current HP: 25 → 15"), "Receipt records exact health payment");
+                    // round 4 (Docs/Balance_Pass_2026-10-19.md): an HP price is taken from MAXIMUM HP for the run as well
                     float maximum = session.PrepareCombat().Champion.Health;
-                    require(maximum >= unpaidMaximum, "HP payment never reduces maximum health (" + unpaidMaximum + " -> " + maximum + ")");
+                    require(Mathf.Abs(maximum - (unpaidMaximum - 10)) < .01f && session.State.BloodPaid == 10, "HP payment lowers maximum health by exactly the price (" + unpaidMaximum + " -> " + maximum + ")");
                     var lethal = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = "key-oil", Currency = ShopCurrency.Health, Price = 15 };
                     session.State.SpecialOffers.Add(lethal);
                     before = JsonUtility.ToJson(session.State);
                     require(!session.CanBuy(lethal) && !session.Buy(lethal.Token) && before == JsonUtility.ToJson(session.State), "HP offer cannot kill Champion or consume RNG");
                     lethal.Price = 14;
                     require(session.CanBuy(lethal) && session.Buy(lethal.Token) && session.State.Health == 1, "HP offer may leave exactly one current HP");
+                    require(Mathf.Abs(session.PrepareCombat().Champion.Health - (unpaidMaximum - 24)) < .01f, "Both HP payments stay off maximum health");
+                    using (var reloaded = new RunSession(catalog))
+                    {
+                        reloaded.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State)));
+                        require(reloaded.State.BloodPaid == 24 && Mathf.Abs(reloaded.PrepareCombat().Champion.Health - (unpaidMaximum - 24)) < .01f, "Lost maximum HP survives save and load");
+                        reloaded.State.Phase = SessionPhase.Combat; reloaded.State.Wave++;
+                        require(Mathf.Abs(reloaded.PrepareCombat().Champion.Health - reloaded.MaximumHealthNow) < .01f && reloaded.UncutMaximumHealth - reloaded.MaximumHealthNow > 23.99f, "Lost maximum HP persists into later waves");
+                        string old = System.Text.RegularExpressions.Regex.Replace(JsonUtility.ToJson(session.State), ",?\"BloodPaid\":[^,}]*", "");
+                        require(!old.Contains("BloodPaid") && JsonUtility.FromJson<RunSnapshot>(old).BloodPaid == 0, "Saves from before the rule read no lost maximum HP");
+                    }
+                    session.State.Health = session.MaximumHealthNow;
+                    float uncut = session.UncutMaximumHealth, floor = BloodPrice.Floor(uncut);
+                    var deep = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = "key-oil", Currency = ShopCurrency.Health, Price = Mathf.FloorToInt(session.MaximumHealthNow - floor) + 1 };
+                    session.State.SpecialOffers.Add(deep);
+                    require(session.State.Health - deep.Price >= 1 && !session.CanBuy(deep) && !session.Buy(deep.Token), "HP offer may not cut maximum HP below a quarter of the uncut maximum (" + floor + ")");
+                    deep.Price -= 1;
+                    require(session.CanBuy(deep) && session.Buy(deep.Token) && session.MaximumHealthNow >= floor - .01f && session.State.Health >= 1, "HP offer may cut maximum HP down to the floor exactly");
                     session.State.Eggs = int.MaxValue;
                     require(session.AltarActivationChance == 1f, "Egg activation chance clamps safely without overflow");
                     session.State.Eggs = 8;

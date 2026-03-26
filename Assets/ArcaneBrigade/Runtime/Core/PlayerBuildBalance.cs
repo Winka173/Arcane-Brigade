@@ -18,7 +18,7 @@ namespace ArcaneBrigade
         {
             ["LoneJelly"] = 6.5f, ["GlassDice"] = 3.6f, ["RootOracle"] = 3.6f, ["PatchworkHost"] = 5f,
             ["ArchiveCurator"] = 4f, ["IvorySovereign"] = 4f, ["DrowsySeer"] = 4f, ["CometRunner"] = 3.6f,
-            ["TideSinger"] = 3.8f, ["NightMaw"] = 3.3f, ["PetalCitadel"] = 3.3f, ["StormFencer"] = 3.3f, ["SupperMortar"] = 3.3f,
+            ["TideSinger"] = 3.8f, ["NightMaw"] = 3.3f, ["PetalCitadel"] = 3.8f, ["StormFencer"] = 3.3f, ["SupperMortar"] = 3.3f,
             // the five expansion heroes (step 4c, 19/10/2026): start in the band of the newest heroes; balance by their mechanics
             ["KiteAdmiral"] = 3.3f, ["SundaeDuchess"] = 3.3f, ["BonsaiClocksmith"] = 3.3f, ["JugglingJester"] = 3.3f, ["BellDiver"] = 3.3f,
         };
@@ -26,12 +26,12 @@ namespace ArcaneBrigade
         {
             ["LoneJelly"] = 1.5f, ["ArchiveCurator"] = 1.3f,
             ["DrowsySeer"] = 1.5f, ["TideSinger"] = 1.5f, ["CometRunner"] = 1.45f, ["PatchworkHost"] = 1.45f,
-            ["NightMaw"] = 1.3f, ["PetalCitadel"] = 1.3f, ["StormFencer"] = 1.3f, ["SupperMortar"] = 1.3f,
+            ["NightMaw"] = 1.3f, ["PetalCitadel"] = 1.45f, ["StormFencer"] = 1.3f, ["SupperMortar"] = 1.3f,
             ["VerdantMatron"] = 1.15f, ["CopperCauldron"] = 1.15f, ["MoonProwler"] = 1.15f,
             ["KiteAdmiral"] = 1.3f, ["SundaeDuchess"] = 1.3f, ["BonsaiClocksmith"] = 1.3f, ["JugglingJester"] = 1.3f, ["BellDiver"] = 1.15f,
         };
-        /// <summary>Card Queen (Ivory Sovereign) royal health: each injury costs exactly 1. 12 before round 3; its bot win rate was 0/6.</summary>
-        public const int CardQueenHealth = 16;
+        /// <summary>Card Queen (Ivory Sovereign) royal health: each injury costs exactly 1. 12 before round 3, 16 in round 3 (still 1/6).</summary>
+        public const int CardQueenHealth = 18;
         public static float HeroPower(string hero) => hero != null && Power.TryGetValue(hero, out float value) ? value : 3f;
         public static float HeroVitality(string hero) => hero != null && Vitality.TryGetValue(hero, out float value) ? value : 1f;
         public static float DamageSlope(bool companion) => companion ? .3f : .6f;

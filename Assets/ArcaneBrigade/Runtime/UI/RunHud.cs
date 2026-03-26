@@ -359,7 +359,7 @@ namespace ArcaneBrigade
                 float y = panel.y + 58;
                 if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
                 string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                if (station.Offer?.Currency == ShopCurrency.Health) source = "{mark} Paid in current HP, always leaves 1\n" + source;
+                if (station.Offer?.Currency == ShopCurrency.Health) source = "{mark} −" + station.Offer.Price + " max HP for the run · leaves 1 HP\n" + source;
                 string body = Fit(source, width, panel.yMax - 12 - y, out int more);
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
                 if (navigation.Button(buy, "", primary)) shop.Interact();

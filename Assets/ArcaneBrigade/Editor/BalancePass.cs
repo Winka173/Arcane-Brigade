@@ -130,7 +130,8 @@ namespace ArcaneBrigade.Editor
         private static readonly (int lo, int hi)[] Band = { (15, 32), (24, 46), (30, 60), (48, 75), (48, 75), (200, 200) };
         /// <summary>Lowest altar HP price (before the altar's rarity factor 1 + 0.25 x rarity): Common 8 / Uncommon 13 / Rare 18 /
         /// Mythic 27 current HP, about 7–25% of a 110 HP hero. Was 3 / 4 for the Common and Uncommon HP offers.</summary>
-        private static readonly int[] HealthAltar = { 8, 10, 12, 15, 15, 15 };
+        // round 4: the HP price is permanent (maximum HP), so the floors drop to 5 / 9 / 12 / 18 HP after the rarity factor
+        private static readonly int[] HealthAltar = { 5, 7, 8, 10, 10, 10 };
         private static readonly int[] EggAltar = { 2, 3, 3, 4, 4, 4 };
 
         /// <summary>Items that may be owned once (round 2).</summary>
@@ -157,7 +158,7 @@ namespace ArcaneBrigade.Editor
                 // an item that raises max HP is never sold for current HP (it paid for itself on the spot)
                 bool givesHealth = item.EffectiveModifiers.Any(m => (m.Effect == ItemEffect.Health || m.Effect == ItemEffect.HealthCorrection) && m.Value > 0);
                 if (item.AltarCurrency == ShopCurrency.Health && givesHealth) { item.AltarCurrency = ShopCurrency.Eggs; item.AltarPrice = EggAltar[(int)item.Rarity]; changed++; }
-                if (item.AltarCurrency == ShopCurrency.Health && item.AltarPrice < HealthAltar[(int)item.Rarity]) { item.AltarPrice = HealthAltar[(int)item.Rarity]; changed++; }
+                if (item.AltarCurrency == ShopCurrency.Health && item.AltarPrice != HealthAltar[(int)item.Rarity]) { item.AltarPrice = HealthAltar[(int)item.Rarity]; changed++; }
                 // stat-only items: the gold price inside the rarity band follows the budget (ratio 0.6 → bottom, 1.4 → top)
                 if (!BalanceAudit.MechanicItem(catalog, item) && !BalanceAudit.ScoreItem(item) && item.Rarity < ItemRarity.Rainbow)
                 {

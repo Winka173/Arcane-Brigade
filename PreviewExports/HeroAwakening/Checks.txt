@@ -1,9 +1,9 @@
-PASS Every hero has a kit (31)
+PASS Every hero has a kit (36)
 PASS Postmaster has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS Postmaster describes its transformation
 PASS CopperCauldron has 1-2 hero passives and 2-4 team or run passives (2/3)
 PASS CopperCauldron describes its transformation
-PASS DrowsySeer has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS DrowsySeer has 1-2 hero passives and 2-4 team or run passives (2/4)
 PASS DrowsySeer describes its transformation
 PASS LanternKnight has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS LanternKnight describes its transformation
@@ -13,7 +13,7 @@ PASS LoneJelly has 1-2 hero passives and 2-4 team or run passives (2/3)
 PASS LoneJelly describes its transformation
 PASS GlassDice has 1-2 hero passives and 2-4 team or run passives (1/3)
 PASS GlassDice describes its transformation
-PASS TideSinger has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS TideSinger has 1-2 hero passives and 2-4 team or run passives (2/3)
 PASS TideSinger describes its transformation
 PASS CometRunner has 1-2 hero passives and 2-4 team or run passives (1/3)
 PASS CometRunner describes its transformation
@@ -39,11 +39,11 @@ PASS CitrusMarshal has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS CitrusMarshal describes its transformation
 PASS IvorySovereign has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS IvorySovereign describes its transformation
-PASS PetalCitadel has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS PetalCitadel has 1-2 hero passives and 2-4 team or run passives (2/4)
 PASS PetalCitadel describes its transformation
 PASS PatchworkHost has 1-2 hero passives and 2-4 team or run passives (1/3)
 PASS PatchworkHost describes its transformation
-PASS ArchiveCurator has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS ArchiveCurator has 1-2 hero passives and 2-4 team or run passives (2/3)
 PASS ArchiveCurator describes its transformation
 PASS PennyBroker has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS PennyBroker describes its transformation
@@ -61,6 +61,16 @@ PASS HourglassStag has 1-2 hero passives and 2-4 team or run passives (1/3)
 PASS HourglassStag describes its transformation
 PASS RainArchivist has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS RainArchivist describes its transformation
+PASS KiteAdmiral has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS KiteAdmiral describes its transformation
+PASS SundaeDuchess has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS SundaeDuchess describes its transformation
+PASS BonsaiClocksmith has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS BonsaiClocksmith describes its transformation
+PASS JugglingJester has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS JugglingJester describes its transformation
+PASS BellDiver has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS BellDiver describes its transformation
 PASS Every transformation and its art is the hero's own
 PASS LanternKnight expects the kind of art that was requested (held weapon or object)
 PASS RootOracle expects the kind of art that was requested (held weapon or object)
@@ -280,6 +290,36 @@ PASS RainArchivist: a full gauge transforms by itself (MONSOON CHAPTER)
 PASS RainArchivist holds its transformed weapon only when it has one
 PASS RainArchivist: the transformation ends and rests
 PASS RainArchivist: everything stays finite
+PASS KiteAdmiral starts with an empty gauge
+PASS KiteAdmiral: a full charge climbs a tier
+PASS KiteAdmiral: a full gauge transforms by itself (KITE FLEET)
+PASS KiteAdmiral holds its transformed weapon only when it has one
+PASS KiteAdmiral: the transformation ends and rests
+PASS KiteAdmiral: everything stays finite
+PASS SundaeDuchess starts with an empty gauge
+PASS SundaeDuchess: a full charge climbs a tier
+PASS SundaeDuchess: a full gauge transforms by itself (SUNDAE STORM)
+PASS SundaeDuchess holds its transformed weapon only when it has one
+PASS SundaeDuchess: the transformation ends and rests
+PASS SundaeDuchess: everything stays finite
+PASS BonsaiClocksmith starts with an empty gauge
+PASS BonsaiClocksmith: a full charge climbs a tier
+PASS BonsaiClocksmith: a full gauge transforms by itself (TIME GARDEN)
+PASS BonsaiClocksmith holds its transformed weapon only when it has one
+PASS BonsaiClocksmith: the transformation ends and rests
+PASS BonsaiClocksmith: everything stays finite
+PASS JugglingJester starts with an empty gauge
+PASS JugglingJester: a full charge climbs a tier
+PASS JugglingJester: a full gauge transforms by itself (GRAND CIRCUS)
+PASS JugglingJester holds its transformed weapon only when it has one
+PASS JugglingJester: the transformation ends and rests
+PASS JugglingJester: everything stays finite
+PASS BellDiver starts with an empty gauge
+PASS BellDiver: a full charge climbs a tier
+PASS BellDiver: a full gauge transforms by itself (DIVING BELL)
+PASS BellDiver holds its transformed weapon only when it has one
+PASS BellDiver: the transformation ends and rests
+PASS BellDiver: everything stays finite
 PASS CopperCauldron: the first reroll in a shop is free
 PASS CopperCauldron: later rerolls cost again
 PASS Postmaster: the first purchase of a shop is 20% cheaper (34 -> 28)

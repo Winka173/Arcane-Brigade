@@ -551,7 +551,7 @@ MonoBehaviour:
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 14
+    AltarPrice: 8
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 12
+    AltarPrice: 8
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -916,7 +916,7 @@ MonoBehaviour:
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 12
+    AltarPrice: 8
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1006,7 +1006,7 @@ MonoBehaviour:
     ShopWeight: 8
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 18
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 50
     Category: 0
@@ -1048,7 +1048,7 @@ MonoBehaviour:
     ShopWeight: 8
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 15
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 46
     Category: 0
@@ -1244,7 +1244,7 @@ MonoBehaviour:
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 12
+    AltarPrice: 8
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1719,7 +1719,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1840,7 +1840,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1961,7 +1961,7 @@ MonoBehaviour:
     ShopWeight: 100
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 8
+    AltarPrice: 5
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2075,7 +2075,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2202,7 +2202,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2329,7 +2329,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2466,7 +2466,7 @@ MonoBehaviour:
     ShopWeight: 100
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 8
+    AltarPrice: 5
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2580,7 +2580,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2807,7 +2807,7 @@ MonoBehaviour:
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 7
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -6914,7 +6914,7 @@ MonoBehaviour:
     ShopWeight: 28
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 15
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 34
     Category: 0
@@ -7638,7 +7638,7 @@ MonoBehaviour:
     ShopWeight: 28
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 15
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 45
     Category: 2

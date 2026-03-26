@@ -247,6 +247,26 @@ PASS RainArchivist has 2 themes, one signature bond and one item family (tidal,o
 PASS RainArchivist pool: 23 companions, 3 Mythic, 8 bonds
 PASS RainArchivist item pool 85
 PASS RainArchivist starting friend RibbonOtter is in its own pool
+PASS KiteAdmiral has 2 themes, one signature bond and one item family (astral,tidal,paper-wings,fam-ranged,rival-sea-shanty)
+PASS KiteAdmiral pool: 22 companions, 3 Mythic, 11 bonds
+PASS KiteAdmiral item pool 94
+PASS KiteAdmiral starting friend PaperPlanePigeon is in its own pool
+PASS SundaeDuchess has 2 themes, one signature bond and one item family (frost,hearth,sweet-tooth,fam-freeze)
+PASS SundaeDuchess pool: 21 companions, 3 Mythic, 6 bonds
+PASS SundaeDuchess item pool 83
+PASS SundaeDuchess starting friend BakerMouse is in its own pool
+PASS BonsaiClocksmith has 2 themes, one signature bond and one item family (orchard,clock,gear,fam-merge)
+PASS BonsaiClocksmith pool: 22 companions, 3 Mythic, 9 bonds
+PASS BonsaiClocksmith item pool 83
+PASS BonsaiClocksmith starting friend TopBeetle is in its own pool
+PASS JugglingJester has 2 themes, one signature bond and one item family (oddity,archive,big-top,fam-crit)
+PASS JugglingJester pool: 23 companions, 3 Mythic, 10 bonds
+PASS JugglingJester item pool 94
+PASS JugglingJester starting friend LensOwl is in its own pool
+PASS BellDiver has 2 themes, one signature bond and one item family (tidal,frost,rain-script,fam-marks,rival-shoe)
+PASS BellDiver pool: 20 companions, 3 Mythic, 8 bonds
+PASS BellDiver item pool 85
+PASS BellDiver starting friend RaincoatFrog is in its own pool
 PASS Every ordinary companion is in at least five heroes' pools
 PASS LanternKnight Prismatic gift offers three Prismatic choices (RainbowCrown,RainbowThread,RainbowBell)
 PASS LanternKnight Prismatic gift draws from its own pool first (9 in pool)

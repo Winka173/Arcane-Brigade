@@ -162,11 +162,11 @@ namespace ArcaneBrigade
                 Verdict(Champion.Position - dir * 1f, Champion.Position + dir * MaxLineLength);
             }
         }
-        /// <summary>Coronation: ordinary enemies under 15% health on the line are executed.</summary>
+        /// <summary>Coronation: ordinary enemies under 25% health on the line are executed (15% before balance round 4).</summary>
         private void Verdict(Vector2 from, Vector2 to)
         {
             foreach (UnitState u in units.ToArray())
-                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.Health < u.Definition.Health * .15f && SegmentCircle(from, to, u.Position, .6f + u.Definition.Radius) >= 0)
+                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.Health < u.Definition.Health * .25f && SegmentCircle(from, to, u.Position, .6f + u.Definition.Radius) >= 0)
                     ApplyDamage(u, u.Health + 1, Faction.Champion, "Verdict", to - from, cause: IdentityCause());
         }
         private void EndAwakening()

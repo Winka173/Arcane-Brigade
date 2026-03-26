@@ -1,5 +1,5 @@
-PASS Every one of 31 playable IDs has a signature
-PASS 31 distinct mechanic names and 93 approaches
+PASS Every one of 36 playable IDs has a signature (31 + the expansion's 5)
+PASS 36 distinct mechanic names and 108 approaches
 PASS Identity row does not overwrite stat summaries LanternKnight / 0
 PASS Damage row keeps correct compiled value LanternKnight / 0
 PASS Finite and immortal companion behavior LanternKnight / 0
@@ -1116,6 +1116,186 @@ PASS Combat glyphs cleared in rest RainArchivist / 2
 PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RainArchivist / 2
 PASS Mechanic ink clears completely outside combat RainArchivist / 2
 PASS Approach save round trip RainArchivist / 2
+PASS Identity row does not overwrite stat summaries KiteAdmiral / 0
+PASS Damage row keeps correct compiled value KiteAdmiral / 0
+PASS Finite and immortal companion behavior KiteAdmiral / 0
+PASS Actual signature activated KiteAdmiral / 0 casts=1 injuries=True meter=0.00 charge=0.0/10 hits=0
+PASS Bounded visual/projectile queues KiteAdmiral / 0
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) KiteAdmiral / 0 
+PASS Identity detonations sized inside their disc and at most one per 0.3s KiteAdmiral / 0 blasts=0
+PASS Pause cannot farm mechanic KiteAdmiral / 0
+PASS Combat glyphs cleared in rest KiteAdmiral / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines KiteAdmiral / 0
+PASS Mechanic ink clears completely outside combat KiteAdmiral / 0
+PASS Approach save round trip KiteAdmiral / 0
+PASS Identity row does not overwrite stat summaries KiteAdmiral / 1
+PASS Damage row keeps correct compiled value KiteAdmiral / 1
+PASS Finite and immortal companion behavior KiteAdmiral / 1
+PASS Actual signature activated KiteAdmiral / 1 casts=1 injuries=True meter=0.00 charge=0.0/10 hits=0
+PASS Bounded visual/projectile queues KiteAdmiral / 1
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) KiteAdmiral / 1 
+PASS Identity detonations sized inside their disc and at most one per 0.3s KiteAdmiral / 1 blasts=0
+PASS Pause cannot farm mechanic KiteAdmiral / 1
+PASS Combat glyphs cleared in rest KiteAdmiral / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines KiteAdmiral / 1
+PASS Mechanic ink clears completely outside combat KiteAdmiral / 1
+PASS Approach save round trip KiteAdmiral / 1
+PASS Identity row does not overwrite stat summaries KiteAdmiral / 2
+PASS Damage row keeps correct compiled value KiteAdmiral / 2
+PASS Finite and immortal companion behavior KiteAdmiral / 2
+PASS Actual signature activated KiteAdmiral / 2 casts=1 injuries=True meter=0.00 charge=0.0/10 hits=0
+PASS Bounded visual/projectile queues KiteAdmiral / 2
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) KiteAdmiral / 2 
+PASS Identity detonations sized inside their disc and at most one per 0.3s KiteAdmiral / 2 blasts=0
+PASS Pause cannot farm mechanic KiteAdmiral / 2
+PASS Combat glyphs cleared in rest KiteAdmiral / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines KiteAdmiral / 2
+PASS Mechanic ink clears completely outside combat KiteAdmiral / 2
+PASS Approach save round trip KiteAdmiral / 2
+PASS Identity row does not overwrite stat summaries SundaeDuchess / 0
+PASS Damage row keeps correct compiled value SundaeDuchess / 0
+PASS Finite and immortal companion behavior SundaeDuchess / 0
+PASS Actual signature activated SundaeDuchess / 0 casts=1 injuries=True meter=0.33 charge=1.4/10 hits=0
+PASS Bounded visual/projectile queues SundaeDuchess / 0
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) SundaeDuchess / 0 
+PASS Identity detonations sized inside their disc and at most one per 0.3s SundaeDuchess / 0 blasts=0
+PASS Pause cannot farm mechanic SundaeDuchess / 0
+PASS Combat glyphs cleared in rest SundaeDuchess / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SundaeDuchess / 0
+PASS Mechanic ink clears completely outside combat SundaeDuchess / 0
+PASS Approach save round trip SundaeDuchess / 0
+PASS Identity row does not overwrite stat summaries SundaeDuchess / 1
+PASS Damage row keeps correct compiled value SundaeDuchess / 1
+PASS Finite and immortal companion behavior SundaeDuchess / 1
+PASS Actual signature activated SundaeDuchess / 1 casts=1 injuries=True meter=0.33 charge=1.4/10 hits=0
+PASS Bounded visual/projectile queues SundaeDuchess / 1
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) SundaeDuchess / 1 
+PASS Identity detonations sized inside their disc and at most one per 0.3s SundaeDuchess / 1 blasts=0
+PASS Pause cannot farm mechanic SundaeDuchess / 1
+PASS Combat glyphs cleared in rest SundaeDuchess / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SundaeDuchess / 1
+PASS Mechanic ink clears completely outside combat SundaeDuchess / 1
+PASS Approach save round trip SundaeDuchess / 1
+PASS Identity row does not overwrite stat summaries SundaeDuchess / 2
+PASS Damage row keeps correct compiled value SundaeDuchess / 2
+PASS Finite and immortal companion behavior SundaeDuchess / 2
+PASS Actual signature activated SundaeDuchess / 2 casts=1 injuries=True meter=0.00 charge=9.3/10 hits=0
+PASS Bounded visual/projectile queues SundaeDuchess / 2
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) SundaeDuchess / 2 
+PASS Identity detonations sized inside their disc and at most one per 0.3s SundaeDuchess / 2 blasts=0
+PASS Pause cannot farm mechanic SundaeDuchess / 2
+PASS Combat glyphs cleared in rest SundaeDuchess / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SundaeDuchess / 2
+PASS Mechanic ink clears completely outside combat SundaeDuchess / 2
+PASS Approach save round trip SundaeDuchess / 2
+PASS Identity row does not overwrite stat summaries BonsaiClocksmith / 0
+PASS Damage row keeps correct compiled value BonsaiClocksmith / 0
+PASS Finite and immortal companion behavior BonsaiClocksmith / 0
+PASS Actual signature activated BonsaiClocksmith / 0 casts=1 injuries=True meter=0.33 charge=7.7/10 hits=2
+PASS Bounded visual/projectile queues BonsaiClocksmith / 0
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) BonsaiClocksmith / 0 
+PASS Identity detonations sized inside their disc and at most one per 0.3s BonsaiClocksmith / 0 blasts=0
+PASS Pause cannot farm mechanic BonsaiClocksmith / 0
+PASS Combat glyphs cleared in rest BonsaiClocksmith / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines BonsaiClocksmith / 0
+PASS Mechanic ink clears completely outside combat BonsaiClocksmith / 0
+PASS Approach save round trip BonsaiClocksmith / 0
+PASS Identity row does not overwrite stat summaries BonsaiClocksmith / 1
+PASS Damage row keeps correct compiled value BonsaiClocksmith / 1
+PASS Finite and immortal companion behavior BonsaiClocksmith / 1
+PASS Actual signature activated BonsaiClocksmith / 1 casts=1 injuries=True meter=0.33 charge=7.7/10 hits=2
+PASS Bounded visual/projectile queues BonsaiClocksmith / 1
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) BonsaiClocksmith / 1 
+PASS Identity detonations sized inside their disc and at most one per 0.3s BonsaiClocksmith / 1 blasts=0
+PASS Pause cannot farm mechanic BonsaiClocksmith / 1
+PASS Combat glyphs cleared in rest BonsaiClocksmith / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines BonsaiClocksmith / 1
+PASS Mechanic ink clears completely outside combat BonsaiClocksmith / 1
+PASS Approach save round trip BonsaiClocksmith / 1
+PASS Identity row does not overwrite stat summaries BonsaiClocksmith / 2
+PASS Damage row keeps correct compiled value BonsaiClocksmith / 2
+PASS Finite and immortal companion behavior BonsaiClocksmith / 2
+PASS Actual signature activated BonsaiClocksmith / 2 casts=1 injuries=True meter=0.33 charge=5.1/10 hits=1
+PASS Bounded visual/projectile queues BonsaiClocksmith / 2
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) BonsaiClocksmith / 2 
+PASS Identity detonations sized inside their disc and at most one per 0.3s BonsaiClocksmith / 2 blasts=0
+PASS Pause cannot farm mechanic BonsaiClocksmith / 2
+PASS Combat glyphs cleared in rest BonsaiClocksmith / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines BonsaiClocksmith / 2
+PASS Mechanic ink clears completely outside combat BonsaiClocksmith / 2
+PASS Approach save round trip BonsaiClocksmith / 2
+PASS Identity row does not overwrite stat summaries JugglingJester / 0
+PASS Damage row keeps correct compiled value JugglingJester / 0
+PASS Finite and immortal companion behavior JugglingJester / 0
+PASS Actual signature activated JugglingJester / 0 casts=1 injuries=True meter=0.33 charge=1.6/10 hits=1
+PASS Bounded visual/projectile queues JugglingJester / 0
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) JugglingJester / 0 
+PASS Identity detonations sized inside their disc and at most one per 0.3s JugglingJester / 0 blasts=0
+PASS Pause cannot farm mechanic JugglingJester / 0
+PASS Combat glyphs cleared in rest JugglingJester / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines JugglingJester / 0
+PASS Mechanic ink clears completely outside combat JugglingJester / 0
+PASS Approach save round trip JugglingJester / 0
+PASS Identity row does not overwrite stat summaries JugglingJester / 1
+PASS Damage row keeps correct compiled value JugglingJester / 1
+PASS Finite and immortal companion behavior JugglingJester / 1
+PASS Actual signature activated JugglingJester / 1 casts=1 injuries=True meter=0.33 charge=1.6/10 hits=1
+PASS Bounded visual/projectile queues JugglingJester / 1
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) JugglingJester / 1 
+PASS Identity detonations sized inside their disc and at most one per 0.3s JugglingJester / 1 blasts=0
+PASS Pause cannot farm mechanic JugglingJester / 1
+PASS Combat glyphs cleared in rest JugglingJester / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines JugglingJester / 1
+PASS Mechanic ink clears completely outside combat JugglingJester / 1
+PASS Approach save round trip JugglingJester / 1
+PASS Identity row does not overwrite stat summaries JugglingJester / 2
+PASS Damage row keeps correct compiled value JugglingJester / 2
+PASS Finite and immortal companion behavior JugglingJester / 2
+PASS Actual signature activated JugglingJester / 2 casts=1 injuries=True meter=0.00 charge=9.7/10 hits=0
+PASS Bounded visual/projectile queues JugglingJester / 2
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) JugglingJester / 2 
+PASS Identity detonations sized inside their disc and at most one per 0.3s JugglingJester / 2 blasts=0
+PASS Pause cannot farm mechanic JugglingJester / 2
+PASS Combat glyphs cleared in rest JugglingJester / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines JugglingJester / 2
+PASS Mechanic ink clears completely outside combat JugglingJester / 2
+PASS Approach save round trip JugglingJester / 2
+PASS Identity row does not overwrite stat summaries BellDiver / 0
+PASS Damage row keeps correct compiled value BellDiver / 0
+PASS Finite and immortal companion behavior BellDiver / 0
+PASS Actual signature activated BellDiver / 0 casts=1 injuries=True meter=0.33 charge=2.6/10 hits=1
+PASS Bounded visual/projectile queues BellDiver / 0
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) BellDiver / 0 
+PASS Identity detonations sized inside their disc and at most one per 0.3s BellDiver / 0 blasts=0
+PASS Pause cannot farm mechanic BellDiver / 0
+PASS Combat glyphs cleared in rest BellDiver / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines BellDiver / 0
+PASS Mechanic ink clears completely outside combat BellDiver / 0
+PASS Approach save round trip BellDiver / 0
+PASS Identity row does not overwrite stat summaries BellDiver / 1
+PASS Damage row keeps correct compiled value BellDiver / 1
+PASS Finite and immortal companion behavior BellDiver / 1
+PASS Actual signature activated BellDiver / 1 casts=1 injuries=True meter=0.33 charge=2.6/10 hits=1
+PASS Bounded visual/projectile queues BellDiver / 1
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) BellDiver / 1 
+PASS Identity detonations sized inside their disc and at most one per 0.3s BellDiver / 1 blasts=0
+PASS Pause cannot farm mechanic BellDiver / 1
+PASS Combat glyphs cleared in rest BellDiver / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines BellDiver / 1
+PASS Mechanic ink clears completely outside combat BellDiver / 1
+PASS Approach save round trip BellDiver / 1
+PASS Identity row does not overwrite stat summaries BellDiver / 2
+PASS Damage row keeps correct compiled value BellDiver / 2
+PASS Finite and immortal companion behavior BellDiver / 2
+PASS Actual signature activated BellDiver / 2 casts=1 injuries=True meter=0.00 charge=10.0/10 hits=2
+PASS Bounded visual/projectile queues BellDiver / 2
+PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) BellDiver / 2 
+PASS Identity detonations sized inside their disc and at most one per 0.3s BellDiver / 2 blasts=0
+PASS Pause cannot farm mechanic BellDiver / 2
+PASS Combat glyphs cleared in rest BellDiver / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines BellDiver / 2
+PASS Mechanic ink clears completely outside combat BellDiver / 2
+PASS Approach save round trip BellDiver / 2
 PASS Three detailed approach descriptions LanternKnight
 PASS Full mechanic UI includes approach description LanternKnight / 0
 PASS Full mechanic UI includes approach description LanternKnight / 1
@@ -1271,6 +1451,31 @@ PASS Full mechanic UI includes approach description RainArchivist / 0
 PASS Full mechanic UI includes approach description RainArchivist / 1
 PASS Full mechanic UI includes approach description RainArchivist / 2
 PASS Hero copy includes damage-budget rules and innate traits RainArchivist
+PASS Three detailed approach descriptions KiteAdmiral
+PASS Full mechanic UI includes approach description KiteAdmiral / 0
+PASS Full mechanic UI includes approach description KiteAdmiral / 1
+PASS Full mechanic UI includes approach description KiteAdmiral / 2
+PASS Hero copy includes damage-budget rules and innate traits KiteAdmiral
+PASS Three detailed approach descriptions SundaeDuchess
+PASS Full mechanic UI includes approach description SundaeDuchess / 0
+PASS Full mechanic UI includes approach description SundaeDuchess / 1
+PASS Full mechanic UI includes approach description SundaeDuchess / 2
+PASS Hero copy includes damage-budget rules and innate traits SundaeDuchess
+PASS Three detailed approach descriptions BonsaiClocksmith
+PASS Full mechanic UI includes approach description BonsaiClocksmith / 0
+PASS Full mechanic UI includes approach description BonsaiClocksmith / 1
+PASS Full mechanic UI includes approach description BonsaiClocksmith / 2
+PASS Hero copy includes damage-budget rules and innate traits BonsaiClocksmith
+PASS Three detailed approach descriptions JugglingJester
+PASS Full mechanic UI includes approach description JugglingJester / 0
+PASS Full mechanic UI includes approach description JugglingJester / 1
+PASS Full mechanic UI includes approach description JugglingJester / 2
+PASS Hero copy includes damage-budget rules and innate traits JugglingJester
+PASS Three detailed approach descriptions BellDiver
+PASS Full mechanic UI includes approach description BellDiver / 0
+PASS Full mechanic UI includes approach description BellDiver / 1
+PASS Full mechanic UI includes approach description BellDiver / 2
+PASS Hero copy includes damage-budget rules and innate traits BellDiver
 PASS Complete talent/support/passive copy TeapotPilgrim
 PASS Signed support value present TeapotPilgrim / Heal
 PASS Signed support value present TeapotPilgrim / MoveSpeed

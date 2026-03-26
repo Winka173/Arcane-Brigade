@@ -4221,6 +4221,666 @@ PASS Special currency stays unscaled RainArchivist/5/21
 PASS Finite compiled enemies RainArchivist/5/30
 PASS Finite champion and production crowd or final duel RainArchivist/5/30
 PASS Special currency stays unscaled RainArchivist/5/30
+PASS Finite compiled enemies KiteAdmiral/0/1
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/1
+PASS Special currency stays unscaled KiteAdmiral/0/1
+PASS No ranged wave-one enemies KiteAdmiral/0
+PASS Finite compiled enemies KiteAdmiral/0/4
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/4
+PASS Special currency stays unscaled KiteAdmiral/0/4
+PASS Finite compiled enemies KiteAdmiral/0/8
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/8
+PASS Special currency stays unscaled KiteAdmiral/0/8
+PASS Finite compiled enemies KiteAdmiral/0/12
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/12
+PASS Special currency stays unscaled KiteAdmiral/0/12
+PASS Finite compiled enemies KiteAdmiral/0/20
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/20
+PASS Special currency stays unscaled KiteAdmiral/0/20
+PASS Finite compiled enemies KiteAdmiral/0/21
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/21
+PASS Special currency stays unscaled KiteAdmiral/0/21
+PASS Finite compiled enemies KiteAdmiral/0/30
+PASS Finite champion and production crowd or final duel KiteAdmiral/0/30
+PASS Special currency stays unscaled KiteAdmiral/0/30
+PASS Finite compiled enemies KiteAdmiral/1/1
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/1
+PASS Special currency stays unscaled KiteAdmiral/1/1
+PASS No ranged wave-one enemies KiteAdmiral/1
+PASS Finite compiled enemies KiteAdmiral/1/4
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/4
+PASS Special currency stays unscaled KiteAdmiral/1/4
+PASS Finite compiled enemies KiteAdmiral/1/8
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/8
+PASS Special currency stays unscaled KiteAdmiral/1/8
+PASS Finite compiled enemies KiteAdmiral/1/12
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/12
+PASS Special currency stays unscaled KiteAdmiral/1/12
+PASS Finite compiled enemies KiteAdmiral/1/20
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/20
+PASS Special currency stays unscaled KiteAdmiral/1/20
+PASS Finite compiled enemies KiteAdmiral/1/21
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/21
+PASS Special currency stays unscaled KiteAdmiral/1/21
+PASS Finite compiled enemies KiteAdmiral/1/30
+PASS Finite champion and production crowd or final duel KiteAdmiral/1/30
+PASS Special currency stays unscaled KiteAdmiral/1/30
+PASS Finite compiled enemies KiteAdmiral/2/1
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/1
+PASS Special currency stays unscaled KiteAdmiral/2/1
+PASS No ranged wave-one enemies KiteAdmiral/2
+PASS Finite compiled enemies KiteAdmiral/2/4
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/4
+PASS Special currency stays unscaled KiteAdmiral/2/4
+PASS Finite compiled enemies KiteAdmiral/2/8
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/8
+PASS Special currency stays unscaled KiteAdmiral/2/8
+PASS Finite compiled enemies KiteAdmiral/2/12
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/12
+PASS Special currency stays unscaled KiteAdmiral/2/12
+PASS Finite compiled enemies KiteAdmiral/2/20
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/20
+PASS Special currency stays unscaled KiteAdmiral/2/20
+PASS Finite compiled enemies KiteAdmiral/2/21
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/21
+PASS Special currency stays unscaled KiteAdmiral/2/21
+PASS Finite compiled enemies KiteAdmiral/2/30
+PASS Finite champion and production crowd or final duel KiteAdmiral/2/30
+PASS Special currency stays unscaled KiteAdmiral/2/30
+PASS Finite compiled enemies KiteAdmiral/3/1
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/1
+PASS Special currency stays unscaled KiteAdmiral/3/1
+PASS No ranged wave-one enemies KiteAdmiral/3
+PASS Finite compiled enemies KiteAdmiral/3/4
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/4
+PASS Special currency stays unscaled KiteAdmiral/3/4
+PASS Finite compiled enemies KiteAdmiral/3/8
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/8
+PASS Special currency stays unscaled KiteAdmiral/3/8
+PASS Finite compiled enemies KiteAdmiral/3/12
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/12
+PASS Special currency stays unscaled KiteAdmiral/3/12
+PASS Finite compiled enemies KiteAdmiral/3/20
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/20
+PASS Special currency stays unscaled KiteAdmiral/3/20
+PASS Finite compiled enemies KiteAdmiral/3/21
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/21
+PASS Special currency stays unscaled KiteAdmiral/3/21
+PASS Finite compiled enemies KiteAdmiral/3/30
+PASS Finite champion and production crowd or final duel KiteAdmiral/3/30
+PASS Special currency stays unscaled KiteAdmiral/3/30
+PASS Finite compiled enemies KiteAdmiral/4/1
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/1
+PASS Special currency stays unscaled KiteAdmiral/4/1
+PASS No ranged wave-one enemies KiteAdmiral/4
+PASS Finite compiled enemies KiteAdmiral/4/4
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/4
+PASS Special currency stays unscaled KiteAdmiral/4/4
+PASS Finite compiled enemies KiteAdmiral/4/8
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/8
+PASS Special currency stays unscaled KiteAdmiral/4/8
+PASS Finite compiled enemies KiteAdmiral/4/12
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/12
+PASS Special currency stays unscaled KiteAdmiral/4/12
+PASS Finite compiled enemies KiteAdmiral/4/20
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/20
+PASS Special currency stays unscaled KiteAdmiral/4/20
+PASS Finite compiled enemies KiteAdmiral/4/21
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/21
+PASS Special currency stays unscaled KiteAdmiral/4/21
+PASS Finite compiled enemies KiteAdmiral/4/30
+PASS Finite champion and production crowd or final duel KiteAdmiral/4/30
+PASS Special currency stays unscaled KiteAdmiral/4/30
+PASS Finite compiled enemies KiteAdmiral/5/1
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/1
+PASS Special currency stays unscaled KiteAdmiral/5/1
+PASS No ranged wave-one enemies KiteAdmiral/5
+PASS Finite compiled enemies KiteAdmiral/5/4
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/4
+PASS Special currency stays unscaled KiteAdmiral/5/4
+PASS Finite compiled enemies KiteAdmiral/5/8
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/8
+PASS Special currency stays unscaled KiteAdmiral/5/8
+PASS Finite compiled enemies KiteAdmiral/5/12
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/12
+PASS Special currency stays unscaled KiteAdmiral/5/12
+PASS Finite compiled enemies KiteAdmiral/5/20
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/20
+PASS Special currency stays unscaled KiteAdmiral/5/20
+PASS Finite compiled enemies KiteAdmiral/5/21
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/21
+PASS Special currency stays unscaled KiteAdmiral/5/21
+PASS Finite compiled enemies KiteAdmiral/5/30
+PASS Finite champion and production crowd or final duel KiteAdmiral/5/30
+PASS Special currency stays unscaled KiteAdmiral/5/30
+PASS Finite compiled enemies SundaeDuchess/0/1
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/1
+PASS Special currency stays unscaled SundaeDuchess/0/1
+PASS No ranged wave-one enemies SundaeDuchess/0
+PASS Finite compiled enemies SundaeDuchess/0/4
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/4
+PASS Special currency stays unscaled SundaeDuchess/0/4
+PASS Finite compiled enemies SundaeDuchess/0/8
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/8
+PASS Special currency stays unscaled SundaeDuchess/0/8
+PASS Finite compiled enemies SundaeDuchess/0/12
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/12
+PASS Special currency stays unscaled SundaeDuchess/0/12
+PASS Finite compiled enemies SundaeDuchess/0/20
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/20
+PASS Special currency stays unscaled SundaeDuchess/0/20
+PASS Finite compiled enemies SundaeDuchess/0/21
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/21
+PASS Special currency stays unscaled SundaeDuchess/0/21
+PASS Finite compiled enemies SundaeDuchess/0/30
+PASS Finite champion and production crowd or final duel SundaeDuchess/0/30
+PASS Special currency stays unscaled SundaeDuchess/0/30
+PASS Finite compiled enemies SundaeDuchess/1/1
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/1
+PASS Special currency stays unscaled SundaeDuchess/1/1
+PASS No ranged wave-one enemies SundaeDuchess/1
+PASS Finite compiled enemies SundaeDuchess/1/4
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/4
+PASS Special currency stays unscaled SundaeDuchess/1/4
+PASS Finite compiled enemies SundaeDuchess/1/8
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/8
+PASS Special currency stays unscaled SundaeDuchess/1/8
+PASS Finite compiled enemies SundaeDuchess/1/12
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/12
+PASS Special currency stays unscaled SundaeDuchess/1/12
+PASS Finite compiled enemies SundaeDuchess/1/20
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/20
+PASS Special currency stays unscaled SundaeDuchess/1/20
+PASS Finite compiled enemies SundaeDuchess/1/21
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/21
+PASS Special currency stays unscaled SundaeDuchess/1/21
+PASS Finite compiled enemies SundaeDuchess/1/30
+PASS Finite champion and production crowd or final duel SundaeDuchess/1/30
+PASS Special currency stays unscaled SundaeDuchess/1/30
+PASS Finite compiled enemies SundaeDuchess/2/1
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/1
+PASS Special currency stays unscaled SundaeDuchess/2/1
+PASS No ranged wave-one enemies SundaeDuchess/2
+PASS Finite compiled enemies SundaeDuchess/2/4
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/4
+PASS Special currency stays unscaled SundaeDuchess/2/4
+PASS Finite compiled enemies SundaeDuchess/2/8
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/8
+PASS Special currency stays unscaled SundaeDuchess/2/8
+PASS Finite compiled enemies SundaeDuchess/2/12
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/12
+PASS Special currency stays unscaled SundaeDuchess/2/12
+PASS Finite compiled enemies SundaeDuchess/2/20
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/20
+PASS Special currency stays unscaled SundaeDuchess/2/20
+PASS Finite compiled enemies SundaeDuchess/2/21
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/21
+PASS Special currency stays unscaled SundaeDuchess/2/21
+PASS Finite compiled enemies SundaeDuchess/2/30
+PASS Finite champion and production crowd or final duel SundaeDuchess/2/30
+PASS Special currency stays unscaled SundaeDuchess/2/30
+PASS Finite compiled enemies SundaeDuchess/3/1
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/1
+PASS Special currency stays unscaled SundaeDuchess/3/1
+PASS No ranged wave-one enemies SundaeDuchess/3
+PASS Finite compiled enemies SundaeDuchess/3/4
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/4
+PASS Special currency stays unscaled SundaeDuchess/3/4
+PASS Finite compiled enemies SundaeDuchess/3/8
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/8
+PASS Special currency stays unscaled SundaeDuchess/3/8
+PASS Finite compiled enemies SundaeDuchess/3/12
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/12
+PASS Special currency stays unscaled SundaeDuchess/3/12
+PASS Finite compiled enemies SundaeDuchess/3/20
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/20
+PASS Special currency stays unscaled SundaeDuchess/3/20
+PASS Finite compiled enemies SundaeDuchess/3/21
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/21
+PASS Special currency stays unscaled SundaeDuchess/3/21
+PASS Finite compiled enemies SundaeDuchess/3/30
+PASS Finite champion and production crowd or final duel SundaeDuchess/3/30
+PASS Special currency stays unscaled SundaeDuchess/3/30
+PASS Finite compiled enemies SundaeDuchess/4/1
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/1
+PASS Special currency stays unscaled SundaeDuchess/4/1
+PASS No ranged wave-one enemies SundaeDuchess/4
+PASS Finite compiled enemies SundaeDuchess/4/4
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/4
+PASS Special currency stays unscaled SundaeDuchess/4/4
+PASS Finite compiled enemies SundaeDuchess/4/8
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/8
+PASS Special currency stays unscaled SundaeDuchess/4/8
+PASS Finite compiled enemies SundaeDuchess/4/12
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/12
+PASS Special currency stays unscaled SundaeDuchess/4/12
+PASS Finite compiled enemies SundaeDuchess/4/20
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/20
+PASS Special currency stays unscaled SundaeDuchess/4/20
+PASS Finite compiled enemies SundaeDuchess/4/21
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/21
+PASS Special currency stays unscaled SundaeDuchess/4/21
+PASS Finite compiled enemies SundaeDuchess/4/30
+PASS Finite champion and production crowd or final duel SundaeDuchess/4/30
+PASS Special currency stays unscaled SundaeDuchess/4/30
+PASS Finite compiled enemies SundaeDuchess/5/1
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/1
+PASS Special currency stays unscaled SundaeDuchess/5/1
+PASS No ranged wave-one enemies SundaeDuchess/5
+PASS Finite compiled enemies SundaeDuchess/5/4
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/4
+PASS Special currency stays unscaled SundaeDuchess/5/4
+PASS Finite compiled enemies SundaeDuchess/5/8
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/8
+PASS Special currency stays unscaled SundaeDuchess/5/8
+PASS Finite compiled enemies SundaeDuchess/5/12
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/12
+PASS Special currency stays unscaled SundaeDuchess/5/12
+PASS Finite compiled enemies SundaeDuchess/5/20
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/20
+PASS Special currency stays unscaled SundaeDuchess/5/20
+PASS Finite compiled enemies SundaeDuchess/5/21
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/21
+PASS Special currency stays unscaled SundaeDuchess/5/21
+PASS Finite compiled enemies SundaeDuchess/5/30
+PASS Finite champion and production crowd or final duel SundaeDuchess/5/30
+PASS Special currency stays unscaled SundaeDuchess/5/30
+PASS Finite compiled enemies BonsaiClocksmith/0/1
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/1
+PASS Special currency stays unscaled BonsaiClocksmith/0/1
+PASS No ranged wave-one enemies BonsaiClocksmith/0
+PASS Finite compiled enemies BonsaiClocksmith/0/4
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/4
+PASS Special currency stays unscaled BonsaiClocksmith/0/4
+PASS Finite compiled enemies BonsaiClocksmith/0/8
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/8
+PASS Special currency stays unscaled BonsaiClocksmith/0/8
+PASS Finite compiled enemies BonsaiClocksmith/0/12
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/12
+PASS Special currency stays unscaled BonsaiClocksmith/0/12
+PASS Finite compiled enemies BonsaiClocksmith/0/20
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/20
+PASS Special currency stays unscaled BonsaiClocksmith/0/20
+PASS Finite compiled enemies BonsaiClocksmith/0/21
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/21
+PASS Special currency stays unscaled BonsaiClocksmith/0/21
+PASS Finite compiled enemies BonsaiClocksmith/0/30
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/0/30
+PASS Special currency stays unscaled BonsaiClocksmith/0/30
+PASS Finite compiled enemies BonsaiClocksmith/1/1
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/1
+PASS Special currency stays unscaled BonsaiClocksmith/1/1
+PASS No ranged wave-one enemies BonsaiClocksmith/1
+PASS Finite compiled enemies BonsaiClocksmith/1/4
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/4
+PASS Special currency stays unscaled BonsaiClocksmith/1/4
+PASS Finite compiled enemies BonsaiClocksmith/1/8
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/8
+PASS Special currency stays unscaled BonsaiClocksmith/1/8
+PASS Finite compiled enemies BonsaiClocksmith/1/12
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/12
+PASS Special currency stays unscaled BonsaiClocksmith/1/12
+PASS Finite compiled enemies BonsaiClocksmith/1/20
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/20
+PASS Special currency stays unscaled BonsaiClocksmith/1/20
+PASS Finite compiled enemies BonsaiClocksmith/1/21
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/21
+PASS Special currency stays unscaled BonsaiClocksmith/1/21
+PASS Finite compiled enemies BonsaiClocksmith/1/30
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/1/30
+PASS Special currency stays unscaled BonsaiClocksmith/1/30
+PASS Finite compiled enemies BonsaiClocksmith/2/1
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/1
+PASS Special currency stays unscaled BonsaiClocksmith/2/1
+PASS No ranged wave-one enemies BonsaiClocksmith/2
+PASS Finite compiled enemies BonsaiClocksmith/2/4
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/4
+PASS Special currency stays unscaled BonsaiClocksmith/2/4
+PASS Finite compiled enemies BonsaiClocksmith/2/8
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/8
+PASS Special currency stays unscaled BonsaiClocksmith/2/8
+PASS Finite compiled enemies BonsaiClocksmith/2/12
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/12
+PASS Special currency stays unscaled BonsaiClocksmith/2/12
+PASS Finite compiled enemies BonsaiClocksmith/2/20
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/20
+PASS Special currency stays unscaled BonsaiClocksmith/2/20
+PASS Finite compiled enemies BonsaiClocksmith/2/21
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/21
+PASS Special currency stays unscaled BonsaiClocksmith/2/21
+PASS Finite compiled enemies BonsaiClocksmith/2/30
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/2/30
+PASS Special currency stays unscaled BonsaiClocksmith/2/30
+PASS Finite compiled enemies BonsaiClocksmith/3/1
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/1
+PASS Special currency stays unscaled BonsaiClocksmith/3/1
+PASS No ranged wave-one enemies BonsaiClocksmith/3
+PASS Finite compiled enemies BonsaiClocksmith/3/4
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/4
+PASS Special currency stays unscaled BonsaiClocksmith/3/4
+PASS Finite compiled enemies BonsaiClocksmith/3/8
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/8
+PASS Special currency stays unscaled BonsaiClocksmith/3/8
+PASS Finite compiled enemies BonsaiClocksmith/3/12
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/12
+PASS Special currency stays unscaled BonsaiClocksmith/3/12
+PASS Finite compiled enemies BonsaiClocksmith/3/20
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/20
+PASS Special currency stays unscaled BonsaiClocksmith/3/20
+PASS Finite compiled enemies BonsaiClocksmith/3/21
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/21
+PASS Special currency stays unscaled BonsaiClocksmith/3/21
+PASS Finite compiled enemies BonsaiClocksmith/3/30
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/3/30
+PASS Special currency stays unscaled BonsaiClocksmith/3/30
+PASS Finite compiled enemies BonsaiClocksmith/4/1
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/1
+PASS Special currency stays unscaled BonsaiClocksmith/4/1
+PASS No ranged wave-one enemies BonsaiClocksmith/4
+PASS Finite compiled enemies BonsaiClocksmith/4/4
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/4
+PASS Special currency stays unscaled BonsaiClocksmith/4/4
+PASS Finite compiled enemies BonsaiClocksmith/4/8
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/8
+PASS Special currency stays unscaled BonsaiClocksmith/4/8
+PASS Finite compiled enemies BonsaiClocksmith/4/12
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/12
+PASS Special currency stays unscaled BonsaiClocksmith/4/12
+PASS Finite compiled enemies BonsaiClocksmith/4/20
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/20
+PASS Special currency stays unscaled BonsaiClocksmith/4/20
+PASS Finite compiled enemies BonsaiClocksmith/4/21
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/21
+PASS Special currency stays unscaled BonsaiClocksmith/4/21
+PASS Finite compiled enemies BonsaiClocksmith/4/30
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/4/30
+PASS Special currency stays unscaled BonsaiClocksmith/4/30
+PASS Finite compiled enemies BonsaiClocksmith/5/1
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/1
+PASS Special currency stays unscaled BonsaiClocksmith/5/1
+PASS No ranged wave-one enemies BonsaiClocksmith/5
+PASS Finite compiled enemies BonsaiClocksmith/5/4
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/4
+PASS Special currency stays unscaled BonsaiClocksmith/5/4
+PASS Finite compiled enemies BonsaiClocksmith/5/8
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/8
+PASS Special currency stays unscaled BonsaiClocksmith/5/8
+PASS Finite compiled enemies BonsaiClocksmith/5/12
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/12
+PASS Special currency stays unscaled BonsaiClocksmith/5/12
+PASS Finite compiled enemies BonsaiClocksmith/5/20
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/20
+PASS Special currency stays unscaled BonsaiClocksmith/5/20
+PASS Finite compiled enemies BonsaiClocksmith/5/21
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/21
+PASS Special currency stays unscaled BonsaiClocksmith/5/21
+PASS Finite compiled enemies BonsaiClocksmith/5/30
+PASS Finite champion and production crowd or final duel BonsaiClocksmith/5/30
+PASS Special currency stays unscaled BonsaiClocksmith/5/30
+PASS Finite compiled enemies JugglingJester/0/1
+PASS Finite champion and production crowd or final duel JugglingJester/0/1
+PASS Special currency stays unscaled JugglingJester/0/1
+PASS No ranged wave-one enemies JugglingJester/0
+PASS Finite compiled enemies JugglingJester/0/4
+PASS Finite champion and production crowd or final duel JugglingJester/0/4
+PASS Special currency stays unscaled JugglingJester/0/4
+PASS Finite compiled enemies JugglingJester/0/8
+PASS Finite champion and production crowd or final duel JugglingJester/0/8
+PASS Special currency stays unscaled JugglingJester/0/8
+PASS Finite compiled enemies JugglingJester/0/12
+PASS Finite champion and production crowd or final duel JugglingJester/0/12
+PASS Special currency stays unscaled JugglingJester/0/12
+PASS Finite compiled enemies JugglingJester/0/20
+PASS Finite champion and production crowd or final duel JugglingJester/0/20
+PASS Special currency stays unscaled JugglingJester/0/20
+PASS Finite compiled enemies JugglingJester/0/21
+PASS Finite champion and production crowd or final duel JugglingJester/0/21
+PASS Special currency stays unscaled JugglingJester/0/21
+PASS Finite compiled enemies JugglingJester/0/30
+PASS Finite champion and production crowd or final duel JugglingJester/0/30
+PASS Special currency stays unscaled JugglingJester/0/30
+PASS Finite compiled enemies JugglingJester/1/1
+PASS Finite champion and production crowd or final duel JugglingJester/1/1
+PASS Special currency stays unscaled JugglingJester/1/1
+PASS No ranged wave-one enemies JugglingJester/1
+PASS Finite compiled enemies JugglingJester/1/4
+PASS Finite champion and production crowd or final duel JugglingJester/1/4
+PASS Special currency stays unscaled JugglingJester/1/4
+PASS Finite compiled enemies JugglingJester/1/8
+PASS Finite champion and production crowd or final duel JugglingJester/1/8
+PASS Special currency stays unscaled JugglingJester/1/8
+PASS Finite compiled enemies JugglingJester/1/12
+PASS Finite champion and production crowd or final duel JugglingJester/1/12
+PASS Special currency stays unscaled JugglingJester/1/12
+PASS Finite compiled enemies JugglingJester/1/20
+PASS Finite champion and production crowd or final duel JugglingJester/1/20
+PASS Special currency stays unscaled JugglingJester/1/20
+PASS Finite compiled enemies JugglingJester/1/21
+PASS Finite champion and production crowd or final duel JugglingJester/1/21
+PASS Special currency stays unscaled JugglingJester/1/21
+PASS Finite compiled enemies JugglingJester/1/30
+PASS Finite champion and production crowd or final duel JugglingJester/1/30
+PASS Special currency stays unscaled JugglingJester/1/30
+PASS Finite compiled enemies JugglingJester/2/1
+PASS Finite champion and production crowd or final duel JugglingJester/2/1
+PASS Special currency stays unscaled JugglingJester/2/1
+PASS No ranged wave-one enemies JugglingJester/2
+PASS Finite compiled enemies JugglingJester/2/4
+PASS Finite champion and production crowd or final duel JugglingJester/2/4
+PASS Special currency stays unscaled JugglingJester/2/4
+PASS Finite compiled enemies JugglingJester/2/8
+PASS Finite champion and production crowd or final duel JugglingJester/2/8
+PASS Special currency stays unscaled JugglingJester/2/8
+PASS Finite compiled enemies JugglingJester/2/12
+PASS Finite champion and production crowd or final duel JugglingJester/2/12
+PASS Special currency stays unscaled JugglingJester/2/12
+PASS Finite compiled enemies JugglingJester/2/20
+PASS Finite champion and production crowd or final duel JugglingJester/2/20
+PASS Special currency stays unscaled JugglingJester/2/20
+PASS Finite compiled enemies JugglingJester/2/21
+PASS Finite champion and production crowd or final duel JugglingJester/2/21
+PASS Special currency stays unscaled JugglingJester/2/21
+PASS Finite compiled enemies JugglingJester/2/30
+PASS Finite champion and production crowd or final duel JugglingJester/2/30
+PASS Special currency stays unscaled JugglingJester/2/30
+PASS Finite compiled enemies JugglingJester/3/1
+PASS Finite champion and production crowd or final duel JugglingJester/3/1
+PASS Special currency stays unscaled JugglingJester/3/1
+PASS No ranged wave-one enemies JugglingJester/3
+PASS Finite compiled enemies JugglingJester/3/4
+PASS Finite champion and production crowd or final duel JugglingJester/3/4
+PASS Special currency stays unscaled JugglingJester/3/4
+PASS Finite compiled enemies JugglingJester/3/8
+PASS Finite champion and production crowd or final duel JugglingJester/3/8
+PASS Special currency stays unscaled JugglingJester/3/8
+PASS Finite compiled enemies JugglingJester/3/12
+PASS Finite champion and production crowd or final duel JugglingJester/3/12
+PASS Special currency stays unscaled JugglingJester/3/12
+PASS Finite compiled enemies JugglingJester/3/20
+PASS Finite champion and production crowd or final duel JugglingJester/3/20
+PASS Special currency stays unscaled JugglingJester/3/20
+PASS Finite compiled enemies JugglingJester/3/21
+PASS Finite champion and production crowd or final duel JugglingJester/3/21
+PASS Special currency stays unscaled JugglingJester/3/21
+PASS Finite compiled enemies JugglingJester/3/30
+PASS Finite champion and production crowd or final duel JugglingJester/3/30
+PASS Special currency stays unscaled JugglingJester/3/30
+PASS Finite compiled enemies JugglingJester/4/1
+PASS Finite champion and production crowd or final duel JugglingJester/4/1
+PASS Special currency stays unscaled JugglingJester/4/1
+PASS No ranged wave-one enemies JugglingJester/4
+PASS Finite compiled enemies JugglingJester/4/4
+PASS Finite champion and production crowd or final duel JugglingJester/4/4
+PASS Special currency stays unscaled JugglingJester/4/4
+PASS Finite compiled enemies JugglingJester/4/8
+PASS Finite champion and production crowd or final duel JugglingJester/4/8
+PASS Special currency stays unscaled JugglingJester/4/8
+PASS Finite compiled enemies JugglingJester/4/12
+PASS Finite champion and production crowd or final duel JugglingJester/4/12
+PASS Special currency stays unscaled JugglingJester/4/12
+PASS Finite compiled enemies JugglingJester/4/20
+PASS Finite champion and production crowd or final duel JugglingJester/4/20
+PASS Special currency stays unscaled JugglingJester/4/20
+PASS Finite compiled enemies JugglingJester/4/21
+PASS Finite champion and production crowd or final duel JugglingJester/4/21
+PASS Special currency stays unscaled JugglingJester/4/21
+PASS Finite compiled enemies JugglingJester/4/30
+PASS Finite champion and production crowd or final duel JugglingJester/4/30
+PASS Special currency stays unscaled JugglingJester/4/30
+PASS Finite compiled enemies JugglingJester/5/1
+PASS Finite champion and production crowd or final duel JugglingJester/5/1
+PASS Special currency stays unscaled JugglingJester/5/1
+PASS No ranged wave-one enemies JugglingJester/5
+PASS Finite compiled enemies JugglingJester/5/4
+PASS Finite champion and production crowd or final duel JugglingJester/5/4
+PASS Special currency stays unscaled JugglingJester/5/4
+PASS Finite compiled enemies JugglingJester/5/8
+PASS Finite champion and production crowd or final duel JugglingJester/5/8
+PASS Special currency stays unscaled JugglingJester/5/8
+PASS Finite compiled enemies JugglingJester/5/12
+PASS Finite champion and production crowd or final duel JugglingJester/5/12
+PASS Special currency stays unscaled JugglingJester/5/12
+PASS Finite compiled enemies JugglingJester/5/20
+PASS Finite champion and production crowd or final duel JugglingJester/5/20
+PASS Special currency stays unscaled JugglingJester/5/20
+PASS Finite compiled enemies JugglingJester/5/21
+PASS Finite champion and production crowd or final duel JugglingJester/5/21
+PASS Special currency stays unscaled JugglingJester/5/21
+PASS Finite compiled enemies JugglingJester/5/30
+PASS Finite champion and production crowd or final duel JugglingJester/5/30
+PASS Special currency stays unscaled JugglingJester/5/30
+PASS Finite compiled enemies BellDiver/0/1
+PASS Finite champion and production crowd or final duel BellDiver/0/1
+PASS Special currency stays unscaled BellDiver/0/1
+PASS No ranged wave-one enemies BellDiver/0
+PASS Finite compiled enemies BellDiver/0/4
+PASS Finite champion and production crowd or final duel BellDiver/0/4
+PASS Special currency stays unscaled BellDiver/0/4
+PASS Finite compiled enemies BellDiver/0/8
+PASS Finite champion and production crowd or final duel BellDiver/0/8
+PASS Special currency stays unscaled BellDiver/0/8
+PASS Finite compiled enemies BellDiver/0/12
+PASS Finite champion and production crowd or final duel BellDiver/0/12
+PASS Special currency stays unscaled BellDiver/0/12
+PASS Finite compiled enemies BellDiver/0/20
+PASS Finite champion and production crowd or final duel BellDiver/0/20
+PASS Special currency stays unscaled BellDiver/0/20
+PASS Finite compiled enemies BellDiver/0/21
+PASS Finite champion and production crowd or final duel BellDiver/0/21
+PASS Special currency stays unscaled BellDiver/0/21
+PASS Finite compiled enemies BellDiver/0/30
+PASS Finite champion and production crowd or final duel BellDiver/0/30
+PASS Special currency stays unscaled BellDiver/0/30
+PASS Finite compiled enemies BellDiver/1/1
+PASS Finite champion and production crowd or final duel BellDiver/1/1
+PASS Special currency stays unscaled BellDiver/1/1
+PASS No ranged wave-one enemies BellDiver/1
+PASS Finite compiled enemies BellDiver/1/4
+PASS Finite champion and production crowd or final duel BellDiver/1/4
+PASS Special currency stays unscaled BellDiver/1/4
+PASS Finite compiled enemies BellDiver/1/8
+PASS Finite champion and production crowd or final duel BellDiver/1/8
+PASS Special currency stays unscaled BellDiver/1/8
+PASS Finite compiled enemies BellDiver/1/12
+PASS Finite champion and production crowd or final duel BellDiver/1/12
+PASS Special currency stays unscaled BellDiver/1/12
+PASS Finite compiled enemies BellDiver/1/20
+PASS Finite champion and production crowd or final duel BellDiver/1/20
+PASS Special currency stays unscaled BellDiver/1/20
+PASS Finite compiled enemies BellDiver/1/21
+PASS Finite champion and production crowd or final duel BellDiver/1/21
+PASS Special currency stays unscaled BellDiver/1/21
+PASS Finite compiled enemies BellDiver/1/30
+PASS Finite champion and production crowd or final duel BellDiver/1/30
+PASS Special currency stays unscaled BellDiver/1/30
+PASS Finite compiled enemies BellDiver/2/1
+PASS Finite champion and production crowd or final duel BellDiver/2/1
+PASS Special currency stays unscaled BellDiver/2/1
+PASS No ranged wave-one enemies BellDiver/2
+PASS Finite compiled enemies BellDiver/2/4
+PASS Finite champion and production crowd or final duel BellDiver/2/4
+PASS Special currency stays unscaled BellDiver/2/4
+PASS Finite compiled enemies BellDiver/2/8
+PASS Finite champion and production crowd or final duel BellDiver/2/8
+PASS Special currency stays unscaled BellDiver/2/8
+PASS Finite compiled enemies BellDiver/2/12
+PASS Finite champion and production crowd or final duel BellDiver/2/12
+PASS Special currency stays unscaled BellDiver/2/12
+PASS Finite compiled enemies BellDiver/2/20
+PASS Finite champion and production crowd or final duel BellDiver/2/20
+PASS Special currency stays unscaled BellDiver/2/20
+PASS Finite compiled enemies BellDiver/2/21
+PASS Finite champion and production crowd or final duel BellDiver/2/21
+PASS Special currency stays unscaled BellDiver/2/21
+PASS Finite compiled enemies BellDiver/2/30
+PASS Finite champion and production crowd or final duel BellDiver/2/30
+PASS Special currency stays unscaled BellDiver/2/30
+PASS Finite compiled enemies BellDiver/3/1
+PASS Finite champion and production crowd or final duel BellDiver/3/1
+PASS Special currency stays unscaled BellDiver/3/1
+PASS No ranged wave-one enemies BellDiver/3
+PASS Finite compiled enemies BellDiver/3/4
+PASS Finite champion and production crowd or final duel BellDiver/3/4
+PASS Special currency stays unscaled BellDiver/3/4
+PASS Finite compiled enemies BellDiver/3/8
+PASS Finite champion and production crowd or final duel BellDiver/3/8
+PASS Special currency stays unscaled BellDiver/3/8
+PASS Finite compiled enemies BellDiver/3/12
+PASS Finite champion and production crowd or final duel BellDiver/3/12
+PASS Special currency stays unscaled BellDiver/3/12
+PASS Finite compiled enemies BellDiver/3/20
+PASS Finite champion and production crowd or final duel BellDiver/3/20
+PASS Special currency stays unscaled BellDiver/3/20
+PASS Finite compiled enemies BellDiver/3/21
+PASS Finite champion and production crowd or final duel BellDiver/3/21
+PASS Special currency stays unscaled BellDiver/3/21
+PASS Finite compiled enemies BellDiver/3/30
+PASS Finite champion and production crowd or final duel BellDiver/3/30
+PASS Special currency stays unscaled BellDiver/3/30
+PASS Finite compiled enemies BellDiver/4/1
+PASS Finite champion and production crowd or final duel BellDiver/4/1
+PASS Special currency stays unscaled BellDiver/4/1
+PASS No ranged wave-one enemies BellDiver/4
+PASS Finite compiled enemies BellDiver/4/4
+PASS Finite champion and production crowd or final duel BellDiver/4/4
+PASS Special currency stays unscaled BellDiver/4/4
+PASS Finite compiled enemies BellDiver/4/8
+PASS Finite champion and production crowd or final duel BellDiver/4/8
+PASS Special currency stays unscaled BellDiver/4/8
+PASS Finite compiled enemies BellDiver/4/12
+PASS Finite champion and production crowd or final duel BellDiver/4/12
+PASS Special currency stays unscaled BellDiver/4/12
+PASS Finite compiled enemies BellDiver/4/20
+PASS Finite champion and production crowd or final duel BellDiver/4/20
+PASS Special currency stays unscaled BellDiver/4/20
+PASS Finite compiled enemies BellDiver/4/21
+PASS Finite champion and production crowd or final duel BellDiver/4/21
+PASS Special currency stays unscaled BellDiver/4/21
+PASS Finite compiled enemies BellDiver/4/30
+PASS Finite champion and production crowd or final duel BellDiver/4/30
+PASS Special currency stays unscaled BellDiver/4/30
+PASS Finite compiled enemies BellDiver/5/1
+PASS Finite champion and production crowd or final duel BellDiver/5/1
+PASS Special currency stays unscaled BellDiver/5/1
+PASS No ranged wave-one enemies BellDiver/5
+PASS Finite compiled enemies BellDiver/5/4
+PASS Finite champion and production crowd or final duel BellDiver/5/4
+PASS Special currency stays unscaled BellDiver/5/4
+PASS Finite compiled enemies BellDiver/5/8
+PASS Finite champion and production crowd or final duel BellDiver/5/8
+PASS Special currency stays unscaled BellDiver/5/8
+PASS Finite compiled enemies BellDiver/5/12
+PASS Finite champion and production crowd or final duel BellDiver/5/12
+PASS Special currency stays unscaled BellDiver/5/12
+PASS Finite compiled enemies BellDiver/5/20
+PASS Finite champion and production crowd or final duel BellDiver/5/20
+PASS Special currency stays unscaled BellDiver/5/20
+PASS Finite compiled enemies BellDiver/5/21
+PASS Finite champion and production crowd or final duel BellDiver/5/21
+PASS Special currency stays unscaled BellDiver/5/21
+PASS Finite compiled enemies BellDiver/5/30
+PASS Finite champion and production crowd or final duel BellDiver/5/30
+PASS Special currency stays unscaled BellDiver/5/30
 PASS Challenge retains fixed rules night-shift
 PASS Unsupported challenge difficulty remains rejected night-shift
 PASS Challenge retains fixed rules first-light

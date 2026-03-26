@@ -96,7 +96,7 @@ namespace ArcaneBrigade
                 default: Add(id, "A SHELF", "The shelf is dreaming of a spine.", "It only waits", Ink(view), view.sortingOrder); break;
             }
         }
-        private static string Price(int price, ShopCurrency currency) => price + (currency == ShopCurrency.Eggs ? " eggs" : currency == ShopCurrency.Health ? " HP" : " gold");
+        private static string Price(int price, ShopCurrency currency) => price + (currency == ShopCurrency.Eggs ? " eggs" : currency == ShopCurrency.Health ? " max HP" : " gold"); // round 4: an HP price is taken from maximum HP for the run
         // light and particles around a stall (rarity bloom, its light, drifting motes) are not the thing itself: left out of its box
         private static bool Decorative(string name) => name.Contains("Contact") || name.Contains("Shadow") || name.Contains("Glow") || name.Contains("Halo") || name.Contains("Aura") || name.Contains("Floor")
             || name.Contains("Bloom") || name.Contains("Mote") || name.Contains("RarityLight");

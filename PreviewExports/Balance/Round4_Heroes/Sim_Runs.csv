@@ -1,0 +1,217 @@
+hero,difficulty,outcome,last_wave,total_gold,items,recruits,rerolls,seed,last_damage_source,last_damage_kind,last_damage
+LanternKnight,1,VICTORY,20,36784,69,24,15,161026,"The Last Customer contact","Physical / Contact / arena",6.8
+LanternKnight,1,VICTORY,20,37231,68,23,15,77138,"The Last Customer encore volley","Arcane / Contact / arena",7.8
+LanternKnight,1,VICTORY,20,37330,88,17,29,90210,"Tentacle","Physical / Contact / arena",7.43
+LanternKnight,3,VICTORY,20,37999,77,28,20,161026,"Shockwave","Physical / Contact / arena",3.07
+LanternKnight,3,VICTORY,20,38801,64,23,13,77138,"Shockwave","Physical / Contact / arena",4
+LanternKnight,3,VICTORY,20,38476,92,21,28,90210,"Tentacle","Physical / Contact / arena",3.08
+Postmaster,1,VICTORY,20,39395,116,26,28,161026,"","",0
+Postmaster,1,VICTORY,20,39389,103,25,28,77138,"Tentacle","Physical / Contact / arena",6.84
+Postmaster,1,VICTORY,20,39024,102,32,27,90210,"Tentacle","Physical / Contact / arena",4.15
+Postmaster,3,VICTORY,20,42655,141,31,39,161026,"Tentacle","Physical / Contact / arena",2.13
+Postmaster,3,DEFEAT,10,4584,47,13,11,77138,"InkMoth contact","Physical / Contact / arena",22.94
+Postmaster,3,DEFEAT,14,16857,74,19,20,90210,"Splinter Imp contact","Physical / Contact / arena",6.66
+DrowsySeer,1,DEFEAT,17,27510,61,22,10,161026,"InkMoth contact","Physical / Contact / arena",14.84
+DrowsySeer,1,DEFEAT,15,19774,59,18,9,77138,"InkMoth contact","Physical / Contact / arena",11.11
+DrowsySeer,1,VICTORY,20,38199,64,25,9,90210,"Tentacle","Physical / Contact / arena",4.1
+DrowsySeer,3,DEFEAT,10,5207,40,13,6,161026,"THE CHAIR PORTER contact","Physical / Contact / arena",11.16
+DrowsySeer,3,TIMEOUT,15,25652,71,18,11,77138,"FallingProp","Physical / Contact / arena",5.77
+DrowsySeer,3,VICTORY,20,39743,95,25,16,90210,"Shockwave","Physical / Contact / arena",4.51
+RootOracle,1,VICTORY,20,38009,92,24,22,161026,"Overtime exhaustion","Physical / Contact / arena",0.5
+RootOracle,1,VICTORY,20,36142,103,26,22,77138,"Shockwave","Physical / Contact / arena",9.06
+RootOracle,1,VICTORY,20,38775,123,28,31,90210,"Shockwave","Physical / Contact / arena",7.19
+RootOracle,3,DEFEAT,15,16633,64,20,16,161026,"InkMoth contact","Physical / Contact / arena",21.03
+RootOracle,3,VICTORY,20,37864,93,27,22,77138,"Shockwave","Physical / Contact / arena",4.69
+RootOracle,3,VICTORY,20,39269,106,27,28,90210,"FallingProp","Physical / Contact / arena",11.99
+LoneJelly,1,DEFEAT,19,33600,75,27,18,161026,"Splinter Imp contact","Physical / Contact / arena",19.95
+LoneJelly,1,VICTORY,20,36238,58,18,12,77138,"Shockwave","Physical / Contact / arena",7.07
+LoneJelly,1,VICTORY,20,36469,72,25,19,90210,"The Last Customer encore volley","Arcane / Contact / arena",18.59
+LoneJelly,3,DEFEAT,5,698,14,4,5,161026,"Wardrobe Crab contact","Physical / Contact / arena",8.51
+LoneJelly,3,DEFEAT,7,1653,18,7,4,77138,"InkMoth contact","Physical / Contact / arena",8.62
+LoneJelly,3,DEFEAT,7,1530,17,6,4,90210,"InkMoth contact","Physical / Contact / arena",9.97
+GlassDice,1,VICTORY,20,36671,78,27,16,161026,"Shockwave","Physical / Contact / arena",2.27
+GlassDice,1,VICTORY,20,36146,61,34,14,77138,"Shockwave","Physical / Contact / arena",1.42
+GlassDice,1,VICTORY,20,37806,70,32,15,90210,"FallingProp","Physical / Contact / arena",4.23
+GlassDice,3,DEFEAT,10,4127,33,12,9,161026,"InkMoth contact","Physical / Contact / arena",5.91
+GlassDice,3,VICTORY,20,37427,76,33,17,77138,"Tentacle","Physical / Contact / arena",2
+GlassDice,3,DEFEAT,9,3273,21,15,5,90210,"ClockBat projectile","Physical / Projectile",12.77
+TideSinger,1,VICTORY,20,53338,90,33,27,161026,"Shockwave","Physical / Contact / arena",7.94
+TideSinger,1,DEFEAT,13,13337,55,17,16,77138,"Splinter Imp contact","Physical / Contact / arena",11.51
+TideSinger,1,VICTORY,20,57384,107,36,34,90210,"Bleeding alarm","Physical / Contact / arena",0.62
+TideSinger,3,VICTORY,20,55690,93,34,28,161026,"Bleeding alarm","Physical / Contact / arena",1.45
+TideSinger,3,VICTORY,20,50993,74,33,22,77138,"Tentacle","Physical / Contact / arena",5.45
+TideSinger,3,VICTORY,20,48778,102,32,36,90210,"FallingProp","Physical / Contact / arena",7.86
+CometRunner,1,VICTORY,20,42120,74,31,23,161026,"Tentacle","Physical / Contact / arena",2.1
+CometRunner,1,TIMEOUT,20,44229,94,23,28,77138,"FallingProp","Physical / Contact / arena",3.29
+CometRunner,1,VICTORY,20,37810,85,22,24,90210,"Shockwave","Physical / Contact / arena",2.11
+CometRunner,3,DEFEAT,10,4931,37,12,11,161026,"THE CHAIR PORTER contact","Physical / Contact / arena",15.25
+CometRunner,3,VICTORY,20,37795,65,30,15,77138,"Shockwave","Physical / Contact / arena",1.85
+CometRunner,3,DEFEAT,5,577,11,4,2,90210,"Splinter Imp contact","Physical / Contact / arena",13.65
+MirrorKeeper,1,VICTORY,20,39111,77,32,19,161026,"Tentacle","Physical / Contact / arena",7.56
+MirrorKeeper,1,VICTORY,20,38657,77,28,19,77138,"Tentacle","Physical / Contact / arena",4.57
+MirrorKeeper,1,VICTORY,20,38805,76,28,20,90210,"Shockwave","Physical / Contact / arena",3.77
+MirrorKeeper,3,TIMEOUT,20,39935,74,25,15,161026,"FallingProp","Physical / Contact / arena",3.1
+MirrorKeeper,3,DEFEAT,5,521,9,5,3,77138,"Roller","Physical / Contact / arena",8.12
+MirrorKeeper,3,VICTORY,20,39038,71,27,15,90210,"Shockwave","Physical / Contact / arena",4.23
+TreasureAcorn,1,VICTORY,20,44106,90,31,26,161026,"Shockwave","Physical / Contact / arena",3.48
+TreasureAcorn,1,VICTORY,20,42017,106,33,28,77138,"Curtain","Physical / Contact / arena",2.18
+TreasureAcorn,1,VICTORY,20,42798,90,36,21,90210,"Shockwave","Physical / Contact / arena",7.68
+TreasureAcorn,3,VICTORY,20,45061,91,30,24,161026,"Tentacle","Physical / Contact / arena",1.49
+TreasureAcorn,3,DEFEAT,6,925,16,8,5,77138,"Wardrobe Crab contact","Physical / Contact / arena",23.3
+TreasureAcorn,3,DEFEAT,5,871,13,6,4,90210,"Wardrobe Crab contact","Physical / Contact / arena",19.14
+VerdantMatron,1,DEFEAT,5,672,14,6,3,161026,"Wardrobe Crab contact","Physical / Contact / arena",17.56
+VerdantMatron,1,VICTORY,20,37363,94,25,24,77138,"Tentacle","Physical / Contact / arena",7.61
+VerdantMatron,1,VICTORY,20,39718,87,15,23,90210,"Tentacle","Physical / Contact / arena",17.68
+VerdantMatron,3,DEFEAT,5,724,15,6,3,161026,"THE COIN WIDOW contact","Physical / Contact / arena",14.96
+VerdantMatron,3,DEFEAT,5,589,10,4,2,77138,"InkMoth contact","Physical / Contact / arena",11.7
+VerdantMatron,3,VICTORY,20,38596,95,20,25,90210,"Gamble sandwich","Physical / Contact / arena",4.94
+CopperCauldron,1,DEFEAT,12,7000,45,15,12,161026,"InkMoth contact","Physical / Contact / arena",8.95
+CopperCauldron,1,VICTORY,20,38576,106,15,34,77138,"Shockwave","Physical / Contact / arena",4.75
+CopperCauldron,1,VICTORY,20,38345,96,19,25,90210,"","",0
+CopperCauldron,3,DEFEAT,15,18849,61,19,18,161026,"THE DOOR THAT STAYED SHUT encore volley","Arcane / Contact / arena",15.48
+CopperCauldron,3,VICTORY,20,38787,105,17,29,77138,"Tentacle","Physical / Contact / arena",3.57
+CopperCauldron,3,DEFEAT,5,575,15,5,3,90210,"Wardrobe Crab contact","Physical / Contact / arena",18.64
+ChinaMarionette,1,VICTORY,20,38737,84,25,17,161026,"FallingProp","Physical / Contact / arena",5.19
+ChinaMarionette,1,VICTORY,20,39252,77,34,21,77138,"Shockwave","Physical / Contact / arena",2.64
+ChinaMarionette,1,VICTORY,20,36535,98,33,30,90210,"Tentacle","Physical / Contact / arena",1.13
+ChinaMarionette,3,DEFEAT,5,601,8,5,2,161026,"InkMoth contact","Physical / Contact / arena",13.9
+ChinaMarionette,3,VICTORY,20,41100,89,22,17,77138,"Tentacle","Physical / Contact / arena",3.27
+ChinaMarionette,3,DEFEAT,5,572,12,4,3,90210,"ClockBat projectile","Physical / Projectile",12.6
+SoapSkater,1,VICTORY,20,40765,89,23,25,161026,"Tentacle","Physical / Contact / arena",2.5
+SoapSkater,1,VICTORY,20,40221,107,26,28,77138,"Shockwave","Physical / Contact / arena",3.02
+SoapSkater,1,VICTORY,20,38215,87,26,23,90210,"Tentacle","Physical / Contact / arena",2.73
+SoapSkater,3,DEFEAT,5,608,8,4,1,161026,"Wardrobe Crab contact","Physical / Contact / arena",16.49
+SoapSkater,3,DEFEAT,11,7416,41,15,9,77138,"InkMoth contact","Physical / Contact / arena",24.22
+SoapSkater,3,DEFEAT,5,515,12,4,3,90210,"Wardrobe Crab contact","Physical / Contact / arena",16.88
+VelvetRegent,1,VICTORY,20,40598,69,21,15,161026,"Tentacle","Physical / Contact / arena",1.1
+VelvetRegent,1,DEFEAT,11,6979,45,12,11,77138,"InkMoth contact","Physical / Contact / arena",3.87
+VelvetRegent,1,VICTORY,20,45250,75,19,19,90210,"Shockwave","Physical / Contact / arena",1.3
+VelvetRegent,3,VICTORY,20,44465,76,21,16,161026,"The Last Customer encore volley","Arcane / Contact / arena",3.78
+VelvetRegent,3,DEFEAT,15,19808,62,18,17,77138,"Splinter Imp contact","Physical / Contact / arena",4.08
+VelvetRegent,3,VICTORY,20,45895,83,22,19,90210,"Shockwave","Physical / Contact / arena",2.56
+ButtonCavalier,1,VICTORY,20,35187,85,14,29,161026,"Tentacle","Physical / Contact / arena",1.54
+ButtonCavalier,1,VICTORY,20,36901,92,30,26,77138,"","",0
+ButtonCavalier,1,VICTORY,20,35769,103,22,25,90210,"","",0
+ButtonCavalier,3,VICTORY,20,36995,88,32,25,161026,"Tentacle","Physical / Contact / arena",1.56
+ButtonCavalier,3,VICTORY,20,38194,82,25,23,77138,"The Last Customer encore volley","Arcane / Contact / arena",6.9
+ButtonCavalier,3,DEFEAT,6,961,21,6,4,90210,"Wardrobe Crab contact","Physical / Contact / arena",8.15
+NightMaw,1,DEFEAT,8,1974,31,10,8,161026,"HushMite contact","Physical / Contact / arena",6.42
+NightMaw,1,VICTORY,20,48569,80,31,20,77138,"Night Maw hunger","Physical / Contact / arena",1
+NightMaw,1,DEFEAT,18,28775,66,28,16,90210,"InkMoth contact","Physical / Contact / arena",18.55
+NightMaw,3,VICTORY,20,36896,72,32,16,161026,"Shockwave","Physical / Contact / arena",1.99
+NightMaw,3,VICTORY,20,46614,93,31,26,77138,"Night Maw hunger","Physical / Contact / arena",1
+NightMaw,3,VICTORY,20,39116,72,32,18,90210,"Night Maw hunger","Physical / Contact / arena",1
+ThornTreasurer,1,VICTORY,20,37923,69,31,14,161026,"Shockwave","Physical / Contact / arena",22.15
+ThornTreasurer,1,VICTORY,20,37570,75,30,19,77138,"Shockwave","Physical / Contact / arena",8.26
+ThornTreasurer,1,VICTORY,20,37054,75,33,18,90210,"","",0
+ThornTreasurer,3,VICTORY,20,38525,78,32,20,161026,"FallingProp","Physical / Contact / arena",7.59
+ThornTreasurer,3,DEFEAT,5,462,11,5,3,77138,"HushMite contact","Physical / Contact / arena",3.67
+ThornTreasurer,3,VICTORY,20,42104,91,27,24,90210,"Shockwave","Physical / Contact / arena",11.91
+CitrusMarshal,1,DEFEAT,9,3459,29,10,5,161026,"InkMoth contact","Physical / Contact / arena",20.16
+CitrusMarshal,1,VICTORY,20,38412,72,15,20,77138,"The Last Customer contact","Physical / Contact / arena",19.62
+CitrusMarshal,1,VICTORY,20,39054,86,18,23,90210,"Shockwave","Physical / Contact / arena",12.58
+CitrusMarshal,3,DEFEAT,9,3647,31,11,7,161026,"FallingProp","Physical / Contact / arena",6.36
+CitrusMarshal,3,TIMEOUT,20,43038,71,17,18,77138,"FallingProp","Physical / Contact / arena",14.72
+CitrusMarshal,3,DEFEAT,10,5097,52,12,13,90210,"Tentacle","Physical / Contact / arena",13.38
+IvorySovereign,1,VICTORY,20,35023,97,28,34,161026,"Tentacle","Physical / Contact / arena",0.67
+IvorySovereign,1,DEFEAT,16,19095,70,21,18,77138,"Curtain","Physical / Contact / arena",0.96
+IvorySovereign,1,VICTORY,20,36694,77,31,22,90210,"Tentacle","Physical / Contact / arena",0.67
+IvorySovereign,3,DEFEAT,10,5059,40,16,11,161026,"Roller","Physical / Contact / arena",0.67
+IvorySovereign,3,DEFEAT,10,5104,54,13,16,77138,"Tentacle","Physical / Contact / arena",0.67
+IvorySovereign,3,DEFEAT,10,5228,34,15,12,90210,"Shockwave","Physical / Contact / arena",0.67
+PetalCitadel,1,DEFEAT,14,14969,53,22,14,161026,"HushMite contact","Physical / Contact / arena",9.83
+PetalCitadel,1,VICTORY,20,37433,67,32,15,77138,"Tentacle","Physical / Contact / arena",4.42
+PetalCitadel,1,VICTORY,20,36696,76,33,23,90210,"Tentacle","Physical / Contact / arena",4.81
+PetalCitadel,3,TIMEOUT,10,6087,41,13,10,161026,"Party Line cord","Physical / Contact / arena",8.35
+PetalCitadel,3,DEFEAT,14,18081,63,25,15,77138,"HushMite contact","Physical / Contact / arena",19.5
+PetalCitadel,3,VICTORY,20,43747,76,33,23,90210,"Shockwave","Physical / Contact / arena",5.97
+PatchworkHost,1,DEFEAT,10,5130,44,14,13,161026,"Splinter Imp contact","Physical / Contact / arena",12.31
+PatchworkHost,1,VICTORY,20,44154,79,16,21,77138,"Gamble sandwich","Physical / Contact / arena",4.26
+PatchworkHost,1,DEFEAT,14,14819,49,20,12,90210,"Charging Ram contact","Physical / Contact / arena",15.76
+PatchworkHost,3,DEFEAT,10,4096,31,12,8,161026,"Splinter Imp contact","Physical / Contact / arena",22.19
+PatchworkHost,3,DEFEAT,5,614,8,4,2,77138,"HushMite contact","Physical / Contact / arena",10.99
+PatchworkHost,3,VICTORY,20,42153,81,26,21,90210,"The Last Customer encore volley","Arcane / Contact / arena",25.85
+ArchiveCurator,1,VICTORY,20,37802,116,3,43,161026,"Curtain","Physical / Contact / arena",1.1
+ArchiveCurator,1,DEFEAT,5,535,13,2,4,77138,"Splinter Imp contact","Physical / Contact / arena",3.93
+ArchiveCurator,1,DEFEAT,5,585,19,3,5,90210,"InkMoth contact","Physical / Contact / arena",5.26
+ArchiveCurator,3,DEFEAT,5,477,15,3,3,161026,"InkMoth contact","Physical / Contact / arena",7.92
+ArchiveCurator,3,DEFEAT,5,487,13,3,3,77138,"Splinter Imp contact","Physical / Contact / arena",9.05
+ArchiveCurator,3,DEFEAT,4,311,12,2,2,90210,"HushMite contact","Physical / Contact / arena",8.83
+PennyBroker,1,VICTORY,20,43525,131,18,46,161026,"Tentacle","Physical / Contact / arena",7.56
+PennyBroker,1,DEFEAT,10,5984,55,16,16,77138,"InkMoth contact","Physical / Contact / arena",9.42
+PennyBroker,1,VICTORY,20,44004,119,30,40,90210,"Tentacle","Physical / Contact / arena",5.74
+PennyBroker,3,DEFEAT,20,44449,131,19,44,161026,"Splinter Imp contact","Physical / Contact / arena",27.34
+PennyBroker,3,VICTORY,20,45274,120,29,31,77138,"Tentacle","Physical / Contact / arena",6.15
+PennyBroker,3,DEFEAT,20,45441,112,18,36,90210,"HushMite contact","Physical / Contact / arena",16.35
+StormFencer,1,VICTORY,20,36427,82,25,23,161026,"FallingProp","Physical / Contact / arena",1.25
+StormFencer,1,VICTORY,20,35923,91,22,30,77138,"Shockwave","Physical / Contact / arena",2.94
+StormFencer,1,VICTORY,20,36658,84,38,24,90210,"Tentacle","Physical / Contact / arena",1.55
+StormFencer,3,VICTORY,20,38681,102,22,32,161026,"Shockwave","Physical / Contact / arena",1.12
+StormFencer,3,VICTORY,20,39266,72,31,20,77138,"Shockwave","Physical / Contact / arena",2.01
+StormFencer,3,DEFEAT,5,540,8,6,2,90210,"Wardrobe Crab contact","Physical / Contact / arena",18.64
+TinVirtuoso,1,VICTORY,20,35448,72,25,13,161026,"Shockwave","Physical / Contact / arena",1.38
+TinVirtuoso,1,DEFEAT,15,17407,56,20,15,77138,"InkMoth contact","Physical / Contact / arena",8.1
+TinVirtuoso,1,VICTORY,20,39395,81,30,20,90210,"Tentacle","Physical / Contact / arena",2.25
+TinVirtuoso,3,DEFEAT,10,5566,40,14,9,161026,"THE CHAIR PORTER contact","Physical / Contact / arena",5.36
+TinVirtuoso,3,VICTORY,20,38833,86,16,23,77138,"Shockwave","Physical / Contact / arena",1.86
+TinVirtuoso,3,VICTORY,20,38752,85,34,24,90210,"Tentacle","Physical / Contact / arena",3.28
+MoonProwler,1,VICTORY,20,42524,85,33,21,161026,"Tentacle","Physical / Contact / arena",0.76
+MoonProwler,1,VICTORY,20,45487,79,25,24,77138,"Shockwave","Physical / Contact / arena",2.67
+MoonProwler,1,VICTORY,20,45967,93,26,26,90210,"Tentacle","Physical / Contact / arena",5.05
+MoonProwler,3,DEFEAT,13,13016,58,19,14,161026,"Splinter Imp contact","Physical / Contact / arena",5.28
+MoonProwler,3,DEFEAT,10,7543,35,15,9,77138,"Party Line cord","Physical / Contact / arena",15.36
+MoonProwler,3,VICTORY,20,49602,86,31,22,90210,"Shockwave","Physical / Contact / arena",3.01
+SupperMortar,1,DEFEAT,8,2177,30,11,5,161026,"InkMoth contact","Physical / Contact / arena",7.09
+SupperMortar,1,DEFEAT,8,2362,23,9,2,77138,"InkMoth contact","Physical / Contact / arena",6.22
+SupperMortar,1,VICTORY,20,39275,109,19,21,90210,"","",0
+SupperMortar,3,DEFEAT,5,602,9,5,1,161026,"HushMite contact","Physical / Contact / arena",9.03
+SupperMortar,3,VICTORY,20,41058,91,18,16,77138,"Shockwave","Physical / Contact / arena",6.24
+SupperMortar,3,DEFEAT,5,638,12,4,1,90210,"HushMite contact","Physical / Contact / arena",8.15
+LanternWeaver,1,VICTORY,20,46012,97,25,27,161026,"Curtain","Physical / Contact / arena",1.5
+LanternWeaver,1,VICTORY,20,39713,64,25,17,77138,"Shockwave","Physical / Contact / arena",3.77
+LanternWeaver,1,VICTORY,20,37450,61,27,14,90210,"Shockwave","Physical / Contact / arena",0.99
+LanternWeaver,3,VICTORY,20,42845,83,25,19,161026,"Shockwave","Physical / Contact / arena",1.99
+LanternWeaver,3,DEFEAT,10,6320,42,12,12,77138,"THE CHAIR PORTER contact","Physical / Contact / arena",8.29
+LanternWeaver,3,DEFEAT,12,8445,40,15,9,90210,"Party Line cord","Physical / Contact / arena",20.09
+HourglassStag,1,VICTORY,20,38009,80,26,23,161026,"Shockwave","Physical / Contact / arena",1.28
+HourglassStag,1,VICTORY,20,37112,74,26,21,77138,"Shockwave","Physical / Contact / arena",0.68
+HourglassStag,1,VICTORY,20,38301,85,19,27,90210,"Shockwave","Physical / Contact / arena",0.96
+HourglassStag,3,VICTORY,20,40364,82,23,21,161026,"Tentacle","Physical / Contact / arena",1.59
+HourglassStag,3,DEFEAT,19,38419,67,26,16,77138,"InkMoth contact","Physical / Contact / arena",6.66
+HourglassStag,3,VICTORY,20,38740,90,21,25,90210,"Shockwave","Physical / Contact / arena",1.45
+RainArchivist,1,TIMEOUT,20,40210,93,28,25,161026,"InkMoth contact","Physical / Contact / arena",21.12
+RainArchivist,1,VICTORY,20,39789,78,23,23,77138,"Shockwave","Physical / Contact / arena",1.6
+RainArchivist,1,VICTORY,20,39508,67,23,13,90210,"Shockwave","Physical / Contact / arena",7.26
+RainArchivist,3,DEFEAT,15,18296,69,22,19,161026,"InkMoth contact","Physical / Contact / arena",7.83
+RainArchivist,3,VICTORY,20,40211,99,27,27,77138,"Shockwave","Physical / Contact / arena",7.68
+RainArchivist,3,DEFEAT,5,626,13,5,2,90210,"Wardrobe Crab contact","Physical / Contact / arena",11.41
+KiteAdmiral,1,VICTORY,20,38721,56,30,15,161026,"Tentacle","Physical / Contact / arena",2.79
+KiteAdmiral,1,VICTORY,20,48374,83,30,26,77138,"Tentacle","Physical / Contact / arena",4.61
+KiteAdmiral,1,DEFEAT,5,586,8,6,2,90210,"Wardrobe Crab contact","Physical / Contact / arena",12.28
+KiteAdmiral,3,VICTORY,20,39828,69,29,18,161026,"Bleeding alarm","Physical / Contact / arena",0.76
+KiteAdmiral,3,DEFEAT,10,5676,35,15,9,77138,"THE CHAIR PORTER contact","Physical / Contact / arena",9.3
+KiteAdmiral,3,DEFEAT,5,573,10,4,2,90210,"InkMoth contact","Physical / Contact / arena",9.95
+SundaeDuchess,1,VICTORY,20,37761,101,19,29,161026,"Tentacle","Physical / Contact / arena",11.65
+SundaeDuchess,1,VICTORY,20,38975,85,21,25,77138,"Shockwave","Physical / Contact / arena",5.6
+SundaeDuchess,1,VICTORY,20,36479,83,20,25,90210,"Shockwave","Physical / Contact / arena",6.48
+SundaeDuchess,3,VICTORY,20,38119,74,23,16,161026,"Shockwave","Physical / Contact / arena",11.53
+SundaeDuchess,3,VICTORY,20,39715,93,19,30,77138,"Overtime exhaustion","Physical / Contact / arena",0.5
+SundaeDuchess,3,DEFEAT,5,544,10,6,3,90210,"Wardrobe Crab contact","Physical / Contact / arena",17.86
+BonsaiClocksmith,1,VICTORY,20,39908,88,19,25,161026,"Shockwave","Physical / Contact / arena",3.19
+BonsaiClocksmith,1,VICTORY,20,39136,86,21,28,77138,"Shockwave","Physical / Contact / arena",7.11
+BonsaiClocksmith,1,DEFEAT,15,17360,64,15,18,90210,"Splinter Imp contact","Physical / Contact / arena",7.53
+BonsaiClocksmith,3,VICTORY,20,39264,109,16,33,161026,"Shockwave","Physical / Contact / arena",4.36
+BonsaiClocksmith,3,DEFEAT,7,1478,22,8,6,77138,"InkMoth contact","Physical / Contact / arena",15.53
+BonsaiClocksmith,3,VICTORY,20,42288,124,16,39,90210,"Shockwave","Physical / Contact / arena",4.43
+JugglingJester,1,VICTORY,20,37177,74,31,18,161026,"Shockwave","Physical / Contact / arena",2.45
+JugglingJester,1,VICTORY,20,40358,83,25,21,77138,"Shockwave","Physical / Contact / arena",3.74
+JugglingJester,1,VICTORY,20,36126,108,30,31,90210,"Tentacle","Physical / Contact / arena",1.95
+JugglingJester,3,DEFEAT,15,18157,57,22,15,161026,"FallingProp","Physical / Contact / arena",10.24
+JugglingJester,3,VICTORY,20,39154,66,30,17,77138,"Tentacle","Physical / Contact / arena",2.77
+JugglingJester,3,DEFEAT,5,534,11,4,2,90210,"Splinter Imp contact","Physical / Contact / arena",10.19
+BellDiver,1,VICTORY,20,39107,81,25,20,161026,"FallingProp","Physical / Contact / arena",4.22
+BellDiver,1,VICTORY,20,37931,74,25,17,77138,"Tentacle","Physical / Contact / arena",0.58
+BellDiver,1,DEFEAT,5,635,6,5,1,90210,"Wardrobe Crab contact","Physical / Contact / arena",16.12
+BellDiver,3,DEFEAT,15,17810,65,19,17,161026,"HushMite contact","Physical / Contact / arena",10.56
+BellDiver,3,VICTORY,20,39603,93,28,26,77138,"Tentacle","Physical / Contact / arena",4.61
+BellDiver,3,VICTORY,20,37378,74,21,15,90210,"Shockwave","Physical / Contact / arena",2.34

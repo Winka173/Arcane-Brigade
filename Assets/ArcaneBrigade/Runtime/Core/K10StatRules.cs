@@ -13,7 +13,9 @@ namespace ArcaneBrigade
             return index >= 0 && index < Names.Length ? Names[index] : "Invalid effect";
         }
         public static float Factor(float bonus, float minimum = 0.1f, float maximum = 10f) => Mathf.Clamp(1 + bonus, minimum, maximum);
-        public static float MaximumHealth(RunSession session, RunCatalog catalog)
+        /// <summary>Round 4: the altar's permanent HP price comes off the compiled maximum (BloodPrice).</summary>
+        public static float MaximumHealth(RunSession session, RunCatalog catalog) => BloodPrice.Apply(UncutMaximumHealth(session, catalog), session.State.BloodPaid);
+        public static float UncutMaximumHealth(RunSession session, RunCatalog catalog)
             => catalog.Unit(session.State.ChampionId).ReferenceHero == "Card Queen" ? PlayerBuildBalance.CardQueenHealth : catalog.Unit(session.State.ChampionId).ReferenceHero == "Periwinky" ? Mathf.Clamp(session.State.Gold, 20, 400) : OctoberBalance.MaximumHealth((catalog.Unit(session.State.ChampionId).Health * PlayerBuildBalance.HeroVitality(session.State.ChampionId) + session.Bonus(ItemEffect.Health)) * Factor(session.Bonus(ItemEffect.HealthCorrection)), session.State.Wave);
 
         public static void ApplyUnit(RunSession session, RunCatalog catalog, UnitDefinition unit, UnitDefinition source, WeaponDefinition original, int tier, bool companion)

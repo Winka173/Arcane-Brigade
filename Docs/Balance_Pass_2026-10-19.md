@@ -356,3 +356,90 @@ Hai mẫu khác nhau (trước chỉ Wandering; sau gồm cả 6 độ khó và 
 - Check cập nhật: `K2Checks` (vàng nhặt được = giá trị xu × `CoinValueScale`); `BossReliefChecks` (quái thường × `NormalEnemyHealth`; damage boss × `BossDamageRelief` thay cho hằng .9; ba khẳng định máu boss Last Customer / Keeper / Bedside còn ghi hằng .75 × .6 từ trước 18/10 — relief đã là .95 — nay đọc hằng số thật).
 - Sửa lỗi phát hiện khi kiểm: phần lẻ vàng của xu không được xóa khi `CombatSimulation.Start()` bắt đầu trận mới → nay reset cùng `Gold`.
 - `HeroMechanicBalance` là công cụ đo, không phải bộ kiểm; không chạy lại (dài, ~560 trận) — số liệu round 3 lấy từ `SweepHeroes`/`SweepDiagnose`.
+
+## 9. Round 4 — trả bằng máu giảm máu tối đa, 5 hero mới, hero yếu (20/10/2026)
+
+### Luật mới: mua bằng HP lấy luôn máu tối đa
+
+Chủ dự án coi hành vi cũ (chỉ trừ máu hiện tại, wave sau hồi đầy) là lỗi. Nay:
+
+- `RunSnapshot.BloodPaid` (lưu cùng save; save cũ đọc 0) cộng giá HP mỗi lần mua ở altar. `RunSession.Buy` không trừ thẳng máu hiện tại nữa; `ReconcileHealth` lấy đúng phần máu tối đa vừa mất khỏi máu hiện tại (kẹp ≥ 1).
+- **Áp ở đâu:** sau cùng, trên máu tối đa đã compile (gốc × vitality + item + bond, correction, trần cuối game) — `K10StatRules.MaximumHealth = BloodPrice.Apply(UncutMaximumHealth, BloodPaid)`. Vì vậy "−N max HP" đúng nghĩa đen: luôn ít hơn N so với khi không mua. Card Queen (máu hoàng gia 18) và Periwinky (máu = vàng) cũng bị trừ (`OctoberRun`).
+- **Sàn:** không được mua nếu máu tối đa còn dưới **25% máu tối đa chưa trừ** (tối thiểu 5) — `BloodPrice.Floor`; vẫn giữ luật phải còn ≥ 1 máu hiện tại. Hero 110 HP: tổng máu đổi được tối đa ~82.
+- **Giá:** vì giá nay là vĩnh viễn và mỗi lần mua làm giá sau rẻ đi (giá = % máu tối đa hiện tại), tỷ lệ giảm từ 8/12/18/25/32% xuống **5/8/12/18/24%** (C/U/R/M/P), sàn giá từ 8/13/18/27 xuống **5/9/12/18 HP**. Hero 110 HP: Common 6, Uncommon 9, Rare 13, Mythic 20 max HP — khoảng một phần ba giá trị VU của món (0.75 VU/HP).
+- **Chữ (ngắn, mobile):** quầy "−N max HP for the run · leaves 1 HP", thẻ "−N max HP for the run", tooltip "−N max HP"; nhãn giá ShopInspect "N max HP". `RunHud.cs:362` còn câu "Paid in current HP, always leaves 1" — file này không thuộc phạm vi sửa của tôi, cần người giữ RunHud đổi thành "−N max HP".
+- **Bot:** giá HP tính 0.75 VU/HP (vĩnh viễn, bằng một món tặng máu); không trả quá 30% máu tối đa chưa trừ trong cả run.
+- **Kiểm tra:** `K32AltarChecks` cập nhật + thêm khẳng định: máu hiện tại và tối đa cùng giảm đúng giá; vẫn giảm ở wave sau; giữ nguyên qua save/load; save cũ đọc 0; bị từ chối khi xuống dưới sàn, được mua đúng tới sàn.
+
+### Hero
+
+"R3" = `Round3_HeroesD` (31 hero), "R4" = `Round4_Heroes` (36 hero, luật altar mới, xu ×0.75, boss −22%, quái thường +10%, nhịp tuyển quân mới). 3 seed mỗi ô. Chỉ đổi cơ chế/nội tại **cá nhân**, power ≤ 5, vitality ≤ 1.5; nội tại đội giữ nguyên; không vùng đất/vũng, không kỹ năng tỏa tròn từ người dùng (đẩy lùi quanh hero bị loại vì vậy — dùng giảm damage cá nhân `HeroArmor` có sẵn thay thế).
+
+| Hero | Wandering R3 | Nightmare R3 | Wandering R4 | Nightmare R4 | Thay đổi round 4 |
+|---|---:|---:|---:|---:|---|
+| LanternKnight | 2/3 | 1/3 | 3/3 | 3/3 |  |
+| Postmaster | 3/3 | 3/3 | 3/3 | 1/3 |  |
+| DrowsySeer | 0/3 | 1/3 | 1/3 | 1/3 | Dream veil: nhận ít hơn 30% damage (mới) |
+| RootOracle | 3/3 | 3/3 | 3/3 | 2/3 |  |
+| LoneJelly | 2/3 | 1/3 | 2/3 | 0/3 |  |
+| GlassDice | 3/3 | 2/3 | 3/3 | 1/3 |  |
+| TideSinger | 1/3 | 0/3 | 2/3 | 3/3 | Sea foam: nhận ít hơn 20% damage (mới) |
+| CometRunner | 3/3 | 1/3 | 2/3 | 1/3 |  |
+| MirrorKeeper | 3/3 | 2/3 | 3/3 | 1/3 |  |
+| TreasureAcorn | 3/3 | 1/3 | 3/3 | 1/3 |  |
+| VerdantMatron | 3/3 | 0/3 | 2/3 | 1/3 |  |
+| CopperCauldron | 2/3 | 1/3 | 2/3 | 1/3 |  |
+| ChinaMarionette | 3/3 | 2/3 | 3/3 | 1/3 |  |
+| SoapSkater | 3/3 | 2/3 | 3/3 | 0/3 |  |
+| VelvetRegent | 2/3 | 2/3 | 2/3 | 2/3 |  |
+| ButtonCavalier | 3/3 | 3/3 | 3/3 | 2/3 |  |
+| NightMaw | 2/3 | 0/3 | 1/3 | 3/3 |  |
+| ThornTreasurer | 3/3 | 3/3 | 3/3 | 2/3 |  |
+| CitrusMarshal | 2/3 | 3/3 | 2/3 | 0/3 |  |
+| IvorySovereign | 1/3 | 0/3 | 2/3 | 0/3 | Máu hoàng gia 16 → 18; Verdict hành quyết quái < 15% → < 25% máu |
+| PetalCitadel | 1/3 | 0/3 | 2/3 | 1/3 | Petal guard: nhận ít hơn 15% damage (mới); power 3.3 → 3.8, vitality 1.3 → 1.45 |
+| PatchworkHost | 1/3 | 1/3 | 1/3 | 1/3 |  |
+| ArchiveCurator | 1/3 | 0/3 | 1/3 | 0/3 | Vellum binding: nhận ít hơn 15% damage (mới) |
+| PennyBroker | 3/3 | 2/3 | 2/3 | 1/3 |  |
+| StormFencer | 2/3 | 2/3 | 3/3 | 2/3 |  |
+| TinVirtuoso | 2/3 | 3/3 | 2/3 | 2/3 |  |
+| MoonProwler | 1/3 | 2/3 | 3/3 | 1/3 |  |
+| SupperMortar | 3/3 | 2/3 | 1/3 | 1/3 |  |
+| LanternWeaver | 2/3 | 2/3 | 3/3 | 1/3 |  |
+| HourglassStag | 3/3 | 2/3 | 3/3 | 2/3 |  |
+| RainArchivist | 3/3 | 2/3 | 2/3 | 1/3 |  |
+| KiteAdmiral | — | — | 2/3 | 1/3 | mới (power 3.3, vitality 1.3) |
+| SundaeDuchess | — | — | 3/3 | 2/3 | mới (power 3.3, vitality 1.3) |
+| BonsaiClocksmith | — | — | 2/3 | 2/3 | mới (power 3.3, vitality 1.3) |
+| JugglingJester | — | — | 3/3 | 1/3 | mới (power 3.3, vitality 1.3) |
+| BellDiver | — | — | 2/3 | 2/3 | mới (power 3.3, vitality 1.15) |
+| **Tổng** | **69/93** (74%) | **49/93** (52%) | **83/108** (76%) | **47/108** (43%) | |
+
+Năm hero mới: Wandering 12/15, Nightmare 8/15 — trong dải. Tide Singer 5/6, Petal Citadel 3/6 vào dải. Còn yếu: **Archive Curator** (1/6, vẫn chết ở boss wave 5 khi gần như đánh một mình), **Drowsy Seer** 2/6, **Ivory Sovereign** 2/6 (0/3 Nightmare), Supper Mortar 2/6, Patchwork Host 2/6 — ba seed là nhiễu ±1; nhóm này cần chơi thử hoặc thay đổi cơ chế riêng (ví dụ Archive Curator được giữ thêm bạn thật thay vì hấp thụ hết).
+
+### Độ dốc độ khó (108 campaign, 3 seed)
+
+| Độ khó | Mục tiêu | Round 3 (`Round3_Econ1`) | Round 4 (`Round4_Slope`) |
+|---|---:|---:|---:|
+| Peaceful | ~90% | 50% | **89%** |
+| Wandering | ~80% | 67% | **78%** |
+| Restless | ~65% | 50% | 78% |
+| Nightmare | ~50% | 33% | **56%** |
+| Sleepless | ~40% | 33% | **44%** |
+| Beyond the Lamp | 25–35% | 22% | **28%** |
+
+Đạt mục tiêu trừ Restless (78% so với ~65%). Không chỉnh thêm bảng độ khó.
+
+| Wave | Ví ÷ giá offer | Mua / shop | Reroll / shop |
+|---|---:|---:|---:|
+| 1–5 | 4.5 | 4.7 | 0.7 |
+| 6–10 | 5.5 | 7.3 | 1.5 |
+| 11–15 | 4.3 | 6.4 | 1.2 |
+| 16–19 | 3.7 | 5.4 | 1.2 |
+
+Boss / thường: máu mất mỗi wave 0.39 / 0.26 (×1.49, mục tiêu 1.5–2×); tỷ lệ chết mỗi wave 5.8% / 1.1%.
+
+### Kiểm tra round 4
+
+- Đạt: `K32AltarChecks.Run` ARCANE_K32_ALTAR_CHECKS_PASSED 20 (14 trước + 6 khẳng định luật mới; kèm K32 29, K3 transaction 36) · `MarketPolishChecks.Run` MARKET_POLISH_CHECKS_PASSED 496 · `HeroIdentityChecks.Run` HERO_IDENTITY_PASS 3187 · `HeroAwakeningChecks.Run` HERO_AWAKENING_CHECKS_PASSED 328 · `ContentExpansionChecks.Run` CONTENT_EXPANSION_CHECKS_PASSED 408 · `ModeBalanceChecks.Run` MODE_BALANCE_CHECKS 4889 PASS · `ShopDescriptionChecks.Run` SHOP_DESCRIPTION_PASS 2583 · `K3FinalChecks.Run` ARCANE_K3_FINAL_CHECKS_PASSED 31 · `BalancePass.Run` BALANCE_PASS_PASSED (17 giá altar) · `BalanceAudit.SweepHeroes` 216 runs, `BalanceAudit.Sim3` 108 runs.
+- `K11MeleeChecks.Run` hỏng ở "Compiled damage multiplier KeyCleaver" (so damage vũ khí companion đã compile với công thức tự tính trong check). Round 4 không đổi đường compile vũ khí companion; công thức của check không gồm hệ số ×1.35 của bạn đặc biệt và ×1.08 của bạn October trong runtime — chưa xác minh gốc rễ, để người giữ check xem.

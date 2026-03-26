@@ -42,7 +42,7 @@ MonoBehaviour:
   - frost
   Passive: 0
   PassiveStrength: 0.8
-  Description: Start each wave with 16 royal health. Each injury consumes exactly
+  Description: Start each wave with 18 royal health. Each injury consumes exactly
     1 royal health and releases a short retaliation. Ordinary healing cannot refill
     it. Velvet Court allies gain a projectile.
   ReferenceHero: Card Queen
