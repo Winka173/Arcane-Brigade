@@ -1,0 +1,40 @@
+readable cleared: 13
+GAUGE ORDER LanternKnight bloom:0.5,0.62 3761 px
+GAUGE ORDER Postmaster pieces:9:rows 3637 px, 9 pieces (want 9)
+GAUGE ORDER DrowsySeer sweep:0 11200 px
+GAUGE ORDER RootOracle bloom:0.5,0.92 2437 px
+GAUGE ORDER LoneJelly bloom:0.5,0.5 5577 px
+GAUGE ORDER GlassDice pieces:6:dice 2363 px, 6 pieces (want 6)
+GAUGE ORDER TideSinger wave 2813 px
+GAUGE ORDER CometRunner diagonal:0.1,0.15,0.9,0.85 14818 px
+GAUGE ORDER MirrorKeeper pieces:3:x 29447 px, 3 pieces (want 3)
+GAUGE ORDER TreasureAcorn pieces:6:y 959 px, 12 pieces (want 6)
+GAUGE ORDER VerdantMatron pieces:6:angle 9508 px, 6 pieces (want 6)
+GAUGE ORDER CopperCauldron clock:180,0 21927 px
+GAUGE ORDER ChinaMarionette bloom:0.18,0.8 814 px
+GAUGE ORDER SoapSkater spiral 3650 px
+GAUGE ORDER VelvetRegent pieces:3:x 10439 px, 3 pieces (want 3)
+GAUGE ORDER ButtonCavalier diagonal:0.08,0.5,0.95,0.5 17144 px
+GAUGE ORDER NightMaw iris 12826 px
+GAUGE ORDER ThornTreasurer clock:90,1 3837 px
+GAUGE ORDER CitrusMarshal pieces:3:x 8777 px, 3 pieces (want 3)
+GAUGE ORDER IvorySovereign fall 1617 px
+GAUGE ORDER PetalCitadel pieces:4:angle 7383 px, 4 pieces (want 4)
+GAUGE ORDER PatchworkHost curtain 16927 px
+GAUGE ORDER ArchiveCurator pieces:6:rows 4952 px, 8 pieces (want 6)
+GAUGE ORDER PennyBroker sweep:0 4762 px
+GAUGE ORDER StormFencer fall 1623 px
+GAUGE ORDER TinVirtuoso pieces:6:x 2048 px, 6 pieces (want 6)
+GAUGE ORDER MoonProwler crescent:0.15,0.5 8508 px
+GAUGE ORDER SupperMortar pieces:6:angle 4796 px, 6 pieces (want 6)
+GAUGE ORDER LanternWeaver spiral 5586 px
+GAUGE ORDER HourglassStag hourglass 2778 px
+GAUGE ORDER RainArchivist rain 2784 px
+GAUGE ORDER KiteAdmiral bloom:0.5,0.7 2403 px
+GAUGE ORDER SundaeDuchess melt 3552 px
+GAUGE ORDER BonsaiClocksmith clock:90,1 7290 px
+GAUGE ORDER JugglingJester pieces:5:angle 7018 px, 7 pieces (want 5)
+GAUGE ORDER BellDiver fall 1694 px
+ArsenalArtwork entries 360 -> 288
+SpriteInkMetrics entries 1235 -> 1083 (kept as recorded; 53 recorded boxes differ >5% from today's paintings, see InkMetrics_Stale.txt)
+PaintedStatIcons ink rects measured again: 49

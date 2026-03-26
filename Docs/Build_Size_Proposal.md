@@ -203,3 +203,46 @@ Resampling to 1.35× the largest draw keeps what the player sees today: the GPU 
    - Gets to ~0.95 GB on PC and ~0.35 GB on phone.
 4. Phone tuning (ASTC 8x8 for soft art, music quality, tessellation), then repack the sheets without padding.
    - Gets to ~0.78 GB on PC and ~0.29 GB on phone.
+
+## 9. Phase 1 applied (20/10/2026)
+
+Scenario D is in place, plus the gauge order-map fix. Heroes, companions, enemies, bosses, organs, floors and full-screen backdrops keep their pixels; they are only compressed, and padded to a multiple of 4 or resized to the size Unity already imported.
+
+| | Before | After (BuildSizeReport, editor import) |
+|---|---|---|
+| Build textures | 1206, 4343 MB (704 RGBA32) | 1129, **858 MB** (1083 BC7, 36 RG16 order maps, 10 font atlases) |
+| Readable textures | 79 (254 MB inline in resources.assets) | 0 |
+| Sprite physics-shape points | 567 868 | 0 |
+| Sprite mesh data | ≈50 MB | ≈41 MB |
+| Estimated Windows build | 4.5 GB | **≈1.05 GB**: textures 858 + meshes 41 + audio 63 + engine about 90 MB |
+| Estimated phone app (ASTC 6x6 at the per-texture phone sizes) | — | textures ≈251 MB, app **≈0.40 GB** |
+
+**What changed:**
+- `Editor/BuildSizePolicy.cs`: an AssetPostprocessor (order 1000, so it runs after ArsenalArtImporter and RarityFrameArtImporter). It is the single source of texture import settings:
+  - Standalone BC7 and Android/iOS ASTC 6x6. The per-texture sizes are kept in the texture's `userData` (`BuildSize:std=..;mob=..;mips=..;w=..;h=..;ppu=..`).
+  - Pixels-per-unit and pivot are enforced while the PNG keeps its recorded size.
+  - Mipmaps are dropped on NPOT sprites. Tiled plain floors keep mipmaps through a power-of-two import.
+  - No sprite physics shapes.
+  - The build hook clears `isReadable`.
+  - `ApplyPhase1` does the follow-ups.
+- `Editor/BuildSizeChecks.cs`: the gate (`RunGate`), and the policy invariants on every shipped texture (`Policy`).
+- 548 PNGs were resampled (premultiplied-alpha Lanczos; the rarity strips seamless and exactly 1:2) and 268 were padded. For each, the sheet rects, outlines, borders, pixels-per-unit and pivots were scaled with it.
+  - The originals are in `ArtArchive/PreResample_2026-10-19/` (888 MB).
+- Moved to `ArtArchive/Unused_2026-10-19/`:
+  - The 72 old `Gauge_*` paintings, which Gauge2 replaced.
+  - 5 Act One frame atlases that only SpriteInkMetrics referenced.
+  - Their entries were dropped from ArsenalArtwork and SpriteInkMetrics.
+  - ShopFixtures, OpenDawn, BreathingPhone and LostShop stay, because code fallbacks and checks still use them.
+- Gauge order maps were rebaked at the new gauge size: linear, point filtering, no mipmaps, RG16.
+- The PaintedStatIcons pixel rects were measured again.
+- `RarityFrameArtImporter` now uses CompressedHQ; `K25AtlasImporter` leaves platform formats to the policy.
+
+**Checks:**
+- SpriteInkMetrics:
+  - Every ink box was re-measured from the new PNGs. All match the originals to within 1.5%, so world sizes and positions are unchanged.
+  - The recorded boxes were kept as they were. 53 recorded boxes already differed by more than 5% from today's paintings before this change; they are listed in `PreviewExports/BuildSize/InkMetrics_Stale.txt`.
+- Suites (run on clone c1):
+  - `BuildSizeChecks.RunGate` passes 8 of 12. The 4 failures (K8Presentation, K8UI, K8Motion, ArtMaster) fail with the same messages in the baseline run without these changes.
+  - `ActOneStoryChecks.RunWide` passes 20 of 20, before and after.
+
+**Contact sheets for the flagged art:** `PreviewExports/BuildSize/ContactSheet_{rarity_frames,lettered_art,stat_icons,thin_shots}.png`. Each shows before and after at the largest draw and at 2× zoom. No repaint was made.

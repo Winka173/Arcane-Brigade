@@ -48,9 +48,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 237.2597
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -82,10 +82,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,10 +108,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,10 +121,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,14 +139,14 @@ TextureImporter:
       name: MarketStandsMotion_00
       rect:
         serializedVersion: 2
-        x: 32
-        y: 678
-        width: 302
-        height: 194
+        x: 30
+        y: 629
+        width: 280
+        height: 180
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -154,21 +154,21 @@ TextureImporter:
       spriteID: 024da628f75ccc747a6df7e0e9789009
       internalID: -243842694
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_01
       rect:
         serializedVersion: 2
-        x: 399
-        y: 678
-        width: 312
-        height: 157
+        x: 370
+        y: 629
+        width: 289
+        height: 145
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -176,21 +176,21 @@ TextureImporter:
       spriteID: 537f38a0721e0ba409cac338e931c6c8
       internalID: 162588072
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_02
       rect:
         serializedVersion: 2
-        x: 762
-        y: 678
-        width: 293
-        height: 214
+        x: 706
+        y: 629
+        width: 272
+        height: 198
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -198,21 +198,21 @@ TextureImporter:
       spriteID: 8bd8cacafeb867d4bbe43bd08faedb5c
       internalID: -1297480376
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_03
       rect:
         serializedVersion: 2
-        x: 1119
-        y: 678
-        width: 298
-        height: 191
+        x: 1037
+        y: 629
+        width: 276
+        height: 177
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -220,21 +220,21 @@ TextureImporter:
       spriteID: b215194a724fd2847b7371794429331d
       internalID: 1319912215
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_04
       rect:
         serializedVersion: 2
-        x: 35
-        y: 368
-        width: 312
-        height: 228
+        x: 32
+        y: 341
+        width: 290
+        height: 212
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -242,21 +242,21 @@ TextureImporter:
       spriteID: 6cebf608b1090364eb17614610f3c305
       internalID: 282403810
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_05
       rect:
         serializedVersion: 2
-        x: 402
-        y: 368
-        width: 313
-        height: 188
+        x: 373
+        y: 341
+        width: 290
+        height: 175
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -264,21 +264,21 @@ TextureImporter:
       spriteID: 5ae7ede849631704fa447ff870150757
       internalID: -260427455
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_06
       rect:
         serializedVersion: 2
-        x: 761
-        y: 368
-        width: 305
-        height: 233
+        x: 705
+        y: 341
+        width: 283
+        height: 216
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -286,21 +286,21 @@ TextureImporter:
       spriteID: 4fb3a10f37b29e249a79a0fe935c8e0e
       internalID: 436555811
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_07
       rect:
         serializedVersion: 2
-        x: 1122
-        y: 368
-        width: 305
-        height: 216
+        x: 1040
+        y: 341
+        width: 283
+        height: 201
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -308,21 +308,21 @@ TextureImporter:
       spriteID: f77ec7a1e87019c4fb3fab96bfc36f66
       internalID: -568034091
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_08
       rect:
         serializedVersion: 2
-        x: 29
-        y: 80
-        width: 320
-        height: 217
+        x: 27
+        y: 74
+        width: 296
+        height: 201
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -330,21 +330,21 @@ TextureImporter:
       spriteID: 3676fb630ea7f0043b7921d043f1c218
       internalID: -1943463588
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_09
       rect:
         serializedVersion: 2
-        x: 390
-        y: 81
-        width: 338
-        height: 178
+        x: 361
+        y: 75
+        width: 314
+        height: 165
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -352,21 +352,21 @@ TextureImporter:
       spriteID: 34682da936e5bda43bf6344986819617
       internalID: 2071058099
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_10
       rect:
         serializedVersion: 2
-        x: 766
-        y: 81
-        width: 305
-        height: 227
+        x: 710
+        y: 75
+        width: 283
+        height: 211
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -374,21 +374,21 @@ TextureImporter:
       spriteID: 0ab614ed9fabdc848895908b6188f723
       internalID: -854119361
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: MarketStandsMotion_11
       rect:
         serializedVersion: 2
-        x: 1119
-        y: 81
-        width: 311
-        height: 211
+        x: 1037
+        y: 75
+        width: 288
+        height: 196
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -396,17 +396,17 @@ TextureImporter:
       spriteID: 4cd200255c8affa4f9bc31e5fdf9fa70
       internalID: 1493596197
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 259114b2ad841c645a32efe4bf19e931
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
@@ -425,8 +425,8 @@ TextureImporter:
       MarketStandsMotion_09: 2071058099
       MarketStandsMotion_10: -854119361
       MarketStandsMotion_11: 1493596197
-  mipmapLimitGroupName:
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1344;h=1008;ppu=237.2597
+  assetBundleName: 
+  assetBundleVariant: 

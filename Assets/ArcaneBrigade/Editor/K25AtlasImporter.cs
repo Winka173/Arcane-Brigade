@@ -56,7 +56,7 @@ namespace ArcaneBrigade.Editor
             }
             provider.SetSpriteRects(rectangles); provider.GetDataProvider<ISpriteNameFileIdDataProvider>().SetNameFileIdPairs(rectangles.Select(rect => new SpriteNameFileIdPair(rect.name, rect.spriteID)));
             provider.Apply(); importer.SaveAndReimport();
-            foreach (string platform in new[] { "Standalone", "Android", "iPhone" }) importer.SetPlatformTextureSettings(new TextureImporterPlatformSettings { name = platform, overridden = true, maxTextureSize = 4096, format = platform == "Standalone" ? TextureImporterFormat.BC7 : TextureImporterFormat.ASTC_6x6 });
+            // platform formats and sizes (Standalone BC7, Android/iOS ASTC 6x6, phone size): BuildSizePolicy, on every import
             importer.isReadable = false; importer.SaveAndReimport();
             return AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(sprite => sprite.name).ToArray();
         }

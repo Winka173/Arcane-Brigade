@@ -20,8 +20,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1981
-      height: 633
+      width: 711
+      height: 227
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -224,8 +224,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1981
-      height: 633
+      width: 711
+      height: 227
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -241,8 +241,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1981
-      height: 633
+      width: 711
+      height: 227
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -360,8 +360,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1981
-      height: 633
+      width: 711
+      height: 227
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -445,14 +445,14 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1404
-      height: 884
+      width: 712
+      height: 448
     BadgeInk:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1424
-      height: 860
+      width: 712
+      height: 430
     Rotation: 0
     Source: leaf crossbow + arrow / pierce
   - Effect: 26
@@ -468,8 +468,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1424
-      height: 860
+      width: 712
+      height: 430
     Rotation: 0
     Source: twin seal + arrow / split
   - Effect: 27
@@ -479,8 +479,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1390
-      height: 853
+      width: 713
+      height: 437
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -496,8 +496,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1681
-      height: 547
+      width: 713
+      height: 232
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -513,8 +513,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1424
-      height: 860
+      width: 712
+      height: 430
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -530,8 +530,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1424
-      height: 860
+      width: 712
+      height: 430
     BadgeInk:
       serializedVersion: 2
       x: 0
@@ -751,8 +751,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 1981
-      height: 633
+      width: 711
+      height: 227
     BadgeInk:
       serializedVersion: 2
       x: 0
