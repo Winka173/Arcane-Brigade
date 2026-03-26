@@ -21,6 +21,21 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(panel.x+(panel.width-width)*(1-travel),panel.yMax-3,width,3),shimmer);
         }
 
+        /// <summary>The part of a framed box clear of its painted trim (side strips, corner caps, crest and foot), so text laid
+        /// out inside never runs under the ornaments. Same sizes as Ornaments below.</summary>
+        public static Rect Content(Rect panel,ItemRarity rarity,float margin=8)
+        {
+            Trim trim=rarity==ItemRarity.Common?null:For(rarity);
+            if(trim==null || trim.Side==null)return new Rect(panel.x+margin+4,panel.y+margin+4,panel.width-2*(margin+4),panel.height-2*(margin+4));
+            float size=Mathf.Clamp(panel.height/300f,.72f,1.1f), strip=trim.Width*size*(1-trim.Stem)-2;
+            float c=Mathf.Clamp(Mathf.Min(panel.width,panel.height)*.2f,40,60), corner=trim.Corner!=null?c*.84f:0;
+            float crestWidth=Mathf.Clamp(panel.width*.38f,210,350)*1.012f;
+            float crest=trim.Crest!=null?trim.Crest.height*crestWidth/trim.Crest.width*.38f:0;
+            float foot=trim.Foot!=null?trim.Foot.height*(crestWidth*.5f)/trim.Foot.width*.18f:0;
+            float side=Mathf.Max(strip,corner*.6f)+margin, top=Mathf.Max(crest,corner*.6f)+margin, bottom=Mathf.Max(foot,corner*.6f)+margin;
+            return new Rect(panel.x+side,panel.y+top,panel.width-2*side,panel.height-top-bottom);
+        }
+
         // ---- each rarity's own trim, painted by Tools/Art/rarity_frame_art.py into Resources/RarityFrame ----
         // Uncommon  moon-vine: a silver-blue vine with leaves and dew growing slowly up both sides, a moon bud crest
         // Rare      rune rail: carved violet rails with glowing rune medallions, a rune-eye crest, a tassel below

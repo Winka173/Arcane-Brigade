@@ -94,6 +94,13 @@ namespace ArcaneBrigade
             FieldInfo pausePage = typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic);
             owner.TogglePause(); yield return new WaitForSecondsRealtime(.2f); yield return Shot("Pause-menu");
             pausePage.SetValue(pauseHud, 1); yield return Shot("Pause-settings"); pausePage.SetValue(pauseHud, 0); owner.TogglePause();
+            // the rainbow gift card (Bedside's colours / prism shards): the shop's own description inside the frame's clear area
+            if (owner.Session.OfferPrismGift(true))
+            {
+                var choice = FindAnyObjectByType<OutsideStageChoice>(); var shown = typeof(OutsideStageChoice).GetField("preview", BindingFlags.Instance | BindingFlags.NonPublic);
+                yield return new WaitForSecondsRealtime(.6f);
+                for (int i = 0; i < 3; i++) { shown?.SetValue(choice, i); yield return new WaitForSecondsRealtime(.2f); yield return Shot("Rainbow-gift-" + i); }
+            }
             yield return Load(true); yield return Focus(0); yield return Shot("Dream-three-star-companion");
             yield return Focus(2); yield return Shot("Dream-HP-cost-tradeoff");
             gallery = true; yield return Shot("All-stat-icons"); gallery = false;
