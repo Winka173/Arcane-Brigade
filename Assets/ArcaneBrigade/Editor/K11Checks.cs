@@ -51,7 +51,8 @@ namespace ArcaneBrigade.Editor
             string actorMotion = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/ShopDisplayActor.cs");
             string marketMotion = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/MarketLifecycle.cs");
             require(!actorMotion.Contains("SmoothStep(0.05f, 1, arrival)") && actorMotion.Contains("6 * travel * travel"), "Gold merchant falls ballistically at full authored size");
-            require(actorMotion.Contains("-height * Mathf.SmoothStep") && actorMotion.Contains("launchOffset * Mathf.SmoothStep"), "Dream merchant rises and goods follow separate launch arcs");
+            // rising out of the floor is for bosses only since 19/10/2026: the dream merchant drifts down like a dream instead
+            require(actorMotion.Contains("Vector3.up * 3.4f * Mathf.SmoothStep(0, 1, travel)") && !actorMotion.Contains("-height * Mathf.SmoothStep") && actorMotion.Contains("launchOffset * Mathf.SmoothStep"), "Dream merchant drifts down (never up through the floor) and goods follow separate launch arcs");
             require(!marketMotion.Contains("1 - fold") && marketMotion.Contains("carpet.Display"), "Market root never shrinks; rug owns independent mesh curl");
             require(lifecycle.Contains("actor.Depart") && lifecycle.Contains("actor.Arrive(0)"), "Independent actor departures recover after failed boundary save");
             require(File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/UnitVisual.cs").Contains("unit.Faction != Faction.Enemy &&"), "Enemy attacks use body, never held friendly weapon");
@@ -60,7 +61,7 @@ namespace ArcaneBrigade.Editor
             require(art.GiantGoldMerchant.Length == 4 && art.GiantEggMerchant.Length == 4 && art.GiantGoldMerchant.Concat(art.GiantEggMerchant).Distinct().Count() == 8, "Two new original giant merchants with four distinct imported states each");
             require(art.GiantGoldMerchant[0].texture != art.GiantEggMerchant[0].texture && CornerAlpha(art.GiantGoldMerchant[0]) < 0.01f && CornerAlpha(art.GiantEggMerchant[0]) < 0.01f, "Giant merchant identities have separate true-alpha source art");
             require(WorldShop.MerchantSize(false, 1) == WorldShop.MerchantSize(false, 2) && WorldShop.MerchantSize(true, 3) > 5.5f && WorldShop.MerchantSize(false, 3) > 5, "Large to colossal merchant sizes vary by hall and shop identity");
-            require(lifecycle.Contains("owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f") && lifecycle.Contains("AvoidObstacle(unit.Position, MerchantCenter"), "Colossal staging respects camera height and avoidance follows actual NPC position");
+            require(lifecycle.Contains("owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f") && lifecycle.Contains("WaitingSpot(waiting.IndexOf(unit))"), "Colossal staging respects camera height; the brigade waits by the door, clear of the merchant and stalls (19/10/2026)");
             Directory.CreateDirectory("PreviewExports/K11"); File.WriteAllLines("PreviewExports/K11/Focused_Checks.txt", notes);
             Debug.Log("K11_FOCUSED_CHECKS_PASSED " + notes.Count);
         }

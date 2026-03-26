@@ -47,6 +47,12 @@ namespace ArcaneBrigade
             ["LanternWeaver"] = new Entry("LanternStaff", null, "ThimbleMoth", "TeabagFlail"),
             ["HourglassStag"] = new Entry("AlarmMortar", null, "DreamCompass", "ParasolNeedle"),
             ["RainArchivist"] = new Entry("SquirtTrio", "DreamOrbStaff", "RibbonOtter", "TinFish"),
+            // the five expansion heroes (Docs/Content_Expansion_Proposal.md §5; starters from Tools/Content/expansion_design.py)
+            ["KiteAdmiral"] = new Entry("KiteSpool", null, "PaperPlanePigeon", "PaperPlaneSquadron"),
+            ["SundaeDuchess"] = new Entry("ScoopLauncher", null, "BakerMouse", "RollingPin"),
+            ["BonsaiClocksmith"] = new Entry("CuckooCannon", null, "TopBeetle", "SpinningTop"),
+            ["JugglingJester"] = new Entry("JugglingPins", null, "LensOwl", "SunLens"),
+            ["BellDiver"] = new Entry("SonarHarpoon", null, "RaincoatFrog", "PlungerPopper"),
         };
 
         /// <summary>The weapon this hero carries now: its own, or its interim one while its own is not in the catalog yet.</summary>

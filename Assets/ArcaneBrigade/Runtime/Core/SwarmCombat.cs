@@ -11,14 +11,14 @@ namespace ArcaneBrigade
         {
             UnitDefinition fallback = null;
             foreach (UnitDefinition candidate in catalog.EnemyPool)
-                if (!candidate.IsBoss && candidate.SpecialEnemy == SpecialEnemyKind.None && candidate.Weapon.Kind != WeaponKind.Projectile && candidate.Behavior == EnemyBehavior.Standard && (fallback == null || candidate.BodyHeight < fallback.BodyHeight)) fallback = candidate;
+                if (!candidate.IsBoss && candidate.SpecialEnemy == SpecialEnemyKind.None && candidate.WaitingKind == WaitingEnemyKind.None && candidate.Weapon.Kind != WeaponKind.Projectile && candidate.Behavior == EnemyBehavior.Standard && (fallback == null || candidate.BodyHeight < fallback.BodyHeight)) fallback = candidate;
             return fallback ?? catalog.MeleeEnemy;
         }
         private UnitDefinition HerdDefinition()
         {
             var choices = new System.Collections.Generic.List<UnitDefinition>();
             foreach (UnitDefinition candidate in catalog.EnemyPool)
-                if (!candidate.IsBoss && candidate.SpecialEnemy == SpecialEnemyKind.None && candidate.Weapon.Kind != WeaponKind.Projectile && candidate.Behavior == EnemyBehavior.Standard && candidate.BodyHeight <= 1.15f && !choices.Contains(candidate)) choices.Add(candidate);
+                if (!candidate.IsBoss && candidate.SpecialEnemy == SpecialEnemyKind.None && candidate.WaitingKind == WaitingEnemyKind.None && candidate.Weapon.Kind != WeaponKind.Projectile && candidate.Behavior == EnemyBehavior.Standard && candidate.BodyHeight <= 1.15f && !choices.Contains(candidate)) choices.Add(candidate);
             return choices.Count == 0 ? SwarmDefinition() : choices[spawnRandom.Next(choices.Count)];
         }
         private int SwarmCoinValue(UnitState target)

@@ -1,0 +1,344 @@
+PASS Zone waves SpareChair 6-10
+PASS Zone waves SewnLetter 6-15
+PASS Zone waves PartyLine 8-14
+PASS Zone waves DoorKnocker 11-15
+PASS Zone waves LampSnuffer 9-20
+PASS Zone waves InkNotary 16-20
+PASS Zone waves LedgerHound 16-20
+PASS Waking Sitter never walks into an ordinary wave
+PASS Imported and listed SpareChair
+PASS Unit, weapon and both forms registered SpareChair
+PASS Eight painted poses SpareChairMotion
+PASS Eight painted poses SpareChairEvolvedMotion
+PASS Imported and listed WakingSitter
+PASS Unit, weapon and both forms registered WakingSitter
+PASS Eight painted poses WakingSitterMotion
+PASS Eight painted poses WakingSitterEvolvedMotion
+PASS Imported and listed InkNotary
+PASS Unit, weapon and both forms registered InkNotary
+PASS Eight painted poses InkNotaryMotion
+PASS Eight painted poses InkNotaryEvolvedMotion
+PASS Imported and listed SewnLetter
+PASS Unit, weapon and both forms registered SewnLetter
+PASS Eight painted poses SewnLetterMotion
+PASS Eight painted poses SewnLetterEvolvedMotion
+PASS Imported and listed PartyLine
+PASS Unit, weapon and both forms registered PartyLine
+PASS Eight painted poses PartyLineMotion
+PASS Eight painted poses PartyLineEvolvedMotion
+PASS Imported and listed DoorKnocker
+PASS Unit, weapon and both forms registered DoorKnocker
+PASS Eight painted poses DoorKnockerMotion
+PASS Eight painted poses DoorKnockerEvolvedMotion
+PASS Imported and listed LampSnuffer
+PASS Unit, weapon and both forms registered LampSnuffer
+PASS Eight painted poses LampSnufferMotion
+PASS Eight painted poses LampSnufferEvolvedMotion
+PASS Imported and listed LedgerHound
+PASS Unit, weapon and both forms registered LedgerHound
+PASS Eight painted poses LedgerHoundMotion
+PASS Eight painted poses LedgerHoundEvolvedMotion
+PASS Re-theme ready CoinLeech -> TollTick
+PASS Source asset of CoinLeech keeps its own look and name
+PASS Re-themed in runs, same behaviour and stats: CoinLeech as Toll Tick stage 0
+PASS Re-themed in runs, same behaviour and stats: CoinLeech as Toll Tick stage 1
+PASS Re-theme ready SporeBishop -> CoatRack
+PASS Source asset of SporeBishop keeps its own look and name
+PASS Re-themed in runs, same behaviour and stats: SporeBishop as Coat Rack stage 0
+PASS Re-themed in runs, same behaviour and stats: SporeBishop as Coat Rack stage 1
+PASS Re-theme ready SmokingCoffin -> UnclaimedTrunk
+PASS Source asset of SmokingCoffin keeps its own look and name
+PASS Re-themed in runs, same behaviour and stats: SmokingCoffin as Unclaimed Trunk stage 0
+PASS Re-themed in runs, same behaviour and stats: SmokingCoffin as Unclaimed Trunk stage 1
+PASS Re-theme ready HopperKeg -> HatboxHopper
+PASS Source asset of HopperKeg keeps its own look and name
+PASS Re-themed in runs, same behaviour and stats: HopperKeg as Hatbox Hopper stage 0
+PASS Re-themed in runs, same behaviour and stats: HopperKeg as Hatbox Hopper stage 1
+PASS Re-theme ready BristleImp -> SplinterImp
+PASS Source asset of BristleImp keeps its own look and name
+PASS Re-themed in runs, same behaviour and stats: BristleImp as Splinter Imp stage 0
+PASS Re-themed in runs, same behaviour and stats: BristleImp as Splinter Imp stage 1
+PASS Indebted stamp shown only once painted
+PASS The catalog's 28 older species are untouched
+PASS New look in wave 1: BristleImp
+PASS New look in wave 1: BristleImp
+PASS Wave 1 spawns nothing that waits for art (6 in pool)
+PASS New look in wave 2: BristleImp
+PASS New look in wave 2: BristleImp
+PASS New look in wave 2: HopperKeg
+PASS Wave 2 spawns nothing that waits for art (11 in pool)
+PASS New look in wave 3: BristleImp
+PASS New look in wave 3: BristleImp
+PASS New look in wave 3: HopperKeg
+PASS Wave 3 spawns nothing that waits for art (12 in pool)
+PASS New look in wave 4: BristleImp
+PASS New look in wave 4: BristleImp
+PASS New look in wave 4: HopperKeg
+PASS New look in wave 4: CoinLeech
+PASS Wave 4 spawns nothing that waits for art (15 in pool)
+PASS New look in wave 5: BristleImp
+PASS New look in wave 5: BristleImp
+PASS New look in wave 5: HopperKeg
+PASS New look in wave 5: CoinLeech
+PASS Wave 5 spawns nothing that waits for art (18 in pool)
+PASS New look in wave 6: BristleImp
+PASS New look in wave 6: BristleImp
+PASS New look in wave 6: HopperKeg
+PASS New look in wave 6: CoinLeech
+PASS New look in wave 6: SporeBishop
+PASS Only painted enemies of this zone in wave 6: SpareChair
+PASS Only painted enemies of this zone in wave 6: SewnLetter
+PASS Wave 6 spawns nothing that waits for art (24 in pool)
+PASS Painted SpareChair joins wave 6
+PASS Painted SewnLetter joins wave 6
+PASS New look in wave 7: BristleImp
+PASS New look in wave 7: HopperKeg
+PASS New look in wave 7: CoinLeech
+PASS New look in wave 7: SporeBishop
+PASS Only painted enemies of this zone in wave 7: SpareChair
+PASS Only painted enemies of this zone in wave 7: SewnLetter
+PASS Wave 7 spawns nothing that waits for art (23 in pool)
+PASS Painted SpareChair joins wave 7
+PASS Painted SewnLetter joins wave 7
+PASS New look in wave 8: BristleImp
+PASS New look in wave 8: HopperKeg
+PASS New look in wave 8: CoinLeech
+PASS New look in wave 8: SporeBishop
+PASS Only painted enemies of this zone in wave 8: SpareChair
+PASS Only painted enemies of this zone in wave 8: SewnLetter
+PASS Only painted enemies of this zone in wave 8: PartyLine
+PASS Wave 8 spawns nothing that waits for art (27 in pool)
+PASS Painted SpareChair joins wave 8
+PASS Painted SewnLetter joins wave 8
+PASS Painted PartyLine joins wave 8
+PASS New look in wave 9: BristleImp
+PASS New look in wave 9: HopperKeg
+PASS New look in wave 9: CoinLeech
+PASS New look in wave 9: SporeBishop
+PASS Only painted enemies of this zone in wave 9: SpareChair
+PASS Only painted enemies of this zone in wave 9: SewnLetter
+PASS Only painted enemies of this zone in wave 9: PartyLine
+PASS Only painted enemies of this zone in wave 9: LampSnuffer
+PASS Wave 9 spawns nothing that waits for art (30 in pool)
+PASS Painted SpareChair joins wave 9
+PASS Painted SewnLetter joins wave 9
+PASS Painted PartyLine joins wave 9
+PASS Painted LampSnuffer joins wave 9
+PASS New look in wave 10: BristleImp
+PASS New look in wave 10: HopperKeg
+PASS New look in wave 10: CoinLeech
+PASS New look in wave 10: SporeBishop
+PASS Only painted enemies of this zone in wave 10: SpareChair
+PASS Only painted enemies of this zone in wave 10: SewnLetter
+PASS Only painted enemies of this zone in wave 10: PartyLine
+PASS Only painted enemies of this zone in wave 10: LampSnuffer
+PASS Wave 10 spawns nothing that waits for art (32 in pool)
+PASS Painted SpareChair joins wave 10
+PASS Painted SewnLetter joins wave 10
+PASS Painted PartyLine joins wave 10
+PASS Painted LampSnuffer joins wave 10
+PASS New look in wave 11: BristleImp
+PASS New look in wave 11: HopperKeg
+PASS New look in wave 11: CoinLeech
+PASS New look in wave 11: SporeBishop
+PASS New look in wave 11: SmokingCoffin
+PASS Only painted enemies of this zone in wave 11: SewnLetter
+PASS Only painted enemies of this zone in wave 11: PartyLine
+PASS Only painted enemies of this zone in wave 11: DoorKnocker
+PASS Only painted enemies of this zone in wave 11: LampSnuffer
+PASS Wave 11 spawns nothing that waits for art (33 in pool)
+PASS Painted SewnLetter joins wave 11
+PASS Painted PartyLine joins wave 11
+PASS Painted DoorKnocker joins wave 11
+PASS Painted LampSnuffer joins wave 11
+PASS New look in wave 12: BristleImp
+PASS New look in wave 12: HopperKeg
+PASS New look in wave 12: CoinLeech
+PASS New look in wave 12: SporeBishop
+PASS New look in wave 12: SmokingCoffin
+PASS Only painted enemies of this zone in wave 12: SewnLetter
+PASS Only painted enemies of this zone in wave 12: PartyLine
+PASS Only painted enemies of this zone in wave 12: DoorKnocker
+PASS Only painted enemies of this zone in wave 12: LampSnuffer
+PASS Wave 12 spawns nothing that waits for art (34 in pool)
+PASS Painted SewnLetter joins wave 12
+PASS Painted PartyLine joins wave 12
+PASS Painted DoorKnocker joins wave 12
+PASS Painted LampSnuffer joins wave 12
+PASS New look in wave 13: BristleImp
+PASS New look in wave 13: HopperKeg
+PASS New look in wave 13: CoinLeech
+PASS New look in wave 13: SporeBishop
+PASS New look in wave 13: SmokingCoffin
+PASS Only painted enemies of this zone in wave 13: SewnLetter
+PASS Only painted enemies of this zone in wave 13: PartyLine
+PASS Only painted enemies of this zone in wave 13: DoorKnocker
+PASS Only painted enemies of this zone in wave 13: LampSnuffer
+PASS Wave 13 spawns nothing that waits for art (34 in pool)
+PASS Painted SewnLetter joins wave 13
+PASS Painted PartyLine joins wave 13
+PASS Painted DoorKnocker joins wave 13
+PASS Painted LampSnuffer joins wave 13
+PASS New look in wave 14: BristleImp
+PASS New look in wave 14: HopperKeg
+PASS New look in wave 14: HopperKeg
+PASS New look in wave 14: CoinLeech
+PASS New look in wave 14: CoinLeech
+PASS New look in wave 14: SporeBishop
+PASS New look in wave 14: SporeBishop
+PASS New look in wave 14: SmokingCoffin
+PASS Only painted enemies of this zone in wave 14: SewnLetter
+PASS Only painted enemies of this zone in wave 14: PartyLine
+PASS Only painted enemies of this zone in wave 14: DoorKnocker
+PASS Only painted enemies of this zone in wave 14: LampSnuffer
+PASS Wave 14 spawns nothing that waits for art (44 in pool)
+PASS Painted SewnLetter joins wave 14
+PASS Painted PartyLine joins wave 14
+PASS Painted DoorKnocker joins wave 14
+PASS Painted LampSnuffer joins wave 14
+PASS New look in wave 15: BristleImp
+PASS New look in wave 15: HopperKeg
+PASS New look in wave 15: HopperKeg
+PASS New look in wave 15: CoinLeech
+PASS New look in wave 15: CoinLeech
+PASS New look in wave 15: SporeBishop
+PASS New look in wave 15: SporeBishop
+PASS New look in wave 15: SmokingCoffin
+PASS Only painted enemies of this zone in wave 15: SewnLetter
+PASS Only painted enemies of this zone in wave 15: DoorKnocker
+PASS Only painted enemies of this zone in wave 15: LampSnuffer
+PASS Wave 15 spawns nothing that waits for art (43 in pool)
+PASS Painted SewnLetter joins wave 15
+PASS Painted DoorKnocker joins wave 15
+PASS Painted LampSnuffer joins wave 15
+PASS New look in wave 16: BristleImp
+PASS New look in wave 16: HopperKeg
+PASS New look in wave 16: HopperKeg
+PASS New look in wave 16: CoinLeech
+PASS New look in wave 16: CoinLeech
+PASS New look in wave 16: SporeBishop
+PASS New look in wave 16: SporeBishop
+PASS New look in wave 16: SmokingCoffin
+PASS Only painted enemies of this zone in wave 16: InkNotary
+PASS Only painted enemies of this zone in wave 16: LampSnuffer
+PASS Only painted enemies of this zone in wave 16: LedgerHound
+PASS Wave 16 spawns nothing that waits for art (43 in pool)
+PASS Painted InkNotary joins wave 16
+PASS Painted LampSnuffer joins wave 16
+PASS Painted LedgerHound joins wave 16
+PASS New look in wave 17: BristleImp
+PASS New look in wave 17: HopperKeg
+PASS New look in wave 17: HopperKeg
+PASS New look in wave 17: CoinLeech
+PASS New look in wave 17: CoinLeech
+PASS New look in wave 17: SporeBishop
+PASS New look in wave 17: SporeBishop
+PASS New look in wave 17: SmokingCoffin
+PASS Only painted enemies of this zone in wave 17: InkNotary
+PASS Only painted enemies of this zone in wave 17: LampSnuffer
+PASS Only painted enemies of this zone in wave 17: LedgerHound
+PASS Wave 17 spawns nothing that waits for art (43 in pool)
+PASS Painted InkNotary joins wave 17
+PASS Painted LampSnuffer joins wave 17
+PASS Painted LedgerHound joins wave 17
+PASS New look in wave 18: BristleImp
+PASS New look in wave 18: HopperKeg
+PASS New look in wave 18: HopperKeg
+PASS New look in wave 18: CoinLeech
+PASS New look in wave 18: CoinLeech
+PASS New look in wave 18: SporeBishop
+PASS New look in wave 18: SporeBishop
+PASS New look in wave 18: SmokingCoffin
+PASS Only painted enemies of this zone in wave 18: InkNotary
+PASS Only painted enemies of this zone in wave 18: LampSnuffer
+PASS Only painted enemies of this zone in wave 18: LedgerHound
+PASS Wave 18 spawns nothing that waits for art (43 in pool)
+PASS Painted InkNotary joins wave 18
+PASS Painted LampSnuffer joins wave 18
+PASS Painted LedgerHound joins wave 18
+PASS New look in wave 19: BristleImp
+PASS New look in wave 19: HopperKeg
+PASS New look in wave 19: HopperKeg
+PASS New look in wave 19: CoinLeech
+PASS New look in wave 19: CoinLeech
+PASS New look in wave 19: SporeBishop
+PASS New look in wave 19: SporeBishop
+PASS New look in wave 19: SmokingCoffin
+PASS Only painted enemies of this zone in wave 19: InkNotary
+PASS Only painted enemies of this zone in wave 19: LampSnuffer
+PASS Only painted enemies of this zone in wave 19: LedgerHound
+PASS Wave 19 spawns nothing that waits for art (43 in pool)
+PASS Painted InkNotary joins wave 19
+PASS Painted LampSnuffer joins wave 19
+PASS Painted LedgerHound joins wave 19
+PASS New look in wave 20: BristleImp
+PASS New look in wave 20: HopperKeg
+PASS New look in wave 20: HopperKeg
+PASS New look in wave 20: CoinLeech
+PASS New look in wave 20: CoinLeech
+PASS New look in wave 20: SporeBishop
+PASS New look in wave 20: SporeBishop
+PASS New look in wave 20: SmokingCoffin
+PASS Only painted enemies of this zone in wave 20: InkNotary
+PASS Only painted enemies of this zone in wave 20: LampSnuffer
+PASS Only painted enemies of this zone in wave 20: LedgerHound
+PASS Wave 20 spawns nothing that waits for art (43 in pool)
+PASS Painted InkNotary joins wave 20
+PASS Painted LampSnuffer joins wave 20
+PASS Painted LedgerHound joins wave 20
+PASS SIT CLOSER wakes the seated travellers (Waking Sitters) once painted
+PASS Stats measured from neighbouring enemies SpareChair hp 53 speed 1.12 dmg 6.8
+PASS Stats measured from neighbouring enemies WakingSitter hp 56.25 speed 0.84 dmg 3.85
+PASS Stats measured from neighbouring enemies InkNotary hp 69.7 speed 0.95 dmg 6.4
+PASS Stats measured from neighbouring enemies SewnLetter hp 53 speed 1.06 dmg 6.8
+PASS Stats measured from neighbouring enemies PartyLine hp 78.12 speed 0.45 dmg 7.7
+PASS Stats measured from neighbouring enemies DoorKnocker hp 98.4 speed 0.95 dmg 8
+PASS Stats measured from neighbouring enemies LampSnuffer hp 56.4 speed 0.9 dmg 6.32
+PASS Stats measured from neighbouring enemies LedgerHound hp 82 speed 1.32 dmg 8
+PASS Spare Chair inks a seat ring under the hero and winds up
+PASS Seat ring warns 1.0 s before it snaps
+PASS The hold comes only when the ring snaps
+PASS Still inside when it snaps: rooted 0.6 s
+PASS A rooted hero cannot walk
+PASS The hold ends after 0.6 s
+PASS Stepping out of the ring before it snaps escapes the hold
+PASS Waking Sitter winds up its throw first
+PASS The ink thread lands on the hero
+PASS Taut thread slows the hero 30% (0.70)
+PASS Thread damage is low (2.2 in 2 s)
+PASS Beyond 5 units the thread breaks
+PASS Full speed once the thread is broken
+PASS Ink Notary picks the enemy beside it and raises its stamp
+PASS PAID lands on that ally only
+PASS PAID halves the next hit taken (52.5 of 105.0), once
+PASS The hit after that is whole again
+PASS CLOSED is stamped where the hero stands, after a wind-up
+PASS Standing in CLOSED ink: slowed for 3 s
+PASS CLOSED slows the hero 25% (0.75)
+PASS Off the ink the slow wears off
+PASS Sewn Letter bursts into 2 halves of 35% HP
+PASS Each half bursts into 2 stamps of 12% HP (4 in all)
+PASS Stamps do not split
+PASS Party Line rings first; the cord's path is only dotted
+PASS It rings 0.9 s
+PASS The cord runs across the floor past the hero
+PASS No damage from the cord while it only rings
+PASS After the ring the pinned cord hurts, held 3 s
+PASS The cord is still pinned before 3 s
+PASS Cord gone after 3 s; the telephone never moved
+PASS Door Knocker leaps in
+PASS It lands beside the hero; three knock rings are marked
+PASS Three knocks 0.7 s apart
+PASS Each knock is a spreading wave; the third is biggest
+PASS Lamp Snuffer drifts to the nearest lit lantern and dims it (0.90)
+PASS It keeps dimming while alive
+PASS Defeated, the lantern brightens again
+PASS Ledger Hound starts circling the hero
+PASS Four tally marks, one every 0.8 s
+PASS The four marks are harmless ink
+PASS The fifth stroke is a slash that strikes
+PASS The slash runs along the marked line
+PASS New enemies never fill in as swarm bodies
+PASS Two chairs: a third may come
+PASS Three chairs at once at most
+PASS Older species are never held back

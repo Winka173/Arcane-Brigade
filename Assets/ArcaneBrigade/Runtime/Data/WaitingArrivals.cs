@@ -35,6 +35,11 @@ namespace ArcaneBrigade
             "LanternWeaver" => "You stitched paths between places where promises had frayed. Sleep made the thread luminous. Another traveller can hold an end without being bound to your wrist.",
             "HourglassStag" => "You counted the minutes until somebody would have time for you. This antlered shape carries the count. A shared hour is not a payment for all the hours you waited.",
             "RainArchivist" => "You recorded rain against a window while waiting for a familiar step. The dream let you write on water. This crossing can add a new page without washing the old ones away.",
+            "KiteAdmiral" => "You folded paper boats and kites for the cousins who came to stay, then watched them go home with the wind. In sleep you command a whole fleet. A sail can come back without being held by a string.",
+            "SundaeDuchess" => "You saved the treat for the guest who might still arrive, and watched it melt on the table. The dream crowned you in ice cream. Sweetness can be shared before it is deserved.",
+            "BonsaiClocksmith" => "You trimmed a small tree and wound a small clock so that something in the house would keep its promise. Here the two have grown together. Patience is not the same as waiting forever.",
+            "JugglingJester" => "You kept every ball in the air so nobody would notice the room going quiet. The dream gave you a stage. You may drop one and still be worth watching.",
+            "BellDiver" => "You listened under the surface of every conversation for what was not being said. Sleep sent you down in a brass bell. Some depths can be visited and left behind.",
             _ => ""
         };
     }

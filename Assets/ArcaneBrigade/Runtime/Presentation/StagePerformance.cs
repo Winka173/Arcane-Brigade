@@ -49,7 +49,7 @@ namespace ArcaneBrigade
                     if (feedback == null) feedback = owner.GetComponent<TactileFeedback>();
                     for (int index = 0; index < 2; index++)
                     {
-                        Vector2 shelf = NightmareLighting.LandmarkPosition(index == 0 ? 3 : 4, owner.Session?.State.Phase == SessionPhase.Shop, owner.WorldBounds * .5f);
+                        Vector2 shelf = owner.Session == null ? Vector2.zero : NightmareLighting.Landmark(owner, index == 0 ? 3 : 4, owner.Session.State.Phase == SessionPhase.Shop);
                         if (Vector2.Distance(shelf, position) < 8) feedback?.Emit(art.Dust, shelf, 1, .85f, new Color(.6f, .5f, .48f, .28f), Vector2.down * .8f, 0, -29);
                     }
                 }

@@ -8581,3 +8581,80 @@ MonoBehaviour:
       y: -1.5859375
       width: 1.5273438
       height: 3.1757812
+  - Sprite: {fileID: 21300000, guid: f3bf611539ff0ea409fee18cb95f3f41, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.69921875
+      y: -0.6875
+      width: 1.3984375
+      height: 1.3789062
+  - Sprite: {fileID: 21300000, guid: 146eece858f95544d8e92252eccefe78, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.62109375
+      y: -0.61328125
+      width: 1.3085938
+      height: 1.203125
+  - Sprite: {fileID: 21300000, guid: 2b8b0e93f3207bc4c9c46b9201daf976, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.30078125
+      y: -1.0195312
+      width: 0.57421875
+      height: 2.0507812
+  - Sprite: {fileID: 21300000, guid: bee99c74b386e294abbcf3f3339c58b4, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.44921875
+      y: -0.70703125
+      width: 0.91796875
+      height: 1.4257812
+  - Sprite: {fileID: 21300000, guid: 974b5b1bfc1a7404f8b9deb6c90c8e13, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.66015625
+      y: -0.50390625
+      width: 1.3164062
+      height: 1.0117188
+  - Sprite: {fileID: 21300000, guid: e5d98f317d286d04f9fbb85aa59681bb, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.6328125
+      y: -0.515625
+      width: 1.3046875
+      height: 1.0039062
+  - Sprite: {fileID: 21300000, guid: 19a06a6c0071dfc4b9d94a849d6d088b, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.5703125
+      y: -0.6328125
+      width: 1.1679688
+      height: 1.1953125
+  - Sprite: {fileID: 21300000, guid: 6dbdae1d14776314aa6c10f0c6156b48, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.58984375
+      y: -0.5625
+      width: 1.2265625
+      height: 1.1367188
+  - Sprite: {fileID: 21300000, guid: 6f3ce58283d44004bbeb9fd4429f5fcb, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -1.0820312
+      y: -0.4140625
+      width: 2.1640625
+      height: 0.8125
+  - Sprite: {fileID: 21300000, guid: d15637f39bc4e6341909726f8595bfd0, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.7578125
+      y: -0.54296875
+      width: 1.515625
+      height: 1.109375
+  - Sprite: {fileID: 21300000, guid: 255cf550183331746a95f311b622b7cc, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.75390625
+      y: -0.546875
+      width: 1.5078125
+      height: 1.0898438

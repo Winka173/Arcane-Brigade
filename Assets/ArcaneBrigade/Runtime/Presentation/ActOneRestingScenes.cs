@@ -146,7 +146,7 @@ namespace ArcaneBrigade
             string line = wave == 17 ? "HOB CHOSE THIS SEAT" : wave == 18 ? "TALLY'S PLACE IS EMPTY" : wave == 15 ? "THE UMBRELLA IS STILL WET" : "THE REPLY WAS SEWN SHUT";
             Rect panel = new Rect(650,835,620,112); ArcadeSkin.Ticket(panel,ArcadeSkin.Paper,ArcadeSkin.Wax);
             caption.normal.textColor = new Color(.22f,.17f,.12f);
-            if (GUI.Button(panel,line + "\nExamine · Space / A",caption)) Inspect();
+            if (GUI.Button(panel,line + "\nExamine",caption)) Inspect();
             GUI.matrix = matrix;
         }
         private void OnDestroy() { ReleaseLayout(); if (Active == this) Active = null; ShopFocus.Unregister(this); }

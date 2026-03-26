@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: TollTickMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1544188198, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: 999436647, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  Walk:
+  - {fileID: -874697358, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: 594397546, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: -874697358, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: 594397546, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  Windup:
+  - {fileID: -50720045, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: 1497994152, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  Release:
+  - {fileID: 783364607, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: 783364607, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  Recovery:
+  - {fileID: -682812089, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  - {fileID: 1544188198, guid: 852ee35256df18144b54229c43b60bde, type: 3}
+  IllustratedHeight: 0

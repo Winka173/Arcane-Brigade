@@ -47,31 +47,25 @@ namespace ArcaneBrigade
             bool special = boss.Definition.Id == NightmareRules.CustomerId || boss.Definition.Id == "OutsideStageKeeper";
             bool signature = boss.ActiveBossSignature >= 0;
 
-            // the pool under the boss: it spreads with the wind-up, and boils in the last beat
+            // no ink pool under the boss any more (owner, 19/10/2026): ink droplets hop up around its feet through the wind-up,
+            // quicker and brighter in the last beat (reduced motion: they hold still)
             float body = Mathf.Max(boss.Definition.Radius, boss.Definition.BodyHeight * 0.42f);
-            float radius = body * (signature ? 1.15f : 0.95f) + (signature ? 1.1f : 0.7f) * charge;
-            float throb = still || calm ? 0 : Mathf.Sin(now * Mathf.Lerp(6, 22, charge)) * 0.05f * charge;
-            ink.Pool(boss.Position + Vector2.down * 0.05f, radius * (1 + throb), rise, Bile, seed, 0.95f, 0.36f);
-            Pools++;
-            if (!still && last > 0)
+            for (int i = 0; i < 3; i++)
             {
-                ink.Bubbles(boss.Position, radius * 0.8f, now * 2.2f, Bile, 5, seed, last);
-                // droplets jump straight up out of the ink just before the blow
-                for (int i = 0; i < 3; i++)
-                {
-                    float hop = Mathf.Repeat(now * 3.1f + i * 0.27f, 1);
-                    float x = ((i * 53) % 9 - 4) / 4f * radius * 0.75f;
-                    ink.TokenAt(InkToken.Drop, Bile, boss.Position + new Vector2(x, -radius * 0.25f + Mathf.Sin(hop * Mathf.PI) * 0.6f), 0.42f, 0, last * (1 - hop * 0.6f));
-                }
+                float hop = still ? .5f : Mathf.Repeat(now * Mathf.Lerp(1.6f, 3.1f, last) + i * 0.27f, 1);
+                float x = ((i * 53) % 9 - 4) / 4f * body * 0.75f;
+                ink.TokenAt(InkToken.Drop, Bile, boss.Position + new Vector2(x, -body * 0.25f + Mathf.Sin(hop * Mathf.PI) * 0.6f), 0.42f, 0, rise * (.55f + .45f * last) * (1 - hop * 0.6f));
             }
+            Pools++; // the wind-up's own mark (droplets now, not a pool)
 
             if (special) return;
             if (boss.ActiveTrademark) return; // its path is inked by BossTrademarkVisual once the pieces are out
             if (signature)
             {
-                // a signature move lands near its target: ink seeps into the floor there
-                ink.Pool(boss.AbilityTarget, 0.7f + 1.1f * charge, rise, Bile, seed + 90, 0.85f, 0.42f);
-                if (!still && last > 0) ink.Bubbles(boss.AbilityTarget, 0.6f, now * 2.6f, Bile, 3, seed + 3, last);
+                // a signature move lands near its target: an inked X marks the spot (no pool)
+                float arm = 0.45f + 0.5f * charge;
+                ink.FloorStroke(boss.AbilityTarget + new Vector2(-arm, -arm * .5f), boss.AbilityTarget + new Vector2(arm, arm * .5f), Bile, 0.12f, 1, 0, rise, 0.03f, seed + 90);
+                ink.FloorStroke(boss.AbilityTarget + new Vector2(-arm, arm * .5f), boss.AbilityTarget + new Vector2(arm, -arm * .5f), Bile, 0.12f, 1, 0, rise, 0.03f, seed + 91);
                 Blots++;
                 return;
             }

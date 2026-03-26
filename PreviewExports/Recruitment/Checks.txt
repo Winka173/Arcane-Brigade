@@ -6,8 +6,8 @@ PASS Old offer cannot bypass exhausted quota 1
 PASS Denied purchase leaves currency and roster unchanged 1
 PASS Third copy merges after exhausted new-species quota 1
 PASS Upgrade consumes old purchase quota but not new-species quota 1
-PASS Third total purchase remains available for upgrades 1
-PASS Fourth ordinary purchase blocked including star-upgrade copies 1
+PASS Second copy in one wave is blocked 1
+PASS At most one new species and one copy per wave 1
 PASS Special new species respects per-wave and shared cooldown 1/0
 PASS Special purchase leaves regular quotas unchanged 1/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 1/1
@@ -17,94 +17,94 @@ PASS Special purchase leaves regular quotas unchanged 1/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 1
 PASS Save/load cannot refresh quota 1
 PASS Paid refresh allowed at quota 1/0
-PASS Normal rolls show items after three purchases 1/0
+PASS Normal rolls show items once the new species and the copy are used 1/0
 PASS Reroll never resets either quota 1/0
 PASS Paid refresh allowed at quota 1/1
-PASS Normal rolls show items after three purchases 1/1
+PASS Normal rolls show items once the new species and the copy are used 1/1
 PASS Reroll never resets either quota 1/1
 PASS Paid refresh allowed at quota 1/2
-PASS Normal rolls show items after three purchases 1/2
+PASS Normal rolls show items once the new species and the copy are used 1/2
 PASS Reroll never resets either quota 1/2
 PASS Paid refresh allowed at quota 1/3
-PASS Normal rolls show items after three purchases 1/3
+PASS Normal rolls show items once the new species and the copy are used 1/3
 PASS Reroll never resets either quota 1/3
 PASS Paid refresh allowed at quota 1/4
-PASS Normal rolls show items after three purchases 1/4
+PASS Normal rolls show items once the new species and the copy are used 1/4
 PASS Reroll never resets either quota 1/4
 PASS Paid refresh allowed at quota 1/5
-PASS Normal rolls show items after three purchases 1/5
+PASS Normal rolls show items once the new species and the copy are used 1/5
 PASS Reroll never resets either quota 1/5
 PASS Paid refresh allowed at quota 1/6
-PASS Normal rolls show items after three purchases 1/6
+PASS Normal rolls show items once the new species and the copy are used 1/6
 PASS Reroll never resets either quota 1/6
 PASS Paid refresh allowed at quota 1/7
-PASS Normal rolls show items after three purchases 1/7
+PASS Normal rolls show items once the new species and the copy are used 1/7
 PASS Reroll never resets either quota 1/7
 PASS Paid refresh allowed at quota 1/8
-PASS Normal rolls show items after three purchases 1/8
+PASS Normal rolls show items once the new species and the copy are used 1/8
 PASS Reroll never resets either quota 1/8
 PASS Paid refresh allowed at quota 1/9
-PASS Normal rolls show items after three purchases 1/9
+PASS Normal rolls show items once the new species and the copy are used 1/9
 PASS Reroll never resets either quota 1/9
 PASS Paid refresh allowed at quota 1/10
-PASS Normal rolls show items after three purchases 1/10
+PASS Normal rolls show items once the new species and the copy are used 1/10
 PASS Reroll never resets either quota 1/10
 PASS Paid refresh allowed at quota 1/11
-PASS Normal rolls show items after three purchases 1/11
+PASS Normal rolls show items once the new species and the copy are used 1/11
 PASS Reroll never resets either quota 1/11
 PASS Paid refresh allowed at quota 1/12
-PASS Normal rolls show items after three purchases 1/12
+PASS Normal rolls show items once the new species and the copy are used 1/12
 PASS Reroll never resets either quota 1/12
 PASS Paid refresh allowed at quota 1/13
-PASS Normal rolls show items after three purchases 1/13
+PASS Normal rolls show items once the new species and the copy are used 1/13
 PASS Reroll never resets either quota 1/13
 PASS Paid refresh allowed at quota 1/14
-PASS Normal rolls show items after three purchases 1/14
+PASS Normal rolls show items once the new species and the copy are used 1/14
 PASS Reroll never resets either quota 1/14
 PASS Paid refresh allowed at quota 1/15
-PASS Normal rolls show items after three purchases 1/15
+PASS Normal rolls show items once the new species and the copy are used 1/15
 PASS Reroll never resets either quota 1/15
 PASS Paid refresh allowed at quota 1/16
-PASS Normal rolls show items after three purchases 1/16
+PASS Normal rolls show items once the new species and the copy are used 1/16
 PASS Reroll never resets either quota 1/16
 PASS Paid refresh allowed at quota 1/17
-PASS Normal rolls show items after three purchases 1/17
+PASS Normal rolls show items once the new species and the copy are used 1/17
 PASS Reroll never resets either quota 1/17
 PASS Paid refresh allowed at quota 1/18
-PASS Normal rolls show items after three purchases 1/18
+PASS Normal rolls show items once the new species and the copy are used 1/18
 PASS Reroll never resets either quota 1/18
 PASS Paid refresh allowed at quota 1/19
-PASS Normal rolls show items after three purchases 1/19
+PASS Normal rolls show items once the new species and the copy are used 1/19
 PASS Reroll never resets either quota 1/19
 PASS Paid refresh allowed at quota 1/20
-PASS Normal rolls show items after three purchases 1/20
+PASS Normal rolls show items once the new species and the copy are used 1/20
 PASS Reroll never resets either quota 1/20
 PASS Paid refresh allowed at quota 1/21
-PASS Normal rolls show items after three purchases 1/21
+PASS Normal rolls show items once the new species and the copy are used 1/21
 PASS Reroll never resets either quota 1/21
 PASS Paid refresh allowed at quota 1/22
-PASS Normal rolls show items after three purchases 1/22
+PASS Normal rolls show items once the new species and the copy are used 1/22
 PASS Reroll never resets either quota 1/22
 PASS Paid refresh allowed at quota 1/23
-PASS Normal rolls show items after three purchases 1/23
+PASS Normal rolls show items once the new species and the copy are used 1/23
 PASS Reroll never resets either quota 1/23
 PASS Paid refresh allowed at quota 1/24
-PASS Normal rolls show items after three purchases 1/24
+PASS Normal rolls show items once the new species and the copy are used 1/24
 PASS Reroll never resets either quota 1/24
 PASS Paid refresh allowed at quota 1/25
-PASS Normal rolls show items after three purchases 1/25
+PASS Normal rolls show items once the new species and the copy are used 1/25
 PASS Reroll never resets either quota 1/25
 PASS Paid refresh allowed at quota 1/26
-PASS Normal rolls show items after three purchases 1/26
+PASS Normal rolls show items once the new species and the copy are used 1/26
 PASS Reroll never resets either quota 1/26
 PASS Paid refresh allowed at quota 1/27
-PASS Normal rolls show items after three purchases 1/27
+PASS Normal rolls show items once the new species and the copy are used 1/27
 PASS Reroll never resets either quota 1/27
 PASS Paid refresh allowed at quota 1/28
-PASS Normal rolls show items after three purchases 1/28
+PASS Normal rolls show items once the new species and the copy are used 1/28
 PASS Reroll never resets either quota 1/28
 PASS Paid refresh allowed at quota 1/29
-PASS Normal rolls show items after three purchases 1/29
+PASS Normal rolls show items once the new species and the copy are used 1/29
 PASS Reroll never resets either quota 1/29
 PASS Round quota 2
 PASS New normal species accepted 2/0
@@ -113,8 +113,8 @@ PASS Old offer cannot bypass exhausted quota 2
 PASS Denied purchase leaves currency and roster unchanged 2
 PASS Third copy merges after exhausted new-species quota 2
 PASS Upgrade consumes old purchase quota but not new-species quota 2
-PASS Third total purchase remains available for upgrades 2
-PASS Fourth ordinary purchase blocked including star-upgrade copies 2
+PASS Second copy in one wave is blocked 2
+PASS At most one new species and one copy per wave 2
 PASS Special new species respects per-wave and shared cooldown 2/0
 PASS Special purchase leaves regular quotas unchanged 2/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 2/1
@@ -124,94 +124,94 @@ PASS Special purchase leaves regular quotas unchanged 2/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 2
 PASS Save/load cannot refresh quota 2
 PASS Paid refresh allowed at quota 2/0
-PASS Normal rolls show items after three purchases 2/0
+PASS Normal rolls show items once the new species and the copy are used 2/0
 PASS Reroll never resets either quota 2/0
 PASS Paid refresh allowed at quota 2/1
-PASS Normal rolls show items after three purchases 2/1
+PASS Normal rolls show items once the new species and the copy are used 2/1
 PASS Reroll never resets either quota 2/1
 PASS Paid refresh allowed at quota 2/2
-PASS Normal rolls show items after three purchases 2/2
+PASS Normal rolls show items once the new species and the copy are used 2/2
 PASS Reroll never resets either quota 2/2
 PASS Paid refresh allowed at quota 2/3
-PASS Normal rolls show items after three purchases 2/3
+PASS Normal rolls show items once the new species and the copy are used 2/3
 PASS Reroll never resets either quota 2/3
 PASS Paid refresh allowed at quota 2/4
-PASS Normal rolls show items after three purchases 2/4
+PASS Normal rolls show items once the new species and the copy are used 2/4
 PASS Reroll never resets either quota 2/4
 PASS Paid refresh allowed at quota 2/5
-PASS Normal rolls show items after three purchases 2/5
+PASS Normal rolls show items once the new species and the copy are used 2/5
 PASS Reroll never resets either quota 2/5
 PASS Paid refresh allowed at quota 2/6
-PASS Normal rolls show items after three purchases 2/6
+PASS Normal rolls show items once the new species and the copy are used 2/6
 PASS Reroll never resets either quota 2/6
 PASS Paid refresh allowed at quota 2/7
-PASS Normal rolls show items after three purchases 2/7
+PASS Normal rolls show items once the new species and the copy are used 2/7
 PASS Reroll never resets either quota 2/7
 PASS Paid refresh allowed at quota 2/8
-PASS Normal rolls show items after three purchases 2/8
+PASS Normal rolls show items once the new species and the copy are used 2/8
 PASS Reroll never resets either quota 2/8
 PASS Paid refresh allowed at quota 2/9
-PASS Normal rolls show items after three purchases 2/9
+PASS Normal rolls show items once the new species and the copy are used 2/9
 PASS Reroll never resets either quota 2/9
 PASS Paid refresh allowed at quota 2/10
-PASS Normal rolls show items after three purchases 2/10
+PASS Normal rolls show items once the new species and the copy are used 2/10
 PASS Reroll never resets either quota 2/10
 PASS Paid refresh allowed at quota 2/11
-PASS Normal rolls show items after three purchases 2/11
+PASS Normal rolls show items once the new species and the copy are used 2/11
 PASS Reroll never resets either quota 2/11
 PASS Paid refresh allowed at quota 2/12
-PASS Normal rolls show items after three purchases 2/12
+PASS Normal rolls show items once the new species and the copy are used 2/12
 PASS Reroll never resets either quota 2/12
 PASS Paid refresh allowed at quota 2/13
-PASS Normal rolls show items after three purchases 2/13
+PASS Normal rolls show items once the new species and the copy are used 2/13
 PASS Reroll never resets either quota 2/13
 PASS Paid refresh allowed at quota 2/14
-PASS Normal rolls show items after three purchases 2/14
+PASS Normal rolls show items once the new species and the copy are used 2/14
 PASS Reroll never resets either quota 2/14
 PASS Paid refresh allowed at quota 2/15
-PASS Normal rolls show items after three purchases 2/15
+PASS Normal rolls show items once the new species and the copy are used 2/15
 PASS Reroll never resets either quota 2/15
 PASS Paid refresh allowed at quota 2/16
-PASS Normal rolls show items after three purchases 2/16
+PASS Normal rolls show items once the new species and the copy are used 2/16
 PASS Reroll never resets either quota 2/16
 PASS Paid refresh allowed at quota 2/17
-PASS Normal rolls show items after three purchases 2/17
+PASS Normal rolls show items once the new species and the copy are used 2/17
 PASS Reroll never resets either quota 2/17
 PASS Paid refresh allowed at quota 2/18
-PASS Normal rolls show items after three purchases 2/18
+PASS Normal rolls show items once the new species and the copy are used 2/18
 PASS Reroll never resets either quota 2/18
 PASS Paid refresh allowed at quota 2/19
-PASS Normal rolls show items after three purchases 2/19
+PASS Normal rolls show items once the new species and the copy are used 2/19
 PASS Reroll never resets either quota 2/19
 PASS Paid refresh allowed at quota 2/20
-PASS Normal rolls show items after three purchases 2/20
+PASS Normal rolls show items once the new species and the copy are used 2/20
 PASS Reroll never resets either quota 2/20
 PASS Paid refresh allowed at quota 2/21
-PASS Normal rolls show items after three purchases 2/21
+PASS Normal rolls show items once the new species and the copy are used 2/21
 PASS Reroll never resets either quota 2/21
 PASS Paid refresh allowed at quota 2/22
-PASS Normal rolls show items after three purchases 2/22
+PASS Normal rolls show items once the new species and the copy are used 2/22
 PASS Reroll never resets either quota 2/22
 PASS Paid refresh allowed at quota 2/23
-PASS Normal rolls show items after three purchases 2/23
+PASS Normal rolls show items once the new species and the copy are used 2/23
 PASS Reroll never resets either quota 2/23
 PASS Paid refresh allowed at quota 2/24
-PASS Normal rolls show items after three purchases 2/24
+PASS Normal rolls show items once the new species and the copy are used 2/24
 PASS Reroll never resets either quota 2/24
 PASS Paid refresh allowed at quota 2/25
-PASS Normal rolls show items after three purchases 2/25
+PASS Normal rolls show items once the new species and the copy are used 2/25
 PASS Reroll never resets either quota 2/25
 PASS Paid refresh allowed at quota 2/26
-PASS Normal rolls show items after three purchases 2/26
+PASS Normal rolls show items once the new species and the copy are used 2/26
 PASS Reroll never resets either quota 2/26
 PASS Paid refresh allowed at quota 2/27
-PASS Normal rolls show items after three purchases 2/27
+PASS Normal rolls show items once the new species and the copy are used 2/27
 PASS Reroll never resets either quota 2/27
 PASS Paid refresh allowed at quota 2/28
-PASS Normal rolls show items after three purchases 2/28
+PASS Normal rolls show items once the new species and the copy are used 2/28
 PASS Reroll never resets either quota 2/28
 PASS Paid refresh allowed at quota 2/29
-PASS Normal rolls show items after three purchases 2/29
+PASS Normal rolls show items once the new species and the copy are used 2/29
 PASS Reroll never resets either quota 2/29
 PASS Round quota 3
 PASS New normal species accepted 3/0
@@ -220,8 +220,8 @@ PASS Old offer cannot bypass exhausted quota 3
 PASS Denied purchase leaves currency and roster unchanged 3
 PASS Third copy merges after exhausted new-species quota 3
 PASS Upgrade consumes old purchase quota but not new-species quota 3
-PASS Third total purchase remains available for upgrades 3
-PASS Fourth ordinary purchase blocked including star-upgrade copies 3
+PASS Second copy in one wave is blocked 3
+PASS At most one new species and one copy per wave 3
 PASS Special new species respects per-wave and shared cooldown 3/0
 PASS Special purchase leaves regular quotas unchanged 3/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 3/1
@@ -231,94 +231,94 @@ PASS Special purchase leaves regular quotas unchanged 3/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 3
 PASS Save/load cannot refresh quota 3
 PASS Paid refresh allowed at quota 3/0
-PASS Normal rolls show items after three purchases 3/0
+PASS Normal rolls show items once the new species and the copy are used 3/0
 PASS Reroll never resets either quota 3/0
 PASS Paid refresh allowed at quota 3/1
-PASS Normal rolls show items after three purchases 3/1
+PASS Normal rolls show items once the new species and the copy are used 3/1
 PASS Reroll never resets either quota 3/1
 PASS Paid refresh allowed at quota 3/2
-PASS Normal rolls show items after three purchases 3/2
+PASS Normal rolls show items once the new species and the copy are used 3/2
 PASS Reroll never resets either quota 3/2
 PASS Paid refresh allowed at quota 3/3
-PASS Normal rolls show items after three purchases 3/3
+PASS Normal rolls show items once the new species and the copy are used 3/3
 PASS Reroll never resets either quota 3/3
 PASS Paid refresh allowed at quota 3/4
-PASS Normal rolls show items after three purchases 3/4
+PASS Normal rolls show items once the new species and the copy are used 3/4
 PASS Reroll never resets either quota 3/4
 PASS Paid refresh allowed at quota 3/5
-PASS Normal rolls show items after three purchases 3/5
+PASS Normal rolls show items once the new species and the copy are used 3/5
 PASS Reroll never resets either quota 3/5
 PASS Paid refresh allowed at quota 3/6
-PASS Normal rolls show items after three purchases 3/6
+PASS Normal rolls show items once the new species and the copy are used 3/6
 PASS Reroll never resets either quota 3/6
 PASS Paid refresh allowed at quota 3/7
-PASS Normal rolls show items after three purchases 3/7
+PASS Normal rolls show items once the new species and the copy are used 3/7
 PASS Reroll never resets either quota 3/7
 PASS Paid refresh allowed at quota 3/8
-PASS Normal rolls show items after three purchases 3/8
+PASS Normal rolls show items once the new species and the copy are used 3/8
 PASS Reroll never resets either quota 3/8
 PASS Paid refresh allowed at quota 3/9
-PASS Normal rolls show items after three purchases 3/9
+PASS Normal rolls show items once the new species and the copy are used 3/9
 PASS Reroll never resets either quota 3/9
 PASS Paid refresh allowed at quota 3/10
-PASS Normal rolls show items after three purchases 3/10
+PASS Normal rolls show items once the new species and the copy are used 3/10
 PASS Reroll never resets either quota 3/10
 PASS Paid refresh allowed at quota 3/11
-PASS Normal rolls show items after three purchases 3/11
+PASS Normal rolls show items once the new species and the copy are used 3/11
 PASS Reroll never resets either quota 3/11
 PASS Paid refresh allowed at quota 3/12
-PASS Normal rolls show items after three purchases 3/12
+PASS Normal rolls show items once the new species and the copy are used 3/12
 PASS Reroll never resets either quota 3/12
 PASS Paid refresh allowed at quota 3/13
-PASS Normal rolls show items after three purchases 3/13
+PASS Normal rolls show items once the new species and the copy are used 3/13
 PASS Reroll never resets either quota 3/13
 PASS Paid refresh allowed at quota 3/14
-PASS Normal rolls show items after three purchases 3/14
+PASS Normal rolls show items once the new species and the copy are used 3/14
 PASS Reroll never resets either quota 3/14
 PASS Paid refresh allowed at quota 3/15
-PASS Normal rolls show items after three purchases 3/15
+PASS Normal rolls show items once the new species and the copy are used 3/15
 PASS Reroll never resets either quota 3/15
 PASS Paid refresh allowed at quota 3/16
-PASS Normal rolls show items after three purchases 3/16
+PASS Normal rolls show items once the new species and the copy are used 3/16
 PASS Reroll never resets either quota 3/16
 PASS Paid refresh allowed at quota 3/17
-PASS Normal rolls show items after three purchases 3/17
+PASS Normal rolls show items once the new species and the copy are used 3/17
 PASS Reroll never resets either quota 3/17
 PASS Paid refresh allowed at quota 3/18
-PASS Normal rolls show items after three purchases 3/18
+PASS Normal rolls show items once the new species and the copy are used 3/18
 PASS Reroll never resets either quota 3/18
 PASS Paid refresh allowed at quota 3/19
-PASS Normal rolls show items after three purchases 3/19
+PASS Normal rolls show items once the new species and the copy are used 3/19
 PASS Reroll never resets either quota 3/19
 PASS Paid refresh allowed at quota 3/20
-PASS Normal rolls show items after three purchases 3/20
+PASS Normal rolls show items once the new species and the copy are used 3/20
 PASS Reroll never resets either quota 3/20
 PASS Paid refresh allowed at quota 3/21
-PASS Normal rolls show items after three purchases 3/21
+PASS Normal rolls show items once the new species and the copy are used 3/21
 PASS Reroll never resets either quota 3/21
 PASS Paid refresh allowed at quota 3/22
-PASS Normal rolls show items after three purchases 3/22
+PASS Normal rolls show items once the new species and the copy are used 3/22
 PASS Reroll never resets either quota 3/22
 PASS Paid refresh allowed at quota 3/23
-PASS Normal rolls show items after three purchases 3/23
+PASS Normal rolls show items once the new species and the copy are used 3/23
 PASS Reroll never resets either quota 3/23
 PASS Paid refresh allowed at quota 3/24
-PASS Normal rolls show items after three purchases 3/24
+PASS Normal rolls show items once the new species and the copy are used 3/24
 PASS Reroll never resets either quota 3/24
 PASS Paid refresh allowed at quota 3/25
-PASS Normal rolls show items after three purchases 3/25
+PASS Normal rolls show items once the new species and the copy are used 3/25
 PASS Reroll never resets either quota 3/25
 PASS Paid refresh allowed at quota 3/26
-PASS Normal rolls show items after three purchases 3/26
+PASS Normal rolls show items once the new species and the copy are used 3/26
 PASS Reroll never resets either quota 3/26
 PASS Paid refresh allowed at quota 3/27
-PASS Normal rolls show items after three purchases 3/27
+PASS Normal rolls show items once the new species and the copy are used 3/27
 PASS Reroll never resets either quota 3/27
 PASS Paid refresh allowed at quota 3/28
-PASS Normal rolls show items after three purchases 3/28
+PASS Normal rolls show items once the new species and the copy are used 3/28
 PASS Reroll never resets either quota 3/28
 PASS Paid refresh allowed at quota 3/29
-PASS Normal rolls show items after three purchases 3/29
+PASS Normal rolls show items once the new species and the copy are used 3/29
 PASS Reroll never resets either quota 3/29
 PASS Round quota 4
 PASS New normal species accepted 4/0
@@ -327,8 +327,8 @@ PASS Old offer cannot bypass exhausted quota 4
 PASS Denied purchase leaves currency and roster unchanged 4
 PASS Third copy merges after exhausted new-species quota 4
 PASS Upgrade consumes old purchase quota but not new-species quota 4
-PASS Third total purchase remains available for upgrades 4
-PASS Fourth ordinary purchase blocked including star-upgrade copies 4
+PASS Second copy in one wave is blocked 4
+PASS At most one new species and one copy per wave 4
 PASS Special new species respects per-wave and shared cooldown 4/0
 PASS Special purchase leaves regular quotas unchanged 4/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 4/1
@@ -338,94 +338,94 @@ PASS Special purchase leaves regular quotas unchanged 4/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 4
 PASS Save/load cannot refresh quota 4
 PASS Paid refresh allowed at quota 4/0
-PASS Normal rolls show items after three purchases 4/0
+PASS Normal rolls show items once the new species and the copy are used 4/0
 PASS Reroll never resets either quota 4/0
 PASS Paid refresh allowed at quota 4/1
-PASS Normal rolls show items after three purchases 4/1
+PASS Normal rolls show items once the new species and the copy are used 4/1
 PASS Reroll never resets either quota 4/1
 PASS Paid refresh allowed at quota 4/2
-PASS Normal rolls show items after three purchases 4/2
+PASS Normal rolls show items once the new species and the copy are used 4/2
 PASS Reroll never resets either quota 4/2
 PASS Paid refresh allowed at quota 4/3
-PASS Normal rolls show items after three purchases 4/3
+PASS Normal rolls show items once the new species and the copy are used 4/3
 PASS Reroll never resets either quota 4/3
 PASS Paid refresh allowed at quota 4/4
-PASS Normal rolls show items after three purchases 4/4
+PASS Normal rolls show items once the new species and the copy are used 4/4
 PASS Reroll never resets either quota 4/4
 PASS Paid refresh allowed at quota 4/5
-PASS Normal rolls show items after three purchases 4/5
+PASS Normal rolls show items once the new species and the copy are used 4/5
 PASS Reroll never resets either quota 4/5
 PASS Paid refresh allowed at quota 4/6
-PASS Normal rolls show items after three purchases 4/6
+PASS Normal rolls show items once the new species and the copy are used 4/6
 PASS Reroll never resets either quota 4/6
 PASS Paid refresh allowed at quota 4/7
-PASS Normal rolls show items after three purchases 4/7
+PASS Normal rolls show items once the new species and the copy are used 4/7
 PASS Reroll never resets either quota 4/7
 PASS Paid refresh allowed at quota 4/8
-PASS Normal rolls show items after three purchases 4/8
+PASS Normal rolls show items once the new species and the copy are used 4/8
 PASS Reroll never resets either quota 4/8
 PASS Paid refresh allowed at quota 4/9
-PASS Normal rolls show items after three purchases 4/9
+PASS Normal rolls show items once the new species and the copy are used 4/9
 PASS Reroll never resets either quota 4/9
 PASS Paid refresh allowed at quota 4/10
-PASS Normal rolls show items after three purchases 4/10
+PASS Normal rolls show items once the new species and the copy are used 4/10
 PASS Reroll never resets either quota 4/10
 PASS Paid refresh allowed at quota 4/11
-PASS Normal rolls show items after three purchases 4/11
+PASS Normal rolls show items once the new species and the copy are used 4/11
 PASS Reroll never resets either quota 4/11
 PASS Paid refresh allowed at quota 4/12
-PASS Normal rolls show items after three purchases 4/12
+PASS Normal rolls show items once the new species and the copy are used 4/12
 PASS Reroll never resets either quota 4/12
 PASS Paid refresh allowed at quota 4/13
-PASS Normal rolls show items after three purchases 4/13
+PASS Normal rolls show items once the new species and the copy are used 4/13
 PASS Reroll never resets either quota 4/13
 PASS Paid refresh allowed at quota 4/14
-PASS Normal rolls show items after three purchases 4/14
+PASS Normal rolls show items once the new species and the copy are used 4/14
 PASS Reroll never resets either quota 4/14
 PASS Paid refresh allowed at quota 4/15
-PASS Normal rolls show items after three purchases 4/15
+PASS Normal rolls show items once the new species and the copy are used 4/15
 PASS Reroll never resets either quota 4/15
 PASS Paid refresh allowed at quota 4/16
-PASS Normal rolls show items after three purchases 4/16
+PASS Normal rolls show items once the new species and the copy are used 4/16
 PASS Reroll never resets either quota 4/16
 PASS Paid refresh allowed at quota 4/17
-PASS Normal rolls show items after three purchases 4/17
+PASS Normal rolls show items once the new species and the copy are used 4/17
 PASS Reroll never resets either quota 4/17
 PASS Paid refresh allowed at quota 4/18
-PASS Normal rolls show items after three purchases 4/18
+PASS Normal rolls show items once the new species and the copy are used 4/18
 PASS Reroll never resets either quota 4/18
 PASS Paid refresh allowed at quota 4/19
-PASS Normal rolls show items after three purchases 4/19
+PASS Normal rolls show items once the new species and the copy are used 4/19
 PASS Reroll never resets either quota 4/19
 PASS Paid refresh allowed at quota 4/20
-PASS Normal rolls show items after three purchases 4/20
+PASS Normal rolls show items once the new species and the copy are used 4/20
 PASS Reroll never resets either quota 4/20
 PASS Paid refresh allowed at quota 4/21
-PASS Normal rolls show items after three purchases 4/21
+PASS Normal rolls show items once the new species and the copy are used 4/21
 PASS Reroll never resets either quota 4/21
 PASS Paid refresh allowed at quota 4/22
-PASS Normal rolls show items after three purchases 4/22
+PASS Normal rolls show items once the new species and the copy are used 4/22
 PASS Reroll never resets either quota 4/22
 PASS Paid refresh allowed at quota 4/23
-PASS Normal rolls show items after three purchases 4/23
+PASS Normal rolls show items once the new species and the copy are used 4/23
 PASS Reroll never resets either quota 4/23
 PASS Paid refresh allowed at quota 4/24
-PASS Normal rolls show items after three purchases 4/24
+PASS Normal rolls show items once the new species and the copy are used 4/24
 PASS Reroll never resets either quota 4/24
 PASS Paid refresh allowed at quota 4/25
-PASS Normal rolls show items after three purchases 4/25
+PASS Normal rolls show items once the new species and the copy are used 4/25
 PASS Reroll never resets either quota 4/25
 PASS Paid refresh allowed at quota 4/26
-PASS Normal rolls show items after three purchases 4/26
+PASS Normal rolls show items once the new species and the copy are used 4/26
 PASS Reroll never resets either quota 4/26
 PASS Paid refresh allowed at quota 4/27
-PASS Normal rolls show items after three purchases 4/27
+PASS Normal rolls show items once the new species and the copy are used 4/27
 PASS Reroll never resets either quota 4/27
 PASS Paid refresh allowed at quota 4/28
-PASS Normal rolls show items after three purchases 4/28
+PASS Normal rolls show items once the new species and the copy are used 4/28
 PASS Reroll never resets either quota 4/28
 PASS Paid refresh allowed at quota 4/29
-PASS Normal rolls show items after three purchases 4/29
+PASS Normal rolls show items once the new species and the copy are used 4/29
 PASS Reroll never resets either quota 4/29
 PASS Round quota 8
 PASS New normal species accepted 8/0
@@ -434,8 +434,8 @@ PASS Old offer cannot bypass exhausted quota 8
 PASS Denied purchase leaves currency and roster unchanged 8
 PASS Third copy merges after exhausted new-species quota 8
 PASS Upgrade consumes old purchase quota but not new-species quota 8
-PASS Third total purchase remains available for upgrades 8
-PASS Fourth ordinary purchase blocked including star-upgrade copies 8
+PASS Second copy in one wave is blocked 8
+PASS At most one new species and one copy per wave 8
 PASS Special new species respects per-wave and shared cooldown 8/0
 PASS Special purchase leaves regular quotas unchanged 8/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 8/1
@@ -445,94 +445,94 @@ PASS Special purchase leaves regular quotas unchanged 8/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 8
 PASS Save/load cannot refresh quota 8
 PASS Paid refresh allowed at quota 8/0
-PASS Normal rolls show items after three purchases 8/0
+PASS Normal rolls show items once the new species and the copy are used 8/0
 PASS Reroll never resets either quota 8/0
 PASS Paid refresh allowed at quota 8/1
-PASS Normal rolls show items after three purchases 8/1
+PASS Normal rolls show items once the new species and the copy are used 8/1
 PASS Reroll never resets either quota 8/1
 PASS Paid refresh allowed at quota 8/2
-PASS Normal rolls show items after three purchases 8/2
+PASS Normal rolls show items once the new species and the copy are used 8/2
 PASS Reroll never resets either quota 8/2
 PASS Paid refresh allowed at quota 8/3
-PASS Normal rolls show items after three purchases 8/3
+PASS Normal rolls show items once the new species and the copy are used 8/3
 PASS Reroll never resets either quota 8/3
 PASS Paid refresh allowed at quota 8/4
-PASS Normal rolls show items after three purchases 8/4
+PASS Normal rolls show items once the new species and the copy are used 8/4
 PASS Reroll never resets either quota 8/4
 PASS Paid refresh allowed at quota 8/5
-PASS Normal rolls show items after three purchases 8/5
+PASS Normal rolls show items once the new species and the copy are used 8/5
 PASS Reroll never resets either quota 8/5
 PASS Paid refresh allowed at quota 8/6
-PASS Normal rolls show items after three purchases 8/6
+PASS Normal rolls show items once the new species and the copy are used 8/6
 PASS Reroll never resets either quota 8/6
 PASS Paid refresh allowed at quota 8/7
-PASS Normal rolls show items after three purchases 8/7
+PASS Normal rolls show items once the new species and the copy are used 8/7
 PASS Reroll never resets either quota 8/7
 PASS Paid refresh allowed at quota 8/8
-PASS Normal rolls show items after three purchases 8/8
+PASS Normal rolls show items once the new species and the copy are used 8/8
 PASS Reroll never resets either quota 8/8
 PASS Paid refresh allowed at quota 8/9
-PASS Normal rolls show items after three purchases 8/9
+PASS Normal rolls show items once the new species and the copy are used 8/9
 PASS Reroll never resets either quota 8/9
 PASS Paid refresh allowed at quota 8/10
-PASS Normal rolls show items after three purchases 8/10
+PASS Normal rolls show items once the new species and the copy are used 8/10
 PASS Reroll never resets either quota 8/10
 PASS Paid refresh allowed at quota 8/11
-PASS Normal rolls show items after three purchases 8/11
+PASS Normal rolls show items once the new species and the copy are used 8/11
 PASS Reroll never resets either quota 8/11
 PASS Paid refresh allowed at quota 8/12
-PASS Normal rolls show items after three purchases 8/12
+PASS Normal rolls show items once the new species and the copy are used 8/12
 PASS Reroll never resets either quota 8/12
 PASS Paid refresh allowed at quota 8/13
-PASS Normal rolls show items after three purchases 8/13
+PASS Normal rolls show items once the new species and the copy are used 8/13
 PASS Reroll never resets either quota 8/13
 PASS Paid refresh allowed at quota 8/14
-PASS Normal rolls show items after three purchases 8/14
+PASS Normal rolls show items once the new species and the copy are used 8/14
 PASS Reroll never resets either quota 8/14
 PASS Paid refresh allowed at quota 8/15
-PASS Normal rolls show items after three purchases 8/15
+PASS Normal rolls show items once the new species and the copy are used 8/15
 PASS Reroll never resets either quota 8/15
 PASS Paid refresh allowed at quota 8/16
-PASS Normal rolls show items after three purchases 8/16
+PASS Normal rolls show items once the new species and the copy are used 8/16
 PASS Reroll never resets either quota 8/16
 PASS Paid refresh allowed at quota 8/17
-PASS Normal rolls show items after three purchases 8/17
+PASS Normal rolls show items once the new species and the copy are used 8/17
 PASS Reroll never resets either quota 8/17
 PASS Paid refresh allowed at quota 8/18
-PASS Normal rolls show items after three purchases 8/18
+PASS Normal rolls show items once the new species and the copy are used 8/18
 PASS Reroll never resets either quota 8/18
 PASS Paid refresh allowed at quota 8/19
-PASS Normal rolls show items after three purchases 8/19
+PASS Normal rolls show items once the new species and the copy are used 8/19
 PASS Reroll never resets either quota 8/19
 PASS Paid refresh allowed at quota 8/20
-PASS Normal rolls show items after three purchases 8/20
+PASS Normal rolls show items once the new species and the copy are used 8/20
 PASS Reroll never resets either quota 8/20
 PASS Paid refresh allowed at quota 8/21
-PASS Normal rolls show items after three purchases 8/21
+PASS Normal rolls show items once the new species and the copy are used 8/21
 PASS Reroll never resets either quota 8/21
 PASS Paid refresh allowed at quota 8/22
-PASS Normal rolls show items after three purchases 8/22
+PASS Normal rolls show items once the new species and the copy are used 8/22
 PASS Reroll never resets either quota 8/22
 PASS Paid refresh allowed at quota 8/23
-PASS Normal rolls show items after three purchases 8/23
+PASS Normal rolls show items once the new species and the copy are used 8/23
 PASS Reroll never resets either quota 8/23
 PASS Paid refresh allowed at quota 8/24
-PASS Normal rolls show items after three purchases 8/24
+PASS Normal rolls show items once the new species and the copy are used 8/24
 PASS Reroll never resets either quota 8/24
 PASS Paid refresh allowed at quota 8/25
-PASS Normal rolls show items after three purchases 8/25
+PASS Normal rolls show items once the new species and the copy are used 8/25
 PASS Reroll never resets either quota 8/25
 PASS Paid refresh allowed at quota 8/26
-PASS Normal rolls show items after three purchases 8/26
+PASS Normal rolls show items once the new species and the copy are used 8/26
 PASS Reroll never resets either quota 8/26
 PASS Paid refresh allowed at quota 8/27
-PASS Normal rolls show items after three purchases 8/27
+PASS Normal rolls show items once the new species and the copy are used 8/27
 PASS Reroll never resets either quota 8/27
 PASS Paid refresh allowed at quota 8/28
-PASS Normal rolls show items after three purchases 8/28
+PASS Normal rolls show items once the new species and the copy are used 8/28
 PASS Reroll never resets either quota 8/28
 PASS Paid refresh allowed at quota 8/29
-PASS Normal rolls show items after three purchases 8/29
+PASS Normal rolls show items once the new species and the copy are used 8/29
 PASS Reroll never resets either quota 8/29
 PASS Round quota 20
 PASS New normal species accepted 20/0
@@ -541,8 +541,8 @@ PASS Old offer cannot bypass exhausted quota 20
 PASS Denied purchase leaves currency and roster unchanged 20
 PASS Third copy merges after exhausted new-species quota 20
 PASS Upgrade consumes old purchase quota but not new-species quota 20
-PASS Third total purchase remains available for upgrades 20
-PASS Fourth ordinary purchase blocked including star-upgrade copies 20
+PASS Second copy in one wave is blocked 20
+PASS At most one new species and one copy per wave 20
 PASS Special new species respects per-wave and shared cooldown 20/0
 PASS Special purchase leaves regular quotas unchanged 20/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 20/1
@@ -552,94 +552,94 @@ PASS Special purchase leaves regular quotas unchanged 20/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 20
 PASS Save/load cannot refresh quota 20
 PASS Paid refresh allowed at quota 20/0
-PASS Normal rolls show items after three purchases 20/0
+PASS Normal rolls show items once the new species and the copy are used 20/0
 PASS Reroll never resets either quota 20/0
 PASS Paid refresh allowed at quota 20/1
-PASS Normal rolls show items after three purchases 20/1
+PASS Normal rolls show items once the new species and the copy are used 20/1
 PASS Reroll never resets either quota 20/1
 PASS Paid refresh allowed at quota 20/2
-PASS Normal rolls show items after three purchases 20/2
+PASS Normal rolls show items once the new species and the copy are used 20/2
 PASS Reroll never resets either quota 20/2
 PASS Paid refresh allowed at quota 20/3
-PASS Normal rolls show items after three purchases 20/3
+PASS Normal rolls show items once the new species and the copy are used 20/3
 PASS Reroll never resets either quota 20/3
 PASS Paid refresh allowed at quota 20/4
-PASS Normal rolls show items after three purchases 20/4
+PASS Normal rolls show items once the new species and the copy are used 20/4
 PASS Reroll never resets either quota 20/4
 PASS Paid refresh allowed at quota 20/5
-PASS Normal rolls show items after three purchases 20/5
+PASS Normal rolls show items once the new species and the copy are used 20/5
 PASS Reroll never resets either quota 20/5
 PASS Paid refresh allowed at quota 20/6
-PASS Normal rolls show items after three purchases 20/6
+PASS Normal rolls show items once the new species and the copy are used 20/6
 PASS Reroll never resets either quota 20/6
 PASS Paid refresh allowed at quota 20/7
-PASS Normal rolls show items after three purchases 20/7
+PASS Normal rolls show items once the new species and the copy are used 20/7
 PASS Reroll never resets either quota 20/7
 PASS Paid refresh allowed at quota 20/8
-PASS Normal rolls show items after three purchases 20/8
+PASS Normal rolls show items once the new species and the copy are used 20/8
 PASS Reroll never resets either quota 20/8
 PASS Paid refresh allowed at quota 20/9
-PASS Normal rolls show items after three purchases 20/9
+PASS Normal rolls show items once the new species and the copy are used 20/9
 PASS Reroll never resets either quota 20/9
 PASS Paid refresh allowed at quota 20/10
-PASS Normal rolls show items after three purchases 20/10
+PASS Normal rolls show items once the new species and the copy are used 20/10
 PASS Reroll never resets either quota 20/10
 PASS Paid refresh allowed at quota 20/11
-PASS Normal rolls show items after three purchases 20/11
+PASS Normal rolls show items once the new species and the copy are used 20/11
 PASS Reroll never resets either quota 20/11
 PASS Paid refresh allowed at quota 20/12
-PASS Normal rolls show items after three purchases 20/12
+PASS Normal rolls show items once the new species and the copy are used 20/12
 PASS Reroll never resets either quota 20/12
 PASS Paid refresh allowed at quota 20/13
-PASS Normal rolls show items after three purchases 20/13
+PASS Normal rolls show items once the new species and the copy are used 20/13
 PASS Reroll never resets either quota 20/13
 PASS Paid refresh allowed at quota 20/14
-PASS Normal rolls show items after three purchases 20/14
+PASS Normal rolls show items once the new species and the copy are used 20/14
 PASS Reroll never resets either quota 20/14
 PASS Paid refresh allowed at quota 20/15
-PASS Normal rolls show items after three purchases 20/15
+PASS Normal rolls show items once the new species and the copy are used 20/15
 PASS Reroll never resets either quota 20/15
 PASS Paid refresh allowed at quota 20/16
-PASS Normal rolls show items after three purchases 20/16
+PASS Normal rolls show items once the new species and the copy are used 20/16
 PASS Reroll never resets either quota 20/16
 PASS Paid refresh allowed at quota 20/17
-PASS Normal rolls show items after three purchases 20/17
+PASS Normal rolls show items once the new species and the copy are used 20/17
 PASS Reroll never resets either quota 20/17
 PASS Paid refresh allowed at quota 20/18
-PASS Normal rolls show items after three purchases 20/18
+PASS Normal rolls show items once the new species and the copy are used 20/18
 PASS Reroll never resets either quota 20/18
 PASS Paid refresh allowed at quota 20/19
-PASS Normal rolls show items after three purchases 20/19
+PASS Normal rolls show items once the new species and the copy are used 20/19
 PASS Reroll never resets either quota 20/19
 PASS Paid refresh allowed at quota 20/20
-PASS Normal rolls show items after three purchases 20/20
+PASS Normal rolls show items once the new species and the copy are used 20/20
 PASS Reroll never resets either quota 20/20
 PASS Paid refresh allowed at quota 20/21
-PASS Normal rolls show items after three purchases 20/21
+PASS Normal rolls show items once the new species and the copy are used 20/21
 PASS Reroll never resets either quota 20/21
 PASS Paid refresh allowed at quota 20/22
-PASS Normal rolls show items after three purchases 20/22
+PASS Normal rolls show items once the new species and the copy are used 20/22
 PASS Reroll never resets either quota 20/22
 PASS Paid refresh allowed at quota 20/23
-PASS Normal rolls show items after three purchases 20/23
+PASS Normal rolls show items once the new species and the copy are used 20/23
 PASS Reroll never resets either quota 20/23
 PASS Paid refresh allowed at quota 20/24
-PASS Normal rolls show items after three purchases 20/24
+PASS Normal rolls show items once the new species and the copy are used 20/24
 PASS Reroll never resets either quota 20/24
 PASS Paid refresh allowed at quota 20/25
-PASS Normal rolls show items after three purchases 20/25
+PASS Normal rolls show items once the new species and the copy are used 20/25
 PASS Reroll never resets either quota 20/25
 PASS Paid refresh allowed at quota 20/26
-PASS Normal rolls show items after three purchases 20/26
+PASS Normal rolls show items once the new species and the copy are used 20/26
 PASS Reroll never resets either quota 20/26
 PASS Paid refresh allowed at quota 20/27
-PASS Normal rolls show items after three purchases 20/27
+PASS Normal rolls show items once the new species and the copy are used 20/27
 PASS Reroll never resets either quota 20/27
 PASS Paid refresh allowed at quota 20/28
-PASS Normal rolls show items after three purchases 20/28
+PASS Normal rolls show items once the new species and the copy are used 20/28
 PASS Reroll never resets either quota 20/28
 PASS Paid refresh allowed at quota 20/29
-PASS Normal rolls show items after three purchases 20/29
+PASS Normal rolls show items once the new species and the copy are used 20/29
 PASS Reroll never resets either quota 20/29
 PASS Round quota 30
 PASS New normal species accepted 30/0
@@ -648,8 +648,8 @@ PASS Old offer cannot bypass exhausted quota 30
 PASS Denied purchase leaves currency and roster unchanged 30
 PASS Third copy merges after exhausted new-species quota 30
 PASS Upgrade consumes old purchase quota but not new-species quota 30
-PASS Third total purchase remains available for upgrades 30
-PASS Fourth ordinary purchase blocked including star-upgrade copies 30
+PASS Second copy in one wave is blocked 30
+PASS At most one new species and one copy per wave 30
 PASS Special new species respects per-wave and shared cooldown 30/0
 PASS Special purchase leaves regular quotas unchanged 30/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 30/1
@@ -659,117 +659,117 @@ PASS Special purchase leaves regular quotas unchanged 30/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 30
 PASS Save/load cannot refresh quota 30
 PASS Paid refresh allowed at quota 30/0
-PASS Normal rolls show items after three purchases 30/0
+PASS Normal rolls show items once the new species and the copy are used 30/0
 PASS Reroll never resets either quota 30/0
 PASS Paid refresh allowed at quota 30/1
-PASS Normal rolls show items after three purchases 30/1
+PASS Normal rolls show items once the new species and the copy are used 30/1
 PASS Reroll never resets either quota 30/1
 PASS Paid refresh allowed at quota 30/2
-PASS Normal rolls show items after three purchases 30/2
+PASS Normal rolls show items once the new species and the copy are used 30/2
 PASS Reroll never resets either quota 30/2
 PASS Paid refresh allowed at quota 30/3
-PASS Normal rolls show items after three purchases 30/3
+PASS Normal rolls show items once the new species and the copy are used 30/3
 PASS Reroll never resets either quota 30/3
 PASS Paid refresh allowed at quota 30/4
-PASS Normal rolls show items after three purchases 30/4
+PASS Normal rolls show items once the new species and the copy are used 30/4
 PASS Reroll never resets either quota 30/4
 PASS Paid refresh allowed at quota 30/5
-PASS Normal rolls show items after three purchases 30/5
+PASS Normal rolls show items once the new species and the copy are used 30/5
 PASS Reroll never resets either quota 30/5
 PASS Paid refresh allowed at quota 30/6
-PASS Normal rolls show items after three purchases 30/6
+PASS Normal rolls show items once the new species and the copy are used 30/6
 PASS Reroll never resets either quota 30/6
 PASS Paid refresh allowed at quota 30/7
-PASS Normal rolls show items after three purchases 30/7
+PASS Normal rolls show items once the new species and the copy are used 30/7
 PASS Reroll never resets either quota 30/7
 PASS Paid refresh allowed at quota 30/8
-PASS Normal rolls show items after three purchases 30/8
+PASS Normal rolls show items once the new species and the copy are used 30/8
 PASS Reroll never resets either quota 30/8
 PASS Paid refresh allowed at quota 30/9
-PASS Normal rolls show items after three purchases 30/9
+PASS Normal rolls show items once the new species and the copy are used 30/9
 PASS Reroll never resets either quota 30/9
 PASS Paid refresh allowed at quota 30/10
-PASS Normal rolls show items after three purchases 30/10
+PASS Normal rolls show items once the new species and the copy are used 30/10
 PASS Reroll never resets either quota 30/10
 PASS Paid refresh allowed at quota 30/11
-PASS Normal rolls show items after three purchases 30/11
+PASS Normal rolls show items once the new species and the copy are used 30/11
 PASS Reroll never resets either quota 30/11
 PASS Paid refresh allowed at quota 30/12
-PASS Normal rolls show items after three purchases 30/12
+PASS Normal rolls show items once the new species and the copy are used 30/12
 PASS Reroll never resets either quota 30/12
 PASS Paid refresh allowed at quota 30/13
-PASS Normal rolls show items after three purchases 30/13
+PASS Normal rolls show items once the new species and the copy are used 30/13
 PASS Reroll never resets either quota 30/13
 PASS Paid refresh allowed at quota 30/14
-PASS Normal rolls show items after three purchases 30/14
+PASS Normal rolls show items once the new species and the copy are used 30/14
 PASS Reroll never resets either quota 30/14
 PASS Paid refresh allowed at quota 30/15
-PASS Normal rolls show items after three purchases 30/15
+PASS Normal rolls show items once the new species and the copy are used 30/15
 PASS Reroll never resets either quota 30/15
 PASS Paid refresh allowed at quota 30/16
-PASS Normal rolls show items after three purchases 30/16
+PASS Normal rolls show items once the new species and the copy are used 30/16
 PASS Reroll never resets either quota 30/16
 PASS Paid refresh allowed at quota 30/17
-PASS Normal rolls show items after three purchases 30/17
+PASS Normal rolls show items once the new species and the copy are used 30/17
 PASS Reroll never resets either quota 30/17
 PASS Paid refresh allowed at quota 30/18
-PASS Normal rolls show items after three purchases 30/18
+PASS Normal rolls show items once the new species and the copy are used 30/18
 PASS Reroll never resets either quota 30/18
 PASS Paid refresh allowed at quota 30/19
-PASS Normal rolls show items after three purchases 30/19
+PASS Normal rolls show items once the new species and the copy are used 30/19
 PASS Reroll never resets either quota 30/19
 PASS Paid refresh allowed at quota 30/20
-PASS Normal rolls show items after three purchases 30/20
+PASS Normal rolls show items once the new species and the copy are used 30/20
 PASS Reroll never resets either quota 30/20
 PASS Paid refresh allowed at quota 30/21
-PASS Normal rolls show items after three purchases 30/21
+PASS Normal rolls show items once the new species and the copy are used 30/21
 PASS Reroll never resets either quota 30/21
 PASS Paid refresh allowed at quota 30/22
-PASS Normal rolls show items after three purchases 30/22
+PASS Normal rolls show items once the new species and the copy are used 30/22
 PASS Reroll never resets either quota 30/22
 PASS Paid refresh allowed at quota 30/23
-PASS Normal rolls show items after three purchases 30/23
+PASS Normal rolls show items once the new species and the copy are used 30/23
 PASS Reroll never resets either quota 30/23
 PASS Paid refresh allowed at quota 30/24
-PASS Normal rolls show items after three purchases 30/24
+PASS Normal rolls show items once the new species and the copy are used 30/24
 PASS Reroll never resets either quota 30/24
 PASS Paid refresh allowed at quota 30/25
-PASS Normal rolls show items after three purchases 30/25
+PASS Normal rolls show items once the new species and the copy are used 30/25
 PASS Reroll never resets either quota 30/25
 PASS Paid refresh allowed at quota 30/26
-PASS Normal rolls show items after three purchases 30/26
+PASS Normal rolls show items once the new species and the copy are used 30/26
 PASS Reroll never resets either quota 30/26
 PASS Paid refresh allowed at quota 30/27
-PASS Normal rolls show items after three purchases 30/27
+PASS Normal rolls show items once the new species and the copy are used 30/27
 PASS Reroll never resets either quota 30/27
 PASS Paid refresh allowed at quota 30/28
-PASS Normal rolls show items after three purchases 30/28
+PASS Normal rolls show items once the new species and the copy are used 30/28
 PASS Reroll never resets either quota 30/28
 PASS Paid refresh allowed at quota 30/29
-PASS Normal rolls show items after three purchases 30/29
+PASS Normal rolls show items once the new species and the copy are used 30/29
 PASS Reroll never resets either quota 30/29
 PASS Special-first purchase leaves full normal quota
-PASS Special-first recruit blocks new regular species through shared cooldown
+PASS Special-first recruit leaves the regular new species open
 PASS Special rolls keep only upgrade species during cooldown
 PASS Special duplicate generation and purchase agree
 PASS Wave 10 first new species accepted / special=False
-PASS Both shops close new-species purchases immediately
+PASS The dream shop closes for both; the regular shop closes only its own new species
 PASS Saving cannot clear the shared cooldown
-PASS Following wave blocks new species in both shops
+PASS Following wave: the dream shop waits; the regular shop waits only after its own new species
 PASS Duplicate remains buyable in the intervening wave
 PASS Reroll never bypasses two-wave cooldown
 PASS New species reopens after two waves in either shop
 PASS Wave 10 first new species accepted / special=True
-PASS Both shops close new-species purchases immediately
+PASS The dream shop closes for both; the regular shop closes only its own new species
 PASS Saving cannot clear the shared cooldown
-PASS Following wave blocks new species in both shops
+PASS Following wave: the dream shop waits; the regular shop waits only after its own new species
 PASS Duplicate remains buyable in the intervening wave
 PASS Reroll never bypasses two-wave cooldown
 PASS New species reopens after two waves in either shop
 PASS Merge drought protection still finds third copy after quota
 PASS Ordinary gifts use purchase quota but upgrades do not use new-species quota
-PASS Owned absorbed memory uses purchase quota but not new-species quota
-PASS Legacy quota of three loads conservatively without granting free recruits
+PASS Owned absorbed memory uses the copy quota but not new-species quota
+PASS Legacy quota of three loads conservatively without granting free copies
 PASS Completing next round resets both quotas through actual settlement
 PASS New-species curve decreases with roster 0
 PASS First three rounds retain high new-species gate 0

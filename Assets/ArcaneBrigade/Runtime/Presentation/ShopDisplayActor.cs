@@ -96,11 +96,6 @@ namespace ArcaneBrigade
         public void SetMerchantMood(bool special)
         {
             dreamMerchant = special; merchantActor = true;
-            if (special)
-            {
-                emergence = new Material(Resources.Load<Shader>("MarketEmergence"));
-                view.sharedMaterial = emergence;
-            }
         }
         private void OnDestroy() { if (emergence != null) Destroy(emergence); }
         public void Inspect(bool active)
@@ -119,7 +114,6 @@ namespace ArcaneBrigade
         public void SetFloorFixture()
         {
             floorFixture = true;
-            emergence = new Material(Resources.Load<Shader>("MarketEmergence")); view.sharedMaterial = emergence;
         }
         public void Arrive(float delay) { Arrive(delay, transform.parent.TransformPoint(origin + Vector3.up * 2)); }
         public void Arrive(float delay, Vector3 launch)
@@ -163,8 +157,10 @@ namespace ArcaneBrigade
             float arrival = Mathf.Clamp01(age / duration);
             float travel = departing ? arrival : 1 - arrival;
             Vector3 displacement;
-            if (floorFixture) displacement = Vector3.down * height * Mathf.SmoothStep(0, 1, travel);
-            else if (merchantActor) displacement = Vector3.up * (dreamMerchant ? -height * Mathf.SmoothStep(0, 1, travel) : 6 * travel * travel);
+            if (floorFixture) displacement = Vector3.up * 1.6f * travel * travel; // drops onto the floor and settles
+            else if (merchantActor) displacement = dreamMerchant
+                ? Vector3.up * 3.4f * Mathf.SmoothStep(0, 1, travel) + Vector3.right * Mathf.Sin(travel * Mathf.PI * 2) * .45f * travel // drifts down like a dream
+                : Vector3.up * 6 * travel * travel;
             else displacement = launchOffset * Mathf.SmoothStep(0, 1, travel) + Vector3.up * Mathf.Sin(arrival * Mathf.PI) * 1.2f;
             float settle = !departing && !reduced ? MarketMotion.Settle(age, duration, merchantActor ? 0.15f : 0.09f) : 0;
             if (reduced) displacement = Vector3.zero;
@@ -181,7 +177,7 @@ namespace ArcaneBrigade
             }
             transform.localPosition = origin + displacement + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced || merchandise || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * (merchantActor || companionDisplay ? 0.035f : 0.11f) + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0), 0);
             presentationOffset = transform.localPosition - origin;
-            Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : 1; view.color = tint;
+            Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : dreamMerchant ? Mathf.Clamp01(arrival * 1.8f) : 1; view.color = tint;
             transform.localRotation = Quaternion.Euler(0, 0, reduced || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
             if (floorFixture || pedestalDisplay || merchantActor) transform.localRotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, phase + (merchantActor ? 13 : 7), reduced, merchantActor ? .55f : .7f));
             view.sortingOrder = merchandise || pedestalDisplay

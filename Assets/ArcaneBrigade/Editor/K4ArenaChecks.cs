@@ -282,7 +282,7 @@ namespace ArcaneBrigade.Editor
                 weapon.Id = "ArenaStepFixture";
                 weapon.Kind = kind;
                 weapon.Damage = 1f;
-                weapon.Range = 4f;
+                weapon.Range = 5f; // outside the short-gun sweet range (ImpactRules.RangeFactor), so hits stay exactly 1
                 weapon.Windup = 0.1f;
                 weapon.Cooldown = 1000f;
                 weapon.ProjectileSpeed = 10f;

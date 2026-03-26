@@ -92,7 +92,10 @@ namespace ArcaneBrigade
                 if (count >= bonus.Threshold) reward += bonus.Value;
             return BalanceReward(reward);
         }
-        public float BalanceReward(float reward) => reward > 0 && Effect != ItemEffect.EnemyCount && Effect != ItemEffect.EnemyHealth && Effect != ItemEffect.EnemySpeed ? reward * PositiveRewardScale : reward;
+        /// <summary>Whole-number stats (pierce, split, shots) are floored when compiled: scaling them by 0.9 turned the first level's
+        /// +1 into +0.9 = nothing (Runic School, Little Horns did nothing at two members until 19/10/2026), so they are not scaled.</summary>
+        public static bool WholeNumber(ItemEffect effect) => effect == ItemEffect.BulletPierce || effect == ItemEffect.BulletSplit || effect == ItemEffect.Projectiles;
+        public float BalanceReward(float reward) => reward > 0 && Effect != ItemEffect.EnemyCount && Effect != ItemEffect.EnemyHealth && Effect != ItemEffect.EnemySpeed && !WholeNumber(Effect) ? reward * PositiveRewardScale : reward;
     }
 
     [System.Serializable]

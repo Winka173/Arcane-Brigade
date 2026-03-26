@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: DoorKnocker
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: DoorKnocker
+  DisplayName: Door Knocker
+  Body: {fileID: 274568875, guid: 2bca08bf2514e7e4bae81eab320e1724, type: 3}
+  AnimationFrames:
+  - {fileID: 274568875, guid: 2bca08bf2514e7e4bae81eab320e1724, type: 3}
+  - {fileID: 71253768, guid: 2bca08bf2514e7e4bae81eab320e1724, type: 3}
+  - {fileID: -1574276218, guid: 2bca08bf2514e7e4bae81eab320e1724, type: 3}
+  - {fileID: -465245976, guid: 2bca08bf2514e7e4bae81eab320e1724, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 7cb6de587a7a7c14585f6e00cc2bb890, type: 2}
+  Weapon: {fileID: 11400000, guid: ea462dbc9e56938419825ae0f30da395, type: 2}
+  Health: 98.4
+  Speed: 0.95
+  Radius: 0.34
+  BodyHeight: 1.15
+  BodyScale: 1
+  KnockbackResistance: 0.5
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 6
+  ContactInterval: 1
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Lands beside you and knocks three times; each knock sends a wave,
+    the third the widest.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 11
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 1
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 6

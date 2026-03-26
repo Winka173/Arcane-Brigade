@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PartyLineMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 97704115, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 624842998, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  Walk:
+  - {fileID: 2040798246, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 364606101, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 2040798246, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 364606101, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  Windup:
+  - {fileID: 1408383558, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: -111034649, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  Release:
+  - {fileID: -907849101, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: -907849101, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  Recovery:
+  - {fileID: 1974408756, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 97704115, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  IllustratedHeight: 0

@@ -76,7 +76,7 @@ namespace ArcaneBrigade
         private static float Angle(Vector2 v) => Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
 
         /// <summary>A sprite placed in world space: a token, a glow, or a held weapon reused in a moment.</summary>
-        public void Place(Sprite sprite, Vector2 at, float size, float angle, Color tint, bool airborne, float squash = 1)
+        public void Place(Sprite sprite, Vector2 at, float size, float angle, Color tint, bool airborne, float squash = 1, bool flipX = false)
         {
             if (sprite == null || tint.a <= .004f) return;
             if (used == tokens.Count)
@@ -84,7 +84,7 @@ namespace ArcaneBrigade
                 var go = new GameObject("Arsenal ink token"); go.transform.SetParent(root, false);
                 tokens.Add(go.AddComponent<SpriteRenderer>());
             }
-            SpriteRenderer r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = tint; r.sortingOrder = airborne ? AirToken : GroundToken; r.flipX = false;
+            SpriteRenderer r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = tint; r.sortingOrder = airborne ? AirToken : GroundToken; r.flipX = flipX;
             float unit = Mathf.Max(.01f, Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y));
             r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, still ? 0 : angle);
             r.transform.localScale = new Vector3(size / squash / unit, size * squash / unit, 1);

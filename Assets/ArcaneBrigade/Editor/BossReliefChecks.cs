@@ -31,9 +31,9 @@ namespace ArcaneBrigade.Editor
                     Check(Mathf.Approximately(run.PrepareCombat().Boss.Health, health), "Rebuilding does not stack relief " + difficulty + "/" + wave);
                     float scaling = (1 + (wave - 1) * .1f) * JourneyBalance.EnemyHealth(difficulty, wave);
                     var ordinary = (UnitDefinition)build.Invoke(run, new object[] { catalog.Enemies[(wave - 1) % catalog.Enemies.Length], scaling });
-                    Check(Mathf.Approximately(arena.MeleeEnemy.Health, ordinary.Health * OctoberBalance.EnemyHealthRelief), "Ordinary enemy health unchanged " + difficulty + "/" + wave);
+                    Check(Mathf.Approximately(arena.MeleeEnemy.Health, ordinary.Health * OctoberBalance.EnemyHealthRelief * OctoberBalance.NormalEnemyHealth), "Ordinary enemy health gets only the shared relief and the round-3 normal-wave factor " + difficulty + "/" + wave);
                     if (wave == 20)
-                        Check(Mathf.Approximately(health, NightmareAssets.Current.Customer.Health * .8f * (1 + difficulty * .2f) * WaveCadence.StoryBossBulk(20) * .75f * .6f), "Last Customer override gets 40 percent HP reduction " + difficulty);
+                        Check(Mathf.Approximately(health, NightmareAssets.Current.Customer.Health * .8f * (1 + difficulty * .2f) * WaveCadence.StoryBossBulk(20) * OctoberBalance.EnemyHealthRelief * OctoberBalance.BossHealthRelief), "Last Customer override gets the shared and boss HP relief (was hard-coded .75 x .6; relief has been .95 since 18/10) " + difficulty);
                 }
                 using (var run = new RunSession(catalog))
                 {
@@ -41,7 +41,7 @@ namespace ArcaneBrigade.Editor
                     run.State.Wave = 13; run.State.Endless = true; run.State.Phase = SessionPhase.Shop; run.State.OutsideTransfers = 3;
                     Check(run.AcceptOutsideStage(), "Keeper challenge available " + difficulty);
                     var arena = run.PrepareCombat();
-                    float expected = OutsideStageAssets.Current.Boss.Health * 20 * .8f * 1.8f * (1 + difficulty * .25f) * .75f * .6f;
+                    float expected = OutsideStageAssets.Current.Boss.Health * 20 * .8f * 1.8f * (1 + difficulty * .25f) * OctoberBalance.EnemyHealthRelief * OctoberBalance.BossHealthRelief; // was hard-coded .75 x .6; relief .95 since 18/10
                     Check(Mathf.Approximately(arena.Boss.Health, expected), "Keeper override gets 40 percent HP reduction " + difficulty);
                 }
                 using (var run = new RunSession(catalog))
@@ -53,7 +53,7 @@ namespace ArcaneBrigade.Editor
                     run.State.Wave = 10 + ActOneCanon.SitWaveBonus;
                     float scaling = (1 + (run.State.Wave - 1) * .1f) * JourneyBalance.EnemyHealth(difficulty, run.State.Wave);
                     var raw = (UnitDefinition)build.Invoke(run, new object[] { Array.Find(catalog.Bosses, b => b.Id == "UmbraCradle"), scaling });
-                    Check(Mathf.Approximately(arena.Boss.Health, raw.Health * WaveCadence.StoryBossBulk(10) * .75f * .6f), "Bedside gets 40 percent HP reduction " + difficulty);
+                    Check(Mathf.Approximately(arena.Boss.Health, raw.Health * WaveCadence.StoryBossBulk(10) * OctoberBalance.EnemyHealthRelief * OctoberBalance.BossHealthRelief), "Bedside gets 40 percent HP reduction " + difficulty);
                 }
             }
             // Resolve actual damage after armor/caps. Child causes cover delayed skills and projectiles after the boss dies.
@@ -75,7 +75,7 @@ namespace ArcaneBrigade.Editor
                 {
                     float ordinary = Hit(amount, new CombatCause(1, 0));
                     float boss = Hit(amount, new CombatCause(2, sim.Boss.Id));
-                    Check(Mathf.Abs(boss - ordinary * .9f) < .001f, "Boss damage reduced after HP cap: " + amount);
+                    Check(Mathf.Abs(boss - ordinary * OctoberBalance.BossDamageRelief) < .001f, "Boss damage reduced after HP cap (relief .7 since round 3, was .9): " + amount);
                     sim.Boss.Alive = false;
                     ((Dictionary<int, UnitState>)typeof(CombatSimulation).GetField("unitLookup", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(sim)).Remove(sim.Boss.Id);
                     Check(Mathf.Abs(Hit(amount, new CombatCause(3, sim.Boss.Id).Child("delayed-skill")) - boss) < .001f, "Delayed boss cause retains reduction: " + amount);

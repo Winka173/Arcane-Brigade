@@ -79,7 +79,8 @@ namespace ArcaneBrigade.Editor
                 Check(simulation.SwarmSpawnCount >= 1 && simulation.Units.All(unit => !unit.SwarmMinion || unit.Definition.Weapon.Kind != WeaponKind.Projectile), "Swarms consist of small melee bodies " + wave);
                 if (wave >= 3) Check(simulation.Units.Any(unit => unit.SwarmMinion && unit.Health < unit.Definition.Health), "Extra bodies are fragile, not extra tanks " + wave);
                 UnitState fighter = simulation.Champion;
-                Check(MeleeBalance.Range > 1 && fighter.Definition.Weapon.Range > catalog.Unit("LanternKnight").Weapon.Range, "Balanced melee weapon retains increased source reach " + wave);
+                // melee reach was shortened on 19/10/2026 (MeleeBalance.Range 1.35 -> 1.1): still above the authored reach early, never far below it late
+                Check(MeleeBalance.Range > 1 && fighter.Definition.Weapon.Range >= catalog.Unit("LanternKnight").Weapon.Range * .85f, "Balanced melee weapon keeps its reach " + wave);
             }
             File.WriteAllLines("PreviewExports/K24/Focused_Checks.txt", notes);
             Debug.Log("K24_CHECKS_PASSED " + notes.Count);

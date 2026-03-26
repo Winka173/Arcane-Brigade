@@ -30,7 +30,12 @@ namespace ArcaneBrigade
         }
         private void QueueDeathReaction(UnitState target)
         {
-            if (catalog.ExpandedContent && target.Faction == Faction.Enemy && target.Definition.Behavior == EnemyBehavior.Puffer && deathReactions.Count < 32) deathReactions.Add(target);
+            if (catalog.ExpandedContent && target.Faction == Faction.Enemy && target.Definition.Behavior == EnemyBehavior.Puffer && deathReactions.Count < 32)
+            {
+                deathReactions.Add(target);
+                if (blastingDepth >= 0) blastDepth[target.Id] = blastingDepth; // felled by another puffer's burst: the next link of a chain
+                SchedulePufferBurst(target); // N15: its burst blows up the enemies around it too
+            }
         }
         private void ProcessDeathReactions()
         {

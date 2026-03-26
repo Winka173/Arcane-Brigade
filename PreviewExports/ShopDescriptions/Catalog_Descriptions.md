@@ -20,7 +20,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -48,7 +48,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -76,7 +76,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -104,7 +104,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -132,7 +132,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -160,7 +160,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -188,11 +188,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mailbox Imp / 2 star
 {bonus:Pickup|Run / Pickup radius|+0.16}
@@ -216,11 +216,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mailbox Imp / 3 star
 {bonus:Pickup|Run / Pickup radius|+0.32}
@@ -244,11 +244,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Pillow Oracle / 1 star
 {bonus:Health|Champion / Maximum health|+3}
@@ -275,9 +275,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 26.69; cycle 1.25s; reach 5.01. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Pillow Oracle / 2 star
 {bonus:Health|Champion / Maximum health|+6}
@@ -304,9 +304,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 73.2; cycle 1.25s; reach 5.46. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Pillow Oracle / 3 star
 {bonus:Health|Champion / Maximum health|+12}
@@ -333,9 +333,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 206.91; cycle 1.25s; reach 5.91. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mushroom Librarian / 1 star
 {bonus:Luck|Run / Luck|+0.025}
@@ -359,11 +359,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mushroom Librarian / 2 star
 {bonus:Luck|Run / Luck|+0.05}
@@ -387,11 +387,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mushroom Librarian / 3 star
 {bonus:Luck|Run / Luck|+0.1}
@@ -415,11 +415,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Hood Wisp / 1 star
 {bonus:Crit|Team / Critical chance|+1%}
@@ -441,9 +441,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -467,9 +467,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -493,9 +493,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -519,9 +519,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -545,9 +545,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -571,9 +571,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -597,11 +597,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Brass Acorn / 2 star
 {bonus:ScoreMultiplier|Run / Score multiplier|+5%}
@@ -623,11 +623,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Brass Acorn / 3 star
 {bonus:ScoreMultiplier|Run / Score multiplier|+10%}
@@ -649,11 +649,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bread Crab / 1 star
 {bonus:CollisionDamage|Team / Collision damage|+1}
@@ -677,11 +677,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bread Crab / 2 star
 {bonus:CollisionDamage|Team / Collision damage|+2}
@@ -705,11 +705,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bread Crab / 3 star
 {bonus:CollisionDamage|Team / Collision damage|+4}
@@ -733,11 +733,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Kettle Bat / 1 star
 {bonus:MeleeDamage|Team / Flat melee damage|+1}
@@ -761,11 +761,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-93 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+93 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Kettle Bat / 2 star
 {bonus:MeleeDamage|Team / Flat melee damage|+2}
@@ -789,11 +789,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-93 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+93 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Kettle Bat / 3 star
 {bonus:MeleeDamage|Team / Flat melee damage|+4}
@@ -817,11 +817,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-93 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+93 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bookmark Golem / 1 star
 {bonus:RangedDamage|Team / Flat ranged damage|+1}
@@ -845,11 +845,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.57–84.86; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.57–84.86; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bookmark Golem / 2 star
 {bonus:RangedDamage|Team / Flat ranged damage|+2}
@@ -873,11 +873,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 15.19–231.39; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 15.19–231.39; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bookmark Golem / 3 star
 {bonus:RangedDamage|Team / Flat ranged damage|+4}
@@ -901,11 +901,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 42.22–643.22; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 42.22–643.22; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Tin Tick / 1 star
 {bonus:AttackRange|Team / Attack range|+2.5%}
@@ -929,11 +929,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Tin Tick / 2 star
 {bonus:AttackRange|Team / Attack range|+5%}
@@ -957,11 +957,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Tin Tick / 3 star
 {bonus:AttackRange|Team / Attack range|+10%}
@@ -985,11 +985,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Spring Duck / 1 star
 {bonus:Dodge|Champion / Dodge|+2.5%}
@@ -1011,11 +1011,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Spring Duck / 2 star
 {bonus:Dodge|Champion / Dodge|+5%}
@@ -1037,11 +1037,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Spring Duck / 3 star
 {bonus:Dodge|Champion / Dodge|+10%}
@@ -1063,11 +1063,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Button Beetle / 1 star
 {bonus:Income|Run / Income|+2}
@@ -1091,11 +1091,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Button Beetle / 2 star
 {bonus:Income|Run / Income|+4}
@@ -1119,11 +1119,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Button Beetle / 3 star
 {bonus:Income|Run / Income|+8}
@@ -1147,11 +1147,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Staple Mole / 1 star
 {bonus:BulletPierce|Team / Bullet pierce|+1}
@@ -1175,11 +1175,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Staple Mole / 2 star
 {bonus:BulletPierce|Team / Bullet pierce|+2}
@@ -1203,11 +1203,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Staple Mole / 3 star
 {bonus:BulletPierce|Team / Bullet pierce|+4}
@@ -1231,11 +1231,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Snow Spoon / 1 star
 {bonus:BulletSplit|Team / Bullet split|+1}
@@ -1259,11 +1259,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Snow Spoon / 2 star
 {bonus:BulletSplit|Team / Bullet split|+2}
@@ -1287,11 +1287,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Snow Spoon / 3 star
 {bonus:BulletSplit|Team / Bullet split|+4}
@@ -1315,11 +1315,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ice Cream Owl / 1 star
 {bonus:BulletBounce|Team / Bullet bounce chance|+2.5%}
@@ -1343,11 +1343,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ice Cream Owl / 2 star
 {bonus:BulletBounce|Team / Bullet bounce chance|+5%}
@@ -1371,11 +1371,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ice Cream Owl / 3 star
 {bonus:BulletBounce|Team / Bullet bounce chance|+10%}
@@ -1399,11 +1399,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Fridge Wisp / 1 star
 {bonus:BulletSize|Team / Bullet size|+2.5%}
@@ -1425,11 +1425,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Fridge Wisp / 2 star
 {bonus:BulletSize|Team / Bullet size|+5%}
@@ -1451,11 +1451,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Fridge Wisp / 3 star
 {bonus:BulletSize|Team / Bullet size|+10%}
@@ -1477,11 +1477,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Pear Moth / 1 star
 {bonus:BulletSpeed|Team / Bullet speed|+2.5%}
@@ -1505,9 +1505,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -1533,9 +1533,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -1561,9 +1561,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -1589,11 +1589,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Citrus Toad / 2 star
 {bonus:BulletDistance|Team / Bullet travel distance|+5%}
@@ -1617,11 +1617,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Citrus Toad / 3 star
 {bonus:BulletDistance|Team / Bullet travel distance|+10%}
@@ -1645,11 +1645,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Radish Jester / 1 star
 {bonus:Knockback|Team / Knockback|+2.5%}
@@ -1673,11 +1673,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Radish Jester / 2 star
 {bonus:Knockback|Team / Knockback|+5%}
@@ -1701,11 +1701,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Radish Jester / 3 star
 {bonus:Knockback|Team / Knockback|+10%}
@@ -1729,11 +1729,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Seed Hedgehog / 1 star
 {bonus:BodySize|Champion / Champion size|+2.5%}
@@ -1757,9 +1757,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -1785,9 +1785,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -1813,9 +1813,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -1839,11 +1839,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Moon Jelly / 2 star
 {bonus:CompanionSize|Companions / Companion size|+5%}
@@ -1865,11 +1865,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Moon Jelly / 3 star
 {bonus:CompanionSize|Companions / Companion size|+10%}
@@ -1891,11 +1891,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Star Sock / 1 star
 {bonus:EnemyCount|Run / Enemy count|+10%}
@@ -1920,11 +1920,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Star Sock / 2 star
 {bonus:EnemyCount|Run / Enemy count|+20%}
@@ -1949,11 +1949,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Star Sock / 3 star
 {bonus:EnemyCount|Run / Enemy count|+40%}
@@ -1978,11 +1978,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Comet Kite / 1 star
 {bonus:EnemyHealth|Run / Enemy health|+10%}
@@ -2007,11 +2007,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Comet Kite / 2 star
 {bonus:EnemyHealth|Run / Enemy health|+20%}
@@ -2036,11 +2036,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Comet Kite / 3 star
 {bonus:EnemyHealth|Run / Enemy health|+40%}
@@ -2065,11 +2065,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Eclipse Egg / 1 star
 {bonus:EnemySpeed|Run / Enemy speed|+10%}
@@ -2097,7 +2097,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 55.94; cycle 1.09s; reach 5.51. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2127,7 +2127,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 152.54; cycle 1.09s; reach 6. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2157,7 +2157,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 424.03; cycle 1.09s; reach 6.5. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2183,11 +2183,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Orbit Moth / 2 star
 {bonus:HeartHealing|Champion / Heart healing|+2}
@@ -2211,11 +2211,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Orbit Moth / 3 star
 {bonus:HeartHealing|Champion / Heart healing|+4}
@@ -2239,11 +2239,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dream Compass / 1 star
 {bonus:ChestQuality|Run / Chest quality|+2.5%}
@@ -2265,11 +2265,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dream Compass / 2 star
 {bonus:ChestQuality|Run / Chest quality|+5%}
@@ -2291,11 +2291,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dream Compass / 3 star
 {bonus:ChestQuality|Run / Chest quality|+10%}
@@ -2317,11 +2317,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Longbow / Team: {bonus:RangedDamage|Team / Flat ranged damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Shell Postman / 1 star
 {bonus:RecruitDiscount|Run / Recruit discount|+2.5%}
@@ -2345,9 +2345,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 2.65–40.35; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 2.65–40.35; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Sea Shanty / Run: {bonus:RelicDiscount|Run / Relic discount|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2373,9 +2373,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 7.15–108.96; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 7.15–108.96; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Sea Shanty / Run: {bonus:RelicDiscount|Run / Relic discount|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2401,9 +2401,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 19.31–294.18; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 19.31–294.18; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Sea Shanty / Run: {bonus:RelicDiscount|Run / Relic discount|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2429,11 +2429,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Coral Teacup / 2 star
 {bonus:RelicDiscount|Run / Relic discount|+5%}
@@ -2457,11 +2457,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Coral Teacup / 3 star
 {bonus:RelicDiscount|Run / Relic discount|+10%}
@@ -2485,11 +2485,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bubble Koi / 1 star
 {bonus:ShopRarity|Run / Shop rarity|+2.5%}
@@ -2513,11 +2513,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bubble Koi / 2 star
 {bonus:ShopRarity|Run / Shop rarity|+5%}
@@ -2541,11 +2541,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bubble Koi / 3 star
 {bonus:ShopRarity|Run / Shop rarity|+10%}
@@ -2569,11 +2569,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Anchor Snail / 1 star
 {bonus:HealthCorrection|Champion / Health correction|+2.5%}
@@ -2597,9 +2597,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2625,9 +2625,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2653,9 +2653,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2679,9 +2679,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2705,9 +2705,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2731,9 +2731,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -2759,11 +2759,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Sock Cyclops / 2 star
 {bonus:SpeedCorrection|Team / Speed correction|+5%}
@@ -2787,11 +2787,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Sock Cyclops / 3 star
 {bonus:SpeedCorrection|Team / Speed correction|+10%}
@@ -2815,11 +2815,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Quicksoles / Team: {bonus:MoveSpeed|Team / Movement speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dice Crab / 1 star
 {bonus:ArmorCorrection|Champion / Armor correction|+2.5%}
@@ -2843,11 +2843,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dice Crab / 2 star
 {bonus:ArmorCorrection|Champion / Armor correction|+5%}
@@ -2871,11 +2871,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dice Crab / 3 star
 {bonus:ArmorCorrection|Champion / Armor correction|+10%}
@@ -2899,11 +2899,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Lucky Leaves / Run: {bonus:ShopRarity|Run / Shop rarity|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mask Pepper / 1 star
 {bonus:HealCorrection|Champion / Healing correction|+2.5%}
@@ -2927,11 +2927,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.1–62.39; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mask Pepper / 2 star
 {bonus:HealCorrection|Champion / Healing correction|+5%}
@@ -2955,11 +2955,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11.17–170.14; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mask Pepper / 3 star
 {bonus:HealCorrection|Champion / Healing correction|+10%}
@@ -2983,11 +2983,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 31.05–472.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Crayon Gremlin / 1 star
 {bonus:CollisionFrequency|Team / Collision frequency|+2.5%}
@@ -3011,11 +3011,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Crayon Gremlin / 2 star
 {bonus:CollisionFrequency|Team / Collision frequency|+5%}
@@ -3039,11 +3039,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Crayon Gremlin / 3 star
 {bonus:CollisionFrequency|Team / Collision frequency|+10%}
@@ -3067,11 +3067,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Mirror Newt / 1 star
 {bonus:ScoreMultiplier|Run / Score multiplier|+2.5%}
@@ -3096,7 +3096,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 34.95; cycle 1.14s; reach 6.01. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3123,7 +3123,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 94.36; cycle 1.14s; reach 6.55. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3150,7 +3150,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 254.77; cycle 1.14s; reach 7.09. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3176,11 +3176,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ribbon Spider / 2 star
 {bonus:CollisionDamage|Team / Collision damage|+2}
@@ -3204,11 +3204,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ribbon Spider / 3 star
 {bonus:CollisionDamage|Team / Collision damage|+4}
@@ -3232,11 +3232,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Coil Kettle / 1 star
 {bonus:Knockback|Champion / Knockback|+4%}
@@ -3265,7 +3265,7 @@ WEAPON PREVIEW / CURRENT BUILD
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Coil Kettle / 2 star
 {bonus:Knockback|Champion / Knockback|+8%}
@@ -3294,7 +3294,7 @@ WEAPON PREVIEW / CURRENT BUILD
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Coil Kettle / 3 star
 {bonus:Knockback|Champion / Knockback|+16%}
@@ -3323,7 +3323,7 @@ WEAPON PREVIEW / CURRENT BUILD
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Thimble Moth / 1 star
 {bonus:AttackSpeed|Companions / Attack speed|+4%}
@@ -3345,11 +3345,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Thimble Moth / 2 star
 {bonus:AttackSpeed|Companions / Attack speed|+8%}
@@ -3371,11 +3371,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Thimble Moth / 3 star
 {bonus:AttackSpeed|Companions / Attack speed|+16%}
@@ -3397,11 +3397,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Reel Owl / 1 star
 {bonus:AttackRange|Companions / Attack range|+6%}
@@ -3426,9 +3426,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 67.67; cycle 1.04s; reach 5.01. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Reel Owl / 2 star
 {bonus:AttackRange|Companions / Attack range|+12%}
@@ -3453,9 +3453,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 182.72; cycle 1.04s; reach 5.46. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Reel Owl / 3 star
 {bonus:AttackRange|Companions / Attack range|+24%}
@@ -3480,9 +3480,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 493.33; cycle 1.04s; reach 5.91. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Impossible Tailor / 1 star
 {bonus:Heal|Champion / Healing per second|+0.04}
@@ -3504,11 +3504,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 53.9; cycle 0.94s; reach 1.89. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 53.9; cycle 0.94s; reach 1.54. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Impossible Tailor / 2 star
 {bonus:Heal|Champion / Healing per second|+0.08}
@@ -3530,11 +3530,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 145.52; cycle 0.9s; reach 2.06. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 145.52; cycle 0.9s; reach 1.68. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Impossible Tailor / 3 star
 {bonus:Heal|Champion / Healing per second|+0.16}
@@ -3556,11 +3556,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 380.84; cycle 0.87s; reach 2.23. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 392.91; cycle 0.87s; reach 1.82. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Last Bell / 1 star
 {bonus:Heal|Champion / Healing per second|+0.04}
@@ -3584,7 +3584,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 74.48; cycle 1.2s; reach 4. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3610,7 +3610,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 201.09; cycle 1.2s; reach 4.36. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3636,7 +3636,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 542.94; cycle 1.2s; reach 4.72. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3659,11 +3659,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Forgotten Patchwork / 2 star
 {bonus:Damage|Team / Damage|+12%}
@@ -3684,11 +3684,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Forgotten Patchwork / 3 star
 {bonus:Damage|Team / Damage|+24%}
@@ -3709,11 +3709,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Folded Courier / 1 star
 {bonus:AttackSpeed|Team / Attack speed|+6%}
@@ -3736,11 +3736,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Folded Courier / 2 star
 {bonus:AttackSpeed|Team / Attack speed|+12%}
@@ -3763,11 +3763,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Folded Courier / 3 star
 {bonus:AttackSpeed|Team / Attack speed|+24%}
@@ -3790,11 +3790,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Sleeping Friend / 1 star
 {bonus:AttackRange|Team / Attack range|+6%}
@@ -3815,11 +3815,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Sleeping Friend / 2 star
 {bonus:AttackRange|Team / Attack range|+12%}
@@ -3840,11 +3840,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Sleeping Friend / 3 star
 {bonus:AttackRange|Team / Attack range|+24%}
@@ -3865,11 +3865,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.36} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Wild Stitch / Run: {bonus:Pickup|Run / Pickup radius|+0.54} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Saffron Mechanist / 1 star
 {mark} On purchase, recruit up to 2 Balloon Mallets.
@@ -3889,11 +3889,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Saffron Mechanist / 2 star
 {mark} On purchase, recruit up to 2 Balloon Mallets.
@@ -3913,11 +3913,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Saffron Mechanist / 3 star
 {mark} On purchase, recruit up to 2 Balloon Mallets.
@@ -3937,11 +3937,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Clockwork Piper / 1 star
 {mark} Every 6s a tune: friends within 3 units attack 30% faster for 2s.
@@ -3962,9 +3962,9 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 75.93; cycle 0.99s; reach 2.03. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 75.93; cycle 0.99s; reach 1.65. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -3987,9 +3987,9 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 199.75; cycle 0.95s; reach 2.21. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 205.02; cycle 0.95s; reach 1.8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4012,9 +4012,9 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 518.35; cycle 0.92s; reach 2.39. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 553.55; cycle 0.92s; reach 1.95. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Morning Bells / Champion: {bonus:ChampionDamage|Champion / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4036,11 +4036,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Velvet Champion / 2 star
 {mark} Every bond gains one supporting count. This effect does not stack with another Walter counterpart.
@@ -4060,11 +4060,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Velvet Champion / 3 star
 {mark} Every bond gains one supporting count. This effect does not stack with another Walter counterpart.
@@ -4084,11 +4084,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Inventor / 1 star
 {mark} Once a fight builds a paper tower ahead of it that fires paper darts at the enemies near it.
@@ -4111,9 +4111,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 67.99; cycle 1.35s; reach 4. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Inventor / 2 star
 {mark} Once a fight builds a paper tower ahead of it that fires paper darts at the enemies near it.
@@ -4136,9 +4136,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 183.57; cycle 1.35s; reach 4.36. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Inventor / 3 star
 {mark} Once a fight builds a paper tower ahead of it that fires paper darts at the enemies near it.
@@ -4161,9 +4161,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 495.65; cycle 1.35s; reach 4.72. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Return Captain / 1 star
 {mark} Every 5s drops an anchor on the strongest enemy: friends deal it +20% damage for 5s.
@@ -4186,7 +4186,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 78.13; cycle 1.51s; reach 5.51. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4211,7 +4211,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 210.95; cycle 1.51s; reach 6. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4236,7 +4236,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 569.57; cycle 1.51s; reach 6.5. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Crossing Knights / Team: {bonus:CollisionDamage|Team / Collision damage|+4.5} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4258,11 +4258,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 7.48–113.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dough Foreman / 2 star
 {mark} Team damage +20% and speed +10%. Enemies move 10% faster.
@@ -4282,11 +4282,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 20.2–307.76; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Dough Foreman / 3 star
 {mark} Team damage +20% and speed +10%. Enemies move 10% faster.
@@ -4306,11 +4306,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 54.54–830.95; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Iron Locomotive / 1 star
 {mark} Every 7s a frost whistle: a cold blast ahead freezes the first 3 enemies in it for 1s.
@@ -4333,7 +4333,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 31.77; cycle 1.35s; reach 4.4. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4358,7 +4358,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 85.78; cycle 1.35s; reach 4.8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4383,7 +4383,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 231.61; cycle 1.35s; reach 5.2. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4405,9 +4405,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4429,9 +4429,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4453,9 +4453,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Unbroken / Team: {bonus:DamageCorrection|Team / Damage correction|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4477,11 +4477,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Velvet Enchantress / 2 star
 {mark} Basic hits gently pull ordinary enemies inward. Bosses cannot be pulled.
@@ -4501,11 +4501,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Velvet Enchantress / 3 star
 {mark} Basic hits gently pull ordinary enemies inward. Bosses cannot be pulled.
@@ -4525,11 +4525,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Velvet Court / Companions: {bonus:CompanionDamage|Companions / Damage|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Grand Sprout / 1 star
 {mark} Uses its equipped weapon and has 24 base contact damage before brigade bonuses. Can carry nursery bonuses.
@@ -4549,9 +4549,9 @@ Recruitment exclusive: Jade Cabbage
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4573,9 +4573,9 @@ Recruitment exclusive: Jade Cabbage
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4597,9 +4597,9 @@ Recruitment exclusive: Jade Cabbage
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4621,11 +4621,11 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bristle Ball / 2 star
 {mark} Uses its equipped weapon and has 18 base contact damage before brigade bonuses; gain 1 more per injury this wave, up to 20.
@@ -4645,11 +4645,11 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Bristle Ball / 3 star
 {mark} Uses its equipped weapon and has 18 base contact damage before brigade bonuses; gain 1 more per injury this wave, up to 20.
@@ -4669,11 +4669,11 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Devil / 1 star
 {mark} Cannot merge. Each 8 personal kills grants you 2% attack speed, up to 20% this wave.
@@ -4693,11 +4693,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Devil / 2 star
 {mark} Cannot merge. Each 8 personal kills grants you 2% attack speed, up to 20% this wave.
@@ -4717,11 +4717,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Devil / 3 star
 {mark} Cannot merge. Each 8 personal kills grants you 2% attack speed, up to 20% this wave.
@@ -4741,11 +4741,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Balloon Mallet / 1 star
 {mark} Push ordinary enemies within the push cap. Basic damage is reduced by 70%.
@@ -4765,9 +4765,9 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 1.44–21.98; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 1.44–21.98; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4789,9 +4789,9 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 3.9–59.34; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 3.9–59.34; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4813,9 +4813,9 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 10.52–160.22; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 10.52–160.22; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4837,9 +4837,9 @@ Recruitment exclusive: Jade Cabbage
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4861,9 +4861,9 @@ Recruitment exclusive: Jade Cabbage
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4885,9 +4885,9 @@ Recruitment exclusive: Jade Cabbage
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -4909,11 +4909,11 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Monster Marble / 2 star
 {mark} An immortal friendly marble. Uses its own randomly assigned weapon.
@@ -4933,11 +4933,11 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Monster Marble / 3 star
 {mark} An immortal friendly marble. Uses its own randomly assigned weapon.
@@ -4957,11 +4957,11 @@ Gift / nursery / special reward; not ordinary shop stock.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Masked Carnival / Run: {bonus:ChestQuality|Run / Chest quality|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Carousel Pony / 1 star
 {mark} Carries one nearby ally while both continue attacking. Rider and mount remain immortal. Mount pairing is automatic.
@@ -4981,9 +4981,9 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 6.49–98.9; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 6.49–98.9; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -5005,9 +5005,9 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 17.53–267.03; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 17.53–267.03; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -5029,9 +5029,9 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-98 eligible random weapons. Damage 47.33–720.97; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+98 eligible random weapons. Damage 47.33–720.97; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -5053,7 +5053,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -5077,7 +5077,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -5101,7 +5101,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -5125,11 +5125,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ribbon Otter / 2 star
 {mark} Collecting a heart grants 1 extra HP of healing. Its Rain Script bond supports recovery.
@@ -5149,11 +5149,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ribbon Otter / 3 star
 {mark} Collecting a heart grants 1 extra HP of healing. Its Rain Script bond supports recovery.
@@ -5173,11 +5173,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Spindle Wren / 1 star
 {mark} Lantern Guild allies gain 8% reach. Its threadwork belongs to both clockwork and lantern themes.
@@ -5197,11 +5197,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Spindle Wren / 2 star
 {mark} Lantern Guild allies gain 8% reach. Its threadwork belongs to both clockwork and lantern themes.
@@ -5221,11 +5221,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Spindle Wren / 3 star
 {mark} Lantern Guild allies gain 8% reach. Its threadwork belongs to both clockwork and lantern themes.
@@ -5245,11 +5245,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Baker Mouse / 1 star
 {mark} A floury mouse baker who rolls everything flat.
@@ -5269,11 +5269,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Baker Mouse / 2 star
 {mark} A floury mouse baker who rolls everything flat.
@@ -5293,11 +5293,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Baker Mouse / 3 star
 {mark} A floury mouse baker who rolls everything flat.
@@ -5317,11 +5317,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Tea Dragon / 1 star
 {mark} Every 7s sets a teapot ahead; it whistles, then bursts in scalding steam that spreads to the enemies beside it.
@@ -5413,11 +5413,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 93.98; cycle 0.57s; reach 1.62. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 93.98; cycle 0.57s; reach 1.32. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Sundae Golem / 2 star
 {mark} Every blow leaves a puddle of cream; an enemy that stands in it for 2s freezes for 1s.
@@ -5437,11 +5437,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 253.74; cycle 0.55s; reach 1.77. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 253.74; cycle 0.55s; reach 1.44. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Sundae Golem / 3 star
 {mark} Every blow leaves a puddle of cream; an enemy that stands in it for 2s freezes for 1s.
@@ -5461,11 +5461,11 @@ Dream shop / special reward; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-1 eligible random weapons. Damage 685.1; cycle 0.53s; reach 1.91. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+1 eligible random weapons. Damage 685.1; cycle 0.53s; reach 1.56. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Lens Owl / 1 star
 {mark} An owl scholar who focuses sunlight through a reading lens.
@@ -5485,11 +5485,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Lens Owl / 2 star
 {mark} An owl scholar who focuses sunlight through a reading lens.
@@ -5509,11 +5509,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Lens Owl / 3 star
 {mark} An owl scholar who focuses sunlight through a reading lens.
@@ -5533,11 +5533,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Endless Index / 1 star
 {mark} Every 3rd attack copies that blow onto 2 nearby enemies. Every enemy species defeated in the run is a page: at 10, 20 and 30 pages Runic School friends split their shots once more.
@@ -5559,9 +5559,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 47.33; cycle 0.99s; reach 5.01. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Endless Index / 2 star
 {mark} Every 3rd attack copies that blow onto 2 nearby enemies. Every enemy species defeated in the run is a page: at 10, 20 and 30 pages Runic School friends split their shots once more.
@@ -5583,9 +5583,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 127.8; cycle 0.99s; reach 5.46. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The Endless Index / 3 star
 {mark} Every 3rd attack copies that blow onto 2 nearby enemies. Every enemy species defeated in the run is a page: at 10, 20 and 30 pages Runic School friends split their shots once more.
@@ -5607,9 +5607,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 345.05; cycle 0.99s; reach 5.91. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Runic School / Team: {bonus:BulletSplit|Team / Bullet split|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Lamp Goat / 1 star
 {mark} A goat whose horns hold lanterns, swinging a lantern glaive.
@@ -5629,11 +5629,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Lamp Goat / 2 star
 {mark} A goat whose horns hold lanterns, swinging a lantern glaive.
@@ -5653,11 +5653,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Lamp Goat / 3 star
 {mark} A goat whose horns hold lanterns, swinging a lantern glaive.
@@ -5677,11 +5677,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+0.9} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Little Horns / Team: {bonus:BulletPierce|Team / Bullet pierce|+1} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Top Beetle / 1 star
 {mark} A clockwork beetle who spins tops into the crowd.
@@ -5701,11 +5701,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Top Beetle / 2 star
 {mark} A clockwork beetle who spins tops into the crowd.
@@ -5725,11 +5725,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Top Beetle / 3 star
 {mark} A clockwork beetle who spins tops into the crowd.
@@ -5749,11 +5749,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Clockwork Union / Run: {bonus:Income|Run / Income|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Clockwork Union / Run: {bonus:Income|Run / Income|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Shovel Penguin / 1 star
 {mark} A penguin who heaves snow at anyone in the way.
@@ -5773,11 +5773,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Shovel Penguin / 2 star
 {mark} A penguin who heaves snow at anyone in the way.
@@ -5797,11 +5797,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Shovel Penguin / 3 star
 {mark} A penguin who heaves snow at anyone in the way.
@@ -5821,11 +5821,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+3.6} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Prizefighters / Team: {bonus:MeleeDamage|Team / Flat melee damage|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Boba Tadpole / 1 star
 {mark} A tadpole in a milk-tea cup who sips, then spits pearls in swaying waves.
@@ -5845,11 +5845,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Boba Tadpole / 2 star
 {mark} A tadpole in a milk-tea cup who sips, then spits pearls in swaying waves.
@@ -5869,11 +5869,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Boba Tadpole / 3 star
 {mark} A tadpole in a milk-tea cup who sips, then spits pearls in swaying waves.
@@ -5893,11 +5893,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Sweet Tooth / Companions: {bonus:CompanionAttackSpeed|Companions / Attack speed|+8.1%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Rain Heron / 1 star
 {mark} A heron who copies the rain into its notebook and takes any weapon offered.
@@ -5917,11 +5917,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Rain Heron / 2 star
 {mark} A heron who copies the rain into its notebook and takes any weapon offered.
@@ -5941,11 +5941,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Rain Heron / 3 star
 {mark} A heron who copies the rain into its notebook and takes any weapon offered.
@@ -5965,11 +5965,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Watering Snail / 1 star
 {mark} A slow snail who waters the garden, and the enemies in it.
@@ -5989,9 +5989,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6013,9 +6013,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6037,9 +6037,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Jade Nursery / Run: {bonus:Discount|Run / Gold shop discount|+5.4%} every 3 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6061,11 +6061,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Yo-yo Squirrel / 2 star
 {mark} A springy squirrel who never misses with a yo-yo.
@@ -6085,11 +6085,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Yo-yo Squirrel / 3 star
 {mark} A springy squirrel who never misses with a yo-yo.
@@ -6109,11 +6109,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
-Springstep / Team: {bonus:Knockback|Team / Knockback|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Springstep / Team: {bonus:Knockback|Team / Knockback|+27%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## The First Seed / 1 star
 {mark} Every 8s grows a thorn hedge ahead that stops enemies for 3s; each fight a sapling sprouts to fight beside it.
@@ -6135,7 +6135,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 32.67; cycle 1.3s; reach 4.6. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6159,7 +6159,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 88.2; cycle 1.3s; reach 5.02. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6183,7 +6183,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 238.13; cycle 1.3s; reach 5.43. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Orchard / Run: {bonus:Luck|Run / Luck|+0.036} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.036}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.072}.
+Orchard / Run: {bonus:Luck|Run / Luck|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Luck|Run / Luck|+0.135}. Extra at 6 bodies: {bonus:Luck|Run / Luck|+0.27}.
 
 Rootkin / Champion: {bonus:Health|Champion / Maximum health|+7.2} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6205,11 +6205,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Plane Pigeon / 2 star
 {mark} A pigeon who folds the post into paper planes and lets them chase the trouble.
@@ -6229,11 +6229,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Paper Plane Pigeon / 3 star
 {mark} A pigeon who folds the post into paper planes and lets them chase the trouble.
@@ -6253,11 +6253,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Raincoat Frog / 1 star
 {mark} A frog in a yellow raincoat with a plunger for every puddle.
@@ -6277,11 +6277,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Raincoat Frog / 2 star
 {mark} A frog in a yellow raincoat with a plunger for every puddle.
@@ -6301,11 +6301,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Raincoat Frog / 3 star
 {mark} A frog in a yellow raincoat with a plunger for every puddle.
@@ -6325,11 +6325,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Rain Script / Team: {bonus:BulletSpeed|Team / Bullet speed|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Harbor Whale / 1 star
 {mark} Every 6s sprays a column of water on the enemy nearest the hero, soaking the ones around and pushing them back.
@@ -6351,7 +6351,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 42.36; cycle 1.66s; reach 4.8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Lantern Guild / Team: {bonus:AttackRange|Team / Attack range|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6375,7 +6375,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 114.38; cycle 1.66s; reach 5.24. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Lantern Guild / Team: {bonus:AttackRange|Team / Attack range|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6399,7 +6399,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 308.82; cycle 1.66s; reach 5.67. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Lantern Guild / Team: {bonus:AttackRange|Team / Attack range|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6423,9 +6423,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 32.67; cycle 1.3s; reach 3.6. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Kite Dragon / 2 star
 {mark} Flies over the fight; every 5s sweeps a cutting band of wind across the field ahead.
@@ -6447,9 +6447,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 88.2; cycle 1.3s; reach 3.93. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Kite Dragon / 3 star
 {mark} Flies over the fight; every 5s sweeps a cutting band of wind across the field ahead.
@@ -6471,9 +6471,9 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 238.13; cycle 1.3s; reach 4.25. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Paper Wings / Team: {bonus:BulletDistance|Team / Bullet travel distance|+22.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Ringmaster Jack / 1 star
 {mark} Every 6s spins a ball on its nose: enemies within 3.5 units turn on it for 1.5s.
@@ -6495,7 +6495,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 29.12; cycle 1.56s; reach 4.5. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6519,7 +6519,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 78.63; cycle 1.56s; reach 4.91. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6543,7 +6543,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 212.31; cycle 1.56s; reach 5.32. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6567,7 +6567,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 48.51; cycle 1.4s; reach 5.01. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6591,7 +6591,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 130.97; cycle 1.4s; reach 5.46. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6615,7 +6615,7 @@ Named talents count bodies and absorbed memories; star level only scales the sep
 WEAPON PREVIEW / CURRENT BUILD
 1 eligible random weapons. Damage 353.62; cycle 1.4s; reach 5.91. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Oddity / Team: {bonus:Crit|Team / Critical chance|+4.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+4.5%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+9%}.
+Oddity / Team: {bonus:Crit|Team / Critical chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Crit|Team / Critical chance|+7.2%}. Extra at 6 bodies: {bonus:Crit|Team / Critical chance|+14.4%}.
 
 Big Top / Run: {bonus:RecruitDiscount|Run / Recruit discount|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6637,11 +6637,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Static Ferret / 2 star
 {mark} Its hits leave static that arcs once to the nearest other enemy (50%).
@@ -6661,11 +6661,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Static Ferret / 3 star
 {mark} Its hits leave static that arcs once to the nearest other enemy (50%).
@@ -6685,11 +6685,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Storm Kitten / 1 star
 {mark} Every 6s a little storm cloud over an enemy drops a bolt of lightning.
@@ -6709,11 +6709,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Storm Kitten / 2 star
 {mark} Every 6s a little storm cloud over an enemy drops a bolt of lightning.
@@ -6733,11 +6733,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Storm Kitten / 3 star
 {mark} Every 6s a little storm cloud over an enemy drops a bolt of lightning.
@@ -6757,11 +6757,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Astral / Team: {bonus:BulletSize|Team / Bullet size|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+7.2%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+14.4%}.
+Astral / Team: {bonus:BulletSize|Team / Bullet size|+18%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletSize|Team / Bullet size|+18%}. Extra at 6 bodies: {bonus:BulletSize|Team / Bullet size|+36%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Volt Eel / 1 star
 {mark} Its hits arc on twice: to the nearest other enemy, then the next (50%, then 35%).
@@ -6781,11 +6781,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Volt Eel / 2 star
 {mark} Its hits arc on twice: to the nearest other enemy, then the next (50%, then 35%).
@@ -6805,11 +6805,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Volt Eel / 3 star
 {mark} Its hits arc on twice: to the nearest other enemy, then the next (50%, then 35%).
@@ -6829,11 +6829,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
-Static Club / Team: {bonus:ChainChance|Team / Chain chance|+3.6%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Static Club / Team: {bonus:ChainChance|Team / Chain chance|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Shanty Sea Lion / 1 star
 {mark} Every 3rd hit lands with a note that pushes the enemy back.
@@ -6853,9 +6853,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Sea Shanty / Run: {bonus:RelicDiscount|Run / Relic discount|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6877,9 +6877,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Sea Shanty / Run: {bonus:RelicDiscount|Run / Relic discount|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6901,9 +6901,9 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+7.2%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+14.4%}.
+Tidal / Team: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+13.5%}. Extra at 6 bodies: {bonus:BulletBounce|Team / Bullet bounce chance|+27%}.
 
 Sea Shanty / Run: {bonus:RelicDiscount|Run / Relic discount|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
@@ -6925,7 +6925,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -6949,7 +6949,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -6973,7 +6973,7 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
 Hearth / Champion: {bonus:Heal|Champion / Healing per second|+0.135} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Heal|Champion / Healing per second|+0.135}. Extra at 6 bodies: {bonus:Heal|Champion / Healing per second|+0.27}.
 
@@ -6997,11 +6997,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Pinned Beetle / 2 star
 {mark} Its hits pin the enemy in place for 0.3s (once every 2s per enemy).
@@ -7021,11 +7021,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Pinned Beetle / 3 star
 {mark} Its hits pin the enemy in place for 0.3s (once every 2s per enemy).
@@ -7045,11 +7045,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Fossil Armadillo / 1 star
 {mark} Rolled up: an enemy that bumps into it is stunned for 0.3s (once every 2s per enemy).
@@ -7069,11 +7069,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.81–73.26; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Fossil Armadillo / 2 star
 {mark} Rolled up: an enemy that bumps into it is stunned for 0.3s (once every 2s per enemy).
@@ -7093,11 +7093,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 12.98–197.8; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Fossil Armadillo / 3 star
 {mark} Rolled up: an enemy that bumps into it is stunned for 0.3s (once every 2s per enemy).
@@ -7117,11 +7117,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 35.06–534.05; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-5%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-5%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-10%}.
+Frost / Run: {bonus:EnemySpeed|Run / Enemy speed|-7%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:EnemySpeed|Run / Enemy speed|-7%}. Extra at 6 bodies: {bonus:EnemySpeed|Run / Enemy speed|-14%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Specimen Slime / 1 star
 {mark} Defeating a recorded species splits off a little slime that fights beside it (at most 2 a fight).
@@ -7141,11 +7141,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 5.54–84.43; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Specimen Slime / 2 star
 {mark} Defeating a recorded species splits off a little slime that fights beside it (at most 2 a fight).
@@ -7165,11 +7165,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 14.96–227.97; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Specimen Slime / 3 star
 {mark} Defeating a recorded species splits off a little slime that fights beside it (at most 2 a fight).
@@ -7189,11 +7189,11 @@ Recruitment exclusive: Wise
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 40.4–615.52; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+6.3%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+6.3%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+12.6%}.
+Clock / Team: {bonus:AttackSpeed|Team / Attack speed|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:AttackSpeed|Team / Attack speed|+5.4%}. Extra at 6 bodies: {bonus:AttackSpeed|Team / Attack speed|+10.8%}.
 
-Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+9%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Exhibit Hall / Team: {bonus:RecordedDamage|Team / Damage vs recorded species|+10.8%} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Court Herald / 1 star
 {mark} Fanfare: the first attack of every friend each wave fires one extra shot.
@@ -7213,11 +7213,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.28–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 4.08–62.08; cycle 0.33–1.87s; reach 1.05–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Court Herald / 2 star
 {mark} Fanfare: the first attack of every friend each wave fires one extra shot.
@@ -7237,11 +7237,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.4–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 11–167.62; cycle 0.33–1.87s; reach 1.14–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Court Herald / 3 star
 {mark} Fanfare: the first attack of every friend each wave fires one extra shot.
@@ -7261,11 +7261,11 @@ Regular shop; hero theme and unlock wave apply.
 Named talents count bodies and absorbed memories; star level only scales the separately listed support unless stated.
 
 WEAPON PREVIEW / CURRENT BUILD
-94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.51–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
+94 eligible random weapons. Damage 29.71–452.59; cycle 0.33–1.87s; reach 1.23–8. Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.
 
-Archive / Team: {bonus:Damage|Team / Damage|+7.2%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+7.2%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+14.4%}.
+Archive / Team: {bonus:Damage|Team / Damage|+5.4%} every 2 bodies. Purchase unavailable; no after-purchase result shown. Extra at 4 bodies: {bonus:Damage|Team / Damage|+5.4%}. Extra at 6 bodies: {bonus:Damage|Team / Damage|+10.8%}.
 
-Hat Society / Run: {bonus:Interest|Run / Interest cap|+1.8} every 2 bodies. Purchase unavailable; no after-purchase result shown.
+Hat Society / Run: {bonus:Interest|Run / Interest cap|+2.7} every 2 bodies. Purchase unavailable; no after-purchase result shown.
 
 ## Key Oil
 CURIO / COMMON / STACKABLE
@@ -7279,7 +7279,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack speed: +20%
+Team / Attack speed: +12%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7287,7 +7287,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +40
+Champion / Maximum health: +15
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7295,7 +7295,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Movement speed: +10%
+Team / Movement speed: +22%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7303,7 +7303,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Pickup radius: +1.25
+Run / Pickup radius: +1.6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7311,7 +7311,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Patrol radius: +0.4
+Run / Patrol radius: +1
+Run / Pickup radius: +0.8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7320,6 +7321,7 @@ CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
 Run / Companion bullet interception: +1
+Companions / Attack speed: +15%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7327,7 +7329,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +1
+Champion / Healing per second: +0.8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7335,7 +7337,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Critical chance: +10%
+Team / Critical chance: +20%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7343,7 +7345,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Team / Projectile count: +2
+Team / Projectile count: +1
+Team / Attack speed: -10%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7351,7 +7354,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Interest cap: +2
+Run / Interest cap: +4
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7359,7 +7362,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.22
+Champion / Armor: +0.15
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7367,7 +7370,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Damage: +44%
+Champion / Damage: +36%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7375,7 +7378,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Companions / Damage: +30%
+Companions / Damage: +32%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7383,7 +7386,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Companions / Attack speed: +24%
+Companions / Attack speed: +30%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7391,7 +7394,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Gold shop discount: +5%
+Run / Gold shop discount: +8%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7399,7 +7402,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Run / Patrol radius: +1
+Run / Patrol radius: +2
+Team / Attack range: +32%
 Team / Movement speed: -4%
 
 Owned effective copies: 1. Values apply before combat limits.
@@ -7408,7 +7412,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +90
+Champion / Maximum health: +50
 
 SPECIAL EFFECT
 Once per wave, a blow that would defeat the hero leaves 1 HP and 1.5s of safety instead.
@@ -7419,8 +7423,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Team / Projectile count: +3
-Team / Attack speed: -8%
+Team / Projectile count: +2
+Team / Attack speed: -30%
 
 SPECIAL EFFECT
 A friend's basic attack that defeats an enemy echoes onward: the nearest enemy takes half that weapon's damage (0.2s cooldown).
@@ -7431,7 +7435,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Damage: +80%
+Champion / Damage: +60%
 
 SPECIAL EFFECT
 Every 8th hit of the hero is a royal blow: triple damage.
@@ -7442,7 +7446,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Luck: +0.2
+Run / Luck: +0.3
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7450,7 +7454,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Run / Treasure detection: +0.35
+Run / Treasure detection: +1
+Run / Luck: +0.25
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7478,8 +7483,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Damage: +36%
-Team / Movement speed: -3%
+Champion / Damage: +50%
+Team / Movement speed: -4%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7599,7 +7604,7 @@ CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Score multiplier: +8%
-Champion / Maximum health: -1
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7607,8 +7612,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Collision damage: +10
-Champion / Maximum health: -1
+Team / Collision damage: +12
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7616,8 +7621,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Flat melee damage: +4
-Champion / Maximum health: -1
+Team / Flat melee damage: +7
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7625,8 +7630,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Flat ranged damage: +4
-Champion / Maximum health: -1
+Team / Flat ranged damage: +7
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7634,8 +7639,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack range: +25%
-Champion / Maximum health: -1
+Team / Attack range: +30%
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7643,8 +7648,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Dodge: +12%
-Champion / Maximum health: -1
+Champion / Dodge: +24%
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7652,8 +7657,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Income: +4
-Champion / Maximum health: -1
+Run / Income: +5
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7662,7 +7667,7 @@ CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet pierce: +2
-Champion / Maximum health: -1
+Champion / Maximum health: -8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7671,7 +7676,7 @@ CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet split: +2
-Champion / Maximum health: -1
+Champion / Maximum health: -8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7679,8 +7684,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet bounce chance: +8%
-Champion / Maximum health: -1
+Team / Bullet bounce chance: +65%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7688,8 +7692,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet size: +25%
-Champion / Maximum health: -1
+Team / Bullet size: +80%
+Champion / Maximum health: -2
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7697,8 +7701,9 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet speed: +8%
-Champion / Maximum health: -1
+Team / Bullet speed: +50%
+Team / Bullet travel distance: +50%
+Team / Attack range: +20%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7706,8 +7711,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet travel distance: +8%
-Champion / Maximum health: -1
+Team / Bullet travel distance: +60%
+Team / Attack range: +14%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7715,8 +7720,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Knockback: +25%
-Champion / Maximum health: -1
+Team / Knockback: +50%
+Team / Collision damage: +6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7724,8 +7729,9 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Champion size: +8%
-Champion / Maximum health: -1
+Champion / Champion size: +12%
+Champion / Maximum health: +15
+Champion / Collision damage: +4
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7733,8 +7739,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Companions / Companion size: +8%
-Champion / Maximum health: -1
+Companions / Companion size: +12%
+Companions / Damage: +25%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7744,7 +7750,7 @@ CURIO / COMMON / STACKABLE
 WHILE OWNED / per copy
 Run / Enemy count: +10%
 Run / Score multiplier: +20%
-Champion / Maximum health: -1
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7754,7 +7760,7 @@ CURIO / UNCOMMON / STACKABLE
 WHILE OWNED / per copy
 Run / Enemy health: +10%
 Run / Score multiplier: +20%
-Champion / Maximum health: -1
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7764,7 +7770,7 @@ CURIO / COMMON / STACKABLE
 WHILE OWNED / per copy
 Run / Enemy speed: +10%
 Run / Score multiplier: +20%
-Champion / Maximum health: -1
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7772,8 +7778,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Heart healing: +2
-Champion / Maximum health: -1
+Champion / Heart healing: +8
+Champion / Maximum health: -2
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7781,8 +7787,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Chest quality: +8%
-Champion / Maximum health: -1
+Run / Chest quality: +60%
+Run / Treasure detection: +0.5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7790,8 +7796,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Recruit discount: +8%
-Champion / Maximum health: -1
+Run / Recruit discount: +16%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7799,8 +7804,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Relic discount: +8%
-Champion / Maximum health: -1
+Run / Relic discount: +13%
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7808,8 +7813,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Shop rarity: +8%
-Champion / Maximum health: -1
+Run / Shop rarity: +32%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7817,8 +7821,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Health correction: +8%
-Champion / Maximum health: -1
+Champion / Health correction: +20%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7826,8 +7829,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Damage correction: +20%
-Champion / Maximum health: -1
+Team / Damage correction: +14%
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7835,8 +7838,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Speed correction: +8%
-Champion / Maximum health: -1
+Team / Speed correction: +35%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7844,8 +7846,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor correction: +8%
-Champion / Maximum health: -1
+Champion / Armor correction: +40%
+Champion / Armor: +0.07
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7853,8 +7855,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing correction: +8%
-Champion / Maximum health: -1
+Champion / Healing correction: +60%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7862,8 +7863,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Collision frequency: +8%
-Champion / Maximum health: -1
+Team / Collision frequency: +60%
+Team / Collision damage: +4
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7871,8 +7872,9 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Chest opening radius: +35%
-Champion / Movement speed: -2%
+Run / Chest opening radius: +80%
+Run / Treasure detection: +0.6
+Run / Pickup radius: +0.6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -7880,7 +7882,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Treasure detection: +0.1
+Run / Treasure detection: +0.8
 Champion / Movement speed: -2%
 
 TRIGGER: ChestOpened / 100% chance / 2s cooldown. Heal hero 4 per stack; radius 1.8.
@@ -7971,8 +7973,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +50
-Champion / Healing per second: +0.8
+Champion / Maximum health: +12
+Champion / Healing per second: +0.3
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -7980,8 +7982,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.35
-Team / Movement speed: -4%
+Champion / Armor: +0.2
+Team / Movement speed: -6%
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -8007,8 +8009,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Health correction: +25%
-Champion / Healing per second: +1.4
+Champion / Health correction: +20%
+Champion / Healing per second: +1
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -8016,7 +8018,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +2.8
+Champion / Healing per second: +2.2
 Run / Income: -2
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
@@ -8025,7 +8027,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.65
+Champion / Armor: +0.55
 Team / Movement speed: -8%
 
 SPECIAL EFFECT
@@ -8058,8 +8060,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Team / Critical chance: +5%
-Team / Attack range: +8%
+Team / Critical chance: +12%
+Team / Attack range: +20%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -8067,8 +8069,9 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / RARE / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack range: +18%
-Team / Knockback: +20%
+Team / Attack range: +30%
+Team / Knockback: +30%
+Team / Damage: +8%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -8076,8 +8079,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / RARE / UNIQUE
 
 WHILE OWNED / per copy
-Run / Gold shop discount: +8%
-Run / Luck: +0.08
+Run / Gold shop discount: +12%
+Run / Luck: +0.15
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -8085,8 +8088,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack speed: +18%
-Team / Damage: +10%
+Team / Attack speed: +10%
+Team / Damage: +8%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -8094,8 +8097,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +12
-Champion / Heart healing: +3
+Champion / Maximum health: +16
+Champion / Heart healing: +4
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -8112,8 +8115,9 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Run / Pickup radius: +0.8
-Run / Treasure detection: +0.1
+Run / Pickup radius: +1.2
+Run / Treasure detection: +0.4
+Run / Luck: +0.1
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -8121,8 +8125,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack range: +10%
-Team / Attack speed: -5%
+Team / Attack range: +30%
+Team / Attack speed: -4%
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -8130,7 +8134,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +0.5
+Champion / Healing per second: +1.8
 Run / Income: -2
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
@@ -8139,8 +8143,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Collision damage: +5
-Team / Movement speed: -4%
+Team / Collision damage: +10
+Team / Movement speed: -3%
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -8148,8 +8152,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Heart healing: +2
-Champion / Maximum health: +10
+Champion / Heart healing: +5
+Champion / Maximum health: +25
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -8158,7 +8162,7 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Maximum health: +20
+Champion / Maximum health: +18
 Run / Income: -2
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8168,8 +8172,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Collision damage: +10
-Champion / Movement speed: -5%
+Champion / Collision damage: +18
+Champion / Movement speed: -4%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8178,7 +8182,7 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Damage: +20%
+Team / Damage: +16%
 Team / Attack speed: -4%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8189,7 +8193,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 
 WHILE OWNED / per copy
 Champion / Healing per second: +1
-Champion / Maximum health: -4
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8207,8 +8211,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Flat ranged damage: +6
-Team / Bullet bounce chance: +25%
+Team / Flat ranged damage: +4
+Team / Bullet bounce chance: +20%
 Team / Damage: -5%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8218,8 +8222,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Flat melee damage: +5
-Team / Critical chance: +6%
+Team / Flat melee damage: +3
+Team / Critical chance: +8%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8237,7 +8241,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack speed: +18%
+Team / Attack speed: +14%
 
 SPECIAL EFFECT
 Next wave: +10% enemy count per purchased copy. Its listed permanent modifiers remain separate.
@@ -8249,8 +8253,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Dodge: +8%
-Run / Luck: +0.06
+Champion / Dodge: +10%
+Run / Luck: +0.08
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8281,7 +8285,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Damage: +24%
+Team / Damage: +18%
 Team / Knockback: +20%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8290,7 +8294,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.4
+Champion / Armor: +0.25
 Run / Luck: -0.08
 
 SPECIAL EFFECT
@@ -8302,8 +8306,8 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Income: +25
-Champion / Bullet split: +2
+Run / Income: +7
+Champion / Bullet split: +1
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8311,7 +8315,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +2
+Champion / Healing per second: +1.6
 
 SPECIAL EFFECT
 Next wave: hero armor -0.8 per purchased copy. Listed recovery modifiers remain separate.
@@ -8325,7 +8329,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 WHILE OWNED / per copy
 Team / Attack range: +40%
 Champion / Projectile count: +1
-Champion / Attack speed: -25%
+Champion / Attack speed: -35%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8345,7 +8349,7 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Attack speed: +24%
+Champion / Attack speed: +30%
 Champion / Collision damage: -1
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8376,7 +8380,8 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Heart healing: +4
+Champion / Heart healing: +8
+Champion / Healing per second: +0.5
 Champion / Movement speed: -5%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8387,7 +8392,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 
 WHILE OWNED / per copy
 Champion / Champion size: -10%
-Run / Luck: +0.3
+Run / Luck: +0.45
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8407,9 +8412,9 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Run / Income: +30
+Run / Income: +10
 Run / Treasure detection: +0.6
-Champion / Armor: -0.3
+Champion / Armor: -0.15
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8430,9 +8435,9 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Damage: +35%
-Team / Movement speed: -20%
-Run / Enemy speed: -20%
+Team / Damage: +25%
+Team / Movement speed: -25%
+Run / Enemy speed: -15%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8466,7 +8471,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +40
+Champion / Maximum health: +24
 
 SPECIAL EFFECT
 When hit, 5% chance to attract all pickups currently on the floor.
@@ -8478,8 +8483,8 @@ CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet pierce: +1
-Team / Critical chance: +15%
-Team / Flat melee damage: -3
+Team / Critical chance: +20%
+Team / Flat melee damage: -2
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8510,9 +8515,9 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Luck: +0.4
-Team / Bullet bounce chance: +20%
-Team / Damage: -6%
+Run / Luck: +0.5
+Team / Bullet bounce chance: +25%
+Team / Damage: -4%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8556,7 +8561,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 
 WHILE OWNED / per copy
 Team / Movement speed: +15%
-Team / Flat melee damage: +7
+Team / Flat melee damage: +9
 Team / Flat ranged damage: -3
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -8635,9 +8640,9 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Healing per second: +2.5
+Champion / Healing per second: +2
 Run / Treasure detection: +0.6
-Run / Enemy speed: +7%
+Run / Enemy speed: +10%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8692,8 +8697,8 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Maximum health: +90
-Champion / Healing per second: -2
+Champion / Maximum health: +55
+Champion / Healing per second: -1.2
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8709,16 +8714,16 @@ Every 3s, all eligible enemies take damage equal to 20% of hero maximum HP per s
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
 ## Mute Clock
-CURIO / MYTHIC / STACKABLE
+CURIO / MYTHIC / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack speed: +45%
-Team / Movement speed: +40%
+Team / Attack speed: +30%
+Team / Movement speed: +25%
 
 SPECIAL EFFECT
 During combat, take 1 injected damage per stack each second. Armor and other injected-damage rules still apply; this differs from hunger's direct HP cost.
 
-Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Urchin Ball
 CURIO / RARE / STACKABLE
@@ -8749,7 +8754,7 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Collision damage: +25
+Champion / Collision damage: +35
 Champion / Knockback: +30%
 Champion / Critical chance: -10%
 
@@ -8783,9 +8788,9 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Critical chance: +20%
+Team / Critical chance: +30%
 Team / Bullet pierce: +1
-Team / Damage: -20%
+Team / Damage: -5%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8793,7 +8798,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: -5
+Champion / Maximum health: -12
 Run / Income: -5
 
 SPECIAL EFFECT
@@ -8832,7 +8837,7 @@ WHILE OWNED / per copy
 Champion / Champion size: +25%
 Champion / Bullet size: +75%
 Champion / Bullet speed: -40%
-Champion / Damage: +100%
+Champion / Damage: +70%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8877,9 +8882,9 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Collision damage: +40
+Champion / Collision damage: +70
 Champion / Collision frequency: +70%
-Team / Flat ranged damage: -10
+Team / Flat ranged damage: -6
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -8941,10 +8946,10 @@ DRINK / MYTHIC / UNIQUE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Damage: +40%
-Team / Critical chance: +20%
-Team / Attack range: +40%
-Champion / Armor: +0.6
+Team / Damage: +20%
+Team / Critical chance: +15%
+Team / Attack range: +20%
+Champion / Armor: +0.2
 Champion / Movement speed: -30%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
@@ -9032,7 +9037,7 @@ FOOD / COMMON / STACKABLE
 ON PURCHASE: counts as 1 food for food-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Critical chance: +6%
+Champion / Critical chance: +32%
 
 Owned effective copies: 1. Values apply before combat limits.
 

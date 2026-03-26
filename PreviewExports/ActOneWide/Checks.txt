@@ -7,11 +7,11 @@ PASS DreamLevitation
 PASS K10
 PASS K16
 PASS K4Arena
-FAIL HeroIdentity: Win32 IO returned 1224. Path: C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\PreviewExports\HeroIdentity\Checks.txt @ at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) [0x0019e] in <f713e1c3c5f545ce9b1df47230f4f853>:0  |   at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options) [0x00000] in <f713e1c3c5f545ce9b1df47230f4f853>:0  |   at (wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions)
+PASS HeroIdentity
 PASS BuildMorph
 PASS K14
 PASS K4Signature
-PASS K4Final
+FAIL K4Final: Coin egg heart credit once; only coin triggers stack healing
 PASS K15Feel
 PASS FeelTelegraph
 PASS HeroAwakening

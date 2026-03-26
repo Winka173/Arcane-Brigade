@@ -54,6 +54,29 @@ MonoBehaviour:
   - Name: BonsaiClocksmith_Awake
     Frames:
     - {fileID: 21300000, guid: 33f857671c0eae743ae5ba10566e6357, type: 3}
+  - Name: BossProp_Coin
+    Frames:
+    - {fileID: 21300000, guid: f3bf611539ff0ea409fee18cb95f3f41, type: 3}
+  - Name: BossProp_Letter
+    Frames:
+    - {fileID: 21300000, guid: 146eece858f95544d8e92252eccefe78, type: 3}
+  - Name: BossProp_OrganPipe
+    Frames:
+    - {fileID: 21300000, guid: 2b8b0e93f3207bc4c9c46b9201daf976, type: 3}
+  - Name: BossProp_Pendulum
+    Frames:
+    - {fileID: 21300000, guid: bee99c74b386e294abbcf3f3339c58b4, type: 3}
+  - Name: BossProp_Sheep
+    Frames:
+    - {fileID: 21300000, guid: 974b5b1bfc1a7404f8b9deb6c90c8e13, type: 3}
+    - {fileID: 21300000, guid: e5d98f317d286d04f9fbb85aa59681bb, type: 3}
+  - Name: BossProp_Suitcase
+    Frames:
+    - {fileID: 21300000, guid: 19a06a6c0071dfc4b9d94a849d6d088b, type: 3}
+    - {fileID: 21300000, guid: 6dbdae1d14776314aa6c10f0c6156b48, type: 3}
+  - Name: BossProp_WaxCrest
+    Frames:
+    - {fileID: 21300000, guid: 6f3ce58283d44004bbeb9fd4429f5fcb, type: 3}
   - Name: BouquetShot
     Frames:
     - {fileID: 21300000, guid: 2526a54f859df5f499b7d387b99acd99, type: 3}
@@ -760,6 +783,12 @@ MonoBehaviour:
   - Name: RainArchivist_Awake_Held
     Frames:
     - {fileID: 21300000, guid: eb4a263c38ad74a47b59de6079b46c97, type: 3}
+  - Name: RareCover_Mythic
+    Frames:
+    - {fileID: 21300000, guid: d15637f39bc4e6341909726f8595bfd0, type: 3}
+  - Name: RareCover_Prismatic
+    Frames:
+    - {fileID: 21300000, guid: 255cf550183331746a95f311b622b7cc, type: 3}
   - Name: RollingPin_Held
     Frames:
     - {fileID: 21300000, guid: a9c1c5a5ed7797048aeed16c5416e46b, type: 3}

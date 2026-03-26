@@ -59,8 +59,12 @@ namespace ArcaneBrigade
 
         /// <summary>Each Arsenal weapon's own painted-ink moment: as it attacks (a swipe, a muzzle puff), when it bursts (a cotton pop,
         /// a gavel's verdict) and when it catches or shocks.</summary>
+        private RangedFeelVisual rangedFeel;
         public void Play(CombatEvent value, float time)
         {
+            // our ranged weapons' feel (flourishes, casings, stuck shots, pierce and bounce marks) sees every step's events
+            if (rangedFeel == null) { rangedFeel = GetComponent<RangedFeelVisual>(); if (rangedFeel == null) rangedFeel = gameObject.AddComponent<RangedFeelVisual>(); }
+            rangedFeel.Observe(value, time);
             if (value.Weapon == null || flashes.Count > 64) return;
             if (PlayOwnLook(value, time)) return;
             if (value.Weapon.Arsenal == ArsenalWeapon.None) return;
@@ -394,10 +398,9 @@ namespace ArcaneBrigade
                         Draw(scoop, air, 0.36f, still ? 0 : t * 360, Order(air));
                         break;
                     }
-                    // landed: a melting puddle in its flavour, the scoop sinking into it
+                    // landed: the scoop squashes flat on what it hit and is gone (no puddle: the splat moment is the Detonation)
                     float life = Mathf.InverseLerp(p.LandAt, p.Until, now);
-                    ink.Pool(at, 0.7f * (still ? 1 : 0.8f + 0.2f * Mathf.Clamp01(life * 6)), Mathf.Clamp01((1 - life) * 3), flavour, p.Born * 50, 0.85f);
-                    Draw(scoop, at + Vector2.up * 0.05f, 0.34f * (1 - 0.6f * life), 0, Order(at), new Color(1, 1, 1, Mathf.Clamp01((1 - life) * 2)), still ? 1 : 1 - 0.35f * life);
+                    Draw(scoop, at + Vector2.up * 0.05f, 0.36f * (1 + 0.25f * life), 0, Order(at), new Color(1, 1, 1, Mathf.Clamp01((1 - life) * 1.5f)), still ? 1 : 1 - 0.55f * life);
                     break;
                 }
                 case ArsenalPropKind.Cuckoo:

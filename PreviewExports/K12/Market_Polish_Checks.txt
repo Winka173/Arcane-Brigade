@@ -1,493 +1,493 @@
 PASS Special inflation gentler than gold wave1
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/0/MushroomLibrarian
-PASS Generated price includes stage, rarity, scoped discount 1/0/k10-attackrange
-PASS Generated price includes stage, rarity, scoped discount 1/0/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 1/0/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 1/0/CurioStormDryer
+PASS Generated price includes stage, rarity, scoped discount 1/0/CurioNoonSpark
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/1/StapleMole
-PASS Generated price includes stage, rarity, scoped discount 1/1/key-oil
-PASS Generated price includes stage, rarity, scoped discount 1/1/coin-compass
+PASS Generated price includes stage, rarity, scoped discount 1/1/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 1/1/pillow-mail
+PASS Generated price includes stage, rarity, scoped discount 1/1/k10-enemycount
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/2/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 1/2/warm-tea
-PASS Generated price includes stage, rarity, scoped discount 1/2/honey-pot
+PASS Generated price includes stage, rarity, scoped discount 1/2/LampGoat
+PASS Generated price includes stage, rarity, scoped discount 1/2/oracle-lens
+PASS Generated price includes stage, rarity, scoped discount 1/2/CurioRetortCup
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/3/JellySwordsman
-PASS Generated price includes stage, rarity, scoped discount 1/3/wandering-map
-PASS Generated price includes stage, rarity, scoped discount 1/3/key-oil
+PASS Generated price includes stage, rarity, scoped discount 1/3/StaticFerret
+PASS Generated price includes stage, rarity, scoped discount 1/3/CurioFangPin
+PASS Generated price includes stage, rarity, scoped discount 1/3/clock-spring
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/4/JellySwordsman
-PASS Generated price includes stage, rarity, scoped discount 1/4/k10-hearthealing
-PASS Generated price includes stage, rarity, scoped discount 1/4/k10-recruitdiscount
+PASS Generated price includes stage, rarity, scoped discount 1/4/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 1/4/pillow-mail
+PASS Generated price includes stage, rarity, scoped discount 1/4/warm-tea
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/5/KettleBat
-PASS Generated price includes stage, rarity, scoped discount 1/5/k10-enemyspeed
-PASS Generated price includes stage, rarity, scoped discount 1/5/k10-collisionfrequency
+PASS Generated price includes stage, rarity, scoped discount 1/5/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 1/5/CurioWatchfulTea
+PASS Generated price includes stage, rarity, scoped discount 1/5/wandering-map
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/6/BreadCrab
-PASS Generated price includes stage, rarity, scoped discount 1/6/honey-pot
-PASS Generated price includes stage, rarity, scoped discount 1/6/k10-dodge
+PASS Generated price includes stage, rarity, scoped discount 1/6/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 1/6/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 1/6/FishCracker
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/7/TinTick
-PASS Generated price includes stage, rarity, scoped discount 1/7/k10-knockback
-PASS Generated price includes stage, rarity, scoped discount 1/7/k10-armorcorrection
+PASS Generated price includes stage, rarity, scoped discount 1/7/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 1/7/CurioNoonSpark
+PASS Generated price includes stage, rarity, scoped discount 1/7/k10-bulletsize
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/8/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 1/8/honey-pot
-PASS Generated price includes stage, rarity, scoped discount 1/8/key-oil
+PASS Generated price includes stage, rarity, scoped discount 1/8/BakerMouse
+PASS Generated price includes stage, rarity, scoped discount 1/8/K26Defense2
+PASS Generated price includes stage, rarity, scoped discount 1/8/felt-boots
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/9/ButtonBeetle
-PASS Generated price includes stage, rarity, scoped discount 1/9/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 1/9/felt-boots
+PASS Generated price includes stage, rarity, scoped discount 1/9/StaticFerret
+PASS Generated price includes stage, rarity, scoped discount 1/9/CurioFangPin
+PASS Generated price includes stage, rarity, scoped discount 1/9/k10-hearthealing
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/10/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 1/10/coin-compass
-PASS Generated price includes stage, rarity, scoped discount 1/10/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 1/10/KettleBat
+PASS Generated price includes stage, rarity, scoped discount 1/10/pillow-mail
+PASS Generated price includes stage, rarity, scoped discount 1/10/k10-hearthealing
 PASS Reroll wave1
-PASS Generated price includes stage, rarity, scoped discount 1/11/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 1/11/k10-scoremultiplier
-PASS Generated price includes stage, rarity, scoped discount 1/11/k10-income
+PASS Generated price includes stage, rarity, scoped discount 1/11/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 1/11/pillow-mail
+PASS Generated price includes stage, rarity, scoped discount 1/11/CurioKindlingGloves
 PASS Resume preserves displayed prices wave1
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/0/PillowOracle
-PASS Generated special price includes stage 1/0/k10-recruitdiscount
-PASS Generated special price includes stage 1/0/coupon-book
+PASS Generated special price includes stage 1/0/k10-income
+PASS Generated special price includes stage 1/0/k10-companionsize
+PASS Generated special price includes stage 1/0/k10-enemyspeed
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/1/PillowOracle
-PASS Generated special price includes stage 1/1/k10-knockback
-PASS Generated special price includes stage 1/1/k10-bodysize
+PASS Generated special price includes stage 1/1/k10-income
+PASS Generated special price includes stage 1/1/k10-income
+PASS Generated special price includes stage 1/1/k10-income
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/2/PillowOracle
-PASS Generated special price includes stage 1/2/k10-enemycount
-PASS Generated special price includes stage 1/2/k10-collisiondamage
+PASS Generated special price includes stage 1/2/k10-enemyspeed
+PASS Generated special price includes stage 1/2/k10-healthcorrection
+PASS Generated special price includes stage 1/2/k10-healthcorrection
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/3/PillowOracle
-PASS Generated special price includes stage 1/3/k10-bulletspeed
-PASS Generated special price includes stage 1/3/k10-armorcorrection
+PASS Generated special price includes stage 1/3/k10-healthcorrection
+PASS Generated special price includes stage 1/3/k10-enemyspeed
+PASS Generated special price includes stage 1/3/k10-income
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/4/PillowOracle
-PASS Generated special price includes stage 1/4/k10-enemycount
-PASS Generated special price includes stage 1/4/marching-bell
+PASS Generated special price includes stage 1/4/k10-income
+PASS Generated special price includes stage 1/4/k10-scoremultiplier
+PASS Generated special price includes stage 1/4/k10-income
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/5/PillowOracle
-PASS Generated special price includes stage 1/5/k10-bulletsize
+PASS Generated special price includes stage 1/5/k10-armorcorrection
+PASS Generated special price includes stage 1/5/k10-income
 PASS Generated special price includes stage 1/5/k10-enemyspeed
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/6/PillowOracle
-PASS Generated special price includes stage 1/6/key-oil
-PASS Generated special price includes stage 1/6/wandering-map
+PASS Generated special price includes stage 1/6/k10-companionsize
+PASS Generated special price includes stage 1/6/k10-companionsize
+PASS Generated special price includes stage 1/6/k10-income
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/7/PillowOracle
-PASS Generated special price includes stage 1/7/k10-bulletspeed
-PASS Generated special price includes stage 1/7/coin-compass
+PASS Generated special price includes stage 1/7/k10-companionsize
+PASS Generated special price includes stage 1/7/k10-income
+PASS Generated special price includes stage 1/7/k10-companionsize
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/8/PillowOracle
-PASS Generated special price includes stage 1/8/piggy-mail
-PASS Generated special price includes stage 1/8/k10-income
+PASS Generated special price includes stage 1/8/k10-armorcorrection
+PASS Generated special price includes stage 1/8/k10-enemyspeed
+PASS Generated special price includes stage 1/8/k10-scoremultiplier
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/9/PillowOracle
-PASS Generated special price includes stage 1/9/key-oil
-PASS Generated special price includes stage 1/9/k10-shoprarity
+PASS Generated special price includes stage 1/9/k10-income
+PASS Generated special price includes stage 1/9/k10-armorcorrection
+PASS Generated special price includes stage 1/9/k10-healthcorrection
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/10/PillowOracle
-PASS Generated special price includes stage 1/10/felt-boots
-PASS Generated special price includes stage 1/10/pillow-mail
+PASS Generated special price includes stage 1/10/k10-income
+PASS Generated special price includes stage 1/10/k10-companionsize
+PASS Generated special price includes stage 1/10/k10-healthcorrection
 PASS Special reroll wave1
-PASS Generated special price includes stage 1/11/PillowOracle
-PASS Generated special price includes stage 1/11/felt-boots
-PASS Generated special price includes stage 1/11/k10-bulletdistance
+PASS Generated special price includes stage 1/11/k10-companionsize
+PASS Generated special price includes stage 1/11/k10-companionsize
+PASS Generated special price includes stage 1/11/k10-enemyspeed
 PASS Special inflation gentler than gold wave5
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/0/RadishJester
-PASS Generated price includes stage, rarity, scoped discount 5/0/treasure-whisper
-PASS Generated price includes stage, rarity, scoped discount 5/0/office-lens
+PASS Generated price includes stage, rarity, scoped discount 5/0/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 5/0/key-oil
+PASS Generated price includes stage, rarity, scoped discount 5/0/CurioRicochetSeltzer
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/1/BreadCrab
-PASS Generated price includes stage, rarity, scoped discount 5/1/k10-rangeddamage
-PASS Generated price includes stage, rarity, scoped discount 5/1/k10-enemyspeed
+PASS Generated price includes stage, rarity, scoped discount 5/1/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 5/1/CurioNoonSpark
+PASS Generated price includes stage, rarity, scoped discount 5/1/k10-knockback
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/2/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 5/2/pillow-mail
-PASS Generated price includes stage, rarity, scoped discount 5/2/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 5/2/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 5/2/CurioWatchfulTea
+PASS Generated price includes stage, rarity, scoped discount 5/2/CurioMeadowTonic
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/3/JellySwordsman
-PASS Generated price includes stage, rarity, scoped discount 5/3/wandering-map
-PASS Generated price includes stage, rarity, scoped discount 5/3/wandering-map
+PASS Generated price includes stage, rarity, scoped discount 5/3/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 5/3/pillow-mail
+PASS Generated price includes stage, rarity, scoped discount 5/3/CurioOrchardFizz
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/4/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 5/4/patch-spring
-PASS Generated price includes stage, rarity, scoped discount 5/4/k10-enemyhealth
+PASS Generated price includes stage, rarity, scoped discount 5/4/StapleMole
+PASS Generated price includes stage, rarity, scoped discount 5/4/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 5/4/wandering-map
 PASS Reroll wave5
 PASS Generated price includes stage, rarity, scoped discount 5/5/KettleBat
-PASS Generated price includes stage, rarity, scoped discount 5/5/k10-enemyhealth
-PASS Generated price includes stage, rarity, scoped discount 5/5/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 5/5/CurioStormDryer
+PASS Generated price includes stage, rarity, scoped discount 5/5/k10-bulletpierce
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/6/StapleMole
-PASS Generated price includes stage, rarity, scoped discount 5/6/clock-spring
-PASS Generated price includes stage, rarity, scoped discount 5/6/treasure-whisper
+PASS Generated price includes stage, rarity, scoped discount 5/6/BreadCrab
+PASS Generated price includes stage, rarity, scoped discount 5/6/CurioNoonSpark
+PASS Generated price includes stage, rarity, scoped discount 5/6/CurioQuietHour
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/7/CitrusToad
-PASS Generated price includes stage, rarity, scoped discount 5/7/royal-key
-PASS Generated price includes stage, rarity, scoped discount 5/7/k10-armorcorrection
+PASS Generated price includes stage, rarity, scoped discount 5/7/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 5/7/K26Defense2
+PASS Generated price includes stage, rarity, scoped discount 5/7/TallyChalk
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/8/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 5/8/piggy-mail
-PASS Generated price includes stage, rarity, scoped discount 5/8/k10-enemyspeed
+PASS Generated price includes stage, rarity, scoped discount 5/8/DreamCompass
+PASS Generated price includes stage, rarity, scoped discount 5/8/clock-spring
+PASS Generated price includes stage, rarity, scoped discount 5/8/k10-relicdiscount
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/9/JellySwordsman
-PASS Generated price includes stage, rarity, scoped discount 5/9/felt-boots
-PASS Generated price includes stage, rarity, scoped discount 5/9/k10-enemyhealth
+PASS Generated price includes stage, rarity, scoped discount 5/9/VelvetEnchantress
+PASS Generated price includes stage, rarity, scoped discount 5/9/FishCracker
+PASS Generated price includes stage, rarity, scoped discount 5/9/OctoberRelic2
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/10/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 5/10/k10-scoremultiplier
-PASS Generated price includes stage, rarity, scoped discount 5/10/k10-attackrange
+PASS Generated price includes stage, rarity, scoped discount 5/10/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 5/10/CurioQuietHour
+PASS Generated price includes stage, rarity, scoped discount 5/10/K26Defense1
 PASS Reroll wave5
-PASS Generated price includes stage, rarity, scoped discount 5/11/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 5/11/pillow-mail
-PASS Generated price includes stage, rarity, scoped discount 5/11/pillow-mail
+PASS Generated price includes stage, rarity, scoped discount 5/11/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 5/11/K26Defense2
+PASS Generated price includes stage, rarity, scoped discount 5/11/CurioMeadowTonic
 PASS Resume preserves displayed prices wave5
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/0/PillowOracle
-PASS Generated special price includes stage 5/0/velvet-first-aid
-PASS Generated special price includes stage 5/0/pillow-mail
+PASS Generated special price includes stage 5/0/SaffronMechanist
+PASS Generated special price includes stage 5/0/k10-scoremultiplier
+PASS Generated special price includes stage 5/0/CurioSplitKernel
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/1/EclipseEgg
-PASS Generated special price includes stage 5/1/long-pocket
-PASS Generated special price includes stage 5/1/k10-enemyspeed
+PASS Generated special price includes stage 5/1/ClockworkPiper
+PASS Generated special price includes stage 5/1/repair-coupon
+PASS Generated special price includes stage 5/1/tea-coaster
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/2/PillowOracle
-PASS Generated special price includes stage 5/2/velvet-first-aid
-PASS Generated special price includes stage 5/2/k10-enemyhealth
+PASS Generated special price includes stage 5/2/LighthouseWhale
+PASS Generated special price includes stage 5/2/k10-income
+PASS Generated special price includes stage 5/2/k10-healthcorrection
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/3/EclipseEgg
-PASS Generated special price includes stage 5/3/key-oil
-PASS Generated special price includes stage 5/3/felt-boots
+PASS Generated special price includes stage 5/3/LighthouseWhale
+PASS Generated special price includes stage 5/3/k10-companionsize
+PASS Generated special price includes stage 5/3/OctoberRelic3
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/4/EclipseEgg
-PASS Generated special price includes stage 5/4/warm-tea
-PASS Generated special price includes stage 5/4/k10-companionsize
+PASS Generated special price includes stage 5/4/SaffronMechanist
+PASS Generated special price includes stage 5/4/k10-income
+PASS Generated special price includes stage 5/4/treasure-ribbon
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/5/EclipseEgg
-PASS Generated special price includes stage 5/5/k10-knockback
-PASS Generated special price includes stage 5/5/clock-spring
+PASS Generated special price includes stage 5/5/TeaDragon
+PASS Generated special price includes stage 5/5/k10-companionsize
+PASS Generated special price includes stage 5/5/harvest-receipt
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/6/EclipseEgg
-PASS Generated special price includes stage 5/6/k10-collisiondamage
-PASS Generated special price includes stage 5/6/velvet-first-aid
+PASS Generated special price includes stage 5/6/CoilKettle
+PASS Generated special price includes stage 5/6/treasure-ribbon
+PASS Generated special price includes stage 5/6/k10-healthcorrection
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/7/EclipseEgg
-PASS Generated special price includes stage 5/7/honey-pot
-PASS Generated special price includes stage 5/7/coin-salve
+PASS Generated special price includes stage 5/7/CoilKettle
+PASS Generated special price includes stage 5/7/k10-healthcorrection
+PASS Generated special price includes stage 5/7/k10-income
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/8/EclipseEgg
-PASS Generated special price includes stage 5/8/royal-key
-PASS Generated special price includes stage 5/8/long-pocket
+PASS Generated special price includes stage 5/8/CoilKettle
+PASS Generated special price includes stage 5/8/k10-healthcorrection
+PASS Generated special price includes stage 5/8/scratch-record
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/9/EclipseEgg
-PASS Generated special price includes stage 5/9/wandering-map
-PASS Generated special price includes stage 5/9/k10-knockback
+PASS Generated special price includes stage 5/9/CoilKettle
+PASS Generated special price includes stage 5/9/tea-coaster
+PASS Generated special price includes stage 5/9/k10-scoremultiplier
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/10/EclipseEgg
-PASS Generated special price includes stage 5/10/k10-bulletspeed
-PASS Generated special price includes stage 5/10/k10-shoprarity
+PASS Generated special price includes stage 5/10/CoilKettle
+PASS Generated special price includes stage 5/10/k10-income
+PASS Generated special price includes stage 5/10/scratch-record
 PASS Special reroll wave5
-PASS Generated special price includes stage 5/11/EclipseEgg
-PASS Generated special price includes stage 5/11/coin-salve
-PASS Generated special price includes stage 5/11/reflective-ink
+PASS Generated special price includes stage 5/11/ClockworkPiper
+PASS Generated special price includes stage 5/11/k10-healthcorrection
+PASS Generated special price includes stage 5/11/k10-enemyspeed
 PASS Special inflation gentler than gold wave10
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/0/RadishJester
-PASS Generated price includes stage, rarity, scoped discount 10/0/carbon-ribbon
-PASS Generated price includes stage, rarity, scoped discount 10/0/chest-thunder
+PASS Generated price includes stage, rarity, scoped discount 10/0/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 10/0/CurioOrchardFizz
+PASS Generated price includes stage, rarity, scoped discount 10/0/felt-boots
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/1/CoilKettle
-PASS Generated price includes stage, rarity, scoped discount 10/1/key-oil
-PASS Generated price includes stage, rarity, scoped discount 10/1/k10-chestquality
+PASS Generated price includes stage, rarity, scoped discount 10/1/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 10/1/fortune-egg
+PASS Generated price includes stage, rarity, scoped discount 10/1/CurioNoonSpark
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/2/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 10/2/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 10/2/coin-compass
+PASS Generated price includes stage, rarity, scoped discount 10/2/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 10/2/K26Defense1
+PASS Generated price includes stage, rarity, scoped discount 10/2/CurioGraveChime
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/3/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 10/3/k10-enemyspeed
-PASS Generated price includes stage, rarity, scoped discount 10/3/patch-spring
+PASS Generated price includes stage, rarity, scoped discount 10/3/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 10/3/CurioRicochetSeltzer
+PASS Generated price includes stage, rarity, scoped discount 10/3/CurioRetortCup
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/4/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 10/4/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 10/4/tea-coaster
+PASS Generated price includes stage, rarity, scoped discount 10/4/StapleMole
+PASS Generated price includes stage, rarity, scoped discount 10/4/CurioTruceBottle
+PASS Generated price includes stage, rarity, scoped discount 10/4/k10-bulletsize
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/5/DiceCrab
-PASS Generated price includes stage, rarity, scoped discount 10/5/velvet-first-aid
-PASS Generated price includes stage, rarity, scoped discount 10/5/k10-bulletbounce
+PASS Generated price includes stage, rarity, scoped discount 10/5/KettleBat
+PASS Generated price includes stage, rarity, scoped discount 10/5/brigade-banner
+PASS Generated price includes stage, rarity, scoped discount 10/5/CurioBentTape
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/6/SockCyclops
-PASS Generated price includes stage, rarity, scoped discount 10/6/twin-seal
-PASS Generated price includes stage, rarity, scoped discount 10/6/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 10/6/BreadCrab
+PASS Generated price includes stage, rarity, scoped discount 10/6/k10-attackrange
+PASS Generated price includes stage, rarity, scoped discount 10/6/CurioSleepyMist
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/7/TinTick
-PASS Generated price includes stage, rarity, scoped discount 10/7/brigade-banner
-PASS Generated price includes stage, rarity, scoped discount 10/7/velvet-first-aid
+PASS Generated price includes stage, rarity, scoped discount 10/7/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 10/7/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 10/7/CoinSash
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/8/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 10/8/clock-spring
-PASS Generated price includes stage, rarity, scoped discount 10/8/felt-boots
+PASS Generated price includes stage, rarity, scoped discount 10/8/DreamCompass
+PASS Generated price includes stage, rarity, scoped discount 10/8/brigade-banner
+PASS Generated price includes stage, rarity, scoped discount 10/8/k10-bulletsize
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/9/ButtonBeetle
-PASS Generated price includes stage, rarity, scoped discount 10/9/reflective-ink
-PASS Generated price includes stage, rarity, scoped discount 10/9/k10-bulletsplit
+PASS Generated price includes stage, rarity, scoped discount 10/9/VelvetEnchantress
+PASS Generated price includes stage, rarity, scoped discount 10/9/K26Defense0
+PASS Generated price includes stage, rarity, scoped discount 10/9/k10-collisiondamage
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/10/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 10/10/k10-enemyhealth
-PASS Generated price includes stage, rarity, scoped discount 10/10/repair-coupon
+PASS Generated price includes stage, rarity, scoped discount 10/10/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 10/10/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 10/10/velvet-first-aid
 PASS Reroll wave10
-PASS Generated price includes stage, rarity, scoped discount 10/11/MirrorNewt
-PASS Generated price includes stage, rarity, scoped discount 10/11/k10-healcorrection
-PASS Generated price includes stage, rarity, scoped discount 10/11/treasure-whisper
+PASS Generated price includes stage, rarity, scoped discount 10/11/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 10/11/wandering-map
+PASS Generated price includes stage, rarity, scoped discount 10/11/CurioEmberEspresso
 PASS Resume preserves displayed prices wave10
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/0/PillowOracle
-PASS Generated special price includes stage 10/0/k10-income
-PASS Generated special price includes stage 10/0/marching-bell
+PASS Generated special price includes stage 10/0/SaffronMechanist
+PASS Generated special price includes stage 10/0/K26Defense6
+PASS Generated special price includes stage 10/0/k10-enemyspeed
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/1/EclipseEgg
-PASS Generated special price includes stage 10/1/piggy-mail
-PASS Generated special price includes stage 10/1/k10-bodysize
+PASS Generated special price includes stage 10/1/ClockworkPiper
+PASS Generated special price includes stage 10/1/k10-income
+PASS Generated special price includes stage 10/1/tea-coaster
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/2/PillowOracle
-PASS Generated special price includes stage 10/2/key-oil
-PASS Generated special price includes stage 10/2/k10-scoremultiplier
+PASS Generated special price includes stage 10/2/LighthouseWhale
+PASS Generated special price includes stage 10/2/k10-healthcorrection
+PASS Generated special price includes stage 10/2/treasure-ribbon
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/3/EclipseEgg
-PASS Generated special price includes stage 10/3/felt-boots
-PASS Generated special price includes stage 10/3/treasure-ribbon
+PASS Generated special price includes stage 10/3/LighthouseWhale
+PASS Generated special price includes stage 10/3/k10-enemyspeed
+PASS Generated special price includes stage 10/3/scratch-record
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/4/EclipseEgg
-PASS Generated special price includes stage 10/4/k10-collisiondamage
-PASS Generated special price includes stage 10/4/k10-attackrange
+PASS Generated special price includes stage 10/4/SaffronMechanist
+PASS Generated special price includes stage 10/4/k10-enemyspeed
+PASS Generated special price includes stage 10/4/repair-coupon
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/5/EclipseEgg
-PASS Generated special price includes stage 10/5/tea-coaster
-PASS Generated special price includes stage 10/5/k10-enemycount
+PASS Generated special price includes stage 10/5/TeaDragon
+PASS Generated special price includes stage 10/5/long-atlas
+PASS Generated special price includes stage 10/5/k10-healthcorrection
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/6/EclipseEgg
-PASS Generated special price includes stage 10/6/key-oil
-PASS Generated special price includes stage 10/6/piggy-mail
+PASS Generated special price includes stage 10/6/CoilKettle
+PASS Generated special price includes stage 10/6/k10-enemyspeed
+PASS Generated special price includes stage 10/6/k10-companionsize
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/7/EclipseEgg
-PASS Generated special price includes stage 10/7/k10-bulletspeed
-PASS Generated special price includes stage 10/7/coupon-book
+PASS Generated special price includes stage 10/7/CoilKettle
+PASS Generated special price includes stage 10/7/OctoberRelic3
+PASS Generated special price includes stage 10/7/k10-enemyspeed
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/8/EclipseEgg
-PASS Generated special price includes stage 10/8/clock-spring
-PASS Generated special price includes stage 10/8/k10-enemyhealth
+PASS Generated special price includes stage 10/8/CoilKettle
+PASS Generated special price includes stage 10/8/k10-companionsize
+PASS Generated special price includes stage 10/8/scratch-record
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/9/EclipseEgg
-PASS Generated special price includes stage 10/9/clock-spring
-PASS Generated special price includes stage 10/9/k10-rangeddamage
+PASS Generated special price includes stage 10/9/CoilKettle
+PASS Generated special price includes stage 10/9/k10-armorcorrection
+PASS Generated special price includes stage 10/9/tea-coaster
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/10/EclipseEgg
-PASS Generated special price includes stage 10/10/k10-collisionfrequency
-PASS Generated special price includes stage 10/10/clock-spring
+PASS Generated special price includes stage 10/10/CoilKettle
+PASS Generated special price includes stage 10/10/repair-coupon
+PASS Generated special price includes stage 10/10/treasure-ribbon
 PASS Special reroll wave10
-PASS Generated special price includes stage 10/11/EclipseEgg
-PASS Generated special price includes stage 10/11/k10-enemyhealth
-PASS Generated special price includes stage 10/11/k10-shoprarity
+PASS Generated special price includes stage 10/11/ClockworkPiper
+PASS Generated special price includes stage 10/11/K26Defense6
+PASS Generated special price includes stage 10/11/k10-scoremultiplier
 PASS Special inflation gentler than gold wave20
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/0/RadishJester
-PASS Generated price includes stage, rarity, scoped discount 20/0/carbon-ribbon
-PASS Generated price includes stage, rarity, scoped discount 20/0/chest-thunder
+PASS Generated price includes stage, rarity, scoped discount 20/0/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 20/0/CurioOrchardFizz
+PASS Generated price includes stage, rarity, scoped discount 20/0/felt-boots
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/1/CoilKettle
-PASS Generated price includes stage, rarity, scoped discount 20/1/key-oil
-PASS Generated price includes stage, rarity, scoped discount 20/1/k10-chestquality
+PASS Generated price includes stage, rarity, scoped discount 20/1/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 20/1/fortune-egg
+PASS Generated price includes stage, rarity, scoped discount 20/1/CurioNoonSpark
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/2/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 20/2/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 20/2/coin-compass
+PASS Generated price includes stage, rarity, scoped discount 20/2/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 20/2/K26Defense1
+PASS Generated price includes stage, rarity, scoped discount 20/2/CurioGraveChime
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/3/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 20/3/k10-enemyspeed
-PASS Generated price includes stage, rarity, scoped discount 20/3/patch-spring
+PASS Generated price includes stage, rarity, scoped discount 20/3/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 20/3/CurioRicochetSeltzer
+PASS Generated price includes stage, rarity, scoped discount 20/3/CurioRetortCup
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/4/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 20/4/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 20/4/tea-coaster
+PASS Generated price includes stage, rarity, scoped discount 20/4/StapleMole
+PASS Generated price includes stage, rarity, scoped discount 20/4/CurioTruceBottle
+PASS Generated price includes stage, rarity, scoped discount 20/4/k10-bulletsize
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/5/DiceCrab
-PASS Generated price includes stage, rarity, scoped discount 20/5/velvet-first-aid
-PASS Generated price includes stage, rarity, scoped discount 20/5/k10-bulletbounce
+PASS Generated price includes stage, rarity, scoped discount 20/5/KettleBat
+PASS Generated price includes stage, rarity, scoped discount 20/5/brigade-banner
+PASS Generated price includes stage, rarity, scoped discount 20/5/CurioBentTape
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/6/SockCyclops
-PASS Generated price includes stage, rarity, scoped discount 20/6/twin-seal
-PASS Generated price includes stage, rarity, scoped discount 20/6/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 20/6/BreadCrab
+PASS Generated price includes stage, rarity, scoped discount 20/6/k10-attackrange
+PASS Generated price includes stage, rarity, scoped discount 20/6/CurioSleepyMist
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/7/TinTick
-PASS Generated price includes stage, rarity, scoped discount 20/7/brigade-banner
-PASS Generated price includes stage, rarity, scoped discount 20/7/velvet-first-aid
+PASS Generated price includes stage, rarity, scoped discount 20/7/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 20/7/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 20/7/CoinSash
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/8/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 20/8/clock-spring
-PASS Generated price includes stage, rarity, scoped discount 20/8/felt-boots
+PASS Generated price includes stage, rarity, scoped discount 20/8/DreamCompass
+PASS Generated price includes stage, rarity, scoped discount 20/8/brigade-banner
+PASS Generated price includes stage, rarity, scoped discount 20/8/k10-bulletsize
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/9/ButtonBeetle
-PASS Generated price includes stage, rarity, scoped discount 20/9/reflective-ink
-PASS Generated price includes stage, rarity, scoped discount 20/9/k10-bulletsplit
+PASS Generated price includes stage, rarity, scoped discount 20/9/VelvetEnchantress
+PASS Generated price includes stage, rarity, scoped discount 20/9/K26Defense0
+PASS Generated price includes stage, rarity, scoped discount 20/9/k10-collisiondamage
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/10/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 20/10/k10-enemyhealth
-PASS Generated price includes stage, rarity, scoped discount 20/10/repair-coupon
+PASS Generated price includes stage, rarity, scoped discount 20/10/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 20/10/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 20/10/velvet-first-aid
 PASS Reroll wave20
-PASS Generated price includes stage, rarity, scoped discount 20/11/MirrorNewt
-PASS Generated price includes stage, rarity, scoped discount 20/11/k10-healcorrection
-PASS Generated price includes stage, rarity, scoped discount 20/11/treasure-whisper
+PASS Generated price includes stage, rarity, scoped discount 20/11/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 20/11/wandering-map
+PASS Generated price includes stage, rarity, scoped discount 20/11/CurioEmberEspresso
 PASS Resume preserves displayed prices wave20
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/0/PillowOracle
-PASS Generated special price includes stage 20/0/k10-income
-PASS Generated special price includes stage 20/0/marching-bell
+PASS Generated special price includes stage 20/0/SaffronMechanist
+PASS Generated special price includes stage 20/0/K26Defense6
+PASS Generated special price includes stage 20/0/k10-enemyspeed
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/1/EclipseEgg
-PASS Generated special price includes stage 20/1/piggy-mail
-PASS Generated special price includes stage 20/1/k10-bodysize
+PASS Generated special price includes stage 20/1/ClockworkPiper
+PASS Generated special price includes stage 20/1/k10-income
+PASS Generated special price includes stage 20/1/tea-coaster
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/2/PillowOracle
-PASS Generated special price includes stage 20/2/key-oil
-PASS Generated special price includes stage 20/2/k10-scoremultiplier
+PASS Generated special price includes stage 20/2/LighthouseWhale
+PASS Generated special price includes stage 20/2/k10-healthcorrection
+PASS Generated special price includes stage 20/2/treasure-ribbon
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/3/EclipseEgg
-PASS Generated special price includes stage 20/3/felt-boots
-PASS Generated special price includes stage 20/3/treasure-ribbon
+PASS Generated special price includes stage 20/3/LighthouseWhale
+PASS Generated special price includes stage 20/3/k10-enemyspeed
+PASS Generated special price includes stage 20/3/scratch-record
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/4/EclipseEgg
-PASS Generated special price includes stage 20/4/k10-collisiondamage
-PASS Generated special price includes stage 20/4/k10-attackrange
+PASS Generated special price includes stage 20/4/SaffronMechanist
+PASS Generated special price includes stage 20/4/k10-enemyspeed
+PASS Generated special price includes stage 20/4/repair-coupon
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/5/EclipseEgg
-PASS Generated special price includes stage 20/5/tea-coaster
-PASS Generated special price includes stage 20/5/k10-enemycount
+PASS Generated special price includes stage 20/5/TeaDragon
+PASS Generated special price includes stage 20/5/long-atlas
+PASS Generated special price includes stage 20/5/k10-healthcorrection
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/6/EclipseEgg
-PASS Generated special price includes stage 20/6/key-oil
-PASS Generated special price includes stage 20/6/piggy-mail
+PASS Generated special price includes stage 20/6/CoilKettle
+PASS Generated special price includes stage 20/6/k10-enemyspeed
+PASS Generated special price includes stage 20/6/k10-companionsize
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/7/EclipseEgg
-PASS Generated special price includes stage 20/7/k10-bulletspeed
-PASS Generated special price includes stage 20/7/coupon-book
+PASS Generated special price includes stage 20/7/CoilKettle
+PASS Generated special price includes stage 20/7/OctoberRelic3
+PASS Generated special price includes stage 20/7/k10-enemyspeed
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/8/EclipseEgg
-PASS Generated special price includes stage 20/8/clock-spring
-PASS Generated special price includes stage 20/8/k10-enemyhealth
+PASS Generated special price includes stage 20/8/CoilKettle
+PASS Generated special price includes stage 20/8/k10-companionsize
+PASS Generated special price includes stage 20/8/scratch-record
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/9/EclipseEgg
-PASS Generated special price includes stage 20/9/clock-spring
-PASS Generated special price includes stage 20/9/k10-rangeddamage
+PASS Generated special price includes stage 20/9/CoilKettle
+PASS Generated special price includes stage 20/9/k10-armorcorrection
+PASS Generated special price includes stage 20/9/tea-coaster
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/10/EclipseEgg
-PASS Generated special price includes stage 20/10/k10-collisionfrequency
-PASS Generated special price includes stage 20/10/clock-spring
+PASS Generated special price includes stage 20/10/CoilKettle
+PASS Generated special price includes stage 20/10/repair-coupon
+PASS Generated special price includes stage 20/10/treasure-ribbon
 PASS Special reroll wave20
-PASS Generated special price includes stage 20/11/EclipseEgg
-PASS Generated special price includes stage 20/11/k10-enemyhealth
-PASS Generated special price includes stage 20/11/k10-shoprarity
+PASS Generated special price includes stage 20/11/ClockworkPiper
+PASS Generated special price includes stage 20/11/K26Defense6
+PASS Generated special price includes stage 20/11/k10-scoremultiplier
 PASS Special inflation gentler than gold wave50
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/0/RadishJester
-PASS Generated price includes stage, rarity, scoped discount 50/0/carbon-ribbon
-PASS Generated price includes stage, rarity, scoped discount 50/0/chest-thunder
+PASS Generated price includes stage, rarity, scoped discount 50/0/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 50/0/CurioOrchardFizz
+PASS Generated price includes stage, rarity, scoped discount 50/0/felt-boots
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/1/CoilKettle
-PASS Generated price includes stage, rarity, scoped discount 50/1/key-oil
-PASS Generated price includes stage, rarity, scoped discount 50/1/k10-chestquality
+PASS Generated price includes stage, rarity, scoped discount 50/1/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 50/1/fortune-egg
+PASS Generated price includes stage, rarity, scoped discount 50/1/CurioNoonSpark
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/2/SpringDuck
-PASS Generated price includes stage, rarity, scoped discount 50/2/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 50/2/coin-compass
+PASS Generated price includes stage, rarity, scoped discount 50/2/BottleGull
+PASS Generated price includes stage, rarity, scoped discount 50/2/K26Defense1
+PASS Generated price includes stage, rarity, scoped discount 50/2/CurioGraveChime
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/3/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 50/3/k10-enemyspeed
-PASS Generated price includes stage, rarity, scoped discount 50/3/patch-spring
+PASS Generated price includes stage, rarity, scoped discount 50/3/SpringDuck
+PASS Generated price includes stage, rarity, scoped discount 50/3/CurioRicochetSeltzer
+PASS Generated price includes stage, rarity, scoped discount 50/3/CurioRetortCup
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/4/SeedHedgehog
-PASS Generated price includes stage, rarity, scoped discount 50/4/k10-companionsize
-PASS Generated price includes stage, rarity, scoped discount 50/4/tea-coaster
+PASS Generated price includes stage, rarity, scoped discount 50/4/StapleMole
+PASS Generated price includes stage, rarity, scoped discount 50/4/CurioTruceBottle
+PASS Generated price includes stage, rarity, scoped discount 50/4/k10-bulletsize
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/5/DiceCrab
-PASS Generated price includes stage, rarity, scoped discount 50/5/velvet-first-aid
-PASS Generated price includes stage, rarity, scoped discount 50/5/k10-bulletbounce
+PASS Generated price includes stage, rarity, scoped discount 50/5/KettleBat
+PASS Generated price includes stage, rarity, scoped discount 50/5/brigade-banner
+PASS Generated price includes stage, rarity, scoped discount 50/5/CurioBentTape
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/6/SockCyclops
-PASS Generated price includes stage, rarity, scoped discount 50/6/twin-seal
-PASS Generated price includes stage, rarity, scoped discount 50/6/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 50/6/BreadCrab
+PASS Generated price includes stage, rarity, scoped discount 50/6/k10-attackrange
+PASS Generated price includes stage, rarity, scoped discount 50/6/CurioSleepyMist
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/7/TinTick
-PASS Generated price includes stage, rarity, scoped discount 50/7/brigade-banner
-PASS Generated price includes stage, rarity, scoped discount 50/7/velvet-first-aid
+PASS Generated price includes stage, rarity, scoped discount 50/7/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 50/7/marching-bell
+PASS Generated price includes stage, rarity, scoped discount 50/7/CoinSash
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/8/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 50/8/clock-spring
-PASS Generated price includes stage, rarity, scoped discount 50/8/felt-boots
+PASS Generated price includes stage, rarity, scoped discount 50/8/DreamCompass
+PASS Generated price includes stage, rarity, scoped discount 50/8/brigade-banner
+PASS Generated price includes stage, rarity, scoped discount 50/8/k10-bulletsize
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/9/ButtonBeetle
-PASS Generated price includes stage, rarity, scoped discount 50/9/reflective-ink
-PASS Generated price includes stage, rarity, scoped discount 50/9/k10-bulletsplit
+PASS Generated price includes stage, rarity, scoped discount 50/9/VelvetEnchantress
+PASS Generated price includes stage, rarity, scoped discount 50/9/K26Defense0
+PASS Generated price includes stage, rarity, scoped discount 50/9/k10-collisiondamage
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/10/TeapotPilgrim
-PASS Generated price includes stage, rarity, scoped discount 50/10/k10-enemyhealth
-PASS Generated price includes stage, rarity, scoped discount 50/10/repair-coupon
+PASS Generated price includes stage, rarity, scoped discount 50/10/CandleSnail
+PASS Generated price includes stage, rarity, scoped discount 50/10/warm-tea
+PASS Generated price includes stage, rarity, scoped discount 50/10/velvet-first-aid
 PASS Reroll wave50
-PASS Generated price includes stage, rarity, scoped discount 50/11/MirrorNewt
-PASS Generated price includes stage, rarity, scoped discount 50/11/k10-healcorrection
-PASS Generated price includes stage, rarity, scoped discount 50/11/treasure-whisper
+PASS Generated price includes stage, rarity, scoped discount 50/11/ButtonBeetle
+PASS Generated price includes stage, rarity, scoped discount 50/11/wandering-map
+PASS Generated price includes stage, rarity, scoped discount 50/11/CurioEmberEspresso
 PASS Resume preserves displayed prices wave50
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/0/PillowOracle
-PASS Generated special price includes stage 50/0/k10-income
-PASS Generated special price includes stage 50/0/marching-bell
+PASS Generated special price includes stage 50/0/SaffronMechanist
+PASS Generated special price includes stage 50/0/K26Defense6
+PASS Generated special price includes stage 50/0/k10-enemyspeed
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/1/EclipseEgg
-PASS Generated special price includes stage 50/1/piggy-mail
-PASS Generated special price includes stage 50/1/k10-bodysize
+PASS Generated special price includes stage 50/1/ClockworkPiper
+PASS Generated special price includes stage 50/1/k10-income
+PASS Generated special price includes stage 50/1/tea-coaster
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/2/PillowOracle
-PASS Generated special price includes stage 50/2/key-oil
-PASS Generated special price includes stage 50/2/k10-scoremultiplier
+PASS Generated special price includes stage 50/2/LighthouseWhale
+PASS Generated special price includes stage 50/2/k10-healthcorrection
+PASS Generated special price includes stage 50/2/treasure-ribbon
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/3/EclipseEgg
-PASS Generated special price includes stage 50/3/felt-boots
-PASS Generated special price includes stage 50/3/treasure-ribbon
+PASS Generated special price includes stage 50/3/LighthouseWhale
+PASS Generated special price includes stage 50/3/k10-enemyspeed
+PASS Generated special price includes stage 50/3/scratch-record
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/4/EclipseEgg
-PASS Generated special price includes stage 50/4/k10-collisiondamage
-PASS Generated special price includes stage 50/4/k10-attackrange
+PASS Generated special price includes stage 50/4/SaffronMechanist
+PASS Generated special price includes stage 50/4/k10-enemyspeed
+PASS Generated special price includes stage 50/4/repair-coupon
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/5/EclipseEgg
-PASS Generated special price includes stage 50/5/tea-coaster
-PASS Generated special price includes stage 50/5/k10-enemycount
+PASS Generated special price includes stage 50/5/TeaDragon
+PASS Generated special price includes stage 50/5/long-atlas
+PASS Generated special price includes stage 50/5/k10-healthcorrection
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/6/EclipseEgg
-PASS Generated special price includes stage 50/6/key-oil
-PASS Generated special price includes stage 50/6/piggy-mail
+PASS Generated special price includes stage 50/6/CoilKettle
+PASS Generated special price includes stage 50/6/k10-enemyspeed
+PASS Generated special price includes stage 50/6/k10-companionsize
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/7/EclipseEgg
-PASS Generated special price includes stage 50/7/k10-bulletspeed
-PASS Generated special price includes stage 50/7/coupon-book
+PASS Generated special price includes stage 50/7/CoilKettle
+PASS Generated special price includes stage 50/7/OctoberRelic3
+PASS Generated special price includes stage 50/7/k10-enemyspeed
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/8/EclipseEgg
-PASS Generated special price includes stage 50/8/clock-spring
-PASS Generated special price includes stage 50/8/k10-enemyhealth
+PASS Generated special price includes stage 50/8/CoilKettle
+PASS Generated special price includes stage 50/8/k10-companionsize
+PASS Generated special price includes stage 50/8/scratch-record
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/9/EclipseEgg
-PASS Generated special price includes stage 50/9/clock-spring
-PASS Generated special price includes stage 50/9/k10-rangeddamage
+PASS Generated special price includes stage 50/9/CoilKettle
+PASS Generated special price includes stage 50/9/k10-armorcorrection
+PASS Generated special price includes stage 50/9/tea-coaster
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/10/EclipseEgg
-PASS Generated special price includes stage 50/10/k10-collisionfrequency
-PASS Generated special price includes stage 50/10/clock-spring
+PASS Generated special price includes stage 50/10/CoilKettle
+PASS Generated special price includes stage 50/10/repair-coupon
+PASS Generated special price includes stage 50/10/treasure-ribbon
 PASS Special reroll wave50
-PASS Generated special price includes stage 50/11/EclipseEgg
-PASS Generated special price includes stage 50/11/k10-enemyhealth
-PASS Generated special price includes stage 50/11/k10-shoprarity
+PASS Generated special price includes stage 50/11/ClockworkPiper
+PASS Generated special price includes stage 50/11/K26Defense6
+PASS Generated special price includes stage 50/11/k10-scoremultiplier
 PASS Interaction waits for last stock landing
 PASS Wave waits for merchant departure
 PASS Wave waits for rolled carpet

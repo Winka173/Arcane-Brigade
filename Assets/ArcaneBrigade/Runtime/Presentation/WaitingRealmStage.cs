@@ -88,11 +88,14 @@ namespace ArcaneBrigade
             if (chair.enabled)
             {
                 Vector2 position = state.Phase == SessionPhase.Shop ? ChairAnchor : new Vector2(0, owner.WorldBounds.y * .5f - .8f);
+                // in a fight the arena layout seats it first (so it always has room), near the far edge
+                float fit = 1;
+                if (state.Phase != SessionPhase.Shop) ArenaLayout.Place(owner, "chair", ref position, out fit);
                 int lies = ShopChair ? ActOneCanon.ChairOffering(state.Wave, MienChoStory.Choice(state, 8)) : 0;
                 if (ShopChair && GetComponent<ActOneCustomerVisits>()?.DeferOffering == true) lies = 0;
                 Sprite shown = lies > 0 && offerings[lies] != null ? offerings[lies] : warm != null ? warm : fallback;
                 if (chair.sprite != shown) chair.sprite = shown;
-                chair.transform.localScale = Vector3.one * (ChairHeight / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(chair.sprite).height));
+                chair.transform.localScale = Vector3.one * (ChairHeight * fit / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(chair.sprite).height));
                 chair.sortingOrder = WorldSpriteGrounding.SortAt(position.y);
                 // The unreachable seat is a narrative landmark, never a hidden threat.
                 chair.color = dawn ? new Color(1, .95f, .86f) : Color.Lerp(new Color(.85f, .78f, .69f), new Color(.24f, .22f, .3f), NightmareRules.Depth(state.Wave) / 4f);
@@ -152,7 +155,7 @@ namespace ArcaneBrigade
             if (!asking)
             {
                 // before the eighth shop it only answers with the shopkeeper's warning
-                string said = !available ? (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Won ? "only a chair now." : "not that one." : "sit down?   [Space / A]";
+                string said = !available ? (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Won ? "only a chair now." : "not that one." : "sit down?";
                 Rect tag = new Rect(Mathf.Clamp(x - 150, 20, 1600), Mathf.Clamp(y + 30, 180, 960), 300, 46);
                 ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Wax);
                 hand.normal.textColor = new Color(.25f, .19f, .14f);
@@ -170,9 +173,9 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(card.x + 50, card.y + 190, card.width - 100, 110),
                     "HIDDEN FIGHT · THE NIGHT YOU HID\nThe Bedside and the travellers it wakes fight like wave " + (state.Wave + ActOneCanon.SitWaveBonus) + ". Defeat it before the knocking stops (" + Mathf.RoundToInt(ActOneCanon.KnockSeconds) + " s).\nIf you lose, the journey ends here. Only once per journey.", plain);
                 ArcadeSkin.Plate(new Rect(card.x + 60, card.yMax - 100, 320, 64), ArcadeSkin.Danger);
-                if (GUI.Button(new Rect(card.x + 60, card.yMax - 100, 320, 64), "SIT DOWN  [Space]", choice)) Sit();
+                if (GUI.Button(new Rect(card.x + 60, card.yMax - 100, 320, 64), "SIT DOWN", choice)) Sit();
                 ArcadeSkin.Plate(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), ArcadeSkin.Teal);
-                if (GUI.Button(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), "STEP AWAY  [Esc]", choice)) asking = false;
+                if (GUI.Button(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), "STEP AWAY", choice)) asking = false;
             }
             GUI.matrix = previous;
         }

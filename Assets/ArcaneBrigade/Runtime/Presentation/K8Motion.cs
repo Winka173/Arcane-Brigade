@@ -73,10 +73,12 @@ namespace ArcaneBrigade
             float recoil = preparing ? 0.06f * charge : Mathf.Lerp(0.06f, -0.08f, release) * settle;
             float lift = 0;
             WeaponMotion motion = weapon.Motion;
+            // a shot's heft (RangedFeel): a gumball flick barely kicks, a cannon shoves the holder back and its barrel climbs
+            float kick = weapon.Kind == WeaponKind.Projectile ? weapon.RecoilDistance * RangedFeel.RecoilScale(weapon) : weapon.RecoilDistance;
             if (weapon.Kind == WeaponKind.Projectile)
             {
-                angle = preparing ? -8 * charge : Mathf.Lerp(-8, 8, release) * settle;
-                recoil = preparing ? -0.025f * charge : Mathf.Lerp(-0.025f, weapon.RecoilDistance, release) * settle;
+                angle = preparing ? -8 * charge : Mathf.Lerp(-8, RangedFeel.TiltDegrees(weapon), release) * settle;
+                recoil = preparing ? -0.025f * charge : Mathf.Lerp(-0.025f, kick, release) * settle;
             }
             if (motion == WeaponMotion.Thrust || motion == WeaponMotion.Stamp || motion == WeaponMotion.Iron)
             {
@@ -97,7 +99,7 @@ namespace ArcaneBrigade
             if (motion == WeaponMotion.Bow)
             {
                 angle = 0;
-                recoil = preparing ? 0.06f * charge : Mathf.Lerp(0.06f, weapon.RecoilDistance, release) * settle;
+                recoil = preparing ? 0.06f * charge : Mathf.Lerp(0.06f, kick, release) * settle;
             }
             if (motion == WeaponMotion.Bell || weapon.Family == ExpandedWeapon.Alarm)
                 angle = preparing ? -16 * charge : Mathf.Lerp(-16, Mathf.Sin(recovery * Mathf.PI * 6) * 16, release) * settle;
@@ -142,7 +144,7 @@ namespace ArcaneBrigade
                 recoil = preparing ? -0.04f * charge : 0.14f * settle;
             if (!preparing)
             {
-                float weight = motion == WeaponMotion.Hammer || motion == WeaponMotion.Slam || motion == WeaponMotion.Stamp ? 1 : motion == WeaponMotion.Recoil ? .45f : .25f;
+                float weight = motion == WeaponMotion.Hammer || motion == WeaponMotion.Slam || motion == WeaponMotion.Stamp ? 1 : motion == WeaponMotion.Recoil ? .25f + .5f * RangedFeel.Heft(weapon) : .25f;
                 float ring = AnimationTiming.Settle(age - windup, Mathf.Min(.3f, weapon.Recovery), 3);
                 angle += ring * weight * 4;
                 recoil += ring * weight * .018f;

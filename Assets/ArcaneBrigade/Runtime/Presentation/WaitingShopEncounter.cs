@@ -185,7 +185,7 @@ namespace ArcaneBrigade
             var panel = new Rect(1000, 820, 510, 120); ArcadeSkin.Plate(panel, ArcadeSkin.Teal);
             string title = active == WaitingEncounter.ReservedTable ? "THREE CHAIRS. TWO CUPS. A NAME YOU HAVE NOT MET." : active == WaitingEncounter.BreathingPhone ? "THE WIRE IS CUT. THE TELEPHONE STILL RINGS." : "THE REFLECTION DOES NOT FOLLOW YOU.";
             GUI.Label(new Rect(1020, 830, 470, 48), title, caption);
-            if (GUI.Button(new Rect(1020, 883, 470, 45), "LIFT THE RECEIVER  [Space / E / A]", prompt)) TryInspect();
+            if (GUI.Button(new Rect(1020, 883, 470, 45), "LIFT THE RECEIVER", prompt)) TryInspect();
             GUI.matrix = previous;
         }
         private void OnDestroy()

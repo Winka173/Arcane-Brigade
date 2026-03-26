@@ -7,8 +7,15 @@ namespace ArcaneBrigade
         public static float ShopPrice(int wave)
         {
             float stage = Mathf.Max(0, wave - 1);
-            return Mathf.Min(10000, (1 + stage * 0.12f + stage * stage * 0.009f) * (1 + Mathf.Min(0.2f, Mathf.Max(0, wave - 3) * 0.01f)) * (1 + Mathf.Max(0, wave - 7) * .065f));
+            return Mathf.Min(10000, (1 + stage * 0.12f + stage * stage * 0.009f) * (1 + Mathf.Min(0.2f, Mathf.Max(0, wave - 3) * 0.01f)) * (1 + Mathf.Max(0, wave - 7) * .065f) * SwarmCoinPressure(wave));
         }
+        /// <summary>Balance pass 19/10/2026: swarm coins grow far faster than prices after wave 5 (bot wallet / mean offer 5.6 at
+        /// waves 1–5, 12.5 at 6–10, 16 at 11–19; 18 relics bought per late shop). Prices catch up to x2.2 by wave 13, keeping
+        /// roughly the early game's "three slots and a couple of rerolls" per shop. Docs/Balance_Pass_2026-10-19.md.</summary>
+        // round 2 (owner target: wallet / mean offer ~5-6 in waves 11-19): x1.9 at wave 8, x2.5 at wave 10, x3.4 from wave 13
+        /// <summary>Round 3 (owner play-test: still too rich): gold credited per coin value, 0.75 (was 1). Coin drops and visuals unchanged.</summary>
+        public const float CoinGoldValue = .75f;
+        public static float SwarmCoinPressure(int wave) => 1 + Mathf.Min(2.4f, Mathf.Max(0, wave - 5) * .3f);
 
         public static float EnemyHealth(int wave) => 1.2f * (1 + Mathf.Pow(Mathf.Max(0, wave - 1) / 12f, 1.45f)) * (1 + Mathf.Pow(Mathf.Max(0, wave - 4) / 16f, 1.4f) * 1.4f);
         public static float EnemyDensity(int wave) => 1 + Mathf.Min(3, Mathf.Max(0, wave - 3) * 0.13f);

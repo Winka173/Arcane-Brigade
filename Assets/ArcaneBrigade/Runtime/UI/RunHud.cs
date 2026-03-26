@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -53,6 +54,7 @@ namespace ArcaneBrigade
         private float eggsChanged = -100;
         // the pause menu's page: 0 the menu, 1 settings, 2 "start over?"
         private int pausePage;
+        private float shownGold, shownEggs, nextWalletTick, nextHeartbeat, heartbeatAt = -10;
         private void DrawPause(ArenaController owner)
         {
             if (pausePage == 1)
@@ -159,13 +161,30 @@ namespace ArcaneBrigade
             if (owner.Content.StatRevision > 0) maximum = K10StatRules.MaximumHealth(session, owner.Content);
             int gold = RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0));
             int eggs = RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0));
-            if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; }
+            if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; shownGold = gold; shownEggs = eggs; }
+            // P2: the counters run up to the new total (a soft tick per step while gold comes in); spending runs down silently
+            if (Event.current.type == EventType.Repaint)
+            {
+                float step = Time.unscaledDeltaTime;
+                float rise = gold - shownGold;
+                shownGold = PresentationSettings.ReducedMotion ? gold : Mathf.MoveTowards(shownGold, gold, Mathf.Max(8 * step, Mathf.Abs(rise) * 10 * step));
+                shownEggs = PresentationSettings.ReducedMotion ? eggs : Mathf.MoveTowards(shownEggs, eggs, Mathf.Max(6 * step, Mathf.Abs(eggs - shownEggs) * 10 * step));
+                if (rise >= 1 && !PresentationSettings.ReducedAudio && Time.unscaledTime >= nextWalletTick) { nextWalletTick = Time.unscaledTime + 0.07f; CheckpointAudio.PlayInterfaceId("loot.coin.bounce"); }
+            }
             if (lastGold != gold) { goldChanged = simulation.VisualElapsed; lastGold = gold; }
             if (lastEggs != eggs) { eggsChanged = simulation.VisualElapsed; lastEggs = eggs; }
             bool fighting = state.Phase == SessionPhase.Combat && simulation.Champion.Alive;
             danger = fighting ? Mathf.Clamp01(Mathf.InverseLerp(0.32f, 0.06f, health / maximum)) : 0f;
             ArcadeMusic.Danger = danger;
-            LowHealthVignette.Draw(new Vector2(1920, 1080), danger);
+            // M1: while the light is low a heartbeat sounds under the thinned music, quicker as it falls, and the dark edge breathes with it
+            bool repaint = Event.current.type == EventType.Repaint;
+            if (repaint && danger > 0.01f && !PresentationSettings.ReducedAudio && !owner.PresentationPaused && Time.unscaledTime >= nextHeartbeat)
+            {
+                nextHeartbeat = Time.unscaledTime + Mathf.Lerp(1.15f, 0.75f, danger); heartbeatAt = Time.unscaledTime;
+                CheckpointAudio.PlayInterfaceId("plr.lowhp");
+            }
+            float beat = PresentationSettings.ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Exp(-(Time.unscaledTime - heartbeatAt) * 7f);
+            LowHealthVignette.Draw(new Vector2(1920, 1080), Mathf.Clamp01(danger * (1 + 0.35f * beat)));
             if (state.Phase == SessionPhase.Combat) NightHud.EdgeEyes(simulation, camera, new Vector2(1920, 1080));
             float bossFlash = owner.Feel != null ? owner.Feel.ScreenFlash : 0;
             if (bossFlash > 0.01f) Fill(new Rect(0, 0, 1920, 1080), new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f)); // a boss falls: the night flashes white
@@ -201,10 +220,10 @@ namespace ArcaneBrigade
             ArcadeSkin.Plate(new Rect(22, 142, 190, 40), ArcadeSkin.Teal);
             Sprite(new Rect(40 - goldPulse, 100 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
-            GUI.Label(new Rect(84, 100, 120, 32), gold.ToString("N0"), numericLeft);
+            GUI.Label(new Rect(84, 100, 120, 32), Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
             Sprite(new Rect(40 - eggPulse, 146 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
-            GUI.Label(new Rect(84, 146, 120, 32), eggs.ToString("N0"), numericLeft);
+            GUI.Label(new Rect(84, 146, 120, 32), Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
             ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
             GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
@@ -243,7 +262,12 @@ namespace ArcaneBrigade
                 if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
                 else pausePage = 0;
             }
-            else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); statFeedback.Draw(owner,camera); }
+            else if (state.Phase == SessionPhase.Shop)
+            {
+                // a visitor's card owns the screen: no tickets or station card over it
+                if (owner.GetComponent<VisitorCard>()?.Open != true) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
+                statFeedback.Draw(owner,camera);
+            }
             else
             {
                 if (!owner.ResultsReady)
@@ -300,54 +324,153 @@ namespace ArcaneBrigade
             ShownShopCard = Rect.zero;
             if (station != null)
             {
+                ShopCardStyles();
                 if (station.Action == "NEXT HALL")
                 {
-                    GUI.Label(new Rect(730, 930, 460, 32), "↓ Next wave · " + RunUIHints.Interact(RunUIHints.Device), small);
-                    if (navigation.Button(new Rect(850, 978, 220, 52), "CONTINUE ↓", primary)) shop.Interact();
+                    Rect go = new Rect(790, 950, 340, 90);
+                    ShownShopCard = go;
+                    if (navigation.Button(go, "NEXT WAVE  ↓", primary)) shop.Interact();
                     return;
                 }
                 if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; shopDetails = false; }
                 if (station.Offer != null) offerCard.Refresh(owner.Session, owner.Content, station.Offer);
-                string description = station.Offer != null ? shopDetails ? offerCard.Details : offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                if (shopDetails && station.Offer != null && BuildPreview(owner, station.Offer) > 0)
-                    foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
-                if (station.Offer?.Currency == ShopCurrency.Health) description += "\nPay current HP; must leave at least 1 HP.";
-                float textWidth = 880;
-                float contentHeight = GlossaryUI.Height(description, small, textWidth) + 8;
-                Rect panel = ShopTooltipBounds(contentHeight);
-                float headerHeight = station.Offer != null ? offerCard.HeaderHeight : 0;
-                if (station.Offer != null) { panel.height = shopDetails ? Mathf.Max(455, headerHeight + 280) : headerHeight > 0 ? headerHeight + 270 : 276; panel.y = 1030 - panel.height; }
-                ShownShopCard = panel;
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
                 ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Rarity : ItemRarity.Common;
                 Color tag = rarity != ItemRarity.Common ? RunModifierRules.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
-                RarityDescriptionFrame.Draw(panel,rarity,owner.PresentationClock);
+                if (shopDetails && station.Offer != null) { DrawShopDetails(owner, shop, station, rarity, tag); return; }
+                // the card, low enough to leave the stalls and their tickets in view: a picture, the name, a row of chips
+                // (weapon, bonds), a few short lines, and on the right a big BUY with its price over a smaller i
+                Rect panel = new Rect(500, 832, 920, 240);
+                ShownShopCard = panel;
+                RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
-                string kind = item ? RunModifierRules.RarityName(rarity) : station.Offer != null && station.Offer.Kind == OfferKind.Companion ? "COMPANION" : null;
-                if (kind != null)
-                {
-                    ArcadeSkin.Slant(new Rect(panel.x + 22, panel.y - 14, 150, 26), tag);
-                    GUI.Label(new Rect(panel.x + 22, panel.y - 14, 150, 26), kind, tagStyle);
-                }
-                if (station.Offer != null) ShopDescriptionCard.DrawSprite(new Rect(panel.x + 24, panel.y + 12, 38, 38), offerCard.Portrait);
-                GUI.Label(new Rect(panel.x + (station.Offer != null ? 70 : 24), panel.y + 12, 500, 38), shop.DisplayName(station), text);
-                if (station.Offer != null) { small.normal.textColor = tag; GUI.Label(new Rect(panel.x + 70, panel.y + 47, 520, 27), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream; }
+                Rect picture = new Rect(panel.x + 22, panel.y + 16, 160, 160);
+                ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
+                ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 144, 144), station.Offer != null ? offerCard.Portrait : station.Icon);
                 if (station.Offer != null)
                 {
-                    Rect costIcon = new Rect(panel.xMax - 320, panel.y + 54, 24, 24);
-                    if (station.Offer.Currency == ShopCurrency.Health) StatGlyph.Draw(costIcon, ItemEffect.Health);
-                    else Sprite(costIcon, station.Offer.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
-                    GUI.Label(new Rect(costIcon.xMax + 6, costIcon.y - 3, 265, 30), station.Offer.Price + " " + (station.Offer.Currency == ShopCurrency.Health ? "HP · leave 1 HP" : station.Offer.Currency == ShopCurrency.Eggs ? "eggs" : "gold"), small);
+                    string kind = item ? RunModifierRules.RarityName(rarity) : (rarity != ItemRarity.Common ? RunModifierRules.RarityName(rarity) : "ALLY") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
+                    ArcadeSkin.Slant(new Rect(picture.x, picture.yMax + 10, 160, 32), tag);
+                    GUI.Label(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, tagStyle);
                 }
-                if (station.Offer != null && navigation.Button(new Rect(panel.xMax - 340, panel.y + 18, 100, 36), shopDetails ? "BACK" : "INFO", button)) SetShopDetails(!shopDetails);
-                if (headerHeight > 0) offerCard.DrawHeader(new Rect(panel.x + 24, panel.y + 80, 902, headerHeight), owner.PresentationClock);
-                float bodyY = station.Offer != null ? 84 + headerHeight : 64;
-                shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + bodyY, textWidth + 26, panel.height - bodyY - 15), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
-                GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, small);
-                GUI.EndScrollView();
-                if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · BUY" : RunUIHints.Device == RunUIDevice.Touch ? "BUY" : "Space · BUY", primary)) shop.Interact();
+                Rect buy = new Rect(panel.xMax - 214, panel.y + 18, 192, station.Offer != null ? 122 : 204);
+                float x = panel.x + 202, width = buy.x - 18 - x;
+                GUI.Label(new Rect(x, panel.y + 10, width, 44), shop.DisplayName(station), cardName);
+                float y = panel.y + 58;
+                if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
+                string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                if (station.Offer?.Currency == ShopCurrency.Health) source = "{mark} Paid in current HP, always leaves 1\n" + source;
+                string body = Fit(source, width, panel.yMax - 12 - y, out int more);
+                GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
+                if (navigation.Button(buy, "", primary)) shop.Interact();
+                DrawPriceButton(buy, station, owner);
+                if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + 10, buy.width, panel.yMax - 18 - buy.yMax - 10), more > 0 ? "i  +" + more : "i", button)) SetShopDetails(true);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
+        }
+        // ---- the shop card's pieces
+        private GUIStyle cardName, cardLine, cardChip, cardBig, cardPrice;
+        private void ShopCardStyles()
+        {
+            if (cardName != null) return;
+            cardName = ArcadeTypography.Style(30, true); cardName.wordWrap = false; cardName.clipping = TextClipping.Clip;
+            cardLine = new GUIStyle(text) { fontSize = 21 };
+            cardChip = ArcadeTypography.Style(19, true); cardChip.alignment = TextAnchor.MiddleLeft; cardChip.wordWrap = false;
+            cardBig = ArcadeTypography.Style(30, true); cardBig.alignment = TextAnchor.MiddleCenter; cardBig.normal.textColor = ArcadeSkin.Ink;
+            cardPrice = ArcadeTypography.Style(24, false, true); cardPrice.alignment = TextAnchor.MiddleLeft; cardPrice.normal.textColor = ArcadeSkin.Ink;
+        }
+        /// <summary>As many whole lines as fit the card (measured as drawn, wrapping included); a first line too long on its own
+        /// is cut at a word with an ellipsis. The rest is counted (it waits under the i button).</summary>
+        private string Fit(string source, float width, float height, out int more)
+        {
+            more = 0;
+            if (string.IsNullOrEmpty(source)) return "";
+            string[] all = source.Replace("\r", "").Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+            string kept = "";
+            int taken = 0;
+            for (; taken < all.Length; taken++)
+            {
+                string next = taken == 0 ? all[0] : kept + "\n" + all[taken];
+                if (GlossaryUI.Height(next, cardLine, width) > height) break;
+                kept = next;
+            }
+            if (taken == 0)
+            {
+                string[] words = all[0].Split(' ');
+                for (int count = words.Length - 1; count > 0 && taken == 0; count--)
+                {
+                    string cut = string.Join(" ", words, 0, count) + "…";
+                    if (GlossaryUI.Height(cut, cardLine, width) <= height) { kept = cut; taken = 1; }
+                }
+            }
+            more = all.Length - taken;
+            return kept;
+        }
+        /// <summary>The first lines of a description, the rest counted (they wait under the i button).</summary>
+        private static string Brief(string source, int lines, out int more)
+        {
+            more = 0;
+            if (string.IsNullOrEmpty(source)) return "";
+            string[] all = source.Replace("\r", "").Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+            more = Mathf.Max(0, all.Length - lines);
+            return string.Join("\n", all, 0, Mathf.Min(lines, all.Length));
+        }
+        /// <summary>A companion's chips: its weapon's attack and each bond it counts toward (now / next).</summary>
+        private float ShopChips(float x, float y, float width)
+        {
+            float cx = x;
+            void Chip(Sprite icon, string label, bool lit)
+            {
+                float w = Mathf.Min(width - (cx - x), 46 + cardChip.CalcSize(new GUIContent(label)).x + 14);
+                if (w < 90) return;
+                Rect chip = new Rect(cx, y, w, 50);
+                ArcadeSkin.Line(chip, lit ? new Color(.95f, .76f, .33f, .3f) : new Color(1, 1, 1, .08f));
+                if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 6, chip.y + 6, 38, 38), icon);
+                cardChip.normal.textColor = lit ? ArcadeSkin.Gold : ArcadeSkin.Cream;
+                GUI.Label(new Rect(chip.x + 48, chip.y, w - 52, 50), label, cardChip);
+                cx += w + 8;
+            }
+            Chip(offerCard.Attack.Icon, RecruitAttackReadout.Range(offerCard.Attack.MinDamage, offerCard.Attack.MaxDamage), false);
+            foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + Mathf.Max(row.After, row.Bond.NextThreshold(row.After)), row.Activates);
+            return y + 60;
+        }
+        /// <summary>The big action button: the verb, and the price with its currency.</summary>
+        private void DrawPriceButton(Rect button, WorldShop.Station station, ArenaController owner)
+        {
+            int price = station.Offer != null ? station.Offer.Price : station.Price;
+            ShopCurrency currency = station.Offer != null ? station.Offer.Currency : station.Currency;
+            string verb = station.Offer != null ? "BUY" : station.Action == "VISITOR" ? "MEET" : station.Action;
+            bool priced = price > 0 && station.Action != "VISITOR";
+            GUI.Label(new Rect(button.x + 8, button.y + (priced ? button.height * .5f - 46 : 0), button.width - 16, priced ? 44 : button.height), verb, cardBig);
+            if (!priced) return;
+            string amount = price.ToString();
+            float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = button.center.x - wide * .5f;
+            Rect icon = new Rect(left, button.y + button.height * .5f + 6, 28, 28);
+            if (currency == ShopCurrency.Health) StatGlyph.Draw(icon, ItemEffect.Health);
+            else Sprite(icon, currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
+            GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
+        }
+        /// <summary>The full rules of an offer (the i button): attack and bonds, then everything else; BACK returns.</summary>
+        private void DrawShopDetails(ArenaController owner, WorldShop shop, WorldShop.Station station, ItemRarity rarity, Color tag)
+        {
+            Rect panel = new Rect(400, 150, 1120, 880);
+            ShownShopCard = panel;
+            RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
+            ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
+            ShopDescriptionCard.DrawSprite(new Rect(panel.x + 28, panel.y + 22, 72, 72), offerCard.Portrait);
+            GUI.Label(new Rect(panel.x + 116, panel.y + 18, 700, 44), shop.DisplayName(station), cardName);
+            small.normal.textColor = tag; GUI.Label(new Rect(panel.x + 116, panel.y + 62, 700, 28), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
+            if (navigation.Button(new Rect(panel.xMax - 200, panel.y + 20, 176, 76), "BACK", button)) { SetShopDetails(false); return; }
+            float headerHeight = offerCard.HeaderHeight;
+            if (headerHeight > 0) offerCard.DrawHeader(new Rect(panel.x + 28, panel.y + 108, 1060, headerHeight), owner.PresentationClock);
+            string description = offerCard.Details;
+            if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
+            float top = 112 + headerHeight, textWidth = 1040;
+            float contentHeight = GlossaryUI.Height(description, cardLine, textWidth) + 8;
+            shopScroll = GUI.BeginScrollView(new Rect(panel.x + 28, panel.y + top, textWidth + 26, panel.height - top - 20), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
+            GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, cardLine);
+            GUI.EndScrollView();
+            GlossaryUI.Draw(new Vector2(1920, 1080));
         }
         /// <summary>The shop description card on screen this frame (zero when none), so hover marks can stay off it.</summary>
         public static Rect ShownShopCard { get; private set; }
@@ -494,9 +617,24 @@ namespace ArcaneBrigade
             bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, owner.Simulation.VisualElapsed);
             if (programStyle == null) { programStyle = ArcadeTypography.Style(18, true); programStyle.font = ArcadeTypography.Punch; programStyle.normal.textColor = ArcadeSkin.Ink; programStyle.wordWrap = false; programStyle.alignment = TextAnchor.MiddleLeft; }
             bondSummary.Refresh(owner.Content.Bonds, owner.Session.BondCounts);
-            if (bondSummary.Rows.Count == 0) return;
+            // what buying the friend you stand at would do to the bonds: those it adds to blink gold, and new ones appear on top
+            previewBonds.Clear(); newBonds.Clear();
+            WorldShop.Station focus = owner.Session.State.Phase == SessionPhase.Shop ? owner.Shop?.Nearby : null;
+            if (focus?.Offer != null && focus.Offer.Kind == OfferKind.Companion && !focus.Offer.Sold)
+            {
+                offerCard.Refresh(owner.Session, owner.Content, focus.Offer);
+                foreach (var row in offerCard.Bonds)
+                    if (row.Preview && row.After > row.Count)
+                    {
+                        previewBonds[row.Bond.Id] = row;
+                        if (row.Count == 0 && newBonds.Count < 2) newBonds.Add(row);
+                    }
+            }
+            if (bondSummary.Rows.Count == 0 && newBonds.Count == 0) return;
             const float rowHeight = BondHudSummary.RowHeight, width = BondHudSummary.Width;
-            Rect card = new Rect(1900 - width, 18, width, bondSummary.Height);
+            Rect card = new Rect(1900 - width, 18, width, bondSummary.Height + newBonds.Count * rowHeight);
+            bool still = owner.Profile != null && owner.Profile.ReducedMotion, calm = PresentationSettings.ReducedFlashes;
+            float clock = Time.unscaledTime, blink = still || calm ? .6f : .5f + .5f * Mathf.Sin(clock * 7f);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Color deep = Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Ink, 0.4f);
             programStyle.fontSize = 15; programStyle.normal.textColor = deep;
@@ -507,30 +645,48 @@ namespace ArcaneBrigade
             programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;
+            // bonds the offer would start (none yet): drawn first, greyed, with a gold blink and a NEW stamp
+            for (int index = 0; index < newBonds.Count; index++)
+            {
+                var row = newBonds[index];
+                Rect line = new Rect(card.x + 10, card.y + 32 + index * rowHeight, width - 20, rowHeight - 4);
+                ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .18f + .3f * blink));
+                BondRowContent(line, row.Bond, 0, row.After, false, true, row.Activates, blink, 0);
+                Rect stamp = new Rect(line.xMax - 40, line.y + 2, 38, 21);
+                ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
+                programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Ink;
+                GUI.Label(stamp, "NEW", programStyle);
+                programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+            }
             for (int index = 0; index < bondSummary.VisibleCount; index++)
             {
                 BondDefinition bond = bondSummary.Rows[index]; int count = owner.Session.BondCounts[bond.Id];
-                Rect line = new Rect(card.x + 10, card.y + 32 + index * rowHeight, width - 20, rowHeight - 4);
+                Rect line = new Rect(card.x + 10, card.y + 32 + (index + newBonds.Count) * rowHeight, width - 20, rowHeight - 4);
                 int level = bond.ActiveLevel(count);
-                int next = Mathf.Max(count, bond.NextThreshold(count));
+                bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
                 if (flashing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.55f));
-                else if (index % 2 == 1) ArcadeSkin.Line(line, new Color(0, 0, 0, 0.05f));
+                else if (previewing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, (preview.Activates ? .25f : .12f) + (preview.Activates ? .35f : .15f) * blink));
+                else if (level > 0)
+                {
+                    // an active bond breathes: a soft teal wash, and now and then a light sweep runs across the row
+                    float breathe = still ? .5f : .5f + .5f * Mathf.Sin(clock * 2.2f + index);
+                    ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, .1f + .1f * breathe));
+                    if (!still && !calm)
+                    {
+                        float sweep = Mathf.Repeat(clock * .45f + index * .23f, 1.6f);
+                        if (sweep < 1) ArcadeSkin.Line(new Rect(line.x + sweep * (line.width - 18), line.y, 18, line.height), new Color(1, 1, 1, .22f * Mathf.Sin(sweep * Mathf.PI)));
+                    }
+                }
                 float burst = owner.Profile != null && owner.Profile.ReducedMotion ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
-                Sprite(new Rect(line.x + 1 - burst * 2, line.y + 1 - burst * 2, 26 + burst * 4, 26 + burst * 4), bond.Icon);
-                GUI.Label(new Rect(line.x + 34, line.y - 1, 150, 26), bond.Name, programStyle);
-                programStyle.fontSize = 12; programStyle.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(line.x + 181, line.y, 54, 24), count + "/" + next, programStyle);
-                programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft;
-                Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
-                ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
-                ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)count / next), progress.height), level > 0 ? ArcadeSkin.Teal : ArcadeSkin.Gold);
-                if (level > 0)
+                BondRowContent(line, bond, count, previewing ? preview.After : count, level > 0, previewing, previewing && preview.Activates, blink, burst);
+                if (level > 0 || previewing && preview.Activates)
                 {
                     Rect stamp = new Rect(line.xMax - 36, line.y + 2, 34, 21);
-                    ArcadeSkin.Slant(stamp, ArcadeSkin.Accent);
-                    programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
-                    GUI.Label(stamp, "LV" + level, programStyle);
+                    bool rising = previewing && preview.Activates;
+                    ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
+                    programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.Cream;
+                    GUI.Label(stamp, rising ? "LV" + bond.ActiveLevel(preview.After) + "▲" : "LV" + level, programStyle);
                     programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
                 }
                 if (bondHit == null) bondHit = new GUIStyle();
@@ -558,6 +714,29 @@ namespace ArcaneBrigade
                 GlossaryUI.Text(new Rect(1155, tooltipTop + 12, 385, height - 24), tooltip, small);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
+        }
+
+        private readonly Dictionary<string, ShopDescriptionCard.BondRow> previewBonds = new Dictionary<string, ShopDescriptionCard.BondRow>();
+        private readonly List<ShopDescriptionCard.BondRow> newBonds = new List<ShopDescriptionCard.BondRow>();
+        /// <summary>One bond row's icon, name, count and progress: an inactive bond is drawn grey; a previewed one shows count → after.</summary>
+        private void BondRowContent(Rect line, BondDefinition bond, int count, int after, bool active, bool previewing, bool activates, float blink, float burst)
+        {
+            Color previous = GUI.color;
+            bool grey = !active && !(previewing && activates);
+            if (grey) GUI.color = new Color(.62f, .62f, .66f, previewing ? .65f + .3f * blink : .55f);
+            Sprite(new Rect(line.x + 1 - burst * 2, line.y + 1 - burst * 2, 26 + burst * 4, 26 + burst * 4), bond.Icon);
+            GUI.color = previous;
+            programStyle.normal.textColor = grey ? new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .5f) : ArcadeSkin.Ink;
+            GUI.Label(new Rect(line.x + 34, line.y - 1, 150, 26), bond.Name, programStyle);
+            int next = Mathf.Max(after, bond.NextThreshold(after));
+            programStyle.fontSize = 12; programStyle.alignment = TextAnchor.MiddleRight;
+            GUI.Label(new Rect(line.x + 160, line.y, 76, 24), previewing && after != count ? count + "→" + after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
+            programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+            Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
+            ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
+            int shown = Mathf.Max(count, bond.NextThreshold(count));
+            if (previewing && after > count) ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)after / next), progress.height), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .4f + .5f * blink));
+            ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)count / shown), progress.height), active ? ArcadeSkin.Teal : grey ? new Color(.5f, .5f, .55f) : ArcadeSkin.Gold);
         }
 
         private GUIStyle fallenStyle;

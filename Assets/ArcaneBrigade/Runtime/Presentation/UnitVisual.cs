@@ -118,6 +118,21 @@ namespace ArcaneBrigade
             holdPose = time; holdUntil = time + Mathf.Clamp(duration, 0, 0.045f); nextHold = time + 0.12f;
         }
         public void Celebrate(float time) { celebrateAt = time + (state.Id % 4) * 0.035f; }
+        private float tipAt = -100; private float tipSide = 1;
+        private float tumbleAt = -100, tumbleSide = 1;
+        private Vector2 lungeOffset;
+        /// <summary>V12: a light enemy shoved hard rolls over once along the shove.</summary>
+        public void Tumble(float time, Vector2 shove)
+        {
+            if (ReducedMotion || PresentationSettings.ReducedMotion || state == null || !state.Alive || time - tumbleAt < .5f) return;
+            tumbleAt = time; tumbleSide = shove.x < 0 ? -1 : 1;
+        }
+        /// <summary>A long-range critical (RangedFeel.LongShot) knocks the struck body's top back along the shot for a blink.</summary>
+        public void TipBack(float time, Vector2 shot)
+        {
+            if (ReducedMotion || PresentationSettings.ReducedMotion || state == null || !state.Alive) return;
+            tipAt = time; tipSide = shot.x < 0 ? -1 : 1;
+        }
         public void BeginArrival(Vector2 origin)
         {
             arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount;
@@ -239,7 +254,7 @@ namespace ArcaneBrigade
             paintedWeaponIdentity = null;
             RestAttention = false;
             performance.Reset(unit);
-            holdUntil = nextHold = 0; celebrateAt = -100;
+            holdUntil = nextHold = 0; celebrateAt = -100; tipAt = -100; tumbleAt = -100; lungeOffset = Vector2.zero;
             lastDisplayTime = 0;
             gaitBlend = previousGait = transitionSquash = 0;
             if (puppet == null) puppet = body.gameObject.AddComponent<BodyPuppet>();
@@ -469,14 +484,48 @@ namespace ArcaneBrigade
             impactSquash += hurt * 0.09f;
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
-            body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
-            if (canonActor) body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * .09f, -height * .5f - SpriteInkMetrics.BoundsOf(body.sprite).yMin * scale + Mathf.Abs(bob) + state.HitDirection.y * hurt * .09f, 0);
+            float jolt = 0.09f + state.HitWeight * 0.12f; // ImpactRules weight of the last blow
+            body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0f);
+            if (canonActor) body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, -height * .5f - SpriteInkMetrics.BoundsOf(body.sprite).yMin * scale + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0);
             float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
             body.transform.localPosition += Vector3.up * (celebrationLift + (ReducedMotion ? 0 : state.BodyLift));
             float personality = state.Id % 2 == 0 ? -1 : 1;
-            body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
+            body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * (6 + state.HitWeight * 12) + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
             body.transform.localPosition += (Vector3)performance.BodyOffset;
             body.transform.localRotation *= Quaternion.Euler(0, 0, performance.BodyTurn);
+            if (!ReducedMotion)
+            {
+                // a heavy shot shoves its holder back (RangedFeel heft); a long-range critical tips its target back along the shot
+                if (attacking && definition.Kind == WeaponKind.Projectile) body.transform.localPosition -= (Vector3)(facing.normalized * RangedFeel.BodyKick(definition, age, poseWindup));
+                float tip = RangedFeel.TipBack(simulationTime - tipAt);
+                if (tip > 0) { body.transform.localRotation *= Quaternion.Euler(0, 0, -tipSide * 30 * tip); body.transform.localPosition += new Vector3(tipSide * .05f, .06f, 0) * tip; }
+                // C10: a heavy melee swing draws back a touch, then carries the swinger toward its blow and back
+                lungeOffset = Vector2.zero;
+                if (attacking && definition.Kind == WeaponKind.Melee && state.Faction == Faction.Companion)
+                {
+                    float weight = ImpactRules.Weight(definition);
+                    if (weight >= .55f)
+                    {
+                        float charge = Mathf.Clamp01(age / Mathf.Max(.01f, poseWindup)), release = Mathf.Clamp01((age - poseWindup) / Mathf.Max(.01f, definition.Recovery));
+                        Vector2 toward = state.AttackDirection.sqrMagnitude > .001f ? state.AttackDirection.normalized : facing.normalized;
+                        lungeOffset = toward * (age < poseWindup ? -.04f * charge : .16f * weight * Mathf.Sin(release * Mathf.PI));
+                        body.transform.localPosition += (Vector3)lungeOffset;
+                    }
+                }
+                // V12: the roll of a light enemy shoved hard
+                float roll = Mathf.Clamp01((simulationTime - tumbleAt) / .38f);
+                if (roll < 1) { body.transform.localRotation *= Quaternion.Euler(0, 0, -tumbleSide * 360 * Mathf.SmoothStep(0, 1, roll)); body.transform.localPosition += Vector3.up * Mathf.Sin(roll * Mathf.PI) * .12f; }
+            }
+            if (state.Faction == Faction.Enemy && state.Alive && state.PinnedUntil > simulationTime)
+            {
+                // pinned to the edge by a pointed shot: pressed flat against it, straining (still under reduced motion)
+                Vector2 into = state.HitDirection.sqrMagnitude > .001f ? state.HitDirection.normalized : Vector2.right;
+                float press = Mathf.Clamp01((state.PinnedUntil - simulationTime) / ImpactRules.PinSeconds);
+                float strain = ReducedMotion ? 0 : Mathf.Sin(simulationTime * 55 + state.Id) * .012f * press;
+                Vector3 size = body.transform.localScale;
+                body.transform.localScale = Mathf.Abs(into.x) >= Mathf.Abs(into.y) ? new Vector3(size.x * (1 - .14f * press), size.y * (1 + .06f * press), 1) : new Vector3(size.x * (1 + .08f * press), size.y * (1 - .12f * press), 1);
+                body.transform.localPosition += (Vector3)(into * (.07f * press + strain));
+            }
             if (state.Definition.IsBoss && !ReducedMotion && entrance <= 0)
             {
                 int act = AnimationTiming.BossAct(state.Health, state.Definition.Health);
@@ -632,6 +681,8 @@ namespace ArcaneBrigade
                 stampPips[index].transform.localPosition = new Vector3((index - 1) * 0.16f, height * 0.65f, 0);
             }
             if (attacking) { angleOffset = pose.Angle; recoil = pose.Recoil; }
+            // a gun's barrel climbs upward on either side (facing left, the same turn would dip it)
+            if (attacking && definition.Kind == WeaponKind.Projectile && definition.Motion == WeaponMotion.Recoil && facing.x < 0) angleOffset = -angleOffset;
             if (!grip.gameObject.activeSelf) return;
             if (bowString != null && definition.Motion == WeaponMotion.Bow)
             {
@@ -639,7 +690,7 @@ namespace ArcaneBrigade
                 float bowHeight = weapon.sprite.bounds.size.y * weapon.transform.localScale.y * 0.4f;
                 float anchor = -weapon.sprite.bounds.size.x * weapon.transform.localScale.x * 0.35f;
                 float vibration = ReducedMotion ? 0 : AnimationTiming.Settle(age - poseWindup, .24f, 8) * .018f;
-                float draw = pull * (state.Faction == Faction.Companion ? 0.12f : 0.17f) + vibration;
+                float draw = pull * (state.Faction == Faction.Companion ? 0.12f : 0.17f) * RangedFeel.BowDraw(definition) + vibration; // a slow bow draws further
                 bowString.sortingOrder = weapon.sortingOrder + 1;
                 bowString.SetPosition(0, new Vector3(anchor, bowHeight, 0));
                 bowString.SetPosition(1, new Vector3(anchor - draw, 0, 0));
@@ -650,6 +701,7 @@ namespace ArcaneBrigade
             float attachmentScale = state.Faction == Faction.Companion ? 0.72f : 1;
             grip.localPosition = facing.normalized * ((definition.MountDistance - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale);
             grip.localPosition += Vector3.up * performance.GripLift;
+            grip.localPosition += (Vector3)lungeOffset; // the weapon travels with a lunging swinger
             float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
             facingAngle = ReducedMotion ? targetAngle : attacking ? Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-motionDelta * 35)) : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
             grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset + performance.GripTurn);

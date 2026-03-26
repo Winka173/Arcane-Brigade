@@ -35,7 +35,7 @@ namespace ArcaneBrigade.Editor
                 {
                     UnitDefinition enemy = UnityEngine.Object.Instantiate(combat.MeleeEnemy);
                     enemies.Add(enemy); enemy.Health = 1000000; enemy.Speed = 0; enemy.Passive = PassiveKind.None; enemy.Behavior = EnemyBehavior.Standard; enemy.KnockbackResistance = 0;
-                    Vector2 position = index == 0 ? new Vector2(1.2f, 0) : new Vector2(1.4f + index % 3 * 0.35f, (index / 3 - 1) * 0.55f);
+                    Vector2 position = index == 0 ? new Vector2(1.2f * MeleeBalance.Range / 1.35f, 0) /* within the shortened melee reach (19/10/2026) */ : new Vector2(1.4f + index % 3 * 0.35f, (index / 3 - 1) * 0.55f);
                     UnitState target = Simulation.AddFixture(enemy, Faction.Enemy, position);
                     target.NextAttack = target.NextContact = float.PositiveInfinity;
                 }

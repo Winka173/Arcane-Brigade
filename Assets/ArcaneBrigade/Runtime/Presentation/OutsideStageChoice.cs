@@ -100,7 +100,7 @@ namespace ArcaneBrigade
                 Rect badge=new Rect(Mathf.Clamp(point.x*1920-(HandAt.x>0?110:185),30,1520),Mathf.Clamp((1-point.y)*1080+16,190,898),370,100);
                 RarityDescriptionFrame.Draw(badge,ItemRarity.Rainbow,owner.PresentationClock);
                 GUI.Label(new Rect(badge.x+8,badge.y+5,354,32),HandAt==ActOneChallengePosition?"THE KEEPER, WHOLE · TEST":"OPTIONAL BOSS / THE KEEPER",copy);
-                GUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Space / E / A to challenge\nDefeat ends the run":owner.Session.State.Secrets!=null && owner.Session.State.Secrets.LetterSent?"It remembers your letter.\nWin a rainbow companion or relic":(HandAt==ActOneChallengePosition?"Break its hand, carpet and eye\nWin a rainbow companion or relic":"Approach the glowing hand\nWin a rainbow companion or relic"),copy);
+                GUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Defeat ends the run":owner.Session.State.Secrets!=null && owner.Session.State.Secrets.LetterSent?"It remembers your letter.\nWin a rainbow companion or relic":(HandAt==ActOneChallengePosition?"Break its hand, carpet and eye\nWin a rainbow companion or relic":"Approach the glowing hand\nWin a rainbow companion or relic"),copy);
                 if(Focused && GUI.Button(badge,GUIContent.none,GUIStyle.none))Interact();
             }
             else
@@ -122,7 +122,7 @@ namespace ArcaneBrigade
                 float height = Mathf.Max(90, detailStyle.CalcHeight(new GUIContent(detail), 1080));
                 descriptionScroll = GUI.BeginScrollView(new Rect(395, 860, 1125, 90), descriptionScroll, new Rect(0, 0, 1080, height));
                 GUI.Label(new Rect(0, 0, 1080, height), detail, detailStyle); GUI.EndScrollView();
-                GUI.Label(new Rect(395, 960, 1100, 40),"Walk to a gift and press Space / A once to take it. Choose one.",copy);
+                GUI.Label(new Rect(395, 960, 1100, 40),"Walk to a gift to take it. Choose one.",copy);
             }
             GUI.matrix = matrix;
             GUI.skin = previousSkin;

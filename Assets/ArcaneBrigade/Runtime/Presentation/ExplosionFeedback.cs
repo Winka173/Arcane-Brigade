@@ -117,7 +117,7 @@ namespace ArcaneBrigade
                     Spawn(Kind.Shock, value.Position, 4.4f, new Color(1f, 0.92f, 0.74f), true);
                     Spawn(Kind.Blast, value.Position, 2.2f, new Color(1f, 0.82f, 0.48f), true);
                     break;
-                case CombatEventKind.Kill when value.Faction == Faction.Enemy:
+                case CombatEventKind.Kill when value.Faction == Faction.Enemy && value.Subject?.Flung != true:
                     Pop(value.Subject?.Definition, value.Position, value.Critical, value.Value, value.Element, deathShown);
                     break;
             }

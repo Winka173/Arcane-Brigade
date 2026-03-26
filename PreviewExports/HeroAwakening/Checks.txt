@@ -100,7 +100,7 @@ PASS Postmaster starts with an empty gauge
 PASS Postmaster: a full charge climbs a tier
 PASS Postmaster: a full gauge transforms by itself (SORTING GATLING)
 PASS Postmaster holds its transformed weapon only when it has one
-PASS While the sorting gatling runs it is the only gun, each shot a muzzle flash (7 shots, 0 basics, aim (-0.94, -0.35), awake True)
+PASS While the sorting gatling runs it is the only gun, each shot a muzzle flash (7 shots, 0 basics, aim (-0.93, -0.36), awake True)
 PASS Postmaster: the transformation ends and rests
 PASS Postmaster: everything stays finite
 PASS DrowsySeer starts with an empty gauge

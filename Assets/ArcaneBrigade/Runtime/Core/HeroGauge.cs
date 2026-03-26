@@ -7,7 +7,9 @@ namespace ArcaneBrigade
     public enum GaugeSource
     {
         Hit, Crit, Kill, Distance, Coin, Hurt, Time, NearEnemies, FriendHit, FriendNear, FriendCrit, FriendDistinct, FriendBond,
-        NearMiss, Block, Turn, Rear, Pinned, Debt, Chest, NewSpecies, Sprouts, FarHit
+        NearMiss, Block, Turn, Rear, Pinned, Debt, Chest, NewSpecies, Sprouts, FarHit,
+        /// <summary>An enemy felled while frozen (Sundae Duchess) / a personal hit on a probed enemy (Bell Diver).</summary>
+        FrozenKill, Probed
     }
 
     /// <summary>Comfortable gauges (18/10/2026): every gauge fills from ordinary play, a hero's own conditions only fill it
@@ -53,10 +55,12 @@ namespace ArcaneBrigade
             ["MirrorKeeper"] = new[] { (GaugeSource.Hit, 1f), (GaugeSource.Block, 2f) },
             ["LanternWeaver"] = new[] { (GaugeSource.Hit, 1f), (GaugeSource.Pinned, .5f) },
             // the new heroes (Docs/Content_Expansion_v5.md)
-            ["KiteAdmiral"] = new[] { (GaugeSource.FarHit, 1.5f), (GaugeSource.Hit, .5f) },
+            ["KiteAdmiral"] = new[] { (GaugeSource.FarHit, 1.5f), (GaugeSource.Hit, .5f), (GaugeSource.Time, .3f) }, // FarHit: any own hit beyond 4 units (the kite string too)
             ["BonsaiClocksmith"] = new[] { (GaugeSource.Hit, 1f), (GaugeSource.Time, .4f), (GaugeSource.Kill, .5f) },
             ["JugglingJester"] = new[] { (GaugeSource.FriendCrit, 1f), (GaugeSource.Hit, .5f) },
-            ["BellDiver"] = new[] { (GaugeSource.NearEnemies, .5f), (GaugeSource.Hit, 1f) },
+            ["BellDiver"] = new[] { (GaugeSource.NearEnemies, .5f), (GaugeSource.Hit, 1f), (GaugeSource.Probed, .5f) },
+            // the sundae melts by itself (Proposal §1.2 "Tự tan theo thời gian"); blows taken and frozen kills melt it faster
+            ["SundaeDuchess"] = new[] { (GaugeSource.Time, .5f), (GaugeSource.Hit, .5f), (GaugeSource.Hurt, 2f), (GaugeSource.FrozenKill, 2f) },
         };
 
         /// <summary>A gauge event: the hero's own recipe decides how much it is worth (nothing for a source it does not use).</summary>

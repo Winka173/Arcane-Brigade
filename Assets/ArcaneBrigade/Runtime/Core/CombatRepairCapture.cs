@@ -79,7 +79,9 @@ namespace ArcaneBrigade
                 yield return Load(wave);yield return new WaitForSecondsRealtime(.4f);stage=owner.GetComponent<NightmareGrandStage>();
                 owner.Simulation.Champion.Position=owner.Simulation.Champion.PreviousPosition=viewpoint;
                 FindAnyObjectByType<ArenaCamera>().Snap();yield return new WaitForEndOfFrame();
-                Check(anchors.SequenceEqual(Enumerable.Range(0,NightmareGrandStage.Capacity).Select(stage.FixtureAnchor)),"Damaged scenery stays at its original map locations "+wave);
+                // the arena layout may step a piece aside for this zone's props (planned once per arena, never moved within a fight)
+                var layout=ArenaLayout.Combat(owner);
+                Check(layout!=null && Enumerable.Range(0,NightmareGrandStage.Capacity).All(i=>layout.TryGet("architecture"+i,out var spot) && spot.Visible && spot.Foot==stage.FixtureAnchor(i)),"Damaged scenery stands on its planned arena spots "+wave);
                 for(int i=0;i<NightmareGrandStage.Capacity;i++)
                 {var sprite=owner.transform.Find("DreamArchitecture"+i).GetComponent<SpriteRenderer>();Check(sprite.sprite==WaitingSceneryArtwork.Current.Frame(i%4,NightmareGrandStage.DamageFor(i,wave,171026)),"Actual scenery damage art matches wave "+wave+" / "+i);}
                 yield return Shot(wave==11?"06-world-scenery-cracked":"07-world-scenery-broken");

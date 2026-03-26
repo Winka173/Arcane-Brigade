@@ -19,6 +19,21 @@ namespace ArcaneBrigade
         public bool Active(float time) => time >= Started && time < Started + Duration;
         public static bool Eligible(int wave, bool boss) => wave >= 5 && wave % 2 == 1 && !boss;
         public static SpectacleKind Select(int wave, int seed) => (SpectacleKind)((wave / 2 + (seed % 3 + 3) % 3) % 3);
+        /// <summary>Where the show waits during its first two seconds, relative to its origin (the parade lines up six units
+        /// left of it; the others start on it). Afterwards the parade and the eclipse move through the arena like any unit.</summary>
+        public static Vector2 RestOffset(SpectacleKind kind) => kind == SpectacleKind.PaperParade ? Vector2.left * 6 : Vector2.zero;
+        /// <summary>What the waiting show covers around its rest point: the three couriers in a row, the trap with its bait,
+        /// the eclipse's disc.</summary>
+        public static Rect Sweep(SpectacleKind kind) => kind == SpectacleKind.PaperParade ? Rect.MinMaxRect(-3.35f, -0.9f, 0.95f, 1.7f)
+            : kind == SpectacleKind.GildedTrap ? Rect.MinMaxRect(-1.3f, -0.95f, 1.3f, 1.2f) : Rect.MinMaxRect(-1.4f, -1.4f, 1.4f, 1.4f);
+        /// <summary>The origin nearest the wished one whose waiting show stands clear of the arena's props.</summary>
+        public static Vector2 ClearOrigin(SpectacleKind kind, Vector2 wish, ArenaLayoutPlan layout, Vector2 arenaSize)
+        {
+            if (layout == null) return wish;
+            Vector2 rest = RestOffset(kind), limit = arenaSize * 0.5f - Vector2.one * 2;
+            Vector2 start = Vector2.Max(-limit, Vector2.Min(limit, wish + rest));
+            return layout.ClearSpot(start, Sweep(kind), limit, ArenaLayoutPlan.Reach) - rest;
+        }
         public bool Contains(Vector2 point)
         {
             Vector2 offset = point - Position;
@@ -43,7 +58,9 @@ namespace ArcaneBrigade
                 if (Elapsed < catalog.WaveDuration * 0.4f) return;
                 float side = (runSeed & 1) == 0 ? -1 : 1;
                 Vector2 point = ClampPosition(Champion.Position + new Vector2(side * 3.8f, side * 1.8f), 2);
-                Spectacle = new MidwaveSpectacle { Kind = MidwaveSpectacle.Select(catalog.RunWave, runSeed), Origin = point, Position = point, Started = Elapsed, NextReward = Elapsed + 2, NextThreat = Elapsed + 2 };
+                SpectacleKind kind = MidwaveSpectacle.Select(catalog.RunWave, runSeed);
+                point = MidwaveSpectacle.ClearOrigin(kind, point, ArenaLayout, catalog.ArenaSize); // never waiting on a prop
+                Spectacle = new MidwaveSpectacle { Kind = kind, Origin = point, Position = point, Started = Elapsed, NextReward = Elapsed + 2, NextThreat = Elapsed + 2 };
             }
             MidwaveSpectacle show = Spectacle;
             float age = show.Age(Elapsed);

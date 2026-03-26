@@ -44,6 +44,9 @@ namespace ArcaneBrigade
         public float CompanionRetargetMax = 2.8f;
         public float PickupRadius = 0.7f;
         public int GoldPerKill = 5;
+        /// <summary>Gold credited per coin value picked up (balance pass round 3: 0.75; coins, drops and pickups are unchanged,
+        /// fractions carry over between pickups).</summary>
+        public float CoinValueScale = 1f;
         public bool ExtendedLoot;
         public float Luck;
         public float TreasureDetection;

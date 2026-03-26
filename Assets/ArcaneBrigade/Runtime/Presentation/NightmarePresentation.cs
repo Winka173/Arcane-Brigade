@@ -86,7 +86,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < landmarks.Length; index++)
             {
                 int art = NightmareRules.LandmarkArt(state,index);
-                bool visible = !owner.Session.SecretRoomOpen && state.Phase != SessionPhase.Defeat && !(shop && index == 3) && !(shop && index == 0 && !state.Endless && state.Wave <= ActOneCanon.Waves) && (index < 5 || index == 5 && shop || index == 6 && state.Secrets?.RescuedToy == true || index == 7 && state.Secrets?.LetterSent == true);
+                bool visible = !owner.Session.SecretRoomOpen && state.Phase != SessionPhase.Defeat && (!shop || index == 2) /* the shop keeps only the journal window */ && !(shop && index == 3) && !(shop && index == 0 && !state.Endless && state.Wave <= ActOneCanon.Waves) && (index < 5 || index == 5 && shop || index == 6 && state.Secrets?.RescuedToy == true || index == 7 && state.Secrets?.LetterSent == true);
                 SpriteRenderer view = landmarks[index]; view.enabled = visible;
                 if (!visible) { shadows[index].Hide(); puppets[index].Hide(); suspensions[index].Hide(); continue; }
                 view.sprite = assets.Scenery[art];
@@ -95,10 +95,15 @@ namespace ArcaneBrigade
                 Sprite redrawn = FinalQualityArtwork.Current?.Frame("landmark-" + art, now, PresentationSettings.ReducedMotion);
                 if (redrawn != null) view.sprite = redrawn;
                 Vector2 position = NightmareLighting.LandmarkPosition(index, shop, half);
-                if (!shop && index == 3) position = new Vector2(half.x - 2, .5f);
-                if (!shop && index == 7) position = new Vector2(-half.x + 4, -half.y + 2.3f);
                 float motion = 0;
                 float width = index < 5 ? index == 0 ? 2.4f : 3.2f : .8f;
+                // combat: the arena layout's spot, clear of the chair, the Act I props, lanterns and architecture
+                if (!shop)
+                {
+                    if (!ArenaLayout.Place(owner, "landmark" + index, ArenaLayout.Drawn(view.sprite, width / Mathf.Max(.01f, view.sprite.bounds.size.x)), ref position, out float placed))
+                    { view.enabled = false; shadows[index].Hide(); puppets[index].Hide(); suspensions[index].Hide(); continue; }
+                    width *= placed; // a story landmark comes in smaller rather than not at all
+                }
                 if (shop && ShopLayout.Active != null)
                 {
                     // the shop is a small room: the big landmarks come in a little smaller and every one asks the layout

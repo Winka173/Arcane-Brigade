@@ -204,7 +204,7 @@ namespace ArcaneBrigade
                 w.Range = Mathf.Min(w.Range, w.Kind == WeaponKind.Melee ? 3.4f : 8); w.Cooldown = Mathf.Max(.28f, w.Cooldown);
             }
             if (OctoberHero == "Periwinky") CombatCatalog.Champion.Health = Mathf.Clamp(State.Gold, 20, 400);
-            if (OctoberHero == "Card Queen") CombatCatalog.Champion.Health = 12;
+            if (OctoberHero == "Card Queen") CombatCatalog.Champion.Health = PlayerBuildBalance.CardQueenHealth;
             if (OctoberHero == "Billy") CombatCatalog.Champion.Weapon.ProjectileSplit = 0;
             if (OctoberHero == "Omnom" || OctoberHero == "Card Queen") CombatCatalog.PassiveHeal = 0;
             if (OctoberHero == "Burgerboo") { CombatCatalog.Champion.Weapon.ProjectileCount = Mathf.Min(2, CombatCatalog.Champion.Weapon.ProjectileCount); CombatCatalog.Champion.Weapon.ProjectilePierce = 0; }

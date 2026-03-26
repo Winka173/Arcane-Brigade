@@ -1,0 +1,95 @@
+id,rarity,special,price,passive,passive_strength,weapon,weapon_damage,cooldown,support_modifiers,vu_tier1,vu_tier2,vu_tier3,defensive_support
+TeapotPilgrim,Common,False,23,HealChampion,0.5,TeapotPopgun,10,0.85,"Heal/C 0.04; MoveSpeed/C 0",0.53,1.07,2.14,True
+CandleSnail,Uncommon,False,26,ChillAura,0.8,CrescentBow,14,0.95,"Armor/C 0.03; MoveSpeed/C -0.01",1.89,3.78,7.56,True
+MailboxImp,Common,False,29,Scavenge,0.8,MailboxLauncher,10,0.85,"Pickup/R 0.08; Luck/R -0.01",0.07,0.14,0.28,False
+PillowOracle,Mythic,True,32,Rally,0.8,FortuneGlobe,10,1.2,"Health/C 3; AttackSpeed/C -0.01",1.98,3.95,7.9,True
+MushroomLibrarian,Common,False,35,HealChampion,0.5,BookPaddle,10,0.5,"Luck/R 0.03; CompanionAttackSpeed/C -0.01",0.35,0.7,1.4,False
+HoodWisp,Common,False,20,None,1,RuneStaff,11,1.05,"Crit/T 0.01; Health/C -1",-0.25,-0.5,-1,False
+JellySwordsman,Common,False,20,None,1,KeyCleaver,15,0.85,"CompanionDamage/C 0.03; MoveSpeed/C -0.01",1.27,2.53,5.06,False
+BrassAcorn,Common,False,18,None,0.5,SpoonSabre,12,0.65,"ScoreMultiplier/R 0.03; Health/C -1",-0.75,-1.5,-3,False
+BreadCrab,Common,False,21,HealChampion,0.5,ToastCleaver,14,0.77,"CollisionDamage/T 1; Health/C -1",0.45,0.9,1.8,False
+KettleBat,Common,False,24,Scavenge,0.5,LollipopLance,16,0.89,"MeleeDamage/T 1; Health/C -1",2.25,4.5,9,False
+BookmarkGolem,Rare,False,27,Rally,0.5,PaperFan,18,1.01,"RangedDamage/T 1; Health/C -1",2.25,4.5,9,False
+TinTick,Common,False,30,ChillAura,0.5,CorkscrewRapier,12,1.13,"AttackRange/T 0.03; Health/C -1",0.5,1,2,False
+SpringDuck,Rare,False,18,None,0.5,TeabagFlail,14,0.65,"Dodge/C 0.03; Health/C -1",1.25,2.5,5,True
+ButtonBeetle,Common,False,21,HealChampion,0.5,UmbrellaHook,16,0.77,"Income/R 2; Health/C -1",4.25,8.5,17,False
+StapleMole,Common,False,24,Scavenge,0.5,PizzaWheel,18,0.89,"BulletPierce/T 1; Health/C -1",9.25,18.5,37,False
+SnowSpoon,Common,False,27,Rally,0.5,MoonScythe,12,1.01,"BulletSplit/T 1; Health/C -1",11.25,22.5,45,False
+IceCreamOwl,Uncommon,False,30,ChillAura,0.5,ForkTrident,14,1.13,"BulletBounce/T 0.03; Health/C -1",-0.38,-0.75,-1.5,False
+FridgeWisp,Common,False,18,None,0.5,MaracaHammer,16,0.65,"BulletSize/T 0.03; Health/C -1",-0.5,-1,-2,False
+PearMoth,Uncommon,False,21,HealChampion,0.5,TapeWhip,18,0.77,"BulletSpeed/T 0.03; Health/C -1",-0.63,-1.25,-2.5,False
+CitrusToad,Uncommon,False,24,Scavenge,0.5,ButtonBow,9,0.89,"BulletDistance/T 0.03; Health/C -1",-0.63,-1.25,-2.5,False
+RadishJester,Common,False,27,Rally,0.5,LeafCrossbow,11,1.01,"Knockback/T 0.03; Health/C -1",-0.63,-1.25,-2.5,False
+SeedHedgehog,Common,False,30,ChillAura,0.5,InkPistol,13,1.13,"BodySize/C 0.03; Health/C -1",-0.75,-1.5,-3,False
+MoonJelly,Rare,False,18,None,0.5,BubbleWand,9,0.65,"CompanionSize/C 0.03; Health/C -1",-0.75,-1.5,-3,False
+StarSock,Uncommon,False,21,HealChampion,0.5,StarKazoo,11,0.77,"EnemyCount/R 0.1; ScoreMultiplier/R 0.1; Health/C -1",-3.75,-7.5,-15,False
+CometKite,Common,False,24,Scavenge,0.5,ShellCannon,13,0.89,"EnemyHealth/R 0.1; ScoreMultiplier/R 0.1; Health/C -1",-5.75,-11.5,-23,False
+EclipseEgg,Rainbow,True,80,Rally,0.5,SaucerBlaster,17.04,1.05,"EnemySpeed/R 0.1; ScoreMultiplier/R 0.1; Health/C -1",-5.75,-11.5,-23,False
+OrbitMoth,Common,False,30,ChillAura,0.5,CrescentBoomerang,11,1.13,"HeartHealing/C 1; Health/C -1",0.25,0.5,1,False
+DreamCompass,Common,False,18,None,0.5,DartCompass,13,0.65,"ChestQuality/R 0.03; Health/C -1",-0.5,-1,-2,False
+ShellPostman,Common,False,21,HealChampion,0.5,LanternStaff,9,0.77,"RecruitDiscount/R 0.03; Health/C -1",0.75,1.5,3,False
+CoralTeacup,Uncommon,False,24,Scavenge,0.5,SnowGlobeOrb,11,0.89,"RelicDiscount/R 0.03; Health/C -1",1.25,2.5,5,False
+BubbleKoi,Common,False,27,Rally,0.5,RibbonHarp,13,1.01,"ShopRarity/R 0.03; Health/C -1",0,0,0,False
+AnchorSnail,Uncommon,False,30,ChillAura,0.5,SpoonSabre,12,0.65,"HealthCorrection/C 0.03; Health/C -1",1.25,2.5,5,False
+SailSquid,Uncommon,False,18,None,0.5,ToastCleaver,14,0.77,"DamageCorrection/T 0.03; Health/C -1",1.75,3.5,7,False
+SockCyclops,Common,False,21,HealChampion,0.5,LollipopLance,16,0.89,"SpeedCorrection/T 0.03; Health/C -1",0.25,0.5,1,False
+DiceCrab,Common,False,24,Scavenge,0.5,PaperFan,18,1.01,"ArmorCorrection/C 0.03; Health/C -1",-0.5,-1,-2,False
+MaskPepper,Common,False,27,Rally,0.5,CorkscrewRapier,12,1.13,"HealCorrection/C 0.03; Health/C -1",-0.5,-1,-2,False
+CrayonGremlin,Common,False,30,ChillAura,0.5,TeabagFlail,14,0.65,"CollisionFrequency/T 0.03; Health/C -1",-0.38,-0.75,-1.5,False
+MirrorNewt,Mythic,True,18,None,0.5,KunaiFan,13.2,1.1,"ScoreMultiplier/R 0.03; Health/C -1",-0.75,-1.5,-3,False
+RibbonSpider,Common,False,21,HealChampion,0.5,PizzaWheel,18,0.89,"CollisionDamage/T 1; Health/C -1",0.45,0.9,1.8,False
+CoilKettle,Mythic,True,26,HealChampion,0.45,CatcherMitt,31.24,1.1,"Knockback/C 0.04; MoveSpeed/C -0.01",-0.11,-0.22,-0.44,False
+ThimbleMoth,Rare,False,26,None,0.45,NeedleSinger,5,0.95,"AttackSpeed/C 0.04; Damage/C -0.03",0.55,1.1,2.2,False
+ReelOwl,Mythic,True,4,None,0.45,DreamRacket,25.56,1,"AttackRange/C 0.06; AttackSpeed/C -0.02",0.55,1.1,2.2,False
+RainbowTailor,Rainbow,True,23,None,0,TopiaryShears,10,0.9,"Heal/C 0.04; MoveSpeed/C 0",0.53,1.07,2.14,True
+RainbowBell,Rainbow,True,23,None,0,BuzzerBlock,22.8,1.15,"Heal/C 0.04; MoveSpeed/C 0",0.53,1.07,2.14,True
+SecretPatchBear,Rare,True,80,None,0.45,NeedleSinger,5,0.95,"Damage/T 0.06",6,12,24,False
+SecretPaperBird,Rare,True,80,HealChampion,0.5,TeapotPopgun,10,0.85,"AttackSpeed/T 0.06",6,12,24,False
+SecretDreamLamb,Rare,True,80,None,0.45,DreamProjector,13,1.65,"AttackRange/T 0.06",3,6,12,False
+SaffronMechanist,Rare,True,24,None,0.5,KeyCleaver,15,0.85,"",0,0,0,False
+ClockworkPiper,Mythic,True,32,None,0.8,WindupWrench,18.12,0.95,"",0,0,0,False
+VelvetChampion,Rare,True,40,None,0.8,KeyCleaver,15,0.85,"",0,0,0,False
+PaperInventor,Mythic,True,48,None,0.8,GrabberClaw,25.68,1.3,"",0,0,0,False
+ReturnCaptain,Mythic,True,24,None,0.5,PlushShark,29.51,1.45,"",0,0,0,False
+DoughForeman,Rare,True,32,None,1,KeyCleaver,15,0.85,"",0,0,0,False
+IronLocomotive,Mythic,True,40,None,1,SnowGlobeGrenade,12,1.3,"",0,0,0,False
+VioletRemnant,Uncommon,False,48,None,0.5,KeyCleaver,15,0.85,"",0,0,0,False
+VelvetEnchantress,Uncommon,False,24,None,0.5,KeyCleaver,15,0.85,"",0,0,0,False
+GrandSprout,Uncommon,False,32,None,0.8,KeyCleaver,15,0.85,"",0,0,0,False
+BristleBall,Uncommon,False,40,None,0.8,KeyCleaver,15,0.85,"",0,0,0,False
+PaperDevil,Uncommon,False,48,None,0.8,KeyCleaver,15,0.85,"",0,0,0,False
+BalloonMallet,Uncommon,False,24,None,0.5,KeyCleaver,15,0.85,"",0,0,0,False
+LittleSprout,Uncommon,False,32,None,1,KeyCleaver,15,0.85,"",0,0,0,False
+MonsterMarble,Uncommon,False,40,None,1,KeyCleaver,15,0.85,"",0,0,0,False
+CarouselPony,Uncommon,True,48,None,0.5,InkPistol,13,1.13,"",0,0,0,False
+TeacupCricket,Uncommon,False,24,None,0.5,KeyCleaver,15,0.85,"",0,0,0,False
+RibbonOtter,Uncommon,False,32,None,0.8,KeyCleaver,15,0.85,"",0,0,0,False
+SpindleWren,Uncommon,False,40,None,0.8,KeyCleaver,15,0.85,"",0,0,0,False
+BakerMouse,Uncommon,False,26,None,0.5,RollingPin,12,1.2,"",0,0,0,False
+TeaDragon,Mythic,True,32,None,0.5,HearthBrick,26.6,1.35,"",0,0,0,False
+SundaeGolem,Rainbow,True,40,None,0.5,StarKnuckle,18.18,0.55,"",0,0,0,False
+LensOwl,Rare,False,28,None,0.5,SunLens,5,0.9,"",0,0,0,False
+EndlessIndex,Rainbow,True,40,None,0.5,PaperShuriken,14.49,0.95,"",0,0,0,False
+LampGoat,Uncommon,False,26,None,0.5,DragonLanternGlaive,18.26,0.95,"",0,0,0,False
+TopBeetle,Rare,False,28,None,0.5,SpinningTop,9,1.4,"",0,0,0,False
+ShovelPenguin,Rare,False,28,None,0.5,SnowShovel,12,1.15,"",0,0,0,False
+BobaTadpole,Common,False,22,None,0.5,BobaStraw,4,0.34,"",0,0,0,False
+RainHeron,Rare,False,28,None,0.5,CorkRifle,8.52,1.55,"",0,0,0,False
+WateringSnail,Uncommon,False,26,None,0.5,WateringCan,9,1,"",0,0,0,False
+YoyoSquirrel,Rare,False,28,None,0.5,YoYo,10,0.9,"",0,0,0,False
+FirstSeed,Rainbow,True,40,None,0.5,AcornCluster,10,1.25,"",0,0,0,False
+PaperPlanePigeon,Common,False,22,None,0.5,PaperPlaneSquadron,9,1.2,"",0,0,0,False
+RaincoatFrog,Uncommon,False,26,None,0.5,PlungerPopper,42,1.3,"",0,0,0,False
+LighthouseWhale,Mythic,True,32,None,0.5,PaperLanternBomb,16,1.6,"",0,0,0,False
+KiteDragon,Rainbow,True,40,None,0.5,TwinMoonStaff,10,1.25,"",0,0,0,False
+JackInTheBox,Mythic,True,32,None,0.5,PinataBomb,11,1.5,"",0,0,0,False
+LostCarousel,Rainbow,True,40,None,0.5,CherryFuseBomb,14.85,1.35,"",0,0,0,False
+StaticFerret,Common,False,22,None,0.5,PawMitten,15.96,0.42,"",0,0,0,False
+StormKitten,Uncommon,False,26,None,0.5,DowsingRod,18.7,1.05,"",0,0,0,False
+VoltEel,Rare,False,28,None,0.5,SquirtTrio,16.2,0.85,"",0,0,0,False
+ShantySeaLion,Common,False,22,None,0.5,SquirtTrio,16.2,0.85,"",0,0,0,False
+BottleGull,Uncommon,False,26,None,0.5,FizzBottle,28.6,1.25,"",0,0,0,False
+PinnedBeetle,Common,False,22,None,0.5,CandyDrill,13.53,1.2,"",0,0,0,False
+FossilArmadillo,Uncommon,False,26,None,0.5,DrumstickClub,20.02,1.15,"",0,0,0,False
+SpecimenSlime,Rare,False,28,None,0.5,InkyOctopus,35,0.9,"",0,0,0,False
+CourtHerald,Common,False,22,None,0.5,CorkRifle,8.52,1.55,"",0,0,0,False

@@ -153,4 +153,4 @@ PASS Acquire sixfold weapon relic
 PASS Six actual weapon identities saved
 PASS Phantom weapons do not reroll for free each wave
 PASS Turn discount affects remaining offers, never retroactively discounts itself
-PASS Clearly different promoted body sizes
+PASS Clearly different but modest promoted body sizes (owner 19/10/2026); reach unchanged

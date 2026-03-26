@@ -53,7 +53,7 @@ namespace ArcaneBrigade
             {
                 UnitState target = units.Find(candidate => candidate.Id == source.AttackTargetId && candidate.Alive);
                 Vector2 point = target == null ? source.Position + source.AttackDirection * weapon.Range * 0.6f : target.Position;
-                Field(ExpandedFieldKind.Projector, source, point, source.AttackDirection, 1.15f * CompanionTierScaling.Body(source.Definition.CombatTier), damage * 0.4f, 0, 1.15f, cause);
+                Field(ExpandedFieldKind.Projector, source, point, source.AttackDirection, 1.15f * CompanionTierScaling.Reach(source.Definition.CombatTier), damage * 0.4f, 0, 1.15f, cause);
                 fields[fields.Count - 1].Critical = critical;
             }
             else

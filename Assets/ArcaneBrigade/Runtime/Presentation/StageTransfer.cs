@@ -68,6 +68,7 @@ namespace ArcaneBrigade
             CheckpointAudio.PlayInterfaceId("boss.telegraph");
             // the hand, the carpet and the eye are one creature: its body shows for a moment above the room, dark and enormous
             Sprite body = Resources.Load<Sprite>("MienCho/ActOne/Keeper_Silhouette") ?? (outside != null && outside.BossFrames.Length > 0 ? outside.BossFrames[0] : null);
+            body = null; // retired 19/10/2026: the faint Keeper over the top of the screen read as a blur bug
             if (body != null && owner.Session.State.OutsideStage != OutsideStageStatus.Fighting)
             {
                 var looming = new GameObject("TheKeeperLooms"); looming.transform.SetParent(owner.transform, false);

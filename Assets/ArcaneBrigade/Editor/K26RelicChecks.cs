@@ -54,7 +54,7 @@ namespace ArcaneBrigade.Editor
                     }
                     Buy("ClearSip"); float health = session.Bonus(ItemEffect.Health);
                     Buy("OrchardFizz");
-                    Check(Mathf.Approximately(session.Bonus(ItemEffect.Health),health + 24),"Drink purchase grants permanent health plus drink stats");
+                    Check(Mathf.Approximately(session.Bonus(ItemEffect.Health),health + 4 + catalog.Item("CurioOrchardFizz").EffectiveModifiers.Where(m => m.Effect == ItemEffect.Health).Sum(m => m.Value)),"Drink purchase grants permanent health plus drink stats"); // Orchard Fizz value from data since the 19/10/2026 balance pass
                     Buy("OddElixir"); float tempo = session.Bonus(ItemEffect.AttackSpeed,ModifierScope.Champion);
                     Buy("MeadowTonic"); Check(session.Bonus(ItemEffect.AttackSpeed,ModifierScope.Champion) >= tempo + .059f,"Drink-triggered attack speed");
                     Buy("NestDumpling"); Check(session.State.Eggs >= 3,"Egg gift applies immediately");
@@ -138,7 +138,7 @@ namespace ArcaneBrigade.Editor
                     session.State.Offers.Add(bought); session.State.Offers.Add(other);
                     Check(session.Buy(bought.Token) && session.State.Gold == 900 && other.Price == 70,"Turn discount affects remaining offers, never retroactively discounts itself");
                 }
-                Check(CompanionTierScaling.Body(3) > CompanionTierScaling.Body(2) && CompanionTierScaling.Body(2) >= 1.35f,"Clearly different promoted body sizes");
+                Check(CompanionTierScaling.Body(3) > CompanionTierScaling.Body(2) && CompanionTierScaling.Body(2) > 1.1f && CompanionTierScaling.Body(3) <= 1.3f && CompanionTierScaling.Reach(2) >= 1.35f,"Clearly different but modest promoted body sizes (owner 19/10/2026); reach unchanged");
             }
             finally { UnityEngine.Object.DestroyImmediate(catalog); }
             Directory.CreateDirectory("PreviewExports/K26"); File.WriteAllLines("PreviewExports/K26/Relic_Checks.txt",notes);

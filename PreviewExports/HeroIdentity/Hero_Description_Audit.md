@@ -71,7 +71,7 @@ TRANSFORMATION: FULL MOON
 The gauge beside you fills from walking and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Three dreams of you walk your route a second, two and three seconds behind, casting at enemies near them; +30% move speed and +40% attack speed.
 
 HERO PASSIVES
-- Stand still for 0.5s and your next attack deals +20%.
+- Stand still for 0.5s and your next attack deals +30%.
 
 TEAM AND RUN PASSIVES
 - Dream eggs: every third wave you get an extra egg.
@@ -134,8 +134,8 @@ TRANSFORMATION: MITOSIS
 The gauge beside you fills from your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You split into three: two jellies carrying your remembered organs fight beside you; +30% attack speed.
 
 HERO PASSIVES
-- Remembered organs: every 8 hits heal 1 HP; your hits slow enemies 10%.
-- Remembered shells: you take 5% less damage.
+- Remembered organs: every 5 hits heal 1 HP; your hits slow enemies 10%.
+- Remembered shells: you take 15% less damage.
 
 TEAM AND RUN PASSIVES
 - Each merge in this run gives you +2% damage for good (max 25%).
@@ -192,7 +192,7 @@ Uses the equipped weapon normally. Half of positive Luck also grants team damage
 
 THE THREE-INGREDIENT TIDE
 TRANSFORMATION: HIGH TIDE
-The gauge beside you fills from coins you collect and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You ride a wave: +40% move speed, the wave shoves enemies it meets and you heal 1 HP every second.
+The gauge beside you fills from coins you collect and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You ride a wave: +40% move speed, the wave shoves enemies it meets and you heal 2 HP every second.
 
 HERO PASSIVES
 - Every 2 drinks bought add 1s to the tide (max +3s).
@@ -225,7 +225,7 @@ TRANSFORMATION: METEOR SHOWER
 The gauge beside you fills from distance travelled and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Meteors rain down along the route you run; +50% move speed and +25% attack speed.
 
 HERO PASSIVES
-- Run for 2s without stopping and you gain +15% move speed.
+- Run for 2s without stopping and you gain +25% move speed.
 
 TEAM AND RUN PASSIVES
 - Coins fly to you from 30% further.
@@ -593,7 +593,7 @@ TRANSFORMATION: CORONATION
 The gauge beside you fills from injuries and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A last decree crosses the field as a verdict line; ordinary enemies under 15% health on it are executed.
 
 HERO PASSIVES
-- Royal health: 12 HP and each blow costs only 1.
+- Royal health: 16 HP and each blow costs only 1.
 
 TEAM AND RUN PASSIVES
 - Royal pick: each shop's rarest item costs 30% less.
@@ -615,7 +615,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
-Start each wave with 12 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.
+Start each wave with 16 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.
 
 ## Petal Citadel / PetalCitadel
 
@@ -685,7 +685,7 @@ TRANSFORMATION: LIVING EXHIBIT
 The gauge beside you fills from new species recorded and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The recorded species step out of your book as paper puppets and fight for you.
 
 HERO PASSIVES
-- You deal +5% damage to species you have recorded.
+- You deal +15% damage to species you have recorded.
 
 TEAM AND RUN PASSIVES
 - Every 5 new species recorded pay 2 gold.

@@ -19,6 +19,21 @@ namespace ArcaneBrigade
         private readonly Vector2[] awakenEchoes = new Vector2[3];
         private Vector2 awakenAim;
 
+        // the five expansion heroes' transformations: the kite fleet's escorted friends, the bonsai's planted spot, falling objects
+        public const float GardenReach = 2.6f;
+        private readonly List<UnitState> awakenFleet = new List<UnitState>();
+        private readonly List<UnitState> awakenPicks = new List<UnitState>();
+        private Vector2 awakenPlot;
+        /// <summary>Something the transformation drops from above (a giant scoop, a depth charge): where, and when it lands.</summary>
+        public struct AwakenDrop { public Vector2 At; public float Born, LandAt; public int Kind; }
+        private readonly List<AwakenDrop> awakenDrops = new List<AwakenDrop>();
+        /// <summary>KITE FLEET: the ranged friends a kite flies over (their shots split).</summary>
+        public IReadOnlyList<UnitState> HeroKiteFleet => awakenFleet;
+        /// <summary>TIME GARDEN: where the clockwork bonsai stands.</summary>
+        public Vector2 HeroAwakenPlot => awakenPlot;
+        /// <summary>Scoops (Kind 0) and depth charges (Kind 1) on their way down; landed ones fall away after 0.4s.</summary>
+        public IReadOnlyList<AwakenDrop> HeroAwakenDrops => awakenDrops;
+
         /// <summary>Every hero with a kit has an awakening.</summary>
         public static bool HasAwakening(string heroId) => HeroKits.For(heroId) != null;
         public bool HeroAwakenEnabled => HeroIdentityEnabled && Kit != null;
@@ -56,6 +71,7 @@ namespace ArcaneBrigade
         {
             awakenMeter = awakenPressure = 0; awakenUntil = awakenCoolUntil = -1; awakenPrimedAt = -1; awakenStarted = -100; awakenShotAt = awakenRamAt = awakenEchoAt = awakenHealAt = 0; awakenRound = awakenFlurry = 0; awakenFoe = null;
             awakenPath.Clear(); for (int i = 0; i < awakenEchoes.Length; i++) awakenEchoes[i] = Champion != null ? Champion.Position : Vector2.zero;
+            awakenFleet.Clear(); awakenDrops.Clear(); awakenPlot = Champion != null ? Champion.Position : Vector2.zero;
             if (Champion != null) Champion.AwakenArt = null;
         }
         /// <summary>A full charge: climb a tier.</summary>
@@ -90,7 +106,7 @@ namespace ArcaneBrigade
                 case KitAction.Lighthouse: Lighthouse(); break;
                 case KitAction.Treant: Every(.35f, () => { if (walking) Hit(MorphGeometry.Disc, Champion.Position + Forward() * .4f, Champion.Position + Forward(), .9f, .42f, .1f); }); break;
                 case KitAction.Casino: Every(1f, () => Casino(target)); break;
-                case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.3f, .34f, .05f, push: .45f); }); HealEvery(1); break;
+                case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.3f, .34f, .05f, push: .45f); }); HealEvery(.5f); break; // round 3: 1 → 2 HP/s (Tide Singer lost 6/6)
                 case KitAction.Meteors: Every(.3f, () => Meteor()); break;
                 case KitAction.Mirrors: Mirrors(); break;
                 case KitAction.Spring: Every(.8f, () => Spring(target)); HealEvery(1); break;
@@ -111,7 +127,13 @@ namespace ArcaneBrigade
                 case KitAction.Tapestry: Every(.5f, () => Tapestry()); break;
                 case KitAction.Foreclosure: Foreclosure(target); break;
                 case KitAction.Monsoon: Every(.5f, () => Monsoon()); HealEvery(1.5f); break;
+                case KitAction.KiteFleet: if (Elapsed >= awakenEchoAt) { awakenEchoAt = Elapsed + 1; PickFleet(); } break; // the friends' shots split (KitEmitted)
+                case KitAction.SundaeRain: Every(.45f, () => SundaeScoop()); break;
+                case KitAction.TimeGarden: Every(.5f, () => GardenTick()); break;
+                case KitAction.Circus: break; // the opening balls (BeginAwakening); every throw then tosses two pins (ArsenalCombat)
+                case KitAction.DivingBell: DivingBell(); break;
             }
+            for (int i = awakenDrops.Count - 1; i >= 0; i--) if (Elapsed > awakenDrops[i].LandAt + .4f) awakenDrops.RemoveAt(i);
             if (HeroAwakening && Elapsed >= awakenUntil - .0001f) EndAwakening();
             return true;
         }
@@ -128,6 +150,11 @@ namespace ArcaneBrigade
             var cause = IdentityCause(); RecordActivation(cause);
             events.Add(new CombatEvent(CombatEventKind.HeroIdentityCast, Champion.Position, Faction.Champion, 1, subject: Champion, cause: cause));
             IdentityGlyph(MorphGeometry.Seal, Champion.Position, Champion.Position, .5f, .9f, role: HeroGlyphRole.Emblem);
+            awakenFleet.Clear(); awakenDrops.Clear();
+            if (k.Action == KitAction.KiteFleet) { PickFleet(); awakenEchoAt = Elapsed + 1; }
+            if (k.Action == KitAction.TimeGarden) awakenPlot = ClampPosition(Champion.Position + Forward() * 1.4f, .3f);
+            if (k.Action == KitAction.Circus) CircusBalls();
+            if (k.Action == KitAction.DivingBell) awakenEchoAt = Elapsed + .6f;
             if (k.Action == KitAction.Coronation && target != null)
             {
                 Vector2 dir = (target.Position - Champion.Position).normalized;
@@ -146,6 +173,84 @@ namespace ArcaneBrigade
         {
             if (Kit != null && Kit.Action == KitAction.Engine && awakenUntil > 0) Whistle();
             awakenUntil = -1; awakenMeter = 0; awakenCoolUntil = Elapsed + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 0 : AwakenCooldown); Champion.AwakenArt = null; awakenFoe = null;
+            awakenFleet.Clear();
+            // Bonsai Clocksmith: half a tier stays wound after the garden
+            if (Kit != null && Kit.Has(KitPassive.KeepHalfTier)) identityCharge = Mathf.Max(identityCharge, HeroIdentityRequired * Kit.Value(KitPassive.KeepHalfTier));
+        }
+
+        /// <summary>KITE FLEET: a kite over each of the four ranged friends nearest the admiral.</summary>
+        private void PickFleet()
+        {
+            awakenFleet.Clear();
+            for (int n = 0; n < 4; n++)
+            {
+                UnitState best = null; float near = float.PositiveInfinity;
+                foreach (UnitState u in units)
+                {
+                    if (!u.Alive || u.Faction != Faction.Companion || u.Definition.Weapon.Kind != WeaponKind.Projectile || awakenFleet.Contains(u)) continue;
+                    float d = (u.Position - Champion.Position).sqrMagnitude; if (d < near) { near = d; best = u; }
+                }
+                if (best == null) break;
+                awakenFleet.Add(best);
+            }
+        }
+        /// <summary>SUNDAE STORM: a giant scoop falls where an unfrozen enemy is heading; what it lands on freezes (ObserveOwnEvent).</summary>
+        private void SundaeScoop()
+        {
+            UnitState pick = null; int seen = 0;
+            foreach (UnitState u in units) { if (!CanHit(Faction.Champion, u) || u.FrozenUntil > Elapsed || (u.Position - Champion.Position).sqrMagnitude > 49) continue; if (combatRandom.Next(++seen) == 0) pick = u; }
+            pick ??= IdentityTarget(Champion.Position, 7);
+            if (pick == null) return;
+            const float fall = .5f;
+            Vector2 at = ClampPosition(pick.Position + Vector2.ClampMagnitude(pick.Velocity * fall, .8f), .1f);
+            Hit(MorphGeometry.Disc, at, at, .8f, .45f, fall, DamageElement.Frost, slow: .6f);
+            if (awakenDrops.Count < 12) awakenDrops.Add(new AwakenDrop { At = at, Born = Elapsed, LandAt = Elapsed + fall, Kind = 0 });
+        }
+        /// <summary>TIME GARDEN: the bonsai's clock hand goes once round over the transformation, striking and slowing what it crosses.</summary>
+        private void GardenTick()
+        {
+            float turn = Mathf.Clamp01((Elapsed - awakenStarted) / Mathf.Max(.1f, AwakenLength));
+            Vector2 hand = Quaternion.Euler(0, 0, 90 - turn * 360) * Vector2.right;
+            Hit(MorphGeometry.Line, awakenPlot + hand * .3f, awakenPlot + hand * GardenReach, 0, .5f, .05f, slow: 1f);
+        }
+        /// <summary>The bonsai's clock hand right now (for the painted hand).</summary>
+        public Vector2 HeroGardenHand => Quaternion.Euler(0, 0, 90 - Mathf.Clamp01((Elapsed - awakenStarted) / Mathf.Max(.1f, AwakenLength)) * 360) * Vector2.right;
+        /// <summary>GRAND CIRCUS: five balls slam down on five different enemies, one after another.</summary>
+        private void CircusBalls()
+        {
+            awakenPicks.Clear();
+            for (int n = 0; n < 5; n++)
+            {
+                UnitState best = null; float near = 49;
+                foreach (UnitState u in units)
+                {
+                    if (!CanHit(Faction.Champion, u) || awakenPicks.Contains(u)) continue;
+                    float d = (u.Position - Champion.Position).sqrMagnitude; if (d < near) { near = d; best = u; }
+                }
+                if (best == null) break;
+                awakenPicks.Add(best);
+            }
+            for (int i = 0; i < awakenPicks.Count; i++)
+            {
+                float flight = .45f + i * .12f; Vector2 at = awakenPicks[i].Position;
+                IdentityHit(MorphGeometry.Disc, at, at, IdentityApproach == 1 ? .7f : .55f, IdentityPower * .6f * ApproachScale, flight, 1);
+                IdentityGlyph(MorphGeometry.Line, Champion.Position + Vector2.up * .5f, at, 0, flight, role: HeroGlyphRole.Lob);
+            }
+        }
+        /// <summary>DIVING BELL: the bell rams what is ahead (and probes it) and drops a depth charge behind every 1.2s.</summary>
+        private void DivingBell()
+        {
+            Every(.35f, () =>
+            {
+                Vector2 heading = Forward(), front = Champion.Position + heading * (Champion.Definition.Radius + .45f);
+                Hit(MorphGeometry.Disc, front, front + heading * .4f, .75f, .3f, .05f, push: .4f);
+            });
+            if (Elapsed < awakenEchoAt) return;
+            awakenEchoAt = Elapsed + 1.2f;
+            const float fuse = .7f;
+            Vector2 back = ClampPosition(Champion.Position - Forward() * .9f, .1f);
+            Hit(MorphGeometry.Disc, back, back, .9f, .7f, fuse, DamageElement.Frost);
+            if (awakenDrops.Count < 12) awakenDrops.Add(new AwakenDrop { At = back, Born = Elapsed, LandAt = Elapsed + fuse, Kind = 1 });
         }
 
         // ------------------------------------------------------------------ helpers
@@ -284,8 +389,9 @@ namespace ArcaneBrigade
             {
                 Vector2 from = Champion.Position + (Vector2)(Quaternion.Euler(0, 0, 60 + i * 120) * Vector2.right) * 1.2f;
                 var specimen = i < identitySpecimens.Count ? identitySpecimens[i] : null;
-                if (specimen != null && specimen.Weapon.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, IdentityPower * .34f * ApproachScale, 1, element: specimen.Weapon.Element);
-                else IdentityPattern(target, IdentityPower * .34f * ApproachScale, origin: from);
+                // round 3: puppet strike .34 → .5 W (Archive Curator fights nearly alone once its three absorbs are held)
+                if (specimen != null && specimen.Weapon.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, IdentityPower * .5f * ApproachScale, 1, element: specimen.Weapon.Element);
+                else IdentityPattern(target, IdentityPower * .5f * ApproachScale, origin: from);
             }
         }
         private void Thunder(UnitState target)

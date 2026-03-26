@@ -66,3 +66,4 @@ MonoBehaviour:
   EvolutionStage: 0
   Mutation: 0
   SpecialEnemy: 0
+  WaitingKind: 0

@@ -138,7 +138,7 @@ namespace ArcaneBrigade
                 {
                     ArcadeSkin.Panel(new Rect(400, 850, 1120, 148), ArcadeSkin.Surface);
                     GUI.Label(new Rect(420, 858, 1080, 44), SecretEventAssets.Titles[(int)kinds[near]], heading);
-                    GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "\nPress Space / E / A to discover", label);
+                    GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "", label);
                     if (GUI.Button(new Rect(1260, 916, 230, 56), "DISCOVER", primary)) owner.EnterSecret(kinds[near]);
                 }
             }
@@ -164,7 +164,7 @@ namespace ArcaneBrigade
                         if (c.Icon != null) DrawSprite(new Rect(x + 175, 450, 90, 80), c.Icon);
                     }
                     ArcadeSkin.Panel(new Rect(490, 862, 940, 44), ArcadeSkin.Surface);
-                    GUI.Label(new Rect(500, 866, 920, 36), "1–3 / ← → / LB RB: select  ·  Space / Enter / A: agree", label);
+                    GUI.Label(new Rect(500, 866, 920, 36), "Choose one, then agree", label);
                     GUI.enabled = choices[selected].Enabled;
                     if (GUI.Button(new Rect(500, 920, 440, 58), "AGREE TO SELECTED OFFER", primary)) owner.ChooseSecret(selected);
                     GUI.enabled = true;

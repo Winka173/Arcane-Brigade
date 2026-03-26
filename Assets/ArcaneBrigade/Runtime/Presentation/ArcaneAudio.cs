@@ -206,7 +206,8 @@ namespace ArcaneBrigade
                     id = value.Subject == null ? "sig.bell" : value.Subject.Definition.Id switch {
                         "LanternWeaver" or "LoneJelly" => "fx.field.zipper", "CometRunner" or "CopperCauldron" => "wpn.cast.fire",
                         "MirrorKeeper" or "ArchiveCurator" => "sig.camera", "TinVirtuoso" => "sig.musicbox",
-                        "StormFencer" or "HourglassStag" => "fx.reaction.arcane", "TideSinger" or "SupperMortar" => "sig.tea", _ => "sig.bell" };
+                        "StormFencer" or "HourglassStag" => "fx.reaction.arcane", "TideSinger" or "SupperMortar" => "sig.tea",
+                        "KiteAdmiral" => "wpn.boomerang.fly", "SundaeDuchess" => "wpn.cast.ice", "BonsaiClocksmith" => "sig.alarm", "JugglingJester" => "wpn.bounce", _ => "sig.bell" };
                     break;
                 case CombatEventKind.BuildMorphCast:
                     gainScale = value.Faction == Faction.Champion ? .55f : .38f;
@@ -280,7 +281,8 @@ namespace ArcaneBrigade
                 case CombatEventKind.ProjectilePierce: id = "wpn.pierce"; break;
                 case CombatEventKind.ProjectileSplit: id = "wpn.split"; break;
                 case CombatEventKind.ProjectileBounce: id = "wpn.bounce"; break;
-                case CombatEventKind.Knockback: id = "fx.knockback"; break;
+                case CombatEventKind.Knockback: case CombatEventKind.BodyImpact: case CombatEventKind.WallSplat: id = "fx.knockback"; break;
+                case CombatEventKind.Strike: id = "loot.coin.vacuum"; gainScale = 1.3f; break; // a flung chain fells three: the coin chime of a STRIKE!
                 case CombatEventKind.BossPhase: id = "boss.phase"; break;
                 case CombatEventKind.ContactWindup: id = "enemy.lunge"; break;
                 case CombatEventKind.StatusApplied: id = value.Element == DamageElement.Frost ? "fx.chill" : "fx.burn"; break;

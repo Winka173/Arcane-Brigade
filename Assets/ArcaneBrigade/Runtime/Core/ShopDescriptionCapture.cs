@@ -76,10 +76,24 @@ namespace ArcaneBrigade
                 typeof(RunHud).GetField("shopScroll", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(hud, new Vector2(0, 10000));
                 yield return Shot("Regular-" + i + "-details-bottom"); owner.SetShopDetails(false);
             }
-            var inspect = owner.GetComponent<ShopInspect>();
-            owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-1.35f, -.95f); yield return new WaitForSecondsRealtime(.3f);
-            var offerEntry = inspect.Entries.First(e => e.Offer?.Kind == OfferKind.Companion);
-            Check(inspect.Show(offerEntry.Key), "Click inspection opens the same complete companion card"); yield return Shot("Clicked-companion"); inspect.Close();
+            // stalls have no separate inspect card since 19/10/2026: their own card is the one shown when you stand at them
+            Check(owner.GetComponent<ShopInspect>().Entries.All(e => e.Offer == null), "Stalls are not duplicated by inspect cards");
+            var reroll = owner.Shop.Stations.First(s => s.Action == "REROLL");
+            owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = reroll.Position + new Vector2(0, -.3f);
+            FindAnyObjectByType<ArenaCamera>().Snap(); yield return new WaitForSecondsRealtime(.4f); yield return Shot("Station-reroll");
+            // the visitor cards (DO / PAY / GET / WHEN): three bets with 12 gold (the 20 bet greyed), a relic pick, a single offer
+            int purse = owner.Session.State.Gold; owner.Session.State.Gold = 12;
+            owner.Session.ForceVisitor("DiceElder"); owner.GetComponent<VisitorCard>().Show(); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Visitor-card");
+            owner.VisitorDecline(); owner.Session.State.Gold = purse; yield return new WaitForSecondsRealtime(.2f);
+            foreach (var relic in catalog.Items.Where(i => i.ShopWeight > 0 && i.Price > 0).GroupBy(i => i.Rarity).Select(g => g.First()).Take(4)) owner.Session.State.Items.Add(new ItemStack { Id = relic.Id, Count = 1 });
+            owner.Session.ForceVisitor("JunkCollector"); owner.GetComponent<VisitorCard>().Show(); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Visitor-card-relic-pick");
+            owner.VisitorDecline(); yield return new WaitForSecondsRealtime(.2f);
+            owner.Session.ForceVisitor("MusicBoxKeeper"); owner.GetComponent<VisitorCard>().Show(); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Visitor-card-accept");
+            owner.VisitorDecline(); yield return new WaitForSecondsRealtime(.2f);
+            var pauseHud = (RunHud)typeof(ArenaController).GetField("runHud", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
+            FieldInfo pausePage = typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic);
+            owner.TogglePause(); yield return new WaitForSecondsRealtime(.2f); yield return Shot("Pause-menu");
+            pausePage.SetValue(pauseHud, 1); yield return Shot("Pause-settings"); pausePage.SetValue(pauseHud, 0); owner.TogglePause();
             yield return Load(true); yield return Focus(0); yield return Shot("Dream-three-star-companion");
             yield return Focus(2); yield return Shot("Dream-HP-cost-tradeoff");
             gallery = true; yield return Shot("All-stat-icons"); gallery = false;

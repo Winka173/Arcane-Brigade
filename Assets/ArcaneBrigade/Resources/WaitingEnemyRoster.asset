@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ce3e23e6411794892e1165b3b94448, type: 3}
+  m_Name: WaitingEnemyRoster
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WaitingEnemyRoster
+  Enemies:
+  - {fileID: 11400000, guid: 86a863827565c234a854b9a541123a9b, type: 2}
+  - {fileID: 11400000, guid: 46b2f9dc31042d6458701f1b38f3b1b5, type: 2}
+  - {fileID: 11400000, guid: 9a28e94eb0d8be948b2694bc1f025532, type: 2}
+  - {fileID: 11400000, guid: 639c5083a3619e440800fef65d44c62f, type: 2}
+  - {fileID: 11400000, guid: b4543722dd03c9c4b9d389be95688a56, type: 2}
+  - {fileID: 11400000, guid: 0a8b1757587591a4681e4ad42712dc7f, type: 2}
+  - {fileID: 11400000, guid: c94c8a3b6710be548b192f1b79bc0469, type: 2}
+  - {fileID: 11400000, guid: 6fc84df7b5a4f1548aec0fe2465a68b5, type: 2}
+  Art:
+  - Id: SpareChair
+    ArtId: SpareChair
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: dddd1eb687c99724e99721977938a350, type: 2}
+    Evolved: {fileID: 11400000, guid: da913cdfb4358bc49a71bc6e5d412412, type: 2}
+  - Id: WakingSitter
+    ArtId: WakingSitter
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: 9c8b82745b0762949ae43050b7b40e09, type: 2}
+    Evolved: {fileID: 11400000, guid: bb1023cc9a785b84093a544bd81381ba, type: 2}
+  - Id: InkNotary
+    ArtId: InkNotary
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: d76dd9086dd5611418204133669a5cde, type: 2}
+    Evolved: {fileID: 11400000, guid: d088ed7b8fe49e74090e9a7d67ba4201, type: 2}
+  - Id: SewnLetter
+    ArtId: SewnLetter
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: 6aef8c24e599b204b8cd333baa4c308d, type: 2}
+    Evolved: {fileID: 11400000, guid: 31fc3e0e5bc92594fb76c69fe1e5ca9f, type: 2}
+  - Id: PartyLine
+    ArtId: PartyLine
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: f2ca771a96b9ec64791916b6b29a8a19, type: 2}
+    Evolved: {fileID: 11400000, guid: 26c69e4f998ac064a9adae50c28b0bb9, type: 2}
+  - Id: DoorKnocker
+    ArtId: DoorKnocker
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: 7cb6de587a7a7c14585f6e00cc2bb890, type: 2}
+    Evolved: {fileID: 11400000, guid: 2d872732bb4ae7d43a80953a90547f0b, type: 2}
+  - Id: LampSnuffer
+    ArtId: LampSnuffer
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: 171680e886225cc4a93b35a49d7947df, type: 2}
+    Evolved: {fileID: 11400000, guid: 590957e9618963b4b8cecb193db9ceee, type: 2}
+  - Id: LedgerHound
+    ArtId: LedgerHound
+    DisplayName: 
+    Normal: {fileID: 11400000, guid: aa10f44d6421933458c19d2e91d420fb, type: 2}
+    Evolved: {fileID: 11400000, guid: 0831f27a3c9e56d4ea1775d904392685, type: 2}
+  - Id: CoinLeech
+    ArtId: TollTick
+    DisplayName: Toll Tick
+    Normal: {fileID: 11400000, guid: 8dc42f00890792542a5d6db31d096873, type: 2}
+    Evolved: {fileID: 11400000, guid: bc10c918d74bd114db523f7948eadb77, type: 2}
+  - Id: SporeBishop
+    ArtId: CoatRack
+    DisplayName: Coat Rack
+    Normal: {fileID: 11400000, guid: cae7f34b2fda8044bb3b1b536ee098cb, type: 2}
+    Evolved: {fileID: 11400000, guid: 565a8f07930f0d34183be9b38f1d36c8, type: 2}
+  - Id: SmokingCoffin
+    ArtId: UnclaimedTrunk
+    DisplayName: Unclaimed Trunk
+    Normal: {fileID: 11400000, guid: 990e4e60faa1a1a4189afcfc49a28e88, type: 2}
+    Evolved: {fileID: 11400000, guid: b2c2b98894c084f4686587ed3097a28a, type: 2}
+  - Id: HopperKeg
+    ArtId: HatboxHopper
+    DisplayName: Hatbox Hopper
+    Normal: {fileID: 11400000, guid: d448d399954c1ea4986e84f68278bb55, type: 2}
+    Evolved: {fileID: 11400000, guid: 22507a96a42b0b345a989d68fc053d3d, type: 2}
+  - Id: BristleImp
+    ArtId: SplinterImp
+    DisplayName: Splinter Imp
+    Normal: {fileID: 11400000, guid: acc2334dfb87c4546995e5c6ce0f34d9, type: 2}
+    Evolved: {fileID: 11400000, guid: 9d4c2b970190eea429bac70d7cca3ff6, type: 2}
+  LetterHalf: {fileID: 11400000, guid: cc07bb6f580e05b41bdb1ccd806dbfea, type: 2}
+  LetterStamp: {fileID: 11400000, guid: 2a7c529b63bbdaf43893a1785022480f, type: 2}
+  IndebtedStamp: {fileID: 21300000, guid: a08a9e33db25491eb99542f91ba702be, type: 3}

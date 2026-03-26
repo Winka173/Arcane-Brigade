@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CoatRackMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 783540419, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: -1480601041, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  Walk:
+  - {fileID: -1991028877, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: -1891830014, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: -1991028877, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: -1891830014, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  Windup:
+  - {fileID: 751601227, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: 1869079945, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  Release:
+  - {fileID: -43186278, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: -43186278, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  Recovery:
+  - {fileID: 1841759373, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  - {fileID: 783540419, guid: 0c1fbee967a9b964aaa23af8fb9fea8f, type: 3}
+  IllustratedHeight: 0

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: PartyLine
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: PartyLine
+  DisplayName: Party Line
+  Body: {fileID: 97704115, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  AnimationFrames:
+  - {fileID: 97704115, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 624842998, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 2040798246, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  - {fileID: 364606101, guid: fc2b3b7933fc65249979aab56d6b22b5, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f2ca771a96b9ec64791916b6b29a8a19, type: 2}
+  Weapon: {fileID: 11400000, guid: 644e5897859e5e849b3d0826fd82bdc1, type: 2}
+  Health: 78.12
+  Speed: 0.45
+  Radius: 0.3
+  BodyHeight: 1.05
+  BodyScale: 1
+  KnockbackResistance: 0.9
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 5.5
+  ContactInterval: 1
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Never moves. Rings, then pins a live cord across the floor for 3 s.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 8
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 1
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 5

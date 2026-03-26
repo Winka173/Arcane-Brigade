@@ -11,6 +11,9 @@ namespace ArcaneBrigade
         public int SortingBase { get; set; } = 405;
         public bool Essential { get; set; }
         public bool PinCastToFoot { get; set; }
+        // the cast direction eases toward the still key light, and the soft penumbra only changes after the load has held a while
+        private Vector2 castDirection; private bool castDirectionSet;
+        private bool penumbraOn = true; private float penumbraSince;
         public SpriteRenderer Contact => contact;
         public SpriteRenderer Penumbra => penumbra;
         public SpriteRenderer Cast => cast;
@@ -49,7 +52,10 @@ namespace ArcaneBrigade
             contact.transform.localScale = new Vector3(width * 0.82f, width * 0.24f, 1);
             contact.color = new Color(0.005f, 0.008f, 0.018f, strength / softness);
             contact.sortingOrder = SortingBase + 7;
-            penumbra.enabled = AnimationDetailBudget.Level == 0 || Essential;
+            bool wantPenumbra = AnimationDetailBudget.Level == 0 || Essential;
+            if (wantPenumbra != penumbraOn) { if (penumbraSince <= 0) penumbraSince = Time.unscaledTime; if (Time.unscaledTime - penumbraSince > 1.5f) { penumbraOn = wantPenumbra; penumbraSince = 0; } }
+            else penumbraSince = 0;
+            penumbra.enabled = penumbraOn;
             if (penumbra.enabled)
             {
                 penumbra.transform.position = ground + new Vector2(width * 0.06f, -width * 0.025f);
@@ -63,7 +69,10 @@ namespace ArcaneBrigade
             if (cast.enabled)
             {
                 float scale = width / Mathf.Max(0.001f, silhouette.bounds.size.x);
-                Vector2 direction = NightmareLighting.Active != null ? NightmareLighting.Active.ShadowDirection(ground) : new Vector2(.8f, -.35f);
+                Vector2 target = NightmareLighting.Active != null ? NightmareLighting.Active.StableShadowDirection(ground) : new Vector2(.8f, -.35f);
+                castDirection = !castDirectionSet || PresentationSettings.ReducedMotion ? target : Vector2.Lerp(castDirection, target, 1 - Mathf.Exp(-Time.unscaledDeltaTime * 1.5f)).normalized;
+                castDirectionSet = true;
+                Vector2 direction = castDirection;
                 cast.transform.position = ground + direction * (width * (PinCastToFoot ? .05f : .2f) + elevation * .06f);
                 cast.transform.rotation = Quaternion.Euler(0, 0, Mathf.Clamp(direction.x * -15, -15, 15));
                 cast.transform.localScale = new Vector3(scale * 1.12f, scale * 0.3f, 1);

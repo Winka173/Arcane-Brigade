@@ -40,6 +40,9 @@ namespace ArcaneBrigade
                 float committedDamage = tacticalDamage.TryGetValue(enemy.Id, out float expected) ? expected : 0;
                 if (source.PendingAttack && source.AttackTargetId == enemy.Id) committedDamage -= source.Definition.Weapon.Damage;
                 float score = (enemy.Position - source.Position).magnitude + claims * 0.55f + IdentityTargetScore(enemy);
+                // R11: a ranged weapon's own taste (long single shots: the toughest; spreads: the crowd; bows: closest to the hero)
+                WeaponDefinition held = source.Definition.Weapon;
+                if (held.Kind == WeaponKind.Projectile) score += ImpactRules.TargetBias(held, enemy, Champion.Position, held.ProjectileCount >= 3 || held.ProjectileSpread >= .35f ? CrowdAround(enemy) : 0);
                 if (!enemy.Definition.IsBoss && committedDamage >= enemy.Health) score += 3;
                 if (enemy.Id == source.TacticalTargetId) score -= Elapsed < source.TacticalRetargetAt ? 1.5f : 0.6f;
                 if (score > bestScore || score == bestScore && best != null && enemy.Id >= best.Id) continue;

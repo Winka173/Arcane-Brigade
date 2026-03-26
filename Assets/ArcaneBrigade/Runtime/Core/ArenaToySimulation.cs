@@ -50,10 +50,17 @@ namespace ArcaneBrigade
             ArenaToyActivations = 0;
         }
 
+        /// <summary>The arena's fixed props (chair, landmarks, lanterns, architecture...): the same plan the presentation
+        /// draws, computed from plain catalog data. Null when the catalog carries no scenery (sandbox, tests).</summary>
+        public ArenaLayoutPlan ArenaLayout { get; private set; }
+        /// <summary>A toy's painted body and shadow reach this far from its position.</summary>
+        public const float ArenaToyFootprint = 0.85f;
+
         public void ResetArenaToys(int wave = 1)
         {
             ClearArenaToys();
             arenaToyWave = Mathf.Max(1, wave);
+            ArenaLayout = catalog.Scenery is ArenaScenery scenery ? ArenaLayoutPlan.For(scenery.Resized(catalog.ArenaSize)) : null;
             if (!catalog.EnableArenaToys || Champion == null) return;
             var random = new System.Random(unchecked(catalog.Seed ^ arenaToyWave * 486187739 ^ 0x4A44));
             int count = arenaToyWave == 1 ? 1 : 2;
@@ -69,6 +76,7 @@ namespace ArcaneBrigade
         {
             Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 1.1f;
             if (half.x <= 0f || half.y <= 0f || !FiniteArenaVector(position) || Mathf.Abs(position.x) > half.x || Mathf.Abs(position.y) > half.y) return false;
+            if (ArenaLayout != null && ArenaLayout.Blocks(position, ArenaToyFootprint)) return false; // never on a prop
             foreach (UnitState unit in units)
             {
                 if (!unit.Alive) continue;

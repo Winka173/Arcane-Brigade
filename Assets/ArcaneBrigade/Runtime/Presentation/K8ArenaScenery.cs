@@ -80,14 +80,6 @@ namespace ArcaneBrigade
                 garland.transform.localScale = Vector3.one * (3.7f / flags.sprite.bounds.size.x);
                 garland.AddComponent<LivingScenery>();
             }
-            for (int step = 0; step < 3; step++)
-            {
-                float height = -3.3f - step * 0.24f;
-                SpriteRenderer arrow = Panel(parent, new Vector2(0, height), new Vector2(0.32f, 0.055f), thread, -75);
-                arrow.transform.localRotation = Quaternion.Euler(0, 0, -35);
-                SpriteRenderer other = Panel(parent, new Vector2(0.26f, height), new Vector2(0.32f, 0.055f), thread, -75);
-                other.transform.localRotation = Quaternion.Euler(0, 0, 35);
-            }
         }
 
         private static SpriteRenderer Panel(Transform parent, Vector2 position, Vector2 size, Color color, int order)

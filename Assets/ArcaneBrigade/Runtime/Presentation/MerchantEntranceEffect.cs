@@ -41,7 +41,9 @@ namespace ArcaneBrigade
             {
                 float angle = index * Mathf.PI * 2 / fragments.Length;
                 SpriteRenderer fragment = fragments[index];
-                fragment.transform.localPosition = new Vector2(Mathf.Cos(angle) * progress * 1.9f, Mathf.Sin(angle) * progress * 0.55f + Mathf.Sin(progress * Mathf.PI) * (special ? 1.5f : 0.85f));
+                fragment.transform.localPosition = special
+                    ? new Vector2((index - (fragments.Length - 1) * .5f) * .42f + Mathf.Sin(progress * 6 + index) * .15f, 3.2f - progress * 3.4f - index % 3 * .25f)
+                    : new Vector2(Mathf.Cos(angle) * progress * 1.9f, Mathf.Sin(angle) * progress * 0.55f + Mathf.Sin(progress * Mathf.PI) * 0.85f);
                 fragment.transform.localScale = Vector3.one * (0.17f / fragment.sprite.bounds.size.y) * (1 - progress * 0.5f);
                 fragment.transform.localRotation = Quaternion.Euler(0, 0, index * 35 + progress * 150);
                 fragment.color = new Color(1, 1, 1, elapsed < 0 ? 0 : 1 - progress);

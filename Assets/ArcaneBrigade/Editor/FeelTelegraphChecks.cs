@@ -73,9 +73,9 @@ namespace ArcaneBrigade.Editor
                     Require(telegraph.Pools == 0, "No ink while the boss is not winding up");
                     copy.BossPattern = 5; boss.ActiveBossSignature = -1; boss.TelegraphDirection = Vector2.down; boss.TelegraphUntil = sim.Elapsed + 0.4f;
                     telegraph.Display(sim);
-                    Require(telegraph.Pools == 1 && telegraph.Tongues == 1 && telegraph.Blots == 0, "An aimed volley: a pool and a tongue of ink along the aim");
+                    Require(telegraph.Pools == 1 && telegraph.Tongues == 1 && telegraph.Blots == 0, "An aimed volley: the wind-up droplets and a tongue of ink along the aim (no pool since 19/10/2026)");
                     copy.BossPattern = 4; telegraph.Display(sim);
-                    Require(telegraph.Pools == 1 && telegraph.Tongues == 0, "A ring volley: the pool alone, no lanes radiating from the boss");
+                    Require(telegraph.Pools == 1 && telegraph.Tongues == 0, "A ring volley: the wind-up droplets alone, no lanes radiating from the boss");
                     boss.ActiveBossSignature = 0; boss.AbilityTarget = sim.Champion.Position; telegraph.Display(sim);
                     Require(telegraph.Blots == 1 && telegraph.Tongues == 0, "A signature move: a blot where it lands");
                     boss.TelegraphUntil = 0; telegraph.Display(sim);

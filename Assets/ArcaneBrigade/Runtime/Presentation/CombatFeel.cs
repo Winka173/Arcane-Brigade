@@ -24,8 +24,8 @@ namespace ArcaneBrigade
     /// (the simulation simply does not step, so gameplay and Time.timeScale stay untouched), and a slow-motion beat when a boss falls.</summary>
     public sealed class CombatFeel
     {
-        public const float MaxShake = 0.3f;          // world units at full trauma (about 40 px at 1080p)
-        private const float RoutineTraumaCap = 0.42f; // kills, crits and heavy hits alone never shake harder than this
+        public const float MaxShake = 0.18f;         // world units at full trauma (about 24 px at 1080p; was 0.3: too much shaking, owner 19/10/2026)
+        private const float RoutineTraumaCap = 0.3f;  // kills, crits and heavy hits alone never shake harder than this (was 0.42)
         private float trauma, clock, freeze, freezeCooldown, slow, flash, punctuation;
         /// <summary>How long a critical hit or a big kill holds the whole screen (18/10/2026), and how soon another may.</summary>
         public const float CriticalHold = 0.035f, BigKillHold = 0.055f, PunctuationGap = 0.9f;
@@ -66,11 +66,21 @@ namespace ArcaneBrigade
         public static bool HeavyCritical(CombatEvent value, int championId) => value.Kind == CombatEventKind.Hit && value.Critical && value.Value > 0 && value.Faction == Faction.Enemy
             && (championId != 0 && value.Cause.SourceUnitId == championId || value.Subject != null && value.Subject.Definition != null && value.Value >= value.Subject.Definition.Health * 0.06f);
 
+        private readonly Dictionary<int, int> swingHits = new Dictionary<int, int>();
         public void Play(IReadOnlyList<CombatEvent> events, Dictionary<int, UnitVisual> views, float time, int championId = 0)
         {
             float hold = 0, punctuate = 0; int kills = 0;
+            swingHits.Clear();
+            foreach (CombatEvent value in events)
+                if (value.Kind == CombatEventKind.Hit && value.Faction == Faction.Enemy && value.Value > 0 && value.Weapon != null && value.Weapon.Kind == WeaponKind.Melee && value.Cause.RootId != 0)
+                    swingHits[value.Cause.RootId] = swingHits.TryGetValue(value.Cause.RootId, out int n) ? n + 1 : 1;
+            int widest = 0; foreach (int n in swingHits.Values) widest = Mathf.Max(widest, n);
+            if (widest >= 3) { hold = Mathf.Max(hold, Mathf.Min(.08f, .02f + .012f * widest)); AddTrauma(.03f * Mathf.Min(5, widest) / 5f, true); }
             foreach (CombatEvent value in events)
             {
+                if (value.Kind == CombatEventKind.Knockback && value.Value >= .5f && value.Subject != null && value.Subject.Alive && !value.Subject.Definition.IsBoss
+                    && value.Subject.Definition.BodyHeight < .95f && value.Subject.Definition.KnockbackResistance < .1f && views.TryGetValue(value.SubjectId, out UnitVisual rolled))
+                    rolled.Tumble(time, value.Direction);
                 ImpactAccent accent = ImpactAccent.For(value);
                 if (accent.Hold > 0 && views.TryGetValue(value.SubjectId, out UnitVisual visual)) visual.HoldImpact(time, accent.Hold);
                 if (accent.Hold > 0.02f && value.Faction != Faction.Champion && value.Weapon != null && views.TryGetValue(value.Cause.SourceUnitId, out UnitVisual attacker)) attacker.HoldImpact(time, accent.Hold * 0.55f);
@@ -83,6 +93,8 @@ namespace ArcaneBrigade
                         kills++; AddTrauma(value.Critical || value.Value > 0.6f ? 0.09f : 0.03f, true);
                         if (BigEnemy(value.Subject)) { punctuate = Mathf.Max(punctuate, BigKillHold); AddTrauma(0.14f, true); bias = direction; }
                         break;
+                    case CombatEventKind.BodyImpact: AddTrauma(0.06f, true); break; // a flung body bowls into another
+                    case CombatEventKind.WallSplat: AddTrauma(0.09f, true); break;
                     case CombatEventKind.BossLanded: AddTrauma(0.55f, false); hold = Mathf.Max(hold, 0.06f); bias = Vector2.down; break;
                     case CombatEventKind.Detonation when value.Cause.ItemId == "ink-bloater": AddTrauma(0.08f, true); break; // chains rattle, they do not freeze
                     case CombatEventKind.Flare: AddTrauma(0.45f, false); hold = Mathf.Max(hold, 0.08f); flash = Mathf.Max(flash, 0.35f); break;
@@ -105,6 +117,13 @@ namespace ArcaneBrigade
                     case CombatEventKind.Hit when value.Value > 0 && value.Critical: AddTrauma(0.05f, true); break;
                 }
                 if (HeavyCritical(value, championId)) punctuate = Mathf.Max(punctuate, CriticalHold);
+                // a critical from far away (RangedFeel.LongShot): a tiny held beat, and the target tips back along the shot
+                if (value.Kind == CombatEventKind.Hit && value.Critical && RangedFeel.LongShot(value))
+                {
+                    punctuate = Mathf.Max(punctuate, RangedFeel.LongShotHold);
+                    if (views.TryGetValue(value.SubjectId, out UnitVisual struck)) struck.TipBack(time, value.Direction);
+                    ImpactWords.Pop("CRIT!", value.Position + Vector2.up * .6f, ImpactWords.Cream, 1, .8f, -12);
+                }
             }
             if (kills >= 6) { AddTrauma(0.12f, true); hold = Mathf.Max(hold, 0.05f); }  // a big multi-kill lands as one beat
             // crits and big kills hold the whole screen for a blink, but never more often than once every PunctuationGap

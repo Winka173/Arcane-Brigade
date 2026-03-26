@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: InkNotaryEvolvedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1021906624, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: 835076556, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  Walk:
+  - {fileID: 462597897, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: -613698362, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: 462597897, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: -613698362, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  Windup:
+  - {fileID: 895790783, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: 1170479662, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  Release:
+  - {fileID: 428697868, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: 428697868, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  Recovery:
+  - {fileID: 1760465933, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  - {fileID: 1021906624, guid: d81e85949f8757342909b6ed0e5cd1de, type: 3}
+  IllustratedHeight: 0

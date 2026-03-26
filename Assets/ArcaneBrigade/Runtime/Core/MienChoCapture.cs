@@ -176,7 +176,9 @@ namespace ArcaneBrigade
                 CheckFloatingLanterns(field,false,wave);
                 var anchors=Enumerable.Range(0,8).Select(field.FixtureAnchor).ToArray();
                 if(first==null)first=anchors;
-                else Check(first.SequenceEqual(anchors),"Damaged lamps stay at the original run locations wave="+wave);
+                // each zone's arena layout may step a lamp aside for that zone's props; within a fight it never moves
+                var layout=ArenaLayout.Combat(owner);
+                Check(layout!=null && Enumerable.Range(0,8).All(i=>layout.TryGet("lantern"+i,out var spot) && spot.Visible && spot.Foot==anchors[i]),"Damaged lamps stand on their planned arena spots wave="+wave);
                 Check(field.BrokenCount==NightLanternField.BrokenFor(wave),"Damage progression survives smaller scattered lamps wave="+wave);
                 yield return Shot("scattered-lamps-wave-"+wave);
                 var before=LanternPoses(field);yield return new WaitForSecondsRealtime(1.1f);

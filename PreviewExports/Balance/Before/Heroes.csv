@@ -1,0 +1,32 @@
+id,hp,speed,crit,mechanic,weapon,kind,damage,cooldown,range,projectiles,hero_power,base_dps,champion_modifiers,vu_modifiers
+LanternKnight,120,3.3,0,LanternStride,KeyCleaver,Melee,15,0.85,1.9,1,3,52.94,"CompanionDamage/C 0.25; CompanionAttackSpeed/C 0.15; Roam/R 0.6; CollisionDamage/C 2; BulletBounce/C 0.08; EnemyHealth/R 0.08",21.78
+Postmaster,110,3.65,0,ParcelExpress,MailboxLauncher,Projectile,10,0.85,7.8,1,3,35.29,"Discount/R 0.15; Pickup/R 0.5; Projectiles/C 1; Income/R 5; BulletSplit/C 1; EnemyCount/R 0.08",58.7
+DrowsySeer,150,3.1,0,DreamBreath,MoonseedOrb,Projectile,20.4,1.56,7,1,3,39.23,"Armor/C 0.35; Heal/C 0.6; Crit/C 0.15; Dodge/C 0.06; BulletPierce/C 1; EnemySpeed/R 0.05; Projectiles/C 1",70.93
+RootOracle,180,3.1,0,RootedOracle,BambooVase,Projectile,44.07,1.3,4.6,1,3.6,122.04,"HealthCorrection/C 0.15; Armor/C 1.5",132
+LoneJelly,225,3.4,0,SoloMaw,InkyOctopus,Projectile,35,0.9,4.5,1,6.5,252.78,"MeleeDamage/T 4; Armor/C 0.6; RangedDamage/T 4; Heal/C 3",117
+GlassDice,60,3,0.05,GlassGambler,GlitchToybox,Projectile,39,1,4.5,1,3.6,140.4,"Luck/R 0.6; Crit/C 0.2; ShopRarity/R 0.15",25
+TideSinger,120,3.1,0.05,TideCollector,RibbonHarp,Projectile,13,1.01,7,2,3,77.23,"HeartHealing/C 4",4
+CometRunner,120,3.8,0.05,ClockRunner,ClockCrescent,Melee,22,1.15,4,1,3,57.39,"SpeedCorrection/T -0.05",-2
+MirrorKeeper,120,2.9,0.05,MirrorGuard,SnowGlobeOrb,Projectile,11,0.89,7,1,3,37.08,"Dodge/C 0.1",8
+TreasureAcorn,120,3.2,0.05,TreasureTax,AcornSling,Projectile,9,1.01,7,1,3,26.73,"Income/R 5",12.5
+VerdantMatron,85,4.5,0,None,LeafCrossbow,Projectile,11,1.01,7,1,3,32.67,"",0
+CopperCauldron,95,4.5,0,None,FireExtinguisher,Projectile,3.2,0.72,3.4,6,3,80,"",0
+ChinaMarionette,105,4.5,0,None,NeedleSinger,Projectile,5,0.95,6.4,3,3,47.37,"",0
+SoapSkater,115,4.5,0,None,BubbleWand,Projectile,9,0.65,7,1,3,41.54,"",0
+VelvetRegent,85,4.5,0,None,StarforgeClaymore,Melee,10.05,1.6,2.2,1,3,18.84,"",0
+ButtonCavalier,95,4.5,0,None,CorkscrewRapier,Melee,12,1.13,1.6,1,3,31.86,"",0
+NightMaw,105,4.5,0,None,DrumstickClub,Melee,20.02,1.15,1.6,1,3,52.23,"",0
+ThornTreasurer,115,4.5,0,None,GumballGatling,Projectile,8.44,0.32,5,1,3,79.13,"",0
+CitrusMarshal,85,4.5,0,None,SignpostSlammer,Melee,12.48,0.95,1.6,1,3,39.41,"",0
+IvorySovereign,95,4.5,0,None,DreamStamp,Melee,9,0.75,1.65,1,3,36,"",0
+PetalCitadel,105,4.5,0,None,RoseBouquet,Projectile,14.64,1.15,4.5,1,3,38.19,"",0
+PatchworkHost,115,4.5,0,None,ConfettiBlunderbuss,Projectile,32.16,1.25,3.2,1,4.5,115.78,"",0
+ArchiveCurator,85,4.5,0,None,SleepCamera,Projectile,6,1.25,4.4,1,3,14.4,"",0
+PennyBroker,95,4.5,0,None,DetonatorBox,Projectile,17.6,1.05,5,1,3,50.29,"",0
+StormFencer,105,4.5,0,None,PlasmaTrident,Projectile,8,1.15,7,3,3,62.61,"",0
+TinVirtuoso,115,4.5,0,None,MusicBox,Projectile,10,0.95,7,1,3,31.58,"",0
+MoonProwler,85,4.5,0,None,MoonScythe,Melee,12,1.01,1.6,1,3,35.64,"",0
+SupperMortar,95,4.5,0,None,TeapotPopgun,Projectile,10,0.85,7.8,1,3,35.29,"",0
+LanternWeaver,105,4.5,0,None,LanternStaff,Projectile,9,0.77,7,1,3,35.06,"",0
+HourglassStag,115,4.5,0,None,AlarmMortar,Projectile,18,1.8,7,1,3,30,"",0
+RainArchivist,85,4.5,0,None,SquirtTrio,Projectile,16.2,0.85,6,1,3,57.18,"",0

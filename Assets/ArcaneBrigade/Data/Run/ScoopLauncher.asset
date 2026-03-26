@@ -55,5 +55,5 @@ MonoBehaviour:
   PushDistance: 0.15
   Family: 0
   Mechanic: 0
-  GameplaySummary: 'Lobs a scoop where the enemy is heading; the melting puddle slows.
-    Flavours take turns: ember, frost, cream.'
+  GameplaySummary: 'Lobs a scoop where the enemy is heading; the splat slows what it
+    hits for 2s. Flavours take turns: ember, frost (freezes 0.4s), cream.'

@@ -36,6 +36,8 @@ namespace ArcaneBrigade
     {
         private void Danger(ExpandedFieldKind kind, UnitState source, Vector2 destination, float radius, float delay, float duration, int organ = -1)
         {
+            // no lingering pools on the floor (owner, 19/10/2026): what used to spread there lands once as a dropped blow and is gone
+            if (kind == ExpandedFieldKind.ShadowPool) { kind = ExpandedFieldKind.FallingProp; duration = Mathf.Min(duration, .4f); }
             if (!BossPartRules.Allows(source, kind)) return;
             if (source.Definition.IsBoss && (BossPartRules.Has(source, BossOrganRole.Pulse, true) || BossAnatomy.For(source.Definition) == null && source.RightPartBroken) && kind == ExpandedFieldKind.Shockwave) radius *= 0.8f;
             int count = 0;

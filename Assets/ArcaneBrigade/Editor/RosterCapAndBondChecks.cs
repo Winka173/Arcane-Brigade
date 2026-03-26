@@ -110,7 +110,7 @@ namespace ArcaneBrigade.Editor
             for (int count = 0; count <= 16; count++)
             {
                 float raw = b.ActiveLevel(count) * b.Value + (b.ExtraBonuses ?? Array.Empty<BondThresholdBonus>()).Where(x => count >= x.Threshold).Sum(x => x.Value);
-                bool beneficial = raw > 0 && b.Effect != ItemEffect.EnemyCount && b.Effect != ItemEffect.EnemyHealth && b.Effect != ItemEffect.EnemySpeed;
+                bool beneficial = raw > 0 && b.Effect != ItemEffect.EnemyCount && b.Effect != ItemEffect.EnemyHealth && b.Effect != ItemEffect.EnemySpeed && !BondDefinition.WholeNumber(b.Effect); // whole-number stats unscaled since 19/10/2026
                 float expected = beneficial ? raw * .9f : raw;
                 Check(Mathf.Abs(b.Reward(count) - expected) < .0001f, "Exact mild bond adjustment " + b.Id + "/" + count);
                 Check(b.ActiveLevel(count) == count / b.Threshold, "Bond threshold unchanged " + b.Id + "/" + count);

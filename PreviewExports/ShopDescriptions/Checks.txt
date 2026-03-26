@@ -1713,10 +1713,12 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: c
 PASS The item card stays short (stat lines are one icon each): coin-compass
 PASS Item icon, category and rarity: wandering-map
 PASS Every item modifier includes icon, scope and exact value: wandering-map / Roam
+PASS Every item modifier includes icon, scope and exact value: wandering-map / Pickup
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: wandering-map
 PASS The item card stays short (stat lines are one icon each): wandering-map
 PASS Item icon, category and rarity: guardian-canopy
 PASS Every item modifier includes icon, scope and exact value: guardian-canopy / Interceptor
+PASS Every item modifier includes icon, scope and exact value: guardian-canopy / CompanionAttackSpeed
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: guardian-canopy
 PASS The item card stays short (stat lines are one icon each): guardian-canopy
 PASS Item icon, category and rarity: warm-tea
@@ -1729,6 +1731,7 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: o
 PASS The item card stays short (stat lines are one icon each): oracle-lens
 PASS Item icon, category and rarity: twin-seal
 PASS Every item modifier includes icon, scope and exact value: twin-seal / Projectiles
+PASS Every item modifier includes icon, scope and exact value: twin-seal / AttackSpeed
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: twin-seal
 PASS The item card stays short (stat lines are one icon each): twin-seal
 PASS Item icon, category and rarity: piggy-mail
@@ -1757,6 +1760,7 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: c
 PASS The item card stays short (stat lines are one icon each): coupon-book
 PASS Item icon, category and rarity: long-atlas
 PASS Every item modifier includes icon, scope and exact value: long-atlas / Roam
+PASS Every item modifier includes icon, scope and exact value: long-atlas / AttackRange
 PASS Every item modifier includes icon, scope and exact value: long-atlas / MoveSpeed
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: long-atlas
 PASS The item card stays short (stat lines are one icon each): long-atlas
@@ -1779,6 +1783,7 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: f
 PASS The item card stays short (stat lines are one icon each): fortune-egg
 PASS Item icon, category and rarity: treasure-whisper
 PASS Every item modifier includes icon, scope and exact value: treasure-whisper / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: treasure-whisper / Luck
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: treasure-whisper
 PASS The item card stays short (stat lines are one icon each): treasure-whisper
 PASS Item icon, category and rarity: coin-salve
@@ -1879,7 +1884,6 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k
 PASS The item card stays short (stat lines are one icon each): k10-bulletsplit
 PASS Item icon, category and rarity: k10-bulletbounce
 PASS Every item modifier includes icon, scope and exact value: k10-bulletbounce / BulletBounce
-PASS Every item modifier includes icon, scope and exact value: k10-bulletbounce / Health
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-bulletbounce
 PASS The item card stays short (stat lines are one icon each): k10-bulletbounce
 PASS Item icon, category and rarity: k10-bulletsize
@@ -1889,27 +1893,29 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k
 PASS The item card stays short (stat lines are one icon each): k10-bulletsize
 PASS Item icon, category and rarity: k10-bulletspeed
 PASS Every item modifier includes icon, scope and exact value: k10-bulletspeed / BulletSpeed
-PASS Every item modifier includes icon, scope and exact value: k10-bulletspeed / Health
+PASS Every item modifier includes icon, scope and exact value: k10-bulletspeed / BulletDistance
+PASS Every item modifier includes icon, scope and exact value: k10-bulletspeed / AttackRange
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-bulletspeed
 PASS The item card stays short (stat lines are one icon each): k10-bulletspeed
 PASS Item icon, category and rarity: k10-bulletdistance
 PASS Every item modifier includes icon, scope and exact value: k10-bulletdistance / BulletDistance
-PASS Every item modifier includes icon, scope and exact value: k10-bulletdistance / Health
+PASS Every item modifier includes icon, scope and exact value: k10-bulletdistance / AttackRange
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-bulletdistance
 PASS The item card stays short (stat lines are one icon each): k10-bulletdistance
 PASS Item icon, category and rarity: k10-knockback
 PASS Every item modifier includes icon, scope and exact value: k10-knockback / Knockback
-PASS Every item modifier includes icon, scope and exact value: k10-knockback / Health
+PASS Every item modifier includes icon, scope and exact value: k10-knockback / CollisionDamage
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-knockback
 PASS The item card stays short (stat lines are one icon each): k10-knockback
 PASS Item icon, category and rarity: k10-bodysize
 PASS Every item modifier includes icon, scope and exact value: k10-bodysize / BodySize
 PASS Every item modifier includes icon, scope and exact value: k10-bodysize / Health
+PASS Every item modifier includes icon, scope and exact value: k10-bodysize / CollisionDamage
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-bodysize
 PASS The item card stays short (stat lines are one icon each): k10-bodysize
 PASS Item icon, category and rarity: k10-companionsize
 PASS Every item modifier includes icon, scope and exact value: k10-companionsize / CompanionSize
-PASS Every item modifier includes icon, scope and exact value: k10-companionsize / Health
+PASS Every item modifier includes icon, scope and exact value: k10-companionsize / CompanionDamage
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-companionsize
 PASS The item card stays short (stat lines are one icon each): k10-companionsize
 PASS Item icon, category and rarity: k10-enemycount
@@ -1937,12 +1943,11 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k
 PASS The item card stays short (stat lines are one icon each): k10-hearthealing
 PASS Item icon, category and rarity: k10-chestquality
 PASS Every item modifier includes icon, scope and exact value: k10-chestquality / ChestQuality
-PASS Every item modifier includes icon, scope and exact value: k10-chestquality / Health
+PASS Every item modifier includes icon, scope and exact value: k10-chestquality / TreasureDetection
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-chestquality
 PASS The item card stays short (stat lines are one icon each): k10-chestquality
 PASS Item icon, category and rarity: k10-recruitdiscount
 PASS Every item modifier includes icon, scope and exact value: k10-recruitdiscount / RecruitDiscount
-PASS Every item modifier includes icon, scope and exact value: k10-recruitdiscount / Health
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-recruitdiscount
 PASS The item card stays short (stat lines are one icon each): k10-recruitdiscount
 PASS Item icon, category and rarity: k10-relicdiscount
@@ -1952,12 +1957,10 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k
 PASS The item card stays short (stat lines are one icon each): k10-relicdiscount
 PASS Item icon, category and rarity: k10-shoprarity
 PASS Every item modifier includes icon, scope and exact value: k10-shoprarity / ShopRarity
-PASS Every item modifier includes icon, scope and exact value: k10-shoprarity / Health
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-shoprarity
 PASS The item card stays short (stat lines are one icon each): k10-shoprarity
 PASS Item icon, category and rarity: k10-healthcorrection
 PASS Every item modifier includes icon, scope and exact value: k10-healthcorrection / HealthCorrection
-PASS Every item modifier includes icon, scope and exact value: k10-healthcorrection / Health
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-healthcorrection
 PASS The item card stays short (stat lines are one icon each): k10-healthcorrection
 PASS Item icon, category and rarity: k10-damagecorrection
@@ -1967,27 +1970,26 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k
 PASS The item card stays short (stat lines are one icon each): k10-damagecorrection
 PASS Item icon, category and rarity: k10-speedcorrection
 PASS Every item modifier includes icon, scope and exact value: k10-speedcorrection / SpeedCorrection
-PASS Every item modifier includes icon, scope and exact value: k10-speedcorrection / Health
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-speedcorrection
 PASS The item card stays short (stat lines are one icon each): k10-speedcorrection
 PASS Item icon, category and rarity: k10-armorcorrection
 PASS Every item modifier includes icon, scope and exact value: k10-armorcorrection / ArmorCorrection
-PASS Every item modifier includes icon, scope and exact value: k10-armorcorrection / Health
+PASS Every item modifier includes icon, scope and exact value: k10-armorcorrection / Armor
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-armorcorrection
 PASS The item card stays short (stat lines are one icon each): k10-armorcorrection
 PASS Item icon, category and rarity: k10-healcorrection
 PASS Every item modifier includes icon, scope and exact value: k10-healcorrection / HealCorrection
-PASS Every item modifier includes icon, scope and exact value: k10-healcorrection / Health
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-healcorrection
 PASS The item card stays short (stat lines are one icon each): k10-healcorrection
 PASS Item icon, category and rarity: k10-collisionfrequency
 PASS Every item modifier includes icon, scope and exact value: k10-collisionfrequency / CollisionFrequency
-PASS Every item modifier includes icon, scope and exact value: k10-collisionfrequency / Health
+PASS Every item modifier includes icon, scope and exact value: k10-collisionfrequency / CollisionDamage
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: k10-collisionfrequency
 PASS The item card stays short (stat lines are one icon each): k10-collisionfrequency
 PASS Item icon, category and rarity: long-pocket
 PASS Every item modifier includes icon, scope and exact value: long-pocket / ChestReach
-PASS Every item modifier includes icon, scope and exact value: long-pocket / MoveSpeed
+PASS Every item modifier includes icon, scope and exact value: long-pocket / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: long-pocket / Pickup
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: long-pocket
 PASS The item card stays short (stat lines are one icon each): long-pocket
 PASS Item icon, category and rarity: velvet-first-aid
@@ -2080,6 +2082,7 @@ PASS The item card stays short (stat lines are one icon each): SecretMirror
 PASS Item icon, category and rarity: SecretThread
 PASS Every item modifier includes icon, scope and exact value: SecretThread / AttackRange
 PASS Every item modifier includes icon, scope and exact value: SecretThread / Knockback
+PASS Every item modifier includes icon, scope and exact value: SecretThread / Damage
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: SecretThread
 PASS The item card stays short (stat lines are one icon each): SecretThread
 PASS Item icon, category and rarity: SecretTicket
@@ -2105,6 +2108,7 @@ PASS The item card stays short (stat lines are one icon each): SecretCrown
 PASS Item icon, category and rarity: SecretLetter
 PASS Every item modifier includes icon, scope and exact value: SecretLetter / Pickup
 PASS Every item modifier includes icon, scope and exact value: SecretLetter / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: SecretLetter / Luck
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: SecretLetter
 PASS The item card stays short (stat lines are one icon each): SecretLetter
 PASS Item icon, category and rarity: OctoberRelic0
@@ -2230,6 +2234,7 @@ PASS Short effect lines on the card, the full rules under INFO, RNG preserved: C
 PASS The item card stays short (stat lines are one icon each): CurioCitrusStorm
 PASS Item icon, category and rarity: CurioMoonMilk
 PASS Every item modifier includes icon, scope and exact value: CurioMoonMilk / HeartHealing
+PASS Every item modifier includes icon, scope and exact value: CurioMoonMilk / Heal
 PASS Every item modifier includes icon, scope and exact value: CurioMoonMilk / MoveSpeed
 PASS Short effect lines on the card, the full rules under INFO, RNG preserved: CurioMoonMilk
 PASS The item card stays short (stat lines are one icon each): CurioMoonMilk

@@ -490,7 +490,9 @@ namespace ArcaneBrigade.Editor
                     sim.ArsenalAttackFixture(me, t); f.Tick(0.3f);
                     Require(t.Health == f.Full, id + " the scoop is still in the air");
                     f.Tick(1f);
-                    Require(t.Health < f.Full && t.ChillUntil > sim.Elapsed, id + " lands, and the melting puddle slows");
+                    Require(t.Health < f.Full && t.ChillUntil > sim.Elapsed, id + " splats on its enemy and slows it (no puddle)");
+                    f.Tick(0.6f);
+                    Require(!sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Scoop), id + " leaves nothing on the floor");
                     break;
                 }
                 case ArsenalWeapon.CuckooCannon:

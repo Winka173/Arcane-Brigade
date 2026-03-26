@@ -29,20 +29,20 @@ PASS Declining has no economic penalty
 PASS Six extra kills each drop their own small coin
 PASS Swarm crest and breathing interval 1
 PASS Swarms consist of small melee bodies 1
-PASS Balanced melee weapon retains increased source reach 1
+PASS Balanced melee weapon keeps its reach 1
 PASS Swarm crest and breathing interval 3
 PASS Swarms consist of small melee bodies 3
 PASS Extra bodies are fragile, not extra tanks 3
-PASS Balanced melee weapon retains increased source reach 3
+PASS Balanced melee weapon keeps its reach 3
 PASS Swarm crest and breathing interval 5
 PASS Swarms consist of small melee bodies 5
 PASS Extra bodies are fragile, not extra tanks 5
-PASS Balanced melee weapon retains increased source reach 5
+PASS Balanced melee weapon keeps its reach 5
 PASS Swarm crest and breathing interval 9
 PASS Swarms consist of small melee bodies 9
 PASS Extra bodies are fragile, not extra tanks 9
-PASS Balanced melee weapon retains increased source reach 9
+PASS Balanced melee weapon keeps its reach 9
 PASS Swarm crest and breathing interval 16
 PASS Swarms consist of small melee bodies 16
 PASS Extra bodies are fragile, not extra tanks 16
-PASS Balanced melee weapon retains increased source reach 16
+PASS Balanced melee weapon keeps its reach 16

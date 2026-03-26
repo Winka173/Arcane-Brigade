@@ -206,15 +206,16 @@ def family(item):
     return "team"
 
 # bond effects (version 4 §3): one effect per bond, only two hero-survival bonds (Hearth, Rootkin); value per level
-BOND_EFFECTS = {"hearth": ("Heal", .15), "archive": ("Damage", .08), "clock": ("AttackSpeed", .07), "frost": ("EnemySpeed", -.05),
-                "orchard": ("Luck", .04), "astral": ("BulletSize", .08), "tidal": ("BulletBounce", .08), "oddity": ("Crit", .05),
-                "hare": ("Knockback", .15), "archer": ("RangedDamage", 3), "root": ("Health", 8), "gauntlet": ("MeleeDamage", 4),
-                "regal": ("CompanionDamage", .08), "clover": ("ShopRarity", .08), "gear": ("Income", 4), "hat": ("Interest", 2),
+# bond values retuned 19/10/2026 (Docs/Balance_Pass_2026-10-19.md): ~2.5 VU per member, themes ~30 VU at six
+BOND_EFFECTS = {"hearth": ("Heal", .15), "archive": ("Damage", .06), "clock": ("AttackSpeed", .06), "frost": ("EnemySpeed", -.07),
+                "orchard": ("Luck", .15), "astral": ("BulletSize", .2), "tidal": ("BulletBounce", .15), "oddity": ("Crit", .08),
+                "hare": ("Knockback", .3), "archer": ("RangedDamage", 2), "root": ("Health", 8), "gauntlet": ("MeleeDamage", 2),
+                "regal": ("CompanionDamage", .1), "clover": ("ShopRarity", .15), "gear": ("Income", 3), "hat": ("Interest", 3),
                 "horn": ("BulletPierce", 1), "sprout": ("Discount", .06), "knight": ("CollisionDamage", 5), "morning": ("ChampionDamage", .1),
-                "rune": ("BulletSplit", 1), "mask": ("ChestQuality", .1), "hide": ("Pickup", .4), "resolve": ("DamageCorrection", .06),
-                "shoe": ("MoveSpeed", .08), "lantern-guild": ("AttackRange", .1), "rain-script": ("BulletSpeed", .1),
-                "paper-wings": ("BulletDistance", .12), "sweet-tooth": ("CompanionAttackSpeed", .07), "big-top": ("RecruitDiscount", .08),
-                "static-club": ("ChainChance", .04), "sea-shanty": ("RelicDiscount", .06), "exhibit-hall": ("RecordedDamage", .1)}
+                "rune": ("BulletSplit", 1), "mask": ("ChestQuality", .3), "hide": ("Pickup", .6), "resolve": ("DamageCorrection", .06),
+                "shoe": ("MoveSpeed", .1), "lantern-guild": ("AttackRange", .1), "rain-script": ("BulletSpeed", .25),
+                "paper-wings": ("BulletDistance", .25), "sweet-tooth": ("CompanionAttackSpeed", .09), "big-top": ("RecruitDiscount", .08),
+                "static-club": ("ChainChance", .06), "sea-shanty": ("RelicDiscount", .06), "exhibit-hall": ("RecordedDamage", .12)}
 
 NEW_ITEMS = {  # Docs/Content_Expansion_v5.md §6b (final): id -> (rarity, themes, families)
     "TallyChalk": ("Common", [], []), "CoinSash": ("Common", [], []), "FishCracker": ("Common", [], []),

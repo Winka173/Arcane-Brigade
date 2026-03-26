@@ -160,7 +160,16 @@ namespace ArcaneBrigade
                 if (bubble.Tone == SpeechTone.Whisper) { DrawWhisper(bubble, now, reduced); continue; }
                 Vector2 anchor;
                 bool tailed = bubble.Tone != SpeechTone.Offscreen;
-                if (bubble.PlacementLocked) anchor = bubble.LockedAnchor;
+                if (bubble.PlacementLocked)
+                {
+                    anchor = bubble.LockedAnchor;
+                    // the speaker moved: the box and its tail move with it (same side, kept on screen)
+                    if (tailed && Live(bubble, camera, inverse, out Vector2 live) && (live - anchor).sqrMagnitude > .25f)
+                    {
+                        Rect moved = bubble.Placed; moved.position += live - anchor;
+                        bubble.Placed = Clamp(moved); anchor = live;
+                    }
+                }
                 else if (tailed)
                 {
                     Vector3? world = bubble.Anchor?.Invoke();
@@ -215,6 +224,19 @@ namespace ArcaneBrigade
                 GUI.color = previous;
                 GUI.matrix = restore;
             }
+        }
+
+        /// <summary>The speaker's anchor on the 1920x1080 canvas this frame (false when it has gone).</summary>
+        private static bool Live(SpeechBubble bubble, Camera camera, Matrix4x4 inverse, out Vector2 anchor)
+        {
+            anchor = default;
+            Vector3? world = bubble.Anchor?.Invoke();
+            if (world == null) return false;
+            Vector3 screen = camera.WorldToScreenPoint(world.Value);
+            if (screen.z < 0) return false;
+            Vector3 point = inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
+            anchor = new Vector2(Mathf.Clamp(point.x, 40, 1880), Mathf.Clamp(point.y, 40, 1040));
+            return true;
         }
 
         private static float EaseOutBack(float t) { const float c = 1.6f; float u = t - 1; return 1 + (c + 1) * u * u * u + c * u * u; }

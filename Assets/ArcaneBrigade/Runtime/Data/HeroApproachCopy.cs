@@ -144,6 +144,27 @@ namespace ArcaneBrigade
                 "Three pages release 3 frost shots plus one per chest page, up to 6, spaced 14 degrees apart. Total budget 450% W; recovery pages allow healing min(4, recovery pages + 1) HP. Every third personal attack writes a page. 3s cooldown.",
                 "Add one frost shot to the same page formula, still at most 6. Keep the 450% W total and 14-degree spacing. Healing requires a recovery page. 3s cooldown.",
                 "Spread frost shots 24 degrees apart. Always attempt at least 1 HP recovery, or more with recovery pages up to 4. Total budget 450% W; its own recovery cannot write pages. 3s cooldown." },
+            // the five expansion heroes: the approach shapes the transformation (focused, wide or lasting)
+            "KiteAdmiral" => new[] {
+                "Tight formation: each escorted friend's shot splits into two shots 8 degrees apart, both at full damage. Your own hits beyond 4 units keep their +15%.",
+                "Wide formation: each escorted friend's shot splits into three, 16 degrees apart; the two outer shots carry 60% of its damage.",
+                "Long voyage: shots split in two as in the tight formation; the fleet flies 1.5s longer and you heal 1 HP every 2s while it flies." },
+            "SundaeDuchess" => new[] {
+                "Single scoop: every 0.45s a scoop lands on an enemy, 15% heavier; each splat (radius 0.8) hits and freezes at most 3 enemies.",
+                "Banana split: the same scoops at normal weight; each splat hits and freezes up to 5 enemies.",
+                "Slow melt: the storm lasts 1.5s longer and heals you 1 HP every 2s; scoops are 15% lighter and hit at most 3 enemies." },
+            "BonsaiClocksmith" => new[] {
+                "Pruned hand: the bonsai's hand ticks every 0.5s, a 2.6-unit line that strikes 15% harder and hits at most 3 enemies, slowing them 1s.",
+                "Wide canopy: the same ticking hand hits up to 5 enemies on its line; friends within 2.6 units of the bonsai still gain +40% attack speed.",
+                "Evergreen: the garden stands 1.5s longer and heals you 1 HP every 2s; the hand strikes 15% lighter." },
+            "JugglingJester" => new[] {
+                "Solo act: the five opening balls and the crit ball strike 15% harder; each ball hits a single enemy.",
+                "Full troupe: the opening balls land a little wider apart, on up to five different enemies at normal weight.",
+                "Encore: the circus lasts 1.5s longer and heals you 1 HP every 2s; the balls strike 15% lighter." },
+            "BellDiver" => new[] {
+                "Deep strike: the bell's ram (every 0.35s, radius 0.75 ahead) and its depth charges strike 15% harder, at most 3 enemies each.",
+                "Wide sonar: the ram and the depth charges reach up to 5 enemies each; everything the ram strikes is probed for 3s.",
+                "Long dive: the dive lasts 1.5s longer and heals you 1 HP every 2s; the ram and charges strike 15% lighter." },
             _ => Array.Empty<string>()
         };
     }

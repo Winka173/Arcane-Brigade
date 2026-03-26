@@ -48,7 +48,7 @@ namespace ArcaneBrigade.Editor
                     foreach (CombatEvent value in simulation.Events)
                         if (value.Kind == CombatEventKind.Pickup && value.Value > 0) pickupEvents++;
                 }
-                require(pickupEvents == 1 && simulation.Gold == catalog.GoldPerKill && simulation.Pickups.Count == 0, "Attraction collects exactly once with value and stable ID");
+                require(pickupEvents == 1 && simulation.Gold == Mathf.FloorToInt(catalog.GoldPerKill * catalog.CoinValueScale + 1e-4f) && simulation.Pickups.Count == 0, "Attraction collects exactly once with value and stable ID");
                 simulation.Start(131026);
                 foreach (UnitState unit in simulation.Units) unit.NextPassive = float.PositiveInfinity;
                 UnitState distant = simulation.AddFixture(catalog.MeleeEnemy, Faction.Enemy, new Vector2(9, 0));
@@ -56,7 +56,7 @@ namespace ArcaneBrigade.Editor
                 for (int tick = 0; tick < 60; tick++) simulation.Step(1f / 60, Vector2.zero);
                 require(simulation.Gold == 0 && simulation.Pickups.Count == 1, "Distant coin requires entering pickup radius (gold " + simulation.Gold + ", pickups " + simulation.Pickups.Count + ", radius " + catalog.PickupRadius + ")");
                 for (int tick = 0; tick < 180; tick++) simulation.Step(1f / 60, Vector2.right);
-                require(simulation.Gold == catalog.GoldPerKill && simulation.Pickups.Count == 0, "Walking to distant coin collects through normal movement");
+                require(simulation.Gold == Mathf.FloorToInt(catalog.GoldPerKill * catalog.CoinValueScale + 1e-4f) && simulation.Pickups.Count == 0, "Walking to distant coin collects through normal movement"); // each coin is worth CoinValueScale gold (0.75 since round 3)
                 simulation.DamageFixture(simulation.Champion, 10000);
                 require(simulation.Phase == RunPhase.Defeat && !simulation.Champion.Alive, "Champion logical death immediately ends combat");
                 bool championDeath = false;

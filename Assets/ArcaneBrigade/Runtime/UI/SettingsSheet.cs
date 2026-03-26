@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             Volume(label, 270, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
             // the cosmetic bundle is chosen between runs (the champion is already dressed during one)
             GUI.enabled = !inRun;
-            if (Button(new Rect(75, 318, 540, 48), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic) + (inRun ? " (BETWEEN RUNS)" : "")))
+            if (Button(new Rect(75, 318, 540, 48), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
             {
                 int before = profile.Cosmetic;
                 int candidate = (before + 1) % 3;
@@ -85,7 +85,7 @@ namespace ArcaneBrigade
                 CheckpointAudio.PlayInterfaceId("ui.setting");
                 if (!save()) profile.StoryPagesAutoOpen = before;
             }
-            label(Shift(new Rect(75, 630, 1130, 64)), RunUIHints.Menu + "\nCosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
+            label(Shift(new Rect(75, 630, 1130, 64)), (inRun ? "The bundle is chosen between runs. " : "") + "Cosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
         }
 
         public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();

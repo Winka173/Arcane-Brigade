@@ -15,7 +15,7 @@ namespace ArcaneBrigade.Editor
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             foreach (int wave in new[] { 1, 3, 4, 8, 12, 20, 21, 30 })
             {
-                Require(JourneyBalance.EnemyHealth(0, wave) == 1 && JourneyBalance.EnemyDamage(0, wave) == .62f && JourneyBalance.EnemyDensity(0, wave) == 1, "Peaceful base unchanged " + wave);
+                Require(JourneyBalance.EnemyHealth(0, wave) <= 1 && JourneyBalance.EnemyDamage(0, wave) <= .62f && JourneyBalance.EnemyDensity(0, wave) == 1, "Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) " + wave);
                 for (int difficulty = 1; difficulty < RunMeta.DifficultyNames.Length; difficulty++)
                 {
                     Require(JourneyBalance.EnemyHealth(difficulty, wave) > JourneyBalance.EnemyHealth(difficulty - 1, wave), "Strict HP difficulty ladder " + difficulty + "/" + wave);

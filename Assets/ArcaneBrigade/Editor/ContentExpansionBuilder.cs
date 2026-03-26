@@ -50,7 +50,8 @@ namespace ArcaneBrigade.Editor
             new Dictionary<string, (RelicMechanic, (ItemEffect, float, ModifierScope?)[], bool)>
         {
             ["key-oil"] = (RelicMechanic.None, new[] { M(ItemEffect.Damage, .12f) }, false),
-            ["CurioTruceBottle"] = (RelicMechanic.None, new[] { M(ItemEffect.Damage, .4f), M(ItemEffect.Crit, .2f), M(ItemEffect.AttackRange, .4f), M(ItemEffect.Armor, .6f), M(ItemEffect.MoveSpeed, -.3f, ModifierScope.Champion) }, true),
+            // balance pass 19/10/2026: 111 → 47 VU (Mythic target 40), Docs/Balance_Pass_2026-10-19.md
+            ["CurioTruceBottle"] = (RelicMechanic.None, new[] { M(ItemEffect.Damage, .2f), M(ItemEffect.Crit, .15f), M(ItemEffect.AttackRange, .2f), M(ItemEffect.Armor, .2f), M(ItemEffect.MoveSpeed, -.3f, ModifierScope.Champion) }, true),
             ["tarnished-crown"] = (RelicMechanic.RoyalBlow, null, false),
             ["starlight-quilt"] = (RelicMechanic.QuiltGuard, null, false),
             ["K26Defense6"] = (RelicMechanic.ApronShove, null, false),
@@ -123,7 +124,7 @@ namespace ArcaneBrigade.Editor
             item.ShopWeight = row.weight; item.ShopThemes = row.themes.ToArray(); item.Pools = ShopPool.Gold;
             item.Mechanic = spec.mechanic; item.Category = spec.food ? RelicCategory.Food : RelicCategory.Curio;
             item.Effect = ItemEffect.Damage; item.Value = 0;
-            item.Modifiers = row.id == "FishCracker" ? new[] { new StatModifier { Effect = ItemEffect.Crit, Scope = ModifierScope.Champion, Value = .06f } } : new StatModifier[0];
+            item.Modifiers = row.id == "FishCracker" ? new[] { new StatModifier { Effect = ItemEffect.Crit, Scope = ModifierScope.Champion, Value = .32f } } : new StatModifier[0]; // .06 before the balance pass of 19/10/2026
             item.Stacking = item.Rarity >= ItemRarity.Mythic ? StackPolicy.Unique : StackPolicy.Additive;
             item.MaximumStacks = item.Rarity == ItemRarity.Rare ? 4 : 100000;
             item.Description = RelicDescriptions.Describe(item, 1, catalog).Replace("\r\n", "\n");
@@ -135,6 +136,7 @@ namespace ArcaneBrigade.Editor
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             Plan plan = Load();
             ExpansionUnits.BuildCompanions(catalog, plan); // the new friends whose sheets are painted
+            ExpansionUnits.BuildHeroes(catalog, plan); // and the five new heroes (step 4c)
             // companions: one theme + one minor bond, new rarity; Mythic companions come from the dream shop like the others
             foreach (CompanionRow row in plan.companionList)
             {
@@ -226,6 +228,8 @@ namespace ArcaneBrigade.Editor
                 if (unique) item.Stacking = StackPolicy.Unique;
                 item.Description = RelicDescriptions.Describe(item, 1, catalog).Replace("\r\n", "\n");
             }
+            // balance pass (19/10/2026): item budgets by rarity, HP gifts/costs/prices, prices inside each rarity band
+            BalancePass.Apply(catalog);
             if (catalog.Companions.Any(u => u.Rarity == ItemRarity.Crimson) || catalog.Items.Any(i => i.Rarity == ItemRarity.Crimson))
                 throw new InvalidOperationException("Crimson is retired: Prismatic is the highest rarity");
             catalog.PoolRevision = 1;

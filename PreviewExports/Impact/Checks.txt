@@ -1,0 +1,25 @@
+PASS Slams are heavy, bows are light
+PASS Heavy blows shove further (0.56 vs 0.31)
+PASS Heavy blows stagger, light ones do not
+PASS A shove into the edge splats for extra damage (25.0)
+PASS A heavy killing blow flings the body
+PASS The flung body bowls into the enemy in its way (3.0 damage)
+PASS It bursts where it lands and is gone
+PASS A heavy blow under twice the health does not fling
+PASS A light killing blow does not fling
+PASS A pointed shot pins an enemy against the edge
+PASS A blast throws enemies away harder than a light hit
+PASS Pulled enemies knock into each other
+PASS At most once per 0.4 s
+PASS A body it knocks down flies on
+PASS Three felled by one flung body is a STRIKE
+PASS Short guns like it close, long guns like it far
+PASS Long single shots prefer the toughest
+PASS Spreads prefer the crowd
+PASS Bows prefer what is closest to the hero
+PASS A heavy slam knocks a small enemy up
+PASS It rises visibly (0.90)
+PASS It crashes down and the landing knocks its neighbour
+PASS A puffer's burst blows up the enemies around it
+PASS A puffer felled by a burst bursts in turn: a CHAIN
+PASS The shop clears flung bodies

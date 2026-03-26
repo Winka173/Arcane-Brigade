@@ -116,8 +116,9 @@ namespace ArcaneBrigade
         private void PaintedGauge(Sprite empty, Sprite full, Vector2 bottom, Vector2 top, float fill, float dim, Vector2 window)
         {
             Rect ink = SpriteInkMetrics.BoundsOf(empty);
-            // a round or wide shaped gauge is kept about as wide as the column is tall, beside the hero
-            float scale = (top.y - bottom.y) / Mathf.Max(.01f, Mathf.Max(ink.height, ink.width * .9f));
+            // every gauge covers about the same area beside the hero, so a wide or round one is no bigger than a tall one
+            float column = top.y - bottom.y, area = Mathf.Sqrt(Mathf.Max(.0001f, ink.width * ink.height));
+            float scale = Mathf.Min(.45f * column / area, .78f * column / Mathf.Max(.01f, ink.height), .64f * column / Mathf.Max(.01f, ink.width));
             Vector2 at = (bottom + top) * .5f - ink.center * scale;
             PlaceRaw(empty, at, scale, new Color(1, 1, 1, dim * strength));
             Texture2D order = HeroGaugeArtwork.OrderFor("Gauge2_" + style.Id);
@@ -239,6 +240,78 @@ namespace ArcaneBrigade
                         Token(kit.Action == KitAction.Monsoon ? InkToken.Drop : InkToken.Glint, p, .2f, kit.Action == KitAction.Monsoon ? 180 : r * 180, (1 - r) * .8f, true, 0, ArsenalInk.Water);
                     }
                     break;
+                case KitAction.KiteFleet:
+                {
+                    // a painted kite rides the wind over each escorted friend, tied to it by its string (one over the admiral when
+                    // no ranged friend is near)
+                    Sprite kite = ArsenalArtwork.Frame(kit.ArtKey, 0);
+                    var fleet = sim.HeroKiteFleet; int n = fleet.Count == 0 ? 1 : fleet.Count;
+                    for (int i = 0; i < n; i++)
+                    {
+                        UnitState friend = fleet.Count == 0 ? hero : fleet[i];
+                        Vector2 hand = DrawnAt(friend) + Vector2.up * friend.Definition.BodyHeight * .15f;
+                        Vector2 sky = DrawnAt(friend) + new Vector2(still ? .25f : .25f + Mathf.Sin(t * 1.7f + i * 1.3f) * .18f, friend.Definition.BodyHeight * .5f + .95f + Bob(i + 2) * 2);
+                        Thread(hand, sky + Vector2.down * .2f, .85f, 11 + i);
+                        if (kite != null) { var r = Place(kite, sky, Vector2.one * .62f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 12, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (r != null) r.flipX = false; }
+                        else Token(InkToken.Spark, sky, .4f, 0, .9f, true);
+                        if (!sparse) for (int k = 0; k < 2; k++) { float q = Mathf.Repeat(t * .9f + k * .5f + i * .2f, 1); Token(InkToken.Glint, sky + new Vector2(-.3f - q * .5f, -.15f - q * .25f), .14f * (1 - q), 0, (1 - q) * .7f, true, 0, ArsenalInk.Water); }
+                    }
+                    break;
+                }
+                case KitAction.TimeGarden:
+                {
+                    // the bonsai stands where it was planted; its clock hand is painted at the angle the simulation strikes with
+                    Vector2 plot = sim.HeroAwakenPlot, hand = sim.HeroGardenHand;
+                    Sprite tree = ArsenalArtwork.Frame(kit.ArtKey, 0);
+                    if (tree != null) Place(tree, plot + Vector2.up * .35f, Vector2.one * Mathf.Max(.8f, body * 1.05f), 0, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), false);
+                    Vector2 pivot = plot + Vector2.up * .45f;
+                    if (!calm) air.GlowRibbon(InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach), 1, 0, .32f, A(ink.Glow, .26f));
+                    var s = Brush(.07f, .95f, 5); s.Head = 1; s.Taper = 2;
+                    air.Stroke(InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach, .03f, 3, false, 7), s);
+                    if (!sparse) for (int i = 0; i < 3; i++) { float q = Mathf.Repeat(t * .5f + i / 3f, 1); Token(InkToken.Leaf, pivot + Dir(i * 120 + (still ? 0 : t * 40)) * (.6f + q * .5f), .16f, q * 180, (1 - q) * .8f, true); }
+                    break;
+                }
+                case KitAction.Circus:
+                {
+                    // three balls juggled over the jester's head
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float q = still ? i / 3f : Mathf.Repeat(t * 1.4f + i / 3f, 1);
+                        Vector2 ball = Head(hero) + new Vector2(Mathf.Cos(q * Mathf.PI * 2) * .32f, .3f + Mathf.Abs(Mathf.Sin(q * Mathf.PI * 2)) * .45f);
+                        Token(InkToken.Star, ball, .2f, still ? 0 : q * 360, .95f, true);
+                    }
+                    break;
+                }
+                case KitAction.DivingBell:
+                    if (!sparse && !still) for (int i = 0; i < 4; i++)
+                    {
+                        float r = Mathf.Repeat(t * 1.3f + i / 4f, 1);
+                        Token(InkToken.Bubble, Head(hero) + new Vector2(((i * 37) % 7 - 3) * .06f, .15f + r * .8f), .12f + r * .08f, 0, (1 - r) * .8f, true, 0, ArsenalInk.Water);
+                    }
+                    break;
+            }
+            // what the transformation drops from above: giant scoops falling on their enemies, depth charges about to burst
+            if (kit.Action == KitAction.SundaeRain || kit.Action == KitAction.DivingBell)
+            {
+                Sprite scoop = kit.Action == KitAction.SundaeRain ? ArsenalArtwork.Frame(kit.ArtKey, 0) : null;
+                foreach (var d in sim.HeroAwakenDrops)
+                {
+                    if (t > d.LandAt + .4f) continue;
+                    float fall = Mathf.InverseLerp(d.Born, d.LandAt, t), after = Mathf.Clamp01((t - d.LandAt) / .4f);
+                    if (d.Kind == 0)
+                    {
+                        Glow(d.At, .7f * (.5f + .5f * fall), ink.Ink, .35f * (1 - after));
+                        Vector2 p = d.At + Vector2.up * (2.6f * (1 - InQuad(fall)) + .15f);
+                        if (scoop != null) Place(scoop, p, Vector2.one * .62f * (1 + .3f * after), 0, new Color(1, 1, 1, strength * (1 - after)), true);
+                        else Token(InkToken.Dumpling, p, .5f, 0, 1 - after, true);
+                    }
+                    else
+                    {
+                        // the charge settles, ticks, and bubbles ever faster before it bursts
+                        Token(InkToken.Seal, d.At + Vector2.up * .1f, .26f, still ? 0 : Mathf.Sin(t * 20 * fall) * 10, (1 - after) * .95f, false, 0, ArsenalInk.Water);
+                        if (!sparse) for (int i = 0; i < 2; i++) { float q = Mathf.Repeat(t * (1 + 2 * fall) + i * .5f, 1); Token(InkToken.Bubble, d.At + new Vector2((i - .5f) * .14f, .2f + q * .5f), .1f, 0, (1 - q) * (1 - after) * .8f, true, 0, ArsenalInk.Water); }
+                    }
+                }
             }
         }
         /// <summary>Where a transformation's worn or summoned object sits.</summary>
@@ -269,6 +342,13 @@ namespace ArcaneBrigade
                     if (r != null) r.flipX = side < 0; break;
                 }
                 case KitAction.Mirrors: case KitAction.Mitosis: case KitAction.Showtime: break; // drawn as copies (DrawAwakening)
+                case KitAction.KiteFleet: case KitAction.TimeGarden: case KitAction.SundaeRain: break; // over the friends, at the bonsai's spot, falling (DrawAwakening)
+                case KitAction.DivingBell:
+                {
+                    // the hero rides inside the bell: drawn over the body, a little larger
+                    var r = Place(prop, at + Vector2.up * body * .05f, Vector2.one * Mathf.Max(.85f, body * 1.3f), 0, new Color(1, 1, 1, strength), true);
+                    if (r != null) r.flipX = side < 0; break;
+                }
                 default:
                     Place(prop, at + Vector2.up * (body * .5f + .55f + Bob(1)), Vector2.one * Mathf.Max(.6f, body * .8f), 0, new Color(1, 1, 1, strength), true);
                     break;

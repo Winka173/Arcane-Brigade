@@ -1801,7 +1801,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack speed: +20%
+Team / Attack speed: +12%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1810,7 +1810,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +40
+Champion / Maximum health: +15
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1819,7 +1819,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Movement speed: +10%
+Team / Movement speed: +22%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1828,7 +1828,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Pickup radius: +1.25
+Run / Pickup radius: +1.6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1837,7 +1837,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Patrol radius: +0.4
+Run / Patrol radius: +1
+Run / Pickup radius: +0.8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1847,6 +1848,7 @@ CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
 Run / Companion bullet interception: +1
+Companions / Attack speed: +15%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1855,7 +1857,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +1
+Champion / Healing per second: +0.8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1864,7 +1866,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Critical chance: +10%
+Team / Critical chance: +20%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1873,7 +1875,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Team / Projectile count: +2
+Team / Projectile count: +1
+Team / Attack speed: -10%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1882,7 +1885,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Interest cap: +2
+Run / Interest cap: +4
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1891,7 +1894,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.22
+Champion / Armor: +0.15
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1900,7 +1903,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Damage: +44%
+Champion / Damage: +36%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1909,7 +1912,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Companions / Damage: +30%
+Companions / Damage: +32%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1918,7 +1921,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Companions / Attack speed: +24%
+Companions / Attack speed: +30%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1927,7 +1930,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Gold shop discount: +5%
+Run / Gold shop discount: +8%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1936,7 +1939,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Run / Patrol radius: +1
+Run / Patrol radius: +2
+Team / Attack range: +32%
 Team / Movement speed: -4%
 
 Owned effective copies: 1. Values apply before combat limits.
@@ -1946,7 +1950,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +90
+Champion / Maximum health: +50
 
 SPECIAL EFFECT
 Once per wave, a blow that would defeat the hero leaves 1 HP and 1.5s of safety instead.
@@ -1958,8 +1962,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Team / Projectile count: +3
-Team / Attack speed: -8%
+Team / Projectile count: +2
+Team / Attack speed: -30%
 
 SPECIAL EFFECT
 A friend's basic attack that defeats an enemy echoes onward: the nearest enemy takes half that weapon's damage (0.2s cooldown).
@@ -1971,7 +1975,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Damage: +80%
+Champion / Damage: +60%
 
 SPECIAL EFFECT
 Every 8th hit of the hero is a royal blow: triple damage.
@@ -1983,7 +1987,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Luck: +0.2
+Run / Luck: +0.3
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1992,7 +1996,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Run / Treasure detection: +0.35
+Run / Treasure detection: +1
+Run / Luck: +0.25
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2023,8 +2028,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Damage: +36%
-Team / Movement speed: -3%
+Champion / Damage: +50%
+Team / Movement speed: -4%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2155,7 +2160,7 @@ CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Score multiplier: +8%
-Champion / Maximum health: -1
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2164,8 +2169,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Collision damage: +10
-Champion / Maximum health: -1
+Team / Collision damage: +12
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2174,8 +2179,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Flat melee damage: +4
-Champion / Maximum health: -1
+Team / Flat melee damage: +7
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2184,8 +2189,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Flat ranged damage: +4
-Champion / Maximum health: -1
+Team / Flat ranged damage: +7
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2194,8 +2199,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack range: +25%
-Champion / Maximum health: -1
+Team / Attack range: +30%
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2204,8 +2209,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Dodge: +12%
-Champion / Maximum health: -1
+Champion / Dodge: +24%
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2214,8 +2219,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Income: +4
-Champion / Maximum health: -1
+Run / Income: +5
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2225,7 +2230,7 @@ CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet pierce: +2
-Champion / Maximum health: -1
+Champion / Maximum health: -8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2235,7 +2240,7 @@ CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet split: +2
-Champion / Maximum health: -1
+Champion / Maximum health: -8
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2244,8 +2249,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet bounce chance: +8%
-Champion / Maximum health: -1
+Team / Bullet bounce chance: +65%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2254,8 +2258,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet size: +25%
-Champion / Maximum health: -1
+Team / Bullet size: +80%
+Champion / Maximum health: -2
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2264,8 +2268,9 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet speed: +8%
-Champion / Maximum health: -1
+Team / Bullet speed: +50%
+Team / Bullet travel distance: +50%
+Team / Attack range: +20%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2274,8 +2279,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Bullet travel distance: +8%
-Champion / Maximum health: -1
+Team / Bullet travel distance: +60%
+Team / Attack range: +14%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2284,8 +2289,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Knockback: +25%
-Champion / Maximum health: -1
+Team / Knockback: +50%
+Team / Collision damage: +6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2294,8 +2299,9 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Champion size: +8%
-Champion / Maximum health: -1
+Champion / Champion size: +12%
+Champion / Maximum health: +15
+Champion / Collision damage: +4
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2304,8 +2310,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Companions / Companion size: +8%
-Champion / Maximum health: -1
+Companions / Companion size: +12%
+Companions / Damage: +25%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2316,7 +2322,7 @@ CURIO / COMMON / STACKABLE
 WHILE OWNED / per copy
 Run / Enemy count: +10%
 Run / Score multiplier: +20%
-Champion / Maximum health: -1
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2327,7 +2333,7 @@ CURIO / UNCOMMON / STACKABLE
 WHILE OWNED / per copy
 Run / Enemy health: +10%
 Run / Score multiplier: +20%
-Champion / Maximum health: -1
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2338,7 +2344,7 @@ CURIO / COMMON / STACKABLE
 WHILE OWNED / per copy
 Run / Enemy speed: +10%
 Run / Score multiplier: +20%
-Champion / Maximum health: -1
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2347,8 +2353,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Heart healing: +2
-Champion / Maximum health: -1
+Champion / Heart healing: +8
+Champion / Maximum health: -2
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2357,8 +2363,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Chest quality: +8%
-Champion / Maximum health: -1
+Run / Chest quality: +60%
+Run / Treasure detection: +0.5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2367,8 +2373,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Recruit discount: +8%
-Champion / Maximum health: -1
+Run / Recruit discount: +16%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2377,8 +2382,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Relic discount: +8%
-Champion / Maximum health: -1
+Run / Relic discount: +13%
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2387,8 +2392,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Shop rarity: +8%
-Champion / Maximum health: -1
+Run / Shop rarity: +32%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2397,8 +2401,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Health correction: +8%
-Champion / Maximum health: -1
+Champion / Health correction: +20%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2407,8 +2410,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Damage correction: +20%
-Champion / Maximum health: -1
+Team / Damage correction: +14%
+Champion / Maximum health: -5
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2417,8 +2420,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Speed correction: +8%
-Champion / Maximum health: -1
+Team / Speed correction: +35%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2427,8 +2429,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor correction: +8%
-Champion / Maximum health: -1
+Champion / Armor correction: +40%
+Champion / Armor: +0.07
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2437,8 +2439,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing correction: +8%
-Champion / Maximum health: -1
+Champion / Healing correction: +60%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2447,8 +2448,8 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Collision frequency: +8%
-Champion / Maximum health: -1
+Team / Collision frequency: +60%
+Team / Collision damage: +4
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2457,8 +2458,9 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Chest opening radius: +35%
-Champion / Movement speed: -2%
+Run / Chest opening radius: +80%
+Run / Treasure detection: +0.6
+Run / Pickup radius: +0.6
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -2467,7 +2469,7 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Treasure detection: +0.1
+Run / Treasure detection: +0.8
 Champion / Movement speed: -2%
 
 TRIGGER: ChestOpened / 100% chance / 2s cooldown. Heal hero 4 per stack; radius 1.8.
@@ -2566,8 +2568,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +50
-Champion / Healing per second: +0.8
+Champion / Maximum health: +12
+Champion / Healing per second: +0.3
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2576,8 +2578,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.35
-Team / Movement speed: -4%
+Champion / Armor: +0.2
+Team / Movement speed: -6%
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2606,8 +2608,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Health correction: +25%
-Champion / Healing per second: +1.4
+Champion / Health correction: +20%
+Champion / Healing per second: +1
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2616,7 +2618,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +2.8
+Champion / Healing per second: +2.2
 Run / Income: -2
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
@@ -2626,7 +2628,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.65
+Champion / Armor: +0.55
 Team / Movement speed: -8%
 
 SPECIAL EFFECT
@@ -2662,8 +2664,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Team / Critical chance: +5%
-Team / Attack range: +8%
+Team / Critical chance: +12%
+Team / Attack range: +20%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2672,8 +2674,9 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / RARE / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack range: +18%
-Team / Knockback: +20%
+Team / Attack range: +30%
+Team / Knockback: +30%
+Team / Damage: +8%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2682,8 +2685,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / RARE / UNIQUE
 
 WHILE OWNED / per copy
-Run / Gold shop discount: +8%
-Run / Luck: +0.08
+Run / Gold shop discount: +12%
+Run / Luck: +0.15
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2692,8 +2695,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack speed: +18%
-Team / Damage: +10%
+Team / Attack speed: +10%
+Team / Damage: +8%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2702,8 +2705,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +12
-Champion / Heart healing: +3
+Champion / Maximum health: +16
+Champion / Heart healing: +4
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2722,8 +2725,9 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
-Run / Pickup radius: +0.8
-Run / Treasure detection: +0.1
+Run / Pickup radius: +1.2
+Run / Treasure detection: +0.4
+Run / Luck: +0.1
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2732,8 +2736,8 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack range: +10%
-Team / Attack speed: -5%
+Team / Attack range: +30%
+Team / Attack speed: -4%
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2742,7 +2746,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +0.5
+Champion / Healing per second: +1.8
 Run / Income: -2
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
@@ -2752,8 +2756,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Collision damage: +5
-Team / Movement speed: -4%
+Team / Collision damage: +10
+Team / Movement speed: -3%
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2762,8 +2766,8 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Heart healing: +2
-Champion / Maximum health: +10
+Champion / Heart healing: +5
+Champion / Maximum health: +25
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2773,7 +2777,7 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Maximum health: +20
+Champion / Maximum health: +18
 Run / Income: -2
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -2784,8 +2788,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Collision damage: +10
-Champion / Movement speed: -5%
+Champion / Collision damage: +18
+Champion / Movement speed: -4%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -2795,7 +2799,7 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Damage: +20%
+Team / Damage: +16%
 Team / Attack speed: -4%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -2807,7 +2811,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 
 WHILE OWNED / per copy
 Champion / Healing per second: +1
-Champion / Maximum health: -4
+Champion / Maximum health: -6
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -2827,8 +2831,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Flat ranged damage: +6
-Team / Bullet bounce chance: +25%
+Team / Flat ranged damage: +4
+Team / Bullet bounce chance: +20%
 Team / Damage: -5%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -2839,8 +2843,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Flat melee damage: +5
-Team / Critical chance: +6%
+Team / Flat melee damage: +3
+Team / Critical chance: +8%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -2860,7 +2864,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Attack speed: +18%
+Team / Attack speed: +14%
 
 SPECIAL EFFECT
 Next wave: +10% enemy count per purchased copy. Its listed permanent modifiers remain separate.
@@ -2873,8 +2877,8 @@ DRINK / COMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Dodge: +8%
-Run / Luck: +0.06
+Champion / Dodge: +10%
+Run / Luck: +0.08
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -2908,7 +2912,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Damage: +24%
+Team / Damage: +18%
 Team / Knockback: +20%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -2918,7 +2922,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Armor: +0.4
+Champion / Armor: +0.25
 Run / Luck: -0.08
 
 SPECIAL EFFECT
@@ -2931,8 +2935,8 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Income: +25
-Champion / Bullet split: +2
+Run / Income: +7
+Champion / Bullet split: +1
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -2941,7 +2945,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Healing per second: +2
+Champion / Healing per second: +1.6
 
 SPECIAL EFFECT
 Next wave: hero armor -0.8 per purchased copy. Listed recovery modifiers remain separate.
@@ -2956,7 +2960,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 WHILE OWNED / per copy
 Team / Attack range: +40%
 Champion / Projectile count: +1
-Champion / Attack speed: -25%
+Champion / Attack speed: -35%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -2978,7 +2982,7 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Attack speed: +24%
+Champion / Attack speed: +30%
 Champion / Collision damage: -1
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -3012,7 +3016,8 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Heart healing: +4
+Champion / Heart healing: +8
+Champion / Healing per second: +0.5
 Champion / Movement speed: -5%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -3024,7 +3029,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 
 WHILE OWNED / per copy
 Champion / Champion size: -10%
-Run / Luck: +0.3
+Run / Luck: +0.45
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3046,9 +3051,9 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Run / Income: +30
+Run / Income: +10
 Run / Treasure detection: +0.6
-Champion / Armor: -0.3
+Champion / Armor: -0.15
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3071,9 +3076,9 @@ DRINK / UNCOMMON / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Damage: +35%
-Team / Movement speed: -20%
-Run / Enemy speed: -20%
+Team / Damage: +25%
+Team / Movement speed: -25%
+Run / Enemy speed: -15%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3107,7 +3112,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +40
+Champion / Maximum health: +24
 
 SPECIAL EFFECT
 When hit, 5% chance to attract all pickups currently on the floor.
@@ -3120,8 +3125,8 @@ CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet pierce: +1
-Team / Critical chance: +15%
-Team / Flat melee damage: -3
+Team / Critical chance: +20%
+Team / Flat melee damage: -2
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3155,9 +3160,9 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
-Run / Luck: +0.4
-Team / Bullet bounce chance: +20%
-Team / Damage: -6%
+Run / Luck: +0.5
+Team / Bullet bounce chance: +25%
+Team / Damage: -4%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3205,7 +3210,7 @@ ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics.
 
 WHILE OWNED / per copy
 Team / Movement speed: +15%
-Team / Flat melee damage: +7
+Team / Flat melee damage: +9
 Team / Flat ranged damage: -3
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
@@ -3291,9 +3296,9 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Healing per second: +2.5
+Champion / Healing per second: +2
 Run / Treasure detection: +0.6
-Run / Enemy speed: +7%
+Run / Enemy speed: +10%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3353,8 +3358,8 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Maximum health: +90
-Champion / Healing per second: -2
+Champion / Maximum health: +55
+Champion / Healing per second: -1.2
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3372,16 +3377,16 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
 ## Mute Clock / CurioMuteClock
 
-CURIO / MYTHIC / STACKABLE
+CURIO / MYTHIC / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack speed: +45%
-Team / Movement speed: +40%
+Team / Attack speed: +30%
+Team / Movement speed: +25%
 
 SPECIAL EFFECT
 During combat, take 1 injected damage per stack each second. Armor and other injected-damage rules still apply; this differs from hunger's direct HP cost.
 
-Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Urchin Ball / CurioUrchinBall
 
@@ -3415,7 +3420,7 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Collision damage: +25
+Champion / Collision damage: +35
 Champion / Knockback: +30%
 Champion / Critical chance: -10%
 
@@ -3452,9 +3457,9 @@ DRINK / RARE / STACKABLE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Critical chance: +20%
+Team / Critical chance: +30%
 Team / Bullet pierce: +1
-Team / Damage: -20%
+Team / Damage: -5%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3463,7 +3468,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Maximum health: -5
+Champion / Maximum health: -12
 Run / Income: -5
 
 SPECIAL EFFECT
@@ -3505,7 +3510,7 @@ WHILE OWNED / per copy
 Champion / Champion size: +25%
 Champion / Bullet size: +75%
 Champion / Bullet speed: -40%
-Champion / Damage: +100%
+Champion / Damage: +70%
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3554,9 +3559,9 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
-Champion / Collision damage: +40
+Champion / Collision damage: +70
 Champion / Collision frequency: +70%
-Team / Flat ranged damage: -10
+Team / Flat ranged damage: -6
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3620,10 +3625,10 @@ DRINK / MYTHIC / UNIQUE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Team / Damage: +40%
-Team / Critical chance: +20%
-Team / Attack range: +40%
-Champion / Armor: +0.6
+Team / Damage: +20%
+Team / Critical chance: +15%
+Team / Attack range: +20%
+Champion / Armor: +0.2
 Champion / Movement speed: -30%
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
@@ -3719,7 +3724,7 @@ FOOD / COMMON / STACKABLE
 ON PURCHASE: counts as 1 food for food-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
-Champion / Critical chance: +6%
+Champion / Critical chance: +32%
 
 Owned effective copies: 1. Values apply before combat limits.
 

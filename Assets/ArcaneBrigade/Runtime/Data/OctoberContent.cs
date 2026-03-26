@@ -31,7 +31,7 @@ namespace ArcaneBrigade
             "Omnom" => "Lose 1 HP each second in battle. Each enemy defeated heals 1 HP. Regeneration and hearts do not heal. Every fourth wave raises everyone's movement speed.",
             "Periwinky" => "Dream shops always open. At wave start, maximum HP follows saved gold (20–400). Buying a spiked relic recruits a Bristle Ball. Team damage -20%.",
             "Clementie" => "Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; contact damage scales with your movement speed. Team attack speed -25%.",
-            "Card Queen" => "Start each wave with 12 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.",
+            "Card Queen" => "Start each wave with 16 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.",
             "Bloom Shell" => "Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 HP, +5% speed and +0.15 armor.",
             "Belle" => "Three companion themes (Hearth, Oddity, Orchard) instead of two. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.",
             "Wise" => "Shops offer memory companions. Buying one absorbs its support trait instead of adding a body. Each memory makes enemies 4% tougher. Your positive personal modifiers are 25% stronger.",
@@ -43,6 +43,11 @@ namespace ArcaneBrigade
             "Original:LanternWeaver" => "Every fourth attack stitches three nearby enemies with a delayed lantern thread. The thread shares one damage budget.",
             "Original:HourglassStag" => "Every 6 seconds, briefly slow nearby ordinary enemies and release an expanding clock ring. Bosses keep moving.",
             "Original:RainArchivist" => "Each opened chest heals 4 HP and records a raindrop. Every third record releases a fan of frost shots.",
+            "Original:KiteAdmiral" => "A mouse admiral whose kite fleet flies over the brigade's archers.",
+            "Original:SundaeDuchess" => "A porcelain duchess crowned in ice cream; what she freezes pays.",
+            "Original:BonsaiClocksmith" => "A tortoise clocksmith with a bonsai garden that keeps time.",
+            "Original:JugglingJester" => "A felt jester who never lets five balls touch the floor.",
+            "Original:BellDiver" => "A frog diver who listens for what moves below.",
             _ => "Keep your original automatic skill and themed recruits. Equipment bonuses apply during this run only."
         };
     }

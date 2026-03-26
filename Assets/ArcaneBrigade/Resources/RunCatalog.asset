@@ -50,6 +50,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0665b4169ffeb84c8ebda6504b0bf2a, type: 2}
   - {fileID: 11400000, guid: 2dafb826bb7d68d409d956afaa4aca85, type: 2}
   - {fileID: 11400000, guid: 9e889e6de2863754a862fdf9e9bb6b48, type: 2}
+  - {fileID: 11400000, guid: c5d057759235b0c49b7852c00ceaf723, type: 2}
+  - {fileID: 11400000, guid: 430a04ec01251ab4ebd17c7e34c7188e, type: 2}
+  - {fileID: 11400000, guid: bf542e562bd06bd498c545e47f4890a3, type: 2}
+  - {fileID: 11400000, guid: e28d905398ce5be4d9eb6bcdba7fe219, type: 2}
+  - {fileID: 11400000, guid: 809bb17e5b9f81b4bb2a887b37064726, type: 2}
   Companions:
   - {fileID: 11400000, guid: f00fa9512cd6d764aa9fc9c575393d44, type: 2}
   - {fileID: 11400000, guid: b3f868644b82b21428287215c111ce5f, type: 2}
@@ -317,7 +322,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Values apply before combat
       limits.'
-    Price: 18
+    Price: 24
     Effect: 0
     Value: 0.12
     Icon: {fileID: -1282941514, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -346,12 +351,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Attack speed: +20%
+      / Attack speed: +12%
 
 
       Owned effective copies: 1. Values apply before
       combat limits.'
-    Price: 20
+    Price: 24
     Effect: 1
     Value: 0.1
     Icon: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -359,7 +364,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.2
+      Value: 0.12
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -380,7 +385,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Maximum health: +40
+      / Maximum health: +15
 
 
       Owned effective copies: 1. Values apply before
@@ -393,7 +398,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 40
+      Value: 15
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -414,7 +419,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Movement speed: +10%
+      / Movement speed: +22%
 
 
       Owned effective copies: 1. Values apply before
@@ -427,7 +432,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 3
       Scope: 0
-      Value: 0.1
+      Value: 0.22
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -448,7 +453,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Pickup radius: +1.25
+      / Pickup radius: +1.6
 
 
       Owned effective copies: 1. Values apply before
@@ -461,7 +466,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 4
       Scope: 3
-      Value: 1.25
+      Value: 1.6
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -482,12 +487,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Patrol radius: +0.4
+      / Patrol radius: +1
+
+      Run / Pickup radius: +0.8
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
-    Price: 18
+      Owned effective
+      copies: 1. Values apply before combat limits.'
+    Price: 15
     Effect: 5
     Value: 0.4
     Icon: {fileID: -701530378, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -495,7 +502,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 5
       Scope: 3
-      Value: 0.4
+      Value: 1
+    - Effect: 4
+      Scope: 3
+      Value: 0.8
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -518,10 +528,12 @@ MonoBehaviour:
       Run
       / Companion bullet interception: +1
 
+      Companions / Attack speed: +15%
 
-      Owned effective copies: 1. Values
-      apply before combat limits.'
-    Price: 45
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
+    Price: 39
     Effect: 6
     Value: 1
     Icon: {fileID: 2109384157, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -530,6 +542,9 @@ MonoBehaviour:
     - Effect: 6
       Scope: 3
       Value: 1
+    - Effect: 14
+      Scope: 2
+      Value: 0.15
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
@@ -552,11 +567,11 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Healing per second: +1
+      / Healing per second: +0.8
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
+      Owned effective copies: 1. Values apply
+      before combat limits.'
     Price: 24
     Effect: 7
     Value: 0.15
@@ -565,7 +580,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 7
       Scope: 1
-      Value: 1
+      Value: 0.8
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -586,12 +601,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Critical chance: +10%
+      / Critical chance: +20%
 
 
       Owned effective copies: 1. Values apply before
       combat limits.'
-    Price: 22
+    Price: 20
     Effect: 8
     Value: 0.04
     Icon: {fileID: 1535964756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -599,7 +614,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.1
+      Value: 0.2
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -620,12 +635,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Projectile count: +2
+      / Projectile count: +1
+
+      Team / Attack speed: -10%
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
-    Price: 35
+      Owned effective
+      copies: 1. Values apply before combat limits.'
+    Price: 48
     Effect: 9
     Value: 1
     Icon: {fileID: 1957318737, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -633,14 +650,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 9
       Scope: 0
-      Value: 2
+      Value: 1
+    - Effect: 1
+      Scope: 0
+      Value: -0.1
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 11
+    AltarPrice: 12
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -656,12 +676,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Interest cap: +2
+      / Interest cap: +4
 
 
       Owned effective copies: 1. Values apply before combat
       limits.'
-    Price: 18
+    Price: 16
     Effect: 10
     Value: 2
     Icon: {fileID: 1537366379, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -669,7 +689,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 10
       Scope: 3
-      Value: 2
+      Value: 4
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -690,12 +710,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Armor: +0.22
+      / Armor: +0.15
 
 
       Owned effective copies: 1. Values apply before combat
       limits.'
-    Price: 20
+    Price: 24
     Effect: 11
     Value: 0.12
     Icon: {fileID: 1632686187, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -703,7 +723,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.22
+      Value: 0.15
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -724,12 +744,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Damage: +44%
+      / Damage: +36%
 
 
       Owned effective copies: 1. Values apply before combat
       limits.'
-    Price: 28
+    Price: 36
     Effect: 12
     Value: 0.22
     Icon: {fileID: 712256120, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -737,7 +757,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.44
+      Value: 0.36
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -760,12 +780,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Companions
-      / Damage: +30%
+      / Damage: +32%
 
 
       Owned effective copies: 1. Values apply before combat
       limits.'
-    Price: 30
+    Price: 33
     Effect: 13
     Value: 0.15
     Icon: {fileID: -63557585, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -773,7 +793,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 13
       Scope: 2
-      Value: 0.3
+      Value: 0.32
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -796,12 +816,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Companions
-      / Attack speed: +24%
+      / Attack speed: +30%
 
 
       Owned effective copies: 1. Values apply before
       combat limits.'
-    Price: 26
+    Price: 31
     Effect: 14
     Value: 0.12
     Icon: {fileID: 232208136, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -809,7 +829,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 14
       Scope: 2
-      Value: 0.24
+      Value: 0.3
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -832,12 +852,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Gold shop discount: +5%
+      / Gold shop discount: +8%
 
 
       Owned effective copies: 1. Values apply before
       combat limits.'
-    Price: 24
+    Price: 19
     Effect: 15
     Value: 0.05
     Icon: {fileID: -1281663758, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
@@ -845,7 +865,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 15
       Scope: 3
-      Value: 0.05
+      Value: 0.08
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -860,20 +880,22 @@ MonoBehaviour:
     ShopThemes: []
   - Id: long-atlas
     Name: Long Atlas
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / RARE / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Patrol radius: +1
+      / Patrol radius: +2
 
-      Team / Movement speed: -4%
+      Team / Attack range: +32%
+
+      Team / Movement
+      speed: -4%
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
-    Price: 36
+      Owned effective copies: 1. Values apply before combat limits.'
+    Price: 35
     Effect: 5
     Value: 1
     Icon: {fileID: 21685886, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -881,7 +903,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 5
       Scope: 3
-      Value: 1
+      Value: 2
+    - Effect: 22
+      Scope: 0
+      Value: 0.32
     - Effect: 3
       Scope: 0
       Value: -0.04
@@ -891,7 +916,7 @@ MonoBehaviour:
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 11
+    AltarPrice: 12
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -907,7 +932,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Maximum health: +90
+      / Maximum health: +50
 
 
       SPECIAL EFFECT
@@ -926,14 +951,14 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 90
+      Value: 50
     Rarity: 3
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 8
     Pools: 2
-    AltarCurrency: 2
-    AltarPrice: 13
+    AltarCurrency: 1
+    AltarPrice: 4
     SignatureRole: 0
     Mechanic: 47
     Category: 0
@@ -949,9 +974,9 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Projectile count: +3
+      / Projectile count: +2
 
-      Team / Attack speed: -8%
+      Team / Attack speed: -30%
 
 
       SPECIAL EFFECT
@@ -971,10 +996,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 9
       Scope: 0
-      Value: 3
+      Value: 2
     - Effect: 1
       Scope: 0
-      Value: -0.08
+      Value: -0.3
     Rarity: 3
     Stacking: 0
     MaximumStacks: 100000
@@ -997,7 +1022,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Damage: +80%
+      / Damage: +60%
 
 
       SPECIAL EFFECT
@@ -1016,7 +1041,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.8
+      Value: 0.6
     Rarity: 3
     Stacking: 0
     MaximumStacks: 100000
@@ -1033,18 +1058,18 @@ MonoBehaviour:
     - fam-crit
   - Id: fortune-egg
     Name: Fortune Egg
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Luck: +0.2
+      / Luck: +0.3
 
 
       Owned effective copies: 1. Values apply before combat
       limits.'
-    Price: 24
+    Price: 16
     Effect: 16
     Value: 0.2
     Icon: {fileID: -1580028238, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1052,7 +1077,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 16
       Scope: 3
-      Value: 0.2
+      Value: 0.3
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -1073,11 +1098,13 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Treasure detection: +0.35
+      / Treasure detection: +1
+
+      Run / Luck: +0.25
 
 
-      Owned effective copies: 1. Values apply
-      before combat limits.'
+      Owned effective copies:
+      1. Values apply before combat limits.'
     Price: 30
     Effect: 17
     Value: 0.35
@@ -1086,7 +1113,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 17
       Scope: 3
-      Value: 0.35
+      Value: 1
+    - Effect: 16
+      Scope: 3
+      Value: 0.25
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
@@ -1189,14 +1219,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Damage: +36%
+      / Damage: +50%
 
-      Team / Movement speed: -3%
+      Team / Movement speed: -4%
 
 
       Owned effective copies:
       1. Values apply before combat limits.'
-    Price: 36
+    Price: 42
     Effect: 12
     Value: 0.18
     Icon: {fileID: -786763377, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1204,17 +1234,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.36
+      Value: 0.5
     - Effect: 3
       Scope: 0
-      Value: -0.03
+      Value: -0.04
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 10
+    AltarPrice: 12
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1666,7 +1696,7 @@ MonoBehaviour:
       Run
       / Score multiplier: +8%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -6
 
 
       Owned
@@ -1682,14 +1712,14 @@ MonoBehaviour:
       Value: 0.08
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1699,20 +1729,20 @@ MonoBehaviour:
     - fam-team
   - Id: k10-collisiondamage
     Name: "Contract \xB7 Collision damage"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Collision damage: +10
+      / Collision damage: +12
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -5
 
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 27
+    Price: 21
     Effect: 19
     Value: 2
     Icon: {fileID: -1401000751, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1720,10 +1750,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 19
       Scope: 0
-      Value: 10
+      Value: 12
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -1738,20 +1768,20 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-meleedamage
     Name: "Contract \xB7 Flat melee damage"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Flat melee damage: +4
+      / Flat melee damage: +7
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -6
 
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 24
+    Price: 31
     Effect: 20
     Value: 2
     Icon: {fileID: -1549568920, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1759,10 +1789,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 20
       Scope: 0
-      Value: 4
+      Value: 7
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -1785,14 +1815,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Flat ranged damage: +4
+      / Flat ranged damage: +7
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -6
 
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 24
+    Price: 31
     Effect: 21
     Value: 2
     Icon: {fileID: 139346718, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1800,17 +1830,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 21
       Scope: 0
-      Value: 4
+      Value: 7
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1820,20 +1850,20 @@ MonoBehaviour:
     - fam-ranged
   - Id: k10-attackrange
     Name: "Contract \xB7 Attack range"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Attack range: +25%
+      / Attack range: +30%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -5
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 24
+    Price: 22
     Effect: 22
     Value: 0.08
     Icon: {fileID: -1972210321, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1841,10 +1871,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 22
       Scope: 0
-      Value: 0.25
+      Value: 0.3
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -1859,20 +1889,20 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-dodge
     Name: "Contract \xB7 Dodge"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Champion
-      / Dodge: +12%
+      / Dodge: +24%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -6
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 27
+    Price: 29
     Effect: 23
     Value: 0.08
     Icon: {fileID: -431369821, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1880,10 +1910,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 23
       Scope: 1
-      Value: 0.12
+      Value: 0.24
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -1900,15 +1930,15 @@ MonoBehaviour:
     - fam-survival
   - Id: k10-income
     Name: "Contract \xB7 Income"
-    Description: 'CURIO / UNCOMMON / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Income: +4
+      / Income: +5
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -5
 
 
       Owned effective copies:
@@ -1921,17 +1951,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 24
       Scope: 3
-      Value: 4
+      Value: 5
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 8
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -1939,7 +1969,7 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-bulletpierce
     Name: "Contract \xB7 Bullet pierce"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
@@ -1947,12 +1977,12 @@ MonoBehaviour:
       Team
       / Bullet pierce: +2
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -8
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 27
     Effect: 25
     Value: 1
     Icon: {fileID: 1833342553, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -1963,7 +1993,7 @@ MonoBehaviour:
       Value: 2
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -8
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -1978,7 +2008,7 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-bulletsplit
     Name: "Contract \xB7 Bullet split"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
@@ -1986,12 +2016,12 @@ MonoBehaviour:
       Team
       / Bullet split: +2
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -8
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 24
+    Price: 34
     Effect: 26
     Value: 1
     Icon: {fileID: 1020825841, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2002,7 +2032,7 @@ MonoBehaviour:
       Value: 2
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -8
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2025,14 +2055,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Bullet bounce chance: +8%
-
-      Champion / Maximum health: -1
+      / Bullet bounce chance: +65%
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
-    Price: 27
+      Owned effective copies: 1. Values apply
+      before combat limits.'
+    Price: 24
     Effect: 27
     Value: 0.08
     Icon: {fileID: -1201317613, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2040,17 +2068,14 @@ MonoBehaviour:
     Modifiers:
     - Effect: 27
       Scope: 0
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.65
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2060,20 +2085,20 @@ MonoBehaviour:
     - fam-ranged
   - Id: k10-bulletsize
     Name: "Contract \xB7 Bullet size"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Bullet size: +25%
+      / Bullet size: +80%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -2
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 18
+    Price: 15
     Effect: 28
     Value: 0.08
     Icon: {fileID: -458059986, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2081,10 +2106,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 28
       Scope: 0
-      Value: 0.25
+      Value: 0.8
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -2
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2099,20 +2124,23 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-bulletspeed
     Name: "Contract \xB7 Bullet speed"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Bullet speed: +8%
+      / Bullet speed: +50%
 
-      Champion / Maximum health: -1
+      Team / Bullet travel distance: +50%
+
+      Team
+      / Attack range: +20%
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
-    Price: 24
+      Owned effective copies: 1. Values apply before
+      combat limits.'
+    Price: 29
     Effect: 29
     Value: 0.08
     Icon: {fileID: -302247242, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2120,10 +2148,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 29
       Scope: 0
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.5
+    - Effect: 30
+      Scope: 0
+      Value: 0.5
+    - Effect: 22
+      Scope: 0
+      Value: 0.2
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2146,9 +2177,9 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Bullet travel distance: +8%
+      / Bullet travel distance: +60%
 
-      Champion / Maximum health: -1
+      Team / Attack range: +14%
 
 
       Owned
@@ -2161,17 +2192,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 30
       Scope: 0
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.6
+    - Effect: 22
+      Scope: 0
+      Value: 0.14
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2181,20 +2212,20 @@ MonoBehaviour:
     - fam-ranged
   - Id: k10-knockback
     Name: "Contract \xB7 Knockback"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Knockback: +25%
+      / Knockback: +50%
 
-      Champion / Maximum health: -1
+      Team / Collision damage: +6
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 27
+    Price: 19
     Effect: 31
     Value: 0.08
     Icon: {fileID: -1311748186, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2202,10 +2233,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 31
       Scope: 0
-      Value: 0.25
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.5
+    - Effect: 19
+      Scope: 0
+      Value: 6
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2220,20 +2251,23 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-bodysize
     Name: "Contract \xB7 Champion size"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Champion
-      / Champion size: +8%
+      / Champion size: +12%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: +15
+
+      Champion
+      / Collision damage: +4
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
-    Price: 24
+      Owned effective copies: 1. Values apply before
+      combat limits.'
+    Price: 28
     Effect: 32
     Value: 0.08
     Icon: {fileID: 1381510932, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2241,10 +2275,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 32
       Scope: 1
-      Value: 0.08
+      Value: 0.12
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: 15
+    - Effect: 19
+      Scope: 1
+      Value: 4
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2267,14 +2304,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Companions
-      / Companion size: +8%
+      / Companion size: +12%
 
-      Champion / Maximum health: -1
+      Companions / Damage: +25%
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 24
+    Price: 27
     Effect: 33
     Value: 0.08
     Icon: {fileID: -2036193071, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2282,17 +2319,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 33
       Scope: 2
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.12
+    - Effect: 13
+      Scope: 2
+      Value: 0.25
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2302,7 +2339,7 @@ MonoBehaviour:
     - fam-collision
   - Id: k10-enemycount
     Name: "Contract \xB7 Enemy count"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
@@ -2313,7 +2350,7 @@ MonoBehaviour:
       Run / Score multiplier: +20%
 
       Champion / Maximum
-      health: -1
+      health: -5
 
 
       Owned effective copies: 1. Values apply before combat limits.'
@@ -2331,7 +2368,7 @@ MonoBehaviour:
       Value: 0.2
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2346,7 +2383,7 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-enemyhealth
     Name: "Contract \xB7 Enemy health"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
@@ -2357,7 +2394,7 @@ MonoBehaviour:
       Run / Score multiplier: +20%
 
       Champion /
-      Maximum health: -1
+      Maximum health: -6
 
 
       Owned effective copies: 1. Values apply before combat
@@ -2376,7 +2413,7 @@ MonoBehaviour:
       Value: 0.2
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2393,7 +2430,7 @@ MonoBehaviour:
     - fam-team
   - Id: k10-enemyspeed
     Name: "Contract \xB7 Enemy speed"
-    Description: 'CURIO / UNCOMMON / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
@@ -2404,7 +2441,7 @@ MonoBehaviour:
       Run / Score multiplier: +20%
 
       Champion / Maximum
-      health: -1
+      health: -5
 
 
       Owned effective copies: 1. Values apply before combat limits.'
@@ -2422,14 +2459,14 @@ MonoBehaviour:
       Value: 0.2
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 8
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2437,20 +2474,20 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-hearthealing
     Name: "Contract \xB7 Heart healing"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Champion
-      / Heart healing: +2
+      / Heart healing: +8
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -2
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 15
     Effect: 37
     Value: 2
     Icon: {fileID: -2114860895, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2458,10 +2495,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 37
       Scope: 1
-      Value: 2
+      Value: 8
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -2
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2476,15 +2513,15 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-chestquality
     Name: "Contract \xB7 Chest quality"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Chest quality: +8%
+      / Chest quality: +60%
 
-      Champion / Maximum health: -1
+      Run / Treasure detection: +0.5
 
 
       Owned effective
@@ -2497,10 +2534,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 38
       Scope: 3
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.6
+    - Effect: 17
+      Scope: 3
+      Value: 0.5
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2523,14 +2560,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Recruit discount: +8%
-
-      Champion / Maximum health: -1
+      / Recruit discount: +16%
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
-    Price: 27
+      Owned effective copies: 1. Values apply before
+      combat limits.'
+    Price: 24
     Effect: 39
     Value: 0.08
     Icon: {fileID: 780716241, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2538,17 +2573,14 @@ MonoBehaviour:
     Modifiers:
     - Effect: 39
       Scope: 3
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.16
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2558,20 +2590,20 @@ MonoBehaviour:
     - fam-shop
   - Id: k10-relicdiscount
     Name: "Contract \xB7 Relic discount"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Relic discount: +8%
+      / Relic discount: +13%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -5
 
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 18
+    Price: 15
     Effect: 40
     Value: 0.08
     Icon: {fileID: -946962865, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2579,10 +2611,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 40
       Scope: 3
-      Value: 0.08
+      Value: 0.13
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2597,19 +2629,17 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-shoprarity
     Name: "Contract \xB7 Shop rarity"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Shop rarity: +8%
-
-      Champion / Maximum health: -1
+      / Shop rarity: +32%
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 24
     Effect: 41
     Value: 0.08
@@ -2618,10 +2648,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 41
       Scope: 3
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.32
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2644,14 +2671,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Health correction: +8%
-
-      Champion / Maximum health: -1
+      / Health correction: +20%
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
-    Price: 24
+      Owned effective copies: 1. Values apply before
+      combat limits.'
+    Price: 31
     Effect: 42
     Value: 0.08
     Icon: {fileID: -1184230231, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2659,16 +2684,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 42
       Scope: 1
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.2
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
-    AltarCurrency: 2
+    AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 0
     Mechanic: 0
@@ -2679,20 +2701,20 @@ MonoBehaviour:
     - fam-survival
   - Id: k10-damagecorrection
     Name: "Contract \xB7 Damage correction"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Damage correction: +20%
+      / Damage correction: +14%
 
-      Champion / Maximum health: -1
+      Champion / Maximum health: -5
 
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 27
+    Price: 20
     Effect: 43
     Value: 0.08
     Icon: {fileID: 1318715676, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2700,10 +2722,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 43
       Scope: 0
-      Value: 0.2
+      Value: 0.14
     - Effect: 2
       Scope: 1
-      Value: -1
+      Value: -5
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2718,20 +2740,18 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-speedcorrection
     Name: "Contract \xB7 Speed correction"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Speed correction: +8%
-
-      Champion / Maximum health: -1
+      / Speed correction: +35%
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
-    Price: 24
+      Owned effective copies: 1. Values apply before
+      combat limits.'
+    Price: 28
     Effect: 44
     Value: 0.08
     Icon: {fileID: -935606369, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2739,10 +2759,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 44
       Scope: 0
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.35
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2765,13 +2782,13 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Armor correction: +8%
+      / Armor correction: +40%
 
-      Champion / Maximum health: -1
+      Champion / Armor: +0.07
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 45
     Value: 0.08
@@ -2780,17 +2797,17 @@ MonoBehaviour:
     Modifiers:
     - Effect: 45
       Scope: 1
-      Value: 0.08
-    - Effect: 2
+      Value: 0.4
+    - Effect: 11
       Scope: 1
-      Value: -1
+      Value: 0.07
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 3
+    AltarPrice: 10
     SignatureRole: 0
     Mechanic: 0
     Category: 0
@@ -2800,20 +2817,18 @@ MonoBehaviour:
     - fam-survival
   - Id: k10-healcorrection
     Name: "Contract \xB7 Healing correction"
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Champion
-      / Healing correction: +8%
-
-      Champion / Maximum health: -1
+      / Healing correction: +60%
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
-    Price: 24
+      Owned effective copies: 1. Values apply
+      before combat limits.'
+    Price: 15
     Effect: 46
     Value: 0.08
     Icon: {fileID: -1082792551, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2821,10 +2836,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 46
       Scope: 1
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.6
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -2839,15 +2851,15 @@ MonoBehaviour:
     ShopThemes: []
   - Id: k10-collisionfrequency
     Name: "Contract \xB7 Collision frequency"
-    Description: 'CURIO / MYTHIC / STACKABLE
+    Description: 'CURIO / UNCOMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Collision frequency: +8%
+      / Collision frequency: +60%
 
-      Champion / Maximum health: -1
+      Team / Collision damage: +4
 
 
       Owned
@@ -2860,10 +2872,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 47
       Scope: 0
-      Value: 0.08
-    - Effect: 2
-      Scope: 1
-      Value: -1
+      Value: 0.6
+    - Effect: 19
+      Scope: 0
+      Value: 4
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2886,13 +2898,16 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Chest opening radius: +35%
+      / Chest opening radius: +80%
 
-      Champion / Movement speed: -2%
+      Run / Treasure detection: +0.6
+
+      Run
+      / Pickup radius: +0.6
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 24
     Effect: 48
     Value: 0.35
@@ -2901,10 +2916,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 48
       Scope: 3
-      Value: 0.35
-    - Effect: 3
-      Scope: 1
-      Value: -0.02
+      Value: 0.8
+    - Effect: 17
+      Scope: 3
+      Value: 0.6
+    - Effect: 4
+      Scope: 3
+      Value: 0.6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -2921,13 +2939,13 @@ MonoBehaviour:
     - fam-chest
   - Id: velvet-first-aid
     Name: Velvet First Aid
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Treasure detection: +0.1
+      / Treasure detection: +0.8
 
       Champion / Movement speed: -2%
 
@@ -2946,7 +2964,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 17
       Scope: 3
-      Value: 0.1
+      Value: 0.8
     - Effect: 3
       Scope: 1
       Value: -0.02
@@ -3291,14 +3309,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Maximum health: +50
+      / Maximum health: +12
 
-      Champion / Healing per second: +0.8
+      Champion / Healing per second: +0.3
 
 
       Owned
       effective copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 32
+    Price: 26
     Effect: 0
     Value: 0
     Icon: {fileID: -2112130088, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3306,10 +3324,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 50
+      Value: 12
     - Effect: 7
       Scope: 1
-      Value: 0.8
+      Value: 0.3
     Rarity: 0
     Stacking: 0
     MaximumStacks: 4
@@ -3330,14 +3348,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Armor: +0.35
+      / Armor: +0.2
 
-      Team / Movement speed: -4%
+      Team / Movement speed: -6%
 
 
       Owned effective copies:
       1. Stack limit: 4. Values apply before combat limits.'
-    Price: 32
+    Price: 26
     Effect: 0
     Value: 0
     Icon: {fileID: -1823242546, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3345,10 +3363,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.35
+      Value: 0.2
     - Effect: 3
       Scope: 0
-      Value: -0.04
+      Value: -0.06
     Rarity: 0
     Stacking: 0
     MaximumStacks: 4
@@ -3376,7 +3394,7 @@ MonoBehaviour:
 
       Owned effective copies:
       1. Stack limit: 4. Values apply before combat limits.'
-    Price: 45
+    Price: 28
     Effect: 0
     Value: 0
     Icon: {fileID: 551106072, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3417,7 +3435,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 46
+    Price: 40
     Effect: 0
     Value: 0
     Icon: {fileID: -1048081793, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3451,14 +3469,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Health correction: +25%
+      / Health correction: +20%
 
-      Champion / Healing per second: +1.4
+      Champion / Healing per second: +1
 
 
       Owned
       effective copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 55
+    Price: 49
     Effect: 0
     Value: 0
     Icon: {fileID: 1218745630, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3466,10 +3484,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 42
       Scope: 1
-      Value: 0.25
+      Value: 0.2
     - Effect: 7
       Scope: 1
-      Value: 1.4
+      Value: 1
     Rarity: 2
     Stacking: 0
     MaximumStacks: 4
@@ -3492,14 +3510,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Healing per second: +2.8
+      / Healing per second: +2.2
 
       Run / Income: -2
 
 
       Owned effective
       copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 60
+    Price: 45
     Effect: 0
     Value: 0
     Icon: {fileID: -480808365, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3507,7 +3525,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 7
       Scope: 1
-      Value: 2.8
+      Value: 2.2
     - Effect: 24
       Scope: 3
       Value: -2
@@ -3533,7 +3551,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Armor: +0.65
+      / Armor: +0.55
 
       Team / Movement speed: -8%
 
@@ -3554,7 +3572,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.65
+      Value: 0.55
     - Effect: 3
       Scope: 0
       Value: -0.08
@@ -3634,7 +3652,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 46
+    Price: 34
     Effect: 0
     Value: 0
     Icon: {fileID: -564166699, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3662,20 +3680,20 @@ MonoBehaviour:
     - fam-survival
   - Id: SecretMirror
     Name: The Glass Understudy
-    Description: 'CURIO / RARE / UNIQUE
+    Description: 'CURIO / UNCOMMON / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Critical chance: +5%
+      / Critical chance: +12%
 
-      Team / Attack range: +8%
+      Team / Attack range: +20%
 
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 46
+    Price: 31
     Effect: 0
     Value: 0
     Icon: {fileID: 321956525, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3683,10 +3701,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.05
+      Value: 0.12
     - Effect: 22
       Scope: 0
-      Value: 0.08
+      Value: 0.2
     Rarity: 1
     Stacking: 1
     MaximumStacks: 1
@@ -3710,14 +3728,16 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Attack range: +18%
+      / Attack range: +30%
 
-      Team / Knockback: +20%
+      Team / Knockback: +30%
+
+      Team / Damage: +8%
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 40
     Effect: 0
     Value: 0
     Icon: {fileID: -773660135, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3725,10 +3745,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 22
       Scope: 0
-      Value: 0.18
+      Value: 0.3
     - Effect: 31
       Scope: 0
-      Value: 0.2
+      Value: 0.3
+    - Effect: 0
+      Scope: 0
+      Value: 0.08
     Rarity: 2
     Stacking: 1
     MaximumStacks: 1
@@ -3752,14 +3775,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Gold shop discount: +8%
+      / Gold shop discount: +12%
 
-      Run / Luck: +0.08
+      Run / Luck: +0.15
 
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 32
     Effect: 0
     Value: 0
     Icon: {fileID: 331261299, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3767,10 +3790,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 15
       Scope: 3
-      Value: 0.08
+      Value: 0.12
     - Effect: 16
       Scope: 3
-      Value: 0.08
+      Value: 0.15
     Rarity: 2
     Stacking: 1
     MaximumStacks: 1
@@ -3788,20 +3811,20 @@ MonoBehaviour:
     - fam-luck
   - Id: SecretHour
     Name: Hourglass Advance
-    Description: 'CURIO / RARE / UNIQUE
+    Description: 'CURIO / UNCOMMON / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Attack speed: +18%
+      / Attack speed: +10%
 
-      Team / Damage: +10%
+      Team / Damage: +8%
 
 
       Owned effective copies:
       1. Stack limit: 1. Values apply before combat limits.'
-    Price: 46
+    Price: 34
     Effect: 0
     Value: 0
     Icon: {fileID: -1896486556, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3809,10 +3832,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.18
+      Value: 0.1
     - Effect: 0
       Scope: 0
-      Value: 0.1
+      Value: 0.08
     Rarity: 1
     Stacking: 1
     MaximumStacks: 1
@@ -3829,20 +3852,20 @@ MonoBehaviour:
     - fam-team
   - Id: SecretDream
     Name: Sleeping-Lamb Brooch
-    Description: 'CURIO / RARE / UNIQUE
+    Description: 'CURIO / UNCOMMON / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Champion
-      / Maximum health: +12
+      / Maximum health: +16
 
-      Champion / Heart healing: +3
+      Champion / Heart healing: +4
 
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 46
+    Price: 31
     Effect: 0
     Value: 0
     Icon: {fileID: 5481929, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3850,10 +3873,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 12
+      Value: 16
     - Effect: 37
       Scope: 1
-      Value: 3
+      Value: 4
     Rarity: 1
     Stacking: 1
     MaximumStacks: 1
@@ -3883,7 +3906,7 @@ MonoBehaviour:
 
       Owned effective copies:
       1. Stack limit: 1. Values apply before combat limits.'
-    Price: 46
+    Price: 35
     Effect: 0
     Value: 0
     Icon: {fileID: 732980563, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3912,20 +3935,23 @@ MonoBehaviour:
     - fam-crit
   - Id: SecretLetter
     Name: Dead-Letter Key
-    Description: 'CURIO / RARE / UNIQUE
+    Description: 'CURIO / UNCOMMON / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Run
-      / Pickup radius: +0.8
+      / Pickup radius: +1.2
 
-      Run / Treasure detection: +0.1
+      Run / Treasure detection: +0.4
+
+      Run / Luck:
+      +0.1
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 46
+      Owned effective copies: 1. Stack limit: 1. Values apply before
+      combat limits.'
+    Price: 24
     Effect: 0
     Value: 0
     Icon: {fileID: 363176316, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3933,8 +3959,11 @@ MonoBehaviour:
     Modifiers:
     - Effect: 4
       Scope: 3
-      Value: 0.8
+      Value: 1.2
     - Effect: 17
+      Scope: 3
+      Value: 0.4
+    - Effect: 16
       Scope: 3
       Value: 0.1
     Rarity: 1
@@ -3954,20 +3983,20 @@ MonoBehaviour:
     - fam-chest
   - Id: OctoberRelic0
     Name: Lantern Stitch
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Attack range: +10%
+      / Attack range: +30%
 
-      Team / Attack speed: -5%
+      Team / Attack speed: -4%
 
 
       Owned effective
       copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 26
+    Price: 22
     Effect: 0
     Value: 0
     Icon: {fileID: -765111925, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -3975,10 +4004,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 22
       Scope: 0
-      Value: 0.1
+      Value: 0.3
     - Effect: 1
       Scope: 0
-      Value: -0.05
+      Value: -0.04
     Rarity: 0
     Stacking: 0
     MaximumStacks: 4
@@ -3999,14 +4028,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Healing per second: +0.5
+      / Healing per second: +1.8
 
       Run / Income: -2
 
 
       Owned effective
       copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 30
+    Price: 37
     Effect: 0
     Value: 0
     Icon: {fileID: -1919350112, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -4014,7 +4043,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 7
       Scope: 1
-      Value: 0.5
+      Value: 1.8
     - Effect: 24
       Scope: 3
       Value: -2
@@ -4034,20 +4063,20 @@ MonoBehaviour:
     - fam-survival
   - Id: OctoberRelic2
     Name: Clockseed Brooch
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / COMMON / STACKABLE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Collision damage: +5
+      / Collision damage: +10
 
-      Team / Movement speed: -4%
+      Team / Movement speed: -3%
 
 
       Owned effective
       copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 32
+    Price: 21
     Effect: 0
     Value: 0
     Icon: {fileID: -1491177789, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -4055,10 +4084,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 19
       Scope: 0
-      Value: 5
+      Value: 10
     - Effect: 3
       Scope: 0
-      Value: -0.04
+      Value: -0.03
     Rarity: 0
     Stacking: 0
     MaximumStacks: 4
@@ -4079,14 +4108,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Heart healing: +2
+      / Heart healing: +5
 
-      Champion / Maximum health: +10
+      Champion / Maximum health: +25
 
 
       Owned effective
       copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 38
+    Price: 39
     Effect: 0
     Value: 0
     Icon: {fileID: 2037761858, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -4094,10 +4123,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 37
       Scope: 1
-      Value: 2
+      Value: 5
     - Effect: 2
       Scope: 1
-      Value: 10
+      Value: 25
     Rarity: 2
     Stacking: 0
     MaximumStacks: 4
@@ -4124,14 +4153,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Maximum
-      health: +20
+      health: +18
 
       Run / Income: -2
 
 
       Owned effective copies: 1. Stack
       limit: 8. Values apply before combat limits.'
-    Price: 32
+    Price: 17
     Effect: 0
     Value: 0
     Icon: {fileID: 1344813320, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4139,7 +4168,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 20
+      Value: 18
     - Effect: 24
       Scope: 3
       Value: -2
@@ -4167,14 +4196,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Collision
-      damage: +10
+      damage: +18
 
-      Champion / Movement speed: -5%
+      Champion / Movement speed: -4%
 
 
       Owned effective copies:
       1. Stack limit: 8. Values apply before combat limits.'
-    Price: 32
+    Price: 22
     Effect: 0
     Value: 0
     Icon: {fileID: -1355949120, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4182,10 +4211,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 19
       Scope: 1
-      Value: 10
+      Value: 18
     - Effect: 3
       Scope: 1
-      Value: -0.05
+      Value: -0.04
     Rarity: 0
     Stacking: 0
     MaximumStacks: 8
@@ -4209,7 +4238,7 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Team / Damage: +20%
+      Team / Damage: +16%
 
       Team
       / Attack speed: -4%
@@ -4217,7 +4246,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Stack limit: 8. Values
       apply before combat limits.'
-    Price: 32
+    Price: 24
     Effect: 0
     Value: 0
     Icon: {fileID: -335754525, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4225,7 +4254,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.2
+      Value: 0.16
     - Effect: 1
       Scope: 0
       Value: -0.04
@@ -4255,12 +4284,12 @@ MonoBehaviour:
       Champion / Healing
       per second: +1
 
-      Champion / Maximum health: -4
+      Champion / Maximum health: -6
 
 
       Owned effective
       copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 32
+    Price: 21
     Effect: 0
     Value: 0
     Icon: {fileID: 2102222050, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4271,7 +4300,7 @@ MonoBehaviour:
       Value: 1
     - Effect: 2
       Scope: 1
-      Value: -4
+      Value: -6
     Rarity: 0
     Stacking: 0
     MaximumStacks: 8
@@ -4299,7 +4328,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 32
+    Price: 27
     Effect: 0
     Value: 0
     Icon: {fileID: 409440659, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4335,16 +4364,16 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team / Flat ranged
-      damage: +6
+      damage: +4
 
-      Team / Bullet bounce chance: +25%
+      Team / Bullet bounce chance: +20%
 
       Team / Damage: -5%
 
 
       Owned
       effective copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 32
+    Price: 20
     Effect: 0
     Value: 0
     Icon: {fileID: -2004642614, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4352,10 +4381,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 21
       Scope: 0
-      Value: 6
+      Value: 4
     - Effect: 27
       Scope: 0
-      Value: 0.25
+      Value: 0.2
     - Effect: 0
       Scope: 0
       Value: -0.05
@@ -4383,14 +4412,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team / Flat melee damage:
-      +5
+      +3
 
-      Team / Critical chance: +6%
+      Team / Critical chance: +8%
 
 
       Owned effective copies: 1. Stack
       limit: 8. Values apply before combat limits.'
-    Price: 32
+    Price: 25
     Effect: 0
     Value: 0
     Icon: {fileID: -8644156, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4398,10 +4427,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 20
       Scope: 0
-      Value: 5
+      Value: 3
     - Effect: 8
       Scope: 0
-      Value: 0.06
+      Value: 0.08
     Rarity: 0
     Stacking: 0
     MaximumStacks: 8
@@ -4433,7 +4462,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Stack limit:
       8. Values apply before combat limits.'
-    Price: 32
+    Price: 21
     Effect: 0
     Value: 0
     Icon: {fileID: -603900031, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4465,7 +4494,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Attack speed: +18%
+      / Attack speed: +14%
 
 
       SPECIAL EFFECT
@@ -4484,7 +4513,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.18
+      Value: 0.14
     Rarity: 0
     Stacking: 0
     MaximumStacks: 8
@@ -4508,15 +4537,15 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Dodge: +8%
+      Champion / Dodge: +10%
 
       Run
-      / Luck: +0.06
+      / Luck: +0.08
 
 
       Owned effective copies: 1. Stack limit: 8. Values apply
       before combat limits.'
-    Price: 32
+    Price: 20
     Effect: 0
     Value: 0
     Icon: {fileID: -206650220, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4524,10 +4553,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 23
       Scope: 1
-      Value: 0.08
+      Value: 0.1
     - Effect: 16
       Scope: 3
-      Value: 0.06
+      Value: 0.08
     Rarity: 0
     Stacking: 0
     MaximumStacks: 8
@@ -4635,14 +4664,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Damage: +24%
+      / Damage: +18%
 
       Team / Knockback: +20%
 
 
       Owned effective copies:
       1. Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 35
     Effect: 0
     Value: 0
     Icon: {fileID: 331103142, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4650,7 +4679,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.24
+      Value: 0.18
     - Effect: 31
       Scope: 0
       Value: 0.2
@@ -4677,20 +4706,20 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Armor: +0.4
+      / Armor: +0.25
 
       Run / Luck: -0.08
 
 
       SPECIAL EFFECT
 
-      When hit,
-      30% chance to fire 8 radial shots for 12 damage per stack each. Shots move
-      at 5 units/s and last 2s.
+      When
+      hit, 30% chance to fire 8 radial shots for 12 damage per stack each. Shots
+      move at 5 units/s and last 2s.
 
 
-      Owned effective copies: 1. Stack limit: 8.
-      Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -4699,7 +4728,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.4
+      Value: 0.25
     - Effect: 16
       Scope: 3
       Value: -0.08
@@ -4726,14 +4755,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Income: +25
+      / Income: +7
 
-      Champion / Bullet split: +2
+      Champion / Bullet split: +1
 
 
       Owned effective copies:
       1. Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 42
     Effect: 0
     Value: 0
     Icon: {fileID: -1396330245, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
@@ -4741,10 +4770,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 24
       Scope: 3
-      Value: 25
+      Value: 7
     - Effect: 26
       Scope: 1
-      Value: 2
+      Value: 1
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -4768,7 +4797,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Healing per second: +2
+      / Healing per second: +1.6
 
 
       SPECIAL EFFECT
@@ -4787,7 +4816,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 7
       Scope: 1
-      Value: 2
+      Value: 1.6
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -4819,12 +4848,12 @@ MonoBehaviour:
       Champion / Projectile count: +1
 
       Champion / Attack speed:
-      -25%
+      -35%
 
 
       Owned effective copies: 1. Stack limit: 8. Values apply before
       combat limits.'
-    Price: 46
+    Price: 40
     Effect: 0
     Value: 0
     Icon: {fileID: 506282897, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -4838,7 +4867,7 @@ MonoBehaviour:
       Value: 1
     - Effect: 1
       Scope: 1
-      Value: -0.25
+      Value: -0.35
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -4909,14 +4938,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Attack speed:
-      +24%
+      +30%
 
       Champion / Collision damage: -1
 
 
       Owned effective copies:
       1. Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 30
     Effect: 0
     Value: 0
     Icon: {fileID: -2143217894, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -4924,7 +4953,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 1
-      Value: 0.24
+      Value: 0.3
     - Effect: 19
       Scope: 1
       Value: -1
@@ -5005,7 +5034,7 @@ MonoBehaviour:
 
       Owned effective copies: 1.
       Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 33
     Effect: 0
     Value: 0
     Icon: {fileID: -402703697, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -5044,14 +5073,17 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Heart healing:
-      +4
+      +8
 
-      Champion / Movement speed: -5%
+      Champion / Healing per second: +0.5
+
+      Champion / Movement speed:
+      -5%
 
 
-      Owned effective copies: 1.
-      Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 28
     Effect: 0
     Value: 0
     Icon: {fileID: 919974948, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -5059,7 +5091,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 37
       Scope: 1
-      Value: 4
+      Value: 8
+    - Effect: 7
+      Scope: 1
+      Value: 0.5
     - Effect: 3
       Scope: 1
       Value: -0.05
@@ -5092,12 +5127,12 @@ MonoBehaviour:
       Champion / Champion
       size: -10%
 
-      Run / Luck: +0.3
+      Run / Luck: +0.45
 
 
       Owned effective copies: 1. Stack
       limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 24
     Effect: 0
     Value: 0
     Icon: {fileID: 709390404, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -5108,7 +5143,7 @@ MonoBehaviour:
       Value: -0.1
     - Effect: 16
       Scope: 3
-      Value: 0.3
+      Value: 0.45
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5174,17 +5209,17 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Run / Income: +30
+      Run / Income: +10
 
       Run
       / Treasure detection: +0.6
 
-      Champion / Armor: -0.3
+      Champion / Armor: -0.15
 
 
       Owned effective
       copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 33
     Effect: 0
     Value: 0
     Icon: {fileID: 271501257, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -5192,13 +5227,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 24
       Scope: 3
-      Value: 30
+      Value: 10
     - Effect: 17
       Scope: 3
       Value: 0.6
     - Effect: 11
       Scope: 1
-      Value: -0.3
+      Value: -0.15
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5275,17 +5310,17 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Team / Damage: +35%
+      Team / Damage: +25%
 
       Team
-      / Movement speed: -20%
+      / Movement speed: -25%
 
-      Run / Enemy speed: -20%
+      Run / Enemy speed: -15%
 
 
       Owned effective
       copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 46
+    Price: 40
     Effect: 0
     Value: 0
     Icon: {fileID: 963266100, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -5293,13 +5328,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.35
+      Value: 0.25
     - Effect: 3
       Scope: 0
-      Value: -0.2
+      Value: -0.25
     - Effect: 36
       Scope: 3
-      Value: -0.2
+      Value: -0.15
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5410,7 +5445,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Maximum health: +40
+      / Maximum health: +24
 
 
       SPECIAL EFFECT
@@ -5429,7 +5464,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 40
+      Value: 24
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5455,15 +5490,15 @@ MonoBehaviour:
       Team
       / Bullet pierce: +1
 
-      Team / Critical chance: +15%
+      Team / Critical chance: +20%
 
       Team / Flat
-      melee damage: -3
+      melee damage: -2
 
 
       Owned effective copies: 1. Stack limit: 8. Values
       apply before combat limits.'
-    Price: 46
+    Price: 28
     Effect: 0
     Value: 0
     Icon: {fileID: -1939563156, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
@@ -5474,10 +5509,10 @@ MonoBehaviour:
       Value: 1
     - Effect: 8
       Scope: 0
-      Value: 0.15
+      Value: 0.2
     - Effect: 20
       Scope: 0
-      Value: -3
+      Value: -2
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5563,7 +5598,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Stack limit: 8. Values apply before
       combat limits.'
-    Price: 46
+    Price: 30
     Effect: 0
     Value: 0
     Icon: {fileID: -602326207, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
@@ -5602,17 +5637,17 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Run
-      / Luck: +0.4
+      / Luck: +0.5
 
-      Team / Bullet bounce chance: +20%
+      Team / Bullet bounce chance: +25%
 
       Team / Damage:
-      -6%
+      -4%
 
 
       Owned effective copies: 1. Stack limit: 8. Values apply before
       combat limits.'
-    Price: 46
+    Price: 25
     Effect: 0
     Value: 0
     Icon: {fileID: -1978056696, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
@@ -5620,13 +5655,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 16
       Scope: 3
-      Value: 0.4
+      Value: 0.5
     - Effect: 27
       Scope: 0
-      Value: 0.2
+      Value: 0.25
     - Effect: 0
       Scope: 0
-      Value: -0.06
+      Value: -0.04
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5784,7 +5819,7 @@ MonoBehaviour:
       Team / Movement speed:
       +15%
 
-      Team / Flat melee damage: +7
+      Team / Flat melee damage: +9
 
       Team / Flat ranged damage:
       -3
@@ -5792,7 +5827,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Stack limit: 8. Values apply before combat
       limits.'
-    Price: 60
+    Price: 40
     Effect: 0
     Value: 0
     Icon: {fileID: 680318881, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
@@ -5803,7 +5838,7 @@ MonoBehaviour:
       Value: 0.15
     - Effect: 20
       Scope: 0
-      Value: 7
+      Value: 9
     - Effect: 21
       Scope: 0
       Value: -3
@@ -6102,17 +6137,17 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Healing
-      per second: +2.5
+      per second: +2
 
       Run / Treasure detection: +0.6
 
       Run / Enemy speed:
-      +7%
+      +10%
 
 
       Owned effective copies: 1. Stack limit: 8. Values apply before
       combat limits.'
-    Price: 60
+    Price: 47
     Effect: 0
     Value: 0
     Icon: {fileID: 619213419, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
@@ -6120,13 +6155,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 7
       Scope: 1
-      Value: 2.5
+      Value: 2
     - Effect: 17
       Scope: 3
       Value: 0.6
     - Effect: 36
       Scope: 3
-      Value: 0.07
+      Value: 0.1
     Rarity: 2
     Stacking: 0
     MaximumStacks: 8
@@ -6334,14 +6369,14 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Maximum
-      health: +90
+      health: +55
 
-      Champion / Healing per second: -2
+      Champion / Healing per second: -1.2
 
 
       Owned effective
       copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 60
+    Price: 39
     Effect: 0
     Value: 0
     Icon: {fileID: 1811151464, guid: e419cc10510ba644795eb06795f4876d, type: 3}
@@ -6349,10 +6384,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 90
+      Value: 55
     - Effect: 7
       Scope: 1
-      Value: -2
+      Value: -1.2
     Rarity: 2
     Stacking: 0
     MaximumStacks: 8
@@ -6412,15 +6447,15 @@ MonoBehaviour:
     - fam-delay
   - Id: CurioMuteClock
     Name: Mute Clock
-    Description: 'CURIO / RARE / STACKABLE
+    Description: 'CURIO / MYTHIC / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Attack speed: +45%
+      / Attack speed: +30%
 
-      Team / Movement speed: +40%
+      Team / Movement speed: +25%
 
 
       SPECIAL EFFECT
@@ -6431,7 +6466,7 @@ MonoBehaviour:
 
 
       Owned
-      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -6440,13 +6475,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.45
+      Value: 0.3
     - Effect: 3
       Scope: 0
-      Value: 0.4
+      Value: 0.25
     Rarity: 3
-    Stacking: 0
-    MaximumStacks: 8
+    Stacking: 1
+    MaximumStacks: 1
     ShopWeight: 8
     Pools: 1
     AltarCurrency: 1
@@ -6566,7 +6601,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Collision
-      damage: +25
+      damage: +35
 
       Champion / Knockback: +30%
 
@@ -6576,7 +6611,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Stack limit: 8. Values apply before
       combat limits.'
-    Price: 60
+    Price: 36
     Effect: 0
     Value: 0
     Icon: {fileID: -1040720584, guid: e419cc10510ba644795eb06795f4876d, type: 3}
@@ -6584,7 +6619,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 19
       Scope: 1
-      Value: 25
+      Value: 35
     - Effect: 31
       Scope: 1
       Value: 0.3
@@ -6705,16 +6740,16 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team / Critical chance:
-      +20%
+      +30%
 
       Team / Bullet pierce: +1
 
-      Team / Damage: -20%
+      Team / Damage: -5%
 
 
       Owned
       effective copies: 1. Stack limit: 8. Values apply before combat limits.'
-    Price: 60
+    Price: 34
     Effect: 0
     Value: 0
     Icon: {fileID: 1255554615, guid: e419cc10510ba644795eb06795f4876d, type: 3}
@@ -6722,13 +6757,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.2
+      Value: 0.3
     - Effect: 25
       Scope: 0
       Value: 1
     - Effect: 0
       Scope: 0
-      Value: -0.2
+      Value: -0.05
     Rarity: 2
     Stacking: 0
     MaximumStacks: 8
@@ -6753,7 +6788,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Maximum health: -5
+      / Maximum health: -12
 
       Run / Income: -5
 
@@ -6762,13 +6797,13 @@ MonoBehaviour:
 
       ON
       PURCHASE: try to recruit up to 2 ordinary companions from your hero''s pool.
-      All gifts use the 3-companion purchase quota. New species also use the quota
-      of 2 in rounds 1-3, then 1. Checks unlock wave, unique weapon and 15-body limit;
-      solo heroes receive no bodies.
+      Gifts use the 3-companion regular purchase quota. At most 1 new species per
+      wave; from wave 10 both shops share one new species every 2 waves. Checks unlock
+      wave and unique weapon; no body cap. Solo heroes receive no bodies.
 
 
-      Owned effective copies: 1. Stack limit:
-      8. Values apply before combat limits.'
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -6777,7 +6812,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: -5
+      Value: -12
     - Effect: 24
       Scope: 3
       Value: -5
@@ -6879,7 +6914,7 @@ MonoBehaviour:
     ShopWeight: 28
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 12
+    AltarPrice: 15
     SignatureRole: 0
     Mechanic: 34
     Category: 0
@@ -6907,12 +6942,12 @@ MonoBehaviour:
       Champion / Bullet speed:
       -40%
 
-      Champion / Damage: +100%
+      Champion / Damage: +70%
 
 
       Owned effective copies: 1. Stack
       limit: 8. Values apply before combat limits.'
-    Price: 74
+    Price: 63
     Effect: 0
     Value: 0
     Icon: {fileID: 1139922070, guid: e419cc10510ba644795eb06795f4876d, type: 3}
@@ -6929,7 +6964,7 @@ MonoBehaviour:
       Value: -0.4
     - Effect: 12
       Scope: 1
-      Value: 1
+      Value: 0.7
     Rarity: 3
     Stacking: 0
     MaximumStacks: 8
@@ -7099,17 +7134,17 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion
-      / Collision damage: +40
+      / Collision damage: +70
 
       Champion / Collision frequency: +70%
 
       Team
-      / Flat ranged damage: -10
+      / Flat ranged damage: -6
 
 
       Owned effective copies: 1. Stack limit: 8.
       Values apply before combat limits.'
-    Price: 74
+    Price: 56
     Effect: 0
     Value: 0
     Icon: {fileID: 974244750, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -7117,13 +7152,13 @@ MonoBehaviour:
     Modifiers:
     - Effect: 19
       Scope: 1
-      Value: 40
+      Value: 70
     - Effect: 47
       Scope: 1
       Value: 0.7
     - Effect: 21
       Scope: 0
-      Value: -10
+      Value: -6
     Rarity: 3
     Stacking: 0
     MaximumStacks: 8
@@ -7349,22 +7384,22 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Team / Damage: +40%
+      Team / Damage: +20%
 
       Team
-      / Critical chance: +20%
+      / Critical chance: +15%
 
-      Team / Attack range: +40%
+      Team / Attack range: +20%
 
       Champion /
-      Armor: +0.6
+      Armor: +0.2
 
       Champion / Movement speed: -30%
 
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 74
+    Price: 67
     Effect: 0
     Value: 0
     Icon: {fileID: 949410556, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -7372,16 +7407,16 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.4
+      Value: 0.2
     - Effect: 8
       Scope: 0
-      Value: 0.2
+      Value: 0.15
     - Effect: 22
       Scope: 0
-      Value: 0.4
+      Value: 0.2
     - Effect: 11
       Scope: 1
-      Value: 0.6
+      Value: 0.2
     - Effect: 3
       Scope: 1
       Value: -0.3
@@ -7603,7 +7638,7 @@ MonoBehaviour:
     ShopWeight: 28
     Pools: 2
     AltarCurrency: 2
-    AltarPrice: 12
+    AltarPrice: 15
     SignatureRole: 0
     Mechanic: 45
     Category: 2
@@ -7698,11 +7733,12 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Champion / Critical
-      chance: +6%
+      chance: +32%
 
 
-      Owned effective copies: 1. Values apply before combat limits.'
-    Price: 24
+      Owned effective copies: 1. Values apply before combat
+      limits.'
+    Price: 18
     Effect: 0
     Value: 0
     Icon: {fileID: 21300000, guid: e3e5a98c2b34ec346bef3c4077733900, type: 3}
@@ -7710,7 +7746,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 1
-      Value: 0.06
+      Value: 0.32
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -8793,91 +8829,91 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 1269724658, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 0
-    Value: 0.08
+    Value: 0.06
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.08
+      Value: 0.06
     - Threshold: 6
-      Value: 0.16
+      Value: 0.12
   - Id: clock
     Name: Clock
     Threshold: 2
     Icon: {fileID: -1203761967, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 1
-    Value: 0.07
+    Value: 0.06
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.07
+      Value: 0.06
     - Threshold: 6
-      Value: 0.14
+      Value: 0.12
   - Id: frost
     Name: Frost
     Threshold: 2
     Icon: {fileID: -30878964, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 36
-    Value: -0.05
+    Value: -0.07
     ExtraBonuses:
     - Threshold: 4
-      Value: -0.05
+      Value: -0.07
     - Threshold: 6
-      Value: -0.1
+      Value: -0.14
   - Id: orchard
     Name: Orchard
     Threshold: 2
     Icon: {fileID: -991718301, guid: b4d4fdcb254a28e4e82a5bb7c64ce85c, type: 3}
     Effect: 16
-    Value: 0.04
+    Value: 0.15
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.04
+      Value: 0.15
     - Threshold: 6
-      Value: 0.08
+      Value: 0.3
   - Id: astral
     Name: Astral
     Threshold: 2
     Icon: {fileID: 608553034, guid: 9e6358b84def80646bc9d3ec24bc7470, type: 3}
     Effect: 28
-    Value: 0.08
+    Value: 0.2
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.08
+      Value: 0.2
     - Threshold: 6
-      Value: 0.16
+      Value: 0.4
   - Id: tidal
     Name: Tidal
     Threshold: 2
     Icon: {fileID: 1326636829, guid: 2de0098cfeb2c084d9925f3154964afa, type: 3}
     Effect: 27
+    Value: 0.15
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.15
+    - Threshold: 6
+      Value: 0.3
+  - Id: oddity
+    Name: Oddity
+    Threshold: 2
+    Icon: {fileID: 1554392765, guid: 5e1b2e412571c9b479c388262e2b6fd7, type: 3}
+    Effect: 8
     Value: 0.08
     ExtraBonuses:
     - Threshold: 4
       Value: 0.08
     - Threshold: 6
       Value: 0.16
-  - Id: oddity
-    Name: Oddity
-    Threshold: 2
-    Icon: {fileID: 1554392765, guid: 5e1b2e412571c9b479c388262e2b6fd7, type: 3}
-    Effect: 8
-    Value: 0.05
-    ExtraBonuses:
-    - Threshold: 4
-      Value: 0.05
-    - Threshold: 6
-      Value: 0.1
   - Id: hare
     Name: Springstep
     Threshold: 2
     Icon: {fileID: -128994627, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 31
-    Value: 0.15
+    Value: 0.3
     ExtraBonuses: []
   - Id: archer
     Name: Longbow
     Threshold: 2
     Icon: {fileID: 1105854806, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 21
-    Value: 3
+    Value: 2
     ExtraBonuses: []
   - Id: root
     Name: Rootkin
@@ -8891,35 +8927,35 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: -1159395267, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 20
-    Value: 4
+    Value: 2
     ExtraBonuses: []
   - Id: regal
     Name: Velvet Court
     Threshold: 2
     Icon: {fileID: -701735268, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 13
-    Value: 0.08
+    Value: 0.1
     ExtraBonuses: []
   - Id: clover
     Name: Lucky Leaves
     Threshold: 2
     Icon: {fileID: 1591840258, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 41
-    Value: 0.08
+    Value: 0.15
     ExtraBonuses: []
   - Id: gear
     Name: Clockwork Union
     Threshold: 2
     Icon: {fileID: -581639195, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 24
-    Value: 4
+    Value: 3
     ExtraBonuses: []
   - Id: hat
     Name: Hat Society
     Threshold: 2
     Icon: {fileID: -1721100714, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 10
-    Value: 2
+    Value: 3
     ExtraBonuses: []
   - Id: horn
     Name: Little Horns
@@ -8961,14 +8997,14 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 2054111496, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 38
-    Value: 0.1
+    Value: 0.3
     ExtraBonuses: []
   - Id: hide
     Name: Wild Stitch
     Threshold: 2
     Icon: {fileID: -1110965468, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 4
-    Value: 0.4
+    Value: 0.6
     ExtraBonuses: []
   - Id: resolve
     Name: Unbroken
@@ -8982,7 +9018,7 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 298339360, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 3
-    Value: 0.08
+    Value: 0.1
     ExtraBonuses: []
   - Id: lantern-guild
     Name: Lantern Guild
@@ -8996,21 +9032,21 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 1113165655, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 29
-    Value: 0.1
+    Value: 0.25
     ExtraBonuses: []
   - Id: paper-wings
     Name: Paper Wings
     Threshold: 2
     Icon: {fileID: -973585194, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 30
-    Value: 0.12
+    Value: 0.25
     ExtraBonuses: []
   - Id: sweet-tooth
     Name: Sweet Tooth
     Threshold: 2
     Icon: {fileID: 1743565340, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 14
-    Value: 0.07
+    Value: 0.09
     ExtraBonuses: []
   - Id: big-top
     Name: Big Top
@@ -9024,7 +9060,7 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 661514282, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 49
-    Value: 0.04
+    Value: 0.06
     ExtraBonuses: []
   - Id: sea-shanty
     Name: Sea Shanty
@@ -9038,7 +9074,7 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 612245033, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 50
-    Value: 0.1
+    Value: 0.12
     ExtraBonuses: []
   Recipes:
   - Id: dream-pillow

@@ -55,27 +55,7 @@ namespace ArcaneBrigade
         {
             entries.Clear();
             WorldShop shop = owner.Shop; RunSnapshot state = owner.Session.State;
-            // the working parts: every stall, the reroll machine, the way out, the fusion altar
-            foreach (WorldShop.Station station in shop.Stations)
-            {
-                if (station.Offer != null && station.Offer.Sold) continue;
-                Rect? area = null;
-                foreach (SpriteRenderer view in station.Marker.GetComponentsInChildren<SpriteRenderer>()) // companions join their stall after it is built
-                    if (view != null && view.enabled && view.sprite != null && view.color.a > 0.2f && !Decorative(view.gameObject.name)) area = Union(area, Ink(view));
-                if (area == null) continue;
-                string use, text = station.Description;
-                if (station.Offer != null) use = "Walk up to it and press Space or E (or BUY) · " + Price(station.Offer.Price, station.Offer.Currency);
-                else if (station.Action == "REROLL") use = "Walk up to it and press Space or E · " + Price(station.Price, ShopCurrency.Gold);
-                else if (station.Action == "NEXT HALL") { use = "Step onto the threshold and press Space or E"; text = shop.Special ? "The way back to the gold shop. The dream altar closes behind you." : owner.Session.HobRescueNeeded ? "Hob is still sitting in the perfect room. The road waits until you go back for Hob (the journal opens on that page)." : "The way on, down into the next night. Everything you bought comes with you."; }
-                else use = "Walk up to it and press Space or E · paid in eggs";
-                Add("station:" + station.Action, shop.DisplayName(station), text, use, area.Value, 500);
-                entries[entries.Count - 1].Offer = station.Offer;
-            }
-            if (shop.MerchantRect() is Rect merchant)
-                Add("merchant", shop.Special ? "MOTHER OF A THOUSAND EGG-EYES" : "THE SHOPKEEPER",
-                    shop.Special ? "She keeps the dream altar on the nights it wakes. She trades in eggs, not gold: dream companions and rare relics, and a fusion when your brigade is ready. Leave by the door to reach the gold shop."
-                                 : "Sells companions and relics for gold between nights, and talks to you about every purchase. It never looks at the chair in the corner.",
-                    "Talks when you buy, reroll or linger", merchant, 0);
+            // stations show their own card when you stand at them; the merchant and decorations are not things to use
             // the room's own things, each with its story
             Transform room = owner.transform;
             for (int i = 0; i < room.childCount; i++)
@@ -87,24 +67,17 @@ namespace ArcaneBrigade
                 string id = child.name;
                 if (id.StartsWith("SecretInvitation_", StringComparison.Ordinal) && Enum.TryParse(id.Substring(17), out SecretEventKind kind))
                     Add(id, SecretEventAssets.Titles[(int)kind], SecretEventAssets.Hints[(int)kind] + " A door into a secret room: a deal, a trade or a fight. Fights in there end the run if you lose; at most two rooms are visited each run.",
-                        "Stand beside it and press Space or E", Ink(view), view.sortingOrder);
+                        "Step beside it to enter", Ink(view), view.sortingOrder);
                 else if (id == "TheUnoccupiedChair")
                     Add(id, "THE WARM CHAIR", "It is always a little warm, as if someone has only just stood up. The shopkeeper: “Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.”",
-                        owner.Session.SitCloserAvailable ? "Walk up to it and press Space or E to sit · a hidden fight; losing ends the run" : state.Wave < ActOneCanon.SitFrom ? "Not yet. It moves a little closer every night." : "Only a chair now.", Ink(view), view.sortingOrder);
-                else if (id.StartsWith("DreamLandmark", StringComparison.Ordinal) && int.TryParse(id.Substring(13), out int landmark)) Landmark(landmark, view, state);
-                else if (id.StartsWith("AntiqueLanternSprite", StringComparison.Ordinal))
-                    Add(id, "A ROAD LANTERN", "Eight lanterns hang along the road outside, and two have come into the shop with you. While they burn, your name is still yours.", "Lanterns are lost and relit by the story; the lantern row on the HUD counts them", Ink(view), view.sortingOrder);
-                else if (id.StartsWith("PaintedNightWatcher", StringComparison.Ordinal))
-                    Add(id, "THE WATCHERS", "From the eleventh night something watches from the edges of the room. If it looks at you, look at a friend instead.", "They only watch", Ink(view), view.sortingOrder);
-                else if (id.StartsWith("ActOne-SeatedOne", StringComparison.Ordinal))
-                    Add(id, "A SEATED TRAVELLER", "Some of the travellers from the tower have come with the shop. They sit along its walls now, facing the door.", "They have stopped walking", Ink(view), view.sortingOrder);
+                        owner.Session.SitCloserAvailable ? "Sit · a hidden fight; losing ends the run" : state.Wave < ActOneCanon.SitFrom ? "Not yet. It moves a little closer every night." : "Only a chair now.", Ink(view), view.sortingOrder);
                 else if (id.StartsWith("ActOne-LastCustomer", StringComparison.Ordinal))
                     Add(id, "THE LAST CUSTOMER", id.EndsWith("BorrowedFace", StringComparison.Ordinal) ? "It stands by the warm chair wearing a face you almost know. It has been buying all night, and it has never once paid." : "A pleasant stranger who stands by the warm chair. It buys what nobody should sell, and it would like to buy something from you.",
                         state.Wave == 8 ? "It will make you an offer once you have read the telephone page" : "It only waits", Ink(view), view.sortingOrder);
                 else if (id == "TheHandWaits")
-                    Add(id, "THE KEEPER, WHOLE", "The Keeper that carried the shop with its hand, its carpet and its eye has come to the edge of the road, whole, and its hand is open. Before it gives you the colours it will test you. Its body takes only a fifth of each blow while the hand, the carpet and the eye hold; break all three and it kneels. Win: choose one rainbow gift. Hold on for three minutes without winning and it sets you down: no gift, no harm. Fall, and the run ends.", "Walk up to it and press Space or E to take the test", Ink(view), view.sortingOrder);
+                    Add(id, "THE KEEPER, WHOLE", "The Keeper that carried the shop with its hand, its carpet and its eye has come to the edge of the road, whole, and its hand is open. Before it gives you the colours it will test you. Its body takes only a fifth of each blow while the hand, the carpet and the eye hold; break all three and it kneels. Win: choose one rainbow gift. Hold on for three minutes without winning and it sets you down: no gift, no harm. Fall, and the run ends.", "Step up to it to take the test", Ink(view), view.sortingOrder);
                 else if (id.StartsWith("PrismaticReward", StringComparison.Ordinal))
-                    Add(id, "AN IMPOSSIBLE GIFT", "The Keeper's reward. Take one of the three; the others go back into the dark.", "Walk up to it and press Space or E to take it", Ink(view), view.sortingOrder);
+                    Add(id, "AN IMPOSSIBLE GIFT", "The Keeper's reward. Take one of the three; the others go back into the dark.", "Step up to it to take it", Ink(view), view.sortingOrder);
             }
             // a sold stall's ticket or a hidden prop never answers; nothing else is placed without a card
         }
@@ -115,7 +88,7 @@ namespace ArcaneBrigade
             {
                 case 0: Add(id, "AN EMPTY CHAIR", "Do not mind the chair. It has always been empty.", "It only waits", Ink(view), view.sortingOrder); break;
                 case 1: Add(id, "THE COUNTER LAMP", "A lamp, a teacup and a sprout by the counter. “I kept the lamp lit. I did not know what else to do.” Its warm light is the one the whole shop is read by.", "It keeps burning", Ink(view), view.sortingOrder); break;
-                case 2: Add(id, "THE JOURNAL WINDOW", "A lit shop window that shows the room you are standing in. Your journal is kept behind the glass: every page the night has written about you, and the ones still waiting to be read.", "Walk up to it and press Space or E (or click it there)", Ink(view), view.sortingOrder); break;
+                case 2: Add(id, "THE JOURNAL WINDOW", "A lit shop window that shows the room you are standing in. Your journal is kept behind the glass: every page the night has written about you, and the ones still waiting to be read.", "Open it to read your journal", Ink(view), view.sortingOrder); break;
                 case 4: Add(id, "THE CLOSED CURTAIN", "Heavy curtains over a stage nobody uses. There is applause behind them, though nobody has come to watch." + (NightmareRules.Depth(state.Wave) >= 2 ? " Lately an eye watches from the fold; it is afraid to close." : ""), "It only listens", Ink(view), view.sortingOrder); break;
                 case 5: Add(id, "THE BLANK SIGN", "A hanging sign with nothing written on it yet." + (NightmareRules.Depth(state.Wave) >= 2 ? " A small figure that looks like you has started sitting on it: a place being kept for you." : ""), "It only waits", Ink(view), view.sortingOrder); break;
                 case 6: Add(id, "THE WOODEN HEART", "Taken gently from the drawer in the lost-property vault. The cabinet remembers that you were kind to it.", "A keepsake from a secret room", Ink(view), view.sortingOrder); break;
@@ -184,7 +157,7 @@ namespace ArcaneBrigade
                 if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
                 ArcadeSkin.Panel(tag, ArcadeSkin.Card);
-                name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title + "  ·  click to read", name);
+                name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title, name);
             }
             if (open?.Key != shownKey) { shownKey = open?.Key; shownAt = Time.unscaledTime; }
             Color tint = GUI.color;
@@ -208,7 +181,7 @@ namespace ArcaneBrigade
                 float y = card.y + 18, width = card.width - 40;
                 title.normal.textColor = ArcadeSkin.Gold; float h = title.CalcHeight(new GUIContent(open.Title), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Title, title); y += h + 8;
                 body.normal.textColor = ArcadeSkin.Cream; h = body.CalcHeight(new GUIContent(open.Body), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Body, body); y += h + 12;
-                hint.normal.textColor = ArcadeSkin.Teal; h = hint.CalcHeight(new GUIContent(open.Use + "   ·   click anywhere to close"), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Use + "   ·   click anywhere to close", hint);
+                hint.normal.textColor = ArcadeSkin.Teal; h = hint.CalcHeight(new GUIContent(open.Use), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Use, hint);
             }
             GUI.matrix = previous; GUI.color = tint;
         }
@@ -218,7 +191,7 @@ namespace ArcaneBrigade
             const float width = 560;
             float inner = width - 40;
             title ??= ArcadeTypography.Style(26, true); body ??= ArcadeTypography.Style(20); hint ??= ArcadeTypography.Style(16);
-            float height = 18 + title.CalcHeight(new GUIContent(entry.Title), inner) + 8 + body.CalcHeight(new GUIContent(entry.Body), inner) + 12 + hint.CalcHeight(new GUIContent(entry.Use + "   ·   click anywhere to close"), inner) + 20;
+            float height = 18 + title.CalcHeight(new GUIContent(entry.Title), inner) + 8 + body.CalcHeight(new GUIContent(entry.Body), inner) + 12 + hint.CalcHeight(new GUIContent(entry.Use), inner) + 20;
             Rect box = Screen(entry.World, camera);
             float x = box.center.x < 960 ? box.xMax + 24 : box.xMin - 24 - width; // beside the thing, toward the middle of the room
             return new Rect(Mathf.Clamp(x, 16, 1904 - width), Mathf.Clamp(box.center.y - height * 0.5f, 190, 990 - height), width, height);

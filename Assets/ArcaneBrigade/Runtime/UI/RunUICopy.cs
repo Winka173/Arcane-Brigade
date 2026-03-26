@@ -11,6 +11,17 @@ namespace ArcaneBrigade
             if (!string.IsNullOrEmpty(fallback) && fallback != id) return fallback;
             switch (id)
             {
+                // enemies whose display name is still their id (Docs/Enemy_Roster_v2.md §2.5)
+                case "HushMite": return "Hush Mite";
+                case "ClockBat": return "Clock Bat";
+                case "BristleImp": return "Bristle Imp";
+                case "RuneWisp": return "Wick Wisp";
+                case "InkMoth": return "Ink Moth";
+                case "SirenSeal": return "Lullaby Seal";
+                case "DoorBearer": return "Door Bearer";
+                case "MoonMagnet": return "Moon Magnet";
+                case "SleepMimic": return "Sleep Mimic";
+                case "CurtainWisp": return "Curtain Wisp";
                 case "LanternKnight": return "Lantern Knight";
                 case "Postmaster": return "Postmaster";
                 case "DrowsySeer": return "Drowsy Seer";
@@ -73,6 +84,11 @@ namespace ArcaneBrigade
                 case "DreamOrbStaff": return "Dream Orb Staff";
                 case "FireExtinguisher": return "Fire Extinguisher";
                 case "PlasmaTrident": return "Plasma Trident";
+                case "KiteSpool": return "Kite Spool";
+                case "ScoopLauncher": return "Scoop Launcher";
+                case "CuckooCannon": return "Cuckoo Cannon";
+                case "JugglingPins": return "Juggling Pins";
+                case "SonarHarpoon": return "Sonar Harpoon";
                 case "MoonFeatherFan": return "Moon Feather Fan";
                 case "TwinSabres": return "Twin Sabres";
                 case "ClockCrescent": return "Clock Crescent";
@@ -100,6 +116,11 @@ namespace ArcaneBrigade
                 "StormFencer" => "Equipped weapon attacks normally. Hero collision damage doubles. Start with +20% dodge.",
                 "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions use their weapons and also answer conducted phrases.",
                 "LanternWeaver" or "HourglassStag" or "RainArchivist" or "SupperMortar" => "Base weapon and all listed run modifiers still apply.",
+                "KiteAdmiral" => "Kite Spool: a kite loops ahead, its string cuts, then it dives. Starts with Paper Plane Pigeon.",
+                "SundaeDuchess" => "Scoop Launcher: scoops splat and slow; the frost scoop freezes. Starts with Baker Mouse.",
+                "BonsaiClocksmith" => "Cuckoo Cannon: pendulum shots; every third, a cuckoo dives on the farthest enemy. Starts with Top Beetle.",
+                "JugglingJester" => "Juggling Pins: each pin strikes going up and coming down. Starts with Lens Owl.",
+                "BellDiver" => "Sonar Harpoon: pierces two and probes them. Starts with Raincoat Frog.",
                 _ => OctoberContent.HeroCopy(unit.ReferenceHero)
             };
             return HeroIdentities.Describe(unit.Id) + "\n\nINNATE TRAITS\n" + innate;
@@ -216,7 +237,7 @@ namespace ArcaneBrigade
         }
         public static string Details(RunUIDevice device) => device == RunUIDevice.Controller ? "Brigade · Y / button 3" : device == RunUIDevice.Touch ? "Tap to inspect brigade" : "Brigade · I";
         public static string Pause(RunUIDevice device) => device == RunUIDevice.Controller ? "Pause / resume · Start or B" : device == RunUIDevice.Touch ? "Tap to pause / resume" : "Pause / resume · Esc";
-        public static string Interact(RunUIDevice device) => device == RunUIDevice.Controller ? "USE · A" : device == RunUIDevice.Touch ? "USE" : "USE · Space";
+        public static string Interact(RunUIDevice device) => "USE";
         public static string Menu => Device == RunUIDevice.Controller ? "Stick: select · A: confirm · B: back" : Device == RunUIDevice.Touch ? "Tap to select · drag to scroll" : "Arrows / Tab: select · Enter: confirm · Esc: back";
         public static string DetailsNavigation => Device == RunUIDevice.Controller ? "LB/RB: tab · A/X: next/previous row · Y/B: close" : Device == RunUIDevice.Touch ? "Tap a tab or row · drag to scroll" : "Tab: change tab · ↑/↓: select row · I/Esc: close";
     }

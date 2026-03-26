@@ -1,0 +1,201 @@
+id,name,rarity,category,kind,in_shop,pools,base_price,gold_offer_w1,altar_currency,altar_offer,unlock,stacking,max_stacks,weight,mechanic,modifiers,vu_positive,vu_negative,vu_net,hp_gain,hp_cost,target,ratio,flag,vu_per_gold
+key-oil,"Key Oil",Common,Curio,stat,True,Gold,24,21,Eggs,2,0,Additive,100000,100,None,"Damage/T 0.12",12,0,12,0,0,12,1,OK,0.57
+clock-spring,"Clock Spring",Common,Curio,stat,True,Gold,24,21,Eggs,2,0,Additive,100000,100,None,"AttackSpeed/T 0.12",12,0,12,0,0,12,1,OK,0.57
+honey-pot,"Honey Pot",Common,Curio,stat,True,Gold,22,19,Eggs,2,0,Additive,100000,100,None,"Health/C 15",11.25,0,11.25,15,0,12,0.94,OK,0.59
+felt-boots,"Felt Boots",Common,Curio,stat,True,Gold,18,16,Eggs,2,0,Additive,100000,100,None,"MoveSpeed/T 0.22",8.8,0,8.8,0,0,12,0.73,OK,0.55
+coin-compass,"Coin Compass",Common,Curio,utility,True,Gold,15,13,Eggs,2,0,Additive,100000,100,None,"Pickup/R 1.6",6.4,0,6.4,0,0,12,0.53,OK,0.49
+wandering-map,"Wandering Map",Common,Curio,utility,True,Gold,15,13,Eggs,2,0,Additive,100000,100,None,"Roam/R 1; Pickup/R 0.8",6.2,0,6.2,0,0,12,0.52,OK,0.48
+guardian-canopy,"Guardian Canopy",Rare,Curio,stat,True,Eggs,39,60,Health,21,4,Additive,100000,25,None,"Interceptor/R 1; CompanionAttackSpeed/C 0.15",23.25,0,23.25,0,0,28,0.83,OK,0.39
+warm-tea,"Warm Tea",Common,Curio,stat,True,Gold,24,21,Eggs,2,0,Additive,100000,100,None,"Heal/C 0.8",12,0,12,0,0,12,1,OK,0.57
+oracle-lens,"Oracle Lens",Common,Curio,stat,True,Gold,20,17,Eggs,2,0,Additive,100000,100,None,"Crit/T 0.2",10,0,10,0,0,12,0.83,OK,0.59
+twin-seal,"Twin Seal",Rare,Curio,stat,True,Eggs,48,74,Health,18,5,Additive,100000,25,None,"Projectiles/T 1; AttackSpeed/T -0.1",40,-10,30,0,0,28,1.07,OK,0.41
+piggy-mail,"Piggy Mail",Common,Curio,utility,True,Gold,16,14,Eggs,2,0,Additive,100000,100,None,"Interest/R 4",8,0,8,0,0,12,0.67,OK,0.57
+pillow-mail,"Pillow Mail",Common,Curio,stat,True,Gold,24,21,Eggs,2,0,Additive,100000,100,None,"Armor/C 0.15",12,0,12,0,0,12,1,OK,0.57
+royal-key,"Royal Key",Uncommon,Curio,stat,True,Gold,36,43,Eggs,3,0,Additive,100000,60,None,"ChampionDamage/C 0.36",19.8,0,19.8,0,0,19,1.04,OK,0.46
+brigade-banner,"Brigade Banner",Uncommon,Curio,stat,True,Gold,33,40,Eggs,3,0,Additive,100000,60,None,"CompanionDamage/C 0.32",17.6,0,17.6,0,0,19,0.93,OK,0.44
+marching-bell,"Marching Bell",Uncommon,Curio,stat,True,Gold,31,37,Eggs,3,0,Additive,100000,60,None,"CompanionAttackSpeed/C 0.3",16.5,0,16.5,0,0,19,0.87,OK,0.45
+coupon-book,"Coupon Book",Common,Curio,utility,True,Gold,19,17,Eggs,2,0,Additive,100000,100,None,"Discount/R 0.08",9.6,0,9.6,0,0,12,0.8,OK,0.56
+long-atlas,"Long Atlas",Rare,Curio,stat,True,Eggs,35,54,Health,18,8,Additive,100000,25,None,"Roam/R 2; AttackRange/T 0.32; MoveSpeed/T -0.04",22,-1.6,20.4,0,0,28,0.73,OK,0.38
+starlight-quilt,"Starlight Quilt",Mythic,Curio,mechanic,True,Eggs,48,90,Eggs,7,8,Additive,100000,8,QuiltGuard,"Health/C 50",37.5,0,37.5,50,0,40,0.94,MECHANIC,0.42
+echo-postage,"Echo Postage",Mythic,Curio,mechanic,True,Eggs,60,113,Health,32,10,Additive,100000,8,EchoForward,"Projectiles/T 2; AttackSpeed/T -0.3",80,-30,50,0,0,40,1.25,STAT_PART_OVER,0.44
+tarnished-crown,"Tarnished Crown",Mythic,Curio,mechanic,True,Eggs,48,90,Health,27,10,Additive,100000,8,RoyalBlow,"ChampionDamage/C 0.6",33,0,33,0,0,40,0.83,MECHANIC,0.37
+fortune-egg,"Fortune Egg",Common,Curio,utility,True,Gold,16,14,Eggs,2,2,Additive,100000,100,None,"Luck/R 0.3",7.5,0,7.5,0,0,12,0.63,OK,0.54
+treasure-whisper,"Treasure Whisper",Rare,Curio,utility,True,Gold,30,46,Eggs,3,2,Additive,100000,25,None,"TreasureDetection/R 1; Luck/R 0.25",14.25,0,14.25,0,0,28,0.51,OK,0.31
+coin-salve,"Coin Salve",Rare,Curio,mechanic,True,Gold,30,46,Eggs,3,2,Additive,100000,25,None,"Heal/C 0",0,0,0,0,0,28,0,MECHANIC,0
+chest-thunder,"Chest Thunder",Rare,Curio,mechanic,True,Gold,42,65,Eggs,3,4,Additive,100000,25,None,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+altar-ember,"Altar Ember",Rare,Curio,stat,True,Eggs,42,65,Health,18,4,Additive,100000,25,None,"ChampionDamage/C 0.5; MoveSpeed/T -0.04",27.5,-1.6,25.9,0,0,28,0.93,OK,0.4
+harvest-receipt,"Harvest Receipt",Uncommon,Curio,mechanic,True,Eggs,28,34,Eggs,4,2,Additive,2,55,None,"Pickup/R -0.15",0,-0.6,-0.6,0,0,19,-0.03,MECHANIC,-0.02
+reflective-ink,"Reflective Ink",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Unique,1,55,None,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+carbon-ribbon,"Carbon Ribbon",Rare,Curio,mechanic,True,Eggs,40,62,Eggs,5,2,Unique,1,55,None,"Crit/T -0.04",0,-2,-2,0,0,28,-0.07,MECHANIC,-0.03
+office-lens,"Office Lens",Rare,Curio,mechanic,True,Eggs,38,59,Eggs,5,2,Additive,5,55,None,"Crit/C 0.24; AttackSpeed/C -0.05",6.6,-2.75,3.85,0,0,28,0.14,MECHANIC,0.07
+tea-coaster,"Tea Coaster",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Unique,1,55,None,"MoveSpeed/T -0.02",0,-0.8,-0.8,0,0,19,-0.04,MECHANIC,-0.02
+scratch-record,"Scratch Record",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Additive,2,55,None,"AttackSpeed/T -0.04",0,-4,-4,0,0,19,-0.21,MECHANIC,-0.1
+treasure-ribbon,"Treasure Ribbon",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Additive,3,55,None,"Damage/T -0.03",0,-3,-3,0,0,19,-0.16,MECHANIC,-0.08
+patch-spring,"Patch Spring",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Unique,1,55,None,"CompanionAttackSpeed/C -0.06",0,-3.3,-3.3,0,0,19,-0.17,MECHANIC,-0.08
+thermal-ink,"Thermal Ink",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Unique,1,55,None,"Crit/T -0.03",0,-1.5,-1.5,0,0,19,-0.08,MECHANIC,-0.04
+repair-coupon,"Repair Coupon",Uncommon,Curio,mechanic,True,Eggs,32,39,Eggs,4,2,Additive,3,55,None,"Pickup/R -0.1",0,-0.4,-0.4,0,0,19,-0.02,MECHANIC,-0.01
+k10-scoremultiplier,"Contract · Score multiplier",Uncommon,Curio,score,True,Eggs,24,29,Health,13,1,Additive,100000,50,None,"ScoreMultiplier/R 0.08; Health/C -6",0,-4.5,-4.5,0,6,19,-0.24,SCORE,-0.16
+k10-collisiondamage,"Contract · Collision damage",Common,Curio,stat,True,Gold,21,18,Eggs,4,1,Additive,100000,100,None,"CollisionDamage/T 12; Health/C -5",14.4,-3.75,10.65,0,5,12,0.89,OK,0.59
+k10-meleedamage,"Contract · Flat melee damage",Uncommon,Curio,stat,True,Gold,31,37,Eggs,7,1,Additive,100000,60,None,"MeleeDamage/T 7; Health/C -6",21,-4.5,16.5,0,6,19,0.87,OK,0.45
+k10-rangeddamage,"Contract · Flat ranged damage",Uncommon,Curio,stat,True,Eggs,31,37,Health,13,1,Additive,100000,50,None,"RangedDamage/T 7; Health/C -6",21,-4.5,16.5,0,6,19,0.87,OK,0.45
+k10-attackrange,"Contract · Attack range",Common,Curio,stat,True,Gold,22,19,Eggs,4,1,Additive,100000,100,None,"AttackRange/T 0.3; Health/C -5",15,-3.75,11.25,0,5,12,0.94,OK,0.59
+k10-dodge,"Contract · Dodge",Uncommon,Curio,stat,True,Gold,29,35,Eggs,7,1,Additive,100000,60,None,"Dodge/C 0.24; Health/C -6",19.2,-4.5,14.7,0,6,19,0.77,OK,0.42
+k10-income,"Contract · Income",Common,Curio,utility,True,Eggs,18,16,Health,8,1,Additive,100000,100,None,"Income/R 5; Health/C -5",12.5,-3.75,8.75,0,5,12,0.73,OK,0.55
+k10-bulletpierce,"Contract · Bullet pierce",Common,Curio,stat,True,Gold,27,23,Eggs,4,1,Additive,100000,100,None,"BulletPierce/T 2; Health/C -8",20,-6,14,0,8,12,1.17,OK,0.61
+k10-bulletsplit,"Contract · Bullet split",Uncommon,Curio,stat,True,Gold,34,41,Eggs,7,3,Additive,100000,60,None,"BulletSplit/T 2; Health/C -8",24,-6,18,0,8,19,0.95,OK,0.44
+k10-bulletbounce,"Contract · Bullet bounce chance",Uncommon,Curio,stat,True,Eggs,24,29,Health,13,3,Additive,100000,50,None,"BulletBounce/T 0.65",9.75,0,9.75,0,0,19,0.51,UNDER,0.34
+k10-bulletsize,"Contract · Bullet size",Common,Curio,utility,True,Gold,15,13,Eggs,4,1,Additive,100000,100,None,"BulletSize/T 0.8; Health/C -2",8,-1.5,6.5,0,2,12,0.54,OK,0.5
+k10-bulletspeed,"Contract · Bullet speed",Uncommon,Curio,stat,True,Gold,29,35,Eggs,7,1,Additive,100000,60,None,"BulletSpeed/T 0.5; BulletDistance/T 0.5; AttackRange/T 0.2",15,0,15,0,0,19,0.79,OK,0.43
+k10-bulletdistance,"Contract · Bullet travel distance",Uncommon,Curio,stat,True,Eggs,24,29,Health,13,1,Additive,100000,50,None,"BulletDistance/T 0.6; AttackRange/T 0.14",10,0,10,0,0,19,0.53,UNDER,0.34
+k10-knockback,"Contract · Knockback",Common,Curio,stat,True,Gold,19,17,Eggs,4,1,Additive,100000,100,None,"Knockback/T 0.5; CollisionDamage/T 6",9.7,0,9.7,0,0,12,0.81,OK,0.57
+k10-bodysize,"Contract · Champion size",Uncommon,Curio,stat,True,Gold,28,34,Eggs,7,1,Additive,100000,60,None,"BodySize/C 0.12; Health/C 15; CollisionDamage/C 4",13.89,0,13.89,15,0,19,0.73,OK,0.41
+k10-companionsize,"Contract · Companion size",Uncommon,Curio,stat,True,Eggs,27,33,Health,13,1,Additive,100000,50,None,"CompanionSize/C 0.12; CompanionDamage/C 0.25",13.75,0,13.75,0,0,19,0.72,OK,0.42
+k10-enemycount,"Contract · Enemy count",Common,Curio,score,True,Gold,24,21,Eggs,4,1,Additive,100000,100,None,"EnemyCount/R 0.1; ScoreMultiplier/R 0.2; Health/C -5",0,-6.75,-6.75,0,5,12,-0.56,SCORE,-0.32
+k10-enemyhealth,"Contract · Enemy health",Uncommon,Curio,score,True,Gold,27,33,Eggs,7,1,Additive,100000,60,None,"EnemyHealth/R 0.1; ScoreMultiplier/R 0.2; Health/C -6",0,-9.5,-9.5,0,6,19,-0.5,SCORE,-0.29
+k10-enemyspeed,"Contract · Enemy speed",Common,Curio,score,True,Eggs,18,16,Health,8,1,Additive,100000,100,None,"EnemySpeed/R 0.1; ScoreMultiplier/R 0.2; Health/C -5",0,-8.75,-8.75,0,5,12,-0.73,SCORE,-0.55
+k10-hearthealing,"Contract · Heart healing",Common,Curio,utility,True,Gold,15,13,Eggs,4,1,Additive,100000,100,None,"HeartHealing/C 8; Health/C -2",8,-1.5,6.5,0,2,12,0.54,OK,0.5
+k10-chestquality,"Contract · Chest quality",Uncommon,Curio,utility,True,Gold,24,29,Eggs,7,1,Additive,100000,60,None,"ChestQuality/R 0.6; TreasureDetection/R 0.5",10,0,10,0,0,19,0.53,OK,0.34
+k10-recruitdiscount,"Contract · Recruit discount",Uncommon,Curio,utility,True,Eggs,24,29,Health,13,1,Additive,100000,50,None,"RecruitDiscount/R 0.16",9.6,0,9.6,0,0,19,0.51,OK,0.33
+k10-relicdiscount,"Contract · Relic discount",Common,Curio,utility,True,Gold,15,13,Eggs,4,1,Additive,100000,100,None,"RelicDiscount/R 0.13; Health/C -5",10.4,-3.75,6.65,0,5,12,0.55,OK,0.51
+k10-shoprarity,"Contract · Shop rarity",Uncommon,Curio,utility,True,Gold,24,29,Eggs,7,1,Additive,100000,60,None,"ShopRarity/R 0.32",9.6,0,9.6,0,0,19,0.51,OK,0.33
+k10-healthcorrection,"Contract · Health correction",Uncommon,Curio,stat,True,Eggs,31,37,Eggs,4,1,Additive,100000,50,None,"HealthCorrection/C 0.2",16,0,16,0,0,19,0.84,OK,0.43
+k10-damagecorrection,"Contract · Damage correction",Common,Curio,stat,True,Gold,20,17,Eggs,4,1,Additive,100000,100,None,"DamageCorrection/T 0.14; Health/C -5",14,-3.75,10.25,0,5,12,0.85,OK,0.6
+k10-speedcorrection,"Contract · Speed correction",Uncommon,Curio,utility,True,Gold,28,34,Eggs,7,1,Additive,100000,60,None,"SpeedCorrection/T 0.35",14,0,14,0,0,19,0.74,OK,0.41
+k10-armorcorrection,"Contract · Armor correction",Uncommon,Curio,stat,True,Eggs,24,29,Health,13,1,Additive,100000,50,None,"ArmorCorrection/C 0.4; Armor/C 0.07",9.6,0,9.6,0,0,19,0.51,UNDER,0.33
+k10-healcorrection,"Contract · Healing correction",Common,Curio,utility,True,Gold,15,13,Eggs,4,1,Additive,100000,100,None,"HealCorrection/C 0.6",6,0,6,0,0,12,0.5,OK,0.46
+k10-collisionfrequency,"Contract · Collision frequency",Uncommon,Curio,utility,True,Gold,27,33,Eggs,7,1,Additive,100000,60,None,"CollisionFrequency/T 0.6; CollisionDamage/T 4",13.8,0,13.8,0,0,19,0.73,OK,0.42
+long-pocket,"Long Pocket",Uncommon,Curio,utility,True,Gold,24,29,Eggs,4,3,Additive,100000,45,None,"ChestReach/R 0.8; TreasureDetection/R 0.6; Pickup/R 0.6",9.6,0,9.6,0,0,19,0.51,OK,0.33
+velvet-first-aid,"Velvet First Aid",Common,Curio,mechanic,True,Gold,24,21,Eggs,3,3,Additive,100000,100,None,"TreasureDetection/R 0.8; MoveSpeed/C -0.02",6.4,-0.44,5.96,0,0,12,0.5,MECHANIC,0.28
+brass-avalanche,"Brass Avalanche",Rare,Curio,mechanic,True,Gold,30,46,Eggs,5,3,Additive,100000,25,None,"Knockback/T 0.25; MoveSpeed/C -0.02",1.25,-0.44,0.81,0,0,28,0.03,MECHANIC,0.02
+RainbowCrown,"Borrowed Crown",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,34,2147483647,Unique,1,0,BorrowedCrown,"Damage/T 0.15",15,0,15,0,0,55,0.27,MECHANIC,0.03
+RainbowHeart,"Clockwork Heart",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,34,2147483647,Unique,1,0,ClockworkHeart,"AttackSpeed/T 0.1",10,0,10,0,0,55,0.18,MECHANIC,0.02
+RainbowThread,"Living Thread",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,34,2147483647,Unique,1,0,LivingThread,"MeleeDamage/T 4; Knockback/T 0.3",13.5,0,13.5,0,0,55,0.25,MECHANIC,0.03
+RainbowPrism,"Impossible Prism",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,34,2147483647,Unique,1,0,ImpossiblePrism,"BulletSplit/T 3",36,0,36,0,0,55,0.65,MECHANIC,0.07
+CrimsonSeal,"Crimson Seal",Mythic,Curio,mechanic,True,Gold,75,141,Eggs,27,10,Unique,1,8,SealBurst,"ChampionDamage/C 0.5; CollisionDamage/T 16",46.7,0,46.7,0,0,40,1.17,MECHANIC,0.33
+CrimsonSpring,"Crimson Spring",Mythic,Curio,mechanic,True,Gold,75,141,Eggs,27,10,Unique,1,8,SpringDouble,"AttackSpeed/T 0.25; AttackRange/T 0.25",37.5,0,37.5,0,0,40,0.94,MECHANIC,0.27
+K26Defense0,"Marrow Tea",Common,Curio,stat,True,Gold,26,23,Eggs,2,1,Additive,4,100,None,"Health/C 12; Heal/C 0.3",13.5,0,13.5,12,0,12,1.13,OK,0.59
+K26Defense1,"Porcelain Splint",Common,Curio,stat,True,Gold,26,23,Eggs,2,1,Additive,4,100,None,"Armor/C 0.2; MoveSpeed/T -0.06",16,-2.4,13.6,0,0,12,1.13,OK,0.59
+K26Defense2,"Escape Thimble",Uncommon,Curio,stat,True,Gold,28,34,Eggs,3,1,Additive,4,100,None,"Dodge/C 0.12; MoveSpeed/T 0.12",14.4,0,14.4,0,0,19,0.76,OK,0.42
+K26Defense3,"Quicksole",Uncommon,Curio,stat,True,Gold,40,48,Eggs,3,1,Additive,4,100,None,"MoveSpeed/T 0.18; Health/C 20",22.2,0,22.2,20,0,19,1.17,OK,0.46
+K26Defense4,"Pulse Bell",Rare,Curio,stat,True,Eggs,49,75,Eggs,6,4,Additive,4,100,None,"HealthCorrection/C 0.2; Heal/C 1",31,0,31,0,0,28,1.11,OK,0.41
+K26Defense5,"Mercy Spindle",Rare,Curio,stat,True,Eggs,45,69,Eggs,6,4,Additive,4,100,None,"Heal/C 2.2; Income/R -2",33,-5,28,0,0,28,1,OK,0.41
+K26Defense6,"Iron Apron",Mythic,Curio,mechanic,True,Eggs,65,122,Eggs,7,4,Additive,4,100,ApronShove,"Armor/C 0.55; MoveSpeed/T -0.08",44,-3.2,40.8,0,0,40,1.02,MECHANIC,0.33
+K26Defense7,"Mending Moth",Mythic,Curio,mechanic,True,Eggs,70,131,Eggs,7,4,Additive,4,100,QuietMending,"Heal/C 2.5; Armor/C 0.12",47.1,0,47.1,0,0,40,1.18,MECHANIC,0.36
+SecretWoodHeart,"The Abandoned Wooden Heart",Uncommon,Curio,stat,False,Both,34,41,Eggs,8,2147483647,Unique,1,0,None,"Health/C 18; Heal/C 0.3",18,0,18,18,0,19,0.95,OK,0.44
+SecretMirror,"The Glass Understudy",Uncommon,Curio,stat,False,Both,31,37,Eggs,8,2147483647,Unique,1,0,None,"Crit/T 0.12; AttackRange/T 0.2",16,0,16,0,0,19,0.84,OK,0.43
+SecretThread,"Living Contraband Thread",Rare,Curio,stat,False,Both,40,62,Eggs,9,2147483647,Unique,1,0,None,"AttackRange/T 0.3; Knockback/T 0.3; Damage/T 0.08",24.5,0,24.5,0,0,28,0.88,OK,0.4
+SecretTicket,"Smuggler's Ticket",Rare,Curio,utility,False,Both,32,49,Eggs,9,2147483647,Unique,1,0,None,"Discount/R 0.12; Luck/R 0.15",18.15,0,18.15,0,0,28,0.65,OK,0.37
+SecretHour,"Hourglass Advance",Uncommon,Curio,stat,False,Both,34,41,Eggs,8,2147483647,Unique,1,0,None,"AttackSpeed/T 0.1; Damage/T 0.08",18,0,18,0,0,19,0.95,OK,0.44
+SecretDream,"Sleeping-Lamb Brooch",Uncommon,Curio,stat,False,Both,31,37,Eggs,8,2147483647,Unique,1,0,None,"Health/C 16; HeartHealing/C 4",16,0,16,16,0,19,0.84,OK,0.43
+SecretCrown,"Crown of the Empty Theatre",Uncommon,Curio,stat,False,Both,35,42,Eggs,8,2147483647,Unique,1,0,None,"Damage/T 0.15; Crit/T 0.08",19,0,19,0,0,19,1,OK,0.45
+SecretLetter,"Dead-Letter Key",Uncommon,Curio,utility,False,Both,24,29,Eggs,8,2147483647,Unique,1,0,None,"Pickup/R 1.2; TreasureDetection/R 0.4; Luck/R 0.1",10.5,0,10.5,0,0,19,0.55,OK,0.36
+OctoberRelic0,"Lantern Stitch",Common,Curio,stat,True,Gold,22,19,Eggs,3,3,Additive,4,100,None,"AttackRange/T 0.3; AttackSpeed/T -0.04",15,-4,11,0,0,12,0.92,OK,0.58
+OctoberRelic1,"Rain Receipt",Rare,Curio,stat,True,Eggs,37,57,Eggs,5,3,Additive,4,65,None,"Heal/C 1.8; Income/R -2",27,-5,22,0,0,28,0.79,OK,0.39
+OctoberRelic2,"Clockseed Brooch",Common,Curio,stat,True,Gold,21,18,Eggs,3,3,Additive,4,100,None,"CollisionDamage/T 10; MoveSpeed/T -0.03",12,-1.2,10.8,0,0,12,0.9,OK,0.6
+OctoberRelic3,"Porcelain Promise",Rare,Curio,stat,True,Eggs,39,60,Eggs,5,3,Additive,4,65,None,"HeartHealing/C 5; Health/C 25",23.75,0,23.75,25,0,28,0.85,OK,0.4
+CurioOrchardFizz,"Orchard Fizz",Common,Drink,stat,True,Gold,17,15,Eggs,1,1,Additive,8,100,None,"Health/C 18; Income/R -2",13.5,-5,8.5,18,0,12,0.71,OK,0.57
+CurioGraveChime,"Grave Chime",Common,Drink,stat,True,Gold,22,19,Eggs,1,1,Additive,8,100,None,"CollisionDamage/C 18; MoveSpeed/C -0.04",11.88,-0.88,11,0,0,12,0.92,OK,0.58
+CurioBreathJar,"Breath Jar",Common,Drink,stat,True,Gold,24,21,Eggs,1,1,Additive,8,100,None,"Damage/T 0.16; AttackSpeed/T -0.04",16,-4,12,0,0,12,1,OK,0.57
+CurioCoralBroth,"Coral Broth",Common,Drink,stat,True,Gold,21,18,Eggs,1,1,Additive,8,100,None,"Heal/C 1; Health/C -6",15,-4.5,10.5,0,6,12,0.88,OK,0.58
+CurioFangPin,"Fang Pin",Common,Curio,stat,True,Gold,27,23,Eggs,1,1,Additive,8,100,None,"Knockback/C 1; AttackSpeed/C 0.2",13.75,0,13.75,0,0,12,1.15,OK,0.6
+CurioRicochetSeltzer,"Ricochet Seltzer",Common,Drink,stat,True,Gold,20,17,Eggs,1,1,Additive,8,100,None,"RangedDamage/T 4; BulletBounce/T 0.2; Damage/T -0.05",15,-5,10,0,0,12,0.83,OK,0.59
+CurioNoonSpark,"Noon Spark",Common,Drink,stat,True,Gold,25,22,Eggs,1,1,Additive,8,100,None,"MeleeDamage/T 3; Crit/T 0.08",13,0,13,0,0,12,1.08,OK,0.59
+CurioQuietHour,"Quiet Hour",Common,Drink,stat,True,Gold,21,18,Eggs,1,1,Additive,8,100,None,"Armor/C 0.12; TreasureDetection/R 0.15",10.8,0,10.8,0,0,12,0.9,OK,0.6
+CurioBentTape,"Bent Tape",Common,Curio,mechanic,True,Gold,32,28,Eggs,1,1,Additive,8,100,CrowdedTape,"AttackSpeed/T 0.14",14,0,14,0,0,12,1.17,MECHANIC,0.5
+CurioMeadowTonic,"Meadow Tonic",Common,Drink,stat,True,Gold,20,17,Eggs,1,1,Additive,8,100,None,"Dodge/C 0.1; Luck/R 0.08",10,0,10,0,0,12,0.83,OK,0.59
+CurioKindlingGloves,"Kindling Gloves",Common,Curio,mechanic,True,Gold,32,28,Eggs,1,1,Additive,8,100,CoinMending,"Heal/C -0.4",0,-6,-6,0,0,12,-0.5,MECHANIC,-0.21
+CurioInterestTin,"Interest Tin",Uncommon,Food,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,CompoundInterest,"Pickup/R 0.6",2.4,0,2.4,0,0,19,0.13,MECHANIC,0.04
+CurioStormDryer,"Storm Dryer",Uncommon,Curio,stat,True,Gold,35,42,Eggs,3,1,Additive,8,100,None,"Damage/T 0.18; Knockback/T 0.2",19,0,19,0,0,19,1,OK,0.45
+CurioRetortCup,"Retort Cup",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,RetortVolley,"Armor/C 0.25; Luck/R -0.08",20,-2,18,0,0,19,0.95,MECHANIC,0.33
+CurioShatteredPager,"Shattered Pager",Uncommon,Curio,utility,True,Gold,42,50,Eggs,3,1,Additive,8,100,None,"Income/R 7; BulletSplit/C 1",24.1,0,24.1,0,0,19,1.27,OK,0.48
+CurioWatchfulTea,"Watchful Tea",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,ExposedRecovery,"Heal/C 1.6",24,0,24,0,0,19,1.26,MECHANIC,0.44
+CurioSunfireFlask,"Sunfire Flask",Uncommon,Drink,stat,True,Gold,40,48,Eggs,3,1,Additive,8,100,None,"AttackRange/T 0.4; Projectiles/C 1; AttackSpeed/C -0.35",42,-19.25,22.75,0,0,19,1.2,OK,0.47
+CurioGiltOrbit,"Gilt Orbit",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,TreasureLease,"RangedDamage/T 5",15,0,15,0,0,19,0.79,MECHANIC,0.27
+CurioEmberEspresso,"Ember Espresso",Uncommon,Drink,stat,True,Gold,30,36,Eggs,3,1,Additive,8,100,None,"AttackSpeed/C 0.3; CollisionDamage/C -1",16.5,-0.66,15.84,0,0,19,0.83,OK,0.44
+CurioPrismRecord,"Prism Record",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,PrismEcho,"AttackRange/T -0.1",0,-5,-5,0,0,19,-0.26,MECHANIC,-0.09
+CurioCitrusStorm,"Citrus Storm",Uncommon,Drink,stat,True,Gold,33,40,Eggs,3,1,Additive,8,100,None,"RangedDamage/T 6; EnemyCount/R 0.02",18,-0.6,17.4,0,0,19,0.92,OK,0.44
+CurioMoonMilk,"Moon Milk",Uncommon,Drink,utility,True,Gold,28,34,Eggs,3,1,Additive,8,100,None,"HeartHealing/C 8; Heal/C 0.5; MoveSpeed/C -0.05",15.5,-1.1,14.4,0,0,19,0.76,OK,0.42
+CurioPocketSun,"Pocket Sun",Uncommon,Drink,utility,True,Gold,24,29,Eggs,3,1,Additive,8,100,None,"BodySize/C -0.1; Luck/R 0.45",11.25,0,11.25,0,0,19,0.59,OK,0.39
+CurioInkFeather,"Ink Feather",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,RerollFeather,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+CurioMulberryRiot,"Mulberry Riot",Uncommon,Drink,utility,True,Gold,33,40,Eggs,3,1,Additive,8,100,None,"Income/R 10; TreasureDetection/R 0.6; Armor/C -0.15",29.8,-12,17.8,0,0,19,0.94,OK,0.45
+CurioDreamBlindfold,"Dream Blindfold",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,ChestLightning,"Luck/R 0.1; TreasureDetection/R 0.25",4.5,0,4.5,0,0,19,0.24,MECHANIC,0.08
+CurioSleepyMist,"Sleepy Mist",Uncommon,Drink,stat,True,Gold,40,48,Eggs,3,1,Additive,8,100,None,"Damage/T 0.25; MoveSpeed/T -0.25; EnemySpeed/R -0.15",32.5,-10,22.5,0,0,19,1.18,OK,0.47
+CurioClearSip,"Clear Sip",Uncommon,Drink,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,DrinkVitality,"CollisionDamage/C -1",0,-0.66,-0.66,0,0,19,-0.03,MECHANIC,-0.01
+CurioOddElixir,"Odd Elixir",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,DrinkTempo,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+CurioDaylightBonnet,"Daylight Bonnet",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,PanicMagnet,"Health/C 24",18,0,18,24,0,19,0.95,MECHANIC,0.33
+CurioNeedleTarget,"Needle Target",Uncommon,Curio,stat,True,Gold,28,34,Eggs,3,1,Additive,8,100,None,"BulletPierce/T 1; Crit/T 0.2; MeleeDamage/T -2",20,-6,14,0,0,19,0.74,OK,0.41
+CurioManyDoorKey,"Many Door Key",Uncommon,Curio,mechanic,True,Gold,46,55,Eggs,3,1,Additive,8,100,ChestLuck,"TreasureDetection/R 0.25; Damage/T -0.05",2,-5,-3,0,0,19,-0.16,MECHANIC,-0.05
+CurioCourageJuice,"Courage Juice",Uncommon,Drink,stat,True,Gold,30,36,Eggs,3,1,Additive,8,100,None,"MoveSpeed/T 0.2; MeleeDamage/T 5; Health/C -10",23,-7.5,15.5,0,10,19,0.82,OK,0.43
+CurioCrookedEight,"Crooked Eight",Uncommon,Curio,utility,True,Gold,25,30,Eggs,3,1,Additive,8,100,None,"Luck/R 0.5; BulletBounce/T 0.25; Damage/T -0.04",16.25,-4,12.25,0,0,19,0.64,OK,0.41
+CurioTornAlmanac,"Torn Almanac",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,ChaosIncome,"Damage/T -0.05",0,-5,-5,0,0,28,-0.18,MECHANIC,-0.05
+CurioHoardersLocket,"Hoarders Locket",Rare,Curio,mechanic,True,Eggs,60,92,Eggs,5,3,Additive,8,55,HoardPower,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+CurioSplitKernel,"Split Kernel",Rare,Food,mechanic,True,Eggs,60,92,Eggs,5,3,Additive,8,55,HalfHealthSeed,"Heal/C 3",45,0,45,0,0,28,1.61,STAT_PART_OVER,0.49
+CurioWildPigment,"Wild Pigment",Rare,Drink,stat,True,Gold,40,62,Eggs,5,3,Additive,8,55,None,"MoveSpeed/T 0.15; MeleeDamage/T 9; RangedDamage/T -3",33,-9,24,0,0,28,0.86,OK,0.39
+CurioStillwaterUrn,"Stillwater Urn",Rare,Curio,mechanic,True,Eggs,60,92,Eggs,5,3,Additive,8,55,StillRecovery,"MoveSpeed/C -0.05",0,-1.1,-1.1,0,0,28,-0.04,MECHANIC,-0.01
+CurioPanicBell,"Panic Bell",Rare,Curio,mechanic,True,Eggs,60,92,Eggs,5,3,Additive,8,55,CoinLightning,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+CurioOilyLozenge,"Oily Lozenge",Rare,Food,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,TurnDiscount,"Health/C 20",15,0,15,20,0,28,0.54,MECHANIC,0.16
+CurioLodestoneLabel,"Lodestone Label",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,CloseFollowers,"RangedDamage/T 8; Pickup/R 0.9",27.6,0,27.6,0,0,28,0.99,MECHANIC,0.3
+CurioHungryLedger,"Hungry Ledger",Mythic,Curio,mechanic,True,Eggs,60,113,Eggs,6,3,Additive,8,8,WaveGrowth,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+CurioStoneCrust,"Stone Crust",Rare,Food,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,MeleeToCollision,"AttackSpeed/C -0.1",0,-5.5,-5.5,0,0,28,-0.2,MECHANIC,-0.06
+CurioBitterHoney,"Bitter Honey",Rare,Drink,stat,True,Gold,47,72,Eggs,5,3,Additive,8,55,None,"Heal/C 2; TreasureDetection/R 0.6; EnemySpeed/R 0.1",34.8,-5,29.8,0,0,28,1.06,OK,0.41
+CurioBurdenCollar,"Burden Collar",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,SlowToArmor,"CollisionDamage/C 20; MoveSpeed/T -0.2",13.2,-8,5.2,0,0,28,0.19,MECHANIC,0.06
+CurioHushEarmuffs,"Hush Earmuffs",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,DodgeMending,"Dodge/C 0.1; Crit/C 0.1",10.75,0,10.75,0,0,28,0.38,MECHANIC,0.12
+CurioProfitSlide,"Profit Slide",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,DamageToIncome,"Income/R -10",0,-25,-25,0,0,28,-0.89,MECHANIC,-0.27
+CurioAngryReliquary,"Angry Reliquary",Rare,Curio,mechanic,True,Eggs,60,92,Eggs,5,3,Additive,8,55,ChestOnlyRecovery,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+CurioPetalTonic,"Petal Tonic",Rare,Drink,stat,True,Gold,39,60,Eggs,5,3,Additive,8,55,None,"Health/C 55; Heal/C -1.2",41.25,-18,23.25,55,0,28,0.83,OK,0.39
+CurioSorrowLantern,"Sorrow Lantern",Rare,Curio,mechanic,True,Eggs,60,92,Eggs,5,3,Additive,8,55,SorrowPulse,"Dodge/C -0.05",0,-4,-4,0,0,28,-0.14,MECHANIC,-0.04
+CurioMuteClock,"Mute Clock",Mythic,Curio,mechanic,True,Gold,60,113,Eggs,6,3,Unique,1,8,BleedingAlarm,"AttackSpeed/T 0.3; MoveSpeed/T 0.25",40,0,40,0,0,40,1,MECHANIC,0.35
+CurioUrchinBall,"Urchin Ball",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,1,55,CollisionOnly,"Armor/C 0.6; MoveSpeed/C 0.1",50.2,0,50.2,0,0,28,1.79,STAT_PART_OVER,0.55
+CurioSourMandarin,"Sour Mandarin",Rare,Food,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,SoloOverdrive,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+CurioWakefulCordial,"Wakeful Cordial",Rare,Drink,stat,True,Gold,36,56,Eggs,5,3,Additive,8,55,None,"CollisionDamage/C 35; Knockback/C 0.3; Crit/C -0.1",23.93,-2.75,21.18,0,0,28,0.76,OK,0.38
+CurioGlassLotus,"Glass Lotus",Rare,Curio,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,FreshLotus,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+CurioNestDumpling,"Nest Dumpling",Rare,Food,mechanic,True,Gold,60,92,Eggs,5,3,Additive,8,55,EggGift,"Armor/C -0.2",0,-16,-16,0,0,28,-0.57,MECHANIC,-0.17
+CurioVictorDraught,"Victor Draught",Rare,Drink,stat,True,Gold,34,53,Eggs,5,3,Additive,8,55,None,"Crit/T 0.3; BulletPierce/T 1; Damage/T -0.05",25,-5,20,0,0,28,0.71,OK,0.38
+CurioWishWick,"Wish Wick",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,CompanionGift,"Health/C -12; Income/R -5",0,-21.5,-21.5,0,12,40,-0.54,MECHANIC,-0.15
+CurioShieldBlower,"Shield Blower",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,BlowerReturn,"CollisionDamage/T 25; Interceptor/R 1",45,0,45,0,0,40,1.13,MECHANIC,0.32
+CurioLiarMask,"Liar Mask",Mythic,Curio,mechanic,True,Eggs,74,139,Health,27,3,Additive,8,28,FragilePower,"Damage/T 1",100,0,100,0,0,40,2.5,STAT_PART_OVER,0.72
+CurioOrbitPastry,"Orbit Pastry",Mythic,Food,stat,True,Gold,63,118,Eggs,7,3,Additive,8,28,None,"BodySize/C 0.25; BulletSize/C 0.75; BulletSpeed/C -0.4; ChampionDamage/C 0.7",42.63,-1.1,41.53,0,0,40,1.04,OK,0.35
+CurioOathParcel,"Oath Parcel",Mythic,Food,mechanic,True,Gold,74,139,Eggs,7,3,Additive,1,28,StatFloor,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+CurioFortunePear,"Fortune Pear",Mythic,Food,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,LuckToHealth,"Luck/R 0.16; Income/R -15",4,-37.5,-33.5,0,0,40,-0.84,MECHANIC,-0.24
+CurioEmeraldInvoice,"Emerald Invoice",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,InvoiceSettles,"RelicDiscount/R 0.25; Damage/T -0.2",20,-20,0,0,0,40,0,MECHANIC,0
+CurioBatteringHelm,"Battering Helm",Mythic,Curio,stat,True,Gold,56,105,Eggs,7,3,Additive,8,28,None,"CollisionDamage/C 70; CollisionFrequency/C 0.7; RangedDamage/T -6",51.98,-18,33.98,0,0,40,0.85,OK,0.32
+CurioGambleSandwich,"Gamble Sandwich",Mythic,Food,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,GambleRecovery,"Armor/C -0.2",0,-16,-16,0,0,40,-0.4,MECHANIC,-0.12
+CurioFeastBucket,"Feast Bucket",Mythic,Food,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,FoodGrowth,"Health/C 40; Heal/C 1; BodySize/C 0.1; Dodge/C -0.3",45,-24,21,40,0,40,0.53,MECHANIC,0.15
+CurioWanderLetter,"Wander Letter",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,FreeFollowers,"Crit/T 0.4; Armor/C -0.7",20,-56,-36,0,0,40,-0.9,MECHANIC,-0.26
+CurioVenomPass,"Venom Pass",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,IncomePoison,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+CurioTruceBottle,"Truce Bottle",Mythic,Drink,stat,True,Gold,67,126,Eggs,7,3,Unique,1,28,None,"Damage/T 0.2; Crit/T 0.15; AttackRange/T 0.2; Armor/C 0.2; MoveSpeed/C -0.3",53.5,-6.6,46.9,0,0,40,1.17,OK,0.37
+CurioThornPerfume,"Thorn Perfume",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,HurtGrowth,"EnemySpeed/R 0.3",0,-15,-15,0,0,40,-0.38,MECHANIC,-0.11
+CurioLastHopeMotor,"Last Hope Motor",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,StillPower,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+CurioAnchorTack,"Anchor Tack",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,1,28,StaticFollowers,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+CurioVoidDoubloon,"Void Doubloon",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,7,3,Additive,8,28,VoidPulse,"Damage/T -0.3",0,-30,-30,0,0,40,-0.75,MECHANIC,-0.22
+CurioSixfoldRoot,"Sixfold Root",Mythic,Food,mechanic,True,Eggs,74,139,Health,27,3,Additive,1,28,SixWeapons,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+TallyChalk,"Tally Chalk",Common,Curio,mechanic,True,Gold,24,21,Eggs,2,0,Additive,100000,100,TallyChalk,"Damage/T 0",0,0,0,0,0,12,0,MECHANIC,0
+CoinSash,"Coin Sash",Common,Curio,mechanic,True,Gold,24,21,Eggs,2,0,Additive,100000,100,CoinSash,"Damage/T 0",0,0,0,0,0,12,0,MECHANIC,0
+FishCracker,"Fish Cracker",Common,Food,stat,True,Gold,18,16,Eggs,2,0,Additive,100000,100,None,"Crit/C 0.32",8.8,0,8.8,0,0,12,0.73,OK,0.55
+PostageStamp,"Postage Stamp",Uncommon,Curio,mechanic,True,Gold,45,54,Eggs,3,2,Additive,100000,60,PostageStamp,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+FrostSalt,"Frost Salt",Uncommon,Curio,mechanic,True,Gold,45,54,Eggs,3,2,Additive,100000,60,FrostSalt,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+RefundSlip,"Refund Slip",Uncommon,Curio,mechanic,True,Gold,45,54,Eggs,3,2,Additive,100000,60,RefundSlip,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+WhetstoneWafer,"Whetstone Wafer",Uncommon,Food,mechanic,True,Gold,45,54,Eggs,3,2,Additive,100000,60,WhetstoneWafer,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+LateFee,"Late Fee",Uncommon,Curio,mechanic,True,Gold,45,54,Eggs,3,2,Additive,100000,60,LateFee,"Damage/T 0",0,0,0,0,0,19,0,MECHANIC,0
+HagglersAbacus,"Haggler's Abacus",Rare,Curio,mechanic,True,Gold,60,92,Eggs,3,4,Additive,4,25,HagglersAbacus,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+SlipstreamScarf,"Slipstream Scarf",Rare,Curio,mechanic,True,Gold,60,92,Eggs,3,4,Additive,4,25,SlipstreamScarf,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+BrainFreeze,"Brain Freeze",Rare,Curio,mechanic,True,Gold,60,92,Eggs,3,4,Additive,4,25,BrainFreeze,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+WindChime,"Wind Chime",Rare,Curio,mechanic,True,Gold,60,92,Eggs,3,4,Additive,4,25,WindChime,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+SpecimenPin,"Specimen Pin",Rare,Curio,mechanic,True,Gold,60,92,Eggs,3,4,Additive,4,25,SpecimenPin,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+StarPolish,"Star Polish",Rare,Curio,mechanic,True,Gold,60,92,Eggs,3,4,Additive,4,25,StarPolish,"Damage/T 0",0,0,0,0,0,28,0,MECHANIC,0
+KiteTailRibbon,"Kite Tail Ribbon",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,KiteTailRibbon,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+MeltingSundae,"Melting Sundae",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,MeltingSundae,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+CuckooPendulum,"Cuckoo Pendulum",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,CuckooPendulum,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+DivingBellLantern,"Diving Bell Lantern",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,DivingBellLantern,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+TwinTicket,"Twin Ticket",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,TwinTicket,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+TreasureMimic,"Treasure Mimic",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,TreasureMimic,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+DuelistsRibbon,"Duelist's Ribbon",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,DuelistsRibbon,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+FrostLedger,"Frost Ledger",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,FrostLedger,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+UndertowAnchor,"Undertow Anchor",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,UndertowAnchor,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+FunhouseMirror,"Funhouse Mirror",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,FunhouseMirror,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+SpliceKit,"Splice Kit",Mythic,Curio,mechanic,True,Gold,74,139,Eggs,4,6,Unique,1,8,SpliceKit,"Damage/T 0",0,0,0,0,0,40,0,MECHANIC,0
+TheEndlessEncore,"The Endless Encore",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,5,2147483647,Unique,1,0,EndlessEncore,"Damage/T 0",0,0,0,0,0,55,0,MECHANIC,0
+MoonClockKey,"Moon Clock Key",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,5,2147483647,Unique,1,0,MoonClockKey,"Damage/T 0",0,0,0,0,0,55,0,MECHANIC,0
+MirrorOfTwins,"Mirror of Twins",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,5,2147483647,Unique,1,0,MirrorOfTwins,"Damage/T 0",0,0,0,0,0,55,0,MECHANIC,0
+StorybookEnding,"Storybook Ending",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,5,2147483647,Unique,1,0,StorybookEnding,"Damage/T 0",0,0,0,0,0,55,0,MECHANIC,0
+DreamLoom,"Dream Loom",Rainbow,Curio,mechanic,False,Gold,200,511,Eggs,5,2147483647,Unique,1,0,DreamLoom,"Damage/T 0",0,0,0,0,0,55,0,MECHANIC,0

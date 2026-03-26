@@ -56,6 +56,7 @@ namespace ArcaneBrigade
         public int EvolutionStage;
         public EnemyMutation Mutation;
         public SpecialEnemyKind SpecialEnemy;
+        public WaitingEnemyKind WaitingKind; // enemy roster v2 (WaitingEnemyRoster); None on every older species
     }
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }

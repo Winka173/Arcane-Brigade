@@ -26,21 +26,28 @@ namespace ArcaneBrigade
         }
         /// <summary>Where each landmark would like to stand. In the shop these are only wishes: ShopLayout moves a landmark
         /// to the nearest free spot (or leaves it out) so it never covers a stall, the chair's path, the HUD or another
-        /// prop; use <see cref="ShopLandmark"/> for where it actually is.</summary>
-        public static Vector2 LandmarkPosition(int index, bool shop, Vector2 half) => index switch
+        /// prop; use <see cref="ShopLandmark"/> for where it actually is.
+        /// In combat they are wishes for ArenaLayout (<see cref="ArenaLandmark"/>).</summary>
+        public static Vector2 LandmarkPosition(int index, bool shop, Vector2 half) => !shop ? ArenaLayoutPlan.LandmarkWish(index, half) : index switch
         {
-            0 => shop ? new Vector2(6.5f, 1) : half - Vector2.one * 2,
-            1 => shop ? new Vector2(-7.15f, -4.7f) : new Vector2(-half.x + 2, -half.y + 2),
-            2 => shop ? new Vector2(-7.2f, -.5f) : new Vector2(-half.x + 2, half.y - 2),
-            3 => shop ? new Vector2(6.5f, -3.7f) : new Vector2(half.x - 2, -half.y + 2),
-            4 => shop ? new Vector2(3.9f, 2.9f) : new Vector2(0, half.y - 2),
-            5 => shop ? new Vector2(4.6f, -.75f) : new Vector2(6.5f, -1),
-            6 => shop ? new Vector2(-3.3f, -4.75f) : new Vector2(-6, -3.8f),
-            _ => shop ? new Vector2(-2.1f, -4.75f) : new Vector2(-5.9f, -3.4f)
+            0 => new Vector2(6.5f, 1),
+            1 => new Vector2(-7.15f, -4.7f),
+            2 => new Vector2(-7.2f, -.5f),
+            3 => new Vector2(6.5f, -3.7f),
+            4 => new Vector2(3.9f, 2.9f),
+            5 => new Vector2(4.6f, -.75f),
+            6 => new Vector2(-3.3f, -4.75f),
+            _ => new Vector2(-2.1f, -4.75f)
         };
         /// <summary>The landmark's real floor contact in the shop after layout (falls back to its wish).</summary>
         public static Vector2 ShopLandmark(int index, Vector2 half)
             => ShopLayout.Active != null && ShopLayout.Active.TryFoot("landmark" + index, out Vector2 foot) ? foot : LandmarkPosition(index, true, half);
+        /// <summary>The landmark's real floor contact in a fight after the arena layout (falls back to its wish).</summary>
+        public static Vector2 ArenaLandmark(ArenaController owner, int index)
+            => ArenaLayout.Foot(owner, "landmark" + index, LandmarkPosition(index, false, owner.WorldBounds * .5f));
+        /// <summary>Where the landmark actually stands now, shop or fight.</summary>
+        public static Vector2 Landmark(ArenaController owner, int index, bool shop)
+            => shop ? ShopLandmark(index, owner.WorldBounds * .5f) : ArenaLandmark(owner, index);
         public void Configure(ArenaController controller) { owner = controller; Active = this; }
         private void LateUpdate()
         {
@@ -52,15 +59,16 @@ namespace ArcaneBrigade
             float blend = reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * .9f);
             Depth = Mathf.Lerp(Depth, NightmareRules.Depth(owner.Session.State.Wave), blend);
             Dawn = Mathf.Lerp(Dawn, dawn ? 1 : 0, blend);
-            Vector2 half = owner.WorldBounds * .5f;
-            Vector2 lamp = (shop ? ShopLandmark(1, half) : LandmarkPosition(1, false, half)) + Vector2.up * .6f;
-            Vector2 window = shop ? ShopLandmark(2, half) : LandmarkPosition(2, false, half);
+            Vector2 lamp = Landmark(owner, 1, shop) + Vector2.up * .6f;
+            Vector2 window = Landmark(owner, 2, shop);
             Vector2 player = owner.VisualChampionPosition;
             float breath = reduced || PresentationSettings.ReducedFlashes ? 1 : 1 + Mathf.Sin(owner.PresentationClock * 1.15f) * .025f;
             float retreat = shop ? 1 : Mathf.Lerp(1, .08f, Depth / 4 * (1 - Dawn));
             sources[0] = new Vector4(lamp.x, lamp.y, 4.1f, .8f * breath * retreat);
             if (StagePerformance.Active != null && !reduced) sources[0].x += StagePerformance.Active.Impact * .12f;
             sources[1] = new Vector4(window.x, window.y, 4.6f, Mathf.Lerp(.38f, .18f, Depth / 4) * retreat);
+            // the still key light that ground shadows follow: the lamp and the window only, without breathing, impacts or moving lights
+            stableLamp = new Vector4(lamp.x, lamp.y, 4.1f, .8f * retreat); stableWindow = sources[1];
             sources[2] = new Vector4(player.x, player.y, 3.6f, .12f);
             sources[3] = new Vector4(0, -1, 6.5f, shop ? .3f : 0);
             colors[0] = new Color(1, .6f, .23f);
@@ -96,6 +104,19 @@ namespace ArcaneBrigade
                 light += colors[index] * (Falloff(position - (Vector2)sources[index], sources[index].z) * sources[index].w);
             if (SharedLightField.Active != null) light += SharedLightField.Active.ColorAt(position) * .55f;
             return light;
+        }
+        private Vector4 stableLamp, stableWindow;
+        /// <summary>The direction a ground shadow falls, from the still lamp and window light only, so shadows of things on the
+        /// floor stay put (19/10/2026: they swung with the breathing lamp, impacts and the moving stage light).</summary>
+        public Vector2 StableShadowDirection(Vector2 position)
+        {
+            Vector2 direction = new Vector2(.8f, -.35f) * .035f;
+            foreach (Vector4 source in new[] { stableLamp, stableWindow })
+            {
+                Vector2 offset = position - (Vector2)source;
+                if (offset.sqrMagnitude > .02f) direction += offset.normalized * Falloff(offset, source.z) * source.w;
+            }
+            return direction.sqrMagnitude > .001f ? direction.normalized : new Vector2(.8f, -.35f);
         }
         public Vector2 ShadowDirection(Vector2 position)
         {

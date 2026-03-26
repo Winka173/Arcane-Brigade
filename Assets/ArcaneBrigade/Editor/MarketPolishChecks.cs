@@ -30,7 +30,7 @@ namespace ArcaneBrigade.Editor
                         foreach (ShopOffer offer in session.State.Offers)
                         {
                             bool recruit = offer.Kind == OfferKind.Companion;
-                            float basePrice = recruit ? catalog.Unit(offer.Id).Price : catalog.Item(offer.Id).Price * (1 + (int)catalog.Item(offer.Id).Rarity * 0.4f);
+                            float basePrice = recruit ? catalog.Unit(offer.Id).Price * session.VeteranPrice(offer.Id) * (offer.Tier == 3 ? 3.5f : offer.Tier == 2 ? 1.8f : 1) : catalog.Item(offer.Id).Price * 0.85f * (1 + (int)catalog.Item(offer.Id).Rarity * 0.4f); // x0.85 as in RunSession since e19d1cbc (18/10)
                             float discount = session.Bonus(ItemEffect.Discount) + session.Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
                             int expected = Mathf.Max(1, Mathf.CeilToInt(Mathf.CeilToInt(basePrice * session.StagePriceFactor) * (1 - Mathf.Clamp(discount, -1, 0.5f))));
                             Require(offer.Price == expected, "Generated price includes stage, rarity, scoped discount " + wave + "/" + roll + "/" + offer.Id);
@@ -48,8 +48,9 @@ namespace ArcaneBrigade.Editor
                         session.State.Gold = 1000000; Require(session.RerollAltar(), "Special reroll wave" + wave);
                         foreach (ShopOffer offer in session.State.SpecialOffers)
                         {
-                            float basePrice = offer.Kind == OfferKind.Companion ? 4 : (catalog.AltarRevision > 0 ? catalog.Item(offer.Id).AltarPrice : catalog.SpecialShopPrice) * (1 + (int)catalog.Item(offer.Id).Rarity * 0.25f);
-                            Require(offer.Price == Mathf.Max(1, Mathf.CeilToInt(basePrice * session.SpecialStagePriceFactor)), "Generated special price includes stage " + wave + "/" + roll + "/" + offer.Id);
+                            // items: RunSession.SpecialItemPrice (an HP price is a share of max HP since the 19/10/2026 balance pass)
+                            int expected = offer.Kind == OfferKind.Companion ? Mathf.CeilToInt(4 * session.SpecialStagePriceFactor * session.VeteranPrice(offer.Id) * (offer.Tier == 3 ? 3.5f : offer.Tier == 2 ? 1.8f : 1)) : session.SpecialItemPrice(catalog.Item(offer.Id));
+                            Require(offer.Price == expected, "Generated special price includes stage " + wave + "/" + roll + "/" + offer.Id);
                         }
                     }
                 }

@@ -58,15 +58,16 @@ namespace ArcaneBrigade.Editor
                 Check(s.State.Gold == gold && s.State.Roster.Count == roster, "Denied purchase leaves currency and roster unchanged " + wave);
                 Check(s.Buy(Offer(s, owned).Token), "Third copy merges after exhausted new-species quota " + wave);
                 Check(s.State.Roster.Any(r => r.UnitId == owned && r.Tier == 2) && s.State.NewSpeciesRecruitsThisWave == limit && s.State.NewRecruitsThisWave == limit + 1, "Upgrade consumes old purchase quota but not new-species quota " + wave);
-                if (limit == 1) Check(s.Buy(Offer(s, owned).Token), "Third total purchase remains available for upgrades " + wave);
-                Check(s.State.NewRecruitsThisWave == 3 && !s.Buy(Offer(s, owned).Token), "Fourth ordinary purchase blocked including star-upgrade copies " + wave);
+                // since 19/10/2026: one copy of an owned species per wave, so a second copy waits for the next wave
+                Check(s.CopyRecruitsRemaining == 0 && !s.Buy(Offer(s, owned).Token), "Second copy in one wave is blocked " + wave);
+                Check(s.State.NewRecruitsThisWave == 2 && s.CompanionPurchasesRemaining == 0, "At most one new species and one copy per wave " + wave);
                 for(int index=0;index<specials.Length;index++)
                 {
                     var unit=specials[index];
                     var offer = Offer(s, unit.Id, true);
                     bool available=wave<10 && index==0;
                     Check(s.Buy(offer.Token)==available,"Special new species respects per-wave and shared cooldown " +wave+"/"+index);
-                    Check(s.State.NewRecruitsThisWave == 3 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase leaves regular quotas unchanged " + wave + "/" + unit.Id);
+                    Check(s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase leaves regular quotas unchanged " + wave + "/" + unit.Id);
                 }
                 Check(s.Buy(Offer(s,owned,true).Token),"Special upgrade copy ignores regular and new-species quotas "+wave);
                 // Sold normal offers are not serialized beyond a shop's slot capacity.
@@ -76,14 +77,15 @@ namespace ArcaneBrigade.Editor
                 for (int roll = 0; roll < 30; roll++)
                 {
                     Check(s.Reroll(), "Paid refresh allowed at quota " + wave + "/" + roll);
-                    Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion), "Normal rolls show items after three purchases " + wave + "/" + roll);
-                    Check(s.State.NewRecruitsThisWave == 3 && s.State.NewSpeciesRecruitsThisWave == limit, "Reroll never resets either quota " + wave + "/" + roll);
+                    Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion), "Normal rolls show items once the new species and the copy are used " + wave + "/" + roll);
+                    Check(s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Reroll never resets either quota " + wave + "/" + roll);
                 }
             }
             using (var s = Session(c, 12))
             {
                 Check(s.Buy(Offer(s, specials[0].Id, true).Token) && s.State.NewRecruitsThisWave == 0, "Special-first purchase leaves full normal quota");
-                Check(!s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 0, "Special-first recruit blocks new regular species through shared cooldown");
+                // since 19/10/2026 the dream shop no longer closes the regular shop's new species (its own pace is one every two waves)
+                Check(s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 1, "Special-first recruit leaves the regular new species open");
                 s.State.NewRecruitsThisWave = 3;
                 Roll(s, true);
                 Check(s.State.SpecialOffers.Where(o=>o.Kind==OfferKind.Companion).All(o=>s.OwnsCompanionSpecies(o.Id)),"Special rolls keep only upgrade species during cooldown");
@@ -94,11 +96,11 @@ namespace ArcaneBrigade.Editor
             {
                 string first=specialFirst?specials[0].Id:ordinary[0].Id;
                 Check(s.Buy(Offer(s,first,specialFirst).Token),"Wave 10 first new species accepted / special="+specialFirst);
-                Check(s.State.LastNewShopSpeciesWave==10 && s.NewRecruitsRemaining==0 && s.SpecialNewRecruitsRemaining==0,"Both shops close new-species purchases immediately");
+                Check(s.State.LastNewShopSpeciesWave==10 && s.SpecialNewRecruitsRemaining==0 && (s.NewRecruitsRemaining==0)!=specialFirst,"The dream shop closes for both; the regular shop closes only its own new species");
                 s.State.Offers.Clear();s.State.SpecialOffers.Clear();s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
                 Check(s.NewSpeciesCooldown,"Saving cannot clear the shared cooldown");
                 s.State.Wave=11;s.State.NewRecruitsThisWave=s.State.NewSpeciesRecruitsThisWave=s.State.SpecialNewSpeciesRecruitsThisWave=0;
-                Check(!s.Buy(Offer(s,ordinary[1].Id).Token) && !s.Buy(Offer(s,specials[1].Id,true).Token),"Following wave blocks new species in both shops");
+                Check(s.Buy(Offer(s,ordinary[1].Id).Token)==specialFirst && !s.Buy(Offer(s,specials[1].Id,true).Token),"Following wave: the dream shop waits; the regular shop waits only after its own new species");
                 Check(s.Buy(Offer(s,first,specialFirst).Token),"Duplicate remains buyable in the intervening wave");
                 Check(s.Reroll() && s.NewSpeciesCooldown,"Reroll never bypasses two-wave cooldown");
                 s.State.Wave=12;s.State.NewRecruitsThisWave=s.State.NewSpeciesRecruitsThisWave=s.State.SpecialNewSpeciesRecruitsThisWave=0;
@@ -114,20 +116,20 @@ namespace ArcaneBrigade.Editor
                 Check(found, "Merge drought protection still finds third copy after quota");
                 var gift = c.Items.First(i => i.Mechanic == RelicMechanic.CompanionGift);
                 var offer = new ShopOffer { Token = ++s.State.NextOffer, Id = gift.Id, Kind = OfferKind.Item, Price = 1 }; s.State.Offers.Add(offer);
-                Check(s.Buy(offer.Token) && s.State.NewRecruitsThisWave == 3 && s.State.NewSpeciesRecruitsThisWave == 1 && s.State.Roster.All(r => r.UnitId == ordinary[0].Id), "Ordinary gifts use purchase quota but upgrades do not use new-species quota");
+                Check(s.Buy(offer.Token) && s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == 1 && s.State.Roster.All(r => r.UnitId == ordinary[0].Id), "Ordinary gifts use purchase quota but upgrades do not use new-species quota");
             }
             using (var s = Session(c, 8))
             {
                 s.Start("LoneJelly", 161026); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Gold = 100000;
                 s.State.AbsorbedSkills.Add(ordinary[0].Id); s.State.NewRecruitsThisWave = s.State.NewSpeciesRecruitsThisWave = 1;
-                Check(s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == 1, "Owned absorbed memory uses purchase quota but not new-species quota");
+                Check(s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == 1, "Owned absorbed memory uses the copy quota but not new-species quota");
             }
             using (var s = Session(c, 4))
             {
                 s.State.NewRecruitsThisWave = 3;
                 s.State.Offers.Clear();
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
-                Check(s.NewRecruitsRemaining == 0, "Legacy quota of three loads conservatively without granting free recruits");
+                Check(s.CopyRecruitsRemaining == 0 && s.CompanionPurchasesRemaining <= 1, "Legacy quota of three loads conservatively without granting free copies");
                 s.State.Phase = SessionPhase.Combat;
                 var arena = s.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0; arena.WaveDuration = .2f;
                 var battle = new CombatSimulation(arena); battle.Start(161026);

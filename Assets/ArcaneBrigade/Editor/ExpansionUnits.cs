@@ -59,7 +59,43 @@ namespace ArcaneBrigade.Editor
             ["SpecimenSlime"] = ("Specimen Slime", "InkyOctopus", null),
             ["CourtHerald"] = ("Court Herald", "CorkRifle", null),
         };
+        /// <summary>The five new heroes (step 4c): name, body material, the best wave that unlocks them, and the short card line.</summary>
+        public static readonly Dictionary<string, (string name, BodyMaterial material, int unlock, string copy)> Heroes = new Dictionary<string, (string, BodyMaterial, int, string)>
+        {
+            ["KiteAdmiral"] = ("Kite Admiral", BodyMaterial.Paper, 6, "A mouse admiral whose kites fly over the brigade's archers."),
+            ["SundaeDuchess"] = ("Sundae Duchess", BodyMaterial.Glass, 7, "A porcelain duchess crowned in ice cream; what she freezes pays."),
+            ["BonsaiClocksmith"] = ("Bonsai Clocksmith", BodyMaterial.Wood, 8, "A tortoise clocksmith whose bonsai garden keeps time."),
+            ["JugglingJester"] = ("Juggling Jester", BodyMaterial.Fabric, 9, "A felt jester who keeps five balls in the air."),
+            ["BellDiver"] = ("Bell Diver", BodyMaterial.Metal, 10, "A frog diver who probes the deep and rides a brass bell."),
+        };
         private static readonly Dictionary<string, Sprite[]> sheets = new Dictionary<string, Sprite[]>();
+
+        /// <summary>Every new hero whose sheet is painted joins the roster (its themes, signature bond and item family are then set
+        /// by ContentExpansionBuilder from the plan); its kit lives in HeroKits, its weapon and starter in HeroLoadout.</summary>
+        public static void BuildHeroes(RunCatalog catalog, ContentExpansionBuilder.Plan plan)
+        {
+            Directory.CreateDirectory(Data);
+            var list = catalog.Champions.ToList();
+            UnitDefinition template = catalog.Unit("StormFencer") ?? catalog.Champions[0];
+            foreach (var row in plan.heroList.Where(r => r.isNew))
+            {
+                Sprite[] frames = Poses(row.id); if (frames == null || !Heroes.TryGetValue(row.id, out var spec)) continue;
+                UnitDefinition u = Asset<UnitDefinition>(Data + row.id + ".asset");
+                if (string.IsNullOrEmpty(u.Id)) { EditorUtility.CopySerialized(template, u); u.name = row.id; }
+                u.Id = row.id; u.DisplayName = spec.name; u.ReferenceHero = "Original:" + row.id; u.ReferenceCompanion = ""; u.ExclusiveHero = "";
+                u.Description = spec.copy; u.HeroMechanic = HeroMechanic.None; u.Passive = PassiveKind.None;
+                u.Weapon = catalog.Weapon(HeroLoadout.Heroes[row.id].Weapon) ?? throw new InvalidOperationException("Weapon missing for " + row.id);
+                u.Tags = row.themes.Where(t => Array.IndexOf(ContentExpansionBuilder.Themes, t) >= 0).ToArray(); u.RecruitThemes = row.themes.ToArray();
+                u.ChampionModifiers = Array.Empty<StatModifier>(); u.CompanionModifiers = Array.Empty<StatModifier>();
+                u.Health = 100; u.Speed = 4.5f; u.Radius = .25f; u.BodyHeight = .85f; u.BodyScale = 1; u.Tint = Color.white; u.CriticalChance = 0;
+                u.ContactDamage = 4; u.CollisionDamage = 0; u.KnockbackResistance = 0; u.Material = spec.material;
+                u.UnlockWave = spec.unlock; u.Price = 20; u.Rarity = ItemRarity.Common; u.SpecialRecruit = false; u.GiftOnly = false; u.RecruitThemeLocked = false;
+                u.IsBoss = false; u.CombatTier = 1; u.BuildMorphStage = 0;
+                Animate(u, frames); EditorUtility.SetDirty(u);
+                if (!list.Contains(u)) list.Add(u);
+            }
+            catalog.Champions = list.ToArray(); EditorUtility.SetDirty(catalog);
+        }
 
         /// <summary>The four poses of a row, or null while its sheet is not painted.</summary>
         public static Sprite[] Poses(string id)

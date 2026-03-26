@@ -43,11 +43,14 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { ClearArsenal(); fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); ClearBuildMorphs(); ClearOctoberBosses(); }
+        private void ClearExpansion() { ClearArsenal(); fields.Clear(); flung.Clear(); ClearAirborne(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); ClearBuildMorphs(); ClearOctoberBosses(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
             int depth = kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Strike ? cause.Depth : cause.Depth + 1;
+            // our area hits are a little tighter than authored (MeleeBalance.Area); tethers, beams and enemy hazards keep theirs
+            if ((source == null || source.Faction != Faction.Enemy) && (kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Echo || kind == ExpandedFieldKind.Strike || kind == ExpandedFieldKind.Tea || kind == ExpandedFieldKind.Iron || kind == ExpandedFieldKind.Ink || kind == ExpandedFieldKind.Photo))
+                radius *= MeleeBalance.Area;
             fields.Add(new ExpandedField { Kind = kind, Source = source, Position = position, Start = source == null ? position : source.Position, Direction = direction, Radius = radius, Damage = damage, Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration, NextTick = Elapsed + delay, Cause = new CombatCause(cause.RootId, cause.SourceUnitId, "expanded-" + kind.ToString().ToLowerInvariant(), depth), Target = target });
         }
 
@@ -215,6 +218,7 @@ namespace ArcaneBrigade
                 target.Position = ClampPosition(Vector2.MoveTowards(target.Position, source.Position + heading * 1.4f, 0.65f * (1 - resistance)), target.Definition.Radius);
                 spatial.Move(target); anchor = target.Position;
                 RegisterCooperationPull(source, target, before, bolt.Cause);
+                PullBump(target, bolt.Damage, source.Faction, bolt.Cause); // V6
             }
             int pulled = 0, most = 2 + Mathf.Clamp(source.Definition.CombatTier, 1, 3);
             foreach (UnitState enemy in units)
@@ -225,6 +229,7 @@ namespace ArcaneBrigade
                 Vector2 before = enemy.Position;
                 enemy.Position = ClampPosition(Vector2.MoveTowards(enemy.Position, anchor, 0.65f * (1 - resistance)), enemy.Definition.Radius);
                 spatial.Move(enemy);
+                PullBump(enemy, bolt.Damage, source.Faction, bolt.Cause); // V6
                 fields.Add(new ExpandedField { Kind = ExpandedFieldKind.Link, Start = before, Position = anchor, At = Elapsed, Until = Elapsed + 0.26f, Resolved = true });
                 ApplyWeaponDamage(enemy, bolt.Damage * 0.6f, source.Faction, weapon.Element, weapon.Id, (anchor - before).normalized, weapon, bolt.Critical, bolt.Cause);
                 RegisterCooperationPull(source, enemy, before, bolt.Cause);
@@ -273,8 +278,13 @@ namespace ArcaneBrigade
                     {
                         enemy.Position = ClampPosition(Vector2.MoveTowards(enemy.Position, field.Position, 0.12f * (1 - Mathf.Clamp01(enemy.Definition.KnockbackResistance))), enemy.Definition.Radius);
                         enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + 0.25f); spatial.Move(enemy);
+                        PullBump(enemy, field.Damage, Faction.Companion, field.Cause); // V6
                     }
-                    ApplyDamage(enemy, field.Damage, field.Source == null ? Faction.Companion : field.Source.Faction, field.Cause.ItemId, field.Direction, field.ImpactWeapon != null ? field.ImpactWeapon : field.Cause.Depth == 0 && field.Source != null ? field.Source.Definition.Weapon : null, critical: field.Critical, cause: field.Cause);
+                    // R15: fuses and echoes throw what they hit away from their centre
+                    bool blast = field.Kind == ExpandedFieldKind.Fuse || field.Kind == ExpandedFieldKind.Echo;
+                    float floor = impactWeightFloor; if (blast) impactWeightFloor = ImpactRules.BlastWeight;
+                    Vector2 blastAway = blast && (enemy.Position - field.Position).sqrMagnitude > .0001f ? (enemy.Position - field.Position).normalized : field.Direction;
+                    ApplyDamage(enemy, field.Damage, field.Source == null ? Faction.Companion : field.Source.Faction, field.Cause.ItemId, blastAway, field.ImpactWeapon != null ? field.ImpactWeapon : field.Cause.Depth == 0 && field.Source != null ? field.Source.Definition.Weapon : null, critical: field.Critical, cause: field.Cause); impactWeightFloor = floor;
                     if (heat && enemy.Alive)
                     {
                         enemy.BurnUntil = Mathf.Max(enemy.BurnUntil, Elapsed + 0.6f); enemy.BurnCause = field.Cause.Child("heat-status");

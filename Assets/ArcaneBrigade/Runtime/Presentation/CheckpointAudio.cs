@@ -85,15 +85,28 @@ namespace ArcaneBrigade
 
         public void Play(CombatEvent value)
         {
+            MaterialAudio.Observe(value);
             if (ArcaneCueLibrary.Available)
             {
-                string id = ArcaneCueLibrary.EventId(value, out float scale);
-                if (id != null)
+                float pitch = ArcaneCueLibrary.WeaponPitch(value);
+                // a splat, a flung body's bump or its landing sounds like what the enemy is made of (MaterialAudio)
+                string material = MaterialAudio.CueFor(value, out float materialGain, out float materialPitch);
+                float scale = 1f;
+                string id = material ?? ArcaneCueLibrary.EventId(value, out scale);
+                if (material != null) { scale = materialGain; pitch = materialPitch; }
+                if (value.Kind == CombatEventKind.ProjectilePierce) pitch = RangedFeel.PiercePitch(value, Time.unscaledTime); // each pierce a step higher
+                if (value.Kind == CombatEventKind.Hit && value.Faction == Faction.Enemy && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && RangedFeel.TryShooter(value.Cause.SourceUnitId, out Vector2 shooter))
+                {
+                    float near = Mathf.InverseLerp(6f, 1.5f, (shooter - value.Position).magnitude); // 1 point-blank .. 0 far
+                    scale *= Mathf.Lerp(.72f, 1.12f, near); pitch *= Mathf.Lerp(.94f, 1.06f, near);
+                }
+                if (id != null && ArcaneCueLibrary.Get(id) != null)
                 {
                     ArcaneCueDef def = ArcaneCueLibrary.Get(id);
                     if (!def.danger && !OnScreen(value.Position)) { DroppedCosmeticCues++; return; }
                     if (value.Kind == CombatEventKind.Hit && !def.danger && IsDuplicateHit(value)) { DroppedCosmeticCues++; return; }
-                    if (PlayLibrary(def, scale, Pan(value.Position), value.Critical, ArcaneCueLibrary.WeaponPitch(value))) return;
+                    if (material != null && !MaterialAudio.Allow(Time.unscaledTime)) { DroppedCosmeticCues++; return; } // a swarm never spams
+                    if (PlayLibrary(def, scale, Pan(value.Position), value.Critical, pitch)) return;
                 }
             }
             bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit;
@@ -264,6 +277,17 @@ namespace ArcaneBrigade
             if (def == null) return;
             if (!def.danger && !owner.OnScreen(position)) { owner.DroppedCosmeticCues++; return; }
             owner.PlayLibrary(def);
+        }
+
+        /// <summary>World-positioned cue at a given gain and pitch (a home run's ting, a charged shot's thup).</summary>
+        public static void PlayWorldId(string id, Vector2 position, float gainScale, float pitch)
+        {
+            if (interfaceOwners.Count == 0) return;
+            CheckpointAudio owner = interfaceOwners[interfaceOwners.Count - 1];
+            ArcaneCueDef def = ArcaneCueLibrary.Get(id);
+            if (def == null) return;
+            if (!def.danger && !owner.OnScreen(position)) { owner.DroppedCosmeticCues++; return; }
+            owner.PlayLibrary(def, gainScale, owner.Pan(position), false, pitch);
         }
 
         public void PlayId(string id) { PlayLibrary(ArcaneCueLibrary.Get(id)); }

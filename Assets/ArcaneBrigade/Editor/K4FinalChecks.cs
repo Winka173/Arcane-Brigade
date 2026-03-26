@@ -123,7 +123,9 @@ namespace ArcaneBrigade.Editor
             {
                 session.Start(catalog.Champions[0].Id, 13104); session.State.Wave = 10; // Act I boss waves are 5, 10, 15, 20
                 CheckpointCatalog combat = session.PrepareCombat();
-                require(combat.EnableArenaToys && combat.EnableBossArenaPhase && combat.RunWave == 10 && combat.Boss != null, "Authored boss wave enables deterministic toys and arena phase");
+                // arena toys are off in play since 19/10/2026 (owner: "only remove the toys"); the toy machinery is still checked below
+                require(!combat.EnableArenaToys && combat.EnableBossArenaPhase && combat.RunWave == 10 && combat.Boss != null, "Authored boss wave keeps its arena phase; arena toys are off in play");
+                combat.EnableArenaToys = true;
                 var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);
                 require(simulation.ArenaToys.Count >= 2 && simulation.ArenaToys[0].Kind == ArenaToyKind.StageBell && simulation.ArenaToys[1].Kind == ArenaToyKind.ToyCart, "Ordinary Start automatically seeds original toy pair at later wave");
                 simulation.EnterRest(); require(simulation.ArenaToys.Count == 0, "Rest removes toys and all pending arena warnings");
@@ -144,7 +146,7 @@ namespace ArcaneBrigade.Editor
                 Session = new RunSession(catalog); Session.Start(catalog.Champions[0].Id, 13104);
                 Session.State.Roster.Clear(); Session.State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = weapon });
                 foreach (string id in items) Session.State.Items.Add(new ItemStack { Id = id, Count = 1 });
-                Combat = Session.PrepareCombat(); Combat.EnemyBudget = 0; Combat.PassiveHeal = 0; Combat.Boss = null;
+                Combat = Session.PrepareCombat(); Combat.CoinValueScale = 1; /* pickup plumbing, not the 0.75 coin value */ Combat.EnemyBudget = 0; Combat.PassiveHeal = 0; Combat.Boss = null;
                 Combat.EnableArenaToys = Combat.EnableBossArenaPhase = false; Combat.WaveDuration = 1000; Combat.ChestInterval = 1000;
                 Combat.CompanionPatrolSpeed = Combat.CompanionAcceleration = 0; Combat.ExtendedLoot = false;
                 Simulation = new CombatSimulation(Combat); Simulation.Start(13104);

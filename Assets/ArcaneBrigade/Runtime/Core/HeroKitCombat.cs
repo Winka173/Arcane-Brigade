@@ -20,6 +20,7 @@ namespace ArcaneBrigade
         {
             kit = null; kitHurtUntil = kitDodgeUntil = -100; kitStillArmed = -1; kitCracks = 0; kitHealAt = kitLeadHealAt = kitLidAt = kitRootAt = kitThornAt = 0;
             kitKills = kitInjuryGold = kitChestsPaid = kitSpeciesPaid = kitHitsForHeal = kitRecorded = 0; kitSpecies.Clear();
+            kitProbedCoins = kitFrozenGold = 0; kitBallAt = 0;
         }
 
         private bool IsLead(UnitState u) => u != null && u.Faction == Faction.Companion && (identityLead == u || identityLead == null && u.Definition.Id == catalog.HeroLeadUnit);
@@ -55,6 +56,7 @@ namespace ArcaneBrigade
                 if (cause.Depth == 0 && kitStillArmed > 0) { scale += k.Value(KitPassive.StillNextAttack); kitStillArmed = -1; }
                 if (cause.Depth == 0 && k.Has(KitPassive.RearDamage) && (Behind(Champion, target) || HeroAwakening && k.Action == KitAction.Eclipse)) scale += k.Value(KitPassive.RearDamage);
                 if (k.Has(KitPassive.DiceFaceBuff) && identityFace == 1) scale += .1f;
+                if (k.Has(KitPassive.FarShotDamage) && (target.Position - Champion.Position).sqrMagnitude > 16) scale += k.Value(KitPassive.FarShotDamage);
             }
             else if (attacker != null && attacker.Faction == Faction.Companion)
             {
@@ -66,6 +68,7 @@ namespace ArcaneBrigade
                 if (Recorded(target)) scale += k.Value(KitPassive.TeamDamageVsRecorded);
                 if (target.KitShockedUntil > Elapsed) scale += k.Value(KitPassive.TeamDamageVsShocked);
                 if (target.KitWetUntil > Elapsed) scale += k.Value(KitPassive.TeamDamageVsWet);
+                if (target.ProbedUntil > Elapsed) scale += k.Value(KitPassive.TeamDamageVsProbed);
                 if ((target.Position - Champion.Position).sqrMagnitude <= 2.2f * 2.2f) scale += k.Value(KitPassive.TeamDamageNearHero);
                 if (Champion.Health >= Champion.Definition.Health * .5f) scale += k.Value(KitPassive.TeamDamageWhileHeroHealthy);
                 scale += Mathf.Min(.1f, Mathf.Floor(catalog.HeroWallet / 50f) * k.Value(KitPassive.TeamDamagePerGold));
@@ -120,6 +123,7 @@ namespace ArcaneBrigade
             {
                 bool near = (unit.Position - Champion.Position).sqrMagnitude <= 16;
                 if (HeroAwakening && k.TeamAttackSpeed > 0 && (k.Action != KitAction.Lighthouse || (unit.Position - Champion.Position).sqrMagnitude <= 25)) bonus += k.TeamAttackSpeed;
+                if (HeroAwakening && k.Action == KitAction.TimeGarden && (unit.Position - awakenPlot).sqrMagnitude <= GardenReach * GardenReach) bonus += .4f; // friends beside the bonsai
                 if (near) bonus += k.Value(KitPassive.TeamAttackSpeedNearHero);
                 if (Elapsed < 5) bonus += k.Value(KitPassive.TeamAttackSpeedWaveStart);
                 bonus += Mathf.Min(.1f, kitKills * k.Value(KitPassive.TeamAttackSpeedPerKill));
@@ -141,6 +145,45 @@ namespace ArcaneBrigade
             if (k == null || !k.Has(KitPassive.PinnedPierce) || projectile.PinnedPierced || projectile.Faction == Faction.Enemy || !Marked(hit)) return false;
             if (UnitWithId(projectile.SourceUnitId)?.Faction != Faction.Companion) return false;
             projectile.PinnedPierced = true; return true;
+        }
+        /// <summary>Bell Diver: a friend's shot that strikes a probed enemy bounces once more (once per shot).</summary>
+        private bool KitProbedBounce(ProjectileState projectile, UnitState hit)
+        {
+            HeroKit k = Kit;
+            if (k == null || !k.Has(KitPassive.ProbedBounce) || projectile.ProbedBounced || projectile.Faction == Faction.Enemy || hit.ProbedUntil <= Elapsed) return false;
+            if (UnitWithId(projectile.SourceUnitId)?.Faction != Faction.Companion) return false;
+            projectile.ProbedBounced = true; return true;
+        }
+        /// <summary>Shots a friend just fired (projectiles from `first` on): Kite Admiral's pierce while the gauge is full and the
+        /// kite fleet's split shots for the friends a kite flies over.</summary>
+        private void KitEmitted(UnitState unit, int first)
+        {
+            HeroKit k = Kit;
+            if (k == null || unit.Faction != Faction.Companion || first >= projectiles.Count || unit.Definition.Weapon.Kind != WeaponKind.Projectile) return;
+            bool pierce = k.Has(KitPassive.RangedPierceWhileFull) && (HeroAwakening || HeroAwakenPrimed);
+            bool fleet = HeroAwakening && k.Action == KitAction.KiteFleet && awakenFleet.Contains(unit);
+            int count = projectiles.Count;
+            for (int i = first; i < count; i++)
+            {
+                ProjectileState p = projectiles[i];
+                if (p.Faction != Faction.Companion) continue;
+                if (pierce) p.ExtraPierce += Mathf.RoundToInt(k.Value(KitPassive.RangedPierceWhileFull));
+                if (!fleet || p.IsFragment) continue;
+                // the kite splits the shot: two shots (tight, long voyage) or three with lighter outer ones (wide formation)
+                if (IdentityApproach == 1) { KitTwin(p, 16, .6f); KitTwin(p, -16, .6f); }
+                else { KitTwin(p, 8, 1); p.Velocity = Quaternion.Euler(0, 0, -4) * p.Velocity; p.LaunchVelocity = Quaternion.Euler(0, 0, -4) * p.LaunchVelocity; }
+            }
+        }
+        private void KitTwin(ProjectileState a, float degrees, float share)
+        {
+            if (projectiles.Count >= 4096) return;
+            var turn = Quaternion.Euler(0, 0, degrees);
+            projectiles.Add(new ProjectileState { Id = ++nextId, Faction = a.Faction, Position = a.Position, PreviousPosition = a.PreviousPosition, Velocity = turn * a.Velocity,
+                LaunchVelocity = turn * a.LaunchVelocity, Damage = a.Damage * share, Remaining = a.Remaining, Color = a.Color, Element = a.Element, SourceName = a.SourceName,
+                LaunchSegment = a.LaunchSegment, Sprite = a.Sprite, VisualWidth = a.VisualWidth, Radius = a.Radius, Critical = a.Critical, SourceUnitId = a.SourceUnitId,
+                Cause = a.Cause.Child("kite-split"), Weapon = a.Weapon, SplitCount = a.SplitCount, SplitOnImpact = a.SplitOnImpact, Pattern = a.Pattern, ExtraPierce = a.ExtraPierce,
+                Arsenal = a.Arsenal, ArsenalStage = a.ArsenalStage, ArsenalTimer = a.ArsenalTimer, ArsenalHome = a.ArsenalHome, ArsenalTick = a.ArsenalTick,
+                OrbitTargetId = a.OrbitTargetId, OrbitCenter = a.OrbitCenter, RicochetsRemaining = a.RicochetsRemaining, FinalNote = a.FinalNote, IsFragment = true });
         }
         /// <summary>Copper Cauldron: friends' collision damage grows with the blows the hero took this wave.</summary>
         private float KitHurtCollision(UnitState source)

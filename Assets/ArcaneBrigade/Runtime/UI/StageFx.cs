@@ -221,7 +221,7 @@ namespace ArcaneBrigade
                 case 3:
                     if (!shop) break;
                     if (startRoster < 0) startRoster = state.Roster.Count + state.Items.Count;
-                    message = "Walk up to a stand and " + (RunUIHints.Device == RunUIDevice.Controller ? "press A" : RunUIHints.Device == RunUIDevice.Touch ? "tap USE" : "press Space") + " to buy.";
+                    message = "Walk up to a stand, then BUY.";
                     if (state.Roster.Count + state.Items.Count != startRoster || age > 12f) Next(now);
                     break;
                 case 4:

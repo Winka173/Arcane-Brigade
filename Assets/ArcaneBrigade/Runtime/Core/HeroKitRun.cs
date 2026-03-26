@@ -36,7 +36,8 @@ namespace ArcaneBrigade
             switch (effect)
             {
                 case ItemEffect.CompanionDamage: return companions ? kit.Value(KitPassive.TeamDamage) + Mathf.Min(.25f, State.KitRareBuys * kit.Value(KitPassive.RareBuyDamage)) : 0;
-                case ItemEffect.CompanionAttackSpeed: return companions ? kit.Value(KitPassive.TeamAttackSpeed) : 0;
+                case ItemEffect.CompanionAttackSpeed: return companions ? kit.Value(KitPassive.TeamAttackSpeed) + (kit.Has(KitPassive.ThemeBondAttackSpeed) ? Mathf.Min(.16f, KitThemeBondLevels("clock", "orchard") * kit.Value(KitPassive.ThemeBondAttackSpeed)) : 0) : 0;
+                case ItemEffect.Health: return target == ModifierScope.Champion ? Mathf.Min(40, State.OctoberFood * kit.Value(KitPassive.FoodHealth)) : 0; // Sundae Duchess: food fills the gown
                 case ItemEffect.Crit: return companions ? kit.Value(KitPassive.TeamCrit) : 0;
                 case ItemEffect.MoveSpeed: return companions ? kit.Value(KitPassive.TeamMoveSpeed) : 0;
                 case ItemEffect.BulletSpeed: return companions ? kit.Value(KitPassive.TeamProjectileSpeed) : 0;
@@ -64,6 +65,18 @@ namespace ArcaneBrigade
             if (!companion && kit.Has(KitPassive.MergeHeroDamage)) unit.Weapon.Damage *= 1 + Mathf.Min(.25f, State.KitMerges * kit.Value(KitPassive.MergeHeroDamage));
             if (companion && unit.Weapon.Kind == WeaponKind.Melee && kit.Has(KitPassive.TeamMeleeAttackSpeed)) unit.Weapon.Cooldown /= 1 + kit.Value(KitPassive.TeamMeleeAttackSpeed);
             if (companion && (source.Id == "GrandSprout" || source.Id == "LittleSprout")) unit.Weapon.Damage *= 1 + kit.Value(KitPassive.SproutDamage);
+            if (companion && unit.Weapon.Kind == WeaponKind.Projectile && kit.Has(KitPassive.RangedTeamRange)) unit.Weapon.Range *= 1 + kit.Value(KitPassive.RangedTeamRange); // Kite Admiral
+        }
+        /// <summary>Active levels of the named bonds (Bonsai Clocksmith: Clock and Orchard).</summary>
+        private int KitThemeBondLevels(params string[] ids)
+        {
+            int levels = 0;
+            foreach (string id in ids)
+            {
+                BondDefinition bond = Array.Find(catalog.Bonds, b => b.Id == id);
+                if (bond != null && BondCounts.TryGetValue(id, out int count)) levels += bond.ActiveLevel(count);
+            }
+            return levels;
         }
 
         /// <summary>Recruiting: one more new species a wave (VelvetRegent).</summary>
@@ -137,6 +150,9 @@ namespace ArcaneBrigade
         {
             HeroKit kit = Kit; if (kit == null) return;
             if (recruited.Tier == 1 && kit.Has(KitPassive.BuyTwoStarChance) && Next(ref State.WeaponRandom, 1000) < kit.Value(KitPassive.BuyTwoStarChance) * 1000) recruited.Tier = 2;
+            // Juggling Jester: a Big Top friend may join the act at two stars
+            if (recruited.Tier == 1 && kit.Has(KitPassive.BigTopTwoStar) && Array.IndexOf(catalog.Unit(recruited.UnitId)?.Tags ?? Array.Empty<string>(), "big-top") >= 0
+                && Next(ref State.WeaponRandom, 1000) < kit.Value(KitPassive.BigTopTwoStar) * 1000) { recruited.Tier = 2; Notice = "Big Top: it arrives at two stars."; }
             if (alreadyOwned && kit.Has(KitPassive.DuplicateCopyChance) && Next(ref State.WeaponRandom, 1000) < kit.Value(KitPassive.DuplicateCopyChance) * 1000)
             {
                 var spare = weapons.FindAll(w => w.Id != recruited.WeaponId && !State.Roster.Exists(e => e.UnitId == recruited.UnitId && e.WeaponId == w.Id));

@@ -16,7 +16,6 @@ namespace ArcaneBrigade
         private int wave;
         private float elapsed, previousClock;
         private bool visible, registered;
-        private GUIStyle caption;
         public void Configure(ArenaController value)
         {
             owner = value;
@@ -128,14 +127,12 @@ namespace ArcaneBrigade
                 19 => StoodUp() ? "\"You did. Who paid?\"\nHob: \"Nobody. We pulled.\"" : "The coins wait. The chair gives him nothing.\n\"Nobody stands up without paying.\"",
                 _ => null
             };
-            if (line == null) return;
-            Matrix4x4 matrix = ArcadeTypography.BeginViewport(Camera.main.pixelRect,1920,1080);
-            caption ??= ArcadeTypography.Style(23,true); caption.wordWrap = true; caption.alignment = TextAnchor.MiddleCenter;
-            Rect box = new Rect(550,752,820,70);
-            caption.normal.textColor = new Color(.01f,.012f,.02f,.95f); GUI.Label(new Rect(box.x+2,box.y+2,box.width,box.height),line,caption);
-            caption.normal.textColor = ArcadeSkin.Cream; GUI.Label(box,line,caption);
-            GUI.matrix = matrix;
+            if (line == null || spokenWave == wave) return;
+            // the visit's line is said by the customer, in a bubble that stays with it (not a caption over the room)
+            spokenWave = wave;
+            SpeechBubbles.Show("Story:LastCustomer", "THE LAST CUSTOMER", line, () => customer != null && customer.enabled ? new Vector3(customer.bounds.center.x, customer.bounds.max.y, 0) : (Vector3?)null, SpeechTone.Story, Mathf.Max(3, 12 - elapsed), 3);
         }
+        private int spokenWave = -1;
         private bool StoodUp() => owner.Session.State.ActOne?.SitCloser == ActOneProgress.Won;
         private void OnDestroy() => Hide();
     }

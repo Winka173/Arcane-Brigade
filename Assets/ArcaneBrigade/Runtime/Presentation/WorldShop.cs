@@ -82,6 +82,37 @@ namespace ArcaneBrigade
         // Act I canon: it is always the same shop and the same shopkeeper, however deep the road goes.
         public static float MerchantSize(bool special, int wave) => special ? 5.65f : 5.25f;
         public Station Nearby { get; private set; }
+        private Station walkTo;
+        /// <summary>Tap or click a stall, machine or door and the traveller walks to it (its card opens on arrival). Any
+        /// stick or key movement takes over at once. Taps on an open card or button are not taps on the room.</summary>
+        public Vector2 TapToWalk(Vector2 manual, Camera camera)
+        {
+            if (manual.sqrMagnitude > .01f) { walkTo = null; return manual; }
+            // a card or offer already open owns the tap
+            bool modal = owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || owner.Details.Open;
+            if (Input.GetMouseButtonDown(0) && camera != null && GUIUtility.hotControl == 0 && !modal)
+            {
+                Matrix4x4 fit = ArcadeTypography.FitViewport(camera.pixelRect, Screen.safeArea, Screen.height, 1920, 1080);
+                Vector3 design = fit.inverse.MultiplyPoint3x4(new Vector3(Input.mousePosition.x, Screen.height - Input.mousePosition.y, 0));
+                if (!RunHud.ShownShopCard.Contains(design) && !SpeechBubbles.OverlapsDialogue(new Rect(design.x - 1, design.y - 1, 2, 2)))
+                {
+                    Vector2 world = camera.ScreenToWorldPoint(Input.mousePosition);
+                    Station best = null; float nearest = 1.4f;
+                    foreach (Station station in stations)
+                    {
+                        if (station.Offer != null && station.Offer.Sold) continue;
+                        float distance = Vector2.Distance(world, station.Position + Vector2.up * .4f);
+                        if (distance < nearest) { nearest = distance; best = station; }
+                    }
+                    if (best != null) walkTo = best;
+                }
+            }
+            if (walkTo == null) return manual;
+            if (!stations.Contains(walkTo) || Nearby == walkTo) { walkTo = null; return Vector2.zero; }
+            Vector2 goal = walkTo.Position + Vector2.down * .55f, offset = goal - owner.Simulation.Champion.Position;
+            if (offset.magnitude < .12f) { walkTo = null; return Vector2.zero; }
+            return Vector2.ClampMagnitude(offset * 3, 1);
+        }
         public int DeniedCount { get; private set; }
         public void Configure(ArenaController controller)
         {
@@ -375,6 +406,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < offers.Count; index++)
             {
                 ShopOffer offer = offers[index];
+                if (offer.Sold) continue; // a sold stall leaves the room (only usable things stay)
                 string name = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).DisplayName : catalog.Item(offer.Id).Name;
                 Sprite icon = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
                 Sprite[] frames = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).AnimationFrames : null;
@@ -513,6 +545,9 @@ namespace ArcaneBrigade
         public void ResolveCompanionPositions()
         {
             if (scenery == null || !scenery.activeSelf || owner.Simulation.Phase != RunPhase.Rest) return;
+            waiting.Clear();
+            foreach (UnitState unit in owner.Simulation.Units) if (unit.Faction == Faction.Companion && unit.MountId <= 0) waiting.Add(unit);
+            waiting.Sort((a, b) => a.Id.CompareTo(b.Id));
             foreach (UnitState unit in owner.Simulation.Units)
             {
                 if (unit.Faction != Faction.Companion) continue;
@@ -525,14 +560,22 @@ namespace ArcaneBrigade
                     if (unit.Velocity.sqrMagnitude > 0.001f) unit.Facing = unit.Velocity.normalized;
                     continue;
                 }
-                Vector2 position = AvoidObstacle(unit.Position, MerchantCenter, Mathf.Min(2.2f, MerchantHeight * 0.45f), unit.Id);
-                foreach (Station station in stations) position = AvoidObstacle(position, station.Position, station.Action == "NEXT HALL" ? 0.55f : 0.65f, unit.Id);
-                // nobody in the brigade wanders onto the warm chair
-                WaitingRealmStage chair = owner.GetComponent<WaitingRealmStage>();
-                if (chair != null && chair.ChairVisible) position = AvoidObstacle(position, chair.ChairAnchor, 0.8f, unit.Id);
-                position = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(position - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
-                unit.Position = position;
+                // the brigade waits in a row beside the door, never among the stalls (owner, 19/10/2026): each friend walks
+                // to its own spot, the doorway itself left clear, and faces the traveller
+                Vector2 home = WaitingSpot(waiting.IndexOf(unit));
+                unit.Position = Vector2.MoveTowards(unit.PreviousPosition, home, Mathf.Max(1.4f, unit.Definition.Speed * 0.55f) * Time.fixedDeltaTime);
+                unit.Velocity = (unit.Position - unit.PreviousPosition) / Time.fixedDeltaTime;
+                Vector2 look = unit.Velocity.sqrMagnitude > 0.01f ? unit.Velocity : owner.Simulation.Champion.Position - unit.Position;
+                if (look.sqrMagnitude > 0.001f) unit.Facing = look.normalized;
             }
+        }
+        private readonly List<UnitState> waiting = new List<UnitState>();
+        /// <summary>The k-th friend's spot by the door: alternate sides, outward in pairs, two staggered rows.</summary>
+        public static Vector2 WaitingSpot(int k)
+        {
+            k = Mathf.Max(0, k);
+            float side = k % 2 == 0 ? -1 : 1; int column = k / 2;
+            return new Vector2(side * (1.5f + column * 0.85f), ExitPosition.y + 0.7f + (column % 2) * 0.4f);
         }
         public static Vector2 AvoidObstacle(Vector2 position, Vector2 center, float radius, int identity)
         {

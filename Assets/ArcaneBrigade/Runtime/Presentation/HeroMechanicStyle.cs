@@ -52,6 +52,12 @@ namespace ArcaneBrigade
             Add("LanternWeaver", InkToken.Knot, InkBrush.Thread, HeroGauge.Pips, P(C(.04f, .15f, .15f), C(.36f, .84f, .72f), C(1f, .92f, .64f), C(.5f, .95f, .8f), C(1f, .8f, .4f)));
             Add("HourglassStag", InkToken.Sand, InkBrush.Ink, HeroGauge.Arc, P(C(.06f, .08f, .23f), C(.38f, .56f, .95f), C(.98f, .93f, .78f), C(.56f, .72f, 1f), C(.96f, .78f, .42f)));
             Add("RainArchivist", InkToken.Drop, InkBrush.Ink, HeroGauge.Pips, P(C(.04f, .1f, .23f), C(.44f, .66f, .95f), C(.94f, .98f, 1f), C(.55f, .8f, 1f), C(.97f, .93f, .8f)));
+            // the five expansion heroes: teal sailcloth, strawberry cream, brass clockwork, circus wine, deep-sea brass
+            Add("KiteAdmiral", InkToken.Spark, InkBrush.Silk, HeroGauge.Arc, P(C(.04f, .12f, .2f), C(.3f, .66f, .7f), C(.98f, .95f, .84f), C(.5f, .85f, .85f), Brass));
+            Add("SundaeDuchess", InkToken.Dumpling, InkBrush.Silk, HeroGauge.Pips, P(C(.27f, .09f, .14f), C(.98f, .7f, .78f), C(1f, .97f, .9f), C(.75f, .9f, 1f), C(.92f, .78f, .5f)));
+            Add("BonsaiClocksmith", InkToken.Leaf, InkBrush.Brush, HeroGauge.Arc, P(C(.12f, .1f, .04f), C(.84f, .64f, .3f), C(1f, .95f, .78f), C(.6f, .86f, .5f), C(.4f, .62f, .32f)));
+            Add("JugglingJester", InkToken.Star, InkBrush.Silk, HeroGauge.Pips, P(C(.2f, .04f, .1f), C(.72f, .2f, .32f), C(1f, .94f, .82f), C(1f, .78f, .5f), C(.98f, .84f, .4f)));
+            Add("BellDiver", InkToken.Bubble, InkBrush.Wave, HeroGauge.Arc, P(C(.03f, .1f, .16f), C(.2f, .52f, .6f), C(.9f, .98f, 1f), C(.45f, .82f, .9f), C(.86f, .64f, .3f)));
         }
         public static HeroMechanicStyle For(string id)
         {

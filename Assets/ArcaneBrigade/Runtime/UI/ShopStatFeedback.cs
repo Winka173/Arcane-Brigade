@@ -64,7 +64,8 @@ namespace ArcaneBrigade
                     var d=a.Rows[n];Color color=d.Neutral?ArcadeSkin.Gold:d.Positive?ArcadeSkin.Better:ArcadeSkin.Worse;
                     float t=Mathf.Max(0,age-n*.07f);float alpha=Mathf.Clamp01(t/.1f)*Mathf.Clamp01((Duration-age)/.35f);
                     text.fontSize=PresentationSettings.ReducedMotion?20:20+Mathf.RoundToInt(Mathf.Sin(Mathf.Clamp01(t/.2f)*Mathf.PI)*3);
-                    string number=Number(d.After-d.Before);
+                    // this purchase's own change in the stat's unit ("+12%", "+4 flat", "+0.15"), not the moved compiled total
+                    string number=d.Display??Number(d.After-d.Before);
                     string label=d.Message??d.Label.Replace("Run / ","").Replace("Companion bullet interception","Interception")+" "+number;
                     while(text.fontSize>16 && text.CalcSize(new GUIContent(label)).x>rect.width-30)text.fontSize--;
                     float start=rect.x+(rect.width-text.CalcSize(new GUIContent(label)).x-29)*.5f;
@@ -85,6 +86,6 @@ namespace ArcaneBrigade
             "Shots"=>ItemEffect.Projectiles,"Pierce"=>ItemEffect.BulletPierce,"Split"=>ItemEffect.BulletSplit,"Bullet speed"=>ItemEffect.BulletSpeed,
             "Body size"=>ItemEffect.BodySize,"Contact damage"=>ItemEffect.CollisionDamage,"Contacts/s"=>ItemEffect.CollisionFrequency,"Push"=>ItemEffect.Knockback,
             "Pickup"=>ItemEffect.Pickup,"Chest reach"=>ItemEffect.ChestReach,"Bullet size"=>ItemEffect.BulletSize,"Bounce %"=>ItemEffect.BulletBounce,
-            "Travel distance"=>ItemEffect.BulletDistance,"Stars" or "Roster"=>ItemEffect.Luck,_=>ItemEffect.Damage};
+            "Travel distance"=>ItemEffect.BulletDistance,"Heart healing"=>ItemEffect.HeartHealing,"Stars" or "Roster"=>ItemEffect.Luck,_=>ItemEffect.Damage};
     }
 }

@@ -18,14 +18,14 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             notes.Clear();RunCatalog c=Resources.Load<RunCatalog>("RunCatalog");
-            Check(HeroIdentities.All.Length==31 && c.Champions.All(u=>HeroIdentities.For(u.Id)!=null),"Every one of 31 playable IDs has a signature");
-            Check(HeroIdentities.All.Select(d=>d.Name).Distinct().Count()==31 && HeroIdentities.All.All(d=>d.Approaches.Length==3),"31 distinct mechanic names and 93 approaches");
+            Check(HeroIdentities.All.Length==36 && c.Champions.Length==36 && c.Champions.All(u=>HeroIdentities.For(u.Id)!=null),"Every one of 36 playable IDs has a signature (31 + the expansion's 5)");
+            Check(HeroIdentities.All.Select(d=>d.Name).Distinct().Count()==36 && HeroIdentities.All.All(d=>d.Approaches.Length==3),"36 distinct mechanic names and 108 approaches");
             foreach(UnitDefinition hero in c.Champions)
             for(int approach=0;approach<3;approach++)Exercise(c,hero,approach);
             CheckDescriptions(c);
             CheckPurchaseCoverage(c);
             CheckTransactions(c);
-            var report=new Report{Checks=notes.Count,Heroes=c.Champions.Length,Approaches=93,Companions=c.Companions.Length,Items=c.Items.Length,Passed=true,Results=notes.ToArray()};
+            var report=new Report{Checks=notes.Count,Heroes=c.Champions.Length,Approaches=108,Companions=c.Companions.Length,Items=c.Items.Length,Passed=true,Results=notes.ToArray()};
             File.WriteAllText(Root+"/Verification.json",JsonUtility.ToJson(report,true));
             Debug.Log("HERO_IDENTITY_PASS "+notes.Count);
         }
@@ -102,7 +102,7 @@ namespace ArcaneBrigade.Editor
         public static void CheckDescriptions(RunCatalog c)
         {
             var report=new System.Text.StringBuilder("# Companion and item description audit\n\nGenerated from the current runtime. Category, talents, direct support, timing, caps and tradeoffs are kept together.\n\n");
-            var heroes=new System.Text.StringBuilder("# Hero mechanic and approach descriptions\n\nGenerated from the current runtime: 31 heroes, 93 approaches.\n\n");
+            var heroes=new System.Text.StringBuilder("# Hero mechanic and approach descriptions\n\nGenerated from the current runtime: 36 heroes, 108 approaches.\n\n");
             foreach(var u in c.Champions)
             {
                 var identity=HeroIdentities.For(u.Id);string copy=RunUICopy.ChampionDescription(u);

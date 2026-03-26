@@ -61,6 +61,7 @@ namespace ArcaneBrigade
                     if (hit.Faction == Faction.Companion) return RelicBlowBack(projectile, hit);
                     if (projectile.SplitOnImpact) SplitCombatProjectile(projectile);
                     if (KitPinnedPierce(projectile, hit)) projectile.ExtraPierce++;
+                    if (KitProbedBounce(projectile, hit)) projectile.RelicBounces++;
                     if (projectile.Weapon != null && (projectile.Weapon.Family == ExpandedWeapon.Fish || projectile.Weapon.SecretRecall) && projectile.Faction != Faction.Enemy)
                     {
                         if (!projectile.Returning) ProjectileAudioEvent(CombatEventKind.ProjectileReturn, projectile);

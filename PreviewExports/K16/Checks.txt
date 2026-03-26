@@ -132,12 +132,6 @@ PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
 PASS Sewing tier-gated thread NeedleSinger 3
 PASS Yo-yo control NeedleSinger 3
 PASS Projector tier-gated convergence NeedleSinger 3

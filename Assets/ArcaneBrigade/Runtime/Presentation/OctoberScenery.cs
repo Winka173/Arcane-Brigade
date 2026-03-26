@@ -24,23 +24,16 @@ namespace ArcaneBrigade
             for (int i = 0; i < eyes.Length; i++)
             {
                 SpriteRenderer eye = eyes[i]; eye.enabled = visible; if (!visible) continue;
-                // Watchers belong to the rim and never cover the central combat lane or move map fixtures.
-                Vector2 position = i < 4 ? new Vector2((i % 2 == 0 ? -1 : 1) * (half.x - .7f), (i / 2 * 2 - 1) * half.y * .55f) : new Vector2((i - 5.5f) * half.x * .46f, half.y - .7f);
+                // the shop shows only things that can be used: no watchers there
+                if (owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen) { eye.enabled = false; continue; }
+                // Watchers belong to the rim and never cover the central combat lane; the arena layout keeps them off every prop.
+                Vector2 ink = ArenaLayoutPlan.WatcherInk(i), foot = ArenaLayoutPlan.WatcherCenter(i, half) - Vector2.up * ink.y * .5f;
+                if (!ArenaLayout.Place(owner, "watcher" + i, ref foot, out _)) { eye.enabled = false; continue; }
+                Vector2 position = foot + Vector2.up * ink.y * .5f;
                 float age = Mathf.Repeat(t * .45f + i * 1.19f, 8);
                 int frame = PresentationSettings.ReducedMotion ? 2 : age < .5f ? 0 : age < .8f ? 1 : owner.Simulation.Champion.Position.x < position.x ? 2 : 3;
                 eye.sprite = art.Watchers[(i % 3) * 4 + frame];
-                float width = i % 3 == 0 ? 1.2f : .95f;
-                if (owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen)
-                {
-                    // in the shop the watchers keep to whatever dark corners the layout has left over (never on a prop)
-                    position = new Vector2((i % 2 == 0 ? -1 : 1) * 6.5f, (i / 2 - 1.5f) * 2);
-                    Vector2 size = SpriteInkMetrics.BoundsOf(art.Watchers[(i % 3) * 4]).size * (width / Mathf.Max(.01f, art.Watchers[(i % 3) * 4].bounds.size.x));
-                    if (ShopLayout.Active != null)
-                    {
-                        if (!ShopLayout.Active.Place("watcher" + i, position - Vector2.up * size.y * .5f, size, 40 + i, false, true, out Vector2 foot, out _)) { eye.enabled = false; continue; }
-                        position = foot + Vector2.up * (size.y * .5f + .3f);
-                    }
-                }
+                float width = ArenaLayoutPlan.WatcherWidth(i);
                 eye.transform.position = position;
                 eye.transform.localScale = Vector3.one * (width / Mathf.Max(.01f, eye.sprite.bounds.size.x));
                 eye.color = new Color(.38f, .52f, .7f, .4f); // Distant witnesses are blue; actual hostile eyes are red.

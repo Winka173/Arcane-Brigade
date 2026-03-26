@@ -44,12 +44,13 @@ namespace ArcaneBrigade.Editor
                 using (var session = new RunSession(catalog))
                 {
                     session.Start("LanternKnight", 22077); session.State.Roster.Clear(); session.State.Wave = 13;
-                    CheckpointCatalog arena = session.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0; arena.EnableArenaToys = arena.EnableBossArenaPhase = arena.EnableSpectacles = false;
+                    CheckpointCatalog arena = session.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0; arena.EnableArenaToys = arena.EnableBossArenaPhase = arena.EnableSpectacles = false; arena.StoryCompanions = new UnitDefinition[0]; // the Act I party would finish the specimen first (as in K25)
                     var simulation = new CombatSimulation(arena); simulation.Start(22077);
                     simulation.Champion.Position = simulation.Champion.PreviousPosition = new Vector2(3, 0); simulation.Champion.NextAttack = float.PositiveInfinity;
                     UnitState enemy = simulation.AddFixture(mutated, Faction.Enemy, Vector2.zero);
                     enemy.NextAttack = enemy.NextContact = enemy.NextBehavior = float.PositiveInfinity; enemy.Awakened = true; enemy.NextEvolutionAttack = 0;
-                    if (entry.Ability == EnemyMutation.CoinBarrage) simulation.LootFixture(LootKind.Coin, Vector2.zero, 7);
+                    // the loose coins lie out of the traveller's pickup reach, so the leech (not the hero) takes them
+                    if (entry.Ability == EnemyMutation.CoinBarrage) { simulation.Champion.Position = simulation.Champion.PreviousPosition = new Vector2(6, 0); simulation.LootFixture(LootKind.Coin, Vector2.zero, 7); }
                     simulation.Step(0.05f, Vector2.zero);
                     Require(enemy.EvolutionReleaseAt > simulation.Elapsed && enemy.EvolutionCasts == 0 && simulation.ExpandedFields.Count == 0 && simulation.Projectiles.Count == 0, "Body windup precedes real damage " + entry.Id);
                     Require(enemy.Definition.AuthoredMotion.Select(enemy, simulation.Elapsed + 0.2f, false) == entry.Mutated.Windup[0], "Visible anticipation drawing " + entry.Id);
@@ -86,7 +87,7 @@ namespace ArcaneBrigade.Editor
                 CheckpointCatalog arena = session.PrepareCombat();
                 int count = library.Species.Count(entry => wave >= EnemyEvolutionLibrary.MutationWave(entry.Id));
                 Require(count >= previous && (wave > 5 || count == 0), "Gradual monotonic mutation roster, wave " + wave); previous = count;
-                Require(arena.EnemyPool.Where(enemy => enemy.SpecialEnemy == SpecialEnemyKind.None).All(enemy => enemy.EvolutionStage == (wave >= EnemyEvolutionLibrary.MutationWave(enemy.Id) ? 1 : 0)), "Runtime original pools use correct evolutionary form, wave " + wave);
+                Require(arena.EnemyPool.Where(enemy => enemy.SpecialEnemy == SpecialEnemyKind.None && enemy.WaitingKind == WaitingEnemyKind.None).All(enemy => enemy.EvolutionStage == (wave >= EnemyEvolutionLibrary.MutationWave(enemy.Id) ? 1 : 0)), "Runtime original pools use correct evolutionary form, wave " + wave);
                 if (wave == 1) Require(arena.EnemyPool.All(enemy => enemy.Weapon.Kind == WeaponKind.Contact && enemy.Mutation == EnemyMutation.None), "Wave one remains contact-only, with no mutated projectiles");
             }
             Require(previous == 20, "All species evolved by late waves");

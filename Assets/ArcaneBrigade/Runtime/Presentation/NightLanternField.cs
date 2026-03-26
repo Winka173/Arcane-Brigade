@@ -50,15 +50,7 @@ namespace ArcaneBrigade
         public static int LastLoss {get;private set;}=-1;
         public static float LastLossAt {get;private set;}=-100;
         // Presentation-only noise: never consume the run/shop/combat random streams.
-        private static float Variation(int index,int seed,uint channel)
-        {
-            unchecked
-            {
-                uint n=(uint)seed ^ (uint)(index+1)*0x9e3779b9u ^ channel*0x85ebca6bu;
-                n^=n>>16;n*=0x7feb352du;n^=n>>15;n*=0x846ca68bu;n^=n>>16;
-                return (n & 0x00ffffffu)/16777215f;
-            }
-        }
+        private static float Variation(int index,int seed,uint channel)=>ArenaLayoutPlan.LanternNoise(index,seed,channel); // shared with the combat layout
         public static float HeightFor(int index,int seed)=>Mathf.Lerp(MinimumHeight,MaximumHeight,Variation(index,seed,3));
         public static float RestTiltFor(int index,int seed)
             =>(((index ^ seed)&1)==0?-1:1)*Mathf.Lerp(4.5f,10.5f,Variation(index,seed,4));
@@ -67,27 +59,19 @@ namespace ArcaneBrigade
             =>RestTiltFor(index,seed)+(reduced?0:DreamLevitation.Tilt(clock,MotionIdentity(index,seed),false,.65f));
         public static Vector2 PositionFor(int index,Vector2 size,int seed=0,bool shop=false)
         {
-            var h=size*.5f;
             Vector2 jitter=new Vector2(Variation(index,seed,1)*2-1,Variation(index,seed,2)*2-1);
             // Shop fixtures stay in their outer margins, clear of offers and interaction points.
             // (only a wish there: ShopLayout gives each shop lamp the nearest spot clear of stalls, chair path and props)
             if(shop && index<2)return new Vector2(index==0?-5.0f:-3.55f,index==0?-4.72f:.55f)+Vector2.Scale(jitter,new Vector2(.04f,.06f));
-            Vector2 anchor=index switch
-            {
-                0=>new Vector2(-Mathf.Min(6,h.x-2),-3.3f),1=>new Vector2(Mathf.Min(6,h.x-2),-3.3f),
-                2=>new Vector2(-Mathf.Min(6,h.x-2),2.2f),3=>new Vector2(Mathf.Min(6,h.x-2),2.2f),
-                4=>new Vector2(-h.x+3,h.y-3),5=>new Vector2(h.x-3,h.y-3),
-                6=>new Vector2(-h.x*.4f,-h.y+2.2f),_=>new Vector2(h.x*.4f,-h.y+2.2f)
-            };
-            Vector2 spread=index<4?new Vector2(1.35f,.85f):new Vector2(1.5f,.7f);
-            Vector2 position=anchor+Vector2.Scale(jitter,spread);
-            return new Vector2(Mathf.Clamp(position.x,-h.x+1.25f,h.x-1.25f),Mathf.Clamp(position.y,-h.y+1.3f,h.y-1.3f));
+            // in combat only a wish too: ArenaLayout gives each lamp the nearest spot clear of the other props
+            return ArenaLayoutPlan.LanternWish(index,size,seed);
         }
         public Vector2 FixtureAnchor(int index)
         {
             bool shop=owner.Session.State.Phase==SessionPhase.Shop;
             Vector2 wish=PositionFor(index,owner.WorldBounds,owner.Session.State.Seed,shop);
-            return shop && index<2 && ShopLayout.Active!=null && ShopLayout.Active.TryFoot("lantern"+index,out Vector2 foot)?foot:wish;
+            if(!shop)return ArenaLayout.Foot(owner,"lantern"+index,wish);
+            return index<2 && ShopLayout.Active!=null && ShopLayout.Active.TryFoot("lantern"+index,out Vector2 foot)?foot:wish;
         }
         /// <summary>Asks the shop layout for room for a shop lamp; false when this shop has none (the lamp stays dark and hidden).</summary>
         private bool ShopPlace(int index,int seed)
@@ -159,9 +143,9 @@ namespace ArcaneBrigade
             }
             for(int i=0;i<8;i++)
             {
-                int state=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0);bool fixtureVisible=!shop || i<2 && ShopPlace(i,seed);
-                Vector2 basePosition=FixtureAnchor(i);
-                float height=shop?Mathf.Min(HeightFor(i,seed),ShopLampHeight):HeightFor(i,seed),sizeRatio=height/2.7f,identity=MotionIdentity(i,seed);
+                int state=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0);Vector2 basePosition=FixtureAnchor(i);float fit=1;
+                bool fixtureVisible=shop?i<2 && ShopPlace(i,seed):ArenaLayout.Place(owner,"lantern"+i,ref basePosition,out fit);
+                float height=(shop?Mathf.Min(HeightFor(i,seed),ShopLampHeight):HeightFor(i,seed))*fit,sizeRatio=height/2.7f,identity=MotionIdentity(i,seed);
                 if(fixtureVisible){if(state==2)BrokenCount++;else LitCount++;}
                 bool firstFixture=modelStates[i]<0;
                 if(modelStates[i]!=state)
@@ -169,6 +153,7 @@ namespace ArcaneBrigade
                     sprites[i].sprite=pictures[state];modelStates[i]=state;
                 }
                 float light=!fixtureVisible || state==2?0:state==1?.5f:1;
+                if(!shop)light*=1-.85f*(owner.Simulation?.LanternDimming(i)??0); // a Lamp Snuffer pinching this flame (WaitingEnemies)
                 if(!PresentationSettings.ReducedFlashes && state==1)light*=.94f+Mathf.Sin(Clock*.8f+i)*.025f;
                 brightness[i]=firstFixture || PresentationSettings.ReducedMotion?light:Mathf.MoveTowards(brightness[i],light,Time.deltaTime*1.6f);
                 Vector3 hover=DreamLevitation.Offset(Clock,identity,NightmareRules.Depth(wave),PresentationSettings.ReducedMotion);

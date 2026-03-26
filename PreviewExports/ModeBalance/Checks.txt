@@ -1,4 +1,4 @@
-PASS Peaceful base unchanged 1
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 1
 PASS Strict HP difficulty ladder 1/1
 PASS Strict damage difficulty ladder 1/1
 PASS Strict density difficulty ladder 1/1
@@ -14,7 +14,7 @@ PASS Strict density difficulty ladder 4/1
 PASS Strict HP difficulty ladder 5/1
 PASS Strict damage difficulty ladder 5/1
 PASS Strict density difficulty ladder 5/1
-PASS Peaceful base unchanged 3
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 3
 PASS Strict HP difficulty ladder 1/3
 PASS Strict damage difficulty ladder 1/3
 PASS Strict density difficulty ladder 1/3
@@ -30,7 +30,7 @@ PASS Strict density difficulty ladder 4/3
 PASS Strict HP difficulty ladder 5/3
 PASS Strict damage difficulty ladder 5/3
 PASS Strict density difficulty ladder 5/3
-PASS Peaceful base unchanged 4
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 4
 PASS Strict HP difficulty ladder 1/4
 PASS Strict damage difficulty ladder 1/4
 PASS Strict density difficulty ladder 1/4
@@ -46,7 +46,7 @@ PASS Strict density difficulty ladder 4/4
 PASS Strict HP difficulty ladder 5/4
 PASS Strict damage difficulty ladder 5/4
 PASS Strict density difficulty ladder 5/4
-PASS Peaceful base unchanged 8
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 8
 PASS Strict HP difficulty ladder 1/8
 PASS Strict damage difficulty ladder 1/8
 PASS Strict density difficulty ladder 1/8
@@ -62,7 +62,7 @@ PASS Strict density difficulty ladder 4/8
 PASS Strict HP difficulty ladder 5/8
 PASS Strict damage difficulty ladder 5/8
 PASS Strict density difficulty ladder 5/8
-PASS Peaceful base unchanged 12
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 12
 PASS Strict HP difficulty ladder 1/12
 PASS Strict damage difficulty ladder 1/12
 PASS Strict density difficulty ladder 1/12
@@ -78,7 +78,7 @@ PASS Strict density difficulty ladder 4/12
 PASS Strict HP difficulty ladder 5/12
 PASS Strict damage difficulty ladder 5/12
 PASS Strict density difficulty ladder 5/12
-PASS Peaceful base unchanged 20
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 20
 PASS Strict HP difficulty ladder 1/20
 PASS Strict damage difficulty ladder 1/20
 PASS Strict density difficulty ladder 1/20
@@ -94,7 +94,7 @@ PASS Strict density difficulty ladder 4/20
 PASS Strict HP difficulty ladder 5/20
 PASS Strict damage difficulty ladder 5/20
 PASS Strict density difficulty ladder 5/20
-PASS Peaceful base unchanged 21
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 21
 PASS Strict HP difficulty ladder 1/21
 PASS Strict damage difficulty ladder 1/21
 PASS Strict density difficulty ladder 1/21
@@ -110,7 +110,7 @@ PASS Strict density difficulty ladder 4/21
 PASS Strict HP difficulty ladder 5/21
 PASS Strict damage difficulty ladder 5/21
 PASS Strict density difficulty ladder 5/21
-PASS Peaceful base unchanged 30
+PASS Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 30
 PASS Strict HP difficulty ladder 1/30
 PASS Strict damage difficulty ladder 1/30
 PASS Strict density difficulty ladder 1/30

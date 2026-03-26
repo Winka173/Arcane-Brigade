@@ -271,6 +271,7 @@ namespace ArcaneBrigade
             if ((RunPaths.K2Capture || RunPaths.K3FinalCapture || RunPaths.K7Capture) && presentationMoveTarget.HasValue && (simulation.Phase == RunPhase.Combat || RunPaths.K7Capture && simulation.Phase == RunPhase.Rest)) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
             if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
             if (SecretRoom != null && SecretRoom.MenuOpen) moveIntent = Vector2.zero;
+            if (Shop != null && !TransitionPending && !hallExitPending && simulation.Phase == RunPhase.Rest && !StoryConsumesInput && (SecretRoom == null || !SecretRoom.MenuOpen)) moveIntent = Shop.TapToWalk(moveIntent, arenaCamera);
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
             if (warning && !warningAudio && !pauseGate.Paused && !ArcaneCueLibrary.Available) audioFeedback.PlayCue(24, true);
@@ -339,7 +340,7 @@ namespace ArcaneBrigade
             {
                 if (stagePerformance != null) stagePerformance.Observe(value);
                 if (value.Kind == CombatEventKind.Pickup && value.Value > 0 && (value.Loot == LootKind.Coin || value.Loot == LootKind.Egg)) WalletPulse = 1;
-                if (value.Kind != CombatEventKind.Kill || value.Subject == null || deathFeedback == null) continue;
+                if (value.Kind != CombatEventKind.Kill || value.Subject == null || deathFeedback == null || value.Subject.Flung) continue; // a flung body flies (ImpactVisual) and bursts where it lands
                 float force = 1f + (value.Critical ? 0.7f : 0f) + Mathf.Min(1.3f, value.Value);
                 bool shown;
                 if (units.TryGetValue(value.SubjectId, out UnitVisual existing)) { existing.Display(simulation.VisualElapsed, 1); shown = deathFeedback.Play(existing, value.Subject, force); }
@@ -629,6 +630,8 @@ namespace ArcaneBrigade
             return renderer;
         }
 
+        private readonly HashSet<int> heldInCeremony = new HashSet<int>();
+        private WaveClearInk waveClearInk;
         private void Render(float interpolation)
         {
             long renderStarted = AnimationStressMeasurement.Recording ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;
@@ -651,11 +654,29 @@ namespace ArcaneBrigade
                     units.Add(state.Id, view);
                 }
                 view.ReducedMotion = profile != null && profile.ReducedMotion;
+                RaritySparkle.Ensure(view, state);
+                // a companion being starred up waits inside its ceremony and walks out of it afterwards
+                MergeReveal reveal = Shop != null ? Shop.Reveal : null;
+                if (state.Faction == Faction.Companion && reveal != null && reveal.Holds(state, out Vector2 stage))
+                {
+                    state.Position = state.PreviousPosition = stage;
+                    if (heldInCeremony.Add(state.Id)) view.SetTerminalFade(0);
+                }
+                else if (heldInCeremony.Remove(state.Id)) view.SetTerminalFade(1);
                 view.RestAttention = session != null && (session.State.Phase == SessionPhase.Shop || session.EndingChoicePending);
                 view.AttentionPoint = state.Faction == Faction.Companion ? simulation.Champion.Position : new Vector2(0, 2);
                 float poseTime = simulation.VisualElapsed + terminalVisualAge - (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? Time.fixedDeltaTime * (1 - interpolation) : 0);
                 view.Display(poseTime, interpolation);
-                if (terminalVisualAge > 0 && state.Faction == Faction.Enemy) view.SetTerminalFade(Mathf.Clamp01(1 - terminalVisualAge / 0.35f));
+                if (terminalVisualAge > 0 && state.Faction == Faction.Enemy)
+                {
+                    if (simulation.Phase == RunPhase.Victory)
+                    {
+                        float sink = Mathf.Clamp01((terminalVisualAge - WaveClearInk.SweepDelay(state.Position, arenaCamera)) / 0.3f);
+                        view.SetTerminalFade(1 - sink);
+                        if (sink > 0 && sink < 1) (waveClearInk ??= gameObject.AddComponent<WaveClearInk>()).Mark(state.Position, sink, state.Definition.Radius, state.Id);
+                    }
+                    else view.SetTerminalFade(Mathf.Clamp01(1 - terminalVisualAge / 0.35f));
+                }
             }
             // painted mechanics and weapon moments follow the units as drawn this frame (gauges, muzzles), so they come after them
             if (expandedVisual != null) { expandedVisual.ReducedMotion = profile != null && profile.ReducedMotion; expandedVisual.Display(simulation); }

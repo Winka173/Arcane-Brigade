@@ -66,7 +66,9 @@ namespace ArcaneBrigade
         /// <summary>Damage everything hostile in a circle; returns how many were struck.</summary>
         private int ArsenalBurst(UnitState source, WeaponDefinition weapon, Vector2 at, float radius, float damage, bool critical, CombatCause cause, float push = 0, float chill = 0, bool loud = true)
         {
+            if (source != null && source.Faction != Faction.Enemy) radius *= MeleeBalance.Area;
             int count = 0;
+            float floor = impactWeightFloor; impactWeightFloor = ImpactRules.BlastWeight; // R15: a blast throws enemies away from its centre
             for (int i = 0; i < units.Count; i++)
             {
                 UnitState target = units[i];
@@ -78,6 +80,7 @@ namespace ArcaneBrigade
                 if (chill > 0) target.ChillUntil = Mathf.Max(target.ChillUntil, Elapsed + chill);
                 if (push > 0) { target.Position = ClampPosition(target.Position + away * OctoberBalance.Push(target.Definition, push), target.Definition.Radius); spatial.Move(target); }
             }
+            impactWeightFloor = floor;
             if (loud && radius >= 0.6f) { ArsenalBursts++; events.Add(new CombatEvent(CombatEventKind.Detonation, at, source.Faction, radius, ArsenalAim(source), weapon, critical, cause: cause)); }
             return count;
         }
@@ -458,10 +461,11 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.ScoopLauncher:
                 {
-                    // thrown where the enemy will be; three flavours take turns (ember, frost, cream), at most three puddles
+                    // thrown where the enemy will be; three flavours take turns (ember, frost, cream). No puddle (the owner removed
+                    // every floor pool): the scoop splats once on what it lands on and the cold slows those enemies directly
                     Vector2 lead = target != null ? target.Position + Vector2.ClampMagnitude(target.Velocity * 0.5f, 1f) : point;
-                    ArsenalProp scoop = PlaceProp(ArsenalPropKind.Scoop, source, ClampPosition(lead, 0.3f), damage, 0.7f, critical, cause);
-                    scoop.Start = ArsenalMuzzle(source); scoop.LandAt = Elapsed + 0.5f; scoop.Until = scoop.LandAt + 2f; scoop.Stage = source.ArsenalBeat % 3;
+                    ArsenalProp scoop = PlaceProp(ArsenalPropKind.Scoop, source, ClampPosition(lead, 0.3f), damage * 1.4f, 0.7f, critical, cause);
+                    scoop.Start = ArsenalMuzzle(source); scoop.LandAt = Elapsed + 0.5f; scoop.Until = scoop.LandAt + 0.3f; scoop.Stage = source.ArsenalBeat % 3;
                     DropOldest(source, ArsenalPropKind.Scoop, 3);
                     return true;
                 }
@@ -478,14 +482,19 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.JugglingPins:
                 {
-                    if (OwnedProps(source, ArsenalPropKind.Pin) >= 2) return true;
-                    // the next pin picks another enemy than the last one
-                    UnitState mark = null; float best = Mathf.Pow(weapon.Range + 0.5f, 2);
-                    foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && u.Id != source.ArsenalLastTarget && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; mark = u; } }
-                    mark ??= target; if (mark == null) return true;
-                    source.ArsenalLastTarget = mark.Id;
-                    ArsenalProp pin = PlaceProp(ArsenalPropKind.Pin, source, mark.Position, damage, 0.45f, critical, cause);
-                    pin.Start = ArsenalMuzzle(source); pin.TargetId = mark.Id; pin.LandAt = Elapsed + 0.7f; pin.Until = pin.LandAt + 0.05f;
+                    // Juggling Jester's GRAND CIRCUS: every throw tosses two pins (at most four in the air)
+                    bool circus = source == Champion && HeroAwakening && Kit != null && Kit.Action == KitAction.Circus;
+                    for (int toss = 0; toss < (circus ? 2 : 1); toss++)
+                    {
+                        if (OwnedProps(source, ArsenalPropKind.Pin) >= (circus ? 4 : 2)) return true;
+                        // the next pin picks another enemy than the last one
+                        UnitState mark = null; float best = Mathf.Pow(weapon.Range + 0.5f, 2);
+                        foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && u.Id != source.ArsenalLastTarget && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; mark = u; } }
+                        mark ??= target; if (mark == null) return true;
+                        source.ArsenalLastTarget = mark.Id;
+                        ArsenalProp pin = PlaceProp(ArsenalPropKind.Pin, source, mark.Position, damage, 0.45f, critical, toss == 0 ? cause : cause.Child("circus-pin"));
+                        pin.Start = ArsenalMuzzle(source); pin.TargetId = mark.Id; pin.LandAt = Elapsed + 0.7f + toss * 0.12f; pin.Until = pin.LandAt + 0.05f;
+                    }
                     return true;
                 }
                 case ArsenalWeapon.SonarHarpoon:
@@ -988,6 +997,7 @@ namespace ArcaneBrigade
                         }
                         else move = p.Direction * (p.Kind == ArsenalPropKind.Batted ? 8f : 5.3f) * delta;
                         carried.Position = ClampPosition(carried.Position + move, carried.Definition.Radius); spatial.Move(carried);
+                        PullBump(carried, source.Definition.Weapon.Damage, source.Faction, NewCause(source.Id)); // V6
                         carried.ChillUntil = Mathf.Max(carried.ChillUntil, Elapsed + 0.2f);
                         p.Position = carried.Position;
                         if (p.Kind == ArsenalPropKind.Batted || Elapsed >= p.LandAt)
@@ -1111,18 +1121,19 @@ namespace ArcaneBrigade
                     {
                         if (Elapsed < p.LandAt) break;
                         DamageElement flavour = p.Stage == 0 ? DamageElement.Ember : p.Stage == 1 ? DamageElement.Frost : DamageElement.Physical;
-                        bool splat = !p.Resolved;
-                        if (splat || Elapsed >= p.NextTick)
+                        if (!p.Resolved)
                         {
-                            p.Resolved = true; p.NextTick = Elapsed + 0.3f;
+                            // one splat: the struck enemies are slowed 2s (bosses 0.5s); the frost scoop freezes ordinary ones 0.4s
+                            p.Resolved = true;
                             foreach (UnitState u in units.ToArray())
                             {
                                 if (!CanHit(source.Faction, u) || (u.Position - p.Position).sqrMagnitude > Mathf.Pow(p.Radius + u.Definition.Radius, 2)) continue;
-                                if (splat) ApplyWeaponDamage(u, p.Damage, source.Faction, flavour, weapon.Id, u.Position - p.Position, weapon, p.Critical, p.Cause);
-                                else ApplyDamage(u, p.Damage * 0.2f, source.Faction, weapon.Id, Vector2.zero, weapon, p.Critical, cause: p.Cause.Child("scoop-melt"));
-                                if (u.Alive && !u.Definition.IsBoss) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + 0.45f);
+                                ApplyWeaponDamage(u, p.Damage, source.Faction, flavour, weapon.Id, u.Position - p.Position, weapon, p.Critical, p.Cause);
+                                if (!u.Alive) continue;
+                                u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + (u.Definition.IsBoss ? 0.5f : 2f));
+                                if (p.Stage == 1 && !u.Definition.IsBoss && source.Faction != Faction.Enemy) Freeze(u, 0.4f);
                             }
-                            if (splat) { ArsenalBursts++; events.Add(new CombatEvent(CombatEventKind.Detonation, p.Position, source.Faction, p.Radius, p.Direction, weapon, p.Critical, cause: p.Cause)); }
+                            ArsenalBursts++; events.Add(new CombatEvent(CombatEventKind.Detonation, p.Position, source.Faction, p.Radius, p.Direction, weapon, p.Critical, cause: p.Cause));
                         }
                         if (Elapsed > p.Until) arsenalProps.Remove(p);
                         break;

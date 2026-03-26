@@ -43,6 +43,11 @@ namespace ArcaneBrigade
                 "Burgerboo" => new[] { "Dinner is ready. Stand well back.", "No nightmare leaves my kitchen hungry." },
                 "Original:LanternWeaver" => new[] { "The light holds where the thread is tied.", "I stitched a path through this darkness." },
                 "Original:HourglassStag" => new[] { "A grain of time for every friend.", "We cannot stop the night. We can soften its steps." },
+                "Original:KiteAdmiral" => new[] { "Fair wind, everyone. Strings in hand!", "A fleet is only paper until it flies together." },
+                "Original:SundaeDuchess" => new[] { "Do not let it melt before it is shared.", "A cold treat for a long night." },
+                "Original:BonsaiClocksmith" => new[] { "Prune a little, wind a little, wait a little.", "Every tick is a leaf that grew on time." },
+                "Original:JugglingJester" => new[] { "Five in the air and not one dropped. Yet.", "Laugh now. The pins come down later." },
+                "Original:BellDiver" => new[] { "Hold your breath. I hear something below.", "The deep is quiet if you listen properly." },
                 _ => new[] { "I wrote the rain down before it forgot us.", "Every raindrop knows a way home." }
             };
             return lines[Math.Abs(index % lines.Length)];

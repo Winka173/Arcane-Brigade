@@ -125,6 +125,18 @@ namespace ArcaneBrigade
 
         public void Skip() { queue.Clear(); ClearStage(); }
 
+        /// <summary>True while a ceremony (playing or waiting) is for this unit: the real unit stays hidden where the
+        /// ceremony stands and steps out of it when it ends, instead of appearing somewhere nearby.</summary>
+        public bool Holds(UnitState unit, out Vector2 at)
+        {
+            at = default;
+            if (unit == null || unit.Faction != Faction.Companion || unit.Definition == null || unit.Definition.Weapon == null) return false;
+            bool Match(Beat beat) => beat.Result.UnitId == unit.Definition.Id && beat.Result.WeaponId == unit.Definition.Weapon.Id && beat.Result.Tier == unit.Definition.CombatTier;
+            if (active != null && Match(active)) { at = active.Position + Vector2.up * 1.3f; return true; }
+            foreach (Beat beat in queue) if (Match(beat)) { at = beat.Position + Vector2.up * 1.3f; return true; }
+            return false;
+        }
+
         private bool Grand => active != null && !active.Altar && active.Result.Tier >= 3;
         private float Finish => Grand ? GrandFinishAt : FinishAt;
         /// <summary>The ceremony's clock: a three-star holds one frame for GrandHold when the braid knots.</summary>

@@ -19,6 +19,10 @@ namespace ArcaneBrigade
         private BuildMorphVisual morphVisual;
         private HeroIdentityVisual heroVisual;
         private BossTrademarkVisual trademarkVisual;
+        private WaitingEnemyVisual waitingVisual;
+        private ImpactVisual impactVisual;
+        private ImpactWords impactWords;
+        private RangedFeelVisual rangedVisual;
         private MaterialPropertyBlock tint;
         public bool ReducedMotion;
         public int VisibleCount { get; private set; }
@@ -28,6 +32,14 @@ namespace ArcaneBrigade
             heroVisual.Display(simulation);
             if (trademarkVisual == null) trademarkVisual = gameObject.AddComponent<BossTrademarkVisual>();
             trademarkVisual.Display(simulation);
+            if (waitingVisual == null) waitingVisual = gameObject.AddComponent<WaitingEnemyVisual>();
+            waitingVisual.Display(simulation);
+            if (impactVisual == null) impactVisual = gameObject.AddComponent<ImpactVisual>();
+            impactVisual.Display(simulation);
+            if (impactWords == null) impactWords = gameObject.AddComponent<ImpactWords>();
+            impactWords.Display(simulation);
+            if (rangedVisual == null) { rangedVisual = GetComponent<RangedFeelVisual>(); if (rangedVisual == null) rangedVisual = gameObject.AddComponent<RangedFeelVisual>(); }
+            rangedVisual.Display(simulation);
             if (morphVisual == null) morphVisual = gameObject.AddComponent<BuildMorphVisual>();
             morphVisual.Display(simulation, ReducedMotion || PresentationSettings.ReducedMotion);
             if (tint == null) tint = new MaterialPropertyBlock();

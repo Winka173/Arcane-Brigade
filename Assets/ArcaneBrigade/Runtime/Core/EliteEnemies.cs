@@ -21,7 +21,7 @@ namespace ArcaneBrigade
             UnitDefinition elite = Object.Instantiate(kind);
             elite.Health = kind.Health * 4.5f; elite.Radius = kind.Radius * 1.2f; elite.BodyScale = kind.BodyScale * 1.3f;
             elite.Tint = Color.Lerp(kind.Tint, new Color(1f, .82f, .45f), .45f); elite.KnockbackResistance = Mathf.Max(kind.KnockbackResistance, .6f);
-            elite.DisplayName = "Gilded " + kind.DisplayName;
+            elite.DisplayName = "Indebted " + RunUICopy.UnitName(kind); // Docs/Enemy_Roster_v2.md §2.6
             float angle = (float)spawnRandom.NextDouble() * Mathf.PI * 2;
             Vector2 at = ClampPosition(Champion.Position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 8.5f, .6f);
             UnitState unit = Spawn(elite, Faction.Enemy, at); unit.Elite = true;

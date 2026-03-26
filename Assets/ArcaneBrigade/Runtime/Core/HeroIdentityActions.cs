@@ -52,9 +52,13 @@ namespace ArcaneBrigade
                         ObservePersonalHit(target, e);
                         Fill(GaugeSource.Hit);
                         if (e.Critical) Fill(GaugeSource.Crit);
-                        if ((target.Position - Champion.Position).sqrMagnitude > 16) Fill(GaugeSource.FarHit);
                     }
+                    // Kite Admiral: any of the hero's own hits beyond 4 units (the kite's string and dive too), never the transformation's
+                    if (personal && (target.Position - Champion.Position).sqrMagnitude > 16) Fill(GaugeSource.FarHit);
                     else if (e.Critical && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion) Fill(GaugeSource.FriendCrit);
+                    // Sundae Duchess: a crit (ours or a friend's) cracks a frozen enemy for 5% of its maximum health
+                    if (e.Critical && k != null && k.Has(KitPassive.FrozenCritShatter) && target.Alive && !target.Definition.IsBoss && target.FrozenUntil > Elapsed)
+                        ApplyDamage(target, target.Definition.Health * k.Value(KitPassive.FrozenCritShatter), Faction.Champion, "Shatter", e.Direction, cause: IdentityCause().Child("frozen-shatter"));
                     if (!personal && k != null && k.Has(KitPassive.SlowToFreeze) && target.Alive && (target.ChillUntil > Elapsed || target.KitSlowUntil > Elapsed) && target.FreezeReadyAt <= Elapsed
                         && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion)
                     { target.FreezeReadyAt = Elapsed + k.Value(KitPassive.SlowToFreeze); Freeze(target, .3f); }
@@ -80,6 +84,12 @@ namespace ArcaneBrigade
         private void ObserveOwnEvent(CombatEvent e)
         {
             if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null && IdentityId == "StormFencer") e.Subject.KitShockedUntil = Elapsed + 3;
+            // the transformations that leave a state on what they strike: the giant scoops freeze, the bell's ram probes
+            if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null && e.Subject.Alive && HeroAwakening && Kit != null)
+            {
+                if (Kit.Action == KitAction.SundaeRain) Freeze(e.Subject, .8f);
+                if (Kit.Action == KitAction.DivingBell) e.Subject.ProbedUntil = Mathf.Max(e.Subject.ProbedUntil, Elapsed + 3);
+            }
             if (e.Kind == CombatEventKind.Hit && e.Subject != null && e.Subject == identityBounty && HeroAwakening && Kit?.Action == KitAction.AcornGun && Elapsed >= kitBountyCoinAt)
             { kitBountyCoinAt = Elapsed + .5f; KitDropCoin(e.Subject.Position); }
             if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy) ObserveKill(e, true);
@@ -113,7 +123,26 @@ namespace ArcaneBrigade
                 if (k.Has(KitPassive.CoinOnRearHit) && lootRandom.NextDouble() < k.Value(KitPassive.CoinOnRearHit)) KitDropCoin(target.Position);
             }
             if (k.Has(KitPassive.HeroHealPerHits) && ++kitHitsForHeal >= k.Value(KitPassive.HeroHealPerHits)) { kitHitsForHeal = 0; Heal(1, IdentityCause()); }
+            // Bell Diver: probed enemies fill the depth gauge faster and may shake loose a coin
+            if (target.ProbedUntil > Elapsed)
+            {
+                Fill(GaugeSource.Probed);
+                if (k.Has(KitPassive.ProbedCoin) && kitProbedCoins < 5 && lootRandom.NextDouble() < k.Value(KitPassive.ProbedCoin)) { kitProbedCoins++; KitDropCoin(target.Position); }
+            }
+            // Juggling Jester: a crit tosses a ball that drops on a random enemy for half the blow
+            if (e.Critical && k.Has(KitPassive.CritBall) && Elapsed >= kitBallAt)
+            {
+                UnitState pick = null; int seen = 0;
+                foreach (var u in units) { if (!CanHit(Faction.Champion, u) || (u.Position - Champion.Position).sqrMagnitude > 49) continue; if (combatRandom.Next(++seen) == 0) pick = u; }
+                if (pick != null)
+                {
+                    kitBallAt = Elapsed + .3f; const float flight = .6f;
+                    IdentityHit(MorphGeometry.Disc, pick.Position, pick.Position, .45f, e.Value * k.Value(KitPassive.CritBall) * ApproachScale, flight, 1);
+                    IdentityGlyph(MorphGeometry.Line, Champion.Position + Vector2.up * .4f, pick.Position, 0, flight, role: HeroGlyphRole.Lob);
+                }
+            }
         }
+        private int kitProbedCoins, kitFrozenGold; private float kitBallAt;
         /// <summary>A chain of lightning from one enemy to the next nearest.</summary>
         private void KitChain(UnitState from, float budget)
         {
@@ -140,6 +169,11 @@ namespace ArcaneBrigade
             if (Marked(dead) && k.Has(KitPassive.CoinOnMarkedKill) && lootRandom.NextDouble() < k.Value(KitPassive.CoinOnMarkedKill)) KitDropCoin(dead.Position);
             if (k.Has(KitPassive.KillCoinsNearHero) && (dead.Position - Champion.Position).sqrMagnitude <= 2.5f * 2.5f && lootRandom.NextDouble() < k.Value(KitPassive.KillCoinsNearHero)) KitDropCoin(dead.Position);
             if (dead == identityDebtor && k.Has(KitPassive.DebtKillGold)) KitDropCoin(dead.Position, Mathf.RoundToInt(k.Value(KitPassive.DebtKillGold)));
+            if (dead.FrozenUntil > 0 && dead.FrozenUntil > Elapsed - .05f) // frozen when it fell (0 = never frozen)
+            {
+                Fill(GaugeSource.FrozenKill);
+                if (k.Has(KitPassive.FrozenKillGold) && kitFrozenGold < k.Value(KitPassive.FrozenKillGold)) { kitFrozenGold++; KitDropCoin(dead.Position); }
+            }
             if (k.Has(KitPassive.EliteEgg) && !dead.Definition.IsBoss && (dead.Definition.Radius >= .4f || dead.Variant != null && dead.Variant.ProcessionLeader)) DropLoot(LootKind.Egg, dead.Position, 1);
         }
         private void ObserveInjury(CombatEvent e)

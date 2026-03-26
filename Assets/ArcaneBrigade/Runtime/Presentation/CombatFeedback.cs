@@ -37,6 +37,7 @@ namespace ArcaneBrigade
             public float Amount;
             public bool Critical;
             public float Life = 0.55f;
+            public float Shake;   // a long-range critical's number trembles (RangedFeel.LongShot)
         }
         private readonly List<DamageNumber> numbers = new List<DamageNumber>();
         private Font font;
@@ -139,6 +140,7 @@ namespace ArcaneBrigade
                     existing.View.text = Mathf.CeilToInt(existing.Amount) + (existing.Critical ? "!" : "");
                     foreach (TextMesh outline in existing.Outlines) outline.text = existing.View.text;
                     existing.Age = Mathf.Min(existing.Age, 0.04f); // a merged number pops again
+                    if (RangedFeel.LongShot(combatEvent)) existing.Shake = 1;
                     return;
                 }
             }
@@ -195,6 +197,8 @@ namespace ArcaneBrigade
             number.Age = 0f;
             number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
             float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
+            number.Shake = !champion && RangedFeel.LongShot(combatEvent) ? 1 : 0;
+            if (number.Shake > 0) size *= 1.35f; // a long shot's critical reads bigger
             number.Scale = size;
             float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
             number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);
@@ -222,7 +226,8 @@ namespace ArcaneBrigade
                     number.Velocity += Vector2.down * 6.5f * deltaTime;
                     number.Velocity.x *= 1f - Mathf.Min(1f, deltaTime * 2.5f);
                 }
-                number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
+                float tremble = number.Shake > 0 && !PresentationSettings.ReducedMotion ? Mathf.Sin(number.Age * 70f) * 0.07f * number.Shake * Mathf.Clamp01(1f - number.Age / 0.45f) : 0f;
+                number.View.transform.position = new Vector3(number.Position.x + tremble, number.Position.y, -2f);
                 float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01(1f - number.Age / 0.1f);
                 number.View.transform.localScale = new Vector3(1f + 0.55f * pop, 1f + 0.35f * pop, 1);
                 number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01((1f - number.Age / number.Life) * 3f));

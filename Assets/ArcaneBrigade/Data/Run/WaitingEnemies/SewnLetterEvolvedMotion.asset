@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SewnLetterEvolvedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 541477606, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: -181042938, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  Walk:
+  - {fileID: -706808964, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: 1751474255, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: -706808964, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: 1751474255, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  Windup:
+  - {fileID: 1290994030, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: -1506521431, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  Release:
+  - {fileID: -881085483, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: -881085483, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  Recovery:
+  - {fileID: 2145562030, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  - {fileID: 541477606, guid: 74f690090744072498d9fee4a8cd5180, type: 3}
+  IllustratedHeight: 0

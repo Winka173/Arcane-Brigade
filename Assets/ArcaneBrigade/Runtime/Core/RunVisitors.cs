@@ -23,6 +23,8 @@ namespace ArcaneBrigade
     public sealed class VisitorOption
     {
         public string Label; public string Icon; public bool Enabled = true; public int Value;
+        /// <summary>For the card: the gold this plate pays out (a relic sold or pawned) and a friend's stars.</summary>
+        public int Gold, Tier;
     }
 
     /// <summary>The visitors of the dream shop, run side: they arrive every 2-3 shops from wave 3 (their own seeded roll), wait
@@ -91,7 +93,7 @@ namespace ArcaneBrigade
                     {
                         RosterEntry r = State.Roster[i];
                         if (StorySpecies(r.UnitId) || v.Id == "Ferryman" && r.Tier != 1) continue;
-                        list.Add(new VisitorOption { Label = RunUICopy.UnitName(catalog.Unit(r.UnitId)) + " " + r.Tier + "-star", Icon = "unit:" + r.UnitId, Enabled = afford, Value = i });
+                        list.Add(new VisitorOption { Label = RunUICopy.UnitName(catalog.Unit(r.UnitId)) + " " + r.Tier + "-star", Icon = "unit:" + r.UnitId, Enabled = afford, Value = i, Tier = r.Tier });
                     }
                     break;
             }
@@ -103,8 +105,9 @@ namespace ArcaneBrigade
             foreach (ItemStack s in State.Items)
             {
                 ItemDefinition item = catalog.Item(s.Id); if (item == null) continue;
-                string label = item.Name + (v.Id == "JunkCollector" ? " (+" + Mathf.RoundToInt(item.Price * .6f) + ")" : v.Id == "Pawnbroker" ? " (+" + item.Price / 2 + ")" : "");
-                list.Add(new VisitorOption { Label = label, Icon = "item:" + s.Id, Value = State.Items.IndexOf(s) });
+                int gold = v.Id == "JunkCollector" ? Mathf.RoundToInt(item.Price * .6f) : v.Id == "Pawnbroker" ? item.Price / 2 : 0;
+                string label = item.Name + (gold > 0 || v.Id == "JunkCollector" || v.Id == "Pawnbroker" ? " (+" + gold + ")" : "");
+                list.Add(new VisitorOption { Label = label, Icon = "item:" + s.Id, Value = State.Items.IndexOf(s), Gold = gold });
             }
         }
 

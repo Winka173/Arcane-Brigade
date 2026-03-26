@@ -1,0 +1,196 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    /// <summary>Draws the roster v2 enemies' marks (WaitingEnemies) in storybook ink, in enemy colours (wine, bile, ember):
+    /// the seat ring and its amber glow, the CLOSED ink stamp, the telephone cord and its ring, the knock rings, the tally
+    /// marks and their slash, the sitter's thread, the snuffer's smoke to its lantern, PAID stamps over enemies and the
+    /// Indebted elite's receipt stamp (IndebtedStamp_v1, once painted). The floor layer sits just above the night fog
+    /// (sorting 800) and below every body, so the warnings stay readable in the dark.</summary>
+    public sealed class WaitingEnemyVisual : MonoBehaviour
+    {
+        private InkCanvas floor;
+        private ArsenalInk ink;
+        private bool drawn;
+        private static readonly InkPalette Wine = ArsenalInk.Wine;
+        private static readonly InkPalette Bile = new InkPalette(new Color(.2f, .04f, .1f), new Color(.62f, .14f, .32f), new Color(.98f, .68f, .76f), new Color(.95f, .35f, .45f), new Color(.98f, .72f, .35f));
+        private static readonly InkPalette Ember = new InkPalette(new Color(.22f, .08f, .05f), new Color(.95f, .45f, .18f), new Color(1, .88f, .62f), new Color(1, .6f, .3f), new Color(.55f, .12f, .2f));
+        private static readonly InkPalette Soot = new InkPalette(new Color(.04f, .03f, .06f), new Color(.14f, .12f, .2f), new Color(.55f, .5f, .65f), new Color(.4f, .35f, .6f), new Color(.9f, .5f, .3f));
+        private static readonly Color AmberGlow = new Color(1, .66f, .28f);
+        // what the last frame showed (read by checks)
+        public int Marks { get; private set; }
+        public int Stamps { get; private set; }
+
+        private static Color A(Color c, float alpha) { c.a = Mathf.Clamp01(alpha); return c; }
+
+        public void Display(CombatSimulation simulation)
+        {
+            Marks = Stamps = 0;
+            bool live = simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
+            bool any = live && simulation.WaitingMarks.Count > 0;
+            Sprite indebted = WaitingEnemyRoster.Current?.IndebtedStamp;
+            if (live && !any)
+                foreach (UnitState unit in simulation.Units)
+                    if (unit.Alive && unit.Faction == Faction.Enemy && (unit.Waiting != null && (unit.Waiting.Paid || unit.Waiting.Kind == WaitingEnemyKind.LampSnuffer && unit.Waiting.Step == 1) || unit.Elite && indebted != null)) { any = true; break; }
+            if (!any)
+            {
+                if (drawn) { floor.Clear(); floor.Commit(); ink.Begin(); ink.End(); drawn = false; }
+                return;
+            }
+            if (floor == null) { floor = new InkCanvas(transform, "Waiting enemy floor ink", 802); ink = new ArsenalInk(transform, 804, 2140); }
+            floor.Clear(); ink.Begin(); drawn = true;
+            float now = simulation.Elapsed; bool still = PresentationSettings.ReducedMotion;
+            foreach (WaitingMark mark in simulation.WaitingMarks) { Draw(mark, now, still); Marks++; }
+            foreach (UnitState unit in simulation.Units)
+            {
+                if (!unit.Alive || unit.Faction != Faction.Enemy) continue;
+                float height = unit.Definition.BodyHeight * Mathf.Max(.1f, unit.Definition.BodyScale);
+                if (unit.Waiting != null && unit.Waiting.Paid)
+                {
+                    // PAID: a wine receipt seal stamped over the enemy, with a coin hanging from it
+                    float pop = still ? 1 : Mathf.Clamp01((now - unit.Waiting.PaidAt) / .18f);
+                    Vector2 over = unit.Position + Vector2.up * (height + .28f + unit.BodyLift);
+                    ink.Token(InkToken.Seal, Wine, over, .34f * Mathf.Lerp(1.6f, 1, pop), still ? 0 : -14, pop);
+                    ink.Token(InkToken.Coin, ArsenalInk.Gold, over + new Vector2(.16f, -.12f), .15f, 0, .9f * pop);
+                    Stamps++;
+                }
+                if (unit.Elite && indebted != null)
+                {
+                    ink.Place(indebted, unit.Position + Vector2.up * (height * .5f + unit.BodyLift), .42f * Mathf.Max(.6f, unit.Definition.BodyScale), still ? 0 : -12, new Color(1, 1, 1, .92f), true);
+                    Stamps++;
+                }
+                if (unit.Waiting != null && unit.Waiting.Kind == WaitingEnemyKind.LampSnuffer && unit.Waiting.Step == 1 && simulation.WaitingLantern(unit.Waiting.Lantern, out Vector2 lamp))
+                {
+                    // a thread of black fog pulled from the flame into the snuffer's cone
+                    Vector2 flame = lamp + Vector2.up * 1.05f, hand = unit.Position + Vector2.up * height * .6f;
+                    float dim = simulation.LanternDimming(unit.Waiting.Lantern);
+                    var path = new List<Vector2>(InkCanvas.Lob(flame, hand, .35f, 14));
+                    ink.Ribbon(path, Soot, .07f, 1, 0, .55f + .35f * dim, false);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float t = still ? (i + .5f) / 3 : Mathf.Repeat(now * .7f + i / 3f, 1);
+                        ink.Token(InkToken.Puff, Soot, InkCanvas.Sample(path, t) + Vector2.up * .05f * Mathf.Sin(now * 3 + i), .2f * (1 - .4f * t), 0, .7f * (1 - t * t));
+                    }
+                }
+            }
+            floor.Commit(); ink.End();
+        }
+
+        private void Draw(WaitingMark m, float now, bool still)
+        {
+            float lead = Mathf.Max(.05f, m.At - m.Created), charge = Mathf.Clamp01((now - m.Created) / lead);
+            bool warning = now < m.At;
+            float fade = Mathf.Clamp01((m.Until - now) / .3f);
+            float seed = m.A.x * 13 + m.A.y * 7 + m.Index;
+            switch (m.Kind)
+            {
+                case WaitingMarkKind.SeatRing:
+                {
+                    // the seat unfolds under the hero: amber light pooling toward a broken wine rim that closes as it snaps
+                    float alpha = warning ? Mathf.SmoothStep(0, 1, charge) : fade;
+                    float r = m.Radius * (!warning && m.Hit ? Mathf.Lerp(.82f, .9f, fade) : 1);
+                    floor.Sector(m.A, r, 0, 360, A(AmberGlow, .04f * alpha), A(AmberGlow, (warning ? .3f : .45f) * alpha));
+                    float gap = warning ? Mathf.Lerp(30, 6, charge) : 3, turn = still ? 0 : now * 20;
+                    for (int k = 0; k < 4; k++)
+                        floor.Stroke(InkCanvas.Arc(m.A, r, r, turn + k * 90 + gap * .5f, turn + (k + 1) * 90 - gap * .5f), InkStroke.Of(Wine, .075f, .92f * alpha, seed + k));
+                    if (warning) floor.Stroke(InkCanvas.Arc(m.A, r * .84f, r * .84f, 90, 90 - 360 * charge), InkStroke.Of(Ember, .05f, .85f));
+                    for (int k = 0; k < 4; k++)
+                    {
+                        float a = (turn + k * 90 + 45) * Mathf.Deg2Rad;
+                        ink.Token(InkToken.Button, Wine, m.A + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r, .17f, 0, .9f * alpha, false);
+                    }
+                    if (!warning && m.Hit) ink.Token(InkToken.Knot, Wine, m.A + Vector2.up * .35f, .34f, still ? 0 : now * 60, fade);
+                    break;
+                }
+                case WaitingMarkKind.ClosedPatch:
+                    if (warning)
+                    {
+                        // the stamp coming down: a seal falling onto a pulsing dashed rim
+                        for (int k = 0; k < 6; k++) floor.Stroke(InkCanvas.Arc(m.A, m.Radius, m.Radius, k * 60 + 8, k * 60 + 44), InkStroke.Of(Wine, .05f, .7f * charge, seed + k));
+                        ink.Token(InkToken.Seal, Wine, m.A + Vector2.up * (1 - charge) * .9f, .3f + .25f * charge, still ? 0 : -10, charge);
+                    }
+                    else
+                    {
+                        float life = Mathf.Clamp01((m.Until - now) / .6f);
+                        Vector2 bar = new Vector2(m.Radius * .62f, m.Radius * .14f);
+                        floor.Stroke(InkCanvas.Line(m.A - bar, m.A + bar), InkStroke.Of(Soot, .11f, .85f * life, seed));
+                        floor.Stroke(InkCanvas.Line(m.A - bar + Vector2.up * .14f, m.A + bar + Vector2.up * .14f), InkStroke.Of(Soot, .05f, .6f * life, seed + 1));
+                        ink.Token(InkToken.Seal, Wine, m.A + new Vector2(m.Radius * .55f, m.Radius * .35f), .26f, -10, .8f * life, false);
+                    }
+                    break;
+                case WaitingMarkKind.CordPreview:
+                {
+                    // the telephone rings: notes jump off it and the cord's path is dotted across the floor
+                    Vector2 axis = m.B - m.A; float length = axis.magnitude; if (length < .05f) break;
+                    int dashes = Mathf.Clamp(Mathf.CeilToInt(length * 2.2f), 4, 24);
+                    for (int i = 0; i < dashes; i++)
+                    {
+                        float f0 = (i + .1f) / dashes, f1 = (i + .55f) / dashes;
+                        if (f0 > charge) break;
+                        floor.Stroke(InkCanvas.Line(m.A + axis * f0, m.A + axis * f1), InkStroke.Of(Bile, .06f, .8f * charge, seed + i));
+                    }
+                    for (int i = 0; i < 2; i++)
+                        ink.Token(InkToken.Note, Bile, m.A + new Vector2((i - .5f) * .4f, .95f + (still ? 0 : Mathf.Abs(Mathf.Sin(now * 14 + i)) * .2f)), .22f, still ? 0 : Mathf.Sin(now * 20 + i) * 20, charge);
+                    break;
+                }
+                case WaitingMarkKind.Cord:
+                {
+                    // the pinned cord: a coiled inked wire with sparks running along it
+                    float alpha = Mathf.Min(fade, Mathf.Clamp01((now - m.At) / .12f));
+                    floor.Stroke(InkCanvas.Line(m.A, m.B, .07f, 7, false, seed), InkStroke.Of(Soot, .11f, alpha, seed));
+                    floor.Stroke(InkCanvas.Line(m.A, m.B, .05f, 7, false, seed + 2), InkStroke.Of(Bile, .05f, .8f * alpha, seed + 1));
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float t = still ? (i + .5f) / 3 : Mathf.Repeat(now * 1.3f + i / 3f, 1);
+                        ink.Token(InkToken.Spark, Ember, Vector2.Lerp(m.A, m.B, t), .2f, still ? 0 : now * 400 + i * 90, alpha);
+                    }
+                    break;
+                }
+                case WaitingMarkKind.KnockRing:
+                {
+                    // the next knock's reach, inked in as its beat comes round (the knock itself is the shockwave hazard)
+                    float k = Mathf.Clamp01(1 - (m.At - now) / CombatSimulation.KnockBeat);
+                    if (k <= 0) break;
+                    float alpha = warning ? k : fade;
+                    floor.Sector(m.A, m.Radius, 0, 360, A(Ember.Body, 0), A(Ember.Body, .16f * alpha));
+                    floor.Ticks(m.A, m.Radius, m.Index >= 2 ? 18 : 12, .2f, .045f, seed, A(Ember.Ink, .8f * alpha));
+                    for (int q = 0; q < 3; q++) floor.Stroke(InkCanvas.Arc(m.A, m.Radius, m.Radius, q * 120 + 10, q * 120 + 100), InkStroke.Of(Ember, .045f, .7f * alpha, seed + q));
+                    break;
+                }
+                case WaitingMarkKind.Tally:
+                {
+                    float draw = still ? 1 : Mathf.Clamp01((now - m.Created) / .15f), life = Mathf.Clamp01((m.Until - now) / .5f);
+                    floor.Stroke(InkCanvas.Line(m.A, m.B), new InkStroke { Width = .085f, Head = draw, Tail = 0, Taper = 1.1f, Alpha = .95f * life, Ink = Soot.Ink, Body = Soot.Body, Light = Ember.Light, LightOffset = .12f, Seed = seed });
+                    ink.Light((m.A + m.B) * .5f, .45f, Ember.Glow, .3f * life);
+                    break;
+                }
+                case WaitingMarkKind.SlashLine:
+                    // the ruler line the fifth stroke will follow, drawn out over the wind-up
+                    floor.Band(m.A, m.B, m.Radius, A(Ember.Body, .04f * charge), A(Ember.Body, .2f * charge));
+                    floor.Stroke(InkCanvas.Line(m.A, m.B), new InkStroke { Width = .05f, Head = charge, Tail = 0, Taper = .6f, Alpha = .9f, Ink = Ember.Ink, Body = Ember.Body, Light = Ember.Light, LightOffset = .12f, Seed = seed });
+                    break;
+                case WaitingMarkKind.Slash:
+                {
+                    float p = Mathf.Clamp01((now - m.At) / Mathf.Max(.05f, m.Until - m.At));
+                    float head = still ? 1 : Mathf.Clamp01(p * 3), tail = still ? 0 : Mathf.Clamp01((p - .3f) / .7f);
+                    ink.Stroke(m.A, m.B, Ember, .17f, head, tail, 1 - p * p);
+                    ink.Stroke(m.A, m.B, Wine, .07f, head, tail, .9f * (1 - p));
+                    for (int i = 0; i < 3; i++) ink.Token(InkToken.Page, ArsenalInk.Cream, Vector2.Lerp(m.A, m.B, (i + 1) / 4f) + Vector2.up * p * .4f * (i % 2 == 0 ? 1 : -1), .2f, still ? 0 : p * 300 + i * 70, 1 - p);
+                    break;
+                }
+                case WaitingMarkKind.Thread:
+                {
+                    // the sitter's ink thread, stretched taut from its sleeve to the hero
+                    float alpha = Mathf.Min(fade, Mathf.Clamp01((now - m.At) / .15f));
+                    Vector2 sleeve = m.A + Vector2.up * .55f, hero = m.B + Vector2.up * .4f;
+                    ink.Cord(sleeve, hero, Soot, .07f, false, alpha);
+                    ink.Token(InkToken.Puff, ArsenalInk.Dust, Vector2.Lerp(sleeve, hero, still ? .5f : Mathf.Repeat(now * .5f, 1)), .18f, 0, .6f * alpha);
+                    break;
+                }
+            }
+        }
+
+        private void OnDestroy() { ink?.Destroy(); }
+    }
+}

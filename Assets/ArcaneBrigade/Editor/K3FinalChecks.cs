@@ -23,6 +23,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Items.Add(new ItemStack { Id = "chest-thunder", Count = 1 });
                 CheckpointCatalog combat = session.PrepareCombat();
                 combat.EnemyBudget = 0; combat.EggDropChance = combat.HeartDropChance = 0; combat.ChestInterval = 1000; combat.PassiveHeal = 0;
+                combat.CoinValueScale = 1; // these fixtures test pickup and proc plumbing, not the round-3 coin value (0.75)
                 var simulation = new CombatSimulation(combat); simulation.Start(13103);
                 foreach (UnitState unit in simulation.Units) unit.NextPassive = float.PositiveInfinity;
                 simulation.Champion.Health = 30;
@@ -32,7 +33,7 @@ namespace ArcaneBrigade.Editor
                 simulation.Pause(true); Tick(simulation, 60);
                 require(simulation.Gold == 0 && simulation.Eggs == 0 && simulation.Champion.Health == 30 && simulation.Pickups.Count == 3, "Pause freezes every loot type and proc");
                 simulation.Pause(false); Tick(simulation, 120);
-                require(simulation.Gold == 3 && simulation.Eggs == 2 && simulation.Champion.Health == 39 && simulation.Pickups.Count == 0, "Coin egg heart credit once; only coin triggers stack healing");
+                require(simulation.Gold == Mathf.FloorToInt(3 * combat.CoinValueScale + 1e-4f) && simulation.Eggs == 2 && simulation.Champion.Health == 39 && simulation.Pickups.Count == 0, "Coin egg heart credit once; only coin triggers stack healing");
                 foreach (UnitState unit in simulation.Units) { unit.NextAttack = float.PositiveInfinity; unit.PendingAttack = false; }
                 UnitState enemy = simulation.AddFixture(combat.MeleeEnemy, Faction.Enemy, new Vector2(1, 0));
                 enemy.Health = 5; enemy.NextAttack = float.PositiveInfinity;

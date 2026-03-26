@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SpareChairEvolvedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -337973363, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: -664432403, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  Walk:
+  - {fileID: -138775989, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: 986908140, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: -138775989, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: 986908140, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  Windup:
+  - {fileID: 590208835, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: -237865349, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  Release:
+  - {fileID: 145283498, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: 145283498, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  Recovery:
+  - {fileID: 1169543880, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  - {fileID: -337973363, guid: 21ac7607fb14ccd42a30cf9586e6082e, type: 3}
+  IllustratedHeight: 0

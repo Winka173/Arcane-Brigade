@@ -6,10 +6,18 @@ namespace ArcaneBrigade
     {
         public int NewRecruitLimit => 1 + KitNewRecruits;
         public int CompanionLimit => int.MaxValue;
-        public const int CompanionPurchaseLimit = 3;
-        public int CompanionPurchasesRemaining => Math.Max(0, CompanionPurchaseLimit - State.NewRecruitsThisWave);
+        // Regular shop pacing (owner, 19/10/2026): one NEW species every two waves, and one more body of a species you already
+        // have each wave. The dream shop keeps its own rules (one new species per wave, sharing the old wave-10 cadence).
+        public const int CopyRecruitLimit = 1;
+        public const int CompanionPurchaseLimit = 2; // the most regular companion purchases in one wave: one new + one copy
+        public int CopyRecruitsRemaining => Math.Max(0, CopyRecruitLimit - (State.NewRecruitsThisWave - State.NewSpeciesRecruitsThisWave));
+        public int CompanionPurchasesRemaining => NewRecruitsRemaining + CopyRecruitsRemaining;
         public bool NewSpeciesCooldown => State.Wave>=10 && State.LastNewShopSpeciesWave>=10 && State.Wave-State.LastNewShopSpeciesWave<2;
-        public int NewRecruitsRemaining => NewSpeciesCooldown?0:Math.Min(CompanionPurchasesRemaining, Math.Max(0, NewRecruitLimit - State.NewSpeciesRecruitsThisWave));
+        /// <summary>The regular shop's new species rests the wave after one is recruited.</summary>
+        public bool RegularNewSpeciesCooldown => State.LastRegularNewSpeciesWave >= 0 && State.LastRegularNewSpeciesWave < State.Wave && State.Wave - State.LastRegularNewSpeciesWave < 2;
+        public int NewRecruitsRemaining => RegularNewSpeciesCooldown ? 0 : Math.Max(0, NewRecruitLimit - State.NewSpeciesRecruitsThisWave);
+        /// <summary>Whether the regular shop could still sell this species this wave (a copy of one you have, or a new one).</summary>
+        public bool RegularRecruitOpen(string id) => OwnsCompanionSpecies(id) ? CopyRecruitsRemaining > 0 : NewRecruitsRemaining > 0;
         public int SpecialNewRecruitsRemaining => NewSpeciesCooldown?0:Math.Max(0,1-State.SpecialNewSpeciesRecruitsThisWave);
         public bool OwnsCompanionSpecies(string id) => State.Roster.Exists(r => r.UnitId == id) || (State.AbsorbedSkills?.Contains(id) ?? false);
         // Source shop matters, not currency or the companion's catalog rarity.
@@ -17,18 +25,24 @@ namespace ArcaneBrigade
         private bool CountsAsNewRegularRecruit(ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion &&
             !State.SpecialOffers.Contains(offer) && !OwnsCompanionSpecies(offer.Id);
         public bool RecruitQuotaBlocks(ShopOffer offer) => offer!=null && offer.Kind==OfferKind.Companion &&
-            (CountsTowardRecruitLimit(offer) && CompanionPurchasesRemaining==0 || !OwnsCompanionSpecies(offer.Id) && (State.SpecialOffers.Contains(offer)?SpecialNewRecruitsRemaining:NewRecruitsRemaining)==0);
+            (State.SpecialOffers.Contains(offer) ? !OwnsCompanionSpecies(offer.Id) && SpecialNewRecruitsRemaining==0 : !RegularRecruitOpen(offer.Id));
         private void RegisterNewShopSpecies(bool special)
         {
-            if(special)State.SpecialNewSpeciesRecruitsThisWave++;else State.NewSpeciesRecruitsThisWave++;
+            if(special)State.SpecialNewSpeciesRecruitsThisWave++;else { State.NewSpeciesRecruitsThisWave++; State.LastRegularNewSpeciesWave=State.Wave; }
             if(State.Wave>=10)State.LastNewShopSpeciesWave=State.Wave;
         }
         public bool CompanionCapacityBlocks(ShopOffer offer)
         {
             return false; // Recruitment pacing uses purchase/species quotas, never a body cap.
         }
-        public string RecruitmentSummary => "NEW SPECIES: " + NewRecruitsRemaining + "/" + NewRecruitLimit +
-            " remaining. DREAM NEW SPECIES: "+SpecialNewRecruitsRemaining+"/1. From wave 10, both shops share one new species every two waves."+(NewSpeciesCooldown?" Next available: wave "+((long)State.LastNewShopSpeciesWave+2)+".":"")+" COMPANION PURCHASES: " + CompanionPurchasesRemaining + "/3 regular purchases remaining, including upgrade copies. Dream-shop upgrade copies use no regular purchase quota. No brigade body cap.";
-        public string RecruitQuotaDenialFor(ShopOffer offer)=>NewSpeciesCooldown && offer!=null && !OwnsCompanionSpecies(offer.Id)?"NEW SPECIES AVAILABLE IN WAVE "+(State.LastNewShopSpeciesWave+2):offer!=null && State.SpecialOffers.Contains(offer)?"DREAM SHOP: 1 NEW SPECIES PER WAVE":CompanionPurchasesRemaining==0?"3 COMPANIONS BOUGHT THIS ROUND":"NEW SPECIES LIMIT: 1 THIS ROUND";
+        public string RecruitmentSummary => "NEW SPECIES: " + (NewRecruitsRemaining > 0 ? NewRecruitsRemaining + " this wave" : "next in wave " + ((long)State.LastRegularNewSpeciesWave + 2))
+            + " · one every two waves.\nCOPIES OF YOUR SPECIES: " + CopyRecruitsRemaining + "/" + CopyRecruitLimit + " this wave.\nDREAM SHOP: " + SpecialNewRecruitsRemaining + "/1 new species.";
+        public string RecruitQuotaDenialFor(ShopOffer offer)
+        {
+            if (offer == null) return "";
+            if (State.SpecialOffers.Contains(offer)) return NewSpeciesCooldown ? "NEW SPECIES AVAILABLE IN WAVE " + (State.LastNewShopSpeciesWave + 2) : "DREAM SHOP: 1 NEW SPECIES PER WAVE";
+            if (OwnsCompanionSpecies(offer.Id)) return "1 COPY PER WAVE · BACK NEXT WAVE";
+            return RegularNewSpeciesCooldown ? "NEW SPECIES IN WAVE " + (State.LastRegularNewSpeciesWave + 2) : "1 NEW SPECIES PER TWO WAVES";
+        }
     }
 }

@@ -67,6 +67,7 @@ namespace ArcaneBrigade
         public int NewSpeciesRecruitsThisWave;
         public int SpecialNewSpeciesRecruitsThisWave;
         public int LastNewShopSpeciesWave;
+        public int LastRegularNewSpeciesWave = -10; // regular shop: one new species every two waves (19/10/2026)
         public int NextReceipt;
         public List<RunTransactionReceipt> Receipts = new List<RunTransactionReceipt>();
         public int LastIncome;
@@ -385,7 +386,7 @@ namespace ArcaneBrigade
                 if (stacks > 0 && !SecretItemSuspended(rule.ItemId)) procs.Add(new ActiveProc { Rule = rule, Stacks = stacks });
             }
             CombatCatalog.Procs = procs.ToArray();
-            CombatCatalog.EnableArenaToys = catalog.SignatureRevision > 0;
+            CombatCatalog.EnableArenaToys = false; // no arena toys in the fight any more (owner, 19/10/2026): no bell, no cart; scenery stays
             CombatCatalog.RunWave = State.Wave;
             CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
             CombatCatalog.ExpandedContent = catalog.ExpansionRevision > 0;
@@ -400,6 +401,7 @@ namespace ArcaneBrigade
                         bool emphasis = State.Wave < 7 ? enemy.Behavior == EnemyBehavior.Standard && enemy.Weapon.Kind == WeaponKind.Contact : State.Wave < 14 ? enemy.Behavior == EnemyBehavior.Door || enemy.Behavior == EnemyBehavior.Magnet : enemy.Behavior != EnemyBehavior.Standard;
                         if (emphasis) pool.Add(candidate);
                     }
+                AddWaitingEnemies(pool, scaling); // enemy roster v2: only species whose art exists, in their own zone
                 CombatCatalog.EnemyPool = pool.ToArray();
                 var empowered = new List<UnitDefinition>();
                 foreach (UnitDefinition candidate in pool)
@@ -438,6 +440,7 @@ namespace ArcaneBrigade
             // economy: every swarm body now drops a coin of 1, so a full enemy's coin grows slowly (1 -> 3, it was 2 -> 6)
             CombatCatalog.GoldPerKill = Mathf.Max(1, Mathf.RoundToInt(CombatCatalog.GoldPerKill * 0.5f * (1 + Mathf.Min(2, Mathf.Max(0, State.Wave - 1) / 6f))));
             CombatCatalog.MinionCoin = 1;
+            CombatCatalog.CoinValueScale = CarnivalBalance.CoinGoldValue;
             CombatCatalog.EnemyBudget = Mathf.Min(600, CombatCatalog.EnemyBudget);
             PrepareVisitors();
             CombatCatalog.BossSwarmBudget = bossWave ? Mathf.CeilToInt(CombatCatalog.EnemyBudget * 0.22f) : 0;
@@ -446,6 +449,7 @@ namespace ArcaneBrigade
             PrepareOutsideStage();
             PrepareSecretCombat();
             PrepareSitCloser();
+            PrepareWaitingEnemies();
             ConfigureRelics();
             PrepareNightmare();
             PrepareBuildMorphs();
@@ -453,6 +457,8 @@ namespace ArcaneBrigade
             PrepareHeroIdentity();
             ApplyEnemyDifficultyRelief();
             RunAchievements.Observe(this, catalog, CombatCatalog);
+            // the arena's fixed props (none in secret rooms): toys and spectacles keep off them
+            CombatCatalog.Scenery = SecretRoomOpen ? (ArenaScenery?)null : ArenaScenery.For(State, CombatCatalog.ArenaSize);
             return CombatCatalog;
         }
 
@@ -465,7 +471,7 @@ namespace ArcaneBrigade
             foreach (var unit in CombatCatalog.EnemyPool ?? Array.Empty<UnitDefinition>()) Add(unit);
             foreach (var unit in CombatCatalog.AffixedEnemies ?? Array.Empty<UnitDefinition>()) Add(unit);
             foreach (var unit in enemies)
-                unit.Health *= OctoberBalance.EnemyHealthRelief * (unit.IsBoss ? OctoberBalance.BossHealthRelief : 1f);
+                unit.Health *= OctoberBalance.EnemyHealthRelief * (unit.IsBoss ? OctoberBalance.BossHealthRelief : OctoberBalance.NormalEnemyHealth);
         }
 
         private UnitDefinition BuildUnit(UnitDefinition source, WeaponDefinition weapon, int tier, bool companion)
@@ -532,6 +538,7 @@ namespace ArcaneBrigade
             unit.Weapon = Clone(source.Weapon);
             EnemyEvolutionLibrary.Apply(unit, State.Wave);
             EnemyAffixLibrary.ApplyArt(unit, State.Wave);
+            WaitingEnemyRoster.ApplyArt(unit, State.Wave);
             unit.KnockbackResistance = source.IsBoss ? 1 : Mathf.Max(source.KnockbackResistance, source.BodyHeight >= 1.2f ? 0.6f : 0.15f);
             unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
@@ -777,7 +784,10 @@ namespace ArcaneBrigade
         }
 
         public int RerollCost => KitRerollCost(RerollBaseCost);
-        private int RerollBaseCost => Mathf.Max(1, BoundedCounter(2L + (long)State.RerollsThisShop * Mathf.Max(1, catalog.RerollPriceStep)) - 2 * MechanicStacks(RelicMechanic.RerollFeather) - 2 * Talent("\"Leisurely Walk\" Mary") + (OctoberHero == "Nicole" ? 2 : OctoberHero == "Belle" ? -1 : 0));
+        // balance pass 19/10/2026: the 2 + 2n refresh fee follows half the shop's price stage once that exceeds x2 (unchanged early)
+        private float RerollStage => Mathf.Max(1, StagePriceFactor * .5f);
+        // the stage factor applies after the relic/talent/hero adjustments, so Ink Feather and Mary still reach the 1-gold minimum
+        private int RerollBaseCost => Mathf.Max(1, (int)Math.Min(int.MaxValue, Math.Ceiling(((double)State.RerollsThisShop * Mathf.Max(1, catalog.RerollPriceStep) + 2d - 2 * MechanicStacks(RelicMechanic.RerollFeather) - 2 * Talent("\"Leisurely Walk\" Mary") + (OctoberHero == "Nicole" ? 2 : OctoberHero == "Belle" ? -1 : 0)) * RerollStage)));
         private void RememberVariant(RosterEntry entry)
         {
             if (!State.AcquiredVariants.Exists(candidate => candidate.UnitId == entry.UnitId && candidate.WeaponId == entry.WeaponId && candidate.Tier == entry.Tier))
@@ -868,7 +878,7 @@ namespace ArcaneBrigade
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - KitExtraSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && !StorySpecies(unit.Id) && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && CompanionPurchasesRemaining > 0 && (NewRecruitsRemaining > 0 || OwnsCompanionSpecies(unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && !StorySpecies(unit.Id) && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && RegularRecruitOpen(unit.Id) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
@@ -926,8 +936,18 @@ namespace ArcaneBrigade
                     continue;
                 }
                 ItemDefinition item = specialItems[WeightedItem(specialItems)];
-                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, Mathf.CeilToInt((catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice) * (1 + (int)item.Rarity * 0.25f) * SpecialStagePriceFactor)), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
+                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = SpecialItemPrice(item), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
             }
+        }
+
+        /// <summary>Balance pass round 2 (19/10/2026): an altar item paid in current HP costs a share of the hero's maximum HP
+        /// (Common 8%, Uncommon 12%, Rare 18%, Mythic 25%, Prismatic 32%), never less than its authored price (floors 8/13/18/27).</summary>
+        private static readonly float[] AltarHealthShare = { .08f, .12f, .18f, .25f, .25f, .32f };
+        public int SpecialItemPrice(ItemDefinition item)
+        {
+            int authored = Mathf.Max(1, Mathf.CeilToInt((catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice) * (1 + (int)item.Rarity * 0.25f) * SpecialStagePriceFactor));
+            if (catalog.AltarRevision == 0 || item.AltarCurrency != ShopCurrency.Health) return authored;
+            return Mathf.Max(authored, Mathf.CeilToInt(AltarHealthShare[Mathf.Clamp((int)item.Rarity, 0, AltarHealthShare.Length - 1)] * MaximumHealth()));
         }
 
         public bool Altar(string recipeId)

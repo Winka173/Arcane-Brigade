@@ -1,0 +1,1196 @@
+path (Assets/ArcaneBrigade/),group,today_MB,today_format,imported_size,mips,readable,source_size,sprites,measure,measured_px,max_onscreen_px_pc1440,max_onscreen_px_phone,pc_target_size,phone_target_size,trim_ratio,pc_MB_D,phone_MB_E
+Resources/MienCho/ActOne/Keeper_BodyShell.png,Keeper body,8.06,RGBA32,1198x1323,11,0,1198x1323,0,rectH,1323,542,407,664x732,404x448,0.86,0.53,0.09
+Resources/MienCho/ActOne/Tally.png,Act One companion,8.00,RGBA32,1424x1105,11,0,1424x1105,0,inkH,1037,627,470,1164x900,708x552,0.92,1.23,0.20
+Art/CombatVFX/Hostile/ShockRing_v1.png,telegraph ring,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1381,1108,830,1536x1024,1016x676,0.57,1.15,0.13
+Art/CombatVFX/Hostile/TelegraphCircle_v1.png,telegraph ring,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1424,1108,830,1536x1024,984x656,0.54,1.07,0.11
+Resources/MienCho/ActOne/Prop_PlatformBench.png,Act One zone prop,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkH,788,517,388,1360x908,832x556,0.72,1.12,0.19
+Art/CombatVFX/Juice/BlastRing_v1.png,death ring,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1360,960,720,1464x976,896x596,0.50,0.91,0.09
+Art/CombatVFX/Hostile/HostileMuzzle_f0_v1.png,projectile,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1234,181,136,304x204,188x124,0.51,0.04,0.01
+Art/CombatVFX/Hostile/ShadowPool_f0_v1.png,shadow pool,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1399,425,318,628x420,384x256,0.56,0.19,0.02
+Art/CombatVFX/Hostile/HostileMuzzle_f1_v1.png,projectile,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1358,181,136,276x184,168x112,0.61,0.04,0.01
+Art/CombatVFX/Hostile/HostileMuzzle_f2_v1.png,projectile,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1368,181,136,276x184,168x112,0.58,0.04,0.01
+Art/CombatVFX/Hostile/HostileMuzzle_f3_v1.png,projectile,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1236,181,136,304x204,184x124,0.49,0.04,0.01
+Resources/MienCho/ActOne/Memory_Handwriting.png,pickup / memory,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1190,133,100,232x156,140x96,0.63,0.03,0.00
+Art/CombatVFX/Hostile/ShadowPool_f1_v1.png,shadow pool,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1397,425,318,632x420,384x256,0.60,0.20,0.02
+Art/CombatVFX/Hostile/ShadowPool_f2_v1.png,shadow pool,8.00,RGBA32,1536x1024,11,0,1536x1024,0,inkLong,1399,425,318,628x420,384x256,0.54,0.18,0.02
+Art/K13/CarnivalStone_v1.png,full-screen / large backdrop,8.00,RGBA32,1536x1024,11,0,1536x1024,0,screen,,,,1536x1024,1536x1024,1.00,2.00,0.50
+Resources/MienCho/ActOne/Panel_PerfectRoom.png,story panel,8.00,RGBA32,1672x941,11,0,1672x941,0,rectW,1672,960,720,1296x728,792x444,1.00,1.20,0.20
+Resources/MienCho/ActOne/Panel_Thursday.png,ending panel,8.00,RGBA32,1672x941,11,0,1672x941,0,rectW,1672,1392,1044,1672x940,1148x648,1.00,2.00,0.42
+Resources/MienCho/ActOne/Panel_Platform.png,story panel,8.00,RGBA32,1672x941,11,0,1672x941,0,rectW,1672,960,720,1296x728,792x444,1.00,1.20,0.20
+Resources/MienCho/ActOne/Panel_Crossing.png,story panel,8.00,RGBA32,1672x941,11,0,1672x941,0,rectW,1672,960,720,1296x728,792x444,1.00,1.20,0.20
+Resources/MienCho/ActOne/Panel_House.png,story panel,8.00,RGBA32,1672x941,11,0,1672x941,0,rectW,1672,960,720,1296x728,792x444,1.00,1.20,0.20
+Resources/MienCho/ActOne/Panel_Dawn.png,ending panel,8.00,RGBA32,1672x941,11,0,1672x941,0,rectW,1672,1392,1044,1672x940,1148x648,1.00,2.00,0.42
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1198,577,433,800x832,488x508,0.84,0.71,0.12
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f14.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1213,577,433,788x824,484x504,0.93,0.77,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f7.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1218,577,433,784x820,480x500,0.93,0.76,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f11.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1223,577,433,784x816,480x500,0.87,0.70,0.12
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f6.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1207,577,433,792x828,484x504,0.87,0.73,0.12
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f5.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1179,577,433,812x848,496x516,0.89,0.78,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f8.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1183,577,433,808x844,496x516,0.93,0.80,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f10.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1199,577,433,796x832,488x508,0.92,0.78,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f3.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1211,577,433,788x824,484x504,0.86,0.71,0.12
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f15.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1197,577,433,800x832,488x508,0.83,0.70,0.12
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f9.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1179,577,433,812x848,496x516,0.89,0.78,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f4.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1187,577,433,804x840,492x516,0.90,0.77,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f13.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1184,577,433,808x844,496x516,0.87,0.76,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f2.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1217,577,433,784x820,480x500,0.87,0.71,0.12
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f1.png,Last Customer frames,8.00,RGBA32,1228x1281,11,0,1228x1281,0,inkH,1193,577,433,800x836,492x512,0.87,0.74,0.12
+Resources/MienCho/ActOne/Prop_DiningTable.png,Act One zone prop,8.00,RGBA32,1374x1145,11,0,1374x1145,0,inkH,930,517,388,1032x860,632x524,0.78,0.88,0.15
+Resources/MienCho/ActOne/WarmChair_Jar.png,waiting-room chair / tea spill,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkLong,1184,400,300,524x628,320x384,0.67,0.28,0.05
+Resources/MienCho/ActOne/WarmChair_Coins.png,waiting-room chair / tea spill,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkLong,1182,400,300,524x628,320x384,0.67,0.28,0.05
+Art/ActOneBosses/TheBedside_f5.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1268,1080,810,1144x1376,804x964,0.78,1.57,0.34
+Resources/MienCho/ActOne/WarmChair.png,waiting-room chair / tea spill,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkLong,1182,400,300,524x628,320x384,0.67,0.28,0.05
+Art/ActOneBosses/TheBedside_f9.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1314,1080,810,1144x1376,776x932,0.72,1.43,0.29
+Art/ActOneBosses/TheBedside_f7.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1217,1080,810,1144x1376,840x1004,0.72,1.44,0.34
+Resources/MienCho/ActOne/WarmChair_Phone.png,waiting-room chair / tea spill,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkLong,1181,400,300,524x628,320x384,0.67,0.28,0.05
+Art/ActOneBosses/TheBedside_f12.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1302,1080,810,1144x1376,784x940,0.89,1.77,0.37
+Art/ActOneBosses/TheBedside_f8.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1197,1080,810,1144x1376,852x1024,0.79,1.57,0.39
+Art/ActOneBosses/TheBedside_f6.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1313,1080,810,1144x1376,776x932,0.91,1.81,0.37
+Art/ActOneBosses/TheBedside_f14.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1307,1080,810,1144x1376,780x936,0.88,1.76,0.36
+Art/ActOneBosses/TheBedside.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1312,1080,810,1144x1376,776x932,0.64,1.27,0.26
+Art/ActOneBosses/TheBedside_f4.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1253,1080,810,1144x1376,816x976,0.83,1.65,0.37
+Art/ActOneBosses/TheBedside_f10.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1315,1080,810,1144x1376,776x932,0.72,1.44,0.29
+Art/ActOneBosses/TheBedside_f2.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1323,1080,810,1144x1376,772x924,0.69,1.39,0.28
+Art/ActOneBosses/TheBedside_f11.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1332,1080,810,1144x1376,764x920,0.77,1.54,0.31
+Art/ActOneBosses/TheBedside_f13.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1253,1080,810,1144x1376,816x976,0.72,1.45,0.33
+Art/ActOneBosses/TheBedside_f3.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1304,1080,810,1144x1376,784x940,0.65,1.29,0.27
+Art/ActOneBosses/TheBedside_f15.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1270,1080,810,1144x1376,804x964,0.74,1.48,0.32
+Art/ActOneBosses/TheBedside_f1.png,Act One boss frames,8.00,RGBA32,1145x1374,11,0,1145x1374,0,inkH,1289,1080,810,1144x1376,792x948,0.64,1.29,0.27
+Art/CombatVFX/Allied/MusicNote_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1130,114,86,240x120,148x76,0.48,0.02,0.00
+Art/CombatVFX/Hostile/BossOrb_f0_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1293,181,136,336x168,204x104,0.58,0.04,0.01
+Art/CombatVFX/Allied/Thread_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1564,114,86,176x88,108x52,0.27,0.01,0.00
+Art/CombatVFX/Hostile/Secret_Paper_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1613,181,136,268x136,164x84,0.57,0.03,0.00
+Art/CombatVFX/Hostile/HostileBolt_f0_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1000,181,136,432x216,264x132,0.28,0.03,0.01
+Art/CombatVFX/Hostile/BlueFlameBolt_f2_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1585,181,136,272x136,168x84,0.55,0.03,0.00
+Art/CombatVFX/Hostile/RedFlameBolt_f0_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1412,181,136,308x152,188x92,0.53,0.03,0.01
+Art/CombatVFX/Hostile/RedFlameBolt_f1_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1535,181,136,284x140,172x88,0.58,0.03,0.00
+Art/CombatVFX/Allied/CompassDart_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1450,114,86,188x96,116x56,0.49,0.01,0.00
+Art/CombatVFX/Hostile/Mutation_3_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1275,181,136,340x168,208x104,0.43,0.03,0.01
+Art/CombatVFX/Hostile/Mutation_6_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1362,181,136,320x160,196x96,0.51,0.03,0.01
+Art/CombatVFX/Hostile/Mutation_4_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1445,181,136,300x148,184x92,0.41,0.02,0.00
+Art/CombatVFX/Allied/GlobeShard_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1247,114,86,220x108,136x68,0.44,0.01,0.00
+Art/CombatVFX/Allied/LeafBolt_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1510,114,86,180x92,112x56,0.44,0.01,0.00
+Art/CombatVFX/Allied/Thrust_f0_v1.png,thrust slash,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1508,678,508,1076x540,656x328,0.31,0.23,0.02
+Art/CombatVFX/Allied/TeaDrop_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1342,114,86,204x100,124x64,0.38,0.01,0.00
+Art/CombatVFX/Hostile/ShotH6_RibbonHydra_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1609,181,136,268x136,164x84,0.42,0.02,0.00
+Art/CombatVFX/Hostile/Mutation_2_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1671,181,136,260x128,160x80,0.50,0.02,0.00
+Art/CombatVFX/Hostile/Mutation_1_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1286,181,136,336x168,208x104,0.43,0.03,0.01
+Art/CombatVFX/Hostile/Mutation_0_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1416,181,136,308x152,188x92,0.53,0.03,0.01
+Art/CombatVFX/Hostile/Mutation_0_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1431,181,136,304x152,184x92,0.56,0.03,0.01
+Art/CombatVFX/Allied/BellChime_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1510,114,86,180x92,112x56,0.53,0.01,0.00
+Art/CombatVFX/Hostile/BlueFlameBolt_f1_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1620,181,136,268x132,164x80,0.57,0.03,0.00
+Art/CombatVFX/Allied/ArrowBolt_v2.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1552,114,86,176x88,108x56,0.39,0.01,0.00
+Art/CombatVFX/Hostile/Mutation_1_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1276,181,136,340x168,208x104,0.43,0.03,0.01
+Art/CombatVFX/Allied/InkBullet_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1505,114,86,180x92,112x56,0.45,0.01,0.00
+Art/CombatVFX/Hostile/ShotH2_ClockBat_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1627,181,136,268x132,164x80,0.37,0.02,0.00
+Art/CombatVFX/Allied/Letter_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1639,114,86,168x84,104x52,0.66,0.01,0.00
+Art/CombatVFX/Hostile/BossOrb_f1_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1099,181,136,396x196,240x120,0.47,0.05,0.01
+Art/CombatVFX/Allied/ButtonDart_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1482,114,86,184x92,112x56,0.49,0.01,0.00
+Art/CombatVFX/Hostile/Secret_Dream_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1519,181,136,284x144,176x88,0.48,0.02,0.00
+Art/CombatVFX/Allied/AcornPellet_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1158,114,86,236x116,144x72,0.41,0.01,0.00
+Art/CombatVFX/Hostile/ShotH3_FurnaceToad_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1140,181,136,380x192,232x116,0.38,0.04,0.01
+Art/CombatVFX/Hostile/Mutation_2_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1632,181,136,264x132,164x80,0.46,0.02,0.00
+Art/CombatVFX/Allied/ShellShot_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,999,114,86,272x136,168x84,0.37,0.02,0.00
+Art/CombatVFX/Hostile/Secret_Patch_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1546,181,136,280x140,172x84,0.30,0.02,0.00
+Art/CombatVFX/Hostile/Mutation_4_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1428,181,136,304x152,184x92,0.41,0.02,0.00
+Art/CombatVFX/Hostile/Mutation_3_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1282,181,136,340x168,208x104,0.43,0.03,0.01
+Art/CombatVFX/Hostile/RedFlameBolt_f2_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1488,181,136,292x144,180x88,0.55,0.03,0.00
+Art/CombatVFX/Hostile/BlueFlameBolt_f0_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1485,181,136,292x144,180x88,0.52,0.03,0.00
+Art/CombatVFX/Hostile/ShotH4_RuneWisp_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1336,181,136,324x164,200x100,0.38,0.03,0.00
+Art/CombatVFX/Allied/LanternEmber_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1150,114,86,236x120,144x72,0.52,0.02,0.00
+Art/CombatVFX/Allied/FilmFrame_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1335,114,86,204x104,124x64,0.48,0.01,0.00
+Art/CombatVFX/Hostile/Mutation_6_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1398,181,136,312x156,188x96,0.54,0.03,0.01
+Art/CombatVFX/Allied/Thrust_f3_v1.png,thrust slash,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1569,678,508,1036x516,632x316,0.28,0.19,0.02
+Art/CombatVFX/Hostile/BlueFlameBolt_f3_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1468,181,136,296x148,180x92,0.48,0.03,0.00
+Art/CombatVFX/Allied/Thrust_f2_v1.png,thrust slash,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1517,678,508,1072x536,652x328,0.24,0.18,0.02
+Art/CombatVFX/Hostile/Mutation_7_a_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1308,181,136,332x164,204x100,0.38,0.03,0.00
+Art/CombatVFX/Hostile/HostileBolt_f1_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,928,181,136,468x232,284x144,0.26,0.04,0.01
+Art/CombatVFX/Allied/AllySpark_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1306,114,86,208x104,128x64,0.46,0.01,0.00
+Art/CombatVFX/Hostile/Mutation_7_b_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1313,181,136,332x164,204x100,0.39,0.03,0.00
+Art/CombatVFX/Hostile/RedFlameBolt_f3_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1375,181,136,316x156,192x96,0.49,0.03,0.01
+Art/CombatVFX/Hostile/ShotH5_SirenSeal_v1.png,projectile,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1155,181,136,376x188,228x116,0.46,0.04,0.01
+Art/CombatVFX/Allied/MagnetBolt_v1.png,allied shot,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,832,114,86,328x164,200x100,0.21,0.01,0.00
+Art/CombatVFX/Allied/Thrust_f1_v1.png,thrust slash,8.00,RGBA32,1774x887,11,0,1774x887,0,inkLong,1632,678,508,996x496,608x304,0.28,0.18,0.02
+Art/K13/CarnivalPatina_v1.png,full-screen / large backdrop,8.00,RGBA32,1774x887,11,0,1774x887,0,screen,,,,1776x888,1776x888,0.97,2.01,0.50
+Resources/RarityFrame/Uncommon_Side.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.52,0.02,0.00
+Resources/RarityFrame/Uncommon_Glow.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.43,0.02,0.00
+Resources/RarityFrame/Uncommon_Foot.png,rarity frame foot,8.00,RGBA32,1774x887,11,0,1774x887,0,rectW,1774,236,221,320x160,244x120,0.20,0.01,0.00
+Resources/RarityFrame/Rare_Side.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.52,0.02,0.00
+Resources/RarityFrame/Rare_Glow.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.47,0.02,0.00
+Resources/RarityFrame/Rare_Foot.png,rarity frame foot,8.00,RGBA32,1774x887,11,0,1774x887,0,rectW,1774,236,221,320x160,244x120,0.20,0.01,0.00
+Resources/RarityFrame/Rainbow_Side.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.46,0.02,0.00
+Resources/RarityFrame/Rainbow_Glow.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.45,0.02,0.00
+Resources/RarityFrame/Rainbow_Foot.png,rarity frame foot,8.00,RGBA32,1774x887,11,0,1774x887,0,rectW,1774,236,221,320x160,244x120,0.27,0.02,0.00
+Resources/RarityFrame/Mythic_Side.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.53,0.02,0.00
+Resources/RarityFrame/Mythic_Glow.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.34,0.01,0.00
+Resources/RarityFrame/Mythic_Foot.png,rarity frame foot,8.00,RGBA32,1774x887,11,0,1774x887,0,rectW,1774,236,221,320x160,244x120,0.28,0.02,0.00
+Resources/RarityFrame/Crimson_Side.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.50,0.02,0.00
+Resources/RarityFrame/Crimson_Glow.png,rarity frame strip,8.00,RGBA32,887x1774,11,0,887x1774,0,rectW,887,94,70,128x252,76x152,0.52,0.02,0.00
+Resources/RarityFrame/Crimson_Foot.png,rarity frame foot,8.00,RGBA32,1774x887,11,0,1774x887,0,rectW,1774,236,221,320x160,244x120,0.14,0.01,0.00
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f4.png,Last Customer frames,8.00,RGBA32,1227x1282,11,0,1227x1282,0,inkH,1234,577,433,776x808,472x496,0.95,0.75,0.13
+Resources/MienCho/ActOne/Memory_Rain.png,pickup / memory,8.00,RGBA32,1355x1161,11,0,1355x1161,0,inkLong,1039,133,100,236x200,144x124,0.68,0.04,0.01
+Resources/MienCho/ActOne/Hob.png,Act One companion,8.00,RGBA32,1226x1283,11,0,1226x1283,0,inkH,1143,627,470,908x952,556x580,0.85,0.93,0.15
+Resources/MienCho/ActOne/Latch.png,Act One companion,8.00,RGBA32,1196x1315,11,0,1196x1315,0,inkH,1223,627,470,828x912,504x556,0.68,0.66,0.11
+Art/CombatVFX/Juice/InkPuff_f3_v1.png,ink puff,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1060,645,485,1032x1032,632x632,0.58,0.78,0.07
+Art/CombatVFX/Juice/InkPuff_f1_v1.png,ink puff,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,993,645,485,1100x1100,672x672,0.55,0.85,0.08
+Resources/MienCho/ActOne/Prop_Nightstand.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1048,517,388,836x836,512x512,0.58,0.51,0.09
+Resources/MienCho/ActOne/Pickup_LanternFlare.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1092,133,100,208x208,128x128,0.52,0.03,0.00
+Art/CombatVFX/Juice/HostileBlast_f0_v1.png,death ring,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1020,960,720,1256x1256,972x972,0.66,1.32,0.20
+Art/CombatVFX/Juice/InkPuff_f2_v1.png,ink puff,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1030,645,485,1060x1060,648x648,0.56,0.80,0.07
+Resources/MienCho/ActOne/Form_TeaSpill.png,waiting-room chair / tea spill,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1135,400,300,596x596,364x364,0.78,0.35,0.06
+Art/CombatVFX/Hostile/Curtain_f1_v1.png,hazard,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1122,443,332,668x668,408x408,0.67,0.38,0.04
+Art/CombatVFX/Hostile/HeroHurt_f0_v1.png,hero hurt,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1103,169,127,260x260,160x160,0.70,0.06,0.01
+Resources/MienCho/ActOne/Prop_Ledger.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1133,517,388,772x772,472x472,0.76,0.58,0.10
+Art/ActOneBosses/ChairPorter_f8.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1184,1080,810,1256x1256,944x944,0.90,1.81,0.45
+Art/ActOneBosses/ChairPorter_f4.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1191,1080,810,1256x1256,940x940,0.67,1.35,0.34
+Art/CombatVFX/Juice/HostileBlast_f1_v1.png,death ring,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1070,960,720,1256x1256,928x928,0.71,1.43,0.20
+Art/CombatVFX/Juice/HostileBlast_f3_v1.png,death ring,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,974,960,720,1256x1256,1020x1020,0.61,1.22,0.20
+Art/CombatVFX/Hostile/Curtain_f0_v1.png,hazard,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1092,443,332,688x688,420x420,0.60,0.36,0.03
+Resources/MienCho/ActOne/SeatedOne_B.png,seated traveller,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,937,305,228,552x552,336x336,0.65,0.25,0.04
+Art/CombatVFX/Juice/InkPuff_f0_v1.png,ink puff,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,919,645,485,1188x1188,728x728,0.48,0.85,0.08
+Resources/MienCho/ActOne/Prop_NailedLetterbox.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1219,517,388,716x716,440x440,0.68,0.44,0.07
+Art/CombatVFX/Hostile/ToyHazard_f1_v1.png,hazard,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1121,443,332,668x668,408x408,0.75,0.43,0.04
+Resources/MienCho/ActOne/SeatedOne_C.png,seated traveller,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1137,305,228,456x456,276x276,0.68,0.18,0.03
+Resources/MienCho/ActOne/Prop_SingleBed.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1146,517,388,764x764,468x468,0.84,0.63,0.10
+Art/ActOneBosses/ChairPorter_f1.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1182,1080,810,1256x1256,944x944,0.53,1.06,0.26
+Art/CombatVFX/Hostile/OfficeHazard_f1_v1.png,hazard,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1191,443,332,628x628,384x384,0.73,0.36,0.03
+Art/CombatVFX/Allied/TinFish_v1.png,allied shot,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,900,114,86,216x216,132x132,0.43,0.03,0.00
+Resources/MienCho/ActOne/SeatedOne_D.png,seated traveller,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1048,305,228,492x492,300x300,0.45,0.14,0.02
+Art/CombatVFX/Hostile/ToyHazard_f0_v1.png,hazard,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1016,443,332,740x740,452x452,0.66,0.46,0.04
+Resources/MienCho/ActOne/Item_ThursdayShoes.png,Act One evidence item,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1166,167,125,244x244,148x148,0.75,0.06,0.01
+Art/CombatVFX/Juice/HostileBlast_f2_v1.png,death ring,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1122,960,720,1256x1256,884x884,0.79,1.58,0.20
+Art/ActOneBosses/DoorThatStayedShut_f8.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1208,1080,810,1256x1256,924x924,0.93,1.86,0.45
+Art/CombatVFX/Hostile/HeroHurt_f3_v1.png,hero hurt,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1020,169,127,280x280,172x172,0.59,0.06,0.01
+Art/CombatVFX/Hostile/Mutation_5_a_v1.png,projectile,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,903,181,136,340x340,208x208,0.52,0.08,0.01
+Art/ActOneBosses/ChairPorter_f10.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1189,1080,810,1256x1256,940x940,0.53,1.07,0.27
+Art/ActOneBosses/ChairPorter_f2.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1215,1080,810,1256x1256,920x920,0.55,1.10,0.26
+Resources/MienCho/ActOne/Memory_Knock.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1105,133,100,204x204,124x124,0.78,0.04,0.01
+Art/ActOneBosses/ChairPorter_f14.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1194,1080,810,1256x1256,936x936,0.67,1.35,0.33
+Art/CombatVFX/Hostile/HeroHurt_f2_v1.png,hero hurt,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1131,169,127,252x252,156x156,0.73,0.06,0.01
+Art/ActOneBosses/DoorThatStayedShut_f3.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1206,1080,810,1256x1256,928x928,0.80,1.61,0.39
+Art/CombatVFX/Hostile/HeroHurt_f1_v1.png,hero hurt,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1132,169,127,252x252,156x156,0.72,0.06,0.01
+Art/ActOneBosses/ChairPorter_f7.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1205,1080,810,1256x1256,928x928,0.81,1.62,0.39
+Art/ActOneBosses/DoorThatStayedShut_f4.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1201,1080,810,1256x1256,932x932,0.88,1.76,0.43
+Resources/MienCho/ActOne/Prop_ReceiptChair.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1161,517,388,752x752,460x460,0.61,0.44,0.07
+Resources/MienCho/ActOne/Prop_DepartureBoard.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1186,517,388,736x736,452x452,0.89,0.61,0.10
+Art/CombatVFX/Juice/BlastFlash_f0_v1.png,death flash,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1058,1170,880,1256x1256,1148x1148,0.67,1.34,0.28
+Art/ActOneBosses/ChairPorter_f6.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1200,1080,810,1256x1256,932x932,0.85,1.71,0.42
+Resources/MienCho/ActOne/SeatedOne_A_Turned.png,seated traveller,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1064,305,228,484x484,296x296,0.51,0.15,0.03
+Art/CombatVFX/Juice/Chip_2_v1.png,chip,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,829,110,83,224x224,140x140,0.42,0.03,0.00
+Resources/MienCho/ActOne/Prop_FrontDoorMarks.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1203,517,388,728x728,444x444,0.52,0.35,0.06
+Resources/MienCho/ActOne/Prop_PhoneBooth.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1200,517,388,728x728,448x448,0.60,0.40,0.07
+Resources/MienCho/ActOne/Prop_BoundaryGate.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1162,517,388,752x752,460x460,0.78,0.56,0.09
+Art/ActOneBosses/ChairPorter_f3.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1219,1080,810,1256x1256,916x916,0.56,1.12,0.27
+Art/CombatVFX/Allied/Bubble_v1.png,allied shot,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,770,114,86,252x252,156x156,0.38,0.03,0.01
+Art/CombatVFX/Juice/Chip_3_v1.png,chip,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,942,110,83,196x196,120x120,0.51,0.03,0.00
+Art/ActOneBosses/ChairPorter_f13.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1165,1080,810,1256x1256,960x960,0.63,1.26,0.33
+Art/ActOneBosses/ChairPorter_f11.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1211,1080,810,1256x1256,924x924,0.69,1.38,0.33
+Art/CombatVFX/Allied/RuneOrb_v2.png,allied shot,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,868,114,86,224x224,136x136,0.37,0.02,0.00
+Art/ActOneBosses/DoorThatStayedShut_f1.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1218,1080,810,1256x1256,916x916,0.80,1.60,0.38
+Art/CombatVFX/Allied/Star_v1.png,allied shot,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,880,114,86,220x220,136x136,0.49,0.03,0.01
+Art/CombatVFX/Hostile/OfficeHazard_f0_v1.png,hazard,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1128,443,332,664x664,404x404,0.66,0.37,0.03
+Art/CombatVFX/Juice/Chip_5_v1.png,chip,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,732,110,83,256x256,156x156,0.33,0.03,0.00
+Art/CombatVFX/Juice/BlastFlash_f3_v1.png,death flash,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,968,1170,880,1256x1256,1256x1256,0.54,1.08,0.27
+Art/CombatVFX/Juice/BlastFlash_f1_v1.png,death flash,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1174,1170,880,1256x1256,1032x1032,0.80,1.61,0.27
+Art/ActOneBosses/ChairPorter.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1209,1080,810,1256x1256,924x924,0.54,1.09,0.26
+Art/ActOneBosses/DoorThatStayedShut.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1244,1080,810,1256x1256,900x900,0.81,1.62,0.37
+Resources/MienCho/ActOne/SeatedOne_A.png,seated traveller,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1076,305,228,480x480,292x292,0.52,0.15,0.02
+Art/ActOneBosses/ChairPorter_f15.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1197,1080,810,1256x1256,932x932,0.52,1.04,0.25
+Art/ActOneBosses/ChairPorter_f9.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1206,1080,810,1256x1256,928x928,0.64,1.29,0.31
+Resources/MienCho/ActOne/Item_Receipt.png,Act One evidence item,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1038,167,125,272x272,168x168,0.61,0.06,0.01
+Art/ActOneBosses/DoorThatStayedShut_f12.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1194,1080,810,1256x1256,936x936,0.90,1.81,0.45
+Art/CombatVFX/Juice/BlastFlash_f2_v1.png,death flash,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1163,1170,880,1256x1256,1044x1044,0.77,1.54,0.27
+Resources/MienCho/ActOne/Memory_Raincoat.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1133,133,100,200x200,120x120,0.80,0.04,0.01
+Art/ActOneBosses/DoorThatStayedShut_f15.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1246,1080,810,1256x1256,896x896,0.85,1.71,0.39
+Resources/MienCho/ActOne/Item_SewnLetter.png,Act One evidence item,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1030,167,125,276x276,168x168,0.66,0.06,0.01
+Art/ActOneBosses/DoorThatStayedShut_f6.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1213,1080,810,1256x1256,920x920,0.86,1.73,0.41
+Resources/MienCho/ActOne/Pickup_ShopkeeperBell.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,983,133,100,228x228,140x140,0.60,0.04,0.01
+Resources/MienCho/ActOne/Memory_Voice.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1178,133,100,192x192,116x116,0.70,0.03,0.01
+Art/ActOneBosses/DoorThatStayedShut_f13.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1219,1080,810,1256x1256,916x916,0.85,1.71,0.40
+Resources/MienCho/ActOne/Shopkeeper_Idle.png,full-screen / large backdrop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,screen,,,,1256x1256,1256x1256,0.90,2.01,0.50
+Art/ActOneBosses/ChairPorter_f5.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1178,1080,810,1256x1256,948x948,0.69,1.38,0.35
+Art/ActOneBosses/DoorThatStayedShut_f14.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1236,1080,810,1256x1256,904x904,0.91,1.82,0.42
+Art/ActOneBosses/DoorThatStayedShut_f9.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1243,1080,810,1256x1256,900x900,0.85,1.71,0.39
+Resources/MienCho/ActOne/Shopkeeper_Warn.png,full-screen / large backdrop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,screen,,,,1256x1256,1256x1256,0.89,2.01,0.50
+Art/ActOneBosses/DoorThatStayedShut_f11.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1186,1080,810,1256x1256,944x944,0.86,1.73,0.44
+Art/ActOneBosses/DoorThatStayedShut_f5.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1227,1080,810,1256x1256,912x912,0.93,1.87,0.44
+Art/ActOneBosses/DoorThatStayedShut_f7.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1238,1080,810,1256x1256,904x904,0.95,1.90,0.44
+Resources/MienCho/ActOne/Item_ExitKey.png,Act One evidence item,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1142,167,125,248x248,152x152,0.78,0.06,0.01
+Resources/MienCho/ActOne/Shopkeeper_Pour.png,full-screen / large backdrop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,screen,,,,1256x1256,1256x1256,0.86,2.01,0.50
+Resources/MienCho/ActOne/Memory_Height.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1158,133,100,196x196,120x120,0.74,0.04,0.01
+Resources/MienCho/ActOne/SeatedOne_E.png,seated traveller,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1058,305,228,488x488,296x296,0.64,0.19,0.03
+Resources/MienCho/ActOne/Memory_Face.png,pickup / memory,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1174,133,100,192x192,116x116,0.74,0.03,0.01
+Resources/MienCho/ActOne/Shopkeeper_Wipe.png,full-screen / large backdrop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,screen,,,,1256x1256,1256x1256,0.88,2.01,0.50
+Art/ActOneBosses/ChairPorter_f12.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1199,1080,810,1256x1256,932x932,0.70,1.40,0.34
+Resources/MienCho/ActOne/Postscript.png,Act One companion,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1054,627,470,1008x1008,616x616,0.62,0.80,0.13
+Art/ActOneBosses/DoorThatStayedShut_f10.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1233,1080,810,1256x1256,908x908,0.81,1.62,0.38
+Resources/MienCho/ActOne/Prop_InwardWindow.png,Act One zone prop,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1175,517,388,744x744,456x456,0.63,0.44,0.07
+Art/ActOneBosses/DoorThatStayedShut_f2.png,Act One boss frames,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkH,1219,1080,810,1256x1256,916x916,0.79,1.59,0.38
+Art/CombatVFX/Hostile/Mutation_5_b_v1.png,projectile,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,901,181,136,340x340,208x208,0.50,0.07,0.01
+Art/CombatVFX/Juice/Chip_4_v1.png,chip,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,952,110,83,196x196,120x120,0.54,0.03,0.00
+Resources/MienCho/ActOne/Item_Umbrella.png,Act One evidence item,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,1171,167,125,240x240,148x148,0.73,0.05,0.01
+Art/CombatVFX/Juice/Chip_1_v1.png,chip,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,726,110,83,256x256,156x156,0.33,0.03,0.00
+Art/CombatVFX/Juice/Chip_0_v1.png,chip,8.00,RGBA32,1254x1254,11,0,1254x1254,0,inkLong,657,110,83,284x284,176x176,0.27,0.03,0.00
+Resources/MienCho/ActOne/Floor_PerfectRoom.png,floor tile span,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectW,1254,1477,1108,1256x1256,1220x1220,1.00,2.01,0.47
+Resources/MienCho/ActOne/Floor_NightYouHid.png,floor tile span,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectW,1254,1477,1108,1256x1256,1220x1220,1.00,2.01,0.47
+Resources/MienCho/ActOne/Floor_Platform.png,floor tile span,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectW,1254,1477,1108,1256x1256,1220x1220,1.00,2.01,0.47
+Resources/MienCho/ActOne/Floor_Crossing.png,floor tile span,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectW,1254,1477,1108,1256x1256,1220x1220,1.00,2.01,0.47
+Resources/MienCho/ActOne/Floor_House.png,floor tile span,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectW,1254,1477,1108,1256x1256,1220x1220,1.00,2.01,0.47
+Resources/RarityFrame/Uncommon_Corner.png,rarity frame corner,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectLong,1254,80,60,108x108,64x64,0.81,0.01,0.00
+Resources/RarityFrame/Rainbow_Corner.png,rarity frame corner,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectLong,1254,80,60,108x108,64x64,0.80,0.01,0.00
+Resources/RarityFrame/Mythic_Corner.png,rarity frame corner,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectLong,1254,80,60,108x108,64x64,0.82,0.01,0.00
+Resources/RarityFrame/Crimson_Corner.png,rarity frame corner,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectLong,1254,80,60,108x108,64x64,0.88,0.01,0.00
+Resources/RarityFrame/Rare_Corner.png,rarity frame corner,8.00,RGBA32,1254x1254,11,0,1254x1254,0,rectLong,1254,80,60,108x108,64x64,0.90,0.01,0.00
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f12.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1227,577,433,780x812,476x496,0.94,0.75,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f9.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1191,577,433,804x836,492x512,0.82,0.70,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f5.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1162,577,433,824x860,504x524,0.89,0.80,0.13
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f6.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1206,577,433,792x828,484x504,0.88,0.74,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f13.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1206,577,433,792x828,484x504,0.85,0.71,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f7.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1198,577,433,796x832,488x508,0.90,0.76,0.13
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f12.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1171,577,433,816x852,500x520,0.81,0.72,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f1.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1189,577,433,804x840,492x512,0.85,0.73,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f8.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1221,577,433,784x816,480x500,0.94,0.76,0.13
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f10.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1194,577,433,800x836,488x512,0.85,0.72,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f14.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1222,577,433,784x816,480x500,0.83,0.68,0.11
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f11.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1215,577,433,788x820,480x504,0.91,0.75,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f15.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1204,577,433,792x828,484x508,0.85,0.71,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1200,577,433,796x832,488x508,0.85,0.71,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f3.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1216,577,433,784x820,480x500,0.88,0.72,0.12
+Resources/MienCho/ActOne/LastCustomer_Pleasant_f2.png,Last Customer frames,7.99,RGBA32,1227x1281,11,0,1227x1281,0,inkH,1189,577,433,804x840,492x512,0.79,0.68,0.11
+Resources/RarityFrame/Uncommon_Crest.png,rarity frame crest,7.99,RGBA32,1942x809,11,0,1942x809,0,rectW,1942,472,443,636x264,488x204,0.67,0.14,0.04
+Resources/RarityFrame/Rainbow_Crest.png,rarity frame crest,7.99,RGBA32,1942x809,11,0,1942x809,0,rectW,1942,472,443,636x264,488x204,0.87,0.19,0.05
+Resources/RarityFrame/Crimson_Crest.png,rarity frame crest,7.99,RGBA32,1942x809,11,0,1942x809,0,rectW,1942,472,443,636x264,488x204,0.84,0.18,0.05
+Resources/RarityFrame/Rare_Crest.png,rarity frame crest,7.99,RGBA32,1942x809,11,0,1942x809,0,rectW,1942,472,443,636x264,488x204,0.83,0.18,0.05
+Resources/RarityFrame/Mythic_Crest.png,rarity frame crest,7.99,RGBA32,1942x809,11,0,1942x809,0,rectW,1942,472,443,636x264,488x204,0.65,0.14,0.04
+Resources/MienCho/ActOne/Keeper_Eye_Charged.png,Keeper carrier parts,7.95,RGBA32,1113x1405,11,0,1113x1405,0,rectW,1113,1329,997,1112x1404,1096x1384,0.86,1.71,0.74
+Resources/MienCho/ActOne/Keeper_Hand_Charged.png,Keeper carrier parts,7.94,RGBA32,1259x1241,11,0,1259x1241,0,rectW,1259,1329,997,1260x1240,1096x1080,0.82,1.63,0.55
+Resources/MienCho/ActOne/Keeper_Socket.png,Keeper body,7.94,RGBA32,1121x1393,11,0,1121x1393,0,rectH,1393,542,407,588x732,360x448,0.82,0.45,0.07
+Resources/MienCho/ActOne/Keeper_Carpet_Release.png,Keeper carrier parts,7.94,RGBA32,1196x1305,11,0,1196x1305,0,rectW,1196,1329,997,1196x1304,1096x1196,0.87,1.73,0.65
+Resources/MienCho/ActOne/Keeper_Hand_Release.png,Keeper carrier parts,7.87,RGBA32,1246x1243,11,0,1246x1243,0,rectW,1246,1329,997,1248x1244,1096x1096,0.88,1.73,0.60
+Resources/MienCho/ActOne/LastCustomer_Kneel.png,Last Customer frames,7.85,RGBA32,1235x1251,11,0,1235x1251,0,inkH,1224,577,433,784x796,480x488,0.96,0.77,0.13
+Resources/MienCho/ActOne/Keeper_KneelShell.png,Keeper body,7.70,RGBA32,1157x1309,11,0,1157x1309,0,rectH,1309,542,407,648x732,396x448,0.84,0.51,0.08
+Resources/MienCho/ActOne/Keeper_Carpet_Charged.png,Keeper carrier parts,7.35,RGBA32,1115x1296,11,0,1115x1296,0,rectW,1115,1329,997,1116x1296,1096x1276,0.91,1.67,0.72
+Art/CombatVFX/Hostile/Tentacle_f0_v1.png,telegraph lane,7.11,RGBA32,2048x683,12,0,2172x724,0,inkLong,2044,1108,830,1588x528,972x324,0.66,0.70,0.07
+Art/CombatVFX/Hostile/Tentacle_f1_v1.png,telegraph lane,7.11,RGBA32,2048x683,12,0,2172x724,0,inkLong,2023,1108,830,1604x536,980x328,0.63,0.69,0.06
+Art/CombatVFX/Hostile/TelegraphLane_v1.png,telegraph lane,7.11,RGBA32,2048x683,12,0,2172x724,0,inkLong,1977,1108,830,1644x548,1004x336,0.30,0.35,0.03
+Art/Secrets/Relics_v1.png,relic icon sheet,6.00,RGBA32,1305x1206,1,0,1305x1206,16,rectLong,310,332,249,1304x1208,1152x1064,0.86,1.50,0.52
+Art/K10/BondTidal.png,bond icon (cut-in),6.00,RGBA32,1305x1206,1,1,1305x1206,1,rectLong,1305,475,356,640x592,392x360,0.73,0.26,0.04
+Art/K22/SirenSeal_v1.png,unit body sheet,6.00,RGBA32,1246x1263,1,0,1246x1263,16,rectH,247,400,300,1248x1264,1248x1264,0.78,1.50,0.67
+Art/QualityHD/SignatureRelics_v1.png,relic icon sheet,6.00,RGBA32,1269x1240,1,0,1269x1240,4,rectLong,595,332,249,956x936,584x572,0.80,0.85,0.14
+Art/DreamLevitation/SuspensionWisps_v1.png,other (kept),6.00,RGBA32,1774x887,1,0,1774x887,8,keep,,,,1776x888,1240x620,0.56,1.50,0.33
+Art/Ensemble/ParasolNeedle_Action_v1.png,held weapon,6.00,RGBA32,1774x887,1,0,1774x887,8,inkLong,436,528,396,1776x888,1772x888,0.51,1.50,0.67
+Art/Ensemble/InkPistol_Action_v1.png,held weapon,6.00,RGBA32,1774x887,1,0,1774x887,8,inkLong,444,528,396,1776x888,1740x872,0.71,1.50,0.64
+Art/Ensemble/PlasmaTrident_Action_v1.png,held weapon,6.00,RGBA32,1774x887,1,0,1774x887,8,inkLong,444,528,396,1776x888,1740x872,0.73,1.50,0.64
+Art/Ensemble/ShellCannon_Action_v1.png,held weapon,6.00,RGBA32,1774x887,1,0,1774x887,8,inkLong,444,528,396,1776x888,1740x872,0.54,1.50,0.64
+Art/K10/TeabagFlail.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1644,528,396,768x384,472x236,0.51,0.14,0.02
+Art/K26/DefensiveRelics_v1.png,relic icon sheet,6.00,RGBA32,1774x887,1,0,1774x887,8,rectLong,443,332,249,1776x888,1096x548,0.94,1.50,0.25
+Art/K10/BubbleWand.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1650,528,396,768x384,468x236,0.48,0.13,0.02
+Art/K10/StarKazoo.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1707,528,396,740x372,452x228,0.75,0.20,0.03
+Art/K10/InkPistol.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1721,528,396,736x368,448x224,0.92,0.24,0.04
+Art/QualityHD/DreamStamp_v1.png,held weapon,6.00,RGBA32,1774x887,1,0,1774x887,0,inkLong,1668,528,396,760x380,464x232,0.72,0.20,0.03
+Art/K10/PizzaWheel.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1640,528,396,772x384,472x236,0.78,0.22,0.04
+Art/K10/LanternStaff.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1662,528,396,760x380,464x232,0.51,0.14,0.02
+Art/ShopPresentation/GroundedCabinets_v1.png,other (kept),6.00,RGBA32,1774x887,1,0,1774x887,2,keep,,,,1776x888,1240x620,0.71,1.50,0.33
+Art/Ensemble/EggOracle_Handoff_v1.png,unit body sheet,6.00,RGBA32,1774x887,1,0,1774x887,8,rectH,348,400,300,1776x888,1684x840,0.64,1.50,0.60
+Art/Ensemble/ReceiptMaw_Handoff_v1.png,unit body sheet,6.00,RGBA32,1774x887,1,0,1774x887,8,rectH,435,400,300,1776x888,1344x672,1.00,1.50,0.38
+Art/K10/SnowGlobeOrb.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1682,528,396,752x376,460x228,0.60,0.16,0.03
+Art/K10/ShellCannon.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1696,528,396,744x372,456x228,0.70,0.18,0.03
+Art/K10/MaracaHammer.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1643,528,396,768x384,472x236,0.69,0.19,0.03
+Art/K10/ToastCleaver.png,held weapon,6.00,RGBA32,1774x887,1,1,1774x887,1,inkLong,1691,528,396,748x372,456x228,0.67,0.18,0.03
+Art/PerformanceExpansion/enemies-06_v1.png,unit body sheet,6.00,RGBA32,1437x1095,1,0,1437x1095,16,rectH,262,400,300,1436x1096,1436x1096,0.76,1.50,0.67
+Art/K22/BroomSkater_v1.png,unit body sheet,6.00,RGBA32,1237x1272,1,0,1237x1272,16,rectH,329,400,300,1236x1272,1236x1272,0.86,1.50,0.67
+Art/October/Relics3.png,relic icon sheet,6.00,RGBA32,1274x1235,1,0,1274x1235,16,rectLong,331,332,249,1272x1236,1056x1020,0.82,1.50,0.46
+Art/QualityHD/Weapons_v2.png,held weapon,6.00,RGBA32,1672x941,1,0,1672x941,8,inkLong,497,528,396,1672x940,1464x824,0.45,1.50,0.51
+Resources/MienCho/WithheldDawn.png,story panel,6.00,RGBA32,1672x941,1,0,1672x941,0,rectW,1672,960,720,1296x728,792x444,1.00,0.90,0.15
+Resources/MienCho/WaitingRoom.png,full-screen / large backdrop,6.00,RGBA32,1672x941,1,0,1672x941,0,screen,,,,1672x940,1672x940,1.00,1.50,0.37
+Resources/MienCho/OpenDawn.png,unused: replaced by Panel_Dawn,6.00,RGBA32,1672x941,1,0,1672x941,0,remove,,,,-,-,1.00,0.00,0.00
+Art/K10/MoonScythe.png,held weapon,6.00,RGBA32,1586x992,1,1,1586x992,1,inkLong,1355,528,396,836x520,508x320,0.79,0.33,0.05
+Art/October/Heroes1.png,unit body sheet,6.00,RGBA32,1374x1145,1,0,1374x1145,16,rectH,313,400,300,1376x1144,1376x1144,0.67,1.50,0.67
+Art/K26/EyeOpen_v1.png,Keeper organs,6.00,RGBA32,1374x1145,1,0,1374x1145,1,rectH,1145,315,236,512x424,312x260,0.99,0.21,0.03
+Art/October/Heroes4.png,unit body sheet,6.00,RGBA32,1374x1145,1,0,1374x1145,16,rectH,282,400,300,1376x1144,1376x1144,0.69,1.50,0.67
+Art/October/Reactions4.png,unit body sheet,6.00,RGBA32,1374x1145,1,0,1374x1145,16,rectH,302,400,300,1376x1144,1376x1144,0.70,1.50,0.67
+Resources/MienCho/EmptyChair.png,waiting-room chair / tea spill,6.00,RGBA32,1322x1190,1,0,1322x1190,0,inkLong,1140,400,300,628x564,384x344,0.71,0.24,0.04
+Art/K10/ForkTrident.png,held weapon,6.00,RGBA32,1947x808,1,1,1947x808,1,inkLong,1862,528,396,744x308,456x188,0.77,0.17,0.03
+Art/October/Bonds1.png,bond icon (cut-in),6.00,RGBA32,1312x1199,1,0,1312x1199,16,rectLong,320,475,356,1312x1200,1312x1200,0.88,1.50,0.67
+Art/October/Heroes2.png,unit body sheet,6.00,RGBA32,1312x1199,1,0,1312x1199,16,rectH,294,400,300,1312x1200,1312x1200,0.77,1.50,0.67
+Art/October/Reactions2.png,unit body sheet,6.00,RGBA32,1312x1199,1,0,1312x1199,16,rectH,308,400,300,1312x1200,1312x1200,0.78,1.50,0.67
+Art/K25/SmokingCoffin_v1.png,unit body sheet,6.00,RGBA32,1402x1122,1,0,1402x1122,16,rectH,295,400,300,1400x1120,1400x1120,0.89,1.50,0.66
+Art/October/Bonds2.png,bond icon (cut-in),6.00,RGBA32,1402x1122,1,0,1402x1122,16,rectLong,324,475,356,1400x1120,1400x1120,0.74,1.50,0.66
+Art/AnimationHD/HeroIdentity_v1.png,unit body sheet,6.00,RGBA32,1122x1402,1,1,1122x1402,20,rectH,308,400,300,1120x1400,1120x1400,0.69,1.50,0.66
+Art/Nightmare/LastCustomerOrgans_v2.png,boss organs,6.00,RGBA32,1855x848,1,0,1855x848,8,rectH,403,392,294,1856x848,1488x680,0.91,1.50,0.43
+Art/K22/HopperKeg_v1.png,unit body sheet,6.00,RGBA32,1227x1282,1,0,1227x1282,16,rectH,329,400,300,1228x1280,1228x1280,0.86,1.50,0.67
+Art/AnimationHD/PaintedEffects_v1.png,other (kept),6.00,RGBA32,1536x1024,1,1,1536x1024,16,keep,,,,1536x1024,1076x716,0.69,1.50,0.33
+Art/QualityHD/ExpandedWeapons_v2.png,held weapon,6.00,RGBA32,1536x1024,1,0,1536x1024,9,inkLong,498,528,396,1536x1024,1344x896,0.65,1.50,0.51
+Art/AnimationHD/BrigadeAnimation_v3.png,unit body sheet,6.00,RGBA32,1024x1536,1,1,1024x1536,24,rectH,273,400,300,1024x1536,1024x1536,0.90,1.50,0.67
+Art/AnimationHD/MarketRugs_v3.png,full-screen / large backdrop,6.00,RGBA32,1536x1024,1,1,1536x1024,2,screen,,,,1536x1024,1536x1024,1.00,1.50,0.38
+Art/AnimationHD/BossesAndProps_v1.png,other (kept),6.00,RGBA32,1024x1536,1,1,1024x1536,24,keep,,,,1024x1536,716x1076,0.90,1.50,0.33
+Art/Run/Weapons_v1.png,held weapon,6.00,RGBA32,1536x1024,1,1,1536x1024,6,inkLong,481,528,396,1536x1024,1392x928,0.36,1.50,0.55
+Art/Presentation/BowMagic_v2.png,other (kept),6.00,RGBA32,1536x1024,1,1,1536x1024,4,keep,,,,1536x1024,1076x716,0.35,1.50,0.33
+Art/Secrets/Portals_v1.png,unit body sheet,6.00,RGBA32,1357x1159,1,0,1357x1159,16,rectH,292,400,300,1356x1160,1356x1160,0.84,1.50,0.67
+Art/K22/MoonMagnet_v1.png,unit body sheet,6.00,RGBA32,1222x1287,1,0,1222x1287,16,rectH,309,400,300,1224x1288,1224x1288,0.87,1.50,0.67
+Art/K22/RuneWisp_v1.png,unit body sheet,6.00,RGBA32,1222x1287,1,0,1222x1287,16,rectH,301,400,300,1224x1288,1224x1288,0.77,1.50,0.67
+Art/PerformanceExpansion/companions-14_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,16,rectH,273,400,300,1448x1088,1448x1088,0.76,1.50,0.67
+Art/FinalQuality/CometRunner_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,305,400,300,1448x1088,1448x1088,0.74,1.50,0.67
+Art/FinalQuality/TideSinger_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,346,400,300,1448x1088,1380x1036,0.89,1.50,0.61
+Art/FinalQuality/MirrorKeeper_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,352,400,300,1448x1088,1356x1020,0.68,1.50,0.59
+Art/FinalQuality/RootOracle_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,330,400,300,1448x1088,1448x1088,0.77,1.50,0.67
+Art/PerformanceExpansion/companions-02_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,16,rectH,264,400,300,1448x1088,1448x1088,0.55,1.50,0.67
+Art/FinalQuality/LoneJelly_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,333,400,300,1448x1088,1436x1076,0.80,1.50,0.65
+Art/FinalQuality/DrowsySeer_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,329,400,300,1448x1088,1448x1088,0.81,1.50,0.67
+Art/FinalQuality/GlassDice_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,320,400,300,1448x1088,1448x1088,0.74,1.50,0.67
+Art/FinalQuality/TreasureAcorn_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,322,400,300,1448x1088,1448x1088,0.76,1.50,0.67
+Art/FinalQuality/Postmaster_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,336,400,300,1448x1088,1424x1068,0.73,1.50,0.64
+Art/K17/StageCourier_v1.png,other (kept),6.00,RGBA32,1448x1086,1,0,1448x1086,12,keep,,,,1448x1088,1012x760,0.55,1.50,0.33
+Art/Nightmare/WaitingScenery_Stages_v1.png,map architecture,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectLong,362,591,443,1448x1088,1448x1088,0.83,1.50,0.67
+Art/K26/Relics1_v1.png,relic icon sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,16,rectLong,311,332,249,1448x1088,1276x956,0.72,1.50,0.52
+Art/AnimationHD/StrangeMerchants_v2.png,full-screen / large backdrop,6.00,RGBA32,1448x1086,1,1,1448x1086,12,screen,,,,1448x1088,1448x1088,0.98,1.50,0.38
+Art/K16/ReelOwl_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,336,400,300,1448x1088,1424x1068,0.73,1.50,0.64
+Art/K16/CoilKettle_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,327,400,300,1448x1088,1448x1088,0.75,1.50,0.67
+Art/K19/EvolutionOrgans_v1.png,boss organs,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,410,392,294,1448x1088,1144x856,0.82,1.50,0.42
+Art/AnimationHD/ShopFixtures_v1.png,unused: shop fixtures disabled,6.00,RGBA32,2172x724,1,1,2172x724,4,remove,,,,-,-,0.44,0.00,0.00
+Art/K16/ThimbleMoth_v2.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,285,400,300,1448x1088,1448x1088,0.62,1.50,0.67
+Art/K16/LanternKnight_v1.png,unit body sheet,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,365,400,300,1448x1088,1308x980,0.72,1.50,0.54
+Art/QualityHD/ExpandedProps_v1.png,other (kept),6.00,RGBA32,1448x1086,1,0,1448x1086,12,keep,,,,1448x1088,1012x760,0.65,1.50,0.33
+Art/AnimationHD/BondIcons_v1.png,bond icon (cut-in),6.00,RGBA32,2172x724,1,1,2172x724,4,rectLong,543,475,356,2172x724,1568x524,0.65,1.50,0.35
+Art/K17/MarketStands_v1.png,shop stand,6.00,RGBA32,1448x1086,1,0,1448x1086,12,rectH,233,160,120,1344x1008,820x616,0.53,1.29,0.21
+Art/Checkpoint/ModularArcade_Atlas.png,other (kept),6.00,RGBA32,1448x1086,1,1,1448x1086,9,keep,,,,1448x1088,1012x760,0.31,1.50,0.33
+Resources/MienCho/Journey/PerfectRoom_Painted_v1.png,full-screen / large backdrop,6.00,RGBA32,1448x1086,1,0,1448x1086,0,screen,,,,1448x1088,1448x1088,1.00,1.50,0.38
+Resources/MienCho/Journey/FootstepHall_Painted_v1.png,full-screen / large backdrop,6.00,RGBA32,1448x1086,1,0,1448x1086,0,screen,,,,1448x1088,1448x1088,1.00,1.50,0.38
+Resources/MienCho/Journey/Station_Painted_v1.png,full-screen / large backdrop,6.00,RGBA32,1448x1086,1,0,1448x1086,0,screen,,,,1448x1088,1448x1088,1.00,1.50,0.38
+Art/K26/TongueWhip_v1.png,Keeper organs,6.00,RGBA32,1983x793,1,0,1983x793,1,rectH,793,315,236,1064x424,648x260,0.92,0.40,0.07
+Art/PerformanceExpansion/locomotion-41_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,243,400,300,1256x1256,1256x1256,0.75,1.50,0.67
+Art/PerformanceExpansion/locomotion-36_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,287,400,300,1256x1256,1256x1256,0.74,1.50,0.67
+Art/PerformanceExpansion/locomotion-14_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,301,400,300,1256x1256,1256x1256,0.80,1.50,0.67
+Art/PerformanceExpansion/locomotion-11_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,279,400,300,1256x1256,1256x1256,0.77,1.50,0.67
+Art/FinalQuality/furniture-00_v1.png,map architecture,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,325,591,443,1256x1256,1256x1256,0.90,1.50,0.67
+Art/PerformanceExpansion/locomotion-12_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,301,400,300,1256x1256,1256x1256,0.73,1.50,0.67
+Art/FinalQuality/furniture-03_v1.png,map architecture,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,320,591,443,1256x1256,1256x1256,0.82,1.50,0.67
+Art/PerformanceExpansion/locomotion-44_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,286,400,300,1256x1256,1256x1256,0.76,1.50,0.67
+Art/FinalQuality/furniture-04_v1.png,map architecture,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,383,591,443,1256x1256,1256x1256,0.76,1.50,0.67
+Art/PerformanceExpansion/locomotion-40_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,273,400,300,1256x1256,1256x1256,0.80,1.50,0.67
+Art/PerformanceExpansion/locomotion-38_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,290,400,300,1256x1256,1256x1256,0.77,1.50,0.67
+Art/PerformanceExpansion/locomotion-08_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,283,400,300,1256x1256,1256x1256,0.79,1.50,0.67
+Art/PerformanceExpansion/locomotion-07_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,280,400,300,1256x1256,1256x1256,0.76,1.50,0.67
+Art/FinalQuality/furniture-02_v1.png,map architecture,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,311,591,443,1256x1256,1256x1256,0.71,1.50,0.67
+Art/PerformanceExpansion/locomotion-27_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,257,400,300,1256x1256,1256x1256,0.66,1.50,0.67
+Art/PerformanceExpansion/locomotion-10_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,292,400,300,1256x1256,1256x1256,0.71,1.50,0.67
+Art/PerformanceExpansion/locomotion-06_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,294,400,300,1256x1256,1256x1256,0.78,1.50,0.67
+Art/PerformanceExpansion/locomotion-37_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,279,400,300,1256x1256,1256x1256,0.82,1.50,0.67
+Art/PerformanceExpansion/locomotion-39_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,263,400,300,1256x1256,1256x1256,0.74,1.50,0.67
+Art/PerformanceExpansion/weapons-08_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,311,528,396,1256x1256,1256x1256,0.57,1.50,0.67
+Art/PerformanceExpansion/locomotion-43_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,247,400,300,1256x1256,1256x1256,0.71,1.50,0.67
+Art/PerformanceExpansion/locomotion-05_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,302,400,300,1256x1256,1256x1256,0.68,1.50,0.67
+Art/PerformanceExpansion/locomotion-21_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,288,400,300,1256x1256,1256x1256,0.66,1.50,0.67
+Art/PerformanceExpansion/locomotion-26_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,274,400,300,1256x1256,1256x1256,0.63,1.50,0.67
+Art/PerformanceExpansion/weapons-05_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,330,528,396,1256x1256,1256x1256,0.52,1.50,0.67
+Art/PerformanceExpansion/locomotion-17_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,288,400,300,1256x1256,1256x1256,0.71,1.50,0.67
+Art/PerformanceExpansion/locomotion-09_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,278,400,300,1256x1256,1256x1256,0.72,1.50,0.67
+Art/PerformanceExpansion/companions-08_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,294,400,300,1256x1256,1256x1256,0.73,1.50,0.67
+Art/PerformanceExpansion/locomotion-19_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,248,400,300,1256x1256,1256x1256,0.61,1.50,0.67
+Art/PerformanceExpansion/bosses-11_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,637,1080,810,1256x1256,1256x1256,0.81,1.50,0.67
+Art/PerformanceExpansion/locomotion-15_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,262,400,300,1256x1256,1256x1256,0.71,1.50,0.67
+Art/PerformanceExpansion/locomotion-20_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,260,400,300,1256x1256,1256x1256,0.59,1.50,0.67
+Art/PerformanceExpansion/weapons-06_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,320,528,396,1256x1256,1256x1256,0.51,1.50,0.67
+Art/PerformanceExpansion/weapons-07_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,338,528,396,1256x1256,1256x1256,0.52,1.50,0.67
+Art/PerformanceExpansion/locomotion-18_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,263,400,300,1256x1256,1256x1256,0.64,1.50,0.67
+Art/PerformanceExpansion/bosses-00_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,593,1080,810,1256x1256,1256x1256,0.90,1.50,0.67
+Art/PerformanceExpansion/locomotion-16_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,258,400,300,1256x1256,1256x1256,0.63,1.50,0.67
+Art/PerformanceExpansion/bosses-01_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,586,1080,810,1256x1256,1256x1256,0.85,1.50,0.67
+Art/PerformanceExpansion/weapons-03_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,350,528,396,1256x1256,1256x1256,0.58,1.50,0.67
+Art/PerformanceExpansion/weapons-04_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,365,528,396,1256x1256,1256x1256,0.41,1.50,0.67
+Art/PerformanceExpansion/locomotion-23_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,270,400,300,1256x1256,1256x1256,0.67,1.50,0.67
+Art/PerformanceExpansion/bosses-04_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,536,1080,810,1256x1256,1256x1256,0.82,1.50,0.67
+Art/PerformanceExpansion/bosses-06_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,563,1080,810,1256x1256,1256x1256,0.79,1.50,0.67
+Art/PerformanceExpansion/bosses-05_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,542,1080,810,1256x1256,1256x1256,0.87,1.50,0.67
+Art/PerformanceExpansion/weapons-00_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,346,528,396,1256x1256,1256x1256,0.53,1.50,0.67
+Art/PerformanceExpansion/bosses-07_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,520,1080,810,1256x1256,1256x1256,0.80,1.50,0.67
+Art/PerformanceExpansion/weapons-01_v1.png,held weapon,6.00,RGBA32,1254x1254,1,0,1254x1254,16,inkLong,333,528,396,1256x1256,1256x1256,0.48,1.50,0.67
+Art/PerformanceExpansion/bosses-08_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,583,1080,810,1256x1256,1256x1256,0.89,1.50,0.67
+Art/PerformanceExpansion/bosses-10_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,573,1080,810,1256x1256,1256x1256,0.77,1.50,0.67
+Art/PerformanceExpansion/locomotion-04_v1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,289,400,300,1256x1256,1256x1256,0.65,1.50,0.67
+Art/FinalQuality/furniture-01_v1.png,map architecture,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,298,591,443,1256x1256,1256x1256,0.80,1.50,0.67
+Art/PerformanceExpansion/bosses-02_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,528,1080,810,1256x1256,1256x1256,0.77,1.50,0.67
+Art/PerformanceExpansion/bosses-09_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,567,1080,810,1256x1256,1256x1256,0.81,1.50,0.67
+Art/MechanicEffects/HeroB_v1.png,other (kept),6.00,RGBA32,1254x1254,1,0,1254x1254,16,keep,,,,1256x1256,876x876,0.99,1.50,0.33
+Art/MechanicEffects/Forms_v1.png,other (kept),6.00,RGBA32,1254x1254,1,0,1254x1254,16,keep,,,,1256x1256,876x876,0.95,1.50,0.33
+Art/MechanicEffects/HeroA_v1.png,other (kept),6.00,RGBA32,1254x1254,1,0,1254x1254,16,keep,,,,1256x1256,876x876,0.97,1.50,0.33
+Art/K20/RoyalArchive_v1.png,boss organs,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,319,392,294,1256x1256,1256x1256,0.83,1.50,0.67
+Art/Nightmare/TactileImpacts_v2.png,other (kept),6.00,RGBA32,1254x1254,1,0,1254x1254,16,keep,,,,1256x1256,876x876,0.44,1.50,0.33
+Art/K21/UmbraWidow_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,337,1080,810,1256x1256,1256x1256,0.98,1.50,0.67
+Art/K21/ChoirLuggage_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,324,1080,810,1256x1256,1256x1256,1.00,1.50,0.67
+Art/ActOneBosses/TheBedside_Atlas.png,unused: frame atlas only referenced by SpriteInkMetrics,6.00,RGBA32,1254x1254,1,0,1254x1254,16,remove,,,,-,-,0.70,0.00,0.00
+Art/K20/SleepWax_v1.png,boss organs,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,332,392,294,1256x1256,1220x1220,0.86,1.50,0.63
+Resources/MienCho/ActOne/LastCustomer_Pleasant_Atlas.png,unused: frame atlas only referenced by SpriteInkMetrics,6.00,RGBA32,1254x1254,1,0,1254x1254,16,remove,,,,-,-,0.53,0.00,0.00
+Art/K25/EnemyAffixEffects_v1.png,other (kept),6.00,RGBA32,1254x1254,1,0,1254x1254,16,keep,,,,1256x1256,876x876,0.43,1.50,0.33
+Art/K21/LanternStage_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,318,1080,810,1256x1256,1256x1256,0.97,1.50,0.67
+Art/K19/RelicsA_v1.png,relic icon sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,337,332,249,1256x1256,1020x1020,0.88,1.50,0.44
+Art/K21/SleepWax_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,328,1080,810,1256x1256,1256x1256,1.00,1.50,0.67
+Art/K20/ChoirLuggage_v1.png,boss organs,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,323,392,294,1256x1256,1256x1256,0.83,1.50,0.67
+Resources/MienCho/ActOne/LastCustomer_BorrowedFace_Atlas.png,unused: frame atlas only referenced by SpriteInkMetrics,6.00,RGBA32,1254x1254,1,0,1254x1254,16,remove,,,,-,-,0.55,0.00,0.00
+Art/October/Relics5.png,relic icon sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,307,332,249,1256x1256,1120x1120,0.77,1.50,0.53
+Art/October/Relics4.png,relic icon sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,307,332,249,1256x1256,1120x1120,0.79,1.50,0.53
+Art/ActOneBosses/ChairPorter_Atlas.png,unused: frame atlas only referenced by SpriteInkMetrics,6.00,RGBA32,1254x1254,1,0,1254x1254,16,remove,,,,-,-,0.50,0.00,0.00
+Art/K20/LanternStage_v1.png,boss organs,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,330,392,294,1256x1256,1228x1228,0.81,1.50,0.64
+Art/K21/RoyalArchive_v1.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,302,1080,810,1256x1256,1256x1256,0.91,1.50,0.67
+Art/K20/UmbraWidow_v1.png,boss organs,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,299,392,294,1256x1256,1256x1256,0.80,1.50,0.67
+Art/Nightmare/NightmareGrandStage_v1.png,map architecture,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectLong,825,591,443,1212x1212,740x740,0.81,1.40,0.23
+Art/K19/RelicsC_v1.png,relic icon sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,297,332,249,1256x1256,1156x1156,0.72,1.50,0.57
+Resources/MienCho/Encounters/BreathingPhone.png,unused: replaced by Prop_StoryTelephone,6.00,RGBA32,1254x1254,1,0,1254x1254,0,remove,,,,-,-,0.79,0.00,0.00
+Art/K19/RelicsB_v1.png,relic icon sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,301,332,249,1256x1256,1140x1140,0.79,1.50,0.55
+Art/Nightmare/LastCustomerIdle_v4.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,586,1080,810,1256x1256,1256x1256,0.96,1.50,0.67
+Art/ActOneBosses/DoorThatStayedShut_Atlas.png,unused: frame atlas only referenced by SpriteInkMetrics,6.00,RGBA32,1254x1254,1,0,1254x1254,16,remove,,,,-,-,0.45,0.00,0.00
+Art/October/Reactions1.png,unit body sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectH,256,400,300,1256x1256,1256x1256,0.45,1.50,0.67
+Art/Nightmare/LastCustomerActions_v4.png,boss body,6.00,RGBA32,1254x1254,1,0,1254x1254,4,rectH,575,1080,810,1256x1256,1256x1256,0.71,1.50,0.67
+Art/AnimationHD/NightMarket_v1.png,other (kept),6.00,RGBA32,1254x1254,1,1,1254x1254,12,keep,,,,1256x1256,876x876,0.77,1.50,0.33
+Art/K19/RelicsD_v1.png,relic icon sheet,6.00,RGBA32,1254x1254,1,0,1254x1254,16,rectLong,309,332,249,1256x1256,1112x1112,0.76,1.50,0.52
+Art/K10/BondAstral.png,bond icon (cut-in),6.00,RGBA32,1254x1254,1,1,1254x1254,1,rectLong,1254,475,356,640x640,392x392,0.55,0.21,0.04
+Art/K10/BondOrchard.png,bond icon (cut-in),6.00,RGBA32,1254x1254,1,1,1254x1254,1,rectLong,1254,475,356,640x640,392x392,0.45,0.18,0.03
+Art/K26/Relics2_v1.png,relic icon sheet,6.00,RGBA32,1261x1247,1,0,1261x1247,16,rectLong,312,332,249,1260x1248,1108x1096,0.94,1.50,0.51
+Art/K22/SporeBishop_v1.png,unit body sheet,6.00,RGBA32,1247x1261,1,0,1247x1261,16,rectH,315,400,300,1248x1260,1248x1260,0.94,1.50,0.67
+Art/K22/CurtainWisp_v1.png,hazard,6.00,RGBA32,1247x1261,1,0,1247x1261,16,inkLong,349,443,332,1248x1260,1248x1260,0.90,1.50,0.37
+Art/K22/WardrobeCrab_v1.png,unit body sheet,6.00,RGBA32,1247x1261,1,0,1247x1261,16,rectH,307,400,300,1248x1260,1248x1260,0.87,1.50,0.67
+Art/K22/CoinLeech_v1.png,unit body sheet,6.00,RGBA32,1247x1261,1,0,1247x1261,16,rectH,313,400,300,1248x1260,1248x1260,0.84,1.50,0.67
+Art/K22/SleepMimic_v1.png,unit body sheet,6.00,RGBA32,1247x1261,1,0,1247x1261,16,rectH,300,400,300,1248x1260,1248x1260,0.85,1.50,0.67
+Art/K22/BlastPuffer_v1.png,unit body sheet,6.00,RGBA32,1246x1262,1,0,1246x1262,16,rectH,303,400,300,1248x1264,1248x1264,0.82,1.50,0.67
+Art/K22/InkMoth_v1.png,unit body sheet,6.00,RGBA32,1246x1262,1,0,1246x1262,16,rectH,302,400,300,1248x1264,1248x1264,0.82,1.50,0.67
+Art/K22/BristleImp_v1.png,unit body sheet,6.00,RGBA32,1246x1262,1,0,1246x1262,16,rectH,305,400,300,1248x1264,1248x1264,0.82,1.50,0.67
+Art/PerformanceExpansion/enemies-00_v1.png,unit body sheet,6.00,RGBA32,1574x999,1,0,1574x999,16,rectH,245,400,300,1576x1000,1576x1000,0.73,1.50,0.67
+Art/K22/HushMite_v1.png,unit body sheet,6.00,RGBA32,1242x1266,1,0,1242x1266,16,rectH,300,400,300,1240x1264,1240x1264,0.82,1.49,0.66
+Art/K10/CorkscrewRapier.png,held weapon,6.00,RGBA32,2021x778,1,1,2021x778,1,inkLong,1985,528,396,724x280,444x172,0.82,0.16,0.03
+Art/K22/RibbonHydra_v1.png,unit body sheet,6.00,RGBA32,1239x1269,1,0,1239x1269,16,rectH,283,400,300,1240x1268,1240x1268,0.84,1.50,0.67
+Art/K22/FurnaceToad_v1.png,unit body sheet,6.00,RGBA32,1214x1295,1,0,1214x1295,16,rectH,303,400,300,1216x1296,1216x1296,0.85,1.50,0.67
+Art/K22/BurrowBell_v1.png,unit body sheet,6.00,RGBA32,1230x1278,1,0,1230x1278,16,rectH,322,400,300,1232x1280,1232x1280,0.88,1.50,0.67
+Art/K10/BondOddity.png,bond icon (cut-in),6.00,RGBA32,1278x1230,1,1,1278x1230,1,rectLong,1278,475,356,640x616,392x376,0.57,0.21,0.04
+Art/K10/KettleBat.png,unit body sheet,5.99,RGBA32,2135x736,1,1,2135x736,4,rectH,548,400,300,2104x724,1284x444,0.72,1.45,0.24
+Art/Presentation/NightmareFloor_v1.png,full-screen / large backdrop,4.50,RGB24,1672x941,1,0,1672x941,0,screen,,,,1672x940,1672x940,1.00,1.50,0.37
+Resources/LostShop_v1.png,unused: fallback of WaitingRoom,4.50,RGB24,1536x1024,1,0,1536x1024,0,remove,,,,-,-,1.00,0.00,0.00
+Art/Arsenal/Gauge2_JugglingJester_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,417,166,124,552x344,336x208,0.57,0.14,0.02
+Art/Arsenal/Gauge2_JugglingJester_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,417,166,124,552x344,336x208,0.57,0.14,0.02
+Art/Arsenal/Gauge2_VelvetRegent_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,477,166,124,480x300,292x184,0.70,0.13,0.02
+Art/Arsenal/Gauge2_VelvetRegent_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,477,166,124,480x300,292x184,0.70,0.13,0.02
+Art/Arsenal/Gauge2_CitrusMarshal_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,247,166,124,928x580,564x352,0.34,0.23,0.04
+Art/Arsenal/Gauge2_CitrusMarshal_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,247,166,124,928x580,564x352,0.34,0.23,0.04
+Art/Arsenal/Gauge2_TinVirtuoso_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,311,166,124,736x460,448x280,0.42,0.18,0.03
+Art/Arsenal/Gauge2_TinVirtuoso_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,311,166,124,736x460,448x280,0.42,0.18,0.03
+Art/Arsenal/Gauge2_CometRunner_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,438,166,124,524x328,320x200,0.65,0.14,0.02
+Art/Arsenal/Gauge2_CometRunner_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,438,166,124,524x328,320x200,0.65,0.14,0.02
+Art/Arsenal/Gauge2_MirrorKeeper_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,482,166,124,476x296,288x180,0.72,0.13,0.02
+Art/Arsenal/Gauge2_MirrorKeeper_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,482,166,124,476x296,288x180,0.72,0.13,0.02
+Art/Arsenal/Gauge2_ButtonCavalier_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,317,166,124,724x452,440x276,0.48,0.20,0.03
+Art/Arsenal/Gauge2_ButtonCavalier_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,317,166,124,724x452,440x276,0.48,0.20,0.03
+Art/Arsenal/Gauge2_PennyBroker_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,473,166,124,484x304,296x184,0.64,0.12,0.02
+Art/Arsenal/Gauge2_PennyBroker_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,473,166,124,484x304,296x184,0.64,0.12,0.02
+Art/Arsenal/Gauge2_CopperCauldron_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,459,166,124,500x312,304x192,0.60,0.12,0.02
+Art/Arsenal/Gauge2_CopperCauldron_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,459,166,124,500x312,304x192,0.60,0.12,0.02
+Art/Arsenal/Gauge2_PatchworkHost_Empty_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,463,166,124,496x308,300x188,0.57,0.11,0.02
+Art/Arsenal/Gauge2_PatchworkHost_Full_v1.png,hero gauge,3.33,RGBA32,1024x640,11,0,1024x640,0,inkH,463,166,124,496x308,300x188,0.57,0.11,0.02
+Art/Arsenal/Generated/Gauge2_VelvetRegent_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,125,166,124,1024x640,1024x640,0.16,0.62,0.62
+Art/Arsenal/Generated/Gauge2_PatchworkHost_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,194,166,124,1024x640,720x448,0.15,0.62,0.31
+Art/Arsenal/Generated/Gauge2_MirrorKeeper_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,275,166,124,836x520,508x316,0.37,0.41,0.15
+Art/Arsenal/Generated/Gauge2_JugglingJester_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,185,166,124,1024x640,756x472,0.17,0.62,0.34
+Art/Arsenal/Generated/Gauge2_CopperCauldron_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,204,166,124,1024x640,684x428,0.19,0.62,0.28
+Art/Arsenal/Generated/Gauge2_CitrusMarshal_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,27,166,124,1024x640,1024x640,0.03,0.62,0.62
+Art/Arsenal/Generated/Gauge2_ButtonCavalier_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,98,166,124,1024x640,1024x640,0.09,0.62,0.62
+Art/Arsenal/Generated/Gauge2_TinVirtuoso_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,31,166,124,1024x640,1024x640,0.04,0.62,0.62
+Art/Arsenal/Generated/Gauge2_PennyBroker_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,173,166,124,1024x640,808x504,0.19,0.62,0.39
+Art/Arsenal/Generated/Gauge2_CometRunner_Order.png,gauge order map (data),3.33,RGBA32,1024x640,11,0,1024x640,0,data,207,166,124,1024x640,676x420,0.20,0.62,0.27
+Art/Arsenal/Gauge2_Postmaster_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,647,166,124,268x268,160x160,0.70,0.06,0.01
+Art/Arsenal/Gauge2_Postmaster_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,647,166,124,268x268,160x160,0.70,0.06,0.01
+Art/Arsenal/Gauge2_LoneJelly_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,649,166,124,264x264,160x160,0.74,0.07,0.01
+Art/Arsenal/Gauge2_LoneJelly_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,649,166,124,264x264,160x160,0.74,0.07,0.01
+Art/Arsenal/Gauge2_ThornTreasurer_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,693,166,124,248x248,152x152,0.81,0.06,0.01
+Art/Arsenal/Gauge2_ThornTreasurer_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,693,166,124,248x248,152x152,0.81,0.06,0.01
+Art/Arsenal/Gauge2_LanternWeaver_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,625,166,124,276x276,168x168,0.63,0.06,0.01
+Art/Arsenal/Gauge2_VerdantMatron_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,682,166,124,252x252,152x152,0.79,0.06,0.01
+Art/Arsenal/Gauge2_GlassDice_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,565,166,124,304x304,184x184,0.54,0.06,0.01
+Art/Arsenal/Gauge2_GlassDice_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,565,166,124,304x304,184x184,0.54,0.06,0.01
+Art/Arsenal/Gauge2_LanternWeaver_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,625,166,124,276x276,168x168,0.63,0.06,0.01
+Art/Arsenal/Gauge2_VerdantMatron_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,682,166,124,252x252,152x152,0.79,0.06,0.01
+Art/Arsenal/Gauge2_DrowsySeer_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,572,166,124,300x300,184x184,0.62,0.07,0.01
+Art/Arsenal/Gauge2_DrowsySeer_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,572,166,124,300x300,184x184,0.62,0.07,0.01
+Art/Arsenal/Gauge2_NightMaw_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,566,166,124,304x304,184x184,0.68,0.08,0.01
+Art/Arsenal/Gauge2_NightMaw_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,566,166,124,304x304,184x184,0.68,0.08,0.01
+Art/Arsenal/Gauge2_ArchiveCurator_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,613,166,124,280x280,172x172,0.59,0.06,0.01
+Art/Arsenal/Gauge2_ArchiveCurator_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,613,166,124,280x280,172x172,0.59,0.06,0.01
+Art/Arsenal/Gauge2_ChinaMarionette_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,653,166,124,264x264,160x160,0.63,0.06,0.01
+Art/Arsenal/Gauge2_ChinaMarionette_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,653,166,124,264x264,160x160,0.63,0.06,0.01
+Art/Arsenal/Gauge2_BonsaiClocksmith_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,643,166,124,268x268,164x164,0.64,0.06,0.01
+Art/Arsenal/Gauge2_BonsaiClocksmith_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,643,166,124,268x268,164x164,0.64,0.06,0.01
+Art/Arsenal/Gauge2_PetalCitadel_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,611,166,124,280x280,172x172,0.68,0.07,0.01
+Art/Arsenal/Gauge2_PetalCitadel_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,611,166,124,280x280,172x172,0.68,0.07,0.01
+Art/Arsenal/Gauge2_SoapSkater_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,662,166,124,260x260,160x160,0.70,0.06,0.01
+Art/Arsenal/Gauge2_SoapSkater_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,662,166,124,260x260,160x160,0.70,0.06,0.01
+Art/Arsenal/Gauge2_MoonProwler_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,602,166,124,284x284,176x176,0.59,0.06,0.01
+Art/Arsenal/Gauge2_MoonProwler_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,602,166,124,284x284,176x176,0.59,0.06,0.01
+Art/Arsenal/Gauge2_SupperMortar_Full_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,615,166,124,280x280,172x172,0.69,0.07,0.01
+Art/Arsenal/Gauge2_SupperMortar_Empty_v1.png,hero gauge,3.00,RGBA32,768x768,10,0,768x768,0,inkH,615,166,124,280x280,172x172,0.69,0.07,0.01
+Art/Arsenal/Generated/Gauge2_BonsaiClocksmith_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,338,166,124,508x508,308x308,0.21,0.25,0.09
+Art/Arsenal/Generated/Gauge2_VerdantMatron_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,566,166,124,304x304,184x184,0.53,0.09,0.03
+Art/Arsenal/Generated/Gauge2_ThornTreasurer_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,538,166,124,320x320,196x196,0.52,0.10,0.04
+Art/Arsenal/Generated/Gauge2_SupperMortar_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,419,166,124,412x412,252x252,0.34,0.16,0.06
+Art/Arsenal/Generated/Gauge2_PetalCitadel_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,443,166,124,388x388,236x236,0.35,0.14,0.05
+Art/Arsenal/Generated/Gauge2_LanternWeaver_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,364,166,124,472x472,288x288,0.24,0.21,0.08
+Art/Arsenal/Generated/Gauge2_ChinaMarionette_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,362,166,124,476x476,288x288,0.29,0.22,0.08
+Art/Arsenal/Generated/Gauge2_ArchiveCurator_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,334,166,124,516x516,312x312,0.22,0.25,0.09
+Art/Arsenal/Generated/Gauge2_SoapSkater_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,191,166,124,768x768,548x548,0.15,0.56,0.29
+Art/Arsenal/Generated/Gauge2_Postmaster_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,408,166,124,420x420,256x256,0.30,0.17,0.06
+Art/Arsenal/Generated/Gauge2_NightMaw_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,387,166,124,444x444,272x272,0.27,0.19,0.07
+Art/Arsenal/Generated/Gauge2_MoonProwler_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,317,166,124,544x544,332x332,0.18,0.28,0.11
+Art/Arsenal/Generated/Gauge2_LoneJelly_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,174,166,124,768x768,604x604,0.11,0.56,0.35
+Art/Arsenal/Generated/Gauge2_GlassDice_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,298,166,124,576x576,352x352,0.12,0.32,0.12
+Art/Arsenal/Generated/Gauge2_DrowsySeer_Order.png,gauge order map (data),3.00,RGBA32,768x768,10,0,768x768,0,data,353,166,124,488x488,296x296,0.23,0.23,0.08
+Art/K17/DreamGardenFloor_v1.png,floor tile span,2.67,BC7,2048x1024,12,0,1536x1024,0,rectW,1536,1477,1108,1536x1024,1220x812,1.00,2.00,0.31
+Art/K17/ClockworkFloor_v1.png,floor tile span,2.67,BC7,2048x1024,12,0,1536x1024,0,rectW,1536,1477,1108,1536x1024,1220x812,1.00,2.00,0.31
+Art/Expansion/Characters6_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,241,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Characters5_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,233,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Enemies/CoatRack_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,254,400,300,1536x1536,1536x1536,0.33,2.25,1.00
+Art/Expansion/Enemies/WakingSitter_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,208,400,300,1536x1536,1536x1536,0.26,2.25,1.00
+Art/Expansion/Enemies/SewnLetter_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,226,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Enemies/SpareChair_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,267,400,300,1536x1536,1536x1536,0.46,2.25,1.00
+Art/Expansion/Characters7_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,235,400,300,1536x1536,1536x1536,0.34,2.25,1.00
+Art/Expansion/Characters4_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,250,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Characters8_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,216,400,300,1536x1536,1536x1536,0.35,2.25,1.00
+Art/Expansion/Enemies/TollTick_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,263,400,300,1536x1536,1536x1536,0.47,2.25,1.00
+Art/Expansion/Enemies/DoorKnocker_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,249,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Enemies/PartyLine_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,230,400,300,1536x1536,1536x1536,0.38,2.25,1.00
+Art/Expansion/Enemies/LedgerHound_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,221,400,300,1536x1536,1536x1536,0.35,2.25,1.00
+Art/Expansion/Enemies/SplinterImp_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,264,400,300,1536x1536,1536x1536,0.47,2.25,1.00
+Art/Expansion/Enemies/LampSnuffer_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,250,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Enemies/HatboxHopper_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,281,400,300,1536x1536,1536x1536,0.43,2.25,1.00
+Art/Expansion/Characters3_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,220,400,300,1536x1536,1536x1536,0.32,2.25,1.00
+Art/Expansion/Enemies/InkNotary_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,280,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Enemies/UnclaimedTrunk_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,245,400,300,1536x1536,1536x1536,0.36,2.25,1.00
+Art/Expansion/Characters2_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,239,400,300,1536x1536,1536x1536,0.32,2.25,1.00
+Art/Expansion/Characters9_v1.png,unit body sheet,2.25,BC7,1536x1536,1,0,1536x1536,16,rectH,218,400,300,1536x1536,1536x1536,0.32,2.25,1.00
+Art/Nightmare/OneLightLeftOn_v1.png,full-screen / large backdrop,2.00,BC7,2048x1024,1,0,1536x1024,0,screen,,,,1536x1024,1536x1024,1.00,1.50,0.38
+Art/Nightmare/NightmareEnding_v1.png,full-screen / large backdrop,2.00,BC7,2048x1024,1,0,1536x1024,0,screen,,,,1536x1024,1536x1024,1.00,1.50,0.38
+Art/Arsenal/Gauge_IvorySovereign_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.69,0.00,0.00
+Art/Arsenal/Gauge_StormFencer_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.37,0.00,0.00
+Art/Arsenal/Gauge_StormFencer_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.37,0.00,0.00
+Art/Arsenal/Gauge_SupperMortar_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.82,0.00,0.00
+Art/Arsenal/Gauge_IvorySovereign_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.69,0.00,0.00
+Art/Arsenal/Gauge_ButtonCavalier_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.54,0.00,0.00
+Art/Arsenal/Gauge_ButtonCavalier_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.54,0.00,0.00
+Art/Arsenal/Gauge_SupperMortar_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.82,0.00,0.00
+Art/Arsenal/Gauge_PennyBroker_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.69,0.00,0.00
+Art/Arsenal/Gauge_PennyBroker_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.69,0.00,0.00
+Art/Arsenal/Gauge_CitrusMarshal_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.82,0.00,0.00
+Art/Arsenal/Gauge_CitrusMarshal_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.82,0.00,0.00
+Art/Arsenal/Gauge_NightMaw_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.62,0.00,0.00
+Art/Arsenal/Gauge_NightMaw_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.62,0.00,0.00
+Art/Arsenal/Gauge_HourglassStag_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.74,0.00,0.00
+Art/Arsenal/Gauge_HourglassStag_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.74,0.00,0.00
+Art/Arsenal/Gauge_TideSinger_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.73,0.00,0.00
+Art/Arsenal/Gauge_TideSinger_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.73,0.00,0.00
+Art/Arsenal/Gauge_PatchworkHost_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.60,0.00,0.00
+Art/Arsenal/Gauge_PatchworkHost_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.60,0.00,0.00
+Art/Arsenal/LoneJelly_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,495,591,443,768x512,756x504,0.51,0.25,0.11
+Art/Arsenal/SundaeDuchess_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,365,591,443,768x512,768x512,0.35,0.18,0.08
+Art/Arsenal/Gauge_SoapSkater_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.56,0.00,0.00
+Art/Arsenal/Gauge_SoapSkater_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.56,0.00,0.00
+Art/Arsenal/Gauge_VelvetRegent_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.81,0.00,0.00
+Art/Arsenal/Gauge_Postmaster_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.83,0.00,0.00
+Art/Arsenal/Gauge_Postmaster_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.83,0.00,0.00
+Art/Arsenal/Gauge_SundaeDuchess_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.48,0.00,0.00
+Art/Arsenal/CometRunner_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,709,591,443,768x512,528x352,0.61,0.30,0.06
+Art/Arsenal/RootOracle_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,573,591,443,768x512,652x436,0.67,0.34,0.11
+Art/Arsenal/Gauge_GlassDice_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.58,0.00,0.00
+Art/Arsenal/Gauge_GlassDice_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.58,0.00,0.00
+Art/Arsenal/GlassDice_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,636,591,443,768x512,588x392,0.69,0.34,0.09
+Art/Arsenal/Gauge_LanternKnight_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.77,0.00,0.00
+Art/Arsenal/Gauge_LanternKnight_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.77,0.00,0.00
+Art/Arsenal/Gauge_RainArchivist_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.72,0.00,0.00
+Art/Arsenal/Gauge_RainArchivist_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.72,0.00,0.00
+Art/Arsenal/Gauge_SundaeDuchess_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.48,0.00,0.00
+Art/Arsenal/HourglassStag_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,491,591,443,768x512,764x508,0.52,0.26,0.11
+Art/Arsenal/SoapSkater_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,662,591,443,768x512,564x376,0.70,0.35,0.08
+Art/Arsenal/KiteAdmiral_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,623,591,443,768x512,600x400,0.39,0.20,0.05
+Art/Arsenal/Gauge_LoneJelly_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.58,0.00,0.00
+Art/Arsenal/Gauge_LoneJelly_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.58,0.00,0.00
+Art/Arsenal/BonsaiClocksmith_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,391,591,443,768x512,768x512,0.37,0.19,0.08
+Art/Arsenal/Gauge_ArchiveCurator_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.47,0.00,0.00
+Art/Arsenal/Gauge_ArchiveCurator_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.47,0.00,0.00
+Art/Arsenal/NightMaw_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,692,591,443,768x512,540x360,0.81,0.40,0.09
+Art/Arsenal/Gauge_ThornTreasurer_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.60,0.00,0.00
+Art/Arsenal/Gauge_VelvetRegent_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.81,0.00,0.00
+Art/Arsenal/Gauge_ThornTreasurer_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.60,0.00,0.00
+Art/Arsenal/PetalCitadel_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,536,591,443,768x512,700x464,0.68,0.34,0.13
+Art/Arsenal/Gauge_CometRunner_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.66,0.00,0.00
+Art/Arsenal/Gauge_CometRunner_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.66,0.00,0.00
+Art/Arsenal/MirrorKeeper_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,490,591,443,768x512,764x508,0.43,0.21,0.09
+Art/Arsenal/MoonProwler_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,686,591,443,768x512,544x364,0.89,0.44,0.10
+Art/Arsenal/TideSinger_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,725,591,443,768x512,516x344,0.65,0.33,0.07
+Art/Arsenal/Gauge_RootOracle_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.44,0.00,0.00
+Art/Arsenal/Gauge_RootOracle_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.44,0.00,0.00
+Art/Arsenal/Gauge_TreasureAcorn_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.78,0.00,0.00
+Art/Arsenal/Gauge_TreasureAcorn_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.78,0.00,0.00
+Art/Arsenal/ThornTreasurer_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,485,591,443,768x512,768x512,0.56,0.28,0.12
+Art/Arsenal/Gauge_CopperCauldron_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.43,0.00,0.00
+Art/Arsenal/Gauge_CopperCauldron_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.43,0.00,0.00
+Art/Arsenal/Gauge_ChinaMarionette_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.69,0.00,0.00
+Art/Arsenal/Gauge_ChinaMarionette_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.69,0.00,0.00
+Art/Arsenal/CitrusMarshal_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,632,591,443,768x512,592x396,0.65,0.33,0.09
+Art/Arsenal/PatchworkHost_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,640,591,443,768x512,584x388,0.75,0.37,0.10
+Art/Arsenal/PennyBroker_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,663,591,443,768x512,564x376,0.75,0.37,0.09
+Art/Arsenal/Gauge_BellDiver_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.45,0.00,0.00
+Art/Arsenal/Gauge_BellDiver_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.45,0.00,0.00
+Art/Arsenal/Gauge_MirrorKeeper_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.63,0.00,0.00
+Art/Arsenal/Gauge_MirrorKeeper_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.63,0.00,0.00
+Art/Arsenal/CopperCauldron_Engine_v1.png,held weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,502,528,396,768x512,668x444,0.54,0.27,0.09
+Art/Arsenal/Gauge_VerdantMatron_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.73,0.00,0.00
+Art/Arsenal/Gauge_VerdantMatron_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.73,0.00,0.00
+Art/Arsenal/Gauge_PetalCitadel_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.65,0.00,0.00
+Art/Arsenal/Gauge_PetalCitadel_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.65,0.00,0.00
+Art/Arsenal/Gauge_KiteAdmiral_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.62,0.00,0.00
+Art/Arsenal/Gauge_KiteAdmiral_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.62,0.00,0.00
+Art/Arsenal/Gauge_LanternWeaver_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.74,0.00,0.00
+Art/Arsenal/Gauge_LanternWeaver_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.74,0.00,0.00
+Art/Arsenal/Gauge_DrowsySeer_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.48,0.00,0.00
+Art/Arsenal/Gauge_DrowsySeer_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.48,0.00,0.00
+Art/Arsenal/Gauge_JugglingJester_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.33,0.00,0.00
+Art/Arsenal/BellDiver_Awake_v1.png,awakened weapon,2.00,RGBA32,768x512,10,0,768x512,0,inkLong,370,591,443,768x512,768x512,0.34,0.17,0.08
+Art/Arsenal/Gauge_JugglingJester_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.33,0.00,0.00
+Art/Arsenal/Gauge_BonsaiClocksmith_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.53,0.00,0.00
+Art/Arsenal/Gauge_BonsaiClocksmith_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.53,0.00,0.00
+Art/Arsenal/Gauge_MoonProwler_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.63,0.00,0.00
+Art/Arsenal/Gauge_MoonProwler_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.63,0.00,0.00
+Art/Arsenal/Gauge_TinVirtuoso_Full_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.23,0.00,0.00
+Art/Arsenal/Gauge_TinVirtuoso_Empty_v1.png,unused: old gauges (Gauge2 replaces them),2.00,RGBA32,384x1024,11,0,384x1024,0,remove,,,,-,-,0.23,0.00,0.00
+Art/Expansion/Characters10_v1.png,unit body sheet,1.69,BC7,1536x1152,1,0,1536x1152,4,rectH,247,400,300,1536x1152,1536x1152,0.11,1.69,0.75
+Resources/MienCho/ActOne/LastCustomer_Blank.png,Last Customer frames,1.62,RGBA32,552x576,10,0,552x576,0,inkH,576,577,433,552x576,456x476,1.00,0.40,0.12
+Art/PerformanceExpansion/enemies-10_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,254,400,300,1536x1024,1536x1024,0.80,1.50,0.67
+Art/PerformanceExpansion/locomotion-34_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,238,400,300,1536x1024,1536x1024,0.63,1.50,0.67
+Art/PerformanceExpansion/companions-13_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,277,400,300,1536x1024,1536x1024,0.72,1.50,0.67
+Art/PerformanceExpansion/enemies-02_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,259,400,300,1536x1024,1536x1024,0.75,1.50,0.67
+Art/PerformanceExpansion/enemies-03_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,254,400,300,1536x1024,1536x1024,0.74,1.50,0.67
+Art/PerformanceExpansion/enemies-08_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,250,400,300,1536x1024,1536x1024,0.69,1.50,0.67
+Art/PerformanceExpansion/enemies-04_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,245,400,300,1536x1024,1536x1024,0.72,1.50,0.67
+Art/PerformanceExpansion/enemies-09_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,258,400,300,1536x1024,1536x1024,0.79,1.50,0.67
+Art/PerformanceExpansion/enemies-01_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,254,400,300,1536x1024,1536x1024,0.78,1.50,0.67
+Art/PerformanceExpansion/companions-10_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,255,400,300,1536x1024,1536x1024,0.64,1.50,0.67
+Art/PerformanceExpansion/weapons-11_v1.png,held weapon,1.50,BC7,1536x1024,1,0,1536x1024,16,inkLong,435,528,396,1536x1024,1536x1024,0.75,1.50,0.67
+Art/PerformanceExpansion/companions-12_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,249,400,300,1536x1024,1536x1024,0.72,1.50,0.67
+Art/PerformanceExpansion/locomotion-30_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,251,400,300,1536x1024,1536x1024,0.67,1.50,0.67
+Art/PerformanceExpansion/locomotion-13_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,249,400,300,1536x1024,1536x1024,0.73,1.50,0.67
+Art/PerformanceExpansion/weapons-09_v1.png,held weapon,1.50,BC7,1536x1024,1,0,1536x1024,16,inkLong,367,528,396,1536x1024,1536x1024,0.64,1.50,0.67
+Art/PerformanceExpansion/locomotion-42_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,251,400,300,1536x1024,1536x1024,0.69,1.50,0.67
+Art/PerformanceExpansion/locomotion-24_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,259,400,300,1536x1024,1536x1024,0.60,1.50,0.67
+Art/PerformanceExpansion/enemies-05_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,251,400,300,1536x1024,1536x1024,0.83,1.50,0.67
+Art/PerformanceExpansion/enemies-13_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,269,400,300,1536x1024,1536x1024,0.71,1.50,0.67
+Art/PerformanceExpansion/locomotion-25_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,238,400,300,1536x1024,1536x1024,0.56,1.50,0.67
+Art/PerformanceExpansion/enemies-12_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,260,400,300,1536x1024,1536x1024,0.76,1.50,0.67
+Art/PerformanceExpansion/companions-11_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,253,400,300,1536x1024,1536x1024,0.68,1.50,0.67
+Art/PerformanceExpansion/locomotion-29_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,239,400,300,1536x1024,1536x1024,0.62,1.50,0.67
+Art/PerformanceExpansion/weapons-10_v1.png,held weapon,1.50,BC7,1536x1024,1,0,1536x1024,16,inkLong,394,528,396,1536x1024,1536x1024,0.67,1.50,0.67
+Art/PerformanceExpansion/enemies-07_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,263,400,300,1536x1024,1536x1024,0.76,1.50,0.67
+Art/PerformanceExpansion/enemies-11_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,235,400,300,1536x1024,1536x1024,0.69,1.50,0.67
+Art/PerformanceExpansion/companions-09_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,247,400,300,1536x1024,1536x1024,0.61,1.50,0.67
+Art/PerformanceExpansion/weapons-02_v1.png,held weapon,1.50,BC7,1536x1024,1,0,1536x1024,16,inkLong,391,528,396,1536x1024,1536x1024,0.67,1.50,0.67
+Art/PerformanceExpansion/locomotion-31_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,242,400,300,1536x1024,1536x1024,0.51,1.50,0.67
+Art/PerformanceExpansion/companions-03_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,258,400,300,1536x1024,1536x1024,0.50,1.50,0.67
+Art/PerformanceExpansion/companions-05_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,251,400,300,1536x1024,1536x1024,0.51,1.50,0.67
+Art/PerformanceExpansion/locomotion-22_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,249,400,300,1536x1024,1536x1024,0.49,1.50,0.67
+Art/PerformanceExpansion/companions-07_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,245,400,300,1536x1024,1536x1024,0.45,1.50,0.67
+Art/PerformanceExpansion/locomotion-28_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,241,400,300,1536x1024,1536x1024,0.55,1.50,0.67
+Art/PerformanceExpansion/companions-04_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,263,400,300,1536x1024,1536x1024,0.54,1.50,0.67
+Art/PerformanceExpansion/companions-01_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,258,400,300,1536x1024,1536x1024,0.56,1.50,0.67
+Art/PerformanceExpansion/companions-06_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,240,400,300,1536x1024,1536x1024,0.51,1.50,0.67
+Art/PerformanceExpansion/companions-00_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,270,400,300,1536x1024,1536x1024,0.61,1.50,0.67
+Art/PerformanceExpansion/locomotion-33_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,238,400,300,1536x1024,1536x1024,0.48,1.50,0.67
+Art/FinalQuality/LanternKnight_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,12,rectH,334,400,300,1536x1024,1516x1012,0.65,1.50,0.65
+Art/PerformanceExpansion/locomotion-32_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,247,400,300,1536x1024,1536x1024,0.46,1.50,0.67
+Art/PerformanceExpansion/locomotion-35_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,216,400,300,1536x1024,1536x1024,0.40,1.50,0.67
+Art/PerformanceExpansion/bosses-03_v1.png,boss body,1.50,BC7,1536x1024,1,0,1536x1024,4,rectH,512,1080,810,1536x1024,1536x1024,0.83,1.50,0.67
+Art/PerformanceExpansion/locomotion-45_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,240,400,300,1536x1024,1536x1024,0.33,1.50,0.67
+Art/PerformanceExpansion/weapons-12_v1.png,held weapon,1.50,BC7,1536x1024,1,0,1536x1024,8,inkLong,380,528,396,1536x1024,1536x1024,0.28,1.50,0.67
+Art/K15/ImpactFamilies_v1.png,other (kept),1.50,BC7,1536x1024,1,0,1536x1024,16,keep,,,,1536x1024,1076x716,0.70,1.50,0.33
+Art/PerformanceExpansion/companions-15_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,4,rectH,323,400,300,1536x1024,1536x1024,0.26,1.50,0.67
+Art/K25/TwinFlameFurnace_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,275,400,300,1536x1024,1536x1024,0.76,1.50,0.67
+Art/K26/HandGrip_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.93,0.24,0.04
+Art/October/Allies1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,257,400,300,1536x1024,1536x1024,0.69,1.50,0.67
+Art/Expansion/Visitors7_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,286,427,320,1536x1024,1536x1024,0.35,1.50,0.67
+Art/October/Heroes5.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,274,400,300,1536x1024,1536x1024,0.70,1.50,0.67
+Art/K24/OutsideStage_v1.png,other (kept),1.50,BC7,1536x1024,1,0,1536x1024,16,keep,,,,1536x1024,1076x716,0.98,1.50,0.33
+Art/K10/ButtonBow.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1171,528,396,936x624,572x380,0.73,0.41,0.07
+Art/K25/SmokeWraith_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,263,400,300,1536x1024,1536x1024,0.87,1.50,0.67
+Art/K26/HandOpen_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.96,0.25,0.04
+Art/October/Reactions5.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,280,400,300,1536x1024,1536x1024,0.73,1.50,0.67
+Art/K26/TongueRoll_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.80,0.21,0.03
+Art/K10/DartCompass.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1425,528,396,768x512,468x312,0.79,0.30,0.05
+Art/ShopPresentation/RarityBloom_v1.png,other (kept),1.50,BC7,1536x1024,1,0,1536x1024,16,keep,,,,1536x1024,1076x716,0.77,1.50,0.33
+Resources/MienCho/Encounters/ReservedTable.png,waiting encounter prop,1.50,BC7,1536x1024,1,0,1536x1024,0,inkLong,1482,472,354,660x440,404x268,0.77,0.21,0.04
+Art/K24/OutsideRewards_v1.png,other (kept),1.50,BC7,1536x1024,1,0,1536x1024,16,keep,,,,1536x1024,1076x716,0.67,1.50,0.33
+Art/BuildMorphs/BackAttachments_v3.png,other (kept),1.50,BC7,1536x1024,1,0,1536x1024,12,keep,,,,1536x1024,1076x716,0.55,1.50,0.33
+Art/October/Watchers.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,317,400,300,1536x1024,1536x1024,0.83,1.50,0.67
+Art/K26/EyeClosing_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.92,0.24,0.04
+Art/K26/HandToss_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.91,0.23,0.04
+Art/K25/BlueFlameFiend_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,267,400,300,1536x1024,1536x1024,0.80,1.50,0.67
+Art/K25/LostLanternSoul_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,289,400,300,1536x1024,1536x1024,0.68,1.50,0.67
+Art/K25/EmberProcession_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,255,400,300,1536x1024,1536x1024,0.47,1.50,0.67
+Art/K10/RibbonHarp.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1455,528,396,752x500,460x308,0.78,0.28,0.05
+Art/Nightmare/NightmareProps_v2.png,map architecture,1.50,BC7,1536x1024,1,0,1536x1024,16,rectLong,371,591,443,1536x1024,1536x1024,0.84,1.50,0.67
+Resources/MienCho/Lanterns/Broken.png,lantern,1.50,BC7,1024x1536,1,0,1024x1536,0,inkH,1489,351,263,324x488,200x300,0.81,0.12,0.02
+Art/October/Allies2.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,267,400,300,1536x1024,1536x1024,0.67,1.50,0.67
+Art/October/Allies3.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,260,400,300,1536x1024,1536x1024,0.75,1.50,0.67
+Art/October/Allies4.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,250,400,300,1536x1024,1536x1024,0.75,1.50,0.67
+Art/K10/AcornSling.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1457,528,396,752x500,460x308,0.70,0.25,0.04
+Art/K22/BodyFragments_v1.png,unit body sheet,1.50,BC7,1024x1536,1,0,1024x1536,16,rectH,338,400,300,1024x1536,1000x1500,0.70,1.50,0.64
+Art/K25/AshSwallower_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,280,400,300,1536x1024,1536x1024,0.86,1.50,0.67
+Art/K26/EyeClosed_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.90,0.23,0.04
+Art/K10/PaperFan.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1377,528,396,796x532,484x324,0.78,0.32,0.05
+Art/October/Reactions3.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,279,400,300,1536x1024,1536x1024,0.66,1.50,0.67
+Art/Expansion/Visitors10_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,322,427,320,1536x1024,1536x1024,0.43,1.50,0.67
+Art/K26/TongueCurl_v1.png,Keeper organs,1.50,BC7,1536x1024,1,0,1536x1024,1,rectH,1024,315,236,636x424,388x260,0.94,0.24,0.04
+Resources/MienCho/Encounters/LateReflection.png,waiting encounter prop,1.50,BC7,1024x1536,1,0,1024x1536,0,inkLong,1487,472,354,440x660,268x404,0.85,0.24,0.04
+Resources/MienCho/Lanterns/Cracked.png,lantern,1.50,BC7,1024x1536,1,0,1024x1536,0,inkH,1489,351,263,324x488,200x300,0.82,0.12,0.02
+Art/K10/LeafCrossbow.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1406,528,396,780x520,476x316,0.80,0.31,0.05
+Art/K22/ClockBat_v1.png,unit body sheet,1.50,BC7,1024x1536,1,0,1024x1536,16,rectH,276,400,300,1024x1536,1024x1536,0.67,1.50,0.67
+Art/October/Heroes3.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,270,400,300,1536x1024,1536x1024,0.61,1.50,0.67
+Art/October/Allies5.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,248,400,300,1536x1024,1536x1024,0.60,1.50,0.67
+Resources/MienCho/Lanterns/Intact.png,lantern,1.50,BC7,1024x1536,1,0,1024x1536,0,inkH,1489,351,263,324x488,200x300,0.82,0.12,0.02
+Art/Expansion/Visitors6_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,342,427,320,1536x1024,1536x1024,0.40,1.50,0.67
+Art/K25/RedFlameBerserker_v1.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,199,400,300,1536x1024,1536x1024,0.38,1.50,0.67
+Art/Expansion/Visitors8_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,283,427,320,1536x1024,1536x1024,0.38,1.50,0.67
+Art/Expansion/Visitors2_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,343,427,320,1536x1024,1536x1024,0.39,1.50,0.67
+Art/BuildMorphs/Charms_v2.png,other (kept),1.50,BC7,1024x1536,1,0,1024x1536,12,keep,,,,1024x1536,716x1076,0.24,1.50,0.33
+Art/Expansion/Visitors4_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,319,427,320,1536x1024,1536x1024,0.42,1.50,0.67
+Art/Expansion/Visitors5_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,320,427,320,1536x1024,1536x1024,0.38,1.50,0.67
+Art/Expansion/Visitors11_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,274,427,320,1536x1024,1536x1024,0.35,1.50,0.67
+Art/Expansion/Visitors3_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,270,427,320,1536x1024,1536x1024,0.33,1.50,0.67
+Art/Expansion/Visitors1_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,376,427,320,1536x1024,1436x960,0.44,1.50,0.58
+Art/K14/ClockworkArsenal_v3.png,other (kept),1.50,BC7,1536x1024,1,1,1536x1024,6,keep,,,,1536x1024,1076x716,0.85,1.50,0.33
+Art/Expansion/Visitors9_v1.png,shop visitor,1.50,BC7,1536x1024,1,0,1536x1024,8,rectH,269,427,320,1536x1024,1536x1024,0.34,1.50,0.67
+Art/Nightmare/ManAfterTheReceipt_v1.png,other (kept),1.50,BC7,2048x768,1,0,2048x768,4,keep,,,,2048x768,1432x536,0.63,1.50,0.33
+Art/K10/CrescentBoomerang.png,held weapon,1.50,BC7,1536x1024,1,1,1536x1024,1,inkLong,1392,528,396,788x524,480x320,0.77,0.30,0.05
+Art/October/Heroes6.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,235,400,300,1536x1024,1536x1024,0.60,1.50,0.67
+Art/October/Reactions6.png,unit body sheet,1.50,BC7,1536x1024,1,0,1536x1024,16,rectH,247,400,300,1536x1024,1536x1024,0.60,1.50,0.67
+Art/Arsenal/BossProp_WaxCrest_f0_v1.png,boss prop,1.50,RGBA32,768x384,10,0,768x384,0,inkLong,554,406,305,760x380,464x232,0.41,0.15,0.03
+Art/Arsenal/BossProp_OrganPipe_f0_v1.png,boss prop,1.50,RGBA32,384x768,10,0,384x768,0,inkLong,525,406,305,384x768,244x492,0.28,0.11,0.02
+Art/K12/DreamGardenProps_v1.png,other (kept),1.50,BC7,2172x724,1,1,2172x724,4,keep,,,,2172x724,1520x508,0.87,1.50,0.33
+Art/October/Keeper.png,unit body sheet,1.50,BC7,2172x724,1,0,2172x724,4,rectH,683,400,300,1716x572,1048x348,0.90,0.94,0.15
+Art/Ensemble/FireExtinguisher_Action_v1.png,held weapon,1.50,BC7,2172x724,1,0,2172x724,4,inkLong,540,528,396,2172x724,1752x584,0.51,1.50,0.43
+Art/K13/ToyBlades_v2.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,4,inkLong,534,528,396,2172x724,1772x592,0.51,1.50,0.44
+Art/K10/StarSock.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,644,400,300,1820x608,1112x372,0.83,1.06,0.18
+Art/K10/MaskPepper.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,621,400,300,1888x628,1156x384,0.60,1.13,0.19
+Art/K10/LollipopLance.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,1,inkLong,2121,528,396,728x244,448x148,0.71,0.12,0.02
+Resources/MienCho/ActOne/Latch_Atlas.png,Act One companion,1.50,BC7,2172x724,1,0,2172x724,4,inkH,682,627,470,2172x724,1648x548,0.93,1.50,0.38
+Art/K10/IceCreamOwl.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,519,400,300,2172x724,1380x460,0.61,1.50,0.27
+Art/K11/GiantEggMerchant_v1.png,other (kept),1.50,BC7,2172x724,1,1,2172x724,4,keep,,,,2172x724,1520x508,0.89,1.50,0.33
+Art/K10/AnchorSnail.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,608,400,300,1928x644,1180x392,0.83,1.18,0.20
+Art/K10/OrbitMoth.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,574,400,300,2044x680,1248x416,0.74,1.33,0.22
+Art/K10/ButtonBeetle.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,539,400,300,2172x724,1328x444,0.67,1.50,0.25
+Art/K10/SnowSpoon.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,4,inkLong,665,528,396,2172x724,1424x476,0.60,1.50,0.29
+Art/K10/DreamCompass.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,638,400,300,1840x612,1124x376,0.79,1.07,0.18
+Art/K10/CrayonGremlin.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,634,400,300,1848x616,1132x376,0.72,1.09,0.18
+Art/K10/TinTick.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,551,400,300,2128x708,1300x432,0.59,1.44,0.24
+Art/K10/CometKite.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,558,400,300,2100x700,1284x428,0.77,1.40,0.23
+Art/K10/MoonJelly.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,556,400,300,2108x704,1288x428,0.66,1.42,0.23
+Art/K10/UmbrellaHook.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,1,inkLong,2061,528,396,752x252,460x152,0.68,0.12,0.02
+Art/K10/StapleMole.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,419,400,300,2172x724,1712x572,0.53,1.50,0.42
+Art/Ensemble/GiantEggMerchant_Handoff_v1.png,unit body sheet,1.50,BC7,2172x724,1,0,2172x724,4,rectH,491,400,300,2172x724,1460x488,0.57,1.50,0.30
+Art/K10/BubbleKoi.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,562,400,300,2088x696,1276x424,0.82,1.39,0.23
+Art/K10/SailSquid.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,635,400,300,1848x616,1128x376,0.70,1.09,0.18
+Art/K10/SpoonSabre.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,1,inkLong,2108,528,396,736x244,448x148,0.60,0.10,0.02
+Resources/MienCho/ActOne/Tally_Atlas.png,Act One companion,1.50,BC7,2172x724,1,0,2172x724,4,inkH,399,627,470,2172x724,2172x724,0.48,1.50,0.67
+Art/Ensemble/MoonFeatherFan_Action_v1.png,held weapon,1.50,BC7,2172x724,1,0,2172x724,4,inkLong,503,528,396,2172x724,1880x628,0.53,1.50,0.50
+Resources/MienCho/ActOne/Postscript_Atlas.png,Act One companion,1.50,BC7,2172x724,1,0,2172x724,4,inkH,581,627,470,2172x724,1932x644,0.84,1.50,0.53
+Art/K10/SpringDuck.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,580,400,300,2024x676,1236x412,0.68,1.30,0.22
+Art/K10/RibbonSpider.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,504,400,300,2172x724,1424x476,0.67,1.50,0.29
+Art/Ensemble/GiantGoldMerchant_Handoff_v1.png,unit body sheet,1.50,BC7,2172x724,1,0,2172x724,4,rectH,452,400,300,2172x724,1584x528,0.49,1.50,0.35
+Art/K10/CoralTeacup.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,592,400,300,1980x660,1212x404,0.80,1.25,0.21
+Art/K10/MirrorNewt.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,648,400,300,1808x604,1108x368,0.73,1.04,0.17
+Art/K13/DreamArms_v2.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,4,inkLong,543,528,396,2172x724,1744x580,0.50,1.50,0.43
+Art/K10/RadishJester.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,639,400,300,1836x612,1120x372,0.79,1.07,0.18
+Art/Ensemble/PaperFan_Action_v1.png,held weapon,1.50,BC7,2172x724,1,0,2172x724,4,inkLong,446,528,396,2172x724,2120x708,0.43,1.50,0.64
+Art/K10/BookmarkGolem.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,635,400,300,1848x616,1128x376,0.81,1.09,0.18
+Art/K10/TapeWhip.png,held weapon,1.50,BC7,2172x724,1,1,2172x724,1,inkLong,2102,528,396,736x244,452x152,0.56,0.10,0.02
+Art/K10/BreadCrab.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,471,400,300,2172x724,1520x508,0.64,1.50,0.33
+Art/K10/BrassAcorn.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,486,400,300,2172x724,1476x492,0.57,1.50,0.31
+Art/K10/SeedHedgehog.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,594,400,300,1976x660,1208x404,0.84,1.24,0.21
+Art/K10/PearMoth.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,532,400,300,2172x724,1348x448,0.58,1.50,0.26
+Art/K10/EclipseEgg.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,575,400,300,2040x680,1248x416,0.68,1.32,0.22
+Art/K10/DiceCrab.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,471,400,300,2172x724,1520x508,0.55,1.50,0.33
+Art/K13/DreamProjectiles_v1.png,projectile,1.50,BC7,2172x724,1,1,2172x724,4,inkLong,501,181,136,1060x352,648x216,0.38,0.36,0.06
+Art/K14/CarnivalProjectiles_v1.png,other (kept),1.50,BC7,2172x724,1,1,2172x724,3,keep,,,,2172x724,1520x508,0.32,1.50,0.33
+Art/K10/SockCyclops.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,645,400,300,1820x608,1112x372,0.75,1.06,0.18
+Art/K10/ShellPostman.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,523,400,300,2172x724,1372x456,0.72,1.50,0.27
+Resources/MienCho/ActOne/Hob_Atlas.png,Act One companion,1.50,BC7,2172x724,1,0,2172x724,4,inkH,411,627,470,2172x724,2172x724,0.46,1.50,0.67
+Art/K10/FridgeWisp.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,457,400,300,2172x724,1568x524,0.49,1.50,0.35
+Art/K10/CitrusToad.png,unit body sheet,1.50,BC7,2172x724,1,1,2172x724,4,rectH,411,400,300,2172x724,1744x580,0.53,1.50,0.43
+Art/Nightmare/LivingChest_v1.png,other (kept),1.50,BC7,2172x724,1,0,2172x724,4,keep,,,,2172x724,1520x508,0.64,1.50,0.33
+Art/K22/DoorBearer_v1.png,unit body sheet,1.50,BC7,1244x1264,1,0,1244x1264,16,rectH,301,400,300,1244x1264,1244x1264,0.88,1.50,0.67
+Art/K22/ChargerRam_v1.png,unit body sheet,1.50,BC7,1244x1264,1,0,1244x1264,16,rectH,293,400,300,1244x1264,1244x1264,0.85,1.50,0.67
+Art/Arsenal/Pinwheel_f3_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1177,256,192,368x368,224x224,0.84,0.14,0.02
+Art/Arsenal/BalloonAnimal_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1118,256,192,388x388,236x236,0.63,0.12,0.02
+Art/Arsenal/CandyBomblet_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1067,256,192,408x408,248x248,0.68,0.14,0.02
+Art/Arsenal/Pinwheel_f2_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1077,256,192,404x404,244x244,0.71,0.15,0.02
+Art/Arsenal/CandyDrillShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1131,256,192,384x384,236x236,0.51,0.10,0.02
+Art/Arsenal/WaterJet_v1.png,arsenal ground effect,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1140,512,384,760x760,464x464,0.52,0.38,0.06
+Art/Arsenal/Shot_ConfettiBlunderbuss_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1108,256,192,392x392,240x240,0.40,0.08,0.01
+Art/Arsenal/CherryBomb_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,995,256,192,436x436,268x268,0.61,0.15,0.02
+Art/Arsenal/LanternBombShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1021,256,192,424x424,260x260,0.62,0.14,0.02
+Art/Arsenal/Shot_FanfareHorn_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1124,256,192,384x384,236x236,0.59,0.11,0.02
+Art/Arsenal/Shot_DreamRacket_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,993,256,192,436x436,268x268,0.41,0.10,0.02
+Art/Arsenal/BuzzerFloor_f0_v1.png,arsenal ground effect,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,861,512,384,1008x1008,616x616,0.46,0.59,0.10
+Art/Arsenal/PinataShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1221,256,192,356x356,216x216,0.93,0.15,0.02
+Art/Arsenal/Shot_SnowGlobeOrb_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1171,256,192,372x372,228x228,0.44,0.08,0.01
+Art/Arsenal/PlushOctopus_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1061,256,192,408x408,248x248,0.63,0.13,0.02
+Art/Arsenal/ShurikenShot_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1063,256,192,408x408,248x248,0.72,0.15,0.02
+Art/Arsenal/Shot_CrescentBow_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1151,256,192,376x376,232x232,0.25,0.05,0.01
+Art/MechanicEffects/Tokens/Sand_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,887,200,150,380x380,232x232,0.48,0.09,0.01
+Art/Arsenal/StarUp_Crown_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1137,256,192,380x380,232x232,0.68,0.12,0.02
+Art/Arsenal/Shot_PlushShark_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1116,256,192,388x388,236x236,0.43,0.08,0.01
+Art/Arsenal/Shot_RibbonHarp_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1138,256,192,380x380,232x232,0.49,0.09,0.01
+Art/Arsenal/WindupKey_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1091,256,192,396x396,244x244,0.73,0.15,0.02
+Art/Arsenal/Shot_LanternStaff_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1105,256,192,392x392,240x240,0.51,0.10,0.02
+Art/Arsenal/Shot_ButtonBow_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1182,256,192,368x368,224x224,0.39,0.07,0.01
+Art/Arsenal/ToyBomb_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,820,256,192,528x528,324x324,0.39,0.14,0.02
+Art/Arsenal/PopperStick_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1019,256,192,424x424,260x260,0.56,0.13,0.02
+Art/Arsenal/Shot_FirecrackerPinwheel_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1124,256,192,384x384,236x236,0.58,0.11,0.02
+Art/Arsenal/Shot_SatelliteDisc_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,984,256,192,440x440,268x268,0.48,0.12,0.02
+Art/Arsenal/CherryBomb_f2_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,943,256,192,460x460,280x280,0.56,0.15,0.02
+Art/Arsenal/SaucerShot_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1120,256,192,388x388,236x236,0.69,0.13,0.02
+Art/Arsenal/PlantedSign_f1_v1.png,arsenal ground effect,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1125,512,384,772x772,472x472,0.56,0.43,0.07
+Art/Arsenal/Shot_TalismanIngot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1165,256,192,372x372,228x228,0.42,0.07,0.01
+Art/Arsenal/BouquetShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1165,256,192,372x372,228x228,0.49,0.09,0.01
+Art/Arsenal/HomeRunText_v1.png,arsenal ground effect,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1160,512,384,748x748,456x456,0.84,0.60,0.10
+Art/Arsenal/CorkBullet_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1197,256,192,364x364,220x220,0.36,0.06,0.01
+Art/Arsenal/Shot_DetonatorBox_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1117,256,192,388x388,236x236,0.51,0.10,0.02
+Art/Arsenal/Shot_PaperShuriken_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1023,256,192,424x424,260x260,0.66,0.15,0.03
+Art/Arsenal/Pinwheel_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1031,256,192,420x420,256x256,0.64,0.14,0.02
+Art/Arsenal/Shot_BalloonBuddy_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1221,256,192,356x356,216x216,0.59,0.09,0.02
+Art/Arsenal/Shot_FireExtinguisher_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1193,256,192,364x364,220x220,0.48,0.08,0.01
+Art/Arsenal/Shot_LeafCrossbow_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1146,256,192,380x380,232x232,0.31,0.06,0.01
+Art/Arsenal/Shot_BuzzerBlock_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1118,256,192,388x388,236x236,0.46,0.09,0.01
+Art/MechanicEffects/Tokens/Knot_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,946,200,150,356x356,220x220,0.49,0.08,0.01
+Art/Arsenal/StarUp_GoldStar_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1016,256,192,428x428,260x260,0.63,0.15,0.02
+Art/Arsenal/Shot_RuneStaff_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,960,256,192,452x452,276x276,0.30,0.08,0.01
+Art/Arsenal/Shot_GlitchToybox_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1094,256,192,396x396,244x244,0.53,0.11,0.02
+Art/Arsenal/Shot_AlarmMortar_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1085,256,192,400x400,244x244,0.57,0.12,0.02
+Art/Arsenal/Shot_TeapotPopgun_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,788,256,192,548x548,336x336,0.27,0.10,0.02
+Art/Arsenal/AcornBomb_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1022,256,192,424x424,260x260,0.56,0.13,0.02
+Art/Arsenal/Shot_AcornSling_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,817,256,192,532x532,324x324,0.27,0.10,0.02
+Art/Arsenal/FeltBall_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,889,256,192,488x488,296x296,0.51,0.15,0.03
+Art/Arsenal/ClawHead_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1145,256,192,380x380,232x232,0.69,0.13,0.02
+Art/Arsenal/PopperStick_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1061,256,192,408x408,248x248,0.63,0.13,0.02
+Art/Arsenal/CoinSpin_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,933,256,192,464x464,284x284,0.55,0.15,0.03
+Art/Arsenal/PlantedSign_f0_v1.png,arsenal ground effect,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1135,512,384,764x764,468x468,0.52,0.38,0.06
+Art/Arsenal/Shot_TinFish_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1032,256,192,420x420,256x256,0.44,0.10,0.02
+Art/MechanicEffects/Tokens/Dumpling_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1071,200,150,316x316,192x192,0.64,0.08,0.01
+Art/Arsenal/Fastball_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,824,256,192,524x524,320x320,0.44,0.15,0.03
+Art/Arsenal/Shot_MusicBox_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,906,256,192,480x480,292x292,0.41,0.12,0.02
+Art/Arsenal/Shot_DowsingRod_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1096,256,192,396x396,240x240,0.31,0.06,0.01
+Art/Arsenal/Shot_DreamOrbStaff_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1103,256,192,392x392,240x240,0.41,0.08,0.01
+Art/Arsenal/TwigDart_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1061,256,192,408x408,248x248,0.35,0.07,0.01
+Art/MechanicEffects/Tokens/Patch_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,944,200,150,360x360,220x220,0.48,0.08,0.01
+Art/Arsenal/WindupKey_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1066,256,192,408x408,248x248,0.64,0.14,0.02
+Art/MechanicEffects/Tokens/Moon_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,910,200,150,372x372,228x228,0.41,0.07,0.01
+Art/Arsenal/Shot_ScrapMagnet_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1074,256,192,404x404,248x248,0.41,0.09,0.01
+Art/Arsenal/KunaiShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1117,256,192,388x388,236x236,0.35,0.07,0.01
+Art/Arsenal/CherryBomb_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,903,256,192,480x480,292x292,0.51,0.15,0.02
+Art/Arsenal/Shot_BubbleWand_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,941,256,192,460x460,280x280,0.33,0.09,0.01
+Art/Arsenal/SoundFin_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1123,256,192,384x384,236x236,0.72,0.14,0.02
+Art/Arsenal/Shot_RoseBouquet_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1220,256,192,356x356,216x216,0.54,0.09,0.01
+Art/Arsenal/SnowGlobeShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1126,256,192,384x384,236x236,0.55,0.10,0.02
+Art/Arsenal/Shot_MoonFeatherFan_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1116,256,192,388x388,236x236,0.27,0.05,0.01
+Art/Arsenal/CandyPellet_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1190,256,192,364x364,224x224,0.57,0.10,0.02
+Art/Arsenal/Shot_InkPistol_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1145,256,192,380x380,232x232,0.25,0.05,0.01
+Art/Arsenal/Shot_PlasmaTrident_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1114,256,192,388x388,236x236,0.38,0.07,0.01
+Art/Arsenal/CoinSpin_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,907,256,192,476x476,292x292,0.52,0.15,0.02
+Art/Arsenal/Shot_FizzBottle_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1178,256,192,368x368,224x224,0.31,0.05,0.01
+Art/Arsenal/PlushSharkShot_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1175,256,192,368x368,224x224,0.54,0.09,0.02
+Art/Arsenal/Shot_DartCompass_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1132,256,192,384x384,232x232,0.38,0.07,0.01
+Art/MechanicEffects/Tokens/Star_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1020,200,150,332x332,204x204,0.63,0.09,0.01
+Art/Arsenal/Shot_MailboxLauncher_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1064,256,192,408x408,248x248,0.37,0.08,0.01
+Art/Arsenal/CoinSpin_f2_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,978,256,192,444x444,272x272,0.61,0.15,0.03
+Art/Arsenal/Shot_GrabberClaw_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1187,256,192,364x364,224x224,0.57,0.10,0.02
+Art/Arsenal/CoinSpin_f4_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,984,256,192,440x440,268x268,0.62,0.15,0.03
+Art/Arsenal/Shot_InkyOctopus_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1109,256,192,392x392,240x240,0.45,0.09,0.01
+Art/Arsenal/Shot_SquirtTrio_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1117,256,192,388x388,236x236,0.35,0.07,0.01
+Art/Arsenal/CoinSpin_f5_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,970,256,192,448x448,272x272,0.61,0.15,0.03
+Art/Arsenal/Shot_PopperSticks_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1199,256,192,360x360,220x220,0.44,0.07,0.01
+Art/Arsenal/BambooVaseShot_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1028,256,192,420x420,256x256,0.62,0.14,0.02
+Art/Arsenal/Shot_BambooVase_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1176,256,192,368x368,224x224,0.56,0.10,0.02
+Art/Arsenal/Shot_TwinMoonStaff_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,982,256,192,440x440,268x268,0.62,0.15,0.02
+Art/Arsenal/Shot_CandyDrill_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1087,256,192,400x400,244x244,0.28,0.06,0.01
+Art/Arsenal/Shot_CherryFuseBomb_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1070,256,192,404x404,248x248,0.48,0.10,0.02
+Art/Arsenal/Shot_StarKazoo_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1201,256,192,360x360,220x220,0.41,0.07,0.01
+Art/Arsenal/Shot_PlungerPopper_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1193,256,192,364x364,220x220,0.38,0.06,0.01
+Art/Arsenal/Shot_DreamProjector_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1141,256,192,380x380,232x232,0.36,0.07,0.01
+Art/Arsenal/Shot_KunaiFan_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1125,256,192,384x384,236x236,0.25,0.05,0.01
+Art/MechanicEffects/Tokens/Fang_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,952,200,150,356x356,216x216,0.33,0.05,0.01
+Art/Arsenal/ClawHead_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1185,256,192,364x364,224x224,0.47,0.08,0.01
+Art/Arsenal/PlungerCup_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1021,256,192,424x424,260x260,0.45,0.10,0.02
+Art/Arsenal/PlushOctopus_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,893,256,192,484x484,296x296,0.46,0.14,0.02
+Art/Arsenal/Shot_SleepCamera_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1082,256,192,400x400,244x244,0.45,0.09,0.02
+Art/Arsenal/PlushOctopus_f3_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,777,256,192,556x556,340x340,0.36,0.14,0.02
+Art/Arsenal/Pinwheel_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1031,256,192,420x420,256x256,0.64,0.14,0.02
+Art/Arsenal/Shot_CrescentBoomerang_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1098,256,192,396x396,240x240,0.59,0.12,0.02
+Art/MechanicEffects/Tokens/Puff_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,978,200,150,348x348,212x212,0.61,0.09,0.02
+Art/Arsenal/Shot_CorkRifle_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1080,256,192,400x400,244x244,0.21,0.04,0.01
+Art/MechanicEffects/Tokens/Shard_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1097,200,150,308x308,188x188,0.48,0.06,0.01
+Art/Arsenal/GlobeMote_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,796,256,192,544x544,332x332,0.41,0.15,0.03
+Art/Arsenal/StarUp_SilverStar_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1012,256,192,428x428,260x260,0.62,0.15,0.02
+Art/Arsenal/Shot_MoonseedOrb_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,742,256,192,584x584,356x356,0.33,0.14,0.02
+Art/Arsenal/BambooShoot_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,861,256,192,504x504,308x308,0.42,0.14,0.02
+Art/Arsenal/BambooShoot_f2_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,898,256,192,484x484,296x296,0.49,0.15,0.02
+Art/Arsenal/StarShard_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1024,256,192,424x424,260x260,0.49,0.11,0.02
+Art/Arsenal/Shot_ShellCannon_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1170,256,192,372x372,228x228,0.48,0.08,0.01
+Art/Arsenal/Shot_CatcherMitt_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,733,256,192,592x592,360x360,0.34,0.15,0.03
+Art/Arsenal/Shot_BellFork_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1093,256,192,396x396,244x244,0.38,0.08,0.01
+Art/MechanicEffects/Tokens/Seal_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,909,200,150,372x372,228x228,0.50,0.09,0.01
+Art/Arsenal/Gumball_f0_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,753,256,192,576x576,352x352,0.36,0.15,0.03
+Art/Arsenal/PlushOctopus_f2_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,889,256,192,488x488,296x296,0.45,0.14,0.02
+Art/MechanicEffects/Tokens/Thorn_v1.png,mechanic token,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,936,200,150,360x360,220x220,0.31,0.05,0.01
+Art/Arsenal/Shot_SaucerBlaster_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1136,256,192,380x380,232x232,0.41,0.07,0.01
+Art/Arsenal/Shot_NeedleSinger_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,1165,256,192,372x372,228x228,0.15,0.03,0.00
+Art/Arsenal/BambooShoot_f1_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,865,256,192,500x500,308x308,0.44,0.14,0.02
+Art/Arsenal/CoinSpin_f3_v1.png,arsenal shot / thrown,1.33,BC7,1024x1024,11,0,1254x1254,0,inkLong,824,256,192,524x524,320x320,0.08,0.03,0.00
+Resources/MienCho/WaitingRoom_ChairTurned.png,full-screen / large backdrop,1.33,DXT1,2048x1024,12,0,1672x941,0,screen,,,,1672x940,1672x940,1.00,2.00,0.50
+Resources/MienCho/ActOne/Prop_SewnReply.png,Act One zone prop,1.25,RGBA32,519x473,10,0,519x473,0,inkH,374,517,388,520x472,520x472,0.57,0.18,0.08
+Resources/MienCho/ActOne/Prop_ExtraFootprints.png,Act One zone prop,1.20,RGBA32,465x509,9,0,465x509,0,inkH,406,517,388,464x508,464x508,0.56,0.17,0.07
+Resources/MienCho/ActOne/Prop_HeightMarks.png,Act One zone prop,1.18,RGBA32,453x512,10,0,453x512,0,inkH,418,517,388,452x512,452x512,0.38,0.11,0.05
+Art/Expansion/Enemies/SewnLetterPieces_v1.png,unit body sheet,1.12,BC7,1536x768,1,0,1536x768,8,rectH,278,400,300,1536x768,1536x768,0.46,1.12,0.50
+Resources/MienCho/ActOne/Prop_BurntContract.png,Act One zone prop,1.12,RGBA32,461x480,9,0,461x480,0,inkH,409,517,388,460x480,460x480,0.67,0.19,0.08
+Resources/MienCho/ActOne/Prop_WaitingNote.png,Act One zone prop,1.11,RGBA32,509x428,9,0,509x428,0,inkH,294,517,388,508x428,508x428,0.51,0.14,0.06
+Resources/MienCho/ActOne/Prop_WetUmbrella.png,Act One zone prop,1.07,RGBA32,467x451,9,0,467x451,0,inkH,409,517,388,468x452,468x452,0.50,0.13,0.06
+Resources/MienCho/ActOne/Prop_VisitorRaincoat.png,Act One zone prop,1.06,RGBA32,451x462,9,0,451x462,0,inkH,424,517,388,452x464,452x464,0.57,0.15,0.07
+Resources/MienCho/ActOne/Prop_InsideRelease.png,Act One zone prop,0.99,RGBA32,430x455,9,0,430x455,0,inkH,367,517,388,432x456,432x456,0.69,0.17,0.08
+Resources/MienCho/ActOne/Keeper_Whole_Body.png,Keeper body,0.89,RGBA32,392x448,9,0,392x448,0,rectH,448,542,407,392x448,392x448,0.91,0.20,0.09
+Resources/MienCho/ActOne/Keeper_Silhouette.png,Keeper body,0.89,RGBA32,457x382,9,0,457x382,0,rectH,382,542,407,456x384,456x384,0.91,0.20,0.09
+Art/Expansion/Visitors12_v1.png,shop visitor,0.75,BC7,1536x512,1,0,1536x512,2,rectH,270,427,320,1536x512,1536x512,0.19,0.75,0.33
+Art/Arsenal/HearthBrick_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,907,528,396,804x404,492x244,0.51,0.21,0.03
+Art/Arsenal/DrowsySeer_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,969,591,443,844x420,516x256,0.73,0.33,0.05
+Art/Arsenal/VelvetRegent_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,986,591,443,828x416,508x252,0.66,0.29,0.05
+Art/Arsenal/LanternKnight_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,966,591,443,844x424,516x260,0.65,0.30,0.05
+Art/Arsenal/SupperMortar_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,834,591,443,980x488,600x300,0.56,0.34,0.06
+Art/Arsenal/StormFencer_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,963,591,443,848x424,520x260,0.59,0.27,0.05
+Art/Arsenal/LanternWeaver_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,981,591,443,832x416,508x256,0.57,0.25,0.04
+Art/Arsenal/SpinningTop_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,867,528,396,840x420,516x256,0.40,0.18,0.03
+Art/Arsenal/DetonatorBox_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1538,528,396,824x412,504x252,0.66,0.29,0.05
+Art/Arsenal/Postmaster_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,992,591,443,824x412,504x252,0.76,0.33,0.05
+Art/Arsenal/Gauge2_RootOracle_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,915,166,124,124x252,76x152,0.46,0.02,0.00
+Art/Arsenal/Gauge2_RootOracle_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,915,166,124,124x252,76x152,0.46,0.02,0.00
+Art/Arsenal/TreasureAcorn_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,964,591,443,848x424,516x260,0.63,0.29,0.05
+Art/Arsenal/Gauge2_HourglassStag_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,766,166,124,148x300,92x184,0.54,0.03,0.01
+Art/Arsenal/PlushShark_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1569,528,396,804x404,492x248,0.69,0.29,0.05
+Art/Arsenal/ButtonCavalier_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,998,591,443,820x408,500x248,0.61,0.26,0.04
+Art/Arsenal/DreamRacket_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1617,528,396,784x392,476x240,0.70,0.27,0.04
+Art/Arsenal/Gauge2_HourglassStag_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,766,166,124,148x300,92x184,0.54,0.03,0.01
+Art/Arsenal/PopperSticks_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1423,528,396,888x444,544x272,0.51,0.25,0.04
+Art/Arsenal/YoYo_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,847,528,396,860x432,528x264,0.38,0.18,0.03
+Art/Arsenal/BambooVase_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1652,528,396,764x384,468x232,0.80,0.30,0.05
+Art/Arsenal/VerdantMatron_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,1002,591,443,816x408,496x248,0.65,0.28,0.05
+Art/Arsenal/RainArchivist_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,960,591,443,852x424,520x260,0.85,0.39,0.07
+Art/Arsenal/FlySwatter_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1679,528,396,752x376,460x232,0.58,0.21,0.03
+Art/Arsenal/BuzzerBlock_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1605,528,396,788x392,480x240,0.60,0.24,0.04
+Art/Arsenal/SquirtTrio_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1582,528,396,800x400,488x244,0.84,0.34,0.06
+Art/Arsenal/ChinaMarionette_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,992,591,443,824x412,504x252,0.56,0.24,0.04
+Art/Arsenal/ArchiveCurator_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,998,591,443,820x408,500x248,0.89,0.38,0.06
+Art/Arsenal/SaucerBlaster_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1494,528,396,848x424,516x260,0.74,0.34,0.06
+Art/Arsenal/TinVirtuoso_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,990,591,443,824x412,504x252,0.30,0.13,0.02
+Art/Arsenal/ConfettiBlunderbuss_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1644,528,396,768x384,472x236,0.62,0.23,0.04
+Art/Arsenal/IvorySovereign_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,1000,591,443,816x408,500x248,0.72,0.31,0.05
+Art/Arsenal/CherryFuseBomb_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1653,528,396,764x384,468x232,0.58,0.22,0.04
+Art/Arsenal/PawMitten_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1438,528,396,880x440,536x268,0.67,0.33,0.05
+Art/Arsenal/DrumstickClub_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1655,528,396,764x384,468x232,0.72,0.27,0.04
+Art/Arsenal/BobaStraw_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,849,528,396,860x428,524x264,0.52,0.24,0.04
+Art/Arsenal/Gauge2_LanternKnight_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,889,166,124,128x260,80x156,0.65,0.03,0.00
+Art/Arsenal/Gauge2_LanternKnight_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,889,166,124,128x260,80x156,0.65,0.03,0.00
+Art/Arsenal/FirecrackerPinwheel_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1705,528,396,740x372,452x228,0.90,0.32,0.05
+Art/Arsenal/GrabberClaw_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1635,528,396,772x388,472x236,0.67,0.26,0.04
+Art/Arsenal/PinataBomb_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1656,528,396,764x380,468x232,0.87,0.32,0.05
+Art/Arsenal/GlitchToybox_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1672,528,396,756x380,464x232,0.76,0.28,0.05
+Art/Arsenal/DragonLanternGlaive_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1714,528,396,736x368,452x224,0.65,0.22,0.04
+Art/Arsenal/CorkRifle_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1623,528,396,780x388,476x240,0.48,0.18,0.03
+Art/Arsenal/TopiaryShears_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1631,528,396,776x388,472x236,0.57,0.22,0.04
+Art/Arsenal/Gauge2_BellDiver_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,810,166,124,140x284,88x172,0.32,0.02,0.00
+Art/Arsenal/Gauge2_BellDiver_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,810,166,124,140x284,88x172,0.32,0.02,0.00
+Art/Arsenal/SnowGlobeGrenade_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1564,528,396,808x404,496x248,0.59,0.25,0.04
+Art/Arsenal/FizzBottle_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1476,528,396,856x428,524x260,0.45,0.21,0.03
+Art/Arsenal/AcornCluster_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1571,528,396,804x404,492x244,0.75,0.31,0.05
+Art/Arsenal/Gauge2_SundaeDuchess_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,814,166,124,140x280,84x172,0.63,0.03,0.01
+Art/Arsenal/SonarHarpoon_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,830,528,396,880x440,536x268,0.47,0.23,0.04
+Art/Arsenal/KunaiFan_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1468,528,396,860x432,528x264,0.62,0.29,0.05
+Art/Arsenal/StarKnuckle_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1408,528,396,900x448,548x276,0.53,0.27,0.05
+Art/Arsenal/SignpostSlammer_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1646,528,396,768x384,468x236,0.71,0.27,0.04
+Art/Arsenal/BalloonBuddy_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1664,528,396,760x380,464x232,0.72,0.26,0.04
+Art/Arsenal/ScoopLauncher_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,833,528,396,876x440,536x268,0.36,0.18,0.03
+Art/Arsenal/Gauge2_SundaeDuchess_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,814,166,124,140x280,84x172,0.63,0.03,0.01
+Art/Arsenal/FortuneGlobe_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1534,528,396,824x412,504x252,0.67,0.29,0.05
+Art/Arsenal/LeekBaton_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1689,528,396,748x376,456x228,0.55,0.20,0.03
+Art/Arsenal/GumballGatling_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1672,528,396,756x380,464x232,0.69,0.25,0.04
+Art/Arsenal/WindupWrench_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1655,528,396,764x384,468x232,0.62,0.23,0.04
+Art/Arsenal/Gauge2_KiteAdmiral_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,865,166,124,132x264,80x160,0.67,0.03,0.00
+Art/Arsenal/Gauge2_KiteAdmiral_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,865,166,124,132x264,80x160,0.67,0.03,0.00
+Art/Arsenal/PaperShuriken_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1686,528,396,752x376,460x228,0.70,0.25,0.04
+Art/Arsenal/TalismanIngot_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1608,528,396,788x392,480x240,0.67,0.26,0.04
+Art/Arsenal/CuckooCannon_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,834,528,396,876x436,536x268,0.57,0.28,0.05
+Art/Arsenal/PaperPlaneSquadron_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,756,528,396,964x484,592x296,0.44,0.26,0.04
+Art/Arsenal/CatcherMitt_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1270,528,396,996x496,608x304,0.61,0.39,0.06
+Art/Arsenal/JugglingJester_Awake_Held_v1.png,awakened weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,824,591,443,992x496,604x304,0.47,0.29,0.05
+Art/Arsenal/VerdictGavel_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1437,528,396,880x440,536x268,0.62,0.30,0.05
+Art/Arsenal/FanfareHorn_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1591,528,396,796x396,484x244,0.73,0.29,0.05
+Art/Arsenal/Gauge2_TreasureAcorn_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,852,166,124,136x268,80x164,0.44,0.02,0.00
+Art/Arsenal/PaperLanternBomb_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1681,528,396,752x376,460x228,0.73,0.26,0.04
+Art/Arsenal/Gauge2_TreasureAcorn_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,852,166,124,136x268,80x164,0.44,0.02,0.00
+Art/Arsenal/InkyOctopus_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1554,528,396,812x408,496x248,0.61,0.26,0.04
+Art/Arsenal/WateringCan_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,756,528,396,964x484,592x296,0.48,0.28,0.05
+Art/Arsenal/SnowShovel_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,831,528,396,880x440,536x268,0.34,0.17,0.03
+Art/Arsenal/DowsingRod_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1605,528,396,788x392,480x240,0.49,0.19,0.03
+Art/Arsenal/TwinMoonStaff_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1700,528,396,744x372,456x228,0.47,0.17,0.03
+Art/Arsenal/Gauge2_RainArchivist_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,780,166,124,148x296,88x180,0.57,0.03,0.01
+Art/Arsenal/Gauge2_RainArchivist_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,780,166,124,148x296,88x180,0.57,0.03,0.01
+Art/Arsenal/PlungerPopper_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1684,528,396,752x376,460x228,0.73,0.26,0.04
+Art/Arsenal/StarforgeClaymore_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1676,528,396,756x376,460x232,0.64,0.23,0.04
+Art/Arsenal/Gauge2_TideSinger_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,952,166,124,120x240,72x148,0.66,0.02,0.00
+Art/Arsenal/Gauge2_TideSinger_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,952,166,124,120x240,72x148,0.66,0.02,0.00
+Art/Arsenal/RollingPin_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,838,528,396,872x436,532x268,0.24,0.12,0.02
+Art/Arsenal/KiteSpool_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,838,528,396,872x436,532x268,0.50,0.24,0.04
+Art/Arsenal/HomeRunBat_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1627,528,396,776x388,476x236,0.31,0.12,0.02
+Art/Arsenal/CandyDrill_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1619,528,396,780x392,476x240,0.49,0.19,0.03
+Art/Arsenal/RoseBouquet_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1661,528,396,760x380,464x232,0.77,0.28,0.05
+Art/Arsenal/Gauge2_IvorySovereign_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,857,166,124,132x268,80x164,0.68,0.03,0.01
+Art/Arsenal/Gauge2_IvorySovereign_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,857,166,124,132x268,80x164,0.68,0.03,0.01
+Art/Arsenal/Gauge2_StormFencer_Full_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,822,166,124,140x280,84x168,0.37,0.02,0.00
+Art/Arsenal/Gauge2_StormFencer_Empty_v1.png,hero gauge,0.67,BC7,512x1024,11,0,512x1024,0,inkH,822,166,124,140x280,84x168,0.37,0.02,0.00
+Art/Arsenal/BareKnuckles_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1774x887,0,inkLong,1470,528,396,860x432,524x264,0.59,0.28,0.05
+Art/Arsenal/JugglingPins_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,797,528,396,916x456,560x280,0.29,0.15,0.03
+Art/Arsenal/SunLens_Held_v1.png,held weapon,0.67,BC7,1024x512,11,0,1024x512,0,inkLong,851,528,396,856x428,524x264,0.54,0.25,0.04
+Art/Arsenal/Generated/Gauge2_TreasureAcorn_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,572,166,124,200x400,124x244,0.08,0.08,0.03
+Art/Arsenal/Generated/Gauge2_SundaeDuchess_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,496,166,124,232x464,140x280,0.25,0.10,0.04
+Art/Arsenal/Generated/Gauge2_RainArchivist_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,447,166,124,256x512,156x312,0.16,0.12,0.05
+Art/Arsenal/Generated/Gauge2_LanternKnight_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,229,166,124,500x1004,304x608,0.14,0.48,0.18
+Art/Arsenal/Generated/Gauge2_IvorySovereign_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,481,166,124,240x476,144x292,0.14,0.11,0.04
+Art/Arsenal/Generated/Gauge2_HourglassStag_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,394,166,124,292x584,176x356,0.14,0.16,0.06
+Art/Arsenal/Generated/Gauge2_TideSinger_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,458,166,124,252x500,152x304,0.10,0.12,0.04
+Art/Arsenal/Generated/Gauge2_StormFencer_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,487,166,124,236x472,144x288,0.11,0.11,0.04
+Art/Arsenal/Generated/Gauge2_RootOracle_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,545,166,124,212x420,128x256,0.15,0.08,0.03
+Art/Arsenal/Generated/Gauge2_KiteAdmiral_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,787,166,124,144x292,88x176,0.35,0.04,0.01
+Art/Arsenal/Generated/Gauge2_BellDiver_Order.png,gauge order map (data),0.67,BC7,512x1024,11,0,512x1024,0,data,410,166,124,280x560,172x340,0.06,0.15,0.06
+Resources/MienCho/Journey/PerfectRoom_Hob_v1.png,story panel,0.67,DXT1,1024x1024,11,0,1448x1086,0,rectW,1448,960,720,1296x972,792x592,1.00,1.60,0.26
+Art/October/NightmareFloor.png,full-screen / large backdrop,0.67,DXT1,1024x1024,11,0,1254x1254,0,screen,,,,1256x1256,1256x1256,1.00,2.01,0.50
+Resources/MienCho/ActOne/Keeper_Kneel.png,Keeper body,0.65,RGBA32,321x397,9,0,321x397,0,rectH,397,542,407,320x396,320x396,0.89,0.14,0.06
+Resources/MienCho/ActOne/Keeper_Eye_Open.png,Keeper carrier parts,0.62,RGBA32,308x395,9,0,308x395,0,rectW,308,1329,997,308x396,308x396,0.89,0.14,0.06
+Resources/MienCho/ActOne/Keeper_Eye_Closed.png,Keeper carrier parts,0.60,RGBA32,302x393,9,0,302x393,0,rectW,302,1329,997,304x392,304x392,0.89,0.13,0.06
+Resources/MienCho/ActOne/Keeper_Hand_Intact.png,Keeper carrier parts,0.60,RGBA32,346x343,9,0,346x343,0,rectW,346,1329,997,344x344,344x344,0.89,0.13,0.06
+Resources/MienCho/ActOne/Keeper_Carpet_Intact.png,Keeper carrier parts,0.58,RGBA32,311x367,9,0,311x367,0,rectW,311,1329,997,312x368,312x368,0.88,0.13,0.06
+Resources/MienCho/ActOne/Prop_StoryTelephone.png,Act One zone prop,0.55,RGBA32,325x331,9,0,325x331,0,inkH,303,517,388,324x332,324x332,0.88,0.12,0.05
+Resources/MienCho/ActOne/Keeper_Hand_Broken.png,Keeper carrier parts,0.54,RGBA32,359x295,9,0,359x295,0,rectW,359,1329,997,360x296,360x296,0.89,0.12,0.05
+Resources/MienCho/ActOne/Prop_OrdinaryStool.png,Act One zone prop,0.41,RGBA32,266x303,9,0,266x303,0,inkH,275,517,388,264x304,264x304,0.87,0.09,0.04
+Art/Expansion/FirstSeed_Hedge_v1.png,other (kept),0.38,DXT5,768x512,1,0,768x512,0,keep,,,,768x512,536x360,0.37,0.14,0.03
+Resources/MienCho/ActOne/Keeper_Carpet_Broken.png,Keeper carrier parts,0.37,RGBA32,271x268,9,0,271x268,0,rectW,271,1329,997,272x268,272x268,0.86,0.08,0.04
+Art/Arsenal/Shot_HearthBrick_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,453,256,192,392x392,240x240,0.43,0.08,0.01
+Art/Arsenal/YoyoSpin_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,275,256,192,512x512,392x392,0.26,0.09,0.02
+Art/Arsenal/BossProp_Suitcase_f1_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,315,406,305,512x512,512x512,0.37,0.12,0.05
+Art/Arsenal/BossProp_Letter_f0_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,335,406,305,512x512,512x512,0.41,0.14,0.06
+Art/Arsenal/BossProp_Sheep_f0_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,337,406,305,512x512,508x508,0.35,0.12,0.05
+Art/Arsenal/Shot_GumballGatling_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,441,256,192,400x400,244x244,0.42,0.09,0.01
+Art/Arsenal/CuckooBird_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,356,256,192,496x496,304x304,0.36,0.11,0.02
+Art/Arsenal/Sprout_v1.png,arsenal ground effect,0.33,BC7,512x512,10,0,512x512,0,inkLong,255,512,384,512x512,512x512,0.25,0.08,0.04
+Art/Arsenal/KiteShot_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,366,256,192,484x484,296x296,0.29,0.09,0.01
+Art/Arsenal/BossProp_Suitcase_f0_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,307,406,305,512x512,512x512,0.37,0.12,0.05
+Art/Arsenal/BossProp_Pendulum_f0_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,365,406,305,512x512,472x472,0.35,0.12,0.04
+Art/Arsenal/RareCover_Mythic_v1.png,item icon,0.33,BC7,512x512,10,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.44,0.06,0.01
+Art/Arsenal/BobaPearl_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,216,256,192,512x512,500x500,0.19,0.06,0.03
+Art/Arsenal/PendulumShot_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,374,256,192,472x472,288x288,0.34,0.10,0.02
+Art/Arsenal/SnowClump_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,312,256,192,512x512,348x348,0.22,0.07,0.02
+Art/Arsenal/SpinTop_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,302,256,192,512x512,360x360,0.36,0.12,0.03
+Art/Arsenal/BossProp_Sheep_f1_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,334,406,305,512x512,512x512,0.35,0.12,0.05
+Art/Arsenal/RareCover_Prismatic_v1.png,item icon,0.33,BC7,512x512,10,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.43,0.06,0.01
+Art/Arsenal/BossProp_Coin_f0_v1.png,boss prop,0.33,BC7,512x512,10,0,512x512,0,inkLong,358,406,305,512x512,480x480,0.51,0.17,0.07
+Art/Arsenal/HarpoonShot_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,359,256,192,492x492,300x300,0.14,0.04,0.01
+Art/Arsenal/PaperPlane_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,320,256,192,512x512,336x336,0.22,0.07,0.01
+Art/Arsenal/Scoop_f2_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,306,256,192,512x512,352x352,0.35,0.12,0.02
+Art/Arsenal/Scoop_f1_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,306,256,192,512x512,352x352,0.35,0.12,0.02
+Art/Arsenal/Scoop_f0_v1.png,arsenal shot / thrown,0.33,BC7,512x512,10,0,512x512,0,inkLong,306,256,192,512x512,352x352,0.35,0.12,0.02
+Resources/Effects/DeathBlast_f3.png,other (kept),0.33,DXT5,512x512,10,0,384x384,0,keep,,,,384x384,268x268,0.56,0.11,0.02
+Resources/Effects/DeathBlast_f2.png,other (kept),0.33,DXT5,512x512,10,0,384x384,0,keep,,,,384x384,268x268,0.79,0.15,0.03
+Resources/Effects/DeathBlast_f1.png,other (kept),0.33,DXT5,512x512,10,0,384x384,0,keep,,,,384x384,268x268,0.83,0.16,0.03
+Resources/Effects/DeathBlast_f0.png,other (kept),0.33,DXT5,512x512,10,0,384x384,0,keep,,,,384x384,268x268,0.69,0.13,0.03
+Art/Expansion/Item_BrainFreeze_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.29,0.03,0.01
+Art/Expansion/Item_FrostSalt_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.37,0.04,0.01
+Art/Expansion/Item_TallyChalk_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.50,0.05,0.01
+Art/Expansion/Enemies/IndebtedStamp_v1.png,unit body sheet,0.25,DXT5,512x512,1,0,512x512,0,rectH,512,400,300,512x512,328x328,0.39,0.10,0.02
+Art/Expansion/Item_MoonClockKey_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.42,0.05,0.01
+Art/Expansion/Item_DreamLoom_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.50,0.06,0.01
+Art/Expansion/Item_HagglersAbacus_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.50,0.06,0.01
+Art/Expansion/Item_SpliceKit_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.44,0.05,0.01
+Art/Expansion/Item_RefundSlip_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.46,0.05,0.01
+Art/Expansion/Item_KiteTailRibbon_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.49,0.05,0.01
+Art/Expansion/Item_UndertowAnchor_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.43,0.05,0.01
+Art/Expansion/TeaDragon_Teapot_v1.png,other (kept),0.25,DXT5,512x512,1,0,512x512,0,keep,,,,512x512,360x360,0.39,0.10,0.02
+Art/Expansion/Item_StorybookEnding_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.48,0.05,0.01
+Art/Expansion/Item_DuelistsRibbon_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.49,0.05,0.01
+Art/Expansion/Item_CoinSash_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.47,0.05,0.01
+Art/Expansion/Item_TheEndlessEncore_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.44,0.05,0.01
+Art/Expansion/Item_MeltingSundae_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.45,0.05,0.01
+Art/Expansion/Item_LateFee_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.49,0.05,0.01
+Art/Expansion/Item_FishCracker_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.38,0.04,0.01
+Art/Expansion/Item_DivingBellLantern_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.49,0.05,0.01
+Art/Expansion/Item_SpecimenPin_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.38,0.04,0.01
+Art/Expansion/Item_WindChime_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.25,0.03,0.00
+Art/Expansion/Item_PostageStamp_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.47,0.05,0.01
+Art/Expansion/Item_TreasureMimic_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.47,0.05,0.01
+Art/Expansion/Item_TwinTicket_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.21,0.02,0.00
+Art/Expansion/Item_FrostLedger_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.50,0.06,0.01
+Art/Expansion/Item_SlipstreamScarf_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.50,0.06,0.01
+Art/Expansion/Item_FunhouseMirror_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.41,0.05,0.01
+Art/Expansion/Item_CuckooPendulum_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.40,0.04,0.01
+Art/Expansion/Item_MirrorOfTwins_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.35,0.04,0.01
+Art/Expansion/Item_StarPolish_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.48,0.05,0.01
+Art/Expansion/Item_WhetstoneWafer_v1.png,item icon,0.25,DXT5,512x512,1,0,512x512,0,rectLong,512,252,189,340x340,208x208,0.40,0.04,0.01
+Art/K3Loot/Heart.png,other (kept),0.25,RGBA32,256x256,1,0,256x256,0,keep,,,,256x256,180x180,0.48,0.03,0.01
+Art/K3Loot/Egg.png,other (kept),0.25,RGBA32,256x256,1,0,256x256,0,keep,,,,256x256,180x180,0.48,0.03,0.01
+Resources/MienCho/ActOne/Stat_CompanionDamage.png,stat icon,0.23,RGBA32,206x220,8,0,206x220,0,rectLong,220,72,54,92x96,56x60,0.57,0.01,0.00
+Resources/MienCho/ActOne/Stat_AttackRange.png,stat icon,0.23,RGBA32,204x219,8,0,204x219,0,rectLong,219,72,54,92x96,56x60,0.65,0.01,0.00
+Resources/MienCho/ActOne/Pickup_PrismShard.png,pickup / memory,0.22,RGBA32,153x289,9,0,153x289,0,inkLong,262,133,100,104x200,64x120,0.81,0.02,0.00
+Resources/MienCho/ActOne/Stat_Income.png,stat icon,0.22,RGBA32,208x208,8,0,208x208,0,rectLong,208,72,54,96x96,60x60,0.60,0.01,0.00
+Resources/MienCho/ActOne/Stat_ChestQuality.png,stat icon,0.22,RGBA32,220x197,8,0,220x197,0,rectLong,220,72,54,96x88,60x52,0.62,0.01,0.00
+Resources/MienCho/ActOne/Stat_Dodge.png,stat icon,0.22,RGBA32,199x216,8,0,199x216,0,rectLong,216,72,54,88x96,56x60,0.68,0.01,0.00
+Resources/MienCho/ActOne/Stat_RangedDamage.png,stat icon,0.22,RGBA32,201x213,8,0,201x213,0,rectLong,213,72,54,92x96,56x60,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_TreasureDetection.png,stat icon,0.21,RGBA32,211x197,8,0,211x197,0,rectLong,211,72,54,96x92,60x56,0.69,0.01,0.00
+Resources/MienCho/ActOne/Stat_CollisionFrequency.png,stat icon,0.21,RGBA32,196x211,8,0,196x211,0,rectLong,211,72,54,92x96,56x60,0.61,0.01,0.00
+Resources/MienCho/ActOne/Stat_BulletDistance.png,stat icon,0.21,RGBA32,218x188,8,0,218x188,0,rectLong,218,72,54,96x84,60x52,0.52,0.01,0.00
+Resources/MienCho/ActOne/Stat_EnemyHealth.png,stat icon,0.20,RGBA32,217x185,8,0,217x185,0,rectLong,217,72,54,96x84,60x52,0.68,0.01,0.00
+Resources/MienCho/ActOne/Stat_Interest.png,stat icon,0.20,RGBA32,196x204,8,0,196x204,0,rectLong,204,72,54,92x96,56x60,0.61,0.01,0.00
+Resources/MienCho/ActOne/Stat_CompanionSize.png,stat icon,0.20,RGBA32,204x195,8,0,204x195,0,rectLong,204,72,54,96x92,60x56,0.74,0.01,0.00
+Resources/MienCho/ActOne/Stat_BodySize.png,stat icon,0.20,RGBA32,194x203,8,0,194x203,0,rectLong,203,72,54,92x96,56x60,0.74,0.01,0.00
+Resources/MienCho/ActOne/Stat_Projectiles.png,stat icon,0.19,RGBA32,206x186,8,0,206x186,0,rectLong,206,72,54,96x88,60x52,0.68,0.01,0.00
+Resources/MienCho/ActOne/Stat_ChestReach.png,stat icon,0.19,RGBA32,202x189,8,0,202x189,0,rectLong,202,72,54,96x92,60x56,0.73,0.01,0.00
+Resources/MienCho/ActOne/Stat_HeartHealing.png,stat icon,0.19,RGBA32,189x201,8,0,189x201,0,rectLong,201,72,54,92x96,56x60,0.62,0.01,0.00
+Resources/MienCho/ActOne/Stat_EnemyCount.png,stat icon,0.19,RGBA32,198x189,8,0,198x189,0,rectLong,198,72,54,96x92,60x56,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_Discount.png,stat icon,0.19,RGBA32,200x187,8,0,200x187,0,rectLong,200,72,54,96x92,60x56,0.73,0.01,0.00
+Resources/MienCho/ActOne/Stat_CollisionDamage.png,stat icon,0.19,RGBA32,190x196,8,0,190x196,0,rectLong,196,72,54,96x96,56x60,0.70,0.01,0.00
+Resources/MienCho/ActOne/Stat_SpeedCorrection.png,stat icon,0.19,RGBA32,188x196,8,0,188x196,0,rectLong,196,72,54,92x96,56x60,0.69,0.01,0.00
+Resources/MienCho/ActOne/Stat_HealCorrection.png,stat icon,0.19,RGBA32,189x195,8,0,189x195,0,rectLong,195,72,54,96x96,56x60,0.73,0.01,0.00
+Resources/MienCho/ActOne/Stat_ArmorCorrection.png,stat icon,0.19,RGBA32,191x192,8,0,191x192,0,rectLong,192,72,54,96x96,60x60,0.72,0.01,0.00
+Resources/MienCho/ActOne/Stat_Luck.png,stat icon,0.19,RGBA32,185x198,8,0,185x198,0,rectLong,198,72,54,92x96,56x60,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_DamageCorrection.png,stat icon,0.19,RGBA32,192x190,8,0,192x190,0,rectLong,192,72,54,96x96,60x60,0.75,0.01,0.00
+Resources/MienCho/ActOne/Stat_Knockback.png,stat icon,0.18,RGBA32,207x176,8,0,207x176,0,rectLong,207,72,54,96x84,60x52,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_Roam.png,stat icon,0.18,RGBA32,214x170,8,0,214x170,0,rectLong,214,72,54,96x76,60x48,0.70,0.01,0.00
+Resources/MienCho/ActOne/Stat_Armor.png,stat icon,0.18,RGBA32,180x200,8,0,180x200,0,rectLong,200,72,54,88x96,52x60,0.73,0.01,0.00
+Resources/MienCho/ActOne/Stat_Health.png,stat icon,0.18,RGBA32,184x195,8,0,184x195,0,rectLong,195,72,54,92x96,56x60,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_AttackSpeed.png,stat icon,0.18,RGBA32,183x196,8,0,183x196,0,rectLong,196,72,54,92x96,56x60,0.67,0.01,0.00
+Resources/MienCho/ActOne/Stat_Crit.png,stat icon,0.18,RGBA32,178x201,8,0,178x201,0,rectLong,201,72,54,88x96,52x60,0.60,0.01,0.00
+Resources/MienCho/ActOne/Stat_BulletSpeed.png,stat icon,0.18,RGBA32,206x173,8,0,206x173,0,rectLong,206,72,54,96x80,60x48,0.56,0.01,0.00
+Resources/MienCho/ActOne/Stat_Interceptor.png,stat icon,0.18,RGBA32,191x186,8,0,191x186,0,rectLong,191,72,54,96x96,60x56,0.78,0.01,0.00
+Resources/MienCho/ActOne/Stat_EnemySpeed.png,stat icon,0.18,RGBA32,180x197,8,0,180x197,0,rectLong,197,72,54,88x96,56x60,0.62,0.01,0.00
+Resources/MienCho/ActOne/Stat_Heal.png,stat icon,0.18,RGBA32,170x208,8,0,170x208,0,rectLong,208,72,54,80x96,48x60,0.74,0.01,0.00
+Resources/MienCho/ActOne/Stat_RecruitDiscount.png,stat icon,0.18,RGBA32,202x174,8,0,202x174,0,rectLong,202,72,54,96x84,60x52,0.74,0.01,0.00
+Resources/MienCho/ActOne/Stat_HealthCorrection.png,stat icon,0.18,RGBA32,188x185,8,0,188x185,0,rectLong,188,72,54,96x96,60x60,0.70,0.01,0.00
+Resources/MienCho/ActOne/Stat_MeleeDamage.png,stat icon,0.18,RGBA32,184x189,8,0,184x189,0,rectLong,189,72,54,96x96,56x60,0.79,0.01,0.00
+Resources/MienCho/ActOne/Stat_ScoreMultiplier.png,stat icon,0.18,RGBA32,182x190,8,0,182x190,0,rectLong,190,72,54,92x96,56x60,0.74,0.01,0.00
+Resources/MienCho/ActOne/Stat_CompanionAttackSpeed.png,stat icon,0.17,RGBA32,185x185,8,0,185x185,0,rectLong,185,72,54,96x96,60x60,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_BulletSplit.png,stat icon,0.17,RGBA32,202x166,8,0,202x166,0,rectLong,202,72,54,96x80,60x48,0.72,0.01,0.00
+Resources/MienCho/ActOne/Stat_ChampionDamage.png,stat icon,0.17,RGBA32,162x206,8,0,162x206,0,rectLong,206,72,54,76x96,48x60,0.59,0.01,0.00
+Resources/MienCho/ActOne/Stat_ShopRarity.png,stat icon,0.17,RGBA32,190x175,8,0,190x175,0,rectLong,190,72,54,96x88,60x56,0.71,0.01,0.00
+Resources/MienCho/ActOne/Stat_MoveSpeed.png,stat icon,0.16,RGBA32,188x172,8,0,188x172,0,rectLong,188,72,54,96x88,60x56,0.76,0.01,0.00
+Resources/MienCho/ActOne/Stat_Damage.png,stat icon,0.16,RGBA32,176x183,8,0,176x183,0,rectLong,183,72,54,92x96,56x60,0.75,0.01,0.00
+Resources/MienCho/ActOne/Stat_Pickup.png,stat icon,0.16,RGBA32,172x183,8,0,172x183,0,rectLong,183,72,54,92x96,56x60,0.75,0.01,0.00
+Resources/MienCho/ActOne/Stat_BulletPierce.png,stat icon,0.16,RGBA32,203x155,8,0,203x155,0,rectLong,203,72,54,96x76,60x44,0.73,0.01,0.00
+Resources/MienCho/ActOne/Stat_RelicDiscount.png,stat icon,0.15,RGBA32,182x167,8,0,182x167,0,rectLong,182,72,54,96x88,60x56,0.72,0.01,0.00
+Resources/MienCho/ActOne/Stat_BulletSize.png,stat icon,0.15,RGBA32,191x153,8,0,191x153,0,rectLong,191,72,54,96x76,60x48,0.68,0.01,0.00
+Resources/MienCho/ActOne/Stat_BulletBounce.png,stat icon,0.15,RGBA32,174x166,8,0,174x166,0,rectLong,174,72,54,96x92,60x56,0.74,0.01,0.00
+Art/Checkpoint/Disc.png,other (kept),0.00,DXT5,64x64,1,0,64x64,0,keep,,,,64x64,44x44,1.00,0.00,0.00
+Art/Checkpoint/Square.png,other (kept),0.00,RGB24,2x2,1,0,2x2,0,keep,,,,4x4,4x4,1.00,0.00,0.00

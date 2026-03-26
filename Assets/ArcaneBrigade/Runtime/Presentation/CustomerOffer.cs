@@ -79,7 +79,7 @@ namespace ArcaneBrigade
             Rect refuse = new Rect(card.x + card.width * 0.5f - 210, card.yMax - 82, 420, 60);
             ArcadeSkin.Plate(refuse, ArcadeSkin.Teal);
             name.normal.textColor = ArcadeSkin.Cream;
-            if (GUI.Button(refuse, "SAY NOTHING AND WALK ON  [Esc]", name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
+            if (GUI.Button(refuse, "SAY NOTHING AND WALK ON", name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
             GUI.matrix = previous;
         }
     }

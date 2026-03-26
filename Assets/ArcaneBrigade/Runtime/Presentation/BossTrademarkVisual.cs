@@ -97,7 +97,7 @@ namespace ArcaneBrigade
                 {
                     float life = Mathf.Clamp01((now - f.At) / Mathf.Max(.05f, f.Until - f.At));
                     float rise = warning ? 0 : Mathf.Sin(life * Mathf.PI);
-                    ink.Pool(at, .55f, 1, Bile, seed, .55f * (warning ? charge : 1), .4f);
+                    Cross(at, .4f, .55f * (warning ? charge : 1), seed);
                     if (rise <= 0) break;
                     if (painted != null) ink.Place(painted, at + Vector2.up * rise * .7f, 1.5f * rise, 0, new Color(1, 1, 1, alpha), true);
                     else { ink.Stroke(at, at + Vector2.up * 1.4f * rise, Wax, .34f, 1, 0, alpha); ink.TokenAt(InkToken.Note, Bile, at + Vector2.up * (1.4f * rise + .2f), .42f, 0, alpha * rise); }
@@ -109,7 +109,7 @@ namespace ArcaneBrigade
 
         private void Piece(Sprite painted, InkToken token, InkPalette palette, Vector2 at, float size, float angle, float alpha, bool flip = false)
         {
-            if (painted != null) ink.Place(painted, at, size, flip ? 0 : angle, new Color(1, 1, 1, alpha), true);
+            if (painted != null) ink.Place(painted, at, size, flip ? 0 : angle, new Color(1, 1, 1, alpha), true, 1, flip);
             else ink.TokenAt(token, palette, at, size * .8f, angle, alpha);
         }
 
@@ -137,10 +137,10 @@ namespace ArcaneBrigade
                     break;
                 }
                 case TrademarkMotion.Home:
-                    ink.Pool(f.Start, .6f, 1, Bile, seed, alpha * .6f, .4f);
+                    Cross(f.Start, .45f, alpha * .6f, seed);
                     break;
                 case TrademarkMotion.Rise:
-                    ink.Pool(f.Start, .5f, 1, Bile, seed, alpha * .7f, .4f);
+                    Cross(f.Start, .38f, alpha * .7f, seed);
                     break;
                 case TrademarkMotion.Arc:
                 case TrademarkMotion.Orbit:
@@ -161,6 +161,12 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>An inked X on the floor (never a pool).</summary>
+        private void Cross(Vector2 at, float arm, float alpha, float seed)
+        {
+            ink.FloorStroke(at + new Vector2(-arm, -arm * .5f), at + new Vector2(arm, arm * .5f), Bile, .09f, 1, 0, alpha, .03f, seed);
+            ink.FloorStroke(at + new Vector2(-arm, arm * .5f), at + new Vector2(arm, -arm * .5f), Bile, .09f, 1, 0, alpha, .03f, seed + 1);
+        }
         private void OnDestroy() { ink?.Destroy(); }
     }
 }

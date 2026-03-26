@@ -110,7 +110,7 @@ namespace ArcaneBrigade
                 {
                     var available = new List<UnitDefinition>();
                     foreach (UnitDefinition ally in catalog.Companions)
-                        if (!ally.SpecialRecruit && (NewRecruitsRemaining > 0 || OwnsCompanionSpecies(ally.Id)) && ally.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId),ally)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(ally.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == ally.Id && entry.WeaponId == weapon.Id))) available.Add(ally);
+                        if (!ally.SpecialRecruit && RegularRecruitOpen(ally.Id) && ally.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId),ally)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(ally.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == ally.Id && entry.WeaponId == weapon.Id))) available.Add(ally);
                     if (available.Count == 0) break;
                     UnitDefinition chosen = available[RecruitChoice(available)];
                     var weapons = new List<WeaponDefinition>();

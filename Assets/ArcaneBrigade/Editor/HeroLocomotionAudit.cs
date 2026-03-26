@@ -38,7 +38,7 @@ namespace ArcaneBrigade.Editor
             try
             {
                 reducedProperty.SetValue(null, false);
-                Check(catalog.Champions.Length == 31, "Audit the entire current 31-hero roster");
+                Check(catalog.Champions.Length == 36, "Audit the entire current 36-hero roster");
                 foreach (var hero in catalog.Champions)
                 {
                     var gait = ExpandedPerformanceLibrary.Current?.Find("locomotion", hero.Id);

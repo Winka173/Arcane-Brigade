@@ -9,6 +9,8 @@ namespace ArcaneBrigade
         private GroundShadow grounded;
         private SpriteRenderer chestGlow;
         private DreamSuspension suspension;
+        private int shownId = -1;
+        private bool tapped;
         public void Display(PickupState state, SpriteRenderer renderer, Sprite disc, Sprite spark, float time, float interpolation)
         {
             if (shadow == null)
@@ -36,7 +38,10 @@ namespace ArcaneBrigade
                 float anticipation = AnimationTiming.Pulse(Mathf.Repeat(age + state.Id * .31f, 4.8f), .45f);
                 renderer.transform.localScale = Vector3.Scale(renderer.transform.localScale, new Vector3(1 + anticipation * .018f, 1 - anticipation * .025f, 1));
             }
-            renderer.transform.rotation = Quaternion.Euler(0, 0, state.Attracting && !PresentationSettings.ReducedMotion ? Mathf.Sin(age * 12) * 12 : 0);
+            float wobble = state.Kind == LootKind.Egg && !state.Attracting && !PresentationSettings.ReducedMotion ? Mathf.Sin(age * 20 + state.Id) * 16 * Mathf.Exp(-age * 3f) * Mathf.Clamp01((age - 0.2f) / 0.1f) : 0;
+            renderer.transform.rotation = Quaternion.Euler(0, 0, state.Attracting && !PresentationSettings.ReducedMotion ? Mathf.Sin(age * 12) * 12 : wobble);
+            if (shownId != state.Id) { shownId = state.Id; tapped = age >= 0.26f; }
+            if (!tapped && age >= 0.26f && state.Kind == LootKind.Egg) { tapped = true; CheckpointAudio.PlayWorldId("loot.coin.drop", ground, 0.8f, 1.5f); }
             if (state.Kind != LootKind.Coin && !state.Attracting)
             {
                 Vector3 hover = DreamLevitation.Offset(time, state.Id, 0, PresentationSettings.ReducedMotion, state.Kind == LootKind.Chest ? .7f : .4f);
