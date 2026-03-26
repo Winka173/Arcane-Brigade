@@ -34,7 +34,7 @@ namespace ArcaneBrigade
             "Card Queen" => "Start each wave with 18 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.",
             "Bloom Shell" => "Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 HP, +5% speed and +0.15 armor.",
             "Belle" => "Three companion themes (Hearth, Oddity, Orchard) instead of two. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.",
-            "Wise" => "Shops offer memory companions. Buying one absorbs its support trait instead of adding a body. Each memory makes enemies 4% tougher. Your positive personal modifiers are 25% stronger.",
+            "Wise" => "Shops offer memory companions. Buying one absorbs its support trait instead of adding a body; your last two memories fight beside you as paper exhibits. Each memory makes enemies 2% tougher (max 12%). Your positive personal modifiers are 25% stronger.",
             "Nicole" => "Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh adds 1 income and 1% luck for this run.",
             "Anby" => "You use your equipped weapon normally. Your contact damage is doubled. Dodging triggers a short forward lightning barrage. Start with +20% dodge.",
             "Billy" => "Your shots cannot split. Allies attack normally and also respond to your critical attacks, with their own weapon damage and a short cooldown. Start with +10% critical chance and 2 projectiles.",

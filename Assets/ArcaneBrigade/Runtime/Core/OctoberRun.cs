@@ -68,7 +68,7 @@ namespace ArcaneBrigade
                     if (effect == ItemEffect.EnemyHealth) value += Mathf.Lerp(.12f, .35f, OctoberBalance.Late(State.Wave));
                     if (effect == ItemEffect.EnemyCount) value += Mathf.Lerp(.06f, .2f, OctoberBalance.Late(State.Wave));
                     break;
-                case "Wise": if (effect == ItemEffect.EnemyHealth) value += .04f * (State.AbsorbedSkills?.Count ?? 0); break;
+                case "Wise": if (effect == ItemEffect.EnemyHealth) value += Mathf.Min(.12f, .02f * (State.AbsorbedSkills?.Count ?? 0)); break; // round 5: was +4% per memory, uncapped
                 case "Nicole": if (effect == ItemEffect.Discount) value += .2f; if (effect == ItemEffect.Income) value += State.OctoberRefreshes; if (effect == ItemEffect.Luck) value += Mathf.Min(1, State.OctoberRefreshes * .01f); break;
                 case "Anby": if (hero && effect == ItemEffect.Dodge) value += .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 12; break;
                 case "Billy": if (hero && effect == ItemEffect.Crit) value += .1f; if (hero && effect == ItemEffect.Projectiles) value += 2; break;

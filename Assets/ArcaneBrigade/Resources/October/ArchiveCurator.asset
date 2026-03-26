@@ -43,8 +43,9 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 0.8
   Description: Shops offer memory companions. Buying one absorbs its support trait
-    instead of adding a body. Each memory makes enemies 4% tougher. Your positive
-    personal modifiers are 25% stronger.
+    instead of adding a body; your last two memories fight beside you as paper
+    exhibits. Each memory makes enemies 2% tougher (max 12%). Your positive personal
+    modifiers are 25% stronger.
   ReferenceHero: Wise
   ReferenceCompanion: 
   ExclusiveHero: 

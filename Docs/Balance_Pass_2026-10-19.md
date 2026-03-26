@@ -443,3 +443,21 @@ Boss / thường: máu mất mỗi wave 0.39 / 0.26 (×1.49, mục tiêu 1.5–2
 
 - Đạt: `K32AltarChecks.Run` ARCANE_K32_ALTAR_CHECKS_PASSED 20 (14 trước + 6 khẳng định luật mới; kèm K32 29, K3 transaction 36) · `MarketPolishChecks.Run` MARKET_POLISH_CHECKS_PASSED 496 · `HeroIdentityChecks.Run` HERO_IDENTITY_PASS 3187 · `HeroAwakeningChecks.Run` HERO_AWAKENING_CHECKS_PASSED 328 · `ContentExpansionChecks.Run` CONTENT_EXPANSION_CHECKS_PASSED 408 · `ModeBalanceChecks.Run` MODE_BALANCE_CHECKS 4889 PASS · `ShopDescriptionChecks.Run` SHOP_DESCRIPTION_PASS 2583 · `K3FinalChecks.Run` ARCANE_K3_FINAL_CHECKS_PASSED 31 · `BalancePass.Run` BALANCE_PASS_PASSED (17 giá altar) · `BalanceAudit.SweepHeroes` 216 runs, `BalanceAudit.Sim3` 108 runs.
 - `K11MeleeChecks.Run` hỏng ở "Compiled damage multiplier KeyCleaver" (so damage vũ khí companion đã compile với công thức tự tính trong check). Round 4 không đổi đường compile vũ khí companion; công thức của check không gồm hệ số ×1.35 của bạn đặc biệt và ×1.08 của bạn October trong runtime — chưa xác minh gốc rễ, để người giữ check xem.
+
+## 10. Round 5 — Archive Curator (20/10/2026)
+
+- **Chẩn đoán:** hero "Wise" hấp thụ bạn mua thành ký ức thay vì thân; sau 3 lần hấp thụ gần như đánh một mình, chết ở boss wave 5 (1/6).
+- **Cơ chế mới** (`Runtime/Core/MemoryExhibits.cs`): hai ký ức gần nhất (khác loài) bước ra mỗi trận làm "paper exhibit" — thân 1 sao với vũ khí riêng, đặt sau roster (không phải roster: không bond, không ghép, không lưu). Ba ký ức cho 6/6 (quá mạnh) nên dùng hai.
+- **Chi phí "Wise":** mỗi ký ức làm địch +4% máu (không trần) → **+2%, tối đa +12%** (`OctoberRun`).
+- **Chữ:** "…your last two memories fight beside you as paper exhibits. Each memory makes enemies 2% tougher (max 12%)…" (OctoberContent + asset ArchiveCurator).
+- **Restless:** chỉ hàng Restless trong bảng độ khó: máu 1.3 → 1.4, damage 1.15 → 1.3.
+
+| Đo (3 seed) | Wandering | Nightmare |
+|---|---:|---:|
+| Archive Curator round 4 | 1/3 | 0/3 |
+| Archive Curator, 3 exhibit | 3/3 | 3/3 |
+| **Archive Curator, 2 exhibit (cuối)** | **2/3** | **1/3** |
+
+Độ dốc (108 campaign): 89 / 78 / **72** / 56 / 44 / 28% (round 4: 89 / 78 / 78 / 56 / 44 / 28) — Restless gần mục tiêu ~65, các cột khác không đổi.
+
+Kiểm tra (một lần chạy Unity): HERO_IDENTITY_PASS 3187 · HERO_AWAKENING_CHECKS_PASSED 328 · MODE_BALANCE_CHECKS 4889 PASS. Drowsy Seer / Ivory Sovereign không đổi, không đo lại (theo yêu cầu cắt thời gian test).
