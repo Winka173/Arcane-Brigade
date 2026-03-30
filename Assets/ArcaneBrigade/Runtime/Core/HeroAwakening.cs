@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                 case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .1f, false); break;
                 case KitAction.Kitchen: Kitchen(target); break;
                 case KitAction.Engine: SteamEngine(delta); break;
-                case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .22f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); break;
+                case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .22f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); DreamShots(); break;
                 case KitAction.Mitosis: { Vector2 side = Perpendicular() * 1.1f; Echoes(Champion.Position + side, Champion.Position - side, Champion.Position, .3f, .85f, DamageElement.Physical); break; } // round 6: Lone Jelly splits strike every .45 -> .3 s, .7 -> .85 W
                 case KitAction.Showtime: Showtime(target); break;
                 case KitAction.Lighthouse: Lighthouse(); break;

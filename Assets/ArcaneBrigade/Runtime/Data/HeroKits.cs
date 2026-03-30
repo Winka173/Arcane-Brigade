@@ -102,7 +102,7 @@ namespace ArcaneBrigade
                 T(KitPassive.HurtCollision, 2, "Each blow you take this wave gives friends +2 collision damage (max +10)."),
                 T(KitPassive.TeamAttackSpeedOnHeroHurt, .15f, "When you are hit, friends near you get +15% attack speed for 2s.")),
                 k => { k.HeroMoveSpeed = .6f; k.HeroAttackSpeed = .3f; k.HeroDamageTaken = .75f; }),
-            With(K("DrowsySeer", "FULL MOON", KitAction.Dreams, "walking and your attacks", "Three dreams of you walk your route a second, two and three seconds behind, casting at enemies near them (below 40% HP you swap places with the farthest, every 8s); +30% move speed and +40% attack speed.",
+            With(K("DrowsySeer", "FULL MOON", KitAction.Dreams, "walking and your attacks", "Three dreams of you walk your route a second, two and three seconds behind, casting at enemies near them and firing your attack at 35% damage (below 40% HP you swap places with the farthest, every 8s); +30% move speed and +40% attack speed.",
                 H(KitPassive.StillNextAttack, .3f, "Stand still for 0.5s and your next attack deals +30%."),
                 H(KitPassive.HeroArmor, .3f, "Dream veil: you take 30% less damage."),
                 T(KitPassive.EggEveryWaves, 3, "Dream eggs: every third wave you get an extra egg."),

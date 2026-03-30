@@ -7,6 +7,26 @@ namespace ArcaneBrigade
     {
         private float dreamSwapAt, royalGuardUntil, royalMendAt;
         private int kitchenCourse;
+        private float dreamShotAt;
+        public const float DreamShotShare = .35f, DreamShotCadence = 1.3f;
+
+        /// <summary>Drowsy Seer, Full Moon (round 6b): each dream also fires a weaker copy of the hero's basic attack (35% damage,
+        /// same weapon look) at the enemy nearest to that dream, 1.3x slower than the hero's own weapon.</summary>
+        private void DreamShots()
+        {
+            if (Elapsed < dreamShotAt) return;
+            WeaponDefinition w = Champion.Definition.Weapon;
+            dreamShotAt = Elapsed + Mathf.Max(.3f, w.Cooldown * DreamShotCadence);
+            float damage = IdentityPower * DreamShotShare * ApproachScale;
+            for (int i = 0; i < 3; i++)
+            {
+                Vector2 from = awakenEchoes[i];
+                UnitState target = IdentityTarget(from, Mathf.Max(2.5f, w.Range));
+                if (target == null) continue;
+                if (w.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, damage, Mathf.Min(3, w.ProjectileCount), element: w.Element, sprite: w.ProjectileSprite);
+                else IdentityHit(MorphGeometry.Crescent, from, target.Position, Mathf.Clamp(Vector2.Distance(from, target.Position) + .3f, .8f, 2.2f), damage, element: w.Element);
+            }
+        }
         public const float DreamSwapHealth = .4f, DreamSwapCooldown = 8f, RoyalGuardSeconds = .5f, RoyalMendCooldown = 3f, LeadGuardRadius = 2f;
 
         /// <summary>Drowsy Seer: below 40% HP the hero trades places with its farthest dream (3 s back on its route), every 8 s.</summary>
