@@ -9,6 +9,7 @@ namespace ArcaneBrigade
         private int kitchenCourse;
         private float dreamShotAt;
         public const float DreamShotShare = .35f, DreamShotCadence = 1.3f;
+        private Color DreamTint { get { Color c = HeroIdentities.For(IdentityId).Color; return new Color(c.r, c.g, c.b, .55f); } }
 
         /// <summary>Drowsy Seer, Full Moon (round 6b): each dream also fires a weaker copy of the hero's basic attack (35% damage,
         /// same weapon look) at the enemy nearest to that dream, 1.3x slower than the hero's own weapon.</summary>
@@ -23,7 +24,7 @@ namespace ArcaneBrigade
                 Vector2 from = awakenEchoes[i];
                 UnitState target = IdentityTarget(from, Mathf.Max(2.5f, w.Range));
                 if (target == null) continue;
-                if (w.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, damage, Mathf.Min(3, w.ProjectileCount), element: w.Element, sprite: w.ProjectileSprite);
+                if (w.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, damage, Mathf.Min(3, w.ProjectileCount), element: w.Element, sprite: w.ProjectileSprite, tint: DreamTint);
                 else IdentityHit(MorphGeometry.Crescent, from, target.Position, Mathf.Clamp(Vector2.Distance(from, target.Position) + .3f, .8f, 2.2f), damage, element: w.Element);
             }
         }

@@ -157,6 +157,12 @@ namespace ArcaneBrigade
                 petal.transform.localScale = Vector3.one * (size / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(petalArt).width) / Mathf.Max(.0001f, Mathf.Abs(transform.lossyScale.x)));
                 petal.color = bloom ? new Color(.75f, 1, .88f, EffectDensity.AlliedAlpha) : new Color(1, .95f, .8f, EffectDensity.AlliedAlpha * (1 - index * .25f));
             }
+            if (state.Tint.a > 0) // a tinted shot (Drowsy Seer's dreams): the dream colour, faded; untinted shots are unchanged
+            {
+                body.color = new Color(state.Tint.r, state.Tint.g, state.Tint.b, body.color.a * state.Tint.a);
+                streak.startColor = new Color(state.Tint.r, state.Tint.g, state.Tint.b, streak.startColor.a * state.Tint.a);
+                streak.endColor = new Color(state.Tint.r, state.Tint.g, state.Tint.b, streak.endColor.a * state.Tint.a);
+            }
         }
 
         private void OnDestroy() { if (material != null) Destroy(material); }

@@ -196,6 +196,8 @@ namespace ArcaneBrigade
         public float Damage;
         public float Remaining;
         public Color Color;
+        /// <summary>Optional tint for the body (alpha 0 = none, every other shot unchanged); Drowsy Seer's dream shots fade like the dreams.</summary>
+        public Color Tint;
         public DamageElement Element;
         public string SourceName;
         public bool LaunchSegment;

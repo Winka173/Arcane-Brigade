@@ -204,7 +204,7 @@ namespace ArcaneBrigade
             }
             return best;
         }
-        private void IdentityShot(Vector2 from, Vector2 direction, float totalDamage, int count = 1, float spread = 16, DamageElement element = DamageElement.Physical, int homingTarget = 0, Sprite sprite = null)
+        private void IdentityShot(Vector2 from, Vector2 direction, float totalDamage, int count = 1, float spread = 16, DamageElement element = DamageElement.Physical, int homingTarget = 0, Sprite sprite = null, Color tint = default)
         {
             count = Mathf.Clamp(count, 1, 6); direction = direction.sqrMagnitude < .001f ? Vector2.right : direction.normalized;
             for (int i = 0; i < count && projectiles.Count < 1000; i++)
@@ -213,7 +213,7 @@ namespace ArcaneBrigade
                 projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Champion, Position = from, PreviousPosition = from,
                     Velocity = d * 5.5f, Remaining = 1.65f, Damage = totalDamage / count, Color = HeroIdentities.For(IdentityId).Color,
                     Element = element, SourceName = HeroIdentities.For(IdentityId).Name, SourceUnitId = Champion.Id,
-                    Cause = IdentityCause(), Sprite = sprite != null ? sprite : catalog.Projectile, VisualWidth = .21f, Radius = .07f, IsFragment = true, IdentityTargetId = homingTarget });
+                    Cause = IdentityCause(), Sprite = sprite != null ? sprite : catalog.Projectile, VisualWidth = .21f, Radius = .07f, IsFragment = true, IdentityTargetId = homingTarget, Tint = tint });
             }
         }
         private void IdentityPattern(UnitState target, float budget, int approach = -1, Vector2? origin = null, DamageElement element = DamageElement.Physical)
