@@ -44,6 +44,9 @@ namespace ArcaneBrigade.Editor
             d["ReadableDescription"] = string.IsNullOrEmpty(u.ReferenceHero) ? u.Description : RunUICopy.ChampionDescription(u);
             d["PassiveDescription"] = RunUICopy.PassiveDescription(u.Passive);
             d["HeroMechanicDescription"] = HeroIdentities.For(u.Id) == null ? K11HeroRules.Describe(u) : HeroIdentities.Describe(u.Id);
+            if (HeroKits.For(u.Id) != null) d["CurrentHeroKit"] = HeroKits.For(u.Id);
+            else if (Resources.Load<RunCatalog>("RunCatalog")?.Companions.Contains(u) == true)
+                d["FullCompanionDescription"] = CompanionDescriptions.Describe(u);
             d["Motion"] = u.AuthoredMotion == null ? null : Fields(u.AuthoredMotion);
             d["Acting"] = CharacterActingLibrary.Current?.Find(u.Id);
             d["Dialogue"] = string.IsNullOrEmpty(u.ReferenceHero) ? Enumerable.Range(0, 3).Select(i => OctoberDialogue.AllyLine(u, i)).Distinct().ToArray() : Enumerable.Range(0, 2).Select(i => OctoberDialogue.HeroLine(u.ReferenceHero, i)).ToArray();
@@ -65,9 +68,36 @@ namespace ArcaneBrigade.Editor
             root["Weapons"] = c.Weapons.Select(Weapon).ToArray();
             root["OtherWeaponAssets"] = AssetDatabase.FindAssets("t:WeaponDefinition", new[] { "Assets/ArcaneBrigade" }).Select(g => AssetDatabase.LoadAssetAtPath<WeaponDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(w => w != null && !c.Weapons.Contains(w)).Select(Weapon).ToArray();
             root["EnemyEvolution"] = EnemyEvolutionLibrary.Current.Species.Select(e => { var d = Fields(e); d["MutationWave"] = EnemyEvolutionLibrary.MutationWave(e.Id); return d; }).ToArray();
-            root["Items"] = c.Items.Select(i => { var d = Fields(i); d["EffectiveModifiers"] = i.EffectiveModifiers; d["EffectiveStackLimit"] = i.StackLimit; d["ReadableEffects"] = RunModifierRules.Describe(i, 1); return d; }).ToArray();
+            root["Items"] = c.Items.Select(i => { var d = Fields(i); d["EffectiveModifiers"] = i.EffectiveModifiers; d["EffectiveStackLimit"] = i.StackLimit; d["ReadableEffects"] = RunModifierRules.Describe(i, 1); d["FullDescription"] = RelicDescriptions.Describe(i, 1, c); return d; }).ToArray();
             root["Bonds"] = c.Bonds; root["Recipes"] = c.Recipes; root["BuildLinks"] = c.BuildLinks; root["Morphs"] = BuildMorphs.All;
             root["HeroIdentities"] = HeroIdentities.All;
+            root["HeroKits"] = HeroKits.All;
+            root["HeroLoadouts"] = HeroLoadout.Heroes.ToDictionary(p => p.Key, p => (object)p.Value);
+            root["GaugeRecipes"] = typeof(CombatSimulation).GetField("GaugeRecipes", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
+            root["ActOne"] = new Dictionary<string, object> {
+                { "Zones", ActOneCanon.ZoneNames }, { "BreakWave", ActOneCanon.BreakWave }, { "LampHeld", ActOneCanon.LampHeld },
+                { "StoryIds", ActOneCanon.StoryIds }, { "StoryNames", ActOneCanon.StoryNames }, { "JoinShop", ActOneCanon.JoinShop },
+                { "ThursdayShoes", ActOneCanon.ThursdayShoes }, { "KeeperReturnShop", ActOneCanon.KeeperReturnShop }
+            };
+            root["WaitingEnemyRoster"] = WaitingEnemyRoster.Current == null ? null : Fields(WaitingEnemyRoster.Current);
+            root["WaitingEnemies"] = WaitingEnemyRoster.Current == null ? Array.Empty<object>() : WaitingEnemyRoster.Current.Enemies.Select(Unit).ToArray();
+            root["DifficultyFactors"] = new Dictionary<string, object> {
+                { "Health", JourneyBalance.HealthFactor }, { "Damage", JourneyBalance.DamageFactor }, { "Density", JourneyBalance.DensityFactor }
+            };
+            var wavePreviews = new List<object>();
+            foreach (int difficulty in Enumerable.Range(0, RunMeta.DifficultyNames.Length))
+            foreach (int wave in Enumerable.Range(1, ActOneCanon.Waves))
+            {
+                using var preview = new RunSession(c); preview.Start(c.Champions[0].Id, 610026); preview.State.Wave = wave; preview.State.Difficulty = difficulty;
+                CheckpointCatalog a = preview.PrepareCombat();
+                wavePreviews.Add(new Dictionary<string, object> {
+                    { "Wave", wave }, { "Difficulty", difficulty }, { "Seconds", a.WaveDuration },
+                    { "Boss", a.Boss == null ? null : new Dictionary<string, object> { { "Id", a.Boss.Id }, { "Name", a.Boss.DisplayName }, { "HP", a.Boss.Health } } },
+                    { "EnemyPool", a.EnemyPool.Select(u => u.Id).ToArray() }, { "EnemyBudget", a.EnemyBudget },
+                    { "StoryCompanions", a.StoryCompanions.Select(u => u.DisplayName).ToArray() }
+                });
+            }
+            root["WavePreviews"] = wavePreviews;
             root["WaitingChapters"] = MienChoStory.Chapters;
             root["WaitingArrivals"] = c.Champions.ToDictionary(u => u.Id, u => WaitingArrivals.For(u.Id));
             root["WaitingLives"] = c.Companions.ToDictionary(u => u.Id, u => new Dictionary<string, object> { { "Origin", CreatureLives.Origin(u.Id) }, { "Early", CreatureLives.Arc(u.Id, 1) }, { "Middle", CreatureLives.Arc(u.Id, 9) }, { "Late", CreatureLives.Arc(u.Id, 17) } });
@@ -87,7 +117,10 @@ namespace ArcaneBrigade.Editor
             root["HeroBaselines"] = baselines;
             root["HeroShopPools"] = c.Champions.Select(hero => {
                 using var s = new RunSession(c); s.Start(hero.Id, 610026);
-                return new Dictionary<string, object> { { "HeroId", hero.Id }, { "ThemeEligibleItems", c.Items.Where(s.OctoberItemEligible).Select(i => i.Id).ToArray() } };
+                return new Dictionary<string, object> {
+                    { "HeroId", hero.Id }, { "ThemeEligibleItems", c.Items.Where(s.OctoberItemEligible).Select(i => i.Id).ToArray() },
+                    { "ThemeEligibleCompanions", c.Companions.Where(u => !RunSession.StorySpecies(u.Id) && K11HeroRules.Eligible(hero, u)).Select(u => u.Id).ToArray() }
+                };
             }).ToArray();
             var extra = new List<object>();
             foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade" }))
