@@ -461,3 +461,28 @@ Boss / thường: máu mất mỗi wave 0.39 / 0.26 (×1.49, mục tiêu 1.5–2
 Độ dốc (108 campaign): 89 / 78 / **72** / 56 / 44 / 28% (round 4: 89 / 78 / 78 / 56 / 44 / 28) — Restless gần mục tiêu ~65, các cột khác không đổi.
 
 Kiểm tra (một lần chạy Unity): HERO_IDENTITY_PASS 3187 · HERO_AWAKENING_CHECKS_PASSED 328 · MODE_BALANCE_CHECKS 4889 PASS. Drowsy Seer / Ivory Sovereign không đổi, không đo lại (theo yêu cầu cắt thời gian test).
+
+## 11. Round 6 — hero yếu và gần yếu qua cơ chế (không sim, 20/10/2026)
+
+Chỉ đổi cơ chế riêng của hero (không HP/power/giảm damage, không nội tại đội). Hành vi mới: `Runtime/Core/HeroMechanicsRound6.cs`.
+
+| Hero | Thay đổi (cũ → mới) |
+|---|---|
+| Drowsy Seer | Mộng đánh mỗi 0.3 → 0.22 s; **mới:** dưới 40% HP đổi chỗ với mộng xa nhất (3 s sau trên đường đi), hồi 8 s, vệt mực ngắn |
+| Ivory Sovereign | **Mới:** sau mỗi đòn 0.5 s royal guard (bỏ qua đòn, ánh vương miện); Verdict hành quyết hồi 1 máu hoàng gia (mỗi 3 s); đường Verdict rộng 0.6 → 0.9; sắc lệnh mỗi 1 → 0.8 s |
+| Supper Mortar | Món mỗi 0.3 → 0.25 s; **mới:** món thứ 6 rơi vào địch gần hero nhất và hất nó ra xa hero |
+| Patchwork Host | **Mới:** bạn dẫn đầu đánh trước địch trong 2 ô quanh hero; Showtime diễn mỗi 0.5 → 0.4 s |
+| Archive Curator | Đòn con rối 0.5 → 0.6 W (giữ 2 exhibit) |
+| Petal Citadel | Đạn từ tường 0.55 → 0.65 W |
+| Lone Jelly | Phân thân đánh mỗi 0.45 → 0.3 s, 0.7 → 0.85 W |
+| Citrus Marshal | Toa tàu mỗi 0.3 → 0.22 s, 0.4 → 0.5 W |
+| Soap Skater | Đường băng mỗi 0.5 → 0.35 s, 0.5 → 0.6 W |
+| Comet Runner | Thiên thạch mỗi 0.3 → 0.25 s |
+| Verdant Matron | Nở hoa mỗi 0.8 → 0.65 s |
+| Copper Cauldron | Hơi nước mỗi 0.3 → 0.25 s |
+| Penny Broker | Tia biên lai mỗi 0.4 → 0.3 s |
+| Rain Archivist | Trang monsoon mỗi 0.5 → 0.4 s |
+| Kite Admiral | Diều 4 → 5 |
+| Tide Singer | Bỏ qua (5/6) |
+
+Chữ cập nhật trong HeroKits (Drowsy Seer, Ivory Sovereign, Supper Mortar, Patchwork Host, Kite Admiral). Kiểm tra (một lần chạy, clone): HERO_IDENTITY_PASS 3187 · HERO_AWAKENING_CHECKS_PASSED 328. Không sim theo yêu cầu.

@@ -291,6 +291,7 @@ namespace ArcaneBrigade.Editor
         /// <summary>Round 5: Archive Curator, Drowsy Seer, Ivory Sovereign at Wandering and Nightmare, three seeds.</summary>
         public static void SweepRound5() => SimWith(3, new[] { "ArchiveCurator" }, new[] { 1, 3 });
         /// <summary>Round 5 checks in one Unity launch (owner: cut test time).</summary>
+        public static void Round6Checks() { HeroIdentityChecks.Run(); HeroAwakeningChecks.Run(); Debug.Log("ROUND6_CHECKS_PASSED"); }
         public static void Round5Checks() { HeroIdentityChecks.Run(); HeroAwakeningChecks.Run(); ModeBalanceChecks.Run(); Debug.Log("ROUND5_CHECKS_PASSED"); }
         public static void SweepWeakHeroes() => SimWith(3, new[] { "ArchiveCurator", "IvorySovereign", "LoneJelly", "DrowsySeer", "TideSinger", "CometRunner", "PatchworkHost", "NightMaw" }, new[] { 1 });
         private static void SimWith(int seedCount, string[] heroList = null, int[] difficultyList = null)

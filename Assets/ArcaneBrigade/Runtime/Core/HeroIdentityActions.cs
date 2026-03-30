@@ -75,7 +75,7 @@ namespace ArcaneBrigade
                 if (e.Kind == CombatEventKind.Pickup && e.Loot == LootKind.Coin)
                 {
                     Fill(GaugeSource.Coin, Mathf.Max(1, e.Value));
-                    if (HeroAwakening && k != null && k.Action == KitAction.BullMarket && Elapsed >= awakenReceiptAt) { awakenReceiptAt = Elapsed + .4f; /* at most one receipt every 0.4s */ var t = IdentityTarget(Champion.Position, 7); if (t != null) IdentityShot(Champion.Position, t.Position - Champion.Position, IdentityPower * .45f * ApproachScale, homingTarget: t.Id); }
+                    if (HeroAwakening && k != null && k.Action == KitAction.BullMarket && Elapsed >= awakenReceiptAt) { awakenReceiptAt = Elapsed + .3f; /* round 6: at most one receipt every 0.3s (was 0.4s) */ var t = IdentityTarget(Champion.Position, 7); if (t != null) IdentityShot(Champion.Position, t.Position - Champion.Position, IdentityPower * .45f * ApproachScale, homingTarget: t.Id); }
                 }
                 if (e.Kind == CombatEventKind.ChestOpened) Fill(GaugeSource.Chest);
             }

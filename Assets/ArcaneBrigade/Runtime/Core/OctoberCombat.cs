@@ -83,7 +83,7 @@ namespace ArcaneBrigade
         private float OctoberIncoming(float damage)
         {
             if (!catalog.EnableHeroMechanics) return damage;
-            if (ReferenceHero == "Card Queen") return 1;
+            if (ReferenceHero == "Card Queen") return RoyalGuard(); // round 6: 1 per blow, then 0.5 s royal guard
             if (HasOctober("\"Colorful Fantasy\" Pinky") && Elapsed - octoberHurtAt >= 6) damage *= .75f;
             return damage;
         }

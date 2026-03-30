@@ -83,6 +83,7 @@ namespace ArcaneBrigade
             if (!HeroAwakenEnabled) return false;
             if (awakenPath.Count == 0 || (Champion.Position - awakenPath[awakenPath.Count - 1]).sqrMagnitude > .0004f)
             { awakenPath.Add(Champion.Position); if (awakenPath.Count > 160) awakenPath.RemoveAt(0); }
+            DreamSwap(); // round 6
             if (!HeroAwakening)
             {
                 if (awakenUntil > 0 && Elapsed >= awakenUntil) EndAwakening();
@@ -100,33 +101,33 @@ namespace ArcaneBrigade
                 case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .1f, false); break;
                 case KitAction.Kitchen: Kitchen(target); break;
                 case KitAction.Engine: SteamEngine(delta); break;
-                case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .3f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); break;
-                case KitAction.Mitosis: { Vector2 side = Perpendicular() * 1.1f; Echoes(Champion.Position + side, Champion.Position - side, Champion.Position, .45f, .7f, DamageElement.Physical); break; }
+                case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .22f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); break;
+                case KitAction.Mitosis: { Vector2 side = Perpendicular() * 1.1f; Echoes(Champion.Position + side, Champion.Position - side, Champion.Position, .3f, .85f, DamageElement.Physical); break; } // round 6: Lone Jelly splits strike every .45 -> .3 s, .7 -> .85 W
                 case KitAction.Showtime: Showtime(target); break;
                 case KitAction.Lighthouse: Lighthouse(); break;
                 case KitAction.Treant: Every(.35f, () => { if (walking) Hit(MorphGeometry.Disc, Champion.Position + Forward() * .4f, Champion.Position + Forward(), .9f, .42f, .1f); }); break;
                 case KitAction.Casino: Every(1f, () => Casino(target)); break;
                 case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.3f, .34f, .05f, push: .45f); }); HealEvery(.5f); break; // round 3: 1 → 2 HP/s (Tide Singer lost 6/6)
-                case KitAction.Meteors: Every(.3f, () => Meteor()); break;
+                case KitAction.Meteors: Every(.25f, () => Meteor()); break; // round 6: a meteor every .3 -> .25 s
                 case KitAction.Mirrors: Mirrors(); break;
-                case KitAction.Spring: Every(.8f, () => Spring(target)); HealEvery(1); break;
+                case KitAction.Spring: Every(.65f, () => Spring(target)); HealEvery(1); break; // round 6: blossom every .8 -> .65 s
                 case KitAction.Kintsugi: Every(.4f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position - Forward() * .8f, target.Position + Forward() * .8f, 0, .42f, .3f, element: DamageElement.Ember); }); break;
-                case KitAction.Rink: Every(.5f, () => { Vector2 way = target != null ? (target.Position - Champion.Position).normalized : Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + way * 3.2f, 0, .5f, .1f, slow: .6f); }); break;
+                case KitAction.Rink: Every(.35f, () => { Vector2 way = target != null ? (target.Position - Champion.Position).normalized : Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + way * 3.2f, 0, .6f, .1f, slow: .6f); }); break; // round 6: Soap Skater ice line every .5 -> .35 s, .5 -> .6 W
                 case KitAction.Parade: Every(1.2f, () => { foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion) IdentityGlyph(MorphGeometry.Seal, f.Position + Vector2.up * .5f, f.Position, .2f, .5f, role: HeroGlyphRole.Emblem); }); break; // Knighting (KitDamageDealt, KitCycle)
                 case KitAction.Symphony: Every(1f, () => IdentityPerform(IdentityPower * .9f * ApproachScale, 5)); break;
                 case KitAction.Duel: Duel(); break;
                 case KitAction.Feast: Every(.4f, () => Feast()); break;
                 case KitAction.Throne: Every(.7f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position + Perpendicular() * .9f, target.Position - Perpendicular() * .9f, 0, .4f, .2f); }); break; // a bramble lash; thorns also answer every blow (ObserveInjury), the throne guards (KitDamageTaken)
-                case KitAction.Train: Every(.3f, () => { Vector2 back = -Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + back * 3f, 0, .4f, .05f, push: .35f); }); break;
-                case KitAction.Coronation: Every(1f, () => { if (target != null) Hit(MorphGeometry.Line, Champion.Position, Champion.Position + (target.Position - Champion.Position).normalized * MaxLineLength, 0, .8f, .25f); }); break;
-                case KitAction.Citadel: Every(.5f, () => { if (target != null) IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .55f * ApproachScale, 2, 10); }); break;
+                case KitAction.Train: Every(.22f, () => { Vector2 back = -Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + back * 3f, 0, .5f, .05f, push: .35f); }); break; // round 6: Citrus Marshal carriages every .3 -> .22 s, .4 -> .5 W
+                case KitAction.Coronation: Every(.8f, () => { if (target != null) Hit(MorphGeometry.Line, Champion.Position, Champion.Position + (target.Position - Champion.Position).normalized * MaxLineLength, 0, .8f, .25f); }); break;
+                case KitAction.Citadel: Every(.5f, () => { if (target != null) IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .65f * ApproachScale, 2, 10); }); break; // round 6: wall shots .55 -> .65 W
                 case KitAction.Exhibit: Every(.7f, () => Exhibit(target)); break;
                 case KitAction.BullMarket: break; // coins count double and every pickup fires a receipt (ObserveHeroIdentityEvents)
                 case KitAction.Thunder: Every(.8f, () => Thunder(target)); break;
                 case KitAction.Eclipse: Every(.7f, () => Eclipse(target)); break;
                 case KitAction.Tapestry: Every(.5f, () => Tapestry()); break;
                 case KitAction.Foreclosure: Foreclosure(target); break;
-                case KitAction.Monsoon: Every(.5f, () => Monsoon()); HealEvery(1.5f); break;
+                case KitAction.Monsoon: Every(.4f, () => Monsoon()); HealEvery(1.5f); break; // round 6: monsoon page every .5 -> .4 s
                 case KitAction.KiteFleet: if (Elapsed >= awakenEchoAt) { awakenEchoAt = Elapsed + 1; PickFleet(); } break; // the friends' shots split (KitEmitted)
                 case KitAction.SundaeRain: Every(.45f, () => SundaeScoop()); break;
                 case KitAction.TimeGarden: Every(.5f, () => GardenTick()); break;
@@ -166,8 +167,8 @@ namespace ArcaneBrigade
         private void Verdict(Vector2 from, Vector2 to)
         {
             foreach (UnitState u in units.ToArray())
-                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.Health < u.Definition.Health * .25f && SegmentCircle(from, to, u.Position, .6f + u.Definition.Radius) >= 0)
-                    ApplyDamage(u, u.Health + 1, Faction.Champion, "Verdict", to - from, cause: IdentityCause());
+                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.Health < u.Definition.Health * .25f && SegmentCircle(from, to, u.Position, .9f + u.Definition.Radius) >= 0) // round 6: line .6 -> .9 wide
+                { ApplyDamage(u, u.Health + 1, Faction.Champion, "Verdict", to - from, cause: IdentityCause()); RoyalMend(); }
         }
         private void EndAwakening()
         {
@@ -182,7 +183,7 @@ namespace ArcaneBrigade
         private void PickFleet()
         {
             awakenFleet.Clear();
-            for (int n = 0; n < 4; n++)
+            for (int n = 0; n < 5; n++) // round 6: Kite Admiral flies 4 -> 5 kites
             {
                 UnitState best = null; float near = float.PositiveInfinity;
                 foreach (UnitState u in units)
@@ -285,11 +286,13 @@ namespace ArcaneBrigade
         private void Kitchen(UnitState target)
         {
             if (Elapsed < awakenShotAt || target == null) return;
-            awakenShotAt = Elapsed + .3f; AimGun(target);
+            awakenShotAt = Elapsed + .25f; AimGun(target); // round 6: a course every .3 -> .25 s
+            UnitState dessert = DessertCourse(); if (dessert != null) target = dessert; // round 6: every sixth course lands on the enemy nearest you
             // six barrels serve the menu: each shot a course lobbed where the diner will be
             float flight = .35f; Vector2 at = ClampPosition(target.Position + Vector2.ClampMagnitude(target.Velocity * flight, 1f), .1f);
             Hit(MorphGeometry.Disc, at, at, .9f, .34f, flight, (awakenRound++ % 3) switch { 0 => DamageElement.Ember, 1 => DamageElement.Frost, _ => DamageElement.Physical });
             IdentityGlyph(MorphGeometry.Line, Champion.Position, at, 0, flight, role: HeroGlyphRole.Lob);
+            if (dessert != null) ShoveFromHero(dessert, .9f);
         }
         private void Echoes(Vector2 a, Vector2 b, Vector2 c, float period, float budget, DamageElement element)
         {
@@ -306,7 +309,7 @@ namespace ArcaneBrigade
             Vector2 at = lead != null ? lead.Position : Champion.Position;
             awakenEchoes[0] = at + Vector2.left * .9f; awakenEchoes[1] = at + Vector2.right * .9f; awakenEchoes[2] = at + Vector2.up * .7f;
             if (Elapsed < awakenEchoAt || target == null) return;
-            awakenEchoAt = Elapsed + .5f;
+            awakenEchoAt = Elapsed + .4f; // round 6: the troupe performs every .5 -> .4 s
             if (lead != null) IdentityEcho(lead, target, IdentityPower * .7f * ApproachScale);
             else IdentityPattern(target, IdentityPower * .7f * ApproachScale);
         }
@@ -390,8 +393,8 @@ namespace ArcaneBrigade
                 Vector2 from = Champion.Position + (Vector2)(Quaternion.Euler(0, 0, 60 + i * 120) * Vector2.right) * 1.2f;
                 var specimen = i < identitySpecimens.Count ? identitySpecimens[i] : null;
                 // round 3: puppet strike .34 → .5 W (Archive Curator fights nearly alone once its three absorbs are held)
-                if (specimen != null && specimen.Weapon.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, IdentityPower * .5f * ApproachScale, 1, element: specimen.Weapon.Element);
-                else IdentityPattern(target, IdentityPower * .5f * ApproachScale, origin: from);
+                if (specimen != null && specimen.Weapon.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, IdentityPower * .6f * ApproachScale, 1, element: specimen.Weapon.Element);
+                else IdentityPattern(target, IdentityPower * .6f * ApproachScale, origin: from); // round 6: puppet strike .5 -> .6 W
             }
         }
         private void Thunder(UnitState target)
@@ -449,7 +452,7 @@ namespace ArcaneBrigade
             awakenPressure = Mathf.Min(1, awakenPressure + delta / (AwakenLength * 1.15f));
             if (Elapsed >= awakenShotAt)
             {
-                awakenShotAt = Elapsed + .3f;
+                awakenShotAt = Elapsed + .25f; // round 6: Copper Cauldron steam blast every .3 -> .25 s
                 Vector2 heading = Forward(), front = Champion.Position + heading * (Champion.Definition.Radius + .45f);
                 Hit(MorphGeometry.Disc, front, front + heading * .4f, .75f, .32f, .05f, DamageElement.Ember, push: .45f);
             }
