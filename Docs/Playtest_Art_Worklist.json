@@ -1,0 +1,208 @@
+[
+ {
+  "name": "UI_Buttons",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13",
+  "display_note": "buttons drawn ~420x80 px at 1080p; 9-slice",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production GAME UI BUTTON SHEET, 1536x1536 canvas, 4 columns x 4 rows of wide rounded-rectangle buttons (each about 3:1, empty face, no label). ROW 1 PRIMARY: polished gold-leaf lacquer button with brass filigree rim — columns: normal, hover (warmer glow on the rim), pressed (sunken, darker), disabled (desaturated grey-brown). ROW 2 SECONDARY: dark walnut wood button with thin brass rim, same four states. ROW 3 DANGER: deep oxblood-red velvet button with dark iron rim and tiny thorn details, same four states. ROW 4 SMALL ROUND ICON BUTTON bases (empty centre medallion): brass, walnut, oxblood, disabled."
+ },
+ {
+  "name": "UI_Panels",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13",
+  "display_note": "panels 9-sliced from 400 to 1200 px wide",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Frames and plates must be 9-slice ready: plain uniform centre area, ornament only on the borders and corners, the straight edges between corners simple and repeatable. A production GAME UI FRAME SHEET, 1536x1536 canvas, arranged as: TOP-LEFT a large dialogue panel frame (dark ink-blue paper centre, carved walnut border with gilt filigree corners); TOP-RIGHT a card frame (aged cream paper centre, thin brass border, small lantern-shaped corner caps); MIDDLE-LEFT a tooltip speech bubble (cream paper, brass edge, small tail at the bottom); MIDDLE-RIGHT a title plaque banner (horizontal brass-and-velvet ribbon plaque, empty); BOTTOM a row of three horizontal ornamental dividers (thin gilt line with a small central lantern, a clock, a key motif)."
+ },
+ {
+  "name": "UI_Controls",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Controls_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13",
+  "display_note": "controls 48-96 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production GAME UI CONTROLS SHEET, 1536x1536 canvas, 4x4 grid: ROW 1 tabs (velvet tab active, walnut tab inactive, brass tab hover, disabled); ROW 2 toggle switch off, toggle switch on (lit lantern), checkbox empty, checkbox ticked with an ink tick; ROW 3 slider track (brass rail), slider knob (small brass key head), vertical scrollbar track, scrollbar thumb; ROW 4 close button (brass medallion with an ink X), back arrow medallion, info medallion (ink 'i'-like flourish, no letter), pause medallion (two ink bars)."
+ },
+ {
+  "name": "UI_HUD",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_HUD_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13",
+  "display_note": "HUD plates 160-480 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Frames and plates must be 9-slice ready: plain uniform centre area, ornament only on the borders and corners, the straight edges between corners simple and repeatable. A production GAME HUD PLATE SHEET, 1536x1536 canvas: ROW 1 a long health bar frame (brass tube frame with a heart-shaped cap on the left, empty inside) and its fill strip (glossy crimson liquid, tileable); ROW 2 three small counter plates (walnut plate with brass rim and an empty round icon socket on the left) for gold, eggs and wave; ROW 3 an ally portrait slot (small round brass frame with velvet backing, empty) in normal and highlighted gold state, and a star socket strip; ROW 4 a gauge frame ring (brass ring with tiny clock ticks) and a wide wave-banner plaque."
+ },
+ {
+  "name": "UI_BloodPrice",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_BloodPrice_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "10",
+  "display_note": "card overlay ~1100x880 px, seal ~120 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Frames and plates must be 9-slice ready: plain uniform centre area, ornament only on the borders and corners, the straight edges between corners simple and repeatable. A production 'BLOOD PRICE' UI SHEET for items bought with the player's own health, dark and cursed but still storybook: TOP a card frame overlay with near-black red paper, thorny bramble vines creeping in from the four corners, dark ink-blood drips hanging from the top edge (separate drip pieces at the right side: 4 drip shapes of different lengths), MIDDLE a wax-seal price plate (cracked crimson wax seal with a thorn ring, empty centre), BOTTOM a cursed buy button (oxblood velvet with thorns, normal/hover/pressed/disabled)."
+ },
+ {
+  "name": "UI_RoleBadges",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_RoleBadges_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "26 / 27 / 32",
+  "display_note": "icons 48-96 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production ICON SHEET, 1536x1536 canvas, 4x4 grid of round brass medallion icons with a painted symbol each, readable at 48 px: ROW 1 ally roles: Striker (crossed little sabres), Shooter (paper-plane arrow), Guard (small round shield), Support (lantern with a ribbon); ROW 2 Summoner (music box with a spark), Controller (hourglass with chains), Combo link (two hands holding a golden thread), Unknown combo (silhouette with a question-mark-shaped wisp, no letters); ROW 3 summary trophies: Best item (gilt cup), Most gold (coin stack), Combos found (two linked rings), Boss beaten (cracked crown); ROW 4 meta currencies: Lamp Oil (small glass oil flask glowing amber), Keepsake (tiny locket with a ribbon), Favour star (gilt star with a bell), Night Pact (black candle with red flame)."
+ },
+ {
+  "name": "UI_MenuBackdrop",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_MenuBackdrop_v1.png",
+  "transparent": false,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13",
+  "display_note": "full screen",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). A full-screen MENU BACKGROUND painting, 2560x1440 landscape, no transparency: the Waiting Realm's waiting room at night seen from a low angle — rows of empty velvet chairs, a big ticket-number board, hanging lanterns, a door ajar with dawn light behind it, paper tickets on the floor. Keep the centre-left calm and darker for menu buttons, details towards the edges; no characters, no text."
+ },
+ {
+  "name": "Env_WaitingRoom",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_WaitingRoom_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+   "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "24 / D11",
+  "display_note": "props 120-260 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production top-down 3/4 view PROP SHEET for the WAITING ROOM map, 1536x1536 canvas, matching the arena camera angle of the references: a tall ticket NUMBER BOARD (blank number tiles) in idle and flashing state; a waiting-room DOOR in the wall in three states: closed, half open with dark mist, fully open with a cold light; three RESTLESS CHAIRS (velvet waiting chairs) — standing, mid-slide tilted with motion streaks painted into the chair, toppled."
+ },
+ {
+  "name": "Env_PostOffice",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_PostOffice_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+   "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "24 / D11",
+  "display_note": "letters ~60 px, parcel ~220 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production top-down 3/4 view PROP SHEET for the POST OFFICE map, 1536x1536 canvas: a brass MAIL CHUTE opening in the ceiling edge; four FALLING LETTERS (sealed envelopes at different tilts, one glowing gold = buff letter); a red ink STAMP MARK decal (round postmark, no readable text) to place on stamped enemies; PAPER GUST pieces (6 small torn paper scraps and ribbon streaks for a wind band); a GIANT PARCEL tied with string in three states: intact, cracked open, burst open with paper and spilled coins."
+ },
+ {
+  "name": "Env_LampHall",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_LampHall_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+   "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "24 / D11",
+  "display_note": "lamp ~240 px, hand ~420 px, moths ~120 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production top-down 3/4 view PROP SHEET for the LAMP HALL map, 1536x1536 canvas: a tall standing HALL LAMP in lit and snuffed states; a soft round LIGHT POOL glow shape painted as light on air (not a puddle), warm amber, to be drawn additively; a GIANT SNUFFER HAND (a long white-gloved hand holding a brass candle snuffer) in reach-in and snuff poses; a MOTH SWARM in 4 animation frames (cluster of pale dusty moths)."
+ },
+ {
+  "name": "Env_ArchiveVault",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_ArchiveVault_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+   "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "24 / D11",
+  "display_note": "clock ~300 px, shelves ~260 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production top-down 3/4 view PROP SHEET for the ARCHIVE VAULT map, 1536x1536 canvas: a huge WALL CLOCK face in 3 states (idle, chiming with ring waves painted as brass sound rings, twelfth strike glowing red); two tall SHIFTING SHELVES full of ledgers and boxes (one straight, one turning); a LEDGER INK CIRCLE painted on a wall panel (an open ledger page with an ink ring around it, wall decoration, not on the floor)."
+ },
+ {
+  "name": "Hub_WaitingRoom",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_WaitingRoom_v1.png",
+  "transparent": false,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+   "Assets/ArcaneBrigade/Art/K17/ClockworkFloor_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "27",
+  "display_note": "full screen",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). A full-screen HUB ROOM painting, 2560x1440, top-down 3/4 arena view like the references (the player walks in it): the traveller's personal waiting room between runs — warm wooden floor, a rug in the middle, ten empty spots along the walls where station objects will stand (leave them empty), a window, a door; dim and dusty at rest. No characters, no text."
+ },
+ {
+  "name": "Hub_Stations",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_Stations_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+   "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "27",
+  "display_note": "stations ~200 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production PROP SHEET, 1536x1536 canvas, 5 columns x 4 rows: ten upgrade STATIONS for the hub, each in two states side by side (LEFT dusty, unlit, cobwebbed — RIGHT restored, lit, polished): 1 The Lantern (big standing lantern), 2 The Ledger (open ledger on a lectern), 3 The Nursery (little greenhouse crib with sprouting eggs), 4 The Wardrobe (tall wardrobe with coats), 5 The Clock (grandfather clock), 6 The Postbox (red-and-brass postbox stuffed with letters), 7 The Museum (glass curio cabinet), 8 The Night Pact (small table with black candles), 9 The Window (round window with a dream sky), 10 The Bell (brass desk bell on a velvet stand)."
+ }
+]
