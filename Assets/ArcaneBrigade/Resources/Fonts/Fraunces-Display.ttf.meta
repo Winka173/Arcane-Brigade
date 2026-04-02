@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 575530173588406aa25c39ed03f5ccfc
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Fraunces Display
+  fallbackFontReferences: 
+  - {fileID: 12800000, guid: 2fc61a6b0a6742b5849cf457e27c2974, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

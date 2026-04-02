@@ -8,13 +8,15 @@ namespace ArcaneBrigade
         private static Font heading;
         private static Font numbers;
         private static Font display;
-        // body copy is Be Vietnam Pro SemiBold (18/10/2026): Medium read thin at HUD sizes on the dark panels; SemiBold is ~1% wider
-        public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/BeVietnamPro-SemiBold") ?? Resources.Load<Font>("Fonts/BeVietnamPro-Medium");
-        public static Font Heading => heading != null ? heading : heading = Resources.Load<Font>("Fonts/BeVietnamPro-Black");
-        public static Font Numbers => numbers != null ? numbers : numbers = Resources.Load<Font>("Fonts/NotoSansMono-Bold");
-        // Miền Chờ: titles, chapter names and the logo use Young Serif (SIL OFL 1.1) — a warm storybook / letter-writing serif.
-        // UI controls and body stay on Be Vietnam Pro for small-size legibility; numbers on Noto Sans Mono.
-        public static Font Display => display != null ? display : display = Resources.Load<Font>("Fonts/YoungSerif-Regular") ?? Heading;
+        // UI type (20/10/2026, owner: fonts must match the painted storybook UI). All SIL OFL 1.1, Vietnamese-complete:
+        // body = Alegreya Sans Bold, a humanist bookish sans that stays legible at HUD sizes; headings and buttons = Fraunces
+        // SemiBold, a soft old-style storybook serif; titles = Fraunces Black; numbers = Alegreya Sans ExtraBold with tabular
+        // digits so counters don't jitter. Built with fontTools (Tools/Fonts/make_fonts.py): outlines scaled so x-height and
+        // line height stay near the old Be Vietnam Pro layout, hinting removed; Fraunces falls back to the body face for arrows.
+        public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/AlegreyaSans-Body") ?? Resources.Load<Font>("Fonts/BeVietnamPro-SemiBold");
+        public static Font Heading => heading != null ? heading : heading = Resources.Load<Font>("Fonts/Fraunces-Heading") ?? Resources.Load<Font>("Fonts/BeVietnamPro-Black");
+        public static Font Numbers => numbers != null ? numbers : numbers = Resources.Load<Font>("Fonts/AlegreyaSans-Numbers") ?? Resources.Load<Font>("Fonts/NotoSansMono-Bold");
+        public static Font Display => display != null ? display : display = Resources.Load<Font>("Fonts/Fraunces-Display") ?? Heading;
         private static Font punch;
         /// <summary>Lilita One (SIL OFL 1.1): thick rounded lettering for celebrations and signs in the scene (STAR UP, MASTERED),
         /// always drawn with an ink outline (InkedText). Latin only, so never for body text.</summary>

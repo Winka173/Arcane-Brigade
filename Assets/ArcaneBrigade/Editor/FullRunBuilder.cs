@@ -367,6 +367,8 @@ namespace ArcaneBrigade.Editor
             Directory.CreateDirectory("Builds/FullRun/ThirdPartyNotices");
             File.Copy(Root + "Resources/Fonts/OFL.txt", "Builds/FullRun/ThirdPartyNotices/Noto-OFL.txt", true);
             File.Copy(Root + "Resources/Fonts/BeVietnamPro-OFL.txt", "Builds/FullRun/ThirdPartyNotices/BeVietnamPro-OFL.txt", true);
+            File.Copy(Root + "Resources/Fonts/AlegreyaSans-OFL.txt", "Builds/FullRun/ThirdPartyNotices/AlegreyaSans-OFL.txt", true);
+            File.Copy(Root + "Resources/Fonts/Fraunces-OFL.txt", "Builds/FullRun/ThirdPartyNotices/Fraunces-OFL.txt", true);
             if (File.Exists(Root + "Resources/Fonts/Coiny-OFL.txt")) File.Copy(Root + "Resources/Fonts/Coiny-OFL.txt", "Builds/FullRun/ThirdPartyNotices/Coiny-OFL.txt", true);
             File.Copy(Root + "Resources/Fonts/YoungSerif-OFL.txt", "Builds/FullRun/ThirdPartyNotices/YoungSerif-OFL.txt", true);
             File.Copy(Root + "Resources/Fonts/LilitaOne-OFL.txt", "Builds/FullRun/ThirdPartyNotices/LilitaOne-OFL.txt", true);
