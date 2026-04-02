@@ -23,32 +23,30 @@ namespace ArcaneBrigade.Editor
                 var big = new UnitState { Id = 40, Definition = bigDefinition, Faction = Faction.Enemy };
                 var small = new UnitState { Id = 41, Definition = smallDefinition, Faction = Faction.Enemy };
                 CombatEvent HeroCrit() => new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 5, Vector2.right, critical: true, subjectId: small.Id, subject: small, cause: new CombatCause(1, 7));
+                // no hit stop anywhere (play-test 20/10/2026): crits, big kills and boss falls never hold the screen
                 var feel = new CombatFeel();
                 feel.Play(new[] { HeroCrit() }, views, 1, 7);
-                Require(feel.Frozen, "The hero's critical hit holds the screen");
-                feel.Advance(CombatFeel.CriticalHold + 0.01f); Require(!feel.Frozen, "The critical hold is a blink");
-                feel.Advance(0.6f); feel.Play(new[] { HeroCrit() }, views, 2, 7);
-                Require(!feel.Frozen, "A second crit inside the gap does not hold again (no stutter)");
-                feel.Advance(CombatFeel.PunctuationGap); feel.Play(new[] { HeroCrit() }, views, 3, 7);
-                Require(feel.Frozen, "After the gap a crit holds again");
-
-                var companion = new CombatFeel();
-                companion.Play(new[] { new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 5, Vector2.right, critical: true, subjectId: small.Id, subject: small, cause: new CombatCause(1, 9)) }, views, 1, 7);
-                Require(!companion.Frozen, "A friend's small crit on a sturdy enemy does not hold");
-                companion.Play(new[] { new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 40, Vector2.right, critical: true, subjectId: small.Id, subject: small, cause: new CombatCause(1, 9)) }, views, 1, 7);
-                Require(companion.Frozen, "A friend's crit that takes a real bite holds");
-
+                Require(!feel.Frozen && feel.PresentationSpeed == 1, "The hero's critical hit never holds the screen");
                 var kill = new CombatFeel();
-                kill.Play(new[] { new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: small.Id, subject: small) }, views, 1, 7);
-                Require(!kill.Frozen, "An ordinary kill does not hold the screen");
                 kill.Play(new[] { new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: big.Id, subject: big) }, views, 1, 7);
-                Require(kill.Frozen && kill.Trauma > 0.1f, "A big enemy's fall holds the screen and shakes it");
-                kill.Advance(0.2f); Require(!kill.Frozen, "The big-kill hold stays brief");
+                Require(!kill.Frozen && kill.Trauma > 0.1f, "A big enemy's fall shakes the screen without holding it");
 
-                PresentationSettings.Apply(new PlayerProfile { ReducedMotion = true });
-                var reduced = new CombatFeel();
-                reduced.Play(new[] { HeroCrit(), new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: big.Id, subject: big) }, views, 1, 7);
-                Require(!reduced.Frozen, "Reduced motion never holds the screen");
+                var bossDefinition = ScriptableObject.CreateInstance<UnitDefinition>(); bossDefinition.IsBoss = true; bossDefinition.Health = 900;
+                try
+                {
+                    var boss = new UnitState { Id = 42, Definition = bossDefinition, Faction = Faction.Enemy };
+                    CombatEvent Fall() => new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: boss.Id, subject: boss);
+                    var midBoss = new CombatFeel(); midBoss.Play(new[] { Fall() }, views, 1, 7, false);
+                    Require(!midBoss.Frozen && !midBoss.SlowMotion, "A wave-5/10/15 boss falls at full speed");
+                    var finale = new CombatFeel(); finale.Play(new[] { Fall() }, views, 1, 7, true);
+                    Require(!finale.Frozen && finale.SlowMotion, "The final boss's fall plays in slow motion");
+                    finale.Advance(CombatFeel.FinalBossSlowMotion + 0.01f);
+                    Require(!finale.SlowMotion, "The slow motion lasts half a second");
+                    PresentationSettings.Apply(new PlayerProfile { ReducedMotion = true });
+                    var reduced = new CombatFeel(); reduced.Play(new[] { HeroCrit(), Fall() }, views, 1, 7, true);
+                    Require(!reduced.Frozen && !reduced.SlowMotion, "Reduced motion: no slow motion either");
+                }
+                finally { UnityEngine.Object.DestroyImmediate(bossDefinition); }
             }
             finally
             {

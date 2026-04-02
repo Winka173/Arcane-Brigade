@@ -51,7 +51,7 @@ namespace ArcaneBrigade.Editor
             {
                 run.Start("LanternKnight", 171010); run.State.Wave = 17;
                 var combat = run.PrepareCombat();
-                Check(combat.StoryCompanions.Length == 4, "All four canon companions enter the late combat");
+                Check(combat.StoryCompanions.Length == 0, "No story companions travel any more (play-test 20/10/2026)");
                 foreach (var unit in combat.StoryCompanions)
                     Check(unit.Body == ActOneArtwork.Picture(unit.DisplayName) && unit.AuthoredMotion != null, "Actual story build selects its own art: " + unit.DisplayName);
                 Check(ordinary.SequenceEqual(ActOneCanon.StoryIds.Select(id => catalog.Unit(id).Body)), "Building the story party preserves ordinary species art");

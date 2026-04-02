@@ -40,12 +40,12 @@ namespace ArcaneBrigade.Editor
                     var options = run.VisitorOptions();
                     Check(options.Count > 0 && options.Any(o => o.Enabled), v.Id + " offers something that can be taken");
                     int pick = options.FindIndex(o => o.Enabled);
-                    VisitorDeal deal = ShopVisitors.DealFor(v, v.Choice == VisitorChoice.Options ? options[pick].Value : 0, run.State.Wave);
+                    VisitorDeal deal = ShopVisitors.DealFor(v, v.Choice == VisitorChoice.Options ? options[pick].Value : 0, run.State.Wave, run.GoldScale);
                     int effectsBefore = run.State.VisitorEffects.Count, waveBefore = run.State.Wave;
                     Check(run.VisitorChoose(pick), v.Id + " is answered");
                     if (run.Visitor != null) { var second = run.VisitorOptions(); Check(second.Count > 0 && run.VisitorChoose(second.FindIndex(o => o.Enabled)), v.Id + " second step"); }
                     Check(run.Visitor == null && run.State.Health <= health + .001f, v.Id + " leaves, and nobody was healed");
-                    Check(run.State.Gold <= gold + 60 && run.State.Eggs <= eggs + 2, v.Id + " pays only small amounts (" + (run.State.Gold - gold) + " gold, " + (run.State.Eggs - eggs) + " eggs)");
+                    Check(run.State.Gold <= gold + run.ScaledGold(60) && run.State.Eggs <= eggs + 2, v.Id + " pays only small amounts (" + (run.State.Gold - gold) + " gold, " + (run.State.Eggs - eggs) + " eggs)");
                     // the card's WHEN agrees with the rules: an effect waiting for a later wave or shop is announced with its time
                     var added = run.State.VisitorEffects.Skip(effectsBefore).ToList();
                     if (added.Any(e => e.Wave > waveBefore) || run.State.TwinShop == waveBefore)
@@ -54,6 +54,8 @@ namespace ArcaneBrigade.Editor
                     int paid = ShopVisitors.Amount(deal.Pay, "gold");
                     if ((v.Choice == VisitorChoice.Accept || v.Choice == VisitorChoice.PickCompanion) && v.Id != "ParcelCourier" && v.Id != "ClockRewinder")
                         Check(gold - run.State.Gold == paid, v.Id + " takes the gold its card shows (" + paid + ")");
+                    // play-test 20/10/2026: the world tag, the card and the rules read one price, on the shop's gold curve
+                    Check(paid == 0 || paid == ShopVisitors.Scale(v.Cost, run.GoldScale) || v.Choice == VisitorChoice.Options, v.Id + " price follows the gold curve (" + paid + " at x" + run.GoldScale.ToString("0.##") + ")");
                     // the next wave: prepare, fight briefly, settle - every next-wave effect is used up
                     run.ContinueWave();
                     var arena = run.PrepareCombat(); arena.WaveDuration = 6; arena.Boss = null;
@@ -118,19 +120,20 @@ namespace ArcaneBrigade.Editor
             VisitorDefinition dice = ShopVisitors.For("DiceElder");
             for (int i = 0; i < 3; i++)
             {
-                VisitorDeal d = ShopVisitors.DealFor(dice, i, 6);
                 using var run = Fresh(c); run.ForceVisitor("DiceElder");
+                VisitorDeal d = ShopVisitors.DealFor(dice, i, 6, run.GoldScale);
                 run.State.Gold = ShopVisitors.Amount(d.Pay, "gold") - 1;
                 Check(!run.VisitorOptions()[i].Enabled, "Dice Elder bet " + i + " is closed with less gold than its PAY");
-                run.State.Gold = 200;
-                Check(run.VisitorChoose(i) && 200 - run.State.Gold == ShopVisitors.Amount(d.Pay, "gold"), "Dice Elder bet " + i + " takes PAY " + d.Pay);
+                run.State.Gold = 2000;
+                Check(run.VisitorChoose(i) && 2000 - run.State.Gold == ShopVisitors.Amount(d.Pay, "gold"), "Dice Elder bet " + i + " takes PAY " + d.Pay);
                 CombatSimulation sim = Fight(run);
                 Check(sim.Phase == RunPhase.Victory && sim.LowestChampionShare >= .5f, "Dice Elder fixture wave is won above half health");
                 int before = run.State.Gold; settleVisitors.Invoke(run, new object[] { sim });
                 Check(run.State.Gold - before == ShopVisitors.Amount(d.Get, "gold"), "Dice Elder bet " + i + " pays GET " + d.Get + " (" + (run.State.Gold - before) + ")");
             }
             // Parcel: PAY 10 gold, GET exactly one of 15 gold / an egg / a Common relic / nothing
-            VisitorDeal parcel = ShopVisitors.DealFor(ShopVisitors.For("ParcelCourier"), 0, 6);
+            VisitorDeal parcel; using (var probe = Fresh(c)) parcel = ShopVisitors.DealFor(ShopVisitors.For("ParcelCourier"), 0, 6, probe.GoldScale);
+            int fee = ShopVisitors.Amount(parcel.Pay, "gold");
             var seen = new HashSet<string>();
             for (uint seed = 1; seed < 40; seed += 3)
             {
@@ -141,22 +144,22 @@ namespace ArcaneBrigade.Editor
                 int dg = run.State.Gold - gold, de = run.State.Eggs - eggs, dr = run.State.Items.Sum(s => s.Count) - relics;
                 ItemStack fresh = run.State.Items.FirstOrDefault(s => s.Count > (had.TryGetValue(s.Id, out int n) ? n : 0));
                 ItemDefinition got = dr == 1 && fresh != null ? c.Item(fresh.Id) : null;
-                string outcome = dg == -10 + ShopVisitors.Amount(parcel.Get, "gold") && de == 0 && dr == 0 ? "gold" : dg == -10 && de == ShopVisitors.Amount(parcel.Get, "egg") && dr == 0 ? "egg"
-                    : dg == -10 && de == 0 && dr == 1 && got != null && got.Rarity == ItemRarity.Common ? "relic" : dg == -10 && de == 0 && dr == 0 ? "empty" : dg == 0 && de == 0 && dr == 0 ? "fallback" : "unexpected " + dg + "/" + de + "/" + dr;
+                string outcome = dg == -fee + ShopVisitors.Amount(parcel.Get, "gold") && de == 0 && dr == 0 ? "gold" : dg == -fee && de == ShopVisitors.Amount(parcel.Get, "egg") && dr == 0 ? "egg"
+                    : dg == -fee && de == 0 && dr == 1 && got != null && got.Rarity == ItemRarity.Common ? "relic" : dg == -fee && de == 0 && dr == 0 ? "empty" : dg == 0 && de == 0 && dr == 0 ? "fallback" : "unexpected " + dg + "/" + de + "/" + dr;
                 Check(!outcome.StartsWith("unexpected"), "Parcel outcome is on its card: " + outcome);
                 seen.Add(outcome);
             }
-            Check(ShopVisitors.Amount(parcel.Pay, "gold") == 10 && parcel.Get.Contains("relic:Common") && seen.Count >= 3, "Parcel card: PAY 10 gold, GET 15 gold / egg / Common relic / empty (" + string.Join(",", seen) + ")");
+            Check(fee > 10 && parcel.Get.Contains("relic:Common") && seen.Count >= 3, "Parcel card: PAY " + fee + " gold (10 on the wave-6 curve), GET gold / egg / Common relic / empty (" + string.Join(",", seen) + ")");
             // Junk Collector and Pawnbroker: each relic plate shows the gold it pays, and choosing pays exactly that
             foreach (string id in new[] { "JunkCollector", "Pawnbroker" })
             {
                 using var run = Fresh(c); run.ForceVisitor(id);
-                VisitorDeal d = ShopVisitors.DealFor(ShopVisitors.For(id), 0, run.State.Wave);
+                VisitorDeal d = ShopVisitors.DealFor(ShopVisitors.For(id), 0, run.State.Wave, run.GoldScale);
                 var options = run.VisitorOptions();
                 foreach (VisitorOption o in options)
                 {
                     ItemDefinition item = c.Item(run.State.Items[o.Value].Id);
-                    int want = id == "JunkCollector" ? Mathf.RoundToInt(item.Price * .6f) : item.Price / 2;
+                    int want = run.ScaledGold(id == "JunkCollector" ? Mathf.RoundToInt(item.Price * .6f) : item.Price / 2);
                     Check(o.Gold == want && o.Label.EndsWith("(+" + want + ")"), id + " plate for " + item.Name + " shows +" + want);
                 }
                 int gold = run.State.Gold, relics = run.State.Items.Sum(s => s.Count), shown = options[0].Gold, wave = run.State.Wave;
@@ -178,7 +181,7 @@ namespace ArcaneBrigade.Editor
             // Future Post: 10 gold now, 15 gold in 3 waves
             {
                 using var run = Fresh(c); run.ForceVisitor("FuturePost");
-                VisitorDeal d = ShopVisitors.DealFor(ShopVisitors.For("FuturePost"), 0, run.State.Wave);
+                VisitorDeal d = ShopVisitors.DealFor(ShopVisitors.For("FuturePost"), 0, run.State.Wave, run.GoldScale);
                 int wave = run.State.Wave; run.VisitorChoose(0);
                 VisitorEffect post = run.State.VisitorEffects.First(e => e.Id == "Post");
                 Check(post.Wave == wave + 3 && Mathf.RoundToInt(post.Value) == ShopVisitors.Amount(d.Get, "gold") && d.When.Contains("3 waves"), "Future Post pays GET " + d.Get + " " + d.When);

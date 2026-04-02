@@ -37,6 +37,8 @@ namespace ArcaneBrigade
         public VisitorDefinition Visitor => State.Phase == SessionPhase.Shop && !State.VisitorDone && State.VisitorWave == State.Wave && !string.IsNullOrEmpty(State.Visitor) && !SecretRoomOpen ? ShopVisitors.For(State.Visitor) : null;
         private bool VisitorActive(string id, int wave) => State.VisitorEffects.Exists(e => e.Id == id && e.Wave == wave);
         private VisitorEffect VisitorEffectFor(string id, int wave) => State.VisitorEffects.Find(e => e.Id == id && e.Wave == wave);
+        /// <summary>A visitor's gold reward as fixed when the deal was struck (on the gold curve); older saves: the authored amount.</summary>
+        private int Reward(string id, int wave, int authored) => VisitorEffectFor(id, wave) is VisitorEffect e && e.Value > 0 ? Mathf.RoundToInt(e.Value) : authored;
         private void AddVisitorEffect(string id, float value = 0, string target = "", int ahead = 1) => State.VisitorEffects.Add(new VisitorEffect { Id = id, Wave = State.Wave + ahead, Value = value, Target = target ?? "" });
 
         /// <summary>A new shop: maybe a visitor (every 2-3 shops from wave 3; never with a story offer or a boss next).</summary>
@@ -68,7 +70,7 @@ namespace ArcaneBrigade
         public List<VisitorOption> VisitorOptions()
         {
             var list = new List<VisitorOption>(); VisitorDefinition v = Visitor; if (v == null) return list;
-            bool afford = State.Gold >= v.Cost;
+            int cost = VisitorCost(v); bool afford = State.Gold >= cost;
             if (v.Id == "DreamSmith" && State.VisitorStage == 1 && State.VisitorPick >= 0 && State.VisitorPick < State.Roster.Count)
             {
                 foreach (WeaponDefinition w in ReforgeChoices()) list.Add(new VisitorOption { Label = RunUICopy.WeaponName(w.Id), Icon = "weapon:" + w.Id });
@@ -79,12 +81,12 @@ namespace ArcaneBrigade
             {
                 case VisitorChoice.Accept:
                     bool ok = afford && (v.Id != "ClockRewinder" || State.ShelfBeforeRefresh.Count > 0);
-                    list.Add(new VisitorOption { Label = v.Cost > 0 ? "Accept (" + v.Cost + " gold)" : "Accept", Enabled = ok }); break;
+                    list.Add(new VisitorOption { Label = cost > 0 ? "Accept (" + cost + " gold)" : "Accept", Enabled = ok }); break;
                 case VisitorChoice.Options:
                     for (int i = 0; i < v.Options.Length; i++)
                     {
-                        bool enabled = v.Id switch { "DiceElder" => State.Gold >= new[] { 5, 10, 20 }[i], "NightThief" => i != 0 || State.Gold >= 5, "EggTrader" => i == 0 ? State.Eggs >= 2 : State.Items.Count > 0, _ => true };
-                        list.Add(new VisitorOption { Label = v.Options[i], Enabled = enabled, Value = i });
+                        bool enabled = v.Id switch { "DiceElder" => State.Gold >= ScaledGold(new[] { 5, 10, 20 }[i]), "NightThief" => i != 0 || State.Gold >= ScaledGold(5), "EggTrader" => i == 0 ? State.Eggs >= 2 : State.Items.Count > 0, _ => true };
+                        list.Add(new VisitorOption { Label = ShopVisitors.ScaleText(v.Options[i], GoldScale), Enabled = enabled, Value = i });
                     }
                     break;
                 case VisitorChoice.PickItem: AddItemOptions(list); break;
@@ -105,7 +107,7 @@ namespace ArcaneBrigade
             foreach (ItemStack s in State.Items)
             {
                 ItemDefinition item = catalog.Item(s.Id); if (item == null) continue;
-                int gold = v.Id == "JunkCollector" ? Mathf.RoundToInt(item.Price * .6f) : v.Id == "Pawnbroker" ? item.Price / 2 : 0;
+                int gold = v.Id == "JunkCollector" ? ScaledGold(Mathf.RoundToInt(item.Price * .6f)) : v.Id == "Pawnbroker" ? ScaledGold(item.Price / 2) : 0;
                 string label = item.Name + (gold > 0 || v.Id == "JunkCollector" || v.Id == "Pawnbroker" ? " (+" + gold + ")" : "");
                 list.Add(new VisitorOption { Label = label, Icon = "item:" + s.Id, Value = State.Items.IndexOf(s), Gold = gold });
             }
@@ -128,29 +130,30 @@ namespace ArcaneBrigade
             switch (v.Id)
             {
                 case "GateKeeper": AddVisitorEffect("Dare"); break;
-                case "LostPostman": AddVisitorEffect("Letter"); break;
-                case "DiceElder": { int bet = new[] { 5, 10, 20 }[o.Value]; State.Gold -= bet; AddVisitorEffect("Bet", bet); break; }
+                case "LostPostman": AddVisitorEffect("Letter", ScaledGold(15)); break;
+                // the bet is taken now; the effect keeps what the elder pays back (the card's GET), both on the gold curve
+                case "DiceElder": { int bet = ScaledGold(new[] { 5, 10, 20 }[o.Value]); State.Gold -= bet; AddVisitorEffect("Bet", ScaledGold(new[] { 8, 15, 30 }[o.Value]), "paid"); break; }
                 case "Pawnbroker":
                 {
-                    ItemStack s = State.Items[o.Value]; ItemDefinition item = catalog.Item(s.Id); int price = item.Price / 2;
+                    ItemStack s = State.Items[o.Value]; ItemDefinition item = catalog.Item(s.Id); int price = ScaledGold(item.Price / 2);
                     RemoveOneItem(s); State.Gold = BoundedCounter((long)State.Gold + price);
                     AddVisitorEffect("Pawn", price, item.Id, 2); Notice = item.Name + " pawned for " + price + " gold; redeem it within 2 waves.";
                     break;
                 }
                 case "ParcelCourier":
                 {
-                    State.Gold -= v.Cost;
+                    State.Gold -= VisitorCost(v);
                     int roll = Next(ref State.VisitorRandom, 4);
-                    if (roll == 0) { State.Gold = BoundedCounter((long)State.Gold + 15); Notice = "The parcel held 15 gold."; }
+                    if (roll == 0) { int found = ScaledGold(15); State.Gold = BoundedCounter((long)State.Gold + found); Notice = "The parcel held " + found + " gold."; }
                     else if (roll == 1) { State.Eggs = BoundedCounter((long)State.Eggs + 1); Notice = "The parcel held an egg."; }
                     else if (roll == 2 && GiveRandomItem(ItemRarity.Common, false) is ItemDefinition got) Notice = "The parcel held " + got.Name + ".";
                     else Notice = "Empty, except a note: 'Thank you for opening me.'";
                     break;
                 }
                 case "TroupeLeader": AddVisitorEffect("Play", o.Value); break;
-                case "Lamplighter": State.Gold -= v.Cost; AddVisitorEffect("Lamps"); break;
+                case "Lamplighter": State.Gold -= VisitorCost(v); AddVisitorEffect("Lamps"); break;
                 case "LostToy": AddVisitorEffect("Toy"); break;
-                case "ToyMender": State.Gold -= v.Cost; AddVisitorEffect("Mended", 0, State.Roster[o.Value].UnitId); break;
+                case "ToyMender": State.Gold -= VisitorCost(v); AddVisitorEffect("Mended", 0, State.Roster[o.Value].UnitId); break;
                 case "MusicBoxKeeper": AddVisitorEffect("Tempo"); break;
                 case "Barterer":
                 {
@@ -164,7 +167,7 @@ namespace ArcaneBrigade
                 }
                 case "JunkCollector":
                 {
-                    ItemStack s = State.Items[o.Value]; ItemDefinition item = catalog.Item(s.Id); int price = Mathf.RoundToInt(item.Price * .6f);
+                    ItemStack s = State.Items[o.Value]; ItemDefinition item = catalog.Item(s.Id); int price = ScaledGold(Mathf.RoundToInt(item.Price * .6f));
                     RemoveOneItem(s); State.Gold = BoundedCounter((long)State.Gold + price); Notice = item.Name + " sold for " + price + " gold.";
                     break;
                 }
@@ -177,15 +180,15 @@ namespace ArcaneBrigade
                 case "SwapClown": RestockShelf(+1, 1.3f); break;
                 case "ClockRewinder":
                 {
-                    State.Gold -= v.Cost;
+                    State.Gold -= VisitorCost(v);
                     State.Offers.Clear(); State.Offers.AddRange(State.ShelfBeforeRefresh); State.ShelfBeforeRefresh.Clear();
                     if (State.RefreshPaid > 0) State.Gold = BoundedCounter((long)State.Gold + State.RefreshPaid);
                     State.RefreshPaid = -1; Notice = "The shelf is as it was.";
                     break;
                 }
                 case "SleeplessChild": AddVisitorEffect("Lullaby"); break;
-                case "CandyWitch": State.Gold -= v.Cost; AddVisitorEffect("Candy"); break;
-                case "BalloonSeller": State.Gold -= v.Cost; AddVisitorEffect("Balloon"); break;
+                case "CandyWitch": State.Gold -= VisitorCost(v); AddVisitorEffect("Candy"); break;
+                case "BalloonSeller": State.Gold -= VisitorCost(v); AddVisitorEffect("Balloon"); break;
                 case "PromiseSeller": AddVisitorEffect("Promise"); break;
                 case "Ferryman":
                 {
@@ -205,37 +208,37 @@ namespace ArcaneBrigade
                     Notice = RunUICopy.UnitName(old) + " crossed the river; " + RunUICopy.UnitName(other) + " came back.";
                     break;
                 }
-                case "MatchGirl": State.Gold -= v.Cost; AddVisitorEffect("Matches"); break;
-                case "Collector": AddVisitorEffect("Collect"); break;
-                case "Engraver": State.Gold -= v.Cost; AddVisitorEffect("Engraved", 0, State.Roster[o.Value].UnitId); break;
-                case "Waker": State.Gold -= v.Cost; AddVisitorEffect("Wake"); break;
+                case "MatchGirl": State.Gold -= VisitorCost(v); AddVisitorEffect("Matches"); break;
+                case "Collector": AddVisitorEffect("Collect", ScaledGold(12)); break;
+                case "Engraver": State.Gold -= VisitorCost(v); AddVisitorEffect("Engraved", 0, State.Roster[o.Value].UnitId); break;
+                case "Waker": State.Gold -= VisitorCost(v); AddVisitorEffect("Wake"); break;
                 case "DreamSeller": AddVisitorEffect("Dream", (o.Value * 7 + Next(ref State.VisitorRandom, 7)) % 7); break;
                 case "Twins": State.TwinShop = State.Wave; break;
-                case "WaterCarrier": State.Gold -= v.Cost; AddVisitorEffect("Puddles"); break;
+                case "WaterCarrier": State.Gold -= VisitorCost(v); AddVisitorEffect("Puddles"); break;
                 case "NightThief":
-                    if (o.Value == 0) { State.Gold -= 5; Notice = "The thief slinks away."; }
+                    if (o.Value == 0) { State.Gold -= ScaledGold(5); Notice = "The thief slinks away."; }
                     else { AddVisitorEffect("Thief", 0, "", 0); Notice = "Keep an eye on your purse."; }
                     break;
-                case "DollDoctor": State.Gold -= v.Cost; AddVisitorEffect("Cloak"); break;
-                case "KeyKeeper": State.Gold -= v.Cost; AddVisitorEffect("Key"); break;
+                case "DollDoctor": State.Gold -= VisitorCost(v); AddVisitorEffect("Cloak"); break;
+                case "KeyKeeper": State.Gold -= VisitorCost(v); AddVisitorEffect("Key"); break;
                 case "CupMagician":
                 {
                     var shelf = State.Offers.FindAll(x => !x.Sold && x.Currency == ShopCurrency.Gold && x.Price > 0);
                     if (shelf.Count == 0) return false;
-                    State.Gold -= v.Cost; ShopOffer free = shelf[Next(ref State.VisitorRandom, shelf.Count)]; free.Price = 0; free.BasePrice = 0;
+                    State.Gold -= VisitorCost(v); ShopOffer free = shelf[Next(ref State.VisitorRandom, shelf.Count)]; free.Price = 0; free.BasePrice = 0;
                     Notice = "Ta-da! One offer is free.";
                     break;
                 }
-                case "FriendSeeker": AddVisitorEffect("Away", 0, State.Roster[o.Value].UnitId); break;
+                case "FriendSeeker": AddVisitorEffect("Away", ScaledGold(10), State.Roster[o.Value].UnitId); break;
                 case "DreamSmith":
                     if (State.VisitorStage == 0) { State.VisitorStage = 1; State.VisitorPick = o.Value; done = false; break; }
                     {
                         RosterEntry r = State.Roster[State.VisitorPick]; var choices = ReforgeChoices(); if (index >= choices.Count) return false;
-                        State.Gold -= v.Cost; r.WeaponId = choices[index].Id; RememberVariant(r);
+                        State.Gold -= VisitorCost(v); r.WeaponId = choices[index].Id; RememberVariant(r);
                         Notice = RunUICopy.UnitName(catalog.Unit(r.UnitId)) + " now carries " + RunUICopy.WeaponName(r.WeaponId) + ".";
                     }
                     break;
-                case "MapSeller": State.Gold -= v.Cost; AddVisitorEffect("Map"); break;
+                case "MapSeller": State.Gold -= VisitorCost(v); AddVisitorEffect("Map"); break;
                 case "EggTrader":
                     if (State.VisitorStage == 0)
                     {
@@ -245,8 +248,8 @@ namespace ArcaneBrigade
                     }
                     { ItemStack s = State.Items[o.Value]; Notice = catalog.Item(s.Id).Name + " traded for 2 eggs."; RemoveOneItem(s); State.Eggs = BoundedCounter((long)State.Eggs + 2); }
                     break;
-                case "WeatherTeller": State.Gold -= v.Cost; AddVisitorEffect("Umbrella"); Notice = "Next wave: " + NextWaveForecast() + "."; break;
-                case "Knitter": State.Gold -= v.Cost; AddVisitorEffect("Scarf"); break;
+                case "WeatherTeller": State.Gold -= VisitorCost(v); AddVisitorEffect("Umbrella"); Notice = "Next wave: " + NextWaveForecast() + "."; break;
+                case "Knitter": State.Gold -= VisitorCost(v); AddVisitorEffect("Scarf"); break;
                 case "Painter":
                 {
                     var names = new List<string>(); foreach (RosterEntry r in State.Roster) names.Add(r.UnitId);
@@ -254,10 +257,10 @@ namespace ArcaneBrigade
                     Notice = "Your brigade's portrait is kept with this run.";
                     break;
                 }
-                case "ShadowBorrower": State.Gold -= v.Cost; AddVisitorEffect("Shadow"); break;
-                case "Sandman": State.Gold -= v.Cost; AddVisitorEffect("Sand"); break;
+                case "ShadowBorrower": State.Gold -= VisitorCost(v); AddVisitorEffect("Shadow"); break;
+                case "Sandman": State.Gold -= VisitorCost(v); AddVisitorEffect("Sand"); break;
                 case "ColourStranger": RestockShelf(-1, .7f); break;
-                case "FuturePost": State.Gold -= v.Cost; AddVisitorEffect("Post", 15, "", 3); break;
+                case "FuturePost": State.Gold -= VisitorCost(v); AddVisitorEffect("Post", ScaledGold(15), "", 3); break;
                 case "HourglassFixer": AddVisitorEffect("Longer"); break;
                 case "Busker":
                 {
@@ -297,7 +300,7 @@ namespace ArcaneBrigade
         {
             var pool = new List<ItemDefinition>();
             foreach (ItemDefinition c in catalog.Items) if (c.Rarity == rarity && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && StackCount(c.Id) < c.StackLimit && (!lent || c.Mechanic == RelicMechanic.None || c.Stacking != StackPolicy.Unique)) pool.Add(c);
-            if (pool.Count == 0) { State.Gold = BoundedCounter((long)State.Gold + 10); return null; }
+            if (pool.Count == 0) { State.Gold = BoundedCounter((long)State.Gold + ScaledGold(10)); return null; }
             ItemDefinition item = pool[Next(ref State.VisitorRandom, pool.Count)];
             AddItem(item); return item;
         }
@@ -420,12 +423,12 @@ namespace ArcaneBrigade
         {
             int w = State.Wave; bool won = sim.Phase == RunPhase.Victory; var notes = new List<string>();
             if (won && VisitorActive("Dare", w) && GiveRandomItem(w >= 12 ? ItemRarity.Uncommon : ItemRarity.Common, false) is ItemDefinition dare) notes.Add("The Gatekeeper pays: " + dare.Name);
-            if (won && VisitorActive("Letter", w) && sim.OctoberInjuries <= 5) { State.Gold = BoundedCounter((long)State.Gold + 15); notes.Add("Letter delivered: 15 gold"); }
-            if (VisitorEffectFor("Bet", w) is VisitorEffect bet && won && sim.LowestChampionShare >= .5f) { int pay = Mathf.RoundToInt(bet.Value * 1.5f); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The Dice Elder pays " + pay + " gold"); }
+            if (won && VisitorActive("Letter", w) && sim.OctoberInjuries <= 5) { int pay = Reward("Letter", w, 15); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("Letter delivered: " + pay + " gold"); }
+            if (VisitorEffectFor("Bet", w) is VisitorEffect bet && won && sim.LowestChampionShare >= .5f) { int pay = bet.Target == "paid" ? Mathf.RoundToInt(bet.Value) : Mathf.RoundToInt(bet.Value * 1.5f); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The Dice Elder pays " + pay + " gold"); }
             if (VisitorActive("Toy", w) && sim.VisitorToySeconds >= 20) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The lost toy found its way home (an egg)"); }
             if (won && VisitorActive("Lullaby", w) && sim.Kills >= 80) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The child sleeps (an egg)"); }
-            if (VisitorActive("Collect", w) && sim.VisitorSpeciesKills >= 10) { State.Gold = BoundedCounter((long)State.Gold + 12); notes.Add("The collector pays 12 gold"); }
-            if (VisitorActive("Away", w)) { State.Eggs = BoundedCounter((long)State.Eggs + 1); State.Gold = BoundedCounter((long)State.Gold + 10); notes.Add("Your friend is back with an egg and 10 gold"); }
+            if (VisitorActive("Collect", w) && sim.VisitorSpeciesKills >= 10) { int pay = Reward("Collect", w, 12); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The collector pays " + pay + " gold"); }
+            if (VisitorActive("Away", w)) { int pay = Reward("Away", w, 10); State.Eggs = BoundedCounter((long)State.Eggs + 1); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("Your friend is back with an egg and " + pay + " gold"); }
             if (VisitorActive("Key", w) && sim.VisitorKeyUsed && GiveRandomItem(ItemRarity.Common, false) is ItemDefinition key) notes.Add("The key opened " + key.Name);
             if (VisitorActive("Balloon", w)) { if (Next(ref State.VisitorRandom, 10) < 7 && GiveRandomItem(ItemRarity.Common, false) is ItemDefinition balloon) notes.Add("The balloon brought back " + balloon.Name); else notes.Add("The balloon came back empty"); }
             if (VisitorEffectFor("Post", w) is VisitorEffect post) { State.Gold = BoundedCounter((long)State.Gold + Mathf.RoundToInt(post.Value)); notes.Add("Post from the past: " + post.Value + " gold"); }

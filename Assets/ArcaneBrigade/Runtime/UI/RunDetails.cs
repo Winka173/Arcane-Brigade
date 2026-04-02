@@ -179,7 +179,7 @@ namespace ArcaneBrigade
             bool table = tab == 1 && rows.Count > 0;
             if (table) DrawTable(rows, rowHeight, owner.Session.State);
             Rect listArea = table ? new Rect(70, 640, 1060, 325) : new Rect(70, 295, 1060, 670);
-            scroll = GUI.BeginScrollView(listArea, scroll, new Rect(0, 0, 1005, Mathf.Max(listArea.height - 5, rows.Count * rowHeight)));
+            scroll = ScrollPanel.Begin(listArea, scroll, new Rect(0, 0, 1005, Mathf.Max(listArea.height - 5, rows.Count * rowHeight)));
             for (int index = 0; index < rows.Count; index++)
             {
                 RunBuildReadModel.Row row = rows[index];
@@ -199,7 +199,7 @@ namespace ArcaneBrigade
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
             if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No companions yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
-            GUI.EndScrollView();
+            ScrollPanel.End();
             RunHud.Fill(new Rect(1160, 300, 665, 665), ArcadeSkin.Card);
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));
             if (tab == 2 && rows.Count > 0)
@@ -226,9 +226,9 @@ namespace ArcaneBrigade
             if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
             float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
             bool heroSelected = tab == 0 && selection == 0 && owner.Session.HeroIdentityDefinition != null;
-            explanationScroll = GUI.BeginScrollView(new Rect(1180, (tab == 2 ? 445 : 325) + quoteHeight, 625, (heroSelected ? 290 : tab == 2 ? 490 : 610) - quoteHeight), explanationScroll, new Rect(0, 0, 585, explanationHeight));
+            explanationScroll = ScrollPanel.Begin(new Rect(1180, (tab == 2 ? 445 : 325) + quoteHeight, 625, (heroSelected ? 290 : tab == 2 ? 490 : 610) - quoteHeight), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);
-            GUI.EndScrollView();
+            ScrollPanel.End();
             if (heroSelected) heroOptions.Draw(owner, new Rect(1185, 632, 610, 315), text);
             GUI.Label(new Rect(75, 988, 1750, 42), RunUIHints.DetailsNavigation, text);
             GlossaryUI.Draw(new Vector2(1920, 1080));

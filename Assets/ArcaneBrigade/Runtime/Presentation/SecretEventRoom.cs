@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         private string signature;
         private float hold, enteredAt;
         private int selected;
+        private readonly Vector2[] copyScroll = new Vector2[3]; private Vector2 resultScroll; // long offers scroll (play-test 20/10/2026)
         private bool armed;
         private GUIStyle heading, body, small, card, label, primary;
         private Texture2D panel, paper, disabled;
@@ -160,7 +161,11 @@ namespace ArcaneBrigade
                         GUI.enabled = true;
                         ArcadeSkin.Panel(new Rect(x, 612, 460, 245), c.Enabled ? ArcadeSkin.Surface : new Color(.12f,.12f,.15f));
                         if (selected == i) ArcadeSkin.Focus(new Rect(x, 540, 460, 317));
-                        GUI.Label(new Rect(x + 18, 626, 424, 210), c.Copy + (c.Enabled ? "" : "\n\nUnavailable with your current build or active contract."), body);
+                        string copy = c.Copy + (c.Enabled ? "" : "\n\nUnavailable with your current build or active contract.");
+                        body.wordWrap = true; float copyHeight = body.CalcHeight(new GUIContent(copy), 410);
+                        copyScroll[i] = ScrollPanel.Begin(new Rect(x + 18, 626, 430, 214), copyScroll[i], new Rect(0, 0, 410, copyHeight));
+                        GUI.Label(new Rect(0, 0, 410, copyHeight), copy, body);
+                        ScrollPanel.End();
                         if (c.Icon != null) DrawSprite(new Rect(x + 175, 450, 90, 80), c.Icon);
                     }
                     ArcadeSkin.Panel(new Rect(490, 862, 940, 44), ArcadeSkin.Surface);
@@ -173,7 +178,10 @@ namespace ArcaneBrigade
                 else
                 {
                     ArcadeSkin.Panel(new Rect(420, 540, 1080, 315), ArcadeSkin.Surface);
-                    GUI.Label(new Rect(455, 562, 1010, 160), s.Result, body);
+                    body.wordWrap = true; float resultHeight = body.CalcHeight(new GUIContent(s.Result), 990);
+                    resultScroll = ScrollPanel.Begin(new Rect(455, 562, 1010, 170), resultScroll, new Rect(0, 0, 990, resultHeight));
+                    GUI.Label(new Rect(0, 0, 990, resultHeight), s.Result, body);
+                    ScrollPanel.End();
                     if (!string.IsNullOrEmpty(s.RewardId))
                     {
                         string reward = owner.Session.SecretRewardLabel;

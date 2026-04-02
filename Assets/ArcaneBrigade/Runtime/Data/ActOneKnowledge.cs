@@ -14,7 +14,7 @@ namespace ArcaneBrigade
                 if (MienChoStory.Chapters[i].Wave==wave && MienChoStory.Chapters[i].Shop) return (finished & (1<<i))!=0;
             return false;
         }
-        public static bool HobRescued(RunSnapshot state) => (state?.ActOne?.HobRescued ?? 0)>0;
+        public static bool HobRescued(RunSnapshot state) => ActOneCanon.StoryAlliesTravel && (state?.ActOne?.HobRescued ?? 0)>0;
         public static bool HasCompany(RunSnapshot state)
             => state != null && (state.Roster.Count>0 || ActOneCanon.StoryCount(state.Wave,state.Phase==SessionPhase.Shop,state.Endless)>0 || state.Secrets?.RescuedToy==true);
     }

@@ -13,7 +13,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(65, 150, 770, 35), earned + " / " + definitions.Count + " memories recorded. No permanent stat rewards.", text);
             unfinishedOnly = GUI.Toggle(new Rect(915, 150, 300, 35), unfinishedOnly, "Show unfinished only");
             int count = 0; foreach (var d in definitions) if (!unfinishedOnly || !profile.Achievements.Contains(d.Id)) count++;
-            scroll = GUI.BeginScrollView(new Rect(60, 200, 1160, 455), scroll, new Rect(0, 0, 1120, Mathf.Max(450, Mathf.Ceil(count / 2f) * 130)));
+            scroll = ScrollPanel.Begin(new Rect(60, 200, 1160, 455), scroll, new Rect(0, 0, 1120, Mathf.Max(450, Mathf.Ceil(count / 2f) * 130)));
             int index = 0;
             foreach (var d in definitions)
             {
@@ -27,7 +27,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Line(new Rect(card.x + 20, card.y + 98, 390 * Mathf.Clamp01(progress / d.Goal), 4), complete ? ArcadeSkin.Gold : ArcadeSkin.Teal);
                 GUI.Label(new Rect(card.x + 420, card.y + 87, 110, 25), progress.ToString("0.##") + " / " + d.Goal.ToString("0.##"), text);
             }
-            GUI.EndScrollView();
+            ScrollPanel.End();
         }
     }
 }

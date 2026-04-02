@@ -46,7 +46,7 @@ namespace ArcaneBrigade.Editor
                     WeaponDefinition weapon = UnityEngine.Object.Instantiate(definition.Weapon); temporary.Add(weapon); definition.Weapon = weapon;
                     definition.BodyHeight = 1; definition.CombatTier = 3;
                     UnitState companion = simulation.AddFixture(definition, Faction.Companion, Vector2.zero);
-                    Require(K8Motion.BodyHeight(companion) <= 0.88f * CompanionTierScaling.Body(3) && K8Motion.BodyHeight(companion) >= Mathf.Min(companion.Definition.BodyHeight * 0.95f, 0.88f) && K8Motion.BodyHeight(simulation.Champion) == simulation.Champion.Definition.BodyHeight, "Allies readable with star-scaled cap without scaling Champion");
+                    Require(K8Motion.BodyHeight(companion) <= 0.88f * CompanionTierScaling.Body(3) && K8Motion.BodyHeight(companion) >= Mathf.Min(companion.Definition.BodyHeight * 0.95f, 0.88f) && Mathf.Approximately(K8Motion.BodyHeight(simulation.Champion), simulation.Champion.Definition.BodyHeight * (PresentationSettings.HighlightHero ? HeroFocus.HeroScale : 1)), "Allies readable with star-scaled cap; the hero only by its highlight (x1.1)");
                     Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * (companion.Definition.Weapon.Kind == WeaponKind.Melee ? 1.05f : 0.9f) + 0.0001f, "Companion weapons never much larger than their bearer");
                     int before = simulation.CompanionCount;
                     for (int index = 0; index < 128; index++) simulation.AddCompanion(definition);

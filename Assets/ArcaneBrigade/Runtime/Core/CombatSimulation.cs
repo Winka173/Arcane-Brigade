@@ -1217,8 +1217,13 @@ namespace ArcaneBrigade
             CombatCause cause = NewCause(Champion.Id);
             bool egg = lootRandom.NextDouble() < Mathf.Clamp01(0.35f + catalog.Luck * 0.2f);
             bool heart = lootRandom.NextDouble() < Mathf.Clamp01(0.5f + catalog.Luck * 0.2f);
-            events.Add(new CombatEvent(CombatEventKind.ChestOpened, chest.Position, Faction.Champion, chest.Value, new Vector2(egg ? 1 : 0, heart ? 1 : 0), subjectId: chest.Id, cause: cause, loot: LootKind.Chest));
-            DropLoot(LootKind.Coin, chest.Position, chest.Value + KitChestBonus());
+            // the chest's coin follows the shop's gold curve (play-test 20/10/2026), so a chest stays worth opening late
+            int coins = Mathf.Max(1, Mathf.RoundToInt((chest.Value + KitChestBonus()) * Mathf.Max(1, catalog.ChestGoldScale)));
+            int gold = Mathf.Max(1, Mathf.RoundToInt(coins * KitCoinScale * Mathf.Max(0, catalog.CoinValueScale)));
+            float healing = heart ? Mathf.Max(1, 12 + catalog.HeartHealing) : 0;
+            // the popup reads: Value = gold credited, Direction = (egg 1/0, heart healing or 0)
+            events.Add(new CombatEvent(CombatEventKind.ChestOpened, chest.Position, Faction.Champion, gold, new Vector2(egg ? 1 : 0, healing), subjectId: chest.Id, cause: cause, loot: LootKind.Chest));
+            DropLoot(LootKind.Coin, chest.Position, coins);
             if (egg) DropLoot(LootKind.Egg, chest.Position, 1);
             if (heart) DropLoot(LootKind.Heart, chest.Position, 12);
         }

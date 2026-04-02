@@ -209,12 +209,7 @@ namespace ArcaneBrigade.Editor
                     RangedFeel.Simulation = sim;
                     Require(RangedFeel.LongShot(far), "The shooter is found from the simulation");
                     var feel = new CombatFeel(); feel.Play(new[] { far }, new Dictionary<int, UnitVisual>(), 1, 0);
-                    Require(feel.Frozen, "A long-range critical holds the screen for a blink");
-                    var near = new CombatFeel(); near.Play(new[] { new CombatEvent(CombatEventKind.Hit, second.Position, Faction.Enemy, 1, Vector2.right, bow, true, subjectId: second.Id, subject: second, cause: new CombatCause(302, second.Id)) }, new Dictionary<int, UnitVisual>(), 1, 0);
-                    Require(!near.Frozen, "A close critical does not");
-                    PresentationSettings.Apply(new PlayerProfile { ReducedMotion = true });
-                    var calm = new CombatFeel(); calm.Play(new[] { far }, new Dictionary<int, UnitVisual>(), 1, 0);
-                    Require(!calm.Frozen, "Reduced motion: no hold");
+                    Require(!feel.Frozen, "A long-range critical never holds the screen (no hit stop)");
                     Require(RangedFeel.TipBack(.05f) > 0 && RangedFeel.TipBack(.35f) == 0, "The struck target tips back briefly");
                     PresentationSettings.Apply(new PlayerProfile());
 

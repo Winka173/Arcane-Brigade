@@ -14,6 +14,19 @@ namespace ArcaneBrigade
         private MerchantVoice voice;
         private int shownWave = -1;
         private int shownPage = -1;
+        // the dawn pages are read line by line (play-test 20/10/2026): each tap shows the next line, nothing needs scrolling
+        private int endingLine = 1; private float lineAt;
+        private GUIStyle endingTitle, endingPrevious, endingCurrent;
+        private static string[] EndingLines(string page) => page.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        /// <summary>Show the next line of the page; true once every line was already shown (the page may turn).</summary>
+        private bool RevealNextLine()
+        {
+            int count = EndingLines(NightmareDialogue.Ending(owner.Session.State, owner.Session.State.Nightmare.EndingPage)).Length;
+            if (endingLine >= count - 1) return true;
+            if (owner.PresentationClock - lineAt < .2f) return false;
+            endingLine++; lineAt = owner.PresentationClock; CheckpointAudio.PlayInterfaceId("ui.page", .05f);
+            return false;
+        }
         private int bossBeat = -1;
         private float pageAt;
         private float whisperAt;
@@ -151,7 +164,7 @@ namespace ArcaneBrigade
                 }
                 if (page != shownPage)
                 {
-                    shownPage = page; pageAt = now;
+                    shownPage = page; pageAt = now; endingLine = 1; lineAt = now;
                     afterwordKnocks = 0;
                     int waking = state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? 4 : 3;
                     narrator.MerchantName = page == waking ? "THURSDAY" : page == 1 ? "THE SHOPKEEPER" : "DAWN";
@@ -163,7 +176,7 @@ namespace ArcaneBrigade
                 bool last = page == (state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? 4 : 3);
                 if (last && afterwordKnocks < 3 && now - pageAt >= .6f + afterwordKnocks * .55f)
                 { CheckpointAudio.PlayInterfaceId("sig.stamp", .12f); afterwordKnocks++; }
-                if (now - pageAt >= (last ? 2.6f : 1.2f) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) owner.AdvanceNightmareEnding();
+                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0)) && RevealNextLine() && now - lineAt >= (last ? 2.6f : .6f)) owner.AdvanceNightmareEnding();
             }
             else if (owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId && owner.Simulation.Boss.Alive)
             {
@@ -198,10 +211,28 @@ namespace ArcaneBrigade
                 else if (page == 4 && assets.PromiseIllustration != null) GUI.DrawTexture(image, assets.PromiseIllustration, ScaleMode.ScaleToFit);
                 else GUI.DrawTextureWithTexCoords(image,assets.EndingIllustration,new Rect(illustration % 2 * .5f,1 - (illustration / 2 + 1) * .5f,.5f,.5f));
                 departure.Draw(image, owner, page, owner.PresentationClock - pageAt);
-                GUI.Label(new Rect(170,715,1580,220),NightmareDialogue.Ending(owner.Session.State,page),copy);
-                GUI.enabled = owner.PresentationPaused || owner.PresentationClock - pageAt >= (page == 4 ? 2.6f : 1.2f);
-                if (GUI.Button(new Rect(720,970,480,65),owner.PresentationPaused ? "RESUME" : page == 3 ? "KEEP THE MEMORY" : "CONTINUE",button))
-                { if (owner.PresentationPaused) owner.TogglePause(); else owner.AdvanceNightmareEnding(); }
+                // the page's title under the picture, then its lines one tap at a time: the last line read stays, dimmed
+                if (endingTitle == null)
+                {
+                    endingTitle = ArcadeTypography.Style(30, true); endingTitle.alignment = TextAnchor.MiddleCenter; endingTitle.normal.textColor = ArcadeSkin.Gold;
+                    endingPrevious = new GUIStyle(copy); endingPrevious.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, .55f);
+                    endingCurrent = new GUIStyle(copy) { fontSize = 28 }; endingCurrent.normal.textColor = ArcadeSkin.Cream;
+                }
+                string[] lines = EndingLines(NightmareDialogue.Ending(owner.Session.State,page));
+                int line = Mathf.Clamp(endingLine, 1, Mathf.Max(1, lines.Length - 1));
+                bool more = line < lines.Length - 1;
+                if (lines.Length > 0) GUI.Label(new Rect(170,716,1580,44),lines[0],endingTitle);
+                if (line >= 2) GUI.Label(new Rect(170,764,1580,60),lines[line - 1],endingPrevious);
+                float fresh = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01((owner.PresentationClock - lineAt) / .35f);
+                Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * fresh);
+                if (lines.Length > 1) GUI.Label(new Rect(170,826,1580,130),lines[line],endingCurrent);
+                GUI.color = keep;
+                Rect next = new Rect(720,970,480,80);
+                // a tap anywhere on the page shows the next line (the button too)
+                if (!owner.PresentationPaused && more && Event.current.type == EventType.MouseDown && !next.Contains(Event.current.mousePosition)) { RevealNextLine(); Event.current.Use(); }
+                GUI.enabled = owner.PresentationPaused || more || owner.PresentationClock - lineAt >= (page == 4 ? 2.6f : .6f);
+                if (GUI.Button(next,owner.PresentationPaused ? "RESUME" : more ? "NEXT" : page == 3 ? "KEEP THE MEMORY" : "CONTINUE",button))
+                { if (owner.PresentationPaused) owner.TogglePause(); else if (RevealNextLine()) owner.AdvanceNightmareEnding(); }
                 GUI.enabled = true;
             }
             // speech boxes pinned to whoever speaks (the shop draws them first, under its tooltips; this covers the fight)
@@ -229,9 +260,12 @@ namespace ArcaneBrigade
                     SpeechBubbleCast.Offscreen(VoiceLines.Shopkeeper, "THE SHOPKEEPER", line);
                     return VoiceDirector.Speaking(VoiceLines.Shopkeeper);
                 case 3:
-                    if (cast != null && cast.StorySays(0, "story", 0, VoiceDirector.Story)) return VoiceDirector.Speaking(VoiceLines.Hob);
-                    SpeechBubbleCast.Offscreen(VoiceLines.Hob, "HOB", VoiceDirector.Exact(VoiceLines.Hob, "story", 0));
-                    return VoiceDirector.Speaking(VoiceLines.Hob);
+                {
+                    // the brigade answers him (Hob, who said it before, no longer travels with you)
+                    UnitState hero = owner.Simulation.Champion;
+                    SpeechBubbles.Show("Brigade", "YOUR BRIGADE", "Nobody here is for sale. Not even the ones who sat down.", () => hero == null || !hero.Alive ? (Vector3?)null : SpeechBubbles.Head(hero), SpeechTone.Hero, 4f, 4);
+                    return false;
+                }
                 default:
                     UnitState champion = owner.Simulation.Champion;
                     SpeechBubbles.Show("Brigade", "YOUR BRIGADE", "Then we pull.", () => champion == null || !champion.Alive ? (Vector3?)null : SpeechBubbles.Head(champion), SpeechTone.Hero, 4f, 4);

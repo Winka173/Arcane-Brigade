@@ -390,6 +390,7 @@ namespace ArcaneBrigade
             CombatCatalog.Procs = procs.ToArray();
             CombatCatalog.EnableArenaToys = false; // no arena toys in the fight any more (owner, 19/10/2026): no bell, no cart; scenery stays
             CombatCatalog.RunWave = State.Wave;
+            CombatCatalog.ChestGoldScale = GoldScale;
             CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
             CombatCatalog.ExpandedContent = catalog.ExpansionRevision > 0;
             CombatCatalog.EnableSpectacles = catalog.ExpansionRevision > 0;
@@ -838,6 +839,13 @@ namespace ArcaneBrigade
         }
 
         public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave) * WaveCadence.PriceRamp(State.Wave);
+        /// <summary>One price curve for gold (play-test 20/10/2026, items 12/17/20): the shop's own factor. Authored gold
+        /// amounts (visitor prices and rewards, secret-event fees, chest gold) are wave-1 amounts scaled by it.</summary>
+        public float GoldScale => StagePriceFactor;
+        public int ScaledGold(int authored) => ShopVisitors.Scale(authored, GoldScale);
+        /// <summary>What a visitor asks in this shop: its authored price on the gold curve (the world tag, the card and the
+        /// rules all read this one number).</summary>
+        public int VisitorCost(VisitorDefinition v) => v == null ? 0 : ScaledGold(v.Cost);
         public float SpecialStagePriceFactor => 1;
         public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;

@@ -212,8 +212,8 @@ namespace ArcaneBrigade
             string copy = offerCard.Details + "\n\n" + open.Use;
             body.normal.textColor = ArcadeSkin.Cream;
             float height = GlossaryUI.Height(copy, body, width);
-            offerScroll = GUI.BeginScrollView(new Rect(card.x + 20, y, card.width - 40, card.yMax - y - 16), offerScroll, new Rect(0, 0, width, height));
-            GlossaryUI.Text(new Rect(0, 0, width, height), copy, body); GUI.EndScrollView();
+            offerScroll = ScrollPanel.Begin(new Rect(card.x + 20, y, card.width - 40, card.yMax - y - 16), offerScroll, new Rect(0, 0, width, height));
+            GlossaryUI.Text(new Rect(0, 0, width, height), copy, body); ScrollPanel.End();
             GlossaryUI.Draw(new Vector2(1920, 1080));
         }
     }

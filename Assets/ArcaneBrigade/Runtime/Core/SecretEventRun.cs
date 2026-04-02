@@ -114,12 +114,13 @@ namespace ArcaneBrigade
                     return new[] {
                         Choice("ADDRESS IT TO YOURSELF", "Post one copy of " + name + ". After two normal victories, it returns with +25% positive stat modifiers. Its effects sleep while away.", owned && contract && CanImproveSecretItem(item)),
                         Choice("ADDRESS IT TO A FRIEND", "Consume one copy of " + name + " to give " + (catalog.Unit(Secret.TargetUnit)?.DisplayName ?? "a chosen companion") + " / " + Secret.TargetWeapon + " +20% weapon damage for this run. This gift stays with that unit/weapon pairing; it does not follow a different weapon after merging.", owned && !SecretSolo && State.Roster.Exists(r => r.UnitId == Secret.TargetUnit && r.WeaponId == Secret.TargetWeapon) && !Secret.AllyGifts.Exists(g => g.UnitId == Secret.TargetUnit && g.WeaponId == Secret.TargetWeapon)),
-                        Choice("ADDRESS IT OUTSIDE THE STAGE", (Secret.RescuedToy && !Secret.ThankYouClaimed ? "The rescued resident enclosed a thank-you: 15 gold. " : "") + "Send an invitation and receive a Dead-Letter Key. A secret theatre encounter waits in a later shop, even after the two-visit limit. The Keeper remembers your letter.", !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
+                        Choice("ADDRESS IT OUTSIDE THE STAGE", (Secret.RescuedToy && !Secret.ThankYouClaimed ? "The rescued resident enclosed a thank-you: " + ScaledGold(15) + " gold. " : "") + "Send an invitation and receive a Dead-Letter Key. A secret theatre encounter waits in a later shop, even after the two-visit limit. The Keeper remembers your letter.", !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
             }
         }
 
-        public int SecretTrainPrice => 25 + Mathf.Min(State.Wave, 30) * 3;
-        public int SecretLoan => 30 + Mathf.Min(State.Wave, 30) * 3;
+        // on the shop's gold curve (play-test 20/10/2026): the wave-1 amounts 28 and 33, scaled like every other gold price
+        public int SecretTrainPrice => ScaledGold(28);
+        public int SecretLoan => ScaledGold(33);
         private bool HasSecretRanged => catalog.Unit(State.ChampionId).Weapon.Kind == WeaponKind.Projectile || State.Roster.Exists(r => catalog.Weapon(r.WeaponId).Kind == WeaponKind.Projectile);
         private bool HasSecretMelee => catalog.Unit(State.ChampionId).Weapon.Kind == WeaponKind.Melee || State.Roster.Exists(r => catalog.Weapon(r.WeaponId).Kind == WeaponKind.Melee);
         private bool CanImproveSecretItem(string id) => catalog.Item(id) != null && catalog.Item(id).EffectiveModifiers.Any(m => m.Value > 0);
@@ -178,7 +179,7 @@ namespace ArcaneBrigade
                     else
                     {
                         GiveSecretItem("SecretLetter"); Secret.LetterSent = true;
-                        if (Secret.RescuedToy && !Secret.ThankYouClaimed) { State.Gold = BoundedCounter((long)State.Gold + 15); Secret.ThankYouClaimed = true; }
+                        if (Secret.RescuedToy && !Secret.ThankYouClaimed) { State.Gold = BoundedCounter((long)State.Gold + ScaledGold(15)); Secret.ThankYouClaimed = true; }
                         if ((Secret.VisitedMask & (1 << (int)SecretEventKind.EmptyTheatre)) == 0) Secret.QueuedEvent = (int)SecretEventKind.EmptyTheatre;
                     }
                     break;
@@ -208,14 +209,14 @@ namespace ArcaneBrigade
             if (SecretCompanionRewardUnavailable)
             {
                 if (CanSecretItem(SecretCompanionFallback)) { id = SecretCompanionFallback; success = GiveSecretItem(id); }
-                else { State.Gold = BoundedCounter((long)State.Gold + 25); id = ""; success = true; }
+                else { State.Gold = BoundedCounter((long)State.Gold + ScaledGold(25)); id = ""; success = true; }
             }
             else success = catalog.Item(id) != null ? GiveSecretItem(id) : GiveSecretAlly(id);
             if (!success) return false;
             if (Secret.Kind == SecretEventKind.LostProperty) { Secret.RescuedToy = true; Secret.RescuedId = id ?? ""; }
             RememberNightmareChoice(Secret.Kind,Secret.Option,true);
             RecountBonds();
-            Secret.RewardId = ""; RecordSecret("Received " + (string.IsNullOrEmpty(id) ? "25 gold / alternate reward" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName));
+            Secret.RewardId = ""; RecordSecret("Received " + (string.IsNullOrEmpty(id) ? ScaledGold(25) + " gold" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName));
             return true;
         }
         private void RecordSecret(string text)

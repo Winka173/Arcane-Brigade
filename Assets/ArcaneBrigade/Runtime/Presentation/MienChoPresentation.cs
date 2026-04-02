@@ -214,8 +214,6 @@ namespace ArcaneBrigade
             var c = MienChoStory.For(owner.Session.State)[chapter];
             int zone = System.Array.IndexOf(ActOneCanon.ZonePanel, c.Image);
             var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone == 2 || zone == 3 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
-            if (chapter == ActOneCanon.HobChapter && page == 0)
-                image = Resources.Load<Texture2D>("MienCho/Journey/PerfectRoom_Hob_v1") ?? image;
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
             GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.ZoneNames[ActOneCanon.Zone(c.Wave)] + " / " + c.Title, title);
             // the lanterns still burning are shown as the HUD's own lantern row, not counted out in words
@@ -230,8 +228,8 @@ namespace ArcaneBrigade
             string text = c.Pages[page] + ActOneCanon.PageExtra(owner.Session.State, chapter, page);
             if (chapter == 0 && page == 0) text += "\n\nYOUR ARRIVAL\n" + WaitingArrivals.For(owner.Session.State.ChampionId);
             float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
-            scroll = GUI.BeginScrollView(new Rect(850, 210, 1000, 660), scroll, new Rect(0, 0, 955, height));
-            GUI.Label(new Rect(0, 0, 940, height), text, copy); GUI.EndScrollView();
+            scroll = ScrollPanel.Begin(new Rect(850, 210, 1000, 660), scroll, new Rect(0, 0, 955, height));
+            GUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
             for (int i = 0; i < MienChoStory.Available(owner.Session.State); i++)
             {
                 Rect entry = new Rect(70 + i % 7 * 97, 900 + i / 7 * 56, 88, 46);
@@ -340,8 +338,8 @@ namespace ArcaneBrigade
                     : story >= 0 ? "TRAVELLING WITH YOU\n" + CreatureLives.Arc(id, state)
                     : "LIFE IN THE WAITING REALM\n" + CreatureLives.Origin(id) + "\n\nALONG THE CROSSING\n" + CreatureLives.Arc(id, owner.Session.State);
                 float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
-                scroll = GUI.BeginScrollView(new Rect(850, 180, 1000, 690), scroll, new Rect(0, 0, 955, height));
-                GUI.Label(new Rect(0, 0, 940, height), text, copy); GUI.EndScrollView();
+                scroll = ScrollPanel.Begin(new Rect(850, 180, 1000, 690), scroll, new Rect(0, 0, 955, height));
+                GUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
                 if (Press(new Rect(100, 900, 260, 65), "PREVIOUS FRIEND")) { creature = (creature + ids.Count - 1) % ids.Count; scroll = Vector2.zero; }
                 if (Press(new Rect(390, 900, 260, 65), "NEXT FRIEND")) { creature = (creature + 1) % ids.Count; scroll = Vector2.zero; }
             }

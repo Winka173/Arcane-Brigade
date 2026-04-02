@@ -133,9 +133,9 @@ namespace ArcaneBrigade
                 if (GUI.Button(take, "TAKE", choiceButton) && owner.ClaimOutsideReward(shown)) { Clear(); mode = 0; GUI.matrix = matrix; GUI.skin = previousSkin; return; }
                 string detail = item != null ? giftCard.Summary + "\n\n" + giftCard.Details : giftCard.Details;
                 float top = inner.y + 72, width = inner.width - 26, height = GlossaryUI.Height(detail, cardLine, width) + 8;
-                descriptionScroll = GUI.BeginScrollView(new Rect(inner.x, top, inner.width, inner.yMax - top), descriptionScroll, new Rect(0, 0, width, height));
+                descriptionScroll = ScrollPanel.Begin(new Rect(inner.x, top, inner.width, inner.yMax - top), descriptionScroll, new Rect(0, 0, width, height));
                 GlossaryUI.Text(new Rect(0, 0, width, height), detail, cardLine);
-                GUI.EndScrollView();
+                ScrollPanel.End();
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
             GUI.matrix = matrix;

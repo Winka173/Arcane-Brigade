@@ -7,7 +7,7 @@ namespace ArcaneBrigade
     /// ripple, the end-of-wave sweep tally under the wallet, and the chest receipt that prints what a chest gave.</summary>
     public sealed class PacingFeedback : MonoBehaviour
     {
-        private sealed class Receipt { public Vector2 World; public float Born; public int Gold; public bool Egg, Heart; public int Seed; }
+        private sealed class Receipt { public Vector2 World; public float Born; public int Gold, Healing; public bool Egg, Heart; public int Seed; }
         private ArenaController owner;
         private Camera view;
         private readonly List<Receipt> receipts = new List<Receipt>();
@@ -28,7 +28,7 @@ namespace ArcaneBrigade
                 if (value.Kind == CombatEventKind.Flare) { flareAt = now; flareFrom = value.Position; }
                 else if (value.Kind == CombatEventKind.Bell) { bellAt = now; bellFrom = value.Position; }
                 else if (value.Kind == CombatEventKind.ChestOpened && receipts.Count < 4)
-                    receipts.Add(new Receipt { World = value.Position, Born = Time.unscaledTime, Gold = Mathf.RoundToInt(value.Value), Egg = value.Direction.x > 0.5f, Heart = value.Direction.y > 0.5f, Seed = value.SubjectId });
+                    receipts.Add(new Receipt { World = value.Position, Born = Time.unscaledTime, Gold = Mathf.RoundToInt(value.Value), Egg = value.Direction.x > 0.5f, Heart = value.Direction.y > 0.5f, Healing = Mathf.RoundToInt(value.Direction.y), Seed = value.SubjectId });
             }
         }
 
@@ -146,7 +146,7 @@ namespace ArcaneBrigade
             GUI.color = previous;
         }
 
-        // ---- chest receipts: three little reels print what the chest held ---------------------------------------------
+        // ---- chest receipts: one reel per reward, the amount printed on its tile (play-test 20/10/2026: sized to 1-3 rewards)
         private void DrawReceipts()
         {
             for (int index = receipts.Count - 1; index >= 0; index--)
@@ -158,7 +158,10 @@ namespace ArcaneBrigade
                 float unroll = reduced ? 1 : Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 0.22f));
                 float alpha = Mathf.Clamp01((2.1f - age) / 0.3f);
                 Vector2 anchor = ToDesign(receipt.World + Vector2.up * 0.9f) + Vector2.up * (reduced ? 0 : -Mathf.Min(age, 0.5f) * 30);
-                Rect paper = new Rect(anchor.x - 120, anchor.y - 118 * unroll, 240, 118 * unroll);
+                int count = 1 + (receipt.Egg ? 1 : 0) + (receipt.Heart ? 1 : 0);
+                const float Tile = 84, Gap = 10;
+                float width = Mathf.Max(220, 28 + count * Tile + (count - 1) * Gap);
+                Rect paper = new Rect(anchor.x - width * 0.5f, anchor.y - 132 * unroll, width, 132 * unroll);
                 Color previous = GUI.color; GUI.color = new Color(1, 1, 1, alpha);
                 ArcadeSkin.Ticket(paper, ArcadeSkin.Cream, ArcadeSkin.Gold);
                 if (unroll > 0.95f)
@@ -167,25 +170,28 @@ namespace ArcaneBrigade
                     RunCatalog content = owner.Content;
                     Sprite coin = content.Arena.Coin, egg = content.EggSprite, heart = content.HeartSprite, lamp = PacingArtwork.Flare(content);
                     Sprite[] faces = { coin, egg, heart, lamp };
-                    Sprite[] results = { coin, receipt.Egg ? egg : null, receipt.Heart ? heart : null };
-                    for (int reel = 0; reel < 3; reel++)
+                    for (int reel = 0; reel < count; reel++)
                     {
+                        // the reels in order: gold, then the egg, then the heart (only the rewards this chest gave)
+                        bool isEgg = reel == 1 && receipt.Egg, isHeart = reel > 0 && !isEgg;
+                        Sprite result = isEgg ? egg : isHeart ? heart : coin;
+                        string amount = isEgg ? "+1" : isHeart ? "+" + Mathf.Max(1, receipt.Healing) : "+" + receipt.Gold.ToString("N0");
                         float stop = 0.32f + reel * 0.2f;
                         bool landed = reduced || age >= stop;
-                        Rect slot = new Rect(paper.x + 22 + reel * 68, paper.y + 30, 60, 46);
+                        Rect slot = new Rect(paper.x + 14 + reel * (Tile + Gap), paper.y + 32, Tile, Tile + 8);
                         ArcadeSkin.Line(slot, new Color(0.13f, 0.1f, 0.12f, 0.9f));
-                        Sprite face = landed ? results[reel] : faces[(int)(age * 22 + reel * 3 + receipt.Seed) % faces.Length];
+                        Sprite face = landed ? result : faces[(int)(age * 22 + reel * 3 + receipt.Seed) % faces.Length];
                         float drop = landed && !reduced ? Mathf.Max(0, 1 - (age - stop) / 0.08f) * -10 : 0;
-                        Rect icon = new Rect(slot.x + 13, slot.y + 6 + drop, 34, 34);
+                        Rect icon = new Rect(slot.x + (Tile - 50) * 0.5f, slot.y + 6 + drop, 50, 50);
                         if (face != null) { Color tint = GUI.color; if (!landed) GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * 0.55f); RunHud.Sprite(icon, face); GUI.color = tint; }
-                        else { hand.normal.textColor = new Color(0.85f, 0.8f, 0.7f, 0.8f); GUI.Label(slot, "-", hand); }
-                        if (landed && Event.current.type == EventType.Repaint && age - stop < 0.02f && reelTicks < 64) { reelTicks++; CheckpointAudio.PlayInterfaceId(reel == 2 ? "ui.receipt" : "shop.ticket.sway", 0.05f); }
-                    }
-                    if (age >= 0.78f || reduced)
-                    {
-                        numbers.normal.textColor = ArcadeSkin.Ink;
-                        string line = "+" + receipt.Gold + (receipt.Egg ? "  +1 EGG" : "") + (receipt.Heart ? "  +HEART" : "");
-                        GUI.Label(new Rect(paper.x, paper.y + 80, paper.width, 30), line, numbers);
+                        if (landed && (age >= stop + 0.12f || reduced))
+                        {
+                            int size = numbers.fontSize; numbers.normal.textColor = isHeart ? new Color(1f, 0.7f, 0.66f) : isEgg ? ArcadeSkin.Teal : ArcadeSkin.Gold;
+                            while (numbers.fontSize > 12 && numbers.CalcSize(new GUIContent(amount)).x > Tile - 6) numbers.fontSize--;
+                            GUI.Label(new Rect(slot.x, slot.y + 58, Tile, 30), amount, numbers);
+                            numbers.fontSize = size;
+                        }
+                        if (landed && Event.current.type == EventType.Repaint && age - stop < 0.02f && reelTicks < 64) { reelTicks++; CheckpointAudio.PlayInterfaceId(reel == count - 1 ? "ui.receipt" : "shop.ticket.sway", 0.05f); }
                     }
                 }
                 GUI.color = previous;

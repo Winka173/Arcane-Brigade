@@ -52,9 +52,9 @@ namespace ArcaneBrigade
             if(inspected!=current){inspected=current;approachScroll=Vector2.zero;}
             string details=s.HeroIdentityShopSummary+"\n\n"+d.ApproachDescriptions[s.State.HeroIdentity.Approach];
             float height=Mathf.Max(110,text.CalcHeight(new GUIContent(details),555)+12);
-            approachScroll=GUI.BeginScrollView(new Rect(area.x,area.y+182,590,110),approachScroll,new Rect(0,0,565,height));
+            approachScroll=ScrollPanel.Begin(new Rect(area.x,area.y+182,590,110),approachScroll,new Rect(0,0,565,height));
             GUI.Label(new Rect(0,0,555,height),details,text);
-            GUI.EndScrollView();
+            ScrollPanel.End();
             if(Event.current.type==EventType.KeyDown && s.CanConfigureHero)
             {
                 var key=Event.current.keyCode;

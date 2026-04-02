@@ -440,6 +440,8 @@ namespace ArcaneBrigade
                 facing = (AttentionPoint - state.Position).normalized;
             if (facing.sqrMagnitude < 0.01f) facing = Vector2.right;
             int order = 1000 - Mathf.RoundToInt(state.Position.y * 12f);
+            // the hero draws over friends standing just in front of it (play-test 20/10/2026, "Highlight hero")
+            if (state.Faction == Faction.Champion && PresentationSettings.HighlightHero) order += HeroFocus.SortBias;
             body.sortingOrder = order;
             shadow.sortingOrder = order - 10;
             bool behind = facing.y > 0.45f;

@@ -30,8 +30,8 @@ namespace ArcaneBrigade
             float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.34f + Mathf.Min(0.16f, Mathf.Max(0, state.Value - 1) * 0.02f) : state.Kind >= LootKind.Flare ? 0.56f : 0.4f;
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
-            // painted spin frames when they exist (Art/Arsenal/CoinSpin); otherwise the squash turns, its rim darkening edge-on
-            Sprite[] turn = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? ArsenalArtwork.Frames("CoinSpin") : null;
+            // the HUD's coin, squash-turned with its rim darkening edge-on (one coin picture everywhere, play-test 20/10/2026)
+            Sprite[] turn = null;
             if (turn != null) { renderer.sprite = turn[Mathf.Abs(Mathf.FloorToInt(age * (state.Attracting ? 24 : 10) + state.Id)) % turn.Length]; float coin = width / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(renderer.sprite).height); renderer.transform.localScale = new Vector3(coin, coin, 1); }
             if (state.Kind == LootKind.Chest && !PresentationSettings.ReducedMotion)
             {

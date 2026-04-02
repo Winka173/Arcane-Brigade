@@ -61,7 +61,7 @@ namespace ArcaneBrigade
             if(state==null || state.WaitingCampaign?.Room<1){RunLaunch.Resume=true;SceneManager.LoadScene("RunArena");return;}
             session.Restore(state);WaitingCampaign.Ensure(session.State);room=session.State.WaitingCampaign.Room;
             // Room 2 at the Act I rescue boundary remains a rescue scene after its saved success.
-            rescue=room==2 && session.State.Wave==16 && !session.State.Endless;
+            rescue=ActOneCanon.StoryAlliesTravel && room==2 && session.State.Wave==16 && !session.State.Endless; // the Hob rescue is gone with the story allies (20/10/2026)
             rescued=rescue && (session.State.ActOne?.HobRescued ?? 0)>0;
             if(rescued)risenAt=-10;
             PresentationSettings.Apply(storage.LoadProfile());
@@ -292,7 +292,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(270,250,1370,70),WaitingRooms.Label(room,selected),heading);
                 int choice=session.State.WaitingCampaign.RoomChoices[(room-1)*3+selected];
                 string text=WaitingRooms.Question(room,selected)+(choice>0?"\n\n"+WaitingRooms.Result(room,selected,choice):"");
-                scroll=GUI.BeginScrollView(new Rect(270,350,1370,320),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(new GUIContent(text),1310))));GUI.Label(new Rect(0,0,1310,600),text,copy);GUI.EndScrollView();
+                scroll=ScrollPanel.Begin(new Rect(270,350,1370,320),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(new GUIContent(text),1310))));GUI.Label(new Rect(0,0,1310,600),text,copy);ScrollPanel.End();
                 if(choice==0)
                 {
                     if(GUI.Button(new Rect(270,700,660,110),WaitingRooms.Option(room,selected,1),button))Choose(1);

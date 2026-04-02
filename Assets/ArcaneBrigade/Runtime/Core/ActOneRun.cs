@@ -23,6 +23,8 @@ namespace ArcaneBrigade
     {
         public UnitDefinition[] StoryCompanions = new UnitDefinition[0];
         public float KnockDeadline; // SIT CLOSER: the Bedside must fall before the knocking stops
+        /// <summary>The shop's gold curve for this wave (RunSession.GoldScale): a chest's gold is its wave-1 amount times this.</summary>
+        public float ChestGoldScale = 1;
     }
 
     public sealed partial class RunSession
@@ -48,7 +50,7 @@ namespace ArcaneBrigade
         }
 
         /// <summary>The four's kinds are never sold: a bought teapot beside Hob looks like a merge that left one behind.</summary>
-        public static bool StorySpecies(string unitId) => Array.IndexOf(ActOneCanon.StoryIds, unitId) >= 0;
+        public static bool StorySpecies(string unitId) => ActOneCanon.StoryAlliesTravel && Array.IndexOf(ActOneCanon.StoryIds, unitId) >= 0;
 
         public bool SitCloserAvailable => !State.Endless && State.Phase == SessionPhase.Shop && !SecretRoomOpen
             && State.Wave >= ActOneCanon.SitFrom && State.Wave <= ActOneCanon.SitUntil
@@ -117,7 +119,7 @@ namespace ArcaneBrigade
             && (State.ActOne?.Offer ?? 0) == ActOneProgress.Undecided && ((State.MienCho?.ReadMask ?? 0) & (1 << 8)) != 0 && State.Roster.Exists(entry => Array.IndexOf(ActOneCanon.StoryIds, entry.UnitId) < 0);
         public bool SellMemory(string unitId)
         {
-            if (!CustomerOfferAvailable || string.IsNullOrEmpty(unitId) || Array.IndexOf(ActOneCanon.StoryIds, unitId) >= 0 || !State.Roster.Exists(entry => entry.UnitId == unitId)) return false;
+            if (!CustomerOfferAvailable || string.IsNullOrEmpty(unitId) || StorySpecies(unitId) || !State.Roster.Exists(entry => entry.UnitId == unitId)) return false;
             State.ActOne.Offer = ActOneProgress.Sold; State.ActOne.SoldMemory = unitId;
             int lamp = ActOneCanon.RelightTarget(State.Wave, State.ActOne.RelitMask);
             if (lamp >= 0) State.ActOne.RelitMask |= 1 << lamp;
@@ -134,7 +136,8 @@ namespace ArcaneBrigade
         public static bool Stranger(RunSnapshot state, string unitId) => !string.IsNullOrEmpty(unitId) && (state?.ActOne?.Offer ?? 0) == ActOneProgress.Sold && state.ActOne.SoldMemory == unitId;
 
         /// <summary>Shop 16: Hob sits in its own chair in the perfect room until the whole brigade pulls it up; the road waits.</summary>
-        public bool HobRescueNeeded => !State.Endless && State.Wave == 16 && State.Phase == SessionPhase.Shop && (State.ActOne?.HobRescued ?? 0) == 0;
+        /// <summary>Never now (story allies removed, play-test 20/10/2026); old saves keep the field and load unchanged.</summary>
+        public bool HobRescueNeeded => ActOneCanon.StoryAlliesTravel && !State.Endless && State.Wave == 16 && State.Phase == SessionPhase.Shop && (State.ActOne?.HobRescued ?? 0) == 0;
         public bool PullHobUp()
         {
             if (!HobRescueNeeded) return false;
@@ -178,7 +181,7 @@ namespace ArcaneBrigade
                 throw new InvalidOperationException("Invalid Customer offer");
             if (state.Items != null && state.Items.Exists(stack => stack.Id == ActOneCanon.ThursdayShoesId) && progress.SitCloser != ActOneProgress.Won)
                 throw new InvalidOperationException("The Thursday Shoes are only given for standing up from the warm chair");
-            if (progress.HobRescued < 0 || progress.HobRescued > 1 || progress.HobRescued == 1 && state.Wave < 16 && !state.Endless)
+            if (ActOneCanon.StoryAlliesTravel && (progress.HobRescued < 0 || progress.HobRescued > 1 || progress.HobRescued == 1 && state.Wave < 16 && !state.Endless))
                 throw new InvalidOperationException("Hob cannot be pulled up before it sits down");
             if (progress.PendingRelight < 0 || progress.PendingRelight > 1 || progress.PendingRelight == 1 && progress.SitCloser != ActOneProgress.Won)
                 throw new InvalidOperationException("A lantern can only be chosen after standing up from the warm chair");

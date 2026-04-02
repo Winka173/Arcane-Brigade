@@ -96,9 +96,8 @@ namespace ArcaneBrigade.Editor
             Check(c.Companions.Select(u => CreatureLives.Origin(u.Id)).Distinct().Count() == c.Companions.Length, "No shared fallback biographies");
             // Phase 2: the story party, the warm chair and the night you hid
             foreach (string id in ActOneCanon.StoryIds) Check(c.Unit(id) != null && c.Unit(id).Weapon != null, "Story companion body exists " + id);
-            Check(!ActOneCanon.StoryPresent(0, 1, false, false) && ActOneCanon.StoryPresent(0, 1, true, false) && !ActOneCanon.StoryPresent(1, 5, false, false) && ActOneCanon.StoryPresent(1, 5, true, false)
-                && ActOneCanon.StoryPresent(3, 12, false, false) && !ActOneCanon.StoryPresent(3, 18, true, false) && !ActOneCanon.StoryPresent(3, 19, false, false) && ActOneCanon.StoryPresent(3, 19, true, false) && ActOneCanon.StoryPresent(3, 20, false, false),
-                "Hob, Latch, Postscript and Tally join on their canon shops; Tally is gone from shop 18 to wave 19");
+            // play-test 20/10/2026 (owner D15): the story allies no longer travel with the brigade
+            Check(Enumerable.Range(0, 4).All(index => Enumerable.Range(1, 24).All(wave => !ActOneCanon.StoryPresent(index, wave, true, false) && !ActOneCanon.StoryPresent(index, wave, false, false))), "Hob, Latch, Postscript and Tally never join the brigade");
             Check(ActOneCanon.ChairPosition(1) == new Vector2(6.75f, 0.55f) && Vector2.Distance(ActOneCanon.ChairPosition(19), new Vector2(0, -4.5f)) < 2.6f && Vector2.Distance(ActOneCanon.ChairPosition(19), new Vector2(0, -4.5f)) > 1.9f, "The warm chair creeps from the far corner to beside the exit");
             for (int wave = 2; wave <= 19; wave++) Check(Vector2.Distance(ActOneCanon.ChairPosition(wave), ActOneCanon.ChairPosition(19)) <= Vector2.Distance(ActOneCanon.ChairPosition(wave - 1), ActOneCanon.ChairPosition(19)) + .001f, "The chair never moves away from the exit " + wave);
             Check(ActOneCanon.ChairOffering(2, 0) == 2 && ActOneCanon.ChairOffering(8, 1) == 3 && ActOneCanon.ChairOffering(8, 2) == 0 && ActOneCanon.ChairOffering(12, 0) == 1 && ActOneCanon.ChairOffering(3, 0) == 0, "Coins, the jar and the breathing receiver lie on the blanket on their shops");
@@ -106,15 +105,13 @@ namespace ArcaneBrigade.Editor
             {
                 s.Start("LanternKnight", 161050); s.State.Roster.Clear();
                 s.State.Wave = 1; s.State.Phase = SessionPhase.Combat;
-                Check(s.PrepareCombat().StoryCompanions.Length == 0, "Wave 1: nobody has joined yet");
+                Check(s.PrepareCombat().StoryCompanions.Length == 0, "Wave 1: nobody has joined");
                 s.State.Phase = SessionPhase.Shop;
-                var shop = s.PrepareCombat();
-                Check(shop.StoryCompanions.Length == 1 && shop.StoryCompanions[0].DisplayName == "Hob" && shop.StartingCompanions.Length == 0, "Hob meets you in the first shop in a place of its own");
+                Check(s.PrepareCombat().StoryCompanions.Length == 0, "Nobody waits in the first shop");
                 s.State.Wave = 12; s.State.Phase = SessionPhase.Combat;
                 var full = s.PrepareCombat();
-                Check(full.StoryCompanions.Length == 4 && s.State.Roster.Count == 0, "Four travelling companions fight without taking roster places");
-                var sim = new CombatSimulation(full); sim.Start(161050);
-                Check(sim.Units.Count(u => u.Faction == Faction.Companion) == 4, "Story companions really enter the fight");
+                Check(full.StoryCompanions.Length == 0, "No story companions fight at wave 12");
+                Check(c.Companions.Where(u => System.Array.IndexOf(ActOneCanon.StoryIds, u.Id) >= 0).All(u => !RunSession.StorySpecies(u.Id)), "Their species are ordinary friends again (sold, merged, counted)");
             }
             using (var s = new RunSession(c))
             {
@@ -160,23 +157,15 @@ namespace ArcaneBrigade.Editor
                 rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
                 Check(rejected, "A sat-down journey cannot continue in the shop");
             }
-            // Shop 16: Hob sits down in a chair of its own; the road waits until everyone pulls it up
+            // Shop 16: no Hob rescue any more; an old save that recorded it still loads
             using (var s = new RunSession(c))
             {
                 s.Start("LanternKnight", 161080); s.State.Wave = 16; s.State.Phase = SessionPhase.Shop;
-                Check(s.HobRescueNeeded && !s.PrepareCombat().StoryCompanions.Any(u => u.DisplayName == "Hob"), "In shop 16 Hob is still sitting in the perfect room, not in the brigade");
-                s.State.WaitingCampaign.Room = 2;
-                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
-                Check(s.PullHobUp() && !s.HobRescueNeeded && !s.PullHobUp(), "Everyone pulls Hob up once");
-                s.State.WaitingCampaign.Room = 0;
-                Check(s.PrepareCombat().StoryCompanions.Any(u => u.DisplayName == "Hob"), "Hob is back with the brigade");
-                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
-                Check(s.State.ActOne.HobRescued == 1, "The rescue survives a real save");
-                s.State.Wave = 12;
-                bool rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
-                Check(rejected, "Hob cannot be pulled up before it sits down");
+                Check(!s.HobRescueNeeded && !s.PullHobUp(), "Shop 16 never waits for a rescue");
+                s.State.ActOne.HobRescued = 1; s.State.Wave = 12; bool loaded = true;
+                try { s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State))); } catch (InvalidOperationException) { loaded = false; }
+                Check(loaded, "Old saves with the rescue field load unchanged");
             }
-            using (var s = new RunSession(c)) { s.Start("LanternKnight", 161081); s.State.Wave = 17; s.State.Phase = SessionPhase.Shop; Check(!s.HobRescueNeeded, "Older saves past shop 16 are never blocked"); }
 
             // Phase 3: the Last Customer's offer at shop 8, strangers, and the travelling four's own story
             using (var s = new RunSession(c))
@@ -184,10 +173,9 @@ namespace ArcaneBrigade.Editor
                 s.Start("LanternKnight", 161070); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Roster.Clear();
                 var friend = c.Companions.First(u => System.Array.IndexOf(ActOneCanon.StoryIds, u.Id) < 0 && u.Tags.Length > 0 && !u.GiftOnly);
                 s.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = friend.Weapon.Id });
-                s.State.Roster.Add(new RosterEntry { UnitId = ActOneCanon.StoryIds[0], WeaponId = c.Unit(ActOneCanon.StoryIds[0]).Weapon.Id });
                 Check(!s.CustomerOfferAvailable, "The Customer waits until the telephone beat has been read");
                 s.State.MienCho.ReadMask = (1 << MienChoStory.Available(s.State)) - 1;
-                Check(s.CustomerOfferAvailable && !s.SellMemory(ActOneCanon.StoryIds[0]), "Nobody wearing a travelling companion's body can be sold");
+                Check(s.CustomerOfferAvailable, "The Customer's offer opens once the telephone beat is read");
                 s.PrepareCombat(); string tag = friend.Tags[0]; int before = s.BondCounts.TryGetValue(tag, out int n) ? n : 0;
                 int dark = ActOneCanon.Broken(8, s.State.ActOne.RelitMask);
                 Check(s.SellMemory(friend.Id) && s.Stranger(friend.Id) && !s.CustomerOfferAvailable, "A memory is sold once; that companion becomes a stranger");
@@ -216,8 +204,7 @@ namespace ArcaneBrigade.Editor
             for (int i = 0; i < ActOneCanon.StoryIds.Length; i++)
             {
                 string id = ActOneCanon.StoryIds[i];
-                Check(CreatureLives.Arc(id, 20).Contains(ActOneCanon.StoryNames[i]) && CreatureLives.Arc(id, ActOneCanon.JoinShop[i]).Split(new[] { "\n\n" }, StringSplitOptions.None).Length == 1 && CreatureLives.Arc(id, 20).Split(new[] { "\n\n" }, StringSplitOptions.None).Length == 3, "The travelling four tell their own story as the road reaches it " + id);
-                Check(CreatureLives.Banter(id, 1) != CreatureLives.Banter(id, 20), "Their words change along the road " + id);
+                Check(!CreatureLives.Arc(id, 20).Contains(ActOneCanon.StoryNames[i]) && CreatureLives.Banter(id, 20) == null, "Their species speak as ordinary friends now " + id);
             }
             for (int wave = 1; wave <= 24; wave++)
             {

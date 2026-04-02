@@ -60,6 +60,8 @@ namespace ArcaneBrigade
             }
         }
         public void Hide() { Clear(); Commit(); }
+        /// <summary>Moves the layer in the sort (a layer that follows a Y-sorted unit, such as the hero's halo).</summary>
+        public void SetOrder(int order) { washRenderer.sortingOrder = order; strokeRenderer.sortingOrder = order + 1; }
         public bool Visible => washRenderer.enabled || strokeRenderer.enabled;
 
         // ---------------- washes ----------------

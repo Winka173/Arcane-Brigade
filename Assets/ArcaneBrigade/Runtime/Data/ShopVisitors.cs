@@ -146,12 +146,26 @@ namespace ArcaneBrigade
 
         /// <summary>The deal shown for an option (Options visitors) or for the whole offer, in a shop before wave
         /// <paramref name="shopWave"/>+1. The Gatekeeper's prize is Uncommon when the dared wave is 12 or later (RunVisitors).</summary>
-        public static VisitorDeal DealFor(VisitorDefinition v, int option, int shopWave)
+        public static VisitorDeal DealFor(VisitorDefinition v, int option, int shopWave) => DealFor(v, option, shopWave, 1);
+        /// <summary>The deal with its gold amounts on the gold curve (<paramref name="goldScale"/> = RunSession.GoldScale).</summary>
+        public static VisitorDeal DealFor(VisitorDefinition v, int option, int shopWave, float goldScale)
         {
             if (v == null || v.Deals.Length == 0) return null;
             VisitorDeal deal = v.Choice == VisitorChoice.Options ? v.Deals[Math.Max(0, Math.Min(option, v.Deals.Length - 1))] : v.Deals[0];
             if (v.Id == "GateKeeper" && shopWave + 1 >= 12) deal = deal.With("relic:Uncommon");
+            if (Math.Abs(goldScale - 1) > 1e-4f) deal = new VisitorDeal(ScaleText(deal.Do, goldScale), ScaleText(deal.Pay, goldScale), ScaleText(deal.Get, goldScale), deal.When);
             return deal;
+        }
+        /// <summary>An authored (wave-1) gold amount on the gold curve; 0 stays 0.</summary>
+        public static int Scale(int authored, float goldScale) => authored <= 0 ? 0 : Math.Max(1, (int)Math.Round(authored * (double)goldScale, MidpointRounding.AwayFromZero));
+        private static readonly System.Text.RegularExpressions.Regex goldTerm = new System.Text.RegularExpressions.Regex(@"(gold:)(\d+)(?![\d%])|(?<![\d.])(\d+)( gold)|(Bet )(\d+)");
+        /// <summary>Every gold amount written in a deal row or an offer line ("gold:15", "15 gold", "Bet 5"), scaled.</summary>
+        public static string ScaleText(string text, float goldScale)
+        {
+            if (string.IsNullOrEmpty(text) || Math.Abs(goldScale - 1) <= 1e-4f) return text;
+            return goldTerm.Replace(text, m => m.Groups[1].Success ? m.Groups[1].Value + Scale(int.Parse(m.Groups[2].Value), goldScale)
+                : m.Groups[3].Success ? Scale(int.Parse(m.Groups[3].Value), goldScale) + m.Groups[4].Value
+                : m.Groups[5].Value + Scale(int.Parse(m.Groups[6].Value), goldScale));
         }
 
         /// <summary>The icons a deal term may name (besides an ItemEffect's stat glyph).</summary>

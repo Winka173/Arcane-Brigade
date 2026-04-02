@@ -16,6 +16,8 @@ namespace ArcaneBrigade
         public static float ShakeScale { get; private set; } = 1f;
         public static bool ReducedFlashes { get; private set; }
         public static bool ReducedEffects { get; private set; }
+        /// <summary>Halo under the hero, props fading off it, show-through and edge arrow (HeroFocus); on by default.</summary>
+        public static bool HighlightHero { get; private set; } = true;
         public static float DangerUntil { get; private set; }
         public static void Apply(PlayerProfile profile)
         {
@@ -23,7 +25,7 @@ namespace ArcaneBrigade
             ReducedAudio = profile.ReducedAudio; ReducedMotion = profile.ReducedMotion;
             DamageNumbers = profile.ShowDamageNumbers; LootIndicators = profile.ShowLootIndicators;
             HighReadability = profile.HighReadability;
-            ReducedShake = profile.ReducedShake; ShakeScale = profile.ReducedShake ? 0 : Mathf.Clamp01(profile.ShakeScale); ReducedFlashes = profile.ReducedFlashes; ReducedEffects = profile.ReducedEffects;
+            ReducedShake = profile.ReducedShake; ShakeScale = profile.ReducedShake ? 0 : Mathf.Clamp01(profile.ShakeScale); ReducedFlashes = profile.ReducedFlashes; ReducedEffects = profile.ReducedEffects; HighlightHero = profile.HighlightHero;
             AudioListener.volume = profile.Volume;
             ArcadeSkin.Bundle = profile.Cosmetic;
         }

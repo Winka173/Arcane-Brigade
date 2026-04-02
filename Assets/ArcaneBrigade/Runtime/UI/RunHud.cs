@@ -199,6 +199,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
             numeric.normal.textColor = health / maximum > 0.45f ? ArcadeSkin.Ink : ArcadeSkin.Cream; // ink reads on the lantern bar
             GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
+            Sprite(new Rect(92, 31, 38, 38), owner.Content.HeartSprite);
             numeric.normal.textColor = ArcadeSkin.Cream;
             if (owner.Content.HeroRevision > 0 && state.Phase == SessionPhase.Combat)
             {
@@ -291,9 +292,7 @@ namespace ArcaneBrigade
                 if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
                 if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
                 if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
-                invoice.Draw(new Rect(770, 200, 1060, 685), state, owner.Content);
-                if (navigation.Button(new Rect(1025, 915, 570, 55), "SAVE RECEIPT IMAGE · PNG", button))
-                    try { RunInvoice.ExportFrame(state.RunId); } catch (System.Exception exception) { Debug.LogWarning("Receipt export failed: " + exception.Message); }
+                invoice.Draw(new Rect(770, 200, 1060, 750), state, owner.Content);
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
@@ -467,9 +466,9 @@ namespace ArcaneBrigade
             if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
             float top = 112 + headerHeight, textWidth = 1040;
             float contentHeight = GlossaryUI.Height(description, cardLine, textWidth) + 8;
-            shopScroll = GUI.BeginScrollView(new Rect(panel.x + 28, panel.y + top, textWidth + 26, panel.height - top - 20), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
+            shopScroll = ScrollPanel.Begin(new Rect(panel.x + 28, panel.y + top, textWidth + 26, panel.height - top - 20), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
             GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, cardLine);
-            GUI.EndScrollView();
+            ScrollPanel.End();
             GlossaryUI.Draw(new Vector2(1920, 1080));
         }
         /// <summary>The shop description card on screen this frame (zero when none), so hover marks can stay off it.</summary>
@@ -754,8 +753,7 @@ namespace ArcaneBrigade
             string line = speaker != null ? CompanionVoice.Comforting(state.RunId, speaker.Id) : "I'll find the door again. It was there before; it will be there again.";
             if ((state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost)
             {
-                // the warm chair kept them: Hob speaks for everyone who pulled
-                speaker = owner.Content.Unit(ActOneCanon.StoryIds[0]) ?? speaker;
+                // the warm chair kept them: a friend speaks for everyone who pulled
                 line = "We pulled as hard as we could. The Keeper had to tear you out of it. Next time, we pull sooner.";
             }
             Sprite face = speaker != null ? speaker.Body : owner.Content.Unit(state.ChampionId).Body;
@@ -783,9 +781,9 @@ namespace ArcaneBrigade
             ArcadeSkin.Divider(new Rect(1340, 342, 460, 2), ArcadeSkin.Accent);
             GUI.Label(new Rect(1340, 295, 465, 45), receipt.Title, text);
             float height = Mathf.Max(panelHeight - 105, contentHeight);
-            receiptScroll = GUI.BeginScrollView(new Rect(1340, 355, 470, panelHeight - 105), receiptScroll, new Rect(0, 0, 430, height));
+            receiptScroll = ScrollPanel.Begin(new Rect(1340, 355, 470, panelHeight - 105), receiptScroll, new Rect(0, 0, 430, height));
             GUI.Label(new Rect(0, 0, 425, height), receipt.Description, small);
-            GUI.EndScrollView();
+            ScrollPanel.End();
         }
 
         public void DrawMenuConfirmation(ArenaController owner, Camera camera)

@@ -35,6 +35,29 @@ namespace ArcaneBrigade.Editor
             ("K7", K7Checks.Run),
         });
 
+        /// <summary>Play-test review phase A (20/10/2026): the suites its changes touch, in one launch.</summary>
+        public static void RunPhaseA() => Execute("PhaseA", new (string name, Action run)[]
+        {
+            ("BuildSizePolicy", BuildSizeChecks.Policy),
+            ("ShopDescription", ShopDescriptionChecks.Run),
+            ("Visitor", VisitorChecks.Run),
+            ("HeroIdentity", HeroIdentityChecks.Run),
+            ("FeelTelegraph", FeelTelegraphChecks.Run),
+            ("K15Feel", K15Checks.Run),
+            ("RangedFeel", RangedFeelChecks.Run),
+            ("MienCho", MienChoChecks.Run),
+            ("ArtMaster", ArtMasterChecks.Run),
+            ("K6", K6Checks.Run),
+            ("K8UI", K8UIChecks.Run),
+            ("K8Motion", K8MotionChecks.Run),
+            ("K8Presentation", K8PresentationChecks.Run),
+            ("SecretEvent", SecretEventChecks.Run),
+            ("Pacing", PacingChecks.Run),
+        });
+        /// <summary>K32 alone: its K1 large-roster Details check runs for well over 30 minutes (quadratic in roster size,
+        /// unrelated to phase A), so it is not in the phase A batch.</summary>
+        public static void RunK32() => Execute("K32", new (string name, Action run)[] { ("K32", K32Checks.Run) });
+
         public static void Run() => Execute("ActOneStory", new (string name, Action run)[]
             {
                 ("MienCho", MienChoChecks.Run),
@@ -69,6 +92,7 @@ namespace ArcaneBrigade.Editor
                     string where = root is InvalidOperationException ? "" : " @ " + string.Join(" | ", stack, 0, Math.Min(3, stack.Length)).Trim();
                     lines.Add("FAIL " + name + ": " + root.Message + where);
                 }
+                Debug.Log("SUITE_RESULT " + lines[lines.Count - 1]); // each result as it lands (a hung suite does not hide the rest)
             }
             Directory.CreateDirectory("PreviewExports/" + folder);
             File.WriteAllLines("PreviewExports/" + folder + "/Checks.txt", lines);

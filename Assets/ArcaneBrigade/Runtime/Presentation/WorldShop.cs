@@ -450,7 +450,8 @@ namespace ArcaneBrigade
             {
                 // a visitor waits at its own table on the right
                 Station table = AddStation(new Vector2(5.0f, 0.4f), "VISITOR", guest, ExpansionArtwork.Current.VisitorPoses(visitor.Id), false);
-                table.Description = visitor.Name + ": '" + visitor.Line + "'\n" + visitor.Offer;
+                table.Description = visitor.Name + ": '" + visitor.Line + "'\n" + ShopVisitors.ScaleText(visitor.Offer, owner.Session.GoldScale);
+                table.Price = owner.Session.VisitorCost(visitor); // the same number the card asks and the rules take
             }
             if (!Special && owner.Session.Pawned is VisitorEffect pawn && owner.Content.Item(pawn.Target) is ItemDefinition pawned)
             {
@@ -659,6 +660,7 @@ namespace ArcaneBrigade
             {
                 order++;
                 if (station.Action == "NEXT HALL" || station.Action == "GOLD SHOP" || station.Action == "DREAM ALTAR") continue;
+                if (station.Action == "VISITOR" && station.Price <= 0) continue; // a free visitor hangs no price tag
                 if (station.Offer != null && station.Offer.Sold)
                 {
                     if (!soldAt.ContainsKey(station.Offer.Token)) soldAt[station.Offer.Token] = Time.unscaledTime;
@@ -689,7 +691,8 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 priceStyle.fontSize = 25;
                 while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;
-                priceStyle.normal.textColor = station.Offer == null || owner.Session.CanBuy(station.Offer) ? ArcadeSkin.Ink : new Color(0.75f, 0.15f, 0.2f);
+                bool short_ = station.Offer != null ? !owner.Session.CanBuy(station.Offer) : station.Action == "VISITOR" && owner.Session.State.Gold < station.Price;
+                priceStyle.normal.textColor = short_ ? new Color(0.75f, 0.15f, 0.2f) : ArcadeSkin.Ink;
                 GUI.Label(new Rect(ticket.x + 44, ticket.y + 3, ticket.width - 50, 34), price, priceStyle);
                 priceStyle.normal.textColor = ArcadeSkin.Ink;
                 if (station.Offer != null)

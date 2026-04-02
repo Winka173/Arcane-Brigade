@@ -19,7 +19,7 @@ namespace ArcaneBrigade
         private void Gather()
         {
             species.Clear();
-            foreach (RosterEntry entry in owner.Session.State.Roster) if (!species.Contains(entry.UnitId) && System.Array.IndexOf(ActOneCanon.StoryIds, entry.UnitId) < 0) species.Add(entry.UnitId);
+            foreach (RosterEntry entry in owner.Session.State.Roster) if (!species.Contains(entry.UnitId) && !RunSession.StorySpecies(entry.UnitId)) species.Add(entry.UnitId);
         }
         private void Update()
         {

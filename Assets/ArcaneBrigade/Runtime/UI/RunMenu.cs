@@ -475,7 +475,7 @@ namespace ArcaneBrigade
             caption.alignment = TextAnchor.MiddleCenter;
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(16));
             Label(new Rect(65, 142, 660, 32), "CHOOSE YOUR CHAMPION");
-            scroll = GUI.BeginScrollView(new Rect(65, 180, 660, 340), scroll, new Rect(0, 0, 620, Mathf.Max(335, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
+            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 470), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
                 UnitDefinition unit = catalog.Champions[index];
@@ -492,7 +492,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(card.x + 10, card.y + 132, 180, 52), RunUICopy.UnitName(unit), caption);
                 if (!unlocked) { ArcadeSkin.Slant(new Rect(card.x + 20, card.y + 186, 160, 26), ArcadeSkin.Cream); GUI.Label(new Rect(card.x + 20, card.y + 186, 160, 26), "LOCKED · WAVE " + unit.UnlockWave, chip); }
             }
-            GUI.EndScrollView();
+            ScrollPanel.End();
             UnitDefinition champion = catalog.Champions[selection];
             if (catalog.HeroRevision > 0)
             {
@@ -523,25 +523,14 @@ namespace ArcaneBrigade
             foreach (StatModifier modifier in champion.ChampionModifiers)
                 description += RunModifierRules.ScopeName(modifier.Scope) + " / " + RunModifierRules.ModifierName(modifier.Effect) + ": " + RunModifierRules.ValueText(modifier.Effect, modifier.Value) + "\n";
             float descriptionHeight = Mathf.Max(180, GlossaryUI.Height(description, text, 400) + 8);
-            rosterDescriptionScroll = GUI.BeginScrollView(new Rect(780, 300, 425, 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
+            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(780, 300, 425, 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
-            GUI.EndScrollView();
-            GUI.Label(new Rect(65, 530, 660, 28), "JOURNEY MODE", note);
-            string[] modeNames = { "FREE JOURNEY", "NIGHT SHIFT", "FIRST LIGHT", "SMALL CREW" };
-            string[] modeHints = { "Choose difficulty", "Fixed midnight seed", "Reach wave 10", "Win with 6 allies" };
-            GUIStyle modeStyle = new GUIStyle(button) { fontSize = 13, wordWrap = true, padding = new RectOffset(16, 16, 8, 8) };
-            GUIStyle modeHint = new GUIStyle(note) { fontSize = 13, alignment = TextAnchor.UpperCenter, wordWrap = true };
-            for (int i = 0; i < modeNames.Length; i++)
-            {
-                Rect card = new Rect(65 + i * 167, 565, 158, 48);
-                if (challenge == i) ArcadeSkin.Line(new Rect(card.x, card.y - 4, card.width, 3), ArcadeSkin.Teal);
-                if (navigation.Button(card, modeNames[i], modeStyle)) challenge = i;
-                GUI.Label(new Rect(card.x + 6, 619, card.width - 12, 34), modeHints[i], modeHint);
-            }
-            GUI.enabled = challenge == 0;
+            ScrollPanel.End();
+            // one journey only (play-test 20/10/2026): the Night Shift / First Light / Small Crew challenges are off the menu;
+            // their rules stay in RunMeta, dormant, for a later daily run
+            challenge = 0;
             if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
-            GUI.enabled = true;
-            GUI.Label(new Rect(780, 540, 430, 40), challenge > 0 ? "Same seeded conditions · tier 1 · records per champion" : "Win the previous difficulty to unlock the next. No permanent stat growth.", note);
+            GUI.Label(new Rect(780, 540, 430, 40), "Win a difficulty to unlock the next.", note);
             GUI.enabled = profile.BestWave >= champion.UnlockWave;
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
@@ -588,7 +577,7 @@ namespace ArcaneBrigade
         {
             if (Button(new Rect(60, 620, 560, 52), "OPEN ACHIEVEMENT JOURNAL")) ShowPage(Page.Achievements);
             Label(new Rect(60, 165, 575, 80), "Wave " + profile.BestWave + " / Wins " + profile.Wins + " / Kills " + profile.TotalKills + "\nUnlocked difficulty: " + (RunMeta.UnlockedDifficulty(profile) + 1) + " / " + RunMeta.DifficultyNames.Length);
-            scroll = GUI.BeginScrollView(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 95 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
+            scroll = ScrollPanel.Begin(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 95 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
             float vertical = 0;
             for (int index = 0; index < profile.History.Count; index++)
             {
@@ -599,15 +588,13 @@ namespace ArcaneBrigade
             Label(new Rect(0, vertical, 510, 50), "RECORDS BY CHAMPION / MODE / DIFFICULTY"); vertical += 60;
             foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + record.Score.ToString("N0") + " points · wave " + record.Hall); vertical += 65; }
               foreach (string achievement in profile.Achievements) if (!achievement.StartsWith("journal-")) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
-            GUI.EndScrollView();
+            ScrollPanel.End();
             if (profile.History.Count > 0)
             {
                 RunRecord record = profile.History[Mathf.Clamp(historySelection, 0, profile.History.Count - 1)];
-                invoice.Draw(new Rect(660, 160, 545, 465), record.Build, catalog, record.Nickname, record.Score);
-                if (Button(new Rect(660, 640, 545, 42), "SAVE RECEIPT IMAGE · PNG"))
-                    try { error = "Image: " + RunInvoice.ExportFrame(record.Id); } catch (Exception exception) { error = exception.Message; }
+                invoice.Draw(new Rect(660, 160, 545, 520), record.Build, catalog, record.Nickname, record.Score);
             }
-            else Label(new Rect(690, 240, 470, 200), "No new receipt yet. Finish a run to save the brigade, weapons and measured contributions.\nOlder saves retain records without reconstructing unmeasured history.");
+            else Label(new Rect(690, 240, 470, 200), "No journeys yet. Finish one to see your brigade here.");
         }
 
         private bool SaveProfile()

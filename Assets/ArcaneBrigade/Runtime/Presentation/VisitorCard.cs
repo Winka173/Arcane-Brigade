@@ -7,8 +7,9 @@ namespace ArcaneBrigade
     /// <summary>A shop visitor's card (Docs/Events_Ideas.md; reworked from play-test feedback 19/10/2026): the visitor, its name
     /// and one dimmed line, then its choices as big plates that say only what to DO, what you PAY (red) and what you GET (green),
     /// with a neutral WHEN chip. A relic or friend pick shows that deal once above the pictures of the relics or friends. The
-    /// visitor's full offer waits under the small i. "Maybe later" closes the card and the visitor waits; "No, thank you" sends
-    /// the visitor on its way. The card is sized to its content and centred.</summary>
+    /// visitor's full offer waits under the small i. An offer taken whole has its own accept button with the price; "Later"
+    /// closes the card and the visitor waits at its table for the rest of the shop. Gold amounts follow the gold curve.
+    /// The card is sized to its content and centred.</summary>
     public sealed class VisitorCard : MonoBehaviour
     {
         private ArenaController owner;
@@ -102,18 +103,51 @@ namespace ArcaneBrigade
             ArcadeSkin.Plate(info, details ? ArcadeSkin.Gold : ArcadeSkin.Teal);
             mark.normal.textColor = details ? ArcadeSkin.Gold : ArcadeSkin.Cream;
             if (GUI.Button(info, "i", mark)) details = !details;
-            if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(new Rect(x, card.y + 76, width - 20, 70), v.Offer, plain); }
+            if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(new Rect(x, card.y + 76, width - 20, 70), ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
             else { hand.normal.textColor = new Color(.30f, .22f, .16f, .75f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
 
             if (pictures) DrawPick(v, state, options, x, card.y + Head, width, true);
             else DrawPlates(v, state, options, x, card.y + Head, width, true);
 
-            // leave: two big buttons
-            Rect later = new Rect(x + (width - 680) * .5f, card.yMax - ButtonH - 32, 330, ButtonH), no = new Rect(later.x + 350, later.y, 330, ButtonH);
-            ArcadeSkin.Plate(later, ArcadeSkin.Teal); ArcadeSkin.Plate(no, ArcadeSkin.Wax);
-            if (GUI.Button(later, "MAYBE LATER", button)) Close();
-            if (GUI.Button(no, "NO, THANK YOU", button)) { owner.VisitorDecline(); Close(); }
+            // the buttons (play-test 20/10/2026): an offer taken as a whole always shows its accept button with the price,
+            // greyed with "Not enough gold" when short; one "Later" closes the card (the visitor waits at its table all shop)
+            float buttonsY = card.yMax - ButtonH - 32;
+            Rect later;
+            if (!pictures && v.Choice == VisitorChoice.Accept && options.Count == 1)
+            {
+                Rect accept = new Rect(x + (width - 700) * .5f, buttonsY, 430, ButtonH);
+                later = new Rect(accept.xMax + 20, buttonsY, 250, ButtonH);
+                AcceptButton(accept, v, state, options[0]);
+            }
+            else later = new Rect(x + (width - 300) * .5f, buttonsY, 300, ButtonH);
+            ArcadeSkin.Plate(later, ArcadeSkin.Teal);
+            if (GUI.Button(later, "LATER", button)) Close();
             GUI.matrix = previous;
+        }
+
+        /// <summary>The accept button of a take-it-or-leave-it offer: its verb and its price with the HUD coin.</summary>
+        private void AcceptButton(Rect r, VisitorDefinition v, RunSnapshot state, VisitorOption option)
+        {
+            int cost = owner.Session.VisitorCost(v);
+            VisitorDeal deal = ShopVisitors.DealFor(v, 0, state.Wave, owner.Session.GoldScale);
+            bool poor = cost > state.Gold;
+            ArcadeSkin.Plate(r, option.Enabled ? ArcadeSkin.Gold : Greyed);
+            if (option.Enabled && r.Contains(Event.current.mousePosition)) ArcadeSkin.WorldFocus(r);
+            string caption = poor ? "NOT ENOUGH GOLD" : (deal?.Do ?? "Accept").ToUpperInvariant();
+            float priceW = 0;
+            if (cost > 0)
+            {
+                string text = cost.ToString("N0"); float g = Glyph;
+                priceW = g + 8 + amount.CalcSize(new GUIContent(text)).x + 18;
+                float left = r.xMax - priceW;
+                Icon(new Rect(left, r.y + (r.height - g) * .5f, g, g), "gold");
+                amount.normal.textColor = poor ? PayTone : ArcadeSkin.Gold;
+                GUI.Label(new Rect(left + g + 8, r.y, priceW - g - 8, r.height), text, amount);
+            }
+            button.normal.textColor = option.Enabled ? ArcadeSkin.Gold : new Color(.8f, .78f, .75f); // the plate is dark: light text
+            GUI.Label(new Rect(r.x + 12, r.y, r.width - priceW - 16, r.height), caption, button);
+            button.normal.textColor = ArcadeSkin.Cream;
+            if (option.Enabled && GUI.Button(r, GUIContent.none, GUIStyle.none)) Choose(0);
         }
 
         // ---- choices that are actions: one plate each (DO, PAY, GET, WHEN). Returns the height used.
@@ -126,7 +160,7 @@ namespace ArcaneBrigade
             float verbH = 0, payH = 0, getH = 0; bool anyWhen = false;
             for (int i = 0; i < options.Count; i++)
             {
-                VisitorDeal d = deals[i] = ShopVisitors.DealFor(v, options[i].Value, state.Wave) ?? new VisitorDeal(options[i].Label, VisitorDeal.Free, "");
+                VisitorDeal d = deals[i] = ShopVisitors.DealFor(v, options[i].Value, state.Wave, owner.Session.GoldScale) ?? new VisitorDeal(options[i].Label, VisitorDeal.Free, "");
                 verbH = Mathf.Max(verbH, verb.CalcHeight(new GUIContent(d.Do), inner));
                 payH = Mathf.Max(payH, Row(new Rect(0, 0, inner, 0), "PAY", d.Pay, true, false));
                 getH = Mathf.Max(getH, Row(new Rect(0, 0, inner, 0), "GET", d.Get, false, false));
@@ -158,7 +192,7 @@ namespace ArcaneBrigade
         // ---- choices that are relics, friends or weapons: the deal once, then their pictures. Returns the height used.
         private float DrawPick(VisitorDefinition v, RunSnapshot state, List<VisitorOption> options, float x, float top, float width, bool draw)
         {
-            VisitorDeal d = ShopVisitors.DealFor(v, v.Id == "EggTrader" ? 1 : 0, state.Wave);
+            VisitorDeal d = ShopVisitors.DealFor(v, v.Id == "EggTrader" ? 1 : 0, state.Wave, owner.Session.GoldScale);
             float y = top;
             if (d != null)
             {

@@ -80,7 +80,7 @@ namespace ArcaneBrigade
             string text=stage<0?"THEIR CHOSEN FUTURE\nThis route is complete. Their decisions remain in the room and epilogue.":"PART "+(stage+1)+" / SHOP AFTER WAVE "+WaitingCompanionQuests.Waves[stage]+"\n"+quest.Scenes[stage];
             text+=WaitingCompanionQuests.Consequences(state,quest.Id);
             float height=Mathf.Max(340,copy.CalcHeight(new GUIContent(text),1280)+20);
-            scroll=GUI.BeginScrollView(new Rect(500,450,1330,340),scroll,new Rect(0,0,1290,height));GUI.Label(new Rect(0,0,1280,height),text,copy);GUI.EndScrollView();
+            scroll=ScrollPanel.Begin(new Rect(500,450,1330,340),scroll,new Rect(0,0,1290,height));GUI.Label(new Rect(0,0,1280,height),text,copy);ScrollPanel.End();
             bool ready=stage>=0 && state.Wave>=WaitingCompanionQuests.Waves[stage] && state.Roster.Exists(x=>x.UnitId==quest.Id);
             if(ready)
             {

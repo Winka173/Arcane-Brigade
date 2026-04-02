@@ -78,14 +78,15 @@ namespace ArcaneBrigade
                 Changed(() => profile.VSync = before, true);
             }
             // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
-            if (Button(new Rect(75, 580, 1130, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN AUTOMATICALLY" : "NOTIFY ONLY  ·  OPEN THE NOTE TO READ")))
+            Toggle(new Rect(845, 580, 360, 42), "HIGHLIGHT HERO", profile.HighlightHero, value => profile.HighlightHero = value);
+            if (Button(new Rect(75, 580, 750, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN BY THEMSELVES" : "NOTE ONLY")))
             {
                 bool before = profile.StoryPagesAutoOpen;
                 profile.StoryPagesAutoOpen = !before;
                 CheckpointAudio.PlayInterfaceId("ui.setting");
                 if (!save()) profile.StoryPagesAutoOpen = before;
             }
-            label(Shift(new Rect(75, 630, 1130, 64)), (inRun ? "The bundle is chosen between runs. " : "") + "Cosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
+            label(Shift(new Rect(75, 630, 1130, 64)), (inRun ? "The bundle is chosen between runs. " : "") + "Cosmetics: Office wave 5; Stage 3 bosses. Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
         }
 
         public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();

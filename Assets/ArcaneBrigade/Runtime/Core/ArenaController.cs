@@ -68,6 +68,8 @@ namespace ArcaneBrigade
         public bool ResultsReady => TerminalDelayComplete && (session == null || !session.EndingPending);
         private NightmarePresentation nightmare;
         public bool NightmareEndingVisible => nightmare != null && nightmare.EndingVisible;
+        /// <summary>The journey's last wave (wave 20 of a normal run): the one boss whose fall plays in slow motion.</summary>
+        public bool FinalBossWave => session != null && runCatalog != null && !session.State.Endless && session.State.Wave >= runCatalog.NormalWaves;
         public bool SaveNightmareBoundary() => PersistBoundary();
         public bool ChooseNightmareEnding(NightmareFarewell choice)
         {
@@ -103,9 +105,12 @@ namespace ArcaneBrigade
         public Vector2 CameraAccent => combatFeel.CameraOffset;
         public CombatFeel Feel => combatFeel;
         public CombatSimulation Simulation => simulation;
+        /// <summary>The drawn view of a unit (HeroFocus finds the hero and the friends around it).</summary>
+        public bool TryView(int id, out UnitVisual view) => units.TryGetValue(id, out view);
+        public IEnumerable<UnitVisual> Views => units.Values;
 
         public void Configure(CheckpointCatalog definition, Camera camera) { catalog = definition; arenaCamera = camera; }
-        public void ConfigureRun(RunCatalog definition, Camera camera) { runCatalog = definition; catalog = definition.Arena; arenaCamera = camera; }
+        public void ConfigureRun(RunCatalog definition, Camera camera) { runCatalog = definition; catalog = definition.Arena; arenaCamera = camera; CurrencyIcons.Use(definition); }
 
         private void Start()
         {
@@ -149,6 +154,7 @@ namespace ArcaneBrigade
             if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
             if (runCatalog != null) { SecretRoom = gameObject.AddComponent<SecretEventRoom>(); SecretRoom.Configure(this); }
             gameObject.AddComponent<PrismShardHud>().Configure(this);
+            if (runCatalog != null) gameObject.AddComponent<HeroFocus>().Configure(this);
             if (runCatalog != null) gameObject.AddComponent<K8ArenaScenery>().Configure(this);
             if (runCatalog != null) gameObject.AddComponent<OctoberScenery>().Configure(this);
             if (runCatalog != null) gameObject.AddComponent<OctoberDialogue>().Configure(this);
@@ -280,7 +286,6 @@ namespace ArcaneBrigade
             if (lowHealth && !lowHealthAudio && !pauseGate.Paused) audioFeedback.PlayCue(25, true);
             lowHealthAudio = lowHealth;
             float interpolation = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? Mathf.Clamp01((Time.time - Time.fixedTime) / Time.fixedDeltaTime) : 1f;
-            if (combatFeel.Frozen && simulation.Phase == RunPhase.Combat) interpolation = 1f; // the held frame stays still
             Render(interpolation);
             if (footDust != null) footDust.Display(simulation, simulation.Phase == RunPhase.Paused ? 0 : Time.deltaTime);
             if (bossTelegraph != null) bossTelegraph.Display(simulation);
@@ -291,7 +296,7 @@ namespace ArcaneBrigade
             }
             if (!pauseGate.Paused && simulation.Phase != RunPhase.Paused)
             {
-                // effects, numbers and deaths slow almost to a stop during a hit hold, and to a third in a boss's slow motion
+                // effects, numbers and deaths slow to a third during the final boss's slow motion (there is no hit stop)
                 float feltDelta = Time.deltaTime * combatFeel.PresentationSpeed;
                 PresentationClock += feltDelta;
                 combatFeel.Advance(Time.deltaTime);
@@ -329,12 +334,11 @@ namespace ArcaneBrigade
                 return;
             }
             if (session != null && session.State.Phase != SessionPhase.Combat) return;
-            if (simulation.Phase == RunPhase.Combat && combatFeel.Frozen) return;
             long simulationStarted = AnimationStressMeasurement.Recording ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;
-            // a boss's fall plays in slow motion: the same simulation, smaller steps
-            simulation.Step(Time.fixedDeltaTime * (combatFeel.SlowMotion ? 0.35f : 1f), moveIntent);
+            // the final boss's fall plays in slow motion: the same simulation, smaller steps
+            simulation.Step(Time.fixedDeltaTime * (combatFeel.SlowMotion ? CombatFeel.SlowMotionSpeed : 1f), moveIntent);
             if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.SimulationMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - simulationStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
-            combatFeel.Play(simulation.Events, units, simulation.VisualElapsed, simulation.Champion != null ? simulation.Champion.Id : 0);
+            combatFeel.Play(simulation.Events, units, simulation.VisualElapsed, simulation.Champion != null ? simulation.Champion.Id : 0, FinalBossWave);
             if (pacing != null) pacing.Observe(simulation.Events, simulation.VisualElapsed);
             foreach (CombatEvent value in simulation.Events)
             {

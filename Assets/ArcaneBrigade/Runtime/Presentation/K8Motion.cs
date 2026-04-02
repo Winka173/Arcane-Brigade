@@ -20,6 +20,7 @@ namespace ArcaneBrigade
         public static float BodyHeight(UnitState unit)
         {
             float scale = Mathf.Max(0.01f, unit.Definition.BodyScale);
+            if (unit.Faction == Faction.Champion && PresentationSettings.HighlightHero) return unit.Definition.BodyHeight * HeroFocus.HeroScale; // the hero reads first
             return unit.Faction == Faction.Companion ? Mathf.Min(unit.Definition.BodyHeight / scale * 0.95f, 0.88f * CompanionTierScaling.Body(unit.Definition.CombatTier)) * scale : unit.Definition.BodyHeight;
         }
 

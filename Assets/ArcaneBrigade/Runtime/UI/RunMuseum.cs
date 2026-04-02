@@ -73,7 +73,7 @@ namespace ArcaneBrigade
             title.padding = body.padding = cardText.padding = new RectOffset();
             title.margin = body.margin = cardText.margin = new RectOffset();
             cardText.wordWrap = true; cardText.clipping = TextClipping.Clip;
-            scroll = GUI.BeginScrollView(new Rect(60, 225, 745, 385), scroll, new Rect(0, 0, 710, Mathf.Max(380, Mathf.CeilToInt(exhibits.Count / 3f) * 130)));
+            scroll = ScrollPanel.Begin(new Rect(60, 225, 745, 385), scroll, new Rect(0, 0, 710, Mathf.Max(380, Mathf.CeilToInt(exhibits.Count / 3f) * 130)));
             for (int index = 0; index < exhibits.Count; index++)
             {
                 Exhibit exhibit = exhibits[index];
@@ -87,7 +87,7 @@ namespace ArcaneBrigade
                 while (nameStyle.fontSize > 10 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
                 GUI.Label(nameBounds, caption, nameStyle);
             }
-            GUI.EndScrollView();
+            ScrollPanel.End();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));
             ArcadeSkin.Panel(new Rect(840, 225, 375, 385), ArcadeSkin.Card);
             if (exhibits.Count > 0)
@@ -162,9 +162,9 @@ namespace ArcaneBrigade
                 Rect details = DescriptionBounds(titleTop, titleHeight);
                 float textWidth = details.width - 22;
                 float height = Mathf.Max(details.height, body.CalcHeight(new GUIContent(description), textWidth) + 12);
-                detailScroll = GUI.BeginScrollView(details, detailScroll, new Rect(0, 0, textWidth, height));
+                detailScroll = ScrollPanel.Begin(details, detailScroll, new Rect(0, 0, textWidth, height));
                 GUI.Label(new Rect(0, 4, textWidth, height - 8), description, body);
-                GUI.EndScrollView();
+                ScrollPanel.End();
             }
             int found = exhibits.FindAll(exhibit => exhibit.Seen).Count;
             GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + (tab == 2 || tab == 4 ? " · Arrows: sample · Enter/A: pose · T: tier" : " · Tab / LB/RB: category · arrows / X/Y: sample · Enter/A: try"), body);

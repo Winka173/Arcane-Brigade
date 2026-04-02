@@ -124,7 +124,7 @@ namespace ArcaneBrigade
                 2 => "\"We'll be seeing a lot of each other.\"",
                 7 => "Outside the window. The coins land on the seat. He has never used the counter.",
                 12 => "He lowers himself beside the chair. \"The face, please.\"",
-                19 => StoodUp() ? "\"You did. Who paid?\"\nHob: \"Nobody. We pulled.\"" : "The coins wait. The chair gives him nothing.\n\"Nobody stands up without paying.\"",
+                19 => StoodUp() ? "\"You did. Who paid?\"\nYour brigade: \"Nobody. We pulled.\"" : "The coins wait. The chair gives him nothing.\n\"Nobody stands up without paying.\"",
                 _ => null
             };
             if (line == null || spokenWave == wave) return;

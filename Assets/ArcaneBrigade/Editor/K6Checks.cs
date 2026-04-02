@@ -28,8 +28,9 @@ namespace ArcaneBrigade.Editor
                 string first = RunInvoice.Describe(state, catalog); string second = RunInvoice.Describe(state, catalog);
                 require(first == second && initial == JsonUtility.ToJson(state), "Invoice read model cannot mutate build or RNG");
                 RosterEntry actualEntry = state.Roster[0];
-                string actualRosterLine = RunUICopy.UnitName(actualEntry.UnitId, catalog.Unit(actualEntry.UnitId)?.DisplayName) + " · " + RunUICopy.WeaponName(actualEntry.WeaponId) + " · tier " + actualEntry.Tier;
-                require(first.Contains(actualRosterLine) && first.Contains(RunUICopy.UnitName(catalog.Unit(state.ChampionId))) && first.Contains(state.RunId), "Localized invoice reports actual roster weapon, champion and run identity");
+                // play-test 20/10/2026: the summary is player-facing (no run id, seed, tiers or measured-source rows)
+                string actualRosterLine = RunUICopy.UnitName(actualEntry.UnitId, catalog.Unit(actualEntry.UnitId)?.DisplayName) + " " + new string('★', Mathf.Clamp(actualEntry.Tier, 1, 3));
+                require(first.Contains(actualRosterLine) && first.Contains(RunUICopy.UnitName(catalog.Unit(state.ChampionId))) && !first.Contains(state.RunId) && !first.Contains("tier") && !first.Contains("Seed"), "Run summary names the brigade with stars and the hero, without internal ids");
                 state.Phase = SessionPhase.Victory; state.Wave = 20; state.TotalKills = 7; state.BossKills = 2;
                 state.Contributions.Add(new ContributionEntry { UnitId = state.ChampionId, WeaponId = "SleepCamera", EffectId = "primary", Tier = 1, Damage = 11 });
                 require(RunMeta.Score(state) == 26070, "Score uses20clears+7kills+2bosses+victory exactly");

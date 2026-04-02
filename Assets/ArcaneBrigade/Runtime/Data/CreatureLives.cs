@@ -138,9 +138,11 @@ namespace ArcaneBrigade
         {
             {"TeapotPilgrim", new[] { 1, 3, 16 }}, {"HoodWisp", new[] { 5, 14, 17 }}, {"ShellPostman", new[] { 6, 12, 15 }}, {"PaperDevil", new[] { 11, 17, 19 }},
         };
+        /// <summary>The four story allies' own arcs are dormant (play-test 20/10/2026): their species speak as ordinary friends.</summary>
+        private static bool Dormant(string id) => !ActOneCanon.StoryAlliesTravel && System.Array.IndexOf(ActOneCanon.StoryIds, id) >= 0;
         public static string Arc(string id, int wave)
         {
-            if (!Arcs.TryGetValue(id, out var pages)) return "They chose this passage with the brigade. Their life continues beyond this journey; their origin is recorded above.";
+            if (Dormant(id) || !Arcs.TryGetValue(id, out var pages)) return "They chose this passage with the brigade. Their life continues beyond this journey; their origin is recorded above.";
             int count = ArcWaves.TryGetValue(id, out int[] at) ? (wave >= at[2] ? 3 : wave >= at[1] ? 2 : 1) : wave >= 17 ? 3 : wave >= 9 ? 2 : 1;
             string result = "";
             for (int i = 0; i < count; i++) result += (i > 0 ? "\n\n" : "") + pages[i];
@@ -148,7 +150,7 @@ namespace ArcaneBrigade
         }
         public static string Arc(string id,RunSnapshot state)
         {
-            if (!ArcWaves.TryGetValue(id,out var at)) return Arc(id,state?.Wave ?? 1);
+            if (Dormant(id) || !ArcWaves.TryGetValue(id,out var at)) return Arc(id,state?.Wave ?? 1);
             if (state==null || !ActOneKnowledge.Known(state,at[0])) return "They travel beside you. Their account unfolds in the journal as you discover the road together.";
             int count=1;
             if (ActOneKnowledge.Known(state,at[1])) count=2;
@@ -167,7 +169,7 @@ namespace ArcaneBrigade
             if (id=="TeapotPilgrim" && ActOneKnowledge.HobRescued(state) && !last) result+="\n\nHob is on its feet again. Everyone helped. Nobody asks for repayment.";
             return result;
         }
-        public static string Banter(string id,RunSnapshot state) => id switch
+        public static string Banter(string id,RunSnapshot state) => Dormant(id) ? null : id switch
         {
             "TeapotPilgrim" => ActOneKnowledge.HobRescued(state) && ActOneKnowledge.Known(state,17) ? "Yes. For you to stop asking for a minute." : ActOneKnowledge.Known(state,3) ? "I dropped a cup. I have never dropped a cup." : "Need? I'm the one who asks that.",
             "HoodWisp" => ActOneKnowledge.Known(state,17) ? "Your left, if you want me there. The doors are yours." : ActOneKnowledge.Known(state,14) ? "The whisper comes from your left. So do I." : "I'll walk on this side, if you don't mind.",
@@ -175,7 +177,7 @@ namespace ArcaneBrigade
             "PaperDevil" => ActOneKnowledge.Known(state,19) ? "I asked for the names back. Nobody owes me anything for it." : ActOneKnowledge.Known(state,17) ? "Don't ask what's on the receipt." : ActOneKnowledge.Known(state,11) ? "Each mark is somebody I brought back." : "I'll keep watch from here.",
             _ => Banter(id,state?.Wave ?? 1)
         };
-        public static string Banter(string id, int wave) => id switch
+        public static string Banter(string id, int wave) => Dormant(id) ? null : id switch
         {
             "TeapotPilgrim" => wave >= 17 ? "Yes. For you to stop asking for a minute." : wave >= 3 ? "I dropped a cup. I have never dropped a cup." : "Need? I'm the one who asks that.",
             "HoodWisp" => wave >= 17 ? "Your left, if you want me there. The doors are yours." : wave >= 10 ? "The whisper comes from your left. So do I." : "I stopped you, last time. I will not stop you again.",

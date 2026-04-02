@@ -29,7 +29,7 @@ namespace ArcaneBrigade.Editor
             {
                 var value = new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 10, Vector2.right, weapon);
                 ImpactAccent accent = ImpactAccent.For(value);
-                require(accent.Hold > 0 && accent.Hold <= 0.045f && accent.Camera <= 0.09f, "Bounded weapon feel " + weapon.Id);
+                require(accent.Hold == 0 && accent.Camera <= 0.09f, "Bounded weapon feel, no hit stop " + weapon.Id);
             }
             float previousTimeScale = Time.timeScale;
             var feel = new CombatFeel();
@@ -39,8 +39,7 @@ namespace ArcaneBrigade.Editor
             var heavy = new CombatFeel();
             var detonation = new CombatEvent(CombatEventKind.Detonation, Vector2.zero, Faction.Champion, 2, Vector2.right);
             heavy.Play(new[] { detonation }, new Dictionary<int, UnitVisual>(), 1);
-            require(heavy.Frozen && !heavy.SlowMotion && heavy.Trauma > 0.1f, "An explosion holds the frame and shakes the camera");
-            heavy.Advance(0.2f); require(!heavy.Frozen, "The hit hold is brief");
+            require(!heavy.Frozen && !heavy.SlowMotion && heavy.Trauma > 0.1f, "An explosion shakes the camera and never holds the frame");
             var routine = new CombatFeel(); var kills = new List<CombatEvent>();
             for (int i = 0; i < 200; i++) kills.Add(new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: i + 2));
             routine.Play(kills, new Dictionary<int, UnitVisual>(), 1);
