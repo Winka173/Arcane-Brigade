@@ -204,5 +204,36 @@
   "review_item": "27",
   "display_note": "stations ~200 px",
   "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production PROP SHEET, 1536x1536 canvas, 4 columns x 5 rows: ten upgrade STATIONS for the hub, two stations per row, each station as a pair of adjacent cells (LEFT cell dusty, unlit, cobwebbed — RIGHT cell restored, lit, polished), in reading order: 1 The Lantern (big standing lantern), 2 The Ledger (open ledger on a lectern), 3 The Nursery (little greenhouse crib with sprouting eggs), 4 The Wardrobe (tall wardrobe with coats), 5 The Clock (grandfather clock), 6 The Postbox (red-and-brass postbox stuffed with letters), 7 The Museum (glass curio cabinet), 8 The Night Pact (small table with black candles), 9 The Window (round window with a dream sky), 10 The Bell (brass desk bell on a velvet stand)."
+ },
+ {
+  "name": "UI_SecretEvent",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_SecretEvent_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+   "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "7 (follow-up)",
+  "display_note": "plates ~400x260 px, pedestal ~220 px, banner ~900x140 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Frames and plates must be 9-slice ready: plain uniform centre area, ornament only on the borders and corners, the straight edges between corners simple and repeatable. A production UI SHEET for a SECRET EVENT screen (a mysterious side room where a strange visitor offers a deal on one of the player's relics), matching the UI kit in the references, 1536x1536 canvas: TOP a wide title banner plaque (dark velvet ribbon held by two brass hands, empty centre); MIDDLE-LEFT three tall offer plate frames side by side, same shape, each with a small empty round badge socket on its top edge: DO plate (aged cream paper with a brass rim), LOSE plate (dark oxblood paper with a thin thorn rim), GET plate (deep green-gilt paper with a laurel rim); a highlighted SELECTED version of the plate frame (glowing gold rim with tiny sparks); MIDDLE-RIGHT a small round relic PEDESTAL seen from the front (velvet cushion on a brass stand under a faint bell-jar glint, empty on top) with two small brass swap arrows on either side; BOTTOM a large confirm button shaped like a wax-sealed contract ribbon (normal, hover, pressed) and a small 'leave' door-tag button (normal, hover)."
+ },
+ {
+  "name": "Secret_EventVignettes",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/Secret_EventVignettes_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "7 (follow-up)",
+  "display_note": "vignettes ~420x240 px behind the banner",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production SHEET of 12 small oval VIGNETTE paintings, 4 columns x 3 rows, each a little storybook scene in a soft vignette that fades to transparent at its edges (no frame), used as the header picture of a secret room: 1 The Impossible Tailor (a tailor's table with glowing rainbow thread and a giant needle), 2 The Brass Crate (a locked brass shipping crate), 3 The Contraband Express (a tiny night train with crates on its roof), 4 The Empty Theatre (an empty stage with one spotlight), 5 The Hostile Duet (two music stands facing each other, sheet music flying), 6 The Leading Actor (a lone theatre mask on a velvet chair), 7 The Owner's Crate (a crate with a wax owner's seal and a ribbon), 8 The Paper Chorus (paper cut-out singers on strings), 9 The Sleeping Garden (a moonlit greenhouse with sleeping flowers), 10 The Thread Crate (a crate overflowing with spools), 11 The Understudy's Mirror (a tall dressing mirror reflecting a different shadow), 12 a spare generic one (a velvet curtain slightly open with light behind)."
  }
 ]
