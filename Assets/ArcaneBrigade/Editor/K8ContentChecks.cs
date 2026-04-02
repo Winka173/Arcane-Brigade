@@ -21,7 +21,7 @@ namespace ArcaneBrigade.Editor
             Require(content.Recipes.Length == 4 && content.Recipes.Select(recipe => recipe.ResultUnit).Distinct().Count() == 4, "Four distinct fusion outcomes");
             foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
                 Require(RunModifierRules.ModifierName(effect) != effect.ToString(), "Localized modifier " + effect);
-            Require(RunModifierRules.ScopeName(ModifierScope.Champion) == "Champion", "Localized champion scope");
+            Require(RunModifierRules.ScopeName(ModifierScope.Champion) == "You" && RunModifierRules.Who(ModifierScope.Team) == "", "Player-word scopes: You / Friends / everyone (no label)");
             CheckBonds(content);
             CheckTiersAndScopes(content);
             CheckChampions(content);

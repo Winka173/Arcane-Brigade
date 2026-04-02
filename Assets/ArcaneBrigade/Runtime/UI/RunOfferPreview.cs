@@ -5,7 +5,7 @@ namespace ArcaneBrigade
         public static string Capture(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
             if (!session.CanBuy(offer)) return "Cannot purchase: check currency/HP, stack limit or weapon variants.";
-            if (offer.Kind == OfferKind.Companion) return "Weapons roll after purchase. Three matching species/tiers merge; each body counts once for bonds. No preview pretends a random weapon is already assigned.\n" + RunModifierRules.DescribeCompanion(catalog.Unit(offer.Id), 1);
+            if (offer.Kind == OfferKind.Companion) return "Weapons roll after purchase. Three of the same friend at the same stars merge; each body counts once for bonds. No preview pretends a random weapon is already assigned.\n" + RunModifierRules.DescribeCompanion(catalog.Unit(offer.Id), 1);
             RunBuildReadModel before = RunBuildReadModel.Capture(session, catalog, session.State.Health);
             using (var preview = new RunSession(catalog))
             {

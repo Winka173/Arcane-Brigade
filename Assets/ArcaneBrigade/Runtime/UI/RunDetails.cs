@@ -160,7 +160,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (GUI.Button(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
-            string[] names = { "STATS", "COMPANIONS", "RELICS", "LINKS" };
+            string[] names = { "STATS", "FRIENDS", "RELICS", "LINKS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
             if (tabStyle == null) { tabStyle = ArcadeTypography.Style(26, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
             for (int index = 0; index < names.Length; index++)
@@ -198,7 +198,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
-            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No companions yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
+            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No friends yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
             ScrollPanel.End();
             RunHud.Fill(new Rect(1160, 300, 665, 665), ArcadeSkin.Card);
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));

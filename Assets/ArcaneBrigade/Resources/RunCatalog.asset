@@ -1687,7 +1687,7 @@ MonoBehaviour:
     - oddity
     - fam-team
   - Id: k10-scoremultiplier
-    Name: "Contract \xB7 Score multiplier"
+    Name: "Contract \xB7 Score"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -1728,7 +1728,7 @@ MonoBehaviour:
     - clock
     - fam-team
   - Id: k10-collisiondamage
-    Name: "Contract \xB7 Collision damage"
+    Name: "Contract \xB7 Touch damage"
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -1767,7 +1767,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-meleedamage
-    Name: "Contract \xB7 Flat melee damage"
+    Name: "Contract \xB7 Melee damage"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -1808,7 +1808,7 @@ MonoBehaviour:
     - clock
     - fam-melee
   - Id: k10-rangeddamage
-    Name: "Contract \xB7 Flat ranged damage"
+    Name: "Contract \xB7 Ranged damage"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -1929,7 +1929,7 @@ MonoBehaviour:
     - tidal
     - fam-survival
   - Id: k10-income
-    Name: "Contract \xB7 Income"
+    Name: "Contract \xB7 Gold per wave"
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -1968,7 +1968,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-bulletpierce
-    Name: "Contract \xB7 Bullet pierce"
+    Name: "Contract \xB7 Pierce"
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -2007,7 +2007,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-bulletsplit
-    Name: "Contract \xB7 Bullet split"
+    Name: "Contract \xB7 Split shots"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2048,7 +2048,7 @@ MonoBehaviour:
     - astral
     - fam-ranged
   - Id: k10-bulletbounce
-    Name: "Contract \xB7 Bullet bounce chance"
+    Name: "Contract \xB7 Bounce chance"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2084,7 +2084,7 @@ MonoBehaviour:
     - frost
     - fam-ranged
   - Id: k10-bulletsize
-    Name: "Contract \xB7 Bullet size"
+    Name: "Contract \xB7 Shot size"
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -2123,7 +2123,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-bulletspeed
-    Name: "Contract \xB7 Bullet speed"
+    Name: "Contract \xB7 Shot speed"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2170,7 +2170,7 @@ MonoBehaviour:
     - frost
     - fam-ranged
   - Id: k10-bulletdistance
-    Name: "Contract \xB7 Bullet travel distance"
+    Name: "Contract \xB7 Shot range"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2250,7 +2250,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-bodysize
-    Name: "Contract \xB7 Champion size"
+    Name: "Contract \xB7 Hero size"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2297,7 +2297,7 @@ MonoBehaviour:
     - hearth
     - fam-collision
   - Id: k10-companionsize
-    Name: "Contract \xB7 Companion size"
+    Name: "Contract \xB7 Friend size"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2382,7 +2382,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-enemyhealth
-    Name: "Contract \xB7 Enemy health"
+    Name: "Contract \xB7 Enemy HP"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2512,7 +2512,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-chestquality
-    Name: "Contract \xB7 Chest quality"
+    Name: "Contract \xB7 Chest gold"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2553,7 +2553,7 @@ MonoBehaviour:
     - tidal
     - fam-chest
   - Id: k10-recruitdiscount
-    Name: "Contract \xB7 Recruit discount"
+    Name: "Contract \xB7 Friend discount"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2628,7 +2628,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-shoprarity
-    Name: "Contract \xB7 Shop rarity"
+    Name: "Contract \xB7 Rarer offers"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2664,7 +2664,7 @@ MonoBehaviour:
     - astral
     - fam-shop
   - Id: k10-healthcorrection
-    Name: "Contract \xB7 Health correction"
+    Name: "Contract \xB7 Final max HP"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2700,7 +2700,7 @@ MonoBehaviour:
     - hearth
     - fam-survival
   - Id: k10-damagecorrection
-    Name: "Contract \xB7 Damage correction"
+    Name: "Contract \xB7 Final damage"
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -2739,7 +2739,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-speedcorrection
-    Name: "Contract \xB7 Speed correction"
+    Name: "Contract \xB7 Final move speed"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2775,7 +2775,7 @@ MonoBehaviour:
     - tidal
     - fam-speed
   - Id: k10-armorcorrection
-    Name: "Contract \xB7 Armor correction"
+    Name: "Contract \xB7 Final armor"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 
@@ -2816,7 +2816,7 @@ MonoBehaviour:
     - clock
     - fam-survival
   - Id: k10-healcorrection
-    Name: "Contract \xB7 Healing correction"
+    Name: "Contract \xB7 Final healing"
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -2850,7 +2850,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: k10-collisionfrequency
-    Name: "Contract \xB7 Collision frequency"
+    Name: "Contract \xB7 Touch hit rate"
     Description: 'CURIO / UNCOMMON / STACKABLE
 
 

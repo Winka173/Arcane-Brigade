@@ -72,7 +72,7 @@ namespace ArcaneBrigade.Editor
                     float lateHealth = session.PrepareCombat().MeleeEnemy.Health;
                     session.State.Wave = 3;
                     require(lateHealth > session.PrepareCombat().MeleeEnemy.Health, "Late enemies gain health rather than only visual size");
-                    require(RunBuildReadModel.Capture(session, catalog, 5).Stats.Any(row => row.Name == "Bullet split"), "Details expose hidden projectile stat types");
+                    require(RunBuildReadModel.Capture(session, catalog, 5).Stats.Any(row => row.Name == "Split shots"), "Details expose hidden projectile stat types");
                     item.Modifiers = new[] { Modifier(ItemEffect.CollisionDamage, 10) };
                     combat = session.PrepareCombat();
                     var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);
@@ -95,7 +95,7 @@ namespace ArcaneBrigade.Editor
                         require(startingModel.Stats.Any(row => row.Explanation.Contains("personal trait") && row.Explanation.Contains(RunUICopy.UnitName(protagonist))), "New stat sources include protagonist identity " + protagonist.Id);
                     }
                     foreach (string term in new[] { "split", "pierce", "bounce", "armor", "bond", "scope", "merge", "altar", "reroll", "correction", "champion", "companions" })
-                        require(GlossaryUI.Find(term) != null && GlossaryUI.Find(term).Description.Length > 40, "Technical term has icon-linked explanation: " + term);
+                        require(GlossaryUI.Find(term) != null && GlossaryUI.Find(term).Description.Length > 20, "Term has a one-sentence explanation: " + term); // play-test 20/10/2026: one short sentence
                     foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
                         require(GlossaryUI.Find(RunModifierRules.ModifierName(effect)) != null, "All stat labels have definitions: " + effect);
                     require(GlossaryUI.Show("split") && GlossaryUI.Open, "Click route opens contextual definition");

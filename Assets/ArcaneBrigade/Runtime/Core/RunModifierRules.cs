@@ -23,10 +23,10 @@ namespace ArcaneBrigade
         {
             switch (scope)
             {
-                case ModifierScope.Champion: return "Champion";
-                case ModifierScope.Companions: return "Companions";
+                case ModifierScope.Champion: return "You";
+                case ModifierScope.Companions: return "Friends";
                 case ModifierScope.Run: return "Run";
-                default: return "Team";
+                default: return "Everyone";
             }
         }
 
@@ -60,8 +60,8 @@ namespace ArcaneBrigade
         {
             string description = "";
             foreach (StatModifier modifier in unit.CompanionModifiers ?? new StatModifier[0])
-                description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value * UnitDefinition.ModifierScale(tier)) + "\n";
-            return description + "Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.\n";
+                description += Line(modifier.Effect, modifier.Scope, modifier.Value * UnitDefinition.ModifierScale(tier)) + "\n";
+            return description + "Bonuses grow ×1/2/4 at 1/2/3 stars.\n";
         }
 
         public static string Describe(ItemDefinition item, int stacks)
@@ -71,7 +71,7 @@ namespace ArcaneBrigade
             if (!string.IsNullOrEmpty(item.ReferenceName)) return item.Description + "\nOwned: " + item.EffectiveStacks(stacks);
             string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Unique" : "Stackable") + "\n";
             foreach (StatModifier modifier in item.EffectiveModifiers)
-                if (modifier.Value != 0) description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
+                if (modifier.Value != 0) description += Who(modifier.Scope) + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
             return description;
         }
 
@@ -81,21 +81,21 @@ namespace ArcaneBrigade
             {
                 case ItemEffect.Damage: case ItemEffect.ChampionDamage: case ItemEffect.CompanionDamage: return "Damage";
                 case ItemEffect.AttackSpeed: case ItemEffect.CompanionAttackSpeed: return "Attack speed";
-                case ItemEffect.MoveSpeed: return "Movement speed";
+                case ItemEffect.MoveSpeed: return "Move speed";
                 case ItemEffect.ChainChance: return "Chain chance";
-                case ItemEffect.RecordedDamage: return "Damage vs recorded species";
-                case ItemEffect.Crit: return "Critical chance";
-                case ItemEffect.Projectiles: return "Projectile count";
-                case ItemEffect.Health: return "Maximum health";
-                case ItemEffect.Pickup: return "Pickup radius";
-                case ItemEffect.Roam: return "Patrol radius";
-                case ItemEffect.Interceptor: return "Companion bullet interception";
-                case ItemEffect.Heal: return "Healing per second";
-                case ItemEffect.Interest: return "Interest cap";
+                case ItemEffect.RecordedDamage: return "Damage vs known kinds";
+                case ItemEffect.Crit: return "Crit chance";
+                case ItemEffect.Projectiles: return "Extra shots";
+                case ItemEffect.Health: return "Max HP";
+                case ItemEffect.Pickup: return "Pickup range";
+                case ItemEffect.Roam: return "Friend roam range";
+                case ItemEffect.Interceptor: return "Friends block shots";
+                case ItemEffect.Heal: return "HP regen per second";
+                case ItemEffect.Interest: return "Max interest";
                 case ItemEffect.Armor: return "Armor";
-                case ItemEffect.Discount: return "Gold shop discount";
+                case ItemEffect.Discount: return "Shop discount";
                 case ItemEffect.Luck: return "Luck";
-                case ItemEffect.TreasureDetection: return "Treasure detection";
+                case ItemEffect.TreasureDetection: return "Chest finding";
                 default: return K10StatRules.Name(effect);
             }
         }
@@ -104,7 +104,20 @@ namespace ArcaneBrigade
         {
             bool percent = effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
             if (effect >= ItemEffect.ScoreMultiplier) percent = K10StatRules.Percentage(effect);
-            return (percent ? value * 100 : value).ToString("+0.###;-0.###;0") + (percent ? "%" : "");
+            // the "final" multipliers read as a factor: Final max HP x1.1
+            if (Final(effect)) return "×" + (1 + value).ToString("0.##");
+            return (percent ? value * 100 : value).ToString("+0.##;-0.##;0") + (percent ? "%" : "");
+        }
+        public static bool Final(ItemEffect effect) => effect == ItemEffect.HealthCorrection || effect == ItemEffect.DamageCorrection || effect == ItemEffect.SpeedCorrection || effect == ItemEffect.ArmorCorrection || effect == ItemEffect.HealCorrection;
+        /// <summary>Who a stat line is for, in player words: "You · ", "Friends · ", or nothing when it is for everyone or the run.</summary>
+        public static string Who(ModifierScope scope) => scope == ModifierScope.Champion ? "You · " : scope == ModifierScope.Companions ? "Friends · " : "";
+        /// <summary>One stat line as the player reads it: who, the stat's name, its value (e.g. "You · Max HP -5").</summary>
+        public static string Line(ItemEffect effect, ModifierScope scope, float value) => Who(scope) + ModifierName(effect) + " " + ValueText(effect, value);
+        /// <summary>Whether a stat change helps the player (enemy stats are the other way round).</summary>
+        public static bool Helps(ItemEffect effect, float value)
+        {
+            bool enemy = effect == ItemEffect.EnemyCount || effect == ItemEffect.EnemyHealth || effect == ItemEffect.EnemySpeed;
+            return value > 0 != enemy;
         }
 
         public static void Validate(RunCatalog catalog)

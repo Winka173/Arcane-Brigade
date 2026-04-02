@@ -4,11 +4,12 @@ namespace ArcaneBrigade
 {
     public static class K10StatRules
     {
-        public static readonly string[] Names = { "Score multiplier", "Collision damage", "Flat melee damage", "Flat ranged damage", "Attack range", "Dodge", "Income", "Bullet pierce", "Bullet split", "Bullet bounce chance", "Bullet size", "Bullet speed", "Bullet travel distance", "Knockback", "Champion size", "Companion size", "Enemy count", "Enemy health", "Enemy speed", "Heart healing", "Chest quality", "Recruit discount", "Relic discount", "Shop rarity", "Health correction", "Damage correction", "Speed correction", "Armor correction", "Healing correction", "Collision frequency" };
+        // player words (play-test 20/10/2026, items 3/11): one name per stat, no developer terms
+        public static readonly string[] Names = { "Score", "Touch damage", "Melee damage", "Ranged damage", "Attack range", "Dodge", "Gold per wave", "Pierce", "Split shots", "Bounce chance", "Shot size", "Shot speed", "Shot range", "Knockback", "Hero size", "Friend size", "Enemy count", "Enemy HP", "Enemy speed", "Heart healing", "Chest gold", "Friend discount", "Relic discount", "Rarer offers", "Final max HP", "Final damage", "Final move speed", "Final armor", "Final healing", "Touch hit rate" };
         public static bool Percentage(ItemEffect effect) => effect != ItemEffect.CollisionDamage && effect != ItemEffect.MeleeDamage && effect != ItemEffect.RangedDamage && effect != ItemEffect.Income && effect != ItemEffect.BulletPierce && effect != ItemEffect.BulletSplit && effect != ItemEffect.HeartHealing;
         public static string Name(ItemEffect effect)
         {
-            if (effect == ItemEffect.ChestReach) return "Chest opening radius";
+            if (effect == ItemEffect.ChestReach) return "Chest open range";
             int index = (int)effect - (int)ItemEffect.ScoreMultiplier;
             return index >= 0 && index < Names.Length ? Names[index] : "Invalid effect";
         }

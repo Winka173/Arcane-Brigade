@@ -37,7 +37,7 @@ namespace ArcaneBrigade.Editor
             var a=s.PrepareCombat();a.EnemyBudget=0;a.WaveDuration=90;a.Boss=null;a.EnableArenaToys=a.EnableSpectacles=false;
             var model=RunBuildReadModel.Capture(s,c,s.State.Health);
             Check(model.Stats[0].Name.StartsWith("Hero / ") && model.Stats[0].Summary.Contains(HeroIdentities.For(hero.Id).Name),"Identity row does not overwrite stat summaries "+hero.Id+" / "+approach);
-            Check(model.Stats.Find(r=>r.Name=="Champion damage").Summary==a.Champion.Weapon.Damage.ToString("0.0"),"Damage row keeps correct compiled value "+hero.Id+" / "+approach);
+            Check(model.Stats.Find(r=>r.Name=="Hero damage").Summary==a.Champion.Weapon.Damage.ToString("0.0"),"Damage row keeps correct compiled value "+hero.Id+" / "+approach);
             var sim=new CombatSimulation(a);sim.Start(641031);
             var projectiles=(List<ProjectileState>)typeof(CombatSimulation).GetField("projectiles",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(sim);
             var heal=typeof(CombatSimulation).GetMethod("Heal",BindingFlags.Instance|BindingFlags.NonPublic);
@@ -127,8 +127,8 @@ namespace ArcaneBrigade.Editor
                 foreach(var m in item.EffectiveModifiers)if(m.Value!=0)Check(copy.Contains(RunModifierRules.ValueText(m.Effect,m.Value)),"Effective item value present "+item.Id+" / "+m.Effect);
                 if(item.Mechanic!=RelicMechanic.None)Check(copy.Contains(RelicDescriptions.Mechanic(item.Mechanic)),"Special item mechanic present "+item.Id);
                 if(item.SignatureRole!=SignatureRelicKind.None)Check(copy.Contains(RelicDescriptions.Signature(item.SignatureRole)),"Weapon synergy present "+item.Id);
-                if(item.Category!=RelicCategory.Curio)Check(copy.Contains("ON PURCHASE: counts as 1"),"Drink/food acquisition trigger visible "+item.Id);
-                foreach(var proc in c.ProcRules.Where(p=>p.ItemId==item.Id))Check(copy.Contains(proc.Trigger.ToString())&&copy.Contains(proc.Power.ToString("0.###")),"Authored proc visible "+item.Id);
+                if(item.Category!=RelicCategory.Curio)Check(copy.Contains(item.Category==RelicCategory.Drink?"Counts as a drink when bought.":"Counts as a food when bought."),"Drink/food acquisition trigger visible "+item.Id);
+                foreach(var proc in c.ProcRules.Where(p=>p.ItemId==item.Id))Check(copy.Contains(proc.Trigger==ProcTrigger.CoinCollected?"pick up a coin":proc.Trigger==ProcTrigger.ChestOpened?"open a chest":"enemy falls")&&copy.Contains(proc.Power.ToString("0.#"))&&!copy.Contains(proc.Trigger.ToString()),"Authored proc visible in player words "+item.Id);
                 report.AppendLine("## "+item.Name+" / "+item.Id+"\n\n"+copy+"\n");
             }
             using(var s=new RunSession(c))

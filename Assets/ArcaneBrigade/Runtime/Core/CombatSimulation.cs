@@ -1266,7 +1266,7 @@ namespace ArcaneBrigade
 
         public void AddLootPresentationFixture(LootKind kind, Vector2 position, int value)
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture && !RunPaths.K7Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture && !RunPaths.K7Capture && !PlaytestFixCapture.Requested) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             DropLoot(kind, position, value);
         }
 

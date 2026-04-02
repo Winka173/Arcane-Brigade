@@ -66,55 +66,69 @@ namespace ArcaneBrigade
             return true;
         }
 
-        private SecretChoice Choice(string title, string copy, bool enabled = true, string reward = "") => new SecretChoice { Title = title, Copy = copy + (catalog.Item(reward) == null ? "" : "\n\n" + catalog.Item(reward).Description), Enabled = enabled, RewardId = reward, Icon = catalog.Item(reward)?.Icon ?? catalog.Unit(reward)?.Body };
+        /// <summary>A secret offer as a plate: a verb title, then DO / LOSE / GET in one short line each (play-test 20/10/2026).</summary>
+        private SecretChoice Choice(string title, string act, string lose, string get, bool enabled = true, string reward = "", bool target = false)
+            => new SecretChoice { Title = title, Do = act, Lose = lose, Get = get, UsesTarget = target, Copy = act + "\n" + lose + "\n" + get, Enabled = enabled, RewardId = reward, Icon = catalog.Item(reward)?.Icon ?? catalog.Unit(reward)?.Body };
+        private string RewardName(string id) => catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName ?? "";
+        /// <summary>The verb on the room's one confirm button.</summary>
+        public string SecretVerb => Secret.Kind switch
+        {
+            SecretEventKind.ImpossibleTailor => "STITCH", SecretEventKind.ContrabandTrain => "DEAL", SecretEventKind.ThirteenthHour => "SIGN",
+            SecretEventKind.SleepingGarden => "WAKE", SecretEventKind.EmptyTheatre => "PERFORM", SecretEventKind.LostProperty => "GO",
+            SecretEventKind.Understudy => "AGREE", _ => "POST"
+        };
+        /// <summary>Whether this room's offers work on one of your relics (shown in the middle, tap to swap).</summary>
+        public bool SecretUsesTarget => Secret.Kind == SecretEventKind.ImpossibleTailor || Secret.Kind == SecretEventKind.DeadLetters || Secret.Kind == SecretEventKind.ThirteenthHour || Secret.Kind == SecretEventKind.Understudy || Secret.Kind == SecretEventKind.ContrabandTrain;
         public SecretChoice[] SecretChoices()
         {
             string item = Secret.TargetItem; bool owned = SecretTargets.Contains(item);
             bool contract = Secret.Contracts.Count == 0;
-            string name = catalog.Item(item)?.Name ?? "Select an owned relic";
+            string name = catalog.Item(item)?.Name ?? "your relic";
             int price = SecretTrainPrice;
+            const string Fight = "Lose the fight and the run ends";
             switch (Secret.Kind)
             {
                 case SecretEventKind.LostProperty:
                     return new[] {
-                        Choice("THE HEART IN THE DRAWER", "Fight the cabinet warden. Rescue the Forgotten Patchwork; solo heroes receive its Wooden Heart. Defeat ends the run.", true, SecretSolo ? "SecretWoodHeart" : "SecretPatchBear"),
-                        Choice("THE LETTER THAT KNOCKS", "Fight the cabinet warden. Rescue Folded Courier; solo heroes receive its Dead-Letter Key. A later letter remembers your choice. Defeat ends the run.", true, SecretSolo ? "SecretLetter" : "SecretPaperBird"),
-                        Choice("TAKE THE ABANDONED HEART", "Leave the prisoners asleep and take a Wooden Heart relic. No battle. Team health support; no second claim.", CanSecretItem("SecretWoodHeart"), "SecretWoodHeart") };
+                        Choice("FREE THE HEART", "Fight the cabinet warden", Fight, RewardName(SecretSolo ? "SecretWoodHeart" : "SecretPatchBear"), true, SecretSolo ? "SecretWoodHeart" : "SecretPatchBear"),
+                        Choice("FREE THE COURIER", "Fight the cabinet warden", Fight, RewardName(SecretSolo ? "SecretLetter" : "SecretPaperBird"), true, SecretSolo ? "SecretLetter" : "SecretPaperBird"),
+                        Choice("TAKE THE HEART", "No fight", "The prisoners stay asleep", RewardName("SecretWoodHeart"), CanSecretItem("SecretWoodHeart"), "SecretWoodHeart") };
                 case SecretEventKind.ImpossibleTailor:
                     return new[] {
-                        Choice("RECALL STITCH", name + ": replace this relic's stat modifiers with returning projectiles and +15% ranged damage; team projectiles lose pierce. One stitch per relic.", owned && HasSecretRanged),
-                        Choice("AFTERSHOCK STITCH", name + ": replace its stat modifiers with a delayed melee echo at 30% damage; melee attacks take 20% longer. One stitch per relic.", owned && HasSecretMelee),
-                        Choice("SHELTER STITCH", name + ": replace its stat modifiers with +18 maximum HP and 15% less incoming damage; team damage -8%. One stitch per relic.", owned) };
+                        Choice("RECALL STITCH", "Restitch " + name, name + "'s stats · shots pierce 1 less", "Shots come back · +15% ranged damage", owned && HasSecretRanged, "", true),
+                        Choice("AFTERSHOCK STITCH", "Restitch " + name, name + "'s stats · melee 20% slower", "Melee hits echo for 30% damage", owned && HasSecretMelee, "", true),
+                        Choice("SHELTER STITCH", "Restitch " + name, name + "'s stats · −8% damage", "+18 max HP · 15% less damage taken", owned, "", true) };
                 case SecretEventKind.Understudy:
                     return new[] {
-                        Choice("FIGHT YOUR REFLECTION", "Your current build becomes a hostile understudy. It repeats your champion's basic attacks after 0.65s at their locked direction. Win: Glass Understudy relic. Defeat ends the run.", CanSecretItem("SecretMirror"), "SecretMirror"),
-                        Choice("LEND A RELIC", "Lend " + name + " for two normal victories. Its effects sleep while a temporary shadow ally fights with you. It returns automatically. Solo heroes gain +20% hero damage instead of an extra body.", owned && contract),
-                        Choice("LEAVE A KIND REFLECTION", "Recover 20% maximum HP, then return. No battle or payment.") };
+                        Choice("FIGHT YOUR REFLECTION", "Fight a copy of your brigade", Fight, RewardName("SecretMirror"), CanSecretItem("SecretMirror"), "SecretMirror"),
+                        Choice("LEND A RELIC", "Lend " + name + " for 2 waves", name + " sleeps for 2 waves", SecretSolo ? "+20% hero damage for 2 waves" : "A shadow friend for 2 waves", owned && contract, "", true),
+                        Choice("A KIND REFLECTION", "Look, then leave", "Nothing", "Heal 20% of max HP") };
                 case SecretEventKind.ContrabandTrain:
                     return new[] {
-                        Choice("THE BRASS-LOCKED CRATE", "Pay " + price + " gold for Smuggler's Ticket. See the relic below before buying. One deal only.", State.Gold >= price && CanSecretItem("SecretTicket"), "SecretTicket"),
-                        Choice("THE THREAD-BOUND CRATE", "Trade one copy of " + name + " for Living Contraband Thread. The offered copy is consumed. One deal only.", owned && CanSecretItem("SecretThread"), "SecretThread"),
-                        Choice("THE OWNER'S CRATE", "Challenge the train's collector. Win: Theatre Crown. No gold fee or ordinary-wave payout. Defeat ends the run.", CanSecretItem("SecretCrown"), "SecretCrown") };
+                        Choice("THE BRASS CRATE", "Buy the crate", price + " gold", RewardName("SecretTicket"), State.Gold >= price && CanSecretItem("SecretTicket"), "SecretTicket"),
+                        Choice("THE THREAD CRATE", "Trade a relic", "1 × " + name, RewardName("SecretThread"), owned && CanSecretItem("SecretThread"), "SecretThread", true),
+                        Choice("THE OWNER'S CRATE", "Fight the collector", Fight, RewardName("SecretCrown"), CanSecretItem("SecretCrown"), "SecretCrown") };
                 case SecretEventKind.ThirteenthHour:
                     return new[] {
-                        Choice("BORROW AN EXTRA HOUR", "Borrow an Hourglass Advance relic for three normal victories. It vanishes when the third wave is settled. Only one active contract.", contract && StackCount("SecretHour") == 0, "SecretHour"),
-                        Choice("ADVANCE ON TOMORROW", "Receive " + SecretLoan + " gold now. The bank takes 25% of normal-wave base income and interest for the next two victories. Kill loot is untouched.", contract),
-                        Choice("DEPOSIT A RELIC", "Send " + name + " to the vault for two normal victories. Its stat effects sleep until it returns with +25% positive stat modifiers for this run.", contract && owned && CanImproveSecretItem(item)) };
+                        Choice("BORROW AN HOUR", "Borrow it for 3 waves", "Gone after 3 waves", RewardName("SecretHour"), contract && StackCount("SecretHour") == 0, "SecretHour"),
+                        Choice("GOLD NOW", "Take a loan", "25% of wave gold for 2 waves", SecretLoan + " gold now", contract),
+                        Choice("DEPOSIT A RELIC", "Leave " + name + " for 2 waves", name + " sleeps for 2 waves", name + " returns with +25% stats", contract && owned && CanImproveSecretItem(item), "", true) };
                 case SecretEventKind.SleepingGarden:
                     return new[] {
-                        Choice("WAKE THE PORCELAIN HEALER", "Restore all HP and gain a Sleeping-Lamb Brooch. No hidden payment or curse.", CanSecretItem("SecretDream"), "SecretDream"),
-                        Choice("WAKE THE CONTRACT KEEPER", "Settle your current secret contract immediately: return lent/deposited relics, cancel income debt and release temporary gifts. No payment.", Secret.Contracts.Count > 0),
-                        Choice(SecretSolo ? "WAKE A DREAM IN YOUR HEART" : "WAKE THE SLEEPING FRIEND", SecretSolo ? "Borrow a champion-damage dream for two normal victories. No companion is added." : "A porcelain Dream Lamb joins for two normal victories, then goes peacefully home. Solo heroes gain +20% hero damage instead of an extra body.", contract) };
+                        Choice("WAKE THE HEALER", "Wake her gently", "Nothing", "Full HP · " + RewardName("SecretDream"), CanSecretItem("SecretDream"), "SecretDream"),
+                        Choice("WAKE THE KEEPER", "End your secret deals", "Your deal ends now", "Lent relics come back", Secret.Contracts.Count > 0),
+                        Choice(SecretSolo ? "WAKE A DREAM" : "WAKE THE FRIEND", SecretSolo ? "Dream for 2 waves" : "A Dream Lamb joins you", "Gone after 2 waves", SecretSolo ? "+20% hero damage" : "A friend for 2 waves", contract) };
                 case SecretEventKind.EmptyTheatre:
                     return new[] {
-                        Choice("THE PAPER CHORUS", "Survive a 28-second swarm performance. Reward: Theatre Crown. No ordinary income or kill loot is paid. Defeat ends the run.", CanSecretItem("SecretCrown"), "SecretCrown"),
-                        Choice("THE LEADING ACTOR", "Defeat one enlarged cabinet actor with deliberate, heavy attacks. Reward: Hourglass Advance to keep. Defeat ends the run.", CanSecretItem("SecretHour"), "SecretHour"),
-                        Choice("THE HOSTILE DUET", "Defeat a cabinet actor and its ranged supporting performer. Their volleys alternate. Reward: Living Contraband Thread. Defeat ends the run.", CanSecretItem("SecretThread"), "SecretThread") };
+                        Choice("THE PAPER CHORUS", "Survive a 28 s swarm", Fight, RewardName("SecretCrown"), CanSecretItem("SecretCrown"), "SecretCrown"),
+                        Choice("THE LEADING ACTOR", "Beat one giant actor", Fight, RewardName("SecretHour"), CanSecretItem("SecretHour"), "SecretHour"),
+                        Choice("THE HOSTILE DUET", "Beat two actors at once", Fight, RewardName("SecretThread"), CanSecretItem("SecretThread"), "SecretThread") };
                 default:
+                    string friend = catalog.Unit(Secret.TargetUnit)?.DisplayName ?? "a friend";
                     return new[] {
-                        Choice("ADDRESS IT TO YOURSELF", "Post one copy of " + name + ". After two normal victories, it returns with +25% positive stat modifiers. Its effects sleep while away.", owned && contract && CanImproveSecretItem(item)),
-                        Choice("ADDRESS IT TO A FRIEND", "Consume one copy of " + name + " to give " + (catalog.Unit(Secret.TargetUnit)?.DisplayName ?? "a chosen companion") + " / " + Secret.TargetWeapon + " +20% weapon damage for this run. This gift stays with that unit/weapon pairing; it does not follow a different weapon after merging.", owned && !SecretSolo && State.Roster.Exists(r => r.UnitId == Secret.TargetUnit && r.WeaponId == Secret.TargetWeapon) && !Secret.AllyGifts.Exists(g => g.UnitId == Secret.TargetUnit && g.WeaponId == Secret.TargetWeapon)),
-                        Choice("ADDRESS IT OUTSIDE THE STAGE", (Secret.RescuedToy && !Secret.ThankYouClaimed ? "The rescued resident enclosed a thank-you: " + ScaledGold(15) + " gold. " : "") + "Send an invitation and receive a Dead-Letter Key. A secret theatre encounter waits in a later shop, even after the two-visit limit. The Keeper remembers your letter.", !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
+                        Choice("TO YOURSELF", "Post " + name + " for 2 waves", name + " sleeps for 2 waves", name + " returns with +25% stats", owned && contract && CanImproveSecretItem(item), "", true),
+                        Choice("TO A FRIEND", "Post " + name + " to " + friend, "1 × " + name, friend + ": +20% weapon damage", owned && !SecretSolo && State.Roster.Exists(r => r.UnitId == Secret.TargetUnit && r.WeaponId == Secret.TargetWeapon) && !Secret.AllyGifts.Exists(g => g.UnitId == Secret.TargetUnit && g.WeaponId == Secret.TargetWeapon), "", true),
+                        Choice("OUTSIDE THE STAGE", "Send an invitation", "Nothing", RewardName("SecretLetter") + " · a secret show later" + (Secret.RescuedToy && !Secret.ThankYouClaimed ? " · " + ScaledGold(15) + " gold" : ""), !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
             }
         }
 

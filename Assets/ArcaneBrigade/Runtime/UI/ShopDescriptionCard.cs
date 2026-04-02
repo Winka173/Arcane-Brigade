@@ -43,20 +43,21 @@ namespace ArcaneBrigade
                 // the card: one line per stat (painted stat icon, exact value), one short line per special effect; every rule,
                 // cap and condition stays under INFO (Details)
                 var copy = new StringBuilder();
-                foreach (var m in item.EffectiveModifiers)
-                    if (m.Value != 0) copy.AppendLine(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value));
+                // GIVES (green) first, then COSTS (red): a trade-off is never mixed into the bonuses (play-test 20/10/2026)
+                AppendSplit(copy, item.EffectiveModifiers, 1, item.Mechanic != RelicMechanic.None || item.SignatureRole != SignatureRelicKind.None);
                 if (item.Mechanic != RelicMechanic.None) copy.AppendLine("{mark} " + RelicDescriptions.ShortMechanic(item.Mechanic));
                 if (item.SignatureRole != SignatureRelicKind.None) copy.AppendLine("{mark} " + RelicDescriptions.ShortSignature(item.SignatureRole));
                 foreach (var proc in catalog.ProcRules ?? Array.Empty<ProcRule>())
                     if (proc.ItemId == item.Id) copy.AppendLine("{mark} " + ProcLine(proc));
                 if (item.Category != RelicCategory.Curio) copy.AppendLine("{mark} Counts as a " + RelicDescriptions.Category(item).ToLowerInvariant() + ".");
+                AppendCosts(copy, item.EffectiveModifiers, 1);
                 int held = session.StackCount(item.Id);
                 if (held > 0 || item.StackLimit < 100000) copy.AppendLine("Owned " + held + (item.StackLimit < 100000 ? " / " + item.StackLimit : "") + (item.Stacking == StackPolicy.Unique ? " · unique" : ""));
                 Summary = copy.ToString().Trim();
                 return;
             }
             var unit = catalog.Unit(offer.Id); Rarity = unit.Rarity; Portrait = unit.Body;
-            Identity = "COMPANION · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
+            Identity = "FRIEND · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
             Attack = session.InspectRecruitAttack(unit.Id, offer.Tier);
             // Run the real recruitment/merge/absorption rules on an isolated copy, never on the live roster or RNG.
             using var preview = new RunSession(catalog);
@@ -79,8 +80,8 @@ namespace ArcaneBrigade
             // the card: support stats with their painted icons, then one short line each for the own skill, the talent, the
             // passive and where a merge stands; the full rules, the lore and the weapon preview stay under INFO (Details)
             var b = new StringBuilder();
-            foreach (var m in unit.CompanionModifiers ?? Array.Empty<StatModifier>())
-                if (m.Value != 0) b.AppendLine(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * UnitDefinition.ModifierScale(offer.Tier)));
+            AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier), true);
+            AppendCosts(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
             if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine("{mark} " + skill);
             string talent = CompanionDescriptions.ShortTalent(unit);
             if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine("{mark} " + talent);
@@ -104,8 +105,31 @@ namespace ArcaneBrigade
             foreach (var row in Bonds)
             {
                 var bond = row.Bond;
-                Details += "\n\n" + bond.Name + " / " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(bond.Effect)) + ": " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(bond.Value)) + " every " + bond.Threshold + " bodies. " + (row.Preview ? "After buying: " + row.Count + " → " + row.After + " bodies; total reward " + RunModifierRules.ValueText(bond.Effect, row.AfterReward) + "." : "Purchase unavailable; no after-purchase result shown.");
+                Details += "\n\n" + bond.Name + ": " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(bond.Value)) + " every " + bond.Threshold + " bodies. " + (row.Preview ? "After buying: " + row.Count + " → " + row.After + " bodies; total reward " + RunModifierRules.ValueText(bond.Effect, row.AfterReward) + "." : "Purchase unavailable; no after-purchase result shown.");
                 foreach (var extra in bond.ExtraBonuses ?? Array.Empty<BondThresholdBonus>()) Details += " Extra at " + extra.Threshold + " bodies: " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(extra.Value)) + ".";
+            }
+        }
+
+        /// <summary>The helpful stat lines, the first opened by a green GIVES plate when the card also has costs.</summary>
+        private static void AppendSplit(StringBuilder copy, StatModifier[] modifiers, float scale, bool more)
+        {
+            bool costs = modifiers.Any(m => m.Value != 0 && !RunModifierRules.Helps(m.Effect, m.Value));
+            bool first = true;
+            foreach (var m in modifiers)
+            {
+                if (m.Value == 0 || !RunModifierRules.Helps(m.Effect, m.Value)) continue;
+                copy.AppendLine((first && costs ? "{gives} " : "") + GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * scale)); first = false;
+            }
+            if (first && costs && more) copy.Append("{gives} ");
+        }
+        /// <summary>The harmful stat lines, the first opened by a red COSTS plate.</summary>
+        private static void AppendCosts(StringBuilder copy, StatModifier[] modifiers, float scale)
+        {
+            bool first = true;
+            foreach (var m in modifiers)
+            {
+                if (m.Value == 0 || RunModifierRules.Helps(m.Effect, m.Value)) continue;
+                copy.AppendLine((first ? "{costs} " : "") + GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * scale)); first = false;
             }
         }
 

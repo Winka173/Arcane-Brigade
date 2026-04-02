@@ -315,7 +315,7 @@ namespace ArcaneBrigade
                 T(KitPassive.FoodDiscount, .15f, "Food costs 15% less.")),
                 k => { }),
             With(K("BonsaiClocksmith", "TIME GARDEN", KitAction.TimeGarden, "your hits, time and kills", "A clockwork bonsai is planted ahead: its hand sweeps once round, striking and slowing what it crosses; friends near it +40% attack speed.",
-                H(KitPassive.KeepHalfTier, .5f, "After transforming, half a tier stays filled."),
+                H(KitPassive.KeepHalfTier, .5f, "After transforming, half a stars stays filled."),
                 T(KitPassive.SignatureBondLevel, 1, "Clockwork Union counts one level higher."),
                 T(KitPassive.MergeGold, 2, "Every merge pays 2 gold."),
                 T(KitPassive.ThemeBondAttackSpeed, .04f, "Friends +4% attack speed per Clock or Orchard bond level (max 16%).")),
@@ -351,7 +351,7 @@ namespace ArcaneBrigade
             if (kit == null) return "";
             var text = new System.Text.StringBuilder();
             text.Append("TRANSFORMATION: ").Append(kit.Transformation).Append("\nThe gauge beside you fills from ").Append(kit.Fill)
-                .Append(" and climbs three tiers; when full you transform by yourself for ").Append(kit.Seconds.ToString("0")).Append("s, then rest for 3s. ").Append(kit.Effect);
+                .Append(" and climbs three steps; when full you transform by yourself for ").Append(kit.Seconds.ToString("0")).Append("s, then rest for 3s. ").Append(kit.Effect);
             text.Append("\n\nHERO PASSIVES");
             foreach (var t in kit.HeroTraits) text.Append("\n- ").Append(t.Text);
             text.Append("\n\nTEAM AND RUN PASSIVES");

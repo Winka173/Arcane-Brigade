@@ -47,6 +47,10 @@ namespace ArcaneBrigade
     public sealed class SecretChoice
     {
         public string Title, Copy, RewardId;
+        /// <summary>The plate (play-test 20/10/2026, item 7): what you DO, what you LOSE, what you GET, one short line each.</summary>
+        public string Do, Lose, Get;
+        /// <summary>The choice gives up the relic shown in the middle of the room.</summary>
+        public bool UsesTarget;
         public bool Enabled = true;
         public Sprite Icon;
     }

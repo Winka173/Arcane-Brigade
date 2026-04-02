@@ -24,17 +24,17 @@ namespace ArcaneBrigade
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
             WeaponDefinition weapon = champion.Weapon;
             model.ShopStats = ShopStatSnapshot.Capture(readSession, catalog, compiled);
-            model.Stat("Champion health", health.ToString("0.0") + " / " + compiled.Champion.Health.ToString("0.0"), "Maximum health includes base HP, run bonuses and health correction, minimum 1. No permanent profile stat growth. Every cleared wave restores full HP.");
-            model.Stat("Champion damage", compiled.Champion.Weapon.Damage.ToString("0.0"), "Weapon base " + weapon.Damage.ToString("0.0") + "; hero power x" + PlayerBuildBalance.HeroPower(champion.Id).ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
-            model.Stat("Champion attack cycle", compiled.Champion.Weapon.Cooldown.ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
+            model.Stat("Hero health", health.ToString("0.0") + " / " + compiled.Champion.Health.ToString("0.0"), "Maximum health includes base HP, run bonuses and health correction, minimum 1. No permanent profile stat growth. Every cleared wave restores full HP.");
+            model.Stat("Hero damage", compiled.Champion.Weapon.Damage.ToString("0.0"), "Weapon base " + weapon.Damage.ToString("0.0") + "; hero power x" + PlayerBuildBalance.HeroPower(champion.Id).ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
+            model.Stat("Hero attack cycle", compiled.Champion.Weapon.Cooldown.ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
             model.Stat("Movement speed", compiled.Champion.Speed.ToString("0.00"), "Base " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; minimum multiplier 0.1.");
-            model.Stat("Champion critical chance", Percent(compiled.Champion.CriticalChance), "Base " + Percent(champion.CriticalChance) + "; bonuses add before the 0–100% cap.");
-            model.Stat("Champion projectile count", compiled.Champion.Weapon.ProjectileCount.ToString(), "Applies only to projectile weapons; does not turn melee attacks into bullets.");
-            model.Stat("Champion armor", compiled.Armor.ToString("0.00"), "Positive armor reduces incoming damage; negative armor increases it, capped before the per-hit limit.");
+            model.Stat("Hero critical chance", Percent(compiled.Champion.CriticalChance), "Base " + Percent(champion.CriticalChance) + "; bonuses add before the 0–100% cap.");
+            model.Stat("Hero projectile count", compiled.Champion.Weapon.ProjectileCount.ToString(), "Applies only to projectile weapons; does not turn melee attacks into bullets.");
+            model.Stat("Hero armor", compiled.Armor.ToString("0.00"), "Positive armor reduces incoming damage; negative armor increases it, capped before the per-hit limit.");
             model.Stat("Passive regeneration", compiled.PassiveHeal.ToString("0.00") + " / s", "HP per second from items and wave effects. Individual unit healing triggers separately every 4 seconds and is not included here.");
             model.Stat("Pickup radius", compiled.PickupRadius.ToString("0.00"), "Base " + catalog.Arena.PickupRadius.ToString("0.00") + "; arena distance, not screen pixels.");
-            model.Stat("Companion roaming range", "Ranged " + compiled.CompanionLeash.ToString("0.00") + " / Melee " + (compiled.CompanionLeash + MeleeBalance.RoamBonus).ToString("0.00"), "Companions patrol around the player automatically. Melee units have wider roaming and faster enemy pursuit; no formation controls required.");
-            model.Stat("Companion bullet interception", session.Bonus(ItemEffect.Interceptor) > 0 ? "Enabled by item" : "No", "Companions are immortal but do not block bullets by default.");
+            model.Stat("Friend roaming range", "Ranged " + compiled.CompanionLeash.ToString("0.00") + " / Melee " + (compiled.CompanionLeash + MeleeBalance.RoamBonus).ToString("0.00"), "Friends patrol around the player automatically. Melee units have wider roaming and faster enemy pursuit; no formation controls required.");
+            model.Stat("Friend bullet interception", session.Bonus(ItemEffect.Interceptor) > 0 ? "Enabled by item" : "No", "Friends are immortal but do not block bullets by default.");
             model.Stat("Next shop interest", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " gold", "Forecast from saved gold; excludes uncommitted pickups or next-wave income.");
             model.Stat("Next reroll cost", session.RerollCost + " gold", "Rerolled " + session.State.RerollsThisShop + " times in this shop. Base cost " + catalog.RerollPrice + "; each roll adds " + catalog.RerollPriceStep + ". Coupons discount displayed wares, not reroll fees.");
             if (catalog.AltarRevision > 0) model.Stat("Next rest's special shop", Percent(session.AltarActivationChance), "Appearance chance increases with held eggs, up to 100%. Rolled once when creating rest, not again on loading. Opening the shop does not spend eggs.");
@@ -54,9 +54,9 @@ namespace ArcaneBrigade
                 int tierSteps = catalog.ContentRevision > 0 ? Mathf.Max(0, entry.Tier - 1) : 0;
                 float range = applied.Weapon.Range;
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
-                model.Companions.Add(new Row { Name = session.Stranger(unit.Id) ? "???" : RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
+                model.Companions.Add(new Row { Name = session.Stranger(unit.Id) ? "???" : RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Stars " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
-                    Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Tier bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Tier bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each companion body counts once toward bonds." });
+                    Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Stars bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Stars bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each friend body counts once toward bonds." });
                 model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier);
             }
             foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])
@@ -65,10 +65,10 @@ namespace ArcaneBrigade
                 model.Companions.Add(new Row
                 {
                     Name = story.DisplayName, UnitId = story.Id, Icon = story.Body, WeaponIcon = story.Weapon.Sprite,
-                    Summary = "Travels with you · " + RunUICopy.WeaponName(story.Weapon.Id) + "\nIn their own place · grows with the road (tier " + tier + ")",
+                    Summary = "Travels with you · " + RunUICopy.WeaponName(story.Weapon.Id) + "\nIn their own place · grows with the road (stars " + tier + ")",
                     CombatValues = new Dictionary<string, string> { { "Damage", story.Weapon.Damage.ToString("0.###") }, { "Cycle", story.Weapon.Cooldown.ToString("0.###") + " s" }, { "Speed", story.Speed.ToString("0.##") } },
                     Explanation = story.DisplayName.ToUpperInvariant() + "\n" + CreatureLives.Arc(story.Id, session.State) + "\n\nWeapon: " + RunUICopy.WeaponName(story.Weapon.Id) + "\nDamage: " + story.Weapon.Damage.ToString("0.0") + " / cycle " + story.Weapon.Cooldown.ToString("0.00") + " seconds\nRange: " + story.Weapon.Range.ToString("0.0")
-                        + "\nA travelling companion of the story: never bought, merged or sold, and not counted toward bonds. Their strength follows the zone of the road."
+                        + "\nA travelling friend of the story: never bought, merged or sold, and not counted toward bonds. Their strength follows the zone of the road."
                 });
             }
             foreach (Row row in model.Companions) if (row.UnitId != null && session.Stranger(row.UnitId) && row.Name == "???") row.Explanation = "You no longer remember who they are. You sold that memory to the Last Customer. They still walk with you, and they do not count toward bonds.\n\n" + row.Explanation;
@@ -140,7 +140,7 @@ namespace ArcaneBrigade
                     foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
                         if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                         {
-                            sources += catalog.Unit(entry.UnitId).DisplayName + " / tier " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + (modifier.Value * UnitDefinition.ModifierScale(entry.Tier)).ToString("+0.###;-0.###;0") + "\n";
+                            sources += catalog.Unit(entry.UnitId).DisplayName + " / stars " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + (modifier.Value * UnitDefinition.ModifierScale(entry.Tier)).ToString("+0.###;-0.###;0") + "\n";
                             sourceCount++;
                         }
                 foreach (StatModifier modifier in champion.ChampionModifiers ?? new StatModifier[0])
@@ -163,9 +163,9 @@ namespace ArcaneBrigade
                 foreach (BondDefinition bond in catalog.Bonds)
                     if (System.Array.IndexOf(effects, bond.Effect) >= 0 && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && session.BondCounts.TryGetValue(bond.Id, out int count) && count >= bond.Threshold)
                     {
-                        sources += bond.Name + " / " + count + " companions / level " + bond.ActiveLevel(count) + " / adds " + bond.Reward(count).ToString("+0.###;-0.###;0") + "\n"; sourceCount++;
+                        sources += bond.Name + " / " + count + " friends / level " + bond.ActiveLevel(count) + " / adds " + bond.Reward(count).ToString("+0.###;-0.###;0") + "\n"; sourceCount++;
                     }
-                row.Explanation += sources + (sourceCount == 0 ? "No additional sources for this stat.\n" : "Sources are shown before caps, tiers and passives; applied values appear in the stat table.\n");
+                row.Explanation += sources + (sourceCount == 0 ? "No additional sources for this stat.\n" : "Sources are shown before limits, stars and passives; applied values appear in the stat table.\n");
             }
             if (HeroIdentities.For(champion.Id) != null) model.Stats.Insert(0,new Row { Name = "Hero / " + HeroIdentities.For(champion.Id).Name,
                 Summary = simulation != null && simulation.HeroIdentityEnabled ? simulation.HeroIdentityStatus : session.HeroIdentityShopSummary,
@@ -177,17 +177,17 @@ namespace ArcaneBrigade
         {
             switch (name)
             {
-                case "Champion health": return new[] { ItemEffect.Health };
-                case "Champion damage": return new[] { ItemEffect.Damage, ItemEffect.ChampionDamage };
-                case "Champion attack cycle": return new[] { ItemEffect.AttackSpeed };
+                case "Hero health": return new[] { ItemEffect.Health };
+                case "Hero damage": return new[] { ItemEffect.Damage, ItemEffect.ChampionDamage };
+                case "Hero attack cycle": return new[] { ItemEffect.AttackSpeed };
                 case "Movement speed": return new[] { ItemEffect.MoveSpeed };
-                case "Champion critical chance": return new[] { ItemEffect.Crit };
-                case "Champion projectile count": return new[] { ItemEffect.Projectiles };
-                case "Champion armor": return new[] { ItemEffect.Armor };
+                case "Hero critical chance": return new[] { ItemEffect.Crit };
+                case "Hero projectile count": return new[] { ItemEffect.Projectiles };
+                case "Hero armor": return new[] { ItemEffect.Armor };
                 case "Passive regeneration": return new[] { ItemEffect.Heal };
                 case "Pickup radius": return new[] { ItemEffect.Pickup };
-                case "Companion roaming range": return new[] { ItemEffect.Roam };
-                case "Companion bullet interception": return new[] { ItemEffect.Interceptor };
+                case "Friend roaming range": return new[] { ItemEffect.Roam };
+                case "Friend bullet interception": return new[] { ItemEffect.Interceptor };
                 case "Next shop interest": return new[] { ItemEffect.Interest };
                 case "Luck": return new[] { ItemEffect.Luck };
                 case "Treasure detection": return new[] { ItemEffect.TreasureDetection };
@@ -201,24 +201,24 @@ namespace ArcaneBrigade
         {
             switch (effect)
             {
-                case ItemEffect.Damage: return "Team damage";
-                case ItemEffect.ChampionDamage: return "Champion damage";
-                case ItemEffect.CompanionDamage: return "Companion damage";
-                case ItemEffect.AttackSpeed: return "Team attack speed";
-                case ItemEffect.CompanionAttackSpeed: return "Companion attack speed";
-                case ItemEffect.Health: return "Champion maximum health";
-                case ItemEffect.MoveSpeed: return "Team movement speed";
-                case ItemEffect.Pickup: return "Pickup radius";
-                case ItemEffect.Roam: return "Companion roaming range";
-                case ItemEffect.Interceptor: return "Companion bullet interception";
-                case ItemEffect.Heal: return "Champion regeneration";
-                case ItemEffect.Crit: return "Team critical chance";
-                case ItemEffect.Projectiles: return "Team bonus projectiles";
-                case ItemEffect.Interest: return "Gold interest cap";
-                case ItemEffect.Armor: return "Champion armor";
+                case ItemEffect.Damage: return "Damage";
+                case ItemEffect.ChampionDamage: return "Hero damage";
+                case ItemEffect.CompanionDamage: return "Friend damage";
+                case ItemEffect.AttackSpeed: return "Attack speed";
+                case ItemEffect.CompanionAttackSpeed: return "Friend attack speed";
+                case ItemEffect.Health: return "Max HP";
+                case ItemEffect.MoveSpeed: return "Move speed";
+                case ItemEffect.Pickup: return "Pickup range";
+                case ItemEffect.Roam: return "Friend roam range";
+                case ItemEffect.Interceptor: return "Friends block shots";
+                case ItemEffect.Heal: return "HP regen per second";
+                case ItemEffect.Crit: return "Crit chance";
+                case ItemEffect.Projectiles: return "Extra shots";
+                case ItemEffect.Interest: return "Max interest";
+                case ItemEffect.Armor: return "Armor";
                 case ItemEffect.Discount: return "Shop discount";
                 case ItemEffect.Luck: return "Luck";
-                case ItemEffect.TreasureDetection: return "Treasure detection";
+                case ItemEffect.TreasureDetection: return "Chest finding";
                 default: return RunModifierRules.ModifierName(effect);
             }
         }

@@ -107,14 +107,14 @@ namespace ArcaneBrigade
             string innate = unit.Id switch {
                 "LanternKnight" => "Start with +5 HP, +5% movement speed and 0.2 HP/s. Rally strengthens personal attacks with your brigade.",
                 "Postmaster" => "Team flat ranged damage +3 and melee damage -2. After 25s, team melee attacks deal 40% more and ranged attacks 25% less.",
-                "DrowsySeer" => "Basic attacks work while moving or resting; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.",
+                "DrowsySeer" => "Basic attacks work while moving or resting; rest to recover 5% max HP each second. Friends strengthen your personal shots and body while their own damage is reduced slightly.",
                 "RootOracle" => "Stationary in battle; walks in shops. Whole-arena pickup, 30% shop discount, no dodge and -100% treasure detection.",
-                "LoneJelly" => "Fight without companion bodies. Buying companions absorbs their talents. Solo weapon damage grows with wave, within its cap.",
+                "LoneJelly" => "Fight without friend bodies. Buying friends absorbs their talents. Solo weapon damage grows with wave, within its cap.",
                 "GlassDice" => "Uses the equipped weapon normally. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.",
                 "CometRunner" => "Team movement speed +20%; start with +10% dodge and crit, but armor -0.15.",
                 "MirrorKeeper" => "Each Prizefighter bond level adds 3 hero collision damage. Standing still prepares the borrowed volley.",
                 "StormFencer" => "Equipped weapon attacks normally. Hero collision damage doubles. Start with +20% dodge.",
-                "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions use their weapons and also answer conducted phrases.",
+                "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Friends use their weapons and also answer conducted phrases.",
                 "LanternWeaver" or "HourglassStag" or "RainArchivist" or "SupperMortar" => "Base weapon and all listed run modifiers still apply.",
                 "KiteAdmiral" => "Kite Spool: a kite loops ahead, its string cuts, then it dives. Starts with Paper Plane Pigeon.",
                 "SundaeDuchess" => "Scoop Launcher: scoops splat and slow; the frost scoop freezes. Starts with Baker Mouse.",
@@ -142,8 +142,8 @@ namespace ArcaneBrigade
         {
             switch (passive)
             {
-                case PassiveKind.Rally: return "Damage scales with companion count";
-                case PassiveKind.HealChampion: return "Automatically heals the champion every 4 seconds";
+                case PassiveKind.Rally: return "Damage scales with friend count";
+                case PassiveKind.HealChampion: return "Automatically heals the hero every 4 seconds";
                 case PassiveKind.Scavenge: return "Scavenges extra gold every 4 seconds in combat";
                 case PassiveKind.ChillAura: return "Chills nearby enemies";
                 default: return "No personal passive";
@@ -154,15 +154,15 @@ namespace ArcaneBrigade
             int threshold = Mathf.Max(1, bond.Threshold);
             int level = bond.ActiveLevel(count);
             string result = bond.Name + " · " + (level > 0 ? "Activated ×" + level : "Not active yet")
-                + "\n" + count + "/" + bond.NextThreshold(count) + " companions · every " + threshold + " units adds one level"
-                + "\n" + RunBuildReadModel.EffectName(bond.Effect) + ": " + bond.Reward(count).ToString("+0.###;-0.###;0");
+                + "\n" + count + "/" + bond.NextThreshold(count) + " friends · every " + threshold + " friends adds a level"
+                + "\n" + RunModifierRules.Line(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.Reward(count));
             foreach (BondThresholdBonus bonus in bond.ExtraBonuses ?? new BondThresholdBonus[0])
-                result += "\nThreshold " + bonus.Threshold + " units: extra " + bond.BalanceReward(bonus.Value).ToString("+0.###;-0.###;0") + (count >= bonus.Threshold ? " · reached" : " · not reached");
-            return result + "\nEach companion counts once, regardless of tier.";
+                result += "\nAt " + bonus.Threshold + " friends: " + RunModifierRules.ValueText(bond.Effect, bond.BalanceReward(bonus.Value)) + " more" + (count >= bonus.Threshold ? " ✓" : "");
+            return result + "\nEach friend counts once, whatever its stars.";
         }
         public static string PhaseName(SessionPhase phase) => phase == SessionPhase.Combat ? "In combat" : phase == SessionPhase.Shop ? "Resting and shopping" : phase == SessionPhase.Victory ? "Victorious" : "Finished";
         public static string TriggerName(ProcTrigger trigger) => trigger == ProcTrigger.CoinCollected ? "collect gold" : trigger == ProcTrigger.ChestOpened ? "open chests" : "defeat enemies";
-        public static string ActionName(ProcAction action) => action == ProcAction.HealChampion ? "heal the champion" : "deal area damage";
+        public static string ActionName(ProcAction action) => action == ProcAction.HealChampion ? "heal the hero" : "deal area damage";
         public static string RecordName(string key, RunCatalog catalog)
         {
             string[] parts = (key ?? "").Split('/');

@@ -97,7 +97,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Items.Add(new ItemStack { Id = "k10-collisiondamage", Count = 3 });
                 Require(session.PrepareCombat().Champion.CollisionDamage > baseline + 6, "Collision relic stacks combine with self damage");
                 CheckpointCatalog compiled = session.PrepareCombat();
-                Require(RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats.Any(row => row.Name == "Collision damage" && row.Summary.Contains(compiled.Champion.CollisionDamage.ToString("0.0"))), "Notebook shows actual collision damage, not just bonus");
+                Require(RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats.Any(row => row.Name == "Touch damage" && row.Summary.Contains(compiled.Champion.CollisionDamage.ToString("0.0"))), "Notebook shows actual collision damage, not just bonus");
                 session.State.Wave = 20; session.State.Phase = SessionPhase.Shop; session.State.Gold = 100000;
                 // since the 19/10/2026 balance pass the first reroll grows with the shop's price factor late in the run (2 early on)
                 Require(session.RerollCost >= 2 && session.RerollCost <= Mathf.CeilToInt((2 + 2 * session.State.RerollsThisShop) * Mathf.Max(1, session.StagePriceFactor * .5f)) + 1, "Late-wave first reroll is the base two scaled by the shop price factor (" + session.RerollCost + ")");

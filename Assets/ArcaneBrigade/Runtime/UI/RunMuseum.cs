@@ -49,7 +49,7 @@ namespace ArcaneBrigade
             if (tab == 0)
                 foreach (WeaponDefinition weapon in catalog.Weapons)
                 {
-                    string tiers = "Highest acquired tier: ";
+                    string tiers = "Most stars reached: ";
                     for (int tier = 1; tier <= catalog.MaximumTier; tier++) if (profile.SeenTiers.Contains(weapon.Id + "/" + tier)) tiers += tier + " ";
                     exhibits.Add(new Exhibit { Id = weapon.Id, Name = weapon.Id, Icon = weapon.Sprite, Seen = profile.SeenWeapons.Contains(weapon.Id), Detail = tiers + "\n\n" + weapon.Kind + " / " + weapon.Element + "\nBase: " + weapon.Damage.ToString("0.#") + " damage · cycle " + weapon.Cooldown.ToString("0.##") + "s · range " + weapon.Range.ToString("0.#") + "\n\n" + SignatureDescription.Describe(weapon, 1) + "\n\nSandbox can preview other tiers; previews do not count as ownership." });
                 }

@@ -35,6 +35,7 @@ namespace ArcaneBrigade
         public bool ReducedEffects;
         public bool HighlightHero = true; // play-test 20/10/2026: the hero's halo, show-through and edge arrow (older saves: on)
         public bool TutorialSeen;
+        public List<string> TipsSeen = new List<string>(); // one-time tips already shown (PlayerGuide); Settings can clear them
         public bool NightmareLampPromise;
         public bool NightmareShopClosed;
         public bool ActOneChairSpoke; // after the first dawn, the menu armchair has asked its question once

@@ -83,7 +83,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Offers.Add(healthOffer);
                 require(RunTransaction.TryCommit(session, catalog, "Health", () => session.Buy(healthOffer.Token), () => true, out _), "Health upgrade commits");
                 CheckpointCatalog combat = session.PrepareCombat();
-                require(Mathf.Approximately(combat.Champion.Health, catalog.Champions[0].Health + session.Bonus(ItemEffect.Health)) && RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats.Find(row => row.Name == "Champion health").Summary.EndsWith(combat.Champion.Health.ToString("0.0")), "Committed Details maximum HP matches prepared combat");
+                require(Mathf.Approximately(combat.Champion.Health, catalog.Champions[0].Health + session.Bonus(ItemEffect.Health)) && RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats.Find(row => row.Name == "Hero health").Summary.EndsWith(combat.Champion.Health.ToString("0.0")), "Committed Details maximum HP matches prepared combat");
                 AltarRecipe recipe = catalog.Recipes[0];
                 session.State.Roster.Clear();
                 session.State.Roster.Add(new RosterEntry { UnitId = recipe.FirstUnit, WeaponId = catalog.Weapons[0].Id });

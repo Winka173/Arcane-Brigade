@@ -124,7 +124,7 @@ namespace ArcaneBrigade
             int challengeIndex = Array.IndexOf(RunMeta.ChallengeIds, challengeId);
             if (challengeIndex > 0 && (difficulty != 0 || seed != RunMeta.ChallengeSeed(challengeIndex))) throw new ArgumentException("Challenge requires its fixed seed and difficulty");
             UnitDefinition champion = catalog.Unit(championId);
-            if (champion == null || !Array.Exists(catalog.Champions, unit => unit.Id == championId)) throw new ArgumentException("Unknown champion");
+            if (champion == null || !Array.Exists(catalog.Champions, unit => unit.Id == championId)) throw new ArgumentException("Unknown hero");
             State = new RunSnapshot
             {
                 Version = catalog.Version, RunId = Guid.NewGuid().ToString("N"), ChampionId = championId, Seed = seed,
@@ -202,7 +202,7 @@ namespace ArcaneBrigade
             }
             if (snapshot != null && (snapshot.SchemaRevision < 0 || snapshot.SchemaRevision > RunSnapshot.CurrentSchemaRevision)) throw new InvalidOperationException("Unsupported run schema");
             if (snapshot == null || snapshot.Version != catalog.Version || string.IsNullOrEmpty(snapshot.RunId) || catalog.Unit(snapshot.ChampionId) == null || snapshot.Wave < 1 || snapshot.Gold < 0 || snapshot.Eggs < 0 || !float.IsFinite(snapshot.Health) || snapshot.Health < 0 || !float.IsFinite(snapshot.CombatSeconds) || snapshot.CombatSeconds < 0 || !Enum.IsDefined(typeof(SessionPhase), snapshot.Phase)) throw new InvalidOperationException("Invalid or incompatible run save");
-            if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
+            if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid hero identity");
             if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
             if (snapshot.NewRecruitsThisWave < 0 || snapshot.NewRecruitsThisWave > 3) throw new InvalidOperationException("Invalid wave recruitment quota");
             if (snapshot.NewSpeciesRecruitsThisWave < 0 || snapshot.NewSpeciesRecruitsThisWave > 2 || snapshot.NewSpeciesRecruitsThisWave > snapshot.NewRecruitsThisWave) throw new InvalidOperationException("Invalid new-species quota");
@@ -1048,8 +1048,8 @@ namespace ArcaneBrigade
             if (recipe == null) return "Recipe not found.";
             var result = new System.Text.StringBuilder("Spend " + recipe.EggCost + " eggs and the listed materials:\n");
             foreach (string id in new[] { recipe.FirstUnit, recipe.SecondUnit, recipe.ThirdUnit })
-                if (!string.IsNullOrEmpty(id)) result.Append("- ").Append(catalog.Unit(id).DisplayName).Append(" (tier ").Append(recipe.MinimumMaterialTier).Append("+)\n");
-            result.Append("Result: ").Append(catalog.Unit(recipe.ResultUnit).DisplayName).Append(" / tier ").Append(recipe.ResultTier).Append("\nKeeps one random ingredient weapon.\n").Append(catalog.Unit(recipe.ResultUnit).Description).Append("\n").Append(CanAltar(recipeId) ? "READY" : "NOT READY");
+                if (!string.IsNullOrEmpty(id)) result.Append("- ").Append(catalog.Unit(id).DisplayName).Append(" (stars ").Append(recipe.MinimumMaterialTier).Append("+)\n");
+            result.Append("Result: ").Append(catalog.Unit(recipe.ResultUnit).DisplayName).Append(" / stars ").Append(recipe.ResultTier).Append("\nKeeps one random ingredient weapon.\n").Append(catalog.Unit(recipe.ResultUnit).Description).Append("\n").Append(CanAltar(recipeId) ? "READY" : "NOT READY");
             return result.ToString();
         }
 
@@ -1065,12 +1065,12 @@ namespace ArcaneBrigade
         {
             WeaponDefinition weapon = catalog.Weapon(weaponId);
             if (weapon == null || tier < 1 || tier > catalog.MaximumTier) return "Invalid variant.";
-            if (catalog.ContentRevision == 0 || tier == 1) return "Base attack; tier bonuses apply only to companions.";
+            if (catalog.ContentRevision == 0 || tier == 1) return "Base attack; stars bonuses apply only to friends.";
             int steps = tier - 1;
             int size = Mathf.RoundToInt((CompanionTierScaling.Body(tier) - 1) * 100);
             return weapon.Kind == WeaponKind.Projectile
-                ? "Companions: +" + size + "% body, range, weapon and bullet size; basic volleys +" + steps + " projectiles and pierce. Signature effects retain their own rules."
-                : "Companions: +" + size + "% body, weapon and attack range; wider sweeps; attack cycle divided by " + (1f + steps * 0.12f).ToString("0.00") + ". Signature effects retain their own rules.";
+                ? "Friends: +" + size + "% body, range, weapon and bullet size; basic volleys +" + steps + " projectiles and pierce. Signature effects retain their own rules."
+                : "Friends: +" + size + "% body, weapon and attack range; wider sweeps; attack cycle divided by " + (1f + steps * 0.12f).ToString("0.00") + ". Signature effects retain their own rules.";
         }
 
         public RosterEntry LowestTier(string id, RosterEntry excluded = null, int minimumTier = 1)

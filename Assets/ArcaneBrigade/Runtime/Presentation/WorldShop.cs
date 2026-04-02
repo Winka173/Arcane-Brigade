@@ -434,7 +434,7 @@ namespace ArcaneBrigade
                         cover.AddComponent<RareUnveil>().Configure(owner, station.Actor.View, arriving, landingAt);
                     }
                 }
-                if (offer.Currency == ShopCurrency.Health) station.Description += " · −" + offer.Price + " max HP for the run · leaves 1 HP";
+
                 ItemRarity offerRarity = offer.Kind == OfferKind.Item ? catalog.Item(offer.Id).Rarity : catalog.Unit(offer.Id).Rarity;
                 if (!offer.Sold && offerRarity != ItemRarity.Common)
                 {
@@ -499,7 +499,7 @@ namespace ArcaneBrigade
         public string DescribeOffer(ShopOffer offer)
         {
             if (offer == null) return "";
-            return ShortOfferCopy.PurchaseDelta(owner.Session, owner.Content, offer) + (offer.Currency == ShopCurrency.Health ? "\n−" + offer.Price + " max HP for the run" : "");
+            return ShortOfferCopy.PurchaseDelta(owner.Session, owner.Content, offer);
         }
         public string DescribeOfferDetails(ShopOffer offer)
         {
@@ -516,12 +516,12 @@ namespace ArcaneBrigade
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == offer.Tier).Count;
-                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: tier " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
+                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: stars " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
             }
-            if (offer.Currency == ShopCurrency.Health) result += "\n−" + offer.Price + " max HP";
+
             return result;
         }
         public void DrawMerchantDialogue()
@@ -715,7 +715,7 @@ namespace ArcaneBrigade
                         if (fitIcon != null) RunHud.Sprite(new Rect(category.x + 8, category.y + 2, 22, 22), fitIcon);
                         GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
                     }
-                    else GUI.Label(category, item ? "RELIC" : "ALLY", categoryStyle);
+                    else GUI.Label(category, item ? "RELIC" : "FRIEND", categoryStyle);
                 }
                 GUI.matrix = unrotated;
                 if (denied) GUI.Label(new Rect(point.x - 140, ticket.y - 65, 280, 35), station.Denial, denialStyle);

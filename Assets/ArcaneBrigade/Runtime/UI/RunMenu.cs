@@ -48,7 +48,7 @@ namespace ArcaneBrigade
         public RunMuseum Museum => museum;
         public void SelectChampionForDiagnostics(int index)
         {
-            if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Champion fixture requires isolated capture mode");
+            if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Hero fixture requires isolated capture mode");
             selection = index; rosterDescriptionScroll = Vector2.zero; ShowPage(Page.Roster); scroll.y = Mathf.Max(0, RosterCardBounds(index).y - 50);
         }
         public void NavigateForDiagnostics(int direction, bool submit)
@@ -256,7 +256,7 @@ namespace ArcaneBrigade
                 case Page.Landing: DrawLanding(); break;
                 case Page.Roster: DrawRoster(); break;
                 case Page.Resume:
-                    Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + saved.Roster.Count + " companions · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
+                    Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + saved.Roster.Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
                     GUI.enabled = CanResume;
                     if (navigation.Button(new Rect(420, 490, 440, 70), "RESUME", primary)) Launch(true);
                     GUI.enabled = true;
@@ -268,7 +268,7 @@ namespace ArcaneBrigade
                     break;
                 case Page.Settings: DrawSettings(); break;
                 case Page.Help:
-                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Attacks happen automatically while you move.\nYour companions fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, companions, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; click the note, or approach the archive cabinet and press Space / A to read and reread chapters. Settings can make pages open by themselves. The people tab records the companions you have met. The warm chair is a separate, dangerous invitation.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your companions' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
+                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Attacks happen automatically while you move.\nYour friends fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, friends, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; click the note, or approach the archive cabinet and press Space / A to read and reread chapters. Settings can make pages open by themselves. The people tab records the friends you have met. The warm chair is a separate, dangerous invitation.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your friends' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
                     break;
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
@@ -469,12 +469,12 @@ namespace ArcaneBrigade
 
         private void DrawRoster()
         {
-            if (catalog.Champions == null || catalog.Champions.Length == 0) { Label(new Rect(75, 200, 1100, 90), "No champion available."); return; }
+            if (catalog.Champions == null || catalog.Champions.Length == 0) { Label(new Rect(75, 200, 1100, 90), "No hero available."); return; }
             selection = Mathf.Clamp(selection, 0, catalog.Champions.Length - 1);
             GUIStyle caption = portraitCaption ?? (portraitCaption = ArcadeTypography.Style(18, true));
             caption.alignment = TextAnchor.MiddleCenter;
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(16));
-            Label(new Rect(65, 142, 660, 32), "CHOOSE YOUR CHAMPION");
+            Label(new Rect(65, 142, 660, 32), "CHOOSE YOUR HERO");
             scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 470), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
@@ -519,9 +519,9 @@ namespace ArcaneBrigade
                 description += "\nBONDS IN THIS HERO'S SHOP: ";
                 foreach (BondDefinition bond in K11HeroRules.PoolBonds(catalog, champion)) description += bond.Name + " · ";
             }
-            description += "\n\nSTARTING TRAITS\n";
+            description += "\n\nSTARTS WITH\n";
             foreach (StatModifier modifier in champion.ChampionModifiers)
-                description += RunModifierRules.ScopeName(modifier.Scope) + " / " + RunModifierRules.ModifierName(modifier.Effect) + ": " + RunModifierRules.ValueText(modifier.Effect, modifier.Value) + "\n";
+                description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
             float descriptionHeight = Mathf.Max(180, GlossaryUI.Height(description, text, 400) + 8);
             rosterDescriptionScroll = ScrollPanel.Begin(new Rect(780, 300, 425, 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
@@ -534,7 +534,6 @@ namespace ArcaneBrigade
             GUI.enabled = profile.BestWave >= champion.UnlockWave;
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
-            GUI.Label(new Rect(65, 660, 1130, 30), RunUIHints.Menu, note);
         }
         private static string PageTitle(Page page)
         {
@@ -585,7 +584,7 @@ namespace ArcaneBrigade
                 if (Button(new Rect(0, vertical, 515, 85), record.Nickname + "\n" + record.Score.ToString("N0") + " points · " + RunUICopy.UnitName(record.Build.ChampionId) + " · " + (record.Build.Endless ? "Endless" : "Journey"))) historySelection = index;
                 vertical += 95;
             }
-            Label(new Rect(0, vertical, 510, 50), "RECORDS BY CHAMPION / MODE / DIFFICULTY"); vertical += 60;
+            Label(new Rect(0, vertical, 510, 50), "RECORDS BY HERO / MODE / DIFFICULTY"); vertical += 60;
             foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + record.Score.ToString("N0") + " points · wave " + record.Hall); vertical += 65; }
               foreach (string achievement in profile.Achievements) if (!achievement.StartsWith("journal-")) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
             ScrollPanel.End();

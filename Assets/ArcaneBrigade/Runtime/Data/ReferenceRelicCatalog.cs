@@ -64,7 +64,7 @@ namespace ArcaneBrigade
             Add("StillwaterUrn", "Despair", 3, true, RelicCategory.Curio, RelicMechanic.StillRecovery, "Standing still: +3 regeneration, +20 contact damage. -5% speed.",Stat(ItemEffect.MoveSpeed,-.05f,ModifierScope.Champion));
             Add("PanicBell", "Fear", 3, true, RelicCategory.Curio, RelicMechanic.CoinLightning, "Picking up gold strikes a random foe. Scales with luck.");
             Add("OilyLozenge", "Fish Oil in a Box", 3, false, RelicCategory.Food, RelicMechanic.TurnDiscount, "+20 health. This shop: 30% cheaper items, more drinks.",Stat(ItemEffect.Health,20));
-            Add("LodestoneLabel", "Fridge Sticker", 3, false, RelicCategory.Curio, RelicMechanic.CloseFollowers, "+8 ranged damage. +90% pickup radius. Allies stay closer.",Stat(ItemEffect.RangedDamage,8),Stat(ItemEffect.Pickup,.9f));
+            Add("LodestoneLabel", "Fridge Sticker", 3, false, RelicCategory.Curio, RelicMechanic.CloseFollowers, "+8 ranged damage. +90% pickup radius. Friends stay closer.",Stat(ItemEffect.RangedDamage,8),Stat(ItemEffect.Pickup,.9f));
             Add("HungryLedger", "Greed", 3, true, RelicCategory.Curio, RelicMechanic.WaveGrowth, "Each wave: permanently gain +4 melee/ranged and +10% damage.");
             Add("StoneCrust", "Hard Bread", 3, false, RelicCategory.Food, RelicMechanic.MeleeToCollision, "Half of melee damage also becomes contact damage. -10% player attack speed.",Stat(ItemEffect.AttackSpeed,-.1f,ModifierScope.Champion));
             Add("BitterHoney", "Matcha Honey", 3, false, RelicCategory.Drink, RelicMechanic.None, "+2.5 regeneration. +60% treasure. Enemies move 7% faster.",Stat(ItemEffect.Heal,2.5f),Stat(ItemEffect.TreasureDetection,.6f),Stat(ItemEffect.EnemySpeed,.07f));
@@ -76,13 +76,13 @@ namespace ArcaneBrigade
             Add("SorrowLantern", "Sadness", 3, true, RelicCategory.Curio, RelicMechanic.SorrowPulse, "Every 3 seconds, strike all foes for 20% max health. -5% dodge.",Stat(ItemEffect.Dodge,-.05f));
             Add("MuteClock", "Silent Alarm", 3, false, RelicCategory.Curio, RelicMechanic.BleedingAlarm, "+45% attack speed, +40% speed. Lose 1 health per second.",Stat(ItemEffect.AttackSpeed,.45f),Stat(ItemEffect.MoveSpeed,.4f));
             Add("UrchinBall", "Spiky Yoga Ball", 3, false, RelicCategory.Curio, RelicMechanic.CollisionOnly, "Player stops attacking. +0.6 armor, +10% speed. Armor boosts contact.",Stat(ItemEffect.Armor,.6f),Stat(ItemEffect.MoveSpeed,.1f,ModifierScope.Champion));
-            Add("SourMandarin", "Tangy Tangerine", 3, false, RelicCategory.Food, RelicMechanic.SoloOverdrive, "Next wave: allies cannot attack, player attacks rapidly. 10 kills heal 3.");
+            Add("SourMandarin", "Tangy Tangerine", 3, false, RelicCategory.Food, RelicMechanic.SoloOverdrive, "Next wave: friends cannot attack, player attacks rapidly. 10 kills heal 3.");
             Add("WakefulCordial", "Wake Up!", 3, false, RelicCategory.Drink, RelicMechanic.None, "+25 contact damage, +30% knockback. -10% crit.",Stat(ItemEffect.CollisionDamage,25,ModifierScope.Champion),Stat(ItemEffect.Knockback,.3f,ModifierScope.Champion),Stat(ItemEffect.Crit,-.1f,ModifierScope.Champion));
             Add("GlassLotus", "Water Lily", 3, false, RelicCategory.Curio, RelicMechanic.FreshLotus, "+3 pierce and +30% critical chance until hurt. Resets each wave.");
             Add("NestDumpling", "Weird Rice Ball", 3, false, RelicCategory.Food, RelicMechanic.EggGift, "Gain 3 eggs now. -0.2 armor.",Stat(ItemEffect.Armor,-.2f));
             Add("VictorDraught", "Winningway", 3, false, RelicCategory.Drink, RelicMechanic.None, "+20% crit, +1 pierce. -20% damage.",Stat(ItemEffect.Crit,.2f),Stat(ItemEffect.BulletPierce,1),Stat(ItemEffect.Damage,-.2f));
-            Add("WishWick", "Birthday Candle", 4, false, RelicCategory.Curio, RelicMechanic.CompanionGift, "Gain 2 random allies. -5 health, -5 income. Counts toward recruit limit.",Stat(ItemEffect.Health,-5),Stat(ItemEffect.Income,-5));
-            Add("ShieldBlower", "Cooling Fan", 4, false, RelicCategory.Curio, RelicMechanic.None, "+25 contact damage. Allies block hostile bullets.",Stat(ItemEffect.CollisionDamage,25),Stat(ItemEffect.Interceptor,1));
+            Add("WishWick", "Birthday Candle", 4, false, RelicCategory.Curio, RelicMechanic.CompanionGift, "Gain 2 random friends. -5 health, -5 income. Counts toward recruit limit.",Stat(ItemEffect.Health,-5),Stat(ItemEffect.Income,-5));
+            Add("ShieldBlower", "Cooling Fan", 4, false, RelicCategory.Curio, RelicMechanic.None, "+25 contact damage. Friends block hostile bullets.",Stat(ItemEffect.CollisionDamage,25),Stat(ItemEffect.Interceptor,1));
             Add("LiarMask", "Deception", 4, true, RelicCategory.Curio, RelicMechanic.FragilePower, "+100% damage. Each hit permanently removes 5% damage.",Stat(ItemEffect.Damage,1));
             Add("OrbitPastry", "Donut", 4, false, RelicCategory.Food, RelicMechanic.None, "Player: larger, slower bullets with +100% damage.",Stat(ItemEffect.BodySize,.25f),Stat(ItemEffect.BulletSize,.75f,ModifierScope.Champion),Stat(ItemEffect.BulletSpeed,-.4f,ModifierScope.Champion),Stat(ItemEffect.ChampionDamage,1));
             Add("OathParcel", "Dumplings", 4, false, RelicCategory.Food, RelicMechanic.StatFloor, "Lock current stat bonuses as minimums for the rest of this run.");
@@ -91,14 +91,14 @@ namespace ArcaneBrigade
             Add("BatteringHelm", "Hard Hat", 4, false, RelicCategory.Curio, RelicMechanic.None, "+40 contact damage, +70% contact frequency. -10 ranged damage.",Stat(ItemEffect.CollisionDamage,40,ModifierScope.Champion),Stat(ItemEffect.CollisionFrequency,.7f,ModifierScope.Champion),Stat(ItemEffect.RangedDamage,-10));
             Add("GambleSandwich", "Healthy Sandwich", 4, false, RelicCategory.Food, RelicMechanic.GambleRecovery, "Every 3 seconds: chance to heal 20 and/or lose 8. -0.2 armor.",Stat(ItemEffect.Armor,-.2f));
             Add("FeastBucket", "Juicy Fried Chicken", 4, false, RelicCategory.Food, RelicMechanic.FoodGrowth, "Food grants health, size and regeneration. -30% dodge.",Stat(ItemEffect.Health,40),Stat(ItemEffect.Heal,1),Stat(ItemEffect.BodySize,.1f),Stat(ItemEffect.Dodge,-.3f));
-            Add("WanderLetter", "Message From A Friend", 4, false, RelicCategory.Curio, RelicMechanic.FreeFollowers, "Allies roam freely. +40% critical chance. -0.7 armor.",Stat(ItemEffect.Crit,.4f),Stat(ItemEffect.Armor,-.7f));
+            Add("WanderLetter", "Message From A Friend", 4, false, RelicCategory.Curio, RelicMechanic.FreeFollowers, "Friends roam freely. +40% critical chance. -0.7 armor.",Stat(ItemEffect.Crit,.4f),Stat(ItemEffect.Armor,-.7f));
             Add("VenomPass", "Mysterious ID", 4, false, RelicCategory.Curio, RelicMechanic.IncomePoison, "Player hits poison enemies for your income each second. Does not stack.");
             Add("TruceBottle", "Peace Water", 4, false, RelicCategory.Drink, RelicMechanic.None, "+40% damage, +20% crit, +40% range, +0.6 armor.",Stat(ItemEffect.Damage,.4f),Stat(ItemEffect.Crit,.2f),Stat(ItemEffect.AttackRange,.4f),Stat(ItemEffect.Armor,.6f));
             Add("ThornPerfume", "Perfume", 4, false, RelicCategory.Curio, RelicMechanic.HurtGrowth, "Taking damage permanently improves a random stat. Enemies move 30% faster.",Stat(ItemEffect.EnemySpeed,.3f));
             Add("LastHopeMotor", "Self-Driving Force", 4, false, RelicCategory.Curio, RelicMechanic.StillPower, "+16 melee, ranged and contact damage until you move. Resets each wave.");
-            Add("AnchorTack", "Thumbtack", 4, false, RelicCategory.Curio, RelicMechanic.StaticFollowers, "Allies become stationary turrets: double range and +3 pierce.");
+            Add("AnchorTack", "Thumbtack", 4, false, RelicCategory.Curio, RelicMechanic.StaticFollowers, "Friends become stationary turrets: double range and +3 pierce.");
             Add("VoidDoubloon", "Universe Coin", 4, false, RelicCategory.Curio, RelicMechanic.VoidPulse, "Every 3 seconds, all foes lose 15% current health. -30% damage.",Stat(ItemEffect.Damage,-.3f));
-            Add("SixfoldRoot", "Potato", 4, true, RelicCategory.Food, RelicMechanic.SixWeapons, "Six phantom weapons fight for you. Player and other allies stop attacking.");
+            Add("SixfoldRoot", "Potato", 4, true, RelicCategory.Food, RelicMechanic.SixWeapons, "Six phantom weapons fight for you. Player and other friends stop attacking.");
             return result.ToArray();
         }
     }

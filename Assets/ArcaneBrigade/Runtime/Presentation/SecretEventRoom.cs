@@ -146,34 +146,38 @@ namespace ArcaneBrigade
             else if (MenuOpen)
             {
                 SecretEventProgress s = owner.Session.State.Secrets;
-                ArcadeSkin.Panel(new Rect(250, 130, 1420, 150), ArcadeSkin.Surface);
-                GUI.Label(new Rect(280, 142, 1360, 50), SecretEventAssets.Titles[(int)s.Kind], heading);
-                GUI.Label(new Rect(300, 199, 1320, 66), NightmareDialogue.Room(owner.Session.State,s.Kind) + "\nRead each offer. The way back to your shop stays open until you accept a challenge.", label);
+                // the room as plates (play-test 20/10/2026, item 7): the name and one line, your relic in the middle (tap to swap),
+                // three DO / LOSE / GET plates, one confirm button and a small way back
+                ArcadeSkin.Panel(new Rect(250, 120, 1420, 116), ArcadeSkin.Surface);
+                GUI.Label(new Rect(280, 128, 1360, 50), SecretEventAssets.Titles[(int)s.Kind], heading);
+                GUI.Label(new Rect(300, 180, 1320, 46), NightmareDialogue.Room(owner.Session.State, s.Kind), label);
                 if (s.Stage == SecretEventStage.Choosing)
                 {
-                    TargetSelector(s);
+                    bool target = owner.Session.SecretUsesTarget;
+                    if (target) TargetRelic(s);
                     SecretChoice[] choices = owner.Session.SecretChoices();
+                    if (!choices[selected].Enabled) for (int i = 0; i < 3; i++) if (choices[i].Enabled) { selected = i; break; }
+                    float top = target ? 470 : 300, height = 360;
+                    Sprite relic = owner.Content.Item(s.TargetItem)?.Icon;
                     for (int i = 0; i < 3; i++)
                     {
                         float x = 260 + i * 470; SecretChoice c = choices[i];
-                        GUI.enabled = c.Enabled;
-                        if (GUI.Button(new Rect(x, 540, 460, 70), (i + 1) + "  " + c.Title, card)) { selected = i; hold = 0; }
-                        GUI.enabled = true;
-                        ArcadeSkin.Panel(new Rect(x, 612, 460, 245), c.Enabled ? ArcadeSkin.Surface : new Color(.12f,.12f,.15f));
-                        if (selected == i) ArcadeSkin.Focus(new Rect(x, 540, 460, 317));
-                        string copy = c.Copy + (c.Enabled ? "" : "\n\nUnavailable with your current build or active contract.");
-                        body.wordWrap = true; float copyHeight = body.CalcHeight(new GUIContent(copy), 410);
-                        copyScroll[i] = ScrollPanel.Begin(new Rect(x + 18, 626, 430, 214), copyScroll[i], new Rect(0, 0, 410, copyHeight));
-                        GUI.Label(new Rect(0, 0, 410, copyHeight), copy, body);
-                        ScrollPanel.End();
-                        if (c.Icon != null) DrawSprite(new Rect(x + 175, 450, 90, 80), c.Icon);
+                        Rect plate = new Rect(x, top, 460, height);
+                        Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .45f);
+                        ArcadeSkin.Plate(plate, selected == i && c.Enabled ? ArcadeSkin.Gold : c.Enabled ? ArcadeSkin.Accent : new Color(.5f, .48f, .45f));
+                        if (selected == i && c.Enabled) ArcadeSkin.Focus(plate);
+                        GUI.Label(new Rect(x + 14, top + 14, 432, 44), c.Title, plateTitle);
+                        GUI.Label(new Rect(x + 20, top + 64, 420, 56), c.Do, body);
+                        Row(new Rect(x + 16, top + 130, 428, 96), "LOSE", c.Lose, c.UsesTarget ? relic : null, false);
+                        Row(new Rect(x + 16, top + 236, 428, 96), "GET", c.Get, c.Icon, true);
+                        GUI.color = keep;
+                        if (!c.Enabled) GUI.Label(new Rect(x, top + height - 34, 460, 30), "Not available now", label);
+                        else if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                     }
-                    ArcadeSkin.Panel(new Rect(490, 862, 940, 44), ArcadeSkin.Surface);
-                    GUI.Label(new Rect(500, 866, 920, 36), "Choose one, then agree", label);
                     GUI.enabled = choices[selected].Enabled;
-                    if (GUI.Button(new Rect(500, 920, 440, 58), "AGREE TO SELECTED OFFER", primary)) owner.ChooseSecret(selected);
+                    if (GUI.Button(new Rect(740, 880, 440, 84), owner.Session.SecretVerb, primary)) owner.ChooseSecret(selected);
                     GUI.enabled = true;
-                    if (GUI.Button(new Rect(960, 920, 460, 58), "RETURN WITHOUT A DEAL", card)) owner.LeaveSecret();
+                    if (GUI.Button(new Rect(1250, 892, 300, 64), "Back to the shop", card)) owner.LeaveSecret();
                 }
                 else
                 {
@@ -195,6 +199,45 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(24, 1038, 1000, 30), SecretEventAssets.Titles[(int)owner.Session.State.Secrets.Kind], small);
             }
             GUI.matrix = previous; GUI.depth = depth;
+        }
+        private GUIStyle plateTitle, tagStyle;
+        /// <summary>Your relic in the middle of the room: its picture and name; a tap shows the next one you own.</summary>
+        private void TargetRelic(SecretEventProgress s)
+        {
+            Rect box = new Rect(810, 250, 300, 200);
+            ArcadeSkin.Plate(box, ArcadeSkin.Teal);
+            ItemDefinition relic = owner.Content.Item(s.TargetItem);
+            if (relic?.Icon != null) DrawSprite(new Rect(box.center.x - 60, box.y + 14, 120, 120), relic.Icon);
+            GUI.Label(new Rect(box.x + 8, box.y + 138, box.width - 16, 30), relic?.Name ?? "No relic to offer", label);
+            if (owner.Session.SecretTargets.Count > 1) GUI.Label(new Rect(box.x + 8, box.y + 166, box.width - 16, 26), "tap to swap", small);
+            if (GUI.Button(box, GUIContent.none, GUIStyle.none)) CycleTarget(1);
+            if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
+            {
+                Rect friend = new Rect(1130, 300, 300, 100);
+                ArcadeSkin.Plate(friend, ArcadeSkin.Accent);
+                UnitDefinition unit = owner.Content.Unit(s.TargetUnit);
+                if (unit?.Body != null) DrawSprite(new Rect(friend.x + 10, friend.y + 10, 80, 80), unit.Body);
+                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "\ntap to swap", label);
+                if (GUI.Button(friend, GUIContent.none, GUIStyle.none))
+                {
+                    var roster = owner.Session.State.Roster; int index = roster.FindIndex(r => r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon);
+                    RosterEntry r = roster[(index + 1) % roster.Count]; owner.SecretTarget(r.UnitId, r.WeaponId);
+                }
+            }
+        }
+        /// <summary>One LOSE (red) or GET (green) row: a coloured tag, a picture when there is one, one short line.</summary>
+        private void Row(Rect r, string tag, string text, Sprite icon, bool good)
+        {
+            if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 26 }; tagStyle = new GUIStyle(label) { fontSize = 17, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
+            ArcadeSkin.Line(r, good ? new Color(.14f, .40f, .25f, .55f) : new Color(.50f, .11f, .12f, .55f));
+            Rect chip = new Rect(r.x + 8, r.y + 8, 70, 30);
+            ArcadeSkin.Line(chip, good ? new Color(.14f, .40f, .25f, .95f) : new Color(.50f, .11f, .12f, .95f));
+            GUI.Label(chip, tag, tagStyle);
+            float left = r.x + 8;
+            if (icon != null) { DrawSprite(new Rect(r.x + 10, r.y + 42, 48, 48), icon); left = r.x + 66; }
+            Color keep = body.normal.textColor; body.normal.textColor = good ? new Color(.75f, 1f, .78f) : new Color(1f, .78f, .74f);
+            body.wordWrap = true; GUI.Label(new Rect(Mathf.Max(left, r.x + 86), r.y + 6, r.xMax - Mathf.Max(left, r.x + 86) - 6, r.height - 10), text, body);
+            body.normal.textColor = keep;
         }
         private void TargetSelector(SecretEventProgress s)
         {

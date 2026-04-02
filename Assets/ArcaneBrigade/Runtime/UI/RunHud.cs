@@ -29,6 +29,8 @@ namespace ArcaneBrigade
         private readonly StageCutIn cutIn = new StageCutIn();
         private readonly WaveStamp waveStamp = new WaveStamp();
         private readonly FirstRunCoach coach = new FirstRunCoach();
+        private readonly PlayerGuide guide = new PlayerGuide();
+        public PlayerGuide Guide => guide;
         private readonly System.Collections.Generic.Dictionary<string, int> bondLevels = new System.Collections.Generic.Dictionary<string, int>();
         private string momentsRun;
         private UnitState seenBoss;
@@ -74,14 +76,24 @@ namespace ArcaneBrigade
                 if (navigation.Button(new Rect(980, 600, 280, 65), "START OVER", button)) { pausePage = 0; owner.RestartRun(); }
                 return;
             }
-            Fill(new Rect(640, 260, 640, 580), Panel);
-            ArcadeSkin.Header(new Rect(700, 330, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
-            if (navigation.Button(new Rect(750, 465, 420, 65), "RESUME", primary)) owner.TogglePause();
-            if (navigation.Button(new Rect(700, 545, 250, 60), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
-            if (navigation.Button(new Rect(970, 545, 250, 60), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
-            if (navigation.Button(new Rect(700, 620, 250, 60), "SETTINGS", button)) pausePage = 1;
-            if (navigation.Button(new Rect(970, 620, 250, 60), "START OVER", button)) pausePage = 2;
-            if (navigation.Button(new Rect(750, 700, 420, 55), "MAIN MENU", button)) owner.RequestMenuReturn();
+            if (pausePage == 3)
+            {
+                // How to play: six cards, one line each, any time
+                Fill(new Rect(240, 120, 1440, 860), Panel);
+                ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "How to Play");
+                if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
+                guide.DrawHowToPlay(new Rect(300, 270, 1320, 680), owner);
+                return;
+            }
+            Fill(new Rect(640, 230, 640, 680), Panel);
+            ArcadeSkin.Header(new Rect(700, 290, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
+            if (navigation.Button(new Rect(750, 410, 420, 65), "RESUME", primary)) owner.TogglePause();
+            if (navigation.Button(new Rect(750, 490, 420, 64), "HOW TO PLAY", button)) pausePage = 3;
+            if (navigation.Button(new Rect(700, 570, 250, 64), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
+            if (navigation.Button(new Rect(970, 570, 250, 64), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
+            if (navigation.Button(new Rect(700, 650, 250, 64), "SETTINGS", button)) pausePage = 1;
+            if (navigation.Button(new Rect(970, 650, 250, 64), "START OVER", button)) pausePage = 2;
+            if (navigation.Button(new Rect(750, 740, 420, 64), "MAIN MENU", button)) owner.RequestMenuReturn();
         }
 
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
@@ -298,7 +310,7 @@ namespace ArcaneBrigade
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
             waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);
             if (state.Phase == SessionPhase.Combat && !owner.TransitionPending) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
-            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) coach.Draw(owner, camera);
+            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { coach.Draw(owner, camera); guide.Draw(owner); }
             cutIn.Draw(new Vector2(1920, 1080));
             navigation.End();
             GUI.matrix = previous;
@@ -331,17 +343,23 @@ namespace ArcaneBrigade
                     if (navigation.Button(go, "NEXT WAVE  ↓", primary)) shop.Interact();
                     return;
                 }
-                if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; shopDetails = false; }
+                if (tooltipStation != station)
+                {
+                    tooltipStation = station; shopScroll = Vector2.zero; shopDetails = false;
+                    // a soft heartbeat when an HP-priced offer comes into focus (think twice)
+                    if (station.Offer?.Currency == ShopCurrency.Health && !PresentationSettings.ReducedAudio) CheckpointAudio.PlayInterfaceId("loot.heart", .35f);
+                }
+                bool blood = station.Offer?.Currency == ShopCurrency.Health;
                 if (station.Offer != null) offerCard.Refresh(owner.Session, owner.Content, station.Offer);
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
                 ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Rarity : ItemRarity.Common;
                 Color tag = rarity != ItemRarity.Common ? RunModifierRules.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
-                if (shopDetails && station.Offer != null) { DrawShopDetails(owner, shop, station, rarity, tag); return; }
+                if (shopDetails && station.Offer != null) { DrawShopDetails(owner, shop, station, rarity, tag, blood); return; }
                 // the card, low enough to leave the stalls and their tickets in view: a picture, the name, a row of chips
                 // (weapon, bonds), a few short lines, and on the right a big BUY with its price over a smaller i
                 Rect panel = new Rect(500, 832, 920, 240);
                 ShownShopCard = panel;
-                RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
+                if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock); else RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
                 Rect picture = new Rect(panel.x + 22, panel.y + 16, 160, 160);
                 ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
@@ -358,11 +376,13 @@ namespace ArcaneBrigade
                 float y = panel.y + 58;
                 if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
                 string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                if (station.Offer?.Currency == ShopCurrency.Health) source = "{mark} −" + station.Offer.Price + " max HP for the run · leaves 1 HP\n" + source;
                 string body = Fit(source, width, panel.yMax - 12 - y, out int more);
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
                 if (navigation.Button(buy, "", primary)) shop.Interact();
+                if (blood) BloodPriceFrame.Button(buy, Affordable(owner, station));
                 DrawPriceButton(buy, station, owner);
+                // the HP price, said once: the wax seal on the picture (never a stat line)
+                if (blood) BloodPriceFrame.Seal(new Rect(picture.xMax - 78, picture.yMax - 92, 96, 100), station.Offer.Price, owner.Content.HeartSprite);
                 if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + 10, buy.width, panel.yMax - 18 - buy.yMax - 10), more > 0 ? "i  +" + more : "i", button)) SetShopDetails(true);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
@@ -438,23 +458,39 @@ namespace ArcaneBrigade
         {
             int price = station.Offer != null ? station.Offer.Price : station.Price;
             ShopCurrency currency = station.Offer != null ? station.Offer.Currency : station.Currency;
-            string verb = station.Offer != null ? "BUY" : station.Action == "VISITOR" ? "MEET" : station.Action;
+            bool affordable = Affordable(owner, station);
+            // an HP price reads PAY; short of the price, the button says what is missing (play-test 20/10/2026)
+            string verb = station.Offer != null ? (currency == ShopCurrency.Health ? "PAY" : "BUY") : station.Action == "VISITOR" ? "MEET" : station.Action;
+            if (station.Offer != null && !affordable) verb = currency == ShopCurrency.Health ? "NOT ENOUGH HP" : currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : "NOT ENOUGH GOLD";
             bool priced = price > 0 && station.Action != "VISITOR";
-            GUI.Label(new Rect(button.x + 8, button.y + (priced ? button.height * .5f - 46 : 0), button.width - 16, priced ? 44 : button.height), verb, cardBig);
+            int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
+            Color bigColor = cardBig.normal.textColor; if (currency == ShopCurrency.Health && station.Offer != null) cardBig.normal.textColor = new Color(1f, .9f, .86f);
+            cardBig.wordWrap = true;
+            GUI.Label(new Rect(button.x + 8, button.y + (priced ? button.height * .5f - 50 : 0), button.width - 16, priced ? 48 : button.height), verb, cardBig);
+            cardBig.fontSize = bigSize; cardBig.normal.textColor = bigColor;
             if (!priced) return;
             string amount = price.ToString();
             float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = button.center.x - wide * .5f;
             Rect icon = new Rect(left, button.y + button.height * .5f + 6, 28, 28);
-            if (currency == ShopCurrency.Health) StatGlyph.Draw(icon, ItemEffect.Health);
-            else Sprite(icon, currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
+            Sprite(icon, currency == ShopCurrency.Health ? owner.Content.HeartSprite : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
+            Color priceColor = cardPrice.normal.textColor; if (currency == ShopCurrency.Health && station.Offer != null) cardPrice.normal.textColor = new Color(1f, .9f, .86f);
             GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
+            cardPrice.normal.textColor = priceColor;
+        }
+        /// <summary>Whether the player has enough of the offer's currency (HP prices must leave you standing).</summary>
+        private static bool Affordable(ArenaController owner, WorldShop.Station station)
+        {
+            if (station.Offer == null) return true;
+            RunSnapshot state = owner.Session.State; int price = station.Offer.Price;
+            return station.Offer.Currency == ShopCurrency.Health ? owner.Session.BloodAffordable(price) : station.Offer.Currency == ShopCurrency.Eggs ? state.Eggs >= price : state.Gold >= price;
         }
         /// <summary>The full rules of an offer (the i button): attack and bonds, then everything else; BACK returns.</summary>
-        private void DrawShopDetails(ArenaController owner, WorldShop shop, WorldShop.Station station, ItemRarity rarity, Color tag)
+        private void DrawShopDetails(ArenaController owner, WorldShop shop, WorldShop.Station station, ItemRarity rarity, Color tag, bool blood = false)
         {
             Rect panel = new Rect(400, 150, 1120, 880);
             ShownShopCard = panel;
-            RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
+            if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock); else RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
+            if (blood) BloodPriceFrame.Seal(new Rect(panel.x + 70, panel.y + 52, 70, 74), station.Offer.Price, owner.Content.HeartSprite);
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
             ShopDescriptionCard.DrawSprite(new Rect(panel.x + 28, panel.y + 22, 72, 72), offerCard.Portrait);
             GUI.Label(new Rect(panel.x + 116, panel.y + 18, 700, 44), shop.DisplayName(station), cardName);

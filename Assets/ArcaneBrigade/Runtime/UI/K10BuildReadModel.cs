@@ -30,23 +30,23 @@ namespace ArcaneBrigade
                     if (modifier.Effect == effect && (scope == ModifierScope.Team || RunModifierRules.Applies(modifier.Scope, scope))) sources += RunUICopy.UnitName(champion) + " / personal trait / " + RunModifierRules.ScopeName(modifier.Scope) + ": " + RunModifierRules.ValueText(effect, modifier.Value) + "\n";
                 foreach (RosterEntry entry in session.State.Roster)
                     foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers)
-                        if (modifier.Effect == effect && (scope == ModifierScope.Team || RunModifierRules.Applies(modifier.Scope, scope))) sources += catalog.Unit(entry.UnitId).DisplayName + " tier " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + ": " + RunModifierRules.ValueText(effect, modifier.Value * UnitDefinition.ModifierScale(entry.Tier)) + "\n";
+                        if (modifier.Effect == effect && (scope == ModifierScope.Team || RunModifierRules.Applies(modifier.Scope, scope))) sources += catalog.Unit(entry.UnitId).DisplayName + " stars " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + ": " + RunModifierRules.ValueText(effect, modifier.Value * UnitDefinition.ModifierScale(entry.Tier)) + "\n";
                 foreach (ItemStack stack in session.State.Items)
                     foreach (StatModifier modifier in catalog.Item(stack.Id).EffectiveModifiers)
                         if (modifier.Effect == effect && (scope == ModifierScope.Team || RunModifierRules.Applies(modifier.Scope, scope))) sources += catalog.Item(stack.Id).Name + " ×" + stack.Count + " / " + RunModifierRules.ScopeName(modifier.Scope) + ": " + RunModifierRules.ValueText(effect, modifier.Value * catalog.Item(stack.Id).EffectiveStacks(stack.Count)) + "\n";
                 foreach (BondDefinition bond in catalog.Bonds)
                     if (bond.Effect == effect && session.BondCounts.TryGetValue(bond.Id, out int count)) sources += "Bond " + bond.Name + ": " + bond.Reward(count) + "\n";
                 string summary = (K10StatRules.Percentage(effect) ? value * 100 : value).ToString("+0.###;-0.###;0") + (K10StatRules.Percentage(effect) ? "%" : "");
-                if (scope == ModifierScope.Team) summary = "Champion " + RunModifierRules.ValueText(effect, session.Bonus(effect, ModifierScope.Champion)) + " / Companions " + RunModifierRules.ValueText(effect, session.Bonus(effect, ModifierScope.Companions));
-                string limit = effect == ItemEffect.Dodge ? "\nEffective dodge 0–60%; rolled separately per hit, without added i-frames." : effect == ItemEffect.BulletSplit ? "\n0–6 branches; first generation only, no recursion. Children retain 35% damage and 70% size." : effect == ItemEffect.BulletBounce ? "\nChance 0–100%, up to 8 chance-based bounces; lifetime is not reset." : effect == ItemEffect.BulletSize ? "\nRendering and collision scale together, effective ×0.25–4." : "\nBonuses add before each formula's floor/cap. Separate weapon/tier bonuses are not included here.";
+                if (scope == ModifierScope.Team) summary = "Hero " + RunModifierRules.ValueText(effect, session.Bonus(effect, ModifierScope.Champion)) + " / Friends " + RunModifierRules.ValueText(effect, session.Bonus(effect, ModifierScope.Companions));
+                string limit = effect == ItemEffect.Dodge ? "\nEffective dodge 0–60%; rolled separately per hit, without added i-frames." : effect == ItemEffect.BulletSplit ? "\n0–6 branches; first generation only, no recursion. Children retain 35% damage and 70% size." : effect == ItemEffect.BulletBounce ? "\nChance 0–100%, up to 8 chance-based bounces; lifetime is not reset." : effect == ItemEffect.BulletSize ? "\nRendering and collision scale together, effective ×0.25–4." : "\nBonuses add before each formula's floor/cap. Separate weapon/stars bonuses are not included here.";
                 if (effect == ItemEffect.CollisionDamage)
                 {
-                    summary = "Champion " + compiled.Champion.CollisionDamage.ToString("0.0") + " per hit";
-                    limit = "\nActual champion damage, including base damage, collision stacks and damage multipliers. Touching enemies hurts both sides after contact windup. Each enemy has its own contact cooldown.";
+                    summary = "Hero " + compiled.Champion.CollisionDamage.ToString("0.0") + " per hit";
+                    limit = "\nActual hero damage, including base damage, collision stacks and damage multipliers. Touching enemies hurts both sides after contact windup. Each enemy has its own contact cooldown.";
                 }
                 if (effect == ItemEffect.CollisionFrequency)
                 {
-                    summary = "Champion every " + compiled.Champion.CollisionFrequency.ToString("0.00") + "s";
+                    summary = "Hero every " + compiled.Champion.CollisionFrequency.ToString("0.00") + "s";
                     limit = "\nActual outgoing collision interval per touching enemy. Increasing collision frequency shortens this interval; minimum 0.15 seconds.";
                 }
                 model.Stats.Add(new RunBuildReadModel.Row { Name = RunModifierRules.ModifierName(effect), Summary = summary, Explanation = RunModifierRules.ScopeName(scope) + "\n" + sources + limit });

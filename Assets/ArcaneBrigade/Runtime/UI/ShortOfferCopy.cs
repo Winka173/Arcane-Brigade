@@ -16,7 +16,7 @@ namespace ArcaneBrigade
                 for (int tier = 1; tier < catalog.MaximumTier && unit.ReferenceCompanion != "Evil"; tier++)
                     if (tiers[tier] >= 3) { tiers[tier + 1] += tiers[tier] / 3; tiers[tier] %= 3; projected = tier + 1; }
                 float after = 0; for (int tier = 1; tier < tiers.Length; tier++) after += tiers[tier] * UnitDefinition.ModifierScale(tier);
-                string result = projected > offer.Tier ? "Merge to " + projected + " stars" : "Recruit " + offer.Tier + "-star ally. Random weapon";
+                string result = projected > offer.Tier ? "Merge to " + projected + " stars" : "Recruit " + offer.Tier + "-star friend. Random weapon";
                 StatModifier[] modifiers = unit.CompanionModifiers;
                 string stats = string.Join(". ", modifiers.Where(value => value.Value * (after - before) != 0).Select(value => ScopeLabel(value.Scope) + StatName(value.Effect) + " " + RunModifierRules.ValueText(value.Effect, value.Value * (after - before))));
                 return result + (stats.Length == 0 ? "" : "\n" + stats) + "\n" + CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier);
@@ -32,22 +32,14 @@ namespace ArcaneBrigade
             string passive = item.SignatureRole != SignatureRelicKind.None ? Signature(item.SignatureRole) : item.Id == "velvet-first-aid" ? "Chests heal 4 HP per stack" : item.Id == "brass-avalanche" ? "Kills trigger a nearby damage pulse" : "Adds a passive effect";
             return (change.Length > 0 ? change : passive) + "\nOwned: " + held + " to " + (held + 1);
         }
-        private static string ScopeLabel(ModifierScope scope) => scope == ModifierScope.Champion ? "You: " : scope == ModifierScope.Companions ? "Allies: " : scope == ModifierScope.Team ? "Team: " : "";
-        public static string StatName(ItemEffect effect) => effect switch
-        {
-            ItemEffect.Health => "HP", ItemEffect.Damage => "ATK", ItemEffect.AttackSpeed => "ATK speed",
-            ItemEffect.MoveSpeed => "Speed", ItemEffect.Heal => "Heal", ItemEffect.Crit => "Crit",
-            ItemEffect.Projectiles => "Shots", ItemEffect.AttackRange => "Reach", ItemEffect.Pickup => "Pickup",
-            ItemEffect.ChampionDamage => "Hero ATK", ItemEffect.CompanionDamage => "Ally ATK", ItemEffect.CompanionAttackSpeed => "Ally ATK speed",
-            ItemEffect.BulletPierce => "Pierce", ItemEffect.BulletSplit => "Split", ItemEffect.EnemyHealth => "Enemy HP",
-            ItemEffect.EnemyCount => "Enemies", _ => RunModifierRules.ModifierName(effect)
-        };
-        private static string Modifiers(StatModifier[] modifiers) => string.Join(". ", modifiers.Where(modifier => modifier.Value != 0).GroupBy(modifier => modifier.Scope).Select(group => (group.Key == ModifierScope.Champion ? "Your " : group.Key == ModifierScope.Companions ? "Allies: " : group.Key == ModifierScope.Team ? "Team: " : "") + string.Join(", ", group.Select(modifier => RunModifierRules.ModifierName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)))));
+        private static string ScopeLabel(ModifierScope scope) => RunModifierRules.Who(scope);
+        public static string StatName(ItemEffect effect) => RunModifierRules.ModifierName(effect); // one name per stat everywhere
+        private static string Modifiers(StatModifier[] modifiers) => string.Join(". ", modifiers.Where(modifier => modifier.Value != 0).GroupBy(modifier => modifier.Scope).Select(group => (group.Key == ModifierScope.Champion ? "Your " : group.Key == ModifierScope.Companions ? "Friends: " : group.Key == ModifierScope.Team ? "Team: " : "") + string.Join(", ", group.Select(modifier => RunModifierRules.ModifierName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)))));
         public static string Companion(UnitDefinition unit) => CompanionDescriptions.Describe(unit);
-        private static string LegacyCompanion(UnitDefinition unit) => (unit.Rarity == ItemRarity.Common ? "" : RunModifierRules.RarityName(unit.Rarity) + " ally. Attacks deal " + ((int)unit.Rarity * 18) + "% more damage.\n") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
+        private static string LegacyCompanion(UnitDefinition unit) => (unit.Rarity == ItemRarity.Common ? "" : RunModifierRules.RarityName(unit.Rarity) + " friend. Attacks deal " + ((int)unit.Rarity * 18) + "% more damage.\n") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
         {
             PassiveKind.HealChampion => "Heal you every 4s", PassiveKind.ChillAura => "Slow nearby foes",
-            PassiveKind.Rally => "More allies increase attack", PassiveKind.Scavenge => "Extra loot from kills", _ => "Auto attacks"
+            PassiveKind.Rally => "More friends increase attack", PassiveKind.Scavenge => "Extra loot from kills", _ => "Auto attacks"
         });
         public static string BondPreview(RunSession session, RunCatalog catalog, ShopOffer offer)
         {

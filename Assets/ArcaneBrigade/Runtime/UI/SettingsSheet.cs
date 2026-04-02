@@ -86,7 +86,14 @@ namespace ArcaneBrigade
                 CheckpointAudio.PlayInterfaceId("ui.setting");
                 if (!save()) profile.StoryPagesAutoOpen = before;
             }
-            label(Shift(new Rect(75, 630, 1130, 64)), (inRun ? "The bundle is chosen between runs. " : "") + "Cosmetics: Office wave 5; Stage 3 bosses. Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
+            // the one-time tips and the first-run coach, shown again from the next moment they apply
+            if (Button(new Rect(75, 630, 360, 44), "SHOW TIPS AGAIN"))
+            {
+                var tips = new List<string>(profile.TipsSeen); bool coach = profile.TutorialSeen;
+                profile.TipsSeen.Clear(); profile.TutorialSeen = false;
+                Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
+            }
+            label(Shift(new Rect(460, 630, 745, 64)), (inRun ? "Looks are chosen between runs. " : "Looks unlock at wave 5 and by beating bosses. ") + "Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
         }
 
         public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();

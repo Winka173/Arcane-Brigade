@@ -56,6 +56,21 @@ namespace ArcaneBrigade.Editor
         });
         /// <summary>K32 alone: its K1 large-roster Details check runs for well over 30 minutes (quadratic in roster size,
         /// unrelated to phase A), so it is not in the phase A batch.</summary>
+        /// <summary>Play-test review phase B (copy, guide, plates, blood price): the suites it touches, in one launch.</summary>
+        public static void RunPhaseB() => Execute("PhaseB", new (string name, Action run)[]
+        {
+            ("BuildSizePolicy", BuildSizeChecks.Policy),
+            ("CopyAudit", CopyAuditChecks.Run),
+            ("ShopDescription", ShopDescriptionChecks.Run),
+            ("Visitor", VisitorChecks.Run),
+            ("HeroIdentity", HeroIdentityChecks.Run),
+            ("SecretEvent", SecretEventChecks.Run),
+            ("K10", K10Checks.Run),
+            ("K21BossEncounter", K21BossEncounterChecks.Run),
+            ("ShopFlow", ShopFlowChecks.Run),
+            ("Pacing", PacingChecks.Run),
+        });
+        public static void RunCopyAudit() => Execute("CopyAudit", new (string name, Action run)[] { ("CopyAudit", CopyAuditChecks.Run) });
         public static void RunK32() => Execute("K32", new (string name, Action run)[] { ("K32", K32Checks.Run) });
 
         public static void Run() => Execute("ActOneStory", new (string name, Action run)[]

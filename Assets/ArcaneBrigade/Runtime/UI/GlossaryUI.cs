@@ -10,9 +10,9 @@ namespace ArcaneBrigade
     {
         public sealed class Entry { public string Name; public string Description; public ItemEffect Effect; }
         private static readonly Dictionary<string, Entry> entries = Build();
-        private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{gives\\}|\\{costs\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         private static readonly Regex signedValue = new Regex("^[+−-]\\d+(?:\\.\\d+)?%?$", RegexOptions.CultureInvariant);
-        public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.ScopeName(scope) + " / " + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
+        public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.Who(scope) + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
         private static ItemEffect NearbyEffect(MatchCollection all, int index)
         {
             int distance = 40; ItemEffect effect = ItemEffect.Damage;
@@ -60,38 +60,38 @@ namespace ArcaneBrigade
             foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
             {
                 string name = RunModifierRules.ModifierName(effect);
-                if (!result.ContainsKey(name)) result[name] = new Entry { Name = name, Effect = effect, Description = Definition(effect) + "\nScope: " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(effect)) + ". Lasts for this run; resets in a new run." };
+                if (!result.ContainsKey(name)) result[name] = new Entry { Name = name, Effect = effect, Description = Definition(effect) + " Lasts until the run ends." };
                 string shortName = ShortOfferCopy.StatName(effect);
-                if (!result.ContainsKey(shortName)) result[shortName] = new Entry { Name = shortName, Effect = effect, Description = Definition(effect) + "\nScope: " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(effect)) + ". Lasts for this run; resets in a new run." };
+                if (!result.ContainsKey(shortName)) result[shortName] = new Entry { Name = shortName, Effect = effect, Description = Definition(effect) + " Lasts until the run ends." };
             }
-            Add(result, "pierce", "Bullet pierce", ItemEffect.BulletPierce, "Extra targets a projectile can pass through. Basic projectiles do not hit the same target twice. Adds weapon, tier and item bonuses, capped at 64 extra hits.", "pierce");
-            Add(result, "split", "Bullet split", ItemEffect.BulletSplit, "Creates up to 6 child projectiles after the first impact. Children deal 35% damage, are smaller and cannot split again; lifetime is not reset.", "bullet split");
-            Add(result, "bounce", "Bullet bounce", ItemEffect.BulletBounce, "Chance to redirect toward a target not yet hit by this projectile. Up to 8 chance-based bounces. Fixed weapon bounces are separate; lifetime is not extended.");
-            Add(result, "critical", "Critical hit", ItemEffect.Crit, "Chance for an attack to critically hit; bonuses add before the 0–100% cap. This is not dodge.", "crit");
-            Add(result, "dodge", "Dodge", ItemEffect.Dodge, "Rolled separately for every incoming hit, capped at 60%. Success prevents that hit's damage; there is no shared damage-immunity window after each hit.", "dodge");
-            Add(result, "armor", "Armor", ItemEffect.Armor, "Positive armor reduces incoming damage by 1/(1+armor). Negative armor increases damage, up to ×2 before the per-hit cap.", "armor");
-            Add(result, "damage", "Damage", ItemEffect.Damage, "Flat melee/ranged damage adds to base damage before percentage multipliers. Critical hits, reactions and secondary effects use separate rules; contributions record actual HP lost.");
-            Add(result, "bond", "Bond synergy", ItemEffect.CompanionDamage, "Counts roster bodies with that tag, not stars. Each bond has its own repeating threshold and may grant extra rewards at specific counts. Its card shows the actual next threshold and reward, before final combat limits. Story travellers do not count as recruited bodies.");
-            Add(result, "merge", "Tier merge", ItemEffect.CompanionDamage, "Three units of the same species/tier merge into one higher-tier unit. Tier 1/2/3 support ×1/2/4 does not preserve three old sources. Recruit weapons are random; identical species + weapon variants cannot coexist.", "tier");
-            Add(result, "altar", "Dream shop", ItemEffect.Luck, "A special shop that uses eggs or HP. An HP price lowers maximum HP for the rest of the run (current HP with it); it must leave at least 1 HP and a quarter of your maximum. The new item's bonuses cannot pay its purchase cost.");
-            Add(result, "reroll", "Reroll stock", ItemEffect.Discount, "Pay gold to replace displayed wares. No selling or locking stock; item discounts do not discount rerolls.");
-            Add(result, "stack", "Stackable", ItemEffect.Damage, "Multiple copies add bonuses according to effective stacks. Unique items cannot stack twice. Technical caps do not remove owned stacks.", "stackable");
-            Add(result, "scope", "Effect scope", ItemEffect.CompanionDamage, "Champion, companions, team or run. Bonuses apply only to their declared scope; champion bonuses do not automatically transfer to companions.", "team", "run");
-            Add(result, "correction", "Stat correction", ItemEffect.DamageCorrection, "An extra multiplier applied after the stat's basic bonuses, with its own floor/cap. This is not a permanent profile upgrade.");
-            Add(result, "weapon", "Weapons", ItemEffect.MeleeDamage, "Defines range, base damage, cycle, attack type, element and projectile behavior. Attacks are automatic; attached hands and weapons are separate from the body, without arms.");
-            Add(result, "champion", "Champion", ItemEffect.Health, "The character you control by moving; attacks automatically. Death ends the run. Immortal companions do not block bullets by default.");
-            Add(result, "companions", "Companions", ItemEffect.CompanionDamage, "Units automatically patrol, rest and attack around the champion. Each has its own benefits/tradeoffs, without upkeep or a roster cap. Melee units can enter a faster pursuit mode.");
-            Add(result, "passive", "Automatic passive", ItemEffect.Heal, "Triggers automatically on timers/conditions, without skill buttons. Unit healing, scavenging and chill are measured separately, not added to fake damage totals.", "auto-attack");
-            Add(result, "boomerang", "Returning weapon", ItemEffect.BulletDistance, "Flies out and returns to its owner. Lifetime is not reset. Split/pierce follow the weapon's projectile rules; not every weapon is a boomerang.");
-            Add(result, "health", "Current / maximum health", ItemEffect.Health, "Current HP keeps you alive; maximum HP is the build's health ceiling. HP purchases lower maximum HP for the rest of the run and must leave 1 HP. Maximum changes from buying/merging preserve missing HP. Clearing a wave restores full HP.", "HP");
-            Add(result, "gold", "Gold", ItemEffect.Income, "Collected in combat, earned as wave-end income/interest and spent in the regular shop. Combat gold commits to the save at wave end; animations do not create currency.");
-            Add(result, "eggs", "Eggs", ItemEffect.Luck, "Separate currency for the dream shop/altar. Some wares cost HP instead of eggs; the two costs are never combined.");
-            Add(result, "immortal", "Immortal companions", ItemEffect.Interceptor, "Companions cannot lose HP or die. They do not block hostile bullets by default; interception items enable that mechanic. The champion is not immortal.");
-            Add(result, "endless", "Endless journey", ItemEffect.EnemyCount, "Continue after victory, retaining this run's roster/items/stats. Enemies grow stronger with each wave; stats do not carry into a new run's profile.");
+            Add(result, "pierce", "Pierce", ItemEffect.BulletPierce, "Shots go through this many more enemies.", "pierce");
+            Add(result, "split", "Split shots", ItemEffect.BulletSplit, "Shots burst into small shots when they hit.");
+            Add(result, "bounce", "Bounce chance", ItemEffect.BulletBounce, "Chance for a shot to bounce on to another enemy.");
+            Add(result, "critical", "Crit", ItemEffect.Crit, "Chance for a hit to land twice as hard.", "crit");
+            Add(result, "dodge", "Dodge", ItemEffect.Dodge, "Chance to take no damage from a hit (max 60%).", "dodge");
+            Add(result, "armor", "Armor", ItemEffect.Armor, "Takes a bite out of every hit you take.", "armor");
+            Add(result, "damage", "Damage", ItemEffect.Damage, "How hard every hit lands.");
+            Add(result, "bond", "Bond", ItemEffect.CompanionDamage, "Friends of the same family together unlock a bonus; the card shows how many you need.");
+            Add(result, "merge", "Merge", ItemEffect.CompanionDamage, "Three of the same friend at the same stars become one friend with one more star.");
+            Add(result, "altar", "Dream shop", ItemEffect.Luck, "A shop that takes eggs or HP instead of gold. HP prices lower your max HP for the rest of the run.");
+            Add(result, "reroll", "Reroll", ItemEffect.Discount, "Pay gold for new offers in the shop.");
+            Add(result, "stack", "Stackable", ItemEffect.Damage, "More copies add more of the same bonus.", "stackable");
+            Add(result, "scope", "Who it helps", ItemEffect.CompanionDamage, "You means your hero, Friends means your brigade, no label means everyone.");
+            Add(result, "correction", "Final bonus", ItemEffect.DamageCorrection, "Multiplies a stat after every other bonus to it.");
+            Add(result, "weapon", "Weapons", ItemEffect.MeleeDamage, "Every friend fights with its own weapon, by itself.");
+            Add(result, "champion", "Hero", ItemEffect.Health, "The one you move. If your hero falls, the run ends.");
+            Add(result, "companions", "Friends", ItemEffect.CompanionDamage, "They follow you and fight by themselves. They never fall.");
+            Add(result, "passive", "Passive", ItemEffect.Heal, "Happens by itself; nothing to press.");
+            Add(result, "boomerang", "Returning weapon", ItemEffect.BulletDistance, "Flies out and comes back to its owner.");
+            Add(result, "health", "HP", ItemEffect.Health, "Your hero's health. At 0 the run ends.");
+            Add(result, "gold", "Gold", ItemEffect.Income, "Picked up in fights and earned after each wave; spend it in the shop.");
+            Add(result, "eggs", "Eggs", ItemEffect.Luck, "Spend them in the dream shop.");
+            Add(result, "immortal", "Friends never fall", ItemEffect.Interceptor, "Friends cannot be hurt; only your hero can.");
+            Add(result, "endless", "Endless", ItemEffect.EnemyCount, "Keep going after dawn with the same brigade; every wave is harder.");
             Add(result, "LANTERN STRIDE", "Lantern Stride", ItemEffect.CollisionDamage, K11HeroRules.Describe(HeroMechanic.LanternStride), "Lantern stride");
             Add(result, "PARCEL EXPRESS", "Parcel Express", ItemEffect.Projectiles, K11HeroRules.Describe(HeroMechanic.ParcelExpress), "Parcel express");
             Add(result, "DREAM BREATH", "Dream Breath", ItemEffect.Dodge, K11HeroRules.Describe(HeroMechanic.DreamBreath), "Dream breath");
-            Add(result, "RECRUIT THEMES", "Recruit themes", ItemEffect.CompanionDamage, "Only companions matching the champion's selected bonds roll in the regular shop. Weapons remain random. Existing saved units and fusion results are not removed for being off-theme.");
+            Add(result, "RECRUIT THEMES", "Families", ItemEffect.CompanionDamage, "This hero's shop offers friends from these families only.");
             return result;
         }
         private static void Add(Dictionary<string, Entry> result, string key, string name, ItemEffect effect, string description, params string[] aliases)
@@ -100,57 +100,58 @@ namespace ArcaneBrigade
             foreach (string alias in aliases) result[alias] = entry;
         }
 
+        /// <summary>One sentence per stat, in player words (shown when a stat line is tapped).</summary>
         private static string Definition(ItemEffect effect) => effect switch
         {
-            ItemEffect.Damage or ItemEffect.ChampionDamage or ItemEffect.CompanionDamage => "Percentage damage, separate from flat melee/ranged bonuses. Scope determines champion, companions or team; buffs do not transfer across scopes.",
-            ItemEffect.AttackSpeed or ItemEffect.CompanionAttackSpeed => "Divides attack cycle by 1 + bonus. Higher attack speed shortens time between attacks, not movement or projectile speed.",
-            ItemEffect.Health => "Raises maximum HP: (base + HP bonus) × health correction, minimum 1. Maximum changes from buying/merging preserve missing HP.",
-            ItemEffect.MoveSpeed => "Multiplies base movement speed. Does not increase attack speed; negative bonuses slow movement with a minimum multiplier.",
-            ItemEffect.Pickup => "Distance that triggers automatic loot attraction. Measured in map units; does not enlarge projectiles or the player's hitbox.",
-            ItemEffect.Roam => "Companion patrol radius around the champion, separate from attack range. Melee companions add 2 units and can pursue nearby enemies. Companions still rest independently.",
-            ItemEffect.Interceptor => "Enables hostile-bullet interception by immortal companions. Disabled by default; does not protect against every collision or hazard.",
-            ItemEffect.Heal => "Continuous stat-based HP regeneration per second. Unit passives, hearts and healing procs are separate sources.",
-            ItemEffect.Crit => "Critical-hit chance, added before the 0–100% cap. Separate from dodge or flat melee damage.",
-            ItemEffect.Projectiles => "Projectiles per volley before splitting. Melee attacks do not become projectiles; technical cap is 96 projectiles per volley.",
-            ItemEffect.Interest => "Raises the interest cap at rest. Actual interest also depends on stored gold and the run's divisor; separate from base income.",
-            ItemEffect.Armor => "Positive armor divides incoming damage by 1+armor. Negative armor increases damage, capped at ×2 before the per-hit limit.",
-            ItemEffect.Discount => "Discounts gold wares, up to 50% combined discount. Does not discount rerolls or HP/egg purchases.",
-            ItemEffect.Luck => "Increases loot chance and contributes 25% of its bonus to shop-rarity weights. Does not change critical-hit or combat damage RNG.",
-            ItemEffect.TreasureDetection => "Chests appear sooner, at least 4 seconds apart. Adds 25% of the bonus to chest gold quality.",
-            ItemEffect.ScoreMultiplier => "Multiplies build score after base score/difficulty. Commits on purchase/wave end; animations do not invent score.",
-            ItemEffect.CollisionDamage => "Outgoing damage when the champion/companions touch enemies, with its own cooldown. Separate from damage enemies deal to you.",
-            ItemEffect.MeleeDamage => "Flat bonus added to melee base damage before percentage multipliers. Does not increase projectile damage; tradeoffs can reduce it.",
-            ItemEffect.RangedDamage => "Flat bonus added to projectile base damage before percentage multipliers. Separate from projectile count, splitting and team percentage damage.",
-            ItemEffect.AttackRange => "Increases weapon targeting/attack range and projectile travel distance. Does not increase patrol radius; projectile speed is separate.",
-            ItemEffect.Dodge => "Rolled separately for each incoming hit, capped at 60%. Success avoids that hit, without a shared invulnerability window.",
-            ItemEffect.Income => "Adds base gold after waves and on entering endless mode. Separate from interest and pickups; negative values reduce income.",
-            ItemEffect.BulletPierce => "Extra targets projectiles can pierce. Victim tracking prevents repeated hits; adds weapon/tier/stat bonuses, capped at 64.",
-            ItemEffect.BulletSplit => "Creates up to 6 child projectiles at first impact, each smaller and dealing 35% damage. No recursive splitting or lifetime reset.",
-            ItemEffect.BulletBounce => "Chance to redirect to an unhit target, 0–100%, up to 8 bounces. Fixed weapon bounces are separate.",
-            ItemEffect.BulletSize => "Multiplies both rendered width and projectile collision radius, ×0.25–4. Not merely visual enlargement with fake damage.",
-            ItemEffect.BulletSpeed => "Increases flight speed. Lifetime decreases proportionally so speed does not grant extra range; range/distance have separate stats.",
-            ItemEffect.BulletDistance => "Increases remaining flight time/distance. No extension on splitting/bouncing; boomerangs retain their own return rules.",
-            ItemEffect.Knockback => "Increases the weapon's automatic on-hit push distance. No manual shove button; bosses/special behaviors have separate rules.",
-            ItemEffect.BodySize => "Scales champion sprite and hitbox together. Bigger champions are easier to hit; this is not an HP bonus.",
-            ItemEffect.CompanionSize => "Scales companion sprite and radius. Does not change unit/bond counts or remove immortality.",
-            ItemEffect.EnemyCount => "Changes enemy budget and spawn pacing. Can trade pressure for loot/score opportunities; does not increase your recruitable species.",
-            ItemEffect.EnemyHealth => "Multiplies enemy HP alongside wave/difficulty curves. Late-game enemies gain extra scaling, not merely larger artwork.",
-            ItemEffect.EnemySpeed => "Multiplies enemy movement speed, not bullet speed. Hostile bullets retain readable speed caps.",
-            ItemEffect.HeartHealing => "Adds HP restored by collected hearts. Does not add to continuous regeneration or every healing passive.",
-            ItemEffect.ChestQuality => "Multiplies generated chest gold, ×0.2–5. Does not create new item rarities or turn one chest into every loot type.",
-            ItemEffect.RecruitDiscount => "Discounts gold-priced recruits, combined with general discount up to 50%. Does not discount every ware.",
-            ItemEffect.RelicDiscount => "Discounts gold-priced items, combined with general discount up to 50%. Does not affect rerolls or blood shops.",
-            ItemEffect.ShopRarity => "Increases higher-rarity weights for newly generated stock. Does not upgrade owned/displayed items or guarantee rare rolls.",
-            ItemEffect.HealthCorrection => "Multiplies maximum HP after base HP bonuses; separate from current HP and blood-shop costs.",
-            ItemEffect.DamageCorrection => "Multiplies damage after base + flat melee/ranged bonuses and regular damage multipliers, respecting source scope.",
-            ItemEffect.SpeedCorrection => "An extra movement multiplier after MoveSpeed; does not change attack cooldown or projectile speed.",
-            ItemEffect.ArmorCorrection => "Multiplies armor bonuses before incoming-damage formulas. Not a directly added damage-immunity percentage.",
-            ItemEffect.HealCorrection => "Multiplies continuous regeneration when compiling combat. Does not automatically multiply hearts, all procs or recorded healing.",
-            ItemEffect.CollisionFrequency => "Divides outgoing collision-damage cooldown by 1+bonus, bounded to 0.15–4 seconds. Does not shorten enemy contact cooldown.",
-            ItemEffect.ChestReach => "Scales the distance needed to open a chest, from 0.5 to 4 times its base radius. Separate from Treasure Detection (frequency), chest quality and loose-loot attraction. Chests stay on the ground rather than flying into you.",
-            ItemEffect.ChainChance => "Chance that a friend's hit chains to one more enemy nearby (Static Club).",
-            ItemEffect.RecordedDamage => "Friends deal more damage to species already recorded this run (Exhibit Hall).",
-            _ => "Inspect the modifier's scope and source in the ledger; explanatory text grants no hidden bonuses."
+            ItemEffect.Damage or ItemEffect.ChampionDamage or ItemEffect.CompanionDamage => "How hard every hit lands, in percent.",
+            ItemEffect.AttackSpeed or ItemEffect.CompanionAttackSpeed => "How often attacks come; higher means less waiting between hits.",
+            ItemEffect.Health => "Your most HP; buying with HP lowers it.",
+            ItemEffect.MoveSpeed => "How fast you walk.",
+            ItemEffect.Pickup => "How far away coins, eggs and hearts start flying to you.",
+            ItemEffect.Roam => "How far friends wander from you to fight.",
+            ItemEffect.Interceptor => "Friends catch enemy shots that would hit you.",
+            ItemEffect.Heal => "HP you get back every second.",
+            ItemEffect.Crit => "Chance for a hit to land twice as hard.",
+            ItemEffect.Projectiles => "More shots in every volley.",
+            ItemEffect.Interest => "Gold you keep earns extra gold after each wave; this raises the most it can earn.",
+            ItemEffect.Armor => "Takes a bite out of every hit you take.",
+            ItemEffect.Discount => "Gold prices in the shop go down (up to half).",
+            ItemEffect.Luck => "More loot and rarer shop offers.",
+            ItemEffect.TreasureDetection => "Chests appear more often.",
+            ItemEffect.ScoreMultiplier => "Your score at the end is multiplied.",
+            ItemEffect.CollisionDamage => "Damage dealt just by touching enemies.",
+            ItemEffect.MeleeDamage => "Extra damage on every close hit.",
+            ItemEffect.RangedDamage => "Extra damage on every shot.",
+            ItemEffect.AttackRange => "How far attacks reach.",
+            ItemEffect.Dodge => "Chance to take no damage from a hit (max 60%).",
+            ItemEffect.Income => "Gold you get after each wave.",
+            ItemEffect.BulletPierce => "Shots go through this many more enemies.",
+            ItemEffect.BulletSplit => "Shots burst into small shots when they hit.",
+            ItemEffect.BulletBounce => "Chance for a shot to bounce on to another enemy.",
+            ItemEffect.BulletSize => "Bigger shots that are easier to land.",
+            ItemEffect.BulletSpeed => "Shots fly faster.",
+            ItemEffect.BulletDistance => "Shots fly farther.",
+            ItemEffect.Knockback => "Hits push enemies farther back.",
+            ItemEffect.BodySize => "You get bigger, which also makes you easier to hit.",
+            ItemEffect.CompanionSize => "Friends get bigger.",
+            ItemEffect.EnemyCount => "How many enemies come each wave.",
+            ItemEffect.EnemyHealth => "How much HP enemies have.",
+            ItemEffect.EnemySpeed => "How fast enemies move.",
+            ItemEffect.HeartHealing => "Extra HP from every heart you pick up.",
+            ItemEffect.ChestQuality => "More gold in every chest.",
+            ItemEffect.RecruitDiscount => "Friends cost less gold.",
+            ItemEffect.RelicDiscount => "Relics cost less gold.",
+            ItemEffect.ShopRarity => "Rarer friends and relics in the shop.",
+            ItemEffect.HealthCorrection => "Multiplies your max HP after every other HP bonus.",
+            ItemEffect.DamageCorrection => "Multiplies damage after every other damage bonus.",
+            ItemEffect.SpeedCorrection => "Multiplies move speed after every other speed bonus.",
+            ItemEffect.ArmorCorrection => "Multiplies armor after every other armor bonus.",
+            ItemEffect.HealCorrection => "Multiplies your HP regen.",
+            ItemEffect.CollisionFrequency => "Touch damage hits more often.",
+            ItemEffect.ChestReach => "How close you must walk to open a chest.",
+            ItemEffect.ChainChance => "Chance for a friend's hit to jump to one more enemy.",
+            ItemEffect.RecordedDamage => "Friends hit harder against kinds of enemy you have already met this run.",
+            _ => "A bonus for this run."
         };
 
         public static float Height(string text, GUIStyle style, float width) => Layout(new Rect(0, 0, width, 10000), text, style, false);
@@ -184,6 +185,24 @@ namespace ArcaneBrigade
                     }
                     horizontal += mark + 9; continue;
                 }
+                if (word == "{gives}" || word == "{costs}")
+                {
+                    // the card's GIVES (green) and COSTS (red) plates (play-test 20/10/2026, item 11)
+                    bool gives = word == "{gives}"; string caption = gives ? "GIVES" : "COSTS";
+                    FontStyle keptStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
+                    float plate = words.CalcSize(new GUIContent(caption)).x * .82f + 16;
+                    if (draw)
+                    {
+                        Rect r = new Rect(bounds.x + horizontal, bounds.y + vertical + line * .12f, plate, line * .76f);
+                        ArcadeSkin.Line(r, gives ? new Color(.14f, .40f, .25f, .95f) : new Color(.50f, .11f, .12f, .95f));
+                        int size = words.fontSize; words.fontSize = Mathf.RoundToInt(size * .8f);
+                        Color prior = GUI.color; GUI.color *= gives ? new Color(.75f, 1f, .78f) : new Color(1f, .8f, .76f);
+                        words.alignment = TextAnchor.MiddleCenter; GUI.Label(r, caption, words); words.alignment = TextAnchor.UpperLeft;
+                        GUI.color = prior; words.fontSize = size;
+                    }
+                    words.fontStyle = keptStyle;
+                    horizontal += plate + 8; continue;
+                }
                 Entry entry = Find(word);
                 string[] bonus = word.StartsWith("{bonus:", StringComparison.Ordinal) ? word.Substring(7, word.Length - 8).Split('|') : null;
                 bool formatted = bonus != null && bonus.Length == 3 && Enum.TryParse(bonus[0], out ItemEffect _);
@@ -203,7 +222,7 @@ namespace ArcaneBrigade
                         StatGlyph.Draw(new Rect(target.x, target.y, glyph, line), effect);
                         GUI.Label(new Rect(target.x + glyph + 3, target.y, size - glyph, line), bonus[1], words);
                         float offset = glyph + 3 + words.CalcSize(new GUIContent(bonus[1] + " ")).x;
-                        Color prior = GUI.color; GUI.color *= ShopDescriptionCard.BenefitColor(effect, bonus[2].StartsWith("-") ? -1 : 1);
+                        Color prior = GUI.color; GUI.color *= ShopDescriptionCard.BenefitColor(effect, bonus[2].StartsWith("-") || bonus[2].StartsWith("−") || bonus[2].StartsWith("×0") ? -1 : 1);
                         FontStyle previousStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
                         GUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
                         if (GUI.Button(target, GUIContent.none, GUIStyle.none)) Show(RunModifierRules.ModifierName(effect));

@@ -62,7 +62,7 @@ namespace ArcaneBrigade.Editor
                 string originalState = JsonUtility.ToJson(session.State);
                 RunBuildReadModel model = RunBuildReadModel.Capture(session, catalog, session.State.Health);
                 require(model.Links.Count(row => row.Name.StartsWith("Bond ", StringComparison.Ordinal)) == catalog.Bonds.Length, "Bonds live in existing Details links tab");
-                require(model.Stats.Any(row => row.Name == "Champion health" && row.Explanation.Contains("NGUỒN")), "Localized stats retain source explanations");
+                require(model.Stats.Any(row => row.Name == "Hero health" && row.Explanation.Contains("NGUỒN")), "Localized stats retain source explanations");
                 string invoice = RunInvoice.Describe(session.State, catalog);
                 require(invoice.Contains(RunUICopy.WeaponName(catalog.Champions[0].Weapon.Id)) && invoice.Contains("WAVE ") && !invoice.Contains("overkill") && !invoice.Contains("MEASURED"), "Invoice uses player-facing Vietnamese");
                 require(originalState == JsonUtility.ToJson(session.State), "Details and invoice do not mutate run state");

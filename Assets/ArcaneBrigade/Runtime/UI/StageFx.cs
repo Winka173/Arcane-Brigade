@@ -205,7 +205,7 @@ namespace ArcaneBrigade
             {
                 case 0:
                     if (!combat) break;
-                    message = RunUIHints.Device == RunUIDevice.Touch ? "Drag the lower-left area to move. That is all you need to do." : RunUIHints.Device == RunUIDevice.Controller ? "Move with the left stick. That is all you need to do." : "Move with WASD or the arrow keys. That is all you need to do.";
+                    message = "Move to lead your brigade. Everyone attacks by themselves.";
                     if (Vector2.Distance(owner.Simulation.Champion.Position, startPosition) > 2.5f && age > 2f || age > 8f) Next(now);
                     break;
                 case 1:
