@@ -1,0 +1,43 @@
+UI_Buttons Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png generated review_pending
+UI_Panels Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png generated review_pending
+UI_Controls Assets/ArcaneBrigade/Art/Playtest/UI/UI_Controls_v1.png generated review_pending
+UI_HUD Assets/ArcaneBrigade/Art/Playtest/UI/UI_HUD_v1.png generated review_pending
+UI_BloodPrice Assets/ArcaneBrigade/Art/Playtest/UI/UI_BloodPrice_v1.png generated review_pending
+UI_RoleBadges Assets/ArcaneBrigade/Art/Playtest/UI/UI_RoleBadges_v1.png generated review_pending
+UI_MenuBackdrop Assets/ArcaneBrigade/Art/Playtest/UI/UI_MenuBackdrop_v1.png generated review_pending
+Env_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Environment/Env_WaitingRoom_v1.png generated review_pending
+Env_PostOffice Assets/ArcaneBrigade/Art/Playtest/Environment/Env_PostOffice_v1.png generated review_pending
+Env_LampHall Assets/ArcaneBrigade/Art/Playtest/Environment/Env_LampHall_v1.png generated review_pending
+Env_ArchiveVault Assets/ArcaneBrigade/Art/Playtest/Environment/Env_ArchiveVault_v1.png generated review_pending
+Hub_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_WaitingRoom_v1.png generated review_pending
+Hub_Stations Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_Stations_v1.png generated review_pending
+UI_Buttons Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png done
+UI_Panels Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png done
+UI_Controls Assets/ArcaneBrigade/Art/Playtest/UI/UI_Controls_v1.png done
+UI_HUD Assets/ArcaneBrigade/Art/Playtest/UI/UI_HUD_v1.png done
+UI_Buttons Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png done
+UI_Panels Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png done
+UI_Controls Assets/ArcaneBrigade/Art/Playtest/UI/UI_Controls_v1.png done
+UI_HUD Assets/ArcaneBrigade/Art/Playtest/UI/UI_HUD_v1.png done
+UI_BloodPrice Assets/ArcaneBrigade/Art/Playtest/UI/UI_BloodPrice_v1.png done
+UI_RoleBadges Assets/ArcaneBrigade/Art/Playtest/UI/UI_RoleBadges_v1.png done
+UI_MenuBackdrop Assets/ArcaneBrigade/Art/Playtest/UI/UI_MenuBackdrop_v1.png done
+Env_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Environment/Env_WaitingRoom_v1.png done
+Env_PostOffice Assets/ArcaneBrigade/Art/Playtest/Environment/Env_PostOffice_v1.png done
+Env_LampHall Assets/ArcaneBrigade/Art/Playtest/Environment/Env_LampHall_v1.png done
+Env_ArchiveVault Assets/ArcaneBrigade/Art/Playtest/Environment/Env_ArchiveVault_v1.png done
+Hub_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_WaitingRoom_v1.png done
+Hub_Stations Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_Stations_v1.png done
+UI_Buttons Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png done
+UI_Panels Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png done
+UI_Controls Assets/ArcaneBrigade/Art/Playtest/UI/UI_Controls_v1.png done
+UI_HUD Assets/ArcaneBrigade/Art/Playtest/UI/UI_HUD_v1.png done
+UI_BloodPrice Assets/ArcaneBrigade/Art/Playtest/UI/UI_BloodPrice_v1.png done
+UI_RoleBadges Assets/ArcaneBrigade/Art/Playtest/UI/UI_RoleBadges_v1.png done
+UI_MenuBackdrop Assets/ArcaneBrigade/Art/Playtest/UI/UI_MenuBackdrop_v1.png done
+Env_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Environment/Env_WaitingRoom_v1.png done
+Env_PostOffice Assets/ArcaneBrigade/Art/Playtest/Environment/Env_PostOffice_v1.png done
+Env_LampHall Assets/ArcaneBrigade/Art/Playtest/Environment/Env_LampHall_v1.png done
+Env_ArchiveVault Assets/ArcaneBrigade/Art/Playtest/Environment/Env_ArchiveVault_v1.png done
+Hub_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_WaitingRoom_v1.png done
+Hub_Stations Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_Stations_v1.png done

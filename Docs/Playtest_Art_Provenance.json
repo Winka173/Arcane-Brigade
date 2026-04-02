@@ -1,0 +1,363 @@
+{
+  "date": "2026-10-20",
+  "method": "Built-in painted; PNG bytes copied unchanged from generated sources.",
+  "completed": 13,
+  "missing": [],
+  "notes": [
+    "Native tool dimensions retained by explicit user choice.",
+    "Hub_Stations layout is user-approved 4 columns x 5 rows.",
+    "Alpha measurement is reported exactly; faint generated fringe is not removed.",
+    "No runtime integration, sprite slicing or build verification is claimed."
+  ],
+  "images": [
+    {
+      "name": "UI_Buttons",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+      "source": "ArtSource\\exec-e11cfc7d-4935-4531-8e5b-d6a28dd30450.png",
+      "sha256": "f99ff1211da61933e2df80bdafc37a600906c6d2bba859b017b240be141f8dd6",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        29,
+        176,
+        26,
+        86
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "UI_Panels",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+      "source": "ArtSource\\exec-d2bf4545-4cb8-4bf8-a03c-6053e716d70d.png",
+      "sha256": "9e8d4a452cf4fa99733df26af28a146f20216e4b2a5bc71b60bf305989e9c9d7",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        18,
+        38,
+        8,
+        27
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "UI_Controls",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Controls_v1.png",
+      "source": "ArtSource\\exec-180071b6-ec33-47d5-a0a0-83a2c867cdc9.png",
+      "sha256": "eb6116dbd8d4c309f3263e853f3a05e5597f3f7bbfd6274193cfea0a045495c8",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        12,
+        115,
+        14,
+        60
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "UI_HUD",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_HUD_v1.png",
+      "source": "ArtSource\\exec-018e5386-45ed-434a-b86b-746633c1b834.png",
+      "sha256": "39c1d00800b2f91c81c231505d487d4c6b1ff58f56fabd47b66144152507aaed",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        15,
+        27,
+        7,
+        44
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "UI_BloodPrice",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_BloodPrice_v1.png",
+      "source": "ArtSource\\exec-41abd533-7dac-4769-a5be-c8331ac7617c.png",
+      "sha256": "433fe7d3544dcd97b348c2de376952f574f9b1258931fb5459edee7e307b7362",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        65,
+        244,
+        44,
+        162
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "UI_RoleBadges",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_RoleBadges_v1.png",
+      "source": "ArtSource\\exec-7ce05961-4deb-46ca-a055-3d97e773ace6.png",
+      "sha256": "966a5d648984a61d0f32b833992d8a4b1f42d41bba605b807021e1e2a2edc61c",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Crimson_Corner.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        59,
+        77,
+        60,
+        91
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "UI_MenuBackdrop",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_MenuBackdrop_v1.png",
+      "source": "ArtSource\\exec-1a4516e2-1300-49da-95d7-e57960fa97e5.png",
+      "sha256": "4bdf3acefadcd842854d469a283ab95d67061795dccbe729035ac2ea9877cd01",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ]
+    },
+    {
+      "name": "Env_WaitingRoom",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_WaitingRoom_v1.png",
+      "source": "ArtSource\\exec-8b8e6fac-9aad-4ebb-b91a-22bd950d77a9.png",
+      "sha256": "ecd3eed37152219259023e42407d7188a34b81d714217f0e90e92df68b1b96d1",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+        "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        43,
+        8,
+        16,
+        33
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "Env_PostOffice",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_PostOffice_v1.png",
+      "source": "ArtSource\\exec-a20a9eb6-ca92-4575-80ba-9f00f6a9cc47.png",
+      "sha256": "54480da114105159652ea31bcb14efbb79d6e45980afea887c049d7f6a82712f",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+        "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        128,
+        136,
+        97,
+        114
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "Env_LampHall",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_LampHall_v1.png",
+      "source": "ArtSource\\exec-058e4de3-9b0a-4e41-85b5-864772634841.png",
+      "sha256": "f43b381a5e9909250a8bd04b5c68127ff37868ba070ef8e3080ff5c4670e7e42",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+        "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        47,
+        19,
+        17,
+        38
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "Env_ArchiveVault",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Environment/Env_ArchiveVault_v1.png",
+      "source": "ArtSource\\exec-a9915ba9-ffdb-4638-8b25-2ffe0ea05d32.png",
+      "sha256": "5e6cab7f9823ec57b00fb6814698c0a285550466f3fa9bfa4be8f738bdca8ed8",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+        "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        31,
+        10,
+        9,
+        22
+      ],
+      "edge_alpha_max": 1
+    },
+    {
+      "name": "Hub_WaitingRoom",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_WaitingRoom_v1.png",
+      "source": "ArtSource\\exec-1a23b4cd-75dc-4c01-9824-18190118d53c.png",
+      "sha256": "a3049ef3d59a8895c0242a844deb95c1e87a13dbc4aeffafa7278f72d77bacfa",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "references": [
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+        "Assets/ArcaneBrigade/Art/K17/ClockworkFloor_v1.png"
+      ]
+    },
+    {
+      "name": "Hub_Stations",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_Stations_v1.png",
+      "source": "ArtSource\\exec-0deb4a51-af9a-4066-9992-9672a34aef17.png",
+      "sha256": "7171eb51ca811a7b1de99424566654a99b6999fb50964a8f52291e884f51f7e2",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "references": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+        "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_margin_px_alpha_above_16": [
+        52,
+        5,
+        31,
+        22
+      ],
+      "edge_alpha_max": 8
+    }
+  ]
+}
