@@ -58,7 +58,7 @@ namespace ArcaneBrigade
             tear.sprite = tearSprite; tear.sharedMaterial = Resources.Load<Material>("MienCho/WaitingGlow");
             shadow = prop.gameObject.AddComponent<GroundShadow>(); shadow.PinCastToFoot = true;
             suspension = prop.gameObject.AddComponent<DreamSuspension>();
-            voice = gameObject.AddComponent<AudioSource>(); voice.playOnAwake = false; voice.spatialBlend = 0;
+            voice = AudioMix.Route(gameObject.AddComponent<AudioSource>(), MixBus.Sfx); voice.playOnAwake = false; voice.spatialBlend = 0;
             ring = ComposeRing();
             Hide();
         }
@@ -131,7 +131,7 @@ namespace ArcaneBrigade
             Near = ShopFocus.Has(this,0,owner.Simulation.Champion.Position);
             if (owner.Shop?.Nearby != null || owner.Shop?.Animating == true) Near = false;
             UpdateReflection(kind);
-            voice.volume = PresentationSettings.ReducedAudio ? 0 : PresentationSettings.SfxVolume * .2f;
+            voice.volume = PresentationSettings.ReducedAudio ? 0 : AudioMix.SourceGain(MixBus.Sfx) * .2f;
             if (kind == WaitingEncounter.BreathingPhone && Near && rang < 2 && AnimationClock >= nextRing && (state.MienCho?.EncounterMask & 2) != 2)
             {
                 if (!PresentationSettings.ReducedAudio) voice.PlayOneShot(ring);

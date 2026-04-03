@@ -27,6 +27,7 @@ namespace ArcaneBrigade
             HighReadability = profile.HighReadability;
             ReducedShake = profile.ReducedShake; ShakeScale = profile.ReducedShake ? 0 : Mathf.Clamp01(profile.ShakeScale); ReducedFlashes = profile.ReducedFlashes; ReducedEffects = profile.ReducedEffects; HighlightHero = profile.HighlightHero;
             AudioListener.volume = profile.Volume;
+            AudioMix.ApplySettings(); // the music / SFX / voice sliders drive the mixer buses
             ArcadeSkin.Bundle = profile.Cosmetic;
         }
         /// <summary>Window mode, resolution and vsync from the profile; only a player build changes the screen, and only when

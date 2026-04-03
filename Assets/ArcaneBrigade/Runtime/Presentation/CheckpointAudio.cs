@@ -48,6 +48,7 @@ namespace ArcaneBrigade
                 voices[index].playOnAwake = false;
                 voices[index].spatialBlend = 0;
                 voices[index].volume = 0;
+                AudioMix.Route(voices[index], index >= 2 && index < 4 ? MixBus.UI : MixBus.Sfx); // re-routed per cue at play time
             }
             arenaOwner = GetComponent<ArenaController>() != null;
             ConfigurePresentation();
@@ -57,7 +58,8 @@ namespace ArcaneBrigade
 
         public void ConfigurePresentation()
         {
-            if (presentation) return;
+            // the licensed Cue-* clips only back the legacy path: with the cue library live they are never loaded or played (playtest item 2a)
+            if (presentation || ArcaneCueLibrary.Available) return;
             presentation = true;
             for (int index = 0; index < clips.Length; index++) clips[index] = ArcadeSound.AcquireCue(index, out ownedClips[index]);
         }
@@ -106,7 +108,7 @@ namespace ArcaneBrigade
                     if (!def.danger && !OnScreen(value.Position)) { DroppedCosmeticCues++; return; }
                     if (value.Kind == CombatEventKind.Hit && !def.danger && IsDuplicateHit(value)) { DroppedCosmeticCues++; return; }
                     if (material != null && !MaterialAudio.Allow(Time.unscaledTime)) { DroppedCosmeticCues++; return; } // a swarm never spams
-                    if (PlayLibrary(def, scale, Pan(value.Position), value.Critical, pitch)) return;
+                    if (PlayLibrary(def, scale, Pan(value.Position), value.Critical, pitch, value.Faction == Faction.Champion)) return;
                 }
             }
             bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit;
@@ -208,6 +210,7 @@ namespace ArcaneBrigade
                 if (libraryId != null && PlayLibrary(ArcaneCueLibrary.Get(libraryId))) return;
             }
             if (!isActiveAndEnabled || !focused || backgrounded || AudioListener.pause || (!ui && Time.timeScale <= 0)) return;
+            ConfigurePresentation();
             if (cue < 0 || cue >= clips.Length || clips[cue] == null) return;
             danger |= IsDangerCue(cue);
             ui &= !danger;
@@ -236,7 +239,9 @@ namespace ArcaneBrigade
             voice.volume = PlaybackGain(voiceIndex);
             voice.priority = VoicePriority(danger, ui, critical);
             voice.pitch = critical && !danger && !ui ? 1.06f : 1;
+            AudioMix.Route(voice, ui ? MixBus.UI : MixBus.Sfx);
             voice.Play();
+            AudioMix.ReportSfx(voiceGain[voiceIndex], ui ? MixBus.UI : MixBus.Sfx);
             PlayedCues++;
             if (danger) PresentationSettings.Danger();
         }
@@ -293,7 +298,7 @@ namespace ArcaneBrigade
         public void PlayId(string id) { PlayLibrary(ArcaneCueLibrary.Get(id)); }
 
         // Returns true when the cue was handled (played or deliberately dropped); false asks the caller to use the legacy path.
-        private bool PlayLibrary(ArcaneCueDef def, float gainScale = 1f, float pan = 0f, bool critical = false, float voicePitch = 1f)
+        private bool PlayLibrary(ArcaneCueDef def, float gainScale = 1f, float pan = 0f, bool critical = false, float voicePitch = 1f, bool heroSource = false)
         {
             if (!ArcaneCueLibrary.Enabled) return false;
             if (def == null || def.clips == null || def.clips.Length == 0) return false;
@@ -325,9 +330,14 @@ namespace ArcaneBrigade
             if (!danger && sameCue >= Mathf.Max(1, def.maxVoices)) { DroppedCosmeticCues++; return true; }
             AudioClip clip = ArcaneCueLibrary.Pick(def);
             if (clip == null) return false;
+            // hero, boss and UI sounds outrank the swarm: they may take a swarm lane, a swarm hit never takes theirs (SfxGovernor)
+            SfxRole role = SfxGovernor.RoleOf(def.id, def.busId, heroSource);
+            int rolePriority = SfxGovernor.Priority(role, def.priority);
             int voiceIndex = AllocateVoice(danger, ui, reduced, danger ? dangerVoice : interfaceVoice, occupied);
-            if (voiceIndex < 0 && !danger && !ui && def.priority <= 120) voiceIndex = StealVoice(def.priority, reduced);
+            if (voiceIndex < 0 && !danger && !ui && rolePriority <= 120) voiceIndex = StealVoice(rolePriority, reduced);
             if (voiceIndex < 0) { DroppedCosmeticCues++; return true; }
+            // per-clip voice limit (4 at once) and 40 ms minimum retrigger
+            if (!danger && !SfxGovernor.Admit(clip, now, role)) { DroppedCosmeticCues++; return true; }
             if (danger) dangerVoice = (dangerVoice + 1) % 2;
             else if (ui) interfaceVoice = (interfaceVoice + 1) % 2;
             nextById[def.id] = now + def.cooldown * (reduced && !danger ? 2f : 1f);
@@ -340,13 +350,14 @@ namespace ArcaneBrigade
             voice.Stop();
             voice.clip = clip;
             voiceId[voiceIndex] = def.id;
-            voiceGain[voiceIndex] = def.gain * BusTrim(def.busId) * gainScale;
+            // one loudness target for every clip (measured table), then a small ±2 dB variation so repeats never sound stamped
+            voiceGain[voiceIndex] = def.gain * BusTrim(def.busId) * gainScale * SfxGovernor.Loudness(clip) * (ui ? 1f : SfxGovernor.VaryGain());
             voice.volume = PlaybackGain(voiceIndex);
-            voice.priority = Mathf.Clamp(def.priority, 0, 255);
-            float jitter = impact || def.id.StartsWith("cmb.swing") || def.id.StartsWith("wpn.") ? Mathf.Max(def.pitchJitter, 0.07f) : def.pitchJitter;
-            // a weapon's own voice keeps only a little jitter, so it stays recognisably its own pitch
+            voice.priority = danger ? Mathf.Min(Mathf.Clamp(def.priority, 0, 255), rolePriority) : rolePriority;
+            // one small pitch spread for every effect (±4%); a weapon's own voice keeps only ±2% so it stays recognisably its own pitch
+            float jitter = ui ? Mathf.Min(def.pitchJitter, SfxGovernor.PitchSpread) : SfxGovernor.PitchSpread;
             if (!Mathf.Approximately(voicePitch, 1f)) jitter = Mathf.Min(jitter, 0.02f);
-            float pitch = voicePitch + (jitter > 0f ? UnityEngine.Random.Range(-jitter, jitter) : 0f);
+            float pitch = jitter > 0f ? SfxGovernor.VaryPitch(voicePitch, jitter) : voicePitch;
             if (critical && impact) pitch += 0.06f;
             if (def.id == "loot.coin.pickup")
             {
@@ -356,7 +367,10 @@ namespace ArcaneBrigade
             }
             voice.pitch = pitch;
             voice.panStereo = ui ? 0f : pan;
+            MixBus bus = SfxGovernor.BusOf(def.id, def.busId);
+            AudioMix.Route(voice, bus);
             voice.Play();
+            AudioMix.ReportSfx(voiceGain[voiceIndex], bus); // the music ducks under dense combat and boss cues
             PlayedCues++;
             if (danger && Ducks(def.id)) PresentationSettings.Danger();
             return true;
@@ -385,7 +399,7 @@ namespace ArcaneBrigade
             return interval * (reduced ? 2f : 1f);
         }
 
-        // Software bus trims (no AudioMixer asset): relative level of each bus before master/SFX volume.
+        // Relative level of each cue family inside its mixer bus (AudioMix: the sliders live on the buses).
         public static float BusTrim(AudioBus bus)
         {
             switch (bus)
@@ -419,6 +433,7 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (interfaceOwners.Count == 0 || interfaceOwners[interfaceOwners.Count - 1] != this) { StopVoices(); return; }
+            AudioMix.Tick();
             if (!SimulationPaused && Time.timeScale > 0 && focused && !backgrounded && !AudioListener.pause) scheduleClock += Time.unscaledDeltaTime;
             if (pending.Count > 0)
             {
@@ -438,7 +453,7 @@ namespace ArcaneBrigade
             }
         }
 
-        private float PlaybackGain(int index) => voiceGain[index] * PresentationSettings.SfxVolume * (index >= 2 && PresentationSettings.ReducedAudio ? 0.65f : 1f) * (index >= 4 && Time.unscaledTime < PresentationSettings.DangerUntil ? 0.55f : 1f);
+        private float PlaybackGain(int index) => voiceGain[index] * AudioMix.SourceGain(MixBus.Sfx) * (index >= 2 && PresentationSettings.ReducedAudio ? 0.65f : 1f) * (index >= 4 && Time.unscaledTime < PresentationSettings.DangerUntil ? 0.55f : 1f);
 
         private void OnApplicationFocus(bool focus) { focused = focus; if (!focus) StopVoices(); }
         private void OnApplicationPause(bool pause) { backgrounded = pause; if (pause) StopVoices(); }

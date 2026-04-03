@@ -112,7 +112,7 @@ namespace ArcaneBrigade
             var fogObject=new GameObject("Black Fog Between The Lights");fogObject.transform.SetParent(transform,false);
             fogMesh=new Mesh{name="Fog screen quad"};fogMesh.vertices=new[]{new Vector3(-.5f,-.5f,0),new Vector3(.5f,-.5f,0),new Vector3(.5f,.5f,0),new Vector3(-.5f,.5f,0)};fogMesh.uv=new[]{Vector2.zero,Vector2.right,Vector2.one,Vector2.up};fogMesh.triangles=new[]{0,2,1,0,3,2};fogMesh.RecalculateBounds();fogObject.AddComponent<MeshFilter>().sharedMesh=fogMesh;fogView=fogObject.AddComponent<MeshRenderer>();fogView.sortingOrder=800;
             fogDisplay=new Material(Resources.Load<Material>("MienCho/NightFogDisplay"));fogDisplay.mainTexture=fog;fogView.sharedMaterial=fogDisplay;
-            wind=gameObject.AddComponent<AudioSource>();wind.playOnAwake=false;wind.loop=true;wind.clip=Resources.Load<AudioClip>("MienCho/Audio/DarkWind");if(wind.clip!=null)wind.Play();breakClip=Resources.Load<AudioClip>("MienCho/Audio/LanternBreak");
+            wind=AudioMix.Route(gameObject.AddComponent<AudioSource>(),MixBus.Sfx);wind.playOnAwake=false;wind.loop=true;wind.clip=Resources.Load<AudioClip>("MienCho/Audio/DarkWind");if(wind.clip!=null)wind.Play();breakClip=Resources.Load<AudioClip>("MienCho/Audio/LanternBreak");
             configured=true;Active=this;
         }
         private void LateUpdate()
@@ -128,9 +128,9 @@ namespace ArcaneBrigade
             if(wave>0 && current>wave && BrokenFor(current)>BrokenFor(wave))
             {
                 LastLoss=BrokenFor(current)-1;LastLossAt=Time.unscaledTime;
-                if(!PresentationSettings.ReducedAudio && breakClip!=null)wind.PlayOneShot(breakClip,PresentationSettings.SfxVolume*.2f);
+                if(!PresentationSettings.ReducedAudio && breakClip!=null)wind.PlayOneShot(breakClip,AudioMix.SourceGain(MixBus.Sfx)*.2f);
             }
-            wave=current;previousShop=shop;wind.volume=PresentationSettings.ReducedAudio?0:PresentationSettings.SfxVolume*(shop?.015f:Mathf.Lerp(.025f,.13f,NightmareRules.Depth(wave)/4f));
+            wave=current;previousShop=shop;wind.volume=PresentationSettings.ReducedAudio?0:AudioMix.SourceGain(MixBus.Sfx)*(shop?.015f:Mathf.Lerp(.025f,.13f,NightmareRules.Depth(wave)/4f));
             BrokenCount=LitCount=0;
             float dawn=NightmareLighting.Active?.Dawn??0;
             int seed=owner.Session.State.Seed;

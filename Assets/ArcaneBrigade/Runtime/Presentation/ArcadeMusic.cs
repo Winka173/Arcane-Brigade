@@ -73,6 +73,7 @@ namespace ArcaneBrigade
         private float busSmooth = 1f;
         private AudioSource ambience;
         private string ambienceId;
+        private float bossIntroUntil;
 
         public string CurrentScene => scene;
         public float Density => density;
@@ -108,21 +109,8 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Stem mix for a scene at a given enemy density (0..1). Pure function so it can be unit-checked.</summary>
-        public static void StemTargets(string scene, float density, float[] levels)
-        {
-            float intensity = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.3f, 0.85f, density));
-            levels[0] = 1f;
-            switch (scene)
-            {
-                case ArcaneCueLibrary.SceneMenu: levels[1] = 0.85f; levels[2] = 1f; levels[3] = 0f; break;
-                case ArcaneCueLibrary.SceneSelect: levels[1] = 0.7f; levels[2] = 1f; levels[3] = 0f; break;
-                case ArcaneCueLibrary.SceneShopGold: levels[1] = 0.9f; levels[2] = 1f; levels[3] = 0.75f; break;
-                case ArcaneCueLibrary.SceneShopDream: levels[1] = 0.8f; levels[2] = 1f; levels[3] = 0.7f; break;
-                case ArcaneCueLibrary.SceneBoss: levels[1] = 1f; levels[2] = 1f; levels[3] = 0.6f + 0.4f * intensity; break;
-                case ArcaneCueLibrary.SceneEndless: levels[1] = Mathf.Lerp(0.75f, 1f, density); levels[2] = 1f; levels[3] = Mathf.Max(0.25f, intensity); break;
-                default: levels[1] = Mathf.Lerp(0.7f, 1f, density); levels[2] = 1f; levels[3] = intensity; break;
-            }
-        }
+        /// <remarks>The arrangement itself lives in <see cref="MusicArrangement"/> (combat: base + rhythm only).</remarks>
+        public static void StemTargets(string scene, float density, float[] levels) => MusicArrangement.Targets(scene, density, false, levels);
 
         private void Awake()
         {
@@ -131,7 +119,7 @@ namespace ArcaneBrigade
             {
                 for (int index = 0; index < decks.Length; index++)
                     for (int stem = 0; stem < StemCount; stem++) decks[index].sources[stem] = MakeSource(true, 210);
-                ambience = MakeSource(true, 240);
+                ambience = AudioMix.Route(MakeSource(true, 240), MixBus.Sfx);
             }
             else LoadLegacy();
         }
@@ -145,7 +133,7 @@ namespace ArcaneBrigade
             source.volume = 0;
             source.pitch = 1;
             source.priority = priority;
-            return source;
+            return AudioMix.Route(source, MixBus.Music);
         }
 
         private void LoadLegacy()
@@ -211,6 +199,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            AudioMix.Tick();
             bool active = IsActiveOwner();
             bool suspended = !focused || backgrounded || AudioListener.pause;
             double dsp = AudioSettings.dspTime;
@@ -219,7 +208,7 @@ namespace ArcaneBrigade
             wasSuspended = suspended;
 
             float dt = Time.unscaledDeltaTime;
-            float busTarget = PresentationSettings.MusicVolume * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio) * (NightmareHaunting.Quiet ? .3f : 1);
+            float busTarget = AudioMix.SourceGain(MixBus.Music) * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio) * (NightmareHaunting.Quiet ? .3f : 1);
             if (WaitingRealmStage.BedsideLullabyActive) busTarget = 0; // the familiar, incomplete lullaby takes over this encounter
             if (PresentationSettings.MusicVolume <= 0f) busSmooth = 0f;
             else busSmooth += (busTarget - busSmooth) * (1f - Mathf.Exp(-dt * (busTarget < busSmooth ? 7f : 3f)));
@@ -241,6 +230,7 @@ namespace ArcaneBrigade
         private void ChangeScene(string desired, double dsp)
         {
             scene = desired;
+            if (desired == ArcaneCueLibrary.SceneBoss) bossIntroUntil = Time.unscaledTime + MusicArrangement.BossIntroSeconds; // the boss's melody only in its intro
             ArcanePieceDef piece = string.IsNullOrEmpty(desired) ? null : ArcaneCueLibrary.PieceForScene(desired, wave);
             Deck live = current >= 0 && decks[current].Live ? decks[current] : null;
             if (piece == null)
@@ -312,7 +302,7 @@ namespace ArcaneBrigade
                 float progress = Mathf.Clamp01((float)((dsp - deck.fadeStart) / deck.fadeSeconds));
                 float envelope = deck.fadingOut ? Mathf.Cos(progress * Mathf.PI * 0.5f) : Mathf.Sin(progress * Mathf.PI * 0.5f);
                 if (deck.fadingOut && progress >= 1f) { KillDeck(deck); if (current == index) current = -1; continue; }
-                StemTargets(deck.scene, density, targets);
+                MusicArrangement.Targets(deck.scene, density, Time.unscaledTime < bossIntroUntil, targets);
                 for (int stem = 0; stem < StemCount; stem++) targets[stem] *= DreamStemGain(dreamDepth,stem,dreamDawn);
                 if (dangerSmooth > 0f) { targets[2] *= 1f - 0.65f * dangerSmooth; targets[3] *= 1f - 0.85f * dangerSmooth; targets[0] *= 1f - 0.2f * dangerSmooth; }
                 float sceneLevel = SceneLevel(deck.scene);
@@ -357,7 +347,7 @@ namespace ArcaneBrigade
             float target = 0f;
             if (wanted != null && def != null)
             {
-                target = def.gain * CheckpointAudio.BusTrim(AudioBus.Ambience) * PresentationSettings.SfxVolume * (PresentationSettings.ReducedAudio ? 0.5f : 1f)
+                target = def.gain * CheckpointAudio.BusTrim(AudioBus.Ambience) * AudioMix.SourceGain(MixBus.Sfx) * (PresentationSettings.ReducedAudio ? 0.5f : 1f)
                     * (paused ? 0.3f : 1f) * (Time.unscaledTime < PresentationSettings.DangerUntil ? 0.7f : 1f);
             }
             if (wanted != ambienceId)

@@ -1,0 +1,34 @@
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    /// <summary>
+    /// Which stems of a layered piece play where (playtest item 2a, music for focus). Stems: 0 base, 1 rhythm, 2 melody, 3 intensity.
+    /// Combat (early / mid / late / endless / boss) plays base + rhythm only, so nothing competes with the fight; the melody is
+    /// kept for the shop, the menus and the first bars of a boss (its intro). Any new piece with the same four stems follows the same rules.
+    /// </summary>
+    public static class MusicArrangement
+    {
+        /// <summary>How long a boss's melody plays before the fight settles to base + rhythm.</summary>
+        public const float BossIntroSeconds = 8f;
+
+        public static bool IsCombat(string scene) => scene == ArcaneCueLibrary.SceneCombatEarly || scene == ArcaneCueLibrary.SceneCombatMid
+            || scene == ArcaneCueLibrary.SceneCombatLate || scene == ArcaneCueLibrary.SceneEndless || scene == ArcaneCueLibrary.SceneBoss;
+
+        /// <summary>Stem levels for a scene at an enemy density (0..1); <paramref name="bossIntro"/> lets a boss's melody through.</summary>
+        public static void Targets(string scene, float density, bool bossIntro, float[] levels)
+        {
+            levels[0] = 1f;
+            switch (scene)
+            {
+                case ArcaneCueLibrary.SceneMenu: levels[1] = 0.85f; levels[2] = 1f; levels[3] = 0f; break;
+                case ArcaneCueLibrary.SceneSelect: levels[1] = 0.7f; levels[2] = 1f; levels[3] = 0f; break;
+                case ArcaneCueLibrary.SceneShopGold: levels[1] = 0.9f; levels[2] = 1f; levels[3] = 0.75f; break;
+                case ArcaneCueLibrary.SceneShopDream: levels[1] = 0.8f; levels[2] = 1f; levels[3] = 0.7f; break;
+                case ArcaneCueLibrary.SceneBoss: levels[1] = 1f; levels[2] = bossIntro ? 1f : 0f; levels[3] = 0f; break;
+                case ArcaneCueLibrary.SceneEndless: levels[1] = Mathf.Lerp(0.75f, 1f, density); levels[2] = 0f; levels[3] = 0f; break;
+                default: levels[1] = Mathf.Lerp(0.7f, 1f, density); levels[2] = 0f; levels[3] = 0f; break;
+            }
+        }
+    }
+}

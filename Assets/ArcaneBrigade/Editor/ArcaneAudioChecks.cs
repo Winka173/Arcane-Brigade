@@ -73,10 +73,11 @@ namespace ArcaneBrigade.Editor
                 && ArcaneCueLibrary.SceneFor(SessionPhase.Shop, false, 3, 20, false, false) == ArcaneCueLibrary.SceneShopGold, "scene selection by phase/wave/boss/endless/dream shop");
 
             var levels = new float[4];
+            // playtest item 2a: combat plays base + rhythm only (melody and intensity silent); the rhythm follows enemy density
             ArcadeMusic.StemTargets(ArcaneCueLibrary.SceneCombatMid, 0f, levels);
-            float calmIntensity = levels[3];
+            float calmRhythm = levels[1];
             ArcadeMusic.StemTargets(ArcaneCueLibrary.SceneCombatMid, 1f, levels);
-            Require(calmIntensity < 0.01f && levels[3] > 0.99f && levels[0] == 1f, "intensity layer follows enemy density");
+            Require(levels[0] == 1f && levels[1] > calmRhythm && levels[2] == 0f && levels[3] == 0f, "combat: base + rhythm only, rhythm follows enemy density");
 
             // Event contract (Docs/Audio/Audio_Integration_Contract.md): facts about CombatEvent that EventId relies on.
             Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Windup, Vector2.zero, Faction.Enemy)) == "boss.telegraph", "bare enemy Windup (boss pattern) is the boss telegraph");

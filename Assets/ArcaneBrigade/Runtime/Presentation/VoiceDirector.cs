@@ -99,7 +99,7 @@ namespace ArcaneBrigade
         public static bool Speaking(string speaker) => Active != null && Active.channels.TryGetValue(speaker, out Channel channel) && channel.Source != null && channel.Source.isPlaying;
         public static float Remaining(string speaker) => Active != null && Active.channels.TryGetValue(speaker, out Channel channel) && channel.Source != null && channel.Source.isPlaying ? Mathf.Max(0, channel.Until - Time.unscaledTime) : 0;
 
-        public static float Volume => PresentationSettings.VoiceVolume * CheckpointAudio.BusTrim(AudioBus.Voice) * (PresentationSettings.ReducedAudio ? 0.85f : 1f);
+        public static float Volume => AudioMix.SourceGain(MixBus.Voice) * CheckpointAudio.BusTrim(AudioBus.Voice) * (PresentationSettings.ReducedAudio ? 0.85f : 1f);
 
         public bool Play(VoiceLine line, int priority)
         {
@@ -113,7 +113,7 @@ namespace ArcaneBrigade
                 if (other.Speaker != line.Speaker && other.Source != null && other.Source.isPlaying && other.Priority > priority) return false;
             if (!channels.TryGetValue(line.Speaker, out Channel channel))
             {
-                var source = gameObject.AddComponent<AudioSource>();
+                var source = AudioMix.Route(gameObject.AddComponent<AudioSource>(), MixBus.Voice);
                 source.playOnAwake = false; source.spatialBlend = 0; source.priority = 24; source.loop = false;
                 channels[line.Speaker] = channel = new Channel { Source = source, Speaker = line.Speaker };
             }

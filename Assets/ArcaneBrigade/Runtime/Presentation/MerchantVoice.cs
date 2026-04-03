@@ -16,7 +16,7 @@ namespace ArcaneBrigade
 
         private void Awake()
         {
-            source = gameObject.AddComponent<AudioSource>();
+            source = AudioMix.Route(gameObject.AddComponent<AudioSource>(), MixBus.Voice);
             source.playOnAwake = false; source.spatialBlend = 0; source.priority = 180;
             const int rate = 22050;
             var samples = new float[1764];
@@ -42,7 +42,7 @@ namespace ArcaneBrigade
         public void Advance(MerchantDialogue dialogue, bool special, float now, bool paused)
         {
             if (source == null) return;
-            source.volume = PresentationSettings.SfxVolume * (PresentationSettings.ReducedAudio ? 0.08f : 0.24f);
+            source.volume = AudioMix.SourceGain(MixBus.Voice) * (PresentationSettings.ReducedAudio ? 0.08f : 0.24f);
             int glyph = dialogue.VisibleGlyphs(now, false);
             if (utterance != dialogue.SpokenCount) { utterance = dialogue.SpokenCount; previousGlyph = 0; nextSyllable = now; wordLetters = 0; utteranceSyllables = 0; pauseUntil = 0; }
             // a real voiced clip (VoiceDirector) replaces the murmured syllables for that line
@@ -76,7 +76,7 @@ namespace ArcaneBrigade
             if (clip != null)
             {
                 source.pitch = 1f + spread + (question ? 0.08f : 0f);
-                source.PlayOneShot(clip, def.gain * CheckpointAudio.BusTrim(AudioBus.Voice) * PresentationSettings.SfxVolume);
+                source.PlayOneShot(clip, def.gain * CheckpointAudio.BusTrim(AudioBus.Voice) * AudioMix.SourceGain(MixBus.Voice));
                 nextSyllable = Time.unscaledTime + 0.14f;
             }
             else
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
             source.Stop();
             gestureUntil = Time.unscaledTime + clip.length;
             source.pitch = 1f;
-            source.PlayOneShot(clip, def.gain * CheckpointAudio.BusTrim(AudioBus.Voice) * PresentationSettings.SfxVolume);
+            source.PlayOneShot(clip, def.gain * CheckpointAudio.BusTrim(AudioBus.Voice) * AudioMix.SourceGain(MixBus.Voice));
         }
 
         public void Silence() { if (source != null) source.Stop(); }

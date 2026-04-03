@@ -23,7 +23,7 @@ namespace ArcaneBrigade
         private Material floorMaterial;
         private readonly Vector4[] roomLights=new Vector4[16];
         private readonly float[] roomLightRadius=new float[15];
-        private AudioSource sound;
+        private AudioSource sound, sfx;
         private int room,selected=-1;
         private float clock,nextFootstep;
         private Vector2 position=new Vector2(0,-3.8f);
@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             view.clearFlags=CameraClearFlags.SolidColor;view.orthographic=true;view.orthographicSize=6.94f;view.transform.position=new Vector3(0,0,-10);view.backgroundColor=new Color(.015f,.02f,.035f);
             if(FindAnyObjectByType<AudioListener>()==null)view.gameObject.AddComponent<AudioListener>();
             AudioListener.pause=false;AudioListener.volume=storage.LoadProfile().Volume;
-            sound=gameObject.AddComponent<AudioSource>();sound.playOnAwake=false;
+            sound=AudioMix.Route(gameObject.AddComponent<AudioSource>(),MixBus.Music);sound.playOnAwake=false;sfx=AudioMix.Route(gameObject.AddComponent<AudioSource>(),MixBus.Sfx);sfx.playOnAwake=false;
             // The composed Hob image belongs to the journal; the live rescue needs movable actors over the empty room.
             backdrop=Make("A Room With An Inside Release",Resources.Load<Sprite>("MienCho/Journey/"+WaitingRooms.Art(room)+"_Painted_v1"),Vector2.zero,18.5f,-100);
             var material=Resources.Load<Material>("MienCho/JourneyRoomLight");if(material!=null){floorMaterial=new Material(material);backdrop.sharedMaterial=floorMaterial;}
@@ -100,7 +100,7 @@ namespace ArcaneBrigade
             floatingChair=chair.gameObject.AddComponent<FloatingStoryProp>();floatingChair.Configure(chair,254);
             window=Make("A Light From Another House",ActOneArtwork.Picture("Prop_InwardWindow"),new Vector2(0,4.1f),1.9f,10);
             if(rescue)BuildRescue();
-            var audio=Resources.Load<AudioClip>("MienCho/Audio/Room"+room);if(audio!=null){sound.clip=audio;sound.loop=true;sound.volume=PresentationSettings.ReducedAudio?0:PresentationSettings.MusicVolume*.22f;sound.Play();}
+            var audio=Resources.Load<AudioClip>("MienCho/Audio/Room"+room);if(audio!=null){sound.clip=audio;sound.loop=true;sound.volume=PresentationSettings.ReducedAudio?0:AudioMix.SourceGain(MixBus.Music)*.22f;sound.Play();}
             ApplyChoices();DisplayProps();
         }
         private void BuildRescue()
@@ -217,7 +217,7 @@ namespace ArcaneBrigade
             if(room==3 && session.State.WaitingCampaign.RoomChoices[7]==0 && clock>=nextFootstep)
             {
                 nextFootstep=clock+2.7f;
-                if(!PresentationSettings.ReducedAudio)sound.PlayOneShot(Resources.Load<AudioClip>("MienCho/Audio/ExtraFootstep"),PresentationSettings.SfxVolume*.16f);
+                if(!PresentationSettings.ReducedAudio)sfx.PlayOneShot(Resources.Load<AudioClip>("MienCho/Audio/ExtraFootstep"),AudioMix.SourceGain(MixBus.Sfx)*.16f);
             }
             if(!rescue && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.JoystickButton2)))for(int i=0;i<3;i++)if(TryInspect(i))break;
             if(Input.GetKeyDown(KeyCode.Tab)||Input.GetKeyDown(KeyCode.JoystickButton7))ReturnToShop();
@@ -226,7 +226,7 @@ namespace ArcaneBrigade
         {
             if(session==null || Modal || index<0 || index>2 || Vector2.Distance(position,points[index])>1.65f)return false;
             selected=index;scroll=Vector2.zero;
-            if(!PresentationSettings.ReducedAudio && room==4)sound.PlayOneShot(Resources.Load<AudioClip>("MienCho/Audio/Stay"),PresentationSettings.SfxVolume*.25f);
+            if(!PresentationSettings.ReducedAudio && room==4)sfx.PlayOneShot(Resources.Load<AudioClip>("MienCho/Audio/Stay"),AudioMix.SourceGain(MixBus.Sfx)*.25f);
             return true;
         }
         public bool Choose(int option)

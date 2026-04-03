@@ -51,7 +51,7 @@ namespace ArcaneBrigade
             for (int i = 1; i < lying.Length; i++) offerings[i] = Resources.Load<Sprite>("MienCho/ActOne/" + lying[i]);
             chair.sprite = warm != null ? warm : fallback;
             floatingChair=child.AddComponent<FloatingStoryProp>();floatingChair.Configure(chair,241);
-            song = gameObject.AddComponent<AudioSource>(); song.playOnAwake = false; song.spatialBlend = 0;
+            song = AudioMix.Route(gameObject.AddComponent<AudioSource>(), MixBus.Music); song.playOnAwake = false; song.spatialBlend = 0;
             waiting = Compose(false); morning = Compose(true);
         }
         // A small authored phrase. The earlier version withholds its cadence; dawn answers it
@@ -107,7 +107,7 @@ namespace ArcaneBrigade
             UpdateAsking();
             if (owner.PresentationPaused) { song.Pause(); return; }
             song.UnPause();
-            song.volume = PresentationSettings.MusicVolume * PresentationSettings.MusicDuck * (PresentationSettings.ReducedAudio ? .1f : .16f);
+            song.volume = AudioMix.SourceGain(MixBus.Music) * PresentationSettings.MusicDuck * (PresentationSettings.ReducedAudio ? .1f : .16f);
             if (BedsideLullabyActive)
             {
                 if (song.clip != waiting || !song.loop) { song.Stop(); song.clip = waiting; song.loop = true; song.Play(); }
