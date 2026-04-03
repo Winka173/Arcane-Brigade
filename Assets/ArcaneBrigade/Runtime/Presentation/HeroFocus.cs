@@ -59,8 +59,11 @@ namespace ArcaneBrigade
             foreach (var pair in fades) pair.Value.Target = 1;
             int heroOrder = body.sortingOrder, layer = body.sortingLayerID;
             bool occluded = false;
+            // owner (20/10/2026): only the map's own props fade during play; in the shop the stalls and their wares never fade
+            bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop;
             foreach (SpriteRenderer r in props)
             {
+                if (inShop) break;
                 if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder <= heroOrder || r.sortingOrder >= 1600) continue;
                 Vector3 size = r.bounds.size;
                 if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14 || r.color.a < .05f) continue;

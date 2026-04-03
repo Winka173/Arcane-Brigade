@@ -200,7 +200,7 @@ namespace ArcaneBrigade
         {
             offerCard.Refresh(owner.Session, owner.Content, open.Offer);
             Rect card = CardRect(open, camera);
-            if (open.Offer.Currency == ShopCurrency.Health) BloodPriceFrame.Draw(card, owner.PresentationClock); else RarityDescriptionFrame.Draw(card, offerCard.Rarity, owner.PresentationClock);
+            RarityDescriptionFrame.Draw(card, offerCard.Rarity, owner.PresentationClock); if (open.Offer.Currency == ShopCurrency.Health) BloodPriceFrame.Draw(card, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(card.x + 20, card.y + 14, 42, 42), offerCard.Portrait);
             title.normal.textColor = RunModifierRules.RarityColor(offerCard.Rarity);
             GUI.Label(new Rect(card.x + 74, card.y + 12, 810, 37), open.Title, title);

@@ -89,11 +89,68 @@ namespace ArcaneBrigade
             Rect r = new Rect(560, 150, 800, 104);
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
+            Highlight(r, Time.unscaledTime - shownAt, alpha);
             Sprite icon = null; try { icon = tip.Icon(owner); } catch (Exception) { }
             if (icon != null) RunHud.Sprite(new Rect(r.x + 18, r.y + 14, 76, 76), icon);
             GUI.Label(new Rect(r.x + 110, r.y + 8, r.width - 130, r.height - 16), tip.Line, line);
             GUI.color = keep;
             if (GUI.Button(r, GUIContent.none, GUIStyle.none)) showing = null; // a tap closes it
+        }
+
+        /// <summary>Guide text must catch the eye (owner, 20/10/2026): a gold rim with two sparks running round it, a warm glow that
+        /// swells for the first two seconds, and a soft inner rim. Reduced Motion keeps a still gold rim.</summary>
+        private static void Highlight(Rect r, float age, float alpha)
+        {
+            Color gold = ArcadeSkin.Gold; gold.a = .9f * alpha;
+            float t = 2; // rim thickness
+            ArcadeSkin.Line(new Rect(r.x - t, r.y - t, r.width + 2 * t, t), gold); ArcadeSkin.Line(new Rect(r.x - t, r.yMax, r.width + 2 * t, t), gold);
+            ArcadeSkin.Line(new Rect(r.x - t, r.y, t, r.height), gold); ArcadeSkin.Line(new Rect(r.xMax, r.y, t, r.height), gold);
+            if (PresentationSettings.ReducedMotion) return;
+            // the glow: a few widening rims fading out, strongest when the card appears
+            float swell = Mathf.Clamp01(1 - age / 2f) * .55f + .12f + .06f * Mathf.Sin(age * 3f);
+            for (int i = 1; i <= 4; i++)
+            {
+                Color glow = ArcadeSkin.Gold; glow.a = swell * alpha * (1 - i / 5f) * .5f; float o = t + i * 3;
+                ArcadeSkin.Line(new Rect(r.x - o, r.y - o, r.width + 2 * o, 2), glow); ArcadeSkin.Line(new Rect(r.x - o, r.yMax + o - 2, r.width + 2 * o, 2), glow);
+                ArcadeSkin.Line(new Rect(r.x - o, r.y - o, 2, r.height + 2 * o), glow); ArcadeSkin.Line(new Rect(r.xMax + o - 2, r.y - o, 2, r.height + 2 * o), glow);
+            }
+            // two sparks chasing each other round the rim
+            float perimeter = 2 * (r.width + r.height);
+            for (int k = 0; k < 2; k++)
+            {
+                float head = Mathf.Repeat(age * 420f + k * perimeter * .5f, perimeter);
+                for (int s = 0; s < 14; s++)
+                {
+                    Vector2 p = OnRim(r, Mathf.Repeat(head - s * 7f, perimeter));
+                    Color spark = Color.Lerp(Color.white, ArcadeSkin.Gold, s / 14f); spark.a = alpha * (1 - s / 14f);
+                    float size = Mathf.Lerp(18, 6, s / 14f); // soft round light, never a hard square
+                    Color keep = GUI.color; GUI.color = spark;
+                    GUI.DrawTexture(new Rect(p.x - size * .5f, p.y - size * .5f, size, size), SoftDot);
+                    GUI.color = keep;
+                }
+            }
+        }
+        private static Texture2D softDot;
+        private static Texture2D SoftDot
+        {
+            get
+            {
+                if (softDot != null) return softDot;
+                softDot = new Texture2D(32, 32, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
+                for (int y = 0; y < 32; y++) for (int x = 0; x < 32; x++)
+                {
+                    float d = Vector2.Distance(new Vector2(x + .5f, y + .5f), new Vector2(16, 16)) / 16f;
+                    softDot.SetPixel(x, y, new Color(1, 1, 1, Mathf.Pow(Mathf.Clamp01(1 - d), 2.2f)));
+                }
+                softDot.Apply(); return softDot;
+            }
+        }
+        private static Vector2 OnRim(Rect r, float d)
+        {
+            if (d < r.width) return new Vector2(r.x + d, r.y - 1);
+            d -= r.width; if (d < r.height) return new Vector2(r.xMax + 1, r.y + d);
+            d -= r.height; if (d < r.width) return new Vector2(r.xMax - d, r.yMax + 1);
+            d -= r.width; return new Vector2(r.x - 1, r.yMax - d);
         }
 
         private void DrawGoal(ArenaController owner)
@@ -102,6 +159,7 @@ namespace ArcaneBrigade
             float age = Time.unscaledTime - goalAt, alpha = Mathf.Clamp01(age / .3f) * Mathf.Clamp01((GoalSeconds - age) / .5f);
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
+            Highlight(r, age, alpha);
             GUI.Label(new Rect(r.x, r.y + 18, r.width, 50), "Reach the dawn", title);
             RunCatalog c = owner.Content;
             Sprite[] icons = { c.Unit(owner.Session.State.ChampionId)?.Body, c.Bosses.Length > 0 ? c.Bosses[0].Body : null, c.Arena.Coin };
@@ -120,6 +178,7 @@ namespace ArcaneBrigade
         {
             Rect r = new Rect(660, 96, 600, 52);
             ArcadeSkin.Line(r, new Color(.05f, .06f, .1f, .82f));
+            Highlight(r, Time.unscaledTime, 1);
             RunCatalog c = owner.Content;
             Sprite friend = c.Companions.Length > 0 ? c.Companions[0].Body : null;
             (Sprite icon, string word)[] steps = { (friend, "Friends"), (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics"), (null, "Stairs ↓") };

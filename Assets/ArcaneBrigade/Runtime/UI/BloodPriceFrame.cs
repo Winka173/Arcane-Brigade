@@ -22,35 +22,60 @@ namespace ArcaneBrigade
         }
         public static bool HasArt { get { Load(); return frame != null; } }
 
-        /// <summary>The card itself: paper, frame, heartbeat edge and creeping drops.</summary>
+        /// <summary>The curse laid OVER the normal rarity frame (owner, 20/10/2026: keep the description card, curse its frame):
+        /// cracks creep in from the corners with a heartbeat ember glowing in them, thorn-and-rose corners from the blood-price
+        /// sheet, a thin dark-red bleed along the inner edge, and drops seeping from the top edge. The card keeps its own paper.</summary>
         public static void Draw(Rect panel, float clock)
         {
             Load();
             bool still = PresentationSettings.ReducedMotion;
-            RunHud.Fill(panel, Paper);
-            // a heartbeat: two quick swells, then rest (about 70 beats a minute)
-            float beat = still ? 0 : Heartbeat(clock);
-            ArcadeSkin.Glow(new Rect(panel.x - 6, panel.y - 6, panel.width + 12, panel.height + 12), new Color(Ember.r, Ember.g, Ember.b, .10f + beat * .22f));
-            if (frame != null) NineSlice(panel, frame, .25f, Mathf.Min(86, panel.height * .36f));
-            else
+            float beat = still ? .35f : Heartbeat(clock);
+            // the heartbeat shows on the rim only (a radial glow over the card would tint the whole paper red)
+            for (int i = 0; i < 4; i++)
             {
-                // fallback: an inked rim of thorns
-                Color ink = new Color(.45f, .06f, .08f);
-                ArcadeSkin.Line(new Rect(panel.x, panel.y, panel.width, 4), ink); ArcadeSkin.Line(new Rect(panel.x, panel.yMax - 4, panel.width, 4), ink);
-                ArcadeSkin.Line(new Rect(panel.x, panel.y, 4, panel.height), ink); ArcadeSkin.Line(new Rect(panel.xMax - 4, panel.y, 4, panel.height), ink);
-                for (float x = panel.x + 18; x < panel.xMax - 18; x += 34) ArcadeSkin.Line(new Rect(x, panel.y + 3, 3, 9), ink);
+                Color pulse = new Color(Ember.r, Ember.g * .5f, Ember.b * .5f, (.10f + beat * .30f) * (1 - i / 4f)); float o = 1 + i * 2;
+                ArcadeSkin.Line(new Rect(panel.x - o, panel.y - o, panel.width + 2 * o, 2), pulse); ArcadeSkin.Line(new Rect(panel.x - o, panel.yMax + o - 2, panel.width + 2 * o, 2), pulse);
+                ArcadeSkin.Line(new Rect(panel.x - o, panel.y - o, 2, panel.height + 2 * o), pulse); ArcadeSkin.Line(new Rect(panel.xMax + o - 2, panel.y - o, 2, panel.height + 2 * o), pulse);
+            }
+            // a thin bleed just inside the rim, not a new background
+            for (int i = 0; i < 6; i++)
+            {
+                Color bleed = new Color(Blood.r * .6f, 0, .02f, .16f * (1 - i / 6f)); float o = 3 + i * 3;
+                ArcadeSkin.Line(new Rect(panel.x + o, panel.y + o, panel.width - 2 * o, 3), bleed); ArcadeSkin.Line(new Rect(panel.x + o, panel.yMax - o - 3, panel.width - 2 * o, 3), bleed);
+                ArcadeSkin.Line(new Rect(panel.x + o, panel.y + o, 3, panel.height - 2 * o), bleed); ArcadeSkin.Line(new Rect(panel.xMax - o - 3, panel.y + o, 3, panel.height - 2 * o), bleed);
+            }
+            // cracks from every corner (mirrored): dark ink with an ember line pulsing inside
+            float c = Mathf.Clamp(Mathf.Min(panel.width, panel.height) * .55f, 70, 170);
+            for (int k = 0; k < 4; k++)
+            {
+                bool right = k == 1 || k == 3, bottom = k >= 2;
+                Rect corner = new Rect(right ? panel.xMax - c : panel.x, bottom ? panel.yMax - c : panel.y, c, c);
+                Rect uv = new Rect(right ? 1 : 0, bottom ? 1 : 0, right ? -1 : 1, bottom ? -1 : 1);
+                Color keep = GUI.color;
+                GUI.color = new Color(.05f, 0, .01f, .85f * keep.a); GUI.DrawTextureWithTexCoords(corner, Cracks, uv, true);
+                GUI.color = new Color(Ember.r, Ember.g * .7f, Ember.b * .6f, (.25f + beat * .6f) * keep.a); GUI.DrawTextureWithTexCoords(corner, CrackGlow, uv, true);
+                GUI.color = keep;
+            }
+            // the thorn-and-rose corners from the painted blood-price sheet, corners only
+            if (frame != null)
+            {
+                float cs = Mathf.Min(78, panel.height * .4f);
+                Draw(new Rect(panel.x - cs * .18f, panel.y - cs * .18f, cs, cs), frame, new Rect(0, .75f, .25f, .25f));
+                Draw(new Rect(panel.xMax - cs * .82f, panel.y - cs * .18f, cs, cs), frame, new Rect(.75f, .75f, .25f, .25f));
+                Draw(new Rect(panel.x - cs * .18f, panel.yMax - cs * .82f, cs, cs), frame, new Rect(0, 0, .25f, .25f));
+                Draw(new Rect(panel.xMax - cs * .82f, panel.yMax - cs * .82f, cs, cs), frame, new Rect(.75f, 0, .25f, .25f));
             }
             if (drip == null) return;
             // three drops creep down from the top edge, each on its own slow clock
-            float[] at = { .24f, .56f, .83f };
-            for (int i = 0; i < at.Length; i++)
+            float[] spots = { .24f, .56f, .83f };
+            for (int i = 0; i < spots.Length; i++)
             {
                 float phase = still ? .55f : Mathf.Repeat(clock * .09f + i * .37f, 1f);
                 float length = Mathf.Lerp(.25f, 1f, Mathf.SmoothStep(0, 1, phase)) * Mathf.Min(70, panel.height * .3f);
                 float fade = still ? 1 : Mathf.Clamp01((1 - phase) * 6);
                 float full = Mathf.Min(70, panel.height * .3f), width = full * drip.rect.width / drip.rect.height;
                 Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * fade);
-                Draw(new Rect(panel.x + panel.width * at[i] - width * .5f, panel.y + 6, width, length), drip, new Rect(0, 1 - length / full, 1, length / full));
+                Draw(new Rect(panel.x + panel.width * spots[i] - width * .5f, panel.y + 6, width, length), drip, new Rect(0, 1 - length / full, 1, length / full));
                 GUI.color = keep;
             }
         }
@@ -80,6 +105,50 @@ namespace ArcaneBrigade
         {
             float t = Mathf.Repeat(clock, .86f);
             return Mathf.Max(Mathf.Exp(-Mathf.Pow((t - .08f) / .05f, 2)), .6f * Mathf.Exp(-Mathf.Pow((t - .26f) / .05f, 2)));
+        }
+
+        // ---- procedural cracks: a jagged branching fracture grown from the corner (seeded, so every card cracks the same) ----
+        private static Texture2D cracks, crackGlow;
+        private static Texture2D Cracks { get { if (cracks == null) BuildCracks(); return cracks; } }
+        private static Texture2D CrackGlow { get { if (crackGlow == null) BuildCracks(); return crackGlow; } }
+        private static void BuildCracks()
+        {
+            const int N = 192; var ink = new float[N * N]; var glow = new float[N * N];
+            var random = new System.Random(7731);
+            void Stamp(float[] map, float x, float y, float radius)
+            {
+                int r = Mathf.CeilToInt(radius + 1);
+                for (int dy = -r; dy <= r; dy++) for (int dx = -r; dx <= r; dx++)
+                {
+                    int px = Mathf.RoundToInt(x) + dx, py = Mathf.RoundToInt(y) + dy; if (px < 0 || py < 0 || px >= N || py >= N) continue;
+                    float d = Mathf.Sqrt(dx * dx + dy * dy) / Mathf.Max(.5f, radius); if (d > 1) continue;
+                    map[py * N + px] = Mathf.Max(map[py * N + px], 1 - d * d);
+                }
+            }
+            void Crack(float x, float y, float angle, float width, int steps, int depth)
+            {
+                for (int i = 0; i < steps; i++)
+                {
+                    angle += (float)(random.NextDouble() - .5) * .9f; float len = 3 + (float)random.NextDouble() * 4;
+                    float nx = x + Mathf.Cos(angle) * len, ny = y + Mathf.Sin(angle) * len;
+                    for (float t = 0; t <= 1; t += .2f)
+                    {
+                        float px = Mathf.Lerp(x, nx, t), py = Mathf.Lerp(y, ny, t), w = width * (1 - i / (float)steps * .8f);
+                        Stamp(ink, px, py, w); Stamp(glow, px, py, Mathf.Max(.6f, w * .45f));
+                    }
+                    x = nx; y = ny;
+                    if (depth < 3 && random.NextDouble() < .16) Crack(x, y, angle + (random.NextDouble() < .5 ? -1 : 1) * (.5f + (float)random.NextDouble() * .7f), width * .6f, steps / 2, depth + 1);
+                }
+            }
+            // texture origin is bottom-left; the card corner is the texture's top-left, (0, N)
+            Crack(2, N - 2, -.75f, 3.2f, 26, 0);
+            Crack(2, N - 30, -.2f, 2.2f, 16, 1);
+            Crack(30, N - 2, -1.3f, 2.2f, 16, 1);
+            cracks = new Texture2D(N, N, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
+            crackGlow = new Texture2D(N, N, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
+            var a = new Color32[N * N]; var g = new Color32[N * N];
+            for (int i = 0; i < a.Length; i++) { a[i] = new Color32(255, 255, 255, (byte)(255 * ink[i])); g[i] = new Color32(255, 255, 255, (byte)(255 * glow[i])); }
+            cracks.SetPixels32(a); cracks.Apply(); crackGlow.SetPixels32(g); crackGlow.Apply();
         }
 
         private static void Draw(Rect r, Sprite s, Rect uv)

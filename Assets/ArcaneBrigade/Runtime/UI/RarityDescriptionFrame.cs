@@ -30,7 +30,7 @@ namespace ArcaneBrigade
             float size=Mathf.Clamp(panel.height/300f,.72f,1.1f), strip=trim.Width*size*(1-trim.Stem)-2;
             float c=Mathf.Clamp(Mathf.Min(panel.width,panel.height)*.2f,40,60), corner=trim.Corner!=null?c*.84f:0;
             float crestWidth=Mathf.Clamp(panel.width*.38f,210,350)*1.012f;
-            float crest=trim.Crest!=null?trim.Crest.height*crestWidth/trim.Crest.width*.38f:0;
+            float crest=trim.Crest!=null?trim.Crest.height*crestWidth/trim.Crest.width*(trim.CrestBottom-trim.CrestBase):0;
             float foot=trim.Foot!=null?trim.Foot.height*(crestWidth*.5f)/trim.Foot.width*.18f:0;
             float side=Mathf.Max(strip,corner*.6f)+margin, top=Mathf.Max(crest,corner*.6f)+margin, bottom=Mathf.Max(foot,corner*.6f)+margin;
             return new Rect(panel.x+side,panel.y+top,panel.width-2*side,panel.height-top-bottom);
@@ -48,7 +48,10 @@ namespace ArcaneBrigade
         private sealed class Trim
         {
             public Texture2D Side,Glow,Crest,Foot,Corner;
-            public float Width,Stem,Scroll,Pulse;   // strip width on screen, where its stem lies (0..1 across), px/s, pulse speed
+            public float Width,Stem,Scroll,Pulse;
+            // measured from each painted crest (share of its height): the row where its rail spreads wide, which sits on the
+            // box's top edge, and the lowest painted pixel, which may hang a little into the box
+            public float CrestBase=.8f,CrestBottom=.92f;   // strip width on screen, where its stem lies (0..1 across), px/s, pulse speed
         }
         private static readonly Trim[] trims=new Trim[6];
         private static bool loaded;
@@ -72,6 +75,14 @@ namespace ArcaneBrigade
             var trim=new Trim{Side=Part("Side"),Glow=Part("Glow"),Crest=Part("Crest"),Foot=Part("Foot"),Corner=Part("Corner"),Width=width,Stem=stem,Scroll=scroll,Pulse=pulse};
             foreach(Texture2D strip in new[]{trim.Side,trim.Glow})
                 if(strip!=null){strip.wrapModeV=TextureWrapMode.Repeat;strip.wrapModeU=TextureWrapMode.Clamp;}
+            switch(rarity) // crest rail row / lowest pixel, measured from Resources/RarityFrame/*_Crest.png
+            {
+                case ItemRarity.Uncommon: trim.CrestBase=.78f; trim.CrestBottom=.98f; break;
+                case ItemRarity.Rare: trim.CrestBase=.81f; trim.CrestBottom=.91f; break;
+                case ItemRarity.Mythic: trim.CrestBase=.70f; trim.CrestBottom=.95f; break;
+                case ItemRarity.Crimson: trim.CrestBase=.87f; trim.CrestBottom=.95f; break;
+                case ItemRarity.Rainbow: trim.CrestBase=.78f; trim.CrestBottom=.99f; break;
+            }
             trims[(int)rarity]=trim;
         }
 
@@ -109,7 +120,7 @@ namespace ArcaneBrigade
             if(trim.Crest!=null)
             {
                 float h=trim.Crest.height*crestWidth/trim.Crest.width;
-                Image(trim.Crest,new Rect(panel.center.x-crestWidth*.5f,panel.y-h*.62f,crestWidth,h),false,false);
+                Image(trim.Crest,new Rect(panel.center.x-crestWidth*.5f,panel.y-h*trim.CrestBase,crestWidth,h),false,false);
             }
             if(trim.Foot!=null)
             {
