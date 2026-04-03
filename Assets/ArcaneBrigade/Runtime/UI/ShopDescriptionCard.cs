@@ -19,6 +19,8 @@ namespace ArcaneBrigade
         }
         public readonly List<BondRow> Bonds = new List<BondRow>();
         public string Summary, Details, Identity;
+        /// <summary>A friend's role (null for relics) and whether one of its duet partners is already in the brigade.</summary>
+        public CompanionRole? Role; public bool Combo; public string ComboLines = "";
         public ItemRarity Rarity;
         public Sprite Portrait;
         public RecruitAttackReadout Attack;
@@ -37,7 +39,7 @@ namespace ArcaneBrigade
             cacheKey = key; Bonds.Clear(); Attack = null;
             if (offer.Kind == OfferKind.Item)
             {
-                var item = catalog.Item(offer.Id); Rarity = item.Rarity; Portrait = item.Icon;
+                var item = catalog.Item(offer.Id); Rarity = item.Rarity; Portrait = item.Icon; Role = null; Combo = false;
                 Identity = RelicDescriptions.Category(item) + " · " + RunModifierRules.RarityName(Rarity) + (item.Stacking == StackPolicy.Unique ? " · UNIQUE" : " · STACKABLE");
                 Details = RelicDescriptions.Describe(item, session.StackCount(item.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(session, catalog, item);
                 // the card: one line per stat (painted stat icon, exact value), one short line per special effect; every rule,
@@ -57,7 +59,8 @@ namespace ArcaneBrigade
                 return;
             }
             var unit = catalog.Unit(offer.Id); Rarity = unit.Rarity; Portrait = unit.Body;
-            Identity = "FRIEND · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
+            Role = CompanionRoles.For(unit);
+            Identity = CompanionRoles.Word(Role.Value) + " · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
             Attack = session.InspectRecruitAttack(unit.Id, offer.Tier);
             // Run the real recruitment/merge/absorption rules on an isolated copy, never on the live roster or RNG.
             using var preview = new RunSession(catalog);
@@ -80,6 +83,7 @@ namespace ArcaneBrigade
             // the card: support stats with their painted icons, then one short line each for the own skill, the talent, the
             // passive and where a merge stands; the full rules, the lore and the weapon preview stay under INFO (Details)
             var b = new StringBuilder();
+            b.AppendLine(CompanionRoles.Tagline(Role.Value)); // what it does, first (play-test 20/10/2026, item 26)
             AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier), true);
             AppendCosts(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
             if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine("{mark} " + skill);
@@ -87,13 +91,23 @@ namespace ArcaneBrigade
             if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine("{mark} " + talent);
             string passive = CompanionDescriptions.ShortPassive(unit, offer.Tier, catalog.TierSupportMultiplier);
             if (passive.Length > 0) b.AppendLine("{mark} " + passive);
+            // its duets: who it pairs with and what they do together (lit when the partner is already in the brigade)
+            Combo = false; ComboLines = "";
+            foreach (Duet duet in Duets.For(unit.Id))
+            {
+                UnitDefinition partner = catalog.Unit(Duets.Partner(duet, unit.Id)); if (partner == null) continue;
+                bool ready = session.OwnsCompanionSpecies(partner.Id);
+                ComboLines += "\nCombo with " + RunUICopy.UnitName(partner) + ": " + duet.Line + (ready ? " ✓" : "");
+                if (ready && !Combo) b.AppendLine("{mark} Combo with " + RunUICopy.UnitName(partner) + ": " + duet.Line + " ✓");
+                Combo |= ready;
+            }
             int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == offer.Tier);
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
                 : offer.Tier >= catalog.MaximumTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
                 : "Owned " + copies + "/3 at " + offer.Tier + "-star" + (copies == 2 ? " · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
             Summary = b.ToString().Trim();
             string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
-            Details = Summary + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
+            Details = Summary + (ComboLines.Length > 0 ? "\n\nCOMBOS" + ComboLines : "") + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
                 + (unit.Passive != PassiveKind.None ? "\nPASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier) : "")
                 + "\nImmortal. Shown support is per body; three matching bodies merge and keep one of their weapons."
                 + "\nRandom weapon: the attack ranges use your current build. " + (Attack.Melee && Attack.Ranged ? "Melee and ranged weapons are eligible." : Attack.Ranged ? "Ranged weapons are eligible." : "Close-range weapons are eligible.")

@@ -362,6 +362,8 @@ namespace ArcaneBrigade
 
         private Texture2D Backdrop()
         {
+            // the painted menu background (UI kit, item 13); after Act One the room with the turned chair keeps the story
+            if (!ActOneDone && ArcadeSkin.KitSprite("Menu/Backdrop") is Sprite menu) return menu.texture;
             if (ActOneDone)
             {
                 if (turnedRoom == null) turnedRoom = Resources.Load<Texture2D>("MienCho/WaitingRoom_ChairTurned");
@@ -481,7 +483,7 @@ namespace ArcaneBrigade
                 UnitDefinition unit = catalog.Champions[index];
                 bool unlocked = profile.BestWave >= unit.UnlockWave;
                 Rect card = RosterCardBounds(index);
-                RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
+                if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .42f); else RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 if (index == selection) { ArcadeSkin.Glow(new Rect(card.x + 10, card.y, card.width - 20, 150), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.26f)); ArcadeSkin.Slant(new Rect(card.x + 14, card.yMax - 16, card.width - 28, 8), ArcadeSkin.Teal); }
                 if (navigation.Button(card, "", GUIStyle.none)) { if (selection != index) rosterDescriptionScroll = Vector2.zero; selection = index; }
                 Color previousColor = GUI.color;
@@ -501,7 +503,7 @@ namespace ArcaneBrigade
                     if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) RunHud.Sprite(new Rect(690 - iconIndex++ * 34, 145, 28, 28), bond.Icon);
                 if (iconIndex > 0) GUI.Label(new Rect(690 - iconIndex * 34 - 130, 145, 125, 28), "RECRUIT THEMES", note);
             }
-            RunHud.Fill(new Rect(760, 135, 460, 445), ArcadeSkin.Card);
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(760, 135, 460, 445), KitFrame.Dialogue, .45f); else RunHud.Fill(new Rect(760, 135, 460, 445), ArcadeSkin.Card);
             ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
             RunHud.Sprite(new Rect(775, 145, 132, 142), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }

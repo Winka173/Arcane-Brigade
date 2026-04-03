@@ -43,6 +43,22 @@ namespace ArcaneBrigade.Editor
             if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
         }
 
+        /// <summary>The UI-kit gate (play-test item 13): the texture policy (the kit's sprites ship), the shop description and the
+        /// visitor suites, in one launch.</summary>
+        public static void RunKit()
+        {
+            var lines = new List<string>(); int failed = 0;
+            foreach (var (name, run) in new (string, Action)[] { ("BuildSizePolicy", Policy), ("ShopDescription", ShopDescriptionChecks.Run), ("Visitor", VisitorChecks.Run) })
+            {
+                try { run(); lines.Add("PASS " + name); }
+                catch (Exception error) { failed++; Exception root = error.InnerException ?? error; lines.Add("FAIL " + name + ": " + root.Message + " @ " + (root.StackTrace ?? "").Split('\n')[0].Trim()); }
+            }
+            Directory.CreateDirectory("PreviewExports/BuildSize");
+            File.WriteAllLines("PreviewExports/BuildSize/KitChecks.txt", lines);
+            Debug.Log("UIKIT_CHECKS " + (lines.Count - failed) + "/" + lines.Count + " PASS\n" + string.Join("\n", lines));
+            if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
+        }
+
         private static IEnumerable<string> PackedOrder(string path)
         {
             // the packer's order: sprites as listed in the .meta

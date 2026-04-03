@@ -36,7 +36,7 @@ namespace ArcaneBrigade.Editor
                 foreach (var m in u.CompanionModifiers ?? Array.Empty<StatModifier>())
                     if (m.Value != 0) Check(card.Summary.Contains(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * UnitDefinition.ModifierScale(tier))), "All support values and scopes included: " + u.Id + " / " + tier + " / " + m.Effect);
                 Check(card.Summary.Contains(CompanionDescriptions.ShortTalent(u)) && card.Details.Contains(CompanionDescriptions.Talent(u)) && card.Details.Contains(CreatureLives.Origin(u.Id)), "Short talent on the card, the full talent and lore under INFO: " + u.Id + " / " + tier);
-                Check(card.Summary.Split('\n').Count(line => !line.Contains("{bonus:")) <= 5, "The companion card stays short (stat lines are one icon each): " + u.Id + " / " + tier + " :: " + card.Summary.Replace("\n", " | "));
+                Check(card.Summary.Split('\n').Count(line => !line.Contains("{bonus:")) <= 6, "The companion card stays short: role line + up to 5 more (stat lines are one icon each): " + u.Id + " / " + tier + " :: " + card.Summary.Replace("\n", " | "));
                 copy.AppendLine("## " + u.DisplayName + " / " + tier + " star\n" + card.Details + "\n");
             }
             foreach (var item in c.Items)

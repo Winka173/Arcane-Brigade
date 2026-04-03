@@ -118,7 +118,7 @@ namespace ArcaneBrigade
                     giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = 1; giftOffer.Token = -1; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
                     Rect plate = new Rect(300 + i * 450, 250, 430, 560);
-                    if (preview == i) RarityDescriptionFrame.Draw(plate, ItemRarity.Rainbow, owner.PresentationClock); else ArcadeSkin.Plate(plate, ArcadeSkin.Accent);
+                    if (preview == i) RarityDescriptionFrame.Draw(plate, ItemRarity.Rainbow, owner.PresentationClock); else ArcadeSkin.EventPlate(plate, false, true);
                     Rect inner = preview == i ? RarityDescriptionFrame.Content(plate, ItemRarity.Rainbow) : new Rect(plate.x + 24, plate.y + 24, plate.width - 48, plate.height - 48);
                     ShopDescriptionCard.DrawSprite(new Rect(inner.center.x - 70, inner.y, 140, 140), giftCard.Portrait);
                     cardName.normal.textColor = RunModifierRules.RarityColor(ItemRarity.Rainbow); cardLine.normal.textColor = ArcadeSkin.Cream; identity.normal.textColor = ArcadeSkin.Teal;

@@ -137,7 +137,7 @@ namespace ArcaneBrigade
                 int near = NearestPortal();
                 if (near >= 0)
                 {
-                    ArcadeSkin.Panel(new Rect(400, 850, 1120, 148), ArcadeSkin.Surface);
+                    ArcadeSkin.Frame(new Rect(400, 850, 1120, 148), KitFrame.Dialogue, .6f);
                     GUI.Label(new Rect(420, 858, 1080, 44), SecretEventAssets.Titles[(int)kinds[near]], heading);
                     GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "", label);
                     if (GUI.Button(new Rect(1260, 916, 230, 56), "DISCOVER", primary)) owner.EnterSecret(kinds[near]);
@@ -148,7 +148,7 @@ namespace ArcaneBrigade
                 SecretEventProgress s = owner.Session.State.Secrets;
                 // the room as plates (play-test 20/10/2026, item 7): the name and one line, your relic in the middle (tap to swap),
                 // three DO / LOSE / GET plates, one confirm button and a small way back
-                ArcadeSkin.Panel(new Rect(250, 120, 1420, 116), ArcadeSkin.Surface);
+                ArcadeSkin.Frame(new Rect(250, 120, 1420, 116), KitFrame.Dialogue, .6f);
                 GUI.Label(new Rect(280, 128, 1360, 50), SecretEventAssets.Titles[(int)s.Kind], heading);
                 GUI.Label(new Rect(300, 180, 1320, 46), NightmareDialogue.Room(owner.Session.State, s.Kind), label);
                 if (s.Stage == SecretEventStage.Choosing)
@@ -164,7 +164,7 @@ namespace ArcaneBrigade
                         float x = 260 + i * 470; SecretChoice c = choices[i];
                         Rect plate = new Rect(x, top, 460, height);
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .45f);
-                        ArcadeSkin.Plate(plate, selected == i && c.Enabled ? ArcadeSkin.Gold : c.Enabled ? ArcadeSkin.Accent : new Color(.5f, .48f, .45f));
+                        ArcadeSkin.EventPlate(plate, selected == i && c.Enabled, c.Enabled); // painted plate art lands later (UI_SecretEvent sheet)
                         if (selected == i && c.Enabled) ArcadeSkin.Focus(plate);
                         GUI.Label(new Rect(x + 14, top + 14, 432, 44), c.Title, plateTitle);
                         GUI.Label(new Rect(x + 20, top + 64, 420, 56), c.Do, body);
@@ -181,7 +181,7 @@ namespace ArcaneBrigade
                 }
                 else
                 {
-                    ArcadeSkin.Panel(new Rect(420, 540, 1080, 315), ArcadeSkin.Surface);
+                    ArcadeSkin.Frame(new Rect(420, 540, 1080, 315), KitFrame.Dialogue, .6f);
                     body.wordWrap = true; float resultHeight = body.CalcHeight(new GUIContent(s.Result), 990);
                     resultScroll = ScrollPanel.Begin(new Rect(455, 562, 1010, 170), resultScroll, new Rect(0, 0, 990, resultHeight));
                     GUI.Label(new Rect(0, 0, 990, resultHeight), s.Result, body);
@@ -231,7 +231,7 @@ namespace ArcaneBrigade
             if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 26 }; tagStyle = new GUIStyle(label) { fontSize = 17, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
             ArcadeSkin.Line(r, good ? new Color(.14f, .40f, .25f, .55f) : new Color(.50f, .11f, .12f, .55f));
             Rect chip = new Rect(r.x + 8, r.y + 8, 70, 30);
-            ArcadeSkin.Line(chip, good ? new Color(.14f, .40f, .25f, .95f) : new Color(.50f, .11f, .12f, .95f));
+            ArcadeSkin.Plate(chip, good ? ArcadeSkin.Teal : ArcadeSkin.Wax);
             GUI.Label(chip, tag, tagStyle);
             float left = r.x + 8;
             if (icon != null) { DrawSprite(new Rect(r.x + 10, r.y + 42, 48, 48), icon); left = r.x + 66; }

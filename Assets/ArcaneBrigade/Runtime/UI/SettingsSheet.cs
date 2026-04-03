@@ -134,8 +134,8 @@ namespace ArcaneBrigade
         {
             label(Shift(new Rect(75, top, 310, 36)), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
             float changed = GUI.HorizontalSlider(Shift(new Rect(390, top + 14, 630, 25)), value, 0, 1);
-            if (Button(new Rect(1050, top, 65, 36), "−")) changed = Mathf.Max(0, value - 0.1f);
-            if (Button(new Rect(1135, top, 65, 36), "+")) changed = Mathf.Min(1, value + 0.1f);
+            if (Button(new Rect(1042, top, 76, 36), "−")) changed = Mathf.Max(0, value - 0.1f);
+            if (Button(new Rect(1128, top, 76, 36), "+")) changed = Mathf.Min(1, value + 0.1f);
             if (Mathf.Abs(changed - value) < 0.005f) return;
             setter(changed);
             Changed(() => setter(value));

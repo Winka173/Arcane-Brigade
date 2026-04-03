@@ -9,7 +9,9 @@ namespace ArcaneBrigade
         public static float PriceRamp(int wave) => 1f + Mathf.Min(0.6f, Mathf.Max(0, wave - 2) * 0.045f);
         /// <summary>Act I story bosses stand long enough for their fight (and its light swarm) to happen: bot builds felled them in 4-14 s.</summary>
         public static float StoryBossBulk(int wave) => wave >= 20 ? 5f : wave >= 15 ? 3.5f : wave >= 10 ? 3f : 2f;
-        public static float WaveLength(int wave) => Mathf.Min(60f, 30f + Mathf.Max(0, wave - 1) * 2.5f);
+        /// <summary>Play-test 20/10/2026 (D9): waves 15% longer than before: 34.5 s, +2.875 s a wave, 69 s from wave 13.</summary>
+        public const float LengthScale = 1.15f;
+        public static float WaveLength(int wave) => Mathf.Min(69f, 34.5f + Mathf.Max(0, wave - 1) * 2.875f);
         public static int SwarmBatch(int wave, float time)
         {
             if (wave < 3) return wave == 2 ? 3 : 2; // the first nights already come in small packs

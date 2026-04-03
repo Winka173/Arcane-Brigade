@@ -156,9 +156,9 @@ namespace ArcaneBrigade
             GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(23));
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
             GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
-            RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(30, 20, 1860, 1040), KitFrame.Dialogue, .7f); else RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
-            ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
+            if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (GUI.Button(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
             string[] names = { "STATS", "FRIENDS", "RELICS", "LINKS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
@@ -167,12 +167,8 @@ namespace ArcaneBrigade
             {
                 Rect tabRect = new Rect(75 + index * 360, 200, 340, 62);
                 bool current = index == tab;
-                bool hovered = tabRect.Contains(Event.current.mousePosition);
-                ArcadeSkin.Slant(new Rect(tabRect.x + 4, tabRect.y + 5, tabRect.width, tabRect.height), new Color(0, 0, 0, 0.45f));
-                ArcadeSkin.Slant(tabRect, current ? ArcadeSkin.Accent : hovered ? ArcadeSkin.CardLit : ArcadeSkin.Card);
-                tabStyle.normal.textColor = current ? ArcadeSkin.Ink : ArcadeSkin.Cream;
-                GUI.Label(tabRect, names[index] + (counts[index] >= 0 ? "  " + counts[index] : ""), tabStyle);
-                if (GUI.Button(tabRect, GUIContent.none, GUIStyle.none)) SelectTab(index);
+                // painted tabs (UI kit): velvet when current, walnut otherwise, brass under the pointer
+                if (ArcadeSkin.Tab(tabRect, names[index] + (counts[index] >= 0 ? "  " + counts[index] : ""), current, true, tabStyle)) SelectTab(index);
             }
             List<RunBuildReadModel.Row> rows = tab == 0 ? model.Stats : tab == 1 ? model.Companions : tab == 2 ? model.Relics : model.Links;
             float rowHeight = tab == 0 ? 115 : 145;

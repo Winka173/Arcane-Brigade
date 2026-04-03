@@ -445,7 +445,7 @@ namespace ArcaneBrigade
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
             Station reroll = AddStation(new Vector2(-5.0f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
-            reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.\n" + owner.Session.RecruitmentSummary;
+            reroll.Price = owner.Session.RerollCost; reroll.Description = "New offers. Each refresh in a shop costs more; the price resets next wave.\n" + owner.Session.RecruitmentSummary;
             if (!Special && owner.Session.Visitor is VisitorDefinition visitor && ExpansionArtwork.Current?.Visitor(visitor.Id) is Sprite guest)
             {
                 // a visitor waits at its own table on the right

@@ -14,7 +14,9 @@ namespace ArcaneBrigade
         public int CompanionPurchasesRemaining => NewRecruitsRemaining + CopyRecruitsRemaining;
         public bool NewSpeciesCooldown => State.Wave>=10 && State.LastNewShopSpeciesWave>=10 && State.Wave-State.LastNewShopSpeciesWave<2;
         /// <summary>The regular shop's new species rests the wave after one is recruited.</summary>
-        public bool RegularNewSpeciesCooldown => State.LastRegularNewSpeciesWave >= 0 && State.LastRegularNewSpeciesWave < State.Wave && State.Wave - State.LastRegularNewSpeciesWave < 2;
+        /// <summary>Play-test 20/10/2026 (D12): one new species every three waves (was two); no body cap.</summary>
+        public const int NewSpeciesEvery = 3;
+        public bool RegularNewSpeciesCooldown => State.LastRegularNewSpeciesWave >= 0 && State.LastRegularNewSpeciesWave < State.Wave && State.Wave - State.LastRegularNewSpeciesWave < NewSpeciesEvery;
         public int NewRecruitsRemaining => RegularNewSpeciesCooldown ? 0 : Math.Max(0, NewRecruitLimit - State.NewSpeciesRecruitsThisWave);
         /// <summary>Whether the regular shop could still sell this species this wave (a copy of one you have, or a new one).</summary>
         public bool RegularRecruitOpen(string id) => OwnsCompanionSpecies(id) ? CopyRecruitsRemaining > 0 : NewRecruitsRemaining > 0;
@@ -35,14 +37,14 @@ namespace ArcaneBrigade
         {
             return false; // Recruitment pacing uses purchase/species quotas, never a body cap.
         }
-        public string RecruitmentSummary => "NEW SPECIES: " + (NewRecruitsRemaining > 0 ? NewRecruitsRemaining + " this wave" : "next in wave " + ((long)State.LastRegularNewSpeciesWave + 2))
-            + " · one every two waves.\nCOPIES OF YOUR SPECIES: " + CopyRecruitsRemaining + "/" + CopyRecruitLimit + " this wave.\nDREAM SHOP: " + SpecialNewRecruitsRemaining + "/1 new species.";
+        public string RecruitmentSummary => "New friend: " + (NewRecruitsRemaining > 0 ? NewRecruitsRemaining + " this wave" : "next in wave " + ((long)State.LastRegularNewSpeciesWave + NewSpeciesEvery))
+            + " (one every 3 waves).\nMore of a friend you have: " + CopyRecruitsRemaining + "/" + CopyRecruitLimit + " this wave.\nDream shop: " + SpecialNewRecruitsRemaining + "/1 new friend.";
         public string RecruitQuotaDenialFor(ShopOffer offer)
         {
             if (offer == null) return "";
             if (State.SpecialOffers.Contains(offer)) return NewSpeciesCooldown ? "NEW SPECIES AVAILABLE IN WAVE " + (State.LastNewShopSpeciesWave + 2) : "DREAM SHOP: 1 NEW SPECIES PER WAVE";
             if (OwnsCompanionSpecies(offer.Id)) return "1 COPY PER WAVE · BACK NEXT WAVE";
-            return RegularNewSpeciesCooldown ? "NEW SPECIES IN WAVE " + (State.LastRegularNewSpeciesWave + 2) : "1 NEW SPECIES PER TWO WAVES";
+            return RegularNewSpeciesCooldown ? "NEW FRIEND IN WAVE " + (State.LastRegularNewSpeciesWave + NewSpeciesEvery) : "1 NEW FRIEND EVERY 3 WAVES";
         }
     }
 }

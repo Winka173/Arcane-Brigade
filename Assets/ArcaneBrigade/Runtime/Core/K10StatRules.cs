@@ -14,6 +14,8 @@ namespace ArcaneBrigade
             return index >= 0 && index < Names.Length ? Names[index] : "Invalid effect";
         }
         public static float Factor(float bonus, float minimum = 0.1f, float maximum = 10f) => Mathf.Clamp(1 + bonus, minimum, maximum);
+        /// <summary>Per-body friend damage after the slower recruitment (play-test 20/10/2026, item 25).</summary>
+        public const float CompanionBodyBuff = 1.14f;
         /// <summary>Round 4: the altar's permanent HP price comes off the compiled maximum (BloodPrice).</summary>
         public static float MaximumHealth(RunSession session, RunCatalog catalog) => BloodPrice.Apply(UncutMaximumHealth(session, catalog), session.State.BloodPaid);
         public static float UncutMaximumHealth(RunSession session, RunCatalog catalog)
@@ -45,6 +47,12 @@ namespace ArcaneBrigade
             unit.CollisionDamage = Mathf.Max(0, unit.CollisionDamage + session.Bonus(ItemEffect.CollisionDamage, scope)) * Factor(session.Bonus(ItemEffect.Damage, scope) + session.Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage, scope)) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
             unit.CollisionFrequency = Mathf.Clamp(unit.CollisionFrequency / Factor(session.Bonus(ItemEffect.CollisionFrequency, scope)), 0.15f, 4);
             if (!companion) unit.Health = MaximumHealth(session, catalog);
+            else
+            {
+                // fewer new friends (one species every 3 waves, D12): each body hits harder (sized by the round-7 bot sweep)
+                weapon.Damage *= CompanionBodyBuff;
+                Duets.Apply(session, source, weapon);
+            }
         }
     }
 }

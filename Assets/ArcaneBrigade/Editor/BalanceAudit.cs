@@ -233,6 +233,12 @@ namespace ArcaneBrigade.Editor
 
         // ============================================================ bot campaigns
         private static readonly string[] SimHeroes = { "LanternKnight", "Postmaster", "DrowsySeer", "CometRunner", "GlassDice", "TideSinger" };
+        /// <summary>Play-test phase C economy sweep: the six reference heroes at Wandering, one seed: the economy table, eggs,
+        /// and the gold-price audit (every gold price vs the wallet at waves 1/5/10/15/19).</summary>
+        public static void EconomySweep() => SimWith(1, SimHeroes, new[] { 1 });
+        /// <summary>The slope sweep (6 heroes x 6 difficulties x 3 seeds) split in two halves for two clones.</summary>
+        public static void SlopeA() => SimWith(3, SimHeroes.Take(3).ToArray());
+        public static void SlopeB() => SimWith(3, SimHeroes.Skip(3).ToArray());
         private static readonly int[] SimSeeds = { 161026, 77138, 90210, 424242, 5005 };
 
         /// <summary>Value of an offer for the audit bot: VU of the stats; mechanic items count 60% of their rarity target on top.</summary>
@@ -301,7 +307,7 @@ namespace ArcaneBrigade.Editor
             string root = "PreviewExports/Balance/" + Label();
             Directory.CreateDirectory(root);
             RunCatalog c = Resources.Load<RunCatalog>("RunCatalog");
-            var rows = new List<string> { "hero,difficulty,wave,result,seconds,kills,combat_gold,income,interest,wallet_at_shop,spent_items,spent_recruits,spent_rerolls,items_bought,recruits_bought,rerolls,hp_paid,mean_offer_price,max_hp,allies,seed,damage_taken,boss_wave" };
+            var rows = new List<string> { "hero,difficulty,wave,result,seconds,kills,combat_gold,income,interest,wallet_at_shop,spent_items,spent_recruits,spent_rerolls,items_bought,recruits_bought,rerolls,hp_paid,mean_offer_price,max_hp,allies,seed,damage_taken,boss_wave,eggs_earned,eggs_held,dream_egg_price,dream_buys,dream_rare_buys,first_reroll" };
             var runs = new List<string> { "hero,difficulty,outcome,last_wave,total_gold,items,recruits,rerolls,seed,last_damage_source,last_damage_kind,last_damage" };
             heroList ??= SimHeroes; difficultyList ??= Enumerable.Range(0, RunMeta.DifficultyNames.Length).ToArray();
             foreach (string hero in heroList)
@@ -313,6 +319,7 @@ namespace ArcaneBrigade.Editor
                         string outcome = "TIMEOUT"; long total = 0; int items = 0, recruits = 0, rerolls = 0;
                         for (int encounter = 0; encounter < c.NormalWaves; encounter++)
                         {
+                            int eggsBefore = session.State.Eggs;
                             CheckpointCatalog combat = session.PrepareCombat();
                             var sim = new CombatSimulation(combat); sim.Start(unchecked(SimSeed + session.State.Wave * 397));
                             int limit = combat.Boss == null ? 1800 : 6000;
@@ -336,12 +343,14 @@ namespace ArcaneBrigade.Editor
                                 if (session.SecretRoomOpen) { session.ClaimSecretBattleReward(); session.LeaveSecretEvent(); }
                                 if (session.OutsideChallengeAvailable) session.DeclineOutsideStage();
                             }
-                            var t = new Tally { Wallet = session.State.Gold };
+                            var t = new Tally { Wallet = session.State.Gold, EggsEarned = session.State.Eggs - eggsBefore, EggsHeld = session.State.Eggs };
+                            t.DreamEggPrice = session.State.SpecialOffers.Where(o => o.Currency == ShopCurrency.Eggs).Select(o => (double)o.Price).DefaultIfEmpty(0).Average();
                             double mean = session.State.Offers.Count == 0 ? 0 : session.State.Offers.Average(o => o.Price);
                             if (session.State.Phase == SessionPhase.Shop) { session.PlaceHeroOrder(); Purchase(session, c, t); } // Penny Broker's forward order (no-op for others)
                             items += t.Items; recruits += t.Recruits; rerolls += t.Rerolls;
                             rows.Add(string.Join(",", hero, difficulty, wave, sim.Phase, F(sim.Elapsed), sim.Kills, sim.Gold, session.State.LastIncome, session.State.LastInterest, t.Wallet, t.SpentItems, t.SpentRecruits, t.SpentRerolls, t.Items, t.Recruits, t.Rerolls, t.HpPaid,
-                                F((float)mean), F(combat.Champion.Health), session.State.Roster.Count, SimSeed, F(taken), combat.Boss != null ? 1 : 0));
+                                F((float)mean), F(combat.Champion.Health), session.State.Roster.Count, SimSeed, F(taken), combat.Boss != null ? 1 : 0,
+                                t.EggsEarned, t.EggsHeld, F((float)t.DreamEggPrice), t.DreamBuys, t.DreamRare, session.State.Phase == SessionPhase.Shop ? session.RerollCost : 0));
                             if (!settled || session.State.Phase != SessionPhase.Shop) break;
                             session.ContinueWave();
                         }
@@ -389,6 +398,7 @@ namespace ArcaneBrigade.Editor
                     sb.AppendLine("| " + hero + " | " + string.Join(" | ", difficultyList.Select(d => set.Count(p => p[1] == d.ToString() && p[2] == "VICTORY") + "/" + set.Count(p => p[1] == d.ToString()))) + " | " + (waves.Count == 0 ? "-" : waves[waves.Count / 2].ToString()) + " |");
                 }
             }
+            sb.Append(EconomyTables(c, rows));
             File.WriteAllText(root + "/Sim_Summary.md", sb.ToString());
             Debug.Log("BALANCE_SIM_PASSED " + root + " runs=" + (runs.Count - 1));
         }
@@ -438,7 +448,54 @@ namespace ArcaneBrigade.Editor
                     }
             Debug.Log("BALANCE_DIAGNOSE_PASSED " + root + " rows=" + (rows.Count - 1));
         }
-        private sealed class Tally { public int Wallet, SpentItems, SpentRecruits, SpentRerolls, Items, Recruits, Rerolls, HpPaid; }
+        /// <summary>Phase C tables: eggs per wave band, and every gold price at waves 1/5/10/15/19 as a share of the mean
+        /// wallet at that shop (flagged under 2% or over 60%).</summary>
+        private static string EconomyTables(RunCatalog c, List<string> rows)
+        {
+            var sb = new StringBuilder();
+            var shop = rows.Skip(1).Select(r => r.Split(',')).Where(p => p.Length >= 29 && p[3] == "Victory").ToList();
+            double D(string[] p, int i) => double.Parse(p[i], CultureInfo.InvariantCulture);
+            string N(double v, string f = "0.0") => v.ToString(f, CultureInfo.InvariantCulture);
+            sb.AppendLine("\n## Eggs and the dream shop\n\n| Waves | Shops | Eggs earned/wave | Eggs held at shop | Mean egg price | Dream buys/shop | Rare+ dream buys/wave |\n|---|---:|---:|---:|---:|---:|---:|");
+            foreach (var band in new[] { (1, 5), (6, 10), (11, 15), (16, 19) })
+            {
+                var set = shop.Where(p => int.Parse(p[2]) >= band.Item1 && int.Parse(p[2]) <= band.Item2).ToList();
+                if (set.Count == 0) continue;
+                var priced = set.Where(p => D(p, 25) > 0).ToList();
+                sb.AppendLine("| " + band.Item1 + "–" + band.Item2 + " | " + set.Count + " | " + N(set.Average(p => D(p, 23))) + " | " + N(set.Average(p => D(p, 24))) + " | " + (priced.Count == 0 ? "-" : N(priced.Average(p => D(p, 25)))) + " | " + N(set.Average(p => D(p, 26))) + " | " + N(set.Average(p => D(p, 27)), "0.00") + " |");
+            }
+            sb.AppendLine("\n## Gold price audit (share of the mean wallet at that shop; ! under 2% or over 60%)\n\n| Price | " + string.Join(" | ", new[] { 1, 5, 10, 15, 19 }.Select(w => "w" + w)) + " |\n|---|---:|---:|---:|---:|---:|");
+            var table = new List<(string name, Func<RunSession, double> price)>
+            {
+                ("Dearest offer (shop)", s => s.State.Offers.Where(o => o.Currency == ShopCurrency.Gold).Select(o => (double)o.Price).DefaultIfEmpty(0).Max()), ("Mean offer (shop)", s => s.State.Offers.Where(o => o.Currency == ShopCurrency.Gold).Select(o => (double)o.Price).DefaultIfEmpty(0).Average()),
+                ("First refresh", s => s.RerollCost), ("Third refresh", s => { s.State.RerollsThisShop = 2; int v = s.RerollCost; s.State.RerollsThisShop = 0; return v; }),
+                ("Chest gold (average)", s => s.State.Offers.Where(o => o.Currency == ShopCurrency.Gold && o.BasePrice > 0).Select(o => (double)o.BasePrice).DefaultIfEmpty(0).Average()), ("Cheapest visitor", s => ShopVisitors.All.Where(v => v.Cost > 0).Min(v => s.VisitorCost(v))),
+                ("Dearest visitor", s => ShopVisitors.All.Max(v => s.VisitorCost(v))), ("Secret crate", s => s.SecretTrainPrice), ("Secret loan (paid to you)", s => s.SecretLoan),
+            };
+            var wallets = new Dictionary<int, double>();
+            foreach (int w in new[] { 1, 5, 10, 15, 19 })
+            {
+                var at = shop.Where(p => int.Parse(p[2]) == w).ToList();
+                wallets[w] = at.Count == 0 ? 0 : at.Average(p => D(p, 9));
+            }
+            foreach (var (name, price) in table)
+            {
+                var cells = new List<string>();
+                foreach (int w in new[] { 1, 5, 10, 15, 19 })
+                    using (var s = new RunSession(c))
+                    {
+                        s.Start(SimHeroes[0], 7777, 1); s.State.Wave = w; s.State.Phase = SessionPhase.Shop;
+                        typeof(RunSession).GetMethod("RollShop", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)?.Invoke(s, new object[] { true });
+                        double v = price(s), share = wallets[w] > 0 ? v / wallets[w] : 0;
+                        bool flag = wallets[w] > 0 && (share < .02 || share > .6) && !name.StartsWith("Secret loan");
+                        cells.Add(N(v, "0") + " (" + N(share * 100, "0") + "%)" + (flag ? " !" : ""));
+                    }
+                sb.AppendLine("| " + name + " | " + string.Join(" | ", cells) + " |");
+            }
+            sb.AppendLine("| Mean wallet | " + string.Join(" | ", new[] { 1, 5, 10, 15, 19 }.Select(w => N(wallets[w], "0"))) + " |");
+            return sb.ToString();
+        }
+        private sealed class Tally { public int Wallet, SpentItems, SpentRecruits, SpentRerolls, Items, Recruits, Rerolls, HpPaid, EggsEarned, EggsHeld, DreamBuys, DreamRare; public double DreamEggPrice; }
         private static void Purchase(RunSession s, RunCatalog c, Tally t)
         {
             void BuyAll(IEnumerable<ShopOffer> offers)
@@ -450,6 +507,12 @@ namespace ArcaneBrigade.Editor
                     if (!s.Buy(o.Token)) continue;
                     if (o.Kind == OfferKind.Companion) { t.Recruits++; t.SpentRecruits += gold - s.State.Gold; } else { t.Items++; t.SpentItems += gold - s.State.Gold; }
                     if (o.Currency == ShopCurrency.Health) t.HpPaid += o.Price;
+                    if (s.State.SpecialOffers.Contains(o))
+                    {
+                        t.DreamBuys++;
+                        ItemRarity rarity = o.Kind == OfferKind.Item ? c.Item(o.Id).Rarity : c.Unit(o.Id).Rarity;
+                        if (rarity >= ItemRarity.Rare) t.DreamRare++;
+                    }
                 }
             }
             BuyAll(s.State.SpecialOffers);

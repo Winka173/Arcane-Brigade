@@ -25,6 +25,8 @@ namespace ArcaneBrigade
         public float KnockDeadline; // SIT CLOSER: the Bedside must fall before the knocking stops
         /// <summary>The shop's gold curve for this wave (RunSession.GoldScale): a chest's gold is its wave-1 amount times this.</summary>
         public float ChestGoldScale = 1;
+        /// <summary>Gold in an average chest (RunSession.MidOfferPrice): a chest is worth about one mid-priced offer.</summary>
+        public float ChestGold;
     }
 
     public sealed partial class RunSession

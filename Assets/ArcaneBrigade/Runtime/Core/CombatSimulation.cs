@@ -295,6 +295,8 @@ namespace ArcaneBrigade
         public int Gold { get; private set; }
         public int Eggs { get; private set; }
         public int ChestsOpened { get; private set; }
+        public const int EliteEggsPerWave = 2;
+        private int eliteEggs;
         public int Kills { get; private set; }
         public int Generation { get; private set; }
         public int CompanionCount { get; private set; }
@@ -1092,7 +1094,12 @@ namespace ArcaneBrigade
                 if (target.StolenCoins > 0) { DropLoot(LootKind.Coin, target.Position, target.StolenCoins + Mathf.Max(1, target.StolenCoins / 10)); target.StolenCoins = 0; } // a toll is refunded with 10% (nothing is taken, only bought)
                 if (catalog.ExtendedLoot && !target.SwarmMinion)
                 {
-                    if (lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * (1f + catalog.Luck))) DropLoot(LootKind.Egg, target.Position, 1);
+                    // play-test 20/10/2026 (item 16): eggs come more often late (x1 at wave 1, x2 from wave 15); elites and bosses always drop one
+                    // bosses always drop one; elites too, but at most EliteEggsPerWave in a wave (the economy sweep: uncapped
+                    // elite eggs piled up ~50 a wave late, far more than the dream shop can take)
+                    bool sure = target.Definition.IsBoss || target.Elite && eliteEggs < EliteEggsPerWave;
+                    if (sure && target.Elite && !target.Definition.IsBoss) eliteEggs++;
+                    if (sure || lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * EggLateFactor(catalog.RunWave) * (1f + catalog.Luck))) DropLoot(LootKind.Egg, target.Position, 1);
                     if (lootRandom.NextDouble() < Mathf.Clamp01(catalog.HeartDropChance * (1f + catalog.Luck))) DropLoot(LootKind.Heart, target.Position, 8);
                 }
             }
@@ -1210,6 +1217,7 @@ namespace ArcaneBrigade
             DropLoot(LootKind.Chest, position, Mathf.Max(1, Mathf.RoundToInt((5 + lootRandom.Next(0, 7)) * K10StatRules.Factor(catalog.ChestQuality, 0.2f, 5))));
         }
 
+        public static float EggLateFactor(int wave) => 1f + Mathf.Clamp01((wave - 1) / 14f);
         private void OpenChest(PickupState chest)
         {
             ChestsOpened++;
@@ -1218,7 +1226,10 @@ namespace ArcaneBrigade
             bool egg = lootRandom.NextDouble() < Mathf.Clamp01(0.35f + catalog.Luck * 0.2f);
             bool heart = lootRandom.NextDouble() < Mathf.Clamp01(0.5f + catalog.Luck * 0.2f);
             // the chest's coin follows the shop's gold curve (play-test 20/10/2026), so a chest stays worth opening late
-            int coins = Mathf.Max(1, Mathf.RoundToInt((chest.Value + KitChestBonus()) * Mathf.Max(1, catalog.ChestGoldScale)));
+            // an average chest (value 8) holds about one mid-priced offer of the shop's wave (play-test 20/10/2026, items 12/20)
+            float perCoin = Mathf.Max(.01f, KitCoinScale * Mathf.Max(.01f, catalog.CoinValueScale));
+            int coins = catalog.ChestGold > 0 ? Mathf.Max(1, Mathf.RoundToInt(catalog.ChestGold * (chest.Value + KitChestBonus()) / 8f / perCoin))
+                : Mathf.Max(1, Mathf.RoundToInt((chest.Value + KitChestBonus()) * Mathf.Max(1, catalog.ChestGoldScale)));
             int gold = Mathf.Max(1, Mathf.RoundToInt(coins * KitCoinScale * Mathf.Max(0, catalog.CoinValueScale)));
             float healing = heart ? Mathf.Max(1, 12 + catalog.HeartHealing) : 0;
             // the popup reads: Value = gold credited, Direction = (egg 1/0, heart healing or 0)

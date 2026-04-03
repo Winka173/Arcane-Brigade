@@ -74,7 +74,7 @@ namespace ArcaneBrigade.Editor
                 s.State.Offers.Clear(); s.State.SpecialOffers.Clear();
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
                 Check(s.NewRecruitsRemaining == 0 && !s.CanBuy(Offer(s, ordinary[limit].Id)), "Save/load cannot refresh quota " + wave);
-                for (int roll = 0; roll < 30; roll++)
+                for (int roll = 0; roll < 8; roll++) // each refresh in a shop costs 50% more (play-test 20/10/2026): 8 is plenty
                 {
                     Check(s.Reroll(), "Paid refresh allowed at quota " + wave + "/" + roll);
                     Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion), "Normal rolls show items once the new species and the copy are used " + wave + "/" + roll);

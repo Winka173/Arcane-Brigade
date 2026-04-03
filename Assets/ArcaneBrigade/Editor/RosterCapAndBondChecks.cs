@@ -117,7 +117,7 @@ namespace ArcaneBrigade.Editor
                 if (count > 0 && count % b.Threshold == 0) table.AppendLine(b.Id + "\t" + b.Name + "\t" + b.Effect + "\t" + count + "\t" + raw.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "\t" + b.Reward(count).ToString("R", System.Globalization.CultureInfo.InvariantCulture));
             }
             var fixture = new BondDefinition { Effect = ItemEffect.Damage, Threshold = 2, Value = .1f, ExtraBonuses = new[] { new BondThresholdBonus { Threshold = 4, Value = .2f } } };
-            Check(Mathf.Abs(fixture.Reward(4) - .36f) < .0001f && RunUICopy.BondDescription(fixture, 4).Contains("extra +0.18"), "Bond UI includes reduced extra milestone bonus");
+            Check(Mathf.Abs(fixture.Reward(4) - .36f) < .0001f && RunUICopy.BondDescription(fixture, 4).Contains("+18%"), "Bond UI includes reduced extra milestone bonus");
             File.WriteAllText("PreviewExports/Roster15/Bond_Changes.tsv", table.ToString());
             File.WriteAllText("PreviewExports/Roster15/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"CompanionLimit\":15,\"PositiveBondScale\":0.9,\"Bonds\":" + c.Bonds.Length + "}");
             Debug.Log("ROSTER15_PASS " + notes.Count);

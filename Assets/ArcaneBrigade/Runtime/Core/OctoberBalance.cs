@@ -4,7 +4,7 @@ namespace ArcaneBrigade
     public static class OctoberBalance
     {
         public const int AllySoftLimit = 15;
-        public const float WaveSeconds = 45;
+        public const float WaveSeconds = 52; // 45 before the play-test (+15%, D9)
         public const float EnemyHealthRelief = .95f; // 18/10/2026: was .75; hero kits made the brigade stronger
         public const float EnemyDamageRelief = .96f; // 18/10/2026: was .8
         public const float BossHealthRelief = .6f;

@@ -56,12 +56,13 @@ namespace ArcaneBrigade
         private float eggsChanged = -100;
         // the pause menu's page: 0 the menu, 1 settings, 2 "start over?"
         private int pausePage;
+        private GUIStyle dangerButton;
         private float shownGold, shownEggs, nextWalletTick, nextHeartbeat, heartbeatAt = -10;
         private void DrawPause(ArenaController owner)
         {
             if (pausePage == 1)
             {
-                Fill(new Rect(330, 150, 1260, 800), Panel);
+                ArcadeSkin.Frame(new Rect(330, 150, 1260, 800), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(390, 190, 900, 92), "THE NIGHT WAITS WITH YOU", "Light, Sound & Comfort");
                 if (navigation.Button(new Rect(1330, 205, 200, 50), "BACK", button)) pausePage = 0;
                 SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => GUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true);
@@ -69,26 +70,35 @@ namespace ArcaneBrigade
             }
             if (pausePage == 2)
             {
-                Fill(new Rect(600, 330, 720, 400), Panel);
+                ArcadeSkin.Frame(new Rect(600, 330, 720, 400), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(660, 380, 600, 100), "THE NIGHT WAITS WITH YOU", "Start over?");
                 GUI.Label(new Rect(660, 490, 600, 80), "This night ends here and is not recorded.\nA new night begins with the same hero.", text);
                 if (navigation.Button(new Rect(660, 600, 280, 65), "KEEP PLAYING", primary)) pausePage = 0;
-                if (navigation.Button(new Rect(980, 600, 280, 65), "START OVER", button)) { pausePage = 0; owner.RestartRun(); }
+                if (navigation.Button(new Rect(980, 600, 280, 65), "START OVER", dangerButton ??= ArcadeSkin.DangerStyle(button))) { pausePage = 0; owner.RestartRun(); }
+                return;
+            }
+            if (pausePage == 4)
+            {
+                ArcadeSkin.Frame(new Rect(240, 120, 1440, 860), KitFrame.Dialogue, .6f);
+                ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "Combos");
+                if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
+                DrawCombos(owner, new Rect(300, 270, 1320, 680));
                 return;
             }
             if (pausePage == 3)
             {
                 // How to play: six cards, one line each, any time
-                Fill(new Rect(240, 120, 1440, 860), Panel);
+                ArcadeSkin.Frame(new Rect(240, 120, 1440, 860), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "How to Play");
                 if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
                 guide.DrawHowToPlay(new Rect(300, 270, 1320, 680), owner);
                 return;
             }
-            Fill(new Rect(640, 230, 640, 680), Panel);
+            ArcadeSkin.Frame(new Rect(640, 230, 640, 680), KitFrame.Dialogue, .6f);
             ArcadeSkin.Header(new Rect(700, 290, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
             if (navigation.Button(new Rect(750, 410, 420, 65), "RESUME", primary)) owner.TogglePause();
-            if (navigation.Button(new Rect(750, 490, 420, 64), "HOW TO PLAY", button)) pausePage = 3;
+            if (navigation.Button(new Rect(700, 490, 250, 64), "HOW TO PLAY", button)) pausePage = 3;
+            if (navigation.Button(new Rect(970, 490, 250, 64), "COMBOS", button)) { pausePage = 4; comboScroll = Vector2.zero; }
             if (navigation.Button(new Rect(700, 570, 250, 64), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
             if (navigation.Button(new Rect(970, 570, 250, 64), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
             if (navigation.Button(new Rect(700, 650, 250, 64), "SETTINGS", button)) pausePage = 1;
@@ -97,6 +107,42 @@ namespace ArcaneBrigade
         }
 
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
+        private Vector2 comboScroll; private GUIStyle comboLine;
+        /// <summary>The Combos page (play-test 20/10/2026, item 26): every duet this hero's shop can offer. Pairs you have met
+        /// show both friends and what they do together (lit while both are in the brigade); the rest are silhouettes.</summary>
+        private void DrawCombos(ArenaController owner, Rect area)
+        {
+            RunSession session = owner.Session; RunCatalog catalog = owner.Content;
+            UnitDefinition hero = catalog.Unit(session.State.ChampionId);
+            var list = new System.Collections.Generic.List<Duet>();
+            foreach (Duet d in Duets.All)
+            {
+                UnitDefinition a = catalog.Unit(d.A), b = catalog.Unit(d.B);
+                if (a == null || b == null || a.GiftOnly || b.GiftOnly) continue;
+                if (catalog.HeroRevision > 0 && hero != null && (!K11HeroRules.Eligible(hero, a) || !K11HeroRules.Eligible(hero, b))) continue;
+                list.Add(d);
+            }
+            list.Sort((x, y) => Known(session, y).CompareTo(Known(session, x)));
+            comboLine ??= new GUIStyle(text) { fontSize = 22, wordWrap = true };
+            const float row = 120;
+            comboScroll = ScrollPanel.Begin(area, comboScroll, new Rect(0, 0, area.width - 20, Mathf.Max(area.height, list.Count * row)));
+            for (int i = 0; i < list.Count; i++)
+            {
+                Duet d = list[i]; int known = Known(session, d); bool active = Duets.Active(session, d);
+                Rect r = new Rect(0, i * row, area.width - 24, row - 10);
+                ArcadeSkin.Line(r, active ? new Color(.95f, .76f, .33f, .22f) : new Color(1, 1, 1, .05f));
+                Sprite(new Rect(r.x + 8, r.y + 8, 94, 94), Met(session, d.A) ? catalog.Unit(d.A).Body : CompanionRoles.UnknownBadge);
+                Sprite(new Rect(r.x + 110, r.y + 30, 52, 52), CompanionRoles.ComboBadge);
+                Sprite(new Rect(r.x + 170, r.y + 8, 94, 94), Met(session, d.B) ? catalog.Unit(d.B).Body : CompanionRoles.UnknownBadge);
+                comboLine.normal.textColor = active ? ArcadeSkin.Gold : known > 1 ? ArcadeSkin.Cream : new Color(.7f, .68f, .64f);
+                string names = known > 1 ? RunUICopy.UnitName(catalog.Unit(d.A)) + " + " + RunUICopy.UnitName(catalog.Unit(d.B)) : "? + ?";
+                GUI.Label(new Rect(r.x + 284, r.y + 10, r.width - 300, r.height - 20), names + (active ? "  ·  ACTIVE" : "") + "\n" + (known > 1 ? d.Line : "Meet both friends to find this combo."), comboLine);
+            }
+            ScrollPanel.End();
+        }
+        /// <summary>How many of a duet's two friends you have had this run (0, 1 or 2).</summary>
+        private static int Known(RunSession session, Duet d) => (Met(session, d.A) ? 1 : 0) + (Met(session, d.B) ? 1 : 0);
+        private static bool Met(RunSession session, string id) => session.OwnsCompanionSpecies(id) || session.State.AcquiredVariants.Exists(v => v.UnitId == id);
         public void ShowInvoiceEvidenceFixture()
         {
             if (!RunPaths.K6Capture) throw new System.InvalidOperationException("Invoice fixture requires isolated K6 capture mode");
@@ -203,6 +249,18 @@ namespace ArcaneBrigade
             if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
+            if (ArcadeSkin.HasKit)
+            {
+                // the painted HUD (UI kit, item 13): the hero in a brass portrait slot, the health bar with its heart cap and crimson fill
+                ArcadeSkin.PortraitSlot(new Rect(14, 8, 92, 92), false);
+                Sprite(new Rect(31, 25, 58, 58), owner.Content.Unit(state.ChampionId).Body);
+                NightHud.LightRing(new Vector2(60, 55), 40, state.Roster.Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
+                Rect tube = ArcadeSkin.HealthBar(new Rect(100, 24, 300, 64), Mathf.Clamp01(health / maximum), Mathf.Clamp01(healthTrail / maximum));
+                numeric.normal.textColor = ArcadeSkin.Cream;
+                ArcadeTypography.ShadowLabel(new Rect(tube.x, tube.y - 4, tube.width, tube.height + 8), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
+            }
+            else
+            {
             ArcadeSkin.Plate(new Rect(22, 16, 340, 72), ArcadeSkin.Accent);
             Sprite(new Rect(35, 20, 62, 62), owner.Content.Unit(state.ChampionId).Body);
             NightHud.LightRing(new Vector2(66, 51), 40, state.Roster.Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
@@ -212,12 +270,14 @@ namespace ArcaneBrigade
             numeric.normal.textColor = health / maximum > 0.45f ? ArcadeSkin.Ink : ArcadeSkin.Cream; // ink reads on the lantern bar
             GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
             Sprite(new Rect(92, 31, 38, 38), owner.Content.HeartSprite);
+            }
             numeric.normal.textColor = ArcadeSkin.Cream;
             if (owner.Content.HeroRevision > 0 && state.Phase == SessionPhase.Combat)
             {
                 float required = simulation.HeroIdentityEnabled ? simulation.HeroIdentityRequired : simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
-                ArcadeSkin.Line(new Rect(108, 72, 224, 5), new Color(0.06f, 0.07f, 0.11f, 0.85f));
-                ArcadeSkin.Line(new Rect(108, 72, 224 * Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required), 5), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
+                Rect charge = ArcadeSkin.HasKit ? new Rect(160, 90, 210, 6) : new Rect(108, 72, 224, 5);
+                ArcadeSkin.Line(charge, new Color(0.06f, 0.07f, 0.11f, 0.85f));
+                ArcadeSkin.Line(new Rect(charge.x, charge.y, charge.width * Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required), charge.height), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
                 if (simulation.HeroIdentityEnabled)
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
@@ -229,16 +289,17 @@ namespace ArcaneBrigade
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
             float eggPulse = LivingUI.Press(simulation.VisualElapsed - eggsChanged, PresentationSettings.ReducedMotion) * 4;
-            ArcadeSkin.Plate(new Rect(22, 96, 190, 40), ArcadeSkin.Gold);
-            ArcadeSkin.Plate(new Rect(22, 142, 190, 40), ArcadeSkin.Teal);
-            Sprite(new Rect(40 - goldPulse, 100 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
+            // walnut counter plates with a round socket for the coin and the egg (UI kit)
+            Rect goldSocket = ArcadeSkin.Counter(new Rect(16, 100, 200, 44), KitCounter.Gold, out Rect goldText);
+            Rect eggSocket = ArcadeSkin.Counter(new Rect(16, 146, 200, 44), KitCounter.Egg, out Rect eggText);
+            Sprite(new Rect(goldSocket.center.x - 16 - goldPulse, goldSocket.center.y - 16 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
-            GUI.Label(new Rect(84, 100, 120, 32), Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
-            Sprite(new Rect(40 - eggPulse, 146 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
+            GUI.Label(new Rect(goldText.x + 4, goldText.y + 6, goldText.width - 4, goldText.height - 12), Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
+            Sprite(new Rect(eggSocket.center.x - 16 - eggPulse, eggSocket.center.y - 16 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
-            GUI.Label(new Rect(84, 146, 120, 32), Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
+            GUI.Label(new Rect(eggText.x + 4, eggText.y + 6, eggText.width - 4, eggText.height - 12), Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
-            ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(waveRect, KitFrame.WaveBanner); else ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
             GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
             {
@@ -359,14 +420,15 @@ namespace ArcaneBrigade
                 // (weapon, bonds), a few short lines, and on the right a big BUY with its price over a smaller i
                 Rect panel = new Rect(500, 832, 920, 240);
                 ShownShopCard = panel;
-                if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock); else RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
+                RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
                 Rect picture = new Rect(panel.x + 22, panel.y + 16, 160, 160);
                 ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
                 ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 144, 144), station.Offer != null ? offerCard.Portrait : station.Icon);
+                if (station.Offer != null && offerCard.Role.HasValue) Sprite(new Rect(picture.x - 10, picture.y - 10, 58, 58), CompanionRoles.Badge(offerCard.Role.Value));
                 if (station.Offer != null)
                 {
-                    string kind = item ? RunModifierRules.RarityName(rarity) : (rarity != ItemRarity.Common ? RunModifierRules.RarityName(rarity) : "ALLY") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
+                    string kind = item ? RunModifierRules.RarityName(rarity) : (offerCard.Role.HasValue ? CompanionRoles.Word(offerCard.Role.Value) : "FRIEND") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
                     ArcadeSkin.Slant(new Rect(picture.x, picture.yMax + 10, 160, 32), tag);
                     GUI.Label(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, tagStyle);
                 }
@@ -443,12 +505,13 @@ namespace ArcaneBrigade
                 float w = Mathf.Min(width - (cx - x), 46 + cardChip.CalcSize(new GUIContent(label)).x + 14);
                 if (w < 90) return;
                 Rect chip = new Rect(cx, y, w, 50);
-                ArcadeSkin.Line(chip, lit ? new Color(.95f, .76f, .33f, .3f) : new Color(1, 1, 1, .08f));
+                ArcadeSkin.Plate(chip, lit ? ArcadeSkin.Gold : ArcadeSkin.Accent);
                 if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 6, chip.y + 6, 38, 38), icon);
                 cardChip.normal.textColor = lit ? ArcadeSkin.Gold : ArcadeSkin.Cream;
                 GUI.Label(new Rect(chip.x + 48, chip.y, w - 52, 50), label, cardChip);
                 cx += w + 8;
             }
+            if (offerCard.Combo) Chip(CompanionRoles.ComboBadge, "COMBO", true); // first, so it always fits
             Chip(offerCard.Attack.Icon, RecruitAttackReadout.Range(offerCard.Attack.MinDamage, offerCard.Attack.MaxDamage), false);
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + Mathf.Max(row.After, row.Bond.NextThreshold(row.After)), row.Activates);
             return y + 60;
@@ -489,7 +552,7 @@ namespace ArcaneBrigade
         {
             Rect panel = new Rect(400, 150, 1120, 880);
             ShownShopCard = panel;
-            if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock); else RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock);
+            RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
             if (blood) BloodPriceFrame.Seal(new Rect(panel.x + 70, panel.y + 52, 70, 74), station.Offer.Price, owner.Content.HeartSprite);
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
             ShopDescriptionCard.DrawSprite(new Rect(panel.x + 28, panel.y + 22, 72, 72), offerCard.Portrait);
@@ -520,12 +583,22 @@ namespace ArcaneBrigade
         private void DrawControls(ArenaController owner)
         {
             if (RunUIHints.Device != RunUIDevice.Touch) return;
-            Rect pause = new Rect(35, 245, 65, 52);
-            Rect details = new Rect(115, 245, 65, 52);
-            if (navigation.Button(pause, "", button)) owner.TogglePause();
-            if (navigation.Button(details, "", button)) owner.ToggleDetails();
-            ArcadeSkin.Line(new Rect(pause.x + 21, pause.y + 14, 8, 24), ArcadeSkin.Ink);
-            ArcadeSkin.Line(new Rect(pause.x + 36, pause.y + 14, 8, 24), ArcadeSkin.Ink);
+            Rect pause = new Rect(35, 240, 64, 64);
+            Rect details = new Rect(115, 240, 64, 64);
+            if (ArcadeSkin.HasKit)
+            {
+                ArcadeSkin.Fitted(pause, ArcadeSkin.KitSprite("Controls/Pause"));
+                ArcadeSkin.Fitted(details, ArcadeSkin.KitSprite("Buttons/RoundBrass"));
+                if (navigation.Button(pause, "", GUIStyle.none)) owner.TogglePause();
+                if (navigation.Button(details, "", GUIStyle.none)) owner.ToggleDetails();
+            }
+            else
+            {
+                if (navigation.Button(pause, "", button)) owner.TogglePause();
+                if (navigation.Button(details, "", button)) owner.ToggleDetails();
+                ArcadeSkin.Line(new Rect(pause.x + 21, pause.y + 14, 8, 24), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(pause.x + 36, pause.y + 14, 8, 24), ArcadeSkin.Ink);
+            }
             ArcadeSkin.Line(new Rect(details.x + 16, details.y + 12, 33, 28), ArcadeSkin.Ink);
             ArcadeSkin.Line(new Rect(details.x + 19, details.y + 15, 27, 22), ArcadeSkin.Paper);
             ArcadeSkin.Line(new Rect(details.x + 31, details.y + 15, 3, 22), ArcadeSkin.Ink);
@@ -603,10 +676,41 @@ namespace ArcaneBrigade
                 }
                 bool lowerIsBetter = name.IndexOf("cycle", System.StringComparison.OrdinalIgnoreCase) >= 0 || name.IndexOf("cooldown", System.StringComparison.OrdinalIgnoreCase) >= 0;
                 bool better = FirstNumber(after) >= FirstNumber(before) ^ lowerIsBetter;
-                previewRows.Add((name, before, after, better));
+                previewRows.Add(PlayerRow(name, before, after, better));
                 if (previewRows.Count >= 3) break;
             }
             return previewRows.Count;
+        }
+
+        /// <summary>A preview row in player words (play-test 20/10/2026): short names, whole numbers where a decimal says nothing
+        /// ("Hero health 127.0 / 127.0" reads "HP 127"), one decimal for seconds and small values.</summary>
+        private static (string, string, string, bool) PlayerRow(string name, string before, string after, bool better)
+        {
+            bool health = name == "Hero health";
+            string Words(string value)
+            {
+                if (health) { int slash = value.LastIndexOf(" / ", System.StringComparison.Ordinal); if (slash >= 0) value = value.Substring(slash + 3); }
+                value = System.Text.RegularExpressions.Regex.Replace(value, @"-?\d+(\.\d+)?", m =>
+                {
+                    if (!float.TryParse(m.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float n)) return m.Value;
+                    return Mathf.Abs(n) >= 10 || health ? Mathf.RoundToInt(n).ToString() : n.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
+                });
+                return value.Replace(" / s", "/s").Replace(" s", "s");
+            }
+            switch (name)
+            {
+                case "Hero health": name = "HP"; break;
+                case "Hero attack cycle": name = "Attacks every"; break;
+                case "Hero damage": name = "Damage"; break;
+                case "Hero critical chance": name = "Crit chance"; break;
+                case "Hero projectile count": name = "Projectiles"; break;
+                case "Hero armor": name = "Armor"; break;
+                case "Movement speed": name = "Speed"; break;
+                case "Passive regeneration": name = "Regen"; break;
+                case "Pickup radius": name = "Pickup range"; break;
+                default: if (name.StartsWith("Hero ", System.StringComparison.Ordinal)) name = char.ToUpperInvariant(name[5]) + name.Substring(6); break;
+            }
+            return (name, Words(before), Words(after), better);
         }
 
         private static float FirstNumber(string value)

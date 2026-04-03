@@ -11,7 +11,7 @@ namespace ArcaneBrigade
             foreach (var d in definitions) if (profile.Achievements.Contains(d.Id)) earned++;
             GUIStyle title = ArcadeTypography.Style(18, true), text = ArcadeTypography.Style(16);
             GUI.Label(new Rect(65, 150, 770, 35), earned + " / " + definitions.Count + " memories recorded. No permanent stat rewards.", text);
-            unfinishedOnly = GUI.Toggle(new Rect(915, 150, 300, 35), unfinishedOnly, "Show unfinished only");
+            unfinishedOnly = ArcadeSkin.Toggle(new Rect(915, 146, 320, 44), unfinishedOnly, "Show unfinished only"); // the painted switch (UI kit)
             int count = 0; foreach (var d in definitions) if (!unfinishedOnly || !profile.Achievements.Contains(d.Id)) count++;
             scroll = ScrollPanel.Begin(new Rect(60, 200, 1160, 455), scroll, new Rect(0, 0, 1120, Mathf.Max(450, Mathf.Ceil(count / 2f) * 130)));
             int index = 0;

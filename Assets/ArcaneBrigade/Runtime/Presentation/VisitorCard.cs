@@ -100,9 +100,7 @@ namespace ArcaneBrigade
             title.normal.textColor = Brown;
             GUI.Label(new Rect(x, card.y + 22, width - 90, 50), v.Name, title);
             Rect info = new Rect(card.xMax - 92, card.y + 18, 66, 66);
-            ArcadeSkin.Plate(info, details ? ArcadeSkin.Gold : ArcadeSkin.Teal);
-            mark.normal.textColor = details ? ArcadeSkin.Gold : ArcadeSkin.Cream;
-            if (GUI.Button(info, "i", mark)) details = !details;
+            if (ArcadeSkin.Medallion(info, KitMedallion.Info, details)) details = !details; // the painted brass "i" (UI kit)
             if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(new Rect(x, card.y + 76, width - 20, 70), ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
             else { hand.normal.textColor = new Color(.30f, .22f, .16f, .75f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
 
@@ -120,8 +118,7 @@ namespace ArcaneBrigade
                 AcceptButton(accept, v, state, options[0]);
             }
             else later = new Rect(x + (width - 300) * .5f, buttonsY, 300, ButtonH);
-            ArcadeSkin.Plate(later, ArcadeSkin.Teal);
-            if (GUI.Button(later, "LATER", button)) Close();
+            if (ArcadeSkin.Button(later, "LATER", KitButton.Secondary, true, button)) Close();
             GUI.matrix = previous;
         }
 
@@ -131,8 +128,9 @@ namespace ArcaneBrigade
             int cost = owner.Session.VisitorCost(v);
             VisitorDeal deal = ShopVisitors.DealFor(v, 0, state.Wave, owner.Session.GoldScale);
             bool poor = cost > state.Gold;
-            ArcadeSkin.Plate(r, option.Enabled ? ArcadeSkin.Gold : Greyed);
-            if (option.Enabled && r.Contains(Event.current.mousePosition)) ArcadeSkin.WorldFocus(r);
+            // the painted gold button (UI kit): ink lettering on the gold face, the grey-brown face when it cannot be taken
+            bool hover = option.Enabled && r.Contains(Event.current.mousePosition);
+            ArcadeSkin.ButtonArt(r, KitButton.Primary, !option.Enabled ? 3 : hover && GUIUtility.hotControl != 0 ? 2 : hover ? 1 : 0);
             string caption = poor ? "NOT ENOUGH GOLD" : (deal?.Do ?? "Accept").ToUpperInvariant();
             float priceW = 0;
             if (cost > 0)
@@ -141,12 +139,10 @@ namespace ArcaneBrigade
                 priceW = g + 8 + amount.CalcSize(new GUIContent(text)).x + 18;
                 float left = r.xMax - priceW;
                 Icon(new Rect(left, r.y + (r.height - g) * .5f, g, g), "gold");
-                amount.normal.textColor = poor ? PayTone : ArcadeSkin.Gold;
+                amount.normal.textColor = poor ? new Color(.48f, .06f, .07f) : ArcadeSkin.KitInk;
                 GUI.Label(new Rect(left + g + 8, r.y, priceW - g - 8, r.height), text, amount);
             }
-            button.normal.textColor = option.Enabled ? ArcadeSkin.Gold : new Color(.8f, .78f, .75f); // the plate is dark: light text
-            GUI.Label(new Rect(r.x + 12, r.y, r.width - priceW - 16, r.height), caption, button);
-            button.normal.textColor = ArcadeSkin.Cream;
+            ArcadeSkin.KitCaption(new Rect(r.x + 12, r.y, r.width - priceW - 16, r.height), caption, ArcadeSkin.KitText(KitButton.Primary, option.Enabled), button);
             if (option.Enabled && GUI.Button(r, GUIContent.none, GUIStyle.none)) Choose(0);
         }
 
@@ -242,10 +238,8 @@ namespace ArcaneBrigade
             {
                 float ax = x + per * (SlotW + SlotGap) + 6, aw = Mathf.Min(100, (x + width - ax - 12) * .5f);
                 Rect prev = new Rect(ax, y + SlotH * .5f - 46, aw, 92), next = new Rect(ax + aw + 12, prev.y, aw, 92);
-                ArcadeSkin.Plate(prev, ArcadeSkin.Teal); ArcadeSkin.Plate(next, ArcadeSkin.Teal);
-                mark.normal.textColor = ArcadeSkin.Cream;
-                if (GUI.Button(prev, "◀", mark)) page = (page + pages - 1) % pages;
-                if (GUI.Button(next, "▶", mark)) page = (page + 1) % pages;
+                if (ArcadeSkin.IconButton(prev, KitRound.Walnut, "◀", null, true, mark)) page = (page + pages - 1) % pages;
+                if (ArcadeSkin.IconButton(next, KitRound.Walnut, "▶", null, true, mark)) page = (page + 1) % pages;
                 caption.normal.textColor = Brown; GUI.Label(new Rect(ax, prev.yMax + 8, aw * 2 + 12, 24), (page + 1) + " / " + pages, caption); caption.normal.textColor = ArcadeSkin.Cream;
             }
             return y - top + SlotH;
@@ -261,7 +255,7 @@ namespace ArcaneBrigade
             if (draw)
             {
                 Rect pill = new Rect(area.x, area.y + (Line - 28) * .5f, tagW, 28);
-                ArcadeSkin.Slant(pill, pay ? PayBack : GetBack); GUI.Label(pill, tag, caption);
+                ArcadeSkin.Plate(pill, pay ? ArcadeSkin.Wax : ArcadeSkin.Teal); GUI.Label(pill, tag, caption);
             }
             float left = area.x + tagW + tagGap, cx = left, cy = area.y;
             List<VisitorTerm> terms = ShopVisitors.Terms(row);

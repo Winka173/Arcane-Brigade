@@ -156,7 +156,7 @@ namespace ArcaneBrigade
                 if (card.height > 0 && box.Overlaps(card) && box.yMin < card.yMin) box.yMax = card.yMin - 4;
                 if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
-                ArcadeSkin.Panel(tag, ArcadeSkin.Card);
+                if (ArcadeSkin.HasKit) ArcadeSkin.Frame(tag, KitFrame.Plaque); else ArcadeSkin.Panel(tag, ArcadeSkin.Card); // the velvet title plaque (UI kit)
                 name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title, name);
             }
             if (open?.Key != shownKey) { shownKey = open?.Key; shownAt = Time.unscaledTime; }
@@ -176,8 +176,8 @@ namespace ArcaneBrigade
                     DrawOffer(camera); GUI.matrix = previous; GUI.color = tint; return;
                 }
                 Rect card = CardRect(open, camera);
-                ArcadeSkin.Panel(card, ArcadeSkin.CardLit);
-                ArcadeSkin.Line(new Rect(card.x, card.y, card.width, 3), ArcadeSkin.Accent);
+                if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .55f);
+                else { ArcadeSkin.Panel(card, ArcadeSkin.CardLit); ArcadeSkin.Line(new Rect(card.x, card.y, card.width, 3), ArcadeSkin.Accent); }
                 float y = card.y + 18, width = card.width - 40;
                 title.normal.textColor = ArcadeSkin.Gold; float h = title.CalcHeight(new GUIContent(open.Title), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Title, title); y += h + 8;
                 body.normal.textColor = ArcadeSkin.Cream; h = body.CalcHeight(new GUIContent(open.Body), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Body, body); y += h + 12;
@@ -203,9 +203,9 @@ namespace ArcaneBrigade
             RarityDescriptionFrame.Draw(card, offerCard.Rarity, owner.PresentationClock); if (open.Offer.Currency == ShopCurrency.Health) BloodPriceFrame.Draw(card, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(card.x + 20, card.y + 14, 42, 42), offerCard.Portrait);
             title.normal.textColor = RunModifierRules.RarityColor(offerCard.Rarity);
-            GUI.Label(new Rect(card.x + 74, card.y + 12, 810, 37), open.Title, title);
+            GUI.Label(new Rect(card.x + 74, card.y + 12, 790, 37), open.Title, title);
             hint.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(card.x + 74, card.y + 48, 830, 24), offerCard.Identity, hint);
-            if (GUI.Button(new Rect(card.xMax - 48, card.y + 12, 32, 32), "×")) { Close(); return; }
+            if (ArcadeSkin.Medallion(new Rect(card.xMax - 74, card.y + 6, 64, 64), KitMedallion.Close)) { Close(); return; } // painted close medallion, a full tap target
             float header = offerCard.HeaderHeight;
             offerCard.DrawHeader(new Rect(card.x + 20, card.y + 82, card.width - 40, header), owner.PresentationClock);
             float y = card.y + 84 + header, width = card.width - 70;

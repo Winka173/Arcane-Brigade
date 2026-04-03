@@ -8,7 +8,7 @@ namespace ArcaneBrigade
     /// Colour language: lantern amber = you / your company / choices; candle cream = text; moon = secondary info;
     /// ember red is reserved for hostile things (eyes, shots, bosses). All textures are generated at runtime.
     /// </summary>
-    public static class ArcadeSkin
+    public static partial class ArcadeSkin
     {
         private static GUISkin skin;
         private static GUIStyle primary;
@@ -68,6 +68,13 @@ namespace ArcaneBrigade
                 skin.verticalScrollbarThumb.normal.background = RoundTexture(new Color(Accent.r, Accent.g, Accent.b, 0.45f), Color.clear, 0, 16, 7);
                 primary = ButtonStyle(skin.button, Accent, Gold, Ink, Gold, new Color(1f, 0.93f, 0.75f), Ink,
                     new Color(Accent.r * 0.8f, Accent.g * 0.8f, Accent.b * 0.8f, 1f), Ink);
+                // the painted kit (item 13): walnut buttons, the gold call to action, brass slider and scrollbar
+                GUIStyle painted = KitButtonStyle(skin.button, KitButton.Secondary);
+                if (painted != null) { skin.button = painted; primary = KitButtonStyle(painted, KitButton.Primary) ?? primary; danger = null; }
+                GUIStyle track = KitSliderStyle(skin.horizontalSlider, out GUIStyle knob);
+                if (track != null) { skin.horizontalSlider = track; skin.horizontalSliderThumb = knob; }
+                GUIStyle rail = KitScrollStyle(skin.verticalScrollbar, out GUIStyle grip);
+                if (rail != null) { skin.verticalScrollbar = rail; skin.verticalScrollbarThumb = grip; }
                 return skin;
             }
         }
@@ -195,11 +202,32 @@ namespace ArcaneBrigade
         /// <summary>Dark glass plate behind a value (HP, coins, timer) with a thin coloured edge light.</summary>
         public static void Plate(Rect rectangle, Color edge)
         {
+            if (HasKit && rectangle.width >= 48 && rectangle.height >= 28)
+            {
+                bool lit = Near(edge, Gold);
+                if (rectangle.height > 110 && rectangle.width > 160)
+                {
+                    if (lit) Glow(new Rect(rectangle.x - 18, rectangle.y - 18, rectangle.width + 36, rectangle.height + 36), new Color(Gold.r, Gold.g, Gold.b, .35f));
+                    Frame(rectangle, KitFrame.Dialogue, Mathf.Clamp(rectangle.height / 500f, .45f, .7f)); // slim corners: titles sit near the top
+                    return;
+                }
+                Color.RGBToHSV(edge, out _, out float saturation, out _);
+                KitButton kind = Near(edge, Danger) || Near(edge, Wax) ? KitButton.Danger : KitButton.Secondary;
+                Sprite plain = KitSprite("Buttons/" + kind + (saturation < .15f ? "DisabledPlain" : lit ? "HoverPlain" : "NormalPlain"));
+                if (plain != null)
+                {
+                    float top = BodyTop(kind) * plain.texture.height, k = rectangle.height / (plain.texture.height - top);
+                    Sliced(new Rect(rectangle.x, rectangle.y - top * k, rectangle.width, rectangle.height + top * k), plain, k);
+                    return;
+                }
+            }
             Slant(new Rect(rectangle.x + 2, rectangle.y + 3, rectangle.width, rectangle.height), new Color(0, 0, 0, 0.35f));
             Slant(rectangle, new Color(Ink.r, Ink.g, Ink.b, 0.82f));
             Line(new Rect(rectangle.x + 6, rectangle.y + rectangle.height * 0.22f, 3, rectangle.height * 0.56f), edge);
             Glow(new Rect(rectangle.x - 8, rectangle.y, 34, rectangle.height), new Color(edge.r, edge.g, edge.b, 0.22f));
         }
+
+        private static bool Near(Color a, Color b) => Mathf.Abs(a.r - b.r) + Mathf.Abs(a.g - b.g) + Mathf.Abs(a.b - b.b) < .12f;
 
         /// <summary>Night-glass panel with a faint lantern keyline and stitched seams.</summary>
         public static void Panel(Rect rectangle, Color color)
@@ -223,6 +251,15 @@ namespace ArcaneBrigade
         /// <summary>Letter-paper card (speech, notes, price slips) with a coloured margin and stitched hem.</summary>
         public static void Ticket(Rect rectangle, Color paper, Color stamp)
         {
+            if (HasKit && rectangle.width >= 120 && rectangle.height >= 64)
+            {
+                bool dark = paper.grayscale < .4f;
+                Frame(rectangle, dark ? KitFrame.Dialogue : KitFrame.Card, Mathf.Clamp(rectangle.height / (dark ? 320f : 280f), .42f, 1f));
+                // a tinted slip (a refused price, a moonlit bundle) keeps its colour as a wash over the paper
+                if (!dark && !Near(paper, Paper) && !Near(paper, Cream) && Event.current.type == EventType.Repaint)
+                    Slant(new Rect(rectangle.x + 14, rectangle.y + 14, rectangle.width - 28, rectangle.height - 28), new Color(paper.r, paper.g, paper.b, .35f));
+                return;
+            }
             Slant(new Rect(rectangle.x + 3, rectangle.y + 5, rectangle.width, rectangle.height), new Color(0, 0, 0, 0.45f));
             Slant(new Rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height - 4), paper);
             TornEdge(new Rect(rectangle.x + 2, rectangle.yMax - 8, rectangle.width - 4, 9), paper);
@@ -353,17 +390,18 @@ namespace ArcaneBrigade
             headerStyle.normal.textColor = Cream;
             Vector2 size = headerStyle.CalcSize(new GUIContent(heading));
             GUI.Label(new Rect(rectangle.x, rectangle.y + 24, rectangle.width, rectangle.height - 24), heading, headerStyle);
-            Divider(new Rect(rectangle.x + 2, rectangle.y + 24 + Mathf.Min(size.y, 52) + 2, Mathf.Min(rectangle.width, size.x + 8), 2), new Color(Accent.r, Accent.g, Accent.b, 0.8f));
+            if (HasKit) Ornament(new Rect(rectangle.x - 4, rectangle.y + 24 + Mathf.Min(size.y, 52) - 6, Mathf.Min(rectangle.width, Mathf.Max(size.x + 40, 240)), 26), KitDivider.Lantern);
+            else Divider(new Rect(rectangle.x + 2, rectangle.y + 24 + Mathf.Min(size.y, 52) + 2, Mathf.Min(rectangle.width, size.x + 8), 2), new Color(Accent.r, Accent.g, Accent.b, 0.8f));
         }
 
         public static void Stamp(Rect rectangle, string caption)
         {
-            Divider(new Rect(rectangle.x, rectangle.y, rectangle.width, 1), Accent);
+            if (HasKit) Ornament(new Rect(rectangle.x, rectangle.y - 9, rectangle.width, 18), KitDivider.Clock); else Divider(new Rect(rectangle.x, rectangle.y, rectangle.width, 1), Accent);
             GUIStyle label = stampStyle ?? (stampStyle = ArcadeTypography.Style(15, true));
             label.normal.textColor = Accent;
             label.alignment = TextAnchor.MiddleCenter;
             GUI.Label(new Rect(rectangle.x, rectangle.y + 6, rectangle.width, rectangle.height - 12), caption, label);
-            Divider(new Rect(rectangle.x, rectangle.yMax - 1, rectangle.width, 1), Accent);
+            if (HasKit) Ornament(new Rect(rectangle.x, rectangle.yMax - 9, rectangle.width, 18), KitDivider.Key); else Divider(new Rect(rectangle.x, rectangle.yMax - 1, rectangle.width, 1), Accent);
         }
     }
 }

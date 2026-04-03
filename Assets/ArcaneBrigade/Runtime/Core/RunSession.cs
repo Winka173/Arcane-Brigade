@@ -352,6 +352,8 @@ namespace ArcaneBrigade
             CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds;
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
             CombatCatalog.EnemyBudget = Mathf.Min(600, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
+            // waves are 15% longer (D9): the budget grows with them so enemies per second stay the same
+            CombatCatalog.EnemyBudget = Mathf.Min(690, Mathf.CeilToInt(CombatCatalog.EnemyBudget * WaveCadence.LengthScale));
             CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
@@ -391,6 +393,7 @@ namespace ArcaneBrigade
             CombatCatalog.EnableArenaToys = false; // no arena toys in the fight any more (owner, 19/10/2026): no bell, no cart; scenery stays
             CombatCatalog.RunWave = State.Wave;
             CombatCatalog.ChestGoldScale = GoldScale;
+            CombatCatalog.ChestGold = (float)MeanShopPrice; // an average chest is worth about one mid-priced offer of the last shop
             CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
             CombatCatalog.ExpandedContent = catalog.ExpansionRevision > 0;
             CombatCatalog.EnableSpectacles = catalog.ExpansionRevision > 0;
@@ -444,7 +447,7 @@ namespace ArcaneBrigade
             CombatCatalog.GoldPerKill = Mathf.Max(1, Mathf.RoundToInt(CombatCatalog.GoldPerKill * 0.5f * (1 + Mathf.Min(2, Mathf.Max(0, State.Wave - 1) / 6f))));
             CombatCatalog.MinionCoin = 1;
             CombatCatalog.CoinValueScale = CarnivalBalance.CoinGoldValue;
-            CombatCatalog.EnemyBudget = Mathf.Min(600, CombatCatalog.EnemyBudget);
+            CombatCatalog.EnemyBudget = Mathf.Min(690, CombatCatalog.EnemyBudget);
             PrepareVisitors();
             CombatCatalog.BossSwarmBudget = bossWave ? Mathf.CeilToInt(CombatCatalog.EnemyBudget * 0.22f) : 0;
             CombatCatalog.FinalDuel = false;
@@ -790,7 +793,36 @@ namespace ArcaneBrigade
         // balance pass 19/10/2026: the 2 + 2n refresh fee follows half the shop's price stage once that exceeds x2 (unchanged early)
         private float RerollStage => Mathf.Max(1, StagePriceFactor * .5f);
         // the stage factor applies after the relic/talent/hero adjustments, so Ink Feather and Mary still reach the 1-gold minimum
-        private int RerollBaseCost => Mathf.Max(1, (int)Math.Min(int.MaxValue, Math.Ceiling(((double)State.RerollsThisShop * Mathf.Max(1, catalog.RerollPriceStep) + 2d - 2 * MechanicStacks(RelicMechanic.RerollFeather) - 2 * Talent("\"Leisurely Walk\" Mary") + (OctoberHero == "Nicole" ? 2 : OctoberHero == "Belle" ? -1 : 0)) * RerollStage)));
+        // play-test 20/10/2026 (item 12): the first refresh costs ~8% of this shop's mean offer price, each further one in the
+        // same shop 50% more; it resets every wave. Relic/talent/hero adjustments stay flat amounts on the old stage.
+        public const float RerollShare = .08f, RerollGrowth = 1.5f;
+        public double MeanShopPrice
+        {
+            get
+            {
+                double sum = 0; int n = 0;
+                foreach (ShopOffer o in State.Offers) if (o.Currency == ShopCurrency.Gold && o.BasePrice > 0) { sum += o.BasePrice; n++; }
+                return n > 0 ? sum / n : MidOfferPrice * .4f;
+            }
+        }
+        // a feather or Mary takes one first-refresh fee off (the first refresh then costs the 1-gold minimum); Nicole adds one, Belle takes half off
+        private int RerollBaseCost => Mathf.Max(1, (int)Math.Min(int.MaxValue, Math.Ceiling(MeanShopPrice * RerollShare * (Math.Pow(RerollGrowth, State.RerollsThisShop)
+            - (MechanicStacks(RelicMechanic.RerollFeather) + Talent("\"Leisurely Walk\" Mary") - (OctoberHero == "Nicole" ? 1 : OctoberHero == "Belle" ? -.5 : 0))))));
+        /// <summary>A typical relic's gold price in this shop (the median catalogue relic, its rarity markup, the wave's curve).</summary>
+        public float MidOfferPrice
+        {
+            get
+            {
+                if (midOfferBase <= 0)
+                {
+                    var prices = new System.Collections.Generic.List<float>();
+                    foreach (ItemDefinition item in catalog.Items) if (item.ShopWeight > 0 && item.Price > 0) prices.Add(item.Price * (1 + (int)item.Rarity * 0.4f));
+                    prices.Sort(); midOfferBase = prices.Count == 0 ? 20 : prices[prices.Count / 2];
+                }
+                return midOfferBase * StagePriceFactor;
+            }
+        }
+        private float midOfferBase;
         private void RememberVariant(RosterEntry entry)
         {
             if (!State.AcquiredVariants.Exists(candidate => candidate.UnitId == entry.UnitId && candidate.WeaponId == entry.WeaponId && candidate.Tier == entry.Tier))

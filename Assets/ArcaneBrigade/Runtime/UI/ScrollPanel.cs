@@ -81,9 +81,9 @@ namespace ArcaneBrigade
             // the thumb: how much is shown and where
             float track = view.height - 8, thumb = Mathf.Max(28, track * view.height / (view.height + max));
             float top = view.y + 4 + (track - thumb) * (y / max);
-            GUI.color = new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.75f * previous.a);
-            GUI.DrawTexture(new Rect(view.xMax - 7, top, 5, thumb), Texture2D.whiteTexture);
             GUI.color = previous;
+            // the painted rail and thumb from the UI kit (a walnut rail, a velvet lozenge in brass)
+            ArcadeSkin.ScrollBar(new Rect(view.xMax - 13, view.y + 4, 10, track), new Rect(view.xMax - 15, top, 14, thumb));
         }
     }
 }

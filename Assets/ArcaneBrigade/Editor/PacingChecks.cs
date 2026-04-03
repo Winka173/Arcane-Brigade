@@ -133,9 +133,9 @@ namespace ArcaneBrigade.Editor
             {
                 s.Start("LanternKnight", 5003);
                 s.State.Wave = 1; CheckpointCatalog first = s.PrepareCombat();
-                Check(Mathf.Approximately(first.WaveDuration, 30) && first.GoldPerKill == 1 && first.MinionCoin == 1 && first.BossSwarmBudget == 0, "Wave 1 is a 30 s night; every swarm body drops one coin");
+                Check(Mathf.Approximately(first.WaveDuration, 34.5f) && first.GoldPerKill == 1 && first.MinionCoin == 1 && first.BossSwarmBudget == 0, "Wave 1 is a 34.5 s night (+15%, D9); every swarm body drops one coin");
                 s.State.Wave = 13; CheckpointCatalog late = s.PrepareCombat();
-                Check(Mathf.Approximately(late.WaveDuration, 60) && late.GoldPerKill == 3, "From wave 13 a night lasts a minute; a full enemy's coin is 3");
+                Check(Mathf.Approximately(late.WaveDuration, 69) && late.GoldPerKill == 3, "From wave 13 a night lasts 69 s; a full enemy's coin is 3");
                 s.State.Wave = 10; CheckpointCatalog boss = s.PrepareCombat();
                 Check(boss.Boss != null && boss.BossSwarmBudget > 0 && Mathf.Approximately(boss.WaveDuration, OctoberBalance.WaveSeconds), "A boss wave keeps a light swarm while the boss stands");
                 Check(Mathf.Approximately(WaveCadence.PriceRamp(1), 1) && Mathf.Approximately(WaveCadence.PriceRamp(30), 1.6f), "Prices climb at most 60% with the night");

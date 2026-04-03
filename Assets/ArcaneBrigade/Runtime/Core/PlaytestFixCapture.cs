@@ -47,7 +47,11 @@ namespace ArcaneBrigade
                 var stock = special ? run.State.SpecialOffers : run.State.Offers;
                 var tradeoff = catalog.Items.First(i => i.ShopWeight > 0 && i.EffectiveModifiers.Any(m => m.Value < 0) && i.EffectiveModifiers.Any(m => m.Value > 0));
                 var plain = catalog.Items.First(i => i.ShopWeight > 0 && i.Mechanic != RelicMechanic.None && i.EffectiveModifiers.Any(m => m.Value > 0));
-                var friend = catalog.Companions.First(u => !u.GiftOnly && u.CompanionModifiers.Any(m => m.Value != 0));
+                // the friend on offer completes a duet with one already in the brigade (item 26: role badge, COMBO chip)
+                var duet = Duets.All.First(d => catalog.Unit(d.A) is UnitDefinition a && catalog.Unit(d.B) is UnitDefinition b && !a.GiftOnly && !b.GiftOnly && a.Weapon != null && b.Weapon != null);
+                var friend = catalog.Unit(duet.A); var partner = catalog.Unit(duet.B);
+                if (!run.State.Roster.Exists(r => r.UnitId == partner.Id)) run.State.Roster.Add(new RosterEntry { UnitId = partner.Id, WeaponId = partner.Weapon.Id, Tier = 1 });
+                run.State.Roster.RemoveAll(r => r.UnitId == friend.Id);
                 stock.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = tradeoff.Id, Price = special ? 6 : 40, BasePrice = special ? 6 : 40, Currency = special ? ShopCurrency.Health : ShopCurrency.Gold });
                 stock.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = plain.Id, Price = special ? 3 : 30, BasePrice = special ? 3 : 30, Currency = special ? ShopCurrency.Eggs : ShopCurrency.Gold });
                 stock.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Companion, Id = friend.Id, Tier = 1, Price = 24, BasePrice = 24, Currency = ShopCurrency.Gold });
@@ -85,7 +89,10 @@ namespace ArcaneBrigade
             yield return LoadShop(1, false);
             yield return new WaitForSecondsRealtime(1.2f); yield return Shot("Item04_ShopHintAndTip");
             yield return Focus(0); yield return Shot("Item03_11_RelicCard_GivesCosts");
-            yield return Focus(2); yield return Shot("Item03_11_FriendCard");
+            yield return Focus(2); yield return Shot("Item03_11_FriendCard"); yield return Shot("Item26_FriendCard_RoleCombo");
+            // 12/25: the refresh station: its price (about 8% of the shop's offers) and the new-friend pace
+            var refresh = owner.Shop.Stations.FirstOrDefault(s => s.Action == "REROLL");
+            if (refresh != null) { yield return Stand(refresh.Position + new Vector2(0, -.3f)); yield return Shot("Item12_25_RefreshAndFriendPace"); }
             yield return Focus(0); owner.SetShopDetails(true); GlossaryUI.Show(RunModifierRules.ModifierName(ItemEffect.Health)); yield return new WaitForSecondsRealtime(.3f);
             yield return Shot("Item11_TapStatExplains");
             typeof(RunHud).GetField("shopScroll", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, new Vector2(0, 160)); GlossaryUI.Close();
@@ -94,6 +101,8 @@ namespace ArcaneBrigade
             Hud.Guide.ShowGoalForCapture(); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item04_GoalCard"); typeof(PlayerGuide).GetField("goalAt", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud.Guide, -100f);
             owner.TogglePause(); typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 3);
             yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item04_HowToPlay");
+            typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 4);
+            yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item26_CombosPage");
             typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 0); owner.TogglePause();
             // 06/14: the hero behind a stall (the stall fades, the halo and show-through)
             var stall = owner.Shop.Stations.Where(s => s.Offer != null).Skip(1).FirstOrDefault() ?? owner.Shop.Stations.First();
@@ -111,6 +120,7 @@ namespace ArcaneBrigade
             yield return LoadShop(12, true);
             yield return Focus(0); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item10_BloodPriceCard");
             owner.SetShopDetails(true); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item10_BloodPriceDetails"); owner.SetShopDetails(false);
+            yield return Focus(1); yield return Shot("Item16_DreamShopEggs");
 
             // 07: a secret event room as plates (the Impossible Tailor, a relic in the middle)
             bool saved = false; SecretEventKind shown = SecretEventKind.ImpossibleTailor;
@@ -137,7 +147,8 @@ namespace ArcaneBrigade
 
             // the fight: 05 (no hit stop), 08 (ground coins), 09 (heart on the HP bar), 14 (hero in a crowd), 29 (chest popup)
             yield return LoadShop(5, false);
-            owner.NextWave(); yield return new WaitForSecondsRealtime(6f);
+            owner.NextWave(); yield return new WaitForSecondsRealtime(1.5f);
+            yield return Shot("Item21_LongerWaveTimer"); yield return new WaitForSecondsRealtime(4.5f);
             yield return Shot("Item05_Combat_NoHitStop");
             Vector2 hero = owner.Simulation.Champion.Position;
             for (int i = 0; i < 8; i++) owner.Simulation.AddLootPresentationFixture(LootKind.Coin, hero + new Vector2(1.2f + i * .35f, -.6f + (i % 2) * .3f), 3);

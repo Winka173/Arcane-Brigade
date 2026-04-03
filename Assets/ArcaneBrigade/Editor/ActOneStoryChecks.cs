@@ -70,6 +70,23 @@ namespace ArcaneBrigade.Editor
             ("ShopFlow", ShopFlowChecks.Run),
             ("Pacing", PacingChecks.Run),
         });
+        /// <summary>Play-test review phase C (economy, eggs, wave length, recruitment pace, duets and roles): one launch.</summary>
+        public static void RunPhaseC() => Execute("PhaseC", new (string name, Action run)[]
+        {
+            ("BuildSizePolicy", BuildSizeChecks.Policy),
+            ("CopyAudit", CopyAuditChecks.Run),
+            ("ShopDescription", ShopDescriptionChecks.Run),
+            ("Recruitment", RecruitmentChecks.Run),
+            ("RosterCapAndBond", RosterCapAndBondChecks.Run),
+            ("Pacing", PacingChecks.Run),
+            ("K21BossEncounter", K21BossEncounterChecks.Run),
+            ("HeroAwakening", HeroAwakeningChecks.Run),
+            ("K26Relic", K26RelicChecks.Run),
+            ("K10", K10Checks.Run),
+            ("HeroIdentity", HeroIdentityChecks.Run),
+            ("October", OctoberChecks.Run),
+            ("ShopFlow", ShopFlowChecks.Run),
+        });
         public static void RunCopyAudit() => Execute("CopyAudit", new (string name, Action run)[] { ("CopyAudit", CopyAuditChecks.Run) });
         public static void RunK32() => Execute("K32", new (string name, Action run)[] { ("K32", K32Checks.Run) });
 

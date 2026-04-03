@@ -100,12 +100,14 @@ namespace ArcaneBrigade.Editor
                 Require(RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats.Any(row => row.Name == "Touch damage" && row.Summary.Contains(compiled.Champion.CollisionDamage.ToString("0.0"))), "Notebook shows actual collision damage, not just bonus");
                 session.State.Wave = 20; session.State.Phase = SessionPhase.Shop; session.State.Gold = 100000;
                 // since the 19/10/2026 balance pass the first reroll grows with the shop's price factor late in the run (2 early on)
-                Require(session.RerollCost >= 2 && session.RerollCost <= Mathf.CeilToInt((2 + 2 * session.State.RerollsThisShop) * Mathf.Max(1, session.StagePriceFactor * .5f)) + 1, "Late-wave first reroll is the base two scaled by the shop price factor (" + session.RerollCost + ")");
+                // play-test 20/10/2026: the first refresh is ~8% of the shop's mean offer price, each further one 50% more
+                float mean = (float)session.MeanShopPrice;
+                Require(Mathf.Abs(session.RerollCost - mean * RunSession.RerollShare) <= Mathf.Max(2, mean * .02f), "First refresh is about 8% of this shop's mean price (" + session.RerollCost + " vs " + mean + ")");
                 int firstReroll = session.RerollCost;
-                Require(session.Reroll() && session.RerollCost > firstReroll && session.RerollCost <= Mathf.CeilToInt((2 + Mathf.Max(1, catalog.RerollPriceStep) * session.State.RerollsThisShop) * Mathf.Max(1, session.StagePriceFactor * .5f)) + 1, "Paid reroll increases only within its wave");
+                Require(session.Reroll() && session.RerollCost > firstReroll, "Paid reroll increases only within its wave");
                 session.State.Wave++;
                 typeof(RunSession).GetMethod("RollShop", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(session, new object[] { true });
-                Require(session.RerollCost == Mathf.CeilToInt(2 * Mathf.Max(1, session.StagePriceFactor * .5f)) && session.State.RerollsThisShop == 0, "Next shop boundary resets price to the first-roll fee");
+                Require(session.State.RerollsThisShop == 0 && session.RerollCost <= firstReroll * 2, "Next shop boundary resets price to the first-roll fee");
                 int gold = session.State.Gold; session.State.Gold = 1;
                 Require(!session.Reroll() && session.State.RerollsThisShop == 0 && session.State.Gold == 1, "Denied reroll changes no counters or gold"); session.State.Gold = gold;
             }

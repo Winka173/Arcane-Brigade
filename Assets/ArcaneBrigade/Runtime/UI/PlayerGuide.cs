@@ -87,6 +87,13 @@ namespace ArcaneBrigade
         private void DrawTip(ArenaController owner, Tip tip, float alpha)
         {
             Rect r = new Rect(560, 150, 800, 104);
+            // never over an open card (the shop's details, an inspect card): the tip waits until it is closed
+            Rect shown = RunHud.ShownShopCard;
+            if (shown.height > 0 && shown.Overlaps(r) || owner.GetComponent<ShopInspect>()?.Open != null)
+            {
+                if (Event.current.type == EventType.Repaint) shownAt += Time.unscaledDeltaTime;
+                return;
+            }
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
             Highlight(r, Time.unscaledTime - shownAt, alpha);
@@ -177,7 +184,7 @@ namespace ArcaneBrigade
         private void DrawShopHint(ArenaController owner)
         {
             Rect r = new Rect(660, 96, 600, 52);
-            ArcadeSkin.Line(r, new Color(.05f, .06f, .1f, .82f));
+            ArcadeSkin.Plate(r, ArcadeSkin.Accent); // a walnut plate (UI kit)
             Highlight(r, Time.unscaledTime, 1);
             RunCatalog c = owner.Content;
             Sprite friend = c.Companions.Length > 0 ? c.Companions[0].Body : null;

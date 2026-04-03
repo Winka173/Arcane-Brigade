@@ -90,10 +90,14 @@ namespace ArcaneBrigade
         {
             if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; expanded = false; revealedAt = UnityEngine.Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
             if (cachedRun != run || cachedMembers == null) { cachedRun = run; cachedMembers = Brigade(run); }
-            ArcadeSkin.Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), ArcadeSkin.Ink);
-            ArcadeSkin.Line(rectangle, ArcadeSkin.Paper);
-            for (float horizontal = rectangle.x; horizontal < rectangle.xMax; horizontal += 22)
-                ArcadeSkin.Line(new Rect(horizontal, rectangle.yMax - 6, 10, 6), ArcadeSkin.Ink);
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); // the cream card with lantern corners (UI kit)
+            else
+            {
+                ArcadeSkin.Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), ArcadeSkin.Ink);
+                ArcadeSkin.Line(rectangle, ArcadeSkin.Paper);
+                for (float horizontal = rectangle.x; horizontal < rectangle.xMax; horizontal += 22)
+                    ArcadeSkin.Line(new Rect(horizontal, rectangle.yMax - 6, 10, 6), ArcadeSkin.Ink);
+            }
             GUIStyle heading = headingStyle ?? (headingStyle = ArcadeTypography.Style(26, true));
             GUIStyle body = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(19));
             GUIStyle number = numericStyle ?? (numericStyle = ArcadeTypography.Style(22, false, true));
@@ -143,7 +147,7 @@ namespace ArcaneBrigade
             }
             if (cachedMembers.Count > 5)
             {
-                if (GUI.Button(new Rect(4, y + 4, Mathf.Min(inner - 8, 320), 48), expanded ? "SHOW TOP 5" : "+" + (cachedMembers.Count - 5) + " MORE")) expanded = !expanded;
+                if (ArcadeSkin.Button(new Rect(4, y + 4, Mathf.Min(inner - 8, 320), 48), expanded ? "SHOW TOP 5" : "+" + (cachedMembers.Count - 5) + " MORE", KitButton.Secondary, true, small)) expanded = !expanded;
                 y += 56;
             }
             y += 20;
