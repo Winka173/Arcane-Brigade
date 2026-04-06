@@ -1,5 +1,9 @@
 # Audio provenance — thư viện `Resources/Audio/Arcane`
 
+## Nhạc hiện tại: storybook v5, 2026-10-20
+
+Music revision 5 thay toàn bộ 15 bài (60 stem) bằng các bản soạn mới cho game trong `Tools/Music/tracks.py` (nốt nhạc viết tay, không chép, không sample), render bằng FluidSynth 2.6.1 + GeneralUser GS 2.0.3, mỗi scene mix ở −18 LUFS, loop liền mạch. Công cụ, giấy phép và bảng từng bài: [Music_Credits.md](../Music_Credits.md). Phần nhạc của revision 4 bên dưới chỉ còn là lịch sử.
+
 ## Hiện tại: Midnight Toybox Band, 2026-10-15
 
 Music revision 4 thay toàn bộ 15 bài bằng các bản soạn độc lập trong `Tools/Audio/Scores/`; không dùng khuôn motif/hòa âm/bridge của revision trước. Nhạc runtime gồm 60 stem mới. [Thiết kế từng bài](Toybox_Individual_Compositions.md) và báo cáo `PreviewExports/Audio/Toybox/Composition_Audit.json` mô tả phạm vi đối chiếu bản phổ.
