@@ -84,10 +84,12 @@ namespace ArcaneBrigade
                         float flight = Mathf.Clamp01((simulation.Elapsed - field.Created) / Mathf.Max(0.05f, field.At - field.Created));
                         prop.transform.position = ReducedMotion ? field.Position : Vector2.Lerp(field.Start, field.Position, flight) + Vector2.up * Mathf.Sin(flight * Mathf.PI) * 2.5f;
                         prop.transform.rotation = Quaternion.Euler(0, 0, ReducedMotion ? 0 : flight * 210);
-                        prop.transform.localScale = Vector3.one * (0.7f / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(prop.sprite).width));
+                        // a boss's falling piece is drawn as wide as the area it hits (play-test item 22: attack areas match the art)
+                        float propWidth = field.Source.Definition.IsBoss ? Mathf.Clamp(field.Radius * 1.7f, 0.7f, 2.1f) : 0.7f;
+                        prop.transform.localScale = Vector3.one * (propWidth / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(prop.sprite).width));
                         prop.color = new Color(1, 0.7f, 0.6f, simulation.Elapsed < field.At ? 1 : Mathf.Clamp01((field.Until - simulation.Elapsed) / 0.4f));
                         if (canonThrow != null) prop.color = new Color(1, 1, 1, prop.color.a);
-                        propShadows[slot].Display(prop.sprite, Vector2.Lerp(field.Start, field.Position, flight), 0.7f, ReducedMotion ? 0 : Mathf.Sin(flight * Mathf.PI) * 2.5f, 0.3f * prop.color.a);
+                        propShadows[slot].Display(prop.sprite, Vector2.Lerp(field.Start, field.Position, flight), propWidth, ReducedMotion ? 0 : Mathf.Sin(flight * Mathf.PI) * 2.5f, 0.3f * prop.color.a);
                     }
                     else propShadows[slot].Hide();
                     bool warning = simulation.Elapsed < field.At;

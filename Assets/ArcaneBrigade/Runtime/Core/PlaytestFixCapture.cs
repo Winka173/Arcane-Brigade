@@ -68,6 +68,16 @@ namespace ArcaneBrigade
             owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = at;
             FindAnyObjectByType<ArenaCamera>()?.Snap(); yield return new WaitForSecondsRealtime(.6f);
         }
+        /// <summary>Waits while the hero cannot fall (a capture fight is staged, not played).</summary>
+        private IEnumerator KeepAlive(float seconds)
+        {
+            for (float t = 0; t < seconds; t += .1f)
+            {
+                if (owner?.Simulation?.Champion != null) owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health;
+                yield return new WaitForSecondsRealtime(.1f);
+            }
+            if (owner?.Simulation?.Champion != null) owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health;
+        }
         private IEnumerator Focus(int slot) { var stations = owner.Shop.Stations.Where(s => s.Offer != null).ToList(); if (slot >= stations.Count) { Check(false, "Offer slot " + slot); yield break; } var station = stations[slot]; yield return Stand(station.Position + new Vector2(0, -.3f)); }
 
         private IEnumerator Start()
@@ -84,6 +94,21 @@ namespace ArcaneBrigade
             RunMenu menu = FindAnyObjectByType<RunMenu>();
             if (menu != null) { menu.ShowPage(RunMenu.Page.Roster); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item01_HeroSelect"); }
             else Check(false, "Menu found");
+            // 27: the Waiting Room hub (stations restored by their ranks, the other five dusty), a station's cards, hero select's row
+            if (menu != null)
+            {
+                var meta = new PlayerProfile { TutorialSeen = true, BestWave = 40 }; MetaProgression.Ensure(meta);
+                meta.Meta.LampOil = 1000; meta.Meta.Keepsakes = 40;
+                foreach (string id in new[] { "lantern.wick", "lantern.wick", "lantern.spark", "ledger.purse", "ledger.look", "clock.candle", "nursery.cradle", "nursery.stork" }) MetaProgression.Buy(meta, id);
+                meta.Meta.LampOil = 240; meta.Meta.Keepsakes = 6;
+                foreach (UnitDefinition champion in catalog.Champions) MetaProgression.Mastery(meta, champion.Id, true).Waves = 24;
+                menu.ConfigureHubDiagnostics(meta);
+                menu.ShowPage(RunMenu.Page.Hub); menu.Hub.Approach(MetaStation.Lantern); yield return new WaitForSecondsRealtime(.8f);
+                Check(menu.CurrentPage == RunMenu.Page.Hub && menu.Hub.Focus >= 0, "Hub opens with a station in reach"); yield return Shot("Item27_Hub");
+                menu.Hub.OpenStation(MetaStation.Lantern); yield return new WaitForSecondsRealtime(.5f);
+                Check(menu.Hub.PanelOpen, "Station cards open"); yield return Shot("Item27_StationCard");
+                menu.Hub.Close(); menu.ShowPage(RunMenu.Page.Roster); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item27_HeroSelectLoadout");
+            }
 
             // first shop: the what-now line and the first tip (04), the friend and relic cards (03/11), a stat explained (11)
             yield return LoadShop(1, false);
@@ -121,6 +146,11 @@ namespace ArcaneBrigade
             yield return Focus(0); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item10_BloodPriceCard");
             owner.SetShopDetails(true); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item10_BloodPriceDetails"); owner.SetShopDetails(false);
             yield return Focus(1); yield return Shot("Item16_DreamShopEggs");
+            // 15: one shop per night: the dream stalls in the gold shop's curtained alcove (no second room, no Continue)
+            yield return LoadShop(12, true, run => { foreach (var item in catalog.Items.Where(i => i.ShopWeight > 0 && i.EffectiveModifiers.Any(m => m.Value > 0)).Skip(3).Take(3)) run.State.Offers.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 60, BasePrice = 60, Currency = ShopCurrency.Gold }); });
+            yield return new WaitForSecondsRealtime(.6f);
+            Check(owner.Shop.DreamAlcove && !owner.Shop.Special && owner.Shop.Stations.Count(s => s.Dream) >= 2 && owner.Shop.Stations.Count(s => s.Offer != null && !s.Dream) >= 3, "Dream stalls stand in the gold shop's alcove");
+            yield return Stand(new Vector2(-3.2f, -1.6f)); yield return Shot("Item15_ShopWithDreamAlcove");
 
             // 07: a secret event room as plates (the Impossible Tailor, a relic in the middle)
             bool saved = false; SecretEventKind shown = SecretEventKind.ImpossibleTailor;
@@ -157,6 +187,38 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(1.2f); yield return Shot("Item29_ChestPopup");
             yield return new WaitForSecondsRealtime(2f); yield return Shot("Item14_HeroInCrowd");
 
+            // 22: a boss's attack ranges as red ink outlines (rims, lanes, arrows), then its contact shape on the painted body
+            yield return LoadShop(4, false);
+            owner.NextWave(); yield return KeepAlive(4.5f);
+            UnitState boss = owner.Simulation.Boss;
+            if (boss != null && boss.Alive)
+            {
+                owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health;
+                owner.Simulation.BossTelegraphCaptureFixture(); yield return KeepAlive(.9f);
+                var telegraph = owner.GetComponent<BossTelegraph>();
+                Check(telegraph != null && telegraph.Rims >= 2 && telegraph.Lanes >= 2, "Boss telegraph rims and lanes on screen");
+                yield return Shot("Item22_BossTelegraph");
+                BossBodyShape.Shape body = BossBodyShape.Of(boss.Definition);
+                BossTelegraph.ShowBodyShapes = true; boss.NextBossPattern = owner.Simulation.Elapsed + 30; boss.BossRecoveryUntil = owner.Simulation.Elapsed + 30;
+                Vector2 edge = BossBodyShape.Centre(boss, body) + new Vector2(body.Half.x + owner.Simulation.Champion.Definition.Radius * .5f, -body.Half.y * .2f);
+                owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health;
+                yield return Stand(edge); yield return new WaitForSecondsRealtime(.4f);
+                Check(BossBodyShape.Touches(boss, owner.Simulation.Champion.Position, owner.Simulation.Champion.Definition.Radius), "Hero at the painted edge touches the boss");
+                yield return Shot("Item22_BossContact"); BossTelegraph.ShowBodyShapes = false;
+            }
+            else Check(false, "Wave 5 boss for the telegraph shots");
+
+            // 24: each map's living elements (waves 3, 8, 13, 18: no carrier transfer on the way in)
+            foreach (var (wave, name) in new[] { (3, "WaitingRoom"), (8, "PostOffice"), (13, "LampHall"), (18, "ArchiveVault") })
+            {
+                yield return LoadShop(wave - 1, false);
+                owner.NextWave(); yield return KeepAlive(2.5f);
+                owner.Simulation.MapEnvironmentCaptureFixture(); yield return KeepAlive(.7f);
+                var map = owner.GetComponent<MapEnvironmentVisual>();
+                Check(owner.Simulation.MapEnvironment != null && map != null && map.Props >= 4, "Map elements on screen: " + name + " (" + (map != null ? map.Props : 0) + " props)");
+                yield return Shot("Item24_Map" + name);
+            }
+
             // 32: the run summary as the results screen draws it
             summary = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(owner.Session.State));
             summary.Phase = SessionPhase.Victory; summary.Wave = 20; summary.TotalKills = 12523; summary.BossKills = 4; summary.CombatSeconds = 1415;
@@ -166,6 +228,12 @@ namespace ArcaneBrigade
             foreach (RosterEntry r in summary.Roster) { summary.Contributions.Add(new ContributionEntry { UnitId = r.UnitId, WeaponId = r.WeaponId, EffectId = "primary", Tier = r.Tier, Damage = share, Kills = (int)(share / 400) }); share *= .7f; }
             if (summary.Items.Count == 0) foreach (var relic in catalog.Items.Where(i => i.ShopWeight > 0).Take(5)) summary.Items.Add(new ItemStack { Id = relic.Id, Count = 1 });
             drawSummary = true; yield return new WaitForSecondsRealtime(.5f); yield return Shot("Item32_RunSummary"); drawSummary = false;
+            // 27: what the night brings to the Waiting Room, on the run summary
+            var earner = new PlayerProfile(); MetaProgression.Ensure(earner);
+            summary.Meta ??= new MetaRunState(); summary.Meta.FoundUnits = 3; summary.Meta.FoundItems = 4; summary.Difficulty = 2;
+            if (summary.DefeatedBosses.Count == 0 && catalog.Bosses.Length > 0) summary.DefeatedBosses.Add(catalog.Bosses[0].Id);
+            Check(MetaProgression.Credit(earner, summary, catalog) && RunInvoice.HasHaul(summary), "Run summary carries the Waiting Room haul");
+            drawSummary = true; yield return new WaitForSecondsRealtime(.5f); yield return Shot("Item27_RunSummaryHaul"); drawSummary = false;
 
             // 30: the dawn page, read line by line
             using (var s = new RunSession(catalog))

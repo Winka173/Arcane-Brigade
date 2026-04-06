@@ -19,7 +19,7 @@ namespace ArcaneBrigade
             WaitingEnemyRoster roster = WaitingEnemyRoster.Current;
             if (roster == null || roster.Enemies == null) return;
             foreach (UnitDefinition enemy in roster.Enemies)
-                if (enemy != null && enemy.Weapon != null && WaitingEnemyRoster.InRegularWaves(enemy.WaitingKind, State.Wave, State.Endless))
+                if (enemy != null && enemy.Weapon != null && (WaitingEnemyRoster.InRegularWaves(enemy.WaitingKind, State.Wave, State.Endless) || !MapIdentity.Off("pool") && MapIdentity.Joins(enemy.WaitingKind, enemy.Id, State.Wave)))
                     pool.Add(BuildEnemy(enemy, scaling));
         }
 

@@ -17,10 +17,21 @@ namespace ArcaneBrigade
             new Tip { Id = "bond", Line = "A bond is active: friends of one family give a bonus together.", Icon = o => o.Content.Bonds.Length > 0 ? o.Content.Bonds[0].Icon : null },
             new Tip { Id = "merge", Line = "Three of the same friend became one, with a new star.", Icon = o => o.Session.State.Roster.Count > 0 ? o.Content.Unit(o.Session.State.Roster[0].UnitId)?.Body : null },
             new Tip { Id = "gauge", Line = "Your gauge is full: your hero's power is ready.", Icon = o => o.Content.Unit(o.Session.State.ChampionId)?.Body },
-            new Tip { Id = "dream", Line = "The dream shop takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
-            new Tip { Id = "boss", Line = "A boss! It hits hard. Keep moving and let your friends work.", Icon = o => o.Simulation?.Boss?.Definition.Body },
+            new Tip { Id = "dream", Line = "The curtained corner takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
+            new Tip { Id = "boss", Line = "A boss! Red ink marks where its blows land: step out before the rim closes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
             new Tip { Id = "visitor", Line = "A visitor waits at the table. Walk up to see the deal.", Icon = o => ExpansionArtwork.Current?.Visitor(o.Session.State.Visitor) },
+            // the maps' living elements (play-test item 24): one line each, the first time it appears
+            MapTip(MapIdentity.Element.Board), MapTip(MapIdentity.Element.Chairs), MapTip(MapIdentity.Element.Chute), MapTip(MapIdentity.Element.Gust),
+            MapTip(MapIdentity.Element.Parcel), MapTip(MapIdentity.Element.Light), MapTip(MapIdentity.Element.Snuffer), MapTip(MapIdentity.Element.Moths),
+            MapTip(MapIdentity.Element.Clock), MapTip(MapIdentity.Element.Shelves), MapTip(MapIdentity.Element.Ledger),
         };
+        private static Tip MapTip(MapIdentity.Element element) => new Tip { Id = MapIdentity.TipId(element), Line = MapIdentity.TipLine(element), Icon = o => MapIdentity.Sprite(MapIdentity.Prop(element)) };
+        private static bool MapShown(CombatSimulation sim, string id)
+        {
+            if (sim?.MapEnvironment == null) return false;
+            foreach (MapIdentity.Element element in sim.MapEnvironment.Shown) if (MapIdentity.TipId(element) == id) return true;
+            return false;
+        }
         private Tip showing; private float shownAt; private float goalAt = -1; private string goalRun;
         private GUIStyle line, title, small;
         public string Showing => showing?.Id;
@@ -45,10 +56,10 @@ namespace ArcaneBrigade
                 case "bond": foreach (BondDefinition b in o.Content.Bonds) if (o.Session.BondCounts.TryGetValue(b.Id, out int n) && b.ActiveLevel(n) > 0) return true; return false;
                 case "merge": return s.Roster.Exists(r => r.Tier >= 2);
                 case "gauge": return s.Phase == SessionPhase.Combat && sim != null && sim.HeroIdentityEnabled && sim.HeroIdentityRequired > 0 && sim.HeroIdentityCharge >= sim.HeroIdentityRequired;
-                case "dream": return s.Phase == SessionPhase.Shop && o.Shop != null && o.Shop.Special;
+                case "dream": return s.Phase == SessionPhase.Shop && o.Shop != null && o.Shop.DreamAlcove;
                 case "boss": return s.Phase == SessionPhase.Combat && sim?.Boss != null && sim.Boss.Alive;
                 case "visitor": return o.Session.Visitor != null;
-                default: return false;
+                default: return id.StartsWith("env.", StringComparison.Ordinal) && s.Phase == SessionPhase.Combat && MapShown(sim, id);
             }
         }
 

@@ -731,6 +731,12 @@ namespace ArcaneBrigade
             if (head <= tail || alpha <= .01f) return;
             ground.Stroke(InkCanvas.Line(a, b, wave, wave > 0 ? 2.5f : 0, false, seed), Brush(pal, width, alpha, head, tail, 1.3f));
         }
+        /// <summary>A brushed arc of an ellipse's rim (outline only, never a fill): boss telegraphs, the ledger's ink ring.</summary>
+        public void FloorArc(Vector2 c, float rx, float ry, float fromDegrees, float toDegrees, InkPalette pal, float width, float alpha, bool airborne = false)
+        {
+            if (alpha <= .01f || toDegrees <= fromDegrees || rx <= .01f || ry <= .01f) return;
+            (airborne ? air : ground).Stroke(InkCanvas.Arc(c, rx, ry, fromDegrees, toDegrees), Brush(pal, width, alpha, 1, 0, 1.2f));
+        }
         /// <summary>A painted token placed exactly (size, angle, alpha), on the air layer.</summary>
         public void TokenAt(InkToken kind, InkPalette pal, Vector2 at, float size, float angle, float alpha) => Token(kind, pal, at, size, angle, alpha);
         /// <summary>A soft light behind something.</summary>

@@ -123,7 +123,7 @@ namespace ArcaneBrigade.Editor
                     foreach (UnitDefinition unit in arena.EnemyPool)
                     {
                         if (unit.WaitingKind != WaitingEnemyKind.None)
-                            Check(EnemyRosterBuilder.HasArt(unit.Id) && WaitingEnemyRoster.InRegularWaves(unit.WaitingKind, wave, false), "Only painted enemies of this zone in wave " + wave + ": " + unit.Id);
+                            Check(EnemyRosterBuilder.HasArt(unit.Id) && (WaitingEnemyRoster.InRegularWaves(unit.WaitingKind, wave, false) || MapIdentity.Joins(unit.WaitingKind, unit.Id, wave)), "Only painted enemies of this zone or map family in wave " + wave + ": " + unit.Id);
                         int theme = Array.IndexOf(WaitingEnemyRoster.RethemedIds, unit.Id);
                         if (theme >= 0 && EnemyRosterBuilder.HasArt(WaitingEnemyRoster.RethemeArt[theme]))
                             Check(unit.DisplayName == WaitingEnemyRoster.RethemeNames[theme] && AssetDatabase.GetAssetPath(unit.Body) == EnemyRosterBuilder.ArtPath(WaitingEnemyRoster.RethemeArt[theme]), "New look in wave " + wave + ": " + unit.Id);
@@ -133,8 +133,9 @@ namespace ArcaneBrigade.Editor
                     bool none = !arena.EnemyPool.Any(unit => unit.WaitingKind != WaitingEnemyKind.None && !EnemyRosterBuilder.HasArt(unit.Id));
                     Check(none, "Wave " + wave + " spawns nothing that waits for art (" + arena.EnemyPool.Length + " in pool)");
                     foreach (EnemyRosterBuilder.Spec spec in EnemyRosterBuilder.Specs)
-                        if (EnemyRosterBuilder.HasArt(spec.Id) && WaitingEnemyRoster.InRegularWaves(spec.Kind, wave, false))
-                            Check(arena.EnemyPool.Any(unit => unit.Id == spec.Id), "Painted " + spec.Id + " joins wave " + wave);
+                        // play-test item 24: a wave's pool is themed to its map, so a painted enemy of the map's family always joins (others may carry over)
+                        if (EnemyRosterBuilder.HasArt(spec.Id) && MapIdentity.InFamily(MapIdentity.For(wave), spec.Id) && (WaitingEnemyRoster.InRegularWaves(spec.Kind, wave, false) || MapIdentity.Joins(spec.Kind, spec.Id, wave)))
+                            Check(arena.EnemyPool.Any(unit => unit.Id == spec.Id), "Painted " + spec.Id + " of the map's family joins wave " + wave);
                 }
                 finally { session.Dispose(); }
             }

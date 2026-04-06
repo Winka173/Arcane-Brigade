@@ -123,6 +123,7 @@ namespace ArcaneBrigade
                 if (identityLead == null || u.Definition.CombatTier > identityLead.Definition.CombatTier) identityLead = u;
             }
             if (IdentityId == "ThornTreasurer") identityCharge = identityThorns;
+            MetaGaugeHeadStart(); // the Wardrobe's warm gauge (play-test item 27)
         }
         private void ClearHeroIdentity()
         {

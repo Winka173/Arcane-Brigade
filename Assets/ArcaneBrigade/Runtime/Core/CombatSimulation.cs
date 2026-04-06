@@ -479,7 +479,7 @@ namespace ArcaneBrigade
             StepRelics(deltaTime, movement);
             if (Phase != RunPhase.Combat) return;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * VisitorHeroScale * WaitingHeroScale * deltaTime, Champion.Definition.Radius);
+            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * VisitorHeroScale * WaitingHeroScale * MapHeroScale * deltaTime, Champion.Definition.Radius);
             float beforeRegeneration = Champion.Health;
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * RelicMendingScale * deltaTime);
             if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);
@@ -498,6 +498,7 @@ namespace ArcaneBrigade
                 else if (unit.Faction == Faction.Enemy)
                 {
                     MoveEnemy(unit, deltaTime);
+                    MapMotion(unit); // the map's living elements: dark, chimes, moths, chairs (play-test item 24)
                     SeparateFromHeavyEnemy(unit, deltaTime);
                     unit.Velocity = (unit.Position - unit.PreviousPosition) / deltaTime;
                 }
@@ -528,6 +529,7 @@ namespace ArcaneBrigade
                     StepAirborne();
                     StepPufferBursts();
                     ProcessWaitingEnemies(deltaTime);
+                    ProcessMapEnvironment(deltaTime);
                     ProcessSwarmPacing(deltaTime);
                     ProcessBuildMorphs();
                     ProcessOctoberShots();
@@ -941,7 +943,8 @@ namespace ArcaneBrigade
             if (enemy.BodyLift > 0.4f) { enemy.ContactImpactAt = 0; return; }
             if (catalog.ExpandedContent && enemy.Definition.Behavior == EnemyBehavior.Mimic && (!enemy.Awakened || enemy.BehaviorUntil > Elapsed)) return;
             float radius = enemy.Definition.Radius + Champion.Definition.Radius + 0.05f;
-            if ((enemy.Position - Champion.Position).sqrMagnitude > radius * radius)
+            // a boss hurts wherever its painted body is touched (play-test item 22): an ellipse ~85% of its ink box
+            if (enemy.Definition.IsBoss ? !BossBodyShape.Touches(enemy, Champion.Position, Champion.Definition.Radius) : (enemy.Position - Champion.Position).sqrMagnitude > radius * radius)
             {
                 if (enemy.ContactImpactAt > 0) { enemy.ContactImpactAt = 0; enemy.NextContact = Elapsed + 0.15f; }
                 return;
@@ -966,7 +969,7 @@ namespace ArcaneBrigade
             enemy.ContactImpactAt = 0;
             enemy.NextContact = Elapsed + enemy.Definition.ContactInterval;
             Vector2 impactDirection = (Champion.Position - enemy.Position).normalized;
-            float contactDamage = enemy.Definition.ContactDamage;
+            float contactDamage = enemy.Definition.ContactDamage * (enemy.Definition.IsBoss ? BossBodyShape.ContactDamageScale : 1);
             StrikeChampionCollision(enemy);
             ApplyDamage(Champion, contactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", impactDirection, cause: NewCause(enemy.Id));
         }
@@ -1022,9 +1025,11 @@ namespace ArcaneBrigade
             damage = CompanionSkillDamage(target, damage, source, cause);
             damage = RelicItemDamage(target, damage, source, cause);
             damage = WaitingDamage(target, damage, source);
+            damage = MapDamage(target, damage, source);
             if (target.Faction == Faction.Champion && !healthCost)
             {
                 if (relicQuiltUntil > Elapsed) return;
+                if (CandleSafe) return; // Second Candle: a moment untouchable after getting back up
                 if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .75f : .6f))
                 {
                     events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
@@ -1072,6 +1077,7 @@ namespace ArcaneBrigade
             events.Add(new CombatEvent(CombatEventKind.Hit, target.Position, target.Faction, damage, direction, weapon, critical, element, target.Id, target, cause));
             NotifyArenaToyHit(events[events.Count - 1]);
             RelicHit(target, source, cause);
+            if (target.Health <= 0f && SecondCandle(target)) return; // the Waiting Room's Clock: once a run
             if (target.Health > 0f) return;
             target.Alive = false;
             RememberVariantDeath(target);
@@ -1089,17 +1095,17 @@ namespace ArcaneBrigade
                 if (source != Faction.Enemy) RecordKill(cause);
                 SwarmDeath(target, source, overkill, cause);
                 PacingLoot(target);
-                int coinValue = SwarmCoinValue(target); if (coinValue > 0) coinValue += VisitorCoins;
+                int coinValue = SwarmCoinValue(target); if (coinValue > 0) coinValue += VisitorCoins; coinValue = MapCoins(target, coinValue);
                 if (coinValue > 0) DropLoot(LootKind.Coin, target.Position, coinValue);
                 if (target.StolenCoins > 0) { DropLoot(LootKind.Coin, target.Position, target.StolenCoins + Mathf.Max(1, target.StolenCoins / 10)); target.StolenCoins = 0; } // a toll is refunded with 10% (nothing is taken, only bought)
                 if (catalog.ExtendedLoot && !target.SwarmMinion)
                 {
-                    // play-test 20/10/2026 (item 16): eggs come more often late (x1 at wave 1, x2 from wave 15); elites and bosses always drop one
+                    // play-test 20/10/2026 (item 16): bosses and elites always drop an egg (the late x2 egg chance was removed: eggs were already plentiful)
                     // bosses always drop one; elites too, but at most EliteEggsPerWave in a wave (the economy sweep: uncapped
                     // elite eggs piled up ~50 a wave late, far more than the dream shop can take)
                     bool sure = target.Definition.IsBoss || target.Elite && eliteEggs < EliteEggsPerWave;
                     if (sure && target.Elite && !target.Definition.IsBoss) eliteEggs++;
-                    if (sure || lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * EggLateFactor(catalog.RunWave) * (1f + catalog.Luck))) DropLoot(LootKind.Egg, target.Position, 1);
+                    if (sure || lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * (1f + catalog.Luck))) DropLoot(LootKind.Egg, target.Position, 1);
                     if (lootRandom.NextDouble() < Mathf.Clamp01(catalog.HeartDropChance * (1f + catalog.Luck))) DropLoot(LootKind.Heart, target.Position, 8);
                 }
             }
@@ -1217,7 +1223,6 @@ namespace ArcaneBrigade
             DropLoot(LootKind.Chest, position, Mathf.Max(1, Mathf.RoundToInt((5 + lootRandom.Next(0, 7)) * K10StatRules.Factor(catalog.ChestQuality, 0.2f, 5))));
         }
 
-        public static float EggLateFactor(int wave) => 1f + Mathf.Clamp01((wave - 1) / 14f);
         private void OpenChest(PickupState chest)
         {
             ChestsOpened++;

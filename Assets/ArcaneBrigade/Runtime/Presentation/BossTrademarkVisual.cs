@@ -83,7 +83,8 @@ namespace ArcaneBrigade
                 case 5: // the stage light: a pale wash on the floor, brighter as the drop comes
                 {
                     float left = Mathf.Clamp01((f.At + f.Phase - now) / f.Phase);
-                    ink.Wash(at, f.Radius * 1.5f, new Color(1, .93f, .75f), (warning ? .25f : .42f + (1 - left) * .25f) * fade, false);
+                    if (warning) BossTelegraph.Rim(ink, at, f.Radius + .1f, f.Radius + .1f, charge, seed, .9f); // where the light will drop: a rim, not a wash
+                    else ink.Wash(at, f.Radius * 1.5f, new Color(1, .93f, .75f), (.42f + (1 - left) * .25f) * fade, false);
                     ink.Light(at + Vector2.up * .2f, f.Radius * 2.2f, new Color(1, .9f, .7f), .3f * fade);
                     if (!warning && !f.Spent) ink.FloorStroke(at + new Vector2(-.35f, -.1f), at + new Vector2(.35f, -.1f), Bile, .07f, 1, 0, (1 - left) * fade);
                     break;
@@ -129,11 +130,20 @@ namespace ArcaneBrigade
                     {
                         // a bar: inked where it starts and a light lane where its open side will pass
                         Vector2 across = new Vector2(-f.Direction.y, f.Direction.x) * f.Length * .5f;
-                        ink.FloorStroke(f.Start - across, f.Start + across, Bile, .12f, 1, 0, alpha, .03f, seed);
-                        ink.FloorStroke(f.Start - across, end - across, Bile, .05f, 1, 0, alpha * .5f, 0, seed + 1);
-                        ink.FloorStroke(f.Start + across, end + across, Bile, .05f, 1, 0, alpha * .5f, 0, seed + 2);
+                        ink.FloorStroke(f.Start - across, f.Start + across, BossTelegraph.Danger, .12f, 1, 0, alpha, .03f, seed);
+                        BossTelegraph.DashedLine(ink, f.Start - across, end - across, Mathf.Clamp01(alpha / .8f), seed + 1, alpha * .8f);
+                        BossTelegraph.DashedLine(ink, f.Start + across, end + across, Mathf.Clamp01(alpha / .8f), seed + 2, alpha * .8f);
                     }
-                    else ink.FloorStroke(f.Start, end, f.Motion == TrademarkMotion.Fuse ? Wax : Bile, f.Motion == TrademarkMotion.Fuse ? .07f : f.Radius * .9f, 1, 0, alpha * (f.Motion == TrademarkMotion.Fuse ? 1 : .6f), f.Motion == TrademarkMotion.Fuse ? .05f : 0, seed);
+                    else if (f.Motion == TrademarkMotion.Fuse) ink.FloorStroke(f.Start, end, Wax, .07f, 1, 0, alpha, .05f, seed);
+                    else
+                    {
+                        // the piece's lane: two red inked edges and an arrowhead, outline only (play-test item 22)
+                        Vector2 n = new Vector2(-f.Direction.y, f.Direction.x) * (f.Radius + .12f);
+                        float charge = Mathf.Clamp01(alpha / .8f);
+                        BossTelegraph.DashedLine(ink, f.Start + n, end + n, charge, seed, alpha);
+                        BossTelegraph.DashedLine(ink, f.Start - n, end - n, charge, seed + 1, alpha);
+                        BossTelegraph.Arrow(ink, end, f.Direction, f.Radius + .35f, charge, alpha);
+                    }
                     break;
                 }
                 case TrademarkMotion.Home:
@@ -155,7 +165,7 @@ namespace ArcaneBrigade
                             : f.Center + new Vector2(Mathf.Cos(u * Mathf.PI * 2) * f.Reach, Mathf.Sin(u * Mathf.PI * 2) * f.Reach * .62f);
                         path.Add(p);
                     }
-                    for (int i = 0; i + 1 < path.Count; i += 2) ink.FloorStroke(path[i], path[i + 1], Bile, f.Radius * .5f, 1, 0, alpha * .55f, 0, seed + i);
+                    for (int i = 0; i + 1 < path.Count; i += 2) ink.FloorStroke(path[i], path[i + 1], BossTelegraph.Danger, .09f, 1, 0, alpha * .8f, 0, seed + i);
                     break;
                 }
             }
@@ -164,8 +174,8 @@ namespace ArcaneBrigade
         /// <summary>An inked X on the floor (never a pool).</summary>
         private void Cross(Vector2 at, float arm, float alpha, float seed)
         {
-            ink.FloorStroke(at + new Vector2(-arm, -arm * .5f), at + new Vector2(arm, arm * .5f), Bile, .09f, 1, 0, alpha, .03f, seed);
-            ink.FloorStroke(at + new Vector2(-arm, arm * .5f), at + new Vector2(arm, -arm * .5f), Bile, .09f, 1, 0, alpha, .03f, seed + 1);
+            ink.FloorStroke(at + new Vector2(-arm, -arm * .5f), at + new Vector2(arm, arm * .5f), BossTelegraph.Danger, .09f, 1, 0, alpha, .03f, seed);
+            ink.FloorStroke(at + new Vector2(-arm, arm * .5f), at + new Vector2(arm, -arm * .5f), BossTelegraph.Danger, .09f, 1, 0, alpha, .03f, seed + 1);
         }
         private void OnDestroy() { ink?.Destroy(); }
     }

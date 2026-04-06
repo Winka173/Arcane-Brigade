@@ -46,6 +46,7 @@ namespace ArcaneBrigade
         private readonly ToyboxAudioObserver toyboxAudio = new ToyboxAudioObserver();
         private CombatFeedback combatFeedback;
         private BossTelegraph bossTelegraph;
+        private MapEnvironmentVisual mapVisual;
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
         private ExplosionFeedback explosions;
@@ -126,6 +127,8 @@ namespace ArcaneBrigade
                 RunSnapshot saved = RunLaunch.Resume ? storage.LoadRun(session) : null;
                 if (saved != null) session.Restore(saved);
                 else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
+                // a new run takes the Waiting Room's loadout and the choices made in hero select (play-test item 27)
+                if (saved == null) session.ApplyMeta(MetaProgression.Loadout(profile, runCatalog, session.State.ChampionId, RunLaunch.StartFriend, RunLaunch.AltStarter, RunLaunch.SecondHabit));
                 if (session.State.WaitingCampaign?.Room > 0) { SceneManager.LoadScene("WaitingRoom"); return; }
                 ArcadeSkin.Bundle = profile.Cosmetic;
                 PresentationSettings.Apply(profile); PresentationSettings.ApplyDisplay(profile);
@@ -146,6 +149,7 @@ namespace ArcaneBrigade
             explosions = gameObject.AddComponent<ExplosionFeedback>();
             pacing = gameObject.AddComponent<PacingFeedback>(); pacing.Configure(this, arenaCamera);
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
+            mapVisual = gameObject.AddComponent<MapEnvironmentVisual>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arsenalVisual = gameObject.AddComponent<ArsenalVisual>();
@@ -289,6 +293,7 @@ namespace ArcaneBrigade
             Render(interpolation);
             if (footDust != null) footDust.Display(simulation, simulation.Phase == RunPhase.Paused ? 0 : Time.deltaTime);
             if (bossTelegraph != null) bossTelegraph.Display(simulation);
+            if (mapVisual != null) mapVisual.Display(simulation);
             if (companionRadius != null)
             {
                 companionRadius.enabled = false;
@@ -593,10 +598,32 @@ namespace ArcaneBrigade
             string challenge = session.State.ChallengeId;
             int challengeIndex = Array.IndexOf(RunMeta.ChallengeIds, challenge);
             session.Start(session.State.ChampionId, challengeIndex > 0 ? RunMeta.ChallengeSeed(challengeIndex) : Environment.TickCount, session.State.Difficulty, challenge);
+            session.ApplyMeta(PlayAgainLoadout(session.State.ChampionId));
             if (!PersistBoundary()) { session.Restore(before); return; }
             details.Close(); pauseGate.ResetSession(); Begin();
         }
-        public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
+        public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenHub = session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat); SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
+        /// <summary>Play again: the same hero with the Waiting Room's loadout; the Nursery hands over its first friend and the
+        /// Wardrobe keeps the choices last made for this hero.</summary>
+        private MetaRunState PlayAgainLoadout(string hero)
+        {
+            MetaProgression.Ensure(profile);
+            HeroMastery mastery = MetaProgression.Mastery(profile, hero);
+            var friends = MetaProgression.NurseryChoices(profile, runCatalog, runCatalog.Unit(hero));
+            return MetaProgression.Loadout(profile, runCatalog, hero, friends.Count > 0 ? friends[0].Id : null, mastery?.AltStarter == true, mastery?.SecondHabit == true);
+        }
+        /// <summary>The Clock's Rewind: a lost run goes back to the shop before the lost wave (once a run).</summary>
+        public bool RewindRun()
+        {
+            if (session == null || !ResultsReady || !session.RewindReady) return false;
+            RunSnapshot lost = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
+            if (!session.Rewind()) return false;
+            MetaProgression.Reopen(profile, lost);
+            if (!PersistBoundary()) { session.Restore(lost); return false; }
+            CheckpointAudio.PlayInterfaceId("ui.confirm");
+            details.Close(); pauseGate.ResetSession(); Begin();
+            return true;
+        }
 
         private void OnApplicationFocus(bool focus) { if (!RunPaths.Diagnostic) { pauseGate.FocusLost = !focus; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); } }
         private void OnApplicationPause(bool paused) { pauseGate.Backgrounded = paused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); if (paused) PersistBoundary(); }

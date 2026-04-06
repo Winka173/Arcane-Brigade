@@ -1,0 +1,55 @@
+hero,difficulty,outcome,last_wave,total_gold,items,recruits,rerolls,seed,last_damage_source,last_damage_kind,last_damage
+LanternKnight,0,VICTORY,20,59807,122,21,23,161026,"The Last Customer contact","Physical / Contact / arena",14
+LanternKnight,0,DEFEAT,17,38334,84,19,13,77138,"Wardrobe Crab contact","Physical / Contact / arena",10.03
+LanternKnight,0,VICTORY,20,59052,117,17,22,90210,"The Last Customer contact","Physical / Contact / arena",9.72
+LanternKnight,1,VICTORY,20,51806,128,14,25,161026,"Tentacle","Physical / Contact / arena",6.15
+LanternKnight,1,DEFEAT,17,30941,67,22,11,77138,"Wardrobe Crab contact","Physical / Contact / arena",24.08
+LanternKnight,1,VICTORY,20,55018,112,17,17,90210,"FallingProp","Physical / Contact / arena",3.54
+LanternKnight,2,VICTORY,20,55450,113,16,24,161026,"Tentacle","Physical / Contact / arena",2.81
+LanternKnight,2,DEFEAT,16,30096,104,19,18,77138,"Wardrobe Crab contact","Physical / Contact / arena",7.06
+LanternKnight,2,VICTORY,20,53376,125,21,24,90210,"The Last Customer contact","Physical / Contact / arena",4.88
+LanternKnight,3,VICTORY,20,53705,111,20,21,161026,"Tentacle","Physical / Contact / arena",5.5
+LanternKnight,3,DEFEAT,17,30669,82,19,13,77138,"Wardrobe Crab contact","Physical / Contact / arena",21.8
+LanternKnight,3,VICTORY,20,49030,92,21,12,90210,"The Last Customer encore volley","Arcane / Contact / arena",11.17
+LanternKnight,4,VICTORY,20,58494,108,23,18,161026,"Tentacle","Physical / Contact / arena",7.13
+LanternKnight,4,DEFEAT,16,26903,78,19,12,77138,"Wardrobe Crab contact","Physical / Contact / arena",23.06
+LanternKnight,4,DEFEAT,20,57693,100,22,13,90210,"Wardrobe Crab contact","Physical / Contact / arena",15.99
+LanternKnight,5,VICTORY,20,61240,123,23,23,161026,"Tentacle","Physical / Contact / arena",4.94
+LanternKnight,5,DEFEAT,17,33269,78,14,14,77138,"Wardrobe Crab contact","Physical / Contact / arena",20.05
+LanternKnight,5,DEFEAT,16,37787,81,17,16,90210,"InkMoth contact","Physical / Contact / arena",22.2
+Postmaster,0,VICTORY,20,77427,167,29,33,161026,"Curtain","Physical / Contact / arena",1.89
+Postmaster,0,VICTORY,20,84538,197,33,40,77138,"Bleeding alarm","Physical / Contact / arena",0.45
+Postmaster,0,VICTORY,20,100443,216,30,44,90210,"Bleeding alarm","Physical / Contact / arena",0.42
+Postmaster,1,VICTORY,20,95638,191,34,38,161026,"Bleeding alarm","Physical / Contact / arena",0.48
+Postmaster,1,VICTORY,20,58847,184,28,37,77138,"Shockwave","Physical / Contact / arena",4.32
+Postmaster,1,VICTORY,20,72541,178,32,34,90210,"The Last Customer contact","Physical / Contact / arena",8.4
+Postmaster,2,DEFEAT,20,65199,163,26,32,161026,"Wardrobe Crab contact","Physical / Contact / arena",25.82
+Postmaster,2,DEFEAT,19,57865,168,32,35,77138,"Wardrobe Crab contact","Physical / Contact / arena",47.44
+Postmaster,2,VICTORY,20,117143,134,30,22,90210,"Wardrobe Crab contact","Physical / Contact / arena",21.14
+Postmaster,3,VICTORY,20,70628,159,25,32,161026,"Shockwave","Physical / Contact / arena",3.48
+Postmaster,3,DEFEAT,16,24949,122,25,24,77138,"Wardrobe Crab contact","Physical / Contact / arena",14.61
+Postmaster,3,VICTORY,20,64271,185,24,35,90210,"The Last Customer contact","Physical / Contact / arena",25.26
+Postmaster,4,VICTORY,20,128128,206,26,46,161026,"Tentacle","Physical / Contact / arena",23.1
+Postmaster,4,DEFEAT,7,1630,43,9,7,77138,"DoorBearer contact","Physical / Contact / arena",22.93
+Postmaster,4,DEFEAT,20,58327,157,22,31,90210,"Wardrobe Crab contact","Physical / Contact / arena",31.35
+Postmaster,5,VICTORY,20,109517,244,33,51,161026,"Shockwave","Physical / Contact / arena",11.33
+Postmaster,5,DEFEAT,9,4910,65,13,12,77138,"Party Line cord","Physical / Contact / arena",27.14
+Postmaster,5,DEFEAT,17,37173,109,24,18,90210,"InkMoth contact","Physical / Contact / arena",26.94
+DrowsySeer,0,VICTORY,20,58666,139,29,20,161026,"The Last Customer contact","Physical / Contact / arena",10.16
+DrowsySeer,0,VICTORY,20,47190,127,21,14,77138,"Shockwave","Physical / Contact / arena",4.19
+DrowsySeer,0,DEFEAT,20,57023,115,14,15,90210,"Wardrobe Crab contact","Physical / Contact / arena",11.66
+DrowsySeer,1,VICTORY,20,67256,129,28,18,161026,"The Last Customer encore volley","Arcane / Contact / arena",10.48
+DrowsySeer,1,DEFEAT,18,46699,123,20,15,77138,"Wardrobe Crab contact","Physical / Contact / arena",23.28
+DrowsySeer,1,DEFEAT,14,23335,114,15,18,90210,"InkMoth contact","Physical / Contact / arena",8.93
+DrowsySeer,2,VICTORY,20,58678,123,27,16,161026,"The Last Customer contact","Physical / Contact / arena",12.12
+DrowsySeer,2,DEFEAT,16,29481,104,17,14,77138,"Wardrobe Crab contact","Physical / Contact / arena",25.27
+DrowsySeer,2,DEFEAT,13,15217,78,15,9,90210,"InkMoth contact","Physical / Contact / arena",12.39
+DrowsySeer,3,VICTORY,20,64006,130,27,18,161026,"The Last Customer contact","Physical / Contact / arena",12.79
+DrowsySeer,3,DEFEAT,16,24455,96,18,12,77138,"Wardrobe Crab contact","Physical / Contact / arena",31.27
+DrowsySeer,3,DEFEAT,11,9202,73,15,10,90210,"InkMoth contact","Physical / Contact / arena",9.95
+DrowsySeer,4,VICTORY,20,56390,137,26,21,161026,"The Last Customer contact","Physical / Contact / arena",10.12
+DrowsySeer,4,DEFEAT,16,30227,91,17,12,77138,"Wardrobe Crab contact","Physical / Contact / arena",26.48
+DrowsySeer,4,VICTORY,20,54864,101,16,12,90210,"The Last Customer contact","Physical / Contact / arena",15.55
+DrowsySeer,5,VICTORY,20,76939,128,31,17,161026,"The Last Customer contact","Physical / Contact / arena",15.26
+DrowsySeer,5,DEFEAT,5,634,12,4,0,77138,"ClockBat projectile","Physical / Projectile",19.17
+DrowsySeer,5,DEFEAT,10,5392,55,15,7,90210,"Splinter Imp contact","Physical / Contact / arena",23.45

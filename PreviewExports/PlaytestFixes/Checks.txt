@@ -1,4 +1,9 @@
 PASS Shot Item01_HeroSelect
+PASS Hub opens with a station in reach
+PASS Shot Item27_Hub
+PASS Station cards open
+PASS Shot Item27_StationCard
+PASS Shot Item27_HeroSelectLoadout
 PASS Shop loads at wave 1
 PASS Shot Item04_ShopHintAndTip
 PASS Shot Item03_11_RelicCard_GivesCosts
@@ -18,6 +23,9 @@ PASS Shop loads at wave 12
 PASS Shot Item10_BloodPriceCard
 PASS Shot Item10_BloodPriceDetails
 PASS Shot Item16_DreamShopEggs
+PASS Shop loads at wave 12
+PASS Dream stalls stand in the gold shop's alcove
+PASS Shot Item15_ShopWithDreamAlcove
 PASS Secret room opens: ImpossibleTailor
 PASS Shot Item07_SecretEventPlates
 PASS Shop loads at wave 5
@@ -26,7 +34,26 @@ PASS Shot Item05_Combat_NoHitStop
 PASS Shot Item08_09_GroundCoins_HPBarHeart
 PASS Shot Item29_ChestPopup
 PASS Shot Item14_HeroInCrowd
+PASS Shop loads at wave 4
+PASS Boss telegraph rims and lanes on screen
+PASS Shot Item22_BossTelegraph
+PASS Hero at the painted edge touches the boss
+PASS Shot Item22_BossContact
+PASS Shop loads at wave 2
+PASS Map elements on screen: WaitingRoom (8 props)
+PASS Shot Item24_MapWaitingRoom
+PASS Shop loads at wave 7
+PASS Map elements on screen: PostOffice (25 props)
+PASS Shot Item24_MapPostOffice
+PASS Shop loads at wave 12
+PASS Map elements on screen: LampHall (6 props)
+PASS Shot Item24_MapLampHall
+PASS Shop loads at wave 17
+PASS Map elements on screen: ArchiveVault (4 props)
+PASS Shot Item24_MapArchiveVault
 PASS Shot Item32_RunSummary
+PASS Run summary carries the Waiting Room haul
+PASS Shot Item27_RunSummaryHaul
 PASS Dawn page shows
 PASS Shot Item30_EndingLine1
 PASS Shot Item30_EndingLine3

@@ -83,7 +83,37 @@ namespace ArcaneBrigade
                 foreach (ItemStack stack in run.Items) if (catalog.Item(stack.Id) is ItemDefinition item) lines.AppendLine(item.Name + (stack.Count > 1 ? " ×" + stack.Count : ""));
             }
             if (run.Phase == SessionPhase.Defeat && !string.IsNullOrEmpty(run.LastDamageSource)) lines.AppendLine("\nFELL TO  " + RunUICopy.DamageSource(run.LastDamageSource, catalog));
+            if (HasHaul(run))
+            {
+                lines.AppendLine("\nFOR THE WAITING ROOM  +" + run.Meta.HaulOil + " Lamp Oil · +" + run.Meta.HaulKeepsakes + " Keepsakes");
+                foreach (string line in run.Meta.HaulLines) { string[] p = line.Split('|'); if (p.Length == 3) lines.AppendLine(p[1] + " · +" + p[2]); }
+            }
             return lines.ToString();
+        }
+
+        /// <summary>The Waiting Room's haul of a finished run (play-test item 27): Lamp Oil and Keepsakes, line by line.</summary>
+        public static bool HasHaul(RunSnapshot run) => run?.Meta != null && (run.Meta.HaulOil > 0 || run.Meta.HaulKeepsakes > 0) && run.Meta.HaulLines != null;
+        private static float HaulHeight(RunSnapshot run) => HasHaul(run) ? 58 + run.Meta.HaulLines.Count * 26 + 16 : 0;
+        private void DrawHaul(float y, float inner, RunSnapshot run, GUIStyle body, GUIStyle number, GUIStyle small)
+        {
+            ArcadeSkin.Line(new Rect(0, y, inner, HaulHeight(run) - 10), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
+            GUI.Label(new Rect(8, y + 8, inner * .5f, 28), "FOR THE WAITING ROOM", body);
+            float x = inner - 8;
+            foreach (var (icon, amount) in new[] { (MetaIcons.Keepsake, run.Meta.HaulKeepsakes), (MetaIcons.LampOil, run.Meta.HaulOil) })
+            {
+                string text = "+" + amount; float w = body.CalcSize(new GUIContent(text)).x;
+                body.alignment = TextAnchor.MiddleRight; GUI.Label(new Rect(x - w - 4, y + 8, w + 4, 34), text, body); body.alignment = TextAnchor.UpperLeft;
+                RunHud.Sprite(new Rect(x - w - 44, y + 6, 36, 36), icon); x -= w + 60;
+            }
+            float row = y + 48;
+            foreach (string line in run.Meta.HaulLines)
+            {
+                string[] p = line.Split('|'); if (p.Length != 3) continue;
+                RunHud.Sprite(new Rect(10, row, 22, 22), p[0] == "keep" ? MetaIcons.Keepsake : MetaIcons.LampOil);
+                GUI.Label(new Rect(40, row, inner - 130, 24), p[1], small);
+                small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner - 90, row, 80, 24), "+" + p[2], small); small.alignment = TextAnchor.UpperLeft;
+                row += 26;
+            }
         }
 
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)
@@ -120,10 +150,11 @@ namespace ArcaneBrigade
             var (relic, relicDamage) = BestRelic(run, catalog);
             int columns = Mathf.Max(1, Mathf.FloorToInt(inner / 76));
             int relicRows = Mathf.CeilToInt(run.Items.Count / (float)columns);
-            float height = 34 + shown * 66 + (cachedMembers.Count > 5 ? 56 : 0) + 20 + 120 + (run.Items.Count > 0 ? 40 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 44 : 0) + 10;
+            float height = 34 + shown * 66 + (cachedMembers.Count > 5 ? 56 : 0) + 20 + 120 + (run.Items.Count > 0 ? 40 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 44 : 0) + 10 + HaulHeight(run);
             if (scrollToEnd) { scroll.y = height; scrollToEnd = false; }
             scroll = ScrollPanel.Begin(view, scroll, new Rect(0, 0, inner, height), new Color(ArcadeSkin.Paper.r * .6f, ArcadeSkin.Paper.g * .6f, ArcadeSkin.Paper.b * .6f, .5f));
             float y = 0;
+            if (HasHaul(run)) { DrawHaul(y, inner, run, body, number, small); y += HaulHeight(run); }
             GUI.Label(new Rect(4, y, inner, 30), "YOUR BRIGADE", body); y += 34;
             for (int index = 0; index < shown; index++)
             {

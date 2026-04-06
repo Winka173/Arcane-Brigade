@@ -1,0 +1,399 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    /// <summary>The Waiting Room's painted pieces (Resources/Hub, Resources/UI/Meta; cut by scratchpad hub_cut.py).</summary>
+    public static class MetaIcons
+    {
+        private static Sprite oil, keepsake, room;
+        private static readonly Dictionary<string, Sprite> stations = new Dictionary<string, Sprite>();
+        public static Sprite LampOil => oil != null ? oil : oil = Resources.Load<Sprite>("UI/Meta/LampOil");
+        public static Sprite Keepsake => keepsake != null ? keepsake : keepsake = Resources.Load<Sprite>("UI/Meta/Keepsake");
+        public static Sprite Currency(MetaCurrency currency) => currency == MetaCurrency.LampOil ? LampOil : Keepsake;
+        public static Sprite Room => room != null ? room : room = Resources.Load<Sprite>("Hub/WaitingRoom");
+        public static Sprite Station(MetaStation station, bool restored)
+        {
+            string key = station + (restored ? "_Lit" : "_Dusty");
+            if (!stations.TryGetValue(key, out Sprite s)) stations[key] = s = Resources.Load<Sprite>("Hub/Stations/" + key);
+            return s;
+        }
+    }
+
+    public enum HubAction { None, NextNight, Back }
+
+    /// <summary>The Waiting Room hub between runs (play-test item 27): a room the traveller walks in (keys, stick, or a tap on the
+    /// floor), ten station objects that are restored as they level, the door to the next night. Tapping a working station
+    /// opens its cards (icon, one line, now → next, price); the five not built yet stand dusty and say so. Drawn in the menu's
+    /// 1280×720 space.</summary>
+    public sealed class MetaHub
+    {
+        public sealed class Spot { public MetaStation Station; public Vector2 Foot; public float Height; }
+        /// <summary>Where each station stands on the painted floor (its foot point) and how tall it is drawn.</summary>
+        public static readonly Spot[] Spots =
+        {
+            new Spot { Station = MetaStation.Lantern, Foot = new Vector2(392, 218), Height = 150 },
+            new Spot { Station = MetaStation.Ledger, Foot = new Vector2(905, 218), Height = 140 },
+            new Spot { Station = MetaStation.Clock, Foot = new Vector2(112, 452), Height = 160 },
+            new Spot { Station = MetaStation.Nursery, Foot = new Vector2(1168, 452), Height = 135 },
+            new Spot { Station = MetaStation.Wardrobe, Foot = new Vector2(345, 668), Height = 150 },
+            new Spot { Station = MetaStation.Postbox, Foot = new Vector2(925, 668), Height = 128 },
+            new Spot { Station = MetaStation.Museum, Foot = new Vector2(196, 300), Height = 112 },
+            new Spot { Station = MetaStation.NightPact, Foot = new Vector2(1086, 300), Height = 104 },
+            new Spot { Station = MetaStation.Window, Foot = new Vector2(150, 640), Height = 108 },
+            new Spot { Station = MetaStation.Bell, Foot = new Vector2(1130, 640), Height = 84 },
+        };
+        public static readonly Rect DoorArea = new Rect(582, 4, 116, 128);
+        public static readonly Vector2 DoorFoot = new Vector2(640, 168);
+        public static readonly Rect Floor = new Rect(60, 160, 1160, 545);
+        public const float Speed = 330, Reach = 82;
+
+        private Vector2 hero = new Vector2(640, 560);
+        private Vector2? target;
+        private int targetSpot = -1;
+        private bool targetDoor, walking, facingLeft;
+        private Vector2 scroll;
+        private int wardrobeHero = -1;
+        private string notice = ""; private float noticeAt = -10;
+        private float boughtAt = -10; private string bought;
+        private GUIStyle heading, body, small, number, chip;
+
+        public MetaStation? Open { get; private set; }
+        public bool PanelOpen => Open.HasValue;
+        public int Focus { get; private set; } = -1;
+        public bool DoorFocus { get; private set; }
+        public Vector2 Hero => hero;
+
+        public void Enter() { hero = new Vector2(640, 560); target = null; targetSpot = -1; targetDoor = false; Open = null; }
+        public void OpenStation(MetaStation station)
+        {
+            if (!MetaProgression.Works(station)) { Say("Coming soon"); CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
+            Open = station; scroll = Vector2.zero; CheckpointAudio.PlayInterfaceId("ui.open");
+        }
+        public void Close() { if (Open.HasValue) CheckpointAudio.PlayInterfaceId("ui.back"); Open = null; }
+        /// <summary>Diagnostics: stand the traveller beside a station.</summary>
+        public void Approach(MetaStation station) { Spot s = Array.Find(Spots, x => x.Station == station); hero = s.Foot + new Vector2(s.Foot.x < 640 ? 70 : -70, 30); target = null; UpdateFocus(); }
+        private void Say(string line) { notice = line; noticeAt = Time.unscaledTime; }
+
+        private static Rect Bounds(Spot s, Sprite sprite)
+        {
+            float aspect = sprite != null ? sprite.rect.width / sprite.rect.height : .8f;
+            float w = s.Height * aspect;
+            return new Rect(s.Foot.x - w * .5f, s.Foot.y - s.Height, w, s.Height);
+        }
+
+        private void UpdateFocus()
+        {
+            Focus = -1; float best = Reach;
+            for (int i = 0; i < Spots.Length; i++)
+            {
+                float d = Vector2.Distance(hero, Spots[i].Foot + new Vector2(0, 30));
+                if (d < best) { best = d; Focus = i; }
+            }
+            DoorFocus = Vector2.Distance(hero, DoorFoot) < Reach + 10;
+        }
+
+        /// <summary>Once a frame from the menu's Update: walking (keys, stick, a tapped target) and using what is near.</summary>
+        public HubAction Tick(float dt)
+        {
+            if (PanelOpen) return HubAction.None;
+            Vector2 pad = ArcadeNavigation.Pad;
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal") + pad.x, -(Input.GetAxisRaw("Vertical") + pad.y));
+            walking = false;
+            if (input.sqrMagnitude > .04f) { target = null; targetSpot = -1; targetDoor = false; Move(Vector2.ClampMagnitude(input, 1) * Speed * dt); }
+            else if (target.HasValue)
+            {
+                Vector2 to = target.Value - hero;
+                if (to.magnitude <= Speed * dt + .5f)
+                {
+                    hero = target.Value; target = null;
+                    if (targetDoor) { targetDoor = false; return HubAction.NextNight; }
+                    if (targetSpot >= 0) { int s = targetSpot; targetSpot = -1; OpenStation(Spots[s].Station); }
+                }
+                else Move(to.normalized * Speed * dt);
+            }
+            UpdateFocus();
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                if (DoorFocus) return HubAction.NextNight;
+                if (Focus >= 0) OpenStation(Spots[Focus].Station);
+            }
+            return HubAction.None;
+        }
+        private void Move(Vector2 delta)
+        {
+            if (delta.sqrMagnitude < 1e-6f) return;
+            walking = true; if (Mathf.Abs(delta.x) > .01f) facingLeft = delta.x < 0;
+            Vector2 next = hero + delta;
+            next.x = Mathf.Clamp(next.x, Floor.xMin, Floor.xMax); next.y = Mathf.Clamp(next.y, Floor.yMin, Floor.yMax);
+            hero = next;
+        }
+        private void WalkTo(Vector2 point, int spot, bool door)
+        {
+            target = new Vector2(Mathf.Clamp(point.x, Floor.xMin, Floor.xMax), Mathf.Clamp(point.y, Floor.yMin, Floor.yMax));
+            targetSpot = spot; targetDoor = door;
+            CheckpointAudio.PlayInterfaceId("ui.select");
+        }
+
+        private void Styles()
+        {
+            if (heading != null) return;
+            heading = ArcadeTypography.Style(26, true); heading.alignment = TextAnchor.MiddleCenter; heading.wordWrap = false;
+            body = ArcadeTypography.Style(19, true); body.wordWrap = false; body.clipping = TextClipping.Clip;
+            small = ArcadeTypography.Style(15); small.wordWrap = true;
+            number = ArcadeTypography.Style(20, false, true); number.wordWrap = false;
+            chip = ArcadeTypography.Style(16, true); chip.alignment = TextAnchor.MiddleCenter; chip.wordWrap = false;
+        }
+
+        /// <summary>Draws the room and, when open, a station's cards. Returns what the traveller chose (next night / back).</summary>
+        public HubAction Draw(RunCatalog catalog, PlayerProfile profile, int heroIndex, Func<bool> save)
+        {
+            Styles();
+            MetaProgression.Ensure(profile);
+            HubAction action = HubAction.None;
+            bool reduced = profile.ReducedMotion;
+            float t = Time.unscaledTime, breathe = reduced ? .5f : .5f + .5f * Mathf.Sin(t * 1.3f);
+            Sprite room = MetaIcons.Room;
+            if (room != null) { if (Event.current.type == EventType.Repaint) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room.texture, ScaleMode.ScaleAndCrop); }
+            else ArcadeSkin.MenuBackdrop(new Rect(0, 0, 1280, 720));
+            // the door breathes the next night's light
+            ArcadeSkin.Glow(new Rect(DoorArea.x - 70, DoorArea.y - 30, DoorArea.width + 140, DoorArea.height + 110), new Color(1f, .82f, .55f, (DoorFocus ? .30f : .10f) + .06f * breathe));
+
+            // stations and the traveller, back to front
+            var order = new List<(float y, int index)>();
+            for (int i = 0; i < Spots.Length; i++) order.Add((Spots[i].Foot.y, i));
+            order.Add((hero.y, -1));
+            order.Sort((a, b) => a.y.CompareTo(b.y));
+            UnitDefinition traveller = catalog.Champions[Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1)];
+            foreach (var (_, index) in order)
+            {
+                if (index < 0) { DrawTraveller(traveller, heroIndex, reduced); continue; }
+                Spot spot = Spots[index];
+                bool works = MetaProgression.Works(spot.Station), restored = MetaProgression.Restored(profile, spot.Station);
+                Sprite sprite = MetaIcons.Station(spot.Station, restored);
+                Rect r = Bounds(spot, sprite);
+                if (restored) ArcadeSkin.Glow(new Rect(r.x - 40, r.y - 30, r.width + 80, r.height + 60), new Color(1f, .78f, .45f, .16f + .06f * breathe));
+                if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .38f : .18f));
+                ArcadeSkin.Glow(new Rect(r.x + r.width * .1f, spot.Foot.y - 16, r.width * .8f, 30), new Color(0, 0, 0, .45f));
+                Color keep = GUI.color;
+                if (!works) GUI.color = new Color(keep.r * .78f, keep.g * .76f, keep.b * .74f, keep.a);
+                RunHud.Sprite(r, sprite);
+                GUI.color = keep;
+            }
+
+            // what is near: a paper tag over it
+            if (!PanelOpen && Focus >= 0)
+            {
+                Spot s = Spots[Focus]; Rect r = Bounds(s, MetaIcons.Station(s.Station, false));
+                Tag(new Vector2(s.Foot.x, r.y - 40), MetaProgression.Works(s.Station) ? MetaProgression.StationName(s.Station).ToUpperInvariant() : "COMING SOON");
+            }
+            if (!PanelOpen && DoorFocus) Tag(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "NEXT NIGHT");
+
+            // the room's frame: back, title, purse, the way on
+            if (!PanelOpen && ArcadeSkin.Medallion(new Rect(22, 18, 64, 64), KitMedallion.Back)) action = HubAction.Back;
+            ArcadeSkin.Frame(new Rect(96, 18, 400, 62), KitFrame.Plaque);
+            heading.normal.textColor = ArcadeSkin.KitCream;
+            GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
+            Purse(profile, new Rect(930, 16, 330, 62));
+            if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "NEXT NIGHT ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
+
+            // taps: a station or the door walks you there; anywhere else on the floor walks you to that spot
+            if (!PanelOpen)
+            {
+                for (int i = 0; i < Spots.Length; i++)
+                {
+                    Rect r = Bounds(Spots[i], MetaIcons.Station(Spots[i].Station, false));
+                    if (GUI.Button(r, GUIContent.none, GUIStyle.none)) WalkTo(Spots[i].Foot + new Vector2(0, 34), i, false);
+                }
+                if (GUI.Button(DoorArea, GUIContent.none, GUIStyle.none)) WalkTo(DoorFoot, -1, true);
+                Event e = Event.current;
+                if (e.type == EventType.MouseDown && Floor.Contains(e.mousePosition)) { WalkTo(e.mousePosition, -1, false); e.Use(); }
+            }
+            if (Time.unscaledTime - noticeAt < 1.6f) Tag(new Vector2(640, 600), notice);
+            if (PanelOpen) DrawPanel(catalog, profile, heroIndex, save);
+            return action;
+        }
+
+        private void DrawTraveller(UnitDefinition unit, int identity, bool reduced)
+        {
+            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced)] ?? unit.Body : unit.Body;
+            Rect r = new Rect(hero.x - 58, hero.y - 128, 116, 128);
+            ArcadeSkin.Glow(new Rect(hero.x - 120, hero.y - 150, 240, 190), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, .18f));
+            ArcadeSkin.Glow(new Rect(hero.x - 46, hero.y - 14, 92, 26), new Color(0, 0, 0, .5f));
+            Matrix4x4 keep = GUI.matrix;
+            if (facingLeft) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), r.center);
+            RunHud.Sprite(r, pose);
+            GUI.matrix = keep;
+        }
+
+        private void Tag(Vector2 topCentre, string text)
+        {
+            float w = Mathf.Max(150, chip.CalcSize(new GUIContent(text)).x + 44);
+            Rect tag = new Rect(Mathf.Clamp(topCentre.x - w * .5f, 8, 1272 - w), Mathf.Clamp(topCentre.y, 90, 680), w, 34);
+            ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent);
+            chip.normal.textColor = ArcadeSkin.Ink;
+            GUI.Label(tag, text, chip);
+        }
+
+        /// <summary>Lamp Oil and Keepsakes on a velvet plaque.</summary>
+        public void Purse(PlayerProfile profile, Rect r)
+        {
+            Styles();
+            ArcadeSkin.Frame(r, KitFrame.Plaque);
+            number.normal.textColor = ArcadeSkin.KitCream; number.alignment = TextAnchor.MiddleLeft;
+            float half = r.width * .5f;
+            RunHud.Sprite(new Rect(r.x + 26, r.y + 9, 44, 44), MetaIcons.LampOil);
+            GUI.Label(new Rect(r.x + 74, r.y, half - 74, r.height), profile.Meta.LampOil.ToString("N0"), number);
+            RunHud.Sprite(new Rect(r.x + half + 10, r.y + 9, 44, 44), MetaIcons.Keepsake);
+            GUI.Label(new Rect(r.x + half + 58, r.y, half - 70, r.height), profile.Meta.Keepsakes.ToString("N0"), number);
+            number.alignment = TextAnchor.UpperLeft;
+        }
+
+        // ---------------------------------------------------------------- a station's cards
+        private static readonly Rect PanelRect = new Rect(140, 96, 1000, 540);
+        private void DrawPanel(RunCatalog catalog, PlayerProfile profile, int heroIndex, Func<bool> save)
+        {
+            MetaStation station = Open.Value;
+            ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0, 0, 0, .5f));
+            Purse(profile, new Rect(930, 16, 330, 62));
+            ArcadeSkin.Frame(PanelRect, KitFrame.Dialogue, .5f);
+            ArcadeSkin.Glow(new Rect(PanelRect.x + 10, PanelRect.y + 60, 220, 260), new Color(1f, .8f, .45f, .22f));
+            RunHud.Sprite(new Rect(PanelRect.x + 30, PanelRect.y + 70, 180, 220), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
+            ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
+            heading.normal.textColor = ArcadeSkin.KitCream;
+            GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), MetaProgression.StationName(station).ToUpperInvariant(), heading);
+            small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.UpperCenter;
+            GUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 300, 200, 60), MetaProgression.StationLine(station), small);
+            small.alignment = TextAnchor.UpperLeft;
+            if (ArcadeSkin.Medallion(new Rect(PanelRect.xMax - 58, PanelRect.y - 6, 60, 60), KitMedallion.Close)) { Close(); return; }
+
+            Rect area = new Rect(PanelRect.x + 240, PanelRect.y + 48, PanelRect.width - 270, PanelRect.height - 74);
+            if (station == MetaStation.Wardrobe) { DrawWardrobe(area, catalog, profile, heroIndex); return; }
+            var tracks = new List<MetaTrack>(MetaProgression.For(station));
+            float cw = (area.width - 16) * .5f, ch = 132;
+            int rows = Mathf.CeilToInt(tracks.Count / 2f);
+            float extra = station == MetaStation.Nursery && MetaProgression.Rank(profile, "nursery.heirloom") > 0 ? 96 : 0;
+            float height = rows * (ch + 14) + extra;
+            scroll = ScrollPanel.Begin(area, scroll, new Rect(0, 0, area.width - 14, Mathf.Max(area.height, height)));
+            for (int i = 0; i < tracks.Count; i++)
+                Card(new Rect(i % 2 * (cw + 12), i / 2 * (ch + 14), cw - 4, ch), tracks[i], catalog, profile, save);
+            if (extra > 0) Heirloom(new Rect(0, rows * (ch + 14), area.width - 20, 86), catalog, profile, save);
+            ScrollPanel.End();
+        }
+
+        private void Card(Rect c, MetaTrack track, RunCatalog catalog, PlayerProfile profile, Func<bool> save)
+        {
+            int rank = MetaProgression.Rank(profile, track.Id);
+            bool flash = bought == track.Id && Time.unscaledTime - boughtAt < .6f;
+            if (flash) ArcadeSkin.Glow(new Rect(c.x - 12, c.y - 12, c.width + 24, c.height + 24), new Color(1f, .85f, .5f, .5f * (1 - (Time.unscaledTime - boughtAt) / .6f)));
+            ArcadeSkin.Frame(c, KitFrame.Card, .3f);
+            Color ink = ArcadeSkin.FrameText(KitFrame.Card);
+            TrackIcon(new Rect(c.x + 14, c.y + 16, 52, 52), track);
+            body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .85f); number.normal.textColor = ink;
+            GUI.Label(new Rect(c.x + 76, c.y + 10, c.width - 140, 26), track.Name, body);
+            small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(c.xMax - 66, c.y + 12, 52, 22), rank + "/" + track.Max, small); small.alignment = TextAnchor.UpperLeft;
+            GUI.Label(new Rect(c.x + 76, c.y + 36, c.width - 90, 22), track.Line, small);
+            string values = rank >= track.Max ? track.Value(rank) : track.Value(rank) + "  →  " + track.Value(rank + 1);
+            GUI.Label(new Rect(c.x + 76, c.y + 56, c.width - 90, 26), values, number);
+            string blocked = MetaProgression.Blocked(profile, track);
+            Rect button = new Rect(c.x + 76, c.y + 86, c.width - 92, 38);
+            if (rank >= track.Max) { ArcadeSkin.Button(button, "MAX", KitButton.Secondary, false, chip); return; }
+            bool can = blocked == null;
+            string caption = track.Cost[rank].ToString("N0");
+            if (ArcadeSkin.Button(button, "      " + caption, can ? KitButton.Primary : KitButton.Secondary, can, body) && can)
+            {
+                string before = JsonUtility.ToJson(profile.Meta);
+                if (MetaProgression.Buy(profile, track.Id))
+                {
+                    if (!save()) { JsonUtility.FromJsonOverwrite(before, profile.Meta); CheckpointAudio.PlayInterfaceId("ui.error"); }
+                    else { bought = track.Id; boughtAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId(rank + 1 >= track.Max ? "up.star3" : "shop.buy.gold"); }
+                }
+            }
+            float cw = body.CalcSize(new GUIContent(caption)).x;
+            RunHud.Sprite(new Rect(button.center.x - cw * .5f - 28, button.center.y - 15, 30, 30), MetaIcons.Currency(track.Currency));
+            if (!can && blocked != "Not enough oil" && blocked != "Not enough keepsakes")
+            {
+                small.normal.textColor = new Color(.55f, .18f, .12f);
+                small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(c.x + 76, c.y + 60, c.width - 90, 22), blocked, small); small.alignment = TextAnchor.UpperLeft;
+            }
+        }
+
+        private static void TrackIcon(Rect r, MetaTrack track)
+        {
+            switch (track.Id)
+            {
+                case "lantern.wick": if (PaintedStatIcons.TryDraw(r, ItemEffect.Health)) return; break;
+                case "lantern.stride": if (PaintedStatIcons.TryDraw(r, ItemEffect.MoveSpeed)) return; break;
+                case "lantern.reach": if (PaintedStatIcons.TryDraw(r, ItemEffect.Pickup)) return; break;
+                case "lantern.spark": if (PaintedStatIcons.TryDraw(r, ItemEffect.Crit)) return; break;
+                case "ledger.pockets": if (PaintedStatIcons.TryDraw(r, ItemEffect.Interest)) return; break;
+                case "ledger.chest": if (PaintedStatIcons.TryDraw(r, ItemEffect.ChestQuality)) return; break;
+                case "nursery.stork": RunHud.Sprite(r, CurrencyIcons.Egg); return;
+            }
+            if (track.Station == MetaStation.Ledger) { RunHud.Sprite(r, CurrencyIcons.Coin); return; }
+            RunHud.Sprite(r, MetaIcons.Station(track.Station, true));
+        }
+
+        /// <summary>The Nursery's heirloom: tap one family's crest.</summary>
+        private void Heirloom(Rect r, RunCatalog catalog, PlayerProfile profile, Func<bool> save)
+        {
+            ArcadeSkin.Frame(r, KitFrame.Card, .3f);
+            Color ink = ArcadeSkin.FrameText(KitFrame.Card);
+            body.normal.textColor = ink;
+            BondDefinition chosen = Array.Find(catalog.Bonds, b => b.Id == profile.Meta.Heirloom);
+            GUI.Label(new Rect(r.x + 16, r.y + 8, r.width - 32, 26), "FAMILY · " + (chosen != null ? chosen.Name.ToUpperInvariant() : "TAP A CREST"), body);
+            float x = r.x + 16;
+            foreach (BondDefinition bond in catalog.Bonds)
+            {
+                if (bond.Icon == null) continue;
+                if (x + 44 > r.xMax - 10) break;
+                Rect cell = new Rect(x, r.y + 38, 40, 40);
+                if (bond.Id == profile.Meta.Heirloom) ArcadeSkin.Glow(new Rect(cell.x - 8, cell.y - 8, 56, 56), new Color(1f, .8f, .4f, .7f));
+                RunHud.Sprite(cell, bond.Icon);
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none) && bond.Id != profile.Meta.Heirloom)
+                {
+                    string before = profile.Meta.Heirloom; profile.Meta.Heirloom = bond.Id;
+                    if (!save()) profile.Meta.Heirloom = before; else CheckpointAudio.PlayInterfaceId("ui.select");
+                }
+                x += 46;
+            }
+        }
+
+        /// <summary>The Wardrobe: each hero's mastery, earned by playing (no price): three perks, chosen at hero select.</summary>
+        private void DrawWardrobe(Rect area, RunCatalog catalog, PlayerProfile profile, int heroIndex)
+        {
+            if (wardrobeHero < 0 || wardrobeHero >= catalog.Champions.Length) wardrobeHero = Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1);
+            UnitDefinition hero = catalog.Champions[wardrobeHero];
+            int waves = MetaProgression.Mastery(profile, hero.Id)?.Waves ?? 0, rank = MetaProgression.MasteryRank(waves);
+            if (ArcadeSkin.IconButton(new Rect(area.x, area.y, 56, 56), KitRound.Walnut, "◀")) wardrobeHero = (wardrobeHero + catalog.Champions.Length - 1) % catalog.Champions.Length;
+            if (ArcadeSkin.IconButton(new Rect(area.xMax - 56, area.y, 56, 56), KitRound.Walnut, "▶")) wardrobeHero = (wardrobeHero + 1) % catalog.Champions.Length;
+            RunHud.Sprite(new Rect(area.x + 70, area.y - 4, 64, 64), hero.Body);
+            body.normal.textColor = ArcadeSkin.KitCream; number.normal.textColor = ArcadeSkin.KitCream;
+            GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 26), RunUICopy.UnitName(hero), body);
+            GUI.Label(new Rect(area.x + 142, area.y + 28, area.width - 280, 26), waves + " waves together", number);
+            float y = area.y + 72, ch = 100;
+            for (int i = 0; i < MetaProgression.MasteryWaves.Length; i++)
+            {
+                Rect c = new Rect(area.x, y + i * (ch + 10), area.width, ch);
+                bool earned = rank > i;
+                bool exists = i != 0 || MetaProgression.AltStarter(catalog, hero) != null;
+                if (i == 1) exists = HeroKits.For(hero.Id) != null;
+                if (i == 2) exists = MetaProgression.HabitDropped(HeroKits.For(hero.Id)).HasValue;
+                ArcadeSkin.Frame(c, KitFrame.Card, .3f);
+                Color ink = ArcadeSkin.FrameText(KitFrame.Card);
+                body.normal.textColor = ink; small.normal.textColor = ink; number.normal.textColor = ink;
+                Sprite icon = i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition coat ? coat.Body : MetaIcons.Station(MetaStation.Wardrobe, earned);
+                RunHud.Sprite(new Rect(c.x + 14, c.y + 14, 70, 70), icon);
+                GUI.Label(new Rect(c.x + 96, c.y + 12, c.width - 300, 26), MetaProgression.MasteryNames[i], body);
+                string line = MetaProgression.MasteryLines[i];
+                if (i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition alt) line = "Start with " + RunUICopy.UnitName(alt);
+                if (i == 2 && exists) line = MetaProgression.HabitAdded(HeroKits.For(hero.Id)).Text.Replace("Second habit: ", "");
+                GUI.Label(new Rect(c.x + 96, c.y + 40, c.width - 300, 44), exists ? line : "Not for this hero", small);
+                number.alignment = TextAnchor.MiddleRight;
+                GUI.Label(new Rect(c.xMax - 200, c.y, 180, ch), !exists ? "—" : earned ? "READY" : Mathf.Min(waves, MetaProgression.MasteryWaves[i]) + " / " + MetaProgression.MasteryWaves[i], number);
+                number.alignment = TextAnchor.UpperLeft;
+            }
+        }
+    }
+}

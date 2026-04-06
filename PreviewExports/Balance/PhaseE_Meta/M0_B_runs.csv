@@ -1,0 +1,55 @@
+hero,difficulty,outcome,last_wave,total_gold,items,recruits,rerolls,seed,last_damage_source,last_damage_kind,last_damage
+CometRunner,0,VICTORY,20,55539,95,33,26,161026,"FallingProp","Physical / Contact / arena",3.69
+CometRunner,0,VICTORY,20,59146,88,21,28,77138,"FallingProp","Physical / Contact / arena",6.61
+CometRunner,0,DEFEAT,7,1898,23,7,4,90210,"Wardrobe Crab contact","Physical / Contact / arena",5.96
+CometRunner,1,VICTORY,20,56834,76,31,21,161026,"Shockwave","Physical / Contact / arena",4.35
+CometRunner,1,DEFEAT,19,50335,89,21,25,77138,"Ribbon Hydra projectile","Physical / Contact",6.07
+CometRunner,1,DEFEAT,6,1107,19,5,4,90210,"Wardrobe Crab contact","Physical / Contact / arena",9.56
+CometRunner,2,DEFEAT,19,49348,78,24,22,161026,"InkMoth contact","Physical / Contact / arena",16.72
+CometRunner,2,DEFEAT,15,23374,67,22,18,77138,"InkMoth contact","Physical / Contact / arena",13.51
+CometRunner,2,DEFEAT,5,729,13,3,2,90210,"Roller","Physical / Contact / arena",9.03
+CometRunner,3,DEFEAT,17,38288,72,25,19,161026,"InkMoth contact","Physical / Contact / arena",13.02
+CometRunner,3,DEFEAT,6,964,11,7,2,77138,"Wardrobe Crab contact","Physical / Contact / arena",25.52
+CometRunner,3,DEFEAT,5,610,13,3,2,90210,"THE COIN WIDOW pattern","Physical / Contact / arena",15.6
+CometRunner,4,DEFEAT,5,807,13,7,4,161026,"THE COIN WIDOW contact","Physical / Contact / arena",20.77
+CometRunner,4,DEFEAT,14,23229,63,23,17,77138,"InkMoth contact","Physical / Contact / arena",17.69
+CometRunner,4,DEFEAT,5,547,12,3,2,90210,"THE COIN WIDOW contact","Physical / Contact / arena",23.27
+CometRunner,5,DEFEAT,5,828,14,7,4,161026,"THE COIN WIDOW encore volley","Arcane / Contact / arena",16.9
+CometRunner,5,DEFEAT,6,805,15,6,3,77138,"Wardrobe Crab contact","Physical / Contact / arena",28.25
+CometRunner,5,DEFEAT,5,566,12,3,2,90210,"Splinter Imp contact","Physical / Contact / arena",21.91
+GlassDice,0,VICTORY,20,50038,88,30,19,161026,"Shockwave","Physical / Contact / arena",3.95
+GlassDice,0,DEFEAT,6,902,12,6,4,77138,"Wardrobe Crab contact","Physical / Contact / arena",4.93
+GlassDice,0,DEFEAT,6,1019,9,6,1,90210,"MoonMagnet contact","Physical / Contact / arena",4.98
+GlassDice,1,DEFEAT,15,23631,66,27,15,161026,"InkMoth contact","Physical / Contact / arena",17.38
+GlassDice,1,DEFEAT,9,3896,31,12,8,77138,"Wardrobe Crab contact","Physical / Contact / arena",9.45
+GlassDice,1,DEFEAT,6,922,8,5,0,90210,"Wardrobe Crab contact","Physical / Contact / arena",14.44
+GlassDice,2,DEFEAT,6,1021,13,5,3,161026,"Party Line cord","Physical / Contact / arena",10.75
+GlassDice,2,DEFEAT,6,1005,15,7,5,77138,"Wardrobe Crab contact","Physical / Contact / arena",10.59
+GlassDice,2,DEFEAT,6,756,8,5,0,90210,"Wardrobe Crab contact","Physical / Contact / arena",19.85
+GlassDice,3,DEFEAT,16,29783,72,28,17,161026,"InkMoth contact","Physical / Contact / arena",62.58
+GlassDice,3,DEFEAT,6,1007,15,7,5,77138,"Wardrobe Crab contact","Physical / Contact / arena",10.59
+GlassDice,3,DEFEAT,6,864,10,6,1,90210,"Wardrobe Crab contact","Physical / Contact / arena",16.74
+GlassDice,4,DEFEAT,12,11178,54,19,13,161026,"RuneWisp projectile","Physical / Projectile",17.86
+GlassDice,4,DEFEAT,6,994,17,7,5,77138,"Wardrobe Crab contact","Physical / Contact / arena",10.59
+GlassDice,4,DEFEAT,5,611,6,5,0,90210,"THE COIN WIDOW contact","Physical / Contact / arena",13.9
+GlassDice,5,DEFEAT,5,741,9,4,2,161026,"InkMoth contact","Physical / Contact / arena",12.25
+GlassDice,5,DEFEAT,5,768,11,5,4,77138,"Shockwave","Physical / Contact / arena",2.8
+GlassDice,5,DEFEAT,6,822,12,6,2,90210,"Wardrobe Crab contact","Physical / Contact / arena",16.74
+TideSinger,0,DEFEAT,14,28796,98,24,30,161026,"InkMoth contact","Physical / Contact / arena",9.42
+TideSinger,0,DEFEAT,7,1596,29,9,7,77138,"Wardrobe Crab contact","Physical / Contact / arena",7.96
+TideSinger,0,VICTORY,20,102681,130,31,44,90210,"FallingProp","Physical / Contact / arena",10.8
+TideSinger,1,TIMEOUT,10,11681,59,15,16,161026,"FallingProp","Physical / Contact / arena",8.38
+TideSinger,1,DEFEAT,6,797,19,7,5,77138,"Wardrobe Crab contact","Physical / Contact / arena",13.4
+TideSinger,1,DEFEAT,10,6640,63,17,19,90210,"HushMite contact","Physical / Contact / arena",17.27
+TideSinger,2,DEFEAT,8,3604,44,11,11,161026,"FallingProp","Physical / Contact / arena",10.6
+TideSinger,2,DEFEAT,6,1011,22,7,6,77138,"Wardrobe Crab contact","Physical / Contact / arena",17.39
+TideSinger,2,DEFEAT,6,1227,25,8,8,90210,"Wardrobe Crab contact","Physical / Contact / arena",20.22
+TideSinger,3,VICTORY,20,101764,160,27,53,161026,"Shockwave","Physical / Contact / arena",10.33
+TideSinger,3,DEFEAT,6,1154,28,7,8,77138,"Wardrobe Crab contact","Physical / Contact / arena",21.44
+TideSinger,3,DEFEAT,6,1344,28,8,8,90210,"Wardrobe Crab contact","Physical / Contact / arena",24.01
+TideSinger,4,DEFEAT,5,900,19,5,5,161026,"THE COIN WIDOW contact","Physical / Contact / arena",18.8
+TideSinger,4,DEFEAT,5,748,15,5,3,77138,"ClockBat projectile","Physical / Projectile",9.47
+TideSinger,4,DEFEAT,6,1531,30,8,9,90210,"Wardrobe Crab contact","Physical / Contact / arena",32.89
+TideSinger,5,DEFEAT,5,727,19,5,5,161026,"THE COIN WIDOW pattern","Physical / Contact / arena",21.64
+TideSinger,5,DEFEAT,5,626,15,4,3,77138,"Splinter Imp contact","Physical / Contact / arena",19.63
+TideSinger,5,DEFEAT,5,709,19,6,5,90210,"Wardrobe Crab contact","Physical / Contact / arena",31.5

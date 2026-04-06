@@ -10,14 +10,14 @@ namespace ArcaneBrigade
         private UnitDefinition SwarmDefinition()
         {
             UnitDefinition fallback = null;
-            foreach (UnitDefinition candidate in catalog.EnemyPool)
+            foreach (UnitDefinition candidate in catalog.HerdPool ?? catalog.EnemyPool) // the swarm's fodder is not themed (item 24)
                 if (!candidate.IsBoss && candidate.SpecialEnemy == SpecialEnemyKind.None && candidate.WaitingKind == WaitingEnemyKind.None && candidate.Weapon.Kind != WeaponKind.Projectile && candidate.Behavior == EnemyBehavior.Standard && (fallback == null || candidate.BodyHeight < fallback.BodyHeight)) fallback = candidate;
             return fallback ?? catalog.MeleeEnemy;
         }
         private UnitDefinition HerdDefinition()
         {
             var choices = new System.Collections.Generic.List<UnitDefinition>();
-            foreach (UnitDefinition candidate in catalog.EnemyPool)
+            foreach (UnitDefinition candidate in catalog.HerdPool ?? catalog.EnemyPool) // the swarm's fodder is not themed (item 24)
                 if (!candidate.IsBoss && candidate.SpecialEnemy == SpecialEnemyKind.None && candidate.WaitingKind == WaitingEnemyKind.None && candidate.Weapon.Kind != WeaponKind.Projectile && candidate.Behavior == EnemyBehavior.Standard && candidate.BodyHeight <= 1.15f && !choices.Contains(candidate)) choices.Add(candidate);
             return choices.Count == 0 ? SwarmDefinition() : choices[spawnRandom.Next(choices.Count)];
         }

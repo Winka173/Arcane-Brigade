@@ -113,6 +113,7 @@ namespace ArcaneBrigade
             bool challenge = run.ChallengeId == "night-shift" && run.Phase == SessionPhase.Victory || run.ChallengeId == "first-light" && (run.Wave > 10 || run.Wave == 10 && run.Phase == SessionPhase.Victory) || run.ChallengeId == "small-brigade" && run.Phase == SessionPhase.Victory && run.Roster.Count <= 6;
             if (challenge) Add(profile.Achievements, "challenge-" + run.ChallengeId);
             var record = new RunRecord { Id = run.RunId, ParentId = run.ParentRunId, Nickname = Nickname(run), FinishedUtc = DateTime.UtcNow.ToString("O"), Score = Score(run), Build = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(run)) };
+            if (record.Build.Meta != null) record.Build.Meta.RewindShop = ""; // the rewind point is not history
             profile.History.Insert(0, record);
             if (profile.History.Count > HistoryLimit) profile.History.RemoveAt(profile.History.Count - 1);
             ScoreRecord best = profile.Records.Find(entry => entry.Key == record.Key);

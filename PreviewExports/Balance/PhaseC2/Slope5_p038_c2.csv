@@ -1,0 +1,91 @@
+hero,difficulty,outcome,last_wave,total_gold,items,recruits,rerolls,seed,last_damage_source,last_damage_kind,last_damage
+CometRunner,0,VICTORY,20,47519,69,34,20,161026,"Tentacle","Physical / Contact / arena",3.56
+CometRunner,0,VICTORY,20,53983,109,26,36,77138,"Tentacle","Physical / Contact / arena",3.22
+CometRunner,0,VICTORY,20,55502,102,29,32,90210,"FallingProp","Physical / Contact / arena",3.43
+CometRunner,0,DEFEAT,14,16134,62,17,16,424242,"InkMoth contact","Physical / Contact / arena",4.77
+CometRunner,0,VICTORY,20,51701,97,28,26,5005,"FallingProp","Physical / Contact / arena",2.2
+CometRunner,1,VICTORY,20,49112,76,20,22,161026,"Splinter Imp contact","Physical / Contact / arena",18.27
+CometRunner,1,VICTORY,20,55840,104,21,39,77138,"Shockwave","Physical / Contact / arena",2.04
+CometRunner,1,VICTORY,20,61621,135,29,40,90210,"InkMoth contact","Physical / Contact / arena",7.31
+CometRunner,1,DEFEAT,15,24986,68,23,17,424242,"InkMoth contact","Physical / Contact / arena",9.92
+CometRunner,1,VICTORY,20,60807,98,19,32,5005,"Shockwave","Physical / Contact / arena",2.14
+CometRunner,2,VICTORY,20,55059,74,22,23,161026,"Bleeding alarm","Physical / Contact / arena",0.32
+CometRunner,2,VICTORY,20,55355,98,28,29,77138,"Tentacle","Physical / Contact / arena",2.36
+CometRunner,2,DEFEAT,5,627,13,3,3,90210,"Splinter Imp contact","Physical / Contact / arena",12.25
+CometRunner,2,DEFEAT,17,40488,108,30,32,424242,"Splinter Imp contact","Physical / Contact / arena",13.17
+CometRunner,2,VICTORY,20,74667,105,24,31,5005,"Tentacle","Physical / Contact / arena",2.72
+CometRunner,3,VICTORY,20,58291,75,25,21,161026,"FallingProp","Physical / Contact / arena",6.69
+CometRunner,3,VICTORY,20,54841,88,21,27,77138,"Shockwave","Physical / Contact / arena",2.98
+CometRunner,3,DEFEAT,7,1944,27,6,6,90210,"InkMoth contact","Physical / Contact / arena",8.93
+CometRunner,3,TIMEOUT,20,126499,174,30,58,424242,"Shockwave","Physical / Contact / arena",5.27
+CometRunner,3,DEFEAT,9,4769,41,11,12,5005,"InkMoth contact","Physical / Contact / arena",17.25
+CometRunner,4,VICTORY,20,61665,81,28,26,161026,"Tentacle","Physical / Contact / arena",3.43
+CometRunner,4,VICTORY,20,58530,79,23,21,77138,"Tentacle","Physical / Contact / arena",2.53
+CometRunner,4,DEFEAT,5,768,12,3,2,90210,"FallingProp","Physical / Contact / arena",9.03
+CometRunner,4,TIMEOUT,20,129570,141,32,46,424242,"FallingProp","Physical / Contact / arena",2.66
+CometRunner,4,DEFEAT,18,42448,108,22,30,5005,"HushMite contact","Physical / Contact / arena",8.56
+CometRunner,5,DEFEAT,5,741,12,7,4,161026,"Wardrobe Crab contact","Physical / Contact / arena",31.49
+CometRunner,5,TIMEOUT,20,69694,87,22,25,77138,"Shockwave","Physical / Contact / arena",4.57
+CometRunner,5,DEFEAT,5,667,12,3,2,90210,"Wardrobe Crab contact","Physical / Contact / arena",35.48
+CometRunner,5,DEFEAT,7,1786,22,8,4,424242,"InkMoth contact","Physical / Contact / arena",22.83
+CometRunner,5,DEFEAT,5,564,12,5,3,5005,"Splinter Imp contact","Physical / Contact / arena",22.57
+GlassDice,0,VICTORY,20,48341,82,31,20,161026,"Gamble sandwich","Physical / Contact / arena",5.36
+GlassDice,0,VICTORY,20,51579,86,35,16,77138,"Shockwave","Physical / Contact / arena",5.27
+GlassDice,0,VICTORY,20,43748,75,32,16,90210,"Shockwave","Physical / Contact / arena",2.54
+GlassDice,0,VICTORY,20,62285,79,33,18,424242,"Shockwave","Physical / Contact / arena",11.33
+GlassDice,0,VICTORY,20,82250,108,33,29,5005,"Shockwave","Physical / Contact / arena",7.18
+GlassDice,1,DEFEAT,9,4223,31,12,8,161026,"HushMite contact","Physical / Contact / arena",10.87
+GlassDice,1,VICTORY,20,59764,80,26,17,77138,"Tentacle","Physical / Contact / arena",15.8
+GlassDice,1,VICTORY,20,41957,65,28,11,90210,"Shockwave","Physical / Contact / arena",7.88
+GlassDice,1,VICTORY,20,48203,107,34,28,424242,"FallingProp","Physical / Contact / arena",5.29
+GlassDice,1,VICTORY,20,50302,105,32,25,5005,"Shockwave","Physical / Contact / arena",2.56
+GlassDice,2,VICTORY,20,49587,86,34,19,161026,"Tentacle","Physical / Contact / arena",7.01
+GlassDice,2,VICTORY,20,64181,93,31,25,77138,"Tentacle","Physical / Contact / arena",7.37
+GlassDice,2,VICTORY,20,57821,89,34,18,90210,"Tentacle","Physical / Contact / arena",7.2
+GlassDice,2,VICTORY,20,56112,99,34,25,424242,"FallingProp","Physical / Contact / arena",5.09
+GlassDice,2,VICTORY,20,57244,88,33,18,5005,"FallingProp","Physical / Contact / arena",6.07
+GlassDice,3,DEFEAT,9,4020,30,12,8,161026,"InkMoth contact","Physical / Contact / arena",17.21
+GlassDice,3,DEFEAT,12,8388,46,19,11,77138,"ClockBat projectile","Physical / Projectile",14.4
+GlassDice,3,DEFEAT,9,3718,24,10,6,90210,"Party Line cord","Physical / Contact / arena",13.68
+GlassDice,3,VICTORY,20,55590,93,30,21,424242,"InkMoth contact","Physical / Contact / arena",10.52
+GlassDice,3,VICTORY,20,66338,127,33,36,5005,"Tentacle","Physical / Contact / arena",3.74
+GlassDice,4,VICTORY,20,54819,90,32,21,161026,"Tentacle","Physical / Contact / arena",10.44
+GlassDice,4,VICTORY,20,47023,101,31,30,77138,"Shockwave","Physical / Contact / arena",10.57
+GlassDice,4,DEFEAT,5,532,6,5,0,90210,"Splinter Imp contact","Physical / Contact / arena",15.63
+GlassDice,4,VICTORY,20,53075,90,34,21,424242,"Shockwave","Physical / Contact / arena",3.79
+GlassDice,4,VICTORY,20,53581,83,30,21,5005,"FallingProp","Physical / Contact / arena",4.97
+GlassDice,5,DEFEAT,10,4813,45,14,12,161026,"InkMoth contact","Physical / Contact / arena",47.57
+GlassDice,5,DEFEAT,5,733,12,7,3,77138,"Wardrobe Crab contact","Physical / Contact / arena",7.06
+GlassDice,5,DEFEAT,5,809,6,5,1,90210,"Splinter Imp contact","Physical / Contact / arena",15.63
+GlassDice,5,DEFEAT,15,21030,71,26,18,424242,"InkMoth contact","Physical / Contact / arena",22.11
+GlassDice,5,VICTORY,20,55151,101,35,23,5005,"Shockwave","Physical / Contact / arena",5.95
+TideSinger,0,DEFEAT,14,29366,98,24,29,161026,"Splinter Imp contact","Physical / Contact / arena",8.37
+TideSinger,0,VICTORY,20,68796,131,34,41,77138,"Tentacle","Physical / Contact / arena",6.22
+TideSinger,0,VICTORY,20,103930,139,29,46,90210,"Shockwave","Physical / Contact / arena",13.99
+TideSinger,0,VICTORY,20,156248,216,34,70,424242,"FallingProp","Physical / Contact / arena",21.69
+TideSinger,0,DEFEAT,13,18586,64,18,16,5005,"Splinter Imp contact","Physical / Contact / arena",9.46
+TideSinger,1,DEFEAT,13,21343,82,22,26,161026,"Splinter Imp contact","Physical / Contact / arena",13.63
+TideSinger,1,VICTORY,20,79145,148,32,48,77138,"","",0
+TideSinger,1,VICTORY,20,84455,152,34,49,90210,"Tentacle","Physical / Contact / arena",14.79
+TideSinger,1,VICTORY,20,82735,188,35,59,424242,"FallingProp","Physical / Contact / arena",9.69
+TideSinger,1,DEFEAT,13,15875,68,21,20,5005,"InkMoth contact","Physical / Contact / arena",10.05
+TideSinger,2,DEFEAT,13,17736,57,19,15,161026,"Splinter Imp contact","Physical / Contact / arena",42.08
+TideSinger,2,VICTORY,20,71628,142,34,42,77138,"Tentacle","Physical / Contact / arena",13.85
+TideSinger,2,VICTORY,20,69868,126,37,40,90210,"Shockwave","Physical / Contact / arena",5.27
+TideSinger,2,VICTORY,20,70577,107,28,32,424242,"Tentacle","Physical / Contact / arena",7.06
+TideSinger,2,VICTORY,20,119827,154,36,47,5005,"Shockwave","Physical / Contact / arena",6.43
+TideSinger,3,DEFEAT,10,6180,41,12,11,161026,"Party Line cord","Physical / Contact / arena",39.15
+TideSinger,3,VICTORY,20,61134,93,35,28,77138,"FallingProp","Physical / Contact / arena",7.96
+TideSinger,3,VICTORY,20,94570,156,34,52,90210,"","",0
+TideSinger,3,VICTORY,20,145534,151,35,46,424242,"","",0
+TideSinger,3,DEFEAT,8,2852,31,9,7,5005,"Coat Rack contact","Physical / Contact / arena",15.01
+TideSinger,4,DEFEAT,17,42864,80,22,22,161026,"InkMoth contact","Physical / Contact / arena",30.4
+TideSinger,4,DEFEAT,5,866,15,4,3,77138,"Wardrobe Crab contact","Physical / Contact / arena",29.83
+TideSinger,4,VICTORY,20,112118,156,26,48,90210,"Shockwave","Physical / Contact / arena",8.15
+TideSinger,4,VICTORY,20,82292,151,27,49,424242,"Shockwave","Physical / Contact / arena",11.17
+TideSinger,4,DEFEAT,8,2832,30,10,7,5005,"HushMite contact","Physical / Contact / arena",20.63
+TideSinger,5,DEFEAT,8,3236,34,11,9,161026,"Party Line cord","Physical / Contact / arena",35.39
+TideSinger,5,DEFEAT,5,704,11,5,2,77138,"FallingProp","Physical / Contact / arena",9.31
+TideSinger,5,DEFEAT,11,11593,63,19,21,90210,"Wardrobe Crab contact","Physical / Contact / arena",26.74
+TideSinger,5,DEFEAT,5,592,9,6,3,424242,"Splinter Imp contact","Physical / Contact / arena",20.68
+TideSinger,5,DEFEAT,5,532,14,5,3,5005,"Blast Puffer contact","Physical / Contact / arena",13.69

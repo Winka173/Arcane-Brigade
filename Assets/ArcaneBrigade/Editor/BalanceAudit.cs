@@ -239,7 +239,18 @@ namespace ArcaneBrigade.Editor
         /// <summary>The slope sweep (6 heroes x 6 difficulties x 3 seeds) split in two halves for two clones.</summary>
         public static void SlopeA() => SimWith(3, SimHeroes.Take(3).ToArray());
         public static void SlopeB() => SimWith(3, SimHeroes.Skip(3).ToArray());
+        public static void Slope5A() => SimWith(5, SimHeroes.Take(3).ToArray());
+        public static void Slope5B() => SimWith(5, SimHeroes.Skip(3).ToArray());
         private static readonly int[] SimSeeds = { 161026, 77138, 90210, 424242, 5005 };
+        /// <summary>The Waiting Room share the bots start with (-meta-level=0, 0.5 or 1; default 0).</summary>
+        private static float MetaLevel
+        {
+            get
+            {
+                foreach (string arg in Environment.GetCommandLineArgs()) if (arg.StartsWith("-meta-level=")) return float.Parse(arg.Substring(12), CultureInfo.InvariantCulture);
+                return 0;
+            }
+        }
 
         /// <summary>Value of an offer for the audit bot: VU of the stats; mechanic items count 60% of their rarity target on top.</summary>
         public static float OfferValue(RunSession s, RunCatalog c, ShopOffer o)
@@ -316,8 +327,10 @@ namespace ArcaneBrigade.Editor
                     using (var session = new RunSession(c))
                     {
                         session.Start(hero, SimSeed, difficulty);
+                        // play-test item 27: the Waiting Room at 0 / half / max (-meta-level=0|0.5|1); rewinds replay a lost wave once
+                        if (MetaLevel > 0) session.ApplyMeta(MetaProgression.BotLoadout(MetaLevel, c, hero));
                         string outcome = "TIMEOUT"; long total = 0; int items = 0, recruits = 0, rerolls = 0;
-                        for (int encounter = 0; encounter < c.NormalWaves; encounter++)
+                        for (int encounter = 0; encounter < c.NormalWaves + 1; encounter++)
                         {
                             int eggsBefore = session.State.Eggs;
                             CheckpointCatalog combat = session.PrepareCombat();
@@ -333,6 +346,7 @@ namespace ArcaneBrigade.Editor
                             bool settled = sim.Phase == RunPhase.Victory || sim.Phase == RunPhase.Defeat;
                             int wave = session.State.Wave;
                             if (settled) session.Settle(sim);
+                            if (session.State.Phase == SessionPhase.Defeat && session.Rewind()) { session.ContinueWave(); continue; }
                             if (session.State.Phase == SessionPhase.Defeat) outcome = "DEFEAT";
                             if (session.State.Phase == SessionPhase.Victory) outcome = "VICTORY";
                             total += sim.Gold + (session.State.Phase == SessionPhase.Shop ? session.State.LastIncome + session.State.LastInterest : 0);

@@ -77,6 +77,8 @@ namespace ArcaneBrigade
         public float Value(KitPassive kind) { float v = 0; foreach (var t in Traits) if (t.Kind == kind) v += t.Value; return v; }
         public bool Has(KitPassive kind) { foreach (var t in Traits) if (t.Kind == kind) return true; return false; }
         public string ArtKey => Id == "CopperCauldron" ? "CopperCauldron_Engine" : Id + "_Awake";
+        /// <summary>The same kit with other passives (the Wardrobe's second habit).</summary>
+        public HeroKit WithTraits(KitTrait[] traits) { var copy = (HeroKit)MemberwiseClone(); copy.Traits = traits; return copy; }
     }
 
     public static class HeroKits

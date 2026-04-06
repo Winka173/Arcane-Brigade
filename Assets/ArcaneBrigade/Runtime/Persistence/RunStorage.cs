@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class PlayerProfile
     {
-        public const int CurrentVersion = 3;
+        public const int CurrentVersion = 4; // 4: the Waiting Room's meta block (play-test item 27)
         public int Version = CurrentVersion;
         public int BestWave;
         public int Wins;
@@ -51,6 +51,8 @@ namespace ArcaneBrigade
         public List<string> SeenBosses = new List<string>();
         public List<RunRecord> History = new List<RunRecord>();
         public List<ScoreRecord> Records = new List<ScoreRecord>();
+        /// <summary>The Waiting Room: Lamp Oil, Keepsakes, station ranks, hero mastery (absent before version 4: migrated once).</summary>
+        public MetaProgress Meta = new MetaProgress();
     }
 
     [Serializable]
@@ -121,6 +123,7 @@ namespace ArcaneBrigade
                     if (!float.IsFinite(profile.MusicVolume) || !float.IsFinite(profile.SfxVolume)) throw new InvalidOperationException("Invalid audio bus settings");
                     profile.MusicVolume = Mathf.Clamp01(profile.MusicVolume); profile.SfxVolume = Mathf.Clamp01(profile.SfxVolume);
                     profile.VoiceVolume = float.IsFinite(profile.VoiceVolume) ? Mathf.Clamp01(profile.VoiceVolume) : 1f;
+                    MetaProgression.Ensure(profile); // older profiles: zero ranks, Lamp Oil for the best wave
                     profile.Version = PlayerProfile.CurrentVersion;
                     return profile;
                 }
@@ -161,7 +164,9 @@ namespace ArcaneBrigade
             string before = JsonUtility.ToJson(profile);
             try
             {
+                MetaProgression.Ensure(profile);
                 profile.BestWave = Mathf.Max(profile.BestWave, run.Wave);
+                MetaProgression.CountFinds(profile, run); // first-ever finds feed the run's Lamp Oil
                 RunMeta.Discover(profile, run, catalog);
                 if (run.Nightmare?.Ending == NightmareEndingStage.Complete && run.Nightmare.CustomerDefeated)
                 {
@@ -170,9 +175,11 @@ namespace ArcaneBrigade
                 }
                 if (run.BossKills > 0 && !profile.Achievements.Contains("First bell silenced")) profile.Achievements.Add("First bell silenced");
                 if (run.Wave >= 10 && !profile.Achievements.Contains("Ten halls crossed")) profile.Achievements.Add("Ten halls crossed");
+                bool hauled = MetaProgression.Credit(profile, run, catalog); // before RunMeta.Credit marks the run completed
                 RunMeta.Credit(profile, run);
                 RunAchievements.Credit(profile, run, catalog);
                 SaveProfile(profile);
+                if (hauled) SaveRun(run); // the haul shows on the summary when the run is reopened
             }
             catch { JsonUtility.FromJsonOverwrite(before, profile); throw; }
         }

@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 namespace ArcaneBrigade
 {
-    public static class RunLaunch { public static string ChampionId; public static bool Resume; public static int Difficulty; public static int ChallengeIndex; }
+    public static class RunLaunch
+    {
+        public static string ChampionId; public static bool Resume; public static int Difficulty; public static int ChallengeIndex;
+        /// <summary>The Waiting Room (play-test item 27): the Nursery friend and Wardrobe choices picked in hero select, and
+        /// whether the menu opens in the hub (back from a finished run).</summary>
+        public static string StartFriend; public static bool AltStarter, SecondHabit, OpenHub;
+    }
     public sealed class RunMenu : MonoBehaviour
     {
-        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox, Museum, Achievements }
+        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox, Museum, Achievements, Hub }
         [SerializeField] private RunCatalog catalog;
         private RunStorage storage;
         private PlayerProfile profile;
@@ -46,6 +52,10 @@ namespace ArcaneBrigade
         private float pageChangedAt;
         private ArcadeMusic music;
         public RunMuseum Museum => museum;
+        // the Waiting Room between runs (play-test item 27) and the run-start choices it unlocks in hero select
+        private readonly MetaHub hub = new MetaHub();
+        public MetaHub Hub => hub;
+        private string nurseryPick; private bool altCoat, habit; private int loadoutHero = -1;
         public void SelectChampionForDiagnostics(int index)
         {
             if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Hero fixture requires isolated capture mode");
@@ -73,6 +83,12 @@ namespace ArcaneBrigade
             diagnosticState = true; catalog = definition; profile = readOnlyProfile; saved = readOnlySaved;
             ArcadeSkin.Bundle = profile.Cosmetic;
         }
+        /// <summary>Play-test capture: the hub and hero select drawn from a prepared profile (never saved).</summary>
+        public void ConfigureHubDiagnostics(PlayerProfile readOnlyProfile)
+        {
+            if (!PlaytestFixCapture.Requested) throw new InvalidOperationException("Hub fixture requires the play-test capture");
+            profile = readOnlyProfile; loadoutHero = -1;
+        }
         public WeaponSandbox Sandbox => sandbox;
         public WeaponSandbox GetSandbox() => sandbox;
         public Page CurrentPage { get; private set; }
@@ -83,6 +99,8 @@ namespace ArcaneBrigade
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
             if (CurrentPage != page) CheckpointAudio.PlayInterfaceId(page == Page.Landing ? "ui.back" : "ui.open");
+            if (page == Page.Hub && CurrentPage != Page.Hub) hub.Enter();
+            if (page == Page.Roster) loadoutHero = -1;
             CurrentPage = page;
             GlossaryUI.Close();
             navigation.Reset(); pageChangedAt = Time.unscaledTime;
@@ -137,6 +155,7 @@ namespace ArcaneBrigade
             music = gameObject.AddComponent<ArcadeMusic>();
             gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();
             Screen.orientation = ScreenOrientation.LandscapeLeft;
+            if (RunLaunch.OpenHub) { RunLaunch.OpenHub = false; ShowPage(Page.Hub); } // back from a finished run: the Waiting Room
         }
 
         public void ReloadSaveSummary()
@@ -159,6 +178,13 @@ namespace ArcaneBrigade
         {
             if (music != null) music.ForceScene(CurrentPage == Page.Roster ? ArcaneCueLibrary.SceneSelect : null);
             RunUIHints.Refresh();
+            if (CurrentPage == Page.Hub)
+            {
+                HubAction walked = hub.Tick(Time.unscaledDeltaTime);
+                if (walked == HubAction.NextNight) ShowPage(Page.Roster);
+                else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { if (hub.PanelOpen) hub.Close(); else ShowPage(Page.Landing); }
+                return;
+            }
             if (CurrentPage != Page.Museum && CurrentPage != Page.Records && CurrentPage != Page.WeaponSandbox)
             {
                 int before = navigation.Selected;
@@ -187,7 +213,7 @@ namespace ArcaneBrigade
                 else sandbox.HandleInput();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) ShowPage(BackOf(CurrentPage));
         }
 
         private void Launch(bool resume)
@@ -212,6 +238,7 @@ namespace ArcaneBrigade
             RunLaunch.ChampionId = catalog.Champions[selection].Id;
             RunLaunch.Difficulty = challenge > 0 ? 0 : difficulty;
             RunLaunch.ChallengeIndex = challenge;
+            RunLaunch.StartFriend = nurseryPick; RunLaunch.AltStarter = altCoat; RunLaunch.SecondHabit = habit;
             SceneManager.LoadScene("RunArena");
         }
 
@@ -239,22 +266,26 @@ namespace ArcaneBrigade
             LivingUI.Enter(Time.unscaledTime - pageChangedAt, new Vector2(640, 360));
             GlossaryUI.BlockUnderlying(new Vector2(1280, 720));
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
-            if (CurrentPage != Page.Landing)
+            if (CurrentPage != Page.Landing && CurrentPage != Page.Hub)
             {
                 Texture2D room = Backdrop();
                 if (room != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room, ScaleMode.ScaleAndCrop);
                 ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0.02f, 0.03f, 0.055f, PresentationSettings.HighReadability ? 0.97f : 0.84f));
                 ArcadeSkin.Header(new Rect(60, 32, 940, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage));
             }
-            if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "BACK"))
+            if (CurrentPage != Page.Landing && CurrentPage != Page.Hub && Button(new Rect(1010, 40, 200, 50), "BACK"))
             {
                 if (CurrentPage == Page.WeaponSandbox) CloseWeaponSandbox();
-                else ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
+                else ShowPage(BackOf(CurrentPage));
             }
             switch (CurrentPage)
             {
                 case Page.Landing: DrawLanding(); break;
                 case Page.Roster: DrawRoster(); break;
+                case Page.Hub:
+                    HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
+                    if (chosen == HubAction.NextNight) ShowPage(Page.Roster); else if (chosen == HubAction.Back) ShowPage(Page.Landing);
+                    break;
                 case Page.Resume:
                     Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + saved.Roster.Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
                     GUI.enabled = CanResume;
@@ -268,7 +299,7 @@ namespace ArcaneBrigade
                     break;
                 case Page.Settings: DrawSettings(); break;
                 case Page.Help:
-                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Attacks happen automatically while you move.\nYour friends fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, friends, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; click the note, or approach the archive cabinet and press Space / A to read and reread chapters. Settings can make pages open by themselves. The people tab records the friends you have met. The warm chair is a separate, dangerous invitation.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your friends' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
+                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Attacks happen automatically while you move.\nYour friends fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, friends, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; click the note, or approach the archive cabinet and press Space / A to read and reread chapters. Settings can make pages open by themselves. The people tab records the friends you have met. The warm chair is a separate, dangerous invitation.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your friends' light, go with you.\nBetween nights, the Waiting Room turns Lamp Oil and Keepsakes into lasting help.");
                     break;
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
@@ -326,7 +357,7 @@ namespace ArcaneBrigade
             if (!SpotEnabled(index)) { CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
             switch (index)
             {
-                case 0: ShowPage(Page.Roster); break;
+                case 0: ShowPage(Page.Hub); break; // the door leads through the Waiting Room
                 case 1: ShowPage(Page.Resume); break;
                 case 2: ShowPage(Page.Museum); break;
                 case 3: ShowPage(Page.Records); break;
@@ -525,7 +556,8 @@ namespace ArcaneBrigade
             foreach (StatModifier modifier in champion.ChampionModifiers)
                 description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
             float descriptionHeight = Mathf.Max(180, GlossaryUI.Height(description, text, 400) + 8);
-            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(780, 300, 425, 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
+            bool loadout = DrawLoadout(champion, new Rect(780, 402, 425, 44), note);
+            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(780, 300, 425, loadout ? 98 : 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
             ScrollPanel.End();
             // one journey only (play-test 20/10/2026): the Night Shift / First Light / Small Crew challenges are off the menu;
@@ -537,6 +569,61 @@ namespace ArcaneBrigade
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
         }
+        private static Page BackOf(Page page) => page == Page.ConfirmOverwrite ? Page.Roster : page == Page.Roster ? Page.Hub : Page.Landing;
+
+        /// <summary>Hero select's Waiting Room row (only what is unlocked): the Nursery's three friends, the Wardrobe's spare coat
+        /// and second habit. A tap picks; the line under the row says what the pick does.</summary>
+        private bool DrawLoadout(UnitDefinition champion, Rect row, GUIStyle note)
+        {
+            MetaProgression.Ensure(profile);
+            var friends = MetaProgression.NurseryChoices(profile, catalog, champion);
+            int mastery = MetaProgression.MasteryRank(profile, champion.Id);
+            UnitDefinition coat = mastery >= 1 ? MetaProgression.AltStarter(catalog, champion) : null;
+            bool canHabit = mastery >= 3 && MetaProgression.HabitDropped(HeroKits.For(champion.Id)).HasValue;
+            if (loadoutHero != selection)
+            {
+                loadoutHero = selection;
+                HeroMastery remembered = MetaProgression.Mastery(profile, champion.Id);
+                altCoat = remembered?.AltStarter == true; habit = remembered?.SecondHabit == true;
+                nurseryPick = friends.Count > 0 ? friends[0].Id : null;
+            }
+            if (coat == null) altCoat = false;
+            if (!canHabit) habit = false;
+            if (nurseryPick != null && !friends.Exists(f => f.Id == nurseryPick)) nurseryPick = null;
+            if (friends.Count == 0 && coat == null && !canHabit) return false;
+            float x = row.x; string caption = null;
+            if (friends.Count > 0)
+            {
+                RunHud.Sprite(new Rect(x, row.y + 2, 38, 40), MetaIcons.Station(MetaStation.Nursery, true)); x += 42;
+                foreach (UnitDefinition friend in friends)
+                {
+                    Rect cell = new Rect(x, row.y, 44, 44); bool on = nurseryPick == friend.Id;
+                    if (on) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Brings " + RunUICopy.UnitName(friend); }
+                    ArcadeSkin.PortraitSlot(cell, on); RunHud.Sprite(new Rect(cell.x + 6, cell.y + 6, 32, 32), friend.Body);
+                    if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { nurseryPick = on ? null : friend.Id; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                    x += 48;
+                }
+                x += 12;
+            }
+            if (coat != null)
+            {
+                Rect cell = new Rect(x, row.y, 44, 44);
+                if (altCoat) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Starts with " + RunUICopy.UnitName(coat); }
+                ArcadeSkin.PortraitSlot(cell, altCoat); RunHud.Sprite(new Rect(cell.x + 6, cell.y + 6, 32, 32), coat.Body);
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { altCoat = !altCoat; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                x += 56;
+            }
+            if (canHabit)
+            {
+                Rect cell = new Rect(x, row.y, 44, 44);
+                if (habit) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "").TrimEnd('.'); }
+                ArcadeSkin.PortraitSlot(cell, habit); RunHud.Sprite(new Rect(cell.x + 4, cell.y + 4, 36, 36), MetaIcons.Station(MetaStation.Wardrobe, true));
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); }
+            }
+            if (caption != null) GUI.Label(new Rect(row.x, row.yMax + 1, row.width, 22), caption, note);
+            return true;
+        }
+
         private static string PageTitle(Page page)
         {
             switch (page)

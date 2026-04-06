@@ -68,19 +68,20 @@ namespace ArcaneBrigade.Editor
                     copy = UnityEngine.Object.Instantiate(boss.Definition); boss.Definition = copy;
                     BossTelegraph telegraph = host.AddComponent<BossTelegraph>();
                     telegraph.Display(sim);
-                    Require(telegraph.Pools == 0, "No ink while the boss is not winding up");
+                    Require(telegraph.Windups == 0 && telegraph.Rims == 0 && telegraph.Lanes == 0, "No ink while the boss is not winding up");
                     copy.BossPattern = 5; boss.ActiveBossSignature = -1; boss.TelegraphDirection = Vector2.down; boss.TelegraphUntil = sim.Elapsed + 0.4f;
                     telegraph.Display(sim);
-                    Require(telegraph.Pools == 1 && telegraph.Tongues == 1 && telegraph.Blots == 0, "An aimed volley: the wind-up droplets and a tongue of ink along the aim (no pool since 19/10/2026)");
+                    Require(telegraph.Windups == 1 && telegraph.Lanes == 1 && telegraph.Marks == 0 && telegraph.Rims == 0, "An aimed volley: its fan's two inked edges and an arrowhead (outline only, play-test item 22)");
                     copy.BossPattern = 4; telegraph.Display(sim);
-                    Require(telegraph.Pools == 1 && telegraph.Tongues == 0, "A ring volley: the wind-up droplets alone, no lanes radiating from the boss");
+                    Require(telegraph.Windups == 1 && telegraph.Lanes == 0 && telegraph.Rims == 1, "A ring volley: a dashed rim round the painted body, no lanes radiating from the boss");
                     boss.ActiveBossSignature = 0; boss.AbilityTarget = sim.Champion.Position; telegraph.Display(sim);
-                    Require(telegraph.Blots == 1 && telegraph.Tongues == 0, "A signature move: a blot where it lands");
+                    Require(telegraph.Marks == 1 && telegraph.Lanes == 0, "A signature move: a dashed rim where it lands");
                     boss.TelegraphUntil = 0; telegraph.Display(sim);
-                    Require(telegraph.Pools == 0 && telegraph.Blots == 0, "The ink clears when the wind-up ends");
+                    Require(telegraph.Windups == 0 && telegraph.Marks == 0 && telegraph.Rims == 0, "The ink clears when the wind-up ends");
                 }
                 string source = System.IO.File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/BossTelegraph.cs");
                 Require(!source.Contains("LineRenderer") && !source.Contains("DangerLane"), "No straight danger lanes from the boss");
+                Require(!source.Contains(".Pool(") && !source.Contains(".Wash(") && !source.Contains(".Cone(") && !source.Contains(".Vignette("), "Boss telegraphs are outlines only: no pool, wash or filled cone (D10)");
             }
             finally
             {

@@ -31,6 +31,7 @@ namespace ArcaneBrigade
             if (affixed >= 4 || seed % 100 >= chance) return;
             uint kind = (seed / 100) % 100;
             enemy.Variant.Affix = kind < 35 ? EnemyAffix.BlackSmoke : kind < 60 ? EnemyAffix.BlueFlame : kind < 85 ? EnemyAffix.RedFlame : kind < 95 ? EnemyAffix.Blackfire : EnemyAffix.TwinFlame;
+            if (catalog.MapThemed >= 0 && (kind * 7 + 3) % 100 < 75) enemy.Variant.Affix = MapIdentity.Affix((MapTheme)catalog.MapThemed); // each map's own elite affix (item 24)
             EmpowerEnemyVariant(enemy);
         }
         private void EmpowerEnemyVariant(UnitState enemy)

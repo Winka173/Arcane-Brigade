@@ -356,7 +356,7 @@ namespace ArcaneBrigade
                     return;
                 }
                 Fill(new Rect(80, 200, 630, 750), Panel);
-                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED · NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost ? "You Sat Down" : "Until You Return");
+                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost ? "You Sat Down" : "Until You Return");
                 bool fallen = state.Phase == SessionPhase.Defeat;
                 Sprite(fallen ? new Rect(240, 345, 230, 200) : new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(fallen ? new Rect(450, 450, 90, 90) : new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
@@ -364,7 +364,9 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
                 if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
                 if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
-                if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
+                // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
+                if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 750, 560, 60), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
+                if (navigation.Button(new Rect(405, 825, 270, 65), "WAITING ROOM", button)) owner.ReturnToMenu();
                 invoice.Draw(new Rect(770, 200, 1060, 750), state, owner.Content);
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);

@@ -87,6 +87,11 @@ namespace ArcaneBrigade.Editor
             ("October", OctoberChecks.Run),
             ("ShopFlow", ShopFlowChecks.Run),
         });
+        /// <summary>Phase C follow-up (Peaceful enemy damage, egg ramp removed): the suites they touch.</summary>
+        public static void RunPhaseC2() => Execute("PhaseC2", new (string name, Action run)[]
+        {
+            ("ModeBalance", ModeBalanceChecks.Run), ("Pacing", PacingChecks.Run), ("K10", K10Checks.Run), ("HeroIdentity", HeroIdentityChecks.Run),
+        });
         public static void RunCopyAudit() => Execute("CopyAudit", new (string name, Action run)[] { ("CopyAudit", CopyAuditChecks.Run) });
         public static void RunK32() => Execute("K32", new (string name, Action run)[] { ("K32", K32Checks.Run) });
 

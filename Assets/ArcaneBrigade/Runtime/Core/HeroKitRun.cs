@@ -23,7 +23,7 @@ namespace ArcaneBrigade
     /// eggs, recruiting, merging and bonds. Every effect reads the hero's kit (HeroKits) and does nothing for other heroes.</summary>
     public sealed partial class RunSession
     {
-        public HeroKit Kit => HeroKits.For(State?.ChampionId);
+        public HeroKit Kit => MetaProgression.Habit(HeroKits.For(State?.ChampionId), State?.Meta?.SecondHabit == true);
         private float KitValue(KitPassive kind) => Kit?.Value(kind) ?? 0;
         private bool KitHas(KitPassive kind) => Kit != null && Kit.Has(kind);
         private bool kitRarerRoll;

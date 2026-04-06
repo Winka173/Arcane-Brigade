@@ -3,91 +3,173 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A boss's wind-up, painted in ink on the floor (18/10/2026), so the player reads when and where the blow comes:
+    /// <summary>A boss's attack ranges, painted as red ink OUTLINES only (play-test item 22, decision D10; no fills, no pools):
     /// <list type="bullet">
-    /// <item>Wine-dark ink wells up under the boss and spreads as the wind-up fills; near the end it boils and droplets jump
-    /// up out of it (the "now" beat).</item>
-    /// <item>An aimed volley (a fan at the hero) also sends a tongue of ink creeping over the floor along the aim, as wide as
-    /// the fan, its edges brushed in.</item>
-    /// <item>A signature move marks where it lands: a blot of ink seeps into the floor at its target.</item>
+    /// <item>A circle (a slam, a falling piece, a shockwave) is a brushed dashed rim at the exact radius that hurts; the dashes
+    /// lengthen as the blow nears and the rim closes when it lands.</item>
+    /// <item>A line or a charge (a lash, an aimed fan) is two inked lane edges with an arrowhead, dashed the same way.</item>
+    /// <item>During the boss's own wind-up: an aimed volley shows its fan's edges, a ring volley a rim round the painted body,
+    /// a signature or a Keeper/Customer blow a rim where it will land.</item>
     /// </list>
-    /// No danger lanes radiating from the boss and no rings. Reduced motion keeps the marks and drops the boiling.</summary>
+    /// The warning lasts exactly as long as the move's own wind-up, so a quick blow flashes and a big one builds. Dark ink under a
+    /// bright red body reads on every floor. Reduced motion keeps the marks and drops the pulse.</summary>
     public sealed class BossTelegraph : MonoBehaviour
     {
         private ArsenalInk ink;
         private bool drawn;
-        private readonly List<UnitState> bosses = new List<UnitState>();
-        private static readonly InkPalette Bile = new InkPalette(new Color(.2f, .04f, .1f), new Color(.62f, .14f, .32f), new Color(.98f, .68f, .76f), new Color(.95f, .35f, .45f), new Color(.98f, .72f, .35f));
+        public static readonly InkPalette Danger = new InkPalette(new Color(.16f, .02f, .04f), new Color(.93f, .13f, .14f), new Color(1, .74f, .64f), new Color(1, .32f, .26f), new Color(1, .82f, .42f));
+        public static readonly InkPalette DangerHot = new InkPalette(new Color(.2f, .03f, .03f), new Color(1, .42f, .26f), new Color(1, .93f, .78f), new Color(1, .6f, .35f), new Color(1, .9f, .5f));
+        /// <summary>Captures and checks: also draw each boss's contact ellipse (the painted body it hurts from).</summary>
+        public static bool ShowBodyShapes;
         // what the last frame showed (read by checks)
-        public int Pools { get; private set; }
-        public int Tongues { get; private set; }
-        public int Blots { get; private set; }
+        public int Windups { get; private set; }
+        public int Rims { get; private set; }
+        public int Lanes { get; private set; }
+        public int Marks { get; private set; }
+        public int Bodies { get; private set; }
 
         public void Display(CombatSimulation simulation)
         {
-            Pools = Tongues = Blots = 0;
-            bosses.Clear();
-            if (simulation != null)
+            Windups = Rims = Lanes = Marks = Bodies = 0;
+            bool any = false;
+            bool live = simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
+            if (live)
+            {
+                float now = simulation.Elapsed;
                 foreach (UnitState unit in simulation.Units)
-                    if (unit.Definition.IsBoss && unit.Alive && unit.TelegraphUntil > simulation.Elapsed) bosses.Add(unit);
-            if (bosses.Count == 0) { if (drawn) { ink.Begin(); ink.End(); drawn = false; } return; }
+                    if (unit.Definition.IsBoss && unit.Alive && (unit.TelegraphUntil > now || ShowBodyShapes)) { any = true; break; }
+                if (!any) foreach (ExpandedField field in simulation.ExpandedFields) if (Warns(field, now)) { any = true; break; }
+            }
+            if (!any) { if (drawn) { ink.Begin(); ink.End(); drawn = false; } return; }
             if (ink == null) ink = new ArsenalInk(transform);
             ink.Begin(); drawn = true;
-            foreach (UnitState boss in bosses) Draw(boss, simulation.Elapsed);
+            float time = simulation.Elapsed;
+            foreach (UnitState unit in simulation.Units)
+            {
+                if (!unit.Definition.IsBoss || !unit.Alive) continue;
+                if (unit.TelegraphUntil > time) DrawWindup(unit, time);
+                if (ShowBodyShapes) DrawBody(unit);
+            }
+            foreach (ExpandedField field in simulation.ExpandedFields) if (Warns(field, time)) DrawField(field, time);
             ink.End();
         }
 
-        private void Draw(UnitState boss, float now)
+        /// <summary>A boss's hostile area still in its warning (the trademark pieces are drawn by BossTrademarkVisual).</summary>
+        private static bool Warns(ExpandedField field, float now) =>
+            field.Source != null && field.Source.Definition.IsBoss && field.Kind != ExpandedFieldKind.Roller && CarnivalHazards.IsHostile(field.Kind) && now < field.At;
+
+        private static float Charge(float start, float end, float now) => Mathf.Clamp01((now - start) / Mathf.Max(.05f, end - start));
+
+        private void DrawWindup(UnitState boss, float now)
         {
-            bool still = PresentationSettings.ReducedMotion, calm = PresentationSettings.ReducedFlashes;
-            float windup = Mathf.Max(0.1f, BossEncounterRules.Windup(boss));
-            float charge = Mathf.Clamp01(1 - (boss.TelegraphUntil - now) / windup);
-            float rise = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge / 0.35f)), last = Mathf.Clamp01((charge - 0.72f) / 0.28f);
-            float seed = boss.Id * 37 % 360;
+            // the Last Customer and the Keeper wind up their own blows (each lands as areas at the target)
             bool special = boss.Definition.Id == NightmareRules.CustomerId || boss.Definition.Id == "OutsideStageKeeper";
-            bool signature = boss.ActiveBossSignature >= 0;
-
-            // no ink pool under the boss any more (owner, 19/10/2026): ink droplets hop up around its feet through the wind-up,
-            // quicker and brighter in the last beat (reduced motion: they hold still)
-            float body = Mathf.Max(boss.Definition.Radius, boss.Definition.BodyHeight * 0.42f);
-            for (int i = 0; i < 3; i++)
+            float windup = special ? Mathf.Max(.1f, boss.AttackWindup) : Mathf.Max(.1f, BossEncounterRules.Windup(boss));
+            float charge = Mathf.Clamp01(1 - (boss.TelegraphUntil - now) / windup);
+            float seed = boss.Id * 37 % 360;
+            Windups++;
+            if (boss.ActiveTrademark) return; // its path is inked by BossTrademarkVisual
+            if (special || boss.ActiveBossSignature >= 0)
             {
-                float hop = still ? .5f : Mathf.Repeat(now * Mathf.Lerp(1.6f, 3.1f, last) + i * 0.27f, 1);
-                float x = ((i * 53) % 9 - 4) / 4f * body * 0.75f;
-                ink.TokenAt(InkToken.Drop, Bile, boss.Position + new Vector2(x, -body * 0.25f + Mathf.Sin(hop * Mathf.PI) * 0.6f), 0.42f, 0, rise * (.55f + .45f * last) * (1 - hop * 0.6f));
-            }
-            Pools++; // the wind-up's own mark (droplets now, not a pool)
-
-            if (special) return;
-            if (boss.ActiveTrademark) return; // its path is inked by BossTrademarkVisual once the pieces are out
-            if (signature)
-            {
-                // a signature move lands near its target: an inked X marks the spot (no pool)
-                float arm = 0.45f + 0.5f * charge;
-                ink.FloorStroke(boss.AbilityTarget + new Vector2(-arm, -arm * .5f), boss.AbilityTarget + new Vector2(arm, arm * .5f), Bile, 0.12f, 1, 0, rise, 0.03f, seed + 90);
-                ink.FloorStroke(boss.AbilityTarget + new Vector2(-arm, arm * .5f), boss.AbilityTarget + new Vector2(arm, -arm * .5f), Bile, 0.12f, 1, 0, rise, 0.03f, seed + 91);
-                Blots++;
+                // where the blow will land: a rim gathering at the target
+                Rim(ink, boss.AbilityTarget, 1.1f, 1.1f, charge, seed + 90, .9f);
+                Marks++;
                 return;
             }
-            if (!Aimed(boss.Definition.BossPattern) || boss.TelegraphDirection.sqrMagnitude < 0.01f) return;
-            // an aimed fan: a tongue of ink creeps along the aim, as wide as the fan will be
-            Vector2 aim = boss.TelegraphDirection.normalized, origin = boss.Position + aim * body * 0.6f;
-            float half = HalfSpread(boss) * Mathf.Rad2Deg + 4, reach = Mathf.Lerp(1.4f, 5.4f, Mathf.SmoothStep(0, 1, charge));
-            float angle = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg;
-            float alpha = 0.62f + 0.25f * last + (still || calm ? 0 : 0.08f * Mathf.Sin(now * 14) * last);
-            ink.Cone(origin, reach, angle - half, angle + half, Bile.Body, alpha * rise, 0.34f * rise);
-            for (int side = -1; side <= 1; side += 2)
+            if (Aimed(boss.Definition.BossPattern) && boss.TelegraphDirection.sqrMagnitude > .01f)
             {
-                Vector2 edge = new Vector2(Mathf.Cos((angle + side * half) * Mathf.Deg2Rad), Mathf.Sin((angle + side * half) * Mathf.Deg2Rad));
-                ink.FloorStroke(origin + edge * 0.3f, origin + edge * reach, Bile, 0.13f, 1, 0, rise, 0.03f, seed + side);
+                // an aimed fan: its two edges and an arrowhead along the aim
+                BossBodyShape.Shape body = BossBodyShape.Of(boss.Definition);
+                Vector2 aim = boss.TelegraphDirection.normalized, origin = boss.Position + aim * Mathf.Max(.5f, body.Half.x * .9f);
+                float half = HalfSpread(boss) + .06f, reach = 5.6f;
+                for (int side = -1; side <= 1; side += 2) DashedLine(ink, origin, origin + Rotate(aim, side * half * Mathf.Rad2Deg) * reach, charge, seed + side, .95f);
+                Arrow(ink, origin + aim * (reach * .92f), aim, .55f + .25f * charge, charge, .95f);
+                Lanes++;
+                return;
             }
-            // the leading edge of the tongue is wet and bright as the blow comes
-            ink.FloorStroke(origin + Rotate(aim, -half * 0.85f) * reach, origin + Rotate(aim, half * 0.85f) * reach, last > 0 ? Ember : Bile, 0.16f + 0.08f * last, 1, 0, rise, 0.05f, seed);
-            Tongues++;
+            // a ring volley bursts out of the body: a rim round the painted body
+            BossBodyShape.Shape shape = BossBodyShape.Of(boss.Definition);
+            Vector2 c = BossBodyShape.Centre(boss, shape);
+            Rim(ink, c, shape.Half.x / BossBodyShape.Share + .35f, shape.Half.y / BossBodyShape.Share + .35f, charge, seed, .9f);
+            Rims++;
         }
 
-        /// <summary>The leading edge in the last beat: the ink catches a hot amber light (enemy colours, never our lantern).</summary>
-        private static readonly InkPalette Ember = new InkPalette(new Color(.2f, .04f, .06f), new Color(.85f, .28f, .22f), new Color(1, .78f, .5f), new Color(1, .5f, .3f), new Color(.98f, .72f, .35f));
+        private void DrawField(ExpandedField field, float now)
+        {
+            float charge = Charge(field.Created, field.At, now), seed = field.Position.x * 13 + field.Position.y * 7;
+            switch (field.Kind)
+            {
+                case ExpandedFieldKind.Tentacle:
+                {
+                    Vector2 a = field.Start, b = field.Position, axis = b - a;
+                    if (axis.sqrMagnitude < .0025f) { Rim(ink, b, field.Radius + .15f, field.Radius + .15f, charge, seed, 1); Rims++; break; }
+                    Vector2 dir = axis.normalized, n = new Vector2(-dir.y, dir.x) * (field.Radius + .12f);
+                    DashedLine(ink, a + n, b + n, charge, seed, 1); DashedLine(ink, a - n, b - n, charge, seed + 1, 1);
+                    ink.FloorStroke(a + n, a - n, Danger, .09f, 1, 0, .8f, 0, seed + 2);
+                    Arrow(ink, b, dir, field.Radius + .35f, charge, 1);
+                    Lanes++;
+                    break;
+                }
+                case ExpandedFieldKind.Shockwave:
+                    // the ring that will run out to this radius: its outer rim, and a faint inner one where it starts
+                    Rim(ink, field.Position, field.Radius, field.Radius, charge, seed, 1);
+                    Rim(ink, field.Position, field.Radius * .45f, field.Radius * .45f, charge, seed + 30, .45f);
+                    Rims++;
+                    break;
+                default:
+                    Rim(ink, field.Position, field.Radius + .08f, field.Radius + .08f, charge, seed, 1);
+                    Rims++;
+                    break;
+            }
+        }
+
+        /// <summary>The painted body a boss hurts from (captures): its contact ellipse as a thin dashed amber line.</summary>
+        private void DrawBody(UnitState boss)
+        {
+            BossBodyShape.Shape shape = BossBodyShape.Of(boss.Definition);
+            if (!shape.Valid) return;
+            Vector2 c = BossBodyShape.Centre(boss, shape);
+            for (int i = 0; i < 24; i++) ink.FloorArc(c, shape.Half.x, shape.Half.y, i * 15, i * 15 + 9, DangerHot, .09f, 1, true);
+            Bodies++;
+        }
+
+        // ------------------------------------------------------------------ the shared marks (BossTrademarkVisual uses them too)
+        /// <summary>A brushed dashed rim (outline only): the dashes grow with the charge and close into one rim as the blow lands;
+        /// in the last beat a hot inner line runs round it.</summary>
+        public static void Rim(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float seed, float alpha)
+        {
+            bool still = PresentationSettings.ReducedMotion;
+            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
+            int dashes = Mathf.Clamp(Mathf.RoundToInt((rx + ry) * 4.5f), 10, 30);
+            float slot = 360f / dashes, fill = Mathf.Lerp(.42f, 1.04f, s), spin = still ? 0 : seed + (1 - s) * 40;
+            float width = Mathf.Clamp((rx + ry) * .035f, .07f, .14f) * Mathf.Lerp(.85f, 1.25f, s);
+            float a = alpha * Mathf.Lerp(.6f, 1, s);
+            for (int i = 0; i < dashes; i++) { float from = spin + i * slot; ink.FloorArc(c, rx, ry, from, from + slot * Mathf.Min(fill, 1.04f), Danger, width, a); }
+            if (s > .8f) ink.FloorArc(c, rx * .985f, ry * .985f, 0, 360, DangerHot, width * .45f, a * (s - .8f) / .2f);
+        }
+        /// <summary>A dashed lane edge that closes the same way.</summary>
+        public static void DashedLine(ArsenalInk ink, Vector2 a, Vector2 b, float charge, float seed, float alpha)
+        {
+            float length = Vector2.Distance(a, b); if (length < .05f) return;
+            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
+            int dashes = Mathf.Clamp(Mathf.RoundToInt(length * 1.7f), 3, 16);
+            float fill = Mathf.Lerp(.42f, 1.02f, s), width = Mathf.Lerp(.07f, .11f, s), alpha2 = alpha * Mathf.Lerp(.6f, 1, s);
+            for (int i = 0; i < dashes; i++)
+            {
+                float f0 = i / (float)dashes, f1 = Mathf.Min(1, (i + fill) / dashes);
+                ink.FloorStroke(Vector2.Lerp(a, b, f0), Vector2.Lerp(a, b, f1), Danger, width, 1, 0, alpha2, 0, seed + i);
+            }
+        }
+        /// <summary>An inked arrowhead at the far end of a lane.</summary>
+        public static void Arrow(ArsenalInk ink, Vector2 tip, Vector2 direction, float size, float charge, float alpha)
+        {
+            Vector2 n = new Vector2(-direction.y, direction.x);
+            float a = alpha * Mathf.Lerp(.6f, 1, Mathf.Clamp01(charge));
+            InkPalette pal = charge > .8f ? DangerHot : Danger;
+            ink.FloorStroke(tip - direction * size + n * size * .8f, tip, pal, .11f, 1, 0, a);
+            ink.FloorStroke(tip - direction * size - n * size * .8f, tip, pal, .11f, 1, 0, a);
+        }
+
         private static bool Aimed(int pattern) => pattern == 1 || pattern == 3 || pattern == 5 || pattern == 7 || pattern == 9;
         /// <summary>Half the angle the fan will cover (radians), from the same rules that fire it.</summary>
         private static float HalfSpread(UnitState boss)

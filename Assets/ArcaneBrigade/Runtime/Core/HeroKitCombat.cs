@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     public sealed partial class CombatSimulation
     {
         private HeroKit kit;
-        private HeroKit Kit => HeroIdentityEnabled ? kit ??= HeroKits.For(IdentityId) : null;
+        private HeroKit Kit => HeroIdentityEnabled ? kit ??= MetaProgression.Habit(HeroKits.For(IdentityId), catalog.MetaSecondHabit) : null;
         private float KitValue(KitPassive kind) => Kit?.Value(kind) ?? 0;
         private bool KitHas(KitPassive kind) => Kit != null && Kit.Has(kind);
         private float kitHurtUntil = -100, kitDodgeUntil = -100, kitStillArmed = -1, kitCracks, kitHealAt, kitLeadHealAt, kitLidAt, kitRootAt, kitThornAt;

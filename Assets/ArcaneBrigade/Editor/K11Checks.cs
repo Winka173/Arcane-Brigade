@@ -46,7 +46,8 @@ namespace ArcaneBrigade.Editor
             require(controller.Contains("positions.TryGetValue") && controller.Contains("championPosition.Value"), "Compiled wave refresh preserves friendly positions");
             require(controller.Contains("follow.Follow(this, !preserveEffects)"), "Camera does not snap on purchases or same-scene phase changes");
             require(controller.Contains("session.Restore(before); if (Shop != null) Shop.CancelDeparture()"), "Failed boundary save restores shop departure for retry");
-            require(lifecycle.Contains("!state.SpecialShopVisited") && lifecycle.Contains("owner.FinishSpecialShop()"), "Special first then gold merchant stage, not toggle sign");
+            // play-test item 15 / D6: one shop per night, the dream stalls in an alcove of the same room (no second stage, no Continue)
+            require(lifecycle.Contains("Special = false;") && lifecycle.Contains("BuildDreamAlcove(state, catalog, arrival)"), "Dream market merged into the gold shop as an alcove");
             require(!lifecycle.Contains("Station visit = AddStation"), "No alternate-shop switch station left on map");
             string actorMotion = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/ShopDisplayActor.cs");
             string marketMotion = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/MarketLifecycle.cs");
