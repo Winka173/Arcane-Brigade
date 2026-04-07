@@ -17,7 +17,7 @@ namespace ArcaneBrigade
             new Tip { Id = "bond", Line = "A bond is active: friends of one family give a bonus together.", Icon = o => o.Content.Bonds.Length > 0 ? o.Content.Bonds[0].Icon : null },
             new Tip { Id = "merge", Line = "Three of the same friend became one, with a new star.", Icon = o => o.Session.State.Roster.Count > 0 ? o.Content.Unit(o.Session.State.Roster[0].UnitId)?.Body : null },
             new Tip { Id = "gauge", Line = "Your gauge is full: your hero's power is ready.", Icon = o => o.Content.Unit(o.Session.State.ChampionId)?.Body },
-            new Tip { Id = "dream", Line = "The curtained corner takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
+            new Tip { Id = "dream", Line = "The dream shop takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
             new Tip { Id = "boss", Line = "A boss! Red ink marks where its blows land: step out before the rim closes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
             new Tip { Id = "visitor", Line = "A visitor waits at the table. Walk up to see the deal.", Icon = o => ExpansionArtwork.Current?.Visitor(o.Session.State.Visitor) },
             // the maps' living elements (play-test item 24): one line each, the first time it appears
@@ -56,7 +56,7 @@ namespace ArcaneBrigade
                 case "bond": foreach (BondDefinition b in o.Content.Bonds) if (o.Session.BondCounts.TryGetValue(b.Id, out int n) && b.ActiveLevel(n) > 0) return true; return false;
                 case "merge": return s.Roster.Exists(r => r.Tier >= 2);
                 case "gauge": return s.Phase == SessionPhase.Combat && sim != null && sim.HeroIdentityEnabled && sim.HeroIdentityRequired > 0 && sim.HeroIdentityCharge >= sim.HeroIdentityRequired;
-                case "dream": return s.Phase == SessionPhase.Shop && o.Shop != null && o.Shop.DreamAlcove;
+                case "dream": return s.Phase == SessionPhase.Shop && o.Shop != null && o.Shop.Special;
                 case "boss": return s.Phase == SessionPhase.Combat && sim?.Boss != null && sim.Boss.Alive;
                 case "visitor": return o.Session.Visitor != null;
                 default: return id.StartsWith("env.", StringComparison.Ordinal) && s.Phase == SessionPhase.Combat && MapShown(sim, id);

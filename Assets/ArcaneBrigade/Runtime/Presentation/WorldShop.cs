@@ -13,8 +13,6 @@ namespace ArcaneBrigade
         {
             public Vector2 Position;
             public ShopOffer Offer;
-            /// <summary>A stall of the dream alcove (eggs or HP).</summary>
-            public bool Dream;
             public string Action;
             public string Description;
             public string Recipe;
@@ -77,14 +75,6 @@ namespace ArcaneBrigade
         private readonly List<Station> stations = new List<Station>();
         public IReadOnlyList<Station> Stations => stations;
         public bool Special { get; private set; }
-        /// <summary>One shop per night (play-test 20/10/2026, item 15 / D6): the dream market's stalls (eggs, HP) stand in a
-        /// curtained alcove of this same room; there is no second stage and no Continue, only the stairs. True while the alcove
-        /// has something to buy or fuse. <see cref="Special"/> stays false (old saves' SpecialShopVisited is simply ignored).</summary>
-        public bool DreamAlcove { get; private set; }
-        private bool fusionReady; // an egg fusion can be made (checked when the room is built)
-        /// <summary>Where the alcove's stalls stand (left of the shopkeeper, above the refresh machine), before the layout lift.</summary>
-        public static readonly Vector2[] AlcoveStalls = { new Vector2(-7.1f, 1.6f), new Vector2(-5.5f, 1.6f), new Vector2(-3.9f, 1.6f) };
-        public static readonly Vector2 AlcoveFusion = new Vector2(-7.1f, 0.1f), AlcoveCentre = new Vector2(-5.5f, 1.45f);
         public float MerchantHeight { get; private set; }
         public string MerchantIdentity { get; private set; }
         public Vector2 MerchantCenter { get; private set; }
@@ -181,8 +171,7 @@ namespace ArcaneBrigade
                 Nearby = null; MergePreview.Observe(null, true); Special = false; signature = int.MinValue; arrivingStock = true; return;
             }
             RunSnapshot state = owner.Session.State;
-            Special = false; // merged: the dream stalls are in the alcove (item 15)
-            DreamAlcove = state.SpecialOffers.Exists(o => !o.Sold) || fusionReady;
+            Special = state.SpecialOffers.Count > 0 && !state.SpecialShopVisited;
             if (leavingSpecial && owner.PresentationClock >= specialDepartureAt)
             {
                 leavingSpecial = false;
@@ -190,9 +179,7 @@ namespace ArcaneBrigade
                 Special = false; signature = int.MinValue; arrivingStock = true;
             }
             int current = Special ? 7919 : 17;
-            foreach (ShopOffer offer in state.Offers) current = unchecked(current * 31 + offer.Token * 2 + (offer.Sold ? 1 : 0));
-            foreach (ShopOffer offer in state.SpecialOffers) current = unchecked(current * 37 + offer.Token * 2 + (offer.Sold ? 1 : 0));
-            current = unchecked(current * 31 + (DreamAlcove ? 1 : 0));
+            foreach (ShopOffer offer in Special ? state.SpecialOffers : state.Offers) current = unchecked(current * 31 + offer.Token * 2 + (offer.Sold ? 1 : 0));
             current = unchecked(current * 31 + state.Wave);
             current = unchecked(current * 31 + (owner.Session.RefundAvailable ? 1 : 0));
             current = unchecked(current * 31 + (owner.Session.Visitor != null ? owner.Session.Visitor.Id.GetHashCode() : 3) + (owner.Session.Pawned != null ? 7 : 0));
@@ -457,9 +444,6 @@ namespace ArcaneBrigade
                 if (offer.Sold)
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
-            fusionReady = state.Wave >= 4 && System.Array.Exists(catalog.Recipes, r => owner.Session.CanAltar(r.Id));
-            DreamAlcove = state.SpecialOffers.Exists(o => !o.Sold) || fusionReady;
-            BuildDreamAlcove(state, catalog, arrival);
             Station reroll = AddStation(new Vector2(-5.0f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "New offers. Each refresh in a shop costs more; the price resets next wave.\n" + owner.Session.RecruitmentSummary;
             if (!Special && owner.Session.Visitor is VisitorDefinition visitor && ExpansionArtwork.Current?.Visitor(visitor.Id) is Sprite guest)
@@ -485,53 +469,17 @@ namespace ArcaneBrigade
             if (merchantEntrance)
                 foreach (Station fixture in stations)
                     if (fixture.Offer == null && fixture.Actor != null) fixture.Actor.Arrive(0.45f);
-            if (DreamAlcove && state.Wave >= 4)
+            if (Special && state.Wave >= 4)
                 for (int index = 0; index < catalog.Recipes.Length; index++)
                 {
                     AltarRecipe recipe = catalog.Recipes[index];
                     if (!owner.Session.CanAltar(recipe.Id)) continue;
-                    Station station = AddStation(AlcoveFusion, "FUSE " + catalog.Unit(recipe.ResultUnit).DisplayName, catalog.Unit(recipe.ResultUnit).Body, catalog.Unit(recipe.ResultUnit).AnimationFrames, true);
+                    Station station = AddStation(new Vector2(-6.3f, -3.9f), "FUSE " + catalog.Unit(recipe.ResultUnit).DisplayName, catalog.Unit(recipe.ResultUnit).Body, catalog.Unit(recipe.ResultUnit).AnimationFrames, true);
                     station.Recipe = recipe.Id; station.Price = recipe.EggCost; station.Currency = ShopCurrency.Eggs;
                     station.Description = owner.Session.RecipePreview(recipe.Id);
                     break;
                 }
             lifecycle = scenery.AddComponent<MarketLifecycle>(); lifecycle.Configure(owner, Special, merchantEntrance);
-        }
-        /// <summary>The alcove: the dream market's violet rug and pennants in a corner of the gold shop, its stalls on them
-        /// (each price tag shows eggs, or the blood-price card for HP). Only what can be bought stands there.</summary>
-        private void BuildDreamAlcove(RunSnapshot state, RunCatalog catalog, bool arrival)
-        {
-            if (!DreamAlcove) return;
-            var alcove = new GameObject("DreamAlcove"); alcove.transform.SetParent(scenery.transform, false);
-            if (art != null && art.MarketDecor != null && art.MarketDecor.Length >= 4)
-            {
-                var rug = new GameObject("DreamAlcoveRug"); rug.transform.SetParent(alcove.transform, false); rug.transform.localPosition = AlcoveCentre + Vector2.up * LayoutLift;
-                SpriteRenderer cloth = rug.AddComponent<SpriteRenderer>(); cloth.sprite = art.MarketRugs != null && art.MarketRugs.Length == 2 ? art.MarketRugs[1] : art.MarketDecor[1]; cloth.sortingOrder = -76;
-                rug.transform.localScale = Vector3.one * (5.2f / cloth.sprite.bounds.size.x);
-                var garland = new GameObject("DreamAlcovePennants"); garland.transform.SetParent(alcove.transform, false); garland.transform.localPosition = new Vector2(AlcoveCentre.x + .3f, 3.85f);
-                SpriteRenderer flags = garland.AddComponent<SpriteRenderer>(); flags.sprite = art.MarketDecor[3]; flags.sortingOrder = 300;
-                garland.transform.localScale = Vector3.one * (3.2f / flags.sprite.bounds.size.x);
-                garland.AddComponent<LivingScenery>();
-            }
-            for (int index = 0; index < state.SpecialOffers.Count && index < AlcoveStalls.Length; index++)
-            {
-                ShopOffer offer = state.SpecialOffers[index];
-                if (offer.Sold) continue;
-                bool friend = offer.Kind == OfferKind.Companion;
-                string name = friend ? catalog.Unit(offer.Id).DisplayName : catalog.Item(offer.Id).Name;
-                Sprite icon = friend ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
-                Station station = AddStation(AlcoveStalls[index], name, icon, friend ? catalog.Unit(offer.Id).AnimationFrames : null, true, true);
-                station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency; station.Dream = true;
-                if (station.Actor != null) station.Actor.SetCompanionDisplay(friend);
-                station.Description = friend ? CompanionDescriptions.Describe(catalog.Unit(offer.Id), offer.Tier, catalog.TierSupportMultiplier) : RelicDescriptions.Describe(catalog.Item(offer.Id), owner.Session.StackCount(offer.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, catalog.Item(offer.Id));
-                if (arrival && station.Actor != null) station.Actor.Arrive(MarketMotion.StockArrivalDelay + (3 + index) * MarketMotion.StockStagger, scenery.transform.TransformPoint(AlcoveCentre));
-                ItemRarity rarity = friend ? catalog.Unit(offer.Id).Rarity : catalog.Item(offer.Id).Rarity;
-                if (rarity != ItemRarity.Common && station.Actor != null)
-                {
-                    var glow = new GameObject("ItemRarityAura"); glow.transform.SetParent(station.Marker, false);
-                    glow.AddComponent<ShopRarityGlow>().Configure(rarity, owner, (3 + index) * 1.1f, station.Actor.View);
-                }
-            }
         }
         public void Depart()
         {
@@ -589,7 +537,7 @@ namespace ArcaneBrigade
             if (station.Action == "VISITOR") return owner.Session.Visitor?.Name ?? "VISITOR";
             if (station.Action == "REDEEM") return "REDEEM";
             if (station.Action == "NEXT HALL" && owner.Session.HobRescueNeeded) return "HOB IS STILL SITTING";
-            if (station.Action == "NEXT HALL") return Special ? "HEAD DOWN · GOLD SHOP" : "HEAD DOWN · NEXT WAVE";
+            if (station.Action == "NEXT HALL") return Special ? "TO THE SHOP →" : "HEAD DOWN · NEXT WAVE"; // the dream market leads on to the shop (item 15 labels)
             if (station.Action == "GOLD SHOP") return "GOLD SHOP";
             if (station.Action == "DREAM ALTAR") return "DREAM SHOP";
             if (station.Recipe != null) return "FUSION · " + station.Action.Substring(5);
@@ -637,7 +585,7 @@ namespace ArcaneBrigade
             Vector2 direction = offset.sqrMagnitude > 0.0001f ? offset.normalized : new Vector2(Mathf.Cos(identity * 2.4f), Mathf.Sin(identity * 2.4f));
             return center + direction * radius;
         }
-        private Station AddStation(Vector2 position, string action, Sprite sprite, Sprite[] frames, bool pedestal, bool dream = false)
+        private Station AddStation(Vector2 position, string action, Sprite sprite, Sprite[] frames, bool pedestal)
         {
             position += Vector2.up * LayoutLift;
             var marker = new GameObject(action); marker.transform.SetParent(scenery.transform, false); marker.transform.localPosition = position;
@@ -647,14 +595,14 @@ namespace ArcaneBrigade
                 CarnivalStageAssets stage = Resources.Load<CarnivalStageAssets>("CarnivalStageAssets");
                 if (stage != null && stage.Stands.Length == 12)
                 {
-                    int variant = Special || dream ? 1 : stations.Count % 2 == 0 ? 0 : 2;
+                    int variant = Special ? 1 : stations.Count % 2 == 0 ? 0 : 2;
                     var poses = new Sprite[4]; System.Array.Copy(stage.Stands, variant * 4, poses, 0, 4);
                     ShopDisplayActor stand = AddActor(marker.transform, poses[0], poses, new Vector2(0, -0.1f), 0.85f, stations.Count * 0.9f);
                     stand.SetPedestalDisplay();
                     support = stand;
                     if (pedestalEntrance) stand.Arrive(0.7f + stations.Count * MarketMotion.StockStagger);
                 }
-                else { support = AddActor(marker.transform, art.ShopFixtures[Special || dream ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0); support.enabled = false; }
+                else { support = AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0); support.enabled = false; }
             }
             ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
             if (pedestal && actor != null) actor.MountMerchandise(support);

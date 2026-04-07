@@ -80,6 +80,17 @@ namespace ArcaneBrigade
         }
         private IEnumerator Focus(int slot) { var stations = owner.Shop.Stations.Where(s => s.Offer != null).ToList(); if (slot >= stations.Count) { Check(false, "Offer slot " + slot); yield break; } var station = stations[slot]; yield return Stand(station.Position + new Vector2(0, -.3f)); }
 
+        /// <summary>15 (owner, 21/10/2026: two stages kept): the dream market first, its way on says "To the shop".</summary>
+        private IEnumerator TwoStageShop()
+        {
+            yield return LoadShop(12, true, run => { foreach (var item in catalog.Items.Where(i => i.ShopWeight > 0 && i.EffectiveModifiers.Any(m => m.Value > 0)).Skip(3).Take(3)) run.State.Offers.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 60, BasePrice = 60, Currency = ShopCurrency.Gold }); });
+            yield return new WaitForSecondsRealtime(.6f);
+            var exit = owner.Shop.Stations.FirstOrDefault(s => s.Action == "NEXT HALL");
+            Check(owner.Shop.Special && exit != null && owner.Shop.DisplayName(exit) == "TO THE SHOP →", "Dream market is its own stage; its way on leads to the shop");
+            if (exit != null) yield return Stand(exit.Position + new Vector2(0, .4f));
+            yield return Shot("Item15_TwoStageShop");
+        }
+
         private IEnumerator Start()
         {
             var args = Environment.GetCommandLineArgs(); int at = Array.IndexOf(args, "-capturePath");
@@ -87,6 +98,11 @@ namespace ArcaneBrigade
             root = Path.GetFullPath(args[at + 1]); Directory.CreateDirectory(root); Application.runInBackground = true;
             catalog = Resources.Load<RunCatalog>("RunCatalog");
             var storage = new RunStorage(RunPaths.Root);
+            if (Array.IndexOf(args, "-capture-only") >= 0 && Array.IndexOf(args, "Item15") >= 0)
+            {
+                storage.SaveProfile(new PlayerProfile { TutorialSeen = true, BestWave = 40 }); yield return new WaitForSecondsRealtime(2);
+                yield return TwoStageShop(); Check(true, "Capture finished"); Application.Quit(checks.All(c => c.StartsWith("PASS ")) ? 0 : 1); yield break;
+            }
             storage.SaveProfile(new PlayerProfile { TutorialSeen = true, BestWave = 40 });
 
             // 01: hero select without the modes row
@@ -146,11 +162,7 @@ namespace ArcaneBrigade
             yield return Focus(0); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item10_BloodPriceCard");
             owner.SetShopDetails(true); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item10_BloodPriceDetails"); owner.SetShopDetails(false);
             yield return Focus(1); yield return Shot("Item16_DreamShopEggs");
-            // 15: one shop per night: the dream stalls in the gold shop's curtained alcove (no second room, no Continue)
-            yield return LoadShop(12, true, run => { foreach (var item in catalog.Items.Where(i => i.ShopWeight > 0 && i.EffectiveModifiers.Any(m => m.Value > 0)).Skip(3).Take(3)) run.State.Offers.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 60, BasePrice = 60, Currency = ShopCurrency.Gold }); });
-            yield return new WaitForSecondsRealtime(.6f);
-            Check(owner.Shop.DreamAlcove && !owner.Shop.Special && owner.Shop.Stations.Count(s => s.Dream) >= 2 && owner.Shop.Stations.Count(s => s.Offer != null && !s.Dream) >= 3, "Dream stalls stand in the gold shop's alcove");
-            yield return Stand(new Vector2(-3.2f, -1.6f)); yield return Shot("Item15_ShopWithDreamAlcove");
+            yield return TwoStageShop();
 
             // 07: a secret event room as plates (the Impossible Tailor, a relic in the middle)
             bool saved = false; SecretEventKind shown = SecretEventKind.ImpossibleTailor;
