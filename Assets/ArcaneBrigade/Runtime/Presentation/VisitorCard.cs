@@ -93,13 +93,14 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.5f));
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Sprite portrait = ExpansionArtwork.Current?.Visitor(v.Id, 1) ?? ExpansionArtwork.Current?.Visitor(v.Id, 0);
-            ShopDescriptionCard.DrawSprite(new Rect(card.x + 26, card.y + 40, 250, 320), portrait);
+            Rect inner = ArcadeSkin.Content(card, KitFrame.Card); // inside the paper's rim and lantern corners
+            ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y + 10, 250, 320), portrait);
             float x = card.x + 300;
 
             // who: the name, one dimmed line in the visitor's hand (the full offer waits under the i)
             title.normal.textColor = Brown;
-            GUI.Label(new Rect(x, card.y + 22, width - 90, 50), v.Name, title);
-            Rect info = new Rect(card.xMax - 92, card.y + 18, 66, 66);
+            GUI.Label(new Rect(x, inner.y - 6, width - 90, 50), v.Name, title);
+            Rect info = new Rect(inner.xMax - 66, inner.y - 6, 66, 66);
             if (ArcadeSkin.Medallion(info, KitMedallion.Info, details)) details = !details; // the painted brass "i" (UI kit)
             if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(new Rect(x, card.y + 76, width - 20, 70), ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
             else { hand.normal.textColor = new Color(.30f, .22f, .16f, .75f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
@@ -109,7 +110,7 @@ namespace ArcaneBrigade
 
             // the buttons (play-test 20/10/2026): an offer taken as a whole always shows its accept button with the price,
             // greyed with "Not enough gold" when short; one "Later" closes the card (the visitor waits at its table all shop)
-            float buttonsY = card.yMax - ButtonH - 32;
+            float buttonsY = inner.yMax - ButtonH;
             Rect later;
             if (!pictures && v.Choice == VisitorChoice.Accept && options.Count == 1)
             {
@@ -150,7 +151,7 @@ namespace ArcaneBrigade
         private float DrawPlates(VisitorDefinition v, RunSnapshot state, List<VisitorOption> options, float x, float top, float width, bool draw)
         {
             int n = Mathf.Max(1, options.Count); const float gap = 18;
-            float plateW = n == 1 ? 740 : (width - gap * (n - 1)) / n, inner = plateW - 28;
+            float plateW = n == 1 ? 740 : (width - gap * (n - 1)) / n, inner = ArcadeSkin.Content(new Rect(0, 0, plateW, 240), KitPiece.Dialogue).width;
             float left = n == 1 ? x + (width - plateW) * .5f : x;
             var deals = new VisitorDeal[options.Count];
             float verbH = 0, payH = 0, getH = 0; bool anyWhen = false;
@@ -162,7 +163,8 @@ namespace ArcaneBrigade
                 getH = Mathf.Max(getH, Row(new Rect(0, 0, inner, 0), "GET", d.Get, false, false));
                 anyWhen |= !string.IsNullOrEmpty(d.When);
             }
-            float height = 16 + verbH + 12 + payH + 8 + getH + (anyWhen ? 14 + 40 : 0) + 18;
+            float chrome = 240 - ArcadeSkin.Content(new Rect(0, 0, plateW, 240), KitPiece.Dialogue).height; // the frame's rim and padding
+            float height = chrome + verbH + 12 + payH + 8 + getH + (anyWhen ? 14 + 40 : 0);
             if (!draw) return height;
             for (int i = 0; i < options.Count; i++)
             {
@@ -172,12 +174,13 @@ namespace ArcaneBrigade
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 ArcadeSkin.Plate(plate, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
                 if (hover) ArcadeSkin.WorldFocus(plate);
-                float y = plate.y + 16;
+                Rect pc = ArcadeSkin.Content(plate, KitPiece.Dialogue);
+                float y = pc.y;
                 verb.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);
-                GUI.Label(new Rect(plate.x + 14, y, inner, verbH), d.Do, verb); y += verbH + 12;
-                Row(new Rect(plate.x + 14, y, inner, payH), "PAY", d.Pay, true, true); y += payH + 8;
-                Row(new Rect(plate.x + 14, y, inner, getH), "GET", d.Get, false, true); y += getH + 14;
-                if (!string.IsNullOrEmpty(d.When)) When(new Rect(plate.x + 10, y, plate.width - 20, 40), d.When);
+                GUI.Label(new Rect(pc.x, y, inner, verbH), d.Do, verb); y += verbH + 12;
+                Row(new Rect(pc.x, y, inner, payH), "PAY", d.Pay, true, true); y += payH + 8;
+                Row(new Rect(pc.x, y, inner, getH), "GET", d.Get, false, true); y += getH + 14;
+                if (!string.IsNullOrEmpty(d.When)) When(new Rect(pc.x, y, pc.width, 40), d.When);
                 GUI.color = keep;
                 if (!o.Enabled) Missing(new Rect(plate.xMax - 62, plate.y - 14, 56, 56), v, d, state);
                 if (o.Enabled && GUI.Button(plate, GUIContent.none, GUIStyle.none)) Choose(i);

@@ -157,7 +157,7 @@ namespace ArcaneBrigade
                 if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(tag, KitFrame.Plaque); else ArcadeSkin.Panel(tag, ArcadeSkin.Card); // the velvet title plaque (UI kit)
-                name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title, name);
+                name.normal.textColor = ArcadeSkin.Cream; GUI.Label(ArcadeSkin.HasKit ? ArcadeSkin.Content(tag, KitFrame.Plaque, false) : tag, hovered.Title, name);
             }
             if (open?.Key != shownKey) { shownKey = open?.Key; shownAt = Time.unscaledTime; }
             Color tint = GUI.color;

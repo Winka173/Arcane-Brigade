@@ -154,7 +154,7 @@ namespace ArcaneBrigade
         {
             if (Attack == null) return;
             label ??= ArcadeTypography.Style(17, true); value ??= ArcadeTypography.Style(20, true); muted ??= ArcadeTypography.Style(15);
-            Rect attack = new Rect(bounds.x, bounds.y, 220, 116); ArcadeSkin.Panel(attack, ArcadeSkin.Surface);
+            Rect attack = new Rect(bounds.x, bounds.y, 220, 116); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
             DrawSprite(new Rect(attack.x + 8, attack.y + 10, 40, 40), Attack.Icon);
             label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(attack.x + 52, attack.y + 7, 165, 25), "RANDOM · " + Attack.Choices, label);
             value.normal.textColor = ArcadeSkin.Cream;
@@ -170,20 +170,11 @@ namespace ArcaneBrigade
                 Rect box = new Rect(bounds.x + 230 + i % columns * (width + 8), bounds.y + i / columns * 115, width, 108);
                 bool activates = row.Activates;
                 Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
-                ArcadeSkin.Panel(box, activates ? Color.Lerp(ArcadeSkin.Surface, accent, .16f) : ArcadeSkin.Surface);
+                // code-drawn tile (owner, 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
+                ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
+                if (activates) ArcadeSkin.Slant(new Rect(box.x + 6, box.y + 6, box.width - 12, box.height - 12), new Color(accent.r, accent.g, accent.b, .14f));
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
-                if (activates)
-                {
-                    ArcadeSkin.Line(new Rect(box.x, box.y, box.width, 3), accent);
-                    ArcadeSkin.Line(new Rect(box.x, box.yMax - 3, box.width, 3), accent);
-                    ArcadeSkin.Line(new Rect(box.x, box.y, 3, box.height), accent);
-                    ArcadeSkin.Line(new Rect(box.xMax - 3, box.y, 3, box.height), accent);
-                    if (animate)
-                    {
-                        float travel = Mathf.Repeat(clock * .28f, 1), shine = Mathf.Min(38, box.width * .2f);
-                        ArcadeSkin.Line(new Rect(box.x + (box.width - shine) * travel, box.y, shine, 3), Color.Lerp(accent, Color.white, .65f));
-                    }
-                }
+                if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
                 float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
                 DrawSprite(new Rect(box.x + 26 - 18 * grow, box.y + 28 - 18 * grow, 36 * grow, 36 * grow), bond.Icon);
                 label.normal.textColor = ArcadeSkin.Cream; FitLabel(new Rect(box.x + 50, box.y + 5, width - 55, 23), bond.Name, label, 17);

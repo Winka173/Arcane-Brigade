@@ -202,24 +202,25 @@ namespace ArcaneBrigade
         /// <summary>Dark glass plate behind a value (HP, coins, timer) with a thin coloured edge light.</summary>
         public static void Plate(Rect rectangle, Color edge)
         {
-            if (HasKit && rectangle.width >= 48 && rectangle.height >= 28)
+            if (HasKit && rectangle.width >= 16 && rectangle.height >= 14)
             {
+                // the rect is the plate's face: the painted curls and roses bleed outside it (Content() gives the inner area)
                 bool lit = Near(edge, Gold);
+                Color.RGBToHSV(edge, out _, out float saturation, out _);
+                bool off = saturation < .15f, danger = Near(edge, Danger) || Near(edge, Wax);
                 if (rectangle.height > 110 && rectangle.width > 160)
                 {
-                    if (lit) Glow(new Rect(rectangle.x - 18, rectangle.y - 18, rectangle.width + 36, rectangle.height + 36), new Color(Gold.r, Gold.g, Gold.b, .35f));
-                    Frame(rectangle, KitFrame.Dialogue, Mathf.Clamp(rectangle.height / 500f, .45f, .7f)); // slim corners: titles sit near the top
+                    if (lit) Glow(new Rect(rectangle.x - 18, rectangle.y - 18, rectangle.width + 36, rectangle.height + 36), new Color(Gold.r, Gold.g, Gold.b, .3f));
+                    Frame(rectangle, KitFrame.Dialogue);
+                    if (lit) RunningLight(rectangle, Time.unscaledTime, Gold, .8f); // a selected plate: the light runs round it
                     return;
                 }
-                Color.RGBToHSV(edge, out _, out float saturation, out _);
-                KitButton kind = Near(edge, Danger) || Near(edge, Wax) ? KitButton.Danger : KitButton.Secondary;
-                Sprite plain = KitSprite("Buttons/" + kind + (saturation < .15f ? "DisabledPlain" : lit ? "HoverPlain" : "NormalPlain"));
-                if (plain != null)
-                {
-                    float top = BodyTop(kind) * plain.texture.height, k = rectangle.height / (plain.texture.height - top);
-                    Sliced(new Rect(rectangle.x, rectangle.y - top * k, rectangle.width, rectangle.height + top * k), plain, k);
-                    return;
-                }
+                KitButton kind = danger ? KitButton.Danger : KitButton.Secondary;
+                // small, very wide or short plates are code-drawn (a painted plate cannot shrink below its caps)
+                if (rectangle.height >= 40 && rectangle.width / rectangle.height <= 10
+                    && DrawPiece(rectangle, KitPiece.Plate, "Buttons/" + kind + (off ? "DisabledPlain" : lit ? "HoverPlain" : "NormalPlain"))) return;
+                CodePlate(rectangle, danger ? CodeTone.Oxblood : CodeTone.Walnut, off ? 3 : lit ? 1 : 0);
+                return;
             }
             Slant(new Rect(rectangle.x + 2, rectangle.y + 3, rectangle.width, rectangle.height), new Color(0, 0, 0, 0.35f));
             Slant(rectangle, new Color(Ink.r, Ink.g, Ink.b, 0.82f));
@@ -251,10 +252,12 @@ namespace ArcaneBrigade
         /// <summary>Letter-paper card (speech, notes, price slips) with a coloured margin and stitched hem.</summary>
         public static void Ticket(Rect rectangle, Color paper, Color stamp)
         {
-            if (HasKit && rectangle.width >= 120 && rectangle.height >= 64)
+            if (HasKit && rectangle.width >= 40 && rectangle.height >= 24)
             {
                 bool dark = paper.grayscale < .4f;
-                Frame(rectangle, dark ? KitFrame.Dialogue : KitFrame.Card, Mathf.Clamp(rectangle.height / (dark ? 320f : 280f), .42f, 1f));
+                // the rect is the paper: lanterns and roses bleed outside; small slips are code-drawn paper
+                if (rectangle.width >= 120 && rectangle.height >= 64) Frame(rectangle, dark ? KitFrame.Dialogue : KitFrame.Card);
+                else CodePlate(rectangle, dark ? CodeTone.Navy : CodeTone.Cream);
                 // a tinted slip (a refused price, a moonlit bundle) keeps its colour as a wash over the paper
                 if (!dark && !Near(paper, Paper) && !Near(paper, Cream) && Event.current.type == EventType.Repaint)
                     Slant(new Rect(rectangle.x + 14, rectangle.y + 14, rectangle.width - 28, rectangle.height - 28), new Color(paper.r, paper.g, paper.b, .35f));

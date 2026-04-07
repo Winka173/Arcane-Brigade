@@ -109,8 +109,9 @@ namespace ArcaneBrigade
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
             Highlight(r, Time.unscaledTime - shownAt, alpha);
             Sprite icon = null; try { icon = tip.Icon(owner); } catch (Exception) { }
-            if (icon != null) RunHud.Sprite(new Rect(r.x + 18, r.y + 14, 76, 76), icon);
-            GUI.Label(new Rect(r.x + 110, r.y + 8, r.width - 130, r.height - 16), tip.Line, line);
+            Rect inner = ArcadeSkin.Content(r, KitFrame.Dialogue); // inside the painted rim and roses
+            if (icon != null) RunHud.Sprite(new Rect(inner.x, r.center.y - 34, 68, 68), icon);
+            GUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
             GUI.color = keep;
             if (GUI.Button(r, GUIContent.none, GUIStyle.none)) showing = null; // a tap closes it
         }

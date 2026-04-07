@@ -166,10 +166,11 @@ namespace ArcaneBrigade
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .45f);
                         ArcadeSkin.EventPlate(plate, selected == i && c.Enabled, c.Enabled); // painted plate art lands later (UI_SecretEvent sheet)
                         if (selected == i && c.Enabled) ArcadeSkin.Focus(plate);
-                        GUI.Label(new Rect(x + 14, top + 14, 432, 44), c.Title, plateTitle);
-                        GUI.Label(new Rect(x + 20, top + 64, 420, 56), c.Do, body);
-                        Row(new Rect(x + 16, top + 130, 428, 96), "LOSE", c.Lose, c.UsesTarget ? relic : null, false);
-                        Row(new Rect(x + 16, top + 236, 428, 96), "GET", c.Get, c.Icon, true);
+                        Rect pc = ArcadeSkin.EventContent(plate); // inside the plate's rim, with the standard padding
+                        GUI.Label(new Rect(pc.x, pc.y, pc.width, 40), c.Title, plateTitle);
+                        GUI.Label(new Rect(pc.x, pc.y + 42, pc.width, 54), c.Do, body);
+                        Row(new Rect(pc.x, pc.y + 100, pc.width, 96), "LOSE", c.Lose, c.UsesTarget ? relic : null, false);
+                        Row(new Rect(pc.x, pc.y + 204, pc.width, 96), "GET", c.Get, c.Icon, true);
                         GUI.color = keep;
                         if (!c.Enabled) GUI.Label(new Rect(x, top + height - 34, 460, 30), "Not available now", label);
                         else if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }

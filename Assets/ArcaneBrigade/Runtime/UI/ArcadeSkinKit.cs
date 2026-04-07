@@ -43,10 +43,15 @@ namespace ArcaneBrigade
         /// too small for them); <paramref name="centre"/> (a fraction of the width) is a middle column drawn unstretched.</summary>
         public static void Sliced(Rect dest, Sprite sprite, float scale, float centre = 0)
         {
-            if (sprite == null || Event.current.type != EventType.Repaint || dest.width <= 0 || dest.height <= 0) return;
-            Texture2D texture = sprite.texture;
+            if (sprite == null) return;
+            SlicedTexture(dest, sprite.texture, sprite.border, scale, centre);
+        }
+
+        /// <summary>Nine-slice of any texture with borders (left, bottom, right, top) in texture pixels.</summary>
+        private static void SlicedTexture(Rect dest, Texture2D texture, Vector4 b, float scale, float centre)
+        {
+            if (texture == null || Event.current.type != EventType.Repaint || dest.width <= 0 || dest.height <= 0) return;
             float W = texture.width, H = texture.height;
-            Vector4 b = sprite.border; // x left, y bottom, z right, w top
             float C = centre * W;
             float k = scale;
             if (b.x + b.z + C > 0) k = Mathf.Min(k, dest.width / (b.x + b.z + C));
@@ -69,6 +74,9 @@ namespace ArcaneBrigade
                 {
                     Rect part = new Rect(xs[i], ys[j], xs[i + 1] - xs[i], ys[j + 1] - ys[j]);
                     if (part.width <= .01f || part.height <= .01f) continue;
+                    // overlap the next patch a little: at fractional positions a hairline gap showed the background through
+                    if (i + 2 < xs.Count) part.width += .75f;
+                    if (j < 2) part.height += .75f;
                     GUI.DrawTextureWithTexCoords(part, texture, new Rect(us[i], vs[j + 1], us[i + 1] - us[i], vs[j] - vs[j + 1]), true);
                 }
         }
@@ -93,16 +101,13 @@ namespace ArcaneBrigade
             return hover && GUIUtility.hotControl != 0 ? 2 : hover ? 1 : 0;
         }
 
-        /// <summary>The painted button face (crest included, standing above the rectangle); the rectangle is the face.</summary>
+        /// <summary>The painted button: the rectangle is its face; the crest and the scroll caps bleed outside it. Below 40 px
+        /// tall, or where the painting cannot size cleanly, the code-drawn plate in the same tone is drawn instead.</summary>
         public static void ButtonArt(Rect r, KitButton kind, int state)
         {
-            Sprite sprite = KitSprite("Buttons/" + kind + States[Mathf.Clamp(state, 0, 3)]);
-            if (sprite == null) { Plate(r, kind == KitButton.Danger ? Danger : state == 1 ? Gold : Accent); return; }
-            float H = sprite.texture.height, top = BodyTop(kind), body = H * (1 - top);
-            Vector4 b = sprite.border;
-            float k = Mathf.Min(r.height / body, r.width / (b.x + b.z + ButtonCrest * sprite.texture.width));
-            Rect dest = new Rect(r.x, r.center.y - body * k * .5f - top * H * k, r.width, H * k);
-            Sliced(dest, sprite, k, ButtonCrest);
+            state = Mathf.Clamp(state, 0, 3);
+            if (r.height >= 40 && DrawPiece(r, KitPiece.Button, "Buttons/" + kind + States[state])) return;
+            CodePlate(r, kind == KitButton.Primary ? CodeTone.Gold : kind == KitButton.Danger ? CodeTone.Oxblood : CodeTone.Walnut, state);
         }
 
         private static GUIStyle kitLabel, kitShadow;
@@ -141,7 +146,8 @@ namespace ArcaneBrigade
             ButtonArt(r, kind, state);
             Color text = KitText(kind, enabled);
             if (state == 1 && kind == KitButton.Secondary) text = new Color(1f, .88f, .60f);
-            if (!string.IsNullOrEmpty(label)) KitCaption(r, label, text, like, true);
+            Rect inner = Content(r, KitPiece.Button, false); // inside the caps, vertically centred on the face
+            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y, inner.width, r.height), label, text, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
 
@@ -178,16 +184,15 @@ namespace ArcaneBrigade
         /// ink on Card / Tooltip.</summary>
         public static void Frame(Rect r, KitFrame frame, float scale = 1)
         {
-            Sprite sprite = KitSprite(frame == KitFrame.WaveBanner ? "HUD/WaveBanner" : "Panels/" + frame);
-            if (sprite == null) { Panel(r, Card); return; }
-            if (frame == KitFrame.Plaque || frame == KitFrame.WaveBanner)
-            {
-                // a ribbon plaque scales with its height, like a button
-                Sliced(r, sprite, r.height / sprite.texture.height * scale);
-                return;
-            }
-            Sliced(r, sprite, scale, frame == KitFrame.Tooltip ? TooltipTail : 0);
+            KitPiece piece = PieceOf(frame);
+            if (DrawPiece(r, piece, KeyOf(piece), frame == KitFrame.Plaque || frame == KitFrame.WaveBanner ? 99 : scale)) return;
+            CodePlate(r, frame == KitFrame.Card || frame == KitFrame.Tooltip ? CodeTone.Cream : frame == KitFrame.Dialogue ? CodeTone.Navy : CodeTone.Oxblood);
         }
+        public static KitPiece PieceOf(KitFrame frame) =>
+            frame == KitFrame.Card ? KitPiece.Card : frame == KitFrame.Tooltip ? KitPiece.Tooltip : frame == KitFrame.Plaque ? KitPiece.Plaque : frame == KitFrame.WaveBanner ? KitPiece.WaveBanner : KitPiece.Dialogue;
+        /// <summary>The usable inner area of a frame drawn with <see cref="Frame"/> at the same rectangle and scale.</summary>
+        public static Rect Content(Rect r, KitFrame frame, bool pad = true, float scale = 1) =>
+            Content(r, PieceOf(frame), pad, frame == KitFrame.Plaque || frame == KitFrame.WaveBanner ? 99 : scale);
 
         public static Color FrameText(KitFrame frame) => frame == KitFrame.Card || frame == KitFrame.Tooltip ? new Color(.20f, .13f, .08f) : KitCream;
 
@@ -208,17 +213,10 @@ namespace ArcaneBrigade
         {
             int state = State(r, enabled);
             string art = !enabled ? "TabDisabled" : active ? "TabActive" : state >= 1 ? "TabHover" : "TabInactive";
-            Sprite sprite = KitSprite("Controls/" + art);
-            if (sprite != null)
-            {
-                float H = sprite.texture.height, body = H * (1 - TabTop);
-                Vector4 b = sprite.border;
-                float k = Mathf.Min(r.height / body, r.width / (b.x + b.z + TabCrest * sprite.texture.width));
-                Sliced(new Rect(r.x, r.center.y - body * k * .5f - TabTop * H * k, r.width, H * k), sprite, k, TabCrest);
-            }
-            else Plate(r, active ? Gold : Accent);
+            if (!DrawPiece(r, KitPiece.Tab, "Controls/" + art)) CodePlate(r, active ? CodeTone.Oxblood : art == "TabHover" ? CodeTone.Gold : CodeTone.Walnut, enabled ? 0 : 3);
             Color text = !enabled ? new Color(.80f, .76f, .70f, .8f) : art == "TabHover" ? KitInk : KitCream;
-            if (!string.IsNullOrEmpty(label)) KitCaption(r, label, text, like, true);
+            Rect inner = Content(r, KitPiece.Tab, false);
+            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y, inner.width, r.height), label, text, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
 
@@ -286,10 +284,13 @@ namespace ArcaneBrigade
             if (normal == null) return null;
             Sprite hover = KitSprite("Buttons/" + kind + "HoverPlain") ?? normal, pressed = KitSprite("Buttons/" + kind + "PressedPlain") ?? normal;
             Vector4 b = normal.border;
+            Rect body = BodyOf("Buttons/" + kind + "NormalPlain", normal.texture);
+            int W = normal.texture.width, H = normal.texture.height;
+            foreach (Sprite s in new[] { normal, hover, pressed }) plainTones[s.texture] = kind == KitButton.Primary ? CodeTone.Gold : kind == KitButton.Danger ? CodeTone.Oxblood : CodeTone.Walnut;
             var style = new GUIStyle(source)
             {
                 border = new RectOffset((int)b.x, (int)b.z, (int)b.w, (int)b.y),
-                overflow = new RectOffset(0, 0, Mathf.RoundToInt(BodyTop(kind) * normal.texture.height), 0),
+                overflow = new RectOffset(Mathf.RoundToInt(body.x), Mathf.RoundToInt(W - body.xMax), Mathf.RoundToInt(body.y), Mathf.RoundToInt(H - body.yMax)),
                 padding = new RectOffset(18, 18, 4, 4), clipping = TextClipping.Overflow, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter
             };
             style.normal.background = style.onNormal.background = normal.texture;
@@ -368,6 +369,13 @@ namespace ArcaneBrigade
             if (own != null) { Sliced(r, own, Mathf.Min(1, r.height / own.texture.height)); return true; }
             Plate(r, !enabled ? new Color(.45f, .43f, .42f) : selected ? Gold : Accent);
             return false;
+        }
+
+        /// <summary>The inner area of an event plate (the painted plate when it lands, else the dialogue frame Plate draws).</summary>
+        public static Rect EventContent(Rect r)
+        {
+            Sprite own = KitSprite("SecretEvent/Plate");
+            return own != null ? new Rect(r.x + 24, r.y + 18, r.width - 48, r.height - 36) : r.height > 110 && r.width > 160 ? Content(r, KitPiece.Dialogue) : Content(r, KitPiece.Plate);
         }
     }
 }

@@ -24,8 +24,8 @@ PASS Shot Item10_BloodPriceCard
 PASS Shot Item10_BloodPriceDetails
 PASS Shot Item16_DreamShopEggs
 PASS Shop loads at wave 12
-PASS Dream stalls stand in the gold shop's alcove
-PASS Shot Item15_ShopWithDreamAlcove
+PASS Dream market is its own stage; its way on leads to the shop
+PASS Shot Item15_TwoStageShop
 PASS Secret room opens: ImpossibleTailor
 PASS Shot Item07_SecretEventPlates
 PASS Shop loads at wave 5

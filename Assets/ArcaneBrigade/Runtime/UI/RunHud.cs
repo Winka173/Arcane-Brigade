@@ -300,7 +300,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(eggText.x + 4, eggText.y + 6, eggText.width - 4, eggText.height - 12), Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(waveRect, KitFrame.WaveBanner); else ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
-            GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
+            GUI.Label(ArcadeSkin.HasKit ? ArcadeSkin.Content(waveRect, KitFrame.WaveBanner, false) : new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
             {
                 bool overtime = simulation.IsBossOvertime;
@@ -431,8 +431,7 @@ namespace ArcaneBrigade
                 if (station.Offer != null)
                 {
                     string kind = item ? RunModifierRules.RarityName(rarity) : (offerCard.Role.HasValue ? CompanionRoles.Word(offerCard.Role.Value) : "FRIEND") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
-                    ArcadeSkin.Slant(new Rect(picture.x, picture.yMax + 10, 160, 32), tag);
-                    GUI.Label(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, tagStyle);
+                    ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, CodeTone.Walnut, tagStyle, tag); // code-drawn tag, rarity colour on walnut
                 }
                 Rect buy = new Rect(panel.xMax - 214, panel.y + 18, 192, station.Offer != null ? 122 : 204);
                 float x = panel.x + 202, width = buy.x - 18 - x;
@@ -507,7 +506,8 @@ namespace ArcaneBrigade
                 float w = Mathf.Min(width - (cx - x), 46 + cardChip.CalcSize(new GUIContent(label)).x + 14);
                 if (w < 90) return;
                 Rect chip = new Rect(cx, y, w, 50);
-                ArcadeSkin.Plate(chip, lit ? ArcadeSkin.Gold : ArcadeSkin.Accent);
+                ArcadeSkin.CodePlate(chip, CodeTone.Walnut, lit ? 1 : 0);
+                if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
                 if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 6, chip.y + 6, 38, 38), icon);
                 cardChip.normal.textColor = lit ? ArcadeSkin.Gold : ArcadeSkin.Cream;
                 GUI.Label(new Rect(chip.x + 48, chip.y, w - 52, 50), label, cardChip);
@@ -807,7 +807,11 @@ namespace ArcaneBrigade
                 bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
                 if (flashing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.55f));
-                else if (previewing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, (preview.Activates ? .25f : .12f) + (preview.Activates ? .35f : .15f) * blink));
+                else if (previewing)
+                {
+                    ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, (preview.Activates ? .25f : .12f) + (preview.Activates ? .35f : .15f) * blink));
+                    if (preview.Activates) ArcadeSkin.RunningLight(line, Time.unscaledTime, ArcadeSkin.Gold, .75f); // the bond this purchase lights
+                }
                 else if (level > 0)
                 {
                     // an active bond breathes: a soft teal wash, and now and then a light sweep runs across the row
