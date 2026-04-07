@@ -520,9 +520,13 @@ namespace ArcaneBrigade
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
                 float portraitSize = index == selection ? 120 : 110;
-                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, card.y + 12, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, index == selection, profile.ReducedMotion));
+                // portrait + name centred in the card (owner, 21/10/2026); a locked hero lifts them to leave room for its chip
+                float top = card.y + (unlocked ? 30 : 12);
+                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, index == selection, profile.ReducedMotion));
                 GUI.color = previousColor;
-                GUI.Label(new Rect(card.x + 10, card.y + 132, 180, 52), RunUICopy.UnitName(unit), caption);
+                TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
+                GUI.Label(new Rect(card.x + 10, top + 120, card.width - 20, 52), RunUICopy.UnitName(unit), caption);
+                caption.alignment = keepAlign;
                 if (!unlocked) { ArcadeSkin.Slant(new Rect(card.x + 20, card.y + 186, 160, 26), ArcadeSkin.Cream); GUI.Label(new Rect(card.x + 20, card.y + 186, 160, 26), "LOCKED · WAVE " + unit.UnlockWave, chip); }
             }
             ScrollPanel.End();
