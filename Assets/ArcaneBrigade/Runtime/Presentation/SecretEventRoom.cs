@@ -148,9 +148,19 @@ namespace ArcaneBrigade
                 SecretEventProgress s = owner.Session.State.Secrets;
                 // the room as plates (play-test 20/10/2026, item 7): the name and one line, your relic in the middle (tap to swap),
                 // three DO / LOSE / GET plates, one confirm button and a small way back
-                ArcadeSkin.Frame(new Rect(250, 120, 1420, 116), KitFrame.Dialogue, .6f);
-                GUI.Label(new Rect(280, 128, 1360, 50), SecretEventAssets.Titles[(int)s.Kind], heading);
-                GUI.Label(new Rect(300, 180, 1320, 46), NightmareDialogue.Room(owner.Session.State, s.Kind), label);
+                // drawn in code (21/10/2026): the room's painted vignette when it has one, a title banner, your relic on a
+                // pedestal, three walnut choice plates with cream DO, oxblood LOSE and green-gilt GET rows
+                Sprite vignette = SecretEventVignettes.For(s.Kind);
+                float bannerY = 124;
+                if (vignette != null)
+                {
+                    float vh = 150, vw = vh * vignette.rect.width / vignette.rect.height;
+                    ArcadeSkin.Glow(new Rect(960 - vw * .75f, 0, vw * 1.5f, vh + 24), new Color(1f, .8f, .5f, .16f));
+                    DrawSprite(new Rect(960 - vw * .5f, 4, vw, vh), vignette);
+                    bannerY = 148;
+                }
+                ArcadeSkin.TitleBanner(new Rect(560, bannerY, 800, 64), SecretEventAssets.Titles[(int)s.Kind], heading);
+                GUI.Label(new Rect(300, bannerY + 66, 1320, 32), NightmareDialogue.Room(owner.Session.State, s.Kind), label);
                 if (s.Stage == SecretEventStage.Choosing)
                 {
                     bool target = owner.Session.SecretUsesTarget;
@@ -163,16 +173,18 @@ namespace ArcaneBrigade
                     {
                         float x = 260 + i * 470; SecretChoice c = choices[i];
                         Rect plate = new Rect(x, top, 460, height);
-                        Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .45f);
-                        ArcadeSkin.EventPlate(plate, selected == i && c.Enabled, c.Enabled); // painted plate art lands later (UI_SecretEvent sheet)
-                        if (selected == i && c.Enabled) ArcadeSkin.Focus(plate);
-                        Rect pc = ArcadeSkin.EventContent(plate); // inside the plate's rim, with the standard padding
-                        GUI.Label(new Rect(pc.x, pc.y, pc.width, 40), c.Title, plateTitle);
-                        GUI.Label(new Rect(pc.x, pc.y + 42, pc.width, 54), c.Do, body);
-                        Row(new Rect(pc.x, pc.y + 100, pc.width, 96), "LOSE", c.Lose, c.UsesTarget ? relic : null, false);
-                        Row(new Rect(pc.x, pc.y + 204, pc.width, 96), "GET", c.Get, c.Icon, true);
+                        bool lit = selected == i && c.Enabled;
+                        ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
+                        if (lit) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), Time.unscaledTime, new Color(1f, .82f, .45f));
+                        Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .55f);
+                        Rect pc = new Rect(plate.x + 18, plate.y + 14, plate.width - 36, plate.height - 28);
+                        if (plateTitle == null) Row(Rect.zero, null, null, null, CodeTone.Cream);
+                        GUI.Label(new Rect(pc.x, pc.y, pc.width, 38), c.Title, plateTitle);
+                        Row(new Rect(pc.x, pc.y + 42, pc.width, 76), "DO", c.Do, null, CodeTone.Cream);
+                        Row(new Rect(pc.x, pc.y + 124, pc.width, 96), "LOSE", c.Lose, c.UsesTarget ? relic : null, CodeTone.Oxblood);
+                        Row(new Rect(pc.x, pc.y + 226, pc.width, 96), "GET", c.Get, c.Icon, CodeTone.Green);
                         GUI.color = keep;
-                        if (!c.Enabled) GUI.Label(new Rect(x, top + height - 34, 460, 30), "Not available now", label);
+                        if (!c.Enabled) GUI.Label(new Rect(x, top + height + 4, 460, 30), "Not available now", label);
                         else if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                     }
                     GUI.enabled = choices[selected].Enabled;
@@ -205,12 +217,12 @@ namespace ArcaneBrigade
         /// <summary>Your relic in the middle of the room: its picture and name; a tap shows the next one you own.</summary>
         private void TargetRelic(SecretEventProgress s)
         {
-            Rect box = new Rect(810, 250, 300, 200);
-            ArcadeSkin.Plate(box, ArcadeSkin.Teal);
+            Rect box = new Rect(810, 240, 300, 215);
+            Rect stand = new Rect(850, 262, 220, 160);
+            ArcadeSkin.Pedestal(stand, Time.unscaledTime); // velvet cushion on a brass stand, drawn in code
             ItemDefinition relic = owner.Content.Item(s.TargetItem);
-            if (relic?.Icon != null) DrawSprite(new Rect(box.center.x - 60, box.y + 14, 120, 120), relic.Icon);
-            GUI.Label(new Rect(box.x + 8, box.y + 138, box.width - 16, 30), relic?.Name ?? "No relic to offer", label);
-            if (owner.Session.SecretTargets.Count > 1) GUI.Label(new Rect(box.x + 8, box.y + 166, box.width - 16, 26), "tap to swap", small);
+            if (relic?.Icon != null) DrawSprite(ArcadeSkin.PedestalSeat(stand), relic.Icon);
+            GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  tap to swap" : ""), label);
             if (GUI.Button(box, GUIContent.none, GUIStyle.none)) CycleTarget(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
@@ -227,17 +239,15 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>One LOSE (red) or GET (green) row: a coloured tag, a picture when there is one, one short line.</summary>
-        private void Row(Rect r, string tag, string text, Sprite icon, bool good)
+        private void Row(Rect r, string tag, string text, Sprite icon, CodeTone tone)
         {
-            if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 26 }; tagStyle = new GUIStyle(label) { fontSize = 17, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
-            ArcadeSkin.Line(r, good ? new Color(.14f, .40f, .25f, .55f) : new Color(.50f, .11f, .12f, .55f));
-            Rect chip = new Rect(r.x + 8, r.y + 8, 70, 30);
-            ArcadeSkin.Plate(chip, good ? ArcadeSkin.Teal : ArcadeSkin.Wax);
-            GUI.Label(chip, tag, tagStyle);
-            float left = r.x + 8;
-            if (icon != null) { DrawSprite(new Rect(r.x + 10, r.y + 42, 48, 48), icon); left = r.x + 66; }
-            Color keep = body.normal.textColor; body.normal.textColor = good ? new Color(.75f, 1f, .78f) : new Color(1f, .78f, .74f);
-            body.wordWrap = true; GUI.Label(new Rect(Mathf.Max(left, r.x + 86), r.y + 6, r.xMax - Mathf.Max(left, r.x + 86) - 6, r.height - 10), text, body);
+            if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 26 }; tagStyle = new GUIStyle(label) { fontSize = 16, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
+            if (tag == null) return;
+            Rect area = ArcadeSkin.EventRow(r, tag, tone, tagStyle);
+            if (icon != null) DrawSprite(new Rect(r.x + 18, r.y + 38, Mathf.Min(48, r.height - 44), Mathf.Min(48, r.height - 44)), icon);
+            Color keep = body.normal.textColor;
+            body.normal.textColor = tone == CodeTone.Cream ? ArcadeSkin.KitInk : tone == CodeTone.Green ? new Color(.86f, 1f, .86f) : new Color(1f, .86f, .82f);
+            body.wordWrap = true; GUI.Label(area, text, body);
             body.normal.textColor = keep;
         }
         private void TargetSelector(SecretEventProgress s)

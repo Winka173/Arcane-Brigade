@@ -61,7 +61,7 @@ namespace ArcaneBrigade.Editor
             foreach (MetaStation station in Enum.GetValues(typeof(MetaStation)))
                 Check(Resources.Load<Sprite>("Hub/Stations/" + station + "_Dusty") != null && Resources.Load<Sprite>("Hub/Stations/" + station + "_Lit") != null, "Station art dusty + restored: " + station);
             Check(MetaIcons.LampOil != null && MetaIcons.Keepsake != null, "Lamp Oil and Keepsake icons load");
-            Check(MetaProgression.Working.Length == 5 && MetaProgression.Tracks.All(t => MetaProgression.Works(t.Station)), "Five stations work; the other five have no ranks (coming soon, nothing fake)");
+            Check(MetaProgression.Working.Length == 10 && MetaProgression.Tracks.All(t => MetaProgression.Works(t.Station)), "All ten stations work");
             Check(!File.ReadAllText("Assets/ArcaneBrigade/Runtime/UI/RunMenu.cs").Contains("permanent stat growth") && !File.ReadAllText("Assets/ArcaneBrigade/Runtime/UI/RunHud.cs").Contains("NO STAT REWARDS"), "The old 'no permanent stat growth' lines are gone");
 
             // the profile block: save, load, migration
@@ -244,7 +244,104 @@ namespace ArcaneBrigade.Editor
                     Check(restored.State.Meta != null && !restored.State.Meta.Any && restored.State.Offers.Count == plain.State.Offers.Count, "Old run saves load with an empty loadout");
                 }
             }
+            Stations(c, hero);
             Debug.Log("META_PROGRESS_CHECKS_PASSED " + notes.Count);
+        }
+
+        /// <summary>The last five stations (21/10/2026): Postbox letters and keepsake relics, the Museum's shelves and gifts within
+        /// the cap, the Night Pact's curses in a run and their pay, the Daily Dream's seed and record, the Bell's Favour; and the
+        /// code-drawn secret-event pieces with the cut vignettes.</summary>
+        private static void Stations(RunCatalog c, string hero)
+        {
+            foreach (MetaStation station in Enum.GetValues(typeof(MetaStation)))
+                Check(MetaProgression.Works(station) && MetaProgression.StationLine(station).Length > 0, "Station works with a line: " + station);
+
+            // the Postbox
+            var p = new PlayerProfile { BestWave = 3 }; MetaProgression.Ensure(p);
+            Check(MetaProgression.Letters.Length == 6 && MetaProgression.Letters.All(l => c.Item(l.Relic) != null && l.Text.Length < 160 && !l.Text.Contains("Hob")), "Six short letters, each with a catalog relic");
+            Check(!MetaProgression.Letters.Any(l => MetaProgression.LetterEarned(p, l)) && !MetaProgression.ReadLetter(p, "letter.boss"), "Postbox: no letter before its milestone");
+            p.SeenBosses.Add(c.Bosses[0].Id);
+            Check(MetaProgression.ReadLetter(p, "letter.boss") && !MetaProgression.ReadLetter(p, "letter.boss") && MetaProgression.Keepsakes(p, c).SequenceEqual(new[] { "CurioBreathJar" }), "Postbox: the first boss opens a letter; reading it keeps its relic");
+            MetaRunState kept = MetaProgression.Loadout(p, c, hero, null, false, false, false, "CurioBreathJar");
+            Check(kept.Keepsake == "CurioBreathJar" && MetaProgression.Loadout(p, c, hero, null, false, false, false, "CurioInkFeather").Keepsake == "", "Postbox: only a kept relic can be brought");
+            using (RunSession s = Start(c, hero)) { s.ApplyMeta(kept); Check(s.StackCount("CurioBreathJar") == 1, "Postbox: the keepsake relic starts the run"); }
+
+            // the Museum
+            var m = new PlayerProfile(); MetaProgression.Ensure(m);
+            Check(MetaProgression.Discoveries(m, c) == 0 && MetaProgression.MuseumGifts(m, c) == (0, 0), "Museum: nothing found, no gift");
+            foreach (UnitDefinition u in c.Companions.Where(u => u.Body != null && !RunSession.StorySpecies(u.Id)).Take(20)) m.SeenUnits.Add(u.Id);
+            Check(MetaProgression.Discoveries(m, c) == 20 && MetaProgression.MuseumGifts(m, c) == (1, 1), "Museum: every ten finds a gift, damage then gold");
+            Check(MetaProgression.Shelf(m, c, MuseumShelf.Friends).Any(x => !x.Seen) && MetaProgression.Shelf(m, c, MuseumShelf.Combos).Count == Duets.All.Length, "Museum: unseen pieces stay silhouettes; every combo shelved");
+            Check(MetaProgression.Trophies(m, c).Count >= 5 && !MetaProgression.Trophies(m, c).Any(t => t.won), "Museum: named trophies for full sets, none yet");
+            PlayerProfile capped = MetaProgression.BotProfile(1, c, hero); capped.SeenUnits.AddRange(m.SeenUnits);
+            Check(MetaProgression.MuseumGifts(capped, c).damage == 0 && MetaProgression.CombatPower(capped) <= MetaProgression.PowerCap + .001f, "Museum: damage stays within the +25% cap");
+            MetaRunState museum = MetaProgression.Loadout(m, c, hero, null, false, false, false);
+            using (RunSession plain = Start(c, hero), gifted = Start(c, hero))
+            {
+                gifted.ApplyMeta(museum);
+                float gain = gifted.Bonus(ItemEffect.Damage, ModifierScope.Champion) - plain.Bonus(ItemEffect.Damage, ModifierScope.Champion);
+                Check(gain > .005f && gain < .02f && Mathf.Approximately(museum.Gold, .01f), "Museum: +1% damage and +1% gold reach the run (" + gain.ToString("0.000") + ")");
+            }
+
+            // the Night Pact
+            Check(Mathf.Approximately(MetaProgression.PactMultiplier(0), 1) && MetaProgression.PactMultiplier(MetaProgression.PactMask) > 2, "Night Pact: rewards multiply");
+            var pacted = new PlayerProfile(); MetaProgression.Ensure(pacted);
+            for (int i = 0; i < MetaProgression.Pacts.Length; i++) MetaProgression.TogglePact(pacted, i);
+            MetaRunState curse = MetaProgression.Loadout(pacted, c, hero, null, false, false, false);
+            Check(curse.Pacts == MetaProgression.PactMask, "Night Pact: toggles carry into the run");
+            using (RunSession plain = Start(c, hero), cursed = Start(c, hero))
+            {
+                cursed.ApplyMeta(curse);
+                CheckpointCatalog cp = plain.PrepareCombat(), cc = cursed.PrepareCombat();
+                Check(cc.MetaPactElites && cc.MetaPactEnrage && !cp.MetaPactElites && !cp.MetaPactEnrage, "Night Pact: elites every wave and boss enrage reach the battle");
+                if (cp.EnemyPool != null && cp.EnemyPool.Length > 0 && cc.EnemyPool != null && cc.EnemyPool.Length > 0)
+                    Check(Mathf.Abs(cc.EnemyPool[0].Speed / cp.EnemyPool[0].Speed - 1.15f) < .01f, "Night Pact: enemies +15% speed");
+                plain.State.Wave = cursed.State.Wave = 3; Shop(plain); Shop(cursed);
+                Check(cursed.State.Offers.Count == plain.State.Offers.Count - 1, "Night Pact: one fewer shop offer (" + plain.State.Offers.Count + " -> " + cursed.State.Offers.Count + ")");
+                Check(cursed.State.SpecialOffers.Count == 0, "Night Pact: no dream shop");
+                cursed.State.Wave = 6; cursed.State.Phase = SessionPhase.Defeat;
+                var earner = new PlayerProfile(); MetaProgression.Ensure(earner); var bare = new PlayerProfile(); MetaProgression.Ensure(bare);
+                int oilBare; using (RunSession b = Start(c, hero)) { b.State.Wave = 6; b.State.Phase = SessionPhase.Defeat; oilBare = MetaProgression.Haul(bare, b.State, c).oil; }
+                Check(MetaProgression.Credit(earner, cursed.State, c) && earner.Meta.LampOil == Mathf.RoundToInt(oilBare * MetaProgression.PactMultiplier(MetaProgression.PactMask)), "Night Pact: Lamp Oil multiplied");
+                Check(MetaProgression.PactRecord(earner, hero) != null && MetaProgression.PactRecord(earner, hero).Heat == MetaProgression.PactHeat(MetaProgression.PactMask), "Night Pact: the hero's pact record");
+            }
+
+            // the Window (Daily Dream)
+            Check(MetaProgression.DailySeed("2026-10-21") == MetaProgression.DailySeed("2026-10-21") && MetaProgression.DailySeed("2026-10-21") != MetaProgression.DailySeed("2026-10-22"), "Daily Dream: one seed a day");
+            var d = new PlayerProfile { BestWave = 40 }; MetaProgression.Ensure(d);
+            UnitDefinition dailyHero = MetaProgression.DailyHero(d, c, "2026-10-21");
+            MetaRunState daily = MetaProgression.Loadout(d, c, dailyHero.Id, null, false, false, false, null, "2026-10-21");
+            Check(daily.Daily == "2026-10-21" && daily.Pacts == 1 << MetaProgression.DailyPact("2026-10-21"), "Daily Dream: fixed hero and one pact");
+            using (RunSession s = new RunSession(c))
+            {
+                s.Start(dailyHero.Id, MetaProgression.DailySeed("2026-10-21")); s.ApplyMeta(daily);
+                s.State.Wave = 4; s.State.Phase = SessionPhase.Defeat;
+                Check(MetaProgression.Credit(d, s.State, c) && d.Meta.Keepsakes >= MetaProgression.DailyKeepsakes && MetaProgression.DailyRecord(d, "2026-10-21")?.Wave == 4 && MetaProgression.DailyPaid(d, "2026-10-21"), "Daily Dream: bonus Keepsakes once a day and the day's best");
+            }
+
+            // the Bell
+            var bell = new PlayerProfile(); MetaProgression.Ensure(bell);
+            Check(MetaProgression.BellBlocked(bell) == "See the dawn first" && !MetaProgression.RingBell(bell), "Bell: only after the first full clear");
+            bell.Wins = 1;
+            Check(MetaProgression.BellBlocked(bell) == "Fill the Lantern and Ledger", "Bell: the Lantern and Ledger must be full");
+            bell.Meta.LampOil = 100000; bell.Meta.Keepsakes = 100;
+            foreach (MetaTrack t in MetaProgression.BellTracks()) while (MetaProgression.Rank(bell, t.Id) < t.Max && MetaProgression.Buy(bell, t.Id)) { }
+            Check(MetaProgression.RingBell(bell) && bell.Meta.Favour == 1 && MetaProgression.BellTracks().All(t => MetaProgression.Rank(bell, t.Id) == 0) && Mathf.Approximately(MetaProgression.FavourMultiplier(bell), 1.1f), "Bell: ranks reset for a Favour star (+10% Lamp Oil)");
+            using (RunSession b = Start(c, hero))
+            {
+                b.State.Wave = 6; b.State.Phase = SessionPhase.Defeat;
+                var plainHaul = new PlayerProfile(); MetaProgression.Ensure(plainHaul);
+                Check(MetaProgression.Haul(bell, b.State, c).oil == Mathf.RoundToInt(MetaProgression.Haul(plainHaul, b.State, c).oil * 1.1f), "Bell: Favour raises every Lamp Oil gain");
+            }
+            MetaProgress roundTrip = JsonUtility.FromJson<MetaProgress>(JsonUtility.ToJson(bell.Meta));
+            Check(roundTrip.Favour == 1 && roundTrip.Letters != null && roundTrip.PactBest != null, "New station fields save and load");
+
+            // secret events and Keeper gifts drawn in code; the header vignettes cut into Resources
+            Texture2D stand = ArcadeSkin.PedestalTexture();
+            Check(stand != null && stand.width == 256 && stand.height == 200, "Relic pedestal drawn in code");
+            Check(SecretEventVignettes.Names.All(n => Resources.Load<Sprite>("UI/SecretEvent/Vignettes/" + n) != null) && SecretEventVignettes.For(SecretEventKind.ImpossibleTailor) != null, "Secret-room vignettes cut and loading");
+            string room = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/SecretEventRoom.cs"), gifts = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/OutsideStageChoice.cs");
+            Check(room.Contains("CodeTone.Oxblood") && room.Contains("CodeTone.Green") && room.Contains("RunningLight") && room.Contains("Pedestal") && !room.Contains("EventPlate(") && gifts.Contains("Pedestal") && !gifts.Contains("EventPlate("), "DO / LOSE / GET plates and gifts drawn in code");
         }
 
         /// <summary>Play-test review phase E (the Waiting Room, one shop per night): the suites its changes touch, in one launch.</summary>

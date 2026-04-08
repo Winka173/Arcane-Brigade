@@ -17,7 +17,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class MetaProgress
     {
-        public const int CurrentRevision = 1;
+        public const int CurrentRevision = 2; // 2: the Postbox, Museum, Night Pact, Window and Bell (additive, no migration)
         public int Revision;
         public int LampOil, Keepsakes, LampOilEarned, KeepsakesEarned;
         public List<MetaRank> Ranks = new List<MetaRank>();
@@ -31,6 +31,16 @@ namespace ArcaneBrigade
         /// <summary>What was already paid for the last credited run (a rewound run pays only what it adds).</summary>
         public string PaidRun = "";
         public int PaidOil, PaidWaves;
+        /// <summary>The Postbox: letters read (each keeps its relic for the run-start pick) and the keepsake relic last picked.</summary>
+        public List<string> Letters = new List<string>();
+        public string Keepsake = "";
+        /// <summary>The Night Pact: the curses toggled for the next run (one bit each) and each hero's best pact score.</summary>
+        public int Pacts;
+        public List<MetaScore> PactBest = new List<MetaScore>();
+        /// <summary>The Window: the best Daily Dream of each day (Key yyyy-MM-dd, the last 30 days).</summary>
+        public List<MetaScore> DailyBest = new List<MetaScore>();
+        /// <summary>The Bell: Favour stars (each +10% Lamp Oil gain).</summary>
+        public int Favour;
     }
 
     /// <summary>The meta loadout frozen into a run at its start (and what the run used of it). Saved with the run; a run saved
@@ -51,7 +61,13 @@ namespace ArcaneBrigade
         /// <summary>The haul, written when the run is credited: Lamp Oil and Keepsakes and one "kind|words|amount" line each.</summary>
         public int HaulOil, HaulKeepsakes;
         public List<string> HaulLines = new List<string>();
-        public bool Any => Health > 0 || MoveSpeed > 0 || Pickup > 0 || Crit > 0 || ChestGold > 0 || TwoStarChance > 0 || CandleShare > 0 || GaugeStart > 0 || StartGold > 0 || Interest > 0 || ExtraSlots > 0 || FreeRefresh || RewindOwned || SecondHabit || Heirloom.Length > 0 || StartFriend.Length > 0 || AltStarter.Length > 0;
+        /// <summary>The Museum's gifts (damage within the +25% cap, gold), the keepsake relic brought along, the Night Pact's
+        /// curses (one bit each) and the Daily Dream's day (empty for an ordinary run).</summary>
+        public float Damage, Gold;
+        public int Pacts;
+        public string Keepsake = "", Daily = "";
+        public bool Any => Health > 0 || MoveSpeed > 0 || Pickup > 0 || Crit > 0 || ChestGold > 0 || TwoStarChance > 0 || CandleShare > 0 || GaugeStart > 0 || StartGold > 0 || Interest > 0 || ExtraSlots > 0 || FreeRefresh || RewindOwned || SecondHabit || Heirloom.Length > 0 || StartFriend.Length > 0 || AltStarter.Length > 0
+                           || Damage > 0 || Gold > 0 || Pacts != 0 || !string.IsNullOrEmpty(Keepsake) || !string.IsNullOrEmpty(Daily);
     }
 
     /// <summary>One upgrade line of a station: ranks, their prices, what one rank adds.</summary>
@@ -68,13 +84,13 @@ namespace ArcaneBrigade
     }
 
     /// <summary>The Waiting Room's rules: the stations, buying ranks, the haul a run earns, the loadout a run starts with.</summary>
-    public static class MetaProgression
+    public static partial class MetaProgression
     {
         public const float PowerCap = 25f;
         public static readonly float[] DifficultyOil = { 1f, 1.2f, 1.4f, 1.6f, 1.8f, 2f };
         public const int OilPerWave = 4, OilPerBoss = 12, OilPerBestWave = 8, FindsCap = 60;
         public static readonly int[] MasteryWaves = { 8, 20, 40 };
-        public static readonly MetaStation[] Working = { MetaStation.Lantern, MetaStation.Ledger, MetaStation.Clock, MetaStation.Nursery, MetaStation.Wardrobe };
+        public static readonly MetaStation[] Working = (MetaStation[])Enum.GetValues(typeof(MetaStation)); // all ten (the last five: 21/10/2026)
         public static bool Works(MetaStation station) => Array.IndexOf(Working, station) >= 0;
 
         private static MetaTrack T(string id, MetaStation station, string name, string line, MetaCurrency currency, int[] cost, float power, Func<int, string> value)
@@ -111,7 +127,12 @@ namespace ArcaneBrigade
                 case MetaStation.Nursery: return "Friends";
                 case MetaStation.Wardrobe: return "Hero mastery";
                 case MetaStation.Clock: return "Second chances";
-                default: return "Coming soon";
+                case MetaStation.Postbox: return "Letters";
+                case MetaStation.Museum: return "Collection";
+                case MetaStation.NightPact: return "Curses for more";
+                case MetaStation.Window: return "Daily Dream";
+                case MetaStation.Bell: return "Keeper's favour";
+                default: return "";
             }
         }
 
@@ -132,6 +153,7 @@ namespace ArcaneBrigade
             m.Mastery.RemoveAll(h => h == null || string.IsNullOrEmpty(h.Hero));
             foreach (HeroMastery h in m.Mastery) h.Waves = Mathf.Max(0, h.Waves);
             m.Found.RemoveAll(string.IsNullOrEmpty);
+            EnsureStations(m);
             if (m.Revision < 1)
             {
                 // an old profile starts at zero with Lamp Oil for the best wave it ever reached
@@ -152,6 +174,7 @@ namespace ArcaneBrigade
         public static int Wallet(PlayerProfile profile, MetaCurrency currency) => currency == MetaCurrency.LampOil ? profile.Meta.LampOil : profile.Meta.Keepsakes;
         public static int StationRanks(PlayerProfile profile, MetaStation station)
         {
+            if (station >= MetaStation.Postbox) return StationLevel(profile, station);
             if (station == MetaStation.Wardrobe) { int best = 0; foreach (HeroMastery h in profile.Meta.Mastery) best = Mathf.Max(best, MasteryRank(h.Waves)); return best; }
             int sum = 0; foreach (MetaTrack t in For(station)) sum += Rank(profile, t.Id); return sum;
         }
@@ -253,10 +276,11 @@ namespace ArcaneBrigade
         // ------------------------------------------------------------------ the run's loadout
         /// <summary>Freezes the profile into a run: stats scaled so the permanent combat power never passes the cap, unlocks,
         /// and the run-start choices made in hero select (checked here; an invalid choice is simply left out).</summary>
-        public static MetaRunState Loadout(PlayerProfile profile, RunCatalog catalog, string championId, string startFriend = null, bool altStarter = false, bool secondHabit = false, bool advanceRoll = true)
+        public static MetaRunState Loadout(PlayerProfile profile, RunCatalog catalog, string championId, string startFriend = null, bool altStarter = false, bool secondHabit = false, bool advanceRoll = true, string keepsake = null, string daily = null)
         {
             Ensure(profile);
             var s = new MetaRunState();
+            StationLoadout(profile, catalog, s, keepsake, daily);
             float power = CombatPower(profile), scale = power > PowerCap ? PowerCap / power : 1;
             int R(string id) => Rank(profile, id);
             s.Health = .03f * R("lantern.wick") * scale;
@@ -334,6 +358,9 @@ namespace ArcaneBrigade
             if (bosses > 0) lines.Add("oil|Bosses beaten ×" + bosses + "|" + bosses * OilPerBoss);
             if (d > 0 && baseOil > 0) lines.Add("oil|" + RunMeta.DifficultyNames[d] + " ×" + DifficultyOil[d].ToString("0.0#") + "|" + (Mathf.RoundToInt(baseOil * DifficultyOil[d]) - baseOil));
             if (finds > 0) lines.Add("oil|New finds|" + finds);
+            float pact = PactMultiplier(meta.Pacts), favour = FavourMultiplier(profile);
+            if (pact > 1 && oil > 0) { int more = Mathf.RoundToInt(oil * pact) - oil; lines.Add("oil|Night Pact ×" + pact.ToString("0.0#") + "|" + more); oil += more; }
+            if (favour > 1 && oil > 0) { int more = Mathf.RoundToInt(oil * favour) - oil; lines.Add("oil|Favour ★" + profile.Meta.Favour + "|" + more); oil += more; }
             int keepsakes = 0;
             foreach (string boss in run.DefeatedBosses ?? new List<string>())
             {
@@ -360,6 +387,8 @@ namespace ArcaneBrigade
             int duetKeepsakes = (profile.Meta.DuetsFound + duets) / 3 - profile.Meta.DuetsFound / 3;
             if (duets > 0) lines.Add("keep|Combos found ×" + duets + "|" + duetKeepsakes);
             keepsakes += duetKeepsakes;
+            if (!string.IsNullOrEmpty(meta.Daily) && !profile.Meta.Found.Contains("daily/" + meta.Daily)) { found.Add("daily/" + meta.Daily); keepsakes += DailyKeepsakes; lines.Add("keep|Daily Dream|" + DailyKeepsakes); }
+            if (pact > 1 && keepsakes > 0) { int more = Mathf.RoundToInt(keepsakes * pact) - keepsakes; if (more > 0) { keepsakes += more; lines.Add("keep|Night Pact ×" + pact.ToString("0.0#") + "|" + more); } }
             return (oil, keepsakes, lines, found, duets);
         }
 
@@ -392,6 +421,7 @@ namespace ArcaneBrigade
             m.DuetsFound += duets;
             if (payWaves > 0) { HeroMastery h = Mastery(profile, run.ChampionId, true); h.Waves = RunSession.BoundedCounter((long)h.Waves + payWaves); }
             run.Meta.HaulOil = oil; run.Meta.HaulKeepsakes = keepsakes; run.Meta.HaulLines = lines;
+            RecordScores(profile, run);
             return true;
         }
 

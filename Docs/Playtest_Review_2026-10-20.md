@@ -302,6 +302,18 @@ Permanent combat power (Lantern + Nursery) is exactly +25% at full ranks and can
 
 Earning: Lamp Oil every run — 4 a wave survived, 12 a boss, × 1 / 1.2 / 1.4 / 1.6 / 1.8 / 2 by difficulty, + first-ever finds (3 a friend, 1 a relic, 10 a boss; at most 60). Keepsakes for first times only: each boss on each difficulty (1), the Keeper on each difficulty (2), each secret room (1), every three combos found (1). The run summary shows the haul first ("For the Waiting Room") with the Lamp Oil / Keepsake icons (UI_RoleBadges row 4). A rewound run pays only what it adds. The hero-select line "never permanent stat growth" and the summary's "No stat rewards" are gone.
 
+**The last five stations (21/10/2026).** No station says "Coming soon" any more (`Core/MetaStations.cs`, `UI/MetaHubStations.cs`; profile meta revision 2, additive):
+
+| Station | What it does |
+|---|---|
+| Postbox | Six letters from the Thursday visitor, opened by firsts (a boss, wave 10, a combo, a secret room, the dawn, the Keeper). Reading one keeps its relic (Breath Jar, Noon Spark, Ricochet Seltzer, Fang Pin, Bent Tape, Ink Feather); hero select brings one kept relic into the run. |
+| Museum | Shelves of friends, relics, enemies (met once their first wave is reached), bosses and combos; silhouettes until found. Every 10 finds a gift, +1% damage and +1% gold in turn; damage only fills what the Lantern + Nursery leave of the +25% cap. Full sets (each shelf, each combo family) give a named trophy line. |
+| Night Pact | Five toggles for the next run: enemies +15% speed (×1.2), one fewer shop offer (×1.15), no dream shop (×1.15), elites every wave (×1.25), bosses start enraged (×1.25). The product multiplies Lamp Oil and Keepsakes; each hero keeps a best pact score (run score × the pacts). |
+| Window | Daily Dream: the day's seed, a hero from the ones you can play and one pact picked by the date, Peaceful; +2 Keepsakes for the first dream of the day; the best score of each day (last 30). |
+| Bell | After the first dawn, with every Lamp Oil rank of the Lantern and Ledger full: ring to reset them for a Favour star (+10% Lamp Oil gain each, at most 5), shown under the room's title. |
+
+Every panel works with keys and stick: arrows / WASD / stick move a focus over cards, crests, letters, shelves and pacts, Enter / Space / A confirms, Esc / B closes, Q / R or LB / RB page the Museum. The secret rooms and the Keeper's gifts are now drawn in code: a title banner, walnut choice plates with cream DO, oxblood LOSE and green-gilt GET rows, a running light on the chosen plate, each relic on a velvet cushion and brass stand; the header vignettes (Art/Playtest/UI/Secret_EventVignettes_v1.png) are cut into `Resources/UI/SecretEvent/Vignettes` and shown above the title of the five rooms that have one. Checks: `MetaProgressChecks` (106 pass).
+
 **Item 15 (owner, 21/10/2026): reverted to two stages.** The phase E merge (dream stalls in an alcove of the gold shop) was undone: the dream market is its own stage again (FinishSpecialShop / SpecialShopVisited, its own merchant, violet rug and pennants), followed by the gold shop. Kept from the fallback option: the dream market's way on now reads "TO THE SHOP →".
 
 Bot sweep (6 reference heroes × 6 difficulties × 3 seeds = 108 runs per row; win %):

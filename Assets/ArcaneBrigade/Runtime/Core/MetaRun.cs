@@ -12,6 +12,8 @@ namespace ArcaneBrigade
         /// the hero's second habit. Zero for a run without meta.</summary>
         public float MetaCandleShare, MetaCandleShield, MetaGaugeStart;
         public bool MetaSecondHabit;
+        /// <summary>Night Pact curses in battle: elites every wave (from wave 1, more often), bosses enraged from the start.</summary>
+        public bool MetaPactElites, MetaPactEnrage;
     }
 
     /// <summary>The run side of the Waiting Room (play-test item 27): the loadout a run starts with, its stats folded into the
@@ -39,6 +41,8 @@ namespace ArcaneBrigade
                 }
                 if (!string.IsNullOrEmpty(meta.StartFriend) && catalog.Unit(meta.StartFriend) != null && !OwnsCompanionSpecies(meta.StartFriend)) MetaAddFriend(meta.StartFriend, null);
             }
+            // the Postbox's keepsake relic rides along from the first wave
+            if (!string.IsNullOrEmpty(meta.Keepsake) && catalog.Item(meta.Keepsake) != null && StackCount(meta.Keepsake) == 0) State.Items.Add(new ItemStack { Id = meta.Keepsake, Count = 1 });
             RecountBonds();
             State.Health = MaximumHealth();
         }
@@ -62,12 +66,21 @@ namespace ArcaneBrigade
                 case ItemEffect.HealthCorrection: return target == ModifierScope.Champion ? m.Health : 0;
                 case ItemEffect.MoveSpeed: return target == ModifierScope.Champion ? m.MoveSpeed : 0;
                 case ItemEffect.Crit: return target == ModifierScope.Champion || target == ModifierScope.Companions ? m.Crit : 0;
+                case ItemEffect.Damage: return target == ModifierScope.Team || target == ModifierScope.Champion || target == ModifierScope.Companions ? m.Damage : 0; // the Museum
                 case ItemEffect.Pickup: return target == ModifierScope.Run ? m.Pickup : 0;
                 case ItemEffect.Interest: return target == ModifierScope.Run ? m.Interest : 0;
                 default: return 0;
             }
         }
-        private int MetaExtraSlots => Mathf.Clamp(Meta?.ExtraSlots ?? 0, 0, 1);
+        private int MetaExtraSlots => Mathf.Clamp(Meta?.ExtraSlots ?? 0, 0, 1) - (MetaPact(MetaProgression.PactBareShelf) ? 1 : 0);
+        /// <summary>A Night Pact curse taken for this run.</summary>
+        public bool MetaPact(int pact) => Meta != null && (Meta.Pacts & (1 << pact)) != 0;
+        /// <summary>Night Pact "Swift night": every enemy +15% speed.</summary>
+        private float MetaEnemySpeed => MetaPact(MetaProgression.PactSwift) ? 1.15f : 1;
+        /// <summary>Night Pact "Closed market": no dream market this run.</summary>
+        private bool MetaNoDreamShop => MetaPact(MetaProgression.PactNoDream);
+        /// <summary>The Museum's gold gift: a share more of the gold a fight brings in.</summary>
+        private int MetaGold(int gold) => Meta == null || Meta.Gold <= 0 || gold <= 0 ? 0 : Mathf.RoundToInt(gold * Mathf.Min(Meta.Gold, MetaProgression.PowerCap / 100f));
         /// <summary>The Ledger's free look: the first refresh in every shop costs nothing.</summary>
         public bool MetaFreeRefresh => Meta != null && Meta.FreeRefresh && State.RerollsThisShop == 0;
 
@@ -100,6 +113,8 @@ namespace ArcaneBrigade
             CombatCatalog.MetaCandleShield = candle ? m.CandleShield : 0;
             CombatCatalog.MetaGaugeStart = m.GaugeStart;
             CombatCatalog.MetaSecondHabit = m.SecondHabit;
+            CombatCatalog.MetaPactElites = MetaPact(MetaProgression.PactElites);
+            CombatCatalog.MetaPactEnrage = MetaPact(MetaProgression.PactEnrage);
         }
         private void MetaSettled(CombatSimulation simulation)
         {
@@ -145,6 +160,8 @@ namespace ArcaneBrigade
         private float candleSafeUntil = -1;
         public bool CandleBurned => candleBurned;
         public bool CandleSafe => candleSafeUntil > Elapsed;
+        /// <summary>A boss fights enraged below half health, or from the start under the Night Pact's "Short temper".</summary>
+        private bool BossEnraged(UnitState boss) => catalog.MetaPactEnrage || boss.Health < boss.Definition.Health * .5f;
         private bool SecondCandle(UnitState target)
         {
             if (target != Champion || candleBurned || catalog.MetaCandleShare <= 0) return false;

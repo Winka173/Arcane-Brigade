@@ -3,6 +3,16 @@ PASS Hub opens with a station in reach
 PASS Shot Item27_Hub
 PASS Station cards open
 PASS Shot Item27_StationCard
+PASS Station opens: Postbox
+PASS Shot Item27_Postbox
+PASS Station opens: Museum
+PASS Shot Item27_Museum
+PASS Station opens: NightPact
+PASS Shot Item27_NightPact
+PASS Station opens: Window
+PASS Shot Item27_DailyDream
+PASS Station opens: Bell
+PASS Shot Item27_Bell
 PASS Shot Item27_HeroSelectLoadout
 PASS Shop loads at wave 1
 PASS Shot Item04_ShopHintAndTip
@@ -28,6 +38,7 @@ PASS Dream market is its own stage; its way on leads to the shop
 PASS Shot Item15_TwoStageShop
 PASS Secret room opens: ImpossibleTailor
 PASS Shot Item07_SecretEventPlates
+PASS Shot Item07_SecretEventCodePlates
 PASS Shop loads at wave 5
 PASS Shot Item21_LongerWaveTimer
 PASS Shot Item05_Combat_NoHitStop
@@ -43,7 +54,7 @@ PASS Shop loads at wave 2
 PASS Map elements on screen: WaitingRoom (8 props)
 PASS Shot Item24_MapWaitingRoom
 PASS Shop loads at wave 7
-PASS Map elements on screen: PostOffice (25 props)
+PASS Map elements on screen: PostOffice (27 props)
 PASS Shot Item24_MapPostOffice
 PASS Shop loads at wave 12
 PASS Map elements on screen: LampHall (6 props)

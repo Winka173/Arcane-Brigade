@@ -253,7 +253,7 @@ namespace ArcaneBrigade
                             // a band of wind cut across the field ahead: struck along its whole length and shoved aside
                             Vector2 dir = (gale.Position - u.Position).normalized, from = u.Position, to = ClampPosition(from + dir * 6.5f, .3f), side = new Vector2(-dir.y, dir.x);
                             foreach (UnitState t in units.ToArray())
-                                if (CanHit(Faction.Champion, t) && SegmentCircle(from, to, t.Position, t.Definition.Radius + .45f) >= 0)
+                                if (CanHit(Faction.Champion, t) && BodySegment(t, from, to, .45f) >= 0)
                                 {
                                     ApplyWeaponDamage(t, u.Definition.Weapon.Damage * 2f, Faction.Companion, DamageElement.Arcane, "Kite Dragon", dir, cause: NewCause(u.Id).Child("kite-gale"));
                                     if (t.Alive && !t.Definition.IsBoss) { t.Position = ClampPosition(t.Position + side * OctoberBalance.Push(t.Definition, .4f), t.Definition.Radius); spatial.Move(t); }
@@ -321,7 +321,7 @@ namespace ArcaneBrigade
                             p.Stage = 1; p.Until = Elapsed + .6f;
                             var scalded = new List<UnitState>();
                             foreach (UnitState t in units.ToArray())
-                                if (CanHit(Faction.Champion, t) && (t.Position - p.Position).sqrMagnitude <= Mathf.Pow(p.Radius + t.Definition.Radius, 2))
+                                if (CanHit(Faction.Champion, t) && InBody(t, p.Position, p.Radius))
                                 { scalded.Add(t); ApplyWeaponDamage(t, p.Damage, Faction.Companion, DamageElement.Ember, "Tea Dragon", t.Position - p.Position, cause: p.Cause); }
                             var spread = new HashSet<int>();
                             foreach (UnitState s in scalded)
@@ -350,7 +350,7 @@ namespace ArcaneBrigade
                                 Vector2 tangent = new Vector2(-Mathf.Sin(spin + k * Mathf.PI / 2), Mathf.Cos(spin + k * Mathf.PI / 2));
                                 foreach (UnitState t in units.ToArray())
                                 {
-                                    if (!CanHit(Faction.Champion, t) || (t.Position - horse).sqrMagnitude > Mathf.Pow(.45f + t.Definition.Radius, 2)) continue;
+                                    if (!CanHit(Faction.Champion, t) || !InBody(t, horse, .45f)) continue;
                                     ApplyWeaponDamage(t, p.Damage, Faction.Companion, DamageElement.Physical, "The Lost Carousel", tangent, cause: p.Cause);
                                     if (t.Alive && !t.Definition.IsBoss) { t.Position = ClampPosition(t.Position + tangent * OctoberBalance.Push(t.Definition, .3f), t.Definition.Radius); spatial.Move(t); }
                                 }

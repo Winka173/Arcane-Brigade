@@ -59,7 +59,7 @@ namespace ArcaneBrigade
                 // lands on the nearest threat (radius 1.3 round it), not as a ring round the hero
                 float radius = 1.3f; Vector2 centre = ThreatPoint(mechanic == HeroMechanic.LanternStride ? 2.4f : 3);
                 foreach (UnitState enemy in units)
-                    if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - centre).sqrMagnitude <= (radius + enemy.Definition.Radius) * (radius + enemy.Definition.Radius))
+                    if (enemy.Alive && enemy.Faction == Faction.Enemy && InBody(enemy, centre, radius))
                     {
                         if (mechanic == HeroMechanic.LanternStride) ApplyWeaponDamage(enemy, Champion.Definition.Weapon.Damage * 0.65f, Faction.Champion, DamageElement.Ember, Champion.Definition.DisplayName, (enemy.Position - Champion.Position).normalized, Champion.Definition.Weapon, cause: cause);
                         else enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + (enemy.Definition.IsBoss ? 0.6f : 1.5f));

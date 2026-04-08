@@ -28,7 +28,7 @@ namespace ArcaneBrigade.Editor
             {
                 session.Start(catalog.Champions[0].Id, 1451);
                 CheckpointCatalog first = session.PrepareCombat();
-                require(first.WaveDuration == 35 && first.MeleeEnemy.Weapon.Kind == WeaponKind.Contact && first.RangedEnemy.Weapon.Kind == WeaponKind.Contact && first.EnemyPool.All(enemy => enemy.Weapon.Kind == WeaponKind.Contact), "Wave1 lasts35s and every spawn route is contact-only");
+                require(Mathf.Approximately(first.WaveDuration, 34.5f) && Mathf.Approximately(WaveCadence.WaveLength(1), 34.5f) && first.MeleeEnemy.Weapon.Kind == WeaponKind.Contact && first.RangedEnemy.Weapon.Kind == WeaponKind.Contact && first.EnemyPool.All(enemy => enemy.Weapon.Kind == WeaponKind.Contact), "Wave1 lasts 34.5s (15% longer waves) and every spawn route is contact-only");
                 var firstSimulation = new CombatSimulation(first); firstSimulation.Start(first.Seed);
                 for (int tick = 0; tick < 1800 && firstSimulation.Phase == RunPhase.Combat; tick++)
                 {
@@ -37,9 +37,9 @@ namespace ArcaneBrigade.Editor
                 }
                 require(true, "Wave1 actual simulation has no hostile projectile over1800tick audit or death");
                 session.State.Wave = 2; CheckpointCatalog second = session.PrepareCombat();
-                require(second.WaveDuration == 37 && second.EnemyPool.Any(enemy => enemy.Weapon.Kind == WeaponKind.Projectile), "Wave2 opens ranged enemy pool and increases time gently");
+                require(Mathf.Approximately(second.WaveDuration, WaveCadence.WaveLength(2)) && second.WaveDuration > 34.5f && second.WaveDuration < 38 && second.EnemyPool.Any(enemy => enemy.Weapon.Kind == WeaponKind.Projectile), "Wave2 opens ranged enemy pool and increases time gently");
                 require(second.EnemyPool.All(enemy => enemy.Weapon.ProjectileSpeed <= 2.4f), "Enemy cloned projectile speed capped at2.4 without changing ally weapons");
-                session.State.Wave = 20; require(session.PrepareCombat().WaveDuration == 55, "Later non-boss authored duration capped55s");
+                session.State.Wave = 19; require(Mathf.Approximately(session.PrepareCombat().WaveDuration, 69), "Later non-boss authored duration capped 69s (15% longer waves)"); // wave 20 is the Last Customer duel
                 session.State.Wave = 1; session.State.Roster.Clear();
                 for (int index = 0; index < 10; index++) session.State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[index % catalog.Companions.Length].Id, WeaponId = catalog.Weapons[index % catalog.Weapons.Length].Id });
                 CheckpointCatalog idle = session.PrepareCombat(); idle.EnemyBudget = 0; idle.Boss = null;
@@ -53,7 +53,7 @@ namespace ArcaneBrigade.Editor
                         bool stopped = (ally.Position - ally.PreviousPosition).sqrMagnitude < 0.000001f;
                         if (stopped && ally.RoamRestUntil > simulation.VisualElapsed) { idleTicks++; still = true; }
                         if (!stopped) { movingTicks++; moving = true; }
-                        if ((ally.Position - simulation.Champion.Position).magnitude > idle.CompanionLeash + 0.001f) throw new InvalidOperationException("Rest/roam exceeded leash");
+                        if ((ally.Position - simulation.Champion.Position).magnitude > CompanionMotion.Leash(ally, idle) + 0.001f) throw new InvalidOperationException("Rest/roam exceeded leash"); // melee friends roam a little wider (MeleeBalance.RoamBonus)
                     }
                     simultaneous |= still && moving;
                 }
@@ -62,16 +62,24 @@ namespace ArcaneBrigade.Editor
                 var bodyObject = new GameObject("IdleBodyCheck");
                 SpriteRenderer renderer = bodyObject.AddComponent<SpriteRenderer>(); renderer.sprite = idle.Champion.Body;
                 BodyPuppet puppet = bodyObject.AddComponent<BodyPuppet>(); puppet.Display(renderer, simulation.Champion, 0.4f, false);
-                Transform upper = bodyObject.transform.Find("UpperBody"); Vector3 firstPose = upper.localScale;
+                Transform upper = bodyObject.transform.Find("UpperBody");
+                if (simulation.Champion.Definition.AuthoredMotion != null || simulation.Champion.Definition.AnimationFrames.Length < 4)
+                {   // heroes with authored motion breathe through their own frames (BodyPuppet steps aside), so no split puppet
+                    require(upper == null && renderer.enabled, "Authored-motion hero keeps its own idle; the split body puppet stays off");
+                    UnityEngine.Object.DestroyImmediate(bodyObject); bodyObject = null;
+                }
+                if (bodyObject != null) {
+                Vector3 firstPose = upper.localScale;
                 puppet.Display(renderer, simulation.Champion, 1.2f, false);
                 require(upper.localScale != firstPose && upper.localRotation != Quaternion.identity && !renderer.enabled, "Stationary body breathing/sway visible independently of weapon");
                 puppet.Display(renderer, simulation.Champion, 1.2f, true); firstPose = upper.localScale;
                 puppet.Display(renderer, simulation.Champion, 2.2f, true); require(upper.localScale == firstPose && upper.localRotation == Quaternion.identity, "Reduced motion removes breathing/sway without changing combat");
                 UnityEngine.Object.DestroyImmediate(bodyObject);
+                }
             }
             require(JsonUtility.ToJson(catalog) == original, "Runtime wave/speed tuning leaves source catalog untouched");
             string shop = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/WorldShop.cs");
-            require(shop.Contains("new Vector2(0, -4.3f)") && shop.Contains("BeginHallExit") && shop.Contains("ItemPickup.Play") && shop.Contains("DeniedUntil"), "Downward exit and item/deny visual feedback wired through actual transactions");
+            require(shop.Contains("ExitPosition = new Vector2(0, -4.5f)") && shop.Contains("BeginHallExit") && shop.Contains("ItemPickup.Play") && shop.Contains("DeniedUntil"), "Downward exit and item/deny visual feedback wired through actual transactions");
             require(shop.Contains("DrawPriceTags") && !shop.Contains("CreatePlate") && shop.Contains("art.RerollMachine") && shop.Contains("art.HallDoor"), "Price ticket UI replaces mesh boxes; utility objects do not reuse offer pedestals");
             Directory.CreateDirectory("PreviewExports/K7B"); File.WriteAllLines("PreviewExports/K7B/Checks.txt", notes);
             Debug.Log("K7B_CHECKS_PASSED " + notes.Count);

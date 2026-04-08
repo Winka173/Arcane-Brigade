@@ -94,7 +94,7 @@ namespace ArcaneBrigade
             Vector2 target = ClampPosition(Champion.Position, 1.2f);
             Vector2 heading = target - boss.Position; heading = heading.sqrMagnitude > .01f ? heading.normalized : Vector2.down;
             Vector2 across = new Vector2(-heading.y, heading.x);
-            bool enraged = boss.Health < boss.Definition.Health * .5f;
+            bool enraged = BossEnraged(boss);
             float pace = enraged ? 1.15f : 1;
             int cast = boss.BossVolley / 4, side = cast % 2 == 0 ? 1 : -1;
             const float Lead = .75f; // the inked path shows this long before the piece moves

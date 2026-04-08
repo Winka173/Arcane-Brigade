@@ -343,7 +343,7 @@ namespace ArcaneBrigade
             LastDamageSource = "";
             LastDamageAmount = 0f;
             LastDamageKind = "";
-            maximumRadius = maximumSpeed = 0f;
+            maximumRadius = maximumSpeed = 0f; bossBodyReach = 0f;
             Generation++;
             Champion = Spawn(catalog.Champion, Faction.Champion, Vector2.zero);
             if (!catalog.ExplicitStartingRoster && (catalog.StartingCompanions == null || catalog.StartingCompanions.Length == 0))
@@ -565,7 +565,7 @@ namespace ArcaneBrigade
             units.Add(unit);
             unitLookup.Add(unit.Id, unit);
             if (faction == Faction.Enemy && definition.IsBoss) bossDamageSources.Add(unit.Id);
-            maximumRadius = Mathf.Max(maximumRadius, definition.Radius);
+            maximumRadius = Mathf.Max(maximumRadius, definition.Radius); NoteBossBody(definition);
             maximumSpeed = Mathf.Max(maximumSpeed, definition.Speed);
             if (faction == Faction.Companion) CompanionCount++;
             return unit;
@@ -804,15 +804,14 @@ namespace ArcaneBrigade
                 return range >= 0 && Champion != null && CanHit(source.Faction, Champion) && (Champion.Position - source.Position).sqrMagnitude <= Mathf.Pow(melee?MeleeTactics.Reach(source,Champion):range,2) ? Champion : null;
             UnitState best = null;
             float bestDistance = float.PositiveInfinity;
-            float search=melee?Mathf.Max(range+maximumRadius,source.Definition.Radius+maximumRadius+.08f):range;
+            float search=melee?Mathf.Max(range+HitPadding,source.Definition.Radius+HitPadding+.08f):range;
             spatial.Query(source.Position - Vector2.one * search, source.Position + Vector2.one * search, targetCandidates);
             for (int index = 0; index < targetCandidates.Count; index++)
             {
                 UnitState candidate = targetCandidates[index];
                 if (!CanHit(source.Faction, candidate)) continue;
                 float distance = (candidate.Position - source.Position).sqrMagnitude;
-                float reach=melee?MeleeTactics.Reach(source,candidate):range;
-                if(distance>reach*reach)continue;
+                if(melee?!MeleeReaches(source,candidate):distance>range*range)continue;
                 if (distance < bestDistance) { bestDistance = distance; best = candidate; }
             }
             return best;
@@ -851,7 +850,7 @@ namespace ArcaneBrigade
                 else if (weapon.Signature == SignatureWeapon.Stamp && unit.Faction != Faction.Enemy)
                 {
                     UnitState target = UnitWithId(unit.AttackTargetId);
-                    if (target != null && CanHit(unit.Faction, target) && (target.Position - unit.Position).magnitude <= MeleeTactics.Reach(unit,target))
+                    if (target != null && CanHit(unit.Faction, target) && MeleeReaches(unit, target))
                     {
                         ApplyDamage(target, damage, unit.Faction, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, cause: attackCause);
                         AddStamp(unit, target, damage, attackCause);
@@ -862,8 +861,7 @@ namespace ArcaneBrigade
                     for (int index = 0; index < units.Count; index++)
                     {
                         UnitState target = units[index];
-                        Vector2 delta = target.Position - unit.Position;
-                        if (CanHit(unit.Faction, target) && delta.magnitude <= MeleeTactics.Reach(unit,target) && Vector2.Dot(delta.normalized, unit.AttackDirection) >= weapon.ConeDot)
+                        if (CanHit(unit.Faction, target) && InArc(target, unit.Position, unit.AttackDirection, MeleeTactics.Reach(unit,target) - target.Definition.Radius, weapon.ConeDot))
                             ApplyWeaponDamage(target, damage, unit.Faction, weapon.Element, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, attackCause);
                     }
                 }
@@ -873,8 +871,8 @@ namespace ArcaneBrigade
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
             if (unit == Champion && HeroAwakenReplacesAttacks) return; // a transformed weapon fires instead of the usual one
-            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0), true) : FindTarget(unit, weapon.Range,true);
-            if (unit.Faction == Faction.Companion) nearest = LeadGuardTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0)) ?? nearest; // round 6: Patchwork Host's lead guards the hero
+            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? HitPadding : 0), true) : FindTarget(unit, weapon.Range,true);
+            if (unit.Faction == Faction.Companion) nearest = LeadGuardTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? HitPadding : 0)) ?? nearest; // round 6: Patchwork Host's lead guards the hero
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;
             unit.AttackTargetId = nearest.Id;

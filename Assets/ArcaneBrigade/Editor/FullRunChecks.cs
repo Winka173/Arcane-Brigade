@@ -201,12 +201,13 @@ namespace ArcaneBrigade.Editor
                 Check(simulation.Champion.Health == catalog.Champion.Health - 5f, "Armor shares received damage pipeline", results);
                 Check(simulation.Events[simulation.Events.Count - 1].Value == 5f, "Feedback reports damage after armor", results);
 
-                float plainDamage = session.PrepareCombat().Champion.Weapon.Damage, plainMultiplier = session.DamageMultiplier(source.Champions[0], 1, false);
+                CheckpointCatalog plain = session.PrepareCombat(); float plainDamage = plain.Champion.Weapon.Damage, plainAlly = plain.StartingCompanions[0].Weapon.Damage, plainMultiplier = session.DamageMultiplier(source.Champions[0], 1, false);
                 session.State.Items.Add(new ItemStack { Id = "royal-key", Count = 2 });
                 session.State.Items.Add(new ItemStack { Id = "wandering-map", Count = 2 });
                 session.State.Items.Add(new ItemStack { Id = "guardian-canopy", Count = 1 });
                 catalog = session.PrepareCombat();
-                Check(catalog.Champion.Weapon.Damage > source.Champions[0].Weapon.Damage * 1.44f && catalog.StartingCompanions[0].Weapon.Damage < source.Weapon(session.State.Roster[0].WeaponId).Damage * 1.44f, "Champion only damage build leaves allies unchanged", results);
+                // compared with the same build before the items (compiled damage carries melee tuning and range relief, not the raw asset value)
+                Check(catalog.Champion.Weapon.Damage > plainDamage * 1.2f && Mathf.Abs(catalog.StartingCompanions[0].Weapon.Damage - plainAlly) <= plainAlly * .001f, "Champion only damage build leaves allies unchanged " + catalog.Champion.Weapon.Damage / plainDamage + " / " + catalog.StartingCompanions[0].Weapon.Damage / plainAlly, results);
                 // combat damage also carries the melee tuning and range factor; the items' share is the change of the multiplier
                 Check(Mathf.Abs(catalog.Champion.Weapon.Damage / plainDamage - session.DamageMultiplier(source.Champions[0], 1, false) / plainMultiplier) < 0.001f, "Damage items scale combat exactly as the multiplier says, including rally passive " + catalog.Champion.Weapon.Damage / plainDamage + " vs " + session.DamageMultiplier(source.Champions[0], 1, false) / plainMultiplier, results);
                 Check(Mathf.Abs(catalog.CompanionLeash - baselineLeash - 2 * source.Item("wandering-map").EffectiveModifiers.Where(m => m.Effect == ItemEffect.Roam).Sum(m => m.Value)) < 0.001f /* two Wandering Maps; value from data since the 19/10/2026 balance pass */ && catalog.CompanionInterceptor, "Stacked roam adds exactly its bonus above champion baseline and interception reaches simulation", results);

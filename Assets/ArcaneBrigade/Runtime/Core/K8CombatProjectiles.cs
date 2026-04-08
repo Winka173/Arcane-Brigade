@@ -21,14 +21,14 @@ namespace ArcaneBrigade
                 float wallFraction = ProjectileWallFraction(start, destination, half, out Vector2 normal);
                 UnitState hit = null;
                 float hitFraction = wallFraction;
-                Vector2 padding = Vector2.one * (maximumRadius + projectile.Radius);
+                Vector2 padding = Vector2.one * (HitPadding + projectile.Radius);
                 spatial.Query(Vector2.Min(start, destination) - padding, Vector2.Max(start, destination) + padding, projectileCandidates);
                 foreach (UnitState target in projectileCandidates)
                 {
                     bool interceptor = projectile.Faction == Faction.Enemy && target.Alive && target.Faction == Faction.Companion && catalog.CompanionInterceptor;
                     bool blocker = catalog.ExpandedContent && EnemyInteractionRules.CanBlock(projectile, target);
                     if ((!CanHit(projectile.Faction, target) && !interceptor && !blocker) || projectile.Victims.Contains(target.Id) || projectile.Volley != null && projectile.Volley.Contains(target.Id)) continue;
-                    float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + projectile.Radius);
+                    float fraction = BodySegment(target, start, destination, projectile.Radius);
                     if (fraction >= 0f && fraction < hitFraction) { hitFraction = fraction; hit = target; }
                 }
                 Vector2 impact = hit == null && wallFraction > 1f ? destination : Vector2.Lerp(start, destination, hitFraction);

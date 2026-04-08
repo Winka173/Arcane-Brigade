@@ -237,7 +237,7 @@ namespace ArcaneBrigade
                     session.State.NextOffer = 3; session.Validate(session.State); storage.SaveRun(session.State);
                     if (RunPaths.K7B)
                     {
-                        session.State.Eggs = 10;
+                        session.State.Eggs = 10; session.State.SpecialShopVisited = true; // gold fixtures first; the dream stage is shown below
                         for (int rarity = 1; rarity <= 3; rarity++)
                         {
                             ItemDefinition item = Array.Find(content.Items, candidate => candidate.Rarity == (ItemRarity)rarity && !Array.Exists(candidate.EffectiveModifiers, modifier => modifier.Effect == ItemEffect.Health));
@@ -290,8 +290,8 @@ namespace ArcaneBrigade
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-4.8f, 2.8f);
                     yield return new WaitForSecondsRealtime(0.15f); Check(owner.Shop.Interact(), "Dedicated machine rerolls actual stock");
                     yield return new WaitForSecondsRealtime(0.12f); yield return Shot("12-reroll-machine");
-                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(4.8f, 2.8f);
-                    yield return new WaitForSecondsRealtime(0.15f); Check(owner.Shop.Interact() && owner.Shop.Special, "Special merchant visited through world interaction");
+                    owner.Session.State.SpecialShopVisited = false; owner.Shop.Display(); // fixture: back to the dream stage (it comes first in a real night)
+                    yield return new WaitForSecondsRealtime(0.15f); Check(owner.Shop.Special, "Dream market stage holds the special stock (two stages, no switch station)");
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = Vector2.zero;
                     yield return new WaitForSecondsRealtime(0.3f); yield return Shot("13-special-rarity-lights");
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(0, 0.5f);
@@ -303,6 +303,8 @@ namespace ArcaneBrigade
                     Check(owner.Shop.Interact() && owner.Session.State.Eggs == eggsBefore - 1, "Special merchant also charges separate egg currency");
                     yield return new WaitForSecondsRealtime(0.85f);
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(0, -4.3f);
+                    yield return new WaitForSecondsRealtime(0.2f); Check(owner.Shop.Interact() && !owner.HallExitPending, "Dream exit leads on to the gold shop, not the next wave");
+                    yield return new WaitForSecondsRealtime(MarketMotion.HandoffDuration + 0.3f); Check(!owner.Shop.Special && owner.Session.State.SpecialShopVisited, "Gold shop follows the dream market");
                     yield return new WaitForSecondsRealtime(0.2f); Check(owner.Shop.Interact() && owner.HallExitPending, "Downward door starts committed hall travel presentation");
                     yield return new WaitForSecondsRealtime(0.3f); yield return Shot("15-downward-exit");
                     yield return new WaitForSecondsRealtime(1.5f); Check(owner.Session.State.Wave == 2 && owner.Session.State.Phase == SessionPhase.Combat, "Curtain finishes into actual wave2 without duplicate advance");

@@ -75,6 +75,61 @@ namespace ArcaneBrigade
             float ax = shape.Half.x + radius, ay = shape.Half.y + radius;
             return d.x * d.x / (ax * ax) + d.y * d.y / (ay * ay) <= 1;
         }
+
+        // ---- hits (play-test B): hero and friend shots, swings and blasts land on the painted body too, not only the old circle ----
+        /// <summary>How far from its position a boss's painted body can reach (with a jump's lift): spatial queries pad by this.</summary>
+        public static float Reach(UnitDefinition boss)
+        {
+            if (boss == null) return 0;
+            Shape shape = Of(boss);
+            return shape.Valid ? Mathf.Max(boss.Radius, shape.Centre.magnitude + Mathf.Max(shape.Half.x, shape.Half.y) + Mathf.Min(1.15f, boss.BodyHeight * .24f)) : boss.Radius;
+        }
+
+        private static bool Ellipse(UnitState boss, float radius, out Vector2 centre, out Vector2 axes)
+        {
+            centre = axes = default;
+            if (boss == null || !boss.Definition.IsBoss || MapIdentity.Off("bosshit")) return false;
+            Shape shape = Of(boss.Definition);
+            if (!shape.Valid) return false;
+            centre = Centre(boss, shape); axes = shape.Half + Vector2.one * Mathf.Max(0, radius);
+            return axes.x > .001f && axes.y > .001f;
+        }
+
+        /// <summary>Does a blast of this radius at this point reach the painted body ellipse?</summary>
+        public static bool Hits(UnitState boss, Vector2 point, float radius)
+        {
+            if (!Ellipse(boss, radius, out Vector2 c, out Vector2 a)) return false;
+            Vector2 d = point - c;
+            return d.x * d.x / (a.x * a.x) + d.y * d.y / (a.y * a.y) <= 1;
+        }
+
+        /// <summary>Where along from→to a shot of this radius first enters the painted body (0..1), or -1. The ellipse is mapped
+        /// to a unit circle; fractions along a segment survive that mapping.</summary>
+        public static float Segment(UnitState boss, Vector2 from, Vector2 to, float radius)
+        {
+            if (!Ellipse(boss, radius, out Vector2 c, out Vector2 a)) return -1;
+            Vector2 s = new Vector2((from.x - c.x) / a.x, (from.y - c.y) / a.y), e = new Vector2((to.x - c.x) / a.x, (to.y - c.y) / a.y);
+            if (s.sqrMagnitude <= 1) return 0;
+            Vector2 delta = e - s; float squared = delta.sqrMagnitude;
+            if (squared < .000001f) return -1;
+            float projection = Vector2.Dot(s, delta), discriminant = projection * projection - squared * (s.sqrMagnitude - 1);
+            if (discriminant < 0) return -1;
+            float fraction = (-projection - Mathf.Sqrt(discriminant)) / squared;
+            return fraction >= 0 && fraction <= 1 ? fraction : -1;
+        }
+
+        /// <summary>Does a swing from origin, aimed along aim with this reach and cone, catch the painted body? Straight along the
+        /// aim, or at the body's rim facing the swinger.</summary>
+        public static bool InArc(UnitState boss, Vector2 origin, Vector2 aim, float range, float coneDot)
+        {
+            if (!Ellipse(boss, 0, out Vector2 c, out Vector2 a)) return false;
+            Vector2 d = origin - c;
+            float k = Mathf.Sqrt(d.x * d.x / (a.x * a.x) + d.y * d.y / (a.y * a.y));
+            if (k <= 1) return true; // swinging from inside the body
+            if (aim.sqrMagnitude > .0001f && Segment(boss, origin, origin + aim.normalized * Mathf.Max(0, range), 0) >= 0) return true;
+            Vector2 rim = c + d / k - origin;
+            return rim.magnitude <= range && Vector2.Dot(rim.normalized, aim) >= coneDot;
+        }
     }
 }
 
@@ -82,6 +137,43 @@ namespace ArcaneBrigade
 {
     public sealed partial class CombatSimulation
     {
+        // Play-test B: hit tests against a target's body. Everyone keeps its circle; a boss also counts its painted body ellipse.
+        private float bossBodyReach;
+        /// <summary>Spatial padding for hit queries: the largest body circle, or a boss's painted reach.</summary>
+        private float HitPadding => Mathf.Max(maximumRadius, bossBodyReach);
+        private void NoteBossBody(UnitDefinition definition) { if (definition != null && definition.IsBoss) bossBodyReach = Mathf.Max(bossBodyReach, BossBodyShape.Reach(definition)); }
+
+        /// <summary>A blast of this radius at this point touches the target's body.</summary>
+        private static bool InBody(UnitState target, Vector2 at, float radius)
+        {
+            float reach = radius + target.Definition.Radius;
+            return (target.Position - at).sqrMagnitude <= reach * reach || target.Definition.IsBoss && BossBodyShape.Hits(target, at, radius);
+        }
+
+        /// <summary>Where a shot or beam of this half width along from→to first meets the target's body (0..1), or -1.</summary>
+        private static float BodySegment(UnitState target, Vector2 from, Vector2 to, float width)
+        {
+            float circle = SegmentCircle(from, to, target.Position, target.Definition.Radius + width);
+            if (!target.Definition.IsBoss) return circle;
+            float body = BossBodyShape.Segment(target, from, to, width);
+            return body < 0 ? circle : circle < 0 ? body : Mathf.Min(circle, body);
+        }
+
+        /// <summary>A swing from origin along aim (reach past the body's edge, cone) catches the target's body.</summary>
+        private static bool InArc(UnitState target, Vector2 origin, Vector2 aim, float range, float coneDot)
+        {
+            Vector2 delta = target.Position - origin;
+            if (delta.magnitude <= range + target.Definition.Radius && Vector2.Dot(delta.normalized, aim) >= coneDot) return true;
+            return target.Definition.IsBoss && BossBodyShape.InArc(target, origin, aim, range, coneDot);
+        }
+
+        /// <summary>The melee unit's weapon reaches the target's body (MeleeTactics.Reach, or the boss's painted body).</summary>
+        private static bool MeleeReaches(UnitState unit, UnitState target)
+        {
+            float reach = MeleeTactics.Reach(unit, target);
+            return (target.Position - unit.Position).sqrMagnitude <= reach * reach || target.Definition.IsBoss && BossBodyShape.Hits(target, unit.Position, reach - target.Definition.Radius);
+        }
+
         /// <summary>For captures (play-test item 22): the boss winds up an aimed fan while a slam, a lash and a shockwave wait in
         /// their warnings around the hero, so every telegraph shape is on screen at once.</summary>
         public void BossTelegraphCaptureFixture()

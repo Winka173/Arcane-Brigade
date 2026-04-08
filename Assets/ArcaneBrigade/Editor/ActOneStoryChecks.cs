@@ -94,6 +94,13 @@ namespace ArcaneBrigade.Editor
         });
         public static void RunCopyAudit() => Execute("CopyAudit", new (string name, Action run)[] { ("CopyAudit", CopyAuditChecks.Run) });
         public static void RunK32() => Execute("K32", new (string name, Action run)[] { ("K32", K32Checks.Run) });
+        /// <summary>Difficulty nudge, boss body hits and the stale-check cleanup (21/10/2026): the suites they touch, in one
+        /// launch. K3Final chains K1, K2, K3, K32 and K32Altar.</summary>
+        public static void RunCleanup() => Execute("Cleanup", new (string name, Action run)[]
+        {
+            ("ModeBalance", ModeBalanceChecks.Run), ("PhaseD.BossShapes", PlaytestPhaseDChecks.BossShapes), ("K6", K6Checks.Run),
+            ("K7B", K7BChecks.Run), ("K12", () => { Directory.CreateDirectory("PreviewExports/K12"); K12Checks.Run(); }), ("K3Final", K3FinalChecks.Run),
+        });
 
         public static void Run() => Execute("ActOneStory", new (string name, Action run)[]
             {

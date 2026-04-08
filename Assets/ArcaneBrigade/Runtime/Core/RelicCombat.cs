@@ -184,7 +184,7 @@ namespace ArcaneBrigade
                 if (weapon.Kind == WeaponKind.Projectile) EmitProjectile(phantom,RelicAttackDamage(phantom,weapon.Damage),false,NewCause(Champion.Id).Child("curio-sixfold"));
                 else
                     foreach (UnitState enemy in units)
-                        if (CanHit(Faction.Champion,enemy) && (enemy.Position - Champion.Position).magnitude <= weapon.Range + enemy.Definition.Radius)
+                        if (CanHit(Faction.Champion,enemy) && InBody(enemy, Champion.Position, weapon.Range))
                             ApplyWeaponDamage(enemy,RelicAttackDamage(phantom,weapon.Damage),Faction.Champion,weapon.Element,"Phantom weapon",(enemy.Position - Champion.Position).normalized,weapon,false,NewCause(Champion.Id).Child("curio-sixfold"));
                 events.Add(new CombatEvent(CombatEventKind.Fire,Champion.Position,Faction.Champion,direction:phantom.AttackDirection,weapon:weapon,cause:NewCause(Champion.Id).Child("curio-sixfold")));
             }

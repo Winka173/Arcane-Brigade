@@ -9,6 +9,7 @@ namespace ArcaneBrigade.Editor
 {
     public static class K6Checks
     {
+        private static float k6PeacefulHealth, k6PeacefulHero; private static int k6PeacefulBudget;
         public static void Run()
         {
             var results = new List<string>();
@@ -67,9 +68,19 @@ namespace ArcaneBrigade.Editor
                 {
                     session.Start(catalog.Champions[0].Id, 61, level);
                     CheckpointCatalog combat = session.PrepareCombat();
-                    float enemyHealthTrait = catalog.StatRevision > 0 ? K10StatRules.Factor(session.Bonus(ItemEffect.EnemyHealth)) : 1;
-                    require(Mathf.Approximately(combat.MeleeEnemy.Health, catalog.Enemies[0].Health * (1 + level * 0.18f) * enemyHealthTrait) && combat.EnemyBudget == Mathf.CeilToInt(33 * (1 + level * 0.12f)), "Difficulty " + level + " explicit HP, authored trait and budget");
-                    require(combat.MeleeEnemy.ContactDamage <= 14 && combat.MeleeEnemy.Weapon.Damage <= 14 && combat.Champion.Health == catalog.Champions[0].Health, "Difficulty " + level + " damage caps and base Champion unchanged");
+                    // current rules (JourneyBalance table, phase C budget x WaveCadence.LengthScale): HP scales by the difficulty's
+                    // health factor over Peaceful; the wave-1 budget follows RunSession's density formula when no relic or modifier bends it
+                    float enemyHealthTrait = catalog.StatRevision > 0 ? K10StatRules.Factor(session.Bonus(ItemEffect.EnemyHealth), 0.2f, 10) : 1;
+                    if (level == 0) { k6PeacefulHealth = combat.MeleeEnemy.Health / enemyHealthTrait; k6PeacefulBudget = combat.EnemyBudget; }
+                    float healthRatio = JourneyBalance.EnemyHealth(level, 1) / JourneyBalance.EnemyHealth(0, 1);
+                    int budget = Mathf.CeilToInt((30 + 3) * CarnivalBalance.EnemyDensity(1) * JourneyBalance.EnemyDensity(level, 1));
+                    budget = Mathf.Min(690, Mathf.CeilToInt(Mathf.Min(600, Mathf.CeilToInt(budget * 1.4f)) * WaveCadence.LengthScale));
+                    bool plainBudget = Mathf.Approximately(session.Bonus(ItemEffect.EnemyCount), 0) && session.ActiveModifier == null;
+                    require(Mathf.Abs(combat.MeleeEnemy.Health / enemyHealthTrait - k6PeacefulHealth * healthRatio) <= k6PeacefulHealth * healthRatio * .002f && (!plainBudget || combat.EnemyBudget == budget) && combat.EnemyBudget >= k6PeacefulBudget, "Difficulty " + level + " explicit HP, authored trait and budget (" + combat.EnemyBudget + " vs " + budget + ")");
+                    // caps of RunSession.BuildEnemy: 14 before the difficulty/wave pressure, contact x1.08 x1.6 on top; the hero is the same on every difficulty
+                    float pressure = JourneyBalance.EnemyDamage(level, 1) * CarnivalBalance.EnemyDamage(1) * 1.08f * OctoberBalance.EndlessDamage(1, false) * 1.08f;
+                    if (level == 0) k6PeacefulHero = combat.Champion.Health;
+                    require(combat.MeleeEnemy.ContactDamage <= 14 * pressure * 1.6f + .001f && combat.MeleeEnemy.Weapon.Damage <= 14 * pressure + .001f && Mathf.Approximately(combat.Champion.Health, k6PeacefulHero), "Difficulty " + level + " damage caps and base Champion unchanged (" + combat.MeleeEnemy.ContactDamage + ", " + combat.Champion.Health + ")");
                     storage.SaveRun(session.State); session.Restore(storage.LoadRun(session));
                     require(session.State.Difficulty == level && session.State.Seed == 61, "Difficulty " + level + " resume preserves identity");
                 }
@@ -144,15 +155,15 @@ namespace ArcaneBrigade.Editor
                 require(runBefore == JsonUtility.ToJson(session.State) && catalogBefore == JsonUtility.ToJson(catalog), "All cosmetic bundles change no run/RNG/threat/catalog values");
                 require(RunMeta.CosmeticUnlocked(new PlayerProfile(), 0) && !RunMeta.CosmeticUnlocked(new PlayerProfile(), 1) && !RunMeta.CosmeticUnlocked(new PlayerProfile(), 2), "Cosmetic unlock gates default accessible no hidden stat rewards");
                 session.Start(catalog.Champions[0].Id, 62); session.State.Phase = SessionPhase.Shop; session.State.Gold = 100000;
-                string recruit = catalog.Companions[0].Id;
+                string recruit = session.State.Roster[0].UnitId; // the hero's own starting friend (HeroLoadout), not always the first catalog companion
                 for (int purchase = 0; purchase < 2; purchase++)
                 {
-                    session.State.Offers.Clear();
+                    session.State.Offers.Clear(); session.State.NewRecruitsThisWave = session.State.NewSpeciesRecruitsThisWave = 0; // one copy per wave (RecruitmentRules): each on its own night
                     var offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Companion, Id = recruit, Price = 1 };
                     session.State.Offers.Add(offer);
                     require(session.Buy(offer.Token), "Committed recruitment " + purchase);
                 }
-                require(session.State.Roster.Count == 1 && session.State.Roster[0].Tier == 2 && session.State.AcquiredVariants.Count(entry => entry.Tier == 1) == 3 && session.State.AcquiredVariants.Any(entry => entry.Tier == 2), "Discovery journal retains consumed rolled variants through automatic3merge");
+                require(session.State.Roster.Count(entry => entry.UnitId == recruit) == 1 && session.State.Roster.Find(entry => entry.UnitId == recruit).Tier == 2 && session.State.AcquiredVariants.Count(entry => entry.UnitId == recruit && entry.Tier == 1) == 3 && session.State.AcquiredVariants.Any(entry => entry.UnitId == recruit && entry.Tier == 2), "Discovery journal retains consumed rolled variants through automatic3merge (" + session.State.Roster.Count + " in roster)");
                 var mergeProfile = new PlayerProfile(); RunMeta.Discover(mergeProfile, session.State, catalog);
                 require(session.State.AcquiredVariants.All(entry => mergeProfile.SeenTiers.Contains(entry.WeaponId + "/" + entry.Tier)), "Museum retains all actually received tiers even when bodies consumed");
                 session.State.Offers.Clear();

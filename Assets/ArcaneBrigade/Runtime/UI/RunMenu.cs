@@ -11,6 +11,8 @@ namespace ArcaneBrigade
         /// <summary>The Waiting Room (play-test item 27): the Nursery friend and Wardrobe choices picked in hero select, and
         /// whether the menu opens in the hub (back from a finished run).</summary>
         public static string StartFriend; public static bool AltStarter, SecondHabit, OpenHub;
+        /// <summary>The Postbox's keepsake relic picked in hero select; the Daily Dream's day (null: an ordinary run).</summary>
+        public static string Keepsake, Daily;
     }
     public sealed class RunMenu : MonoBehaviour
     {
@@ -55,7 +57,7 @@ namespace ArcaneBrigade
         // the Waiting Room between runs (play-test item 27) and the run-start choices it unlocks in hero select
         private readonly MetaHub hub = new MetaHub();
         public MetaHub Hub => hub;
-        private string nurseryPick; private bool altCoat, habit; private int loadoutHero = -1;
+        private string nurseryPick, keepsakePick, dailyDay; private bool altCoat, habit; private int loadoutHero = -1;
         public void SelectChampionForDiagnostics(int index)
         {
             if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Hero fixture requires isolated capture mode");
@@ -101,6 +103,7 @@ namespace ArcaneBrigade
             if (CurrentPage != page) CheckpointAudio.PlayInterfaceId(page == Page.Landing ? "ui.back" : "ui.open");
             if (page == Page.Hub && CurrentPage != Page.Hub) hub.Enter();
             if (page == Page.Roster) loadoutHero = -1;
+            if (page != Page.ConfirmOverwrite) dailyDay = null; // the Daily Dream goes straight from the Window (or through the overwrite check)
             CurrentPage = page;
             GlossaryUI.Close();
             navigation.Reset(); pageChangedAt = Time.unscaledTime;
@@ -239,6 +242,8 @@ namespace ArcaneBrigade
             RunLaunch.Difficulty = challenge > 0 ? 0 : difficulty;
             RunLaunch.ChallengeIndex = challenge;
             RunLaunch.StartFriend = nurseryPick; RunLaunch.AltStarter = altCoat; RunLaunch.SecondHabit = habit;
+            RunLaunch.Keepsake = keepsakePick; RunLaunch.Daily = dailyDay;
+            if (dailyDay != null) { RunLaunch.Difficulty = 0; RunLaunch.ChallengeIndex = 0; }
             SceneManager.LoadScene("RunArena");
         }
 
@@ -284,7 +289,7 @@ namespace ArcaneBrigade
                 case Page.Roster: DrawRoster(); break;
                 case Page.Hub:
                     HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
-                    if (chosen == HubAction.NextNight) ShowPage(Page.Roster); else if (chosen == HubAction.Back) ShowPage(Page.Landing);
+                    if (chosen == HubAction.NextNight) ShowPage(Page.Roster); else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
                     break;
                 case Page.Resume:
                     Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + saved.Roster.Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
@@ -572,6 +577,17 @@ namespace ArcaneBrigade
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
         }
+        /// <summary>The Window's Daily Dream: today's hero and pact, Peaceful, the day's seed; straight into the night.</summary>
+        private void StartDaily()
+        {
+            string day = MetaProgression.Today;
+            UnitDefinition hero = MetaProgression.DailyHero(profile, catalog, day);
+            if (hero == null || diagnosticState) return;
+            selection = Array.IndexOf(catalog.Champions, hero); difficulty = 0; challenge = 0;
+            nurseryPick = null; altCoat = false; habit = false; loadoutHero = -1;
+            if (!MetaProgression.Keepsakes(profile, catalog).Contains(keepsakePick ?? "")) keepsakePick = MetaProgression.Keepsakes(profile, catalog).Contains(profile.Meta.Keepsake) ? profile.Meta.Keepsake : null;
+            if (existingSave) { ShowPage(Page.ConfirmOverwrite); dailyDay = day; } else { dailyDay = day; Launch(false); }
+        }
         private static Page BackOf(Page page) => page == Page.ConfirmOverwrite ? Page.Roster : page == Page.Roster ? Page.Hub : Page.Landing;
 
         /// <summary>Hero select's Waiting Room row (only what is unlocked): the Nursery's three friends, the Wardrobe's spare coat
@@ -589,11 +605,14 @@ namespace ArcaneBrigade
                 HeroMastery remembered = MetaProgression.Mastery(profile, champion.Id);
                 altCoat = remembered?.AltStarter == true; habit = remembered?.SecondHabit == true;
                 nurseryPick = friends.Count > 0 ? friends[0].Id : null;
+                keepsakePick = MetaProgression.Keepsakes(profile, catalog).Contains(profile.Meta.Keepsake) ? profile.Meta.Keepsake : null;
             }
+            var keeps = MetaProgression.Keepsakes(profile, catalog);
+            if (keepsakePick != null && !keeps.Contains(keepsakePick)) keepsakePick = null;
             if (coat == null) altCoat = false;
             if (!canHabit) habit = false;
             if (nurseryPick != null && !friends.Exists(f => f.Id == nurseryPick)) nurseryPick = null;
-            if (friends.Count == 0 && coat == null && !canHabit) return false;
+            if (friends.Count == 0 && coat == null && !canHabit && keeps.Count == 0) return false;
             float x = row.x; string caption = null;
             if (friends.Count > 0)
             {
@@ -622,6 +641,16 @@ namespace ArcaneBrigade
                 if (habit) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "").TrimEnd('.'); }
                 ArcadeSkin.PortraitSlot(cell, habit); RunHud.Sprite(new Rect(cell.x + 4, cell.y + 4, 36, 36), MetaIcons.Station(MetaStation.Wardrobe, true));
                 if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                x += 56;
+            }
+            if (keeps.Count > 0)
+            {
+                // the Postbox: one keepsake relic to bring (a tap moves to the next one, then none)
+                Rect cell = new Rect(x, row.y, 44, 44); bool on = keepsakePick != null;
+                ItemDefinition relic = on ? catalog.Item(keepsakePick) : null;
+                if (on) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Brings " + relic?.Name; }
+                ArcadeSkin.PortraitSlot(cell, on); RunHud.Sprite(new Rect(cell.x + 5, cell.y + 5, 34, 34), relic?.Icon ?? MetaIcons.Station(MetaStation.Postbox, true));
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { int at = on ? keeps.IndexOf(keepsakePick) : -1; keepsakePick = at + 1 < keeps.Count ? keeps[at + 1] : null; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (caption != null) GUI.Label(new Rect(row.x, row.yMax + 1, row.width, 22), caption, note);
             return true;

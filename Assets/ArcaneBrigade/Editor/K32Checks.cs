@@ -32,7 +32,7 @@ namespace ArcaneBrigade.Editor
                     session.State.Phase = SessionPhase.Shop;
                     session.State.Gold = 1000;
                     int first = session.RerollCost;
-                    require(session.Reroll() && session.State.Gold == 1000 - first && session.RerollCost == first + 2, "Reroll pays displayed price and increases next price");
+                    require(session.Reroll() && session.State.Gold == 1000 - first && session.RerollCost > first, "Reroll pays displayed price and increases next price"); // fee grows with the shop's price stage (balance pass 19/10/2026), not a flat +2
                     restored.Restore(session.State);
                     require(session.Reroll() && restored.Reroll() && JsonUtility.ToJson(session.State) == JsonUtility.ToJson(restored.State), "Weighted shop and reroll counter resume deterministically");
                     string before = JsonUtility.ToJson(session.State);
@@ -68,7 +68,7 @@ namespace ArcaneBrigade.Editor
                     require(Mathf.Approximately(combat.Champion.Weapon.Damage, plainDamage * session.DamageMultiplier(champion, 1, false) / plainMultiplier), "Combat uses scoped Champion damage");
                     require(combat.StartingCompanions[0].Health == catalog.Unit(entry.UnitId).Health, "Champion health modifiers do not change immortal ally definitions");
                     require(model.Stats.Find(row => row.Name == "Hero attack cycle").Summary == combat.Champion.Weapon.Cooldown.ToString("0.00") + " s" && model.Companions[0].CombatValues["Cycle"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s", "Details attack cycles equal combat for both scopes");
-                    require(model.Stats.Find(row => row.Name == "Move speed").Summary == combat.Champion.Speed.ToString("0.00") && model.Companions[0].CombatValues["Speed"] == combat.StartingCompanions[0].Speed.ToString("0.###"), "Negative movement tradeoff matches Details and combat");
+                    require(model.Stats.Find(row => row.Name == "Movement speed").Summary == combat.Champion.Speed.ToString("0.00") && model.Companions[0].CombatValues["Speed"] == combat.StartingCompanions[0].Speed.ToString("0.###"), "Negative movement tradeoff matches Details and combat");
                     require(model.Relics[0].Explanation.Contains("-5%") && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Champion)) && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Companions)), "Relic explanation exposes all positive and negative localized scopes");
                     item.Stacking = StackPolicy.Unique;
                     offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 1 };
@@ -111,7 +111,7 @@ namespace ArcaneBrigade.Editor
                     int minorityOffers = 0;
                     for (int sample = 0; sample < 300; sample++)
                     {
-                        weighted.State.Gold = 100000;
+                        weighted.State.Gold = 100000; weighted.State.RerollsThisShop = 0; // the fee grows each refresh; only the stock is sampled
                         if (!weighted.Reroll()) throw new InvalidOperationException("Weighted distribution roll failed " + sample);
                         minorityOffers += weighted.State.Offers.FindAll(offer => offer.Kind == OfferKind.Item && offer.Id == minority.Id).Count;
                     }
@@ -121,7 +121,7 @@ namespace ArcaneBrigade.Editor
                     weighted.State.Wave = 2;
                     weighted.State.Phase = SessionPhase.Victory;
                     weighted.EnterEndless();
-                    require(weighted.State.RerollsThisShop == 0 && weighted.RerollCost == 2, "New rest boundary resets reroll escalation to two gold");
+                    require(weighted.State.RerollsThisShop == 0 && weighted.RerollCost >= 1, "New rest boundary resets reroll escalation (fee back to the stage's base, " + weighted.RerollCost + " gold)");
                     var eggItems = weighted.State.SpecialOffers.FindAll(offer => offer.Kind == OfferKind.Item); // the egg altar also carries a special recruit slot
                     require(eggItems.Count >= 2 && eggItems.TrueForAll(offer => offer.Id == eggOnly.Id && offer.Currency == ShopCurrency.Eggs) && weighted.State.SpecialOffers.TrueForAll(offer => offer.Currency == ShopCurrency.Eggs) && !weighted.State.Offers.Exists(offer => offer.Id == eggOnly.Id), "Egg-only weighted pool is separate from gold offers");
                     weighted.State.Items.Add(new ItemStack { Id = "key-oil", Count = 1 });

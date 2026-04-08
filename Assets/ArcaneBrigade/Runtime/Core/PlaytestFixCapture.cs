@@ -123,6 +123,21 @@ namespace ArcaneBrigade
                 Check(menu.CurrentPage == RunMenu.Page.Hub && menu.Hub.Focus >= 0, "Hub opens with a station in reach"); yield return Shot("Item27_Hub");
                 menu.Hub.OpenStation(MetaStation.Lantern); yield return new WaitForSecondsRealtime(.5f);
                 Check(menu.Hub.PanelOpen, "Station cards open"); yield return Shot("Item27_StationCard");
+                // the last five stations (21/10/2026): letters, the museum's shelves, the pacts, the Daily Dream, the Bell
+                meta.SeenBosses.Add(catalog.Bosses[0].Id); meta.Wins = 1; meta.Meta.DuetsFound = 1;
+                MetaProgression.ReadLetter(meta, "letter.boss"); MetaProgression.ReadLetter(meta, "letter.ten");
+                foreach (UnitDefinition u in catalog.Companions.Take(24)) meta.SeenUnits.Add(u.Id);
+                foreach (ItemDefinition item in catalog.Items.Take(18)) meta.SeenItems.Add(item.Id);
+                MetaProgression.TogglePact(meta, MetaProgression.PactSwift); MetaProgression.TogglePact(meta, MetaProgression.PactElites);
+                meta.Meta.PactBest.Add(new MetaScore { Key = catalog.Champions[0].Id, Score = 18420, Wave = 12, Heat = 5 });
+                meta.Meta.Favour = 1;
+                foreach (var (station, shot) in new[] { (MetaStation.Postbox, "Item27_Postbox"), (MetaStation.Museum, "Item27_Museum"), (MetaStation.NightPact, "Item27_NightPact"), (MetaStation.Window, "Item27_DailyDream"), (MetaStation.Bell, "Item27_Bell") })
+                {
+                    menu.Hub.Close(); menu.Hub.OpenStation(station);
+                    if (station == MetaStation.NightPact) { menu.Hub.MoveFocus(1); menu.Hub.MoveFocus(1); } // keys: the focus on the second pact
+                    yield return new WaitForSecondsRealtime(.5f);
+                    Check(menu.Hub.PanelOpen && menu.Hub.Open == station, "Station opens: " + station); yield return Shot(shot);
+                }
                 menu.Hub.Close(); menu.ShowPage(RunMenu.Page.Roster); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item27_HeroSelectLoadout");
             }
 
@@ -184,6 +199,7 @@ namespace ArcaneBrigade
                 owner = FindAnyObjectByType<ArenaController>();
                 Check(owner.EnterSecret(shown), "Secret room opens: " + shown); yield return new WaitForSecondsRealtime(.5f);
                 yield return Shot("Item07_SecretEventPlates");
+                yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item07_SecretEventCodePlates"); // banner, vignette, pedestal, tinted rows
             }
             else Check(false, "Secret portal seed");
 

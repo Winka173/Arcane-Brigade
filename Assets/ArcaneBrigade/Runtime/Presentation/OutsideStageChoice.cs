@@ -110,7 +110,9 @@ namespace ArcaneBrigade
             {
                 // the Keeper's gifts as plates (play-test 20/10/2026, item 7): picture, name, what it gives in a few short
                 // lines; one tap selects, one TAKE
-                GUI.Label(new Rect(340, 170, 1240, 55), "Take one gift", title);
+                // drawn in code like the secret rooms (21/10/2026): a title banner, walnut plates (a running light on the one
+                // looked at), each gift on a velvet-and-brass pedestal
+                ArcadeSkin.TitleBanner(new Rect(660, 160, 600, 66), "TAKE ONE GIFT", title);
                 if (cardName == null) { cardName = ArcadeTypography.Style(26, true); cardName.wordWrap = true; cardName.alignment = TextAnchor.MiddleCenter; cardLine = ArcadeTypography.Style(20); identity = ArcadeTypography.Style(17); }
                 for (int i = 0; i < 3; i++)
                 {
@@ -118,13 +120,16 @@ namespace ArcaneBrigade
                     giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = 1; giftOffer.Token = -1; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
                     Rect plate = new Rect(300 + i * 450, 250, 430, 560);
-                    if (preview == i) RarityDescriptionFrame.Draw(plate, ItemRarity.Rainbow, owner.PresentationClock); else ArcadeSkin.EventPlate(plate, false, true);
-                    Rect inner = preview == i ? RarityDescriptionFrame.Content(plate, ItemRarity.Rainbow) : new Rect(plate.x + 24, plate.y + 24, plate.width - 48, plate.height - 48);
-                    ShopDescriptionCard.DrawSprite(new Rect(inner.center.x - 70, inner.y, 140, 140), giftCard.Portrait);
+                    ArcadeSkin.CodePlate(plate, CodeTone.Walnut, preview == i ? 1 : 0);
+                    if (preview == i) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), owner.PresentationClock, RunModifierRules.RarityColor(ItemRarity.Rainbow));
+                    Rect inner = new Rect(plate.x + 24, plate.y + 18, plate.width - 48, plate.height - 40);
+                    Rect stand = new Rect(inner.center.x - 110, inner.y, 220, 160);
+                    ArcadeSkin.Pedestal(stand, owner.PresentationClock);
+                    ShopDescriptionCard.DrawSprite(ArcadeSkin.PedestalSeat(stand), giftCard.Portrait);
                     cardName.normal.textColor = RunModifierRules.RarityColor(ItemRarity.Rainbow); cardLine.normal.textColor = ArcadeSkin.Cream; identity.normal.textColor = ArcadeSkin.Teal;
-                    GUI.Label(new Rect(inner.x, inner.y + 146, inner.width, 64), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
+                    GUI.Label(new Rect(inner.x, inner.y + 162, inner.width, 56), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     string gives = giftCard.Summary ?? "";
-                    float top = inner.y + 214, height = GlossaryUI.Height(gives, cardLine, inner.width - 14) + 8;
+                    float top = inner.y + 222, height = GlossaryUI.Height(gives, cardLine, inner.width - 14) + 8;
                     if (preview == i) descriptionScroll = ScrollPanel.Begin(new Rect(inner.x, top, inner.width, inner.yMax - top), descriptionScroll, new Rect(0, 0, inner.width - 14, height));
                     GlossaryUI.Text(preview == i ? new Rect(0, 0, inner.width - 14, height) : new Rect(inner.x, top, inner.width - 14, inner.yMax - top), gives, cardLine);
                     if (preview == i) ScrollPanel.End();

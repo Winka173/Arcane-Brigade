@@ -103,7 +103,38 @@ namespace ArcaneBrigade.Editor
                 Rect art = shape.Painted;
                 var clear = new[] { new Vector2(art.xMax + hero + .15f, art.center.y), new Vector2(art.xMin - hero - .15f, art.center.y), new Vector2(art.center.x, art.yMax + hero + .15f), new Vector2(art.center.x, art.yMin - hero - .15f) };
                 foreach (Vector2 at in clear) Require(!Hurts(c, at), "Standing clear of the art never hurts: " + name + " at " + at.ToString("F2"));
+                HitsLandOnBody(probe, shape, name);
             }
+        }
+
+        private static readonly MethodInfo inBody = typeof(CombatSimulation).GetMethod("InBody", BindingFlags.Static | BindingFlags.NonPublic);
+        private static readonly MethodInfo bodySegment = typeof(CombatSimulation).GetMethod("BodySegment", BindingFlags.Static | BindingFlags.NonPublic);
+        private static readonly MethodInfo inArc = typeof(CombatSimulation).GetMethod("InArc", BindingFlags.Static | BindingFlags.NonPublic);
+        private static readonly PropertyInfo hitPadding = typeof(CombatSimulation).GetProperty("HitPadding", BindingFlags.Instance | BindingFlags.NonPublic);
+        /// <summary>Play-test B: hero and friend shots, swings and blasts hit the painted body ellipse, not only the old circle;
+        /// ordinary bodies keep their circle; spatial queries pad far enough to find the painted body.</summary>
+        private static void HitsLandOnBody(CombatSimulation sim, BossBodyShape.Shape shape, string name)
+        {
+            Require(inBody != null && bodySegment != null && inArc != null && hitPadding != null, "Body hit helpers present");
+            UnitState b = sim.Boss; b.Position = b.PreviousPosition = Vector2.zero; b.Facing = Vector2.right; b.BodyLift = 0;
+            float radius = b.Definition.Radius;
+            Vector2 c = BossBodyShape.Centre(b, shape);
+            Vector2 dir = Mathf.Abs(c.x + shape.Half.x) >= Mathf.Abs(c.x - shape.Half.x) ? Vector2.right : Vector2.left;
+            Vector2 body = c + dir * shape.Half.x * .9f; // on the painted body, past the old circle
+            Require(body.magnitude > radius + .05f, "Probe point lies past the old circle: " + name + " at " + body.ToString("F2"));
+            Require((bool)inBody.Invoke(null, new object[] { b, body, 0f }), "A blast on the painted body hits: " + name);
+            Require(!(bool)inBody.Invoke(null, new object[] { b, c + dir * (shape.Painted.width + 1), 0f }), "A blast clear of the art misses: " + name);
+            float fraction = (float)bodySegment.Invoke(null, new object[] { b, body + dir * 4, body, .1f });
+            Require(fraction > 0 && fraction < 1, "A shot flying at the painted body hits it on the way in: " + name + " f=" + fraction);
+            Vector2 high = c + Vector2.up * (shape.Painted.height + 1);
+            Require((float)bodySegment.Invoke(null, new object[] { b, high + dir * 6, high - dir * 6, .1f }) < 0, "A shot passing above the art misses: " + name);
+            Require((bool)inArc.Invoke(null, new object[] { b, body + dir * 1.5f, -dir, 1.6f, .5f }), "A swing at the painted body hits: " + name);
+            Require(!(bool)inArc.Invoke(null, new object[] { b, body + dir * 1.5f, -dir, .3f, .5f }), "A swing short of the painted body misses: " + name);
+            Require(!(bool)inArc.Invoke(null, new object[] { b, body + dir * 1.5f, dir, 1.6f, .5f }), "A swing facing away misses: " + name);
+            float padding = (float)hitPadding.GetValue(sim);
+            Require(padding >= BossBodyShape.Reach(b.Definition) - .001f && padding >= (body - b.Position).magnitude && padding < 12, "Hit queries pad to the painted body: " + name + " pad=" + padding);
+            UnitState hero = sim.Champion; float r = hero.Definition.Radius; Vector2 side = hero.Position + Vector2.right * (r + .5f);
+            Require((bool)inBody.Invoke(null, new object[] { hero, side, .51f }) && !(bool)inBody.Invoke(null, new object[] { hero, side, .49f }), "Ordinary bodies keep their circle");
         }
         private static bool Hurts(BossCase c, Vector2 offset)
         {

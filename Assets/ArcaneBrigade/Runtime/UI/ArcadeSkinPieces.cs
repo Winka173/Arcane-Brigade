@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     public enum KitPiece { Button, Plate, Tab, Dialogue, Card, Tooltip, Plaque, WaveBanner }
 
     /// <summary>Palette of the code-drawn plates (no images): gilt gold, walnut, oxblood, night navy, cream paper.</summary>
-    public enum CodeTone { Gold, Walnut, Oxblood, Navy, Cream }
+    public enum CodeTone { Gold, Walnut, Oxblood, Navy, Cream, Green }
 
     public static partial class ArcadeSkin
     {
@@ -94,7 +94,7 @@ namespace ArcaneBrigade
 
         private static Color ToneColor(CodeTone tone) =>
             tone == CodeTone.Gold ? new Color(.79f, .61f, .27f) : tone == CodeTone.Walnut ? new Color(.33f, .19f, .09f) : tone == CodeTone.Oxblood ? new Color(.46f, .07f, .09f)
-            : tone == CodeTone.Navy ? new Color(.08f, .13f, .20f) : new Color(.95f, .89f, .76f);
+            : tone == CodeTone.Navy ? new Color(.08f, .13f, .20f) : tone == CodeTone.Green ? new Color(.15f, .34f, .21f) : new Color(.95f, .89f, .76f);
 
         /// <summary>Label colour on a code-drawn plate (ink on gold and cream, cream on the dark tones).</summary>
         public static Color CodeText(CodeTone tone) => tone == CodeTone.Gold || tone == CodeTone.Cream ? KitInk : KitCream;

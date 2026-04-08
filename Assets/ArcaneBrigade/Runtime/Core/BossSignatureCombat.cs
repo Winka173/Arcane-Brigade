@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             Vector2 target = boss.AbilityTarget;
             Vector2 heading = boss.TelegraphDirection.sqrMagnitude > 0.001f ? boss.TelegraphDirection : Vector2.down;
             Vector2 across = new Vector2(-heading.y, heading.x);
-            bool enraged = boss.Health < boss.Definition.Health * 0.5f;
+            bool enraged = BossEnraged(boss);
             if (BossEncounterRules.Leaps(pattern, variation))
             {
                 boss.AbilityOrigin = boss.Position;

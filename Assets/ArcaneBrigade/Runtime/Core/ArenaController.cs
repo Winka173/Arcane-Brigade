@@ -126,9 +126,9 @@ namespace ArcaneBrigade
                 session = new RunSession(runCatalog);
                 RunSnapshot saved = RunLaunch.Resume ? storage.LoadRun(session) : null;
                 if (saved != null) session.Restore(saved);
-                else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
+                else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, !string.IsNullOrEmpty(RunLaunch.Daily) ? MetaProgression.DailySeed(RunLaunch.Daily) : RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
                 // a new run takes the Waiting Room's loadout and the choices made in hero select (play-test item 27)
-                if (saved == null) session.ApplyMeta(MetaProgression.Loadout(profile, runCatalog, session.State.ChampionId, RunLaunch.StartFriend, RunLaunch.AltStarter, RunLaunch.SecondHabit));
+                if (saved == null) session.ApplyMeta(MetaProgression.Loadout(profile, runCatalog, session.State.ChampionId, RunLaunch.StartFriend, RunLaunch.AltStarter, RunLaunch.SecondHabit, keepsake: RunLaunch.Keepsake, daily: RunLaunch.Daily));
                 if (session.State.WaitingCampaign?.Room > 0) { SceneManager.LoadScene("WaitingRoom"); return; }
                 ArcadeSkin.Bundle = profile.Cosmetic;
                 PresentationSettings.Apply(profile); PresentationSettings.ApplyDisplay(profile);
@@ -610,7 +610,7 @@ namespace ArcaneBrigade
             MetaProgression.Ensure(profile);
             HeroMastery mastery = MetaProgression.Mastery(profile, hero);
             var friends = MetaProgression.NurseryChoices(profile, runCatalog, runCatalog.Unit(hero));
-            return MetaProgression.Loadout(profile, runCatalog, hero, friends.Count > 0 ? friends[0].Id : null, mastery?.AltStarter == true, mastery?.SecondHabit == true);
+            return MetaProgression.Loadout(profile, runCatalog, hero, friends.Count > 0 ? friends[0].Id : null, mastery?.AltStarter == true, mastery?.SecondHabit == true, keepsake: profile.Meta.Keepsake);
         }
         /// <summary>The Clock's Rewind: a lost run goes back to the shop before the lost wave (once a run).</summary>
         public bool RewindRun()

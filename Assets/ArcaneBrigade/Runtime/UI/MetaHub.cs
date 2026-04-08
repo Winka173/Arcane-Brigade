@@ -21,13 +21,13 @@ namespace ArcaneBrigade
         }
     }
 
-    public enum HubAction { None, NextNight, Back }
+    public enum HubAction { None, NextNight, Back, Daily }
 
     /// <summary>The Waiting Room hub between runs (play-test item 27): a room the traveller walks in (keys, stick, or a tap on the
     /// floor), ten station objects that are restored as they level, the door to the next night. Tapping a working station
     /// opens its cards (icon, one line, now → next, price); the five not built yet stand dusty and say so. Drawn in the menu's
     /// 1280×720 space.</summary>
-    public sealed class MetaHub
+    public sealed partial class MetaHub
     {
         public sealed class Spot { public MetaStation Station; public Vector2 Foot; public float Height; }
         /// <summary>Where each station stands on the painted floor (its foot point) and how tall it is drawn.</summary>
@@ -69,7 +69,7 @@ namespace ArcaneBrigade
         public void OpenStation(MetaStation station)
         {
             if (!MetaProgression.Works(station)) { Say("Coming soon"); CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
-            Open = station; scroll = Vector2.zero; CheckpointAudio.PlayInterfaceId("ui.open");
+            Open = station; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
         }
         public void Close() { if (Open.HasValue) CheckpointAudio.PlayInterfaceId("ui.back"); Open = null; }
         /// <summary>Diagnostics: stand the traveller beside a station.</summary>
@@ -97,7 +97,7 @@ namespace ArcaneBrigade
         /// <summary>Once a frame from the menu's Update: walking (keys, stick, a tapped target) and using what is near.</summary>
         public HubAction Tick(float dt)
         {
-            if (PanelOpen) return HubAction.None;
+            if (PanelOpen) { PanelInput(); return HubAction.None; }
             Vector2 pad = ArcadeNavigation.Pad;
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal") + pad.x, -(Input.GetAxisRaw("Vertical") + pad.y));
             walking = false;
@@ -117,7 +117,7 @@ namespace ArcaneBrigade
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 if (DoorFocus) return HubAction.NextNight;
-                if (Focus >= 0) OpenStation(Spots[Focus].Station);
+                if (Focus >= 0) { OpenStation(Spots[Focus].Station); navKeys = PanelOpen; } // opened by keys: the focus shows at once
             }
             return HubAction.None;
         }
@@ -195,6 +195,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Frame(new Rect(96, 18, 400, 62), KitFrame.Plaque);
             heading.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
+            FavourStars(profile, new Rect(96, 80, 400, 30));
             Purse(profile, new Rect(930, 16, 330, 62));
             if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "NEXT NIGHT ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
 
@@ -211,7 +212,8 @@ namespace ArcaneBrigade
                 if (e.type == EventType.MouseDown && Floor.Contains(e.mousePosition)) { WalkTo(e.mousePosition, -1, false); e.Use(); }
             }
             if (Time.unscaledTime - noticeAt < 1.6f) Tag(new Vector2(640, 600), notice);
-            if (PanelOpen) DrawPanel(catalog, profile, heroIndex, save);
+            if (PanelOpen) { NavBegin(); DrawPanel(catalog, profile, heroIndex, save); NavEnd(); }
+            if (panelAction != HubAction.None) { if (action == HubAction.None) action = panelAction; panelAction = HubAction.None; }
             return action;
         }
 
@@ -270,16 +272,18 @@ namespace ArcaneBrigade
 
             Rect area = new Rect(PanelRect.x + 240, PanelRect.y + 48, PanelRect.width - 270, PanelRect.height - 74);
             if (station == MetaStation.Wardrobe) { DrawWardrobe(area, catalog, profile, heroIndex); return; }
+            if (station >= MetaStation.Postbox) { DrawStation(station, area, catalog, profile, heroIndex, save); return; }
+            navCols = 2;
             var tracks = new List<MetaTrack>(MetaProgression.For(station));
             float cw = (area.width - 16) * .5f, ch = 132;
             int rows = Mathf.CeilToInt(tracks.Count / 2f);
             float extra = station == MetaStation.Nursery && MetaProgression.Rank(profile, "nursery.heirloom") > 0 ? 96 : 0;
             float height = rows * (ch + 14) + extra;
-            scroll = ScrollPanel.Begin(area, scroll, new Rect(0, 0, area.width - 14, Mathf.Max(area.height, height)));
+            ScrollBegin(area, height);
             for (int i = 0; i < tracks.Count; i++)
                 Card(new Rect(i % 2 * (cw + 12), i / 2 * (ch + 14), cw - 4, ch), tracks[i], catalog, profile, save);
             if (extra > 0) Heirloom(new Rect(0, rows * (ch + 14), area.width - 20, 86), catalog, profile, save);
-            ScrollPanel.End();
+            ScrollEnd(area);
         }
 
         private void Card(Rect c, MetaTrack track, RunCatalog catalog, PlayerProfile profile, Func<bool> save)
@@ -298,10 +302,10 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(c.x + 76, c.y + 56, c.width - 90, 26), values, number);
             string blocked = MetaProgression.Blocked(profile, track);
             Rect button = new Rect(c.x + 76, c.y + 86, c.width - 92, 38);
-            if (rank >= track.Max) { ArcadeSkin.Button(button, "MAX", KitButton.Secondary, false, chip); return; }
+            if (rank >= track.Max) { ArcadeSkin.Button(button, "MAX", KitButton.Secondary, false, chip); Nav(button, false); return; }
             bool can = blocked == null;
             string caption = track.Cost[rank].ToString("N0");
-            if (ArcadeSkin.Button(button, "      " + caption, can ? KitButton.Primary : KitButton.Secondary, can, body) && can)
+            if ((ArcadeSkin.Button(button, "      " + caption, can ? KitButton.Primary : KitButton.Secondary, can, body) | Nav(button, can)) && can)
             {
                 string before = JsonUtility.ToJson(profile.Meta);
                 if (MetaProgression.Buy(profile, track.Id))
@@ -351,7 +355,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, r.y + 38, 40, 40);
                 if (bond.Id == profile.Meta.Heirloom) ArcadeSkin.Glow(new Rect(cell.x - 8, cell.y - 8, 56, 56), new Color(1f, .8f, .4f, .7f));
                 RunHud.Sprite(cell, bond.Icon);
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none) && bond.Id != profile.Meta.Heirloom)
+                if ((GUI.Button(cell, GUIContent.none, GUIStyle.none) | Nav(cell)) && bond.Id != profile.Meta.Heirloom)
                 {
                     string before = profile.Meta.Heirloom; profile.Meta.Heirloom = bond.Id;
                     if (!save()) profile.Meta.Heirloom = before; else CheckpointAudio.PlayInterfaceId("ui.select");
@@ -366,8 +370,9 @@ namespace ArcaneBrigade
             if (wardrobeHero < 0 || wardrobeHero >= catalog.Champions.Length) wardrobeHero = Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1);
             UnitDefinition hero = catalog.Champions[wardrobeHero];
             int waves = MetaProgression.Mastery(profile, hero.Id)?.Waves ?? 0, rank = MetaProgression.MasteryRank(waves);
-            if (ArcadeSkin.IconButton(new Rect(area.x, area.y, 56, 56), KitRound.Walnut, "◀")) wardrobeHero = (wardrobeHero + catalog.Champions.Length - 1) % catalog.Champions.Length;
-            if (ArcadeSkin.IconButton(new Rect(area.xMax - 56, area.y, 56, 56), KitRound.Walnut, "▶")) wardrobeHero = (wardrobeHero + 1) % catalog.Champions.Length;
+            navCols = 2;
+            if (ArcadeSkin.IconButton(new Rect(area.x, area.y, 56, 56), KitRound.Walnut, "◀") | Nav(new Rect(area.x, area.y, 56, 56))) wardrobeHero = (wardrobeHero + catalog.Champions.Length - 1) % catalog.Champions.Length;
+            if (ArcadeSkin.IconButton(new Rect(area.xMax - 56, area.y, 56, 56), KitRound.Walnut, "▶") | Nav(new Rect(area.xMax - 56, area.y, 56, 56))) wardrobeHero = (wardrobeHero + 1) % catalog.Champions.Length;
             RunHud.Sprite(new Rect(area.x + 70, area.y - 4, 64, 64), hero.Body);
             body.normal.textColor = ArcadeSkin.KitCream; number.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 26), RunUICopy.UnitName(hero), body);

@@ -560,7 +560,7 @@ namespace ArcaneBrigade
             else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.9f;
             unit.Health *= CarnivalBalance.EnemyHealth(State.Wave) * 1.1f * .8f * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
             if (source.SpecialEnemy != SpecialEnemyKind.None) { unit.Health *= 1.6f; unit.BodyHeight *= 1.2f; unit.Radius *= 1.15f; }
-            unit.Speed *= CarnivalBalance.EnemySpeed(State.Wave);
+            unit.Speed *= CarnivalBalance.EnemySpeed(State.Wave) * MetaEnemySpeed; // Night Pact: Swift night
             float damageGrowth = Mathf.Max(0, State.Wave - 10);
             unit.ContactDamage = Mathf.Min(14f + damageGrowth * 0.12f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
@@ -593,7 +593,7 @@ namespace ArcaneBrigade
             State.LastDamageAmount = simulation.LastDamageAmount;
             State.LastDamageKind = simulation.LastDamageKind;
             simulation.SweepRemaining();
-            State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
+            State.Gold = BoundedCounter((long)State.Gold + simulation.Gold + MetaGold(simulation.Gold)); // + the Museum's gold gift
             SettleNewRelics(simulation); SettleVisitors(simulation); SettleMapIdentity(simulation);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
@@ -959,6 +959,7 @@ namespace ArcaneBrigade
             if (!rollSpecial) return;
             State.RerollsThisShop = 0;
             State.SpecialOffers.Clear();
+            if (MetaNoDreamShop) return; // Night Pact: no dream market
             if (catalog.AltarRevision > 0)
             {
                 if (Next(ref State.ShopRandom, 1000000) >= Mathf.RoundToInt(AltarActivationChance * 1000000)) return;

@@ -37,7 +37,7 @@ namespace ArcaneBrigade
                 session.Start(catalog.Champions[0].Id, 131026);
                 session.State.Phase = SessionPhase.Shop;
                 session.State.Gold = 180;
-                session.State.Eggs = 12;
+                session.State.Eggs = 12; session.State.SpecialShopVisited = true; // the gold-shop fixtures; the dream stage is shown below
                 if (RunPaths.K32Capture) session.State.Wave = 10;
                 session.Reroll();
                 session.State.RerollsThisShop = 0;
@@ -102,8 +102,8 @@ namespace ArcaneBrigade
                 {
                     owner.Session.State.SpecialOffers.Clear();
                     for (int index = 0; index < 3; index++) owner.Session.State.SpecialOffers.Add(new ShopOffer { Token = ++owner.Session.State.NextOffer, Id = index == 0 ? "long-atlas" : "honey-pot", Kind = OfferKind.Item, Price = index == 0 ? 12 : 2, Currency = index == 0 ? ShopCurrency.Health : ShopCurrency.Eggs });
-                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-7, 1);
-                    if (!owner.Shop.Interact() || !owner.Shop.Special) { failed = true; Debug.LogError("Native altar portal failed"); }
+                    owner.Session.State.SpecialShopVisited = false; owner.Shop.Display(); // two-stage shop: the dream market is its own stage, no portal
+                    if (!owner.Shop.Special) { failed = true; Debug.LogError("Native dream stage failed"); }
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-3, 0.5f);
                     owner.Shop.Display();
                     yield return new WaitForSecondsRealtime(0.2f);

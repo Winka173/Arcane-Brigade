@@ -22,12 +22,13 @@ namespace ArcaneBrigade
         }
         private void InitializeEnemyVariant(UnitState enemy)
         {
-            if (!catalog.ExpandedContent || enemy.Variant == null || enemy.Variant.Affix != EnemyAffix.None || enemy.SwarmMinion || enemy.Variant.Summoned || enemy.Definition.IsBoss || catalog.RunWave < 5) return;
+            if (!catalog.ExpandedContent || enemy.Variant == null || enemy.Variant.Affix != EnemyAffix.None || enemy.SwarmMinion || enemy.Variant.Summoned || enemy.Definition.IsBoss || catalog.RunWave < (catalog.MetaPactElites ? 1 : 5)) return;
             int affixed = 0;
             foreach (UnitState other in units) if (other.Alive && other.Variant != null && other.Variant.Affix != EnemyAffix.None) affixed++;
             uint seed = unchecked((uint)runSeed ^ (uint)enemy.Id * 2654435761u ^ (uint)catalog.RunWave * 2246822519u);
             seed ^= seed >> 16;
             int chance = Mathf.Min(24, 8 + catalog.RunWave - 5);
+            if (catalog.MetaPactElites) chance = Mathf.Max(chance, 20); // Night Pact: elites every wave
             if (affixed >= 4 || seed % 100 >= chance) return;
             uint kind = (seed / 100) % 100;
             enemy.Variant.Affix = kind < 35 ? EnemyAffix.BlackSmoke : kind < 60 ? EnemyAffix.BlueFlame : kind < 85 ? EnemyAffix.RedFlame : kind < 95 ? EnemyAffix.Blackfire : EnemyAffix.TwinFlame;

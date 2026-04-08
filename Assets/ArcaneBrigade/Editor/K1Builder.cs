@@ -141,11 +141,14 @@ namespace ArcaneBrigade.Editor
                     }
                 }
                 session.State.Roster.Clear();
+                // 64 friend/weapon pairs: far past any UI slot count, without the full companions x weapons table (thousands of
+                // entries made Capture, quadratic in roster size, run for over 30 minutes)
+                const int largeRoster = 64;
                 foreach (UnitDefinition unit in catalog.Companions)
-                    foreach (WeaponDefinition weapon in catalog.Weapons) session.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapon.Id });
+                    foreach (WeaponDefinition weapon in catalog.Weapons) if (session.State.Roster.Count < largeRoster) session.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapon.Id });
                 session.Restore(session.State);
                 int shown = RunBuildReadModel.Capture(session, catalog, session.State.Health).Companions.Count;
-                require(shown >= session.State.Roster.Count, "Large roster Details has no UI slot cap; the travelling story friend is listed too (" + shown + " of " + session.State.Roster.Count + ", " + catalog.Companions.Length * catalog.Weapons.Length + " pairs)");
+                require(session.State.Roster.Count >= Mathf.Min(largeRoster, catalog.Companions.Length * catalog.Weapons.Length) && shown >= session.State.Roster.Count, "Large roster Details has no UI slot cap; the travelling story friend is listed too (" + shown + " of " + session.State.Roster.Count + ")");
             }
             foreach (Font font in new[] { ArcadeTypography.Body, ArcadeTypography.Heading, ArcadeTypography.Numbers })
             {

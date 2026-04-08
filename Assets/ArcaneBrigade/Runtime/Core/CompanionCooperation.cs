@@ -73,7 +73,7 @@ namespace ArcaneBrigade
             foreach (UnitState target in units)
             {
                 Vector2 offset = target.Position - source.Position;
-                if (!cooperationCollected.Contains(target.Id) || !CanHit(source.Faction, target) || offset.magnitude > Mathf.Min(weapon.Range, 3f) + target.Definition.Radius || Vector2.Dot(offset.normalized, source.AttackDirection) < weapon.ConeDot) continue;
+                if (!cooperationCollected.Contains(target.Id) || !CanHit(source.Faction, target) || !InArc(target, source.Position, source.AttackDirection, Mathf.Min(weapon.Range, 3f), weapon.ConeDot)) continue;
                 ApplyDamage(target, Mathf.Max(0, damage) * 0.25f, source.Faction, "Collected sweep", source.AttackDirection, cause: sweep);
                 if (++victims >= 3) break;
             }
