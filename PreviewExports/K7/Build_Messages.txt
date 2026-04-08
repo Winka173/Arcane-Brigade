@@ -25,6 +25,6 @@ Warning: Assets\ArcaneBrigade\Runtime\Presentation\HeroFocus.cs(132,42): warning
 Warning: Assets\ArcaneBrigade\Runtime\Presentation\HeroAwakeningVisual.cs(146,31): warning CS0618: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
 Warning: Assets\ArcaneBrigade\Runtime\Presentation\SfxGovernor.cs(49,100): warning CS0618: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
 Warning: Assets\ArcaneBrigade\Runtime\Core\HeroIdentityCombat.cs(38,218): warning CS0414: The field 'CombatSimulation.identityFullAt' is assigned but its value is never used
+Warning: Assets\ArcaneBrigade\Runtime\Core\HeroIdentityCombat.cs(45,22): warning CS0414: The field 'CombatSimulation.identityRearSpent' is assigned but its value is never used
 Warning: Assets\ArcaneBrigade\Runtime\Presentation\SecretEventRoom.cs(17,23): warning CS0414: The field 'SecretEventRoom.hold' is assigned but its value is never used
 Warning: Assets\ArcaneBrigade\Runtime\Presentation\MergeReveal.cs(61,22): warning CS0414: The field 'MergeReveal.crownShown' is assigned but its value is never used
-Warning: Assets\ArcaneBrigade\Runtime\Core\HeroIdentityCombat.cs(45,22): warning CS0414: The field 'CombatSimulation.identityRearSpent' is assigned but its value is never used

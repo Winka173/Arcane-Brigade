@@ -219,9 +219,8 @@ namespace ArcaneBrigade
                     return;
                 }
                 KitButton kind = danger ? KitButton.Danger : KitButton.Secondary;
-                // small, very wide or short plates are code-drawn (a painted plate cannot shrink below its caps)
-                if (rectangle.height >= 40 && rectangle.width / rectangle.height <= 10
-                    && DrawPiece(rectangle, KitPiece.Plate, "Buttons/" + kind + (off ? "DisabledPlain" : lit ? "HoverPlain" : "NormalPlain"))) return;
+                // the painted plain plate wherever it keeps its aspect (any width, 17-110 px tall); else the code-drawn plate
+                if (DrawPiece(rectangle, KitPiece.Plate, "Buttons/" + kind + (off ? "DisabledPlain" : lit ? "HoverPlain" : "NormalPlain"))) return;
                 CodePlate(rectangle, danger ? CodeTone.Oxblood : CodeTone.Walnut, off ? 3 : lit ? 1 : 0);
                 return;
             }

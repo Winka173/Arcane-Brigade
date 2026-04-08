@@ -21,9 +21,9 @@ namespace ArcaneBrigade
         /// <summary>Halo under the hero, props fading off it, show-through and edge arrow (HeroFocus); on by default.</summary>
         public static bool HighlightHero { get; private set; } = true;
         public static float DangerUntil { get; private set; }
-        private static UiLook uiStyle = UiLook.Crafted;
+        private static UiLook uiStyle = UiLook.Painted;
         private static int uiStyleArgument = -2;
-        /// <summary>Crafted (every UI piece drawn in code, the default) or Painted (the painted kit). "-ui-style painted|crafted"
+        /// <summary>Painted (the painted kit, the default) or Crafted (every UI piece drawn in code). "-ui-style painted|crafted"
         /// on the command line wins, for captures.</summary>
         public static UiLook UiStyle
         {
@@ -47,7 +47,7 @@ namespace ArcaneBrigade
             AudioListener.volume = profile.Volume;
             AudioMix.ApplySettings(); // the music / SFX / voice sliders drive the mixer buses
             ArcadeSkin.Bundle = profile.Cosmetic;
-            uiStyle = profile.UiStyle == 1 ? UiLook.Painted : UiLook.Crafted;
+            uiStyle = profile.UiCrafted ? UiLook.Crafted : UiLook.Painted;
         }
         /// <summary>Window mode, resolution and vsync from the profile; only a player build changes the screen, and only when
         /// something differs (the editor, batch runs and captures keep their own).</summary>

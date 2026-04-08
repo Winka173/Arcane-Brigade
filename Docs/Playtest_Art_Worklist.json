@@ -235,5 +235,37 @@
   "review_item": "7 (follow-up)",
   "display_note": "vignettes ~420x240 px behind the banner",
   "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. A production SHEET of 12 small oval VIGNETTE paintings, 4 columns x 3 rows, each a little storybook scene in a soft vignette that fades to transparent at its edges (no frame), used as the header picture of a secret room: 1 The Impossible Tailor (a tailor's table with glowing rainbow thread and a giant needle), 2 The Brass Crate (a locked brass shipping crate), 3 The Contraband Express (a tiny night train with crates on its roof), 4 The Empty Theatre (an empty stage with one spotlight), 5 The Hostile Duet (two music stands facing each other, sheet music flying), 6 The Leading Actor (a lone theatre mask on a velvet chair), 7 The Owner's Crate (a crate with a wax owner's seal and a ribbon), 8 The Paper Chorus (paper cut-out singers on strings), 9 The Sleeping Garden (a moonlit greenhouse with sleeping flowers), 10 The Thread Crate (a crate overflowing with spools), 11 The Understudy's Mirror (a tall dressing mirror reflecting a different shadow), 12 a spare generic one (a velvet curtain slightly open with light behind)."
+ },
+ {
+  "name": "UI_PaperTags",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_PaperTags_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13 (painted-style audit 21/10/2026)",
+  "display_note": "price tags ~126x42, label tags ~180x34, receipt slips 300x30-60, reward tiles ~84x84, letter rows ~300x68 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Each piece is drawn at the EXACT aspect ratio given, as it will appear in the game. A piece marked 'stretches sideways' must be 9-slice ready along its width only: ornament only at its two ends, the long middle a plain repeatable run of paper/wood/rim with no motif in its centre; a piece marked 'no stretch' is used whole. A production SHEET of small AGED CREAM PAPER pieces for the shop and the hub, 1536x1536 canvas, 3 rows: ROW 1 a shop PRICE TAG at aspect 3:1 (cream card with a punched brass eyelet and a short loop of twine at its LEFT end, slightly dog-eared right corner; stretches sideways) in normal and 'refused' (faintly red-stained) versions, and a LABEL TAG at aspect 5:1 (cream paper strip with notched swallow-tail ends and a thin brass rule along both long edges; stretches sideways). ROW 2 a RECEIPT SLIP at aspect 7:1 (thin cream receipt paper with a torn zig-zag bottom edge and a faint ink rule near each end; stretches sideways) and a LETTER ROW at aspect 4.5:1 (folded letter paper with a small red wax dot at its left end; stretches sideways) in unread (crisp) and read (softer, slightly creased) versions. ROW 3 a square REWARD TILE at aspect 1:1 (cream card in a thin brass frame with tiny corner rivets, empty centre; no stretch) in normal and highlighted (warm gold rim glow) versions."
+ },
+ {
+  "name": "UI_InfoTiles",
+  "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_InfoTiles_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+   "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "priority": 1,
+  "review_item": "13 (painted-style audit 21/10/2026)",
+  "display_note": "bond tiles ~270x120, attack tile 220x120, wide bars 730x50, LOSE/GET rows 424x96, chips 140x50 px",
+  "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Each piece is drawn at the EXACT aspect ratio given, as it will appear in the game. A piece marked 'stretches sideways' must be 9-slice ready along its width only: ornament only at its two ends, the long middle a plain repeatable run of paper/wood/rim with no motif in its centre; a piece marked 'no stretch' is used whole. A production SHEET of INFO TILES and BARS that sit inside cards, 1536x1536 canvas, 4 rows: ROW 1 a NIGHT-NAVY LACQUER TILE at aspect 9:4 (deep navy lacquered panel with a thin gilt keyline and a tiny brass rivet in each corner, plain centre; 9-slice ready on both axes with SMALL corners, about 12% of its height) in normal and LIT versions (lit: the keyline glows warm gold, a soft inner glow along the rim). ROW 2 the same navy tile at aspect 11:6 (normal only) and a WIDE NAVY BAR at aspect 15:1 (thin gilt rim, tiny brass caps at the two ends; stretches sideways). ROW 3 a LOSE ROW at aspect 4.4:1 (dark oxblood paper band with a thin thorn line along its top and bottom edges, small iron caps at both ends; stretches sideways) and a GET ROW at the same aspect (deep green-gilt paper band with a thin laurel line along its edges, small brass caps; stretches sideways). ROW 4 a small WALNUT CHIP at aspect 3:1 (rounded walnut plate with a thin brass rim and an empty round icon socket at its left end; stretches sideways) in normal and lit (gold rim) versions."
  }
 ]

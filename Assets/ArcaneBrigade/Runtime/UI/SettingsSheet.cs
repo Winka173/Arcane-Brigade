@@ -94,10 +94,10 @@ namespace ArcaneBrigade
                 Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
             }
             // the UI style: drawn by hand in code, or the painted kit
-            if (Button(new Rect(460, 630, 365, 44), "UI STYLE: " + (profile.UiStyle == 1 ? "PAINTED" : "CRAFTED")))
+            if (Button(new Rect(460, 630, 365, 44), "UI STYLE: " + (profile.UiCrafted ? "CRAFTED" : "PAINTED")))
             {
-                int before = profile.UiStyle; profile.UiStyle = before == 1 ? 0 : 1;
-                Changed(() => profile.UiStyle = before);
+                bool before = profile.UiCrafted; profile.UiCrafted = !before;
+                Changed(() => profile.UiCrafted = before);
             }
             label(Shift(new Rect(75, 684, 1130, 34)), (inRun ? "Looks are chosen between runs. " : "Looks unlock at wave 5 and by beating bosses. ") + "Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
         }

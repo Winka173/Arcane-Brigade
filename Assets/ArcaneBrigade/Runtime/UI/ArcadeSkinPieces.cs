@@ -45,10 +45,11 @@ namespace ArcaneBrigade
         /// <summary>The border scale for this rectangle: frames from their smaller side, ribbons and buttons from their height,
         /// clamped, then lowered until the nine-slice's stretchable middle fits. False when the painting cannot be drawn cleanly
         /// at this size (the caller then draws the code-drawn plate).</summary>
-        private static bool ScaleFor(KitPiece piece, Sprite sprite, string key, ref Rect r, out float k)
+        private static bool ScaleFor(KitPiece piece, Sprite sprite, string key, ref Rect r, out float k, bool audit = true)
         {
             k = 0;
             if (Crafted) return false; // the crafted style draws every piece in code
+            Rect asked = r;
             Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
             Vector4 b = sprite.border; float centre = CentreOf(piece) * t.width;
             float needW = b.x + b.z + centre - (t.width - body.width), needH = b.y + b.w - (t.height - body.height);
@@ -58,6 +59,7 @@ namespace ArcaneBrigade
                 k = piece == KitPiece.Dialogue ? Mathf.Clamp(side / 760f, .34f, .7f) : piece == KitPiece.Card ? Mathf.Clamp(side / 640f, .4f, .85f) : Mathf.Clamp(side / 260f, .4f, .9f);
                 if (needW > 0) k = Mathf.Min(k, r.width / needW);
                 if (needH > 0) k = Mathf.Min(k, r.height / needH);
+                if (k < .28f && audit) Audit(key, asked, "frame too small for its corners");
                 return k >= .28f;
             }
             // ribbons, plates, buttons and tabs keep the painting's aspect: one scale from the height, the nine-slice only
@@ -67,9 +69,11 @@ namespace ArcaneBrigade
             k = kh;
             if (kw < kh)
             {
-                if (piece != KitPiece.Button || kw < kh * .75f) return false;
+                if (piece != KitPiece.Button || kw < kh * .75f) { if (audit) Audit(key, asked, "too narrow for its caps at this height"); return false; }
                 k = kw; r = new Rect(r.x, r.center.y - body.height * k * .5f, r.width, body.height * k);
+                if (audit) Audit(key, asked, "drawn shorter than asked (narrow), centred");
             }
+            if (audit && (k < .3f || k > 2f)) Audit(key, asked, k < .3f ? "too short for the painting" : "too tall for the painting");
             return k >= .3f && k <= 2f;
         }
 
@@ -92,7 +96,7 @@ namespace ArcaneBrigade
         {
             string key = KeyOf(piece); Sprite sprite = KitSprite(key);
             Vector4 inset;
-            if (sprite != null && ScaleFor(piece, sprite, key, ref r, out float k)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip ? Mathf.Min(k, limit) : k);
+            if (sprite != null && ScaleFor(piece, sprite, key, ref r, out float k, false)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip ? Mathf.Min(k, limit) : k);
             else { float rim = CodeRim(r); inset = new Vector4(rim, rim, rim, rim); }
             float px = pad ? Mathf.Min(PadX, r.width * .08f) : 0, py = pad ? Mathf.Min(PadY, r.height * .12f) : 0;
             return Rect.MinMaxRect(r.x + inset.x + px, r.y + inset.y + py, Mathf.Max(r.x + inset.x + px, r.xMax - inset.z - px), Mathf.Max(r.y + inset.y + py, r.yMax - inset.w - py));
@@ -177,6 +181,11 @@ namespace ArcaneBrigade
         public static void CodePlate(Rect r, CodeTone tone, int state = 0)
         {
             if (Event.current.type != EventType.Repaint || r.width < 4 || r.height < 4) return;
+            // the painted style: a walnut, oxblood or gold plate up to 110 px tall is the painted plain plate (it keeps its aspect;
+            // DrawPiece refuses and audits any size it cannot draw cleanly)
+            if (!Crafted && r.height <= 110 && (tone == CodeTone.Walnut || tone == CodeTone.Oxblood || tone == CodeTone.Gold)
+                && DrawPiece(r, KitPiece.Plate, "Buttons/" + (tone == CodeTone.Gold ? "Primary" : tone == CodeTone.Oxblood ? "Danger" : "Secondary") + States[Mathf.Clamp(state, 0, 3)] + "Plain")) return;
+            Audit("CodePlate " + tone, r, "code-drawn plate in the painted style");
             bool small = CodeIsSmall(r);
             float border = small ? CodeBorderSmall : CodeBorderBig;
             SlicedTexture(r, CodeTexture(tone, state, small), new Vector4(border, border, border, border), CodeCorner(r, small) / border, 0);
@@ -217,6 +226,30 @@ namespace ArcaneBrigade
             d -= r.width; if (d < r.height) return new Vector2(r.xMax - 1, r.y + d);
             d -= r.height; if (d < r.width) return new Vector2(r.xMax - d, r.yMax - 1);
             d -= r.width; return new Vector2(r.x + 1, r.yMax - d);
+        }
+
+        // ---------------------------------------------------------------- audit ("-ui-audit"): every painted piece that cannot be
+        // drawn at the asked size, and every code-drawn plate shown in the painted style, once per piece, reason, size and caller
+        private static readonly HashSet<string> audited = new HashSet<string>();
+        private static int auditFlag = -1;
+        private static bool Auditing { get { if (auditFlag < 0) auditFlag = System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-ui-audit") >= 0 ? 1 : 0; return auditFlag == 1; } }
+        private static void Audit(string what, Rect r, string why)
+        {
+            if (!Auditing || Crafted || Event.current == null || Event.current.type != EventType.Repaint) return;
+            string caller = Caller();
+            string key = what + "|" + why + "|" + caller + "|" + Mathf.RoundToInt(r.width / 10) + "x" + Mathf.RoundToInt(r.height / 4);
+            if (audited.Add(key)) Debug.Log("UIKIT_AUDIT " + what + " | " + why + " | " + Mathf.RoundToInt(r.width) + "x" + Mathf.RoundToInt(r.height) + " | " + caller);
+        }
+        private static string Caller()
+        {
+            foreach (System.Diagnostics.StackFrame frame in new System.Diagnostics.StackTrace(2, false).GetFrames() ?? new System.Diagnostics.StackFrame[0])
+            {
+                System.Reflection.MethodBase method = frame.GetMethod(); System.Type type = method?.DeclaringType;
+                while (type != null && type.Name.StartsWith("<") && type.DeclaringType != null) type = type.DeclaringType;
+                if (type == null || type == typeof(ArcadeSkin) || type == typeof(ArcadeNavigation) || type == typeof(RunHud) && method.Name == "Fill") continue;
+                return type.Name + "." + method.Name;
+            }
+            return "?";
         }
 
         // ---------------------------------------------------------------- the skin's buttons
