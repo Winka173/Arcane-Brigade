@@ -93,7 +93,13 @@ namespace ArcaneBrigade
                 profile.TipsSeen.Clear(); profile.TutorialSeen = false;
                 Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
             }
-            label(Shift(new Rect(460, 630, 745, 64)), (inRun ? "Looks are chosen between runs. " : "Looks unlock at wave 5 and by beating bosses. ") + "Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
+            // the UI style: drawn by hand in code, or the painted kit
+            if (Button(new Rect(460, 630, 365, 44), "UI STYLE: " + (profile.UiStyle == 1 ? "PAINTED" : "CRAFTED")))
+            {
+                int before = profile.UiStyle; profile.UiStyle = before == 1 ? 0 : 1;
+                Changed(() => profile.UiStyle = before);
+            }
+            label(Shift(new Rect(75, 684, 1130, 34)), (inRun ? "Looks are chosen between runs. " : "Looks unlock at wave 5 and by beating bosses. ") + "Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
         }
 
         public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();

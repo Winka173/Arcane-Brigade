@@ -433,7 +433,10 @@ namespace ArcaneBrigade
                     string kind = item ? RunModifierRules.RarityName(rarity) : (offerCard.Role.HasValue ? CompanionRoles.Word(offerCard.Role.Value) : "FRIEND") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
                     ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, CodeTone.Walnut, tagStyle, tag); // code-drawn tag, rarity colour on walnut
                 }
-                Rect buy = new Rect(panel.xMax - 214, panel.y + 18, 192, station.Offer != null ? 122 : 204);
+                // one fixed size for the price button and the i under it, centred in the card's right column (owner, 21/10/2026)
+                const float PriceH = 104, InfoH = 56, ColumnGap = 12;
+                float columnH = station.Offer != null ? PriceH + ColumnGap + InfoH : PriceH;
+                Rect buy = new Rect(panel.xMax - 214, panel.y + Mathf.Round((panel.height - columnH) * .5f), 192, PriceH);
                 float x = panel.x + 202, width = buy.x - 18 - x;
                 GUI.Label(new Rect(x, panel.y + 10, width, 44), shop.DisplayName(station), cardName);
                 float y = panel.y + 58;
@@ -443,7 +446,7 @@ namespace ArcaneBrigade
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
                 if (navigation.Button(buy, "", primary)) shop.Interact();
                 DrawPriceButton(buy, station, owner);
-                if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + 10, buy.width, panel.yMax - 18 - buy.yMax - 10), more > 0 ? "i  +" + more : "i", button)) SetShopDetails(true);
+                if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + ColumnGap, buy.width, InfoH), more > 0 ? "i  +" + more : "i", button)) SetShopDetails(true);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }
@@ -526,16 +529,16 @@ namespace ArcaneBrigade
             if (station.Offer != null && !affordable) verb = currency == ShopCurrency.Health ? "NOT ENOUGH HP" : currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : "NOT ENOUGH GOLD";
             bool priced = price > 0 && station.Action != "VISITOR";
             int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
-            Color bigColor = cardBig.normal.textColor; if (currency == ShopCurrency.Health && station.Offer != null) cardBig.normal.textColor = new Color(1f, .9f, .86f);
+            Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
             cardBig.wordWrap = true;
-            GUI.Label(new Rect(button.x + 8, button.y + (priced ? button.height * .5f - 50 : 0), button.width - 16, priced ? 48 : button.height), verb, cardBig);
+            GUI.Label(new Rect(button.x + 8, priced ? button.center.y - 42 : button.y, button.width - 16, priced ? 40 : button.height), verb, cardBig); // inside the plate's rim
             cardBig.fontSize = bigSize; cardBig.normal.textColor = bigColor;
             if (!priced) return;
             string amount = price.ToString();
             float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = button.center.x - wide * .5f;
-            Rect icon = new Rect(left, button.y + button.height * .5f + 6, 28, 28);
+            Rect icon = new Rect(left, button.center.y + 4, 28, 28);
             Sprite(icon, currency == ShopCurrency.Health ? owner.Content.HeartSprite : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
-            Color priceColor = cardPrice.normal.textColor; if (currency == ShopCurrency.Health && station.Offer != null) cardPrice.normal.textColor = new Color(1f, .9f, .86f);
+            Color priceColor = cardPrice.normal.textColor;
             GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
             cardPrice.normal.textColor = priceColor;
         }
@@ -585,8 +588,8 @@ namespace ArcaneBrigade
             Rect details = new Rect(115, 240, 64, 64);
             if (ArcadeSkin.HasKit)
             {
-                ArcadeSkin.Fitted(pause, ArcadeSkin.KitSprite("Controls/Pause"));
-                ArcadeSkin.Fitted(details, ArcadeSkin.KitSprite("Buttons/RoundBrass"));
+                ArcadeSkin.MedallionArt(pause, KitMedallion.Pause, 0);
+                ArcadeSkin.RoundArt(details, KitRound.Brass, 0);
                 if (navigation.Button(pause, "", GUIStyle.none)) owner.TogglePause();
                 if (navigation.Button(details, "", GUIStyle.none)) owner.ToggleDetails();
             }

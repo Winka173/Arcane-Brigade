@@ -159,7 +159,7 @@ namespace ArcaneBrigade
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(30, 20, 1860, 1040), KitFrame.Dialogue, .7f); else RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
-            if (GUI.Button(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
+            if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
             string[] names = { "STATS", "FRIENDS", "RELICS", "LINKS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
             if (tabStyle == null) { tabStyle = ArcadeTypography.Style(26, true); tabStyle.alignment = TextAnchor.MiddleCenter; }

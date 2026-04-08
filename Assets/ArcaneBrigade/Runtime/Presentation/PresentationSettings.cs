@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
+    public enum UiLook { Crafted, Painted }
+
     public static class PresentationSettings
     {
         public static float MusicVolume { get; private set; } = 0.8f;
@@ -19,6 +21,22 @@ namespace ArcaneBrigade
         /// <summary>Halo under the hero, props fading off it, show-through and edge arrow (HeroFocus); on by default.</summary>
         public static bool HighlightHero { get; private set; } = true;
         public static float DangerUntil { get; private set; }
+        private static UiLook uiStyle = UiLook.Crafted;
+        private static int uiStyleArgument = -2;
+        /// <summary>Crafted (every UI piece drawn in code, the default) or Painted (the painted kit). "-ui-style painted|crafted"
+        /// on the command line wins, for captures.</summary>
+        public static UiLook UiStyle
+        {
+            get
+            {
+                if (uiStyleArgument == -2)
+                {
+                    string[] args = System.Environment.GetCommandLineArgs(); int at = System.Array.IndexOf(args, "-ui-style");
+                    uiStyleArgument = at >= 0 && at + 1 < args.Length ? (args[at + 1].ToLowerInvariant().StartsWith("p") ? 1 : 0) : -1;
+                }
+                return uiStyleArgument >= 0 ? (UiLook)uiStyleArgument : uiStyle;
+            }
+        }
         public static void Apply(PlayerProfile profile)
         {
             MusicVolume = profile.MusicVolume; SfxVolume = profile.SfxVolume; VoiceVolume = profile.VoiceVolume;
@@ -29,6 +47,7 @@ namespace ArcaneBrigade
             AudioListener.volume = profile.Volume;
             AudioMix.ApplySettings(); // the music / SFX / voice sliders drive the mixer buses
             ArcadeSkin.Bundle = profile.Cosmetic;
+            uiStyle = profile.UiStyle == 1 ? UiLook.Painted : UiLook.Crafted;
         }
         /// <summary>Window mode, resolution and vsync from the profile; only a player build changes the screen, and only when
         /// something differs (the editor, batch runs and captures keep their own).</summary>

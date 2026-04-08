@@ -45,22 +45,32 @@ namespace ArcaneBrigade
         /// <summary>The border scale for this rectangle: frames from their smaller side, ribbons and buttons from their height,
         /// clamped, then lowered until the nine-slice's stretchable middle fits. False when the painting cannot be drawn cleanly
         /// at this size (the caller then draws the code-drawn plate).</summary>
-        private static bool ScaleFor(KitPiece piece, Sprite sprite, string key, Rect r, out float k)
+        private static bool ScaleFor(KitPiece piece, Sprite sprite, string key, ref Rect r, out float k)
         {
+            k = 0;
+            if (Crafted) return false; // the crafted style draws every piece in code
             Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
-            float side = Mathf.Min(r.width, r.height);
-            switch (piece)
-            {
-                case KitPiece.Dialogue: k = Mathf.Clamp(side / 760f, .34f, .7f); break;
-                case KitPiece.Card: k = Mathf.Clamp(side / 640f, .4f, .85f); break;
-                case KitPiece.Tooltip: k = Mathf.Clamp(side / 260f, .4f, .9f); break;
-                default: k = Mathf.Clamp(r.height / body.height, .3f, 1.6f); break;
-            }
             Vector4 b = sprite.border; float centre = CentreOf(piece) * t.width;
             float needW = b.x + b.z + centre - (t.width - body.width), needH = b.y + b.w - (t.height - body.height);
-            if (needW > 0) k = Mathf.Min(k, r.width / needW);
-            if (needH > 0) k = Mathf.Min(k, r.height / needH);
-            return k >= .28f;
+            if (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip)
+            {
+                float side = Mathf.Min(r.width, r.height);
+                k = piece == KitPiece.Dialogue ? Mathf.Clamp(side / 760f, .34f, .7f) : piece == KitPiece.Card ? Mathf.Clamp(side / 640f, .4f, .85f) : Mathf.Clamp(side / 260f, .4f, .9f);
+                if (needW > 0) k = Mathf.Min(k, r.width / needW);
+                if (needH > 0) k = Mathf.Min(k, r.height / needH);
+                return k >= .28f;
+            }
+            // ribbons, plates, buttons and tabs keep the painting's aspect: one scale from the height, the nine-slice only
+            // stretches sideways. A button too narrow for its caps is drawn smaller and centred (a little only); anything else
+            // that would distort gets the code-drawn plate.
+            float kh = r.height / body.height, kw = needW > 0 ? r.width / needW : 99;
+            k = kh;
+            if (kw < kh)
+            {
+                if (piece != KitPiece.Button || kw < kh * .75f) return false;
+                k = kw; r = new Rect(r.x, r.center.y - body.height * k * .5f, r.width, body.height * k);
+            }
+            return k >= .3f && k <= 2f;
         }
 
         /// <summary>Draws a painted piece so that its body is exactly <paramref name="r"/>; ornaments bleed outside. Returns false
@@ -68,8 +78,8 @@ namespace ArcaneBrigade
         private static bool DrawPiece(Rect r, KitPiece piece, string key, float limit = 99)
         {
             Sprite sprite = KitSprite(key);
-            if (sprite == null || !ScaleFor(piece, sprite, key, r, out float k)) return false;
-            k = Mathf.Min(k, limit);
+            if (sprite == null || !ScaleFor(piece, sprite, key, ref r, out float k)) return false;
+            if (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip) k = Mathf.Min(k, limit);
             Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
             Rect dest = new Rect(r.x - body.x * k, r.y - body.y * k, r.width + (t.width - body.width) * k, r.height + (t.height - body.height) * k);
             Sliced(dest, sprite, k, CentreOf(piece));
@@ -82,7 +92,7 @@ namespace ArcaneBrigade
         {
             string key = KeyOf(piece); Sprite sprite = KitSprite(key);
             Vector4 inset;
-            if (sprite != null && ScaleFor(piece, sprite, key, r, out float k)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * Mathf.Min(k, limit);
+            if (sprite != null && ScaleFor(piece, sprite, key, ref r, out float k)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip ? Mathf.Min(k, limit) : k);
             else { float rim = CodeRim(r); inset = new Vector4(rim, rim, rim, rim); }
             float px = pad ? Mathf.Min(PadX, r.width * .08f) : 0, py = pad ? Mathf.Min(PadY, r.height * .12f) : 0;
             return Rect.MinMaxRect(r.x + inset.x + px, r.y + inset.y + py, Mathf.Max(r.x + inset.x + px, r.xMax - inset.z - px), Mathf.Max(r.y + inset.y + py, r.yMax - inset.w - py));
@@ -209,23 +219,47 @@ namespace ArcaneBrigade
             d -= r.width; return new Vector2(r.x + 1, r.yMax - d);
         }
 
-        // ---------------------------------------------------------------- the skin's buttons at small sizes
-        private static readonly Dictionary<Texture2D, CodeTone> plainTones = new Dictionary<Texture2D, CodeTone>();
-        private static readonly Dictionary<GUIStyle, GUIStyle> fittedStyles = new Dictionary<GUIStyle, GUIStyle>();
+        // ---------------------------------------------------------------- the skin's buttons
+        private static readonly Dictionary<Texture2D, KitButton> codeKinds = new Dictionary<Texture2D, KitButton>();
+        private static readonly Dictionary<GUIStyle, GUIStyle> bareStyles = new Dictionary<GUIStyle, GUIStyle>();
+        private static CodeTone ToneOf(KitButton kind) => kind == KitButton.Primary ? CodeTone.Gold : kind == KitButton.Danger ? CodeTone.Oxblood : CodeTone.Walnut;
 
-        /// <summary>The style to draw a skin button with at this size: a painted plate cannot shrink below its caps, so a small
-        /// button (under 40 px tall or 90 px wide) gets the code-drawn plate in the same tone, same font and colours.</summary>
+        /// <summary>A skin button style drawn in code (the style's own background): its corners stay a fixed size, so it never
+        /// distorts at any rect.</summary>
+        private static GUIStyle CodeButtonStyle(GUIStyle source, KitButton kind)
+        {
+            CodeTone tone = ToneOf(kind);
+            var style = new GUIStyle(source)
+            {
+                border = new RectOffset(13, 13, 13, 13), overflow = new RectOffset(0, 0, 0, 0), padding = new RectOffset(18, 18, 4, 4),
+                clipping = TextClipping.Overflow, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter
+            };
+            style.normal.background = style.onNormal.background = CodeTexture(tone, 0, true);
+            style.hover.background = style.onHover.background = style.focused.background = CodeTexture(tone, 1, true);
+            style.active.background = style.onActive.background = CodeTexture(tone, 2, true);
+            codeKinds[style.normal.background] = kind;
+            Color text = KitText(kind);
+            style.normal.textColor = style.onNormal.textColor = style.active.textColor = style.onActive.textColor = text;
+            style.hover.textColor = style.onHover.textColor = style.focused.textColor = kind == KitButton.Secondary ? new Color(1f, .88f, .60f) : text;
+            return style;
+        }
+
+        /// <summary>The style to draw a skin button with in this rect. In the painted style the painted plate is drawn here (only
+        /// where it keeps its aspect) and a text-only copy of the style is returned; otherwise the code-drawn style itself.</summary>
         public static GUIStyle Fit(GUIStyle style, Rect r)
         {
-            if (style == null || style.normal.background == null || r.height >= 40 && r.width >= 90) return style;
-            if (!plainTones.TryGetValue(style.normal.background, out CodeTone tone)) return style;
-            if (fittedStyles.TryGetValue(style, out GUIStyle small) && small != null) return small;
-            small = new GUIStyle(style) { border = new RectOffset(13, 13, 13, 13), overflow = new RectOffset(0, 0, 0, 0), padding = new RectOffset(8, 8, 2, 2) };
-            small.normal.background = small.onNormal.background = CodeTexture(tone, 0, true);
-            small.hover.background = small.onHover.background = small.focused.background = CodeTexture(tone, 1, true);
-            small.active.background = small.onActive.background = CodeTexture(tone, 2, true);
-            fittedStyles[style] = small;
-            return small;
+            if (style == null || style.normal.background == null || Crafted || !codeKinds.TryGetValue(style.normal.background, out KitButton kind)) return style;
+            int state = !GUI.enabled ? 3 : State(r, true);
+            if (!DrawPiece(r, KitPiece.Plate, "Buttons/" + kind + States[state] + "Plain")) return style;
+            if (!bareStyles.TryGetValue(style, out GUIStyle bare) || bare == null)
+            {
+                bare = new GUIStyle(style);
+                foreach (GUIStyleState s in new[] { bare.normal, bare.hover, bare.active, bare.focused, bare.onNormal, bare.onHover, bare.onActive, bare.onFocused }) s.background = null;
+                bareStyles[style] = bare;
+            }
+            return bare;
         }
+        /// <summary>GUI.Button through the kit: the painted plate where it fits, else the code-drawn one.</summary>
+        public static bool KitGuiButton(Rect r, string text, GUIStyle style) => GUI.Button(r, text, Fit(style, r));
     }
 }

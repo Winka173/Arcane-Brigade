@@ -155,12 +155,8 @@ namespace ArcaneBrigade
         public static bool IconButton(Rect r, KitRound kind, string glyph = null, Sprite icon = null, bool enabled = true, GUIStyle like = null)
         {
             int state = State(r, enabled);
-            Sprite sprite = KitSprite("Buttons/Round" + (enabled ? kind : KitRound.Disabled));
             if (state == 1) Glow(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20), new Color(Gold.r, Gold.g, Gold.b, .35f));
-            Rect at = sprite != null ? Fitted(r, sprite, state == 2 ? .94f : state == 1 ? 1.04f : 1) : r;
-            if (sprite == null) Plate(r, Accent);
-            // the round face sits a little below the crest
-            Rect face = new Rect(at.x + at.width * .22f, at.y + at.height * .28f, at.width * .56f, at.height * .56f);
+            Rect face = RoundArt(r, enabled ? kind : KitRound.Disabled, state);
             if (icon != null) RunHud.Sprite(face, icon);
             if (!string.IsNullOrEmpty(glyph))
                 KitCaption(face, glyph, kind == KitRound.Brass ? KitInk : KitCream, like, true);
@@ -170,11 +166,7 @@ namespace ArcaneBrigade
         /// <summary>The close / back / info / pause medallions (brass with an ink mark).</summary>
         public static bool Medallion(Rect r, KitMedallion which, bool lit = false)
         {
-            int state = State(r, true);
-            Sprite sprite = KitSprite("Controls/" + which);
-            if (state == 1 || lit) Glow(new Rect(r.x - 12, r.y - 12, r.width + 24, r.height + 24), new Color(Gold.r, Gold.g, Gold.b, lit ? .55f : .35f));
-            if (sprite != null) Fitted(r, sprite, state == 2 ? .93f : state == 1 ? 1.04f : 1);
-            else { Plate(r, Accent); KitCaption(r, which == KitMedallion.Close ? "×" : which == KitMedallion.Back ? "◀" : which == KitMedallion.Info ? "i" : "II", Cream); }
+            MedallionArt(r, which, State(r, true), lit);
             return GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
 
@@ -186,7 +178,13 @@ namespace ArcaneBrigade
         {
             KitPiece piece = PieceOf(frame);
             if (DrawPiece(r, piece, KeyOf(piece), frame == KitFrame.Plaque || frame == KitFrame.WaveBanner ? 99 : scale)) return;
+            if (frame == KitFrame.Tooltip) Diamond(new Vector2(r.center.x, r.yMax - 2), Mathf.Min(26, r.height * .3f), new Color(.95f, .89f, .76f)); // the tail, under the plate
             CodePlate(r, frame == KitFrame.Card || frame == KitFrame.Tooltip ? CodeTone.Cream : frame == KitFrame.Dialogue ? CodeTone.Navy : CodeTone.Oxblood);
+            if (frame == KitFrame.Plaque || frame == KitFrame.WaveBanner)
+            {
+                float s = Mathf.Min(22, r.height * .42f);
+                Diamond(new Vector2(r.x + 1, r.center.y), s, GiltLight); Diamond(new Vector2(r.xMax - 1, r.center.y), s, GiltLight);
+            }
         }
         public static KitPiece PieceOf(KitFrame frame) =>
             frame == KitFrame.Card ? KitPiece.Card : frame == KitFrame.Tooltip ? KitPiece.Tooltip : frame == KitFrame.Plaque ? KitPiece.Plaque : frame == KitFrame.WaveBanner ? KitPiece.WaveBanner : KitPiece.Dialogue;
@@ -199,8 +197,8 @@ namespace ArcaneBrigade
         /// <summary>A gilt ornamental rule with a small lantern, clock or key in the middle (height sets its size).</summary>
         public static void Ornament(Rect r, KitDivider which = KitDivider.Lantern)
         {
-            Sprite sprite = KitSprite("Panels/Divider" + which);
-            if (sprite == null) { Divider(new Rect(r.x, r.center.y, r.width, 2), Accent); return; }
+            Sprite sprite = Crafted ? null : KitSprite("Panels/Divider" + which);
+            if (sprite == null) { if (HasKit) CraftedDivider(r); else Divider(new Rect(r.x, r.center.y, r.width, 2), Accent); return; }
             float k = r.height / sprite.texture.height;
             float minimum = (sprite.border.x + sprite.border.z + DividerCentre * sprite.texture.width) * k;
             if (r.width < minimum) { k *= r.width / minimum; r = new Rect(r.x, r.center.y - sprite.texture.height * k * .5f, r.width, sprite.texture.height * k); }
@@ -223,10 +221,16 @@ namespace ArcaneBrigade
         /// <summary>A painted switch (dark velvet off, lit lantern on) with its label to the right. The whole row is the tap area.</summary>
         public static bool Toggle(Rect r, bool value, string label, GUIStyle like = null)
         {
-            Sprite sprite = KitSprite("Controls/" + (value ? "ToggleOn" : "ToggleOff"));
+            Sprite sprite = Crafted ? null : KitSprite("Controls/" + (value ? "ToggleOn" : "ToggleOff"));
             float h = Mathf.Min(r.height, 44), w = h * 1.8f;
             Rect knob = new Rect(r.x, r.center.y - h * .5f, w, h);
-            if (sprite != null) Fitted(knob, sprite); else Plate(knob, value ? Gold : Accent);
+            if (sprite != null) Fitted(knob, sprite);
+            else
+            {
+                // crafted switch: a rounded track (lit gold when on) and a round knob that slides
+                CodePlate(new Rect(knob.x, knob.y + h * .12f, w, h * .76f), value ? CodeTone.Gold : CodeTone.Walnut);
+                CodeRound(new Rect(value ? knob.xMax - h : knob.x, knob.y, h, h), value ? CodeTone.Cream : CodeTone.Navy);
+            }
             if (!string.IsNullOrEmpty(label))
             {
                 GUIStyle style = KitLabel(like); style.alignment = TextAnchor.MiddleLeft;
@@ -240,8 +244,11 @@ namespace ArcaneBrigade
         /// <summary>A painted checkbox (velvet square in a brass frame, an ink tick when checked).</summary>
         public static void CheckBox(Rect r, bool value)
         {
-            Sprite sprite = KitSprite("Controls/" + (value ? "CheckTicked" : "CheckEmpty"));
-            if (sprite != null) Fitted(r, sprite); else Plate(r, value ? Gold : Accent);
+            Sprite sprite = Crafted ? null : KitSprite("Controls/" + (value ? "CheckTicked" : "CheckEmpty"));
+            if (sprite != null) { Fitted(r, sprite); return; }
+            float size = Mathf.Min(r.width, r.height); Rect box = new Rect(r.center.x - size * .5f, r.center.y - size * .5f, size, size);
+            CodePlate(box, CodeTone.Navy);
+            if (value) { float w = Mathf.Max(2.5f, size * .12f); Stroke(new Vector2(box.x + size * .26f, box.y + size * .52f), new Vector2(box.x + size * .43f, box.y + size * .7f), w, KitCream); Stroke(new Vector2(box.x + size * .43f, box.y + size * .7f), new Vector2(box.x + size * .76f, box.y + size * .3f), w, KitCream); }
         }
 
         /// <summary>The scroll thumb of a ScrollPanel: a velvet lozenge in brass along a thin walnut rail.</summary>
@@ -249,6 +256,7 @@ namespace ArcaneBrigade
         {
             Sprite rail = KitSprite("Controls/ScrollTrack"), grip = KitSprite("Controls/ScrollThumb");
             if (rail == null || grip == null) { Line(new Rect(thumb.center.x - 2.5f, thumb.y, 5, thumb.height), new Color(Gold.r, Gold.g, Gold.b, .75f)); return; }
+            if (Crafted) { CodePlate(track, CodeTone.Navy); CodePlate(thumb, CodeTone.Gold); return; }
             Sliced(track, rail, track.width / rail.texture.width);
             Sliced(thumb, grip, thumb.width / grip.texture.width);
         }
@@ -258,6 +266,15 @@ namespace ArcaneBrigade
             thumb = null;
             Sprite rail = KitSprite("Controls/SliderTrack"), knob = KitSprite("Controls/SliderKnob");
             if (rail == null || knob == null) return null;
+            if (Crafted)
+            {
+                var rod = new GUIStyle(source) { border = new RectOffset(13, 13, 13, 13), fixedHeight = 22, overflow = new RectOffset(0, 0, 0, 0) };
+                rod.normal.background = rod.hover.background = rod.active.background = rod.focused.background = CodeTexture(CodeTone.Navy, 0, true);
+                thumb = new GUIStyle(GUIStyle.none) { fixedWidth = 32, fixedHeight = 32, overflow = new RectOffset(0, 0, 5, 5) };
+                thumb.normal.background = thumb.focused.background = CodeRoundTexture(CodeTone.Gold, 0);
+                thumb.hover.background = thumb.active.background = CodeRoundTexture(CodeTone.Gold, 1);
+                return rod;
+            }
             var track = new GUIStyle(source) { border = new RectOffset((int)rail.border.x, (int)rail.border.z, 0, 0), fixedHeight = 30, overflow = new RectOffset(0, 0, 0, 0) };
             track.normal.background = track.hover.background = track.active.background = track.focused.background = rail.texture;
             thumb = new GUIStyle(GUIStyle.none) { fixedWidth = 26, fixedHeight = 42, overflow = new RectOffset(0, 0, 6, 6) };
@@ -270,6 +287,14 @@ namespace ArcaneBrigade
             thumb = null;
             Sprite rail = KitSprite("Controls/ScrollTrack"), grip = KitSprite("Controls/ScrollThumb");
             if (rail == null || grip == null) return null;
+            if (Crafted)
+            {
+                var rod = new GUIStyle(source) { border = new RectOffset(13, 13, 13, 13), fixedWidth = 16 };
+                rod.normal.background = CodeTexture(CodeTone.Navy, 0, true);
+                thumb = new GUIStyle(source) { border = new RectOffset(13, 13, 13, 13), fixedWidth = 16 };
+                thumb.normal.background = thumb.hover.background = thumb.active.background = CodeTexture(CodeTone.Gold, 0, true);
+                return rod;
+            }
             var track = new GUIStyle(source) { border = new RectOffset(0, 0, (int)rail.border.w, (int)rail.border.y), fixedWidth = 16 };
             track.normal.background = rail.texture;
             thumb = new GUIStyle(source) { border = new RectOffset(0, 0, (int)grip.border.w, (int)grip.border.y), fixedWidth = 16 };
@@ -280,13 +305,13 @@ namespace ArcaneBrigade
         /// <summary>The skin's own GUI.Button look: the painted plate without its crest (a style's nine-slice would stretch it).</summary>
         private static GUIStyle KitButtonStyle(GUIStyle source, KitButton kind)
         {
+            if (KitSprite("Buttons/" + kind + "NormalPlain") != null) return CodeButtonStyle(source, kind); // painted plates come via Fit()
             Sprite normal = KitSprite("Buttons/" + kind + "NormalPlain");
             if (normal == null) return null;
             Sprite hover = KitSprite("Buttons/" + kind + "HoverPlain") ?? normal, pressed = KitSprite("Buttons/" + kind + "PressedPlain") ?? normal;
             Vector4 b = normal.border;
             Rect body = BodyOf("Buttons/" + kind + "NormalPlain", normal.texture);
             int W = normal.texture.width, H = normal.texture.height;
-            foreach (Sprite s in new[] { normal, hover, pressed }) plainTones[s.texture] = kind == KitButton.Primary ? CodeTone.Gold : kind == KitButton.Danger ? CodeTone.Oxblood : CodeTone.Walnut;
             var style = new GUIStyle(source)
             {
                 border = new RectOffset((int)b.x, (int)b.z, (int)b.w, (int)b.y),
@@ -318,6 +343,7 @@ namespace ArcaneBrigade
         {
             Sprite frame = KitSprite("HUD/HpFrame"), fill = KitSprite("HUD/HpFill");
             if (frame == null || fill == null) return r;
+            if (Crafted) return CraftedHealthBar(r, fraction, trail);
             float k = r.height / frame.texture.height, W = frame.texture.width, H = frame.texture.height;
             // the open tube, measured on the art: x 97..443 of 488 at full length, y 44..76 of 108
             float left = r.x + 97 * k, right = r.xMax - (W - 443) * k;
@@ -338,6 +364,7 @@ namespace ArcaneBrigade
         public static Rect Counter(Rect r, KitCounter which, out Rect text)
         {
             Sprite sprite = KitSprite("HUD/Counter" + which);
+            if (sprite != null && Crafted) return CraftedCounter(r, out text);
             if (sprite == null) { Plate(r, which == KitCounter.Gold ? Gold : Teal); text = new Rect(r.x + 60, r.y, r.width - 66, r.height); return new Rect(r.x + 10, r.y + 4, r.height - 8, r.height - 8); }
             float k = r.height / sprite.texture.height;
             Sliced(r, sprite, k);
@@ -348,7 +375,11 @@ namespace ArcaneBrigade
         }
 
         /// <summary>A round brass portrait slot on velvet (lit: gold glow, the hero you are looking at).</summary>
-        public static void PortraitSlot(Rect r, bool lit) { Sprite s = KitSprite("HUD/" + (lit ? "PortraitLit" : "Portrait")); if (s != null) Fitted(r, s); }
+        public static void PortraitSlot(Rect r, bool lit)
+        {
+            if (Crafted) { if (lit) Glow(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20), new Color(Gold.r, Gold.g, Gold.b, .45f)); CodeRound(r, CodeTone.Navy, lit ? 1 : 0); return; }
+            Sprite s = KitSprite("HUD/" + (lit ? "PortraitLit" : "Portrait")); if (s != null) Fitted(r, s);
+        }
 
         /// <summary>The painted menu background: the waiting room at night, cropped to fill the screen.</summary>
         public static bool MenuBackdrop(Rect r, float alpha = 1)

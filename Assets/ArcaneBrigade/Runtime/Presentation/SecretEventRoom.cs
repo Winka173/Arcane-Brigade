@@ -140,7 +140,7 @@ namespace ArcaneBrigade
                     ArcadeSkin.Frame(new Rect(400, 850, 1120, 148), KitFrame.Dialogue, .6f);
                     GUI.Label(new Rect(420, 858, 1080, 44), SecretEventAssets.Titles[(int)kinds[near]], heading);
                     GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "", label);
-                    if (GUI.Button(new Rect(1260, 916, 230, 56), "DISCOVER", primary)) owner.EnterSecret(kinds[near]);
+                    if (ArcadeSkin.KitGuiButton(new Rect(1260, 916, 230, 56), "DISCOVER", primary)) owner.EnterSecret(kinds[near]);
                 }
             }
             else if (MenuOpen)
@@ -188,9 +188,9 @@ namespace ArcaneBrigade
                         else if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                     }
                     GUI.enabled = choices[selected].Enabled;
-                    if (GUI.Button(new Rect(740, 880, 440, 84), owner.Session.SecretVerb, primary)) owner.ChooseSecret(selected);
+                    if (ArcadeSkin.KitGuiButton(new Rect(740, 880, 440, 84), owner.Session.SecretVerb, primary)) owner.ChooseSecret(selected);
                     GUI.enabled = true;
-                    if (GUI.Button(new Rect(1250, 892, 300, 64), "Back to the shop", card)) owner.LeaveSecret();
+                    if (ArcadeSkin.KitGuiButton(new Rect(1250, 892, 300, 64), "Back to the shop", card)) owner.LeaveSecret();
                 }
                 else
                 {
@@ -202,9 +202,9 @@ namespace ArcaneBrigade
                     if (!string.IsNullOrEmpty(s.RewardId))
                     {
                         string reward = owner.Session.SecretRewardLabel;
-                        if (GUI.Button(new Rect(640, 745, 640, 68), "CLAIM " + reward, card)) owner.ClaimSecret();
+                        if (ArcadeSkin.KitGuiButton(new Rect(640, 745, 640, 68), "CLAIM " + reward, card)) owner.ClaimSecret();
                     }
-                    else if (GUI.Button(new Rect(660, 745, 600, 68), "RETURN TO THE SHOP", card)) owner.LeaveSecret();
+                    else if (ArcadeSkin.KitGuiButton(new Rect(660, 745, 600, 68), "RETURN TO THE SHOP", card)) owner.LeaveSecret();
                 }
             }
             else if (owner.Session.SecretFighting)

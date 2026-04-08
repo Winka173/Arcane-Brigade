@@ -23,6 +23,9 @@ namespace ArcaneBrigade
         private static Texture2D keyline;
         private static Texture2D glow;
         private static int builtBundle = -1;
+        private static bool builtCrafted;
+        /// <summary>The UI style: Crafted draws every kit piece in code; Painted uses the image agent's kit (Settings, "UI style").</summary>
+        public static bool Crafted => PresentationSettings.UiStyle == UiLook.Crafted;
         public static int Bundle { get; set; }
 
         public static readonly Color Ink = new Color(0.045f, 0.055f, 0.095f);            // night
@@ -51,8 +54,8 @@ namespace ArcaneBrigade
         {
             get
             {
-                if (skin != null && builtBundle == Bundle) return skin;
-                builtBundle = Bundle;
+                if (skin != null && builtBundle == Bundle && builtCrafted == Crafted) return skin;
+                builtBundle = Bundle; builtCrafted = Crafted;
                 skin = Object.Instantiate(GUI.skin);
                 if (ArcadeTypography.Body != null) skin.font = ArcadeTypography.Body;
                 Color glass = new Color(0.085f, 0.10f, 0.16f, 0.94f);

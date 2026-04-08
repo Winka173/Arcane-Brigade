@@ -63,7 +63,7 @@ namespace ArcaneBrigade
             Rect animatedBounds = new Rect(bounds.x + shift, bounds.y - shift * 0.5f, bounds.width, bounds.height);
             float compression = pressed.TryGetValue(identity, out float began) ? LivingUI.Press(Time.unscaledTime - began, PresentationSettings.ReducedMotion) * 0.025f : 0;
             animatedBounds = new Rect(animatedBounds.x + bounds.width * compression * 0.5f, animatedBounds.y + bounds.height * compression * 0.5f, bounds.width * (1 - compression), bounds.height * (1 - compression));
-            bool clicked = GUI.Button(animatedBounds, caption, ArcadeSkin.Fit(style, bounds)); // small buttons get the code-drawn plate
+            bool clicked = GUI.Button(animatedBounds, caption, ArcadeSkin.Fit(style, animatedBounds)); // the painted plate where it keeps its aspect, else the code-drawn one
             bool accepted = submit && keyboardFocus && index == selected && GUI.enabled && Event.current.type == EventType.Repaint;
             if (accepted) submit = false;
             if (keyboardFocus && selected == index && GUI.enabled)
