@@ -288,11 +288,16 @@ namespace ArcaneBrigade
                 case CombatEventKind.StatusApplied: id = value.Element == DamageElement.Frost ? "fx.chill" : "fx.burn"; break;
                 case CombatEventKind.LootAttract: id = "loot.coin.vacuum"; break;
                 case CombatEventKind.MimicWake: id = "enemy.mimic.wake"; break;
-                case CombatEventKind.BossLanded: id = value.Subject == null || value.Subject.Definition == null ? null : BossVoiceId(value.Subject.Definition.Id); break;
+                case CombatEventKind.BossLanded:
+                    if (value.Subject == null || value.Subject.Definition == null) break;
+                    id = BossSpecific("boss.enter", value);                     // the boss's own entrance; its voice follows (CheckpointAudio)
+                    if (id == "boss.enter") id = BossVoiceId(value.Subject.Definition.Id);
+                    break;
                 case CombatEventKind.LootDrop:
                     id = value.Loot == LootKind.Coin ? "loot.coin.drop" : value.Loot == LootKind.Chest || value.Loot >= LootKind.Flare ? "loot.chest.appear" : null;
                     break;
             }
+            if (id == "boss.telegraph" || id == "boss.attack" || id == "boss.phase" || id == "boss.defeat") id = BossSpecific(id, value);
             return id != null && Get(id) != null ? id : null;
         }
 
@@ -313,6 +318,50 @@ namespace ArcaneBrigade
             HeroMechanic.TreasureTax => "hero.treasure.tax",
             _ => null
         };
+
+        private static string lastBossKey;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        public static void ResetBossSounds() => lastBossKey = null;
+
+        /// <summary>Which boss sound set (SFX v6, 21/10/2026: boss.&lt;key&gt;.enter / windup / hit / phase / defeat) a boss uses.</summary>
+        public static string BossKey(UnitDefinition definition)
+        {
+            if (definition == null) return null;
+            switch (ActOneArtwork.Identity(definition))
+            {
+                case "ChairPorter": return "chairporter";
+                case "DoorThatStayedShut": return "doorthatstayedshut";
+                case "TheBedside": return "bedside";
+                case "LastCustomer_Pleasant": return "lastcustomer";
+            }
+            switch (definition.Id)
+            {
+                case "TheLastCustomer": return "lastcustomer";
+                case "OutsideStageKeeper": return "keeper";
+                case "ChoirEngine": return "howlingorgan";
+                case "UmbraCradle": return "motherumbra";
+            }
+            return string.IsNullOrEmpty(definition.Id) ? null : definition.Id.ToLowerInvariant();
+        }
+
+        /// <summary>A generic boss cue swapped for the boss's own one. Bare boss-pattern events (no Subject) use the boss heard last;
+        /// a boss without its own set, or no boss yet, keeps the generic cue.</summary>
+        private static string BossSpecific(string generic, CombatEvent value)
+        {
+            UnitDefinition definition = value.Subject != null ? value.Subject.Definition : null;
+            if (definition != null && definition.IsBoss)
+            {
+                string key = BossKey(definition);
+                if (key == null || Get("boss." + key + ".hit") == null) return generic;
+                lastBossKey = key;
+            }
+            if (lastBossKey == null) return generic;
+            string part = generic == "boss.enter" ? "enter" : generic == "boss.telegraph" ? "windup" : generic == "boss.attack" ? "hit"
+                : generic == "boss.phase" ? "phase" : generic == "boss.defeat" ? "defeat" : null;
+            string id = part == null ? null : "boss." + lastBossKey + "." + part;
+            return id != null && Get(id) != null ? id : generic;
+        }
 
         public static string BossVoiceId(string unitId)
         {

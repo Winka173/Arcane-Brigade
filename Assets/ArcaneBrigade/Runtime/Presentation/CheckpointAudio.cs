@@ -135,6 +135,11 @@ namespace ArcaneBrigade
                 if (value.Kind != CombatEventKind.Fire && value.Kind != CombatEventKind.Kill && value.Kind != CombatEventKind.Hit) Play(value);
                 if (value.Kind == CombatEventKind.LootDrop && value.Loot == LootKind.Coin && OnScreen(value.Position)) PlayInterfaceId("loot.coin.bounce", 0.1f);
                 if (value.Kind == CombatEventKind.BossPhase) PlayInterfaceId("fx.hazard.warn", 0.1f);
+                if (value.Kind == CombatEventKind.BossLanded && value.Subject != null && value.Subject.Definition != null)
+                {   // the boss's own entrance plays first (ArcaneCueLibrary.EventId); its voice follows it
+                    string voice = ArcaneCueLibrary.BossVoiceId(value.Subject.Definition.Id);
+                    if (voice != null && ArcaneCueLibrary.EventId(value) != voice) PlayInterfaceId(voice, 0.9f);
+                }
                 if (value.Kind != CombatEventKind.Fire || value.Faction != Faction.Champion || value.Weapon == null || value.Weapon.Kind != WeaponKind.Melee || value.Cause.RootId == 0) continue;
                 bool connected = false;
                 for (int other = 0; other < events.Count && !connected; other++) connected = events[other].Kind == CombatEventKind.Hit && events[other].Cause.RootId == value.Cause.RootId;

@@ -8,16 +8,13 @@
    "gainDb": -14,
    "cooldown": 0.05,
    "maxVoices": 3,
-   "pitchJitter": 0.03,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/cmb_swing_blade_00",
-    "Sfx/cmb_swing_blade_01",
-    "Sfx/cmb_swing_blade_02",
-    "Sfx/cmb_swing_blade_03",
-    "Sfx/cmb_swing_blade_04",
-    "Sfx/cmb_swing_blade_05"
+    "Sfx/sfx_slash_a",
+    "Sfx/sfx_slash_b",
+    "Sfx/sfx_slash_c"
    ]
   },
   {
@@ -27,15 +24,13 @@
    "gainDb": -14,
    "cooldown": 0.05,
    "maxVoices": 3,
-   "pitchJitter": 0.03,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/cmb_swing_spear_00",
-    "Sfx/cmb_swing_spear_01",
-    "Sfx/cmb_swing_spear_02",
-    "Sfx/cmb_swing_spear_03",
-    "Sfx/cmb_swing_spear_04"
+    "Sfx/sfx_slash_a",
+    "Sfx/sfx_slash_b",
+    "Sfx/sfx_slash_c"
    ]
   },
   {
@@ -45,14 +40,13 @@
    "gainDb": -14,
    "cooldown": 0.05,
    "maxVoices": 3,
-   "pitchJitter": 0.03,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/cmb_swing_hammer_00",
-    "Sfx/cmb_swing_hammer_01",
-    "Sfx/cmb_swing_hammer_02",
-    "Sfx/cmb_swing_hammer_03"
+    "Sfx/sfx_blunt_a",
+    "Sfx/sfx_blunt_b",
+    "Sfx/sfx_blunt_c"
    ]
   },
   {
@@ -146,16 +140,13 @@
    "gainDb": -15,
    "cooldown": 0.04,
    "maxVoices": 3,
-   "pitchJitter": 0.03,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/cmb_hit_paper_00",
-    "Sfx/cmb_hit_paper_01",
-    "Sfx/cmb_hit_paper_02",
-    "Sfx/cmb_hit_paper_03",
-    "Sfx/cmb_hit_paper_04",
-    "Sfx/cmb_hit_paper_05"
+    "Sfx/sfx_impact_a",
+    "Sfx/sfx_impact_b",
+    "Sfx/sfx_impact_c"
    ]
   },
   {
@@ -251,16 +242,13 @@
    "gainDb": -15,
    "cooldown": 0.04,
    "maxVoices": 3,
-   "pitchJitter": 0.03,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/cmb_hit_fabric_00",
-    "Sfx/cmb_hit_fabric_01",
-    "Sfx/cmb_hit_fabric_02",
-    "Sfx/cmb_hit_fabric_03",
-    "Sfx/cmb_hit_fabric_04",
-    "Sfx/cmb_hit_fabric_05"
+    "Sfx/sfx_impact_a",
+    "Sfx/sfx_impact_b",
+    "Sfx/sfx_impact_c"
    ]
   },
   {
@@ -356,15 +344,13 @@
    "gainDb": -13,
    "cooldown": 0.1,
    "maxVoices": 2,
-   "pitchJitter": 0.0,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/cmb_crit_00",
-    "Sfx/cmb_crit_01",
-    "Sfx/cmb_crit_02",
-    "Sfx/cmb_crit_03",
-    "Sfx/cmb_crit_04"
+    "Sfx/sfx_big_impact_a",
+    "Sfx/sfx_big_impact_b",
+    "Sfx/sfx_big_impact_c"
    ]
   },
   {
@@ -408,14 +394,13 @@
    "gainDb": -15,
    "cooldown": 0.06,
    "maxVoices": 3,
-   "pitchJitter": 0.03,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/wpn_gun_pop_00",
-    "Sfx/wpn_gun_pop_01",
-    "Sfx/wpn_gun_pop_02",
-    "Sfx/wpn_gun_pop_03"
+    "Sfx/sfx_toy_gun_a",
+    "Sfx/sfx_toy_gun_b",
+    "Sfx/sfx_toy_gun_c"
    ]
   },
   {
@@ -425,13 +410,13 @@
    "gainDb": -16,
    "cooldown": 0.12,
    "maxVoices": 2,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/wpn_launcher_00",
-    "Sfx/wpn_launcher_01",
-    "Sfx/wpn_launcher_02"
+    "Sfx/sfx_paper_shot_a",
+    "Sfx/sfx_paper_shot_b",
+    "Sfx/sfx_paper_shot_c"
    ]
   },
   {
@@ -475,14 +460,13 @@
    "gainDb": -17,
    "cooldown": 0.08,
    "maxVoices": 2,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/wpn_cast_arcane_00",
-    "Sfx/wpn_cast_arcane_01",
-    "Sfx/wpn_cast_arcane_02",
-    "Sfx/wpn_cast_arcane_03"
+    "Sfx/sfx_ink_shot_a",
+    "Sfx/sfx_ink_shot_b",
+    "Sfx/sfx_ink_shot_c"
    ]
   },
   {
@@ -492,13 +476,13 @@
    "gainDb": -20,
    "cooldown": 0.3,
    "maxVoices": 1,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/wpn_boomerang_fly_00",
-    "Sfx/wpn_boomerang_fly_01",
-    "Sfx/wpn_boomerang_fly_02"
+    "Sfx/sfx_thrown_a",
+    "Sfx/sfx_thrown_b",
+    "Sfx/sfx_thrown_c"
    ]
   },
   {
@@ -541,13 +525,13 @@
    "gainDb": -18,
    "cooldown": 0.1,
    "maxVoices": 2,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/wpn_split_00",
-    "Sfx/wpn_split_01",
-    "Sfx/wpn_split_02"
+    "Sfx/sfx_paper_shot_a",
+    "Sfx/sfx_paper_shot_b",
+    "Sfx/sfx_paper_shot_c"
    ]
   },
   {
@@ -1185,6 +1169,1056 @@
    ]
   },
   {
+   "id": "boss.chairporter.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_chairporter_entrance"
+   ]
+  },
+  {
+   "id": "boss.chairporter.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_chairporter_windup"
+   ]
+  },
+  {
+   "id": "boss.chairporter.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_chairporter_hit"
+   ]
+  },
+  {
+   "id": "boss.chairporter.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_chairporter_phase"
+   ]
+  },
+  {
+   "id": "boss.chairporter.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_chairporter_defeat"
+   ]
+  },
+  {
+   "id": "boss.doorthatstayedshut.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_doorthatstayedshut_entrance"
+   ]
+  },
+  {
+   "id": "boss.doorthatstayedshut.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_doorthatstayedshut_windup"
+   ]
+  },
+  {
+   "id": "boss.doorthatstayedshut.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_doorthatstayedshut_hit"
+   ]
+  },
+  {
+   "id": "boss.doorthatstayedshut.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_doorthatstayedshut_phase"
+   ]
+  },
+  {
+   "id": "boss.doorthatstayedshut.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_doorthatstayedshut_defeat"
+   ]
+  },
+  {
+   "id": "boss.bedside.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_bedside_entrance"
+   ]
+  },
+  {
+   "id": "boss.bedside.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_bedside_windup"
+   ]
+  },
+  {
+   "id": "boss.bedside.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_bedside_hit"
+   ]
+  },
+  {
+   "id": "boss.bedside.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_bedside_phase"
+   ]
+  },
+  {
+   "id": "boss.bedside.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_bedside_defeat"
+   ]
+  },
+  {
+   "id": "boss.lastcustomer.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastcustomer_entrance"
+   ]
+  },
+  {
+   "id": "boss.lastcustomer.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastcustomer_windup"
+   ]
+  },
+  {
+   "id": "boss.lastcustomer.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastcustomer_hit"
+   ]
+  },
+  {
+   "id": "boss.lastcustomer.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastcustomer_phase"
+   ]
+  },
+  {
+   "id": "boss.lastcustomer.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_lastcustomer_defeat"
+   ]
+  },
+  {
+   "id": "boss.keeper.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_keeper_entrance"
+   ]
+  },
+  {
+   "id": "boss.keeper.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_keeper_windup"
+   ]
+  },
+  {
+   "id": "boss.keeper.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_keeper_hit"
+   ]
+  },
+  {
+   "id": "boss.keeper.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_keeper_phase"
+   ]
+  },
+  {
+   "id": "boss.keeper.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_keeper_defeat"
+   ]
+  },
+  {
+   "id": "boss.undeliveredking.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_undeliveredking_entrance"
+   ]
+  },
+  {
+   "id": "boss.undeliveredking.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_undeliveredking_windup"
+   ]
+  },
+  {
+   "id": "boss.undeliveredking.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_undeliveredking_hit"
+   ]
+  },
+  {
+   "id": "boss.undeliveredking.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_undeliveredking_phase"
+   ]
+  },
+  {
+   "id": "boss.undeliveredking.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_undeliveredking_defeat"
+   ]
+  },
+  {
+   "id": "boss.scarletindex.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_scarletindex_entrance"
+   ]
+  },
+  {
+   "id": "boss.scarletindex.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_scarletindex_windup"
+   ]
+  },
+  {
+   "id": "boss.scarletindex.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_scarletindex_hit"
+   ]
+  },
+  {
+   "id": "boss.scarletindex.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_scarletindex_phase"
+   ]
+  },
+  {
+   "id": "boss.scarletindex.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_scarletindex_defeat"
+   ]
+  },
+  {
+   "id": "boss.sleepcollector.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_sleepcollector_entrance"
+   ]
+  },
+  {
+   "id": "boss.sleepcollector.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_sleepcollector_windup"
+   ]
+  },
+  {
+   "id": "boss.sleepcollector.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_sleepcollector_hit"
+   ]
+  },
+  {
+   "id": "boss.sleepcollector.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_sleepcollector_phase"
+   ]
+  },
+  {
+   "id": "boss.sleepcollector.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_sleepcollector_defeat"
+   ]
+  },
+  {
+   "id": "boss.waxadmiral.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_waxadmiral_entrance"
+   ]
+  },
+  {
+   "id": "boss.waxadmiral.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_waxadmiral_windup"
+   ]
+  },
+  {
+   "id": "boss.waxadmiral.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_waxadmiral_hit"
+   ]
+  },
+  {
+   "id": "boss.waxadmiral.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_waxadmiral_phase"
+   ]
+  },
+  {
+   "id": "boss.waxadmiral.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_waxadmiral_defeat"
+   ]
+  },
+  {
+   "id": "boss.lastlantern.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastlantern_entrance"
+   ]
+  },
+  {
+   "id": "boss.lastlantern.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastlantern_windup"
+   ]
+  },
+  {
+   "id": "boss.lastlantern.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastlantern_hit"
+   ]
+  },
+  {
+   "id": "boss.lastlantern.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_lastlantern_phase"
+   ]
+  },
+  {
+   "id": "boss.lastlantern.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_lastlantern_defeat"
+   ]
+  },
+  {
+   "id": "boss.marqueemaw.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_marqueemaw_entrance"
+   ]
+  },
+  {
+   "id": "boss.marqueemaw.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_marqueemaw_windup"
+   ]
+  },
+  {
+   "id": "boss.marqueemaw.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_marqueemaw_hit"
+   ]
+  },
+  {
+   "id": "boss.marqueemaw.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_marqueemaw_phase"
+   ]
+  },
+  {
+   "id": "boss.marqueemaw.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_marqueemaw_defeat"
+   ]
+  },
+  {
+   "id": "boss.motherumbra.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_motherumbra_entrance"
+   ]
+  },
+  {
+   "id": "boss.motherumbra.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_motherumbra_windup"
+   ]
+  },
+  {
+   "id": "boss.motherumbra.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_motherumbra_hit"
+   ]
+  },
+  {
+   "id": "boss.motherumbra.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_motherumbra_phase"
+   ]
+  },
+  {
+   "id": "boss.motherumbra.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_motherumbra_defeat"
+   ]
+  },
+  {
+   "id": "boss.coinwidow.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_coinwidow_entrance"
+   ]
+  },
+  {
+   "id": "boss.coinwidow.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_coinwidow_windup"
+   ]
+  },
+  {
+   "id": "boss.coinwidow.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_coinwidow_hit"
+   ]
+  },
+  {
+   "id": "boss.coinwidow.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_coinwidow_phase"
+   ]
+  },
+  {
+   "id": "boss.coinwidow.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_coinwidow_defeat"
+   ]
+  },
+  {
+   "id": "boss.howlingorgan.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_howlingorgan_entrance"
+   ]
+  },
+  {
+   "id": "boss.howlingorgan.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_howlingorgan_windup"
+   ]
+  },
+  {
+   "id": "boss.howlingorgan.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_howlingorgan_hit"
+   ]
+  },
+  {
+   "id": "boss.howlingorgan.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_howlingorgan_phase"
+   ]
+  },
+  {
+   "id": "boss.howlingorgan.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_howlingorgan_defeat"
+   ]
+  },
+  {
+   "id": "boss.suitcaseleviathan.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_suitcaseleviathan_entrance"
+   ]
+  },
+  {
+   "id": "boss.suitcaseleviathan.windup",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_suitcaseleviathan_windup"
+   ]
+  },
+  {
+   "id": "boss.suitcaseleviathan.hit",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_suitcaseleviathan_hit"
+   ]
+  },
+  {
+   "id": "boss.suitcaseleviathan.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_suitcaseleviathan_phase"
+   ]
+  },
+  {
+   "id": "boss.suitcaseleviathan.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_suitcaseleviathan_defeat"
+   ]
+  },
+  {
    "id": "sig.alarm.boom",
    "bus": "Combat",
    "priority": 120,
@@ -1380,16 +2414,13 @@
    "gainDb": -19,
    "cooldown": 0.035,
    "maxVoices": 3,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/loot_coin_pickup_00",
-    "Sfx/loot_coin_pickup_01",
-    "Sfx/loot_coin_pickup_02",
-    "Sfx/loot_coin_pickup_03",
-    "Sfx/loot_coin_pickup_04",
-    "Sfx/loot_coin_pickup_05"
+    "Sfx/sfx_coin_pickup_a",
+    "Sfx/sfx_coin_pickup_b",
+    "Sfx/sfx_coin_pickup_c"
    ]
   },
   {
@@ -1399,14 +2430,13 @@
    "gainDb": -17,
    "cooldown": 0.06,
    "maxVoices": 2,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/loot_egg_00",
-    "Sfx/loot_egg_01",
-    "Sfx/loot_egg_02",
-    "Sfx/loot_egg_03"
+    "Sfx/sfx_egg_pickup_a",
+    "Sfx/sfx_egg_pickup_b",
+    "Sfx/sfx_egg_pickup_c"
    ]
   },
   {
@@ -2682,13 +3712,13 @@
    "gainDb": -17,
    "cooldown": 0.09,
    "maxVoices": 2,
-   "pitchJitter": 0.02,
+   "pitchJitter": 0.04,
    "loop": false,
    "danger": false,
    "clips": [
-    "Sfx/wpn_yoyo_throw_00",
-    "Sfx/wpn_yoyo_throw_01",
-    "Sfx/wpn_yoyo_throw_02"
+    "Sfx/sfx_thrown_a",
+    "Sfx/sfx_thrown_b",
+    "Sfx/sfx_thrown_c"
    ]
   },
   {
