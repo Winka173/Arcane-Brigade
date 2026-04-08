@@ -442,10 +442,7 @@ namespace ArcaneBrigade
                 string body = Fit(source, width, panel.yMax - 12 - y, out int more);
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
                 if (navigation.Button(buy, "", primary)) shop.Interact();
-                if (blood) BloodPriceFrame.Button(buy, Affordable(owner, station));
                 DrawPriceButton(buy, station, owner);
-                // the HP price, said once: the wax seal on the picture (never a stat line)
-                if (blood) BloodPriceFrame.Seal(new Rect(picture.xMax - 78, picture.yMax - 92, 96, 100), station.Offer.Price, owner.Content.HeartSprite);
                 if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + 10, buy.width, panel.yMax - 18 - buy.yMax - 10), more > 0 ? "i  +" + more : "i", button)) SetShopDetails(true);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
@@ -555,7 +552,6 @@ namespace ArcaneBrigade
             Rect panel = new Rect(400, 150, 1120, 880);
             ShownShopCard = panel;
             RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
-            if (blood) BloodPriceFrame.Seal(new Rect(panel.x + 70, panel.y + 52, 70, 74), station.Offer.Price, owner.Content.HeartSprite);
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
             ShopDescriptionCard.DrawSprite(new Rect(panel.x + 28, panel.y + 22, 72, 72), offerCard.Portrait);
             GUI.Label(new Rect(panel.x + 116, panel.y + 18, 700, 44), shop.DisplayName(station), cardName);

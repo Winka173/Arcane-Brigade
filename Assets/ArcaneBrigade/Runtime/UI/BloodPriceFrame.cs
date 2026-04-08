@@ -22,61 +22,48 @@ namespace ArcaneBrigade
         }
         public static bool HasArt { get { Load(); return frame != null; } }
 
-        /// <summary>The curse laid OVER the normal rarity frame (owner, 20/10/2026: keep the description card, curse its frame):
-        /// cracks creep in from the corners with a heartbeat ember glowing in them, thorn-and-rose corners from the blood-price
-        /// sheet, a thin dark-red bleed along the inner edge, and drops seeping from the top edge. The card keeps its own paper.</summary>
+        /// <summary>An HP-priced offer keeps the ordinary description card (owner, 21/10/2026: "use a normal description and give
+        /// it an effect"); only this goes on top: a dark-red rim that beats like a heart, a red light running round the edge, and a
+        /// few slow drops seeping from the top edge. Everything is drawn in code and stays on the card's rim, never over the text.</summary>
         public static void Draw(Rect panel, float clock)
         {
-            Load();
             bool still = PresentationSettings.ReducedMotion;
-            float beat = still ? .35f : Heartbeat(clock);
-            // the heartbeat shows on the rim only (a radial glow over the card would tint the whole paper red)
+            float beat = still ? .4f : Heartbeat(clock);
+            // the heartbeat: a soft red glow just outside the rim, swelling twice and resting
             for (int i = 0; i < 4; i++)
             {
-                Color pulse = new Color(Ember.r, Ember.g * .5f, Ember.b * .5f, (.10f + beat * .30f) * (1 - i / 4f)); float o = 1 + i * 2;
+                Color pulse = new Color(Blood.r, Blood.g, Blood.b, (.14f + beat * .34f) * (1 - i / 4f)); float o = 1 + i * 2;
                 ArcadeSkin.Line(new Rect(panel.x - o, panel.y - o, panel.width + 2 * o, 2), pulse); ArcadeSkin.Line(new Rect(panel.x - o, panel.yMax + o - 2, panel.width + 2 * o, 2), pulse);
                 ArcadeSkin.Line(new Rect(panel.x - o, panel.y - o, 2, panel.height + 2 * o), pulse); ArcadeSkin.Line(new Rect(panel.xMax + o - 2, panel.y - o, 2, panel.height + 2 * o), pulse);
             }
-            // a thin bleed just inside the rim, not a new background
-            for (int i = 0; i < 6; i++)
+            // a red light running round the edge (the same running light as the bond tiles, in blood red)
+            if (!still) ArcadeSkin.RunningLight(panel, clock, Ember, .9f);
+            // three slow drops seeping from the top edge, each on its own clock, small enough to stay above the text
+            float[] at = { .22f, .58f, .86f };
+            for (int i = 0; i < at.Length; i++)
             {
-                Color bleed = new Color(Blood.r * .6f, 0, .02f, .16f * (1 - i / 6f)); float o = 3 + i * 3;
-                ArcadeSkin.Line(new Rect(panel.x + o, panel.y + o, panel.width - 2 * o, 3), bleed); ArcadeSkin.Line(new Rect(panel.x + o, panel.yMax - o - 3, panel.width - 2 * o, 3), bleed);
-                ArcadeSkin.Line(new Rect(panel.x + o, panel.y + o, 3, panel.height - 2 * o), bleed); ArcadeSkin.Line(new Rect(panel.xMax - o - 3, panel.y + o, 3, panel.height - 2 * o), bleed);
-            }
-            // cracks from every corner (mirrored): dark ink with an ember line pulsing inside
-            float c = Mathf.Clamp(Mathf.Min(panel.width, panel.height) * .55f, 70, 170);
-            for (int k = 0; k < 4; k++)
-            {
-                bool right = k == 1 || k == 3, bottom = k >= 2;
-                Rect corner = new Rect(right ? panel.xMax - c : panel.x, bottom ? panel.yMax - c : panel.y, c, c);
-                Rect uv = new Rect(right ? 1 : 0, bottom ? 1 : 0, right ? -1 : 1, bottom ? -1 : 1);
-                Color keep = GUI.color;
-                GUI.color = new Color(.05f, 0, .01f, .85f * keep.a); GUI.DrawTextureWithTexCoords(corner, Cracks, uv, true);
-                GUI.color = new Color(Ember.r, Ember.g * .7f, Ember.b * .6f, (.25f + beat * .6f) * keep.a); GUI.DrawTextureWithTexCoords(corner, CrackGlow, uv, true);
+                float phase = still ? .5f : Mathf.Repeat(clock * .11f + i * .37f, 1f);
+                float length = Mathf.Lerp(3, 16, Mathf.SmoothStep(0, 1, phase)), fade = still ? 1 : Mathf.Clamp01((1 - phase) * 5);
+                float x = panel.x + panel.width * at[i];
+                Color keep = GUI.color; GUI.color = new Color(Blood.r, Blood.g, Blood.b, .85f * fade * keep.a);
+                GUI.DrawTexture(new Rect(x - 1.5f, panel.y, 3, length), Texture2D.whiteTexture);
+                GUI.DrawTexture(new Rect(x - 4, panel.y + length - 4, 8, 8), Drop);
                 GUI.color = keep;
             }
-            // the thorn-and-rose corners from the painted blood-price sheet, corners only
-            if (frame != null)
+        }
+        private static Texture2D drop;
+        private static Texture2D Drop
+        {
+            get
             {
-                float cs = Mathf.Min(78, panel.height * .4f);
-                Draw(new Rect(panel.x - cs * .18f, panel.y - cs * .18f, cs, cs), frame, new Rect(0, .75f, .25f, .25f));
-                Draw(new Rect(panel.xMax - cs * .82f, panel.y - cs * .18f, cs, cs), frame, new Rect(.75f, .75f, .25f, .25f));
-                Draw(new Rect(panel.x - cs * .18f, panel.yMax - cs * .82f, cs, cs), frame, new Rect(0, 0, .25f, .25f));
-                Draw(new Rect(panel.xMax - cs * .82f, panel.yMax - cs * .82f, cs, cs), frame, new Rect(.75f, 0, .25f, .25f));
-            }
-            if (drip == null) return;
-            // three drops creep down from the top edge, each on its own slow clock
-            float[] spots = { .24f, .56f, .83f };
-            for (int i = 0; i < spots.Length; i++)
-            {
-                float phase = still ? .55f : Mathf.Repeat(clock * .09f + i * .37f, 1f);
-                float length = Mathf.Lerp(.25f, 1f, Mathf.SmoothStep(0, 1, phase)) * Mathf.Min(70, panel.height * .3f);
-                float fade = still ? 1 : Mathf.Clamp01((1 - phase) * 6);
-                float full = Mathf.Min(70, panel.height * .3f), width = full * drip.rect.width / drip.rect.height;
-                Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * fade);
-                Draw(new Rect(panel.x + panel.width * spots[i] - width * .5f, panel.y + 6, width, length), drip, new Rect(0, 1 - length / full, 1, length / full));
-                GUI.color = keep;
+                if (drop != null) return drop;
+                drop = new Texture2D(16, 16, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
+                for (int y = 0; y < 16; y++) for (int x = 0; x < 16; x++)
+                {
+                    float d = Vector2.Distance(new Vector2(x + .5f, y + .5f), new Vector2(8, 8)) / 8f;
+                    drop.SetPixel(x, y, new Color(1, 1, 1, Mathf.Clamp01((1 - d) * 3)));
+                }
+                drop.Apply(); return drop;
             }
         }
 
