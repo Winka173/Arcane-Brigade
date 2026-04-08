@@ -13,7 +13,7 @@ namespace ArcaneBrigade
     {
         private Vector2 scroll;
         private string identity;
-        private GUIStyle headingStyle, bodyStyle, numericStyle, smallStyle;
+        private GUIStyle headingStyle, bodyStyle, numericStyle, smallStyle, moreStyle;
         private bool scrollToEnd, expanded;
         private float revealedAt;
         private RunSnapshot cachedRun;
@@ -178,8 +178,9 @@ namespace ArcaneBrigade
             }
             if (cachedMembers.Count > 5)
             {
-                if (ArcadeSkin.Button(new Rect(4, y + 4, Mathf.Min(inner - 8, 320), 48), expanded ? "SHOW TOP 5" : "+" + (cachedMembers.Count - 5) + " MORE", KitButton.Secondary, true, small)) expanded = !expanded;
-                y += 56;
+                moreStyle ??= ArcadeTypography.Style(21, true);
+                if (ArcadeSkin.Button(new Rect(4, y + 6, Mathf.Min(inner - 8, 320), 54), expanded ? "SHOW TOP 5" : "+" + (cachedMembers.Count - 5) + " MORE", KitButton.Secondary, true, moreStyle)) expanded = !expanded;
+                y += 66;
             }
             y += 20;
             // three small trophies
