@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-21",
+  "method": "Built-in painted",
+  "nativeDimensionsPreserved": true,
+  "programmaticImageEditing": false,
+  "jobs": [
+    {
+      "name": "UI_SecretEvent",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_SecretEvent_v1.png",
+      "transparent": true,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+        "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+        "Assets/ArcaneBrigade/Resources/RarityFrame/Mythic_Crest.png"
+      ],
+      "depends": null,
+      "mode": "single",
+      "priority": 1,
+      "review_item": "7 (follow-up)",
+      "display_note": "plates ~400x260 px, pedestal ~220 px, banner ~900x140 px",
+      "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Frames and plates must be 9-slice ready: plain uniform centre area, ornament only on the borders and corners, the straight edges between corners simple and repeatable. A production UI SHEET for a SECRET EVENT screen (a mysterious side room where a strange visitor offers a deal on one of the player's relics), matching the UI kit in the references, 1536x1536 canvas: TOP a wide title banner plaque (dark velvet ribbon held by two brass hands, empty centre); MIDDLE-LEFT three tall offer plate frames side by side, same shape, each with a small empty round badge socket on its top edge: DO plate (aged cream paper with a brass rim), LOSE plate (dark oxblood paper with a thin thorn rim), GET plate (deep green-gilt paper with a laurel rim); a highlighted SELECTED version of the plate frame (glowing gold rim with tiny sparks); MIDDLE-RIGHT a small round relic PEDESTAL seen from the front (velvet cushion on a brass stand under a faint bell-jar glint, empty on top) with two small brass swap arrows on either side; BOTTOM a large confirm button shaped like a wax-sealed contract ribbon (normal, hover, pressed) and a small 'leave' door-tag button (normal, hover).",
+      "exists": false
+    },
+    {
+      "name": "UI_PaperTags",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_PaperTags_v1.png",
+      "transparent": true,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+        "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "depends": null,
+      "mode": "single",
+      "priority": 1,
+      "review_item": "13 (painted-style audit 21/10/2026)",
+      "display_note": "price tags ~126x42, label tags ~180x34, receipt slips 300x30-60, reward tiles ~84x84, letter rows ~300x68 px",
+      "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Each piece is drawn at the EXACT aspect ratio given, as it will appear in the game. A piece marked 'stretches sideways' must be 9-slice ready along its width only: ornament only at its two ends, the long middle a plain repeatable run of paper/wood/rim with no motif in its centre; a piece marked 'no stretch' is used whole. A production SHEET of small AGED CREAM PAPER pieces for the shop and the hub, 1536x1536 canvas, 3 rows: ROW 1 a shop PRICE TAG at aspect 3:1 (cream card with a punched brass eyelet and a short loop of twine at its LEFT end, slightly dog-eared right corner; stretches sideways) in normal and 'refused' (faintly red-stained) versions, and a LABEL TAG at aspect 5:1 (cream paper strip with notched swallow-tail ends and a thin brass rule along both long edges; stretches sideways). ROW 2 a RECEIPT SLIP at aspect 7:1 (thin cream receipt paper with a torn zig-zag bottom edge and a faint ink rule near each end; stretches sideways) and a LETTER ROW at aspect 4.5:1 (folded letter paper with a small red wax dot at its left end; stretches sideways) in unread (crisp) and read (softer, slightly creased) versions. ROW 3 a square REWARD TILE at aspect 1:1 (cream card in a thin brass frame with tiny corner rivets, empty centre; no stretch) in normal and highlighted (warm gold rim glow) versions.",
+      "exists": false
+    },
+    {
+      "name": "UI_InfoTiles",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_InfoTiles_v1.png",
+      "transparent": true,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Buttons_v1.png",
+        "Assets/ArcaneBrigade/Art/Playtest/UI/UI_Panels_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png"
+      ],
+      "depends": null,
+      "mode": "single",
+      "priority": 1,
+      "review_item": "13 (painted-style audit 21/10/2026)",
+      "display_note": "bond tiles ~270x120, attack tile 220x120, wide bars 730x50, LOSE/GET rows 424x96, chips 140x50 px",
+      "prompt": "Match the reference images exactly: hand-painted storybook rendering, warm ink line, soft painterly shading, the game's 'Waiting Realm' theme (a dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy). Every element completely isolated on a truly transparent background with large transparent margins, never touching or overlapping; no text, no letters, no numbers, no grid lines, no drop shadow outside the element, no ground. Each piece is drawn at the EXACT aspect ratio given, as it will appear in the game. A piece marked 'stretches sideways' must be 9-slice ready along its width only: ornament only at its two ends, the long middle a plain repeatable run of paper/wood/rim with no motif in its centre; a piece marked 'no stretch' is used whole. A production SHEET of INFO TILES and BARS that sit inside cards, 1536x1536 canvas, 4 rows: ROW 1 a NIGHT-NAVY LACQUER TILE at aspect 9:4 (deep navy lacquered panel with a thin gilt keyline and a tiny brass rivet in each corner, plain centre; 9-slice ready on both axes with SMALL corners, about 12% of its height) in normal and LIT versions (lit: the keyline glows warm gold, a soft inner glow along the rim). ROW 2 the same navy tile at aspect 11:6 (normal only) and a WIDE NAVY BAR at aspect 15:1 (thin gilt rim, tiny brass caps at the two ends; stretches sideways). ROW 3 a LOSE ROW at aspect 4.4:1 (dark oxblood paper band with a thin thorn line along its top and bottom edges, small iron caps at both ends; stretches sideways) and a GET ROW at the same aspect (deep green-gilt paper band with a thin laurel line along its edges, small brass caps; stretches sideways). ROW 4 a small WALNUT CHIP at aspect 3:1 (rounded walnut plate with a thin brass rim and an empty round icon socket at its left end; stretches sideways) in normal and lit (gold rim) versions.",
+      "exists": false
+    }
+  ],
+  "selectedSources": [
+    [
+      "UI_SecretEvent",
+      "exec-51d15e85-5cc7-41fa-8d7f-435e1e3e344d.png"
+    ],
+    [
+      "UI_PaperTags",
+      "exec-04146077-3977-4920-8cb2-ac55e3efc49c.png"
+    ],
+    [
+      "UI_InfoTiles",
+      "exec-3aa607e0-2c49-44a2-a12f-08fd76c7445d.png"
+    ]
+  ],
+  "corrections": {
+    "UI_SecretEvent": [
+      "Precise production correction of the FIRST attached SECRET EVENT sheet. Keep all requested elements but simplify them for actual UI use. Same square canvas, genuine transparent RGBA. Give a 7 percent completely transparent outer border and wide clear gutters. Make every object 25 percent smaller to fit. Top title banner: dark navy velvet, EMPTY PLAIN centre, REMOVE central jewel and crest; brass hands only at the two far ends. Middle: FOUR MATCHING tall rounded rectangular offer plates, identical outer shape AND identical height/width (cream DO, oxblood LOSE, deep green GET, cream selected), each with a SMALL EMPTY circular socket at the top. Plate corners may have tiny material-specific ornaments; ALL straight edges between corners are simple thin repeatable rails, NO leaves, thorns, roses or gems protruding along the middle of a straight edge, NO central bottom jewel. All four plate centres are PLAIN uniform paper without patterns. Selected plate only a thin glowing warm GOLD rim with a few tiny gold sparks, no broad halo. Put the empty relic pedestal with its faint glass glint separately to the right/below the plates without contact; the two detached swap arrows are small plain BRASS arrows without red gems, both fully separate from pedestal and plates. Bottom: three MATCHING wax-sealed contract ribbon buttons (normal, hover, pressed), put each wax seal at the LEFT END rather than centre so the central writing area is empty and repeatable. Two small leave door-tag buttons normal/hover. All effects warm gold, NEVER red glowing edges, NO red/yellow speckled pigment outside objects. No external shadows, NO background, no writing, no text.",
+      "LAYOUT ONLY precise edit of the FIRST attached secret event UI sheet. Every complete element is TOO BIG and some effects are clipped. Uniformly scale THE ENTIRE COMPOSITION, all its elements and all effects together, down to SEVENTY PERCENT of its current width and height, around the exact centre of the SAME square canvas. Preserve the layout, all shapes, materials and colours, including four equal offer panels and all bottom buttons. The outermost 15 percent of the canvas on every edge must be completely empty true transparent alpha zero. Remove any free-floating coloured speckled pigment or red aura; selected/hover light is tight warm gold only. Do not crop, do not zoom back in to fill the canvas, do not change the number or arrangement of pieces. The existing internal empty spaces also scale with the composition. Real transparent RGBA background. No words or numbers. No additional objects. Entire collection must float in a LARGE empty transparent border."
+    ],
+    "UI_PaperTags": [
+      "Precise production layout/ratio correction of the FIRST attached aged paper UI sheet. Preserve the painterly paper/brass/wax style and the same EIGHT elements, no extras. Rearrange into EXACTLY THREE horizontal rows on a square transparent canvas. ROW ONE: price tag normal, price tag refused, label tag, all three side by side with wide transparent gaps. The rectangular BODY of each price tag is exactly THREE times wider than tall (3:1), with a short twine loop at the LEFT end; the label strip is exactly FIVE times wider than tall (5:1), with thin brass rails and swallow-tail ends, NO gems or fleur-de-lis. ROW TWO: receipt, unread letter strip, read letter strip, all THREE SIDE BY SIDE rather than on separate rows. Receipt exactly SEVEN times wider than tall (7:1), torn bottom and small ink rules only near its ends. Each letter strip exactly FOUR AND A HALF times wider than tall (4.5:1), one SMALL red wax DOT at the left, not a giant seal, NO diagonal envelope fold across the centre; plain uniform repeatable middle. ROW THREE: two SQUARE reward tiles normal/highlight side by side. Small rivets ONLY in corners; thin brass frame; warm GOLD rim for highlight, no broad halo. EVERY complete object must stay within its own layout area, with at least 8 percent canvas width empty TRANSPARENT outer border and ample transparent gutters. Scale objects down rather than filling available space. No decorations in any long middle, no text or writing, no external shadow, real transparent alpha zero, no red glowing specks anywhere.",
+      "Edit ONLY sizing/layout of this eight-piece paper UI sheet, keep every illustration's hand-painted identity. First row must have LARGE TRANSPARENT GAPS between the three pieces: move normal price tag, refused price tag and label to three distinct equally spaced column centres. Reduce each complete first-row piece by 20 percent around its own centre. Keep price tag card body 3:1 and label5:1. Second row receipt and the two letter strips: reduce EACH object's HEIGHT by one quarter, keeping width, so receipt becomes thinner (7:1) and letter strips flatter (4.5:1). Make the READ letter at right visibly softer/creased while the unread one stays crisp. Preserve the two square reward tiles below. Scale the ENTIRE arrangement a further 10 percent smaller around canvas centre to provide fully transparent external margins. No added illustration, no words, no background, no outer shadows, genuine transparent RGBA. No red or orange glowing fringe around ordinary paper. The normal and lit squares keep the same square outline and size; only highlighted rim light changes. Preserve exactly three rows and eight isolated objects."
+    ],
+    "UI_InfoTiles": [
+      "Precise shape correction to the FIRST attached INFO TILES sheet. Keep its EIGHT objects, four-row arrangement, palette, painterly material and empty centres. These are functional UI proportions, so change shape as follows: ROW ONE two navy tiles normal/lit must be exactly WIDTH 9 to HEIGHT 4 (2.25:1), substantially TALLER than current. Tiny corner rivets only, each corner detail about 12 percent of tile height, no oversized scrolls. ROW TWO left navy tile exactly WIDTH 11 to HEIGHT 6 (1.833:1), noticeably TALLER than row one; right navy bar extremely THIN exactly WIDTH 15 to HEIGHT 1, including small caps; remove giant diamond-shaped end caps, replace with tiny simple brass end caps. ROW THREE oxblood and green strips each WIDTH 4.4 to HEIGHT 1, small iron/brass caps and thin thorn/laurel lines; long middle must be plain repeatable, no raised central ornament. ROW FOUR two walnut chips exactly WIDTH 3 to HEIGHT 1, small empty circular socket at LEFT end, all other rim thin and simple, remove protruding large curls near socket. Warm GOLD light only on the lit rim, soft INNER glow, NO outside red speckles or broad halos. EVERY object INCLUDING effects stays inside a generous margin with clear transparent gaps. Give at least 7 percent canvas width transparent outer border, shrink objects to fit instead of clipping them. Genuine transparent RGBA background, no text, no numbers, no external shadows. Square canvas.",
+      "Precise UI geometry correction, edit the FIRST attached sheet and preserve all eight designs and their four-row order. Change ONLY their dimensions, materials and trim remain identical. TOP ROW: both navy tiles are currently too short. Keep each tile's WIDTH unchanged but increase each one's HEIGHT by FORTY PERCENT, evenly above and below its centre. Desired outer shape aspect 9:4. SECOND ROW left navy tile: keep WIDTH unchanged, increase HEIGHT by FIFTEEN PERCENT evenly above/below centre, desired aspect 11:6. SECOND ROW right navy bar: keep WIDTH unchanged, reduce HEIGHT by TWENTY-FIVE PERCENT, desired aspect 15:1 including caps. THIRD ROW: both coloured strips keep WIDTH unchanged and increase HEIGHT by TWENTY PERCENT, desired outer aspect 4.4:1. FOURTH ROW walnut chips: keep WIDTH unchanged, increase HEIGHT by THIRTY PERCENT, desired outer aspect 3:1; their left icon socket stays perfectly circular by increasing its diameter to match the new height. All objects remain centred at their current positions, fully separated with transparent gutters. No resizing of the canvas, no labels, no text, no new motifs or objects. Background genuinely transparent RGBA, preserve outer margins. Gold light is tight and inside rim, no red glow.",
+      "\nProduction layout specification, important: use a square canvas. There are EIGHT separate sprites; no labels. At the requested 1536 square canvas, the outer artwork dimensions are: ROW 1 navy normal and navy lit each 540 WIDE x 240 HIGH (9:4). Their centres at (390,300) and (1140,300). ROW 2 left navy tile 440 WIDE x 240 HIGH (11:6), centre (390,650); right navy bar 540 WIDE x ONLY 36 HIGH (15:1), centre (1140,650). ROW 3 oxblood and green rows each 528 WIDE x 120 HIGH (4.4:1), centres (390,1000) and (1140,1000). ROW 4 walnut chips each 360 WIDE x 120 HIGH (3:1), centres (390,1320) and (1140,1320). If actual output resolution differs, scale ALL these measurements together, preserving these exact width-to-height ratios. References are STYLE ONLY, do not copy their elongated shapes or decorative top crests. All paper/lacquer middles remain visually uniform plain material, no motifs. Transparent gutters and margins. The first navy pair must look moderately broad and substantial, NOT skinny bars. All corners small. All glow gold and close to rim.",
+      "Precise geometry edit. Keep eight illustrated pieces and their positions in four rows, preserve all materials and tiny corner detailing. The attached navy tiles and wood chips are too elongated. TOP TWO NAVY TILES: make each visibly MORE SQUAT and substantial by compressing its WIDTH by TWENTY PERCENT, do not change its height. SECOND ROW LEFT navy tile: compress its WIDTH by TEN PERCENT, keep height. SECOND ROW RIGHT thin navy bar: keep width, reduce its complete height by FORTY PERCENT, including the small end caps, so it is an extremely slender 15:1 bar. THIRD ROW: preserve the oxblood and green strips, small simple caps and plain middle. BOTTOM TWO WOOD CHIPS: compress each complete chip's WIDTH by TWENTY-FIVE PERCENT without changing its height. The round left sockets MUST STAY ROUND, so shorten only the wooden body to the right of each socket, never squeeze the circle. All changed pieces stay centred in their previous slots, resulting in large transparent margins and gutters. Do not enlarge anything to fill the canvas. Genuine transparent RGBA, no text, no numbers, no outside shadows, no red glows. Gold rim light only for lit versions. Desired shapes: top tiles 9:4; second left 11:6; bar 15:1; chips3:1."
+    ]
+  },
+  "notes": [
+    "Artwork only; no runtime replacement, sprite slicing, 9-slice import configuration or build validation.",
+    "Aspect ratios are generated artwork proportions; pixel-exact requested ratios and identical state contours are not certified.",
+    "The selected InfoTiles image is an edit of a fresh generation using the original prompt plus layout clarification; earlier target-edit attempts are recorded for provenance.",
+    "Native RGBA output copied unchanged; faint alpha fringe is preserved."
+  ],
+  "images": [
+    {
+      "name": "UI_SecretEvent",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_SecretEvent_v1.png",
+      "source": "ArtSource\\exec-51d15e85-5cc7-41fa-8d7f-435e1e3e344d.png",
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visibleMarginsAlphaAbove16": [
+        171,
+        234,
+        164,
+        157
+      ],
+      "sha256": "a1aa175b8c12cc6a0ebbfa32dc21f1dbf1751a4a22350ba15e1a43c64eea8064"
+    },
+    {
+      "name": "UI_PaperTags",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_PaperTags_v1.png",
+      "source": "ArtSource\\exec-04146077-3977-4920-8cb2-ac55e3efc49c.png",
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visibleMarginsAlphaAbove16": [
+        60,
+        362,
+        54,
+        238
+      ],
+      "sha256": "234b2ceacbe040a3a54936c6ba0cda0adaf63f40fd1ba0319f7d23e27d8bc5bb"
+    },
+    {
+      "name": "UI_InfoTiles",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/UI/UI_InfoTiles_v1.png",
+      "source": "ArtSource\\exec-3aa607e0-2c49-44a2-a12f-08fd76c7445d.png",
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visibleMarginsAlphaAbove16": [
+        17,
+        189,
+        16,
+        152
+      ],
+      "sha256": "3a59116e140963096c0012de43c908cb213ae02d7dce5c791deab07d1ee4fda4"
+    }
+  ]
+}

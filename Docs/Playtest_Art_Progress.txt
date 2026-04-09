@@ -42,3 +42,6 @@ Env_ArchiveVault Assets/ArcaneBrigade/Art/Playtest/Environment/Env_ArchiveVault_
 Hub_WaitingRoom Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_WaitingRoom_v1.png done
 Hub_Stations Assets/ArcaneBrigade/Art/Playtest/Hub/Hub_Stations_v1.png done
 Secret_EventVignettes Assets/ArcaneBrigade/Art/Playtest/UI/Secret_EventVignettes_v1.png done
+UI_SecretEvent Assets/ArcaneBrigade/Art/Playtest/UI/UI_SecretEvent_v1.png done
+UI_PaperTags Assets/ArcaneBrigade/Art/Playtest/UI/UI_PaperTags_v1.png done
+UI_InfoTiles Assets/ArcaneBrigade/Art/Playtest/UI/UI_InfoTiles_v1.png done
