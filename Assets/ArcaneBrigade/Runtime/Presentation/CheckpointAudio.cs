@@ -111,6 +111,9 @@ namespace ArcaneBrigade
                     if (PlayLibrary(def, scale, Pan(value.Position), value.Critical, pitch, value.Faction == Faction.Champion)) return;
                 }
             }
+            // the library deliberately left these silent (pickups: owner 22/10/2026; a pulse of a weapon without a signature):
+            // never fall back to the old cue table for them
+            if (ArcaneCueLibrary.Available && (value.Kind == CombatEventKind.Pickup || value.Kind == CombatEventKind.SignaturePulse || value.Kind == CombatEventKind.SignatureBurst)) return;
             bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit;
             PlayCue(EventCue(value), danger, value.Critical);
         }

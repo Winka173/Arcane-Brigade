@@ -232,6 +232,7 @@ namespace ArcaneBrigade
                     else if (boss || bossPattern) id = "boss.attack";
                     else id = FireId(value, enemy);
                     if (value.Faction == Faction.Companion) gainScale = 0.7f;   // crowd: allies sit under the hero
+                    if (!enemy) gainScale *= FireRateScale(value.Weapon);         // fast weapons: a lower level per shot
                     break;
                 case CombatEventKind.Hit:
                     if (value.Faction == Faction.Champion) { id = "plr.hurt"; break; }
@@ -256,10 +257,11 @@ namespace ArcaneBrigade
                     if (!boss && value.Faction == Faction.Enemy && (value.Critical || value.Value > 0.6f)) gainScale = 1.25f; // a killing blow with room to spare lands louder
                     break;
                 case CombatEventKind.Detonation:
-                    id = ArsenalBurst(value.Weapon) ?? "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1.15f);
+                    id = ArsenalBurst(value.Weapon) ?? "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1f) * (value.Faction == Faction.Companion ? 0.7f : 1f);
                     break;
                 case CombatEventKind.Pickup:
-                    id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
+                    // owner (22/10/2026): picking up gold, HP and eggs is silent
+                    id = value.Loot == LootKind.Egg || value.Loot == LootKind.Heart || value.Loot == LootKind.Coin ? null : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
                     break;
                 case CombatEventKind.Flare: id = "sig.alarm.boom"; gainScale = 1.2f; break;
                 case CombatEventKind.Bell: id = "loot.coin.vacuum"; gainScale = 1.15f; break;
@@ -271,7 +273,10 @@ namespace ArcaneBrigade
                     if (value.Weapon == null && value.Subject != null && value.Subject.Definition != null && value.Faction == Faction.Champion)
                         id = HeroCue(value.Subject.Definition.HeroMechanic) ?? (value.Element == DamageElement.Ember ? "hero.pulse.ember" : value.Element == DamageElement.Frost ? "hero.pulse.frost" : null);
                     else if (value.Weapon != null)
+                    {
                         id = value.Weapon.Signature == SignatureWeapon.Bell ? "sig.bell" : value.Weapon.Signature == SignatureWeapon.Stamp ? "sig.stamp" : value.Weapon.Signature == SignatureWeapon.Umbrella ? "sig.umbrella" : null;
+                        if (value.Faction == Faction.Companion) gainScale = 0.7f;
+                    }
                     break;
                 case CombatEventKind.Proc:
                     // an Arsenal catch or shock has its own sound: the mitt's thwap, the buzzer's zap
@@ -318,6 +323,10 @@ namespace ArcaneBrigade
             HeroMechanic.TreasureTax => "hero.treasure.tax",
             _ => null
         };
+
+        /// <summary>Loudness audit (22/10/2026): a weapon that fires faster than every 0.6 s plays each shot quieter
+        /// (-3 dB per halving of the interval, down to -6 dB), so a rapid weapon never stacks into a wall of sound.</summary>
+        public static float FireRateScale(WeaponDefinition weapon) => weapon == null ? 1f : Mathf.Clamp(Mathf.Sqrt(Mathf.Max(0.01f, weapon.Cooldown) / 0.6f), 0.5f, 1f);
 
         private static string lastBossKey;
 
