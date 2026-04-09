@@ -174,23 +174,27 @@ namespace ArcaneBrigade
                         float x = 260 + i * 470; SecretChoice c = choices[i];
                         Rect plate = new Rect(x, top, 460, height);
                         bool lit = selected == i && c.Enabled;
-                        ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
+                        bool creamPlate = ArcadeSkin.EventPlate(plate, lit, c.Enabled); // the painted cream plate, else the walnut code plate
+                        if (!creamPlate) ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
                         if (lit) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), Time.unscaledTime, new Color(1f, .82f, .45f));
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .55f);
-                        Rect pc = new Rect(plate.x + 18, plate.y + 14, plate.width - 36, plate.height - 28);
+                        Rect pc = creamPlate ? ArcadeSkin.EventContent(plate) : new Rect(plate.x + 18, plate.y + 14, plate.width - 36, plate.height - 28);
                         if (plateTitle == null) Row(Rect.zero, null, null, null, CodeTone.Cream);
+                        Color titleTone = plateTitle.normal.textColor; if (creamPlate) plateTitle.normal.textColor = ArcadeSkin.KitInk; // ink on the cream plate
                         GUI.Label(new Rect(pc.x, pc.y, pc.width, 38), c.Title, plateTitle);
-                        Row(new Rect(pc.x, pc.y + 42, pc.width, 76), "DO", c.Do, null, CodeTone.Cream);
-                        Row(new Rect(pc.x, pc.y + 124, pc.width, 96), "LOSE", c.Lose, c.UsesTarget ? relic : null, CodeTone.Oxblood);
-                        Row(new Rect(pc.x, pc.y + 226, pc.width, 96), "GET", c.Get, c.Icon, CodeTone.Green);
+                        plateTitle.normal.textColor = titleTone;
+                        float bandH = creamPlate ? 84 : 96; // the painted plate's rim takes a little height
+                        Row(new Rect(pc.x, pc.y + 40, pc.width, creamPlate ? 64 : 76), "DO", c.Do, null, CodeTone.Cream);
+                        Row(new Rect(pc.x, pc.y + (creamPlate ? 108 : 124), pc.width, bandH), "LOSE", c.Lose, c.UsesTarget ? relic : null, CodeTone.Oxblood);
+                        Row(new Rect(pc.x, pc.y + (creamPlate ? 198 : 226), pc.width, bandH), "GET", c.Get, c.Icon, CodeTone.Green);
                         GUI.color = keep;
                         if (!c.Enabled) GUI.Label(new Rect(x, top + height + 4, 460, 30), "Not available now", label);
                         else if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                     }
                     GUI.enabled = choices[selected].Enabled;
-                    if (ArcadeSkin.KitGuiButton(new Rect(740, 880, 440, 84), owner.Session.SecretVerb, primary)) owner.ChooseSecret(selected);
+                    if (ArcadeSkin.RibbonButton(new Rect(740, 880, 440, 84), owner.Session.SecretVerb, GUI.enabled, primary)) owner.ChooseSecret(selected); // the wax-sealed contract ribbon
                     GUI.enabled = true;
-                    if (ArcadeSkin.KitGuiButton(new Rect(1250, 892, 300, 64), "Back to the shop", card)) owner.LeaveSecret();
+                    if (ArcadeSkin.DoorTagButton(new Rect(1250, 892, 300, 64), "Back to the shop", card)) owner.LeaveSecret();
                 }
                 else
                 {
@@ -256,8 +260,8 @@ namespace ArcaneBrigade
             string name = owner.Content.Item(s.TargetItem)?.Name ?? "No eligible relic owned";
             GUI.DrawTexture(new Rect(550, 310, 820, 72), panel);
             GUI.Label(new Rect(635, 325, 650, 40), "RELIC: " + name, label);
-            if (GUI.Button(new Rect(555, 317, 65, 55), "<", card)) CycleTarget(-1);
-            if (GUI.Button(new Rect(1300, 317, 65, 55), ">", card)) CycleTarget(1);
+            if (ArcadeSkin.SwapArrow(new Rect(555, 314, 64, 64), true)) CycleTarget(-1); // brass swap arrows
+            if (ArcadeSkin.SwapArrow(new Rect(1301, 314, 64, 64), false)) CycleTarget(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
                 if (GUI.Button(new Rect(550, 392, 820, 49), "FRIEND: " + owner.Content.Unit(s.TargetUnit)?.DisplayName + " / " + s.TargetWeapon + "  >", card))

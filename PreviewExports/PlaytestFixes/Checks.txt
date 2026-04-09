@@ -54,7 +54,7 @@ PASS Shop loads at wave 2
 PASS Map elements on screen: WaitingRoom (8 props)
 PASS Shot Item24_MapWaitingRoom
 PASS Shop loads at wave 7
-PASS Map elements on screen: PostOffice (27 props)
+PASS Map elements on screen: PostOffice (28 props)
 PASS Shot Item24_MapPostOffice
 PASS Shop loads at wave 12
 PASS Map elements on screen: LampHall (6 props)

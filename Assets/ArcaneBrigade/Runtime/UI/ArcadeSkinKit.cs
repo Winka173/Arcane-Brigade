@@ -396,8 +396,15 @@ namespace ArcaneBrigade
         /// Plate, PlateLit and PlateOff when they exist; until then the walnut plate. Returns true when the painted plate was used.</summary>
         public static bool EventPlate(Rect r, bool selected, bool enabled)
         {
-            Sprite own = KitSprite("SecretEvent/" + (!enabled ? "PlateOff" : selected ? "PlateLit" : "Plate"));
-            if (own != null) { Sliced(r, own, Mathf.Min(1, r.height / own.texture.height)); return true; }
+            if (!Crafted && KitSprite("SecretEvent/Plate") != null)
+            {
+                // the painted cream plate with its badge socket (the socket stands above the rect); selected: the gilt-lit plate
+                Color keep = GUI.color; if (!enabled) GUI.color = new Color(keep.r * .62f, keep.g * .62f, keep.b * .62f, keep.a);
+                bool drawn = DrawPiece(r, KitPiece.EventPlate, selected && enabled ? "SecretEvent/PlateLit" : "SecretEvent/Plate");
+                GUI.color = keep;
+                if (drawn && selected && enabled) MarkLit(r);
+                if (drawn) return true;
+            }
             Plate(r, !enabled ? new Color(.45f, .43f, .42f) : selected ? Gold : Accent);
             return false;
         }
@@ -405,8 +412,7 @@ namespace ArcaneBrigade
         /// <summary>The inner area of an event plate (the painted plate when it lands, else the dialogue frame Plate draws).</summary>
         public static Rect EventContent(Rect r)
         {
-            Sprite own = KitSprite("SecretEvent/Plate");
-            return own != null ? new Rect(r.x + 24, r.y + 18, r.width - 48, r.height - 36) : r.height > 110 && r.width > 160 ? Content(r, KitPiece.Dialogue) : Content(r, KitPiece.Plate);
+            return !Crafted && KitSprite("SecretEvent/Plate") != null ? Content(r, KitPiece.EventPlate) : r.height > 110 && r.width > 160 ? Content(r, KitPiece.Dialogue) : Content(r, KitPiece.Plate);
         }
     }
 }

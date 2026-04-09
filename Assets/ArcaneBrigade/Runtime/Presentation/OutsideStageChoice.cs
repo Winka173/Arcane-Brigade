@@ -120,13 +120,14 @@ namespace ArcaneBrigade
                     giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = 1; giftOffer.Token = -1; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
                     Rect plate = new Rect(300 + i * 450, 250, 430, 560);
-                    ArcadeSkin.CodePlate(plate, CodeTone.Walnut, preview == i ? 1 : 0);
+                    bool creamPlate = ArcadeSkin.EventPlate(plate, preview == i, true); // the painted cream gift plate, else the walnut code plate
+                    if (!creamPlate) ArcadeSkin.CodePlate(plate, CodeTone.Walnut, preview == i ? 1 : 0);
                     if (preview == i) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), owner.PresentationClock, RunModifierRules.RarityColor(ItemRarity.Rainbow));
                     Rect inner = new Rect(plate.x + 24, plate.y + 18, plate.width - 48, plate.height - 40);
                     Rect stand = new Rect(inner.center.x - 110, inner.y, 220, 160);
                     ArcadeSkin.Pedestal(stand, owner.PresentationClock);
                     ShopDescriptionCard.DrawSprite(ArcadeSkin.PedestalSeat(stand), giftCard.Portrait);
-                    cardName.normal.textColor = RunModifierRules.RarityColor(ItemRarity.Rainbow); cardLine.normal.textColor = ArcadeSkin.Cream; identity.normal.textColor = ArcadeSkin.Teal;
+                    cardName.normal.textColor = creamPlate ? ArcadeSkin.Wax : RunModifierRules.RarityColor(ItemRarity.Rainbow); cardLine.normal.textColor = creamPlate ? ArcadeSkin.KitInk : ArcadeSkin.Cream; identity.normal.textColor = creamPlate ? new Color(.1f, .32f, .38f) : ArcadeSkin.Teal;
                     GUI.Label(new Rect(inner.x, inner.y + 162, inner.width, 56), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     string gives = giftCard.Summary ?? "";
                     float top = inner.y + 222, height = GlossaryUI.Height(gives, cardLine, inner.width - 14) + 8;

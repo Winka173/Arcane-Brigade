@@ -11,10 +11,14 @@ namespace ArcaneBrigade
         public static void TitleBanner(Rect r, string text, GUIStyle style)
         {
             float tail = Mathf.Min(90, r.width * .12f), drop = r.height * .3f;
-            CodePlate(new Rect(r.x - tail * .55f, r.y + drop, tail, r.height * .8f), CodeTone.Oxblood);
-            CodePlate(new Rect(r.xMax - tail * .45f, r.y + drop, tail, r.height * .8f), CodeTone.Oxblood);
-            CodePlate(r, CodeTone.Walnut, 1);
-            if (Event.current.type == EventType.Repaint)
+            bool painted = BannerArt(r); // the painted velvet banner held by brass hands
+            if (!painted)
+            {
+                CodePlate(new Rect(r.x - tail * .55f, r.y + drop, tail, r.height * .8f), CodeTone.Oxblood);
+                CodePlate(new Rect(r.xMax - tail * .45f, r.y + drop, tail, r.height * .8f), CodeTone.Oxblood);
+                CodePlate(r, CodeTone.Walnut, 1);
+            }
+            if (!painted && Event.current.type == EventType.Repaint)
             {
                 Color thread = new Color(GiltLight.r, GiltLight.g, GiltLight.b, .55f);
                 float inset = Mathf.Min(r.width, r.height) * .2f + 10;
@@ -32,10 +36,15 @@ namespace ArcaneBrigade
         /// <summary>A DO / LOSE / GET plate: its tinted code plate and a small gilt tag with the word. Returns the text area.</summary>
         public static Rect EventRow(Rect r, string word, CodeTone tone, GUIStyle tagStyle, bool dim = false)
         {
-            CodePlate(r, tone, dim ? 3 : 0);
-            Rect tag = new Rect(r.x + 10, r.y + 8, 64, 26);
+            Color keep = GUI.color; if (dim) GUI.color = new Color(keep.r * .6f, keep.g * .6f, keep.b * .6f, keep.a);
+            // the painted band's end caps stand outside its rect: inset it so they stay inside the plate
+            float cap = Crafted ? 0 : Mathf.Min(30, r.height * .32f);
+            bool band = EventBand(new Rect(r.x + cap, r.y, r.width - cap * 2, r.height), tone); // painted receipt / LOSE / GET band
+            GUI.color = keep;
+            if (!band) { cap = 0; CodePlate(r, tone, dim ? 3 : 0); }
+            Rect tag = new Rect(r.x + cap + 10, r.y + 8, 64, 26);
             Tag(tag, word, tone == CodeTone.Cream ? CodeTone.Walnut : CodeTone.Gold, tagStyle);
-            return new Rect(r.x + 82, r.y + 6, r.width - 92, r.height - 12);
+            return new Rect(r.x + cap + 82, r.y + 6, r.width - cap * 2 - 92, r.height - 12);
         }
 
         // ---------------------------------------------------------------- the relic pedestal
@@ -46,6 +55,7 @@ namespace ArcaneBrigade
         /// <summary>Where a relic sits on the pedestal drawn in r (on the cushion, a little above its middle).</summary>
         public static Rect PedestalSeat(Rect r)
         {
+            if (!Crafted && KitSprite("SecretEvent/Pedestal") != null) return PaintedSeat(r);
             float size = Mathf.Min(r.width * .5f, r.height * .56f);
             return new Rect(r.center.x - size * .5f, r.y + r.height * .44f - size, size, size);
         }
@@ -55,6 +65,7 @@ namespace ArcaneBrigade
         public static void Pedestal(Rect r, float clock)
         {
             if (Event.current.type != EventType.Repaint) return;
+            if (PedestalArt(r)) return; // the painted bell jar on its brass stand
             Glow(new Rect(r.x - r.width * .1f, r.y + r.height * .1f, r.width * 1.2f, r.height * .9f), new Color(1f, .78f, .45f, .16f));
             Glow(new Rect(r.x + r.width * .12f, r.yMax - r.height * .16f, r.width * .76f, r.height * .2f), new Color(0, 0, 0, .45f));
             GUI.DrawTexture(r, PedestalTexture(), ScaleMode.StretchToFill, true);

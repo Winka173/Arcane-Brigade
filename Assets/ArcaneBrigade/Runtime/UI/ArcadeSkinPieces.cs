@@ -6,7 +6,7 @@ namespace ArcaneBrigade
     /// <summary>What a rectangle means for each painted piece: the rect a caller passes is the piece's body (the solid plate);
     /// crests, curls, roses and tails are ornament bleed drawn outside it, and <see cref="ArcadeSkin.Content"/> gives the usable
     /// area inside the painted rim.</summary>
-    public enum KitPiece { Button, Plate, Tab, Dialogue, Card, Tooltip, Plaque, WaveBanner }
+    public enum KitPiece { Button, Plate, Tab, Dialogue, Card, Tooltip, Plaque, WaveBanner, Tile, EventPlate }
 
     /// <summary>Palette of the code-drawn plates (no images): gilt gold, walnut, oxblood, night navy, cream paper.</summary>
     public enum CodeTone { Gold, Walnut, Oxblood, Navy, Cream, Green }
@@ -22,9 +22,11 @@ namespace ArcaneBrigade
         private static string KeyOf(KitPiece piece) =>
             piece == KitPiece.Dialogue ? "Panels/Dialogue" : piece == KitPiece.Card ? "Panels/Card" : piece == KitPiece.Tooltip ? "Panels/Tooltip"
             : piece == KitPiece.Plaque ? "Panels/Plaque" : piece == KitPiece.WaveBanner ? "HUD/WaveBanner" : piece == KitPiece.Tab ? "Controls/TabInactive"
-            : piece == KitPiece.Plate ? "Buttons/SecondaryNormalPlain" : "Buttons/SecondaryNormal";
+            : piece == KitPiece.Plate ? "Buttons/SecondaryNormalPlain" : piece == KitPiece.Tile ? "Info/NavyTile" : piece == KitPiece.EventPlate ? "SecretEvent/Plate" : "Buttons/SecondaryNormal";
+        /// <summary>Pieces scaled from their size and nine-sliced on both axes (frames, tiles, the event plates).</summary>
+        private static bool IsFrame(KitPiece p) => p == KitPiece.Dialogue || p == KitPiece.Card || p == KitPiece.Tooltip || p == KitPiece.Tile || p == KitPiece.EventPlate;
 
-        private static float CentreOf(KitPiece piece) => piece == KitPiece.Button ? ButtonCrest : piece == KitPiece.Tab ? TabCrest : piece == KitPiece.Tooltip ? TooltipTail : 0;
+        private static float CentreOf(KitPiece piece) => piece == KitPiece.Button ? ButtonCrest : piece == KitPiece.Tab ? TabCrest : piece == KitPiece.Tooltip ? TooltipTail : piece == KitPiece.EventPlate ? .34f : 0;
 
         /// <summary>Content inset inside the body, texture pixels (left, top, right, bottom): the painted rim plus how far the
         /// corner ornaments (roses, lanterns, scroll caps) reach in. Measured on the cut art (scratchpad uikit_metrics.py).</summary>
@@ -35,6 +37,8 @@ namespace ArcaneBrigade
                 case KitPiece.Dialogue: return new Vector4(30, 28, 30, 28);
                 case KitPiece.Card: return new Vector4(16, 22, 16, 22);
                 case KitPiece.Tooltip: return new Vector4(12, 10, 12, 8);
+                case KitPiece.Tile: return new Vector4(12, 11, 12, 11);
+                case KitPiece.EventPlate: return new Vector4(16, 22, 16, 14); // the badge socket dips into the top
                 case KitPiece.Plaque: return new Vector4(40, 10, 40, 10);
                 case KitPiece.WaveBanner: return new Vector4(44, 8, 44, 9);
                 case KitPiece.Tab: return new Vector4(body.width * .2f, body.height * .14f, body.width * .2f, body.height * .16f);
@@ -53,10 +57,11 @@ namespace ArcaneBrigade
             Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
             Vector4 b = sprite.border; float centre = CentreOf(piece) * t.width;
             float needW = b.x + b.z + centre - (t.width - body.width), needH = b.y + b.w - (t.height - body.height);
-            if (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip)
+            if (IsFrame(piece))
             {
                 float side = Mathf.Min(r.width, r.height);
-                k = piece == KitPiece.Dialogue ? Mathf.Clamp(side / 760f, .34f, .7f) : piece == KitPiece.Card ? Mathf.Clamp(side / 640f, .4f, .85f) : Mathf.Clamp(side / 260f, .4f, .9f);
+                k = piece == KitPiece.Dialogue ? Mathf.Clamp(side / 760f, .34f, .7f) : piece == KitPiece.Card ? Mathf.Clamp(side / 640f, .4f, .85f)
+                    : piece == KitPiece.Tile ? Mathf.Clamp(r.height / body.height, .4f, 1.4f) : piece == KitPiece.EventPlate ? Mathf.Clamp(r.height / body.height, .6f, 1.2f) : Mathf.Clamp(side / 260f, .4f, .9f);
                 if (needW > 0) k = Mathf.Min(k, r.width / needW);
                 if (needH > 0) k = Mathf.Min(k, r.height / needH);
                 if (k < .28f && audit) Audit(key, asked, "frame too small for its corners");
@@ -83,7 +88,7 @@ namespace ArcaneBrigade
         {
             Sprite sprite = KitSprite(key);
             if (sprite == null || !ScaleFor(piece, sprite, key, ref r, out float k)) return false;
-            if (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip) k = Mathf.Min(k, limit);
+            if (IsFrame(piece)) k = Mathf.Min(k, limit);
             Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
             Rect dest = new Rect(r.x - body.x * k, r.y - body.y * k, r.width + (t.width - body.width) * k, r.height + (t.height - body.height) * k);
             Sliced(dest, sprite, k, CentreOf(piece));
@@ -96,7 +101,7 @@ namespace ArcaneBrigade
         {
             string key = KeyOf(piece); Sprite sprite = KitSprite(key);
             Vector4 inset;
-            if (sprite != null && ScaleFor(piece, sprite, key, ref r, out float k, false)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * (piece == KitPiece.Dialogue || piece == KitPiece.Card || piece == KitPiece.Tooltip ? Mathf.Min(k, limit) : k);
+            if (sprite != null && ScaleFor(piece, sprite, key, ref r, out float k, false)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * (IsFrame(piece) ? Mathf.Min(k, limit) : k);
             else { float rim = CodeRim(r); inset = new Vector4(rim, rim, rim, rim); }
             float px = pad ? Mathf.Min(PadX, r.width * .08f) : 0, py = pad ? Mathf.Min(PadY, r.height * .12f) : 0;
             return Rect.MinMaxRect(r.x + inset.x + px, r.y + inset.y + py, Mathf.Max(r.x + inset.x + px, r.xMax - inset.z - px), Mathf.Max(r.y + inset.y + py, r.yMax - inset.w - py));
@@ -185,6 +190,13 @@ namespace ArcaneBrigade
             // DrawPiece refuses and audits any size it cannot draw cleanly)
             if (!Crafted && r.height <= 110 && (tone == CodeTone.Walnut || tone == CodeTone.Oxblood || tone == CodeTone.Gold)
                 && DrawPiece(r, KitPiece.Plate, "Buttons/" + (tone == CodeTone.Gold ? "Primary" : tone == CodeTone.Oxblood ? "Danger" : "Secondary") + States[Mathf.Clamp(state, 0, 3)] + "Plain")) return;
+            if (!Crafted)
+            {
+                float aspect = r.width / Mathf.Max(1, r.height);
+                if (tone == CodeTone.Navy && InfoTile(r, state == 1)) return;
+                if (tone == CodeTone.Cream && PaperArt(r, r.height < 50 ? PaperKind.LabelTag : aspect >= 6 ? PaperKind.Receipt : PaperKind.LetterRead)) return;
+                if (tone == CodeTone.Green && EventBand(r, CodeTone.Green)) return;
+            }
             Audit("CodePlate " + tone, r, "code-drawn plate in the painted style");
             bool small = CodeIsSmall(r);
             float border = small ? CodeBorderSmall : CodeBorderBig;
@@ -202,7 +214,7 @@ namespace ArcaneBrigade
         /// a thin rim in the colour and two soft sparks chasing each other round it. Reduced Motion keeps the still rim.</summary>
         public static void RunningLight(Rect r, float clock, Color colour, float alpha = 1)
         {
-            if (Event.current.type != EventType.Repaint) return;
+            if (Event.current.type != EventType.Repaint || OnLitPainted(r)) return;
             Color rim = new Color(colour.r, colour.g, colour.b, .75f * alpha);
             Line(new Rect(r.x + 1, r.y, r.width - 2, 2), rim); Line(new Rect(r.x + 1, r.yMax - 2, r.width - 2, 2), rim);
             Line(new Rect(r.x, r.y + 1, 2, r.height - 2), rim); Line(new Rect(r.xMax - 2, r.y + 1, 2, r.height - 2), rim);

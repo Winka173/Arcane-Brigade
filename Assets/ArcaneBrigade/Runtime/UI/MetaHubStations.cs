@@ -137,7 +137,8 @@ namespace ArcaneBrigade
                 bool earned = MetaProgression.LetterEarned(profile, l), read = MetaProgression.LetterRead(profile, l), open = letterOpen == i;
                 Rect row = new Rect(area.x, area.y + i * (rowH + gap), listW, rowH);
                 Flash(row, l.Id);
-                ArcadeSkin.CodePlate(row, read ? CodeTone.Cream : earned ? CodeTone.Gold : CodeTone.Walnut, open ? 1 : earned ? 0 : 3);
+                if (!(earned && ArcadeSkin.PaperArt(row, read ? PaperKind.LetterRead : PaperKind.LetterUnread))) // a painted letter (its wax seal under the icon)
+                    ArcadeSkin.CodePlate(row, read ? CodeTone.Cream : earned ? CodeTone.Gold : CodeTone.Walnut, open ? 1 : earned ? 0 : 3);
                 if (open) ArcadeSkin.RunningLight(row, Time.unscaledTime, new Color(1f, .82f, .45f));
                 ItemDefinition relic = catalog.Item(l.Relic);
                 RunHud.Sprite(new Rect(row.x + 10, row.y + 9, 50, 50), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, earned));

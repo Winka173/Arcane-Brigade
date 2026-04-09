@@ -506,7 +506,7 @@ namespace ArcaneBrigade
                 float w = Mathf.Min(width - (cx - x), 46 + cardChip.CalcSize(new GUIContent(label)).x + 14);
                 if (w < 90) return;
                 Rect chip = new Rect(cx, y, w, 50);
-                ArcadeSkin.CodePlate(chip, CodeTone.Walnut, lit ? 1 : 0);
+                ArcadeSkin.Chip(chip, lit); // the painted walnut chip with its icon socket
                 if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
                 if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 6, chip.y + 6, 38, 38), icon);
                 cardChip.normal.textColor = lit ? ArcadeSkin.Gold : ArcadeSkin.Cream;

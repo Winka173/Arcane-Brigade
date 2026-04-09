@@ -259,7 +259,9 @@ namespace ArcaneBrigade
                 bool dark = paper.grayscale < .4f;
                 // the rect is the paper: lanterns and roses bleed outside; small slips are code-drawn paper
                 if (rectangle.width >= 120 && rectangle.height >= 64) Frame(rectangle, dark ? KitFrame.Dialogue : KitFrame.Card);
-                else CodePlate(rectangle, dark ? CodeTone.Navy : CodeTone.Cream);
+                // small light slips: a price tag (red-stained when refused) or a receipt strip, painted; else code-drawn paper
+                else if (dark || !PaperArt(rectangle, rectangle.width / rectangle.height >= 4.5f ? PaperKind.Receipt : paper.g < .7f && paper.r > .8f ? PaperKind.PriceTagRefused : PaperKind.PriceTag))
+                    CodePlate(rectangle, dark ? CodeTone.Navy : CodeTone.Cream);
                 // a tinted slip (a refused price, a moonlit bundle) keeps its colour as a wash over the paper
                 if (!dark && !Near(paper, Paper) && !Near(paper, Cream) && Event.current.type == EventType.Repaint)
                     Slant(new Rect(rectangle.x + 14, rectangle.y + 14, rectangle.width - 28, rectangle.height - 28), new Color(paper.r, paper.g, paper.b, .35f));
