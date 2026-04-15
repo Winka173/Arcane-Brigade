@@ -18,8 +18,14 @@ namespace ArcaneBrigade
         public int InputConsumedFrame { get; private set; } = -1;
         public void Configure(ArenaController value) => owner = value;
         public bool Open => shown && owner?.Session?.Visitor != null && !owner.StoryConsumesInput && !owner.TransitionPending;
-        public void Show() { shown = true; page = 0; details = false; InputConsumedFrame = Time.frameCount; }
-        private void Close() { shown = false; InputConsumedFrame = Time.frameCount; }
+        public void Show() { shown = true; page = 0; details = false; InputConsumedFrame = Time.frameCount; openedAt = Time.unscaledTime; closingAt = -1; }
+        // any exit but accepting (LATER, Esc / B, a tap outside the card) only closes the card: the visitor keeps its table for
+        // the whole shop and its card opens again (owner, 22/10/2026); the card shrinks and fades out first
+        private void Close() { if (closingAt < 0) closingAt = Time.unscaledTime; InputConsumedFrame = Time.frameCount; }
+        private float openedAt = -10, closingAt = -1;
+        private const float OpenTime = .25f, CloseTime = .16f;
+        /// <summary>The open overshoot (as the shop's inspect card): rises past 1 a little, then settles.</summary>
+        private static float Overshoot(float t) => 1 + 2.2f * Mathf.Pow(t - 1, 3) + 1.2f * Mathf.Pow(t - 1, 2);
 
         private static readonly Color PayTone = new Color(1f, .62f, .55f), PayBack = new Color(.50f, .11f, .12f, .95f);
         private static readonly Color GetTone = new Color(.62f, .92f, .66f), GetBack = new Color(.14f, .40f, .25f, .95f);
@@ -32,6 +38,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            if (closingAt >= 0) { if (Time.unscaledTime - closingAt >= CloseTime) { shown = false; closingAt = -1; } return; }
             if (!Open || owner.PresentationPaused) { if (owner?.Session?.Visitor == null) shown = false; return; }
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { Close(); return; }
             List<VisitorOption> options = owner.Session.VisitorOptions();
@@ -90,7 +97,15 @@ namespace ArcaneBrigade
             float height = Mathf.Max(560, Head + content + 36 + ButtonH + 32);
             Rect card = new Rect(360, Mathf.Round((1080 - height) * .5f + 20), 1200, height);
 
-            RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.5f));
+            // the card opens from a little below with a slight overshoot and closes shrinking; Reduced Motion: a fade only
+            bool still = PresentationSettings.ReducedMotion;
+            float tOpen = Mathf.Clamp01((Time.unscaledTime - openedAt) / OpenTime), tClose = closingAt >= 0 ? Mathf.Clamp01((Time.unscaledTime - closingAt) / CloseTime) : 0;
+            float fade = Mathf.Clamp01(tOpen * 1.6f) * (1 - tClose);
+            Color tint = GUI.color; bool wasEnabled = GUI.enabled;
+            RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.5f * fade));
+            GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * fade);
+            if (!still) GUIUtility.ScaleAroundPivot(Vector2.one * (closingAt >= 0 ? Mathf.Lerp(1, .9f, tClose) : .88f + .12f * Overshoot(tOpen)), card.center + Vector2.up * ((1 - tOpen) * 18 + tClose * 10));
+            if (closingAt >= 0) GUI.enabled = false; // no choice is taken while the card closes
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Sprite portrait = ExpansionArtwork.Current?.Visitor(v.Id, 1) ?? ExpansionArtwork.Current?.Visitor(v.Id, 0);
             Rect inner = ArcadeSkin.Content(card, KitFrame.Card); // inside the paper's rim and lantern corners
@@ -120,6 +135,9 @@ namespace ArcaneBrigade
             }
             else later = new Rect(x + (width - 300) * .5f, buttonsY, 300, ButtonH);
             if (ArcadeSkin.Button(later, "LATER", KitButton.Secondary, true, button)) Close();
+            // a tap outside the card closes it too (the visitor stays at its table)
+            if (closingAt < 0 && Event.current.type == EventType.MouseDown && !card.Contains(Event.current.mousePosition)) { Close(); Event.current.Use(); }
+            GUI.enabled = wasEnabled; GUI.color = tint;
             GUI.matrix = previous;
         }
 

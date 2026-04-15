@@ -218,26 +218,29 @@ namespace ArcaneBrigade
                 }
                 case KitAction.Lighthouse:
                 {
-                    // the beam is the strike (its simulation strikes are marked Painted, no ink glyph): a broad warm wash, a
-                    // bright core and a white-hot thread, a short afterglow behind the sweep, a flare at the lamp, embers riding out
+                    // the beam is the strike (its simulation strikes are marked Painted, no ink glyph). A volumetric ray of light
+                    // (owner, 22/10/2026): an amber halo and a white-gold core, both a soft gaussian across their width, widening
+                    // like a cone away from the lamp and fading out along their length, added onto the floor as light; a gentle
+                    // shimmer, dust motes turning inside it, a soft bloom at the lamp. No stroke or hard edge anywhere.
                     float angle = (sim.Elapsed - sim.HeroAwakenStarted) * 120f;
-                    Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-                    float reach = CombatSimulation.MaxLineLength;
-                    for (int i = sparse || still ? 0 : 2; i >= 1; i--)
+                    Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right, across = new Vector2(-dir.y, dir.x);
+                    float reach = CombatSimulation.MaxLineLength + .6f, shimmer = still || calm ? 1 : .9f + .1f * Mathf.Sin(t * 7.3f) * Mathf.Sin(t * 3.1f + 1);
+                    Vector2 lamp = at + dir * .3f;
+                    Sprite ray = BeamSprite();
+                    Color amber = Color.Lerp(ink.Glow, new Color(1, .62f, .2f), .35f), gold = new Color(1, .95f, .78f);
+                    if (!sparse && !still)
+                        for (int i = 2; i >= 1; i--) // the afterglow the sweep leaves behind it
+                            Light(ray, lamp, 3.2f, reach, angle - i * 6f - 90, A(amber, .16f / i * dim * strength));
+                    Light(ray, lamp, 3.6f + .6f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, 1.25f + .3f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, .45f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
+                    Light(MechanicInk.Glow, lamp, 1.5f + .6f * flash, 1.5f + .6f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
+                    if (!sparse) for (int i = 0; i < 6; i++)
                     {
-                        Vector2 back = Quaternion.Euler(0, 0, angle - i * 7f) * Vector2.right;
-                        air.GlowRibbon(InkCanvas.Line(at + back * .4f, at + back * reach), 1, 0, .8f, A(ink.Glow, .26f / i * dim * strength));
-                    }
-                    var beam = InkCanvas.Line(at + dir * .4f, at + dir * reach);
-                    air.GlowRibbon(beam, 1, 0, 1.2f + .3f * flash, A(ink.Glow, (.6f + .25f * flash) * dim * strength));
-                    air.GlowRibbon(beam, 1, 0, .34f, A(ink.Light, (.75f + .25f * flash) * dim * strength));
-                    Color hot = Color.Lerp(ink.Light, Color.white, .5f);
-                    air.Stroke(beam, new InkStroke { Width = .09f + .05f * flash, Head = 1, Tail = 0, Taper = 3, Alpha = .85f * dim * strength, Ink = hot, Body = hot, Light = Color.white });
-                    Glow(at + dir * .4f, .9f + .5f * flash, ink.Light, (.5f + .3f * flash) * dim, true);
-                    if (!sparse) for (int i = 0; i < 3; i++)
-                    {
-                        float r = still ? (i + .5f) / 3 : Mathf.Repeat(t * .9f + i / 3f, 1);
-                        Token(InkToken.Ember, at + dir * (.7f + r * (reach - 1)), .17f * (1 - .4f * r), r * 200, (1 - r) * .9f * dim, true);
+                        float r = still ? (i + .5f) / 6 : Mathf.Repeat(t * .35f + i / 6f, 1), d = .6f + r * (reach - 1.2f);
+                        float drift = Mathf.Sin(i * 2.4f + (still ? 0 : t * .8f)) * .35f * Mathf.Lerp(.32f, 1f, d / reach) * 1.6f;
+                        float twinkle = still || calm ? .7f : .5f + .5f * Mathf.Sin(t * 5 + i * 1.9f);
+                        Light(MechanicInk.Glow, lamp + dir * d + across * drift, .14f, .14f, 0, A(gold, Mathf.Sin(r * Mathf.PI) * twinkle * .8f * dim * strength));
                     }
                     break;
                 }
@@ -287,13 +290,12 @@ namespace ArcaneBrigade
                     Sprite tree = ArsenalArtwork.Frame(kit.ArtKey, 0);
                     if (tree != null) Place(tree, plot + Vector2.up * .35f, Vector2.one * Mathf.Max(.8f, body * 1.05f), 0, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), false);
                     Vector2 pivot = plot + Vector2.up * .45f;
-                    // the hand is the strike (its simulation strikes are marked Painted, no ink glyph over it)
-                    var sweep = InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach);
-                    air.GlowRibbon(sweep, 1, 0, .5f, A(ink.Glow, .5f * dim * strength));
-                    air.GlowRibbon(sweep, 1, 0, .16f, A(ink.Light, .5f * dim * strength));
-                    var s = Brush(.11f, 1, 5); s.Head = 1; s.Taper = 2;
-                    air.Stroke(InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach, .03f, 3, false, 7), s);
-                    Glow(pivot + hand * CombatSimulation.GardenReach, .55f, ink.Light, .4f * dim, true);
+                    // the hand is the strike (its simulation strikes are marked Painted, no ink glyph over it): a blade of soft light
+                    float handAngle = Mathf.Atan2(hand.y, hand.x) * Mathf.Rad2Deg - 90, handLength = CombatSimulation.GardenReach + .3f;
+                    Light(BeamSprite(), pivot + hand * .2f, 1.3f, handLength, handAngle, A(Color.Lerp(ink.Glow, ink.Light, .3f), .55f * dim * strength));
+                    Light(BeamSprite(), pivot + hand * .2f, .45f, handLength * .95f, handAngle, A(new Color(1, .97f, .85f), .5f * dim * strength));
+                    Soft(air, InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach), 1, 0, .1f, .8f * dim);
+                    Light(MechanicInk.Glow, pivot + hand * CombatSimulation.GardenReach, .6f, .6f, 0, A(ink.Light, .45f * dim * strength));
                     if (!sparse) for (int i = 0; i < 3; i++) { float q = Mathf.Repeat(t * .5f + i / 3f, 1); Token(InkToken.Leaf, pivot + Dir(i * 120 + (still ? 0 : t * 40)) * (.6f + q * .5f), .16f, q * 180, (1 - q) * .8f, true); }
                     break;
                 }
@@ -343,6 +345,28 @@ namespace ArcaneBrigade
                     }
                 }
             }
+        }
+        private static Sprite beam;
+        /// <summary>The lighthouse ray (one unit long, pivot at the lamp): a gaussian across its width that widens from a third
+        /// at the lamp to the full width at the far end, rising softly from the lamp and fading out along its length.</summary>
+        private static Sprite BeamSprite()
+        {
+            if (beam != null) return beam;
+            const int w = 48, h = 128;
+            var tex = new Texture2D(w, h, TextureFormat.RGBA32, false) { name = "Lighthouse ray", wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
+            var px = new Color32[w * h];
+            for (int y = 0; y < h; y++)
+            {
+                float v = (y + .5f) / h, spread = Mathf.Lerp(.32f, 1f, v);
+                float along = Mathf.SmoothStep(0, 1, v / .1f) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.3f, 1f, v))) * (1 - .25f * v);
+                for (int x = 0; x < w; x++)
+                {
+                    float u = ((x + .5f) / w * 2 - 1) / spread;
+                    px[y * w + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(Mathf.Exp(-u * u * 4.5f) * along) * 255));
+                }
+            }
+            tex.SetPixels32(px); tex.Apply(false, true);
+            return beam = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(.5f, 0), h, 0, SpriteMeshType.FullRect);
         }
         /// <summary>A landed scoop or burst charge: a short bright flare at the spot and a few glints thrown up, never a pool.</summary>
         private void Splash(Vector2 at, float after, InkPalette pal, float dim)

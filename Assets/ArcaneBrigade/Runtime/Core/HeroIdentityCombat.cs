@@ -92,7 +92,8 @@ namespace ArcaneBrigade
                 if (!HeroIdentityEnabled) return "";
                 if (HeroAwakening && Kit != null) return Kit.Transformation + " " + (awakenUntil - Elapsed).ToString("0.0") + "s";
                 if (HeroAwakenCooling) return "RESTING";
-                if (Kit != null) return "TIER " + HeroAwakenTier + "/3  " + Mathf.FloorToInt(identityCharge) + "/" + HeroIdentityRequired.ToString("0") + " " + HeroIdentities.For(IdentityId).Resource.ToUpperInvariant();
+                // player words (owner 22/10/2026): the gauge's own word, its steps, then the charge toward the next step
+                if (Kit != null) return HeroIdentities.For(IdentityId).Resource.ToUpperInvariant() + " " + HeroAwakenTier + "/3 · " + Mathf.FloorToInt(identityCharge) + "/" + HeroIdentityRequired.ToString("0");
                 if (IdentityId == "GlassDice") return "NEXT FACE " + identityFace + " / " + Mathf.FloorToInt(identityCharge) + "/6 GOLD";
                 if (IdentityId == "MirrorKeeper") return identityReflections.Count + "/3 REFLECTIONS";
                 if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAM " + (identityGhostUntil - Elapsed).ToString("0.0") + "s";

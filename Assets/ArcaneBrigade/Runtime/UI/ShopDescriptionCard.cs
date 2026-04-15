@@ -85,12 +85,13 @@ namespace ArcaneBrigade
             var b = new StringBuilder();
             b.AppendLine(CompanionRoles.Tagline(Role.Value)); // what it does, first (play-test 20/10/2026, item 26)
             AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier), true);
-            AppendCosts(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
+            // the skill, talent and passive belong to GIVES (before the COSTS plate), never as stray lines under it
             if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine("{mark} " + skill);
             string talent = CompanionDescriptions.ShortTalent(unit);
             if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine("{mark} " + talent);
             string passive = CompanionDescriptions.ShortPassive(unit, offer.Tier, catalog.TierSupportMultiplier);
             if (passive.Length > 0) b.AppendLine("{mark} " + passive);
+            AppendCosts(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
             // its duets: who it pairs with and what they do together (lit when the partner is already in the brigade)
             Combo = false; ComboLines = "";
             foreach (Duet duet in Duets.For(unit.Id))
@@ -158,7 +159,7 @@ namespace ArcaneBrigade
             if (Attack == null) return;
             label ??= ArcadeTypography.Style(17, true); value ??= ArcadeTypography.Style(20, true); muted ??= ArcadeTypography.Style(15);
             Rect attack = new Rect(bounds.x, bounds.y, 220, 120); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
-            DrawSprite(new Rect(attack.x + 8, attack.y + 10, 40, 40), Attack.Icon);
+            DrawSprite(new Rect(attack.x + 10, attack.y + 10, 38, 38), AttackIcon);
             // the weapon this friend comes with: its name, whole damage, its pace and reach (player numbers)
             label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(attack.x + 54, attack.y + 9, 156, 25), "WEAPON", label);
             value.normal.textColor = ArcadeSkin.Cream;
@@ -201,6 +202,11 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>The card's weapon chip: the weapon's short name and its whole damage ("Moon Scythe · 34 dmg").</summary>
+        /// <summary>A generic icon by weapon type, never the weapon's own picture (owner, 22/10/2026): crossed swords for close-range
+        /// weapons (the Striker badge), the bow for ranged ones (the ranged-damage stat icon).</summary>
+        public Sprite AttackIcon => Attack == null ? null : (Attack.Weapon != null ? Attack.Weapon.Kind != WeaponKind.Projectile : !Attack.Ranged)
+            ? CompanionRoles.Badge(CompanionRole.Striker) : rangedIcon != null ? rangedIcon : rangedIcon = Resources.Load<Sprite>("MienCho/ActOne/Stat_RangedDamage");
+        private static Sprite rangedIcon;
         public string AttackLabel => Attack == null ? "" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) + " · " + RecruitAttackReadout.Damage(Attack.MaxDamage) + " dmg"
             : RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " dmg";
         /// <summary>An HP-priced offer opens its COSTS with what it really costs (owner, 22/10/2026): "−N max HP for this run",

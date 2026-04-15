@@ -647,6 +647,28 @@ namespace ArcaneBrigade
         }
 
         private Sprite fitIcon;
+        private GUIStyle talkStyle;
+        /// <summary>A small speech bubble bobbing above a visitor that can still be talked to (owner, 22/10/2026): "…" at rest,
+        /// "!" and brighter when the hero is in reach; gone once its deal is taken (the visitor is then done).</summary>
+        private void DrawTalkBubble(Camera camera, Station station)
+        {
+            if (owner.Session.Visitor == null || owner.GetComponent<VisitorCard>()?.Open == true) return;
+            SpriteRenderer view = station.Actor != null ? station.Actor.View : null;
+            Vector3 head = view != null && view.sprite != null ? new Vector3(view.bounds.center.x, view.bounds.max.y, 0) : station.Marker.position + Vector3.up * 1.6f;
+            Vector3 screen = camera.WorldToScreenPoint(head);
+            Vector2 at = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
+            float near = Mathf.Clamp01(station.Focus), bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 2.4f) * 4;
+            Rect bubble = new Rect(at.x - 30, at.y - 58 + bob, 60, 42);
+            Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * (.72f + .28f * near));
+            if (near > .05f) ArcadeSkin.Glow(new Rect(bubble.x - 14, bubble.y - 12, bubble.width + 28, bubble.height + 24), new Color(1f, .85f, .5f, .4f * near));
+            ArcadeSkin.Diamond(new Vector2(bubble.center.x, bubble.yMax - 1), 14, new Color(.95f, .89f, .76f)); // the tail, under the bubble
+            ArcadeSkin.CodePlate(bubble, CodeTone.Cream, near > .5f ? 1 : 0);
+            if (talkStyle == null) { talkStyle = ArcadeTypography.Style(26, true); talkStyle.alignment = TextAnchor.MiddleCenter; talkStyle.wordWrap = false; }
+            talkStyle.normal.textColor = near > .5f ? ArcadeSkin.Wax : ArcadeSkin.KitInk;
+            GUI.Label(new Rect(bubble.x, bubble.y - 2, bubble.width, bubble.height), near > .5f ? "!" : "…", talkStyle);
+            GUI.color = keep;
+        }
+
         public void DrawPriceTags(Camera camera)
         {
             if (scenery == null || !scenery.activeSelf || owner.HallExitPending || Animating || leavingSpecial) return;
@@ -663,6 +685,7 @@ namespace ArcaneBrigade
             {
                 order++;
                 if (station.Action == "NEXT HALL" || station.Action == "GOLD SHOP" || station.Action == "DREAM ALTAR") continue;
+                if (station.Action == "VISITOR") DrawTalkBubble(camera, station); // the talk bubble while its deal is still open
                 if (station.Action == "VISITOR" && station.Price <= 0) continue; // a free visitor hangs no price tag
                 if (station.Offer != null && station.Offer.Sold)
                 {

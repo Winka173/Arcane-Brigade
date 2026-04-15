@@ -63,7 +63,7 @@ namespace ArcaneBrigade.Editor
         public static void RunOfferWeapon()
         {
             var lines = new List<string>(); int failed = 0;
-            foreach (var (name, run) in new (string, Action)[] { ("ShopDescription", ShopDescriptionChecks.Run), ("Recruitment", RecruitmentChecks.Run), ("CopyAudit", CopyAuditChecks.Run) })
+            foreach (var (name, run) in new (string, Action)[] { ("ShopDescription", ShopDescriptionChecks.Run), ("Recruitment", RecruitmentChecks.Run), ("CopyAudit", CopyAuditChecks.Run), ("Visitor", VisitorChecks.Run) })
             {
                 try { run(); lines.Add("PASS " + name); }
                 catch (Exception error) { failed++; Exception root = error.InnerException ?? error; lines.Add("FAIL " + name + ": " + root.Message + " @ " + (root.StackTrace ?? "").Split('\n')[0].Trim()); }

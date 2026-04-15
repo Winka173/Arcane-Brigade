@@ -71,7 +71,7 @@ namespace ArcaneBrigade
             if (!string.IsNullOrEmpty(item.ReferenceName)) return item.Description + "\nOwned: " + item.EffectiveStacks(stacks);
             string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Unique" : "Stackable") + "\n";
             foreach (StatModifier modifier in item.EffectiveModifiers)
-                if (modifier.Value != 0) description += Who(modifier.Scope) + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
+                if (modifier.Value != 0) description += WhoFor(modifier.Effect, modifier.Scope) + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
             return description;
         }
 
@@ -111,8 +111,15 @@ namespace ArcaneBrigade
         public static bool Final(ItemEffect effect) => effect == ItemEffect.HealthCorrection || effect == ItemEffect.DamageCorrection || effect == ItemEffect.SpeedCorrection || effect == ItemEffect.ArmorCorrection || effect == ItemEffect.HealCorrection;
         /// <summary>Who a stat line is for, in player words: "You · ", "Friends · ", or nothing when it is for everyone or the run.</summary>
         public static string Who(ModifierScope scope) => scope == ModifierScope.Champion ? "You · " : scope == ModifierScope.Companions ? "Friends · " : "";
+        /// <summary>Who a card's stat line is for, always said (owner, 22/10/2026: never a bare stat): "Hero · ", "Friends · ",
+        /// "Everyone · ", "Run · " for the run's economy; enemy stats already name their target.</summary>
+        public static string WhoFor(ItemEffect effect, ModifierScope scope)
+        {
+            if (effect == ItemEffect.EnemyCount || effect == ItemEffect.EnemyHealth || effect == ItemEffect.EnemySpeed) return "";
+            return scope == ModifierScope.Champion ? "Hero · " : scope == ModifierScope.Companions ? "Friends · " : scope == ModifierScope.Run ? "Run · " : "Everyone · ";
+        }
         /// <summary>One stat line as the player reads it: who, the stat's name, its value (e.g. "You · Max HP -5").</summary>
-        public static string Line(ItemEffect effect, ModifierScope scope, float value) => Who(scope) + ModifierName(effect) + " " + ValueText(effect, value);
+        public static string Line(ItemEffect effect, ModifierScope scope, float value) => WhoFor(effect, scope) + ModifierName(effect) + " " + ValueText(effect, value);
         /// <summary>Whether a stat change helps the player (enemy stats are the other way round).</summary>
         public static bool Helps(ItemEffect effect, float value)
         {

@@ -70,12 +70,27 @@ namespace ArcaneBrigade
             Place(MechanicInk.Glow, at, Vector2.one * diameter, 0, A(color, alpha * strength), airborne);
         }
         private InkStroke Brush(float width, float alpha, float seed) => InkStroke.Of(ink, width, alpha * strength, seed);
-        /// <summary>A bright core laid inside a strike's brush (22/10/2026), so the stroke reads as light on dark and pale floors
-        /// alike; dimmer with Reduced Flashes.</summary>
-        private void Core(List<Vector2> path, float head, float tail, float width, float alpha, float seed)
+        /// <summary>A stroke painted as soft light (22/10/2026): halo, body and hot thread, dimmer with Reduced Flashes.</summary>
+        private void Soft(InkCanvas canvas, List<Vector2> path, float head, float tail, float width, float alpha)
         {
-            Color lit = Color.Lerp(ink.Light, Color.white, .3f);
-            air.Stroke(path, new InkStroke { Width = width, Head = head, Tail = tail, Taper = 1.6f, Seed = seed, Alpha = alpha * (calm ? .55f : 1) * strength, Ink = lit, Body = lit, Light = Color.white });
+            // painted as light, not as a wireframe (owner, 22/10/2026): a wide soft halo, a brighter body and a hot thread,
+            // each fading smoothly to nothing at its sides and its ends; no outline anywhere
+            if (alpha <= .01f) return;
+            float a = alpha * strength * (calm ? .7f : 1);
+            canvas.GlowRibbon(path, head, tail, width * 3.2f, A(ink.Glow, .32f * a));
+            canvas.GlowRibbon(path, head, tail, width * 1.4f, A(Color.Lerp(ink.Body, ink.Light, .35f), .72f * a));
+            canvas.GlowRibbon(path, head, tail, width * .5f, A(Color.Lerp(ink.Light, Color.white, .45f), .9f * a));
+        }
+        private static Material lightMaterial;
+        /// <summary>A sprite of soft light added onto what is under it (ArcaneBrigade/SoftLight), stretched to width x length.</summary>
+        private SpriteRenderer Light(Sprite sprite, Vector2 at, float width, float length, float angle, Color color)
+        {
+            var r = Place(sprite, at, Vector2.one, angle, color, true);
+            if (r == null) return null;
+            Vector2 b = sprite.bounds.size; r.transform.localScale = new Vector3(width / Mathf.Max(.001f, b.x), length / Mathf.Max(.001f, b.y), 1);
+            if (lightMaterial == null && Resources.Load<Shader>("SoftLight") is Shader shader) lightMaterial = new Material(shader) { name = "Hero soft light", hideFlags = HideFlags.DontSave };
+            if (lightMaterial != null) r.sharedMaterial = lightMaterial;
+            return r;
         }
         /// <summary>1 the moment the hero transforms, fading to 0 over 0.35s: the activation flash (a third as bright with
         /// Reduced Flashes).</summary>
@@ -257,7 +272,7 @@ namespace ArcaneBrigade
                 float breathe = still ? 1 : .8f + .2f * Mathf.Sin(t * 3);
                 Vector2 apex = Feet(bounty);
                 ground.Sector(apex, radius, a - half, a + half, A(ink.Glow, .04f), A(ink.Body, .3f * breathe * strength));
-                ground.Stroke(InkCanvas.Arc(apex, radius - .03f, radius - .03f, a - half, a + half), Brush(.06f, .7f, 4));
+                Soft(ground, InkCanvas.Arc(apex, radius - .03f, radius - .03f, a - half, a + half), 1, 0, .06f, .55f);
                 Token(InkToken.Moon, bounty.Position + rear * .7f + Vector2.up * (.35f + Bob(2)), .3f, a, .95f);
                 VisibleCount++;
             }
@@ -290,7 +305,7 @@ namespace ArcaneBrigade
         private void Thread(Vector2 a, Vector2 b, float alpha, int seed)
         {
             var path = InkCanvas.Lob(a, b, -.12f, 14);
-            air.Stroke(path, new InkStroke { Width = .05f, Head = 1, Alpha = alpha * strength, Ink = ink.Ink, Body = ink.Body, Light = ink.Light, NoLight = true, Taper = .4f, Seed = seed });
+            Soft(air, path, 1, 0, .045f, alpha);
         }
         private void Dream()
         {
@@ -325,7 +340,7 @@ namespace ArcaneBrigade
                 Vector2 at = hero.Position + (Vector2)(Quaternion.Euler(0, 0, 90 + i * 120) * Vector2.right) * 1.8f;
                 Vector2 from = hero.Position + (at - hero.Position).normalized * .38f;
                 bool turn = i == next; float k = turn ? charge : 0;
-                ground.Stroke(InkCanvas.Line(from, at, .07f, 6, false, i * 2.1f), Brush(.07f + .03f * k, .42f + .3f * k, i));
+                Soft(ground, InkCanvas.Line(from, at, .07f, 6, false, i * 2.1f), 1, 0, .07f + .03f * k, .42f + .3f * k);
                 if (turn && k > .05f && !calm) Glow(at, .9f, ink.Glow, .12f + .18f * k);
                 Token(InkToken.Leaf, at + Vector2.up * .06f, .26f + .08f * k * (still ? 0 : 1), 90 + i * 120 - 90 + (still ? 0 : Mathf.Sin(t * 2 + i) * 8), .7f + .3f * k, false);
             }
@@ -338,8 +353,8 @@ namespace ArcaneBrigade
             {
                 Vector2 a = route[i - 1], b = route[i]; float length = Vector2.Distance(a, b); if (length < .05f) continue;
                 if (sim.HeroIdentityApproach == 1)
-                    for (int sign = -1; sign <= 1; sign += 2) ground.Stroke(InkCanvas.Line(a + Vector2.right * .4f * sign, b + Vector2.right * .4f * sign), Brush(.035f, .18f + .3f * fraction, i));
-                else ground.Stroke(InkCanvas.Line(a, b), Brush(.04f, .18f + .32f * fraction, i));
+                    for (int sign = -1; sign <= 1; sign += 2) Soft(ground, InkCanvas.Line(a + Vector2.right * .4f * sign, b + Vector2.right * .4f * sign), 1, 0, .035f, .18f + .3f * fraction);
+                else Soft(ground, InkCanvas.Line(a, b), 1, 0, .04f, .18f + .32f * fraction);
                 if (sparse) continue;
                 int dots = Mathf.Clamp(Mathf.FloorToInt(length / .45f), 1, 10);
                 for (int d = 0; d < dots; d++)
@@ -440,7 +455,7 @@ namespace ArcaneBrigade
             {
                 ground.Band(a, b, half, A(ink.Body, .02f * strength), A(ink.Body, (.05f + .1f * q) * strength));
                 float reveal = still ? 1 : OutCubic(q);
-                ground.Stroke(InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), new InkStroke { Width = .05f, Head = 1, Alpha = (.4f + .35f * q) * strength, Ink = ink.Ink, Body = ink.Body, NoLight = true, Taper = .5f });
+                Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
                 return;
             }
             ground.Band(a, b, half, A(ink.Glow, .16f * fade * strength), A(ink.Body, .42f * fade * strength));
@@ -457,14 +472,11 @@ namespace ArcaneBrigade
                 case InkBrush.Ink: path = InkCanvas.Line(a, b); width = .3f; break;
                 default: path = InkCanvas.Line(a, b); width = .34f; break;
             }
-            var stroke = Brush(width, fade, seed); stroke.Head = head; stroke.Tail = tail; stroke.Taper = style.Brush == InkBrush.Ink ? 2 : 1.2f;
-            air.GlowRibbon(path, head, tail, Mathf.Min(half * 2, width * 2.4f), A(ink.Glow, Bloom * fade));
-            air.Stroke(path, stroke);
-            Core(path, head, tail, width * .42f, .8f * fade, seed + 3);
+            Soft(air, path, head, tail, width * .75f, fade);
             if (style.Brush == InkBrush.Bolt && !calm && !still)
             {
                 var flicker = InkCanvas.Line(a, b, half * .4f, 0, true, g.Seed + 1 + Mathf.FloorToInt(t * 20));
-                air.Stroke(flicker, new InkStroke { Width = .06f, Head = head, Tail = tail, Alpha = .6f * fade * strength, Ink = ink.Light, Body = ink.Light, InkOnly = true, Taper = 1 });
+                Soft(air, flicker, head, tail, .05f, .6f * fade);
             }
             if (!sparse)
                 for (int i = 0; i < 4; i++)
@@ -488,26 +500,22 @@ namespace ArcaneBrigade
             {
                 ground.Sector(c, r, heading - CrescentHalf, heading + CrescentHalf, A(ink.Glow, .01f), A(ink.Body, (.05f + .11f * q) * strength));
                 float reveal = still ? 1 : OutCubic(q);
-                ground.Stroke(InkCanvas.Arc(c, r - .03f, r - .03f, heading - CrescentHalf * reveal, heading + CrescentHalf * reveal), new InkStroke { Width = .05f, Head = 1, Alpha = (.4f + .3f * q) * strength, Ink = ink.Ink, Body = ink.Body, NoLight = true, Taper = .5f });
+                Soft(ground, InkCanvas.Arc(c, r - .05f, r - .05f, heading - CrescentHalf * reveal, heading + CrescentHalf * reveal), 1, 0, .05f, .3f + .3f * q);
                 return;
             }
             ground.Sector(c, r, heading - CrescentHalf, heading + CrescentHalf, A(ink.Glow, .1f * fade * strength), A(ink.Body, .38f * fade * strength));
-            ground.Stroke(InkCanvas.Arc(c, r - .03f, r - .03f, heading - CrescentHalf, heading + CrescentHalf), Brush(.06f, .75f * fade, 2));
-            if (!sparse && r >= .8f) ground.Ticks(c, r - .06f, r >= 2 ? 9 : 5, Mathf.Min(.18f, r * .1f), .03f, 0, A(ink.Ink, .7f * fade * strength), heading - CrescentHalf, heading + CrescentHalf);
+            Soft(ground, InkCanvas.Arc(c, r - .05f, r - .05f, heading - CrescentHalf, heading + CrescentHalf), 1, 0, .06f, .6f * fade);
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .32f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .25f) / .75f));
             // the swing passes through the middle of the area; the inked rim and wash mark its true edge
             float width = Mathf.Min(Mathf.Clamp(r * .26f, .16f, .48f), r * .3f), radius = r * .62f;
             var arc = InkCanvas.Arc(c, radius, radius, heading - sweep * CrescentHalf * .96f, heading + sweep * CrescentHalf * .96f);
-            var main = Brush(width, fade, Seed(g)); main.Head = head; main.Tail = tail; main.Taper = 1.6f;
-            air.GlowRibbon(arc, head, tail, width * 2f, A(ink.Glow, Bloom * fade));
-            air.Stroke(arc, main);
-            Core(arc, head, tail, width * .42f, .8f * fade, Seed(g) + 3);
+            Soft(air, arc, head, tail, width * .75f, fade);
             Vector2 tip = InkCanvas.Sample(arc, head);
             if (!sparse)
             {
                 float h2 = still ? 1 : OutCubic(Mathf.Clamp01((p - .08f) / .32f));
                 var inner = InkCanvas.Arc(c, radius * .55f, radius * .55f, heading - sweep * CrescentHalf * .8f, heading + sweep * CrescentHalf * .8f);
-                var echo = Brush(width * .5f, .75f * fade, Seed(g) + 1); echo.Head = h2; echo.Tail = tail; echo.Taper = 1.6f; air.Stroke(inner, echo);
+                Soft(air, inner, h2, tail, width * .4f, .7f * fade);
                 for (int i = 0; i < 3; i++)
                 {
                     float f = Mathf.Clamp01(head - i * .14f); if (f <= 0) continue;
@@ -551,8 +559,7 @@ namespace ArcaneBrigade
             Vector2 a = g.Position + Vector2.up * .35f, b = g.End + Vector2.up * .35f; if ((b - a).sqrMagnitude < .01f) return;
             var path = InkCanvas.Lob(a, b, Mathf.Min(.5f, Vector2.Distance(a, b) * .12f), 16);
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .45f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .4f) / .6f));
-            var s = Brush(style.Brush == InkBrush.Silk ? .1f : .06f, .85f * (1 - Smooth(.7f, 1, p)), Seed(g)); s.Head = head; s.Tail = tail; s.Taper = 2;
-            air.Stroke(path, s);
+            Soft(air, path, head, tail, style.Brush == InkBrush.Silk ? .09f : .06f, .85f * (1 - Smooth(.7f, 1, p)));
             Token(InkToken.Glint, InkCanvas.Sample(InkCanvas.Lob(a, b, Mathf.Min(.5f, Vector2.Distance(a, b) * .12f), 16), head), .26f, still ? 0 : p * 180, 1 - Smooth(.75f, 1, p), true, 0, GlintPalette(ink));
         }
         /// <summary>The painted body of an identity bolt in flight (envelope, note, shard...); null for weapon-shaped echoes.</summary>
@@ -575,8 +582,7 @@ namespace ArcaneBrigade
             var path = InkCanvas.Lob(a, b, height, 20);
             if (!sparse)
             {
-                var trail = new InkStroke { Width = .07f, Head = p, Tail = Mathf.Max(0, p - .3f), Alpha = .5f * strength, Ink = ink.Light, Body = ink.Light, InkOnly = true, Taper = 2 };
-                air.Stroke(path, trail);
+                Soft(air, path, p, Mathf.Max(0, p - .3f), .05f, .5f);
             }
             Vector2 shell = InkCanvas.Sample(InkCanvas.Lob(a, b, height, 20), p);
             Vector2 shadow = Vector2.Lerp(a - Vector2.up * .3f, b, p);
@@ -603,8 +609,7 @@ namespace ArcaneBrigade
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created)); Vector2 c = sim.Champion.Position + Vector2.up * .35f;
             float head = still ? 1 : OutCubic(p), from = 200;
-            var s = Brush(.07f, 1 - Smooth(.6f, 1, p), 2); s.Head = 1; s.Taper = 2;
-            air.Stroke(InkCanvas.Arc(c, .58f, .36f, from, from + 300 * head), s);
+            Soft(air, InkCanvas.Arc(c, .58f, .36f, from, from + 300 * head), 1, 0, .06f, 1 - Smooth(.6f, 1, p));
             Token(style.Token, c + Vector2.up * (.6f + (still ? 0 : .3f * OutCubic(p))), .22f, 0, 1 - InQuad(p));
         }
 

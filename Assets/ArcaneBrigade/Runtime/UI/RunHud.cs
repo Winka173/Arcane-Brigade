@@ -525,7 +525,7 @@ namespace ArcaneBrigade
                 cx += w + Gap;
             }
             if (offerCard.Combo) Chip(CompanionRoles.ComboBadge, "COMBO", true); // first, so it always fits
-            Chip(offerCard.Attack.Icon, offerCard.AttackLabel, false); // the weapon this friend comes with
+            Chip(offerCard.AttackIcon, offerCard.AttackLabel, false); // the weapon this friend comes with
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + Mathf.Max(row.After, row.Bond.NextThreshold(row.After)), row.Activates);
             return rowY + H + 10;
         }

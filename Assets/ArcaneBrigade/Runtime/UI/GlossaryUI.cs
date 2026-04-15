@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         private static readonly Dictionary<string, Entry> entries = Build();
         private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{gives\\}|\\{costs\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         private static readonly Regex signedValue = new Regex("^[+−-]\\d+(?:\\.\\d+)?%?$", RegexOptions.CultureInvariant);
-        public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.Who(scope) + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
+        public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.WhoFor(effect, scope) + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
         private static ItemEffect NearbyEffect(MatchCollection all, int index)
         {
             int distance = 40; ItemEffect effect = ItemEffect.Damage;
