@@ -120,7 +120,7 @@ namespace ArcaneBrigade
         {
             if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; expanded = false; revealedAt = UnityEngine.Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
             if (cachedRun != run || cachedMembers == null) { cachedRun = run; cachedMembers = Brigade(run); }
-            if (ArcadeSkin.HasKit) { ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); rectangle = ArcadeSkin.Content(rectangle, KitFrame.Card, false, .6f); } // the cream card; the receipt sits inside its rim
+            if (ArcadeSkin.HasKit) { ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); rectangle = ArcadeSkin.Content(rectangle, KitFrame.Card, true, .6f); } // the cream card; the receipt sits inside its rim
             else
             {
                 ArcadeSkin.Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), ArcadeSkin.Ink);

@@ -188,7 +188,7 @@ namespace ArcaneBrigade
                 Spot s = Spots[Focus]; Rect r = Bounds(s, MetaIcons.Station(s.Station, false));
                 Tag(new Vector2(s.Foot.x, r.y - 40), MetaProgression.Works(s.Station) ? MetaProgression.StationName(s.Station).ToUpperInvariant() : "COMING SOON");
             }
-            if (!PanelOpen && DoorFocus) Tag(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "NEXT NIGHT");
+            if (!PanelOpen && DoorFocus) Tag(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "MAIN MENU");
 
             // the room's frame: back, title, purse, the way on
             if (!PanelOpen && ArcadeSkin.Medallion(new Rect(22, 18, 64, 64), KitMedallion.Back)) action = HubAction.Back;
@@ -197,7 +197,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
             FavourStars(profile, new Rect(96, 80, 400, 30));
             Purse(profile, new Rect(930, 16, 330, 62));
-            if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "NEXT NIGHT ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
+            if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "MAIN MENU ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
 
             // taps: a station or the door walks you there; anywhere else on the floor walks you to that spot
             if (!PanelOpen)
@@ -275,7 +275,7 @@ namespace ArcaneBrigade
             if (station >= MetaStation.Postbox) { DrawStation(station, area, catalog, profile, heroIndex, save); return; }
             navCols = 2;
             var tracks = new List<MetaTrack>(MetaProgression.For(station));
-            float cw = (area.width - 16) * .5f, ch = 132;
+            float cw = (area.width - 16) * .5f, ch = 150;
             int rows = Mathf.CeilToInt(tracks.Count / 2f);
             float extra = station == MetaStation.Nursery && MetaProgression.Rank(profile, "nursery.heirloom") > 0 ? 96 : 0;
             float height = rows * (ch + 14) + extra;
@@ -293,15 +293,17 @@ namespace ArcaneBrigade
             if (flash) ArcadeSkin.Glow(new Rect(c.x - 12, c.y - 12, c.width + 24, c.height + 24), new Color(1f, .85f, .5f, .5f * (1 - (Time.unscaledTime - boughtAt) / .6f)));
             ArcadeSkin.Frame(c, KitFrame.Card, .3f);
             Color ink = ArcadeSkin.FrameText(KitFrame.Card);
-            TrackIcon(new Rect(c.x + 14, c.y + 16, 52, 52), track);
+            Rect inner = ArcadeSkin.Content(c, KitFrame.Card, true, .3f); // inside the card's rim with the standard padding
+            float tx = inner.x + 60, tw = inner.xMax - tx;
+            TrackIcon(new Rect(inner.x, inner.y, 48, 48), track);
             body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .85f); number.normal.textColor = ink;
-            GUI.Label(new Rect(c.x + 76, c.y + 10, c.width - 140, 26), track.Name, body);
-            small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(c.xMax - 66, c.y + 12, 52, 22), rank + "/" + track.Max, small); small.alignment = TextAnchor.UpperLeft;
-            GUI.Label(new Rect(c.x + 76, c.y + 36, c.width - 90, 22), track.Line, small);
+            GUI.Label(new Rect(tx, inner.y - 3, tw - 56, 26), track.Name, body);
+            small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner.xMax - 52, inner.y, 52, 22), rank + "/" + track.Max, small); small.alignment = TextAnchor.UpperLeft;
+            GUI.Label(new Rect(tx, inner.y + 23, tw, 22), track.Line, small);
             string values = rank >= track.Max ? track.Value(rank) : track.Value(rank) + "  →  " + track.Value(rank + 1);
-            GUI.Label(new Rect(c.x + 76, c.y + 56, c.width - 90, 26), values, number);
+            GUI.Label(new Rect(tx, inner.y + 43, tw, 26), values, number);
             string blocked = MetaProgression.Blocked(profile, track);
-            Rect button = new Rect(c.x + 76, c.y + 86, c.width - 92, 38);
+            Rect button = new Rect(tx, inner.yMax - 38, tw, 38);
             if (rank >= track.Max) { ArcadeSkin.Button(button, "MAX", KitButton.Secondary, false, chip); Nav(button, false); return; }
             bool can = blocked == null;
             string caption = track.Cost[rank].ToString("N0");

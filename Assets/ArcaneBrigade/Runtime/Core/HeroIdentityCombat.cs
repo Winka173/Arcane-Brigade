@@ -14,6 +14,9 @@ namespace ArcaneBrigade
         public Vector2 Position, End, Direction;
         public float Radius, Width, Created, At, Until;
         public Sprite Portrait;
+        /// <summary>Presentation only: a transformation paints this strike itself (the lighthouse beam, the clock hand, a falling
+        /// scoop, a depth charge), so the generic ink glyph is not drawn over it.</summary>
+        public bool Painted;
     }
     public sealed partial class CombatSimulation
     {
@@ -149,15 +152,16 @@ namespace ArcaneBrigade
                 Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration };
             identityGlyphs.Add(g); return g;
         }
-        private void IdentityHit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .2f, int maxTargets = 3, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
+        private HeroIdentityGlyph IdentityHit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .2f, int maxTargets = 3, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
         {
-            if (identityStrikes.Count >= 32 || !float.IsFinite(budget) || budget <= 0) return;
+            if (identityStrikes.Count >= 32 || !float.IsFinite(budget) || budget <= 0) return null;
             if (shape == MorphGeometry.Line) { Vector2 span = end - at; if (span.sqrMagnitude > MaxLineLength * MaxLineLength) end = at + span.normalized * MaxLineLength; }
             else radius = Mathf.Min(radius, shape == MorphGeometry.Crescent ? MaxCrescentRadius : shape == MorphGeometry.Ring ? MaxRingRadius : MaxDiscRadius);
             identityStrikes.Add(new IdentityStrike { Shape = shape, Position = at, End = end, Radius = radius, Width = .25f, At = Elapsed + delay,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
                 Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Cause = IdentityCause() });
-            IdentityGlyph(shape, at, end, radius, .35f, delay, HeroGlyphRole.Strike).Width = .25f;
+            var glyph = IdentityGlyph(shape, at, end, radius, .35f, delay, HeroGlyphRole.Strike); glyph.Width = .25f;
+            return glyph;
         }
         private void ResolveIdentityStrikes()
         {

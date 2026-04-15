@@ -294,10 +294,10 @@ namespace ArcaneBrigade
             Rect eggSocket = ArcadeSkin.Counter(new Rect(16, 146, 200, 44), KitCounter.Egg, out Rect eggText);
             Sprite(new Rect(goldSocket.center.x - 16 - goldPulse, goldSocket.center.y - 16 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
-            GUI.Label(new Rect(goldText.x + 4, goldText.y + 6, goldText.width - 4, goldText.height - 12), Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
+            GUI.Label(goldText, Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
             Sprite(new Rect(eggSocket.center.x - 16 - eggPulse, eggSocket.center.y - 16 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
-            GUI.Label(new Rect(eggText.x + 4, eggText.y + 6, eggText.width - 4, eggText.height - 12), Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
+            GUI.Label(eggText, Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(waveRect, KitFrame.WaveBanner); else ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
             GUI.Label(ArcadeSkin.HasKit ? ArcadeSkin.Content(waveRect, KitFrame.WaveBanner, false) : new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
@@ -366,7 +366,7 @@ namespace ArcaneBrigade
                 if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
                 if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 750, 560, 60), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
-                if (navigation.Button(new Rect(405, 825, 270, 65), "WAITING ROOM", button)) owner.ReturnToMenu();
+                if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
                 invoice.Draw(new Rect(770, 200, 1060, 750), state, owner.Content);
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
@@ -403,7 +403,7 @@ namespace ArcaneBrigade
                 {
                     Rect go = new Rect(790, 950, 340, 90);
                     ShownShopCard = go;
-                    if (navigation.Button(go, "NEXT WAVE  ↓", primary)) shop.Interact();
+                    if (navigation.Button(go, shop.Special ? "TO THE SHOP  →" : "NEXT WAVE  ↓", primary)) shop.Interact(); // the dream shop leads on to the regular shop (owner)
                     return;
                 }
                 if (tooltipStation != station)
@@ -500,23 +500,34 @@ namespace ArcaneBrigade
         /// <summary>A companion's chips: its weapon's attack and each bond it counts toward (now / next).</summary>
         private float ShopChips(float x, float y, float width)
         {
-            float cx = x;
+            // chips with real room (owner, 22/10/2026): the icon in the chip's socket, 10 px before the words, 16 after them and
+            // 12 between chips; a chip that does not fit first shrinks its words, then starts a second row
+            float cx = x, rowY = y; int rows = 1;
+            const float H = 50, Lead = 50, Tail = 16, Gap = 12;
             void Chip(Sprite icon, string label, bool lit)
             {
-                float w = Mathf.Min(width - (cx - x), 46 + cardChip.CalcSize(new GUIContent(label)).x + 14);
-                if (w < 90) return;
-                Rect chip = new Rect(cx, y, w, 50);
+                int size = cardChip.fontSize;
+                float Need() => Lead + cardChip.CalcSize(new GUIContent(label)).x + Tail;
+                float room = width - (cx - x);
+                while (Need() > room && cardChip.fontSize > 15) cardChip.fontSize--;
+                if (Need() > room && cx > x && rows < 2) { rows++; cx = x; rowY += H + 8; room = width; cardChip.fontSize = size; while (Need() > room && cardChip.fontSize > 15) cardChip.fontSize--; }
+                float w = Mathf.Min(room, Need());
+                if (w < 110) { cardChip.fontSize = size; return; }
+                Rect chip = new Rect(cx, rowY, w, H);
+                if (lit) ArcadeSkin.BlinkLit(chip, Time.unscaledTime, ArcadeSkin.Gold); // a bond this friend lights blinks
                 ArcadeSkin.Chip(chip, lit); // the painted walnut chip with its icon socket
+                if (lit) ArcadeSkin.BlinkOver(chip, Time.unscaledTime);
                 if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
-                if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 6, chip.y + 6, 38, 38), icon);
-                cardChip.normal.textColor = lit ? ArcadeSkin.Gold : ArcadeSkin.Cream;
-                GUI.Label(new Rect(chip.x + 48, chip.y, w - 52, 50), label, cardChip);
-                cx += w + 8;
+                if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 19 - 16, chip.y + H * .5f - 16, 32, 32), icon);
+                cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
+                GUI.Label(new Rect(chip.x + Lead, chip.y, w - Lead - Tail + 6, H), label, cardChip);
+                cardChip.fontSize = size;
+                cx += w + Gap;
             }
             if (offerCard.Combo) Chip(CompanionRoles.ComboBadge, "COMBO", true); // first, so it always fits
-            Chip(offerCard.Attack.Icon, RecruitAttackReadout.Range(offerCard.Attack.MinDamage, offerCard.Attack.MaxDamage), false);
+            Chip(offerCard.Attack.Icon, offerCard.AttackLabel, false); // the weapon this friend comes with
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + Mathf.Max(row.After, row.Bond.NextThreshold(row.After)), row.Activates);
-            return y + 60;
+            return rowY + H + 10;
         }
         /// <summary>The big action button: the verb, and the price with its currency.</summary>
         private void DrawPriceButton(Rect button, WorldShop.Station station, ArenaController owner)
@@ -531,12 +542,16 @@ namespace ArcaneBrigade
             int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
             cardBig.wordWrap = true;
-            GUI.Label(new Rect(button.x + 8, priced ? button.center.y - 42 : button.y, button.width - 16, priced ? 40 : button.height), verb, cardBig); // inside the plate's rim
+            // laid out inside the plate's rim with real margins (owner, 22/10/2026): the verb on the upper half, the price on the lower
+            Rect inner = ArcadeSkin.Content(button, KitPiece.Plate);
+            Rect verbRect = priced ? new Rect(inner.x, inner.y, inner.width, inner.height * .54f) : inner;
+            GUI.Label(verbRect, verb, cardBig);
             cardBig.fontSize = bigSize; cardBig.normal.textColor = bigColor;
             if (!priced) return;
             string amount = price.ToString();
-            float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = button.center.x - wide * .5f;
-            Rect icon = new Rect(left, button.center.y + 4, 28, 28);
+            float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = inner.center.x - wide * .5f;
+            Rect priceRow = new Rect(inner.x, inner.y + inner.height * .54f, inner.width, inner.height * .46f);
+            Rect icon = new Rect(left, priceRow.center.y - 14, 28, 28);
             Sprite(icon, currency == ShopCurrency.Health ? owner.Content.HeartSprite : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
             Color priceColor = cardPrice.normal.textColor;
             GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
@@ -556,17 +571,20 @@ namespace ArcaneBrigade
             ShownShopCard = panel;
             RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
-            ShopDescriptionCard.DrawSprite(new Rect(panel.x + 28, panel.y + 22, 72, 72), offerCard.Portrait);
-            GUI.Label(new Rect(panel.x + 116, panel.y + 18, 700, 44), shop.DisplayName(station), cardName);
-            small.normal.textColor = tag; GUI.Label(new Rect(panel.x + 116, panel.y + 62, 700, 28), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
-            if (navigation.Button(new Rect(panel.xMax - 200, panel.y + 20, 176, 76), "BACK", button)) { SetShopDetails(false); return; }
-            float headerHeight = offerCard.HeaderHeight;
-            if (headerHeight > 0) offerCard.DrawHeader(new Rect(panel.x + 28, panel.y + 108, 1060, headerHeight), owner.PresentationClock);
+            // stacked blocks inside the frame's padding (owner, 22/10/2026): the header row, the tiles row, then the scrolling text
+            // starting below the tiles' full height, so nothing sits behind the tiles or on the frame's rim
+            Rect inner = new Rect(panel.x + 40, panel.y + 26, panel.width - 80, panel.height - 52);
+            ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y, 72, 72), offerCard.Portrait);
+            GUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
+            small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 28), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
+            if (navigation.Button(new Rect(inner.xMax - 176, inner.y, 176, 72), "BACK", button)) { SetShopDetails(false); return; }
+            float headerHeight = offerCard.HeaderHeight, tilesTop = inner.y + 96;
+            if (headerHeight > 0) offerCard.DrawHeader(new Rect(inner.x, tilesTop, inner.width, headerHeight), owner.PresentationClock);
             string description = offerCard.Details;
             if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
-            float top = 112 + headerHeight, textWidth = 1040;
+            float top = tilesTop + headerHeight + 16 - panel.y, textWidth = inner.width - 30;
             float contentHeight = GlossaryUI.Height(description, cardLine, textWidth) + 8;
-            shopScroll = ScrollPanel.Begin(new Rect(panel.x + 28, panel.y + top, textWidth + 26, panel.height - top - 20), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
+            shopScroll = ScrollPanel.Begin(new Rect(inner.x, panel.y + top, inner.width, inner.yMax - panel.y - top), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
             GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, cardLine);
             ScrollPanel.End();
             GlossaryUI.Draw(new Vector2(1920, 1080));
@@ -658,7 +676,7 @@ namespace ArcaneBrigade
             {
                 using var preview = new RunSession(owner.Content); preview.Restore(state);
                 if (!preview.Buy(offer.Token)) return 0;
-                previewRows.Add(("Brigade size", state.Roster.Count.ToString(), preview.State.Roster.Count.ToString(), preview.State.Roster.Count >= state.Roster.Count));
+                previewRows.Add(("Friends", state.Roster.Count.ToString(), preview.State.Roster.Count.ToString(), preview.State.Roster.Count >= state.Roster.Count));
                 return previewRows.Count;
             }
             string text;

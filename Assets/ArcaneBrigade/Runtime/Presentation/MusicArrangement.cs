@@ -21,7 +21,8 @@ namespace ArcaneBrigade
             levels[0] = 1f;
             switch (scene)
             {
-                case ArcaneCueLibrary.SceneMenu: levels[1] = 0.85f; levels[2] = 1f; levels[3] = 0f; break;
+                case ArcaneCueLibrary.SceneMenu:
+                case ArcaneCueLibrary.SceneHub: levels[1] = 0.85f; levels[2] = 1f; levels[3] = 0f; break;
                 case ArcaneCueLibrary.SceneSelect: levels[1] = 0.7f; levels[2] = 1f; levels[3] = 0f; break;
                 case ArcaneCueLibrary.SceneShopGold: levels[1] = 0.9f; levels[2] = 1f; levels[3] = 0.75f; break;
                 case ArcaneCueLibrary.SceneShopDream: levels[1] = 0.8f; levels[2] = 1f; levels[3] = 0.7f; break;

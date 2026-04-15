@@ -31,7 +31,7 @@ STEMS = ['base', 'rhythm', 'melody', 'intensity']
 TARGET_LUFS = -18.0
 TAIL_SECONDS = 6.0
 # stem levels of the scene mix that is normalised to TARGET_LUFS (mirrors Runtime/Presentation/MusicArrangement.cs)
-SCENE_MIX = {'menu': [1, 0.85, 1, 0], 'select': [1, 0.7, 1, 0], 'shop_gold': [1, 0.9, 1, 0.75], 'shop_dream': [1, 0.8, 1, 0.7]}
+SCENE_MIX = {'menu': [1, 0.85, 1, 0], 'hub': [1, 0.85, 1, 0], 'select': [1, 0.7, 1, 0], 'shop_gold': [1, 0.9, 1, 0.75], 'shop_dream': [1, 0.8, 1, 0.7]}
 COMBAT_MIX = [1, 1, 0, 0]
 
 

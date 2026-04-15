@@ -158,7 +158,7 @@ namespace ArcaneBrigade
             music = gameObject.AddComponent<ArcadeMusic>();
             gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();
             Screen.orientation = ScreenOrientation.LandscapeLeft;
-            if (RunLaunch.OpenHub) { RunLaunch.OpenHub = false; ShowPage(Page.Hub); } // back from a finished run: the Waiting Room
+            if (RunLaunch.OpenHub) RunLaunch.OpenHub = false; // back from a finished run: the main menu (owner 22/10/2026)
         }
 
         public void ReloadSaveSummary()
@@ -179,12 +179,12 @@ namespace ArcaneBrigade
 
         private void Update()
         {
-            if (music != null) music.ForceScene(CurrentPage == Page.Roster ? ArcaneCueLibrary.SceneSelect : null);
+            if (music != null) music.ForceScene(CurrentPage == Page.Roster ? ArcaneCueLibrary.SceneSelect : CurrentPage == Page.Hub ? ArcaneCueLibrary.SceneHub : null);
             RunUIHints.Refresh();
             if (CurrentPage == Page.Hub)
             {
                 HubAction walked = hub.Tick(Time.unscaledDeltaTime);
-                if (walked == HubAction.NextNight) ShowPage(Page.Roster);
+                if (walked == HubAction.NextNight) ShowPage(Page.Landing); // the hub's door leads back to the main menu
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { if (hub.PanelOpen) hub.Close(); else ShowPage(Page.Landing); }
                 return;
             }
@@ -289,7 +289,7 @@ namespace ArcaneBrigade
                 case Page.Roster: DrawRoster(); break;
                 case Page.Hub:
                     HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
-                    if (chosen == HubAction.NextNight) ShowPage(Page.Roster); else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
+                    if (chosen == HubAction.NextNight) ShowPage(Page.Landing); else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
                     break;
                 case Page.Resume:
                     Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + saved.Roster.Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
@@ -336,20 +336,22 @@ namespace ArcaneBrigade
         // the door begins a journey, the armchair is where you left off, the bookshelf holds everyone you have met,
         // the letters on the side table are the ones you kept, the lamp sets light and sound. How to play lives only
         // in the bottom row; the row mirrors every entry one-to-one in the same order as before.
-        private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
-        private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works" };
-        private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
+        // owner 22/10/2026: NEW JOURNEY goes straight to hero select; the Waiting Room (permanent upgrades) is its own entry
+        private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "WAITING ROOM", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
+        private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Spend lamp oil on the room's stations", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works" };
+        private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.lamp", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
         public static readonly Rect[] SpotAreas =
         {
             new Rect(800, 0, 312, 452),    // the carved door
             new Rect(40, 172, 360, 368),   // the armchair
+            Rect.zero,                     // the Waiting Room (the bottom row only)
             new Rect(1160, 318, 120, 156), // the bookshelf
             new Rect(400, 280, 160, 86),   // the letters on the side table
             new Rect(340, 118, 190, 152),  // the lamp
             Rect.zero,
         };
         // where each entry's paper label sits in the room (centre x, top y)
-        private static readonly Vector2[] SpotTags = { new Vector2(956, 372), new Vector2(222, 300), new Vector2(1180, 280), new Vector2(480, 372), new Vector2(436, 80), new Vector2(0, 0) };
+        private static readonly Vector2[] SpotTags = { new Vector2(956, 372), new Vector2(222, 300), new Vector2(0, 0), new Vector2(1180, 280), new Vector2(480, 372), new Vector2(436, 80), new Vector2(0, 0) };
         private int hoveredSpot = -1;
         private GUIStyle smallButton;
         private GUIStyle spotHint;
@@ -357,16 +359,25 @@ namespace ArcaneBrigade
         private Texture2D waitingRoom;
 
         private bool SpotEnabled(int index) => index != 1 || CanResume;
+        private bool HubAffordable()
+        {
+            if (profile == null) return false;
+            foreach (MetaStation station in MetaProgression.Working)
+                foreach (MetaTrack track in MetaProgression.For(station))
+                    if (MetaProgression.Blocked(profile, track) == null) return true;
+            return false;
+        }
         private void ActivateSpot(int index)
         {
             if (!SpotEnabled(index)) { CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
             switch (index)
             {
-                case 0: ShowPage(Page.Hub); break; // the door leads through the Waiting Room
+                case 0: ShowPage(Page.Roster); break; // the door: straight to hero select
                 case 1: ShowPage(Page.Resume); break;
-                case 2: ShowPage(Page.Museum); break;
-                case 3: ShowPage(Page.Records); break;
-                case 4: ShowPage(Page.Settings); break;
+                case 2: ShowPage(Page.Hub); break;    // the Waiting Room: permanent upgrades, Daily Dream
+                case 3: ShowPage(Page.Museum); break;
+                case 4: ShowPage(Page.Records); break;
+                case 5: ShowPage(Page.Settings); break;
                 default: ShowPage(Page.Help); break;
             }
         }
@@ -500,7 +511,11 @@ namespace ArcaneBrigade
             {
                 GUI.enabled = SpotEnabled(index);
                 string caption = SpotLabels[index];
-                if (navigation.Button(new Rect(36 + index * 204, 664, 196, 42), caption, index == 0 ? primary : smallButton)) ActivateSpot(index);
+                float step = (1208f + 8) / SpotLabels.Length;
+                Rect spot = new Rect(36 + index * step, 664, step - 8, 42);
+                if (navigation.Button(spot, caption, index == 0 ? primary : smallButton)) ActivateSpot(index);
+                // a small lit badge when the lamp oil can buy something in the Waiting Room
+                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(new Rect(spot.xMax - 22, spot.y - 14, 28, 28), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(new Vector2(spot.xMax - 8, spot.y), 22, "!"); }
             }
             GUI.enabled = true;
         }
@@ -588,7 +603,7 @@ namespace ArcaneBrigade
             if (!MetaProgression.Keepsakes(profile, catalog).Contains(keepsakePick ?? "")) keepsakePick = MetaProgression.Keepsakes(profile, catalog).Contains(profile.Meta.Keepsake) ? profile.Meta.Keepsake : null;
             if (existingSave) { ShowPage(Page.ConfirmOverwrite); dailyDay = day; } else { dailyDay = day; Launch(false); }
         }
-        private static Page BackOf(Page page) => page == Page.ConfirmOverwrite ? Page.Roster : page == Page.Roster ? Page.Hub : Page.Landing;
+        private static Page BackOf(Page page) => page == Page.ConfirmOverwrite ? Page.Roster : page == Page.Roster ? Page.Landing : Page.Landing;
 
         /// <summary>Hero select's Waiting Room row (only what is unlocked): the Nursery's three friends, the Wardrobe's spare coat
         /// and second habit. A tap picks; the line under the row says what the pick does.</summary>

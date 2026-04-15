@@ -416,6 +416,9 @@ namespace ArcaneBrigade
                 Station station = AddStation(new Vector2(stallX, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
+                // the friend on its stall holds the weapon it comes with (rolled with the offer)
+                if (station.Actor != null && offer.Kind == OfferKind.Companion && owner.Session.OfferWeapon(offer) is WeaponDefinition held)
+                    station.Actor.HoldWeapon(held.Sprite, catalog.Arena.Hand, held.Kind == WeaponKind.Melee);
                 station.Description = offer.Kind == OfferKind.Companion ? CompanionDescriptions.Describe(catalog.Unit(offer.Id), offer.Tier, catalog.TierSupportMultiplier) : RelicDescriptions.Describe(catalog.Item(offer.Id), owner.Session.StackCount(offer.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, catalog.Item(offer.Id));
                 if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(MarketMotion.StockArrivalDelay + index * MarketMotion.StockStagger, scenery.transform.TransformPoint(MerchantCenter));
                 if (!offer.Sold && arrival)
@@ -516,7 +519,7 @@ namespace ArcaneBrigade
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == offer.Tier).Count;
-                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: stars " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
+                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\n" + (owner.Session.OfferWeapon(offer) is WeaponDefinition comes ? RunUICopy.WeaponName(comes.Id) : "Random weapon") + " · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: stars " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
@@ -693,7 +696,7 @@ namespace ArcaneBrigade
                 while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;
                 bool short_ = station.Offer != null ? !owner.Session.CanBuy(station.Offer) : station.Action == "VISITOR" && owner.Session.State.Gold < station.Price;
                 priceStyle.normal.textColor = short_ ? new Color(0.75f, 0.15f, 0.2f) : ArcadeSkin.Ink;
-                GUI.Label(new Rect(ticket.x + 44, ticket.y + 3, ticket.width - 50, 34), price, priceStyle);
+                GUI.Label(new Rect(ticket.x + 48, ticket.y, ticket.width - 54, ticket.height), price, priceStyle); // 12 px after the coin, centred on the tag
                 priceStyle.normal.textColor = ArcadeSkin.Ink;
                 if (station.Offer != null)
                 {

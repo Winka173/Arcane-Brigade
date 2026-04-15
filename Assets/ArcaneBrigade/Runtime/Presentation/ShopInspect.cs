@@ -201,18 +201,18 @@ namespace ArcaneBrigade
             offerCard.Refresh(owner.Session, owner.Content, open.Offer);
             Rect card = CardRect(open, camera);
             RarityDescriptionFrame.Draw(card, offerCard.Rarity, owner.PresentationClock); if (open.Offer.Currency == ShopCurrency.Health) BloodPriceFrame.Draw(card, owner.PresentationClock);
-            ShopDescriptionCard.DrawSprite(new Rect(card.x + 20, card.y + 14, 42, 42), offerCard.Portrait);
+            ShopDescriptionCard.DrawSprite(new Rect(card.x + 36, card.y + 20, 42, 42), offerCard.Portrait); // inside the frame's padding
             title.normal.textColor = RunModifierRules.RarityColor(offerCard.Rarity);
-            GUI.Label(new Rect(card.x + 74, card.y + 12, 790, 37), open.Title, title);
-            hint.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(card.x + 74, card.y + 48, 830, 24), offerCard.Identity, hint);
+            GUI.Label(new Rect(card.x + 90, card.y + 16, 760, 37), open.Title, title);
+            hint.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(card.x + 90, card.y + 52, 760, 24), offerCard.Identity, hint);
             if (ArcadeSkin.Medallion(new Rect(card.xMax - 74, card.y + 6, 64, 64), KitMedallion.Close)) { Close(); return; } // painted close medallion, a full tap target
             float header = offerCard.HeaderHeight;
-            offerCard.DrawHeader(new Rect(card.x + 20, card.y + 82, card.width - 40, header), owner.PresentationClock);
-            float y = card.y + 84 + header, width = card.width - 70;
+            offerCard.DrawHeader(new Rect(card.x + 36, card.y + 86, card.width - 72, header), owner.PresentationClock);
+            float y = card.y + 86 + header + 12, width = card.width - 102;
             string copy = offerCard.Details + "\n\n" + open.Use;
             body.normal.textColor = ArcadeSkin.Cream;
             float height = GlossaryUI.Height(copy, body, width);
-            offerScroll = ScrollPanel.Begin(new Rect(card.x + 20, y, card.width - 40, card.yMax - y - 16), offerScroll, new Rect(0, 0, width, height));
+            offerScroll = ScrollPanel.Begin(new Rect(card.x + 36, y, card.width - 72, card.yMax - y - 24), offerScroll, new Rect(0, 0, width, height));
             GlossaryUI.Text(new Rect(0, 0, width, height), copy, body); ScrollPanel.End();
             GlossaryUI.Draw(new Vector2(1920, 1080));
         }

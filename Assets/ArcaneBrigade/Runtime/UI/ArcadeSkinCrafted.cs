@@ -175,7 +175,7 @@ namespace ArcaneBrigade
             Rect plate = new Rect(r.x + r.height * .5f, r.y + r.height * .12f, r.width - r.height * .5f, r.height * .76f);
             CodePlate(plate, CodeTone.Walnut);
             Rect socket = CodeRound(new Rect(r.x, r.y, r.height, r.height), CodeTone.Navy);
-            text = new Rect(socket.xMax + 6, r.y, r.xMax - socket.xMax - 6 - CodeRim(plate) - 4, r.height);
+            text = new Rect(socket.xMax + 12, r.y, r.xMax - socket.xMax - 12 - CodeRim(plate) - 4, r.height);
             float inner = socket.width * .62f;
             return new Rect(socket.center.x - inner * .5f, socket.center.y - inner * .5f, inner, inner);
         }

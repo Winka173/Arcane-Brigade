@@ -70,7 +70,21 @@ namespace ArcaneBrigade
             Place(MechanicInk.Glow, at, Vector2.one * diameter, 0, A(color, alpha * strength), airborne);
         }
         private InkStroke Brush(float width, float alpha, float seed) => InkStroke.Of(ink, width, alpha * strength, seed);
-        private float Bloom => (calm ? .14f : plain ? .2f : .34f) * strength;
+        /// <summary>A bright core laid inside a strike's brush (22/10/2026), so the stroke reads as light on dark and pale floors
+        /// alike; dimmer with Reduced Flashes.</summary>
+        private void Core(List<Vector2> path, float head, float tail, float width, float alpha, float seed)
+        {
+            Color lit = Color.Lerp(ink.Light, Color.white, .3f);
+            air.Stroke(path, new InkStroke { Width = width, Head = head, Tail = tail, Taper = 1.6f, Seed = seed, Alpha = alpha * (calm ? .55f : 1) * strength, Ink = lit, Body = lit, Light = Color.white });
+        }
+        /// <summary>1 the moment the hero transforms, fading to 0 over 0.35s: the activation flash (a third as bright with
+        /// Reduced Flashes).</summary>
+        private float Activation()
+        {
+            float age = t - sim.HeroAwakenStarted;
+            return age < 0 || age > .35f ? 0 : (calm ? .3f : 1) * (1 - age / .35f);
+        }
+        private float Bloom => (calm ? .14f : plain ? .27f : .46f) * strength; // lifted ~35% (22/10/2026): strikes read on every floor
 
         public void Display(CombatSimulation simulation)
         {
@@ -358,6 +372,8 @@ namespace ArcaneBrigade
             {
                 case HeroGlyphRole.Mark: case HeroGlyphRole.Ambient: return false; // drawn from live state
                 case HeroGlyphRole.Strike:
+                    // a transformation that paints its own strike (beam, clock hand, scoop, depth charge) shows only that painting
+                    if (g.Painted) return false;
                     if (g.Shape == MorphGeometry.Line) LineStrike(g);
                     else if (g.Shape == MorphGeometry.Crescent) CrescentStrike(g);
                     else if (g.Shape == MorphGeometry.Ring) RingStrike(g);
@@ -444,6 +460,7 @@ namespace ArcaneBrigade
             var stroke = Brush(width, fade, seed); stroke.Head = head; stroke.Tail = tail; stroke.Taper = style.Brush == InkBrush.Ink ? 2 : 1.2f;
             air.GlowRibbon(path, head, tail, Mathf.Min(half * 2, width * 2.4f), A(ink.Glow, Bloom * fade));
             air.Stroke(path, stroke);
+            Core(path, head, tail, width * .42f, .8f * fade, seed + 3);
             if (style.Brush == InkBrush.Bolt && !calm && !still)
             {
                 var flicker = InkCanvas.Line(a, b, half * .4f, 0, true, g.Seed + 1 + Mathf.FloorToInt(t * 20));
@@ -484,6 +501,7 @@ namespace ArcaneBrigade
             var main = Brush(width, fade, Seed(g)); main.Head = head; main.Tail = tail; main.Taper = 1.6f;
             air.GlowRibbon(arc, head, tail, width * 2f, A(ink.Glow, Bloom * fade));
             air.Stroke(arc, main);
+            Core(arc, head, tail, width * .42f, .8f * fade, Seed(g) + 3);
             Vector2 tip = InkCanvas.Sample(arc, head);
             if (!sparse)
             {
@@ -594,7 +612,7 @@ namespace ArcaneBrigade
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created));
             float size = Mathf.Clamp(g.Radius * 1.4f, .3f, 1.1f) * (still ? 1 : OutBack(Mathf.Min(1, p / .3f)));
-            if (!calm) Glow(g.Position, size * 1.5f, ink.Glow, .26f * (1 - p), true);
+            if (!calm) Glow(g.Position, size * 1.5f, ink.Glow, .34f * (1 - p), true);
             Token(style.Token, g.Position + Vector2.up * (.3f + (still ? 0 : .35f * p)), size, still ? 0 : Mathf.Sin(p * 6) * 12, 1 - Smooth(.6f, 1, p), true, style.Token == InkToken.Die ? 6 : 0);
         }
     }

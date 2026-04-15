@@ -370,7 +370,7 @@ namespace ArcaneBrigade
             Sliced(r, sprite, k);
             // the socket is centred 36 px in on an 80 px plate, inner diameter about 40
             Rect socket = new Rect(r.x + 36 * k - 20 * k, r.center.y - 20 * k, 40 * k, 40 * k);
-            text = new Rect(r.x + sprite.border.x * k, r.y, r.width - (sprite.border.x + sprite.border.z * .6f) * k, r.height);
+            text = new Rect(r.x + sprite.border.x * k + 12, r.y, r.width - (sprite.border.x + sprite.border.z * .6f) * k - 12, r.height); // 12 px clear of the socket
             return socket;
         }
 

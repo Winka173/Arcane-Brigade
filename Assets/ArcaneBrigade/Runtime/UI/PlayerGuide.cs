@@ -231,8 +231,9 @@ namespace ArcaneBrigade
                 Rect card = new Rect(area.x + i % 3 * (w + 20), area.y + i / 3 * (h + 20), w, h);
                 ArcadeSkin.Ticket(card, ArcadeSkin.Ink, ArcadeSkin.Accent);
                 if (cards[i].icon != null) RunHud.Sprite(new Rect(card.center.x - 55, card.y + 18, 110, 110), cards[i].icon);
-                GUI.Label(new Rect(card.x + 10, card.y + 132, card.width - 20, 40), cards[i].head, head);
-                GUI.Label(new Rect(card.x + 18, card.y + 176, card.width - 36, card.height - 186), cards[i].body, small);
+                Rect inner = ArcadeSkin.Content(card, KitFrame.Dialogue); // inside the frame's rim with the standard padding
+                GUI.Label(new Rect(inner.x, card.y + 132, inner.width, 40), cards[i].head, head);
+                GUI.Label(new Rect(inner.x, card.y + 176, inner.width, inner.yMax - card.y - 176), cards[i].body, small);
             }
         }
     }

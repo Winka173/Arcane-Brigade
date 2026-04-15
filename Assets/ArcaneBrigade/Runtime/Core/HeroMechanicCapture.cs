@@ -101,6 +101,9 @@ namespace ArcaneBrigade
                     while (sim.Elapsed - cast < at[i] && Time.realtimeSinceStartup - started < 24) yield return null;
                     yield return Shot(stem + "-" + label[i]);
                 }
+                // the transformation a moment after its flash, as it reads for most of its six seconds
+                while (sim.HeroAwakening && sim.Elapsed - cast < 1.2f && Time.realtimeSinceStartup - started < 26) yield return null;
+                if (sim.HeroAwakening) yield return Shot(stem + "-4-held");
                 notes.Add("OK " + hero.Id + " glyphs=" + sim.HeroIdentityGlyphs.Count);
                 File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
                 Time.timeScale = 1;

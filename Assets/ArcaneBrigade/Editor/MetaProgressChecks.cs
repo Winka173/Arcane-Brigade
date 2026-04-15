@@ -341,7 +341,7 @@ namespace ArcaneBrigade.Editor
             Check(stand != null && stand.width == 256 && stand.height == 200, "Relic pedestal drawn in code");
             Check(SecretEventVignettes.Names.All(n => Resources.Load<Sprite>("UI/SecretEvent/Vignettes/" + n) != null) && SecretEventVignettes.For(SecretEventKind.ImpossibleTailor) != null, "Secret-room vignettes cut and loading");
             string room = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/SecretEventRoom.cs"), gifts = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/OutsideStageChoice.cs");
-            Check(room.Contains("CodeTone.Oxblood") && room.Contains("CodeTone.Green") && room.Contains("RunningLight") && room.Contains("Pedestal") && !room.Contains("EventPlate(") && gifts.Contains("Pedestal") && !gifts.Contains("EventPlate("), "DO / LOSE / GET plates and gifts drawn in code");
+            Check(room.Contains("CodeTone.Oxblood") && room.Contains("CodeTone.Green") && room.Contains("RunningLight") && room.Contains("Pedestal") && room.Contains("EventPlate(") && gifts.Contains("Pedestal") && gifts.Contains("EventPlate("), "DO / LOSE / GET plates and gifts: the painted plates (UI_SecretEvent), drawn in code when not painted");
         }
 
         /// <summary>Play-test review phase E (the Waiting Room, one shop per night): the suites its changes touch, in one launch.</summary>

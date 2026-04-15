@@ -688,7 +688,8 @@ namespace ArcaneBrigade
                 foreach (WeaponDefinition weapon in catalog.Weapons)
                     if (RecruitWeaponEligible(offer.Id, weapon) && VariantFree(offer.Id, weapon)) choices.Add(weapon);
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
-                WeaponDefinition chosen = BalancedWeapon(choices, catalog.Unit(offer.Id).SpecialRecruit);
+                // the weapon shown on the offer before buying (rolled once per offer); never rolled again here
+                WeaponDefinition chosen = OfferWeapon(offer) ?? BalancedWeapon(choices, catalog.Unit(offer.Id).SpecialRecruit);
                 var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = Mathf.Clamp(offer.Tier, 1, 3) };
                 stork = recruited.Tier == 1 && MetaStork(offer);
                 if (stork) recruited.Tier = 2;

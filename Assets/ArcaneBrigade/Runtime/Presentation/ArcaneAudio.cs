@@ -72,6 +72,7 @@ namespace ArcaneBrigade
         public const string SceneEndless = "endless";
         public const string SceneShopGold = "shop_gold";
         public const string SceneShopDream = "shop_dream";
+        public const string SceneHub = "hub";   // the Waiting Room meta hub (its own piece, hub_waitingroom)
 
         private static Dictionary<string, ArcaneCueDef> cues;
         private static ArcanePieceDef[] pieces;

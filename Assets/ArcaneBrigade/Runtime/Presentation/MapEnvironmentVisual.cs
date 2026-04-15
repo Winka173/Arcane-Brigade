@@ -11,9 +11,12 @@ namespace ArcaneBrigade
         private ArsenalInk ink;
         private bool drawn;
         private readonly List<SpriteRenderer> pool = new List<SpriteRenderer>();
+        // standing map props float like the rest of the dream (DreamLevitation) and cast a ground shadow (owner, 22/10/2026)
+        private readonly List<GroundShadow> shadows = new List<GroundShadow>();
         private int used;
         private CombatSimulation sim;
         private bool still, calm;
+        private MapAtmosphere atmosphere;
         // what the last frame showed (read by checks and captures)
         public int Props { get; private set; }
         public int Marks { get; private set; }
@@ -22,11 +25,14 @@ namespace ArcaneBrigade
         public void Display(CombatSimulation simulation)
         {
             Props = Marks = 0; used = 0; sim = simulation;
+            // each map's own air and colour grade (MapAtmosphere), drawn under the floor marks and among the units
+            if (atmosphere == null) { atmosphere = GetComponent<MapAtmosphere>(); if (atmosphere == null) atmosphere = gameObject.AddComponent<MapAtmosphere>(); }
+            atmosphere.Display(simulation);
             MapEnvironmentState s = simulation?.MapEnvironment;
             bool live = s != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
             if (!live)
             {
-                for (int i = 0; i < pool.Count; i++) pool[i].enabled = false;
+                for (int i = 0; i < pool.Count; i++) { pool[i].enabled = false; shadows[i].Hide(); }
                 if (drawn) { ink.Begin(); ink.End(); drawn = false; }
                 return;
             }
@@ -41,7 +47,7 @@ namespace ArcaneBrigade
                 default: ArchiveVault(s, simulation.Elapsed); break;
             }
             ink.End();
-            for (int i = used; i < pool.Count; i++) pool[i].enabled = false;
+            for (int i = used; i < pool.Count; i++) { pool[i].enabled = false; shadows[i].Hide(); }
         }
 
         // ------------------------------------------------------------------ Waiting Room
@@ -238,12 +244,19 @@ namespace ArcaneBrigade
             {
                 var go = new GameObject("Map element"); go.transform.SetParent(transform, false);
                 pool.Add(go.AddComponent<SpriteRenderer>());
+                var shade = new GameObject("Map element shadow"); shade.transform.SetParent(transform, false);
+                shadows.Add(shade.AddComponent<GroundShadow>());
             }
             SpriteRenderer r = pool[used++]; r.enabled = true; r.sprite = sprite; r.flipX = flip;
             Color c = tint ?? Color.white; c.a *= Mathf.Clamp01(alpha); r.color = c;
             float scale = height / Mathf.Max(.01f, sprite.bounds.size.y);
-            r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale, scale, 1);
+            bool standing = order == int.MinValue; // floor glows and things in the air (letters, moths, hands) keep their own motion
+            int slot = used - 1;
+            Vector3 hover = standing ? DreamLevitation.Offset(sim != null ? sim.Elapsed : Time.time, 40 + slot * 1.37f, 1, still, .8f) : Vector3.zero;
+            r.transform.position = (Vector3)at + hover; r.transform.rotation = Quaternion.Euler(0, 0, angle + (standing ? DreamLevitation.Tilt(sim != null ? sim.Elapsed : Time.time, 40 + slot * 1.37f, still, .5f) : 0)); r.transform.localScale = new Vector3(scale, scale, 1);
             r.sortingOrder = order != int.MinValue ? order : 1000 - Mathf.RoundToInt((at.y + .35f) * 12);
+            if (standing) shadows[slot].Display(sprite, at, sprite.bounds.size.x * scale * .8f, hover.y, .32f * Mathf.Clamp01(alpha));
+            else shadows[slot].Hide();
             Props++;
             return r;
         }

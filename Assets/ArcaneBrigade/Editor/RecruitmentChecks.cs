@@ -41,6 +41,13 @@ namespace ArcaneBrigade.Editor
             var ordinary = c.Companions.Where(u => !u.SpecialRecruit && !u.GiftOnly && string.IsNullOrEmpty(u.ExclusiveHero) && !RunSession.StorySpecies(u.Id)).Take(5).ToArray();
             var specials = c.Companions.Where(u => u.SpecialRecruit && !u.GiftOnly).Take(3).ToArray();
             Check(ordinary.Length == 5 && specials.Length == 3, "Catalog supplies ordinary and special recruit fixtures");
+            using (var known = Session(c, 2))
+            {
+                // owner 22/10/2026: a friend's weapon is known before buying, and buying gives exactly that weapon
+                var offer = Offer(known, ordinary[0].Id); WeaponDefinition shown = known.OfferWeapon(offer);
+                Check(shown != null && offer.WeaponId == shown.Id && known.OfferWeapon(offer) == shown, "Offer weapon is rolled once and kept on the offer");
+                Check(known.Buy(offer.Token) && known.State.Roster.Any(r => r.UnitId == offer.Id && r.WeaponId == shown.Id), "Buying a friend gives the weapon shown on its offer");
+            }
             foreach (int wave in new[] { 1, 2, 3, 4, 8, 20, 30 })
             {
                 using var s = Session(c, wave); int limit = 1;

@@ -300,6 +300,26 @@
     "Music/endless_encore/endless_encore_melody",
     "Music/endless_encore/endless_encore_intensity"
    ]
+  },
+  {
+   "id": "hub_waitingroom",
+   "title": "The Waiting Room",
+   "bpm": 78,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 98.46154195011339,
+   "loopSamples": 4342154,
+   "sampleRate": 44100,
+   "scenes": [
+    "hub"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/hub_waitingroom/hub_waitingroom_base",
+    "Music/hub_waitingroom/hub_waitingroom_rhythm",
+    "Music/hub_waitingroom/hub_waitingroom_melody",
+    "Music/hub_waitingroom/hub_waitingroom_intensity"
+   ]
   }
  ]
 }

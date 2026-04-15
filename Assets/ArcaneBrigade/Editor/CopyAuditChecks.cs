@@ -25,6 +25,7 @@ namespace ArcaneBrigade.Editor
             (new Regex(@"[Cc]orrection|\bscope\b|\bproc\b|\bsandbox\b|\bmeasured\b|\bRNG\b|\bhitbox\b|\bcooldown\b"), "developer word"),
             (new Regex(@"\d+\.\d{3,}"), "raw number"),
             (new Regex(@"\bEffect [a-z]"), "raw effect id"),
+            (new Regex(@"before healing modifiers|[Hh]ealing restrictions apply|total reward|depends on the weapon you get|Brigade size|after-purchase"), "developer phrasing"),
         };
 
         [MenuItem("Arcane Brigade/Checks/Player copy audit")]

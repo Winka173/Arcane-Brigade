@@ -103,7 +103,8 @@ namespace ArcaneBrigade
             Vector4 inset;
             if (sprite != null && ScaleFor(piece, sprite, key, ref r, out float k, false)) inset = InsetOf(piece, BodyOf(key, sprite.texture)) * (IsFrame(piece) ? Mathf.Min(k, limit) : k);
             else { float rim = CodeRim(r); inset = new Vector4(rim, rim, rim, rim); }
-            float px = pad ? Mathf.Min(PadX, r.width * .08f) : 0, py = pad ? Mathf.Min(PadY, r.height * .12f) : 0;
+            float px = !pad ? 0 : r.width - inset.x - inset.z > PadX * 4 ? PadX : r.width * .08f;
+            float py = !pad ? 0 : r.height - inset.y - inset.w > PadY * 4 ? PadY : r.height * .12f;
             return Rect.MinMaxRect(r.x + inset.x + px, r.y + inset.y + py, Mathf.Max(r.x + inset.x + px, r.xMax - inset.z - px), Mathf.Max(r.y + inset.y + py, r.yMax - inset.w - py));
         }
 
@@ -208,6 +209,27 @@ namespace ArcaneBrigade
         {
             CodePlate(r, tone);
             if (!string.IsNullOrEmpty(text)) KitCaption(new Rect(r.x + 4, r.y, r.width - 8, r.height), text, colour ?? CodeText(tone), like, true);
+        }
+
+        /// <summary>The blink of a thing a purchase will light (a bond tile, a chip): 0..1 on a ~0.9 s cycle; under Reduced Flashes
+        /// (or Reduced Motion) a slow gentle pulse instead.</summary>
+        public static float BuyBlink(float clock)
+        {
+            bool gentle = PresentationSettings.ReducedFlashes || PresentationSettings.ReducedMotion;
+            float period = gentle ? 2.4f : .9f, s = .5f + .5f * Mathf.Sin(clock * Mathf.PI * 2 / period);
+            return gentle ? .35f + .3f * s : s;
+        }
+        /// <summary>Pulses a lit tile or chip: a glow behind it and a soft brightening over it, by <see cref="BuyBlink"/>.</summary>
+        public static void BlinkLit(Rect r, float clock, Color colour)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            float b = BuyBlink(clock);
+            Glow(new Rect(r.x - 14, r.y - 12, r.width + 28, r.height + 24), new Color(colour.r, colour.g, colour.b, .1f + .35f * b));
+        }
+        public static void BlinkOver(Rect r, float clock)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            Slant(new Rect(r.x + 8, r.y + 8, r.width - 16, r.height - 16), new Color(1f, .93f, .75f, .1f * BuyBlink(clock)));
         }
 
         /// <summary>A light running round a highlighted thing (a bond the purchase lights, a selected plate, an active combo):

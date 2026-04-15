@@ -1,0 +1,6 @@
+OK LanternKnight glyphs=1
+OK SoapSkater glyphs=1
+OK IvorySovereign glyphs=1
+OK SundaeDuchess glyphs=2
+OK BonsaiClocksmith glyphs=1
+OK BellDiver glyphs=2

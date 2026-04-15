@@ -15,10 +15,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(panel.x,panel.y,3,panel.height),edge);ArcadeSkin.Line(new Rect(panel.xMax-3,panel.y,3,panel.height),edge);
             if(Event.current!=null && Event.current.type==EventType.Repaint)Ornaments(panel,rarity,clock);
             if(!motion || rarity==ItemRarity.Common)return;
-            float travel=Mathf.Repeat(clock*.12f,1),width=Mathf.Min(62,panel.width*.1f);
-            Color shimmer=Color.Lerp(tint,Color.white,.5f);shimmer.a=.65f;
-            ArcadeSkin.Line(new Rect(panel.x+(panel.width-width)*travel,panel.y,width,3),shimmer);
-            ArcadeSkin.Line(new Rect(panel.x+(panel.width-width)*(1-travel),panel.yMax-3,width,3),shimmer);
+            // owner (22/10/2026): no sliding shimmer bar along the edges, it read as a glitch
         }
 
         /// <summary>The part of a framed box clear of its painted trim (side strips, corner caps, crest and foot), so text laid
@@ -116,7 +113,7 @@ namespace ArcaneBrigade
                 Image(trim.Corner,new Rect(panel.xMax-c+k,panel.yMax-c+k,c,c),true,true);
             }
             // the crest seated on the top edge, breathing a little; the foot hanging from the bottom edge, swaying
-            float crestWidth=Mathf.Clamp(panel.width*.38f,210,350)*(still?1:1+.012f*Mathf.Sin(clock*1.7f));
+            float crestWidth=Mathf.Round(Mathf.Clamp(panel.width*.38f,210,350)); // crest held still: its 'breathing' scale shimmered on the pixel grid
             if(trim.Crest!=null)
             {
                 float h=trim.Crest.height*crestWidth/trim.Crest.width;
@@ -126,7 +123,7 @@ namespace ArcaneBrigade
             {
                 float w=crestWidth*.5f,h=trim.Foot.height*w/trim.Foot.width;
                 Matrix4x4 saved=GUI.matrix;
-                if(!still)GUIUtility.RotateAroundPivot(Mathf.Sin(clock*1.3f)*2.5f,new Vector2(panel.center.x,panel.yMax));
+                if(!still)GUIUtility.RotateAroundPivot(Mathf.Sin(clock*1.1f)*1.5f,new Vector2(panel.center.x,panel.yMax)); // the hanging foot sways gently
                 Image(trim.Foot,new Rect(panel.center.x-w*.5f,panel.yMax-h*.18f,w,h),false,false);
                 GUI.matrix=saved;
             }

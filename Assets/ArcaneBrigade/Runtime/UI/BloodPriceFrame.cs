@@ -24,11 +24,33 @@ namespace ArcaneBrigade
 
         /// <summary>An HP-priced offer keeps the ordinary description card (owner, 21/10/2026: "use a normal description and give
         /// it an effect"); only this goes on top: a dark-red rim that beats like a heart, a red light running round the edge, and a
-        /// few slow drops seeping from the top edge. Everything is drawn in code and stays on the card's rim, never over the text.</summary>
+        /// few slow drops seeping from the top edge; inside, a nightmare vignette, drifting smoke and corner veins drawn before the text.</summary>
         public static void Draw(Rect panel, float clock)
         {
             bool still = PresentationSettings.ReducedMotion;
             float beat = still ? .4f : Heartbeat(clock);
+            // INSIDE the card (owner, 22/10/2026: "a nightmare, a trade-off, inside too"), all drawn before the text so it stays
+            // readable: a crimson-black vignette closing in from the edges with each heartbeat, slow nightmare smoke drifting
+            // across, and dark veins creeping in from the corners with an ember pulse in them.
+            Color keepInside = GUI.color;
+            GUI.color = new Color(.32f, 0, .04f, (.38f + beat * .22f) * keepInside.a);
+            GUI.DrawTexture(panel, Vignette);
+            Rect inner = new Rect(panel.x + 4, panel.y + 4, panel.width - 8, panel.height - 8);
+            float drift = still ? 0 : clock * .025f;
+            GUI.color = new Color(.45f, .02f, .08f, .22f * keepInside.a);
+            GUI.DrawTextureWithTexCoords(inner, Smoke, new Rect(drift, drift * .35f, inner.width / 420f, inner.height / 420f), true);
+            GUI.color = new Color(.2f, 0, .05f, .18f * keepInside.a);
+            GUI.DrawTextureWithTexCoords(inner, Smoke, new Rect(-drift * 1.6f + .37f, .5f, inner.width / 300f, inner.height / 300f), true);
+            float vein = Mathf.Clamp(Mathf.Min(panel.width, panel.height) * .55f, 60, 150);
+            for (int k = 0; k < 4; k++)
+            {
+                bool right = k == 1 || k == 3, bottom = k >= 2;
+                Rect corner = new Rect(right ? panel.xMax - vein : panel.x, bottom ? panel.yMax - vein : panel.y, vein, vein);
+                Rect uv = new Rect(right ? 1 : 0, bottom ? 1 : 0, right ? -1 : 1, bottom ? -1 : 1);
+                GUI.color = new Color(.08f, 0, .02f, .7f * keepInside.a); GUI.DrawTextureWithTexCoords(corner, Cracks, uv, true);
+                GUI.color = new Color(Ember.r, Ember.g * .45f, Ember.b * .45f, (.15f + beat * .55f) * keepInside.a); GUI.DrawTextureWithTexCoords(corner, CrackGlow, uv, true);
+            }
+            GUI.color = keepInside;
             // the heartbeat: a soft red glow just outside the rim, swelling twice and resting
             for (int i = 0; i < 4; i++)
             {
@@ -49,6 +71,46 @@ namespace ArcaneBrigade
                 GUI.DrawTexture(new Rect(x - 1.5f, panel.y, 3, length), Texture2D.whiteTexture);
                 GUI.DrawTexture(new Rect(x - 4, panel.y + length - 4, 8, 8), Drop);
                 GUI.color = keep;
+            }
+        }
+        // a soft frame-shaped vignette (transparent centre, dense edges) and tileable value-noise smoke, both built once at runtime
+        private static Texture2D vignette, smoke;
+        private static Texture2D Vignette
+        {
+            get
+            {
+                if (vignette != null) return vignette;
+                const int N = 64; vignette = new Texture2D(N, N, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
+                for (int y = 0; y < N; y++) for (int x = 0; x < N; x++)
+                {
+                    float e = Mathf.Min(Mathf.Min(x, N - 1 - x), Mathf.Min(y, N - 1 - y)) / (N * .5f); // 0 at the edge, 1 in the middle
+                    vignette.SetPixel(x, y, new Color(1, 1, 1, Mathf.Pow(Mathf.Clamp01(1 - e * 1.7f), 1.8f)));
+                }
+                vignette.Apply(); return vignette;
+            }
+        }
+        private static Texture2D Smoke
+        {
+            get
+            {
+                if (smoke != null) return smoke;
+                const int N = 128; smoke = new Texture2D(N, N, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Repeat, hideFlags = HideFlags.HideAndDontSave };
+                var random = new System.Random(4471); var grid = new float[8, 8];
+                for (int y = 0; y < 8; y++) for (int x = 0; x < 8; x++) grid[x, y] = (float)random.NextDouble();
+                float Sample(float u, float v, int cells)
+                {
+                    float fx = u * cells, fy = v * cells; int x0 = Mathf.FloorToInt(fx), y0 = Mathf.FloorToInt(fy);
+                    float tx = Mathf.SmoothStep(0, 1, fx - x0), ty = Mathf.SmoothStep(0, 1, fy - y0);
+                    float G(int gx, int gy) => grid[((gx % cells) + cells) % cells % 8, ((gy % cells) + cells) % cells % 8];
+                    return Mathf.Lerp(Mathf.Lerp(G(x0, y0), G(x0 + 1, y0), tx), Mathf.Lerp(G(x0, y0 + 1), G(x0 + 1, y0 + 1), tx), ty);
+                }
+                for (int y = 0; y < N; y++) for (int x = 0; x < N; x++)
+                {
+                    float u = x / (float)N, v = y / (float)N;
+                    float n = Sample(u, v, 4) * .55f + Sample(u, v, 8) * .45f;
+                    smoke.SetPixel(x, y, new Color(1, 1, 1, Mathf.SmoothStep(0, 1, Mathf.Clamp01((n - .38f) * 2.2f))));
+                }
+                smoke.Apply(); return smoke;
             }
         }
         private static Texture2D drop;

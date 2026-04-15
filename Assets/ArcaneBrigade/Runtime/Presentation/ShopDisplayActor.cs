@@ -62,8 +62,33 @@ namespace ArcaneBrigade
                 return transform.TransformPoint(WorldSpriteGrounding.Seat(view.sprite)) - transform.parent.TransformVector(travelOffset);
             }
         }
+        private SpriteRenderer heldWeapon, heldHand;
+        /// <summary>The friend on its stall holds the weapon it comes with, at its side as in combat (sized by the weapon's painted
+        /// ink against the body, the hand on the grip).</summary>
+        public void HoldWeapon(Sprite weapon, Sprite hand, bool melee)
+        {
+            if (view == null || view.sprite == null || weapon == null) return;
+            if (heldWeapon == null)
+            {
+                var w = new GameObject("HeldWeapon"); w.transform.SetParent(view.transform, false); heldWeapon = w.AddComponent<SpriteRenderer>();
+                var h = new GameObject("HeldHand"); h.transform.SetParent(w.transform, false); heldHand = h.AddComponent<SpriteRenderer>();
+            }
+            heldWeapon.sprite = weapon; heldHand.sprite = hand;
+            Bounds body = view.sprite.bounds; Rect ink = SpriteInkMetrics.BoundsOf(weapon);
+            float scale = body.size.y * (melee ? .62f : .5f) / Mathf.Max(.01f, Mathf.Max(ink.width, ink.height));
+            heldWeapon.transform.localScale = Vector3.one * scale;
+            heldWeapon.transform.localPosition = new Vector3(body.center.x + body.extents.x * .62f, body.center.y - body.extents.y * .18f, 0);
+            heldWeapon.transform.localRotation = Quaternion.Euler(0, 0, melee ? 32 : 8);
+            if (hand != null) heldHand.transform.localScale = Vector3.one * (body.size.x * .16f / Mathf.Max(.01f, hand.bounds.size.x) / scale);
+        }
+
         private void LateUpdate()
         {
+            if (heldWeapon != null && view != null)
+            {
+                heldWeapon.sortingOrder = view.sortingOrder + 1; heldHand.sortingOrder = view.sortingOrder + 2;
+                heldWeapon.color = heldHand.color = view.color;
+            }
             if (view != null && view.sprite != null && (floorFixture || pedestalDisplay || merchantActor) && GetComponent<OctoberDoor>() == null)
             {
                 Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * view.sprite.pivot.y / view.sprite.rect.height);

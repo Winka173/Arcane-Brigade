@@ -600,5 +600,43 @@ def boss_clown():
     return s
 
 
+# =============================================================================================== the Waiting Room hub
+def hub_waitingroom():
+    s = Song('hub_waitingroom', 'The Waiting Room', 'F major / D minor', ['hub'], qbpm=78, qpb=4, bars=32, seed=29, scale=sc(5, MAJOR),
+             desc='Calm 4/4 waiting-room theme: slow felt piano, soft clarinet, celesta, a distant clock, a music-box quote of the menu waltz.')
+    A = 'F | C/E | Dm7 | Bbmaj7 | Gm7 | Am7 | Bbmaj7 | C7sus4'
+    A2 = 'F | C/E | Dm7 | Bbmaj7 | Gm7 | C7 | F | F7'
+    B = 'Bbmaj7 | A7 | Dm | Dm/C | Gm7 | C7 | Am7 | Dm7'
+    C = 'Dm | Bb | Gm | A7 | Dm | Bbmaj7 | Gm7 | C7sus4'
+    tl = s.tl(' | '.join([A, A2, B, C]))
+    head = 'A4:h C5:q F5:q | E5:h. D5:q | C5:h A4:h | D5:w | '
+    mA = head + 'Bb4:q D5:q F5:h | E5:h. C5:q | D5:h F5:q A5:q | G5:w'
+    mA2 = head + 'Bb4:q D5:q G5:q F5:q | E5:h. G4:q | A4:w | r:h Eb5:q C5:q'
+    mB = 'D5:h. F5:q | E5:h C#5:h | D5:q. E5:e F5:h | A5:w | Bb5:h A5:q G5:q | E5:h G5:h | C5:h E5:h | F5:w'
+    quote = 'A4:q D5:q F5:h | F5:h. D5:q | G5:q Bb5:q A5:h | G5:q E5:h.'
+    tail = 'F5:q A5:q D6:h | D6:h. A5:q | Bb5:q A5:q G5:q F5:q | G5:w'
+    cl = s.part('clarinet', 'melody', 'clarinet', level=-21, send=0.45, pan=-0.1, tj=12)
+    cl.play(mel(mA, 0), 70)
+    cl.play(mel(mA2, 32), 72)
+    cl.play(mel(mB, 64), 74)
+    mb = s.part('musicbox', 'melody', 'musicbox', level=-22, send=0.5, pan=0.2, tj=14)
+    mb.play(mel(quote, 96), 74)
+    ce = s.part('celesta', 'melody', 'celesta', level=-24, send=0.5, pan=0.15)
+    ce.play(mel(tail, 112), 64)
+    sprinkle(ce, s, seg(tl, 4, 0, 24), 0, 24, 76, 91, 46, n=3, step=0.5, every=4, phase=3)
+    st = s.part('strings', 'base', 'strings', level=-25, send=0.55, lp=4500)
+    pad(st, tl, 50, 72, 4, 46)
+    vc = s.part('cello', 'base', 'cello', level=-28, send=0.4, lp=3000)
+    roots(vc, tl, 36, [(0, None, 'R', 1.0)], 52)
+    pno = s.part('feltpiano', 'rhythm', 'piano', level=-23, send=0.5, lp=2300, tj=14)
+    roots(pno, tl, 36, [(0, 2, 'R', 1.0)], 46)
+    arp(pno, tl, 53, 77, '. 1 2 3 . 2 3 4 . 1 2 4 . 3 2 1', 0.5, 40, gate=3.0)
+    clk = s.kit('clock', 'rhythm', 'standard', level=-33, send=0.6, lp=3000, tj=3)
+    drums(clk, s, 0, 32, {WB_LO: 'x...o...x...o...'}, 64)
+    sh = s.part('shimmer', 'intensity', 'trem', level=-30, send=0.6, lp=5000)
+    pad(sh, tl, 65, 79, 2, 36)
+    return s
+
+
 ALL = [menu_curtain, select_dressing, shop_gold, shop_layaway, shop_dream, combat_toys, combat_spoons, combat_clockwork,
-       combat_carousel, combat_overtime, combat_lasttrain, endless_neverclose, endless_encore, boss_ringmaster, boss_clown]
+       combat_carousel, combat_overtime, combat_lasttrain, endless_neverclose, endless_encore, boss_ringmaster, boss_clown, hub_waitingroom]

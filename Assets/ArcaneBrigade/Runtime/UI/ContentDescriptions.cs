@@ -51,7 +51,7 @@ namespace ArcaneBrigade
                 "\"The All-Knowing\" Walter" => "Every bond gains +1 supporting count while at least one Walter talent is owned. Additional Walters and star levels do not add more supporting counts.",
                 "Evil" => "Cannot merge. Each 8 kills credited to Evil friends in total gives the hero 2% attack speed, up to 20% this wave. Shared across Evil talents.",
                 "Original:TeacupCricket" => "Every fifth basic attack may release one echo for 40% of this friend's weapon damage. Uses the friend's once every 0.7s; no echo chain.",
-                "Original:RibbonOtter" => "Collecting a heart attempts 1 extra HP of healing while at least one Ribbon Otter talent is owned. Extra healing does not stack by copies; hero healing restrictions apply.",
+                "Original:RibbonOtter" => "Each heart you pick up heals 1 more HP while you own a Ribbon Otter (extra copies add nothing).",
                 "Original:SpindleWren" => "Lantern Guild friends gain 8% reach while at least one Spindle Wren talent is owned. Extra copies add nothing.",
                 _ => string.IsNullOrEmpty(name) ? u.Id switch { "SecretPatchBear" => "A living resident rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.", "SecretPaperBird" => "A folded courier rescued from the Lost-Property Vault. Permanent friend; remembers your letter and provides periodic healing.", "SecretDreamLamb" => "Garden visitor for two normal-wave victories. The dream friend then departs; its support ends with the contract.", _ => Authored(u) } : OctoberCompanions.Copy(name)
             };
@@ -60,11 +60,11 @@ namespace ArcaneBrigade
         {
             float strength=(u.Passive==PassiveKind.Scavenge?Mathf.Round(u.PassiveStrength):u.PassiveStrength)*Mathf.Pow(support,Mathf.Clamp(tier,1,3)-1);
             return u.Passive switch {
-                PassiveKind.HealChampion => "Every 4s in combat, attempt to heal the hero for "+(strength*3).ToString("0.###")+" HP before healing modifiers. Healing restrictions apply.",
-                PassiveKind.Scavenge => "Every 4s in combat, gain "+Mathf.RoundToInt(strength)+" gold directly. This is not kill loot and does not count as collecting a coin.",
-                PassiveKind.ChillAura => "Every 4s, chill enemies within "+(2+strength*.625f).ToString("0.#")+" steps: 1.5s normally, 0.6s on bosses.",
-                PassiveKind.Rally => "Own weapon damage gains "+(strength).ToString("0.###")+"% per friend body in the roster.",
-                _ => "No additional periodic personal passive."
+                PassiveKind.HealChampion => "Every 4s: heal the hero "+(strength*3).ToString("0.##")+" HP.",
+                PassiveKind.Scavenge => "Every 4s: +"+Mathf.RoundToInt(strength)+" gold.",
+                PassiveKind.ChillAura => "Every 4s: chill enemies within "+(2+strength*.625f).ToString("0.#")+" steps (1.5s, bosses 0.6s).",
+                PassiveKind.Rally => "+"+(strength).ToString("0.#")+"% weapon damage for each friend in the brigade.",
+                _ => "No other skill."
             };
         }
         /// <summary>The talent in one short line for the shop card (the full rules stay in Talent, shown under INFO).</summary>

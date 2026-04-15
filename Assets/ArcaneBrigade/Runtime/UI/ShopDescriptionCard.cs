@@ -55,13 +55,13 @@ namespace ArcaneBrigade
                 AppendCosts(copy, item.EffectiveModifiers, 1);
                 int held = session.StackCount(item.Id);
                 if (held > 0 || item.StackLimit < 100000) copy.AppendLine("Owned " + held + (item.StackLimit < 100000 ? " / " + item.StackLimit : "") + (item.Stacking == StackPolicy.Unique ? " · unique" : ""));
-                Summary = copy.ToString().Trim();
+                Summary = WithBloodCost(copy.ToString().Trim(), offer); Details = WithBloodCost(Details, offer);
                 return;
             }
             var unit = catalog.Unit(offer.Id); Rarity = unit.Rarity; Portrait = unit.Body;
             Role = CompanionRoles.For(unit);
             Identity = CompanionRoles.Word(Role.Value) + " · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
-            Attack = session.InspectRecruitAttack(unit.Id, offer.Tier);
+            Attack = session.InspectOfferAttack(offer); // exactly the weapon this offer comes with (rolled before the preview buys it)
             // Run the real recruitment/merge/absorption rules on an isolated copy, never on the live roster or RNG.
             using var preview = new RunSession(catalog);
             preview.Restore(MergeReveal.Capture(session.State));
@@ -105,21 +105,25 @@ namespace ArcaneBrigade
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
                 : offer.Tier >= catalog.MaximumTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
                 : "Owned " + copies + "/3 at " + offer.Tier + "-star" + (copies == 2 ? " · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
-            Summary = b.ToString().Trim();
+            Summary = WithBloodCost(b.ToString().Trim(), offer);
             string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
             Details = Summary + (ComboLines.Length > 0 ? "\n\nCOMBOS" + ComboLines : "") + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
                 + (unit.Passive != PassiveKind.None ? "\nPASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier) : "")
                 + "\nThree alike merge into one stronger friend (keeps one weapon)."
-                + "\nGets a random " + (Attack.Melee && Attack.Ranged ? "weapon" : Attack.Ranged ? "ranged weapon" : "close-range weapon") + " when bought."
+                + (Attack.Weapon != null ? "\nComes with its " + RunUICopy.WeaponName(Attack.Weapon.Id) + "." : "\nGets a random " + (Attack.Melee && Attack.Ranged ? "weapon" : Attack.Ranged ? "ranged weapon" : "close-range weapon") + " when bought.")
                 + (string.IsNullOrEmpty(voice) ? "" : "\n“" + voice + "”")
                 + "\n\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(unit.Id)
                 + "\n\nWHERE TO FIND\n" + (unit.GiftOnly ? "Only as a gift or a special reward." : !string.IsNullOrEmpty(unit.ExclusiveHero) ? "Only with " + ExclusiveHeroName(catalog, unit.ExclusiveHero) + "." : unit.SpecialRecruit ? "The dream shop and special rewards." : "The regular shop.")
-                + (Attack.Choices == 0 ? "" : "\n\nWEAPON\nDamage " + RecruitAttackReadout.Range(Attack.MinDamage, Attack.MaxDamage) + ", attacks every " + RecruitAttackReadout.Range(Attack.MinCycle, Attack.MaxCycle) + "s, reach " + RecruitAttackReadout.Range(Attack.MinRange, Attack.MaxRange) + " (depends on the weapon you get).");
+                + (Attack.Choices == 0 ? "" : Attack.Weapon != null
+                    ? "\n\nWeapon: " + RunUICopy.WeaponName(Attack.Weapon.Id) + " — " + RecruitAttackReadout.Damage(Attack.MaxDamage) + " damage, attacks every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s, reach " + RecruitAttackReadout.Reach(Attack.MaxRange)
+                    : "\n\nWEAPON\nDamage " + RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + ", attacks every " + RecruitAttackReadout.Seconds(Attack.MinCycle) + "–" + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s.");
             foreach (var row in Bonds)
             {
                 var bond = row.Bond;
-                Details += "\n\n" + bond.Name + ": " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(bond.Value)) + " every " + bond.Threshold + " bodies. " + (row.Preview ? "After buying: " + row.Count + " → " + row.After + " bodies; total reward " + RunModifierRules.ValueText(bond.Effect, row.AfterReward) + "." : "Purchase unavailable; no after-purchase result shown.");
-                foreach (var extra in bond.ExtraBonuses ?? Array.Empty<BondThresholdBonus>()) Details += " Extra at " + extra.Threshold + " bodies: " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(extra.Value)) + ".";
+                int nextAt = bond.NextThreshold(row.After);
+                string stat = LowerFirst(ShortOfferCopy.StatName(bond.Effect));
+                Details += "\n\n" + bond.Name + " " + row.After + "/" + nextAt + " · " + (row.AfterReward == 0 ? "nothing yet" : RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + stat)
+                    + (nextAt > row.After ? " · next at " + nextAt + ": " + RunModifierRules.ValueText(bond.Effect, bond.BalanceReward(bond.Value)) + " more" : "") + (row.Preview ? "" : " · cannot be bought now");
             }
         }
 
@@ -155,12 +159,13 @@ namespace ArcaneBrigade
             label ??= ArcadeTypography.Style(17, true); value ??= ArcadeTypography.Style(20, true); muted ??= ArcadeTypography.Style(15);
             Rect attack = new Rect(bounds.x, bounds.y, 220, 120); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
             DrawSprite(new Rect(attack.x + 8, attack.y + 10, 40, 40), Attack.Icon);
-            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(attack.x + 52, attack.y + 7, 165, 25), "RANDOM · " + Attack.Choices, label);
+            // the weapon this friend comes with: its name, whole damage, its pace and reach (player numbers)
+            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(attack.x + 54, attack.y + 9, 156, 25), "WEAPON", label);
             value.normal.textColor = ArcadeSkin.Cream;
-            FitLabel(new Rect(attack.x + 12, attack.y + 34, 202, 26), Attack.Choices == 0 ? "No available variant" : "ATK " + RecruitAttackReadout.Range(Attack.MinDamage, Attack.MaxDamage), value, 20);
+            FitLabel(new Rect(attack.x + 14, attack.y + 36, 196, 26), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, 19);
             muted.normal.textColor = ArcadeSkin.Teal;
-            GUI.Label(new Rect(attack.x + 12, attack.y + 62, 202, 24), "Cycle " + RecruitAttackReadout.Range(Attack.MinCycle, Attack.MaxCycle) + "s", muted);
-            GUI.Label(new Rect(attack.x + 12, attack.y + 85, 202, 24), "Reach " + RecruitAttackReadout.Range(Attack.MinRange, Attack.MaxRange), muted);
+            GUI.Label(new Rect(attack.x + 20, attack.y + 63, 186, 24), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s", muted);
+            GUI.Label(new Rect(attack.x + 20, attack.y + 84, 186, 24), "Reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted);
             int columns = Mathf.Clamp(Bonds.Count, 1, 3);
             float width = (bounds.width - 230 - (columns - 1) * 8) / columns;
             for (int i = 0; i < Bonds.Count; i++)
@@ -170,7 +175,9 @@ namespace ArcaneBrigade
                 bool activates = row.Activates;
                 Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
                 // code-drawn tile (owner, 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
+                if (activates) ArcadeSkin.BlinkLit(box, clock, accent); // the tile this purchase lights blinks (owner, 22/10/2026)
                 ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
+                if (activates) ArcadeSkin.BlinkOver(box, clock);
                 if (activates) ArcadeSkin.Slant(new Rect(box.x + 6, box.y + 6, box.width - 12, box.height - 12), new Color(accent.r, accent.g, accent.b, .14f));
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
                 if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
@@ -188,11 +195,24 @@ namespace ArcaneBrigade
                 FitLabel(new Rect(box.x + 40, box.y + 57, width - 50, 27), row.AfterReward == 0
                     ? RunModifierRules.ValueText(bond.Effect, stepReward) + " " + LowerFirst(ShortOfferCopy.StatName(bond.Effect)) + " at " + target
                     : RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + ShortOfferCopy.StatName(bond.Effect), value, 19);
-                muted.normal.textColor = ArcadeSkin.Teal;
-                muted.normal.textColor = activates ? accent : ArcadeSkin.Teal;
+                muted.normal.textColor = activates ? new Color(accent.r, accent.g, accent.b, .45f + .55f * ArcadeSkin.BuyBlink(clock)) : ArcadeSkin.Teal; // "ACTIVATES ON BUY" blinks
                 string status = !row.Preview ? "Cannot buy this offer" : activates ? (row.BeforeReward == 0 ? "ACTIVATES ON BUY" : "UPGRADES ON BUY") : row.After < row.Count ? "MERGE · FEWER BOND BODIES" : row.AfterReward == 0 ? "NOT ACTIVE · next at " + target : "AFTER BUY · next at " + target;
-                FitLabel(new Rect(box.x + 12, box.y + 87, width - 24, 22), status, muted, 15);
+                FitLabel(new Rect(box.x + 20, box.y + 82, width - 40, 22), status, muted, 15);
             }
+        }
+        /// <summary>The card's weapon chip: the weapon's short name and its whole damage ("Moon Scythe · 34 dmg").</summary>
+        public string AttackLabel => Attack == null ? "" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) + " · " + RecruitAttackReadout.Damage(Attack.MaxDamage) + " dmg"
+            : RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " dmg";
+        /// <summary>An HP-priced offer opens its COSTS with what it really costs (owner, 22/10/2026): "−N max HP for this run",
+        /// before any other cost line (which then joins the same red plate).</summary>
+        private static string WithBloodCost(string text, ShopOffer offer)
+        {
+            if (offer == null || offer.Currency != ShopCurrency.Health || string.IsNullOrEmpty(text)) return text;
+            string line = "{costs} −" + offer.Price + " max HP for this run";
+            int at = text.IndexOf("{costs} ", StringComparison.Ordinal);
+            if (at >= 0) return text.Substring(0, at) + line + "\n" + text.Substring(at + 8);
+            int owned = text.IndexOf("\nOwned ", StringComparison.Ordinal); // keep "Owned ..." the last line
+            return owned >= 0 ? text.Substring(0, owned) + "\n" + line + text.Substring(owned) : text + "\n" + line;
         }
         private static string LowerFirst(string s) => string.IsNullOrEmpty(s) ? s : char.ToLowerInvariant(s[0]) + s.Substring(1); // "Max HP" -> "max HP"
         private static string ExclusiveHeroName(RunCatalog catalog, string id)

@@ -123,7 +123,7 @@ namespace ArcaneBrigade
                     bool creamPlate = ArcadeSkin.EventPlate(plate, preview == i, true); // the painted cream gift plate, else the walnut code plate
                     if (!creamPlate) ArcadeSkin.CodePlate(plate, CodeTone.Walnut, preview == i ? 1 : 0);
                     if (preview == i) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), owner.PresentationClock, RunModifierRules.RarityColor(ItemRarity.Rainbow));
-                    Rect inner = new Rect(plate.x + 24, plate.y + 18, plate.width - 48, plate.height - 40);
+                    Rect inner = ArcadeSkin.EventContent(plate); // inside the plate's rim with the standard padding
                     Rect stand = new Rect(inner.center.x - 110, inner.y, 220, 160);
                     ArcadeSkin.Pedestal(stand, owner.PresentationClock);
                     ShopDescriptionCard.DrawSprite(ArcadeSkin.PedestalSeat(stand), giftCard.Portrait);

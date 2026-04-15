@@ -59,6 +59,19 @@ namespace ArcaneBrigade.Editor
             if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
         }
 
+        /// <summary>The shop friend-card gate (owner 22/10/2026): shop descriptions and recruitment (the weapon known before buying).</summary>
+        public static void RunOfferWeapon()
+        {
+            var lines = new List<string>(); int failed = 0;
+            foreach (var (name, run) in new (string, Action)[] { ("ShopDescription", ShopDescriptionChecks.Run), ("Recruitment", RecruitmentChecks.Run), ("CopyAudit", CopyAuditChecks.Run) })
+            {
+                try { run(); lines.Add("PASS " + name); }
+                catch (Exception error) { failed++; Exception root = error.InnerException ?? error; lines.Add("FAIL " + name + ": " + root.Message + " @ " + (root.StackTrace ?? "").Split('\n')[0].Trim()); }
+            }
+            Debug.Log("OFFER_WEAPON_CHECKS " + (lines.Count - failed) + "/" + lines.Count + " PASS\n" + string.Join("\n", lines));
+            if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
+        }
+
         private static IEnumerable<string> PackedOrder(string path)
         {
             // the packer's order: sprites as listed in the .meta

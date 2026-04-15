@@ -171,6 +171,10 @@ namespace ArcaneBrigade
             float remaining = sim.HeroAwakenRemaining;
             Vector2 at = DrawnAt(hero), facing = hero.Facing.sqrMagnitude > .01f ? hero.Facing.normalized : Vector2.right;
             float side = facing.x < -.05f ? -1 : 1, body = hero.Definition.BodyHeight;
+            VisibleCount++;
+            // the moment of transforming: a short bright backlight behind the hero (it fades in place, it never spreads out)
+            float flash = Activation(), dim = calm ? .45f : 1;
+            if (flash > 0) Glow(Chest(hero), Mathf.Max(1.3f, body * 1.6f), Color.Lerp(ink.Light, Color.white, .4f), .7f * flash);
             // a worn or summoned object, placed where its transformation puts it
             if (!kit.Held)
             {
@@ -196,11 +200,11 @@ namespace ArcaneBrigade
                         for (int i = 0; i < 3; i++) { float r = Mathf.Repeat(t * 1.6f + i / 3f, 1); Token(InkToken.Puff, Head(hero) + new Vector2(-side * r * .4f, .1f + r * .6f), .22f + r * .25f, 0, (1 - r) * .85f, true, 0, ArsenalInk.Cotton); }
                         for (int i = 0; i < 3; i++) { float r = Mathf.Repeat(t * 2.2f + i / 3f, 1); Token(InkToken.Puff, Feet(hero) - facing * (.3f + r * .9f) + Vector2.up * .1f, .2f + r * .2f, 0, (1 - r) * .7f, false, 0, ArsenalInk.Cotton); }
                     }
-                    if (sim.HeroAwakenPressure > .75f && !still && !calm) Glow(Chest(hero), 1.1f, new Color(1, .5f, .3f), .15f * Mathf.Abs(Mathf.Sin(t * 14)), true);
+                    if (sim.HeroAwakenPressure > .75f && !still && !calm) Glow(Chest(hero), 1.1f, new Color(1, .5f, .3f), .22f * Mathf.Abs(Mathf.Sin(t * 14)), true);
                     break;
                 case KitAction.Dreams:
                     Token(InkToken.Moon, Head(hero) + Vector2.up * .35f + Vector2.up * Bob(0), .42f, 0, .95f, true, 0, Night);
-                    if (!calm) Glow(Head(hero) + Vector2.up * .35f, .9f, Night.Glow, .2f, true);
+                    Glow(Head(hero) + Vector2.up * .35f, 1f, Night.Glow, .3f * dim, true);
                     Echoes(hero, hero.Definition.Body, new Color(.72f, .66f, 1f), remaining, InkToken.Moon, Night);
                     break;
                 case KitAction.Mitosis:
@@ -214,9 +218,27 @@ namespace ArcaneBrigade
                 }
                 case KitAction.Lighthouse:
                 {
+                    // the beam is the strike (its simulation strikes are marked Painted, no ink glyph): a broad warm wash, a
+                    // bright core and a white-hot thread, a short afterglow behind the sweep, a flare at the lamp, embers riding out
                     float angle = (sim.Elapsed - sim.HeroAwakenStarted) * 120f;
                     Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-                    air.GlowRibbon(InkCanvas.Line(at + dir * .4f, at + dir * CombatSimulation.MaxLineLength), 1, 0, .5f, A(ink.Glow, calm ? .12f : .3f));
+                    float reach = CombatSimulation.MaxLineLength;
+                    for (int i = sparse || still ? 0 : 2; i >= 1; i--)
+                    {
+                        Vector2 back = Quaternion.Euler(0, 0, angle - i * 7f) * Vector2.right;
+                        air.GlowRibbon(InkCanvas.Line(at + back * .4f, at + back * reach), 1, 0, .8f, A(ink.Glow, .26f / i * dim * strength));
+                    }
+                    var beam = InkCanvas.Line(at + dir * .4f, at + dir * reach);
+                    air.GlowRibbon(beam, 1, 0, 1.2f + .3f * flash, A(ink.Glow, (.6f + .25f * flash) * dim * strength));
+                    air.GlowRibbon(beam, 1, 0, .34f, A(ink.Light, (.75f + .25f * flash) * dim * strength));
+                    Color hot = Color.Lerp(ink.Light, Color.white, .5f);
+                    air.Stroke(beam, new InkStroke { Width = .09f + .05f * flash, Head = 1, Tail = 0, Taper = 3, Alpha = .85f * dim * strength, Ink = hot, Body = hot, Light = Color.white });
+                    Glow(at + dir * .4f, .9f + .5f * flash, ink.Light, (.5f + .3f * flash) * dim, true);
+                    if (!sparse) for (int i = 0; i < 3; i++)
+                    {
+                        float r = still ? (i + .5f) / 3 : Mathf.Repeat(t * .9f + i / 3f, 1);
+                        Token(InkToken.Ember, at + dir * (.7f + r * (reach - 1)), .17f * (1 - .4f * r), r * 200, (1 - r) * .9f * dim, true);
+                    }
                     break;
                 }
                 case KitAction.Mirrors:
@@ -237,7 +259,7 @@ namespace ArcaneBrigade
                     {
                         float r = Mathf.Repeat(t * (kit.Action == KitAction.Monsoon ? 2.4f : .8f) + i / 6f, 1);
                         Vector2 p = at + new Vector2(((i * 53) % 11 - 5) * .45f, kit.Action == KitAction.Monsoon ? 2.2f - r * 2.6f : -.5f + ((i * 31) % 7 - 3) * .15f);
-                        Token(kit.Action == KitAction.Monsoon ? InkToken.Drop : InkToken.Glint, p, .2f, kit.Action == KitAction.Monsoon ? 180 : r * 180, (1 - r) * .8f, true, 0, ArsenalInk.Water);
+                        Token(kit.Action == KitAction.Monsoon ? InkToken.Drop : InkToken.Glint, p, .2f, kit.Action == KitAction.Monsoon ? 180 : r * 180, (1 - r) * .95f, true, 0, ArsenalInk.Water);
                     }
                     break;
                 case KitAction.KiteFleet:
@@ -265,9 +287,13 @@ namespace ArcaneBrigade
                     Sprite tree = ArsenalArtwork.Frame(kit.ArtKey, 0);
                     if (tree != null) Place(tree, plot + Vector2.up * .35f, Vector2.one * Mathf.Max(.8f, body * 1.05f), 0, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), false);
                     Vector2 pivot = plot + Vector2.up * .45f;
-                    if (!calm) air.GlowRibbon(InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach), 1, 0, .32f, A(ink.Glow, .26f));
-                    var s = Brush(.07f, .95f, 5); s.Head = 1; s.Taper = 2;
+                    // the hand is the strike (its simulation strikes are marked Painted, no ink glyph over it)
+                    var sweep = InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach);
+                    air.GlowRibbon(sweep, 1, 0, .5f, A(ink.Glow, .5f * dim * strength));
+                    air.GlowRibbon(sweep, 1, 0, .16f, A(ink.Light, .5f * dim * strength));
+                    var s = Brush(.11f, 1, 5); s.Head = 1; s.Taper = 2;
                     air.Stroke(InkCanvas.Line(pivot + hand * .3f, pivot + hand * CombatSimulation.GardenReach, .03f, 3, false, 7), s);
+                    Glow(pivot + hand * CombatSimulation.GardenReach, .55f, ink.Light, .4f * dim, true);
                     if (!sparse) for (int i = 0; i < 3; i++) { float q = Mathf.Repeat(t * .5f + i / 3f, 1); Token(InkToken.Leaf, pivot + Dir(i * 120 + (still ? 0 : t * 40)) * (.6f + q * .5f), .16f, q * 180, (1 - q) * .8f, true); }
                     break;
                 }
@@ -286,7 +312,7 @@ namespace ArcaneBrigade
                     if (!sparse && !still) for (int i = 0; i < 4; i++)
                     {
                         float r = Mathf.Repeat(t * 1.3f + i / 4f, 1);
-                        Token(InkToken.Bubble, Head(hero) + new Vector2(((i * 37) % 7 - 3) * .06f, .15f + r * .8f), .12f + r * .08f, 0, (1 - r) * .8f, true, 0, ArsenalInk.Water);
+                        Token(InkToken.Bubble, Head(hero) + new Vector2(((i * 37) % 7 - 3) * .06f, .15f + r * .8f), .12f + r * .08f, 0, (1 - r) * .95f, true, 0, ArsenalInk.Water);
                     }
                     break;
             }
@@ -300,18 +326,34 @@ namespace ArcaneBrigade
                     float fall = Mathf.InverseLerp(d.Born, d.LandAt, t), after = Mathf.Clamp01((t - d.LandAt) / .4f);
                     if (d.Kind == 0)
                     {
-                        Glow(d.At, .7f * (.5f + .5f * fall), ink.Ink, .35f * (1 - after));
+                        // the scoop is the strike (marked Painted, no ink glyph): its shadow grows where it lands, then a bright splat
+                        Glow(d.At, .7f * (.5f + .5f * fall), ink.Ink, .45f * (1 - after));
                         Vector2 p = d.At + Vector2.up * (2.6f * (1 - InQuad(fall)) + .15f);
                         if (scoop != null) Place(scoop, p, Vector2.one * .62f * (1 + .3f * after), 0, new Color(1, 1, 1, strength * (1 - after)), true);
                         else Token(InkToken.Dumpling, p, .5f, 0, 1 - after, true);
+                        if (after > 0) Splash(d.At, after, ink, dim);
                     }
                     else
                     {
-                        // the charge settles, ticks, and bubbles ever faster before it bursts
+                        // the charge settles, ticks, and bubbles ever faster before it bursts (marked Painted, no ink glyph)
                         Token(InkToken.Seal, d.At + Vector2.up * .1f, .26f, still ? 0 : Mathf.Sin(t * 20 * fall) * 10, (1 - after) * .95f, false, 0, ArsenalInk.Water);
-                        if (!sparse) for (int i = 0; i < 2; i++) { float q = Mathf.Repeat(t * (1 + 2 * fall) + i * .5f, 1); Token(InkToken.Bubble, d.At + new Vector2((i - .5f) * .14f, .2f + q * .5f), .1f, 0, (1 - q) * (1 - after) * .8f, true, 0, ArsenalInk.Water); }
+                        if (!calm && after <= 0 && fall > .5f) Glow(d.At + Vector2.up * .1f, .5f, ArsenalInk.Water.Glow, .35f * fall * (still ? 1 : .5f + .5f * Mathf.Abs(Mathf.Sin(t * 18 * fall))), true);
+                        if (!sparse) for (int i = 0; i < 2; i++) { float q = Mathf.Repeat(t * (1 + 2 * fall) + i * .5f, 1); Token(InkToken.Bubble, d.At + new Vector2((i - .5f) * .14f, .2f + q * .5f), .1f, 0, (1 - q) * (1 - after) * .95f, true, 0, ArsenalInk.Water); }
+                        if (after > 0) Splash(d.At, after, ArsenalInk.Water, dim);
                     }
                 }
+            }
+        }
+        /// <summary>A landed scoop or burst charge: a short bright flare at the spot and a few glints thrown up, never a pool.</summary>
+        private void Splash(Vector2 at, float after, InkPalette pal, float dim)
+        {
+            Glow(at + Vector2.up * .15f, .95f, Color.Lerp(pal.Light, Color.white, .3f), .6f * (1 - after) * (1 - after) * dim, true);
+            if (sparse) return;
+            for (int i = 0; i < 4; i++)
+            {
+                float lift = still ? .5f : OutCubic(after);
+                Vector2 p = at + new Vector2((i - 1.5f) * (.12f + .25f * lift), .15f + (.25f + .12f * (i % 2)) * lift);
+                Token(InkToken.Glint, p, .15f * (1 - .5f * after), i * 45 + after * 120, (1 - after) * .95f * dim, true, 0, GlintPalette(pal));
             }
         }
         /// <summary>Where a transformation's worn or summoned object sits.</summary>
@@ -371,8 +413,8 @@ namespace ArcaneBrigade
                 e.enabled = true; e.sprite = body;
                 float unit = Mathf.Max(.01f, body.bounds.size.y), size = hero.Definition.BodyHeight * .95f / unit;
                 e.transform.position = at + Vector2.up * Bob(i + 1) * 2; e.transform.localScale = new Vector3(hero.Facing.x < 0 ? -size : size, size, 1);
-                e.color = new Color(tint.r, tint.g, tint.b, (.55f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
-                Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .2f, 0, .8f - i * .15f, true, 0, pal);
+                e.color = new Color(tint.r, tint.g, tint.b, (.7f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
+                Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .22f, 0, .95f - i * .15f, true, 0, pal);
                 Thread(i > 0 ? echoes[i - 1] + Vector2.up * .1f : hero.Position + Vector2.up * .1f, at + Vector2.up * .1f, .25f, i);
             }
         }

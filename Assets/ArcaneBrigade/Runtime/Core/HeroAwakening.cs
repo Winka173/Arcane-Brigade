@@ -204,7 +204,8 @@ namespace ArcaneBrigade
             if (pick == null) return;
             const float fall = .5f;
             Vector2 at = ClampPosition(pick.Position + Vector2.ClampMagnitude(pick.Velocity * fall, .8f), .1f);
-            Hit(MorphGeometry.Disc, at, at, .8f, .45f, fall, DamageElement.Frost, slow: .6f);
+            var scoop = Hit(MorphGeometry.Disc, at, at, .8f, .45f, fall, DamageElement.Frost, slow: .6f);
+            if (scoop != null) scoop.Painted = true; // the falling scoop and its landing are painted by HeroAwakeningVisual
             if (awakenDrops.Count < 12) awakenDrops.Add(new AwakenDrop { At = at, Born = Elapsed, LandAt = Elapsed + fall, Kind = 0 });
         }
         /// <summary>TIME GARDEN: the bonsai's clock hand goes once round over the transformation, striking and slowing what it crosses.</summary>
@@ -212,7 +213,8 @@ namespace ArcaneBrigade
         {
             float turn = Mathf.Clamp01((Elapsed - awakenStarted) / Mathf.Max(.1f, AwakenLength));
             Vector2 hand = Quaternion.Euler(0, 0, 90 - turn * 360) * Vector2.right;
-            Hit(MorphGeometry.Line, awakenPlot + hand * .3f, awakenPlot + hand * GardenReach, 0, .5f, .05f, slow: 1f);
+            var sweep = Hit(MorphGeometry.Line, awakenPlot + hand * .3f, awakenPlot + hand * GardenReach, 0, .5f, .05f, slow: 1f);
+            if (sweep != null) sweep.Painted = true; // the painted clock hand is the strike
         }
         /// <summary>The bonsai's clock hand right now (for the painted hand).</summary>
         public Vector2 HeroGardenHand => Quaternion.Euler(0, 0, 90 - Mathf.Clamp01((Elapsed - awakenStarted) / Mathf.Max(.1f, AwakenLength)) * 360) * Vector2.right;
@@ -250,7 +252,8 @@ namespace ArcaneBrigade
             awakenEchoAt = Elapsed + 1.2f;
             const float fuse = .7f;
             Vector2 back = ClampPosition(Champion.Position - Forward() * .9f, .1f);
-            Hit(MorphGeometry.Disc, back, back, .9f, .7f, fuse, DamageElement.Frost);
+            var charge = Hit(MorphGeometry.Disc, back, back, .9f, .7f, fuse, DamageElement.Frost);
+            if (charge != null) charge.Painted = true; // the ticking charge and its burst are painted by HeroAwakeningVisual
             if (awakenDrops.Count < 12) awakenDrops.Add(new AwakenDrop { At = back, Born = Elapsed, LandAt = Elapsed + fuse, Kind = 1 });
         }
 
@@ -260,7 +263,7 @@ namespace ArcaneBrigade
         private void Every(float period, System.Action act) { if (Elapsed < awakenShotAt) return; awakenShotAt = Elapsed + period; act(); }
         private void HealEvery(float period) { if (Elapsed < awakenRamAt) return; awakenRamAt = Elapsed + period; Heal(1, IdentityCause()); }
         /// <summary>A transformation strike: budget in W, scaled by the approach (and shared by more targets on the wide one).</summary>
-        private void Hit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .15f, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
+        private HeroIdentityGlyph Hit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .15f, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
             => IdentityHit(shape, at, end, radius, IdentityPower * budget * ApproachScale * (radius > 0 || shape == MorphGeometry.Line ? CrowdScale : 1), delay, ApproachTargets, element, slow, push);
         /// <summary>A transformed gun: one aimed shot per period that flashes at the barrel and sounds like a gun.</summary>
         private void GunBurst(UnitState target, float period, float budget, bool stamps)
@@ -320,7 +323,8 @@ namespace ArcaneBrigade
             // the beam sweeps once round every 3s, striking what it crosses
             float angle = (Elapsed - awakenStarted) * 120f;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-            Hit(MorphGeometry.Line, Champion.Position + dir * .5f, Champion.Position + dir * MaxLineLength, 0, .7f, .05f);
+            var beam = Hit(MorphGeometry.Line, Champion.Position + dir * .5f, Champion.Position + dir * MaxLineLength, 0, .7f, .05f);
+            if (beam != null) beam.Painted = true; // the sweeping beam is painted by HeroAwakeningVisual
         }
         private void Casino(UnitState target)
         {
