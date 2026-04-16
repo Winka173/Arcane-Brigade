@@ -100,9 +100,9 @@ namespace ArcaneBrigade.Editor
             Require(ArcaneCueLibrary.All.All(def => AudioMix.Group(SfxGovernor.BusOf(def.id, def.busId)) != null), "every library cue (" + ArcaneCueLibrary.CueCount + ") lands on a mixer bus");
 
             // the sliders drive the buses
-            Require(Mathf.Approximately(AudioMix.BusDb(MixBus.Music, 1f, 0f), AudioMix.MusicTrimDb) && AudioMix.MusicTrimDb <= -2.5f, "music sits a step (" + AudioMix.MusicTrimDb + " dB) lower at full slider");
+            Require(Mathf.Approximately(AudioMix.BusDb(MixBus.Music, 1f, 0f), AudioMix.MusicTrimDb) && Mathf.Abs(AudioMix.FromDb(AudioMix.MusicTrimDb + 3f) - 1.3f) < .0001f, "music amplitude is 30% above the previous -3 dB mix");
             Require(AudioMix.BusDb(MixBus.Sfx, 0f, 0f) <= -80f && AudioMix.BusDb(MixBus.Music, 0f, -3f) <= -80f, "a muted slider silences its bus");
-            Require(Mathf.Abs(AudioMix.BusDb(MixBus.Sfx, 0.5f, -5f) - (-6.02f)) < 0.05f && Mathf.Abs(AudioMix.BusDb(MixBus.Music, 0.5f, -5f) - (-6.02f - 3f - 5f)) < 0.05f, "slider in dB; only the music bus takes the duck");
+            Require(Mathf.Abs(AudioMix.BusDb(MixBus.Sfx, 0.5f, -5f) - (-6.02f)) < 0.05f && Mathf.Abs(AudioMix.BusDb(MixBus.Music, 0.5f, -5f) - (-6.02f + AudioMix.MusicTrimDb - 5f)) < 0.05f, "slider in dB; only the music bus takes the duck");
             Require(AudioMix.SourceGain(MixBus.Sfx) == (PresentationSettings.SfxVolume > 0.0001f ? 1f : 0f), "routed sources leave the slider to the bus");
             float musicSlider = PresentationSettings.MusicVolume, effects = PresentationSettings.SfxVolume, voice = PresentationSettings.VoiceVolume;
             var probeProfile = new PlayerProfile { Volume = AudioListener.volume, MusicVolume = 0.5f, SfxVolume = 0.25f, VoiceVolume = 1f, ReducedAudio = PresentationSettings.ReducedAudio, ReducedMotion = PresentationSettings.ReducedMotion, ShowDamageNumbers = PresentationSettings.DamageNumbers, ShowLootIndicators = PresentationSettings.LootIndicators, HighReadability = PresentationSettings.HighReadability, Cosmetic = ArcadeSkin.Bundle };

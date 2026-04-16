@@ -25,7 +25,7 @@ namespace ArcaneBrigade
         public static float SpawnInterval(int wave) => Mathf.Max(0.25f, (1.4f - Mathf.Min(3, Mathf.Max(1, wave)) * 0.035f) / (1 + Mathf.Max(0, wave - 3) * 0.18f));
         public static float BossBulk(int wave) => Mathf.Lerp(4.6f, 7.5f, Mathf.Clamp01((wave - 4) / 16f));
         // Keep wave-one pace; substantially reduce both the growth and its eventual ceiling.
-        public static float EnemySpeed(int wave) => 1.08f * (1 + .55f * (1 - Mathf.Exp(-Mathf.Max(0, wave - 1) * .035f)));
+        public static float EnemySpeed(int wave) => 1.08f * (1 + .25f * (1 - Mathf.Exp(-Mathf.Max(0, wave - 1) * .025f)));
         public static float EnemyDamage(int wave) => 1.15f * (1 + Mathf.Min(3, Mathf.Max(0, wave - 3) * 0.09f)) * (1 + Mathf.Min(1.4f, Mathf.Max(0, wave - 5) * 0.07f));
         public static float RecruitDamage(ItemRarity rarity) => 1 + (int)rarity * 0.18f;
     }

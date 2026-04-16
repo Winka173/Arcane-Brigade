@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     /// <summary>
     /// The one place the game's sound reaches the speakers (playtest item 2a). Every AudioSource the game creates is routed
     /// with <see cref="Route"/>; the settings sliders set the bus levels (<see cref="ApplySettings"/>, called by
-    /// PresentationSettings.Apply); the music bus sits a step lower than before and ducks under dense combat SFX and boss cues
+    /// PresentationSettings.Apply); the music bus ducks under dense combat SFX and boss cues
     /// (a sidechain by script: <see cref="ReportSfx"/> feeds the loudness of every SFX start, <see cref="Tick"/> moves the duck).
     /// New sound files only need a cue row in cues.json (its bus) or a Route() call: they land in the same buses.
     /// Without the mixer asset everything still plays, with the sliders applied on each source as before (<see cref="SourceGain"/>).
@@ -20,8 +20,9 @@ namespace ArcaneBrigade
         public static readonly string[] GroupNames = { "Music", "SFX", "UI", "Voice", "Boss" };
         public static readonly string[] VolumeParams = { "MusicVol", "SfxVol", "UIVol", "VoiceVol", "BossVol" };
         public const string MasterParam = "MasterVol";
-        /// <summary>Music sits one step (3 dB) lower than before for focus; the slider still goes from silence to this level.</summary>
-        public const float MusicTrimDb = -3f;
+        /// <summary>22/10: music amplitude +30% over the previous -3 dB mix; keep user sliders and ducking.</summary>
+        public const float MusicBoost = 1.3f;
+        public const float MusicTrimDb = -3f + 2.278867f; // 20 * log10(1.3)
         /// <summary>Deepest music duck under dense combat or a boss cue, and how fast it goes down and comes back.</summary>
         public const float DuckDepthDb = -5.5f, DuckAttack = 0.06f, DuckRelease = 0.6f;
         /// <summary>Recent SFX loudness (decaying sum of start gains, time constant <see cref="EnergyDecay"/>) where the duck starts and is full.</summary>
@@ -73,7 +74,7 @@ namespace ArcaneBrigade
         public static float SourceGain(MixBus bus)
         {
             float slider = Slider(bus);
-            return Live ? (slider > 0.0001f ? 1f : 0f) : slider;
+            return Live ? (slider > 0.0001f ? 1f : 0f) : slider * (bus == MixBus.Music ? MusicBoost : 1f);
         }
 
         public static float ToDb(float linear) => linear <= 0.0001f ? -80f : Mathf.Max(-80f, 20f * Mathf.Log10(linear));
