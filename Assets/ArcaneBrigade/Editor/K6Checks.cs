@@ -74,7 +74,7 @@ namespace ArcaneBrigade.Editor
                     if (level == 0) { k6PeacefulHealth = combat.MeleeEnemy.Health / enemyHealthTrait; k6PeacefulBudget = combat.EnemyBudget; }
                     float healthRatio = JourneyBalance.EnemyHealth(level, 1) / JourneyBalance.EnemyHealth(0, 1);
                     int budget = Mathf.CeilToInt((30 + 3) * CarnivalBalance.EnemyDensity(1) * JourneyBalance.EnemyDensity(level, 1));
-                    budget = Mathf.Min(690, Mathf.CeilToInt(Mathf.Min(600, Mathf.CeilToInt(budget * 1.4f)) * WaveCadence.LengthScale));
+                    budget = Mathf.Min(Mathf.CeilToInt(690 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(Mathf.Min(Mathf.CeilToInt(600 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(budget * 1.4f)) * WaveCadence.LengthScale));
                     bool plainBudget = Mathf.Approximately(session.Bonus(ItemEffect.EnemyCount), 0) && session.ActiveModifier == null;
                     require(Mathf.Abs(combat.MeleeEnemy.Health / enemyHealthTrait - k6PeacefulHealth * healthRatio) <= k6PeacefulHealth * healthRatio * .002f && (!plainBudget || combat.EnemyBudget == budget) && combat.EnemyBudget >= k6PeacefulBudget, "Difficulty " + level + " explicit HP, authored trait and budget (" + combat.EnemyBudget + " vs " + budget + ")");
                     // caps of RunSession.BuildEnemy: 14 before the difficulty/wave pressure, contact x1.08 x1.6 on top; the hero is the same on every difficulty

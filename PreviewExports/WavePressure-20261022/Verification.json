@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-22",
+  "enemyHealthChange": "+20% including bosses; 1.2 -> 1.44 shared base factor",
+  "meleeDamageChange": "-40% for hero and companions; 1.5 -> 0.9 multiplier",
+  "coinVisualChange": "-40% linear dimensions; width multiplier 0.6, pickup radius/value unchanged",
+  "enemyCountScale": 1.25,
+  "concurrentCap": {
+    "before": 690,
+    "after": 863
+  },
+  "samples": [
+    {
+      "wave": 1,
+      "oldSpeed": 1.08,
+      "newSpeed": 1.08,
+      "reductionPercent": 0.0,
+      "oldSurgePack": 2,
+      "newSurgePack": 3
+    },
+    {
+      "wave": 2,
+      "oldSpeed": 1.1748,
+      "newSpeed": 1.1004,
+      "reductionPercent": 6.33,
+      "oldSurgePack": 3,
+      "newSurgePack": 4
+    },
+    {
+      "wave": 3,
+      "oldSpeed": 1.265,
+      "newSpeed": 1.1202,
+      "reductionPercent": 11.45,
+      "oldSurgePack": 3,
+      "newSurgePack": 4
+    },
+    {
+      "wave": 6,
+      "oldSpeed": 1.51,
+      "newSpeed": 1.1754,
+      "reductionPercent": 22.16,
+      "oldSurgePack": 7,
+      "newSurgePack": 9
+    },
+    {
+      "wave": 10,
+      "oldSpeed": 1.7845,
+      "newSpeed": 1.2405,
+      "reductionPercent": 30.48,
+      "oldSurgePack": 16,
+      "newSurgePack": 20
+    },
+    {
+      "wave": 15,
+      "oldSpeed": 2.0586,
+      "newSpeed": 1.3101,
+      "reductionPercent": 36.36,
+      "oldSurgePack": 27,
+      "newSurgePack": 34
+    },
+    {
+      "wave": 20,
+      "oldSpeed": 2.2722,
+      "newSpeed": 1.3685,
+      "reductionPercent": 39.77,
+      "oldSurgePack": 33,
+      "newSurgePack": 42
+    },
+    {
+      "wave": 30,
+      "oldSpeed": 2.568,
+      "newSpeed": 1.4587,
+      "reductionPercent": 43.2,
+      "oldSurgePack": 36,
+      "newSurgePack": 45
+    },
+    {
+      "wave": 40,
+      "oldSpeed": 2.7474,
+      "newSpeed": 1.5223,
+      "reductionPercent": 44.59,
+      "oldSurgePack": 36,
+      "newSurgePack": 45
+    }
+  ],
+  "checks": {
+    "WeaponSandbox": 1470,
+    "DifficultyAndPersistence": 72,
+    "CurveComparison": "waves 1-200; math audit, not a gameplay simulation",
+    "CoinAndAnimation": 131
+  },
+  "limitations": [
+    "Native gameplay feel and frame time at the higher crowd cap have not been measured.",
+    "More kills may yield more gold; the economy was not changed.",
+    "Boss overtime retains its four-body pack limit.",
+    "Fixed-damage skills are unchanged; weapon-derived effects inherit compiled melee damage."
+  ]
+}

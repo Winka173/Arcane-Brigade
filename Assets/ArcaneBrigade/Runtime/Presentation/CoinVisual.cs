@@ -28,6 +28,7 @@ namespace ArcaneBrigade
             renderer.transform.position = ground + Vector2.up * height;
             float spin = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
             float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.34f + Mathf.Min(0.16f, Mathf.Max(0, state.Value - 1) * 0.02f) : state.Kind >= LootKind.Flare ? 0.56f : 0.4f;
+            if (state.Kind == LootKind.Coin) width *= .6f; // 40% smaller drops; pickup reach and gold value stay the same
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
             // the HUD's coin, squash-turned with its rim darkening edge-on (one coin picture everywhere, play-test 20/10/2026)

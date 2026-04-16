@@ -14,10 +14,11 @@ namespace ArcaneBrigade
         public static float WaveLength(int wave) => Mathf.Min(69f, 34.5f + Mathf.Max(0, wave - 1) * 2.875f);
         public static int SwarmBatch(int wave, float time)
         {
-            if (wave < 3) return wave == 2 ? 3 : 2; // the first nights already come in small packs
+            if (wave < 3) return Mathf.CeilToInt((wave == 2 ? 3 : 2) * CarnivalBalance.EnemyCountScale);
             float beat = Mathf.Repeat(Mathf.Max(0, time - 0.6f), 12);
             int crest = Mathf.Min(36, Mathf.CeilToInt((3 + (wave - 3) / 2) * SwarmPressure(wave)));
-            return beat < 6 ? crest : Mathf.Max(2, Mathf.CeilToInt(crest * 0.6f)); // the beat eases but never empties: surges replace the lulls
+            int batch = beat < 6 ? crest : Mathf.Max(2, Mathf.CeilToInt(crest * 0.6f));
+            return Mathf.CeilToInt(batch * CarnivalBalance.EnemyCountScale); // larger packs during both surges and breathing intervals
         }
         public static float SwarmPressure(int wave) => 1 + 2 * Mathf.Clamp01((wave - 3) / 9f);
         public static float SwarmInterval(int wave, float time)

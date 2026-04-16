@@ -356,9 +356,9 @@ namespace ArcaneBrigade
             if (actOne && bossWave && CombatCatalog.Boss != null) CombatCatalog.Boss.Health *= WaveCadence.StoryBossBulk(State.Wave);
             CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds;
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
-            CombatCatalog.EnemyBudget = Mathf.Min(600, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
+            CombatCatalog.EnemyBudget = Mathf.Min(Mathf.CeilToInt(600 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
             // waves are 15% longer (D9): the budget grows with them so enemies per second stay the same
-            CombatCatalog.EnemyBudget = Mathf.Min(690, Mathf.CeilToInt(CombatCatalog.EnemyBudget * WaveCadence.LengthScale));
+            CombatCatalog.EnemyBudget = Mathf.Min(Mathf.CeilToInt(690 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(CombatCatalog.EnemyBudget * WaveCadence.LengthScale));
             CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;

@@ -43,11 +43,11 @@ namespace ArcaneBrigade.Editor
             Require(catalog.Items.Count(item => AssetDatabase.GetAssetPath(item.Icon).Contains("Art/K19/Relics")) == 58, "Fifty-eight formerly reused relic illustrations replaced; ten dedicated relics retained");
             for (int wave = 1; wave <= 40; wave++)
             {
-                float oldHealth = 1 + Mathf.Pow(Mathf.Max(0, wave - 1) / 12f, 1.45f);
-                float oldSpeed = 1 + 1.8f * (1 - Mathf.Exp(-Mathf.Max(0, wave - 1) * 0.05f));
+                float oldHealth = 1.2f * (1 + Mathf.Pow(Mathf.Max(0, wave - 1) / 12f, 1.45f)) * (1 + Mathf.Pow(Mathf.Max(0, wave - 4) / 16f, 1.4f) * 1.4f);
+                float oldSpeed = 1.08f * (1 + 1.8f * (1 - Mathf.Exp(-Mathf.Max(0, wave - 1) * 0.05f)));
                 float oldDamage = 1 + Mathf.Min(3, Mathf.Max(0, wave - 3) * 0.09f);
-                Require(Mathf.Abs(CarnivalBalance.EnemyHealth(wave) / oldHealth - 1.2f) < 0.001f, "All enemy HP +20%, wave " + wave);
-                Require(Mathf.Abs(CarnivalBalance.EnemySpeed(wave) / oldSpeed - 1.08f) < 0.001f, "All enemy speed +8%, wave " + wave);
+                Require(Mathf.Abs(CarnivalBalance.EnemyHealth(wave) / oldHealth - 1.2f) < 0.001f, "All enemy HP +20% over pre-22/10 tuning, wave " + wave);
+                Require(CarnivalBalance.EnemySpeed(wave) <= oldSpeed && (wave < 6 || CarnivalBalance.EnemySpeed(wave) < oldSpeed * .8f), "Gentler enemy speed growth, wave " + wave);
                 Require(Mathf.Abs(CarnivalBalance.EnemyDamage(wave) / oldDamage - 1.15f) < 0.001f, "All enemy attack scaling +15%, wave " + wave);
                 Require(CarnivalBalance.BossBulk(wave) >= Mathf.Lerp(4, 6.5f, Mathf.Clamp01((wave - 4) / 16f)) * 1.149f, "Boss additional bulk at least +15%, wave " + wave);
                 if (wave > 1) Require(CarnivalBalance.EnemyHealth(wave) / CarnivalBalance.EnemyHealth(wave - 1) < 1.12f, "No HP cliff, wave " + wave);

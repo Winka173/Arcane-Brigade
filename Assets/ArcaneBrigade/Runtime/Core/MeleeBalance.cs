@@ -2,7 +2,7 @@ namespace ArcaneBrigade
 {
     public static class MeleeBalance
     {
-        public const float Damage = 1.5f;
+        public const float Damage = .9f; // 22/10 play-test: -40% from the previous 1.5 multiplier, hero and friends.
         public const float Range = 1.1f;  // was 1.35: melee reach felt too long (owner, 19/10/2026)
         /// <summary>Our weapons' area hits (bursts, fuses, echoes, puddles) are drawn and resolved at this share of their authored radius (owner, 19/10/2026).</summary>
         public const float Area = 0.8f;
