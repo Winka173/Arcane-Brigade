@@ -77,7 +77,7 @@ namespace ArcaneBrigade.Editor
                 var sim = Simulation(c);
                 Kill(sim, c, 960);
                 int coinCount = sim.Pickups.Count(p => p.Kind == LootKind.Coin);
-                Check(coinCount <= 32, "960 kills stay within 32 coins, wave " + wave);
+                Check(coinCount == 960 / c.KillCoinBatchSize, "960 kills create only their scheduled coin batches, with no map cap, wave " + wave);
                 Check(sim.Pickups.Where(p => p.Kind == LootKind.Coin).Sum(p => p.Value) == 864, "90% raw reward conserved, wave " + wave);
                 Win(sim); sim.SweepRemaining();
                 Check(sim.Gold == 648, "960 kills pay 648 instead of 720 gold, wave " + wave);
@@ -93,7 +93,7 @@ namespace ArcaneBrigade.Editor
                 for (int i = 0; i < 200; i++) sim.LootFixture(LootKind.Coin, new Vector2(i % 10, i / 10), 3);
                 foreach (var p in sim.Pickups) p.Attracting = true;
                 for (int i = 0; i < 100; i++) sim.LootFixture(LootKind.Coin, Vector2.zero, 2);
-                Check(sim.Pickups.Count == 32 && sim.Pickups.Sum(p => p.Value) == 800, "All-attracting merge preserves 800 units in 32 coins");
+                Check(sim.Pickups.Count == 300 && sim.Pickups.Sum(p => p.Value) == 800, "All 300 direct coin drops remain separate, preserving 800 units without a cap");
                 Collect(sim);
                 int collected = sim.Gold;
                 Check(collected == 600 && sim.Pickups.Count == 0, "Normal pickup applies the same 0.75 coin rate");

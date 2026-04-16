@@ -1205,29 +1205,6 @@ namespace ArcaneBrigade
 
         private void DropLoot(LootKind kind, Vector2 position, int value)
         {
-            if (kind == LootKind.Coin)
-            {
-                int count = 0;
-                PickupState nearest = null, attracting = null;
-                float best = float.PositiveInfinity, attractingBest = float.PositiveInfinity;
-                foreach (PickupState pickup in pickups)
-                {
-                    if (pickup.Kind != LootKind.Coin) continue;
-                    count++;
-                    float distance = (pickup.Position - position).sqrMagnitude;
-                    if (pickup.Attracting)
-                    {
-                        if (distance < attractingBest) { attractingBest = distance; attracting = pickup; }
-                        continue;
-                    }
-                    if (distance < best) { best = distance; nearest = pickup; }
-                }
-                if (count >= CarnivalBalance.CoinPickupLimit)
-                {
-                    nearest ??= attracting;
-                    if (nearest != null) { nearest.Value = RunSession.BoundedCounter((long)nearest.Value + value); return; }
-                }
-            }
             int identifier = ++nextId;
             float angle = identifier * 2.399963f;
             Vector2 origin = ClampPosition(position, 0.3f);

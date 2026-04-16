@@ -8,7 +8,7 @@
   },
   "total": 1736,
   "coins": {
-    "pickupCap": 32,
+    "pickupCap": null,
     "killBatchByWave": {
       "1-9": 4,
       "10-14": 8,
@@ -16,7 +16,9 @@
     },
     "killRewardPercent": 90,
     "matched960KillGold": 648,
-    "previous960KillGoldAtSameRate": 720
+    "previous960KillGoldAtSameRate": 720,
+    "existingPickupMerging": false,
+    "dropReduction": "Batch only: 4 / 8 / 12 kills per drop. No limit on coins already on the map."
   },
   "crowd": {
     "changeStartsAt": 10,

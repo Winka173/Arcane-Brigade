@@ -15,7 +15,6 @@ namespace ArcaneBrigade
         // round 2 (owner target: wallet / mean offer ~5-6 in waves 11-19): x1.9 at wave 8, x2.5 at wave 10, x3.4 from wave 13
         /// <summary>Round 3 (owner play-test: still too rich): gold credited per coin value, 0.75 (was 1). Coin drops and visuals unchanged.</summary>
         public const float CoinGoldValue = .75f;
-        public const int CoinPickupLimit = 32;
         public static int KillCoinBatch(int wave) => wave >= 15 ? 12 : wave >= 10 ? 8 : 4;
         public static float SwarmCoinPressure(int wave) => 1 + Mathf.Min(2.4f, Mathf.Max(0, wave - 5) * .3f);
 

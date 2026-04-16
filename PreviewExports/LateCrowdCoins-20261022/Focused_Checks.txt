@@ -30,27 +30,27 @@ PASS Wave 20 escorts 2
 PASS Wave 20 escort rewards preserve the pack budget before the 10% cut
 PASS Wave 20 escorts are larger species
 PASS Wave 20 coin batching
-PASS 960 kills stay within 32 coins, wave 1
+PASS 960 kills create only their scheduled coin batches, with no map cap, wave 1
 PASS 90% raw reward conserved, wave 1
 PASS 960 kills pay 648 instead of 720 gold, wave 1
 PASS Sweep cannot pay twice, wave 1
 PASS Reset and partial final batch pay only this wave's reward, wave 1
-PASS 960 kills stay within 32 coins, wave 10
+PASS 960 kills create only their scheduled coin batches, with no map cap, wave 10
 PASS 90% raw reward conserved, wave 10
 PASS 960 kills pay 648 instead of 720 gold, wave 10
 PASS Sweep cannot pay twice, wave 10
 PASS Reset and partial final batch pay only this wave's reward, wave 10
-PASS 960 kills stay within 32 coins, wave 15
+PASS 960 kills create only their scheduled coin batches, with no map cap, wave 15
 PASS 90% raw reward conserved, wave 15
 PASS 960 kills pay 648 instead of 720 gold, wave 15
 PASS Sweep cannot pay twice, wave 15
 PASS Reset and partial final batch pay only this wave's reward, wave 15
-PASS 960 kills stay within 32 coins, wave 20
+PASS 960 kills create only their scheduled coin batches, with no map cap, wave 20
 PASS 90% raw reward conserved, wave 20
 PASS 960 kills pay 648 instead of 720 gold, wave 20
 PASS Sweep cannot pay twice, wave 20
 PASS Reset and partial final batch pay only this wave's reward, wave 20
-PASS All-attracting merge preserves 800 units in 32 coins
+PASS All 300 direct coin drops remain separate, preserving 800 units without a cap
 PASS Normal pickup applies the same 0.75 coin rate
 PASS Victory sweep and manual collection pay identical gold
 PASS Incomplete late batch does not create tiny drops
