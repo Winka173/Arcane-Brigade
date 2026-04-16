@@ -133,7 +133,7 @@ namespace ArcaneBrigade.Editor
             {
                 s.Start("LanternKnight", 5003);
                 s.State.Wave = 1; CheckpointCatalog first = s.PrepareCombat();
-                Check(Mathf.Approximately(first.WaveDuration, 34.5f) && first.GoldPerKill == 1 && first.MinionCoin == 1 && first.BossSwarmBudget == 0, "Wave 1 is a 34.5 s night (+15%, D9); every swarm body drops one coin");
+                Check(Mathf.Approximately(first.WaveDuration, 34.5f) && first.GoldPerKill == 1 && first.MinionCoin == 1 && first.KillCoinBatchSize == 4 && first.KillCoinRewardPercent == 90 && first.BossSwarmBudget == 0, "Wave 1 keeps its duration and raw rewards; four kills share a 90% reward coin");
                 s.State.Wave = 13; CheckpointCatalog late = s.PrepareCombat();
                 Check(Mathf.Approximately(late.WaveDuration, 69) && late.GoldPerKill == 3, "From wave 13 a night lasts 69 s; a full enemy's coin is 3");
                 s.State.Wave = 10; CheckpointCatalog boss = s.PrepareCombat();
@@ -238,14 +238,15 @@ namespace ArcaneBrigade.Editor
                 int gold = sim.Gold;
                 sim.PacingFixtureLoot(LootKind.Bell, sim.Champion.Position, 1);
                 Steps(sim, 2.5f);
-                Check(sim.Gold - gold >= 30, "The bell calls every coin home (" + (sim.Gold - gold) + ")");
+                Check(sim.Gold - gold >= Mathf.FloorToInt(30 * s.CombatCatalog.CoinValueScale), "The bell calls every coin home at its configured value (" + (sim.Gold - gold) + ")");
 
                 for (int i = 0; i < 20; i++) sim.PacingFixtureLoot(LootKind.Coin, sim.Champion.Position + new Vector2(Mathf.Cos(i), Mathf.Sin(i)) * 8, 2);
                 Steps(sim, 0.4f);
                 int wallet = s.State.Gold, earned = sim.Gold, floor = sim.Pickups.Where(p => p.Kind == LootKind.Coin).Sum(p => p.Value);
                 sim.PacingFixtureWin();
+                int floorGold = Mathf.FloorToInt(floor * s.CombatCatalog.CoinValueScale);
                 s.Settle(sim);
-                Check(s.State.Phase == SessionPhase.Shop && s.State.Gold >= wallet + earned + floor && sim.SweptGold >= floor && floor >= 40, "Winning the wave sweeps the floor's coins into the wallet");
+                Check(s.State.Phase == SessionPhase.Shop && s.State.Gold >= wallet + earned + floorGold && sim.SweptGold >= floorGold && floor >= 40, "Winning sweeps floor coins with the same value scale as collecting them");
             }
         }
 

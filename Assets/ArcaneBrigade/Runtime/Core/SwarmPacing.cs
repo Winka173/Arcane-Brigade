@@ -10,7 +10,8 @@ namespace ArcaneBrigade
     {
         public int BossSwarmBudget;   // a light swarm that keeps coming while a boss stands (and through the whole final duel)
         public bool FinalDuel;        // the Last Customer: walls of the waiting come at two thresholds of its health
-        public int MinionCoin = 1;    // every swarm body drops a small coin
+        public int MinionCoin = 1;    // raw reward per swarm body, before batching
+        public int KillCoinBatchSize = 1, KillCoinRewardPercent = 100;
         public bool WholeKeeper;      // THE KEEPER, WHOLE (shop 17): its body shrugs off damage while its hand, carpet and eye hold
         public int PrismDrops;        // prism shards an elite may still drop this night (the run allows two)
     }
@@ -234,6 +235,10 @@ namespace ArcaneBrigade
         {
             UnitDefinition herd = HerdDefinition();
             if (herd == null) return;
+            bool mixedWall = catalog.RunWave >= 10;
+            int originalSmall = size;
+            if (mixedWall) size = 2 + Mathf.CeilToInt(size * .5f);
+            int remainingSmall = size - 2;
             Vector2 outward = SideVector(side), across = new Vector2(-outward.y, outward.x);
             float distance = outward.x != 0 ? 10.2f : 6.4f, span = outward.x != 0 ? 6.2f : 10.5f;
             int rows = 2, perRow = Mathf.CeilToInt(size / (float)rows);
@@ -247,10 +252,12 @@ namespace ArcaneBrigade
                 Vector2 position = Champion.Position + outward * (distance + row * 0.7f) + across * (t * span + (row % 2) * 0.35f);
                 position = ClampPosition(position, 0.5f);
                 if ((position - Champion.Position).sqrMagnitude < catalog.SpawnSafetyRadius * catalog.SpawnSafetyRadius) continue;
-                UnitState spawned = Spawn(herd, Faction.Enemy, position);
-                spawned.SwarmMinion = true;
-                spawned.Health *= 0.32f;
-                spawned.SurgeDirection = -outward;
+                bool escort = mixedWall && index < 2;
+                UnitState spawned = Spawn(escort ? PackEscortDefinition(herd) : herd, Faction.Enemy, position);
+                spawned.SwarmMinion = !escort;
+                if (escort) spawned.PackCoinBonus = EscortCoinBonus(originalSmall, remainingSmall, 0, 2, index);
+                if (escort) InitializeEnemyVariant(spawned);
+                else { spawned.Health *= 0.32f; spawned.SurgeDirection = -outward; }
                 spawned.Facing = -outward;
                 swarmSpawns++;
             }
@@ -340,6 +347,7 @@ namespace ArcaneBrigade
         public void SweepRemaining()
         {
             if (Phase != RunPhase.Victory) return;
+            FlushKillCoins(); // pay the unfinished final batch too, without needing another kill
             sweptPieces.Clear();
             for (int index = pickups.Count - 1; index >= 0; index--)
             {
@@ -356,10 +364,8 @@ namespace ArcaneBrigade
             if (sweptPieces.Count < 120) sweptPieces.Add(new Vector3(pickup.Position.x, pickup.Position.y, pickup.Kind == LootKind.Egg ? -pickup.Value : pickup.Value));
             if (pickup.Kind == LootKind.Egg) { Eggs = RunSession.BoundedCounter((long)Eggs + pickup.Value); return; }
             int before = Gold;
-            Gold = RunSession.BoundedCounter((long)Gold + pickup.Value);
+            CreditCoin(pickup, NewCause(Champion.Id));
             SweptGold = RunSession.BoundedCounter((long)SweptGold + Gold - before); SweptCoins++;
-            CombatCause credit = NewCause(Champion.Id).Child("coin-credit");
-            Contribution(credit).Coins = RunSession.BoundedCounter((long)Contribution(credit).Coins + Gold - before);
         }
 
         // ---- capture and check fixtures (diagnostics saves only) ---------------------------------------------------------

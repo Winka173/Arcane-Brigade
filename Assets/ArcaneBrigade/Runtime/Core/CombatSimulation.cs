@@ -42,6 +42,7 @@ namespace ArcaneBrigade
     public sealed class UnitState
     {
         public int Id;
+        public int PackCoinBonus; // escorts carry the rewards of the small bodies removed from their pack
         /// <summary>While a hero is transformed: the painted art key of its transformed weapon (presentation only).</summary>
         public string AwakenArt;
         /// <summary>Hero-kit conditions on an enemy: slowed, shocked, soaked or cracked until these times; struck by a friend yet.</summary>
@@ -331,6 +332,7 @@ namespace ArcaneBrigade
             nextId = 0;
             nextSpawn = 0.6f;
             swarmSpawns = swarmGoldKills = 0;
+            pendingKillCoinHundredths = 0; pendingKillCoinKills = 0; pendingKillCoinPosition = Vector2.zero;
             Elapsed = 0f;
             restElapsed = 0f;
             finaleElapsed = 0;
@@ -582,6 +584,10 @@ namespace ArcaneBrigade
             int budget = overtime ? catalog.BossSwarmBudget : catalog.EnemyBudget;
             if (enemyCount >= budget) return;
             int batch = catalog.ExpandedContent ? WaveCadence.SwarmBatch(catalog.RunWave, Elapsed) : 1;
+            int originalSmall = Mathf.Max(0, batch - 1);
+            bool mixedPack = catalog.ExpandedContent && catalog.RunWave >= 10 && !overtime;
+            int leaders = mixedPack ? 2 : 1;
+            if (mixedPack) batch = leaders + Mathf.CeilToInt(Mathf.Max(0, batch - 1) * .5f);
             if (overtime) batch = Mathf.Min(batch, 4);
             Vector2 packAnchor = Vector2.zero;
             UnitDefinition herd = catalog.ExpandedContent ? HerdDefinition() : catalog.MeleeEnemy;
@@ -616,22 +622,24 @@ namespace ArcaneBrigade
                 {
                     if (!packStarted) { packAnchor = position; packStarted = true; }
                     UnitDefinition definition = catalog.ExpandedContent && catalog.EnemyPool.Length > 0 ? catalog.EnemyPool[spawnRandom.Next(catalog.EnemyPool.Length)] : spawnRandom.Next(3) == 0 ? catalog.RangedEnemy : catalog.MeleeEnemy;
-                    if (catalog.RunWave >= 5 && member == 0 && swarmSpawns % 9 == 0)
+                    if (mixedPack && member < leaders) definition = PackEscortDefinition(herd);
+                    if (!mixedPack && catalog.RunWave >= 5 && member == 0 && swarmSpawns % 9 == 0)
                     {
                         UnitDefinition support = System.Array.Find(catalog.EnemyPool, enemy => enemy.Weapon.Kind == WeaponKind.Projectile);
                         if (support != null) definition = support;
                     }
-                    if (catalog.RunWave >= 5 && member == 0 && swarmSpawns % 13 == 0)
+                    if (!mixedPack && catalog.RunWave >= 5 && member == 0 && swarmSpawns % 13 == 0)
                     {
                         UnitDefinition shield = System.Array.Find(catalog.EnemyPool, enemy => enemy.Behavior == EnemyBehavior.Door);
                         if (shield != null) definition = shield;
                     }
-                    bool minion = catalog.ExpandedContent && (member > 0 || overtime);
+                    bool minion = catalog.ExpandedContent && (member >= leaders || overtime);
                     if (!minion && definition.SpecialEnemy != SpecialEnemyKind.None && ActiveSpecialists() >= 3) definition = SwarmDefinition();
                     if (!minion && WaitingSpawnBlocked(definition)) definition = SwarmDefinition();
                     if (minion) definition = herd;
                     UnitState spawned = Spawn(definition, Faction.Enemy, position);
                     spawned.SwarmMinion = minion;
+                    if (mixedPack && !minion) spawned.PackCoinBonus = EscortCoinBonus(originalSmall, batch - leaders, 1, leaders, member);
                     if (minion) spawned.Health *= 0.45f;
                     else InitializeEnemyVariant(spawned);
                     AssignSwarmRole(spawned, minion);
@@ -1094,7 +1102,7 @@ namespace ArcaneBrigade
                 SwarmDeath(target, source, overkill, cause);
                 PacingLoot(target);
                 int coinValue = SwarmCoinValue(target); if (coinValue > 0) coinValue += VisitorCoins; coinValue = MapCoins(target, coinValue);
-                if (coinValue > 0) DropLoot(LootKind.Coin, target.Position, coinValue);
+                DropKillCoins(target, coinValue);
                 if (target.StolenCoins > 0) { DropLoot(LootKind.Coin, target.Position, target.StolenCoins + Mathf.Max(1, target.StolenCoins / 10)); target.StolenCoins = 0; } // a toll is refunded with 10% (nothing is taken, only bought)
                 if (catalog.ExtendedLoot && !target.SwarmMinion)
                 {
@@ -1170,11 +1178,7 @@ namespace ArcaneBrigade
                 CombatCause pickupCause = NewCause(Champion.Id);
                 if (pickup.Kind == LootKind.Coin)
                 {
-                    coinCredit += pickup.Value * KitCoinScale * Mathf.Max(0, catalog.CoinValueScale); // round 3: each coin is worth 0.75 gold
-                    int whole = Mathf.FloorToInt(coinCredit + 1e-4f); coinCredit -= whole;
-                    int nextGold = RunSession.BoundedCounter((long)Gold + whole);
-                    Contribution(pickupCause.Child("coin-credit")).Coins = RunSession.BoundedCounter((long)Contribution(pickupCause.Child("coin-credit")).Coins + nextGold - Gold);
-                    Gold = nextGold;
+                    CreditCoin(pickup, pickupCause);
                 }
                 else if (pickup.Kind == LootKind.Egg) Eggs = RunSession.BoundedCounter((long)Eggs + pickup.Value);
                 else if (pickup.Kind == LootKind.Heart) Heal(Mathf.Max(0, pickup.Value + catalog.HeartHealing), NewCause(Champion.Id));
@@ -1187,20 +1191,42 @@ namespace ArcaneBrigade
             }
         }
 
+        private void CreditCoin(PickupState pickup, CombatCause cause)
+        {
+            coinCredit += pickup.Value * KitCoinScale * Mathf.Max(0, catalog.CoinValueScale);
+            int whole = Mathf.FloorToInt(coinCredit + 1e-4f); coinCredit -= whole;
+            int nextGold = RunSession.BoundedCounter((long)Gold + whole);
+            CombatCause credit = cause.Child("coin-credit");
+            Contribution(credit).Coins = RunSession.BoundedCounter((long)Contribution(credit).Coins + nextGold - Gold);
+            Gold = nextGold;
+        }
+
         private CombatCause NewCause(int sourceUnitId) => new CombatCause(++nextCause, sourceUnitId);
 
         private void DropLoot(LootKind kind, Vector2 position, int value)
         {
-            if (kind == LootKind.Coin && pickups.Count > 220)
+            if (kind == LootKind.Coin)
             {
-                PickupState nearest = null; float best = 1f;
+                int count = 0;
+                PickupState nearest = null, attracting = null;
+                float best = float.PositiveInfinity, attractingBest = float.PositiveInfinity;
                 foreach (PickupState pickup in pickups)
                 {
-                    if (pickup.Kind != LootKind.Coin || pickup.Attracting) continue;
+                    if (pickup.Kind != LootKind.Coin) continue;
+                    count++;
                     float distance = (pickup.Position - position).sqrMagnitude;
+                    if (pickup.Attracting)
+                    {
+                        if (distance < attractingBest) { attractingBest = distance; attracting = pickup; }
+                        continue;
+                    }
                     if (distance < best) { best = distance; nearest = pickup; }
                 }
-                if (nearest != null) { nearest.Value = RunSession.BoundedCounter((long)nearest.Value + value); return; }
+                if (count >= CarnivalBalance.CoinPickupLimit)
+                {
+                    nearest ??= attracting;
+                    if (nearest != null) { nearest.Value = RunSession.BoundedCounter((long)nearest.Value + value); return; }
+                }
             }
             int identifier = ++nextId;
             float angle = identifier * 2.399963f;

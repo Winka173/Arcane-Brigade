@@ -7,21 +7,35 @@ namespace ArcaneBrigade
 {
     /// <summary>The run summary at the end of a journey and in the records (play-test 20/10/2026, item 32): written from the
     /// player's side. A headline (wave reached, time, bosses, score), "Your brigade" (one row per hero or ally: portrait, stars,
-    /// a share-of-damage bar and its percentage; the top five, the rest folded), three small trophies, and the relics as icons.
+    /// a share-of-damage bar and its percentage; every member), all bonds, three small trophies, and relic icons.
     /// No internal ids, no raw floats, no zero columns, no seed.</summary>
     public sealed class RunInvoice
     {
         private Vector2 scroll;
         private string identity;
-        private GUIStyle headingStyle, bodyStyle, numericStyle, smallStyle, moreStyle;
-        private bool scrollToEnd, expanded;
+        private GUIStyle headingStyle, bodyStyle, numericStyle, smallStyle;
+        private bool scrollToEnd;
         private float revealedAt;
         private RunSnapshot cachedRun;
         private List<Member> cachedMembers;
+        private List<BondRow> cachedBonds;
         public void ScrollToEnd() { scrollToEnd = true; }
 
         /// <summary>One hero or ally across all its measured sources (attack and effects summed).</summary>
         public sealed class Member { public string UnitId; public int Stars; public double Damage, Gold; public int Kills; public float Share; public bool Hero; }
+        public sealed class BondRow { public BondDefinition Bond; public int Count; }
+
+        public static List<BondRow> Bonds(RunSnapshot run, RunCatalog catalog)
+        {
+            // Restore/validation may migrate old saves; only ever give it a detached copy of the record.
+            using var session = new RunSession(catalog);
+            session.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(run)));
+            var rows = new List<BondRow>();
+            foreach (BondDefinition bond in catalog.Bonds)
+                if (session.BondCounts.TryGetValue(bond.Id, out int count) && count > 0)
+                    rows.Add(new BondRow { Bond = bond, Count = count });
+            return rows;
+        }
 
         public static List<Member> Brigade(RunSnapshot run)
         {
@@ -75,6 +89,8 @@ namespace ArcaneBrigade
             List<Member> members = Brigade(run);
             foreach (Member m in members)
                 lines.AppendLine(Name(m.UnitId, catalog) + Stars(m.Stars) + (m.Damage > 0 ? " · " + Mathf.RoundToInt(m.Share * 100) + "% of damage · " + Short(m.Damage) : "") + (m.Kills > 0 ? " · " + Short(m.Kills) + " defeated" : ""));
+            foreach (BondRow row in Bonds(run, catalog))
+                lines.AppendLine("BOND  " + row.Bond.Name + " · " + row.Count + " members · " + (row.Bond.ActiveLevel(row.Count) > 0 ? "level " + row.Bond.ActiveLevel(row.Count) : "not ready"));
             var (relic, relicDamage) = BestRelic(run, catalog);
             if (relic != null) lines.AppendLine("\nBEST RELIC  " + relic.Name + " · " + Short(relicDamage) + " damage");
             if (run.Items.Count > 0)
@@ -118,8 +134,8 @@ namespace ArcaneBrigade
 
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)
         {
-            if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; expanded = false; revealedAt = UnityEngine.Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
-            if (cachedRun != run || cachedMembers == null) { cachedRun = run; cachedMembers = Brigade(run); }
+            if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; revealedAt = UnityEngine.Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
+            if (cachedRun != run || cachedMembers == null) { cachedRun = run; cachedMembers = Brigade(run); cachedBonds = Bonds(run, catalog); }
             if (ArcadeSkin.HasKit) { ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); rectangle = ArcadeSkin.Content(rectangle, KitFrame.Card, true, .6f); } // the cream card; the receipt sits inside its rim
             else
             {
@@ -146,11 +162,12 @@ namespace ArcaneBrigade
 
             Rect view = new Rect(rectangle.x + 16, rectangle.y + 136, rectangle.width - 32, rectangle.height - 150);
             float inner = view.width - 14;
-            int shown = expanded ? cachedMembers.Count : Mathf.Min(5, cachedMembers.Count);
+            int shown = cachedMembers.Count;
             var (relic, relicDamage) = BestRelic(run, catalog);
             int columns = Mathf.Max(1, Mathf.FloorToInt(inner / 76));
             int relicRows = Mathf.CeilToInt(run.Items.Count / (float)columns);
-            float height = 34 + shown * 66 + (cachedMembers.Count > 5 ? 56 : 0) + 20 + 120 + (run.Items.Count > 0 ? 40 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 44 : 0) + 10 + HaulHeight(run);
+            float bondHeight = cachedBonds.Count > 0 ? 40 + cachedBonds.Count * 54 : 0;
+            float height = 34 + shown * 66 + bondHeight + 20 + 120 + (run.Items.Count > 0 ? 40 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 44 : 0) + 10 + HaulHeight(run);
             if (scrollToEnd) { scroll.y = height; scrollToEnd = false; }
             scroll = ScrollPanel.Begin(view, scroll, new Rect(0, 0, inner, height), new Color(ArcadeSkin.Paper.r * .6f, ArcadeSkin.Paper.g * .6f, ArcadeSkin.Paper.b * .6f, .5f));
             float y = 0;
@@ -176,11 +193,17 @@ namespace ArcaneBrigade
                 GUI.color = keep;
                 y += 66;
             }
-            if (cachedMembers.Count > 5)
+            if (cachedBonds.Count > 0)
             {
-                moreStyle ??= ArcadeTypography.Style(21, true);
-                if (ArcadeSkin.Button(new Rect(4, y + 6, Mathf.Min(inner - 8, 320), 54), expanded ? "SHOW TOP 5" : "+" + (cachedMembers.Count - 5) + " MORE", KitButton.Secondary, true, moreStyle)) expanded = !expanded;
-                y += 66;
+                GUI.Label(new Rect(4, y + 6, inner, 30), "BONDS", body); y += 40;
+                foreach (BondRow row in cachedBonds)
+                {
+                    RunHud.Sprite(new Rect(4, y + 4, 40, 40), row.Bond.Icon);
+                    GUI.Label(new Rect(54, y, inner - 58, 26), row.Bond.Name, body);
+                    int level = row.Bond.ActiveLevel(row.Count);
+                    GUI.Label(new Rect(54, y + 26, inner - 58, 24), row.Count + " members · " + (level > 0 ? "Level " + level : "Not ready"), small);
+                    y += 54;
+                }
             }
             y += 20;
             // three small trophies

@@ -22,6 +22,7 @@ namespace ArcaneBrigade.Editor
             {
                 session.Start(content.Champions[0].Id, 131026);
                 CheckpointCatalog catalog = session.PrepareCombat();
+                catalog.KillCoinBatchSize = 1; catalog.KillCoinRewardPercent = 100; // isolate pickup plumbing from kill-reward batching
                 catalog.EnemyBudget = 0;
                 var simulation = new CombatSimulation(catalog);
                 simulation.Start(131026);

@@ -448,9 +448,11 @@ namespace ArcaneBrigade
                 CombatCatalog.GoldPerKill = active.GoldPerKill;
                 CombatCatalog.PassiveHeal += active.Healing;
             }
-            // economy: every swarm body now drops a coin of 1, so a full enemy's coin grows slowly (1 -> 3, it was 2 -> 6)
+            // Raw rewards grow slowly (1 -> 3); kill coins are batched below to keep the floor clear.
             CombatCatalog.GoldPerKill = Mathf.Max(1, Mathf.RoundToInt(CombatCatalog.GoldPerKill * 0.5f * (1 + Mathf.Min(2, Mathf.Max(0, State.Wave - 1) / 6f))));
             CombatCatalog.MinionCoin = 1;
+            CombatCatalog.KillCoinBatchSize = CarnivalBalance.KillCoinBatch(State.Wave);
+            CombatCatalog.KillCoinRewardPercent = 90;
             CombatCatalog.CoinValueScale = CarnivalBalance.CoinGoldValue;
             CombatCatalog.EnemyBudget = Mathf.Min(690, CombatCatalog.EnemyBudget);
             PrepareVisitors();
