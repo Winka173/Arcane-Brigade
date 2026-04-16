@@ -56,12 +56,12 @@ namespace ArcaneBrigade
                 _ => string.IsNullOrEmpty(name) ? u.Id switch { "SecretPatchBear" => "A living resident rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.", "SecretPaperBird" => "A folded courier rescued from the Lost-Property Vault. Permanent friend; remembers your letter and provides periodic healing.", "SecretDreamLamb" => "Garden visitor for two normal-wave victories. The dream friend then departs; its support ends with the contract.", _ => Authored(u) } : OctoberCompanions.Copy(name)
             };
         }
-        public static string Passive(UnitDefinition u,int tier,float support=3)
+        public static string Passive(UnitDefinition u,int tier,float support=3,float goldScale=1)
         {
-            float strength=(u.Passive==PassiveKind.Scavenge?Mathf.Round(u.PassiveStrength):u.PassiveStrength)*Mathf.Pow(support,Mathf.Clamp(tier,1,3)-1);
+            float strength=u.PassiveStrength*Mathf.Pow(support,Mathf.Clamp(tier,1,3)-1);
             return u.Passive switch {
                 PassiveKind.HealChampion => "Every 4s: heal the hero "+(strength*3).ToString("0.##")+" HP.",
-                PassiveKind.Scavenge => "Every 4s: +"+Mathf.RoundToInt(strength)+" gold.",
+                PassiveKind.Scavenge => "Every 4s: +"+RunSession.ScavengeGold(u.PassiveStrength,tier,support,goldScale)+" gold.",
                 PassiveKind.ChillAura => "Every 4s: chill enemies within "+(2+strength*.625f).ToString("0.#")+" steps (1.5s, bosses 0.6s).",
                 PassiveKind.Rally => "+"+(strength).ToString("0.#")+"% weapon damage for each friend in the brigade.",
                 _ => "No other skill."
@@ -95,25 +95,25 @@ namespace ArcaneBrigade
             string copy=OctoberCompanions.Copy(u.ReferenceCompanion);
             return string.IsNullOrEmpty(copy)?Talent(u):copy;
         }
-        public static string ShortPassive(UnitDefinition u,int tier,float support=3)
+        public static string ShortPassive(UnitDefinition u,int tier,float support=3,float goldScale=1)
         {
-            float strength=(u.Passive==PassiveKind.Scavenge?Mathf.Round(u.PassiveStrength):u.PassiveStrength)*Mathf.Pow(support,Mathf.Clamp(tier,1,3)-1);
+            float strength=u.PassiveStrength*Mathf.Pow(support,Mathf.Clamp(tier,1,3)-1);
             return u.Passive switch {
                 PassiveKind.HealChampion => "Every 4s heals the hero "+(strength*3).ToString("0.#")+" HP.",
-                PassiveKind.Scavenge => "Every 4s finds "+Mathf.RoundToInt(strength)+" gold.",
+                PassiveKind.Scavenge => "Every 4s finds "+RunSession.ScavengeGold(u.PassiveStrength,tier,support,goldScale)+" gold.",
                 PassiveKind.ChillAura => "Every 4s chills enemies within "+(2+strength*.625f).ToString("0.#")+" units.",
                 PassiveKind.Rally => "+"+strength.ToString("0.#")+"% damage per friend in the roster.",
                 _ => ""
             };
         }
-        public static string Describe(UnitDefinition u,int tier=1,float support=3)
+        public static string Describe(UnitDefinition u,int tier=1,float support=3,float goldScale=1)
         {
             var b=new StringBuilder();b.AppendLine("FRIEND · "+RunModifierRules.RarityName(u.Rarity)+" · "+new string('★',Mathf.Clamp(tier,1,3)));
             b.AppendLine("TALENT\n"+Talent(u));
             if(CombatSimulation.SkillCopy.TryGetValue(u.Id,out string own)&&own!=Talent(u))b.AppendLine("\nOWN SKILL\n"+own);
             b.AppendLine("\nSUPPORT WHILE OWNED\n"+RunModifierRules.DescribeCompanion(u,tier));
             b.AppendLine("\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(u.Id));
-            b.AppendLine("PERSONAL PASSIVE\n"+Passive(u,tier,support));
+            b.AppendLine("PERSONAL PASSIVE\n"+Passive(u,tier,support,goldScale));
             if(!string.IsNullOrEmpty(u.ReferenceCompanion)) b.AppendLine("\nNamed talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.");
             if(u.GiftOnly)b.AppendLine("Source: gift / nursery / special reward; not ordinary shop stock.");
             else if(!string.IsNullOrEmpty(u.ExclusiveHero))b.AppendLine("Recruitment exclusive: "+u.ExclusiveHero+".");

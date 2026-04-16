@@ -167,9 +167,41 @@ namespace ArcaneBrigade.Editor
                 }
                 Check(counts[0] > counts[1] && counts[1] > counts[2], "Seeded shop rolls reduce new species at 5/6/12 bodies: " + string.Join("/", counts));
             }
+            // owner 22/10/2026: the shop never sells what can't be bought. A new species left on the shelf when the new-species
+            // quota closes is replaced in its place (a copy of an owned species within the copy quota, or a relic)
+            foreach (int wave in new[] { 2, 8, 20 })
+            {
+                using var s = Session(c, wave);
+                var first = Offer(s, ordinary[0].Id); var second = Offer(s, ordinary[1].Id); int shelf = s.State.Offers.Count;
+                Check(s.Buy(first.Token) && s.NewRecruitsRemaining == 0, "New species bought closes the quota " + wave);
+                Check(!s.State.Offers.Contains(second) && s.State.Offers.Count == shelf, "The other new species leaves the shelf, its slot refilled " + wave);
+                Check(s.State.Offers.Where(o => !o.Sold).All(s.CanBuy), "Every unsold regular offer can be bought after the quota closes " + wave);
+                Check(s.State.Offers.Count(o => !o.Sold && o.Kind == OfferKind.Companion) <= s.CopyRecruitsRemaining, "Stand-in copies respect the copy quota " + wave);
+                for (int roll = 0; roll < 6; roll++) { Check(s.Reroll(), "Refresh after quota " + wave); Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion || s.OwnsCompanionSpecies(o.Id)), "Refresh rolls no new species while the quota is closed " + wave + "/" + roll); }
+                s.State.Wave = wave + 1; s.State.NewRecruitsThisWave = s.State.NewSpeciesRecruitsThisWave = 0;
+                for (int roll = 0; roll < 6; roll++) { s.Reroll(); Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion || s.OwnsCompanionSpecies(o.Id)), "Next wave (quota not yet back) rolls no new species " + wave + "/" + roll); }
+            }
+            // Kettle Bat (Scavenge 0.5) once found "0 gold": at least 1, growing with stars and with the wave, and the text says so
+            {
+                var bat = c.Unit("KettleBat");
+                using var early = Session(c, 1); using var late = Session(c, 20);
+                int fewer = 0;
+                for (int tier = 1; tier <= 3; tier++)
+                {
+                    int now = early.ScavengeGold(bat, tier), later = late.ScavengeGold(bat, tier);
+                    Check(now >= 1 && now > fewer && later > now, "Kettle Bat scavenges " + now + " gold at wave 1, " + later + " at wave 20, " + tier + " stars");
+                    Check(CompanionDescriptions.ShortPassive(bat, tier, c.TierSupportMultiplier, late.GoldScale).Contains(" " + later + " gold"), "Kettle Bat card shows the gold it finds " + tier);
+                    fewer = now;
+                }
+                late.State.Roster.Add(new RosterEntry { UnitId = bat.Id, WeaponId = "SpoonSabre", Tier = 1 }); late.State.Phase = SessionPhase.Combat;
+                var arena = late.PrepareCombat(); var fielded = arena.StartingCompanions.FirstOrDefault(u => u != null && u.Id == bat.Id);
+                Check(fielded != null && Mathf.RoundToInt(fielded.PassiveStrength) == late.ScavengeGold(bat, 1), "Kettle Bat in combat finds the gold its card shows");
+            }
             File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"EarlyNewSpeciesLimit\":1,\"LaterNewSpeciesLimit\":1,\"TotalOrdinaryPurchaseLimit\":3,\"SpecialShopExempt\":false,\"SpecialNewSpeciesPerWave\":1,\"SharedCooldownStartsAtWave\":10,\"NewSpeciesWaveInterval\":2,\"UpgradeUsesTotalQuota\":true}");
             Debug.Log("RECRUITMENT_PASS " + notes.Count);
         }
         public static void VerifyAndBuild() { Run(); HeroIdentityChecks.VerifyAndBuild(); }
+        /// <summary>The shop economy pair in one launch: recruitment quotas and the visitors.</summary>
+        public static void RunWithVisitors() { Run(); VisitorChecks.Run(); }
     }
 }

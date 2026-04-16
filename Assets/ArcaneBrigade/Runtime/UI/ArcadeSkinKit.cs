@@ -130,6 +130,8 @@ namespace ArcaneBrigade
         {
             GUIStyle label = KitLabel(like);
             if (like != null && !centred) label.alignment = kitShadow.alignment = like.alignment; // a button label is always centred
+            FitText(label, text, r.width);
+            kitShadow.fontSize = label.fontSize; kitShadow.wordWrap = label.wordWrap;
             bool onGold = colour.grayscale < .35f;
             kitShadow.normal.textColor = onGold ? new Color(1f, .93f, .72f, .45f * colour.a) : new Color(0, 0, 0, .6f * colour.a);
             GUI.Label(new Rect(r.x + (onGold ? 0 : 1), r.y + (onGold ? 1 : 2), r.width, r.height), text, kitShadow);
@@ -369,7 +371,8 @@ namespace ArcaneBrigade
             float k = r.height / sprite.texture.height;
             Sliced(r, sprite, k);
             // the socket is centred 36 px in on an 80 px plate, inner diameter about 40
-            Rect socket = new Rect(r.x + 36 * k - 20 * k, r.center.y - 20 * k, 40 * k, 40 * k);
+            // the socket measured on the art: centre (41, 42) of the 164 x 80 plate, the velvet about 40 across
+            Rect socket = new Rect(r.x + (41 - 20) * k, r.y + (42 - 20) * k, 40 * k, 40 * k);
             text = new Rect(r.x + sprite.border.x * k + 12, r.y, r.width - (sprite.border.x + sprite.border.z * .6f) * k - 12, r.height); // 12 px clear of the socket
             return socket;
         }

@@ -292,10 +292,10 @@ namespace ArcaneBrigade
             // walnut counter plates with a round socket for the coin and the egg (UI kit)
             Rect goldSocket = ArcadeSkin.Counter(new Rect(16, 100, 200, 44), KitCounter.Gold, out Rect goldText);
             Rect eggSocket = ArcadeSkin.Counter(new Rect(16, 146, 200, 44), KitCounter.Egg, out Rect eggText);
-            Sprite(new Rect(goldSocket.center.x - 16 - goldPulse, goldSocket.center.y - 16 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
+            Sprite(new Rect(goldSocket.x - goldPulse, goldSocket.y - goldPulse, goldSocket.width + goldPulse * 2, goldSocket.height + goldPulse * 2), owner.Content.Arena.Coin); // centred in the socket
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
             GUI.Label(goldText, Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
-            Sprite(new Rect(eggSocket.center.x - 16 - eggPulse, eggSocket.center.y - 16 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
+            Sprite(new Rect(eggSocket.x - eggPulse, eggSocket.y - eggPulse, eggSocket.width + eggPulse * 2, eggSocket.height + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
             GUI.Label(eggText, Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
@@ -514,19 +514,19 @@ namespace ArcaneBrigade
                 float w = Mathf.Min(room, Need());
                 if (w < 110) { cardChip.fontSize = size; return; }
                 Rect chip = new Rect(cx, rowY, w, H);
-                if (lit) ArcadeSkin.BlinkLit(chip, Time.unscaledTime, ArcadeSkin.Gold); // a bond this friend lights blinks
+                if (lit) ArcadeSkin.BlinkStrong(chip, Time.unscaledTime); // a bond this friend lights blinks, strongly
                 ArcadeSkin.Chip(chip, lit); // the painted walnut chip with its icon socket
                 if (lit) ArcadeSkin.BlinkOver(chip, Time.unscaledTime);
                 if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
-                if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(chip.x + 19 - 16, chip.y + H * .5f - 16, 32, 32), icon);
+                if (icon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), icon); // on the socket's measured centre
                 cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
                 GUI.Label(new Rect(chip.x + Lead, chip.y, w - Lead - Tail + 6, H), label, cardChip);
                 cardChip.fontSize = size;
                 cx += w + Gap;
             }
-            if (offerCard.Combo) Chip(CompanionRoles.ComboBadge, "COMBO", true); // first, so it always fits
+            // (no COMBO chip: the owner wants plain counts; a combo is listed under the details' COMBOS)
             Chip(offerCard.AttackIcon, offerCard.AttackLabel, false); // the weapon this friend comes with
-            foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + Mathf.Max(row.After, row.Bond.NextThreshold(row.After)), row.Activates);
+            foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates);
             return rowY + H + 10;
         }
         /// <summary>The big action button: the verb, and the price with its currency.</summary>
@@ -573,7 +573,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
             // stacked blocks inside the frame's padding (owner, 22/10/2026): the header row, the tiles row, then the scrolling text
             // starting below the tiles' full height, so nothing sits behind the tiles or on the frame's rim
-            Rect inner = new Rect(panel.x + 40, panel.y + 26, panel.width - 80, panel.height - 52);
+            Rect inner = new Rect(panel.x + 56, panel.y + 34, panel.width - 112, panel.height - 68);
             ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y, 72, 72), offerCard.Portrait);
             GUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
             small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 28), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;

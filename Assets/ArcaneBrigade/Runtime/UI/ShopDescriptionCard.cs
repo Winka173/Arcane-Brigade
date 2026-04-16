@@ -89,7 +89,7 @@ namespace ArcaneBrigade
             if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine("{mark} " + skill);
             string talent = CompanionDescriptions.ShortTalent(unit);
             if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine("{mark} " + talent);
-            string passive = CompanionDescriptions.ShortPassive(unit, offer.Tier, catalog.TierSupportMultiplier);
+            string passive = CompanionDescriptions.ShortPassive(unit, offer.Tier, catalog.TierSupportMultiplier, session.GoldScale);
             if (passive.Length > 0) b.AppendLine("{mark} " + passive);
             AppendCosts(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
             // its duets: who it pairs with and what they do together (lit when the partner is already in the brigade)
@@ -153,52 +153,53 @@ namespace ArcaneBrigade
 
         private static string ProcLine(ProcRule p)
             => (p.Trigger == ProcTrigger.CoinCollected ? "Coins" : p.Trigger == ProcTrigger.ChestOpened ? "Chests" : "Kills") + ": " + (p.Chance < 1 ? (p.Chance * 100).ToString("0.#") + "% chance to " : "") + (p.Action == ProcAction.HealChampion ? "heal the hero " + p.Power.ToString("0.#") + " HP" : "blast nearby enemies for " + p.Power.ToString("0.#")) + ".";
-        public float HeaderHeight => Attack == null ? 0 : Mathf.Max(128, Mathf.CeilToInt(Bonds.Count / 3f) * 128 + 8);
+        public float HeaderHeight => Attack == null ? 0 : Mathf.Max(140, Mathf.CeilToInt(Bonds.Count / 3f) * 140 + 8);
         public void DrawHeader(Rect bounds, float clock = 0)
         {
             if (Attack == null) return;
             label ??= ArcadeTypography.Style(17, true); value ??= ArcadeTypography.Style(20, true); muted ??= ArcadeTypography.Style(15);
-            Rect attack = new Rect(bounds.x, bounds.y, 220, 120); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
-            DrawSprite(new Rect(attack.x + 10, attack.y + 10, 38, 38), AttackIcon);
+            Rect attack = new Rect(bounds.x, bounds.y, 220, 132); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
+            Rect ai = ArcadeSkin.Content(attack, KitPiece.Tile); // inside the tile's rim with the standard padding
+            DrawSprite(new Rect(ai.x, ai.y, 24, 24), AttackIcon);
             // the weapon this friend comes with: its name, whole damage, its pace and reach (player numbers)
-            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(attack.x + 54, attack.y + 9, 156, 25), "WEAPON", label);
+            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(ai.x + 30, ai.y, ai.width - 30, 24), "WEAPON", label);
             value.normal.textColor = ArcadeSkin.Cream;
-            FitLabel(new Rect(attack.x + 14, attack.y + 36, 196, 26), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, 19);
+            FitLabel(new Rect(ai.x, ai.y + 22, ai.width, 27), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, 19);
             muted.normal.textColor = ArcadeSkin.Teal;
-            GUI.Label(new Rect(attack.x + 20, attack.y + 63, 186, 24), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s", muted);
-            GUI.Label(new Rect(attack.x + 20, attack.y + 84, 186, 24), "Reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted);
+            FitLabel(new Rect(ai.x, ai.y + 51, ai.width, 19), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s", muted, 15);
+            GUI.Label(new Rect(ai.x, ai.y + 69, ai.width, 19), "Reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted);
             int columns = Mathf.Clamp(Bonds.Count, 1, 3);
             float width = (bounds.width - 230 - (columns - 1) * 8) / columns;
             for (int i = 0; i < Bonds.Count; i++)
             {
                 var row = Bonds[i]; var bond = row.Bond;
-                Rect box = new Rect(bounds.x + 230 + i % columns * (width + 8), bounds.y + i / columns * 128, width, 120);
+                Rect box = new Rect(bounds.x + 230 + i % columns * (width + 8), bounds.y + i / columns * 140, width, 132);
                 bool activates = row.Activates;
                 Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
                 // code-drawn tile (owner, 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
-                if (activates) ArcadeSkin.BlinkLit(box, clock, accent); // the tile this purchase lights blinks (owner, 22/10/2026)
+                if (activates) ArcadeSkin.BlinkStrong(box, clock); // the tile this purchase lights blinks strongly (owner, 22/10/2026)
                 ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
-                if (activates) ArcadeSkin.BlinkOver(box, clock);
-                if (activates) ArcadeSkin.Slant(new Rect(box.x + 6, box.y + 6, box.width - 12, box.height - 12), new Color(accent.r, accent.g, accent.b, .14f));
+                if (activates) { ArcadeSkin.BlinkOver(box, clock); ArcadeSkin.BlinkStrong(box, clock, true); }
+                Rect bi = ArcadeSkin.Content(box, KitPiece.Tile); // inside the tile's rim with the standard padding
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
                 if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
                 float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
-                DrawSprite(new Rect(box.x + 28 - 18 * grow, box.y + 32 - 18 * grow, 36 * grow, 36 * grow), bond.Icon);
-                label.normal.textColor = ArcadeSkin.Cream; FitLabel(new Rect(box.x + 52, box.y + 9, width - 62, 23), bond.Name, label, 17);
+                DrawSprite(new Rect(bi.x + 13 - 13 * grow, bi.y + 13 - 13 * grow, 26 * grow, 26 * grow), bond.Icon);
                 int target = activates ? row.Next : bond.NextThreshold(row.After);
-                muted.normal.textColor = activates ? accent : ArcadeSkin.Teal;
-                FitLabel(new Rect(box.x + 52, box.y + 32, width - 62, 24), (row.Preview ? row.Count + " → " + row.After + "/" + target : "Unavailable · " + row.Count + "/" + row.Next), muted, 15);
-                StatGlyph.Draw(new Rect(box.x + 12, box.y + 60, 23, 23), bond.Effect);
+                // the plain count after buying ("2/2", "4/6"), no ACTIVATES / MERGE wording
+                string count = row.Preview ? row.After + "/" + target : row.Count + "/" + row.Next;
+                muted.normal.textColor = activates ? new Color(1f, .95f, .75f) : ArcadeSkin.Teal; muted.alignment = TextAnchor.MiddleRight;
+                FitLabel(new Rect(bi.xMax - 54, bi.y, 54, 26), count, muted, 17); muted.alignment = TextAnchor.MiddleLeft;
+                label.normal.textColor = ArcadeSkin.Cream; FitLabel(new Rect(bi.x + 34, bi.y, bi.width - 34 - 58, 26), bond.Name, label, 17);
+                StatGlyph.Draw(new Rect(bi.x, bi.y + 34, 23, 23), bond.Effect);
                 value.normal.textColor = BenefitColor(bond.Effect, row.AfterReward);
                 // nothing yet: say the next step in player words ("−7% enemy speed at 2"), never "0%"
                 float stepReward = bond.BalanceReward(bond.Value);
                 if (row.AfterReward == 0) value.normal.textColor = Color.Lerp(BenefitColor(bond.Effect, stepReward), ArcadeSkin.Cream, .35f);
-                FitLabel(new Rect(box.x + 40, box.y + 57, width - 50, 27), row.AfterReward == 0
+                FitLabel(new Rect(bi.x + 30, bi.y + 32, bi.width - 30, 27), row.AfterReward == 0
                     ? RunModifierRules.ValueText(bond.Effect, stepReward) + " " + LowerFirst(ShortOfferCopy.StatName(bond.Effect)) + " at " + target
                     : RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + ShortOfferCopy.StatName(bond.Effect), value, 19);
-                muted.normal.textColor = activates ? new Color(accent.r, accent.g, accent.b, .45f + .55f * ArcadeSkin.BuyBlink(clock)) : ArcadeSkin.Teal; // "ACTIVATES ON BUY" blinks
-                string status = !row.Preview ? "Cannot buy this offer" : activates ? (row.BeforeReward == 0 ? "ACTIVATES ON BUY" : "UPGRADES ON BUY") : row.After < row.Count ? "MERGE · FEWER BOND BODIES" : row.AfterReward == 0 ? "NOT ACTIVE · next at " + target : "AFTER BUY · next at " + target;
-                FitLabel(new Rect(box.x + 20, box.y + 82, width - 40, 22), status, muted, 15);
+                if (!row.Preview) { muted.normal.textColor = ArcadeSkin.Teal; FitLabel(new Rect(bi.x, bi.y + 62, bi.width, 20), "Cannot be bought now", muted, 15); }
             }
         }
         /// <summary>The card's weapon chip: the weapon's short name and its whole damage ("Moon Scythe · 34 dmg").</summary>

@@ -72,7 +72,7 @@ namespace ArcaneBrigade
             Rect ink = SpriteInkMetrics.BoundsOf(image);
             Vector2 drawn = ink.size * (height / Mathf.Max(.01f, ink.height));
             if (!ArenaLayout.Place(owner, id, drawn, ref anchor, out float fit)) return;
-            Add(name, anchor, height * fit, hover);
+            Add(name, anchor, hover ? height * fit : height, hover); // standing figures keep their size; only floating props shrink to fit
         }
         private void Add(string name, Vector2 anchor, float height, bool hover)
         {

@@ -61,24 +61,24 @@ namespace ArcaneBrigade
                 .With(D("Pawn a relic", "relic:1 relic", "gold:half price", "buy back within 2 waves")),
             V("ParcelCourier", "The Unmarked Parcel", "(the parcel rustles, hopeful to be opened)", "Open it for 10 gold: 15 gold, an egg, a Common relic - or an empty box and a note.", A, 10)
                 .With(D("Open it", "gold:10", "gold:15 / egg:1 / relic:Common / ?:empty")),
-            V("TroupeLeader", "The Travelling Troupe", "Choose tonight's play, traveller!", "Pick a play for the next wave.", O, 0, "Swift friends: +10% attack speed", "Sleepy audience: enemies 10% slower", "Coin toss: coins +1")
-                .With(D("Swift friends", F, "CompanionAttackSpeed:+10%", Next), D("Sleepy audience", F, "EnemySpeed:enemies -10%", Next), D("Coin toss", F, "coin:+1 each", Next)),
+            V("TroupeLeader", "The Travelling Troupe", "Choose tonight's play, traveller!", "Pick a play for the next wave.", O, 0, "Swift friends: +10% attack speed", "Sleepy audience: enemies 10% slower", "Coin toss: double coins")
+                .With(D("Swift friends", F, "CompanionAttackSpeed:+10%", Next), D("Sleepy audience", F, "EnemySpeed:enemies -10%", Next), D("Coin toss", F, "coin:x2", Next)),
             V("Lamplighter", "The Lamplighter", "Four lamps, four corners. Shall I light them?", "Next wave: four corner lamps set passing enemies alight.", A, 6)
                 .With(D("Light the lamps", "gold:6", "lamp:4 burning", Next)),
             V("LostToy", "The Lost Toy", "Could I walk with you for a while? I think home is that way.", "Next wave it wanders beside you: stay within 3 units of it for 20s and it finds its way (an egg).")
                 .With(D("Walk with it", F, "egg:1", "next wave · near it 20s")),
             V("ToyMender", "The Toy Mender", "A stitch or two, and they'll hold their ground.", "Patch one friend: next wave its hits slow enemies 20%.", C, 8)
                 .With(D("Patch a friend", "gold:8", "EnemySpeed:-20% on hit", Next)),
-            V("MusicBoxKeeper", "The Music Box Winder", "Shall I wind it a little tighter?", "Next wave everything is 15% faster, enemies too; coins are worth 1 more.")
-                .With(D("Wind it up", "EnemySpeed:enemies +15%", "CompanionAttackSpeed:friends +15% + MoveSpeed:you +15% + coin:+1 each", Next)),
+            V("MusicBoxKeeper", "The Music Box Winder", "Shall I wind it a little tighter?", "Next wave everything is 15% faster, enemies too; coins are worth double.")
+                .With(D("Wind it up", "EnemySpeed:enemies +15%", "CompanionAttackSpeed:friends +15% + MoveSpeed:you +15% + coin:x2", Next)),
             V("Barterer", "The Barterer", "That trinket, for one of mine?", "Swap a relic for a random relic of the same rarity.", I)
                 .With(D("Swap a relic", "relic:1 relic", "relic:same rarity")),
             V("JunkCollector", "The Junk Collector", "Old things find new homes.", "Sell a relic for 60% of its price.", I)
                 .With(D("Sell a relic", "relic:1 relic", "gold:60% price")),
             V("Lender", "The Kind Lender", "Borrow it for one hall. Bring it back.", "Borrow a random Rare relic for the next wave.")
                 .With(D("Borrow a relic", F, "relic:Rare", "next wave only")),
-            V("Storyteller", "The Storyteller", "Sit, sit. Have you heard about the lamp that waited?", "Hear a page of the Waiting Realm; the first 20s of the next wave drop +1 coin per kill.")
-                .With(D("Listen", F, "coin:+1 each", "next wave · first 20s")),
+            V("Storyteller", "The Storyteller", "Sit, sit. Have you heard about the lamp that waited?", "Hear a page of the Waiting Realm; the first 20s of the next wave drop double coins.")
+                .With(D("Listen", F, "coin:x2", "next wave · first 20s")),
             V("SwapClown", "The Stall-Swapping Clown", "Shuffle, shuffle! Fancier, pricier!", "Every relic on the shelf becomes one rarity higher, prices +30%.")
                 .With(D("Shuffle the shelf", "price:+30%", "rarity:+1", Here)),
             V("ClockRewinder", "The Clock Rewinder", "Shall we pretend that refresh never happened?", "Undo your last refresh: its gold back, the shelf as it was.", A, 4)
@@ -108,7 +108,7 @@ namespace ArcaneBrigade
             V("WaterCarrier", "The Well-Water Carrier", "Fresh from the well. It soaks everything.", "Next wave puddles in the four corners soak enemies (frost freezes them).", A, 5)
                 .With(D("Pour the water", "gold:5", "EnemySpeed:4 puddles", Next)),
             V("NightThief", "The Night Thief", "Heavy purse you've got there...", "Leave this shop with more than 60 gold and he takes 10% - unless you chase him off.", O, 0, "Chase him off (5 gold)", "Ignore him")
-                .With(D("Chase him off", "gold:5", "gold:purse safe", Here), D("Ignore him", "gold:10%", "gold:5 kept", "if over 60 on leaving")),
+                .With(D("Chase him off", "gold:5", "gold:purse safe", Here), D("Ignore him", "gold:10%", "gold:5 kept", "if over 60 gold on leaving")),
             V("DollDoctor", "The Doll Doctor", "A stitch in your cloak, for the bad moment.", "Next wave, the first time you fall below 25% health, enemies around you are thrown back.", A, 10)
                 .With(D("Stitch the cloak", "gold:10", "Knockback:push back once", "next wave · HP <25%")),
             V("KeyKeeper", "The Key Keeper", "This one opens something good.", "Next wave the first chest opened also gives a Common relic.", A, 10)
@@ -153,7 +153,7 @@ namespace ArcaneBrigade
             if (v == null || v.Deals.Length == 0) return null;
             VisitorDeal deal = v.Choice == VisitorChoice.Options ? v.Deals[Math.Max(0, Math.Min(option, v.Deals.Length - 1))] : v.Deals[0];
             if (v.Id == "GateKeeper" && shopWave + 1 >= 12) deal = deal.With("relic:Uncommon");
-            if (Math.Abs(goldScale - 1) > 1e-4f) deal = new VisitorDeal(ScaleText(deal.Do, goldScale), ScaleText(deal.Pay, goldScale), ScaleText(deal.Get, goldScale), deal.When);
+            if (Math.Abs(goldScale - 1) > 1e-4f) deal = new VisitorDeal(ScaleText(deal.Do, goldScale), ScaleText(deal.Pay, goldScale), ScaleText(deal.Get, goldScale), ScaleText(deal.When, goldScale));
             return deal;
         }
         /// <summary>An authored (wave-1) gold amount on the gold curve; 0 stays 0.</summary>

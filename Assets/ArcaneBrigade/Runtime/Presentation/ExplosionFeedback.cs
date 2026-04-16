@@ -363,7 +363,7 @@ namespace ArcaneBrigade
             blast.Ring.enabled = blast.Rim.enabled = ringAlpha > 0.01f;
             if (blast.Ring.enabled)
             {
-                Sprite inkRing = CombatVfxArtwork.Frame("BlastRing", 0);
+                Sprite inkRing = Painted(blast) ? CombatVfxArtwork.Frame("BlastRing", 0) : null;
                 blast.Ring.sprite = inkRing != null ? inkRing : ring;
                 blast.Ring.transform.position = blast.Rim.transform.position = blast.Position;
                 blast.Ring.transform.localScale = Vector3.one * (ringScale / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(blast.Ring.sprite).width));
@@ -378,7 +378,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < blast.Chips.Length; i++)
             {
                 SpriteRenderer view = blast.Chips[i];
-                Sprite inkChip = CombatVfxArtwork.Frame("Chip_" + (i % 6 == 4 ? 3 : i % 6), 0); // never the blue-and-white porcelain shard
+                Sprite inkChip = Painted(blast) ? CombatVfxArtwork.Frame("Chip_" + (i % 6 == 4 ? 3 : i % 6), 0) : null; // never the blue-and-white porcelain shard
                 view.sprite = inkChip != null ? inkChip : chip;
                 view.enabled = chips && chipT < 1f && (blast.Kind != Kind.Burst || i < 7);
                 if (!view.enabled) continue;
@@ -398,7 +398,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < blast.Puffs.Length; i++)
             {
                 SpriteRenderer view = blast.Puffs[i];
-                Sprite[] inkPuffs = CombatVfxArtwork.Frames("InkPuff");
+                Sprite[] inkPuffs = null; // the painted purple smoke is retired (owner 22/10/2026): the code-drawn smudge settles instead
                 Sprite inkPuff = inkPuffs == null || inkPuffs.Length == 0 ? null : inkPuffs[Mathf.Min(inkPuffs.Length - 1, Mathf.FloorToInt(puffT * inkPuffs.Length))];
                 view.sprite = inkPuff != null ? inkPuff : puff;
                 view.enabled = i < puffs && puffT > 0 && puffT < 1;
@@ -411,6 +411,7 @@ namespace ArcaneBrigade
                 view.color = new Color(smudge.r, smudge.g, smudge.b, (1 - puffT) * (blast.Kind == Kind.Smudge ? 0.55f : 0.32f));
                 if (inkPuff != null) view.color = new Color(1, 1, 1, (1 - puffT) * .6f);
             }
+            if (blast.Hostile && blast.Kind != Kind.Smudge) EmberBurst(blast, still, sparse, flashGain);
             ApplyPaintedFlash(blast);
         }
         private static Sprite Once(string key, float progress)
@@ -427,15 +428,67 @@ namespace ArcaneBrigade
             view.transform.position = centre - view.transform.TransformVector(ink.center);
             view.color = new Color(1, 1, 1, alpha);
         }
+        /// <summary>A hostile blast as a code-drawn ember burst (owner 22/10/2026): a white-hot core flash cooling to orange, a soft
+        /// orange-red halo, ten embers flying out and fading, a brief heat-ripple ring; no painted dust core.</summary>
+        private void EmberBurst(Blast blast, bool still, bool sparse, float flashGain)
+        {
+            float r = blast.Radius, age = blast.Age;
+            Color hot = new Color(1f, .95f, .76f), ember = new Color(1f, .45f, .16f), deep = new Color(.8f, .14f, .1f);
+            blast.Core.enabled = false;
+            float flashT = Mathf.Clamp01(age / .16f);
+            blast.Flash.enabled = flashT < 1;
+            if (blast.Flash.enabled)
+            {
+                blast.Flash.sprite = glow; blast.Flash.transform.position = blast.Position;
+                blast.Flash.transform.localScale = Vector3.one * (2f * r * (still ? .8f : Mathf.Lerp(.35f, .9f, Ease(flashT))));
+                Color c = Color.Lerp(hot, ember, flashT); blast.Flash.color = new Color(c.r, c.g, c.b, (1 - flashT * flashT) * flashGain);
+            }
+            float haloT = Mathf.Clamp01(age / .4f);
+            if (bloom != null && haloT < 1)
+            {
+                blast.Bloom.enabled = true; blast.Bloom.transform.position = blast.Position;
+                blast.Bloom.transform.localScale = Vector3.one * (2.6f * r * (still ? 1 : Mathf.Lerp(.7f, 1.15f, Ease(haloT))));
+                Color c = Color.Lerp(ember, deep, haloT); blast.Bloom.color = new Color(c.r, c.g, c.b, (1 - haloT) * .6f * flashGain);
+            }
+            // the heat ripple: a faint warm ring passing out to the edge, gone in a third of a second
+            float rippleT = Mathf.Clamp01(age / .32f);
+            blast.Rim.enabled = false; blast.Ring.enabled = !still && rippleT < 1;
+            if (blast.Ring.enabled)
+            {
+                blast.Ring.sprite = ring; blast.Ring.transform.position = blast.Position;
+                blast.Ring.transform.localScale = Vector3.one * (2f * r * Mathf.Lerp(.4f, 1.1f, Ease(rippleT)) / Mathf.Max(.01f, ring.bounds.size.x));
+                blast.Ring.color = new Color(1f, .78f, .55f, (1 - rippleT) * (1 - rippleT) * .35f * flashGain);
+            }
+            // embers: ten sparks thrown out, slowing, cooling from white-gold to red, then gone
+            float emberT = Mathf.Clamp01(age / Mathf.Max(.3f, blast.Duration * .8f));
+            for (int i = 0; i < blast.Chips.Length; i++)
+            {
+                SpriteRenderer view = blast.Chips[i];
+                view.enabled = !sparse && !still && i < 10 && emberT < 1;
+                if (!view.enabled) continue;
+                view.sprite = glow;
+                float travel = (1 - Mathf.Pow(1 - emberT, 2.4f)) * blast.Duration * .7f;
+                view.transform.position = blast.Position + blast.ChipVelocity[i] * travel + Vector2.up * emberT * .2f;
+                view.transform.rotation = Quaternion.identity;
+                view.transform.localScale = Vector3.one * (.16f * Mathf.Sqrt(r) * (1 - emberT * .5f) / Mathf.Max(.01f, glow.bounds.size.x));
+                Color c = Color.Lerp(Color.Lerp(hot, ember, emberT * 1.6f), deep, Mathf.Clamp01(emberT * 2 - 1));
+                view.color = new Color(c.r, c.g, c.b, 1 - emberT * emberT);
+            }
+            // the settling smudge stays faint under the embers
+            foreach (var puff in blast.Puffs) if (puff.enabled) { Color c = puff.color; c.a *= .5f; puff.color = c; }
+        }
+        /// <summary>Hostile blasts and every enemy death are drawn in code (owner 22/10/2026: no painted fire, rock or smoke on the
+        /// hostile side); the painted flash, ring and chips stay only for our own detonations.</summary>
+        private static bool Painted(Blast blast) => !blast.Hostile && blast.Kind != Kind.Pop;
         private static void ApplyPaintedFlash(Blast blast)
         {
+            if (!Painted(blast)) return;
             float life = blast.Kind == Kind.Pop ? .09f : blast.Kind == Kind.Shock ? .2f : .15f;
             FitPainted(blast.Flash, Once(blast.Hostile ? "HostileBlast" : "BlastFlash", blast.Age / life), blast.Flash.transform.localScale.x);
             // The ordinary-death path is independently pooled; replace its geometry as well as large detonations.
             if (blast.Kind != Kind.Pop) return;
             FitPainted(blast.Ring, CombatVfxArtwork.Frame("BlastRing", 0), blast.Ring.transform.localScale.x);
             for (int i = 0; i < blast.Chips.Length; i++) FitPainted(blast.Chips[i], CombatVfxArtwork.Frame("Chip_" + (i % 6 == 4 ? 3 : i % 6), 0), blast.Chips[i].transform.localScale.x);
-            foreach (var puff in blast.Puffs) FitPainted(puff, Once("InkPuff", blast.Age / blast.Duration), puff.transform.localScale.x);
         }
         private static float Ease(float t) => 1 - Mathf.Pow(1 - Mathf.Clamp01(t), 3);
         private static void Hide(Blast blast)

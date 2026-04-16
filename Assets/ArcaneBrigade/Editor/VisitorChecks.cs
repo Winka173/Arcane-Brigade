@@ -186,6 +186,31 @@ namespace ArcaneBrigade.Editor
                 VisitorEffect post = run.State.VisitorEffects.First(e => e.Id == "Post");
                 Check(post.Wave == wave + 3 && Mathf.RoundToInt(post.Value) == ShopVisitors.Amount(d.Get, "gold") && d.When.Contains("3 waves"), "Future Post pays GET " + d.Get + " " + d.When);
             }
+            // owner 22/10/2026 (the storyteller grandmother "gives 1 gold"): no visitor pays a flat +1; coin visitors double coins
+            Check(ShopVisitors.All.All(v => v.Deals.All(x => !x.Get.Contains("+1 each")) && !v.Offer.Contains("+1 coin") && !v.Offer.Contains("1 more")), "No visitor promises a flat +1 coin");
+            // the night thief's purse line is on the gold curve, as its card says
+            foreach (bool over in new[] { false, true })
+            {
+                using var run = Fresh(c); run.ForceVisitor("NightThief");
+                VisitorDeal d = ShopVisitors.DealFor(ShopVisitors.For("NightThief"), 1, run.State.Wave, run.GoldScale);
+                int line = run.ScaledGold(60);
+                Check(run.VisitorChoose(1) && d.When.Contains(line + " gold"), "Night Thief card names the scaled purse line " + d.When);
+                run.State.Gold = over ? line + 50 : line; int before = run.State.Gold;
+                run.ContinueWave();
+                Check(over ? run.State.Gold == before - before / 10 : run.State.Gold == before, "Night Thief takes 10% only above " + line + " gold (over=" + over + ")");
+            }
+            // the colour stranger and the clown re-price the shelf on the wave's gold curve
+            foreach (string id in new[] { "ColourStranger", "SwapClown" })
+            {
+                using var run = Fresh(c); run.ForceVisitor(id);
+                var shelf = run.State.Offers.ToDictionary(x => x.Token, x => x.Id);
+                Check(run.VisitorChoose(0), id + " is answered");
+                float scale = id == "SwapClown" ? 1.3f : .7f;
+                // a relic whose next rarity has no candidate keeps its shelf price; every swapped one is on the curve
+                var swapped = run.State.Offers.Where(x => !x.Sold && x.Kind == OfferKind.Item && shelf.TryGetValue(x.Token, out string was) && was != x.Id).ToList();
+                Check(swapped.Count > 0 && swapped.All(o => o.Price == Mathf.Max(1, Mathf.RoundToInt(c.Item(o.Id).Price * .85f * (1 + (int)c.Item(o.Id).Rarity * .4f) * run.StagePriceFactor * scale))),
+                    id + " prices the swapped relics on the gold curve (" + string.Join(",", swapped.Select(o => o.Price)) + ")");
+            }
         }
 
         private static CombatSimulation Fight(RunSession run)

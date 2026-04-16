@@ -499,7 +499,8 @@ namespace ArcaneBrigade
                 CompanionTierScaling.Apply(unit.Weapon, tier);
             unit.CombatTier = tier;
             if (!companion) unit.CollisionDamage = Mathf.Max(3, source.CollisionDamage);
-            unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
+            unit.PassiveStrength = source.Passive == PassiveKind.Scavenge ? ScavengeGold(source.PassiveStrength, tier, catalog.TierSupportMultiplier, GoldScale)
+                : source.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
             unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, PlayerBuildBalance.AttackSpeedSlope(companion)), .25f, PlayerBuildBalance.AttackSpeedCap(companion));
             unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
@@ -731,6 +732,7 @@ namespace ArcaneBrigade
             State.BuildScoreMultiplier = catalog.StatRevision > 0 ? K10StatRules.Factor(Bonus(ItemEffect.ScoreMultiplier), 0.1f, 100) : 1;
             Notice = "Purchased. " + (offer.Kind == OfferKind.Companion ? "Weapon rolled after purchase." : "Upgrade stacks for this run.");
             if (stork) Notice = "The stork brought it at 2★.";
+            RetireClosedNewSpecies(); // the quota may have just closed: no unbuyable new friend stays on the shelf
             return true;
         }
 
@@ -892,6 +894,12 @@ namespace ArcaneBrigade
         /// amounts (visitor prices and rewards, secret-event fees, chest gold) are wave-1 amounts scaled by it.</summary>
         public float GoldScale => StagePriceFactor;
         public int ScaledGold(int authored) => ShopVisitors.Scale(authored, GoldScale);
+        /// <summary>A Scavenge passive's gold every 4s (owner 22/10/2026: Kettle Bat "finds 0 gold"): the authored strength (0.5,
+        /// once rounded half-to-even to 0) times the star support, on the gold curve, rounded half up and never below 1.</summary>
+        public static int ScavengeGold(float strength, int tier, float support, float goldScale) =>
+            Math.Max(1, (int)Math.Min(int.MaxValue, Math.Round(strength * Math.Pow(support, Mathf.Clamp(tier, 1, 3) - 1) * Math.Max(1f, goldScale * .15f), MidpointRounding.AwayFromZero))); // .15: late 3-star finds ~50 a tick (~10–15% of a wave's income), not a second income
+        /// <summary>The Scavenge gold of a friend at its stars in this shop or wave (what its card says).</summary>
+        public int ScavengeGold(UnitDefinition unit, int tier) => ScavengeGold(unit.PassiveStrength, tier, catalog.TierSupportMultiplier, GoldScale);
         /// <summary>What a visitor asks in this shop: its authored price on the gold curve (the world tag, the card and the
         /// rules all read this one number).</summary>
         public int VisitorCost(VisitorDefinition v) => v == null ? 0 : ScaledGold(v.Cost);
@@ -937,7 +945,7 @@ namespace ArcaneBrigade
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - KitExtraSlots - MetaExtraSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && !StorySpecies(unit.Id) && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && RegularRecruitOpen(unit.Id) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (RegularShelfSpecies(unit) && RegularRecruitOpen(unit.Id)) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");

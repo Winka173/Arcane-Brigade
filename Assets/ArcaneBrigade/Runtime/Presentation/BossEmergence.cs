@@ -78,22 +78,21 @@ namespace ArcaneBrigade
         {
             bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
             float open = Mathf.SmoothStep(0, 1, Mathf.Clamp01(progress / .25f)) * (1 - Mathf.SmoothStep(0, 1, shut));
-            Sprite[] poolArt = CombatVfxArtwork.Frames("ShadowPool");
-            Sprite poolFrame = poolArt != null && poolArt.Length > 0 ? poolArt[still ? 0 : Mathf.Abs(Mathf.FloorToInt(time * 8)) % poolArt.Length] : soft;
+            // drawn in code (owner 22/10/2026: no painted lava pool or purple smoke): a soft dark pool, a violet rim, soft wisps
+            Sprite poolFrame = soft;
             float wide = width * 1.7f * (still ? 1 : .55f + .45f * open);
             // the pool on the floor, flattened to the room's perspective, with a faint violet rim and a low glow under it
             Fit(pool, poolFrame, foot, wide, wide * .42f, 0, new Color(Ink.r * 2.4f, Ink.g * 2.4f, Ink.b * 2.4f, .92f * open), bodyOrder - 6);
             Fit(rim, soft, foot, wide * 1.15f, wide * .5f, 0, new Color(.45f, .2f, .7f, .35f * open * (still ? 1 : .8f + .2f * Mathf.Sin(time * 6))), bodyOrder - 7);
             Fit(glow, soft, foot + Vector2.up * height * .35f, width * 1.4f, height * 1.3f, 0, new Color(.3f, .12f, .45f, .28f * open * (1 - progress * .6f)), bodyOrder - 1);
             // ink smoke curling up round the body while it rises
-            Sprite[] puff = CombatVfxArtwork.Frames("InkPuff");
             for (int i = 0; i < Wisps; i++)
             {
-                if (still || sparse && i >= 2 || puff == null || puff.Length == 0) { wisps[i].enabled = false; continue; }
+                if (still || sparse && i >= 2) { wisps[i].enabled = false; continue; }
                 float life = Mathf.Repeat(progress * 1.6f + i / (float)Wisps, 1f);
                 float side = (i % 2 == 0 ? -1 : 1) * (.25f + .2f * (i / 2));
                 Vector2 at = foot + new Vector2(side * width * .5f + Mathf.Sin(time * 2 + i) * .12f, life * height * 1.1f);
-                Fit(wisps[i], puff[Mathf.Min(puff.Length - 1, Mathf.FloorToInt(life * puff.Length))], at, width * .5f * (.6f + .6f * life), width * .5f * (.6f + .6f * life), time * 30 * (i % 2 == 0 ? 1 : -1),
+                Fit(wisps[i], soft, at, width * .5f * (.6f + .6f * life), width * .5f * (.6f + .6f * life), time * 30 * (i % 2 == 0 ? 1 : -1),
                     new Color(Ink.r * 3, Ink.g * 3, Ink.b * 3, Mathf.Sin(life * Mathf.PI) * .7f * open), i % 2 == 0 ? bodyOrder + 1 : bodyOrder - 2);
             }
             // drops running off the body as it clears the surface, falling back into the pool

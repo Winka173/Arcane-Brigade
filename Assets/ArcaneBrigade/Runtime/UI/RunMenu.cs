@@ -434,8 +434,9 @@ namespace ArcaneBrigade
             }
             GUI.DrawTexture(new Rect(0, 0, 600, 720), landingShade);
             DrawChairVoice();
-            ArcadeSkin.Line(new Rect(0, 652, 1280, 68), new Color(0.02f, 0.025f, 0.05f, 0.85f));
-            ArcadeSkin.Divider(new Rect(36, 652, 1208, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.3f));
+            ArcadeSkin.Line(new Rect(0, 590, 1280, 130), new Color(0.02f, 0.025f, 0.05f, 0.85f));
+            if (ArcadeSkin.HasKit) ArcadeSkin.Ornament(new Rect(36, 580, 1208, 20), KitDivider.Lantern);
+            else ArcadeSkin.Divider(new Rect(36, 590, 1208, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.3f));
             bool reduced = profile.ReducedMotion;
             float breathe = reduced ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 1.1f);
 
@@ -511,9 +512,11 @@ namespace ArcaneBrigade
             {
                 GUI.enabled = SpotEnabled(index);
                 string caption = SpotLabels[index];
-                float step = (1208f + 8) / SpotLabels.Length;
-                Rect spot = new Rect(36 + index * step, 664, step - 8, 42);
-                if (navigation.Button(spot, caption, index == 0 ? primary : smallButton)) ActivateSpot(index);
+                // row one: NEW JOURNEY and CONTINUE, wide and gold; row two: the other five, walnut (owner, 22/10/2026)
+                Rect spot;
+                if (index < 2) spot = new Rect(36 + index * 330, 606, 316, 48);
+                else { float step = (1208f + 12) / (SpotLabels.Length - 2); spot = new Rect(36 + (index - 2) * step, 664, step - 12, 44); }
+                if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume ? primary : smallButton)) ActivateSpot(index);
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
                 if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(new Rect(spot.xMax - 22, spot.y - 14, 28, 28), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(new Vector2(spot.xMax - 8, spot.y), 22, "!"); }
             }

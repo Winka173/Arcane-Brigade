@@ -326,7 +326,37 @@ namespace ArcaneBrigade
             }
             return bare;
         }
-        /// <summary>GUI.Button through the kit: the painted plate where it fits, else the code-drawn one.</summary>
-        public static bool KitGuiButton(Rect r, string text, GUIStyle style) => GUI.Button(r, text, Fit(style, r));
+        /// <summary>GUI.Button through the kit: the painted plate where it fits, else the code-drawn one; the label fitted.</summary>
+        public static bool KitGuiButton(Rect r, string text, GUIStyle style) => GUI.Button(r, text, Fit(style, r, text));
+
+        /// <summary>Shrinks a style's font step by step (down to 70% of its size) until the text fits the width, then lets it wrap
+        /// to two lines (owner, 22/10/2026: a label never runs past its button's caps).</summary>
+        public static void FitText(GUIStyle style, string text, float width)
+        {
+            if (style == null || string.IsNullOrEmpty(text) || width <= 0) return;
+            var content = new GUIContent(text);
+            if (style.CalcSize(content).x <= width) return;
+            int size = style.fontSize > 0 ? style.fontSize : 16, floor = Mathf.Max(10, Mathf.RoundToInt(size * .7f));
+            style.fontSize = size;
+            while (style.fontSize > floor && style.CalcSize(content).x > width) style.fontSize--;
+            if (style.CalcSize(content).x > width) style.wordWrap = true;
+        }
+
+        private static readonly Dictionary<(GUIStyle, int, bool), GUIStyle> fittedLabels = new Dictionary<(GUIStyle, int, bool), GUIStyle>();
+        /// <summary>The style for a skin button with this caption in this rect: the plate as <see cref="Fit(GUIStyle, Rect)"/>, and
+        /// the label fitted inside the plate's content width (shrunk, then wrapped).</summary>
+        public static GUIStyle Fit(GUIStyle style, Rect r, string caption)
+        {
+            GUIStyle s = Fit(style, r);
+            if (s == null || string.IsNullOrEmpty(caption)) return s;
+            float room = Content(r, KitPiece.Plate).width;
+            var content = new GUIContent(caption);
+            if (s.CalcSize(content).x <= room) return s;
+            var probe = new GUIStyle(s) { fontSize = s.fontSize > 0 ? s.fontSize : 16, wordWrap = false };
+            FitText(probe, caption, room);
+            var key = (s, probe.fontSize, probe.wordWrap);
+            if (!fittedLabels.TryGetValue(key, out GUIStyle fitted) || fitted == null) fittedLabels[key] = fitted = probe;
+            return fitted;
+        }
     }
 }

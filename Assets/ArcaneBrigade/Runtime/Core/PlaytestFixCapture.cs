@@ -108,6 +108,7 @@ namespace ArcaneBrigade
             // 01: hero select without the modes row
             yield return new WaitForSecondsRealtime(2);
             RunMenu menu = FindAnyObjectByType<RunMenu>();
+            if (menu != null) { menu.ShowPage(RunMenu.Page.Landing); yield return new WaitForSecondsRealtime(.8f); yield return Shot("Item13_MainMenu"); } // the main menu's two button rows
             if (menu != null) { menu.ShowPage(RunMenu.Page.Roster); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item01_HeroSelect"); }
             else Check(false, "Menu found");
             // 27: the Waiting Room hub (stations restored by their ranks, the other five dusty), a station's cards, hero select's row

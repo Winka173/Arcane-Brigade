@@ -288,7 +288,7 @@ PASS Lethal arcane hit still chains once
 PASS Interceptor absorbs enemy projectile without ally damage
 PASS Armor shares received damage pipeline
 PASS Feedback reports damage after armor
-PASS Champion only damage build leaves allies unchanged
+PASS Champion only damage build leaves allies unchanged 1.72 / 1
 PASS Damage items scale combat exactly as the multiplier says, including rally passive 1.72 vs 1.72
 PASS Stacked roam adds exactly its bonus above champion baseline and interception reaches simulation
 PASS Treasury wave modifier (gold 2, modifier Golden Rush)

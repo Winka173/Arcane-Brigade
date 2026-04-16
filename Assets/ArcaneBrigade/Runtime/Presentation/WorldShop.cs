@@ -419,7 +419,7 @@ namespace ArcaneBrigade
                 // the friend on its stall holds the weapon it comes with (rolled with the offer)
                 if (station.Actor != null && offer.Kind == OfferKind.Companion && owner.Session.OfferWeapon(offer) is WeaponDefinition held)
                     station.Actor.HoldWeapon(held.Sprite, catalog.Arena.Hand, held.Kind == WeaponKind.Melee);
-                station.Description = offer.Kind == OfferKind.Companion ? CompanionDescriptions.Describe(catalog.Unit(offer.Id), offer.Tier, catalog.TierSupportMultiplier) : RelicDescriptions.Describe(catalog.Item(offer.Id), owner.Session.StackCount(offer.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, catalog.Item(offer.Id));
+                station.Description = offer.Kind == OfferKind.Companion ? CompanionDescriptions.Describe(catalog.Unit(offer.Id), offer.Tier, catalog.TierSupportMultiplier, owner.Session.GoldScale) : RelicDescriptions.Describe(catalog.Item(offer.Id), owner.Session.StackCount(offer.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, catalog.Item(offer.Id));
                 if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(MarketMotion.StockArrivalDelay + index * MarketMotion.StockStagger, scenery.transform.TransformPoint(MerchantCenter));
                 if (!offer.Sold && arrival)
                 {
@@ -453,6 +453,7 @@ namespace ArcaneBrigade
             {
                 // a visitor waits at its own table on the right
                 Station table = AddStation(new Vector2(5.0f, 0.4f), "VISITOR", guest, ExpansionArtwork.Current.VisitorPoses(visitor.Id), false);
+                table.Actor?.SetStanding(); // a visitor stands on the floor; only things float in the dream
                 table.Description = visitor.Name + ": '" + visitor.Line + "'\n" + ShopVisitors.ScaleText(visitor.Offer, owner.Session.GoldScale);
                 table.Price = owner.Session.VisitorCost(visitor); // the same number the card asks and the rules take
             }
@@ -519,7 +520,7 @@ namespace ArcaneBrigade
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == offer.Tier).Count;
-                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\n" + (owner.Session.OfferWeapon(offer) is WeaponDefinition comes ? RunUICopy.WeaponName(comes.Id) : "Random weapon") + " · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: stars " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
+                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier, owner.Session.GoldScale) + "\n" + (owner.Session.OfferWeapon(offer) is WeaponDefinition comes ? RunUICopy.WeaponName(comes.Id) : "Random weapon") + " · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: stars " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
@@ -647,6 +648,15 @@ namespace ArcaneBrigade
         }
 
         private Sprite fitIcon;
+        /// <summary>Under a stall: the lowest edge of its drawn pieces (the character, its stand), a little below; else the marker.</summary>
+        private static Vector3 TagAnchor(Station station, float fallbackDrop)
+        {
+            float low = float.MaxValue;
+            if (station.Renderers != null)
+                foreach (SpriteRenderer r in station.Renderers)
+                    if (r != null && r.enabled && r.sprite != null && r.gameObject.name != "ShopFloorContact") low = Mathf.Min(low, r.bounds.min.y);
+            return low < float.MaxValue ? new Vector3(station.Marker.position.x, low - .06f, 0) : station.Marker.position + Vector3.down * fallbackDrop;
+        }
         private GUIStyle talkStyle;
         /// <summary>A small speech bubble bobbing above a visitor that can still be talked to (owner, 22/10/2026): "…" at rest,
         /// "!" and brighter when the hero is in reach; gone once its deal is taken (the visitor is then done).</summary>
@@ -695,9 +705,10 @@ namespace ArcaneBrigade
                     DrawSoldTicket(camera, station, soldAge);
                     continue;
                 }
-                Vector3 screen = camera.WorldToScreenPoint(station.Marker.position + Vector3.down * (station.Action == "REROLL" ? 0.83f : 0.65f));
+                Vector3 screen = camera.WorldToScreenPoint(TagAnchor(station, station.Action == "REROLL" ? 0.83f : 0.65f));
                 Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
                 float scale = 1 + station.Focus * 0.09f + BeatPulse.Kick * 0.035f;
+                point.y += 22 * scale; // the tag hangs below the feet (owner, 22/10/2026: never over the character)
                 string price = station.Price.ToString();
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
                 Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);

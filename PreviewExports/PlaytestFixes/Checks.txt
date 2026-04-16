@@ -1,3 +1,4 @@
+PASS Shot Item13_MainMenu
 PASS Shot Item01_HeroSelect
 PASS Hub opens with a station in reach
 PASS Shot Item27_Hub
@@ -54,7 +55,7 @@ PASS Shop loads at wave 2
 PASS Map elements on screen: WaitingRoom (8 props)
 PASS Shot Item24_MapWaitingRoom
 PASS Shop loads at wave 7
-PASS Map elements on screen: PostOffice (25 props)
+PASS Map elements on screen: PostOffice (20 props)
 PASS Shot Item24_MapPostOffice
 PASS Shop loads at wave 12
 PASS Map elements on screen: LampHall (6 props)

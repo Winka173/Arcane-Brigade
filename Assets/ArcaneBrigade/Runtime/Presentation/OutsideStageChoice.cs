@@ -15,6 +15,8 @@ namespace ArcaneBrigade
         private Vector2 HandAt => owner?.Session != null && !owner.Session.State.Endless && owner.Session.State.Wave <= ActOneCanon.Waves ? ActOneChallengePosition : ChallengePosition;
         public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
         public int SpotCount => mode == 1 ? 1 : mode == 2 ? 3 : 0;
+        /// <summary>The Keeper's gift cards are on screen (a modal choice).</summary>
+        public bool GiftsOpen => mode == 2;
         public bool Spot(int index, out Vector2 position, out float reach)
         {
             position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 1.6f : 1.05f;
@@ -27,6 +29,13 @@ namespace ArcaneBrigade
         private Vector2 descriptionScroll;
         private int preview;
         private readonly ShopDescriptionCard giftCard = new ShopDescriptionCard();
+        private GUIStyle takeStyle;
+        private static string FirstLines(string text, int lines)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            string[] all = text.Replace("\r", "").Split('\n');
+            return string.Join("\n", all, 0, Mathf.Min(lines, all.Length));
+        }
         private readonly ShopOffer giftOffer = new ShopOffer();
         private GUIStyle cardName, cardLine, identity;
         public void Configure(ArenaController controller) { owner = controller; ShopFocus.Register(this); }
@@ -114,29 +123,28 @@ namespace ArcaneBrigade
                 // looked at), each gift on a velvet-and-brass pedestal
                 ArcadeSkin.TitleBanner(new Rect(660, 160, 600, 66), "TAKE ONE GIFT", title);
                 if (cardName == null) { cardName = ArcadeTypography.Style(26, true); cardName.wordWrap = true; cardName.alignment = TextAnchor.MiddleCenter; cardLine = ArcadeTypography.Style(20); identity = ArcadeTypography.Style(17); }
+                // the gifts as shop cards (owner, 22/10/2026): the shop offer's card (picture, name, tag, GIVES / COSTS) with a gold
+                // TAKE in its right column, like BUY
                 for (int i = 0; i < 3; i++)
                 {
                     string id = owner.Session.State.OutsideRewards[i]; ItemDefinition item = owner.Content.Item(id); UnitDefinition ally = owner.Content.Unit(id);
                     giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = 1; giftOffer.Token = -1; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
-                    Rect plate = new Rect(300 + i * 450, 250, 430, 560);
-                    bool creamPlate = ArcadeSkin.EventPlate(plate, preview == i, true); // the painted cream gift plate, else the walnut code plate
-                    if (!creamPlate) ArcadeSkin.CodePlate(plate, CodeTone.Walnut, preview == i ? 1 : 0);
-                    if (preview == i) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), owner.PresentationClock, RunModifierRules.RarityColor(ItemRarity.Rainbow));
-                    Rect inner = ArcadeSkin.EventContent(plate); // inside the plate's rim with the standard padding
-                    Rect stand = new Rect(inner.center.x - 110, inner.y, 220, 160);
-                    ArcadeSkin.Pedestal(stand, owner.PresentationClock);
-                    ShopDescriptionCard.DrawSprite(ArcadeSkin.PedestalSeat(stand), giftCard.Portrait);
-                    cardName.normal.textColor = creamPlate ? ArcadeSkin.Wax : RunModifierRules.RarityColor(ItemRarity.Rainbow); cardLine.normal.textColor = creamPlate ? ArcadeSkin.KitInk : ArcadeSkin.Cream; identity.normal.textColor = creamPlate ? new Color(.1f, .32f, .38f) : ArcadeSkin.Teal;
-                    GUI.Label(new Rect(inner.x, inner.y + 162, inner.width, 56), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
-                    string gives = giftCard.Summary ?? "";
-                    float top = inner.y + 222, height = GlossaryUI.Height(gives, cardLine, inner.width - 14) + 8;
-                    if (preview == i) descriptionScroll = ScrollPanel.Begin(new Rect(inner.x, top, inner.width, inner.yMax - top), descriptionScroll, new Rect(0, 0, inner.width - 14, height));
-                    GlossaryUI.Text(preview == i ? new Rect(0, 0, inner.width - 14, height) : new Rect(inner.x, top, inner.width - 14, inner.yMax - top), gives, cardLine);
-                    if (preview == i) ScrollPanel.End();
-                    else if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { preview = i; descriptionScroll = Vector2.zero; }
+                    Rect panel = new Rect(500, 250 + i * 262, 920, 240);
+                    RarityDescriptionFrame.Draw(panel, giftCard.Rarity, owner.PresentationClock);
+                    Rect picture = new Rect(panel.x + 30, panel.y + 24, 150, 150);
+                    ShopDescriptionCard.DrawSprite(new Rect(picture.x + 6, picture.y + 6, 138, 138), giftCard.Portrait);
+                    string kind = item != null ? RunModifierRules.RarityName(giftCard.Rarity) : giftCard.Role.HasValue ? CompanionRoles.Word(giftCard.Role.Value) : "FRIEND";
+                    ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 8, 150, 30), kind, CodeTone.Walnut, identity, RunModifierRules.RarityColor(giftCard.Rarity));
+                    Rect take = new Rect(panel.xMax - 228, panel.center.y - 52, 192, 104);
+                    float tx = panel.x + 208, tw = take.x - 20 - tx;
+                    cardName.alignment = TextAnchor.MiddleLeft; cardName.wordWrap = false; cardName.normal.textColor = RunModifierRules.RarityColor(giftCard.Rarity);
+                    GUI.Label(new Rect(tx, panel.y + 20, tw, 40), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
+                    cardLine.normal.textColor = ArcadeSkin.Cream;
+                    GlossaryUI.Text(new Rect(tx, panel.y + 66, tw, panel.height - 90), FirstLines(giftCard.Summary, 4), cardLine);
+                    if (takeStyle == null) takeStyle = ArcadeSkin.Primary(new GUIStyle(choiceButton) { fontSize = 30 });
+                    if (ArcadeSkin.KitGuiButton(take, "TAKE", takeStyle) && owner.ClaimOutsideReward(i)) { Clear(); mode = 0; GUI.matrix = matrix; GUI.skin = previousSkin; return; }
                 }
-                if (GUI.Button(new Rect(760, 860, 400, 84), "TAKE", choiceButton) && owner.ClaimOutsideReward(preview)) { Clear(); mode = 0; GUI.matrix = matrix; GUI.skin = previousSkin; return; }
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
             GUI.matrix = matrix;

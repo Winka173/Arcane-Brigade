@@ -184,6 +184,7 @@ namespace ArcaneBrigade
                     State.Offers.Clear(); State.Offers.AddRange(State.ShelfBeforeRefresh); State.ShelfBeforeRefresh.Clear();
                     if (State.RefreshPaid > 0) State.Gold = BoundedCounter((long)State.Gold + State.RefreshPaid);
                     State.RefreshPaid = -1; Notice = "The shelf is as it was.";
+                    RetireClosedNewSpecies(); // an old shelf may hold a new friend the quota has closed since
                     break;
                 }
                 case "SleeplessChild": AddVisitorEffect("Lullaby"); break;
@@ -295,6 +296,7 @@ namespace ArcaneBrigade
             ItemStack stack = State.Items.Find(x => x.Id == item.Id);
             if (stack == null) State.Items.Add(new ItemStack { Id = item.Id, Count = 1 }); else stack.Count++;
             BuyRelic(item, 0);
+            RetireClosedNewSpecies(); // a gift relic may have brought a new friend and closed the quota
         }
         private ItemDefinition GiveRandomItem(ItemRarity rarity, bool lent)
         {
@@ -317,7 +319,8 @@ namespace ArcaneBrigade
                 foreach (ItemDefinition c in catalog.Items) if (c.Rarity == want && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && StackCount(c.Id) < c.StackLimit) pool.Add(c);
                 if (pool.Count == 0) continue;
                 ItemDefinition next = pool[Next(ref State.VisitorRandom, pool.Count)];
-                offer.Id = next.Id; offer.BasePrice = 0; offer.Price = Mathf.Max(1, Mathf.RoundToInt(next.Price * priceScale));
+                // the shelf's own price (rarity markup and the wave's gold curve), then the visitor's +30% / -30%
+                offer.Id = next.Id; offer.BasePrice = 0; offer.Price = Mathf.Max(1, Mathf.RoundToInt(next.Price * 0.85f * (1 + (int)next.Rarity * 0.4f) * StagePriceFactor * priceScale));
             }
             Notice = step > 0 ? "The shelf glitters: fancier and pricier." : "The colours drain: humbler and cheaper.";
         }
@@ -355,7 +358,7 @@ namespace ArcaneBrigade
         /// <summary>Leaving the shop: the thief takes his cut; a pawned relic past its time is forfeit.</summary>
         private void VisitorLeaveShop()
         {
-            if (VisitorActive("Thief", State.Wave) && State.Gold > 60) { int lost = State.Gold / 10; State.Gold -= lost; Notice = "The night thief took " + lost + " gold."; }
+            if (VisitorActive("Thief", State.Wave) && State.Gold > ScaledGold(60)) { int lost = State.Gold / 10; State.Gold -= lost; Notice = "The night thief took " + lost + " gold."; }
             State.VisitorEffects.RemoveAll(e => e.Id == "Thief");
         }
         /// <summary>A pawned relic waiting to be redeemed (shown as a REDEEM table in the shop).</summary>

@@ -112,7 +112,8 @@ namespace ArcaneBrigade
                 spark.Size = kill ? 0.09f : 0.065f;
                 spark.Important = important;
                 // a painted spark, not a flat disc: brass motes for our hits, the hurt splash when the hero is struck
-                spark.Frames = CombatVfxArtwork.Frames(combatEvent.Faction == Faction.Champion && hit ? "HeroHurt" : "AllySpark");
+                // the hero's hurt is a code-drawn spark in its own colour (owner 22/10/2026: no painted red splash on the hostile side)
+                spark.Frames = combatEvent.Faction == Faction.Champion && hit ? null : CombatVfxArtwork.Frames("AllySpark");
                 Sprite first = spark.Frames != null && spark.Frames.Length > 0 ? spark.Frames[(sequence + index) % spark.Frames.Length] : sprite;
                 spark.View.sprite = first;
                 spark.Ink = Mathf.Max(0.01f, spark.Frames != null ? SpriteInkMetrics.BoundsOf(first).width : sprite.bounds.size.x);

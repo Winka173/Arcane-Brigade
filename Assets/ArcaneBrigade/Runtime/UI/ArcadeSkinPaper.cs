@@ -51,6 +51,29 @@ namespace ArcaneBrigade
             CodePlate(r, CodeTone.Walnut, lit ? 1 : 0);
         }
 
+        /// <summary>Where an icon sits in a chip's round socket: on the socket's measured centre (30, 25.5 of the 152 x 52 chip,
+        /// 40 across), about 70% of it; on the code-drawn chip, a square at its left end.</summary>
+        public static Rect ChipIconRect(Rect chip)
+        {
+            Sprite s = Crafted ? null : KitSprite("Info/Chip");
+            if (s == null || !KitBodies.TryGetValue("Info/Chip", out RectInt body)) { float d = chip.height * .62f; return new Rect(chip.x + chip.height * .5f - d * .5f, chip.center.y - d * .5f, d, d); }
+            float k = chip.height / body.height, size = 28 * k;
+            return new Rect(chip.x + (30 - body.x) * k - size * .5f, chip.y + (25.5f - body.y) * k - size * .5f, size, size);
+        }
+
+        /// <summary>A strong blink for a tile or chip a purchase lights (owner, 22/10/2026): a bright gold-white glow pulsing behind
+        /// it and its rim flashing; Reduced Flashes / Motion keep a slow gentle pulse.</summary>
+        public static void BlinkStrong(Rect r, float clock, bool rimOnly = false)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            float b = BuyBlink(clock);
+            Color hot = new Color(1f, .93f, .66f);
+            if (!rimOnly) Glow(new Rect(r.x - 22, r.y - 18, r.width + 44, r.height + 36), new Color(hot.r, hot.g, hot.b, .25f + .55f * b));
+            Color rim = new Color(1f, .97f, .85f, .2f + .8f * b);
+            Line(new Rect(r.x + 4, r.y, r.width - 8, 3), rim); Line(new Rect(r.x + 4, r.yMax - 3, r.width - 8, 3), rim);
+            Line(new Rect(r.x, r.y + 4, 3, r.height - 8), rim); Line(new Rect(r.xMax - 3, r.y + 4, 3, r.height - 8), rim);
+        }
+
         /// <summary>A DO / LOSE / GET row band: cream receipt paper, oxblood with a thorn line, green-gilt with a laurel line.</summary>
         public static bool EventBand(Rect r, CodeTone tone) =>
             !Crafted && DrawPiece(r, KitPiece.Plate, tone == CodeTone.Oxblood ? "Info/LoseRow" : tone == CodeTone.Green ? "Info/GetRow" : "Paper/Receipt");

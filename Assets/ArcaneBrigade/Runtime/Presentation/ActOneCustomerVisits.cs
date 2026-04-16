@@ -62,6 +62,7 @@ namespace ArcaneBrigade
             {
                 registered = true;
                 room = ShopLayout.Active.Place(LayoutId,preferred,size,-1,true,false,out anchor,out fit);
+                fit = 1; // the Last Customer is the same size in every shop (the fitting may move him, never shrink him)
             }
             visible = actor && room && picture != null;
             customer.enabled = visible;

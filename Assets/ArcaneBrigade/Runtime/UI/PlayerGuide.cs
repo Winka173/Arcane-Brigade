@@ -95,12 +95,24 @@ namespace ArcaneBrigade
             small = ArcadeTypography.Style(24); small.wordWrap = true; small.alignment = TextAnchor.UpperCenter; small.normal.textColor = ArcadeSkin.Cream;
         }
 
+        /// <summary>Any modal card on screen (one shared check): the shop's inspect card, a visitor card, the Last Customer or the
+        /// relight choice, the Keeper's gifts, a secret-event room, the brigade details. Tips wait (timer paused, not drawn).</summary>
+        public static bool ModalOpen(ArenaController owner)
+        {
+            if (owner == null) return false;
+            if (owner.GetComponent<ShopInspect>()?.Open != null || owner.GetComponent<VisitorCard>()?.Open == true || owner.Details.Open) return true;
+            foreach (CustomerOffer offer in owner.GetComponents<CustomerOffer>()) if (offer.Open) return true;
+            foreach (MemoryReturn memory in owner.GetComponents<MemoryReturn>()) if (memory.Open) return true;
+            OutsideStageChoice gifts = owner.GetComponent<OutsideStageChoice>(); if (gifts != null && gifts.GiftsOpen) return true;
+            SecretEventRoom room = owner.GetComponent<SecretEventRoom>(); return room != null && room.MenuOpen;
+        }
+
         private void DrawTip(ArenaController owner, Tip tip, float alpha)
         {
             Rect r = new Rect(560, 150, 800, 104);
             // never over an open card (the shop's details, an inspect card): the tip waits until it is closed
             Rect shown = RunHud.ShownShopCard;
-            if (shown.height > 0 && shown.Overlaps(r) || owner.GetComponent<ShopInspect>()?.Open != null)
+            if (shown.height > 0 && shown.Overlaps(r) || ModalOpen(owner))
             {
                 if (Event.current.type == EventType.Repaint) shownAt += Time.unscaledDeltaTime;
                 return;

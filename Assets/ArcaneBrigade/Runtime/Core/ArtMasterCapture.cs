@@ -94,13 +94,15 @@ namespace ArcaneBrigade
             explosion.Observe(new CombatEvent(CombatEventKind.Detonation, new Vector2(-3, 0), Faction.Companion, 1.6f), false);
             explosion.Observe(new CombatEvent(CombatEventKind.Detonation, new Vector2(3, 0), Faction.Enemy, 1.6f), false);
             yield return Shot("Painted-blasts-both-factions");
-            Check(FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None).Any(v => v.enabled && v.sprite != null && v.sprite.texture.name.StartsWith("HostileBlast", StringComparison.Ordinal)), "A real hostile detonation uses painted ember art");
+            Check(!FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None).Any(v => v.enabled && v.sprite != null && v.sprite.texture.name.StartsWith("HostileBlast", StringComparison.Ordinal)), "A real hostile detonation is drawn in code, not painted ember art (owner 22/10/2026)");
             var fields = (IList<ExpandedField>)owner.Simulation.ExpandedFields; fields.Clear();
             var source = owner.Simulation.Units.First(u => u.Alive && u.Faction == Faction.Enemy);
             int hazard = 0;
             foreach (var kind in new[] { ExpandedFieldKind.OfficeHazard, ExpandedFieldKind.Curtain, ExpandedFieldKind.ToyHazard })
                 fields.Add(new ExpandedField { Kind = kind, Source = source, Position = new Vector2(-4 + hazard++ * 4, -1), Radius = 1.4f, Created = owner.Simulation.Elapsed, At = owner.Simulation.Elapsed + 20, Until = owner.Simulation.Elapsed + 40 });
             fields.Add(new ExpandedField { Kind = ExpandedFieldKind.Tentacle, Source = source, Start = new Vector2(-4, 2.5f), Position = new Vector2(4, 2.5f), Radius = .35f, Created = owner.Simulation.Elapsed, At = owner.Simulation.Elapsed + 20, Until = owner.Simulation.Elapsed + 40 });
+            fields.Add(new ExpandedField { Kind = ExpandedFieldKind.ShadowPool, Source = source, Position = new Vector2(-2, -3.2f), Radius = 1.1f, Created = owner.Simulation.Elapsed, At = owner.Simulation.Elapsed + 20, Until = owner.Simulation.Elapsed + 40 });
+            fields.Add(new ExpandedField { Kind = ExpandedFieldKind.Shockwave, Source = source, Position = new Vector2(2.5f, -3.2f), Radius = 1.6f, Created = owner.Simulation.Elapsed, At = owner.Simulation.Elapsed + 20, Until = owner.Simulation.Elapsed + 40 });
             yield return new WaitForSecondsRealtime(.1f); yield return Shot("Painted-hazards-warning");
             foreach (var field in fields) field.At = owner.Simulation.Elapsed - .1f;
             yield return new WaitForSecondsRealtime(.1f); yield return Shot("Painted-hazards-active");

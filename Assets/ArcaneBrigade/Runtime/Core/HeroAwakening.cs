@@ -316,12 +316,15 @@ namespace ArcaneBrigade
             if (lead != null) IdentityEcho(lead, target, IdentityPower * .7f * ApproachScale);
             else IdentityPattern(target, IdentityPower * .7f * ApproachScale);
         }
+        /// <summary>LIGHTHOUSE sweep speed in degrees a second (owner 22/10/2026: 120 -> 75, a slower, grander sweep). Strikes still
+        /// fall every 0.25s with the same budget, so the damage per second is unchanged; they now land closer together.</summary>
+        public const float LighthouseSweep = 75f;
         private void Lighthouse()
         {
             if (Elapsed < awakenShotAt) return;
             awakenShotAt = Elapsed + .25f;
-            // the beam sweeps once round every 3s, striking what it crosses
-            float angle = (Elapsed - awakenStarted) * 120f;
+            // the beam sweeps once round every 4.8s (LighthouseSweep), striking what it crosses
+            float angle = (Elapsed - awakenStarted) * LighthouseSweep;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
             var beam = Hit(MorphGeometry.Line, Champion.Position + dir * .5f, Champion.Position + dir * MaxLineLength, 0, .7f, .05f);
             if (beam != null) beam.Painted = true; // the sweeping beam is painted by HeroAwakeningVisual

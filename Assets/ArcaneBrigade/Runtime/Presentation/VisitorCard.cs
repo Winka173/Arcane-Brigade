@@ -129,8 +129,8 @@ namespace ArcaneBrigade
             Rect later;
             if (!pictures && v.Choice == VisitorChoice.Accept && options.Count == 1)
             {
-                Rect accept = new Rect(x + (width - 700) * .5f, buttonsY, 430, ButtonH);
-                later = new Rect(accept.xMax + 20, buttonsY, 250, ButtonH);
+                Rect accept = new Rect(x + (width - 728) * .5f, buttonsY, 430, ButtonH);
+                later = new Rect(accept.xMax + 48, buttonsY, 250, ButtonH); // clear of the gold button's caps
                 AcceptButton(accept, v, state, options[0]);
             }
             else later = new Rect(x + (width - 300) * .5f, buttonsY, 300, ButtonH);
@@ -156,12 +156,14 @@ namespace ArcaneBrigade
             {
                 string text = cost.ToString("N0"); float g = Glyph;
                 priceW = g + 8 + amount.CalcSize(new GUIContent(text)).x + 18;
-                float left = r.xMax - priceW;
+                Rect priceArea = ArcadeSkin.Content(r, KitPiece.Button); // the price inside the button's content
+                float left = priceArea.xMax - priceW + 18;
                 Icon(new Rect(left, r.y + (r.height - g) * .5f, g, g), "gold");
                 amount.normal.textColor = poor ? new Color(.48f, .06f, .07f) : ArcadeSkin.KitInk;
                 GUI.Label(new Rect(left + g + 8, r.y, priceW - g - 8, r.height), text, amount);
             }
-            ArcadeSkin.KitCaption(new Rect(r.x + 12, r.y, r.width - priceW - 16, r.height), caption, ArcadeSkin.KitText(KitButton.Primary, option.Enabled), button);
+            Rect wordsArea = ArcadeSkin.Content(r, KitPiece.Button);
+            ArcadeSkin.KitCaption(new Rect(wordsArea.x, r.y, wordsArea.width - priceW, r.height), caption, ArcadeSkin.KitText(KitButton.Primary, option.Enabled), button);
             if (option.Enabled && GUI.Button(r, GUIContent.none, GUIStyle.none)) Choose(0);
         }
 

@@ -222,7 +222,7 @@ namespace ArcaneBrigade
                     // (owner, 22/10/2026): an amber halo and a white-gold core, both a soft gaussian across their width, widening
                     // like a cone away from the lamp and fading out along their length, added onto the floor as light; a gentle
                     // shimmer, dust motes turning inside it, a soft bloom at the lamp. No stroke or hard edge anywhere.
-                    float angle = (sim.Elapsed - sim.HeroAwakenStarted) * 120f;
+                    float angle = (sim.Elapsed - sim.HeroAwakenStarted) * CombatSimulation.LighthouseSweep;
                     Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right, across = new Vector2(-dir.y, dir.x);
                     float reach = CombatSimulation.MaxLineLength + .6f, shimmer = still || calm ? 1 : .9f + .1f * Mathf.Sin(t * 7.3f) * Mathf.Sin(t * 3.1f + 1);
                     Vector2 lamp = at + dir * .3f;
@@ -230,15 +230,15 @@ namespace ArcaneBrigade
                     Color amber = Color.Lerp(ink.Glow, new Color(1, .62f, .2f), .35f), gold = new Color(1, .95f, .78f);
                     if (!sparse && !still)
                         for (int i = 2; i >= 1; i--) // the afterglow the sweep leaves behind it
-                            Light(ray, lamp, 3.2f, reach, angle - i * 6f - 90, A(amber, .16f / i * dim * strength));
-                    Light(ray, lamp, 3.6f + .6f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, 1.25f + .3f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, .45f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
-                    Light(MechanicInk.Glow, lamp, 1.5f + .6f * flash, 1.5f + .6f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
+                            Light(ray, lamp, 5.1f, reach, angle - i * 5f - 90, A(amber, .16f / i * dim * strength));
+                    Light(ray, lamp, 5.8f + .8f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, 1.6f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, .58f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
+                    Light(MechanicInk.Glow, lamp, 1.8f + .6f * flash, 1.8f + .6f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
                     if (!sparse) for (int i = 0; i < 6; i++)
                     {
                         float r = still ? (i + .5f) / 6 : Mathf.Repeat(t * .35f + i / 6f, 1), d = .6f + r * (reach - 1.2f);
-                        float drift = Mathf.Sin(i * 2.4f + (still ? 0 : t * .8f)) * .35f * Mathf.Lerp(.32f, 1f, d / reach) * 1.6f;
+                        float drift = Mathf.Sin(i * 2.4f + (still ? 0 : t * .8f)) * .35f * Mathf.Lerp(.22f, 1f, d / reach) * 2.6f;
                         float twinkle = still || calm ? .7f : .5f + .5f * Mathf.Sin(t * 5 + i * 1.9f);
                         Light(MechanicInk.Glow, lamp + dir * d + across * drift, .14f, .14f, 0, A(gold, Mathf.Sin(r * Mathf.PI) * twinkle * .8f * dim * strength));
                     }
@@ -357,7 +357,7 @@ namespace ArcaneBrigade
             var px = new Color32[w * h];
             for (int y = 0; y < h; y++)
             {
-                float v = (y + .5f) / h, spread = Mathf.Lerp(.32f, 1f, v);
+                float v = (y + .5f) / h, spread = Mathf.Lerp(.22f, 1f, v);
                 float along = Mathf.SmoothStep(0, 1, v / .1f) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.3f, 1f, v))) * (1 - .25f * v);
                 for (int x = 0; x < w; x++)
                 {

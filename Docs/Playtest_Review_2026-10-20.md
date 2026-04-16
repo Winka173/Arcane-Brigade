@@ -350,3 +350,17 @@ Tuning between them (half-sweeps of 54 runs): the themed pools first made the sw
 
 ## Deferred by the owner (20/10/2026)
 - Items 2b and 23 (new music, boss sounds) and 2c (new weapon sound files): the owner generates the files later from `Docs/Audio_Prompts_2026-10-20.md`. Wire them in when files appear in `generate audio/2026-10-20/`. The mixer work (2a) needs no new files and goes ahead now.
+
+## Round 2 owner feedback (22/10/2026)
+
+| # | Feedback | Done |
+|---|---|---|
+| R2-1 | Bond tiles/chips a purchase lights: no COMBO / ACTIVATES / MERGE wording, plain count ("2/2", "4/6"), a much stronger blink (gold-white glow, flashing rim; gentle under Reduced Flashes) | done |
+| R2-2 | Details page padding: tile texts and body inside Content() padding | done |
+| R2-3 | Stall price tags below the stall and its character, never over the sprite | done |
+| R2-4 | Rainbow-gift choice (Keeper, after the secret boss) uses the shop card format with a gold TAKE like BUY | done |
+| R2-5 | Visitor card buttons: fixed sizes, 48 px apart, price inside the button content | done |
+| R2-6 | Visitors stand on the ground with their shadow (no dream levitation); only things float | done |
+| R2-7 | The Last Customer keeps one size in every shop (room fitting never shrinks people) | done |
+| R2-8 | Main menu: two button rows (wide gold NEW JOURNEY / CONTINUE above five walnut buttons); every button label auto-fits (shrinks to 70%, then wraps) | done |
+| R2-9 | Weapon-type icon (sword / bow) and HUD coin / egg centred in their painted sockets | done |

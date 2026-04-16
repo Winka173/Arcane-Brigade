@@ -36,7 +36,10 @@ namespace ArcaneBrigade
         private float previousTime;
         private float interest;
         private DreamSuspension suspension;
-        private Vector3 HoverOffset => owner == null ? Vector3.zero : DreamLevitation.Offset(owner.PresentationClock, phase + (merchantActor ? 13 : 7), NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, merchantActor ? .85f : 1);
+        private bool standing;
+        /// <summary>A visitor stands on the ground with its shadow (owner, 22/10/2026): no dream levitation, no hanging strings.</summary>
+        public void SetStanding() { standing = true; }
+        private Vector3 HoverOffset => owner == null || standing ? Vector3.zero : DreamLevitation.Offset(owner.PresentationClock, phase + (merchantActor ? 13 : 7), NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, merchantActor ? .85f : 1);
         private EnsembleClip handoff;
         private float handoffAt = -100;
         public bool PaintedHandoffActive => handoff != null && owner != null && owner.PresentationClock - handoffAt >= 0 && owner.PresentationClock - handoffAt < 1.05f;
@@ -96,8 +99,8 @@ namespace ArcaneBrigade
                 WorldSpriteGrounding.Place(view, ground + transform.parent.TransformVector(travelOffset) + hover);
                 view.sortingOrder = WorldSpriteGrounding.SortAt(ground.y);
                 if (grounded != null) grounded.Display(view.sprite, ground, height * .72f, Mathf.Abs(travelOffset.y) + hover.y, .34f * view.color.a);
-                if (suspension == null) suspension = gameObject.AddComponent<DreamSuspension>();
-                suspension.Display(ground, ground + hover, height * .72f, owner.PresentationClock, phase, view.sortingOrder - 1, view.color.a * Mathf.Clamp01(1 - travelOffset.magnitude), !dreamMerchant);
+                if (!standing && suspension == null) suspension = gameObject.AddComponent<DreamSuspension>();
+                if (!standing) suspension.Display(ground, ground + hover, height * .72f, owner.PresentationClock, phase, view.sortingOrder - 1, view.color.a * Mathf.Clamp01(1 - travelOffset.magnitude), !dreamMerchant);
             }
             if (!merchandise || support == null || view.sprite == null) return;
             WorldSpriteGrounding.Place(view, support.SeatPosition + transform.parent.TransformVector(presentationOffset));
