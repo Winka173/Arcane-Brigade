@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         /// <summary>Shop visitors (Docs/Events_Ideas.md): who waits in this shop, whether they were answered, the choice in
         /// progress (a two-step offer), the effects waiting for a later wave, and the shelf before the last refresh.</summary>
         public string Visitor = ""; public int VisitorWave = -1, VisitorLastWave, VisitorStage, VisitorPick = -1; public bool VisitorDone; public uint VisitorRandom;
+        public int VisitorRollWave = -1, RareVisitorLastWave = -100;
         public List<VisitorEffect> VisitorEffects = new List<VisitorEffect>();
         public List<ShopOffer> ShelfBeforeRefresh = new List<ShopOffer>(); public int RefreshPaid = -1, TwinShop = -1, PromiseDiscountWave = -1;
         public List<string> Portraits = new List<string>();
@@ -28,7 +29,7 @@ namespace ArcaneBrigade
     }
 
     /// <summary>The visitors of the dream shop, run side: they arrive every 2-3 shops from wave 3 (their own seeded roll), wait
-    /// at their table until answered or until the shop is left, and every effect lasts only into the next wave.</summary>
+    /// at their table until answered or until the shop is left. Rare gift visitors use a separate low-probability roll.</summary>
     public sealed partial class RunSession
     {
         /// <summary>Which visitors may appear (painted ones in the game; checks may allow all).</summary>
@@ -44,13 +45,16 @@ namespace ArcaneBrigade
         /// <summary>A new shop: maybe a visitor (every 2-3 shops from wave 3; never with a story offer or a boss next).</summary>
         private void RollVisitor()
         {
+            if (State.VisitorRollWave == State.Wave || State.VisitorWave == State.Wave) return;
+            State.VisitorRollWave = State.Wave;
             State.VisitorStage = 0; State.VisitorPick = -1; State.VisitorDone = false; State.ShelfBeforeRefresh.Clear(); State.RefreshPaid = -1;
             if (State.VisitorRandom == 0) State.VisitorRandom = unchecked((uint)State.Seed ^ 0x51B7u) | 1;
             if (State.Wave < 3 || CustomerOfferAvailable || RelightChoiceOpen || State.OutsideStage == OutsideStageStatus.Reward) return;
+            if (TryRollRareVisitor()) return;
             int since = State.Wave - State.VisitorLastWave;
             if (since < 2 || since == 2 && Next(ref State.VisitorRandom, 2) == 0) return;
             var pool = new List<VisitorDefinition>();
-            foreach (VisitorDefinition v in ShopVisitors.All) if (v.Id != State.Visitor && VisitorPainted(v.Id) && VisitorFits(v)) pool.Add(v);
+            foreach (VisitorDefinition v in ShopVisitors.All) if (!RareVisitorRules.IsRare(v.Id) && v.Id != State.Visitor && VisitorPainted(v.Id) && VisitorFits(v)) pool.Add(v);
             if (pool.Count == 0) return;
             State.Visitor = pool[Next(ref State.VisitorRandom, pool.Count)].Id; State.VisitorWave = State.Wave; State.VisitorLastWave = State.Wave;
         }
@@ -80,7 +84,8 @@ namespace ArcaneBrigade
             switch (v.Choice)
             {
                 case VisitorChoice.Accept:
-                    bool ok = afford && (v.Id != "ClockRewinder" || State.ShelfBeforeRefresh.Count > 0);
+                    bool ok = afford && (v.Id != "ClockRewinder" || State.ShelfBeforeRefresh.Count > 0)
+                        && (!RareVisitorRules.IsRare(v.Id) || RareVisitorFits(v.Id));
                     list.Add(new VisitorOption { Label = cost > 0 ? "Accept (" + cost + " gold)" : "Accept", Enabled = ok }); break;
                 case VisitorChoice.Options:
                     for (int i = 0; i < v.Options.Length; i++)
@@ -130,6 +135,9 @@ namespace ArcaneBrigade
             bool done = true;
             switch (v.Id)
             {
+                case "StarMender": if (!GiveVisitorStars(2)) return false; break;
+                case "ThirdBellKeeper": if (!GiveVisitorStars(3)) return false; break;
+                case "UnclaimedGiftKeeper": if (!GiveVisitorRelic()) return false; break;
                 case "GateKeeper": AddVisitorEffect("Dare"); break;
                 case "LostPostman": AddVisitorEffect("Letter", ScaledGold(15)); break;
                 // the bet is taken now; the effect keeps what the elder pays back (the card's GET), both on the gold curve

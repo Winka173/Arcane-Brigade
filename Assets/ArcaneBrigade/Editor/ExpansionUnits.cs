@@ -180,12 +180,14 @@ namespace ArcaneBrigade.Editor
                 mini.Tags = Array.Empty<string>(); EditorUtility.SetDirty(mini); art.MiniSlime = mini;
             }
             // the shop visitors: sheets of four, two per row, two poses each (Tools/Art/visitors_art.py)
-            var visitors = new Sprite[ShopVisitors.All.Length * 2];
-            for (int sheet = 0; sheet * 4 < ShopVisitors.All.Length; sheet++)
+            // Rare guests append their own Resources sheets; do not change the legacy final sheet's row layout.
+            int legacyCount = ShopVisitors.All.TakeWhile(v => !RareVisitorRules.IsRare(v.Id)).Count();
+            var visitors = new Sprite[legacyCount * 2];
+            for (int sheet = 0; sheet * 4 < legacyCount; sheet++)
             {
                 string path = Art + "Visitors" + (sheet + 1) + "_v1.png";
                 if (!File.Exists(path)) continue;
-                int count = Math.Min(4, ShopVisitors.All.Length - sheet * 4), rows = (count + 1) / 2;
+                int count = Math.Min(4, legacyCount - sheet * 4), rows = (count + 1) / 2;
                 Sprite[] cells = rows == 2
                     ? K25AtlasImporter.Import(path, "ExpansionVisitors" + (sheet + 1), 4, 2, Enumerable.Range(0, count * 2).ToArray(), new[] { 0, 512, 1024 }, true, true)
                     : K25AtlasImporter.Import(path, "ExpansionVisitors" + (sheet + 1), 4, 1, Enumerable.Range(0, count * 2).ToArray(), null, true, true);

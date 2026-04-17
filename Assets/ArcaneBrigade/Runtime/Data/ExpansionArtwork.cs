@@ -12,6 +12,13 @@ namespace ArcaneBrigade
         public Sprite[] Visitors = new Sprite[0];
         public Sprite Visitor(string id, int pose = 0)
         {
+            if (RareVisitorRules.IsRare(id))
+            {
+                Sprite painted = RareVisitorArtwork.Portrait(id, pose);
+                if (painted != null) return painted;
+                // Existing painted guests stand in until the commissioned two-pose sheets arrive.
+                id = id == "StarMender" ? "ToyMender" : id == "ThirdBellKeeper" ? "MusicBoxKeeper" : "ParcelCourier";
+            }
             int i = System.Array.FindIndex(ShopVisitors.All, v => v.Id == id) * 2 + pose;
             return i >= 0 && i < Visitors.Length ? Visitors[i] : null;
         }

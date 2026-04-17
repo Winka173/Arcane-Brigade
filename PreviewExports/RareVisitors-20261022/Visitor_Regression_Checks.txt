@@ -1,0 +1,835 @@
+PASS 48 distinct visitors including three rare gift guests
+PASS Every visitor speaks, states its offer, and none heals
+PASS GateKeeper has a card summary for each choice (1/1)
+PASS GateKeeper DO is a short verb: Take the dare
+PASS GateKeeper GET is filled: relic:Common
+PASS GateKeeper PAY is filled or explicitly free: EnemyCount:+20% enemies + elite:2 elites
+PASS GateKeeper every term has a known icon and a short amount: Take the dare | EnemyCount:+20% enemies + elite:2 elites | relic:Common | next wave
+PASS GateKeeper gives no healing, armor or dodge
+PASS GateKeeper card has no healing words and nothing lasting: Take the dare | EnemyCount:+20% enemies + elite:2 elites | relic:Common | next wave
+PASS GateKeeper free visitor shows no gold price
+PASS LostPostman has a card summary for each choice (1/1)
+PASS LostPostman DO is a short verb: Carry the letter
+PASS LostPostman GET is filled: gold:15
+PASS LostPostman PAY is filled or explicitly free: free
+PASS LostPostman every term has a known icon and a short amount: Carry the letter | free | gold:15 | next wave · 5 hits max
+PASS LostPostman gives no healing, armor or dodge
+PASS LostPostman card has no healing words and nothing lasting: Carry the letter | free | gold:15 | next wave · 5 hits max
+PASS LostPostman free visitor shows no gold price
+PASS DiceElder has a card summary for each choice (3/3)
+PASS DiceElder DO is a short verb: Bet 5
+PASS DiceElder GET is filled: gold:8
+PASS DiceElder PAY is filled or explicitly free: gold:5
+PASS DiceElder every term has a known icon and a short amount: Bet 5 | gold:5 | gold:8 | next wave · HP 50%+
+PASS DiceElder gives no healing, armor or dodge
+PASS DiceElder card has no healing words and nothing lasting: Bet 5 | gold:5 | gold:8 | next wave · HP 50%+
+PASS DiceElder DO is a short verb: Bet 10
+PASS DiceElder GET is filled: gold:15
+PASS DiceElder PAY is filled or explicitly free: gold:10
+PASS DiceElder every term has a known icon and a short amount: Bet 10 | gold:10 | gold:15 | next wave · HP 50%+
+PASS DiceElder gives no healing, armor or dodge
+PASS DiceElder card has no healing words and nothing lasting: Bet 10 | gold:10 | gold:15 | next wave · HP 50%+
+PASS DiceElder DO is a short verb: Bet 20
+PASS DiceElder GET is filled: gold:30
+PASS DiceElder PAY is filled or explicitly free: gold:20
+PASS DiceElder every term has a known icon and a short amount: Bet 20 | gold:20 | gold:30 | next wave · HP 50%+
+PASS DiceElder gives no healing, armor or dodge
+PASS DiceElder card has no healing words and nothing lasting: Bet 20 | gold:20 | gold:30 | next wave · HP 50%+
+PASS Pawnbroker has a card summary for each choice (1/1)
+PASS Pawnbroker DO is a short verb: Pawn a relic
+PASS Pawnbroker GET is filled: gold:half price
+PASS Pawnbroker PAY is filled or explicitly free: relic:1 relic
+PASS Pawnbroker every term has a known icon and a short amount: Pawn a relic | relic:1 relic | gold:half price | buy back within 2 waves
+PASS Pawnbroker gives no healing, armor or dodge
+PASS Pawnbroker card has no healing words and nothing lasting: Pawn a relic | relic:1 relic | gold:half price | buy back within 2 waves
+PASS ParcelCourier has a card summary for each choice (1/1)
+PASS ParcelCourier DO is a short verb: Open it
+PASS ParcelCourier GET is filled: gold:15 / egg:1 / relic:Common / ?:empty
+PASS ParcelCourier PAY is filled or explicitly free: gold:10
+PASS ParcelCourier every term has a known icon and a short amount: Open it | gold:10 | gold:15 / egg:1 / relic:Common / ?:empty |
+PASS ParcelCourier gives no healing, armor or dodge
+PASS ParcelCourier card has no healing words and nothing lasting: Open it | gold:10 | gold:15 / egg:1 / relic:Common / ?:empty |
+PASS ParcelCourier card price is its cost (10)
+PASS TroupeLeader has a card summary for each choice (3/3)
+PASS TroupeLeader DO is a short verb: Swift friends
+PASS TroupeLeader GET is filled: CompanionAttackSpeed:+10%
+PASS TroupeLeader PAY is filled or explicitly free: free
+PASS TroupeLeader every term has a known icon and a short amount: Swift friends | free | CompanionAttackSpeed:+10% | next wave
+PASS TroupeLeader gives no healing, armor or dodge
+PASS TroupeLeader card has no healing words and nothing lasting: Swift friends | free | CompanionAttackSpeed:+10% | next wave
+PASS TroupeLeader DO is a short verb: Sleepy audience
+PASS TroupeLeader GET is filled: EnemySpeed:enemies -10%
+PASS TroupeLeader PAY is filled or explicitly free: free
+PASS TroupeLeader every term has a known icon and a short amount: Sleepy audience | free | EnemySpeed:enemies -10% | next wave
+PASS TroupeLeader gives no healing, armor or dodge
+PASS TroupeLeader card has no healing words and nothing lasting: Sleepy audience | free | EnemySpeed:enemies -10% | next wave
+PASS TroupeLeader DO is a short verb: Coin toss
+PASS TroupeLeader GET is filled: coin:x2
+PASS TroupeLeader PAY is filled or explicitly free: free
+PASS TroupeLeader every term has a known icon and a short amount: Coin toss | free | coin:x2 | next wave
+PASS TroupeLeader gives no healing, armor or dodge
+PASS TroupeLeader card has no healing words and nothing lasting: Coin toss | free | coin:x2 | next wave
+PASS Lamplighter has a card summary for each choice (1/1)
+PASS Lamplighter DO is a short verb: Light the lamps
+PASS Lamplighter GET is filled: lamp:4 burning
+PASS Lamplighter PAY is filled or explicitly free: gold:6
+PASS Lamplighter every term has a known icon and a short amount: Light the lamps | gold:6 | lamp:4 burning | next wave
+PASS Lamplighter gives no healing, armor or dodge
+PASS Lamplighter card has no healing words and nothing lasting: Light the lamps | gold:6 | lamp:4 burning | next wave
+PASS Lamplighter card price is its cost (6)
+PASS LostToy has a card summary for each choice (1/1)
+PASS LostToy DO is a short verb: Walk with it
+PASS LostToy GET is filled: egg:1
+PASS LostToy PAY is filled or explicitly free: free
+PASS LostToy every term has a known icon and a short amount: Walk with it | free | egg:1 | next wave · near it 20s
+PASS LostToy gives no healing, armor or dodge
+PASS LostToy card has no healing words and nothing lasting: Walk with it | free | egg:1 | next wave · near it 20s
+PASS LostToy free visitor shows no gold price
+PASS ToyMender has a card summary for each choice (1/1)
+PASS ToyMender DO is a short verb: Patch a friend
+PASS ToyMender GET is filled: EnemySpeed:-20% on hit
+PASS ToyMender PAY is filled or explicitly free: gold:8
+PASS ToyMender every term has a known icon and a short amount: Patch a friend | gold:8 | EnemySpeed:-20% on hit | next wave
+PASS ToyMender gives no healing, armor or dodge
+PASS ToyMender card has no healing words and nothing lasting: Patch a friend | gold:8 | EnemySpeed:-20% on hit | next wave
+PASS ToyMender card price is its cost (8)
+PASS MusicBoxKeeper has a card summary for each choice (1/1)
+PASS MusicBoxKeeper DO is a short verb: Wind it up
+PASS MusicBoxKeeper GET is filled: CompanionAttackSpeed:friends +15% + MoveSpeed:you +15% + coin:x2
+PASS MusicBoxKeeper PAY is filled or explicitly free: EnemySpeed:enemies +15%
+PASS MusicBoxKeeper every term has a known icon and a short amount: Wind it up | EnemySpeed:enemies +15% | CompanionAttackSpeed:friends +15% + MoveSpeed:you +15% + coin:x2 | next wave
+PASS MusicBoxKeeper gives no healing, armor or dodge
+PASS MusicBoxKeeper card has no healing words and nothing lasting: Wind it up | EnemySpeed:enemies +15% | CompanionAttackSpeed:friends +15% + MoveSpeed:you +15% + coin:x2 | next wave
+PASS MusicBoxKeeper free visitor shows no gold price
+PASS Barterer has a card summary for each choice (1/1)
+PASS Barterer DO is a short verb: Swap a relic
+PASS Barterer GET is filled: relic:same rarity
+PASS Barterer PAY is filled or explicitly free: relic:1 relic
+PASS Barterer every term has a known icon and a short amount: Swap a relic | relic:1 relic | relic:same rarity |
+PASS Barterer gives no healing, armor or dodge
+PASS Barterer card has no healing words and nothing lasting: Swap a relic | relic:1 relic | relic:same rarity |
+PASS JunkCollector has a card summary for each choice (1/1)
+PASS JunkCollector DO is a short verb: Sell a relic
+PASS JunkCollector GET is filled: gold:60% price
+PASS JunkCollector PAY is filled or explicitly free: relic:1 relic
+PASS JunkCollector every term has a known icon and a short amount: Sell a relic | relic:1 relic | gold:60% price |
+PASS JunkCollector gives no healing, armor or dodge
+PASS JunkCollector card has no healing words and nothing lasting: Sell a relic | relic:1 relic | gold:60% price |
+PASS Lender has a card summary for each choice (1/1)
+PASS Lender DO is a short verb: Borrow a relic
+PASS Lender GET is filled: relic:Rare
+PASS Lender PAY is filled or explicitly free: free
+PASS Lender every term has a known icon and a short amount: Borrow a relic | free | relic:Rare | next wave only
+PASS Lender gives no healing, armor or dodge
+PASS Lender card has no healing words and nothing lasting: Borrow a relic | free | relic:Rare | next wave only
+PASS Lender free visitor shows no gold price
+PASS Storyteller has a card summary for each choice (1/1)
+PASS Storyteller DO is a short verb: Listen
+PASS Storyteller GET is filled: coin:x2
+PASS Storyteller PAY is filled or explicitly free: free
+PASS Storyteller every term has a known icon and a short amount: Listen | free | coin:x2 | next wave · first 20s
+PASS Storyteller gives no healing, armor or dodge
+PASS Storyteller card has no healing words and nothing lasting: Listen | free | coin:x2 | next wave · first 20s
+PASS Storyteller free visitor shows no gold price
+PASS SwapClown has a card summary for each choice (1/1)
+PASS SwapClown DO is a short verb: Shuffle the shelf
+PASS SwapClown GET is filled: rarity:+1
+PASS SwapClown PAY is filled or explicitly free: price:+30%
+PASS SwapClown every term has a known icon and a short amount: Shuffle the shelf | price:+30% | rarity:+1 | this shop
+PASS SwapClown gives no healing, armor or dodge
+PASS SwapClown card has no healing words and nothing lasting: Shuffle the shelf | price:+30% | rarity:+1 | this shop
+PASS SwapClown free visitor shows no gold price
+PASS ClockRewinder has a card summary for each choice (1/1)
+PASS ClockRewinder DO is a short verb: Undo the refresh
+PASS ClockRewinder GET is filled: shelf:old shelf + gold:refund
+PASS ClockRewinder PAY is filled or explicitly free: gold:4
+PASS ClockRewinder every term has a known icon and a short amount: Undo the refresh | gold:4 | shelf:old shelf + gold:refund | this shop
+PASS ClockRewinder gives no healing, armor or dodge
+PASS ClockRewinder card has no healing words and nothing lasting: Undo the refresh | gold:4 | shelf:old shelf + gold:refund | this shop
+PASS ClockRewinder card price is its cost (4)
+PASS SleeplessChild has a card summary for each choice (1/1)
+PASS SleeplessChild DO is a short verb: Hush the hall
+PASS SleeplessChild GET is filled: egg:1
+PASS SleeplessChild PAY is filled or explicitly free: free
+PASS SleeplessChild every term has a known icon and a short amount: Hush the hall | free | egg:1 | next wave · 80 kills
+PASS SleeplessChild gives no healing, armor or dodge
+PASS SleeplessChild card has no healing words and nothing lasting: Hush the hall | free | egg:1 | next wave · 80 kills
+PASS SleeplessChild free visitor shows no gold price
+PASS CandyWitch has a card summary for each choice (1/1)
+PASS CandyWitch DO is a short verb: Take the sweets
+PASS CandyWitch GET is filled: lure:sweet every 10s
+PASS CandyWitch PAY is filled or explicitly free: gold:6
+PASS CandyWitch every term has a known icon and a short amount: Take the sweets | gold:6 | lure:sweet every 10s | next wave
+PASS CandyWitch gives no healing, armor or dodge
+PASS CandyWitch card has no healing words and nothing lasting: Take the sweets | gold:6 | lure:sweet every 10s | next wave
+PASS CandyWitch card price is its cost (6)
+PASS BalloonSeller has a card summary for each choice (1/1)
+PASS BalloonSeller DO is a short verb: Let it go
+PASS BalloonSeller GET is filled: relic:Common 70%
+PASS BalloonSeller PAY is filled or explicitly free: gold:5
+PASS BalloonSeller every term has a known icon and a short amount: Let it go | gold:5 | relic:Common 70% | after next wave
+PASS BalloonSeller gives no healing, armor or dodge
+PASS BalloonSeller card has no healing words and nothing lasting: Let it go | gold:5 | relic:Common 70% | after next wave
+PASS BalloonSeller card price is its cost (5)
+PASS PromiseSeller has a card summary for each choice (1/1)
+PASS PromiseSeller DO is a short verb: Promise
+PASS PromiseSeller GET is filled: price:-15%
+PASS PromiseSeller PAY is filled or explicitly free: friend:no recruit next shop
+PASS PromiseSeller every term has a known icon and a short amount: Promise | friend:no recruit next shop | price:-15% | the shop after
+PASS PromiseSeller gives no healing, armor or dodge
+PASS PromiseSeller card has no healing words and nothing lasting: Promise | friend:no recruit next shop | price:-15% | the shop after
+PASS PromiseSeller free visitor shows no gold price
+PASS Ferryman has a card summary for each choice (1/1)
+PASS Ferryman DO is a short verb: Ferry a friend
+PASS Ferryman GET is filled: friend:1★ same theme
+PASS Ferryman PAY is filled or explicitly free: friend:1★
+PASS Ferryman every term has a known icon and a short amount: Ferry a friend | friend:1★ | friend:1★ same theme |
+PASS Ferryman gives no healing, armor or dodge
+PASS Ferryman card has no healing words and nothing lasting: Ferry a friend | friend:1★ | friend:1★ same theme |
+PASS MatchGirl has a card summary for each choice (1/1)
+PASS MatchGirl DO is a short verb: Buy a match
+PASS MatchGirl GET is filled: lamp:3 flares
+PASS MatchGirl PAY is filled or explicitly free: gold:3
+PASS MatchGirl every term has a known icon and a short amount: Buy a match | gold:3 | lamp:3 flares | next wave
+PASS MatchGirl gives no healing, armor or dodge
+PASS MatchGirl card has no healing words and nothing lasting: Buy a match | gold:3 | lamp:3 flares | next wave
+PASS MatchGirl card price is its cost (3)
+PASS Collector has a card summary for each choice (1/1)
+PASS Collector DO is a short verb: Hunt for him
+PASS Collector GET is filled: gold:12
+PASS Collector PAY is filled or explicitly free: free
+PASS Collector every term has a known icon and a short amount: Hunt for him | free | gold:12 | next wave · 10 of one kind
+PASS Collector gives no healing, armor or dodge
+PASS Collector card has no healing words and nothing lasting: Hunt for him | free | gold:12 | next wave · 10 of one kind
+PASS Collector free visitor shows no gold price
+PASS Engraver has a card summary for each choice (1/1)
+PASS Engraver DO is a short verb: Engrave a friend
+PASS Engraver GET is filled: CompanionDamage:+15%
+PASS Engraver PAY is filled or explicitly free: gold:6
+PASS Engraver every term has a known icon and a short amount: Engrave a friend | gold:6 | CompanionDamage:+15% | next wave
+PASS Engraver gives no healing, armor or dodge
+PASS Engraver card has no healing words and nothing lasting: Engrave a friend | gold:6 | CompanionDamage:+15% | next wave
+PASS Engraver card price is its cost (6)
+PASS Waker has a card summary for each choice (1/1)
+PASS Waker DO is a short verb: Wake early
+PASS Waker GET is filled: gauge:1/3
+PASS Waker PAY is filled or explicitly free: gold:6
+PASS Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:1/3 | next wave start
+PASS Waker gives no healing, armor or dodge
+PASS Waker card has no healing words and nothing lasting: Wake early | gold:6 | gauge:1/3 | next wave start
+PASS Waker card price is its cost (6)
+PASS DreamSeller has a card summary for each choice (3/3)
+PASS DreamSeller DO is a short verb: Silver jar
+PASS DreamSeller GET is filled: ?:surprise
+PASS DreamSeller PAY is filled or explicitly free: free
+PASS DreamSeller every term has a known icon and a short amount: Silver jar | free | ?:surprise | next wave
+PASS DreamSeller gives no healing, armor or dodge
+PASS DreamSeller card has no healing words and nothing lasting: Silver jar | free | ?:surprise | next wave
+PASS DreamSeller DO is a short verb: Blue jar
+PASS DreamSeller GET is filled: ?:surprise
+PASS DreamSeller PAY is filled or explicitly free: free
+PASS DreamSeller every term has a known icon and a short amount: Blue jar | free | ?:surprise | next wave
+PASS DreamSeller gives no healing, armor or dodge
+PASS DreamSeller card has no healing words and nothing lasting: Blue jar | free | ?:surprise | next wave
+PASS DreamSeller DO is a short verb: Golden jar
+PASS DreamSeller GET is filled: ?:surprise
+PASS DreamSeller PAY is filled or explicitly free: free
+PASS DreamSeller every term has a known icon and a short amount: Golden jar | free | ?:surprise | next wave
+PASS DreamSeller gives no healing, armor or dodge
+PASS DreamSeller card has no healing words and nothing lasting: Golden jar | free | ?:surprise | next wave
+PASS Twins has a card summary for each choice (1/1)
+PASS Twins DO is a short verb: Meet the twins
+PASS Twins GET is filled: friend:twin half price
+PASS Twins PAY is filled or explicitly free: free
+PASS Twins every term has a known icon and a short amount: Meet the twins | free | friend:twin half price | this shop
+PASS Twins gives no healing, armor or dodge
+PASS Twins card has no healing words and nothing lasting: Meet the twins | free | friend:twin half price | this shop
+PASS Twins free visitor shows no gold price
+PASS WaterCarrier has a card summary for each choice (1/1)
+PASS WaterCarrier DO is a short verb: Pour the water
+PASS WaterCarrier GET is filled: EnemySpeed:4 puddles
+PASS WaterCarrier PAY is filled or explicitly free: gold:5
+PASS WaterCarrier every term has a known icon and a short amount: Pour the water | gold:5 | EnemySpeed:4 puddles | next wave
+PASS WaterCarrier gives no healing, armor or dodge
+PASS WaterCarrier card has no healing words and nothing lasting: Pour the water | gold:5 | EnemySpeed:4 puddles | next wave
+PASS WaterCarrier card price is its cost (5)
+PASS NightThief has a card summary for each choice (2/2)
+PASS NightThief DO is a short verb: Chase him off
+PASS NightThief GET is filled: gold:purse safe
+PASS NightThief PAY is filled or explicitly free: gold:5
+PASS NightThief every term has a known icon and a short amount: Chase him off | gold:5 | gold:purse safe | this shop
+PASS NightThief gives no healing, armor or dodge
+PASS NightThief card has no healing words and nothing lasting: Chase him off | gold:5 | gold:purse safe | this shop
+PASS NightThief DO is a short verb: Ignore him
+PASS NightThief GET is filled: gold:5 kept
+PASS NightThief PAY is filled or explicitly free: gold:10%
+PASS NightThief every term has a known icon and a short amount: Ignore him | gold:10% | gold:5 kept | if over 60 gold on leaving
+PASS NightThief gives no healing, armor or dodge
+PASS NightThief card has no healing words and nothing lasting: Ignore him | gold:10% | gold:5 kept | if over 60 gold on leaving
+PASS DollDoctor has a card summary for each choice (1/1)
+PASS DollDoctor DO is a short verb: Stitch the cloak
+PASS DollDoctor GET is filled: Knockback:push back once
+PASS DollDoctor PAY is filled or explicitly free: gold:10
+PASS DollDoctor every term has a known icon and a short amount: Stitch the cloak | gold:10 | Knockback:push back once | next wave · HP <25%
+PASS DollDoctor gives no healing, armor or dodge
+PASS DollDoctor card has no healing words and nothing lasting: Stitch the cloak | gold:10 | Knockback:push back once | next wave · HP <25%
+PASS DollDoctor card price is its cost (10)
+PASS KeyKeeper has a card summary for each choice (1/1)
+PASS KeyKeeper DO is a short verb: Take the key
+PASS KeyKeeper GET is filled: relic:Common
+PASS KeyKeeper PAY is filled or explicitly free: gold:10
+PASS KeyKeeper every term has a known icon and a short amount: Take the key | gold:10 | relic:Common | next wave · first chest
+PASS KeyKeeper gives no healing, armor or dodge
+PASS KeyKeeper card has no healing words and nothing lasting: Take the key | gold:10 | relic:Common | next wave · first chest
+PASS KeyKeeper card price is its cost (10)
+PASS CupMagician has a card summary for each choice (1/1)
+PASS CupMagician DO is a short verb: Watch the trick
+PASS CupMagician GET is filled: price:1 offer free
+PASS CupMagician PAY is filled or explicitly free: gold:6
+PASS CupMagician every term has a known icon and a short amount: Watch the trick | gold:6 | price:1 offer free | this shop
+PASS CupMagician gives no healing, armor or dodge
+PASS CupMagician card has no healing words and nothing lasting: Watch the trick | gold:6 | price:1 offer free | this shop
+PASS CupMagician card price is its cost (6)
+PASS FriendSeeker has a card summary for each choice (1/1)
+PASS FriendSeeker DO is a short verb: Lend a friend
+PASS FriendSeeker GET is filled: egg:1 + gold:10
+PASS FriendSeeker PAY is filled or explicitly free: friend:1 for a wave
+PASS FriendSeeker every term has a known icon and a short amount: Lend a friend | friend:1 for a wave | egg:1 + gold:10 | after next wave
+PASS FriendSeeker gives no healing, armor or dodge
+PASS FriendSeeker card has no healing words and nothing lasting: Lend a friend | friend:1 for a wave | egg:1 + gold:10 | after next wave
+PASS DreamSmith has a card summary for each choice (1/1)
+PASS DreamSmith DO is a short verb: Reforge a weapon
+PASS DreamSmith GET is filled: weapon:pick 1 of 3
+PASS DreamSmith PAY is filled or explicitly free: gold:8
+PASS DreamSmith every term has a known icon and a short amount: Reforge a weapon | gold:8 | weapon:pick 1 of 3 |
+PASS DreamSmith gives no healing, armor or dodge
+PASS DreamSmith card has no healing words and nothing lasting: Reforge a weapon | gold:8 | weapon:pick 1 of 3 |
+PASS DreamSmith card price is its cost (8)
+PASS MapSeller has a card summary for each choice (1/1)
+PASS MapSeller DO is a short verb: Buy a map
+PASS MapSeller GET is filled: chest:more often
+PASS MapSeller PAY is filled or explicitly free: gold:6
+PASS MapSeller every term has a known icon and a short amount: Buy a map | gold:6 | chest:more often | next wave
+PASS MapSeller gives no healing, armor or dodge
+PASS MapSeller card has no healing words and nothing lasting: Buy a map | gold:6 | chest:more often | next wave
+PASS MapSeller card price is its cost (6)
+PASS EggTrader has a card summary for each choice (2/2)
+PASS EggTrader DO is a short verb: Give 2 eggs
+PASS EggTrader GET is filled: relic:Uncommon
+PASS EggTrader PAY is filled or explicitly free: egg:2
+PASS EggTrader every term has a known icon and a short amount: Give 2 eggs | egg:2 | relic:Uncommon |
+PASS EggTrader gives no healing, armor or dodge
+PASS EggTrader card has no healing words and nothing lasting: Give 2 eggs | egg:2 | relic:Uncommon |
+PASS EggTrader DO is a short verb: Give a relic
+PASS EggTrader GET is filled: egg:2
+PASS EggTrader PAY is filled or explicitly free: relic:1 relic
+PASS EggTrader every term has a known icon and a short amount: Give a relic | relic:1 relic | egg:2 |
+PASS EggTrader gives no healing, armor or dodge
+PASS EggTrader card has no healing words and nothing lasting: Give a relic | relic:1 relic | egg:2 |
+PASS WeatherTeller has a card summary for each choice (1/1)
+PASS WeatherTeller DO is a short verb: Take the umbrella
+PASS WeatherTeller GET is filled: umbrella:1 in 5 shots
+PASS WeatherTeller PAY is filled or explicitly free: gold:6
+PASS WeatherTeller every term has a known icon and a short amount: Take the umbrella | gold:6 | umbrella:1 in 5 shots | next wave
+PASS WeatherTeller gives no healing, armor or dodge
+PASS WeatherTeller card has no healing words and nothing lasting: Take the umbrella | gold:6 | umbrella:1 in 5 shots | next wave
+PASS WeatherTeller card price is its cost (6)
+PASS Knitter has a card summary for each choice (1/1)
+PASS Knitter DO is a short verb: Wear the scarf
+PASS Knitter GET is filled: MoveSpeed:+15%
+PASS Knitter PAY is filled or explicitly free: gold:8
+PASS Knitter every term has a known icon and a short amount: Wear the scarf | gold:8 | MoveSpeed:+15% | next wave
+PASS Knitter gives no healing, armor or dodge
+PASS Knitter card has no healing words and nothing lasting: Wear the scarf | gold:8 | MoveSpeed:+15% | next wave
+PASS Knitter card price is its cost (8)
+PASS Painter has a card summary for each choice (1/1)
+PASS Painter DO is a short verb: Sit for it
+PASS Painter GET is filled: hero:a portrait
+PASS Painter PAY is filled or explicitly free: free
+PASS Painter every term has a known icon and a short amount: Sit for it | free | hero:a portrait |
+PASS Painter gives no healing, armor or dodge
+PASS Painter card has no healing words and nothing lasting: Sit for it | free | hero:a portrait |
+PASS Painter free visitor shows no gold price
+PASS ShadowBorrower has a card summary for each choice (1/1)
+PASS ShadowBorrower DO is a short verb: Lend your shadow
+PASS ShadowBorrower GET is filled: lure:decoy shadow
+PASS ShadowBorrower PAY is filled or explicitly free: gold:8
+PASS ShadowBorrower every term has a known icon and a short amount: Lend your shadow | gold:8 | lure:decoy shadow | next wave · first 5s
+PASS ShadowBorrower gives no healing, armor or dodge
+PASS ShadowBorrower card has no healing words and nothing lasting: Lend your shadow | gold:8 | lure:decoy shadow | next wave · first 5s
+PASS ShadowBorrower card price is its cost (8)
+PASS Sandman has a card summary for each choice (1/1)
+PASS Sandman DO is a short verb: Sprinkle sand
+PASS Sandman GET is filled: EnemyCount:spawns 15% slower
+PASS Sandman PAY is filled or explicitly free: gold:8
+PASS Sandman every term has a known icon and a short amount: Sprinkle sand | gold:8 | EnemyCount:spawns 15% slower | next wave · first 20s
+PASS Sandman gives no healing, armor or dodge
+PASS Sandman card has no healing words and nothing lasting: Sprinkle sand | gold:8 | EnemyCount:spawns 15% slower | next wave · first 20s
+PASS Sandman card price is its cost (8)
+PASS ColourStranger has a card summary for each choice (1/1)
+PASS ColourStranger DO is a short verb: Fade the shelf
+PASS ColourStranger GET is filled: price:-30%
+PASS ColourStranger PAY is filled or explicitly free: rarity:-1
+PASS ColourStranger every term has a known icon and a short amount: Fade the shelf | rarity:-1 | price:-30% | this shop
+PASS ColourStranger gives no healing, armor or dodge
+PASS ColourStranger card has no healing words and nothing lasting: Fade the shelf | rarity:-1 | price:-30% | this shop
+PASS ColourStranger free visitor shows no gold price
+PASS FuturePost has a card summary for each choice (1/1)
+PASS FuturePost DO is a short verb: Post it
+PASS FuturePost GET is filled: gold:15
+PASS FuturePost PAY is filled or explicitly free: gold:10
+PASS FuturePost every term has a known icon and a short amount: Post it | gold:10 | gold:15 | in 3 waves
+PASS FuturePost gives no healing, armor or dodge
+PASS FuturePost card has no healing words and nothing lasting: Post it | gold:10 | gold:15 | in 3 waves
+PASS FuturePost card price is its cost (10)
+PASS HourglassFixer has a card summary for each choice (1/1)
+PASS HourglassFixer DO is a short verb: Turn it
+PASS HourglassFixer GET is filled: coin:more coins
+PASS HourglassFixer PAY is filled or explicitly free: time:+10s fight
+PASS HourglassFixer every term has a known icon and a short amount: Turn it | time:+10s fight | coin:more coins | next wave
+PASS HourglassFixer gives no healing, armor or dodge
+PASS HourglassFixer card has no healing words and nothing lasting: Turn it | time:+10s fight | coin:more coins | next wave
+PASS HourglassFixer free visitor shows no gold price
+PASS Busker has a card summary for each choice (1/1)
+PASS Busker DO is a short verb: Hear the song
+PASS Busker GET is filled: bond:+1 friend
+PASS Busker PAY is filled or explicitly free: free
+PASS Busker every term has a known icon and a short amount: Hear the song | free | bond:+1 friend | next wave
+PASS Busker gives no healing, armor or dodge
+PASS Busker card has no healing words and nothing lasting: Hear the song | free | bond:+1 friend | next wave
+PASS Busker free visitor shows no gold price
+PASS StarMender has a card summary for each choice (1/1)
+PASS StarMender DO is a short verb: Accept kindness
+PASS StarMender GET is filled: friend:random to 2 stars
+PASS StarMender PAY is filled or explicitly free: free
+PASS StarMender every term has a known icon and a short amount: Accept kindness | free | friend:random to 2 stars | now
+PASS StarMender gives no healing, armor or dodge
+PASS StarMender card has no healing words and nothing lasting: Accept kindness | free | friend:random to 2 stars | now
+PASS StarMender free visitor shows no gold price
+PASS ThirdBellKeeper has a card summary for each choice (1/1)
+PASS ThirdBellKeeper DO is a short verb: Hear the bell
+PASS ThirdBellKeeper GET is filled: friend:random to 3 stars
+PASS ThirdBellKeeper PAY is filled or explicitly free: free
+PASS ThirdBellKeeper every term has a known icon and a short amount: Hear the bell | free | friend:random to 3 stars | now
+PASS ThirdBellKeeper gives no healing, armor or dodge
+PASS ThirdBellKeeper card has no healing words and nothing lasting: Hear the bell | free | friend:random to 3 stars | now
+PASS ThirdBellKeeper free visitor shows no gold price
+PASS UnclaimedGiftKeeper has a card summary for each choice (1/1)
+PASS UnclaimedGiftKeeper DO is a short verb: Receive a gift
+PASS UnclaimedGiftKeeper GET is filled: relic:Common to Mythic
+PASS UnclaimedGiftKeeper PAY is filled or explicitly free: free
+PASS UnclaimedGiftKeeper every term has a known icon and a short amount: Receive a gift | free | relic:Common to Mythic | now
+PASS UnclaimedGiftKeeper gives no healing, armor or dodge
+PASS UnclaimedGiftKeeper card has no healing words and nothing lasting: Receive a gift | free | relic:Common to Mythic | now
+PASS UnclaimedGiftKeeper free visitor shows no gold price
+PASS Gatekeeper card shows Common, Uncommon for a dared wave 12+
+PASS GateKeeper offers something that can be taken
+PASS GateKeeper is answered
+PASS GateKeeper leaves, and nobody was healed
+PASS GateKeeper pays only small amounts (0 gold, 0 eggs)
+PASS GateKeeper card says when its effect happens: next wave
+PASS GateKeeper takes the gold its card shows (0)
+PASS GateKeeper price follows the gold curve (0 at x2.88)
+PASS GateKeeper leaves nothing behind after its wave
+PASS LostPostman offers something that can be taken
+PASS LostPostman is answered
+PASS LostPostman leaves, and nobody was healed
+PASS LostPostman pays only small amounts (0 gold, 0 eggs)
+PASS LostPostman card says when its effect happens: next wave · 5 hits max
+PASS LostPostman takes the gold its card shows (0)
+PASS LostPostman price follows the gold curve (0 at x2.88)
+PASS LostPostman leaves nothing behind after its wave
+PASS DiceElder offers something that can be taken
+PASS DiceElder is answered
+PASS DiceElder leaves, and nobody was healed
+PASS DiceElder pays only small amounts (-14 gold, 0 eggs)
+PASS DiceElder card says when its effect happens: next wave · HP 50%+
+PASS DiceElder price follows the gold curve (14 at x2.88)
+PASS DiceElder leaves nothing behind after its wave
+PASS Pawnbroker offers something that can be taken
+PASS Pawnbroker is answered
+PASS Pawnbroker leaves, and nobody was healed
+PASS Pawnbroker pays only small amounts (35 gold, 0 eggs)
+PASS Pawnbroker card says when its effect happens: buy back within 2 waves
+PASS Pawnbroker price follows the gold curve (0 at x2.88)
+PASS Pawnbroker leaves nothing behind after its wave
+PASS ParcelCourier offers something that can be taken
+PASS ParcelCourier is answered
+PASS ParcelCourier leaves, and nobody was healed
+PASS ParcelCourier pays only small amounts (-29 gold, 0 eggs)
+PASS ParcelCourier price follows the gold curve (29 at x2.88)
+PASS ParcelCourier leaves nothing behind after its wave
+PASS TroupeLeader offers something that can be taken
+PASS TroupeLeader is answered
+PASS TroupeLeader leaves, and nobody was healed
+PASS TroupeLeader pays only small amounts (0 gold, 0 eggs)
+PASS TroupeLeader card says when its effect happens: next wave
+PASS TroupeLeader price follows the gold curve (0 at x2.88)
+PASS TroupeLeader leaves nothing behind after its wave
+PASS Lamplighter offers something that can be taken
+PASS Lamplighter is answered
+PASS Lamplighter leaves, and nobody was healed
+PASS Lamplighter pays only small amounts (-17 gold, 0 eggs)
+PASS Lamplighter card says when its effect happens: next wave
+PASS Lamplighter takes the gold its card shows (17)
+PASS Lamplighter price follows the gold curve (17 at x2.88)
+PASS Lamplighter leaves nothing behind after its wave
+PASS LostToy offers something that can be taken
+PASS LostToy is answered
+PASS LostToy leaves, and nobody was healed
+PASS LostToy pays only small amounts (0 gold, 0 eggs)
+PASS LostToy card says when its effect happens: next wave · near it 20s
+PASS LostToy takes the gold its card shows (0)
+PASS LostToy price follows the gold curve (0 at x2.88)
+PASS LostToy leaves nothing behind after its wave
+PASS ToyMender offers something that can be taken
+PASS ToyMender is answered
+PASS ToyMender leaves, and nobody was healed
+PASS ToyMender pays only small amounts (-23 gold, 0 eggs)
+PASS ToyMender card says when its effect happens: next wave
+PASS ToyMender takes the gold its card shows (23)
+PASS ToyMender price follows the gold curve (23 at x2.88)
+PASS ToyMender leaves nothing behind after its wave
+PASS MusicBoxKeeper offers something that can be taken
+PASS MusicBoxKeeper is answered
+PASS MusicBoxKeeper leaves, and nobody was healed
+PASS MusicBoxKeeper pays only small amounts (0 gold, 0 eggs)
+PASS MusicBoxKeeper card says when its effect happens: next wave
+PASS MusicBoxKeeper takes the gold its card shows (0)
+PASS MusicBoxKeeper price follows the gold curve (0 at x2.88)
+PASS MusicBoxKeeper leaves nothing behind after its wave
+PASS Barterer offers something that can be taken
+PASS Barterer is answered
+PASS Barterer leaves, and nobody was healed
+PASS Barterer pays only small amounts (0 gold, 0 eggs)
+PASS Barterer price follows the gold curve (0 at x2.88)
+PASS Barterer leaves nothing behind after its wave
+PASS JunkCollector offers something that can be taken
+PASS JunkCollector is answered
+PASS JunkCollector leaves, and nobody was healed
+PASS JunkCollector pays only small amounts (40 gold, 0 eggs)
+PASS JunkCollector price follows the gold curve (0 at x2.88)
+PASS JunkCollector leaves nothing behind after its wave
+PASS Lender offers something that can be taken
+PASS Lender is answered
+PASS Lender leaves, and nobody was healed
+PASS Lender pays only small amounts (0 gold, 0 eggs)
+PASS Lender card says when its effect happens: next wave only
+PASS Lender takes the gold its card shows (0)
+PASS Lender price follows the gold curve (0 at x2.88)
+PASS Lender leaves nothing behind after its wave
+PASS Storyteller offers something that can be taken
+PASS Storyteller is answered
+PASS Storyteller leaves, and nobody was healed
+PASS Storyteller pays only small amounts (0 gold, 0 eggs)
+PASS Storyteller card says when its effect happens: next wave · first 20s
+PASS Storyteller takes the gold its card shows (0)
+PASS Storyteller price follows the gold curve (0 at x2.88)
+PASS Storyteller leaves nothing behind after its wave
+PASS SwapClown offers something that can be taken
+PASS SwapClown is answered
+PASS SwapClown leaves, and nobody was healed
+PASS SwapClown pays only small amounts (0 gold, 0 eggs)
+PASS SwapClown takes the gold its card shows (0)
+PASS SwapClown price follows the gold curve (0 at x2.88)
+PASS SwapClown leaves nothing behind after its wave
+PASS ClockRewinder offers something that can be taken
+PASS ClockRewinder is answered
+PASS ClockRewinder leaves, and nobody was healed
+PASS ClockRewinder pays only small amounts (-4 gold, 0 eggs)
+PASS ClockRewinder price follows the gold curve (12 at x2.88)
+PASS ClockRewinder leaves nothing behind after its wave
+PASS SleeplessChild offers something that can be taken
+PASS SleeplessChild is answered
+PASS SleeplessChild leaves, and nobody was healed
+PASS SleeplessChild pays only small amounts (0 gold, 0 eggs)
+PASS SleeplessChild card says when its effect happens: next wave · 80 kills
+PASS SleeplessChild takes the gold its card shows (0)
+PASS SleeplessChild price follows the gold curve (0 at x2.88)
+PASS SleeplessChild leaves nothing behind after its wave
+PASS CandyWitch offers something that can be taken
+PASS CandyWitch is answered
+PASS CandyWitch leaves, and nobody was healed
+PASS CandyWitch pays only small amounts (-17 gold, 0 eggs)
+PASS CandyWitch card says when its effect happens: next wave
+PASS CandyWitch takes the gold its card shows (17)
+PASS CandyWitch price follows the gold curve (17 at x2.88)
+PASS CandyWitch leaves nothing behind after its wave
+PASS BalloonSeller offers something that can be taken
+PASS BalloonSeller is answered
+PASS BalloonSeller leaves, and nobody was healed
+PASS BalloonSeller pays only small amounts (-14 gold, 0 eggs)
+PASS BalloonSeller card says when its effect happens: after next wave
+PASS BalloonSeller takes the gold its card shows (14)
+PASS BalloonSeller price follows the gold curve (14 at x2.88)
+PASS BalloonSeller leaves nothing behind after its wave
+PASS PromiseSeller offers something that can be taken
+PASS PromiseSeller is answered
+PASS PromiseSeller leaves, and nobody was healed
+PASS PromiseSeller pays only small amounts (0 gold, 0 eggs)
+PASS PromiseSeller card says when its effect happens: the shop after
+PASS PromiseSeller takes the gold its card shows (0)
+PASS PromiseSeller price follows the gold curve (0 at x2.88)
+PASS PromiseSeller leaves nothing behind after its wave
+PASS Ferryman offers something that can be taken
+PASS Ferryman is answered
+PASS Ferryman leaves, and nobody was healed
+PASS Ferryman pays only small amounts (0 gold, 0 eggs)
+PASS Ferryman takes the gold its card shows (0)
+PASS Ferryman price follows the gold curve (0 at x2.88)
+PASS Ferryman leaves nothing behind after its wave
+PASS MatchGirl offers something that can be taken
+PASS MatchGirl is answered
+PASS MatchGirl leaves, and nobody was healed
+PASS MatchGirl pays only small amounts (-9 gold, 0 eggs)
+PASS MatchGirl card says when its effect happens: next wave
+PASS MatchGirl takes the gold its card shows (9)
+PASS MatchGirl price follows the gold curve (9 at x2.88)
+PASS MatchGirl leaves nothing behind after its wave
+PASS Collector offers something that can be taken
+PASS Collector is answered
+PASS Collector leaves, and nobody was healed
+PASS Collector pays only small amounts (0 gold, 0 eggs)
+PASS Collector card says when its effect happens: next wave · 10 of one kind
+PASS Collector takes the gold its card shows (0)
+PASS Collector price follows the gold curve (0 at x2.88)
+PASS Collector leaves nothing behind after its wave
+PASS Engraver offers something that can be taken
+PASS Engraver is answered
+PASS Engraver leaves, and nobody was healed
+PASS Engraver pays only small amounts (-17 gold, 0 eggs)
+PASS Engraver card says when its effect happens: next wave
+PASS Engraver takes the gold its card shows (17)
+PASS Engraver price follows the gold curve (17 at x2.88)
+PASS Engraver leaves nothing behind after its wave
+PASS Waker offers something that can be taken
+PASS Waker is answered
+PASS Waker leaves, and nobody was healed
+PASS Waker pays only small amounts (-17 gold, 0 eggs)
+PASS Waker card says when its effect happens: next wave start
+PASS Waker takes the gold its card shows (17)
+PASS Waker price follows the gold curve (17 at x2.88)
+PASS Waker leaves nothing behind after its wave
+PASS DreamSeller offers something that can be taken
+PASS DreamSeller is answered
+PASS DreamSeller leaves, and nobody was healed
+PASS DreamSeller pays only small amounts (0 gold, 0 eggs)
+PASS DreamSeller card says when its effect happens: next wave
+PASS DreamSeller price follows the gold curve (0 at x2.88)
+PASS DreamSeller leaves nothing behind after its wave
+PASS Twins offers something that can be taken
+PASS Twins is answered
+PASS Twins leaves, and nobody was healed
+PASS Twins pays only small amounts (0 gold, 0 eggs)
+PASS Twins card says when its effect happens: this shop
+PASS Twins takes the gold its card shows (0)
+PASS Twins price follows the gold curve (0 at x2.88)
+PASS Twins leaves nothing behind after its wave
+PASS WaterCarrier offers something that can be taken
+PASS WaterCarrier is answered
+PASS WaterCarrier leaves, and nobody was healed
+PASS WaterCarrier pays only small amounts (-14 gold, 0 eggs)
+PASS WaterCarrier card says when its effect happens: next wave
+PASS WaterCarrier takes the gold its card shows (14)
+PASS WaterCarrier price follows the gold curve (14 at x2.88)
+PASS WaterCarrier leaves nothing behind after its wave
+PASS NightThief offers something that can be taken
+PASS NightThief is answered
+PASS NightThief leaves, and nobody was healed
+PASS NightThief pays only small amounts (-14 gold, 0 eggs)
+PASS NightThief price follows the gold curve (14 at x2.88)
+PASS NightThief leaves nothing behind after its wave
+PASS DollDoctor offers something that can be taken
+PASS DollDoctor is answered
+PASS DollDoctor leaves, and nobody was healed
+PASS DollDoctor pays only small amounts (-29 gold, 0 eggs)
+PASS DollDoctor card says when its effect happens: next wave · HP <25%
+PASS DollDoctor takes the gold its card shows (29)
+PASS DollDoctor price follows the gold curve (29 at x2.88)
+PASS DollDoctor leaves nothing behind after its wave
+PASS KeyKeeper offers something that can be taken
+PASS KeyKeeper is answered
+PASS KeyKeeper leaves, and nobody was healed
+PASS KeyKeeper pays only small amounts (-29 gold, 0 eggs)
+PASS KeyKeeper card says when its effect happens: next wave · first chest
+PASS KeyKeeper takes the gold its card shows (29)
+PASS KeyKeeper price follows the gold curve (29 at x2.88)
+PASS KeyKeeper leaves nothing behind after its wave
+PASS CupMagician offers something that can be taken
+PASS CupMagician is answered
+PASS CupMagician leaves, and nobody was healed
+PASS CupMagician pays only small amounts (-17 gold, 0 eggs)
+PASS CupMagician takes the gold its card shows (17)
+PASS CupMagician price follows the gold curve (17 at x2.88)
+PASS CupMagician leaves nothing behind after its wave
+PASS FriendSeeker offers something that can be taken
+PASS FriendSeeker is answered
+PASS FriendSeeker leaves, and nobody was healed
+PASS FriendSeeker pays only small amounts (0 gold, 0 eggs)
+PASS FriendSeeker card says when its effect happens: after next wave
+PASS FriendSeeker takes the gold its card shows (0)
+PASS FriendSeeker price follows the gold curve (0 at x2.88)
+PASS FriendSeeker leaves nothing behind after its wave
+PASS DreamSmith offers something that can be taken
+PASS DreamSmith is answered
+PASS DreamSmith second step
+PASS DreamSmith leaves, and nobody was healed
+PASS DreamSmith pays only small amounts (-23 gold, 0 eggs)
+PASS DreamSmith takes the gold its card shows (23)
+PASS DreamSmith price follows the gold curve (23 at x2.88)
+PASS DreamSmith leaves nothing behind after its wave
+PASS MapSeller offers something that can be taken
+PASS MapSeller is answered
+PASS MapSeller leaves, and nobody was healed
+PASS MapSeller pays only small amounts (-17 gold, 0 eggs)
+PASS MapSeller card says when its effect happens: next wave
+PASS MapSeller takes the gold its card shows (17)
+PASS MapSeller price follows the gold curve (17 at x2.88)
+PASS MapSeller leaves nothing behind after its wave
+PASS EggTrader offers something that can be taken
+PASS EggTrader is answered
+PASS EggTrader leaves, and nobody was healed
+PASS EggTrader pays only small amounts (0 gold, -2 eggs)
+PASS EggTrader price follows the gold curve (0 at x2.88)
+PASS EggTrader leaves nothing behind after its wave
+PASS WeatherTeller offers something that can be taken
+PASS WeatherTeller is answered
+PASS WeatherTeller leaves, and nobody was healed
+PASS WeatherTeller pays only small amounts (-17 gold, 0 eggs)
+PASS WeatherTeller card says when its effect happens: next wave
+PASS WeatherTeller takes the gold its card shows (17)
+PASS WeatherTeller price follows the gold curve (17 at x2.88)
+PASS WeatherTeller leaves nothing behind after its wave
+PASS Knitter offers something that can be taken
+PASS Knitter is answered
+PASS Knitter leaves, and nobody was healed
+PASS Knitter pays only small amounts (-23 gold, 0 eggs)
+PASS Knitter card says when its effect happens: next wave
+PASS Knitter takes the gold its card shows (23)
+PASS Knitter price follows the gold curve (23 at x2.88)
+PASS Knitter leaves nothing behind after its wave
+PASS Painter offers something that can be taken
+PASS Painter is answered
+PASS Painter leaves, and nobody was healed
+PASS Painter pays only small amounts (0 gold, 0 eggs)
+PASS Painter takes the gold its card shows (0)
+PASS Painter price follows the gold curve (0 at x2.88)
+PASS Painter leaves nothing behind after its wave
+PASS ShadowBorrower offers something that can be taken
+PASS ShadowBorrower is answered
+PASS ShadowBorrower leaves, and nobody was healed
+PASS ShadowBorrower pays only small amounts (-23 gold, 0 eggs)
+PASS ShadowBorrower card says when its effect happens: next wave · first 5s
+PASS ShadowBorrower takes the gold its card shows (23)
+PASS ShadowBorrower price follows the gold curve (23 at x2.88)
+PASS ShadowBorrower leaves nothing behind after its wave
+PASS Sandman offers something that can be taken
+PASS Sandman is answered
+PASS Sandman leaves, and nobody was healed
+PASS Sandman pays only small amounts (-23 gold, 0 eggs)
+PASS Sandman card says when its effect happens: next wave · first 20s
+PASS Sandman takes the gold its card shows (23)
+PASS Sandman price follows the gold curve (23 at x2.88)
+PASS Sandman leaves nothing behind after its wave
+PASS ColourStranger offers something that can be taken
+PASS ColourStranger is answered
+PASS ColourStranger leaves, and nobody was healed
+PASS ColourStranger pays only small amounts (0 gold, 0 eggs)
+PASS ColourStranger takes the gold its card shows (0)
+PASS ColourStranger price follows the gold curve (0 at x2.88)
+PASS ColourStranger leaves nothing behind after its wave
+PASS FuturePost offers something that can be taken
+PASS FuturePost is answered
+PASS FuturePost leaves, and nobody was healed
+PASS FuturePost pays only small amounts (-29 gold, 0 eggs)
+PASS FuturePost card says when its effect happens: in 3 waves
+PASS FuturePost takes the gold its card shows (29)
+PASS FuturePost price follows the gold curve (29 at x2.88)
+PASS FuturePost leaves nothing behind after its wave
+PASS HourglassFixer offers something that can be taken
+PASS HourglassFixer is answered
+PASS HourglassFixer leaves, and nobody was healed
+PASS HourglassFixer pays only small amounts (0 gold, 0 eggs)
+PASS HourglassFixer card says when its effect happens: next wave
+PASS HourglassFixer takes the gold its card shows (0)
+PASS HourglassFixer price follows the gold curve (0 at x2.88)
+PASS HourglassFixer leaves nothing behind after its wave
+PASS Busker offers something that can be taken
+PASS Busker is answered
+PASS Busker leaves, and nobody was healed
+PASS Busker pays only small amounts (0 gold, 0 eggs)
+PASS Busker card says when its effect happens: next wave
+PASS Busker takes the gold its card shows (0)
+PASS Busker price follows the gold curve (0 at x2.88)
+PASS Busker leaves nothing behind after its wave
+PASS Dice Elder bet 0 is closed with less gold than its PAY
+PASS Dice Elder bet 0 takes PAY gold:14
+PASS Dice Elder fixture wave is won above half health
+PASS Dice Elder bet 0 pays GET gold:23 (23)
+PASS Dice Elder bet 1 is closed with less gold than its PAY
+PASS Dice Elder bet 1 takes PAY gold:29
+PASS Dice Elder fixture wave is won above half health
+PASS Dice Elder bet 1 pays GET gold:43 (43)
+PASS Dice Elder bet 2 is closed with less gold than its PAY
+PASS Dice Elder bet 2 takes PAY gold:58
+PASS Dice Elder fixture wave is won above half health
+PASS Dice Elder bet 2 pays GET gold:87 (87)
+PASS Parcel opens
+PASS Parcel outcome is on its card: egg
+PASS Parcel opens
+PASS Parcel outcome is on its card: empty
+PASS Parcel opens
+PASS Parcel outcome is on its card: gold
+PASS Parcel opens
+PASS Parcel outcome is on its card: gold
+PASS Parcel opens
+PASS Parcel outcome is on its card: relic
+PASS Parcel opens
+PASS Parcel outcome is on its card: empty
+PASS Parcel opens
+PASS Parcel outcome is on its card: relic
+PASS Parcel opens
+PASS Parcel outcome is on its card: relic
+PASS Parcel opens
+PASS Parcel outcome is on its card: gold
+PASS Parcel opens
+PASS Parcel outcome is on its card: gold
+PASS Parcel opens
+PASS Parcel outcome is on its card: relic
+PASS Parcel opens
+PASS Parcel outcome is on its card: gold
+PASS Parcel opens
+PASS Parcel outcome is on its card: relic
+PASS Parcel card: PAY 29 gold (10 on the wave-6 curve), GET gold / egg / Common relic / empty (egg,empty,gold,relic)
+PASS JunkCollector plate for Key Oil shows +40
+PASS JunkCollector plate for Honey Pot shows +37
+PASS JunkCollector pays the plate's gold for one relic
+PASS JunkCollector card: PAY a relic, GET gold:60% price
+PASS Pawnbroker plate for Key Oil shows +35
+PASS Pawnbroker plate for Honey Pot shows +32
+PASS Pawnbroker pays the plate's gold for one relic
+PASS Pawnbroker card: PAY a relic, GET gold:half price
+PASS Pawnbroker: buy back within 2 waves, as the card says
+PASS Lender lends
+PASS Lender is free, as the card says
+PASS Lender lends a Rare relic, as the card says
+PASS Lender's relic is for the next wave, as the card says
+PASS Future Post pays GET gold:43 in 3 waves
+PASS No visitor promises a flat +1 coin
+PASS Night Thief card names the scaled purse line if over 173 gold on leaving
+PASS Night Thief takes 10% only above 173 gold (over=False)
+PASS Night Thief card names the scaled purse line if over 173 gold on leaving
+PASS Night Thief takes 10% only above 173 gold (over=True)
+PASS ColourStranger is answered
+PASS ColourStranger prices the swapped relics on the gold curve (36,41)
+PASS SwapClown is answered
+PASS SwapClown prices the swapped relics on the gold curve (178,156)
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS Visitors come every 2-3 shops (8 in 20)

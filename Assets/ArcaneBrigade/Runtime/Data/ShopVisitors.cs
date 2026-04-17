@@ -27,7 +27,7 @@ namespace ArcaneBrigade
     }
 
     /// <summary>A visitor of the dream shop (Docs/Events_Ideas.md, approved 18/10/2026): a character with one offer, taken or
-    /// left. Every effect is temporary (this shop or the next wave) and every reward small; nobody heals or trades health.</summary>
+    /// left. Ordinary deals mostly last this shop or the next wave; rare gift visitors can award lasting stars or relics.</summary>
     public sealed class VisitorDefinition
     {
         public string Id, Name, Line, Offer;
@@ -141,6 +141,12 @@ namespace ArcaneBrigade
                 .With(D("Turn it", "time:+10s fight", "coin:more coins", Next)),
             V("Busker", "The Wandering Busker", "A song for the friends who almost belong together.", "Next wave the bond closest to its next level counts one more friend.")
                 .With(D("Hear the song", F, "bond:+1 friend", Next)),
+            V("StarMender", "The Star Mender", "You need not earn every kindness.", "A free gift: one random one-star friend becomes two-star. Its weapon and saved materials stay with it.")
+                .With(D("Accept kindness", F, "friend:random to 2 stars", "now")),
+            V("ThirdBellKeeper", "The Third Bell Keeper", "The third bell is for someone who kept walking.", "A free gift: one random friend below three stars becomes three-star. Its weapon and saved materials stay with it.")
+                .With(D("Hear the bell", F, "friend:random to 3 stars", "now")),
+            V("UnclaimedGiftKeeper", "The Unclaimed Gift Keeper", "This parcel has waited long enough. It is yours.", "Receive a free random relic: Common, Uncommon, Rare or Mythic. The gift is yours to keep.")
+                .With(D("Receive a gift", F, "relic:Common to Mythic", "now")),
         };
         public static VisitorDefinition For(string id) => Array.Find(All, v => v.Id == id);
 

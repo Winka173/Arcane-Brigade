@@ -26,13 +26,13 @@ namespace ArcaneBrigade.Editor
         {
             notes.Clear();
             RunCatalog c = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Check(ShopVisitors.All.Length == 45 && ShopVisitors.All.Select(v => v.Id).Distinct().Count() == 45, "45 distinct visitors");
+            Check(ShopVisitors.All.Length == 48 && ShopVisitors.All.Select(v => v.Id).Distinct().Count() == 48, "48 distinct visitors including three rare gift guests");
             Check(ShopVisitors.All.All(v => v.Line.Length > 5 && v.Offer.Length > 10 && !healing.IsMatch(v.Offer + " " + v.Line)), "Every visitor speaks, states its offer, and none heals");
             CardSummaries();
             var paint = RunSession.VisitorPainted; RunSession.VisitorPainted = id => true;
             try
             {
-                foreach (VisitorDefinition v in ShopVisitors.All)
+                foreach (VisitorDefinition v in ShopVisitors.All.Where(v => !RareVisitorRules.IsRare(v.Id)))
                 {
                     using var run = Fresh(c);
                     int gold = run.State.Gold, eggs = run.State.Eggs; float health = run.State.Health;

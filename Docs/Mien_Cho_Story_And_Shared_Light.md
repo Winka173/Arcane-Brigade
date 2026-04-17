@@ -1,5 +1,7 @@
 # Miền Chờ — cốt truyện đã chốt và hướng ánh sáng đồng hành
 
+**22/10 — khách hiếm:** thêm ba cư dân ghé sau wave, tặng nâng sao hoặc relic tối đa Mythic, cùng sáu tư thế tranh mới. Quà thể hiện sự quan tâm tự nguyện, không đòi đổi chác. Luật xuất hiện, art và kiểm tra: [Rare_Visitors_2026-10-22.md](Rare_Visitors_2026-10-22.md).
+
 **Đồng bộ theme 17/10:** bổ sung bộ Keeper/icon/vật chứng, sửa đoàn ending, spoiler, diễn xuất cứu Hob và ánh sáng nhận mọi đồng minh. Điện thoại shop 8 và vật chứng shop 12/15/17/18 có mặt trên map. **Sáu tuyến lựa chọn và phòng Station/FootstepHall đời cũ đã retired trong canon Hồi 1**, không tính là nội dung đang chơi. Journal canon và phòng cứu Hob vẫn hiện hành. Chưa build/test mới; xem [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md). Các báo cáo cũ bên dưới là lịch sử, không nghiệm thu đợt này.
 
 **Art theo canon Hồi 1, 17/10:** đã giao đủ 261 PNG, tích hợp nhân vật truyện, boss, đồ cảnh theo vùng, journal, token và VFX. Hai mặt Customer đã đủ frame HD, atlas Hob/Tally đã sửa mép; xem [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
