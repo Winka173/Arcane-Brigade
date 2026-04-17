@@ -32,12 +32,7 @@ namespace ArcaneBrigade
         public static readonly string[] ChallengeIds = { "", "night-shift", "first-light", "small-brigade" };
         public static readonly string[] ChallengeNames = { "Free journey", "Night shift · until dawn", "First light · clear hall 10", "Small brigade · win with ≤ 6 companions" };
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
-        public static int UnlockedDifficulty(PlayerProfile profile)
-        {
-            int unlocked = 0;
-            while (unlocked < DifficultyNames.Length - 1 && profile.Achievements.Contains("clear-difficulty-" + unlocked)) unlocked++;
-            return unlocked;
-        }
+        public static int UnlockedDifficulty(PlayerProfile profile) => DifficultyNames.Length - 1;
         public static int Score(RunSnapshot run, int liveKills = 0, bool liveBoss = false)
         {
             int cleared = Mathf.Max(0, run.Wave - Mathf.Max(1, run.StartHall));
@@ -110,7 +105,7 @@ namespace ArcaneBrigade
                 Add(profile.Achievements, "Brigade dawn");
                 if (string.IsNullOrEmpty(run.ChallengeId)) Add(profile.Achievements, "clear-difficulty-" + run.Difficulty);
             }
-            bool challenge = run.ChallengeId == "night-shift" && run.Phase == SessionPhase.Victory || run.ChallengeId == "first-light" && (run.Wave > 10 || run.Wave == 10 && run.Phase == SessionPhase.Victory) || run.ChallengeId == "small-brigade" && run.Phase == SessionPhase.Victory && run.Roster.Count <= 6;
+            bool challenge = run.ChallengeId == "night-shift" && run.Phase == SessionPhase.Victory || run.ChallengeId == "first-light" && (run.Wave > 10 || run.Wave == 10 && run.Phase == SessionPhase.Victory) || run.ChallengeId == "small-brigade" && run.Phase == SessionPhase.Victory && CompanionDeployment.Select(run.Roster).Count <= 6;
             if (challenge) Add(profile.Achievements, "challenge-" + run.ChallengeId);
             var record = new RunRecord { Id = run.RunId, ParentId = run.ParentRunId, Nickname = Nickname(run), FinishedUtc = DateTime.UtcNow.ToString("O"), Score = Score(run), Build = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(run)) };
             if (record.Build.Meta != null) record.Build.Meta.RewindShop = ""; // the rewind point is not history

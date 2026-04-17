@@ -105,14 +105,21 @@ namespace ArcaneBrigade
                 Combo |= ready;
             }
             int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == offer.Tier);
+            b.AppendLine(session.UpgradeProgress(offer));
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
                 : offer.Tier >= catalog.MaximumTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
                 : "Owned " + copies + "/3 at " + offer.Tier + "-star" + (copies == 2 ? " · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
             Summary = WithBloodCost(b.ToString().Trim(), offer);
+            RosterEntry fieldedBefore = session.ActiveRoster.Find(r => r.UnitId == unit.Id);
+            RosterEntry fieldedAfter = purchased ? preview.ActiveRoster.Find(r => r.UnitId == unit.Id) : null;
+            if (fieldedBefore != null && fieldedAfter != null && fieldedAfter.Tier == fieldedBefore.Tier && !session.AbsorbsRecruitCopies)
+                Summary = WithBloodCost(session.UpgradeProgress(offer) + "\nStored for merging. No extra fighter, bond member or passive stats now.\nPurchase-trigger talents still apply.", offer);
+            else if (fieldedBefore != null && fieldedAfter != null && fieldedAfter.Tier > fieldedBefore.Tier)
+                Summary = "Upgrade to " + fieldedAfter.Tier + " stars · still one fighter.\n" + Summary;
             string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
             Details = Summary + (ComboLines.Length > 0 ? "\n\nCOMBOS" + ComboLines : "") + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
                 + (unit.Passive != PassiveKind.None ? "\nPASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier) : "")
-                + "\nThree alike merge into one stronger friend (keeps one weapon)."
+                + "\nOne fighter per species. Extra copies are saved upgrade materials: no attacks, bond counts or passive stats until merged. Three at the same star merge, keeping a weapon from the ingredients."
                 + (Attack.Weapon != null ? "\nComes with its " + RunUICopy.WeaponName(Attack.Weapon.Id) + "." : "\nGets a random " + (Attack.Melee && Attack.Ranged ? "weapon" : Attack.Ranged ? "ranged weapon" : "close-range weapon") + " when bought.")
                 + (string.IsNullOrEmpty(voice) ? "" : "\n“" + voice + "”")
                 + "\n\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(unit.Id)

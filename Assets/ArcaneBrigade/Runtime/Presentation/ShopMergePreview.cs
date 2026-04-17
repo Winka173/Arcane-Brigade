@@ -45,7 +45,7 @@ namespace ArcaneBrigade
                 stock = station.Position;
                 foreach (UnitState unit in owner.Simulation.Units)
                 {
-                    if (unit.Faction != Faction.Companion || !unit.Alive || unit.Definition.Id != station.Offer.Id || unit.Definition.CombatTier != Mathf.Clamp(station.Offer.Tier, 1, 3)) continue;
+                    if (unit.Faction != Faction.Companion || !unit.Alive || unit.Definition.Id != station.Offer.Id) continue;
                     identities.Add(unit.Id); if (identities.Count == 2) break;
                 }
             }

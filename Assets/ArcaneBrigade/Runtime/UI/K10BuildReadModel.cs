@@ -28,7 +28,7 @@ namespace ArcaneBrigade
                 string sources = "Lasts for this run, including waves/endless. Resets in a new run.\n";
                 foreach (StatModifier modifier in champion.ChampionModifiers)
                     if (modifier.Effect == effect && (scope == ModifierScope.Team || RunModifierRules.Applies(modifier.Scope, scope))) sources += RunUICopy.UnitName(champion) + " / personal trait / " + RunModifierRules.ScopeName(modifier.Scope) + ": " + RunModifierRules.ValueText(effect, modifier.Value) + "\n";
-                foreach (RosterEntry entry in session.State.Roster)
+                foreach (RosterEntry entry in session.ActiveRoster)
                     foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers)
                         if (modifier.Effect == effect && (scope == ModifierScope.Team || RunModifierRules.Applies(modifier.Scope, scope))) sources += catalog.Unit(entry.UnitId).DisplayName + " stars " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + ": " + RunModifierRules.ValueText(effect, modifier.Value * UnitDefinition.ModifierScale(entry.Tier)) + "\n";
                 foreach (ItemStack stack in session.State.Items)

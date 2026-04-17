@@ -22,7 +22,7 @@ namespace ArcaneBrigade
                 // whoever actually came out of the drawer (the paper bird is a rescue too); older runs only knew it was the bear
                 if (owner.Session.State.Secrets.RescuedToy) Add(owner.Content.Unit(string.IsNullOrEmpty(owner.Session.State.Secrets.RescuedId) ? "SecretPatchBear" : owner.Session.State.Secrets.RescuedId));
                 if (owner.Session.State.Secrets.LetterSent && !guests.Contains(owner.Content.Unit("SecretPaperBird"))) Add(owner.Content.Unit("SecretPaperBird"));
-                foreach (RosterEntry entry in owner.Session.State.Roster)
+                foreach (RosterEntry entry in owner.Session.ActiveRoster)
                 {
                     UnitDefinition unit = owner.Content.Unit(entry.UnitId);
                     if (unit != null && unit.Id.StartsWith("Secret", System.StringComparison.Ordinal) && guests.Contains(unit)) continue;

@@ -32,7 +32,7 @@ namespace ArcaneBrigade
                 p.Partners++; p.Sources.Add("+1 supporting " + RunUICopy.WeaponName(candidate.Id));
             }
             Partner(catalog.Unit(State.ChampionId).Weapon);
-            foreach (RosterEntry entry in State.Roster) Partner(catalog.Weapon(entry.WeaponId));
+            foreach (RosterEntry entry in ActiveRoster) Partner(catalog.Weapon(entry.WeaponId));
             if (p.Tier > 1) p.Sources.Add("+" + (p.Tier - 1) + " evolved recruit tier");
             p.Points = p.Relics + p.Partners + p.Tier - 1;
             p.Stage = catalog.ExpansionRevision > 0 ? BuildMorphs.Stage(p.Points, p.Relics) : 0;

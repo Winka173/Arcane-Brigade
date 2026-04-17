@@ -11,12 +11,14 @@ namespace ArcaneBrigade
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 var tiers = new int[catalog.MaximumTier + 1];
                 foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == unit.Id) tiers[entry.Tier]++;
-                float before = 0; for (int tier = 1; tier < tiers.Length; tier++) before += tiers[tier] * UnitDefinition.ModifierScale(tier);
+                int beforeTier = 0; for (int tier = 1; tier < tiers.Length; tier++) if (tiers[tier] > 0) beforeTier = tier;
+                float before = beforeTier > 0 ? UnitDefinition.ModifierScale(beforeTier) : 0;
                 int projected = UnityEngine.Mathf.Clamp(offer.Tier, 1, 3); tiers[projected]++;
                 for (int tier = 1; tier < catalog.MaximumTier && unit.ReferenceCompanion != "Evil"; tier++)
                     if (tiers[tier] >= 3) { tiers[tier + 1] += tiers[tier] / 3; tiers[tier] %= 3; projected = tier + 1; }
-                float after = 0; for (int tier = 1; tier < tiers.Length; tier++) after += tiers[tier] * UnitDefinition.ModifierScale(tier);
-                string result = projected > offer.Tier ? "Merge to " + projected + " stars" : "Recruit " + offer.Tier + "-star friend. Random weapon";
+                int afterTier = 0; for (int tier = 1; tier < tiers.Length; tier++) if (tiers[tier] > 0) afterTier = tier;
+                float after = afterTier > 0 ? UnitDefinition.ModifierScale(afterTier) : 0;
+                string result = session.UpgradeProgress(offer) + (afterTier > beforeTier && beforeTier > 0 ? "\nUpgrades the fielded friend to " + afterTier + " stars." : "");
                 StatModifier[] modifiers = unit.CompanionModifiers;
                 string stats = string.Join(". ", modifiers.Where(value => value.Value * (after - before) != 0).Select(value => ScopeLabel(value.Scope) + StatName(value.Effect) + " " + RunModifierRules.ValueText(value.Effect, value.Value * (after - before))));
                 return result + (stats.Length == 0 ? "" : "\n" + stats) + "\n" + CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier);

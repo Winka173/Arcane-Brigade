@@ -49,7 +49,7 @@ namespace ArcaneBrigade
             if (!companion) unit.Health = MaximumHealth(session, catalog);
             else
             {
-                // fewer new friends (one species every 3 waves, D12): each body hits harder (sized by the round-7 bot sweep)
+                // Per-body tuning retained with one deployed fighter per species and banked recruitment allowance.
                 weapon.Damage *= CompanionBodyBuff;
                 Duets.Apply(session, source, weapon);
             }

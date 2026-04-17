@@ -35,8 +35,8 @@ namespace ArcaneBrigade
             List<WeaponDefinition> pool = choices;
             if (catalog.HeroRevision > 0)
             {
-                int melee = State.Roster.FindAll(entry => catalog.Weapon(entry.WeaponId).Kind == WeaponKind.Melee).Count;
-                int ranged = State.Roster.FindAll(entry => catalog.Weapon(entry.WeaponId).Kind == WeaponKind.Projectile).Count;
+                int melee = ActiveRoster.FindAll(entry => catalog.Weapon(entry.WeaponId).Kind == WeaponKind.Melee).Count;
+                int ranged = ActiveRoster.FindAll(entry => catalog.Weapon(entry.WeaponId).Kind == WeaponKind.Projectile).Count;
                 WeaponKind kind = melee == ranged ? Next(ref random, 2) == 0 ? WeaponKind.Melee : WeaponKind.Projectile : melee < ranged ? WeaponKind.Melee : WeaponKind.Projectile;
                 List<WeaponDefinition> preferred = pool.FindAll(weapon => weapon.Kind == kind);
                 if (preferred.Count > 0) pool = preferred;

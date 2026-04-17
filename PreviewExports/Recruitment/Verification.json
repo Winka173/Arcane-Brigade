@@ -1,1 +1,1 @@
-{"Passed":true,"Checks":820,"EarlyNewSpeciesLimit":1,"LaterNewSpeciesLimit":1,"TotalOrdinaryPurchaseLimit":3,"SpecialShopExempt":false,"SpecialNewSpeciesPerWave":1,"SharedCooldownStartsAtWave":10,"NewSpeciesWaveInterval":2,"UpgradeUsesTotalQuota":true}
+{"Passed":true,"Checks":433,"RegularNewSpeciesPerWave":1,"RegularCopyPurchasesPerWave":1,"UnusedAllowanceCarriesOver":true,"NewSpeciesWaveInterval":2,"DreamShopIndependent":true,"SpecialNewSpeciesPerVisit":1}

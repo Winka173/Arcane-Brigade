@@ -94,6 +94,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < State.Roster.Count; i++)
                     {
                         RosterEntry r = State.Roster[i];
+                        if (!ActiveRoster.Contains(r)) continue; // visitor services target fighters, not stored ingredients
                         if (StorySpecies(r.UnitId) || v.Id == "Ferryman" && r.Tier != 1) continue;
                         list.Add(new VisitorOption { Label = RunUICopy.UnitName(catalog.Unit(r.UnitId)) + " " + r.Tier + "-star", Icon = "unit:" + r.UnitId, Enabled = afford, Value = i, Tier = r.Tier });
                     }

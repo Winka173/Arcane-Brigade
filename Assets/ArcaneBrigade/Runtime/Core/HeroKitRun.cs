@@ -204,7 +204,7 @@ namespace ArcaneBrigade
             if (kit.Has(KitPassive.BondDualPlusOne))
             {
                 var bonds = new HashSet<string>();
-                foreach (RosterEntry entry in State.Roster)
+                foreach (RosterEntry entry in ActiveRoster)
                 {
                     if (Stranger(entry.UnitId)) continue;
                     var tags = catalog.Unit(entry.UnitId).Tags;

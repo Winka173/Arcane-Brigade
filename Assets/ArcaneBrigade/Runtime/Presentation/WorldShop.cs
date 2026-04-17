@@ -356,7 +356,7 @@ namespace ArcaneBrigade
             foreach (BondDefinition bond in owner.Content.Bonds)
             {
                 int previous = 0;
-                foreach (RosterEntry entry in before.Roster)
+                foreach (RosterEntry entry in CompanionDeployment.Select(before.Roster))
                 {
                     UnitDefinition unit = owner.Content.Unit(entry.UnitId);
                     if (unit != null && System.Array.IndexOf(unit.Tags, bond.Id) >= 0) previous++;

@@ -15,9 +15,9 @@ namespace ArcaneBrigade
         }
         public bool CycleFeaturedFriend()
         {
-            if (!CanConfigureHero || State.ChampionId != "PatchworkHost" || State.Roster.Count == 0) return false;
-            var h = State.HeroIdentity; int index = State.Roster.FindIndex(r => r.UnitId == h.LeadUnit && r.WeaponId == h.LeadWeapon);
-            RosterEntry next = State.Roster[(index + 1) % State.Roster.Count]; h.LeadUnit = next.UnitId; h.LeadWeapon = next.WeaponId;
+            if (!CanConfigureHero || State.ChampionId != "PatchworkHost" || ActiveRoster.Count == 0) return false;
+            var h = State.HeroIdentity; int index = ActiveRoster.FindIndex(r => r.UnitId == h.LeadUnit && r.WeaponId == h.LeadWeapon);
+            RosterEntry next = ActiveRoster[(index + 1) % ActiveRoster.Count]; h.LeadUnit = next.UnitId; h.LeadWeapon = next.WeaponId;
             Notice = "Featured: " + catalog.Unit(next.UnitId).DisplayName + " / " + RunUICopy.WeaponName(next.WeaponId); return true;
         }
         public bool CycleMemoryOrgan(int slot)

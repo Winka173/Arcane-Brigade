@@ -71,9 +71,9 @@ namespace ArcaneBrigade
         {
             RunSnapshot r = session.State; r.AchievementEvidence ??= new List<AchievementMetric>();
             void Set(string id, float value) => Mark(r.AchievementEvidence, id, value);
-            Set("party", r.Roster.Count); Set("sprouts", r.LeafPurchases); Set("memories", r.AbsorbedSkills?.Count ?? 0);
+            Set("party", CompanionDeployment.Select(r.Roster).Count); Set("sprouts", r.LeafPurchases); Set("memories", r.AbsorbedSkills?.Count ?? 0);
             Set("three-star", r.Roster.Exists(e => e.Tier == 3) ? 1 : 0);
-            Set("rider", r.Roster.Count > 1 && r.Roster.Exists(e => catalog.Unit(e.UnitId).ReferenceCompanion == "Pony") ? 1 : 0);
+            Set("rider", CompanionDeployment.Select(r.Roster).Count > 1 && r.Roster.Exists(e => catalog.Unit(e.UnitId).ReferenceCompanion == "Pony") ? 1 : 0);
             Set("health", compiled.Champion.Health); Set("one-health", compiled.Champion.Health <= 1 ? 1 : 0);
             Set("armor", session.Bonus(ItemEffect.Armor)); Set("regen", compiled.PassiveHeal); Set("range", compiled.Champion.Weapon.Range);
             Set("projectiles", compiled.Champion.Weapon.ProjectileCount); Set("crit", compiled.Champion.CriticalChance);

@@ -83,9 +83,9 @@ namespace ArcaneBrigade
             UnitDefinition u = owner.Content.Unit(owner.Session.State.ChampionId);
             UnitState body = owner.Simulation?.Champion;
             bool hero = true;
-            if (cursor % 2 != 0 && owner.Session.State.Roster.Count > 0)
+            if (cursor % 2 != 0 && owner.Session.ActiveRoster.Count > 0)
             {
-                RosterEntry entry = owner.Session.State.Roster[(cursor / 2) % owner.Session.State.Roster.Count];
+                RosterEntry entry = owner.Session.ActiveRoster[(cursor / 2) % owner.Session.ActiveRoster.Count];
                 u = owner.Content.Unit(entry.UnitId); body = FindCompanion(entry.UnitId); hero = false;
             }
             speaker = u.DisplayName; line = string.IsNullOrEmpty(u.ReferenceHero) ? AllyLine(u, cursor / 2, owner.Session.State.Wave, owner.Session.State) : HeroLine(u.ReferenceHero, cursor / 2);

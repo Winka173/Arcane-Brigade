@@ -44,7 +44,7 @@ namespace ArcaneBrigade
             Secret.RoomNights ??= new List<int>(); Secret.RoomNights.Add(State.Wave * 16 + (int)kind); // the next night's journal page remembers it
             if (queued) Secret.QueuedEvent = -1; else Secret.Visits++;
             Secret.TargetItem = SecretTargets.FirstOrDefault() ?? "";
-            RosterEntry first = State.Roster.FirstOrDefault();
+            RosterEntry first = ActiveRoster.FirstOrDefault();
             Secret.TargetUnit = first?.UnitId ?? ""; Secret.TargetWeapon = first?.WeaponId ?? "";
             Secret.RewardId = ""; Secret.Result = "";
             return true;
@@ -135,8 +135,8 @@ namespace ArcaneBrigade
         // on the shop's gold curve (play-test 20/10/2026): the wave-1 amounts 28 and 33, scaled like every other gold price
         public int SecretTrainPrice => ScaledGold(28);
         public int SecretLoan => ScaledGold(33);
-        private bool HasSecretRanged => catalog.Unit(State.ChampionId).Weapon.Kind == WeaponKind.Projectile || State.Roster.Exists(r => catalog.Weapon(r.WeaponId).Kind == WeaponKind.Projectile);
-        private bool HasSecretMelee => catalog.Unit(State.ChampionId).Weapon.Kind == WeaponKind.Melee || State.Roster.Exists(r => catalog.Weapon(r.WeaponId).Kind == WeaponKind.Melee);
+        private bool HasSecretRanged => catalog.Unit(State.ChampionId).Weapon.Kind == WeaponKind.Projectile || ActiveRoster.Exists(r => catalog.Weapon(r.WeaponId).Kind == WeaponKind.Projectile);
+        private bool HasSecretMelee => catalog.Unit(State.ChampionId).Weapon.Kind == WeaponKind.Melee || ActiveRoster.Exists(r => catalog.Weapon(r.WeaponId).Kind == WeaponKind.Melee);
         private bool CanImproveSecretItem(string id) => catalog.Item(id) != null && catalog.Item(id).EffectiveModifiers.Any(m => m.Value > 0);
         private bool CanSecretItem(string id) => catalog.Item(id) != null && StackCount(id) < catalog.Item(id).StackLimit;
         private bool GiveSecretItem(string id)

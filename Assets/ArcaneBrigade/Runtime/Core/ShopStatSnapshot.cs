@@ -99,7 +99,8 @@ namespace ArcaneBrigade
                 if(session.State.ChampionId=="PetalCitadel")for(int i=0;i<4;i++)hero.Values[new[]{"Attack petal","Guard petal","Healing petal","Projectile petal"}[i]]=a.HeroPetals[i];
             }
             foreach(var stack in session.State.Items)hero.Values["Relic / "+c.Item(stack.Id).Name]=stack.Count;
-            for(int i=0;i<session.State.Roster.Count;i++){var r=session.State.Roster[i];Add(r.UnitId+"|"+r.WeaponId,a.StartingCompanions[i],r.Tier,true);}
+            var deployed=session.ActiveRoster;
+            for(int i=0;i<deployed.Count;i++){var r=deployed[i];Add(r.UnitId+"|"+r.WeaponId,a.StartingCompanions[i],r.Tier,true);}
             return snapshot;
         }
 

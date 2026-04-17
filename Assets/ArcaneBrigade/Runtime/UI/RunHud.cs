@@ -254,7 +254,7 @@ namespace ArcaneBrigade
                 // the painted HUD (UI kit, item 13): the hero in a brass portrait slot, the health bar with its heart cap and crimson fill
                 ArcadeSkin.PortraitSlot(new Rect(14, 8, 92, 92), false);
                 Sprite(new Rect(31, 25, 58, 58), owner.Content.Unit(state.ChampionId).Body);
-                NightHud.LightRing(new Vector2(60, 55), 40, state.Roster.Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
+                NightHud.LightRing(new Vector2(60, 55), 40, CompanionDeployment.Select(state.Roster).Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
                 Rect tube = ArcadeSkin.HealthBar(new Rect(100, 24, 300, 64), Mathf.Clamp01(health / maximum), Mathf.Clamp01(healthTrail / maximum));
                 numeric.normal.textColor = ArcadeSkin.Cream;
                 ArcadeTypography.ShadowLabel(new Rect(tube.x, tube.y - 4, tube.width, tube.height + 8), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
@@ -263,7 +263,7 @@ namespace ArcaneBrigade
             {
             ArcadeSkin.Plate(new Rect(22, 16, 340, 72), ArcadeSkin.Accent);
             Sprite(new Rect(35, 20, 62, 62), owner.Content.Unit(state.ChampionId).Body);
-            NightHud.LightRing(new Vector2(66, 51), 40, state.Roster.Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
+            NightHud.LightRing(new Vector2(66, 51), 40, CompanionDeployment.Select(state.Roster).Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
             ArcadeSkin.Line(new Rect(105, 36, 230, 30), new Color(0.02f, 0.02f, 0.05f, 0.95f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
@@ -640,7 +640,7 @@ namespace ArcaneBrigade
             if (first) { momentsRun = state.RunId; bondLevels.Clear(); encoreCount = -1; seenBoss = null; bossWasAlive = false; }
             int encores = 0;
             UnitDefinition encoreUnit = null;
-            foreach (RosterEntry entry in state.Roster) if (entry.Tier >= 3) { encores++; encoreUnit = owner.Content.Unit(entry.UnitId); }
+            foreach (RosterEntry entry in owner.Session.ActiveRoster) if (entry.Tier >= 3) { encores++; encoreUnit = owner.Content.Unit(entry.UnitId); }
             if (encoreCount >= 0 && encores > encoreCount && encoreUnit != null)
                 cutIn.Show(RunUICopy.UnitName(encoreUnit), "★★★  SHINES BRIGHTER", encoreUnit.Body, ArcadeSkin.Gold, "ui.cutin.encore");
             encoreCount = encores;
@@ -676,7 +676,7 @@ namespace ArcaneBrigade
             {
                 using var preview = new RunSession(owner.Content); preview.Restore(state);
                 if (!preview.Buy(offer.Token)) return 0;
-                previewRows.Add(("Friends", state.Roster.Count.ToString(), preview.State.Roster.Count.ToString(), preview.State.Roster.Count >= state.Roster.Count));
+                previewRows.Add(("Friends", owner.Session.ActiveRoster.Count.ToString(), preview.ActiveRoster.Count.ToString(), preview.ActiveRoster.Count >= owner.Session.ActiveRoster.Count));
                 return previewRows.Count;
             }
             string text;

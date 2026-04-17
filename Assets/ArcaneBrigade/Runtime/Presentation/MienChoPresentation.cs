@@ -297,7 +297,7 @@ namespace ArcaneBrigade
             if (panels[2] != null) GUI.DrawTexture(rectangle, panels[2], ScaleMode.ScaleToFit);
             var cast = new System.Collections.Generic.List<UnitDefinition> { owner.Content.Unit(owner.Session.State.ChampionId) };
             cast.AddRange(EndingTravellers.Story(owner));
-            foreach (var ally in owner.Session.State.Roster) cast.Add(owner.Content.Unit(ally.UnitId));
+            foreach (var ally in owner.Session.ActiveRoster) cast.Add(owner.Content.Unit(ally.UnitId));
             GUI.BeginGroup(rectangle);
             int columns = Mathf.Min(8, cast.Count);
             float width = Mathf.Min(112, (rectangle.width - 40) / Mathf.Max(1, columns));

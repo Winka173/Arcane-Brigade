@@ -25,7 +25,7 @@ namespace ArcaneBrigade
         }
         private int Talent(string name)
         {
-            int count = 0; foreach (RosterEntry r in State.Roster) if (catalog.Unit(r.UnitId).ReferenceCompanion == name) count++;
+            int count = 0; foreach (RosterEntry r in ActiveRoster) if (catalog.Unit(r.UnitId).ReferenceCompanion == name) count++;
             if (State.AbsorbedSkills != null) foreach (string id in State.AbsorbedSkills) if (catalog.Unit(id)?.ReferenceCompanion == name) count++;
             return count;
         }
@@ -72,7 +72,7 @@ namespace ArcaneBrigade
                 case "Nicole": if (effect == ItemEffect.Discount) value += .2f; if (effect == ItemEffect.Income) value += State.OctoberRefreshes; if (effect == ItemEffect.Luck) value += Mathf.Min(1, State.OctoberRefreshes * .01f); break;
                 case "Anby": if (hero && effect == ItemEffect.Dodge) value += .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 12; break;
                 case "Billy": if (hero && effect == ItemEffect.Crit) value += .1f; if (hero && effect == ItemEffect.Projectiles) value += 2; break;
-                case "Nekomata": if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if (effect == ItemEffect.Income) value -= State.Roster.Count; break;
+                case "Nekomata": if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if (effect == ItemEffect.Income) value -= ActiveRoster.Count; break;
                 case "Burgerboo": if (hero && effect == ItemEffect.Armor) value += .4f; if (hero && effect == ItemEffect.MoveSpeed) value += .15f; if (effect == ItemEffect.EnemySpeed) value += .2f; break;
             }
             return value;
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
                 if (OctoberAbsorbs) { if (State.AbsorbedSkills.Count < 2048) State.AbsorbedSkills.Add(id); continue; }
                 if (catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) break;
                 UnitDefinition friend = catalog.Unit(id); if (friend == null) continue;
-                var choices = new List<WeaponDefinition>(); foreach (WeaponDefinition w in catalog.Weapons) if (RecruitWeaponEligible(id, w) && !State.Roster.Exists(r => r.UnitId == id && r.WeaponId == w.Id)) choices.Add(w);
+                var choices = new List<WeaponDefinition>(); foreach (WeaponDefinition w in catalog.Weapons) if (RecruitWeaponEligible(id, w) && VariantFree(id, w)) choices.Add(w);
                 if (choices.Count == 0) continue; var entry = new RosterEntry { UnitId = id, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id }; State.Roster.Add(entry); RememberVariant(entry);
             }
         }
@@ -108,7 +108,7 @@ namespace ArcaneBrigade
             if (OctoberHero == "Red Scale" && item.Category == RelicCategory.Drink) State.Gold = BoundedCounter((long)State.Gold + ScaledGold(1 + Mathf.Min(15, Mathf.FloorToInt(MaximumHealth() / 10))));
             if (OctoberHero != "Periwinky" || item.ReferenceName != "Spiky Yoga Ball") return;
             string id = "BristleBall";
-            var pool = Array.FindAll(catalog.Weapons, w => RecruitWeaponEligible(id, w) && !State.Roster.Exists(r => r.UnitId == id && r.WeaponId == w.Id));
+            var pool = Array.FindAll(catalog.Weapons, w => RecruitWeaponEligible(id, w) && VariantFree(id, w));
             if (pool.Length == 0) return;
             var entry = new RosterEntry { UnitId = id, WeaponId = pool[Next(ref State.WeaponRandom, pool.Length)].Id };
             State.Roster.Add(entry); RememberVariant(entry);
@@ -134,9 +134,9 @@ namespace ArcaneBrigade
         {
             int merge = OctoberMergeTier(id); if (merge > 0) return merge;
             if (OctoberHero == "Card King" && !State.Roster.Exists(r => r.UnitId == id)) return 2;
-            if (State.Roster.Count >= 7 || State.Wave < 4 || State.Roster.Exists(r => r.UnitId == id)) return 1;
+            if (ActiveRoster.Count >= 7 || State.Wave < 4 || State.Roster.Exists(r => r.UnitId == id)) return 1;
             int roll = Next(ref State.ShopRandom, 100);
-            return State.Wave >= 10 && State.Roster.Count <= 3 && roll < 18 ? 3 : roll < (State.Roster.Count <= 3 ? 55 : 30) ? 2 : 1;
+            return State.Wave >= 10 && ActiveRoster.Count <= 3 && roll < 18 ? 3 : roll < (ActiveRoster.Count <= 3 ? 55 : 30) ? 2 : 1;
         }
         private void OctoberRefreshed()
         {
@@ -199,7 +199,7 @@ namespace ArcaneBrigade
                     unit.CriticalChance = Mathf.Max(unit.CriticalChance, main.CriticalChance); w.ProjectileCount = Mathf.Min(10, w.ProjectileCount + Mathf.Max(0, main.Weapon.ProjectileCount - 1));
                 }
                 if (OctoberHero == "Clementie") unit.CollisionDamage += CombatCatalog.Champion.Speed * 1.5f;
-                if (OctoberHero == "Frosty") { w.Damage *= Mathf.Max(.65f, 1 - State.Roster.Count * .02f); unit.BodyHeight *= Mathf.Max(.75f, 1 - State.Roster.Count * .01f); }
+                if (OctoberHero == "Frosty") { w.Damage *= Mathf.Max(.65f, 1 - ActiveRoster.Count * .02f); unit.BodyHeight *= Mathf.Max(.75f, 1 - ActiveRoster.Count * .01f); }
                 w.Damage*=1.08f;unit.CollisionDamage*=1.08f;unit.Speed=Mathf.Min(10,unit.Speed*1.05f);
                 w.Range = Mathf.Min(w.Range, w.Kind == WeaponKind.Melee ? 3.4f : 8); w.Cooldown = Mathf.Max(.28f, w.Cooldown);
             }
@@ -210,7 +210,7 @@ namespace ArcaneBrigade
             if (OctoberHero == "Burgerboo") { CombatCatalog.Champion.Weapon.ProjectileCount = Mathf.Min(2, CombatCatalog.Champion.Weapon.ProjectileCount); CombatCatalog.Champion.Weapon.ProjectilePierce = 0; }
             if (OctoberHero == "Clementie") CombatCatalog.CompanionLeash = 1.8f;
             if (OctoberHero == "Anby") CombatCatalog.Champion.CollisionDamage *= 2;
-            if (OctoberHero == "Frosty") { CombatCatalog.Champion.BodyHeight *= 1 + Mathf.Min(.35f, State.Roster.Count * .02f); CombatCatalog.Champion.Weapon.ProjectileSplit = Mathf.Max(1, CombatCatalog.Champion.Weapon.ProjectileSplit); }
+            if (OctoberHero == "Frosty") { CombatCatalog.Champion.BodyHeight *= 1 + Mathf.Min(.35f, ActiveRoster.Count * .02f); CombatCatalog.Champion.Weapon.ProjectileSplit = Mathf.Max(1, CombatCatalog.Champion.Weapon.ProjectileSplit); }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ArcaneBrigade
                 m.Damage += Math.Max(0, entry.Damage); m.Kills += Math.Max(0, entry.Kills); m.Gold += Math.Max(0, entry.Coins);
                 total += Math.Max(0, entry.Damage);
             }
-            foreach (RosterEntry r in run.Roster)
+            foreach (RosterEntry r in CompanionDeployment.Select(run.Roster))
             {
                 if (!byUnit.TryGetValue(r.UnitId, out Member m)) byUnit[r.UnitId] = m = new Member { UnitId = r.UnitId };
                 m.Stars = Math.Max(m.Stars, r.Tier);

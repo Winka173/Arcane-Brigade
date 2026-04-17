@@ -72,8 +72,8 @@ namespace ArcaneBrigade.Editor
                 {
                     var unit=specials[index];
                     var offer = Offer(s, unit.Id, true);
-                    bool available=wave<10 && index==0;
-                    Check(s.Buy(offer.Token)==available,"Special new species respects per-wave and shared cooldown " +wave+"/"+index);
+                    bool available=index==0;
+                    Check(s.Buy(offer.Token)==available,"Special new species respects its independent visit quota " +wave+"/"+index);
                     Check(s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase leaves regular quotas unchanged " + wave + "/" + unit.Id);
                 }
                 Check(s.Buy(Offer(s,owned,true).Token),"Special upgrade copy ignores regular and new-species quotas "+wave);
@@ -91,7 +91,7 @@ namespace ArcaneBrigade.Editor
             using (var s = Session(c, 12))
             {
                 Check(s.Buy(Offer(s, specials[0].Id, true).Token) && s.State.NewRecruitsThisWave == 0, "Special-first purchase leaves full normal quota");
-                // since 19/10/2026 the dream shop no longer closes the regular shop's new species (its own pace is one every two waves)
+                // Each shop spends only its own allowance.
                 Check(s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 1, "Special-first recruit leaves the regular new species open");
                 s.State.NewRecruitsThisWave = 3;
                 Roll(s, true);
@@ -103,13 +103,13 @@ namespace ArcaneBrigade.Editor
             {
                 string first=specialFirst?specials[0].Id:ordinary[0].Id;
                 Check(s.Buy(Offer(s,first,specialFirst).Token),"Wave 10 first new species accepted / special="+specialFirst);
-                Check(s.State.LastNewShopSpeciesWave==10 && s.SpecialNewRecruitsRemaining==0 && (s.NewRecruitsRemaining==0)!=specialFirst,"The dream shop closes for both; the regular shop closes only its own new species");
+                Check(s.SpecialNewRecruitsRemaining==(specialFirst ? 0 : 1) && s.NewRecruitsRemaining==(specialFirst ? 1 : 0),"Each shop closes only its own new-species allowance");
                 s.State.Offers.Clear();s.State.SpecialOffers.Clear();s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
-                Check(s.NewSpeciesCooldown,"Saving cannot clear the shared cooldown");
+                Check(!s.NewSpeciesCooldown && s.SpecialNewRecruitsRemaining==(specialFirst ? 0 : 1), "Reload preserves separate shop quotas without a shared cooldown");
                 s.State.Wave=11;s.State.NewRecruitsThisWave=s.State.NewSpeciesRecruitsThisWave=s.State.SpecialNewSpeciesRecruitsThisWave=0;
-                Check(s.Buy(Offer(s,ordinary[1].Id).Token)==specialFirst && !s.Buy(Offer(s,specials[1].Id,true).Token),"Following wave: the dream shop waits; the regular shop waits only after its own new species");
+                Check(s.Buy(Offer(s,ordinary[1].Id).Token) && s.Buy(Offer(s,specials[1].Id,true).Token),"Following wave: regular catch-up and a fresh dream visit are independent");
                 Check(s.Buy(Offer(s,first,specialFirst).Token),"Duplicate remains buyable in the intervening wave");
-                Check(s.Reroll() && s.NewSpeciesCooldown,"Reroll never bypasses two-wave cooldown");
+                Check(s.Reroll() && s.NewRecruitsRemaining == 0 && s.SpecialNewRecruitsRemaining == 0, "Reroll never resets either per-visit or per-wave allowance");
                 s.State.Wave=12;s.State.NewRecruitsThisWave=s.State.NewSpeciesRecruitsThisWave=s.State.SpecialNewSpeciesRecruitsThisWave=0;
                 Check(s.Buy(Offer(s,specialFirst?ordinary[1].Id:specials[1].Id,!specialFirst).Token),"New species reopens after two waves in either shop");
             }
@@ -165,7 +165,7 @@ namespace ArcaneBrigade.Editor
                     counts.Add(newcomers);
                     Check(s.CompanionOfferChance == 1, "Crowd never suppresses owned-species offer slot " + size);
                 }
-                Check(counts[0] > counts[1] && counts[1] > counts[2], "Seeded shop rolls reduce new species at 5/6/12 bodies: " + string.Join("/", counts));
+                Check(counts.All(n => n >= 400), "Banked allowance guarantees a new-species offer even with larger deployed teams: " + string.Join("/", counts));
             }
             // owner 22/10/2026: the shop never sells what can't be bought. A new species left on the shelf when the new-species
             // quota closes is replaced in its place (a copy of an owned species within the copy quota, or a relic)
@@ -179,7 +179,11 @@ namespace ArcaneBrigade.Editor
                 Check(s.State.Offers.Count(o => !o.Sold && o.Kind == OfferKind.Companion) <= s.CopyRecruitsRemaining, "Stand-in copies respect the copy quota " + wave);
                 for (int roll = 0; roll < 6; roll++) { Check(s.Reroll(), "Refresh after quota " + wave); Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion || s.OwnsCompanionSpecies(o.Id)), "Refresh rolls no new species while the quota is closed " + wave + "/" + roll); }
                 s.State.Wave = wave + 1; s.State.NewRecruitsThisWave = s.State.NewSpeciesRecruitsThisWave = 0;
-                for (int roll = 0; roll < 6; roll++) { s.Reroll(); Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion || s.OwnsCompanionSpecies(o.Id)), "Next wave (quota not yet back) rolls no new species " + wave + "/" + roll); }
+                for (int roll = 0; roll < 6; roll++)
+                {
+                    s.Reroll();
+                    Check(s.NewRecruitsRemaining == 1 && s.State.Offers.Any(o => o.Kind == OfferKind.Companion && !s.OwnsCompanionSpecies(o.Id)), "Next wave rolls a new species from unspent allowance " + wave + "/" + roll);
+                }
             }
             // Kettle Bat (Scavenge 0.5) once found "0 gold": at least 1, growing with stars and with the wave, and the text says so
             {
@@ -197,7 +201,7 @@ namespace ArcaneBrigade.Editor
                 var arena = late.PrepareCombat(); var fielded = arena.StartingCompanions.FirstOrDefault(u => u != null && u.Id == bat.Id);
                 Check(fielded != null && Mathf.RoundToInt(fielded.PassiveStrength) == late.ScavengeGold(bat, 1), "Kettle Bat in combat finds the gold its card shows");
             }
-            File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"EarlyNewSpeciesLimit\":1,\"LaterNewSpeciesLimit\":1,\"TotalOrdinaryPurchaseLimit\":3,\"SpecialShopExempt\":false,\"SpecialNewSpeciesPerWave\":1,\"SharedCooldownStartsAtWave\":10,\"NewSpeciesWaveInterval\":2,\"UpgradeUsesTotalQuota\":true}");
+            File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"RegularNewSpeciesPerWave\":1,\"RegularCopyPurchasesPerWave\":1,\"UnusedAllowanceCarriesOver\":true,\"NewSpeciesWaveInterval\":2,\"DreamShopIndependent\":true,\"SpecialNewSpeciesPerVisit\":1}");
             Debug.Log("RECRUITMENT_PASS " + notes.Count);
         }
         public static void VerifyAndBuild() { Run(); HeroIdentityChecks.VerifyAndBuild(); }

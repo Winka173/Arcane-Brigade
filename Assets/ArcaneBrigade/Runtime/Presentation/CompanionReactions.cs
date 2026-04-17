@@ -152,7 +152,7 @@ namespace ArcaneBrigade
             }).ToArray();
             foreach (var bond in crossed)
             {
-                var speakers = state.Roster.Where(r => Has(r.UnitId) && !RunSession.Stranger(state, r.UnitId) && Array.IndexOf(catalog.Unit(r.UnitId).Tags, bond.Id) >= 0).OrderBy(r => r.UnitId).ToArray();
+                var speakers = CompanionDeployment.Select(state.Roster).Where(r => Has(r.UnitId) && !RunSession.Stranger(state, r.UnitId) && Array.IndexOf(catalog.Unit(r.UnitId).Tags, bond.Id) >= 0).OrderBy(r => r.UnitId).ToArray();
                 if (speakers.Length == 0) continue;
                 var speaker = speakers[state.NextReceipt % speakers.Length];
                 result.Add(new CompanionReaction { UnitId = speaker.UnitId, Tier = speaker.Tier, Kind = CompanionReactionKind.Bond, Text = Line(speaker.UnitId, CompanionReactionKind.Bond), BondId = bond.Id });
@@ -160,7 +160,7 @@ namespace ArcaneBrigade
             }
             if (purchase.Kind != OfferKind.Item) return result;
             var item = catalog.Item(purchase.Id);
-            var participants = state.Roster.Select(r => (entry: r, story: (string)null)).ToList();
+            var participants = CompanionDeployment.Select(state.Roster).Select(r => (entry: r, story: (string)null)).ToList();
             // The four canon travellers are independent of the purchased roster. They may answer a gift, never add bond counts.
             for (int i = 0; i < ActOneCanon.StoryIds.Length; i++)
             {

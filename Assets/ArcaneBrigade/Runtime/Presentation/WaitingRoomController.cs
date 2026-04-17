@@ -81,8 +81,9 @@ namespace ArcaneBrigade
             var names=new System.Collections.Generic.List<string>();
             if(rescue)for(int i=1;i<ActOneCanon.StoryIds.Length;i++)if(ActOneCanon.StoryPresent(i,state.Wave,true,state.Endless) && content.Unit(ActOneCanon.StoryIds[i])!=null)
             { bodies.Add(ActOneArtwork.Picture(ActOneCanon.StoryNames[i]) ?? content.Unit(ActOneCanon.StoryIds[i]).Body);definitions.Add(content.Unit(ActOneCanon.StoryIds[i]));names.Add(ActOneCanon.StoryNames[i]); }
-            for(int i=0;i<state.Roster.Count;i++)
-            { var definition=content.Unit(state.Roster[i].UnitId);bodies.Add(definition.Body);definitions.Add(definition);names.Add(definition.DisplayName); }
+            var deployed = CompanionDeployment.Select(state.Roster);
+            for(int i=0;i<deployed.Count;i++)
+            { var definition=content.Unit(deployed[i].UnitId);bodies.Add(definition.Body);definitions.Add(definition);names.Add(definition.DisplayName); }
             int count=bodies.Count;friends=new SpriteRenderer[count];
             friendDefinitions=definitions.ToArray();friendPositions=new Vector2[count];
             for(int i=0;i<count;i++){friendPositions[i]=position+Vector2.left;friends[i]=Make(names[i],bodies[i],friendPositions[i], .9f,49);}

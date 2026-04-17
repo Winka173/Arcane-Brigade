@@ -35,12 +35,14 @@ namespace ArcaneBrigade
                 Change(receipt, "Current HP", before.Health.ToString("0.###"), session.State.Health.ToString("0.###"));
                 Change(receipt, "Shop reroll", before.RerollsThisShop.ToString(), session.State.RerollsThisShop.ToString());
                 RosterChanges(receipt, before.Roster, session.State.Roster, catalog);
-                for (int index = 0; index < before.Roster.Count; index++)
+                var priorRoster = CompanionDeployment.Select(before.Roster);
+                var nextRoster = session.ActiveRoster;
+                for (int index = 0; index < priorRoster.Count; index++)
                 {
-                    int currentIndex = session.State.Roster.FindIndex(entry => Same(before.Roster[index], entry));
+                    int currentIndex = nextRoster.FindIndex(entry => Same(priorRoster[index], entry));
                     if (currentIndex >= 0)
                         foreach (KeyValuePair<string, string> stat in previous.Companions[index].CombatValues)
-                            Change(receipt, previous.Companions[index].Name + " / " + before.Roster[index].WeaponId + " / " + stat.Key, stat.Value, current.Companions[currentIndex].CombatValues[stat.Key]);
+                            Change(receipt, previous.Companions[index].Name + " / " + priorRoster[index].WeaponId + " / " + stat.Key, stat.Value, current.Companions[currentIndex].CombatValues[stat.Key]);
                 }
                 var itemIds = new HashSet<string>();
                 foreach (ItemStack stack in before.Items) itemIds.Add(stack.Id);
@@ -77,10 +79,15 @@ namespace ArcaneBrigade
 
         private static void RosterChanges(RunTransactionReceipt receipt, List<RosterEntry> before, List<RosterEntry> after, RunCatalog catalog)
         {
+            var unmatched = new List<RosterEntry>(after);
             foreach (RosterEntry entry in before)
-                if (!after.Exists(candidate => Same(entry, candidate))) receipt.Changes.Add("− " + RosterLabel(entry, catalog));
-            foreach (RosterEntry entry in after)
-                if (!before.Exists(candidate => Same(entry, candidate))) receipt.Changes.Add("+ " + RosterLabel(entry, catalog));
+            {
+                int index = unmatched.FindIndex(candidate => Same(entry, candidate));
+                if (index >= 0) unmatched.RemoveAt(index);
+                else receipt.Changes.Add("− " + RosterLabel(entry, catalog));
+            }
+            foreach (RosterEntry entry in unmatched)
+                receipt.Changes.Add("+ Owned material: " + RosterLabel(entry, catalog));
         }
 
         private static bool Same(RosterEntry first, RosterEntry second) => first.UnitId == second.UnitId && first.WeaponId == second.WeaponId && first.Tier == second.Tier;

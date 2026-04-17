@@ -11,9 +11,9 @@ namespace ArcaneBrigade
             BuildMorphProfile main = session.MorphProfile(catalog.Unit(session.State.ChampionId).Weapon, 1, false);
             if (main.Kind != BuildMorphKind.None)
                 model.Stats.Add(new RunBuildReadModel.Row { Name = "Champion form", Icon = art == null ? null : art.Charm(main.Kind), Summary = main.Summary, Explanation = main.Explanation });
-            for (int i = 0; i < model.Companions.Count && i < session.State.Roster.Count; i++)
+            for (int i = 0; i < model.Companions.Count && i < session.ActiveRoster.Count; i++)
             {
-                RosterEntry entry = session.State.Roster[i];
+                RosterEntry entry = session.ActiveRoster[i];
                 BuildMorphProfile p = session.MorphProfile(catalog.Weapon(entry.WeaponId), entry.Tier, true);
                 if (p.Kind != BuildMorphKind.None) model.Companions[i].Explanation += "\n\nBUILD FORM\n" + p.Summary + "\n" + p.Explanation;
             }
@@ -30,7 +30,7 @@ namespace ArcaneBrigade
                     carriers += name + " / " + RunUICopy.WeaponName(w.Id) + " / " + BuildMorphs.StageName(p.Stage) + " / " + p.Points + " craft\n";
                 }
                 Carrier(catalog.Unit(session.State.ChampionId).Weapon, 1, false, "Champion");
-                foreach (RosterEntry entry in session.State.Roster) Carrier(catalog.Weapon(entry.WeaponId), entry.Tier, true, RunUICopy.UnitName(catalog.Unit(entry.UnitId)));
+                foreach (RosterEntry entry in session.ActiveRoster) Carrier(catalog.Weapon(entry.WeaponId), entry.Tier, true, RunUICopy.UnitName(catalog.Unit(entry.UnitId)));
                 string weapons = "";
                 foreach (WeaponDefinition w in catalog.Weapons)
                     if (!w.SpecialOnly && BuildMorphs.For(w) == definition.Kind) weapons += RunUICopy.WeaponName(w.Id) + ", ";
@@ -57,7 +57,7 @@ namespace ArcaneBrigade
                 previews.Add(after > p.Stage ? "FORM UP: " + name + " / " + BuildMorphs.StageName(after) : "CRAFT +1: " + name + " (" + (p.Points + 1) + "/" + BuildMorphs.NextThreshold(p.Stage) + ")");
             }
             Preview(catalog.Unit(session.State.ChampionId).Weapon, 1, false);
-            foreach (RosterEntry entry in session.State.Roster) Preview(catalog.Weapon(entry.WeaponId), entry.Tier, true);
+            foreach (RosterEntry entry in session.ActiveRoster) Preview(catalog.Weapon(entry.WeaponId), entry.Tier, true);
             return string.Join("\n", previews);
         }
     }

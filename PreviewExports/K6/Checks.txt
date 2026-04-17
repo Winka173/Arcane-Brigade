@@ -1,13 +1,13 @@
 PASS Tests do not touch player profile
 PASS All validated run phases including terminal results can resume without silently creating new run
-PASS New default mode schema3
+PASS New default mode uses current schema
 PASS Invoice read model cannot mutate build or RNG
 PASS Run summary names the brigade with stars and the hero, without internal ids
 PASS Score uses20clears+7kills+2bosses+victory exactly
 PASS Repeated results credit exactly once
 PASS Measured dominant weapon yields stable stored nickname
 PASS History is a deep frozen build not live reference
-PASS Normal clear unlocks next difficulty without permanent stats
+PASS All difficulties are available without permanent stats
 PASS History records and dedupe persist across reload
 PASS Endless resets only measured segment and retains parent identity
 PASS Endless keeps actual squad and relics
@@ -32,11 +32,11 @@ PASS Difficulty 4 explicit HP, authored trait and budget (73 vs 73)
 PASS Difficulty 4 damage caps and base Champion unchanged (8.335061, 129)
 PASS Difficulty 4 resume preserves identity
 PASS Challenge 1 seed and streams stable on resume
-PASS Challenge 1 separate reward identity no normal difficulty unlock
+PASS Challenge 1 keeps its own reward and all difficulties remain available
 PASS Challenge 2 seed and streams stable on resume
-PASS Challenge 2 separate reward identity no normal difficulty unlock
+PASS Challenge 2 keeps its own reward and all difficulties remain available
 PASS Challenge 3 seed and streams stable on resume
-PASS Challenge 3 separate reward identity no normal difficulty unlock
+PASS Challenge 3 keeps its own reward and all difficulties remain available
 PASS Reject invalid difficulty
 PASS Reject unknown challenge identity
 PASS Reject impossible segment start

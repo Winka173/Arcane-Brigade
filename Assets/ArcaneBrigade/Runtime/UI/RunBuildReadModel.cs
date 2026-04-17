@@ -44,7 +44,7 @@ namespace ArcaneBrigade
                 model.Stat("Treasure detection", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Makes chests appear sooner, at least 4 seconds apart. Approach to open; no skill button required.");
             }
             int companionIndex = 0;
-            foreach (RosterEntry entry in session.State.Roster)
+            foreach (RosterEntry entry in session.ActiveRoster)
             {
                 UnitDefinition unit = catalog.Unit(entry.UnitId);
                 WeaponDefinition actual = catalog.Weapon(entry.WeaponId);
@@ -58,6 +58,10 @@ namespace ArcaneBrigade
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
                     Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Stars bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Stars bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each friend body counts once toward bonds." });
                 model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier,session.GoldScale);
+                int savedValue = CompanionDeployment.OwnedValue(session.State.Roster, unit.Id);
+                int reserveCopies = session.State.Roster.FindAll(r => r.UnitId == unit.Id).Count - 1;
+                model.Companions[model.Companions.Count - 1].Summary += "\nOne fighter · " + reserveCopies + " saved materials · " + savedValue + "/" + (entry.Tier < 2 ? 3 : 9) + " upgrade value";
+                model.Companions[model.Companions.Count - 1].Explanation += "\nSaved materials do not attack, add bond members or provide passive stats. All purchased weapons are kept until used in a merge.";
             }
             foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])
             {
@@ -136,7 +140,7 @@ namespace ArcaneBrigade
                 ModifierScope target = effects[0] == ItemEffect.Luck || effects[0] == ItemEffect.TreasureDetection || effects[0] == ItemEffect.Pickup || effects[0] == ItemEffect.Roam || effects[0] == ItemEffect.Interest || effects[0] == ItemEffect.Interceptor ? ModifierScope.Run : ModifierScope.Champion;
                 string sources = "\n\nRUN MODIFIER SOURCES\n";
                 int sourceCount = 0;
-                foreach (RosterEntry entry in session.State.Roster)
+                foreach (RosterEntry entry in session.ActiveRoster)
                     foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
                         if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                         {

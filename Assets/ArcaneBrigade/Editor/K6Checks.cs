@@ -24,7 +24,7 @@ namespace ArcaneBrigade.Editor
             {
                 session.Start(catalog.Champions[0].Id, 610026);
                 RunSnapshot state = session.State;
-                require(state.SchemaRevision == 3 && state.StartHall == 1 && state.Difficulty == 0, "New default mode schema3");
+                require(state.SchemaRevision == RunSnapshot.CurrentSchemaRevision && state.StartHall == 1 && state.Difficulty == 0, "New default mode uses current schema");
                 string initial = JsonUtility.ToJson(state);
                 string first = RunInvoice.Describe(state, catalog); string second = RunInvoice.Describe(state, catalog);
                 require(first == second && initial == JsonUtility.ToJson(state), "Invoice read model cannot mutate build or RNG");
@@ -42,7 +42,7 @@ namespace ArcaneBrigade.Editor
                 require(profile.History[0].Nickname == "Midnight photo booth" && profile.History[0].Score == 26070, "Measured dominant weapon yields stable stored nickname");
                 state.Contributions[0].Damage = 200;
                 require(profile.History[0].Build.Contributions[0].Damage == 11, "History is a deep frozen build not live reference");
-                require(RunMeta.UnlockedDifficulty(profile) == 1, "Normal clear unlocks next difficulty without permanent stats");
+                require(RunMeta.UnlockedDifficulty(profile) == RunMeta.DifficultyNames.Length - 1, "All difficulties are available without permanent stats");
                 PlayerProfile loaded = storage.LoadProfile();
                 require(loaded.History[0].Nickname == profile.History[0].Nickname && loaded.Records.Count == 1 && loaded.Wins == 1, "History records and dedupe persist across reload");
                 string normalId = state.RunId; string roster = JsonUtility.ToJson(new RosterHolder { Entries = state.Roster });
@@ -60,7 +60,7 @@ namespace ArcaneBrigade.Editor
                 require(session.State.Contributions.Count == 0 && session.State.StartHall == 21 && session.State.Roster.Count == legacy.Roster.Count, "Legacy Endless drops inseparable old ledger not invents segment damage");
                 legacy.Endless = false; legacy.SchemaRevision = 1; legacy.Receipts = null;
                 session.Restore(legacy);
-                require(session.State.SchemaRevision == 3 && session.State.StartHall == 1 && session.State.Contributions.Count == legacy.Contributions.Count && session.State.Receipts.Count == 0, "Legacy normal schema1 preserves measured ledger and migrates receipts");
+                require(session.State.SchemaRevision == RunSnapshot.CurrentSchemaRevision && session.State.StartHall == 1 && session.State.Contributions.Count == legacy.Contributions.Count && session.State.Receipts.Count == 0, "Legacy normal schema1 preserves measured ledger and migrates receipts");
             }
             using (var session = new RunSession(catalog))
             {
@@ -91,7 +91,7 @@ namespace ArcaneBrigade.Editor
                     require(before == JsonUtility.ToJson(session.State), "Challenge " + index + " seed and streams stable on resume");
                     session.State.Phase = SessionPhase.Victory; session.State.Wave = 20;
                     var challengeProfile = new PlayerProfile(); storage.RecordProgress(challengeProfile, session.State, catalog);
-                    require(challengeProfile.Achievements.Contains("challenge-" + session.State.ChallengeId) && RunMeta.UnlockedDifficulty(challengeProfile) == 0, "Challenge " + index + " separate reward identity no normal difficulty unlock");
+                    require(challengeProfile.Achievements.Contains("challenge-" + session.State.ChallengeId) && RunMeta.UnlockedDifficulty(challengeProfile) == RunMeta.DifficultyNames.Length - 1, "Challenge " + index + " keeps its own reward and all difficulties remain available");
                 }
                 RunSnapshot invalid = Copy(session.State); invalid.Difficulty = 5;
                 require(Reject(() => session.Validate(invalid)), "Reject invalid difficulty");

@@ -64,7 +64,7 @@ namespace ArcaneBrigade
         {
             if (state.Phase != SessionPhase.Shop && state.Phase != SessionPhase.Combat) return;
             scratch.Clear();
-            foreach (RosterEntry entry in state.Roster) { string key = entry.UnitId + "#" + entry.Tier; scratch[key] = (scratch.TryGetValue(key, out int count) ? count : 0) + 1; }
+            foreach (RosterEntry entry in CompanionDeployment.Select(state.Roster)) { string key = entry.UnitId + "#" + entry.Tier; scratch[key] = (scratch.TryGetValue(key, out int count) ? count : 0) + 1; }
             if (baseline)
             {
                 foreach (KeyValuePair<string, int> pair in scratch)

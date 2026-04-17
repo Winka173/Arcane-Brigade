@@ -160,7 +160,7 @@ namespace ArcaneBrigade
             RelicMechanic.SoloOverdrive=>"NEXT WAVE ONLY: friends stop their basic attacks and your hero attacks 6 times as often. Every 10 team kills attempts to heal 3 HP.",
             RelicMechanic.FreshLotus=>"Start each wave with +3 pierce and +30% crit per copy. The temporary bonus ends on the first recorded hero hit.",
             RelicMechanic.EggGift=>"ON PURCHASE: receive 3 eggs immediately once per acquisition.",
-            RelicMechanic.CompanionGift=>"ON PURCHASE: up to 2 ordinary friends from your hero's pool join. New species still keep to one every 3 waves. Solo heroes get none.",
+            RelicMechanic.CompanionGift=>"ON PURCHASE: up to 2 ordinary friends from your hero's pool join. New species use saved regular allowance: one earned every 2 waves, at most one new species this wave. Solo heroes get none.",
             RelicMechanic.FragilePower=>"Each recorded hero hit removes 5% team damage per copy, including a saved run penalty. Its positive listed modifiers are separate.",
             RelicMechanic.StatFloor=>"ON PURCHASE: record current modifier bonuses as floors; future bonuses cannot fall below those recorded floors. Does not remove every direct combat restriction or HP cost.",
             RelicMechanic.LuckToHealth=>"Maximum HP gains 100 times positive Luck per copy.",
@@ -310,7 +310,7 @@ namespace ArcaneBrigade
         public static string PurchaseReactions(RunSession s,RunCatalog c,ItemDefinition item)
         {
             var b=new StringBuilder();
-            int Talents(string name){int n=0;foreach(var r in s.State.Roster)if(c.Unit(r.UnitId).ReferenceCompanion==name)n++;foreach(var id in s.State.AbsorbedSkills)if(c.Unit(id).ReferenceCompanion==name)n++;return n;}
+            int Talents(string name){int n=0;foreach(var r in s.ActiveRoster)if(c.Unit(r.UnitId).ReferenceCompanion==name)n++;foreach(var id in s.State.AbsorbedSkills)if(c.Unit(id).ReferenceCompanion==name)n++;return n;}
             int Stacks(RelicMechanic m)=>s.MechanicStacks(m)+(item.Mechanic==m?1:0);
             if(item.Category==RelicCategory.Drink)
             {
