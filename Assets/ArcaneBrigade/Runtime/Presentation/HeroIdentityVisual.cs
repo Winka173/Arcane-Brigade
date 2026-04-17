@@ -120,8 +120,11 @@ namespace ArcaneBrigade
                 if (simulation.Champion.Alive)
                 {
                     DrawState();
-                    if (simulation.HeroAwakenEnabled) { DrawAwakenGauge(); DrawAwakening(); }
-                    else DrawGauge();
+                    // owner (22/10/2026): when the hero walks behind a map prop, the gauge beside it fades like the hero does
+                    float full = strength; strength *= Mathf.Lerp(1, HeroFocus.PropAlpha, HeroFocus.Covered);
+                    if (simulation.HeroAwakenEnabled) DrawAwakenGauge(); else DrawGauge();
+                    strength = full;
+                    if (simulation.HeroAwakenEnabled) DrawAwakening();
                     DrawCastCue();
                 }
                 foreach (var glyph in simulation.HeroIdentityGlyphs)

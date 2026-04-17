@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             Add("NightMaw", InkToken.Fang, InkBrush.Brush, HeroGauge.Pips, P(C(.18f, .02f, .08f), C(.82f, .18f, .34f), C(1f, .94f, .86f), C(.95f, .32f, .46f), C(.4f, .05f, .14f)));
             Add("ThornTreasurer", InkToken.Thorn, InkBrush.Brush, HeroGauge.Pips, P(C(.04f, .14f, .08f), C(.26f, .62f, .42f), C(.86f, 1f, .82f), C(.42f, .85f, .6f), Brass));
             Add("CitrusMarshal", InkToken.Citrus, InkBrush.Brush, HeroGauge.Arc, P(C(.27f, .12f, .02f), C(1f, .64f, .18f), C(1f, .96f, .72f), C(1f, .78f, .3f), C(.46f, .7f, .26f)));
-            Add("IvorySovereign", InkToken.Seal, InkBrush.Ink, HeroGauge.Pips, P(C(.13f, .04f, .17f), C(.55f, .24f, .64f), C(.99f, .94f, .82f), C(.8f, .58f, .95f), Wax));
+            Add("IvorySovereign", InkToken.Seal, InkBrush.Ink, HeroGauge.Pips, P(C(.2f, .07f, .26f), C(.78f, .44f, .92f), C(1f, .96f, .84f), C(.96f, .8f, 1f), Wax)); // lifted 22/10/2026: the verdict line was too faint on dark floors
             Add("PetalCitadel", InkToken.Petal, InkBrush.Brush, HeroGauge.Pips, P(C(.05f, .17f, .12f), C(.5f, .86f, .66f), C(1f, .96f, .86f), C(.62f, .95f, .78f), C(.98f, .62f, .7f)));
             Add("PatchworkHost", InkToken.Patch, InkBrush.Silk, HeroGauge.Pips, P(C(.23f, .04f, .11f), C(.9f, .36f, .46f), C(1f, .93f, .82f), C(1f, .6f, .66f), C(.96f, .82f, .5f)));
             Add("ArchiveCurator", InkToken.Page, InkBrush.Ink, HeroGauge.Pips, P(C(.06f, .08f, .23f), C(.34f, .48f, .88f), C(.97f, .93f, .8f), C(.5f, .66f, 1f), C(.55f, .7f, 1f)));

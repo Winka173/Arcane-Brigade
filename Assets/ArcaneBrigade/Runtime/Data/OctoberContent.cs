@@ -16,7 +16,7 @@ namespace ArcaneBrigade
             "Derpy Wolf" => "Keep moving to release clock pulses. Team speed +20%; start with +10% dodge and critical chance, but 0.15 less armor.",
             "Sassy Senior" => "You use your equipped weapon normally. Half your luck bonus also raises team damage, up to +50%. Taking damage releases a short burst. Hearts add 2% luck for this run.",
             "Baggy" => "Stay rooted in combat and collect loot across the arena. Shop discount +30%. Cannot dodge; treasure detection -100%.",
-            "Red Scale" => "Each drink bought grants 1 gold plus 1 per 10 maximum HP (up to 16). Each drink adds 2 maximum HP, but lowers armor by 0.02 and adds 2% more enemies (caps: 0.4 armor, 40% enemies).",
+            "Red Scale" => "Each drink bought grants 1 gold plus 1 per 10 maximum HP (up to 16; grows by wave). Each drink adds 2 maximum HP, but lowers armor by 0.02 and adds 2% more enemies (caps: 0.4 armor, 40% enemies).",
             "Gulpy" => "Your hits and archive friends add a delayed poison strike at 25% weapon damage. Everyone moves 15% faster. Each chest grants 1 maximum HP and heals 4 HP.",
             "Frosty" => "Attack while moving or resting; rest to heal 5% maximum HP each second. Each friend strengthens your shots and body, but weakens friends slightly. Moving shots may split.",
             "Capped Gallant" => "Fight alone. Buying friends absorbs their support traits without adding a body. Your original solo whirl and bounded damage growth remain active.",

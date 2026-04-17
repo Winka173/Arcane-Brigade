@@ -80,7 +80,7 @@ namespace ArcaneBrigade
             int interest = MechanicStacks(RelicMechanic.CompoundInterest);
             if (interest > 0) State.Gold = BoundedCounter((long)Math.Min(int.MaxValue, State.Gold * Math.Pow(1.2, interest)));
             int chaos = MechanicStacks(RelicMechanic.ChaosIncome);
-            if (chaos > 0) State.Gold = BoundedCounter((long)State.Gold + new System.Random(unchecked(State.Seed ^ State.Wave * 7919)).Next(25,76) * chaos);
+            if (chaos > 0) State.Gold = BoundedCounter((long)State.Gold + ScaledGold(new System.Random(unchecked(State.Seed ^ State.Wave * 7919)).Next(25,76)) * chaos);
         }
 
         private void BuyRelic(ItemDefinition item, int purchasedToken)

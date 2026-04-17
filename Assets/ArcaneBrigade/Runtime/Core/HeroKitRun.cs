@@ -142,7 +142,7 @@ namespace ArcaneBrigade
             ItemRarity rarity = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id)?.Rarity ?? ItemRarity.Common : catalog.Item(offer.Id)?.Rarity ?? ItemRarity.Common;
             if (rarity == ItemRarity.Mythic || rarity == ItemRarity.Rainbow) State.KitRareBuys++;
             if (offer.Kind != OfferKind.Companion && KitHas(KitPassive.DuplicateRelicGold) && (State.Items.Find(s => s.Id == offer.Id)?.Count ?? 0) >= 2)
-            { State.Gold = BoundedCounter((long)State.Gold + Mathf.RoundToInt(KitValue(KitPassive.DuplicateRelicGold))); Notice = "Twin petals: 3 gold back."; }
+            { int back = ScaledGold(Mathf.RoundToInt(KitValue(KitPassive.DuplicateRelicGold))); State.Gold = BoundedCounter((long)State.Gold + back); Notice = "Twin petals: " + back + " gold back."; }
             ApplyKitPrices();
         }
         /// <summary>A recruit arriving: the greenhouse may raise a one-star to two (VerdantMatron).</summary>
@@ -164,7 +164,7 @@ namespace ArcaneBrigade
         {
             State.KitMerges++;
             if (MechanicStacks(RelicMechanic.ClockworkHeart) > 0) State.HeartWinds++;
-            int gold = Mathf.RoundToInt(KitValue(KitPassive.MergeGold));
+            int gold = ScaledGold(Mathf.RoundToInt(KitValue(KitPassive.MergeGold))); // on the gold curve (owner, 22/10/2026)
             if (gold > 0) State.Gold = BoundedCounter((long)State.Gold + gold);
         }
         private void KitAbsorbed()

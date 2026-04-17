@@ -160,7 +160,7 @@ namespace ArcaneBrigade
             RelicMechanic.SoloOverdrive=>"NEXT WAVE ONLY: friends stop their basic attacks and your hero attacks 6 times as often. Every 10 team kills attempts to heal 3 HP.",
             RelicMechanic.FreshLotus=>"Start each wave with +3 pierce and +30% crit per copy. The temporary bonus ends on the first recorded hero hit.",
             RelicMechanic.EggGift=>"ON PURCHASE: receive 3 eggs immediately once per acquisition.",
-            RelicMechanic.CompanionGift=>"ON PURCHASE: try to recruit up to 2 ordinary friends from your hero's pool. Gifts use the 3-friend regular purchase quota. At most 1 new species per wave; from wave 10 both shops share one new species every 2 waves. Checks unlock wave and unique weapon; no body cap. Solo heroes receive no bodies.",
+            RelicMechanic.CompanionGift=>"ON PURCHASE: up to 2 ordinary friends from your hero's pool join. New species still keep to one every 3 waves. Solo heroes get none.",
             RelicMechanic.FragilePower=>"Each recorded hero hit removes 5% team damage per copy, including a saved run penalty. Its positive listed modifiers are separate.",
             RelicMechanic.StatFloor=>"ON PURCHASE: record current modifier bonuses as floors; future bonuses cannot fall below those recorded floors. Does not remove every direct combat restriction or HP cost.",
             RelicMechanic.LuckToHealth=>"Maximum HP gains 100 times positive Luck per copy.",

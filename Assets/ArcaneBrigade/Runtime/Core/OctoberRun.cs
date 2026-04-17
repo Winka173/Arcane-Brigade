@@ -88,7 +88,7 @@ namespace ArcaneBrigade
             string talent = unit.ReferenceCompanion;
             if (OctoberHero == "Jade Cabbage" && talent == "Little Cabbage") State.LeafPurchases++;
             if (talent == "\"Expert Nurturer\" Daisy") State.Eggs = BoundedCounter((long)State.Eggs + 6);
-            if (talent == "\"The Creator\" Roger") State.Gold = BoundedCounter((long)State.Gold + 100);
+            if (talent == "\"The Creator\" Roger") State.Gold = BoundedCounter((long)State.Gold + ScaledGold(100)); // on the gold curve (owner, 22/10/2026)
             if (talent == "\"GLHF\" Nia")
             {
                 int pick = Next(ref State.WeaponRandom, 4); State.OctoberGains.Add(new StatModifier { Effect = new[] { ItemEffect.Damage, ItemEffect.MoveSpeed, ItemEffect.Luck, ItemEffect.Armor }[pick], Scope = pick == 2 ? ModifierScope.Run : pick == 3 ? ModifierScope.Champion : ModifierScope.Team, Value = pick == 3 ? .12f : .06f });
@@ -105,7 +105,7 @@ namespace ArcaneBrigade
         }
         private void OctoberBoughtRelic(ItemDefinition item)
         {
-            if (OctoberHero == "Red Scale" && item.Category == RelicCategory.Drink) State.Gold = BoundedCounter((long)State.Gold + 1 + Mathf.Min(15, Mathf.FloorToInt(MaximumHealth() / 10)));
+            if (OctoberHero == "Red Scale" && item.Category == RelicCategory.Drink) State.Gold = BoundedCounter((long)State.Gold + ScaledGold(1 + Mathf.Min(15, Mathf.FloorToInt(MaximumHealth() / 10))));
             if (OctoberHero != "Periwinky" || item.ReferenceName != "Spiky Yoga Ball") return;
             string id = "BristleBall";
             var pool = Array.FindAll(catalog.Weapons, w => RecruitWeaponEligible(id, w) && !State.Roster.Exists(r => r.UnitId == id && r.WeaponId == w.Id));
@@ -141,7 +141,7 @@ namespace ArcaneBrigade
         private void OctoberRefreshed()
         {
             State.OctoberRefreshes++;
-            State.Gold = BoundedCounter((long)State.Gold + Mathf.Min(6, 2 * Talent("Smiley Fox")));
+            State.Gold = BoundedCounter((long)State.Gold + ScaledGold(Mathf.Min(6, 2 * Talent("Smiley Fox"))));
         }
         private int OctoberMergeTier(string id)
         {

@@ -28,6 +28,8 @@ namespace ArcaneBrigade
         /// <summary>For checks: renderers currently faded (props and friends), and whether the hero shows through.</summary>
         public int Faded { get; private set; }
         public bool ShowingThrough => showThroughAlpha > .01f;
+        /// <summary>0..1: how far the hero is hidden behind a prop or friend right now; the hero's gauge fades with it.</summary>
+        public static float Covered { get; private set; }
         public bool RingVisible { get; private set; }
 
         public void Configure(ArenaController controller) { owner = controller; }
@@ -85,7 +87,7 @@ namespace ArcaneBrigade
             // a faint copy of the hero shows through whatever still covers it
             float want = occluded ? .32f : 0;
             showThroughAlpha = PresentationSettings.ReducedMotion ? want : Mathf.MoveTowards(showThroughAlpha, want, delta / FadeSeconds * .32f);
-            showThrough.enabled = showThroughAlpha > .01f;
+            showThrough.enabled = showThroughAlpha > .01f; Covered = showThroughAlpha / .32f;
             Color tint = HeroColour(hero);
             if (showThrough.enabled)
             {
@@ -203,7 +205,7 @@ namespace ArcaneBrigade
             ApplyFades(PresentationSettings.ReducedMotion ? 1 : Time.unscaledDeltaTime);
             if (ring != null) { ring.Hide(); arrow.Hide(); }
             if (showThrough != null) showThrough.enabled = false;
-            showThroughAlpha = 0; RingVisible = false;
+            showThroughAlpha = 0; Covered = 0; RingVisible = false;
         }
 
         private void OnDisable() { foreach (var pair in fades) if (pair.Key != null) { Color c = pair.Key.color; c.a = pair.Value.Base; pair.Key.color = c; } fades.Clear(); }
