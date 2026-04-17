@@ -45,7 +45,7 @@ namespace ArcaneBrigade
             "Big Cabbage" => "Uses its equipped weapon and has 24 base contact damage before brigade bonuses. Can carry nursery bonuses.", "Domestic Spiked Ball" => "Uses its equipped weapon and has 18 base contact damage before brigade bonuses; gain 1 more per injury this wave, up to 20.",
             "Evil" => "Cannot merge. Each 8 personal kills grants you 2% attack speed, up to 20% this wave.",
             "Inflatable Hammer" => "Push ordinary enemies within the push cap. Basic damage is reduced by 70%.",
-            "Little Cabbage" => "Nursery-exclusive. Uses its weapon and has 12 base contact damage before brigade bonuses. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon.",
+            "Little Cabbage" => "Nursery-exclusive. Uses its weapon and has 12 base contact damage before brigade bonuses. Two sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon.",
             "Monster Friend" => "An immortal friendly marble. Uses its own randomly assigned weapon.",
             "Pony" => "Carries one nearby friend while both continue attacking. Rider and mount remain immortal. Mount pairing is automatic.",
             "Original:TeacupCricket" => "Every fifth basic attack releases a short echo at 40% weapon damage.",

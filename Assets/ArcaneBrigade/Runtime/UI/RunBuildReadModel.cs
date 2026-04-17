@@ -37,7 +37,8 @@ namespace ArcaneBrigade
             model.Stat("Friend bullet interception", session.Bonus(ItemEffect.Interceptor) > 0 ? "Enabled by item" : "No", "Friends are immortal but do not block bullets by default.");
             model.Stat("Next shop interest", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " gold", "Forecast from saved gold; excludes uncommitted pickups or next-wave income.");
             model.Stat("Next reroll cost", session.RerollCost + " gold", "Rerolled " + session.State.RerollsThisShop + " times in this shop. Base cost " + catalog.RerollPrice + "; each roll adds " + catalog.RerollPriceStep + ". Coupons discount displayed wares, not reroll fees.");
-            if (catalog.AltarRevision > 0) model.Stat("Next rest's special shop", Percent(session.AltarActivationChance), "Appearance chance increases with held eggs, up to 100%. Rolled once when creating rest, not again on loading. Opening the shop does not spend eggs.");
+            model.Stat("Next dream shop", session.SpecialShopEnabled ? "After wave " + session.State.NextSpecialShopWave : "Disabled by this pact",
+                "A dream shop opens every 3 or 4 waves. Its schedule is saved; eggs do not speed it up. Opening is free; purchases still use their listed currency.");
             if (catalog.LootRevision > 0)
             {
                 model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Increases egg/heart drops and chest rewards. Does not change combat or shop RNG outcomes.");
@@ -60,7 +61,8 @@ namespace ArcaneBrigade
                 model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier,session.GoldScale);
                 int savedValue = CompanionDeployment.OwnedValue(session.State.Roster, unit.Id);
                 int reserveCopies = session.State.Roster.FindAll(r => r.UnitId == unit.Id).Count - 1;
-                model.Companions[model.Companions.Count - 1].Summary += "\nOne fighter · " + reserveCopies + " saved materials · " + savedValue + "/" + (entry.Tier < 2 ? 3 : 9) + " upgrade value";
+                model.Companions[model.Companions.Count - 1].Summary += "\nOne fighter · " + reserveCopies + " saved materials · "
+                    + (entry.Tier >= 3 ? "maximum stars" : savedValue + "/" + (entry.Tier < 2 ? 2 : 4) + " upgrade value");
                 model.Companions[model.Companions.Count - 1].Explanation += "\nSaved materials do not attack, add bond members or provide passive stats. All purchased weapons are kept until used in a merge.";
             }
             foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])

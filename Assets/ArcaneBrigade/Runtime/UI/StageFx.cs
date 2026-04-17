@@ -226,7 +226,7 @@ namespace ArcaneBrigade
                     break;
                 case 4:
                     if (!shop) { Finish(owner); return; }
-                    message = "Three of the same companion become one, and shine brighter.";
+                    message = "Two of the same companion become one, and shine brighter.";
                     if (age > 6f) Next(now);
                     break;
                 case 5:

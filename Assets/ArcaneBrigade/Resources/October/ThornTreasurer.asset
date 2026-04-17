@@ -42,7 +42,7 @@ MonoBehaviour:
   - archive
   Passive: 0
   PassiveStrength: 0.8
-  Description: "Dream shops always open. At wave start, maximum HP follows saved
+  Description: "Dream shops follow the shared 3-4-wave schedule. At wave start, maximum HP follows saved
     gold (20\u2013400). Buying a spiked relic recruits a Bristle Ball. Team damage
     -20%."
   ReferenceHero: Periwinky

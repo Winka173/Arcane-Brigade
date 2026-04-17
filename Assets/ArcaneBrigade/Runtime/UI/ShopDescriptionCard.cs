@@ -108,7 +108,7 @@ namespace ArcaneBrigade
             b.AppendLine(session.UpgradeProgress(offer));
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
                 : offer.Tier >= catalog.MaximumTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
-                : "Owned " + copies + "/3 at " + offer.Tier + "-star" + (copies == 2 ? " · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
+                : "Owned " + copies + "/2 at " + offer.Tier + "-star" + (copies == 1 ? " · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
             Summary = WithBloodCost(b.ToString().Trim(), offer);
             RosterEntry fieldedBefore = session.ActiveRoster.Find(r => r.UnitId == unit.Id);
             RosterEntry fieldedAfter = purchased ? preview.ActiveRoster.Find(r => r.UnitId == unit.Id) : null;
@@ -119,7 +119,7 @@ namespace ArcaneBrigade
             string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
             Details = Summary + (ComboLines.Length > 0 ? "\n\nCOMBOS" + ComboLines : "") + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
                 + (unit.Passive != PassiveKind.None ? "\nPASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier) : "")
-                + "\nOne fighter per species. Extra copies are saved upgrade materials: no attacks, bond counts or passive stats until merged. Three at the same star merge, keeping a weapon from the ingredients."
+                + "\nOne fighter per species. Two copies at the same star merge, keeping one of their two ingredient weapons. Stored materials do not attack, count toward bonds or add passive stats."
                 + (Attack.Weapon != null ? "\nComes with its " + RunUICopy.WeaponName(Attack.Weapon.Id) + "." : "\nGets a random " + (Attack.Melee && Attack.Ranged ? "weapon" : Attack.Ranged ? "ranged weapon" : "close-range weapon") + " when bought.")
                 + (string.IsNullOrEmpty(voice) ? "" : "\n“" + voice + "”")
                 + "\n\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(unit.Id)

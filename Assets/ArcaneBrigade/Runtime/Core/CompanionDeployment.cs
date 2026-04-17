@@ -8,6 +8,7 @@ namespace ArcaneBrigade
     /// Equal-star ties keep the first owned weapon, so buying an ingredient never silently swaps the fighter.</summary>
     public static class CompanionDeployment
     {
+        public const int MergeCopies = 2;
         public static List<RosterEntry> Select(IReadOnlyList<RosterEntry> owned)
         {
             var result = new List<RosterEntry>();
@@ -22,7 +23,7 @@ namespace ArcaneBrigade
             return result;
         }
 
-        public static int MaterialValue(int tier) => tier >= 3 ? 9 : tier == 2 ? 3 : 1;
+        public static int MaterialValue(int tier) => tier >= 3 ? 4 : tier == 2 ? 2 : 1;
         public static int OwnedValue(IReadOnlyList<RosterEntry> owned, string id)
         {
             long value = 0;
@@ -47,7 +48,7 @@ namespace ArcaneBrigade
                 // Also handles gifts/altar products and old saves; a chain may produce another species (the nursery).
                 var ids = new List<string>();
                 foreach (RosterEntry entry in State.Roster) if (!ids.Contains(entry.UnitId)) ids.Add(entry.UnitId);
-                foreach (string id in ids) MergeTriples(id);
+                foreach (string id in ids) MergeCompanions(id);
             }
             finally { resolvingStoredCopies = false; }
         }
@@ -56,7 +57,7 @@ namespace ArcaneBrigade
         {
             if (HighestOwnedTier(id) >= catalog.MaximumTier || catalog.Unit(id).ReferenceCompanion == "Evil") return false;
             for (int tier = 1; tier < catalog.MaximumTier; tier++)
-                if (State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier).Count >= 2) return true;
+                if (State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier).Count >= CompanionDeployment.MergeCopies - 1) return true;
             return false;
         }
 
@@ -66,9 +67,9 @@ namespace ArcaneBrigade
             int before = CompanionDeployment.OwnedValue(State.Roster, offer.Id);
             int added = CompanionDeployment.MaterialValue(offer.Tier);
             int after = RunSession.BoundedCounter((long)before + added);
-            int target = before < 3 ? 3 : 9;
+            int target = before < 2 ? 2 : 4;
             if (OctoberAbsorbs) return "Absorb this friend's skill; no extra fighter.";
-            if (before >= 9) return "Maximum stars · one fighter. Extra materials remain saved.";
+            if (HighestOwnedTier(offer.Id) >= catalog.MaximumTier) return "Maximum stars · one fighter. Extra materials remain saved.";
             return before == 0 ? "New friend · one fighter of this species."
                 : "Upgrade material · " + before + "/" + target + " → " + after + "/" + target
                     + " · no extra fighter.";

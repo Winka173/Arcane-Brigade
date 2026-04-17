@@ -38,6 +38,20 @@ namespace ArcaneBrigade.Editor
         {
             notes.Clear();
             var c = Resources.Load<RunCatalog>("RunCatalog");
+            using (var run = new RunSession(c))
+            {
+                run.Start("LanternKnight", 231026);
+                foreach (var milestone in new[] { (wave: 9, earned: 5), (wave: 10, earned: 5), (wave: 11, earned: 5), (wave: 12, earned: 6), (wave: 15, earned: 7), (wave: 18, earned: 8), (wave: 20, earned: 8) })
+                {
+                    Shop(run, milestone.wave);
+                    Check(run.EarnedNewSpeciesAllowance == milestone.earned, "Late allowance calendar at wave " + milestone.wave);
+                    Check(run.CopyRecruitsRemaining == (milestone.wave >= 10 ? 2 : 1), "Copy quota at wave " + milestone.wave);
+                }
+                RunSnapshot old = Copy(run.State); old.SchemaRevision = 4;
+                run.Restore(old);
+                Check(run.EarnedNewSpeciesAllowance == 10 && run.State.RegularAllowanceCarryover == 2, "Legacy wave-20 allowance is retained without taking back banked recruitment");
+                Check(run.State.NextSpecialShopWave >= 23 && run.State.NextSpecialShopWave <= 24, "Legacy dream-shop schedule starts three or four waves after migration");
+            }
             Check(RunMeta.UnlockedDifficulty(new PlayerProfile()) == 5 && RunMeta.UnlockedDifficulty(null) == 5, "All six difficulties unlocked even for a fresh profile");
             using (var run = new RunSession(c))
             {
@@ -46,7 +60,7 @@ namespace ArcaneBrigade.Editor
                 string fieldWeapon = null, bondBefore = null;
                 float bonusBefore = 0, attackBefore = 0;
                 var storage = new RunStorage(Path.Combine(Application.temporaryCachePath, "DeploymentChecks", Guid.NewGuid().ToString("N")));
-                for (int n = 1; n <= 9; n++)
+                for (int n = 1; n <= 4; n++)
                 {
                     Shop(run, n);
                     var o = Offer(run, u);
@@ -59,20 +73,20 @@ namespace ArcaneBrigade.Editor
                     run.Validate(run.State);
                     var arena = run.PrepareCombat();
                     Check(arena.StartingCompanions.Count(x => x.Id == u.Id) == 1 && run.ActiveRoster.Count == 1, "Exactly one body after copy " + n);
-                    int tier = n < 3 ? 1 : n < 9 ? 2 : 3;
+                    int tier = n < 2 ? 1 : n < 4 ? 2 : 3;
                     Check(run.ActiveRoster[0].Tier == tier && CompanionDeployment.OwnedValue(run.State.Roster, u.Id) == n, "Copies preserve material value and correct stars " + n);
                     var model = RunBuildReadModel.Capture(run, c, run.State.Health);
                     Check(model.Companions.Count(row => row.UnitId == u.Id) == 1, "Build sheet contains one row, copy " + n);
                     Check(model.ShopStats.Actors.Count == 2, "Stat snapshot has hero and one fighter, copy " + n);
-                    if (n == 1)
+                    if (n == 2)
                     {
                         fieldWeapon = run.ActiveRoster[0].WeaponId; bondBefore = Bonds(run);
                         bonusBefore = run.Bonus(ItemEffect.Damage, ModifierScope.Companions);
                         attackBefore = arena.StartingCompanions[0].Weapon.Damage;
                     }
-                    if (n == 2)
+                    if (n == 3)
                     {
-                        Check(run.ActiveRoster[0].WeaponId == fieldWeapon, "Second material never changes fielded weapon");
+                        Check(run.ActiveRoster[0].WeaponId == fieldWeapon, "Stored 1-star material does not change the deployed 2-star weapon");
                         Check(Bonds(run) == bondBefore && run.Bonus(ItemEffect.Damage, ModifierScope.Companions) == bonusBefore && Mathf.Approximately(arena.StartingCompanions[0].Weapon.Damage, attackBefore), "Inactive copy adds no bonds, passive bonus or attack damage");
                         Check(card.Summary.Contains("Stored for merging") && card.Bonds.All(b => b.After == b.Count), "Shop marks material inactive and does not promise extra bond members");
                     }
@@ -108,18 +122,18 @@ namespace ArcaneBrigade.Editor
                 run.Start("LanternKnight", 231026); Shop(run, 6);
                 typeof(RunSession).GetMethod("RollShop", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { false });
                 Check(run.State.Offers.Any(o => o.Kind == OfferKind.Companion && !run.OwnsCompanionSpecies(o.Id)), "Unspent allowance guarantees a new-species offer when eligible pool exists");
-                var unit = c.Companions.First(u => u.ReferenceCompanion != "Little Cabbage" && u.ReferenceCompanion != "Evil" && c.Weapons.Count(w => run.RecruitWeaponEligible(u.Id, w)) >= 3);
-                var weapons = c.Weapons.Where(w => run.RecruitWeaponEligible(unit.Id, w)).Take(3).ToArray();
+                var unit = c.Companions.First(u => u.ReferenceCompanion != "Little Cabbage" && u.ReferenceCompanion != "Evil" && c.Weapons.Count(w => run.RecruitWeaponEligible(u.Id, w)) >= 2);
+                var weapons = c.Weapons.Where(w => run.RecruitWeaponEligible(unit.Id, w)).Take(2).ToArray();
                 run.State.Roster.Clear();
-                for (int i = 0; i < 2; i++) run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapons[i].Id });
+                run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapons[0].Id });
                 Shop(run, 7);
-                Check(run.Buy(Offer(run, unit, false, 1, weapons[2].Id).Token), "Mixed-weapon material purchase completes merge");
-                Check(run.ActiveRoster[0].Tier == 2 && weapons.Any(w => w.Id == run.ActiveRoster[0].WeaponId), "Merged weapon is from the three ingredients");
+                Check(run.Buy(Offer(run, unit, false, 1, weapons[1].Id).Token), "Mixed-weapon material purchase completes merge");
+                Check(run.ActiveRoster[0].Tier == 2 && weapons.Any(w => w.Id == run.ActiveRoster[0].WeaponId), "Merged weapon is from the two ingredients");
                 RunSnapshot legacy = Copy(run.State); legacy.SchemaRevision = 3;
                 legacy.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapons.First(w => w.Id != legacy.Roster[0].WeaponId).Id, Tier = 1 });
                 string before = JsonUtility.ToJson(legacy);
                 run.Restore(legacy);
-                Check(run.State.SchemaRevision == 4 && run.ActiveRoster.Count == 1 && CompanionDeployment.OwnedValue(run.State.Roster, unit.Id) == 4, "Legacy save retains every owned material and deploys the strongest one");
+                Check(run.State.SchemaRevision == RunSnapshot.CurrentSchemaRevision && run.ActiveRoster.Count == 1 && CompanionDeployment.OwnedValue(run.State.Roster, unit.Id) == 3, "Legacy save retains every owned material and deploys the strongest one");
                 Check(JsonUtility.ToJson(legacy) == before, "Restore does not mutate original legacy snapshot");
                 Check(run.State.RegularNewSpeciesPurchased == 0, "Conservative legacy quota migration excludes the first owned species");
             }
@@ -130,7 +144,7 @@ namespace ArcaneBrigade.Editor
                     && u.ReferenceCompanion != "Evil" && u.ReferenceCompanion != "Little Cabbage" && u.UnlockWave <= 16
                     && K11HeroRules.Eligible(c.Unit(run.State.ChampionId), u) && c.Weapons.Any(w => run.RecruitWeaponEligible(u.Id, w)));
                 string weapon = c.Weapons.First(w => run.RecruitWeaponEligible(unit.Id, w)).Id;
-                for (int i = 0; i < 2; i++) run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapon, Tier = 2 });
+                run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapon, Tier = 2 });
                 run.State.RegularNewSpeciesPurchased = run.EarnedNewSpeciesAllowance;
                 typeof(RunSession).GetMethod("RollShop", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { false });
                 var finalMaterial = run.State.Offers.FirstOrDefault(o => o.Kind == OfferKind.Companion && o.Id == unit.Id);

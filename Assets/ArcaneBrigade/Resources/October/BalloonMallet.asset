@@ -52,7 +52,7 @@ MonoBehaviour:
     stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nSource: gift / nursery
     / special reward; not ordinary shop stock.\r\nBonds: tidal, mask. Immortal. Weapon
-    rolls on recruitment; three equal-species/equal-star bodies merge unless the
+    rolls on recruitment; two equal-species/equal-star bodies merge unless the
     talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Inflatable Hammer

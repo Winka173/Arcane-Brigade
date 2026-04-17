@@ -54,7 +54,7 @@ MonoBehaviour:
     This is not kill loot and does not count as collecting a coin.\r\n\nNamed talents
     count bodies and absorbed memories; their stated percentages are not multiplied
     by star level unless explicitly stated. Listed support modifiers scale separately
-    at 1/2/4.\r\nBonds: oddity, resolve. Immortal. Weapon rolls on recruitment; three
+    at 1/2/4.\r\nBonds: oddity, resolve. Immortal. Weapon rolls on recruitment; two
     equal-species/equal-star bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Colorful Fantasy" Pinky'

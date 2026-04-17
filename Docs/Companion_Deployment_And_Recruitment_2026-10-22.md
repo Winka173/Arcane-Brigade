@@ -1,5 +1,7 @@
 # Companion, quota tuyển và độ khó — 22/10/2026
 
+**Đã có luật mới hơn:** ghép hai bản; từ wave 10 tuyển loài mới mỗi ba wave, mua tối đa hai bản trùng/wave và thêm ô nguyên liệu; shop đặc biệt mỗi ba/bốn wave. Xem [Recruitment_Two_Copy_And_Late_Pacing.md](Recruitment_Two_Copy_And_Late_Pacing.md). Nội dung và bằng chứng bên dưới lưu trạng thái trước thay đổi này.
+
 ## Đội hình và nâng sao
 
 Mỗi loài có **một companion ra sân**. Bản trùng mua thêm được giữ làm nguyên liệu nâng sao, không sinh thêm người đánh, không cộng thành viên bond, passive, talent hoặc các bonus theo quân số. Bản có sao cao nhất ra sân; nếu bằng sao thì giữ bản sở hữu trước, tránh tự đổi vũ khí khi vừa mua nguyên liệu.

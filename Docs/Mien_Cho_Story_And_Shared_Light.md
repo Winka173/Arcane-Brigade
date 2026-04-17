@@ -1,5 +1,7 @@
 # Miền Chờ — cốt truyện đã chốt và hướng ánh sáng đồng hành
 
+**22/10 — nhịp nâng sao mới:** hai bản cùng sao ghép lên một sao; từ wave 10 ngân sách loài mới tăng mỗi ba wave, bù bằng hai lượt mua bản trùng và ô nguyên liệu riêng. Shop đặc biệt mỗi ba/bốn wave. Mã và mô tả đã đổi; chưa test/build theo yêu cầu. Chi tiết: [Recruitment_Two_Copy_And_Late_Pacing.md](Recruitment_Two_Copy_And_Late_Pacing.md).
+
 **22/10 — khách hiếm:** thêm ba cư dân ghé sau wave, tặng nâng sao hoặc relic tối đa Mythic, cùng sáu tư thế tranh mới. Quà thể hiện sự quan tâm tự nguyện, không đòi đổi chác. Luật xuất hiện, art và kiểm tra: [Rare_Visitors_2026-10-22.md](Rare_Visitors_2026-10-22.md).
 
 **Đồng bộ theme 17/10:** bổ sung bộ Keeper/icon/vật chứng, sửa đoàn ending, spoiler, diễn xuất cứu Hob và ánh sáng nhận mọi đồng minh. Điện thoại shop 8 và vật chứng shop 12/15/17/18 có mặt trên map. **Sáu tuyến lựa chọn và phòng Station/FootstepHall đời cũ đã retired trong canon Hồi 1**, không tính là nội dung đang chơi. Journal canon và phòng cứu Hob vẫn hiện hành. Chưa build/test mới; xem [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md). Các báo cáo cũ bên dưới là lịch sử, không nghiệm thu đợt này.

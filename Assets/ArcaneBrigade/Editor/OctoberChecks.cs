@@ -65,7 +65,7 @@ namespace ArcaneBrigade.Editor
                 var offer = new ShopOffer { Id = ally.Id, Kind = OfferKind.Companion, Token = ++s.State.NextOffer, Price = 1 }; s.State.Offers.Clear(); s.State.Offers.Add(offer);
                 // Capture the three actual ingredients immediately before the merge by replaying its isolated core.
                 s.State.Roster.Add(new RosterEntry { UnitId = ally.Id, WeaponId = weapons[2].Id });
-                typeof(RunSession).GetMethod("MergeTriples", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(s, new object[] { ally.Id });
+                typeof(RunSession).GetMethod("MergeCompanions", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(s, new object[] { ally.Id });
                 Check(s.State.Roster.Count == 1 && s.State.Roster[0].Tier == 2 && weapons.Any(w => w.Id == s.State.Roster[0].WeaponId), "Merge preserves exactly one actual ingredient weapon");
             }
             foreach (var heroId in new[] { "ArchiveCurator", "LoneJelly" })
@@ -87,7 +87,7 @@ namespace ArcaneBrigade.Editor
                 s.Start("VerdantMatron", 78); s.State.Wave = 12; s.State.Roster.Clear();
                 var weapons = c.Weapons.Where(w => !w.SpecialOnly).Take(3).ToArray();
                 foreach (var w in weapons) s.State.Roster.Add(new RosterEntry { UnitId = "LittleSprout", WeaponId = w.Id });
-                typeof(RunSession).GetMethod("MergeTriples", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(s, new object[] { "LittleSprout" });
+                typeof(RunSession).GetMethod("MergeCompanions", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(s, new object[] { "LittleSprout" });
                 Check(s.State.Roster.Count == 2 && s.State.Roster.All(r => r.Tier == 2) && s.State.Roster.Any(r => r.UnitId == "GrandSprout") && s.State.Roster.Any(r => r.UnitId != "GrandSprout" && r.UnitId != "LittleSprout"), "Three nursery sprouts produce both a random evolved friend and Grand Sprout");
                 Check(s.State.Roster.All(r => weapons.Any(w => w.Id == r.WeaponId)), "Both nursery rewards inherit ingredient weapons");
                 s.Validate(s.State);

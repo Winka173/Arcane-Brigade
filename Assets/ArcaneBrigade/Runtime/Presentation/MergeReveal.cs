@@ -75,25 +75,32 @@ namespace ArcaneBrigade
         {
             var beats = new List<Beat>();
             if (!committed || before == null || after == null || before.Phase != SessionPhase.Shop || after.Phase != SessionPhase.Shop || before.RunId != after.RunId || after.NextReceipt != before.NextReceipt + 1 || !after.Receipts.Exists(receipt => receipt.Id == after.NextReceipt)) return beats;
-            var removed = before.Roster.FindAll(entry => !after.Roster.Exists(candidate => Same(entry, candidate)));
-            foreach (RosterEntry result in after.Roster)
+            if (!altar && after.KitMerges <= before.KitMerges) return beats;
+            // Match entries as a multiset: repeated weapons are legitimate saved ingredients.
+            var added = new List<RosterEntry>(after.Roster);
+            var removed = new List<RosterEntry>();
+            foreach (RosterEntry entry in before.Roster)
             {
-                if (before.Roster.Exists(entry => Same(entry, result))) continue;
+                int index = added.FindIndex(candidate => Same(entry, candidate));
+                if (index >= 0) added.RemoveAt(index); else removed.Add(entry);
+            }
+            foreach (RosterEntry result in added)
+            {
                 List<RosterEntry> materials = altar ? new List<RosterEntry>(removed) : removed.FindAll(entry => entry.UnitId == result.UnitId && entry.Tier < result.Tier);
                 if (!altar)
                 {
                     materials.Sort((first, second) => second.Tier.CompareTo(first.Tier));
-                    float capacity = Mathf.Pow(3, result.Tier - 1);
+                    float capacity = CompanionDeployment.MaterialValue(result.Tier);
                     var allocated = new List<RosterEntry>();
                     foreach (RosterEntry material in materials)
                     {
-                        float weight = Mathf.Pow(3, material.Tier - 1);
+                        float weight = CompanionDeployment.MaterialValue(material.Tier);
                         if (weight > capacity) continue;
                         allocated.Add(material); capacity -= weight;
                     }
                     materials = allocated;
                 }
-                if (materials.Count < 2 || !altar && result.Tier <= 1) continue;
+                if (materials.Count < (altar ? 2 : CompanionDeployment.MergeCopies - 1) || !altar && result.Tier <= 1) continue;
                 var copies = new List<RosterEntry>();
                 foreach (RosterEntry material in materials) copies.Add(Copy(material));
                 beats.Add(new Beat { Result = Copy(result), Materials = copies, Position = position, Altar = altar });

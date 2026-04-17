@@ -15,7 +15,7 @@ namespace ArcaneBrigade
         {
             new Tip { Id = "shop", Line = "Buy friends to build bonds, relics for power, then take the stairs.", Icon = o => o.Content.Arena.Coin },
             new Tip { Id = "bond", Line = "A bond is active: friends of one family give a bonus together.", Icon = o => o.Content.Bonds.Length > 0 ? o.Content.Bonds[0].Icon : null },
-            new Tip { Id = "merge", Line = "Three of the same friend became one, with a new star.", Icon = o => o.Session.State.Roster.Count > 0 ? o.Content.Unit(o.Session.State.Roster[0].UnitId)?.Body : null },
+            new Tip { Id = "merge", Line = "Two of the same friend became one, with a new star.", Icon = o => o.Session.State.Roster.Count > 0 ? o.Content.Unit(o.Session.State.Roster[0].UnitId)?.Body : null },
             new Tip { Id = "gauge", Line = "Your gauge is full: your hero's power is ready.", Icon = o => o.Content.Unit(o.Session.State.ChampionId)?.Body },
             new Tip { Id = "dream", Line = "The dream shop takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
             new Tip { Id = "boss", Line = "A boss! Red ink marks where its blows land: step out before the rim closes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
@@ -233,7 +233,7 @@ namespace ArcaneBrigade
                 (c.Unit(owner.Session.State.ChampionId)?.Weapon?.Sprite, "Move", "Just move. Your hero and friends attack by themselves."),
                 (c.Arena.Coin, "Gold and eggs", "Pick them up. Gold buys in the shop, eggs in the dream shop."),
                 (c.Bonds.Length > 0 ? c.Bonds[0].Icon : null, "Friends and bonds", "Friends of one family together unlock a bond."),
-                (c.Companions.Length > 0 ? c.Companions[0].Body : null, "Merge", "Three of the same friend become one, with a new star."),
+                (c.Companions.Length > 0 ? c.Companions[0].Body : null, "Merge", "Two of the same friend become one, with a new star."),
                 (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics", "Relics give bonuses for the rest of the run. Tap a line to learn more."),
             };
             float w = (area.width - 40) / 3, h = (area.height - 20) / 2;

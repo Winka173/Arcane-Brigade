@@ -117,7 +117,7 @@ namespace ArcaneBrigade
                     foreach (WeaponDefinition weapon in catalog.Weapons) if (RecruitWeaponEligible(chosen.Id, weapon) && VariantFree(chosen.Id, weapon)) weapons.Add(weapon);
                     var recruit = new RosterEntry { UnitId = chosen.Id, WeaponId = BalancedWeapon(weapons, false).Id };
                     bool newSpecies = !OwnsCompanionSpecies(chosen.Id);
-                    State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; if (newSpecies) RegisterNewShopSpecies(false); MergeTriples(chosen.Id);
+                    State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; if (newSpecies) RegisterNewShopSpecies(false); MergeCompanions(chosen.Id);
                 }
             if (item.Mechanic == RelicMechanic.StatFloor)
                 foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))

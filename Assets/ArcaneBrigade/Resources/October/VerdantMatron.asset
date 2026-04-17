@@ -43,7 +43,7 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 0.8
   Description: Nursery shops sell Little Sprouts. Buying a Sprout adds 1 projectile
-    (max 6) and costs 2 maximum HP. Three Sprouts grow into a random evolved friend
+    (max 6) and costs 2 maximum HP. Two Sprouts grow into a random evolved friend
     plus a Grand Sprout.
   ReferenceHero: Jade Cabbage
   ReferenceCompanion: 

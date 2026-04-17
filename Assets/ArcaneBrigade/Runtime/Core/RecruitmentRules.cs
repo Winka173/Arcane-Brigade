@@ -11,9 +11,21 @@ namespace ArcaneBrigade
         public const int CopyRecruitLimit = 1;
         public const int CompanionPurchaseLimit = 2;
         public const int NewSpeciesEvery = 2;
-        public int EarnedNewSpeciesAllowance => 1 + (State.Wave - 1) / NewSpeciesEvery + KitNewRecruits;
+        public int CopyRecruitLimitThisWave => State.Wave >= 10 ? 2 : CopyRecruitLimit;
+        private static int BaseNewSpeciesAllowance(int wave) => wave <= 9 ? 1 + (wave - 1) / NewSpeciesEvery : 5 + (wave - 9) / 3;
+        public int EarnedNewSpeciesAllowance => BoundedCounter((long)BaseNewSpeciesAllowance(State.Wave) + KitNewRecruits + State.RegularAllowanceCarryover);
+        public int NextRegularAllowanceWave
+        {
+            get
+            {
+                long calendar = State.Wave < 9 ? ((long)(State.Wave - 1) / 2 + 1) * 2 + 1 : 9 + ((long)(State.Wave - 9) / 3 + 1) * 3;
+                long spent = (long)State.RegularNewSpeciesPurchased - KitNewRecruits - State.RegularAllowanceCarryover;
+                long affordable = spent < 5 ? spent * 2 + 1 : 9 + (spent - 4) * 3;
+                return BoundedCounter(Math.Max(calendar, affordable));
+            }
+        }
         public int BankedNewSpeciesAllowance => Math.Max(0, EarnedNewSpeciesAllowance - State.RegularNewSpeciesPurchased);
-        public int CopyRecruitsRemaining => Math.Max(0, CopyRecruitLimit - (State.NewRecruitsThisWave - State.NewSpeciesRecruitsThisWave));
+        public int CopyRecruitsRemaining => Math.Max(0, CopyRecruitLimitThisWave - (State.NewRecruitsThisWave - State.NewSpeciesRecruitsThisWave));
         public int CompanionPurchasesRemaining => NewRecruitsRemaining + CopyRecruitsRemaining;
         public bool NewSpeciesCooldown => false; // the dream shop is independent of the regular allowance
         public bool RegularNewSpeciesCooldown => BankedNewSpeciesAllowance <= 0;
@@ -77,16 +89,17 @@ namespace ArcaneBrigade
             return false; // Recruitment pacing uses purchase/species quotas, never a body cap.
         }
         public string RecruitmentSummary => "Regular shop: " + NewRecruitsRemaining + "/1 new species this wave."
-            + "\nSaved allowance: " + BankedNewSpeciesAllowance + " (one earned every 2 waves; unused allowance carries over)."
-            + "\nUpgrade materials: " + CopyRecruitsRemaining + "/1 regular purchase this wave."
+            + "\nSaved allowance: " + BankedNewSpeciesAllowance + " (one every 2 waves through wave 9, then every 3; unused allowance carries over)."
+            + "\nNext allowance: wave " + NextRegularAllowanceWave + "."
+            + "\nUpgrade materials: " + CopyRecruitsRemaining + "/" + CopyRecruitLimitThisWave + " regular purchases this wave."
             + "\nDream shop: " + SpecialNewRecruitsRemaining + "/1 new species this visit; independent of regular allowance.";
         public string RecruitQuotaDenialFor(ShopOffer offer)
         {
             if (offer == null) return "";
             if (State.SpecialOffers.Contains(offer)) return "DREAM SHOP: 1 NEW SPECIES PER VISIT";
-            if (OwnsCompanionSpecies(offer.Id)) return "1 UPGRADE MATERIAL PER WAVE";
+            if (OwnsCompanionSpecies(offer.Id)) return CopyRecruitLimitThisWave + " UPGRADE MATERIAL PURCHASES PER WAVE";
             return State.NewSpeciesRecruitsThisWave > 0 ? "1 NEW SPECIES PER WAVE - SAVED ALLOWANCE CARRIES OVER"
-                : "NEXT REGULAR ALLOWANCE IN WAVE " + ((long)(State.RegularNewSpeciesPurchased - KitNewRecruits) * 2 + 1);
+                : "NEXT REGULAR ALLOWANCE IN WAVE " + NextRegularAllowanceWave;
         }
     }
 }

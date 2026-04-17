@@ -36,7 +36,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed partial class RunSnapshot
     {
-        public const int CurrentSchemaRevision = 4;
+        public const int CurrentSchemaRevision = 5;
         public int SchemaRevision = CurrentSchemaRevision;
         public string Version;
         public string RunId;
@@ -67,6 +67,7 @@ namespace ArcaneBrigade
         public int NewSpeciesRecruitsThisWave;
         public int SpecialNewSpeciesRecruitsThisWave;
         public int RegularNewSpeciesPurchased;
+        public int RegularAllowanceCarryover;
         public int LastNewShopSpeciesWave;
         public int LastRegularNewSpeciesWave = -10; // regular shop: one new species every two waves (19/10/2026)
         public int NextReceipt;
@@ -133,6 +134,7 @@ namespace ArcaneBrigade
                 ShopRandom = unchecked((uint)seed ^ 0xAC731u), WeaponRandom = unchecked((uint)seed ^ 0xE517u)
             };
             State.Nightmare.NarrativeRevision = 1;
+            InitializeSpecialShopSchedule(false);
             if (champion.HeroMechanic != HeroMechanic.SoloMaw)
             {
                 State.Roster.Add(catalog.HeroRevision > 0 ? K11HeroRules.Starter(catalog, champion) : new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
@@ -163,6 +165,12 @@ namespace ArcaneBrigade
             {
                 // Old saves did not distinguish gifted from purchased species: conservatively count owned species except the starter.
                 State.RegularNewSpeciesPurchased = Mathf.Max(0, CompanionDeployment.Select(State.Roster).Count - 1);
+            }
+            if (snapshot.SchemaRevision < 5)
+            {
+                // Keep all allowance earned under the old two-wave schedule, including its unspent balance.
+                State.RegularAllowanceCarryover = Math.Max(0, 1 + (State.Wave - 1) / 2 - BaseNewSpeciesAllowance(State.Wave));
+                InitializeSpecialShopSchedule(true);
             }
             State.SchemaRevision = RunSnapshot.CurrentSchemaRevision;
             State.OctoberGains ??= new List<StatModifier>();
@@ -223,6 +231,8 @@ namespace ArcaneBrigade
                     if (entry == null || entry.Misses < 0 || entry.Misses > 6 || !Array.Exists(catalog.Companions, unit => unit.Id == entry.UnitId) || !mergeKeys.Add(entry.UnitId)) throw new InvalidOperationException("Invalid merge assistance journal");
             }
             if (snapshot.RegularNewSpeciesPurchased < 0) throw new InvalidOperationException("Invalid saved recruitment allowance");
+            if (snapshot.RegularAllowanceCarryover < 0) throw new InvalidOperationException("Invalid recruitment allowance carryover");
+            if (snapshot.SchemaRevision >= 5 && (snapshot.NextSpecialShopWave < 1 || snapshot.SpecialShopRollWave < -1 || snapshot.SpecialShopRollWave > snapshot.Wave)) throw new InvalidOperationException("Invalid saved dream-shop schedule");
             var rosterKeys = new HashSet<string>();
             if (snapshot.Contributions != null)
             {
@@ -715,7 +725,7 @@ namespace ArcaneBrigade
                 if (offer.Id == "BottleGull") State.OctoberDrinks++; // Bottle Gull counts as a drink
                 VisitorBoughtCompanion(offer);
                 if (OctoberAbsorbs) { State.AbsorbedSkills.Add(offer.Id); State.Roster.Remove(recruited); KitAbsorbed(); }
-                MergeTriples(offer.Id);
+                MergeCompanions(offer.Id);
                 TrackMergeDrought(false);
             }
             else
@@ -759,21 +769,21 @@ namespace ArcaneBrigade
             return Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(offer.Id, weapon) && VariantFree(offer.Id, weapon));
         }
 
-        private void MergeTriples(string id)
+        private void MergeCompanions(string id)
         {
             if (catalog.Unit(id).ReferenceCompanion == "Evil") return;
             for (int tier = 1; tier < catalog.MaximumTier; tier++)
             {
                 List<RosterEntry> materials = State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier);
-                while (materials.Count >= 3)
+                while (materials.Count >= CompanionDeployment.MergeCopies)
                 {
-                    List<RosterEntry> consumed = materials.GetRange(0, 3);
+                    List<RosterEntry> consumed = materials.GetRange(0, CompanionDeployment.MergeCopies);
                     var choices = new List<WeaponDefinition>();
                     foreach (RosterEntry material in consumed)
                         choices.Add(catalog.Weapon(material.WeaponId));
                     if (choices.Count == 0) break;
-                    for (int index = 0; index < 3; index++) State.Roster.Remove(materials[index]);
-                    materials.RemoveRange(0, 3);
+                    for (int index = 0; index < CompanionDeployment.MergeCopies; index++) State.Roster.Remove(materials[index]);
+                    materials.RemoveRange(0, CompanionDeployment.MergeCopies);
                     string resultId = id;
                     if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage")
                     {
@@ -867,7 +877,8 @@ namespace ArcaneBrigade
             Notice = "Altar refreshed with gold. Eggs and HP unchanged.";
             return true;
         }
-        public float AltarActivationChance => OctoberHero == "Periwinky" ? 1 : (float)Math.Min(1d, catalog.AltarBaseChance + (double)State.Eggs * catalog.AltarChancePerEgg);
+        // Kept for read-model/API compatibility; availability now follows the saved 3–4-wave schedule, not held eggs.
+        public float AltarActivationChance => !MetaNoDreamShop && State.Wave >= State.NextSpecialShopWave ? 1 : 0;
 
         private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && OctoberItemEligible(item) && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && ReviewBalance.ExclusivePool(item) == pool) && StackCount(item.Id) < item.StackLimit;
 
@@ -964,10 +975,15 @@ namespace ArcaneBrigade
                 var available = units.FindAll(unit => OwnsCompanionSpecies(unit.Id) || newRecruit);
                 var owedNewSpecies = NewRecruitsRemaining > 0 && index == 0 ? units.FindAll(unit => !OwnsCompanionSpecies(unit.Id)) : new List<UnitDefinition>();
                 if (owedNewSpecies.Count > 0) available = owedNewSpecies;
+                var owned = units.FindAll(unit => OwnsCompanionSpecies(unit.Id)
+                    && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && o.Id == unit.Id));
+                int offeredCopies = State.Offers.FindAll(o => !o.Sold && o.Kind == OfferKind.Companion && OwnsCompanionSpecies(o.Id)).Count;
+                bool upgradeSlot = State.Wave >= 10 && index == 1 && offeredCopies < CopyRecruitsRemaining && owned.Count > 0;
+                if (upgradeSlot) available = owned;
                 var mergeReady = available.FindAll(unit => MergeReady(unit.Id));
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
                 if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) available = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
-                bool recruit = available.Count > 0 && (owedNewSpecies.Count > 0 || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
+                bool recruit = available.Count > 0 && (upgradeSlot || owedNewSpecies.Count > 0 || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 var itemChoices = index == 1 && foundation.Count > 0 ? foundation : items;
                 int choice = recruit ? RecruitChoice(available) : WeightedItem(itemChoices);
                 int offerTier = recruit ? OctoberOfferTier(available[choice].Id) : 1;
@@ -978,15 +994,14 @@ namespace ArcaneBrigade
             ApplyHeroOrder();
             ApplyKitPrices(); kitRarerRoll = false;
             if (!rollSpecial) return;
+            if (State.SpecialShopRollWave == State.Wave) return;
+            State.SpecialShopRollWave = State.Wave;
             State.RerollsThisShop = 0;
             State.SpecialOffers.Clear();
             if (MetaNoDreamShop) return; // Night Pact: no dream market
-            if (catalog.AltarRevision > 0)
-            {
-                if (Next(ref State.ShopRandom, 1000000) >= Mathf.RoundToInt(AltarActivationChance * 1000000)) return;
-            }
-            else if (catalog.SpecialShopEvery <= 0 || State.Wave % catalog.SpecialShopEvery != 0) return;
+            if (State.Wave < State.NextSpecialShopWave) return;
             RollSpecialOffers();
+            State.NextSpecialShopWave = BoundedCounter((long)State.Wave + 3 + Next(ref State.ShopRandom, 2));
         }
 
         private void RollSpecialOffers()

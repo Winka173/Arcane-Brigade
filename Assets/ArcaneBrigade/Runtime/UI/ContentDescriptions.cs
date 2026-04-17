@@ -118,7 +118,7 @@ namespace ArcaneBrigade
             if(u.GiftOnly)b.AppendLine("Source: gift / nursery / special reward; not ordinary shop stock.");
             else if(!string.IsNullOrEmpty(u.ExclusiveHero))b.AppendLine("Recruitment exclusive: "+u.ExclusiveHero+".");
             else if(u.SpecialRecruit)b.AppendLine("Source: dream shop or special reward, subject to hero theme and unlock wave.");
-            b.AppendLine("Bonds: "+string.Join(", ",u.Tags??Array.Empty<string>())+". Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.");
+            b.AppendLine("Bonds: "+string.Join(", ",u.Tags??Array.Empty<string>())+". Immortal. Weapon rolls on recruitment; two equal-species/equal-star copies merge unless the talent forbids it.");
             return b.ToString().Trim();
         }
     }
@@ -160,7 +160,7 @@ namespace ArcaneBrigade
             RelicMechanic.SoloOverdrive=>"NEXT WAVE ONLY: friends stop their basic attacks and your hero attacks 6 times as often. Every 10 team kills attempts to heal 3 HP.",
             RelicMechanic.FreshLotus=>"Start each wave with +3 pierce and +30% crit per copy. The temporary bonus ends on the first recorded hero hit.",
             RelicMechanic.EggGift=>"ON PURCHASE: receive 3 eggs immediately once per acquisition.",
-            RelicMechanic.CompanionGift=>"ON PURCHASE: up to 2 ordinary friends from your hero's pool join. New species use saved regular allowance: one earned every 2 waves, at most one new species this wave. Solo heroes get none.",
+            RelicMechanic.CompanionGift=>"ON PURCHASE: up to 2 ordinary friends from your hero's pool join. New species use saved regular allowance: one every 2 waves through wave 9, then every 3; at most one new species this wave. Solo heroes get none.",
             RelicMechanic.FragilePower=>"Each recorded hero hit removes 5% team damage per copy, including a saved run penalty. Its positive listed modifiers are separate.",
             RelicMechanic.StatFloor=>"ON PURCHASE: record current modifier bonuses as floors; future bonuses cannot fall below those recorded floors. Does not remove every direct combat restriction or HP cost.",
             RelicMechanic.LuckToHealth=>"Maximum HP gains 100 times positive Luck per copy.",

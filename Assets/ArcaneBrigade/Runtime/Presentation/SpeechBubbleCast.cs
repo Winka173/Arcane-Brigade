@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private string runId;
         private bool baseline;
+        private int observedMerges;
         private readonly Dictionary<string, int> roster = new Dictionary<string, int>();
         private readonly Dictionary<string, int> scratch = new Dictionary<string, int>();
         private readonly List<Pending> queue = new List<Pending>();
@@ -76,16 +77,18 @@ namespace ArcaneBrigade
                     // A directly bought high-star body joins; a real merge consumed lower-star ingredients.
                     string lower = id + "#" + (tier - 1);
                     int remaining = scratch.TryGetValue(lower, out int bodies) ? bodies : 0;
-                    bool merged = tier >= 2 && roster.TryGetValue(lower, out int ingredients) && ingredients - remaining >= 2;
+                    bool merged = tier >= 2 && state.KitMerges > observedMerges && roster.TryGetValue(lower, out int ingredients)
+                        && ingredients - remaining >= CompanionDeployment.MergeCopies - 1;
                     if (merged) StarUp(id, tier); else Join(id);
                 }
             }
             roster.Clear(); foreach (KeyValuePair<string, int> pair in scratch) roster[pair.Key] = pair.Value;
             baseline = true;
+            observedMerges = state.KitMerges;
         }
 
         private static readonly string[] JoinFallback = { "I'll walk with you.", "Room for one more?", "Hello. I'm coming too.", "Same road. Better company.", "Lead on. I'm right behind you.", "I was hoping someone would ask." };
-        private static readonly string[] SecondStar = { "All three of us. One stubborn heart.", "Bigger shoes. Same feet.", "I remember all of me.", "We held on. Now we hold more.", "Stronger. Still walking with you.", "Three little histories. One of me." };
+        private static readonly string[] SecondStar = { "Both of us. One stubborn heart.", "Bigger shoes. Same feet.", "I remember all of me.", "We held on. Now we hold more.", "Stronger. Still walking with you.", "Two little histories. One of me." };
         private static readonly string[] ThirdStar = { "Everything I was, all at once.", "Brightest I have ever been.", "Whole. Finally whole.", "Nothing in the dark is this bright.", "Lean on me. I can take it." };
         private static int Hash(string value) { int hash = 17; foreach (char c in value ?? "") hash = hash * 31 + c; return hash & 0x7fffffff; }
 
