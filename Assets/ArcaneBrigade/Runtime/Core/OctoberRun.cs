@@ -132,8 +132,8 @@ namespace ArcaneBrigade
         }
         private int OctoberOfferTier(string id)
         {
-            int merge = OctoberMergeTier(id); if (merge > 0) return merge;
             if (OctoberHero == "Card King" && !State.Roster.Exists(r => r.UnitId == id)) return 2;
+            // a copy of an owned species is always one star (owner, 22/10/2026): no 2-star copy to finish a merge, so 3 stars take four 1-star buys
             if (ActiveRoster.Count >= 7 || State.Wave < 4 || State.Roster.Exists(r => r.UnitId == id)) return 1;
             int roll = Next(ref State.ShopRandom, 100);
             return State.Wave >= 10 && ActiveRoster.Count <= 3 && roll < 18 ? 3 : roll < (ActiveRoster.Count <= 3 ? 55 : 30) ? 2 : 1;
@@ -142,12 +142,6 @@ namespace ArcaneBrigade
         {
             State.OctoberRefreshes++;
             State.Gold = BoundedCounter((long)State.Gold + ScaledGold(Mathf.Min(6, 2 * Talent("Smiley Fox"))));
-        }
-        private int OctoberMergeTier(string id)
-        {
-            if (catalog.Unit(id).ReferenceCompanion == "Evil") return 0;
-            for (int tier = 2; tier >= 1; tier--) if (State.Roster.FindAll(r => r.UnitId == id && r.Tier == tier).Count >= CompanionDeployment.MergeCopies - 1) return tier;
-            return 0;
         }
         private List<RosterEntry> AltarMaterials(AltarRecipe recipe)
         {

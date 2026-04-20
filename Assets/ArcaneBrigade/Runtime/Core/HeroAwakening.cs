@@ -11,7 +11,7 @@ namespace ArcaneBrigade
     /// area is the area that hits; nothing bursts in a ring from the hero.</summary>
     public sealed partial class CombatSimulation
     {
-        public const float AwakenSeconds = 6f, AwakenCooldown = 3f, AwakenTierBonus = .12f;
+        public const float AwakenSeconds = 9f, AwakenCooldown = 3f, AwakenTierBonus = .12f;
         private float awakenPrimedAt = -1, awakenReceiptAt, awakenMeter, awakenUntil = -1, awakenStarted = -100, awakenCoolUntil = -1, awakenShotAt, awakenRamAt, awakenPressure, awakenEchoAt, awakenHealAt;
         private int awakenRound, awakenFlurry;
         private UnitState awakenFoe;

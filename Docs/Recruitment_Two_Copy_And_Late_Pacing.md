@@ -7,7 +7,7 @@ Luật hiện hành sau hai yêu cầu mới của chủ dự án. Thay thế c�
 - **Hai bản cùng loài, cùng sao → một bản cao hơn một sao.** Hai bản 1★ thành 2★; hai bản 2★ thành 3★. Nếu bắt đầu toàn 1★ thì cần bốn bản để đạt 3★.
 - Kết quả chọn ngẫu nhiên một vũ khí trong **hai nguyên liệu đã dùng**, mỗi nguyên liệu có xác suất 50%. Không roll ngoài nguyên liệu.
 - Một loài chỉ có một người ra sân; nguyên liệu đang giữ không đánh, không cộng thành viên bond hoặc passive. Chưa ghép thì vũ khí của người đang ra sân giữ nguyên.
-- Shop ưu tiên sao của nguyên liệu còn thiếu: đã có một bản 2★ thì offer bản trùng có thể là 2★ để hoàn tất 3★, với giá offer sao cao hiện hành. Preview, tiến độ, thoại và hiệu ứng ghép đã đổi theo hai nguyên liệu.
+- Bản trùng của loài đã có luôn bán ở 1★ (sửa 22/10/2026: trước đây shop bán bản 2★ để hoàn tất 3★, khiến 3 lần mua đã lên 3★). Đồng minh shop đặc biệt chỉ nâng sao trong shop đặc biệt (bản song sinh của khách cũng ở lại shop đặc biệt). Preview, tiến độ, thoại và hiệu ứng ghép đã đổi theo hai nguyên liệu.
 - Giữ ngoại lệ không ghép của Evil và cơ chế hero hấp thụ. Little Sprout dùng ngưỡng hai bản mới; phần thưởng Grand Sprout đi kèm vẫn giữ. Công thức altar và Splice Kit dùng ba **loài khác nhau** giữ quy tắc riêng.
 
 ## Shop thường

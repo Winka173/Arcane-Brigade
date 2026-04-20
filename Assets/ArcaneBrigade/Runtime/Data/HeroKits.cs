@@ -63,7 +63,7 @@ namespace ArcaneBrigade
     {
         public string Id, Transformation, Fill, Effect;
         public KitAction Action;
-        public float Seconds = 6, HeroAttackSpeed, HeroMoveSpeed, HeroDamageTaken = 1, HeroCrit, TeamAttackSpeed;
+        public float Seconds = 9, HeroAttackSpeed, HeroMoveSpeed, HeroDamageTaken = 1, HeroCrit, TeamAttackSpeed;
         /// <summary>True when the transformation is a gun: its shots flash at the barrel. Everything else has no muzzle.</summary>
         public bool Gun;
         /// <summary>True when the transformed piece is a held weapon (art &lt;Id&gt;_Awake_Held); false for a worn or summoned

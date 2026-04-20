@@ -539,6 +539,13 @@ namespace ArcaneBrigade
                 MeleeBalance.Apply(unit.Weapon);
                 if (companion) unit.Speed *= MeleeBalance.Speed;
             }
+            if (!companion)
+            {
+                // owner (22/10/2026): the hero's hits were too far apart; faster swings for less per hit (about the same damage a second)
+                unit.Weapon.Cooldown *= HeroTempo; unit.Weapon.Damage *= HeroTempoDamage;
+                unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
+                unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
+            }
             KitCompileUnit(unit, source, companion);
             ApplySecretUnit(unit, companion);
             OctoberBalance.CompileAlly(unit, State.Wave);
@@ -911,6 +918,7 @@ namespace ArcaneBrigade
         public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave) * WaveCadence.PriceRamp(State.Wave);
         /// <summary>One price curve for gold (play-test 20/10/2026, items 12/17/20): the shop's own factor. Authored gold
         /// amounts (visitor prices and rewards, secret-event fees, chest gold) are wave-1 amounts scaled by it.</summary>
+        public const float HeroTempo = .7f, HeroTempoDamage = .73f;
         public float GoldScale => StagePriceFactor;
         public int ScaledGold(int authored) => ShopVisitors.Scale(authored, GoldScale);
         /// <summary>A Scavenge passive's gold every 4s (owner 22/10/2026: Kettle Bat "finds 0 gold"): the authored strength (0.5,

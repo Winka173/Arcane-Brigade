@@ -118,7 +118,7 @@ namespace ArcaneBrigade
             if(u.GiftOnly)b.AppendLine("Source: gift / nursery / special reward; not ordinary shop stock.");
             else if(!string.IsNullOrEmpty(u.ExclusiveHero))b.AppendLine("Recruitment exclusive: "+u.ExclusiveHero+".");
             else if(u.SpecialRecruit)b.AppendLine("Source: dream shop or special reward, subject to hero theme and unlock wave.");
-            b.AppendLine("Bonds: "+string.Join(", ",u.Tags??Array.Empty<string>())+". Immortal. Weapon rolls on recruitment; two equal-species/equal-star copies merge unless the talent forbids it.");
+            b.AppendLine("Bonds: "+string.Join(", ",u.Tags??Array.Empty<string>())+". Immortal. Weapon rolls on recruitment; two equal-species/equal-star copies merge unless the talent forbids it. Dream-shop friends upgrade only in the dream shop.");
             return b.ToString().Trim();
         }
     }
