@@ -53,7 +53,28 @@ namespace ArcaneBrigade
         public string[] ShopThemes = new string[0];
         public int StackLimit => Stacking == StackPolicy.Unique ? 1 : (MaximumStacks > 0 ? MaximumStacks : 100000);
         public int EffectiveStacks(int count) => Mathf.Min(count, StackLimit);
-        public StatModifier[] EffectiveModifiers => Modifiers != null && Modifiers.Length > 0 ? Modifiers : new[] { new StatModifier { Effect = Effect, Scope = RunModifierRules.DefaultScope(Effect), Value = Value } };
+        public StatModifier[] EffectiveModifiers
+        {
+            get
+            {
+                StatModifier[] authored = Modifiers != null && Modifiers.Length > 0 ? Modifiers : new[] { new StatModifier { Effect = Effect, Scope = RunModifierRules.DefaultScope(Effect), Value = Value } };
+                if (Rarity != ItemRarity.Rainbow) return authored;
+                // owner 22/10/2026: the rainbow gifts felt weak; their positive power bonuses are worth 1.5x (counts like projectiles stay)
+                if (rainbow != null && rainbowFrom == authored) return rainbow;
+                rainbowFrom = authored; rainbow = new StatModifier[authored.Length];
+                for (int i = 0; i < authored.Length; i++)
+                {
+                    StatModifier m = authored[i];
+                    rainbow[i] = new StatModifier { Effect = m.Effect, Scope = m.Scope, Value = m.Value > 0 && RainbowScaled(m.Effect) ? m.Value * RainbowPower : m.Value };
+                }
+                return rainbow;
+            }
+        }
+        public const float RainbowPower = 1.5f;
+        [System.NonSerialized] private StatModifier[] rainbow, rainbowFrom;
+        private static bool RainbowScaled(ItemEffect e) => e is ItemEffect.Damage or ItemEffect.AttackSpeed or ItemEffect.Health or ItemEffect.Heal or ItemEffect.Crit
+            or ItemEffect.ChampionDamage or ItemEffect.CompanionDamage or ItemEffect.CompanionAttackSpeed or ItemEffect.MeleeDamage or ItemEffect.RangedDamage
+            or ItemEffect.CollisionDamage or ItemEffect.Knockback or ItemEffect.AttackRange or ItemEffect.Luck;
     }
 
     [System.Serializable]

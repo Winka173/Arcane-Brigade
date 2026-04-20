@@ -26,16 +26,20 @@ namespace ArcaneBrigade
             return count;
         }
 
+        /// <summary>Hoard Power: +1% team damage per 5 gold held, gold counted at its wave-1 value, at most +40% a copy.</summary>
+        public static float HoardBonus(long gold, float goldScale) => Mathf.Min(.4f, Mathf.Floor(gold / (5f * Mathf.Max(1, goldScale))) * .01f);
         private float RelicBonus(ItemEffect effect, ModifierScope target, float value)
         {
             foreach (StatModifier gain in State.RelicGains ?? new List<StatModifier>())
                 if (gain.Effect == effect && RunModifierRules.Applies(gain.Scope, target)) value += gain.Value;
-            if (effect == ItemEffect.Damage && target != ModifierScope.Run) value += MechanicStacks(RelicMechanic.HoardPower) * (State.Gold / 5) * .01f;
-            if (effect == ItemEffect.Health) value += MechanicStacks(RelicMechanic.LuckToHealth) * Mathf.Max(0, Bonus(ItemEffect.Luck)) * 100;
+            // owner 22/10/2026 (broken-item scan): the hoard counts gold at its wave-1 value and stops at +40% a copy; luck to
+            // health stops at +80 HP a copy; damage to income at +20 a copy
+            if (effect == ItemEffect.Damage && target != ModifierScope.Run) value += MechanicStacks(RelicMechanic.HoardPower) * HoardBonus(State.Gold, GoldScale);
+            if (effect == ItemEffect.Health) value += MechanicStacks(RelicMechanic.LuckToHealth) * Mathf.Min(80, Mathf.Max(0, Bonus(ItemEffect.Luck)) * 100);
             if (effect == ItemEffect.CollisionDamage && target == ModifierScope.Champion)
                 value += MechanicStacks(RelicMechanic.MeleeToCollision) * Mathf.Max(0, Bonus(ItemEffect.MeleeDamage, target)) * .5f + MechanicStacks(RelicMechanic.CollisionOnly) * Mathf.Max(0, Bonus(ItemEffect.Armor)) * 10;
             if (effect == ItemEffect.Armor) value += MechanicStacks(RelicMechanic.SlowToArmor) * Mathf.Max(0, -Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion));
-            if (effect == ItemEffect.Income) value += MechanicStacks(RelicMechanic.DamageToIncome) * Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.Damage, ModifierScope.Champion)) / .04f);
+            if (effect == ItemEffect.Income) value += MechanicStacks(RelicMechanic.DamageToIncome) * Mathf.Min(20, Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.Damage, ModifierScope.Champion)) / .04f));
             if (effect == ItemEffect.Discount && State.RelicDiscountWave == State.Wave) value += .3f;
             if (effect == ItemEffect.Discount && State.PromiseDiscountWave == State.Wave) value += .15f; // a promise kept
             if (effect == ItemEffect.AttackSpeed && target != ModifierScope.Run && MechanicStacks(RelicMechanic.ClockworkHeart) > 0) value += Mathf.Min(.3f, State.HeartWinds * .03f);
@@ -76,9 +80,10 @@ namespace ArcaneBrigade
             State.RelicLeases.RemoveAll(lease => lease.Wave < State.Wave);
             SpliceFriends();
             int growth = MechanicStacks(RelicMechanic.WaveGrowth);
-            if (growth > 0) { GainRelic(ItemEffect.MeleeDamage,4 * growth); GainRelic(ItemEffect.RangedDamage,4 * growth); GainRelic(ItemEffect.Damage,.1f * growth); }
+            if (growth > 0) { GainRelic(ItemEffect.MeleeDamage,3 * growth); GainRelic(ItemEffect.RangedDamage,3 * growth); GainRelic(ItemEffect.Damage,.06f * growth); } // was 4/4/10%: +200% damage by wave 20
             int interest = MechanicStacks(RelicMechanic.CompoundInterest);
-            if (interest > 0) State.Gold = BoundedCounter((long)Math.Min(int.MaxValue, State.Gold * Math.Pow(1.2, interest)));
+            // compounding stops at 30 gold (on the curve) a copy each wave: x1.2 of a late purse was a second income
+            if (interest > 0) State.Gold = BoundedCounter((long)State.Gold + (long)Math.Min(State.Gold * (Math.Pow(1.2, interest) - 1), (double)ScaledGold(30) * interest));
             int chaos = MechanicStacks(RelicMechanic.ChaosIncome);
             if (chaos > 0) State.Gold = BoundedCounter((long)State.Gold + ScaledGold(new System.Random(unchecked(State.Seed ^ State.Wave * 7919)).Next(25,76)) * chaos);
         }

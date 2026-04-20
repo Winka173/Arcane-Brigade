@@ -42,7 +42,7 @@ namespace ArcaneBrigade
         public float HeroAwakenMeter => awakenMeter;
         public int HeroAwakenTier => Mathf.Clamp(Mathf.FloorToInt(awakenMeter * 3 + .001f), 0, 3);
         public bool HeroAwakening => HeroAwakenEnabled && awakenUntil > Elapsed;
-        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) + (IdentityApproach == 2 ? 1.5f : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
+        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) + (IdentityApproach == 2 ? 1.5f : 0) + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 3 : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
         /// <summary>1 at the start of a transformation, 0 at its end.</summary>
         public float HeroAwakenRemaining => HeroAwakening ? Mathf.Clamp01((awakenUntil - Elapsed) / Mathf.Max(.1f, AwakenLength)) : 0;
         public float HeroAwakenStarted => awakenStarted;
@@ -173,7 +173,8 @@ namespace ArcaneBrigade
         private void EndAwakening()
         {
             if (Kit != null && Kit.Action == KitAction.Engine && awakenUntil > 0) Whistle();
-            awakenUntil = -1; awakenMeter = 0; awakenCoolUntil = Elapsed + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 0 : AwakenCooldown); Champion.AwakenArt = null; awakenFoe = null;
+            bool encore = RelicCount(RelicMechanic.EndlessEncore) > 0; // Endless Encore: no rest, and the gauge restarts a third full
+            awakenUntil = -1; awakenMeter = encore ? 1f / 3f : 0; awakenCoolUntil = Elapsed + (encore ? 0 : AwakenCooldown); Champion.AwakenArt = null; awakenFoe = null;
             awakenFleet.Clear();
             // Bonsai Clocksmith: half a tier stays wound after the garden
             if (Kit != null && Kit.Has(KitPassive.KeepHalfTier)) identityCharge = Mathf.Max(identityCharge, HeroIdentityRequired * Kit.Value(KitPassive.KeepHalfTier));

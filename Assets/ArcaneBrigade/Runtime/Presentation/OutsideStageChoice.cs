@@ -15,8 +15,9 @@ namespace ArcaneBrigade
         private Vector2 HandAt => owner?.Session != null && !owner.Session.State.Endless && owner.Session.State.Wave <= ActOneCanon.Waves ? ActOneChallengePosition : ChallengePosition;
         public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
         public int SpotCount => mode == 1 ? 1 : mode == 2 ? 3 : 0;
-        /// <summary>The Keeper's gift cards are on screen (a modal choice).</summary>
-        public bool GiftsOpen => mode == 2;
+        /// <summary>A Keeper's gift card is on screen (the hero stands by one of the gifts).</summary>
+        public bool GiftsOpen => mode == 2 && selection >= 0;
+        private float giftsSince = -100;
         public bool Spot(int index, out Vector2 position, out float reach)
         {
             position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 1.6f : 1.05f;
@@ -36,7 +37,7 @@ namespace ArcaneBrigade
             string[] all = text.Replace("\r", "").Split('\n');
             return string.Join("\n", all, 0, Mathf.Min(lines, all.Length));
         }
-        private readonly ShopOffer giftOffer = new ShopOffer();
+        private readonly ShopOffer[] giftOffers = new ShopOffer[3];
         private GUIStyle cardName, cardLine, identity;
         public void Configure(ArenaController controller) { owner = controller; ShopFocus.Register(this); }
         private void Clear() { foreach (GameObject actor in actors) Destroy(actor); actors.Clear(); selection = -1; }
@@ -44,7 +45,11 @@ namespace ArcaneBrigade
         {
             if (owner == null || owner.Session == null) return;
             int desired = owner.Session.State.OutsideStage == OutsideStageStatus.Reward ? 2 : owner.Session.OutsideChallengeAvailable ? 1 : 0;
-            if (desired != mode) { Clear(); mode = desired; Build(); }
+            if (desired != mode)
+            {
+                Clear(); mode = desired; Build();
+                if (mode == 2) { giftsSince = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.open"); } // the gifts are announced as they appear
+            }
             if (mode == 0 || owner.PresentationPaused || owner.TransitionPending || owner.StoryConsumesInput || owner.Details.Open) return;
             Vector2 player = owner.Simulation.Champion.Position;
             int near = -1;
@@ -117,20 +122,31 @@ namespace ArcaneBrigade
             }
             else
             {
-                // the Keeper's gifts as plates (play-test 20/10/2026, item 7): picture, name, what it gives in a few short
-                // lines; one tap selects, one TAKE
-                // drawn in code like the secret rooms (21/10/2026): a title banner, walnut plates (a running light on the one
-                // looked at), each gift on a velvet-and-brass pedestal
-                ArcadeSkin.TitleBanner(new Rect(660, 160, 600, 66), "TAKE ONE GIFT", title);
+                // the gifts stand on the floor like a shop's wares (owner, 22/10/2026): walk up to one and only its card shows,
+                // a gold TAKE in its right column like BUY; nothing is listed all at once
                 if (cardName == null) { cardName = ArcadeTypography.Style(26, true); cardName.wordWrap = true; cardName.alignment = TextAnchor.MiddleCenter; cardLine = ArcadeTypography.Style(20); identity = ArcadeTypography.Style(17); }
-                // the gifts as shop cards (owner, 22/10/2026): the shop offer's card (picture, name, tag, GIVES / COSTS) with a gold
-                // TAKE in its right column, like BUY
-                for (int i = 0; i < 3; i++)
+                // on arrival: a short announcement under the title banner, fading after a few seconds
+                float since = Time.unscaledTime - giftsSince;
+                if (since < 4.5f)
+                {
+                    Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * Mathf.Clamp01((4.5f - since) / .6f) * Mathf.Clamp01(since / .25f));
+                    ArcadeSkin.TitleBanner(new Rect(610, 120, 700, 70), "THE KEEPER'S GIFTS", title);
+                    Rect plate = new Rect(710, 204, 500, 56);
+                    ArcadeSkin.CodePlate(plate, CodeTone.Walnut);
+                    copy.alignment = TextAnchor.MiddleCenter; copy.fontSize = 22;
+                    GUI.Label(ArcadeSkin.Content(plate, KitFrame.Card), "Choose one rainbow gift", copy);
+                    copy.fontSize = 19;
+                    GUI.color = keep;
+                }
+                int i = selection;
+                if (i >= 0 && i < 3)
                 {
                     string id = owner.Session.State.OutsideRewards[i]; ItemDefinition item = owner.Content.Item(id); UnitDefinition ally = owner.Content.Unit(id);
-                    giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = 1; giftOffer.Token = -1; giftOffer.Price = 0;
+                    // one offer object per gift: the card's per-frame cache keys on the offer, so a shared one showed the first gift three times
+                    ShopOffer giftOffer = giftOffers[i] ??= new ShopOffer();
+                    giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = item != null ? 1 : 2; giftOffer.Token = -1 - i; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
-                    Rect panel = new Rect(500, 250 + i * 262, 920, 240);
+                    Rect panel = new Rect(500, 790, 920, 240);
                     RarityDescriptionFrame.Draw(panel, giftCard.Rarity, owner.PresentationClock);
                     Rect picture = new Rect(panel.x + 30, panel.y + 24, 150, 150);
                     ShopDescriptionCard.DrawSprite(new Rect(picture.x + 6, picture.y + 6, 138, 138), giftCard.Portrait);

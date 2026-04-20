@@ -161,7 +161,7 @@ namespace ArcaneBrigade
             {
                 UnitDefinition ally = catalog.Unit(id);
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return false;
-                var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 1 };
+                var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 2 }; // a rainbow ally arrives at 2 stars (owner 22/10/2026)
                 State.Roster.Add(entry); RememberVariant(entry); OctoberPurchase(ally);
             }
             State.OutsideStage = State.OutsideBeforeGift >= 0 ? (OutsideStageStatus)State.OutsideBeforeGift : OutsideStageStatus.Completed; // a prism gift leaves the Keeper as it was

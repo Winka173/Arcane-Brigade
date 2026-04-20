@@ -59,8 +59,8 @@ namespace ArcaneBrigade
             if (unit.Faction == Faction.Enemy) return damage;
             float flat = !relicMoved ? 16 * RelicCount(RelicMechanic.StillPower) : 0;
             float hoard = RelicCount(RelicMechanic.HoardPower);
-            float purse = 1 + hoard * ((catalog.RelicWallet + (long)Gold) / 5) * .01f;
-            float initial = 1 + hoard * (catalog.RelicWallet / 5) * .01f;
+            float purse = 1 + hoard * RunSession.HoardBonus(catalog.RelicWallet + (long)Gold, catalog.ChestGoldScale);
+            float initial = 1 + hoard * RunSession.HoardBonus(catalog.RelicWallet, catalog.ChestGoldScale);
             float result = Mathf.Max(0,damage + flat) * Mathf.Max(.05f,1 - relicDamageLoss) * purse / initial;
             result *= RelicAttackScale(unit);
             return RelicCount(RelicMechanic.StatFloor) > 0 ? Mathf.Max(damage,result) : result;
