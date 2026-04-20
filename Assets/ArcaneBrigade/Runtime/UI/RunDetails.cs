@@ -43,7 +43,7 @@ namespace ArcaneBrigade
             Rect area = new Rect(70, 290, 1060, 340);
             float breathe = PresentationSettings.ReducedMotion ? 0.6f : 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 1.8f);
             ArcadeSkin.Glow(new Rect(area.x + 180, area.y + 40, area.width - 360, area.height), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.20f + 0.05f * breathe));
-            Rect top = new Rect(area.x + 90, area.y + 180, area.width - 180, 74);
+            Rect top = new Rect(area.x + 90, area.y + 194, area.width - 180, 74);
             int back = Mathf.CeilToInt(seats.Count / 2f), front = seats.Count - back;
             int selectedSeat = -1;
             string selectedKey = selection >= 0 && selection < rows.Count ? SeatKey(rows[selection]) : null;
@@ -81,13 +81,14 @@ namespace ArcaneBrigade
                 string facts = row.Name + "  ·  " + (row.Summary ?? "").Split('\n')[0];
                 if (sayHand == null) { sayHand = ArcadeTypography.Style(25); sayHand.font = ArcadeTypography.Hand; sayHand.normal.textColor = new Color(0.25f, 0.20f, 0.14f); sayHand.wordWrap = true; }
                 seatName.normal.textColor = ArcadeSkin.Ink;
-                float width = 640, height = string.IsNullOrEmpty(said) ? 44 : 44 + Mathf.Min(60, sayHand.CalcHeight(new GUIContent(said), width - 36));
-                Rect bubble = new Rect(Mathf.Clamp(seat.center.x - width * 0.5f, area.x, area.xMax - width), area.y - 28, width, height);
+                float width = 640, height = string.IsNullOrEmpty(said) ? 48 : 48 + Mathf.Min(36, sayHand.CalcHeight(new GUIContent(said), width - 36));
+                // inside the table's area, under the tabs and above the back row (owner 22/10/2026: it covered the tabs)
+                Rect bubble = new Rect(Mathf.Clamp(seat.center.x - width * 0.5f, area.x, area.xMax - width), area.y + 2, width, height);
                 ArcadeSkin.Ticket(bubble, ArcadeSkin.Paper, ArcadeSkin.Accent);
                 seatName.alignment = TextAnchor.MiddleLeft;
-                GUI.Label(new Rect(bubble.x + 18, bubble.y + 8, width - 30, 24), facts, seatName);
+                GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, width - 36, 24), facts, seatName);
                 seatName.alignment = TextAnchor.MiddleCenter;
-                if (!string.IsNullOrEmpty(said)) GUI.Label(new Rect(bubble.x + 18, bubble.y + 32, width - 30, height - 36), said, sayHand);
+                if (!string.IsNullOrEmpty(said)) GUI.Label(new Rect(bubble.x + 18, bubble.y + 36, width - 36, height - 48), said, sayHand);
             }
         }
 
@@ -162,10 +163,10 @@ namespace ArcaneBrigade
             if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
             string[] names = { "STATS", "FRIENDS", "RELICS", "LINKS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
-            if (tabStyle == null) { tabStyle = ArcadeTypography.Style(26, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
+            if (tabStyle == null) { tabStyle = ArcadeTypography.Style(23, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
             for (int index = 0; index < names.Length; index++)
             {
-                Rect tabRect = new Rect(75 + index * 360, 200, 340, 62);
+                Rect tabRect = new Rect(75 + index * 372, 200, 320, 62); // the painted end caps hang outside the bar: 52 px apart so they never overlap
                 bool current = index == tab;
                 // painted tabs (UI kit): velvet when current, walnut otherwise, brass under the pointer
                 if (ArcadeSkin.Tab(tabRect, names[index] + (counts[index] >= 0 ? "  " + counts[index] : ""), current, true, tabStyle)) SelectTab(index);
@@ -212,7 +213,7 @@ namespace ArcaneBrigade
                 string said = CompanionVoice.Line(rows[Mathf.Clamp(selection, 0, rows.Count - 1)].UnitId, owner.Session.State.Wave, owner.Session.State);
                 if (!string.IsNullOrEmpty(said))
                 {
-                    if (handStyle == null) { handStyle = ArcadeTypography.Style(30); handStyle.font = ArcadeTypography.Hand; handStyle.normal.textColor = ArcadeSkin.Paper; }
+                    if (handStyle == null) { handStyle = ArcadeTypography.Style(30); handStyle.font = ArcadeTypography.Hand; handStyle.normal.textColor = ArcadeSkin.Paper; handStyle.wordWrap = true; } // wraps inside the panel, never runs off screen
                     quoteHeight = Mathf.Min(150, handStyle.CalcHeight(new GUIContent("“" + said + "”"), 590) + 18);
                     GUI.Label(new Rect(1190, 318, 600, quoteHeight), "“" + said + "”", handStyle);
                     ArcadeSkin.Divider(new Rect(1190, 318 + quoteHeight, 590, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.4f));

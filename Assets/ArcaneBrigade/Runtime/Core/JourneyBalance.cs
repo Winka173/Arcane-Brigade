@@ -15,13 +15,17 @@ namespace ArcaneBrigade
         // round 5: Restless only (78% bot wins vs ~65% target): health 1.3 -> 1.4, damage 1.15 -> 1.3
         // round 6 (21/10/2026, unmeasured nudge toward 89/78/72/56/44/28 from 89/89/67/44/39/22): Wandering harder (health 1 -> 1.05,
         // damage .8 -> .88), Nightmare easier (damage 1.6 -> 1.45), Sleepless/Beyond ~5% less damage (2.2 -> 2.1, 3 -> 2.85).
-        public static readonly float[] HealthFactor = { .7f, 1.05f, 1.4f, 1.75f, 2.3f, 2.95f };
-        public static readonly float[] DamageFactor = { .38f, .88f, 1.3f, 1.45f, 2.1f, 2.85f };
-        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f };
+        // round 7 (22/10/2026, owner, unmeasured): every enemy +20% health and +15% damage at its base (BaseHealth/BaseDamage), and the
+        // difficulties spread further apart, the high ones much harder (was health .7/1.05/1.4/1.75/2.3/2.95, damage .38/.88/1.3/1.45/2.1/2.85,
+        // density 1/1.05/1.1/1.15/1.2/1.25)
+        public const float BaseHealth = 1.2f, BaseDamage = 1.15f;
+        public static readonly float[] HealthFactor = { .7f, 1.1f, 1.55f, 2.1f, 2.85f, 3.8f };
+        public static readonly float[] DamageFactor = { .38f, .92f, 1.4f, 1.8f, 2.55f, 3.5f };
+        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.12f, 1.2f, 1.3f, 1.42f };
         private static float Level(float[] table, int difficulty) => table[Mathf.Clamp(difficulty, 0, table.Length - 1)];
 
-        public static float EnemyHealth(int difficulty, int wave) => 1 + (Level(HealthFactor, difficulty) - 1) * Ramp(wave);
-        public static float EnemyDamage(int difficulty, int wave) => .62f * (1 + (Level(DamageFactor, difficulty) - 1) * Ramp(wave));
+        public static float EnemyHealth(int difficulty, int wave) => BaseHealth * (1 + (Level(HealthFactor, difficulty) - 1) * Ramp(wave));
+        public static float EnemyDamage(int difficulty, int wave) => BaseDamage * .62f * (1 + (Level(DamageFactor, difficulty) - 1) * Ramp(wave));
         public static float EnemyDensity(int difficulty, int wave) => 1 + (Level(DensityFactor, difficulty) - 1) * Ramp(wave);
         public static float LoneJellyDamage(int wave) => 1.2f + .3f * OctoberBalance.Late(wave);
     }

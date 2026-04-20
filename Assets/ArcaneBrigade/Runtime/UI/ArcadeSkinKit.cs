@@ -216,7 +216,7 @@ namespace ArcaneBrigade
             if (!DrawPiece(r, KitPiece.Tab, "Controls/" + art)) CodePlate(r, active ? CodeTone.Oxblood : art == "TabHover" ? CodeTone.Gold : CodeTone.Walnut, enabled ? 0 : 3);
             Color text = !enabled ? new Color(.80f, .76f, .70f, .8f) : art == "TabHover" ? KitInk : KitCream;
             Rect inner = Content(r, KitPiece.Tab, false);
-            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y, inner.width, r.height), label, text, like, true);
+            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y + r.height * .24f, inner.width, r.height * .66f), label, text, like, true); // below the crest's leaves, which dip into the bar
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
 
