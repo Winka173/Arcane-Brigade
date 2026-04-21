@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             int real = State.Wave;
             State.Wave = Mathf.Min(real + ActOneCanon.SitWaveBonus, 40); // as strong as the rest of the fight (PrepareSitCloser)
             UnitDefinition built;
-            try { built = BuildEnemy(sitter, (1f + (State.Wave - 1) * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave)); }
+            try { built = BuildEnemy(sitter, (1f + (State.Wave - 1) * JourneyBalance.WaveHealthStep) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave)); }
             finally { State.Wave = real; }
             var pool = new List<UnitDefinition>(CombatCatalog.EnemyPool ?? Array.Empty<UnitDefinition>()) { built, built };
             CombatCatalog.EnemyPool = pool.ToArray();

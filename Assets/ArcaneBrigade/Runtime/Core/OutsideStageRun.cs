@@ -59,7 +59,7 @@ namespace ArcaneBrigade
                 // THE KEEPER, WHOLE: it tests the traveller before it gives. Its body takes a fifth of each blow while its hand,
                 // carpet and eye hold (KeeperGuard); break all three and it kneels.
                 // Act I (shop 17): as strong as this run's wave-15 story boss and a little more, so it sits in the run's own curve
-                float scaling = (1f + 14 * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, 15);
+                float scaling = (1f + 14 * JourneyBalance.WaveHealthStep) * JourneyBalance.EnemyHealth(State.Difficulty, 15);
                 int stage = 2, index = catalog.Bosses.Length == 10 ? stage % 5 + (((State.Seed ^ stage) & 1) == 0 ? 0 : 5) : stage % catalog.Bosses.Length;
                 UnitDefinition door = BuildEnemy(catalog.Bosses[index], scaling);
                 CombatCatalog.Boss.Health = door.Health * WaveCadence.StoryBossBulk(15) * KeeperHealthShare; // see PreviewExports/Pacing/Keeper17.csv

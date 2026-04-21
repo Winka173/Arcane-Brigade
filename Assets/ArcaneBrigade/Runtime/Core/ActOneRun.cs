@@ -78,7 +78,7 @@ namespace ArcaneBrigade
             State.Wave = Mathf.Min(real + ActOneCanon.SitWaveBonus, 40);
             try
             {
-                float scaling = (1f + (State.Wave - 1) * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave);
+                float scaling = (1f + (State.Wave - 1) * JourneyBalance.WaveHealthStep) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave);
                 UnitDefinition body = Array.Find(catalog.Bosses, boss => boss != null && boss.Id == "UmbraCradle") ?? catalog.Bosses[0];
                 CombatCatalog.Boss = BuildEnemy(body, scaling);
                 CombatCatalog.Boss.DisplayName = "THE BEDSIDE";

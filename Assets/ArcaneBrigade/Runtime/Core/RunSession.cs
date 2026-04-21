@@ -361,7 +361,7 @@ namespace ArcaneBrigade
             }
             AddMemoryExhibits();
             PrepareStoryParty();
-            float scaling = (1f + (State.Wave - 1) * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave);
+            float scaling = (1f + (State.Wave - 1) * JourneyBalance.WaveHealthStep) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave);
             CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
             CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
             if (State.Wave == 1)

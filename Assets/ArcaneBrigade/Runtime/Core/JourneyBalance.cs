@@ -19,6 +19,8 @@ namespace ArcaneBrigade
         // difficulties spread further apart, the high ones much harder (was health .7/1.05/1.4/1.75/2.3/2.95, damage .38/.88/1.3/1.45/2.1/2.85,
         // density 1/1.05/1.1/1.15/1.2/1.25)
         public const float BaseHealth = 1.2f, BaseDamage = 1.15f;
+        /// <summary>Enemy health added per wave (owner 22/10/2026: steeper growth; was .10, wave 20 now about +20% health).</summary>
+        public const float WaveHealthStep = .13f;
         public static readonly float[] HealthFactor = { .7f, 1.1f, 1.55f, 2.1f, 2.85f, 3.8f };
         public static readonly float[] DamageFactor = { .38f, .92f, 1.4f, 1.8f, 2.55f, 3.5f };
         public static readonly float[] DensityFactor = { 1f, 1.05f, 1.12f, 1.2f, 1.3f, 1.42f };
