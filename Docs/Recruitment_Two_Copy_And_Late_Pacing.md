@@ -25,8 +25,8 @@ Lượt loài mới tích lũy ở các wave **1, 3, 5, 7, 9, 12, 15, 18, 21…*
 
 Để tập trung nâng chất lượng đội, từ wave 10:
 
-- Tăng quota mua bản trùng ở shop thường từ **một lên hai giao dịch mỗi wave**.
-- Thêm ô thứ hai ưu tiên nguyên liệu của loài đã sở hữu, nếu có loài hợp lệ và còn quota. Hai ô ưu tiên các loài khác nhau để tránh mua xong một ô lên max sao rồi ô còn lại trở thành vô dụng.
+- Quota mua bản trùng ở shop thường giữ **một giao dịch mỗi wave** (chốt lại 22/10/2026; trước đó là hai từ wave 10).
+- Ô thứ hai ưu tiên nguyên liệu của loài đã sở hữu, nếu có loài hợp lệ và còn quota. Hai ô ưu tiên các loài khác nhau để tránh mua xong một ô lên max sao rồi ô còn lại trở thành vô dụng.
 - Ô loài mới vẫn bảo đảm offer khi còn ngân sách và pool có ứng viên. Không tăng quota loài mới, không tăng giới hạn cơ thể và không tăng trực tiếp stat chiến đấu.
 
 Quota mua ở shop đặc biệt độc lập: **một loài mới mỗi lần vào**, bản trùng không dùng quota thường.
@@ -46,3 +46,7 @@ Save revision **5** lưu lịch shop mới và phần ngân sách tuyển chuy�
 - Hẹn shop đặc biệt kế tiếp sau ba/bốn wave từ mốc save; giữ hàng và quota hiện có nếu đang trong shop.
 
 **Không chạy test, mô phỏng hoặc build trong đợt này theo yêu cầu chủ dự án.** Chỉ rà mã nguồn, các chuỗi mô tả và diff. Các kết quả test trong báo cáo cũ không phải nghiệm thu của luật mới này.
+
+## Dạng Lucid (sau 3★) — 22/10/2026
+
+Từ wave 12, bàn thờ Lucid trong shop đặc biệt cho một đồng minh 3★ đang ra sân thức tỉnh, tối đa hai lần mỗi run. Giá: trứng 4 rồi 6, cộng 60 vàng theo đường cong. Lucid: +30% sát thương, thân to hơn 10%, cận chiến tầm +20% và cung chém rộng hơn, bắn xa xuyên thêm 1 và đạn to hơn, tính thêm 1 thành viên ở bond chính. Hình vẽ bằng code (vương miện mực, tia sáng xoay), có animation nghi lễ.

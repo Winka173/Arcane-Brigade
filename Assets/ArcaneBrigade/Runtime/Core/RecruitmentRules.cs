@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         public const int CopyRecruitLimit = 1;
         public const int CompanionPurchaseLimit = 2;
         public const int NewSpeciesEvery = 2;
-        public int CopyRecruitLimitThisWave => State.Wave >= 10 ? 2 : CopyRecruitLimit;
+        public int CopyRecruitLimitThisWave => CopyRecruitLimit; // owner 22/10/2026: one upgrade copy a wave, wave 10 on too (was 2 from wave 10)
         private static int BaseNewSpeciesAllowance(int wave) => wave <= 9 ? 1 + (wave - 1) / NewSpeciesEvery : 5 + (wave - 9) / 3;
         public int EarnedNewSpeciesAllowance => BoundedCounter((long)BaseNewSpeciesAllowance(State.Wave) + KitNewRecruits + State.RegularAllowanceCarryover);
         public int NextRegularAllowanceWave

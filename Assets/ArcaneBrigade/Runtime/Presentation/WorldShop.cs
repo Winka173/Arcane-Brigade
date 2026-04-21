@@ -89,7 +89,7 @@ namespace ArcaneBrigade
         {
             if (manual.sqrMagnitude > .01f) { walkTo = null; return manual; }
             // a card or offer already open owns the tap
-            bool modal = owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || owner.Details.Open;
+            bool modal = owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || owner.Details.Open;
             if (Input.GetMouseButtonDown(0) && camera != null && GUIUtility.hotControl == 0 && !modal)
             {
                 Matrix4x4 fit = ArcadeTypography.FitViewport(camera.pixelRect, Screen.safeArea, Screen.height, 1920, 1080);
@@ -240,6 +240,8 @@ namespace ArcaneBrigade
             if (memory != null && memory.Open) return false;
             VisitorCard visiting = owner.GetComponent<VisitorCard>();
             if (visiting != null && (visiting.Open || visiting.InputConsumedFrame == Time.frameCount)) return false;
+            LucidAltar altar = owner.GetComponent<LucidAltar>();
+            if (altar != null && (altar.Open || altar.Performing || altar.InputConsumedFrame == Time.frameCount)) return false;
             Display();
             if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;
@@ -286,6 +288,11 @@ namespace ArcaneBrigade
                             ShopStockRetirement.Play(owner, old.Actor.View, old.Offer.Kind == OfferKind.Item ? owner.Content.Item(old.Offer.Id).Rarity : owner.Content.Unit(old.Offer.Id).Rarity);
                     arrivingStock = true;
                 }
+            }
+            else if (station.Action == "LUCID ALTAR")
+            {
+                // the lucid altar's card opens (it picks the friend and performs the rite)
+                owner.GetComponent<LucidAltar>()?.Show(position); return true;
             }
             else if (station.Action == "VISITOR")
             {
@@ -473,6 +480,15 @@ namespace ArcaneBrigade
             if (merchantEntrance)
                 foreach (Station fixture in stations)
                     if (fixture.Offer == null && fixture.Actor != null) fixture.Actor.Arrive(0.45f);
+            if (Special && owner.Session.LucidAltarOpen)
+            {
+                // the lucid altar (LucidRite): the first friend ready to wake floats over it; the visitor's spot is free in the dream shop
+                List<int> ready = owner.Session.LucidCandidates();
+                UnitDefinition first = owner.Content.Unit(state.Roster[ready[0]].UnitId);
+                Station altar = AddStation(new Vector2(5.0f, 0.4f), "LUCID ALTAR", first.Body, null, true);
+                altar.Price = owner.Session.LucidEggCost; altar.Currency = ShopCurrency.Eggs;
+                altar.Description = "Lucid rite: a 3-star friend wakes past its dream. +30% damage, bigger, weapon grows, +1 in its bond.";
+            }
             if (Special && state.Wave >= 4)
                 for (int index = 0; index < catalog.Recipes.Length; index++)
                 {
@@ -544,6 +560,7 @@ namespace ArcaneBrigade
             if (station.Action == "NEXT HALL") return Special ? "TO THE SHOP →" : "HEAD DOWN · NEXT WAVE"; // the dream market leads on to the shop (item 15 labels)
             if (station.Action == "GOLD SHOP") return "GOLD SHOP";
             if (station.Action == "DREAM ALTAR") return "DREAM SHOP";
+            if (station.Action == "LUCID ALTAR") return "LUCID RITE";
             if (station.Recipe != null) return "FUSION · " + station.Action.Substring(5);
             return station.Action;
         }

@@ -20,6 +20,8 @@ namespace ArcaneBrigade
         public float BodyScale = 1f;
         [Range(0, 1)] public float KnockbackResistance;
         public bool SpecialRecruit;
+        /// <summary>Set on a deployed friend's built body when it is lucid (LucidRite); never authored.</summary>
+        [System.NonSerialized] public bool Lucid;
         public ItemRarity Rarity;
         public bool RecruitThemeLocked;
         public float ContactDamage = 4f;

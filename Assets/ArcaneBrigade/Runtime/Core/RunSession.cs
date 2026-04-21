@@ -14,6 +14,8 @@ namespace ArcaneBrigade
         public string UnitId;
         public string WeaponId;
         public int Tier = 1;
+        /// <summary>The fourth form, past 3 stars (LucidRite).</summary>
+        public bool Lucid;
     }
 
     [Serializable]
@@ -313,6 +315,10 @@ namespace ArcaneBrigade
                 if (!Stranger(entry.UnitId))
                 foreach (string tag in catalog.Unit(entry.UnitId).Tags)
                     BondCounts[tag] = BondCounts.TryGetValue(tag, out int count) ? count + 1 : 1;
+            // a lucid friend counts one more member in its main bond (LucidRite)
+            foreach (RosterEntry entry in ActiveRoster)
+                if (entry.Lucid && !Stranger(entry.UnitId) && catalog.Unit(entry.UnitId).Tags.Length > 0 && BondCounts.TryGetValue(catalog.Unit(entry.UnitId).Tags[0], out int lucidCount))
+                    BondCounts[catalog.Unit(entry.UnitId).Tags[0]] = lucidCount + 1;
             // a Rare friend counts twice in its minor bond once that bond is already active (content expansion v5): it adds a
             // level but cannot start one on its own
             if (catalog.PoolRevision > 0)
@@ -351,6 +357,7 @@ namespace ArcaneBrigade
             {
                 RosterEntry entry = deployed[index];
                 CombatCatalog.StartingCompanions[index] = BuildUnit(catalog.Unit(entry.UnitId), catalog.Weapon(entry.WeaponId), entry.Tier, true);
+                if (entry.Lucid) ApplyLucid(CombatCatalog.StartingCompanions[index]);
             }
             AddMemoryExhibits();
             PrepareStoryParty();
@@ -647,7 +654,7 @@ namespace ArcaneBrigade
             State.Health = MaximumHealth();
             if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.LastIncome = State.LastInterest = 0; SettleSecretContracts(); State.Phase = SessionPhase.Victory; return; }
             State.LastInterest = Mathf.Min(Mathf.Min(10, catalog.InterestCap) + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), KitInterestBase(State.Gold) / Mathf.Max(1, catalog.InterestDivisor));
-            State.LastIncome = BoundedCounter((long)catalog.Income * 3 / 4 + State.Wave + Mathf.FloorToInt(Bonus(ItemEffect.Income)) + KitWaveEnd(simulation.BossDefeated));
+            State.LastIncome = BoundedCounter((long)catalog.Income * 13 / 20 + State.Wave + Mathf.FloorToInt(Bonus(ItemEffect.Income)) + KitWaveEnd(simulation.BossDefeated));
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
             SettleSecretContracts();
             State.Phase = SessionPhase.Shop;
