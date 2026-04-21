@@ -130,7 +130,8 @@ namespace ArcaneBrigade
                 if (since < 4.5f)
                 {
                     Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * Mathf.Clamp01((4.5f - since) / .6f) * Mathf.Clamp01(since / .25f));
-                    ArcadeSkin.TitleBanner(new Rect(610, 120, 700, 70), "THE KEEPER'S GIFTS", title);
+                    // the Keeper's own gifts after its fight, or the colours of three prism shards
+                    ArcadeSkin.TitleBanner(new Rect(610, 120, 700, 70), owner.Session.State.OutsideBeforeGift >= 0 ? "THE COLOURS" : "THE KEEPER'S GIFTS", title);
                     Rect plate = new Rect(710, 204, 500, 56);
                     ArcadeSkin.CodePlate(plate, CodeTone.Walnut);
                     copy.alignment = TextAnchor.MiddleCenter; copy.fontSize = 22;

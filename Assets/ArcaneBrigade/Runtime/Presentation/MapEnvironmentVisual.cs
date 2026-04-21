@@ -248,9 +248,11 @@ namespace ArcaneBrigade
                 shadows.Add(shade.AddComponent<GroundShadow>());
             }
             SpriteRenderer r = pool[used++]; r.enabled = true; r.sprite = sprite; r.flipX = flip;
-            Color c = tint ?? Color.white; c.a *= Mathf.Clamp01(alpha); r.color = c;
             float scale = height / Mathf.Max(.01f, sprite.bounds.size.y);
             bool standing = order == int.MinValue; // floor glows and things in the air (letters, moths, hands) keep their own motion
+            Color c = tint ?? Color.white;
+            if (standing) { Color shade = Shade(at); c.r *= shade.r; c.g *= shade.g; c.b *= shade.b; } // lit like the floor under it
+            c.a *= Mathf.Clamp01(alpha); r.color = c;
             int slot = used - 1;
             Vector3 hover = standing ? DreamLevitation.Offset(sim != null ? sim.Elapsed : Time.time, 40 + slot * 1.37f, 1, still, .8f) : Vector3.zero;
             r.transform.position = (Vector3)at + hover; r.transform.rotation = Quaternion.Euler(0, 0, angle + (standing ? DreamLevitation.Tilt(sim != null ? sim.Elapsed : Time.time, 40 + slot * 1.37f, still, .5f) : 0)); r.transform.localScale = new Vector3(scale, scale, 1);
@@ -261,6 +263,28 @@ namespace ArcaneBrigade
             return r;
         }
 
+        /// <summary>How a standing prop is lit (owner 22/10/2026: some props stayed bright on a dark floor): the map's grade and
+        /// edges (MapAtmosphere.PropShade) and the night's light field like every other prop; a lit lamp's oval lifts it back.</summary>
+        private Color Shade(Vector2 at)
+        {
+            Color shade = MapAtmosphere.PropShade(at);
+            float field = SharedLightField.Active?.SurfaceVisibility(at) ?? 1;
+            shade.r *= field; shade.g *= field; shade.b *= field;
+            MapEnvironmentState s = sim?.MapEnvironment;
+            if (s != null && s.Theme == MapTheme.LampHall)
+            {
+                float lit = 0;
+                foreach (MapEnvironmentState.Lamp lamp in s.Lamps)
+                {
+                    if (!lamp.Lit) continue;
+                    Vector2 d = at - lamp.Light;
+                    float e = d.x * d.x / (MapEnvironmentRules.LightRadiusX * MapEnvironmentRules.LightRadiusX) + d.y * d.y / (MapEnvironmentRules.LightRadiusY * MapEnvironmentRules.LightRadiusY);
+                    lit = Mathf.Max(lit, 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.6f, 1.4f, e)));
+                }
+                shade = Color.Lerp(shade, Color.white, lit);
+            }
+            return shade;
+        }
         /// <summary>Brass pips (a door's number) in a short row.</summary>
         private void Pips(Vector2 at, int count, float alpha, bool hot)
         {

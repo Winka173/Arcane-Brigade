@@ -133,9 +133,23 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ helpers
+        private static Color gradeTint, gradeEdge; private static int gradeFrame = -10; private static Vector2 gradeCentre, gradeHalf = Vector2.one;
+        /// <summary>The light a standing prop at <paramref name="at"/> should take so it sits in the same air as the floor under it
+        /// (owner 22/10/2026: props stayed bright on a dark floor): the map's grade and its darker edges, as a multiply tint.
+        /// White when no map air is drawn (the shop, a secret room).</summary>
+        public static Color PropShade(Vector2 at)
+        {
+            if (Time.frameCount - gradeFrame > 2) return Color.white;
+            Color c = Color.Lerp(Color.white, new Color(gradeTint.r, gradeTint.g, gradeTint.b), Mathf.Clamp01(gradeTint.a * 1.5f));
+            Vector2 d = new Vector2((at.x - gradeCentre.x) / Mathf.Max(.01f, gradeHalf.x), (at.y - gradeCentre.y) / Mathf.Max(.01f, gradeHalf.y));
+            float edge = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.45f, 1.15f, d.magnitude)) * gradeEdge.a;
+            c = Color.Lerp(c, new Color(gradeEdge.r * c.r, gradeEdge.g * c.g, gradeEdge.b * c.b), edge);
+            c.a = 1; return c;
+        }
         /// <summary>The map's colour grade on the floor: a tint over the whole view and a soft vignette at its edges.</summary>
         private void Grade(Color tint, Color edge)
         {
+            gradeTint = tint; gradeEdge = edge; gradeFrame = Time.frameCount; gradeCentre = centre; gradeHalf = new Vector2(halfW, halfH);
             Vector2 size = new Vector2(halfW * 2.2f, halfH * 2.2f);
             Put(flat, centre, size, 0, tint, TintOrder);
             Put(vignette, centre, size, 0, edge, VignetteOrder);
