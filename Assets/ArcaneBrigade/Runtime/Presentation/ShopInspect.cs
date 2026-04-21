@@ -33,7 +33,7 @@ namespace ArcaneBrigade
         private bool Allowed => owner?.Session != null && owner.Simulation != null && owner.Shop != null && owner.Session.State.Phase == SessionPhase.Shop
             && !owner.Session.SecretRoomOpen && owner.Simulation.Phase == RunPhase.Rest && !owner.StoryConsumesInput && !owner.PresentationPaused
             && !owner.Details.Open && !owner.TransitionPending && !owner.HallExitPending && !owner.Shop.Animating && owner.Session.State.OutsideStage != OutsideStageStatus.Reward
-            && owner.GetComponent<CustomerOffer>()?.Open != true && owner.GetComponent<MemoryReturn>()?.Open != true && owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true;
+            && owner.GetComponent<CustomerOffer>()?.Open != true && owner.GetComponent<MemoryReturn>()?.Open != true && owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true && owner.GetComponent<WaitingRealmStage>()?.Asking != true;
 
         private void Update()
         {

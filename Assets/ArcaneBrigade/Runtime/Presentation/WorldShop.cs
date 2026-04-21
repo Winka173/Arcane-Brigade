@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class WorldShop : MonoBehaviour, ShopFocus.ISource
     {
-        public const float InteractionRadius = 1.1f;
+        public const float InteractionRadius = 1.4f; // was 1.1: options showed only on an exact spot (owner 22/10/2026)
         public const float LayoutLift = 0.5f;
         public static readonly Vector2 ExitPosition = new Vector2(0, -4.5f);
         public const float ExitInteractionRadius = 1.85f;
@@ -89,7 +89,7 @@ namespace ArcaneBrigade
         {
             if (manual.sqrMagnitude > .01f) { walkTo = null; return manual; }
             // a card or offer already open owns the tap
-            bool modal = owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || owner.Details.Open;
+            bool modal = owner.GetComponent<WaitingRealmStage>()?.Asking == true || owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || owner.Details.Open;
             if (Input.GetMouseButtonDown(0) && camera != null && GUIUtility.hotControl == 0 && !modal)
             {
                 Matrix4x4 fit = ArcadeTypography.FitViewport(camera.pixelRect, Screen.safeArea, Screen.height, 1920, 1080);
@@ -548,7 +548,7 @@ namespace ArcaneBrigade
         {
             // every speech box (shopkeeper, companions, hero) is drawn here in the shop, under the tooltips; the merchant's
             // own box follows its head and hides itself while the shop is dark
-            SpeechBubbles.Draw(Camera.main);
+            if (!PlayerGuide.ModalOpen(owner)) SpeechBubbles.Draw(Camera.main); // never over a card or menu
         }
         public string DisplayName(Station station)
         {

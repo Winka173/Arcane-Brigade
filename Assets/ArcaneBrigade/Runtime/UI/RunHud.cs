@@ -342,7 +342,7 @@ namespace ArcaneBrigade
             else if (state.Phase == SessionPhase.Shop)
             {
                 // a visitor's card owns the screen: no tickets or station card over it
-                if (owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
+                if (owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true && owner.GetComponent<WaitingRealmStage>()?.Asking != true) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
                 statFeedback.Draw(owner,camera);
             }
             else

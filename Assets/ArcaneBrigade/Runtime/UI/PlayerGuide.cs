@@ -100,7 +100,7 @@ namespace ArcaneBrigade
         public static bool ModalOpen(ArenaController owner)
         {
             if (owner == null) return false;
-            if (owner.GetComponent<ShopInspect>()?.Open != null || owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.Details.Open) return true;
+            if (owner.GetComponent<ShopInspect>()?.Open != null || owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.GetComponent<WaitingRealmStage>()?.Asking == true || owner.Details.Open) return true;
             foreach (CustomerOffer offer in owner.GetComponents<CustomerOffer>()) if (offer.Open) return true;
             foreach (MemoryReturn memory in owner.GetComponents<MemoryReturn>()) if (memory.Open) return true;
             OutsideStageChoice gifts = owner.GetComponent<OutsideStageChoice>(); if (gifts != null && gifts.GiftsOpen) return true;

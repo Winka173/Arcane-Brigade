@@ -23,7 +23,7 @@ namespace ArcaneBrigade
         public Vector2 ChairAnchor => ShopChair ? ActOneCanon.ChairPosition(owner.Session.State.Wave) : ActOneCanon.ChairPosition(1);
         /// <summary>Painted width and height of the chair as drawn (ShopLayout reserves this at all 19 positions).</summary>
         // the older wide armchair is drawn a little smaller so it fits the same reserved spots as the warm chair
-        private float ChairHeight => warm != null ? 1.55f : 1.45f;
+        private float ChairHeight => warm != null ? 1.9f : 1.8f; // bigger (owner 22/10/2026: important things read at a glance)
         public Vector2 ChairSize
         {
             get
@@ -35,7 +35,9 @@ namespace ArcaneBrigade
                 return ink.size * scale;
             }
         }
-        public const float ChairReach = 1.35f;
+        public const float ChairReach = 1.9f; // was 1.35: the chair's option only showed on one exact spot (owner 22/10/2026)
+        /// <summary>The chair's card is open (a modal over the shop: no price tags or station card over it).</summary>
+        public bool Asking => asking;
         public int SpotCount => 1;
         public bool Spot(int index, out Vector2 position, out float reach) { position = ChairAnchor; reach = ChairReach; return ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null; }
         private bool Near => Spot(0, out _, out _) && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
@@ -156,7 +158,7 @@ namespace ArcaneBrigade
             {
                 // before the eighth shop it only answers with the shopkeeper's warning
                 string said = !available ? (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Won ? "only a chair now." : "not that one." : "sit down?";
-                Rect tag = new Rect(Mathf.Clamp(x - 150, 20, 1600), Mathf.Clamp(y + 30, 180, 960), 300, 46);
+                Rect tag = new Rect(Mathf.Clamp(x - 180, 20, 1540), Mathf.Clamp(y + 30, 180, 950), 360, 58);
                 ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Wax);
                 hand.normal.textColor = new Color(.25f, .19f, .14f);
                 GUI.Label(tag, said, hand);
@@ -164,18 +166,22 @@ namespace ArcaneBrigade
             }
             else
             {
-                Rect card = new Rect(560, 430, 800, 420); // below the shopkeeper's speech bubble
+                // a card over the shop (owner 22/10/2026: price tags showed through it and its text ran to the rims): dimmed room,
+                // above the HUD and the tags, every line inside the paper's padded area, the painted buttons apart
+                GUI.depth = -60;
+                RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, .5f));
+                Rect card = new Rect(470, 300, 980, 500);
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
-                ArcadeSkin.Seal(new Vector2(card.xMax - 42, card.y + 40), 46, "!");
+                Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
+                ArcadeSkin.Seal(new Vector2(inner.xMax - 30, inner.y + 26), 46, "!");
                 hand.normal.textColor = new Color(.25f, .19f, .14f);
-                GUI.Label(new Rect(card.x + 40, card.y + 28, card.width - 80, 150), "THE SHOPKEEPER: 'Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.'", hand);
+                GUI.Label(new Rect(inner.x + 10, inner.y + 6, inner.width - 80, 140), "THE SHOPKEEPER: 'Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.'", hand);
                 plain.normal.textColor = new Color(.18f, .14f, .1f);
-                GUI.Label(new Rect(card.x + 50, card.y + 190, card.width - 100, 110),
+                GUI.Label(new Rect(inner.x + 10, inner.y + 160, inner.width - 20, 120),
                     "HIDDEN FIGHT · THE NIGHT YOU HID\nThe Bedside and the travellers it wakes fight like wave " + (state.Wave + ActOneCanon.SitWaveBonus) + ". Defeat it before the knocking stops (" + Mathf.RoundToInt(ActOneCanon.KnockSeconds) + " s).\nIf you lose, the journey ends here. Only once per journey.", plain);
-                ArcadeSkin.Plate(new Rect(card.x + 60, card.yMax - 100, 320, 64), ArcadeSkin.Danger);
-                if (GUI.Button(new Rect(card.x + 60, card.yMax - 100, 320, 64), "SIT DOWN", choice)) Sit();
-                ArcadeSkin.Plate(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), ArcadeSkin.Teal);
-                if (GUI.Button(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), "STEP AWAY", choice)) asking = false;
+                float buttonsY = inner.yMax - 92;
+                if (ArcadeSkin.Button(new Rect(inner.center.x - 350, buttonsY, 320, 88), "SIT DOWN", KitButton.Danger, true, choice)) Sit();
+                if (ArcadeSkin.Button(new Rect(inner.center.x + 30, buttonsY, 320, 88), "STEP AWAY", KitButton.Secondary, true, choice)) asking = false;
             }
             GUI.matrix = previous;
         }

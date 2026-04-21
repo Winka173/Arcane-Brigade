@@ -29,7 +29,9 @@ namespace ArcaneBrigade
         // owner 22/10/2026: enemies never speed up with the waves and stay slow (was 1.08 rising to ~1.18 by wave 20)
         public static float EnemySpeed(int wave) => 1f;
         /// <summary>Owner 22/10/2026: the game felt too fast; every body walks at 88% (enemies, friends, the hero).</summary>
-        public const float UnitPace = .88f;
+        public const float UnitPace = .8f; // .88 -> .8 (owner 22/10/2026: still too hurried)
+        /// <summary>Enemies a further 90% on top: still fast next to the brigade (owner 22/10/2026).</summary>
+        public const float EnemyPace = .9f;
         /// <summary>Move-speed bonuses count 60% (owner 22/10/2026: they scaled too much); penalties count in full.</summary>
         public static float MoveBonus(float bonus) => bonus > 0 ? bonus * .6f : bonus;
         /// <summary>Ranged friends reach 85% as far (owner 22/10/2026).</summary>

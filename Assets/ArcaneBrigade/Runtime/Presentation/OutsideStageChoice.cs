@@ -20,7 +20,7 @@ namespace ArcaneBrigade
         private float giftsSince = -100;
         public bool Spot(int index, out Vector2 position, out float reach)
         {
-            position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 1.6f : 1.05f;
+            position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 2f : 1.4f; // wider (owner 22/10/2026)
             return owner?.Simulation != null && (mode == 1 ? owner.Session.OutsideChallengeAvailable : mode == 2);
         }
         private int mode;

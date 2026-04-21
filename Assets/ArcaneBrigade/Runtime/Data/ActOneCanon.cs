@@ -84,8 +84,9 @@ namespace ArcaneBrigade
             // Down the right-hand edge of the shop: from the far corner under the bonds card (right of the merchant's speech
             // bubble), past the lantern-less strip, round the bottom-right corner below the stock, and on the last visit
             // beside the exit. Every position is reserved in ShopLayout, so no stall, offer or decoration is ever under it.
-            if (wave >= 19) return new Vector2(1.9f, -4.75f);
-            Vector2[] path = { new Vector2(6.75f, 0.55f), new Vector2(6.85f, -1.7f), new Vector2(6.0f, -4.5f), new Vector2(4.75f, -4.6f) };
+            // pulled a little in from the edges for the bigger chair (owner 22/10/2026)
+            if (wave >= 19) return new Vector2(1.9f, -4.4f);
+            Vector2[] path = { new Vector2(6.4f, 0.55f), new Vector2(6.5f, -1.7f), new Vector2(5.7f, -4.2f), new Vector2(4.5f, -4.3f) };
             float t = Mathf.Clamp01((Mathf.Clamp(wave, 1, 18) - 1) / 17f) * (path.Length - 1);
             int segment = Mathf.Min(path.Length - 2, Mathf.FloorToInt(t));
             return Vector2.Lerp(path[segment], path[segment + 1], t - segment);

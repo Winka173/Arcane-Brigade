@@ -237,7 +237,8 @@ namespace ArcaneBrigade
                 GUI.enabled = true;
             }
             // speech boxes pinned to whoever speaks (the shop draws them first, under its tooltips; this covers the fight)
-            else if (!owner.Session.SecretRoomOpen) SpeechBubbles.Draw(camera, owner.Session.State.Phase == SessionPhase.Combat);
+            // never over a card or menu (owner 22/10/2026: a friend's chatter sat on the memory choice)
+            else if (!owner.Session.SecretRoomOpen && !PlayerGuide.ModalOpen(owner)) SpeechBubbles.Draw(camera, owner.Session.State.Phase == SessionPhase.Combat);
             GUI.matrix = previous;
         }
 
