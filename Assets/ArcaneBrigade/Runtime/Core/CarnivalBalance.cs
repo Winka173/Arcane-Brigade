@@ -28,6 +28,12 @@ namespace ArcaneBrigade
         // Keep wave-one pace; substantially reduce both the growth and its eventual ceiling.
         // owner 22/10/2026: enemies never speed up with the waves and stay slow (was 1.08 rising to ~1.18 by wave 20)
         public static float EnemySpeed(int wave) => 1f;
+        /// <summary>Owner 22/10/2026: the game felt too fast; every body walks at 88% (enemies, friends, the hero).</summary>
+        public const float UnitPace = .88f;
+        /// <summary>Move-speed bonuses count 60% (owner 22/10/2026: they scaled too much); penalties count in full.</summary>
+        public static float MoveBonus(float bonus) => bonus > 0 ? bonus * .6f : bonus;
+        /// <summary>Ranged friends reach 85% as far (owner 22/10/2026).</summary>
+        public const float RangedAllyReach = .85f;
         /// <summary>The fast ones are reined in: speed above 1.3 counts 40% (Sleep Mimic 2.8 -> 1.9, Siren Seal 1.85 -> 1.52).</summary>
         public static float CapEnemySpeed(float speed) => speed > 1.3f ? 1.3f + (speed - 1.3f) * .4f : speed;
         public static float EnemyDamage(int wave) => 1.15f * (1 + Mathf.Min(3, Mathf.Max(0, wave - 3) * 0.11f)) * (1 + Mathf.Min(1.4f, Mathf.Max(0, wave - 5) * 0.085f)); // .09/.07 -> .11/.085 (owner 22/10/2026: about +25% damage by wave 20)

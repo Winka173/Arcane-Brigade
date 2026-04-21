@@ -119,7 +119,8 @@ namespace ArcaneBrigade
             return scope == ModifierScope.Champion ? "Hero · " : scope == ModifierScope.Companions ? "Friends · " : scope == ModifierScope.Run ? "Run · " : "Everyone · ";
         }
         /// <summary>One stat line as the player reads it: who, the stat's name, its value (e.g. "You · Max HP -5").</summary>
-        public static string Line(ItemEffect effect, ModifierScope scope, float value) => WhoFor(effect, scope) + ModifierName(effect) + " " + ValueText(effect, value);
+        // a move-speed bonus is shown as it counts (CarnivalBalance.MoveBonus)
+        public static string Line(ItemEffect effect, ModifierScope scope, float value) => WhoFor(effect, scope) + ModifierName(effect) + " " + ValueText(effect, effect == ItemEffect.MoveSpeed ? CarnivalBalance.MoveBonus(value) : value);
         /// <summary>Whether a stat change helps the player (enemy stats are the other way round).</summary>
         public static bool Helps(ItemEffect effect, float value)
         {

@@ -8,7 +8,7 @@ namespace ArcaneBrigade
         /// <summary>Our weapons' area hits (bursts, fuses, echoes, puddles) are drawn and resolved at this share of their authored radius (owner, 19/10/2026).</summary>
         public const float Area = 0.8f;
         public const float Visual = 2.15f;
-        public const float Speed = .9f; // 22/10: melee friends move ~22% slower than the previous 1.15; hero speed is unchanged.
+        public const float Speed = .8f; // 22/10 (later): .9 -> .8, melee friends run slower still (owner); // 22/10: melee friends move ~22% slower than the previous 1.15; hero speed is unchanged.
         public const float RoamBonus = 2f;
         public static void Apply(WeaponDefinition weapon)
         {

@@ -12,7 +12,7 @@ namespace ArcaneBrigade
             WeaponDefinition weapon = champion.Weapon;
             float damage = compiled.Champion.Weapon.Damage;
             model.Stats[1].Summary = damage.ToString("0.0");
-            model.Stats[3].Summary = (champion.Speed * Mathf.Max(0.1f, 1 + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) * K10StatRules.Factor(session.Bonus(ItemEffect.SpeedCorrection, ModifierScope.Champion))).ToString("0.00");
+            model.Stats[3].Summary = (champion.Speed * CarnivalBalance.UnitPace * Mathf.Max(0.1f, 1 + CarnivalBalance.MoveBonus(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))) * K10StatRules.Factor(session.Bonus(ItemEffect.SpeedCorrection, ModifierScope.Champion))).ToString("0.00");
             model.Stats[6].Explanation = "Positive armor divides damage by 1+armor. Negative armor increases damage, up to ×2 before the per-hit cap.";
             model.Stats[6].Summary = (session.Bonus(ItemEffect.Armor) * K10StatRules.Factor(session.Bonus(ItemEffect.ArmorCorrection))).ToString("0.00");
             foreach (RunBuildReadModel.Row row in model.Stats)

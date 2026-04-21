@@ -533,7 +533,7 @@ namespace ArcaneBrigade
             unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
             unit.Weapon.ProjectileCount += Mathf.FloorToInt(Bonus(ItemEffect.Projectiles, target));
             unit.CriticalChance = Mathf.Clamp01(unit.CriticalChance + Bonus(ItemEffect.Crit, target));
-            unit.Speed *= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.MoveSpeed, target));
+            unit.Speed *= Mathf.Max(0.1f, 1f + CarnivalBalance.MoveBonus(Bonus(ItemEffect.MoveSpeed, target))) * CarnivalBalance.UnitPace;
             if (!companion) unit.Health = Mathf.Max(1f, unit.Health + Bonus(ItemEffect.Health));
             if (companion) unit.BodyHeight *= CompanionTierScaling.Body(tier);
             K10StatRules.ApplyUnit(this, catalog, unit, source, weapon, tier, companion);
@@ -546,6 +546,7 @@ namespace ArcaneBrigade
                 MeleeBalance.Apply(unit.Weapon);
                 if (companion) unit.Speed *= MeleeBalance.Speed;
             }
+            else if (companion) { unit.Weapon.Range *= CarnivalBalance.RangedAllyReach; unit.Weapon.ProjectileLifetime *= CarnivalBalance.RangedAllyReach; }
             if (!companion)
             {
                 // owner (22/10/2026): the hero's hits were too far apart; faster swings for less per hit (about the same damage a second)
@@ -596,7 +597,7 @@ namespace ArcaneBrigade
             else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.9f;
             unit.Health *= CarnivalBalance.EnemyHealth(State.Wave) * 1.1f * .8f * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
             if (source.SpecialEnemy != SpecialEnemyKind.None) { unit.Health *= 1.6f; unit.BodyHeight *= 1.2f; unit.Radius *= 1.15f; }
-            unit.Speed = (source.IsBoss ? unit.Speed : CarnivalBalance.CapEnemySpeed(unit.Speed)) * CarnivalBalance.EnemySpeed(State.Wave) * MetaEnemySpeed; // Night Pact: Swift night
+            unit.Speed = (source.IsBoss ? unit.Speed : CarnivalBalance.CapEnemySpeed(unit.Speed)) * CarnivalBalance.EnemySpeed(State.Wave) * CarnivalBalance.UnitPace * MetaEnemySpeed; // Night Pact: Swift night
             float damageGrowth = Mathf.Max(0, State.Wave - 10);
             unit.ContactDamage = Mathf.Min(14f + damageGrowth * 0.12f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
