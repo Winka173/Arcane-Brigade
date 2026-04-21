@@ -937,7 +937,8 @@ namespace ArcaneBrigade
         /// <summary>What a visitor asks in this shop: its authored price on the gold curve (the world tag, the card and the
         /// rules all read this one number).</summary>
         public int VisitorCost(VisitorDefinition v) => v == null ? 0 : ScaledGold(v.Cost);
-        public float SpecialStagePriceFactor => 1;
+        // owner 22/10/2026: eggs pile up late, so the dream shop's egg prices rise with the waves (x1.18 at wave 5, x1.63 at 10, x2.5 at 20)
+        public float SpecialStagePriceFactor => 1 + Mathf.Max(0, State.Wave - 3) * .09f;
         public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
         public int HighestOwnedTier(string id)

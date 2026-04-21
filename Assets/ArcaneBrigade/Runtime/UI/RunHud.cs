@@ -298,9 +298,12 @@ namespace ArcaneBrigade
             Sprite(new Rect(eggSocket.x - eggPulse, eggSocket.y - eggPulse, eggSocket.width + eggPulse * 2, eggSocket.height + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
             GUI.Label(eggText, Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
-            Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
+            // in the shop the banner sits clear of the health bar's end cap (it overlapped it at x 380)
+            Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(452, 26, 280, 52) : new Rect(820, 22, 280, 52);
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(waveRect, KitFrame.WaveBanner); else ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
-            GUI.Label(ArcadeSkin.HasKit ? ArcadeSkin.Content(waveRect, KitFrame.WaveBanner, false) : new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
+            string waveText = (state.Endless ? "∞ " : "") + "Wave " + state.Wave;
+            if (ArcadeSkin.HasKit) ArcadeSkin.KitCaption(ArcadeSkin.Content(waveRect, KitFrame.WaveBanner, false), waveText, title.normal.textColor, title, true); // shrinks to fit inside the banner
+            else GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), waveText, title);
             if (state.Phase == SessionPhase.Combat)
             {
                 bool overtime = simulation.IsBossOvertime;

@@ -16,7 +16,7 @@ namespace ArcaneBrigade
     {
         public const int LucidWave = 12, LucidMax = 2;
         public const float LucidDamage = 1.3f, LucidBody = 1.1f, LucidReach = 1.2f;
-        public int LucidEggCost => 4 + 2 * State.LucidRites;
+        public int LucidEggCost => Mathf.CeilToInt((4 + 2 * State.LucidRites) * SpecialStagePriceFactor);
         public int LucidGoldCost => ScaledGold(60);
 
         /// <summary>Roster indexes of the deployed 3-star friends that are not lucid yet.</summary>
