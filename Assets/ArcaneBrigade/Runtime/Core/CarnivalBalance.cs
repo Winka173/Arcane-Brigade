@@ -26,7 +26,10 @@ namespace ArcaneBrigade
         public static float SpawnInterval(int wave) => Mathf.Max(0.25f, (1.4f - Mathf.Min(3, Mathf.Max(1, wave)) * 0.035f) / (1 + Mathf.Max(0, wave - 3) * 0.18f));
         public static float BossBulk(int wave) => Mathf.Lerp(4.6f, 7.5f, Mathf.Clamp01((wave - 4) / 16f));
         // Keep wave-one pace; substantially reduce both the growth and its eventual ceiling.
-        public static float EnemySpeed(int wave) => 1.08f * (1 + .25f * (1 - Mathf.Exp(-Mathf.Max(0, wave - 1) * .025f)));
+        // owner 22/10/2026: enemies never speed up with the waves and stay slow (was 1.08 rising to ~1.18 by wave 20)
+        public static float EnemySpeed(int wave) => 1f;
+        /// <summary>The fast ones are reined in: speed above 1.3 counts 40% (Sleep Mimic 2.8 -> 1.9, Siren Seal 1.85 -> 1.52).</summary>
+        public static float CapEnemySpeed(float speed) => speed > 1.3f ? 1.3f + (speed - 1.3f) * .4f : speed;
         public static float EnemyDamage(int wave) => 1.15f * (1 + Mathf.Min(3, Mathf.Max(0, wave - 3) * 0.11f)) * (1 + Mathf.Min(1.4f, Mathf.Max(0, wave - 5) * 0.085f)); // .09/.07 -> .11/.085 (owner 22/10/2026: about +25% damage by wave 20)
         public static float RecruitDamage(ItemRarity rarity) => 1 + (int)rarity * 0.18f;
     }
