@@ -70,9 +70,10 @@ namespace ArcaneBrigade
             {
                 if(InputConsumedFrame==Time.frameCount)return;
                 if (!Application.isFocused && !RunPaths.Diagnostic) return;
-                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) Choose(0);
-                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.JoystickButton3)) Choose(1);
-                else if (Input.GetKeyDown(KeyCode.JoystickButton0) && ActOneCanon.ChoiceOptions[chapter] != null && page == 0 && Memory.Choices[chapter] == 0) Choose(0);
+                // a choice is picked first and confirmed (owner 22/10/2026)
+                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) storyPick = 0;
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.JoystickButton3)) storyPick = 1;
+                else if ((Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return)) && storyPick >= 0 && ActOneCanon.ChoiceOptions[chapter] != null && page == 0 && Memory.Choices[chapter] == 0) { Choose(storyPick); storyPick = -1; }
                 else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) && HobWaits) EnterHobRoom();
                 else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance(); // a waiting choice is never taken by Enter
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7)) { if (lives) { lives = false; scroll = Vector2.zero; Consume(); } else Close(); }
@@ -166,6 +167,7 @@ namespace ArcaneBrigade
         }
         private void Previous() { Consume(); SetPage(MienChoStory.PreviousPage(chapter, page, Memory.Choices[chapter])); scroll = Vector2.zero; }
         /// <summary>Commits a story choice once; the branch page follows and the choice is saved with the journal.</summary>
+        private int storyPick = -1;
         public void Choose(int option)
         {
             if (!open || ActOneCanon.ChoiceOptions[chapter] == null || Memory.Choices[chapter] != 0 || page != 0) return;
@@ -228,7 +230,9 @@ namespace ArcaneBrigade
             string text = c.Pages[page] + ActOneCanon.PageExtra(owner.Session.State, chapter, page);
             if (chapter == 0 && page == 0) text += "\n\nYOUR ARRIVAL\n" + WaitingArrivals.For(owner.Session.State.ChampionId);
             float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
-            scroll = ScrollPanel.Begin(new Rect(850, 210, 1000, 660), scroll, new Rect(0, 0, 955, height));
+            string[] options = ActOneCanon.ChoiceOptions[chapter];
+            bool choosing = options != null && page == 0 && Memory.Choices[chapter] == 0;
+            scroll = ScrollPanel.Begin(new Rect(850, 210, 1000, choosing ? 400 : 660), scroll, new Rect(0, 0, 955, height));
             GUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
             for (int i = 0; i < MienChoStory.Available(owner.Session.State); i++)
             {
@@ -238,12 +242,12 @@ namespace ArcaneBrigade
                 if (((owner.Session.State.MienCho?.ReadMask ?? 0) & (1 << i)) == 0 && (viewedMask & (1 << i)) == 0) ArcadeSkin.Seal(new Vector2(entry.xMax - 8, entry.y + 6), 18, null);
             }
             if (Press(new Rect(850, 925, 200, 65), "PREVIOUS")) Previous();
-            string[] options = ActOneCanon.ChoiceOptions[chapter];
-            if (options != null && page == 0 && Memory.Choices[chapter] == 0)
+            if (choosing)
             {
-                // the story waits for the traveller: two choices instead of CONTINUE
-                if (Press(new Rect(1070, 925, 240, 65), options[0])) Choose(0);
-                if (Press(new Rect(1320, 925, 240, 65), options[1])) Choose(1);
+                // the story waits for the traveller: two choices as cards, picked then confirmed (owner 22/10/2026)
+                const string meaning = "The next page follows this choice. It shapes the story only; your brigade is not changed.";
+                int taken = ChoiceCards.Draw(new Rect(850, 625, 1000, 285), options, new[] { meaning, meaning }, ref storyPick);
+                if (taken >= 0) { Choose(taken); storyPick = -1; }
             }
             else if (HobWaits)
             {

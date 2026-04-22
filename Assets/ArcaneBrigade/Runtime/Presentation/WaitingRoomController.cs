@@ -184,7 +184,7 @@ namespace ArcaneBrigade
             for(int i=0;i<3;i++)labels[i].gameObject.SetActive(!rescue && Vector2.Distance(position,points[i])<2.4f);
             if(Modal)
             {
-                if(selected>=0){if(Input.GetKeyDown(KeyCode.Alpha1))Choose(1);if(Input.GetKeyDown(KeyCode.Alpha2))Choose(2);if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.JoystickButton0))CloseRecord();}
+                if(selected>=0){if(Input.GetKeyDown(KeyCode.Alpha1))recordPick=0;if(Input.GetKeyDown(KeyCode.Alpha2))recordPick=1;if(recordPick>=0&&Input.GetKeyDown(KeyCode.Return)){Choose(recordPick+1);recordPick=-1;}else if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.JoystickButton0))CloseRecord();}
                 sound.Pause();return;
             }sound.UnPause();clock+=Time.deltaTime;
             DisplayProps();
@@ -230,6 +230,7 @@ namespace ArcaneBrigade
             if(!PresentationSettings.ReducedAudio && room==4)sfx.PlayOneShot(Resources.Load<AudioClip>("MienCho/Audio/Stay"),AudioMix.SourceGain(MixBus.Sfx)*.25f);
             return true;
         }
+        private int recordPick=-1;
         public bool Choose(int option)
         {
             if(selected<0 || option<1 || option>2)return false;
@@ -289,17 +290,18 @@ namespace ArcaneBrigade
             if(paused){RunHud.Fill(new Rect(450,390,1020,250),new Color(.02f,.03f,.06f));GUI.Label(new Rect(500,420,900,70),"PAUSED / THE ROOM WAITS",heading);if(GUI.Button(new Rect(650,530,620,65),"RESUME",button))paused=false;}
             if(selected>=0)
             {
-                RunHud.Fill(new Rect(220,220,1480,700),new Color(.025f,.03f,.055f));
+                RunHud.Fill(new Rect(220,220,1480,780),new Color(.025f,.03f,.055f));
                 GUI.Label(new Rect(270,250,1370,70),WaitingRooms.Label(room,selected),heading);
                 int choice=session.State.WaitingCampaign.RoomChoices[(room-1)*3+selected];
                 string text=WaitingRooms.Question(room,selected)+(choice>0?"\n\n"+WaitingRooms.Result(room,selected,choice):"");
-                scroll=ScrollPanel.Begin(new Rect(270,350,1370,320),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(new GUIContent(text),1310))));GUI.Label(new Rect(0,0,1310,600),text,copy);ScrollPanel.End();
+                scroll=ScrollPanel.Begin(new Rect(270,350,1370,choice==0?210:470),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(new GUIContent(text),1310))));GUI.Label(new Rect(0,0,1310,600),text,copy);ScrollPanel.End();
                 if(choice==0)
                 {
-                    if(GUI.Button(new Rect(270,700,660,110),WaitingRooms.Option(room,selected,1),button))Choose(1);
-                    if(GUI.Button(new Rect(970,700,660,110),WaitingRooms.Option(room,selected,2),button))Choose(2);
+                    // the two options as cards that say where each leads; picked, then confirmed (owner 22/10/2026)
+                    int taken=ChoiceCards.Draw(new Rect(270,580,1370,320),new[]{WaitingRooms.Option(room,selected,1),WaitingRooms.Option(room,selected,2)},new[]{WaitingRooms.Result(room,selected,1),WaitingRooms.Result(room,selected,2)},ref recordPick);
+                    if(taken>=0){Choose(taken+1);recordPick=-1;}
                 }
-                if(GUI.Button(new Rect(1000,840,630,55),"KEEP THE RECORD / BACK",button))selected=-1;
+                if(GUI.Button(new Rect(1000,925,630,55),"KEEP THE RECORD / BACK",button)){selected=-1;recordPick=-1;}
             }
             if(error.Length>0)GUI.Label(new Rect(50,1015,1800,55),error,small);
             GUI.matrix=matrix;

@@ -30,14 +30,16 @@ namespace ArcaneBrigade
                 if(Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton1)){Close();return;}
                 if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.JoystickButton4)){route=(route+5)%6;scroll=Vector2.zero;Consume();}
                 if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.JoystickButton5)){route=(route+1)%6;scroll=Vector2.zero;Consume();}
-                if(!nextAct && Input.GetKeyDown(KeyCode.Alpha1))Choose(1);
-                if(!nextAct && Input.GetKeyDown(KeyCode.Alpha2))Choose(2);
+                if(!nextAct && Input.GetKeyDown(KeyCode.Alpha1))journeyPick=0;
+                if(!nextAct && Input.GetKeyDown(KeyCode.Alpha2))journeyPick=1;
+                if(!nextAct && journeyPick>=0 && Input.GetKeyDown(KeyCode.Return)){if(Choose(journeyPick+1))journeyPick=-1;}
                 float vertical=ArcadeNavigation.Pad.y;
                 if(Input.GetKey(KeyCode.UpArrow))vertical=1;if(Input.GetKey(KeyCode.DownArrow))vertical=-1;
                 scroll.y=Mathf.Max(0,scroll.y-vertical*Time.unscaledDeltaTime*400);return;
             }
 
         }
+        private int journeyPick=-1;
         public bool Choose(int option)
         {
             if(!Open || nextAct)return false;
@@ -80,15 +82,17 @@ namespace ArcaneBrigade
             string text=stage<0?"THEIR CHOSEN FUTURE\nThis route is complete. Their decisions remain in the room and epilogue.":"PART "+(stage+1)+" / SHOP AFTER WAVE "+WaitingCompanionQuests.Waves[stage]+"\n"+quest.Scenes[stage];
             text+=WaitingCompanionQuests.Consequences(state,quest.Id);
             float height=Mathf.Max(340,copy.CalcHeight(new GUIContent(text),1280)+20);
-            scroll=ScrollPanel.Begin(new Rect(500,450,1330,340),scroll,new Rect(0,0,1290,height));GUI.Label(new Rect(0,0,1280,height),text,copy);ScrollPanel.End();
+            bool choosing=stage>=0 && state.Wave>=WaitingCompanionQuests.Waves[stage] && state.Roster.Exists(x=>x.UnitId==quest.Id);
+            scroll=ScrollPanel.Begin(new Rect(500,450,1330,choosing?190:340),scroll,new Rect(0,0,1290,height));GUI.Label(new Rect(0,0,1280,height),text,copy);ScrollPanel.End();
             bool ready=stage>=0 && state.Wave>=WaitingCompanionQuests.Waves[stage] && state.Roster.Exists(x=>x.UnitId==quest.Id);
             if(ready)
             {
-                if(Press(new Rect(500,815,640,95),"1 / "+quest.First[stage]))Choose(1);
-                if(Press(new Rect(1170,815,640,95),"2 / "+quest.Second[stage]))Choose(2);
+                // the two options as cards that say where each leads; picked, then confirmed (owner 22/10/2026)
+                int taken=ChoiceCards.Draw(new Rect(500,655,1330,290),new[]{quest.First[stage],quest.Second[stage]},new[]{quest.Outcomes[stage*2],quest.Outcomes[stage*2+1]},ref journeyPick);
+                if(taken>=0 && Choose(taken+1))journeyPick=-1;
             }
             else GUI.Label(new Rect(500,815,1300,100),stage<0?"Their story continues through the consequences you chose. No stat reward or loyalty debt.":"Travel with this companion and reach the stated shop. You can leave now and return later; the main route never requires this quest.",small);
-            if(Press(new Rect(1330,960,480,65),"RETURN TO THE SHOP [ESC / B]"))Close();
+            if(Press(new Rect(1330,960,480,65),"RETURN TO THE SHOP"))Close();
             GUI.Label(new Rect(80,980,1180,60),"Paused. Choices change scenes and futures, never recruit quotas.",small);
             GUI.matrix=matrix;
         }
