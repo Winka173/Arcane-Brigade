@@ -226,7 +226,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Pedestal(stand, Time.unscaledTime); // velvet cushion on a brass stand, drawn in code
             ItemDefinition relic = owner.Content.Item(s.TargetItem);
             if (relic?.Icon != null) DrawSprite(ArcadeSkin.PedestalSeat(stand), relic.Icon);
-            GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  tap to swap" : ""), label);
+            GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  ⇄" : ""), label);
             if (GUI.Button(box, GUIContent.none, GUIStyle.none)) CycleTarget(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
@@ -234,7 +234,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Plate(friend, ArcadeSkin.Accent);
                 UnitDefinition unit = owner.Content.Unit(s.TargetUnit);
                 if (unit?.Body != null) DrawSprite(new Rect(friend.x + 10, friend.y + 10, 80, 80), unit.Body);
-                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "\ntap to swap", label);
+                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "  ⇄", label);
                 if (GUI.Button(friend, GUIContent.none, GUIStyle.none))
                 {
                     var roster = owner.Session.State.Roster; int index = roster.FindIndex(r => r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon);

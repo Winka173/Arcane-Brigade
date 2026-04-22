@@ -144,7 +144,7 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(row.x + 10, row.y + 9, 50, 50), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, earned));
                 Ink(earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
                 GUI.Label(new Rect(row.x + 68, row.y + 8, row.width - 78, 26), earned ? l.Name : "Sealed", body);
-                GUI.Label(new Rect(row.x + 68, row.y + 36, row.width - 78, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW · tap to read", small);
+                GUI.Label(new Rect(row.x + 68, row.y + 36, row.width - 78, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", small);
                 if ((GUI.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
                 {
                     letterOpen = i;

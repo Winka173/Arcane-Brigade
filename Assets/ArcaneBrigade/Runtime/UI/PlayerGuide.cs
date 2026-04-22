@@ -234,7 +234,7 @@ namespace ArcaneBrigade
                 (c.Arena.Coin, "Gold and eggs", "Pick them up. Gold buys in the shop, eggs in the dream shop."),
                 (c.Bonds.Length > 0 ? c.Bonds[0].Icon : null, "Friends and bonds", "Friends of one family together unlock a bond."),
                 (c.Companions.Length > 0 ? c.Companions[0].Body : null, "Merge", "Two of the same friend become one, with a new star."),
-                (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics", "Relics give bonuses for the rest of the run. Tap a line to learn more."),
+                (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics", "Relics give bonuses for the rest of the run."),
             };
             float w = (area.width - 40) / 3, h = (area.height - 20) / 2;
             GUIStyle head = new GUIStyle(title) { fontSize = 28 };

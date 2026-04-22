@@ -168,7 +168,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Plate(r, new Color(.2f, .14f, .09f, .9f));
             Rect inner = new Rect(r.x + 20, r.y + 10, r.width - 40, r.height - 20);
             plain.normal.textColor = ArcadeSkin.Cream;
-            if (o == null) { GUI.Label(inner, "Tap a picture to see what it does.", plain); return; }
+            if (o == null) { GUI.Label(inner, "Pick one to see what it does.", plain); return; }
             string text = NameFor(o);
             int cut = string.IsNullOrEmpty(o.Icon) ? -1 : o.Icon.IndexOf(':');
             string kind = cut > 0 ? o.Icon.Substring(0, cut) : "", id = cut > 0 ? o.Icon.Substring(cut + 1) : "";

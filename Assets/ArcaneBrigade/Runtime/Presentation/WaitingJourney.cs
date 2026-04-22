@@ -89,7 +89,7 @@ namespace ArcaneBrigade
             }
             else GUI.Label(new Rect(500,815,1300,100),stage<0?"Their story continues through the consequences you chose. No stat reward or loyalty debt.":"Travel with this companion and reach the stated shop. You can leave now and return later; the main route never requires this quest.",small);
             if(Press(new Rect(1330,960,480,65),"RETURN TO THE SHOP [ESC / B]"))Close();
-            GUI.Label(new Rect(80,980,1180,60),"Paused. LB/RB: companion / stick: scroll. Choices change scenes and futures, never recruit quotas.",small);
+            GUI.Label(new Rect(80,980,1180,60),"Paused. Choices change scenes and futures, never recruit quotas.",small);
             GUI.matrix=matrix;
         }
         private bool Press(Rect rect,string text){ArcadeSkin.Plate(rect,ArcadeSkin.Teal);return GUI.Button(rect,text,button);}

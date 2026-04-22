@@ -299,7 +299,7 @@ namespace ArcaneBrigade
                     if(GUI.Button(new Rect(270,700,660,110),WaitingRooms.Option(room,selected,1),button))Choose(1);
                     if(GUI.Button(new Rect(970,700,660,110),WaitingRooms.Option(room,selected,2),button))Choose(2);
                 }
-                if(GUI.Button(new Rect(1000,840,630,55),"KEEP THE RECORD / BACK [B]",button))selected=-1;
+                if(GUI.Button(new Rect(1000,840,630,55),"KEEP THE RECORD / BACK",button))selected=-1;
             }
             if(error.Length>0)GUI.Label(new Rect(50,1015,1800,55),error,small);
             GUI.matrix=matrix;

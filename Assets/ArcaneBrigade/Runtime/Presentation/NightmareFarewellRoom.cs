@@ -65,27 +65,59 @@ namespace ArcaneBrigade
                 shadows[index].Display(view.sprite, positions[index], width, lift + hovering.y, .25f * enter);
                 if(index!=2)suspensions[index].Display(positions[index],(Vector3)positions[index]+Vector3.up*lift+hovering,width,owner.PresentationClock,90+index,view.sortingOrder-1,enter,true);
             }
-            if (age >= 1.2f && focus >= 0 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) Select(focus);
+            if (age >= 1.2f && (focus >= 0 || picked >= 0) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) Select(focus >= 0 ? focus : picked);
         }
         private int selected;
         private void Select(int index)
         {
+            if (index < 0) return;
             if (owner.PresentationPaused || owner.PresentationClock - appeared < 1.2f) return;
             owner.ChooseNightmareEnding(index == 0 ? NightmareFarewell.CloseShop : NightmareFarewell.LeaveLight);
         }
+        private GUIStyle head, body, choiceTitle, choiceBody;
+        private int picked = -1;
+        private static readonly string[] Titles = { "CLOSE THE SHOP", "LEAVE ONE LIGHT ON" };
+        private static readonly string[] Meanings =
+        {
+            "You all leave together and the shop closes for good. Goodbye is not forgetting.",
+            "You all leave together, and one lamp stays lit to guide whoever comes next. One more page of the story."
+        };
+        /// <summary>The farewell (owner 22/10/2026): the words on paper so they read on any floor, the two choices as cards that
+        /// say what each means, the one looked at or walked to lit, and CONFIRM to take it. No key hints.</summary>
         public void Draw(GUIStyle text, GUIStyle button)
         {
-            GUI.Label(new Rect(400, 85, 1120, 90), "THE CONTRACT HAS BURNED\nOne lantern still holds a name that was never his to buy.", text);
-            GUI.Label(new Rect(470, 765, 980, 70), "The door is real. Both choices lead to morning.", text);
-            bool previous = GUI.enabled;
-            GUI.enabled = previous && !owner.PresentationPaused && owner.PresentationClock - appeared >= 1.2f;
-            if (GUI.Button(new Rect(380, 855, 540, 74), "CLOSE THE SHOP", button)) Select(0);
-            if (GUI.Button(new Rect(1000, 855, 540, 74), "LEAVE ONE LIGHT ON", button)) Select(1);
-            GUI.enabled = previous;
-            string leave = "Leave together.";
-            GUI.Label(new Rect(380, 940, 540, 75), leave + " Goodbye is not forgetting.", text);
-            GUI.Label(new Rect(1000, 940, 540, 75), leave + " A guiding lamp. No debt to return.", text);
-            GUI.Label(new Rect(380, 1020, 1160, 45), "Move / choose left or right · Space / A · or click either choice", text);
+            if (head == null)
+            {
+                head = ArcadeTypography.Style(30, true); head.alignment = TextAnchor.MiddleCenter; head.wordWrap = true;
+                body = ArcadeTypography.Style(24); body.font = ArcadeTypography.Hand; body.alignment = TextAnchor.MiddleCenter; body.wordWrap = true;
+                choiceTitle = ArcadeTypography.Style(30, true); choiceTitle.alignment = TextAnchor.MiddleCenter; choiceTitle.wordWrap = false;
+                choiceBody = ArcadeTypography.Style(22); choiceBody.alignment = TextAnchor.UpperCenter; choiceBody.wordWrap = true;
+            }
+            Color ink = new Color(.22f, .16f, .1f);
+            Rect top = new Rect(510, 60, 900, 170);
+            ArcadeSkin.Ticket(top, ArcadeSkin.Paper, ArcadeSkin.Wax);
+            Rect topIn = ArcadeSkin.Content(top, KitFrame.Card);
+            head.normal.textColor = ink; body.normal.textColor = new Color(.3f, .22f, .15f);
+            GUI.Label(new Rect(topIn.x, topIn.y, topIn.width, 44), "THE CONTRACT HAS BURNED", head);
+            GUI.Label(new Rect(topIn.x, topIn.y + 46, topIn.width, topIn.height - 46), "One lantern still holds a name that was never his to buy. The door is real: both choices lead to morning.", body);
+
+            if (focus >= 0) picked = focus; // walking up to a witness picks its card
+            bool ready = !owner.PresentationPaused && owner.PresentationClock - appeared >= 1.2f;
+            for (int i = 0; i < 2; i++)
+            {
+                Rect card = new Rect(i == 0 ? 300 : 1020, 720, 600, 230);
+                if (picked == i) { ArcadeSkin.Glow(new Rect(card.x - 26, card.y - 22, card.width + 52, card.height + 44), new Color(1f, .84f, .45f, .55f)); }
+                ArcadeSkin.Ticket(card, ArcadeSkin.Paper, picked == i ? ArcadeSkin.Gold : ArcadeSkin.Accent);
+                if (picked == i) ArcadeSkin.WorldFocus(card);
+                Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
+                choiceTitle.normal.textColor = picked == i ? ArcadeSkin.Wax : ink;
+                GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), Titles[i], choiceTitle);
+                choiceBody.normal.textColor = ink;
+                GUI.Label(new Rect(inner.x, inner.y + 52, inner.width, inner.height - 52), Meanings[i], choiceBody);
+                if (ready && GUI.Button(card, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
+            }
+            bool can = ready && picked >= 0;
+            if (ArcadeSkin.Button(new Rect(760, 968, 400, 88), can ? "CONFIRM" : "CHOOSE ONE", KitButton.Primary, can, button)) Select(picked);
             if (owner.PresentationPaused && GUI.Button(new Rect(760, 650, 400, 60), "RESUME", button)) owner.TogglePause();
         }
     }

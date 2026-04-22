@@ -80,7 +80,7 @@ namespace ArcaneBrigade
                 if (GUI.Button(previousPage, "◀", name)) page = (page + pages - 1) % pages;
                 if (GUI.Button(nextPage, "▶", name)) page = (page + 1) % pages;
                 plain.normal.textColor = new Color(.18f, .14f, .1f);
-                GUI.Label(new Rect(card.x, card.y + 395, card.width, 22), (page + 1) + " / " + pages + "   ← →", plain);
+                GUI.Label(new Rect(card.x, card.y + 395, card.width, 22), (page + 1) + " / " + pages, plain);
             }
             // what selling the picked one means, then SELL and WALK ON side by side (painted buttons, one size)
             bool ready = picked != null && species.Contains(picked);
@@ -88,7 +88,7 @@ namespace ArcaneBrigade
             plain.normal.textColor = ready ? new Color(.55f, .12f, .1f) : new Color(.18f, .14f, .1f);
             GUI.Label(new Rect(card.x + 50, card.y + 420, card.width - 100, 60), ready
                 ? (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " stays and fights, but no longer counts toward bonds. A broken lantern burns again."
-                : "Tap a friend to see what you would give up.", plain);
+                : "Pick a friend to see what you would give up.", plain);
             float buttonsY = card.yMax - 120;
             Rect sell = new Rect(card.center.x - 380, buttonsY, 340, 88), refuse = new Rect(card.center.x + 40, buttonsY, 340, 88);
             if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name)) Sell();
@@ -182,7 +182,7 @@ namespace ArcaneBrigade
             info.normal.textColor = new Color(.18f, .14f, .1f);
             string meaning = picked >= 0 && picked < dark.Count
                 ? "Relight this lantern: it burns again in every fight from now on, lighting its corner, and you remember " + ActOneCanon.LampHeld[dark[picked]] + "."
-                : picked == dark.Count && colours ? "Leave the lanterns dark and choose one of three rainbow gifts now." : "Tap a lantern's memory or the colours to see what it gives.";
+                : picked == dark.Count && colours ? "Leave the lanterns dark and choose one of three rainbow gifts now." : "Pick a lantern's memory or the colours to see what it gives.";
             GUI.Label(new Rect(card.x + 60, card.y + 372, card.width - 120, 70), meaning, info);
             bool ready = picked >= 0 && (picked < dark.Count || colours && picked == dark.Count);
             if (ArcadeSkin.Button(new Rect(card.center.x - 200, card.yMax - 128, 400, 88), ready ? (picked == dark.Count ? "TAKE THE COLOURS" : "RELIGHT") : "PICK ONE", KitButton.Primary, ready, info)) Confirm();

@@ -247,15 +247,15 @@ namespace ArcaneBrigade
             }
             else if (HobWaits)
             {
-                if (Press(new Rect(1070, 925, 490, 65), "GO TO HOB  [ENTER]")) EnterHobRoom();
+                if (Press(new Rect(1070, 925, 490, 65), "GO TO HOB")) EnterHobRoom();
             }
             else
             {
                 int next = MienChoStory.NextPage(chapter, page, Memory.Choices[chapter]);
-                if (Press(new Rect(1070, 925, 490, 65), next >= c.Pages.Length ? "KEEP THE EVIDENCE / CLOSE" : "CONTINUE  [ENTER]")) Advance();
+                if (Press(new Rect(1070, 925, 490, 65), next >= c.Pages.Length ? "KEEP THE EVIDENCE / CLOSE" : "CONTINUE")) Advance();
             }
-            if (Press(new Rect(1580, 925, 270, 65), arrivalOpen ? "SKIP  [ESC]" : "READ LATER  [ESC]")) Close();
-            GUI.Label(new Rect(850, 1000, 1000, 65), arrivalOpen ? "Esc / B skips straight to the fight. The journal keeps this page: press J or click the sealed note any time." : "Paused / page saved. Arrows: scroll / LB-RB: pages / X: companions / PgUp-PgDn: entries / 1-2 or A-Y: choose / J: close.", small);
+            if (Press(new Rect(1580, 925, 270, 65), arrivalOpen ? "SKIP" : "READ LATER")) Close();
+            GUI.Label(new Rect(850, 1000, 1000, 65), arrivalOpen ? "The journal keeps this page: open the sealed note any time." : "Paused. This page is saved.", small);
             GUI.matrix = old;
         }
         /// <summary>The non-blocking "a new page in the journal" note: a handwritten ticket with a wax seal holding the
@@ -344,7 +344,7 @@ namespace ArcaneBrigade
                 if (Press(new Rect(390, 900, 260, 65), "NEXT FRIEND")) { creature = (creature + 1) % ids.Count; scroll = Vector2.zero; }
             }
             if (Press(new Rect(900, 925, 450, 65), "RETURN TO EVIDENCE")) { lives = false; scroll = Vector2.zero; }
-            if (Press(new Rect(1400, 925, 450, 65), "CLOSE JOURNAL  [ESC]")) Close();
+            if (Press(new Rect(1400, 925, 450, 65), "CLOSE JOURNAL")) Close();
         }
     }
     public sealed partial class ArenaController

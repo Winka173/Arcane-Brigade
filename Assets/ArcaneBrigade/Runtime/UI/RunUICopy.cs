@@ -235,8 +235,9 @@ namespace ArcaneBrigade
             if (Input.touchCount > 0 || Application.isMobilePlatform) Device = RunUIDevice.Touch;
             previousPad = pad; previousMouse = Input.mousePosition;
         }
-        public static string Details(RunUIDevice device) => device == RunUIDevice.Controller ? "Brigade · Y / button 3" : device == RunUIDevice.Touch ? "Tap to inspect brigade" : "Brigade · I";
-        public static string Pause(RunUIDevice device) => device == RunUIDevice.Controller ? "Pause / resume · Start or B" : device == RunUIDevice.Touch ? "Tap to pause / resume" : "Pause / resume · Esc";
+        // owner 22/10/2026: no key or button hints anywhere; a hover label only names what the icon opens
+        public static string Details(RunUIDevice device) => "Your brigade";
+        public static string Pause(RunUIDevice device) => "Pause";
         public static string Interact(RunUIDevice device) => "USE";
         public static string Menu => Device == RunUIDevice.Controller ? "Stick: select · A: confirm · B: back" : Device == RunUIDevice.Touch ? "Tap to select · drag to scroll" : "Arrows / Tab: select · Enter: confirm · Esc: back";
         public static string DetailsNavigation => Device == RunUIDevice.Controller ? "LB/RB: tab · A/X: next/previous row · Y/B: close" : Device == RunUIDevice.Touch ? "Tap a tab or row · drag to scroll" : "Tab: change tab · ↑/↓: select row · I/Esc: close";

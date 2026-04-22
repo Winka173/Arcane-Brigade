@@ -227,7 +227,6 @@ namespace ArcaneBrigade
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);
             ScrollPanel.End();
             if (heroSelected) heroOptions.Draw(owner, new Rect(1185, 632, 610, 315), text);
-            GUI.Label(new Rect(75, 988, 1750, 42), RunUIHints.DetailsNavigation, text);
             GlossaryUI.Draw(new Vector2(1920, 1080));
             GUI.matrix = previous;
             GUI.color = previousTint;
