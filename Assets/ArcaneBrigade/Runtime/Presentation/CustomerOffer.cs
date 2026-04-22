@@ -11,6 +11,8 @@ namespace ArcaneBrigade
         private GUIStyle hand, plain, name;
         private readonly List<string> species = new List<string>();
         private int page; // nine companions per page; the arrows turn it
+        // the friend is picked first and sold only with the confirm button (owner 22/10/2026: one tap sold a memory)
+        private string picked;
         public int InputConsumedFrame { get; private set; } = -1;
         public void Configure(ArenaController value) => owner = value;
         /// <summary>While the offer stands, the shop does not also act on the traveller's presses.</summary>
@@ -31,12 +33,15 @@ namespace ArcaneBrigade
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) page = (page + 1) % pages;
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) page = (page + pages - 1) % pages;
             for (int i = 0; i < Mathf.Min(9, species.Count - page * 9); i++)
-                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { InputConsumedFrame = Time.frameCount; owner.SellMemory(species[page * 9 + i]); return; }
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { picked = species[page * 9 + i]; return; }
+            if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && picked != null && species.Contains(picked)) Sell();
         }
+        private void Sell() { InputConsumedFrame = Time.frameCount; if (owner.SellMemory(picked)) picked = null; }
         private void OnGUI()
         {
             if (!Open || owner.PresentationPaused || Camera.main == null) return;
             Gather();
+            GUI.depth = -60; // above the HUD and any speech
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (hand == null)
             {
@@ -48,7 +53,7 @@ namespace ArcaneBrigade
             int pages = Mathf.Max(1, (species.Count + 8) / 9); page = Mathf.Clamp(page, 0, pages - 1);
             int first = page * 9, shown = Mathf.Min(9, species.Count - first);
             float width = Mathf.Max(820, 120 + shown * 150);
-            Rect card = new Rect((1920 - width) * 0.5f, 405, width, 500); // below the shopkeeper's speech bubble
+            Rect card = new Rect((1920 - width) * 0.5f, 300, width, 640);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             ArcadeSkin.Seal(new Vector2(card.xMax - 42, card.y + 40), 46, "$");
             hand.normal.textColor = new Color(.25f, .19f, .14f);
@@ -63,7 +68,8 @@ namespace ArcaneBrigade
                 if (unit != null) RunHud.Sprite(new Rect(slot.x + 15, slot.y + 8, 100, 90), unit.Body);
                 name.normal.textColor = ArcadeSkin.Cream;
                 GUI.Label(new Rect(slot.x + 4, slot.y + 100, slot.width - 8, 44), (i + 1) + " · " + (unit == null ? species[first + i] : RunUICopy.UnitName(unit)), name);
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { InputConsumedFrame = Time.frameCount; owner.SellMemory(species[first + i]); }
+                if (picked == species[first + i]) ArcadeSkin.WorldFocus(slot);
+                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = species[first + i]; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (pages > 1)
             {
@@ -76,10 +82,17 @@ namespace ArcaneBrigade
                 plain.normal.textColor = new Color(.18f, .14f, .1f);
                 GUI.Label(new Rect(card.x, card.y + 395, card.width, 22), (page + 1) + " / " + pages + "   ← →", plain);
             }
-            Rect refuse = new Rect(card.x + card.width * 0.5f - 210, card.yMax - 82, 420, 60);
-            ArcadeSkin.Plate(refuse, ArcadeSkin.Teal);
-            name.normal.textColor = ArcadeSkin.Cream;
-            if (GUI.Button(refuse, "SAY NOTHING AND WALK ON", name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
+            // what selling the picked one means, then SELL and WALK ON side by side (painted buttons, one size)
+            bool ready = picked != null && species.Contains(picked);
+            UnitDefinition chosen = ready ? owner.Content.Unit(picked) : null;
+            plain.normal.textColor = ready ? new Color(.55f, .12f, .1f) : new Color(.18f, .14f, .1f);
+            GUI.Label(new Rect(card.x + 50, card.y + 420, card.width - 100, 60), ready
+                ? (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " stays and fights, but no longer counts toward bonds. A broken lantern burns again."
+                : "Tap a friend to see what you would give up.", plain);
+            float buttonsY = card.yMax - 120;
+            Rect sell = new Rect(card.center.x - 380, buttonsY, 340, 88), refuse = new Rect(card.center.x + 40, buttonsY, 340, 88);
+            if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name)) Sell();
+            if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
             GUI.matrix = previous;
         }
     }
@@ -98,6 +111,9 @@ namespace ArcaneBrigade
         }
         public bool Open => owner?.Session != null && owner.Session.RelightChoiceOpen && !owner.StoryConsumesInput && !owner.TransitionPending;
         private readonly List<int> dark = new List<int>();
+        // picked first, then confirmed (owner 22/10/2026: one tap chose before the player knew what it meant); -1 none, dark.Count the colours
+        private int picked = -1;
+        private GUIStyle info;
         private void Gather()
         {
             dark.Clear();
@@ -108,13 +124,20 @@ namespace ArcaneBrigade
             if (!Open || owner.PresentationPaused || !Application.isFocused && !RunPaths.Diagnostic) return;
             Gather();
             for (int i = 0; i < dark.Count; i++)
-                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { owner.ChooseRelight(dark[i]); return; }
-            if (owner.Session.ColoursAvailable && (Input.GetKeyDown(KeyCode.Alpha1 + dark.Count) || Input.GetKeyDown(KeyCode.Keypad1 + dark.Count))) owner.ChooseColours();
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { picked = i; return; }
+            if (owner.Session.ColoursAvailable && (Input.GetKeyDown(KeyCode.Alpha1 + dark.Count) || Input.GetKeyDown(KeyCode.Keypad1 + dark.Count))) picked = dark.Count;
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) Confirm();
+        }
+        private void Confirm()
+        {
+            if (picked >= 0 && picked < dark.Count) { if (owner.ChooseRelight(dark[picked])) picked = -1; }
+            else if (picked == dark.Count && owner.Session.ColoursAvailable) { if (owner.ChooseColours()) picked = -1; }
         }
         private void OnGUI()
         {
             if (!Open || owner.PresentationPaused || Camera.main == null) return;
             Gather();
+            GUI.depth = -60; // above the HUD and any speech
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (hand == null)
             {
@@ -125,7 +148,7 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
             bool colours = owner.Session.ColoursAvailable; int slots = dark.Count + (colours ? 1 : 0);
             float width = Mathf.Max(820, 120 + slots * 165);
-            Rect card = new Rect((1920 - width) * 0.5f, 405, width, 440);
+            Rect card = new Rect((1920 - width) * 0.5f, 300, width, 600);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
             GUI.Label(new Rect(card.x + 50, card.y + 24, card.width - 100, 90), "You stood up. Nobody paid. Outside, one of the dark lanterns is warm again.", hand);
@@ -140,7 +163,8 @@ namespace ArcaneBrigade
                 else ArcadeSkin.Glow(new Rect(slot.x + 35, slot.y + 20, 80, 80), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.5f));
                 label.normal.textColor = ArcadeSkin.Cream;
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (i + 1) + " · " + ActOneCanon.LampHeld[lamp], label);
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) owner.ChooseRelight(lamp);
+                if (picked == i) ArcadeSkin.WorldFocus(slot);
+                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (colours)
             {
@@ -150,8 +174,18 @@ namespace ArcaneBrigade
                 if (prism != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), prism);
                 label.normal.textColor = new Color(0.68f, 1, 0.92f);
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (dark.Count + 1) + " · the colours: a rainbow gift", label);
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) owner.ChooseColours();
+                if (picked == dark.Count) ArcadeSkin.WorldFocus(slot);
+                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = dark.Count; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
+            // what the pick means, in plain words, then the confirm button
+            if (info == null) { info = ArcadeTypography.Style(22); info.alignment = TextAnchor.MiddleCenter; info.wordWrap = true; }
+            info.normal.textColor = new Color(.18f, .14f, .1f);
+            string meaning = picked >= 0 && picked < dark.Count
+                ? "Relight this lantern: it burns again in every fight from now on, lighting its corner, and you remember " + ActOneCanon.LampHeld[dark[picked]] + "."
+                : picked == dark.Count && colours ? "Leave the lanterns dark and choose one of three rainbow gifts now." : "Tap a lantern's memory or the colours to see what it gives.";
+            GUI.Label(new Rect(card.x + 60, card.y + 372, card.width - 120, 70), meaning, info);
+            bool ready = picked >= 0 && (picked < dark.Count || colours && picked == dark.Count);
+            if (ArcadeSkin.Button(new Rect(card.center.x - 200, card.yMax - 128, 400, 88), ready ? (picked == dark.Count ? "TAKE THE COLOURS" : "RELIGHT") : "PICK ONE", KitButton.Primary, ready, info)) Confirm();
             GUI.matrix = previous;
         }
     }

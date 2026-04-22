@@ -15,10 +15,15 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private GUIStyle hand, plain, title, verb, amount, caption, chip, plateName, button, mark;
         private bool shown, details; private int page;
+        // a choice is picked first and taken with CONFIRM (owner 22/10/2026: one tap took it before it could be read)
+        private int picked = -1;
+        private readonly ShopDescriptionCard pickedCard = new ShopDescriptionCard();
+        private readonly ShopOffer pickedOffer = new ShopOffer();
+        private const float InfoH = 78;
         public int InputConsumedFrame { get; private set; } = -1;
         public void Configure(ArenaController value) => owner = value;
         public bool Open => shown && owner?.Session?.Visitor != null && !owner.StoryConsumesInput && !owner.TransitionPending;
-        public void Show() { shown = true; page = 0; details = false; InputConsumedFrame = Time.frameCount; openedAt = Time.unscaledTime; closingAt = -1; }
+        public void Show() { shown = true; page = 0; details = false; picked = -1; InputConsumedFrame = Time.frameCount; openedAt = Time.unscaledTime; closingAt = -1; }
         // any exit but accepting (LATER, Esc / B, a tap outside the card) only closes the card: the visitor keeps its table for
         // the whole shop and its card opens again (owner, 22/10/2026); the card shrinks and fades out first
         private void Close() { if (closingAt < 0) closingAt = Time.unscaledTime; InputConsumedFrame = Time.frameCount; }
@@ -44,10 +49,18 @@ namespace ArcaneBrigade
             List<VisitorOption> options = owner.Session.VisitorOptions();
             int per = PerPage(options.Count), first = page * per;
             for (int i = 0; i < Mathf.Min(per, options.Count - first); i++)
-                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { Choose(first + i); return; }
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { Pick(first + i, options); return; }
+            if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && picked >= 0 && picked < options.Count && options[picked].Enabled) Choose(picked);
+        }
+        private void Pick(int index, List<VisitorOption> options)
+        {
+            if (index < 0 || index >= options.Count || !options[index].Enabled) return;
+            if (picked != index) CheckpointAudio.PlayInterfaceId("ui.select");
+            picked = index;
         }
         private void Choose(int index)
         {
+            picked = -1;
             InputConsumedFrame = Time.frameCount;
             if (owner.VisitorChoose(index) && owner.Session.Visitor == null) shown = false;
         }
@@ -94,7 +107,7 @@ namespace ArcaneBrigade
             bool pictures = false; foreach (VisitorOption o in options) if (!string.IsNullOrEmpty(o.Icon)) pictures = true;
             const float width = 870;
             float content = pictures ? DrawPick(v, state, options, 0, 0, width, false) : DrawPlates(v, state, options, 0, 0, width, false);
-            float height = Mathf.Max(560, Head + content + 36 + ButtonH + 32);
+            float height = Mathf.Max(560, Head + content + 36 + ButtonH + 32 + (pictures ? InfoH : 0));
             Rect card = new Rect(360, Mathf.Round((1080 - height) * .5f + 20), 1200, height);
 
             // the card opens from a little below with a slight overshoot and closes shrinking; Reduced Motion: a fade only
@@ -133,7 +146,15 @@ namespace ArcaneBrigade
                 later = new Rect(accept.xMax + 48, buttonsY, 250, ButtonH); // clear of the gold button's caps
                 AcceptButton(accept, v, state, options[0]);
             }
-            else later = new Rect(x + (width - 300) * .5f, buttonsY, 300, ButtonH);
+            else
+            {
+                // pick, read what it is, then CONFIRM; LATER beside it, clear of the gold button's caps
+                bool ok = picked >= 0 && picked < options.Count && options[picked].Enabled;
+                if (pictures) PickedInfo(new Rect(x, buttonsY - InfoH - 8, width, InfoH), ok ? options[picked] : null);
+                Rect confirm = new Rect(x + (width - 728) * .5f, buttonsY, 430, ButtonH);
+                later = new Rect(confirm.xMax + 48, buttonsY, 250, ButtonH);
+                if (ArcadeSkin.Button(confirm, ok ? "CONFIRM" : "PICK ONE", KitButton.Primary, ok, button)) Choose(picked);
+            }
             if (ArcadeSkin.Button(later, "LATER", KitButton.Secondary, true, button)) Close();
             // a tap outside the card closes it too (the visitor stays at its table)
             if (closingAt < 0 && Event.current.type == EventType.MouseDown && !card.Contains(Event.current.mousePosition)) { Close(); Event.current.Use(); }
@@ -141,6 +162,25 @@ namespace ArcaneBrigade
             GUI.matrix = previous;
         }
 
+        /// <summary>What the picked relic or friend does, in two short lines (the shop card's own summary), or a hint to pick.</summary>
+        private void PickedInfo(Rect r, VisitorOption o)
+        {
+            ArcadeSkin.Plate(r, new Color(.2f, .14f, .09f, .9f));
+            Rect inner = new Rect(r.x + 20, r.y + 10, r.width - 40, r.height - 20);
+            plain.normal.textColor = ArcadeSkin.Cream;
+            if (o == null) { GUI.Label(inner, "Tap a picture to see what it does.", plain); return; }
+            string text = NameFor(o);
+            int cut = string.IsNullOrEmpty(o.Icon) ? -1 : o.Icon.IndexOf(':');
+            string kind = cut > 0 ? o.Icon.Substring(0, cut) : "", id = cut > 0 ? o.Icon.Substring(cut + 1) : "";
+            if ((kind == "item" && owner.Content.Item(id) != null) || (kind == "unit" && owner.Content.Unit(id) != null))
+            {
+                pickedOffer.Kind = kind == "item" ? OfferKind.Item : OfferKind.Companion; pickedOffer.Id = id; pickedOffer.Tier = Mathf.Max(1, o.Tier); pickedOffer.Token = -77; pickedOffer.Price = 0;
+                pickedCard.Refresh(owner.Session, owner.Content, pickedOffer);
+                string[] lines = (pickedCard.Summary ?? "").Replace("\r", "").Split('\n');
+                text += ": " + string.Join("  ", lines, 0, Mathf.Min(2, lines.Length)).Replace("{mark} ", "");
+            }
+            GUI.Label(inner, text, plain);
+        }
         /// <summary>The accept button of a take-it-or-leave-it offer: its verb and its price with the HUD coin.</summary>
         private void AcceptButton(Rect r, VisitorDefinition v, RunSnapshot state, VisitorOption option)
         {
@@ -203,7 +243,8 @@ namespace ArcaneBrigade
                 if (!string.IsNullOrEmpty(d.When)) When(new Rect(pc.x, y, pc.width, 40), d.When);
                 GUI.color = keep;
                 if (!o.Enabled) Missing(new Rect(plate.xMax - 62, plate.y - 14, 56, 56), v, d, state);
-                if (o.Enabled && GUI.Button(plate, GUIContent.none, GUIStyle.none)) Choose(i);
+                if (i == picked) { ArcadeSkin.Plate(plate, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .35f)); ArcadeSkin.WorldFocus(plate); }
+                if (o.Enabled && GUI.Button(plate, GUIContent.none, GUIStyle.none)) Pick(i, options);
             }
             return height;
         }
@@ -255,7 +296,8 @@ namespace ArcaneBrigade
                 else if (o.Tier > 0) { chip.fontSize = 22; chip.normal.textColor = ArcadeSkin.Gold; GUI.Label(foot, new string('★', Mathf.Clamp(o.Tier, 1, 3)), chip); chip.fontSize = 19; }
                 GUI.color = keep;
                 if (!o.Enabled && d != null) Missing(new Rect(slot.xMax - 50, slot.y - 12, 50, 50), v, d, state);
-                if (o.Enabled && GUI.Button(slot, GUIContent.none, GUIStyle.none)) Choose(first + i);
+                if (first + i == picked) ArcadeSkin.WorldFocus(slot);
+                if (o.Enabled && GUI.Button(slot, GUIContent.none, GUIStyle.none)) Pick(first + i, options);
             }
             if (pages > 1)
             {
