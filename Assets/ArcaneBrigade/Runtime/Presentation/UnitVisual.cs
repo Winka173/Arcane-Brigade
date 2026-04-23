@@ -602,6 +602,10 @@ namespace ArcaneBrigade
             }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
+            // owner 23/10/2026: in a crowd the sides must read apart at a glance - ordinary enemies a little cooler and darker,
+            // friends at full colour with a faint warm light behind them (the hero keeps its own halo, HeroFocus)
+            if (state.Faction == Faction.Enemy && !state.Definition.IsBoss) body.color = new Color(body.color.r * .84f, body.color.g * .82f, body.color.b * .92f, body.color.a);
+            FriendLight(state);
             // a boss rising from below comes up out of an ink pool: a silhouette whose colour arrives as it clears the surface
             if (state.Definition.IsBoss && state.Definition.BossPattern % 2 != 0 && state.Definition.Id != NightmareRules.CustomerId && entrance > 0)
             {
@@ -799,6 +803,28 @@ namespace ArcaneBrigade
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetDrawn() { drawnMuzzle.Clear(); drawnAt.Clear(); }
 
+        private SpriteRenderer friendLight;
+        private static Material friendLightMaterial;
+        /// <summary>A friend's faint warm backlight (additive, never darkens): tells friends from enemies in a crowd.</summary>
+        private void FriendLight(UnitState state)
+        {
+            bool on = state.Faction == Faction.Companion && state.Alive && body.enabled && MechanicInk.Glow != null;
+            if (!on) { if (friendLight != null) friendLight.enabled = false; return; }
+            if (friendLight == null)
+            {
+                var go = new GameObject("FriendLight"); go.transform.SetParent(transform, false);
+                friendLight = go.AddComponent<SpriteRenderer>(); friendLight.sprite = MechanicInk.Glow;
+                if (friendLightMaterial == null && Resources.Load<Shader>("SoftLight") is Shader light) friendLightMaterial = new Material(light);
+                if (friendLightMaterial != null) friendLight.sharedMaterial = friendLightMaterial;
+            }
+            Bounds b = body.bounds;
+            float size = Mathf.Max(b.size.x, b.size.y) * 1.45f;
+            friendLight.enabled = true;
+            friendLight.transform.position = new Vector3(b.center.x, b.center.y, transform.position.z);
+            friendLight.transform.localScale = Vector3.one * (size / Mathf.Max(.01f, friendLight.sprite.bounds.size.x)) / Mathf.Max(.0001f, transform.lossyScale.x);
+            friendLight.color = new Color(.75f, 1f, .9f, .2f);
+            friendLight.sortingLayerID = body.sortingLayerID; friendLight.sortingOrder = body.sortingOrder - 4;
+        }
         private void OnDestroy()
         {
             if (entranceMaterial != null) Destroy(entranceMaterial);

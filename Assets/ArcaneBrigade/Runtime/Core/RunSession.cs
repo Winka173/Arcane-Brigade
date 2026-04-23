@@ -939,6 +939,7 @@ namespace ArcaneBrigade
         /// rules all read this one number).</summary>
         public int VisitorCost(VisitorDefinition v) => v == null ? 0 : ScaledGold(v.Cost);
         // owner 22/10/2026: eggs pile up late, so the dream shop's egg prices rise with the waves (x1.18 at wave 5, x1.63 at 10, x2.5 at 20)
+        public const int MergeBias = 30, MergeSureAfter = 6;
         public float SpecialStagePriceFactor => 1 + Mathf.Max(0, State.Wave - 3) * .09f;
         public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
@@ -995,11 +996,12 @@ namespace ArcaneBrigade
                 var owned = units.FindAll(unit => OwnsCompanionSpecies(unit.Id)
                     && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && o.Id == unit.Id));
                 int offeredCopies = State.Offers.FindAll(o => !o.Sold && o.Kind == OfferKind.Companion && OwnsCompanionSpecies(o.Id)).Count;
-                bool upgradeSlot = State.Wave >= 10 && index == 1 && offeredCopies < CopyRecruitsRemaining && owned.Count > 0;
+                bool upgradeSlot = State.Wave >= 10 && index == 1 && offeredCopies < CopyRecruitsRemaining && owned.Count > 0 && Next(ref State.ShopRandom, 100) < 35; // a sometimes-slot (was every shop)
                 if (upgradeSlot) available = owned;
                 var mergeReady = available.FindAll(unit => MergeReady(unit.Id));
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
-                if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) available = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
+                // owner 23/10/2026: a copy to merge came almost every refresh (85%); now 30% (+5% a refresh missed), sure after 6 misses
+                if (mergeReady.Count > 0 && (drought >= MergeSureAfter || Next(ref State.ShopRandom, 100) < MergeBias + drought * 5)) available = drought >= MergeSureAfter ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
                 bool recruit = available.Count > 0 && (upgradeSlot || owedNewSpecies.Count > 0 || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 var itemChoices = index == 1 && foundation.Count > 0 ? foundation : items;
                 int choice = recruit ? RecruitChoice(available) : WeightedItem(itemChoices);
@@ -1037,7 +1039,7 @@ namespace ArcaneBrigade
                 if (SpecialNewRecruitsRemaining>0 && Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
                 var mergeReady = recruits.FindAll(unit => MergeReady(unit.Id));
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
-                if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) recruits = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
+                if (mergeReady.Count > 0 && (drought >= MergeSureAfter || Next(ref State.ShopRandom, 100) < MergeBias + drought * 5)) recruits = drought >= MergeSureAfter ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
                 if (index == 0 && recruits.Count > 0)
                 {
                     UnitDefinition recruit = recruits[RecruitChoice(recruits)];
