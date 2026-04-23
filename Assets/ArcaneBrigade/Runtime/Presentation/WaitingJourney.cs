@@ -96,6 +96,6 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(80,980,1180,60),"Paused. Choices change scenes and futures, never recruit quotas.",small);
             GUI.matrix=matrix;
         }
-        private bool Press(Rect rect,string text){ArcadeSkin.Plate(rect,ArcadeSkin.Teal);return GUI.Button(rect,text,button);}
+        private bool Press(Rect rect,string text)=>ArcadeSkin.Button(rect,text,KitButton.Secondary,GUI.enabled,button); // painted, like every button
     }
 }

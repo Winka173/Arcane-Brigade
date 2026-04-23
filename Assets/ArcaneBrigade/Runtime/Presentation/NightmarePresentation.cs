@@ -232,7 +232,7 @@ namespace ArcaneBrigade
                 // a tap anywhere on the page shows the next line (the button too)
                 if (!owner.PresentationPaused && more && Event.current.type == EventType.MouseDown && !next.Contains(Event.current.mousePosition)) { RevealNextLine(); Event.current.Use(); }
                 GUI.enabled = owner.PresentationPaused || more || owner.PresentationClock - lineAt >= (page == 4 ? 2.6f : .6f);
-                if (GUI.Button(next,owner.PresentationPaused ? "RESUME" : more ? "NEXT" : page == 3 ? "KEEP THE MEMORY" : "CONTINUE",button))
+                if (ArcadeSkin.Button(next,owner.PresentationPaused ? "RESUME" : more ? "NEXT" : page == 3 ? "KEEP THE MEMORY" : "CONTINUE",KitButton.Primary,GUI.enabled,button))
                 { if (owner.PresentationPaused) owner.TogglePause(); else if (RevealNextLine()) owner.AdvanceNightmareEnding(); }
                 GUI.enabled = true;
             }

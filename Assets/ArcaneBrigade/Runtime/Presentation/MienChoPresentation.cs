@@ -292,8 +292,7 @@ namespace ArcaneBrigade
         }
         private bool Press(Rect rectangle, string text)
         {
-            ArcadeSkin.Plate(rectangle, ArcadeSkin.Teal);
-            return GUI.Button(rectangle, text, button);
+            return ArcadeSkin.Button(rectangle, text, KitButton.Secondary, GUI.enabled, button); // painted, like every button
         }
         public void ShowLives() { if (!open) return; lives = true; scroll = Vector2.zero; Consume(); }
         public void DrawDawn(Rect rectangle)

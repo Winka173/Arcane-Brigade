@@ -118,7 +118,7 @@ namespace ArcaneBrigade
             }
             bool can = ready && picked >= 0;
             if (ArcadeSkin.Button(new Rect(760, 968, 400, 88), can ? "CONFIRM" : "CHOOSE ONE", KitButton.Primary, can, button)) Select(picked);
-            if (owner.PresentationPaused && GUI.Button(new Rect(760, 650, 400, 60), "RESUME", button)) owner.TogglePause();
+            if (owner.PresentationPaused && ArcadeSkin.Button(new Rect(760, 650, 400, 84), "RESUME", KitButton.Primary, true, button)) owner.TogglePause();
         }
     }
 }

@@ -283,7 +283,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(75,28,1750,48),rescue?"THE PERFECT ROOM":WaitingCampaign.RoomName(room),heading);
             GUI.Label(new Rect(75,80,1750,42),rescue?"Walk: WASD / arrows / stick. Beside Hob, press Space / E / A once to help. Return: TAB / START. Pause: ESC / B.":"Walk: WASD / arrows / stick. Examine nearby records: E / R / X. Return: TAB / START. Pause: ESC / B.",small);
             if(rescue)DrawRescue();
-            if(GUI.Button(new Rect(1450,955,410,70),"RETURN TO THE SHOP",button))ReturnToShop();
+            if(ArcadeSkin.Button(new Rect(1450,955,410,84),"RETURN TO THE SHOP",KitButton.Secondary,true,button))ReturnToShop();
             string consequences="";
             for(int i=0;i<6;i++){var q=session.State.WaitingCampaign.CompanionChoices;if(q[i*3+2]>0)consequences+=WaitingCompanionQuests.Routes[i].Outcomes[4+q[i*3+2]-1]+"\n";}
             if(!rescue && !Modal && consequences.Length>0){ArcadeSkin.Plate(new Rect(60,750,1300,200),ArcadeSkin.Teal);GUI.Label(new Rect(80,770,1260,170),consequences,small);}
@@ -301,7 +301,7 @@ namespace ArcaneBrigade
                     int taken=ChoiceCards.Draw(new Rect(270,580,1370,320),new[]{WaitingRooms.Option(room,selected,1),WaitingRooms.Option(room,selected,2)},new[]{WaitingRooms.Result(room,selected,1),WaitingRooms.Result(room,selected,2)},ref recordPick);
                     if(taken>=0){Choose(taken+1);recordPick=-1;}
                 }
-                if(GUI.Button(new Rect(1000,925,630,55),"KEEP THE RECORD / BACK",button)){selected=-1;recordPick=-1;}
+                if(ArcadeSkin.Button(new Rect(1230,925,400,70),"BACK",KitButton.Secondary,true,button)){selected=-1;recordPick=-1;}
             }
             if(error.Length>0)GUI.Label(new Rect(50,1015,1800,55),error,small);
             GUI.matrix=matrix;
