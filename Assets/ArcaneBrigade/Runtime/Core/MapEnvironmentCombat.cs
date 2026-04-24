@@ -67,8 +67,8 @@ namespace ArcaneBrigade
         public const float ChuteEvery = 13, ChuteWarn = 1.2f, LetterSpeed = 3.1f, BoostSeconds = 8, GoldBoostSeconds = 11, StampSeconds = 6, StampDamage = 1.2f;
         public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, GustHalf = 1.3f, GustShotPush = 1.4f, GustBodyPush = 1.1f, LightBody = .38f;
         public const float ParcelShare = .3f, ParcelWarn = 1.3f, ParcelHatch = 11, ParcelBreakSeconds = 1.8f, ParcelReach = 1.5f;
-        public const float LightRadiusX = 2.8f, LightRadiusY = 1.8f, LightDamage = 1.15f, DarkSpeed = 1.08f, SnuffEvery = 15, SnuffReach = 1.4f, SnuffSeconds = 9, MothSpeed = 2.3f, RevealSpeed = 1.05f;
-        public const float ChimeEvery = 20, ChimeWarn = 1, ChimeSlow = .45f, ChimeSlowSeconds = 1.5f, RushSpeed = 1.2f, RushHero = 1.15f, RushSeconds = 3;
+        public const float LightRadiusX = 2.8f, LightRadiusY = 1.8f, LightDamage = 1.15f, DarkSpeed = 1.03f, SnuffEvery = 15, SnuffReach = 1.4f, SnuffSeconds = 9, MothSpeed = 2.3f, RevealSpeed = 1.05f;
+        public const float ChimeEvery = 20, ChimeWarn = 1, ChimeSlow = .45f, ChimeSlowSeconds = 1.5f, RushSpeed = 1.08f, RushHero = 1.15f, RushSeconds = 3;
         public const float ShelfEvery = 16, ShelfWarn = 1.2f, ShelfMove = 1.6f, ShelfHalf = .7f, ShelfRadius = .4f, LedgerRadius = 2.4f;
         public const int LedgerKillsPerDebt = 5, LedgerMaxDebt = 8;
         public const float BoostSpeed = 1.15f, BoostDamage = 1.15f;

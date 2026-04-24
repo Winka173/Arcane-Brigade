@@ -195,7 +195,7 @@ namespace ArcaneBrigade
         public const int PactSwift = 0, PactBareShelf = 1, PactNoDream = 2, PactElites = 3, PactEnrage = 4;
         public static readonly MetaPact[] Pacts =
         {
-            new MetaPact { Id = "pact.swift", Name = "Swift night", Line = "Enemies +15% speed", Reward = 1.2f, Heat = 2 },
+            new MetaPact { Id = "pact.swift", Name = "Swift night", Line = "Enemies +8% speed", Reward = 1.2f, Heat = 2 },
             new MetaPact { Id = "pact.shelf", Name = "Bare shelf", Line = "One fewer shop offer", Reward = 1.15f, Heat = 1 },
             new MetaPact { Id = "pact.market", Name = "Closed market", Line = "No dream shop", Reward = 1.15f, Heat = 1 },
             new MetaPact { Id = "pact.elites", Name = "Crowned crowd", Line = "Elites every wave", Reward = 1.25f, Heat = 3 },
