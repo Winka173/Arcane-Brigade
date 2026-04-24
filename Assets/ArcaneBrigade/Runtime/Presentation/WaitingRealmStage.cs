@@ -36,8 +36,6 @@ namespace ArcaneBrigade
             }
         }
         public const float ChairReach = 1.9f; // was 1.35: the chair's option only showed on one exact spot (owner 22/10/2026)
-        /// <summary>The chair's card is open (a modal over the shop: no price tags or station card over it).</summary>
-        public bool Asking => asking;
         public int SpotCount => 1;
         public bool Spot(int index, out Vector2 position, out float reach) { position = ChairAnchor; reach = ChairReach; return ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null; }
         private bool Near => Spot(0, out _, out _) && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
