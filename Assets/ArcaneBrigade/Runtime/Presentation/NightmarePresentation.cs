@@ -56,6 +56,7 @@ namespace ArcaneBrigade
             gameObject.AddComponent<CustomerOffer>().Configure(controller);
             gameObject.AddComponent<VisitorCard>().Configure(controller);
             gameObject.AddComponent<LucidAltar>().Configure(controller);
+            gameObject.AddComponent<MapArrival>().Configure(controller);
             gameObject.AddComponent<MemoryReturn>().Configure(controller);
             gameObject.AddComponent<WaitingShopEncounter>().Configure(controller);
             gameObject.AddComponent<WaitingJourney>().Configure(controller);

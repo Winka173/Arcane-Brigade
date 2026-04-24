@@ -170,14 +170,16 @@ namespace ArcaneBrigade
             return first;
         }
 
+        public static string CombatMapScene(MapTheme map) => "combat_map_" + map.ToString().ToLowerInvariant();
         public static string SceneFor(SessionPhase phase, bool boss, int wave, int normalWaves, bool endless, bool dreamShop)
         {
             if (phase == SessionPhase.Shop) return dreamShop ? SceneShopDream : SceneShopGold;
             if (phase != SessionPhase.Combat) return SceneMenu;
             if (boss) return SceneBoss;
             if (endless) return SceneEndless;
-            float progress = normalWaves <= 0 ? 0f : (wave - 1f) / normalWaves;
-            return progress < 0.34f ? SceneCombatEarly : progress < 0.67f ? SceneCombatMid : SceneCombatLate;
+            // each map has its own pair of fight pieces (owner 23/10/2026: maps should feel unique): Waiting Room toys and
+            // spoons, Post Office carousel and last train, Lamp Hall overtime and encore, Archive Vault clockwork and never-close
+            return CombatMapScene(MapIdentity.For(wave));
         }
 
         // ------------------------------------------------------------ event -> cue id

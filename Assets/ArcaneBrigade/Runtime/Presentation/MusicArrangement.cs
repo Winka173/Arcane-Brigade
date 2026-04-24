@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         /// <summary>How long a boss's melody plays before the fight settles to base + rhythm.</summary>
         public const float BossIntroSeconds = 8f;
 
-        public static bool IsCombat(string scene) => scene == ArcaneCueLibrary.SceneCombatEarly || scene == ArcaneCueLibrary.SceneCombatMid
+        public static bool IsCombat(string scene) => scene != null && scene.StartsWith("combat_map_", System.StringComparison.Ordinal) || scene == ArcaneCueLibrary.SceneCombatEarly || scene == ArcaneCueLibrary.SceneCombatMid
             || scene == ArcaneCueLibrary.SceneCombatLate || scene == ArcaneCueLibrary.SceneEndless || scene == ArcaneCueLibrary.SceneBoss;
 
         /// <summary>Stem levels for a scene at an enemy density (0..1); <paramref name="bossIntro"/> lets a boss's melody through.</summary>

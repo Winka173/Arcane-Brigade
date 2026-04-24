@@ -51,7 +51,8 @@
    "loopSamples": 3780000,
    "sampleRate": 44100,
    "scenes": [
-    "combat_early"
+    "combat_early",
+    "combat_map_waitingroom"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -71,7 +72,8 @@
    "loopSamples": 3649655,
    "sampleRate": 44100,
    "scenes": [
-    "combat_early"
+    "combat_early",
+    "combat_map_waitingroom"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -91,7 +93,8 @@
    "loopSamples": 3528000,
    "sampleRate": 44100,
    "scenes": [
-    "combat_mid"
+    "combat_mid",
+    "combat_map_archivevault"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -111,7 +114,8 @@
    "loopSamples": 3587797,
    "sampleRate": 44100,
    "scenes": [
-    "combat_mid"
+    "combat_mid",
+    "combat_map_postoffice"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -131,7 +135,8 @@
    "loopSamples": 3414194,
    "sampleRate": 44100,
    "scenes": [
-    "combat_late"
+    "combat_late",
+    "combat_map_lamphall"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -151,7 +156,8 @@
    "loopSamples": 3307500,
    "sampleRate": 44100,
    "scenes": [
-    "combat_late"
+    "combat_late",
+    "combat_map_postoffice"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -271,7 +277,8 @@
    "loopSamples": 3649655,
    "sampleRate": 44100,
    "scenes": [
-    "endless"
+    "endless",
+    "combat_map_archivevault"
    ],
    "family": "storybook_v5",
    "stems": [
@@ -291,7 +298,8 @@
    "loopSamples": 3414194,
    "sampleRate": 44100,
    "scenes": [
-    "endless"
+    "endless",
+    "combat_map_lamphall"
    ],
    "family": "storybook_v5",
    "stems": [
