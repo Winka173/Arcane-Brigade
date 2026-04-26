@@ -54,6 +54,17 @@ namespace ArcaneBrigade
         public Vector2 Clock; public float NextChime, ChimeAt = -100, SlowUntil = -100, RushUntil = -100; public int Strikes; public bool Twelfth;
         public sealed class Shelf { public Vector2 Home, Position, From, To; public float WarnAt = -100, MoveAt = -100, MoveEnd = -100; public int Moves; }
         public readonly List<Shelf> Shelves = new List<Shelf>();
+        /// <summary>The map's fixed shape (owner 23/10/2026): rows of fixed chairs (Waiting Room) or shelves (Archive Vault)
+        /// that make aisles and corridors; solid like the moving ones. WallProps are where each piece is drawn.</summary>
+        public sealed class Wall { public Vector2 A, B; public float Radius; }
+        public readonly List<Wall> Walls = new List<Wall>();
+        public readonly List<Vector2> WallProps = new List<Vector2>();
+        public void AddRow(Vector2 at, int pieces, float spacing, float radius)
+        {
+            float half = (pieces - 1) * spacing * .5f;
+            for (int i = 0; i < pieces; i++) WallProps.Add(at + new Vector2(-half + i * spacing, 0));
+            Walls.Add(new Wall { A = at + Vector2.left * (half + spacing * .5f), B = at + Vector2.right * (half + spacing * .5f), Radius = radius });
+        }
         public float NextShelf; public int ShelfTurn;
         public Vector2 Ledger; public int LedgerKills;
 
@@ -65,7 +76,8 @@ namespace ArcaneBrigade
     {
         public const float DoorEvery = 15, DoorCall = 2.4f, DoorOpen = 2.2f, ChairEvery = 8, ChairWarn = .9f, ChairSlide = .7f, ChairStay = 4, ChairReturn = 1, ChairRadius = .55f;
         public const float ChuteEvery = 13, ChuteWarn = 1.2f, LetterSpeed = 3.1f, BoostSeconds = 8, GoldBoostSeconds = 11, StampSeconds = 6, StampDamage = 1.2f;
-        public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, GustHalf = 1.3f, GustShotPush = 1.4f, GustBodyPush = 1.1f, LightBody = .38f;
+        // the Post Office is the open floor with the strong draught (owner 23/10/2026): wider, stronger gusts (were 1.3 / 1.4 / 1.1)
+        public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, GustHalf = 1.7f, GustShotPush = 1.8f, GustBodyPush = 1.4f, LightBody = .38f;
         public const float ParcelShare = .3f, ParcelWarn = 1.3f, ParcelHatch = 11, ParcelBreakSeconds = 1.8f, ParcelReach = 1.5f;
         public const float LightRadiusX = 2.8f, LightRadiusY = 1.8f, LightDamage = 1.15f, DarkSpeed = 1.03f, SnuffEvery = 15, SnuffReach = 1.4f, SnuffSeconds = 9, MothSpeed = 2.3f, RevealSpeed = 1.05f;
         public const float ChimeEvery = 20, ChimeWarn = 1, ChimeSlow = .45f, ChimeSlowSeconds = 1.5f, RushSpeed = 1.08f, RushHero = 1.15f, RushSeconds = 3;
@@ -97,6 +109,9 @@ namespace ArcaneBrigade
                     s.Doors[0] = a + new Vector2(-8, 3); s.Doors[1] = a + new Vector2(8, 3); s.Doors[2] = a + new Vector2(-8, -4.2f); s.Doors[3] = a + new Vector2(8, -4.2f);
                     foreach (Vector2 home in new[] { new Vector2(-3.6f, 1.6f), new Vector2(4, -1.4f), new Vector2(-.6f, -3.6f) })
                         s.Chairs.Add(new MapEnvironmentState.Chair { Home = a + home, Position = a + home });
+                    // two rows of fixed waiting chairs make aisles across the room
+                    s.AddRow(a + new Vector2(-5.5f, -.5f), 3, 1.1f, .5f);
+                    s.AddRow(a + new Vector2(5.5f, .4f), 3, 1.1f, .5f);
                     s.NextCall = 6; s.NextChair = 3.5f;
                     break;
                 case MapTheme.PostOffice:
@@ -115,6 +130,10 @@ namespace ArcaneBrigade
                     foreach (Vector2 home in new[] { new Vector2(-4.6f, -.6f), new Vector2(4.6f, .8f) })
                         s.Shelves.Add(new MapEnvironmentState.Shelf { Home = a + home, Position = a + home, From = a + home, To = a + home });
                     s.Ledger = a + new Vector2(mapRandom.Next(2) == 0 ? -6.6f : 6.6f, -3.2f);
+                    // fixed rows of shelves make narrow corridors; the moving shelves change them
+                    s.AddRow(a + new Vector2(-6.3f, 2.2f), 2, 1.4f, .4f);
+                    s.AddRow(a + new Vector2(6.3f, 2.2f), 2, 1.4f, .4f);
+                    s.AddRow(a + new Vector2(0, -2.6f), 2, 1.4f, .4f);
                     s.NextChime = 9; s.NextShelf = 6;
                     break;
             }
@@ -397,7 +416,7 @@ namespace ArcaneBrigade
         private void KeepOutOfMapBlockers()
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
-            if (s.Theme != MapTheme.WaitingRoom && s.Theme != MapTheme.ArchiveVault) return;
+            if (s.Theme != MapTheme.WaitingRoom && s.Theme != MapTheme.ArchiveVault && s.Walls.Count == 0) return;
             foreach (UnitState u in units)
             {
                 if (!u.Alive || u.Definition.IsBoss || u.BodyLift > .4f) continue;
@@ -413,6 +432,7 @@ namespace ArcaneBrigade
                 else
                     foreach (MapEnvironmentState.Shelf shelf in s.Shelves)
                         p = PushOutOfSegment(p, shelf.Position + Vector2.left * MapEnvironmentRules.ShelfHalf, shelf.Position + Vector2.right * MapEnvironmentRules.ShelfHalf, MapEnvironmentRules.ShelfRadius + r);
+                foreach (MapEnvironmentState.Wall wall in s.Walls) p = PushOutOfSegment(p, wall.A, wall.B, wall.Radius + r);
                 if (p != u.Position) u.Position = ClampPosition(p, r);
             }
         }

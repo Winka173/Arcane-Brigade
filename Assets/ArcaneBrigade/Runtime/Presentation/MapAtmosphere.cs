@@ -95,7 +95,8 @@ namespace ArcaneBrigade
         private void LampHall(MapEnvironmentState s, int motes, float clock)
         {
             // deep night on the floor; the lamps' painted light (floor order -40) cuts through it
-            Grade(new Color(.04f, .04f, .12f, .36f), new Color(.01f, .01f, .05f, .5f));
+            // the round floor around the lamps: its edges sink deeper into the dark (owner 23/10/2026; edge was .5)
+            Grade(new Color(.04f, .04f, .12f, .36f), new Color(.01f, .01f, .05f, .8f));
             int glints = 0;
             for (int i = 0; i < s.Lamps.Count && glints < Mathf.Max(motes, 4); i++)
             {

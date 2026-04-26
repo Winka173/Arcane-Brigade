@@ -39,6 +39,10 @@ namespace ArcaneBrigade
             if (ink == null) ink = new ArsenalInk(transform);
             still = PresentationSettings.ReducedMotion; calm = PresentationSettings.ReducedFlashes;
             ink.Begin(); drawn = true;
+            // the map's fixed shape: its rows of chairs or shelves
+            foreach (Vector2 piece in s.WallProps)
+                if (s.Theme == MapTheme.WaitingRoom) Put("WaitingRoom/Chair_Stand", piece, 1.35f);
+                else if (s.Theme == MapTheme.ArchiveVault) Put("ArchiveVault/Shelf_Straight", piece, 2.4f);
             switch (s.Theme)
             {
                 case MapTheme.WaitingRoom: WaitingRoom(s, simulation.Elapsed); break;
