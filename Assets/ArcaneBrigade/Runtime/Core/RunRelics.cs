@@ -28,8 +28,22 @@ namespace ArcaneBrigade
 
         /// <summary>Hoard Power: +1% team damage per 5 gold held, gold counted at its wave-1 value, at most +40% a copy.</summary>
         public static float HoardBonus(long gold, float goldScale) => Mathf.Min(.4f, Mathf.Floor(gold / (5f * Mathf.Max(1, goldScale))) * .01f);
+        /// <summary>The Lone line's hero bonuses: strongest with no friends deployed, fading as the brigade grows.</summary>
+        private float LoneBonus(ItemEffect effect, ModifierScope target)
+        {
+            if (target != ModifierScope.Champion) return 0;
+            int allies = ActiveRoster.Count;
+            float value = 0;
+            if (effect == ItemEffect.ChampionDamage) value += MechanicStacks(RelicMechanic.LoneLantern) * Mathf.Max(0, .45f - .08f * allies) + MechanicStacks(RelicMechanic.SoloOverture) * 1f;
+            if (effect == ItemEffect.AttackSpeed) value += MechanicStacks(RelicMechanic.EmptyChairs) * .06f * Mathf.Max(0, 8 - allies);
+            if (allies <= 2 && (effect == ItemEffect.Projectiles || effect == ItemEffect.BulletPierce)) value += MechanicStacks(RelicMechanic.SingleTicket);
+            if (effect == ItemEffect.Armor) value += MechanicStacks(RelicMechanic.IronResolve) * Mathf.Max(0, .25f - .03f * allies);
+            if (effect == ItemEffect.MoveSpeed) value += MechanicStacks(RelicMechanic.IronResolve) * Mathf.Max(0, .15f - .05f * allies);
+            return value;
+        }
         private float RelicBonus(ItemEffect effect, ModifierScope target, float value)
         {
+            value += LoneBonus(effect, target);
             foreach (StatModifier gain in State.RelicGains ?? new List<StatModifier>())
                 if (gain.Effect == effect && RunModifierRules.Applies(gain.Scope, target)) value += gain.Value;
             // owner 22/10/2026 (broken-item scan): the hoard counts gold at its wave-1 value and stops at +40% a copy; luck to

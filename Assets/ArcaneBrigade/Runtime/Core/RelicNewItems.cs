@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         {
             relicCuckooAt = 12; relicUndertowAt = 8; relicFunhouseAt = 10; relicSundaeAt = relicShardAt = 0; relicMimicUntil = -1; relicMimicUsed = false;
             relicChimeCrits = relicFrozenKills = 0; KilledSpecies.Clear(); newSkillsStarted = false;
+            lastLightUsed = false; lastLightUntil = -1;
             int polish = RelicCount(RelicMechanic.StarPolish);
             UnitState strongest = null;
             foreach (UnitState u in units)
@@ -40,7 +41,17 @@ namespace ArcaneBrigade
         }
         private bool RelicMarked(UnitState u) => Marked(u) || u.ExposedUntil > Elapsed || u.AnchorUntil > Elapsed || u.ProbedUntil > Elapsed;
         private float RelicLateFee => 1 + .25f * RelicCount(RelicMechanic.LateFee);
-        private float RelicCycle(UnitState unit) => (unit.FunhouseUntil > Elapsed ? 2 : 1) * VisitorCycle(unit);
+        private float RelicCycle(UnitState unit) => (unit.FunhouseUntil > Elapsed ? 2 : 1) * VisitorCycle(unit) / (LastLightOn(unit) ? 1.6f : 1);
+        // Last Light: once a wave, when the hero falls under 30% health, six seconds of +60% damage and attack speed
+        private bool lastLightUsed; private float lastLightUntil = -1;
+        private bool LastLightOn(UnitState unit)
+        {
+            if (unit == null || unit.Faction != Faction.Champion || RelicCount(RelicMechanic.LastLight) == 0) return false;
+            if (!lastLightUsed && unit.Health < unit.Definition.Health * .3f) { lastLightUsed = true; lastLightUntil = Elapsed + 6; }
+            return Elapsed < lastLightUntil;
+        }
+        /// <summary>Night Alone: with no friend on the field the gauge fills 30% faster and transformations last 3s longer.</summary>
+        private bool NightAlone => RelicCount(RelicMechanic.NightAlone) > 0 && !units.Exists(u => u.Alive && u.Faction == Faction.Companion);
         private float RelicPickupRadius => catalog.PickupRadius + (relicStanding ? 0 : .5f * RelicCount(RelicMechanic.CoinSash));
         private float RelicCrit(UnitState unit)
         {
@@ -53,6 +64,7 @@ namespace ArcaneBrigade
             float scale = 1 + RelicCount(RelicMechanic.TallyChalk) * Mathf.Min(.08f, Kills / 25 * .01f);
             scale *= 1 + Mathf.Min(.2f, relicFrozenKills * .02f * RelicCount(RelicMechanic.FrostLedger));
             if (unit.FunhouseUntil > Elapsed) scale *= 2;
+            if (LastLightOn(unit)) scale *= 1.6f;
             return scale;
         }
         /// <summary>Shots just fired by a unit: Wind Chime pierce, Kite Tail Ribbon bounce, Funhouse Mirror size.</summary>

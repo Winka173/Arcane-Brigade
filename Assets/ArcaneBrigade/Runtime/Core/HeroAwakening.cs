@@ -42,7 +42,7 @@ namespace ArcaneBrigade
         public float HeroAwakenMeter => awakenMeter;
         public int HeroAwakenTier => Mathf.Clamp(Mathf.FloorToInt(awakenMeter * 3 + .001f), 0, 3);
         public bool HeroAwakening => HeroAwakenEnabled && awakenUntil > Elapsed;
-        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) + (IdentityApproach == 2 ? 1.5f : 0) + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 3 : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
+        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) + (IdentityApproach == 2 ? 1.5f : 0) + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 3 : 0) + (NightAlone ? 3 : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
         /// <summary>1 at the start of a transformation, 0 at its end.</summary>
         public float HeroAwakenRemaining => HeroAwakening ? Mathf.Clamp01((awakenUntil - Elapsed) / Mathf.Max(.1f, AwakenLength)) : 0;
         public float HeroAwakenStarted => awakenStarted;

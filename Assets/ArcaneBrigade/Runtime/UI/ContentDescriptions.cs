@@ -215,6 +215,13 @@ namespace ArcaneBrigade
             RelicMechanic.MirrorOfTwins=>"Your strongest friend deals +60% damage and its shooting weapon fires one more projectile.",
             RelicMechanic.StorybookEnding=>"Every wave won adds a page to the story: the team gains one random stat for the rest of the run.",
             RelicMechanic.DreamLoom=>"Common items give double their stats.",
+            RelicMechanic.LoneLantern=>"Hero damage +45%, 8% less for each friend in the fight.",
+            RelicMechanic.EmptyChairs=>"Hero attack speed +6% for each empty seat (8 seats).",
+            RelicMechanic.SingleTicket=>"With 2 friends or fewer: the hero fires 1 more shot that pierces 1 more.",
+            RelicMechanic.NightAlone=>"With no friends in the fight: the gauge fills 30% faster and transformations last 3s longer.",
+            RelicMechanic.LastLight=>"Once a wave, under 30% health: the hero gets +60% damage and attack speed for 6s.",
+            RelicMechanic.IronResolve=>"Hero armor +0.25 and speed +15%, less for each friend.",
+            RelicMechanic.SoloOverture=>"The hero deals double damage. Your friends no longer fight.",
             _=>throw new ArgumentOutOfRangeException(nameof(m),m,"Missing relic mechanic copy")
         };
         /// <summary>One short line per special effect for the shop card (the full rules stay in Mechanic, shown under INFO).</summary>

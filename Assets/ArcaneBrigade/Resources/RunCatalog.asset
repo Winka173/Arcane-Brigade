@@ -8812,6 +8812,181 @@ MonoBehaviour:
     - frost
     - archive
     - fam-team
+  - Id: LoneLantern
+    Name: Lone Lantern
+    Description: Hero damage +45%, 8% less for each friend in the fight.
+    Price: 60
+    Effect: 12
+    Value: 0
+    Icon: {fileID: 1695328001, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 88
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: EmptyChairs
+    Name: Empty Chairs
+    Description: Hero attack speed +6% for each empty seat.
+    Price: 60
+    Effect: 12
+    Value: 0
+    Icon: {fileID: 1956717586, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 89
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: SingleTicket
+    Name: Single Ticket
+    Description: 'With 2 friends or fewer: one more shot that pierces one more.'
+    Price: 55
+    Effect: 12
+    Value: 0
+    Icon: {fileID: 2037761858, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 90
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: NightAlone
+    Name: Night Alone
+    Description: 'Alone: the gauge fills 30% faster, transformations last 3s longer.'
+    Price: 80
+    Effect: 12
+    Value: 0
+    Icon: {fileID: 1191121151, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 91
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: SelfPortrait
+    Name: Self-Portrait
+    Description: Hero damage +25%, max HP +60.
+    Price: 35
+    Effect: 12
+    Value: 0
+    Icon: {fileID: -789286955, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.25
+    - Effect: 2
+      Scope: 1
+      Value: 60
+    Rarity: 1
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: LastLight
+    Name: Last Light
+    Description: 'Once a wave under 30% health: +60% damage and attack speed for
+      6s.'
+    Price: 55
+    Effect: 12
+    Value: 0
+    Icon: {fileID: 712256120, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 92
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: IronResolve
+    Name: Iron Resolve
+    Description: Hero armor +0.25 and speed +15%, less for each friend.
+    Price: 40
+    Effect: 12
+    Value: 0
+    Icon: {fileID: 1177601457, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 1
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 93
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: SoloOverture
+    Name: Solo Overture
+    Description: The hero deals double damage. Friends no longer fight.
+    Price: 200
+    Effect: 12
+    Value: 0
+    Icon: {fileID: -1173072530, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 15
+    SignatureRole: 0
+    Mechanic: 94
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
   Bonds:
   - Id: hearth
     Name: Hearth

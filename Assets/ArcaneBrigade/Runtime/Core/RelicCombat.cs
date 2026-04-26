@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             if (unit.Faction == Faction.Enemy) return false;
             if (RelicCount(RelicMechanic.SixWeapons) > 0) return true;
             if (unit.Faction == Faction.Champion && RelicCount(RelicMechanic.CollisionOnly) > 0) return true;
-            return unit.Faction == Faction.Companion && RelicCount(RelicMechanic.SoloOverdrive) > 0;
+            return unit.Faction == Faction.Companion && (RelicCount(RelicMechanic.SoloOverdrive) > 0 || RelicCount(RelicMechanic.SoloOverture) > 0); // Solo Overture: friends rest for good
         }
 
         private void AdjustLotus(int direction)

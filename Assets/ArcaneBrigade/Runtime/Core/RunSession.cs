@@ -911,7 +911,10 @@ namespace ArcaneBrigade
             throw new InvalidOperationException("Weighted selection failed");
         }
 
-        private int ItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + KitRarityBonus + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4) * (item.Category == RelicCategory.Drink ? 1 + .05f * MechanicStacks(RelicMechanic.DrinkTempo) + (State.RelicDiscountWave == State.Wave ? 1 : 0) : 1)));
+        private int ItemWeight(ItemDefinition item) => Mathf.Max(1, Mathf.RoundToInt(BaseItemWeight(item) * LoneWeight(item)));
+        /// <summary>The Lone line comes three times as often while two friends or fewer are deployed, less with a big brigade.</summary>
+        private float LoneWeight(ItemDefinition item) => item.Mechanic < RelicMechanic.LoneLantern ? 1 : ActiveRoster.Count <= 2 ? 3 : ActiveRoster.Count >= 6 ? .4f : 1;
+        private int BaseItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + KitRarityBonus + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4) * (item.Category == RelicCategory.Drink ? 1 + .05f * MechanicStacks(RelicMechanic.DrinkTempo) + (State.RelicDiscountWave == State.Wave ? 1 : 0) : 1)));
 
         public float NewRecruitChance
         {
