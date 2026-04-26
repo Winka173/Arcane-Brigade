@@ -109,9 +109,6 @@ namespace ArcaneBrigade
                     s.Doors[0] = a + new Vector2(-8, 3); s.Doors[1] = a + new Vector2(8, 3); s.Doors[2] = a + new Vector2(-8, -4.2f); s.Doors[3] = a + new Vector2(8, -4.2f);
                     foreach (Vector2 home in new[] { new Vector2(-3.6f, 1.6f), new Vector2(4, -1.4f), new Vector2(-.6f, -3.6f) })
                         s.Chairs.Add(new MapEnvironmentState.Chair { Home = a + home, Position = a + home });
-                    // two rows of fixed waiting chairs make aisles across the room
-                    s.AddRow(a + new Vector2(-5.5f, -.5f), 3, 1.1f, .5f);
-                    s.AddRow(a + new Vector2(5.5f, .4f), 3, 1.1f, .5f);
                     s.NextCall = 6; s.NextChair = 3.5f;
                     break;
                 case MapTheme.PostOffice:
@@ -130,10 +127,7 @@ namespace ArcaneBrigade
                     foreach (Vector2 home in new[] { new Vector2(-4.6f, -.6f), new Vector2(4.6f, .8f) })
                         s.Shelves.Add(new MapEnvironmentState.Shelf { Home = a + home, Position = a + home, From = a + home, To = a + home });
                     s.Ledger = a + new Vector2(mapRandom.Next(2) == 0 ? -6.6f : 6.6f, -3.2f);
-                    // fixed rows of shelves make narrow corridors; the moving shelves change them
-                    s.AddRow(a + new Vector2(-6.3f, 2.2f), 2, 1.4f, .4f);
-                    s.AddRow(a + new Vector2(6.3f, 2.2f), 2, 1.4f, .4f);
-                    s.AddRow(a + new Vector2(0, -2.6f), 2, 1.4f, .4f);
+
                     s.NextChime = 9; s.NextShelf = 6;
                     break;
             }
@@ -146,12 +140,13 @@ namespace ArcaneBrigade
             if (mapEnv == null) InitMapEnvironment();
             switch (mapEnv.Theme)
             {
-                case MapTheme.WaitingRoom: StepNumberBoard(); StepChairs(); break;
-                case MapTheme.PostOffice: StepChute(deltaTime); StepGust(deltaTime); StepParcel(deltaTime); break;
+                // owner 23/10/2026: nothing on a map blocks or pushes anyone - the sliding chairs, the gusts, the moving shelves
+                // and the solid rows are gone; chairs and shelves stay where they stand as scenery
+                case MapTheme.WaitingRoom: StepNumberBoard(); break;
+                case MapTheme.PostOffice: StepChute(deltaTime); StepParcel(deltaTime); break;
                 case MapTheme.LampHall: StepLamps(deltaTime); break;
-                default: StepClock(); StepShelves(); break;
+                default: StepClock(); break;
             }
-            KeepOutOfMapBlockers();
         }
 
         // ------------------------------------------------------------------ Waiting Room
