@@ -125,15 +125,15 @@ namespace ArcaneBrigade
         public static string TipId(Element element) => "env." + element.ToString().ToLowerInvariant();
         public static string TipLine(Element element) => element switch
         {
-            Element.Board => "A number is called and its door bursts open: a pack runs out. Farm it or keep away.",
+            Element.Board => "A number is called and its door bursts open: a pack runs out with no gold. Stand at the door to shut it.",
             Element.Chairs => "Restless chairs slide in to block your way for a moment. Enemies trip on them too.",
             Element.Chute => "Letters fall from the chute. Walk through one for a short boost; enemies they hit take more damage.",
             Element.Gust => "A paper gust blows shots and small enemies sideways.",
-            Element.Parcel => "A giant parcel! Stand by it to break it for gold, or it opens into an elite.",
-            Element.Light => "Lamp light: in it you deal +15% damage. In the dark, enemies are faster but drop more coins.",
-            Element.Snuffer => "A giant hand snuffs one lamp at a time. The dark moves around.",
+            Element.Parcel => "A giant parcel! Stand by it: it bursts, hurting enemies around it, and spills gold. Leave it and an elite climbs out.",
+            Element.Light => "Lamp light: you deal +15% damage and friends attack faster in it. In the dark, enemies are tougher and faster but drop more coins.",
+            Element.Snuffer => "A giant hand snuffs one lamp at a time. Walk to a dark lamp to light it again.",
             Element.Moths => "Moths follow you and lead enemies to you. Keep moving to shake them off.",
-            Element.Clock => "The clock chimes: enemies slow down for a moment. The twelfth strike speeds everyone up.",
+            Element.Clock => "The clock chimes: enemies slow down, much longer if you stand by the clock. The twelfth strike speeds everyone up.",
             Element.Shelves => "Shelves glide and change the paths. Follow the arrows.",
             _ => "Kills inside the ledger's ink ring pay double gold, but the next wave gets a little busier."
         };

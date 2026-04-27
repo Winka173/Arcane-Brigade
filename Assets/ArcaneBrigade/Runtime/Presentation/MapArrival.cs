@@ -14,10 +14,10 @@ namespace ArcaneBrigade
 
         public static string Tagline(MapTheme map) => map switch
         {
-            MapTheme.WaitingRoom => "Numbers are called and doors burst open: a pack runs out.",
-            MapTheme.PostOffice => "Letters fall from the chute for a boost. Parcels hide gold.",
-            MapTheme.LampHall => "Stay in the lamps' light. The dark moves, and the moths follow you.",
-            _ => "The clock chimes and slows the enemies. The ledger pays double in its ring."
+            MapTheme.WaitingRoom => "A called door lets a pack out. Stand at the door to shut it.",
+            MapTheme.PostOffice => "Letters give a boost. Break a parcel: it bursts and spills gold.",
+            MapTheme.LampHall => "Friends fight faster in the light; foes are tougher in the dark. Relight the lamps.",
+            _ => "Stand by the clock when it chimes: enemies slow for longer."
         };
 
         private void Update()

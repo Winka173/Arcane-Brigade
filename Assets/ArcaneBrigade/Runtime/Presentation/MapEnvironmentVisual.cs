@@ -73,6 +73,8 @@ namespace ArcaneBrigade
                 Pips(s.Board + Vector2.up * 2.45f, s.CalledDoor + 1, 1, true);
                 // in front of the called door: an amber rim where the pack pours out, closing as the door opens
                 if (t < s.CloseAt) Ring(s.Doors[s.CalledDoor] + Vector2.down * .5f, 1.25f, .7f, Mathf.Clamp01((t - s.CallAt) / MapEnvironmentRules.DoorCall), ArsenalInk.Amber, t < s.OpenAt ? .95f : .5f, 180, 360);
+                // the hero shutting it: a gold ring closes round the door as it is held
+                if (s.DoorShut > .01f) Ring(s.Doors[s.CalledDoor] + Vector2.up * .2f, 1.45f, 1.1f, s.DoorShut, ArsenalInk.Gold, .95f, 0, 360);
             }
             foreach (MapEnvironmentState.Chair chair in s.Chairs)
             {

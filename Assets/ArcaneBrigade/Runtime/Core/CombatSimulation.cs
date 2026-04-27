@@ -164,6 +164,8 @@ namespace ArcaneBrigade
         public int EvolutionRepeats;
         public int EvolutionCasts;
         public bool SwarmMinion;
+        /// <summary>Came out of a Waiting Room door: drops no gold (owner 23/10/2026).</summary>
+        public bool DoorPack;
         public SwarmRole Role;          // ink bloater / fuse runner
         public float FuseAt;            // a lit fuse runner blows at this time
         public Vector2 SurgeDirection;  // a surge body marches this way across the screen

@@ -22,6 +22,8 @@ namespace ArcaneBrigade
         public readonly Vector2[] Doors = new Vector2[4];
         public int CalledDoor = -1, LastDoor = -1, PackLeft;
         public float CallAt = -100, NextCall, NextPackMember;
+        /// <summary>0..1: the hero standing at the called door shuts it (owner 23/10/2026); ShutAt marks the last one shut.</summary>
+        public float DoorShut, ShutAt = -100; public int ShutDoor = -1;
         public float OpenAt => CallAt + MapEnvironmentRules.DoorCall;
         public float CloseAt => OpenAt + MapEnvironmentRules.DoorOpen;
         public sealed class Chair { public Vector2 Home, Position, From, To; public float WarnAt = -100, SlideAt = -100, SlideEnd = -100, StayUntil = -100, ReturnEnd = -100; public readonly HashSet<int> Tripped = new HashSet<int>(); }
@@ -84,6 +86,10 @@ namespace ArcaneBrigade
         public const float ShelfEvery = 16, ShelfWarn = 1.2f, ShelfMove = 1.6f, ShelfHalf = .7f, ShelfRadius = .4f, LedgerRadius = 2.4f;
         public const int LedgerKillsPerDebt = 5, LedgerMaxDebt = 8;
         public const float BoostSpeed = 1.15f, BoostDamage = 1.15f;
+        // owner 23/10/2026 map rules: shut a door by standing at it; a broken parcel bursts; friends quicker in the lamp light,
+        // enemies tougher in the dark, a snuffed lamp relit by walking to it; the chime slows longer with the hero at the clock
+        public const float DoorReach = 1.8f, DoorShutSeconds = 1.5f, ParcelBurstRadius = 2.8f, ParcelBurstHits = 4f;
+        public const float LightHaste = 1.1f, DarkGuard = .85f, RelightReach = 1.3f, ClockReach = 3f, ClockSlowLonger = 2.5f;
     }
 
     /// <summary>The map's living elements in the fight (play-test item 24, D11 v2), deterministic and headless so the bot sweeps
@@ -142,7 +148,7 @@ namespace ArcaneBrigade
             {
                 // owner 23/10/2026: nothing on a map blocks or pushes anyone - the sliding chairs, the gusts, the moving shelves
                 // and the solid rows are gone; chairs and shelves stay where they stand as scenery
-                case MapTheme.WaitingRoom: StepNumberBoard(); break;
+                case MapTheme.WaitingRoom: StepNumberBoard(deltaTime); break;
                 case MapTheme.PostOffice: StepChute(deltaTime); StepParcel(deltaTime); break;
                 case MapTheme.LampHall: StepLamps(deltaTime); break;
                 default: StepClock(); break;
@@ -150,7 +156,7 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ Waiting Room
-        private void StepNumberBoard()
+        private void StepNumberBoard(float deltaTime)
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
             if (t >= s.NextCall && s.CalledDoor < 0)
@@ -160,7 +166,14 @@ namespace ArcaneBrigade
                 s.PackLeft = 3 + (catalog.RunWave - MapIdentity.FirstWave(catalog.RunWave)) / 2; s.NextPackMember = s.OpenAt;
                 s.Shown.Add(MapIdentity.Element.Board);
             }
-            if (s.CalledDoor < 0) return;
+            if (s.CalledDoor < 0) { s.DoorShut = 0; return; }
+            // the hero standing at the called door shuts it: the rest of the pack stays behind it
+            if (s.PackLeft > 0 && (Champion.Position - s.Doors[s.CalledDoor]).sqrMagnitude < MapEnvironmentRules.DoorReach * MapEnvironmentRules.DoorReach)
+            {
+                s.DoorShut = Mathf.Min(1, s.DoorShut + deltaTime / MapEnvironmentRules.DoorShutSeconds);
+                if (s.DoorShut >= 1) { s.ShutDoor = s.CalledDoor; s.ShutAt = t; s.PackLeft = 0; s.CalledDoor = -1; s.DoorShut = 0; return; }
+            }
+            else s.DoorShut = Mathf.Max(0, s.DoorShut - deltaTime);
             if (t >= s.OpenAt && s.PackLeft > 0 && t >= s.NextPackMember)
             {
                 int alive = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy) alive++;
@@ -172,7 +185,7 @@ namespace ArcaneBrigade
                     if (herd != null)
                     {
                         UnitState spawned = Spawn(herd, Faction.Enemy, at);
-                        spawned.SwarmMinion = true; spawned.Health *= .45f;
+                        spawned.SwarmMinion = true; spawned.DoorPack = true; spawned.Health *= .45f;
                         AssignSwarmRole(spawned, true);
                     }
                 }
@@ -285,11 +298,7 @@ namespace ArcaneBrigade
                     break;
                 case 1:
                     if (t < s.ParcelAt + MapEnvironmentRules.ParcelWarn) return;
-                    s.ParcelState = 2; s.ParcelAt = t; s.HatchAt = t + MapEnvironmentRules.ParcelHatch;
-                    // it lands with a thump: small enemies under it are nudged aside (no damage)
-                    foreach (UnitState u in units)
-                        if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - s.Parcel).sqrMagnitude < 1.2f)
-                            u.Position = ClampPosition(s.Parcel + ((u.Position - s.Parcel).sqrMagnitude > .0001f ? (u.Position - s.Parcel).normalized : Vector2.right) * 1.2f, u.Definition.Radius);
+                    s.ParcelState = 2; s.ParcelAt = t; s.HatchAt = t + MapEnvironmentRules.ParcelHatch; // it lands; nothing is pushed
                     break;
                 case 2:
                     if ((Champion.Position - s.Parcel).sqrMagnitude < MapEnvironmentRules.ParcelReach * MapEnvironmentRules.ParcelReach)
@@ -300,6 +309,13 @@ namespace ArcaneBrigade
                         float perCoin = Mathf.Max(.01f, KitCoinScale * Mathf.Max(.01f, catalog.CoinValueScale));
                         int coins = Mathf.Max(4, Mathf.RoundToInt(Mathf.Max(8, catalog.ChestGold) * .5f / perCoin));
                         for (int i = 0; i < 4; i++) DropLoot(LootKind.Coin, s.Parcel + new Vector2((i % 2) * .5f - .25f, (i / 2) * .4f - .2f), coins / 4 + (i == 0 ? coins % 4 : 0));
+                        // it bursts: splinters of the crate hit every enemy close by (four of the hero's own hits)
+                        CombatCause burst = NewCause(Champion.Id).Child("map-parcel-burst");
+                        float splinters = Champion.Definition.Weapon.Damage * MapEnvironmentRules.ParcelBurstHits;
+                        foreach (UnitState u in units.ToArray())
+                            if (u.Alive && u.Faction == Faction.Enemy && (u.Position - s.Parcel).sqrMagnitude < MapEnvironmentRules.ParcelBurstRadius * MapEnvironmentRules.ParcelBurstRadius)
+                                ApplyDamage(u, u.Definition.IsBoss ? splinters * .5f : splinters, Faction.Champion, "Parcel", u.Position - s.Parcel, cause: burst);
+                        events.Add(new CombatEvent(CombatEventKind.SignaturePulse, s.Parcel, Faction.Champion, MapEnvironmentRules.ParcelBurstRadius, subject: Champion, element: DamageElement.Physical, cause: burst));
                     }
                     else if (t >= s.HatchAt)
                     {
@@ -329,6 +345,9 @@ namespace ArcaneBrigade
                 float phase = lamp.Phase + t * .32f;
                 lamp.Light = ClampPosition(lamp.Base + new Vector2(Mathf.Cos(phase), Mathf.Sin(phase) * .55f) * 2.4f + Vector2.up * .3f, .5f);
                 lamp.Lit = !(t >= lamp.SnuffedAt && t < lamp.SnuffedUntil);
+                // the hero walking up to a snuffed lamp lights it again
+                if (!lamp.Lit && t >= lamp.SnuffedAt + .6f && ((Champion.Position - lamp.Base).sqrMagnitude < MapEnvironmentRules.RelightReach * MapEnvironmentRules.RelightReach || (Champion.Position - lamp.Light).sqrMagnitude < MapEnvironmentRules.RelightReach * MapEnvironmentRules.RelightReach))
+                { lamp.SnuffedUntil = t; lamp.Lit = true; }
             }
             if (t >= s.NextSnuff)
             {
@@ -384,7 +403,8 @@ namespace ArcaneBrigade
             if (t >= s.NextChime)
             {
                 s.Strikes++; s.NextChime = t + MapEnvironmentRules.ChimeEvery;
-                if (s.Twelfth) s.RushUntil = t + MapEnvironmentRules.RushSeconds; else s.SlowUntil = t + MapEnvironmentRules.ChimeSlowSeconds;
+                bool atClock = (Champion.Position - s.Clock).sqrMagnitude < MapEnvironmentRules.ClockReach * MapEnvironmentRules.ClockReach;
+                if (s.Twelfth) s.RushUntil = t + MapEnvironmentRules.RushSeconds; else s.SlowUntil = t + MapEnvironmentRules.ChimeSlowSeconds * (atClock ? MapEnvironmentRules.ClockSlowLonger : 1);
             }
         }
 
@@ -469,6 +489,8 @@ namespace ArcaneBrigade
             }
             return scale;
         }
+        /// <summary>A friend standing in the Lamp Hall's light attacks 10% faster (a cooldown factor).</summary>
+        private float MapCycle(UnitState unit) => mapEnv != null && mapEnv.Theme == MapTheme.LampHall && unit.Faction == Faction.Companion && InMapLight(unit.Position) ? 1 / MapEnvironmentRules.LightHaste : 1;
         private float MapHeroScale
         {
             get
@@ -487,6 +509,7 @@ namespace ArcaneBrigade
             if (s == null || target.Faction != Faction.Enemy || source == Faction.Enemy) return damage;
             if (s.Stamped.Count > 0 && s.Stamped.TryGetValue(target.Id, out float stamped) && stamped > Elapsed) damage *= MapEnvironmentRules.StampDamage;
             if (s.Theme == MapTheme.LampHall && s.HeroLit) damage *= MapEnvironmentRules.LightDamage;
+            if (s.Theme == MapTheme.LampHall && !InMapLight(target.Position)) damage *= MapEnvironmentRules.DarkGuard; // tougher in the dark
             if (s.BoostKind == 1 && s.BoostUntil > Elapsed) damage *= MapEnvironmentRules.BoostDamage;
             return damage;
         }
@@ -496,6 +519,7 @@ namespace ArcaneBrigade
         {
             MapEnvironmentState s = mapEnv;
             if (s == null || coins <= 0 || target.Faction != Faction.Enemy) return coins;
+            if (target.DoorPack) return 0; // a door's pack drops no gold
             if (s.Theme == MapTheme.LampHall && !InMapLight(target.Position) && (!target.SwarmMinion || target.Id % 4 == 0)) coins += 1;
             if (s.Theme == MapTheme.ArchiveVault && (target.Position - s.Ledger).sqrMagnitude < MapEnvironmentRules.LedgerRadius * MapEnvironmentRules.LedgerRadius) { coins *= 2; s.LedgerKills++; }
             if (s.BoostKind == 2 && s.BoostUntil > Elapsed && !target.SwarmMinion) coins += 1;

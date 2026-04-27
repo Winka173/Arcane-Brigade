@@ -41,7 +41,7 @@ namespace ArcaneBrigade
         }
         private bool RelicMarked(UnitState u) => Marked(u) || u.ExposedUntil > Elapsed || u.AnchorUntil > Elapsed || u.ProbedUntil > Elapsed;
         private float RelicLateFee => 1 + .25f * RelicCount(RelicMechanic.LateFee);
-        private float RelicCycle(UnitState unit) => (unit.FunhouseUntil > Elapsed ? 2 : 1) * VisitorCycle(unit) / (LastLightOn(unit) ? 1.6f : 1);
+        private float RelicCycle(UnitState unit) => (unit.FunhouseUntil > Elapsed ? 2 : 1) * VisitorCycle(unit) / (LastLightOn(unit) ? 1.6f : 1) * MapCycle(unit);
         // Last Light: once a wave, when the hero falls under 30% health, six seconds of +60% damage and attack speed
         private bool lastLightUsed; private float lastLightUntil = -1;
         private bool LastLightOn(UnitState unit)
