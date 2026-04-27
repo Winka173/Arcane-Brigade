@@ -17,6 +17,16 @@ namespace ArcaneBrigade
         public int OctoberInjuries => octoberInjuries;
         public int OctoberDodges => octoberDodges;
         private string ReferenceHero => Champion?.Definition.ReferenceHero ?? "";
+        /// <summary>Closer to the original Dream Seekers (owner 23/10/2026): Card King, Sassy Senior and Clementie never make a
+        /// basic attack (their friends, their bursts and their body do the work); Anby only attacks while transformed; Billy's
+        /// friends never make a basic attack - they answer his critical hits.</summary>
+        private bool OctoberBlocksAttack(UnitState unit)
+        {
+            string r = ReferenceHero;
+            if (unit.Faction == Faction.Champion) return r == "Card King" || r == "Sassy Senior" || r == "Clementie" || r == "Anby" && !HeroAwakening;
+            return unit.Faction == Faction.Companion && r == "Billy";
+        }
+        private float sassyBurstAt;
         private List<UnitState> OctoberUnits(string talent) => octoberTalents.TryGetValue(talent, out List<UnitState> list) ? list : noOctoberUnits;
         private bool HasOctober(string talent) => OctoberUnits(talent).Count > 0;
         private bool OctoberTrait(UnitState u, string talent) => u.Definition.ReferenceCompanion == talent || u == Champion && System.Array.IndexOf(catalog.OctoberMemories, talent) >= 0;
@@ -154,8 +164,8 @@ namespace ArcaneBrigade
                     if (e.Faction == Faction.Champion)
                     {
                         foreach (UnitState mage in OctoberUnits("Grey Mage")) OctoberEcho(mage, .65f, e.Cause);
-                        if (!HeroIdentityEnabled && ReferenceHero == "Billy" && e.Critical)
-                            foreach (UnitState ally in units) if (ally.Faction == Faction.Companion && combatRandom.NextDouble() < .5) OctoberEcho(ally, 1, e.Cause);
+                        if (ReferenceHero == "Billy" && e.Critical)
+                            foreach (UnitState ally in units.ToArray()) if (ally.Alive && ally.Faction == Faction.Companion && combatRandom.NextDouble() < .6) OctoberEcho(ally, 1.15f, e.Cause);
                     }
                     if (source != null && OctoberTrait(source, "\"Naming Demon\" Yan") && source.OctoberAttacks % 3 == 0) OctoberEcho(source, .25f, e.Cause);
                     if (source != null && OctoberTrait(source, "Original:TeacupCricket") && source.OctoberAttacks % 5 == 0) OctoberEcho(source, .4f, e.Cause);
@@ -167,7 +177,7 @@ namespace ArcaneBrigade
                     if (OctoberTrait(source, "Camo Shroom") && !e.Subject.Definition.IsBoss) e.Subject.ChillUntil = Mathf.Max(e.Subject.ChillUntil, Elapsed + .4f);
                     if (OctoberTrait(source, "Attractive Witch") && !e.Subject.Definition.IsBoss) { e.Subject.Position = ClampPosition(Vector2.MoveTowards(e.Subject.Position, source.Position, OctoberBalance.Push(e.Subject.Definition, .25f)), e.Subject.Definition.Radius); spatial.Move(e.Subject); }
                     if ((OctoberTrait(source, "Mummy") || ReferenceHero == "Gulpy" && (source == Champion || System.Array.IndexOf(source.Definition.Tags, "archive") >= 0)) && octoberPoison.Count < 128)
-                        octoberPoison.Add(new PoisonNote { Source = source, Target = e.Subject, At = Elapsed + 1, Damage = source.Definition.Weapon.Damage * .25f, Cause = e.Cause.Child("companion-poison") });
+                        octoberPoison.Add(new PoisonNote { Source = source, Target = e.Subject, At = Elapsed + 1, Damage = ReferenceHero == "Gulpy" && !e.Subject.Definition.IsBoss ? Mathf.Max(source.Definition.Weapon.Damage * .25f, e.Subject.Definition.Health * .06f) : source.Definition.Weapon.Damage * (ReferenceHero == "Gulpy" ? .5f : .25f), Cause = e.Cause.Child("companion-poison") });
                     if (OctoberTrait(source, "Fierce Fighter") && source.OctoberAttacks % 3 == 0 && Elapsed >= source.OctoberNext) { source.OctoberNext = Elapsed + 1; Field(ExpandedFieldKind.Echo, source, e.Position, e.Direction, .8f, source.Definition.Weapon.Damage * .15f, .1f, .2f, e.Cause.Child("fighter-blast")); }
                     if (OctoberTrait(source, "TV Head") && e.Critical && Elapsed >= octoberRebateAt && combatRandom.NextDouble() < .25) { octoberRebateAt = Elapsed + .8f; Gold = RunSession.BoundedCounter((long)Gold + 1); }
                 }
@@ -185,13 +195,26 @@ namespace ArcaneBrigade
                     if (HasOctober("\"Enduring Suffering\" Dorothy") && !octoberRecoveryUsed && ReferenceHero != "Card Queen") { octoberRecoveryUsed = true; Champion.Definition.Health = Mathf.Max(1, Champion.Definition.Health - 2); Heal(Champion.Definition.Health, e.Cause.Child("dorothy-recovery")); }
                     if (ReferenceHero == "The Big Pot") catalog.PassiveHeal = Mathf.Min(6, catalog.PassiveHeal + .15f);
                     if (ReferenceHero == "Porcelain Doll") Champion.Definition.CollisionDamage = Mathf.Min(80, Champion.Definition.CollisionDamage + 1);
-                    if (!HeroIdentityEnabled && (ReferenceHero == "Card Queen" || ReferenceHero == "Sassy Senior")) Field(ExpandedFieldKind.Echo, Champion, ThreatPoint(3), Vector2.zero, 1.3f, Champion.Definition.Weapon.Damage * 2, .08f, .2f, e.Cause.Child("royal-retort"));
+                    if (ReferenceHero == "Sassy Senior" && Elapsed >= sassyBurstAt)
+                    {
+                        // she explodes when hurt: the burst grows with each Four-Leaf Clover friend
+                        sassyBurstAt = Elapsed + .4f;
+                        int clovers = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Companion && System.Array.IndexOf(u.Definition.Tags, "clover") >= 0) clovers++;
+                        Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.6f, Champion.Definition.Weapon.Damage * 3 * (1 + .5f * clovers), .08f, .2f, e.Cause.Child("sassy-burst"));
+                    }
+                    if (ReferenceHero == "Card Queen")
+                    {
+                        // each injury pays out and strikes every enemy on the field (bosses take half)
+                        Gold = RunSession.BoundedCounter((long)Gold + Mathf.RoundToInt(6 * Mathf.Max(1, catalog.ChestGoldScale)));
+                        CombatCause decree = e.Cause.Child("queen-decree");
+                        foreach (UnitState u in units.ToArray()) if (u.Alive && u.Faction == Faction.Enemy) ApplyDamage(u, Champion.Definition.Weapon.Damage * (u.Definition.IsBoss ? 1.5f : 3f), Faction.Champion, "Decree", u.Position - Champion.Position, cause: decree);
+                    }
                 }
                 if (e.Kind == CombatEventKind.Dodge)
                 {
                     octoberDodges++;
                     if (ReferenceHero == "Sir Purrcival") catalog.TreasureDetection = Mathf.Min(3, catalog.TreasureDetection + .02f);
-                    if (!HeroIdentityEnabled && ReferenceHero == "Anby") { Champion.OctoberNext = 0; OctoberEcho(Champion, 2, e.Cause); }
+                    if (ReferenceHero == "Anby") { Champion.OctoberNext = 0; OctoberEcho(Champion, 2.5f, e.Cause); }
                 }
                 if (e.Kind == CombatEventKind.Pickup && e.Loot == LootKind.Heart)
                 {

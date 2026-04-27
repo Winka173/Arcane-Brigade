@@ -834,7 +834,7 @@ namespace ArcaneBrigade
 
         private void ProcessAttack(UnitState unit)
         {
-            if (RelicBlocksAttack(unit)) { unit.PendingAttack = false; return; }
+            if (RelicBlocksAttack(unit) || OctoberBlocksAttack(unit)) { unit.PendingAttack = false; return; }
             if (unit.Variant != null && unit.Variant.Busy(Elapsed)) return;
             if (unit.Faction == Faction.Enemy && (unit.EvolutionReleaseAt > 0 || unit.EvolutionRecoveryUntil > Elapsed || unit.EvolutionTravelUntil > Elapsed)) return;
             WeaponDefinition weapon = unit.Definition.Weapon;

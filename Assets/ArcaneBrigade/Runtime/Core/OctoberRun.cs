@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             switch (OctoberHero)
             {
                 case "Mr. Work": if (hero && effect == ItemEffect.Health) value += 5; if (hero && effect == ItemEffect.MoveSpeed) value += .05f; if (hero && effect == ItemEffect.Heal) value += .2f; break;
-                case "Derpy Wolf": if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .2f; if (hero && effect == ItemEffect.Armor) value -= .15f; if (hero && (effect == ItemEffect.Crit || effect == ItemEffect.Dodge)) value += .1f; break;
+                case "Derpy Wolf": if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .2f; if (hero && effect == ItemEffect.Armor) value -= .15f; if (hero && (effect == ItemEffect.Crit || effect == ItemEffect.Dodge)) value += .1f + Mathf.Min(.3f, Mathf.Max(0, Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) * .5f); break; // speed becomes dodge and crit, like the original
                 case "Sassy Senior": if ((hero || ally) && effect == ItemEffect.Damage) value += Mathf.Min(.5f, Mathf.Max(0, Bonus(ItemEffect.Luck)) * .5f); break;
                 case "Baggy": if (effect == ItemEffect.Discount) value += .3f; if (hero && effect == ItemEffect.Pickup) value += 1000; if (hero && (effect == ItemEffect.Dodge || effect == ItemEffect.TreasureDetection)) value -= 1; break;
                 case "Red Scale": if (hero && effect == ItemEffect.Health) value += State.OctoberDrinks * 2; if (hero && effect == ItemEffect.Armor) value -= Mathf.Min(.4f, State.OctoberDrinks * .02f); if (effect == ItemEffect.EnemyCount) value += Mathf.Min(.4f, State.OctoberDrinks * .02f); break;
@@ -72,7 +72,7 @@ namespace ArcaneBrigade
                 case "Nicole": if (effect == ItemEffect.Discount) value += .2f; if (effect == ItemEffect.Income) value += State.OctoberRefreshes; if (effect == ItemEffect.Luck) value += Mathf.Min(1, State.OctoberRefreshes * .01f); break;
                 case "Anby": if (hero && effect == ItemEffect.Dodge) value += .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 12; break;
                 case "Billy": if (hero && effect == ItemEffect.Crit) value += .1f; if (hero && effect == ItemEffect.Projectiles) value += 2; break;
-                case "Nekomata": if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if (effect == ItemEffect.Income) value -= ActiveRoster.Count; break;
+                case "Nekomata": if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if (hero && effect == ItemEffect.AttackSpeed) value += .3f; if (effect == ItemEffect.Income) value -= ActiveRoster.Count; break;
                 case "Burgerboo": if (hero && effect == ItemEffect.Armor) value += .4f; if (hero && effect == ItemEffect.MoveSpeed) value += .15f; if (effect == ItemEffect.EnemySpeed) value += .2f; break;
             }
             return value;
@@ -197,11 +197,13 @@ namespace ArcaneBrigade
                 if (Talent("\"Formatting Pixie\" Quentin") > 0) { unit.BodyHeight *= .88f; unit.Radius *= .88f; }
                 if (OctoberHero == "Card King")
                 {
-                    UnitDefinition main = CombatCatalog.Champion; w.Damage *= 1 + Mathf.Min(.5f, Mathf.Max(0, Bonus(ItemEffect.ChampionDamage, ModifierScope.Champion)));
-                    w.Cooldown /= 1 + Mathf.Min(.3f, Mathf.Max(0, Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion)));
+                    // he never attacks himself (OctoberBlocksAttack): his own bonuses carry over to the friends (caps 100% / 50%)
+                    UnitDefinition main = CombatCatalog.Champion; w.Damage *= 1 + Mathf.Min(1f, Mathf.Max(0, Bonus(ItemEffect.ChampionDamage, ModifierScope.Champion)));
+                    w.Cooldown /= 1 + Mathf.Min(.5f, Mathf.Max(0, Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion)));
+                    unit.BodyHeight *= 1.2f; unit.CollisionDamage += Mathf.Max(0, main.CollisionDamage - 3) * .5f;
                     unit.CriticalChance = Mathf.Max(unit.CriticalChance, main.CriticalChance); w.ProjectileCount = Mathf.Min(10, w.ProjectileCount + Mathf.Max(0, main.Weapon.ProjectileCount - 1));
                 }
-                if (OctoberHero == "Clementie") unit.CollisionDamage += CombatCatalog.Champion.Speed * 1.5f;
+                if (OctoberHero == "Clementie") unit.CollisionDamage += CombatCatalog.Champion.Speed * 2.5f;
                 if (OctoberHero == "Frosty") { w.Damage *= Mathf.Max(.65f, 1 - ActiveRoster.Count * .02f); unit.BodyHeight *= Mathf.Max(.75f, 1 - ActiveRoster.Count * .01f); }
                 w.Damage*=1.08f;unit.CollisionDamage*=1.08f;unit.Speed=Mathf.Min(10,unit.Speed*1.05f);
                 w.Range = Mathf.Min(w.Range, w.Kind == WeaponKind.Melee ? 3.4f : 8); w.Cooldown = Mathf.Max(.28f, w.Cooldown);
@@ -211,8 +213,8 @@ namespace ArcaneBrigade
             if (OctoberHero == "Billy") CombatCatalog.Champion.Weapon.ProjectileSplit = 0;
             if (OctoberHero == "Omnom" || OctoberHero == "Card Queen") CombatCatalog.PassiveHeal = 0;
             if (OctoberHero == "Burgerboo") { CombatCatalog.Champion.Weapon.ProjectileCount = Mathf.Min(2, CombatCatalog.Champion.Weapon.ProjectileCount); CombatCatalog.Champion.Weapon.ProjectilePierce = 0; }
-            if (OctoberHero == "Clementie") CombatCatalog.CompanionLeash = 1.8f;
-            if (OctoberHero == "Anby") CombatCatalog.Champion.CollisionDamage *= 2;
+            if (OctoberHero == "Clementie") { CombatCatalog.CompanionLeash = 1.8f; CombatCatalog.Champion.CollisionDamage += CombatCatalog.Champion.Speed * 4f; } // she never attacks: her body does
+            if (OctoberHero == "Anby") CombatCatalog.Champion.CollisionDamage *= 3; // she only attacks while transformed; her launch (contact) does the work
             if (OctoberHero == "Frosty") { CombatCatalog.Champion.BodyHeight *= 1 + Mathf.Min(.35f, ActiveRoster.Count * .02f); CombatCatalog.Champion.Weapon.ProjectileSplit = Mathf.Max(1, CombatCatalog.Champion.Weapon.ProjectileSplit); }
         }
     }
