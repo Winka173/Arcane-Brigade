@@ -240,7 +240,13 @@ namespace ArcaneBrigade
                 octoberTickAt = Elapsed + 1;
                 if (ReferenceHero == "Omnom") ApplyDamage(Champion, 1, Faction.Enemy, "Night Maw hunger", cause: NewCause(Champion.Id).Child("hunger"), injectedDamage: true, healthCost: true);
                 if (ReferenceHero == "Frosty" && movement.sqrMagnitude < .001f) Heal(Champion.Definition.Health * .05f, NewCause(Champion.Id).Child("frost-rest"));
-                if (!HeroIdentityEnabled && ReferenceHero == "Steel Shell" && Mathf.FloorToInt(Elapsed) % 3 == 0) Field(ExpandedFieldKind.Echo, Champion, ThreatPoint(2.2f), Vector2.zero, 1.2f, Champion.Definition.CollisionDamage, .25f, .3f, NewCause(Champion.Id).Child("steel-resonance"));
+                // Steel Shell (original): every 3 seconds every enemy takes the hero's contact damage (on again under the identities)
+                if (ReferenceHero == "Steel Shell" && Mathf.FloorToInt(Elapsed) % 3 == 0)
+                {
+                    CombatCause resonance = NewCause(Champion.Id).Child("steel-resonance");
+                    foreach (UnitState u in units.ToArray()) if (u.Alive && u.Faction == Faction.Enemy) ApplyDamage(u, Champion.Definition.CollisionDamage, Faction.Champion, "Steel resonance", u.Position - Champion.Position, cause: resonance);
+                    events.Add(new CombatEvent(CombatEventKind.SignaturePulse, Champion.Position, Faction.Champion, 2.4f, subject: Champion, element: DamageElement.Physical, cause: resonance));
+                }
                 if (!HeroIdentityEnabled && ReferenceHero == "Original:HourglassStag" && Mathf.FloorToInt(Elapsed) % 6 == 0)
                 {
                     Vector2 sand = ThreatPoint(3);

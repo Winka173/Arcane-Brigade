@@ -20,7 +20,7 @@ namespace ArcaneBrigade
             "Gulpy" => "Your hits and archive friends poison: a second later the target loses 6% of its health (bosses: half a hit). Everyone moves 15% faster. Each chest: +1 max HP, heal 4.",
             "Frosty" => "Attack while moving or resting; rest to heal 5% maximum HP each second. Each friend strengthens your shots and body, but weakens friends slightly. Moving shots may split.",
             "Capped Gallant" => "Fight alone. Buying friends absorbs their support traits without adding a body. Your original solo whirl and bounded damage growth remain active.",
-            "Steel Shell" => "Standing still prepares a reflection. Every 3 seconds release nearby contact damage as a pulse. Each Prizefighter activation adds 3 contact damage.",
+            "Steel Shell" => "Every 3 seconds every enemy takes your contact damage. Each Prizefighter activation adds 3 contact damage.",
             "Box Shell" => "Team flat ranged damage +3, melee damage -2. After 25 seconds of combat, melee attacks deal 40% more damage and ranged attacks deal 25% less.",
             "Jade Cabbage" => "Nursery shops sell Little Sprouts. Buying a Sprout adds 1 projectile (max 6) and costs 2 maximum HP. Two Sprouts grow into a random evolved friend plus a Grand Sprout.",
             "The Big Pot" => "Start with +8 contact damage. Each Morning Bells activation gives +0.15 armor. Taking damage adds 0.15 regeneration for this run. Enemies move 10% faster.",

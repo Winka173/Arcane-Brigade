@@ -911,7 +911,23 @@ namespace ArcaneBrigade
             throw new InvalidOperationException("Weighted selection failed");
         }
 
-        private int ItemWeight(ItemDefinition item) => Mathf.Max(1, Mathf.RoundToInt(BaseItemWeight(item) * LoneWeight(item)));
+        private int ItemWeight(ItemDefinition item) => Mathf.Max(1, Mathf.RoundToInt(BaseItemWeight(item) * LoneWeight(item) * FamilyWeight(item)));
+        /// <summary>The thin hero families (owner 23/10/2026: each hero's shop should fit it) also lean on shared relics that suit
+        /// them: those come 2.5x as often for a hero of that family, without being taken from anyone else.</summary>
+        private static readonly System.Collections.Generic.Dictionary<string, string[]> FamilyExtras = new System.Collections.Generic.Dictionary<string, string[]>
+        {
+            ["fam-kills"] = new[] { "TallyChalk", "CurioHungryLedger", "SpecimenPin", "FrostLedger" },
+            ["fam-delay"] = new[] { "CuckooPendulum", "clock-spring", "CurioQuietHour", "OctoberRelic2", "LateFee" },
+            ["fam-merge"] = new[] { "StarPolish", "SpliceKit", "RainbowHeart" },
+            ["fam-freeze"] = new[] { "FrostSalt", "BrainFreeze", "MeltingSundae", "FrostLedger", "echo-postage" },
+            ["fam-marks"] = new[] { "PostageStamp", "CurioFangPin", "echo-postage" },
+        };
+        private float FamilyWeight(ItemDefinition item)
+        {
+            foreach (string theme in catalog.Unit(State.ChampionId).RecruitThemes ?? System.Array.Empty<string>())
+                if (FamilyExtras.TryGetValue(theme, out string[] ids) && System.Array.IndexOf(ids, item.Id) >= 0) return 2.5f;
+            return 1;
+        }
         /// <summary>The Lone line comes three times as often while two friends or fewer are deployed, less with a big brigade.</summary>
         private float LoneWeight(ItemDefinition item) => item.Mechanic < RelicMechanic.LoneLantern ? 1 : ActiveRoster.Count <= 2 ? 3 : ActiveRoster.Count >= 6 ? .4f : 1;
         private int BaseItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + KitRarityBonus + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4) * (item.Category == RelicCategory.Drink ? 1 + .05f * MechanicStacks(RelicMechanic.DrinkTempo) + (State.RelicDiscountWave == State.Wave ? 1 : 0) : 1)));
