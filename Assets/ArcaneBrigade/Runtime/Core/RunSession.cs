@@ -841,7 +841,7 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public int RerollCost => MetaFreeRefresh ? 0 : KitRerollCost(RerollBaseCost);
+        public int RerollCost => MetaFreeRefresh ? 0 : KitRerollCost(RerollBaseCost) + (OctoberHero == "Wise" ? 5 : 0); // Wise: refresh +5 (original)
         // balance pass 19/10/2026: the 2 + 2n refresh fee follows half the shop's price stage once that exceeds x2 (unchanged early)
         private float RerollStage => Mathf.Max(1, StagePriceFactor * .5f);
         // the stage factor applies after the relic/talent/hero adjustments, so Ink Feather and Mary still reach the 1-gold minimum
@@ -959,6 +959,21 @@ namespace ArcaneBrigade
         public int VisitorCost(VisitorDefinition v) => v == null ? 0 : ScaledGold(v.Cost);
         // owner 22/10/2026: eggs pile up late, so the dream shop's egg prices rise with the waves (x1.18 at wave 5, x1.63 at 10, x2.5 at 20)
         public const int MergeBias = 30, MergeSureAfter = 6;
+        /// <summary>Wise's shop sells another Dream Seeker (from wave 2, half the shops, one at a time, up to five a run): it
+        /// takes the place of the last relic on the shelf.</summary>
+        private void OfferWiseHero()
+        {
+            if (OctoberHero != "Wise" || State.Wave < 2 || Next(ref State.ShopRandom, 100) >= 50) return;
+            int owned = 0; foreach (ItemStack stack in State.Items) if (WiseHeroItems.Is(stack.Id)) owned++;
+            if (owned >= 5) return;
+            var heroes = new List<UnitDefinition>();
+            foreach (UnitDefinition c in catalog.Champions) if (c != null && c.Id != State.ChampionId && WiseHeroItems.Offerable(c) && StackCount(WiseHeroItems.IdFor(c)) == 0) heroes.Add(c);
+            int slot = State.Offers.FindLastIndex(o => o.Kind == OfferKind.Item && !o.Sold);
+            if (heroes.Count == 0 || slot < 0) return;
+            UnitDefinition pick = heroes[Next(ref State.ShopRandom, heroes.Count)];
+            int price = Mathf.CeilToInt(60 * StagePriceFactor);
+            State.Offers[slot] = new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = WiseHeroItems.IdFor(pick), Tier = 1, Price = price, BasePrice = price };
+        }
         public float SpecialStagePriceFactor => 1 + Mathf.Max(0, State.Wave - 3) * .09f;
         public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
@@ -1029,6 +1044,7 @@ namespace ArcaneBrigade
                 float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
                 State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : itemChoices[choice].Id, Tier = offerTier, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
+            OfferWiseHero();
             ApplyHeroOrder();
             ApplyKitPrices(); kitRarerRoll = false;
             if (!rollSpecial) return;

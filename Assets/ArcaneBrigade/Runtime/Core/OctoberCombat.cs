@@ -27,6 +27,11 @@ namespace ArcaneBrigade
             return unit.Faction == Faction.Companion && r == "Billy";
         }
         private float sassyBurstAt;
+        // Derpy Wolf (original): struck, the hero and friends move and attack 10% faster for 3s.
+        // Nekomata (original): every 4s a 25% chance of Run N' Stop - 3s of +20% speed and +40% attack speed.
+        private float derpyRushUntil = -1, nekoRunUntil = -1, nekoRollAt;
+        private float OctoberHeroPace => (ReferenceHero == "Derpy Wolf" && derpyRushUntil > Elapsed ? 1.1f : 1) * (ReferenceHero == "Nekomata" && nekoRunUntil > Elapsed ? 1.2f : 1);
+        private float OctoberCycle2(UnitState unit) => unit == null || unit.Faction == Faction.Enemy ? 1 : (ReferenceHero == "Derpy Wolf" && derpyRushUntil > Elapsed ? 1 / 1.1f : 1) * (unit.Faction == Faction.Champion && ReferenceHero == "Nekomata" && nekoRunUntil > Elapsed ? 1 / 1.4f : 1);
         private List<UnitState> OctoberUnits(string talent) => octoberTalents.TryGetValue(talent, out List<UnitState> list) ? list : noOctoberUnits;
         private bool HasOctober(string talent) => OctoberUnits(talent).Count > 0;
         private bool OctoberTrait(UnitState u, string talent) => u.Definition.ReferenceCompanion == talent || u == Champion && System.Array.IndexOf(catalog.OctoberMemories, talent) >= 0;
@@ -190,6 +195,7 @@ namespace ArcaneBrigade
                 if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Champion)
                 {
                     octoberInjuries++; octoberHurtAt = Elapsed;
+                    if (ReferenceHero == "Derpy Wolf") derpyRushUntil = Elapsed + 3;
                     if (HasOctober("Clown") && Elapsed >= octoberSpiritAt) { octoberSpiritAt = Elapsed + 1; Heal(1, e.Cause.Child("clown-comfort")); }
                     if (HasOctober("\"Misfortune\" Emily") && Elapsed >= octoberRebateAt) { octoberRebateAt = Elapsed + 2; Gold = RunSession.BoundedCounter((long)Gold + 3); }
                     if (HasOctober("\"Enduring Suffering\" Dorothy") && !octoberRecoveryUsed && ReferenceHero != "Card Queen") { octoberRecoveryUsed = true; Champion.Definition.Health = Mathf.Max(1, Champion.Definition.Health - 2); Heal(Champion.Definition.Health, e.Cause.Child("dorothy-recovery")); }
@@ -238,6 +244,7 @@ namespace ArcaneBrigade
             if (Elapsed >= octoberTickAt)
             {
                 octoberTickAt = Elapsed + 1;
+                if (ReferenceHero == "Nekomata" && Elapsed >= nekoRollAt) { nekoRollAt = Elapsed + 4; if (combatRandom.NextDouble() < .25) nekoRunUntil = Elapsed + 3; }
                 if (ReferenceHero == "Omnom") ApplyDamage(Champion, 1, Faction.Enemy, "Night Maw hunger", cause: NewCause(Champion.Id).Child("hunger"), injectedDamage: true, healthCost: true);
                 if (ReferenceHero == "Frosty" && movement.sqrMagnitude < .001f) Heal(Champion.Definition.Health * .05f, NewCause(Champion.Id).Child("frost-rest"));
                 // Steel Shell (original): every 3 seconds every enemy takes the hero's contact damage (on again under the identities)

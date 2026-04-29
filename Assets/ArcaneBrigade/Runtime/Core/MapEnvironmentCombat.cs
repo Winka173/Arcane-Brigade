@@ -495,11 +495,11 @@ namespace ArcaneBrigade
         {
             get
             {
-                MapEnvironmentState s = mapEnv; if (s == null) return 1;
+                MapEnvironmentState s = mapEnv; if (s == null) return OctoberHeroPace;
                 float scale = 1;
                 if (s.BoostKind == 0 && s.BoostUntil > Elapsed) scale *= MapEnvironmentRules.BoostSpeed;
                 if (s.Theme == MapTheme.ArchiveVault && s.RushUntil > Elapsed && s.SlowUntil <= Elapsed) scale *= MapEnvironmentRules.RushHero;
-                return scale;
+                return scale * OctoberHeroPace;
             }
         }
         /// <summary>Damage on an enemy: stamped by a letter, struck from inside the lamp light, or by a hero with the sharp boost.</summary>

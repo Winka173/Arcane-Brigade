@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public static string HeroCopy(string reference) => reference switch
         {
             "Mr. Work" => "Lantern Stride charges while walking. Start with +5 HP, +5% speed and 0.2 HP regeneration each second.",
-            "Derpy Wolf" => "Team speed +20%. Speed also becomes dodge and critical chance (+10%, up to +40%). Armor -0.15.",
+            "Derpy Wolf" => "Team speed +20%. Speed also becomes dodge and critical chance (+10%, up to +40%). When struck, you and your friends move and attack 10% faster for 3s. Armor -0.15.",
             "Sassy Senior" => "Never attacks. Taking damage makes her explode around herself; each Four-Leaf Clover friend makes it 50% stronger. Half your luck raises team damage (up to +50%). Hearts add 2% luck.",
             "Baggy" => "Stay rooted in combat and collect loot across the arena. Shop discount +30%. Cannot dodge; treasure detection -100%.",
             "Red Scale" => "Each drink bought grants 1 gold plus 1 per 10 maximum HP (up to 16; grows by wave). Each drink adds 2 maximum HP, but lowers armor by 0.02 and adds 2% more enemies (caps: 0.4 armor, 40% enemies).",
@@ -34,11 +34,11 @@ namespace ArcaneBrigade
             "Card Queen" => "Start each wave with 18 royal health; each injury takes exactly 1. Every injury pays gold and strikes every enemy on the field. Healing cannot refill it. Velvet Court friends +1 projectile.",
             "Bloom Shell" => "Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 HP, +5% speed and +0.15 armor.",
             "Belle" => "Three friend themes (Hearth, Oddity, Orchard) instead of two. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.",
-            "Wise" => "Shops offer memory friends. Buying one absorbs its support trait instead of adding a body; your last two memories fight beside you as paper exhibits. Each memory makes enemies 2% tougher (max 12%). Your positive personal modifiers are 25% stronger.",
+            "Wise" => "Shops also sell other Dream Seekers. Buy one and its gifts become yours (+50%); each makes enemies +10% health and 1% more. Refresh costs 5 more. Your positive personal bonuses are 25% stronger.",
             "Nicole" => "Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh adds 1 income and 1% luck for this run.",
             "Anby" => "Only attacks while transformed. Contact damage x3. Every dodge looses a forward lightning barrage. +20% dodge.",
             "Billy" => "Friends never attack on their own: on each of your critical hits, every friend has a 60% chance to fire its weapon. Your shots cannot split. +10% crit, 2 projectiles.",
-            "Nekomata" => "Move 20% faster, attack 30% faster. Every 3 seconds spent moving in combat grants 2 gold. Each friend reduces wave income by 1.",
+            "Nekomata" => "Move 20% faster, attack 30% faster. Sometimes she breaks into Run N' Stop: 3s of +20% speed and +40% attack speed. Every 3s moving pays 2 gold. Each friend: wave income -1.",
             "Burgerboo" => "Fire up to two delayed mortar shells. Shells cannot pierce. Start with +0.4 armor and +15% movement speed. Enemies move 20% faster.",
             "Original:LanternWeaver" => "Every fourth attack stitches three nearby enemies with a delayed lantern thread. The thread shares one damage budget.",
             "Original:HourglassStag" => "Every 6 seconds, briefly slow nearby ordinary enemies and release an expanding clock ring. Bosses keep moving.",

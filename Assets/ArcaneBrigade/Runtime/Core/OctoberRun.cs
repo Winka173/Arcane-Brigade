@@ -12,7 +12,14 @@ namespace ArcaneBrigade
     public sealed partial class RunSession
     {
         private string OctoberHero => catalog.Unit(State.ChampionId).ReferenceHero ?? "";
-        private bool OctoberAbsorbs => OctoberHero == "Wise" || OctoberHero == "Capped Gallant";
+        private bool OctoberAbsorbs => OctoberHero == "Capped Gallant"; // Wise now buys heroes, not friends' memories (WiseHeroItems)
+        /// <summary>The Dream Seekers Wise has bought (their reference names).</summary>
+        private List<string> WiseHeroRefs()
+        {
+            var refs = new List<string>();
+            foreach (ItemStack stack in State.Items) if (WiseHeroItems.Is(stack.Id)) { string r = catalog.Unit(stack.Id.Substring(WiseHeroItems.Prefix.Length))?.ReferenceHero; if (!string.IsNullOrEmpty(r)) refs.Add(r); }
+            return refs;
+        }
         private void ValidateOctoberState(RunSnapshot r)
         {
             if (r == null) return;
@@ -43,7 +50,15 @@ namespace ArcaneBrigade
             if (effect == ItemEffect.Health && hero) value -= Mathf.Min(20, State.OctoberFood * .5f * Talent("\"Art of Food\" Roshi"));
             if (effect == ItemEffect.EnemySpeed) value += .1f * Talent("\"Quick Production\" Tao");
             if (hero && effect == ItemEffect.Projectiles) value += Mathf.Min(3, Talent("Matchstick Head") * BondLevel("morning"));
-            switch (OctoberHero)
+            value += HeroInnate(OctoberHero, effect, scope, hero, ally);
+            // Wise: the bought heroes' innate bonuses are his too, positive ones +50%
+            if (OctoberHero == "Wise") foreach (string bought in WiseHeroRefs()) { float gift = HeroInnate(bought, effect, scope, hero, ally); value += gift > 0 ? gift * WiseHeroItems.GiftBoost : gift; }
+            return value;
+        }
+        private float HeroInnate(string reference, ItemEffect effect, ModifierScope scope, bool hero, bool ally)
+        {
+            float value = 0;
+            switch (reference)
             {
                 case "Mr. Work": if (hero && effect == ItemEffect.Health) value += 5; if (hero && effect == ItemEffect.MoveSpeed) value += .05f; if (hero && effect == ItemEffect.Heal) value += .2f; break;
                 case "Derpy Wolf": if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .2f; if (hero && effect == ItemEffect.Armor) value -= .15f; if (hero && (effect == ItemEffect.Crit || effect == ItemEffect.Dodge)) value += .1f + Mathf.Min(.3f, Mathf.Max(0, Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) * .5f); break; // speed becomes dodge and crit, like the original
@@ -68,7 +83,7 @@ namespace ArcaneBrigade
                     if (effect == ItemEffect.EnemyHealth) value += Mathf.Lerp(.12f, .35f, OctoberBalance.Late(State.Wave));
                     if (effect == ItemEffect.EnemyCount) value += Mathf.Lerp(.06f, .2f, OctoberBalance.Late(State.Wave));
                     break;
-                case "Wise": if (effect == ItemEffect.EnemyHealth) value += Mathf.Min(.12f, .02f * (State.AbsorbedSkills?.Count ?? 0)); break; // round 5: was +4% per memory, uncapped
+                case "Wise": { int bought = WiseHeroRefs().Count; if (effect == ItemEffect.EnemyHealth) value += .1f * bought; if (effect == ItemEffect.EnemyCount) value += .01f * bought; } break; // each hero bought: enemies +10% health, +1% more (original)
                 case "Nicole": if (effect == ItemEffect.Discount) value += .2f; if (effect == ItemEffect.Income) value += State.OctoberRefreshes; if (effect == ItemEffect.Luck) value += Mathf.Min(1, State.OctoberRefreshes * .01f); break;
                 case "Anby": if (hero && effect == ItemEffect.Dodge) value += .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 12; break;
                 case "Billy": if (hero && effect == ItemEffect.Crit) value += .1f; if (hero && effect == ItemEffect.Projectiles) value += 2; break;
