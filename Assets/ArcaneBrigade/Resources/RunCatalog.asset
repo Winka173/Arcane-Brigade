@@ -8987,6 +8987,423 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes: []
+  - Id: SpecimenJar
+    Name: Specimen Jar
+    Description: Team damage +8%, crit +5%.
+    Price: 35
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: ac5a94212d41b924fb01c5cb00bea692, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.08
+    - Effect: 8
+      Scope: 0
+      Value: 0.05
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-kills
+  - Id: FieldNotes
+    Name: Field Notes
+    Description: Hero damage +20%, luck +0.1.
+    Price: 55
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1528355404, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.2
+    - Effect: 16
+      Scope: 3
+      Value: 0.1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-kills
+  - Id: TrophyShelf
+    Name: Trophy Shelf
+    Description: Team damage +15%, wave income +4.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: bb75d477293caa54c8e78eb3612c68b0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.15
+    - Effect: 24
+      Scope: 3
+      Value: 4
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-kills
+  - Id: SlowSand
+    Name: Slow Sand
+    Description: Enemies 5% slower, attack range +10%.
+    Price: 35
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 7bd2fe264b8c39244a142aad2a98dbdb, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 36
+      Scope: 3
+      Value: -0.05
+    - Effect: 22
+      Scope: 0
+      Value: 0.1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-delay
+  - Id: PocketHourglass
+    Name: Pocket Hourglass
+    Description: Hero damage +25%.
+    Price: 55
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.25
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-delay
+  - Id: StoppedWatch
+    Name: Stopped Watch
+    Description: Team damage +15%, enemies 8% slower.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: ebea8408dd23f4c46bc7428253ddeb54, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.15
+    - Effect: 36
+      Scope: 3
+      Value: -0.08
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-delay
+  - Id: GraftingTwine
+    Name: Grafting Twine
+    Description: Friends' damage +10%, max HP +10.
+    Price: 35
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: bf798f1bd51e821479c8e706890d648d, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 13
+      Scope: 2
+      Value: 0.1
+    - Effect: 2
+      Scope: 1
+      Value: 10
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-merge
+  - Id: SeedCatalogue
+    Name: Seed Catalogue
+    Description: Friends' attack speed +10%, friends cost 10% less.
+    Price: 55
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 5d7bdc9dfc19e1a4aa4319d24dc66213, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 14
+      Scope: 2
+      Value: 0.1
+    - Effect: 39
+      Scope: 3
+      Value: 0.1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-merge
+  - Id: GardenShears
+    Name: Gardener's Shears
+    Description: Friends' damage +20%, attack speed +8%.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -843331076, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 13
+      Scope: 2
+      Value: 0.2
+    - Effect: 14
+      Scope: 2
+      Value: 0.08
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-merge
+  - Id: IceCubeTray
+    Name: Ice Cube Tray
+    Description: Team damage +6%, max HP +15.
+    Price: 35
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: e5fc528309ae745459f96120138ff1e5, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.06
+    - Effect: 2
+      Scope: 1
+      Value: 15
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+  - Id: FrostDoily
+    Name: Frost Doily
+    Description: Attack speed +10%, enemies 5% slower.
+    Price: 55
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 3ee6aaa3becdab64daa73be5f657b58d, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: 0.1
+    - Effect: 36
+      Scope: 3
+      Value: -0.05
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+  - Id: SnowGlobe
+    Name: Snow Globe
+    Description: Team damage +15%, enemies 8% slower.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 890c242605b69004ebc6ef8d05e1310d, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.15
+    - Effect: 36
+      Scope: 3
+      Value: -0.08
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+  - Id: RubberStamp
+    Name: Rubber Stamp
+    Description: Hero damage +10%, crit +6%.
+    Price: 35
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: afbcac6416a6c0442b34ba43b46d7951, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.1
+    - Effect: 8
+      Scope: 0
+      Value: 0.06
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-marks
+  - Id: AddressBook
+    Name: Address Book
+    Description: Shots pierce 1 more, ranged damage +3.
+    Price: 55
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 409440659, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 25
+      Scope: 0
+      Value: 1
+    - Effect: 21
+      Scope: 0
+      Value: 3
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-marks
+  - Id: WaxSealSet
+    Name: Wax Seal Set
+    Description: Team damage +15%, crit +8%.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -915763917, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.15
+    - Effect: 8
+      Scope: 0
+      Value: 0.08
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-marks
   Bonds:
   - Id: hearth
     Name: Hearth
