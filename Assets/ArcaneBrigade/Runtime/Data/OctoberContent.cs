@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             "Card King" => "Never attacks. Your own damage, attack speed, crit and projectile bonuses go to every friend; friends are 20% larger. Shops sell 2-star friends. More enemies appear.",
             "Sir Purrcival" => "+45% dodge, 50% less HP. Dodge cap: 90%. Dodges add treasure detection for this run. Crossing Knights deal double damage and +10 contact damage.",
             "Omnom" => "Lose 2 HP each second in battle. Each enemy defeated heals 2 HP. Regeneration and hearts do not heal. Everyone +30% speed, again at waves 3, 6 and 9. Monsters +20%.",
-            "Periwinky" => "At wave start, maximum HP follows saved gold (20–400). Buying a spiked relic recruits a Bristle Ball. Brigade damage -50%; contact damage +15.",
+            "Periwinky" => "The dream shop opens after every wave. At wave start, maximum HP follows saved gold (20–400). Buying a spiked relic recruits a Bristle Ball. Brigade damage -50%; contact damage +15.",
             "Clementie" => "Never attacks: run into enemies. Move 30% faster, double HP, pickup range -50%. Your speed becomes contact damage for you and every friend. Friends stay close. Team attack speed -25%.",
             "Card Queen" => "Start each wave with 12 royal health; each injury takes exactly 1. Every injury pays gold and strikes every enemy on the field. Healing cannot refill it. Velvet Court friends +1 projectile.",
             "Bloom Shell" => "Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 HP, +5% speed and +0.15 armor.",

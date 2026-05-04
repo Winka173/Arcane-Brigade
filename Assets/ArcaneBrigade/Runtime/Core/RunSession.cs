@@ -895,7 +895,7 @@ namespace ArcaneBrigade
             return true;
         }
         // Kept for read-model/API compatibility; availability now follows the saved 3–4-wave schedule, not held eggs.
-        public float AltarActivationChance => !MetaNoDreamShop && State.Wave >= State.NextSpecialShopWave ? 1 : 0;
+        public float AltarActivationChance => !MetaNoDreamShop && (State.Wave >= State.NextSpecialShopWave || OctoberHero == "Periwinky") ? 1 : 0;
 
         private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && OctoberItemEligible(item) && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && ReviewBalance.ExclusivePool(item) == pool) && StackCount(item.Id) < item.StackLimit;
 
@@ -1055,7 +1055,7 @@ namespace ArcaneBrigade
             State.RerollsThisShop = 0;
             State.SpecialOffers.Clear();
             if (MetaNoDreamShop) return; // Night Pact: no dream market
-            if (State.Wave < State.NextSpecialShopWave) return;
+            if (State.Wave < State.NextSpecialShopWave && OctoberHero != "Periwinky") return; // original: Periwinky always finds the Dream Eater's Altar
             RollSpecialOffers();
             State.NextSpecialShopWave = BoundedCounter((long)State.Wave + 3 + Next(ref State.ShopRandom, 2));
         }
