@@ -31,7 +31,7 @@ namespace ArcaneBrigade
             ["KiteAdmiral"] = 1.3f, ["SundaeDuchess"] = 1.3f, ["BonsaiClocksmith"] = 1.3f, ["JugglingJester"] = 1.3f, ["BellDiver"] = 1.15f,
         };
         /// <summary>Card Queen (Ivory Sovereign) royal health: each injury costs exactly 1. 12 before round 3, 16 in round 3 (still 1/6).</summary>
-        public const int CardQueenHealth = 18;
+        public const int CardQueenHealth = 12; // original: 12 royal health
         public static float HeroPower(string hero) => hero != null && Power.TryGetValue(hero, out float value) ? value : 3f;
         public static float HeroVitality(string hero) => hero != null && Vitality.TryGetValue(hero, out float value) ? value : 1f;
         public static float DamageSlope(bool companion) => companion ? .3f : .6f;

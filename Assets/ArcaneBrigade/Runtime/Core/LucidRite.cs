@@ -7,6 +7,8 @@ namespace ArcaneBrigade
     {
         /// <summary>Lucid rites performed this run (at most RunSession.LucidMax).</summary>
         public int LucidRites;
+        /// <summary>Drinks owned when this shop opened (Red Scale: each drink bought here adds 10% monsters to the next fight).</summary>
+        public int DrinksBeforeShop;
     }
 
     /// <summary>The fourth form (owner, 22/10/2026): a 3-star friend can wake LUCID at the dream shop's altar from wave 12,

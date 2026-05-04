@@ -1038,7 +1038,7 @@ namespace ArcaneBrigade
             {
                 if (relicQuiltUntil > Elapsed) return;
                 if (CandleSafe) return; // Second Candle: a moment untouchable after getting back up
-                if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .75f : .6f))
+                if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .9f : .6f))
                 {
                     events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
                     if (RelicCount(RelicMechanic.DodgeMending) > 0 && combatRandom.NextDouble() < .3) Heal(10 * RelicCount(RelicMechanic.DodgeMending), NewCause(target.Id).Child("curio-dodge"));

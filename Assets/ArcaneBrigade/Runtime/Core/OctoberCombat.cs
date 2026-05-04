@@ -23,7 +23,7 @@ namespace ArcaneBrigade
         private bool OctoberBlocksAttack(UnitState unit)
         {
             string r = ReferenceHero;
-            if (unit.Faction == Faction.Champion) return r == "Card King" || r == "Sassy Senior" || r == "Clementie" || r == "Anby" && !HeroAwakening;
+            if (unit.Faction == Faction.Champion) return r == "Card King" || r == "Sassy Senior" || r == "Clementie" || r == "Anby" && !HeroAwakening || r == "Frosty" && octoberMovement.sqrMagnitude < .001f;
             return unit.Faction == Faction.Companion && r == "Billy";
         }
         private float sassyBurstAt;
@@ -31,7 +31,8 @@ namespace ArcaneBrigade
         // Nekomata (original): every 4s a 25% chance of Run N' Stop - 3s of +20% speed and +40% attack speed.
         private float derpyRushUntil = -1, nekoRunUntil = -1, nekoRollAt;
         private float OctoberHeroPace => (ReferenceHero == "Derpy Wolf" && derpyRushUntil > Elapsed ? 1.1f : 1) * (ReferenceHero == "Nekomata" && nekoRunUntil > Elapsed ? 1.2f : 1);
-        private float OctoberCycle2(UnitState unit) => unit == null || unit.Faction == Faction.Enemy ? 1 : (ReferenceHero == "Derpy Wolf" && derpyRushUntil > Elapsed ? 1 / 1.1f : 1) * (unit.Faction == Faction.Champion && ReferenceHero == "Nekomata" && nekoRunUntil > Elapsed ? 1 / 1.4f : 1);
+        private float OctoberCycle2(UnitState unit) => unit == null || unit.Faction == Faction.Enemy ? 1 : (ReferenceHero == "Derpy Wolf" && derpyRushUntil > Elapsed && (unit.Faction == Faction.Champion || System.Array.IndexOf(unit.Definition.Tags, "gear") >= 0) ? 1 / 1.1f : 1)
+            * (unit.Faction == Faction.Champion && ReferenceHero == "Nekomata" && nekoRunUntil > Elapsed ? 1 / 1.4f : 1) * (unit.Faction == Faction.Champion && ReferenceHero == "Frosty" && octoberMovement.sqrMagnitude >= .001f ? 1 / 1.4f : 1);
         private List<UnitState> OctoberUnits(string talent) => octoberTalents.TryGetValue(talent, out List<UnitState> list) ? list : noOctoberUnits;
         private bool HasOctober(string talent) => OctoberUnits(talent).Count > 0;
         private bool OctoberTrait(UnitState u, string talent) => u.Definition.ReferenceCompanion == talent || u == Champion && System.Array.IndexOf(catalog.OctoberMemories, talent) >= 0;
@@ -156,8 +157,10 @@ namespace ArcaneBrigade
                 point = end;
             }
         }
+        private Vector2 octoberMovement; // the hero's last steering (Frosty: still or moving)
         private void ProcessOctoberCombat(float delta, Vector2 movement)
         {
+            octoberMovement = movement;
             if (!catalog.EnableHeroMechanics || !Champion.Alive || Phase != RunPhase.Combat) return;
             int original = events.Count;
             for (int i = 0; i < original; i++)
@@ -170,7 +173,7 @@ namespace ArcaneBrigade
                     {
                         foreach (UnitState mage in OctoberUnits("Grey Mage")) OctoberEcho(mage, .65f, e.Cause);
                         if (ReferenceHero == "Billy" && e.Critical)
-                            foreach (UnitState ally in units.ToArray()) if (ally.Alive && ally.Faction == Faction.Companion && combatRandom.NextDouble() < .6) OctoberEcho(ally, 1.15f, e.Cause);
+                            foreach (UnitState ally in units.ToArray()) if (ally.Alive && ally.Faction == Faction.Companion && combatRandom.NextDouble() < .5) OctoberEcho(ally, 1.15f, e.Cause); // original: 50%
                     }
                     if (source != null && OctoberTrait(source, "\"Naming Demon\" Yan") && source.OctoberAttacks % 3 == 0) OctoberEcho(source, .25f, e.Cause);
                     if (source != null && OctoberTrait(source, "Original:TeacupCricket") && source.OctoberAttacks % 5 == 0) OctoberEcho(source, .4f, e.Cause);
@@ -182,14 +185,14 @@ namespace ArcaneBrigade
                     if (OctoberTrait(source, "Camo Shroom") && !e.Subject.Definition.IsBoss) e.Subject.ChillUntil = Mathf.Max(e.Subject.ChillUntil, Elapsed + .4f);
                     if (OctoberTrait(source, "Attractive Witch") && !e.Subject.Definition.IsBoss) { e.Subject.Position = ClampPosition(Vector2.MoveTowards(e.Subject.Position, source.Position, OctoberBalance.Push(e.Subject.Definition, .25f)), e.Subject.Definition.Radius); spatial.Move(e.Subject); }
                     if ((OctoberTrait(source, "Mummy") || ReferenceHero == "Gulpy" && (source == Champion || System.Array.IndexOf(source.Definition.Tags, "archive") >= 0)) && octoberPoison.Count < 128)
-                        octoberPoison.Add(new PoisonNote { Source = source, Target = e.Subject, At = Elapsed + 1, Damage = ReferenceHero == "Gulpy" && !e.Subject.Definition.IsBoss ? Mathf.Max(source.Definition.Weapon.Damage * .25f, e.Subject.Definition.Health * .06f) : source.Definition.Weapon.Damage * (ReferenceHero == "Gulpy" ? .5f : .25f), Cause = e.Cause.Child("companion-poison") });
+                        octoberPoison.Add(new PoisonNote { Source = source, Target = e.Subject, At = Elapsed + 1, Damage = ReferenceHero == "Gulpy" && !e.Subject.Definition.IsBoss ? Mathf.Max(source.Definition.Weapon.Damage * .25f, e.Subject.Definition.Health * .1f) : source.Definition.Weapon.Damage * (ReferenceHero == "Gulpy" ? .5f : .25f), Cause = e.Cause.Child("companion-poison") });
                     if (OctoberTrait(source, "Fierce Fighter") && source.OctoberAttacks % 3 == 0 && Elapsed >= source.OctoberNext) { source.OctoberNext = Elapsed + 1; Field(ExpandedFieldKind.Echo, source, e.Position, e.Direction, .8f, source.Definition.Weapon.Damage * .15f, .1f, .2f, e.Cause.Child("fighter-blast")); }
                     if (OctoberTrait(source, "TV Head") && e.Critical && Elapsed >= octoberRebateAt && combatRandom.NextDouble() < .25) { octoberRebateAt = Elapsed + .8f; Gold = RunSession.BoundedCounter((long)Gold + 1); }
                 }
                 if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy)
                 {
                     if (source != null) source.OctoberKills++;
-                    if (ReferenceHero == "Omnom") Heal(1, e.Cause.Child("night-maw-meal"));
+                    if (ReferenceHero == "Omnom") Heal(2, e.Cause.Child("night-maw-meal")); // original: 2 a kill
                     if (source != null && OctoberTrait(source, "Peach") && e.Cause.Depth == 0 && combatRandom.NextDouble() < .3) Heal(1, e.Cause.Child("peach-mercy"));
                 }
                 if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Champion)
@@ -245,8 +248,8 @@ namespace ArcaneBrigade
             {
                 octoberTickAt = Elapsed + 1;
                 if (ReferenceHero == "Nekomata" && Elapsed >= nekoRollAt) { nekoRollAt = Elapsed + 4; if (combatRandom.NextDouble() < .25) nekoRunUntil = Elapsed + 3; }
-                if (ReferenceHero == "Omnom") ApplyDamage(Champion, 1, Faction.Enemy, "Night Maw hunger", cause: NewCause(Champion.Id).Child("hunger"), injectedDamage: true, healthCost: true);
-                if (ReferenceHero == "Frosty" && movement.sqrMagnitude < .001f) Heal(Champion.Definition.Health * .05f, NewCause(Champion.Id).Child("frost-rest"));
+                if (ReferenceHero == "Omnom") ApplyDamage(Champion, 2, Faction.Enemy, "Night Maw hunger", cause: NewCause(Champion.Id).Child("hunger"), injectedDamage: true, healthCost: true);
+                if (ReferenceHero == "Frosty" && movement.sqrMagnitude < .001f) Heal(Champion.Definition.Health * .15f, NewCause(Champion.Id).Child("frost-rest")); // original: 15% a second while still
                 // Steel Shell (original): every 3 seconds every enemy takes the hero's contact damage (on again under the identities)
                 if (ReferenceHero == "Steel Shell" && Mathf.FloorToInt(Elapsed) % 3 == 0)
                 {

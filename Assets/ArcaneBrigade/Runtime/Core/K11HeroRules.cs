@@ -11,6 +11,7 @@ namespace ArcaneBrigade
             if (companion.GiftOnly) return false;
             if (champion.HeroMechanic == HeroMechanic.SoloMaw && champion.ReferenceHero != "Capped Gallant") return false;
             if (!string.IsNullOrEmpty(companion.ExclusiveHero)) return companion.ExclusiveHero == champion.ReferenceHero;
+            if (champion.ReferenceHero == "Belle") return true; // original: every friend may appear in Belle's store
             // every hero, the host included, recruits only from its own themes: its fixed pool (Docs/Content_Expansion_Pools.md)
             // rival-bond rule (content expansion v5): on a shared theme pair the partner's signature friends (Common to Rare) stay out
             if (companion.Rarity <= ItemRarity.Rare && companion.Tags.Length > 1 && Array.IndexOf(champion.RecruitThemes, "rival-" + companion.Tags[1]) >= 0) return false;

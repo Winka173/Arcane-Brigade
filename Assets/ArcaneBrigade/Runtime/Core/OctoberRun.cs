@@ -61,34 +61,35 @@ namespace ArcaneBrigade
             switch (reference)
             {
                 case "Mr. Work": if (hero && effect == ItemEffect.Health) value += 5; if (hero && effect == ItemEffect.MoveSpeed) value += .05f; if (hero && effect == ItemEffect.Heal) value += .2f; break;
-                case "Derpy Wolf": if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .2f; if (hero && effect == ItemEffect.Armor) value -= .15f; if (hero && (effect == ItemEffect.Crit || effect == ItemEffect.Dodge)) value += .1f + Mathf.Min(.3f, Mathf.Max(0, Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) * .5f); break; // speed becomes dodge and crit, like the original
+                case "Derpy Wolf": if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .3f; if (hero && effect == ItemEffect.Armor) value -= .15f; if (hero && (effect == ItemEffect.Crit || effect == ItemEffect.Dodge)) value += Mathf.Min(.6f, Mathf.Max(0, Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))); break; // original: brigade speed +30; each 1% speed is +1% dodge and crit
                 case "Sassy Senior": if ((hero || ally) && effect == ItemEffect.Damage) value += Mathf.Min(.5f, Mathf.Max(0, Bonus(ItemEffect.Luck)) * .5f); break;
                 case "Baggy": if (effect == ItemEffect.Discount) value += .3f; if (hero && effect == ItemEffect.Pickup) value += 1000; if (hero && (effect == ItemEffect.Dodge || effect == ItemEffect.TreasureDetection)) value -= 1; break;
-                case "Red Scale": if (hero && effect == ItemEffect.Health) value += State.OctoberDrinks * 2; if (hero && effect == ItemEffect.Armor) value -= Mathf.Min(.4f, State.OctoberDrinks * .02f); if (effect == ItemEffect.EnemyCount) value += Mathf.Min(.4f, State.OctoberDrinks * .02f); break;
-                case "Gulpy": if ((hero || ally) && effect == ItemEffect.MoveSpeed || effect == ItemEffect.EnemySpeed) value += .15f; if (hero && effect == ItemEffect.Health) value += State.OctoberChests; break;
+                case "Red Scale": if (hero && effect == ItemEffect.Health) value += State.OctoberDrinks * 2; if (hero && effect == ItemEffect.Armor) value -= Mathf.Min(.6f, State.OctoberDrinks * .05f); if (effect == ItemEffect.EnemyCount) value += .1f * Mathf.Max(0, State.OctoberDrinks - State.DrinksBeforeShop); break; // original: each drink armor -2, HP +2, next fight +10% monsters
+                case "Gulpy": if ((hero || ally) && effect == ItemEffect.MoveSpeed || effect == ItemEffect.EnemySpeed) value += .3f; if (hero && effect == ItemEffect.Health) value += State.OctoberChests; break;
                 case "Steel Shell": if (hero && effect == ItemEffect.CollisionDamage) value += 3 * BondLevel("gauntlet"); break;
                 case "Box Shell": if ((hero || ally) && effect == ItemEffect.RangedDamage) value += 3; if ((hero || ally) && effect == ItemEffect.MeleeDamage) value -= 2; break;
-                case "Omnom": if ((hero || ally) && effect == ItemEffect.MoveSpeed || effect == ItemEffect.EnemySpeed) value += Mathf.Min(.5f, .1f * (1 + State.Wave / 4)); break;
-                case "Periwinky": if ((hero || ally) && effect == ItemEffect.Damage) value -= .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 10; break;
+                case "Omnom": { int steps = 1 + (State.Wave >= 3 ? 1 : 0) + (State.Wave >= 6 ? 1 : 0) + (State.Wave >= 9 ? 1 : 0); if ((hero || ally) && effect == ItemEffect.MoveSpeed || effect == ItemEffect.EnemySpeed) value += .3f * steps; if (effect == ItemEffect.EnemyCount) value += .2f; } break; // original: everyone +30 speed, again at waves 3/6/9; monsters +20%
+                case "Periwinky": if ((hero || ally) && effect == ItemEffect.Damage) value -= .5f; if (hero && effect == ItemEffect.CollisionDamage) value += 15; break; // original: brigade damage -50%, collision +15
                 case "Jade Cabbage": if (hero && effect == ItemEffect.Projectiles) value += Mathf.Min(6, State.LeafPurchases); if (hero && effect == ItemEffect.Health) value -= State.LeafPurchases * 2; break;
-                case "The Big Pot": if (hero && effect == ItemEffect.CollisionDamage) value += 8; if (hero && effect == ItemEffect.Armor) value += BondLevel("morning") * .15f; if (effect == ItemEffect.EnemySpeed) value += .1f; break;
+                case "The Big Pot": if (hero && effect == ItemEffect.CollisionDamage) value += 8; if (hero && effect == ItemEffect.Armor) value += BondLevel("morning") * .15f; if (effect == ItemEffect.EnemySpeed) value += .15f; break; // original: monsters +15% speed
                 case "Porcelain Doll": if (hero && effect == ItemEffect.HealCorrection) value += 1.5f; if (hero && effect == ItemEffect.Armor) value -= .25f; if (hero && effect == ItemEffect.Heal) value += BondLevel("hide") * .4f; break;
-                case "Slippy": if ((hero || ally) && effect == ItemEffect.Damage) value -= .35f; if ((hero || ally) && effect == ItemEffect.Knockback) value += 1; if (effect == ItemEffect.Income) value += 4 * BondLevel("gear"); if (effect == ItemEffect.TreasureDetection) value += .2f; break;
-                case "Card King": if (effect == ItemEffect.EnemyCount) value += .15f; break;
-                case "Sir Purrcival": if (hero && effect == ItemEffect.Dodge) value += .35f; if (hero && effect == ItemEffect.HealthCorrection) value -= .35f; break;
-                case "Clementie": if (hero && effect == ItemEffect.HealthCorrection) value += .5f; if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if ((hero || ally) && effect == ItemEffect.AttackSpeed) value -= .25f; break;
+                case "Slippy": if ((hero || ally) && effect == ItemEffect.Damage) value -= .8f; if ((hero || ally) && effect == ItemEffect.Knockback) value += 2; if (effect == ItemEffect.Income) value += 5 * BondLevel("gear"); if (effect == ItemEffect.TreasureDetection) value += .3f; break; // original: brigade damage -80%, knockback +200%, treasure +30, +5 income per Clockwork bond
+                case "Card King": if (effect == ItemEffect.EnemyCount) value += .3f; break; // original: monsters +30%
+                case "Sir Purrcival": if (hero && effect == ItemEffect.Dodge) value += .45f; if (hero && effect == ItemEffect.HealthCorrection) value -= .5f; break; // original: dodge +45%, health correction -50%
+                case "Clementie": if (hero && effect == ItemEffect.HealthCorrection) value += 1f; if (hero && effect == ItemEffect.MoveSpeed) value += .3f; if (hero && effect == ItemEffect.Pickup) value -= .5f; // original: speed +30, pickup -50%, health correction +100%
+                     if ((hero || ally) && effect == ItemEffect.AttackSpeed) value -= .25f; break;
                 case "Bloom Shell": if (hero && effect == ItemEffect.Health) value += 10; if ((hero || ally) && (effect == ItemEffect.RangedDamage || effect == ItemEffect.MeleeDamage)) value += 2; if (hero && effect == ItemEffect.Armor) value += .15f; if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .05f; break;
                 case "Belle":
-                    // The broad pool needs time to form a build under the recruitment quotas.
-                    if (effect == ItemEffect.EnemyHealth) value += Mathf.Lerp(.12f, .35f, OctoberBalance.Late(State.Wave));
-                    if (effect == ItemEffect.EnemyCount) value += Mathf.Lerp(.06f, .2f, OctoberBalance.Late(State.Wave));
+                    // original: every friend may appear (K11HeroRules); monsters +30% and +60% health, +5% and +10% more each wave
+                    if (effect == ItemEffect.EnemyHealth) value += .6f + .1f * Mathf.Max(0, State.Wave - 1);
+                    if (effect == ItemEffect.EnemyCount) value += .3f + .05f * Mathf.Max(0, State.Wave - 1);
                     break;
                 case "Wise": { int bought = WiseHeroRefs().Count; if (effect == ItemEffect.EnemyHealth) value += .1f * bought; if (effect == ItemEffect.EnemyCount) value += .01f * bought; } break; // each hero bought: enemies +10% health, +1% more (original)
                 case "Nicole": if (effect == ItemEffect.Discount) value += .2f; if (effect == ItemEffect.Income) value += State.OctoberRefreshes; if (effect == ItemEffect.Luck) value += Mathf.Min(1, State.OctoberRefreshes * .01f); break;
                 case "Anby": if (hero && effect == ItemEffect.Dodge) value += .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 12; break;
                 case "Billy": if (hero && effect == ItemEffect.Crit) value += .1f; if (hero && effect == ItemEffect.Projectiles) value += 2; break;
                 case "Nekomata": if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if (hero && effect == ItemEffect.AttackSpeed) value += .3f; if (effect == ItemEffect.Income) value -= ActiveRoster.Count; break;
-                case "Burgerboo": if (hero && effect == ItemEffect.Armor) value += .4f; if (hero && effect == ItemEffect.MoveSpeed) value += .15f; if (effect == ItemEffect.EnemySpeed) value += .2f; break;
+                case "Burgerboo": if (hero && effect == ItemEffect.Armor) value += .4f; if (hero && effect == ItemEffect.MoveSpeed) value += .5f; if (hero && effect == ItemEffect.Pickup) value -= .5f; if (effect == ItemEffect.EnemySpeed) value += .75f; break; // original: speed +50, pickup -50%, monsters +75% speed
             }
             return value;
         }
@@ -207,7 +208,7 @@ namespace ArcaneBrigade
                 if (Tagged("rune") && Talent("Little Witch") > 0) { w.Cooldown *= 1.15f; w.ProjectileVisualWidth *= 1.3f; w.ProjectilePierce += 2; }
                 if (Tagged("shoe") && Talent("Monkey King") > 0) { w.Cooldown /= 1.1f; unit.Speed *= 1.1f; }
                 if (Tagged("lantern-guild") && Talent("Original:SpindleWren") > 0) w.Range *= 1.08f;
-                if (Tagged("knight") && OctoberHero == "Sir Purrcival") w.Damage *= 1.3f;
+                if (Tagged("knight") && OctoberHero == "Sir Purrcival") { w.Damage *= 2f; unit.CollisionDamage += 10; } // original: Knight friends +100% damage, +10 collision
                 if (Tagged("regal") && OctoberHero == "Card Queen") w.ProjectileCount++;
                 if (Talent("\"Formatting Pixie\" Quentin") > 0) { unit.BodyHeight *= .88f; unit.Radius *= .88f; }
                 if (OctoberHero == "Card King")
@@ -230,7 +231,7 @@ namespace ArcaneBrigade
             if (OctoberHero == "Burgerboo") { CombatCatalog.Champion.Weapon.ProjectileCount = Mathf.Min(2, CombatCatalog.Champion.Weapon.ProjectileCount); CombatCatalog.Champion.Weapon.ProjectilePierce = 0; }
             if (OctoberHero == "Clementie") { CombatCatalog.CompanionLeash = 1.8f; CombatCatalog.Champion.CollisionDamage += CombatCatalog.Champion.Speed * 4f; } // she never attacks: her body does
             if (OctoberHero == "Anby") CombatCatalog.Champion.CollisionDamage *= 3; // she only attacks while transformed; her launch (contact) does the work
-            if (OctoberHero == "Frosty") { CombatCatalog.Champion.BodyHeight *= 1 + Mathf.Min(.35f, ActiveRoster.Count * .02f); CombatCatalog.Champion.Weapon.ProjectileSplit = Mathf.Max(1, CombatCatalog.Champion.Weapon.ProjectileSplit); }
+            if (OctoberHero == "Frosty") { CombatCatalog.Champion.BodyHeight *= 1 + Mathf.Min(.35f, ActiveRoster.Count * .02f); CombatCatalog.Champion.Weapon.ProjectileSplit = Mathf.Max(3, CombatCatalog.Champion.Weapon.ProjectileSplit); } // original: bullet division +3
         }
     }
 }

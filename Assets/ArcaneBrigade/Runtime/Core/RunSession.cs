@@ -397,7 +397,7 @@ namespace ArcaneBrigade
                 CombatCatalog.PassiveHeal *= K10StatRules.Factor(Bonus(ItemEffect.HealCorrection));
                 CombatCatalog.Armor *= K10StatRules.Factor(Bonus(ItemEffect.ArmorCorrection));
                 CombatCatalog.Armor = Mathf.Min(2.5f, OctoberBalance.Soften(CombatCatalog.Armor, .8f, Mathf.Lerp(1, .25f, OctoberBalance.Late(State.Wave))));
-                CombatCatalog.Dodge = Mathf.Clamp(Bonus(ItemEffect.Dodge), 0, OctoberHero == "Sir Purrcival" ? .75f : .6f);
+                CombatCatalog.Dodge = Mathf.Clamp(Bonus(ItemEffect.Dodge), 0, OctoberHero == "Sir Purrcival" ? .9f : .6f); // original: his dodge cap is 90%
                 CombatCatalog.HeartHealing = Bonus(ItemEffect.HeartHealing);
                 CombatCatalog.ChestQuality = Bonus(ItemEffect.ChestQuality) + Mathf.Max(0, Bonus(ItemEffect.TreasureDetection)) * 0.25f;
                 CombatCatalog.EnemyBudget = Mathf.CeilToInt(CombatCatalog.EnemyBudget * K10StatRules.Factor(Bonus(ItemEffect.EnemyCount), 0.2f, 4));
@@ -659,6 +659,7 @@ namespace ArcaneBrigade
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
             SettleSecretContracts();
             State.Phase = SessionPhase.Shop;
+            State.DrinksBeforeShop = State.OctoberDrinks; // Red Scale: drinks bought in this shop make the next fight busier
             State.SpecialShopVisited = false;
             State.NewRecruitsThisWave = 0;
             State.NewSpeciesRecruitsThisWave = 0;
@@ -841,7 +842,8 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public int RerollCost => MetaFreeRefresh ? 0 : KitRerollCost(RerollBaseCost) + (OctoberHero == "Wise" ? 5 : 0); // Wise: refresh +5 (original)
+        // originals: Wise and Nicole refresh +5 (Nicole's own discount line adds 2 of it), Belle -3 (her line takes ~1)
+        public int RerollCost => MetaFreeRefresh ? 0 : Mathf.Max(0, KitRerollCost(RerollBaseCost) + (OctoberHero == "Wise" ? 5 : OctoberHero == "Nicole" ? 3 : OctoberHero == "Belle" ? -2 : 0));
         // balance pass 19/10/2026: the 2 + 2n refresh fee follows half the shop's price stage once that exceeds x2 (unchanged early)
         private float RerollStage => Mathf.Max(1, StagePriceFactor * .5f);
         // the stage factor applies after the relic/talent/hero adjustments, so Ink Feather and Mary still reach the 1-gold minimum
