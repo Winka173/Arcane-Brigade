@@ -58,6 +58,7 @@ MonoBehaviour:
   - resolve
   - fam-survival
   - rival-hide
+  - gauntlet
   HeroMechanic: 9
   CompanionModifiers: []
   Price: 18

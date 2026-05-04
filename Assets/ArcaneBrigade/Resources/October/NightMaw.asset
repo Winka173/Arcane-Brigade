@@ -54,6 +54,7 @@ MonoBehaviour:
   - astral
   - gauntlet
   - fam-food
+  - mask
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

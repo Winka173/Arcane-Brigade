@@ -55,6 +55,7 @@ MonoBehaviour:
   - frost
   - hat
   - fam-shop
+  - regal
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

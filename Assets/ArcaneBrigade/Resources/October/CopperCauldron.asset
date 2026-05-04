@@ -55,6 +55,7 @@ MonoBehaviour:
   - oddity
   - resolve
   - fam-collision
+  - morning
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

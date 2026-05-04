@@ -58,6 +58,7 @@ MonoBehaviour:
   - shoe
   - fam-speed
   - rival-static-club
+  - gear
   HeroMechanic: 8
   CompanionModifiers: []
   Price: 24
