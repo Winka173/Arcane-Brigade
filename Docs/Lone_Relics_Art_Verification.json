@@ -1,0 +1,198 @@
+{
+  "tool": "painted",
+  "cleanup": "Owner approved alpha cleanup and layout; explicit 512x512 relic delivery",
+  "files": [
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/EmptyChairs.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        108,
+        460,
+        404
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/IronResolve.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        60,
+        460,
+        452
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/LastLight.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        52,
+        460,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/LoneLantern.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        79,
+        52,
+        432,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/NightAlone.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        89,
+        52,
+        423,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/SelfPortrait.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        130,
+        52,
+        381,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/SingleTicket.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        98,
+        460,
+        413
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/SoloOverture.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        70,
+        460,
+        441
+      ]
+    }
+  ]
+}

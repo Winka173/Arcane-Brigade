@@ -1,0 +1,239 @@
+{
+  "method": "painted; owner-authorized alpha cleanup and cell alignment",
+  "files": [
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_CabinetMimic.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_ChandelierCrawler.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_ClipMite.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_InkToad.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1182
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_LampshadeJelly.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1182
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SackGolem.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1182
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SealHound.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SofaGlutton.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_StampTick.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_TicketMoth.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1182
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_UmbrellaStalker.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_WickImp.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "grid": [
+        4,
+        4
+      ],
+      "occupied_cells": 16,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.121
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Shop_ExitDoor.png",
+      "width": 1774,
+      "height": 887,
+      "mode": "RGBA",
+      "grid": [
+        2,
+        1
+      ],
+      "occupied_cells": 2,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1195
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "tool": "painted",
+  "jobs": [
+    {
+      "name": "LoneLantern",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/LoneLantern.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nLoneLantern.png: a single small brass hand-lantern burning bright amber, its glass a little cracked, a short frayed ribbon tied to the handle; the only warm thing in the picture.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-c3de4ff2-77ab-4ac9-a9f8-57d7e9ba0fed.png"
+    },
+    {
+      "name": "EmptyChairs",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/EmptyChairs.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nEmptyChairs.png: a row of three tiny lacquered waiting-room chairs seen together as one cohesive icon, all empty, middle chair turned slightly away; faint amber glow on seats as if someone just stood up.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-0d6294a3-c33d-46ea-8ca3-dbde827b9cbd.png"
+    },
+    {
+      "name": "SingleTicket",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/SingleTicket.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nSingleTicket.png: one old paper train ticket, punched once with a star-shaped hole, edge torn from booklet, thin crimson thread through punch; blank paper, no writing.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-047f0514-9406-4fd1-b470-e31b71b112f4.png"
+    },
+    {
+      "name": "NightAlone",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/NightAlone.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nNightAlone.png: crescent moon carved from pale bone resting in a small velvet-lined trinket box, one candle-flame reflected on it, deep night-blue around it.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-c01942c7-9980-4b90-b004-b6f921b561b0.png"
+    },
+    {
+      "name": "SelfPortrait",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/SelfPortrait.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nSelfPortrait.png: a small oval portrait frame of gilt filigree hanging slightly crooked; inside only soft warm-coloured silhouette of figure with lantern glow at heart, no face details.",
+      "correction": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nSelfPortrait.png: a small oval portrait frame of gilt filigree hanging slightly crooked; inside only soft warm-coloured silhouette of figure with lantern glow at heart, no face details.\nPrecise-object-edit of reference. Keep the exact portrait, filigree frame, warm faceless silhouette and heart lantern. Fix only top suspension and framing: show the COMPLETE hanging ring or a short closed chain loop, entirely within canvas, with ample transparent margin above and around it. Do not extend chain beyond canvas or leave any clipped ribbon. Scale entire assembled icon down to fit within central 75% of square canvas. All components must be complete and never touch edges. Transparent RGBA.",
+      "generated_source": "ArtSource/exec-4609e13b-ec8c-4a0b-b58d-748d5715113c.png"
+    },
+    {
+      "name": "LastLight",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/LastLight.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nLastLight.png: candle stub burned almost to end in brass saucer, flame suddenly tall and fierce, white-gold core, wax running over edge.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-a80bfbc5-8fce-4f3f-909c-f63ef4bdc868.png"
+    },
+    {
+      "name": "IronResolve",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/IronResolve.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nIronResolve.png: old iron key-ring holding one heavy key and small iron shield charm, worn smooth, bound with strip of dark leather.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-b1ac4514-176e-4b77-a16c-76ea78166b8b.png"
+    },
+    {
+      "name": "SoloOverture",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/LoneRelics/SoloOverture.png",
+      "prompt": "Arcane Brigade Waiting Realm RELIC ICON, hand-painted storybook rendering, warm ink line, soft painterly shading: dream-like waiting room / after-hours toy shop, dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. Single centered object or cohesive described assemblage, filling about80% square512x512 canvas with clear10% margins. Truly transparent RGBA background, no frame/card/badge behind object, no text letters numbers, no floor/cast shadow. Slight three-quarter view. Strong simple silhouette readable64px, calm inner detail, single upper-left light. Lone Line mood: solitary, quietly proud, single warm light against dark, deep indigo/brass/candle amber with object's accent colour.\nSoloOverture.png: RAINBOW rarity: conductor baton of polished ebony with brass ferrule laid across single sheet of blank music paper; soft prismatic rainbow light shimmering along baton itself, paper edges catching colours. No printed staves, notes, letters or glyphs.",
+      "correction": null,
+      "generated_source": "ArtSource/exec-94370981-472b-446d-8a1c-d9def3aec7c8.png"
+    }
+  ]
+}
