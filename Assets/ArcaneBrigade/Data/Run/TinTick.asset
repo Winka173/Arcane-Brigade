@@ -39,7 +39,8 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - clock
-  - static-club
+  - mask
+  - rune
   Passive: 4
   PassiveStrength: 0.5
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nHero maximum HP +4 per talent.

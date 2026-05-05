@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - tidal
-  - knight
+  - resolve
   Passive: 0
   PassiveStrength: 0.5
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nWait 30 seconds before attacking.

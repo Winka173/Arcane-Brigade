@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - frost
-  - hide
+  - resolve
   Passive: 0
   PassiveStrength: 0
   Description: "COMPANION / PRISMATIC / 1 STAR\r\nTALENT\nWave income +15 per talent.

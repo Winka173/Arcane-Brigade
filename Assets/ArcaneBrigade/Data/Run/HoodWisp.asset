@@ -39,6 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - frost
+  - hare
   - root
   Passive: 0
   PassiveStrength: 1

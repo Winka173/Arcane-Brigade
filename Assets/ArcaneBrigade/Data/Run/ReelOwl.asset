@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - archive
-  - rune
+  - resolve
   Passive: 0
   PassiveStrength: 0.45
   Description: "COMPANION / MYTHIC / 1 STAR\r\nTALENT\nEvery third basic attack may

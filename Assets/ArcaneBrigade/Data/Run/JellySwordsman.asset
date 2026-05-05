@@ -39,7 +39,8 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - oddity
-  - knight
+  - gauntlet
+  - hide
   Passive: 0
   PassiveStrength: 1
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nHero and all companions gain

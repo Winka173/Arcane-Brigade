@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - hearth
-  - gear
+  - resolve
   Passive: 1
   PassiveStrength: 0.45
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nPaid refreshes cost 2 less gold

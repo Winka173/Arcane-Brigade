@@ -40,6 +40,7 @@ MonoBehaviour:
   Tags:
   - clock
   - regal
+  - root
   Passive: 1
   PassiveStrength: 0.5
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nThis ally gains 10% attack

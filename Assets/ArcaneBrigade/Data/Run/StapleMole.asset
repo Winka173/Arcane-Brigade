@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - clock
-  - gear
+  - clover
   Passive: 2
   PassiveStrength: 0.5
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nClear-wave income gains 4

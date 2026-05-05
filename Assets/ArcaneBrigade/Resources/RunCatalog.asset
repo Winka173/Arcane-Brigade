@@ -6064,7 +6064,7 @@ MonoBehaviour:
     Icon: {fileID: -1528355404, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
     UnlockWave: 3
     Modifiers: []
-    Rarity: 3
+    Rarity: 2
     Stacking: 0
     MaximumStacks: 8
     ShopWeight: 8
@@ -6479,7 +6479,7 @@ MonoBehaviour:
     - Effect: 3
       Scope: 0
       Value: 0.25
-    Rarity: 3
+    Rarity: 2
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 8
