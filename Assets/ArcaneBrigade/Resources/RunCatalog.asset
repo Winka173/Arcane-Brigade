@@ -9407,144 +9407,144 @@ MonoBehaviour:
   Bonds:
   - Id: hearth
     Name: Hearth
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1401764315, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 7
     Value: 0.15
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.15
     - Threshold: 6
+      Value: 0.15
+    - Threshold: 9
       Value: 0.3
   - Id: archive
     Name: Archive
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1269724658, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 0
     Value: 0.06
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.06
     - Threshold: 6
+      Value: 0.06
+    - Threshold: 9
       Value: 0.12
   - Id: clock
     Name: Clock
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -1203761967, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 1
     Value: 0.06
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.06
     - Threshold: 6
+      Value: 0.06
+    - Threshold: 9
       Value: 0.12
   - Id: frost
     Name: Frost
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -30878964, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 36
     Value: -0.07
     ExtraBonuses:
-    - Threshold: 4
-      Value: -0.07
     - Threshold: 6
+      Value: -0.07
+    - Threshold: 9
       Value: -0.14
   - Id: orchard
     Name: Orchard
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -991718301, guid: b4d4fdcb254a28e4e82a5bb7c64ce85c, type: 3}
     Effect: 16
     Value: 0.15
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.15
     - Threshold: 6
+      Value: 0.15
+    - Threshold: 9
       Value: 0.3
   - Id: astral
     Name: Astral
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 608553034, guid: 9e6358b84def80646bc9d3ec24bc7470, type: 3}
     Effect: 28
     Value: 0.2
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.2
     - Threshold: 6
+      Value: 0.2
+    - Threshold: 9
       Value: 0.4
   - Id: tidal
     Name: Tidal
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1326636829, guid: 2de0098cfeb2c084d9925f3154964afa, type: 3}
     Effect: 27
     Value: 0.15
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.15
     - Threshold: 6
+      Value: 0.15
+    - Threshold: 9
       Value: 0.3
   - Id: oddity
     Name: Oddity
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1554392765, guid: 5e1b2e412571c9b479c388262e2b6fd7, type: 3}
     Effect: 8
     Value: 0.08
     ExtraBonuses:
-    - Threshold: 4
-      Value: 0.08
     - Threshold: 6
+      Value: 0.08
+    - Threshold: 9
       Value: 0.16
   - Id: hare
     Name: Springstep
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -128994627, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 31
     Value: 0.3
     ExtraBonuses: []
   - Id: archer
     Name: Longbow
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1105854806, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 21
     Value: 2
     ExtraBonuses: []
   - Id: root
     Name: Rootkin
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 752832123, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 2
     Value: 8
     ExtraBonuses: []
   - Id: gauntlet
     Name: Prizefighters
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -1159395267, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 20
     Value: 2
     ExtraBonuses: []
   - Id: regal
     Name: Velvet Court
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -701735268, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 13
     Value: 0.1
     ExtraBonuses: []
   - Id: clover
     Name: Lucky Leaves
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1591840258, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 41
     Value: 0.15
     ExtraBonuses: []
   - Id: gear
     Name: Clockwork Union
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -581639195, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 24
     Value: 3
     ExtraBonuses: []
   - Id: hat
     Name: Hat Society
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -1721100714, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 10
     Value: 3
@@ -9572,42 +9572,42 @@ MonoBehaviour:
     ExtraBonuses: []
   - Id: morning
     Name: Morning Bells
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -2036373524, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 12
     Value: 0.1
     ExtraBonuses: []
   - Id: rune
     Name: Runic School
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1481698924, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 26
     Value: 1
     ExtraBonuses: []
   - Id: mask
     Name: Masked Carnival
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 2054111496, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 38
     Value: 0.3
     ExtraBonuses: []
   - Id: hide
     Name: Wild Stitch
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -1110965468, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 4
     Value: 0.6
     ExtraBonuses: []
   - Id: resolve
     Name: Unbroken
-    Threshold: 2
+    Threshold: 4
     Icon: {fileID: 1993844940, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 43
     Value: 0.06
     ExtraBonuses: []
   - Id: shoe
     Name: Quicksoles
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 298339360, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 3
     Value: 0.1
@@ -9621,21 +9621,21 @@ MonoBehaviour:
     ExtraBonuses: []
   - Id: rain-script
     Name: Rain Script
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1113165655, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 29
     Value: 0.25
     ExtraBonuses: []
   - Id: paper-wings
     Name: Paper Wings
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: -973585194, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 30
     Value: 0.25
     ExtraBonuses: []
   - Id: sweet-tooth
     Name: Sweet Tooth
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 1743565340, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 14
     Value: 0.09
@@ -9649,7 +9649,7 @@ MonoBehaviour:
     ExtraBonuses: []
   - Id: static-club
     Name: Static Club
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 661514282, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 49
     Value: 0.06
@@ -9663,7 +9663,7 @@ MonoBehaviour:
     ExtraBonuses: []
   - Id: exhibit-hall
     Name: Exhibit Hall
-    Threshold: 2
+    Threshold: 3
     Icon: {fileID: 612245033, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
     Effect: 50
     Value: 0.12
