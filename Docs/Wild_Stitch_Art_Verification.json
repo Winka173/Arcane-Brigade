@@ -1,0 +1,55 @@
+{
+  "method": "painted; owner-authorized alpha cleanup and cell alignment",
+  "files": [
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/Companions/SaddleMoth.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "grid": [
+        2,
+        2
+      ],
+      "occupied_cells": 4,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1191,
+      "feet_baseline_y_in_cell_from_top": [
+        451,
+        451,
+        451,
+        451
+      ],
+      "actual_canvas_matches_request": true
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/Companions/StitchedPangolin.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "grid": [
+        2,
+        2
+      ],
+      "occupied_cells": 4,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minimum_cell_margin": 0.1191,
+      "feet_baseline_y_in_cell_from_top": [
+        451,
+        451,
+        451,
+        451
+      ],
+      "actual_canvas_matches_request": true
+    }
+  ]
+}

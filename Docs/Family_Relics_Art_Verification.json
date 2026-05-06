@@ -1,0 +1,366 @@
+{
+  "tool": "painted",
+  "cleanup": "Owner approved alpha cleanup and layout; explicit 512x512 relic delivery",
+  "files": [
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/AddressBook.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        70,
+        52,
+        442,
+        459
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/FieldNotes.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        73,
+        52,
+        438,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/FrostDoily.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        79,
+        460,
+        432
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/GardenShears.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        63,
+        460,
+        449
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/GraftingTwine.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        63,
+        52,
+        448,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/IceCubeTray.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        87,
+        460,
+        424
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/PocketHourglass.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        97,
+        52,
+        414,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/RubberStamp.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        88,
+        460,
+        423
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SeedCatalogue.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        69,
+        52,
+        443,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SlowSand.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        89,
+        52,
+        422,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SnowGlobe.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        101,
+        52,
+        411,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SpecimenJar.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        100,
+        52,
+        411,
+        460
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/StoppedWatch.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        62,
+        460,
+        449
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/TrophyShelf.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        52,
+        83,
+        460,
+        429
+      ]
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/WaxSealSet.png",
+      "mode": "RGBA",
+      "size": [
+        512,
+        512
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "content_bounds": [
+        59,
+        52,
+        452,
+        460
+      ]
+    }
+  ]
+}

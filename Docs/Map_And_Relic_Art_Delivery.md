@@ -29,3 +29,23 @@ LoneLantern.png, EmptyChairs.png, SingleTicket.png, NightAlone.png, SelfPortrait
 Xuất **512×512 RGBA** theo yêu cầu bộ relic mới, một icon hoặc cụm vật dụng đúng mô tả trên mỗi file. Giữ màu tranh gốc, căn giữa, lề khoảng 10%; không thêm chữ hoặc nền. Khung chân dung được vẽ sửa để có đủ vòng treo. SoloOverture có ánh cầu vồng trên đũa và giấy. Kiểm tra: [Lone_Relics_Art_Verification.json](Lone_Relics_Art_Verification.json).
 
 Các kiểm tra trên là kiểm tra file ảnh và bố cục, chưa phải nghiệm thu animation, giao diện hoặc gameplay chạy trong Unity. Task này không chạy build hoặc test gameplay.
+
+## Family Relics: 15 PNG
+
+Thư mục: [FamilyRelics](../Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/). Tất cả **512×512 RGBA**, căn giữa, chủ thể chiếm khoảng 80% chiều dài lớn nhất, lề ít nhất 50 px, không chữ hoặc số. Giữ alpha gốc do công cụ tạo, chỉ dọn pixel sót và căn khung theo chấp thuận của chủ dự án. Metadata Unity import từng icon đơn; không thay đổi catalog hoặc hiệu ứng relic.
+
+| Nhóm | File |
+| --- | --- |
+| Collectors | SpecimenJar.png, FieldNotes.png, TrophyShelf.png |
+| Clockwork | SlowSand.png, PocketHourglass.png, StoppedWatch.png |
+| Gardeners | GraftingTwine.png, SeedCatalogue.png, GardenShears.png |
+| Winter | IceCubeTray.png, FrostDoily.png, SnowGlobe.png |
+| Postmarks | RubberStamp.png, AddressBook.png, WaxSealSet.png |
+
+Prompt: [Family_Relics_Art_Generation.json](Family_Relics_Art_Generation.json). Kết quả kiểm tra 15/15: [Family_Relics_Art_Verification.json](Family_Relics_Art_Verification.json).
+
+## Wild Stitch Friends: 2 atlas
+
+Thư mục: [Companions](../Assets/ArcaneBrigade/Art/Playtest/Companions/). File **StitchedPangolin.png** và **SaddleMoth.png**, mỗi file **1024×1024 RGBA**, bốn ô 512×512 theo thứ tự Neutral / Windup / Walk / Attack. Tham chiếu phong cách companion hiện có từ Characters3_v1.png; không sao chép bố cục sheet tham chiếu. Giữ nét tranh, da vá, đường chỉ, mắt ấm, không vũ khí, không bóng nền. Mỗi sheet được thu bằng cùng hệ số cho cả bốn pose, căn chung đường chân y=451 tính từ đầu mỗi ô. Lề ít nhất 10%, góc alpha 0. Metadata chia bốn sprite với pivot chung.
+
+Prompt: [Wild_Stitch_Art_Generation.json](Wild_Stitch_Art_Generation.json). Kết quả kiểm tra 2/2: [Wild_Stitch_Art_Verification.json](Wild_Stitch_Art_Verification.json). Chưa chạy nghiệm thu animation trong game; task này bàn giao tranh và metadata.

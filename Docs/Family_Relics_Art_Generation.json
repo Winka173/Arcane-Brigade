@@ -1,0 +1,100 @@
+{
+  "tool": "painted",
+  "output_size": [
+    512,
+    512
+  ],
+  "processing": "Owner-approved alpha cleanup, uniform scaling and centering; genuine generated alpha retained.",
+  "jobs": [
+    {
+      "name": "SpecimenJar",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SpecimenJar.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nSpecimenJar.png: COLLECTORS palette bone, glass, dusty green. A small glass specimen jar with cork stopper, pale moth pinned inside on a blank card, faintly green glass.",
+      "transparent": true
+    },
+    {
+      "name": "FieldNotes",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/FieldNotes.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nFieldNotes.png: COLLECTORS palette bone, leather, dusty green. A battered leather field notebook held shut with strap, pencil tucked in it, pressed feather sticking out.",
+      "transparent": true
+    },
+    {
+      "name": "TrophyShelf",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/TrophyShelf.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nTrophyShelf.png: COLLECTORS palette bone, walnut, dusty green. A tiny wall shelf of dark walnut holding three small trophies: horn, tooth and blank brass medal. One cohesive shelf icon, no wall behind.",
+      "transparent": true
+    },
+    {
+      "name": "SlowSand",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SlowSand.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nSlowSand.png: CLOCKWORK palette brass, sand, slate blue. Small velvet pouch spilling glittering pale sand that falls very slowly, few grains hanging in air close to pouch, no ground.",
+      "transparent": true
+    },
+    {
+      "name": "PocketHourglass",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/PocketHourglass.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nPocketHourglass.png: CLOCKWORK palette brass, sand, slate blue. Brass pocket hourglass on short chain, sand caught mid-fall.",
+      "transparent": true
+    },
+    {
+      "name": "StoppedWatch",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/StoppedWatch.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nStoppedWatch.png: CLOCKWORK palette brass, sand, slate blue. Open pocket watch with cracked glass, frozen hands, thin frost along rim. No digits, Roman numerals, letters or symbols around dial; blank unnumbered clock face with hands only.",
+      "transparent": true
+    },
+    {
+      "name": "GraftingTwine",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/GraftingTwine.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nGraftingTwine.png: GARDENERS palette green, terracotta, twine. Spool of rough garden twine with young green shoot tied to a small cutting.",
+      "transparent": true
+    },
+    {
+      "name": "SeedCatalogue",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SeedCatalogue.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nSeedCatalogue.png: GARDENERS palette green, terracotta, twine. Thin seed catalogue booklet, cover a painted flower with no writing, a seed packet tucked between pages, packet also blank.",
+      "transparent": true
+    },
+    {
+      "name": "GardenShears",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/GardenShears.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nGardenShears.png: GARDENERS palette green, terracotta, twine. Pair of old brass garden shears slightly open, sprig of leaves caught between blades.",
+      "transparent": true
+    },
+    {
+      "name": "IceCubeTray",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/IceCubeTray.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nIceCubeTray.png: WINTER palette ice blue, white, silver. Small vintage metal ice-cube tray with frosted cubes, cold mist rising close to tray.",
+      "transparent": true
+    },
+    {
+      "name": "FrostDoily",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/FrostDoily.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nFrostDoily.png: WINTER palette ice blue, white, silver. Round lace doily frozen stiff, ice crystals grown along its pattern.",
+      "transparent": true
+    },
+    {
+      "name": "SnowGlobe",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/SnowGlobe.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nSnowGlobe.png: WINTER palette ice blue, white, silver. Snow globe on wooden base, tiny waiting-room chair inside in falling snow.",
+      "transparent": true
+    },
+    {
+      "name": "RubberStamp",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/RubberStamp.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nRubberStamp.png: POSTMARKS palette deep red wax, brown paper, ink. Wooden-handled rubber stamp beside small red ink pad, stamp face blank.",
+      "transparent": true
+    },
+    {
+      "name": "AddressBook",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/AddressBook.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nAddressBook.png: POSTMARKS palette deep red wax, brown paper, ink. Small closed cloth-covered address book with ribbon bookmark, no writing.",
+      "transparent": true
+    },
+    {
+      "name": "WaxSealSet",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/FamilyRelics/WaxSealSet.png",
+      "prompt": "Arcane Brigade Waiting Realm shop/inventory RELIC ICON. Hand-painted storybook rendering, warm ink line, soft painterly shading, dream-like waiting room / after-hours toy shop: dark lacquered wood, brass and gilt filigree, aged paper and ink, deep velvet, warm lantern glow, gentle melancholy with whimsy. One centered single object or specifically described cohesive assemblage, filling80% square512x512 canvas, clear10% empty margins all around. Truly transparent RGBA background. No frame/card/badge behind the object, no text letters numbers, no floor/cast shadow. Slight three-quarter angle. Strong simple silhouette clearly readable at64pixels, calm restrained detail, one upper-left light source. Vintage functional materials, do not overwhelm the silhouette with filigree.\nWaxSealSet.png: POSTMARKS palette deep red wax, brown paper, ink. Brass wax-seal stamp with stick of deep red sealing wax and one finished blank seal; one compact cohesive icon.",
+      "transparent": true
+    }
+  ]
+}

@@ -12,13 +12,13 @@ from PIL import Image
 from scipy import ndimage
 
 
-def arrange(path):
+def arrange(path, grid=None, canvas=None):
     original = Image.open(path).convert('RGBA')
     pixels = np.array(original)
     labels, _ = ndimage.label(pixels[:, :, 3] > 8)
     counts = np.bincount(labels.ravel())
     counts[0] = 0
-    cols, rows = (2, 1) if path.stem == 'Shop_ExitDoor' else (4, 4)
+    cols, rows = grid or ((2, 1) if path.stem == 'Shop_ExitDoor' else (4, 4))
     ids = np.argsort(counts)[::-1][:cols * rows]
     if min(counts[ids]) < 1000:
         raise ValueError(f'{path}: insufficient separate full-body sprites')
@@ -38,12 +38,18 @@ def arrange(path):
         cutout[cutout[:, :, 3] == 0, :3] = 0
         sprite = Image.fromarray(cutout)
         sprites.append(sprite.crop(sprite.getbbox()))
-    w, h = original.size
+    w, h = canvas or original.size
     cellw, cellh = w // cols, h // rows
     scale = min(cellw * .76 / max(im.width for im in sprites), cellh * .76 / max(im.height for im in sprites), 1.0)
-    output = Image.new('RGBA', original.size)
+    output = Image.new('RGBA', (w, h))
     for index, sprite in enumerate(sprites):
         sprite = sprite.resize((max(1, round(sprite.width * scale)), max(1, round(sprite.height * scale))), Image.Resampling.LANCZOS)
+        # Resampling can leave a one-pixel alpha fringe below a foot. Re-anchor
+        # from the final visible bounds so each pose has the exact baseline.
+        data = np.array(sprite)
+        data[data[:, :, 3] <= 4] = 0
+        sprite = Image.fromarray(data)
+        sprite = sprite.crop(sprite.getbbox())
         r, c = divmod(index, cols)
         left, top = round(c*w/cols), round(r*h/rows)
         right, bottom = round((c+1)*w/cols), round((r+1)*h/rows)
@@ -79,7 +85,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('directory', type=Path)
     parser.add_argument('--report', type=Path, required=True)
+    parser.add_argument('--grid', nargs=2, type=int, metavar=('COLUMNS', 'ROWS'))
+    parser.add_argument('--canvas', nargs=2, type=int, metavar=('WIDTH', 'HEIGHT'))
     args = parser.parse_args()
-    results = [arrange(path) for path in sorted(args.directory.glob('*.png'))]
+    results = [arrange(path, args.grid, args.canvas) for path in sorted(args.directory.glob('*.png'))]
     args.report.write_text(json.dumps(dict(method='painted; owner-authorized alpha cleanup and cell alignment', files=results), indent=2) + '\n')
     print(f'{len(results)} sheets: RGBA, populated cells, zero-alpha corners, >=10% cell margins')

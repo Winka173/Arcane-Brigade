@@ -1,0 +1,32 @@
+{
+  "tool": "painted",
+  "output_size": [
+    1024,
+    1024
+  ],
+  "layout": [
+    2,
+    2
+  ],
+  "processing": "Owner-approved alpha cleanup and cell alignment, uniform shared scaling, feet on common baseline",
+  "jobs": [
+    {
+      "name": "StitchedPangolin",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Companions/StitchedPangolin.png",
+      "prompt": "Arcane Brigade Waiting Realm FRIENDLY companion production animation atlas, hand-painted storybook, warm confident ink contour, layered soft painterly shading, rounded charming living plush-like creatures, lacquered wood/brass/aged paper/velvet/lantern warmth theme. Gentle warm eyes, soft friendly expressions NEVER menacing. Slightly above front-three-quarter view matching the attached existing companions STYLE ONLY; do not copy their identities or jumbled atlas layout. Exactly 1024x1024 canvas, 2 columns by 2 rows of equal512x512 cells. FOUR full-body poses of ONE SAME creature, centered in cells with at least10% blank transparent margins on EVERY side, feet common baseline within each cell. Top-left NEUTRAL standing; top-right BREATHING/WIND-UP slightly crouched gathering itself; bottom-left WALKING one foot forward; bottom-right ATTACK lunging/casting forward. Same size palette design anatomy across4poses. No held weapon, no additional props, no floor, no cast shadow, no grid lines, no text letters numbers. Truly transparent RGBA background. Entire creature and all antennae/tail/wing tips visible with ample margins.\nStitchedPangolin.png: Small round pangolin whose scales are patches of mismatched soft leather sewn with thick cream thread. Brass button eyes with warm glint, tiny embroidered heart patch on chest. Caring sturdy. Tan/cocoa leather, cream thread, brass. Same patch locations and heart in every pose. Full-body including rounded stitched tail and short feet. Attack friendly determined forward lunge, no glowing red.",
+      "refs": [
+        "C:/Users/Winka/OneDrive/Documents/Arcane-Brigade/Assets/ArcaneBrigade/Art/Expansion/Characters3_v1.png"
+      ],
+      "transparent": true
+    },
+    {
+      "name": "SaddleMoth",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Companions/SaddleMoth.png",
+      "prompt": "Arcane Brigade Waiting Realm FRIENDLY companion production animation atlas, hand-painted storybook, warm confident ink contour, layered soft painterly shading, rounded charming living plush-like creatures, lacquered wood/brass/aged paper/velvet/lantern warmth theme. Gentle warm eyes, soft friendly expressions NEVER menacing. Slightly above front-three-quarter view matching the attached existing companions STYLE ONLY; do not copy their identities or jumbled atlas layout. Exactly 1024x1024 canvas, 2 columns by 2 rows of equal512x512 cells. FOUR full-body poses of ONE SAME creature, centered in cells with at least10% blank transparent margins on EVERY side, feet common baseline within each cell. Top-left NEUTRAL standing; top-right BREATHING/WIND-UP slightly crouched gathering itself; bottom-left WALKING one foot forward; bottom-right ATTACK lunging/casting forward. Same size palette design anatomy across4poses. No held weapon, no additional props, no floor, no cast shadow, no grid lines, no text letters numbers. Truly transparent RGBA background. Entire creature and all antennae/tail/wing tips visible with ample margins.\nSaddleMoth.png: Plump fluffy moth wearing little tooled-leather saddle with stitched straps and brass buckle, felt wings with patchwork stitching, big soft dark eyes, two curled antennae. Brave light. Dusky violet felt, tan leather, brass. Same saddle straps buckle stitching in each of4poses. Small feet visible; all curled antennae and wing tips fully inside cells, attack is forward casting with expressive wing movement, no held weapon or red glow.",
+      "refs": [
+        "C:/Users/Winka/OneDrive/Documents/Arcane-Brigade/Assets/ArcaneBrigade/Art/Expansion/Characters3_v1.png"
+      ],
+      "transparent": true
+    }
+  ]
+}
