@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_WickImp_00
+      name: WickImpEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 74
+        y: 977
+        width: 165
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c2caba474094f379dd446a4f2b9b88b
-      internalID: 100000
+      spriteID: c2b49aadc4b7a2144a27286673c5499d
+      internalID: 1959241267
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_01
+      name: WickImpEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 385
+        y: 979
+        width: 168
+        height: 211
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a013cb8a3ac04e5298813b0fe9fdba01
-      internalID: 100001
+      spriteID: b50a8b75c7c65434c87c6e2871d3334b
+      internalID: 1291191064
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_02
+      name: WickImpEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 703
+        y: 978
+        width: 162
+        height: 206
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e91fdd8cc0ec430998ef610c56618445
-      internalID: 100002
+      spriteID: b85de9eb13855d2469ec12507ad24ece
+      internalID: 1793634263
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_03
+      name: WickImpEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1020
+        y: 977
+        width: 155
+        height: 205
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74edcb7e8005417a8ce29fe537058278
-      internalID: 100003
+      spriteID: 0c5b7f3faf394b44880ceead71c64173
+      internalID: 1380507429
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_04
+      name: WickImpEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 52
+        y: 666
+        width: 210
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bd0c1a874884cf79304f5aa264723c3
-      internalID: 100004
+      spriteID: 9a5e2e295a3f35d46b90c9806cf7c973
+      internalID: 829512264
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_05
+      name: WickImpEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 379
+        y: 665
+        width: 182
+        height: 186
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16b270eab31c466e8f5df5c5169abc02
-      internalID: 100005
+      spriteID: dc657470e1692534eaa54440d3ffbfd8
+      internalID: 1643886300
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_06
+      name: WickImpEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 673
+        y: 665
+        width: 220
+        height: 217
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e04357d972044a7aad273586b351d453
-      internalID: 100006
+      spriteID: d891b20a99558454c9fc5491af178060
+      internalID: 59974918
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_07
+      name: WickImpEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 998
+        y: 666
+        width: 197
+        height: 191
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34b0f148f66b4c43bf0cc2f89de086be
-      internalID: 100007
+      spriteID: 0653440185c199346a5ec4ac9a4ae638
+      internalID: -2024210353
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_08
+      name: WickImpEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 57
+        y: 352
+        width: 200
+        height: 230
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4103d58444741d79f5afdd2af4bfe9c
-      internalID: 100008
+      spriteID: 4fdf80042bbd4fe46988cc45cd878634
+      internalID: -165833100
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_09
+      name: WickImpEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 378
+        y: 352
+        width: 186
+        height: 224
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a51d9b503f2f42d9a8851f9ed0ad6fee
-      internalID: 100009
+      spriteID: a916a3d3f8153a549b84d749cd714d2d
+      internalID: 953896796
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_10
+      name: WickImpEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 689
+        y: 351
+        width: 190
+        height: 229
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80e3230f2c7c4bf19b65d2fed7a23ca2
-      internalID: 100010
+      spriteID: f990c611c27c21648843285bb7048471
+      internalID: -499617404
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_11
+      name: WickImpEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 1001
+        y: 352
+        width: 192
+        height: 222
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03a7fe2804b64003b7e6cf80de980f4a
-      internalID: 100011
+      spriteID: 98f089b57f85b7b4191905a84f46b1ee
+      internalID: -552358149
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_12
+      name: WickImpEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 43
+        y: 39
+        width: 229
+        height: 204
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b503689b47e42f3a4d1825124976c93
-      internalID: 100012
+      spriteID: 75490795c4ec84c4fae45029a6acebcd
+      internalID: -1513484242
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_13
+      name: WickImpEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 363
+        y: 39
+        width: 213
+        height: 198
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32dc75764097455c8bc2b6f5905406ac
-      internalID: 100013
+      spriteID: 86103d0517917a748bd8397a40912b8e
+      internalID: -658328131
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_14
+      name: WickImpEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 667
+        y: 38
+        width: 236
+        height: 229
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d14177bbe5ca45428005efb794b3a30b
-      internalID: 100014
+      spriteID: d7e1ff2fd098f1c4f89ccc0408bb07b6
+      internalID: -38189873
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_WickImp_15
+      name: WickImpEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 989
+        y: 38
+        width: 215
+        height: 212
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81c789d823a49eb8703f36771bea66b
-      internalID: 100015
+      spriteID: 6b6d1da2355921d41ba8b4d8907f86a3
+      internalID: -1997143471
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: bc1ec45eac244dd5b46da00b8e8df65b
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_WickImp_00: 100000
-      Enemy_WickImp_01: 100001
-      Enemy_WickImp_02: 100002
-      Enemy_WickImp_03: 100003
-      Enemy_WickImp_04: 100004
-      Enemy_WickImp_05: 100005
-      Enemy_WickImp_06: 100006
-      Enemy_WickImp_07: 100007
-      Enemy_WickImp_08: 100008
-      Enemy_WickImp_09: 100009
-      Enemy_WickImp_10: 100010
-      Enemy_WickImp_11: 100011
-      Enemy_WickImp_12: 100012
-      Enemy_WickImp_13: 100013
-      Enemy_WickImp_14: 100014
-      Enemy_WickImp_15: 100015
-  mipmapLimitGroupName:
+      WickImpEvolution_00: 1959241267
+      WickImpEvolution_01: 1291191064
+      WickImpEvolution_02: 1793634263
+      WickImpEvolution_03: 1380507429
+      WickImpEvolution_04: 829512264
+      WickImpEvolution_05: 1643886300
+      WickImpEvolution_06: 59974918
+      WickImpEvolution_07: -2024210353
+      WickImpEvolution_08: -165833100
+      WickImpEvolution_09: 953896796
+      WickImpEvolution_10: -499617404
+      WickImpEvolution_11: -552358149
+      WickImpEvolution_12: -1513484242
+      WickImpEvolution_13: -658328131
+      WickImpEvolution_14: -38189873
+      WickImpEvolution_15: -1997143471
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

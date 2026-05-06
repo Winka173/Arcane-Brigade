@@ -54,6 +54,7 @@ namespace ArcaneBrigade
             int first = page * 9, shown = Mathf.Min(9, species.Count - first);
             float width = Mathf.Max(820, 120 + shown * 150);
             Rect card = new Rect((1920 - width) * 0.5f, 300, width, 640);
+            Color popKeep = CardPop.Apply("last-customer", card);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             ArcadeSkin.Seal(new Vector2(card.xMax - 42, card.y + 40), 46, "$");
             hand.normal.textColor = new Color(.25f, .19f, .14f);
@@ -93,6 +94,7 @@ namespace ArcaneBrigade
             Rect sell = new Rect(card.center.x - 380, buttonsY, 340, 88), refuse = new Rect(card.center.x + 40, buttonsY, 340, 88);
             if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name)) Sell();
             if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
+            GUI.color = popKeep;
             GUI.matrix = previous;
         }
     }
@@ -149,6 +151,7 @@ namespace ArcaneBrigade
             bool colours = owner.Session.ColoursAvailable; int slots = dark.Count + (colours ? 1 : 0);
             float width = Mathf.Max(820, 120 + slots * 165);
             Rect card = new Rect((1920 - width) * 0.5f, 300, width, 600);
+            Color popKeep = CardPop.Apply("memory-return", card); // every card opens the same way
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
             GUI.Label(new Rect(card.x + 50, card.y + 24, card.width - 100, 90), "You stood up. Nobody paid. Outside, one of the dark lanterns is warm again.", hand);
@@ -186,6 +189,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(card.x + 60, card.y + 372, card.width - 120, 70), meaning, info);
             bool ready = picked >= 0 && (picked < dark.Count || colours && picked == dark.Count);
             if (ArcadeSkin.Button(new Rect(card.center.x - 200, card.yMax - 128, 400, 88), ready ? (picked == dark.Count ? "TAKE THE COLOURS" : "RELIGHT") : "PICK ONE", KitButton.Primary, ready, info)) Confirm();
+            GUI.color = popKeep;
             GUI.matrix = previous;
         }
     }

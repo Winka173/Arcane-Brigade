@@ -148,6 +148,7 @@ namespace ArcaneBrigade
                     giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = item != null ? 1 : 2; giftOffer.Token = -1 - i; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
                     Rect panel = new Rect(500, 790, 920, 240);
+                    Color popKeep = CardPop.Apply("gift-card-" + i, panel);
                     RarityDescriptionFrame.Draw(panel, giftCard.Rarity, owner.PresentationClock);
                     Rect picture = new Rect(panel.x + 30, panel.y + 24, 150, 150);
                     ShopDescriptionCard.DrawSprite(new Rect(picture.x + 6, picture.y + 6, 138, 138), giftCard.Portrait);
@@ -160,7 +161,8 @@ namespace ArcaneBrigade
                     cardLine.normal.textColor = ArcadeSkin.Cream;
                     GlossaryUI.Text(new Rect(tx, panel.y + 66, tw, panel.height - 90), FirstLines(giftCard.Summary, 4), cardLine);
                     if (takeStyle == null) takeStyle = ArcadeSkin.Primary(new GUIStyle(choiceButton) { fontSize = 30 });
-                    if (ArcadeSkin.KitGuiButton(take, "TAKE", takeStyle) && owner.ClaimOutsideReward(i)) { Clear(); mode = 0; GUI.matrix = matrix; GUI.skin = previousSkin; return; }
+                    if (ArcadeSkin.KitGuiButton(take, "TAKE", takeStyle) && owner.ClaimOutsideReward(i)) { GUI.color = popKeep; Clear(); mode = 0; GUI.matrix = matrix; GUI.skin = previousSkin; return; }
+                    GUI.color = popKeep;
                 }
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }

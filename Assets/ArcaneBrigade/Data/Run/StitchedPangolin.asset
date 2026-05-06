@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: StitchedPangolin
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: StitchedPangolin
+  DisplayName: Stitched Pangolin
+  Body: {fileID: 100003, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  AnimationFrames:
+  - {fileID: 100003, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  - {fileID: 100000, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  - {fileID: 100002, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  - {fileID: 100001, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 200bb679515f5e04bb4633f87627195b, type: 2}
+  Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
+  Health: 100
+  Speed: 4.3999996
+  Radius: 0.22
+  BodyHeight: 0.815
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 1
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - frost
+  - hide
+  Passive: 1
+  PassiveStrength: 0.6
+  Description: A pangolin of patched leather scales. Every 4s heals the hero; hero
+    regeneration +0.3.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers:
+  - Effect: 7
+    Scope: 1
+    Value: 0.3
+  Price: 30
+  UnlockWave: 1
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

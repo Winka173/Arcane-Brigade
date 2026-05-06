@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_SackGolem_00
+      name: SackGolemEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 57
+        y: 977
+        width: 198
+        height: 167
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07fe420674f2495bbc69071214fc2bde
-      internalID: 100000
+      spriteID: d9c8447015bc35843a6623d4b8996d90
+      internalID: 1974785188
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_01
+      name: SackGolemEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 371
+        y: 977
+        width: 197
+        height: 167
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbae8a196cbb47a5813fa19a3e0b6dd8
-      internalID: 100001
+      spriteID: 5bc39ecaf0189ee43889eb42a4e53e92
+      internalID: -1336110549
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_02
+      name: SackGolemEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 686
+        y: 977
+        width: 195
+        height: 172
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8211d393eafc43c59cb7b5316c42d9e1
-      internalID: 100002
+      spriteID: f3e544ac32cb87a46b1a1a01fe1eb227
+      internalID: 173938241
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_03
+      name: SackGolemEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1005
+        y: 978
+        width: 184
+        height: 157
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4369dd16b2d94014befbfe30b89c7498
-      internalID: 100003
+      spriteID: 436e006ab3eb2e746b5020253732e656
+      internalID: 701592338
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_04
+      name: SackGolemEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 68
+        y: 666
+        width: 178
+        height: 191
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54b664b036d849ea96bc0dc4af4351ce
-      internalID: 100004
+      spriteID: 9d59a96539d5f594e97d0ca7f9638cf7
+      internalID: -824124129
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_05
+      name: SackGolemEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 364
+        y: 666
+        width: 212
+        height: 165
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db13cffc08084ca4a0bd3e9b2612923c
-      internalID: 100005
+      spriteID: 2d19d0f3b6759e54d980328098ac854c
+      internalID: -637203431
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_06
+      name: SackGolemEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 684
+        y: 666
+        width: 201
+        height: 168
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 830c9c6df400446bb9993183840e202d
-      internalID: 100006
+      spriteID: b5d9378392861a74cb3cfa2042050de3
+      internalID: -1990691522
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_07
+      name: SackGolemEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1011
+        y: 665
+        width: 171
+        height: 156
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fe8c1bd3b4a4a34a6e1dd47d5b7a436
-      internalID: 100007
+      spriteID: fa1502260cbd6b54f82589c78ee724f8
+      internalID: 814595648
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_08
+      name: SackGolemEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 51
+        y: 353
+        width: 214
+        height: 184
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19e68a7e9c814a79b1c739df211358aa
-      internalID: 100008
+      spriteID: 82c072b5286495046b0359aac7157f4b
+      internalID: 1699229784
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_09
+      name: SackGolemEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 363
+        y: 352
+        width: 213
+        height: 184
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32a888f27af54cfa922bdee3622551aa
-      internalID: 100009
+      spriteID: 78f0c5ee07c8dfd4a8d1278896d7aa53
+      internalID: 294258952
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_10
+      name: SackGolemEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 682
+        y: 351
+        width: 203
+        height: 191
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8333da74119b421aad52b50ff7ec6b0d
-      internalID: 100010
+      spriteID: d78d9f1ba98cfdb40a84c9cedc7d008a
+      internalID: 600358358
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_11
+      name: SackGolemEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 996
+        y: 351
+        width: 202
+        height: 172
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90b1952f9f2549109b7753c9fd68d61b
-      internalID: 100011
+      spriteID: 87e1f80b9043dfe48b7f7fb08e547c5a
+      internalID: -1755636279
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_12
+      name: SackGolemEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 55
+        y: 38
+        width: 204
+        height: 188
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5e6d4d2c4fd4d70b59274c30ba94639
-      internalID: 100012
+      spriteID: 2201ec2325705384eb6c7719b646c7d8
+      internalID: 688241301
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_13
+      name: SackGolemEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 363
+        y: 38
+        width: 216
+        height: 188
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c25bd2ffa45645a6bde96926b1c524fb
-      internalID: 100013
+      spriteID: 25c982f755e48e9429e499ba49e2f9c5
+      internalID: -467620871
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_14
+      name: SackGolemEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 663
+        y: 39
+        width: 238
+        height: 182
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ca7f74fa26a481aa5db43253601ff4d
-      internalID: 100014
+      spriteID: 86949eb37f1568c4dbd3c365df9991dd
+      internalID: -2090591285
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SackGolem_15
+      name: SackGolemEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 999
+        y: 39
+        width: 193
+        height: 171
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cec21c124c524128a95da46283e6fed3
-      internalID: 100015
+      spriteID: cd61abb6d4f3ea44eaf8e524143a66c4
+      internalID: -1629608922
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 295836b368fd45e5995c56d10a9b186e
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_SackGolem_00: 100000
-      Enemy_SackGolem_01: 100001
-      Enemy_SackGolem_02: 100002
-      Enemy_SackGolem_03: 100003
-      Enemy_SackGolem_04: 100004
-      Enemy_SackGolem_05: 100005
-      Enemy_SackGolem_06: 100006
-      Enemy_SackGolem_07: 100007
-      Enemy_SackGolem_08: 100008
-      Enemy_SackGolem_09: 100009
-      Enemy_SackGolem_10: 100010
-      Enemy_SackGolem_11: 100011
-      Enemy_SackGolem_12: 100012
-      Enemy_SackGolem_13: 100013
-      Enemy_SackGolem_14: 100014
-      Enemy_SackGolem_15: 100015
-  mipmapLimitGroupName:
+      SackGolemEvolution_00: 1974785188
+      SackGolemEvolution_01: -1336110549
+      SackGolemEvolution_02: 173938241
+      SackGolemEvolution_03: 701592338
+      SackGolemEvolution_04: -824124129
+      SackGolemEvolution_05: -637203431
+      SackGolemEvolution_06: -1990691522
+      SackGolemEvolution_07: 814595648
+      SackGolemEvolution_08: 1699229784
+      SackGolemEvolution_09: 294258952
+      SackGolemEvolution_10: 600358358
+      SackGolemEvolution_11: -1755636279
+      SackGolemEvolution_12: 688241301
+      SackGolemEvolution_13: -467620871
+      SackGolemEvolution_14: -2090591285
+      SackGolemEvolution_15: -1629608922
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

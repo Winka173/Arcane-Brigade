@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_SealHound_00
+      name: SealHoundEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 65
+        y: 979
+        width: 187
+        height: 197
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a63e08f00a5e4a88b2e90e59dfe8ffec
-      internalID: 100000
+      spriteID: c6a4fbbaf6315a640a5806821f6b8b6c
+      internalID: 265697690
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_01
+      name: SealHoundEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 381
+        y: 979
+        width: 178
+        height: 193
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbb886f9dd10472095069880b4657bd4
-      internalID: 100001
+      spriteID: c94d49d0d9308954ebc87fd45ed3fcf3
+      internalID: 80479682
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_02
+      name: SealHoundEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 674
+        y: 977
+        width: 219
+        height: 190
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13ba167c6c1d49f7971499ad0636ecb2
-      internalID: 100002
+      spriteID: 2b8cb50b03324e84c90117754c2a47ab
+      internalID: 209409106
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_03
+      name: SealHoundEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 995
+        y: 977
+        width: 201
+        height: 156
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe27d103792a4127b7f91123e4472a9c
-      internalID: 100003
+      spriteID: e3f6ab3ac6106b3448e6c09785799ac3
+      internalID: -940052010
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_04
+      name: SealHoundEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 50
+        y: 665
+        width: 213
+        height: 156
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ac7386a1b54327bc52b76193fd0b5f
-      internalID: 100004
+      spriteID: 4f8a259daaf46bf46b9ca95c746e5f28
+      internalID: -1036619641
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_05
+      name: SealHoundEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 358
+        y: 665
+        width: 227
+        height: 168
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a980f4937ce4ef98009c969103cf1d1
-      internalID: 100005
+      spriteID: 1b70498c9457cf948852badf09e45a2e
+      internalID: -1733606484
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_06
+      name: SealHoundEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 665
+        y: 665
+        width: 236
+        height: 171
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e70de2aa187a483b8ed8979260a1bc0a
-      internalID: 100006
+      spriteID: a3fe89669d644944f955eda90ec21ab2
+      internalID: -1389094000
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_07
+      name: SealHoundEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1001
+        y: 666
+        width: 191
+        height: 206
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7951f46db067435899c40b910b94dc76
-      internalID: 100007
+      spriteID: 6420306045e23a945a95135968ff4ff4
+      internalID: 477085005
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_08
+      name: SealHoundEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 47
+        y: 353
+        width: 219
+        height: 225
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 879745efcc6541899ddd4c61c87965d6
-      internalID: 100008
+      spriteID: 9ca555ee2689b884f85b80914c985ec6
+      internalID: 1228750160
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_09
+      name: SealHoundEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 355
+        y: 351
+        width: 230
+        height: 212
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a672b5985f744699fff345fe882cafc
-      internalID: 100009
+      spriteID: 4f2a0c588ef3b0047b3c07f8b43bbf81
+      internalID: -1531278492
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_10
+      name: SealHoundEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 665
+        y: 351
+        width: 236
+        height: 212
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d75828528714d05996ace9fe269f816
-      internalID: 100010
+      spriteID: 79f3b45f54e60e848bcd57758e9483e6
+      internalID: -1020278338
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_11
+      name: SealHoundEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 988
+        y: 353
+        width: 219
+        height: 190
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25cdd90b2f164b71aae1b787af0fd730
-      internalID: 100011
+      spriteID: 299dd66e1b67eff439103d961d071600
+      internalID: -452985011
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_12
+      name: SealHoundEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 46
+        y: 39
+        width: 224
+        height: 172
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db244a96fecb4ea2a6a4b6630161ca32
-      internalID: 100012
+      spriteID: 0e3be2273c6bfc242a377a7330d66685
+      internalID: -2101006686
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_13
+      name: SealHoundEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 352
+        y: 39
+        width: 237
+        height: 194
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6b0be3c867d4aa180f6801ab0353681
-      internalID: 100013
+      spriteID: c8a1810982d96e1448c113d38116b5f5
+      internalID: -435291464
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_14
+      name: SealHoundEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 665
+        y: 39
+        width: 235
+        height: 199
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31a07b581fd84dd6bff124493b6bba8c
-      internalID: 100014
+      spriteID: 6927085d98b833546af65e1b9b41e1df
+      internalID: 1771002768
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SealHound_15
+      name: SealHoundEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 998
+        y: 39
+        width: 199
+        height: 223
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c446e2e0144442b7b5d17fcae976e6fc
-      internalID: 100015
+      spriteID: ad7ebd0249e81624a8b84313056fae33
+      internalID: -1459211228
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: a4de22a8dbf6401d9d9dddb46625bb92
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_SealHound_00: 100000
-      Enemy_SealHound_01: 100001
-      Enemy_SealHound_02: 100002
-      Enemy_SealHound_03: 100003
-      Enemy_SealHound_04: 100004
-      Enemy_SealHound_05: 100005
-      Enemy_SealHound_06: 100006
-      Enemy_SealHound_07: 100007
-      Enemy_SealHound_08: 100008
-      Enemy_SealHound_09: 100009
-      Enemy_SealHound_10: 100010
-      Enemy_SealHound_11: 100011
-      Enemy_SealHound_12: 100012
-      Enemy_SealHound_13: 100013
-      Enemy_SealHound_14: 100014
-      Enemy_SealHound_15: 100015
-  mipmapLimitGroupName:
+      SealHoundEvolution_00: 265697690
+      SealHoundEvolution_01: 80479682
+      SealHoundEvolution_02: 209409106
+      SealHoundEvolution_03: -940052010
+      SealHoundEvolution_04: -1036619641
+      SealHoundEvolution_05: -1733606484
+      SealHoundEvolution_06: -1389094000
+      SealHoundEvolution_07: 477085005
+      SealHoundEvolution_08: 1228750160
+      SealHoundEvolution_09: -1531278492
+      SealHoundEvolution_10: -1020278338
+      SealHoundEvolution_11: -452985011
+      SealHoundEvolution_12: -2101006686
+      SealHoundEvolution_13: -435291464
+      SealHoundEvolution_14: 1771002768
+      SealHoundEvolution_15: -1459211228
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

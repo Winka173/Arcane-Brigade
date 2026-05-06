@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SaddleMothMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 100003, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100000, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  Walk:
+  - {fileID: 100003, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100002, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100003, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100002, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  Windup:
+  - {fileID: 100000, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100002, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  Release:
+  - {fileID: 100001, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100001, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  Recovery:
+  - {fileID: 100002, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  - {fileID: 100003, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  IllustratedHeight: 0

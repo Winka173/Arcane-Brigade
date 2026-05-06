@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CabinetMimicMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -923453, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: 1667443630, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  Walk:
+  - {fileID: -540576965, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: -419891634, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: -540576965, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: -419891634, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  Windup:
+  - {fileID: 916818547, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: -1750692682, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  Release:
+  - {fileID: 916837847, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: 916837847, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  Recovery:
+  - {fileID: -1347713174, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  - {fileID: -923453, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  IllustratedHeight: 0

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: UmbrellaStalkerMutatedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1145083352, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: -591122100, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  Walk:
+  - {fileID: 745364323, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: 1798697359, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: 745364323, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: 1798697359, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  Windup:
+  - {fileID: 381189001, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: -1223693586, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  Release:
+  - {fileID: 99631486, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: 99631486, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  Recovery:
+  - {fileID: 502570794, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  - {fileID: 1145083352, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  IllustratedHeight: 0

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SackGolemMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1974785188, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: -1336110549, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  Walk:
+  - {fileID: 173938241, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: 701592338, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: 173938241, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: 701592338, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  Windup:
+  - {fileID: -824124129, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: -637203431, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  Release:
+  - {fileID: -1990691522, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: -1990691522, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  Recovery:
+  - {fileID: 814595648, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  - {fileID: 1974785188, guid: ea1afd75abd7428db861502e9eef7f03, type: 3}
+  IllustratedHeight: 0

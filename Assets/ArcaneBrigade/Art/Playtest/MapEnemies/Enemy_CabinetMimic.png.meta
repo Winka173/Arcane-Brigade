@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_00
+      name: CabinetMimicEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 92
+        y: 979
+        width: 131
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7031d87c73f140b38177477152c7e402
-      internalID: 100000
+      spriteID: 2dc4e82a609cfc64f9199c27485f6675
+      internalID: -923453
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_01
+      name: CabinetMimicEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 405
+        y: 978
+        width: 132
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30c440ff5e4749c99062f70c91a7b42c
-      internalID: 100001
+      spriteID: af6c6d216346e3044810559ceddffc65
+      internalID: 1667443630
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_02
+      name: CabinetMimicEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 712
+        y: 978
+        width: 144
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7545d2e0811a4589871e0115cc0d5c09
-      internalID: 100002
+      spriteID: 7ba7e658df6eaaf4e8960984b4ac8945
+      internalID: -540576965
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_03
+      name: CabinetMimicEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1024
+        y: 977
+        width: 146
+        height: 218
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78b4c0d4665441d894b0ad37ffe5d3f3
-      internalID: 100003
+      spriteID: 25e1a14344c08404e9af14e062b5ec5e
+      internalID: -419891634
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_04
+      name: CabinetMimicEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 63
+        y: 664
+        width: 186
+        height: 183
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 952d783fe6374ef2bb3cbeb9722f916c
-      internalID: 100004
+      spriteID: 891939f666b36cf468148eed3b536d08
+      internalID: 916818547
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_05
+      name: CabinetMimicEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 385
+        y: 664
+        width: 172
+        height: 210
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c09fb7da287c4cd59d07d551cf168d91
-      internalID: 100005
+      spriteID: 5bc776b7ecfd6844e9f447e1fb94f564
+      internalID: -1750692682
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_06
+      name: CabinetMimicEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 679
+        y: 665
+        width: 210
+        height: 224
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e6552d5e21143d691e5e95bb5cdb8c9
-      internalID: 100006
+      spriteID: 5a0dac9d1f597ef498c71ebe2dd7c234
+      internalID: 916837847
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_07
+      name: CabinetMimicEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1011
+        y: 664
+        width: 171
+        height: 217
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c7fd1453ec8494e926fc9f8211fafce
-      internalID: 100007
+      spriteID: ad60d5e7734b9cf42bf9738ed5601b57
+      internalID: -1347713174
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_08
+      name: CabinetMimicEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 40
+        y: 351
+        width: 233
+        height: 219
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9fc8c3cfeb0451f844339a48cec1248
-      internalID: 100008
+      spriteID: 9837e194f3583534dae507de03085db7
+      internalID: -1829287405
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_09
+      name: CabinetMimicEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 354
+        y: 351
+        width: 233
+        height: 219
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3665314ec20742c6bdcf957104b34627
-      internalID: 100009
+      spriteID: 02c82e8a8b33f8046a635d870542fc0c
+      internalID: -1546180010
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_10
+      name: CabinetMimicEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 677
+        y: 351
+        width: 216
+        height: 209
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a5b63f5633849aca0896c6cd3e9e402
-      internalID: 100010
+      spriteID: 4612baba7a0607548852e89593b45cba
+      internalID: -128990422
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_11
+      name: CabinetMimicEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 991
+        y: 352
+        width: 215
+        height: 211
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fb8577a65cd45ec9a4b987650e9859e
-      internalID: 100011
+      spriteID: 7b863aca17bad6f4596f3f4e6e5cb0b6
+      internalID: 854313437
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_12
+      name: CabinetMimicEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 52
+        y: 39
+        width: 209
+        height: 195
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e680bd7e369c41a793b638e156ff284d
-      internalID: 100012
+      spriteID: b4dd9f391f70de8419f3873fa92c0ba4
+      internalID: 314778321
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_13
+      name: CabinetMimicEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 359
+        y: 38
+        width: 221
+        height: 236
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39879a87f41c43e3a81236c32ca3bf0c
-      internalID: 100013
+      spriteID: 4a543c4c4ec226b44809cdc5c4b14b52
+      internalID: 1146488232
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_14
+      name: CabinetMimicEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 667
+        y: 39
+        width: 234
+        height: 236
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d08767f605b74c03a906dd828739ad92
-      internalID: 100014
+      spriteID: 38e0d55c1d4da76488b9cb3524ac11f2
+      internalID: -1982069700
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_CabinetMimic_15
+      name: CabinetMimicEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 990
+        y: 37
+        width: 213
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bae97ae0fed3425fadc735bd0f090cb2
-      internalID: 100015
+      spriteID: cb65660ec5d321641a8a8b07af849ba3
+      internalID: 1501114631
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: a4655541221e4102bfa01a98b17841ba
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_CabinetMimic_00: 100000
-      Enemy_CabinetMimic_01: 100001
-      Enemy_CabinetMimic_02: 100002
-      Enemy_CabinetMimic_03: 100003
-      Enemy_CabinetMimic_04: 100004
-      Enemy_CabinetMimic_05: 100005
-      Enemy_CabinetMimic_06: 100006
-      Enemy_CabinetMimic_07: 100007
-      Enemy_CabinetMimic_08: 100008
-      Enemy_CabinetMimic_09: 100009
-      Enemy_CabinetMimic_10: 100010
-      Enemy_CabinetMimic_11: 100011
-      Enemy_CabinetMimic_12: 100012
-      Enemy_CabinetMimic_13: 100013
-      Enemy_CabinetMimic_14: 100014
-      Enemy_CabinetMimic_15: 100015
-  mipmapLimitGroupName:
+      CabinetMimicEvolution_00: -923453
+      CabinetMimicEvolution_01: 1667443630
+      CabinetMimicEvolution_02: -540576965
+      CabinetMimicEvolution_03: -419891634
+      CabinetMimicEvolution_04: 916818547
+      CabinetMimicEvolution_05: -1750692682
+      CabinetMimicEvolution_06: 916837847
+      CabinetMimicEvolution_07: -1347713174
+      CabinetMimicEvolution_08: -1829287405
+      CabinetMimicEvolution_09: -1546180010
+      CabinetMimicEvolution_10: -128990422
+      CabinetMimicEvolution_11: 854313437
+      CabinetMimicEvolution_12: 314778321
+      CabinetMimicEvolution_13: 1146488232
+      CabinetMimicEvolution_14: -1982069700
+      CabinetMimicEvolution_15: 1501114631
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -482,11 +482,12 @@ namespace ArcaneBrigade
             if (canonActor) referenceHeight = state.Definition.AuthoredMotion.ReferenceHeight;
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
-            float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
-            impactSquash += hurt * 0.09f;
+            bool ordinaryFoe = state.Faction == Faction.Enemy && !state.Definition.IsBoss;
+            float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / (ordinaryFoe ? 0.2f : 0.14f)); // owner 23/10/2026: a struck foe reads
+            impactSquash += hurt * (ordinaryFoe ? 0.14f : 0.09f);
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
-            float jolt = 0.09f + state.HitWeight * 0.12f; // ImpactRules weight of the last blow
+            float jolt = (ordinaryFoe ? 0.14f : 0.09f) + state.HitWeight * (ordinaryFoe ? 0.16f : 0.12f); // ImpactRules weight of the last blow
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0f);
             if (canonActor) body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, -height * .5f - SpriteInkMetrics.BoundsOf(body.sprite).yMin * scale + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0);
             float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
@@ -503,10 +504,11 @@ namespace ArcaneBrigade
                 if (tip > 0) { body.transform.localRotation *= Quaternion.Euler(0, 0, -tipSide * 30 * tip); body.transform.localPosition += new Vector3(tipSide * .05f, .06f, 0) * tip; }
                 // C10: a heavy melee swing draws back a touch, then carries the swinger toward its blow and back
                 lungeOffset = Vector2.zero;
-                if (attacking && definition.Kind == WeaponKind.Melee && state.Faction == Faction.Companion)
+                bool noAttackPose = state.Definition.AuthoredMotion == null; // friends without a painted attack pose (owner 23/10/2026)
+                if (attacking && state.Faction == Faction.Companion && (definition.Kind == WeaponKind.Melee || noAttackPose))
                 {
-                    float weight = ImpactRules.Weight(definition);
-                    if (weight >= .55f)
+                    float weight = definition.Kind == WeaponKind.Melee ? Mathf.Max(.55f, ImpactRules.Weight(definition)) : .45f;
+                    if (definition.Kind != WeaponKind.Melee) weight *= .6f; // a shooter hops, a swinger lunges
                     {
                         float charge = Mathf.Clamp01(age / Mathf.Max(.01f, poseWindup)), release = Mathf.Clamp01((age - poseWindup) / Mathf.Max(.01f, definition.Recovery));
                         Vector2 toward = state.AttackDirection.sqrMagnitude > .001f ? state.AttackDirection.normalized : facing.normalized;

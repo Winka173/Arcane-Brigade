@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_00
+      name: LampshadeJellyEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 82
+        y: 977
+        width: 152
+        height: 180
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32b9a950a6ad400499f89ae97eb9a63e
-      internalID: 100000
+      spriteID: af48623f2c3269449be01ecb45d0c489
+      internalID: -670806623
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_01
+      name: LampshadeJellyEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 392
+        y: 977
+        width: 156
+        height: 179
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05ad5420cf1d42c9859249fa8c74aff2
-      internalID: 100001
+      spriteID: 6602e2a80cff95e4e942d9763d4cd3ab
+      internalID: -561094597
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_02
+      name: LampshadeJellyEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 689
+        y: 977
+        width: 189
+        height: 167
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad6a7e5823544542a732a8108ac231c2
-      internalID: 100002
+      spriteID: 3d62f18bed9dceb42bf49acdaf806c97
+      internalID: -1575780159
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_03
+      name: LampshadeJellyEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1002
+        y: 977
+        width: 189
+        height: 168
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b9f13fccf6547538346dff03bbd233a
-      internalID: 100003
+      spriteID: b6a6bf598f22d9047b4329dc84f110a5
+      internalID: -521403356
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_04
+      name: LampshadeJellyEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 61
+        y: 666
+        width: 193
+        height: 154
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 189e969f06a5400790e8a9b8847195c4
-      internalID: 100004
+      spriteID: 5c5c2e7e6602c3744991ed0d3354d73f
+      internalID: 1455194448
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_05
+      name: LampshadeJellyEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 371
+        y: 665
+        width: 199
+        height: 175
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da8777f90a82434abf9d19804ba85b31
-      internalID: 100005
+      spriteID: d3aeb1d359dfedd44b276e78a21f7d94
+      internalID: -287657438
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_06
+      name: LampshadeJellyEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 669
+        y: 665
+        width: 229
+        height: 173
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c7d0b08a40d4b369459fee915015fc3
-      internalID: 100006
+      spriteID: 901ebf5876389e8438a3d45560b8fba0
+      internalID: 1649019219
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_07
+      name: LampshadeJellyEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1003
+        y: 665
+        width: 187
+        height: 149
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 710803d9de584e9db634999c1a8f23a7
-      internalID: 100007
+      spriteID: 3658c1057e672bc4b897ed0221823a8c
+      internalID: -978709763
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_08
+      name: LampshadeJellyEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 69
+        y: 351
+        width: 177
+        height: 209
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cecba06bf85644b38262af68101c59dc
-      internalID: 100008
+      spriteID: 284c48107d57fe64cac7eaa7c9aec2cd
+      internalID: 2113720861
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_09
+      name: LampshadeJellyEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 369
+        y: 352
+        width: 204
+        height: 209
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c84ce15de0d24112a1df9ba91d6bd6ca
-      internalID: 100009
+      spriteID: c5fe9a68891cee1489e075611bf53075
+      internalID: -87110467
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_10
+      name: LampshadeJellyEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 673
+        y: 352
+        width: 221
+        height: 199
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a44ba57584194c2a9fdaad8e151dfb03
-      internalID: 100010
+      spriteID: c065fdcce97b5b84c8429ce7ca499719
+      internalID: 746376754
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_11
+      name: LampshadeJellyEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 990
+        y: 352
+        width: 215
+        height: 200
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3898bbde19a4854917c763b6b645659
-      internalID: 100011
+      spriteID: 187d789e3bd75b04fab7e6234eb81dd7
+      internalID: -363445487
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_12
+      name: LampshadeJellyEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 50
+        y: 39
+        width: 214
+        height: 184
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3a35d4f12864c5685c18f45b756b284
-      internalID: 100012
+      spriteID: 9e83a833729b87a44845b1e05d8af082
+      internalID: -859550685
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_13
+      name: LampshadeJellyEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 357
+        y: 38
+        width: 225
+        height: 188
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e14494034a644fd3b7f2af08a53b2075
-      internalID: 100013
+      spriteID: 37dbc51d719cac9409d8755e228ecbd5
+      internalID: 547003058
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_14
+      name: LampshadeJellyEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 665
+        y: 39
+        width: 238
+        height: 197
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b57a5c23a60a426d9a28aa48cca4a770
-      internalID: 100014
+      spriteID: 66debcd21b26d374a9c6930aa6efc319
+      internalID: -331312481
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_LampshadeJelly_15
+      name: LampshadeJellyEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 1002
+        y: 38
+        width: 189
+        height: 182
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 421c7044d4774ebd846ce56f5926fcb4
-      internalID: 100015
+      spriteID: 86f34827ef9be3b449171e429e736169
+      internalID: -409106869
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5d1e854fb18c44b0a5678b422ef7040d
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_LampshadeJelly_00: 100000
-      Enemy_LampshadeJelly_01: 100001
-      Enemy_LampshadeJelly_02: 100002
-      Enemy_LampshadeJelly_03: 100003
-      Enemy_LampshadeJelly_04: 100004
-      Enemy_LampshadeJelly_05: 100005
-      Enemy_LampshadeJelly_06: 100006
-      Enemy_LampshadeJelly_07: 100007
-      Enemy_LampshadeJelly_08: 100008
-      Enemy_LampshadeJelly_09: 100009
-      Enemy_LampshadeJelly_10: 100010
-      Enemy_LampshadeJelly_11: 100011
-      Enemy_LampshadeJelly_12: 100012
-      Enemy_LampshadeJelly_13: 100013
-      Enemy_LampshadeJelly_14: 100014
-      Enemy_LampshadeJelly_15: 100015
-  mipmapLimitGroupName:
+      LampshadeJellyEvolution_00: -670806623
+      LampshadeJellyEvolution_01: -561094597
+      LampshadeJellyEvolution_02: -1575780159
+      LampshadeJellyEvolution_03: -521403356
+      LampshadeJellyEvolution_04: 1455194448
+      LampshadeJellyEvolution_05: -287657438
+      LampshadeJellyEvolution_06: 1649019219
+      LampshadeJellyEvolution_07: -978709763
+      LampshadeJellyEvolution_08: 2113720861
+      LampshadeJellyEvolution_09: -87110467
+      LampshadeJellyEvolution_10: 746376754
+      LampshadeJellyEvolution_11: -363445487
+      LampshadeJellyEvolution_12: -859550685
+      LampshadeJellyEvolution_13: 547003058
+      LampshadeJellyEvolution_14: -331312481
+      LampshadeJellyEvolution_15: -409106869
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

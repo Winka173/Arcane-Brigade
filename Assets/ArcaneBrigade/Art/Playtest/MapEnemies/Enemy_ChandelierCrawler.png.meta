@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_00
+      name: ChandelierCrawlerEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 60
+        y: 978
+        width: 194
+        height: 215
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5aa51168099b453e80c40344be922391
-      internalID: 100000
+      spriteID: 587d8cd9e62904f4a9679e074d9f3f2c
+      internalID: -794054287
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_01
+      name: ChandelierCrawlerEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 371
+        y: 979
+        width: 195
+        height: 215
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af4c593259794f42bad8db23ddc4226f
-      internalID: 100001
+      spriteID: 1c993b7fea600bd469b1b01efc26095e
+      internalID: -1535802606
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_02
+      name: ChandelierCrawlerEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 693
+        y: 979
+        width: 182
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdb872baafbd44e382ef5ba3d399f3b1
-      internalID: 100002
+      spriteID: c0f801854834ec44b9e4b4149ac84551
+      internalID: -805623442
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_03
+      name: ChandelierCrawlerEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1003
+        y: 977
+        width: 187
+        height: 215
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2964e84d92de49afaaea5d11b07e8912
-      internalID: 100003
+      spriteID: 86a4008b0df1279419e701c27b0d612a
+      internalID: 1260495906
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_04
+      name: ChandelierCrawlerEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 60
+        y: 666
+        width: 196
+        height: 179
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf7b854dccdd4065848df53a947c4335
-      internalID: 100004
+      spriteID: 1b117d6f777f4aa47b613b619332ed32
+      internalID: 1153190920
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_05
+      name: ChandelierCrawlerEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 357
+        y: 666
+        width: 225
+        height: 229
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe7556e6b58c4755a398463a3364003d
-      internalID: 100005
+      spriteID: 0ca309caf40f8a94481e4debcd863b23
+      internalID: -763371577
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_06
+      name: ChandelierCrawlerEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 670
+        y: 664
+        width: 230
+        height: 225
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da8ca70e334344d8b614860afc9701d9
-      internalID: 100006
+      spriteID: 7847194d0ed1a3d4080dd01a73539de7
+      internalID: -822584124
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_07
+      name: ChandelierCrawlerEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 996
+        y: 664
+        width: 198
+        height: 210
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af75dc09bd4a44bc9cc101c4168c2109
-      internalID: 100007
+      spriteID: cc8187ca825ab5245a7626f30b805e51
+      internalID: 764553085
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_08
+      name: ChandelierCrawlerEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 39
+        y: 352
+        width: 235
+        height: 228
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 565d7939cbe649fa81c5aa0b510d9c1c
-      internalID: 100008
+      spriteID: f2063a046cb2cef4e983237c6e0bf8d2
+      internalID: 13710229
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_09
+      name: ChandelierCrawlerEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 355
+        y: 353
+        width: 233
+        height: 228
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ce40fc4084e4087883b512f293098cc
-      internalID: 100009
+      spriteID: 881ac5079a0538946b0d15f46468c457
+      internalID: -345673735
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_10
+      name: ChandelierCrawlerEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 672
+        y: 353
+        width: 227
+        height: 221
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97794e065af844eebe0495cc1693386c
-      internalID: 100010
+      spriteID: 2c2cf1cc68e52984fb9bf87a70dc42fb
+      internalID: 563060080
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_11
+      name: ChandelierCrawlerEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 984
+        y: 353
+        width: 224
+        height: 220
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6af34cbbb114adab3d1b1d35530b0d1
-      internalID: 100011
+      spriteID: dc9d0947af84d424bb489ef4c34c6e86
+      internalID: -610902176
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_12
+      name: ChandelierCrawlerEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 42
+        y: 39
+        width: 230
+        height: 179
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aea6760dd4844f5ba53392e2932dbd0
-      internalID: 100012
+      spriteID: 8be9a32e7e95d3e489566fe8fef343c7
+      internalID: 95650752
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_13
+      name: ChandelierCrawlerEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 355
+        y: 38
+        width: 232
+        height: 234
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 355721f9ca6444178f217a57136a45db
-      internalID: 100013
+      spriteID: eb20aa08ba316714085bb071bd7c9009
+      internalID: 682273742
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_14
+      name: ChandelierCrawlerEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 669
+        y: 39
+        width: 228
+        height: 221
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c133c5d70ed4d019a73fa50737cbe4d
-      internalID: 100014
+      spriteID: 7f50464286bf94f44aec4ac5656d57e4
+      internalID: 1848263185
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ChandelierCrawler_15
+      name: ChandelierCrawlerEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 991
+        y: 39
+        width: 213
+        height: 216
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7728de160954629baa101e5c6a20a98
-      internalID: 100015
+      spriteID: d9a5b94af9d088449bbc85e5ec6a8472
+      internalID: -567224219
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 161ad24b0cbc43ee92fa9f6a660941fd
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_ChandelierCrawler_00: 100000
-      Enemy_ChandelierCrawler_01: 100001
-      Enemy_ChandelierCrawler_02: 100002
-      Enemy_ChandelierCrawler_03: 100003
-      Enemy_ChandelierCrawler_04: 100004
-      Enemy_ChandelierCrawler_05: 100005
-      Enemy_ChandelierCrawler_06: 100006
-      Enemy_ChandelierCrawler_07: 100007
-      Enemy_ChandelierCrawler_08: 100008
-      Enemy_ChandelierCrawler_09: 100009
-      Enemy_ChandelierCrawler_10: 100010
-      Enemy_ChandelierCrawler_11: 100011
-      Enemy_ChandelierCrawler_12: 100012
-      Enemy_ChandelierCrawler_13: 100013
-      Enemy_ChandelierCrawler_14: 100014
-      Enemy_ChandelierCrawler_15: 100015
-  mipmapLimitGroupName:
+      ChandelierCrawlerEvolution_00: -794054287
+      ChandelierCrawlerEvolution_01: -1535802606
+      ChandelierCrawlerEvolution_02: -805623442
+      ChandelierCrawlerEvolution_03: 1260495906
+      ChandelierCrawlerEvolution_04: 1153190920
+      ChandelierCrawlerEvolution_05: -763371577
+      ChandelierCrawlerEvolution_06: -822584124
+      ChandelierCrawlerEvolution_07: 764553085
+      ChandelierCrawlerEvolution_08: 13710229
+      ChandelierCrawlerEvolution_09: -345673735
+      ChandelierCrawlerEvolution_10: 563060080
+      ChandelierCrawlerEvolution_11: -610902176
+      ChandelierCrawlerEvolution_12: 95650752
+      ChandelierCrawlerEvolution_13: 682273742
+      ChandelierCrawlerEvolution_14: 1848263185
+      ChandelierCrawlerEvolution_15: -567224219
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -150,6 +150,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98741ea4d93f9474c9681ec8a990e127, type: 2}
   - {fileID: 11400000, guid: e7f13aa3f641a5244aec847ff24c89f1, type: 2}
   - {fileID: 11400000, guid: b826ca200277f49498a5b108b997624e, type: 2}
+  - {fileID: 11400000, guid: 0d7aa97fb2113394c908f664663438b5, type: 2}
+  - {fileID: 11400000, guid: 118774b8bfed72a4e911f8275a8f19ec, type: 2}
   Weapons:
   - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
@@ -297,6 +299,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc0167778adbaab4eb282fbec0e1a460, type: 2}
   - {fileID: 11400000, guid: c3a1472ebeaeee84aadc9bfe974bca29, type: 2}
   - {fileID: 11400000, guid: ce20d90a9ad2b0c49a9481d79193b832, type: 2}
+  - {fileID: 11400000, guid: 0e97360b1870e124db2591eb59c10f8c, type: 2}
+  - {fileID: 11400000, guid: 9e54dae8224282d469c4a372f184c2fa, type: 2}
+  - {fileID: 11400000, guid: a60e93df683f673498ca1d592c400406, type: 2}
+  - {fileID: 11400000, guid: 5ddeb9478c159974caa23a38dab7c5d6, type: 2}
+  - {fileID: 11400000, guid: 7571570877e69b848a6074ea9b03de8e, type: 2}
+  - {fileID: 11400000, guid: a197d2a2855b5f64c81acb8159fa3b7a, type: 2}
+  - {fileID: 11400000, guid: 9879c30a680185544bbde8655f9d71d7, type: 2}
+  - {fileID: 11400000, guid: ee70de0a57d2f0f4a81270965c4a88f3, type: 2}
+  - {fileID: 11400000, guid: df8e876d936a399429c9c5387508dcf9, type: 2}
+  - {fileID: 11400000, guid: e859fdfae117ec543840d211fde15892, type: 2}
+  - {fileID: 11400000, guid: 05ad416efc080df4abb0050b9f08cd1a, type: 2}
+  - {fileID: 11400000, guid: bbbf25dd13ba93a489853dab0e511ccb, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}
@@ -8818,7 +8832,7 @@ MonoBehaviour:
     Price: 60
     Effect: 12
     Value: 0
-    Icon: {fileID: 1695328001, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    Icon: {fileID: 21300000, guid: fd54af867f254be0bf831ebb085560ce, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 2
@@ -8839,7 +8853,7 @@ MonoBehaviour:
     Price: 60
     Effect: 12
     Value: 0
-    Icon: {fileID: 1956717586, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Icon: {fileID: 21300000, guid: 1f5bdb97eebc476e8ef41a2824df7b8e, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 2
@@ -8860,7 +8874,7 @@ MonoBehaviour:
     Price: 55
     Effect: 12
     Value: 0
-    Icon: {fileID: 2037761858, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    Icon: {fileID: 21300000, guid: 29f788127b7e4b0889b8626479862e63, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 2
@@ -8881,7 +8895,7 @@ MonoBehaviour:
     Price: 80
     Effect: 12
     Value: 0
-    Icon: {fileID: 1191121151, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    Icon: {fileID: 21300000, guid: 80f05475ee31492e8434d8cbb96c2ac2, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 3
@@ -8902,7 +8916,7 @@ MonoBehaviour:
     Price: 35
     Effect: 12
     Value: 0
-    Icon: {fileID: -789286955, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Icon: {fileID: 21300000, guid: 779596fd38734de98ac7b9c2cd14f3e1, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 12
@@ -8930,7 +8944,7 @@ MonoBehaviour:
     Price: 55
     Effect: 12
     Value: 0
-    Icon: {fileID: 712256120, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Icon: {fileID: 21300000, guid: f987a9fe62e44336aa53962b62546274, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 2
@@ -8951,7 +8965,7 @@ MonoBehaviour:
     Price: 40
     Effect: 12
     Value: 0
-    Icon: {fileID: 1177601457, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    Icon: {fileID: 21300000, guid: 73e0d3541dca466c80ca2e249f7e897f, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 1
@@ -8972,7 +8986,7 @@ MonoBehaviour:
     Price: 200
     Effect: 12
     Value: 0
-    Icon: {fileID: -1173072530, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    Icon: {fileID: 21300000, guid: 09a01a3070c041e8a3f0d6d4b8480a60, type: 3}
     UnlockWave: 1
     Modifiers: []
     Rarity: 5
@@ -8993,7 +9007,7 @@ MonoBehaviour:
     Price: 35
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: ac5a94212d41b924fb01c5cb00bea692, type: 3}
+    Icon: {fileID: 21300000, guid: 958eee0340154a7987aadd84a49262b7, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 0
@@ -9021,7 +9035,7 @@ MonoBehaviour:
     Price: 55
     Effect: 0
     Value: 0
-    Icon: {fileID: -1528355404, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    Icon: {fileID: 21300000, guid: 767821860a9f44b1b5eb525addd4f186, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 12
@@ -9049,7 +9063,7 @@ MonoBehaviour:
     Price: 75
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: bb75d477293caa54c8e78eb3612c68b0, type: 3}
+    Icon: {fileID: 21300000, guid: 1c2426d428bb4ecd8a0da4ceff068e0d, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 0
@@ -9077,7 +9091,7 @@ MonoBehaviour:
     Price: 35
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: 7bd2fe264b8c39244a142aad2a98dbdb, type: 3}
+    Icon: {fileID: 21300000, guid: 018093b4eb564d5eb84729465a6953f1, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 36
@@ -9105,7 +9119,7 @@ MonoBehaviour:
     Price: 55
     Effect: 0
     Value: 0
-    Icon: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Icon: {fileID: 21300000, guid: 3882a867fa144f5ca703783f716c2631, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 12
@@ -9130,7 +9144,7 @@ MonoBehaviour:
     Price: 75
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: ebea8408dd23f4c46bc7428253ddeb54, type: 3}
+    Icon: {fileID: 21300000, guid: c3d19da0ff8b4e2c86eebbe4e6ea81ed, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 0
@@ -9158,7 +9172,7 @@ MonoBehaviour:
     Price: 35
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: bf798f1bd51e821479c8e706890d648d, type: 3}
+    Icon: {fileID: 21300000, guid: 27c98cbb528f4c3f880d3aa0eb92c53f, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 13
@@ -9186,7 +9200,7 @@ MonoBehaviour:
     Price: 55
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: 5d7bdc9dfc19e1a4aa4319d24dc66213, type: 3}
+    Icon: {fileID: 21300000, guid: 212d66ed668a432f85f20817a216dbc3, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 14
@@ -9214,7 +9228,7 @@ MonoBehaviour:
     Price: 75
     Effect: 0
     Value: 0
-    Icon: {fileID: -843331076, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    Icon: {fileID: 21300000, guid: 1b78fae25bde43e4b6324ff36cded8c6, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 13
@@ -9242,7 +9256,7 @@ MonoBehaviour:
     Price: 35
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: e5fc528309ae745459f96120138ff1e5, type: 3}
+    Icon: {fileID: 21300000, guid: 97a6631039074b03aa8e35debc295add, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 0
@@ -9270,7 +9284,7 @@ MonoBehaviour:
     Price: 55
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: 3ee6aaa3becdab64daa73be5f657b58d, type: 3}
+    Icon: {fileID: 21300000, guid: 8511a9ce24cb495d8e1a1dee504cab17, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 1
@@ -9298,7 +9312,7 @@ MonoBehaviour:
     Price: 75
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: 890c242605b69004ebc6ef8d05e1310d, type: 3}
+    Icon: {fileID: 21300000, guid: ecd6631cab0c4d2cbfde48288252567e, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 0
@@ -9326,7 +9340,7 @@ MonoBehaviour:
     Price: 35
     Effect: 0
     Value: 0
-    Icon: {fileID: 21300000, guid: afbcac6416a6c0442b34ba43b46d7951, type: 3}
+    Icon: {fileID: 21300000, guid: 13376efe1dab42a4938cc5fa541e9891, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 12
@@ -9354,7 +9368,7 @@ MonoBehaviour:
     Price: 55
     Effect: 0
     Value: 0
-    Icon: {fileID: 409440659, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    Icon: {fileID: 21300000, guid: 9f319fbf68424b4b9765da93ca3be1d2, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 25
@@ -9382,7 +9396,7 @@ MonoBehaviour:
     Price: 75
     Effect: 0
     Value: 0
-    Icon: {fileID: -915763917, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Icon: {fileID: 21300000, guid: 0fbfce201cae4babab39cbd8b4c66b66, type: 3}
     UnlockWave: 1
     Modifiers:
     - Effect: 0

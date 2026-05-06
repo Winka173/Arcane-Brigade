@@ -94,6 +94,7 @@ namespace ArcaneBrigade
                 choiceBody = ArcadeTypography.Style(22); choiceBody.alignment = TextAnchor.UpperCenter; choiceBody.wordWrap = true;
             }
             Color ink = new Color(.22f, .16f, .1f);
+            Color popKeep = CardPop.Apply("farewell", new Rect(300, 60, 1320, 1000));
             Rect top = new Rect(510, 60, 900, 170);
             ArcadeSkin.Ticket(top, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Rect topIn = ArcadeSkin.Content(top, KitFrame.Card);
@@ -118,6 +119,7 @@ namespace ArcaneBrigade
             }
             bool can = ready && picked >= 0;
             if (ArcadeSkin.Button(new Rect(760, 968, 400, 88), can ? "CONFIRM" : "CHOOSE ONE", KitButton.Primary, can, button)) Select(picked);
+            GUI.color = popKeep;
             if (owner.PresentationPaused && ArcadeSkin.Button(new Rect(760, 650, 400, 84), "RESUME", KitButton.Primary, true, button)) owner.TogglePause();
         }
     }

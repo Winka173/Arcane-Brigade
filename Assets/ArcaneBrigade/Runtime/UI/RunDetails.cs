@@ -157,6 +157,7 @@ namespace ArcaneBrigade
             GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(23));
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
             GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
+            CardPop.Apply("brigade", new Rect(30, 20, 1860, 1040)); // the colour is restored with previousTint at the end
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(30, 20, 1860, 1040), KitFrame.Dialogue, .7f); else RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);

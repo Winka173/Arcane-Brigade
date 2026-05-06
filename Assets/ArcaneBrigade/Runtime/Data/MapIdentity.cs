@@ -40,10 +40,10 @@ namespace ArcaneBrigade
         // the Coat Rack, HopperKeg the Hatbox Hopper, BristleImp the Splinter Imp, SmokingCoffin the Unclaimed Trunk)
         private static readonly string[][] Families =
         {
-            new[] { "SpareChair", "DoorKnocker", "SporeBishop", "CoinLeech", "HopperKeg", "BristleImp", "DoorBearer", "SleepMimic", "HushMite" },
-            new[] { "SewnLetter", "PartyLine", "RibbonHydra", "MoonMagnet", "BroomSkater", "ChargerRam", "BlastPuffer" },
-            new[] { "LampSnuffer", "InkMoth", "CurtainWisp", "RuneWisp", "LostLanternSoul", "SmokeWraith", "BlueFlameFiend", "TwinFlameFurnace", "EmberProcession", "AshSwallower" },
-            new[] { "LedgerHound", "SmokingCoffin", "ClockBat", "BurrowBell", "RedFlameBerserker", "SirenSeal", "InkNotary" },
+            new[] { "SpareChair", "DoorKnocker", "SporeBishop", "CoinLeech", "HopperKeg", "BristleImp", "DoorBearer", "SleepMimic", "HushMite", "TicketMoth", "UmbrellaStalker", "SofaGlutton" },
+            new[] { "SewnLetter", "PartyLine", "RibbonHydra", "MoonMagnet", "BroomSkater", "ChargerRam", "BlastPuffer", "StampTick", "SealHound", "SackGolem" },
+            new[] { "LampSnuffer", "InkMoth", "CurtainWisp", "RuneWisp", "LostLanternSoul", "SmokeWraith", "BlueFlameFiend", "TwinFlameFurnace", "EmberProcession", "AshSwallower", "WickImp", "LampshadeJelly", "ChandelierCrawler" },
+            new[] { "LedgerHound", "SmokingCoffin", "ClockBat", "BurrowBell", "RedFlameBerserker", "SirenSeal", "InkNotary", "ClipMite", "InkToad", "CabinetMimic" }, // + the playtest map enemies (owner 23/10/2026)
         };
         public static IReadOnlyList<string> Family(MapTheme map) => Families[(int)map];
         public static bool InFamily(MapTheme map, string id) => Array.IndexOf(Families[(int)map], id) >= 0;

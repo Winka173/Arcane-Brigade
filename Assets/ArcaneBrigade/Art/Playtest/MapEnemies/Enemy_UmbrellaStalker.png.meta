@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_00
+      name: UmbrellaStalkerEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 107
+        y: 979
+        width: 101
+        height: 183
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cfb37f7ba8c414a92c713c3fd0f1930
-      internalID: 100000
+      spriteID: 460a09ca5ce726b4bb5a0b05872a5fe6
+      internalID: -706985194
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_01
+      name: UmbrellaStalkerEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 419
+        y: 977
+        width: 101
+        height: 182
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c17fb6cf687465eb068f3e9ba11b6c8
-      internalID: 100001
+      spriteID: 95b7741ac1711a445a57519738f98cc7
+      internalID: 640042595
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_02
+      name: UmbrellaStalkerEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 715
+        y: 977
+        width: 138
+        height: 177
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28ef3f6d24664c638745e6cb0f535f69
-      internalID: 100002
+      spriteID: 52e1099f117a81043a1f1576f80e5d09
+      internalID: -454245896
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_03
+      name: UmbrellaStalkerEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1029
+        y: 978
+        width: 134
+        height: 183
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cb70bbdceed4874a107c7281a5a0551
-      internalID: 100003
+      spriteID: b38d77087073a7142a6b751e52801c06
+      internalID: 1266036823
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_04
+      name: UmbrellaStalkerEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 91
+        y: 664
+        width: 133
+        height: 137
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a16b88e556094e4a8a037d67414d2b7b
-      internalID: 100004
+      spriteID: 255b29042ee1cce45aa7bb5b11896db2
+      internalID: 1190707384
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_05
+      name: UmbrellaStalkerEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 390
+        y: 664
+        width: 163
+        height: 175
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a0967ff081d45a192c23b34636d8a7d
-      internalID: 100005
+      spriteID: 42c647eb9ffa73b499a16714e405c2a2
+      internalID: 1400568670
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_06
+      name: UmbrellaStalkerEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 681
+        y: 664
+        width: 204
+        height: 160
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d7a7175d9534d0b98de5270c7e55e2f
-      internalID: 100006
+      spriteID: d86bbdffdf9dca94d819c0f98f76bb98
+      internalID: -265774515
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_07
+      name: UmbrellaStalkerEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1014
+        y: 665
+        width: 165
+        height: 185
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72efbcc8eefe4c89acfd31bf5bee44bf
-      internalID: 100007
+      spriteID: 9646d5d618a771848aa583e2c8c896ba
+      internalID: 1078242672
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_08
+      name: UmbrellaStalkerEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 54
+        y: 352
+        width: 206
+        height: 186
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89acede31e2c43feb5c4d8111777a7a3
-      internalID: 100008
+      spriteID: cf757f3040b2de543838b65b7fdcaf42
+      internalID: 1145083352
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_09
+      name: UmbrellaStalkerEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 365
+        y: 352
+        width: 210
+        height: 186
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d035575974f44139d87714cac3f6643
-      internalID: 100009
+      spriteID: 0f52d93a78138854f8577c6883a448da
+      internalID: -591122100
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_10
+      name: UmbrellaStalkerEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 682
+        y: 351
+        width: 202
+        height: 185
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8cb4038573c4c3aa9249abea5c2423c
-      internalID: 100010
+      spriteID: e0dda25e6011fc149bf1922c6566e498
+      internalID: 745364323
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_11
+      name: UmbrellaStalkerEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 998
+        y: 352
+        width: 198
+        height: 184
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 606f080ef42e4ea78a5a143e2ea59986
-      internalID: 100011
+      spriteID: 97a8c66e83eef904c80d1c5fe7c58d57
+      internalID: 1798697359
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_12
+      name: UmbrellaStalkerEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 66
+        y: 37
+        width: 183
+        height: 151
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4f04fa6fa704d4a96825dbd53333969
-      internalID: 100012
+      spriteID: 7f08963a1b42f4c4596dd9e52b04a7c7
+      internalID: 381189001
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_13
+      name: UmbrellaStalkerEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 359
+        y: 38
+        width: 222
+        height: 188
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b553f23b823c400190caabab411e4588
-      internalID: 100013
+      spriteID: 26fcf6152d3aae248bae0f8ce1fa7d86
+      internalID: -1223693586
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_14
+      name: UmbrellaStalkerEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 665
+        y: 37
+        width: 238
+        height: 176
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35a2aa5d1353497fa52ca188b0fe2d0d
-      internalID: 100014
+      spriteID: 9c13cc88e7dde714b82fe7b6a030108b
+      internalID: 99631486
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_UmbrellaStalker_15
+      name: UmbrellaStalkerEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 1009
+        y: 38
+        width: 176
+        height: 184
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5a1fa84ccd54531b3c48788b78b79b2
-      internalID: 100015
+      spriteID: 1fbc9f409b96a8146b04444a0b31af67
+      internalID: 502570794
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 354d11d4360941d481157f44016ccf4c
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_UmbrellaStalker_00: 100000
-      Enemy_UmbrellaStalker_01: 100001
-      Enemy_UmbrellaStalker_02: 100002
-      Enemy_UmbrellaStalker_03: 100003
-      Enemy_UmbrellaStalker_04: 100004
-      Enemy_UmbrellaStalker_05: 100005
-      Enemy_UmbrellaStalker_06: 100006
-      Enemy_UmbrellaStalker_07: 100007
-      Enemy_UmbrellaStalker_08: 100008
-      Enemy_UmbrellaStalker_09: 100009
-      Enemy_UmbrellaStalker_10: 100010
-      Enemy_UmbrellaStalker_11: 100011
-      Enemy_UmbrellaStalker_12: 100012
-      Enemy_UmbrellaStalker_13: 100013
-      Enemy_UmbrellaStalker_14: 100014
-      Enemy_UmbrellaStalker_15: 100015
-  mipmapLimitGroupName:
+      UmbrellaStalkerEvolution_00: -706985194
+      UmbrellaStalkerEvolution_01: 640042595
+      UmbrellaStalkerEvolution_02: -454245896
+      UmbrellaStalkerEvolution_03: 1266036823
+      UmbrellaStalkerEvolution_04: 1190707384
+      UmbrellaStalkerEvolution_05: 1400568670
+      UmbrellaStalkerEvolution_06: -265774515
+      UmbrellaStalkerEvolution_07: 1078242672
+      UmbrellaStalkerEvolution_08: 1145083352
+      UmbrellaStalkerEvolution_09: -591122100
+      UmbrellaStalkerEvolution_10: 745364323
+      UmbrellaStalkerEvolution_11: 1798697359
+      UmbrellaStalkerEvolution_12: 381189001
+      UmbrellaStalkerEvolution_13: -1223693586
+      UmbrellaStalkerEvolution_14: 99631486
+      UmbrellaStalkerEvolution_15: 502570794
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

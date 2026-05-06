@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_00
+      name: SofaGluttonEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 52
+        y: 977
+        width: 210
+        height: 165
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f469997c66048a0b0949f49bf10320f
-      internalID: 100000
+      spriteID: ae9f61d96d4336745a1eb2024a262d84
+      internalID: 44741929
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_01
+      name: SofaGluttonEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 366
+        y: 977
+        width: 210
+        height: 166
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c12f1084c8c4523bb989b1e1f1b7010
-      internalID: 100001
+      spriteID: acf59e04cfb92354692d4ab52505b3b8
+      internalID: 679780642
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_02
+      name: SofaGluttonEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 680
+        y: 977
+        width: 209
+        height: 174
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc38b56d03a48fa8ea1b6d67640e145
-      internalID: 100002
+      spriteID: b3efe489f7fb84e41a614f2c00086f89
+      internalID: -1585403475
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_03
+      name: SofaGluttonEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 994
+        y: 977
+        width: 206
+        height: 173
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee5cac1a98254e0bb4482dd4988e574c
-      internalID: 100003
+      spriteID: bf346dfa2a789484ca582433fd650094
+      internalID: 1305793422
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_04
+      name: SofaGluttonEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 42
+        y: 666
+        width: 231
+        height: 160
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6254ba71a5c34291bca8449b6166276a
-      internalID: 100004
+      spriteID: 937347a29221ac94cb11d9a95aec5642
+      internalID: 1998673221
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_05
+      name: SofaGluttonEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 360
+        y: 664
+        width: 220
+        height: 170
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa4409140aa424aaed1df3f16bb9806
-      internalID: 100005
+      spriteID: 922b992edd8134642a727ed9019b5e10
+      internalID: 1567098770
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_06
+      name: SofaGluttonEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 677
+        y: 665
+        width: 213
+        height: 182
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09f47e617ca44a779d26944155979980
-      internalID: 100006
+      spriteID: 391321bcfad36b9479f1b279ce54a8a1
+      internalID: 1070955855
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_07
+      name: SofaGluttonEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 984
+        y: 666
+        width: 226
+        height: 174
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 679c8129092840b3a52a18ae5ad18916
-      internalID: 100007
+      spriteID: 69da0c106909fec40b5afafad9bb5ba0
+      internalID: -1070792347
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_08
+      name: SofaGluttonEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 44
+        y: 352
+        width: 225
+        height: 194
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 589e03d08c3848c4a5dc6b747d9aad16
-      internalID: 100008
+      spriteID: 4ef09875fb3fd0f41af06b4e2440c214
+      internalID: -929182732
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_09
+      name: SofaGluttonEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 358
+        y: 351
+        width: 226
+        height: 193
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d855b42549334919b8e33805479ed7d2
-      internalID: 100009
+      spriteID: bbc87b8a2a5eab04bb236a0d7997ed12
+      internalID: -473218547
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_10
+      name: SofaGluttonEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 672
+        y: 352
+        width: 223
+        height: 203
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 062b6031b06b4a79aa32f1ed069d2aec
-      internalID: 100010
+      spriteID: 520c729e00e94ab478815a738c4dc00e
+      internalID: -230733014
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_11
+      name: SofaGluttonEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 986
+        y: 351
+        width: 223
+        height: 203
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 827c038c6fc54579958c2c0289b7b745
-      internalID: 100011
+      spriteID: 922af0c418c0f11428ebdb9a72bd6c8d
+      internalID: 610139881
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_12
+      name: SofaGluttonEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 38
+        y: 38
+        width: 237
+        height: 172
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3af926cdbc54d939537a5b5513f1cae
-      internalID: 100012
+      spriteID: 3c81c263b2994e34a89ed90685764c5b
+      internalID: -1607305978
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_13
+      name: SofaGluttonEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 359
+        y: 38
+        width: 221
+        height: 195
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecd37110205f4901839af175d2a67a18
-      internalID: 100013
+      spriteID: f2a30566d17966b4198b396cd7cb335f
+      internalID: -1650153738
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_14
+      name: SofaGluttonEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 665
+        y: 38
+        width: 236
+        height: 217
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c993880c574649da86ab3f71b06b4a29
-      internalID: 100014
+      spriteID: 887ed16b13d490b4aaf4af07940c76d4
+      internalID: -2002330710
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_SofaGlutton_15
+      name: SofaGluttonEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 987
+        y: 38
+        width: 220
+        height: 195
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98d154a4405e49ebbc163e523df40a19
-      internalID: 100015
+      spriteID: bc43f3457c253a44ba63e59284e6bd7a
+      internalID: -1108682193
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: e2996869483045bda912e2ef48f5fe4c
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_SofaGlutton_00: 100000
-      Enemy_SofaGlutton_01: 100001
-      Enemy_SofaGlutton_02: 100002
-      Enemy_SofaGlutton_03: 100003
-      Enemy_SofaGlutton_04: 100004
-      Enemy_SofaGlutton_05: 100005
-      Enemy_SofaGlutton_06: 100006
-      Enemy_SofaGlutton_07: 100007
-      Enemy_SofaGlutton_08: 100008
-      Enemy_SofaGlutton_09: 100009
-      Enemy_SofaGlutton_10: 100010
-      Enemy_SofaGlutton_11: 100011
-      Enemy_SofaGlutton_12: 100012
-      Enemy_SofaGlutton_13: 100013
-      Enemy_SofaGlutton_14: 100014
-      Enemy_SofaGlutton_15: 100015
-  mipmapLimitGroupName:
+      SofaGluttonEvolution_00: 44741929
+      SofaGluttonEvolution_01: 679780642
+      SofaGluttonEvolution_02: -1585403475
+      SofaGluttonEvolution_03: 1305793422
+      SofaGluttonEvolution_04: 1998673221
+      SofaGluttonEvolution_05: 1567098770
+      SofaGluttonEvolution_06: 1070955855
+      SofaGluttonEvolution_07: -1070792347
+      SofaGluttonEvolution_08: -929182732
+      SofaGluttonEvolution_09: -473218547
+      SofaGluttonEvolution_10: -230733014
+      SofaGluttonEvolution_11: 610139881
+      SofaGluttonEvolution_12: -1607305978
+      SofaGluttonEvolution_13: -1650153738
+      SofaGluttonEvolution_14: -2002330710
+      SofaGluttonEvolution_15: -1108682193
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

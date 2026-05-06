@@ -133,6 +133,78 @@ MonoBehaviour:
     Ability: 20
     Normal: {fileID: 11400000, guid: 3c469b4f3c721d94ba13c1332776ad8f, type: 2}
     Mutated: {fileID: 11400000, guid: dc7a08070f68c244a84e72759722af43, type: 2}
+  - Id: TicketMoth
+    MutationName: Torn Stubs
+    Summary: Splits into paper stubs that flutter at you.
+    Ability: 5
+    Normal: {fileID: 11400000, guid: 5f39c3eb66c9a7d4bbc54bd506730fb5, type: 2}
+    Mutated: {fileID: 11400000, guid: 36aa131adea73d744aaf869160c6afc1, type: 2}
+  - Id: UmbrellaStalker
+    MutationName: Canopy Rake
+    Summary: Opens its canopies and rakes the ground ahead.
+    Ability: 18
+    Normal: {fileID: 11400000, guid: 0800c0919f2a3d749aea27585f75323c, type: 2}
+    Mutated: {fileID: 11400000, guid: 88492bbd6dc3a324ab7db73532d1a16c, type: 2}
+  - Id: SofaGlutton
+    MutationName: Spring Jaw
+    Summary: Its cushions snap shut like scissors.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 3b6e6a14ec7cfa64a8dd690e4f40a6db, type: 2}
+    Mutated: {fileID: 11400000, guid: 874e65e1e7d404742a4cdc0145fdbd29, type: 2}
+  - Id: StampTick
+    MutationName: Postmark Pounce
+    Summary: Pounces where you stood.
+    Ability: 1
+    Normal: {fileID: 11400000, guid: 41b9d27b84a88914fbbbc3ae7fd8515a, type: 2}
+    Mutated: {fileID: 11400000, guid: df8cd4c665a52ef409bd58fa47cd8adc, type: 2}
+  - Id: SealHound
+    MutationName: Seal Snap
+    Summary: Steps back, then snaps forward.
+    Ability: 14
+    Normal: {fileID: 11400000, guid: d38e9b5a42c2fc749b49a0333af9b006, type: 2}
+    Mutated: {fileID: 11400000, guid: 7872b24228fe3f849b70bd16a5ed1dcb, type: 2}
+  - Id: SackGolem
+    MutationName: Parcel Burst
+    Summary: Bounces back from a hit and bursts at you.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: 3a90e6c6db602df4b87243ce08b34d3e, type: 2}
+    Mutated: {fileID: 11400000, guid: af653c2a2e016314e843f21dcc082f25, type: 2}
+  - Id: WickImp
+    MutationName: Triple Wick
+    Summary: Lowers its flames and rushes.
+    Ability: 3
+    Normal: {fileID: 11400000, guid: 6cc6677e50864694d9d07dcd25ad839e, type: 2}
+    Mutated: {fileID: 11400000, guid: 505affcc8e4e51849997afeaa4825604, type: 2}
+  - Id: LampshadeJelly
+    MutationName: Tassel Chains
+    Summary: Drops its shade and lashes with tassels.
+    Ability: 10
+    Normal: {fileID: 11400000, guid: 50060eacc57d77946b7602694e94d1d5, type: 2}
+    Mutated: {fileID: 11400000, guid: f91118afe62a46b48ab708bdc7ddf115, type: 2}
+  - Id: ChandelierCrawler
+    MutationName: Crystal Crown
+    Summary: Shatters a ring of crystal around itself.
+    Ability: 20
+    Normal: {fileID: 11400000, guid: 9b857fa0f920cd445abb0a2b74c5b6ed, type: 2}
+    Mutated: {fileID: 11400000, guid: cd7ca77c348cac949abc1c71a84966d9, type: 2}
+  - Id: ClipMite
+    MutationName: Pin Spiral
+    Summary: Unwinds a slow spiral of pins.
+    Ability: 4
+    Normal: {fileID: 11400000, guid: ad94f9eb058df984386aa3f584741897, type: 2}
+    Mutated: {fileID: 11400000, guid: 432043baf4d6cf24a86778e997e7431e, type: 2}
+  - Id: InkToad
+    MutationName: Ink Spill
+    Summary: Spills ink that bursts a moment later.
+    Ability: 16
+    Normal: {fileID: 11400000, guid: b3d72b11e6e74f5438fd83b9ee1e90b1, type: 2}
+    Mutated: {fileID: 11400000, guid: 3b8996e007e0efe4c88a94e363579cae, type: 2}
+  - Id: CabinetMimic
+    MutationName: Drawer Jaws
+    Summary: Every drawer opens into a biting mouth.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 080a05d1d4567724c9f1edb512b49278, type: 2}
+    Mutated: {fileID: 11400000, guid: 0c55b3c2e43a4954ebbe222ac7b252a8, type: 2}
   BodyFragments:
   - {fileID: -356142078, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
   - {fileID: 432123077, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}

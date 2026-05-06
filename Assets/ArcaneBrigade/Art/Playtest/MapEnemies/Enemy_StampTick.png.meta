@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_StampTick_00
+      name: StampTickEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 69
+        y: 978
+        width: 178
+        height: 154
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d68fd6ed9f8a4aeb9baaf249c5c88a23
-      internalID: 100000
+      spriteID: 4e565946a2b45f24fab2ea5b7513799a
+      internalID: 1440255138
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_01
+      name: StampTickEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 379
+        y: 978
+        width: 184
+        height: 150
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4cd38a3479547ec8079c446a6f778e9
-      internalID: 100001
+      spriteID: 45d09462cd5d18a4da8b2571863c1ea3
+      internalID: -2098284807
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_02
+      name: StampTickEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 691
+        y: 978
+        width: 187
+        height: 152
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d69c9bf2a1642e4ae54c642a98f3f58
-      internalID: 100002
+      spriteID: 17aa9ec4eeceaff4fac8ffc242c141e7
+      internalID: -727647332
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_03
+      name: StampTickEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1010
+        y: 978
+        width: 173
+        height: 135
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c2d4a8a80df48fe969596e4ae12b3c5
-      internalID: 100003
+      spriteID: 9312730233845e5428cea069e4f5dc9e
+      internalID: -1674006430
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_04
+      name: StampTickEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 66
+        y: 666
+        width: 184
+        height: 144
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03ab9e2fd96248a9a2d0c3eee4331bd3
-      internalID: 100004
+      spriteID: 8fc6a4c536f1cba42a4f9dea36a1b03a
+      internalID: -161345254
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_05
+      name: StampTickEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 365
+        y: 666
+        width: 210
+        height: 162
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a6148aceb7948ee9e15118acd3f7872
-      internalID: 100005
+      spriteID: 86265ed7609dd4b419ea8e278c3030d9
+      internalID: 1568270451
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_06
+      name: StampTickEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 684
+        y: 666
+        width: 197
+        height: 152
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 752d67da5eea4c70950e5febe4de2960
-      internalID: 100006
+      spriteID: f1b0cec33f1bc8e469280330bd92793d
+      internalID: -1498948187
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_07
+      name: StampTickEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1005
+        y: 666
+        width: 184
+        height: 147
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 387cbe9d71624229b8ffc75a9dd124d6
-      internalID: 100007
+      spriteID: b4de3b16c3b41d64791e46d78f1ce9ae
+      internalID: -996784328
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_08
+      name: StampTickEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 59
+        y: 351
+        width: 195
+        height: 196
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 937ba50ce28a4fe9995fb45816ede06f
-      internalID: 100008
+      spriteID: 02b698123fd12b54798f0bc041eed8b0
+      internalID: -237178700
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_09
+      name: StampTickEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 361
+        y: 351
+        width: 217
+        height: 197
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae29bcb894b745a48b04e0361e802cb6
-      internalID: 100009
+      spriteID: 9794f5fd0066a0d4ab6d179064040979
+      internalID: 1650105433
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_10
+      name: StampTickEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 677
+        y: 351
+        width: 213
+        height: 193
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6f577f51fc94074aff4fb87a7cd1bfa
-      internalID: 100010
+      spriteID: 2d420a5f4228b6848a39e49a8b443681
+      internalID: 1700084158
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_11
+      name: StampTickEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 999
+        y: 352
+        width: 194
+        height: 174
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a535ca11aa6249339bea8d3349f27ba3
-      internalID: 100011
+      spriteID: fabd16784595e6e4f9b5e8bf4b48438c
+      internalID: -1427356816
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_12
+      name: StampTickEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 61
+        y: 39
+        width: 193
+        height: 193
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b5401f718984386b0ddf1781a072163
-      internalID: 100012
+      spriteID: c293de7c52e2d4e4580dead6c886b775
+      internalID: 2008967372
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_13
+      name: StampTickEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 355
+        y: 38
+        width: 235
+        height: 197
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10f450fe983448718cef30fb3ddf7bbc
-      internalID: 100013
+      spriteID: 0afba1acefd52f34e9048d10c006bd95
+      internalID: -238088972
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_14
+      name: StampTickEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 668
+        y: 39
+        width: 230
+        height: 195
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22ca99755e7a45aabb7fe595990d8385
-      internalID: 100014
+      spriteID: 881884e34f6697d449490098a0ce4e0c
+      internalID: 1513543826
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_StampTick_15
+      name: StampTickEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 991
+        y: 39
+        width: 213
+        height: 178
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8859e88f2484e158d16deb77287c72e
-      internalID: 100015
+      spriteID: 9ed0cd182fb9e3a439e4afa6c09c8e11
+      internalID: -1867100348
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 4de13c9e45c74c67811dbc9abf55292a
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_StampTick_00: 100000
-      Enemy_StampTick_01: 100001
-      Enemy_StampTick_02: 100002
-      Enemy_StampTick_03: 100003
-      Enemy_StampTick_04: 100004
-      Enemy_StampTick_05: 100005
-      Enemy_StampTick_06: 100006
-      Enemy_StampTick_07: 100007
-      Enemy_StampTick_08: 100008
-      Enemy_StampTick_09: 100009
-      Enemy_StampTick_10: 100010
-      Enemy_StampTick_11: 100011
-      Enemy_StampTick_12: 100012
-      Enemy_StampTick_13: 100013
-      Enemy_StampTick_14: 100014
-      Enemy_StampTick_15: 100015
-  mipmapLimitGroupName:
+      StampTickEvolution_00: 1440255138
+      StampTickEvolution_01: -2098284807
+      StampTickEvolution_02: -727647332
+      StampTickEvolution_03: -1674006430
+      StampTickEvolution_04: -161345254
+      StampTickEvolution_05: 1568270451
+      StampTickEvolution_06: -1498948187
+      StampTickEvolution_07: -996784328
+      StampTickEvolution_08: -237178700
+      StampTickEvolution_09: 1650105433
+      StampTickEvolution_10: 1700084158
+      StampTickEvolution_11: -1427356816
+      StampTickEvolution_12: 2008967372
+      StampTickEvolution_13: -238088972
+      StampTickEvolution_14: 1513543826
+      StampTickEvolution_15: -1867100348
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

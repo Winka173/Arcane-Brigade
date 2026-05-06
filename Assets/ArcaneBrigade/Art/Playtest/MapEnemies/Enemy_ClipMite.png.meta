@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_ClipMite_00
+      name: ClipMiteEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 75
+        y: 977
+        width: 165
+        height: 168
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 461140d54eea4f0a8241d6806a4b5c83
-      internalID: 100000
+      spriteID: 292fa99b7d9812143a91b64268326ec8
+      internalID: 712380660
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_01
+      name: ClipMiteEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 388
+        y: 978
+        width: 165
+        height: 167
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e1aa40cbf7a43dc9d86d44284046b1a
-      internalID: 100001
+      spriteID: eea744230ad54794e82bf662b5ebad26
+      internalID: 130655403
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_02
+      name: ClipMiteEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 693
+        y: 979
+        width: 182
+        height: 154
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f80a837cc2ec46b9a376bde97a917671
-      internalID: 100002
+      spriteID: d98e9206eb21b9443a27736053b9a073
+      internalID: -2088808723
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_03
+      name: ClipMiteEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1006
+        y: 977
+        width: 184
+        height: 145
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52d6c543ace648efac98a5e8a1b9fa4c
-      internalID: 100003
+      spriteID: a9124a40cae7ab24585f54516fc5736c
+      internalID: -1041538575
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_04
+      name: ClipMiteEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 75
+        y: 665
+        width: 165
+        height: 122
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01ffd12fee184f4abdd2ccc14f206a00
-      internalID: 100004
+      spriteID: 0597469f987fe7a46b977957adec3f51
+      internalID: 943016973
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_05
+      name: ClipMiteEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 394
+        y: 666
+        width: 151
+        height: 175
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbb65e0de0bd4513a8bec154a682ffa9
-      internalID: 100005
+      spriteID: eab02bc0a5b0dee449a74a71b181f447
+      internalID: 1019519219
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_06
+      name: ClipMiteEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 689
+        y: 664
+        width: 192
+        height: 159
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b5ab82602eb46ce85a9d2e0ef6c564a
-      internalID: 100006
+      spriteID: d8f37bf38c580a24aab290910b446aa8
+      internalID: 2087829803
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_07
+      name: ClipMiteEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1019
+        y: 666
+        width: 155
+        height: 153
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c18abbc24b6d4c6e88c6a8ba17c30144
-      internalID: 100007
+      spriteID: 9bacaa62b2b6fe74788c84c3f7e43a7e
+      internalID: 547163586
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_08
+      name: ClipMiteEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 45
+        y: 352
+        width: 227
+        height: 154
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d31f8fde393a463eb20b72cdc1f8d85a
-      internalID: 100008
+      spriteID: d3f7927fc52de624d8c066785cf2f745
+      internalID: 1004501337
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_09
+      name: ClipMiteEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 356
+        y: 352
+        width: 227
+        height: 154
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1aeab0c8cdb44ec9e852a26e2191364
-      internalID: 100009
+      spriteID: 7a77e2c50bebc2c42a71958bf1ace7f6
+      internalID: -1870098026
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_10
+      name: ClipMiteEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 667
+        y: 351
+        width: 234
+        height: 137
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38caf311471e40f5a7fc135a6b54c76c
-      internalID: 100010
+      spriteID: ea7aa4ea4f9ae494890e88024135640e
+      internalID: -1718578514
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_11
+      name: ClipMiteEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 979
+        y: 351
+        width: 236
+        height: 133
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51d79bbaaa634277932661cae42ff936
-      internalID: 100011
+      spriteID: a3cbc376f8b0e6b419ef94fa099688f5
+      internalID: 876834104
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_12
+      name: ClipMiteEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 50
+        y: 37
+        width: 214
+        height: 133
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c579b3e72f34470bf5e0c9027fe378d
-      internalID: 100012
+      spriteID: 7601f4b3c995f5b449b169faca5b8ed6
+      internalID: 494070287
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_13
+      name: ClipMiteEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 362
+        y: 38
+        width: 218
+        height: 180
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de3e676b3ea548a1b6725aa9cf473d47
-      internalID: 100013
+      spriteID: f5ef670be37dd8845a107ad0d2b3bf37
+      internalID: 821513105
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_14
+      name: ClipMiteEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 667
+        y: 39
+        width: 235
+        height: 153
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6dff16a9002429582ff04c27f2cab18
-      internalID: 100014
+      spriteID: 6c989e5640121374c946a25d214779b6
+      internalID: 1312291476
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_ClipMite_15
+      name: ClipMiteEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 993
+        y: 39
+        width: 207
+        height: 183
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56aea91bcfee42eda1129d4c71167cbc
-      internalID: 100015
+      spriteID: 702f1d90a83dd854fab1de670e7fef19
+      internalID: -1441578134
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 2599d5d1c8e34060a12f12c94e26b7a7
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_ClipMite_00: 100000
-      Enemy_ClipMite_01: 100001
-      Enemy_ClipMite_02: 100002
-      Enemy_ClipMite_03: 100003
-      Enemy_ClipMite_04: 100004
-      Enemy_ClipMite_05: 100005
-      Enemy_ClipMite_06: 100006
-      Enemy_ClipMite_07: 100007
-      Enemy_ClipMite_08: 100008
-      Enemy_ClipMite_09: 100009
-      Enemy_ClipMite_10: 100010
-      Enemy_ClipMite_11: 100011
-      Enemy_ClipMite_12: 100012
-      Enemy_ClipMite_13: 100013
-      Enemy_ClipMite_14: 100014
-      Enemy_ClipMite_15: 100015
-  mipmapLimitGroupName:
+      ClipMiteEvolution_00: 712380660
+      ClipMiteEvolution_01: 130655403
+      ClipMiteEvolution_02: -2088808723
+      ClipMiteEvolution_03: -1041538575
+      ClipMiteEvolution_04: 943016973
+      ClipMiteEvolution_05: 1019519219
+      ClipMiteEvolution_06: 2087829803
+      ClipMiteEvolution_07: 547163586
+      ClipMiteEvolution_08: 1004501337
+      ClipMiteEvolution_09: -1870098026
+      ClipMiteEvolution_10: -1718578514
+      ClipMiteEvolution_11: 876834104
+      ClipMiteEvolution_12: 494070287
+      ClipMiteEvolution_13: 821513105
+      ClipMiteEvolution_14: 1312291476
+      ClipMiteEvolution_15: -1441578134
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

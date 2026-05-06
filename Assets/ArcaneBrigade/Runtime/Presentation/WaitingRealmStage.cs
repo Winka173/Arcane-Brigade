@@ -169,6 +169,7 @@ namespace ArcaneBrigade
                 GUI.depth = -60;
                 RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, .5f));
                 Rect card = new Rect(470, 300, 980, 500);
+                Color popKeep = CardPop.Apply("warm-chair", card);
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
                 ArcadeSkin.Seal(new Vector2(inner.xMax - 30, inner.y + 26), 46, "!");
@@ -180,6 +181,7 @@ namespace ArcaneBrigade
                 float buttonsY = inner.yMax - 92;
                 if (ArcadeSkin.Button(new Rect(inner.center.x - 350, buttonsY, 320, 88), "SIT DOWN", KitButton.Danger, true, choice)) Sit();
                 if (ArcadeSkin.Button(new Rect(inner.center.x + 30, buttonsY, 320, 88), "STEP AWAY", KitButton.Secondary, true, choice)) asking = false;
+                GUI.color = popKeep;
             }
             GUI.matrix = previous;
         }

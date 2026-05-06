@@ -151,6 +151,7 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, .5f * fade));
             Color tint = GUI.color; GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * fade);
             Rect card = new Rect(410, 230, 1100, 620);
+            CardPop.Apply("lucid-altar", card); // the colour is restored with tint below
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
             Color brown = new Color(.25f, .16f, .1f);

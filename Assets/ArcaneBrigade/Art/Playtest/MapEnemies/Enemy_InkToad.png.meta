@@ -82,14 +82,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -115,7 +115,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -128,7 +128,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -136,389 +136,389 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_InkToad_00
+      name: InkToadEvolution_00
       rect:
         serializedVersion: 2
-        x: 0
-        y: 940
-        width: 314
-        height: 314
+        x: 82
+        y: 977
+        width: 150
+        height: 177
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c66c68571c8649afbd95ed528dfc648c
-      internalID: 100000
+      spriteID: 149fd138c26c4e146a2a2733669bd7e2
+      internalID: -948702167
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_01
+      name: InkToadEvolution_01
       rect:
         serializedVersion: 2
-        x: 314
-        y: 940
-        width: 313
-        height: 314
+        x: 396
+        y: 977
+        width: 149
+        height: 173
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1de12ed04a143ba8c89ccc45c6bc66f
-      internalID: 100001
+      spriteID: f90acce90168f7f4facea5f7525fce15
+      internalID: 1729833165
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_02
+      name: InkToadEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 940
-        width: 313
-        height: 314
+        x: 693
+        y: 978
+        width: 180
+        height: 156
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b1b4e91b3584e58afbef00922cd9736
-      internalID: 100002
+      spriteID: 8bb6316d61583f745aecb8a9f7590f97
+      internalID: 1155814088
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_03
+      name: InkToadEvolution_03
       rect:
         serializedVersion: 2
-        x: 940
-        y: 940
-        width: 314
-        height: 314
+        x: 1014
+        y: 977
+        width: 165
+        height: 155
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67ebdd11fd3245259b5db6c3719bc93f
-      internalID: 100003
+      spriteID: c36411f6d02494b47aebc5e8c3d08079
+      internalID: 891208734
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_04
+      name: InkToadEvolution_04
       rect:
         serializedVersion: 2
-        x: 0
-        y: 627
-        width: 314
-        height: 313
+        x: 65
+        y: 665
+        width: 185
+        height: 150
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a759a85e3324bf6ad627b6d55a5d5e1
-      internalID: 100004
+      spriteID: 8daa027da4a0ed54db789a33ba47f426
+      internalID: 140221536
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_05
+      name: InkToadEvolution_05
       rect:
         serializedVersion: 2
-        x: 314
-        y: 627
-        width: 313
-        height: 313
+        x: 390
+        y: 666
+        width: 159
+        height: 182
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 891e78f0ed1442a9a84dc6b230001a81
-      internalID: 100005
+      spriteID: 601de817effc89f4498d4ab4f3e954b8
+      internalID: -1474287061
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_06
+      name: InkToadEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 627
-        width: 313
-        height: 313
+        x: 677
+        y: 665
+        width: 213
+        height: 170
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e9072787c204463b10c5cb2fea79afb
-      internalID: 100006
+      spriteID: 26b32a655bb37c84aba4dc9733790d99
+      internalID: -1749755306
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_07
+      name: InkToadEvolution_07
       rect:
         serializedVersion: 2
-        x: 940
-        y: 627
-        width: 314
-        height: 313
+        x: 1001
+        y: 664
+        width: 191
+        height: 154
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d93b329ba4c941ada357fd1609c41840
-      internalID: 100007
+      spriteID: 59dffec97a8d29e4e872130437ef6df8
+      internalID: 412286851
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_08
+      name: InkToadEvolution_08
       rect:
         serializedVersion: 2
-        x: 0
-        y: 314
-        width: 314
-        height: 313
+        x: 57
+        y: 351
+        width: 200
+        height: 193
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94d9480ef9e2488d910a3e846afc7a86
-      internalID: 100008
+      spriteID: 59572820c3c742f428d744c4ab9f417d
+      internalID: 990343669
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_09
+      name: InkToadEvolution_09
       rect:
         serializedVersion: 2
-        x: 314
-        y: 314
-        width: 313
-        height: 313
+        x: 369
+        y: 352
+        width: 203
+        height: 193
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8abc0cddf84d43c2a9ca182626028edd
-      internalID: 100009
+      spriteID: f7d412a1d6170bf43a49b7ccd35caed8
+      internalID: 2107176412
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_10
+      name: InkToadEvolution_10
       rect:
         serializedVersion: 2
-        x: 627
-        y: 314
-        width: 313
-        height: 313
+        x: 685
+        y: 352
+        width: 198
+        height: 187
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1af0b19b75f24295b14fc07ce76ab835
-      internalID: 100010
+      spriteID: f7c148ba7fd2b5d41aae6dac54dec164
+      internalID: 1818662228
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_11
+      name: InkToadEvolution_11
       rect:
         serializedVersion: 2
-        x: 940
-        y: 314
-        width: 314
-        height: 313
+        x: 997
+        y: 352
+        width: 200
+        height: 179
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b02b26e892574880822636f43f6abe2f
-      internalID: 100011
+      spriteID: a930a2506d980064bbaf08739c792ba1
+      internalID: -1938599414
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_12
+      name: InkToadEvolution_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 314
-        height: 314
+        x: 53
+        y: 38
+        width: 211
+        height: 166
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a2dccd666f34fc4a28931c2b527dfd8
-      internalID: 100012
+      spriteID: 3ee2b525585b1be428d2549a05daceb3
+      internalID: -1122831512
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_13
+      name: InkToadEvolution_13
       rect:
         serializedVersion: 2
-        x: 314
-        y: 0
-        width: 313
-        height: 314
+        x: 362
+        y: 39
+        width: 217
+        height: 204
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a856550957e4b0d87a0a54d0528f161
-      internalID: 100013
+      spriteID: 3560ae142bda50a4c8506edc9f1df782
+      internalID: -445458544
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_14
+      name: InkToadEvolution_14
       rect:
         serializedVersion: 2
-        x: 627
-        y: 0
-        width: 313
-        height: 314
+        x: 664
+        y: 38
+        width: 238
+        height: 183
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df53682f4a254a0a965f084584b213ce
-      internalID: 100014
+      spriteID: b04dfbd0c641c9b4f8e327b10a54720b
+      internalID: -613137976
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_InkToad_15
+      name: InkToadEvolution_15
       rect:
         serializedVersion: 2
-        x: 940
-        y: 0
-        width: 314
-        height: 314
+        x: 991
+        y: 37
+        width: 211
+        height: 182
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecb8ab53c7ec40238f03f47ce7729acf
-      internalID: 100015
+      spriteID: 17ed8701aba2a884f9a0029c7ed343b3
+      internalID: -1652606957
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 6cc4f4d517a84a05b17fe9253ad86cb6
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy_InkToad_00: 100000
-      Enemy_InkToad_01: 100001
-      Enemy_InkToad_02: 100002
-      Enemy_InkToad_03: 100003
-      Enemy_InkToad_04: 100004
-      Enemy_InkToad_05: 100005
-      Enemy_InkToad_06: 100006
-      Enemy_InkToad_07: 100007
-      Enemy_InkToad_08: 100008
-      Enemy_InkToad_09: 100009
-      Enemy_InkToad_10: 100010
-      Enemy_InkToad_11: 100011
-      Enemy_InkToad_12: 100012
-      Enemy_InkToad_13: 100013
-      Enemy_InkToad_14: 100014
-      Enemy_InkToad_15: 100015
-  mipmapLimitGroupName:
+      InkToadEvolution_00: -948702167
+      InkToadEvolution_01: 1729833165
+      InkToadEvolution_02: 1155814088
+      InkToadEvolution_03: 891208734
+      InkToadEvolution_04: 140221536
+      InkToadEvolution_05: -1474287061
+      InkToadEvolution_06: -1749755306
+      InkToadEvolution_07: 412286851
+      InkToadEvolution_08: 990343669
+      InkToadEvolution_09: 2107176412
+      InkToadEvolution_10: 1818662228
+      InkToadEvolution_11: -1938599414
+      InkToadEvolution_12: -1122831512
+      InkToadEvolution_13: -445458544
+      InkToadEvolution_14: -613137976
+      InkToadEvolution_15: -1652606957
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

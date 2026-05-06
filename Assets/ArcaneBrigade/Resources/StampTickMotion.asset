@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: StampTickMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1440255138, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: -2098284807, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  Walk:
+  - {fileID: -727647332, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: -1674006430, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: -727647332, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: -1674006430, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  Windup:
+  - {fileID: -161345254, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: 1568270451, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  Release:
+  - {fileID: -1498948187, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: -1498948187, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  Recovery:
+  - {fileID: -996784328, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  - {fileID: 1440255138, guid: ebb497d4b7ef4d14ab309b380e566f3d, type: 3}
+  IllustratedHeight: 0

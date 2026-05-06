@@ -61,8 +61,8 @@ MonoBehaviour:
   - {fileID: -584565737, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
   - {fileID: 1827130957, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
   HallDoor:
-  - {fileID: 1602315860, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: 1082734174, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: 100000, guid: 110c974fac2e40358ad223062d907095, type: 3}
+  - {fileID: 100001, guid: 110c974fac2e40358ad223062d907095, type: 3}
   EnvironmentProps:
   - {fileID: -1443339385, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: -1245854615, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
