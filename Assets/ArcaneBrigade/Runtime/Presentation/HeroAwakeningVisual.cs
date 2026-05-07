@@ -59,7 +59,7 @@ namespace ArcaneBrigade
             else InkGauge(id, bottom, top, half, fill, pulse, dim, awake);
             if ((awake || sim.HeroAwakenMeter >= 1) && !calm) Glow((bottom + top) * .5f, height * 1.3f, ink.Glow, .1f + pulse * .1f, true);
             // primed: the full gauge flashes for the second before the transformation, readable at a glance in a crowd
-            if (sim.HeroAwakenPrimed) Glow((bottom + top) * .5f, height * 1.6f, ink.Glow, still ? .35f : .22f + .28f * Mathf.Abs(Mathf.Sin(t * 14)), true);
+            if (sim.HeroAwakenPrimed) PrimedCrown(); // the hero's tokens circle over its head (the wide flash read as film)
         }
 
         /// <summary>An inked vessel until the painted one arrives: the three pilot heroes' own, otherwise the hero's colours.</summary>
@@ -231,10 +231,10 @@ namespace ArcaneBrigade
                     Color amber = Color.Lerp(ink.Glow, new Color(1, .62f, .2f), .35f), gold = new Color(1, .95f, .78f);
                     if (!sparse && !still)
                         for (int i = 2; i >= 1; i--) // the afterglow the sweep leaves behind it
-                            Light(ray, lamp, 5.1f, reach, angle - i * 5f - 90, A(amber, .16f / i * dim * strength));
-                    Light(ray, lamp, 5.8f + .8f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, 2.6f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, .9f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
+                            Light(ray, lamp, 6.6f, reach, angle - i * 5f - 90, A(amber, .16f / i * dim * strength));
+                    Light(ray, lamp, 7.6f + .8f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, 4.2f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, 1.4f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
                     Light(MechanicInk.Glow, lamp, .7f + .2f * flash, .7f + .2f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
                     if (!sparse) for (int i = 0; i < 6; i++)
                     {
@@ -319,6 +319,7 @@ namespace ArcaneBrigade
                     }
                     break;
             }
+            AwakenAura(kit.Action, hero, at, body, side);
             // what the transformation drops from above: giant scoops falling on their enemies, depth charges about to burst
             if (kit.Action == KitAction.SundaeRain || kit.Action == KitAction.DivingBell)
             {
@@ -360,7 +361,7 @@ namespace ArcaneBrigade
             {
                 // owner 23/10/2026: a triangle - a point of light at the lamp, widest at the far end, steadily dimmer as it goes
                 float v = (y + .5f) / h, spread = Mathf.Lerp(.05f, 1f, v);
-                float along = Mathf.SmoothStep(0, 1, v / .08f) * Mathf.Lerp(1f, .18f, v) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.85f, 1f, v)));
+                float along = Mathf.SmoothStep(0, 1, v / .08f) * Mathf.Pow(1 - v, 1.35f) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.88f, 1f, v)));
                 for (int x = 0; x < w; x++)
                 {
                     float u = ((x + .5f) / w * 2 - 1) / spread;

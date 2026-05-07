@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     {
         private const int GroundOrder = 74, AirOrder = 2060, GroundTokenOrder = 77, AirTokenOrder = 2064;
         private const float CrescentHalf = 84.26f; // the simulation accepts dot(direction) >= .1
-        private InkCanvas ground, air, vial;
+        private InkCanvas ground, air, vial, groundInk;
         private readonly List<SpriteRenderer> tokens = new List<SpriteRenderer>();
         private SpriteRenderer ghost;
         private int used;
@@ -41,6 +41,7 @@ namespace ArcaneBrigade
             ground = new InkCanvas(transform, "Hero mechanic ground ink", GroundOrder, true); // light, like the lantern's
             air = new InkCanvas(transform, "Hero mechanic air ink", AirOrder, true);
             vial = new InkCanvas(transform, "Hero mechanic gauge ink", AirOrder); // the gauge stays an inked object
+            groundInk = new InkCanvas(transform, "Hero mechanic ground objects", GroundOrder + 1); // roots are wood, not light
             var go = new GameObject("Dream identity portrait"); go.transform.SetParent(transform, false);
             ghost = go.AddComponent<SpriteRenderer>(); ghost.sortingOrder = 1090; ghost.enabled = false;
         }
@@ -109,7 +110,7 @@ namespace ArcaneBrigade
         public void Display(CombatSimulation simulation)
         {
             Ensure();
-            ground.Clear(); air.Clear(); vial?.Clear(); used = 0; VisibleCount = 0; ghost.enabled = false;
+            ground.Clear(); air.Clear(); vial?.Clear(); groundInk?.Clear(); used = 0; VisibleCount = 0; ghost.enabled = false;
             if (dreamEchoes != null) foreach (var e in dreamEchoes) if (e != null) e.enabled = false;
             if (awakenBanner != null) awakenBanner.gameObject.SetActive(false);
             bool live = simulation != null && simulation.HeroIdentityEnabled && simulation.Champion != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
@@ -138,7 +139,7 @@ namespace ArcaneBrigade
                     if (DrawGlyph(glyph)) VisibleCount++;
                 }
             }
-            ground.Commit(); air.Commit(); vial?.Commit();
+            ground.Commit(); air.Commit(); vial?.Commit(); groundInk?.Commit();
             for (int i = used; i < tokens.Count; i++) tokens[i].enabled = false;
         }
 
@@ -340,33 +341,37 @@ namespace ArcaneBrigade
                 }
             VisibleCount++;
         }
+        private static readonly InkPalette Bark = new InkPalette(new Color(.15f, .08f, .04f), new Color(.46f, .3f, .16f), new Color(.78f, .62f, .4f), new Color(.6f, .45f, .25f), new Color(.4f, .62f, .3f));
+        /// <summary>A root, a fork or a thorn painted in bark ink on the floor (owner 23/10/2026: drawn as light they read as electricity).</summary>
+        private void Root(List<Vector2> path, float width, float alpha, InkPalette pal, float seed) => groundInk.Stroke(path, InkStroke.Of(pal, width, Mathf.Clamp01(alpha) * strength, seed));
         private static readonly InkPalette TreeFire = new InkPalette(new Color(.22f, .06f, .04f), new Color(.96f, .46f, .22f), new Color(1f, .9f, .6f), new Color(1f, .62f, .3f), new Color(.62f, .86f, .4f));
         private void Roots()
         {
             // owner 23/10/2026: gnarled, thorny roots that fork, not three straight lines; while the Living Tree walks they burn
             // amber and their thorns grow long
             var hero = sim.Champion; float charge = Mathf.Clamp01(sim.HeroIdentityCharge / 3); int next = sim.HeroIdentityRootTurn;
-            bool grown = sim.HeroAwakening; InkPalette was = ink; if (grown) ink = TreeFire;
+            bool grown = sim.HeroAwakening; InkPalette was = ink; if (grown) ink = TreeFire; InkPalette wood = grown ? TreeFire : Bark;
             for (int i = 0; i < 3; i++)
             {
                 float heading = 90 + i * 120; Vector2 way = Dir(heading);
                 Vector2 at = hero.Position + way * 1.8f, from = hero.Position + way * .38f;
                 bool turn = i == next; float k = grown ? 1 : turn ? charge : 0;
-                float pulse = still ? 1 : grown ? .8f + .2f * Mathf.Sin(t * 5 + i * 2) : 1, alpha = (.42f + .3f * k) * pulse;
-                Soft(ground, InkCanvas.Line(from, at, .09f, 5, false, i * 2.1f), 1, 0, .07f + .03f * k + (grown ? .03f : 0), alpha);
+                float pulse = still ? 1 : grown ? .85f + .15f * Mathf.Sin(t * 5 + i * 2) : 1, alpha = (.8f + .2f * k) * pulse;
+                Root(InkCanvas.Line(from, at, .09f, 5, false, i * 2.1f), .13f + .03f * k + (grown ? .04f : 0), alpha, wood, i);
+                if (grown && !calm) Glow(at, .6f, TreeFire.Glow, .35f * pulse, false); // its tip smoulders
                 // two forks bending away from the main root
                 for (int b = 0; b < 2; b++)
                 {
                     Vector2 fork = Vector2.Lerp(from, at, .38f + b * .27f), tip = fork + Dir(heading + (b == 0 ? 38 : -42)) * (grown ? .62f : .48f - b * .1f);
-                    Soft(ground, InkCanvas.Line(fork, tip, .05f, 9, false, i * 3 + b), 1, 0, .04f + (grown ? .015f : 0), alpha * .85f);
-                    Soft(ground, InkCanvas.Line(tip, tip + Dir(heading + (b == 0 ? 75 : -80)) * .16f), 1, 0, .022f, alpha * .8f); // its barbed tip
+                    Root(InkCanvas.Line(fork, tip, .05f, 9, false, i * 3 + b), .075f + (grown ? .02f : 0), alpha * .95f, wood, i * 3 + b);
+                    Root(InkCanvas.Line(tip, tip + Dir(heading + (b == 0 ? 75 : -80)) * .16f), .045f, alpha, wood, i + b * 7); // its barbed tip
                 }
                 // thorns along the root, alternating sides, raked back toward the hero
                 float barb = grown ? .26f : .15f;
                 for (int j = 0; j < 5; j++)
                 {
                     Vector2 p = Vector2.Lerp(from, at, .18f + j * .16f); float side = j % 2 == 0 ? 1 : -1;
-                    Soft(ground, InkCanvas.Line(p, p + Dir(heading + side * 125) * barb * (1 - j * .08f)), 1, 0, .024f, alpha);
+                    Root(InkCanvas.Line(p, p + Dir(heading + side * 125) * barb * (1 - j * .08f)), .045f, alpha, wood, j + i * 5);
                 }
                 Token(grown ? InkToken.Thorn : InkToken.Leaf, at + Vector2.up * .06f, .26f + .08f * k * (still ? 0 : 1), heading - 90 + (still ? 0 : Mathf.Sin(t * 2 + i) * 8), .7f + .3f * k, false);
                 if (grown && !sparse) Token(InkToken.Petal, at + way * .1f + Vector2.up * (.2f + Bob(i) * 2), .16f, t * 40 + i * 60, .8f, true);
@@ -472,6 +477,7 @@ namespace ArcaneBrigade
                 float squash = still ? 1 : 1 - .16f * Mathf.Sin(Mathf.Clamp01(p / .4f) * Mathf.PI);
                 Token(seal ? InkToken.Seal : style.Token, c + Vector2.up * .05f, size * (seal ? 1 : .55f), -6, Mathf.Clamp01(p / .12f) * fade, true, 0, null, squash);
             }
+            if (!seal) Signature(g, c, g.Direction, p, fade); // the hero's own impact at the spot
         }
 
         private void LineStrike(HeroIdentityGlyph g)
@@ -520,6 +526,7 @@ namespace ArcaneBrigade
             float impact = Mathf.Clamp01((p - .22f) / .5f);
             if (impact > 0 && impact < 1) Token(style.Token, b, .34f * (still ? 1 : OutBack(Mathf.Min(1, impact * 3))), Seed(g), (1 - impact) * fade);
             if (style.Brush == InkBrush.Thread) { Token(style.Token, a, .2f, 0, fade * .9f); Token(style.Token, b, .24f, 30, fade); }
+            Signature(g, b, axis, Mathf.Clamp01((p - .15f) / .85f), fade); // the hero's own impact where the line lands
         }
 
         private void CrescentStrike(HeroIdentityGlyph g)
@@ -556,6 +563,7 @@ namespace ArcaneBrigade
                 }
             }
             if (head < 1 && !calm) Glow(tip, Mathf.Min(.6f, r * .5f), ink.Glow, .3f * fade, true);
+            Signature(g, c + d * r * .62f, d, Mathf.Clamp01((p - .2f) / .8f), fade); // the hero's own impact in the swing's middle
         }
 
         private void RingStrike(HeroIdentityGlyph g)

@@ -87,9 +87,10 @@ namespace ArcaneBrigade
                 sim.PrepareMechanicCapture(catalog, crowd ? 12 : 0);
                 Time.timeScale = .35f;
                 int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
-                while (sim.HeroIdentityActivations == casts && Time.realtimeSinceStartup - started < 16) { sim.NudgeMechanicCapture(); yield return null; }
+                // a hero whose whole mechanic is its transformation is brought to a full gauge after 4s of waiting
+                while (sim.HeroIdentityActivations == casts && !sim.HeroAwakening && Time.realtimeSinceStartup - started < 16) { sim.NudgeMechanicCapture(); if (Time.realtimeSinceStartup - started > 4) sim.FillGaugeForCapture(); yield return null; }
                 float cast = sim.Elapsed;
-                bool fired = sim.HeroIdentityActivations > casts;
+                bool fired = sim.HeroIdentityActivations > casts || sim.HeroAwakening;
                 string stem = index.ToString("00") + "-" + hero.Id + "-a" + approach;
                 if (!fired) { notes.Add("NO CAST " + hero.Id); yield return Shot(stem + "-idle"); Time.timeScale = 1; continue; }
                 // time the frames on the first real strike: its anticipation, its action and its follow-through
@@ -222,6 +223,11 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>Capture-only: keeps the hero's trigger topped up until the real mechanic casts.</summary>
+        public void FillGaugeForCapture()
+        {
+            if (!HeroMechanicCapture.Requested || !HeroAwakenEnabled || HeroAwakening) return;
+            awakenMeter = 1;
+        }
         public void NudgeMechanicCapture()
         {
             if (!HeroMechanicCapture.Requested || !HeroIdentityEnabled) return;
