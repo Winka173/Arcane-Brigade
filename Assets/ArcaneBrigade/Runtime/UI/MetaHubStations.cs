@@ -130,7 +130,7 @@ namespace ArcaneBrigade
             navCols = 1;
             MetaLetter[] letters = MetaProgression.Letters;
             if (letterOpen < 0) letterOpen = Array.FindIndex(letters, l => MetaProgression.LetterRead(profile, l));
-            const float rowH = 68, gap = 9, listW = 300;
+            const float rowH = 74, gap = 10, listW = 300;
             for (int i = 0; i < letters.Length; i++)
             {
                 MetaLetter l = letters[i];
@@ -141,10 +141,12 @@ namespace ArcaneBrigade
                     ArcadeSkin.CodePlate(row, read ? CodeTone.Cream : earned ? CodeTone.Gold : CodeTone.Walnut, open ? 1 : earned ? 0 : 3);
                 if (open) ArcadeSkin.RunningLight(row, Time.unscaledTime, new Color(1f, .82f, .45f));
                 ItemDefinition relic = catalog.Item(l.Relic);
-                RunHud.Sprite(new Rect(row.x + 10, row.y + 9, 50, 50), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, earned));
+                RunHud.Sprite(new Rect(row.x + 12, row.y + 12, 50, 50), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, earned));
                 Ink(earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
-                GUI.Label(new Rect(row.x + 68, row.y + 8, row.width - 78, 26), earned ? l.Name : "Sealed", body);
-                GUI.Label(new Rect(row.x + 68, row.y + 36, row.width - 78, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", small);
+                // the words start past the wax seal and stop before the folded corner; each line gets its full height
+                Rect words = new Rect(row.x + 86, row.y + 8, row.width - 86 - 44, rowH - 16);
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 32), earned ? l.Name : "Sealed", ArcadeSkin.KitInk, body);
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 32, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", ArcadeSkin.KitInk, small);
                 if ((GUI.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
                 {
                     letterOpen = i;
@@ -189,10 +191,12 @@ namespace ArcaneBrigade
         }
         private void DrawMuseum(Rect area, RunCatalog catalog, PlayerProfile profile)
         {
-            float tw = (area.width - (ShelfTabs - 1) * 6) / ShelfTabs;
+            // the painted tab's end caps hang outside its bar: tabs sit 30 apart and in from the edges (owner 23/10/2026)
+            const float tabGap = 30, tabInset = 16;
+            float tw = (area.width - 2 * tabInset - (ShelfTabs - 1) * tabGap) / ShelfTabs;
             for (int t = 0; t < ShelfTabs; t++)
             {
-                Rect tab = new Rect(area.x + t * (tw + 6), area.y, tw, 40);
+                Rect tab = new Rect(area.x + tabInset + t * (tw + tabGap), area.y, tw, 40);
                 if (ArcadeSkin.Tab(tab, t < 5 ? MetaProgression.ShelfNames[t] : "TROPHIES", museumShelf == t, true, chip) | Nav(tab)) ShowShelf(t);
             }
             int found = MetaProgression.Discoveries(profile, catalog);

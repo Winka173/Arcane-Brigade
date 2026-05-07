@@ -95,6 +95,8 @@ namespace ArcaneBrigade
         public static float TrackLevel(int track) => track == 1 ? 0.26f : track == 2 ? 0.08f : track == 3 ? 0.13f : 0.18f;
 
         /// <summary>Relative music level per scene (tuning table; ears decide, see Docs/Audio/Audio_QA_Checklist.md).</summary>
+        /// <summary>Owner 23/10/2026: the music a third louder everywhere.</summary>
+        public const float MusicBoost = 1.35f;
         public static float SceneLevel(string scene)
         {
             switch (scene)
@@ -209,7 +211,7 @@ namespace ArcaneBrigade
             wasSuspended = suspended;
 
             float dt = Time.unscaledDeltaTime;
-            float busTarget = AudioMix.SourceGain(MixBus.Music) * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio) * (NightmareHaunting.Quiet ? .3f : 1);
+            float busTarget = MusicBoost * AudioMix.SourceGain(MixBus.Music) * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio) * (NightmareHaunting.Quiet ? .3f : 1);
             if (WaitingRealmStage.BedsideLullabyActive) busTarget = 0; // the familiar, incomplete lullaby takes over this encounter
             if (PresentationSettings.MusicVolume <= 0f) busSmooth = 0f;
             else busSmooth += (busTarget - busSmooth) * (1f - Mathf.Exp(-dt * (busTarget < busSmooth ? 7f : 3f)));

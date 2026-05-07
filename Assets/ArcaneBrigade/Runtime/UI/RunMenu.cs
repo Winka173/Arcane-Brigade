@@ -298,8 +298,8 @@ namespace ArcaneBrigade
                     GUI.enabled = true;
                     break;
                 case Page.ConfirmOverwrite:
-                    Label(new Rect(120, 210, 1040, 180), "A new run replaces the current resume boundary.\nThe old run is backed up before combat. Profile and records are not deleted.\nIf backup fails, the new run does not begin.");
-                    if (Button(new Rect(180, 490, 400, 70), "KEEP OLD RUN")) ShowPage(Page.Roster);
+                    Label(new Rect(120, 210, 1040, 180), "You have a journey in progress.\nStarting a new one puts it safely aside first; your records and your Waiting Room stay as they are.");
+                    if (Button(new Rect(180, 490, 400, 70), "KEEP OLD RUN")) ShowPage(BackOf(Page.ConfirmOverwrite));
                     if (navigation.Button(new Rect(700, 490, 400, 70), "BACK UP AND START", primary)) Launch(false);
                     break;
                 case Page.Settings: DrawSettings(); break;
@@ -606,7 +606,8 @@ namespace ArcaneBrigade
             if (!MetaProgression.Keepsakes(profile, catalog).Contains(keepsakePick ?? "")) keepsakePick = MetaProgression.Keepsakes(profile, catalog).Contains(profile.Meta.Keepsake) ? profile.Meta.Keepsake : null;
             if (existingSave) { ShowPage(Page.ConfirmOverwrite); dailyDay = day; } else { dailyDay = day; Launch(false); }
         }
-        private static Page BackOf(Page page) => page == Page.ConfirmOverwrite ? Page.Roster : page == Page.Roster ? Page.Landing : Page.Landing;
+        // from the overwrite check, back goes where the run was started from: the Waiting Room for tonight's dream (owner 23/10/2026)
+        private Page BackOf(Page page) => page == Page.ConfirmOverwrite ? (dailyDay != null ? Page.Hub : Page.Roster) : page == Page.Roster ? Page.Landing : Page.Landing;
 
         /// <summary>Hero select's Waiting Room row (only what is unlocked): the Nursery's three friends, the Wardrobe's spare coat
         /// and second habit. A tap picks; the line under the row says what the pick does.</summary>

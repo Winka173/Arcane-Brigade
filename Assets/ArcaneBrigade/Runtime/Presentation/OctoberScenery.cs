@@ -43,6 +43,7 @@ namespace ArcaneBrigade
     public sealed class OctoberDoor : MonoBehaviour
     {
         private ArenaController owner; private SpriteRenderer view; private float opening;
+        private static PaintedAnimationLibrary exitDoor;
         private GroundShadow grounded;
         private MarketLifecycle lifecycle;
         private DreamSuspension suspension;
@@ -62,8 +63,12 @@ namespace ArcaneBrigade
             if (!owner.PresentationPaused) opening = Mathf.MoveTowards(opening, near || owner.HallExitPending ? 1 : 0, Time.deltaTime * 2.5f);
             int frame = PresentationSettings.ReducedMotion ? near ? 2 : 0 : opening < .25f ? 0 : opening < .7f ? 1 : 2 + (Mathf.Sin(owner.PresentationClock * 2) > .6f ? 1 : 0);
             view.sprite = art.Door[frame];
-            // 1.4 units tall: the door's arch stays under the middle stall's pedestal instead of rising into it
-            float scale = 1.4f / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).height);
+            // the new painted exit (owner 23/10/2026): closed far away, open with its lamp lit as the hero comes near
+            exitDoor ??= Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
+            bool painted = exitDoor != null && exitDoor.HallDoor != null && exitDoor.HallDoor.Length == 2 && exitDoor.HallDoor[0] != null && exitDoor.HallDoor[0].texture.name == "Shop_ExitDoor";
+            if (painted) view.sprite = exitDoor.HallDoor[opening < .5f ? 0 : 1];
+            // 1.4 units tall (the new arched door 1.7): the arch stays under the middle stall's pedestal instead of rising into it
+            float scale = (painted ? 1.7f : 1.4f) / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).height);
             transform.localScale = Vector3.one * scale;
             transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 41, PresentationSettings.ReducedMotion, .45f));
             // Keep the visible foot suspended relative to the fixed threshold after frame changes.

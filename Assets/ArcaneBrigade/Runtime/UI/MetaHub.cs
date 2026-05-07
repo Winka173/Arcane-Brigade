@@ -261,12 +261,12 @@ namespace ArcaneBrigade
             Purse(profile, new Rect(930, 16, 330, 62));
             ArcadeSkin.Frame(PanelRect, KitFrame.Dialogue, .5f);
             ArcadeSkin.Glow(new Rect(PanelRect.x + 10, PanelRect.y + 60, 220, 260), new Color(1f, .8f, .45f, .22f));
-            RunHud.Sprite(new Rect(PanelRect.x + 30, PanelRect.y + 70, 180, 220), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
+            RunHud.Sprite(new Rect(PanelRect.x + 34, PanelRect.y + 72, 172, 206), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
             ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
             heading.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), MetaProgression.StationName(station).ToUpperInvariant(), heading);
             small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 300, 200, 60), MetaProgression.StationLine(station), small);
+            GUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 308, 200, 60), MetaProgression.StationLine(station), small); // clear of the picture above
             small.alignment = TextAnchor.UpperLeft;
             if (ArcadeSkin.Medallion(new Rect(PanelRect.xMax - 58, PanelRect.y - 6, 60, 60), KitMedallion.Close)) { Close(); return; }
 

@@ -145,6 +145,7 @@ namespace ArcaneBrigade
         public Sprite DisplayedBody => body == null ? null : body.sprite;
         public SpriteRenderer BodyRenderer => body;
         public SpriteRenderer WeaponRenderer => weapon;
+        public const float GunGirth = .34f;
         public static Vector3 FitCompanionWeapon(Vector3 scale, Rect ink, float bodyHeight, bool melee)
         {
             float longest = Mathf.Max(ink.width * scale.x, ink.height * scale.y);
@@ -298,6 +299,14 @@ namespace ArcaneBrigade
                 {
                     Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
                     weapon.transform.localScale = FitCompanionWeapon(weapon.transform.localScale, ink, K8Motion.BodyHeight(unit), unit.Definition.Weapon.Kind == WeaponKind.Melee);
+                }
+                if (unit.Definition.Weapon.Kind == WeaponKind.Projectile && unit.Definition.Weapon.Motion == WeaponMotion.Recoil)
+                {
+                    // guns (owner 23/10/2026): all the same girth, 34% of the bearer's height; length follows the painting (up to 2.4x)
+                    Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
+                    float bodyH = K8Motion.BodyHeight(unit), girth = bodyH * GunGirth / Mathf.Max(.01f, ink.height);
+                    girth = Mathf.Min(girth, bodyH * 2.4f / Mathf.Max(.01f, ink.width));
+                    weapon.transform.localScale = new Vector3(girth, girth, 1);
                 }
                 if (hand.sprite != null) hand.transform.localScale = Vector3.one * ((unit.Faction == Faction.Companion ? 0.095f : 0.13f) / Mathf.Max(0.01f, hand.sprite.bounds.size.x));
                 muzzle.localPosition = unit.Definition.Weapon.HasMuzzleOffset ? (Vector3)unit.Definition.Weapon.ProjectileMuzzleOffset : Vector3.right * unit.Definition.Weapon.MuzzleDistance;
