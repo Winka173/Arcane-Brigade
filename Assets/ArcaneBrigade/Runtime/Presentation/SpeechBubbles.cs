@@ -200,14 +200,19 @@ namespace ArcaneBrigade
                 bubble.Placed = rect; bubble.Drawn = true; DrawnCount++;
 
                 float age = now - bubble.Began;
-                float alpha = Mathf.Clamp01(age / 0.12f) * Mathf.Clamp01((bubble.Expires - now) / 0.3f);
-                float pop = reduced ? 1 : Mathf.Lerp(0.86f, 1f, EaseOutBack(Mathf.Clamp01(age / 0.18f)));
+                float left = bubble.Expires - now;
+                float alpha = Mathf.Clamp01(age / 0.12f) * Mathf.Clamp01(left / 0.3f);
+                // owner 23/10/2026: a bubble grows out of the speaker's mouth with a springy overshoot, breathes while it is
+                // read and folds back into the speaker as it ends
+                float pop = reduced ? 1 : Mathf.Lerp(0.55f, 1f, EaseOutBack(Mathf.Clamp01(age / 0.26f))) * Mathf.Lerp(0.8f, 1f, Mathf.Clamp01(left / 0.25f));
+                float breathe = reduced || age < 0.26f ? 0 : Mathf.Sin((age - 0.26f) * 2.2f) * 2.5f;
                 Colours(bubble.Tone, out Color paper, out Color stamp, out Color ink, out Color label);
                 Matrix4x4 restore = GUI.matrix;
                 Color previous = GUI.color;
                 GUI.color = new Color(1, 1, 1, alpha);
                 Vector2 tailBase = tailed ? ClosestEdge(rect, anchor) : rect.center;
-                if (pop < 0.999f) GUIUtility.ScaleAroundPivot(Vector2.one * pop, rect.center);
+                if (breathe != 0) { rect.y += breathe; tailBase.y += breathe; }
+                if (pop < 0.999f) GUIUtility.ScaleAroundPivot(Vector2.one * pop, tailed ? Vector2.Lerp(rect.center, tailBase, 0.7f) : rect.center);
                 if (tailed) DrawTail(tailBase + new Vector2(3, 5), anchor + new Vector2(3, 5), new Color(0, 0, 0, 0.4f));
                 ArcadeSkin.Ticket(rect, paper, stamp);
                 if (tailed) DrawTail(tailBase, anchor, paper);

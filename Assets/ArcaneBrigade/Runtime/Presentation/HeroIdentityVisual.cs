@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     {
         private const int GroundOrder = 74, AirOrder = 2060, GroundTokenOrder = 77, AirTokenOrder = 2064;
         private const float CrescentHalf = 84.26f; // the simulation accepts dot(direction) >= .1
-        private InkCanvas ground, air;
+        private InkCanvas ground, air, vial;
         private readonly List<SpriteRenderer> tokens = new List<SpriteRenderer>();
         private SpriteRenderer ghost;
         private int used;
@@ -38,13 +38,15 @@ namespace ArcaneBrigade
         private void Ensure()
         {
             if (ground != null) return;
-            ground = new InkCanvas(transform, "Hero mechanic ground ink", GroundOrder);
-            air = new InkCanvas(transform, "Hero mechanic air ink", AirOrder);
+            ground = new InkCanvas(transform, "Hero mechanic ground ink", GroundOrder, true); // light, like the lantern's
+            air = new InkCanvas(transform, "Hero mechanic air ink", AirOrder, true);
+            vial = new InkCanvas(transform, "Hero mechanic gauge ink", AirOrder); // the gauge stays an inked object
             var go = new GameObject("Dream identity portrait"); go.transform.SetParent(transform, false);
             ghost = go.AddComponent<SpriteRenderer>(); ghost.sortingOrder = 1090; ghost.enabled = false;
         }
 
         private Material spriteMaterial;
+        private static Material glowLight;
         private SpriteRenderer Place(Sprite sprite, Vector2 at, Vector2 scale, float angle, Color color, bool airborne)
         {
             if (sprite == null || color.a <= .004f) return null;
@@ -55,7 +57,9 @@ namespace ArcaneBrigade
             }
             var r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = color; r.sortingOrder = airborne ? AirTokenOrder : GroundTokenOrder;
             spriteMaterial ??= r.sharedMaterial;
-            if (r.sharedMaterial != spriteMaterial) { r.sharedMaterial = spriteMaterial; r.SetPropertyBlock(null); } // a shaped gauge's reveal stays with its own token
+            if (glowLight == null && Resources.Load<Shader>("SoftLight") is Shader soft) glowLight = new Material(soft);
+            Material want = sprite == MechanicInk.Glow && glowLight != null ? glowLight : spriteMaterial; // glows are light, like the lantern's
+            if (r.sharedMaterial != want) { r.sharedMaterial = want; r.SetPropertyBlock(null); } // a shaped gauge's reveal stays with its own token
             float unit = Mathf.Max(.01f, Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y)); // procedural tokens are 1 unit; painted art may differ
             r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale.x / unit, scale.y / unit, 1);
             return r;
@@ -104,7 +108,7 @@ namespace ArcaneBrigade
         public void Display(CombatSimulation simulation)
         {
             Ensure();
-            ground.Clear(); air.Clear(); used = 0; VisibleCount = 0; ghost.enabled = false;
+            ground.Clear(); air.Clear(); vial?.Clear(); used = 0; VisibleCount = 0; ghost.enabled = false;
             if (dreamEchoes != null) foreach (var e in dreamEchoes) if (e != null) e.enabled = false;
             if (awakenBanner != null) awakenBanner.gameObject.SetActive(false);
             bool live = simulation != null && simulation.HeroIdentityEnabled && simulation.Champion != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
@@ -133,7 +137,7 @@ namespace ArcaneBrigade
                     if (DrawGlyph(glyph)) VisibleCount++;
                 }
             }
-            ground.Commit(); air.Commit();
+            ground.Commit(); air.Commit(); vial?.Commit();
             for (int i = used; i < tokens.Count; i++) tokens[i].enabled = false;
         }
 
@@ -167,7 +171,7 @@ namespace ArcaneBrigade
             GaugeBottom = bottom; GaugeTop = top;
             Color shade = Color.Lerp(ink.Ink, new Color(.05f, .05f, .09f), .5f);
             // the vial: a dark glass wash, then its inked outline (rounded at both ends)
-            air.Band(bottom, top, half, A(shade, .55f * strength), A(shade, .35f * strength));
+            vial.Band(bottom, top, half, A(shade, .55f * strength), A(shade, .35f * strength));
             int count = GaugeCount();
             if (count > 0)
             {
@@ -192,15 +196,15 @@ namespace ArcaneBrigade
                 Vector2 surface = Vector2.Lerp(bottom, top, fraction);
                 if (fraction > .01f)
                 {
-                    air.Band(bottom, surface, half * .78f, A(ink.Body, .95f * strength), A(Color.Lerp(ink.Body, ink.Ink, .3f), .95f * strength));
-                    air.Stroke(InkCanvas.Line(bottom + new Vector2(-half * .35f, .03f), surface + new Vector2(-half * .35f, -.02f)), new InkStroke { Width = half * .3f, Head = 1, Tail = 0, Taper = 1.2f, Alpha = .55f * strength, Ink = ink.Light, Body = ink.Light, Light = ink.Light, NoLight = true });
+                    vial.Band(bottom, surface, half * .78f, A(ink.Body, .95f * strength), A(Color.Lerp(ink.Body, ink.Ink, .3f), .95f * strength));
+                    vial.Stroke(InkCanvas.Line(bottom + new Vector2(-half * .35f, .03f), surface + new Vector2(-half * .35f, -.02f)), new InkStroke { Width = half * .3f, Head = 1, Tail = 0, Taper = 1.2f, Alpha = .55f * strength, Ink = ink.Light, Body = ink.Light, Light = ink.Light, NoLight = true });
                 }
                 Token(style.Token, surface + Vector2.up * (.02f + ready * .03f), (fraction >= 1 ? .34f : .28f) * (1 + ready * .12f), still ? 0 : Mathf.Sin(t * 2.4f) * 8, fraction > .01f ? .95f : .55f);
             }
             var outline = new List<Vector2>(40);
             for (int i = 0; i <= 8; i++) outline.Add(bottom + Dir(180 + i * 22.5f) * half);
             for (int i = 0; i <= 8; i++) outline.Add(top + Dir(i * 22.5f) * half);
-            air.Stroke(outline, new InkStroke { Width = .035f, Head = 1, Tail = 0, Taper = 1, Alpha = .95f * strength, Ink = ink.Ink, Body = ink.Ink, Light = ink.Ink, InkOnly = true }, true);
+            vial.Stroke(outline, new InkStroke { Width = .035f, Head = 1, Tail = 0, Taper = 1, Alpha = .95f * strength, Ink = ink.Ink, Body = ink.Ink, Light = ink.Ink, InkOnly = true }, true);
             if (id == "GlassDice")
                 Token(InkToken.Die, top + Vector2.up * .16f, .24f * (1 + ready * .1f), still ? 0 : Mathf.Sin(t * 2) * 6, 1, true, sim.HeroIdentityNextFace);
             if (fraction >= 1 && !calm) Glow((bottom + top) * .5f, height * 1.25f, ink.Glow, .1f + ready * .08f, true);
@@ -463,6 +467,8 @@ namespace ArcaneBrigade
             }
             ground.Band(a, b, half, A(ink.Glow, .16f * fade * strength), A(ink.Body, .42f * fade * strength));
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .3f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .3f) / .7f));
+            // a thread (China Marionette's needle) flies as a short stitch, never as a ruled line from end to end (owner 23/10/2026)
+            if (style.Brush == InkBrush.Thread) tail = Mathf.Max(tail, head - .28f);
             float seed = Seed(g) * .1f;
             List<Vector2> path; float width;
             switch (style.Brush)

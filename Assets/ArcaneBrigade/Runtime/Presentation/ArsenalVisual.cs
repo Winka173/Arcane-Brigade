@@ -17,6 +17,16 @@ namespace ArcaneBrigade
         {
             public FlashKind Kind; public ArsenalInk.Moment Moment; public Vector2 At, Dir; public float Born, Life, Size, Seed; public Sprite Held;
             public WeaponInkStyle.Strike Strike; public InkPalette Palette; public InkToken Token; public bool Critical;
+            // an attack's own flash rides with its attacker as drawn (owner 23/10/2026): a muzzle puff stays on the barrel
+            // through the shooter's recoil and steps, a swipe on the swinging body; Offset is from the attacker's body
+            public int Shooter = -1; public bool AtMuzzle; public Vector2 Offset;
+        }
+        private static int ShooterOf(CombatEvent value) => value.Subject != null ? value.Subject.Id : value.Cause.SourceUnitId;
+        private static void Follow(Flash f)
+        {
+            if (f.Shooter < 0) return;
+            if (f.AtMuzzle && UnitVisual.TryMuzzle(f.Shooter, out Vector2 tip)) f.At = tip;
+            else if (UnitVisual.TryDrawn(f.Shooter, out Vector2 body)) f.At = body + f.Offset;
         }
         private ArsenalInk ink;
         private readonly List<Flash> flashes = new List<Flash>();
@@ -91,7 +101,11 @@ namespace ArcaneBrigade
                     ArsenalWeapon.WateringCan => (ArsenalInk.Moment.Sprinkle, 0.25f, 1.6f, 0.45f),
                     _ => ((ArsenalInk.Moment)(-1), 0, 0, 0)
                 };
-                if ((int)cue.m >= 0) Add(cue.m, value.Position + dir * cue.ahead, dir, time, cue.life, cue.size);
+                if ((int)cue.m >= 0)
+                {
+                    Flash cueFlash = Add(cue.m, value.Position + dir * cue.ahead, dir, time, cue.life, cue.size);
+                    cueFlash.Shooter = ShooterOf(value); cueFlash.AtMuzzle = cue.ahead > 0; cueFlash.Offset = dir * cue.ahead; Follow(cueFlash);
+                }
                 return;
             }
             if (value.Kind == CombatEventKind.Proc)
@@ -130,6 +144,7 @@ namespace ArcaneBrigade
             {
                 float reach = Mathf.Clamp(w.Range, 0.9f, 2.4f);
                 var f = Add(ArsenalInk.Moment.Burst, value.Position, dir, time, 0.28f, reach); f.Kind = FlashKind.Strike; f.Strike = strike;
+                f.Shooter = ShooterOf(value); Follow(f);
                 return true;
             }
             if (value.Kind == CombatEventKind.Fire && value.Faction != Faction.Enemy && w.Kind == WeaponKind.Projectile)
@@ -139,6 +154,7 @@ namespace ArcaneBrigade
                 int shooter = value.Subject != null ? value.Subject.Id : value.Cause.SourceUnitId;
                 if (UnitVisual.TryMuzzle(shooter, out Vector2 drawnTip)) muzzle = drawnTip; // where the barrel actually is on screen
                 var f = Add(ArsenalInk.Moment.Burst, muzzle, dir, time, 0.2f, 0.3f); f.Kind = FlashKind.Muzzle; f.Palette = look.palette; f.Token = look.token;
+                f.Shooter = shooter; f.AtMuzzle = true; f.Offset = muzzle - value.Position;
                 return w.Arsenal == ArsenalWeapon.None; // Arsenal weapons still add their own attack moment below
             }
             if (value.Kind == CombatEventKind.Hit && value.Faction == Faction.Enemy) // a Hit carries the target's faction: an enemy struck by one of ours
@@ -179,6 +195,7 @@ namespace ArcaneBrigade
             {
                 Flash f = flashes[i]; float t = (time - f.Born) / f.Life;
                 if (t >= 1 || t < 0) { flashes.RemoveAt(i); continue; }
+                Follow(f);
                 switch (f.Kind)
                 {
                     case FlashKind.Strike: ink.Strike(f.Strike, f.At, f.Dir, t, f.Size, f.Seed); break;

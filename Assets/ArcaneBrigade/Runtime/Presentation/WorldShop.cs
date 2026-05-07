@@ -675,6 +675,8 @@ namespace ArcaneBrigade
             return low < float.MaxValue ? new Vector3(station.Marker.position.x, low - .06f, 0) : station.Marker.position + Vector3.down * fallbackDrop;
         }
         private GUIStyle talkStyle;
+        private float talkSince = -1, talkLast = -1, talkNearAt = -1; private bool talkNear;
+        private static float OutBack(float t) { const float c = 1.7f; float u = t - 1; return 1 + (c + 1) * u * u * u + c * u * u; }
         /// <summary>A small speech bubble bobbing above a visitor that can still be talked to (owner, 22/10/2026): "…" at rest,
         /// "!" and brighter when the hero is in reach; gone once its deal is taken (the visitor is then done).</summary>
         private void DrawTalkBubble(Camera camera, Station station)
@@ -685,15 +687,28 @@ namespace ArcaneBrigade
             Vector3 screen = camera.WorldToScreenPoint(head);
             Vector2 at = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
             float near = Mathf.Clamp01(station.Focus), bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 2.4f) * 4;
-            Rect bubble = new Rect(at.x - 30, at.y - 58 + bob, 60, 42);
+            // owner 23/10/2026: the bubble pops up out of the visitor's head, "…" types its dots in turn, and it jumps to "!"
+            // when the hero comes near
+            float now = Time.unscaledTime;
+            if (now - talkLast > .5f) { talkSince = now; talkNearAt = -1; talkNear = false; } talkLast = now; // a visitor newly in view pops in again
+            if ((near > .5f) != talkNear) { talkNear = near > .5f; talkNearAt = now; }
+            bool still = PresentationSettings.ReducedMotion;
+            float grow = still ? 1 : Mathf.Lerp(.3f, 1f, OutBack(Mathf.Clamp01((now - talkSince) / .32f)));
+            float jump = still || talkNearAt < 0 ? 0 : Mathf.Sin(Mathf.Clamp01((now - talkNearAt) / .3f) * Mathf.PI) * (talkNear ? 12 : 5);
+            float punch = still || talkNearAt < 0 ? 1 : 1 + .18f * Mathf.Sin(Mathf.Clamp01((now - talkNearAt) / .3f) * Mathf.PI);
+            Rect bubble = new Rect(at.x - 30, at.y - 58 + bob - jump, 60, 42);
+            Matrix4x4 restoreMatrix = GUI.matrix;
+            if (grow * punch != 1) GUIUtility.ScaleAroundPivot(Vector2.one * grow * punch, new Vector2(bubble.center.x, bubble.yMax + 8));
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * (.72f + .28f * near));
             if (near > .05f) ArcadeSkin.Glow(new Rect(bubble.x - 14, bubble.y - 12, bubble.width + 28, bubble.height + 24), new Color(1f, .85f, .5f, .4f * near));
             ArcadeSkin.Diamond(new Vector2(bubble.center.x, bubble.yMax - 1), 14, new Color(.95f, .89f, .76f)); // the tail, under the bubble
             ArcadeSkin.CodePlate(bubble, CodeTone.Cream, near > .5f ? 1 : 0);
             if (talkStyle == null) { talkStyle = ArcadeTypography.Style(26, true); talkStyle.alignment = TextAnchor.MiddleCenter; talkStyle.wordWrap = false; }
             talkStyle.normal.textColor = near > .5f ? ArcadeSkin.Wax : ArcadeSkin.KitInk;
-            GUI.Label(new Rect(bubble.x, bubble.y - 2, bubble.width, bubble.height), near > .5f ? "!" : "…", talkStyle);
+            string dots = still ? "…" : new string('.', 1 + (int)(now * 2.5f) % 3).PadRight(3, ' ');
+            GUI.Label(new Rect(bubble.x, bubble.y - 2, bubble.width, bubble.height), near > .5f ? "!" : dots, talkStyle);
             GUI.color = keep;
+            GUI.matrix = restoreMatrix;
         }
 
         public void DrawPriceTags(Camera camera)

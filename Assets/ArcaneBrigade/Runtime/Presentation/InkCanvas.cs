@@ -28,7 +28,8 @@ namespace ArcaneBrigade
         private static readonly List<float> lengths = new List<float>(256);
         public int Primitives { get; private set; }
 
-        public InkCanvas(Transform parent, string name, int order)
+        /// <param name="light">Draw as additive light (the hero mechanics) instead of alpha-blended ink and wash.</param>
+        public InkCanvas(Transform parent, string name, int order, bool light = false)
         {
             MeshRenderer Make(string suffix, Material material, int sort, out Mesh mesh)
             {
@@ -39,8 +40,8 @@ namespace ArcaneBrigade
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; r.receiveShadows = false; r.enabled = false;
                 return r;
             }
-            washRenderer = Make(" / wash", MechanicInk.WashMaterial, order, out washMesh);
-            strokeRenderer = Make(" / brush", MechanicInk.StrokeMaterial, order + 1, out strokeMesh);
+            washRenderer = Make(" / wash", light ? MechanicInk.LightWashMaterial : MechanicInk.WashMaterial, order, out washMesh);
+            strokeRenderer = Make(" / brush", light ? MechanicInk.LightStrokeMaterial : MechanicInk.StrokeMaterial, order + 1, out strokeMesh);
         }
 
         public void Clear()

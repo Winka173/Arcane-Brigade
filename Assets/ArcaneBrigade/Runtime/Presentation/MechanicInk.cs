@@ -26,6 +26,16 @@ namespace ArcaneBrigade
 
         public static Material StrokeMaterial { get { if (strokeMaterial == null) strokeMaterial = Make(Stroke(), "MechanicInk stroke"); return strokeMaterial; } }
         public static Material WashMaterial { get { if (washMaterial == null) washMaterial = Make(Wash(), "MechanicInk wash"); return washMaterial; } }
+        // the hero mechanics drawn as light (owner 23/10/2026: they looked wrapped in plastic film): additive like the lantern's
+        // beam - a fill is a smooth glow (no mottled paper, no film), a stroke a brushed band of light; dark ink adds nothing
+        private static Material lightStrokeMaterial, lightWashMaterial;
+        public static Material LightStrokeMaterial { get { if (lightStrokeMaterial == null) lightStrokeMaterial = MakeLight(Stroke(), "MechanicInk light brush") ?? StrokeMaterial; return lightStrokeMaterial; } }
+        public static Material LightWashMaterial { get { if (lightWashMaterial == null) lightWashMaterial = MakeLight(Texture2D.whiteTexture, "MechanicInk light wash") ?? WashMaterial; return lightWashMaterial; } }
+        private static Material MakeLight(Texture2D texture, string name)
+        {
+            Shader light = Resources.Load<Shader>("SoftLight");
+            return light == null ? null : new Material(light) { name = name, mainTexture = texture };
+        }
         public static Sprite Glow
         {
             get

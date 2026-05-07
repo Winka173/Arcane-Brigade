@@ -24,7 +24,9 @@ namespace ArcaneBrigade
         public static float FlatDamage(float bonus, int wave) => Soften(bonus, 10, Mathf.Lerp(1, .35f, Late(wave)));
         public static float EndlessHealth(int wave, bool endless) => endless ? Mathf.Pow(1.16f, Mathf.Min(200, Mathf.Max(0, wave - 19))) : 1;
         public static float EndlessDamage(int wave, bool endless) => endless ? Mathf.Pow(1.075f, Mathf.Min(200, Mathf.Max(0, wave - 19))) : 1;
-        public static float Push(UnitDefinition target, float requested) => target.IsBoss ? 0 : Mathf.Clamp(requested, 0, .45f) * (1 - Mathf.Clamp01(target.KnockbackResistance));
+        /// <summary>Owner 23/10/2026: enemies are pushed back less - every knockback at 60%.</summary>
+        public const float EnemyKnockback = .6f;
+        public static float Push(UnitDefinition target, float requested) => target.IsBoss ? 0 : Mathf.Clamp(requested, 0, .45f) * (1 - Mathf.Clamp01(target.KnockbackResistance)) * EnemyKnockback;
         public static void CompileAlly(UnitDefinition unit, int wave)
         {
             WeaponDefinition w = unit.Weapon; float late = Late(wave);

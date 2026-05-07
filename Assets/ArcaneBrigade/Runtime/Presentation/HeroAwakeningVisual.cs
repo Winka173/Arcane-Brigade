@@ -70,10 +70,10 @@ namespace ArcaneBrigade
             InkPalette pal = id == "Postmaster" ? Leather : id == "CopperCauldron" ? Brass : id == "DrowsySeer" ? Night : ink;
             InkPalette liquid = id == "Postmaster" ? Leather : id == "CopperCauldron" ? Ember : id == "DrowsySeer" ? Night : ink;
             Color glass = Color.Lerp(pal.Ink, new Color(.05f, .05f, .09f), .45f);
-            air.Band(bottom, top, half, A(glass, .6f * strength * dim), A(glass, .4f * strength * dim));
+            vial.Band(bottom, top, half, A(glass, .6f * strength * dim), A(glass, .4f * strength * dim));
             Vector2 surface = Vector2.Lerp(bottom, top, fill);
             if (fill > .01f && id != "Postmaster")
-                air.Band(bottom, surface, half * .78f, A(liquid.Body, .95f * strength * dim), A(Color.Lerp(liquid.Body, liquid.Ink, .25f), .95f * strength * dim));
+                vial.Band(bottom, surface, half * .78f, A(liquid.Body, .95f * strength * dim), A(Color.Lerp(liquid.Body, liquid.Ink, .25f), .95f * strength * dim));
             if (id == "Postmaster")
             {
                 int letters = Mathf.FloorToInt(fill * 6 + .001f);
@@ -87,7 +87,7 @@ namespace ArcaneBrigade
             }
             else if (id == "CopperCauldron")
             {
-                air.Stroke(InkCanvas.Line(top + new Vector2(-half * 1.3f, -height * .08f), top + new Vector2(half * 1.3f, -height * .08f)), InkStroke.Of(ArsenalInkWine, .04f, .95f * strength));
+                vial.Stroke(InkCanvas.Line(top + new Vector2(-half * 1.3f, -height * .08f), top + new Vector2(half * 1.3f, -height * .08f)), InkStroke.Of(ArsenalInkWine, .04f, .95f * strength));
                 if (fill > .03f) Token(InkToken.Puff, surface + Vector2.up * .05f, .2f, 0, .9f * dim, true, 0, Ember);
             }
             else if (id == "DrowsySeer")
@@ -104,11 +104,11 @@ namespace ArcaneBrigade
             var outline = new List<Vector2>(20);
             for (int i = 0; i <= 8; i++) outline.Add(bottom + Dir(180 + i * 22.5f) * half);
             for (int i = 0; i <= 8; i++) outline.Add(top + Dir(i * 22.5f) * half);
-            air.Stroke(outline, new InkStroke { Width = .035f, Head = 1, Tail = 0, Taper = 1, Alpha = .95f * strength * dim, Ink = pal.Ink, Body = pal.Ink, Light = pal.Ink, InkOnly = true }, true);
+            vial.Stroke(outline, new InkStroke { Width = .035f, Head = 1, Tail = 0, Taper = 1, Alpha = .95f * strength * dim, Ink = pal.Ink, Body = pal.Ink, Light = pal.Ink, InkOnly = true }, true);
             for (int i = 1; i <= 2; i++)
             {
                 Vector2 notch = Vector2.Lerp(bottom, top, i / 3f);
-                air.Stroke(InkCanvas.Line(notch + Vector2.left * half * 1.25f, notch + Vector2.left * half * .55f), InkStroke.Of(pal, .03f, .9f * strength * dim));
+                vial.Stroke(InkCanvas.Line(notch + Vector2.left * half * 1.25f, notch + Vector2.left * half * .55f), InkStroke.Of(pal, .03f, .9f * strength * dim));
             }
         }
 
