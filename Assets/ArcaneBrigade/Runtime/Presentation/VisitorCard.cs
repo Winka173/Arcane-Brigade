@@ -31,6 +31,31 @@ namespace ArcaneBrigade
         private const float OpenTime = .25f, CloseTime = .16f;
         /// <summary>The open overshoot (as the shop's inspect card): rises past 1 a little, then settles.</summary>
         private static float Overshoot(float t) => 1 + 2.2f * Mathf.Pow(t - 1, 3) + 1.2f * Mathf.Pow(t - 1, 2);
+        // owner 23/10/2026: what is inside the card moves too - the choices rise in one after another as it opens or turns a
+        // page (sliding in from the side turned to), the picked one lifts with a small punch, the picked line and the details
+        // fade up; a card hidden for a moment (a story line, a transition) opens again rather than snapping back
+        private float pickedAt = -10, pageAt = -10, detailsAt = -10; private int pageDir = 1, drawnFrame = -10;
+        private static float OutCubic(float t) { t = 1 - Mathf.Clamp01(t); return 1 - t * t * t; }
+        private struct Lift { public Matrix4x4 Matrix; public Color Color; }
+        /// <summary>Draws what follows risen in by t (0..1), slid in from the side by slide, scaled by scale around r.</summary>
+        private static Lift Rise(Rect r, float t, float slide, float scale)
+        {
+            var keep = new Lift { Matrix = GUI.matrix, Color = GUI.color };
+            t = Mathf.Clamp01(t);
+            if (t >= 1 && Mathf.Approximately(scale, 1)) return keep;
+            GUI.color = new Color(keep.Color.r, keep.Color.g, keep.Color.b, keep.Color.a * Mathf.Clamp01(t * 1.5f));
+            if (PresentationSettings.ReducedMotion) return keep;
+            float e = OutCubic(t), size = scale * Mathf.Lerp(.92f, 1, e);
+            Vector3 pivot = r.center;
+            GUI.matrix = keep.Matrix * Matrix4x4.Translate(new Vector3(slide * (1 - e), 22 * (1 - e), 0))
+                * Matrix4x4.Translate(pivot) * Matrix4x4.Scale(new Vector3(size, size, 1)) * Matrix4x4.Translate(-pivot);
+            return keep;
+        }
+        private static void Settle(Lift l) { GUI.matrix = l.Matrix; GUI.color = l.Color; }
+        /// <summary>The i-th choice's rise since the card opened or its page turned.</summary>
+        private float Entry(int i) => (Time.unscaledTime - Mathf.Max(openedAt, pageAt) - .08f - i * .05f) / .24f;
+        private float Slide => Time.unscaledTime - pageAt < .5f && pageAt > openedAt ? pageDir * 80 : 0;
+        private float PickScale(bool picked) => !picked ? 1 : 1.03f + .05f * Mathf.Sin(Mathf.Clamp01((Time.unscaledTime - pickedAt) / .22f) * Mathf.PI);
 
         private static readonly Color PayTone = new Color(1f, .62f, .55f), PayBack = new Color(.50f, .11f, .12f, .95f);
         private static readonly Color GetTone = new Color(.62f, .92f, .66f), GetBack = new Color(.14f, .40f, .25f, .95f);
@@ -55,7 +80,7 @@ namespace ArcaneBrigade
         private void Pick(int index, List<VisitorOption> options)
         {
             if (index < 0 || index >= options.Count || !options[index].Enabled) return;
-            if (picked != index) CheckpointAudio.PlayInterfaceId("ui.select");
+            if (picked != index) { CheckpointAudio.PlayInterfaceId("ui.select"); pickedAt = Time.unscaledTime; }
             picked = index;
         }
         private void Choose(int index)
@@ -99,6 +124,8 @@ namespace ArcaneBrigade
             if (!Open || owner.PresentationPaused || Camera.main == null) return;
             // above the HUD, its tickets and the speech bubbles; left set (a behaviour's depth is the one it ends its OnGUI with)
             GUI.depth = -60;
+            if (Time.frameCount - drawnFrame > 3 && closingAt < 0 && Time.unscaledTime - openedAt > OpenTime) openedAt = Time.unscaledTime;
+            drawnFrame = Time.frameCount;
             VisitorDefinition v = owner.Session.Visitor;
             RunSnapshot state = owner.Session.State;
             List<VisitorOption> options = owner.Session.VisitorOptions();
@@ -129,9 +156,12 @@ namespace ArcaneBrigade
             title.normal.textColor = Brown;
             GUI.Label(new Rect(x, inner.y - 6, width - 90, 50), v.Name, title);
             Rect info = new Rect(inner.xMax - 66, inner.y - 6, 66, 66);
-            if (ArcadeSkin.Medallion(info, KitMedallion.Info, details)) details = !details; // the painted brass "i" (UI kit)
-            if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(new Rect(x, card.y + 76, width - 20, 70), ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
+            if (ArcadeSkin.Medallion(info, KitMedallion.Info, details)) { details = !details; detailsAt = Time.unscaledTime; } // the painted brass "i" (UI kit)
+            Rect said = new Rect(x, card.y + 76, width - 20, 70);
+            Lift line = Rise(said, (Time.unscaledTime - Mathf.Max(openedAt + .04f, detailsAt)) / .2f, 0, 1);
+            if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(said, ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
             else { hand.normal.textColor = new Color(.30f, .22f, .16f, .75f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
+            Settle(line);
 
             if (pictures) DrawPick(v, state, options, x, card.y + Head, width, true);
             else DrawPlates(v, state, options, x, card.y + Head, width, true);
@@ -150,7 +180,13 @@ namespace ArcaneBrigade
             {
                 // pick, read what it is, then CONFIRM; LATER beside it, clear of the gold button's caps
                 bool ok = picked >= 0 && picked < options.Count && options[picked].Enabled;
-                if (pictures) PickedInfo(new Rect(x, buttonsY - InfoH - 8, width, InfoH), ok ? options[picked] : null);
+                if (pictures)
+                {
+                    Rect infoRect = new Rect(x, buttonsY - InfoH - 8, width, InfoH);
+                    Lift told = Rise(infoRect, (Time.unscaledTime - Mathf.Max(openedAt + .1f, pickedAt)) / .2f, 0, 1);
+                    PickedInfo(infoRect, ok ? options[picked] : null);
+                    Settle(told);
+                }
                 Rect confirm = new Rect(x + (width - 728) * .5f, buttonsY, 430, ButtonH);
                 later = new Rect(confirm.xMax + 48, buttonsY, 250, ButtonH);
                 if (ArcadeSkin.Button(confirm, ok ? "CONFIRM" : "PICK ONE", KitButton.Primary, ok, button)) Choose(picked);
@@ -230,6 +266,7 @@ namespace ArcaneBrigade
             {
                 VisitorOption o = options[i]; VisitorDeal d = deals[i];
                 Rect plate = new Rect(left + i * (plateW + gap), top, plateW, height);
+                Lift rise = Rise(plate, Entry(i), 0, PickScale(i == picked));
                 bool hover = o.Enabled && plate.Contains(Event.current.mousePosition);
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 ArcadeSkin.Plate(plate, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
@@ -245,6 +282,7 @@ namespace ArcaneBrigade
                 if (!o.Enabled) Missing(new Rect(plate.xMax - 62, plate.y - 14, 56, 56), v, d, state);
                 if (i == picked) { ArcadeSkin.Plate(plate, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .35f)); ArcadeSkin.WorldFocus(plate); }
                 if (o.Enabled && GUI.Button(plate, GUIContent.none, GUIStyle.none)) Pick(i, options);
+                Settle(rise);
             }
             return height;
         }
@@ -261,6 +299,7 @@ namespace ArcaneBrigade
                 Rect strip = new Rect(x, y, width, 12 + 46 + 8 + rowsH + 12);
                 if (draw)
                 {
+                    Lift rise = Rise(strip, (Time.unscaledTime - openedAt - .04f) / .24f, 0, 1);
                     ArcadeSkin.Plate(strip, ArcadeSkin.Accent);
                     verb.normal.textColor = ArcadeSkin.Cream; verb.alignment = TextAnchor.MiddleLeft;
                     float whenW = string.IsNullOrEmpty(d.When) ? 0 : Mathf.Min(360, chip.CalcSize(new GUIContent(d.When)).x + 36);
@@ -268,6 +307,7 @@ namespace ArcaneBrigade
                     if (whenW > 0) When(new Rect(strip.xMax - 16 - whenW, strip.y + 15, whenW, 40), d.When);
                     Row(new Rect(strip.x + 24, strip.y + 66, half - 16, rowsH), "PAY", d.Pay, true, true);
                     Row(new Rect(strip.x + 24 + half, strip.y + 66, half - 16, rowsH), "GET", d.Get, false, true);
+                    Settle(rise);
                 }
                 y = strip.yMax + 18;
             }
@@ -278,6 +318,7 @@ namespace ArcaneBrigade
             {
                 VisitorOption o = options[first + i];
                 Rect slot = new Rect(x + i * (SlotW + SlotGap), y, SlotW, SlotH);
+                Lift rise = Rise(slot, Entry(i), Slide, PickScale(first + i == picked));
                 bool hover = o.Enabled && slot.Contains(Event.current.mousePosition);
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 ArcadeSkin.Plate(slot, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
@@ -298,13 +339,14 @@ namespace ArcaneBrigade
                 if (!o.Enabled && d != null) Missing(new Rect(slot.xMax - 50, slot.y - 12, 50, 50), v, d, state);
                 if (first + i == picked) ArcadeSkin.WorldFocus(slot);
                 if (o.Enabled && GUI.Button(slot, GUIContent.none, GUIStyle.none)) Pick(first + i, options);
+                Settle(rise);
             }
             if (pages > 1)
             {
                 float ax = x + per * (SlotW + SlotGap) + 6, aw = Mathf.Min(100, (x + width - ax - 12) * .5f);
                 Rect prev = new Rect(ax, y + SlotH * .5f - 46, aw, 92), next = new Rect(ax + aw + 12, prev.y, aw, 92);
-                if (ArcadeSkin.IconButton(prev, KitRound.Walnut, "◀", null, true, mark)) page = (page + pages - 1) % pages;
-                if (ArcadeSkin.IconButton(next, KitRound.Walnut, "▶", null, true, mark)) page = (page + 1) % pages;
+                if (ArcadeSkin.IconButton(prev, KitRound.Walnut, "◀", null, true, mark)) { page = (page + pages - 1) % pages; pageAt = Time.unscaledTime; pageDir = -1; }
+                if (ArcadeSkin.IconButton(next, KitRound.Walnut, "▶", null, true, mark)) { page = (page + 1) % pages; pageAt = Time.unscaledTime; pageDir = 1; }
                 caption.normal.textColor = Brown; GUI.Label(new Rect(ax, prev.yMax + 8, aw * 2 + 12, 24), (page + 1) + " / " + pages, caption); caption.normal.textColor = ArcadeSkin.Cream;
             }
             return y - top + SlotH;
