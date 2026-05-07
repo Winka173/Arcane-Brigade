@@ -17,6 +17,9 @@ namespace ArcaneBrigade
         private UnitState awakenFoe;
         private readonly List<Vector2> awakenPath = new List<Vector2>();
         private readonly Vector2[] awakenEchoes = new Vector2[3];
+        /// <summary>When each copy (dream, jelly, performer) last attacked: the presentation plays its attack then.</summary>
+        private readonly float[] awakenEchoFired = { -9, -9, -9 };
+        public IReadOnlyList<float> HeroAwakenEchoFired => awakenEchoFired;
         private Vector2 awakenAim;
 
         // the five expansion heroes' transformations: the kite fleet's escorted friends, the bonsai's planted spot, falling objects
@@ -97,12 +100,12 @@ namespace ArcaneBrigade
             target ??= IdentityTarget(Champion.Position, 8);
             switch (k.Action)
             {
-                case KitAction.Gatling: GunBurst(target, .2f, .22f, true); break;
+                case KitAction.Gatling: GunBurst(target, .2f, .3f, true); break; // owner 23/10/2026: .22 -> .3 W a parcel
                 case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .1f, false); break;
                 case KitAction.Kitchen: Kitchen(target); break;
                 case KitAction.Engine: SteamEngine(delta); break;
                 case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .22f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); DreamShots(); break;
-                case KitAction.Mitosis: { Vector2 side = Perpendicular() * 1.1f; Echoes(Champion.Position + side, Champion.Position - side, Champion.Position, .3f, .85f, DamageElement.Physical); break; } // round 6: Lone Jelly splits strike every .45 -> .3 s, .7 -> .85 W
+                case KitAction.Mitosis: Mitosis(delta); break; // round 6: Lone Jelly splits strike every .45 -> .3 s, .7 -> .85 W
                 case KitAction.Showtime: Showtime(target); break;
                 case KitAction.Lighthouse: Lighthouse(); break;
                 case KitAction.Treant: Every(.35f, () => { if (walking) Hit(MorphGeometry.Disc, Champion.Position + Forward() * .4f, Champion.Position + Forward(), .9f, .42f, .1f); }); break;
@@ -303,9 +306,9 @@ namespace ArcaneBrigade
             awakenEchoes[0] = a; awakenEchoes[1] = b; awakenEchoes[2] = c;
             if (Elapsed < awakenEchoAt) return;
             awakenEchoAt = Elapsed + period;
-            Vector2 from = awakenEchoes[awakenRound++ % 3];
+            int who = awakenRound++ % 3; Vector2 from = awakenEchoes[who];
             UnitState near = IdentityTarget(from, 5);
-            if (near != null) IdentityPattern(near, IdentityPower * budget * ApproachScale, origin: from, element: element);
+            if (near != null) { IdentityPattern(near, IdentityPower * budget * ApproachScale, origin: from, element: element); awakenEchoFired[who] = Elapsed; }
         }
         private void Showtime(UnitState target)
         {
@@ -319,7 +322,7 @@ namespace ArcaneBrigade
         }
         /// <summary>LIGHTHOUSE sweep speed in degrees a second (owner 22/10/2026: 120 -> 75, a slower, grander sweep). Strikes still
         /// fall every 0.25s with the same budget, so the damage per second is unchanged; they now land closer together.</summary>
-        public const float LighthouseSweep = 75f;
+        public const float LighthouseSweep = 75f, LighthouseReach = 5.5f, LighthouseSpread = 1.5f, LighthouseBudget = 1.1f;
         private void Lighthouse()
         {
             if (Elapsed < awakenShotAt) return;
@@ -327,7 +330,10 @@ namespace ArcaneBrigade
             // the beam sweeps once round every 4.8s (LighthouseSweep), striking what it crosses
             float angle = (Elapsed - awakenStarted) * LighthouseSweep;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-            var beam = Hit(MorphGeometry.Line, Champion.Position + dir * .5f, Champion.Position + dir * MaxLineLength, 0, .7f, .05f);
+            // owner 23/10/2026: a wedge of light - narrow at the lamp, LighthouseSpread wider each side at its far end, so it
+            // strikes everything its cone covers (up to five) with a larger budget than the old thin line (.7 W, three targets)
+            var beam = IdentityHit(MorphGeometry.Line, Champion.Position + dir * .4f, Champion.Position + dir * LighthouseReach, 0,
+                IdentityPower * LighthouseBudget * ApproachScale * CrowdScale, .05f, 5, spread: LighthouseSpread);
             if (beam != null) beam.Painted = true; // the sweeping beam is painted by HeroAwakeningVisual
         }
         private void Casino(UnitState target)

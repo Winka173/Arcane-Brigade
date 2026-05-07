@@ -61,7 +61,8 @@ namespace ArcaneBrigade
 
         /// <summary>Draws one area. <paramref name="motif"/> is ignored (kept so callers need not change). <paramref name="mote"/>
         /// names the CombatVFX art its motes are made of (the weapon's own projectile art: notes, leaves, bubbles, sparks...).</summary>
-        public void Display(Sprite motif, MorphGeometry geometry, Vector2 position, Vector2 end, Vector2 direction, float radius, float at, float until, float time, Color tint, bool reduced, string mote = null)
+        /// <param name="rimless">Only the weapon's own motes moving through the area: no circle, ring or fill (the moonseed bloom).</param>
+        public void Display(Sprite motif, MorphGeometry geometry, Vector2 position, Vector2 end, Vector2 direction, float radius, float at, float until, float time, Color tint, bool reduced, string mote = null, bool rimless = false)
         {
             Hide(); if (time >= until) return;
             bool preparing = time < at;
@@ -77,6 +78,7 @@ namespace ArcaneBrigade
             Color dark = new Color(.08f, .06f, .1f, edgeAlpha * .35f);
             Vector2 facing = direction.sqrMagnitude > .0001f ? direction.normalized : Vector2.right;
             float r = Mathf.Max(.05f, radius) * swell;
+            if (rimless) { Motes(geometry, position, end, facing, r, phase, preparing, reduced, time, mote, alpha); return; }
             switch (geometry)
             {
                 case MorphGeometry.Line:

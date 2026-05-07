@@ -174,7 +174,8 @@ namespace ArcaneBrigade
             VisibleCount++;
             // the moment of transforming: a short bright backlight behind the hero (it fades in place, it never spreads out)
             float flash = Activation(), dim = calm ? .45f : 1;
-            if (flash > 0) Glow(Chest(hero), Mathf.Max(1.3f, body * 1.6f), Color.Lerp(ink.Light, Color.white, .4f), .7f * flash);
+            // (the wide backlight disc read as a plastic film, owner 23/10/2026: the moment is the hero's tokens springing up)
+            if (flash > 0 && !sparse) for (int i = 0; i < 5; i++) Token(style.Token, Chest(hero) + Dir(90 + (i - 2) * 32) * (.35f + .7f * (1 - flash)), .26f * flash + .08f, i * 50, flash, true);
             // a worn or summoned object, placed where its transformation puts it
             if (!kit.Held)
             {
@@ -208,7 +209,7 @@ namespace ArcaneBrigade
                     Echoes(hero, hero.Definition.Body, new Color(.72f, .66f, 1f), remaining, InkToken.Moon, Night);
                     break;
                 case KitAction.Mitosis:
-                    Echoes(hero, ArsenalArtwork.Frame(kit.ArtKey, 0) ?? hero.Definition.Body, new Color(.6f, 1f, .9f), remaining, InkToken.Drop, ink);
+                    Echoes(hero, ArsenalArtwork.Frame(kit.ArtKey, 0) ?? hero.Definition.Body, Color.white, remaining, InkToken.Drop, ink, true);
                     break;
                 case KitAction.Showtime:
                 {
@@ -224,7 +225,7 @@ namespace ArcaneBrigade
                     // shimmer, dust motes turning inside it, a soft bloom at the lamp. No stroke or hard edge anywhere.
                     float angle = (sim.Elapsed - sim.HeroAwakenStarted) * CombatSimulation.LighthouseSweep;
                     Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right, across = new Vector2(-dir.y, dir.x);
-                    float reach = CombatSimulation.MaxLineLength + .6f, shimmer = still || calm ? 1 : .9f + .1f * Mathf.Sin(t * 7.3f) * Mathf.Sin(t * 3.1f + 1);
+                    float reach = CombatSimulation.LighthouseReach + .4f, shimmer = still || calm ? 1 : .9f + .1f * Mathf.Sin(t * 7.3f) * Mathf.Sin(t * 3.1f + 1);
                     Vector2 lamp = at + dir * .3f;
                     Sprite ray = BeamSprite();
                     Color amber = Color.Lerp(ink.Glow, new Color(1, .62f, .2f), .35f), gold = new Color(1, .95f, .78f);
@@ -232,9 +233,9 @@ namespace ArcaneBrigade
                         for (int i = 2; i >= 1; i--) // the afterglow the sweep leaves behind it
                             Light(ray, lamp, 5.1f, reach, angle - i * 5f - 90, A(amber, .16f / i * dim * strength));
                     Light(ray, lamp, 5.8f + .8f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, 1.6f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, .58f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
-                    Light(MechanicInk.Glow, lamp, 1.8f + .6f * flash, 1.8f + .6f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
+                    Light(ray, lamp, 2.6f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, .9f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
+                    Light(MechanicInk.Glow, lamp, .7f + .2f * flash, .7f + .2f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
                     if (!sparse) for (int i = 0; i < 6; i++)
                     {
                         float r = still ? (i + .5f) / 6 : Mathf.Repeat(t * .35f + i / 6f, 1), d = .6f + r * (reach - 1.2f);
@@ -357,8 +358,9 @@ namespace ArcaneBrigade
             var px = new Color32[w * h];
             for (int y = 0; y < h; y++)
             {
-                float v = (y + .5f) / h, spread = Mathf.Lerp(.22f, 1f, v);
-                float along = Mathf.SmoothStep(0, 1, v / .1f) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.3f, 1f, v))) * (1 - .25f * v);
+                // owner 23/10/2026: a triangle - a point of light at the lamp, widest at the far end, steadily dimmer as it goes
+                float v = (y + .5f) / h, spread = Mathf.Lerp(.05f, 1f, v);
+                float along = Mathf.SmoothStep(0, 1, v / .08f) * Mathf.Lerp(1f, .18f, v) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.85f, 1f, v)));
                 for (int x = 0; x < w; x++)
                 {
                     float u = ((x + .5f) / w * 2 - 1) / spread;
@@ -421,7 +423,11 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>Copies standing where the simulation puts them (dreams, jellies, performers), with a token over each.</summary>
-        private void Echoes(UnitState hero, Sprite body, Color tint, float remaining, InkToken token, InkPalette pal)
+        private readonly Vector2[] echoLast = new Vector2[3]; private readonly bool[] echoLeft = new bool[3];
+        /// <summary>The copies: dreams and performers follow the hero's facing, faint; jellies (solid) are fighters of their own,
+        /// fully drawn and facing the way they walk. Each plays its attack when it strikes: a springy squash and its tokens
+        /// thrown up (owner 23/10/2026: the copies attacked without moving).</summary>
+        private void Echoes(UnitState hero, Sprite body, Color tint, float remaining, InkToken token, InkPalette pal, bool solid = false)
         {
             if (dreamEchoes == null)
             {
@@ -436,10 +442,19 @@ namespace ArcaneBrigade
                 if ((at - hero.Position).sqrMagnitude < .04f) continue;
                 e.enabled = true; e.sprite = body;
                 float unit = Mathf.Max(.01f, body.bounds.size.y), size = hero.Definition.BodyHeight * .95f / unit;
-                e.transform.position = at + Vector2.up * Bob(i + 1) * 2; e.transform.localScale = new Vector3(hero.Facing.x < 0 ? -size : size, size, 1);
-                e.color = new Color(tint.r, tint.g, tint.b, (.7f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
-                Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .22f, 0, .95f - i * .15f, true, 0, pal);
-                Thread(i > 0 ? echoes[i - 1] + Vector2.up * .1f : hero.Position + Vector2.up * .1f, at + Vector2.up * .1f, .25f, i);
+                float dx = at.x - echoLast[i].x; if (Mathf.Abs(dx) > .003f) echoLeft[i] = dx < 0; echoLast[i] = at;
+                bool left = solid ? echoLeft[i] : hero.Facing.x < 0;
+                float k = (t - sim.HeroAwakenEchoFired[i]) / .3f, punch = still || k < 0 || k >= 1 ? 0 : Mathf.Sin(k * Mathf.PI);
+                e.transform.position = at + Vector2.up * Bob(i + 1) * 2; e.transform.localScale = new Vector3((left ? -size : size) * (1 + .16f * punch), size * (1 - .12f * punch), 1);
+                e.color = new Color(tint.r, tint.g, tint.b, (solid ? 1 : .7f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
+                if (!solid)
+                {
+                    Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .22f, 0, .95f - i * .15f, true, 0, pal);
+                    Thread(i > 0 ? echoes[i - 1] + Vector2.up * .1f : hero.Position + Vector2.up * .1f, at + Vector2.up * .1f, .25f, i);
+                }
+                if (punch > 0 && !sparse)
+                    for (int j = 0; j < 3; j++)
+                        Token(token, at + Vector2.up * hero.Definition.BodyHeight * .35f + new Vector2((j - 1) * .28f * k, .2f + .55f * k), .2f * (1 - .4f * k), (j - 1) * 30 + k * 90, (1 - k) * .95f, true, 0, pal);
             }
         }
 

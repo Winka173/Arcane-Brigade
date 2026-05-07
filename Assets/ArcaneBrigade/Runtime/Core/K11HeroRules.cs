@@ -62,7 +62,7 @@ namespace ArcaneBrigade
             return mechanic switch
             {
                 HeroMechanic.LanternStride => "LANTERN STRIDE: travel 12 units to charge a melee pulse within 2.4 units; deals 65% weapon damage, minimum once every 4s. Holds one pulse until an enemy is nearby. No charge in shops or while paused.",
-                HeroMechanic.ParcelExpress => "PARCEL EXPRESS: collect 6 gold to charge an automatic parcel volley; deals 70% weapon damage, minimum once every 4s. Passive gold and income do not count.",
+                HeroMechanic.ParcelExpress => "PARCEL EXPRESS: collect 6 gold to charge an automatic parcel volley; deals 100% weapon damage, minimum once every 4s. Passive gold and income do not count.",
                 HeroMechanic.DreamBreath => "DREAM BREATH: stand still for 2 seconds to chill enemies within 3 units and remove up to 3 nearby hostile bullets; once every 7s. Waits for nearby danger. Moving interrupts charge; grants no invulnerability.",
                 HeroMechanic.RootedOracle => "Stationary in combat. Whole-arena pickup and a slowing ward. Walks in shops.",
                 HeroMechanic.SoloMaw => "Travels without roster friends; absorbs purchased friends' traits. Strong attacks and natural recovery support relic-focused builds.",

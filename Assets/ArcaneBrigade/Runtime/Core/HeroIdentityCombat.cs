@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     /// <summary>What a glyph means to the presentation; never read by gameplay.</summary>
-    public enum HeroGlyphRole { Emblem, Strike, Link, Lob, Mark, Ambient, Catch, Poise }
+    public enum HeroGlyphRole { Emblem, Strike, Link, Lob, Mark, Ambient, Catch, Poise, Organ }
     public sealed class HeroIdentityGlyph
     {
         public HeroGlyphRole Role;
@@ -23,7 +23,7 @@ namespace ArcaneBrigade
         private sealed class IdentityStrike
         {
             public MorphGeometry Shape; public Vector2 Position, End, Direction;
-            public float Radius, Width, At, Budget, Slow, Push; public int Targets;
+            public float Radius, Width, At, Budget, Slow, Push, Spread; public int Targets;
             public DamageElement Element; public CombatCause Cause;
         }
         private sealed class IdentityMark { public UnitState Target; public float Until; }
@@ -153,16 +153,25 @@ namespace ArcaneBrigade
                 Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration };
             identityGlyphs.Add(g); return g;
         }
-        private HeroIdentityGlyph IdentityHit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .2f, int maxTargets = 3, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
+        private HeroIdentityGlyph IdentityHit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .2f, int maxTargets = 3, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0, float spread = 0)
         {
             if (identityStrikes.Count >= 32 || !float.IsFinite(budget) || budget <= 0) return null;
-            if (shape == MorphGeometry.Line) { Vector2 span = end - at; if (span.sqrMagnitude > MaxLineLength * MaxLineLength) end = at + span.normalized * MaxLineLength; }
+            float longest = spread > 0 ? 6 : MaxLineLength; // a widening wedge (the lighthouse) may reach a little further
+            if (shape == MorphGeometry.Line) { Vector2 span = end - at; if (span.sqrMagnitude > longest * longest) end = at + span.normalized * longest; }
             else radius = Mathf.Min(radius, shape == MorphGeometry.Crescent ? MaxCrescentRadius : shape == MorphGeometry.Ring ? MaxRingRadius : MaxDiscRadius);
             identityStrikes.Add(new IdentityStrike { Shape = shape, Position = at, End = end, Radius = radius, Width = .25f, At = Elapsed + delay,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
-                Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Cause = IdentityCause() });
+                Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Spread = Mathf.Max(0, spread), Cause = IdentityCause() });
             var glyph = IdentityGlyph(shape, at, end, radius, .35f, delay, HeroGlyphRole.Strike); glyph.Width = .25f;
             return glyph;
+        }
+        /// <summary>A line whose half-width grows from Width at its start to Width + Spread at its end (a cone of light).</summary>
+        private static bool InWedge(IdentityStrike s, Vector2 p, float r)
+        {
+            Vector2 span = s.End - s.Position; float length = span.magnitude; if (length < .01f) return false;
+            Vector2 axis = span / length, offset = p - s.Position; float along = Vector2.Dot(offset, axis);
+            if (along < -r || along > length + r) return false;
+            return Mathf.Abs(Vector2.Dot(offset, new Vector2(-axis.y, axis.x))) <= s.Width + s.Spread * Mathf.Clamp01(along / length) + r;
         }
         private void ResolveIdentityStrikes()
         {
@@ -179,7 +188,7 @@ namespace ArcaneBrigade
                 {
                     if (!CanHit(Faction.Champion, u)) continue;
                     float distance = Vector2.Distance(u.Position, s.Position), r = u.Definition.Radius;
-                    bool inside = s.Shape == MorphGeometry.Line ? SegmentCircle(s.Position, s.End, u.Position, s.Width + r) >= 0 :
+                    bool inside = s.Shape == MorphGeometry.Line ? (s.Spread > 0 ? InWedge(s, u.Position, r) : SegmentCircle(s.Position, s.End, u.Position, s.Width + r) >= 0) :
                         s.Shape == MorphGeometry.Ring ? Mathf.Abs(distance - s.Radius) <= s.Width + r :
                         s.Shape == MorphGeometry.Crescent ? distance <= s.Radius + r && Vector2.Dot((u.Position - s.Position).normalized, s.Direction) >= .1f : distance <= s.Radius + r;
                     if (inside) identityTargets.Add(u);

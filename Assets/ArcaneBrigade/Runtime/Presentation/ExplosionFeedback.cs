@@ -107,6 +107,8 @@ namespace ArcaneBrigade
             bool boss = value.Subject != null && value.Subject.Definition != null && value.Subject.Definition.IsBoss;
             switch (value.Kind)
             {
+                case CombatEventKind.Detonation when value.Cause.ItemId != null && value.Cause.ItemId.StartsWith("hero-identity-", System.StringComparison.Ordinal):
+                    break; // a hero skill paints its own strike (owner 23/10/2026: the blast disc over it read as film)
                 case CombatEventKind.Detonation:
                     Spawn(Kind.Blast, value.Position, Mathf.Max(0.8f, value.Value), Tint(value.Element, value.Faction), true, value.Faction == Faction.Enemy);
                     break;

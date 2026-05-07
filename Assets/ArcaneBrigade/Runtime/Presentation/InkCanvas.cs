@@ -19,6 +19,9 @@ namespace ArcaneBrigade
     {
         private readonly Mesh strokeMesh, washMesh;
         private readonly MeshRenderer strokeRenderer, washRenderer;
+        // owner 23/10/2026: a filled area of light (a disc, a band, a ring) read as a plastic film wrapped over the hero's
+        // skills; a light canvas draws only brushed light, its fills are left out
+        private readonly bool light;
         private readonly List<Vector3> sv = new List<Vector3>(), wv = new List<Vector3>();
         private readonly List<Vector2> suv = new List<Vector2>(), wuv = new List<Vector2>();
         private readonly List<Color> sc = new List<Color>(), wc = new List<Color>();
@@ -31,6 +34,7 @@ namespace ArcaneBrigade
         /// <param name="light">Draw as additive light (the hero mechanics) instead of alpha-blended ink and wash.</param>
         public InkCanvas(Transform parent, string name, int order, bool light = false)
         {
+            this.light = light;
             MeshRenderer Make(string suffix, Material material, int sort, out Mesh mesh)
             {
                 var go = new GameObject(name + suffix); go.transform.SetParent(parent, false);
@@ -70,7 +74,7 @@ namespace ArcaneBrigade
         /// <summary>A watercolour sector (or full disc) whose pigment pools toward the edge, like wet paint drying.</summary>
         public void Sector(Vector2 centre, float radius, float fromDegrees, float toDegrees, Color inner, Color edge, float innerRadius = 0)
         {
-            if (radius <= .01f || edge.a <= .003f && inner.a <= .003f) return;
+            if (light || radius <= .01f || edge.a <= .003f && inner.a <= .003f) return;
             Primitives++;
             float span = toDegrees - fromDegrees; int seg = Mathf.Clamp(Mathf.CeilToInt(Mathf.Abs(span) / 7.5f * Mathf.Clamp(radius, .6f, 2)), 6, 96);
             Color mid = Color.Lerp(inner, edge, .55f);
@@ -90,7 +94,7 @@ namespace ArcaneBrigade
         /// <summary>A flat wash of exact width along a segment (the true hit band of a line strike).</summary>
         public void Band(Vector2 a, Vector2 b, float halfWidth, Color centre, Color edge)
         {
-            Vector2 axis = b - a; if (axis.sqrMagnitude < 1e-4f) return; Primitives++;
+            Vector2 axis = b - a; if (light || axis.sqrMagnitude < 1e-4f) return; Primitives++;
             Vector2 n = new Vector2(-axis.y, axis.x).normalized * halfWidth, t = axis.normalized * halfWidth;
             int s = wv.Count;
             // Rounded ends follow the capsule the simulation actually tests.
@@ -103,7 +107,7 @@ namespace ArcaneBrigade
         /// <summary>An annulus wash between two radii (the true hit band of a ring strike).</summary>
         public void Annulus(Vector2 centre, float inner, float outer, Color edge, Color middle)
         {
-            if (outer <= inner) return; Primitives++;
+            if (light || outer <= inner) return; Primitives++;
             int seg = Mathf.Clamp(Mathf.CeilToInt(outer * 28), 24, 120), s = wv.Count;
             for (int i = 0; i <= seg; i++)
             {

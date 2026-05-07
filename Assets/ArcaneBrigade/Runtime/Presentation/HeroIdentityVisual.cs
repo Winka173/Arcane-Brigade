@@ -71,6 +71,7 @@ namespace ArcaneBrigade
         private void Glow(Vector2 at, float diameter, Color color, float alpha, bool airborne = false)
         {
             if (plain) alpha *= .55f;
+            if (diameter > .75f) return; // owner 23/10/2026: a wide glow disc read as a plastic film round the hero; sparks stay
             Place(MechanicInk.Glow, at, Vector2.one * diameter, 0, A(color, alpha * strength), airborne);
         }
         private InkStroke Brush(float width, float alpha, float seed) => InkStroke.Of(ink, width, alpha * strength, seed);
@@ -339,18 +340,38 @@ namespace ArcaneBrigade
                 }
             VisibleCount++;
         }
+        private static readonly InkPalette TreeFire = new InkPalette(new Color(.22f, .06f, .04f), new Color(.96f, .46f, .22f), new Color(1f, .9f, .6f), new Color(1f, .62f, .3f), new Color(.62f, .86f, .4f));
         private void Roots()
         {
+            // owner 23/10/2026: gnarled, thorny roots that fork, not three straight lines; while the Living Tree walks they burn
+            // amber and their thorns grow long
             var hero = sim.Champion; float charge = Mathf.Clamp01(sim.HeroIdentityCharge / 3); int next = sim.HeroIdentityRootTurn;
+            bool grown = sim.HeroAwakening; InkPalette was = ink; if (grown) ink = TreeFire;
             for (int i = 0; i < 3; i++)
             {
-                Vector2 at = hero.Position + (Vector2)(Quaternion.Euler(0, 0, 90 + i * 120) * Vector2.right) * 1.8f;
-                Vector2 from = hero.Position + (at - hero.Position).normalized * .38f;
-                bool turn = i == next; float k = turn ? charge : 0;
-                Soft(ground, InkCanvas.Line(from, at, .07f, 6, false, i * 2.1f), 1, 0, .07f + .03f * k, .42f + .3f * k);
-                if (turn && k > .05f && !calm) Glow(at, .9f, ink.Glow, .12f + .18f * k);
-                Token(InkToken.Leaf, at + Vector2.up * .06f, .26f + .08f * k * (still ? 0 : 1), 90 + i * 120 - 90 + (still ? 0 : Mathf.Sin(t * 2 + i) * 8), .7f + .3f * k, false);
+                float heading = 90 + i * 120; Vector2 way = Dir(heading);
+                Vector2 at = hero.Position + way * 1.8f, from = hero.Position + way * .38f;
+                bool turn = i == next; float k = grown ? 1 : turn ? charge : 0;
+                float pulse = still ? 1 : grown ? .8f + .2f * Mathf.Sin(t * 5 + i * 2) : 1, alpha = (.42f + .3f * k) * pulse;
+                Soft(ground, InkCanvas.Line(from, at, .09f, 5, false, i * 2.1f), 1, 0, .07f + .03f * k + (grown ? .03f : 0), alpha);
+                // two forks bending away from the main root
+                for (int b = 0; b < 2; b++)
+                {
+                    Vector2 fork = Vector2.Lerp(from, at, .38f + b * .27f), tip = fork + Dir(heading + (b == 0 ? 38 : -42)) * (grown ? .62f : .48f - b * .1f);
+                    Soft(ground, InkCanvas.Line(fork, tip, .05f, 9, false, i * 3 + b), 1, 0, .04f + (grown ? .015f : 0), alpha * .85f);
+                    Soft(ground, InkCanvas.Line(tip, tip + Dir(heading + (b == 0 ? 75 : -80)) * .16f), 1, 0, .022f, alpha * .8f); // its barbed tip
+                }
+                // thorns along the root, alternating sides, raked back toward the hero
+                float barb = grown ? .26f : .15f;
+                for (int j = 0; j < 5; j++)
+                {
+                    Vector2 p = Vector2.Lerp(from, at, .18f + j * .16f); float side = j % 2 == 0 ? 1 : -1;
+                    Soft(ground, InkCanvas.Line(p, p + Dir(heading + side * 125) * barb * (1 - j * .08f)), 1, 0, .024f, alpha);
+                }
+                Token(grown ? InkToken.Thorn : InkToken.Leaf, at + Vector2.up * .06f, .26f + .08f * k * (still ? 0 : 1), heading - 90 + (still ? 0 : Mathf.Sin(t * 2 + i) * 8), .7f + .3f * k, false);
+                if (grown && !sparse) Token(InkToken.Petal, at + way * .1f + Vector2.up * (.2f + Bob(i) * 2), .16f, t * 40 + i * 60, .8f, true);
             }
+            ink = was;
             VisibleCount++;
         }
         private void Route()
@@ -405,6 +426,7 @@ namespace ArcaneBrigade
                 case HeroGlyphRole.Lob: Lob(g); return true;
                 case HeroGlyphRole.Catch: Catch(g); return true;
                 case HeroGlyphRole.Poise: Poise(g); return true;
+                case HeroGlyphRole.Organ: Organ(g); return true;
                 default: Emblem(g); return true;
             }
         }
@@ -600,6 +622,49 @@ namespace ArcaneBrigade
             Token(style.Token, shell, .36f, still ? 0 : p * 420, 1, true, 0, null, squash);
         }
 
+        /// <summary>Lone Jelly's organs land on the enemy itself (owner 23/10/2026), each with its own motion: the bite's jaws
+        /// open over it and snap shut, the gland's drop arcs over and bursts into droplets, the threadwork's needle stitches
+        /// three passes across it and pulls them tight.</summary>
+        private void Organ(HeroIdentityGlyph g)
+        {
+            Phases(g, out bool pre, out float q, out float p, out float fade);
+            Vector2 c = g.Position + Vector2.up * .15f, from = g.End + Vector2.up * .35f;
+            float s = Seed(g); int kind = Mathf.Clamp(sim.HeroIdentityApproach, 0, 2);
+            if (kind == 0)
+            {
+                // the jaws: wide open while it lunges, shut on the hit, then a spray of droplets
+                float open = pre ? Mathf.Lerp(.55f, .42f, still ? 1 : OutCubic(q)) : Mathf.Lerp(.42f, .06f, still ? 1 : OutBack(Mathf.Min(1, p / .25f)));
+                float a = pre ? q : 1 - Smooth(.6f, 1, p);
+                Token(InkToken.Fang, c + Vector2.up * open, .34f, 180, a, true);
+                Token(InkToken.Fang, c - Vector2.up * open, .34f, 0, a, true);
+                if (!pre && !sparse) for (int i = 0; i < 4; i++) { float d = still ? .3f : .15f + .45f * OutCubic(p); Token(InkToken.Drop, c + Dir(s + i * 90 + 45) * d, .12f * (1 - p), s + i * 90, (1 - p) * .9f, true); }
+            }
+            else if (kind == 1)
+            {
+                // the gland's drop flies over in an arc, then bursts
+                if (pre) { float h = still ? 1 : q; Vector2 arc = Vector2.Lerp(from, c, h) + Vector2.up * Mathf.Sin(h * Mathf.PI) * .7f; Token(InkToken.Drop, arc, .28f, 180, 1, true); return; }
+                Token(InkToken.Drop, c, .3f * (1 - .5f * p) * (still ? 1 : 1 + .4f * Mathf.Sin(Mathf.Min(1, p / .2f) * Mathf.PI)), 180, 1 - Smooth(.2f, .5f, p), true);
+                int n = sparse ? 4 : 7;
+                for (int i = 0; i < n; i++) { float a = s + i * 360f / n, d = still ? .4f : .1f + .6f * OutCubic(p); Token(InkToken.Drop, c + Dir(a) * d + Vector2.up * Mathf.Sin(p * Mathf.PI) * .15f, .13f * (1 - .5f * p), a + 90, fade, true); }
+                Glow(c, .6f, ink.Light, .45f * (1 - p), true);
+            }
+            else
+            {
+                // the needle crosses the enemy three times, the thread following it, then tightens with a knot
+                float run = pre ? (still ? 0 : q * .35f) : .35f + .65f * (still ? 1 : Mathf.Min(1, p / .55f));
+                Vector2 n0 = Dir(s % 60 + 20) * .42f, n1 = new Vector2(-n0.y, n0.x) * .5f;
+                Vector2[] stitch = { c - n0 + n1, c + n0 + n1 * .2f, c - n0 - n1 * .2f, c + n0 - n1 };
+                float tight = pre ? 1 : 1 - .35f * Smooth(.55f, .8f, p);
+                for (int i = 0; i < 3; i++)
+                {
+                    float part = Mathf.Clamp01(run * 3 - i); if (part <= 0) break;
+                    Vector2 a = c + (stitch[i] - c) * tight, b = c + (stitch[i + 1] - c) * tight;
+                    Soft(air, InkCanvas.Line(a, Vector2.Lerp(a, b, part), .03f, 5, false, s + i), 1, 0, .045f, fade);
+                    if (part < 1) Token(InkToken.Shard, Vector2.Lerp(a, b, part), .16f, Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg, fade, true);
+                }
+                if (!pre && p > .55f) Token(InkToken.Knot, c, .22f, 0, fade, true);
+            }
+        }
         private void Catch(HeroIdentityGlyph g)
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created)); Vector2 c = g.Position; float r = Mathf.Max(.2f, g.Radius);

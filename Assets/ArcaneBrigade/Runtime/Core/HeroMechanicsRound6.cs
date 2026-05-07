@@ -24,6 +24,7 @@ namespace ArcaneBrigade
                 Vector2 from = awakenEchoes[i];
                 UnitState target = IdentityTarget(from, Mathf.Max(2.5f, w.Range));
                 if (target == null) continue;
+                awakenEchoFired[i] = Elapsed;
                 if (w.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, damage, Mathf.Min(3, w.ProjectileCount), element: w.Element, sprite: w.ProjectileSprite, tint: DreamTint);
                 else IdentityHit(MorphGeometry.Crescent, from, target.Position, Mathf.Clamp(Vector2.Distance(from, target.Position) + .3f, .8f, 2.2f), damage, element: w.Element);
             }
@@ -85,6 +86,42 @@ namespace ArcaneBrigade
                 best = u; bestDistance = toHero;
             }
             return best;
+        }
+
+        // ---- Lone Jelly, Mitosis (owner 23/10/2026): the two jellies are fighters of their own. Each walks to its own enemy
+        // (within 4 units of the hero, never farther than 3.2 from it) and comes back to its side of the hero when there is
+        // none; their organs land on the enemy itself (bite, gland or threadwork by the approach).
+        private readonly Vector2[] jellies = new Vector2[2];
+        private float jelliesSince = -1;
+        public const float JellySpeed = 3.2f, JellyLeash = 3.2f;
+        private void Mitosis(float delta)
+        {
+            if (jelliesSince != awakenStarted)
+            {
+                jelliesSince = awakenStarted; Vector2 side = Perpendicular() * 1.1f;
+                jellies[0] = ClampPosition(Champion.Position + side, .2f); jellies[1] = ClampPosition(Champion.Position - side, .2f);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Vector2 home = Champion.Position + new Vector2(i == 0 ? 1.1f : -1.1f, -.15f);
+                UnitState near = IdentityTarget(jellies[i], 4);
+                Vector2 want = near != null && (near.Position - Champion.Position).sqrMagnitude < 16
+                    ? near.Position + ((jellies[i] - near.Position).sqrMagnitude > .0001f ? (jellies[i] - near.Position).normalized : Vector2.right) * .9f : home;
+                if ((jellies[i] - Champion.Position).sqrMagnitude > JellyLeash * JellyLeash) want = home;
+                jellies[i] = ClampPosition(Vector2.MoveTowards(jellies[i], want, JellySpeed * delta), .2f);
+            }
+            awakenEchoes[0] = jellies[0]; awakenEchoes[1] = jellies[1]; awakenEchoes[2] = Champion.Position;
+            if (Elapsed < awakenEchoAt) return;
+            awakenEchoAt = Elapsed + .3f;
+            int who = awakenRound++ % 3; Vector2 from = awakenEchoes[who];
+            UnitState target = IdentityTarget(from, 5); if (target == null) return;
+            int organ = Mathf.Clamp(IdentityApproach, 0, 2); float delay = organ == 0 ? .16f : organ == 1 ? .3f : .2f;
+            var hit = IdentityHit(MorphGeometry.Disc, target.Position, from, .6f, IdentityPower * .85f * ApproachScale, delay, 2,
+                organ == 1 ? DamageElement.Frost : DamageElement.Physical, slow: organ == 1 ? .5f : organ == 2 ? .35f : 0);
+            if (hit == null) return;
+            hit.Painted = true; // the organ's own motion is drawn at the enemy (HeroGlyphRole.Organ)
+            IdentityGlyph(MorphGeometry.Disc, target.Position, from, .6f, .45f, delay, HeroGlyphRole.Organ);
+            awakenEchoFired[who] = Elapsed;
         }
     }
 }
