@@ -27,7 +27,7 @@ namespace ArcaneBrigade
             ModifierScope scope = companion ? ModifierScope.Companions : ModifierScope.Champion;
             WeaponDefinition weapon = unit.Weapon;
             ItemEffect flat = weapon.Kind == WeaponKind.Projectile ? ItemEffect.RangedDamage : ItemEffect.MeleeDamage;
-            weapon.Damage = Mathf.Max(0, original.Damage + OctoberBalance.FlatDamage(session.Bonus(flat, scope), session.State.Wave)) * session.DamageMultiplier(source, tier, companion) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
+            weapon.Damage = Mathf.Max(0, FriendlyWeaponBalance.BaseDamage(original) + OctoberBalance.FlatDamage(session.Bonus(flat, scope), session.State.Wave)) * session.DamageMultiplier(source, tier, companion) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
             float range = Factor(OctoberBalance.Soften(session.Bonus(ItemEffect.AttackRange, scope), .5f, .15f), .4f, 1.8f);
             weapon.Range *= range;
             weapon.ProjectileSpeed *= Factor(session.Bonus(ItemEffect.BulletSpeed, scope));

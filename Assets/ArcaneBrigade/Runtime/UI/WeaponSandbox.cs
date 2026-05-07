@@ -136,7 +136,7 @@ namespace ArcaneBrigade
             WeaponDefinition weapon = arena.Companion.Weapon;
             MeleeBalance.Apply(weapon);
             CompanionTierScaling.Apply(weapon, Tier);
-            weapon.Damage *= Mathf.Pow(tierDamageMultiplier, Tier - 1);
+            weapon.Damage *= FriendlyWeaponBalance.Scale(weapon.Id) * Mathf.Pow(tierDamageMultiplier, Tier - 1);
             weapon.Windup = Mathf.Min(weapon.Windup, weapon.Cooldown * 0.35f);
             weapon.Recovery = Mathf.Min(weapon.Recovery, weapon.Cooldown * 0.4f);
             arena.Champion.Passive = PassiveKind.None;

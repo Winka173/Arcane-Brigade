@@ -1,0 +1,27 @@
+{
+  "heroes": 36,
+  "companions": 96,
+  "weapons": 117,
+  "unit_damage_fixtures_before": 648,
+  "unit_damage_fixtures_after": 648,
+  "weapon_damage_fixtures_before": 702,
+  "weapon_damage_fixtures_after": 702,
+  "all_compiled_damage_matches_single_application": true,
+  "changed_weapon_factors": {
+    "TeapotPopgun": 0.6,
+    "BambooVase": 0.65,
+    "WateringCan": 0.75,
+    "MoonseedOrb": 0.75,
+    "DreamOrbStaff": 0.8,
+    "StampHammer": 0.85,
+    "PizzaWheel": 0.85,
+    "MaracaHammer": 0.85,
+    "PaperLanternBomb": 0.9,
+    "ParasolNeedle": 0.9
+  },
+  "fixture": "wave10, 18s, seeds77138/33071, friend stars1/2/3; heroes native star1; primary hero kits disabled; production movement/spawn/weapon/companion skills retained",
+  "limits": "Area damage is summed over targets; fixture damage is not single-target DPS or natural campaign win rate. Hero skill/awakening branches and all relic builds not exhaustively balanced.",
+  "presentation_states_verified": 2592,
+  "unity_compile_succeeded": true,
+  "windows_build": false
+}

@@ -480,6 +480,18 @@ namespace ArcaneBrigade
             if (reactionFrame != null && entrance <= 0) referenceHeight = expandedReaction.ReferenceHeight;
             bool canonActor = ActOneArtwork.Has(state.Definition);
             if (canonActor) referenceHeight = state.Definition.AuthoredMotion.ReferenceHeight;
+            bool friendly = state.Faction != Faction.Enemy;
+            if (friendly)
+            {
+                // Use one stable painted idle reference for the entire pose family. Empty atlas
+                // margins must not shrink a squirrel, and each walking pose must not rescale itself.
+                Sprite reference = state.Definition.AuthoredMotion != null ? state.Definition.AuthoredMotion.Idle[0] : state.Definition.Body;
+                if (expandedFrame != null && actingFrame == null) reference = expandedGait.Frames[0];
+                if (actingFrame != null && actingArt.Curious.Length > 0) reference = actingArt.Curious[0];
+                Rect ink = SpriteInkMetrics.BoundsOf(reference);
+                float widthLimit = state.Faction == Faction.Champion ? 1.4f : 1.5f;
+                referenceHeight = Mathf.Max(ink.height, ink.width / widthLimit);
+            }
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
             bool ordinaryFoe = state.Faction == Faction.Enemy && !state.Definition.IsBoss;
@@ -489,7 +501,7 @@ namespace ArcaneBrigade
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
             float jolt = (ordinaryFoe ? 0.14f : 0.09f) + state.HitWeight * (ordinaryFoe ? 0.16f : 0.12f); // ImpactRules weight of the last blow
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0f);
-            if (canonActor) body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, -height * .5f - SpriteInkMetrics.BoundsOf(body.sprite).yMin * scale + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0);
+            if (canonActor || friendly) body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * jolt, -height * .5f - SpriteInkMetrics.BoundsOf(body.sprite).yMin * scale + Mathf.Abs(bob) + state.HitDirection.y * hurt * jolt, 0);
             float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
             body.transform.localPosition += Vector3.up * (celebrationLift + (ReducedMotion ? 0 : state.BodyLift));
             float personality = state.Id % 2 == 0 ? -1 : 1;

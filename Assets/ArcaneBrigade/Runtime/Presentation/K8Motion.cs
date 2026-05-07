@@ -1,9 +1,27 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace ArcaneBrigade
 {
     public static class K8Motion
     {
+        private static Dictionary<string, float> authoredHeights;
+        private static float AuthoredHeight(UnitState unit, float fallback)
+        {
+            if (authoredHeights == null)
+            {
+                authoredHeights = new Dictionary<string, float>();
+                var catalog = Resources.Load<RunCatalog>("RunCatalog");
+                if (catalog != null)
+                {
+                    foreach (var u in catalog.Champions) authoredHeights[u.Id] = u.BodyHeight;
+                    foreach (var u in catalog.Companions) authoredHeights[u.Id] = u.BodyHeight;
+                }
+            }
+            return unit.Definition.Id != null && authoredHeights.TryGetValue(unit.Definition.Id, out float h) ? Mathf.Max(.01f, h) : fallback;
+        }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetHeights() { authoredHeights = null; }
         public readonly struct Pose
         {
             public readonly float Angle;
@@ -20,8 +38,13 @@ namespace ArcaneBrigade
         public static float BodyHeight(UnitState unit)
         {
             float scale = Mathf.Max(0.01f, unit.Definition.BodyScale);
-            if (unit.Faction == Faction.Champion && PresentationSettings.HighlightHero) return unit.Definition.BodyHeight * HeroFocus.HeroScale; // the hero reads first
-            return unit.Faction == Faction.Companion ? Mathf.Min(unit.Definition.BodyHeight / scale * 0.95f, 0.88f * CompanionTierScaling.Body(unit.Definition.CombatTier)) * scale : unit.Definition.BodyHeight;
+            if (unit.Faction == Faction.Enemy) return unit.Definition.BodyHeight;
+            float tier = unit.Faction == Faction.Companion ? CompanionTierScaling.Body(unit.Definition.CombatTier) : 1;
+            float natural = AuthoredHeight(unit, unit.Definition.BodyHeight / (scale * tier));
+            // Normalize the illustrated body, retaining star growth and explicit size relics.
+            float height = unit.Faction == Faction.Companion ? Mathf.Clamp(natural * .95f, .8f, .92f) : Mathf.Clamp(natural, .95f, 1.05f);
+            // The ratio also preserves scripted growth (Frosty, Lucid), not just size relics.
+            return unit.Definition.BodyHeight / natural * height * (unit.Faction == Faction.Champion && PresentationSettings.HighlightHero ? HeroFocus.HeroScale : 1);
         }
 
         public static float WeaponWidth(UnitState unit)

@@ -76,6 +76,30 @@ namespace ArcaneBrigade.Editor
                 if (unit.Body != null) sprites.Add(unit.Body);
                 foreach (Sprite frame in unit.AnimationFrames) if (frame != null) sprites.Add(frame);
             }
+            // Friendly sizing needs actual painted bounds for every alternate pose family,
+            // including heroes and expansion sheets (which have generous transparent cells).
+            var friendlyAtlases = new HashSet<string>();
+            void AddAtlas(Sprite sprite)
+            {
+                if (sprite == null) return;
+                string path = AssetDatabase.GetAssetPath(sprite);
+                if (!friendlyAtlases.Add(path)) return;
+                foreach (Sprite frame in AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>()) sprites.Add(frame);
+            }
+            foreach (UnitDefinition unit in catalog.Champions.Concat(catalog.Companions))
+            {
+                AddAtlas(unit.Body);
+                if (unit.AuthoredMotion != null)
+                    foreach (var frames in new[] { unit.AuthoredMotion.Idle, unit.AuthoredMotion.Walk, unit.AuthoredMotion.Windup, unit.AuthoredMotion.Release, unit.AuthoredMotion.Recovery })
+                        if (frames != null) foreach (Sprite frame in frames) AddAtlas(frame);
+            }
+            if (CharacterActingLibrary.Current != null)
+                foreach (var entry in CharacterActingLibrary.Current.Entries)
+                    foreach (var frames in new[] { entry.Curious, entry.Cheer, entry.Hurt, entry.Defeat })
+                        if (frames != null) foreach (Sprite frame in frames) AddAtlas(frame);
+            if (ExpandedPerformanceLibrary.Current != null)
+                foreach (var entry in ExpandedPerformanceLibrary.Current.Entries.Where(e => e.Kind == "locomotion"))
+                    foreach (Sprite frame in entry.Frames) AddAtlas(frame);
             foreach (Sprite stand in Resources.Load<CarnivalStageAssets>("CarnivalStageAssets").Stands) sprites.Add(stand);
             NightmareAssets nightmare = NightmareAssets.Current;
             if (nightmare != null) foreach (Sprite sprite in nightmare.Scenery) if (sprite != null) sprites.Add(sprite);

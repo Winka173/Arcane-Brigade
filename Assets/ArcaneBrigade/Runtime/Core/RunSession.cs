@@ -527,7 +527,7 @@ namespace ArcaneBrigade
             if (!companion) unit.CollisionDamage = Mathf.Max(3, source.CollisionDamage);
             unit.PassiveStrength = source.Passive == PassiveKind.Scavenge ? ScavengeGold(source.PassiveStrength, tier, catalog.TierSupportMultiplier, GoldScale)
                 : source.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
-            unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
+            unit.Weapon.Damage *= FriendlyWeaponBalance.Scale(weapon.Id) * DamageMultiplier(source, tier, companion);
             unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, PlayerBuildBalance.AttackSpeedSlope(companion)), .25f, PlayerBuildBalance.AttackSpeedCap(companion));
             unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
             unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
