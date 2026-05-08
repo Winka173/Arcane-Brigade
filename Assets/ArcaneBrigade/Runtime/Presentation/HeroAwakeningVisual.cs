@@ -175,7 +175,12 @@ namespace ArcaneBrigade
             // the moment of transforming: a short bright backlight behind the hero (it fades in place, it never spreads out)
             float flash = Activation(), dim = calm ? .45f : 1;
             // (the wide backlight disc read as a plastic film, owner 23/10/2026: the moment is the hero's tokens springing up)
-            if (flash > 0 && !sparse) for (int i = 0; i < 5; i++) Token(style.Token, Chest(hero) + Dir(90 + (i - 2) * 32) * (.35f + .7f * (1 - flash)), .26f * flash + .08f, i * 50, flash, true);
+            if (flash > 0)
+            {
+                int n = sparse ? 4 : 8;
+                for (int i = 0; i < n; i++) Token(style.Token, Chest(hero) + Dir(90 + (i - (n - 1) * .5f) * (200f / n)) * (.4f + 1.1f * (1 - flash)), .42f * flash + .12f, i * 50, flash, true);
+                Token(style.Token, Head(hero) + Vector2.up * (.35f + .3f * (1 - flash)), .7f * (still ? 1 : OutBack(1 - flash)), 0, flash, true); // the hero's sign, large, over its head
+            }
             // a worn or summoned object, placed where its transformation puts it
             if (!kit.Held)
             {

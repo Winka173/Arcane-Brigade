@@ -204,6 +204,8 @@ namespace ArcaneBrigade
             string id = null;
             switch (value.Kind)
             {
+                case CombatEventKind.HeroIdentityCast when value.Value >= 1 && value.Subject != null && ArcaneCueLibrary.Get("hero.awaken." + value.Subject.Definition.Id) != null:
+                    id = "hero.awaken." + value.Subject.Definition.Id; break; // the transformation's own sound once its clip exists
                 case CombatEventKind.HeroIdentityCast:
                     gainScale = .38f;
                     id = value.Subject == null ? "sig.bell" : value.Subject.Definition.Id switch {
@@ -239,6 +241,8 @@ namespace ArcaneBrigade
                     break;
                 case CombatEventKind.Hit:
                     if (value.Faction == Faction.Champion) { id = "plr.hurt"; break; }
+                    // a hero skill's own landing sound, hero.sig.<HeroId> (Docs/Audio_Prompts_2026-10-20.md, section E)
+                    if (cause.StartsWith("hero-identity-", StringComparison.Ordinal) && ArcaneCueLibrary.Get("hero.sig." + cause.Substring(14)) != null) { id = "hero.sig." + cause.Substring(14); break; }
                     if (cause == "ember-status") { id = "fx.burn"; break; }
                     if (cause == "element-reaction") { id = "fx.reaction.steam"; break; }
                     if (cause == "arcane-chain") { id = "fx.reaction.arcane"; break; }

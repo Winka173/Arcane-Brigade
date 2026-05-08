@@ -468,6 +468,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < n; i++)
             {
                 float a = s + i * 360f / n + (i % 2) * 17, size = Mathf.Min(.22f * (1 + .5f * Mathf.Pow(1 - p, 3)), r * .5f);
+                if (style.Id == "SoapSkater") size *= .6f; // owner 23/10/2026: the turn bubble's foam covered the skater
                 float d = Mathf.Min(r - size * .55f, r * .82f * (still ? .7f : OutCubic(p)));
                 Token(style.Token, c + Dir(a) * Mathf.Max(0, d), size, a + p * 120, fade);
             }

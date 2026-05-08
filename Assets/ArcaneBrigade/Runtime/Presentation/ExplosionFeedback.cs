@@ -257,9 +257,9 @@ namespace ArcaneBrigade
                 if (PresentationSettings.ReducedFlashes) tint = Color.Lerp(tint, new Color(0.85f, 0.78f, 0.7f), 0.3f);
                 blast.Core.color = new Color(tint.r, tint.g, tint.b, alpha);
             }
-            // a thin ring snaps out once
+            // (owner 23/10/2026: no plain ring snapping out of every death; the burst, sparks and smoke carry it)
             float ringT = Mathf.Clamp01(age / 0.2f);
-            float ringAlpha = Mathf.Pow(1 - ringT, 1.5f) * 0.8f;
+            float ringAlpha = 0f;
             blast.Ring.enabled = ringAlpha > 0.02f;
             if (blast.Ring.enabled)
             {
@@ -334,7 +334,8 @@ namespace ArcaneBrigade
             }
             // bloom: the light of the blast spilling over everything nearby
             float bloomT = Mathf.Clamp01(blast.Age / (blast.Kind == Kind.Shock ? 0.35f : 0.24f));
-            blast.Bloom.enabled = blast.Kind != Kind.Smudge && bloom != null && bloomT < 1f;
+            // our own blasts keep no wide bloom disc (it read as a film over the brigade); hostile ones still glow
+            blast.Bloom.enabled = blast.Kind != Kind.Smudge && bloom != null && bloomT < 1f && (blast.Hostile || blast.Kind == Kind.Shock);
             if (blast.Bloom.enabled)
             {
                 blast.Bloom.transform.position = blast.Position;
@@ -358,7 +359,7 @@ namespace ArcaneBrigade
                 blast.Core.color = new Color(tint.r, tint.g, tint.b, Mathf.Clamp01((1 - coreT) * 1.6f));
             }
             // shock ring and its inked rim: out to just past the real radius, easing out
-            bool ringed = blast.Kind != Kind.Smudge;
+            bool ringed = blast.Kind != Kind.Smudge && (blast.Hostile || blast.Kind == Kind.Shock); // a hostile blast shows its reach; ours do not ring
             float ringT = Mathf.Clamp01(blast.Age / (blast.Kind == Kind.Shock ? 0.55f : 0.36f));
             float ringScale = 2f * r * (still ? 1.05f : Mathf.Lerp(0.35f, 1.15f, Ease(ringT)));
             float ringAlpha = ringed ? Mathf.Pow(1 - ringT, 1.4f) : 0;

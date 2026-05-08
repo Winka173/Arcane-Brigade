@@ -17,6 +17,8 @@ namespace ArcaneBrigade
         /// <summary>Presentation only: a transformation paints this strike itself (the lighthouse beam, the clock hand, a falling
         /// scoop, a depth charge), so the generic ink glyph is not drawn over it.</summary>
         public bool Painted;
+        /// <summary>Presentation only: the strike felled a target (or hit a jackpot), so its signature plays big.</summary>
+        public bool Big;
     }
     public sealed partial class CombatSimulation
     {
@@ -24,7 +26,7 @@ namespace ArcaneBrigade
         {
             public MorphGeometry Shape; public Vector2 Position, End, Direction;
             public float Radius, Width, At, Budget, Slow, Push, Spread; public int Targets;
-            public DamageElement Element; public CombatCause Cause;
+            public DamageElement Element; public CombatCause Cause; public HeroIdentityGlyph Glyph;
         }
         private sealed class IdentityMark { public UnitState Target; public float Until; }
         private sealed class IdentityReflection { public Vector2 Direction; public DamageElement Element; }
@@ -162,7 +164,8 @@ namespace ArcaneBrigade
             identityStrikes.Add(new IdentityStrike { Shape = shape, Position = at, End = end, Radius = radius, Width = .25f, At = Elapsed + delay,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
                 Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Spread = Mathf.Max(0, spread), Cause = IdentityCause() });
-            var glyph = IdentityGlyph(shape, at, end, radius, .35f, delay, HeroGlyphRole.Strike); glyph.Width = .25f;
+            var glyph = IdentityGlyph(shape, at, end, radius, .5f, delay, HeroGlyphRole.Strike); glyph.Width = .25f; // .35 -> .5s (owner 23/10/2026)
+            identityStrikes[identityStrikes.Count - 1].Glyph = glyph;
             return glyph;
         }
         /// <summary>A line whose half-width grows from Width at its start to Width + Spread at its end (a cone of light).</summary>
@@ -199,7 +202,7 @@ namespace ArcaneBrigade
                 {
                     UnitState u = identityTargets[n]; Vector2 dir = (u.Position - s.Position).normalized;
                     ApplyWeaponDamage(u, s.Budget / count, Faction.Champion, s.Element, HeroIdentities.For(IdentityId).Name, dir, cause: s.Cause);
-                    if (!u.Alive) continue;
+                    if (!u.Alive) { if (s.Glyph != null) s.Glyph.Big = true; continue; }
                     if (s.Slow > 0) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + (u.Definition.IsBoss ? Mathf.Min(.3f, s.Slow) : s.Slow));
                     float push = OctoberBalance.Push(u.Definition, Mathf.Abs(s.Push));
                     if (push > 0) { u.Position = ClampPosition(u.Position + dir * push * Mathf.Sign(s.Push), u.Definition.Radius); spatial.Move(u); }

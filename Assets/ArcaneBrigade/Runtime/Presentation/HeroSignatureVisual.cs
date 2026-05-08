@@ -13,6 +13,11 @@ namespace ArcaneBrigade
         private static readonly InkPalette Juice = new InkPalette(new Color(.3f, .13f, .02f), new Color(1f, .62f, .16f), new Color(1, .95f, .7f), new Color(1, .75f, .3f), new Color(.5f, .75f, .25f));
 
         // ------------------------------------------------------------------ motions the signatures are made of
+        /// <summary>Signatures are drawn 35% larger than the mechanic's own tokens so they read on a phone (owner 23/10/2026).</summary>
+        private const float SignatureSize = 1.35f;
+        private float sigScale = 1, sigReach = 1;
+        private void SigToken(InkToken kind, Vector2 at, float size, float angle, float alpha, bool airborne = true, int face = 0, InkPalette? palette = null, float squash = 1)
+            => Token(kind, at, size * sigScale, angle, alpha, airborne, face, palette, squash);
         /// <summary>Pieces thrown out from an impact point (never from the hero), spinning and fading.</summary>
         private void Spray(InkToken kind, Vector2 at, int n, float reach, float size, float p, float fade, float seed, InkPalette? pal = null, float lift = 0)
         {
@@ -21,8 +26,8 @@ namespace ArcaneBrigade
             for (int i = 0; i < n; i++)
             {
                 float a = seed + i * 360f / n + (i % 2) * 14;
-                Vector2 pos = at + Dir(a) * reach * e * (i % 2 == 0 ? 1 : .75f) + Vector2.up * lift * Mathf.Sin(e * Mathf.PI);
-                Token(kind, pos, size * (1 - .45f * p), a + p * 220, fade * (1 - InQuad(p)), true, 0, pal);
+                Vector2 pos = at + Dir(a) * reach * sigReach * e * (i % 2 == 0 ? 1 : .75f) + Vector2.up * lift * Mathf.Sin(e * Mathf.PI);
+                SigToken(kind, pos, size * (1 - .45f * p), a + p * 220, fade * (1 - InQuad(p)), true, 0, pal);
             }
         }
         /// <summary>Pieces popping up from the impact and falling back in arcs (coins, dice, juice).</summary>
@@ -33,8 +38,8 @@ namespace ArcaneBrigade
             for (int i = 0; i < n; i++)
             {
                 float side = n == 1 ? 0 : (i / (float)(n - 1) - .5f) * 2;
-                Vector2 pos = at + new Vector2(side * spread * q, height * 4 * q * (1 - q) * (1 - .2f * Mathf.Abs(side)));
-                Token(kind, pos, size, seed + i * 70 + q * 360 * (side >= 0 ? 1 : -1), fade * (1 - Smooth(.8f, 1, p)), true, face == 0 ? 0 : 1 + (face + i) % 6, pal);
+                Vector2 pos = at + new Vector2(side * spread * sigReach * q, height * sigReach * 4 * q * (1 - q) * (1 - .2f * Mathf.Abs(side)));
+                SigToken(kind, pos, size, seed + i * 70 + q * 360 * (side >= 0 ? 1 : -1), fade * (1 - Smooth(.8f, 1, p)), true, face == 0 ? 0 : 1 + (face + i) % 6, pal);
             }
         }
         /// <summary>Pieces drifting up from the impact, swaying (notes, stars, steam, bubbles).</summary>
@@ -45,21 +50,21 @@ namespace ArcaneBrigade
             {
                 float q = still ? .5f : Mathf.Clamp01(p * 1.25f - i * .1f);
                 Vector2 pos = at + new Vector2((i - (n - 1) * .5f) * .2f + Mathf.Sin(q * 6 + i * 2 + seed) * .1f, .1f + q * height);
-                Token(kind, pos, size * (1 - .3f * q), Mathf.Sin(q * 5 + i) * 22, fade * Mathf.Sin(Mathf.Min(1, q * 1.4f + .15f) * Mathf.PI), true, 0, pal);
+                SigToken(kind, pos, size * (1 - .3f * q), Mathf.Sin(q * 5 + i) * 22, fade * Mathf.Sin(Mathf.Min(1, q * 1.4f + .15f) * Mathf.PI), true, 0, pal);
             }
         }
         /// <summary>A token slammed onto the impact: it lands big, squashes and settles (a seal, a stamp, a dumpling).</summary>
         private void Stamp(InkToken kind, Vector2 at, float size, float p, float fade, InkPalette? pal = null, float angle = -6, int face = 0)
         {
             float s = still ? 1 : OutBack(Mathf.Min(1, p / .25f)), squash = still ? 1 : 1 - .2f * Mathf.Sin(Mathf.Clamp01(p / .35f) * Mathf.PI);
-            Token(kind, at, size * Mathf.Lerp(1.7f, 1, s), angle, Mathf.Clamp01(p / .08f) * fade, true, face, pal, squash);
+            SigToken(kind, at, size * Mathf.Lerp(1.7f, 1, s), angle, Mathf.Clamp01(p / .08f) * fade, true, face, pal, squash);
         }
         /// <summary>Short crackling strokes out of the impact (lightning, gold seams, snapped threads).</summary>
         private void Crackle(Vector2 at, int n, float reach, float p, float fade, int seed, InkPalette pal, bool zigzag = true, float width = .035f)
         {
             if (sparse) n = Mathf.Max(2, n / 2);
             InkPalette was = ink; ink = pal;
-            float grow = still ? 1 : OutCubic(Mathf.Min(1, p / .3f));
+            float grow = still ? 1 : OutCubic(Mathf.Min(1, p / .3f)); reach *= sigReach;
             for (int i = 0; i < n; i++)
             {
                 Vector2 end = at + Dir(seed * 37 % 360 + i * 360f / n + (i % 2) * 20) * reach * (i % 2 == 0 ? 1 : .7f);
@@ -74,6 +79,8 @@ namespace ArcaneBrigade
         {
             if (p <= 0 || p >= 1 || fade <= .02f) return;
             float s = Seed(g); int seed = g.Seed;
+            sigScale = SignatureSize * (g.Big ? 1.5f : 1); sigReach = g.Big ? 1.35f : 1;
+            if (g.Big && !sparse) Spray(InkToken.Glint, at + Vector2.up * .2f, 6, .95f, .17f, p, fade, s + 30, GlintPalette(ink)); // a felling blow sparkles
             Vector2 up = at + Vector2.up * .2f;
             switch (style.Id)
             {
@@ -84,7 +91,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < 3; i++)
                     {
                         float q = still ? .7f : Mathf.Sin(Mathf.Min(1, p * 1.6f) * Mathf.PI) , x = (i - 1) * .22f;
-                        Token(InkToken.Thorn, at + new Vector2(x, .1f + .35f * q * (i == 1 ? 1.3f : 1)), .3f * (.4f + .6f * q) * (i == 1 ? 1.25f : 1), 90 - x * 60, fade, true);
+                        SigToken(InkToken.Thorn, at + new Vector2(x, .1f + .35f * q * (i == 1 ? 1.3f : 1)), .3f * (.4f + .6f * q) * (i == 1 ? 1.25f : 1), 90 - x * 60, fade, true);
                     }
                     Spray(InkToken.Leaf, up, 4, .5f, .15f, p, fade, s, null, .3f); break;
                 case "LoneJelly": Stamp(InkToken.Drop, up, .36f, p, fade * (1 - p), null, 180); Spray(InkToken.Drop, up, 5, .55f, .13f, p, fade, s, null, .3f); break;
@@ -92,7 +99,7 @@ namespace ArcaneBrigade
                 {
                     // the die bounces twice and settles on its face
                     float q = still ? 1 : p, hop = still ? 0 : Mathf.Abs(Mathf.Sin(q * Mathf.PI * 2)) * (1 - q) * .7f;
-                    Token(InkToken.Die, at + new Vector2(.15f * (1 - q), .2f + hop), .4f, still ? 0 : (1 - q) * 540, fade, true, 1 + seed % 6);
+                    SigToken(InkToken.Die, at + new Vector2(.15f * (1 - q), .2f + hop), .4f, still ? 0 : (1 - q) * 540, fade, true, 1 + seed % 6);
                     if (seed % 6 == 5) Fountain(InkToken.Coin, up, 5, 1f, .7f, .2f, p, fade, s); // a six pays out
                     else Spray(InkToken.Glint, up, 4, .45f, .14f, p, fade, s, GlintPalette(ink));
                     break;
@@ -110,20 +117,20 @@ namespace ArcaneBrigade
                 case "VerdantMatron":
                 {
                     int n = sparse ? 3 : 5; float open = still ? 1 : OutBack(Mathf.Min(1, p / .4f));
-                    for (int i = 0; i < n; i++) { float a = s + i * 360f / n; Token(InkToken.Petal, up + Dir(a) * .28f * open, .26f * open, a - 90, fade * (1 - Smooth(.6f, 1, p)), true); }
+                    for (int i = 0; i < n; i++) { float a = s + i * 360f / n; SigToken(InkToken.Petal, up + Dir(a) * .28f * open, .26f * open, a - 90, fade * (1 - Smooth(.6f, 1, p)), true); }
                     Rise(InkToken.Glint, up, 3, .8f, .1f, p, fade, s, GlintPalette(ink));
                     break;
                 }
                 case "CopperCauldron": Rise(InkToken.Puff, at, 4, 1f, .3f, p, fade, s, ArsenalInk.Cotton); break;
                 case "ChinaMarionette": Crackle(up, 5, .55f, p, fade, seed, GoldPalette, true, .03f); Spray(InkToken.Shard, up, 3, .4f, .16f, p, fade, s); break;
                 case "SoapSkater":
-                    if (p < .35f) Token(InkToken.Bubble, up, .2f + .14f * (p / .35f), 0, fade * .85f, true);
+                    if (p < .35f) SigToken(InkToken.Bubble, up, .2f + .14f * (p / .35f), 0, fade * .85f, true);
                     else Spray(InkToken.Bubble, up, 5, .5f, .1f, (p - .35f) / .65f, fade * .85f, s);
                     break;
                 case "VelvetRegent":
                 {
                     float fall = still ? 1 : Mathf.Min(1, p / .22f);
-                    Token(InkToken.Spear, at + Vector2.up * (.25f + 1.4f * (1 - fall)), .5f, -90, fade * (1 - Smooth(.7f, 1, p)), true);
+                    SigToken(InkToken.Spear, at + Vector2.up * (.25f + 1.4f * (1 - fall)), .5f, -90, fade * (1 - Smooth(.7f, 1, p)), true);
                     if (fall >= 1) Spray(InkToken.Glint, at + Vector2.up * .15f, 4, .45f, .14f, (p - .22f) / .78f, fade, s, GoldPalette);
                     break;
                 }
@@ -131,12 +138,12 @@ namespace ArcaneBrigade
                 case "NightMaw":
                 {
                     float shut = still ? .08f : Mathf.Lerp(.45f, .06f, OutBack(Mathf.Min(1, p / .25f)));
-                    Token(InkToken.Fang, up + Vector2.up * shut, .38f, 180, fade, true); Token(InkToken.Fang, up - Vector2.up * shut, .38f, 0, fade, true);
+                    SigToken(InkToken.Fang, up + Vector2.up * shut, .38f, 180, fade, true); SigToken(InkToken.Fang, up - Vector2.up * shut, .38f, 0, fade, true);
                     Rise(InkToken.Puff, at, 2, .6f, .24f, p, fade, s, ArsenalInk.Violet);
                     break;
                 }
                 case "ThornTreasurer":
-                    for (int i = 0; i < 3; i++) { float a = s + i * 120; float k = still ? 1 : OutCubic(Mathf.Min(1, p / .2f)); Token(InkToken.Thorn, up + Dir(a) * Mathf.Lerp(.7f, .18f, k), .26f, a + 180, fade, true); }
+                    for (int i = 0; i < 3; i++) { float a = s + i * 120; float k = still ? 1 : OutCubic(Mathf.Min(1, p / .2f)); SigToken(InkToken.Thorn, up + Dir(a) * Mathf.Lerp(.7f, .18f, k), .26f, a + 180, fade, true); }
                     Fountain(InkToken.Coin, up, 1, .8f, 0, .2f, p, fade, s);
                     break;
                 case "CitrusMarshal": Stamp(InkToken.Citrus, up, .36f, p, fade * (1 - p * .7f), null, s); Fountain(InkToken.Drop, up, 4, .7f, .6f, .13f, p, fade, s, Juice); break;
@@ -158,7 +165,7 @@ namespace ArcaneBrigade
                 case "LanternWeaver": Stamp(InkToken.Knot, up, .34f, p, fade * (1 - p), null, s); Crackle(up, 2, .45f, p, fade, seed, ink, false, .025f); break;
                 case "HourglassStag": Stamp(InkToken.Sand, up, .4f, p, fade * (1 - p), null, still ? 0 : p * 180); Fountain(InkToken.Glint, up, 5, .7f, .8f, .1f, p, fade, s, ArsenalInk.Dust); break;
                 case "RainArchivist":
-                    for (int i = 0; i < 3; i++) { float q = still ? 1 : Mathf.Clamp01(p * 2.2f - i * .25f); if (q < 1) Token(InkToken.Drop, at + new Vector2((i - 1) * .25f, .2f + 1.2f * (1 - q)), .18f, 180, fade, true); }
+                    for (int i = 0; i < 3; i++) { float q = still ? 1 : Mathf.Clamp01(p * 2.2f - i * .25f); if (q < 1) SigToken(InkToken.Drop, at + new Vector2((i - 1) * .25f, .2f + 1.2f * (1 - q)), .18f, 180, fade, true); }
                     Spray(InkToken.Drop, at + Vector2.up * .1f, 4, .4f, .1f, p, fade, s, null, .2f); break;
                 case "KiteAdmiral": Spray(InkToken.Spark, up, 3, .6f, .2f, p, fade, s, null, .4f); Rise(InkToken.Page, up, 1, .8f, .2f, p, fade, s); break;
                 case "SundaeDuchess": Stamp(InkToken.Dumpling, up, .42f, p, fade * (1 - p * .6f), null, 0); Spray(InkToken.Glint, up, 5, .55f, .12f, p, fade, s, ArsenalInk.Cyan); break;

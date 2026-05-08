@@ -341,7 +341,7 @@ namespace ArcaneBrigade
             if (target == null) return;
             int a = combatRandom.Next(1, 7), b = combatRandom.Next(1, 7), c = combatRandom.Next(1, 7);
             identityFace = a;
-            if (a == b && b == c) { Hit(MorphGeometry.Disc, target.Position, target.Position, 1.4f, 2.2f, .3f); Gold = RunSession.BoundedCounter((long)Gold + 1); HeroIdentityGold++; IdentityGlyph(MorphGeometry.Seal, target.Position, target.Position, .6f); }
+            if (a == b && b == c) { var jackpot = Hit(MorphGeometry.Disc, target.Position, target.Position, 1.4f, 2.2f, .3f); if (jackpot != null) jackpot.Big = true; Gold = RunSession.BoundedCounter((long)Gold + 1); HeroIdentityGold++; IdentityGlyph(MorphGeometry.Seal, target.Position, target.Position, .6f); }
             else if (a == b || b == c || a == c) IdentityPattern(target, IdentityPower * 1.0f * ApproachScale);
             else IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .45f * ApproachScale, 3);
         }

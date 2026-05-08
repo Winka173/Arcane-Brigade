@@ -253,15 +253,17 @@ namespace ArcaneBrigade
                 {
                     // wide pulses (the bell's sound, a field's beat): three thin, faint ripples rolling out one after another,
                     // over the floor and under the bodies, so a big area reads without covering anyone
+                    // owner 23/10/2026: no plain ripples; the motes rolling out carry the pulse
                     SpriteRenderer[] waves = { b.Ring, b.Glow, b.Core };
-                    for (int k = 0; k < waves.Length; k++)
+                    foreach (SpriteRenderer wave in waves) wave.enabled = false;
+                    for (int k = 0; k < 0; k++)
                     {
                         float p = still ? .7f : Mathf.Clamp01((t - k * .2f) / .8f);
                         Fit(waves[k], p <= 0 || p >= 1 ? null : ripple, centre, 2 * r * (.25f + .75f * Ease(p)), 0, new Color(light.r, light.g, light.b, .3f * Mathf.Pow(1 - p, 1.2f) * (k == 0 ? 1 : .7f)));
                     }
                     for (int i = 0; i < b.Motes.Length; i++)
                     {
-                        SpriteRenderer mote = b.Motes[i]; if (i >= Mathf.Min(motes, 3) || still) { mote.enabled = false; continue; }
+                        SpriteRenderer mote = b.Motes[i]; if (i >= Mathf.Min(motes, 6) || still) { mote.enabled = false; continue; }
                         Vector2 at = centre + b.Heading[i * 2 % Motes] * r * (.3f + .7f * Ease(t)) + Vector2.up * t * .3f;
                         Fit(mote, b.Mote, at, moteSize * .9f, b.Spin[i] * b.Age * .3f, new Color(1, 1, 1, .55f * Mathf.Sin(t * Mathf.PI)));
                     }
@@ -272,8 +274,8 @@ namespace ArcaneBrigade
                     // a flash at the heart, the painted ring opening outward, motes thrown off its rim (or rising, for a heal)
                     Sprite ring = CombatVfxArtwork.Frame("BlastRing", 0) ?? fallbackRing;
                     float open = still ? 1 : 0.35f + 0.65f * Ease(t);
-                    Fit(b.Ring, ring, centre, 2 * r * open, still ? 0 : t * 30, new Color(light.r, light.g, light.b, fade * (b.Floor ? 0.6f : 0.85f)));
-                    Fit(b.Glow, softGlow, centre, 2 * r * (0.5f + 0.6f * t), 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.45f * flash));
+                    b.Ring.enabled = false; // no plain ring opening (owner 23/10/2026): a spark at the heart and the motes thrown off
+                    Fit(b.Glow, softGlow, centre, Mathf.Min(.7f, 2 * r * (0.5f + 0.6f * t)), 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.45f * flash));
                     b.Core.enabled = false;
                     for (int i = 0; i < b.Motes.Length; i++)
                     {
@@ -289,7 +291,7 @@ namespace ArcaneBrigade
                     // the painted sparkle in four frames, opening and turning, with a few motes flicked away
                     Sprite[] frames = library != null ? library.Magic : null;
                     Fit(b.Core, Frame(frames, t), centre, 2.6f * r * (still ? 1 : 0.7f + 0.5f * Ease(t)), b.Angle + (still ? 0 : t * 25), new Color(light.r, light.g, light.b, Mathf.Clamp01((1 - t) * 1.8f) * flash));
-                    Fit(b.Glow, softGlow, centre, 2.2f * r, 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.4f * flash));
+                    Fit(b.Glow, softGlow, centre, Mathf.Min(.7f, 2.2f * r), 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.4f * flash));
                     b.Ring.enabled = false;
                     for (int i = 0; i < b.Motes.Length; i++)
                     {
@@ -303,8 +305,8 @@ namespace ArcaneBrigade
                     // a gathering: motes spiral in from all round, the glow swells, the painted ring tightens, then a spark
                     float gather = Ease(t), spiral = still ? 0 : (1 - t) * 160f;
                     Sprite ring = CombatVfxArtwork.Frame("BlastRing", 0) ?? fallbackRing;
-                    Fit(b.Ring, ring, centre, 2 * r * (still ? 1 : 1.6f - 0.9f * gather), still ? 0 : -t * 60, new Color(light.r, light.g, light.b, Mathf.Sin(t * Mathf.PI) * 0.7f));
-                    Fit(b.Glow, softGlow, centre, 2 * r * (0.4f + 1.1f * gather), 0, new Color(tint.r, tint.g, tint.b, (0.2f + 0.5f * gather) * flash * Mathf.Clamp01((1 - t) * 6)));
+                    b.Ring.enabled = false; // the motes spiralling in are the gathering; no plain ring tightening
+                    Fit(b.Glow, softGlow, centre, Mathf.Min(.7f, 2 * r * (0.4f + 1.1f * gather)), 0, new Color(tint.r, tint.g, tint.b, (0.2f + 0.5f * gather) * flash * Mathf.Clamp01((1 - t) * 6)));
                     Sprite[] frames = library != null ? library.Magic : null;
                     Fit(b.Core, t > 0.8f ? Frame(frames, (t - 0.8f) / 0.2f) : null, centre, 2.2f * r, b.Angle, new Color(1, 1, 1, flash));
                     for (int i = 0; i < b.Motes.Length; i++)
