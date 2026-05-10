@@ -81,6 +81,7 @@ namespace ArcaneBrigade
         public float NextContact;
         public float ContactImpactAt;
         public bool PendingAttack;
+        public bool CriticalEncore; // Billy: a friend's queued response to the hero's critical attack
         public Vector2 AttackDirection;
         public Vector2 RoamOffset;
         public Vector2 Velocity;
@@ -411,7 +412,7 @@ namespace ArcaneBrigade
             ClearSignatures();
             ClearArenaToys();
             ClearExpansion();
-            foreach (UnitState unit in units) { unit.PendingAttack = false; unit.AttackStarted = -100f; unit.BurnUntil = unit.ChillUntil = 0f; }
+            foreach (UnitState unit in units) { unit.PendingAttack = unit.CriticalEncore = false; unit.AttackStarted = -100f; unit.BurnUntil = unit.ChillUntil = 0f; }
             spatial.Rebuild(units);
             Phase = RunPhase.Rest;
         }
@@ -850,7 +851,7 @@ namespace ArcaneBrigade
             {
                 unit.PendingAttack = false;
                 float damage = IdentityAttackDamage(unit, OctoberAttackDamage(unit, RelicAttackDamage(unit, weapon.Damage)));
-                CombatCause attackCause = NewCause(unit.Id);
+                CombatCause attackCause = unit.CriticalEncore ? NewCause(unit.Id).Child("critical-encore") : NewCause(unit.Id);
                 UnitState locked = UnitWithId(unit.AttackTargetId);
                 bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0) + KitCrit(unit, locked) + RelicCrit(unit));
                 if (critical) damage *= 1.5f;
@@ -882,6 +883,7 @@ namespace ArcaneBrigade
                 }
                 KitEmitted(unit, kitFirst);
                 AdvanceSignatureBeat(unit, damage, attackCause);
+                unit.CriticalEncore = false;
                 events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, subject: unit, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;

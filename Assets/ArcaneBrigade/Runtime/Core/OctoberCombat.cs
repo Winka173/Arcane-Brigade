@@ -24,7 +24,7 @@ namespace ArcaneBrigade
         {
             string r = ReferenceHero;
             if (unit.Faction == Faction.Champion) return r == "Card King" || r == "Sassy Senior" || r == "Clementie" || r == "Anby" && !HeroAwakening || r == "Frosty" && octoberMovement.sqrMagnitude < .001f;
-            return unit.Faction == Faction.Companion && r == "Billy";
+            return unit.Faction == Faction.Companion && r == "Billy" && !unit.CriticalEncore;
         }
         private float sassyBurstAt;
         // Derpy Wolf (original): struck, the hero and friends move and attack 10% faster for 3s.
@@ -80,6 +80,7 @@ namespace ArcaneBrigade
         private float OctoberAttackDamage(UnitState source, float damage)
         {
             if (!catalog.EnableHeroMechanics || source.Faction == Faction.Enemy) return damage;
+            if (source.CriticalEncore) damage *= 1.8f;
             if (OctoberTrait(source, "\"Triumphant Return\" Daniel") && Elapsed >= 30) damage *= 3;
             if (source.Faction == Faction.Champion && ReferenceHero == "Frosty") damage *= 1 + Mathf.Min(1.2f, CompanionCount * .12f);
             if (ReferenceHero == "Box Shell" && Elapsed >= 25 && source.Faction != Faction.Enemy) damage *= source.Definition.Weapon.Kind == WeaponKind.Melee ? 1.4f : .75f;
@@ -173,7 +174,7 @@ namespace ArcaneBrigade
                     {
                         foreach (UnitState mage in OctoberUnits("Grey Mage")) OctoberEcho(mage, .65f, e.Cause);
                         if (ReferenceHero == "Billy" && e.Critical)
-                            foreach (UnitState ally in units.ToArray()) if (ally.Alive && ally.Faction == Faction.Companion && combatRandom.NextDouble() < .5) OctoberEcho(ally, 1.15f, e.Cause); // original: 50%
+                            foreach (UnitState ally in units.ToArray()) if (ally.Alive && ally.Faction == Faction.Companion && combatRandom.NextDouble() < .5) QueueCriticalEncore(ally);
                     }
                     if (source != null && OctoberTrait(source, "\"Naming Demon\" Yan") && source.OctoberAttacks % 3 == 0) OctoberEcho(source, .25f, e.Cause);
                     if (source != null && OctoberTrait(source, "Original:TeacupCricket") && source.OctoberAttacks % 5 == 0) OctoberEcho(source, .4f, e.Cause);
@@ -268,6 +269,25 @@ namespace ArcaneBrigade
             foreach (UnitState nurse in OctoberUnits("Young Lady"))
                 if (Elapsed >= nurse.OctoberNext) { nurse.OctoberNext = Elapsed + 5; DropLoot(LootKind.Heart, nurse.Position, 1); }
             if (HasOctober("\"Overtime King\" Philip") && Elapsed >= octoberResponseAt) { octoberResponseAt = Elapsed + 5; ApplyDamage(Champion, .5f, Faction.Enemy, "Overtime exhaustion", cause: NewCause(Champion.Id).Child("overtime-cost"), injectedDamage: true, healthCost: true); }
+        }
+        /// <summary>Billy's critical response uses the friend's actual equipped attack, including its stars, volley and
+        /// area mechanic. A single generic echo bullet erased the value of most melee/area companions. The 50% trigger
+        /// remains, with a real windup and the friend's own cooldown; this never enables autonomous attacks.</summary>
+        private void QueueCriticalEncore(UnitState ally)
+        {
+            if (ally.PendingAttack || Elapsed < ally.NextAttack) return;
+            WeaponDefinition w = ally.Definition.Weapon;
+            if (w.Kind == WeaponKind.Contact) return;
+            UnitState target = FindTarget(ally, w.Range, true);
+            if (target == null) return;
+            ally.CriticalEncore = true; ally.PendingAttack = true;
+            ally.AttackDirection = (target.Position - ally.Position).normalized;
+            ally.AttackTargetId = target.Id; ally.Facing = ally.AttackDirection;
+            ally.AttackStarted = Elapsed;
+            ally.AttackWindup = w.Windup * (w.Family == ExpandedWeapon.Hammer ? 1.17f : 1);
+            ally.ImpactTime = Elapsed + ally.AttackWindup;
+            ally.NextAttack = Elapsed + Mathf.Max(.28f, w.Cooldown * OctoberCycle(ally) * KitCycle(ally) * CompanionHaste(ally) * RelicCycle(ally)) * (w.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
+            events.Add(new CombatEvent(CombatEventKind.Windup, ally.Position, ally.Faction, direction: ally.AttackDirection, weapon: w, cause: NewCause(ally.Id).Child("critical-encore")));
         }
     }
 }

@@ -37,7 +37,7 @@ namespace ArcaneBrigade
             "Wise" => "Shops also sell other Dream Seekers. Buy one and its gifts become yours (+50%); each makes enemies +10% health and 1% more. Refresh costs 5 more. Your positive personal bonuses are 25% stronger.",
             "Nicole" => "Relics cost 20% less. Rerolls cost 5 more gold. Each paid refresh adds 1 income and 1% luck for this run.",
             "Anby" => "Only attacks while transformed. Contact damage x3. Every dodge looses a forward lightning barrage. +20% dodge.",
-            "Billy" => "Friends never attack on their own: on each of your critical hits, every friend has a 50% chance to fire its weapon. Your shots cannot split. +10% crit, 2 projectiles.",
+            "Billy" => "Friends never attack on their own: on each of your critical attacks, every ready friend has a 50% chance to use its equipped weapon at 180% damage, with its own windup, cooldown and star effects. Your shots cannot split. +10% crit, 2 projectiles.",
             "Nekomata" => "Move 20% faster, attack 30% faster. Sometimes she breaks into Run N' Stop: 3s of +20% speed and +40% attack speed. Every 3s moving pays 2 gold. Each friend: wave income -1.",
             "Burgerboo" => "Fire up to two delayed mortar shells. Shells cannot pierce. +0.4 armor, +50% movement speed, pickup range -50%. Enemies move 75% faster.",
             "Original:LanternWeaver" => "Every fourth attack stitches three nearby enemies with a delayed lantern thread. The thread shares one damage budget.",
