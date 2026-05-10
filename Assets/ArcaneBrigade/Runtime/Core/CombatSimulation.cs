@@ -74,6 +74,8 @@ namespace ArcaneBrigade
         public bool Alive = true;
         public float AttackStarted = -100f;
         public float LastHit = -100f;
+        /// <summary>Presentation only: when a hero skill last struck this unit, and the hero's colour it flashes.</summary>
+        public float SkillHitAt = -100f; public Color SkillHitTint;
         public float NextAttack;
         public float ImpactTime;
         public float NextContact;

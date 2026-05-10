@@ -381,7 +381,7 @@ namespace ArcaneBrigade
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
-            drawnAt[state.Id] = (transform.position, Time.frameCount);
+            drawnAt[state.Id] = (transform.position, Time.frameCount); live[state.Id] = this;
             if (state.Faction == Faction.Enemy && !ReducedMotion)
             {
                 if (state.LastHit != slideHit)
@@ -594,6 +594,9 @@ namespace ArcaneBrigade
                 float hurtRed = Mathf.Clamp01(1f - (simulationTime - state.LastHit) / 0.24f);
                 if (hurtRed > 0 && state.LastHit > 0) body.color = Color.Lerp(body.color, new Color(1f, 0.3f, 0.26f), hurtRed * (Mathf.Repeat(simulationTime * 16f, 1f) < 0.5f ? 0.8f : 0.35f));
             }
+            // struck by a hero skill: a quick flash of the hero's colour, so a skill's victims read at a glance (owner 23/10/2026)
+            if (state.Faction == Faction.Enemy && simulationTime - state.SkillHitAt < .22f && !PresentationSettings.ReducedFlashes)
+                body.color = Color.Lerp(body.color, state.SkillHitTint, .6f * (1 - (simulationTime - state.SkillHitAt) / .22f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
             if (state.Role == SwarmRole.Bloater) body.color = Color.Lerp(body.color, new Color(0.42f, 0.32f, 0.62f), 0.45f);
@@ -809,6 +812,9 @@ namespace ArcaneBrigade
         // where units and their weapons' muzzles were last drawn (effects anchor to these, not to the simulation's positions)
         private static readonly Dictionary<int, (Vector2 at, int frame)> drawnMuzzle = new Dictionary<int, (Vector2, int)>();
         private static readonly Dictionary<int, (Vector2 at, int frame)> drawnAt = new Dictionary<int, (Vector2, int)>();
+        private static readonly Dictionary<int, UnitVisual> live = new Dictionary<int, UnitVisual>();
+        /// <summary>The view drawing this unit this frame or the last (null when it is not on screen).</summary>
+        public static UnitVisual Live(int unitId) => live.TryGetValue(unitId, out UnitVisual v) && v != null && drawnAt.TryGetValue(unitId, out var d) && Time.frameCount - d.frame <= 1 ? v : null;
         /// <summary>The tip of a unit's weapon as drawn this frame or the last (false when it is not on screen).</summary>
         public static bool TryMuzzle(int unitId, out Vector2 tip)
         {
@@ -824,7 +830,7 @@ namespace ArcaneBrigade
             at = m.at; return true;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetDrawn() { drawnMuzzle.Clear(); drawnAt.Clear(); }
+        private static void ResetDrawn() { drawnMuzzle.Clear(); drawnAt.Clear(); live.Clear(); }
 
         private SpriteRenderer friendLight;
         private static Material friendLightMaterial;

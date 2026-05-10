@@ -131,6 +131,7 @@ namespace ArcaneBrigade
                     if (simulation.HeroAwakenEnabled) DrawAwakenGauge(); else DrawGauge();
                     strength = full;
                     if (simulation.HeroAwakenEnabled) DrawAwakening();
+                    Rims(); // after the gauge is placed: the rim outlines this frame's vessel
                     DrawCastCue();
                 }
                 foreach (var glyph in simulation.HeroIdentityGlyphs)
@@ -309,6 +310,7 @@ namespace ArcaneBrigade
                 // the debt's hourglass hangs over the stag's head and turns as it comes due (no clock ring round its feet)
                 Token(InkToken.Sand, Head(hero) + Vector2.up * (.2f + Bob(1)), .22f + .06f * k, still ? 0 : 180 * k, .9f, false);
             }
+            HeroFlair(); ChargeCrown(); AwakenBanter();
         }
         private static readonly InkPalette StampPalette = new InkPalette(new Color(.22f, .05f, .06f), new Color(.72f, .16f, .2f), new Color(1, .9f, .8f), new Color(1, .6f, .5f), new Color(.72f, .16f, .2f));
         private void Thread(Vector2 a, Vector2 b, float alpha, int seed)
@@ -356,6 +358,7 @@ namespace ArcaneBrigade
                 float heading = 90 + i * 120; Vector2 way = Dir(heading);
                 Vector2 at = hero.Position + way * 1.8f, from = hero.Position + way * .38f;
                 bool turn = i == next; float k = grown ? 1 : turn ? charge : 0;
+                if (!grown && turn && k > .7f && !still) at += Dir(t * 900 + i * 50) * .035f * k; // the root about to strike quivers
                 float pulse = still ? 1 : grown ? .85f + .15f * Mathf.Sin(t * 5 + i * 2) : 1, alpha = (.8f + .2f * k) * pulse;
                 Root(InkCanvas.Line(from, at, .09f, 5, false, i * 2.1f), .13f + .03f * k + (grown ? .04f : 0), alpha, wood, i);
                 if (grown && !calm) Glow(at, .6f, TreeFire.Glow, .35f * pulse, false); // its tip smoulders
@@ -452,6 +455,7 @@ namespace ArcaneBrigade
             if (pre)
             {
                 // the spot warms from its middle out to nothing at the edge: no ring, no hard rim (17/10/2026)
+                if (g.Finale) FinaleDrop(c, q);
                 ground.Sector(c, r, 0, 360, A(ink.Body, (.08f + .14f * q) * strength), A(ink.Body, 0));
                 if (!sparse)
                     for (int i = 0; i < 4; i++)
@@ -492,6 +496,7 @@ namespace ArcaneBrigade
                 ground.Band(a, b, half, A(ink.Body, .02f * strength), A(ink.Body, (.05f + .1f * q) * strength));
                 float reveal = still ? 1 : OutCubic(q);
                 Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
+                Gather(b, q);
                 return;
             }
             ground.Band(a, b, half, A(ink.Glow, .16f * fade * strength), A(ink.Body, .42f * fade * strength));
@@ -540,6 +545,7 @@ namespace ArcaneBrigade
                 ground.Sector(c, r, heading - CrescentHalf, heading + CrescentHalf, A(ink.Glow, .01f), A(ink.Body, (.05f + .11f * q) * strength));
                 float reveal = still ? 1 : OutCubic(q);
                 Soft(ground, InkCanvas.Arc(c, r - .05f, r - .05f, heading - CrescentHalf * reveal, heading + CrescentHalf * reveal), 1, 0, .05f, .3f + .3f * q);
+                Gather(c + d * r * .62f, q);
                 return;
             }
             ground.Sector(c, r, heading - CrescentHalf, heading + CrescentHalf, A(ink.Glow, .1f * fade * strength), A(ink.Body, .38f * fade * strength));

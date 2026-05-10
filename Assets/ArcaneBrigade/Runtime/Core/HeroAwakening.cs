@@ -175,6 +175,7 @@ namespace ArcaneBrigade
         }
         private void EndAwakening()
         {
+            if (awakenUntil > 0 && Phase == RunPhase.Combat) AwakenFinale(); // the transformation ends on a finale (owner 23/10/2026)
             if (Kit != null && Kit.Action == KitAction.Engine && awakenUntil > 0) Whistle();
             bool encore = RelicCount(RelicMechanic.EndlessEncore) > 0; // Endless Encore: no rest, and the gauge restarts a third full
             awakenUntil = -1; awakenMeter = encore ? 1f / 3f : 0; awakenCoolUntil = Elapsed + (encore ? 0 : AwakenCooldown); Champion.AwakenArt = null; awakenFoe = null;

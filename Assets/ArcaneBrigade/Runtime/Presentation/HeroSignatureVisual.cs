@@ -79,7 +79,8 @@ namespace ArcaneBrigade
         {
             if (p <= 0 || p >= 1 || fade <= .02f) return;
             float s = Seed(g); int seed = g.Seed;
-            sigScale = SignatureSize * (g.Big ? 1.5f : 1); sigReach = g.Big ? 1.35f : 1;
+            sigScale = SignatureSize * (g.Finale ? 2f : g.Big ? 1.5f : 1); sigReach = g.Finale ? 1.7f : g.Big ? 1.35f : 1;
+            if (g.Finale) Spray(style.Token, at + Vector2.up * .2f, 10, 1.1f, .2f, p, fade, s); // the finale bursts into the hero's signs
             if (g.Big && !sparse) Spray(InkToken.Glint, at + Vector2.up * .2f, 6, .95f, .17f, p, fade, s + 30, GlintPalette(ink)); // a felling blow sparkles
             Vector2 up = at + Vector2.up * .2f;
             switch (style.Id)

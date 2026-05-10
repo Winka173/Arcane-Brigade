@@ -45,7 +45,7 @@ namespace ArcaneBrigade
 
         private void DrawAwakenGauge()
         {
-            GaugeColumn(out Vector2 bottom, out Vector2 top, out float half);
+            GaugeColumn(out Vector2 bottom, out Vector2 top, out float half); gaugeArt = null;
             string id = style.Id; bool awake = sim.HeroAwakening, cooling = sim.HeroAwakenCooling;
             float fill = AwakenFill(), height = top.y - bottom.y;
             if (id == "CopperCauldron" && awake) fill = sim.HeroAwakenPressure; // while the engine runs the tube shows its pressure
@@ -120,7 +120,7 @@ namespace ArcaneBrigade
             float column = top.y - bottom.y, area = Mathf.Sqrt(Mathf.Max(.0001f, ink.width * ink.height));
             float scale = Mathf.Min(.45f * column / area, .78f * column / Mathf.Max(.01f, ink.height), .64f * column / Mathf.Max(.01f, ink.width));
             Vector2 at = (bottom + top) * .5f - ink.center * scale;
-            PlaceRaw(empty, at, scale, new Color(1, 1, 1, dim * strength));
+            gaugeArt = PlaceRaw(empty, at, scale, new Color(1, 1, 1, dim * strength)); // the vessel the transformation's rim outlines
             Texture2D order = HeroGaugeArtwork.OrderFor("Gauge2_" + style.Id);
             if (order != null && empty.name.StartsWith("Gauge2_", System.StringComparison.Ordinal))
             {
@@ -155,10 +155,11 @@ namespace ArcaneBrigade
         }
         private Material revealMaterial; private MaterialPropertyBlock revealBlock;
         /// <summary>A sprite at its own scale; above lifts it over the vessel drawn underneath (same layer otherwise).</summary>
-        private void PlaceRaw(Sprite sprite, Vector2 at, float scale, Color color, int above = 0)
+        private SpriteRenderer PlaceRaw(Sprite sprite, Vector2 at, float scale, Color color, int above = 0)
         {
             var r = Place(sprite, at, Vector2.one, 0, color, true);
             if (r != null) { r.transform.localScale = new Vector3(scale, scale, 1); r.sortingOrder += above; }
+            return r;
         }
 
         /// <summary>The transformations' own painted-ink moments and objects around the hero.</summary>
@@ -451,7 +452,7 @@ namespace ArcaneBrigade
                 float dx = at.x - echoLast[i].x; if (Mathf.Abs(dx) > .003f) echoLeft[i] = dx < 0; echoLast[i] = at;
                 bool left = solid ? echoLeft[i] : hero.Facing.x < 0;
                 float k = (t - sim.HeroAwakenEchoFired[i]) / .3f, punch = still || k < 0 || k >= 1 ? 0 : Mathf.Sin(k * Mathf.PI);
-                e.transform.position = at + Vector2.up * Bob(i + 1) * 2; e.transform.localScale = new Vector3((left ? -size : size) * (1 + .16f * punch), size * (1 - .12f * punch), 1);
+                e.transform.position = at + Vector2.up * (Bob(i + 1) * 2 + (solid && !still ? Mathf.Abs(Mathf.Sin(t * 7 + i * 1.3f)) * .12f : 0)); // jellies hop e.transform.localScale = new Vector3((left ? -size : size) * (1 + .16f * punch), size * (1 - .12f * punch), 1);
                 e.color = new Color(tint.r, tint.g, tint.b, (solid ? 1 : .7f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
                 if (!solid)
                 {

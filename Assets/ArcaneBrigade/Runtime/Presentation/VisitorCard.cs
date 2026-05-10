@@ -95,6 +95,12 @@ namespace ArcaneBrigade
             int cut = o.Icon.IndexOf(':'); string kind = o.Icon.Substring(0, cut), id = o.Icon.Substring(cut + 1);
             return kind == "item" ? owner.Content.Item(id)?.Icon : kind == "unit" ? owner.Content.Unit(id)?.Body : owner.Content.Weapon(id)?.Sprite;
         }
+        private ItemRarity? RarityOf(VisitorOption o)
+        {
+            if (string.IsNullOrEmpty(o.Icon)) return null;
+            int cut = o.Icon.IndexOf(':'); string kind = o.Icon.Substring(0, cut), id = o.Icon.Substring(cut + 1);
+            return kind == "item" ? owner.Content.Item(id)?.Rarity : kind == "unit" ? owner.Content.Unit(id)?.Rarity : null;
+        }
         private string NameFor(VisitorOption o)
         {
             if (string.IsNullOrEmpty(o.Icon)) return o.Label;
@@ -323,6 +329,8 @@ namespace ArcaneBrigade
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 ArcadeSkin.Plate(slot, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
                 if (hover) ArcadeSkin.WorldFocus(slot);
+                if (RarityOf(o) is ItemRarity rarity) // a relic's or a friend's rarity framed like the shop's cards (owner 23/10/2026)
+                { RarityDescriptionFrame.Edge(slot, rarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), rarity, Time.unscaledTime); }
                 Sprite icon = IconFor(o);
                 if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), icon);
                 plateName.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);

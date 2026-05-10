@@ -88,6 +88,16 @@ namespace ArcaneBrigade
             return best;
         }
 
+        /// <summary>The finale as a transformation ends: the hero's sign falls on the nearest enemy and bursts (1.2 W shared by
+        /// up to five within 1.3 units).</summary>
+        public const float AwakenFinaleBudget = 1.2f;
+        private void AwakenFinale()
+        {
+            UnitState foe = IdentityTarget(Champion.Position, 7); if (foe == null) return;
+            var g = IdentityHit(MorphGeometry.Disc, foe.Position, Champion.Position, 1.3f, IdentityPower * AwakenFinaleBudget * ApproachScale * CrowdScale, .4f, 5);
+            if (g != null) { g.Big = true; g.Finale = true; }
+        }
+
         // ---- Lone Jelly, Mitosis (owner 23/10/2026): the two jellies are fighters of their own. Each walks to its own enemy
         // (within 4 units of the hero, never farther than 3.2 from it) and comes back to its side of the hero when there is
         // none; their organs land on the enemy itself (bite, gland or threadwork by the approach).

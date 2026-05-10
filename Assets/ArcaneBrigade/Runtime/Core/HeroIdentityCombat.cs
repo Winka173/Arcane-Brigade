@@ -19,6 +19,8 @@ namespace ArcaneBrigade
         public bool Painted;
         /// <summary>Presentation only: the strike felled a target (or hit a jackpot), so its signature plays big.</summary>
         public bool Big;
+        /// <summary>Presentation only: the transformation's finale (its sign falls from the sky first).</summary>
+        public bool Finale;
     }
     public sealed partial class CombatSimulation
     {
@@ -202,6 +204,7 @@ namespace ArcaneBrigade
                 {
                     UnitState u = identityTargets[n]; Vector2 dir = (u.Position - s.Position).normalized;
                     ApplyWeaponDamage(u, s.Budget / count, Faction.Champion, s.Element, HeroIdentities.For(IdentityId).Name, dir, cause: s.Cause);
+                    u.SkillHitAt = Elapsed; u.SkillHitTint = HeroIdentities.For(IdentityId).Color; // struck by the skill: it flashes the hero's colour
                     if (!u.Alive) { if (s.Glyph != null) s.Glyph.Big = true; continue; }
                     if (s.Slow > 0) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + (u.Definition.IsBoss ? Mathf.Min(.3f, s.Slow) : s.Slow));
                     float push = OctoberBalance.Push(u.Definition, Mathf.Abs(s.Push));

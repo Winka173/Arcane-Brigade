@@ -429,6 +429,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
                 Rect picture = new Rect(panel.x + 22, panel.y + 16, 160, 160);
                 ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
+                if (station.Offer != null) RarityDescriptionFrame.Backdrop(picture, rarity, owner.PresentationClock);
                 ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 144, 144), station.Offer != null ? offerCard.Portrait : station.Icon);
                 if (station.Offer != null && offerCard.Role.HasValue) Sprite(new Rect(picture.x - 10, picture.y - 10, 58, 58), CompanionRoles.Badge(offerCard.Role.Value));
                 if (station.Offer != null)
@@ -577,6 +578,7 @@ namespace ArcaneBrigade
             // stacked blocks inside the frame's padding (owner, 22/10/2026): the header row, the tiles row, then the scrolling text
             // starting below the tiles' full height, so nothing sits behind the tiles or on the frame's rim
             Rect inner = new Rect(panel.x + 56, panel.y + 34, panel.width - 112, panel.height - 68);
+            RarityDescriptionFrame.Backdrop(new Rect(inner.x, inner.y, 72, 72), rarity, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y, 72, 72), offerCard.Portrait);
             GUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
             small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 28), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
