@@ -40,7 +40,9 @@ namespace ArcaneBrigade
             crownTier = tier;
             float k = (t - crownTierAt) / .45f;
             if (k >= 0 && k < 1 && !still) { sigScale = 1; sigReach = 1; Spray(style.Token, GaugeTop, 5, .55f, .17f, k, 1, tier * 40); } // a gauge third lights: it bursts
-            if (sim.HeroAwakening || sim.HeroAwakenPrimed) return;
+            // (the row of counting tokens over the head is gone: one tell per hero, Docs/Hero_Effect_Suggestions.md)
+            if (sim.HeroAwakening || sim.HeroAwakenPrimed || true) return;
+#pragma warning disable CS0162
             int n = Mathf.RoundToInt(sim.HeroIdentityRequired); if (n < 2 || n > 8) return;
             int lit = Mathf.Clamp(Mathf.FloorToInt(sim.HeroIdentityCharge + .001f), 0, n);
             if (lit > crownLit) crownLitAt = t;
@@ -58,6 +60,7 @@ namespace ArcaneBrigade
                 }
                 else DimToken(style.Token, p, .1f, .45f);
             }
+#pragma warning restore CS0162
         }
 
         // ------------------------------------------------------------------ the living rim
@@ -130,7 +133,8 @@ namespace ArcaneBrigade
             switch (style.Id)
             {
                 case "LanternKnight": // the lamp's flame grows with the sparks gathered
-                    Token(InkToken.Ember, tip + Vector2.up * .1f, .12f + .16f * fill + (primed ? .08f : 0), still ? 0 : Mathf.Sin(t * 9) * 8, .9f, true); break;
+                    { float d = .32f + .38f * fill + (primed ? .12f : 0), flicker = still ? 1 : .85f + .15f * Mathf.Sin(t * 9) * Mathf.Sin(t * 3.7f); Light(MechanicInk.Glow, tip, d, d, 0, A(new Color(1, .86f, .55f), .7f * flicker * strength)); Light(MechanicInk.Glow, tip, d * .35f, d * .35f, 0, A(Color.white, .6f * flicker * strength)); }
+                    break;
                 case "Postmaster": // letters circle every stamped address
                     for (int i = 0; i < sim.HeroIdentityMarkCount; i++)
                     {
@@ -189,7 +193,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < Mathf.Min(3, sim.HeroIdentitySpecimens); i++) { float a = (still ? 0 : t * 50) + i * 120; Token(InkToken.Page, chest + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * .6f, .2f + Mathf.Sin(a * Mathf.Deg2Rad) * .2f), .16f, Mathf.Sin(t * 2 + i) * 15, .85f, true); }
                     break;
                 case "PennyBroker":
-                    r = still ? .5f : Mathf.Repeat(t * 1.3f, 1); Token(InkToken.Coin, chest + new Vector2(-side * .4f, -.1f + 4 * r * (1 - r) * .3f), .15f, r * 360, .9f, true); break;
+                    r = still ? .5f : Mathf.Repeat(t * 1.3f, 1); Token(InkToken.Coin, chest + new Vector2(-side * .4f, -.1f + 4 * r * (1 - r) * .3f), .15f, r * 360, .9f, true, 0, Brassy); break;
                 case "StormFencer": // static crawls on the blade
                     if (!still && Mathf.Repeat(t * 4 + fill, 1) < .35f + .4f * fill) Token(InkToken.Bolt, tip + Dir(t * 700) * .08f, .12f + .08f * fill, t * 900, .9f, true);
                     if (primed && !still) Crackle(chest + Vector2.up * .2f, 3, .5f, .3f, .7f, Mathf.FloorToInt(t * 6), ink, true, .025f);

@@ -316,7 +316,7 @@ namespace ArcaneBrigade
         private void Thread(Vector2 a, Vector2 b, float alpha, int seed)
         {
             var path = InkCanvas.Lob(a, b, -.12f, 14);
-            Soft(air, path, 1, 0, .045f, alpha);
+            Soft(air, path, 1, 0, style.Id == "LanternWeaver" ? .058f : .045f, alpha);
         }
         private void Dream()
         {
@@ -507,7 +507,7 @@ namespace ArcaneBrigade
             List<Vector2> path; float width;
             switch (style.Brush)
             {
-                case InkBrush.Bolt: path = InkCanvas.Line(a, b, half * .48f, 0, true, g.Seed); width = .17f; break;
+                case InkBrush.Bolt: path = InkCanvas.Line(a, b, half * .48f, 0, true, g.Seed); width = .22f; break;
                 case InkBrush.Wave: path = InkCanvas.Line(a, b, half * .3f, 9, false, seed); width = .3f; break;
                 case InkBrush.Thread: path = InkCanvas.Line(a, b, half * .12f, 5, false, seed); width = .2f; break;
                 case InkBrush.Silk: path = InkCanvas.Line(a, b, half * .22f, 4.5f, false, seed); width = .38f; break;
@@ -515,7 +515,7 @@ namespace ArcaneBrigade
                 case InkBrush.Ink: path = InkCanvas.Line(a, b); width = .3f; break;
                 default: path = InkCanvas.Line(a, b); width = .34f; break;
             }
-            Soft(air, path, head, tail, width * .75f, fade);
+            Soft(air, path, head, tail, width * .95f, fade); // core +25% (24/10/2026)
             if (style.Brush == InkBrush.Bolt && !calm && !still)
             {
                 var flicker = InkCanvas.Line(a, b, half * .4f, 0, true, g.Seed + 1 + Mathf.FloorToInt(t * 20));
@@ -554,7 +554,7 @@ namespace ArcaneBrigade
             // the swing passes through the middle of the area; the inked rim and wash mark its true edge
             float width = Mathf.Min(Mathf.Clamp(r * .26f, .16f, .48f), r * .3f), radius = r * .62f;
             var arc = InkCanvas.Arc(c, radius, radius, heading - sweep * CrescentHalf * .96f, heading + sweep * CrescentHalf * .96f);
-            Soft(air, arc, head, tail, width * .75f, fade);
+            Soft(air, arc, head, tail, width * .95f, fade); // core +25% (24/10/2026)
             Vector2 tip = InkCanvas.Sample(arc, head);
             if (!sparse)
             {

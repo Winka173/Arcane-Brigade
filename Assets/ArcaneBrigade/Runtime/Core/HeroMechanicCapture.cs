@@ -97,6 +97,13 @@ namespace ArcaneBrigade
                 float strike = -1; foreach (var g in sim.HeroIdentityGlyphs) if (g.Role == HeroGlyphRole.Strike && g.Created >= cast - .02f && (strike < 0 || g.At < strike)) strike = g.At;
                 float[] at = strike < 0 ? new[] { .06f, .22f, .4f } : new[] { Mathf.Max(.03f, (strike - cast) * .6f), strike - cast + .07f, strike - cast + .21f };
                 string[] label = { "1-anticipate", "2-action", "3-follow" };
+                // -mechanic-sequence: ten frames through the strike (its anticipation to its fade) to review motion, not stills
+                if (Array.IndexOf(args, "-mechanic-sequence") >= 0)
+                {
+                    float first = strike < 0 ? .02f : Mathf.Max(.02f, strike - cast - .14f);
+                    at = new float[10]; label = new string[10];
+                    for (int f = 0; f < 10; f++) { at[f] = first + f * .065f; label[f] = "s" + f.ToString("00"); }
+                }
                 for (int i = 0; i < at.Length; i++)
                 {
                     while (sim.Elapsed - cast < at[i] && Time.realtimeSinceStartup - started < 24) yield return null;

@@ -93,7 +93,7 @@ namespace ArcaneBrigade
             sigScale = SignatureSize * 1.6f; sigReach = 1.6f;
             switch (style.Id)
             {
-                case "LanternKnight": Fountain(InkToken.Ember, up, 8, 1.6f, 1.6f, .2f, p, fade, s); Spray(InkToken.Spark, up, 6, 1f, .2f, p, fade, s); break;
+                case "LanternKnight": Lamplight(at, p, fade, .9f); Spray(InkToken.Spark, up, 8, 1.1f, .2f, p, fade, s, GlintPalette(ink), .4f); break;
                 case "Postmaster": Stamp(InkToken.Seal, up, .6f, p, fade, SealWax); Spray(InkToken.Envelope, up, 8, 1.2f, .26f, p, fade, s, null, .6f); break;
                 case "DrowsySeer": Stamp(InkToken.Moon, up, .5f, p, fade * (1 - p)); Spray(InkToken.Star, up, 9, 1.2f, .2f, p, fade, s, null, .5f); break;
                 case "RootOracle":
@@ -113,7 +113,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < 8; i++) { float an = s + i * 45; SigToken(InkToken.Petal, up + Dir(an) * .55f * open, .3f * open, an - 90, fade * (1 - Smooth(.6f, 1, p)), true); }
                     Spray(InkToken.Leaf, up, 6, 1.1f, .15f, p, fade, s + 20, null, .4f); break;
                 }
-                case "CopperCauldron": Rise(InkToken.Puff, at, 6, 1.6f, .32f, p, fade, s, ArsenalInk.Cotton); SigToken(InkToken.Seal, up + Vector2.up * (still ? .8f : 2.2f * 4 * p * (1 - p)), .3f, p * 720, fade, true, 0, Brassy); break;
+                case "CopperCauldron": Steam(at, Vector2.up, 2.2f, p, fade, 9); SigToken(InkToken.Seal, up + Vector2.up * (still ? .8f : 2.2f * 4 * p * (1 - p)), .3f, p * 720, fade, true, 0, Brassy); break;
                 case "ChinaMarionette": Crackle(up, 7, .9f, p, fade, g.Seed, GoldPalette, true, .04f); Spray(InkToken.Shard, up, 9, 1.2f, .2f, p, fade, s, GoldPalette); break;
                 case "SoapSkater": Spray(InkToken.Bubble, up, 10, 1.2f, .15f, p, fade, s); break;
                 case "VelvetRegent": Stamp(InkToken.Seal, up, .6f, p, fade, GoldPalette); Spray(InkToken.Glint, up, 8, 1.1f, .16f, p, fade, s, GoldPalette); break;
@@ -168,7 +168,7 @@ namespace ArcaneBrigade
                 case "LoneJelly": for (int i = 0; i < 4; i++) { r = Mathf.Repeat(t * 2 + i / 4f, 1); Token(InkToken.Drop, chest + Dir(i * 90 + 45) * (.4f + r * .3f), .1f, i * 90, (1 - r) * .9f, true); } break;
                 case "CometRunner": for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 3 + i / 3f, 1); Token(InkToken.Ember, feet + new Vector2(-side * (.2f + r * .5f), .1f + r * .2f), .14f, 0, (1 - r) * .9f, true); } break;
                 case "MirrorKeeper": for (int i = 0; i < 3; i++) { float tw = Mathf.Abs(Mathf.Sin(t * 9 + i * 2)); Token(InkToken.Glint, chest + Dir(i * 120 + t * 90) * .55f, .1f + .1f * tw, 0, tw, true, 0, GlintPalette(ink)); } break;
-                case "TreasureAcorn": Token(InkToken.Coin, head + new Vector2(-side * .4f, .1f), .22f, still ? 0 : t * 720, .95f, true); break;
+                case "TreasureAcorn": Token(InkToken.Coin, head + new Vector2(-side * .4f, .1f), .22f, still ? 0 : t * 720, .95f, true, 0, Brassy); break;
                 case "CopperCauldron": r = still ? .5f : Mathf.Repeat(t * 4, 1); Token(InkToken.Seal, head + Vector2.up * (.05f + 4 * r * (1 - r) * .2f), .22f, Mathf.Sin(t * 30) * 15, .95f, true, 0, Brassy); break;
                 case "ChinaMarionette": Crackle(chest, 3, .35f, .4f, .9f, Mathf.FloorToInt(t * 5), GoldPalette, true, .025f); break;
                 case "SoapSkater": for (int i = 0; i < 4; i++) { float an = (still ? 0 : t * 120) + i * 90; Token(InkToken.Bubble, feet + new Vector2(Mathf.Cos(an * Mathf.Deg2Rad) * .5f, .1f + Mathf.Sin(an * Mathf.Deg2Rad) * .12f), .14f, 0, .85f, true); } break;

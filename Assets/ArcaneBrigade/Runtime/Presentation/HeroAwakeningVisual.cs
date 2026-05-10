@@ -59,7 +59,7 @@ namespace ArcaneBrigade
             else InkGauge(id, bottom, top, half, fill, pulse, dim, awake);
             if ((awake || sim.HeroAwakenMeter >= 1) && !calm) Glow((bottom + top) * .5f, height * 1.3f, ink.Glow, .1f + pulse * .1f, true);
             // primed: the full gauge flashes for the second before the transformation, readable at a glance in a crowd
-            if (sim.HeroAwakenPrimed) PrimedCrown(); // the hero's tokens circle over its head (the wide flash read as film)
+            // (a full gauge is told by each hero's own tell and its rim's flash; the circling crown is gone)
         }
 
         /// <summary>An inked vessel until the painted one arrives: the three pilot heroes' own, otherwise the hero's colours.</summary>
@@ -263,6 +263,10 @@ namespace ArcaneBrigade
                     }
                     break;
                 }
+                case KitAction.Monsoon when !still:
+                    // the storm as rain lit by the lamps: streaks slanting down round the hero, splashing where they land
+                    sigScale = 1; for (int i = 0; i < (sparse ? 2 : 4); i++) RainStreaks(at + new Vector2(((i * 53) % 9 - 4) * .5f, ((i * 31) % 5 - 2) * .3f), 5, Mathf.Repeat(t * .9f + i * .27f, 1), .85f * dim);
+                    break;
                 case KitAction.Rink:
                 case KitAction.Monsoon:
                     if (!still) for (int i = 0; i < (sparse ? 3 : 6); i++)
@@ -318,6 +322,20 @@ namespace ArcaneBrigade
                     break;
                 }
                 case KitAction.DivingBell:
+                    if (!still)
+                    {
+                        // sonar: short arcs pinging ahead of the bell (never rings round it), water pushed aside as it moves
+                        float heading = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+                        for (int k = 0; k < 2; k++)
+                        {
+                            float q = Mathf.Repeat(t * .9f + k * .5f, 1), rad = .5f + q * 1.6f;
+                            InkPalette was = ink; ink = ArsenalInk.Water;
+                            Soft(air, InkCanvas.Arc(Chest(hero) + facing * .3f, rad, rad * .7f, heading - 28, heading + 28), 1, 0, .075f, (1 - q) * dim);
+                            ink = was;
+                        }
+                        if (!sparse && (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f)
+                            for (int k = 0; k < 2; k++) { float q = Mathf.Repeat(t * 2 + k * .5f, 1); Token(InkToken.Drop, Feet(hero) + facing * (.45f + q * .3f) + new Vector2(-facing.y, facing.x) * (k == 0 ? .35f : -.35f) * (1 + q), .12f, 0, (1 - q) * .8f, true, 0, ArsenalInk.Water); }
+                    }
                     if (!sparse && !still) for (int i = 0; i < 4; i++)
                     {
                         float r = Mathf.Repeat(t * 1.3f + i / 4f, 1);
@@ -454,6 +472,7 @@ namespace ArcaneBrigade
                 float k = (t - sim.HeroAwakenEchoFired[i]) / .3f, punch = still || k < 0 || k >= 1 ? 0 : Mathf.Sin(k * Mathf.PI);
                 e.transform.position = at + Vector2.up * (Bob(i + 1) * 2 + (solid && !still ? Mathf.Abs(Mathf.Sin(t * 7 + i * 1.3f)) * .12f : 0)); // jellies hop e.transform.localScale = new Vector3((left ? -size : size) * (1 + .16f * punch), size * (1 - .12f * punch), 1);
                 e.color = new Color(tint.r, tint.g, tint.b, (solid ? 1 : .7f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
+                if (solid) SkillRim.For(e)?.Show(new Color(.75f, 1f, .95f, .5f * strength), .022f, float.NaN); // the gel's refracting edge
                 if (!solid)
                 {
                     Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .22f, 0, .95f - i * .15f, true, 0, pal);
