@@ -8,10 +8,18 @@ namespace ArcaneBrigade
         {
             if (projectile.Faction == Faction.Enemy && catalog.RunWave == 1) return false;
             if (projectile.Remaining <= 0f) return false;
+            if (projectile.TravelLeft == 0) return false;
             if (projectile.Cause.RootId == 0) projectile.Cause = NewCause(projectile.SourceUnitId);
             UnitState source = UnitWithId(projectile.SourceUnitId);
             Vector2 start = projectile.LaunchSegment ? projectile.PreviousPosition : projectile.Position;
             Vector2 destination = projectile.Position + projectile.Velocity * Mathf.Min(deltaTime, projectile.Remaining);
+            if (projectile.TravelLeft > 0)
+            {
+                Vector2 step = destination - projectile.Position;
+                float distance = Mathf.Min(step.magnitude, projectile.TravelLeft);
+                destination = projectile.Position + step.normalized * distance;
+                projectile.TravelLeft = Mathf.Max(0, projectile.TravelLeft - distance);
+            }
             projectile.PreviousPosition = start;
             projectile.LaunchSegment = false;
             projectile.Remaining -= deltaTime;
@@ -119,7 +127,7 @@ namespace ArcaneBrigade
                 var fragment = new ProjectileState
                 {
                     Id = ++nextId, Faction = projectile.Faction, Position = projectile.Position, PreviousPosition = projectile.Position,
-                    Velocity = velocity, Damage = projectile.Damage * 0.35f, Remaining = projectile.Remaining,
+                    Velocity = velocity, Damage = projectile.Damage * 0.35f, Remaining = projectile.Remaining, TravelLeft = projectile.TravelLeft,
                     Color = projectile.Color, Element = projectile.Element, SourceName = projectile.SourceName,
                     Sprite = projectile.Sprite, VisualWidth = projectile.VisualWidth * 0.7f, Critical = projectile.Critical,
                     SourceUnitId = projectile.SourceUnitId, Cause = projectile.Cause.Child("projectile-split"),

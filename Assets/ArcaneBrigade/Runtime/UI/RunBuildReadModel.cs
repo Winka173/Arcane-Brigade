@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class RunBuildReadModel
     {
-        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; public Color Accent; public string UnitId; }
+        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; public Color Accent; public string UnitId; public ItemRarity? Rarity; }
         public readonly List<Row> Stats = new List<Row>();
         public readonly List<Row> Companions = new List<Row>();
         public readonly List<Row> Relics = new List<Row>();
@@ -86,7 +86,7 @@ namespace ArcaneBrigade
                 string procDescription = "";
                 foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
                     if (rule.ItemId == item.Id) procDescription += "\nOn " + RunUICopy.TriggerName(rule.Trigger) + " → " + RunUICopy.ActionName(rule.Action) + "\nEffective " + (rule.Power * item.EffectiveStacks(stack.Count)).ToString("0.###") + " · radius " + rule.Radius + " · cooldown " + rule.Cooldown + " seconds · chance " + Percent(rule.Chance) + "\nThis effect does not trigger other item effects.\n";
-                model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Accent = RunModifierRules.RarityColor(item.Rarity), Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " effects · includes benefits/tradeoffs" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = RelicDescriptions.Describe(item, stack.Count, catalog) + "\nRun upgrade. Cannot sell, swap or remove items here." });
+                model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Accent = RunModifierRules.RarityColor(item.Rarity), Rarity = item.Rarity, Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " effects · includes benefits/tradeoffs" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = RelicDescriptions.Describe(item, stack.Count, catalog) + "\nRun upgrade. Cannot sell, swap or remove items here." });
 
                 if (!string.IsNullOrEmpty(procDescription)) model.Relics[model.Relics.Count - 1].Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\nAutomatically triggers under its conditions";
                 if (session.SecretItemSuspended(stack.Id))

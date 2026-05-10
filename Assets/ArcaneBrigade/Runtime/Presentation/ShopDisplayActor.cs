@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         private float arrivalDelay;
         private Vector3 launchOffset;
         private bool merchantActor;
+        public bool IsMerchant => merchantActor;
         private bool canonMerchant;
         private bool departing;
         private Material emergence;
@@ -45,7 +46,7 @@ namespace ArcaneBrigade
         public bool PaintedHandoffActive => handoff != null && owner != null && owner.PresentationClock - handoffAt >= 0 && owner.PresentationClock - handoffAt < 1.05f;
         public SpriteRenderer View => view;
         public float FocusAmount => interest;
-        private readonly MaterialPropertyBlock focusProperties = new MaterialPropertyBlock();
+        private MaterialPropertyBlock focusProperties;
         public static float FocusScale(float focus, float age, bool reduced) => 1 + Mathf.Clamp01(focus) * (reduced ? .12f : .18f) + (reduced ? 0 : AnimationTiming.Settle(age, .48f, 2) * .075f);
         public void MountMerchandise(ShopDisplayActor pedestal = null)
         {
@@ -197,6 +198,7 @@ namespace ArcaneBrigade
             if (merchandise)
             {
                 transform.localScale *= FocusScale(interest, owner.PresentationClock - inspectionAt, reduced);
+                focusProperties ??= new MaterialPropertyBlock();
                 view.GetPropertyBlock(focusProperties); SpriteLighting.Apply(view, focusProperties, false, true);
                 focusProperties.SetColor("_RimColor", new Color(1, .96f, .8f));
                 focusProperties.SetFloat("_RimAmount", Mathf.Lerp(.07f, .7f, interest));

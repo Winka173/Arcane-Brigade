@@ -5,7 +5,7 @@ namespace ArcaneBrigade
     {
         public const int AllySoftLimit = 15;
         public const float WaveSeconds = 52; // 45 before the play-test (+15%, D9)
-        public const float EnemyHealthRelief = .95f; // 18/10/2026: was .75; hero kits made the brigade stronger
+        public const float EnemyHealthRelief = 1.03f; // 18/10/2026: was .75; hero kits made the brigade stronger. 24/10/2026: .95 -> 1.03 (owner: all difficulties a little tougher)
         public const float EnemyDamageRelief = .96f; // 18/10/2026: was .8
         public const float BossHealthRelief = .6f;
         public const float BossDamageRelief = .7f; // round 3 (19/10/2026, play-test: boss waves too hard): was .9, -22% on everything a boss deals
@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             w.Cooldown = Mathf.Max(.28f, w.Cooldown * Mathf.Lerp(1.12f, 1.35f, late));
             w.Windup = Mathf.Min(w.Windup, w.Cooldown * .35f); w.Recovery = Mathf.Min(w.Recovery, w.Cooldown * .4f);
             float before = w.Range;
-            w.Range = Mathf.Clamp(w.Range * Mathf.Lerp(1, .86f, late), .4f, w.Kind == WeaponKind.Melee ? 3.4f : 8);
+            w.Range = FriendlyReach.Limit(w.Range * Mathf.Lerp(1, .86f, late), w.Kind);
             w.Damage *= Mathf.Lerp(1, .83f, late) * (w.Kind == WeaponKind.Melee ? Mathf.Clamp(Mathf.Sqrt(2.2f / Mathf.Max(2.2f, before)), .68f, 1) : 1);
             w.SignatureRadius = Mathf.Min(w.SignatureRadius, 3.2f); w.PushDistance = Mathf.Clamp(w.PushDistance, 0, .45f);
             w.ProjectileCount = Mathf.Clamp(w.ProjectileCount, 1, 10);

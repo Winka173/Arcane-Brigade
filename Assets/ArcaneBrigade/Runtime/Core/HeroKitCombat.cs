@@ -179,7 +179,7 @@ namespace ArcaneBrigade
             if (projectiles.Count >= 4096) return;
             var turn = Quaternion.Euler(0, 0, degrees);
             projectiles.Add(new ProjectileState { Id = ++nextId, Faction = a.Faction, Position = a.Position, PreviousPosition = a.PreviousPosition, Velocity = turn * a.Velocity,
-                LaunchVelocity = turn * a.LaunchVelocity, Damage = a.Damage * share, Remaining = a.Remaining, Color = a.Color, Element = a.Element, SourceName = a.SourceName,
+                LaunchVelocity = turn * a.LaunchVelocity, Damage = a.Damage * share, Remaining = a.Remaining, TravelLeft = a.TravelLeft, Color = a.Color, Element = a.Element, SourceName = a.SourceName,
                 LaunchSegment = a.LaunchSegment, Sprite = a.Sprite, VisualWidth = a.VisualWidth, Radius = a.Radius, Critical = a.Critical, SourceUnitId = a.SourceUnitId,
                 Cause = a.Cause.Child("kite-split"), Weapon = a.Weapon, SplitCount = a.SplitCount, SplitOnImpact = a.SplitOnImpact, Pattern = a.Pattern, ExtraPierce = a.ExtraPierce,
                 Arsenal = a.Arsenal, ArsenalStage = a.ArsenalStage, ArsenalTimer = a.ArsenalTimer, ArsenalHome = a.ArsenalHome, ArsenalTick = a.ArsenalTick,

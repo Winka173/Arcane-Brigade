@@ -232,7 +232,7 @@ namespace ArcaneBrigade
             {
                 Vector2 d = Quaternion.Euler(0,0,(i - (count - 1) * .5f) * spread) * direction;
                 projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Champion, Position = from, PreviousPosition = from,
-                    Velocity = d * 5.5f, Remaining = 1.65f, Damage = totalDamage / count, Color = HeroIdentities.For(IdentityId).Color,
+                    Velocity = d * 5.5f, Remaining = 1.65f, TravelLeft = FriendlyReach.RangedMaximum, Damage = totalDamage / count, Color = HeroIdentities.For(IdentityId).Color,
                     Element = element, SourceName = HeroIdentities.For(IdentityId).Name, SourceUnitId = Champion.Id,
                     Cause = IdentityCause(), Sprite = sprite != null ? sprite : catalog.Projectile, VisualWidth = .21f, Radius = .07f, IsFragment = true, IdentityTargetId = homingTarget, Tint = tint });
             }

@@ -29,9 +29,7 @@ namespace ArcaneBrigade
         /// <summary>The finale's sign falling from the sky onto its spot during its anticipation.</summary>
         private void FinaleDrop(Vector2 at, float q)
         {
-            float fall = still ? 1 : InQuad(q);
-            Token(style.Token, at + Vector2.up * (.3f + 2.6f * (1 - fall)), .55f + .35f * fall, still ? 0 : q * 360, Mathf.Clamp01(q * 3), true);
-            if (!sparse) Gather(at, q);
+            FinaleArrive(at, q); // each hero's own (HeroFinaleVisual)
         }
 
         // ------------------------------------------------------------------ the count over the head

@@ -200,6 +200,9 @@ namespace ArcaneBrigade
         public Vector2 Velocity;
         public float Damage;
         public float Remaining;
+        // Negative means a staged/hostile shot owns its flight. Ordinary friendly shots consume actual distance,
+        // so acceleration, splitting and ricochets cannot silently extend the compiled weapon reach.
+        public float TravelLeft = -1;
         public Color Color;
         /// <summary>Optional tint for the body (alpha 0 = none, every other shot unchanged); Drowsy Seer's dream shots fade like the dreams.</summary>
         public Color Tint;
@@ -919,6 +922,7 @@ namespace ArcaneBrigade
                     Velocity = direction * (unit.Faction == Faction.Enemy && catalog.RunWave > 0 ? Mathf.Min(2.4f, weapon.ProjectileSpeed) : weapon.ProjectileSpeed),
                     Damage = damage,
                     Remaining = weapon.ProjectileLifetime,
+                    TravelLeft = unit.Faction == Faction.Enemy || FriendlyReach.Returns(weapon) ? -1 : FriendlyReach.Flight(weapon, rotatedMuzzle.magnitude, unit.Definition.Weapon.Range),
                     Color = weapon.ProjectileColor,
                     Element = weapon.Element,
                     SourceName = unit.Definition.DisplayName + " projectile",
@@ -989,6 +993,7 @@ namespace ArcaneBrigade
             for (int index = projectiles.Count - 1; index >= 0 && Phase == RunPhase.Combat; index--)
             {
                 ProjectileState projectile = projectiles[index];
+                if (projectile.TravelLeft == 0) projectile.Remaining = Mathf.Min(projectile.Remaining, deltaTime);
                 if (VisitorUmbrella(projectile)) { projectiles.RemoveAt(index); continue; }
                 if (projectile.IdentityTargetId > 0)
                 {

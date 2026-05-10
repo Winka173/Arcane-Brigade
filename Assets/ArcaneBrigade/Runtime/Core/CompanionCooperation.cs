@@ -100,7 +100,7 @@ namespace ArcaneBrigade
                 {
                     Id = ++nextId, Faction = original.Faction, SourceUnitId = original.SourceUnitId,
                     Position = original.Position, PreviousPosition = original.Position, Velocity = velocity,
-                    Damage = original.Damage / 3f, Remaining = Mathf.Min(original.Remaining, 1.1f),
+                    Damage = original.Damage / 3f, Remaining = Mathf.Min(original.Remaining, 1.1f), TravelLeft = original.TravelLeft,
                     Color = original.Color, Element = original.Element, SourceName = recipe,
                     Sprite = original.Sprite, VisualWidth = Mathf.Clamp(original.VisualWidth * 0.65f, 0.15f, 0.45f),
                     Radius = Mathf.Clamp(original.Radius * 0.65f, 0.04f, 0.12f), Critical = original.Critical,

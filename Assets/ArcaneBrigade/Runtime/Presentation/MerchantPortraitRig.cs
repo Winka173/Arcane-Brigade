@@ -15,7 +15,7 @@ namespace ArcaneBrigade
         private readonly Dictionary<Sprite, Cut> cuts = new Dictionary<Sprite, Cut>();
         private SpriteRenderer upper;
         private SpriteRenderer lower;
-        private readonly MaterialPropertyBlock properties = new MaterialPropertyBlock();
+        private MaterialPropertyBlock properties;
         private SpriteRenderer[] pieces;
         public static Vector3 GesturePose(float purchaseAge, float denyAge, bool dream, bool reduced)
         {
@@ -56,6 +56,7 @@ namespace ArcaneBrigade
             lower.transform.localRotation = Quaternion.Euler(0, 0, -gesture.x * .15f);
             upper.transform.localScale = new Vector3(1 - breath * .25f - gesture.z * .2f, 1 + breath + speech + gesture.z, 1);
             lower.transform.localScale = new Vector3(1 + breath * .15f + gesture.z * .1f, 1 - breath * .2f - gesture.z * .15f, 1);
+            properties ??= new MaterialPropertyBlock();
             source.GetPropertyBlock(properties);
             Rect full = sprite.rect;
             properties.SetVector("_UvRect", new Vector4(full.x / sprite.texture.width, full.y / sprite.texture.height, full.width / sprite.texture.width, full.height / sprite.texture.height));
@@ -72,7 +73,11 @@ namespace ArcaneBrigade
         }
         private void OnDestroy()
         {
-            foreach (Cut cut in cuts.Values) { Destroy(cut.Upper); Destroy(cut.Lower); }
+            foreach (Cut cut in cuts.Values)
+            {
+                if (Application.isPlaying) { Destroy(cut.Upper); Destroy(cut.Lower); }
+                else { DestroyImmediate(cut.Upper); DestroyImmediate(cut.Lower); }
+            }
             cuts.Clear();
         }
     }

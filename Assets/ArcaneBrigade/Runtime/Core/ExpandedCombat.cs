@@ -139,7 +139,8 @@ namespace ArcaneBrigade
                     return 0;
                 }
             }
-            if (projectile.Age > 0.7f && !projectile.Returning)
+            float outwardSeconds = Mathf.Min(.7f, FriendlyReach.Flight(projectile.Weapon, projectile.Weapon.MuzzleDistance) / Mathf.Max(.1f, projectile.Weapon.ProjectileSpeed));
+            if (projectile.Age > outwardSeconds && !projectile.Returning)
             {
                 projectile.Returning = true;
                 ProjectileAudioEvent(CombatEventKind.ProjectileReturn, projectile);

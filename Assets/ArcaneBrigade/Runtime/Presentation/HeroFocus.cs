@@ -8,6 +8,7 @@ namespace ArcaneBrigade
     /// they cover it, and friends in front of it to 70%; when something still covers the hero, a faint copy of the hero shows
     /// through; and if the hero ever leaves the screen, an ink arrow at the edge points to it. The hero is also drawn a little
     /// larger and above nearby friends (K8Motion.BodyHeight, UnitVisual sort bias). Reduced Motion: fades are instant.</summary>
+    [DefaultExecutionOrder(1000)] // apply after actors have updated their tint and portrait pieces
     public sealed class HeroFocus : MonoBehaviour
     {
         public const int SortBias = 12;          // one world unit of Y-sort: the hero draws over friends standing just in front
@@ -61,17 +62,24 @@ namespace ArcaneBrigade
             foreach (var pair in fades) pair.Value.Target = 1;
             int heroOrder = body.sortingOrder, layer = body.sortingLayerID;
             bool occluded = false;
-            // owner (20/10/2026): only the map's own props fade during play; in the shop the stalls and their wares never fade
+            // Shop wares stay readable; the merchant may fade when its body hides the hero.
             bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop;
             foreach (SpriteRenderer r in props)
             {
-                if (inShop) break;
+                if (inShop && !IsShopkeeper(r)) continue;
                 if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder <= heroOrder || r.sortingOrder >= 1600) continue;
                 Vector3 size = r.bounds.size;
                 if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14 || r.color.a < .05f) continue;
                 Bounds b = r.bounds; b.extents = new Vector3(b.extents.x, b.extents.y, 1000);
                 if (!b.Intersects(covered)) continue;
-                Target(r, PropAlpha); occluded = true;
+                if (IsShopkeeper(r))
+                {
+                    // The animated portrait is cut in two. Fade the whole portrait together to avoid a visible seam.
+                    foreach (SpriteRenderer piece in r.GetComponentInParent<ShopDisplayActor>().GetComponentsInChildren<SpriteRenderer>())
+                        if (piece.enabled && piece.GetComponent<GroundShadow>() == null) Target(piece, PropAlpha);
+                }
+                else Target(r, PropAlpha);
+                occluded = true;
             }
             foreach (UnitVisual friend in owner.Views)
             {
@@ -105,6 +113,12 @@ namespace ArcaneBrigade
         {
             if (!fades.TryGetValue(r, out Fade f)) fades[r] = f = new Fade();
             f.Target = Mathf.Min(f.Target, alpha);
+        }
+
+        public static bool IsShopkeeper(SpriteRenderer renderer)
+        {
+            var actor = renderer != null ? renderer.GetComponentInParent<ShopDisplayActor>() : null;
+            return actor != null && actor.IsMerchant;
         }
 
         private void ApplyFades(float delta)

@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             "Jade Cabbage" => "Nursery shops sell Little Sprouts. Buying a Sprout adds 1 projectile (max 6) and costs 2 maximum HP. Two Sprouts grow into a random evolved friend plus a Grand Sprout.",
             "The Big Pot" => "Start with +8 contact damage. Each Morning Bells activation gives +0.15 armor. Taking damage adds 0.15 regeneration for this run. Enemies move 15% faster.",
             "Porcelain Doll" => "Healing is 2.5 times as effective, but armor starts 0.25 lower. Each Wild Stitch activation adds 0.4 regeneration. Taking damage adds 1 contact damage.",
-            "Slippy" => "Brigade damage -80%. Knockback +200%. Each Clockwork Union activation adds 5 wave income. Treasure +30%.",
+            "Slippy" => "Brigade damage -55%. Knockback +200%. Each Clockwork Union activation adds 5 wave income. Treasure +30%.",
             "Card King" => "Never attacks. Your own damage, attack speed, crit and projectile bonuses go to every friend; friends are 20% larger. Shops sell 2-star friends. More enemies appear.",
             "Sir Purrcival" => "+45% dodge, 50% less HP. Dodge cap: 90%. Dodges add treasure detection for this run. Crossing Knights deal double damage and +10 contact damage.",
             "Omnom" => "Lose 2 HP each second in battle. Each enemy defeated heals 2 HP. Regeneration and hearts do not heal. Everyone +30% speed, again at waves 3, 6 and 9. Monsters +20%.",

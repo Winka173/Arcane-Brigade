@@ -14,13 +14,16 @@ namespace ArcaneBrigade
         // SoapSkater, ButtonCavalier, HourglassStag; 0/6 LoneJelly, IvorySovereign, ArchiveCurator; 1/6 DrowsySeer, CometRunner, PatchworkHost.
         // Trimming the 6/6 heroes (vitality x0.7, power 2.3) changed none of their results, so those trims were reverted: their
         // strength comes from the brigade they build, not from the hero's own HP or weapon (Docs/Balance_Pass_2026-10-19.md, round 3).
+        // 24/10: controlled single/crowd/contact fixtures, all approaches; see Hero_DPS_And_Reach_Audit.md.
         private static readonly Dictionary<string, float> Power = new Dictionary<string, float>
         {
-            ["LoneJelly"] = 6.5f, ["GlassDice"] = 3.6f, ["RootOracle"] = 3.6f, ["PatchworkHost"] = 5f,
-            ["ArchiveCurator"] = 4f, ["IvorySovereign"] = 4f, ["DrowsySeer"] = 4f, ["CometRunner"] = 3.6f,
-            ["TideSinger"] = 3.8f, ["NightMaw"] = 3.3f, ["PetalCitadel"] = 3.8f, ["StormFencer"] = 3.3f, ["SupperMortar"] = 3.3f,
+            ["LoneJelly"] = 6.5f, ["GlassDice"] = 3.6f, ["RootOracle"] = 2.7f, ["PatchworkHost"] = 4f,
+            ["ArchiveCurator"] = 4f, ["IvorySovereign"] = 4f, ["DrowsySeer"] = 3.6f, ["CometRunner"] = 3.6f,
+            ["TideSinger"] = 3.8f, ["NightMaw"] = 3.3f, ["PetalCitadel"] = 3.8f, ["StormFencer"] = 3.6f, ["SupperMortar"] = 3.8f,
+            ["TreasureAcorn"] = 2.5f, ["RainArchivist"] = 2.7f, ["SoapSkater"] = 3.6f,
+            ["ButtonCavalier"] = 3.3f, ["LanternWeaver"] = 3.3f,
             // the five expansion heroes (step 4c, 19/10/2026): start in the band of the newest heroes; balance by their mechanics
-            ["KiteAdmiral"] = 3.3f, ["SundaeDuchess"] = 3.3f, ["BonsaiClocksmith"] = 3.3f, ["JugglingJester"] = 3.3f, ["BellDiver"] = 3.3f,
+            ["KiteAdmiral"] = 4.5f, ["SundaeDuchess"] = 3.3f, ["BonsaiClocksmith"] = 3.3f, ["JugglingJester"] = 3.3f, ["BellDiver"] = 3.6f,
         };
         private static readonly Dictionary<string, float> Vitality = new Dictionary<string, float>
         {

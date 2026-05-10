@@ -105,6 +105,17 @@ namespace ArcaneBrigade
                 // the transformation a moment after its flash, as it reads for most of its six seconds
                 while (sim.HeroAwakening && sim.Elapsed - cast < 1.2f && Time.realtimeSinceStartup - started < 26) yield return null;
                 if (sim.HeroAwakening) yield return Shot(stem + "-4-held");
+                // the finale as the transformation runs out: its arrival, then its burst
+                if (sim.HeroAwakening && Array.IndexOf(args, "-mechanic-finale") >= 0)
+                {
+                    Time.timeScale = 1; float wait = Time.realtimeSinceStartup;
+                    while (sim.HeroAwakening && Time.realtimeSinceStartup - wait < 14) yield return null;
+                    Time.timeScale = .35f; float end = sim.Elapsed;
+                    while (sim.Elapsed - end < .22f && Time.realtimeSinceStartup - wait < 20) yield return null;
+                    yield return Shot(stem + "-5-finale-arrive");
+                    while (sim.Elapsed - end < .55f && Time.realtimeSinceStartup - wait < 22) yield return null;
+                    yield return Shot(stem + "-6-finale-burst");
+                }
                 notes.Add("OK " + hero.Id + " glyphs=" + sim.HeroIdentityGlyphs.Count);
                 File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
                 Time.timeScale = 1;

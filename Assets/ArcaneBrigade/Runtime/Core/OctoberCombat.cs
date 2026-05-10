@@ -209,13 +209,13 @@ namespace ArcaneBrigade
                         // she explodes when hurt: the burst grows with each Four-Leaf Clover friend
                         sassyBurstAt = Elapsed + .4f;
                         int clovers = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Companion && System.Array.IndexOf(u.Definition.Tags, "clover") >= 0) clovers++;
-                        Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.6f, Champion.Definition.Weapon.Damage * 3 * (1 + .5f * clovers), .08f, .2f, e.Cause.Child("sassy-burst"));
+                        Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.6f, Champion.Definition.Weapon.Damage * 3 * (1 + .5f * clovers), .08f, .2f, NewCause(Champion.Id).Child("sassy-burst"));
                     }
                     if (ReferenceHero == "Card Queen")
                     {
                         // each injury pays out and strikes every enemy on the field (bosses take half)
                         Gold = RunSession.BoundedCounter((long)Gold + Mathf.RoundToInt(6 * Mathf.Max(1, catalog.ChestGoldScale)));
-                        CombatCause decree = e.Cause.Child("queen-decree");
+                        CombatCause decree = NewCause(Champion.Id).Child("queen-decree");
                         foreach (UnitState u in units.ToArray()) if (u.Alive && u.Faction == Faction.Enemy) ApplyDamage(u, Champion.Definition.Weapon.Damage * (u.Definition.IsBoss ? 1.5f : 3f), Faction.Champion, "Decree", u.Position - Champion.Position, cause: decree);
                     }
                 }

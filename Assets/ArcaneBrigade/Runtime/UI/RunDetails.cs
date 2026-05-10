@@ -188,6 +188,8 @@ namespace ArcaneBrigade
                 {
                     ArcadeSkin.Line(new Rect(card.x + 2, card.y + 4, 5, card.height - 8), row.Accent);
                     RunHud.Fill(new Rect(18, card.y + 12, 90, 100), ArcadeSkin.Deep);
+                    if (row.Rarity is ItemRarity rarity) // each relic framed by its rarity, like the shop's cards (owner 23/10/2026)
+                    { RarityDescriptionFrame.Edge(card, rarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(18, card.y + 12, 90, 100), rarity, Time.unscaledTime); }
                 }
                 float contentLeft = row.Icon != null ? 130 : 28;
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);

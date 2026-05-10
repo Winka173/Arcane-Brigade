@@ -73,7 +73,7 @@ namespace ArcaneBrigade
                 case "Jade Cabbage": if (hero && effect == ItemEffect.Projectiles) value += Mathf.Min(6, State.LeafPurchases); if (hero && effect == ItemEffect.Health) value -= State.LeafPurchases * 2; break;
                 case "The Big Pot": if (hero && effect == ItemEffect.CollisionDamage) value += 8; if (hero && effect == ItemEffect.Armor) value += BondLevel("morning") * .15f; if (effect == ItemEffect.EnemySpeed) value += .15f; break; // original: monsters +15% speed
                 case "Porcelain Doll": if (hero && effect == ItemEffect.HealCorrection) value += 1.5f; if (hero && effect == ItemEffect.Armor) value -= .25f; if (hero && effect == ItemEffect.Heal) value += BondLevel("hide") * .4f; break;
-                case "Slippy": if ((hero || ally) && effect == ItemEffect.Damage) value -= .8f; if ((hero || ally) && effect == ItemEffect.Knockback) value += 2; if (effect == ItemEffect.Income) value += 5 * BondLevel("gear"); if (effect == ItemEffect.TreasureDetection) value += .3f; break; // original: brigade damage -80%, knockback +200%, treasure +30, +5 income per Clockwork bond
+                case "Slippy": if ((hero || ally) && effect == ItemEffect.Damage) value -= .55f; if ((hero || ally) && effect == ItemEffect.Knockback) value += 2; if (effect == ItemEffect.Income) value += 5 * BondLevel("gear"); if (effect == ItemEffect.TreasureDetection) value += .3f; break; // balance 24/10: brigade damage -55% (was -80%), knockback +200%, treasure +30, +5 income per Clockwork bond
                 case "Card King": if (effect == ItemEffect.EnemyCount) value += .3f; break; // original: monsters +30%
                 case "Sir Purrcival": if (hero && effect == ItemEffect.Dodge) value += .45f; if (hero && effect == ItemEffect.HealthCorrection) value -= .5f; break; // original: dodge +45%, health correction -50%
                 case "Clementie": if (hero && effect == ItemEffect.HealthCorrection) value += 1f; if (hero && effect == ItemEffect.MoveSpeed) value += .3f; if (hero && effect == ItemEffect.Pickup) value -= .5f; // original: speed +30, pickup -50%, health correction +100%
@@ -222,7 +222,7 @@ namespace ArcaneBrigade
                 if (OctoberHero == "Clementie") unit.CollisionDamage += CombatCatalog.Champion.Speed * 2.5f;
                 if (OctoberHero == "Frosty") { w.Damage *= Mathf.Max(.65f, 1 - ActiveRoster.Count * .02f); unit.BodyHeight *= Mathf.Max(.75f, 1 - ActiveRoster.Count * .01f); }
                 w.Damage*=1.08f;unit.CollisionDamage*=1.08f;unit.Speed=Mathf.Min(10,unit.Speed*1.05f);
-                w.Range = Mathf.Min(w.Range, w.Kind == WeaponKind.Melee ? 3.4f : 8); w.Cooldown = Mathf.Max(.28f, w.Cooldown);
+                w.Range = Mathf.Min(w.Range, w.Kind == WeaponKind.Melee ? FriendlyReach.MeleeMaximum : FriendlyReach.RangedMaximum); w.Cooldown = Mathf.Max(.28f, w.Cooldown);
             }
             if (OctoberHero == "Periwinky") CombatCatalog.Champion.Health = BloodPrice.Apply(Mathf.Clamp(State.Gold, 20, 400), State.BloodPaid);
             if (OctoberHero == "Card Queen") CombatCatalog.Champion.Health = BloodPrice.Apply(PlayerBuildBalance.CardQueenHealth, State.BloodPaid);

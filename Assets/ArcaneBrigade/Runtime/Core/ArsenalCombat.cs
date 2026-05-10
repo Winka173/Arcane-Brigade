@@ -89,6 +89,7 @@ namespace ArcaneBrigade
         private ProjectileState ArsenalShot(UnitState source, Vector2 from, Vector2 direction, float speed, float range, float damage, bool critical, CombatCause cause, float radius = 0.12f, int pierce = 0, WeaponDefinition weapon = null)
         {
             weapon ??= source.Definition.Weapon;
+            if (source.Faction != Faction.Enemy) range = Mathf.Min(range, FriendlyReach.Flight(source.Definition.Weapon, Vector2.Distance(from, source.Position)));
             direction = direction.sqrMagnitude > 0.0001f ? direction.normalized : Vector2.right;
             var shot = new ProjectileState
             {
@@ -99,6 +100,9 @@ namespace ArcaneBrigade
                 SourceUnitId = source.Id, Cause = cause, Weapon = weapon, Arsenal = weapon.Arsenal, ExtraPierce = pierce, ArsenalHome = source.Position,
                 Pattern = source.Faction == Faction.Enemy ? ShotPattern.None : ShotPatterns.For(weapon)
             };
+            // These weapons deliberately turn back or hop after their outbound flight. Their stage code owns the return.
+            bool staged = weapon.Arsenal == ArsenalWeapon.TwinMoonStaff || weapon.Arsenal == ArsenalWeapon.YoYo || weapon.Arsenal == ArsenalWeapon.DreamRacket || weapon.Arsenal == ArsenalWeapon.PaperShuriken || weapon.Arsenal == ArsenalWeapon.JugglingPins;
+            if (source.Faction != Faction.Enemy && !staged) shot.TravelLeft = range;
             if (projectiles.Count < 4096) projectiles.Add(shot);
             if (source.HeraldShot && source.Faction == Faction.Companion)
             {
@@ -575,6 +579,7 @@ namespace ArcaneBrigade
         // ---- shapes ----
         private void ArsenalSweep(UnitState source, WeaponDefinition weapon, Vector2 aim, float range, float coneDot, float damage, bool critical, CombatCause cause)
         {
+            if (source.Faction != Faction.Enemy) range = Mathf.Min(range, source.Definition.Weapon.Range);
             for (int i = 0; i < units.Count; i++)
             {
                 UnitState target = units[i];
@@ -585,6 +590,8 @@ namespace ArcaneBrigade
         }
         private void ArsenalLine(UnitState source, WeaponDefinition weapon, Vector2 from, Vector2 to, float width, float damage, bool critical, CombatCause cause)
         {
+            if (source.Faction != Faction.Enemy && weapon.Kind == WeaponKind.Melee)
+                to = from + Vector2.ClampMagnitude(to - from, source.Definition.Weapon.Range);
             for (int i = 0; i < units.Count; i++)
             {
                 UnitState target = units[i];
