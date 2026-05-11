@@ -208,6 +208,7 @@ namespace ArcaneBrigade
                         for (int i = 0; i < 3; i++) { float r = Mathf.Repeat(t * 2.2f + i / 3f, 1); Token(InkToken.Puff, Feet(hero) - facing * (.3f + r * .9f) + Vector2.up * .1f, .2f + r * .2f, 0, (1 - r) * .7f, false, 0, ArsenalInk.Cotton); }
                     }
                     if (sim.HeroAwakenPressure > .75f && !still && !calm) Glow(Chest(hero), 1.1f, new Color(1, .5f, .3f), .22f * Mathf.Abs(Mathf.Sin(t * 14)), true);
+                    if ((hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f) Refract(Wedge, Chest(hero) + facing * .9f, new Vector2(1.3f, .9f), Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg, new Color(1, .93f, .82f, .8f), .016f, facing.x, facing.y);
                     break;
                 case KitAction.Dreams:
                     Token(InkToken.Moon, Head(hero) + Vector2.up * .35f + Vector2.up * Bob(0), .42f, 0, .95f, true, 0, Night);
@@ -258,7 +259,7 @@ namespace ArcaneBrigade
                     {
                         float a = (still ? 0 : t * 70) + i * 90;
                         Vector2 p = Chest(hero) + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * 1.3f, Mathf.Sin(a * Mathf.Deg2Rad) * .7f);
-                        if (pane != null) Place(pane, p, Vector2.one * .55f, 0, new Color(1, 1, 1, .95f * strength), true);
+                        if (pane != null) { var pr = Place(pane, p, Vector2.one * .55f, 0, new Color(1, 1, 1, .95f * strength), true); if (pr != null) MirrorPane(pr); }
                         else Token(InkToken.Shard, p, .35f, a, .9f, true);
                     }
                     break;
@@ -333,6 +334,7 @@ namespace ArcaneBrigade
                             Soft(air, InkCanvas.Arc(Chest(hero) + facing * .3f, rad, rad * .7f, heading - 28, heading + 28), 1, 0, .075f, (1 - q) * dim);
                             ink = was;
                         }
+                        if ((hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f) WaterPush(Chest(hero) + facing * .2f, facing, 1.6f, 1.1f, .9f);
                         if (!sparse && (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f)
                             for (int k = 0; k < 2; k++) { float q = Mathf.Repeat(t * 2 + k * .5f, 1); Token(InkToken.Drop, Feet(hero) + facing * (.45f + q * .3f) + new Vector2(-facing.y, facing.x) * (k == 0 ? .35f : -.35f) * (1 + q), .12f, 0, (1 - q) * .8f, true, 0, ArsenalInk.Water); }
                     }
@@ -398,6 +400,7 @@ namespace ArcaneBrigade
         /// <summary>A landed scoop or burst charge: a short bright flare at the spot and a few glints thrown up, never a pool.</summary>
         private void Splash(Vector2 at, float after, InkPalette pal, float dim)
         {
+            Shock(at + Vector2.up * .1f, after, 1.2f);
             Glow(at + Vector2.up * .15f, .95f, Color.Lerp(pal.Light, Color.white, .3f), .6f * (1 - after) * (1 - after) * dim, true);
             if (sparse) return;
             for (int i = 0; i < 4; i++)
@@ -472,7 +475,7 @@ namespace ArcaneBrigade
                 float k = (t - sim.HeroAwakenEchoFired[i]) / .3f, punch = still || k < 0 || k >= 1 ? 0 : Mathf.Sin(k * Mathf.PI);
                 e.transform.position = at + Vector2.up * (Bob(i + 1) * 2 + (solid && !still ? Mathf.Abs(Mathf.Sin(t * 7 + i * 1.3f)) * .12f : 0)); // jellies hop e.transform.localScale = new Vector3((left ? -size : size) * (1 + .16f * punch), size * (1 - .12f * punch), 1);
                 e.color = new Color(tint.r, tint.g, tint.b, (solid ? 1 : .7f - i * .1f) * Mathf.Clamp01(remaining * 4) * strength);
-                if (solid) SkillRim.For(e)?.Show(new Color(.75f, 1f, .95f, .5f * strength), .022f, float.NaN); // the gel's refracting edge
+                if (solid) { SkillRim.For(e)?.Show(new Color(.75f, 1f, .95f, .5f * strength), .022f, float.NaN); Gel(e); } // the gel's edge and body
                 if (!solid)
                 {
                     Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .22f, 0, .95f - i * .15f, true, 0, pal);

@@ -91,6 +91,7 @@ namespace ArcaneBrigade
         {
             float s = Seed(g); Vector2 up = at + Vector2.up * .25f;
             sigScale = SignatureSize * 1.6f; sigReach = 1.6f;
+            Shock(at + Vector2.up * .2f, p * 1.6f, 2.2f); // the finale's push bends the air round it
             switch (style.Id)
             {
                 case "LanternKnight": Lamplight(at, p, fade, .9f); Spray(InkToken.Spark, up, 8, 1.1f, .2f, p, fade, s, GlintPalette(ink), .4f); break;

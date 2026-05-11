@@ -26,7 +26,7 @@ namespace ArcaneBrigade
             {
                 float k = (i + .5f) / puffs, q = still ? .6f : Mathf.Clamp01(p * 1.3f - k * .3f);
                 Vector2 at = from + d * length * k * (.4f + .6f * q) + Vector2.up * q * (.15f + .35f * k) + new Vector2(-d.y, d.x) * Mathf.Sin(i * 2.3f) * .12f * k;
-                SigToken(InkToken.Puff, at, (.18f + .4f * k) * (.6f + .4f * q), i * 40 + q * 30, fade * (1 - q * q) * (.9f - .35f * k), true, 0, ArsenalInk.Cotton);
+                SteamPuff(at, (.18f + .4f * k) * (.6f + .4f * q), fade * (1 - q * q) * (.9f - .35f * k));
             }
         }
         /// <summary>Rain as streaks of light slanting down onto a spot (never a curtain over the whole camera).</summary>
@@ -130,6 +130,7 @@ namespace ArcaneBrigade
             sigScale = SignatureSize * (g.Finale ? 2f : g.Big ? 1.5f : 1); sigReach = g.Finale ? 1.7f : g.Big ? 1.35f : 1;
             if (g.Finale) { FinaleBurst(g, at, p, fade); return; } // each hero's own finale (HeroFinaleVisual)
             if (g.Big && !sparse) Spray(InkToken.Glint, at + Vector2.up * .2f, 6, .95f, .17f, p, fade, s + 30, GlintPalette(ink)); // a felling blow sparkles
+            if (g.Big) Shock(at + Vector2.up * .15f, p * 2, 1.1f); // and the air bulges where it lands
             Vector2 up = at + Vector2.up * .2f;
             switch (style.Id)
             {
@@ -161,6 +162,7 @@ namespace ArcaneBrigade
                     Soft(air, InkCanvas.Arc(at + Vector2.up * .15f, .5f * sigReach, .34f * sigReach, hd - 30, hd + 170), grow, ebb, .12f, fade);           // the curling crest
                     ink = was; Soft(air, InkCanvas.Arc(at - d * .25f, .7f * sigReach, .28f * sigReach, hd + 120, hd + 220), grow, ebb, .05f, fade * .5f); // the body behind
                     Spray(InkToken.Bubble, at - d * .2f, 4, .5f, .1f, p, fade, s, ArsenalInk.Water, .2f);                                              // foam
+                    WaveBody(at - d * .2f, d, fade * (1 - p));                                                                                          // clear water bending the floor
                     Rise(InkToken.Bubble, at, 3, .8f, .14f, p, fade, s, ArsenalInk.Water); Rise(InkToken.Note, up, 1, 1f, .26f, p, fade, s);
                     break;
                 }
@@ -265,6 +267,7 @@ namespace ArcaneBrigade
                     }
                     break;
                 case KitAction.HighTide:
+                    { Vector2 f = hero.Facing.sqrMagnitude > .01f ? hero.Facing.normalized : Vector2.right; WaveBody(feet + f * 1.15f + Vector2.up * .2f, f, .9f); }
                     for (int i = 0; i < 4; i++) { r = Mathf.Repeat(t * 1.4f + i / 4f, 1); Token(i % 2 == 0 ? InkToken.Bubble : InkToken.Glint, feet + new Vector2(-side * (.3f + r * .9f), .15f + r * .35f), .14f, r * 90, (1 - r) * .9f, true, 0, ArsenalInk.Water); }
                     break;
                 case KitAction.Meteors:

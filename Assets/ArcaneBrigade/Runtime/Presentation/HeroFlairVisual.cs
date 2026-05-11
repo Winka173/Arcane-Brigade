@@ -84,7 +84,8 @@ namespace ArcaneBrigade
             {
                 float body = hero.Definition.BodyHeight, feet = DrawnAt(hero).y - body * .5f;
                 float sweep = still || primed ? float.NaN : feet - .3f + Mathf.Repeat(t * 1.1f, 1.7f) * (body + .6f);
-                SkillRim.For(view.BodyRenderer)?.Show(A(c, .95f * breathe * strength), .034f, sweep);
+                bool storm = awake && sim.HeroKitInfo != null && sim.HeroKitInfo.Action == KitAction.Thunder;
+                SkillRim.For(view.BodyRenderer)?.Show(A(c, .95f * breathe * strength), .034f, sweep, .28f, storm ? 1 : 0);
                 SpriteRenderer weapon = view.WeaponRenderer;
                 if (awake && weapon != null && weapon.enabled && weapon.sprite != null)
                 {
@@ -195,6 +196,7 @@ namespace ArcaneBrigade
                 case "PennyBroker":
                     r = still ? .5f : Mathf.Repeat(t * 1.3f, 1); Token(InkToken.Coin, chest + new Vector2(-side * .4f, -.1f + 4 * r * (1 - r) * .3f), .15f, r * 360, .9f, true, 0, Brassy); break;
                 case "StormFencer": // static crawls on the blade
+                    { UnitVisual sv = UnitVisual.Live(hero.Id); if (sv != null && sv.WeaponRenderer != null && fill > .25f) SkillRim.For(sv.WeaponRenderer)?.Show(A(ink.Glow, (.4f + .5f * fill) * strength), .02f, float.NaN, .28f, fill); }
                     if (!still && Mathf.Repeat(t * 4 + fill, 1) < .35f + .4f * fill) Token(InkToken.Bolt, tip + Dir(t * 700) * .08f, .12f + .08f * fill, t * 900, .9f, true);
                     if (primed && !still) Crackle(chest + Vector2.up * .2f, 3, .5f, .3f, .7f, Mathf.FloorToInt(t * 6), ink, true, .025f);
                     break;

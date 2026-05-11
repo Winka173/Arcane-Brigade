@@ -19,7 +19,7 @@ namespace ArcaneBrigade
         private SpriteRenderer[] copies;
         private MaterialPropertyBlock block;
         private int shownFrame = -10;
-        private Color color; private float width, sweepY, sweepWidth;
+        private Color color; private float width, sweepY, sweepWidth, electric;
 
         /// <summary>The rim on this sprite (added the first time).</summary>
         public static SkillRim For(SpriteRenderer target)
@@ -33,8 +33,10 @@ namespace ArcaneBrigade
         /// <param name="tint">Rim colour; its alpha is the rim's strength this frame (the caller breathes it).</param>
         /// <param name="worldWidth">How far the rim stands out from the sprite, in world units.</param>
         /// <param name="sweep">Height of the travelling band of light in world units (NaN: none).</param>
-        public void Show(Color tint, float worldWidth, float sweep, float sweepBand = .28f)
+        /// <param name="crackle">0..1: sparks crawling along the rim (Storm Fencer's static).</param>
+        public void Show(Color tint, float worldWidth, float sweep, float sweepBand = .28f, float crackle = 0)
         {
+            electric = PresentationSettings.ReducedFlashes ? crackle * .4f : crackle;
             if (PresentationSettings.ReducedFlashes) tint.a *= .6f;
             color = tint; width = worldWidth; sweepY = float.IsNaN(sweep) ? -9999 : sweep; sweepWidth = sweepBand;
             shownFrame = Time.frameCount;
@@ -63,7 +65,7 @@ namespace ArcaneBrigade
             bool on = material != null && source != null && source.enabled && source.sprite != null && color.a > .01f && Time.frameCount - shownFrame <= 1;
             Vector3 lossy = transform.lossyScale;
             float sx = Mathf.Max(.0001f, Mathf.Abs(lossy.x)), sy = Mathf.Max(.0001f, Mathf.Abs(lossy.y));
-            if (on) { block.SetFloat("_SweepY", sweepY); block.SetFloat("_SweepWidth", sweepWidth); }
+            if (on) { block.SetFloat("_SweepY", sweepY); block.SetFloat("_SweepWidth", sweepWidth); block.SetFloat("_Electric", electric); }
             for (int i = 0; i < copies.Length; i++)
             {
                 SpriteRenderer c = copies[i];
