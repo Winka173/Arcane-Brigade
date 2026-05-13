@@ -176,11 +176,8 @@ namespace ArcaneBrigade
                 case "SoapSkater": // bubbles drift off behind it as it glides
                     for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * .9f + i / 3f, 1); Token(InkToken.Bubble, feet + Vector2.up * .15f - facing * (.25f + r * .7f) + Vector2.up * r * .3f, .09f + .04f * r, 0, (1 - r) * .7f, true); }
                     break;
-                case "VelvetRegent":
-                    if (primed) Token(InkToken.Seal, head + Vector2.up * .15f, .26f, 0, Mathf.Repeat(t * 3, 1) < .5f ? 1 : .5f, true, 0, GoldPalette);
-                    break;
-                case "NightMaw": // it drools when its meal is ready
-                    if (primed) for (int i = 0; i < 2; i++) { r = Mathf.Repeat(t * 1.2f + i * .5f, 1); Token(InkToken.Drop, chest + new Vector2(side * .3f + (i - .5f) * .1f, -r * .5f), .1f, 180, (1 - r) * .85f, true, 0, ArsenalInk.Wine); }
+                case "VelvetRegent" when primed:
+                    Token(InkToken.Seal, head + Vector2.up * .15f, .26f, 0, Mathf.Repeat(t * 3, 1) < .5f ? 1 : .5f, true, 0, GoldPalette);
                     break;
                 case "IvorySovereign": // a decree in hand
                     Token(InkToken.Page, chest + new Vector2(-side * .42f, -.05f + Bob(1)), .2f + (primed ? .06f : 0), -side * 15, .9f, true); break;
@@ -231,6 +228,23 @@ namespace ArcaneBrigade
                     Token(InkToken.Sand, back + Vector2.up * .2f, .2f, still ? 0 : -Mathf.Floor(t * 2) * 30, .9f, true); break;
                 case "JugglingJester": // three little balls in the air
                     for (int i = 0; i < 3; i++) { float q = still ? i / 3f : Mathf.Repeat(t * 1.2f + i / 3f, 1); Token(InkToken.Star, tip + new Vector2(Mathf.Cos(q * Mathf.PI * 2) * .18f, .25f + Mathf.Abs(Mathf.Sin(q * Mathf.PI * 2)) * .35f), .12f, q * 360, .9f, true, 0, GoldPalette); }
+                    break;
+                case "LoneJelly": // a remembered organ glows inside the gel, beating
+                    { float beat = still ? .7f : .55f + .45f * Mathf.Pow(Mathf.Abs(Mathf.Sin(t * 2.2f)), 6); Token(InkToken.Drop, chest + Vector2.up * .05f, .12f + .06f * beat, 180, .75f * beat, true); Glow(chest, .4f, ink.Light, .35f * beat, true); }
+                    break;
+                case "ButtonCavalier": // one button lit on its chest for each point of poise
+                    for (int i = 0; i < 3; i++) { bool on = i < Mathf.FloorToInt(sim.HeroIdentityCharge + .001f); Vector2 b = chest + new Vector2(side * .12f, .18f - i * .14f); if (on) Token(InkToken.Button, b, .12f, 0, .95f, true); else DimToken(InkToken.Button, b, .1f, .45f); }
+                    break;
+                case "ThornTreasurer": // its crown of collateral thorns, one per thorn held
+                    { int n = Mathf.Clamp(Mathf.FloorToInt(sim.HeroIdentityCharge + .001f), 0, 4); for (int i = 0; i < n; i++) Token(InkToken.Thorn, head + new Vector2((i - (n - 1) * .5f) * .14f, .08f), .13f, 90, .9f, true); }
+                    break;
+                case "VelvetRegent": // a sceptre held at its side, glinting as orders gather
+                    Token(InkToken.Spear, chest + new Vector2(-side * .4f, .05f + Bob(1)), .26f, 90 + (still ? 0 : Mathf.Sin(t * 1.5f) * 6), .9f, true, 0, GoldPalette);
+                    if (!still && Mathf.Repeat(t * .8f, 1) < .2f) Token(InkToken.Glint, chest + new Vector2(-side * .4f, .3f), .12f, 0, 1 - Mathf.Repeat(t * .8f, 1) * 5, true, 0, GoldPalette);
+                    break;
+                case "NightMaw": // its belly grumbles with each meal held: wisps of ink drifting off it
+                    for (int i = 0; i < Mathf.Clamp(Mathf.FloorToInt(sim.HeroIdentityCharge + .001f), 0, 3); i++) { r = Mathf.Repeat(t * .9f + i / 3f, 1); Token(InkToken.Puff, chest + new Vector2(side * (.1f + i * .1f), -.1f + r * .45f), .1f + r * .08f, 0, (1 - r) * .6f, true, 0, ArsenalInk.Violet); }
+                    if (primed) for (int i = 0; i < 2; i++) { r = Mathf.Repeat(t * 1.2f + i * .5f, 1); Token(InkToken.Drop, chest + new Vector2(side * .3f + (i - .5f) * .1f, -r * .5f), .1f, 180, (1 - r) * .85f, true, 0, ArsenalInk.Wine); }
                     break;
                 case "BellDiver":
                     for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 1f + i / 3f, 1); Token(InkToken.Bubble, head + new Vector2(((i * 3) % 3 - 1) * .12f, r * .6f), .07f + .05f * r, 0, (1 - r) * .85f, true, 0, ArsenalInk.Water); }

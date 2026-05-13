@@ -10,6 +10,9 @@ Shader "ArcaneBrigade/HeroRefract"
         _Speed ("Ripple speed", Float) = 1.5
         _Scale ("Ripple scale (world)", Float) = 5
         _Flow ("Flow (world/s)", Vector) = (0, 0, 0, 0)
+        _Darken ("Darken", Float) = 0
+        _Desat ("Desaturate", Float) = 0
+        _Swirl ("Swirl", Float) = 0
     }
     SubShader
     {
@@ -23,7 +26,7 @@ Shader "ArcaneBrigade/HeroRefract"
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            sampler2D _MainTex, _HeroGrab; float _Strength, _Speed, _Scale; float4 _Flow;
+            sampler2D _MainTex, _HeroGrab; float _Strength, _Speed, _Scale, _Darken, _Desat, _Swirl; float4 _Flow;
             struct appdata { float4 vertex : POSITION; float2 uv : TEXCOORD0; fixed4 color : COLOR; };
             struct v2f { float4 pos : SV_POSITION; float2 uv : TEXCOORD0; fixed4 color : COLOR; float4 grab : TEXCOORD1; float2 w : TEXCOORD2; };
             v2f vert (appdata v)
@@ -36,8 +39,12 @@ Shader "ArcaneBrigade/HeroRefract"
                 float m = tex2D(_MainTex, i.uv).a * i.color.a;
                 float tt = _Time.y * _Speed; float2 w = i.w * _Scale - _Flow.xy * _Time.y;
                 float2 n = float2(sin(w.y * 1.7 + tt * 2.1) + sin(w.x * 2.3 - tt * 1.3), cos(w.x * 1.9 + tt * 1.7) + sin(w.y * 2.9 + tt)) * .5;
-                float2 uv = i.grab.xy / i.grab.w + n * _Strength * m;
+                float2 d = i.uv * 2 - 1;
+                float2 swirl = float2(-d.y, d.x) * _Swirl * m * .04;   // a vortex turning round the middle of the mask
+                float2 uv = i.grab.xy / i.grab.w + n * _Strength * m + swirl;
                 fixed3 g = tex2D(_HeroGrab, uv).rgb;
+                g = lerp(g, dot(g, fixed3(.3, .59, .11)).xxx, saturate(_Desat * m));   // time held still: the colour drains
+                g *= 1 - saturate(_Darken * m);                                          // a local eclipse or a maw of ink
                 float edge = saturate(m * (1 - m) * 4);
                 fixed3 col = lerp(g, g * i.color.rgb * 1.2, .3 * m) + edge * i.color.rgb * .3;
                 return fixed4(col, saturate(m * 1.4));

@@ -129,6 +129,7 @@ namespace ArcaneBrigade
             float s = Seed(g); int seed = g.Seed;
             sigScale = SignatureSize * (g.Finale ? 2f : g.Big ? 1.5f : 1); sigReach = g.Finale ? 1.7f : g.Big ? 1.35f : 1;
             if (g.Finale) { FinaleBurst(g, at, p, fade); return; } // each hero's own finale (HeroFinaleVisual)
+            SignatureLayer(g, at, p, fade);
             if (g.Big && !sparse) Spray(InkToken.Glint, at + Vector2.up * .2f, 6, .95f, .17f, p, fade, s + 30, GlintPalette(ink)); // a felling blow sparkles
             if (g.Big) Shock(at + Vector2.up * .15f, p * 2, 1.1f); // and the air bulges where it lands
             Vector2 up = at + Vector2.up * .2f;
@@ -249,6 +250,7 @@ namespace ArcaneBrigade
         /// <summary>Ambient life for the transformations that had none of their own: each reads as that hero at a glance.</summary>
         private void AwakenAura(KitAction action, UnitState hero, Vector2 at, float body, float side)
         {
+            sigScale = 1; sigReach = 1;
             if (sparse && action != KitAction.Casino && action != KitAction.Coronation && action != KitAction.Foreclosure) return;
             Vector2 head = at + Vector2.up * (body * .5f + .3f), feet = at - Vector2.up * body * .5f, chest = at + Vector2.up * body * .1f;
             float r;
@@ -298,7 +300,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < 4; i++) { r = Mathf.Repeat(t * .8f + i / 4f, 1); Token(InkToken.Thorn, feet + new Vector2((i - 1.5f) * .3f, .1f + r * .5f), .2f * (1 - .4f * r), 90, Mathf.Sin(r * Mathf.PI) * .9f, true); }
                     break;
                 case KitAction.Train:
-                    for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 1.8f + i / 3f, 1); Token(InkToken.Puff, head + new Vector2(side * (body * .4f) - side * r * .5f, .1f + r * .6f), .2f + r * .2f, 0, (1 - r) * .85f, true, 0, Juice); }
+                    for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 1.8f + i / 3f, 1); SteamPuff(head + new Vector2(side * (body * .4f) - side * r * .5f, .1f + r * .6f), .2f + r * .2f, (1 - r) * .85f); }
                     break;
                 case KitAction.Coronation:
                     Token(InkToken.Seal, head + Vector2.up * (.12f + Bob(2) * 2), .34f, still ? 0 : Mathf.Sin(t * 2.2f) * 6, .95f, true); // the crown it wears
@@ -330,14 +332,20 @@ namespace ArcaneBrigade
                     for (int i = 0; i < 3; i++) { float tw = still ? .7f : Mathf.Abs(Mathf.Sin(t * 4 + i * 2.1f)); Token(InkToken.Star, head + new Vector2((i - 1) * .35f, .45f + (i % 2) * .15f), .1f + .05f * tw, 0, tw * .9f, true); }
                     break;
                 case KitAction.Kitchen:
-                    for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 1.3f + i / 3f, 1); Token(InkToken.Puff, head + new Vector2((i - 1) * .2f + Mathf.Sin(r * 5 + i) * .1f, r * .6f), .18f + r * .15f, 0, (1 - r) * .8f, true, 0, ArsenalInk.Cotton); }
+                    for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 1.3f + i / 3f, 1); SteamPuff(head + new Vector2((i - 1) * .2f + Mathf.Sin(r * 5 + i) * .1f, r * .6f), .18f + r * .15f, (1 - r) * .8f); }
                     break;
                 case KitAction.Tapestry:
                     for (int i = 0; i < 3; i++) { float a = (still ? 0 : t * 90) + i * 120; Token(InkToken.Knot, chest + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * .6f, Mathf.Sin(a * Mathf.Deg2Rad) * .22f), .2f, a, .9f, true); }
                     break;
                 case KitAction.Foreclosure:
-                    Token(InkToken.Sand, head + Vector2.up * (.25f + Bob(1) * 2), .42f, still ? 0 : Mathf.Min(1, (t - sim.HeroAwakenStarted) / 1.5f) * 180, .95f, true); // the great hourglass turning
+                    if (!HasArt("HourglassStag_Hourglass")) Token(InkToken.Sand, head + Vector2.up * (.25f + Bob(1) * 2), .42f, still ? 0 : Mathf.Min(1, (t - sim.HeroAwakenStarted) / 1.5f) * 180, .95f, true); // the great hourglass turning
                     if (!sparse) for (int i = 0; i < 4; i++) { r = Mathf.Repeat(t * 1.5f + i / 4f, 1); Token(InkToken.Glint, head + new Vector2(((i * 7) % 5 - 2) * .08f, .1f - r * .6f), .08f, 0, (1 - r) * .8f, true, 0, ArsenalInk.Dust); }
+                    break;
+                case KitAction.AcornGun: // spent brass casings kicking out of the gun's side as it cranks
+                    {
+                        Vector2 gun = UnitVisual.TryMuzzle(hero.Id, out Vector2 m) ? m - (hero.Facing.sqrMagnitude > .01f ? hero.Facing.normalized : Vector2.right) * .45f : chest;
+                        for (int i = 0; i < 3; i++) { r = still ? .5f : Mathf.Repeat(t * 3.2f + i / 3f, 1); Token(InkToken.Coin, gun + new Vector2(-side * r * .55f, .15f + 4 * r * (1 - r) * .35f - r * .25f), .09f, r * 720, (1 - r) * .9f, true, 0, Brassy); }
+                    }
                     break;
                 case KitAction.SundaeRain:
                     for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * .9f + i / 3f, 1); Token(InkToken.Glint, at + new Vector2((i - 1) * .4f + Mathf.Sin(r * 5) * .1f, 1.2f - r * 1.4f), .12f, r * 120, Mathf.Sin(r * Mathf.PI) * .9f, true, 0, ArsenalInk.Cyan); }

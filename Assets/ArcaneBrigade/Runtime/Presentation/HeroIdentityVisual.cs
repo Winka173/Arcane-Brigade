@@ -56,7 +56,7 @@ namespace ArcaneBrigade
                 var go = new GameObject("Hero mechanic token " + used); go.transform.SetParent(transform, false);
                 tokens.Add(go.AddComponent<SpriteRenderer>());
             }
-            var r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = color; r.sortingOrder = airborne ? AirTokenOrder : GroundTokenOrder;
+            var r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = color; r.sortingOrder = airborne ? AirTokenOrder : GroundTokenOrder; r.flipX = r.flipY = false;
             spriteMaterial ??= r.sharedMaterial;
             if (glowLight == null && Resources.Load<Shader>("SoftLight") is Shader soft) glowLight = new Material(soft);
             Material want = sprite == MechanicInk.Glow && glowLight != null ? glowLight : spriteMaterial; // glows are light, like the lantern's
@@ -131,7 +131,9 @@ namespace ArcaneBrigade
                     if (simulation.HeroAwakenEnabled) DrawAwakenGauge(); else DrawGauge();
                     strength = full;
                     if (simulation.HeroAwakenEnabled) DrawAwakening();
+                    ArtProps(); // the painted objects of the transformations (HeroArtPropsVisual)
                     Rims(); // after the gauge is placed: the rim outlines this frame's vessel
+                    ShaderLayer(); // each hero's own shader moment (HeroShaderLayer)
                     DrawCastCue();
                 }
                 foreach (var glyph in simulation.HeroIdentityGlyphs)
@@ -309,7 +311,7 @@ namespace ArcaneBrigade
             {
                 float due = sim.HeroIdentityApproach == 0 ? 4 : sim.HeroIdentityApproach == 1 ? 3 : 5, k = Mathf.Clamp01(sim.HeroIdentityBankAge / due);
                 // the debt's hourglass hangs over the stag's head and turns as it comes due (no clock ring round its feet)
-                Token(InkToken.Sand, Head(hero) + Vector2.up * (.2f + Bob(1)), .22f + .06f * k, still ? 0 : 180 * k, .9f, false);
+                if (!HasArt("HourglassStag_Hourglass")) Token(InkToken.Sand, Head(hero) + Vector2.up * (.2f + Bob(1)), .22f + .06f * k, still ? 0 : 180 * k, .9f, false);
             }
             HeroFlair(); PrimedTell(); ChargeCrown(); AwakenBanter();
         }

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf065cecafc49848db491622a798e55, type: 3}
+  m_Name: HeroEffectArtLibrary
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.HeroEffectArtLibrary
+  Entries:
+  - Key: BellDiver_DivingBell
+    Frames:
+    - {fileID: -5164891834067234891, guid: 29396fe85b389ff4db7ca2830d981e63, type: 3}
+    - {fileID: -2446363704807896539, guid: 29396fe85b389ff4db7ca2830d981e63, type: 3}
+    - {fileID: -3983999387843498684, guid: 29396fe85b389ff4db7ca2830d981e63, type: 3}
+  - Key: BonsaiClocksmith_GearBranch
+    Frames:
+    - {fileID: -8292919968507328009, guid: e9bace491caa0f8449c27fdbdd2f52dd, type: 3}
+    - {fileID: 2226695728873059831, guid: e9bace491caa0f8449c27fdbdd2f52dd, type: 3}
+  - Key: CitrusMarshal_Coupling
+    Frames:
+    - {fileID: -3517748934123442054, guid: f3f2a40d0c51d024bb240c648c4d2d12, type: 3}
+    - {fileID: -420399739393674791, guid: f3f2a40d0c51d024bb240c648c4d2d12, type: 3}
+    - {fileID: -1480386678838602446, guid: f3f2a40d0c51d024bb240c648c4d2d12, type: 3}
+  - Key: CopperCauldron_PistonValve
+    Frames:
+    - {fileID: -2966887506993615538, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
+    - {fileID: -4582946222858757407, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
+    - {fileID: 6398825122323963345, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
+    - {fileID: 3379750649861163251, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
+  - Key: HourglassStag_Hourglass
+    Frames:
+    - {fileID: -1135107775256981513, guid: f573fafcf86b0614880814bd4f8cc068, type: 3}
+    - {fileID: -6746956122287442516, guid: f573fafcf86b0614880814bd4f8cc068, type: 3}
+    - {fileID: -3138437111656010530, guid: f573fafcf86b0614880814bd4f8cc068, type: 3}
+  - Key: JugglingJester_Ball
+    Frames:
+    - {fileID: -2350330936102759825, guid: 1a9b34cdb5250b540aa734b6eb8040a2, type: 3}
+    - {fileID: 5595072402100355141, guid: 1a9b34cdb5250b540aa734b6eb8040a2, type: 3}
+  - Key: JugglingJester_Pin
+    Frames:
+    - {fileID: 9143282044852705537, guid: 7051211119cfc1444a7fe8f3d5491a5a, type: 3}
+    - {fileID: 403675991278620140, guid: 7051211119cfc1444a7fe8f3d5491a5a, type: 3}
+  - Key: KiteAdmiral_FleetKite
+    Frames:
+    - {fileID: -8783889774287178718, guid: ffcccf4cfcab6c645a8b7b1adf087efb, type: 3}
+    - {fileID: -2447417326271848945, guid: ffcccf4cfcab6c645a8b7b1adf087efb, type: 3}
+    - {fileID: 7370694630831207924, guid: ffcccf4cfcab6c645a8b7b1adf087efb, type: 3}
+  - Key: MirrorKeeper_Pane
+    Frames:
+    - {fileID: 8100942225912295835, guid: 88b56ccfb3e266147a58da28dbcb6c95, type: 3}
+    - {fileID: -4346926986742597883, guid: 88b56ccfb3e266147a58da28dbcb6c95, type: 3}
+    - {fileID: 7532515650767681664, guid: 88b56ccfb3e266147a58da28dbcb6c95, type: 3}
+  - Key: PetalCitadel_WallBack
+    Frames:
+    - {fileID: 5595068567604961712, guid: 5e8deb4142e0a9740b8894d437b92552, type: 3}
+    - {fileID: -4565994262996560741, guid: 5e8deb4142e0a9740b8894d437b92552, type: 3}
+    - {fileID: 7880889644638986521, guid: 5e8deb4142e0a9740b8894d437b92552, type: 3}
+  - Key: PetalCitadel_WallFront
+    Frames:
+    - {fileID: -4937897412325856031, guid: f612a529ea5749a4fb3010b83d1a8dfc, type: 3}
+    - {fileID: -2232303510115471451, guid: f612a529ea5749a4fb3010b83d1a8dfc, type: 3}
+    - {fileID: 718226899875924638, guid: f612a529ea5749a4fb3010b83d1a8dfc, type: 3}
+  - Key: Postmaster_Barrels
+    Frames:
+    - {fileID: 2844760257555651763, guid: e74a5c8b441a3ac4a9ff1664462f55db, type: 3}
+    - {fileID: 7226496817120001174, guid: e74a5c8b441a3ac4a9ff1664462f55db, type: 3}
+    - {fileID: 5516257032490190571, guid: e74a5c8b441a3ac4a9ff1664462f55db, type: 3}
+  - Key: SupperMortar_PotLid
+    Frames:
+    - {fileID: -6737817905541863951, guid: 0fbea5bb8a48fc344b64a4aedfc0ce40, type: 3}
+    - {fileID: 1936370210617876566, guid: 0fbea5bb8a48fc344b64a4aedfc0ce40, type: 3}
+  - Key: TreasureAcorn_Crank
+    Frames:
+    - {fileID: 3506927606890602250, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
+    - {fileID: -2521096833678503520, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
+    - {fileID: -5758584293124371005, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
+    - {fileID: -6372692170607012572, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}

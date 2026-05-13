@@ -254,7 +254,8 @@ namespace ArcaneBrigade
                 }
                 case KitAction.Mirrors:
                 {
-                    Sprite pane = ArsenalArtwork.Frame(kit.ArtKey, 0);
+                    int stored = sim.HeroIdentityStored; if (stored < mirrorStored) mirrorReturnAt = t;
+                    Sprite pane = HeroEffectArtLibrary.Frame("MirrorKeeper_Pane", t - mirrorRippleAt < .3f ? 1 : t - mirrorReturnAt < .3f ? 2 : 0) ?? ArsenalArtwork.Frame(kit.ArtKey, 0);
                     for (int i = 0; i < 4; i++)
                     {
                         float a = (still ? 0 : t * 70) + i * 90;
@@ -289,7 +290,9 @@ namespace ArcaneBrigade
                         Vector2 hand = DrawnAt(friend) + Vector2.up * friend.Definition.BodyHeight * .15f;
                         Vector2 sky = DrawnAt(friend) + new Vector2(still ? .25f : .25f + Mathf.Sin(t * 1.7f + i * 1.3f) * .18f, friend.Definition.BodyHeight * .5f + .95f + Bob(i + 2) * 2);
                         Thread(hand, sky + Vector2.down * .2f, .85f, 11 + i);
-                        if (kite != null) { var r = Place(kite, sky, Vector2.one * .62f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 12, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (r != null) r.flipX = false; }
+                        float run = friend.Position.x - friend.PreviousPosition.x; Sprite fleetKite = HeroEffectArtLibrary.Frame("KiteAdmiral_FleetKite", Mathf.Abs(run) < .002f ? 0 : run < 0 ? 1 : 2);
+                        if (fleetKite != null) { var fr = Place(fleetKite, sky, Vector2.one * .62f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 6, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (fr != null) fr.flipX = false; }
+                        else if (kite != null) { var r = Place(kite, sky, Vector2.one * .62f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 12, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (r != null) r.flipX = false; }
                         else Token(InkToken.Spark, sky, .4f, 0, .9f, true);
                         if (!sparse) for (int k = 0; k < 2; k++) { float q = Mathf.Repeat(t * .9f + k * .5f + i * .2f, 1); Token(InkToken.Glint, sky + new Vector2(-.3f - q * .5f, -.15f - q * .25f), .14f * (1 - q), 0, (1 - q) * .7f, true, 0, ArsenalInk.Water); }
                     }
@@ -313,8 +316,8 @@ namespace ArcaneBrigade
                 }
                 case KitAction.Circus:
                 {
-                    // three balls juggled over the jester's head
-                    for (int i = 0; i < 3; i++)
+                    // three balls juggled over the jester's head (the painted balls and pins take over when they exist)
+                    if (!HasArt("JugglingJester_Ball")) for (int i = 0; i < 3; i++)
                     {
                         float q = still ? i / 3f : Mathf.Repeat(t * 1.4f + i / 3f, 1);
                         Vector2 ball = Head(hero) + new Vector2(Mathf.Cos(q * Mathf.PI * 2) * .32f, .3f + Mathf.Abs(Mathf.Sin(q * Mathf.PI * 2)) * .45f);
@@ -426,6 +429,7 @@ namespace ArcaneBrigade
                     var r = Place(prop, feet + Vector2.up * .05f, Vector2.one * Mathf.Max(.8f, body * 1.1f), 0, new Color(1, 1, 1, strength), false);
                     if (r != null) r.flipX = side < 0; break;
                 }
+                case KitAction.Citadel when HasArt("PetalCitadel_WallFront"): break; // its painted walls (HeroArtProps)
                 case KitAction.Throne: case KitAction.Citadel: case KitAction.Eclipse:
                 {
                     var r = Place(prop, at + Vector2.up * body * .1f, Vector2.one * body * 1.6f, 0, new Color(1, 1, 1, strength), false);
@@ -442,7 +446,9 @@ namespace ArcaneBrigade
                 case KitAction.DivingBell:
                 {
                     // the hero rides inside the bell: drawn over the body, a little larger
-                    var r = Place(prop, at + Vector2.up * body * .05f, Vector2.one * Mathf.Max(.85f, body * 1.3f), 0, new Color(1, 1, 1, strength), true);
+                    bool ramming = (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f;
+                    Sprite bell = HeroEffectArtLibrary.Frame("BellDiver_DivingBell", ramming ? 1 : Mathf.Repeat(t, 1.6f) < .4f ? 2 : 0) ?? prop;
+                    var r = Place(bell, at + Vector2.up * body * .05f, Vector2.one * Mathf.Max(.85f, body * 1.3f), 0, new Color(1, 1, 1, strength), true);
                     if (r != null) r.flipX = side < 0; break;
                 }
                 default:

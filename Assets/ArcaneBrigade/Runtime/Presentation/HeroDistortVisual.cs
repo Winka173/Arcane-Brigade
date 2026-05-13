@@ -54,7 +54,7 @@ namespace ArcaneBrigade
         private void EndWarps() { for (int i = warpUsed; i < warps.Count; i++) warps[i].enabled = false; }
 
         /// <summary>A refracting piece: mask stretched to size, turned by angle; tint.a is how strongly it shows.</summary>
-        private void Refract(Sprite mask, Vector2 at, Vector2 size, float angle, Color tint, float bend, float flowX = 0, float flowY = 0)
+        private void Refract(Sprite mask, Vector2 at, Vector2 size, float angle, Color tint, float bend, float flowX = 0, float flowY = 0, float darken = 0, float desat = 0, float swirl = 0)
         {
             if (!WarpReady || tint.a <= .01f || Load(ref refractMaterial, "HeroRefract") == null) return;
             SpriteRenderer r = NextWarp(); r.sharedMaterial = refractMaterial; r.sprite = mask; r.color = A(tint, tint.a * strength); r.sortingOrder = WarpOrder;
@@ -63,6 +63,7 @@ namespace ArcaneBrigade
             r.transform.localScale = new Vector3(size.x / Mathf.Max(.001f, b.x), size.y / Mathf.Max(.001f, b.y), 1);
             warpBlock ??= new MaterialPropertyBlock(); warpBlock.Clear();
             warpBlock.SetFloat("_Strength", still ? bend * .3f : bend); warpBlock.SetVector("_Flow", new Vector4(flowX, flowY, 0, 0));
+            warpBlock.SetFloat("_Darken", darken); warpBlock.SetFloat("_Desat", desat); warpBlock.SetFloat("_Swirl", still ? 0 : swirl);
             r.SetPropertyBlock(warpBlock);
         }
         /// <summary>A material layer laid exactly over a sprite already drawn (a jelly, a mirror pane).</summary>

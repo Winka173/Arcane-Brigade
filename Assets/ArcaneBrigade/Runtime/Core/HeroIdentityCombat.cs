@@ -85,6 +85,8 @@ namespace ArcaneBrigade
         public int HeroIdentityPetal(int index) => index >= 0 && index < catalog.HeroPetals.Length ? catalog.HeroPetals[index] : 0;
         public int HeroIdentityApproach => IdentityApproach;
         public int HeroIdentitySpecimens => identitySpecimens.Count;
+        /// <summary>The i-th recorded species (Archive Curator's Living Exhibit draws them as paper puppets).</summary>
+        public UnitDefinition HeroIdentitySpecimen(int i) => i >= 0 && i < identitySpecimens.Count ? identitySpecimens[i] : null;
         public float HeroIdentityCharge => identityCharge;
         /// <summary>How much of the hero's own resource one gauge tier takes (three tiers transform).</summary>
         /// <summary>Comfortable gauges (18/10/2026): every hero's tier needs the same points; the recipe (HeroGauge) sets the pace.</summary>
