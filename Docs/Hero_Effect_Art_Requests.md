@@ -1,5 +1,10 @@
 # Hero effect art requests (24/10/2026)
 
+**Delivered 24/10/2026:** 14 transparent sheets / 40 painted frames, 256 px per cell, imported and sliced in Unity.
+See [delivery and filenames](Hero_Effect_Art_Delivery.md), [prompts/references](Hero_Effect_Art_Manifest.json),
+[PNG checks](Hero_Effect_Art_Verification.json) and [Unity import verification](Hero_Effect_Art_Unity_Verification.txt).
+These are the physical-object art assets; replacing runtime token stand-ins is the subsequent integration step.
+
 What `Docs/Hero_Effect_Suggestions.md` asks for that code alone cannot paint. The light, steam, water, electricity, rain,
 sonar, seams, rims, finales and waiting tells are already drawn in code (`HeroSignatureVisual`, `HeroFinaleVisual`,
 `HeroFlairVisual`, `SkillRim`). The items below are physical objects that need painted frames.

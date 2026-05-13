@@ -1,0 +1,1 @@
+14 sheets / 40 sprites imported and verified in Unity; equal 256x256 cells; NPOT preserved; alpha enabled; no mipmaps; bilinear; clamp; max texture 1024. Runtime effect replacement is a separate integration step.

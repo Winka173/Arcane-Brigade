@@ -1,0 +1,179 @@
+{
+  "tool": "painted",
+  "cell_size": 256,
+  "jobs": [
+    {
+      "name": "TreasureAcorn_Crank",
+      "hero": "TreasureAcorn",
+      "frames": 4,
+      "source": "ArtSource/exec-63bffa89-b42a-4b0b-b54a-14505d84ae92.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/TreasureAcorn_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for Treasure Acorn's awakening acorn machine gun. Match its layered hand-painted storybook texture, warm confident ink contour, worn brass, dark teal enamel, cocoa acorns and wine-red cloth, highlights from upper left. This is a physical painted object, not an effect icon.\nDraw ONE horizontal strip of FOUR equal square cells, left to right, transparent RGBA, intended delivery 1024x256 (256px per cell). One complete machine gun in each cell, lying horizontally pointing right, same design, same size, same position, same barrel angle and fixed housing silhouette across all frames. No hero, hands, text, labels, cell dividers, ground, cast shadow, pools, circular auras or background.\nAnimate ONLY the side crank and feeding acorns: frame 1 crank at its reference angle; frame 2 a quarter turn onward; frame 3 a second quarter turn, with ONE tiny empty acorn shell flipping upward just above the gun; frame 4 third quarter turn. The feed drum/hopper gives a tiny shake while the main gun stays absolutely fixed. Keep the shell within its cell. The crank lever rotates visibly around the same axle; all other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides, including the ejecting shell. Isolate every frame without overlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "revision_prompt": "Use case: precise-object-edit. Edit the FIRST attached four-frame sprite strip, keeping all four guns' housing, muzzle, size, ink rendering, colors and placement unchanged. The second image is its original design reference.\nCorrect ONLY the rotating side crank and the tiny ejected shell. The four successive crank poses MUST be visibly different and show a quarter turn each: cell 1 handle ABOVE its fixed left-side crank hub (12 o'clock); cell 2 handle to the RIGHT of the hub (3 o'clock); cell 3 handle BELOW the hub (6 o'clock); cell 4 handle to the LEFT of the hub (9 o'clock). The hub is the same brass pivot beside the rear grip in every frame. Keep the lever short enough that it fits each cell. Do not rotate the gun or move the fixed muzzle.\nIn cell 3 ONLY, above the feed drum, draw one tiny hollow EMPTY acorn cup shell tumbling out, clearly a brown open cup rather than an entire acorn. Other cells have no ejected shell.\nFour equal cells in one horizontal row, identical fixed bodies. Genuinely transparent RGBA background, clean generous outer and between-frame margins, no text, grid, shadows, hands or characters. Match the existing painted brass and teal storybook art exactly.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/TreasureAcorn_Crank.png",
+      "anchor": "right_bottom",
+      "correction_prompt": "Use case: precise-object-edit. FIRST image is a four-cell animation strip. Change ONLY the crank in cell TWO (the gun between 25% and 50% of the canvas width). Leave cells ONE, THREE and FOUR and every gun housing, muzzle, drum, grip and shell completely unchanged.\nIn CELL TWO, the red crank currently extends to the LEFT of the brass axle. That is wrong: remove that left-pointing lever, and paint the lever extending HORIZONTALLY TO THE RIGHT from the SAME axle. Put its wine-red cylindrical grip visibly OVER the small teal rear panel of the gun, immediately to the RIGHT of the axle, so it clearly points 3 o'clock. It is acceptable and REQUIRED for that rightward crank lever to overlap the teal body. Do NOT move the lever back to the left to keep it outside the gun. The pivot stays fixed.\nThe four crank positions then read UP, RIGHT, DOWN, LEFT. This is the only requested correction. Preserve exact hand-painted brass/teal appearance, fixed guns and the hollow shell in cell three. Genuinely transparent RGBA background, no text or grid or added objects. Preserve the original four-cell canvas and empty margins."
+    },
+    {
+      "name": "Postmaster_Barrels",
+      "hero": "Postmaster",
+      "frames": 3,
+      "source": "ArtSource/exec-065a64df-ec66-4477-8002-0bc1e1ded68b.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/Postmaster_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Paint a production animation sprite strip for Arcane Brigade, matching the attached Postmaster awakening gun exactly in hand-painted storybook rendering, warm ink contours, aged brass and gilt, midnight teal barrel mount, cream paper and deep wine-red sealing wax (wax is a material, never red glow).\nSubject: ONLY the front six-barrel sorting-gatling assembly of the reference weapon, with its brass retaining collars and the little sealed envelopes peeking at the barrel mouths. No rear mailbox, no grip, no character or hands.\nTHREE equal square cells in ONE horizontal row; intended finished canvas 768x256, 256px per frame. Every cell shows the same assembly side/front three-quarter view aiming right, same scale, anchor and fixed rear mounting collar. Frame 1: left/upper pair of barrels recoil slightly backwards and a small dark teal ink puff escapes those mouths. Frame 2: middle pair recoils and puffs, first pair returns. Frame 3: right/lower pair recoils and puffs, other pairs return. This is alternating local barrel recoil, NOT rotating or changing the design. Keep puffs small and attached to mouths.\nTrue RGBA transparent background. Generous fully transparent margin of at least 12% on all sides within each cell. No overlap, grid, text, letters or numbers, background, ground or drop shadows. Readable physical metal forms, not flat stickers or glowing geometric icons.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/Postmaster_Barrels.png",
+      "anchor": "left_bottom"
+    },
+    {
+      "name": "CopperCauldron_PistonValve",
+      "hero": "CopperCauldron",
+      "frames": 4,
+      "source": "ArtSource/exec-bcc6c22a-4b64-4e55-b5e0-5fe74bdabd8c.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/CopperCauldron_PistonValve.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/CopperCauldron_Engine_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade production animation sheet, physical steam-engine hardware, matched exactly to the attached Copper Cauldron awakening locomotive's hammered copper, aged brass collars, wine-red enamel panels, warm ink contours and layered storybook painterly shading.\nDraw ONLY a small side-mounted piston cylinder and its connected pressure-valve lid, detached from the locomotive body. A single readable horizontal brass piston rod enters a copper cylinder; a small domed brass pressure valve sits above it. No wheels, locomotive front, character, hands, floor or shadow.\nFOUR equal square frames LEFT TO RIGHT in ONE horizontal strip, intended output 1024x256 (256px per cell). Same fixed cylinder, mounting points, size and side-view angle in all frames. Frame 1 rod extended, valve seated. Frame 2 rod halfway in, valve lid lifted slightly, tiny cream steam curl under lid. Frame 3 rod fully in, valve lid still lifted and a second tiny steam wisp. Frame 4 rod halfway out, lid seated again. Only rod travel and lid lifting change; cylinder never moves. Brass highlights from upper left; steam is local cream, never glowing danger red.\nTrue RGBA transparent background, generous 12% transparent margin in each cell on every side including the raised lid. No letters, numbers, cell lines, scene background, aura circles or ground pools. Four frames of ONE identical design, not four different engines.",
+      "anchor": "wine"
+    },
+    {
+      "name": "CitrusMarshal_Coupling",
+      "hero": "CitrusMarshal",
+      "frames": 3,
+      "source": "ArtSource/exec-f7bef03c-dc36-4008-bbe0-131bb8c71159.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/CitrusMarshal_Coupling.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/CitrusMarshal_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade physical animation sprite strip. Style/design reference is the attached Citrus Marshal train: hand-painted storybook, warm ink line, lacquered teal, orange peel enamel, aged brass, creamy flower filigree.\nPaint ONLY the small coupling connecting two carriages: two short matching brass carriage mounting plates at the left and right and an articulated brass hook/three-link chain between them, with tiny citrus-leaf ornamental caps. No train cars, wheels, rails, ground, shadows, characters or hands.\nTHREE equal square cells in ONE horizontal row, intended 768x256. Frame 1 SLACK: mounting plates at the fixed same positions, the chain hangs in a relaxed U. Frame 2 TAUT: same mounting plates, chain drawn nearly straight horizontally. Frame 3 STRETCHED around a curve: the same links pulled diagonally with the hook swaying slightly, a visibly tense connection. Do not add or remove links; maintain identical design, size of each link and side-view perspective. All frames centered on the coupling's central connection with equal empty margins of at least 12% in every cell.\nReal transparent RGBA background. No text, numbers, grid lines, painted background, glow rings, red danger glow or dust clouds. Metallic brass and warm enamel should read at very small game size.",
+      "anchor": "top_center"
+    },
+    {
+      "name": "MirrorKeeper_Pane",
+      "hero": "MirrorKeeper",
+      "frames": 3,
+      "source": "ArtSource/exec-ff02ac95-defa-4779-a585-252958c3d210.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/MirrorKeeper_Pane.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/MirrorKeeper_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story, game animation sprite sheet. Match the attached Mirror Keeper awakening mirror's exact ornate gilded frame, creamy carved scrollwork, teal diamond finial, wine-red velvet details, turquoise glass and warm layered hand-painted storybook rendering.\nTHREE equal square cells in ONE horizontal strip, intended finished size 768x256. A complete single small standing mirror pane in each cell, upright front three-quarter view, identical frame design, scale, placement, tassels and feet. The metal frame and feet remain pixel-aligned in concept across all frames. Change ONLY the GLASS:\n1 still turquoise reflective glass with a soft upper-left silver reflection;\n2 glass elastically dents inward around a small off-center incoming impact, with a shallow concave ripple, no cracked or broken frame;\n3 the same intact glass releases a bright SILVER-cream reflected streak angled to the right, a short narrow streak kept inside this cell, while frame stays fixed.\nNo extra mirrors, person, weapon, projectile object, environment reflection scene, text, numbers, labels, grid, ground, cast shadow or glow ring. Genuine RGBA transparent background and at least 14% empty transparent margin on EVERY side of EACH cell, including the return streak. Brass/cream/teal light only, never glowing red. Clear simple silhouette for a 256px frame used much smaller in game.",
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "PetalCitadel_WallFront",
+      "hero": "PetalCitadel",
+      "frames": 3,
+      "source": "ArtSource/exec-e85fa489-e051-4b8d-b82e-8f9081240d46.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PetalCitadel_WallFront.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/PetalCitadel_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade physical animation sheet for Petal Citadel. Reference image supplies the castle's cream ivory, dark wine-red petal inlays, aged brass/gilt edging, tiny teal details and hand-painted storybook ink rendering. Do not reproduce the whole castle.\nPaint ONLY the LOW FRONT wall-petal layer: a shallow curved barricade made of three broad overlapping petal-shaped panels, ivory and wine-red velvet-like surfaces in brass frames, with small floral hinges at its left and right foot. A real physical petal wall, NOT an aura ring. No towers, central gate, floor, bridge, circle, character or background.\nTHREE equal square cells, ONE horizontal row, intended 768x256. Front-facing slightly top-down three-quarter view. Exactly the same wall, same scale, same base hinge line, same side hinges and ornament in every cell.\nFrame 1 CLOSED: center petals overlap in a snug shallow cup.\nFrame 2 FIRING SLIT: center pair hinge a little apart leaving a narrow transparent shooting slit while side mounts stay fixed.\nFrame 3 OPEN: the same petals fold outward/down to make a broad opening. Do not add or remove petals or draw a new design.\nPosition this LOW FRONT layer in the lower-middle of its cell, reserving transparent space above for the separate taller BACK layer. Generous 14% fully transparent margin on all sides of every cell even when open. True transparent RGBA, no text, grid, letters, numbers, cast shadows, glows, ground pools or full-screen effects. Red is cloth material only, no red light.",
+      "anchor": "bottom_center",
+      "registration_group": "PetalCitadelWall"
+    },
+    {
+      "name": "PetalCitadel_WallBack",
+      "hero": "PetalCitadel",
+      "frames": 3,
+      "source": "ArtSource/exec-df1e0bb0-ab3e-4063-b06f-d1efbecf9f50.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PetalCitadel_WallBack.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PetalCitadel_WallFront.png",
+        "Assets/ArcaneBrigade/Art/Arsenal/PetalCitadel_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Companion production sprite strip for the attached FIRST image (the LOW FRONT wall-petal animation). Paint its matching TALL BACK layer, not another copy of the front layer. The second reference is the original Petal Citadel castle.\nMatch the first sheet's cream ivory, dark wine-red physical petal surfaces, teal hinges, gilded brass leaf edging, confident warm ink and layered storybook shading EXACTLY. Draw only a taller, shallow convex rear fan of three overlapping petal-wall panels which will sit BEHIND a small hero. It has a central taller pointed petal and two slightly lower side petals, open transparent space at its lower center. No foreground low curved sill, front gate or full castle. Both layers must share the same width, side mounting points and base hinge level.\nTHREE equal square cells in ONE horizontal row, same whole-sheet composition and base line as the first reference, intended 768x256. Frame 1 rear petals closed together; frame 2 a small firing slit opens between the central rear petals; frame 3 the same petals hinge outward to an open fan. Fixed mounts, same design, constant scale and camera. Taller rear layer rises ABOVE the low front layer when overlaid. No floor, bridge, towers, character, shadow, text, numbers, grid, glowing aura or ground ring.\nGenuinely transparent RGBA, at least 12% empty transparent margin in each cell on all sides in every pose. Wine-red is a matte material, never emitted red light.",
+      "anchor": "bottom_center",
+      "registration_group": "PetalCitadelWall"
+    },
+    {
+      "name": "JugglingJester_Pin",
+      "hero": "JugglingJester",
+      "frames": 2,
+      "source": "ArtSource/exec-c4dbe7a1-8e72-440f-a919-9735e5307cbc.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/JugglingJester_Pin.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/JugglingJester_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Juggling Jester physical club-pin animation. Use ONLY ONE of the two matching club pins from the attached awakening reference. Preserve its wine-red and cream painted wood, alternating striped grip, aged brass collars, tiny hanging brass bell, teal scalloped collar and four-point glint motif. Same layered hand-painted storybook shading and warm ink.\nONE horizontal strip of TWO equal square cells, intended 512x256. One SINGLE isolated club in each cell, no crossed pair. Frame 1 club lies horizontally with the narrow grip at left and bulbous head pointing right. Frame 2 the exact SAME club has spun end over end 180 degrees in the image plane: bulbous head left, grip right, the painted stripes, gold collars and bell rotate with the club. Same length, scale, fixed center and viewing angle, no redesign. A tiny bell tilt is fine; no motion trails needed.\nGenuinely transparent RGBA, each club fully contained within its own cell with at least 15% transparent margin on all sides. No hands, hero, ball, text, labels, numbers, cell lines, floor, cast shadows, ground pools, aura rings, neon or danger-red glow. Readable at small gameplay scale.",
+      "anchor": "center"
+    },
+    {
+      "name": "JugglingJester_Ball",
+      "hero": "JugglingJester",
+      "frames": 2,
+      "source": "ArtSource/exec-cafbbcfc-f5fe-4451-8f01-2cdcdaf4d3e1.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/JugglingJester_Ball.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/JugglingJester_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Juggling Jester physical juggling BALL animation, using the attached club pin as MATERIAL AND STYLE reference only. Draw a single small soft padded leather juggling ball with alternating deep wine-red and cream curved panels, thin warm brass seam piping and one tiny teal patch. Soft storybook shading, warm ink, aged handmade materials, highlight upper left. No club, bells, handle or character.\nTWO equal square cells side by side in ONE horizontal strip, intended 512x256. Frame 1 the ball is round, centered over its contact baseline. Frame 2 the SAME ball has just landed and is visibly squashed vertically about 30% and widened about 20%, with the exact same panel layout compressed with it. Keep the same volume impression, identity, palette and scale. Both ball bottoms share the same baseline. There is NO ground, no contact shadow and no impact effect around it; only the painted object.\nReal transparent RGBA background with at least 15% transparent margin on every side inside EACH cell. No text, letters, numbers, badges, cell lines, wrapper, stars, glowing red, rings, background or other objects. Clean readable silhouette at tiny game size.",
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "KiteAdmiral_FleetKite",
+      "hero": "KiteAdmiral",
+      "frames": 3,
+      "source": "ArtSource/exec-2195769d-67a0-416a-b5f3-8f518a8bf5e2.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/KiteAdmiral_FleetKite.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/KiteAdmiral_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Kite Admiral fleet-kite animation. The attached image is the EXACT kite design: one small teal-and-cream box kite with thin bamboo/brass-colored spars, brass corner caps, tied wine-red fabric joints, cream and wine ribbon tails trailing left, a tiny brass medallion at the right nose. Reproduce this hand-painted warm-ink storybook object, not a diamond kite or a fleet of many kites.\nTHREE equal square cells in ONE horizontal row, intended 768x256. SAME single kite, same size, view and central anchor in every cell. Frame 1 level as in the reference, nose right and tails left. Frame 2 banks/tilts gently LEFT about 12 degrees around the SAME central anchor, ribbons lag a little. Frame 3 banks RIGHT about 12 degrees around the SAME central anchor, ribbons lag the other way. This is a small banking animation, not turning around, not mirrored designs, not changing the spars or fabric panels. The kite retains its length and volume.\nTrue transparent RGBA background. Every complete kite and ribbon tail stays inside its cell with at least 14% clear transparent margin on every side. No hands, hero, string across other cells, clouds, scene, ground, cast shadow, text, numbers, grid, aura ring or red emitted light.",
+      "anchor": "center"
+    },
+    {
+      "name": "BellDiver_DivingBell",
+      "hero": "BellDiver",
+      "frames": 3,
+      "source": "ArtSource/exec-ff4d29bf-0ef3-4885-af31-3ed4240388ce.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/BellDiver_DivingBell.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BellDiver_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Bell Diver physical DIVING BELL animation. Match the attached exact brass helmet-shaped diving bell: hammered brass sphere, three teal glass portholes, rivets, heavy flared lower rim, dark flexible hose curving over its upper left, small ring on top. Layered hand-painted storybook shading and warm confident ink, cream upper-left highlights.\nTHREE equal square cells in ONE horizontal strip, intended 768x256. Same bell, same scale, fixed top ring and lower-rim anchor, same three-quarter view facing RIGHT in every cell.\nFrame 1 still intact bell.\nFrame 2 ramming: ONLY the right/front face and porthole are pressed inward slightly by impact, a small elastic squash, not a broken or redesigned helmet. Keep the hose, top ring and back fixed.\nFrame 3 restored bell venting a few small translucent teal/cream bubbles from beneath the lower rim; bubbles stay near the rim and within the frame, not a surrounding halo.\nNo character inside, diver, hands, floor, water surface, scene, cast shadow, text, labels, cell grid, radial rings, full-screen effect or red glow. Genuinely transparent RGBA. Every frame includes at least 14% completely transparent margin on all four sides, including bubbles. Readable small physical object.",
+      "anchor": "top_center"
+    },
+    {
+      "name": "BonsaiClocksmith_GearBranch",
+      "hero": "BonsaiClocksmith",
+      "frames": 2,
+      "source": "ArtSource/exec-697afc27-27d0-42c5-a805-c31b52ab78fe.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/BonsaiClocksmith_GearBranch.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/BonsaiClocksmith_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Bonsai Clocksmith physical GEAR BRANCH animation. Match the attached bonsai's gnarled warm bark, rounded teal-green leaves with gold veins, ivory small flowers, aged brass clockwork and warm ink painterly storybook finish.\nDraw ONLY one short horizontal woody branch segment bearing a small clearly readable EIGHT-TOOTH brass cog wheel at its center, with a few teal-green leaves and one tiny ivory blossom. No full tree, pot, clock face, clock hands, pedestal, person, shadow or ground.\nTWO equal square cells side by side in ONE row, intended 512x256. Same branch silhouette, exact same scale, position, leaves, blossom and fixed central gear axle in both frames. Frame 1 the eight-tooth gear has one tooth pointing straight up. Frame 2 ONLY the brass gear rotates HALF A TOOTH (22.5 degrees), so a gap between two teeth now points up. Put one tiny dark-teal inset on one gear tooth so its small rotation is readable; that inset rotates with the gear. Everything else stays perfectly still.\nGenuinely transparent RGBA background, at least 15% empty transparent margin on all sides of EACH cell, no cropping or overlap. No text, letters, numbers, grid, symbols floating around it, aura rings or red light. Physical dimensional metal and bark, not flat vector/sticker art.",
+      "anchor": "center"
+    },
+    {
+      "name": "SupperMortar_PotLid",
+      "hero": "SupperMortar",
+      "frames": 2,
+      "source": "ArtSource/exec-c8230cd8-cb10-49d0-a7b7-8053a577b31d.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/SupperMortar_PotLid.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/SupperMortar_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Supper Mortar physical POT LID animation. Match ONLY the little round porcelain pot lid on top of the attached six-barrel kitchen weapon: creamy porcelain with cobalt-blue hand-painted flower sprigs, a wide aged brass rim and one round brass knob. Warm ink contours, layered soft painterly storybook shading, upper-left light. Do not draw the weapon or its six barrels.\nTWO equal square cells in ONE horizontal strip, intended finished 512x256. Same small lid in three-quarter side view and a very short matching pot-neck/seat rim beneath it, no full pot. The seat rim is a fixed physical mounting part and stays exactly aligned in both cells.\nFrame 1 lid SEATED flat on the rim, calm, no steam.\nFrame 2 the identical lid rattles UP a little and tilts about 8 degrees, leaving a visible small gap above the unchanged seat; a small soft cream steam curl escapes through that gap. Same knob, flowers, diameter and brass edge. Do not enlarge or redesign the lid. Steam stays close under the lid.\nTransparent RGBA background with at least 15% totally transparent margin in each cell on every side including steam. No character, hands, gun, ground, cast shadow, text, numbers, grid, glowing rings, pools, sparks or danger-red light.",
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "HourglassStag_Hourglass",
+      "hero": "HourglassStag",
+      "frames": 3,
+      "source": "ArtSource/exec-0750c04f-ec49-4471-b672-10b0129f7fb4.png",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/HourglassStag_Hourglass.png",
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/HourglassStag_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Arcane Brigade Hourglass Stag physical hourglass animation. The attached awakening art is the exact design reference: ornate aged brass frame, dark teal caps with gold foliage, paired ivory antler supports, diamond finials and two hanging round brass charms. Warm ink outlines and layered hand-painted storybook finish.\nIMPORTANT: draw the glass EMPTY in every frame. NO sand, stars, particles, stream or glowing fill inside: the game draws the sand by code. The two bulb windows should be nearly transparent with only faint cool glass edge reflections and a subtle pale teal tint, leaving room to see code-drawn sand.\nTHREE equal square cells in ONE horizontal strip, intended finished 768x256. One COMPLETE same hourglass per cell, identical design and size, centered on the same midpoint. Frame 1 UPRIGHT. Frame 2 the whole hourglass TIPS clockwise about 45 degrees about that midpoint. Frame 3 completely INVERTED 180 degrees, with its antler tops now pointing down. Rotate the same object, not three redesigned hourglasses. Keep every antler, charm and finial entirely inside its cell in every pose.\nAt least 16% empty transparent margin around every cell; true RGBA background, no frame lines, text, numbers, ground, cast shadow, radial auras or full-screen effect. Ivory/brass/teal light only, no danger-red glow. Physical object used small over a hero's head.",
+      "anchor": "center"
+    }
+  ]
+}
