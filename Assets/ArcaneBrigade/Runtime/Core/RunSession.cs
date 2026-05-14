@@ -439,6 +439,8 @@ namespace ArcaneBrigade
                         if (emphasis) pool.Add(candidate);
                     }
                 AddWaitingEnemies(pool, scaling); // enemy roster v2: only species whose art exists, in their own zone
+                EnemyVarietyRun.EndlessTraits(pool, State.Wave, State.Endless, Clone<UnitDefinition>);
+                CombatCatalog.MapElite = EnemyVarietyRun.MapElite(catalog, State.Wave, State.Endless, enemy => BuildEnemy(enemy, scaling));
                 CombatCatalog.EnemyPool = pool.ToArray();
                 var empowered = new List<UnitDefinition>();
                 foreach (UnitDefinition candidate in pool)

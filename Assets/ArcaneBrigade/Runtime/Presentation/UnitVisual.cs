@@ -146,6 +146,8 @@ namespace ArcaneBrigade
         public SpriteRenderer BodyRenderer => body;
         public SpriteRenderer WeaponRenderer => weapon;
         public const float GunGirth = .34f;
+        /// <summary>The cool violet every enemy body leans toward (allies keep their warm amber, cream, brass and teal).</summary>
+        public static readonly Color HostileCast = new Color(.72f, .62f, 1f, 1f);
         public static Vector3 FitCompanionWeapon(Vector3 scale, Rect ink, float bodyHeight, bool melee)
         {
             float longest = Mathf.Max(ink.width * scale.x, ink.height * scale.y);
@@ -594,6 +596,9 @@ namespace ArcaneBrigade
                 float hurtRed = Mathf.Clamp01(1f - (simulationTime - state.LastHit) / 0.24f);
                 if (hurtRed > 0 && state.LastHit > 0) body.color = Color.Lerp(body.color, new Color(1f, 0.3f, 0.26f), hurtRed * (Mathf.Repeat(simulationTime * 16f, 1f) < 0.5f ? 0.8f : 0.35f));
             }
+            // the hostile side reads cool at a glance (owner 24/10/2026: many-coloured enemies were hard to tell from friends):
+            // every enemy body leans a little toward violet, bosses less so their own colours stay
+            if (state.Faction == Faction.Enemy) body.color = Color.Lerp(body.color, HostileCast * body.color.a, state.Definition.IsBoss ? .07f : .16f);
             // struck by a hero skill: a quick flash of the hero's colour, so a skill's victims read at a glance (owner 23/10/2026)
             if (state.Faction == Faction.Enemy && simulationTime - state.SkillHitAt < .22f && !PresentationSettings.ReducedFlashes)
                 body.color = Color.Lerp(body.color, state.SkillHitTint, .6f * (1 - (simulationTime - state.SkillHitAt) / .22f));

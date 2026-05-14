@@ -77,6 +77,8 @@ namespace ArcaneBrigade
         /// <summary>The shop visitors' effects on this wave, and the Gatekeeper's elites.</summary>
         public VisitorWave Visitor = new VisitorWave();
         public int EliteCount;
+        /// <summary>The map's named elite, walking in once on the map's third wave (EnemyVariety); null otherwise.</summary>
+        public UnitDefinition MapElite;
         public float RelicIncome;
         public float RelicMelee;
         public float RelicRanged;

@@ -63,7 +63,9 @@ namespace ArcaneBrigade
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }
     public enum HeroMechanic { None, LanternStride, ParcelExpress, DreamBreath, RootedOracle, SoloMaw, GlassGambler, TideCollector, ClockRunner, MirrorGuard, TreasureTax }
-    public enum EnemyBehavior { Standard, Door, Magnet, Mimic, Curtain, Hopper, Charger, CoinThief, Puffer, Spore, Sweeper, Hydra, Burrower }
+    public enum EnemyBehavior { Standard, Door, Magnet, Mimic, Curtain, Hopper, Charger, CoinThief, Puffer, Spore, Sweeper, Hydra, Burrower,
+        // enemy variety (24/10/2026, EnemyVariety)
+        Shielder, Splitter, Blinker, Sniper, Summoner, Armored, Tethered, Stomper }
     public enum HostileShot { Straight, Weave, Hook, Drift, Accelerate }
     public enum BodyMaterial { Paper, Metal, Wax, Fabric, Glass, Wood }
     public enum BossMotif { Stage, Office, Toys }

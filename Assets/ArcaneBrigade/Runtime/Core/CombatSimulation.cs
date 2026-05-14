@@ -132,6 +132,9 @@ namespace ArcaneBrigade
         public Vector2 AbilityTarget;
         public float BodyLift;
         public int StolenCoins;
+        /// <summary>Enemy variety (EnemyVariety): the summoner that released it, a splitter's half (it does not split again) or
+        /// the second of a tethered pair, its tethered partner, when that partner stands back up, and where a sniper aimed.</summary>
+        public int TetherPartner; public bool IsHalf; public float TetherReviveAt; public Vector2 SniperAim; // (SummonedBy above also marks a summoner's Clip Mites)
         public float AbilityFireAt;
         public float LeftPartDamage;
         public float RightPartDamage;
@@ -494,7 +497,7 @@ namespace ArcaneBrigade
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * RelicMendingScale * deltaTime);
             if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
-            SpawnWaveEnemies(); ProcessElites();
+            SpawnWaveEnemies(); ProcessElites(); ProcessVariety();
             spatial.Rebuild(units);
 
             for (int index = 0; index < units.Count && Phase == RunPhase.Combat; index++)
@@ -1107,7 +1110,7 @@ namespace ArcaneBrigade
             else
             {
                 if (target == Boss) BossDefeated = true;
-                EliteFell(target);
+                EliteFell(target); VarietyFell(target);
                 Kills++;
                 if (source != Faction.Enemy) RecordKill(cause);
                 SwarmDeath(target, source, overkill, cause);
@@ -1133,6 +1136,7 @@ namespace ArcaneBrigade
             if (!target.Alive) return;
             if (cause.RootId == 0) cause = NewCause(0);
             damage *= RangedHitFactor(target, weapon, source, cause); // R10: each ranged weapon's sweet range
+            damage *= GuardFactor(target, direction, weapon, source); // a shielder's ward, an armored front (EnemyVariety)
             bool soaked = target.Faction == Faction.Enemy && source != Faction.Enemy && element == DamageElement.Frost && target.KitWetUntil > Elapsed; // a soaked enemy hit by frost freezes
             bool reaction = target.Faction == Faction.Enemy && ((element == DamageElement.Ember && target.ChillUntil > Elapsed) || (element == DamageElement.Frost && target.BurnUntil > Elapsed));
             ApplyDamage(target, damage, source, sourceName, direction, weapon, critical, element, cause);

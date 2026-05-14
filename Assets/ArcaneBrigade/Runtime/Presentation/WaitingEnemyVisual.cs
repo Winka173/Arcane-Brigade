@@ -27,6 +27,7 @@ namespace ArcaneBrigade
         public void Display(CombatSimulation simulation)
         {
             Marks = Stamps = 0;
+            EliteAnnouncer.Watch(simulation);
             bool live = simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
             bool any = live && simulation.WaitingMarks.Count > 0;
             Sprite indebted = WaitingEnemyRoster.Current?.IndebtedStamp;

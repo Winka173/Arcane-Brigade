@@ -9,7 +9,7 @@ namespace ArcaneBrigade
             EnemyBehavior behavior = enemy.Definition.Behavior;
             if (Elapsed >= enemy.NextBehavior)
             {
-                enemy.NextBehavior = Elapsed + (behavior == EnemyBehavior.Charger ? 4.2f : 5.2f) + enemy.Id % 4 * 0.23f;
+                enemy.NextBehavior = Elapsed + (behavior == EnemyBehavior.Charger ? 4.2f : behavior == EnemyBehavior.Sniper ? 4.6f : behavior == EnemyBehavior.Summoner ? 6.5f : 5.2f) + enemy.Id % 4 * 0.23f;
                 enemy.AbilityOrigin = enemy.Position;
                 enemy.AbilityTarget = ClampPosition(enemy.Position + Vector2.ClampMagnitude(offset, 4), enemy.Definition.Radius);
                 enemy.AttackDirection = offset.normalized;
@@ -47,14 +47,17 @@ namespace ArcaneBrigade
                         Danger(ExpandedFieldKind.FallingProp, enemy, Champion.Position + Vector2.right * ((index - 1) * 1.4f), 0.65f, 0.8f + index * 0.18f, 0.3f);
                 else if (behavior == EnemyBehavior.Hydra)
                     enemy.AbilityFireAt = Elapsed + enemy.AttackWindup;
+                else if (behavior >= EnemyBehavior.Shielder) VarietyBegin(enemy, offset);
                 events.Add(new CombatEvent(CombatEventKind.Windup, enemy.Position, Faction.Enemy, subject: enemy, weapon: enemy.Definition.Weapon));
             }
             if (enemy.AbilityFireAt > 0 && Elapsed >= enemy.AbilityFireAt)
             {
                 enemy.AbilityFireAt = 0;
+                if (enemy.Definition.Behavior == EnemyBehavior.Sniper) enemy.AttackDirection = (enemy.SniperAim - enemy.Position).sqrMagnitude > .01f ? (enemy.SniperAim - enemy.Position).normalized : enemy.AttackDirection;
                 EmitProjectile(enemy, enemy.Definition.Weapon.Damage, false, NewCause(enemy.Id));
                 events.Add(new CombatEvent(CombatEventKind.Fire, enemy.Position, Faction.Enemy, subject: enemy, weapon: enemy.Definition.Weapon));
             }
+            if (behavior >= EnemyBehavior.Shielder) return VarietyMove(enemy, offset, delta);
             if (behavior == EnemyBehavior.Hopper || behavior == EnemyBehavior.Burrower)
             {
                 if (enemy.BehaviorUntil <= Elapsed) { enemy.BodyLift = 0; return false; }
