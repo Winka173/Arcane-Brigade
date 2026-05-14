@@ -598,7 +598,7 @@ namespace ArcaneBrigade
             }
             // the hostile side reads cool at a glance (owner 24/10/2026: many-coloured enemies were hard to tell from friends):
             // every enemy body leans a little toward violet, bosses less so their own colours stay
-            if (state.Faction == Faction.Enemy) body.color = Color.Lerp(body.color, HostileCast * body.color.a, state.Definition.IsBoss ? .07f : .16f);
+            if (state.Faction == Faction.Enemy) body.color = Color.Lerp(body.color, HostileCast * body.color.a, state.Definition.IsBoss ? .05f : .1f); // a light cool cast; the shader turns their gold and cream
             // struck by a hero skill: a quick flash of the hero's colour, so a skill's victims read at a glance (owner 23/10/2026)
             if (state.Faction == Faction.Enemy && simulationTime - state.SkillHitAt < .22f && !PresentationSettings.ReducedFlashes)
                 body.color = Color.Lerp(body.color, state.SkillHitTint, .6f * (1 - (simulationTime - state.SkillHitAt) / .22f));
@@ -618,6 +618,7 @@ namespace ArcaneBrigade
             SpriteLighting.Apply(body, flashProperties, state.Faction == Faction.Enemy);
             float nightVisibility = SharedLightField.Active == null ? 1 : SharedLightField.Active.Visibility(state, simulationTime);
             flashProperties.SetFloat("_NightVisibility", nightVisibility);
+            flashProperties.SetFloat("_HostileShift", state.Faction != Faction.Enemy ? 0 : state.Definition.IsBoss ? .35f : state.Elite ? .5f : 1f); // enemies lose the friends' warm colours
             flashProperties.SetVector("_LivingMotion", EnsembleMotion.Surface(state, simulationTime, ReducedMotion));
             if (state.Faction == Faction.Champion)
             {

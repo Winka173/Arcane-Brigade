@@ -20,6 +20,7 @@ Shader "ArcaneBrigade/UnitFlash"
         _RimAmount ("Edge strength", Range(0,1)) = 0
         _Saturation ("Paint saturation", Range(0,2)) = 1
         _NightVisibility ("Night visibility", Range(0,1)) = 1
+        _HostileShift ("Warm colours pushed to violet (enemies)", Range(0,1)) = 0
         [HideInInspector] _PropEye ("Decorative eye region", Vector) = (0,0,0,0)
         [HideInInspector] _PropLook ("Decorative eye look", Vector) = (0,0,0,0)
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
@@ -46,6 +47,7 @@ Shader "ArcaneBrigade/UnitFlash"
             fixed4 _RimColor;
             float _ShadeAmount, _RimAmount, _Saturation;
             float _NightVisibility;
+            float _HostileShift;
             float4 _PropEye, _PropLook;
             float4 _WeaponFlex;
             float _WeaponMask;
@@ -96,6 +98,20 @@ Shader "ArcaneBrigade/UnitFlash"
                 color.rgb = lerp(color.rgb, _RimColor.rgb, edge * _RimAmount);
                 float luminance = dot(color.rgb, fixed3(0.2126,0.7152,0.0722));
                 color.rgb = saturate(lerp(luminance.xxx, color.rgb, _Saturation));
+                // enemies (owner 24/10/2026): gold, amber, brass and cream are the friends' colours, so on an enemy they turn to a
+                // violet pewter of the same value; reds (eyes, velvet, wax) and the cool colours stay as painted
+                if (_HostileShift > 0)
+                {
+                    float3 c = color.rgb; float hi = max(c.r, max(c.g, c.b)), lo = min(c.r, min(c.g, c.b)), span = hi - lo;
+                    float hue = 0;
+                    if (span > 1e-4) hue = hi == c.r ? frac((c.g - c.b) / span / 6) : hi == c.g ? ((c.b - c.r) / span + 2) / 6 : ((c.r - c.g) / span + 4) / 6;
+                    float sat = hi > 0 ? span / hi : 0;
+                    float warm = smoothstep(.04, .075, hue) * (1 - smoothstep(.17, .22, hue)) * smoothstep(.12, .3, sat);
+                    float cream = (1 - smoothstep(.08, .3, sat)) * smoothstep(.55, .85, hi) * step(c.b, c.r);
+                    float w = saturate(warm + cream * .6) * _HostileShift;
+                    float value = dot(c, fixed3(.2126, .7152, .0722));
+                    color.rgb = lerp(c, saturate(value * float3(.86, .74, 1.12) + float3(.02, 0, .05)), w * .8);
+                }
                 // the flash covers the sprite below _FlashLine only (a wet-brush edge), so a reveal can wipe it away top-down
                 float covered = saturate((_FlashLine + sin(local.x * 17 + _FlashLine * 5) * .035 - local.y) * 16);
                 color.rgb = lerp(color.rgb, _FlashColor.rgb, _Flash * covered);
