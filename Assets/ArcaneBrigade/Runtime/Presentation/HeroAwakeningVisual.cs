@@ -179,8 +179,8 @@ namespace ArcaneBrigade
             if (flash > 0)
             {
                 int n = sparse ? 4 : 8;
-                for (int i = 0; i < n; i++) Token(style.Token, Chest(hero) + Dir(90 + (i - (n - 1) * .5f) * (200f / n)) * (.4f + 1.1f * (1 - flash)), .42f * flash + .12f, i * 50, flash, true);
-                Token(style.Token, Head(hero) + Vector2.up * (.35f + .3f * (1 - flash)), .7f * (still ? 1 : OutBack(1 - flash)), 0, flash, true); // the hero's sign, large, over its head
+                for (int i = 0; i < n; i++) Token(style.Token, Chest(hero) + Dir(90 + (i - (n - 1) * .5f) * (200f / n)) * (body * .6f + .35f + 1.1f * (1 - flash)), .26f * flash + .1f, i * 50, flash, true); // round the hero, never over it
+                Token(style.Token, Head(hero) + Vector2.up * (.5f + .3f * (1 - flash)), .45f * (still ? 1 : OutBack(1 - flash)), 0, flash, true); // the hero's sign over its head
             }
             // a worn or summoned object, placed where its transformation puts it
             if (!kit.Held)

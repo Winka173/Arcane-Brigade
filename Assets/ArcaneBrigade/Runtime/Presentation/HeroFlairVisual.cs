@@ -145,10 +145,10 @@ namespace ArcaneBrigade
                     break;
                 case "DrowsySeer": // standing still it dozes: little stars float up like z's
                     if (sim.HeroIdentityStillTime > .4f || still) for (int i = 0; i < 3; i++) { r = still ? i / 3f : Mathf.Repeat(t * .5f + i / 3f, 1); Token(InkToken.Star, head + new Vector2(side * (.2f + r * .35f) + Mathf.Sin(r * 6) * .06f, r * .6f), .08f + .07f * r, r * 60, Mathf.Sin(r * Mathf.PI) * .9f, true); }
-                    if (primed) Token(InkToken.Moon, head + Vector2.up * .45f, .3f, 0, .95f, true);
+                    if (primed && !HasArt("DrowsySeer_MoonPhase")) Token(InkToken.Moon, head + Vector2.up * .45f, .3f, 0, .95f, true);
                     break;
-                case "GlassDice": // the next face, shown over its shoulder
-                    Token(InkToken.Die, head + new Vector2(-side * .4f, .05f + Bob(2) * 2), .22f + (primed ? .06f : 0), still ? 0 : Mathf.Sin(t * (primed ? 20 : 1.5f)) * (primed ? 18 : 10), .95f, true, Mathf.Clamp(sim.HeroIdentityNextFace, 1, 6)); break;
+                case "GlassDice": // the next face, shown over its shoulder (the painted die when it exists)
+                    if (!HasArt("GlassDice_Die")) Token(InkToken.Die, head + new Vector2(-side * .4f, .05f + Bob(2) * 2), .22f + (primed ? .06f : 0), still ? 0 : Mathf.Sin(t * (primed ? 20 : 1.5f)) * (primed ? 18 : 10), .95f, true, Mathf.Clamp(sim.HeroIdentityNextFace, 1, 6)); break;
                 case "TideSinger":
                     for (int i = 0; i < 2; i++) { float a = (still ? 0 : t * 80) + i * 180; Token(InkToken.Note, chest + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * .55f, .25f + Mathf.Sin(a * Mathf.Deg2Rad) * .18f), .16f, Mathf.Sin(t * 3 + i) * 15, .85f, true); }
                     if (primed) for (int i = 0; i < 3; i++) { r = Mathf.Repeat(t * 1.5f + i / 3f, 1); Token(InkToken.Bubble, feet + new Vector2((i - 1) * .3f, .05f + r * .3f), .1f, 0, (1 - r) * .9f, true, 0, ArsenalInk.Water); }
@@ -179,8 +179,8 @@ namespace ArcaneBrigade
                 case "VelvetRegent" when primed:
                     Token(InkToken.Seal, head + Vector2.up * .15f, .26f, 0, Mathf.Repeat(t * 3, 1) < .5f ? 1 : .5f, true, 0, GoldPalette);
                     break;
-                case "IvorySovereign": // a decree in hand
-                    Token(InkToken.Page, chest + new Vector2(-side * .42f, -.05f + Bob(1)), .2f + (primed ? .06f : 0), -side * 15, .9f, true); break;
+                case "IvorySovereign": // a decree in hand (the painted decree when it exists)
+                    if (!HasArt("IvorySovereign_Decree")) Token(InkToken.Page, chest + new Vector2(-side * .42f, -.05f + Bob(1)), .2f + (primed ? .06f : 0), -side * 15, .9f, true); break;
                 case "PetalCitadel":
                     for (int i = 0; i < 4; i++) { float a = (still ? 0 : t * 25) + i * 90; Token(InkToken.Petal, feet + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * .5f, .05f + Mathf.Sin(a * Mathf.Deg2Rad) * .14f), .15f, a + 90, .8f, false); }
                     break;
@@ -209,7 +209,7 @@ namespace ArcaneBrigade
                     for (int i = 1; i < sim.HeroIdentityMarkCount; i++)
                     {
                         UnitState u0 = sim.HeroIdentityMarked(i - 1), u1 = sim.HeroIdentityMarked(i); if (u0 == null || u1 == null || !u0.Alive || !u1.Alive) continue;
-                        Token(InkToken.Ember, (Chest(u0) + Chest(u1)) * .5f - Vector2.up * .1f + Vector2.up * Bob(i), .14f, 0, .9f, true);
+                        if (!HasArt("LanternWeaver_Lantern")) Token(InkToken.Ember, (Chest(u0) + Chest(u1)) * .5f - Vector2.up * .1f + Vector2.up * Bob(i), .14f, 0, .9f, true);
                     }
                     break;
                 case "HourglassStag": // sand trickles from its antlers
@@ -233,10 +233,10 @@ namespace ArcaneBrigade
                     { float beat = still ? .7f : .55f + .45f * Mathf.Pow(Mathf.Abs(Mathf.Sin(t * 2.2f)), 6); Token(InkToken.Drop, chest + Vector2.up * .05f, .12f + .06f * beat, 180, .75f * beat, true); Glow(chest, .4f, ink.Light, .35f * beat, true); }
                     break;
                 case "ButtonCavalier": // one button lit on its chest for each point of poise
-                    for (int i = 0; i < 3; i++) { bool on = i < Mathf.FloorToInt(sim.HeroIdentityCharge + .001f); Vector2 b = chest + new Vector2(side * .12f, .18f - i * .14f); if (on) Token(InkToken.Button, b, .12f, 0, .95f, true); else DimToken(InkToken.Button, b, .1f, .45f); }
+                    if (!HasArt("ButtonCavalier_Buttons")) for (int i = 0; i < 3; i++) { bool on = i < Mathf.FloorToInt(sim.HeroIdentityCharge + .001f); Vector2 b = chest + new Vector2(side * .12f, .18f - i * .14f); if (on) Token(InkToken.Button, b, .12f, 0, .95f, true); else DimToken(InkToken.Button, b, .1f, .45f); }
                     break;
                 case "ThornTreasurer": // its crown of collateral thorns, one per thorn held
-                    { int n = Mathf.Clamp(Mathf.FloorToInt(sim.HeroIdentityCharge + .001f), 0, 4); for (int i = 0; i < n; i++) Token(InkToken.Thorn, head + new Vector2((i - (n - 1) * .5f) * .14f, .08f), .13f, 90, .9f, true); }
+                    if (!HasArt("ThornTreasurer_ThornCrown")) { int n = Mathf.Clamp(Mathf.FloorToInt(sim.HeroIdentityCharge + .001f), 0, 4); for (int i = 0; i < n; i++) Token(InkToken.Thorn, head + new Vector2((i - (n - 1) * .5f) * .14f, .08f), .13f, 90, .9f, true); }
                     break;
                 case "VelvetRegent": // a sceptre held at its side, glinting as orders gather
                     Token(InkToken.Spear, chest + new Vector2(-side * .4f, .05f + Bob(1)), .26f, 90 + (still ? 0 : Mathf.Sin(t * 1.5f) * 6), .9f, true, 0, GoldPalette);

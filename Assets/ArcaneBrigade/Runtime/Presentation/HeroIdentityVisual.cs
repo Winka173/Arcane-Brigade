@@ -134,6 +134,7 @@ namespace ArcaneBrigade
                     ArtProps(); // the painted objects of the transformations (HeroArtPropsVisual)
                     Rims(); // after the gauge is placed: the rim outlines this frame's vessel
                     ShaderLayer(); // each hero's own shader moment (HeroShaderLayer)
+                    WaitingMaterial(); AwakenProps(); // the waiting shader and the second set of painted objects (HeroCompleteLayer)
                     DrawCastCue();
                 }
                 foreach (var glyph in simulation.HeroIdentityGlyphs)

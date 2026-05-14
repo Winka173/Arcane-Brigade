@@ -129,7 +129,7 @@ namespace ArcaneBrigade
             float s = Seed(g); int seed = g.Seed;
             sigScale = SignatureSize * (g.Finale ? 2f : g.Big ? 1.5f : 1); sigReach = g.Finale ? 1.7f : g.Big ? 1.35f : 1;
             if (g.Finale) { FinaleBurst(g, at, p, fade); return; } // each hero's own finale (HeroFinaleVisual)
-            SignatureLayer(g, at, p, fade);
+            SignatureLayer(g, at, p, fade); StrikeMaterial(g, at, p, fade);
             if (g.Big && !sparse) Spray(InkToken.Glint, at + Vector2.up * .2f, 6, .95f, .17f, p, fade, s + 30, GlintPalette(ink)); // a felling blow sparkles
             if (g.Big) Shock(at + Vector2.up * .15f, p * 2, 1.1f); // and the air bulges where it lands
             Vector2 up = at + Vector2.up * .2f;
