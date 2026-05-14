@@ -822,7 +822,7 @@
       "name": "PillowOracle",
       "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/PillowOracle.png",
       "kind": "character",
-      "source": "ArtSource\\exec-44b08f10-bfb4-4946-b5d0-6ce8868c21b0.png",
+      "source": "ArtSource\\exec-9b258a92-6b21-4939-8aa2-ea3ee9cf462d.png",
       "mode": "RGBA",
       "size": [
         1024,
@@ -830,27 +830,27 @@
       ],
       "bounds": [
         [
+          69,
+          115,
+          188,
+          224
+        ],
+        [
           70,
           114,
-          187,
+          189,
           224
         ],
         [
-          70,
-          113,
-          190,
-          224
-        ],
-        [
-          43,
+          42,
           118,
           163,
           224
         ],
         [
-          56,
+          55,
           115,
-          180,
+          179,
           224
         ],
         [
@@ -860,15 +860,15 @@
           224
         ],
         [
-          71,
+          70,
           141,
-          194,
+          193,
           224
         ],
         [
-          45,
+          44,
           121,
-          185,
+          184,
           224
         ],
         [
@@ -884,7 +884,7 @@
         0,
         0
       ],
-      "bytes": 228501
+      "bytes": 226844
     },
     {
       "name": "MoonJelly",
