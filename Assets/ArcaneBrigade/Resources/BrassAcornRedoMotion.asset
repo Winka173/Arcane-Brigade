@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BrassAcornRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -279728203, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 733977321, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  Walk:
+  - {fileID: -322198577, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 1497489406, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: -322198577, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 1497489406, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  Windup:
+  - {fileID: -73959166, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: -1995244548, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  Release:
+  - {fileID: 1137765605, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 1137765605, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  Recovery:
+  - {fileID: 1343679256, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: -279728203, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  IllustratedHeight: 0

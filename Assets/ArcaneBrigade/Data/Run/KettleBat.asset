@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: KettleBat
   DisplayName: Kettle Bat
-  Body: {fileID: 1777364704, guid: f18941eb2e6bbf648b4916bb9c869b7f, type: 3}
+  Body: {fileID: 1882467089, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
   AnimationFrames:
-  - {fileID: 1777364704, guid: f18941eb2e6bbf648b4916bb9c869b7f, type: 3}
-  - {fileID: -330135793, guid: f18941eb2e6bbf648b4916bb9c869b7f, type: 3}
-  - {fileID: 1533990629, guid: f18941eb2e6bbf648b4916bb9c869b7f, type: 3}
-  - {fileID: -2018366832, guid: f18941eb2e6bbf648b4916bb9c869b7f, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1882467089, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  - {fileID: -971881276, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  - {fileID: -2102008284, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  - {fileID: 1119106692, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c463a389dd186f24ba59be82ad813f05, type: 2}
   Weapon: {fileID: 11400000, guid: 542fe4212187c014fbbbca11b1a4b631, type: 2}
   Health: 100
   Speed: 4.6

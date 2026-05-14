@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: AnchorSnail
   DisplayName: Anchor Snail
-  Body: {fileID: -1757450836, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
+  Body: {fileID: -831240064, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
   AnimationFrames:
-  - {fileID: -1757450836, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
-  - {fileID: -1206272685, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
-  - {fileID: 928063171, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
-  - {fileID: -132174254, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -831240064, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: -1563477700, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: 2034785707, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: 1162101909, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c58352c6da1a58a468c2dbd12eb437f0, type: 2}
   Weapon: {fileID: 11400000, guid: c49101b482dca144bb87b559088a45ca, type: 2}
   Health: 100
   Speed: 4.2

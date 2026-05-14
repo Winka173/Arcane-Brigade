@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: CloudScissors
   Kind: 1
-  Sprite: {fileID: 35065156, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: fbd15748e4bbc514abd85fd27f323ef6, type: 3}
   Damage: 10
   Range: 2.1
   Cooldown: 0.95

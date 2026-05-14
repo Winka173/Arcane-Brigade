@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CoilKettle
   DisplayName: Coil Kettle
-  Body: {fileID: 1205671639, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  Body: {fileID: -181492207, guid: 0ba328f76c1c95a429d5986f1356c7a2, type: 3}
   AnimationFrames:
-  - {fileID: 1205671639, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
-  - {fileID: 908658978, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
-  - {fileID: 67453445, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
-  - {fileID: 644603686, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: a3196e36315ee724d92f9080cd207d21, type: 2}
+  - {fileID: -181492207, guid: 0ba328f76c1c95a429d5986f1356c7a2, type: 3}
+  - {fileID: -1230256937, guid: 0ba328f76c1c95a429d5986f1356c7a2, type: 3}
+  - {fileID: 574236301, guid: 0ba328f76c1c95a429d5986f1356c7a2, type: 3}
+  - {fileID: 1074462357, guid: 0ba328f76c1c95a429d5986f1356c7a2, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: fe6dc716261a8b6478f8aff41306e047, type: 2}
   Weapon: {fileID: 11400000, guid: 19ea11bd1b307b04d8d157c48190500d, type: 2}
   Health: 100
   Speed: 4.6

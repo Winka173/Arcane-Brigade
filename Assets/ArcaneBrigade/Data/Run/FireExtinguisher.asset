@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: FireExtinguisher
   Kind: 2
-  Sprite: {fileID: -976110002, guid: 13aadae8bd33d8c49892c5ba64e89a1a, type: 3}
+  Sprite: {fileID: 21300000, guid: 85a8e0ca47b7400489b7e32fb66af7c5, type: 3}
   Damage: 3.2
   Range: 3.4
   Cooldown: 0.72

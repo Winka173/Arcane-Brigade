@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: DreamIron
   Kind: 1
-  Sprite: {fileID: -245110343, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: ce3df311bd23f2547ba61520d01e0a73, type: 3}
   Damage: 10
   Range: 2.1
   Cooldown: 0.95

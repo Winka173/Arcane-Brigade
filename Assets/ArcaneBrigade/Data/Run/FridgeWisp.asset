@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: FridgeWisp
   DisplayName: Fridge Wisp
-  Body: {fileID: 1400804599, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
+  Body: {fileID: -2015682127, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
   AnimationFrames:
-  - {fileID: 1400804599, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
-  - {fileID: 751742431, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
-  - {fileID: -1371812118, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
-  - {fileID: 1411502499, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -2015682127, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
+  - {fileID: 1500623791, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
+  - {fileID: 1082073727, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
+  - {fileID: 2045113683, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 3915fb83b80c6f34e946be6c81cdc002, type: 2}
   Weapon: {fileID: 11400000, guid: 1665e13a7f88ef1489fa9c5cf023f24b, type: 2}
   Health: 100
   Speed: 4.3999996

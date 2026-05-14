@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ButtonBeetleRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 575741296, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 972282023, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  Walk:
+  - {fileID: 2083892888, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 864116033, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 2083892888, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 864116033, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  Windup:
+  - {fileID: -668178984, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: -290674297, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  Release:
+  - {fileID: -1698637551, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: -1698637551, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  Recovery:
+  - {fileID: 89697740, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 575741296, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  IllustratedHeight: 0

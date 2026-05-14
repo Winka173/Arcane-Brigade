@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: StarSockRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -2118691660, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: -1625309273, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  Walk:
+  - {fileID: 205357071, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: 1586187915, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: 205357071, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: 1586187915, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  Windup:
+  - {fileID: -1931332374, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: 1052864077, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  Release:
+  - {fileID: 1900285499, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: 1900285499, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  Recovery:
+  - {fileID: -411877001, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  - {fileID: -2118691660, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  IllustratedHeight: 0

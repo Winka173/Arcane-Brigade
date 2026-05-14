@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SpringDuckRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -243643327, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: 1766350589, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  Walk:
+  - {fileID: -1922180681, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: -326083110, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: -1922180681, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: -326083110, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  Windup:
+  - {fileID: -865399168, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: -1178986856, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  Release:
+  - {fileID: -207856385, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: -207856385, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  Recovery:
+  - {fileID: -1569544077, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  - {fileID: -243643327, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
+  IllustratedHeight: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: SpringKnocker
   Kind: 1
-  Sprite: {fileID: -772951961, guid: fa69062f01237564ca479d844d91a93a, type: 3}
+  Sprite: {fileID: 21300000, guid: 2cf7773c74585e94a8a9fa218403e418, type: 3}
   Damage: 24
   Range: 2.4
   Cooldown: 1.45

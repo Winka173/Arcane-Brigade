@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CrayonGremlin
   DisplayName: Crayon Gremlin
-  Body: {fileID: 1747674689, guid: 525e032d2573e2749bb8f7dc272431b7, type: 3}
+  Body: {fileID: 2142281311, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
   AnimationFrames:
-  - {fileID: 1747674689, guid: 525e032d2573e2749bb8f7dc272431b7, type: 3}
-  - {fileID: -887149742, guid: 525e032d2573e2749bb8f7dc272431b7, type: 3}
-  - {fileID: -2143795639, guid: 525e032d2573e2749bb8f7dc272431b7, type: 3}
-  - {fileID: -1366164185, guid: 525e032d2573e2749bb8f7dc272431b7, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 2142281311, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
+  - {fileID: -615287008, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
+  - {fileID: -401593977, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
+  - {fileID: 469458534, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: dfe23ab4689709b47b29bfc26edef571, type: 2}
   Weapon: {fileID: 11400000, guid: 8184162313aaa4147a285272c25678ea, type: 2}
   Health: 100
   Speed: 4.6

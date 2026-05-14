@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: KeyCleaver
   Kind: 1
-  Sprite: {fileID: -1250492523, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
+  Sprite: {fileID: 21300000, guid: e72de297cfc5f8e49bdcf2e6d170d279, type: 3}
   Damage: 15
   Range: 1.9
   Cooldown: 0.85

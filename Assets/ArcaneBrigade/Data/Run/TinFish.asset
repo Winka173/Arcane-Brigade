@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: TinFish
   Kind: 2
-  Sprite: {fileID: -1102170098, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: 258900a4eb7fdf048889daf8f254bd07, type: 3}
   Damage: 10
   Range: 7
   Cooldown: 0.95

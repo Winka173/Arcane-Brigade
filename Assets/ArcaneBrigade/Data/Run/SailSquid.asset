@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SailSquid
   DisplayName: Sail Squid
-  Body: {fileID: 1297054863, guid: dea1f23d2bb6afb4289a72dc9e1f72b6, type: 3}
+  Body: {fileID: 1899832850, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
   AnimationFrames:
-  - {fileID: 1297054863, guid: dea1f23d2bb6afb4289a72dc9e1f72b6, type: 3}
-  - {fileID: -992851698, guid: dea1f23d2bb6afb4289a72dc9e1f72b6, type: 3}
-  - {fileID: 1600981377, guid: dea1f23d2bb6afb4289a72dc9e1f72b6, type: 3}
-  - {fileID: 1983394804, guid: dea1f23d2bb6afb4289a72dc9e1f72b6, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1899832850, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  - {fileID: -362726790, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  - {fileID: -827562681, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  - {fileID: -1658679855, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 6335177634eb78349915cb0064066cd4, type: 2}
   Weapon: {fileID: 11400000, guid: 87c0733b128c4494cbd5888830067d47, type: 2}
   Health: 100
   Speed: 4.3999996

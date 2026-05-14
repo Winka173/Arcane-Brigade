@@ -1,5 +1,7 @@
 # Art redo requests: characters and weapons (24/10/2026)
 
+**Delivered 24/10/2026:** all 77 primary images and the 10 additional hero acting sheets are painted and imported: **87 PNG / 575 sprites**. Balloon Mallet and Comet Kite were redrawn again following review. See [delivery and review boards](Art_Redo_Delivery.md) and [Unity verification](Art_Redo_Unity_Verification.txt). The audit below records the original request.
+
 An audit of every hero, companion and weapon picture found two generations of art. 77 pieces are still in the first,
 flat style: thick outline, flat fills, one soft shadow, few materials. The rest are in the later detailed storybook style:
 layered painted texture, real materials (wool, brass, wood, enamel, paper), small props and costume detail. The flat

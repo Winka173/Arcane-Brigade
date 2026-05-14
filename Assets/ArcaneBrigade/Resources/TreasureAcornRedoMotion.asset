@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: TreasureAcornRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1319559438, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: 778882217, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  Walk:
+  - {fileID: -1788487184, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: 2021495466, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: -1788487184, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: 2021495466, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  Windup:
+  - {fileID: 291183568, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: -53584369, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  Release:
+  - {fileID: -1222237098, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: -1222237098, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  Recovery:
+  - {fileID: 978789146, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  - {fileID: -1319559438, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
+  IllustratedHeight: 0

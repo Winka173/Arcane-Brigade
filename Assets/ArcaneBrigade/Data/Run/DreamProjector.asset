@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: DreamProjector
   Kind: 2
-  Sprite: {fileID: 528743801, guid: fa69062f01237564ca479d844d91a93a, type: 3}
+  Sprite: {fileID: 21300000, guid: 3f2ae026dee6b2a429285cd84c8a2053, type: 3}
   Damage: 13
   Range: 6.2
   Cooldown: 1.65

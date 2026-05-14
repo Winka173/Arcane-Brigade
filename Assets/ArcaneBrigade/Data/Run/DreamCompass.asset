@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DreamCompass
   DisplayName: Dream Compass
-  Body: {fileID: 343327141, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
+  Body: {fileID: 1066924731, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
   AnimationFrames:
-  - {fileID: 343327141, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
-  - {fileID: 1445045849, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
-  - {fileID: 1927916406, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
-  - {fileID: 620340649, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1066924731, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  - {fileID: 1871813658, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  - {fileID: -247594799, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  - {fileID: -2091425941, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 23a641c7c14ad2a4cb8a3fcc1e52d00c, type: 2}
   Weapon: {fileID: 11400000, guid: 361db9a79aee64c40ad6a14a4976232c, type: 2}
   Health: 100
   Speed: 4.6

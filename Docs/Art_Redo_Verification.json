@@ -1,0 +1,5197 @@
+{
+  "tool": "painted",
+  "normalization": "Layout/resampling and alpha <12 debris cleanup only; no code-painted substitutes",
+  "completed": [
+    {
+      "name": "RootOracle",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/RootOracle.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-60aff1d4-7264-40fe-8f69-a68e25c7fd28.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          52,
+          60,
+          204,
+          224
+        ],
+        [
+          50,
+          56,
+          204,
+          224
+        ],
+        [
+          50,
+          59,
+          203,
+          224
+        ],
+        [
+          52,
+          57,
+          209,
+          224
+        ],
+        [
+          61,
+          62,
+          215,
+          224
+        ],
+        [
+          69,
+          67,
+          222,
+          224
+        ],
+        [
+          61,
+          63,
+          221,
+          224
+        ],
+        [
+          53,
+          59,
+          202,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 364751
+    },
+    {
+      "name": "LoneJelly",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/LoneJelly.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-558e4319-323b-4408-9c49-adc2521a2f98.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          73,
+          78,
+          201,
+          224
+        ],
+        [
+          69,
+          77,
+          205,
+          224
+        ],
+        [
+          76,
+          78,
+          213,
+          224
+        ],
+        [
+          40,
+          82,
+          168,
+          224
+        ],
+        [
+          45,
+          103,
+          181,
+          224
+        ],
+        [
+          42,
+          108,
+          177,
+          224
+        ],
+        [
+          34,
+          92,
+          172,
+          224
+        ],
+        [
+          73,
+          81,
+          203,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 258683
+    },
+    {
+      "name": "LanternKnight",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/LanternKnight.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-44d4c556-a47c-4190-a00e-15a3d4ddffa3.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          63,
+          34,
+          195,
+          224
+        ],
+        [
+          64,
+          39,
+          196,
+          224
+        ],
+        [
+          60,
+          39,
+          189,
+          224
+        ],
+        [
+          57,
+          39,
+          187,
+          224
+        ],
+        [
+          68,
+          54,
+          197,
+          224
+        ],
+        [
+          67,
+          62,
+          210,
+          224
+        ],
+        [
+          60,
+          60,
+          209,
+          224
+        ],
+        [
+          60,
+          45,
+          189,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 367718
+    },
+    {
+      "name": "DrowsySeer",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/DrowsySeer.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-6ab2cd93-960d-4856-b09b-7a7931015c22.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          74,
+          82,
+          211,
+          224
+        ],
+        [
+          73,
+          81,
+          204,
+          224
+        ],
+        [
+          69,
+          79,
+          209,
+          224
+        ],
+        [
+          68,
+          82,
+          202,
+          224
+        ],
+        [
+          47,
+          87,
+          184,
+          224
+        ],
+        [
+          50,
+          94,
+          190,
+          224
+        ],
+        [
+          34,
+          86,
+          181,
+          224
+        ],
+        [
+          76,
+          83,
+          211,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 318954
+    },
+    {
+      "name": "Postmaster",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Postmaster.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-dbc14e88-ed26-4e69-b25e-cfd8443707ad.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          57,
+          55,
+          184,
+          224
+        ],
+        [
+          58,
+          56,
+          186,
+          224
+        ],
+        [
+          49,
+          54,
+          178,
+          224
+        ],
+        [
+          46,
+          54,
+          173,
+          224
+        ],
+        [
+          49,
+          63,
+          182,
+          224
+        ],
+        [
+          40,
+          62,
+          179,
+          224
+        ],
+        [
+          34,
+          68,
+          185,
+          224
+        ],
+        [
+          60,
+          53,
+          187,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 355298
+    },
+    {
+      "name": "TreasureAcorn",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/TreasureAcorn.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-931f6253-3641-474f-8bc6-b209af0d2431.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          69,
+          86,
+          188,
+          224
+        ],
+        [
+          72,
+          86,
+          188,
+          224
+        ],
+        [
+          64,
+          88,
+          181,
+          224
+        ],
+        [
+          64,
+          85,
+          182,
+          224
+        ],
+        [
+          48,
+          97,
+          176,
+          224
+        ],
+        [
+          54,
+          104,
+          183,
+          224
+        ],
+        [
+          34,
+          91,
+          185,
+          224
+        ],
+        [
+          66,
+          94,
+          182,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 277718
+    },
+    {
+      "name": "CometRunner",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CometRunner.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-c168cc79-bb6e-44ad-bf95-0bc0efad335a.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          72,
+          83,
+          198,
+          224
+        ],
+        [
+          70,
+          84,
+          198,
+          224
+        ],
+        [
+          50,
+          87,
+          192,
+          224
+        ],
+        [
+          47,
+          84,
+          187,
+          224
+        ],
+        [
+          51,
+          109,
+          197,
+          224
+        ],
+        [
+          44,
+          117,
+          198,
+          224
+        ],
+        [
+          34,
+          96,
+          187,
+          224
+        ],
+        [
+          67,
+          94,
+          194,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 247680
+    },
+    {
+      "name": "TideSinger",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/TideSinger.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-e6a07136-0b3b-4dc8-a67f-e53291485203.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          43,
+          68,
+          189,
+          224
+        ],
+        [
+          36,
+          63,
+          192,
+          224
+        ],
+        [
+          39,
+          71,
+          194,
+          224
+        ],
+        [
+          34,
+          76,
+          182,
+          224
+        ],
+        [
+          42,
+          83,
+          193,
+          224
+        ],
+        [
+          41,
+          80,
+          196,
+          224
+        ],
+        [
+          37,
+          58,
+          196,
+          224
+        ],
+        [
+          42,
+          76,
+          189,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 341596
+    },
+    {
+      "name": "GlassDice",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/GlassDice.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-710e687c-73fc-4e4c-b51d-d5e1390a35ed.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          86,
+          109,
+          193,
+          224
+        ],
+        [
+          87,
+          105,
+          194,
+          224
+        ],
+        [
+          96,
+          110,
+          212,
+          224
+        ],
+        [
+          57,
+          110,
+          169,
+          224
+        ],
+        [
+          46,
+          111,
+          173,
+          224
+        ],
+        [
+          43,
+          109,
+          167,
+          224
+        ],
+        [
+          34,
+          106,
+          170,
+          224
+        ],
+        [
+          85,
+          109,
+          194,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 228586
+    },
+    {
+      "name": "MirrorKeeper",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MirrorKeeper.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-e52e48fe-2c8e-49b6-a0d3-52c0f6e68900.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          58,
+          34,
+          189,
+          224
+        ],
+        [
+          67,
+          37,
+          197,
+          224
+        ],
+        [
+          57,
+          35,
+          188,
+          224
+        ],
+        [
+          52,
+          35,
+          181,
+          224
+        ],
+        [
+          51,
+          49,
+          198,
+          224
+        ],
+        [
+          62,
+          60,
+          211,
+          224
+        ],
+        [
+          49,
+          38,
+          186,
+          224
+        ],
+        [
+          58,
+          41,
+          191,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 386071
+    },
+    {
+      "name": "CrayonGremlin",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CrayonGremlin.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-c3e6553a-425d-4c7d-8dde-d9e2b22df7ba.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          67,
+          54,
+          192,
+          224
+        ],
+        [
+          65,
+          53,
+          191,
+          224
+        ],
+        [
+          65,
+          51,
+          189,
+          224
+        ],
+        [
+          58,
+          50,
+          184,
+          224
+        ],
+        [
+          76,
+          74,
+          215,
+          224
+        ],
+        [
+          60,
+          86,
+          205,
+          224
+        ],
+        [
+          74,
+          60,
+          222,
+          224
+        ],
+        [
+          69,
+          59,
+          193,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 336585
+    },
+    {
+      "name": "RibbonSpider",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/RibbonSpider.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-f1c469b7-6f8b-464b-9002-7b903ab6d1e3.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          93,
+          120,
+          185,
+          224
+        ],
+        [
+          94,
+          118,
+          187,
+          224
+        ],
+        [
+          65,
+          123,
+          167,
+          224
+        ],
+        [
+          71,
+          120,
+          167,
+          224
+        ],
+        [
+          60,
+          132,
+          165,
+          224
+        ],
+        [
+          79,
+          141,
+          171,
+          224
+        ],
+        [
+          34,
+          123,
+          157,
+          224
+        ],
+        [
+          76,
+          126,
+          181,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 179251
+    },
+    {
+      "name": "PillowOracle",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/PillowOracle.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-44b08f10-bfb4-4946-b5d0-6ce8868c21b0.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          70,
+          114,
+          187,
+          224
+        ],
+        [
+          70,
+          113,
+          190,
+          224
+        ],
+        [
+          43,
+          118,
+          163,
+          224
+        ],
+        [
+          56,
+          115,
+          180,
+          224
+        ],
+        [
+          84,
+          117,
+          222,
+          224
+        ],
+        [
+          71,
+          141,
+          194,
+          224
+        ],
+        [
+          45,
+          121,
+          185,
+          224
+        ],
+        [
+          74,
+          120,
+          189,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 228501
+    },
+    {
+      "name": "MoonJelly",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MoonJelly.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-0560e344-9274-48e3-8959-ac341a052dcd.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          92,
+          97,
+          191,
+          224
+        ],
+        [
+          96,
+          98,
+          194,
+          224
+        ],
+        [
+          59,
+          102,
+          162,
+          224
+        ],
+        [
+          60,
+          102,
+          162,
+          224
+        ],
+        [
+          72,
+          97,
+          180,
+          224
+        ],
+        [
+          79,
+          106,
+          179,
+          224
+        ],
+        [
+          34,
+          104,
+          159,
+          224
+        ],
+        [
+          89,
+          100,
+          185,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 206816
+    },
+    {
+      "name": "BreadCrab",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/BreadCrab.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-ae444944-37ec-4503-beb4-8f475b8167c4.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          69,
+          93,
+          205,
+          224
+        ],
+        [
+          70,
+          92,
+          208,
+          224
+        ],
+        [
+          74,
+          96,
+          209,
+          224
+        ],
+        [
+          40,
+          96,
+          176,
+          224
+        ],
+        [
+          83,
+          104,
+          221,
+          224
+        ],
+        [
+          77,
+          113,
+          213,
+          224
+        ],
+        [
+          34,
+          99,
+          173,
+          224
+        ],
+        [
+          67,
+          96,
+          205,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 252345
+    },
+    {
+      "name": "RadishJester",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/RadishJester.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-450871c7-fd9f-4925-b542-7bf27048c46a.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          56,
+          62,
+          186,
+          224
+        ],
+        [
+          54,
+          61,
+          187,
+          224
+        ],
+        [
+          34,
+          70,
+          175,
+          224
+        ],
+        [
+          37,
+          71,
+          172,
+          224
+        ],
+        [
+          71,
+          93,
+          198,
+          224
+        ],
+        [
+          52,
+          96,
+          197,
+          224
+        ],
+        [
+          43,
+          78,
+          195,
+          224
+        ],
+        [
+          55,
+          70,
+          185,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 290581
+    },
+    {
+      "name": "BrassAcorn",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/BrassAcorn.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-b28530c0-d83d-4ea7-9424-f331d96f355b.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          53,
+          87,
+          174,
+          224
+        ],
+        [
+          49,
+          86,
+          176,
+          224
+        ],
+        [
+          41,
+          86,
+          170,
+          224
+        ],
+        [
+          40,
+          87,
+          170,
+          224
+        ],
+        [
+          47,
+          99,
+          184,
+          224
+        ],
+        [
+          34,
+          100,
+          173,
+          224
+        ],
+        [
+          36,
+          96,
+          195,
+          224
+        ],
+        [
+          50,
+          92,
+          171,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 270451
+    },
+    {
+      "name": "EclipseEgg",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/EclipseEgg.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-a850a187-b37e-44df-82d9-0355d26ac844.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          78,
+          64,
+          197,
+          224
+        ],
+        [
+          66,
+          65,
+          186,
+          224
+        ],
+        [
+          53,
+          70,
+          176,
+          224
+        ],
+        [
+          51,
+          72,
+          174,
+          224
+        ],
+        [
+          86,
+          86,
+          222,
+          224
+        ],
+        [
+          86,
+          100,
+          220,
+          224
+        ],
+        [
+          42,
+          77,
+          165,
+          224
+        ],
+        [
+          81,
+          82,
+          203,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 333277
+    },
+    {
+      "name": "ShellPostman",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/ShellPostman.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-082efd48-41f4-4a6a-ba17-77814e3b1b21.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          41,
+          68,
+          194,
+          224
+        ],
+        [
+          44,
+          66,
+          200,
+          224
+        ],
+        [
+          54,
+          63,
+          217,
+          224
+        ],
+        [
+          54,
+          67,
+          208,
+          224
+        ],
+        [
+          58,
+          77,
+          212,
+          224
+        ],
+        [
+          53,
+          84,
+          203,
+          224
+        ],
+        [
+          55,
+          56,
+          222,
+          224
+        ],
+        [
+          45,
+          68,
+          202,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 422699
+    },
+    {
+      "name": "SeedHedgehog",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/SeedHedgehog.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-bbf13847-d106-462d-ae12-7cfa870c15e4.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          47,
+          59,
+          182,
+          224
+        ],
+        [
+          47,
+          58,
+          181,
+          224
+        ],
+        [
+          72,
+          60,
+          208,
+          224
+        ],
+        [
+          41,
+          72,
+          175,
+          224
+        ],
+        [
+          79,
+          78,
+          222,
+          224
+        ],
+        [
+          47,
+          95,
+          193,
+          224
+        ],
+        [
+          35,
+          86,
+          188,
+          224
+        ],
+        [
+          47,
+          62,
+          182,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 345633
+    },
+    {
+      "name": "PearMoth",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/PearMoth.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-7b4a6dea-7c8f-46ef-b572-788d00a6db9c.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          77,
+          87,
+          188,
+          224
+        ],
+        [
+          74,
+          86,
+          187,
+          224
+        ],
+        [
+          66,
+          90,
+          184,
+          224
+        ],
+        [
+          87,
+          91,
+          206,
+          224
+        ],
+        [
+          72,
+          102,
+          180,
+          224
+        ],
+        [
+          76,
+          109,
+          183,
+          224
+        ],
+        [
+          93,
+          92,
+          222,
+          224
+        ],
+        [
+          74,
+          96,
+          188,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 237319
+    },
+    {
+      "name": "SpringDuck",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/SpringDuck.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-6b32e512-b387-417b-a3cb-6135c76121ac.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          63,
+          44,
+          191,
+          224
+        ],
+        [
+          59,
+          45,
+          190,
+          224
+        ],
+        [
+          67,
+          46,
+          210,
+          224
+        ],
+        [
+          73,
+          39,
+          207,
+          224
+        ],
+        [
+          73,
+          75,
+          216,
+          224
+        ],
+        [
+          70,
+          100,
+          208,
+          224
+        ],
+        [
+          79,
+          34,
+          216,
+          224
+        ],
+        [
+          60,
+          53,
+          196,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 345542
+    },
+    {
+      "name": "OrbitMoth",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/OrbitMoth.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-4bff80b7-a0d0-40f4-bbfe-2a40eaa26ca0.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          88,
+          88,
+          197,
+          224
+        ],
+        [
+          89,
+          86,
+          199,
+          224
+        ],
+        [
+          82,
+          86,
+          194,
+          224
+        ],
+        [
+          78,
+          89,
+          185,
+          224
+        ],
+        [
+          88,
+          103,
+          210,
+          224
+        ],
+        [
+          90,
+          114,
+          205,
+          224
+        ],
+        [
+          92,
+          91,
+          222,
+          224
+        ],
+        [
+          82,
+          92,
+          194,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 257278
+    },
+    {
+      "name": "MaskPepper",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MaskPepper.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-bcf73a18-0076-4060-9d7c-b12fc2ed0d32.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          71,
+          34,
+          171,
+          224
+        ],
+        [
+          74,
+          34,
+          170,
+          224
+        ],
+        [
+          52,
+          36,
+          173,
+          224
+        ],
+        [
+          56,
+          39,
+          176,
+          224
+        ],
+        [
+          39,
+          61,
+          176,
+          224
+        ],
+        [
+          39,
+          69,
+          189,
+          224
+        ],
+        [
+          39,
+          56,
+          204,
+          224
+        ],
+        [
+          70,
+          46,
+          171,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 269970
+    },
+    {
+      "name": "SockCyclops",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/SockCyclops.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-f721f21d-e7cf-4ec0-a215-ba12e4e40bb6.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          72,
+          46,
+          179,
+          224
+        ],
+        [
+          71,
+          46,
+          179,
+          224
+        ],
+        [
+          81,
+          49,
+          218,
+          224
+        ],
+        [
+          81,
+          50,
+          211,
+          224
+        ],
+        [
+          41,
+          64,
+          182,
+          224
+        ],
+        [
+          76,
+          64,
+          222,
+          224
+        ],
+        [
+          40,
+          57,
+          220,
+          224
+        ],
+        [
+          69,
+          54,
+          181,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 329427
+    },
+    {
+      "name": "CitrusToad",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CitrusToad.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-aec6a546-166c-4347-9fc5-69116cf4cde1.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          85,
+          141,
+          178,
+          224
+        ],
+        [
+          85,
+          140,
+          177,
+          224
+        ],
+        [
+          87,
+          141,
+          189,
+          224
+        ],
+        [
+          81,
+          140,
+          171,
+          224
+        ],
+        [
+          75,
+          149,
+          174,
+          224
+        ],
+        [
+          78,
+          159,
+          178,
+          224
+        ],
+        [
+          107,
+          141,
+          222,
+          224
+        ],
+        [
+          87,
+          141,
+          182,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 143298
+    },
+    {
+      "name": "KettleBat",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/KettleBat.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-d1063f38-0dea-4aac-bd14-3370a3074f4d.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          80,
+          89,
+          198,
+          224
+        ],
+        [
+          69,
+          90,
+          189,
+          224
+        ],
+        [
+          52,
+          90,
+          177,
+          224
+        ],
+        [
+          58,
+          92,
+          175,
+          224
+        ],
+        [
+          45,
+          92,
+          177,
+          224
+        ],
+        [
+          34,
+          93,
+          168,
+          224
+        ],
+        [
+          52,
+          96,
+          193,
+          224
+        ],
+        [
+          77,
+          91,
+          200,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 270270
+    },
+    {
+      "name": "StarSock",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/StarSock.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-311f2c0e-18a8-4e03-8791-2dbbd16e13e9.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          86,
+          80,
+          192,
+          224
+        ],
+        [
+          87,
+          80,
+          198,
+          224
+        ],
+        [
+          99,
+          84,
+          220,
+          224
+        ],
+        [
+          78,
+          86,
+          195,
+          224
+        ],
+        [
+          46,
+          92,
+          178,
+          224
+        ],
+        [
+          34,
+          97,
+          181,
+          224
+        ],
+        [
+          61,
+          95,
+          185,
+          224
+        ],
+        [
+          83,
+          87,
+          192,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 235171
+    },
+    {
+      "name": "FridgeWisp",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/FridgeWisp.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-50b28ef6-87b1-4a97-868b-b76b8af8e44a.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          49,
+          61,
+          181,
+          224
+        ],
+        [
+          47,
+          62,
+          183,
+          224
+        ],
+        [
+          53,
+          58,
+          190,
+          224
+        ],
+        [
+          41,
+          65,
+          179,
+          224
+        ],
+        [
+          54,
+          76,
+          209,
+          224
+        ],
+        [
+          52,
+          83,
+          215,
+          224
+        ],
+        [
+          34,
+          74,
+          193,
+          224
+        ],
+        [
+          50,
+          66,
+          188,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 429821
+    },
+    {
+      "name": "CometKite",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CometKite.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-4e6cb9b7-01f1-450f-b93f-cc5b3b6206e9.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          84,
+          71,
+          181,
+          224
+        ],
+        [
+          89,
+          70,
+          189,
+          224
+        ],
+        [
+          88,
+          87,
+          221,
+          224
+        ],
+        [
+          88,
+          78,
+          205,
+          224
+        ],
+        [
+          92,
+          78,
+          199,
+          224
+        ],
+        [
+          74,
+          82,
+          169,
+          224
+        ],
+        [
+          34,
+          108,
+          177,
+          224
+        ],
+        [
+          87,
+          71,
+          184,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 183207
+    },
+    {
+      "name": "SailSquid",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/SailSquid.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-a273bbb7-a1c1-465b-8e40-a497560106b0.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          87,
+          79,
+          186,
+          224
+        ],
+        [
+          69,
+          78,
+          171,
+          224
+        ],
+        [
+          62,
+          86,
+          168,
+          224
+        ],
+        [
+          58,
+          80,
+          161,
+          224
+        ],
+        [
+          88,
+          105,
+          189,
+          224
+        ],
+        [
+          83,
+          120,
+          188,
+          224
+        ],
+        [
+          103,
+          82,
+          222,
+          224
+        ],
+        [
+          72,
+          87,
+          168,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 212838
+    },
+    {
+      "name": "CandleSnail",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CandleSnail.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-c66f5780-3565-4f0b-b26f-6a2831d99307.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          35,
+          60,
+          207,
+          224
+        ],
+        [
+          36,
+          61,
+          209,
+          224
+        ],
+        [
+          37,
+          61,
+          211,
+          224
+        ],
+        [
+          36,
+          60,
+          210,
+          224
+        ],
+        [
+          36,
+          68,
+          213,
+          224
+        ],
+        [
+          40,
+          68,
+          206,
+          224
+        ],
+        [
+          34,
+          66,
+          213,
+          224
+        ],
+        [
+          38,
+          64,
+          212,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 390234
+    },
+    {
+      "name": "AnchorSnail",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/AnchorSnail.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-d3982d0e-7e09-475a-b24f-38c5d8b4a264.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          56,
+          60,
+          199,
+          224
+        ],
+        [
+          61,
+          67,
+          200,
+          224
+        ],
+        [
+          50,
+          63,
+          189,
+          224
+        ],
+        [
+          62,
+          61,
+          198,
+          224
+        ],
+        [
+          78,
+          66,
+          222,
+          224
+        ],
+        [
+          63,
+          59,
+          207,
+          224
+        ],
+        [
+          48,
+          74,
+          198,
+          224
+        ],
+        [
+          62,
+          66,
+          204,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 383449
+    },
+    {
+      "name": "BookmarkGolem",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/BookmarkGolem.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-a1e73978-4b19-4e7e-9d99-f3871b0325d7.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          85,
+          72,
+          195,
+          224
+        ],
+        [
+          86,
+          72,
+          191,
+          224
+        ],
+        [
+          75,
+          80,
+          202,
+          224
+        ],
+        [
+          73,
+          80,
+          195,
+          224
+        ],
+        [
+          92,
+          82,
+          196,
+          224
+        ],
+        [
+          89,
+          85,
+          189,
+          224
+        ],
+        [
+          62,
+          89,
+          222,
+          224
+        ],
+        [
+          86,
+          76,
+          196,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 240935
+    },
+    {
+      "name": "MailboxImp",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MailboxImp.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-6037dba7-103a-4e78-aca2-57175c9b965d.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          57,
+          106,
+          184,
+          224
+        ],
+        [
+          62,
+          106,
+          188,
+          224
+        ],
+        [
+          66,
+          107,
+          199,
+          224
+        ],
+        [
+          63,
+          102,
+          193,
+          224
+        ],
+        [
+          49,
+          126,
+          186,
+          224
+        ],
+        [
+          51,
+          137,
+          186,
+          224
+        ],
+        [
+          78,
+          111,
+          222,
+          224
+        ],
+        [
+          59,
+          119,
+          185,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 253822
+    },
+    {
+      "name": "CoralTeacup",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CoralTeacup.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-0df7542f-dd63-46d3-b631-28c6b89153ff.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          71,
+          75,
+          191,
+          224
+        ],
+        [
+          68,
+          74,
+          189,
+          224
+        ],
+        [
+          83,
+          78,
+          201,
+          224
+        ],
+        [
+          82,
+          79,
+          201,
+          224
+        ],
+        [
+          81,
+          91,
+          209,
+          224
+        ],
+        [
+          55,
+          107,
+          187,
+          224
+        ],
+        [
+          90,
+          80,
+          222,
+          224
+        ],
+        [
+          70,
+          73,
+          192,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 271792
+    },
+    {
+      "name": "TeapotPilgrim",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/TeapotPilgrim.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-14f92439-d757-4e10-99cf-aa49ff331713.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          49,
+          48,
+          198,
+          224
+        ],
+        [
+          50,
+          46,
+          199,
+          224
+        ],
+        [
+          56,
+          49,
+          200,
+          224
+        ],
+        [
+          52,
+          48,
+          197,
+          224
+        ],
+        [
+          63,
+          61,
+          219,
+          224
+        ],
+        [
+          60,
+          75,
+          222,
+          224
+        ],
+        [
+          50,
+          51,
+          204,
+          224
+        ],
+        [
+          53,
+          57,
+          198,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 370503
+    },
+    {
+      "name": "MirrorNewt",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MirrorNewt.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-c1dcc225-a5ee-4b66-a3c3-53472d566c92.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          51,
+          121,
+          184,
+          224
+        ],
+        [
+          53,
+          117,
+          181,
+          224
+        ],
+        [
+          41,
+          126,
+          179,
+          224
+        ],
+        [
+          52,
+          126,
+          191,
+          224
+        ],
+        [
+          55,
+          119,
+          194,
+          224
+        ],
+        [
+          39,
+          126,
+          185,
+          224
+        ],
+        [
+          34,
+          121,
+          182,
+          224
+        ],
+        [
+          52,
+          128,
+          178,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 235641
+    },
+    {
+      "name": "StapleMole",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/StapleMole.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-11ac1de0-5ff5-4d06-adfb-1de336bfe830.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          66,
+          85,
+          212,
+          224
+        ],
+        [
+          65,
+          85,
+          208,
+          224
+        ],
+        [
+          78,
+          87,
+          222,
+          224
+        ],
+        [
+          77,
+          86,
+          221,
+          224
+        ],
+        [
+          42,
+          103,
+          211,
+          224
+        ],
+        [
+          36,
+          104,
+          199,
+          224
+        ],
+        [
+          45,
+          91,
+          198,
+          224
+        ],
+        [
+          62,
+          91,
+          208,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 278922
+    },
+    {
+      "name": "BubbleKoi",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/BubbleKoi.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-143b5695-6aad-439d-a8a4-71b9c8aff004.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          50,
+          111,
+          194,
+          224
+        ],
+        [
+          45,
+          109,
+          196,
+          224
+        ],
+        [
+          46,
+          109,
+          193,
+          224
+        ],
+        [
+          50,
+          106,
+          193,
+          224
+        ],
+        [
+          46,
+          106,
+          195,
+          224
+        ],
+        [
+          46,
+          92,
+          187,
+          224
+        ],
+        [
+          34,
+          107,
+          190,
+          224
+        ],
+        [
+          48,
+          111,
+          191,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 278470
+    },
+    {
+      "name": "IceCreamOwl",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/IceCreamOwl.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-a6910ba2-e3d4-4492-ab30-71a6bad30ce4.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          61,
+          45,
+          200,
+          224
+        ],
+        [
+          59,
+          45,
+          201,
+          224
+        ],
+        [
+          74,
+          50,
+          212,
+          224
+        ],
+        [
+          51,
+          47,
+          185,
+          224
+        ],
+        [
+          60,
+          66,
+          207,
+          224
+        ],
+        [
+          59,
+          91,
+          209,
+          224
+        ],
+        [
+          34,
+          41,
+          185,
+          224
+        ],
+        [
+          64,
+          53,
+          204,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 409002
+    },
+    {
+      "name": "JellySwordsman",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/JellySwordsman.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-84263d57-4002-4304-9710-867f06f487cd.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          47,
+          63,
+          188,
+          224
+        ],
+        [
+          52,
+          63,
+          192,
+          224
+        ],
+        [
+          50,
+          63,
+          197,
+          224
+        ],
+        [
+          45,
+          63,
+          188,
+          224
+        ],
+        [
+          46,
+          78,
+          197,
+          224
+        ],
+        [
+          36,
+          77,
+          192,
+          224
+        ],
+        [
+          34,
+          77,
+          222,
+          224
+        ],
+        [
+          46,
+          66,
+          192,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 387061
+    },
+    {
+      "name": "SnowSpoon",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/SnowSpoon.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-ae78dea5-0c01-469f-a1cd-ed29983ade69.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          94,
+          34,
+          191,
+          224
+        ],
+        [
+          93,
+          34,
+          196,
+          224
+        ],
+        [
+          61,
+          35,
+          167,
+          224
+        ],
+        [
+          61,
+          35,
+          161,
+          224
+        ],
+        [
+          46,
+          45,
+          164,
+          224
+        ],
+        [
+          56,
+          51,
+          183,
+          224
+        ],
+        [
+          53,
+          49,
+          196,
+          224
+        ],
+        [
+          97,
+          37,
+          193,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 261396
+    },
+    {
+      "name": "DiceCrab",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/DiceCrab.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-543e5623-621c-4f57-bf74-3d19cf3b950f.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          86,
+          145,
+          174,
+          224
+        ],
+        [
+          84,
+          145,
+          170,
+          224
+        ],
+        [
+          80,
+          144,
+          169,
+          224
+        ],
+        [
+          84,
+          143,
+          175,
+          224
+        ],
+        [
+          76,
+          145,
+          172,
+          224
+        ],
+        [
+          75,
+          149,
+          173,
+          224
+        ],
+        [
+          111,
+          144,
+          222,
+          224
+        ],
+        [
+          83,
+          145,
+          170,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 142764
+    },
+    {
+      "name": "ButtonBeetle",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/ButtonBeetle.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-bf455987-834d-4166-b2ff-d3eab69e1f2a.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          68,
+          83,
+          187,
+          224
+        ],
+        [
+          66,
+          83,
+          183,
+          224
+        ],
+        [
+          71,
+          83,
+          189,
+          224
+        ],
+        [
+          72,
+          85,
+          190,
+          224
+        ],
+        [
+          62,
+          100,
+          186,
+          224
+        ],
+        [
+          59,
+          99,
+          193,
+          224
+        ],
+        [
+          34,
+          83,
+          159,
+          224
+        ],
+        [
+          68,
+          86,
+          184,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 276458
+    },
+    {
+      "name": "MushroomLibrarian",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MushroomLibrarian.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-1327b017-2ea4-42a2-8803-43efba149912.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          42,
+          61,
+          205,
+          224
+        ],
+        [
+          40,
+          65,
+          204,
+          224
+        ],
+        [
+          35,
+          65,
+          199,
+          224
+        ],
+        [
+          34,
+          66,
+          193,
+          224
+        ],
+        [
+          51,
+          77,
+          219,
+          224
+        ],
+        [
+          47,
+          86,
+          200,
+          224
+        ],
+        [
+          60,
+          77,
+          218,
+          224
+        ],
+        [
+          41,
+          72,
+          202,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 350464
+    },
+    {
+      "name": "HoodWisp",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/HoodWisp.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-41527556-7aa0-4f63-ac7d-460177970b40.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          69,
+          34,
+          182,
+          224
+        ],
+        [
+          69,
+          35,
+          180,
+          224
+        ],
+        [
+          51,
+          36,
+          187,
+          224
+        ],
+        [
+          58,
+          38,
+          185,
+          224
+        ],
+        [
+          51,
+          51,
+          202,
+          224
+        ],
+        [
+          57,
+          61,
+          209,
+          224
+        ],
+        [
+          66,
+          43,
+          213,
+          224
+        ],
+        [
+          72,
+          43,
+          183,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 328013
+    },
+    {
+      "name": "DreamCompass",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/DreamCompass.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-a58ff83b-ec37-41c0-a452-dfa59f99257d.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          80,
+          68,
+          187,
+          224
+        ],
+        [
+          78,
+          68,
+          186,
+          224
+        ],
+        [
+          85,
+          70,
+          199,
+          224
+        ],
+        [
+          61,
+          71,
+          164,
+          224
+        ],
+        [
+          89,
+          78,
+          213,
+          224
+        ],
+        [
+          101,
+          87,
+          218,
+          224
+        ],
+        [
+          85,
+          74,
+          222,
+          224
+        ],
+        [
+          79,
+          70,
+          187,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 273132
+    },
+    {
+      "name": "TinTick",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/TinTick.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-99e130c8-75b8-4789-8d7d-c14aa8067fcb.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          76,
+          60,
+          184,
+          224
+        ],
+        [
+          73,
+          56,
+          183,
+          224
+        ],
+        [
+          83,
+          61,
+          208,
+          224
+        ],
+        [
+          63,
+          66,
+          176,
+          224
+        ],
+        [
+          65,
+          66,
+          190,
+          224
+        ],
+        [
+          34,
+          87,
+          169,
+          224
+        ],
+        [
+          39,
+          58,
+          174,
+          224
+        ],
+        [
+          76,
+          60,
+          189,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 311584
+    },
+    {
+      "name": "CoilKettle",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CoilKettle.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-d191c8e3-ba0b-4e98-b7d4-fde6aaac55df.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          42,
+          38,
+          203,
+          224
+        ],
+        [
+          49,
+          37,
+          211,
+          224
+        ],
+        [
+          47,
+          36,
+          209,
+          224
+        ],
+        [
+          47,
+          34,
+          209,
+          224
+        ],
+        [
+          42,
+          44,
+          213,
+          224
+        ],
+        [
+          41,
+          45,
+          219,
+          224
+        ],
+        [
+          39,
+          45,
+          207,
+          224
+        ],
+        [
+          41,
+          41,
+          208,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 469422
+    },
+    {
+      "name": "MonsterMarble",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MonsterMarble.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-7ab54fe3-fd12-428c-a556-acfdbb337184.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          73,
+          128,
+          181,
+          224
+        ],
+        [
+          70,
+          127,
+          181,
+          224
+        ],
+        [
+          62,
+          130,
+          174,
+          224
+        ],
+        [
+          65,
+          130,
+          173,
+          224
+        ],
+        [
+          68,
+          131,
+          180,
+          224
+        ],
+        [
+          70,
+          147,
+          185,
+          224
+        ],
+        [
+          106,
+          121,
+          222,
+          224
+        ],
+        [
+          67,
+          137,
+          177,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 193381
+    },
+    {
+      "name": "BalloonMallet",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/BalloonMallet.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-863552c7-66e5-40e0-b5b8-f201abfa7d80.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          83,
+          132,
+          207,
+          224
+        ],
+        [
+          84,
+          134,
+          201,
+          224
+        ],
+        [
+          83,
+          134,
+          205,
+          224
+        ],
+        [
+          86,
+          132,
+          205,
+          224
+        ],
+        [
+          80,
+          115,
+          198,
+          224
+        ],
+        [
+          76,
+          115,
+          191,
+          224
+        ],
+        [
+          79,
+          133,
+          222,
+          224
+        ],
+        [
+          84,
+          132,
+          204,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 175246
+    },
+    {
+      "name": "ReelOwl",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/ReelOwl.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-c2068ea3-1741-45c8-811a-7779fa02a2e1.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          47,
+          64,
+          193,
+          224
+        ],
+        [
+          47,
+          66,
+          200,
+          224
+        ],
+        [
+          34,
+          64,
+          186,
+          224
+        ],
+        [
+          36,
+          67,
+          187,
+          224
+        ],
+        [
+          44,
+          71,
+          205,
+          224
+        ],
+        [
+          45,
+          87,
+          209,
+          224
+        ],
+        [
+          43,
+          72,
+          213,
+          224
+        ],
+        [
+          47,
+          69,
+          198,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 414257
+    },
+    {
+      "name": "ThimbleMoth",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/ThimbleMoth.png",
+      "kind": "character",
+      "source": "ArtSource\\exec-e4bf7863-dcce-42ae-bfe3-74851af0f948.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        512
+      ],
+      "bounds": [
+        [
+          62,
+          87,
+          192,
+          224
+        ],
+        [
+          57,
+          86,
+          190,
+          224
+        ],
+        [
+          48,
+          88,
+          185,
+          224
+        ],
+        [
+          43,
+          89,
+          172,
+          224
+        ],
+        [
+          47,
+          98,
+          178,
+          224
+        ],
+        [
+          50,
+          97,
+          180,
+          224
+        ],
+        [
+          34,
+          78,
+          187,
+          224
+        ],
+        [
+          64,
+          95,
+          196,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 274131
+    },
+    {
+      "name": "Weapon_BookPaddle",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_BookPaddle.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-9f93c594-3cdf-4496-8f9c-d7583026ded9.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          40,
+          614,
+          260
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 169811
+    },
+    {
+      "name": "Weapon_BellFork",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_BellFork.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-a74fa88e-398e-469c-9282-e7f764c802c0.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          47,
+          614,
+          252
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 132866
+    },
+    {
+      "name": "Weapon_RubberHammer",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_RubberHammer.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-81fcc5e7-f21e-4b14-a9eb-c6b0de4275a3.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          113,
+          38,
+          587,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 131562
+    },
+    {
+      "name": "Weapon_KeyCleaver",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_KeyCleaver.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-18da1e1c-9ad8-487a-a2ad-c31928422005.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          58,
+          614,
+          242
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 153478
+    },
+    {
+      "name": "Weapon_MailboxLauncher",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_MailboxLauncher.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-ca41a8f7-5d0f-4b7c-a835-ab48ba74fc11.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          137,
+          38,
+          563,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 111659
+    },
+    {
+      "name": "Weapon_UmbrellaLance",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_UmbrellaLance.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-187883d1-043c-47a7-b2ec-669ea10f1228.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          59,
+          614,
+          240
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 134167
+    },
+    {
+      "name": "Weapon_DreamStamp",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_DreamStamp.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-25efa405-f2e8-41c3-a58c-eeecaebff439.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          45,
+          614,
+          254
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 146919
+    },
+    {
+      "name": "Weapon_SpringKnocker",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_SpringKnocker.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-d620d967-abde-43cb-b8b6-b42421e08e2c.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          89,
+          38,
+          611,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 147891
+    },
+    {
+      "name": "Weapon_RuneStaff",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_RuneStaff.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-03f283e5-540b-4391-8013-99c3281c9670.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          87,
+          38,
+          612,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 135351
+    },
+    {
+      "name": "Weapon_DreamIron",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_DreamIron.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-5a057216-7c35-4198-b6b1-af7d5554d9db.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          109,
+          38,
+          591,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 186020
+    },
+    {
+      "name": "Weapon_RibbonWheel",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_RibbonWheel.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-41bfe286-fd14-4ddf-86b4-5e095e7ef779.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          148,
+          38,
+          551,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 119702
+    },
+    {
+      "name": "Weapon_TeapotPopgun",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_TeapotPopgun.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-afe7388d-9012-43ba-894c-c044142f4946.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          109,
+          38,
+          591,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 158449
+    },
+    {
+      "name": "Weapon_ScrapMagnet",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_ScrapMagnet.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-ce6331f4-a59d-42ac-84c1-a284437f32a5.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          122,
+          38,
+          578,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 130932
+    },
+    {
+      "name": "Weapon_CloudScissors",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_CloudScissors.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-472a602a-e72d-44d9-8f7a-1372c43fac4b.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          96,
+          38,
+          603,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 176176
+    },
+    {
+      "name": "Weapon_AlarmMortar",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_AlarmMortar.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-35ad7dfa-6c7f-42b8-9638-70a05a56f840.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          108,
+          38,
+          591,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 170614
+    },
+    {
+      "name": "Weapon_ClockworkYoYo",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_ClockworkYoYo.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-ae114de2-e5f3-417e-9b0f-86549d8b8efe.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          54,
+          614,
+          246
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 101763
+    },
+    {
+      "name": "Weapon_MusicBox",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_MusicBox.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-4181c8f1-df50-4042-b1f2-455dac2771fe.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          90,
+          38,
+          610,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 169817
+    },
+    {
+      "name": "Weapon_SleepCamera",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_SleepCamera.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-adfef145-286a-49ec-9fdf-70a83cc909e6.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          138,
+          38,
+          561,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 163158
+    },
+    {
+      "name": "Weapon_TinFish",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_TinFish.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-d43a432b-f215-4cde-ac21-467d1bb480f6.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          87,
+          38,
+          612,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 167957
+    },
+    {
+      "name": "Weapon_PizzaWheel",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_PizzaWheel.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-abbac7f3-b73a-449a-8973-861fb1d8fa73.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          86,
+          39,
+          614,
+          261
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 169918
+    },
+    {
+      "name": "Weapon_DreamProjector",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_DreamProjector.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-1ce8e1aa-af94-4e3c-9695-d2af52e16fd6.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          216,
+          38,
+          484,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 93602
+    },
+    {
+      "name": "Weapon_FireExtinguisher",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_FireExtinguisher.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-d16df9cf-21d6-4bfe-88fd-9714ae87f096.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          144,
+          38,
+          555,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 148957
+    },
+    {
+      "name": "Weapon_NeedleSinger",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Weapon_NeedleSinger.png",
+      "kind": "weapon",
+      "source": "ArtSource\\exec-2cf012ee-4b65-467a-ab3f-b034bbbfdae2.png",
+      "mode": "RGBA",
+      "size": [
+        700,
+        300
+      ],
+      "bounds": [
+        [
+          164,
+          38,
+          536,
+          262
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 89240
+    },
+    {
+      "name": "RootOracle_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/RootOracle_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-2c142fa1-9be6-4cd0-8c9d-74681a3eb8a4.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          53,
+          66,
+          204,
+          224
+        ],
+        [
+          58,
+          64,
+          209,
+          224
+        ],
+        [
+          58,
+          68,
+          204,
+          224
+        ],
+        [
+          60,
+          65,
+          213,
+          224
+        ],
+        [
+          60,
+          84,
+          212,
+          224
+        ],
+        [
+          59,
+          56,
+          211,
+          224
+        ],
+        [
+          39,
+          48,
+          196,
+          224
+        ],
+        [
+          55,
+          64,
+          204,
+          224
+        ],
+        [
+          52,
+          58,
+          212,
+          224
+        ],
+        [
+          59,
+          61,
+          216,
+          224
+        ],
+        [
+          69,
+          67,
+          222,
+          224
+        ],
+        [
+          63,
+          67,
+          218,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 505505
+    },
+    {
+      "name": "LoneJelly_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/LoneJelly_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-53652ab9-145f-46e0-933f-7fc9f5225af5.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          72,
+          85,
+          201,
+          224
+        ],
+        [
+          80,
+          88,
+          213,
+          224
+        ],
+        [
+          54,
+          92,
+          183,
+          224
+        ],
+        [
+          49,
+          88,
+          180,
+          224
+        ],
+        [
+          64,
+          123,
+          199,
+          224
+        ],
+        [
+          87,
+          88,
+          222,
+          224
+        ],
+        [
+          65,
+          81,
+          207,
+          224
+        ],
+        [
+          71,
+          88,
+          205,
+          224
+        ],
+        [
+          38,
+          85,
+          183,
+          224
+        ],
+        [
+          73,
+          88,
+          211,
+          224
+        ],
+        [
+          68,
+          99,
+          205,
+          224
+        ],
+        [
+          46,
+          98,
+          186,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 364365
+    },
+    {
+      "name": "LanternKnight_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/LanternKnight_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-99fc5417-1f39-4836-9ba6-87e4b864753c.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          62,
+          34,
+          195,
+          224
+        ],
+        [
+          74,
+          43,
+          205,
+          224
+        ],
+        [
+          74,
+          50,
+          202,
+          224
+        ],
+        [
+          65,
+          47,
+          195,
+          224
+        ],
+        [
+          70,
+          77,
+          199,
+          224
+        ],
+        [
+          61,
+          40,
+          190,
+          224
+        ],
+        [
+          61,
+          52,
+          193,
+          224
+        ],
+        [
+          64,
+          44,
+          194,
+          224
+        ],
+        [
+          36,
+          56,
+          214,
+          224
+        ],
+        [
+          71,
+          61,
+          209,
+          224
+        ],
+        [
+          70,
+          63,
+          203,
+          224
+        ],
+        [
+          71,
+          79,
+          204,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 540704
+    },
+    {
+      "name": "DrowsySeer_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/DrowsySeer_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-8a94ea88-25c2-47d5-8a51-7c91da495a54.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          79,
+          90,
+          203,
+          224
+        ],
+        [
+          84,
+          93,
+          215,
+          224
+        ],
+        [
+          81,
+          96,
+          211,
+          224
+        ],
+        [
+          78,
+          91,
+          206,
+          224
+        ],
+        [
+          83,
+          105,
+          210,
+          224
+        ],
+        [
+          100,
+          88,
+          222,
+          224
+        ],
+        [
+          58,
+          85,
+          185,
+          224
+        ],
+        [
+          78,
+          90,
+          206,
+          224
+        ],
+        [
+          63,
+          82,
+          196,
+          224
+        ],
+        [
+          77,
+          86,
+          210,
+          224
+        ],
+        [
+          76,
+          91,
+          210,
+          224
+        ],
+        [
+          77,
+          92,
+          212,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 397433
+    },
+    {
+      "name": "Postmaster_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/Postmaster_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-8e008d28-9921-418e-acda-222b73892ac9.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          64,
+          78,
+          177,
+          224
+        ],
+        [
+          57,
+          76,
+          175,
+          224
+        ],
+        [
+          58,
+          82,
+          184,
+          224
+        ],
+        [
+          61,
+          79,
+          173,
+          224
+        ],
+        [
+          61,
+          97,
+          184,
+          224
+        ],
+        [
+          88,
+          74,
+          211,
+          224
+        ],
+        [
+          34,
+          76,
+          168,
+          224
+        ],
+        [
+          64,
+          76,
+          176,
+          224
+        ],
+        [
+          39,
+          77,
+          186,
+          224
+        ],
+        [
+          64,
+          83,
+          185,
+          224
+        ],
+        [
+          62,
+          81,
+          191,
+          224
+        ],
+        [
+          65,
+          79,
+          189,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 429212
+    },
+    {
+      "name": "TreasureAcorn_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/TreasureAcorn_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-03c252bc-c357-4c78-98ec-d3a9f68a18ff.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          64,
+          92,
+          183,
+          224
+        ],
+        [
+          70,
+          89,
+          188,
+          224
+        ],
+        [
+          71,
+          92,
+          191,
+          224
+        ],
+        [
+          68,
+          92,
+          187,
+          224
+        ],
+        [
+          65,
+          101,
+          192,
+          224
+        ],
+        [
+          66,
+          79,
+          194,
+          224
+        ],
+        [
+          53,
+          83,
+          177,
+          224
+        ],
+        [
+          64,
+          92,
+          187,
+          224
+        ],
+        [
+          34,
+          71,
+          164,
+          224
+        ],
+        [
+          60,
+          91,
+          188,
+          224
+        ],
+        [
+          71,
+          90,
+          197,
+          224
+        ],
+        [
+          67,
+          92,
+          192,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 412435
+    },
+    {
+      "name": "CometRunner_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/CometRunner_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-218da789-c249-4cc9-a1fb-e81eb0411394.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          71,
+          81,
+          201,
+          224
+        ],
+        [
+          68,
+          85,
+          196,
+          224
+        ],
+        [
+          51,
+          92,
+          191,
+          224
+        ],
+        [
+          59,
+          87,
+          201,
+          224
+        ],
+        [
+          48,
+          120,
+          193,
+          224
+        ],
+        [
+          54,
+          83,
+          193,
+          224
+        ],
+        [
+          45,
+          87,
+          176,
+          224
+        ],
+        [
+          71,
+          86,
+          199,
+          224
+        ],
+        [
+          49,
+          81,
+          222,
+          224
+        ],
+        [
+          63,
+          79,
+          211,
+          224
+        ],
+        [
+          47,
+          97,
+          213,
+          224
+        ],
+        [
+          52,
+          104,
+          197,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 381238
+    },
+    {
+      "name": "TideSinger_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/TideSinger_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-3ca5aac0-c4f6-43ab-8c03-fd74e9e18d1b.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          59,
+          80,
+          193,
+          224
+        ],
+        [
+          51,
+          78,
+          188,
+          224
+        ],
+        [
+          58,
+          87,
+          191,
+          224
+        ],
+        [
+          59,
+          86,
+          190,
+          224
+        ],
+        [
+          51,
+          93,
+          189,
+          224
+        ],
+        [
+          40,
+          81,
+          182,
+          224
+        ],
+        [
+          34,
+          77,
+          171,
+          224
+        ],
+        [
+          59,
+          89,
+          186,
+          224
+        ],
+        [
+          34,
+          67,
+          174,
+          224
+        ],
+        [
+          62,
+          79,
+          197,
+          224
+        ],
+        [
+          57,
+          89,
+          193,
+          224
+        ],
+        [
+          62,
+          88,
+          190,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 413557
+    },
+    {
+      "name": "GlassDice_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/GlassDice_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-64ac159c-f81d-4a59-9c73-cf39c7420fa9.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          88,
+          118,
+          190,
+          224
+        ],
+        [
+          89,
+          108,
+          199,
+          224
+        ],
+        [
+          63,
+          113,
+          167,
+          224
+        ],
+        [
+          90,
+          115,
+          192,
+          224
+        ],
+        [
+          54,
+          127,
+          171,
+          224
+        ],
+        [
+          102,
+          102,
+          210,
+          224
+        ],
+        [
+          100,
+          108,
+          222,
+          224
+        ],
+        [
+          90,
+          110,
+          192,
+          224
+        ],
+        [
+          71,
+          97,
+          210,
+          224
+        ],
+        [
+          93,
+          105,
+          209,
+          224
+        ],
+        [
+          85,
+          109,
+          211,
+          224
+        ],
+        [
+          88,
+          113,
+          194,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 316049
+    },
+    {
+      "name": "MirrorKeeper_Acting",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/Redo/MirrorKeeper_Acting.png",
+      "kind": "acting",
+      "source": "ArtSource\\exec-cf89f965-4191-42e5-9f40-90dea4262360.png",
+      "mode": "RGBA",
+      "size": [
+        1024,
+        768
+      ],
+      "bounds": [
+        [
+          64,
+          54,
+          186,
+          224
+        ],
+        [
+          73,
+          56,
+          196,
+          224
+        ],
+        [
+          75,
+          52,
+          198,
+          224
+        ],
+        [
+          59,
+          56,
+          183,
+          224
+        ],
+        [
+          62,
+          84,
+          193,
+          224
+        ],
+        [
+          58,
+          58,
+          186,
+          224
+        ],
+        [
+          44,
+          53,
+          174,
+          224
+        ],
+        [
+          76,
+          55,
+          205,
+          224
+        ],
+        [
+          78,
+          60,
+          222,
+          224
+        ],
+        [
+          62,
+          68,
+          195,
+          224
+        ],
+        [
+          71,
+          70,
+          202,
+          224
+        ],
+        [
+          70,
+          75,
+          197,
+          224
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 487803
+    }
+  ],
+  "failures": []
+}

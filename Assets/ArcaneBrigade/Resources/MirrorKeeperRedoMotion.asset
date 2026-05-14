@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: MirrorKeeperRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 183903314, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: 253389366, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  Walk:
+  - {fileID: 1518861653, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: 420380071, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: 1518861653, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: 420380071, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  Windup:
+  - {fileID: 1563493296, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: -253065645, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  Release:
+  - {fileID: 263787841, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: 263787841, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  Recovery:
+  - {fileID: 1699230360, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  - {fileID: 183903314, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
+  IllustratedHeight: 0

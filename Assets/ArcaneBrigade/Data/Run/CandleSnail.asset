@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CandleSnail
   DisplayName: Candle Snail
-  Body: {fileID: 1599731240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  Body: {fileID: 632423943, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
   AnimationFrames:
-  - {fileID: 1599731240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1047730014, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1708994758, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1867918937, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 632423943, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
+  - {fileID: -1119513754, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
+  - {fileID: -1505344211, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
+  - {fileID: -1642590151, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: e5301545b2bc7884795026aeabf3065a, type: 2}
   Weapon: {fileID: 11400000, guid: 08e2089b2e3d68c49afeacf4c35bc5c2, type: 2}
   Health: 120
   Speed: 5.1

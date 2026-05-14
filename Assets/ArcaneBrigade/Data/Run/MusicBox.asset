@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: MusicBox
   Kind: 2
-  Sprite: {fileID: 2038859672, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: 7a659ad828e82ff4ea9546f6da605da2, type: 3}
   Damage: 10
   Range: 7
   Cooldown: 0.95

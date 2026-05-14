@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CoralTeacup
   DisplayName: Coral Teacup
-  Body: {fileID: 758043545, guid: bcae160395c7985499b4e677e1d98906, type: 3}
+  Body: {fileID: 885396682, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
   AnimationFrames:
-  - {fileID: 758043545, guid: bcae160395c7985499b4e677e1d98906, type: 3}
-  - {fileID: -978590145, guid: bcae160395c7985499b4e677e1d98906, type: 3}
-  - {fileID: -1895669322, guid: bcae160395c7985499b4e677e1d98906, type: 3}
-  - {fileID: 429044185, guid: bcae160395c7985499b4e677e1d98906, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 885396682, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: -1786305146, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: 371314186, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: -1970519704, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 2d63e186c54daf54e8a4f7403067099f, type: 2}
   Weapon: {fileID: 11400000, guid: 6ac4ac855e2e7844d8c80d1f319a316f, type: 2}
   Health: 100
   Speed: 4.3999996

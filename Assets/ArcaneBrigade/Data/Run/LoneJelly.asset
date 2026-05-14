@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LoneJelly
   DisplayName: The Lone Jelly
-  Body: {fileID: -278472055, guid: d2bf904819493104784b37772b392153, type: 3}
+  Body: {fileID: -1435573195, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
   AnimationFrames:
-  - {fileID: -278472055, guid: d2bf904819493104784b37772b392153, type: 3}
-  - {fileID: -877668712, guid: d2bf904819493104784b37772b392153, type: 3}
-  - {fileID: 44288220, guid: d2bf904819493104784b37772b392153, type: 3}
-  - {fileID: 809412258, guid: d2bf904819493104784b37772b392153, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 4e25723c2b5303e48882fe5226ce76f7, type: 2}
+  - {fileID: -1435573195, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
+  - {fileID: -318438487, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
+  - {fileID: 1362773967, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
+  - {fileID: 1607621788, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 4942859e4dce4114a910c19f610dbe8b, type: 2}
   Weapon: {fileID: 11400000, guid: 957aab8abe6c27d479bd65d13b675866, type: 2}
   Health: 225
   Speed: 3.4

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CoralTeacupRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 885396682, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: -1786305146, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  Walk:
+  - {fileID: 371314186, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: -1970519704, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: 371314186, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: -1970519704, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  Windup:
+  - {fileID: 1849388285, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: 1067553790, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  Release:
+  - {fileID: -504764273, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: -504764273, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  Recovery:
+  - {fileID: 46751082, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: 885396682, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  IllustratedHeight: 0

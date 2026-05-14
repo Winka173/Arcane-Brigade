@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: JellySwordsman
   DisplayName: JellySwordsman
-  Body: {fileID: -389509726, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Body: {fileID: -429080671, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  AnimationFrames:
+  - {fileID: -429080671, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  - {fileID: 88434338, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  - {fileID: 159775271, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  - {fileID: -300890998, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 5382b3336163dbc45b0d81db9e182085, type: 2}
   Weapon: {fileID: 11400000, guid: 5a4d0a3168653264a95193be9a67a54c, type: 2}
   Health: 26
   Speed: 5.1

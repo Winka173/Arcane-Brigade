@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: PizzaWheel
   Kind: 1
-  Sprite: {fileID: 1679436766, guid: fe22312f2cf8c4241a46975db9985d3f, type: 3}
+  Sprite: {fileID: 21300000, guid: 9dcb4a63546579f4483acf7921ff0d41, type: 3}
   Damage: 18
   Range: 2.35
   Cooldown: 0.89

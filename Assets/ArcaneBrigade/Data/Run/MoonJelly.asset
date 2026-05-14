@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MoonJelly
   DisplayName: Moon Jelly
-  Body: {fileID: -161665414, guid: 4c6763d59c42df14bb2359eeb287b86a, type: 3}
+  Body: {fileID: 2061441293, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
   AnimationFrames:
-  - {fileID: -161665414, guid: 4c6763d59c42df14bb2359eeb287b86a, type: 3}
-  - {fileID: -87776375, guid: 4c6763d59c42df14bb2359eeb287b86a, type: 3}
-  - {fileID: 75971522, guid: 4c6763d59c42df14bb2359eeb287b86a, type: 3}
-  - {fileID: -254691533, guid: 4c6763d59c42df14bb2359eeb287b86a, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 2061441293, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
+  - {fileID: -1161928325, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
+  - {fileID: 1069326068, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
+  - {fileID: 1255906380, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 84343773b55df504cb61bb7c1b2b6ba8, type: 2}
   Weapon: {fileID: 11400000, guid: 3a552c526a3998a428518fbbccaa188b, type: 2}
   Health: 100
   Speed: 4.2

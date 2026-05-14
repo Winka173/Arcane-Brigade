@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: MaskPepperRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -965578735, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1182767963, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  Walk:
+  - {fileID: -906399397, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1481352938, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -906399397, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1481352938, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  Windup:
+  - {fileID: -1883383847, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1517951201, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  Release:
+  - {fileID: 1819660999, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: 1819660999, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  Recovery:
+  - {fileID: -285899932, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -965578735, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  IllustratedHeight: 0

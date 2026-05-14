@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: NeedleSinger
   Kind: 2
-  Sprite: {fileID: 2093096376, guid: fa69062f01237564ca479d844d91a93a, type: 3}
+  Sprite: {fileID: 21300000, guid: 4f23fa855e8b7af439ed67930cda7f29, type: 3}
   Damage: 5
   Range: 6.4
   Cooldown: 0.95

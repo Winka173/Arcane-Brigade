@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: SleepCamera
   Kind: 2
-  Sprite: {fileID: 2055926127, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: 0ec56df6ed7a08f42bb68b1ea5eaf755, type: 3}
   Damage: 6
   Range: 4.4
   Cooldown: 1.25

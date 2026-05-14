@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PostmasterRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1426825289, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: 1780996085, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  Walk:
+  - {fileID: 1392846759, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: -1461515756, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: 1392846759, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: -1461515756, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  Windup:
+  - {fileID: -1339667514, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: 676492594, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  Release:
+  - {fileID: -1845642892, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: -1845642892, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  Recovery:
+  - {fileID: -521635844, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  - {fileID: 1426825289, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  IllustratedHeight: 0

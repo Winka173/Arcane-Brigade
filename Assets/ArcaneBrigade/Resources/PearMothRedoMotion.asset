@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PearMothRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1724592925, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: 897514687, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  Walk:
+  - {fileID: -1562291127, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: -1510337927, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: -1562291127, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: -1510337927, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  Windup:
+  - {fileID: 162371310, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: 389333748, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  Release:
+  - {fileID: 1004616164, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: 1004616164, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  Recovery:
+  - {fileID: -99079168, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: 1724592925, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  IllustratedHeight: 0

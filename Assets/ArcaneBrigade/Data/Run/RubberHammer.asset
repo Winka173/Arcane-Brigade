@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: RubberHammer
   Kind: 1
-  Sprite: {fileID: -1514897940, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: 50860bdeb682692479ae89da359998fc, type: 3}
   Damage: 13
   Range: 2.1
   Cooldown: 0.95

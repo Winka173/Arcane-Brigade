@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StapleMole
   DisplayName: Staple Mole
-  Body: {fileID: 1971884620, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
+  Body: {fileID: -882396376, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
   AnimationFrames:
-  - {fileID: 1971884620, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
-  - {fileID: 1053070649, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
-  - {fileID: 699344708, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
-  - {fileID: -216271835, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -882396376, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
+  - {fileID: 2034576200, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
+  - {fileID: 73632883, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
+  - {fileID: -728246416, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 3ec2c4e229782f24b81b3945e152b8ef, type: 2}
   Weapon: {fileID: 11400000, guid: 7f5c0f391f15f844b99467e2edbff077, type: 2}
   Health: 100
   Speed: 4.3999996

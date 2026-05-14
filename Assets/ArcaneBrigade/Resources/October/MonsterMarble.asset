@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MonsterMarble
   DisplayName: Monster Marble
-  Body: {fileID: -746224037, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  Body: {fileID: 1786174103, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
   AnimationFrames:
-  - {fileID: -746224037, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -191358224, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -497749706, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -1064743466, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: c2443a9538aa7c84faf8e25d607899d4, type: 2}
+  - {fileID: 1786174103, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: -441658426, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: 2068720186, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: -354829006, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 763ce61589318a24a9971050216a4ad7, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

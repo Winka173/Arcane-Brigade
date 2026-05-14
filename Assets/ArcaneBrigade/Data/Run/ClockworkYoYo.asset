@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: ClockworkYoYo
   Kind: 1
-  Sprite: {fileID: -1104695607, guid: fa69062f01237564ca479d844d91a93a, type: 3}
+  Sprite: {fileID: 21300000, guid: 06117eed812cb0349a2be8141fd259f2, type: 3}
   Damage: 15
   Range: 3.8
   Cooldown: 1.1

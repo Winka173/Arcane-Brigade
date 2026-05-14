@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: DreamStamp
   Kind: 1
-  Sprite: {fileID: 21300000, guid: 0838e59ca3dc9ea4c819b9d7ae1a1fb7, type: 3}
+  Sprite: {fileID: 21300000, guid: e58441d2f2aa8744bbdc15ecefcfbbdd, type: 3}
   Damage: 9
   Range: 1.65
   Cooldown: 0.75

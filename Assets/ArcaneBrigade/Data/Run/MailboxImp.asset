@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MailboxImp
   DisplayName: Mailbox Imp
-  Body: {fileID: 1694225575, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  Body: {fileID: 631945764, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
   AnimationFrames:
-  - {fileID: 1694225575, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -2008201169, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 340090513, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1990760485, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 631945764, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: -1628974644, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: 332875552, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: -1385106106, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 86edea8ee5a9ef647a692362b9489cea, type: 2}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 120
   Speed: 5.1

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BrassAcorn
   DisplayName: Brass Acorn
-  Body: {fileID: 1375422801, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
+  Body: {fileID: -279728203, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
   AnimationFrames:
-  - {fileID: 1375422801, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  - {fileID: 659177622, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  - {fileID: 1631050211, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  - {fileID: -1384891847, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -279728203, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 733977321, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: -322198577, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 1497489406, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f54161b751e8f8f40babb28459b7999d, type: 2}
   Weapon: {fileID: 11400000, guid: c49101b482dca144bb87b559088a45ca, type: 2}
   Health: 100
   Speed: 4.2

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TeapotPilgrim
   DisplayName: Teapot Pilgrim
-  Body: {fileID: -1299497851, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  Body: {fileID: -1390667863, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
   AnimationFrames:
-  - {fileID: -1299497851, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 918964847, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1041608238, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 1189756933, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1390667863, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
+  - {fileID: 1716465179, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
+  - {fileID: -1441893980, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
+  - {fileID: -1782322618, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 55f3cf05450e7ba488fed547b585dd75, type: 2}
   Weapon: {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
   Health: 120
   Speed: 5.1

@@ -16,7 +16,7 @@ MonoBehaviour:
   SecretRecall: 0
   Id: AlarmMortar
   Kind: 2
-  Sprite: {fileID: -930333882, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+  Sprite: {fileID: 21300000, guid: 52cf25d22ef3ccb46ae070dd8c0778f9, type: 3}
   Damage: 18
   Range: 7
   Cooldown: 1.8

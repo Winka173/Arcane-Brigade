@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BubbleKoiRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 2049730732, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: -163025304, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  Walk:
+  - {fileID: 573510152, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: 1334763623, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: 573510152, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: 1334763623, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  Windup:
+  - {fileID: -236445209, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: -1671355001, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  Release:
+  - {fileID: -477090935, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: -477090935, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  Recovery:
+  - {fileID: 608480937, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: 2049730732, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  IllustratedHeight: 0

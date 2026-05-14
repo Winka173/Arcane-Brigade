@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SnowSpoonRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -2089024060, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: 1486331458, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  Walk:
+  - {fileID: -1970876487, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: -2108711747, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: -1970876487, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: -2108711747, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  Windup:
+  - {fileID: 1113655342, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: 1372018753, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  Release:
+  - {fileID: 75794368, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: 75794368, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  Recovery:
+  - {fileID: 586891568, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: -2089024060, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  IllustratedHeight: 0

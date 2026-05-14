@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PillowOracleRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 896194873, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: -865566823, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  Walk:
+  - {fileID: -1328676331, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: 403483238, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: -1328676331, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: 403483238, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  Windup:
+  - {fileID: 1744834644, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: 1441859237, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  Release:
+  - {fileID: 858793501, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: 858793501, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  Recovery:
+  - {fileID: -783494546, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  - {fileID: 896194873, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
+  IllustratedHeight: 0

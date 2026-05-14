@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: EclipseEggRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1673732503, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: -515277252, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  Walk:
+  - {fileID: -411546688, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: 793802873, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: -411546688, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: 793802873, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  Windup:
+  - {fileID: 1222469852, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: -278700869, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  Release:
+  - {fileID: -1875140392, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: -1875140392, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  Recovery:
+  - {fileID: 788150230, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  - {fileID: 1673732503, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
+  IllustratedHeight: 0

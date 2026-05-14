@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PearMoth
   DisplayName: Pear Moth
-  Body: {fileID: 1067809159, guid: d7634a3dc622e2d488cdab286168f502, type: 3}
+  Body: {fileID: 1724592925, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
   AnimationFrames:
-  - {fileID: 1067809159, guid: d7634a3dc622e2d488cdab286168f502, type: 3}
-  - {fileID: 1083474413, guid: d7634a3dc622e2d488cdab286168f502, type: 3}
-  - {fileID: 961179520, guid: d7634a3dc622e2d488cdab286168f502, type: 3}
-  - {fileID: -562280314, guid: d7634a3dc622e2d488cdab286168f502, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1724592925, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: 897514687, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: -1562291127, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  - {fileID: -1510337927, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: bbed1742793ef3941a8f558cbed4f158, type: 2}
   Weapon: {fileID: 11400000, guid: a22718ca5bb6fd4409d7346c3f6d3bd9, type: 2}
   Health: 100
   Speed: 4.6

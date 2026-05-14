@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: OrbitMoth
   DisplayName: Orbit Moth
-  Body: {fileID: 1276170932, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
+  Body: {fileID: -1033724062, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
   AnimationFrames:
-  - {fileID: 1276170932, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
-  - {fileID: 306178121, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
-  - {fileID: 1339157263, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
-  - {fileID: 1492482736, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1033724062, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
+  - {fileID: -346376081, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
+  - {fileID: 1156014178, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
+  - {fileID: 1837574974, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 09b352562de2bbc4b8310cd0bf6939fd, type: 2}
   Weapon: {fileID: 11400000, guid: b8b75c39f98614a439f9995a95828421, type: 2}
   Health: 100
   Speed: 4.3999996
