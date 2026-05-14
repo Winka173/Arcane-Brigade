@@ -1,0 +1,954 @@
+{
+  "tool": "painted",
+  "normalization": "Shared scale, registered anchors, alpha <12 debris removed; no code-painted substitutes",
+  "sheets": [
+    {
+      "name": "LanternKnight_LighthouseLens",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/LanternKnight_LighthouseLens.png",
+      "frames": 4,
+      "size": [
+        1024,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          34,
+          32,
+          221,
+          224
+        ],
+        [
+          34,
+          32,
+          221,
+          224
+        ],
+        [
+          34,
+          32,
+          221,
+          224
+        ],
+        [
+          34,
+          32,
+          221,
+          224
+        ]
+      ],
+      "bytes": 241216,
+      "anchor": "center"
+    },
+    {
+      "name": "DrowsySeer_MoonPhase",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/DrowsySeer_MoonPhase.png",
+      "frames": 4,
+      "size": [
+        1024,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          59,
+          32,
+          195,
+          224
+        ],
+        [
+          59,
+          32,
+          195,
+          224
+        ],
+        [
+          59,
+          32,
+          195,
+          224
+        ],
+        [
+          59,
+          32,
+          195,
+          224
+        ]
+      ],
+      "bytes": 139142,
+      "anchor": "top_center"
+    },
+    {
+      "name": "RootOracle_RootTip",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/RootOracle_RootTip.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          76,
+          115,
+          185,
+          224
+        ],
+        [
+          67,
+          32,
+          189,
+          224
+        ],
+        [
+          78,
+          79,
+          170,
+          224
+        ]
+      ],
+      "bytes": 80356,
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "LoneJelly_Organs",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/LoneJelly_Organs.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          33,
+          38,
+          223,
+          218
+        ],
+        [
+          33,
+          38,
+          223,
+          218
+        ],
+        [
+          32,
+          38,
+          224,
+          218
+        ]
+      ],
+      "bytes": 208877,
+      "anchor": "center"
+    },
+    {
+      "name": "GlassDice_Die",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/GlassDice_Die.png",
+      "frames": 6,
+      "size": [
+        1536,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          39,
+          32,
+          216,
+          224
+        ],
+        [
+          38,
+          32,
+          216,
+          224
+        ],
+        [
+          38,
+          32,
+          216,
+          224
+        ],
+        [
+          39,
+          32,
+          217,
+          224
+        ],
+        [
+          38,
+          32,
+          217,
+          224
+        ],
+        [
+          38,
+          32,
+          216,
+          224
+        ]
+      ],
+      "bytes": 391102,
+      "anchor": "center"
+    },
+    {
+      "name": "TideSinger_WaveCrest",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/TideSinger_WaveCrest.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          44,
+          64,
+          212,
+          192
+        ],
+        [
+          49,
+          55,
+          207,
+          200
+        ],
+        [
+          32,
+          54,
+          224,
+          202
+        ]
+      ],
+      "bytes": 123165,
+      "anchor": "center"
+    },
+    {
+      "name": "CometRunner_Comet",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/CometRunner_Comet.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          87,
+          224,
+          168
+        ],
+        [
+          64,
+          90,
+          192,
+          165
+        ],
+        [
+          36,
+          90,
+          220,
+          165
+        ]
+      ],
+      "bytes": 72467,
+      "anchor": "center"
+    },
+    {
+      "name": "VerdantMatron_Bud",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/VerdantMatron_Bud.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          69,
+          199,
+          217
+        ],
+        [
+          37,
+          59,
+          198,
+          217
+        ],
+        [
+          36,
+          39,
+          224,
+          217
+        ]
+      ],
+      "bytes": 140526,
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "ChinaMarionette_Shard",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ChinaMarionette_Shard.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          58,
+          224,
+          198
+        ],
+        [
+          42,
+          53,
+          214,
+          202
+        ],
+        [
+          45,
+          46,
+          211,
+          210
+        ]
+      ],
+      "bytes": 120304,
+      "anchor": "center"
+    },
+    {
+      "name": "SoapSkater_IceChips",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/SoapSkater_IceChips.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          37,
+          75,
+          219,
+          180
+        ],
+        [
+          32,
+          56,
+          223,
+          199
+        ],
+        [
+          32,
+          66,
+          224,
+          189
+        ]
+      ],
+      "bytes": 81596,
+      "anchor": "center"
+    },
+    {
+      "name": "VelvetRegent_Banner",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/VelvetRegent_Banner.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          52,
+          114,
+          204
+        ],
+        [
+          32,
+          52,
+          194,
+          204
+        ],
+        [
+          33,
+          52,
+          224,
+          204
+        ]
+      ],
+      "bytes": 83287,
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "ButtonCavalier_Buttons",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ButtonCavalier_Buttons.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          34,
+          35,
+          221,
+          221
+        ],
+        [
+          37,
+          34,
+          219,
+          222
+        ],
+        [
+          40,
+          32,
+          215,
+          224
+        ]
+      ],
+      "bytes": 232452,
+      "anchor": "center"
+    },
+    {
+      "name": "NightMaw_Jaw",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/NightMaw_Jaw.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          38,
+          76,
+          218,
+          180
+        ],
+        [
+          32,
+          52,
+          224,
+          204
+        ],
+        [
+          38,
+          76,
+          218,
+          180
+        ]
+      ],
+      "bytes": 133233,
+      "anchor": "center"
+    },
+    {
+      "name": "ThornTreasurer_ThornCrown",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ThornTreasurer_ThornCrown.png",
+      "frames": 4,
+      "size": [
+        1024,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          48,
+          72,
+          212,
+          196
+        ],
+        [
+          44,
+          74,
+          211,
+          196
+        ],
+        [
+          47,
+          59,
+          211,
+          196
+        ],
+        [
+          32,
+          61,
+          224,
+          196
+        ]
+      ],
+      "bytes": 138799,
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "IvorySovereign_Decree",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/IvorySovereign_Decree.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          35,
+          32,
+          224,
+          135
+        ],
+        [
+          33,
+          32,
+          223,
+          188
+        ],
+        [
+          32,
+          32,
+          223,
+          223
+        ]
+      ],
+      "bytes": 150497,
+      "anchor": "top_center"
+    },
+    {
+      "name": "PatchworkHost_Curtain",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PatchworkHost_Curtain.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          47,
+          224,
+          209
+        ],
+        [
+          32,
+          47,
+          224,
+          209
+        ],
+        [
+          32,
+          47,
+          224,
+          209
+        ]
+      ],
+      "bytes": 180978,
+      "anchor": "center"
+    },
+    {
+      "name": "ArchiveCurator_Book",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ArchiveCurator_Book.png",
+      "frames": 4,
+      "size": [
+        1024,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          47,
+          70,
+          203,
+          210
+        ],
+        [
+          50,
+          46,
+          214,
+          210
+        ],
+        [
+          32,
+          82,
+          224,
+          210
+        ],
+        [
+          32,
+          56,
+          222,
+          210
+        ]
+      ],
+      "bytes": 188482,
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "PennyBroker_Receipt",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PennyBroker_Receipt.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          38,
+          224,
+          217
+        ],
+        [
+          46,
+          48,
+          210,
+          207
+        ],
+        [
+          46,
+          48,
+          210,
+          207
+        ]
+      ],
+      "bytes": 158522,
+      "anchor": "center"
+    },
+    {
+      "name": "StormFencer_Sheath",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/StormFencer_Sheath.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          32,
+          107,
+          224,
+          148
+        ],
+        [
+          32,
+          107,
+          224,
+          148
+        ],
+        [
+          32,
+          107,
+          224,
+          148
+        ]
+      ],
+      "bytes": 47481,
+      "anchor": "center"
+    },
+    {
+      "name": "TinVirtuoso_MusicStand",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/TinVirtuoso_MusicStand.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          63,
+          44,
+          194,
+          224
+        ],
+        [
+          61,
+          32,
+          193,
+          224
+        ],
+        [
+          61,
+          44,
+          192,
+          224
+        ]
+      ],
+      "bytes": 84440,
+      "anchor": "bottom_center"
+    },
+    {
+      "name": "MoonProwler_ShadowCat",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/MoonProwler_ShadowCat.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          42,
+          82,
+          214,
+          172
+        ],
+        [
+          32,
+          76,
+          224,
+          178
+        ],
+        [
+          37,
+          68,
+          219,
+          187
+        ]
+      ],
+      "bytes": 71323,
+      "anchor": "center"
+    },
+    {
+      "name": "LanternWeaver_Lantern",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/LanternWeaver_Lantern.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          91,
+          32,
+          171,
+          224
+        ],
+        [
+          90,
+          32,
+          171,
+          224
+        ],
+        [
+          84,
+          32,
+          166,
+          218
+        ]
+      ],
+      "bytes": 81709,
+      "anchor": "top_center"
+    },
+    {
+      "name": "RainArchivist_Cloud",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/RainArchivist_Cloud.png",
+      "frames": 3,
+      "size": [
+        768,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          39,
+          85,
+          217,
+          170
+        ],
+        [
+          33,
+          69,
+          223,
+          186
+        ],
+        [
+          32,
+          68,
+          224,
+          187
+        ]
+      ],
+      "bytes": 106464,
+      "anchor": "center"
+    },
+    {
+      "name": "SundaeDuchess_Cherry",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/SundaeDuchess_Cherry.png",
+      "frames": 2,
+      "size": [
+        512,
+        256
+      ],
+      "mode": "RGBA",
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cell_bounds": [
+        [
+          52,
+          32,
+          208,
+          224
+        ],
+        [
+          39,
+          92,
+          216,
+          224
+        ]
+      ],
+      "bytes": 76301,
+      "anchor": "bottom_center"
+    }
+  ]
+}

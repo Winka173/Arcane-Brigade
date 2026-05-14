@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>Imports only the delivered physical-object animation sheets. Does not replace runtime effects or art.</summary>
+    /// <summary>Imports the delivered physical-object animation sheets and rebuilds the runtime sprite library.</summary>
     public static class HeroEffectArtImporter
     {
         [Serializable] private sealed class Manifest { public int cell_size; public Sheet[] jobs; }
@@ -14,10 +14,13 @@ namespace ArcaneBrigade.Editor
         [MenuItem("Arcane Brigade/Art/Import hero effect sheets")]
         public static void Run()
         {
-            var manifest = JsonUtility.FromJson<Manifest>(File.ReadAllText("Docs/Hero_Effect_Art_Manifest.json"));
-            if (manifest.cell_size != 256 || manifest.jobs.Length != 14) throw new Exception("Unexpected hero effect manifest");
+            var manifests = new[] { "Docs/Hero_Effect_Art_Manifest.json", "Docs/Hero_Effect_Art_Manifest_2.json" }
+                .Where(File.Exists).Select(p => JsonUtility.FromJson<Manifest>(File.ReadAllText(p))).ToArray();
+            if (manifests.Any(m => m.cell_size != 256 || m.jobs == null)) throw new Exception("Unexpected hero effect manifest");
+            Sheet[] sheets = manifests.SelectMany(m => m.jobs).ToArray();
+            if (sheets.Select(s => s.name).Distinct().Count() != sheets.Length) throw new Exception("Duplicate hero effect sheet");
             int total = 0;
-            foreach (Sheet sheet in manifest.jobs)
+            foreach (Sheet sheet in sheets)
             {
                 if (!sheet.path.StartsWith("Assets/ArcaneBrigade/Art/Playtest/HeroEffects/", StringComparison.Ordinal) || !File.Exists(sheet.path))
                     throw new Exception("Missing or invalid art path: " + sheet.path);
@@ -32,7 +35,8 @@ namespace ArcaneBrigade.Editor
                 importer.npotScale = TextureImporterNPOTScale.None;
                 importer.filterMode = FilterMode.Bilinear;
                 importer.wrapMode = TextureWrapMode.Clamp;
-                importer.maxTextureSize = 1024;
+                // The six-face dice strip is 1536px wide: a 1024 cap would shrink its 256px cells.
+                importer.maxTextureSize = Mathf.Max(1024, Mathf.NextPowerOfTwo(sheet.frames * 256));
                 importer.textureCompression = TextureImporterCompression.Compressed;
                 importer.compressionQuality = 80;
 #pragma warning disable 618
@@ -47,9 +51,13 @@ namespace ArcaneBrigade.Editor
                     throw new Exception("Sprite slicing failed: " + sheet.name);
                 total += frames.Length;
             }
-            if (total != 40) throw new Exception("Unexpected hero effect frame count: " + total);
-            File.WriteAllText("Docs/Hero_Effect_Art_Unity_Verification.txt", "14 sheets / 40 sprites imported and verified in Unity; equal 256x256 cells; NPOT preserved; alpha enabled; no mipmaps; bilinear; clamp; max texture 1024. Runtime effect replacement is a separate integration step.\n");
-            Debug.Log("HERO_EFFECT_ART_IMPORTED sheets=14 sprites=" + total);
+            if (total != sheets.Sum(s => s.frames)) throw new Exception("Unexpected hero effect frame count: " + total);
+            HeroEffectArtLibraryBuilder.Build();
+            var library = AssetDatabase.LoadAssetAtPath<HeroEffectArtLibrary>("Assets/ArcaneBrigade/Resources/HeroEffectArtLibrary.asset");
+            if (library == null || sheets.Any(s => !library.Entries.Any(e => e.Key == s.name && e.Frames.Length == s.frames)))
+                throw new Exception("Hero effect runtime library is incomplete");
+            File.WriteAllText("Docs/Hero_Effect_Art_Unity_Verification_2.txt", sheets.Length + " sheets / " + total + " sprites imported and verified in Unity; equal 256x256 cells; NPOT preserved; alpha enabled; no mipmaps; bilinear; clamp; texture cap follows strip width. Runtime HeroEffectArtLibrary rebuilt and all manifest entries verified.\n");
+            Debug.Log("HERO_EFFECT_ART_IMPORTED sheets=" + sheets.Length + " sprites=" + total);
         }
     }
 }

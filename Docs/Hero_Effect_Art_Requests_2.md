@@ -65,5 +65,9 @@ Fill in `<HERO>`, `<OBJECT>`, `<N>` and `<MOTION>` from the table:
 | Rain Archivist | `RainArchivist_Cloud.png` | 3 | A small painted storm cloud | Gathering; full and heavy; dark with a lit edge | Over the spot its rain falls on |
 | Sundae Duchess | `SundaeDuchess_Cherry.png` | 2 | A glossy cherry with a stem | Round; squashed on landing | On top of each scoop that lands |
 
-Totals: 24 sheets, 76 frames. At 256 px per cell the set comes to roughly 2–3 MB, which is inside the build-size
+Totals: 24 sheets, 78 frames (sum of the per-sheet requests). At 256 px per cell the set comes to roughly 2–3 MB, which is inside the build-size
 budget.
+
+## Delivered 24/10/2026
+
+All 24 sheets / 78 frames made, normalized to 256px cells and imported into Unity. See [delivery](Hero_Effect_Art_Delivery_2.md), [contact sheet](../PreviewExports/HeroEffects/ContactSheet2.jpg), [prompts and refs](Hero_Effect_Art_Manifest_2.json), [alpha/layout verification](Hero_Effect_Art_Verification_2.json) and [Unity import verification](Hero_Effect_Art_Unity_Verification_2.txt).

@@ -1,0 +1,301 @@
+{
+  "tool": "painted",
+  "cell_size": 256,
+  "jobs": [
+    {
+      "name": "LanternKnight_LighthouseLens",
+      "hero": "LanternKnight",
+      "frames": 4,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/LanternKnight_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Lantern Knight`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `4` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `Brass lighthouse lens housing with glass prisms, seen from the side` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `The lens drum turns a quarter per frame; the prisms catch a different face each time`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/LanternKnight_LighthouseLens.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-1079a43a-c22d-40a6-9685-10e3d81cadcd.png"
+    },
+    {
+      "name": "DrowsySeer_MoonPhase",
+      "hero": "DrowsySeer",
+      "frames": 4,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/DrowsySeer_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Drowsy Seer`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `4` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small porcelain moon charm on a ribbon` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Crescent, half, gibbous, full`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: Keep the same fixed ribbon knot and porcelain disc diameter; only the visible ivory lunar phase changes inside that diameter. Moon phases wax from right side. No glow.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/DrowsySeer_MoonPhase.png",
+      "anchor": "top_center",
+      "source": "ArtSource\\exec-311f3a5e-1f21-43ab-baa0-310b6cc2b8e2.png",
+      "revision_prompt": "Use case: precise-object-edit. Edit the FIRST attached four-frame moon charm sheet. KEEP the same porcelain moon phases, gold crescent frame, blue ribbon and palette. Correct the clipped ribbon at the very top: redraw every complete charm SMALLER inside its own frame with generous fully transparent padding, at least 20% on all four sides. Four separate complete pendants in ONE horizontal row. Their same ribbon knots and bottom finials stay aligned from cell to cell. Left to right crescent, half, gibbous, full; no other changes. The complete ribbon bow must be visible and must NOT touch the canvas top. Absolutely no cropped edges. True transparent RGBA, no text, shadows or background."
+    },
+    {
+      "name": "RootOracle_RootTip",
+      "hero": "RootOracle",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/RootOracle_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Root Oracle`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A gnarled root tip with bark and thorns, pointing up` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Just breaking the floor; risen with thorns spread; drawing back`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/RootOracle_RootTip.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-422c5254-f35b-49b8-9e46-70568a485f11.png",
+      "revision_prompt": "Use case: precise-object-edit. Correct the attached three-frame root sheet. Draw only a SINGLE compact upright GNARLED ROOT TIP with bark, moss and thorns in each frame. Remove all ground, stones, debris and broad tree stump base/root feet. No ground line or dust. THREE equal cells in ONE horizontal strip: frame 1 just a SHORT pointed root tip rising from nowhere, frame 2 the SAME root extends higher upward with its thorns spreading, frame 3 it retracts to medium height with thorns folding in. The root's narrow bottom attachment anchor remains at the SAME height in all cells. Same bark pattern, leaves, warm painted ink style; only extension and thorns move. This is NOT three full tree trunks or legs. Each whole root fits inside central 60% of its square cell with broad empty transparent margins on all sides. Genuine transparent RGBA."
+    },
+    {
+      "name": "LoneJelly_Organs",
+      "hero": "LoneJelly",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/LoneJelly_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Lone Jelly`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A remembered organ floating inside gel` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `A tiny biting mouth; a frost gland; a stitched limb`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: The three cells are three remembered parts, one per cell, NOT three whole jelly characters: small cream-toothed mouth inside a teal gel capsule, frost gland inside same gel silhouette, cream-stitched limb inside same gel silhouette. No faces or extra anatomy.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/LoneJelly_Organs.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-b177307a-0329-4e63-aae0-25827b5409dd.png"
+    },
+    {
+      "name": "GlassDice_Die",
+      "hero": "GlassDice",
+      "frames": 6,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/GlassDice_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Glass Dice`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `6` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `One glass die with red pips, three-quarter view` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Faces 1 to 6 on top`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: Top faces must show exactly one, two, three, four, five, six wine-red inlaid pips respectively. Pips are dots, not written numbers; keep the transparent glass die and perspective identical.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/GlassDice_Die.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-a8159102-574b-4bc0-b82a-40b73102916a.png"
+    },
+    {
+      "name": "TideSinger_WaveCrest",
+      "hero": "TideSinger",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/TideSinger_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Tide Singer`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A curling wave crest of painted water with foam` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Rising; curling over; breaking into foam`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: The table explicitly requests painted water: draw only its tangible crest and foam, no additional water pool, glow, light or spray effect.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/TideSinger_WaveCrest.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-c3a99e83-3ffb-4e75-9f5a-c88b77b77d36.png",
+      "revision_prompt": "Use case: precise-object-edit. Edit the attached THREE-frame painted wave sheet. Remove the entire brass-and-teal surfboard / boat-shaped solid base from EVERY frame. Keep ONLY the physical painted teal water crest and ivory foam; NO brass, shells, pearls, gems or ornaments anywhere. Three stages of one right-curling wave: rising smaller crest; crest curls forward; crest breaks into ivory foam tufts. No long flat water pool at bottom, ground, glow, character, scenery or shadow. Keep painterly storybook brush texture, navy ink contour, cream/teal/lilac palette of the existing water. Three equal square cells in one horizontal strip. Each complete compact wave uses only central 60% of its cell, with generous transparent gutters. True RGBA background."
+    },
+    {
+      "name": "CometRunner_Comet",
+      "hero": "CometRunner",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/CometRunner_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Comet Runner`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A comet head: a rock wrapped in a short flaring tail` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `The tail long, short, long, flickering in shape`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: The table explicitly requests the short painted comet tail: keep it a solid painted amber/cream tapered form, no luminous glow, sparks or long trail.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/CometRunner_Comet.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-78cd9705-0490-4b4d-b282-a29e8e5ff549.png",
+      "effective_prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Comet Runner`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A comet head: a rock wrapped in a short flaring tail` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `The tail long, short, long, flickering in shape`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: The table explicitly requests the short painted comet tail: keep it a solid painted amber/cream tapered form, no luminous glow, sparks or long trail.\nDraw ONLY the small comet head and its short painted tail, NOT any weapon, pedestal or whole hero. Keep its rock head fixed across frames; tail follows to the LEFT, head points RIGHT. No face or eyes."
+    },
+    {
+      "name": "VerdantMatron_Bud",
+      "hero": "VerdantMatron",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/VerdantMatron_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Verdant Matron`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A flower bud on a short stem with two leaves` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Closed; half open; in full bloom`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/VerdantMatron_Bud.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-8164db60-8d41-4ef1-9cc8-389a994ed982.png",
+      "effective_prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Verdant Matron`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A flower bud on a short stem with two leaves` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Closed; half open; in full bloom`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nONLY the short flower stem and its two leaves with the single bud/bloom. No watering can, brass weapon or other parts from the reference; reference is its flower identity and painting style."
+    },
+    {
+      "name": "ChinaMarionette_Shard",
+      "hero": "ChinaMarionette",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/ChinaMarionette_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `China Marionette`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A porcelain shard with a gold-filled crack` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Three different shard shapes`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ChinaMarionette_Shard.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-76bd5cc7-271b-4a81-ae5d-5870218b4e67.png"
+    },
+    {
+      "name": "SoapSkater_IceChips",
+      "hero": "SoapSkater",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/SoapSkater_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Soap Skater`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small spray of ice shavings off a skate blade` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Thrown up; at its height; falling`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: Only the table-requested physical ice shavings; no skate, no blade, no mist, no floor.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/SoapSkater_IceChips.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-7b4be0da-81d8-4334-96aa-7b1d5aad6944.png"
+    },
+    {
+      "name": "VelvetRegent_Banner",
+      "hero": "VelvetRegent",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/VelvetRegent_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Velvet Regent`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small royal pennant on a gilded pole` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Furled; waving; raised high`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/VelvetRegent_Banner.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-cc0623c7-1682-4375-a409-c3566c2dd0b1.png"
+    },
+    {
+      "name": "ButtonCavalier_Buttons",
+      "hero": "ButtonCavalier",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/ButtonCavalier_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Button Cavalier`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `One ornate brass coat button` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Still; tilted catching light; popping off`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ButtonCavalier_Buttons.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-19b0a572-c7cb-46bb-8a95-d9e26d16d55f.png"
+    },
+    {
+      "name": "NightMaw_Jaw",
+      "hero": "NightMaw",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/NightMaw_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Night Maw`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A pair of night-dark jaws with cream teeth and a wine-red tongue` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Closed; wide open; snapping shut`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/NightMaw_Jaw.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-c2f42134-25ea-4ba1-82e9-9a900de671a5.png",
+      "revision_prompt": "Use case: precise-object-edit. Correct layout ONLY of the attached three-jaw sprite sheet. Current sprites overlap and are too wide. Draw THREE much SMALLER copies of exactly these ornate midnight jaws in one horizontal row, closed / wide open / snapping closed. Give each object an independent full square cell and make each jaw occupy ONLY THE CENTRAL HALF of its cell width. Leave very broad completely transparent gaps between jaws, at least ONE HALF A JAW WIDTH of empty space. Shrink all three by same scale; do not cut off any horn, star charm or tooth. Same design, same upper jaw width and upper-jaw height across cells; lower jaw opens downward. No ground, shadows, text, glow, added decorations or background. Genuine transparent RGBA. Objects fully separated, NO TOUCHING."
+    },
+    {
+      "name": "ThornTreasurer_ThornCrown",
+      "hero": "ThornTreasurer",
+      "frames": 4,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/ThornTreasurer_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Thorn Treasurer`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `4` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small crown of brass and thorns` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `One, two, three, four thorns grown`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ThornTreasurer_ThornCrown.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-8e1b364a-e60c-43dc-b326-8ff10af71b00.png"
+    },
+    {
+      "name": "IvorySovereign_Decree",
+      "hero": "IvorySovereign",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/IvorySovereign_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Ivory Sovereign`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `An ivory parchment decree with a violet wax seal` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Rolled; half unrolled; fully open`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/IvorySovereign_Decree.png",
+      "anchor": "top_center",
+      "source": "ArtSource\\exec-ea322769-e18f-4796-a41e-290f723048e3.png"
+    },
+    {
+      "name": "PatchworkHost_Curtain",
+      "hero": "PatchworkHost",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/PatchworkHost_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Patchwork Host`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small patchwork stage curtain on a brass rail` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Closed; parting; open`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PatchworkHost_Curtain.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-eaf339d2-3505-4c26-bd50-63ddf1a11af0.png"
+    },
+    {
+      "name": "ArchiveCurator_Book",
+      "hero": "ArchiveCurator",
+      "frames": 4,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/ArchiveCurator_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Archive Curator`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `4` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A thick old archive book, three-quarter view` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Closed; opening; open; a page lifting`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/ArchiveCurator_Book.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-834c4742-aba0-48d3-b5fa-2cc4206c7800.png",
+      "revision_prompt": "Use case: precise-object-edit. Correct only the layout of the attached four-frame archive book sheet: the right edge of the fourth open book is cut off. Repaint all four complete books slightly smaller and centered in FOUR separated equal cells in ONE row, with large transparent padding. Each book occupies no more than 60% cell width. Keep identical burgundy covers, brass corners, blank pages, bookmark and three-quarter view. Frames closed / opening / open / one page lifting. SAME size of book spine and SAME spine anchor across frames. No book edge, corner or page may touch canvas boundaries or another cell. No text, ground, shadows or effects. Genuine transparent RGBA."
+    },
+    {
+      "name": "PennyBroker_Receipt",
+      "hero": "PennyBroker",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/PennyBroker_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Penny Broker`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A paper receipt slip` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Printing out of a slot; torn off; stamped`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: The receipt paper is blank. The last stamp is a small plain wax/ink mark with no letters, numerals or lettering. A small fixed brass slot may appear only in first frame.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/PennyBroker_Receipt.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-38e76a26-be68-4b0a-9a93-c30a01695b22.png"
+    },
+    {
+      "name": "StormFencer_Sheath",
+      "hero": "StormFencer",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/StormFencer_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Storm Fencer`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `Its scabbard, side view` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Plain; charged with blue-white runes lit; runes blazing`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: Represent the requested rune stages only as pale blue-white enamel inlays changing brightness INSIDE the scabbard material; no readable writing, emitted light, aura or electric bolts.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/StormFencer_Sheath.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-73972381-c88e-4060-920d-4178f9d31f87.png"
+    },
+    {
+      "name": "TinVirtuoso_MusicStand",
+      "hero": "TinVirtuoso",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/TinVirtuoso_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Tin Virtuoso`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small tin music stand with a score` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `The score's page turning in three steps`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: Blank cream score paper without musical notation, letters or numbers; only the page turns, the tin stand stays fixed.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/TinVirtuoso_MusicStand.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-2d4942c8-ccf8-4b93-abad-2a18109958ed.png"
+    },
+    {
+      "name": "MoonProwler_ShadowCat",
+      "hero": "MoonProwler",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/MoonProwler_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Moon Prowler`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A cat-like shadow silhouette in deep blue ink` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Crouched; slinking; pouncing`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/MoonProwler_ShadowCat.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-78285fd8-217c-437f-bdf6-fed946b78dbd.png"
+    },
+    {
+      "name": "LanternWeaver_Lantern",
+      "hero": "LanternWeaver",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/LanternWeaver_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Lantern Weaver`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small paper lantern on a thread loop` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Unlit; lit (painted warm paper only, no glow); swaying lit`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/LanternWeaver_Lantern.png",
+      "anchor": "top_center",
+      "source": "ArtSource\\exec-a08fc80c-e488-462e-a6c9-a25c915d5332.png"
+    },
+    {
+      "name": "RainArchivist_Cloud",
+      "hero": "RainArchivist",
+      "frames": 3,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/RainArchivist_Awake_Held_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Rain Archivist`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `3` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A small painted storm cloud` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Gathering; full and heavy; dark with a lit edge`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.\nClarification of the requested object/motion: Only the requested painted cloud, with its last edge pale from upper-left surface shading; no rain or glow.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/RainArchivist_Cloud.png",
+      "anchor": "center",
+      "source": "ArtSource\\exec-81afd89c-cc96-4ade-96a8-100700487888.png"
+    },
+    {
+      "name": "SundaeDuchess_Cherry",
+      "hero": "SundaeDuchess",
+      "frames": 2,
+      "refs": [
+        "Assets/ArcaneBrigade/Art/Arsenal/SundaeDuchess_Awake_v1.png"
+      ],
+      "prompt": "Use case: illustration-story. Production game sprite animation sheet for Arcane Brigade.\nThe attached image is the exact identity/design reference for `Sundae Duchess`'s awakening art. Match its layered hand-painted\nstorybook texture, warm confident ink contour, materials and palette, highlights from upper left. This is a physical\npainted object, not an effect icon.\nDraw ONE horizontal strip of `2` equal square cells, left to right, transparent RGBA, intended delivery `<N\u00d7256>`x256\n(256 px per cell). One `A glossy cherry with a stem` in each cell, same design, same size, same position across all frames. No hero,\nhands, text, labels, cell dividers, ground, cast shadow, pools, circular auras, glow, sparks or background.\nAnimate ONLY: `Round; squashed on landing`. All other detailing is identical in every cell.\nUse at least 12% completely transparent margin inside EVERY cell on all four sides. Isolate every frame without\noverlap. Real transparent background, no checkerboard painted in. Readable at tiny game scale.",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/HeroEffects/SundaeDuchess_Cherry.png",
+      "anchor": "bottom_center",
+      "source": "ArtSource\\exec-3982ee7e-a2b0-472c-9945-27179b6aecef.png"
+    }
+  ]
+}

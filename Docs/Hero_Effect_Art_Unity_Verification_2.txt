@@ -1,0 +1,1 @@
+38 sheets / 118 sprites imported and verified in Unity; equal 256x256 cells; NPOT preserved; alpha enabled; no mipmaps; bilinear; clamp; texture cap follows strip width. Runtime HeroEffectArtLibrary rebuilt and all manifest entries verified.

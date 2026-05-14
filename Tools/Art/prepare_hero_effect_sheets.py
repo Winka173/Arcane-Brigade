@@ -1,11 +1,16 @@
 """Normalize painted sheets to 256px cells; layout/alpha cleanup only, never draws artwork."""
 import json
+import argparse
 from pathlib import Path
 from PIL import Image
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
-manifest_path = ROOT / 'Docs/Hero_Effect_Art_Manifest.json'
+parser = argparse.ArgumentParser()
+parser.add_argument('--manifest', default='Docs/Hero_Effect_Art_Manifest.json')
+parser.add_argument('--report', default='Docs/Hero_Effect_Art_Verification.json')
+args = parser.parse_args()
+manifest_path = ROOT / args.manifest
 manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
 report = []
 prepared = []
@@ -76,5 +81,5 @@ for job, cells, anchors, boxes in prepared:
     report.append(dict(name=job['name'],path=job['path'],frames=job['frames'],size=list(sheet.size),mode=sheet.mode,
         corner_alpha=[sheet.getchannel('A').getpixel(p) for p in [(0,0),(sheet.width-1,0),(0,255),(sheet.width-1,255)]],
         cell_bounds=bounds,bytes=out.stat().st_size,anchor=job.get('anchor','center')))
-(ROOT/'Docs/Hero_Effect_Art_Verification.json').write_text(json.dumps(dict(tool='painted',normalization='Shared scale, registered anchors, alpha <12 debris removed; no code-painted substitutes',sheets=report),indent=2)+'\n',encoding='utf-8')
+(ROOT/args.report).write_text(json.dumps(dict(tool='painted',normalization='Shared scale, registered anchors, alpha <12 debris removed; no code-painted substitutes',sheets=report),indent=2)+'\n',encoding='utf-8')
 print(f'{len(report)} sheets / {sum(j["frames"] for j in report)} frames verified; {sum(j["bytes"] for j in report):,} PNG bytes')

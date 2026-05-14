@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: HeroEffectArtLibrary
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.HeroEffectArtLibrary
   Entries:
+  - Key: ArchiveCurator_Book
+    Frames:
+    - {fileID: -7063287711362558837, guid: fd74912df269c6a4abee6da049926664, type: 3}
+    - {fileID: 2659977223282678344, guid: fd74912df269c6a4abee6da049926664, type: 3}
+    - {fileID: -3070305146055082025, guid: fd74912df269c6a4abee6da049926664, type: 3}
+    - {fileID: 2665072143467305988, guid: fd74912df269c6a4abee6da049926664, type: 3}
   - Key: BellDiver_DivingBell
     Frames:
     - {fileID: -5164891834067234891, guid: 29396fe85b389ff4db7ca2830d981e63, type: 3}
@@ -22,22 +28,56 @@ MonoBehaviour:
     Frames:
     - {fileID: -8292919968507328009, guid: e9bace491caa0f8449c27fdbdd2f52dd, type: 3}
     - {fileID: 2226695728873059831, guid: e9bace491caa0f8449c27fdbdd2f52dd, type: 3}
+  - Key: ButtonCavalier_Buttons
+    Frames:
+    - {fileID: -6176938652832311237, guid: 37141593314644c45a7de59e9af1a9eb, type: 3}
+    - {fileID: 2087570318011889583, guid: 37141593314644c45a7de59e9af1a9eb, type: 3}
+    - {fileID: 9002237335701594574, guid: 37141593314644c45a7de59e9af1a9eb, type: 3}
+  - Key: ChinaMarionette_Shard
+    Frames:
+    - {fileID: -9000529195263721614, guid: 6909e52d5f20e9a4fba89ecbb0f609b0, type: 3}
+    - {fileID: 9148120465455125053, guid: 6909e52d5f20e9a4fba89ecbb0f609b0, type: 3}
+    - {fileID: -8401765003206108848, guid: 6909e52d5f20e9a4fba89ecbb0f609b0, type: 3}
   - Key: CitrusMarshal_Coupling
     Frames:
     - {fileID: -3517748934123442054, guid: f3f2a40d0c51d024bb240c648c4d2d12, type: 3}
     - {fileID: -420399739393674791, guid: f3f2a40d0c51d024bb240c648c4d2d12, type: 3}
     - {fileID: -1480386678838602446, guid: f3f2a40d0c51d024bb240c648c4d2d12, type: 3}
+  - Key: CometRunner_Comet
+    Frames:
+    - {fileID: -2216987092469893464, guid: 5f41f251103227a47be699846d55b80f, type: 3}
+    - {fileID: -3457990273165581773, guid: 5f41f251103227a47be699846d55b80f, type: 3}
+    - {fileID: 8888900256467310702, guid: 5f41f251103227a47be699846d55b80f, type: 3}
   - Key: CopperCauldron_PistonValve
     Frames:
     - {fileID: -2966887506993615538, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
     - {fileID: -4582946222858757407, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
     - {fileID: 6398825122323963345, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
     - {fileID: 3379750649861163251, guid: ce5513c1977291d4e9c6ae8e08a03c10, type: 3}
+  - Key: DrowsySeer_MoonPhase
+    Frames:
+    - {fileID: 4602062189871938896, guid: 9c7cc91e985a9ab40a8d9ea34866723b, type: 3}
+    - {fileID: 4662086674293345564, guid: 9c7cc91e985a9ab40a8d9ea34866723b, type: 3}
+    - {fileID: 5981956223875353850, guid: 9c7cc91e985a9ab40a8d9ea34866723b, type: 3}
+    - {fileID: 4318440631448857134, guid: 9c7cc91e985a9ab40a8d9ea34866723b, type: 3}
+  - Key: GlassDice_Die
+    Frames:
+    - {fileID: 7739478346175587841, guid: cc23bd54a62fe4d4f9001dd778bb7f93, type: 3}
+    - {fileID: 2402518462436371210, guid: cc23bd54a62fe4d4f9001dd778bb7f93, type: 3}
+    - {fileID: -4690703334157656826, guid: cc23bd54a62fe4d4f9001dd778bb7f93, type: 3}
+    - {fileID: 4815968944589928673, guid: cc23bd54a62fe4d4f9001dd778bb7f93, type: 3}
+    - {fileID: -8397701842982942428, guid: cc23bd54a62fe4d4f9001dd778bb7f93, type: 3}
+    - {fileID: 3716988341128993707, guid: cc23bd54a62fe4d4f9001dd778bb7f93, type: 3}
   - Key: HourglassStag_Hourglass
     Frames:
     - {fileID: -1135107775256981513, guid: f573fafcf86b0614880814bd4f8cc068, type: 3}
     - {fileID: -6746956122287442516, guid: f573fafcf86b0614880814bd4f8cc068, type: 3}
     - {fileID: -3138437111656010530, guid: f573fafcf86b0614880814bd4f8cc068, type: 3}
+  - Key: IvorySovereign_Decree
+    Frames:
+    - {fileID: -1610202817932472907, guid: baf235e0f75374f479a2cd00b21f422b, type: 3}
+    - {fileID: 7077784881316681279, guid: baf235e0f75374f479a2cd00b21f422b, type: 3}
+    - {fileID: -7356638582073177296, guid: baf235e0f75374f479a2cd00b21f422b, type: 3}
   - Key: JugglingJester_Ball
     Frames:
     - {fileID: -2350330936102759825, guid: 1a9b34cdb5250b540aa734b6eb8040a2, type: 3}
@@ -51,11 +91,47 @@ MonoBehaviour:
     - {fileID: -8783889774287178718, guid: ffcccf4cfcab6c645a8b7b1adf087efb, type: 3}
     - {fileID: -2447417326271848945, guid: ffcccf4cfcab6c645a8b7b1adf087efb, type: 3}
     - {fileID: 7370694630831207924, guid: ffcccf4cfcab6c645a8b7b1adf087efb, type: 3}
+  - Key: LanternKnight_LighthouseLens
+    Frames:
+    - {fileID: 7505939133522236168, guid: af9c471e72d64684e86e81f8d8434cdb, type: 3}
+    - {fileID: 7466609844674016267, guid: af9c471e72d64684e86e81f8d8434cdb, type: 3}
+    - {fileID: -4030395123700483730, guid: af9c471e72d64684e86e81f8d8434cdb, type: 3}
+    - {fileID: 8936571957505221362, guid: af9c471e72d64684e86e81f8d8434cdb, type: 3}
+  - Key: LanternWeaver_Lantern
+    Frames:
+    - {fileID: -1301960969129267049, guid: e90dcdb7d4887bf43a4412362eeebb91, type: 3}
+    - {fileID: 4355915354518400213, guid: e90dcdb7d4887bf43a4412362eeebb91, type: 3}
+    - {fileID: -2159750267227487310, guid: e90dcdb7d4887bf43a4412362eeebb91, type: 3}
+  - Key: LoneJelly_Organs
+    Frames:
+    - {fileID: -6937321522530211846, guid: da41f7dc941672340b415d9d5303d01c, type: 3}
+    - {fileID: -5902206055402900970, guid: da41f7dc941672340b415d9d5303d01c, type: 3}
+    - {fileID: -4999898656297099752, guid: da41f7dc941672340b415d9d5303d01c, type: 3}
   - Key: MirrorKeeper_Pane
     Frames:
     - {fileID: 8100942225912295835, guid: 88b56ccfb3e266147a58da28dbcb6c95, type: 3}
     - {fileID: -4346926986742597883, guid: 88b56ccfb3e266147a58da28dbcb6c95, type: 3}
     - {fileID: 7532515650767681664, guid: 88b56ccfb3e266147a58da28dbcb6c95, type: 3}
+  - Key: MoonProwler_ShadowCat
+    Frames:
+    - {fileID: 8616118906371621965, guid: d495b46fd02d61c45847f7b2e08fcefb, type: 3}
+    - {fileID: 1464695315572134263, guid: d495b46fd02d61c45847f7b2e08fcefb, type: 3}
+    - {fileID: 4167569735291468161, guid: d495b46fd02d61c45847f7b2e08fcefb, type: 3}
+  - Key: NightMaw_Jaw
+    Frames:
+    - {fileID: -2933192043118569020, guid: 229bb23b65d51704bbeec3a93f14cd7e, type: 3}
+    - {fileID: 3663158729829465040, guid: 229bb23b65d51704bbeec3a93f14cd7e, type: 3}
+    - {fileID: -3625896490676823716, guid: 229bb23b65d51704bbeec3a93f14cd7e, type: 3}
+  - Key: PatchworkHost_Curtain
+    Frames:
+    - {fileID: 6393529818366836104, guid: ea759f12c4bd67a4dbd967ad99baefad, type: 3}
+    - {fileID: -4305231100412163024, guid: ea759f12c4bd67a4dbd967ad99baefad, type: 3}
+    - {fileID: 7291253782964928474, guid: ea759f12c4bd67a4dbd967ad99baefad, type: 3}
+  - Key: PennyBroker_Receipt
+    Frames:
+    - {fileID: 2284697390536036139, guid: fe6fadae42191454b9289d39241b2b96, type: 3}
+    - {fileID: 686924340236692136, guid: fe6fadae42191454b9289d39241b2b96, type: 3}
+    - {fileID: -8946264249268873597, guid: fe6fadae42191454b9289d39241b2b96, type: 3}
   - Key: PetalCitadel_WallBack
     Frames:
     - {fileID: 5595068567604961712, guid: 5e8deb4142e0a9740b8894d437b92552, type: 3}
@@ -71,13 +147,63 @@ MonoBehaviour:
     - {fileID: 2844760257555651763, guid: e74a5c8b441a3ac4a9ff1664462f55db, type: 3}
     - {fileID: 7226496817120001174, guid: e74a5c8b441a3ac4a9ff1664462f55db, type: 3}
     - {fileID: 5516257032490190571, guid: e74a5c8b441a3ac4a9ff1664462f55db, type: 3}
+  - Key: RainArchivist_Cloud
+    Frames:
+    - {fileID: 4323341600909500607, guid: 0bd757a10d77ac94b80f16c392f90109, type: 3}
+    - {fileID: 7637254406633719304, guid: 0bd757a10d77ac94b80f16c392f90109, type: 3}
+    - {fileID: 4644223532045263901, guid: 0bd757a10d77ac94b80f16c392f90109, type: 3}
+  - Key: RootOracle_RootTip
+    Frames:
+    - {fileID: -6223069783256364762, guid: 13e45d771b683b14280d1ad7ad137021, type: 3}
+    - {fileID: 6027141789637469507, guid: 13e45d771b683b14280d1ad7ad137021, type: 3}
+    - {fileID: -691163482909070746, guid: 13e45d771b683b14280d1ad7ad137021, type: 3}
+  - Key: SoapSkater_IceChips
+    Frames:
+    - {fileID: 4416793997792568017, guid: 683f27455b61fd442857a6f25905109a, type: 3}
+    - {fileID: 3178843256056050818, guid: 683f27455b61fd442857a6f25905109a, type: 3}
+    - {fileID: -8073402643711655305, guid: 683f27455b61fd442857a6f25905109a, type: 3}
+  - Key: StormFencer_Sheath
+    Frames:
+    - {fileID: -4788037978827308263, guid: 111f89bbe7db4aa418cd8c3533870310, type: 3}
+    - {fileID: 7584297471563278160, guid: 111f89bbe7db4aa418cd8c3533870310, type: 3}
+    - {fileID: 5833006377666210400, guid: 111f89bbe7db4aa418cd8c3533870310, type: 3}
+  - Key: SundaeDuchess_Cherry
+    Frames:
+    - {fileID: 4401879572588252106, guid: 6c52d45ca27aabe41a056bfcf41c795a, type: 3}
+    - {fileID: -8560621657887528241, guid: 6c52d45ca27aabe41a056bfcf41c795a, type: 3}
   - Key: SupperMortar_PotLid
     Frames:
     - {fileID: -6737817905541863951, guid: 0fbea5bb8a48fc344b64a4aedfc0ce40, type: 3}
     - {fileID: 1936370210617876566, guid: 0fbea5bb8a48fc344b64a4aedfc0ce40, type: 3}
+  - Key: ThornTreasurer_ThornCrown
+    Frames:
+    - {fileID: -8913604359159008984, guid: bb9270ae953487e45a65b87e1c7dd5b5, type: 3}
+    - {fileID: 741409190569100123, guid: bb9270ae953487e45a65b87e1c7dd5b5, type: 3}
+    - {fileID: 7413646736757173451, guid: bb9270ae953487e45a65b87e1c7dd5b5, type: 3}
+    - {fileID: -755276923699475319, guid: bb9270ae953487e45a65b87e1c7dd5b5, type: 3}
+  - Key: TideSinger_WaveCrest
+    Frames:
+    - {fileID: -6541453497101307083, guid: a4ab6f63441b5eb48a66fa0a62ac4675, type: 3}
+    - {fileID: -1537519708686700944, guid: a4ab6f63441b5eb48a66fa0a62ac4675, type: 3}
+    - {fileID: -3216954229943730349, guid: a4ab6f63441b5eb48a66fa0a62ac4675, type: 3}
+  - Key: TinVirtuoso_MusicStand
+    Frames:
+    - {fileID: -4904325452009101361, guid: 67fe82c14b9314547819df1088d0ffdc, type: 3}
+    - {fileID: -4939843132021304215, guid: 67fe82c14b9314547819df1088d0ffdc, type: 3}
+    - {fileID: 6547714072813029110, guid: 67fe82c14b9314547819df1088d0ffdc, type: 3}
   - Key: TreasureAcorn_Crank
     Frames:
     - {fileID: 3506927606890602250, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
     - {fileID: -2521096833678503520, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
     - {fileID: -5758584293124371005, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
     - {fileID: -6372692170607012572, guid: dbb41cfdc2eb8a4458b8c6809166edf5, type: 3}
+  - Key: VelvetRegent_Banner
+    Frames:
+    - {fileID: 1645630099389545020, guid: 92a39a88e575d3b41b08a5525d95c27a, type: 3}
+    - {fileID: -812918190152241720, guid: 92a39a88e575d3b41b08a5525d95c27a, type: 3}
+    - {fileID: -7059233474286394282, guid: 92a39a88e575d3b41b08a5525d95c27a, type: 3}
+  - Key: VerdantMatron_Bud
+    Frames:
+    - {fileID: -2300978472697099032, guid: 95b6193d2b7b6134782e7eea2f46aaf8, type: 3}
+    - {fileID: 3708636905975538928, guid: 95b6193d2b7b6134782e7eea2f46aaf8, type: 3}
+    - {fileID: -8132071052245712244, guid: 95b6193d2b7b6134782e7eea2f46aaf8, type: 3}
