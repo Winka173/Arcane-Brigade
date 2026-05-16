@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / 'Docs/Enemy_Variety_Art_Manifest.json'
@@ -65,12 +65,15 @@ def prepare(job):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('name', nargs='?')
+    parser.add_argument('--review-only', action='store_true')
     args = parser.parse_args()
     manifest = json.loads(MANIFEST.read_text())
     previous = json.loads(QA.read_text()) if QA.exists() else {'completed': [], 'failures': []}
     complete = {j['name']: j for j in previous['completed']}
     failures = {j['name']: j for j in previous['failures']}
     selected = [j for j in manifest['jobs'] if j.get('source') and (not args.name or j['name'] == args.name)]
+    if args.review_only:
+        selected = []
     if args.name and not selected:
         raise ValueError('no generated source for '+args.name)
     failed = False
@@ -86,6 +89,23 @@ def main():
     QA.write_text(json.dumps(dict(tool='painted', processing='Registration/resampling and alpha<12 cleanup only; no code-painted art', completed=ordered, failures=list(failures.values())), indent=2)+'\n')
     (ROOT/'Docs/Enemy_Variety_Art_Progress.txt').write_text(''.join(j['name']+' '+j['path']+' done\n' for j in ordered))
     print(str(len(ordered))+'/22 delivered')
+    if args.review_only:
+        names = {j['name'] for j in ordered}
+        folder = ROOT/'PreviewExports/EnemyVariety'; folder.mkdir(parents=True, exist_ok=True)
+        for label, jobs in [('Repaints', manifest['jobs'][:10]), ('NewEnemies', manifest['jobs'][10:18]), ('Elites', manifest['jobs'][18:])]:
+            jobs = [j for j in jobs if j['name'] in names]
+            if not jobs:
+                continue
+            board = Image.new('RGB', (1460, len(jobs)*120), (38, 40, 49)); draw = ImageDraw.Draw(board)
+            for row, job in enumerate(jobs):
+                draw.text((8, row*120+5), job['id'], fill=(215, 208, 239))
+                im = Image.open(ROOT/job['path']).convert('RGBA')
+                for i in range(16):
+                    sprite = im.crop(((i%4)*384, (i//4)*384, (i%4+1)*384, (i//4+1)*384))
+                    sprite.thumbnail((80, 80), Image.Resampling.LANCZOS)
+                    x = 140+i*80+(20 if i >= 8 else 0)
+                    board.paste(sprite, (x, row*120+25), sprite)
+            board.save(folder/(label+'.jpg'), quality=94)
     if failed:
         raise SystemExit(1)
 
