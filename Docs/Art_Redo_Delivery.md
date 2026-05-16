@@ -9,10 +9,11 @@
 | Acting 10 hero: tò mò, vui, bị đánh, thất bại | 10 | 120 |
 | Tổng | **87** | **575** |
 
-Ảnh cuối nằm trong `Assets/ArcaneBrigade/Art/Playtest/Redo/`. Sheet nhân vật 1024×512, acting 1024×768, ô 256×256; vũ khí 700×300. Tổng PNG: **23.455.724 byte**, khoảng **22,37 MiB**.
+Ảnh cuối nằm trong `Assets/ArcaneBrigade/Art/Playtest/Redo/`. Sheet nhân vật 1024×512, acting 1024×768, ô 256×256; vũ khí 700×300. Tổng PNG sau cập nhật Pillow Oracle: **23.454.067 byte**, khoảng **22,37 MiB**.
 
 ## Các bản sửa khi duyệt
 
+- **Pillow Oracle, cập nhật sau bàn giao:** đổi vải tím đậm sang kem mật ong và đào ấm, thêu nâu, tua đồng và viền teal nhỏ. Giữ đủ tám tư thế và thiết kế gối riêng để tránh nhầm với quái. Bên code cần nhập lại ảnh; kết quả Unity bên dưới được ghi trước lần đổi màu này.
 - **Balloon Mallet:** vẽ lại tám tư thế; vòi mọc từ mặt, cuộn lên phía trước khi lấy đà rồi duỗi ra trước khi đánh. Bỏ tư thế vòi xuyên thân hoặc mọc ra phía lưng.
 - **Comet Kite:** thiết kế lại mặt bằng mắt và miệng thêu trên chính lớp vải navy. Bỏ mảng mặt người sáng màu, mũi và chi tiết trông như dán từ hình khác.
 - **Pillow Oracle, Brass Acorn, Comet Kite, Mailbox Imp, Mirror Newt, Bubble Koi, Jelly Swordsman, Dice Crab:** thiết kế riêng, tách nhận diện khỏi hero tương ứng.

@@ -1,0 +1,127 @@
+{
+  "tool": "painted",
+  "processing": "Registration/resampling and alpha<12 cleanup only; no code-painted art",
+  "completed": [
+    {
+      "name": "Enemy_MoonMagnet",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_MoonMagnet.png",
+      "source": "ArtSource\\exec-06b27758-dee1-45df-b3dd-64d5f6d895b3.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          76,
+          109,
+          307,
+          336
+        ],
+        [
+          80,
+          109,
+          303,
+          336
+        ],
+        [
+          94,
+          109,
+          290,
+          336
+        ],
+        [
+          82,
+          108,
+          302,
+          336
+        ],
+        [
+          64,
+          152,
+          320,
+          336
+        ],
+        [
+          80,
+          129,
+          304,
+          336
+        ],
+        [
+          50,
+          102,
+          334,
+          336
+        ],
+        [
+          81,
+          129,
+          302,
+          336
+        ],
+        [
+          60,
+          62,
+          323,
+          336
+        ],
+        [
+          63,
+          61,
+          321,
+          336
+        ],
+        [
+          68,
+          58,
+          316,
+          336
+        ],
+        [
+          67,
+          64,
+          317,
+          336
+        ],
+        [
+          50,
+          113,
+          334,
+          336
+        ],
+        [
+          68,
+          95,
+          316,
+          336
+        ],
+        [
+          52,
+          81,
+          332,
+          336
+        ],
+        [
+          77,
+          124,
+          307,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1609331
+    }
+  ],
+  "failures": []
+}
