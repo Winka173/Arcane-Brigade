@@ -85,6 +85,9 @@ def main():
         except (ValueError, OSError) as error:
             failures[job['name']] = dict(name=job['name'], reason=str(error))
             print(job['name']+' FAILED '+str(error)); failed = True
+    for job in manifest['jobs']:
+        if job.get('review_fix_needed'):
+            failures[job['name']] = dict(name=job['name'], reason='Art review: '+job['review_fix_needed'])
     ordered = [complete[j['name']] for j in manifest['jobs'] if j['name'] in complete and j['name'] not in failures]
     QA.write_text(json.dumps(dict(tool='painted', processing='Registration/resampling and alpha<12 cleanup only; no code-painted art', completed=ordered, failures=list(failures.values())), indent=2)+'\n')
     (ROOT/'Docs/Enemy_Variety_Art_Progress.txt').write_text(''.join(j['name']+' '+j['path']+' done\n' for j in ordered))
