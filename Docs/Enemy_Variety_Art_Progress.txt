@@ -1,1 +1,2 @@
 Enemy_MoonMagnet Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_MoonMagnet.png done
+Enemy_ClockBat Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_ClockBat.png done
