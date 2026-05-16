@@ -3,3 +3,4 @@ Enemy_ClockBat Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_ClockBat.png d
 Enemy_RuneWisp Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_RuneWisp.png done
 Enemy_InkMoth Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_InkMoth.png done
 Enemy_SleepMimic Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SleepMimic.png done
+Enemy_SporeBishop Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SporeBishop.png done
