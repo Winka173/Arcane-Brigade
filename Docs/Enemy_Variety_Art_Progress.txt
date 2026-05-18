@@ -5,3 +5,4 @@ Enemy_InkMoth Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_InkMoth.png don
 Enemy_SleepMimic Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SleepMimic.png done
 Enemy_SporeBishop Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SporeBishop.png done
 Enemy_BroomSkater Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_BroomSkater.png done
+Enemy_CurtainWisp Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_CurtainWisp.png done
