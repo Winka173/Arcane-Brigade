@@ -1321,12 +1321,256 @@
         0
       ],
       "bytes": 1506125
+    },
+    {
+      "name": "Enemy_SpyglassSniper",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SpyglassSniper.png",
+      "source": "ArtSource\\exec-05279c4e-8937-4c47-bd46-bc166dc4db58.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          98,
+          116,
+          286,
+          336
+        ],
+        [
+          90,
+          115,
+          294,
+          336
+        ],
+        [
+          83,
+          106,
+          300,
+          336
+        ],
+        [
+          83,
+          102,
+          301,
+          336
+        ],
+        [
+          77,
+          147,
+          306,
+          336
+        ],
+        [
+          92,
+          98,
+          292,
+          336
+        ],
+        [
+          67,
+          122,
+          316,
+          336
+        ],
+        [
+          73,
+          105,
+          311,
+          336
+        ],
+        [
+          83,
+          61,
+          300,
+          336
+        ],
+        [
+          85,
+          59,
+          298,
+          336
+        ],
+        [
+          74,
+          59,
+          310,
+          336
+        ],
+        [
+          86,
+          50,
+          298,
+          336
+        ],
+        [
+          67,
+          118,
+          316,
+          336
+        ],
+        [
+          82,
+          90,
+          301,
+          336
+        ],
+        [
+          63,
+          91,
+          320,
+          336
+        ],
+        [
+          70,
+          93,
+          314,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1333740
+    },
+    {
+      "name": "Enemy_DrawerBroodmother",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_DrawerBroodmother.png",
+      "source": "ArtSource\\exec-a46c2ef7-95b2-4401-bc7a-080a1dca7da7.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          111,
+          108,
+          272,
+          336
+        ],
+        [
+          111,
+          108,
+          272,
+          336
+        ],
+        [
+          98,
+          107,
+          285,
+          336
+        ],
+        [
+          100,
+          102,
+          284,
+          336
+        ],
+        [
+          96,
+          139,
+          288,
+          336
+        ],
+        [
+          80,
+          119,
+          304,
+          336
+        ],
+        [
+          87,
+          106,
+          297,
+          336
+        ],
+        [
+          81,
+          110,
+          303,
+          336
+        ],
+        [
+          82,
+          76,
+          301,
+          336
+        ],
+        [
+          82,
+          75,
+          301,
+          336
+        ],
+        [
+          83,
+          68,
+          300,
+          336
+        ],
+        [
+          81,
+          65,
+          302,
+          336
+        ],
+        [
+          73,
+          88,
+          311,
+          336
+        ],
+        [
+          68,
+          101,
+          315,
+          336
+        ],
+        [
+          75,
+          50,
+          308,
+          336
+        ],
+        [
+          79,
+          52,
+          305,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1506988
     }
   ],
   "failures": [
     {
       "name": "Enemy_SirenSeal",
       "reason": "Art review: Mutated form needs TWO gramophone horns on its back; remove biological antlers. Keep violet seal body and toothed singing maw."
+    },
+    {
+      "name": "Enemy_CandleShade",
+      "reason": "Art review: Normal form copied fuzzy HushMite silhouette. Redraw as a long thin candle shadow with wax-drip head and slit eyes; no fur, no round ball."
     }
   ]
 }

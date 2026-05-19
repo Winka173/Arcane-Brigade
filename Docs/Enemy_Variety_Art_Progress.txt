@@ -9,3 +9,5 @@ Enemy_CurtainWisp Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_CurtainWisp
 Enemy_HushMite Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_HushMite.png done
 Enemy_FireScreenWarden Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_FireScreenWarden.png done
 Enemy_TwinWickLantern Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_TwinWickLantern.png done
+Enemy_SpyglassSniper Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SpyglassSniper.png done
+Enemy_DrawerBroodmother Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_DrawerBroodmother.png done
