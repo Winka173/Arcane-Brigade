@@ -6,3 +6,6 @@ Enemy_SleepMimic Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SleepMimic.p
 Enemy_SporeBishop Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SporeBishop.png done
 Enemy_BroomSkater Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_BroomSkater.png done
 Enemy_CurtainWisp Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_CurtainWisp.png done
+Enemy_HushMite Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_HushMite.png done
+Enemy_FireScreenWarden Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_FireScreenWarden.png done
+Enemy_TwinWickLantern Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_TwinWickLantern.png done
