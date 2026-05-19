@@ -1443,9 +1443,9 @@
       "bytes": 1333740
     },
     {
-      "name": "Enemy_DrawerBroodmother",
-      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_DrawerBroodmother.png",
-      "source": "ArtSource\\exec-a46c2ef7-95b2-4401-bc7a-080a1dca7da7.png",
+      "name": "Enemy_LedgerTortoise",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_LedgerTortoise.png",
+      "source": "ArtSource\\exec-eb219c0b-cf12-49ec-88b6-9a2682fd516d.png",
       "mode": "RGBA",
       "size": [
         1536,
@@ -1458,99 +1458,99 @@
       "frames": 16,
       "bounds": [
         [
-          111,
-          108,
-          272,
+          61,
+          113,
+          323,
           336
         ],
         [
-          111,
-          108,
-          272,
+          61,
+          115,
+          322,
           336
         ],
         [
-          98,
-          107,
-          285,
+          53,
+          125,
+          330,
           336
         ],
         [
-          100,
-          102,
-          284,
+          63,
+          115,
+          321,
           336
         ],
         [
-          96,
-          139,
-          288,
+          58,
+          112,
+          325,
           336
         ],
         [
-          80,
-          119,
-          304,
+          53,
+          131,
+          331,
           336
         ],
         [
-          87,
-          106,
-          297,
-          336
-        ],
-        [
-          81,
-          110,
-          303,
-          336
-        ],
-        [
-          82,
-          76,
-          301,
-          336
-        ],
-        [
-          82,
-          75,
-          301,
-          336
-        ],
-        [
-          83,
-          68,
-          300,
-          336
-        ],
-        [
-          81,
-          65,
-          302,
-          336
-        ],
-        [
-          73,
-          88,
-          311,
-          336
-        ],
-        [
-          68,
-          101,
-          315,
-          336
-        ],
-        [
-          75,
           50,
-          308,
+          104,
+          334,
           336
         ],
         [
-          79,
+          61,
+          106,
+          323,
+          336
+        ],
+        [
+          55,
+          81,
+          328,
+          336
+        ],
+        [
+          56,
+          75,
+          328,
+          336
+        ],
+        [
+          56,
+          103,
+          328,
+          336
+        ],
+        [
+          59,
+          75,
+          324,
+          336
+        ],
+        [
+          50,
+          76,
+          333,
+          336
+        ],
+        [
           52,
-          305,
+          67,
+          331,
+          336
+        ],
+        [
+          53,
+          77,
+          331,
+          336
+        ],
+        [
+          50,
+          73,
+          334,
           336
         ]
       ],
@@ -1560,7 +1560,367 @@
         0,
         0
       ],
-      "bytes": 1506988
+      "bytes": 1904117
+    },
+    {
+      "name": "Enemy_BoundBookends",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_BoundBookends.png",
+      "source": "ArtSource\\exec-59f4e365-dcb9-49f1-9193-10295040035f.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          70,
+          115,
+          314,
+          336
+        ],
+        [
+          71,
+          121,
+          313,
+          336
+        ],
+        [
+          74,
+          123,
+          310,
+          336
+        ],
+        [
+          79,
+          120,
+          305,
+          336
+        ],
+        [
+          68,
+          134,
+          316,
+          336
+        ],
+        [
+          65,
+          145,
+          318,
+          336
+        ],
+        [
+          62,
+          120,
+          322,
+          336
+        ],
+        [
+          77,
+          121,
+          307,
+          336
+        ],
+        [
+          61,
+          106,
+          322,
+          336
+        ],
+        [
+          63,
+          102,
+          321,
+          336
+        ],
+        [
+          66,
+          106,
+          317,
+          336
+        ],
+        [
+          68,
+          100,
+          316,
+          336
+        ],
+        [
+          59,
+          119,
+          324,
+          336
+        ],
+        [
+          61,
+          121,
+          323,
+          336
+        ],
+        [
+          50,
+          96,
+          334,
+          336
+        ],
+        [
+          65,
+          99,
+          319,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1412325
+    },
+    {
+      "name": "Enemy_RubberStampTitan",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_RubberStampTitan.png",
+      "source": "ArtSource\\exec-35fa1494-0c0a-4e66-8f82-7dbaf2ebb059.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          82,
+          124,
+          301,
+          336
+        ],
+        [
+          87,
+          123,
+          296,
+          336
+        ],
+        [
+          85,
+          127,
+          299,
+          336
+        ],
+        [
+          90,
+          125,
+          294,
+          336
+        ],
+        [
+          80,
+          159,
+          304,
+          336
+        ],
+        [
+          81,
+          132,
+          302,
+          336
+        ],
+        [
+          51,
+          113,
+          332,
+          336
+        ],
+        [
+          85,
+          141,
+          298,
+          336
+        ],
+        [
+          80,
+          110,
+          303,
+          336
+        ],
+        [
+          82,
+          110,
+          301,
+          336
+        ],
+        [
+          85,
+          114,
+          299,
+          336
+        ],
+        [
+          86,
+          111,
+          298,
+          336
+        ],
+        [
+          76,
+          130,
+          308,
+          336
+        ],
+        [
+          84,
+          100,
+          300,
+          336
+        ],
+        [
+          50,
+          98,
+          334,
+          336
+        ],
+        [
+          82,
+          117,
+          302,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1271786
+    },
+    {
+      "name": "Enemy_HeadUsher",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_HeadUsher.png",
+      "source": "ArtSource\\exec-91253cd4-f3df-4cd1-8050-90b225bbe9d4.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          112,
+          102,
+          272,
+          336
+        ],
+        [
+          117,
+          103,
+          266,
+          336
+        ],
+        [
+          89,
+          103,
+          294,
+          336
+        ],
+        [
+          100,
+          104,
+          284,
+          336
+        ],
+        [
+          98,
+          152,
+          286,
+          336
+        ],
+        [
+          107,
+          117,
+          276,
+          336
+        ],
+        [
+          58,
+          125,
+          326,
+          336
+        ],
+        [
+          93,
+          103,
+          291,
+          336
+        ],
+        [
+          90,
+          94,
+          294,
+          336
+        ],
+        [
+          89,
+          94,
+          294,
+          336
+        ],
+        [
+          92,
+          100,
+          291,
+          336
+        ],
+        [
+          97,
+          98,
+          286,
+          336
+        ],
+        [
+          74,
+          133,
+          310,
+          336
+        ],
+        [
+          71,
+          107,
+          312,
+          336
+        ],
+        [
+          50,
+          109,
+          334,
+          336
+        ],
+        [
+          86,
+          98,
+          297,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1346129
     }
   ],
   "failures": [
@@ -1571,6 +1931,10 @@
     {
       "name": "Enemy_CandleShade",
       "reason": "Art review: Normal form copied fuzzy HushMite silhouette. Redraw as a long thin candle shadow with wax-drip head and slit eyes; no fur, no round ball."
+    },
+    {
+      "name": "Enemy_DrawerBroodmother",
+      "reason": "Art review: Normal form copied narrow wooden CabinetMimic. Must be a broad LOW steel cabinet on castor wheels with visible paperclip brood; no claw feet. Mutated form taller with extra brood drawers."
     }
   ]
 }
