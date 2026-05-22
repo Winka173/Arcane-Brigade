@@ -14,3 +14,5 @@ Enemy_LedgerTortoise Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_LedgerTo
 Enemy_BoundBookends Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_BoundBookends.png done
 Enemy_RubberStampTitan Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_RubberStampTitan.png done
 Enemy_HeadUsher Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_HeadUsher.png done
+Enemy_DeadLetterCourier Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_DeadLetterCourier.png done
+Enemy_WickWarden Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_WickWarden.png done
