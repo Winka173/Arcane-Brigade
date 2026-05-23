@@ -16,3 +16,4 @@ Enemy_RubberStampTitan Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_Rubber
 Enemy_HeadUsher Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_HeadUsher.png done
 Enemy_DeadLetterCourier Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_DeadLetterCourier.png done
 Enemy_WickWarden Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_WickWarden.png done
+Enemy_ArchiveSentinel Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_ArchiveSentinel.png done
