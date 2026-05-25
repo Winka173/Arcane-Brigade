@@ -120,7 +120,9 @@
         0,
         0
       ],
-      "bytes": 1609331
+      "bytes": 1609331,
+      "sha256": "2ad238a441f5c5a75da7e8e94d10fec8f56e247cc3039f999585ff4d9cf8a9b4",
+      "warm_material_fraction": 0.0009
     },
     {
       "name": "Enemy_ClockBat",
@@ -240,7 +242,9 @@
         0,
         0
       ],
-      "bytes": 1593592
+      "bytes": 1593592,
+      "sha256": "a72b10a26e903d086218d838f26ed64f3c0f80f6ded613e6cf348621d7f4d490",
+      "warm_material_fraction": 0.0488
     },
     {
       "name": "Enemy_RuneWisp",
@@ -360,7 +364,9 @@
         0,
         0
       ],
-      "bytes": 1343856
+      "bytes": 1343856,
+      "sha256": "563a3f7df197169e12e16f2e86456727cdba1ec2a70e6483c77e6c870f646b43",
+      "warm_material_fraction": 0.0001
     },
     {
       "name": "Enemy_InkMoth",
@@ -480,7 +486,9 @@
         0,
         0
       ],
-      "bytes": 1300819
+      "bytes": 1300819,
+      "sha256": "b22458faa9afe27f21856dfa1832d5443a7df23004714ecc02fc8d601c70bae5",
+      "warm_material_fraction": 0.0
     },
     {
       "name": "Enemy_SirenSeal",
@@ -600,7 +608,9 @@
         0,
         0
       ],
-      "bytes": 1565692
+      "bytes": 1565692,
+      "sha256": "bcce6f270a981fb2651113b1a1842fe48f6f5bf18f177da9263182f3c2f8a275",
+      "warm_material_fraction": 0.0323
     },
     {
       "name": "Enemy_SleepMimic",
@@ -720,7 +730,9 @@
         0,
         0
       ],
-      "bytes": 1745973
+      "bytes": 1745973,
+      "sha256": "c49238a6c933d7499c560b10b2ac72872ef9196ff8ff4f4f49ef0f2aa9ed8f24",
+      "warm_material_fraction": 0.0001
     },
     {
       "name": "Enemy_SporeBishop",
@@ -840,7 +852,9 @@
         0,
         0
       ],
-      "bytes": 1399938
+      "bytes": 1399938,
+      "sha256": "7a7c396d33187f1c10ff50420ba46baab1b084c09fa8ed39b9a133f5aeb0faab",
+      "warm_material_fraction": 0.0026
     },
     {
       "name": "Enemy_BroomSkater",
@@ -960,7 +974,9 @@
         0,
         0
       ],
-      "bytes": 1463621
+      "bytes": 1463621,
+      "sha256": "2a32de420bb91091d85eef4d8cb453294e79ae363120d72d15c7437abcd53a19",
+      "warm_material_fraction": 0.009
     },
     {
       "name": "Enemy_CurtainWisp",
@@ -1080,7 +1096,9 @@
         0,
         0
       ],
-      "bytes": 1621515
+      "bytes": 1621515,
+      "sha256": "1debbe5a37527bef036aff82aaef6b3fd11c687da8a9ef310066faecc3f61f39",
+      "warm_material_fraction": 0.012
     },
     {
       "name": "Enemy_HushMite",
@@ -1200,7 +1218,9 @@
         0,
         0
       ],
-      "bytes": 1115844
+      "bytes": 1115844,
+      "sha256": "ef4a6eeac116d89bc516d67c186ce0efe4d1235ee2fb08789eb7277709f55a76",
+      "warm_material_fraction": 0.0
     },
     {
       "name": "Enemy_FireScreenWarden",
@@ -1320,7 +1340,9 @@
         0,
         0
       ],
-      "bytes": 1565774
+      "bytes": 1565774,
+      "sha256": "c156eed9bb19b80364f25ba3b8d3bcaf3242b73b744ce230aa982fc1c9586348",
+      "warm_material_fraction": 0.0109
     },
     {
       "name": "Enemy_TwinWickLantern",
@@ -1440,7 +1462,9 @@
         0,
         0
       ],
-      "bytes": 1506125
+      "bytes": 1506125,
+      "sha256": "a1d39b620f435546ddc8e399bca69ca3bf7170a7625d4968bd8ca10f05c810ca",
+      "warm_material_fraction": 0.001
     },
     {
       "name": "Enemy_CandleShade",
@@ -1560,7 +1584,9 @@
         0,
         0
       ],
-      "bytes": 755790
+      "bytes": 755790,
+      "sha256": "e2d66bd6c306b709e2ab10f7b3e27b36058e0bbcfaf3ee493f1a76abcac007d0",
+      "warm_material_fraction": 0.0
     },
     {
       "name": "Enemy_SpyglassSniper",
@@ -1680,7 +1706,9 @@
         0,
         0
       ],
-      "bytes": 1333740
+      "bytes": 1333740,
+      "sha256": "226e66cd5aef34b874097ac072b603403238d3c399a79b4e5e5df0b357a2a324",
+      "warm_material_fraction": 0.006
     },
     {
       "name": "Enemy_DrawerBroodmother",
@@ -1800,7 +1828,9 @@
         0,
         0
       ],
-      "bytes": 1462735
+      "bytes": 1462735,
+      "sha256": "c8d98b6e4789c598e95d778cffb6eb451bb6bb06154c85b32389040524a27996",
+      "warm_material_fraction": 0.0011
     },
     {
       "name": "Enemy_LedgerTortoise",
@@ -1920,7 +1950,9 @@
         0,
         0
       ],
-      "bytes": 1904117
+      "bytes": 1904117,
+      "sha256": "75662342cccc6dfafe72a857c757cf6957eac74db794507643ba69ea0c47c0d0",
+      "warm_material_fraction": 0.0013
     },
     {
       "name": "Enemy_BoundBookends",
@@ -2040,7 +2072,9 @@
         0,
         0
       ],
-      "bytes": 1412325
+      "bytes": 1412325,
+      "sha256": "801a5bbfe217554eca8c84e33edc96d9cffeeb011ffbdb98b07c64a579791b95",
+      "warm_material_fraction": 0.0001
     },
     {
       "name": "Enemy_RubberStampTitan",
@@ -2160,7 +2194,9 @@
         0,
         0
       ],
-      "bytes": 1271786
+      "bytes": 1271786,
+      "sha256": "82c8a25e903645c543e30f452447d94444e62a321379585f829ab6d9c1f69b3f",
+      "warm_material_fraction": 0.0004
     },
     {
       "name": "Enemy_HeadUsher",
@@ -2280,7 +2316,9 @@
         0,
         0
       ],
-      "bytes": 1346129
+      "bytes": 1346129,
+      "sha256": "1c661918fda2957c98cd9d8ff0b93f512ff1edfd143a50de71ef7c7b8c647146",
+      "warm_material_fraction": 0.0103
     },
     {
       "name": "Enemy_DeadLetterCourier",
@@ -2400,7 +2438,9 @@
         0,
         0
       ],
-      "bytes": 1643904
+      "bytes": 1643904,
+      "sha256": "76be7e270fe3c731b39e3064fc5a6467a7cee157db58edbd1576968238430d3e",
+      "warm_material_fraction": 0.0096
     },
     {
       "name": "Enemy_WickWarden",
@@ -2520,7 +2560,9 @@
         0,
         0
       ],
-      "bytes": 1614231
+      "bytes": 1614231,
+      "sha256": "f5f1db12d7177cf0069f7d1793bee364a6b0dfc47638c37a87536941f5b42db7",
+      "warm_material_fraction": 0.0005
     },
     {
       "name": "Enemy_ArchiveSentinel",
@@ -2640,8 +2682,11 @@
         0,
         0
       ],
-      "bytes": 1599186
+      "bytes": 1599186,
+      "sha256": "952d500c0d098a676e2ff106ab9ffecf440aef4d7c23676b0977ce9c7274e19a",
+      "warm_material_fraction": 0.014
     }
   ],
-  "failures": []
+  "failures": [],
+  "final_saved_file_check": "All22 actual PNGs read back:1536x1536 RGBA,16 nonempty cells, empty full canvas edges, >=38px per-cell margins; hashes recorded."
 }
