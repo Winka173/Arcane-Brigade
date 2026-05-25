@@ -30,17 +30,40 @@ def prepare(job):
         raise ValueError('painted source is not RGBA')
     pixels = np.array(im)
     pixels[pixels[:, :, 3] < 12] = 0
-    row_edges = cuts((pixels[:, :, 3] > 0).sum(axis=1))
     cells, boxes = [], []
-    for row in range(4):
-        strip = pixels[row_edges[row]:row_edges[row+1]]
-        columns = cuts((strip[:, :, 3] > 0).sum(axis=0))
-        for col in range(4):
-            cell = Image.fromarray(strip[:, columns[col]:columns[col+1]])
-            box = cell.getchannel('A').getbbox()
+    if job.get('component_layout'):
+        # CandleShade's long fingers cross nominal row boundaries without touching neighbours.
+        # Isolate its16 independent bodies; keep every detached painted fragment with its nearest body.
+        from scipy import ndimage
+        labels, _ = ndimage.label(pixels[:, :, 3] > 0)
+        counts = np.bincount(labels.ravel()); counts[0] = 0
+        ranking = np.argsort(counts)[::-1]
+        ids = ranking[:16]
+        if min(counts[ids]) < 1000 or counts[ranking[16]] > min(counts[ids])*.2:
+            raise ValueError('not16 clearly separate intact bodies')
+        objects = ndimage.find_objects(labels)
+        entries = [(int(i), objects[i-1]) for i in ids]
+        entries.sort(key=lambda pair: (pair[1][0].start+pair[1][0].stop)/2)
+        entries = [pair for row in range(4) for pair in sorted(entries[row*4:(row+1)*4], key=lambda pair: pair[1][1].start+pair[1][1].stop)]
+        nearest = ndimage.distance_transform_edt(~np.isin(labels, ids), return_distances=False, return_indices=True)
+        assignment = labels[tuple(nearest)]
+        for ident, _ in entries:
+            isolated = pixels.copy(); isolated[assignment != ident] = 0
+            cell = Image.fromarray(isolated); box = cell.getchannel('A').getbbox()
             if not box or min(box[0], box[1], cell.width-box[2], cell.height-box[3]) <= 0:
-                raise ValueError('empty or edge-clipped source cell '+str(row*4+col))
+                raise ValueError('edge-clipped source component')
             cells.append(cell.crop(box)); boxes.append(box)
+    else:
+        row_edges = cuts((pixels[:, :, 3] > 0).sum(axis=1))
+        for row in range(4):
+            strip = pixels[row_edges[row]:row_edges[row+1]]
+            columns = cuts((strip[:, :, 3] > 0).sum(axis=0))
+            for col in range(4):
+                cell = Image.fromarray(strip[:, columns[col]:columns[col+1]])
+                box = cell.getchannel('A').getbbox()
+                if not box or min(box[0], box[1], cell.width-box[2], cell.height-box[3]) <= 0:
+                    raise ValueError('empty or edge-clipped source cell '+str(row*4+col))
+                cells.append(cell.crop(box)); boxes.append(box)
     # One shared scale preserves the larger mutated anatomy relative to the normal form.
     scale = min(284/max(c.width for c in cells), 286/max(c.height for c in cells))
     output = Image.new('RGBA', (1536, 1536))
