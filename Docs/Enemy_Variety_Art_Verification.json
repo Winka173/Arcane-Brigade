@@ -483,6 +483,126 @@
       "bytes": 1300819
     },
     {
+      "name": "Enemy_SirenSeal",
+      "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SirenSeal.png",
+      "source": "ArtSource\\exec-90bb7263-cf7f-4db3-baa1-8ae2e61e191c.png",
+      "mode": "RGBA",
+      "size": [
+        1536,
+        1536
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "frames": 16,
+      "bounds": [
+        [
+          77,
+          90,
+          307,
+          336
+        ],
+        [
+          78,
+          97,
+          306,
+          336
+        ],
+        [
+          66,
+          100,
+          318,
+          336
+        ],
+        [
+          72,
+          100,
+          312,
+          336
+        ],
+        [
+          66,
+          135,
+          317,
+          336
+        ],
+        [
+          66,
+          94,
+          317,
+          336
+        ],
+        [
+          51,
+          103,
+          332,
+          336
+        ],
+        [
+          77,
+          118,
+          307,
+          336
+        ],
+        [
+          68,
+          96,
+          315,
+          336
+        ],
+        [
+          74,
+          104,
+          309,
+          336
+        ],
+        [
+          62,
+          102,
+          322,
+          336
+        ],
+        [
+          66,
+          96,
+          317,
+          336
+        ],
+        [
+          60,
+          119,
+          323,
+          336
+        ],
+        [
+          62,
+          91,
+          322,
+          336
+        ],
+        [
+          50,
+          95,
+          334,
+          336
+        ],
+        [
+          71,
+          99,
+          313,
+          336
+        ]
+      ],
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bytes": 1565692
+    },
+    {
       "name": "Enemy_SleepMimic",
       "path": "Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SleepMimic.png",
       "source": "ArtSource\\exec-fb2cf3d2-41c3-4f5f-9780-359b3de92975.png",
@@ -2284,10 +2404,6 @@
     }
   ],
   "failures": [
-    {
-      "name": "Enemy_SirenSeal",
-      "reason": "Art review: Mutated form needs TWO gramophone horns on its back; remove biological antlers. Keep violet seal body and toothed singing maw."
-    },
     {
       "name": "Enemy_CandleShade",
       "reason": "Art review: Normal form copied fuzzy HushMite silhouette. Redraw as a long thin candle shadow with wax-drip head and slit eyes; no fur, no round ball."

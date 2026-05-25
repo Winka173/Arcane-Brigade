@@ -2,6 +2,7 @@ Enemy_MoonMagnet Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_MoonMagnet.p
 Enemy_ClockBat Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_ClockBat.png done
 Enemy_RuneWisp Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_RuneWisp.png done
 Enemy_InkMoth Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_InkMoth.png done
+Enemy_SirenSeal Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SirenSeal.png done
 Enemy_SleepMimic Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SleepMimic.png done
 Enemy_SporeBishop Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_SporeBishop.png done
 Enemy_BroomSkater Assets/ArcaneBrigade/Art/Playtest/MapEnemies/Enemy_BroomSkater.png done
