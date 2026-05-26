@@ -70,6 +70,22 @@ namespace ArcaneBrigade
             ["TopiaryShears"] = new Strike(StrikeForm.Snip, "Green", InkToken.Leaf),
         };
 
+        /// <summary>The heroes' own ranged weapons, hand-picked to match what each one fires (owner 24/10/2026): a music box
+        /// throws notes, a bubble wand bubbles, a scoop launcher scoops. Each (palette, token) is used by one weapon only.</summary>
+        public static readonly Dictionary<string, (string palette, InkToken token)> Shots = new Dictionary<string, (string, InkToken)>
+        {
+            ["MailboxLauncher"] = ("Leather", InkToken.Envelope), ["MoonseedOrb"] = ("Midnight", InkToken.Moon), ["BambooVase"] = ("Green", InkToken.Drop),
+            ["InkyOctopus"] = ("Violet", InkToken.Drop), ["GlitchToybox"] = ("Candy", InkToken.Die), ["RibbonHarp"] = ("Wine", InkToken.Note),
+            ["SnowGlobeOrb"] = ("Glass", InkToken.Glint), ["AcornSling"] = ("Terracotta", InkToken.Dumpling), ["LeafCrossbow"] = ("Green", InkToken.Spear),
+            ["FireExtinguisher"] = ("Cotton", InkToken.Puff), ["NeedleSinger"] = ("Silver", InkToken.Knot), ["BubbleWand"] = ("Water", InkToken.Bubble),
+            ["GumballGatling"] = ("Candy", InkToken.Bubble), ["RoseBouquet"] = ("Wine", InkToken.Thorn), ["ConfettiBlunderbuss"] = ("Candy", InkToken.Patch),
+            ["SleepCamera"] = ("Glass", InkToken.Spark), ["DetonatorBox"] = ("Amber", InkToken.Spark), ["PlasmaTrident"] = ("Cyan", InkToken.Bolt),
+            ["MusicBox"] = ("Gold", InkToken.Note), ["TeapotPopgun"] = ("Terracotta", InkToken.Drop), ["LanternStaff"] = ("Gold", InkToken.Ember),
+            ["AlarmMortar"] = ("Silver", InkToken.Sand), ["SquirtTrio"] = ("Cyan", InkToken.Drop), ["KiteSpool"] = ("Cream", InkToken.Spark),
+            ["ScoopLauncher"] = ("Candy", InkToken.Dumpling), ["CuckooCannon"] = ("Leather", InkToken.Sand), ["JugglingPins"] = ("Wine", InkToken.Star),
+            ["SonarHarpoon"] = ("Water", InkToken.Spear),
+        };
+
         private static readonly string[] Palettes = { "Cream", "Gold", "Amber", "Wine", "Water", "Green", "Violet", "Terracotta", "Leather", "Candy", "Cyan", "Silver", "Midnight", "Glass", "Dust" };
         private static readonly InkToken[] Tokens = (InkToken[])Enum.GetValues(typeof(InkToken));
         private static Dictionary<string, (string palette, InkToken token)> ranged;
@@ -80,16 +96,27 @@ namespace ArcaneBrigade
         {
             if (weapon == null) return (ArsenalInk.Cream, InkToken.Spark, "Cream");
             if (Strikes.TryGetValue(weapon.Id, out Strike s)) return (s.Main, s.Token, s.Palette);
+            if (Shots.TryGetValue(weapon.Id, out var shot)) return (Pal(shot.palette), shot.token, shot.palette);
             if (ranged == null)
             {
                 ranged = new Dictionary<string, (string, InkToken)>();
                 RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
                 var ids = new List<string>();
-                if (catalog != null) foreach (WeaponDefinition w in catalog.Weapons) if (w != null && !Strikes.ContainsKey(w.Id) && !ids.Contains(w.Id)) ids.Add(w.Id);
+                if (catalog != null) foreach (WeaponDefinition w in catalog.Weapons) if (w != null && !Strikes.ContainsKey(w.Id) && !Shots.ContainsKey(w.Id) && !ids.Contains(w.Id)) ids.Add(w.Id);
                 foreach (string extra in ExtraRanged) if (!ids.Contains(extra)) ids.Add(extra);
                 ids.Sort(StringComparer.Ordinal);
                 // (i mod 15, 7i mod |tokens|): distinct for the first 15 x |tokens| / gcd weapons
-                for (int i = 0; i < ids.Count; i++) ranged[ids[i]] = (Palettes[i % Palettes.Length], Tokens[(i * 7) % Tokens.Length]);
+                // the rest in name order, skipping every pair a strike or a hand-picked shot already uses
+                var used = new HashSet<(string, InkToken)>();
+                foreach (Strike st in Strikes.Values) used.Add((st.Palette, st.Token));
+                foreach (var sh in Shots.Values) used.Add(sh);
+                int k = 0;
+                for (int i = 0; i < ids.Count; i++)
+                {
+                    (string, InkToken) next;
+                    do { next = (Palettes[k % Palettes.Length], Tokens[(k * 7) % Tokens.Length]); k++; } while (used.Contains(next) && k < 4000);
+                    used.Add(next); ranged[ids[i]] = next;
+                }
             }
             if (!ranged.TryGetValue(weapon.Id, out var pair)) pair = (Palettes[Mathf.Abs(weapon.Id.GetHashCode()) % Palettes.Length], Tokens[Mathf.Abs(weapon.Id.GetHashCode() / 7) % Tokens.Length]);
             return (Pal(pair.palette), pair.token, pair.palette);
