@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ClockBat
   DisplayName: ClockBat
-  Body: {fileID: -745042241, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  Body: {fileID: 986865813, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
   AnimationFrames:
-  - {fileID: -745042241, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: 194026621, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: 110461472, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: -482955659, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: 986865813, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: 1563381920, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: -427583040, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: 304177655, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: c6d888c47fdbeb445900dacb863e2309, type: 2}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 35
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 1
   Material: 0
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

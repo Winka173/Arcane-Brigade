@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MoonMagnet
   DisplayName: MoonMagnet
-  Body: {fileID: 756498460, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  Body: {fileID: -994821253, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
   AnimationFrames:
-  - {fileID: 756498460, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 79310883, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: -194861517, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 2135756250, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: -994821253, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -652986723, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: 1385715497, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -1022477249, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: a382564aafc842d42bd8fd4f65ceb744, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Pulls nearby coins briefly; never destroys or steals your wallet.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 2
   Shot: 0
   Material: 1
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

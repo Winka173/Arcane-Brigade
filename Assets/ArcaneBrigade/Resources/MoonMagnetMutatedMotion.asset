@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: MoonMagnetMutatedMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 256114185, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: -905989916, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: -996102698, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -1450507921, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
   Walk:
-  - {fileID: 37525956, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 191468005, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 37525956, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 191468005, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 1027763940, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -1097026478, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: 1027763940, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -1097026478, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
   Windup:
-  - {fileID: -199566411, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 1443766739, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 1455529402, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -272106680, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
   Release:
-  - {fileID: -1856236986, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: -1856236986, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: -502273069, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -502273069, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
   Recovery:
-  - {fileID: -1658699484, guid: 4539c30ea9e635d419126497190160b2, type: 3}
-  - {fileID: 256114185, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: -2070206325, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  - {fileID: -996102698, guid: 803b91d721ae3a243aee22e1f1bf1248, type: 3}
+  IllustratedHeight: 0

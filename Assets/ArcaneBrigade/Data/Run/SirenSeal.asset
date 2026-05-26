@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SirenSeal
   DisplayName: SirenSeal
-  Body: {fileID: -1434800736, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
+  Body: {fileID: 104596793, guid: aaf79ccf6c503bd46872a76cb74cfd86, type: 3}
   AnimationFrames:
-  - {fileID: -1434800736, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
-  - {fileID: 1910203878, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
-  - {fileID: -1879405243, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
-  - {fileID: -284481239, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
+  - {fileID: 104596793, guid: aaf79ccf6c503bd46872a76cb74cfd86, type: 3}
+  - {fileID: -364854374, guid: aaf79ccf6c503bd46872a76cb74cfd86, type: 3}
+  - {fileID: 1239784392, guid: aaf79ccf6c503bd46872a76cb74cfd86, type: 3}
+  - {fileID: -655908736, guid: aaf79ccf6c503bd46872a76cb74cfd86, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: fe7416c3344bbde4a80571141204c58d, type: 2}
   Weapon: {fileID: 11400000, guid: 4f1d870ec4a38e44b92c4565e4a1df7d, type: 2}
   Health: 63
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 3
   Material: 0
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

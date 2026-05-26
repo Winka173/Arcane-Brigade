@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: InkMothMutatedMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 1500647291, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: -971739957, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: -872822874, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -803668301, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
   Walk:
-  - {fileID: 1469200785, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: -1184920317, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: 1469200785, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: -1184920317, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: -1291198450, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: 1370588501, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -1291198450, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: 1370588501, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
   Windup:
-  - {fileID: -249768612, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: 2010298848, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: -552122671, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -439908456, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
   Release:
-  - {fileID: 1605490695, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: 1605490695, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: -1296620218, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -1296620218, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
   Recovery:
-  - {fileID: 341493456, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: 1500647291, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: 444431875, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -872822874, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  IllustratedHeight: 0

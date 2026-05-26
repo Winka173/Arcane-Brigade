@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: SpyglassSniper
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: SpyglassSniper
+  DisplayName: Spyglass Sniper
+  Body: {fileID: -1069014141, guid: ee7ca07edcb892c41889fdacdeb8a12b, type: 3}
+  AnimationFrames:
+  - {fileID: -1069014141, guid: ee7ca07edcb892c41889fdacdeb8a12b, type: 3}
+  - {fileID: -1432584010, guid: ee7ca07edcb892c41889fdacdeb8a12b, type: 3}
+  - {fileID: 1982626760, guid: ee7ca07edcb892c41889fdacdeb8a12b, type: 3}
+  - {fileID: 2095714636, guid: ee7ca07edcb892c41889fdacdeb8a12b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0555965dc9543d24fa6606fc41a041c5, type: 2}
+  Weapon: {fileID: 11400000, guid: 504e00010e393f449b0153a5fa18e033, type: 2}
+  Health: 70
+  Speed: 0.95
+  Radius: 0.3846154
+  BodyHeight: 1
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Keeps its distance, aims a line, fires once hard.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 16
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 16
+  Shot: 2
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: InkMoth
   DisplayName: InkMoth
-  Body: {fileID: -1365657554, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  Body: {fileID: 1703710259, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
   AnimationFrames:
-  - {fileID: -1365657554, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: -1213763069, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: 1556057013, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
-  - {fileID: -1554909467, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: 1703710259, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -2013394141, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: 1345250964, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
+  - {fileID: -1960155520, guid: 02bd789855438664aa0f1ccb513ec92a, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 80540f93d7838b94882523835ac6a929, type: 2}
   Weapon: {fileID: 11400000, guid: ca73b1df21a154848807e691e4dccc01, type: 2}
   Health: 56
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

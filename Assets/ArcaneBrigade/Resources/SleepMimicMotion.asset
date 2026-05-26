@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: SleepMimicMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 2064660521, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: -1219028088, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: -457860281, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: 1258229122, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
   Walk:
-  - {fileID: 1295863321, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: -1790733284, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: 1295863321, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: -1790733284, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: 815738708, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: 1115040569, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: 815738708, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: 1115040569, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
   Windup:
-  - {fileID: -207546068, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: -2012173646, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: -107100122, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: -1185167319, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
   Release:
-  - {fileID: -1162347116, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: -1162347116, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: -882225590, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: -882225590, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
   Recovery:
-  - {fileID: 977763006, guid: b5a88a50a44346848aabdc397461090a, type: 3}
-  - {fileID: 2064660521, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: -1358100017, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  - {fileID: -457860281, guid: 2430cd83a27c22d4dac2e26491a40a0a, type: 3}
+  IllustratedHeight: 0

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: DeadLetterCourierMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1658869027, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: 1761670006, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  Walk:
+  - {fileID: 168269842, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: -655214073, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: 168269842, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: -655214073, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  Windup:
+  - {fileID: 1588090915, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: -2002228507, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  Release:
+  - {fileID: 122338352, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: 122338352, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  Recovery:
+  - {fileID: -217264319, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  - {fileID: 1658869027, guid: f7a501d39de7fc246bc5d5bb9496596b, type: 3}
+  IllustratedHeight: 0

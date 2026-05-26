@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RuneWisp
   DisplayName: RuneWisp
-  Body: {fileID: -1887170849, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
+  Body: {fileID: 1778984342, guid: 7461b9dcbdbaf9440adb4f95ca523313, type: 3}
   AnimationFrames:
-  - {fileID: -1887170849, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
-  - {fileID: -1561253895, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
-  - {fileID: -1193274723, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
-  - {fileID: -837101132, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
+  - {fileID: 1778984342, guid: 7461b9dcbdbaf9440adb4f95ca523313, type: 3}
+  - {fileID: -735955051, guid: 7461b9dcbdbaf9440adb4f95ca523313, type: 3}
+  - {fileID: 31417197, guid: 7461b9dcbdbaf9440adb4f95ca523313, type: 3}
+  - {fileID: 617035348, guid: 7461b9dcbdbaf9440adb4f95ca523313, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 9c22713da8184b148aa9319ef9355f20, type: 2}
   Weapon: {fileID: 11400000, guid: 2cde74c3dbeae4044814e6d56d09a267, type: 2}
   Health: 49
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 2
   Material: 0
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

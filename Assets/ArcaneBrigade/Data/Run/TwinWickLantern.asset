@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: TwinWickLantern
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: TwinWickLantern
+  DisplayName: Twin Wick Lantern
+  Body: {fileID: -929538585, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  AnimationFrames:
+  - {fileID: -929538585, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: 370781403, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: 972373849, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: -577852561, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: fc662ab5d3fdd3849b6ab4a17cfeb7b8, type: 2}
+  Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
+  Health: 60
+  Speed: 1.15
+  Radius: 0.26923078
+  BodyHeight: 0.7
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Breaks into two little lanterns.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 14
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 14
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

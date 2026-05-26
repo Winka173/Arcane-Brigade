@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: WickWardenMutatedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -617386131, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: -1996709972, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  Walk:
+  - {fileID: 464675751, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: 1994287255, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: 464675751, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: 1994287255, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  Windup:
+  - {fileID: -612409925, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: 1263052692, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  Release:
+  - {fileID: 894967341, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: 894967341, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  Recovery:
+  - {fileID: 1267251460, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  - {fileID: -617386131, guid: 2dddb32130323a74687e75d388d36eb4, type: 3}
+  IllustratedHeight: 0

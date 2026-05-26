@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: SporeBishopMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 957274613, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: -61219321, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  - {fileID: -59095423, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -844011175, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
   Walk:
-  - {fileID: -1699168270, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: 43339772, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: -1699168270, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: 43339772, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  - {fileID: -1054662108, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -1045039957, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -1054662108, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -1045039957, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
   Windup:
-  - {fileID: -1997075485, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: 1533021520, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  - {fileID: 1997158237, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: 1717887310, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
   Release:
-  - {fileID: -966829615, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: -966829615, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  - {fileID: -1963168995, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -1963168995, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
   Recovery:
-  - {fileID: -1005843830, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: 957274613, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  - {fileID: -995123664, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -59095423, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  IllustratedHeight: 0

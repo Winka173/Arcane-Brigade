@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HushMite
   DisplayName: HushMite
-  Body: {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+  Body: {fileID: 1109436052, guid: 2956bfb8d0343224bbe957cfa2a5d78e, type: 3}
   AnimationFrames:
-  - {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
-  - {fileID: 2133501011, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
-  - {fileID: -1610901748, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
-  - {fileID: 1951168889, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+  - {fileID: 1109436052, guid: 2956bfb8d0343224bbe957cfa2a5d78e, type: 3}
+  - {fileID: -1977787202, guid: 2956bfb8d0343224bbe957cfa2a5d78e, type: 3}
+  - {fileID: -1761607694, guid: 2956bfb8d0343224bbe957cfa2a5d78e, type: 3}
+  - {fileID: -2110888719, guid: 2956bfb8d0343224bbe957cfa2a5d78e, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: eac765811d6af61478367fa493f0b55f, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 28
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

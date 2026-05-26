@@ -138,9 +138,12 @@ namespace ArcaneBrigade
         private IEnumerator LiveSurvey(CombatSimulation sim, string stem)
         {
             var lines = new List<string>(); var seen = new HashSet<string>(); float started = Time.realtimeSinceStartup, lastHealth = sim.Champion.Health, lastStep = -1;
+            bool shots = Array.IndexOf(Environment.GetCommandLineArgs(), "-mechanic-live-shots") >= 0; float nextShot = 4; int shot = 0;
             while (sim.Phase == RunPhase.Combat && Time.realtimeSinceStartup - started < 30)
             {
                 yield return null;
+                // -mechanic-live-shots: a frame every four seconds of ordinary play (to see which enemies walk in and how they act)
+                if (shots && Time.realtimeSinceStartup - started >= nextShot) { nextShot += 4; yield return Shot(stem + "-live" + (shot++).ToString("00")); }
                 Vector2 hero = sim.Champion.Position;
                 if (Mathf.Abs(sim.Champion.Health - lastHealth) > .5f) { lines.Add($"t={sim.Elapsed:0.00} hp {lastHealth:0} -> {sim.Champion.Health:0} dreaming={sim.HeroIdentityDreaming} {sim.HeroIdentityStatus}"); lastHealth = sim.Champion.Health; }
                 if (sim.Elapsed != lastStep)

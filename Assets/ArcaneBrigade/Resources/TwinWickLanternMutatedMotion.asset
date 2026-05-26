@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: TwinWickLanternMutatedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 827967274, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: 749916653, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  Walk:
+  - {fileID: 212867881, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: -983582463, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: 212867881, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: -983582463, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  Windup:
+  - {fileID: 1569014610, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: -1810009389, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  Release:
+  - {fileID: -87102377, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: -87102377, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  Recovery:
+  - {fileID: 2001225365, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  - {fileID: 827967274, guid: 4f8580585de7d1b4fae12c9dd1873bbb, type: 3}
+  IllustratedHeight: 0

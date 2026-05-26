@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: ClockBatMutatedMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 1449985360, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: 1680420164, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: 2092359259, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: 1754165568, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
   Walk:
-  - {fileID: 1189178483, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: -891720104, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: 1189178483, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: -891720104, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: -682232519, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: -1178529266, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: -682232519, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: -1178529266, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
   Windup:
-  - {fileID: 1026972980, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: 1117680162, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: 433226745, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: -62757240, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
   Release:
-  - {fileID: -2126180888, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: -2126180888, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: -785181796, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: -785181796, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
   Recovery:
-  - {fileID: 1892450846, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
-  - {fileID: 1449985360, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: -828055768, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  - {fileID: 2092359259, guid: 890d77ca97cf7f04fae8b1ea13d19f0b, type: 3}
+  IllustratedHeight: 0

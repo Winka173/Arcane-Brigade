@@ -311,6 +311,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e859fdfae117ec543840d211fde15892, type: 2}
   - {fileID: 11400000, guid: 05ad416efc080df4abb0050b9f08cd1a, type: 2}
   - {fileID: 11400000, guid: bbbf25dd13ba93a489853dab0e511ccb, type: 2}
+  - {fileID: 11400000, guid: 9de65568a45868343aa7bf2152d7c90a, type: 2}
+  - {fileID: 11400000, guid: 9f45c8fd29a9ded4f9b465a699b4e98b, type: 2}
+  - {fileID: 11400000, guid: 92f7f487b6afc2c4bbb8649f7150092c, type: 2}
+  - {fileID: 11400000, guid: bc45dd47b0e34804a8d2d6c8df5e9b07, type: 2}
+  - {fileID: 11400000, guid: bc178a3695cf1d041bb5ca09852992a1, type: 2}
+  - {fileID: 11400000, guid: a7a3795c3a3ac5d4c9c258b2247d8d10, type: 2}
+  - {fileID: 11400000, guid: 0f9c183114613fc44929b34bdae4fb11, type: 2}
+  - {fileID: 11400000, guid: 3300f637269fe2d4488accfe1abdeddd, type: 2}
+  MapElites:
+  - {fileID: 11400000, guid: a596a10779ed78847b210864012e524f, type: 2}
+  - {fileID: 11400000, guid: 610f1504ac7858242ae03d1025c84e4e, type: 2}
+  - {fileID: 11400000, guid: dbe40f1f121ad494fb7644a2cf3d4684, type: 2}
+  - {fileID: 11400000, guid: 63c0e88c1f754734398c1df45a2a96c3, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CandleShadeMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 568184521, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: 1556410159, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  Walk:
+  - {fileID: 1080443252, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: 826198469, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: 1080443252, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: 826198469, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  Windup:
+  - {fileID: 1195822220, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: 397981179, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  Release:
+  - {fileID: -1514413425, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: -1514413425, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  Recovery:
+  - {fileID: -1270716450, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  - {fileID: 568184521, guid: 760c9173b1eeba54d99c4d2922b93d7e, type: 3}
+  IllustratedHeight: 0

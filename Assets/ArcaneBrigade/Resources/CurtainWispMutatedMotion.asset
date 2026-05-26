@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: CurtainWispMutatedMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 977500567, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 2042648413, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -1782552144, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -1763957480, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
   Walk:
-  - {fileID: 289168450, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 1178896435, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 289168450, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 1178896435, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -826524653, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -950953862, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -826524653, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -950953862, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
   Windup:
-  - {fileID: -716758468, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 822826688, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -1685776803, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -1100970377, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
   Release:
-  - {fileID: 1881901991, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 1881901991, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -272543992, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -272543992, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
   Recovery:
-  - {fileID: -1541080407, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: 977500567, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -1291832605, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: -1782552144, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  IllustratedHeight: 0

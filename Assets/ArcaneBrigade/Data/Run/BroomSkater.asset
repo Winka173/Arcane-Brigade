@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BroomSkater
   DisplayName: Broom Skater
-  Body: {fileID: -203445659, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  Body: {fileID: -452256766, guid: 9916b2fc4137b0a4db5e1b8cb8c16a90, type: 3}
   AnimationFrames:
-  - {fileID: -203445659, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
-  - {fileID: -2055607655, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
-  - {fileID: 740098800, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
-  - {fileID: 1221787923, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: -452256766, guid: 9916b2fc4137b0a4db5e1b8cb8c16a90, type: 3}
+  - {fileID: -1688076155, guid: 9916b2fc4137b0a4db5e1b8cb8c16a90, type: 3}
+  - {fileID: 1758063560, guid: 9916b2fc4137b0a4db5e1b8cb8c16a90, type: 3}
+  - {fileID: 410569383, guid: 9916b2fc4137b0a4db5e1b8cb8c16a90, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 96dc67c989114554da0308cae4c33350, type: 2}
   Weapon: {fileID: 11400000, guid: 78a80312614702e4684f79a78fb3d16c, type: 2}
   Health: 67
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Sweeps three spots in succession.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 10
   Shot: 2
   Material: 5
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

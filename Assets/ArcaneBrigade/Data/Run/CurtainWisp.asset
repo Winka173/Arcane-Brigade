@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CurtainWisp
   DisplayName: CurtainWisp
-  Body: {fileID: 32155936, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  Body: {fileID: 506293402, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
   AnimationFrames:
-  - {fileID: 32155936, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: -1170133564, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: -1614133475, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
-  - {fileID: -1010664478, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: 506293402, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: 1722780292, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: 673964299, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
+  - {fileID: 1375778804, guid: 43c0d22c2c0cf564cbf766efd90c2e50, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 6ea1657ed4ae93e4483a3eaa5a5a00e4, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Warns a small curtain hazard at your previous position; move out.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 4
   Shot: 0
   Material: 3
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

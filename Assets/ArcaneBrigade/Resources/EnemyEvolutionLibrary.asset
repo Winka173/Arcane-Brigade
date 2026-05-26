@@ -13,66 +13,18 @@ MonoBehaviour:
   m_Name: EnemyEvolutionLibrary
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.EnemyEvolutionLibrary
   Species:
-  - Id: HushMite
-    MutationName: Split-Eye Pounce
-    Summary: Pounces at your old position.
-    Ability: 1
-    Normal: {fileID: 11400000, guid: eac765811d6af61478367fa493f0b55f, type: 2}
-    Mutated: {fileID: 11400000, guid: 312fc51f9839b1848a8c5242ae48921f, type: 2}
-  - Id: ClockBat
-    MutationName: Broken-Wing Crossfire
-    Summary: Sidesteps while spitting curved shots.
-    Ability: 2
-    Normal: {fileID: 11400000, guid: c6d888c47fdbeb445900dacb863e2309, type: 2}
-    Mutated: {fileID: 11400000, guid: 3302fb14faae60349a9059dfa0fe14c4, type: 2}
   - Id: BristleImp
     MutationName: Antler Rush
     Summary: Lowers its horns, then rushes.
     Ability: 3
     Normal: {fileID: 11400000, guid: a2b362188cce162478256f351cbb2333, type: 2}
     Mutated: {fileID: 11400000, guid: d6dfd648d297e834a8778ac5fb0d2349, type: 2}
-  - Id: RuneWisp
-    MutationName: Twisted Rune Spiral
-    Summary: Unwinds six slow spiral shots.
-    Ability: 4
-    Normal: {fileID: 11400000, guid: 9c22713da8184b148aa9319ef9355f20, type: 2}
-    Mutated: {fileID: 11400000, guid: 9f4e383b7806024478d95e08215d1d84, type: 2}
-  - Id: InkMoth
-    MutationName: Ragged Molting
-    Summary: Sheds two short-lived ink pools.
-    Ability: 5
-    Normal: {fileID: 11400000, guid: 80540f93d7838b94882523835ac6a929, type: 2}
-    Mutated: {fileID: 11400000, guid: 13077dc804f1c66448e976d8c3cf592b, type: 2}
-  - Id: SirenSeal
-    MutationName: Gill Echo
-    Summary: Sings two staggered impact waves.
-    Ability: 6
-    Normal: {fileID: 11400000, guid: fe7416c3344bbde4a80571141204c58d, type: 2}
-    Mutated: {fileID: 11400000, guid: 8741016e4a078f44289f1830578eda66, type: 2}
   - Id: DoorBearer
     MutationName: Splinter Slam
     Summary: Slams its door-body forward.
     Ability: 7
     Normal: {fileID: 11400000, guid: 0a4ea21668cd99a4e83895f6a4db2345, type: 2}
     Mutated: {fileID: 11400000, guid: 0d597b4a03394af40a31ff592377b96e, type: 2}
-  - Id: MoonMagnet
-    MutationName: Three-Prong Salvo
-    Summary: Pulls loose coins; spits metal.
-    Ability: 8
-    Normal: {fileID: 11400000, guid: a382564aafc842d42bd8fd4f65ceb744, type: 2}
-    Mutated: {fileID: 11400000, guid: 1cef244ad30ef2f4cbd5bbea1c7eed86, type: 2}
-  - Id: SleepMimic
-    MutationName: Seam-Ripper Lunge
-    Summary: Opens its seam, then lunges.
-    Ability: 9
-    Normal: {fileID: 11400000, guid: 7825e90aac6858a489952972a662c974, type: 2}
-    Mutated: {fileID: 11400000, guid: 6753c87eceebed64aa5d2184e9ac9640, type: 2}
-  - Id: CurtainWisp
-    MutationName: Curtain Collapse
-    Summary: Drops three strips of living cloth.
-    Ability: 10
-    Normal: {fileID: 11400000, guid: 6ea1657ed4ae93e4483a3eaa5a5a00e4, type: 2}
-    Mutated: {fileID: 11400000, guid: b0fecd7704b3bd74eb4f96bb9f16d607, type: 2}
   - Id: FurnaceToad
     MutationName: Chimney Fan
     Summary: Spits five slow furnace globs.
@@ -109,18 +61,6 @@ MonoBehaviour:
     Ability: 16
     Normal: {fileID: 11400000, guid: 18bbe27bec4c0214489ee3c19d570ec1, type: 2}
     Mutated: {fileID: 11400000, guid: 5c9ce0f432b746340a4a3ff9826fe93a, type: 2}
-  - Id: SporeBishop
-    MutationName: Spore Garden
-    Summary: Plants three spaced spore pools.
-    Ability: 17
-    Normal: {fileID: 11400000, guid: 680ae4cef2cab7a4b9e39c1d4e1a8199, type: 2}
-    Mutated: {fileID: 11400000, guid: 4ccd011baabfc9749ae8ba5b9dac3863, type: 2}
-  - Id: BroomSkater
-    MutationName: Hooked-Comb Rake
-    Summary: Rakes three narrow bristle lanes.
-    Ability: 18
-    Normal: {fileID: 11400000, guid: 96dc67c989114554da0308cae4c33350, type: 2}
-    Mutated: {fileID: 11400000, guid: e5593bee7f4a1e046b1d89b75108a42e, type: 2}
   - Id: RibbonHydra
     MutationName: Five-Head Weave
     Summary: Five heads spit weaving strands.
@@ -205,6 +145,138 @@ MonoBehaviour:
     Ability: 12
     Normal: {fileID: 11400000, guid: 080a05d1d4567724c9f1edb512b49278, type: 2}
     Mutated: {fileID: 11400000, guid: 0c55b3c2e43a4954ebbe222ac7b252a8, type: 2}
+  - Id: MoonMagnet
+    MutationName: Three-Prong Salvo
+    Summary: Pulls loose coins; spits metal.
+    Ability: 8
+    Normal: {fileID: 11400000, guid: a382564aafc842d42bd8fd4f65ceb744, type: 2}
+    Mutated: {fileID: 11400000, guid: 1cef244ad30ef2f4cbd5bbea1c7eed86, type: 2}
+  - Id: ClockBat
+    MutationName: Broken-Wing Crossfire
+    Summary: Sidesteps while spitting curved shots.
+    Ability: 2
+    Normal: {fileID: 11400000, guid: c6d888c47fdbeb445900dacb863e2309, type: 2}
+    Mutated: {fileID: 11400000, guid: 3302fb14faae60349a9059dfa0fe14c4, type: 2}
+  - Id: RuneWisp
+    MutationName: Twisted Rune Spiral
+    Summary: Unwinds six slow spiral shots.
+    Ability: 4
+    Normal: {fileID: 11400000, guid: 9c22713da8184b148aa9319ef9355f20, type: 2}
+    Mutated: {fileID: 11400000, guid: 9f4e383b7806024478d95e08215d1d84, type: 2}
+  - Id: InkMoth
+    MutationName: Ragged Molting
+    Summary: Sheds two short-lived ink pools.
+    Ability: 5
+    Normal: {fileID: 11400000, guid: 80540f93d7838b94882523835ac6a929, type: 2}
+    Mutated: {fileID: 11400000, guid: 13077dc804f1c66448e976d8c3cf592b, type: 2}
+  - Id: SirenSeal
+    MutationName: Gill Echo
+    Summary: Sings two staggered impact waves.
+    Ability: 6
+    Normal: {fileID: 11400000, guid: fe7416c3344bbde4a80571141204c58d, type: 2}
+    Mutated: {fileID: 11400000, guid: 8741016e4a078f44289f1830578eda66, type: 2}
+  - Id: SleepMimic
+    MutationName: Seam-Ripper Lunge
+    Summary: Opens its seam, then lunges.
+    Ability: 9
+    Normal: {fileID: 11400000, guid: 7825e90aac6858a489952972a662c974, type: 2}
+    Mutated: {fileID: 11400000, guid: 6753c87eceebed64aa5d2184e9ac9640, type: 2}
+  - Id: SporeBishop
+    MutationName: Spore Garden
+    Summary: Plants three spaced spore pools.
+    Ability: 17
+    Normal: {fileID: 11400000, guid: 680ae4cef2cab7a4b9e39c1d4e1a8199, type: 2}
+    Mutated: {fileID: 11400000, guid: 4ccd011baabfc9749ae8ba5b9dac3863, type: 2}
+  - Id: BroomSkater
+    MutationName: Hooked-Comb Rake
+    Summary: Rakes three narrow bristle lanes.
+    Ability: 18
+    Normal: {fileID: 11400000, guid: 96dc67c989114554da0308cae4c33350, type: 2}
+    Mutated: {fileID: 11400000, guid: e5593bee7f4a1e046b1d89b75108a42e, type: 2}
+  - Id: CurtainWisp
+    MutationName: Curtain Collapse
+    Summary: Drops three strips of living cloth.
+    Ability: 10
+    Normal: {fileID: 11400000, guid: 6ea1657ed4ae93e4483a3eaa5a5a00e4, type: 2}
+    Mutated: {fileID: 11400000, guid: b0fecd7704b3bd74eb4f96bb9f16d607, type: 2}
+  - Id: HushMite
+    MutationName: Split-Eye Pounce
+    Summary: Pounces at your old position.
+    Ability: 1
+    Normal: {fileID: 11400000, guid: eac765811d6af61478367fa493f0b55f, type: 2}
+    Mutated: {fileID: 11400000, guid: 312fc51f9839b1848a8c5242ae48921f, type: 2}
+  - Id: FireScreenWarden
+    MutationName: Folding Wall
+    Summary: Shields the enemies behind it from shots.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 6e44b9a354681b144a7fd29fca2f3bbb, type: 2}
+    Mutated: {fileID: 11400000, guid: d753f85d4df2caf419e6cb104839c687, type: 2}
+  - Id: TwinWickLantern
+    MutationName: Split Wick
+    Summary: Breaks into two little lanterns.
+    Ability: 5
+    Normal: {fileID: 11400000, guid: fc662ab5d3fdd3849b6ab4a17cfeb7b8, type: 2}
+    Mutated: {fileID: 11400000, guid: f21e0a195ccdd3a49bfc699e48d2431e, type: 2}
+  - Id: CandleShade
+    MutationName: Long Shadow
+    Summary: Sinks into its shadow and rises behind you.
+    Ability: 1
+    Normal: {fileID: 11400000, guid: 2be117655fb78e34aa18b4f9674eaf53, type: 2}
+    Mutated: {fileID: 11400000, guid: 3cddefa8194a5164999aafd72235c255, type: 2}
+  - Id: SpyglassSniper
+    MutationName: Twin Lens
+    Summary: Keeps its distance, aims a line, fires once hard.
+    Ability: 4
+    Normal: {fileID: 11400000, guid: 0555965dc9543d24fa6606fc41a041c5, type: 2}
+    Mutated: {fileID: 11400000, guid: 74d7f7dc1066b2f4aad8ba359b768c2e, type: 2}
+  - Id: DrawerBroodmother
+    MutationName: Open Drawers
+    Summary: Stays back and releases Clip Mites.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 77f51cef72b22fc40a97c24e4d04fde3, type: 2}
+    Mutated: {fileID: 11400000, guid: 7be7aaeb34747254990cfe874c40684b, type: 2}
+  - Id: LedgerTortoise
+    MutationName: Iron Binding
+    Summary: Its ledger shell guards its front; strike from behind.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: cf704317512c0a64abd3a40d8acc49a2, type: 2}
+    Mutated: {fileID: 11400000, guid: 90354dcb7dde32c42832656372b354a3, type: 2}
+  - Id: BoundBookends
+    MutationName: Spiked Chain
+    Summary: Two that must fall together.
+    Ability: 14
+    Normal: {fileID: 11400000, guid: bc9ea36dc8f3595498a8940af153f164, type: 2}
+    Mutated: {fileID: 11400000, guid: 859101f3fbb41e44bbf5a82ba630739b, type: 2}
+  - Id: RubberStampTitan
+    MutationName: Jagged Seal
+    Summary: Leaps and stamps down where you stand.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: eb616db10fbaa434fb8a5edf4470213f, type: 2}
+    Mutated: {fileID: 11400000, guid: f94df4a5b80ee2e47b68c9a62d57652e, type: 2}
+  - Id: HeadUsher
+    MutationName: Opened Seats
+    Summary: The Waiting Room's elite.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 46e812d0000cf8b4eab4796446df5f08, type: 2}
+    Mutated: {fileID: 11400000, guid: cda4b78b1fd128b4986a5060c7af4426, type: 2}
+  - Id: DeadLetterCourier
+    MutationName: Torn Sack
+    Summary: The Post Office's elite.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: 19746df006877c74a8c63199cad704f3, type: 2}
+    Mutated: {fileID: 11400000, guid: 91056c162cf3f974b88165bc7835da4f, type: 2}
+  - Id: WickWarden
+    MutationName: Six Arms
+    Summary: The Lamp Hall's elite.
+    Ability: 20
+    Normal: {fileID: 11400000, guid: 83c98f62608211548a5356553519cedd, type: 2}
+    Mutated: {fileID: 11400000, guid: c66d010a5f76d574db17442e8376fbfd, type: 2}
+  - Id: ArchiveSentinel
+    MutationName: Drawer Teeth
+    Summary: The Archive Vault's elite.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 46cf7a7e776b8904198e59136d0fa129, type: 2}
+    Mutated: {fileID: 11400000, guid: 9f8f1ffd21040bc4889eb6c86b6c78fe, type: 2}
   BodyFragments:
   - {fileID: -356142078, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
   - {fileID: 432123077, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}

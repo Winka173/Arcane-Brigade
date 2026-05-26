@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SporeBishop
   DisplayName: Spore Bishop
-  Body: {fileID: 957274613, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  Body: {fileID: -59095423, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
   AnimationFrames:
-  - {fileID: 957274613, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: -61219321, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: -1699168270, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
-  - {fileID: 43339772, guid: 7307f5da6e001f145958e1328fc56160, type: 3}
+  - {fileID: -59095423, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -844011175, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -1054662108, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
+  - {fileID: -1045039957, guid: 2a5b8da9e2a5ecb468fe987be1465c07, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 680ae4cef2cab7a4b9e39c1d4e1a8199, type: 2}
   Weapon: {fileID: 11400000, guid: c0b6049a2a717974d8e88def627b04a2, type: 2}
   Health: 60
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Plants delayed spore pools.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 9
   Shot: 1
   Material: 5
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0
