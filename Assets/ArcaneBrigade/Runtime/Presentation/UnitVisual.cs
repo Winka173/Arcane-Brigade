@@ -657,32 +657,13 @@ namespace ArcaneBrigade
             {
                 flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true);
                 flashProperties.SetFloat("_NightVisibility", nightVisibility);
-                flashProperties.SetVector("_WeaponFlex", AnimationPerformance.WeaponFlex(definition, age, poseWindup, ReducedMotion));
-                flashProperties.SetVector("_MechanicMotion", EnsembleMotion.WeaponSurface(definition, age, poseWindup, ReducedMotion));
+                // owner 24/10/2026: the old weapon animations are gone - no bending of the painting, no painted action frames
+                // (they were made for the weapons before their repaint) and no separately moving parts; the weapon is drawn
+                // as its own painting, swung and recoiled by its bearer
+                flashProperties.SetVector("_WeaponFlex", Vector4.zero); flashProperties.SetVector("_MechanicMotion", Vector4.zero); flashProperties.SetFloat("_WeaponMask", 0);
                 weapon.SetPropertyBlock(flashProperties);
-                if (weaponMechanism == null && WeaponMechanism.Supports(definition)) weaponMechanism = weapon.gameObject.AddComponent<WeaponMechanism>();
-                if (paintedWeaponIdentity != definition.Id)
-                {
-                    paintedWeaponIdentity = definition.Id;
-                    paintedWeaponAvailable = EnsembleArtwork.Current?.Weapon(definition.Id) != null;
-                }
-                if (awakenShown != null && weapon.sprite != restWeapon)
-                {
-                    // a transformed weapon is drawn as itself: the usual weapon's painted action and moving parts stay hidden
-                    if (paintedAction != null) paintedAction.Clear();
-                    if (weaponMechanism != null) weaponMechanism.Hide();
-                    weapon.GetPropertyBlock(flashProperties); flashProperties.SetFloat("_WeaponMask", 0); weapon.SetPropertyBlock(flashProperties);
-                }
-                else
-                {
-                    if (paintedAction == null && paintedWeaponAvailable) paintedAction = weapon.gameObject.AddComponent<WeaponPaintedAction>();
-                    if (paintedAction != null) paintedAction.Display(weapon, definition, age, poseWindup, ReducedMotion);
-                    if (weaponMechanism != null)
-                    {
-                        if (paintedAction != null && paintedAction.Visible) weaponMechanism.Hide();
-                        else weaponMechanism.Display(weapon, definition, age, poseWindup, ReducedMotion);
-                    }
-                }
+                if (paintedAction != null) paintedAction.Clear();
+                if (weaponMechanism != null) weaponMechanism.Hide();
             }
             DisplayWeakspot(simulationTime, order);
             if (anatomyVisual != null) anatomyVisual.Display(state, simulationTime, order, ReducedMotion);
