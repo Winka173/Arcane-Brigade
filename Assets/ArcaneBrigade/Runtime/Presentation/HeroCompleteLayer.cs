@@ -78,11 +78,11 @@ namespace ArcaneBrigade
             bool moving = (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f;
             switch (style.Id)
             {
-                case "LanternKnight": Refract(Wedge, tip + Vector2.up * .3f, new Vector2(.5f, .35f), 90, new Color(1, .95f, .85f, .5f + .4f * fill), .01f, 0, .6f); break; // heat over the lamp
+                case "LanternKnight": break; // the lamp's growing light (HeroFlair); no heat haze over the weapon
                 case "Postmaster": Metal(body, new Color(1f, .8f, .65f, q), 0, .3f); break;
                 case "DrowsySeer": Iris(body, new Color(.85f, .82f, 1f, q * .8f)); break;
                 case "RootOracle": if (fill > .7f && !still) Shock(at + Dir(90 + sim.HeroIdentityRootTurn * 120) * 1.8f - Vector2.up * .1f, Mathf.Repeat(t * 2, 1) / .4f, .6f); break; // the next root heaves the floor
-                case "LoneJelly": Gel(body); break;
+                case "LoneJelly": break; // its gel shows on its jellies, never over the hero itself
                 case "GlassDice": Iris(body, new Color(1f, .9f, .95f, q)); break;
                 case "TideSinger": if (!still) Refract(Blob, at - Vector2.up * h * .45f, new Vector2(1.2f, .45f), 0, new Color(.7f, .9f, 1f, .5f + .4f * fill), .012f); break; // a ripple round its feet
                 case "CometRunner": if (moving) Refract(Wedge, at - facing * .7f, new Vector2(1f, .5f), Mathf.Atan2(-facing.y, -facing.x) * Mathf.Rad2Deg, new Color(1, .9f, .75f, .4f + .5f * fill), .012f, -facing.x, -facing.y); break;

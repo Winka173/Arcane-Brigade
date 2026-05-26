@@ -64,6 +64,7 @@ namespace ArcaneBrigade
             warpBlock ??= new MaterialPropertyBlock(); warpBlock.Clear();
             warpBlock.SetFloat("_Strength", still ? bend * .3f : bend); warpBlock.SetVector("_Flow", new Vector4(flowX, flowY, 0, 0));
             warpBlock.SetFloat("_Darken", darken); warpBlock.SetFloat("_Desat", desat); warpBlock.SetFloat("_Swirl", still ? 0 : swirl);
+            warpBlock.SetVector("_Hole", HeroHole());
             r.SetPropertyBlock(warpBlock);
         }
         /// <summary>A material layer laid exactly over a sprite already drawn (a jelly, a mirror pane).</summary>
@@ -106,13 +107,23 @@ namespace ArcaneBrigade
             float e = still ? .6f : OutCubic(p);
             Refract(Blob, at, Vector2.one * size * (.5f + .7f * e), 0, new Color(1, .97f, .9f, (1 - p) * .9f), .035f * (1 - p));
         }
+        /// <summary>The ellipse kept clear round the hero and its held weapon (world centre, radii).</summary>
+        private Vector4 HeroHole()
+        {
+            UnitState hero = sim?.Champion; if (hero == null) return Vector4.zero;
+            Vector2 at = DrawnAt(hero); float body = hero.Definition.BodyHeight;
+            Bounds b = new Bounds(at, new Vector3(body * .8f, body, 0));
+            UnitVisual view = UnitVisual.Live(hero.Id);
+            if (view != null) { if (view.BodyRenderer != null && view.BodyRenderer.enabled) b.Encapsulate(view.BodyRenderer.bounds); if (view.WeaponRenderer != null && view.WeaponRenderer.enabled) b.Encapsulate(view.WeaponRenderer.bounds); }
+            return new Vector4(b.center.x, b.center.y, b.extents.x * 1.25f + .1f, b.extents.y * 1.2f + .1f);
+        }
         /// <summary>A gel body: what is behind and inside the jelly wobbles as through jelly.</summary>
         private void Gel(SpriteRenderer jelly)
         {
             if (Load(ref refractMaterial, "HeroRefract") == null) return;
             SpriteRenderer r = Overlay(jelly, refractMaterial, new Color(.75f, 1f, .92f, .6f));
             if (r == null) return;
-            warpBlock ??= new MaterialPropertyBlock(); warpBlock.Clear(); warpBlock.SetFloat("_Strength", still ? .004f : .012f); warpBlock.SetFloat("_Scale", 7);
+            warpBlock ??= new MaterialPropertyBlock(); warpBlock.Clear(); warpBlock.SetFloat("_Strength", still ? .004f : .012f); warpBlock.SetFloat("_Scale", 7); warpBlock.SetVector("_Hole", HeroHole());
             r.SetPropertyBlock(warpBlock);
         }
         /// <summary>A mirror pane reflecting the room round it, rippling when it has just caught a shot.</summary>

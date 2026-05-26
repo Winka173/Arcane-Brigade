@@ -455,7 +455,8 @@ namespace ArcaneBrigade
             if (state.Faction == Faction.Champion && PresentationSettings.HighlightHero) order += HeroFocus.SortBias;
             body.sortingOrder = order;
             shadow.sortingOrder = order - 10;
-            bool behind = facing.y > 0.45f;
+            // the held weapon always draws over its bearer (owner 24/10/2026: facing up it slipped behind the body)
+            const bool behind = false;
             weapon.sortingOrder = order + (behind ? -2 : 2);
             hand.sortingOrder = order + (behind ? -1 : 3);
             if (tierBell != null) tierBell.sortingOrder = weapon.sortingOrder;

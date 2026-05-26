@@ -99,7 +99,7 @@ namespace ArcaneBrigade
         {
             float weight = Mathf.Max(ImpactRules.Weight(weapon), impactWeightFloor);
             target.HitWeight = weight;
-            TryKnockUp(target, weight, damage, source, cause); // N2: a heavy slam sends a small enemy up
+            // (N2 knock-up removed, owner 24/10/2026: blows no longer throw enemies up into the air)
             // a melee blow always shoves away from the one who struck it (some swings report their aim, not the blow's way)
             UnitState striker = weapon.Kind == WeaponKind.Melee ? UnitWithId(cause.SourceUnitId) : null;
             if (striker != null && striker != target)
