@@ -204,6 +204,9 @@ namespace ArcaneBrigade
         public Vector2 Velocity;
         public float Damage;
         public float Remaining;
+        /// <summary>Presentation only: where a weapon's shot left its muzzle and when (0 = not a weapon shot). A shot is never
+        /// drawn behind its muzzle, and its first frames leave the barrel as it is drawn.</summary>
+        public Vector2 Muzzle; public float FiredAt = -1;
         // Negative means a staged/hostile shot owns its flight. Ordinary friendly shots consume actual distance,
         // so acceleration, splitting and ricochets cannot silently extend the compiled weapon reach.
         public float TravelLeft = -1;
@@ -924,6 +927,7 @@ namespace ArcaneBrigade
                     Faction = unit.Faction,
                     Position = position,
                     PreviousPosition = unit.Position,
+                    Muzzle = position, FiredAt = Elapsed,
                     Velocity = direction * (unit.Faction == Faction.Enemy && catalog.RunWave > 0 ? Mathf.Min(2.4f, weapon.ProjectileSpeed) : weapon.ProjectileSpeed),
                     Damage = damage,
                     Remaining = weapon.ProjectileLifetime,

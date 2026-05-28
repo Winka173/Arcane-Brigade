@@ -736,7 +736,18 @@ namespace ArcaneBrigade
                     visual.Configure(disc);
                     projectileViews.Add(state.Id, view);
                 }
-                view.transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation) + state.PatternOffset; // a swaying shot is drawn off its true line
+                Vector2 shotAt = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+                if (state.FiredAt >= 0)
+                {
+                    // owner 24/10/2026: shots seemed to come out of the hero's body - its first frame was drawn between the
+                    // body and the muzzle. A shot is never drawn behind its muzzle, and for its first moments it leaves the
+                    // weapon's barrel as that barrel is drawn (painted weapons differ from their simulated muzzle)
+                    if (Vector2.Dot(shotAt - state.Muzzle, state.Velocity) < 0) shotAt = state.Muzzle;
+                    float shotAge = simulation.Elapsed - state.FiredAt;
+                    if (shotAge < .15f && UnitVisual.TryMuzzle(state.SourceUnitId, out Vector2 barrel) && (barrel - state.Muzzle).sqrMagnitude < 1.5f)
+                        shotAt += (barrel - state.Muzzle) * (1 - shotAge / .15f);
+                }
+                view.transform.position = shotAt + state.PatternOffset; // a swaying shot is drawn off its true line
                 float projectileSize = state.Faction == Faction.Enemy ? 0.2f : ProjectileVisual.Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
                 Sprite missile = HeroIdentityVisual.Missile(state, catalog.Projectile, simulation.Elapsed, out float missileTurn, out float missileSize);
                 if (missile != null) { view.sprite = missile; projectileSize = missileSize; }

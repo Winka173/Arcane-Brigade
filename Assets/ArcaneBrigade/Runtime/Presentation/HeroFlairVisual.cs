@@ -266,7 +266,8 @@ namespace ArcaneBrigade
             int pick = Random.Range(0, lines.Length); if (pick == banterLast && lines.Length > 1) pick = (pick + 1) % lines.Length;
             banterLast = pick;
             SpeechBubbles.Show("Companion:" + who.Definition.Id, who.Definition.DisplayName, lines[pick],
-                () => who.Alive && sim != null && sim.Phase == RunPhase.Combat ? SpeechBubbles.Head(who) : (Vector3?)null, SpeechTone.Companion, 2.6f, 0);
+                () => who.Alive && sim != null && sim.Phase == RunPhase.Combat ? SpeechBubbles.Head(who) : (Vector3?)null, SpeechTone.Companion, 2.6f, 0,
+                who.Position.x < sim.Champion.Position.x ? BubbleSide.Left : BubbleSide.Right); // beside the friend, away from the hero, never over it
         }
         private static readonly string[] Cheers = { "Now!", "Here it comes!", "Go, go!", "That's our cue!", "Light them up!", "Hold nothing back!" };
         private static string[] AwakenLines(KitAction action) => action switch
