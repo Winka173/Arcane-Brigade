@@ -157,9 +157,10 @@ namespace ArcaneBrigade
         private void Sweep(Vector2 c, Vector2 dir, float r, float p, InkPalette pal, float width, float half, float offset = 0, float squash = 1, float delay = 0)
         {
             float q = Mathf.Clamp01((p - delay) / Mathf.Max(.05f, 1 - delay)); if (p < delay) return;
-            float a = Angle(dir) + offset;
+            float turn = dir.x < -.05f ? -1 : 1; // the stroke falls from above on either side, as the weapon does (UnitVisual)
+            float a = Angle(dir) + offset * turn;
             float head = still ? 1 : OutCubic(Mathf.Min(1, q / .4f)), tail = still ? 0 : InQuad(Mathf.Clamp01((q - .25f) / .75f));
-            var path = InkCanvas.Arc(c, r, r * squash, a + half, a - half);
+            var path = InkCanvas.Arc(c, r, r * squash, a + half * turn, a - half * turn);
             air.GlowRibbon(path, head, tail, width * 2.2f, A(pal.Glow, (calm ? .12f : .26f) * (1 - q)));
             air.Stroke(path, Brush(pal, width, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
         }
@@ -498,12 +499,14 @@ namespace ArcaneBrigade
                     break;
                 case WeaponInkStyle.StrikeForm.Chop:
                 {
-                    // a heavy downward chop just ahead: the stroke falls, a short floor mark and chips
-                    Vector2 from = tip + Vector2.up * size * .55f + side * .1f, to = tip + Vector2.down * size * .25f;
-                    air.Stroke(InkCanvas.Line(from, to), Brush(pal, .2f, fade, head, tail, 1.4f));
-                    if (p > .25f) ground.Sector(to, size * .3f, 0, 360, A(pal.Body, .35f * fade), A(pal.Body, 0));
-                    Rays(to, .1f, Mathf.Clamp01((p - .25f) / .75f), Cream, 4, seed, .045f, .22f, 160, 90);
-                    Scatter(to, size * .45f, Mathf.Clamp01((p - .25f) / .75f), s.Token, pal, 3, .14f, seed, .4f, null, null, 160, 90);
+                    // a heavy chop (owner 24/10/2026: the straight drop read oddly): a thick crescent following the blade from
+                    // over the shoulder down into the floor ahead, a thin echo inside it, chips and a crack where it lands
+                    float turn = dir.x < -.05f ? -1 : 1;
+                    Sweep(at, dir, size * .9f, p, pal, .24f, 76, 14);
+                    Sweep(at, dir, size * .68f, p, Cream, .07f, 70, 14, 1, .07f);
+                    Vector2 to = at + Dir(face - 62 * turn) * size * .9f;
+                    Rays(to, .1f, Mathf.Clamp01((p - .25f) / .75f), Cream, 5, seed, .05f, .26f, 140, 90);
+                    Scatter(to, size * .5f, Mathf.Clamp01((p - .25f) / .75f), s.Token, pal, 3, .15f, seed, .4f, null, null, 150, 90);
                     break;
                 }
                 case WeaponInkStyle.StrikeForm.Thrust:
@@ -548,7 +551,7 @@ namespace ArcaneBrigade
                 {
                     // a wide whirl in front of the wielder (never round it): a long arc with its token riding the edge
                     Sweep(at, dir, size * .8f, p, pal, .16f, 105);
-                    float a = face + 105 - 210 * head;
+                    float a = face + (105 - 210 * head) * (dir.x < -.05f ? -1 : 1);
                     Token(s.Token, pal, at + Dir(a) * size * .8f, .2f, a * 3, fade);
                     break;
                 }
@@ -556,7 +559,8 @@ namespace ArcaneBrigade
                     for (int k = -1; k <= 1; k++)
                     {
                         float delay = (k + 1) * .06f; float q = Mathf.Clamp01((p - delay) / (1 - delay)); if (p < delay) continue;
-                        var path = InkCanvas.Arc(at - dir * size * .15f + side * (k * .17f), size * .72f, size * .72f, face + 48, face - 40);
+                        float turn = dir.x < -.05f ? -1 : 1;
+                        var path = InkCanvas.Arc(at - dir * size * .15f + side * (k * .17f), size * .72f, size * .72f, face + 48 * turn, face - 40 * turn);
                         air.Stroke(path, Brush(pal, .11f, 1 - Smooth(.65f, 1, q), still ? 1 : OutCubic(Mathf.Min(1, q / .3f)), still ? 0 : InQuad(Mathf.Clamp01((q - .35f) / .65f)), 1.8f));
                     }
                     Token(s.Token, pal, tip, .15f, face, fade);

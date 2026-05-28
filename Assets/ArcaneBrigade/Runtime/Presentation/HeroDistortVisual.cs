@@ -51,7 +51,21 @@ namespace ArcaneBrigade
             var r = warps[warpUsed++]; r.enabled = true; return r;
         }
         private void BeginWarps() { warpUsed = 0; }
-        private void EndWarps() { for (int i = warpUsed; i < warps.Count; i++) warps[i].enabled = false; }
+        private float drift; // 0 standing .. 1 walking
+        private void EndWarps()
+        {
+            // owner 24/10/2026: still, the skill materials are lovely; walking, they blurred the floor under a moving camera and
+            // could make one dizzy - so they fade away while the hero walks and return when it stops
+            UnitState hero = sim?.Champion;
+            bool walking = hero != null && (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-6f;
+            drift = still ? (walking ? 1 : 0) : Mathf.MoveTowards(drift, walking ? 1 : 0, Time.deltaTime / .2f);
+            for (int i = 0; i < warpUsed; i++)
+            {
+                SpriteRenderer r = warps[i]; Color c = r.color; c.a *= 1 - drift * .9f; r.color = c;
+                if (c.a <= .01f) r.enabled = false;
+            }
+            for (int i = warpUsed; i < warps.Count; i++) warps[i].enabled = false;
+        }
 
         /// <summary>A refracting piece: mask stretched to size, turned by angle; tint.a is how strongly it shows.</summary>
         private void Refract(Sprite mask, Vector2 at, Vector2 size, float angle, Color tint, float bend, float flowX = 0, float flowY = 0, float darken = 0, float desat = 0, float swirl = 0)

@@ -12,7 +12,7 @@ namespace ArcaneBrigade
     public sealed class HeroFocus : MonoBehaviour
     {
         public const int SortBias = 12;          // one world unit of Y-sort: the hero draws over friends standing just in front
-        public const float HeroScale = 1.1f;     // the hero is drawn 10% larger than its body size
+        public const float HeroScale = 1f;       // owner 24/10/2026: the hero is no longer drawn larger; its friends' size, by shape (UnitVisual)
         public const float PropAlpha = .35f, FriendAlpha = .7f, FadeSeconds = .15f;
         private const int RingOrderOffset = -4, ShowThroughOrder = 1650, ArrowOrder = 2150;
 

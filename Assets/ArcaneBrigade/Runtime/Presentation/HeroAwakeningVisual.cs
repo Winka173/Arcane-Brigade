@@ -485,7 +485,7 @@ namespace ArcaneBrigade
                 if (!solid)
                 {
                     Token(token, at + Vector2.up * (hero.Definition.BodyHeight * .5f + .25f), .22f, 0, .95f - i * .15f, true, 0, pal);
-                    Thread(i > 0 ? echoes[i - 1] + Vector2.up * .1f : hero.Position + Vector2.up * .1f, at + Vector2.up * .1f, .25f, i);
+                    Thread(i > 0 ? echoes[i - 1] + Vector2.up * .1f : DrawnAt(hero) + Vector2.up * .1f, at + Vector2.up * .1f, .25f, i);
                 }
                 if (punch > 0 && !sparse)
                     for (int j = 0; j < 3; j++)

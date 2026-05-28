@@ -834,6 +834,8 @@ namespace ArcaneBrigade
                 if (!CanHit(source.Faction, candidate)) continue;
                 float distance = (candidate.Position - source.Position).sqrMagnitude;
                 if(melee?!MeleeReaches(source,candidate):distance>range*range)continue;
+                // a shooting hero takes the nearest foe, or a near and strong one (owner 24/10/2026)
+                if (!melee && source.Definition.Weapon.Kind == WeaponKind.Projectile) { float reach = Mathf.Max(0, Mathf.Sqrt(distance) - RangedThreat(candidate)); distance = reach * reach; }
                 if (distance < bestDistance) { bestDistance = distance; best = candidate; }
             }
             return best;

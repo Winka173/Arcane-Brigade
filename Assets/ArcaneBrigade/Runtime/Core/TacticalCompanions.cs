@@ -8,6 +8,9 @@ namespace ArcaneBrigade
         private readonly System.Collections.Generic.Dictionary<int, float> tacticalDamage = new System.Collections.Generic.Dictionary<int, float>();
         private float tacticalClaimTime = -1;
         private int tacticalGeneration = -1;
+        /// <summary>How much nearer a strong foe counts for a shooter, in world units: elites and bosses most, then the tough.</summary>
+        private static float RangedThreat(UnitState enemy) => (enemy.Definition.IsBoss ? 1.2f : enemy.Elite ? .9f : 0) + Mathf.Min(.5f, enemy.Health * .003f);
+
         private UnitState SelectCompanionTarget(UnitState source, float radius, bool attackOnly = false)
         {
             bool melee = source.Definition.Weapon.Kind == WeaponKind.Melee;
@@ -39,10 +42,12 @@ namespace ArcaneBrigade
                 if (source.TacticalTargetId == enemy.Id) claims = Mathf.Max(0, claims - 1);
                 float committedDamage = tacticalDamage.TryGetValue(enemy.Id, out float expected) ? expected : 0;
                 if (source.PendingAttack && source.AttackTargetId == enemy.Id) committedDamage -= source.Definition.Weapon.Damage;
-                float score = (enemy.Position - source.Position).magnitude + claims * 0.55f + IdentityTargetScore(enemy);
-                // R11: a ranged weapon's own taste (long single shots: the toughest; spreads: the crowd; bows: closest to the hero)
                 WeaponDefinition held = source.Definition.Weapon;
-                if (held.Kind == WeaponKind.Projectile) score += ImpactRules.TargetBias(held, enemy, Champion.Position, held.ProjectileCount >= 3 || held.ProjectileSpread >= .35f ? CrowdAround(enemy) : 0);
+                bool ranged = held.Kind == WeaponKind.Projectile;
+                // owner 24/10/2026: a shooter takes the nearest foe, or a near and strong one - not one far off because a friend
+                // already aims at the closer one (claims weigh little for shooters); spreads still like a crowd
+                float score = (enemy.Position - source.Position).magnitude + claims * (ranged ? .15f : .55f) + IdentityTargetScore(enemy);
+                if (ranged) score -= RangedThreat(enemy) + (held.ProjectileCount >= 3 || held.ProjectileSpread >= .35f ? .25f * Mathf.Min(3, CrowdAround(enemy)) : 0);
                 if (!enemy.Definition.IsBoss && committedDamage >= enemy.Health) score += 3;
                 if (enemy.Id == source.TacticalTargetId) score -= Elapsed < source.TacticalRetargetAt ? 1.5f : 0.6f;
                 if (score > bestScore || score == bestScore && best != null && enemy.Id >= best.Id) continue;

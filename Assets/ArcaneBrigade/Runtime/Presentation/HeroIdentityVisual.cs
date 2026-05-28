@@ -228,10 +228,11 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ live state
-        // unit positions are body centres: feet sit half a body below, heads half a body above
-        private static Vector2 Head(UnitState u) => u.Position + Vector2.up * (u.Definition.BodyHeight * .5f + .2f);
-        private static Vector2 Chest(UnitState u) => u.Position + Vector2.up * u.Definition.BodyHeight * .05f;
-        private static Vector2 Feet(UnitState u) => u.Position - Vector2.up * u.Definition.BodyHeight * .5f;
+        // unit positions are body centres: feet sit half a body below, heads half a body above; taken where the body is drawn
+        // this frame, not the simulation's step, so the marks glide with a walking hero (owner 24/10/2026)
+        private static Vector2 Head(UnitState u) => DrawnAt(u) + Vector2.up * (u.Definition.BodyHeight * .5f + .2f);
+        private static Vector2 Chest(UnitState u) => DrawnAt(u) + Vector2.up * u.Definition.BodyHeight * .05f;
+        private static Vector2 Feet(UnitState u) => DrawnAt(u) - Vector2.up * u.Definition.BodyHeight * .5f;
         private float Bob(float phase) => still ? 0 : Mathf.Sin(t * 3.1f + phase) * .045f;
 
         private void DrawState()
@@ -335,7 +336,7 @@ namespace ArcaneBrigade
                 ghost.enabled = true; ghost.sprite = body; ghost.transform.localScale = Vector3.one * scale;
                 ghost.transform.position = (Vector3)(at + Vector2.up * (.12f + Bob(0) * 2)) - (Vector3)(inkBox.center * scale);
                 // the dream copy shows only once the hero has walked away from it: overlapping the hero it read as a doubled, smeared body
-                float apart = Mathf.Clamp01((Vector2.Distance(at, sim.Champion.Position) - .35f) / .5f);
+                float apart = Mathf.Clamp01((Vector2.Distance(at, DrawnAt(sim.Champion)) - .35f) / .5f);
                 ghost.color = new Color(ink.Glow.r, ink.Glow.g, ink.Glow.b, .42f * fade * apart * EffectDensity.AlliedAlpha / .72f);
                 ghost.enabled = apart > .01f;
             }
@@ -360,7 +361,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < 3; i++)
             {
                 float heading = 90 + i * 120; Vector2 way = Dir(heading);
-                Vector2 at = hero.Position + way * 1.8f, from = hero.Position + way * .38f;
+                Vector2 at = DrawnAt(hero) + way * 1.8f, from = DrawnAt(hero) + way * .38f;
                 bool turn = i == next; float k = grown || sim.HeroAwakenPrimed ? 1 : turn ? charge : 0; // a full gauge raises every root's thorns
                 if (!grown && turn && k > .7f && !still) at += Dir(t * 900 + i * 50) * .035f * k; // the root about to strike quivers
                 float pulse = still ? 1 : grown ? .85f + .15f * Mathf.Sin(t * 5 + i * 2) : 1, alpha = (.8f + .2f * k) * pulse;
@@ -700,7 +701,7 @@ namespace ArcaneBrigade
 
         private void Poise(HeroIdentityGlyph g)
         {
-            float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created)); Vector2 c = sim.Champion.Position + Vector2.up * .35f;
+            float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created)); Vector2 c = DrawnAt(sim.Champion) + Vector2.up * .35f;
             float head = still ? 1 : OutCubic(p), from = 200;
             Soft(air, InkCanvas.Arc(c, .58f, .36f, from, from + 300 * head), 1, 0, .06f, 1 - Smooth(.6f, 1, p));
             Token(style.Token, c + Vector2.up * (.6f + (still ? 0 : .3f * OutCubic(p))), .22f, 0, 1 - InQuad(p));

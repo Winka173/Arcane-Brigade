@@ -16,7 +16,7 @@ MonoBehaviour:
   Arena: {fileID: 11400000, guid: df5b371438de8f94f845c72dd8c4a27e, type: 2}
   ProjectileDisc: {fileID: 21300000, guid: 73c46aa0c6d777b489ee34565420ff09, type: 3}
   WorldSize: {x: 34, y: 22}
-  CombatViewHeight: 4.3
+  CombatViewHeight: 4.6
   RestViewHeight: 4.8
   Champions:
   - {fileID: 11400000, guid: fff0e650e26b8ab42991de6cb7640207, type: 2}

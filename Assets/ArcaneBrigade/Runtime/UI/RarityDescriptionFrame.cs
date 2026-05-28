@@ -193,7 +193,8 @@ namespace ArcaneBrigade
             int lit=Mathf.FloorToInt(clock*1.5f)%4; float k=Mathf.Repeat(clock*1.5f,1);
             if(rarity!=ItemRarity.Common)
             {
-                Vector2 cc=lit==0?new Vector2(panel.x,panel.y):lit==1?new Vector2(panel.xMax,panel.y):lit==2?new Vector2(panel.xMax,panel.yMax):new Vector2(panel.x,panel.yMax);
+                const float inset=14; // the glints stay inside the box (owner 24/10/2026)
+                Vector2 cc=lit==0?new Vector2(panel.x+inset,panel.y+inset):lit==1?new Vector2(panel.xMax-inset,panel.y+inset):lit==2?new Vector2(panel.xMax-inset,panel.yMax-inset):new Vector2(panel.x+inset,panel.yMax-inset);
                 float s=Mathf.Sin(k*Mathf.PI); Color g=Color.white; g.a=.9f*s; ArcadeSkin.Diamond(cc,6+8*s,g);
             }
             // the shine: once, as the box first appears (Rare and above)
@@ -217,12 +218,14 @@ namespace ArcaneBrigade
                 GUI.matrix=saved; GUI.color=before;
                 GUI.EndGroup();
             }
-            // Mythic and above: glints thrown from the crest as it opens
+            // Mythic and above: glints falling from the crest into the box as it opens (never outside the frame)
             if(rank>=4 && age<.6f)
                 for(int i=0;i<7;i++)
                 {
-                    float a=(200+i*20)*Mathf.Deg2Rad, d=20+80*(age/.6f); Color g=bright; g.a=1-age/.6f;
-                    ArcadeSkin.Diamond(new Vector2(panel.center.x+Mathf.Cos(a)*d*1.6f,panel.y+Mathf.Sin(a)*d),7*(1-age/.6f)+2,g);
+                    float a=(30+i*20)*Mathf.Deg2Rad, d=12+Mathf.Min(70,panel.height*.4f)*(age/.6f); Color g=bright; g.a=1-age/.6f;
+                    Vector2 at=new Vector2(panel.center.x+Mathf.Cos(a)*d*1.6f,panel.y+16+Mathf.Sin(a)*d);
+                    at.x=Mathf.Clamp(at.x,panel.x+14,panel.xMax-14); at.y=Mathf.Clamp(at.y,panel.y+14,panel.yMax-14);
+                    ArcadeSkin.Diamond(at,7*(1-age/.6f)+2,g);
                 }
         }
         /// <summary>A small framed tile's rarity (a choice slot, a list row): the breathing border and its gems, no trim.</summary>

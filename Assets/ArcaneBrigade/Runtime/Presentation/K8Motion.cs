@@ -47,9 +47,15 @@ namespace ArcaneBrigade
             return unit.Definition.BodyHeight / natural * height * (unit.Faction == Faction.Champion && PresentationSettings.HighlightHero ? HeroFocus.HeroScale : 1);
         }
 
+        /// <summary>The height a friend of this tier is drawn at in the room (BodyHeight, before any size relic).</summary>
+        public static float FriendHeight(UnitDefinition unit, int tier) => Mathf.Clamp(unit.BodyHeight * .95f, .8f, .92f) * CompanionTierScaling.Body(tier);
+
         public static float WeaponWidth(UnitState unit)
         {
             float width = unit.Definition.Weapon.VisualWidth * (unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Projectile ? 1.45f : 1);
+            // owner 24/10/2026: a swung blade or club is never stubby (Key Cleaver and the short sabres looked small: +10% or more)
+            WeaponMotion swing = unit.Definition.Weapon.Motion;
+            if (unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Melee && (swing == WeaponMotion.Slash || swing == WeaponMotion.Slam || swing == WeaponMotion.Hammer)) width = Mathf.Max(width, .86f);
             // a held item stays modest, never much larger than its bearer (theme rule; 18/10/2026: melee was allowed 2.7x and heroes had no cap)
             float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.05f : 0.9f;
             if (unit.Faction == Faction.Enemy) return width;
@@ -91,11 +97,16 @@ namespace ArcaneBrigade
             bool preparing = age < windup;
             float charge = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / Mathf.Max(0.001f, windup)));
             float recovery = Mathf.Clamp01((age - windup) / Mathf.Max(0.001f, weapon.Recovery));
-            float release = Mathf.SmoothStep(0, 1, recovery / 0.18f);
-            float settle = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((recovery - 0.18f) / 0.82f));
-            float angle = preparing ? -weapon.SwingAngle * charge : Mathf.Lerp(-weapon.SwingAngle, weapon.SwingAngle, release) * settle;
+            // owner 24/10/2026: a blow must read - a melee stroke is a wide arc that takes a third of the recovery (it used to be
+            // over in a frame or two), starts fast, and holds its follow-through before it settles back
+            bool swung = weapon.Kind == WeaponKind.Melee;
+            float stroke = swung ? .34f : .18f, hold = swung ? .5f : .18f;
+            float release = swung ? 1 - Mathf.Pow(1 - Mathf.Clamp01(recovery / stroke), 3) : Mathf.SmoothStep(0, 1, recovery / stroke);
+            float settle = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((recovery - hold) / (1 - hold)));
+            float arc = swung ? Mathf.Max(weapon.SwingAngle, 80) : weapon.SwingAngle, raise = swung ? arc * 1.1f : arc;
+            float angle = preparing ? -raise * charge : Mathf.Lerp(-raise, arc, release) * settle;
             float recoil = preparing ? 0.06f * charge : Mathf.Lerp(0.06f, -0.08f, release) * settle;
-            float lift = 0;
+            float lift = swung ? (preparing ? .05f * charge : Mathf.Lerp(.05f, -.03f, release) * settle) : 0;
             WeaponMotion motion = weapon.Motion;
             // a shot's heft (RangedFeel): a gumball flick barely kicks, a cannon shoves the holder back and its barrel climbs
             float kick = weapon.Kind == WeaponKind.Projectile ? weapon.RecoilDistance * RangedFeel.RecoilScale(weapon) : weapon.RecoilDistance;
@@ -112,7 +123,7 @@ namespace ArcaneBrigade
             }
             if (motion == WeaponMotion.Slam || motion == WeaponMotion.Hammer)
             {
-                angle = preparing ? -75 * charge : Mathf.Lerp(-75, 38, release) * settle;
+                angle = preparing ? -100 * charge : Mathf.Lerp(-100, 50, release) * settle;
                 lift = preparing ? 0.07f * charge : Mathf.Lerp(0.07f, -0.035f, release) * settle;
             }
             if (motion == WeaponMotion.Cast)

@@ -422,7 +422,7 @@ namespace ArcaneBrigade
                 float stallX = offers.Count > 3 ? (index - (offers.Count - 1) * .5f) * 2.6f : (index - 1) * 3.2f;
                 Station station = AddStation(new Vector2(stallX, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
-                if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
+                if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion, offer.Kind == OfferKind.Companion ? K8Motion.FriendHeight(catalog.Unit(offer.Id), offer.Tier) : 0);
                 // the friend on its stall holds the weapon it comes with (rolled with the offer)
                 if (station.Actor != null && offer.Kind == OfferKind.Companion && owner.Session.OfferWeapon(offer) is WeaponDefinition held)
                     station.Actor.HoldWeapon(held.Sprite, catalog.Arena.Hand, held.Kind == WeaponKind.Melee);

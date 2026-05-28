@@ -134,10 +134,12 @@ namespace ArcaneBrigade
         }
         public void SetPedestalDisplay() { pedestalDisplay = true; }
         public void Speak(bool active) { speaking = active; }
-        public void SetCompanionDisplay(bool companion)
+        private float roomHeight;
+        /// <param name="walkingHeight">The friend's height once bought (K8Motion.FriendHeight): the stall shows it at that size.</param>
+        public void SetCompanionDisplay(bool companion, float walkingHeight = 0)
         {
-            companionDisplay = companion;
-            if (companion) height *= 1.3f;
+            companionDisplay = companion; roomHeight = companion ? walkingHeight : 0;
+            if (companion && roomHeight <= 0) height *= 1.3f;
             if (merchandise) MountMerchandise();
         }
         public void SetFloorFixture()
@@ -181,6 +183,12 @@ namespace ArcaneBrigade
             float breathing = reduced || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * (companionDisplay ? 2.1f : 2.5f)) * (companionDisplay ? 0.065f : 0.04f);
             if (speaking && !reduced) breathing += Mathf.Sin(owner.PresentationClock * 19) * 0.012f;
             float scale = Mathf.Min(height / view.sprite.bounds.size.y, height * 1.2f / view.sprite.bounds.size.x);
+            if (companionDisplay && roomHeight > 0)
+            {
+                // owner 24/10/2026: a friend on its stall is as big as it will be once bought (sized by its painted ink, as in the room)
+                Rect ink = SpriteInkMetrics.BoundsOf(frames != null && frames.Length > 0 && frames[0] != null ? frames[0] : view.sprite);
+                scale = roomHeight / Mathf.Max(.01f, Mathf.Max(ink.height, ink.width / 1.5f));
+            }
             float age = owner.PresentationClock - arrivalStarted - arrivalDelay;
             float duration = merchantActor ? 0.8f : 0.55f;
             float arrival = Mathf.Clamp01(age / duration);

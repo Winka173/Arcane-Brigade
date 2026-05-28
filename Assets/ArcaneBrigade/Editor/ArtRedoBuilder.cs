@@ -177,7 +177,8 @@ namespace ArcaneBrigade.Editor
         private static Sprite Single(string path)
         {
             var importer = Prepare(path); importer.spriteImportMode = SpriteImportMode.Single;
-            var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); settings.spriteAlignment = (int)SpriteAlignment.Center; importer.SetTextureSettings(settings);
+            // the pivot is the weapon's grip (set from the old painting's grip, 24/10/2026); only a fresh sheet starts centred
+            var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); if (settings.spriteAlignment != (int)SpriteAlignment.Custom) settings.spriteAlignment = (int)SpriteAlignment.Center; importer.SetTextureSettings(settings);
             importer.SaveAndReimport();
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
         }

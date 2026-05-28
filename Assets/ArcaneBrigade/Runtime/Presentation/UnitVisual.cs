@@ -66,6 +66,9 @@ namespace ArcaneBrigade
         private float arrivalAge = 10;
         private int arrivalFrame;
         private float facingAngle;
+        private Vector3 gripWorld; private Vector2 gripVelocity; private bool gripPlaced; // the weapon follows its bearer a touch behind (owner 24/10/2026)
+        /// <summary>The hero's weapon draws over the hero, its gauge (2060) and every mark its skills paint (owner 24/10/2026).</summary>
+        public const int HeroWeaponOrder = 2100;
         private BodyPuppet puppet;
         private GroundShadow grounded;
         private GroundShadow groundedWeapon;
@@ -210,7 +213,7 @@ namespace ArcaneBrigade
             destination.sprite = source.sprite;
             destination.sharedMaterial = source.sharedMaterial;
             destination.color = source.color;
-            destination.flipX = source.flipX;
+            destination.flipX = source.flipX; destination.flipY = source.flipY;
             destination.sortingOrder = source.sortingOrder;
             destination.transform.localPosition = source.transform.localPosition;
             destination.transform.localRotation = source.transform.localRotation;
@@ -446,7 +449,11 @@ namespace ArcaneBrigade
             if (canonFace != null) body.sprite = canonFace;
             K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion);
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
-            Vector2 facing = attacking ? state.AttackDirection : state.Facing;
+            // between blows a friend keeps aiming where it last struck (owner 24/10/2026: walking while shooting, the weapon
+            // swung back and forth between the way it walked and the way it shot)
+            float sinceBlow = simulationTime - state.AttackStarted;
+            bool aiming = !attacking && state.Faction != Faction.Enemy && state.AttackStarted > 0 && sinceBlow >= 0 && sinceBlow < poseWindup + definition.Recovery + .9f && state.AttackDirection.sqrMagnitude > .01f;
+            Vector2 facing = attacking || aiming ? state.AttackDirection : state.Facing;
             if (RestAttention && !attacking && performance.Gesture > .15f && (state.Position - state.PreviousPosition).sqrMagnitude < .00001f && Vector2.Distance(AttentionPoint, state.Position) > .5f)
                 facing = (AttentionPoint - state.Position).normalized;
             if (facing.sqrMagnitude < 0.01f) facing = Vector2.right;
@@ -455,10 +462,11 @@ namespace ArcaneBrigade
             if (state.Faction == Faction.Champion && PresentationSettings.HighlightHero) order += HeroFocus.SortBias;
             body.sortingOrder = order;
             shadow.sortingOrder = order - 10;
-            // the held weapon always draws over its bearer (owner 24/10/2026: facing up it slipped behind the body)
-            const bool behind = false;
-            weapon.sortingOrder = order + (behind ? -2 : 2);
-            hand.sortingOrder = order + (behind ? -1 : 3);
+            // the held weapon always draws over its bearer (owner 24/10/2026: facing up it slipped behind the body); the hero's
+            // goes over everything: hero, then its gauge, then its weapon
+            int weaponOrder = state.Faction == Faction.Champion ? HeroWeaponOrder : order + 2;
+            weapon.sortingOrder = weaponOrder;
+            hand.sortingOrder = weaponOrder + 1;
             if (tierBell != null) tierBell.sortingOrder = weapon.sortingOrder;
             body.flipX = facing.x < -0.1f;
             float desiredGait = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
@@ -501,8 +509,14 @@ namespace ArcaneBrigade
                 if (expandedFrame != null && actingFrame == null) reference = expandedGait.Frames[0];
                 if (actingFrame != null && actingArt.Curious.Length > 0) reference = actingArt.Curious[0];
                 Rect ink = SpriteInkMetrics.BoundsOf(reference);
-                float widthLimit = state.Faction == Faction.Champion ? 1.4f : 1.5f;
-                referenceHeight = Mathf.Max(ink.height, ink.width / widthLimit);
+                if (state.Faction == Faction.Champion)
+                {
+                    // owner 24/10/2026: every hero reads about the same size beside its friends - a squat, square hero is drawn
+                    // shorter than a tall thin one (the old rule drew all of them at one height, so the square ones looked huge)
+                    float tall = Mathf.Clamp(.91f * Mathf.Sqrt(ink.height / Mathf.Max(.01f, ink.width)), .84f, 1.05f);
+                    referenceHeight = ink.height / tall;
+                }
+                else referenceHeight = Mathf.Max(ink.height, ink.width / 1.5f);
             }
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
@@ -701,6 +715,8 @@ namespace ArcaneBrigade
                 stampPips[index].transform.localPosition = new Vector3((index - 1) * 0.16f, height * 0.65f, 0);
             }
             if (attacking) { angleOffset = pose.Angle; recoil = pose.Recoil; }
+            // every swing falls from above (facing right the same turn was an uppercut)
+            if (attacking && definition.Kind == WeaponKind.Melee && facing.x >= 0) angleOffset = -angleOffset;
             // a gun's barrel climbs upward on either side (facing left, the same turn would dip it)
             if (attacking && definition.Kind == WeaponKind.Projectile && definition.Motion == WeaponMotion.Recoil && facing.x < 0) angleOffset = -angleOffset;
             if (!grip.gameObject.activeSelf) return;
@@ -719,16 +735,28 @@ namespace ArcaneBrigade
                 drawHand.transform.localPosition = new Vector3(anchor - draw, 0, 0);
             }
             float attachmentScale = state.Faction == Faction.Companion ? 0.72f : 1;
-            grip.localPosition = facing.normalized * ((definition.MountDistance - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale);
-            grip.localPosition += Vector3.up * performance.GripLift;
-            grip.localPosition += (Vector3)lungeOffset; // the weapon travels with a lunging swinger
-            float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-            facingAngle = ReducedMotion ? targetAngle : attacking ? Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-motionDelta * 35)) : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
+            // owner 24/10/2026: held a little further out, at hand height (a third of the body up, not at the face)
+            float reachOut = state.Faction == Faction.Champion ? .1f : state.Faction == Faction.Companion ? .06f : 0;
+            float handDrop = state.Faction != Faction.Enemy ? K8Motion.BodyHeight(state) * .12f : 0;
+            Vector3 gripAt = facing.normalized * ((definition.MountDistance + reachOut - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale - handDrop);
+            gripAt += Vector3.up * performance.GripLift;
+            gripAt += (Vector3)lungeOffset; // the weapon travels with a lunging swinger
+            // the weapon follows its bearer on the screen's own clock, a touch behind, so a walking hero's weapon glides instead
+            // of stepping with the simulation (owner 24/10/2026)
+            Vector3 wanted = transform.TransformPoint(gripAt);
+            if (!gripPlaced || ReducedMotion || (wanted - gripWorld).sqrMagnitude > 4) { gripWorld = wanted; gripVelocity = Vector2.zero; gripPlaced = true; }
+            else { Vector2 eased = Vector2.SmoothDamp(gripWorld, wanted, ref gripVelocity, attacking ? .018f : .045f, Mathf.Infinity, Mathf.Min(Time.deltaTime, .05f)); gripWorld = new Vector3(eased.x, eased.y, wanted.z); }
+            grip.position = gripWorld;
+            float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg, frame = Mathf.Min(Time.deltaTime, .05f);
+            facingAngle = ReducedMotion ? targetAngle : attacking ? Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-frame * 35)) : Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-frame * 14));
             grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset + performance.GripTurn);
+            // facing left the painting turns over instead of hanging upside down
+            bool overturned = Mathf.Cos(facingAngle * Mathf.Deg2Rad) < 0;
+            weapon.flipY = overturned; if (tierBell != null) tierBell.flipY = overturned;
             if (weapon.sprite != null && weapon.enabled)
             {
                 Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
-                drawnMuzzle[state.Id] = (weapon.transform.TransformPoint(new Vector3(ink.xMax, ink.center.y, 0)), Time.frameCount);
+                drawnMuzzle[state.Id] = (weapon.transform.TransformPoint(new Vector3(ink.xMax, weapon.flipY ? -ink.center.y : ink.center.y, 0)), Time.frameCount);
             }
         }
 
