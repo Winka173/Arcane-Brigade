@@ -19,7 +19,6 @@ namespace ArcaneBrigade
         private static readonly InkPalette ArsenalInkWine = ArsenalInk.Wine;
         private readonly Dictionary<long, Sprite> fillCache = new Dictionary<long, Sprite>();
         private SpriteRenderer[] dreamEchoes;
-        private InkedText awakenBanner;
         private float bannerFor = -100;
 
         /// <summary>The hero's feet where the hero is drawn this frame (the simulation position lags between steps).</summary>
@@ -493,24 +492,6 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>The transformation's name pops up over the hero for a moment as it begins.</summary>
-        private void Banner(bool awake, HeroKit kit)
-        {
-            if (awake && sim.HeroAwakenStarted > bannerFor) bannerFor = sim.HeroAwakenStarted;
-            float age = t - bannerFor;
-            bool show = awake && kit != null && age < 1.4f;
-            if (awakenBanner == null)
-            {
-                if (!show) return;
-                awakenBanner = InkedText.Create(transform, "Awakening banner", ArcadeTypography.Punch, 48, .045f, 2400, .028f);
-            }
-            awakenBanner.gameObject.SetActive(show);
-            if (!show) return;
-            awakenBanner.Text = kit.Transformation + "!";
-            float pop = still ? 1 : OutBack(Mathf.Clamp01(age / .25f));
-            awakenBanner.transform.position = Head(sim.Champion) + Vector2.up * (.55f + (still ? 0 : age * .15f));
-            awakenBanner.transform.localScale = Vector3.one * Mathf.Max(.01f, pop);
-            Color c = Color.Lerp(ink.Body, Color.white, .35f); c.a = 1 - Smooth(1f, 1.4f, age); awakenBanner.Color = c;
-        }
+        // the transformation's name is lettered by Banner (HeroTitleVisual)
     }
 }

@@ -112,7 +112,7 @@ namespace ArcaneBrigade
             Ensure();
             ground.Clear(); air.Clear(); vial?.Clear(); groundInk?.Clear(); used = 0; BeginWarps(); VisibleCount = 0; ghost.enabled = false;
             if (dreamEchoes != null) foreach (var e in dreamEchoes) if (e != null) e.enabled = false;
-            if (awakenBanner != null) awakenBanner.gameObject.SetActive(false);
+            titleDrawn = false;
             bool live = simulation != null && simulation.HeroIdentityEnabled && simulation.Champion != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
             if (live)
             {
@@ -143,6 +143,7 @@ namespace ArcaneBrigade
                     if (DrawGlyph(glyph)) VisibleCount++;
                 }
             }
+            if (!titleDrawn) HideTitle();
             ground.Commit(); air.Commit(); vial?.Commit(); groundInk?.Commit();
             for (int i = used; i < tokens.Count; i++) tokens[i].enabled = false;
             EndWarps();
