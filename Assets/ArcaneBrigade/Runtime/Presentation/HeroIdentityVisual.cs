@@ -133,6 +133,7 @@ namespace ArcaneBrigade
                     if (simulation.HeroAwakenEnabled) DrawAwakening();
                     ArtProps(); // the painted objects of the transformations (HeroArtPropsVisual)
                     Rims(); // after the gauge is placed: the rim outlines this frame's vessel
+                    PowerUp(); // the hero's own body: the power-up as it transforms and the aura of a self-empowering skill (HeroPowerVisual)
                     ShaderLayer(); // each hero's own shader moment (HeroShaderLayer)
                     WaitingMaterial(); AwakenProps(); // the waiting shader and the second set of painted objects (HeroCompleteLayer)
                     DrawCastCue();

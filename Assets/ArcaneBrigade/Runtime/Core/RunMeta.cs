@@ -33,6 +33,13 @@ namespace ArcaneBrigade
         public static readonly string[] ChallengeNames = { "Free journey", "Night shift · until dawn", "First light · clear hall 10", "Small brigade · win with ≤ 6 companions" };
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
         public static int UnlockedDifficulty(PlayerProfile profile) => DifficultyNames.Length - 1;
+        /// <summary>Each difficulty's colour, calm to dangerous (owner 24/10/2026): green, moon blue, amber, orange, red, and a
+        /// deep crimson-violet for Beyond the Lamp.</summary>
+        public static Color DifficultyColor(int difficulty) => Mathf.Clamp(difficulty, 0, 5) switch
+        {
+            0 => new Color(.56f, .9f, .62f), 1 => new Color(.56f, .8f, 1f), 2 => new Color(1f, .84f, .38f),
+            3 => new Color(1f, .55f, .24f), 4 => new Color(.96f, .26f, .24f), _ => new Color(.82f, .2f, .62f),
+        };
         public static int Score(RunSnapshot run, int liveKills = 0, bool liveBoss = false)
         {
             int cleared = Mathf.Max(0, run.Wave - Mathf.Max(1, run.StartHall));

@@ -634,6 +634,8 @@ namespace ArcaneBrigade
             float nightVisibility = SharedLightField.Active == null ? 1 : SharedLightField.Active.Visibility(state, simulationTime);
             flashProperties.SetFloat("_NightVisibility", nightVisibility);
             flashProperties.SetFloat("_HostileShift", state.Faction != Faction.Enemy ? 0 : state.Definition.IsBoss ? .35f : state.Elite ? .5f : 1f); // enemies lose the friends' warm colours
+            // owner 24/10/2026: our side a touch brighter, the hostile side darker, so they part at a glance
+            flashProperties.SetFloat("_Exposure", state.Faction != Faction.Enemy ? 1.1f : state.Definition.IsBoss ? .95f : .9f);
             flashProperties.SetVector("_LivingMotion", EnsembleMotion.Surface(state, simulationTime, ReducedMotion));
             if (state.Faction == Faction.Champion)
             {

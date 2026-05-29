@@ -589,8 +589,27 @@ namespace ArcaneBrigade
             // one journey only (play-test 20/10/2026): the Night Shift / First Light / Small Crew challenges are off the menu;
             // their rules stay in RunMeta, dormant, for a later daily run
             challenge = 0;
-            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
-            GUI.Label(new Rect(780, 540, 430, 40), "Win a difficulty to unlock the next.", note);
+            // owner 24/10/2026: each difficulty wears its own colour, calmer to more dangerous, on the plate, its rim and a
+            // row of danger gems (Beyond the Lamp's colour throbs)
+            Color danger = RunMeta.DifficultyColor(difficulty);
+            if (difficulty >= 5 && !PresentationSettings.ReducedMotion) danger = Color.Lerp(danger, new Color(.35f, .05f, .2f), .35f * (.5f + .5f * Mathf.Sin(Time.unscaledTime * 4)));
+            Rect difficultyPlate = new Rect(780, 492, 420, 46);
+            Color plate = GUI.backgroundColor; GUI.backgroundColor = Color.Lerp(Color.white, danger, .6f);
+            if (Button(difficultyPlate, "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
+            GUI.backgroundColor = plate;
+            if (Event.current.type == EventType.Repaint)
+            {
+                Color rim = danger; rim.a = .95f;
+                ArcadeSkin.Line(new Rect(difficultyPlate.x - 2, difficultyPlate.y - 2, difficultyPlate.width + 4, 2), rim); ArcadeSkin.Line(new Rect(difficultyPlate.x - 2, difficultyPlate.yMax, difficultyPlate.width + 4, 2), rim);
+                ArcadeSkin.Line(new Rect(difficultyPlate.x - 2, difficultyPlate.y, 2, difficultyPlate.height), rim); ArcadeSkin.Line(new Rect(difficultyPlate.xMax, difficultyPlate.y, 2, difficultyPlate.height), rim);
+                int levels = RunMeta.DifficultyNames.Length;
+                for (int i = 0; i < levels; i++)
+                {
+                    Vector2 gem = new Vector2(difficultyPlate.center.x - (levels - 1) * 11 + i * 22, difficultyPlate.yMax + 18);
+                    ArcadeSkin.Diamond(gem, 14, new Color(.08f, .05f, .1f, .95f));
+                    if (i <= difficulty) ArcadeSkin.Diamond(gem, 10, RunMeta.DifficultyColor(i));
+                }
+            }
             GUI.enabled = profile.BestWave >= champion.UnlockWave;
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;

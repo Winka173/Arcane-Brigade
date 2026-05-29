@@ -45,6 +45,7 @@ namespace ArcaneBrigade
         private CheckpointAudio audioFeedback;
         private readonly ToyboxAudioObserver toyboxAudio = new ToyboxAudioObserver();
         private CombatFeedback combatFeedback;
+        private HitWords hitWords; // comic sound words over struck enemies (owner 24/10/2026)
         private BossTelegraph bossTelegraph;
         private MapEnvironmentVisual mapVisual;
         private ArcadeEffects arcadeEffects;
@@ -232,6 +233,7 @@ namespace ArcaneBrigade
             if (!preserveEffects)
             {
                 if (combatFeedback != null) combatFeedback.Clear();
+                if (hitWords != null) hitWords.Clear();
                 if (arcadeEffects != null) arcadeEffects.Clear();
                 if (deathFeedback != null) deathFeedback.Clear();
                 if (explosions != null) explosions.Clear();
@@ -375,6 +377,8 @@ namespace ArcaneBrigade
                 }
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
+            if (hitWords == null) hitWords = gameObject.AddComponent<HitWords>();
+            for (int index = 0; index < simulation.Events.Count; index++) hitWords.Play(simulation, simulation.Events[index]);
             // stats gained for good mid-wave rise over the hero the way they do in the shop (owner 24/10/2026)
             if (combatFeedback != null && simulation.Champion != null)
                 foreach (var gain in simulation.StatGainsToShow)

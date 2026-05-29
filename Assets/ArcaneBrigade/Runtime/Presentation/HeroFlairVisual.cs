@@ -85,7 +85,8 @@ namespace ArcaneBrigade
                 float body = hero.Definition.BodyHeight, feet = DrawnAt(hero).y - body * .5f;
                 float sweep = still || primed ? float.NaN : feet - .3f + Mathf.Repeat(t * 1.1f, 1.7f) * (body + .6f);
                 bool storm = awake && sim.HeroKitInfo != null && sim.HeroKitInfo.Action == KitAction.Thunder;
-                SkillRim.For(view.BodyRenderer)?.Show(A(c, .95f * breathe * strength), .034f, sweep, .28f, storm ? 1 : 0);
+                bool empowered = awake && SelfEmpowering(sim.HeroKitInfo); // a hero that strengthens itself wears a bolder rim (HeroPowerVisual)
+                SkillRim.For(view.BodyRenderer)?.Show(A(c, (empowered ? 1 : .95f) * breathe * strength), empowered ? .05f : .034f, sweep, .28f, storm ? 1 : 0);
                 SpriteRenderer weapon = view.WeaponRenderer;
                 if (awake && weapon != null && weapon.enabled && weapon.sprite != null)
                 {

@@ -21,6 +21,7 @@ Shader "ArcaneBrigade/UnitFlash"
         _Saturation ("Paint saturation", Range(0,2)) = 1
         _NightVisibility ("Night visibility", Range(0,1)) = 1
         _HostileShift ("Warm colours pushed to violet (enemies)", Range(0,1)) = 0
+        _Exposure ("Brightness (friends lifted, enemies dimmed)", Range(0,2)) = 1
         [HideInInspector] _PropEye ("Decorative eye region", Vector) = (0,0,0,0)
         [HideInInspector] _PropLook ("Decorative eye look", Vector) = (0,0,0,0)
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
@@ -48,6 +49,7 @@ Shader "ArcaneBrigade/UnitFlash"
             float _ShadeAmount, _RimAmount, _Saturation;
             float _NightVisibility;
             float _HostileShift;
+            float _Exposure;
             float4 _PropEye, _PropLook;
             float4 _WeaponFlex;
             float _WeaponMask;
@@ -115,7 +117,7 @@ Shader "ArcaneBrigade/UnitFlash"
                 // the flash covers the sprite below _FlashLine only (a wet-brush edge), so a reveal can wipe it away top-down
                 float covered = saturate((_FlashLine + sin(local.x * 17 + _FlashLine * 5) * .035 - local.y) * 16);
                 color.rgb = lerp(color.rgb, _FlashColor.rgb, _Flash * covered);
-                color.rgb *= _NightVisibility;
+                color.rgb *= _NightVisibility * _Exposure;
                 return color;
             }
             ENDCG
