@@ -72,7 +72,9 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(1f);
                 foreach (ItemRarity rarity in new[] { ItemRarity.Uncommon, ItemRarity.Rare, ItemRarity.Mythic, ItemRarity.Crimson, ItemRarity.Rainbow })
                 {
-                    sample = rarity; yield return new WaitForSecondsRealtime(.6f);
+                    sample = rarity; yield return new WaitForSecondsRealtime(.25f);
+                    yield return Shot("frame-" + (int)rarity + "-" + rarity + "-opening");
+                    yield return new WaitForSecondsRealtime(.6f);
                     yield return Shot("frame-" + (int)rarity + "-" + rarity);
                 }
                 sample = null; Write(); Application.Quit(0); yield break;

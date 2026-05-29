@@ -39,6 +39,7 @@ namespace ArcaneBrigade
             if ((to - from).sqrMagnitude < .25f) return;
             dreamSwapAt = Elapsed + DreamSwapCooldown;
             Champion.Position = Champion.PreviousPosition = to;
+            heroSlipGuardUntil = Elapsed + .6f; // the swap may land among enemies (HeroBodyGuard)
             IdentityGlyph(MorphGeometry.Line, from, to, 0, .3f, role: HeroGlyphRole.Lob); // a short ink trail
         }
 

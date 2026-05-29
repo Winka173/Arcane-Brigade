@@ -66,9 +66,13 @@ namespace ArcaneBrigade
             return RelicCount(RelicMechanic.StatFloor) > 0 ? Mathf.Max(damage,result) : result;
         }
 
+        /// <summary>Stats gained (or lost) for good during a wave, for the presentation to show over the hero the way the shop
+        /// does (owner 24/10/2026); the arena reads and empties it each frame.</summary>
+        public readonly List<KeyValuePair<ItemEffect, float>> StatGainsToShow = new List<KeyValuePair<ItemEffect, float>>();
         private void RelicGain(ItemEffect effect, float value, ModifierScope? scope = null)
         {
             if (value == 0) return;
+            StatGainsToShow.Add(new KeyValuePair<ItemEffect, float>(effect, value));
             catalog.RelicGain?.Invoke(new StatModifier { Effect = effect, Value = value, Scope = scope ?? RunModifierRules.DefaultScope(effect) });
             if (effect == ItemEffect.Health) { Champion.Definition.Health += value; Champion.Health = Mathf.Min(Champion.Definition.Health,Champion.Health + Mathf.Max(0,value)); }
             if (effect == ItemEffect.Armor) catalog.Armor += value;
@@ -87,7 +91,7 @@ namespace ArcaneBrigade
                 RelicApron(cause); RelicSundae();
                 if (lotusActive) { AdjustLotus(-1); lotusActive = false; }
                 relicDamageLoss += .05f * RelicCount(RelicMechanic.FragilePower);
-                if (RelicCount(RelicMechanic.FragilePower) > 0) catalog.RelicGain?.Invoke(new StatModifier { Effect = ItemEffect.Damage, Scope = ModifierScope.Team, Value = -.05f * RelicCount(RelicMechanic.FragilePower) });
+                if (RelicCount(RelicMechanic.FragilePower) > 0) { catalog.RelicGain?.Invoke(new StatModifier { Effect = ItemEffect.Damage, Scope = ModifierScope.Team, Value = -.05f * RelicCount(RelicMechanic.FragilePower) }); StatGainsToShow.Add(new KeyValuePair<ItemEffect, float>(ItemEffect.Damage, -.05f * RelicCount(RelicMechanic.FragilePower))); }
                 if (RelicCount(RelicMechanic.PanicMagnet) > 0 && combatRandom.NextDouble() < .05) foreach (PickupState pickup in pickups) pickup.Attracting = true;
                 if (RelicCount(RelicMechanic.RetortVolley) > 0 && combatRandom.NextDouble() < .3) RelicVolley(8,12 * RelicCount(RelicMechanic.RetortVolley));
                 if (RelicCount(RelicMechanic.HurtGrowth) > 0)

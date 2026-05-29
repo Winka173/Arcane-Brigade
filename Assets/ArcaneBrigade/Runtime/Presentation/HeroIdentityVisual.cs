@@ -520,7 +520,15 @@ namespace ArcaneBrigade
                 case InkBrush.Ink: path = InkCanvas.Line(a, b); width = .3f; break;
                 default: path = InkCanvas.Line(a, b); width = .34f; break;
             }
-            Soft(air, path, head, tail, width * .95f, fade); // core +25% (24/10/2026)
+            bool pressed = style.Brush == InkBrush.Ink || style.Brush == InkBrush.Brush;
+            Soft(air, path, head, tail, width * (pressed ? .6f : .95f), fade); // core +25% (24/10/2026)
+            if (pressed)
+            {
+                // owner 24/10/2026: a straight stroke swells in its middle like a brush pressed down, instead of a ruled line
+                Soft(air, InkCanvas.Line(Vector2.Lerp(a, b, .18f), Vector2.Lerp(a, b, .82f)), Mathf.Clamp01((head - .18f) / .64f), Mathf.Clamp01((tail - .18f) / .64f), width * .95f, fade);
+                Soft(air, InkCanvas.Line(Vector2.Lerp(a, b, .36f), Vector2.Lerp(a, b, .64f)), Mathf.Clamp01((head - .36f) / .28f), Mathf.Clamp01((tail - .36f) / .28f), width * 1.3f, fade);
+            }
+            if (style.Token == InkToken.Note && !sparse) Stave(a, b, normal, head, tail, p, fade);
             if (style.Brush == InkBrush.Bolt && !calm && !still)
             {
                 var flicker = InkCanvas.Line(a, b, half * .4f, 0, true, g.Seed + 1 + Mathf.FloorToInt(t * 20));
@@ -538,6 +546,75 @@ namespace ArcaneBrigade
             if (impact > 0 && impact < 1) Token(style.Token, b, .34f * (still ? 1 : OutBack(Mathf.Min(1, impact * 3))), Seed(g), (1 - impact) * fade);
             if (style.Brush == InkBrush.Thread) { Token(style.Token, a, .2f, 0, fade * .9f); Token(style.Token, b, .24f, 30, fade); }
             Signature(g, b, axis, Mathf.Clamp01((p - .15f) / .85f), fade); // the hero's own impact where the line lands
+        }
+
+        /// <summary>A swing's body: three spans of one arc, so it is thick in its middle and sharp at both ends.</summary>
+        private void Blade(Vector2 c, float radius, float heading, float half, float head, float tail, float width, float fade)
+        {
+            Soft(air, InkCanvas.Arc(c, radius, radius, heading - half, heading + half), head, tail, width * .5f, fade);
+            Soft(air, InkCanvas.Arc(c, radius * 1.02f, radius * 1.02f, heading - half * .72f, heading + half * .72f), head, tail, width * .85f, fade);
+            Soft(air, InkCanvas.Arc(c, radius * 1.04f, radius * 1.04f, heading - half * .4f, heading + half * .4f), head, tail, width * 1.2f, fade * .9f);
+        }
+        /// <summary>What each hero's brush adds to a swing (owner 24/10/2026: every skill line should feel like its hero).</summary>
+        private void BrushTrim(Vector2 c, float radius, float heading, float half, float head, float tail, float width, float p, float fade, float seed)
+        {
+            switch (style.Brush)
+            {
+                case InkBrush.Wave: // ripples (sound, water) running outward behind the blade
+                    for (int j = 1; j <= 2; j++)
+                    {
+                        float q = Mathf.Clamp01((p - j * .09f) / (1 - j * .09f)); if (q <= 0) continue;
+                        float hj = still ? 1 : OutCubic(Mathf.Min(1, q / .35f)), tj = still ? 0 : InQuad(Mathf.Max(0, (q - .2f) / .8f));
+                        Soft(air, InkCanvas.Arc(c, radius * (1 + .17f * j), radius * (1 + .17f * j), heading - half * (1 - .15f * j), heading + half * (1 - .15f * j)), hj, tj, width * .28f, fade * (1 - .3f * j));
+                    }
+                    break;
+                case InkBrush.Flame: // tongues licking off the outer edge
+                    for (int i = 0; i < 5; i++)
+                    {
+                        float f = .15f + i * .17f; if (head < f) continue;
+                        float a = heading - half + 2 * half * f, life = Mathf.Clamp01((head - f) * 2.5f), flick = still ? 1 : .75f + .25f * Mathf.Sin(t * 30 + i * 2);
+                        Vector2 from = c + Dir(a) * radius * 1.04f, to = c + Dir(a + 6) * radius * (1.12f + .1f * flick * (1 - life));
+                        Soft(air, InkCanvas.Line(from, to), 1, 0, width * .3f, fade * (1 - life) * .9f);
+                    }
+                    break;
+                case InkBrush.Thread: // a running stitch along the inside of the cut
+                    for (int i = 0; i < 7; i++)
+                    {
+                        float f0 = .08f + i * .13f, f1 = f0 + .07f; if (head < f1) continue;
+                        float a0 = heading - half + 2 * half * f0, a1 = heading - half + 2 * half * f1;
+                        Soft(air, InkCanvas.Line(c + Dir(a0) * radius * .86f, c + Dir(a1) * radius * .9f), 1, 0, width * .16f, fade);
+                    }
+                    break;
+                case InkBrush.Silk: // a second ribbon crossing the first: the swing twists
+                    Soft(air, InkCanvas.Arc(c, radius * .9f, radius * 1.1f, heading - half * .9f, heading + half * .9f), head, tail, width * .35f, fade * .8f);
+                    break;
+                case InkBrush.Bolt: // forks jumping off the edge, re-drawn as they flicker
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float f = .25f + i * .25f; if (head < f || calm) continue;
+                        float a = heading - half + 2 * half * f; int frame = still ? 0 : Mathf.FloorToInt(t * 18);
+                        Soft(air, InkCanvas.Line(c + Dir(a) * radius, c + Dir(a + 8) * radius * 1.3f, .06f, 0, true, seed + i * 5 + frame), 1, 0, width * .14f, fade * (1 - Mathf.Clamp01((head - f) * 2)));
+                    }
+                    break;
+                default: // ink and brush: drops flicked off the tip as it finishes
+                    if (head > .7f)
+                        for (int i = 0; i < 3; i++)
+                        {
+                            float a = heading + half + (i - 1) * 9, d = radius * (1.08f + .14f * i) + .25f * (head - .7f);
+                            Token(style.Token, c + Dir(a) * d, .12f - i * .02f, a, fade * (1 - Mathf.Clamp01((p - .4f) / .6f)));
+                        }
+                    break;
+            }
+        }
+        /// <summary>A musical stave laid along a straight skill line, notes riding behind its head.</summary>
+        private void Stave(Vector2 a, Vector2 b, Vector2 normal, float head, float tail, float p, float fade)
+        {
+            for (int k = -2; k <= 2; k++) if (k != 0) Soft(air, InkCanvas.Line(a + normal * k * .07f, b + normal * k * .07f), head, tail, .02f, fade * .8f);
+            for (int i = 0; i < 4; i++)
+            {
+                float f = head - .1f - i * .17f; if (f <= .03f) continue;
+                Token(InkToken.Note, Vector2.Lerp(a, b, f) + normal * (((i * 3) % 5 - 2) * .07f), .19f, still ? 0 : Mathf.Sin(t * 8 + i) * 12, fade * (1 - Mathf.Clamp01((p - .5f) / .5f)), true);
+            }
         }
 
         private void CrescentStrike(HeroIdentityGlyph g)
@@ -558,9 +635,11 @@ namespace ArcaneBrigade
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .32f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .25f) / .75f));
             // the swing passes through the middle of the area; the inked rim and wash mark its true edge
             float width = Mathf.Min(Mathf.Clamp(r * .26f, .16f, .48f), r * .3f), radius = r * .62f;
-            var arc = InkCanvas.Arc(c, radius, radius, heading - sweep * CrescentHalf * .96f, heading + sweep * CrescentHalf * .96f);
-            Soft(air, arc, head, tail, width * .95f, fade); // core +25% (24/10/2026)
-            Vector2 tip = InkCanvas.Sample(arc, head);
+            // owner 24/10/2026 (the skill lines read as plain ruled arcs): a blade, thick in its middle and sharp at both ends,
+            // laid as three spans of one sweep, then the brush's own trimming (ripples, tongues, stitches, a twist, forks)
+            Blade(c, radius, heading, sweep * CrescentHalf * .96f, head, tail, width, fade);
+            Vector2 tip = InkCanvas.Sample(InkCanvas.Arc(c, radius, radius, heading - sweep * CrescentHalf * .96f, heading + sweep * CrescentHalf * .96f), head);
+            if (!sparse) BrushTrim(c, radius, heading, sweep * CrescentHalf * .96f, head, tail, width, p, fade, Seed(g));
             if (!sparse)
             {
                 float h2 = still ? 1 : OutCubic(Mathf.Clamp01((p - .08f) / .32f));
@@ -608,9 +687,29 @@ namespace ArcaneBrigade
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created));
             Vector2 a = g.Position + Vector2.up * .35f, b = g.End + Vector2.up * .35f; if ((b - a).sqrMagnitude < .01f) return;
-            var path = InkCanvas.Lob(a, b, Mathf.Min(.5f, Vector2.Distance(a, b) * .12f), 16);
-            float head = still ? 1 : OutCubic(Mathf.Min(1, p / .45f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .4f) / .6f));
-            Soft(air, path, head, tail, style.Brush == InkBrush.Silk ? .09f : .06f, .85f * (1 - Smooth(.7f, 1, p)));
+            float lift = Mathf.Min(.5f, Vector2.Distance(a, b) * .12f);
+            float head = still ? 1 : OutCubic(Mathf.Min(1, p / .45f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .4f) / .6f)), alpha = .85f * (1 - Smooth(.7f, 1, p));
+            if (style.Token == InkToken.Note)
+            {
+                // owner 24/10/2026 (Tin Virtuoso's cue read as a bare line): the cue is a stave - five fine lines bowing from the
+                // conductor to the player, notes riding along it and one landing on the player with a bounce
+                for (int k = -2; k <= 2; k++) Soft(air, InkCanvas.Lob(a + Vector2.up * k * .045f, b + Vector2.up * k * .045f, lift, 16), head, tail, .022f, alpha * (k == 0 ? 1 : .8f));
+                for (int i = 0; i < 3; i++)
+                {
+                    float f = head - i * .16f; if (f <= .02f) continue;
+                    Vector2 at = InkCanvas.Sample(InkCanvas.Lob(a, b, lift, 16), f) + Vector2.up * ((i - 1) * .045f);
+                    Token(InkToken.Note, at, .2f - i * .03f, still ? 0 : Mathf.Sin(t * 9 + i) * 14, alpha, true);
+                }
+                float land = Mathf.Clamp01((p - .4f) / .35f);
+                if (land > 0 && land < 1) Token(InkToken.Note, b + Vector2.up * (.25f + .2f * land), .3f * (still ? 1 : OutBack(Mathf.Min(1, land * 2.5f))), 0, 1 - land, true);
+            }
+            else
+            {
+                // two threads braided round one another, not one ruled line
+                Vector2 side = Vector2.Perpendicular((b - a).normalized) * .05f; float twist = still ? 0 : Mathf.Sin(t * 6) * .5f;
+                Soft(air, InkCanvas.Lob(a + side * (1 + twist), b - side * (1 + twist), lift, 16), head, tail, style.Brush == InkBrush.Silk ? .08f : .055f, alpha);
+                Soft(air, InkCanvas.Lob(a - side * (1 + twist), b + side * (1 + twist), lift * 1.15f, 16), head, tail, style.Brush == InkBrush.Silk ? .06f : .04f, alpha * .8f);
+            }
             Token(InkToken.Glint, InkCanvas.Sample(InkCanvas.Lob(a, b, Mathf.Min(.5f, Vector2.Distance(a, b) * .12f), 16), head), .26f, still ? 0 : p * 180, 1 - Smooth(.75f, 1, p), true, 0, GlintPalette(ink));
         }
         /// <summary>The painted body of an identity bolt in flight (envelope, note, shard...); null for weapon-shaped echoes.</summary>

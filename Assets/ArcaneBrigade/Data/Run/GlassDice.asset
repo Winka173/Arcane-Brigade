@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 146299031, guid: c330c9fa6afc02c46adc5497609950e6, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 339d498696f0e8744ac108f34ab6f84f, type: 2}
   Weapon: {fileID: 11400000, guid: af1d0502f5979e84d9cd3f26a9ddf0e1, type: 2}
-  Health: 60
+  Health: 50
   Speed: 3
   Radius: 0.25
   BodyHeight: 1.08

@@ -18,6 +18,8 @@ namespace ArcaneBrigade
     public sealed partial class CombatSimulation
     {
         public const float GaugeTier = 10f, GaugeTrickle = 30f / 35f, GaugeCap = 30f / 18f, GaugePrimeSeconds = 1f;
+        /// <summary>Owner 24/10/2026: every gauge fills 20% faster (the rhythm now ~15s to ~29s).</summary>
+        public const float GaugeSpeed = 1.2f;
         private float gaugePending;
 
         /// <summary>Points per unit of each source for each hero (Docs/Content_Expansion_v5.md §1, "Nạp từ" and "Nhanh hơn khi").</summary>
@@ -83,7 +85,7 @@ namespace ArcaneBrigade
             if (HeroAwakening || HeroAwakenCooling || awakenMeter >= 1) { gaugePending = 0; return; }
             float earned = Mathf.Min(gaugePending, Mathf.Max(0, (GaugeCap - GaugeTrickle) * delta));
             gaugePending = Mathf.Min(gaugePending - earned, GaugeTier); // a short lull may not bank a whole transformation
-            Charge(GaugeTrickle * delta + earned);
+            Charge((GaugeTrickle * delta + earned) * GaugeSpeed);
         }
 
         /// <summary>Late game: a transformation's area strikes grow with the crowd around the hero (up to +50% at 40 enemies

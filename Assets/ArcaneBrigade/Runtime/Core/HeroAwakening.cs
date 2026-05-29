@@ -432,6 +432,7 @@ namespace ArcaneBrigade
             Vector2 facing = target.Facing.sqrMagnitude > .01f ? target.Facing.normalized : (target.Position - Champion.Position).normalized;
             Vector2 behind = ClampPosition(target.Position - facing * (target.Definition.Radius + Champion.Definition.Radius + .3f), Champion.Definition.Radius);
             Champion.PreviousPosition = Champion.Position = behind;
+            heroSlipGuardUntil = Elapsed + .6f; // landing in the crowd never costs the hero touches (HeroBodyGuard)
             Hit(MorphGeometry.Line, behind, target.Position + facing * .8f, 0, .45f, .08f);
         }
         private void Tapestry()

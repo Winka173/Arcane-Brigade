@@ -12,7 +12,7 @@ namespace ArcaneBrigade
             RunHud.Fill(panel,paper);
             // owner 23/10/2026 (the rarity frames read too quietly): a deeper band of the rarity's colour at the head of the
             // box fading down, a border that breathes (quicker the rarer), a carved wooden frame for Common, the rarity named
-            // on a tab, one gem per rank on the crest, corner glints in turn, and on opening one shine across the box (Rare+)
+            // on a tab, one gem per rank on the crest, corner glints in turn; Rare+ light their edge on opening and motes rise up their rails
             Header(panel,tint,rarity);
             int rank=Rank(rarity);
             float breathe=motion?.72f+.28f*Mathf.Sin(clock*(1.6f+.5f*rank)):.9f;
@@ -137,10 +137,9 @@ namespace ArcaneBrigade
             if(trim.Foot!=null)
             {
                 float w=crestWidth*.5f,h=trim.Foot.height*w/trim.Foot.width;
-                Matrix4x4 saved=GUI.matrix;
-                if(!still)GUIUtility.RotateAroundPivot(Mathf.Sin(clock*1.1f)*1.5f,new Vector2(panel.center.x,panel.yMax)); // the hanging foot sways gently
-                Image(trim.Foot,new Rect(panel.center.x-w*.5f,panel.yMax-h*.18f,w,h),false,false);
-                GUI.matrix=saved;
+                // the hanging foot bobs a little (no turned matrix: a turn about a point lands elsewhere under the scaled HUD)
+                float bob=still?0:Mathf.Round(Mathf.Sin(clock*1.6f)*1.5f);
+                Image(trim.Foot,new Rect(panel.center.x-w*.5f,panel.yMax-h*.18f+bob,w,h),false,false);
             }
         }
         private static int Rank(ItemRarity rarity)=>rarity switch{ItemRarity.Common=>1,ItemRarity.Uncommon=>2,ItemRarity.Rare=>3,ItemRarity.Mythic=>4,ItemRarity.Crimson=>5,_=>6};
@@ -167,8 +166,7 @@ namespace ArcaneBrigade
         private struct Seen{public int Frame;public float Since;}
         private static readonly System.Collections.Generic.Dictionary<long,Seen> seen=new System.Collections.Generic.Dictionary<long,Seen>();
         private static GUIStyle tabStyle;
-        private static Texture2D shine;
-        /// <summary>The gems, the rarity's tab, the corner glints and the one shine as the box opens.</summary>
+        /// <summary>The gems, the rarity's tab, the corner glints, the edge lighting up as the box opens and the rising motes.</summary>
         private static void Extras(Rect panel,ItemRarity rarity,Color tint,float clock,bool motion)
         {
             int rank=Rank(rarity);
@@ -197,36 +195,68 @@ namespace ArcaneBrigade
                 Vector2 cc=lit==0?new Vector2(panel.x+inset,panel.y+inset):lit==1?new Vector2(panel.xMax-inset,panel.y+inset):lit==2?new Vector2(panel.xMax-inset,panel.yMax-inset):new Vector2(panel.x+inset,panel.yMax-inset);
                 float s=Mathf.Sin(k*Mathf.PI); Color g=Color.white; g.a=.9f*s; ArcadeSkin.Diamond(cc,6+8*s,g);
             }
-            // the shine: once, as the box first appears (Rare and above)
+            // owner 24/10/2026: the old opening shine and falling glints were drawn through a turned GUI matrix and landed in one
+            // fixed spot on the left of the screen; everything below is placed on the box itself, never turned
             long key=((long)rarity<<40)^((long)Mathf.RoundToInt(panel.x/8)<<20)^(long)Mathf.RoundToInt(panel.y/8);
             if(!seen.TryGetValue(key,out Seen sn) || Time.frameCount-sn.Frame>3)sn.Since=Time.unscaledTime;
             sn.Frame=Time.frameCount; seen[key]=sn;
             float age=Time.unscaledTime-sn.Since;
-            if(rank>=3 && age<.7f)
+            // on opening (Rare and above): the frame lights up - two runs of light leave the crest along the top edge, race down
+            // both sides and meet under the foot
+            if(rank>=3 && age<.75f)
             {
-                if(shine==null)
-                {
-                    shine=new Texture2D(64,4,TextureFormat.RGBA32,false){wrapMode=TextureWrapMode.Clamp,hideFlags=HideFlags.DontSave};
-                    for(int x=0;x<64;x++){float u=x/63f*2-1;Color c=new Color(1,1,1,Mathf.Exp(-u*u*6)*.55f);for(int y=0;y<4;y++)shine.SetPixel(x,y,c);}
-                    shine.Apply(false,true);
-                }
-                float p=age/.7f, band=Mathf.Max(90,panel.height*.5f), x0=Mathf.Lerp(-band*2,panel.width+band,p);
-                GUI.BeginGroup(panel);
-                Matrix4x4 saved=GUI.matrix; Color before=GUI.color; GUI.color=new Color(bright.r,bright.g,bright.b,Mathf.Sin(p*Mathf.PI));
-                GUIUtility.RotateAroundPivot(20,new Vector2(x0+band*.5f,panel.height*.5f));
-                GUI.DrawTexture(new Rect(x0,-panel.height,band,panel.height*3),shine);
-                GUI.matrix=saved; GUI.color=before;
-                GUI.EndGroup();
+                float p=Mathf.Clamp01(age/.55f), fade=1-Mathf.Clamp01((age-.55f)/.2f);
+                for(int side=-1;side<=1;side+=2) EdgeRun(panel,side,1-(1-p)*(1-p),bright,fade,rarity==ItemRarity.Rainbow?clock:-1);
             }
-            // Mythic and above: glints falling from the crest into the box as it opens (never outside the frame)
-            if(rank>=4 && age<.6f)
-                for(int i=0;i<7;i++)
-                {
-                    float a=(30+i*20)*Mathf.Deg2Rad, d=12+Mathf.Min(70,panel.height*.4f)*(age/.6f); Color g=bright; g.a=1-age/.6f;
-                    Vector2 at=new Vector2(panel.center.x+Mathf.Cos(a)*d*1.6f,panel.y+16+Mathf.Sin(a)*d);
-                    at.x=Mathf.Clamp(at.x,panel.x+14,panel.xMax-14); at.y=Mathf.Clamp(at.y,panel.y+14,panel.yMax-14);
-                    ArcadeSkin.Diamond(at,7*(1-age/.6f)+2,g);
-                }
+            // while open (Rare and above): a few motes of the rarity's light rising slowly up the inside of both side rails
+            if(rank>=3)
+            {
+                float rail=Mathf.Max(10,Content(panel,rarity).x-panel.x-4);
+                int motes=rank==3?2:rank==6?4:3;
+                for(int side=0;side<2;side++)
+                    for(int i=0;i<motes;i++)
+                    {
+                        float life=3.4f+.6f*((i*7+side*3)%5)/4f, t=Mathf.Repeat(clock/life+i/(float)motes+side*.37f,1);
+                        float x=side==0?panel.x+rail*(.35f+.3f*Mathf.Sin(clock*1.3f+i*2.1f)):panel.xMax-rail*(.35f+.3f*Mathf.Sin(clock*1.2f+i*1.7f+1));
+                        float y=Mathf.Lerp(panel.yMax-14,panel.y+18,t);
+                        Color m=rarity==ItemRarity.Rainbow?Color.HSVToRGB(Mathf.Repeat(clock*.08f+i*.23f+side*.5f,1),.45f,1):bright;
+                        m.a=.75f*Mathf.Sin(t*Mathf.PI);
+                        ArcadeSkin.Diamond(new Vector2(x,y),3+2.5f*Mathf.Sin(t*Mathf.PI),m);
+                    }
+            }
+        }
+        /// <summary>One run of light along half the box's edge: from the top's middle along the top, down one side and along
+        /// the bottom to its middle; p is how far the head has got (0..1), with a fading tail behind it.</summary>
+        private static void EdgeRun(Rect panel,int side,float p,Color bright,float fade,float rainbowClock)
+        {
+            float half=panel.width*.5f, total=half+panel.height+half, head=p*total, tail=Mathf.Max(60,total*.35f);
+            const int pieces=8;
+            for(int i=0;i<pieces;i++)
+            {
+                float a=Mathf.Max(0,head-tail*(i+1)/pieces), b=Mathf.Max(0,head-tail*i/pieces); if(b<=a)continue;
+                Color c=rainbowClock>=0?Color.HSVToRGB(Mathf.Repeat(rainbowClock*.08f+i*.06f,1),.4f,1):bright;
+                c.a=fade*(1-i/(float)pieces)*.95f;
+                EdgeSpan(panel,side,a,b,half,c);
+            }
+            Color h=Color.white; h.a=fade; ArcadeSkin.Diamond(EdgePoint(panel,side,head,half),7,h);
+        }
+        private static Vector2 EdgePoint(Rect panel,int side,float d,float half)
+        {
+            float cx=panel.center.x, ex=side<0?panel.x:panel.xMax;
+            if(d<=half)return new Vector2(cx+side*d,panel.y+1.5f);
+            if(d<=half+panel.height)return new Vector2(ex-side*1.5f,panel.y+(d-half));
+            return new Vector2(ex-side*(d-half-panel.height),panel.yMax-1.5f);
+        }
+        private static void EdgeSpan(Rect panel,int side,float a,float b,float half,Color c)
+        {
+            float[] cuts={0,half,half+panel.height,half+panel.height+half};
+            for(int k=0;k<3;k++)
+            {
+                float s0=Mathf.Max(a,cuts[k]), s1=Mathf.Min(b,cuts[k+1]); if(s1<=s0)continue;
+                Vector2 p0=EdgePoint(panel,side,s0,half), p1=EdgePoint(panel,side,s1,half);
+                Rect r=k==1?new Rect(p0.x-1.5f,Mathf.Min(p0.y,p1.y),3,Mathf.Abs(p1.y-p0.y)):new Rect(Mathf.Min(p0.x,p1.x),p0.y-1.5f,Mathf.Abs(p1.x-p0.x),3);
+                ArcadeSkin.Line(r,c);
+            }
         }
         /// <summary>A small framed tile's rarity (a choice slot, a list row): the breathing border and its gems, no trim.</summary>
         public static void Edge(Rect tile,ItemRarity rarity,float clock)
@@ -241,28 +271,23 @@ namespace ArcaneBrigade
             Color bright=Color.Lerp(tint,Color.white,.35f); float gap=11, x0=tile.center.x-(rank-1)*gap*.5f;
             for(int i=0;i<rank;i++){Vector2 c=new Vector2(x0+i*gap,tile.y);ArcadeSkin.Diamond(c,9,new Color(.08f,.05f,.1f,.95f));ArcadeSkin.Diamond(c,6,bright);}
         }
-        private static Texture2D ray;
-        /// <summary>Rays of the rarity's light turning slowly behind a picture (Rare and above): never a disc.</summary>
+        /// <summary>Behind a picture (Rare and above): four sparkles twinkling in turn at its corners, more and quicker the rarer
+        /// (owner 24/10/2026: the turning rays were drawn through a turned GUI matrix and showed up in the wrong place).</summary>
         public static void Backdrop(Rect picture,ItemRarity rarity,float clock)
         {
             int rank=Rank(rarity); if(rank<3 || Event.current==null || Event.current.type!=EventType.Repaint)return;
-            if(ray==null)
+            bool still=PresentationSettings.ReducedMotion;
+            Color tint=RunModifierRules.RarityColor(rarity);
+            Vector2[] at={new Vector2(picture.x,picture.y),new Vector2(picture.xMax,picture.y),new Vector2(picture.xMax,picture.yMax),new Vector2(picture.x,picture.yMax)};
+            float speed=.9f+.25f*rank;
+            for(int i=0;i<4;i++)
             {
-                ray=new Texture2D(8,64,TextureFormat.RGBA32,false){wrapMode=TextureWrapMode.Clamp,hideFlags=HideFlags.DontSave};
-                for(int y=0;y<64;y++)for(int x=0;x<8;x++){float v=y/63f,u=Mathf.Abs(x/7f*2-1);ray.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(v*1.4f)*(1-u)*(1-u)));}
-                ray.Apply(false,true);
+                float t=still?.6f:Mathf.Repeat(clock*speed*.5f-i*.25f,1), s=Mathf.Sin(Mathf.Clamp01(t*2)*Mathf.PI);
+                if(rarity==ItemRarity.Rainbow && !still)tint=Color.HSVToRGB(Mathf.Repeat(clock*.08f+i*.25f,1),.45f,1);
+                Color c=Color.Lerp(tint,Color.white,.4f); c.a=.85f*s; if(c.a<=.02f)continue;
+                float size=4+6*s*(rank>=5?1.2f:1);
+                ArcadeSkin.Diamond(at[i],size,c); Color core=Color.white; core.a=c.a; ArcadeSkin.Diamond(at[i],size*.4f,core);
             }
-            Color tint=RunModifierRules.RarityColor(rarity); bool still=PresentationSettings.ReducedMotion;
-            int n=rank==3?6:rank==4?8:rank==5?8:10; float len=Mathf.Max(picture.width,picture.height)*.78f, w=Mathf.Max(6,len*.16f);
-            Vector2 c=picture.center; Matrix4x4 saved=GUI.matrix; Color before=GUI.color;
-            for(int i=0;i<n;i++)
-            {
-                if(rarity==ItemRarity.Rainbow && !still)tint=Color.HSVToRGB(Mathf.Repeat(clock*.055f+i/(float)n,1),.5f,1);
-                GUI.matrix=saved; GUIUtility.RotateAroundPivot((still?0:clock*12)+i*360f/n,c);
-                GUI.color=new Color(tint.r,tint.g,tint.b,(.3f+.1f*rank/6f)*(i%2==0?1:.6f));
-                GUI.DrawTexture(new Rect(c.x-w*.5f,c.y-len,w,len),ray);
-            }
-            GUI.matrix=saved; GUI.color=before;
         }
         // two quick beats then a rest, like a heart
         private static float Heartbeat(float clock){float t=Mathf.Repeat(clock,1.4f);return Mathf.Max(Mathf.Exp(-Mathf.Pow((t-.1f)/.06f,2)),.7f*Mathf.Exp(-Mathf.Pow((t-.32f)/.07f,2)));}

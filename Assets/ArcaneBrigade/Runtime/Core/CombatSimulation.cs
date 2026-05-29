@@ -994,9 +994,9 @@ namespace ArcaneBrigade
             enemy.ContactImpactAt = 0;
             enemy.NextContact = Elapsed + enemy.Definition.ContactInterval;
             Vector2 impactDirection = (Champion.Position - enemy.Position).normalized;
-            float contactDamage = enemy.Definition.ContactDamage * (enemy.Definition.IsBoss ? BossBodyShape.ContactDamageScale : 1);
+            float contactDamage = enemy.Definition.ContactDamage * (enemy.Definition.IsBoss ? BossBodyShape.ContactDamageScale : 1) * HeroBodyGuard();
             StrikeChampionCollision(enemy);
-            ApplyDamage(Champion, contactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", impactDirection, cause: NewCause(enemy.Id));
+            if (contactDamage > 0) ApplyDamage(Champion, contactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", impactDirection, cause: NewCause(enemy.Id));
         }
 
         private void MoveProjectiles(float deltaTime)

@@ -38,6 +38,7 @@ namespace ArcaneBrigade
             public bool Critical;
             public float Life = 0.55f;
             public float Shake;   // a long-range critical's number trembles (RangedFeel.LongShot)
+            public int Kind;      // 0 damage, 1 healing, 2 a word or a stat (rises gently instead of being thrown)
         }
         private readonly List<DamageNumber> numbers = new List<DamageNumber>();
         private Font font;
@@ -67,6 +68,9 @@ namespace ArcaneBrigade
             bool pickup = combatEvent.Kind == CombatEventKind.Pickup;
             if ((hit || kill) && combatEvent.Faction == Faction.Companion) return;
             if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
+            // owner 24/10/2026: healing reads as a green +N over the hero, a dodge as a small word
+            if (combatEvent.Kind == CombatEventKind.Heal && combatEvent.Faction == Faction.Champion && combatEvent.Value >= .5f) ShowHeal(combatEvent);
+            if (combatEvent.Kind == CombatEventKind.Dodge && combatEvent.Faction == Faction.Champion) Label(combatEvent.Position + Vector2.up * .7f, "Dodge", new Color(.55f, 1f, .9f), .62f);
             if (sprite == null || PresentationSettings.ReducedMotion || (!hit && !kill && !pickup) || hit && combatEvent.Value <= 0) return;
             bool important = combatEvent.Faction == Faction.Champion || combatEvent.Critical;
             bool heavy = combatEvent.Weapon != null && (combatEvent.Weapon.Motion == WeaponMotion.Hammer || combatEvent.Weapon.Motion == WeaponMotion.Slam);
@@ -134,7 +138,7 @@ namespace ArcaneBrigade
             if (!PresentationSettings.DamageNumbers) return;
             if (combatEvent.SubjectId != 0)
             {
-                DamageNumber existing = numbers.Find(candidate => candidate.Age < 0.3f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
+                DamageNumber existing = numbers.Find(candidate => candidate.Kind == 0 && candidate.Age < 0.3f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
                 if (existing != null)
                 {
                     existing.Amount += combatEvent.Value;
@@ -148,13 +152,43 @@ namespace ArcaneBrigade
             bool champion = combatEvent.Faction == Faction.Champion;
             // Readability: ordinary companion/champion hits stay small and few; crits and damage taken always read.
             if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 12) return;
+            DamageNumber number = Take(champion);
+            if (number == null) return;
+            number.Kind = 0;
+            number.Champion = champion;
+            number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
+            number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
+            // size and warmth follow how much of the target's life the hit took
+            float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
+            float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
+            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
+            number.Age = 0f;
+            number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
+            float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
+            number.Shake = !champion && RangedFeel.LongShot(combatEvent) ? 1 : 0;
+            if (number.Shake > 0) size *= 1.35f; // a long shot's critical reads bigger
+            number.Scale = size;
+            float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
+            number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);
+            number.View.characterSize = 0.055f * size;
+            number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
+            foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = number.View.text; outline.color = new Color(0.06f, 0.035f, 0.10f); }
+            number.View.color = number.Color;
+            number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
+            number.View.transform.localScale = Vector3.one;
+            number.View.gameObject.SetActive(true);
+        }
+
+        /// <summary>A free number from the pool (a priority one may take an ordinary one's place), or a new one.</summary>
+        private DamageNumber Take(bool priority)
+        {
             DamageNumber number = numbers.Find(candidate => candidate.Age >= candidate.Life);
             if (number == null && numbers.Count >= 32)
             {
-                if (!champion) return;
+                if (!priority) return null;
                 number = numbers.Find(candidate => !candidate.Champion) ?? numbers[0];
             }
-            if (number == null)
+            if (number != null) return number;
             {
                 var child = new GameObject("DamageNumber");
                 child.transform.SetParent(transform, false);
@@ -188,28 +222,42 @@ namespace ArcaneBrigade
                 number = new DamageNumber { View = view, Outline = outlines[0], Outlines = outlines };
                 numbers.Add(number);
             }
-            number.Champion = champion;
-            number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
-            number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
-            // size and warmth follow how much of the target's life the hit took
-            float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
-            float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
-            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
-            number.Age = 0f;
-            number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
-            float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
-            number.Shake = !champion && RangedFeel.LongShot(combatEvent) ? 1 : 0;
-            if (number.Shake > 0) size *= 1.35f; // a long shot's critical reads bigger
-            number.Scale = size;
-            float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
-            number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);
-            number.View.characterSize = 0.055f * size;
-            number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
-            foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = number.View.text; outline.color = new Color(0.06f, 0.035f, 0.10f); }
-            number.View.color = number.Color;
+            return number;
+        }
+
+        private void ShowHeal(CombatEvent combatEvent)
+        {
+            if (!PresentationSettings.DamageNumbers) return;
+            DamageNumber merged = numbers.Find(candidate => candidate.Kind == 1 && candidate.Age < .45f);
+            if (merged != null)
+            {
+                merged.Amount += combatEvent.Value; merged.View.text = "+" + Mathf.CeilToInt(merged.Amount);
+                foreach (TextMesh outline in merged.Outlines) outline.text = merged.View.text;
+                merged.Age = Mathf.Min(merged.Age, .04f); return;
+            }
+            DamageNumber number = Word(combatEvent.Position + Vector2.up * .75f, "+" + Mathf.CeilToInt(combatEvent.Value), new Color(.45f, 1f, .55f), .95f);
+            if (number != null) { number.Kind = 1; number.Amount = combatEvent.Value; }
+        }
+
+        /// <summary>A short word or stat rising gently over a spot (a dodge, healing, a stat gained in a wave).</summary>
+        public void Label(Vector2 at, string text, Color color, float size, float life = .9f) => Word(at, text, color, size, life);
+        private DamageNumber Word(Vector2 at, string text, Color color, float size, float life = .9f)
+        {
+            if (!PresentationSettings.DamageNumbers || string.IsNullOrEmpty(text)) return null;
+            DamageNumber number = Take(true); if (number == null) return null;
+            number.Kind = 2; number.Champion = true; number.SubjectId = 0; number.Amount = 0; number.Critical = false; number.Shake = 0;
+            // labels arriving together stack upward instead of on top of one another
+            int near = 0; foreach (DamageNumber other in numbers) if (other != number && other.Kind != 0 && other.Age < .35f && (other.Position - at).sqrMagnitude < .6f) near++;
+            number.Position = at + Vector2.up * (near * .26f);
+            number.Color = color; number.Age = 0; number.Life = life; number.Scale = size;
+            number.Velocity = new Vector2(0, .9f);
+            number.View.characterSize = .055f * size; number.View.text = text;
+            foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = text; outline.color = new Color(.06f, .035f, .10f); }
+            number.View.color = color;
             number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
             number.View.transform.localScale = Vector3.one;
             number.View.gameObject.SetActive(true);
+            return number;
         }
 
         public void Advance(float deltaTime)
@@ -224,7 +272,7 @@ namespace ArcaneBrigade
                 {
                     // thrown up and to the side, then falling: an arc instead of a slow lift
                     number.Position += number.Velocity * deltaTime;
-                    number.Velocity += Vector2.down * 6.5f * deltaTime;
+                    if (number.Kind == 0) number.Velocity += Vector2.down * 6.5f * deltaTime; else number.Velocity *= 1f - Mathf.Min(1f, deltaTime * 1.6f); // words rise and ease
                     number.Velocity.x *= 1f - Mathf.Min(1f, deltaTime * 2.5f);
                 }
                 float tremble = number.Shake > 0 && !PresentationSettings.ReducedMotion ? Mathf.Sin(number.Age * 70f) * 0.07f * number.Shake * Mathf.Clamp01(1f - number.Age / 0.45f) : 0f;

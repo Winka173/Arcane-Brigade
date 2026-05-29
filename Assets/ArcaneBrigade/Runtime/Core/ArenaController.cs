@@ -375,6 +375,11 @@ namespace ArcaneBrigade
                 }
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
+            // stats gained for good mid-wave rise over the hero the way they do in the shop (owner 24/10/2026)
+            if (combatFeedback != null && simulation.Champion != null)
+                foreach (var gain in simulation.StatGainsToShow)
+                    combatFeedback.Label(VisualChampionPosition + Vector2.up * .95f, StatGainText(gain.Key, gain.Value), gain.Value > 0 ? ArcadeSkin.Better : ArcadeSkin.Worse, .6f, 1.3f);
+            simulation.StatGainsToShow.Clear();
             if (audioFeedback != null)
             {
                 audioFeedback.PlayBatch(simulation.Events);
@@ -663,6 +668,12 @@ namespace ArcaneBrigade
 
         private readonly HashSet<int> heldInCeremony = new HashSet<int>();
         private WaveClearInk waveClearInk;
+        private static string StatGainText(ItemEffect effect, float value)
+        {
+            string name = effect switch { ItemEffect.Health => "Max HP", ItemEffect.Heal => "Regen", ItemEffect.Armor => "Armor", ItemEffect.Damage => "Damage", ItemEffect.Luck => "Luck", ItemEffect.Crit => "Crit", _ => effect.ToString() };
+            return name + " " + RunModifierRules.ValueText(effect, value);
+        }
+
         private void Render(float interpolation)
         {
             long renderStarted = AnimationStressMeasurement.Recording ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;

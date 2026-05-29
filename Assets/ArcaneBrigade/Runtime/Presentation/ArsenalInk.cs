@@ -162,7 +162,10 @@ namespace ArcaneBrigade
             float head = still ? 1 : OutCubic(Mathf.Min(1, q / .4f)), tail = still ? 0 : InQuad(Mathf.Clamp01((q - .25f) / .75f));
             var path = InkCanvas.Arc(c, r, r * squash, a + half * turn, a - half * turn);
             air.GlowRibbon(path, head, tail, width * 2.2f, A(pal.Glow, (calm ? .12f : .26f) * (1 - q)));
-            air.Stroke(path, Brush(pal, width, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
+            air.Stroke(path, Brush(pal, width * .6f, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
+            // owner 24/10/2026: a swing is a blade - it swells through its middle and runs out sharp at both ends
+            air.Stroke(InkCanvas.Arc(c, r * 1.03f, r * 1.03f * squash, a + half * .68f * turn, a - half * .68f * turn), Brush(pal, width, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
+            air.Stroke(InkCanvas.Arc(c, r * 1.06f, r * 1.06f * squash, a + half * .36f * turn, a - half * .36f * turn), Brush(pal, width * 1.35f, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
         }
 
         // ------------------------------------------------------------------ moments (bursts, swipes, stamps)

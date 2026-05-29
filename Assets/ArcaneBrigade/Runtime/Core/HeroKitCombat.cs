@@ -94,6 +94,22 @@ namespace ArcaneBrigade
         private float KitDodge => Kit != null && Kit.Has(KitPassive.PoiseDodge) && IdentityId == "ButtonCavalier" ? Mathf.Min(3, identityCharge) * KitValue(KitPassive.PoiseDodge) : 0;
 
         /// <summary>How much of a blow the hero takes: armour from the kit, the transformation's guard, golden or royal immunity.</summary>
+        private float heroSlipGuardUntil = -1;
+        /// <summary>Owner 24/10/2026 (Moon Prowler died to its own Eclipse): what share of enemies' touch damage reaches the hero.
+        /// A skill that puts the hero among enemies (Eclipse's slips behind them, the dream swap) leaves it untouchable for a
+        /// moment, and the transformations that fight body to body (steam engine, diving bell, convoy, duel, feast, eclipse)
+        /// take only a third of the touches while they last.</summary>
+        private float HeroBodyGuard()
+        {
+            if (Elapsed < heroSlipGuardUntil) return 0;
+            if (!HeroAwakening || Kit == null) return 1;
+            switch (Kit.Action)
+            {
+                case KitAction.Eclipse: case KitAction.Engine: case KitAction.DivingBell: case KitAction.Train: case KitAction.Duel: case KitAction.Feast: return .35f;
+                default: return 1;
+            }
+        }
+
         private float KitDamageTaken(CombatCause cause)
         {
             HeroKit k = Kit; if (k == null) return 1;
