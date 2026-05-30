@@ -10,17 +10,35 @@ namespace ArcaneBrigade
     /// lift away one by one. Regal heroes letter in the serif display face, the rest in the round punch face.</summary>
     public sealed partial class HeroIdentityVisual
     {
-        private const float TitleLife = 1.6f, TitleSize = .068f;
+        private const float TitleLife = 2.1f, TitleSize = .068f; // 2.1: the stat lines stay a moment after the name lifts away
         private const int TitleFontSize = 52;
         private readonly List<InkedText> titleLetters = new List<InkedText>();
         private readonly List<float> titleAdvance = new List<float>();
         private string titleShown;
         private Font titleFont;
         private bool titleDrawn; // set while the title shows this frame; Display hides the letters otherwise
+        private readonly List<InkedText> statLines = new List<InkedText>();
+        private readonly List<string> statText = new List<string>();
 
         private static bool Regal(string id) => id == "VelvetRegent" || id == "IvorySovereign" || id == "ArchiveCurator" || id == "PennyBroker" || id == "ThornTreasurer" || id == "PetalCitadel" || id == "HourglassStag" || id == "MirrorKeeper";
 
-        private void HideTitle() { foreach (InkedText l in titleLetters) if (l != null && l.gameObject.activeSelf) l.gameObject.SetActive(false); }
+        private void HideTitle()
+        {
+            foreach (InkedText l in titleLetters) if (l != null && l.gameObject.activeSelf) l.gameObject.SetActive(false);
+            foreach (InkedText l in statLines) if (l != null && l.gameObject.activeSelf) l.gameObject.SetActive(false);
+        }
+        /// <summary>What the transformation gives the hero itself, in the shop's own words ("Attack speed +40%").</summary>
+        private void KitStats(HeroKit kit)
+        {
+            statText.Clear();
+            if (kit.HeroAttackSpeed > 0) statText.Add("Attack speed +" + Mathf.RoundToInt(kit.HeroAttackSpeed * 100) + "%");
+            if (kit.HeroMoveSpeed > 0) statText.Add("Move speed +" + Mathf.RoundToInt(kit.HeroMoveSpeed * 100) + "%");
+            if (kit.HeroDamageTaken < 1) statText.Add("Damage taken -" + Mathf.RoundToInt((1 - kit.HeroDamageTaken) * 100) + "%");
+            if (kit.HeroCrit > 0) statText.Add("Crit chance +" + Mathf.RoundToInt(kit.HeroCrit * 100) + "%");
+            if (kit.TeamAttackSpeed > 0) statText.Add("Friends' attack speed +" + Mathf.RoundToInt(kit.TeamAttackSpeed * 100) + "%");
+            if (kit.Action == KitAction.Treant) statText.Add("Max HP +50%");
+            if (kit.Action == KitAction.Kintsugi) statText.Add("Untouchable 3s");
+        }
 
         /// <summary>The transformation's name lettered over the hero for a moment as it begins.</summary>
         private void Banner(bool awake, HeroKit kit)
@@ -87,6 +105,24 @@ namespace ArcaneBrigade
                 letter.transform.localScale = Vector3.one * Mathf.Max(.01f, size * scale);
                 letter.Color = c;
                 x += half;
+            }
+            // owner 24/10/2026: under the name, what the transformation gives the hero, line by line like the shop's purchase
+            // lines (green, with a white flash as each lands)
+            KitStats(kit);
+            while (statLines.Count < statText.Count) statLines.Add(InkedText.Create(transform, "Skill stat line", ArcadeTypography.Punch, 44, .042f, 2399, .026f));
+            for (int i = 0; i < statLines.Count; i++)
+            {
+                InkedText line = statLines[i];
+                if (i >= statText.Count) { if (line.gameObject.activeSelf) line.gameObject.SetActive(false); continue; }
+                float local = age - .45f - i * .18f, show = still ? 1 : Mathf.Clamp01(local / .2f), leave = still ? 0 : Mathf.Clamp01((age - 1.6f - i * .05f) / .3f);
+                bool on = (still || local > 0) && leave < 1;
+                if (line.gameObject.activeSelf != on) line.gameObject.SetActive(on);
+                if (!on) continue;
+                line.Text = statText[i];
+                line.transform.position = (Vector3)(centre + Vector2.down * (.46f + i * .3f) + Vector2.up * (.12f * leave - .08f * (1 - show)));
+                line.transform.localScale = Vector3.one * Mathf.Max(.01f, OutBack(show));
+                Color g = Color.Lerp(ArcadeSkin.Better, Color.white, .6f * Mathf.Clamp01(1 - local / .15f)); g.a = 1 - leave;
+                line.Color = g;
             }
             // the swash: one tapered brush stroke drawn in under the word, the hero's token popping at each end
             float sw = still ? 1 : OutCubic(Mathf.Clamp01((age - .18f) / .3f)), gone = still ? 0 : Mathf.Clamp01((age - 1.15f) / .35f);

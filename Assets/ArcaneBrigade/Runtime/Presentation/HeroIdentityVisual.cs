@@ -82,7 +82,7 @@ namespace ArcaneBrigade
             // painted as light, not as a wireframe (owner, 22/10/2026): a wide soft halo, a brighter body and a hot thread,
             // each fading smoothly to nothing at its sides and its ends; no outline anywhere
             if (alpha <= .01f) return;
-            float a = alpha * strength * (calm ? .7f : 1);
+            float a = alpha * strength * (calm ? .7f : 1); width *= 1.1f;
             // the halo and body are capped (owner 24/10/2026: a wide stroke from the hero, Soap Skater's ice line, buried it in
             // a sheet of white light)
             canvas.GlowRibbon(path, head, tail, Mathf.Min(width * 3.2f, .6f), A(ink.Glow, .32f * a));
@@ -122,7 +122,7 @@ namespace ArcaneBrigade
                 style = HeroMechanicStyle.For(simulation.Champion.Definition.Id); ink = style.PaletteFor(simulation.HeroIdentityApproach);
                 still = PresentationSettings.ReducedMotion; sparse = PresentationSettings.ReducedEffects || AnimationDetailBudget.Level >= 2;
                 calm = PresentationSettings.ReducedFlashes; plain = PresentationSettings.HighReadability;
-                strength = Mathf.Lerp(1, .72f, EffectDensity.CrowdPressure) * (sparse ? .85f : 1);
+                strength = Mathf.Lerp(1, .72f, EffectDensity.CrowdPressure) * (sparse ? .85f : 1) * 1.25f; // owner 24/10/2026: every skill a touch stronger
                 sparse |= EffectDensity.CrowdPressure > .6f; // in a crowd keep the washes and rims, drop the flurries of tokens
                 var cam = Camera.main; screenCap = cam != null && cam.orthographic ? Mathf.Max(1.2f, cam.orthographicSize * .45f) : 3;
                 if (simulation.Champion.Alive)
@@ -137,6 +137,7 @@ namespace ArcaneBrigade
                     Rims(); // after the gauge is placed: the rim outlines this frame's vessel
                     PowerUp(); // the hero's own body: the power-up as it transforms and the aura of a self-empowering skill (HeroPowerVisual)
                     Flourish(); // the weapon charging while the gauge flashes full, afterimages behind a dashing hero (HeroFlourishVisual)
+                    KitBoost(); // what the 36-hero review added to each transformation (HeroKitBoostVisual)
                     ShaderLayer(); // each hero's own shader moment (HeroShaderLayer)
                     WaitingMaterial(); AwakenProps(); // the waiting shader and the second set of painted objects (HeroCompleteLayer)
                     DrawCastCue();
@@ -728,6 +729,7 @@ namespace ArcaneBrigade
             bool spin = kind == InkToken.Die || kind == InkToken.Coin || kind == InkToken.Seal || kind == InkToken.Star || kind == InkToken.Spark || kind == InkToken.Button || kind == InkToken.Citrus;
             turn = spin ? (PresentationSettings.ReducedMotion ? 0 : time * 520 + state.Id * 47) : kind == InkToken.Drop || kind == InkToken.Ember ? 90 : -90;
             size = (kind == InkToken.Envelope || kind == InkToken.Page ? .4f : .36f) * (PresentationSettings.HighReadability ? 1.1f : 1);
+            if (state.Cause.ItemId == "hero-identity-Postmaster" || state.Cause.ItemId == "hero-identity-TreasureAcorn") size *= 1.35f; // 24/10: bigger parcels and acorns
             return MechanicInk.Token(kind, style.Palette, kind == InkToken.Die ? 1 + state.Id % 6 : 0);
         }
         private static InkPalette GlintPalette(InkPalette p) => new InkPalette(p.Ink, p.Light, Color.white, p.Glow, p.Accent);

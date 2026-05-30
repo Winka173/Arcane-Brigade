@@ -104,7 +104,7 @@ namespace ArcaneBrigade
         // none; their organs land on the enemy itself (bite, gland or threadwork by the approach).
         private readonly Vector2[] jellies = new Vector2[2];
         private float jelliesSince = -1;
-        public const float JellySpeed = 3.2f, JellyLeash = 3.2f;
+        public const float JellySpeed = 4.2f, JellyLeash = 6f; // 24/10: the twins roam further to hunt (3.2 / 3.2)
         private void Mitosis(float delta)
         {
             if (jelliesSince != awakenStarted)
@@ -115,8 +115,8 @@ namespace ArcaneBrigade
             for (int i = 0; i < 2; i++)
             {
                 Vector2 home = Champion.Position + new Vector2(i == 0 ? 1.1f : -1.1f, -.15f);
-                UnitState near = IdentityTarget(jellies[i], 4);
-                Vector2 want = near != null && (near.Position - Champion.Position).sqrMagnitude < 16
+                UnitState near = IdentityTarget(jellies[i], 6);
+                Vector2 want = near != null && (near.Position - Champion.Position).sqrMagnitude < 36
                     ? near.Position + ((jellies[i] - near.Position).sqrMagnitude > .0001f ? (jellies[i] - near.Position).normalized : Vector2.right) * .9f : home;
                 if ((jellies[i] - Champion.Position).sqrMagnitude > JellyLeash * JellyLeash) want = home;
                 jellies[i] = ClampPosition(Vector2.MoveTowards(jellies[i], want, JellySpeed * delta), .2f);

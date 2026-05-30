@@ -336,7 +336,7 @@ namespace ArcaneBrigade
                             Soft(air, InkCanvas.Arc(Chest(hero) + facing * .3f, rad, rad * .7f, heading - 28, heading + 28), 1, 0, .075f, (1 - q) * dim);
                             ink = was;
                         }
-                        if ((hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f) WaterPush(Chest(hero) + facing * .2f, facing, 1.6f, 1.1f, .9f);
+                        if ((hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f) WaterPush(Chest(hero) + facing * .2f, facing, 2.2f, 1.5f, .95f); /* 24/10: a bigger, longer wave */
                         if (!sparse && (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-5f)
                             for (int k = 0; k < 2; k++) { float q = Mathf.Repeat(t * 2 + k * .5f, 1); Token(InkToken.Drop, Feet(hero) + facing * (.45f + q * .3f) + new Vector2(-facing.y, facing.x) * (k == 0 ? .35f : -.35f) * (1 + q), .12f, 0, (1 - q) * .8f, true, 0, ArsenalInk.Water); }
                     }

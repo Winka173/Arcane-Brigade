@@ -101,8 +101,8 @@ namespace ArcaneBrigade
             target ??= IdentityTarget(Champion.Position, 8);
             switch (k.Action)
             {
-                case KitAction.Gatling: GunBurst(target, .2f, .3f, true); break; // owner 23/10/2026: .22 -> .3 W a parcel
-                case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .1f, false); break;
+                case KitAction.Gatling: GunBurst(target, .2f, .4f, true); break; // owner 23/10/2026: .22 -> .3 W a parcel; 24/10: .4, stronger shots
+                case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .14f, false); break; // 24/10: .1 -> .14 W, stronger acorns
                 case KitAction.Kitchen: Kitchen(target); break;
                 case KitAction.Engine: SteamEngine(delta); break;
                 case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .22f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); DreamShots(); break;
@@ -111,7 +111,7 @@ namespace ArcaneBrigade
                 case KitAction.Lighthouse: Lighthouse(); break;
                 case KitAction.Treant: Every(.35f, () => { if (walking) Hit(MorphGeometry.Disc, Champion.Position + Forward() * .4f, Champion.Position + Forward(), .9f, .42f, .1f); }); break;
                 case KitAction.Casino: Every(1f, () => Casino(target)); break;
-                case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.3f, .34f, .05f, push: .45f); }); HealEvery(.5f); break; // round 3: 1 → 2 HP/s (Tide Singer lost 6/6)
+                case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.7f, .34f, .05f, push: .45f); /* 24/10: a bigger wave, 1.3 -> 1.7 */ }); HealEvery(.5f); break; // round 3: 1 → 2 HP/s (Tide Singer lost 6/6)
                 case KitAction.Meteors: Every(.25f, () => Meteor()); break; // round 6: a meteor every .3 -> .25 s
                 case KitAction.Mirrors: Mirrors(); break;
                 case KitAction.Spring: Every(.65f, () => Spring(target)); HealEvery(1); break; // round 6: blossom every .8 -> .65 s
@@ -138,7 +138,8 @@ namespace ArcaneBrigade
                 case KitAction.Circus: break; // the opening balls (BeginAwakening); every throw then tosses two pins (ArsenalCombat)
                 case KitAction.DivingBell: DivingBell(); break;
             }
-            for (int i = awakenDrops.Count - 1; i >= 0; i--) if (Elapsed > awakenDrops[i].LandAt + .4f) awakenDrops.RemoveAt(i);
+            KitExtras(k, target); // the second mechanics of the 36-hero review (HeroKitExtras)
+            for (int i = awakenDrops.Count - 1; i >= 0; i--) if (Elapsed > awakenDrops[i].LandAt + (awakenDrops[i].Kind >= DropRootSpike ? .8f : .4f)) awakenDrops.RemoveAt(i);
             if (HeroAwakening && Elapsed >= awakenUntil - .0001f) EndAwakening();
             return true;
         }
@@ -342,7 +343,7 @@ namespace ArcaneBrigade
         {
             if (target == null) return;
             int a = combatRandom.Next(1, 7), b = combatRandom.Next(1, 7), c = combatRandom.Next(1, 7);
-            identityFace = a;
+            identityFace = a; HeroAwakenDice[0] = a; HeroAwakenDice[1] = b; HeroAwakenDice[2] = c; HeroAwakenDiceAt = Elapsed;
             if (a == b && b == c) { var jackpot = Hit(MorphGeometry.Disc, target.Position, target.Position, 1.4f, 2.2f, .3f); if (jackpot != null) jackpot.Big = true; Gold = RunSession.BoundedCounter((long)Gold + 1); HeroIdentityGold++; IdentityGlyph(MorphGeometry.Seal, target.Position, target.Position, .6f); }
             else if (a == b || b == c || a == c) IdentityPattern(target, IdentityPower * 1.0f * ApproachScale);
             else IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .45f * ApproachScale, 3);
@@ -351,7 +352,7 @@ namespace ArcaneBrigade
         {
             if (awakenPath.Count == 0) return;
             Vector2 at = awakenPath[Mathf.Max(0, awakenPath.Count - 1 - (awakenRound++ * 7) % Mathf.Min(awakenPath.Count, 60))];
-            Hit(MorphGeometry.Disc, at, at, .9f, .55f, .5f, DamageElement.Ember);
+            Hit(MorphGeometry.Disc, at, at, 1.15f, .55f, .5f, DamageElement.Ember); // 24/10: bigger meteors, .9 -> 1.15
         }
         private void Mirrors()
         {

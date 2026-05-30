@@ -52,6 +52,11 @@ namespace ArcaneBrigade
         public static float Allied(float width) => Mathf.Clamp(width * 1.35f, .32f, .62f); // no shot of ours larger than 0.62 (thrown boomerangs and yo-yos were drawn ~1 unit)
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
+            // owner 24/10/2026: Postmaster's parcels and Treasure Acorn's acorns wear a glowing shader rim that follows their shape
+            // (no round glow disc behind a shot)
+            string cause = state.Cause.ItemId;
+            if (cause == "hero-identity-Postmaster") SkillRim.For(body)?.Show(new Color(1f, .45f, .35f, .95f), .035f, float.NaN);
+            else if (cause == "hero-identity-TreasureAcorn") SkillRim.For(body)?.Show(new Color(1f, .82f, .35f, .95f), .035f, float.NaN);
             bool hostile = state.Faction == Faction.Enemy;
             if (owner == null) owner = GetComponentInParent<ArenaController>();
             bool newShot = identity != state.Id || time < sampledAt;

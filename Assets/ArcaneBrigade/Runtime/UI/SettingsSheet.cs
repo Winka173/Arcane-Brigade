@@ -19,16 +19,84 @@ namespace ArcaneBrigade
         public static readonly int[] ShakeSteps = { 100, 75, 50, 25, 0 };
         public static readonly string[] WindowNames = { "FULLSCREEN", "BORDERLESS", "WINDOWED" };
 
+        private static Vector2 scroll;
+        /// <summary>The settings in four groups (owner 24/10/2026: "settings are too cramped", and the fonts' licence line read as a
+        /// mysterious "font" setting - credits belong in the credits): Sound, Screen, Comfort and Play, rows 60 apart with room
+        /// between the plates, scrolling when the sheet is taller than its space.</summary>
         public static void Draw(PlayerProfile current, Vector2 at, ButtonFn buttonFn, Action<Rect, string> label, Func<bool> saveFn, bool inRun)
         {
-            profile = current; button = buttonFn; save = saveFn; origin = at;
-            Volume(label, 150, "Master volume", profile.Volume, value => profile.Volume = value);
-            Volume(label, 190, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
-            Volume(label, 230, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
-            Volume(label, 270, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
+            profile = current; button = buttonFn; save = saveFn;
+            const float viewX = 60, viewY = 140, viewW = 1160, viewH = 580, contentH = 860;
+            scroll = ScrollPanel.Begin(new Rect(at.x + viewX, at.y + viewY, viewW, viewH), scroll, new Rect(0, 0, viewW - 30, contentH));
+            origin = new Vector2(-viewX, -viewY); // the rows below keep their sheet coordinates; inside the scroll they start at its top
+            Header(label, 150, "SOUND");
+            Volume(label, 194, "Master volume", profile.Volume, value => profile.Volume = value);
+            Volume(label, 244, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
+            Volume(label, 294, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
+            Volume(label, 344, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
+
+            Header(label, 410, "SCREEN");
+            int window = DisplayWindow(profile);
+            if (Button(new Rect(75, 454, 360, 48), "WINDOW: " + WindowNames[window]))
+            {
+                int before = profile.WindowMode;
+                profile.WindowMode = (window + 1) % WindowNames.Length;
+                Changed(() => profile.WindowMode = before, true);
+            }
+            Vector2Int size = DisplaySize(profile);
+            if (Button(new Rect(460, 454, 360, 48), "RESOLUTION: " + size.x + "×" + size.y))
+            {
+                int width = profile.ScreenWidth, height = profile.ScreenHeight;
+                List<Vector2Int> sizes = Sizes();
+                int index = sizes.IndexOf(size);
+                Vector2Int next = sizes[(index + 1) % sizes.Count];
+                profile.ScreenWidth = next.x; profile.ScreenHeight = next.y;
+                Changed(() => { profile.ScreenWidth = width; profile.ScreenHeight = height; }, true);
+            }
+            if (Button(new Rect(845, 454, 360, 48), "VSYNC: " + (profile.VSync ? "ON" : "OFF")))
+            {
+                bool before = profile.VSync; profile.VSync = !before;
+                Changed(() => profile.VSync = before, true);
+            }
+
+            Header(label, 530, "COMFORT");
+            Toggle(new Rect(75, 574, 360, 48), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
+            Toggle(new Rect(460, 574, 360, 48), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
+            Toggle(new Rect(845, 574, 360, 48), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
+            // screen shake: a strength, not only on/off (100 -> 75 -> 50 -> 25 -> off)
+            int shake = ShakePercent(profile);
+            if (Button(new Rect(75, 634, 360, 48), "SCREEN SHAKE: " + (shake == 0 ? "OFF" : shake + "%")))
+            {
+                float scale = profile.ShakeScale; bool reduced = profile.ReducedShake;
+                int next = ShakeSteps[(Array.IndexOf(ShakeSteps, shake) + 1) % ShakeSteps.Length];
+                profile.ShakeScale = next / 100f; profile.ReducedShake = next == 0;
+                Changed(() => { profile.ShakeScale = scale; profile.ReducedShake = reduced; });
+            }
+            Toggle(new Rect(460, 634, 360, 48), "QUIETER SOUNDS", profile.ReducedAudio, value => profile.ReducedAudio = value);
+            Toggle(new Rect(845, 634, 360, 48), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
+
+            Header(label, 710, "PLAY");
+            Toggle(new Rect(75, 754, 360, 48), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
+            Toggle(new Rect(460, 754, 360, 48), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
+            Toggle(new Rect(845, 754, 360, 48), "HIGHLIGHT HERO", profile.HighlightHero, value => profile.HighlightHero = value);
+            // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
+            if (Button(new Rect(75, 814, 745, 48), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN BY THEMSELVES" : "NOTE ONLY")))
+            {
+                bool before = profile.StoryPagesAutoOpen;
+                profile.StoryPagesAutoOpen = !before;
+                CheckpointAudio.PlayInterfaceId("ui.setting");
+                if (!save()) profile.StoryPagesAutoOpen = before;
+            }
+            // the one-time tips and the first-run coach, shown again from the next moment they apply
+            if (Button(new Rect(845, 814, 360, 48), "SHOW TIPS AGAIN"))
+            {
+                var tips = new List<string>(profile.TipsSeen); bool coach = profile.TutorialSeen;
+                profile.TipsSeen.Clear(); profile.TutorialSeen = false;
+                Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
+            }
             // the cosmetic bundle is chosen between runs (the champion is already dressed during one)
             GUI.enabled = !inRun;
-            if (Button(new Rect(75, 318, 540, 48), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
+            if (Button(new Rect(75, 874, 560, 48), inRun ? "BUNDLE: CHOSEN BETWEEN RUNS" : "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
             {
                 int before = profile.Cosmetic;
                 int candidate = (before + 1) % 3;
@@ -38,69 +106,16 @@ namespace ArcaneBrigade
                 PresentationSettings.Apply(profile);
             }
             GUI.enabled = true;
-            Toggle(new Rect(645, 318, 560, 48), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
-            Toggle(new Rect(75, 372, 540, 48), "REDUCED AUDIO CLUTTER", profile.ReducedAudio, value => profile.ReducedAudio = value);
-            Toggle(new Rect(645, 372, 560, 48), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
-            Toggle(new Rect(75, 426, 540, 48), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
-            Toggle(new Rect(645, 426, 560, 48), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
-            // screen shake: a strength, not only on/off (100 -> 75 -> 50 -> 25 -> off)
-            int shake = ShakePercent(profile);
-            if (Button(new Rect(75, 480, 365, 44), "SCREEN SHAKE: " + (shake == 0 ? "OFF" : shake + "%")))
-            {
-                float scale = profile.ShakeScale; bool reduced = profile.ReducedShake;
-                int next = ShakeSteps[(Array.IndexOf(ShakeSteps, shake) + 1) % ShakeSteps.Length];
-                profile.ShakeScale = next / 100f; profile.ReducedShake = next == 0;
-                Changed(() => { profile.ShakeScale = scale; profile.ReducedShake = reduced; });
-            }
-            Toggle(new Rect(460, 480, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
-            Toggle(new Rect(845, 480, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
-            // display: window mode, resolution and vsync (applied by PresentationSettings.ApplyDisplay in a player build)
-            int window = DisplayWindow(profile);
-            if (Button(new Rect(75, 530, 365, 44), "WINDOW: " + WindowNames[window]))
-            {
-                int before = profile.WindowMode;
-                profile.WindowMode = (window + 1) % WindowNames.Length;
-                Changed(() => profile.WindowMode = before, true);
-            }
-            Vector2Int size = DisplaySize(profile);
-            if (Button(new Rect(460, 530, 365, 44), "RESOLUTION: " + size.x + "×" + size.y))
-            {
-                int width = profile.ScreenWidth, height = profile.ScreenHeight;
-                List<Vector2Int> sizes = Sizes();
-                int index = sizes.IndexOf(size);
-                Vector2Int next = sizes[(index + 1) % sizes.Count];
-                profile.ScreenWidth = next.x; profile.ScreenHeight = next.y;
-                Changed(() => { profile.ScreenWidth = width; profile.ScreenHeight = height; }, true);
-            }
-            if (Button(new Rect(845, 530, 360, 44), "VSYNC: " + (profile.VSync ? "ON" : "OFF")))
-            {
-                bool before = profile.VSync; profile.VSync = !before;
-                Changed(() => profile.VSync = before, true);
-            }
-            // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
-            Toggle(new Rect(845, 580, 360, 42), "HIGHLIGHT HERO", profile.HighlightHero, value => profile.HighlightHero = value);
-            if (Button(new Rect(75, 580, 750, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN BY THEMSELVES" : "NOTE ONLY")))
-            {
-                bool before = profile.StoryPagesAutoOpen;
-                profile.StoryPagesAutoOpen = !before;
-                CheckpointAudio.PlayInterfaceId("ui.setting");
-                if (!save()) profile.StoryPagesAutoOpen = before;
-            }
-            // the one-time tips and the first-run coach, shown again from the next moment they apply
-            if (Button(new Rect(75, 630, 360, 44), "SHOW TIPS AGAIN"))
-            {
-                var tips = new List<string>(profile.TipsSeen); bool coach = profile.TutorialSeen;
-                profile.TipsSeen.Clear(); profile.TutorialSeen = false;
-                Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
-            }
             // the UI style: drawn by hand in code, or the painted kit
-            if (Button(new Rect(460, 630, 365, 44), "UI STYLE: " + (profile.UiCrafted ? "CRAFTED" : "PAINTED")))
+            if (Button(new Rect(660, 874, 545, 48), "UI STYLE: " + (profile.UiCrafted ? "CRAFTED" : "PAINTED")))
             {
                 bool before = profile.UiCrafted; profile.UiCrafted = !before;
                 Changed(() => profile.UiCrafted = before);
             }
-            label(Shift(new Rect(75, 684, 1130, 34)), (inRun ? "Looks are chosen between runs. " : "Looks unlock at wave 5 and by beating bosses. ") + "Fonts: Fraunces, Alegreya Sans (OFL 1.1).");
+            ScrollPanel.End();
+            origin = at;
         }
+        private static void Header(Action<Rect, string> label, float top, string caption) => label(Shift(new Rect(75, top, 600, 36)), caption);
 
         public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();
         public static int DisplayWindow(PlayerProfile p)
