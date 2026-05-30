@@ -110,6 +110,27 @@ namespace ArcaneBrigade
                         Token(InkToken.Seal, Head(f) + Vector2.up * (.05f + Bob(f.Id) * 2), .2f, still ? 0 : Mathf.Sin(t * 2 + f.Id) * 8, .9f, true);
                     }
                     break;
+                case KitAction.Feast: // what it swallows is drawn into the mouth in a spiral of ink and fangs
+                {
+                    Vector2 mouth = at + facing * body * .75f;
+                    for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(t * 1.6f + i / 6f, 1), a = i * 60 + r * 300; Token(i % 3 == 0 ? InkToken.Fang : InkToken.Puff, mouth + Dir(a) * (1.3f * (1 - r)), .16f * (1 - .5f * r), a, Mathf.Sin(r * Mathf.PI) * .85f, true); }
+                    break;
+                }
+                case KitAction.Duel: // a stitched thread binds the hero to its chosen foe
+                    if (sim.HeroAwakenFoe != null && sim.HeroAwakenFoe.Alive)
+                    {
+                        Vector2 foe = DrawnAt(sim.HeroAwakenFoe) + Vector2.up * .2f;
+                        Soft(air, InkCanvas.Lob(at + Vector2.up * .2f, foe, .35f + Mathf.Sin(t * 3) * .05f, 16), 1, 0, .035f, .85f);
+                        Token(InkToken.Button, foe + Vector2.up * (sim.HeroAwakenFoe.Definition.BodyHeight * .5f + .2f), .24f, still ? 0 : t * 90, .95f, true);
+                    }
+                    break;
+                case KitAction.DivingBell: // a stream of bubbles round the bell
+                    for (int i = 0; i < (sparse ? 3 : 6); i++) { float r = Mathf.Repeat(t * .9f + i / 6f, 1); Token(InkToken.Bubble, feet + new Vector2(((i * 37) % 7 - 3) * .14f + Mathf.Sin(r * 7 + i) * .06f, .2f + r * (body + .6f)), .1f + .08f * (i % 3), 0, Mathf.Sin(r * Mathf.PI) * .85f, true, 0, ArsenalInk.Water); }
+                    break;
+                case KitAction.TimeGarden: // a little gear turns over every foe the clock hand has slowed
+                    foreach (UnitState u in sim.Units)
+                        if (u.Alive && u.Faction == Faction.Enemy && u.KitSlowUntil > sim.Elapsed) Token(InkToken.Glint, Head(u) + Vector2.up * .05f, .18f, still ? 0 : t * 160 + u.Id * 30, .85f, true);
+                    break;
                 case KitAction.Dreams: // a thread of stars ties each dream to the hero
                     for (int i = 0; i < 3; i++)
                     {

@@ -66,7 +66,14 @@ namespace ArcaneBrigade
             GUIStyle poseControls = new GUIStyle(controls) { fontSize = 11, padding = new RectOffset(6, 6, 4, 4) };
             string[] tabs = { "WEAPONS", "RELICS", "COMPANIONS", "CHAINS", "BOSS" };
             for (int index = 0; index < tabs.Length; index++)
-                if (GUI.Button(new Rect(60 + index * 233, 160, 218, 45), (index == tab ? "• " : "") + tabs[index], controls)) { SelectTab(index); exhibits.Clear(); return; }
+            {
+                // each tab carries an icon beside its name (owner 24/10/2026)
+                Rect tabRect = new Rect(60 + index * 233, 160, 218, 45);
+                if (GUI.Button(tabRect, "      " + (index == tab ? "• " : "") + tabs[index], controls)) { SelectTab(index); exhibits.Clear(); return; }
+                Rect tabIcon = new Rect(tabRect.x + 12, tabRect.y + 7, 31, 31);
+                if (index == 0) { if (!PaintedStatIcons.TryDraw(tabIcon, ItemEffect.Damage)) RunHud.Sprite(tabIcon, MetaIcons.Station(MetaStation.Wardrobe, true)); }
+                else RunHud.Sprite(tabIcon, index == 1 ? MetaIcons.Keepsake : index == 2 ? MetaIcons.Station(MetaStation.Nursery, true) : index == 3 ? (catalog.Bonds != null && catalog.Bonds.Length > 0 ? catalog.Bonds[0].Icon : MetaIcons.Keepsake) : MetaIcons.Station(MetaStation.Bell, true));
+            }
             GUIStyle title = ArcadeTypography.Style(17, true);
             GUIStyle body = ArcadeTypography.Style(14);
             GUIStyle cardText = ArcadeTypography.Style(13);
@@ -81,7 +88,17 @@ namespace ArcaneBrigade
                 ArcadeSkin.Panel(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
-                string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : "UNDISCOVERED";
+                else
+                {
+                    // not yet found: its dark silhouette under a padlock, a slow gleam passing over it (never an empty card)
+                    Color keepSil = GUI.color; GUI.color = new Color(0, 0, 0, .78f * keepSil.a);
+                    if (exhibit.Icon != null) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
+                    GUI.color = keepSil;
+                    float gleam = Mathf.Repeat(Time.unscaledTime * .35f + index * .13f, 1);
+                    if (!PresentationSettings.ReducedMotion && gleam < .3f) ArcadeSkin.Diamond(new Vector2(card.x + 60 + gleam / .3f * 100, card.y + 20 + gleam / .3f * 40), 7, new Color(1, .95f, .8f, .7f * Mathf.Sin(gleam / .3f * Mathf.PI)));
+                    ArcadeSkin.Lock(new Vector2(card.x + 112, card.y + 46), 30, new Color(.86f, .7f, .42f, .95f));
+                }
+                string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : tab == 4 ? "Defeat to unlock" : tab == 3 ? "Activate to unlock" : "Find in a run";
                 Rect nameBounds = new Rect(card.x + 16, card.y + 77, card.width - 32, 31);
                 var nameStyle = new GUIStyle(cardText);
                 while (nameStyle.fontSize > 10 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;

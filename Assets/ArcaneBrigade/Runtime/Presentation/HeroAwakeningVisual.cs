@@ -238,8 +238,8 @@ namespace ArcaneBrigade
                     if (!sparse && !still)
                         for (int i = 2; i >= 1; i--) // the afterglow the sweep leaves behind it
                             Light(ray, lamp, 6.6f, reach, angle - i * 5f - 90, A(amber, .16f / i * dim * strength));
-                    Light(ray, lamp, 7.6f + .8f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
-                    Light(ray, lamp, 4.2f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, 9.5f + .8f * flash, reach, angle - 90, A(amber, (.5f + .25f * flash) * shimmer * dim * strength));
+                    Light(ray, lamp, 5.2f + .35f * flash, reach * .96f, angle - 90, A(gold, (.62f + .3f * flash) * shimmer * dim * strength));
                     Light(ray, lamp, 1.4f, reach * .85f, angle - 90, A(Color.white, (.35f + .3f * flash) * dim * strength));
                     Light(MechanicInk.Glow, lamp, .7f + .2f * flash, .7f + .2f * flash, 0, A(gold, (.55f + .35f * flash) * dim * strength));
                     if (!sparse) for (int i = 0; i < 6; i++)

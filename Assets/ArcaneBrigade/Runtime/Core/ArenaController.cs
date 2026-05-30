@@ -611,6 +611,8 @@ namespace ArcaneBrigade
             if (!PersistBoundary()) { session.Restore(before); return; }
             details.Close(); pauseGate.ResetSession(); Begin();
         }
+        /// <summary>Owner 24/10/2026: back to the menu without writing this moment; the run resumes from its last save boundary.</summary>
+        public void ExitWithoutSaving() { RunLaunch.OpenHub = false; SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
         public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenHub = session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat); SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
         /// <summary>Play again: the same hero with the Waiting Room's loadout; the Nursery hands over its first friend and the
         /// Wardrobe keeps the choices last made for this hero.</summary>

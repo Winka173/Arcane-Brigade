@@ -29,6 +29,7 @@ namespace ArcaneBrigade
         public void Close() { if (model != null) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; GlossaryUI.Close(); }
         /// <summary>B11: the brigade sits at one long table, a seat per species (back row behind the table, front row before it).
         /// Clicking someone selects them; they lean in and speak their key facts and a line in their own hand.</summary>
+        private GUIStyle badgeStyle, tileName;
         private void DrawTable(List<RunBuildReadModel.Row> rows, float rowHeight, RunSnapshot state)
         {
             var seats = new List<int>();
@@ -162,7 +163,9 @@ namespace ArcaneBrigade
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
-            string[] names = { "STATS", "FRIENDS", "RELICS", "LINKS" };
+            // owner 24/10/2026 ("FRIENDS 3, RELICS 0, LINK 55 - nobody understands"): each tab has an icon and a plain name, its
+            // count in a little bubble
+            string[] names = { "STATS", "FRIENDS", "RELICS", "BONDS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
             if (tabStyle == null) { tabStyle = ArcadeTypography.Style(23, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
             for (int index = 0; index < names.Length; index++)
@@ -170,15 +173,44 @@ namespace ArcaneBrigade
                 Rect tabRect = new Rect(75 + index * 372, 200, 320, 62); // the painted end caps hang outside the bar: 52 px apart so they never overlap
                 bool current = index == tab;
                 // painted tabs (UI kit): velvet when current, walnut otherwise, brass under the pointer
-                if (ArcadeSkin.Tab(tabRect, names[index] + (counts[index] >= 0 ? "  " + counts[index] : ""), current, true, tabStyle)) SelectTab(index);
+                if (ArcadeSkin.Tab(tabRect, "     " + names[index], current, true, tabStyle)) SelectTab(index);
+                Rect icon = new Rect(tabRect.x + 34, tabRect.y + 13, 36, 36);
+                if (index == 0) { if (!PaintedStatIcons.TryDraw(icon, ItemEffect.Damage)) RunHud.Sprite(icon, MetaIcons.Keepsake); }
+                else RunHud.Sprite(icon, index == 1 ? MetaIcons.Station(MetaStation.Nursery, true) : index == 2 ? MetaIcons.Keepsake : owner.Content.Bonds != null && owner.Content.Bonds.Length > 0 ? owner.Content.Bonds[0].Icon : MetaIcons.Keepsake);
+                if (counts[index] >= 0)
+                {
+                    Vector2 bubble = new Vector2(tabRect.xMax - 44, tabRect.center.y);
+                    ArcadeSkin.Diamond(bubble, 34, new Color(.12f, .08f, .1f, .95f)); ArcadeSkin.Diamond(bubble, 28, counts[index] > 0 ? ArcadeSkin.Accent : new Color(.4f, .36f, .32f));
+                    badgeStyle ??= ArcadeTypography.Style(17, true); badgeStyle.alignment = TextAnchor.MiddleCenter; badgeStyle.normal.textColor = ArcadeSkin.KitInk;
+                    GUI.Label(new Rect(bubble.x - 20, bubble.y - 14, 40, 28), counts[index].ToString(), badgeStyle);
+                }
             }
             List<RunBuildReadModel.Row> rows = tab == 0 ? model.Stats : tab == 1 ? model.Companions : tab == 2 ? model.Relics : model.Links;
             float rowHeight = tab == 0 ? 115 : 145;
             bool table = tab == 1 && rows.Count > 0;
             if (table) DrawTable(rows, rowHeight, owner.Session.State);
             Rect listArea = table ? new Rect(70, 640, 1060, 325) : new Rect(70, 295, 1060, 670);
-            scroll = ScrollPanel.Begin(listArea, scroll, new Rect(0, 0, 1005, Mathf.Max(listArea.height - 5, rows.Count * rowHeight)));
-            for (int index = 0; index < rows.Count; index++)
+            // friends and relics as a grid of picture tiles (owner 24/10/2026: "the content is still ugly"), stats and bonds as rows
+            bool grid = tab == 1 || tab == 2;
+            const int cols = 5; const float tileW = 186, tileH = 196, tileGap = 15;
+            float contentHeight = grid ? Mathf.CeilToInt(rows.Count / (float)cols) * (tileH + tileGap) : rows.Count * rowHeight;
+            scroll = ScrollPanel.Begin(listArea, scroll, new Rect(0, 0, 1005, Mathf.Max(listArea.height - 5, contentHeight)));
+            for (int index = 0; index < rows.Count && grid; index++)
+            {
+                RunBuildReadModel.Row row = rows[index];
+                Rect tile = new Rect(5 + index % cols * (tileW + tileGap), 5 + index / cols * (tileH + tileGap), tileW, tileH);
+                RunHud.Fill(tile, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
+                if (tab == 2 && row.Rarity is ItemRarity tileRarity) { RarityDescriptionFrame.Edge(tile, tileRarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(tile.x + 38, tile.y + 16, 110, 100), tileRarity, Time.unscaledTime); }
+                else if (index == selection) ArcadeSkin.Line(new Rect(tile.x, tile.yMax - 5, tile.width, 5), ArcadeSkin.Accent);
+                if (row.Icon != null) RunHud.Sprite(new Rect(tile.x + 38, tile.y + 16, 110, 100), row.Icon);
+                if (row.WeaponIcon != null) RunHud.Sprite(new Rect(tile.xMax - 62, tile.y + 80, 46, 46), row.WeaponIcon);
+                if (tab == 1 && row.Summary != null && row.Summary.StartsWith("Stars ") && int.TryParse(row.Summary.Substring(6, 1), out int stars))
+                    for (int st = 0; st < stars; st++) { Vector2 sp = new Vector2(tile.x + 22 + st * 20, tile.y + 22); ArcadeSkin.Diamond(sp, 18, new Color(.1f, .06f, .04f, .9f)); ArcadeSkin.Diamond(sp, 13, new Color(1f, .8f, .3f)); }
+                tileName ??= ArcadeTypography.Style(17, true); tileName.alignment = TextAnchor.MiddleCenter; tileName.wordWrap = true; tileName.normal.textColor = ArcadeSkin.Paper;
+                GUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
+                if (GUI.Button(tile, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
+            }
+            for (int index = 0; index < rows.Count && !grid; index++)
             {
                 RunBuildReadModel.Row row = rows[index];
                 Rect card = new Rect(5, index * rowHeight + 5, 990, rowHeight - 12);

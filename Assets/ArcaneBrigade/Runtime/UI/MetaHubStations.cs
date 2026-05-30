@@ -230,6 +230,7 @@ namespace ArcaneBrigade
                     if (piece.Second != null) { RunHud.Sprite(new Rect(c.x + 4, c.y + 6, 38, 38), piece.Icon); RunHud.Sprite(new Rect(c.x + 24, c.y + 22, 38, 38), piece.Second); }
                     else RunHud.Sprite(new Rect(c.x + 7, c.y + 7, cell - 14, cell - 14), piece.Icon);
                     GUI.color = keep;
+                    if (!piece.Seen) ArcadeSkin.Lock(new Vector2(c.center.x, c.center.y + 4), 24, new Color(.86f, .7f, .42f, .9f)); // a lock on what is not found yet
                     if (GUI.Button(c, GUIContent.none, GUIStyle.none) | Nav(c)) { museumPick = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
                 }
                 ScrollEnd(view);
@@ -246,6 +247,7 @@ namespace ArcaneBrigade
                 Color keep = GUI.color; if (!won) GUI.color = new Color(0, 0, 0, keep.a * .7f);
                 RunHud.Sprite(new Rect(r.x + 10, r.y + 6, 44, 44), MetaIcons.Station(MetaStation.Museum, won));
                 GUI.color = keep;
+                if (!won) ArcadeSkin.Lock(new Vector2(r.x + 32, r.y + 30), 22, new Color(.86f, .7f, .42f, .9f));
                 Ink(won ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
                 GUI.Label(new Rect(r.x + 64, r.y + 4, r.width - 74, 26), name, body);
                 GUI.Label(new Rect(r.x + 64, r.y + 28, r.width - 74, 24), won ? line : line + " to earn it", small);

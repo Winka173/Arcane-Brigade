@@ -962,10 +962,12 @@ namespace ArcaneBrigade
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Fill(new Rect(470, 310, 980, 440), Panel);
             GUI.Label(new Rect(520, 345, 880, 80), "Return to the Waiting Room?", title);
-            GUI.Label(new Rect(540, 445, 840, 105), "Saves commit at wave start or after shop transactions. Unfinished combat restarts from the saved boundary, not the pause moment.", text);
+            GUI.Label(new Rect(540, 445, 840, 105), "Save and return keeps this run where it stands. Leave without saving takes it back to its last save: the start of this wave, or your last shop purchase.", text);
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), owner.SaveError, small);
-            if (navigation.Button(new Rect(550, 650, 360, 65), "STAY", button)) owner.CancelMenuReturn();
-            if (navigation.Button(new Rect(1010, 650, 360, 65), "SAVE AND RETURN", primary ?? button)) owner.ReturnToMenu();
+            // owner 24/10/2026: a way out without saving, beside saving and staying
+            if (navigation.Button(new Rect(510, 650, 280, 65), "STAY", button)) owner.CancelMenuReturn();
+            if (navigation.Button(new Rect(820, 650, 280, 65), "LEAVE, DON'T SAVE", button)) owner.ExitWithoutSaving();
+            if (navigation.Button(new Rect(1130, 650, 280, 65), "SAVE AND RETURN", primary ?? button)) owner.ReturnToMenu();
             navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;

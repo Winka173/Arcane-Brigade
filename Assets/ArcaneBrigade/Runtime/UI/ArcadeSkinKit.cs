@@ -168,6 +168,16 @@ namespace ArcaneBrigade
         }
         /// <summary>An arrow drawn on the painted face's exact centre (owner 24/10/2026: the font's ◀ ▶ sat off-centre in the round
         /// buttons). The triangle's visual weight is centred, not its box, with a dark ink edge under it. dir: 0 left, 1 right, 2 up, 3 down.</summary>
+        /// <summary>A small padlock drawn in code (owner 24/10/2026: anything not yet found shows a lock, never blank text).</summary>
+        public static void Lock(Vector2 c, float size, Color colour)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            Color ink = new Color(.1f, .06f, .04f, .9f * colour.a);
+            Rect bodyR = new Rect(c.x - size * .42f, c.y - size * .05f, size * .84f, size * .62f);
+            Line(new Rect(bodyR.x - 2, bodyR.y - 2, bodyR.width + 4, bodyR.height + 4), ink); Line(bodyR, colour);
+            for (int i = 0; i <= 10; i++) { float a = Mathf.PI * i / 10f, r = size * .27f; Vector2 p = new Vector2(c.x - Mathf.Cos(a) * r, c.y - size * .05f - Mathf.Sin(a) * r * 1.2f); Line(new Rect(p.x - 2.2f, p.y - 2.2f, 4.4f, 4.4f), ink); Line(new Rect(p.x - 1.4f, p.y - 1.4f, 2.8f, 2.8f), colour); }
+            Line(new Rect(c.x - 1.5f, bodyR.y + bodyR.height * .3f, 3, bodyR.height * .4f), ink);
+        }
         public static void Arrow(Rect face, int dir, Color colour)
         {
             if (Event.current.type != EventType.Repaint) return;
