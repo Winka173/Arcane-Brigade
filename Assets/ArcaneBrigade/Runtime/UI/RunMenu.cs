@@ -22,6 +22,7 @@ namespace ArcaneBrigade
         private PlayerProfile profile;
         private RunSnapshot saved;
         private GUIStyle heading;
+        private int guidePage;
         private GUIStyle dangerStyle, explainTitle, explainBody;
         private string explainHead, explainText; private Rect explainAt; private float explainShown = -10;
         private GUIStyle text;
@@ -305,9 +306,7 @@ namespace ArcaneBrigade
                     if (navigation.Button(new Rect(700, 490, 400, 70), "BACK UP AND START", primary)) Launch(false);
                     break;
                 case Page.Settings: DrawSettings(); break;
-                case Page.Help:
-                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  Move your hero; attacks happen by themselves while you move.\nYour friends fight beside you on their own.\nTHE SHOP  —  walk up to a stand to see it, then buy. Nothing is bought for you.\nFriends cannot fall. Stock cannot be sold or held back.\nYOUR BRIGADE  —  the notebook shows your stats, friends, relics and bonds.\nTHE WAITING JOURNAL  —  a sealed note under your lanterns means a new page is waiting; open it, or visit the archive cabinet. The warm chair is a separate, dangerous invitation.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your friends' light, go with you.\nBetween nights, the Waiting Room turns Lamp Oil and Keepsakes into lasting help.");
-                    break;
+                case Page.Help: HowToPlayBook.Draw(new Rect(90, 160, 1100, 520), catalog, catalog.Champions != null && catalog.Champions.Length > 0 ? catalog.Champions[Mathf.Clamp(selection, 0, catalog.Champions.Length - 1)].Id : null, ref guidePage); break; // the picture book (owner 24/10/2026)
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
                 case Page.Museum:
@@ -329,9 +328,36 @@ namespace ArcaneBrigade
             }
             navigation.End();
             GlossaryUI.Draw(new Vector2(1280, 720));
+            DrawBootLoading();
             GUI.matrix = previous;
             GUI.color = previousTint;
             GUI.skin = previousSkin;
+        }
+        // owner 24/10/2026: the game opens on a loading screen - the night, the lamp lighting a row of lanterns one by one under
+        // the name - then fades into the menu (once per launch; Reduced Motion shortens it to a moment)
+        private static float bootStarted = -1; private static bool booted;
+        private void DrawBootLoading()
+        {
+            if (booted) return;
+            if (bootStarted < 0) bootStarted = Time.unscaledTime;
+            float age = Time.unscaledTime - bootStarted, length = profile.ReducedMotion ? .4f : 1.8f, fade = Mathf.Clamp01((age - length) / .45f);
+            if (fade >= 1) { booted = true; return; }
+            Color keep = GUI.color; GUI.color = new Color(1, 1, 1, 1 - fade);
+            RunHud.Fill(new Rect(0, 0, 1280, 720), new Color(.035f, .04f, .07f, 1));
+            float k = Mathf.Clamp01(age / length);
+            ArcadeSkin.Glow(new Rect(440, 120, 400, 400), new Color(1f, .78f, .42f, .25f + .25f * k));
+            UnitDefinition emblem = catalog.Unit("LanternKnight");
+            if (emblem != null) RunHud.Sprite(new Rect(555, 170, 170, 200), emblem.Body);
+            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
+            if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
+            TextAnchor a = logo.alignment; logo.alignment = TextAnchor.MiddleCenter; logo.normal.textColor = ArcadeSkin.Cream;
+            GUI.Label(new Rect(240, 390, 800, 90), "Arcane Brigade", logo); logo.alignment = a;
+            for (int i = 0; i < 9; i++)
+            {
+                Vector2 p = new Vector2(640 + (i - 4) * 44, 520); bool lit = k * 9 > i;
+                ArcadeSkin.Diamond(p, 26, new Color(.1f, .08f, .06f, .9f)); ArcadeSkin.Diamond(p, lit ? 20 : 12, lit ? new Color(1f, .8f, .4f) : new Color(.3f, .27f, .24f));
+            }
+            GUI.color = keep;
         }
 
         // Main menu = the Waiting Room (Resources/MienCho/WaitingRoom.png, painted 16:9, 1280x720 design space):
@@ -436,9 +462,6 @@ namespace ArcaneBrigade
             }
             GUI.DrawTexture(new Rect(0, 0, 600, 720), landingShade);
             DrawChairVoice();
-            ArcadeSkin.Line(new Rect(0, 590, 1280, 130), new Color(0.02f, 0.025f, 0.05f, 0.85f));
-            if (ArcadeSkin.HasKit) ArcadeSkin.Ornament(new Rect(36, 580, 1208, 20), KitDivider.Lantern);
-            else ArcadeSkin.Divider(new Rect(36, 590, 1208, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.3f));
             bool reduced = profile.ReducedMotion;
             float breathe = reduced ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 1.1f);
 
@@ -458,72 +481,34 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(46, 140, 760, 32), "someone is waiting for you…", spotHint);
             spotHint.alignment = TextAnchor.MiddleCenter;
 
-            int mouseSpot = -1;
-            for (int index = 0; index < SpotAreas.Length; index++)
-                if (SpotAreas[index].width > 0 && SpotEnabled(index) && SpotAreas[index].Contains(Event.current.mousePosition)) mouseSpot = index;
-            int focus = mouseSpot >= 0 ? mouseSpot : Mathf.Clamp(navigation.Selected, 0, SpotAreas.Length - 1);
-            if (Event.current.type == EventType.Repaint && mouseSpot >= 0 && mouseSpot != hoveredSpot) CheckpointAudio.PlayInterfaceId(SpotCues[mouseSpot]);
-            if (Event.current.type == EventType.Repaint) hoveredSpot = mouseSpot;
-
-            // the door always breathes a little; objects you can use glow faintly so they read as interactive
-            ArcadeSkin.Glow(new Rect(760, -40, 400, 560), new Color(1f, 0.85f, 0.65f, 0.08f + 0.07f * breathe));
-            for (int index = 1; index < SpotAreas.Length; index++)
-            {
-                Rect area = SpotAreas[index];
-                if (area.width <= 0) continue;
-                float hint = SpotEnabled(index) ? 0.10f + 0.06f * breathe : 0.03f;
-                ArcadeSkin.Glow(new Rect(area.center.x - 70, area.center.y - 60, 140, 120), new Color(1f, 0.80f, 0.50f, hint));
-            }
-            Rect focused = SpotAreas[focus];
-            if (focused.width > 0)
-            {
-                float pad = 26 + breathe * 6;
-                ArcadeSkin.Glow(new Rect(focused.x - pad, focused.y - pad, focused.width + pad * 2, focused.height + pad * 2), new Color(1f, 0.80f, 0.48f, 0.32f + 0.06f * breathe));
-            }
-
-            // the hero stands in the room carrying their own light
-            UnitDefinition hero = catalog.Champions[selection];
-            Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, false, profile.ReducedMotion)] : hero.Body;
-            Rect heroRect = new Rect(540, 345 + (reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.4f) * 4), 210, 240);
-            ArcadeSkin.Glow(new Rect(heroRect.x - 120, heroRect.y - 80, heroRect.width + 240, heroRect.height + 200), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.20f + 0.06f * breathe));
-            ArcadeSkin.Glow(new Rect(heroRect.x + 20, heroRect.yMax - 30, heroRect.width - 40, 50), new Color(0, 0, 0, 0.55f));
-            Matrix4x4 unflipped = GUI.matrix;
-            if (focused.width > 0 && focused.center.x < heroRect.center.x) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), heroRect.center);
-            RunHud.Sprite(heroRect, pose);
-            GUI.matrix = unflipped;
-
-            // a paper label for the focused entry, placed by its object (or above the bottom row)
-            string label = focus == 1 && CanResume ? "CONTINUE · WAVE " + saved.Wave : SpotLabels[focus];
-            Vector2 tagSize = new Vector2(Mathf.Max(180, chip.CalcSize(new GUIContent(label)).x + 48), 32);
-            Rect tag;
-            if (focused.width > 0)
-                tag = new Rect(Mathf.Clamp(SpotTags[focus].x - tagSize.x * 0.5f, 10, 1270 - tagSize.x), SpotTags[focus].y, tagSize.x, tagSize.y);
-            else tag = new Rect(36 + focus * 204 + 98 - tagSize.x * 0.5f, 612, tagSize.x, tagSize.y);
-            ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent);
-            chip.normal.textColor = ArcadeSkin.Ink;
-            GUI.Label(tag, label, chip);
-            ArcadeSkin.Seal(new Vector2(tag.xMax - 4, tag.y + 2), 30, "B");
-            GUI.Label(new Rect(tag.center.x - 220, tag.yMax + 4, 440, 30), focus == 1 && !CanResume ? "nothing to continue yet" : SpotHints[focus].ToLowerInvariant(), spotHint);
-
-            for (int index = 0; index < SpotAreas.Length; index++)
-                if (SpotAreas[index].width > 0 && GUI.Button(SpotAreas[index], GUIContent.none, GUIStyle.none)) ActivateSpot(index);
-
-            // keyboard / controller / readability row mirrors every entry one-to-one (order is relied on by navigation checks)
-            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 15 };
+            // owner 24/10/2026: "nobody can tell what reacts to the mouse, let alone on a phone - redo the main menu, with the
+            // Lantern Knight as its emblem". Every choice is a plain painted button with its icon, all visible at once (the
+            // order mirrors SpotLabels for keys and pads); the Lantern Knight stands on the right holding up its lamp.
+            UnitDefinition emblem = catalog.Unit("LanternKnight") ?? catalog.Champions[0];
+            Sprite pose = emblem.AnimationFrames != null && emblem.AnimationFrames.Length >= 4 ? emblem.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, 3, false, reduced)] : emblem.Body;
+            Rect knight = new Rect(800, 150 + (reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.3f) * 5), 330, 380);
+            ArcadeSkin.Glow(new Rect(knight.x - 160, knight.y - 120, knight.width + 320, knight.height + 220), new Color(1f, .78f, .42f, .22f + .1f * breathe));
+            ArcadeSkin.Glow(new Rect(knight.x + 40, knight.yMax - 34, knight.width - 80, 56), new Color(0, 0, 0, .6f));
+            RunHud.Sprite(knight, pose);
+            if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(Time.unscaledTime * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(knight.center.x + Mathf.Sin(r * 7 + i * 2) * 120, knight.yMax - r * 420), 6 + 6 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .8f * Mathf.Sin(r * Mathf.PI))); }
+            if (spotPlate == null) { spotPlate = ArcadeTypography.Style(15, true); }
+            Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true) };
+            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 17 };
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 GUI.enabled = SpotEnabled(index);
-                string caption = SpotLabels[index];
-                // row one: NEW JOURNEY and CONTINUE, wide and gold; row two: the other five, walnut (owner, 22/10/2026)
-                Rect spot;
-                if (index < 2) spot = new Rect(36 + index * 330, 606, 316, 48);
-                else { float step = (1208f + 12) / (SpotLabels.Length - 2); spot = new Rect(36 + (index - 2) * step, 664, step - 12, 44); }
+                string caption = index == 1 && CanResume ? "CONTINUE · WAVE " + saved.Wave : SpotLabels[index];
+                Rect spot = index < 2 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 2) % 2 * 240, 380 + (index - 2) / 2 * 72, 230, 60);
+                if (index >= 2) caption = "      " + caption; // room for its icon
                 if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume ? primary : smallButton)) ActivateSpot(index);
+                if (index >= 2 && icons[index] != null) RunHud.Sprite(new Rect(spot.x + 16, spot.y + 9, 42, 42), icons[index]);
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
-                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(new Rect(spot.xMax - 22, spot.y - 14, 28, 28), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(new Vector2(spot.xMax - 8, spot.y), 22, "!"); }
+                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(new Rect(spot.xMax - 26, spot.y - 12, 28, 28), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(new Vector2(spot.xMax - 12, spot.y + 2), 22, "!"); }
             }
             GUI.enabled = true;
+            if (!CanResume) { spotHint.alignment = TextAnchor.UpperLeft; GUI.Label(new Rect(52, 352, 460, 26), "nothing to continue yet", spotHint); spotHint.alignment = TextAnchor.MiddleCenter; }
         }
+        private GUIStyle spotPlate;
 
         private void DrawRoster()
         {

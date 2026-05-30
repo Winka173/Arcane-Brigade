@@ -36,6 +36,9 @@ namespace ArcaneBrigade
             bool staged = key == "Tentacle" || key == "Curtain" || key == "OfficeHazard" || key == "ToyHazard";
             bool coded = key == "ShockRing" || key == "ShadowPool" || key == "Tentacle" || key == "Thread";
             if (coded && (!warning || staged)) { Code(field, key, time, warning); return true; }
+            // owner 24/10/2026: no painted warning rings and no outlined target zones - the ground cracks toward the zone's true
+            // reach instead, in hostile violet and crimson, sparks gathering at the crack tips as the blow comes
+            if (warning) { Warn(field, lane, time, staged); if (!staged) return true; }
             Sprite[] frames = CombatVfxArtwork.Frames(warning && !staged ? lane ? "TelegraphLane" : "TelegraphCircle" : key);
             if (frames == null || frames.Length == 0) return false;
             int frame = warning || PresentationSettings.ReducedMotion ? 0 : Mathf.FloorToInt((time - field.At) * 10) % frames.Length;
@@ -64,23 +67,47 @@ namespace ArcaneBrigade
             view.transform.position = (Vector3)position - view.transform.TransformVector(ink.center);
             float fade = warning ? (staged ? .55f + .3f * gather : .85f) : Mathf.Lerp(staged ? .95f : 1, staged ? .2f : .5f, Mathf.Clamp01((time - field.At) / Mathf.Max(.05f, field.Until - field.At)));
             view.color = new Color(1, 1, 1, fade * (key == "Thread" ? EffectDensity.AlliedAlpha : 1));
-            if (warning && staged)
-            {
-                Sprite edge = CombatVfxArtwork.Frame(lane ? "TelegraphLane" : "TelegraphCircle", 0);
-                if (edge != null)
-                {
-                    Rect border = SpriteInkMetrics.BoundsOf(edge); outline.sprite = edge; outline.enabled = true;
-                    outline.transform.rotation = view.transform.rotation;
-                    outline.transform.localScale = new Vector3(size.x / Mathf.Max(.01f, border.width), size.y / Mathf.Max(.01f, border.height), 1);
-                    outline.transform.position = (Vector3)position - outline.transform.TransformVector(border.center);
-                    // the edge brightens and beats faster as the blow comes
-                    float beat = PresentationSettings.ReducedFlashes || PresentationSettings.ReducedMotion ? 0 : .12f * Mathf.Sin(time * (8 + 22 * gather));
-                    outline.color = new Color(1, 1, 1, Mathf.Clamp01(.45f + .4f * gather + beat));
-                }
-            }
             return true;
         }
         // ------------------------------------------------------------------ code-drawn hostile effects
+        /// <summary>A hostile blow gathering: cracks run out from the centre (or along a lane) to the zone's true reach, a dark ink
+        /// seeping along them, sparks flickering at their tips faster as the moment nears. No ring, no outline, no filled disc.</summary>
+        private void Warn(ExpandedField field, bool lane, float time, bool keepPainted)
+        {
+            bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
+            float gather = still ? 1 : Mathf.Clamp01(Mathf.InverseLerp(field.Created, field.At, time));
+            int seed = field.GetHashCode() & 1023;
+            if (!keepPainted) ink.Clear();
+            Vector2 c = field.Position; float r = Mathf.Max(.2f, field.Radius);
+            float flicker = still ? 1 : .7f + .3f * Mathf.Sin(time * (10 + 25 * gather) + seed);
+            if (lane)
+            {
+                Vector2 start = field.Start, end = field.Position, along = (end - start).sqrMagnitude > .001f ? (end - start).normalized : Vector2.right, side = Vector2.Perpendicular(along);
+                float reach = Vector2.Distance(start, end) * (.25f + .75f * gather);
+                var spine = InkCanvas.Line(start, start + along * reach, r * .25f, 0, true, seed);
+                ink.GlowRibbon(spine, 1, 0, .16f, A(Night, .75f));
+                ink.GlowRibbon(InkCanvas.Line(start, start + along * reach, r * .25f, 0, true, seed), 1, 0, .05f, A(Crimson, .9f * flicker));
+                if (!sparse) for (int i = 1; i < 6; i++)
+                {
+                    float f = i / 6f; if (f * Vector2.Distance(start, end) > reach) break;
+                    Vector2 root = start + along * f * Vector2.Distance(start, end), tip = root + side * ((i % 2) * 2 - 1) * r * .9f;
+                    ink.GlowRibbon(InkCanvas.Line(root, tip, .06f, 0, true, seed + i), 1, 0, .045f, A(Crimson, .8f * flicker));
+                    ink.Sector(tip, .07f, 0, 360, A(Ember, .85f * flicker * gather), A(Ember, 0));
+                }
+                ink.Commit(); inked = true;
+                return;
+            }
+            int cracks = sparse ? 5 : 8;
+            for (int i = 0; i < cracks; i++)
+            {
+                float a = (i * 360f / cracks + seed * 7 + Mathf.Sin(i * 3.1f) * 14) * Mathf.Deg2Rad, len = r * (.35f + .65f * gather) * (.8f + .2f * ((i * 37) % 5) / 4f);
+                Vector2 tip = c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * len;
+                ink.GlowRibbon(InkCanvas.Line(c, tip, len * .12f, 0, true, seed + i), 1, 0, .1f, A(Night, .7f));
+                ink.GlowRibbon(InkCanvas.Line(c, tip, len * .12f, 0, true, seed + i), 1, 0, .04f, A(Crimson, .9f * flicker));
+                ink.Sector(tip, .06f + .05f * gather, 0, 360, A(Ember, .9f * flicker * gather), A(Ember, 0));
+            }
+            ink.Commit(); inked = true;
+        }
         private static readonly Color Ember = new Color(1f, .42f, .16f), Hot = new Color(1f, .86f, .55f), Crimson = new Color(.62f, .06f, .12f), Night = new Color(.2f, .05f, .2f);
         private void Code(ExpandedField field, string key, float time, bool warning)
         {
@@ -112,8 +139,7 @@ namespace ArcaneBrigade
                     // the lingering dark: a dusk-violet wash that deepens toward its true edge, a soft crimson rim, ink motes rising
                     float r = Mathf.Max(.1f, field.Radius), breathe = still || calm ? 1 : .85f + .15f * Mathf.Sin(time * 4 + seed);
                     ink.Sector(c, r, 0, 360, A(Night, .12f * fade), A(Night, .42f * fade));
-                    ink.GlowRibbon(InkCanvas.Arc(c, r - .04f, r - .04f, 0, 360), 1, 0, .2f, A(Crimson, .7f * fade * breathe));
-                    ink.GlowRibbon(InkCanvas.Arc(c, r - .04f, r - .04f, 0, 360), 1, 0, .07f, A(Ember, .55f * fade * breathe));
+                    // (its glowing rim is gone: owner 24/10/2026, no outlined zones)
                     if (!sparse) for (int i = 0; i < 6; i++)
                     {
                         float rise = Mathf.Repeat(clock * .5f + i / 6f, 1), a = (i * 61 + seed) * Mathf.Deg2Rad, d = r * (.25f + .55f * ((i * 37 % 10) / 10f));
@@ -132,20 +158,7 @@ namespace ArcaneBrigade
                     ink.Band(a, tip, half, A(Crimson, (warning ? .18f + .2f * gather : .4f) * fade), A(Crimson, 0));
                     ink.GlowRibbon(lash, 1, 0, half * 1.4f, A(Crimson, (warning ? .45f : .8f) * fade));
                     if (!warning) ink.GlowRibbon(lash, 1, 0, half * .5f, A(Ember, .85f * fade));
-                    else
-                    {
-                        // the red telegraph outline stays a painted ink edge, brightening and beating faster as the blow comes
-                        Sprite edge = CombatVfxArtwork.Frame("TelegraphLane", 0);
-                        if (edge != null)
-                        {
-                            Rect border = SpriteInkMetrics.BoundsOf(edge); outline.sprite = edge; outline.enabled = true;
-                            outline.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg);
-                            outline.transform.localScale = new Vector3((Vector2.Distance(a, b) + half * 2) / Mathf.Max(.01f, border.width), half * 2 / Mathf.Max(.01f, border.height), 1);
-                            outline.transform.position = (Vector3)((a + b) * .5f) - outline.transform.TransformVector(border.center);
-                            float beat = calm || still ? 0 : .12f * Mathf.Sin(time * (8 + 22 * gather));
-                            outline.color = new Color(1, 1, 1, Mathf.Clamp01(.45f + .4f * gather + beat));
-                        }
-                    }
+                    // (no painted outline round the lane any more: owner 24/10/2026)
                     break;
                 }
                 default: // the sewing thread

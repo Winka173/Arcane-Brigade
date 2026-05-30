@@ -65,25 +65,34 @@ namespace ArcaneBrigade
             if (Event.current.type != EventType.Repaint) return;
             Vector2 d = b - a; float length = d.magnitude;
             if (length < .01f) return;
-            Matrix4x4 keep = GUI.matrix;
-            GUIUtility.RotateAroundPivot(Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, a);
-            Line(new Rect(a.x, a.y - width * .5f, length, width), colour);
-            GUI.matrix = keep;
-            Dot(new Rect(a.x - width * .5f, a.y - width * .5f, width, width), colour);
-            Dot(new Rect(b.x - width * .5f, b.y - width * .5f, width, width), colour);
+            // a chain of round dots along the stroke, no turned matrix (owner 24/10/2026: RotateAroundPivot misplaces strokes and
+            // lozenges under a scaled HUD - the 1280-wide menus drew them along a diagonal)
+            int steps = Mathf.Max(1, Mathf.CeilToInt(length / Mathf.Max(.5f, width * .45f)));
+            for (int i = 0; i <= steps; i++) { Vector2 p = Vector2.Lerp(a, b, i / (float)steps); Dot(new Rect(p.x - width * .5f, p.y - width * .5f, width, width), colour); }
         }
 
         /// <summary>A small lozenge (gilt, with an ink edge) centred on c.</summary>
+        private static Texture2D lozenge;
         public static void Diamond(Vector2 c, float size, Color fill)
         {
             if (Event.current.type != EventType.Repaint) return;
-            Matrix4x4 keep = GUI.matrix;
-            GUIUtility.RotateAroundPivot(45, c);
-            float s = size * .7071f;
-            Line(new Rect(c.x - s * .5f - 1, c.y - s * .5f - 1, s + 2, s + 2), InkLine);
-            Line(new Rect(c.x - s * .5f, c.y - s * .5f, s, s), fill);
-            Line(new Rect(c.x - s * .5f, c.y - s * .5f, s, s * .35f), Color.Lerp(fill, Color.white, .3f));
-            GUI.matrix = keep;
+            // a painted lozenge texture (ink edge baked in) drawn straight, no turned matrix (see Stroke)
+            if (lozenge == null)
+            {
+                const int N = 48; lozenge = new Texture2D(N, N, TextureFormat.RGBA32, false) { name = "Lozenge", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
+                for (int y = 0; y < N; y++) for (int x = 0; x < N; x++)
+                {
+                    float u = Mathf.Abs((x + .5f) / N * 2 - 1) + Mathf.Abs((y + .5f) / N * 2 - 1); // 1 on the lozenge's edge
+                    float a = Mathf.Clamp01((1.02f - u) * N * .5f), edge = Mathf.Clamp01((u - .8f) * 8);
+                    float lift = (y + .5f) / N > .62f && u < .8f ? .25f : 0; // the upper facet a little lighter (texture rows run bottom-up)
+                    Color c2 = Color.Lerp(new Color(1, 1, 1), new Color(.16f, .1f, .07f), edge); c2 = Color.Lerp(c2, Color.white, lift); c2.a = a;
+                    lozenge.SetPixel(x, y, c2);
+                }
+                lozenge.Apply(false, true);
+            }
+            Color keepColour = GUI.color; GUI.color = new Color(keepColour.r * fill.r, keepColour.g * fill.g, keepColour.b * fill.b, keepColour.a * fill.a);
+            GUI.DrawTexture(new Rect(c.x - size * .5f - 1, c.y - size * .5f - 1, size + 2, size + 2), lozenge);
+            GUI.color = keepColour;
         }
 
         /// <summary>The close / back / info / pause marks as ink strokes in a face rect.</summary>

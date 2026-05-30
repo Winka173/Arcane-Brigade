@@ -25,6 +25,8 @@ namespace ArcaneBrigade
             // the hostile side's painted fire (the hero's hurt splash, enemy muzzle flames) is retired (owner 22/10/2026): the hurt is
             // drawn in code by CombatFeedback, a hostile shot's launch by its own code-drawn bolt
             if (hit && value.Faction == Faction.Champion || value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && value.Faction == Faction.Enemy) return true;
+            // the hostile side's melee swings and a boss's landing are code ink now (ArsenalVisual), never painted sprites (owner 24/10/2026)
+            if (slash && value.Faction == Faction.Enemy || value.Kind == CombatEventKind.BossLanded) return true;
             string combatArt = slash && value.Weapon.Motion == WeaponMotion.Thrust ? "Thrust" : null;
             Sprite[] combatFrames = CombatVfxArtwork.Frames(combatArt);
             bool illustrated = combatFrames != null && combatFrames.Length > 0;

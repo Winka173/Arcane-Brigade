@@ -75,8 +75,9 @@ namespace ArcaneBrigade
             // our ranged weapons' feel (flourishes, casings, stuck shots, pierce and bounce marks) sees every step's events
             if (rangedFeel == null) { rangedFeel = GetComponent<RangedFeelVisual>(); if (rangedFeel == null) rangedFeel = gameObject.AddComponent<RangedFeelVisual>(); }
             rangedFeel.Observe(value, time);
-            if (value.Weapon == null || flashes.Count > 64) return;
+            if (flashes.Count > 64) return;
             if (PlayOwnLook(value, time)) return;
+            if (value.Weapon == null) return;
             if (value.Weapon.Arsenal == ArsenalWeapon.None) return;
             ArsenalWeapon w = value.Weapon.Arsenal;
             Vector2 dir = value.Direction.sqrMagnitude > 0.0001f ? value.Direction.normalized : Vector2.right;
@@ -136,10 +137,18 @@ namespace ArcaneBrigade
         }
         /// <summary>Every allied weapon's own look (WeaponInkStyle): a melee swing in its form, each hit's flash and each shot's
         /// muzzle puff in its own palette and token. Returns true when it handled the event.</summary>
+        private static readonly WeaponInkStyle.Strike EnemyClaw = new WeaponInkStyle.Strike(WeaponInkStyle.StrikeForm.Rake, "Violet", InkToken.Fang), BossStamp = new WeaponInkStyle.Strike(WeaponInkStyle.StrikeForm.Pound, "Violet", InkToken.Puff);
         private bool PlayOwnLook(CombatEvent value, float time)
         {
             WeaponDefinition w = value.Weapon;
             Vector2 dir = value.Direction.sqrMagnitude > 0.0001f ? value.Direction.normalized : Vector2.right;
+            // owner 24/10/2026: the hostile side's blows are code ink too (no painted slash or dust): a violet claw rake for an
+            // enemy's melee swing, a violet stamp for a boss landing
+            if (value.Kind == CombatEventKind.Fire && value.Faction == Faction.Enemy && w != null && w.Kind == WeaponKind.Melee)
+            { var f = Add(ArsenalInk.Moment.Burst, value.Position, dir, time, 0.26f, Mathf.Clamp(w.Range, .7f, 2f)); f.Kind = FlashKind.Strike; f.Strike = EnemyClaw; f.Shooter = ShooterOf(value); Follow(f); return true; }
+            if (value.Kind == CombatEventKind.BossLanded && value.Subject != null)
+            { var f = Add(ArsenalInk.Moment.Burst, value.Position + Vector2.down * value.Subject.Definition.BodyHeight * .45f, Vector2.right, time, 0.4f, value.Subject.Definition.BodyHeight * 1.1f); f.Kind = FlashKind.Strike; f.Strike = BossStamp; return true; }
+            if (w == null) return false;
             if (value.Kind == CombatEventKind.Fire && value.Faction != Faction.Enemy && w.Kind == WeaponKind.Melee && WeaponInkStyle.Strikes.TryGetValue(w.Id, out WeaponInkStyle.Strike strike))
             {
                 float reach = Mathf.Clamp(w.Range, 0.9f, 2.4f);

@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A boss's attack ranges, painted as red ink OUTLINES only (play-test item 22, decision D10; no fills, no pools):
+    /// <summary>A boss's attack ranges, painted as red ink CRACKS (owner 24/10/2026: no outlined zones; before that, outlines only per
+    /// play-test item 22, decision D10; no fills, no pools):
     /// <list type="bullet">
     /// <item>A circle (a slam, a falling piece, a shockwave) is a brushed dashed rim at the exact radius that hurts; the dashes
     /// lengthen as the blow nears and the rim closes when it lands.</item>
@@ -134,30 +135,39 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ the shared marks (BossTrademarkVisual uses them too)
-        /// <summary>A brushed dashed rim (outline only): the dashes grow with the charge and close into one rim as the blow lands;
-        /// in the last beat a hot inner line runs round it.</summary>
+        /// <summary>Where a blow will land (owner 24/10/2026: no outlined zones any more): cracks run out from the centre to the
+        /// area's true edge as the blow charges, a hot spark at each tip in the last beat.</summary>
         public static void Rim(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float seed, float alpha)
         {
-            bool still = PresentationSettings.ReducedMotion;
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            int dashes = Mathf.Clamp(Mathf.RoundToInt((rx + ry) * 4.5f), 10, 30);
-            float slot = 360f / dashes, fill = Mathf.Lerp(.42f, 1.04f, s), spin = still ? 0 : seed + (1 - s) * 40;
-            float width = Mathf.Clamp((rx + ry) * .035f, .07f, .14f) * Mathf.Lerp(.85f, 1.25f, s);
-            float a = alpha * Mathf.Lerp(.6f, 1, s);
-            for (int i = 0; i < dashes; i++) { float from = spin + i * slot; ink.FloorArc(c, rx, ry, from, from + slot * Mathf.Min(fill, 1.04f), Danger, width, a); }
-            if (s > .8f) ink.FloorArc(c, rx * .985f, ry * .985f, 0, 360, DangerHot, width * .45f, a * (s - .8f) / .2f);
+            int cracks = Mathf.Clamp(Mathf.RoundToInt((rx + ry) * 3), 6, 14);
+            float width = Mathf.Clamp((rx + ry) * .03f, .06f, .12f) * Mathf.Lerp(.85f, 1.2f, s), a = alpha * Mathf.Lerp(.6f, 1, s);
+            for (int i = 0; i < cracks; i++)
+            {
+                float ang = (seed + i * 360f / cracks + Mathf.Sin(i * 2.3f) * 10) * Mathf.Deg2Rad;
+                Vector2 dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)), perp = new Vector2(-dir.y, dir.x), end = c + new Vector2(dir.x * rx, dir.y * ry) * Mathf.Lerp(.3f, 1, s);
+                Vector2 prev = c + new Vector2(dir.x * rx, dir.y * ry) * .12f;
+                for (int k = 1; k <= 3; k++)
+                {
+                    Vector2 p = Vector2.Lerp(c, end, k / 3f) + perp * (((i * 7 + k * 3) % 5 - 2) * .025f * (rx + ry)) * (k < 3 ? 1 : 0);
+                    ink.FloorStroke(prev, p, Danger, width * (1.15f - k * .15f), 1, 0, a, 0, seed + i * 3 + k); prev = p;
+                }
+                if (s > .7f) ink.FloorStroke(end - perp * .1f, end + perp * .1f, DangerHot, width * .7f, 1, 0, a * (s - .7f) / .3f);
+            }
         }
-        /// <summary>A dashed lane edge that closes the same way.</summary>
+        /// <summary>A lane's edge as a jagged crack that runs its whole length as the blow charges (no dashes).</summary>
         public static void DashedLine(ArsenalInk ink, Vector2 a, Vector2 b, float charge, float seed, float alpha)
         {
             float length = Vector2.Distance(a, b); if (length < .05f) return;
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            int dashes = Mathf.Clamp(Mathf.RoundToInt(length * 1.7f), 3, 16);
-            float fill = Mathf.Lerp(.42f, 1.02f, s), width = Mathf.Lerp(.07f, .11f, s), alpha2 = alpha * Mathf.Lerp(.6f, 1, s);
-            for (int i = 0; i < dashes; i++)
+            Vector2 dir = (b - a) / length, perp = new Vector2(-dir.y, dir.x), reach = a + (b - a) * Mathf.Lerp(.3f, 1, s);
+            int pieces = Mathf.Clamp(Mathf.RoundToInt(length * 1.6f), 3, 12);
+            float width = Mathf.Lerp(.07f, .11f, s), alpha2 = alpha * Mathf.Lerp(.6f, 1, s);
+            Vector2 prev = a;
+            for (int i = 1; i <= pieces; i++)
             {
-                float f0 = i / (float)dashes, f1 = Mathf.Min(1, (i + fill) / dashes);
-                ink.FloorStroke(Vector2.Lerp(a, b, f0), Vector2.Lerp(a, b, f1), Danger, width, 1, 0, alpha2, 0, seed + i);
+                Vector2 p = Vector2.Lerp(a, reach, i / (float)pieces) + perp * ((((int)seed + i * 7) % 5 - 2) * .04f) * (i < pieces ? 1 : 0);
+                ink.FloorStroke(prev, p, Danger, width, 1, 0, alpha2, 0, seed + i); prev = p;
             }
         }
         /// <summary>An inked arrowhead at the far end of a lane.</summary>

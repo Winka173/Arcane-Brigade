@@ -91,7 +91,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Frame(new Rect(240, 120, 1440, 860), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "How to Play");
                 if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
-                guide.DrawHowToPlay(new Rect(300, 270, 1320, 680), owner);
+                HowToPlayBook.Draw(new Rect(300, 270, 1320, 680), owner.Content, owner.Session?.State.ChampionId, ref guidePage); // the picture book (owner 24/10/2026)
                 return;
             }
             ArcadeSkin.Frame(new Rect(640, 230, 640, 680), KitFrame.Dialogue, .6f);
@@ -107,7 +107,7 @@ namespace ArcaneBrigade
         }
 
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
-        private Vector2 comboScroll; private GUIStyle comboLine;
+        private Vector2 comboScroll; private GUIStyle comboLine; private int guidePage;
         /// <summary>The Combos page (play-test 20/10/2026, item 26): every duet this hero's shop can offer. Pairs you have met
         /// show both friends and what they do together (lit while both are in the brigade); the rest are silhouettes.</summary>
         private void DrawCombos(ArenaController owner, Rect area)
