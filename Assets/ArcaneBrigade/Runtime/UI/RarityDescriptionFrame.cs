@@ -165,27 +165,13 @@ namespace ArcaneBrigade
         }
         private struct Seen{public int Frame;public float Since;}
         private static readonly System.Collections.Generic.Dictionary<long,Seen> seen=new System.Collections.Generic.Dictionary<long,Seen>();
-        private static GUIStyle tabStyle;
         /// <summary>The gems, the rarity's tab, the corner glints, the edge lighting up as the box opens and the rising motes.</summary>
         private static void Extras(Rect panel,ItemRarity rarity,Color tint,float clock,bool motion)
         {
             int rank=Rank(rarity);
             float crestWidth=rarity==ItemRarity.Common?0:Mathf.Round(Mathf.Clamp(panel.width*.38f,210,350));
-            // the rarity named on a tab on the top edge, left of the crest, with one gem per rank beside the name (readable
-            // without colour); a box too narrow for the tab shows the gems alone on its top edge
-            if(tabStyle==null){tabStyle=ArcadeTypography.Style(15,true);tabStyle.alignment=TextAnchor.MiddleLeft;tabStyle.wordWrap=false;}
-            string name=RunModifierRules.RarityName(rarity).ToUpperInvariant();
-            Color bright=Color.Lerp(tint,Color.white,.35f); const float gap=13;
-            float textW=tabStyle.CalcSize(new GUIContent(name)).x, tw2=12+textW+10+rank*gap+8, corner=rarity==ItemRarity.Common?14:Mathf.Clamp(Mathf.Min(panel.width,panel.height)*.2f,40,60);
-            Rect tab=new Rect(panel.x+corner+6,panel.y-13,tw2,26);
-            bool fits=tab.xMax<panel.center.x-crestWidth*.5f-6;
-            if(fits){RunHud.Fill(tab,new Color(.06f,.04f,.08f,.96f)); Border(tab,2,bright); tabStyle.normal.textColor=bright; GUI.Label(new Rect(tab.x+12,tab.y,textW+4,tab.height),name,tabStyle);}
-            float gx=fits?tab.x+12+textW+10+gap*.5f:panel.center.x-(rank-1)*gap*.5f, gy=fits?tab.center.y:panel.y+1;
-            for(int i=0;i<rank;i++)
-            {
-                Vector2 c=new Vector2(gx+i*gap,gy); float tw=motion?.85f+.15f*Mathf.Sin(clock*3+i*1.3f):1;
-                ArcadeSkin.Diamond(c,11,new Color(.08f,.05f,.1f,.95f)); ArcadeSkin.Diamond(c,8*tw,bright);
-            }
+            // owner 24/10/2026: no rarity name or gem tab on the frame any more; the crest and the frame's own motion say it
+            Color bright=Color.Lerp(tint,Color.white,.35f);
             if(!motion)return;
             // the corners glint one after another
             int lit=Mathf.FloorToInt(clock*1.5f)%4; float k=Mathf.Repeat(clock*1.5f,1);
@@ -208,22 +194,46 @@ namespace ArcaneBrigade
                 float p=Mathf.Clamp01(age/.55f), fade=1-Mathf.Clamp01((age-.55f)/.2f);
                 for(int side=-1;side<=1;side+=2) EdgeRun(panel,side,1-(1-p)*(1-p),bright,fade,rarity==ItemRarity.Rainbow?clock:-1);
             }
-            // while open (Rare and above): a few motes of the rarity's light rising slowly up the inside of both side rails
-            if(rank>=3)
+            // while open, each rarity moves in its own way, strong enough to read at a glance (owner 24/10/2026: "exaggerate it,
+            // each rarity different"); everything stays on the frame or inside it
+            float rail=Mathf.Max(10,Content(panel,rarity).x-panel.x-4);
+            switch(rarity)
             {
-                float rail=Mathf.Max(10,Content(panel,rarity).x-panel.x-4);
-                int motes=rank==3?2:rank==6?4:3;
-                for(int side=0;side<2;side++)
-                    for(int i=0;i<motes;i++)
-                    {
-                        float life=3.4f+.6f*((i*7+side*3)%5)/4f, t=Mathf.Repeat(clock/life+i/(float)motes+side*.37f,1);
-                        float x=side==0?panel.x+rail*(.35f+.3f*Mathf.Sin(clock*1.3f+i*2.1f)):panel.xMax-rail*(.35f+.3f*Mathf.Sin(clock*1.2f+i*1.7f+1));
-                        float y=Mathf.Lerp(panel.yMax-14,panel.y+18,t);
-                        Color m=rarity==ItemRarity.Rainbow?Color.HSVToRGB(Mathf.Repeat(clock*.08f+i*.23f+side*.5f,1),.45f,1):bright;
-                        m.a=.75f*Mathf.Sin(t*Mathf.PI);
-                        ArcadeSkin.Diamond(new Vector2(x,y),3+2.5f*Mathf.Sin(t*Mathf.PI),m);
-                    }
+                case ItemRarity.Uncommon: Motes(panel,rail,clock,bright,2,false,1.1f,-1); break;                  // dew running down the vine
+                case ItemRarity.Rare:                                                                          // runes lighting round the rails in turn
+                    Motes(panel,rail,clock,bright,3,true,1.4f,-1);
+                    for(int i=0;i<6;i++){float q=Mathf.Repeat(clock*.9f-i/6f,1),g=Mathf.Clamp01(1-q*3); if(g<=0)continue; Color r=bright; r.a=.95f*g; float y=Mathf.Lerp(panel.y+24,panel.yMax-24,(i%3)/2f); ArcadeSkin.Diamond(new Vector2(i<3?panel.x+rail*.5f:panel.xMax-rail*.5f,y),7+6*g,r);}
+                    break;
+                case ItemRarity.Mythic:                                                                        // golden glints sweeping the frame
+                    Motes(panel,rail,clock,bright,4,true,1.6f,-1);
+                    {float q=Mathf.Repeat(age<.75f?0:clock*.42f,1); if(age>=.75f) for(int side=-1;side<=1;side+=2) EdgeRun(panel,side,q,bright,.85f*Mathf.Sin(q*Mathf.PI),-1);}
+                    break;
+                case ItemRarity.Crimson:                                                                       // a heartbeat of red light, petals falling
+                {
+                    float beat=Heartbeat(clock); Color h=new Color(.95f,.18f,.22f,.55f*beat);
+                    Border(panel,4,h); h.a=.25f*beat; Border(new Rect(panel.x+4,panel.y+4,panel.width-8,panel.height-8),3,h);
+                    Motes(panel,rail,clock,new Color(1f,.42f,.45f),4,false,1.5f,-1);
+                    break;
+                }
+                case ItemRarity.Rainbow:                                                                       // prism light cycling round, star sparks
+                    Motes(panel,rail,clock,bright,5,true,1.8f,clock);
+                    {float q=Mathf.Repeat(age<.75f?0:clock*.55f,1); if(age>=.75f) for(int side=-1;side<=1;side+=2) EdgeRun(panel,side,q,bright,.9f,clock);}
+                    break;
             }
+        }
+        /// <summary>Motes of the rarity's light on the inside of both side rails, rising (or falling like dew and petals).</summary>
+        private static void Motes(Rect panel,float rail,float clock,Color colour,int count,bool rise,float size,float rainbowClock)
+        {
+            for(int side=0;side<2;side++)
+                for(int i=0;i<count;i++)
+                {
+                    float life=3f+.6f*((i*7+side*3)%5)/4f, t=Mathf.Repeat(clock/life+i/(float)count+side*.37f,1);
+                    float x=side==0?panel.x+rail*(.35f+.3f*Mathf.Sin(clock*1.3f+i*2.1f)):panel.xMax-rail*(.35f+.3f*Mathf.Sin(clock*1.2f+i*1.7f+1));
+                    float y=rise?Mathf.Lerp(panel.yMax-14,panel.y+18,t):Mathf.Lerp(panel.y+18,panel.yMax-14,t);
+                    Color m=rainbowClock>=0?Color.HSVToRGB(Mathf.Repeat(rainbowClock*.08f+i*.23f+side*.5f,1),.45f,1):colour;
+                    m.a=.85f*Mathf.Sin(t*Mathf.PI);
+                    ArcadeSkin.Diamond(new Vector2(x,y),(3+3f*Mathf.Sin(t*Mathf.PI))*size,m);
+                }
         }
         /// <summary>One run of light along half the box's edge: from the top's middle along the top, down one side and along
         /// the bottom to its middle; p is how far the head has got (0..1), with a fading tail behind it.</summary>

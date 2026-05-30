@@ -160,9 +160,32 @@ namespace ArcaneBrigade
             if (state == 1) Glow(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20), new Color(Gold.r, Gold.g, Gold.b, .35f));
             Rect face = RoundArt(r, enabled ? kind : KitRound.Disabled, state);
             if (icon != null) RunHud.Sprite(face, icon);
-            if (!string.IsNullOrEmpty(glyph))
+            int arrow = glyph == "◀" ? 0 : glyph == "▶" ? 1 : glyph == "▲" ? 2 : glyph == "▼" ? 3 : -1;
+            if (arrow >= 0) Arrow(face, arrow, kind == KitRound.Brass ? KitInk : KitCream);
+            else if (!string.IsNullOrEmpty(glyph))
                 KitCaption(face, glyph, kind == KitRound.Brass ? KitInk : KitCream, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
+        }
+        /// <summary>An arrow drawn on the painted face's exact centre (owner 24/10/2026: the font's ◀ ▶ sat off-centre in the round
+        /// buttons). The triangle's visual weight is centred, not its box, with a dark ink edge under it. dir: 0 left, 1 right, 2 up, 3 down.</summary>
+        public static void Arrow(Rect face, int dir, Color colour)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            float size = Mathf.Min(face.width, face.height) * .38f;
+            Vector2 c = face.center;
+            void Tri(float s, Color col, Vector2 at)
+            {
+                int rows = Mathf.Max(4, Mathf.RoundToInt(s));
+                for (int i = 0; i < rows; i++)
+                {
+                    float f = (i + .5f) / rows, len = s * (1 - Mathf.Abs(f * 2 - 1)), along = (f - .5f) * s;
+                    // the tip sits a third of the size from the centre and the base two thirds: the triangle's centroid is the face's centre
+                    if (dir < 2) { float x0 = dir == 1 ? at.x - s / 3f : at.x + s / 3f - len; Line(new Rect(x0, at.y + along - .5f, len * (dir == 1 ? 1 : 1), 1.4f), col); }
+                    else { float y0 = dir == 3 ? at.y - s / 3f : at.y + s / 3f - len; Line(new Rect(at.x + along - .5f, y0, 1.4f, len), col); }
+                }
+            }
+            Tri(size + 5, new Color(.1f, .06f, .04f, .85f), c);
+            Tri(size, colour, c);
         }
 
         /// <summary>The close / back / info / pause medallions (brass with an ink mark).</summary>

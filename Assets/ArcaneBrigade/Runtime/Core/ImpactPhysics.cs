@@ -108,7 +108,7 @@ namespace ArcaneBrigade
                 if (away.sqrMagnitude > .0001f && Vector2.Dot(away, direction) < 0) direction = away.normalized;
             }
             if (weight >= .8f && !target.Definition.IsBoss) target.StaggerUntil = Mathf.Max(target.StaggerUntil, Elapsed + ImpactRules.StaggerSeconds);
-            float push = OctoberBalance.Push(target.Definition, impactWeightFloor > 0 ? Mathf.Max(weapon.PushDistance, .45f) : weapon.PushDistance) * ImpactRules.PushScale(weight);
+            float push = OctoberBalance.Push(target.Definition, impactWeightFloor > 0 ? Mathf.Max(weapon.PushDistance, .45f) : weapon.PushDistance) * ImpactRules.PushScale(weight) * .7f; // owner 24/10/2026: enemies are shoved 30% less
             if (push <= 0) return;
             Vector2 wish = target.Position + direction.normalized * push, kept = ClampPosition(wish, target.Definition.Radius);
             target.Position = kept; spatial.Move(target);

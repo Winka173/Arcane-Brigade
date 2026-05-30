@@ -16,7 +16,13 @@ namespace ArcaneBrigade
         public int InputConsumedFrame { get; private set; } = -1;
         public void Configure(ArenaController value) => owner = value;
         /// <summary>While the offer stands, the shop does not also act on the traveller's presses.</summary>
-        public bool Open => owner?.Session != null && owner.Session.CustomerOfferAvailable && !owner.StoryConsumesInput && !owner.TransitionPending && !owner.Session.SecretRoomOpen;
+        public bool Open => Standing && !folded;
+        /// <summary>The offer stands (open, or folded away as a letter waiting on the HUD).</summary>
+        private bool Standing => owner?.Session != null && owner.Session.CustomerOfferAvailable && !owner.StoryConsumesInput && !owner.TransitionPending && !owner.Session.SecretRoomOpen;
+        // owner 24/10/2026: Esc used to refuse for good before the letter was even read; now Esc folds it away into a letter that
+        // waits on the screen (tap to reopen) - only WALK ON refuses. It unfolds from its seal each time it opens.
+        private bool folded, wasOpen; private float openedAt = -10;
+        private static readonly Rect LetterRect = new Rect(1640, 232, 250, 64);
 
         private void Gather()
         {
@@ -28,7 +34,7 @@ namespace ArcaneBrigade
             if (!Open || owner.PresentationPaused) return;
             if (!Application.isFocused && !RunPaths.Diagnostic) return;
             Gather();
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); return; }
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { InputConsumedFrame = Time.frameCount; folded = true; CheckpointAudio.PlayInterfaceId("ui.back"); return; }
             int pages = Mathf.Max(1, (species.Count + 8) / 9); page = Mathf.Clamp(page, 0, pages - 1);
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) page = (page + 1) % pages;
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) page = (page + pages - 1) % pages;
@@ -39,7 +45,22 @@ namespace ArcaneBrigade
         private void Sell() { InputConsumedFrame = Time.frameCount; if (owner.SellMemory(picked)) picked = null; }
         private void OnGUI()
         {
-            if (!Open || owner.PresentationPaused || Camera.main == null) return;
+            if (!Standing) { folded = false; wasOpen = false; return; }
+            if (owner.PresentationPaused || Camera.main == null) return;
+            if (folded)
+            {
+                // the folded letter waits under the wallet: a sealed ticket; a tap opens it again
+                GUI.depth = -55; Matrix4x4 keepMatrix = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
+                if (name == null) { name = ArcadeTypography.Style(16, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true; }
+                float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 2.4f) * 3;
+                Rect letter = new Rect(LetterRect.x, LetterRect.y + bob, LetterRect.width, LetterRect.height);
+                ArcadeSkin.Ticket(letter, ArcadeSkin.Paper, ArcadeSkin.Wax); ArcadeSkin.Seal(new Vector2(letter.x + 34, letter.center.y), 34, "$");
+                name.normal.textColor = new Color(.25f, .19f, .14f);
+                GUI.Label(new Rect(letter.x + 60, letter.y + 6, letter.width - 76, letter.height - 12), "A letter from the Last Customer", name);
+                if (GUI.Button(letter, GUIContent.none, GUIStyle.none)) { folded = false; InputConsumedFrame = Time.frameCount; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                GUI.matrix = keepMatrix; wasOpen = false; return;
+            }
+            if (!wasOpen) { wasOpen = true; openedAt = Time.unscaledTime; }
             Gather();
             GUI.depth = -60; // above the HUD and any speech
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
@@ -55,6 +76,10 @@ namespace ArcaneBrigade
             float width = Mathf.Max(820, 120 + shown * 150);
             Rect card = new Rect((1920 - width) * 0.5f, 300, width, 640);
             Color popKeep = CardPop.Apply("last-customer", card);
+            // the letter unfolds from its seal: from a thin fold to full height with a small overshoot, scaled in the HUD's own
+            // design space (no pivot helpers: they misplace under the scaled HUD matrix)
+            float unfold = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01((Time.unscaledTime - openedAt) / .42f);
+            if (unfold < 1) { float k = unfold - 1, sy = Mathf.Max(.04f, 1 + 2.4f * k * k * k + 1.4f * k * k); Vector3 pv = new Vector3(card.center.x, card.y + 40, 0); GUI.matrix = GUI.matrix * Matrix4x4.TRS(pv, Quaternion.identity, Vector3.one) * Matrix4x4.Scale(new Vector3(1, sy, 1)) * Matrix4x4.TRS(-pv, Quaternion.identity, Vector3.one); }
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             ArcadeSkin.Seal(new Vector2(card.xMax - 42, card.y + 40), 46, "$");
             hand.normal.textColor = new Color(.25f, .19f, .14f);
@@ -94,6 +119,7 @@ namespace ArcaneBrigade
             Rect sell = new Rect(card.center.x - 380, buttonsY, 340, 88), refuse = new Rect(card.center.x + 40, buttonsY, 340, 88);
             if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name)) Sell();
             if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
+            if (unfold < .5f && !PresentationSettings.ReducedMotion) ArcadeSkin.Seal(new Vector2(card.center.x, card.y + 40), 60 * (1 - unfold * 2) + 10, "$"); // the seal breaking open
             GUI.color = popKeep;
             GUI.matrix = previous;
         }

@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             // readable: a crimson-black vignette closing in from the edges with each heartbeat, slow nightmare smoke drifting
             // across, and dark veins creeping in from the corners with an ember pulse in them.
             Color keepInside = GUI.color;
-            GUI.color = new Color(.32f, 0, .04f, (.38f + beat * .22f) * keepInside.a);
+            GUI.color = new Color(.24f, 0, .03f, (.5f + beat * .25f) * keepInside.a); // darker (owner 24/10/2026)
             GUI.DrawTexture(panel, Vignette);
             Rect inner = new Rect(panel.x + 4, panel.y + 4, panel.width - 8, panel.height - 8);
             float drift = still ? 0 : clock * .025f;
@@ -41,14 +41,15 @@ namespace ArcaneBrigade
             GUI.DrawTextureWithTexCoords(inner, Smoke, new Rect(drift, drift * .35f, inner.width / 420f, inner.height / 420f), true);
             GUI.color = new Color(.2f, 0, .05f, .18f * keepInside.a);
             GUI.DrawTextureWithTexCoords(inner, Smoke, new Rect(-drift * 1.6f + .37f, .5f, inner.width / 300f, inner.height / 300f), true);
-            float vein = Mathf.Clamp(Mathf.Min(panel.width, panel.height) * .55f, 60, 150);
+            // owner 24/10/2026: the crackling veins spread over the whole card (each corner reaches its middle), darker
             for (int k = 0; k < 4; k++)
             {
                 bool right = k == 1 || k == 3, bottom = k >= 2;
-                Rect corner = new Rect(right ? panel.xMax - vein : panel.x, bottom ? panel.yMax - vein : panel.y, vein, vein);
+                float vw = panel.width * .5f + 2, vh = panel.height * .5f + 2;
+                Rect corner = new Rect(right ? panel.xMax - vw : panel.x, bottom ? panel.yMax - vh : panel.y, vw, vh);
                 Rect uv = new Rect(right ? 1 : 0, bottom ? 1 : 0, right ? -1 : 1, bottom ? -1 : 1);
-                GUI.color = new Color(.08f, 0, .02f, .7f * keepInside.a); GUI.DrawTextureWithTexCoords(corner, Cracks, uv, true);
-                GUI.color = new Color(Ember.r, Ember.g * .45f, Ember.b * .45f, (.15f + beat * .55f) * keepInside.a); GUI.DrawTextureWithTexCoords(corner, CrackGlow, uv, true);
+                GUI.color = new Color(.05f, 0, .015f, .85f * keepInside.a); GUI.DrawTextureWithTexCoords(corner, Cracks, uv, true);
+                GUI.color = new Color(.6f, .03f, .07f, (.2f + beat * .6f) * keepInside.a); GUI.DrawTextureWithTexCoords(corner, CrackGlow, uv, true);
             }
             GUI.color = keepInside;
             // the heartbeat: a soft red glow just outside the rim, swelling twice and resting

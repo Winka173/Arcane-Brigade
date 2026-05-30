@@ -175,7 +175,10 @@ namespace ArcaneBrigade
                 Rect r = Bounds(spot, sprite);
                 if (restored) ArcadeSkin.Glow(new Rect(r.x - 40, r.y - 30, r.width + 80, r.height + 60), new Color(1f, .78f, .45f, .16f + .06f * breathe));
                 if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .38f : .18f));
-                ArcadeSkin.Glow(new Rect(r.x + r.width * .1f, spot.Foot.y - 16, r.width * .8f, 30), new Color(0, 0, 0, .45f));
+                // grounded (owner 24/10/2026: the stations looked to float): a soft cast shadow falling down-right from the room's
+                // lamp light, and a dark contact shadow right under the feet
+                ArcadeSkin.Glow(new Rect(r.x + r.width * .14f, spot.Foot.y - 12, r.width * .95f, 34), new Color(0, 0, 0, .42f));
+                ArcadeSkin.Glow(new Rect(r.x + r.width * .12f, spot.Foot.y - 9, r.width * .76f, 16), new Color(0, 0, 0, .7f));
                 Color keep = GUI.color;
                 if (!works) GUI.color = new Color(keep.r * .78f, keep.g * .76f, keep.b * .74f, keep.a);
                 RunHud.Sprite(r, sprite);
@@ -196,7 +199,7 @@ namespace ArcaneBrigade
             heading.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
             FavourStars(profile, new Rect(96, 80, 400, 30));
-            Purse(profile, new Rect(930, 16, 330, 62));
+            Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
             if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "MAIN MENU ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
 
             // taps: a station or the door walks you there; anywhere else on the floor walks you to that spot
@@ -244,11 +247,12 @@ namespace ArcaneBrigade
             Styles();
             ArcadeSkin.Frame(r, KitFrame.Plaque);
             number.normal.textColor = ArcadeSkin.KitCream; number.alignment = TextAnchor.MiddleLeft;
-            float half = r.width * .5f;
-            RunHud.Sprite(new Rect(r.x + 26, r.y + 9, 44, 44), MetaIcons.LampOil);
-            GUI.Label(new Rect(r.x + 74, r.y, half - 74, r.height), profile.Meta.LampOil.ToString("N0"), number);
-            RunHud.Sprite(new Rect(r.x + half + 10, r.y + 9, 44, 44), MetaIcons.Keepsake);
-            GUI.Label(new Rect(r.x + half + 58, r.y, half - 70, r.height), profile.Meta.Keepsakes.ToString("N0"), number);
+            // owner 24/10/2026: the icons sat on the plaque's scrolled end; lay them out inside the velvet (the frame's padded content)
+            Rect c = ArcadeSkin.Content(r, KitFrame.Plaque); float half = c.width * .5f, icon = Mathf.Min(40, c.height - 8);
+            RunHud.Sprite(new Rect(c.x + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.LampOil);
+            GUI.Label(new Rect(c.x + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.LampOil.ToString("N0"), number);
+            RunHud.Sprite(new Rect(c.x + half + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.Keepsake);
+            GUI.Label(new Rect(c.x + half + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.Keepsakes.ToString("N0"), number);
             number.alignment = TextAnchor.UpperLeft;
         }
 
@@ -258,7 +262,7 @@ namespace ArcaneBrigade
         {
             MetaStation station = Open.Value;
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0, 0, 0, .5f));
-            Purse(profile, new Rect(930, 16, 330, 62));
+            Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
             ArcadeSkin.Frame(PanelRect, KitFrame.Dialogue, .5f);
             ArcadeSkin.Glow(new Rect(PanelRect.x + 10, PanelRect.y + 60, 220, 260), new Color(1f, .8f, .45f, .22f));
             RunHud.Sprite(new Rect(PanelRect.x + 34, PanelRect.y + 72, 172, 206), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));

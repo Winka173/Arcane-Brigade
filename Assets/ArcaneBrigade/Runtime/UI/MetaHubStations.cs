@@ -277,8 +277,15 @@ namespace ArcaneBrigade
                 Rect r = new Rect(area.x, area.y + 62 + i * 78, area.width, 70);
                 Flash(r, pact.Id);
                 ArcadeSkin.CodePlate(r, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
-                if (on) ArcadeSkin.RunningLight(r, Time.unscaledTime + i * .4f, new Color(1f, .5f, .38f));
-                PactIcon(new Rect(r.x + 12, r.y + 10, 50, 50), i, catalog);
+                // a chosen pact glows round its round painted seal, sparks circling it (owner 24/10/2026: no rectangle round round art)
+                Rect seal = new Rect(r.x + 12, r.y + 10, 50, 50);
+                if (on)
+                {
+                    float tt = PresentationSettings.ReducedMotion ? 0 : Time.unscaledTime;
+                    ArcadeSkin.Glow(new Rect(seal.x - 18, seal.y - 18, seal.width + 36, seal.height + 36), new Color(1f, .5f, .38f, .55f + .15f * Mathf.Sin(tt * 3 + i)));
+                    for (int k = 0; k < 3; k++) { float an = (tt * 140 + k * 120 + i * 40) * Mathf.Deg2Rad; Color sp = new Color(1f, .72f, .5f, .9f); ArcadeSkin.Diamond(seal.center + new Vector2(Mathf.Cos(an), Mathf.Sin(an)) * 31, 7, sp); }
+                }
+                PactIcon(seal, i, catalog);
                 Ink(ArcadeSkin.KitCream);
                 GUI.Label(new Rect(r.x + 76, r.y + 9, r.width - 260, 26), pact.Name, body);
                 GUI.Label(new Rect(r.x + 76, r.y + 37, r.width - 260, 26), pact.Line, small);

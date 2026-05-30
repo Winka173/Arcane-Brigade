@@ -625,7 +625,7 @@ namespace ArcaneBrigade
                 }
                 else { support = AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0); support.enabled = false; }
             }
-            ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
+            ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 2f : 1.25f, stations.Count * 0.93f);
             if (pedestal && actor != null) actor.MountMerchandise(support);
             if (!pedestal && actor != null) actor.SetFloorFixture();
             if (action == "NEXT HALL" && actor != null && OctoberArtwork.Current != null) actor.gameObject.AddComponent<OctoberDoor>().Configure(owner, actor.View);
