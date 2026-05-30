@@ -36,7 +36,8 @@ namespace ArcaneBrigade
             if (!awake || body == null || body.sprite == null) return;
             float height = hero.Definition.BodyHeight;
             Vector2 at = DrawnAt(hero), feet = at - Vector2.up * height * .5f;
-            Color glow = Color.Lerp(ink.Glow, ink.Light, .35f);
+            // the silhouette wears the hero's body colour, never near-white (a pale palette, Soap Skater's, read as a sheet of light)
+            Color glow = Color.Lerp(ink.Body, ink.Glow, .3f);
 
             // the power-up: the hero's silhouette swells out twice from behind it
             if (!still && age < .7f)
@@ -54,7 +55,7 @@ namespace ArcaneBrigade
                     powerBlock ??= new MaterialPropertyBlock(); body.GetPropertyBlock(powerBlock); // the body's own sprite rectangle and shading
                     powerBlock.SetFloat("_Flash", 1); powerBlock.SetColor("_FlashColor", glow); powerBlock.SetFloat("_FlashLine", 9);
                     e.SetPropertyBlock(powerBlock);
-                    e.color = new Color(1, 1, 1, (calm ? .3f : .6f) * (1 - k) * strength);
+                    e.color = new Color(1, 1, 1, (calm ? .25f : .45f) * (1 - k) * strength);
                 }
                 // strokes of light shooting up beside the body
                 if (!sparse)

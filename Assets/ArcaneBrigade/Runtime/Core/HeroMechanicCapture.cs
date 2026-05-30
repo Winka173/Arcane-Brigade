@@ -88,7 +88,9 @@ namespace ArcaneBrigade
                 Time.timeScale = .35f;
                 int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
                 // a hero whose whole mechanic is its transformation is brought to a full gauge after 4s of waiting
-                while (sim.HeroIdentityActivations == casts && !sim.HeroAwakening && Time.realtimeSinceStartup - started < 16) { sim.NudgeMechanicCapture(); if (Time.realtimeSinceStartup - started > 4) sim.FillGaugeForCapture(); yield return null; }
+                // -mechanic-awaken: wait for the transformation itself (not the hero's ordinary mechanic) and review it
+                bool awakenOnly = Array.IndexOf(args, "-mechanic-awaken") >= 0;
+                while ((awakenOnly || sim.HeroIdentityActivations == casts) && !sim.HeroAwakening && Time.realtimeSinceStartup - started < 16) { sim.NudgeMechanicCapture(); if (awakenOnly || Time.realtimeSinceStartup - started > 4) sim.FillGaugeForCapture(); yield return null; }
                 float cast = sim.Elapsed;
                 bool fired = sim.HeroIdentityActivations > casts || sim.HeroAwakening;
                 string stem = index.ToString("00") + "-" + hero.Id + "-a" + approach;
@@ -97,6 +99,7 @@ namespace ArcaneBrigade
                 float strike = -1; foreach (var g in sim.HeroIdentityGlyphs) if (g.Role == HeroGlyphRole.Strike && g.Created >= cast - .02f && (strike < 0 || g.At < strike)) strike = g.At;
                 float[] at = strike < 0 ? new[] { .06f, .22f, .4f } : new[] { Mathf.Max(.03f, (strike - cast) * .6f), strike - cast + .07f, strike - cast + .21f };
                 string[] label = { "1-anticipate", "2-action", "3-follow" };
+                if (awakenOnly) { at = new[] { .12f, .4f, .9f, 1.6f, 2.8f }; label = new[] { "w1-powerup", "w2-rising", "w3-buffed", "w4-fighting", "w5-later" }; }
                 // -mechanic-sequence: ten frames through the strike (its anticipation to its fade) to review motion, not stills
                 if (Array.IndexOf(args, "-mechanic-sequence") >= 0)
                 {

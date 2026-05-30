@@ -83,8 +83,10 @@ namespace ArcaneBrigade
             // each fading smoothly to nothing at its sides and its ends; no outline anywhere
             if (alpha <= .01f) return;
             float a = alpha * strength * (calm ? .7f : 1);
-            canvas.GlowRibbon(path, head, tail, width * 3.2f, A(ink.Glow, .32f * a));
-            canvas.GlowRibbon(path, head, tail, width * 1.4f, A(Color.Lerp(ink.Body, ink.Light, .35f), .72f * a));
+            // the halo and body are capped (owner 24/10/2026: a wide stroke from the hero, Soap Skater's ice line, buried it in
+            // a sheet of white light)
+            canvas.GlowRibbon(path, head, tail, Mathf.Min(width * 3.2f, .6f), A(ink.Glow, .32f * a));
+            canvas.GlowRibbon(path, head, tail, Mathf.Min(width * 1.4f, .36f), A(Color.Lerp(ink.Body, ink.Light, .35f), .72f * a));
             canvas.GlowRibbon(path, head, tail, width * .5f, A(Color.Lerp(ink.Light, Color.white, .45f), .9f * a));
         }
         private static Material lightMaterial;
@@ -134,6 +136,7 @@ namespace ArcaneBrigade
                     ArtProps(); // the painted objects of the transformations (HeroArtPropsVisual)
                     Rims(); // after the gauge is placed: the rim outlines this frame's vessel
                     PowerUp(); // the hero's own body: the power-up as it transforms and the aura of a self-empowering skill (HeroPowerVisual)
+                    Flourish(); // the weapon charging while the gauge flashes full, afterimages behind a dashing hero (HeroFlourishVisual)
                     ShaderLayer(); // each hero's own shader moment (HeroShaderLayer)
                     WaitingMaterial(); AwakenProps(); // the waiting shader and the second set of painted objects (HeroCompleteLayer)
                     DrawCastCue();
@@ -498,6 +501,8 @@ namespace ArcaneBrigade
             Vector2 a = g.Position, b = g.End; float half = Mathf.Max(.1f, g.Width), length = Vector2.Distance(a, b);
             if (length < .05f) return;
             Vector2 axis = (b - a) / length, normal = new Vector2(-axis.y, axis.x);
+            // a line struck from the hero starts clear of its body, so the hero is never drawn over by its own skill
+            if (sim.Champion != null && (a - sim.Champion.Position).sqrMagnitude < .09f && length > 1) { float clear = Mathf.Min(.5f, length * .25f); a += axis * clear; length -= clear; }
             if (pre)
             {
                 ground.Band(a, b, half, A(ink.Body, .02f * strength), A(ink.Body, (.05f + .1f * q) * strength));
@@ -517,7 +522,7 @@ namespace ArcaneBrigade
                 case InkBrush.Bolt: path = InkCanvas.Line(a, b, half * .48f, 0, true, g.Seed); width = .22f; break;
                 case InkBrush.Wave: path = InkCanvas.Line(a, b, half * .3f, 9, false, seed); width = .3f; break;
                 case InkBrush.Thread: path = InkCanvas.Line(a, b, half * .12f, 5, false, seed); width = .2f; break;
-                case InkBrush.Silk: path = InkCanvas.Line(a, b, half * .22f, 4.5f, false, seed); width = .38f; break;
+                case InkBrush.Silk: path = InkCanvas.Line(a, b, half * .22f, 4.5f, false, seed); width = .26f; break; // was .38: a sheet of light
                 case InkBrush.Flame: path = InkCanvas.Line(a, b, half * .16f, 12, false, seed); width = .36f; break;
                 case InkBrush.Ink: path = InkCanvas.Line(a, b); width = .3f; break;
                 default: path = InkCanvas.Line(a, b); width = .34f; break;
