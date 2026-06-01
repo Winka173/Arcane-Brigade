@@ -46,7 +46,9 @@ namespace ArcaneBrigade
             else if (layout == 1) { text = new Rect(inner.x, inner.y + 20 * scale, inner.width * .44f, inner.height); demo = new Rect(text.xMax + 30 * scale, inner.y, inner.width * .56f - 30 * scale, inner.height); }
             else { demo = new Rect(inner.x, inner.y, inner.width, inner.height * .62f); text = new Rect(inner.x + 20 * scale, demo.yMax + 10 * scale, inner.width - 40 * scale, inner.height * .38f - 10 * scale); }
             RunHud.Fill(demo, new Color(.05f, .06f, .09f, .55f));
-            DemoPage(page, demo, t, c, heroId, accent, scale);
+            // owner 24/10/2026: the pages show pictures taken from real play (HowToRecorder -> Resources/HowTo); the code-drawn
+            // demo stands in where a picture is missing
+            if (!Clip(page, demo, t)) DemoPage(page, demo, t, c, heroId, accent, scale);
             Color ink = page % 2 == 0 ? ArcadeSkin.Paper : ArcadeSkin.KitInk;
             head.fontSize = Mathf.RoundToInt(34 * scale); body.fontSize = Mathf.RoundToInt(22 * scale); pop.fontSize = Mathf.RoundToInt(26 * scale);
             head.normal.textColor = Color.Lerp(accent, ink, page % 2 == 0 ? .1f : .55f); body.normal.textColor = ink;
@@ -71,6 +73,18 @@ namespace ArcaneBrigade
             }
         }
 
+        private static readonly Texture2D[] clips = new Texture2D[7]; private static readonly bool[] clipTried = new bool[7];
+        /// <summary>Shows the page's picture of real play, fitted inside the demo area. False if none.</summary>
+        private static bool Clip(int page, Rect area, float t)
+        {
+            if (page < 0 || page >= clips.Length) return false;
+            if (!clipTried[page]) { clipTried[page] = true; clips[page] = Resources.Load<Texture2D>("HowTo/Clip" + page); }
+            Texture2D atlas = clips[page]; if (atlas == null) return false;
+            float w = area.width, h = w * 9 / 16f; if (h > area.height) { h = area.height; w = h * 16 / 9f; }
+            Rect r = new Rect(area.center.x - w * .5f, area.center.y - h * .5f, w, h);
+            GUI.DrawTexture(r, atlas, ScaleMode.ScaleToFit);
+            return true;
+        }
         private static Sprite Hero(RunCatalog c, string heroId) => (heroId != null ? c.Unit(heroId)?.Body : null) ?? (c.Champions != null && c.Champions.Length > 0 ? c.Champions[0].Body : null);
         private static Sprite Enemy(RunCatalog c, int i) => c.Enemies != null && c.Enemies.Length > 0 ? c.Enemies[i % c.Enemies.Length].Body : null;
         private static Sprite Friend(RunCatalog c, int i) => c.Companions != null && c.Companions.Length > 0 ? c.Companions[(i * 7) % c.Companions.Length].Body : null;

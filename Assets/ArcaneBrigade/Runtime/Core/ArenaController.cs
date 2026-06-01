@@ -283,6 +283,7 @@ namespace ArcaneBrigade
             if ((RunPaths.K2Capture || RunPaths.K3FinalCapture || RunPaths.K7Capture) && presentationMoveTarget.HasValue && (simulation.Phase == RunPhase.Combat || RunPaths.K7Capture && simulation.Phase == RunPhase.Rest)) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
             if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
             if (SecretRoom != null && SecretRoom.MenuOpen) moveIntent = Vector2.zero;
+            if (ScriptedMove.HasValue && RunPaths.Diagnostic) moveIntent = Vector2.ClampMagnitude(ScriptedMove.Value, 1); // recorded guide clips (HowToRecorder)
             if (Shop != null && !TransitionPending && !hallExitPending && simulation.Phase == RunPhase.Rest && !StoryConsumesInput && (SecretRoom == null || !SecretRoom.MenuOpen)) moveIntent = Shop.TapToWalk(moveIntent, arenaCamera);
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
@@ -612,6 +613,8 @@ namespace ArcaneBrigade
             details.Close(); pauseGate.ResetSession(); Begin();
         }
         /// <summary>Owner 24/10/2026: back to the menu without writing this moment; the run resumes from its last save boundary.</summary>
+        /// <summary>Diagnostics only: a scripted stick for recorded clips.</summary>
+        public static Vector2? ScriptedMove;
         public void ExitWithoutSaving() { RunLaunch.OpenHub = false; SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
         public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenHub = session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat); SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
         /// <summary>Play again: the same hero with the Waiting Room's loadout; the Nursery hands over its first friend and the
