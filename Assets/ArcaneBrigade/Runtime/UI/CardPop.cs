@@ -23,7 +23,7 @@ namespace ArcaneBrigade
             float t = Mathf.Clamp01((now - s.Since) / OpenTime);
             if (t >= 1) return keep;
             GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * Mathf.Clamp01(t * 1.6f));
-            if (!PresentationSettings.ReducedMotion) GUIUtility.ScaleAroundPivot(Vector2.one * (.88f + .12f * Overshoot(t)), card.center + Vector2.up * ((1 - t) * 18));
+            if (!PresentationSettings.ReducedMotion) ArcadeSkin.ScaleAround(Vector2.one * (.88f + .12f * Overshoot(t)), card.center + Vector2.up * ((1 - t) * 18));
             return keep;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

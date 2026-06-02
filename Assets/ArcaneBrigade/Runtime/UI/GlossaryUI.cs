@@ -179,7 +179,7 @@ namespace ArcaneBrigade
                     if (draw)
                     {
                         Rect m = new Rect(bounds.x + horizontal + 2, bounds.y + vertical + (line - mark) * .5f, mark, mark);
-                        Matrix4x4 keep = GUI.matrix; GUIUtility.RotateAroundPivot(45, m.center);
+                        Matrix4x4 keep = GUI.matrix; ArcadeSkin.TurnAround(45, m.center);
                         ArcadeSkin.Line(m, ArcadeSkin.Gold); ArcadeSkin.Line(new Rect(m.x + mark * .3f, m.y + mark * .3f, mark * .4f, mark * .4f), ArcadeSkin.Cream);
                         GUI.matrix = keep;
                     }

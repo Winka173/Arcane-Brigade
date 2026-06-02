@@ -51,7 +51,7 @@ namespace ArcaneBrigade
             float scale = Mathf.Min(bounds.width / (source.width * c + source.height * s), bounds.height / (source.width * s + source.height * c));
             bounds = new Rect(centre.x - source.width * scale * .5f, centre.y - source.height * scale * .5f, source.width * scale, source.height * scale);
             var matrix = GUI.matrix;
-            if (rotation != 0) GUIUtility.RotateAroundPivot(rotation, centre);
+            if (rotation != 0) ArcadeSkin.TurnAround(rotation, centre);
             GUI.DrawTextureWithTexCoords(bounds, sprite.texture, new Rect(source.x / sprite.texture.width, source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height), true);
             GUI.matrix = matrix;
         }

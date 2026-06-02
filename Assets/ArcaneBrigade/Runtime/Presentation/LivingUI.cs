@@ -9,7 +9,7 @@ namespace ArcaneBrigade
         public static void Enter(float age, Vector2 pivot)
         {
             float reveal = Reveal(age, PresentationSettings.ReducedMotion);
-            GUIUtility.ScaleAroundPivot(Vector2.one * Mathf.Lerp(0.97f, 1, reveal), pivot);
+            ArcadeSkin.ScaleAround(Vector2.one * Mathf.Lerp(0.97f, 1, reveal), pivot);
             GUI.color *= new Color(1, 1, 1, reveal);
         }
     }

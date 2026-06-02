@@ -650,12 +650,12 @@ namespace ArcaneBrigade
             float alpha = Mathf.Clamp01((1.1f - age) / 0.35f);
             Rect ticket = new Rect(point.x - 62, point.y - 20 + fall, 124, 40);
             Matrix4x4 unrotated = GUI.matrix;
-            GUIUtility.RotateAroundPivot(reduced ? 0 : Mathf.Min(age, 0.6f) * 25f, new Vector2(ticket.x, ticket.y));
+            ArcadeSkin.TurnAround(reduced ? 0 : Mathf.Min(age, 0.6f) * 25f, new Vector2(ticket.x, ticket.y));
             Color previous = GUI.color; GUI.color = new Color(1, 1, 1, alpha);
             ArcadeSkin.Ticket(ticket, ArcadeSkin.Cream, ArcadeSkin.Gold);
             float slam = reduced ? 1 : Mathf.Lerp(1.8f, 1f, Mathf.Clamp01(age / 0.12f));
-            GUIUtility.ScaleAroundPivot(Vector2.one * slam, ticket.center);
-            GUIUtility.RotateAroundPivot(-12, ticket.center);
+            ArcadeSkin.ScaleAround(Vector2.one * slam, ticket.center);
+            ArcadeSkin.TurnAround(-12, ticket.center);
             if (soldStyle == null) { soldStyle = ArcadeTypography.Style(26, true); soldStyle.alignment = TextAnchor.MiddleCenter; soldStyle.normal.textColor = ArcadeSkin.Danger; if (ArcadeTypography.Display != null) soldStyle.font = ArcadeTypography.Display; }
             ArcadeSkin.Line(new Rect(ticket.x + 8, ticket.y + 6, ticket.width - 16, 3), ArcadeSkin.Danger);
             ArcadeSkin.Line(new Rect(ticket.x + 8, ticket.yMax - 9, ticket.width - 16, 3), ArcadeSkin.Danger);
@@ -698,7 +698,7 @@ namespace ArcaneBrigade
             float punch = still || talkNearAt < 0 ? 1 : 1 + .18f * Mathf.Sin(Mathf.Clamp01((now - talkNearAt) / .3f) * Mathf.PI);
             Rect bubble = new Rect(at.x - 30, at.y - 58 + bob - jump, 60, 42);
             Matrix4x4 restoreMatrix = GUI.matrix;
-            if (grow * punch != 1) GUIUtility.ScaleAroundPivot(Vector2.one * grow * punch, new Vector2(bubble.center.x, bubble.yMax + 8));
+            if (grow * punch != 1) ArcadeSkin.ScaleAround(Vector2.one * grow * punch, new Vector2(bubble.center.x, bubble.yMax + 8));
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * (.72f + .28f * near));
             if (near > .05f) ArcadeSkin.Glow(new Rect(bubble.x - 14, bubble.y - 12, bubble.width + 28, bubble.height + 24), new Color(1f, .85f, .5f, .4f * near));
             ArcadeSkin.Diamond(new Vector2(bubble.center.x, bubble.yMax - 1), 14, new Color(.95f, .89f, .76f)); // the tail, under the bubble
@@ -752,7 +752,7 @@ namespace ArcaneBrigade
                 float sway = reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f + order * 1.3f) * (2.5f + station.Focus * 3f);
                 if (denied && !reduced) sway += Mathf.Sin(Time.unscaledTime * 48f) * 9f * Mathf.Clamp01((station.DeniedUntil - owner.PresentationClock) / 0.5f);
                 Matrix4x4 unrotated = GUI.matrix;
-                GUIUtility.RotateAroundPivot(sway, hook);
+                ArcadeSkin.TurnAround(sway, hook);
                 ArcadeSkin.Line(new Rect(hook.x - 1, hook.y - 10, 2, ticket.y - hook.y + 12), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, 0.85f));
                 ArcadeSkin.Line(new Rect(hook.x - 4, hook.y - 14, 8, 8), ArcadeSkin.Gold);
                 ArcadeSkin.Ticket(ticket, denied ? new Color(1, 0.48f, 0.4f) : ArcadeSkin.Cream, station.Currency == ShopCurrency.Eggs ? ArcadeSkin.Teal : new Color(1, 0.48f, 0.36f));

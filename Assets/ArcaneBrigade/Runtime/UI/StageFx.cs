@@ -106,8 +106,8 @@ namespace ArcaneBrigade
             string word = split > 0 ? caption.Substring(0, split) : "", digits = split > 0 ? caption.Substring(split + 1) : caption;
             Matrix4x4 previous = GUI.matrix;
             Vector2 centre = new Vector2(960, 420);
-            GUIUtility.RotateAroundPivot(-9, centre);
-            GUIUtility.ScaleAroundPivot(Vector2.one * press, centre);
+            ArcadeSkin.TurnAround(-9, centre);
+            ArcadeSkin.ScaleAround(Vector2.one * press, centre);
             Color ink = new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.9f * alpha);
             ArcadeSkin.Glow(new Rect(centre.x - 170, centre.y - 170, 340, 340), new Color(0, 0, 0, 0.45f * alpha));
             Color old = GUI.color; GUI.color = ink;

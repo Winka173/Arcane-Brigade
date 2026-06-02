@@ -150,7 +150,7 @@ namespace ArcaneBrigade
             Color tint = GUI.color; bool wasEnabled = GUI.enabled;
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.5f * fade));
             GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * fade);
-            if (!still) GUIUtility.ScaleAroundPivot(Vector2.one * (closingAt >= 0 ? Mathf.Lerp(1, .9f, tClose) : .88f + .12f * Overshoot(tOpen)), card.center + Vector2.up * ((1 - tOpen) * 18 + tClose * 10));
+            if (!still) ArcadeSkin.ScaleAround(Vector2.one * (closingAt >= 0 ? Mathf.Lerp(1, .9f, tClose) : .88f + .12f * Overshoot(tOpen)), card.center + Vector2.up * ((1 - tOpen) * 18 + tClose * 10));
             if (closingAt >= 0) GUI.enabled = false; // no choice is taken while the card closes
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Sprite portrait = ExpansionArtwork.Current?.Visitor(v.Id, 1) ?? ExpansionArtwork.Current?.Visitor(v.Id, 0);
@@ -478,7 +478,7 @@ namespace ArcaneBrigade
             Color keep = GUI.color; GUI.color = new Color(keep.r * .75f, keep.g * .75f, keep.b * .75f, keep.a * .8f);
             Icon(new Rect(r.x + r.width * .2f, r.y + r.height * .2f, r.width * .6f, r.height * .6f), icon);
             GUI.color = keep;
-            Matrix4x4 m = GUI.matrix; GUIUtility.RotateAroundPivot(-45, r.center);
+            Matrix4x4 m = GUI.matrix; ArcadeSkin.TurnAround(-45, r.center);
             ArcadeSkin.Line(new Rect(r.center.x - r.width * .42f, r.center.y - 2.5f, r.width * .84f, 5), ArcadeSkin.Danger);
             GUI.matrix = m;
         }

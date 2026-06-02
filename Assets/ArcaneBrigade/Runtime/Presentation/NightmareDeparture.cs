@@ -63,8 +63,8 @@ namespace ArcaneBrigade
                 GUI.color = new Color(1, 1, 1, fade);
                 Rect actor = new Rect(horizontal - size * .5f, stage.yMax - size - 18 + bob - acting.z, size, size);
                 Matrix4x4 matrix = GUI.matrix;
-                GUIUtility.RotateAroundPivot(acting.y, new Vector2(actor.center.x, actor.yMax));
-                if (acting.x > .3f) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), actor.center);
+                ArcadeSkin.TurnAround(acting.y, new Vector2(actor.center.x, actor.yMax));
+                if (acting.x > .3f) ArcadeSkin.ScaleAround(new Vector2(-1, 1), actor.center);
                 RunHud.Sprite(actor, sprite);
                 GUI.matrix = matrix;
                 WeaponDefinition weapon = weapons[index];

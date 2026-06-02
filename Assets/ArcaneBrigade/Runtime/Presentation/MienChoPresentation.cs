@@ -279,7 +279,7 @@ namespace ArcaneBrigade
             float sway = still || age > 2.4f ? 0 : Mathf.Sin(age * 7f) * Mathf.Clamp01(1 - age / 2.4f) * 2.2f;
             Rect note = new Rect(NoticeRect.x + slide, NoticeRect.y, NoticeRect.width, NoticeRect.height);
             Matrix4x4 before = GUI.matrix;
-            if (sway != 0) GUIUtility.RotateAroundPivot(sway, new Vector2(note.x + 12, note.y + 6));
+            if (sway != 0) ArcadeSkin.TurnAround(sway, new Vector2(note.x + 12, note.y + 6));
             ArcadeSkin.Ticket(note, ArcadeSkin.Paper, ArcadeSkin.Wax);
             noteHand.normal.textColor = new Color(.25f, .19f, .14f);
             GUI.Label(new Rect(note.x + 16, note.y + 2, note.width - 64, 34), count > 1 ? count + " new pages" : "a new page", noteHand);

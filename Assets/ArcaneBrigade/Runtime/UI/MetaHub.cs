@@ -227,7 +227,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Glow(new Rect(hero.x - 120, hero.y - 150, 240, 190), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, .18f));
             ArcadeSkin.Glow(new Rect(hero.x - 46, hero.y - 14, 92, 26), new Color(0, 0, 0, .5f));
             Matrix4x4 keep = GUI.matrix;
-            if (facingLeft) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), r.center);
+            if (facingLeft) ArcadeSkin.ScaleAround(new Vector2(-1, 1), r.center);
             RunHud.Sprite(r, pose);
             GUI.matrix = keep;
         }

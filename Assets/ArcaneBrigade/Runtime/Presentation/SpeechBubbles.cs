@@ -212,7 +212,7 @@ namespace ArcaneBrigade
                 GUI.color = new Color(1, 1, 1, alpha);
                 Vector2 tailBase = tailed ? ClosestEdge(rect, anchor) : rect.center;
                 if (breathe != 0) { rect.y += breathe; tailBase.y += breathe; }
-                if (pop < 0.999f) GUIUtility.ScaleAroundPivot(Vector2.one * pop, tailed ? Vector2.Lerp(rect.center, tailBase, 0.7f) : rect.center);
+                if (pop < 0.999f) ArcadeSkin.ScaleAround(Vector2.one * pop, tailed ? Vector2.Lerp(rect.center, tailBase, 0.7f) : rect.center);
                 if (tailed) DrawTail(tailBase + new Vector2(3, 5), anchor + new Vector2(3, 5), new Color(0, 0, 0, 0.4f));
                 ArcadeSkin.Ticket(rect, paper, stamp);
                 if (tailed) DrawTail(tailBase, anchor, paper);
@@ -324,7 +324,7 @@ namespace ArcaneBrigade
             float length = Mathf.Min(distance - 3, 40);
             float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
             Matrix4x4 restore = GUI.matrix;
-            GUIUtility.RotateAroundPivot(angle, from);
+            ArcadeSkin.TurnAround(angle, from);
             Color previous = GUI.color;
             GUI.color = new Color(color.r, color.g, color.b, color.a * previous.a);
             GUI.DrawTexture(new Rect(from.x - 17, from.y - 10, 34, length + 10), tail);

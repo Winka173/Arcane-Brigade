@@ -166,7 +166,7 @@ namespace ArcaneBrigade
                 // the card pops in: rises from 92% with a small overshoot and fades up over 0.22 s
                 float t = Mathf.Clamp01((Time.unscaledTime - shownAt) / 0.22f), back = 1 + 2.2f * Mathf.Pow(t - 1, 3) + 1.2f * Mathf.Pow(t - 1, 2);
                 Rect pivot = CardRect(open, camera);
-                GUIUtility.ScaleAroundPivot(Vector2.one * (0.92f + 0.08f * back), pivot.center + Vector2.up * (1 - t) * 14);
+                ArcadeSkin.ScaleAround(Vector2.one * (0.92f + 0.08f * back), pivot.center + Vector2.up * (1 - t) * 14);
                 GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * Mathf.Clamp01(t * 1.6f));
             }
             if (open != null)

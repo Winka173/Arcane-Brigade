@@ -93,7 +93,7 @@ namespace ArcaneBrigade
             float angle = from.x < -0.5f ? 0 : from.x > 0.5f ? 180 : from.y > 0.5f ? 90 : -90;
             Vector2 centre = band.center;
             Rect drawn = Mathf.Abs(from.x) > 0.5f ? band : new Rect(centre.x - band.height * 0.5f, centre.y - band.width * 0.5f, band.height, band.width);
-            GUIUtility.RotateAroundPivot(angle, centre);
+            ArcadeSkin.TurnAround(angle, centre);
             GUI.DrawTexture(drawn, edge);
             GUI.matrix = matrix;
             GUI.color = previous;
