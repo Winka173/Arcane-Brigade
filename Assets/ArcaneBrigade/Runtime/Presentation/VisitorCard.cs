@@ -275,8 +275,9 @@ namespace ArcaneBrigade
                 Lift rise = Rise(plate, Entry(i), 0, PickScale(i == picked));
                 bool hover = o.Enabled && plate.Contains(Event.current.mousePosition);
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
-                ArcadeSkin.Plate(plate, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
-                if (hover) ArcadeSkin.WorldFocus(plate);
+                // the chosen plate is gold UNDER its words (owner 24/10/2026: the gold laid over it hid the price and the reward)
+                ArcadeSkin.Plate(plate, hover || i == picked ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
+                if (hover || i == picked) ArcadeSkin.WorldFocus(plate);
                 Rect pc = ArcadeSkin.Content(plate, KitPiece.Dialogue);
                 float y = pc.y;
                 verb.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);
@@ -286,7 +287,6 @@ namespace ArcaneBrigade
                 if (!string.IsNullOrEmpty(d.When)) When(new Rect(pc.x, y, pc.width, 40), d.When);
                 GUI.color = keep;
                 if (!o.Enabled) Missing(new Rect(plate.xMax - 62, plate.y - 14, 56, 56), v, d, state);
-                if (i == picked) { ArcadeSkin.Plate(plate, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .35f)); ArcadeSkin.WorldFocus(plate); }
                 if (o.Enabled && GUI.Button(plate, GUIContent.none, GUIStyle.none)) Pick(i, options);
                 Settle(rise);
             }
