@@ -265,8 +265,8 @@ namespace ArcaneBrigade
                     break;
                 }
                 case KitAction.Monsoon when !still:
-                    // the storm as rain lit by the lamps: streaks slanting down round the hero, splashing where they land
-                    sigScale = 1; for (int i = 0; i < (sparse ? 2 : 4); i++) RainStreaks(at + new Vector2(((i * 53) % 9 - 4) * .5f, ((i * 31) % 5 - 2) * .3f), 5, Mathf.Repeat(t * .9f + i * .27f, 1), .85f * dim);
+                    // the storm as rain lit by the lamps: streaks slanting down round the hero, splashing where they land (denser 24/10)
+                    sigScale = 1; for (int i = 0; i < (sparse ? 3 : 7); i++) RainStreaks(at + new Vector2(((i * 53) % 9 - 4) * .5f, ((i * 31) % 5 - 2) * .3f), 5, Mathf.Repeat(t * .9f + i * .27f, 1), .85f * dim);
                     break;
                 case KitAction.Rink:
                 case KitAction.Monsoon:
@@ -290,8 +290,8 @@ namespace ArcaneBrigade
                         Vector2 sky = DrawnAt(friend) + new Vector2(still ? .25f : .25f + Mathf.Sin(t * 1.7f + i * 1.3f) * .18f, friend.Definition.BodyHeight * .5f + .95f + Bob(i + 2) * 2);
                         Thread(hand, sky + Vector2.down * .2f, .85f, 11 + i);
                         float run = friend.Position.x - friend.PreviousPosition.x; Sprite fleetKite = HeroEffectArtLibrary.Frame("KiteAdmiral_FleetKite", Mathf.Abs(run) < .002f ? 0 : run < 0 ? 1 : 2);
-                        if (fleetKite != null) { var fr = Place(fleetKite, sky, Vector2.one * .62f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 6, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (fr != null) fr.flipX = false; }
-                        else if (kite != null) { var r = Place(kite, sky, Vector2.one * .62f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 12, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (r != null) r.flipX = false; }
+                        if (fleetKite != null) { var fr = Place(fleetKite, sky, Vector2.one * .8f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 6, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (fr != null) fr.flipX = false; }
+                        else if (kite != null) { var r = Place(kite, sky, Vector2.one * .8f, still ? 0 : Mathf.Sin(t * 2.3f + i) * 12, new Color(1, 1, 1, strength * Mathf.Clamp01(remaining * 5)), true); if (r != null) r.flipX = false; }
                         else Token(InkToken.Spark, sky, .4f, 0, .9f, true);
                         if (!sparse) for (int k = 0; k < 2; k++) { float q = Mathf.Repeat(t * .9f + k * .5f + i * .2f, 1); Token(InkToken.Glint, sky + new Vector2(-.3f - q * .5f, -.15f - q * .25f), .14f * (1 - q), 0, (1 - q) * .7f, true, 0, ArsenalInk.Water); }
                     }

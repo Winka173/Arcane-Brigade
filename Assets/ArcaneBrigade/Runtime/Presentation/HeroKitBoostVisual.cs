@@ -87,6 +87,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i <= 5; i++) pts.Add(o + new Vector2(i * .18f, (i / 5f) * .5f * lift + ((i * 37) % 5 - 2) * .03f));
                     Soft(air, pts, 1, 0, .045f, .9f);
                     Token(InkToken.Coin, pts[pts.Count - 1] + Vector2.up * .08f, .2f, still ? 0 : t * 120, .95f, true);
+                    for (int i = 0; i < 4; i++) { float r = Mathf.Repeat(t * .6f + i / 4f, 1); Token(i % 2 == 0 ? InkToken.Page : InkToken.Coin, at + new Vector2(((i * 37) % 7 - 3) * .2f + Mathf.Sin(r * 6 + i) * .15f, body * .9f - r * body * 1.3f), .2f, still ? 0 : Mathf.Sin(r * 8 + i) * 30, Mathf.Sin(r * Mathf.PI) * .85f, true); } // receipts and coins flutter down
                     break;
                 }
                 case KitAction.Engine: // the boiler's pressure shows in thicker steam from its stack, puffing faster as it rises
@@ -98,6 +99,7 @@ namespace ArcaneBrigade
                     break;
                 }
                 case KitAction.HighTide: // a longer, foaming wake behind the wave
+                    for (int i = 0; i < (sparse ? 3 : 6); i++) { float r = Mathf.Repeat(t * 2f + i / 6f, 1), side = (i - 2.5f) * .22f; Token(InkToken.Bubble, feet + facing * (.7f + r * .25f) + new Vector2(-facing.y, facing.x) * side + Vector2.up * (.15f + Mathf.Sin(r * Mathf.PI) * .25f), .1f + .06f * (i % 2), 0, Mathf.Sin(r * Mathf.PI) * .9f, true, 0, ArsenalInk.Water); } // foam on the crest
                     if (moving && !sparse) for (int i = 0; i < 5; i++) { float r = Mathf.Repeat(t * 1.4f + i / 5f, 1); Token(InkToken.Bubble, feet - facing * (.4f + r * 1.6f) + new Vector2(0, Mathf.Sin(r * 9 + i) * .2f), .14f + .1f * (1 - r), 0, (1 - r) * .85f, false, 0, ArsenalInk.Water); }
                     break;
                 case KitAction.Spring: // petals turn round its feet and rise
@@ -108,6 +110,7 @@ namespace ArcaneBrigade
                     {
                         if (!f.Alive || f.Faction != Faction.Companion) continue;
                         Token(InkToken.Seal, Head(f) + Vector2.up * (.05f + Bob(f.Id) * 2), .2f, still ? 0 : Mathf.Sin(t * 2 + f.Id) * 8, .9f, true);
+                        Token(InkToken.Spear, DrawnAt(f) + new Vector2(-.3f, .3f), .3f, 80 + (still ? 0 : Mathf.Sin(t * 2.5f + f.Id) * 6), .85f, true); // its banner
                     }
                     break;
                 case KitAction.Feast: // what it swallows is drawn into the mouth in a spiral of ink and fangs
@@ -124,12 +127,67 @@ namespace ArcaneBrigade
                         Token(InkToken.Button, foe + Vector2.up * (sim.HeroAwakenFoe.Definition.BodyHeight * .5f + .2f), .24f, still ? 0 : t * 90, .95f, true);
                     }
                     break;
-                case KitAction.DivingBell: // a stream of bubbles round the bell
-                    for (int i = 0; i < (sparse ? 3 : 6); i++) { float r = Mathf.Repeat(t * .9f + i / 6f, 1); Token(InkToken.Bubble, feet + new Vector2(((i * 37) % 7 - 3) * .14f + Mathf.Sin(r * 7 + i) * .06f, .2f + r * (body + .6f)), .1f + .08f * (i % 3), 0, Mathf.Sin(r * Mathf.PI) * .85f, true, 0, ArsenalInk.Water); }
-                    break;
                 case KitAction.TimeGarden: // a little gear turns over every foe the clock hand has slowed
                     foreach (UnitState u in sim.Units)
                         if (u.Alive && u.Faction == Faction.Enemy && u.KitSlowUntil > sim.Elapsed) Token(InkToken.Glint, Head(u) + Vector2.up * .05f, .18f, still ? 0 : t * 160 + u.Id * 30, .85f, true);
+                    break;
+                // ---- the second review (owner 24/10/2026)
+                case KitAction.Gatling: // the stamped addresses carry a big red seal over their heads
+                    for (int i = 0; i < sim.HeroIdentityMarkCount; i++) { UnitState u = sim.HeroIdentityMarked(i); if (u == null || !u.Alive) continue; Token(InkToken.Seal, Head(u) + Vector2.up * (.1f + Bob(u.Id) * 2), .3f, still ? 0 : Mathf.Sin(t * 3 + u.Id) * 10, .95f, true); }
+                    break;
+                case KitAction.Mitosis: // a strand of jelly ties each twin to the hero, dripping as they move
+                    for (int i = 0; i < sim.HeroAwakenEchoes.Count; i++)
+                    {
+                        Vector2 e = sim.HeroAwakenEchoes[i]; if ((e - hero.Position).sqrMagnitude < .1f) continue;
+                        Soft(air, InkCanvas.Lob(at, e, -.25f, 14), 1, 0, .05f, .6f);
+                        if (!still) { float r = Mathf.Repeat(t * 1.5f + i * .5f, 1); Token(InkToken.Drop, Vector2.Lerp(at, e, .5f) + Vector2.down * (.2f + r * .5f), .12f, 180, (1 - r) * .8f, true); }
+                    }
+                    break;
+                case KitAction.Meteors: // a scorch mark stays a moment where each meteor fell
+                    foreach (var g in sim.HeroIdentityGlyphs)
+                    {
+                        float age = t - g.At; if (g.Role != HeroGlyphRole.Strike || age < 0 || age > 2) continue;
+                        for (int k = 0; k < 5; k++) { float a = k * 72 + g.Seed % 60; Vector2 tip = g.Position + Dir(a) * (.35f + .1f * (k % 2)); groundInk.Stroke(InkCanvas.Line(g.Position, tip, .04f, 0, true, g.Seed + k), new InkStroke { Width = .06f, Head = 1, Tail = 0, Taper = 1.8f, Alpha = .7f * (1 - age / 2) * strength, Ink = new Color(.08f, .05f, .04f), Body = new Color(.2f, .12f, .08f), Light = new Color(.45f, .25f, .12f), LightOffset = .1f }); }
+                    }
+                    break;
+                case KitAction.AcornGun: // the bounty wears a crown of coins
+                {
+                    UnitState b = sim.HeroIdentityBounty;
+                    if (b != null) for (int i = 0; i < 4; i++) { float a = (still ? 0 : t * 120) + i * 90; Token(InkToken.Coin, Head(b) + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * .3f, .15f + Mathf.Sin(a * Mathf.Deg2Rad) * .08f), .16f, a, .95f, true); }
+                    break;
+                }
+                case KitAction.Kintsugi: // gold cracks glow over the porcelain body while it cannot be hurt
+                    if (since < 3)
+                        for (int i = 0; i < 4; i++)
+                        {
+                            Vector2 a = at + new Vector2((i - 1.5f) * body * .16f, body * (.35f - (i % 2) * .2f)), b = a + new Vector2(((i * 7) % 3 - 1) * .12f, -body * .35f);
+                            Soft(air, InkCanvas.Line(a, b, .05f, 0, true, i * 11), 1, 0, .035f, .9f * (1 - since / 3));
+                        }
+                    break;
+                case KitAction.Rink: // a sheet of ice under the skater, its veins catching the light, bubbles left behind
+                    for (int i = 0; i < 6; i++) { float a = i * 60 + 15; groundInk.Stroke(InkCanvas.Line(feet + Dir(a) * .2f, feet + Dir(a + 20) * (1.1f + .3f * (i % 2)), .05f, 0, true, i * 5), new InkStroke { Width = .035f, Head = 1, Tail = 0, Taper = 1.6f, Alpha = .55f * strength, Ink = new Color(.4f, .6f, .75f), Body = new Color(.75f, .9f, 1f), Light = Color.white, LightOffset = .08f }); }
+                    if (moving && !sparse) for (int i = 0; i < 3; i++) { float r = Mathf.Repeat(t * 1.8f + i / 3f, 1); Token(InkToken.Bubble, feet - facing * (.3f + r * 1.1f) + Vector2.up * (.1f + r * .3f), .12f, 0, (1 - r) * .8f, true); }
+                    break;
+                case KitAction.Exhibit: // pages flutter round the curator as its exhibits step out
+                    for (int i = 0; i < 4; i++) { float r = Mathf.Repeat(t * .6f + i / 4f, 1); Token(InkToken.Page, at + new Vector2(((i * 37) % 7 - 3) * .2f + Mathf.Sin(r * 6 + i) * .15f, body * .9f - r * body * 1.3f), .16f, still ? 0 : Mathf.Sin(r * 8 + i) * 30, Mathf.Sin(r * Mathf.PI) * .85f, true); }
+                    break;
+                case KitAction.Tapestry: // every knot in the net glows and pulses as it tightens
+                    for (int i = 0; i < sim.HeroIdentityMarkCount; i++) { UnitState u = sim.HeroIdentityMarked(i); if (u == null || !u.Alive) continue; Token(InkToken.Knot, DrawnAt(u) + Vector2.up * .1f, .2f + (still ? 0 : .05f * Mathf.Sin(t * 8 + i)), t * 40, .95f, true); }
+                    break;
+                case KitAction.DivingBell: // a depth charge bursts as a column of water
+                    foreach (var d in sim.HeroAwakenDrops)
+                    {
+                        float after = (t - d.LandAt) / .5f; if (d.Kind != 1 || after < 0 || after > 1) continue;
+                        for (int k = -2; k <= 2; k++) Soft(air, InkCanvas.Line(d.At + new Vector2(k * .12f, 0), d.At + new Vector2(k * .16f, (.9f - Mathf.Abs(k) * .2f) * OutCubic(after))), 1, 0, .05f, (1 - after) * .85f);
+                    }
+                    for (int i = 0; i < (sparse ? 3 : 6); i++) { float r = Mathf.Repeat(t * .9f + i / 6f, 1); Token(InkToken.Bubble, feet + new Vector2(((i * 37) % 7 - 3) * .14f + Mathf.Sin(r * 7 + i) * .06f, .2f + r * (body + .6f)), .1f + .08f * (i % 3), 0, Mathf.Sin(r * Mathf.PI) * .85f, true, 0, ArsenalInk.Water); }
+                    break;
+                case KitAction.SundaeRain: // toppings fly where a scoop lands
+                    foreach (var d in sim.HeroAwakenDrops)
+                    {
+                        float after = (t - d.LandAt) / .4f; if (d.Kind != 0 || after < 0 || after > 1) continue;
+                        for (int k = 0; k < 6; k++) { float a = k * 60 + d.Born * 77; Token(k % 2 == 0 ? InkToken.Star : InkToken.Dumpling, d.At + Dir(a) * (.15f + .6f * OutCubic(after)) + Vector2.up * .3f * Mathf.Sin(after * Mathf.PI), .13f, a, 1 - after, true); }
+                    }
                     break;
                 case KitAction.Dreams: // a thread of stars ties each dream to the hero
                     for (int i = 0; i < 3; i++)
@@ -137,6 +195,7 @@ namespace ArcaneBrigade
                         Vector2 e = sim.HeroAwakenEchoes[i]; if ((e - hero.Position).sqrMagnitude < .1f) continue;
                         Vector2 a = at + Vector2.up * .2f, b = e + Vector2.up * .2f;
                         for (int s = 1; s < 5; s++) { float f = s / 5f; Token(InkToken.Star, Vector2.Lerp(a, b, f) + Vector2.up * Mathf.Sin(f * Mathf.PI) * .25f, .1f, t * 90 + s * 40, .6f, true); }
+                        for (int z = 0; z < 3; z++) { float r = Mathf.Repeat(t * .7f + z / 3f + i * .2f, 1); Token(InkToken.Moon, e + new Vector2(.25f + r * .3f + Mathf.Sin(r * 6) * .06f, .6f + r * .7f), .1f + .08f * r, -20, Mathf.Sin(r * Mathf.PI) * .8f, true); } // its sleep rises off it
                     }
                     break;
             }

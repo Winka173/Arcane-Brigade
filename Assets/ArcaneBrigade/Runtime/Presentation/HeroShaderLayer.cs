@@ -98,7 +98,7 @@ namespace ArcaneBrigade
                         UnitDefinition specimen = sim.HeroIdentitySpecimen(i); if (specimen == null && i > 0) break;
                         Vector2 spot = at + Dir(60 + i * 120) * 1.2f + Vector2.up * (still ? 0 : Mathf.Abs(Mathf.Sin(t * 3 + i * 2)) * .08f);
                         Sprite pose = specimen?.AuthoredMotion != null && specimen.AuthoredMotion.Idle != null && specimen.AuthoredMotion.Idle.Length > 0 ? specimen.AuthoredMotion.Idle[Mathf.FloorToInt(t * 3) % specimen.AuthoredMotion.Idle.Length] : specimen?.Body;
-                        Puppet(pose, spot - Vector2.up * .45f, Mathf.Clamp(specimen != null ? specimen.BodyHeight : .8f, .5f, 1.1f) * .95f, spot.x > at.x, Mathf.Clamp01(since * 3) * Mathf.Clamp01(sim.HeroAwakenRemaining * 6));
+                        Puppet(pose, spot - Vector2.up * .45f, Mathf.Clamp(specimen != null ? specimen.BodyHeight : .8f, .5f, 1.1f) * 1.25f, spot.x > at.x, Mathf.Clamp01(since * 3) * Mathf.Clamp01(sim.HeroAwakenRemaining * 6));
                     }
                     break;
                 case KitAction.BullMarket: Metal(HeroBody(hero), new Color(GoldLeaf.r, GoldLeaf.g, GoldLeaf.b, .65f), 0, .9f); break;

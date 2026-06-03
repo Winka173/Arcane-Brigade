@@ -72,8 +72,8 @@ namespace ArcaneBrigade
                 case KitAction.Citadel: // two layers of petal wall round the hero; a slit opens each time it shoots
                 {
                     int f = since < .35f ? 2 : Mathf.Repeat(t, .5f) < .14f ? 1 : 0;
-                    Prop("PetalCitadel_WallBack", f, at + Vector2.up * body * .15f, body * 1.75f, 0, side < 0, bodyOrder - 3, false);
-                    Prop("PetalCitadel_WallFront", f, at - Vector2.up * body * .12f, body * 1.6f, 0, side < 0, bodyOrder + 3, false);
+                    Prop("PetalCitadel_WallBack", f, at + Vector2.up * body * .25f, body * 2.2f, 0, side < 0, bodyOrder - 3, false);
+                    Prop("PetalCitadel_WallFront", f, at - Vector2.up * body * .05f, body * 2f, 0, side < 0, bodyOrder + 3, false);
                     break;
                 }
                 case KitAction.Circus: // balls and pins juggled over the head: pins tumble, balls squash at the bottom of the throw
