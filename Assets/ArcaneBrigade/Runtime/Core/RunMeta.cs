@@ -28,17 +28,21 @@ namespace ArcaneBrigade
     public static class RunMeta
     {
         public const int HistoryLimit = 50;
-        public static readonly string[] DifficultyNames = { "Peaceful", "Wandering", "Restless", "Nightmare", "Sleepless", "Beyond the Lamp" };
+        public static readonly string[] DifficultyNames = { "Peaceful", "Wandering", "Restless", "Nightmare", "Sleepless", "Beyond the Lamp", "Lightless", "The Last Night" };
+        /// <summary>The first difficulty that waits for a whole Lamp Tree (owner 24/10/2026: two extreme ones, opened only when
+        /// every permanent upgrade is done).</summary>
+        public const int TreeDifficulty = 6;
         public static readonly string[] ChallengeIds = { "", "night-shift", "first-light", "small-brigade" };
         public static readonly string[] ChallengeNames = { "Free journey", "Night shift · until dawn", "First light · clear hall 10", "Small brigade · win with ≤ 6 companions" };
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
-        public static int UnlockedDifficulty(PlayerProfile profile) => DifficultyNames.Length - 1;
-        /// <summary>Each difficulty's colour, calm to dangerous (owner 24/10/2026): green, moon blue, amber, orange, red, and a
-        /// deep crimson-violet for Beyond the Lamp.</summary>
-        public static Color DifficultyColor(int difficulty) => Mathf.Clamp(difficulty, 0, 5) switch
+        public static int UnlockedDifficulty(PlayerProfile profile) => MetaProgression.TreeDone(profile) ? DifficultyNames.Length - 1 : TreeDifficulty - 1;
+        /// <summary>Each difficulty's colour, calm to dangerous (owner 24/10/2026): green, moon blue, amber, orange, red, a deep
+        /// crimson-violet for Beyond the Lamp, then blood red and the enemies' own violet for the two after the whole tree.</summary>
+        public static Color DifficultyColor(int difficulty) => Mathf.Clamp(difficulty, 0, 7) switch
         {
             0 => new Color(.56f, .9f, .62f), 1 => new Color(.56f, .8f, 1f), 2 => new Color(1f, .84f, .38f),
-            3 => new Color(1f, .55f, .24f), 4 => new Color(.96f, .26f, .24f), _ => new Color(.82f, .2f, .62f),
+            3 => new Color(1f, .55f, .24f), 4 => new Color(.96f, .26f, .24f), 5 => new Color(.82f, .2f, .62f),
+            6 => new Color(.9f, .08f, .16f), _ => new Color(.62f, .32f, 1f),
         };
         public static int Score(RunSnapshot run, int liveKills = 0, bool liveBoss = false)
         {

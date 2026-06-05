@@ -69,6 +69,7 @@ namespace ArcaneBrigade
                 case ItemEffect.Damage: return target == ModifierScope.Team || target == ModifierScope.Champion || target == ModifierScope.Companions ? m.Damage : 0; // the Museum
                 case ItemEffect.Pickup: return target == ModifierScope.Run ? m.Pickup : 0;
                 case ItemEffect.Interest: return target == ModifierScope.Run ? m.Interest : 0;
+                case ItemEffect.ChestQuality: return target == ModifierScope.Run ? m.ChestQuality : 0; // Treasure nose
                 default: return 0;
             }
         }
@@ -101,6 +102,30 @@ namespace ArcaneBrigade
             uint h = unchecked((uint)State.Seed * 2654435761u ^ (uint)offer.Token * 40503u ^ 0x570Cu);
             h ^= h >> 15; h *= 2246822519u; h ^= h >> 13;
             return h % 10000 < chance * 10000;
+        }
+
+        /// <summary>Gold-star welcome (Lamp Tree): the first friend bought in a run arrives one star up.</summary>
+        private bool MetaWelcomeStar(RosterEntry recruited)
+        {
+            MetaRunState m = Meta;
+            if (m == null || !m.FirstFriendStar || m.FirstFriendUsed || recruited.Tier >= 3) return false;
+            m.FirstFriendUsed = true; recruited.Tier++;
+            return true;
+        }
+        /// <summary>Rare find (Lamp Tree): the run's first shop holds a rare relic (or better) on its last relic stall.</summary>
+        private void MetaRareFind(List<ItemDefinition> items)
+        {
+            MetaRunState m = Meta;
+            if (m == null || !m.FirstShopRare || m.FirstShopDone) return;
+            m.FirstShopDone = true;
+            var rare = items.FindAll(i => i.Rarity >= ItemRarity.Rare);
+            int slot = State.Offers.FindLastIndex(o => o.Kind == OfferKind.Item);
+            if (rare.Count == 0 || slot < 0) return;
+            ItemDefinition pick = rare[Next(ref State.ShopRandom, rare.Count)];
+            ShopOffer offer = State.Offers[slot];
+            float discount = Bonus(ItemEffect.Discount) + Bonus(ItemEffect.RelicDiscount);
+            offer.Id = pick.Id; offer.Tier = 1;
+            offer.Price = Mathf.Max(1, Mathf.CeilToInt(Mathf.CeilToInt(pick.Price * 0.85f * (1 + (int)pick.Rarity * 0.4f) * StagePriceFactor) * (1f - Mathf.Clamp(discount, -1, 0.5f))));
         }
 
         /// <summary>Battle fields of the loadout (called while the battle is compiled).</summary>

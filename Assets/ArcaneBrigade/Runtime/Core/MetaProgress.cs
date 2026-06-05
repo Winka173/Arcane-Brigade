@@ -17,7 +17,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class MetaProgress
     {
-        public const int CurrentRevision = 2; // 2: the Postbox, Museum, Night Pact, Window and Bell (additive, no migration)
+        public const int CurrentRevision = 3; // 2: the Postbox, Museum, Night Pact, Window and Bell (additive, no migration); 3: the Lamp Tree (old ranks refunded)
         public int Revision;
         public int LampOil, Keepsakes, LampOilEarned, KeepsakesEarned;
         public List<MetaRank> Ranks = new List<MetaRank>();
@@ -41,6 +41,11 @@ namespace ArcaneBrigade
         public List<MetaScore> DailyBest = new List<MetaScore>();
         /// <summary>The Bell: Favour stars (each +10% Lamp Oil gain).</summary>
         public int Favour;
+        /// <summary>The Lamp Tree: the lanterns lit (node ids), and the difficulties won (one bit each; each opens a branch).</summary>
+        public List<string> Tree = new List<string>();
+        public int WonMask;
+        /// <summary>Every lantern was lit once (it stays true after the Bell resets the oil ones): the last two difficulties open.</summary>
+        public bool TreeDone;
     }
 
     /// <summary>The meta loadout frozen into a run at its start (and what the run used of it). Saved with the run; a run saved
@@ -66,8 +71,12 @@ namespace ArcaneBrigade
         public float Damage, Gold;
         public int Pacts;
         public string Keepsake = "", Daily = "";
+        /// <summary>The Lamp Tree's crowns: the first friend bought arrives one star up; the first shop holds a rare relic;
+        /// Treasure nose's better chests.</summary>
+        public bool FirstFriendStar, FirstFriendUsed, FirstShopRare, FirstShopDone;
+        public float ChestQuality;
         public bool Any => Health > 0 || MoveSpeed > 0 || Pickup > 0 || Crit > 0 || ChestGold > 0 || TwoStarChance > 0 || CandleShare > 0 || GaugeStart > 0 || StartGold > 0 || Interest > 0 || ExtraSlots > 0 || FreeRefresh || RewindOwned || SecondHabit || Heirloom.Length > 0 || StartFriend.Length > 0 || AltStarter.Length > 0
-                           || Damage > 0 || Gold > 0 || Pacts != 0 || !string.IsNullOrEmpty(Keepsake) || !string.IsNullOrEmpty(Daily);
+                           || Damage > 0 || Gold > 0 || Pacts != 0 || FirstFriendStar || FirstShopRare || ChestQuality > 0 || !string.IsNullOrEmpty(Keepsake) || !string.IsNullOrEmpty(Daily);
     }
 
     /// <summary>One upgrade line of a station: ranks, their prices, what one rank adds.</summary>
@@ -87,17 +96,19 @@ namespace ArcaneBrigade
     public static partial class MetaProgression
     {
         public const float PowerCap = 25f;
-        public static readonly float[] DifficultyOil = { 1f, 1.2f, 1.4f, 1.6f, 1.8f, 2f };
+        public static readonly float[] DifficultyOil = { 1f, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 2.4f, 2.8f };
         public const int OilPerWave = 4, OilPerBoss = 12, OilPerBestWave = 8, FindsCap = 60;
         public static readonly int[] MasteryWaves = { 8, 20, 40 };
-        public static readonly MetaStation[] Working = (MetaStation[])Enum.GetValues(typeof(MetaStation)); // all ten (the last five: 21/10/2026)
+        /// <summary>The stations in the room: the Lantern is the Lamp Tree now; the Ledger, Nursery and Clock went into its branches (24/10/2026).</summary>
+        public static readonly MetaStation[] Working = { MetaStation.Lantern, MetaStation.Wardrobe, MetaStation.Postbox, MetaStation.Museum, MetaStation.NightPact, MetaStation.Window, MetaStation.Bell };
         public static bool Works(MetaStation station) => Array.IndexOf(Working, station) >= 0;
 
         private static MetaTrack T(string id, MetaStation station, string name, string line, MetaCurrency currency, int[] cost, float power, Func<int, string> value)
             => new MetaTrack { Id = id, Station = station, Name = name, Line = line, Currency = currency, Cost = cost, Power = power, Value = value };
         private static string Pct(float v) => "+" + Mathf.RoundToInt(v) + "%";
 
-        public static readonly MetaTrack[] Tracks =
+        public static readonly MetaTrack[] Tracks = new MetaTrack[0]; // retired 24/10/2026: the Lamp Tree (LampTree.cs)
+        private static readonly MetaTrack[] RetiredRankLines =
         {
             T("lantern.wick", MetaStation.Lantern, "Wick", "Max HP", MetaCurrency.LampOil, new[] { 15, 30, 50, 75, 105 }, 1.5f, r => r == 0 ? "—" : Pct(3 * r)),
             T("lantern.stride", MetaStation.Lantern, "Stride", "Move speed", MetaCurrency.LampOil, new[] { 20, 40, 65, 95 }, .5f, r => r == 0 ? "—" : Pct(2 * r)),
@@ -117,12 +128,12 @@ namespace ArcaneBrigade
 
         public static MetaTrack Track(string id) => Array.Find(Tracks, t => t.Id == id);
         public static IEnumerable<MetaTrack> For(MetaStation station) { foreach (MetaTrack t in Tracks) if (t.Station == station) yield return t; }
-        public static string StationName(MetaStation s) => s == MetaStation.NightPact ? "The Night Pact" : "The " + s;
+        public static string StationName(MetaStation s) => s == MetaStation.NightPact ? "The Night Pact" : s == MetaStation.Lantern ? "The Lamp Tree" : "The " + s;
         public static string StationLine(MetaStation s)
         {
             switch (s)
             {
-                case MetaStation.Lantern: return "The traveller";
+                case MetaStation.Lantern: return "Upgrades for every run";
                 case MetaStation.Ledger: return "Money";
                 case MetaStation.Nursery: return "Friends";
                 case MetaStation.Wardrobe: return "Hero mastery";
@@ -142,7 +153,10 @@ namespace ArcaneBrigade
         {
             MetaProgress m = profile.Meta ??= new MetaProgress();
             m.Ranks ??= new List<MetaRank>(); m.Found ??= new List<string>(); m.Mastery ??= new List<HeroMastery>();
-            m.Heirloom ??= ""; m.PaidRun ??= "";
+            m.Heirloom ??= ""; m.PaidRun ??= ""; m.Tree ??= new List<string>();
+            if (m.Revision < 3) RefundRetired(m); // before the old ranks are dropped below
+            { var lit = new HashSet<string>(); m.Tree.RemoveAll(id => Node(id) == null || !lit.Add(id)); }
+            if (m.WonMask == 0 && profile.Wins > 0) m.WonMask = 1; // a profile from before: its wins count as one difficulty
             m.LampOil = Mathf.Max(0, m.LampOil); m.Keepsakes = Mathf.Max(0, m.Keepsakes);
             m.LampOilEarned = Mathf.Max(0, m.LampOilEarned); m.KeepsakesEarned = Mathf.Max(0, m.KeepsakesEarned);
             m.DuetsFound = Mathf.Max(0, m.DuetsFound); m.PaidOil = Mathf.Max(0, m.PaidOil); m.PaidWaves = Mathf.Max(0, m.PaidWaves);
@@ -175,6 +189,7 @@ namespace ArcaneBrigade
         public static int StationRanks(PlayerProfile profile, MetaStation station)
         {
             if (station >= MetaStation.Postbox) return StationLevel(profile, station);
+            if (station == MetaStation.Lantern) return profile.Meta.Tree.Count;
             if (station == MetaStation.Wardrobe) { int best = 0; foreach (HeroMastery h in profile.Meta.Mastery) best = Mathf.Max(best, MasteryRank(h.Waves)); return best; }
             int sum = 0; foreach (MetaTrack t in For(station)) sum += Rank(profile, t.Id); return sum;
         }
@@ -205,10 +220,11 @@ namespace ArcaneBrigade
         /// <summary>Permanent combat power from the profile, in percent (never above <see cref="PowerCap"/>).</summary>
         public static float CombatPower(PlayerProfile profile)
         {
-            float sum = 0; foreach (MetaTrack t in Tracks) sum += t.Power * Rank(profile, t.Id);
+            float sum = 0; foreach (LampNode n in Tree) if (Lit(profile, n.Id)) sum += n.Power;
             return sum;
         }
-        public static float MaxCombatPower { get { float sum = 0; foreach (MetaTrack t in Tracks) sum += t.Power * t.Max; return sum; } }
+        /// <summary>The most a tree can add (each fork at its stronger side).</summary>
+        public static float MaxCombatPower { get { float sum = 0; foreach (LampNode n in Tree) { LampNode f = Fork(n); if (f == null || n.Power > f.Power || n.Power == f.Power && string.CompareOrdinal(n.Id, f.Id) < 0) sum += n.Power; } return sum; } }
 
         // ------------------------------------------------------------------ wardrobe (hero mastery)
         public static HeroMastery Mastery(PlayerProfile profile, string hero, bool create = false)
@@ -240,7 +256,7 @@ namespace ArcaneBrigade
         public static List<UnitDefinition> NurseryChoices(PlayerProfile profile, RunCatalog catalog, UnitDefinition champion)
         {
             var result = new List<UnitDefinition>();
-            if (Rank(profile, "nursery.cradle") < 1 || champion == null || champion.HeroMechanic == HeroMechanic.SoloMaw || catalog.HeroRevision == 0) return result;
+            if (!Lit(profile, "friends.cradle") || champion == null || champion.HeroMechanic == HeroMechanic.SoloMaw || catalog.HeroRevision == 0) return result;
             RosterEntry usual = K11HeroRules.Starter(catalog, champion);
             var pool = new List<UnitDefinition>();
             foreach (UnitDefinition unit in catalog.Companions) if (unit.Id != usual.UnitId && StarterEligible(catalog, champion, unit)) pool.Add(unit);
@@ -282,29 +298,34 @@ namespace ArcaneBrigade
             var s = new MetaRunState();
             StationLoadout(profile, catalog, s, keepsake, daily);
             float power = CombatPower(profile), scale = power > PowerCap ? PowerCap / power : 1;
-            int R(string id) => Rank(profile, id);
-            s.Health = .03f * R("lantern.wick") * scale;
-            s.MoveSpeed = .02f * R("lantern.stride") * scale;
-            s.Pickup = .35f * R("lantern.reach");
-            s.Crit = .01f * R("lantern.spark") * scale;
-            s.StartGold = 6 * R("ledger.purse");
-            s.FreeRefresh = R("ledger.look") > 0;
-            s.Interest = R("ledger.pockets");
-            s.ChestGold = .06f * R("ledger.chest");
-            s.ExtraSlots = R("ledger.shelf");
-            int candle = R("clock.candle");
-            s.CandleShare = candle >= 2 ? .4f : candle == 1 ? .3f : 0;
-            s.CandleShield = candle >= 3 ? 2 : 0;
-            s.RewindOwned = R("clock.rewind") > 0;
-            s.TwoStarChance = .03f * R("nursery.stork") * scale;
-            if (R("nursery.heirloom") > 0 && catalog != null && Array.Exists(catalog.Bonds, b => b.Id == profile.Meta.Heirloom)) s.Heirloom = profile.Meta.Heirloom;
+            var tree = new MetaRunState();
+            foreach (LampNode n in Tree) if (Lit(profile, n.Id)) n.Apply?.Invoke(tree);
+            s.Health = tree.Health * scale;
+            s.MoveSpeed = tree.MoveSpeed * scale;
+            s.Crit = tree.Crit * scale;
+            s.TwoStarChance = tree.TwoStarChance * scale;
+            s.Damage += tree.Damage * scale;
+            s.Pickup = tree.Pickup;
+            s.StartGold = tree.StartGold;
+            s.FreeRefresh = tree.FreeRefresh;
+            s.Interest = tree.Interest;
+            s.ChestGold = tree.ChestGold;
+            s.ChestQuality = tree.ChestQuality;
+            s.ExtraSlots = tree.ExtraSlots;
+            s.CandleShare = tree.CandleShare;
+            s.CandleShield = tree.CandleShare > 0 ? tree.CandleShield : 0;
+            s.RewindOwned = tree.RewindOwned;
+            s.FirstFriendStar = tree.FirstFriendStar;
+            s.FirstShopRare = tree.FirstShopRare;
+            if (tree.Heirloom.Length > 0 && catalog != null && Array.Exists(catalog.Bonds, b => b.Id == profile.Meta.Heirloom)) s.Heirloom = profile.Meta.Heirloom;
             UnitDefinition champion = catalog?.Unit(championId);
             if (champion != null)
             {
                 if (!string.IsNullOrEmpty(startFriend) && NurseryChoices(profile, catalog, champion).Exists(u => u.Id == startFriend)) s.StartFriend = startFriend;
                 int mastery = MasteryRank(profile, championId);
                 if (altStarter && mastery >= 1 && AltStarter(catalog, champion) is UnitDefinition alt) s.AltStarter = alt.Id;
-                if (mastery >= 2 && HeroKits.For(championId) != null) s.GaugeStart = .25f;
+                // the Wardrobe's warm gauge or the tree's Ready flame (a third: one tier), plus Quick and Keen dream
+                if (HeroKits.For(championId) != null) s.GaugeStart = Mathf.Min(.6f, Mathf.Max(mastery >= 2 ? .25f : 0, Lit(profile, "hero.crown") ? .34f : 0) + tree.GaugeStart);
                 s.SecondHabit = secondHabit && mastery >= 3 && HabitDropped(HeroKits.For(championId)).HasValue;
                 HeroMastery h = Mastery(profile, championId, true); h.AltStarter = altStarter; h.SecondHabit = secondHabit;
             }
@@ -317,8 +338,9 @@ namespace ArcaneBrigade
         public static PlayerProfile BotProfile(float level, RunCatalog catalog, string hero)
         {
             var p = new PlayerProfile(); MetaProgress m = Ensure(p);
-            foreach (MetaTrack t in Tracks) if (t.Id != "ledger.shelf") SetRank(m, t.Id, Mathf.FloorToInt(t.Max * level + .5f));
-            if (level >= 1) SetRank(m, "ledger.shelf", 1);
+            int tiers = Mathf.FloorToInt(TreeTiers * level + .5f);
+            foreach (LampNode n in Tree) if (n.Tier < tiers && (Fork(n) == null || Array.IndexOf(Tree, n) < Array.IndexOf(Tree, Fork(n)))) m.Tree.Add(n.Id);
+            if (level >= 1) m.WonMask = 1;
             UnitDefinition champion = catalog.Unit(hero);
             if (champion != null && champion.RecruitThemes != null && champion.RecruitThemes.Length > 0) m.Heirloom = champion.RecruitThemes[0];
             int ranks = Mathf.FloorToInt(MasteryWaves.Length * level + .5f);
@@ -351,13 +373,15 @@ namespace ArcaneBrigade
             int d = Mathf.Clamp(run.Difficulty, 0, DifficultyOil.Length - 1);
             int waves = WavesCleared(run), bosses = Mathf.Max(0, run.BossKills);
             MetaRunState meta = run.Meta ?? new MetaRunState();
-            int finds = Mathf.Min(FindsCap, 3 * meta.FoundUnits + meta.FoundItems + 10 * meta.FoundBosses);
+            int finds = Mathf.Min(FindsCap, 3 * meta.FoundUnits + meta.FoundItems + 10 * meta.FoundBosses) * (Lit(profile, "dream.finds") ? 2 : 1);
             int baseOil = waves * OilPerWave + bosses * OilPerBoss;
             int oil = Mathf.RoundToInt(baseOil * DifficultyOil[d]) + finds;
             if (waves > 0) lines.Add("oil|Waves survived ×" + waves + "|" + waves * OilPerWave);
             if (bosses > 0) lines.Add("oil|Bosses beaten ×" + bosses + "|" + bosses * OilPerBoss);
             if (d > 0 && baseOil > 0) lines.Add("oil|" + RunMeta.DifficultyNames[d] + " ×" + DifficultyOil[d].ToString("0.0#") + "|" + (Mathf.RoundToInt(baseOil * DifficultyOil[d]) - baseOil));
             if (finds > 0) lines.Add("oil|New finds|" + finds);
+            float bright = TreeOil(profile);
+            if (bright > 0 && oil > 0) { int more = Mathf.RoundToInt(oil * bright); lines.Add("oil|Bright oil +" + Mathf.RoundToInt(bright * 100) + "%|" + more); oil += more; }
             float pact = PactMultiplier(meta.Pacts), favour = FavourMultiplier(profile);
             if (pact > 1 && oil > 0) { int more = Mathf.RoundToInt(oil * pact) - oil; lines.Add("oil|Night Pact ×" + pact.ToString("0.0#") + "|" + more); oil += more; }
             if (favour > 1 && oil > 0) { int more = Mathf.RoundToInt(oil * favour) - oil; lines.Add("oil|Favour ★" + profile.Meta.Favour + "|" + more); oil += more; }
@@ -388,6 +412,7 @@ namespace ArcaneBrigade
             if (duets > 0) lines.Add("keep|Combos found ×" + duets + "|" + duetKeepsakes);
             keepsakes += duetKeepsakes;
             if (!string.IsNullOrEmpty(meta.Daily) && !profile.Meta.Found.Contains("daily/" + meta.Daily)) { found.Add("daily/" + meta.Daily); keepsakes += DailyKeepsakes; lines.Add("keep|Daily Dream|" + DailyKeepsakes); }
+            if (waves >= 10 && Lit(profile, "dream.crown")) { keepsakes++; lines.Add("keep|Keepsake dreams|1"); }
             if (pact > 1 && keepsakes > 0) { int more = Mathf.RoundToInt(keepsakes * pact) - keepsakes; if (more > 0) { keepsakes += more; lines.Add("keep|Night Pact ×" + pact.ToString("0.0#") + "|" + more); } }
             return (oil, keepsakes, lines, found, duets);
         }
@@ -418,6 +443,7 @@ namespace ArcaneBrigade
             m.LampOil = RunSession.BoundedCounter((long)m.LampOil + payOil); m.LampOilEarned = RunSession.BoundedCounter((long)m.LampOilEarned + payOil);
             m.Keepsakes = RunSession.BoundedCounter((long)m.Keepsakes + keepsakes); m.KeepsakesEarned = RunSession.BoundedCounter((long)m.KeepsakesEarned + keepsakes);
             foreach (string key in found) RunMeta.Add(m.Found, key);
+            if (run.Phase == SessionPhase.Victory) m.WonMask |= 1 << Mathf.Clamp(run.Difficulty, 0, 30);
             m.DuetsFound += duets;
             if (payWaves > 0) { HeroMastery h = Mastery(profile, run.ChampionId, true); h.Waves = RunSession.BoundedCounter((long)h.Waves + payWaves); }
             run.Meta.HaulOil = oil; run.Meta.HaulKeepsakes = keepsakes; run.Meta.HaulLines = lines;

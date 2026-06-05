@@ -733,6 +733,7 @@ namespace ArcaneBrigade
                 var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = Mathf.Clamp(offer.Tier, 1, 3) };
                 stork = recruited.Tier == 1 && MetaStork(offer);
                 if (stork) recruited.Tier = 2;
+                MetaWelcomeStar(recruited);
                 bool ownedBefore = OwnsCompanionSpecies(offer.Id);
                 State.Roster.Add(recruited);
                 KitRecruited(recruited, ownedBefore, choices);
@@ -1048,6 +1049,7 @@ namespace ArcaneBrigade
                 float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
                 State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : itemChoices[choice].Id, Tier = offerTier, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
+            MetaRareFind(items);
             OfferWiseHero();
             ApplyHeroOrder();
             ApplyKitPrices(); kitRarerRoll = false;

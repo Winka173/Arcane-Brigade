@@ -91,7 +91,7 @@ namespace ArcaneBrigade
         /// <summary>Play-test capture: the hub and hero select drawn from a prepared profile (never saved).</summary>
         public void ConfigureHubDiagnostics(PlayerProfile readOnlyProfile)
         {
-            if (!PlaytestFixCapture.Requested) throw new InvalidOperationException("Hub fixture requires the play-test capture");
+            if (!PlaytestFixCapture.Requested && !MenuReviewCapture.Requested) throw new InvalidOperationException("Hub fixture requires the play-test capture");
             profile = readOnlyProfile; loadoutHero = -1;
         }
         public WeaponSandbox Sandbox => sandbox;
@@ -224,7 +224,7 @@ namespace ArcaneBrigade
 
         private void Launch(bool resume)
         {
-            if (resume && !CanResume || !resume && profile.BestWave < catalog.Champions[selection].UnlockWave) return;
+            if (resume && !CanResume || !resume && (profile.BestWave < catalog.Champions[selection].UnlockWave || difficulty > RunMeta.UnlockedDifficulty(profile))) return;
             CheckpointAudio.PlayInterfaceId("ui.confirm");
             if (!resume && existingSave)
             {
@@ -390,6 +390,7 @@ namespace ArcaneBrigade
         private bool HubAffordable()
         {
             if (profile == null) return false;
+            if (MetaProgression.AnyLightable(profile)) return true;
             foreach (MetaStation station in MetaProgression.Working)
                 foreach (MetaTrack track in MetaProgression.For(station))
                     if (MetaProgression.Blocked(profile, track) == null) return true;
@@ -581,13 +582,16 @@ namespace ArcaneBrigade
             // one journey only (play-test 20/10/2026): the Night Shift / First Light / Small Crew challenges are off the menu;
             // their rules stay in RunMeta, dormant, for a later daily run
             challenge = 0;
-            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
+            // every difficulty is shown in turn; the two after the whole Lamp Tree show a lock until it is lit
+            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % RunMeta.DifficultyNames.Length;
+            bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile);
             // the difficulty's danger colour on its name alone, never on the painted plate (owner 24/10/2026: no tinted plates or boxes)
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(17, true)); danger.alignment = TextAnchor.MiddleCenter;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
-            GUI.Label(new Rect(780, 540, 420, 30), RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + DifficultyLine(difficulty), danger);
-            GUI.enabled = profile.BestWave >= champion.UnlockWave;
-            if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
+            if (sealedDifficulty) ArcadeSkin.Lock(new Vector2(790, 556), 16, danger.normal.textColor);
+            GUI.Label(new Rect(780, 540, 420, 30), RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + (sealedDifficulty ? "light the whole Lamp Tree" : DifficultyLine(difficulty)), danger);
+            GUI.enabled = profile.BestWave >= champion.UnlockWave && !sealedDifficulty;
+            if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
         }
         /// <summary>The Window's Daily Dream: today's hero and pact, Peaceful, the day's seed; straight into the night.</summary>
@@ -621,7 +625,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(card.x + 18, card.y + 12, w - 36, 26), explainHead, explainTitle);
             GUI.Label(new Rect(card.x + 18, card.y + 38, w - 36, h - 50), explainText, explainBody);
         }
-        private static string DifficultyLine(int d) => d switch { 0 => "a gentle night", 1 => "the usual dream", 2 => "tougher crowds", 3 => "hard and hungry", 4 => "no rest", _ => "beyond the lamp's light" };
+        private static string DifficultyLine(int d) => d switch { 0 => "a gentle night", 1 => "the usual dream", 2 => "tougher crowds", 3 => "hard and hungry", 4 => "no rest", 5 => "beyond the lamp's light", 6 => "no light at all", _ => "the night never ends" };
 
         private bool DrawLoadout(UnitDefinition champion, Rect row, GUIStyle note)
         {

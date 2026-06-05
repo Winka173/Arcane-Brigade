@@ -116,7 +116,7 @@ namespace ArcaneBrigade
             {
                 var meta = new PlayerProfile { TutorialSeen = true, BestWave = 40 }; MetaProgression.Ensure(meta);
                 meta.Meta.LampOil = 1000; meta.Meta.Keepsakes = 40;
-                foreach (string id in new[] { "lantern.wick", "lantern.wick", "lantern.spark", "ledger.purse", "ledger.look", "clock.candle", "nursery.cradle", "nursery.stork" }) MetaProgression.Buy(meta, id);
+                foreach (string id in new[] { "hero.wick", "hero.stride", "hero.reach", "hero.spark", "friends.stork", "gold.purse" }) MetaProgression.Light(meta, id);
                 meta.Meta.LampOil = 240; meta.Meta.Keepsakes = 6;
                 foreach (UnitDefinition champion in catalog.Champions) MetaProgression.Mastery(meta, champion.Id, true).Waves = 24;
                 menu.ConfigureHubDiagnostics(meta);

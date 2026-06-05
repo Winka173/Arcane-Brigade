@@ -21,9 +21,10 @@ namespace ArcaneBrigade
         public const float BaseHealth = 1.2f, BaseDamage = 1.15f;
         /// <summary>Enemy health added per wave (owner 22/10/2026: steeper growth; was .10, wave 20 now about +20% health).</summary>
         public const float WaveHealthStep = .13f;
-        public static readonly float[] HealthFactor = { .7f, 1.1f, 1.55f, 2.1f, 2.85f, 3.8f };
-        public static readonly float[] DamageFactor = { .38f, .92f, 1.4f, 1.8f, 2.55f, 3.5f };
-        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.12f, 1.2f, 1.3f, 1.42f };
+        // the last two (Lightless, The Last Night; 24/10/2026) open only with the whole Lamp Tree lit
+        public static readonly float[] HealthFactor = { .7f, 1.1f, 1.55f, 2.1f, 2.85f, 3.8f, 5.1f, 6.8f };
+        public static readonly float[] DamageFactor = { .38f, .92f, 1.4f, 1.8f, 2.55f, 3.5f, 4.6f, 6f };
+        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.12f, 1.2f, 1.3f, 1.42f, 1.56f, 1.72f };
         private static float Level(float[] table, int difficulty) => table[Mathf.Clamp(difficulty, 0, table.Length - 1)];
 
         public static float EnemyHealth(int difficulty, int wave) => BaseHealth * (1 + (Level(HealthFactor, difficulty) - 1) * Ramp(wave));

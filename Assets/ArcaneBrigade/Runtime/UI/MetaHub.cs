@@ -33,10 +33,8 @@ namespace ArcaneBrigade
         /// <summary>Where each station stands on the painted floor (its foot point) and how tall it is drawn.</summary>
         public static readonly Spot[] Spots =
         {
-            new Spot { Station = MetaStation.Lantern, Foot = new Vector2(392, 218), Height = 150 },
-            new Spot { Station = MetaStation.Ledger, Foot = new Vector2(905, 218), Height = 140 },
-            new Spot { Station = MetaStation.Clock, Foot = new Vector2(112, 452), Height = 160 },
-            new Spot { Station = MetaStation.Nursery, Foot = new Vector2(1168, 452), Height = 135 },
+            // the Lamp Tree (the Lantern) stands where the Ledger, Clock and Nursery stood before they became its branches (24/10/2026)
+            new Spot { Station = MetaStation.Lantern, Foot = new Vector2(392, 226), Height = 190 },
             new Spot { Station = MetaStation.Wardrobe, Foot = new Vector2(345, 668), Height = 150 },
             new Spot { Station = MetaStation.Postbox, Foot = new Vector2(925, 668), Height = 128 },
             new Spot { Station = MetaStation.Museum, Foot = new Vector2(196, 300), Height = 112 },
@@ -69,7 +67,7 @@ namespace ArcaneBrigade
         public void OpenStation(MetaStation station)
         {
             if (!MetaProgression.Works(station)) { Say("Coming soon"); CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
-            Open = station; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
+            Open = station; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
         }
         public void Close() { if (Open.HasValue) CheckpointAudio.PlayInterfaceId("ui.back"); Open = null; }
         /// <summary>Diagnostics: stand the traveller beside a station.</summary>
@@ -264,6 +262,16 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0, 0, 0, .5f));
             Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
             ArcadeSkin.Frame(PanelRect, KitFrame.Dialogue, .5f);
+            if (station == MetaStation.Lantern)
+            {
+                // the Lamp Tree takes the whole panel (no station picture)
+                ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
+                heading.normal.textColor = ArcadeSkin.KitCream;
+                GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), "THE LAMP TREE", heading);
+                if (ArcadeSkin.Medallion(new Rect(PanelRect.xMax - 58, PanelRect.y - 6, 60, 60), KitMedallion.Close)) { Close(); return; }
+                DrawTree(catalog, profile, save);
+                return;
+            }
             ArcadeSkin.Glow(new Rect(PanelRect.x + 10, PanelRect.y + 60, 220, 260), new Color(1f, .8f, .45f, .22f));
             RunHud.Sprite(new Rect(PanelRect.x + 34, PanelRect.y + 72, 172, 206), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
             ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
