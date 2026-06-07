@@ -589,7 +589,7 @@ namespace ArcaneBrigade
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(17, true)); danger.alignment = TextAnchor.MiddleCenter;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
             if (sealedDifficulty) ArcadeSkin.Lock(new Vector2(790, 556), 16, danger.normal.textColor);
-            GUI.Label(new Rect(780, 540, 420, 30), RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + (sealedDifficulty ? "light the whole Lamp Tree" : DifficultyLine(difficulty)), danger);
+            GUI.Label(new Rect(780, 540, 420, 30), RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + (sealedDifficulty ? (difficulty == RunMeta.TreeDifficulty ? "light 5 Lamp Tree branches" : "light the whole Lamp Tree") : DifficultyLine(difficulty)), danger);
             GUI.enabled = profile.BestWave >= champion.UnlockWave && !sealedDifficulty;
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;

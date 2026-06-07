@@ -1056,6 +1056,7 @@ namespace ArcaneBrigade
             {
                 if (relicQuiltUntil > Elapsed) return;
                 if (CandleSafe) return; // Second Candle: a moment untouchable after getting back up
+                if (!injectedDamage && MetaShell(target)) return; // the Lamp Tree's Lamp shell
                 if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .9f : .6f))
                 {
                     events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));

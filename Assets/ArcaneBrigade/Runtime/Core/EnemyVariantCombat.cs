@@ -20,16 +20,20 @@ namespace ArcaneBrigade
             foreach (UnitState unit in units)
                 if (unit.Variant != null) { unit.Variant.ReleaseAt = 0; unit.Variant.RecoveryUntil = 0; unit.Variant.TravelEnd = -100; unit.Variant.DecoyUntil = 0; }
         }
+        // per difficulty (Peaceful .. The Last Night): the first wave elites can come, the added chance (%), its ceiling (%)
+        private static readonly int[] EliteFirstWave = { 5, 5, 4, 3, 2, 2, 1, 1 }, EliteBonus = { 0, 2, 4, 7, 10, 14, 20, 28 }, EliteCap = { 24, 26, 28, 32, 36, 40, 48, 56 };
+        private int EliteLevel => Mathf.Clamp(catalog.RunDifficulty, 0, EliteBonus.Length - 1);
         private void InitializeEnemyVariant(UnitState enemy)
         {
-            if (!catalog.ExpandedContent || enemy.Variant == null || enemy.Variant.Affix != EnemyAffix.None || enemy.SwarmMinion || enemy.Variant.Summoned || enemy.Definition.IsBoss || catalog.RunWave < (catalog.MetaPactElites ? 1 : 5)) return;
+            if (!catalog.ExpandedContent || enemy.Variant == null || enemy.Variant.Affix != EnemyAffix.None || enemy.SwarmMinion || enemy.Variant.Summoned || enemy.Definition.IsBoss || catalog.RunWave < (catalog.MetaPactElites ? 1 : EliteFirstWave[EliteLevel])) return;
             int affixed = 0;
             foreach (UnitState other in units) if (other.Alive && other.Variant != null && other.Variant.Affix != EnemyAffix.None) affixed++;
             uint seed = unchecked((uint)runSeed ^ (uint)enemy.Id * 2654435761u ^ (uint)catalog.RunWave * 2246822519u);
             seed ^= seed >> 16;
-            int chance = Mathf.Min(24, 8 + catalog.RunWave - 5);
+            // owner 24/10/2026: the harder the difficulty, the sooner and more often any enemy comes as an elite
+            int chance = Mathf.Min(EliteCap[EliteLevel], 8 + Mathf.Max(0, catalog.RunWave - 5) + EliteBonus[EliteLevel]);
             if (catalog.MetaPactElites) chance = Mathf.Max(chance, 20); // Night Pact: elites every wave
-            if (affixed >= 4 || seed % 100 >= chance) return;
+            if (affixed >= 4 + EliteLevel / 2 || seed % 100 >= chance) return;
             uint kind = (seed / 100) % 100;
             enemy.Variant.Affix = kind < 35 ? EnemyAffix.BlackSmoke : kind < 60 ? EnemyAffix.BlueFlame : kind < 85 ? EnemyAffix.RedFlame : kind < 95 ? EnemyAffix.Blackfire : EnemyAffix.TwinFlame;
             if (catalog.MapThemed >= 0 && (kind * 7 + 3) % 100 < 75) enemy.Variant.Affix = MapIdentity.Affix((MapTheme)catalog.MapThemed); // each map's own elite affix (item 24)

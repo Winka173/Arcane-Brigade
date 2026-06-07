@@ -35,7 +35,8 @@ namespace ArcaneBrigade
         public static readonly string[] ChallengeIds = { "", "night-shift", "first-light", "small-brigade" };
         public static readonly string[] ChallengeNames = { "Free journey", "Night shift · until dawn", "First light · clear hall 10", "Small brigade · win with ≤ 6 companions" };
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
-        public static int UnlockedDifficulty(PlayerProfile profile) => MetaProgression.TreeDone(profile) ? DifficultyNames.Length - 1 : TreeDifficulty - 1;
+        /// <summary>Lightless opens with the five first branches lit, The Last Night with all nine.</summary>
+        public static int UnlockedDifficulty(PlayerProfile profile) => MetaProgression.TreeAllDone(profile) ? DifficultyNames.Length - 1 : MetaProgression.TreeDone(profile) ? TreeDifficulty : TreeDifficulty - 1;
         /// <summary>Each difficulty's colour, calm to dangerous (owner 24/10/2026): green, moon blue, amber, orange, red, a deep
         /// crimson-violet for Beyond the Lamp, then blood red and the enemies' own violet for the two after the whole tree.</summary>
         public static Color DifficultyColor(int difficulty) => Mathf.Clamp(difficulty, 0, 7) switch

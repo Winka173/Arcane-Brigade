@@ -242,7 +242,7 @@ namespace ArcaneBrigade
         /// <summary>The Bell's need since the Lamp Tree (24/10/2026): every Lamp Oil lantern lit.</summary>
         public static (int have, int need) BellRanks(PlayerProfile p)
         {
-            int have = 0, need = 0; foreach (LampNode n in Tree) if (n.Currency == MetaCurrency.LampOil) { need++; if (Lit(p, n.Id)) have++; }
+            int have = 0, need = 0; foreach (LampNode n in Tree) if (n.Currency == MetaCurrency.LampOil && n.Branch < BaseBranches) { need++; if (Lit(p, n.Id)) have++; }
             return (have, need);
         }
         /// <summary>Why the Bell cannot ring now (null: it can): after the first full clear, with the Lantern and Ledger full.</summary>
@@ -252,13 +252,13 @@ namespace ArcaneBrigade
             if (p.Wins < 1) return "See the dawn first";
             if (p.Meta.Favour >= FavourMax) return "MAX";
             var (have, need) = BellRanks(p);
-            return have < need ? "Light every oil lantern" : null;
+            return have < need ? "Light the first five branches" : null;
         }
         /// <summary>Rings the Bell: the Lantern and Ledger ranks reset for one Favour star.</summary>
         public static bool RingBell(PlayerProfile p)
         {
             if (BellBlocked(p) != null) return false;
-            p.Meta.Tree.RemoveAll(id => Node(id)?.Currency == MetaCurrency.LampOil); // the Keepsake lanterns stay lit
+            p.Meta.Lamps.RemoveAll(r => Node(r.Id) is LampNode n && n.Branch >= 0 && n.Branch < BaseBranches && n.Currency == MetaCurrency.LampOil); // the Keepsake lanterns, the later branches and the roots stay
             p.Meta.Favour++;
             return true;
         }

@@ -11,9 +11,12 @@ namespace ArcaneBrigade
         /// <summary>The Waiting Room in battle: Second Candle (revive share, seconds untouchable), the gauge's head start and
         /// the hero's second habit. Zero for a run without meta.</summary>
         public float MetaCandleShare, MetaCandleShield, MetaGaugeStart;
-        public bool MetaSecondHabit;
+        /// <summary>Lamp shell (Lamp Tree): the first hit on the hero in every battle is blocked.</summary>
+        public bool MetaSecondHabit, MetaWaveShield;
         /// <summary>Night Pact curses in battle: elites every wave (from wave 1, more often), bosses enraged from the start.</summary>
         public bool MetaPactElites, MetaPactEnrage;
+        /// <summary>The run's difficulty in battle (elites come sooner and more often the harder it is).</summary>
+        public int RunDifficulty;
     }
 
     /// <summary>The run side of the Waiting Room (play-test item 27): the loadout a run starts with, its stats folded into the
@@ -61,6 +64,12 @@ namespace ArcaneBrigade
         private float MetaBonus(ItemEffect effect, ModifierScope target)
         {
             MetaRunState m = Meta; if (m == null) return 0;
+            float stats = 0;
+            if (m.Stats != null) foreach (MetaStat s in m.Stats) if (s.Effect == effect && RunModifierRules.Applies(s.Scope, target)) stats += s.Value; // the Lamp Tree's later branches
+            return stats + MetaFieldBonus(m, effect, target);
+        }
+        private static float MetaFieldBonus(MetaRunState m, ItemEffect effect, ModifierScope target)
+        {
             switch (effect)
             {
                 case ItemEffect.HealthCorrection: return target == ModifierScope.Champion ? m.Health : 0;
@@ -104,6 +113,15 @@ namespace ArcaneBrigade
             return h % 10000 < chance * 10000;
         }
 
+        /// <summary>Night hunter (Lamp Tree): enemies' blows are softer.</summary>
+        private float MetaEnemyDamage => 1 - Mathf.Clamp(Meta?.EnemyWeaken ?? 0, 0, .5f);
+        /// <summary>Regular (Lamp Tree): the dearest offer of every freshly rolled shop is 30% off.</summary>
+        private void MetaRegularDeal()
+        {
+            if (Meta == null || !Meta.RegularDeal || State.Offers.Count == 0) return;
+            ShopOffer best = null; foreach (ShopOffer o in State.Offers) if (!o.Sold && (best == null || o.Price > best.Price)) best = o;
+            if (best != null) best.Price = Mathf.Max(1, Mathf.CeilToInt(best.Price * .7f));
+        }
         /// <summary>Gold-star welcome (Lamp Tree): the first friend bought in a run arrives one star up.</summary>
         private bool MetaWelcomeStar(RosterEntry recruited)
         {
@@ -137,6 +155,7 @@ namespace ArcaneBrigade
             CombatCatalog.MetaCandleShare = candle ? m.CandleShare : 0;
             CombatCatalog.MetaCandleShield = candle ? m.CandleShield : 0;
             CombatCatalog.MetaGaugeStart = m.GaugeStart;
+            CombatCatalog.MetaWaveShield = m.WaveShield;
             CombatCatalog.MetaSecondHabit = m.SecondHabit;
             CombatCatalog.MetaPactElites = MetaPact(MetaProgression.PactElites);
             CombatCatalog.MetaPactEnrage = MetaPact(MetaProgression.PactEnrage);
@@ -187,6 +206,15 @@ namespace ArcaneBrigade
         public bool CandleSafe => candleSafeUntil > Elapsed;
         /// <summary>A boss fights enraged below half health, or from the start under the Night Pact's "Short temper".</summary>
         private bool BossEnraged(UnitState boss) => catalog.MetaPactEnrage || boss.Health < boss.Definition.Health * .5f;
+        private bool waveShieldUsed;
+        /// <summary>Lamp shell: true (once a battle) when the hit is blocked.</summary>
+        private bool MetaShell(UnitState target)
+        {
+            if (!catalog.MetaWaveShield || waveShieldUsed) return false;
+            waveShieldUsed = true;
+            events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
+            return true;
+        }
         private bool SecondCandle(UnitState target)
         {
             if (target != Champion || candleBurned || catalog.MetaCandleShare <= 0) return false;

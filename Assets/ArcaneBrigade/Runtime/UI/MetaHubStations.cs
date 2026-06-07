@@ -383,7 +383,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(req.x + 74, req.y + 26, req.width - 230, 28), "See the dawn", body);
             GUI.Label(new Rect(req.xMax - 150, req.y + 26, 128, 28), profile.Wins > 0 ? "DONE" : "—", number);
             RunHud.Sprite(new Rect(req.x + 22, req.y + 70, 40, 40), MetaIcons.Station(MetaStation.Lantern, have >= need));
-            GUI.Label(new Rect(req.x + 74, req.y + 76, req.width - 230, 28), "Every oil lantern lit", body);
+            GUI.Label(new Rect(req.x + 74, req.y + 76, req.width - 230, 28), "First five branches lit", body);
             GUI.Label(new Rect(req.xMax - 150, req.y + 76, 128, 28), have + " / " + need, number);
             small.normal.textColor = new Color(.55f, .18f, .12f);
             GUI.Label(new Rect(req.x + 74, req.y + 112, req.width - 96, 26), "Ringing sets them back to zero", small);

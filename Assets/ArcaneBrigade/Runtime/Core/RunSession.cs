@@ -423,6 +423,7 @@ namespace ArcaneBrigade
             CombatCatalog.Procs = procs.ToArray();
             CombatCatalog.EnableArenaToys = false; // no arena toys in the fight any more (owner, 19/10/2026): no bell, no cart; scenery stays
             CombatCatalog.RunWave = State.Wave;
+            CombatCatalog.RunDifficulty = State.Difficulty;
             CombatCatalog.ChestGoldScale = GoldScale;
             CombatCatalog.ChestGold = (float)MeanShopPrice; // an average chest is worth about one mid-priced offer of the last shop
             CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
@@ -604,6 +605,7 @@ namespace ArcaneBrigade
             unit.ContactDamage = Mathf.Min(14f + damageGrowth * 0.12f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
             float pressure = JourneyBalance.EnemyDamage(State.Difficulty, State.Wave) * CarnivalBalance.EnemyDamage(State.Wave) * 1.08f * OctoberBalance.EndlessDamage(State.Wave, State.Endless);
+            pressure *= MetaEnemyDamage; // the Lamp Tree's Night hunter
             unit.ContactDamage *= pressure*1.08f*1.6f; unit.Weapon.Damage *= pressure*1.08f;
             unit.ContactInterval=Mathf.Max(.45f,unit.ContactInterval*.9f);
             if (source.IsBoss) { unit.ContactDamage *= BossEncounterRules.DamageMultiplier; unit.Weapon.Damage *= BossEncounterRules.DamageMultiplier; unit.Speed *= BossEncounterRules.SpeedMultiplier; }
@@ -846,7 +848,7 @@ namespace ArcaneBrigade
         }
 
         // originals: Wise and Nicole refresh +5 (Nicole's own discount line adds 2 of it), Belle -3 (her line takes ~1)
-        public int RerollCost => MetaFreeRefresh ? 0 : Mathf.Max(0, KitRerollCost(RerollBaseCost) + (OctoberHero == "Wise" ? 5 : OctoberHero == "Nicole" ? 3 : OctoberHero == "Belle" ? -2 : 0));
+        public int RerollCost => MetaFreeRefresh ? 0 : Mathf.Max(0, KitRerollCost(RerollBaseCost) - (Meta?.RerollDiscount ?? 0) + (OctoberHero == "Wise" ? 5 : OctoberHero == "Nicole" ? 3 : OctoberHero == "Belle" ? -2 : 0));
         // balance pass 19/10/2026: the 2 + 2n refresh fee follows half the shop's price stage once that exceeds x2 (unchanged early)
         private float RerollStage => Mathf.Max(1, StagePriceFactor * .5f);
         // the stage factor applies after the relic/talent/hero adjustments, so Ink Feather and Mary still reach the 1-gold minimum
@@ -1050,6 +1052,7 @@ namespace ArcaneBrigade
                 State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : itemChoices[choice].Id, Tier = offerTier, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
             MetaRareFind(items);
+            MetaRegularDeal();
             OfferWiseHero();
             ApplyHeroOrder();
             ApplyKitPrices(); kitRarerRoll = false;
@@ -1061,12 +1064,12 @@ namespace ArcaneBrigade
             if (MetaNoDreamShop) return; // Night Pact: no dream market
             if (State.Wave < State.NextSpecialShopWave && OctoberHero != "Periwinky") return; // original: Periwinky always finds the Dream Eater's Altar
             RollSpecialOffers();
-            State.NextSpecialShopWave = BoundedCounter((long)State.Wave + 3 + Next(ref State.ShopRandom, 2));
+            State.NextSpecialShopWave = BoundedCounter((long)State.Wave + 3 + Next(ref State.ShopRandom, 2) - (Meta != null && Meta.DreamSooner ? 1 : 0)); // the Lamp Tree's Early market
         }
 
         private void RollSpecialOffers()
         {
-            if (State.NextOffer > int.MaxValue - 3) throw new InvalidOperationException("Shop token counter exhausted");
+            if (State.NextOffer > int.MaxValue - 4) throw new InvalidOperationException("Shop token counter exhausted");
             var specialItems = new List<ItemDefinition>();
             foreach (ItemDefinition candidate in catalog.Items) if (Eligible(candidate, ShopPool.Eggs)) specialItems.Add(candidate);
             if (specialItems.Count == 0) throw new InvalidOperationException("No eligible altar offers");
@@ -1074,7 +1077,7 @@ namespace ArcaneBrigade
             var specialUnits = new List<UnitDefinition>();
             foreach (UnitDefinition unit in catalog.Companions)
                 if ((catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw || OctoberAbsorbs) && unit.SpecialRecruit && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit) && unit.UnlockWave <= State.Wave && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && VariantFree(unit.Id, weapon))) specialUnits.Add(unit);
-            for (int index = 0; index < 3; index++)
+            for (int index = 0; index < 3 + Mathf.Clamp(Meta?.DreamExtra ?? 0, 0, 1); index++) // the Lamp Tree's Wide stall: a fourth
             {
                 var recruits = specialUnits.FindAll(unit => OwnsCompanionSpecies(unit.Id));
                 if (SpecialNewRecruitsRemaining>0 && Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
