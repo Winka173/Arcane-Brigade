@@ -1,7 +1,0 @@
-hero,difficulty,outcome,last_wave,total_gold,items,recruits,rerolls,seed,last_damage_source,last_damage_kind,last_damage
-ArchiveCurator,1,VICTORY,20,39399,107,3,39,161026,"Shockwave","Physical / Contact / arena",1.85
-ArchiveCurator,1,VICTORY,20,37910,100,3,39,77138,"The Last Customer contact","Physical / Contact / arena",3.63
-ArchiveCurator,1,DEFEAT,5,634,20,3,5,90210,"Wardrobe Crab contact","Physical / Contact / arena",8.91
-ArchiveCurator,3,DEFEAT,5,684,15,3,4,161026,"Wardrobe Crab contact","Physical / Contact / arena",18.73
-ArchiveCurator,3,DEFEAT,5,578,16,3,4,77138,"Wardrobe Crab contact","Physical / Contact / arena",15.34
-ArchiveCurator,3,VICTORY,20,39040,104,3,37,90210,"Shockwave","Physical / Contact / arena",2.41

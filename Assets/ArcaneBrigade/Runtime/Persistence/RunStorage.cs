@@ -31,6 +31,10 @@ namespace ArcaneBrigade
         public int WindowMode = -1;     // -1 keep the player's launch mode; 0 fullscreen, 1 borderless, 2 windowed
         public int ScreenWidth, ScreenHeight; // 0 keep the launch resolution
         public bool VSync = true;
+        /// <summary>Frames a second when vsync is off (PC: 60, 120 or 0 for no cap; phones: 60 or 30 to save battery).</summary>
+        public int FrameCap;
+        /// <summary>Phones: 0 renders at the screen's full sharpness, 1 at 75% (lighter on the battery and the GPU).</summary>
+        public int MobileSharpness;
         public bool ReducedFlashes;
         public bool ReducedEffects;
         public bool UiCrafted; // false: the painted kit (the default, owner 21/10/2026); true: every UI piece drawn in code

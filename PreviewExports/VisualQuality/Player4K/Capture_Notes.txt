@@ -1,5 +1,0 @@
-Unity native Windows D3D11. Live screen 1920x1080; Unity screenshot supersize=2. All PNGs asserted 3840x2160, not externally resized.
-HD repaint source PNGs are 1672x941, not native 4K; map repeats mirrored source tiles at world texel density rather than stretching one whole-map image. Source PNGs preserve generated alpha. 4x MSAA desktop.
-Uncaptured 3s fixture sample at live screen resolution, median=16.67 ms; p95=16.68 ms. Not mobile/stress certification.
-Seeded roster/HP/loot/enemy positions, frozen enemy AI and shop are diagnostic fixtures. Auto attacks/effects use real simulation. Diagnostic save isolated. No gameplay tuning changes or claim that all models/music are final production.
-Result: PASS

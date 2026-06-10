@@ -1,5 +1,0 @@
-Result: Succeeded
-Errors: 0
-Warnings: 0
-Bytes: 1602615996
-Path: Builds/HeroIdentity/ArcaneBrigade.exe

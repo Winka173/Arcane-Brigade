@@ -1,1 +1,0 @@
-PASS; Unity framebuffer only, no OS window/desktop/microphone capture; wall_seconds=38; encoded_frames=2280; unique_readbacks=2250; CFR=60; missing wall-clock slots repeat captured frames without accelerating gameplay; movieFPS is not performance evidence; timeScale=1; raw_surface1920x1080; encoder outside performance measurements.

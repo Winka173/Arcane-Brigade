@@ -1,4 +1,0 @@
-Succeeded
-Errors: 0
-Warnings: 20
-Player: Builds/ShopDescriptions/ArcaneBrigade.exe

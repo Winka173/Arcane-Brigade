@@ -1,1 +1,0 @@
-Only this game window may be captured; nativeTimeScale=1

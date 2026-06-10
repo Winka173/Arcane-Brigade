@@ -1,1 +1,0 @@
-Device=NVIDIA GeForce RTX 5070 Ti; backend=Direct3D11; CPU=AMD Ryzen 7 9700X 8-Core Processor ; RAM=63089MiB; OS=Windows 11  (10.0.26200)

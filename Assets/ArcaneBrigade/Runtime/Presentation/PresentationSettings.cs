@@ -54,11 +54,35 @@ namespace ArcaneBrigade
         public static void ApplyDisplay(PlayerProfile profile)
         {
             if (profile == null || Application.isEditor || Application.isBatchMode || RunPaths.Diagnostic) return;
-            QualitySettings.vSyncCount = profile.VSync ? 1 : 0;
+            ApplyFrames(profile);
+            if (Application.isMobilePlatform) { ApplyPhoneSharpness(profile); return; } // a phone has no windows or monitor modes
             if (profile.WindowMode < 0 && (profile.ScreenWidth <= 0 || profile.ScreenHeight <= 0)) return;
             FullScreenMode mode = profile.WindowMode == 0 ? FullScreenMode.ExclusiveFullScreen : profile.WindowMode == 1 ? FullScreenMode.FullScreenWindow : profile.WindowMode == 2 ? FullScreenMode.Windowed : Screen.fullScreenMode;
             int width = profile.ScreenWidth > 0 ? profile.ScreenWidth : Screen.width, height = profile.ScreenHeight > 0 ? profile.ScreenHeight : Screen.height;
             if (Screen.fullScreenMode != mode || Screen.width != width || Screen.height != height) Screen.SetResolution(width, height, mode);
+        }
+        /// <summary>The frame pace (owner 24/10/2026, graphics review): phones 60 (or 30 to save battery) with the screen kept awake
+        /// while the game is open; PC vsync, or a cap of 60 / 120 / none when vsync is off (menus no longer run unbounded).</summary>
+        public static void ApplyFrames(PlayerProfile profile)
+        {
+            if (Application.isMobilePlatform)
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = profile.FrameCap == 30 ? 30 : 60;
+                Screen.sleepTimeout = SleepTimeout.NeverSleep;
+                return;
+            }
+            QualitySettings.vSyncCount = profile.VSync ? 1 : 0;
+            Application.targetFrameRate = profile.VSync || profile.FrameCap <= 0 ? -1 : profile.FrameCap;
+        }
+        /// <summary>Phones: the game drawn at the panel's full size or at 75% of it (landscape either way).</summary>
+        private static void ApplyPhoneSharpness(PlayerProfile profile)
+        {
+            int w = Display.main.systemWidth, h = Display.main.systemHeight;
+            if (w <= 0 || h <= 0) return;
+            float scale = profile.MobileSharpness == 1 ? .75f : 1f;
+            int width = Mathf.RoundToInt(Mathf.Max(w, h) * scale), height = Mathf.RoundToInt(Mathf.Min(w, h) * scale);
+            if (Screen.width != width || Screen.height != height) Screen.SetResolution(width, height, true);
         }
         public static void Danger(float seconds = 0.5f) { DangerUntil = Mathf.Max(DangerUntil, Time.unscaledTime + seconds); }
         // a voiced line ducks the music lightly while it is audible (VoiceDirector)

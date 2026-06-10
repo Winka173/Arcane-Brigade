@@ -1,5 +1,0 @@
-Result: Succeeded
-Errors: 0
-Warnings: 0
-Size: 1628393896
-Player: Builds/HeroIdentity/ArcaneBrigade.exe

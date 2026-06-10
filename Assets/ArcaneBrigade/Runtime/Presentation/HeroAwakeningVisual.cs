@@ -142,7 +142,7 @@ namespace ArcaneBrigade
             float ppu = full.pixelsPerUnit; Rect r = full.rect;
             float cutPixels = Mathf.Clamp((cutLocal - full.bounds.min.y) * ppu, 1, r.height);
             int step = Mathf.Clamp(Mathf.RoundToInt(cutPixels), 1, (int)r.height);
-            long key = ((long)full.GetInstanceID() << 16) ^ step;
+            long key = ((long)full.GetHashCode() << 16) ^ step;
             if (!fillCache.TryGetValue(key, out Sprite part) || part == null)
             {
                 var rect = new Rect(r.x, r.y, r.width, step);

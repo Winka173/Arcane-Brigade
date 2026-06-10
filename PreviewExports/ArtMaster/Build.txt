@@ -1,6 +1,0 @@
-Scope: Complete HD delivery
-Result: Succeeded
-Errors: 0
-Warnings: 19
-Bytes: 3683891814
-Player: Builds/ArtMaster/ArcaneBrigade.exe

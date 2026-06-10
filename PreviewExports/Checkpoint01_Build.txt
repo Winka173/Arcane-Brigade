@@ -1,5 +1,0 @@
-Target: Windows x64
-Result: Succeeded
-Errors: 0
-Warnings: 0
-Size: 97372019 bytes

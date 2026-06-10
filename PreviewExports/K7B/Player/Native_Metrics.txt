@@ -1,4 +1,0 @@
-Device=NVIDIA GeForce RTX 5070 Ti; backend=Direct3D11; CPU=AMD Ryzen 7 9700X 8-Core Processor ; RAM=63089MiB; OS=Windows 11  (10.0.26200)
-Surface=3840x2160; development=False; roster-1: frames=720; wall=12.02s; fps=59.9; frame_p50=16.666ms; p95=16.706ms; p99=16.742ms; cpu_p95=0.790ms; gpu_p95=17.278ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=158.8MiB; units_peak=12; projectiles_peak=0
-Surface=3840x2160; development=False; roster-56: frames=721; wall=12.02s; fps=60.0; frame_p50=16.666ms; p95=16.704ms; p99=16.746ms; cpu_p95=2.173ms; gpu_p95=16.606ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=144.2MiB; units_peak=64; projectiles_peak=122
-Surface=3840x2160; development=False; roster-100: frames=721; wall=12.02s; fps=60.0; frame_p50=16.667ms; p95=16.703ms; p99=16.744ms; cpu_p95=3.339ms; gpu_p95=15.436ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=158.0MiB; units_peak=114; projectiles_peak=179

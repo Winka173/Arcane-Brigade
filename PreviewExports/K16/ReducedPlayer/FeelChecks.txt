@@ -1,6 +1,0 @@
-PASS Input/simulation clock remains unscaled across 1933 native frames
-PASS Camera accents remain bounded below 0.091 world units
-PASS Painted cosmetic pool remains bounded at 21 active bursts
-PASS Sprite lighting shader supported on native renderer
-PASS Four rendered frames with independent accessibility settings
-Read-only observer alongside saved K14/K12 fixtures. Not natural-run, input-device latency, audio or human approval.

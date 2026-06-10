@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public static bool Admit(AudioClip clip, float now, SfxRole role) => clip == null || Admit(clip.GetInstanceID(), clip.length, now, role);
+        public static bool Admit(AudioClip clip, float now, SfxRole role) => clip == null || Admit(clip.GetHashCode(), clip.length, now, role);
 
         /// <summary>Checks only.</summary>
         public static void ResetVoices() => clips.Clear();

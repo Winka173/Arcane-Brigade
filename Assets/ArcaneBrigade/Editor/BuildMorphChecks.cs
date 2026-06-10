@@ -22,7 +22,7 @@ namespace ArcaneBrigade.Editor
             notes.Clear(); RunCatalog c = Resources.Load<RunCatalog>("RunCatalog");
             Check(c != null && c.ExpansionRevision > 0, "Real run catalog enables forms");
             BuildMorphArtwork art = Resources.Load<BuildMorphArtwork>("BuildMorphArtwork");
-            Check(art != null && art.Parts.Length == 24 && art.Parts.All(s => s != null) && art.Parts.Select(s => s.GetInstanceID()).Distinct().Count() == 24, "24 individually imported transparent attachments");
+            Check(art != null && art.Parts.Length == 24 && art.Parts.All(s => s != null) && art.Parts.Select(s => s.GetHashCode()).Distinct().Count() == 24, "24 individually imported transparent attachments");
             var shapes = new HashSet<string>();
             foreach (BuildMorphDefinition d in BuildMorphs.All)
             {

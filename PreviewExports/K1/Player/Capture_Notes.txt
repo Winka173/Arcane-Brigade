@@ -1,2 +1,0 @@
-Rendered Windows player; diagnostic saves isolated. Camera corners, saved summary, shop, large roster and relic stacks use fixtures, not a full-run playtest. Details state/timer/health freeze and manual pause ownership checked.
-Result: PASS

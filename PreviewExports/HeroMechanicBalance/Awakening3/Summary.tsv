@@ -1,4 +1,0 @@
-hero	approach	value_Wps	ratio_to_median	vs_basic	share_of_team	casts_per_min	hp_on	hp_off	deaths_on	deaths_off	kills_on	kills_off	flag
-CopperCauldron	0	0.595	1.653	0.124	0.002	12.425	0.403	0.488	3	2	757	737	HIGH
-CopperCauldron	1	0.36	1	0.079	0.005	12.348	0.518	0.488	2	2	767	737	ok
-CopperCauldron	2	0.333	0.924	0.073	0.004	11.043	0.591	0.488	2	2	791	737	ok

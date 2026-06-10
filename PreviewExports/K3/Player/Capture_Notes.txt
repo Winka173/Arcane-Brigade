@@ -1,2 +1,0 @@
-Rendered Windows Unity player. Isolated diagnostic save, seeded shop/wallet and position fixture; purchase uses WorldShop.Interact and real save boundary. Not a full-run playtest or mobile certification.
-Result: PASS

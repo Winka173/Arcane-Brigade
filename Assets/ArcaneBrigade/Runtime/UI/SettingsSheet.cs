@@ -36,28 +36,21 @@ namespace ArcaneBrigade
             Volume(label, 344, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
 
             Header(label, 410, "SCREEN");
-            int window = DisplayWindow(profile);
-            if (Button(new Rect(75, 454, 360, 48), "WINDOW: " + WindowNames[window]))
+            if (Application.isMobilePlatform)
             {
-                int before = profile.WindowMode;
-                profile.WindowMode = (window + 1) % WindowNames.Length;
-                Changed(() => profile.WindowMode = before, true);
+                // a phone: no windows, monitor sizes or vsync; its pace and its sharpness instead
+                if (Button(new Rect(75, 454, 360, 48), "FRAME RATE: " + (profile.FrameCap == 30 ? "30 · SAVER" : "60")))
+                {
+                    int before = profile.FrameCap; profile.FrameCap = before == 30 ? 60 : 30;
+                    Changed(() => profile.FrameCap = before, true);
+                }
+                if (Button(new Rect(460, 454, 360, 48), "SHARPNESS: " + (profile.MobileSharpness == 1 ? "BALANCED" : "FULL")))
+                {
+                    int before = profile.MobileSharpness; profile.MobileSharpness = before == 1 ? 0 : 1;
+                    Changed(() => profile.MobileSharpness = before, true);
+                }
             }
-            Vector2Int size = DisplaySize(profile);
-            if (Button(new Rect(460, 454, 360, 48), "RESOLUTION: " + size.x + "×" + size.y))
-            {
-                int width = profile.ScreenWidth, height = profile.ScreenHeight;
-                List<Vector2Int> sizes = Sizes();
-                int index = sizes.IndexOf(size);
-                Vector2Int next = sizes[(index + 1) % sizes.Count];
-                profile.ScreenWidth = next.x; profile.ScreenHeight = next.y;
-                Changed(() => { profile.ScreenWidth = width; profile.ScreenHeight = height; }, true);
-            }
-            if (Button(new Rect(845, 454, 360, 48), "VSYNC: " + (profile.VSync ? "ON" : "OFF")))
-            {
-                bool before = profile.VSync; profile.VSync = !before;
-                Changed(() => profile.VSync = before, true);
-            }
+            else DesktopScreen();
 
             Header(label, 530, "COMFORT");
             Toggle(new Rect(75, 574, 360, 48), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
@@ -114,6 +107,38 @@ namespace ArcaneBrigade
             }
             ScrollPanel.End();
             origin = at;
+        }
+        /// <summary>PC: window mode, resolution, and the frame pace (vsync, or a cap of 60 / 120 / none).</summary>
+        private static void DesktopScreen()
+        {
+            int window = DisplayWindow(profile);
+            if (Button(new Rect(75, 454, 360, 48), "WINDOW: " + WindowNames[window]))
+            {
+                int before = profile.WindowMode;
+                profile.WindowMode = (window + 1) % WindowNames.Length;
+                Changed(() => profile.WindowMode = before, true);
+            }
+            Vector2Int size = DisplaySize(profile);
+            if (Button(new Rect(460, 454, 360, 48), "RESOLUTION: " + size.x + "×" + size.y))
+            {
+                int width = profile.ScreenWidth, height = profile.ScreenHeight;
+                List<Vector2Int> sizes = Sizes();
+                int index = sizes.IndexOf(size);
+                Vector2Int next = sizes[(index + 1) % sizes.Count];
+                profile.ScreenWidth = next.x; profile.ScreenHeight = next.y;
+                Changed(() => { profile.ScreenWidth = width; profile.ScreenHeight = height; }, true);
+            }
+            string pace = profile.VSync ? "VSYNC" : profile.FrameCap == 60 ? "60" : profile.FrameCap == 120 ? "120" : "MAX";
+            if (Button(new Rect(845, 454, 360, 48), "FRAMES: " + pace))
+            {
+                bool vsync = profile.VSync; int cap = profile.FrameCap;
+                // VSYNC -> 60 -> 120 -> MAX -> VSYNC
+                if (vsync) { profile.VSync = false; profile.FrameCap = 60; }
+                else if (cap == 60) profile.FrameCap = 120;
+                else if (cap == 120) profile.FrameCap = 0;
+                else { profile.VSync = true; profile.FrameCap = 0; }
+                Changed(() => { profile.VSync = vsync; profile.FrameCap = cap; }, true);
+            }
         }
         private static void Header(Action<Rect, string> label, float top, string caption) => label(Shift(new Rect(75, top, 600, 36)), caption);
 

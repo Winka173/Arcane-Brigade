@@ -117,8 +117,7 @@ namespace ArcaneBrigade
         private void Start()
         {
             Time.fixedDeltaTime = 1f / 60f;
-            Screen.orientation = ScreenOrientation.LandscapeLeft;
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 60; // the profile's frame pace replaces this below (PresentationSettings.ApplyDisplay)
             if (runCatalog != null)
             {
                 storage = new RunStorage(RunPaths.Root);

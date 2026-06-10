@@ -1,4 +1,0 @@
-Succeeded
-Errors: 0
-Warnings: 20
-Player: D:\ArcaneBrigadeDiagnostics\CompanionReactions\ArcaneBrigade.exe

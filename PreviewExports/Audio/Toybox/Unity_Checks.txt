@@ -1,7 +1,0 @@
-Unity 6000.4.8f1, 2026-10-15
-Current audio: music v4 (15 pieces / 60 stems); Foley v5 (206 cues / 582 clips).
-Batch import and executeMethod ArcaneBrigade.Editor.ToyboxAudioChecks.Run: exit 0.
-ARCANE_AUDIO_CHECKS_PASSED 2078 assertions
-TOYBOX_AUDIO_CHECKS_PASSED 47 routing checks; listening review remains separate.
-Initial attempt encountered a concurrently incomplete K25EnemyAffixChecks class. Retry after that file appeared succeeded.
-These assertions verify Unity import and event routing, not listening quality.

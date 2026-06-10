@@ -1,7 +1,0 @@
-id,hero,approach,build,difficulty,seed,outcome,last_wave,kills,seconds,allies,items,gold_spent,recruit_spent,item_spent,reroll_spent,hero_damage,ally_damage,boss_kills
-PatchworkHost/0/Buff/0/77138,PatchworkHost,0,Buff,0,77138,DEFEAT,11,8544,500.247,1,60,7260,0,7219,41,486563,214742.8,2
-PatchworkHost/0/Buff/5/77138,PatchworkHost,0,Buff,5,77138,DEFEAT,5,421,153.049,1,10,482,0,472,10,15282.3,17813.54,0
-PatchworkHost/0/Recruit/0/77138,PatchworkHost,0,Recruit,0,77138,VICTORY,20,46463,842.043,25,108,54105,16322,37689,94,5472756,14344300,4
-PatchworkHost/0/Recruit/5/77138,PatchworkHost,0,Recruit,5,77138,VICTORY,20,48065,924.892,22,133,54045,12565,41282,198,15494340,33015190,4
-PatchworkHost/0/Hybrid/0/77138,PatchworkHost,0,Hybrid,0,77138,VICTORY,20,47813,899.892,26,109,53925,13850,39993,82,17921720,2849085,4
-PatchworkHost/0/Hybrid/5/77138,PatchworkHost,0,Hybrid,5,77138,VICTORY,20,48766,952.241,23,135,54605,11462,42971,172,38607710,11606010,4

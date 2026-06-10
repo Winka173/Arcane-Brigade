@@ -1,7 +1,0 @@
-pops round 0: explosions active 45, death remnants active 24
-pops round 1: explosions active 44, death remnants active 8
-pops round 2: explosions active 39, death remnants active 13
-enemy pops shown 138
-frames 721 peak shake 0.073 (max 0.3) mean 0.0110
-holds 10 held frames 22 (3.1% of frames)
-live explosions active at end 44, enemies alive 69

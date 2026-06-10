@@ -1,2 +1,0 @@
-120 native frames / average ms=17.78
-VSync/cap and capture overhead included; not a hardware-independent benchmark.

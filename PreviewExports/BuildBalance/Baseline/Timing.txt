@@ -1,2 +1,0 @@
-pilot 131.1 wall seconds
-laboratory 64.2 wall seconds

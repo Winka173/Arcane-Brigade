@@ -1,4 +1,0 @@
-Result: Succeeded
-Errors: 0
-Warnings: 30
-Size: 959235550

@@ -1,4 +1,0 @@
-Story:Hob: A cup for me too? I nearly forgot to ask.
-Companion:CrayonGremlin: I drew a door. We will find the real one.
-Companion:ButtonBeetle: Larger buttons. I kept the little coat's old repair.
-Companion:SpringDuck: Hold the rail. I'll test the next step.

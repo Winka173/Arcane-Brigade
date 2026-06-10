@@ -1,5 +1,0 @@
-Native Windows D3D11. Live 1920x1080; Unity supersize 2. PNG dimensions asserted 3840x2160; not a realtime 4K performance benchmark.
-Seed 13104; seeded tier-2 roster and 20000-HP enemies, enemy attacks/AI and ally patrol frozen solely in diagnostic fixture. Actual auto-target, windup, hit, marks, waves, tier and VFX/SFX run through gameplay simulation; no manual proc injection.
-Observed counters: bell=1; umbrella=1; stamp=1. Capture timing may alter number of elapsed attacks; these are not contribution/DPS metrics.
-Isolated diagnostic save. Font/UI redesign deferred K6/K7. K4.2-K4.5 not complete.
-Result: PASS

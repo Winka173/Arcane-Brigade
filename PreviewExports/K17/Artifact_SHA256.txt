@@ -1,4 +1,0 @@
-E83058C236F35A720C27E465DC42D1549F13B25A8573DCE464438B855764E7AF  Builds/FullRun/ArcaneBrigade.exe
-DCD6DEF3461D4F6711E8F6C38858AE3F8EC7A7E0CAF9EDFA2D2DD14A9E8E1149  Builds/FullRun/ArcaneBrigade_Data/Managed/ArcaneBrigade.Runtime.dll
-6C1ABB1E50C04BCC61DD4B3198B99F484664391BC9D3BC2E2636699D95B588B2  Builds/FullRun/ArcaneBrigade_Data/globalgamemanagers
-The executable is Unity's launcher; use the runtime DLL hash to distinguish gameplay builds. FullRun data and dependencies must be distributed together.
