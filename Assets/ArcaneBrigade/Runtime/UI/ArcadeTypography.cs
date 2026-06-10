@@ -8,7 +8,7 @@ namespace ArcaneBrigade
         private static Font heading;
         private static Font numbers;
         private static Font display;
-        // UI type (20/10/2026, owner: fonts must match the painted storybook UI). All SIL OFL 1.1, Vietnamese-complete:
+        // UI type (requirement 20/10/2026: fonts must match the painted storybook UI). All SIL OFL 1.1, Vietnamese-complete:
         // body = Alegreya Sans Bold, a humanist bookish sans that stays legible at HUD sizes; headings and buttons = Fraunces
         // SemiBold, a soft old-style storybook serif; titles = Fraunces Black; numbers = Alegreya Sans ExtraBold with tabular
         // digits so counters don't jitter. Built with fontTools (Tools/Fonts/make_fonts.py): outlines scaled so x-height and

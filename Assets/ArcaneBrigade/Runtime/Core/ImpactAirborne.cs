@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>N2 knock-up and N15 chain blasts (owner, 19/10/2026).
+    /// <summary>N2 knock-up and N15 chain blasts (requirement 19/10/2026).
     /// <list type="bullet">
     /// <item>A heavy slam (weapon weight ≥ 0.95) knocks a small enemy straight up for 0.4 s; it hangs helpless, then crashes
     /// down and the landing knocks the enemies around it (a fifth of the slam's damage, radius 0.9).</item>

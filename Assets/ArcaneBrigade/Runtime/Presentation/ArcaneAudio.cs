@@ -177,7 +177,7 @@ namespace ArcaneBrigade
             if (phase != SessionPhase.Combat) return SceneMenu;
             if (boss) return SceneBoss;
             if (endless) return SceneEndless;
-            // each map has its own pair of fight pieces (owner 23/10/2026: maps should feel unique): Waiting Room toys and
+            // each map has its own pair of fight pieces (requirement 23/10/2026: maps should feel unique): Waiting Room toys and
             // spoons, Post Office carousel and last train, Lamp Hall overtime and encore, Archive Vault clockwork and never-close
             return CombatMapScene(MapIdentity.For(wave));
         }
@@ -267,7 +267,7 @@ namespace ArcaneBrigade
                     id = ArsenalBurst(value.Weapon) ?? "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1f) * (value.Faction == Faction.Companion ? 0.7f : 1f);
                     break;
                 case CombatEventKind.Pickup:
-                    // owner (22/10/2026): picking up gold, HP and eggs is silent
+                    // requirement (22/10/2026): picking up gold, HP and eggs is silent
                     id = value.Loot == LootKind.Egg || value.Loot == LootKind.Heart || value.Loot == LootKind.Coin ? null : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
                     break;
                 case CombatEventKind.Flare: id = "sig.alarm.boom"; gainScale = 1.2f; break;

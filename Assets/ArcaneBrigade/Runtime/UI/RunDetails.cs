@@ -83,7 +83,7 @@ namespace ArcaneBrigade
                 if (sayHand == null) { sayHand = ArcadeTypography.Style(25); sayHand.font = ArcadeTypography.Hand; sayHand.normal.textColor = new Color(0.25f, 0.20f, 0.14f); sayHand.wordWrap = true; }
                 seatName.normal.textColor = ArcadeSkin.Ink;
                 float width = 640, height = string.IsNullOrEmpty(said) ? 48 : 48 + Mathf.Min(36, sayHand.CalcHeight(new GUIContent(said), width - 36));
-                // inside the table's area, under the tabs and above the back row (owner 22/10/2026: it covered the tabs)
+                // inside the table's area, under the tabs and above the back row (requirement 22/10/2026: it covered the tabs)
                 Rect bubble = new Rect(Mathf.Clamp(seat.center.x - width * 0.5f, area.x, area.xMax - width), area.y + 2, width, height);
                 ArcadeSkin.Ticket(bubble, ArcadeSkin.Paper, ArcadeSkin.Accent);
                 seatName.alignment = TextAnchor.MiddleLeft;
@@ -163,7 +163,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
-            // owner 24/10/2026 ("FRIENDS 3, RELICS 0, LINK 55 - nobody understands"): each tab has an icon and a plain name, its
+            // requirement 24/10/2026 ("FRIENDS 3, RELICS 0, LINK 55 - nobody understands"): each tab has an icon and a plain name, its
             // count in a little bubble
             string[] names = { "STATS", "FRIENDS", "RELICS", "BONDS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
@@ -190,7 +190,7 @@ namespace ArcaneBrigade
             bool table = tab == 1 && rows.Count > 0;
             if (table) DrawTable(rows, rowHeight, owner.Session.State);
             Rect listArea = table ? new Rect(70, 640, 1060, 325) : new Rect(70, 295, 1060, 670);
-            // friends and relics as a grid of picture tiles (owner 24/10/2026: "the content is still ugly"), stats and bonds as rows
+            // friends and relics as a grid of picture tiles (requirement 24/10/2026: "the content is still ugly"), stats and bonds as rows
             bool grid = tab == 1 || tab == 2;
             const int cols = 5; const float tileW = 186, tileH = 196, tileGap = 15;
             float contentHeight = grid ? Mathf.CeilToInt(rows.Count / (float)cols) * (tileH + tileGap) : rows.Count * rowHeight;
@@ -220,7 +220,7 @@ namespace ArcaneBrigade
                 {
                     ArcadeSkin.Line(new Rect(card.x + 2, card.y + 4, 5, card.height - 8), row.Accent);
                     RunHud.Fill(new Rect(18, card.y + 12, 90, 100), ArcadeSkin.Deep);
-                    if (row.Rarity is ItemRarity rarity) // each relic framed by its rarity, like the shop's cards (owner 23/10/2026)
+                    if (row.Rarity is ItemRarity rarity) // each relic framed by its rarity, like the shop's cards (requirement 23/10/2026)
                     { RarityDescriptionFrame.Edge(card, rarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(18, card.y + 12, 90, 100), rarity, Time.unscaledTime); }
                 }
                 float contentLeft = row.Icon != null ? 130 : 28;

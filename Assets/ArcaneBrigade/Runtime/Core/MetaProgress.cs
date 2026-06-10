@@ -104,7 +104,7 @@ namespace ArcaneBrigade
     /// <summary>The Waiting Room's rules: the stations, buying ranks, the haul a run earns, the loadout a run starts with.</summary>
     public static partial class MetaProgression
     {
-        public const float PowerCap = 40f; // was 25 (owner 24/10/2026: more permanent stats)
+        public const float PowerCap = 40f; // was 25 (requirement 24/10/2026: more permanent stats)
         public static readonly float[] DifficultyOil = { 1f, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 2.4f, 2.8f };
         public const int OilPerWave = 4, OilPerBoss = 12, OilPerBestWave = 8, FindsCap = 60;
         public static readonly int[] MasteryWaves = { 8, 20, 40 };

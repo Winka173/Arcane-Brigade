@@ -45,7 +45,7 @@ namespace ArcaneBrigade
         public float HeroAwakenMeter => awakenMeter;
         public int HeroAwakenTier => Mathf.Clamp(Mathf.FloorToInt(awakenMeter * 3 + .001f), 0, 3);
         public bool HeroAwakening => HeroAwakenEnabled && awakenUntil > Elapsed;
-        // owner 24/10/2026: transformations last a quarter longer
+        // requirement 24/10/2026: transformations last a quarter longer
         private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) * 1.25f + (IdentityApproach == 2 ? 1.5f : 0) + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 3 : 0) + (NightAlone ? 3 : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
         /// <summary>1 at the start of a transformation, 0 at its end.</summary>
         public float HeroAwakenRemaining => HeroAwakening ? Mathf.Clamp01((awakenUntil - Elapsed) / Mathf.Max(.1f, AwakenLength)) : 0;
@@ -101,7 +101,7 @@ namespace ArcaneBrigade
             target ??= IdentityTarget(Champion.Position, 8);
             switch (k.Action)
             {
-                case KitAction.Gatling: GunBurst(target, .2f, .4f, true); break; // owner 23/10/2026: .22 -> .3 W a parcel; 24/10: .4, stronger shots
+                case KitAction.Gatling: GunBurst(target, .2f, .4f, true); break; // requirement 23/10/2026: .22 -> .3 W a parcel; 24/10: .4, stronger shots
                 case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .14f, false); break; // 24/10: .1 -> .14 W, stronger acorns
                 case KitAction.Kitchen: Kitchen(target); break;
                 case KitAction.Engine: SteamEngine(delta); break;
@@ -177,7 +177,7 @@ namespace ArcaneBrigade
         }
         private void EndAwakening()
         {
-            if (awakenUntil > 0 && Phase == RunPhase.Combat) AwakenFinale(); // the transformation ends on a finale (owner 23/10/2026)
+            if (awakenUntil > 0 && Phase == RunPhase.Combat) AwakenFinale(); // the transformation ends on a finale (requirement 23/10/2026)
             if (Kit != null && Kit.Action == KitAction.Engine && awakenUntil > 0) Whistle();
             bool encore = RelicCount(RelicMechanic.EndlessEncore) > 0; // Endless Encore: no rest, and the gauge restarts a third full
             awakenUntil = -1; awakenMeter = encore ? 1f / 3f : 0; awakenCoolUntil = Elapsed + (encore ? 0 : AwakenCooldown); Champion.AwakenArt = null; awakenFoe = null;
@@ -323,7 +323,7 @@ namespace ArcaneBrigade
             if (lead != null) IdentityEcho(lead, target, IdentityPower * .7f * ApproachScale);
             else IdentityPattern(target, IdentityPower * .7f * ApproachScale);
         }
-        /// <summary>LIGHTHOUSE sweep speed in degrees a second (owner 22/10/2026: 120 -> 75, a slower, grander sweep). Strikes still
+        /// <summary>LIGHTHOUSE sweep speed in degrees a second (requirement 22/10/2026: 120 -> 75, a slower, grander sweep). Strikes still
         /// fall every 0.25s with the same budget, so the damage per second is unchanged; they now land closer together.</summary>
         public const float LighthouseSweep = 75f, LighthouseReach = 5.5f, LighthouseSpread = 1.5f, LighthouseBudget = 1.1f;
         private void Lighthouse()
@@ -333,7 +333,7 @@ namespace ArcaneBrigade
             // the beam sweeps once round every 4.8s (LighthouseSweep), striking what it crosses
             float angle = (Elapsed - awakenStarted) * LighthouseSweep;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
-            // owner 23/10/2026: a wedge of light - narrow at the lamp, LighthouseSpread wider each side at its far end, so it
+            // requirement 23/10/2026: a wedge of light - narrow at the lamp, LighthouseSpread wider each side at its far end, so it
             // strikes everything its cone covers (up to five) with a larger budget than the old thin line (.7 W, three targets)
             var beam = IdentityHit(MorphGeometry.Line, Champion.Position + dir * .4f, Champion.Position + dir * LighthouseReach, 0,
                 IdentityPower * LighthouseBudget * ApproachScale * CrowdScale, .05f, 5, spread: LighthouseSpread);

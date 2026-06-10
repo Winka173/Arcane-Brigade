@@ -20,7 +20,7 @@ namespace ArcaneBrigade
         private float giftsSince = -100;
         public bool Spot(int index, out Vector2 position, out float reach)
         {
-            position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 2f : 1.4f; // wider (owner 22/10/2026)
+            position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 2f : 1.4f; // wider (requirement 22/10/2026)
             return owner?.Simulation != null && (mode == 1 ? owner.Session.OutsideChallengeAvailable : mode == 2);
         }
         private int mode;
@@ -122,7 +122,7 @@ namespace ArcaneBrigade
             }
             else
             {
-                // the gifts stand on the floor like a shop's wares (owner, 22/10/2026): walk up to one and only its card shows,
+                // the gifts stand on the floor like a shop's wares (requirement 22/10/2026): walk up to one and only its card shows,
                 // a gold TAKE in its right column like BUY; nothing is listed all at once
                 if (cardName == null) { cardName = ArcadeTypography.Style(26, true); cardName.wordWrap = true; cardName.alignment = TextAnchor.MiddleCenter; cardLine = ArcadeTypography.Style(20); identity = ArcadeTypography.Style(17); }
                 // on arrival: a short announcement under the title banner, fading after a few seconds

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>How to Play as a little picture book (owner 24/10/2026: "a short video and concrete descriptions; don't use one
+    /// <summary>How to Play as a little picture book (requirement 24/10/2026: "a short video and concrete descriptions; don't use one
     /// style for everything"). Seven pages, each with a live demo drawn in the game (the hero walking and fighting by itself,
     /// a gauge filling into a transformation, a stall sale, two friends merging, a bond waking, a relic landing) beside two
     /// or three concrete lines. Each page has its own colour and layout; arrows and dots turn the pages (tap or keys). Shared
@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             else if (layout == 1) { text = new Rect(inner.x, inner.y + 20 * scale, inner.width * .44f, inner.height); demo = new Rect(text.xMax + 30 * scale, inner.y, inner.width * .56f - 30 * scale, inner.height); }
             else { demo = new Rect(inner.x, inner.y, inner.width, inner.height * .62f); text = new Rect(inner.x + 20 * scale, demo.yMax + 10 * scale, inner.width - 40 * scale, inner.height * .38f - 10 * scale); }
             RunHud.Fill(demo, new Color(.05f, .06f, .09f, .55f));
-            // owner 24/10/2026: the pages show pictures taken from real play (HowToRecorder -> Resources/HowTo); the code-drawn
+            // requirement 24/10/2026: the pages show pictures taken from real play (HowToRecorder -> Resources/HowTo); the code-drawn
             // demo stands in where a picture is missing
             if (!Clip(page, demo, t)) DemoPage(page, demo, t, c, heroId, accent, scale);
             Color ink = page % 2 == 0 ? ArcadeSkin.Paper : ArcadeSkin.KitInk;

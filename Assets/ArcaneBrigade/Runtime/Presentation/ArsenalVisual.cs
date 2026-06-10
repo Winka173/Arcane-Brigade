@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         {
             public FlashKind Kind; public ArsenalInk.Moment Moment; public Vector2 At, Dir; public float Born, Life, Size, Seed; public Sprite Held;
             public WeaponInkStyle.Strike Strike; public InkPalette Palette; public InkToken Token; public bool Critical;
-            // an attack's own flash rides with its attacker as drawn (owner 23/10/2026): a muzzle puff stays on the barrel
+            // an attack's own flash rides with its attacker as drawn (requirement 23/10/2026): a muzzle puff stays on the barrel
             // through the shooter's recoil and steps, a swipe on the swinging body; Offset is from the attacker's body
             public int Shooter = -1; public bool AtMuzzle; public Vector2 Offset;
         }
@@ -142,7 +142,7 @@ namespace ArcaneBrigade
         {
             WeaponDefinition w = value.Weapon;
             Vector2 dir = value.Direction.sqrMagnitude > 0.0001f ? value.Direction.normalized : Vector2.right;
-            // owner 24/10/2026: the hostile side's blows are code ink too (no painted slash or dust): a violet claw rake for an
+            // requirement 24/10/2026: the hostile side's blows are code ink too (no painted slash or dust): a violet claw rake for an
             // enemy's melee swing, a violet stamp for a boss landing
             if (value.Kind == CombatEventKind.Fire && value.Faction == Faction.Enemy && w != null && w.Kind == WeaponKind.Melee)
             { var f = Add(ArsenalInk.Moment.Burst, value.Position, dir, time, 0.26f, Mathf.Clamp(w.Range, .7f, 2f)); f.Kind = FlashKind.Strike; f.Strike = EnemyClaw; f.Shooter = ShooterOf(value); Follow(f); return true; }

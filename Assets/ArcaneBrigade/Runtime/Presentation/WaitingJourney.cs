@@ -87,7 +87,7 @@ namespace ArcaneBrigade
             bool ready=stage>=0 && state.Wave>=WaitingCompanionQuests.Waves[stage] && state.Roster.Exists(x=>x.UnitId==quest.Id);
             if(ready)
             {
-                // the two options as cards that say where each leads; picked, then confirmed (owner 22/10/2026)
+                // the two options as cards that say where each leads; picked, then confirmed (requirement 22/10/2026)
                 int taken=ChoiceCards.Draw(new Rect(500,655,1330,290),new[]{quest.First[stage],quest.Second[stage]},new[]{quest.Outcomes[stage*2],quest.Outcomes[stage*2+1]},ref journeyPick);
                 if(taken>=0 && Choose(taken+1))journeyPick=-1;
             }

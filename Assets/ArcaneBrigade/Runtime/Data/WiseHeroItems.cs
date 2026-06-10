@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Wise's shop (the original Dream Seeker; owner 23/10/2026): the other Dream Seekers are sold as their memory.
+    /// <summary>Wise's shop (the original Dream Seeker; requirement 23/10/2026): the other Dream Seekers are sold as their memory.
     /// Bought, a hero's gifts become Wise's - its stat modifiers and its innate bonuses, positive ones +50% - while enemies
     /// grow tougher. Each is a code-made unique relic ("WiseHero_&lt;hero id&gt;") so the shop, the card, the stash and the stat
     /// sums treat it like any relic; RunCatalog.Item finds it here.</summary>

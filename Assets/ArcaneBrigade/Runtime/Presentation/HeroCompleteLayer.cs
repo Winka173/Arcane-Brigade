@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Every hero complete at every moment (owner 24/10/2026): a shader of its own while it waits, on each strike
+    /// <summary>Every hero complete at every moment (requirement 24/10/2026): a shader of its own while it waits, on each strike
     /// and while transformed (HeroShaderLayer), and the second set of painted objects (Docs/Hero_Effect_Art_Requests_2.md)
     /// wired in ahead of the art - a sheet plays as soon as it is imported, and until then the tokens stand in.</summary>
     public sealed partial class HeroIdentityVisual

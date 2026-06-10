@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>Owner 23/10/2026: the thin hero families (kills, delay, merge, freeze, marks; 4-6 fitting relics each) get
+    /// <summary>Requirement 23/10/2026: the thin hero families (kills, delay, merge, freeze, marks; 4-6 fitting relics each) get
     /// three relics of their own, sold only to heroes of that family. Stats only. Icons come from
     /// Art/Playtest/FamilyRelics/&lt;Id&gt;.png once painted; until then each borrows a fitting existing relic's icon.</summary>
     public static class FamilyRelicsBuilder

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The transformation's name as hand-lettered word art (owner 24/10/2026: "SYMPHONY!" read as plain text). Each
+    /// <summary>The transformation's name as hand-lettered word art (requirement 24/10/2026: "SYMPHONY!" read as plain text). Each
     /// letter is its own inked piece on a gentle arch, in a run of the hero's colours, and arrives in its hero's manner:
     /// stamped (brush, ink), bobbing on a wave, licking up like flame, flickering in like a bolt, swinging down on a thread
     /// or drifting in on silk. A brush swash draws in under the word with the hero's token at each end; then the letters
@@ -106,7 +106,7 @@ namespace ArcaneBrigade
                 letter.Color = c;
                 x += half;
             }
-            // owner 24/10/2026: under the name, what the transformation gives the hero, line by line like the shop's purchase
+            // requirement 24/10/2026: under the name, what the transformation gives the hero, line by line like the shop's purchase
             // lines (green, with a white flash as each lands)
             KitStats(kit);
             while (statLines.Count < statText.Count) statLines.Add(InkedText.Create(transform, "Skill stat line", ArcadeTypography.Punch, 44, .042f, 2399, .026f));

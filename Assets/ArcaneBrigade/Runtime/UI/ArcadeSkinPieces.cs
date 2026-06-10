@@ -330,7 +330,7 @@ namespace ArcaneBrigade
         public static bool KitGuiButton(Rect r, string text, GUIStyle style) => GUI.Button(r, text, Fit(style, r, text));
 
         /// <summary>Shrinks a style's font step by step (down to 70% of its size) until the text fits the width, then lets it wrap
-        /// to two lines (owner, 22/10/2026: a label never runs past its button's caps).</summary>
+        /// to two lines (requirement 22/10/2026: a label never runs past its button's caps).</summary>
         public static void FitText(GUIStyle style, string text, float width)
         {
             if (style == null || string.IsNullOrEmpty(text) || width <= 0) return;

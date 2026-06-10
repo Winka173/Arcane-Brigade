@@ -235,7 +235,7 @@ namespace ArcaneBrigade
             if (Input.touchCount > 0 || Application.isMobilePlatform) Device = RunUIDevice.Touch;
             previousPad = pad; previousMouse = Input.mousePosition;
         }
-        // owner 22/10/2026: no key or button hints anywhere; a hover label only names what the icon opens
+        // requirement 22/10/2026: no key or button hints anywhere; a hover label only names what the icon opens
         public static string Details(RunUIDevice device) => "Your brigade";
         public static string Pause(RunUIDevice device) => "Pause";
         public static string Interact(RunUIDevice device) => "USE";

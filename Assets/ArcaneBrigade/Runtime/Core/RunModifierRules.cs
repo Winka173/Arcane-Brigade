@@ -111,7 +111,7 @@ namespace ArcaneBrigade
         public static bool Final(ItemEffect effect) => effect == ItemEffect.HealthCorrection || effect == ItemEffect.DamageCorrection || effect == ItemEffect.SpeedCorrection || effect == ItemEffect.ArmorCorrection || effect == ItemEffect.HealCorrection;
         /// <summary>Who a stat line is for, in player words: "You · ", "Friends · ", or nothing when it is for everyone or the run.</summary>
         public static string Who(ModifierScope scope) => scope == ModifierScope.Champion ? "You · " : scope == ModifierScope.Companions ? "Friends · " : "";
-        /// <summary>Who a card's stat line is for, always said (owner, 22/10/2026: never a bare stat): "Hero · ", "Friends · ",
+        /// <summary>Who a card's stat line is for, always said (requirement 22/10/2026: never a bare stat): "Hero · ", "Friends · ",
         /// "Everyone · ", "Run · " for the run's economy; enemy stats already name their target.</summary>
         public static string WhoFor(ItemEffect effect, ModifierScope scope)
         {

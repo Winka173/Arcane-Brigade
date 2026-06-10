@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The crafted UI style (owner, 21/10/2026: "a version where every UI element is made by hand in code"): round
+    /// <summary>The crafted UI style (requirement 21/10/2026: "a version where every UI element is made by hand in code"): round
     /// medallions, ink-stroke glyphs, gilt rules with a lozenge, switches, the heart and the health tube, counter sockets, all
     /// generated at runtime from signed-distance shapes in the game's palette. Rectangular plates come from CodePlate.</summary>
     public static partial class ArcadeSkin
@@ -65,7 +65,7 @@ namespace ArcaneBrigade
             if (Event.current.type != EventType.Repaint) return;
             Vector2 d = b - a; float length = d.magnitude;
             if (length < .01f) return;
-            // a chain of round dots along the stroke, no turned matrix (owner 24/10/2026: RotateAroundPivot misplaces strokes and
+            // a chain of round dots along the stroke, no turned matrix (requirement 24/10/2026: RotateAroundPivot misplaces strokes and
             // lozenges under a scaled HUD - the 1280-wide menus drew them along a diagonal)
             int steps = Mathf.Max(1, Mathf.CeilToInt(length / Mathf.Max(.5f, width * .45f)));
             for (int i = 0; i <= steps; i++) { Vector2 p = Vector2.Lerp(a, b, i / (float)steps); Dot(new Rect(p.x - width * .5f, p.y - width * .5f, width, width), colour); }

@@ -186,7 +186,7 @@ namespace ArcaneBrigade.Editor
                 VisitorEffect post = run.State.VisitorEffects.First(e => e.Id == "Post");
                 Check(post.Wave == wave + 3 && Mathf.RoundToInt(post.Value) == ShopVisitors.Amount(d.Get, "gold") && d.When.Contains("3 waves"), "Future Post pays GET " + d.Get + " " + d.When);
             }
-            // owner 22/10/2026 (the storyteller grandmother "gives 1 gold"): no visitor pays a flat +1; coin visitors double coins
+            // requirement 22/10/2026 (the storyteller grandmother "gives 1 gold"): no visitor pays a flat +1; coin visitors double coins
             Check(ShopVisitors.All.All(v => v.Deals.All(x => !x.Get.Contains("+1 each")) && !v.Offer.Contains("+1 coin") && !v.Offer.Contains("1 more")), "No visitor promises a flat +1 coin");
             // the night thief's purse line is on the gold curve, as its card says
             foreach (bool over in new[] { false, true })

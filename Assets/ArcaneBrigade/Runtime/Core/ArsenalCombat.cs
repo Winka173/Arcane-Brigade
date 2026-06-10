@@ -465,7 +465,7 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.ScoopLauncher:
                 {
-                    // thrown where the enemy will be; three flavours take turns (ember, frost, cream). No puddle (the owner removed
+                    // thrown where the enemy will be; three flavours take turns (ember, frost, cream). No puddle (removed by requirement
                     // every floor pool): the scoop splats once on what it lands on and the cold slows those enemies directly
                     Vector2 lead = target != null ? target.Position + Vector2.ClampMagnitude(target.Velocity * 0.5f, 1f) : point;
                     ArsenalProp scoop = PlaceProp(ArsenalPropKind.Scoop, source, ClampPosition(lead, 0.3f), damage * 1.4f, 0.7f, critical, cause);

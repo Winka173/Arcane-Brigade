@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class WorldShop : MonoBehaviour, ShopFocus.ISource
     {
-        public const float InteractionRadius = 1.4f; // was 1.1: options showed only on an exact spot (owner 22/10/2026)
+        public const float InteractionRadius = 1.4f; // was 1.1: options showed only on an exact spot (requirement 22/10/2026)
         public const float LayoutLift = 0.5f;
         public static readonly Vector2 ExitPosition = new Vector2(0, -4.5f);
         public const float ExitInteractionRadius = 1.85f;
@@ -582,7 +582,7 @@ namespace ArcaneBrigade
                     if (unit.Velocity.sqrMagnitude > 0.001f) unit.Facing = unit.Velocity.normalized;
                     continue;
                 }
-                // the brigade waits in a row beside the door, never among the stalls (owner, 19/10/2026): each friend walks
+                // the brigade waits in a row beside the door, never among the stalls (requirement 19/10/2026): each friend walks
                 // to its own spot, the doorway itself left clear, and faces the traveller
                 Vector2 home = WaitingSpot(waiting.IndexOf(unit));
                 unit.Position = Vector2.MoveTowards(unit.PreviousPosition, home, Mathf.Max(1.4f, unit.Definition.Speed * 0.55f) * Time.fixedDeltaTime);
@@ -677,7 +677,7 @@ namespace ArcaneBrigade
         private GUIStyle talkStyle;
         private float talkSince = -1, talkLast = -1, talkNearAt = -1; private bool talkNear;
         private static float OutBack(float t) { const float c = 1.7f; float u = t - 1; return 1 + (c + 1) * u * u * u + c * u * u; }
-        /// <summary>A small speech bubble bobbing above a visitor that can still be talked to (owner, 22/10/2026): "…" at rest,
+        /// <summary>A small speech bubble bobbing above a visitor that can still be talked to (requirement 22/10/2026): "…" at rest,
         /// "!" and brighter when the hero is in reach; gone once its deal is taken (the visitor is then done).</summary>
         private void DrawTalkBubble(Camera camera, Station station)
         {
@@ -687,7 +687,7 @@ namespace ArcaneBrigade
             Vector3 screen = camera.WorldToScreenPoint(head);
             Vector2 at = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
             float near = Mathf.Clamp01(station.Focus), bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 2.4f) * 4;
-            // owner 23/10/2026: the bubble pops up out of the visitor's head, "…" types its dots in turn, and it jumps to "!"
+            // requirement 23/10/2026: the bubble pops up out of the visitor's head, "…" types its dots in turn, and it jumps to "!"
             // when the hero comes near
             float now = Time.unscaledTime;
             if (now - talkLast > .5f) { talkSince = now; talkNearAt = -1; talkNear = false; } talkLast = now; // a visitor newly in view pops in again
@@ -740,7 +740,7 @@ namespace ArcaneBrigade
                 Vector3 screen = camera.WorldToScreenPoint(TagAnchor(station, station.Action == "REROLL" ? 0.83f : 0.65f));
                 Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
                 float scale = 1 + station.Focus * 0.09f + BeatPulse.Kick * 0.035f;
-                point.y += 22 * scale; // the tag hangs below the feet (owner, 22/10/2026: never over the character)
+                point.y += 22 * scale; // the tag hangs below the feet (requirement 22/10/2026: never over the character)
                 string price = station.Price.ToString();
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
                 Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);

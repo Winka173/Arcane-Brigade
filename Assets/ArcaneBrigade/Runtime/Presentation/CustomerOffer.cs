@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         private GUIStyle hand, plain, name;
         private readonly List<string> species = new List<string>();
         private int page; // nine companions per page; the arrows turn it
-        // the friend is picked first and sold only with the confirm button (owner 22/10/2026: one tap sold a memory)
+        // the friend is picked first and sold only with the confirm button (requirement 22/10/2026: one tap sold a memory)
         private string picked;
         public int InputConsumedFrame { get; private set; } = -1;
         public void Configure(ArenaController value) => owner = value;
@@ -19,7 +19,7 @@ namespace ArcaneBrigade
         public bool Open => Standing && !folded;
         /// <summary>The offer stands (open, or folded away as a letter waiting on the HUD).</summary>
         private bool Standing => owner?.Session != null && owner.Session.CustomerOfferAvailable && !owner.StoryConsumesInput && !owner.TransitionPending && !owner.Session.SecretRoomOpen;
-        // owner 24/10/2026: Esc used to refuse for good before the letter was even read; now Esc folds it away into a letter that
+        // requirement 24/10/2026: Esc used to refuse for good before the letter was even read; now Esc folds it away into a letter that
         // waits on the screen (tap to reopen) - only WALK ON refuses. It unfolds from its seal each time it opens.
         private bool folded, wasOpen; private float openedAt = -10;
         private static readonly Rect LetterRect = new Rect(1640, 232, 250, 64);
@@ -139,7 +139,7 @@ namespace ArcaneBrigade
         }
         public bool Open => owner?.Session != null && owner.Session.RelightChoiceOpen && !owner.StoryConsumesInput && !owner.TransitionPending;
         private readonly List<int> dark = new List<int>();
-        // picked first, then confirmed (owner 22/10/2026: one tap chose before the player knew what it meant); -1 none, dark.Count the colours
+        // picked first, then confirmed (requirement 22/10/2026: one tap chose before the player knew what it meant); -1 none, dark.Count the colours
         private int picked = -1;
         private GUIStyle info;
         private void Gather()

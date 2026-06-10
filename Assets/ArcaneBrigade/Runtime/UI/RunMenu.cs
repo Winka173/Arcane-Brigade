@@ -161,7 +161,7 @@ namespace ArcaneBrigade
             music = gameObject.AddComponent<ArcadeMusic>();
             gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();
             Screen.orientation = ScreenOrientation.LandscapeLeft;
-            if (RunLaunch.OpenHub) RunLaunch.OpenHub = false; // back from a finished run: the main menu (owner 22/10/2026)
+            if (RunLaunch.OpenHub) RunLaunch.OpenHub = false; // back from a finished run: the main menu (requirement 22/10/2026)
         }
 
         public void ReloadSaveSummary()
@@ -306,7 +306,7 @@ namespace ArcaneBrigade
                     if (navigation.Button(new Rect(700, 490, 400, 70), "BACK UP AND START", primary)) Launch(false);
                     break;
                 case Page.Settings: DrawSettings(); break;
-                case Page.Help: HowToPlayBook.Draw(new Rect(90, 160, 1100, 520), catalog, catalog.Champions != null && catalog.Champions.Length > 0 ? catalog.Champions[Mathf.Clamp(selection, 0, catalog.Champions.Length - 1)].Id : null, ref guidePage); break; // the picture book (owner 24/10/2026)
+                case Page.Help: HowToPlayBook.Draw(new Rect(90, 160, 1100, 520), catalog, catalog.Champions != null && catalog.Champions.Length > 0 ? catalog.Champions[Mathf.Clamp(selection, 0, catalog.Champions.Length - 1)].Id : null, ref guidePage); break; // the picture book (requirement 24/10/2026)
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
                 case Page.Museum:
@@ -333,7 +333,7 @@ namespace ArcaneBrigade
             GUI.color = previousTint;
             GUI.skin = previousSkin;
         }
-        // owner 24/10/2026: the game opens on a loading screen - the night, the lamp lighting a row of lanterns one by one under
+        // requirement 24/10/2026: the game opens on a loading screen - the night, the lamp lighting a row of lanterns one by one under
         // the name - then fades into the menu (once per launch; Reduced Motion shortens it to a moment)
         private static float bootStarted = -1; private static bool booted;
         private void DrawBootLoading()
@@ -364,7 +364,7 @@ namespace ArcaneBrigade
         // the door begins a journey, the armchair is where you left off, the bookshelf holds everyone you have met,
         // the letters on the side table are the ones you kept, the lamp sets light and sound. How to play lives only
         // in the bottom row; the row mirrors every entry one-to-one in the same order as before.
-        // owner 22/10/2026: NEW JOURNEY goes straight to hero select; the Waiting Room (permanent upgrades) is its own entry
+        // requirement 22/10/2026: NEW JOURNEY goes straight to hero select; the Waiting Room (permanent upgrades) is its own entry
         private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "WAITING ROOM", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
         private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Spend lamp oil on the room's stations", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works" };
         private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.lamp", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
@@ -482,7 +482,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(46, 140, 760, 32), "someone is waiting for you…", spotHint);
             spotHint.alignment = TextAnchor.MiddleCenter;
 
-            // owner 24/10/2026: "nobody can tell what reacts to the mouse, let alone on a phone - redo the main menu, with the
+            // requirement 24/10/2026: "nobody can tell what reacts to the mouse, let alone on a phone - redo the main menu, with the
             // Lantern Knight as its emblem". Every choice is a plain painted button with its icon, all visible at once (the
             // order mirrors SpotLabels for keys and pads); the Lantern Knight stands on the right holding up its lamp.
             UnitDefinition emblem = catalog.Unit("LanternKnight") ?? catalog.Champions[0];
@@ -531,9 +531,9 @@ namespace ArcaneBrigade
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
                 float portraitSize = index == selection ? 120 : 110;
-                // portrait + name centred in the card (owner, 21/10/2026); a locked hero lifts them to leave room for its chip
+                // portrait + name centred in the card (requirement 21/10/2026); a locked hero lifts them to leave room for its chip
                 float top = card.y + (unlocked ? 30 : 12);
-                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (owner 24/10/2026)
+                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
                 GUI.color = previousColor;
                 TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
                 GUI.Label(new Rect(card.x + 10, top + 120, card.width - 20, 52), RunUICopy.UnitName(unit), caption);
@@ -548,7 +548,7 @@ namespace ArcaneBrigade
                 foreach (BondDefinition bond in catalog.Bonds)
                     if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0)
                     {
-                        // each theme icon is tappable and says what it means (owner 24/10/2026)
+                        // each theme icon is tappable and says what it means (requirement 24/10/2026)
                         Rect icon = new Rect(690 - iconIndex++ * 34, 145, 28, 28); RunHud.Sprite(icon, bond.Icon);
                         if (GUI.Button(new Rect(icon.x - 4, icon.y - 4, 36, 36), GUIContent.none, GUIStyle.none)) Explain(icon, bond.Name + " theme", "Friends of this theme join this hero's shop more often. " + bond.Threshold + " of them together wake a bond bonus.");
                     }
@@ -585,7 +585,7 @@ namespace ArcaneBrigade
             // every difficulty is shown in turn; the two after the whole Lamp Tree show a lock until it is lit
             if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % RunMeta.DifficultyNames.Length;
             bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile);
-            // the difficulty's danger colour on its name alone, never on the painted plate (owner 24/10/2026: no tinted plates or boxes)
+            // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(17, true)); danger.alignment = TextAnchor.MiddleCenter;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
             if (sealedDifficulty) ArcadeSkin.Lock(new Vector2(790, 556), 16, danger.normal.textColor);
@@ -605,12 +605,12 @@ namespace ArcaneBrigade
             if (!MetaProgression.Keepsakes(profile, catalog).Contains(keepsakePick ?? "")) keepsakePick = MetaProgression.Keepsakes(profile, catalog).Contains(profile.Meta.Keepsake) ? profile.Meta.Keepsake : null;
             if (existingSave) { ShowPage(Page.ConfirmOverwrite); dailyDay = day; } else { dailyDay = day; Launch(false); }
         }
-        // from the overwrite check, back goes where the run was started from: the Waiting Room for tonight's dream (owner 23/10/2026)
+        // from the overwrite check, back goes where the run was started from: the Waiting Room for tonight's dream (requirement 23/10/2026)
         private Page BackOf(Page page) => page == Page.ConfirmOverwrite ? (dailyDay != null ? Page.Hub : Page.Roster) : page == Page.Roster ? Page.Landing : Page.Landing;
 
         /// <summary>Hero select's Waiting Room row (only what is unlocked): the Nursery's three friends, the Wardrobe's spare coat
         /// and second habit. A tap picks; the line under the row says what the pick does.</summary>
-        /// <summary>A tapped icon explains itself in a small card beside it (owner 24/10/2026: every icon on hero select must be
+        /// <summary>A tapped icon explains itself in a small card beside it (requirement 24/10/2026: every icon on hero select must be
         /// tappable and say what it means); a tap anywhere else closes it.</summary>
         private void Explain(Rect icon, string head, string body) { explainAt = icon; explainHead = head; explainText = body; explainShown = Time.unscaledTime; }
         private void DrawExplain()

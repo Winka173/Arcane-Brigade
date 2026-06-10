@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         public const int CopyRecruitLimit = 1;
         public const int CompanionPurchaseLimit = 2;
         public const int NewSpeciesEvery = 2;
-        public int CopyRecruitLimitThisWave => CopyRecruitLimit; // owner 22/10/2026: one upgrade copy a wave, wave 10 on too (was 2 from wave 10)
+        public int CopyRecruitLimitThisWave => CopyRecruitLimit; // requirement 22/10/2026: one upgrade copy a wave, wave 10 on too (was 2 from wave 10)
         private static int BaseNewSpeciesAllowance(int wave) => wave <= 9 ? 1 + (wave - 1) / NewSpeciesEvery : 5 + (wave - 9) / 3;
         public int EarnedNewSpeciesAllowance => BoundedCounter((long)BaseNewSpeciesAllowance(State.Wave) + KitNewRecruits + State.RegularAllowanceCarryover);
         public int NextRegularAllowanceWave
@@ -49,7 +49,7 @@ namespace ArcaneBrigade
         private bool RegularShelfSpecies(UnitDefinition unit) => !unit.SpecialRecruit && !StorySpecies(unit.Id) && unit.UnlockWave <= State.Wave &&
             (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) &&
             Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && VariantFree(unit.Id, weapon));
-        /// <summary>Owner 22/10/2026: the shop never sells what can't be bought. Rolls already leave new species out while the
+        /// <summary>Requirement 22/10/2026: the shop never sells what can't be bought. Rolls already leave new species out while the
         /// new-species quota is closed; a new species still on the regular shelf when the quota closes in this shop (another new
         /// friend bought, a gift relic, an undone refresh) is replaced at once, in its place, by a copy of a species you own (when
         /// the copy quota is open and no copy is on the shelf) or a relic. The dream shop keeps its own rule.</summary>

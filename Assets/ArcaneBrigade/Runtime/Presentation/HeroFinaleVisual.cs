@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Each hero's own finale as its transformation ends (owner 24/10/2026), and each hero's own tell when its gauge
+    /// <summary>Each hero's own finale as its transformation ends (requirement 24/10/2026), and each hero's own tell when its gauge
     /// is full. A finale arrives during the strike's anticipation (a giant envelope falling, three dice tumbling, roots
     /// creeping in, a bolt warning) and bursts as it lands. Painted tokens and brushed light only.</summary>
     public sealed partial class HeroIdentityVisual

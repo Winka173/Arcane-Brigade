@@ -99,7 +99,7 @@ namespace ArcaneBrigade
             if (g != null) { g.Big = true; g.Finale = true; }
         }
 
-        // ---- Lone Jelly, Mitosis (owner 23/10/2026): the two jellies are fighters of their own. Each walks to its own enemy
+        // ---- Lone Jelly, Mitosis (requirement 23/10/2026): the two jellies are fighters of their own. Each walks to its own enemy
         // (within 4 units of the hero, never farther than 3.2 from it) and comes back to its side of the hero when there is
         // none; their organs land on the enemy itself (bite, gland or threadwork by the approach).
         private readonly Vector2[] jellies = new Vector2[2];

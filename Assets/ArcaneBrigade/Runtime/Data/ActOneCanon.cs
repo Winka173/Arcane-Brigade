@@ -59,7 +59,7 @@ namespace ArcaneBrigade
         public static readonly string[] StoryIds = { "TeapotPilgrim", "HoodWisp", "ShellPostman", "PaperDevil" };
         public static readonly string[] StoryNames = { "Hob", "Latch", "Postscript", "Tally" };
         public static readonly int[] JoinShop = { 1, 5, 6, 11 }; // they meet you in the shop after this wave
-        /// <summary>Play-test 20/10/2026 (owner decision D15): the story allies no longer travel with the brigade. Nobody of
+        /// <summary>Play-test 20/10/2026 (requirement D15): the story allies no longer travel with the brigade. Nobody of
         /// the four is present in a fight or a shop; their species are ordinary friends again. The old rules stay below, dormant.</summary>
         public static bool StoryAlliesTravel = false;
         public static bool StoryPresent(int index, int wave, bool shop, bool endless)
@@ -84,7 +84,7 @@ namespace ArcaneBrigade
             // Down the right-hand edge of the shop: from the far corner under the bonds card (right of the merchant's speech
             // bubble), past the lantern-less strip, round the bottom-right corner below the stock, and on the last visit
             // beside the exit. Every position is reserved in ShopLayout, so no stall, offer or decoration is ever under it.
-            // pulled a little in from the edges for the bigger chair (owner 22/10/2026)
+            // pulled a little in from the edges for the bigger chair (requirement 22/10/2026)
             if (wave >= 19) return new Vector2(1.9f, -4.4f);
             Vector2[] path = { new Vector2(6.4f, 0.55f), new Vector2(6.5f, -1.7f), new Vector2(5.7f, -4.2f), new Vector2(4.5f, -4.3f) };
             float t = Mathf.Clamp01((Mathf.Clamp(wave, 1, 18) - 1) / 17f) * (path.Length - 1);

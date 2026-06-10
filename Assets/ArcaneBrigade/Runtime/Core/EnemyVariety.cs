@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Enemy variety (owner 24/10/2026, Docs/Playtest_Art_Prompts/23_Enemy_Variety.txt): eight new ways to fight for the
+    /// <summary>Enemy variety (requirement 24/10/2026, Docs/Playtest_Art_Prompts/23_Enemy_Variety.txt): eight new ways to fight for the
     /// late waves and Endless, and one named elite per map. Each behaviour reads at a glance and is always telegraphed:
     /// Shielder (shots at enemies behind it lose half their force), Splitter (falls into two smaller halves), Blinker (fades,
     /// then reappears behind the hero), Sniper (keeps its distance, aims a warned line, fires one heavy shot), Summoner

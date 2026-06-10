@@ -163,7 +163,7 @@ namespace ArcaneBrigade
             var path = InkCanvas.Arc(c, r, r * squash, a + half * turn, a - half * turn);
             air.GlowRibbon(path, head, tail, width * 2.2f, A(pal.Glow, (calm ? .12f : .26f) * (1 - q)));
             air.Stroke(path, Brush(pal, width * .6f, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
-            // owner 24/10/2026: a swing is a blade - it swells through its middle and runs out sharp at both ends
+            // requirement 24/10/2026: a swing is a blade - it swells through its middle and runs out sharp at both ends
             air.Stroke(InkCanvas.Arc(c, r * 1.03f, r * 1.03f * squash, a + half * .68f * turn, a - half * .68f * turn), Brush(pal, width, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
             air.Stroke(InkCanvas.Arc(c, r * 1.06f, r * 1.06f * squash, a + half * .36f * turn, a - half * .36f * turn), Brush(pal, width * 1.35f, 1 - Smooth(.7f, 1, q), head, tail, 1.3f));
         }
@@ -502,7 +502,7 @@ namespace ArcaneBrigade
                     break;
                 case WeaponInkStyle.StrikeForm.Chop:
                 {
-                    // a heavy chop (owner 24/10/2026: the straight drop read oddly): a thick crescent following the blade from
+                    // a heavy chop (requirement 24/10/2026: the straight drop read oddly): a thick crescent following the blade from
                     // over the shoulder down into the floor ahead, a thin echo inside it, chips and a crack where it lands
                     float turn = dir.x < -.05f ? -1 : 1;
                     Sweep(at, dir, size * .9f, p, pal, .24f, 76, 14);

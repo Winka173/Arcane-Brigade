@@ -10,7 +10,7 @@ namespace ArcaneBrigade
             if(rarity==ItemRarity.Rainbow && motion)tint=Color.HSVToRGB(Mathf.Repeat(clock*.055f,1),.48f,1);
             Color paper=Color.Lerp(new Color(.035f,.045f,.075f,.98f),tint,rarity==ItemRarity.Common?.08f:.19f);paper.a=.98f;
             RunHud.Fill(panel,paper);
-            // owner 23/10/2026 (the rarity frames read too quietly): a deeper band of the rarity's colour at the head of the
+            // requirement 23/10/2026 (the rarity frames read too quietly): a deeper band of the rarity's colour at the head of the
             // box fading down, a border that breathes (quicker the rarer), a carved wooden frame for Common, the rarity named
             // on a tab, one gem per rank on the crest, corner glints in turn; Rare+ light their edge on opening and motes rise up their rails
             Header(panel,tint,rarity);
@@ -30,7 +30,7 @@ namespace ArcaneBrigade
                 Extras(panel,rarity,tint,clock,motion);
             }
             if(!motion || rarity==ItemRarity.Common)return;
-            // owner (22/10/2026): no sliding shimmer bar along the edges, it read as a glitch
+            // requirement (22/10/2026): no sliding shimmer bar along the edges, it read as a glitch
         }
 
         /// <summary>The part of a framed box clear of its painted trim (side strips, corner caps, crest and foot), so text laid
@@ -170,18 +170,18 @@ namespace ArcaneBrigade
         {
             int rank=Rank(rarity);
             float crestWidth=rarity==ItemRarity.Common?0:Mathf.Round(Mathf.Clamp(panel.width*.38f,210,350));
-            // owner 24/10/2026: no rarity name or gem tab on the frame any more; the crest and the frame's own motion say it
+            // requirement 24/10/2026: no rarity name or gem tab on the frame any more; the crest and the frame's own motion say it
             Color bright=Color.Lerp(tint,Color.white,.35f);
             if(!motion)return;
             // the corners glint one after another
             int lit=Mathf.FloorToInt(clock*1.5f)%4; float k=Mathf.Repeat(clock*1.5f,1);
             if(rarity!=ItemRarity.Common)
             {
-                const float inset=14; // the glints stay inside the box (owner 24/10/2026)
+                const float inset=14; // the glints stay inside the box (requirement 24/10/2026)
                 Vector2 cc=lit==0?new Vector2(panel.x+inset,panel.y+inset):lit==1?new Vector2(panel.xMax-inset,panel.y+inset):lit==2?new Vector2(panel.xMax-inset,panel.yMax-inset):new Vector2(panel.x+inset,panel.yMax-inset);
                 float s=Mathf.Sin(k*Mathf.PI); Color g=Color.white; g.a=.9f*s; ArcadeSkin.Diamond(cc,6+8*s,g);
             }
-            // owner 24/10/2026: the old opening shine and falling glints were drawn through a turned GUI matrix and landed in one
+            // requirement 24/10/2026: the old opening shine and falling glints were drawn through a turned GUI matrix and landed in one
             // fixed spot on the left of the screen; everything below is placed on the box itself, never turned
             long key=((long)rarity<<40)^((long)Mathf.RoundToInt(panel.x/8)<<20)^(long)Mathf.RoundToInt(panel.y/8);
             if(!seen.TryGetValue(key,out Seen sn) || Time.frameCount-sn.Frame>3)sn.Since=Time.unscaledTime;
@@ -194,7 +194,7 @@ namespace ArcaneBrigade
                 float p=Mathf.Clamp01(age/.55f), fade=1-Mathf.Clamp01((age-.55f)/.2f);
                 for(int side=-1;side<=1;side+=2) EdgeRun(panel,side,1-(1-p)*(1-p),bright,fade,rarity==ItemRarity.Rainbow?clock:-1);
             }
-            // while open, each rarity moves in its own way, strong enough to read at a glance (owner 24/10/2026: "exaggerate it,
+            // while open, each rarity moves in its own way, strong enough to read at a glance (requirement 24/10/2026: "exaggerate it,
             // each rarity different"); everything stays on the frame or inside it
             float rail=Mathf.Max(10,Content(panel,rarity).x-panel.x-4);
             switch(rarity)
@@ -282,7 +282,7 @@ namespace ArcaneBrigade
             for(int i=0;i<rank;i++){Vector2 c=new Vector2(x0+i*gap,tile.y);ArcadeSkin.Diamond(c,9,new Color(.08f,.05f,.1f,.95f));ArcadeSkin.Diamond(c,6,bright);}
         }
         /// <summary>Behind a picture (Rare and above): four sparkles twinkling in turn at its corners, more and quicker the rarer
-        /// (owner 24/10/2026: the turning rays were drawn through a turned GUI matrix and showed up in the wrong place).</summary>
+        /// (requirement 24/10/2026: the turning rays were drawn through a turned GUI matrix and showed up in the wrong place).</summary>
         public static void Backdrop(Rect picture,ItemRarity rarity,float clock)
         {
             int rank=Rank(rarity); if(rank<3 || Event.current==null || Event.current.type!=EventType.Repaint)return;

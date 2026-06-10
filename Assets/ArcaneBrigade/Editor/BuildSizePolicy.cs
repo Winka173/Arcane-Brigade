@@ -241,7 +241,7 @@ namespace ArcaneBrigade.Editor
                         var ink = new Rect((left / ratioX - cell.x - sprite.pivot.x) / scale, (bottom / ratioY - cell.y - sprite.pivot.y) / scale, (right - left) / ratioX / scale, (top - bottom) / ratioY / scale);
                         // The resize keeps every ink box in world units (checked against the original PNGs to <1.5%), so the
                         // recorded boxes stay as they are: some were measured on older paintings and differ from today's
-                        // pixels, and replacing them would move art the owner has already approved. They are listed instead.
+                        // pixels, and replacing them would move art that is already approved. They are listed instead.
                         float size = Mathf.Max(0.001f, Mathf.Max(old.Ink.width, old.Ink.height));
                         float drift = Mathf.Max(Mathf.Max(Mathf.Abs(ink.x - old.Ink.x), Mathf.Abs(ink.y - old.Ink.y)), Mathf.Max(Mathf.Abs(ink.width - old.Ink.width), Mathf.Abs(ink.height - old.Ink.height))) / size;
                         if (drift > 0.05f) { changed++; stale.Add(drift.ToString("0.00", CultureInfo.InvariantCulture) + " " + AssetDatabase.GetAssetPath(sprite) + " " + sprite.name + " recorded " + old.Ink + " painted " + ink); }

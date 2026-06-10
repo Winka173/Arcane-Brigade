@@ -22,18 +22,18 @@ namespace ArcaneBrigade
         }
         public static bool HasArt { get { Load(); return frame != null; } }
 
-        /// <summary>An HP-priced offer keeps the ordinary description card (owner, 21/10/2026: "use a normal description and give
+        /// <summary>An HP-priced offer keeps the ordinary description card (requirement 21/10/2026: "use a normal description and give
         /// it an effect"); only this goes on top: a dark-red rim that beats like a heart, a red light running round the edge, and a
         /// few slow drops seeping from the top edge; inside, a nightmare vignette, drifting smoke and corner veins drawn before the text.</summary>
         public static void Draw(Rect panel, float clock)
         {
             bool still = PresentationSettings.ReducedMotion;
             float beat = still ? .4f : Heartbeat(clock);
-            // INSIDE the card (owner, 22/10/2026: "a nightmare, a trade-off, inside too"), all drawn before the text so it stays
+            // INSIDE the card (requirement 22/10/2026: "a nightmare, a trade-off, inside too"), all drawn before the text so it stays
             // readable: a crimson-black vignette closing in from the edges with each heartbeat, slow nightmare smoke drifting
             // across, and dark veins creeping in from the corners with an ember pulse in them.
             Color keepInside = GUI.color;
-            GUI.color = new Color(.24f, 0, .03f, (.5f + beat * .25f) * keepInside.a); // darker (owner 24/10/2026)
+            GUI.color = new Color(.24f, 0, .03f, (.5f + beat * .25f) * keepInside.a); // darker (requirement 24/10/2026)
             GUI.DrawTexture(panel, Vignette);
             Rect inner = new Rect(panel.x + 4, panel.y + 4, panel.width - 8, panel.height - 8);
             float drift = still ? 0 : clock * .025f;
@@ -41,7 +41,7 @@ namespace ArcaneBrigade
             GUI.DrawTextureWithTexCoords(inner, Smoke, new Rect(drift, drift * .35f, inner.width / 420f, inner.height / 420f), true);
             GUI.color = new Color(.2f, 0, .05f, .18f * keepInside.a);
             GUI.DrawTextureWithTexCoords(inner, Smoke, new Rect(-drift * 1.6f + .37f, .5f, inner.width / 300f, inner.height / 300f), true);
-            // owner 24/10/2026: the crackling veins spread over the whole card (each corner reaches its middle), darker
+            // requirement 24/10/2026: the crackling veins spread over the whole card (each corner reaches its middle), darker
             for (int k = 0; k < 4; k++)
             {
                 bool right = k == 1 || k == 3, bottom = k >= 2;

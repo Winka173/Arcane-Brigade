@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Each map's own air (owner, 22/10/2026), painted in code from soft runtime sprites, purely visual:
+    /// <summary>Each map's own air (requirement 22/10/2026), painted in code from soft runtime sprites, purely visual:
     /// Waiting Room - warm sepia, low fog drifting along the floor, dust motes in the lamp light;
     /// Post Office - cool blue, window light shafts, paper scraps and ash-like flecks on a draught;
     /// Lamp Hall - deep night on the floor that the lamps' own light cuts through, moths' wing glints round the lit lamps;
@@ -95,7 +95,7 @@ namespace ArcaneBrigade
         private void LampHall(MapEnvironmentState s, int motes, float clock)
         {
             // deep night on the floor; the lamps' painted light (floor order -40) cuts through it
-            // the round floor around the lamps: its edges sink deeper into the dark (owner 23/10/2026; edge was .5)
+            // the round floor around the lamps: its edges sink deeper into the dark (requirement 23/10/2026; edge was .5)
             Grade(new Color(.04f, .04f, .12f, .36f), new Color(.01f, .01f, .05f, .8f));
             int glints = 0;
             for (int i = 0; i < s.Lamps.Count && glints < Mathf.Max(motes, 4); i++)
@@ -136,7 +136,7 @@ namespace ArcaneBrigade
         // ------------------------------------------------------------------ helpers
         private static Color gradeTint, gradeEdge; private static int gradeFrame = -10; private static Vector2 gradeCentre, gradeHalf = Vector2.one;
         /// <summary>The light a standing prop at <paramref name="at"/> should take so it sits in the same air as the floor under it
-        /// (owner 22/10/2026: props stayed bright on a dark floor): the map's grade and its darker edges, as a multiply tint.
+        /// (requirement 22/10/2026: props stayed bright on a dark floor): the map's grade and its darker edges, as a multiply tint.
         /// White when no map air is drawn (the shop, a secret room).</summary>
         public static Color PropShade(Vector2 at)
         {

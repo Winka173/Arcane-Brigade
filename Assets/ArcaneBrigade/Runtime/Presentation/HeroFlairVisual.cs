@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The hero's life between and around its skills (owner 23/10/2026): each hero shows what it is gathering while it
+    /// <summary>The hero's life between and around its skills (requirement 23/10/2026): each hero shows what it is gathering while it
     /// waits (a lamp flame that grows, a die showing its next face, notes, steam, pages...), a row of its tokens over its
     /// head counts the steps to the next gauge third and pops as each one lights, a strike gathers its tokens before it
     /// lands, the transformation wears a living rim (hero, weapon, empowered friends and the gauge) that flickers as it runs

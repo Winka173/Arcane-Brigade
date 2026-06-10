@@ -123,7 +123,7 @@ namespace ArcaneBrigade.Editor
             {
                 session.Start(catalog.Champions[0].Id, 13104); session.State.Wave = 10; // Act I boss waves are 5, 10, 15, 20
                 CheckpointCatalog combat = session.PrepareCombat();
-                // arena toys are off in play since 19/10/2026 (owner: "only remove the toys"); the toy machinery is still checked below
+                // arena toys are off in play since 19/10/2026 (requirement: "only remove the toys"); the toy machinery is still checked below
                 require(!combat.EnableArenaToys && combat.EnableBossArenaPhase && combat.RunWave == 10 && combat.Boss != null, "Authored boss wave keeps its arena phase; arena toys are off in play");
                 combat.EnableArenaToys = true;
                 var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The run side of enemy variety (owner 24/10/2026): each map's named elite on the map's third wave, and in Endless
+    /// <summary>The run side of enemy variety (requirement 24/10/2026): each map's named elite on the map's third wave, and in Endless
     /// a new trait mixed into the ordinary pool every five waves after the twentieth, so the endless waves keep changing.</summary>
     public static class EnemyVarietyRun
     {

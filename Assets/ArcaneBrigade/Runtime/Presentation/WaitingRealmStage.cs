@@ -23,7 +23,7 @@ namespace ArcaneBrigade
         public Vector2 ChairAnchor => ShopChair ? ActOneCanon.ChairPosition(owner.Session.State.Wave) : ActOneCanon.ChairPosition(1);
         /// <summary>Painted width and height of the chair as drawn (ShopLayout reserves this at all 19 positions).</summary>
         // the older wide armchair is drawn a little smaller so it fits the same reserved spots as the warm chair
-        private float ChairHeight => warm != null ? 1.9f : 1.8f; // bigger (owner 22/10/2026: important things read at a glance)
+        private float ChairHeight => warm != null ? 1.9f : 1.8f; // bigger (requirement 22/10/2026: important things read at a glance)
         public Vector2 ChairSize
         {
             get
@@ -35,7 +35,7 @@ namespace ArcaneBrigade
                 return ink.size * scale;
             }
         }
-        public const float ChairReach = 1.9f; // was 1.35: the chair's option only showed on one exact spot (owner 22/10/2026)
+        public const float ChairReach = 1.9f; // was 1.35: the chair's option only showed on one exact spot (requirement 22/10/2026)
         public int SpotCount => 1;
         public bool Spot(int index, out Vector2 position, out float reach) { position = ChairAnchor; reach = ChairReach; return ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null; }
         private bool Near => Spot(0, out _, out _) && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
@@ -164,7 +164,7 @@ namespace ArcaneBrigade
             }
             else
             {
-                // a card over the shop (owner 22/10/2026: price tags showed through it and its text ran to the rims): dimmed room,
+                // a card over the shop (requirement 22/10/2026: price tags showed through it and its text ran to the rims): dimmed room,
                 // above the HUD and the tags, every line inside the paper's padded area, the painted buttons apart
                 GUI.depth = -60;
                 RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, .5f));

@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         public int DrinksBeforeShop;
     }
 
-    /// <summary>The fourth form (owner, 22/10/2026): a 3-star friend can wake LUCID at the dream shop's altar from wave 12,
+    /// <summary>The fourth form (requirement 22/10/2026): a 3-star friend can wake LUCID at the dream shop's altar from wave 12,
     /// twice a run, for eggs and gold. A lucid friend hits harder, its weapon grows (more reach for blades, one more pierce
     /// for shots) and it counts one more member in its main bond. Drawn in code (LucidAura); no new painting per friend.</summary>
     public sealed partial class RunSession

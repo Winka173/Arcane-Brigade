@@ -59,7 +59,7 @@ namespace ArcaneBrigade.Editor
             if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
         }
 
-        /// <summary>The shop friend-card gate (owner 22/10/2026): shop descriptions and recruitment (the weapon known before buying).</summary>
+        /// <summary>The shop friend-card gate (requirement 22/10/2026): shop descriptions and recruitment (the weapon known before buying).</summary>
         public static void RunOfferWeapon()
         {
             var lines = new List<string>(); int failed = 0;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A boss's attack ranges, painted as red ink CRACKS (owner 24/10/2026: no outlined zones; before that, outlines only per
+    /// <summary>A boss's attack ranges, painted as red ink CRACKS (requirement 24/10/2026: no outlined zones; before that, outlines only per
     /// play-test item 22, decision D10; no fills, no pools):
     /// <list type="bullet">
     /// <item>A circle (a slam, a falling piece, a shockwave) is a brushed dashed rim at the exact radius that hurts; the dashes
@@ -135,7 +135,7 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ the shared marks (BossTrademarkVisual uses them too)
-        /// <summary>Where a blow will land (owner 24/10/2026: no outlined zones any more): cracks run out from the centre to the
+        /// <summary>Where a blow will land (requirement 24/10/2026: no outlined zones any more): cracks run out from the centre to the
         /// area's true edge as the blow charges, a hot spark at each tip in the last beat.</summary>
         public static void Rim(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float seed, float alpha)
         {

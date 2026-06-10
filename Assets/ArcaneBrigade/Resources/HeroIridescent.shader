@@ -1,4 +1,4 @@
-// Thin-film colour (owner 24/10/2026): soap film, dream glass, petals lit from behind. Hues drift with world position
+// Thin-film colour (requirement 24/10/2026): soap film, dream glass, petals lit from behind. Hues drift with world position
 // and time; _Edge 1 makes a bubble (bright at its rim, clear in its middle), 0 a sheen laid over a sprite. Added light.
 Shader "ArcaneBrigade/HeroIridescent"
 {

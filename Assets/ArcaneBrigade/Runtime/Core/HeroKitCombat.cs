@@ -95,7 +95,7 @@ namespace ArcaneBrigade
 
         /// <summary>How much of a blow the hero takes: armour from the kit, the transformation's guard, golden or royal immunity.</summary>
         private float heroSlipGuardUntil = -1;
-        /// <summary>Owner 24/10/2026 (Moon Prowler died to its own Eclipse): what share of enemies' touch damage reaches the hero.
+        /// <summary>Requirement 24/10/2026 (Moon Prowler died to its own Eclipse): what share of enemies' touch damage reaches the hero.
         /// A skill that puts the hero among enemies (Eclipse's slips behind them, the dream swap) leaves it untouchable for a
         /// moment, and the transformations that fight body to body (steam engine, diving bell, convoy, duel, feast, eclipse)
         /// take only a third of the touches while they last.</summary>

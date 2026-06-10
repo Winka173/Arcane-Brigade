@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Our ranged weapons' feel on screen (19/10/2026, owner's V1 and R2-R7), all painted ink (ArsenalInk / MechanicInk
+    /// <summary>Our ranged weapons' feel on screen (19/10/2026, requirements V1 and R2-R7), all painted ink (ArsenalInk / MechanicInk
     /// tokens and brush strokes): each weapon's own small flourish at the muzzle, a gun's casing dropping to the floor, a slow
     /// weapon gathering light at its muzzle through its wind-up (and a soft thup as it lets go), arrows and darts staying
     /// stuck in the enemy they hit until it falls, an inked line joining the points a piercing shot passed through, a

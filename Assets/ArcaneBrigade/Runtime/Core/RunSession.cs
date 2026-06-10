@@ -421,7 +421,7 @@ namespace ArcaneBrigade
                 if (stacks > 0 && !SecretItemSuspended(rule.ItemId)) procs.Add(new ActiveProc { Rule = rule, Stacks = stacks });
             }
             CombatCatalog.Procs = procs.ToArray();
-            CombatCatalog.EnableArenaToys = false; // no arena toys in the fight any more (owner, 19/10/2026): no bell, no cart; scenery stays
+            CombatCatalog.EnableArenaToys = false; // no arena toys in the fight any more (requirement 19/10/2026): no bell, no cart; scenery stays
             CombatCatalog.RunWave = State.Wave;
             CombatCatalog.RunDifficulty = State.Difficulty;
             CombatCatalog.ChestGoldScale = GoldScale;
@@ -552,7 +552,7 @@ namespace ArcaneBrigade
             else if (companion) { unit.Weapon.Range *= CarnivalBalance.RangedAllyReach; unit.Weapon.ProjectileLifetime *= CarnivalBalance.RangedAllyReach; }
             if (!companion)
             {
-                // owner (22/10/2026): the hero's hits were too far apart; faster swings for less per hit (about the same damage a second)
+                // requirement (22/10/2026): the hero's hits were too far apart; faster swings for less per hit (about the same damage a second)
                 unit.Weapon.Cooldown *= HeroTempo; unit.Weapon.Damage *= HeroTempoDamage;
                 unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
                 unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
@@ -919,7 +919,7 @@ namespace ArcaneBrigade
         }
 
         private int ItemWeight(ItemDefinition item) => Mathf.Max(1, Mathf.RoundToInt(BaseItemWeight(item) * LoneWeight(item) * FamilyWeight(item)));
-        /// <summary>The thin hero families (owner 23/10/2026: each hero's shop should fit it) also lean on shared relics that suit
+        /// <summary>The thin hero families (requirement 23/10/2026: each hero's shop should fit it) also lean on shared relics that suit
         /// them: those come 2.5x as often for a hero of that family, without being taken from anyone else.</summary>
         private static readonly System.Collections.Generic.Dictionary<string, string[]> FamilyExtras = new System.Collections.Generic.Dictionary<string, string[]>
         {
@@ -955,7 +955,7 @@ namespace ArcaneBrigade
         public const float HeroTempo = .7f, HeroTempoDamage = .73f;
         public float GoldScale => StagePriceFactor;
         public int ScaledGold(int authored) => ShopVisitors.Scale(authored, GoldScale);
-        /// <summary>A Scavenge passive's gold every 4s (owner 22/10/2026: Kettle Bat "finds 0 gold"): the authored strength (0.5,
+        /// <summary>A Scavenge passive's gold every 4s (requirement 22/10/2026: Kettle Bat "finds 0 gold"): the authored strength (0.5,
         /// once rounded half-to-even to 0) times the star support, on the gold curve, rounded half up and never below 1.</summary>
         public static int ScavengeGold(float strength, int tier, float support, float goldScale) =>
             Math.Max(1, (int)Math.Min(int.MaxValue, Math.Round(strength * Math.Pow(support, Mathf.Clamp(tier, 1, 3) - 1) * Math.Max(1f, goldScale * .15f), MidpointRounding.AwayFromZero))); // .15: late 3-star finds ~50 a tick (~10–15% of a wave's income), not a second income
@@ -964,7 +964,7 @@ namespace ArcaneBrigade
         /// <summary>What a visitor asks in this shop: its authored price on the gold curve (the world tag, the card and the
         /// rules all read this one number).</summary>
         public int VisitorCost(VisitorDefinition v) => v == null ? 0 : ScaledGold(v.Cost);
-        // owner 22/10/2026: eggs pile up late, so the dream shop's egg prices rise with the waves (x1.18 at wave 5, x1.63 at 10, x2.5 at 20)
+        // requirement 22/10/2026: eggs pile up late, so the dream shop's egg prices rise with the waves (x1.18 at wave 5, x1.63 at 10, x2.5 at 20)
         public const int MergeBias = 30, MergeSureAfter = 6;
         /// <summary>Wise's shop sells another Dream Seeker (from wave 2, half the shops, one at a time, up to five a run): it
         /// takes the place of the last relic on the shelf.</summary>
@@ -1041,7 +1041,7 @@ namespace ArcaneBrigade
                 if (upgradeSlot) available = owned;
                 var mergeReady = available.FindAll(unit => MergeReady(unit.Id));
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
-                // owner 23/10/2026: a copy to merge came almost every refresh (85%); now 30% (+5% a refresh missed), sure after 6 misses
+                // requirement 23/10/2026: a copy to merge came almost every refresh (85%); now 30% (+5% a refresh missed), sure after 6 misses
                 if (mergeReady.Count > 0 && (drought >= MergeSureAfter || Next(ref State.ShopRandom, 100) < MergeBias + drought * 5)) available = drought >= MergeSureAfter ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
                 bool recruit = available.Count > 0 && (upgradeSlot || owedNewSpecies.Count > 0 || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 var itemChoices = index == 1 && foundation.Count > 0 ? foundation : items;

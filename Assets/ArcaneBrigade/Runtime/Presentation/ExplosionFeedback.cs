@@ -108,7 +108,7 @@ namespace ArcaneBrigade
             switch (value.Kind)
             {
                 case CombatEventKind.Detonation when value.Cause.ItemId != null && value.Cause.ItemId.StartsWith("hero-identity-", System.StringComparison.Ordinal):
-                    break; // a hero skill paints its own strike (owner 23/10/2026: the blast disc over it read as film)
+                    break; // a hero skill paints its own strike (requirement 23/10/2026: the blast disc over it read as film)
                 case CombatEventKind.Detonation:
                     Spawn(Kind.Blast, value.Position, Mathf.Max(0.8f, value.Value), Tint(value.Element, value.Faction), true, value.Faction == Faction.Enemy);
                     break;
@@ -257,7 +257,7 @@ namespace ArcaneBrigade
                 if (PresentationSettings.ReducedFlashes) tint = Color.Lerp(tint, new Color(0.85f, 0.78f, 0.7f), 0.3f);
                 blast.Core.color = new Color(tint.r, tint.g, tint.b, alpha);
             }
-            // (owner 23/10/2026: no plain ring snapping out of every death; the burst, sparks and smoke carry it)
+            // (requirement 23/10/2026: no plain ring snapping out of every death; the burst, sparks and smoke carry it)
             float ringT = Mathf.Clamp01(age / 0.2f);
             float ringAlpha = 0f;
             blast.Ring.enabled = ringAlpha > 0.02f;
@@ -401,7 +401,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < blast.Puffs.Length; i++)
             {
                 SpriteRenderer view = blast.Puffs[i];
-                Sprite[] inkPuffs = null; // the painted purple smoke is retired (owner 22/10/2026): the code-drawn smudge settles instead
+                Sprite[] inkPuffs = null; // the painted purple smoke is retired (requirement 22/10/2026): the code-drawn smudge settles instead
                 Sprite inkPuff = inkPuffs == null || inkPuffs.Length == 0 ? null : inkPuffs[Mathf.Min(inkPuffs.Length - 1, Mathf.FloorToInt(puffT * inkPuffs.Length))];
                 view.sprite = inkPuff != null ? inkPuff : puff;
                 view.enabled = i < puffs && puffT > 0 && puffT < 1;
@@ -431,7 +431,7 @@ namespace ArcaneBrigade
             view.transform.position = centre - view.transform.TransformVector(ink.center);
             view.color = new Color(1, 1, 1, alpha);
         }
-        /// <summary>A hostile blast as a code-drawn ember burst (owner 22/10/2026): a white-hot core flash cooling to orange, a soft
+        /// <summary>A hostile blast as a code-drawn ember burst (requirement 22/10/2026): a white-hot core flash cooling to orange, a soft
         /// orange-red halo, ten embers flying out and fading, a brief heat-ripple ring; no painted dust core.</summary>
         private void EmberBurst(Blast blast, bool still, bool sparse, float flashGain)
         {
@@ -480,7 +480,7 @@ namespace ArcaneBrigade
             // the settling smudge stays faint under the embers
             foreach (var puff in blast.Puffs) if (puff.enabled) { Color c = puff.color; c.a *= .5f; puff.color = c; }
         }
-        /// <summary>Hostile blasts and every enemy death are drawn in code (owner 22/10/2026: no painted fire, rock or smoke on the
+        /// <summary>Hostile blasts and every enemy death are drawn in code (requirement 22/10/2026: no painted fire, rock or smoke on the
         /// hostile side); the painted flash, ring and chips stay only for our own detonations.</summary>
         private static bool Painted(Blast blast) => !blast.Hostile && blast.Kind != Kind.Pop;
         private static void ApplyPaintedFlash(Blast blast)

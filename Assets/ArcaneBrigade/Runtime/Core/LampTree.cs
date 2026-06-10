@@ -25,7 +25,7 @@ namespace ArcaneBrigade
     /// <summary>A stat a lantern adds to a run (a relic-like modifier with its scope), saved with the run's loadout.</summary>
     [Serializable] public sealed class MetaStat { public ItemEffect Effect; public ModifierScope Scope; public float Value; }
 
-    /// <summary>The Lamp Tree (owner 24/10/2026, "3. chốt"; ranks, four more branches and the roots: "làm hết"): the permanent
+    /// <summary>The Lamp Tree (requirement 24/10/2026, "3. chốt"; ranks, four more branches and the roots: "làm hết"): the permanent
     /// upgrades in nine branches - the hero, friends (never healing or armour), gold, luck, dreams, the shield (the hero's own
     /// defence), the forge, the hunt (weaker enemies), the merchant - over the roots. Plain lanterns cost Lamp Oil and most take
     /// three ranks; forks and the crowning lantern cost Keepsakes. A branch opens with three lit in the branch before it, or with

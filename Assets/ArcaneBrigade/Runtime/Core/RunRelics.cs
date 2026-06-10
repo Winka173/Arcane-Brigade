@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             value += LoneBonus(effect, target);
             foreach (StatModifier gain in State.RelicGains ?? new List<StatModifier>())
                 if (gain.Effect == effect && RunModifierRules.Applies(gain.Scope, target)) value += gain.Value;
-            // owner 22/10/2026 (broken-item scan): the hoard counts gold at its wave-1 value and stops at +40% a copy; luck to
+            // requirement 22/10/2026 (broken-item scan): the hoard counts gold at its wave-1 value and stops at +40% a copy; luck to
             // health stops at +80 HP a copy; damage to income at +20 a copy
             if (effect == ItemEffect.Damage && target != ModifierScope.Run) value += MechanicStacks(RelicMechanic.HoardPower) * HoardBonus(State.Gold, GoldScale);
             if (effect == ItemEffect.Health) value += MechanicStacks(RelicMechanic.LuckToHealth) * Mathf.Min(80, Mathf.Max(0, Bonus(ItemEffect.Luck)) * 100);

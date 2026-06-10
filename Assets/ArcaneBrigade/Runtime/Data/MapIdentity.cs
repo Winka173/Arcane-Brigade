@@ -43,7 +43,7 @@ namespace ArcaneBrigade
             new[] { "SpareChair", "DoorKnocker", "SporeBishop", "CoinLeech", "HopperKeg", "BristleImp", "DoorBearer", "SleepMimic", "HushMite", "TicketMoth", "UmbrellaStalker", "SofaGlutton" },
             new[] { "SewnLetter", "PartyLine", "RibbonHydra", "MoonMagnet", "BroomSkater", "ChargerRam", "BlastPuffer", "StampTick", "SealHound", "SackGolem" },
             new[] { "LampSnuffer", "InkMoth", "CurtainWisp", "RuneWisp", "LostLanternSoul", "SmokeWraith", "BlueFlameFiend", "TwinFlameFurnace", "EmberProcession", "AshSwallower", "WickImp", "LampshadeJelly", "ChandelierCrawler", "FireScreenWarden", "TwinWickLantern", "CandleShade" },
-            new[] { "LedgerHound", "SmokingCoffin", "ClockBat", "BurrowBell", "RedFlameBerserker", "SirenSeal", "InkNotary", "ClipMite", "InkToad", "CabinetMimic", "SpyglassSniper", "DrawerBroodmother", "LedgerTortoise" }, // + the playtest map enemies (owner 23/10/2026)
+            new[] { "LedgerHound", "SmokingCoffin", "ClockBat", "BurrowBell", "RedFlameBerserker", "SirenSeal", "InkNotary", "ClipMite", "InkToad", "CabinetMimic", "SpyglassSniper", "DrawerBroodmother", "LedgerTortoise" }, // + the playtest map enemies (requirement 23/10/2026)
         };
         public static IReadOnlyList<string> Family(MapTheme map) => Families[(int)map];
         public static bool InFamily(MapTheme map, string id) => Array.IndexOf(Families[(int)map], id) >= 0;

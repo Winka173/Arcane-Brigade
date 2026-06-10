@@ -66,8 +66,8 @@ namespace ArcaneBrigade
         private float arrivalAge = 10;
         private int arrivalFrame;
         private float facingAngle;
-        private Vector3 gripWorld; private Vector2 gripVelocity; private bool gripPlaced; // the weapon follows its bearer a touch behind (owner 24/10/2026)
-        /// <summary>The hero's weapon draws over the hero, its gauge (2060) and every mark its skills paint (owner 24/10/2026).</summary>
+        private Vector3 gripWorld; private Vector2 gripVelocity; private bool gripPlaced; // the weapon follows its bearer a touch behind (requirement 24/10/2026)
+        /// <summary>The hero's weapon draws over the hero, its gauge (2060) and every mark its skills paint (requirement 24/10/2026).</summary>
         public const int HeroWeaponOrder = 2100;
         private BodyPuppet puppet;
         private GroundShadow grounded;
@@ -307,7 +307,7 @@ namespace ArcaneBrigade
                 }
                 if (unit.Definition.Weapon.Kind == WeaponKind.Projectile && unit.Definition.Weapon.Motion == WeaponMotion.Recoil)
                 {
-                    // guns (owner 23/10/2026): all the same girth, 34% of the bearer's height; length follows the painting (up to 2.4x)
+                    // guns (requirement 23/10/2026): all the same girth, 34% of the bearer's height; length follows the painting (up to 2.4x)
                     Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
                     float bodyH = K8Motion.BodyHeight(unit), girth = bodyH * GunGirth / Mathf.Max(.01f, ink.height);
                     girth = Mathf.Min(girth, bodyH * 2.4f / Mathf.Max(.01f, ink.width));
@@ -449,7 +449,7 @@ namespace ArcaneBrigade
             if (canonFace != null) body.sprite = canonFace;
             K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion);
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
-            // between blows a friend keeps aiming where it last struck (owner 24/10/2026: walking while shooting, the weapon
+            // between blows a friend keeps aiming where it last struck (requirement 24/10/2026: walking while shooting, the weapon
             // swung back and forth between the way it walked and the way it shot)
             float sinceBlow = simulationTime - state.AttackStarted;
             bool aiming = !attacking && state.Faction != Faction.Enemy && state.AttackStarted > 0 && sinceBlow >= 0 && sinceBlow < poseWindup + definition.Recovery + .9f && state.AttackDirection.sqrMagnitude > .01f;
@@ -462,7 +462,7 @@ namespace ArcaneBrigade
             if (state.Faction == Faction.Champion && PresentationSettings.HighlightHero) order += HeroFocus.SortBias;
             body.sortingOrder = order;
             shadow.sortingOrder = order - 10;
-            // the held weapon always draws over its bearer (owner 24/10/2026: facing up it slipped behind the body); the hero's
+            // the held weapon always draws over its bearer (requirement 24/10/2026: facing up it slipped behind the body); the hero's
             // goes over everything: hero, then its gauge, then its weapon
             int weaponOrder = state.Faction == Faction.Champion ? HeroWeaponOrder : order + 2;
             weapon.sortingOrder = weaponOrder;
@@ -511,7 +511,7 @@ namespace ArcaneBrigade
                 Rect ink = SpriteInkMetrics.BoundsOf(reference);
                 if (state.Faction == Faction.Champion)
                 {
-                    // owner 24/10/2026: every hero reads about the same size beside its friends - a squat, square hero is drawn
+                    // requirement 24/10/2026: every hero reads about the same size beside its friends - a squat, square hero is drawn
                     // shorter than a tall thin one (the old rule drew all of them at one height, so the square ones looked huge)
                     float tall = Mathf.Clamp(.91f * Mathf.Sqrt(ink.height / Mathf.Max(.01f, ink.width)), .84f, 1.05f);
                     referenceHeight = ink.height / tall;
@@ -521,7 +521,7 @@ namespace ArcaneBrigade
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
             bool ordinaryFoe = state.Faction == Faction.Enemy && !state.Definition.IsBoss;
-            float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / (ordinaryFoe ? 0.2f : 0.14f)); // owner 23/10/2026: a struck foe reads
+            float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / (ordinaryFoe ? 0.2f : 0.14f)); // requirement 23/10/2026: a struck foe reads
             impactSquash += hurt * (ordinaryFoe ? 0.14f : 0.09f);
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
@@ -542,7 +542,7 @@ namespace ArcaneBrigade
                 if (tip > 0) { body.transform.localRotation *= Quaternion.Euler(0, 0, -tipSide * 30 * tip); body.transform.localPosition += new Vector3(tipSide * .05f, .06f, 0) * tip; }
                 // C10: a heavy melee swing draws back a touch, then carries the swinger toward its blow and back
                 lungeOffset = Vector2.zero;
-                bool noAttackPose = state.Definition.AuthoredMotion == null; // friends without a painted attack pose (owner 23/10/2026)
+                bool noAttackPose = state.Definition.AuthoredMotion == null; // friends without a painted attack pose (requirement 23/10/2026)
                 if (attacking && state.Faction == Faction.Companion && (definition.Kind == WeaponKind.Melee || noAttackPose))
                 {
                     float weight = definition.Kind == WeaponKind.Melee ? Mathf.Max(.55f, ImpactRules.Weight(definition)) : .45f;
@@ -611,10 +611,10 @@ namespace ArcaneBrigade
                 float hurtRed = Mathf.Clamp01(1f - (simulationTime - state.LastHit) / 0.24f);
                 if (hurtRed > 0 && state.LastHit > 0) body.color = Color.Lerp(body.color, new Color(1f, 0.3f, 0.26f), hurtRed * (Mathf.Repeat(simulationTime * 16f, 1f) < 0.5f ? 0.8f : 0.35f));
             }
-            // the hostile side reads cool at a glance (owner 24/10/2026: many-coloured enemies were hard to tell from friends):
+            // the hostile side reads cool at a glance (requirement 24/10/2026: many-coloured enemies were hard to tell from friends):
             // every enemy body leans a little toward violet, bosses less so their own colours stay
             if (state.Faction == Faction.Enemy) body.color = Color.Lerp(body.color, HostileCast * body.color.a, state.Definition.IsBoss ? .05f : .1f); // a light cool cast; the shader turns their gold and cream
-            // struck by a hero skill: a quick flash of the hero's colour, so a skill's victims read at a glance (owner 23/10/2026)
+            // struck by a hero skill: a quick flash of the hero's colour, so a skill's victims read at a glance (requirement 23/10/2026)
             if (state.Faction == Faction.Enemy && simulationTime - state.SkillHitAt < .22f && !PresentationSettings.ReducedFlashes)
                 body.color = Color.Lerp(body.color, state.SkillHitTint, .6f * (1 - (simulationTime - state.SkillHitAt) / .22f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
@@ -634,7 +634,7 @@ namespace ArcaneBrigade
             float nightVisibility = SharedLightField.Active == null ? 1 : SharedLightField.Active.Visibility(state, simulationTime);
             flashProperties.SetFloat("_NightVisibility", nightVisibility);
             flashProperties.SetFloat("_HostileShift", state.Faction != Faction.Enemy ? 0 : state.Definition.IsBoss ? .35f : state.Elite ? .5f : 1f); // enemies lose the friends' warm colours
-            // owner 24/10/2026: our side a touch brighter, the hostile side darker, so they part at a glance
+            // requirement 24/10/2026: our side a touch brighter, the hostile side darker, so they part at a glance
             flashProperties.SetFloat("_Exposure", state.Faction != Faction.Enemy ? 1.1f : state.Definition.IsBoss ? .95f : .9f);
             flashProperties.SetVector("_LivingMotion", EnsembleMotion.Surface(state, simulationTime, ReducedMotion));
             if (state.Faction == Faction.Champion)
@@ -651,7 +651,7 @@ namespace ArcaneBrigade
             }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
-            // owner 23/10/2026: in a crowd the sides must read apart at a glance - ordinary enemies a little cooler and darker,
+            // requirement 23/10/2026: in a crowd the sides must read apart at a glance - ordinary enemies a little cooler and darker,
             // friends at full colour with a faint warm light behind them (the hero keeps its own halo, HeroFocus)
             if (state.Faction == Faction.Enemy && !state.Definition.IsBoss) body.color = new Color(body.color.r * .84f, body.color.g * .82f, body.color.b * .92f, body.color.a);
             FriendLight(state);
@@ -673,7 +673,7 @@ namespace ArcaneBrigade
             {
                 flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true);
                 flashProperties.SetFloat("_NightVisibility", nightVisibility);
-                // owner 24/10/2026: the old weapon animations are gone - no bending of the painting, no painted action frames
+                // requirement 24/10/2026: the old weapon animations are gone - no bending of the painting, no painted action frames
                 // (they were made for the weapons before their repaint) and no separately moving parts; the weapon is drawn
                 // as its own painting, swung and recoiled by its bearer
                 flashProperties.SetVector("_WeaponFlex", Vector4.zero); flashProperties.SetVector("_MechanicMotion", Vector4.zero); flashProperties.SetFloat("_WeaponMask", 0);
@@ -737,14 +737,14 @@ namespace ArcaneBrigade
                 drawHand.transform.localPosition = new Vector3(anchor - draw, 0, 0);
             }
             float attachmentScale = state.Faction == Faction.Companion ? 0.72f : 1;
-            // owner 24/10/2026: held a little further out, at hand height (a third of the body up, not at the face)
+            // requirement 24/10/2026: held a little further out, at hand height (a third of the body up, not at the face)
             float reachOut = state.Faction == Faction.Champion ? .1f : state.Faction == Faction.Companion ? .06f : 0;
             float handDrop = state.Faction != Faction.Enemy ? K8Motion.BodyHeight(state) * .12f : 0;
             Vector3 gripAt = facing.normalized * ((definition.MountDistance + reachOut - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale - handDrop);
             gripAt += Vector3.up * performance.GripLift;
             gripAt += (Vector3)lungeOffset; // the weapon travels with a lunging swinger
             // the weapon follows its bearer on the screen's own clock, a touch behind, so a walking hero's weapon glides instead
-            // of stepping with the simulation (owner 24/10/2026)
+            // of stepping with the simulation (requirement 24/10/2026)
             Vector3 wanted = transform.TransformPoint(gripAt);
             if (!gripPlaced || ReducedMotion || (wanted - gripWorld).sqrMagnitude > 4) { gripWorld = wanted; gripVelocity = Vector2.zero; gripPlaced = true; }
             else { Vector2 eased = Vector2.SmoothDamp(gripWorld, wanted, ref gripVelocity, attacking ? .018f : .045f, Mathf.Infinity, Mathf.Min(Time.deltaTime, .05f)); gripWorld = new Vector3(eased.x, eased.y, wanted.z); }

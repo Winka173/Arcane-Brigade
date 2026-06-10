@@ -52,7 +52,7 @@ namespace ArcaneBrigade
         public static float Allied(float width) => Mathf.Clamp(width * 1.35f, .32f, .62f); // no shot of ours larger than 0.62 (thrown boomerangs and yo-yos were drawn ~1 unit)
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
-            // owner 24/10/2026: Postmaster's parcels and Treasure Acorn's acorns wear a glowing shader rim that follows their shape
+            // requirement 24/10/2026: Postmaster's parcels and Treasure Acorn's acorns wear a glowing shader rim that follows their shape
             // (no round glow disc behind a shot)
             string cause = state.Cause.ItemId;
             if (cause == "hero-identity-Postmaster") SkillRim.For(body)?.Show(new Color(1f, .45f, .35f, .95f), .035f, float.NaN);
@@ -102,7 +102,7 @@ namespace ArcaneBrigade
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
             bool authored = painted != null || bodyFragment || MechanicInk.IsInk(body.sprite) || state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
             halo.enabled = core.enabled = magic && !authored && (hostile || EffectDensity.CosmeticProjectile(state.Id));
-            halo.enabled = false; // no round glow disc behind any shot (owner 17/10 ours, 23/10/2026 the enemy's red disc too); the trail tells them apart
+            halo.enabled = false; // no round glow disc behind any shot (requirement 17/10 ours, 23/10/2026 the enemy's red disc too); the trail tells them apart
             if (state.Weapon != null && (state.Weapon.Family == ExpandedWeapon.Fish || state.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)) halo.enabled = core.enabled = false;
             float width = hostile ? (state.VisualWidth > 0 ? state.VisualWidth : 0.23f) : Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
             if (hostile && body.sprite != null && painted == null)

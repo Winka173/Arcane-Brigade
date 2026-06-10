@@ -61,7 +61,7 @@ namespace ArcaneBrigade
             int width = profile.ScreenWidth > 0 ? profile.ScreenWidth : Screen.width, height = profile.ScreenHeight > 0 ? profile.ScreenHeight : Screen.height;
             if (Screen.fullScreenMode != mode || Screen.width != width || Screen.height != height) Screen.SetResolution(width, height, mode);
         }
-        /// <summary>The frame pace (owner 24/10/2026, graphics review): phones 60 (or 30 to save battery) with the screen kept awake
+        /// <summary>The frame pace (requirement 24/10/2026, graphics review): phones 60 (or 30 to save battery) with the screen kept awake
         /// while the game is open; PC vsync, or a cap of 60 / 120 / none when vsync is off (menus no longer run unbounded).</summary>
         public static void ApplyFrames(PlayerProfile profile)
         {

@@ -67,7 +67,7 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Stats gained (or lost) for good during a wave, for the presentation to show over the hero the way the shop
-        /// does (owner 24/10/2026); the arena reads and empties it each frame.</summary>
+        /// does (requirement 24/10/2026); the arena reads and empties it each frame.</summary>
         public readonly List<KeyValuePair<ItemEffect, float>> StatGainsToShow = new List<KeyValuePair<ItemEffect, float>>();
         private void RelicGain(ItemEffect effect, float value, ModifierScope? scope = null)
         {

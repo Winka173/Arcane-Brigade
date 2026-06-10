@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>Owner 23/10/2026: Wild Stitch (the "hide" bond Porcelain Doll's innate counts) had only two friends in the game,
+    /// <summary>Requirement 23/10/2026: Wild Stitch (the "hide" bond Porcelain Doll's innate counts) had only two friends in the game,
     /// one of them a prismatic gift. Two more join it once their paintings exist: each sheet at Art/Playtest/Companions/&lt;Id&gt;.png
     /// is a 2x2 grid (neutral, breathing wind-up, walking step, attack) and is sliced here. Without a sheet the friend is not
     /// added (no borrowed body).</summary>

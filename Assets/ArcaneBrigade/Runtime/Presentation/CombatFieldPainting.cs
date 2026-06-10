@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     /// <summary>Draws a hostile field at the simulation's real lane/radius, including its warning phase. Effects are drawn in
-    /// code as soft light and ink (owner 22/10/2026: no painted fire, cracked rock or smoke): the shock ring, the shadow pool,
+    /// code as soft light and ink (requirement 22/10/2026: no painted fire, cracked rock or smoke): the shock ring, the shadow pool,
     /// the lash and the sewing thread. Painted objects (curtain, cabinet, toy box) and the red telegraph outlines stay.</summary>
     public sealed class CombatFieldPainting
     {
@@ -36,7 +36,7 @@ namespace ArcaneBrigade
             bool staged = key == "Tentacle" || key == "Curtain" || key == "OfficeHazard" || key == "ToyHazard";
             bool coded = key == "ShockRing" || key == "ShadowPool" || key == "Tentacle" || key == "Thread";
             if (coded && (!warning || staged)) { Code(field, key, time, warning); return true; }
-            // owner 24/10/2026: no painted warning rings and no outlined target zones - the ground cracks toward the zone's true
+            // requirement 24/10/2026: no painted warning rings and no outlined target zones - the ground cracks toward the zone's true
             // reach instead, in hostile violet and crimson, sparks gathering at the crack tips as the blow comes
             if (warning) { Warn(field, lane, time, staged); if (!staged) return true; }
             Sprite[] frames = CombatVfxArtwork.Frames(warning && !staged ? lane ? "TelegraphLane" : "TelegraphCircle" : key);
@@ -139,7 +139,7 @@ namespace ArcaneBrigade
                     // the lingering dark: a dusk-violet wash that deepens toward its true edge, a soft crimson rim, ink motes rising
                     float r = Mathf.Max(.1f, field.Radius), breathe = still || calm ? 1 : .85f + .15f * Mathf.Sin(time * 4 + seed);
                     ink.Sector(c, r, 0, 360, A(Night, .12f * fade), A(Night, .42f * fade));
-                    // (its glowing rim is gone: owner 24/10/2026, no outlined zones)
+                    // (its glowing rim is gone: requirement 24/10/2026, no outlined zones)
                     if (!sparse) for (int i = 0; i < 6; i++)
                     {
                         float rise = Mathf.Repeat(clock * .5f + i / 6f, 1), a = (i * 61 + seed) * Mathf.Deg2Rad, d = r * (.25f + .55f * ((i * 37 % 10) / 10f));
@@ -158,7 +158,7 @@ namespace ArcaneBrigade
                     ink.Band(a, tip, half, A(Crimson, (warning ? .18f + .2f * gather : .4f) * fade), A(Crimson, 0));
                     ink.GlowRibbon(lash, 1, 0, half * 1.4f, A(Crimson, (warning ? .45f : .8f) * fade));
                     if (!warning) ink.GlowRibbon(lash, 1, 0, half * .5f, A(Ember, .85f * fade));
-                    // (no painted outline round the lane any more: owner 24/10/2026)
+                    // (no painted outline round the lane any more: requirement 24/10/2026)
                     break;
                 }
                 default: // the sewing thread

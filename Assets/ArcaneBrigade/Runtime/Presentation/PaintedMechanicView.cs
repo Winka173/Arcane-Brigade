@@ -84,7 +84,7 @@ namespace ArcaneBrigade
                 case MorphGeometry.Line:
                     Stroke(edge, Taper, preparing ? .08f : .2f, light, position, end);
                     if (!PresentationSettings.ReducedEffects) Stroke(shade, Taper, preparing ? .12f : .26f, dark, position, end);
-                    if (false) // owner 23/10/2026: the soft band read as a film along the beam; the stroke alone carries it
+                    if (false) // requirement 23/10/2026: the soft band read as a film along the beam; the stroke alone carries it
                     {
                         // a soft band of light along the beam, so a line reads as a beam and not a pencil stroke
                         Vector2 axis = end - position;
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
                     if (!PresentationSettings.ReducedEffects) Arc(shade, Taper, preparing ? .12f : .28f, dark, position, r, facing);
                     break;
                 default:
-                    // owner 23/10/2026: our areas are the weapon's own motes moving through them - no plain circle, no filled
+                    // requirement 23/10/2026: our areas are the weapon's own motes moving through them - no plain circle, no filled
                     // disc, no ring art round them (the warnings of hostile areas are drawn elsewhere and keep theirs)
                     break;
 #pragma warning disable CS0162

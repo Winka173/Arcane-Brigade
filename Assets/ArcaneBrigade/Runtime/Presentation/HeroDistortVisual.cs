@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The material layer of the hero skills (owner 24/10/2026, Docs/Hero_Effect_Suggestions.md): water and gel that
+    /// <summary>The material layer of the hero skills (requirement 24/10/2026, Docs/Hero_Effect_Suggestions.md): water and gel that
     /// bend what is behind them, the push of a blow, mirror panes that reflect the room, and steam with a swirling body.
     /// Pieces are pooled sprites drawn with the HeroRefract / HeroMirror / HeroSteam shaders. All refraction shares one
     /// screen grab a frame; with Reduced Effects, a weak device or a crowd the layer is left out and the painted ink stands
@@ -54,7 +54,7 @@ namespace ArcaneBrigade
         private float drift; // 0 standing .. 1 walking
         private void EndWarps()
         {
-            // owner 24/10/2026: still, the skill materials are lovely; walking, they blurred the floor under a moving camera and
+            // requirement 24/10/2026: still, the skill materials are lovely; walking, they blurred the floor under a moving camera and
             // could make one dizzy - so they fade away while the hero walks and return when it stops
             UnitState hero = sim?.Champion;
             bool walking = hero != null && (hero.Position - hero.PreviousPosition).sqrMagnitude > 1e-6f;

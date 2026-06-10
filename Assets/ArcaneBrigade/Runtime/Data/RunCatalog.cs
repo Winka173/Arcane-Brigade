@@ -59,7 +59,7 @@ namespace ArcaneBrigade
             {
                 StatModifier[] authored = Modifiers != null && Modifiers.Length > 0 ? Modifiers : new[] { new StatModifier { Effect = Effect, Scope = RunModifierRules.DefaultScope(Effect), Value = Value } };
                 if (Rarity != ItemRarity.Rainbow) return authored;
-                // owner 22/10/2026: the rainbow gifts felt weak; their positive power bonuses are worth 1.5x (counts like projectiles stay)
+                // requirement 22/10/2026: the rainbow gifts felt weak; their positive power bonuses are worth 1.5x (counts like projectiles stay)
                 if (rainbow != null && rainbowFrom == authored) return rainbow;
                 rainbowFrom = authored; rainbow = new StatModifier[authored.Length];
                 for (int i = 0; i < authored.Length; i++)

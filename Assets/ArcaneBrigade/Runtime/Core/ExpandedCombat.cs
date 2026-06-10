@@ -164,7 +164,7 @@ namespace ArcaneBrigade
             if (projectile.Weapon.Mechanic == CarnivalWeapon.Magnet && !projectile.IsFragment && projectile.Cause.Depth == 0) MagnetBoltHit(projectile, target, source);
             if (projectile.Weapon.Mechanic == CarnivalWeapon.BloomOrb && !projectile.IsFragment)
             {
-                Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.0f, projectile.Damage * 0.45f, // owner 23/10/2026: 1.5 -> 1.0
+                Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.0f, projectile.Damage * 0.45f, // requirement 23/10/2026: 1.5 -> 1.0
                     0.28f, 0.35f, projectile.Cause.Child("moonseed-bloom"));
                 fields[fields.Count - 1].Critical = projectile.Critical;
                 fields[fields.Count - 1].ImpactWeapon = projectile.Weapon;

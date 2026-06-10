@@ -128,7 +128,7 @@ namespace ArcaneBrigade
             if (GUI.Button(r, GUIContent.none, GUIStyle.none)) showing = null; // a tap closes it
         }
 
-        /// <summary>Guide text must catch the eye (owner, 20/10/2026): a gold rim with two sparks running round it, a warm glow that
+        /// <summary>Guide text must catch the eye (requirement 20/10/2026): a gold rim with two sparks running round it, a warm glow that
         /// swells for the first two seconds, and a soft inner rim. Reduced Motion keeps a still gold rim.</summary>
         private static void Highlight(Rect r, float age, float alpha)
         {

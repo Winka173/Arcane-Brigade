@@ -166,9 +166,9 @@ namespace ArcaneBrigade
                 KitCaption(face, glyph, kind == KitRound.Brass ? KitInk : KitCream, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
-        /// <summary>An arrow drawn on the painted face's exact centre (owner 24/10/2026: the font's ◀ ▶ sat off-centre in the round
+        /// <summary>An arrow drawn on the painted face's exact centre (requirement 24/10/2026: the font's ◀ ▶ sat off-centre in the round
         /// buttons). The triangle's visual weight is centred, not its box, with a dark ink edge under it. dir: 0 left, 1 right, 2 up, 3 down.</summary>
-        /// <summary>Turns what is drawn next about a GUI point (owner 24/10/2026: Unity's RotateAroundPivot takes its pivot before the
+        /// <summary>Turns what is drawn next about a GUI point (requirement 24/10/2026: Unity's RotateAroundPivot takes its pivot before the
         /// GUI matrix, so under the scaled HUDs - the 1280 menus, any screen not 1920x1080 - turned pieces landed elsewhere). The
         /// pivot is taken to the screen through the clip stack and the matrix, and the turn is made there.</summary>
         public static void TurnAround(float degrees, Vector2 pivot)
@@ -182,7 +182,7 @@ namespace ArcaneBrigade
             Vector2 at = GUIUtility.GUIToScreenPoint(pivot);
             GUI.matrix = Matrix4x4.TRS(at, Quaternion.identity, new Vector3(scale.x, scale.y, 1)) * Matrix4x4.TRS(-at, Quaternion.identity, Vector3.one) * GUI.matrix;
         }
-        /// <summary>A small padlock drawn in code (owner 24/10/2026: anything not yet found shows a lock, never blank text).</summary>
+        /// <summary>A small padlock drawn in code (requirement 24/10/2026: anything not yet found shows a lock, never blank text).</summary>
         public static void Lock(Vector2 c, float size, Color colour)
         {
             if (Event.current.type != EventType.Repaint) return;

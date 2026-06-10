@@ -41,7 +41,7 @@ namespace ArcaneBrigade
         private void DropKillCoins(UnitState target, int value)
         {
             if (value <= 0) return;
-            // owner 23/10/2026: coins are thinned only when the field is crowded, never in a quiet early fight - every kill
+            // requirement 23/10/2026: coins are thinned only when the field is crowded, never in a quiet early fight - every kill
             // pays in full under 30 living enemies; a coin per 4 / 8 / 12 kills (90% of the reward) at 30 / 60 / 90 and more
             int alive = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy) alive++;
             int batch = alive < 30 ? 1 : alive < 60 ? 4 : alive < 90 ? 8 : 12;

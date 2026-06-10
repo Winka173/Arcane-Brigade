@@ -173,7 +173,7 @@ namespace ArcaneBrigade
                 Rect r = Bounds(spot, sprite);
                 if (restored) ArcadeSkin.Glow(new Rect(r.x - 40, r.y - 30, r.width + 80, r.height + 60), new Color(1f, .78f, .45f, .16f + .06f * breathe));
                 if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .38f : .18f));
-                // grounded (owner 24/10/2026: the stations looked to float): a soft cast shadow falling down-right from the room's
+                // grounded (requirement 24/10/2026: the stations looked to float): a soft cast shadow falling down-right from the room's
                 // lamp light, and a dark contact shadow right under the feet
                 ArcadeSkin.Glow(new Rect(r.x + r.width * .14f, spot.Foot.y - 12, r.width * .95f, 34), new Color(0, 0, 0, .42f));
                 ArcadeSkin.Glow(new Rect(r.x + r.width * .12f, spot.Foot.y - 9, r.width * .76f, 16), new Color(0, 0, 0, .7f));
@@ -245,7 +245,7 @@ namespace ArcaneBrigade
             Styles();
             ArcadeSkin.Frame(r, KitFrame.Plaque);
             number.normal.textColor = ArcadeSkin.KitCream; number.alignment = TextAnchor.MiddleLeft;
-            // owner 24/10/2026: the icons sat on the plaque's scrolled end; lay them out inside the velvet (the frame's padded content)
+            // requirement 24/10/2026: the icons sat on the plaque's scrolled end; lay them out inside the velvet (the frame's padded content)
             Rect c = ArcadeSkin.Content(r, KitFrame.Plaque); float half = c.width * .5f, icon = Mathf.Min(40, c.height - 8);
             RunHud.Sprite(new Rect(c.x + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.LampOil);
             GUI.Label(new Rect(c.x + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.LampOil.ToString("N0"), number);

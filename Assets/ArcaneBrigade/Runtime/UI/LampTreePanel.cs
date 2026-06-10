@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The Lamp Tree panel (owner 24/10/2026): an ink tree growing from one trunk into nine branches over four roots,
+    /// <summary>The Lamp Tree panel (requirement 24/10/2026): an ink tree growing from one trunk into nine branches over four roots,
     /// each lantern a node (a fork shows its two side by side; small lozenges under a lantern are its ranks). Tapping a lantern
     /// opens its card beside it (icon, one line, rank, price); a locked branch shows padlocks and its card says what opens it.
     /// "Take back all" refunds every rank (free; a second tap confirms).</summary>

@@ -38,7 +38,7 @@ namespace ArcaneBrigade
         private float interest;
         private DreamSuspension suspension;
         private bool standing;
-        /// <summary>A visitor stands on the ground with its shadow (owner, 22/10/2026): no dream levitation, no hanging strings.</summary>
+        /// <summary>A visitor stands on the ground with its shadow (requirement 22/10/2026): no dream levitation, no hanging strings.</summary>
         public void SetStanding() { standing = true; }
         private Vector3 HoverOffset => owner == null || standing ? Vector3.zero : DreamLevitation.Offset(owner.PresentationClock, phase + (merchantActor ? 13 : 7), NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, merchantActor ? .85f : 1);
         private EnsembleClip handoff;
@@ -185,7 +185,7 @@ namespace ArcaneBrigade
             float scale = Mathf.Min(height / view.sprite.bounds.size.y, height * 1.2f / view.sprite.bounds.size.x);
             if (companionDisplay && roomHeight > 0)
             {
-                // owner 24/10/2026: a friend on its stall is as big as it will be once bought (sized by its painted ink, as in the room)
+                // requirement 24/10/2026: a friend on its stall is as big as it will be once bought (sized by its painted ink, as in the room)
                 Rect ink = SpriteInkMetrics.BoundsOf(frames != null && frames.Length > 0 && frames[0] != null ? frames[0] : view.sprite);
                 scale = roomHeight / Mathf.Max(.01f, Mathf.Max(ink.height, ink.width / 1.5f));
             }

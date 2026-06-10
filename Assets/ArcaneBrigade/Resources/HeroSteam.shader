@@ -1,4 +1,4 @@
-// Steam with body (owner 24/10/2026): a soft blob whose density is broken by drifting procedural noise, so a puff swirls
+// Steam with body (requirement 24/10/2026): a soft blob whose density is broken by drifting procedural noise, so a puff swirls
 // and frays at its edge instead of being a flat disc. Vertex colour is its tint and opacity.
 Shader "ArcaneBrigade/HeroSteam"
 {

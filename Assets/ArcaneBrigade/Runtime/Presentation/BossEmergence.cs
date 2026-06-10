@@ -78,7 +78,7 @@ namespace ArcaneBrigade
         {
             bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
             float open = Mathf.SmoothStep(0, 1, Mathf.Clamp01(progress / .25f)) * (1 - Mathf.SmoothStep(0, 1, shut));
-            // drawn in code (owner 22/10/2026: no painted lava pool or purple smoke): a soft dark pool, a violet rim, soft wisps
+            // drawn in code (requirement 22/10/2026: no painted lava pool or purple smoke): a soft dark pool, a violet rim, soft wisps
             Sprite poolFrame = soft;
             float wide = width * 1.7f * (still ? 1 : .55f + .45f * open);
             // the pool on the floor, flattened to the room's perspective, with a faint violet rim and a low glow under it

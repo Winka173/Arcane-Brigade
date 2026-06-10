@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>The Lone line (owner 23/10/2026): eight hero-only relics for a hero who fights alone or nearly so. Rules live in
+    /// <summary>The Lone line (requirement 23/10/2026): eight hero-only relics for a hero who fights alone or nearly so. Rules live in
     /// RunRelics.LoneBonus / RelicNewItems; this adds (or refreshes) the items in the run catalog. Icons come from
     /// Art/Playtest/LoneRelics/&lt;Id&gt;.png once painted; until then each borrows a fitting existing relic's icon.</summary>
     public static class LoneRelicsBuilder

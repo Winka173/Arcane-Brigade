@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed partial class ShopOffer
     {
-        /// <summary>A friend offer's weapon, rolled when the offer is first shown or bought (owner, 22/10/2026: the weapon is
+        /// <summary>A friend offer's weapon, rolled when the offer is first shown or bought (requirement 22/10/2026: the weapon is
         /// known before buying). Empty on offers saved before this: they roll on first use.</summary>
         public string WeaponId = "";
     }

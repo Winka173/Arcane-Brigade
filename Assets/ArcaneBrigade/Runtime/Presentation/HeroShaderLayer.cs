@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Every hero's own shader moment (owner 24/10/2026: "each hero should have one"). Built on the material layer
+    /// <summary>Every hero's own shader moment (requirement 24/10/2026: "each hero should have one"). Built on the material layer
     /// (HeroDistortVisual): refraction (water, gel, the push of a blow, ink vortices, a local eclipse, time draining the
     /// colour), thin-film colour (soap, dream glass, petals), metal sheen and seams (brass, gold, ivory, kintsugi, sap),
     /// frost on frozen enemies, paper puppets and real light. Off with Reduced Effects, weak devices and crowds.</summary>

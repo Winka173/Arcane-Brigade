@@ -297,7 +297,7 @@ namespace ArcaneBrigade
                 scroll=ScrollPanel.Begin(new Rect(270,350,1370,choice==0?210:470),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(new GUIContent(text),1310))));GUI.Label(new Rect(0,0,1310,600),text,copy);ScrollPanel.End();
                 if(choice==0)
                 {
-                    // the two options as cards that say where each leads; picked, then confirmed (owner 22/10/2026)
+                    // the two options as cards that say where each leads; picked, then confirmed (requirement 22/10/2026)
                     int taken=ChoiceCards.Draw(new Rect(270,580,1370,320),new[]{WaitingRooms.Option(room,selected,1),WaitingRooms.Option(room,selected,2)},new[]{WaitingRooms.Result(room,selected,1),WaitingRooms.Result(room,selected,2)},ref recordPick);
                     if(taken>=0){Choose(taken+1);recordPick=-1;}
                 }

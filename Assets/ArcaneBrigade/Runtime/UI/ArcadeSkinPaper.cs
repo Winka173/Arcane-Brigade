@@ -61,7 +61,7 @@ namespace ArcaneBrigade
             return new Rect(chip.x + (30 - body.x) * k - size * .5f, chip.y + (25.5f - body.y) * k - size * .5f, size, size);
         }
 
-        /// <summary>A strong blink for a tile or chip a purchase lights (owner, 22/10/2026): a bright gold-white glow pulsing behind
+        /// <summary>A strong blink for a tile or chip a purchase lights (requirement 22/10/2026): a bright gold-white glow pulsing behind
         /// it and its rim flashing; Reduced Flashes / Motion keep a slow gentle pulse.</summary>
         public static void BlinkStrong(Rect r, float clock, bool rimOnly = false)
         {

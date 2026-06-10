@@ -170,7 +170,7 @@ namespace ArcaneBrigade
         public int EvolutionRepeats;
         public int EvolutionCasts;
         public bool SwarmMinion;
-        /// <summary>Came out of a Waiting Room door: drops no gold (owner 23/10/2026).</summary>
+        /// <summary>Came out of a Waiting Room door: drops no gold (requirement 23/10/2026).</summary>
         public bool DoorPack;
         public SwarmRole Role;          // ink bloater / fuse runner
         public float FuseAt;            // a lit fuse runner blows at this time
@@ -834,7 +834,7 @@ namespace ArcaneBrigade
                 if (!CanHit(source.Faction, candidate)) continue;
                 float distance = (candidate.Position - source.Position).sqrMagnitude;
                 if(melee?!MeleeReaches(source,candidate):distance>range*range)continue;
-                // a shooting hero takes the nearest foe, or a near and strong one (owner 24/10/2026)
+                // a shooting hero takes the nearest foe, or a near and strong one (requirement 24/10/2026)
                 if (!melee && source.Definition.Weapon.Kind == WeaponKind.Projectile) { float reach = Mathf.Max(0, Mathf.Sqrt(distance) - RangedThreat(candidate)); distance = reach * reach; }
                 if (distance < bestDistance) { bestDistance = distance; best = candidate; }
             }
@@ -1122,7 +1122,7 @@ namespace ArcaneBrigade
                 if (source != Faction.Enemy) RecordKill(cause);
                 SwarmDeath(target, source, overkill, cause);
                 PacingLoot(target);
-                int coinValue = SwarmCoinValue(target); if (coinValue > 0) coinValue += VisitorCoins * coinValue; coinValue = MapCoins(target, coinValue); // a visitor's coin bonus doubles the kill's own coin (owner 22/10/2026: a flat +1 stayed 1 gold late)
+                int coinValue = SwarmCoinValue(target); if (coinValue > 0) coinValue += VisitorCoins * coinValue; coinValue = MapCoins(target, coinValue); // a visitor's coin bonus doubles the kill's own coin (requirement 22/10/2026: a flat +1 stayed 1 gold late)
                 DropKillCoins(target, coinValue);
                 if (target.StolenCoins > 0) { DropLoot(LootKind.Coin, target.Position, target.StolenCoins + Mathf.Max(1, target.StolenCoins / 10)); target.StolenCoins = 0; } // a toll is refunded with 10% (nothing is taken, only bought)
                 if (catalog.ExtendedLoot && !target.SwarmMinion)

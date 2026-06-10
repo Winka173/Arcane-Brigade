@@ -96,7 +96,7 @@ namespace ArcaneBrigade.Editor
             Check(c.Companions.Select(u => CreatureLives.Origin(u.Id)).Distinct().Count() == c.Companions.Length, "No shared fallback biographies");
             // Phase 2: the story party, the warm chair and the night you hid
             foreach (string id in ActOneCanon.StoryIds) Check(c.Unit(id) != null && c.Unit(id).Weapon != null, "Story companion body exists " + id);
-            // play-test 20/10/2026 (owner D15): the story allies no longer travel with the brigade
+            // play-test 20/10/2026 (requirement D15): the story allies no longer travel with the brigade
             Check(Enumerable.Range(0, 4).All(index => Enumerable.Range(1, 24).All(wave => !ActOneCanon.StoryPresent(index, wave, true, false) && !ActOneCanon.StoryPresent(index, wave, false, false))), "Hob, Latch, Postscript and Tally never join the brigade");
             Check(ActOneCanon.ChairPosition(1) == new Vector2(6.75f, 0.55f) && Vector2.Distance(ActOneCanon.ChairPosition(19), new Vector2(0, -4.5f)) < 2.6f && Vector2.Distance(ActOneCanon.ChairPosition(19), new Vector2(0, -4.5f)) > 1.9f, "The warm chair creeps from the far corner to beside the exit");
             for (int wave = 2; wave <= 19; wave++) Check(Vector2.Distance(ActOneCanon.ChairPosition(wave), ActOneCanon.ChairPosition(19)) <= Vector2.Distance(ActOneCanon.ChairPosition(wave - 1), ActOneCanon.ChairPosition(19)) + .001f, "The chair never moves away from the exit " + wave);

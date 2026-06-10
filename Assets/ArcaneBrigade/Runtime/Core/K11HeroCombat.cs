@@ -50,7 +50,7 @@ namespace ArcaneBrigade
             {
                 Vector2 previousDirection = Champion.AttackDirection;
                 Champion.AttackDirection = (target.Position - Champion.Position).normalized;
-                EmitProjectile(Champion, Champion.Definition.Weapon.Damage * 1f, false, cause); // owner 23/10/2026: 70% -> 100%
+                EmitProjectile(Champion, Champion.Definition.Weapon.Damage * 1f, false, cause); // requirement 23/10/2026: 70% -> 100%
                 events.Add(new CombatEvent(CombatEventKind.Fire, Champion.Position, Faction.Champion, direction: Champion.AttackDirection, weapon: Champion.Definition.Weapon, subject: Champion, cause: cause));
                 Champion.AttackDirection = previousDirection;
             }

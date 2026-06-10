@@ -191,7 +191,7 @@ namespace ArcaneBrigade
         }
         private void DrawMuseum(Rect area, RunCatalog catalog, PlayerProfile profile)
         {
-            // the painted tab's end caps hang outside its bar: tabs sit 30 apart and in from the edges (owner 23/10/2026)
+            // the painted tab's end caps hang outside its bar: tabs sit 30 apart and in from the edges (requirement 23/10/2026)
             const float tabGap = 30, tabInset = 16;
             float tw = (area.width - 2 * tabInset - (ShelfTabs - 1) * tabGap) / ShelfTabs;
             for (int t = 0; t < ShelfTabs; t++)
@@ -279,7 +279,7 @@ namespace ArcaneBrigade
                 Rect r = new Rect(area.x, area.y + 62 + i * 78, area.width, 70);
                 Flash(r, pact.Id);
                 ArcadeSkin.CodePlate(r, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
-                // a chosen pact glows round its round painted seal, sparks circling it (owner 24/10/2026: no rectangle round round art)
+                // a chosen pact glows round its round painted seal, sparks circling it (requirement 24/10/2026: no rectangle round round art)
                 Rect seal = new Rect(r.x + 12, r.y + 10, 50, 50);
                 if (on)
                 {

@@ -100,7 +100,7 @@ Shader "ArcaneBrigade/UnitFlash"
                 color.rgb = lerp(color.rgb, _RimColor.rgb, edge * _RimAmount);
                 float luminance = dot(color.rgb, fixed3(0.2126,0.7152,0.0722));
                 color.rgb = saturate(lerp(luminance.xxx, color.rgb, _Saturation));
-                // enemies (owner 24/10/2026): gold, amber, brass and cream are the friends' colours, so on an enemy they turn to a
+                // enemies (requirement 24/10/2026): gold, amber, brass and cream are the friends' colours, so on an enemy they turn to a
                 // violet pewter of the same value; reds (eyes, velvet, wax) and the cool colours stay as painted
                 if (_HostileShift > 0)
                 {

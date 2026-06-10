@@ -22,10 +22,10 @@ namespace ArcaneBrigade
             bool hit = value.Kind == CombatEventKind.Hit && value.Value > 0 && value.Faction != Faction.Companion;
             // kills are never thinned out by crowd budgets: what landed always shows
             bool important = value.Critical || value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss || value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy;
-            // the hostile side's painted fire (the hero's hurt splash, enemy muzzle flames) is retired (owner 22/10/2026): the hurt is
+            // the hostile side's painted fire (the hero's hurt splash, enemy muzzle flames) is retired (requirement 22/10/2026): the hurt is
             // drawn in code by CombatFeedback, a hostile shot's launch by its own code-drawn bolt
             if (hit && value.Faction == Faction.Champion || value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && value.Faction == Faction.Enemy) return true;
-            // the hostile side's melee swings and a boss's landing are code ink now (ArsenalVisual), never painted sprites (owner 24/10/2026)
+            // the hostile side's melee swings and a boss's landing are code ink now (ArsenalVisual), never painted sprites (requirement 24/10/2026)
             if (slash && value.Faction == Faction.Enemy || value.Kind == CombatEventKind.BossLanded) return true;
             string combatArt = slash && value.Weapon.Motion == WeaponMotion.Thrust ? "Thrust" : null;
             Sprite[] combatFrames = CombatVfxArtwork.Frames(combatArt);
@@ -55,7 +55,7 @@ namespace ArcaneBrigade
             // ordinary kills are drawn by ExplosionFeedback.Pop (flash, ink burst, chips) around the squashing body; a
             // second puff here would only stack another sprite on the same spot, so the event is consumed
             else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy && (value.Subject == null || !value.Subject.Definition.IsBoss)) return true;
-            else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy) return true; // a boss's end is drawn by BossFinaleVisual; the painted death smoke is retired (owner 22/10/2026)
+            else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy) return true; // a boss's end is drawn by BossFinaleVisual; the painted death smoke is retired (requirement 22/10/2026)
             else if (value.Kind == CombatEventKind.SignaturePulse || value.Kind == CombatEventKind.SignatureBurst || value.Kind == CombatEventKind.ChestOpened || value.Kind == CombatEventKind.Heal || value.Kind == CombatEventKind.Proc)
             { frames = library.Magic; width = Mathf.Clamp(value.Value * 0.25f, 0.55f, 1.2f); duration = 0.3f; }
             else return false;

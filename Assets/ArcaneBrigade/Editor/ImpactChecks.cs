@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>The weight of our blows (ImpactRules, owner's B1-B5, 19/10/2026): weighted shove, stagger, wall splat,
+    /// <summary>The weight of our blows (ImpactRules, requirements B1-B5, 19/10/2026): weighted shove, stagger, wall splat,
     /// flung bodies that bowl into others and burst where they land, and no fling from a light blow.</summary>
     public static class ImpactChecks
     {

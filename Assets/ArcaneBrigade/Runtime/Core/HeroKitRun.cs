@@ -164,7 +164,7 @@ namespace ArcaneBrigade
         {
             State.KitMerges++;
             if (MechanicStacks(RelicMechanic.ClockworkHeart) > 0) State.HeartWinds++;
-            int gold = ScaledGold(Mathf.RoundToInt(KitValue(KitPassive.MergeGold))); // on the gold curve (owner, 22/10/2026)
+            int gold = ScaledGold(Mathf.RoundToInt(KitValue(KitPassive.MergeGold))); // on the gold curve (requirement 22/10/2026)
             if (gold > 0) State.Gold = BoundedCounter((long)State.Gold + gold);
         }
         private void KitAbsorbed()

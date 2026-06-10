@@ -1,4 +1,4 @@
-// Hero skills that bend what is behind them (owner 24/10/2026): water, gel and the push of a blow. One named grab of the
+// Hero skills that bend what is behind them (requirement 24/10/2026): water, gel and the push of a blow. One named grab of the
 // screen is shared by every refracting piece in a frame; the sprite's alpha is where it bends, the vertex colour its tint
 // and how strongly it shows, _Strength how far it bends (screen UV). A bright edge where the mask falls off.
 Shader "ArcaneBrigade/HeroRefract"
@@ -38,7 +38,7 @@ Shader "ArcaneBrigade/HeroRefract"
             fixed4 frag (v2f i) : SV_Target
             {
                 float m = tex2D(_MainTex, i.uv).a * i.color.a;
-                // the hero and its weapon are never bent, blurred or tinted (owner 24/10/2026): the effect fades out round them
+                // the hero and its weapon are never bent, blurred or tinted (requirement 24/10/2026): the effect fades out round them
                 if (_Hole.z > 0) { float2 q = (i.w - _Hole.xy) / _Hole.zw; m *= smoothstep(.75, 1.15, dot(q, q)); }
                 float tt = _Time.y * _Speed; float2 w = i.w * _Scale - _Flow.xy * _Time.y;
                 float2 n = float2(sin(w.y * 1.7 + tt * 2.1) + sin(w.x * 2.3 - tt * 1.3), cos(w.x * 1.9 + tt * 1.7) + sin(w.y * 2.9 + tt)) * .5;

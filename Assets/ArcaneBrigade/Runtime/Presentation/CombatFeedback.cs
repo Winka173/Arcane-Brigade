@@ -68,7 +68,7 @@ namespace ArcaneBrigade
             bool pickup = combatEvent.Kind == CombatEventKind.Pickup;
             if ((hit || kill) && combatEvent.Faction == Faction.Companion) return;
             if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
-            // owner 24/10/2026: healing reads as a green +N over the hero, a dodge as a small word
+            // requirement 24/10/2026: healing reads as a green +N over the hero, a dodge as a small word
             if (combatEvent.Kind == CombatEventKind.Heal && combatEvent.Faction == Faction.Champion && combatEvent.Value >= .5f) ShowHeal(combatEvent);
             if (combatEvent.Kind == CombatEventKind.Dodge && combatEvent.Faction == Faction.Champion) Label(combatEvent.Position + Vector2.up * .7f, "Dodge", new Color(.55f, 1f, .9f), .62f);
             if (sprite == null || PresentationSettings.ReducedMotion || (!hit && !kill && !pickup) || hit && combatEvent.Value <= 0) return;
@@ -116,7 +116,7 @@ namespace ArcaneBrigade
                 spark.Size = kill ? 0.09f : 0.065f;
                 spark.Important = important;
                 // a painted spark, not a flat disc: brass motes for our hits, the hurt splash when the hero is struck
-                // the hero's hurt is a code-drawn spark in its own colour (owner 22/10/2026: no painted red splash on the hostile side)
+                // the hero's hurt is a code-drawn spark in its own colour (requirement 22/10/2026: no painted red splash on the hostile side)
                 spark.Frames = combatEvent.Faction == Faction.Champion && hit ? null : CombatVfxArtwork.Frames("AllySpark");
                 Sprite first = spark.Frames != null && spark.Frames.Length > 0 ? spark.Frames[(sequence + index) % spark.Frames.Length] : sprite;
                 spark.View.sprite = first;

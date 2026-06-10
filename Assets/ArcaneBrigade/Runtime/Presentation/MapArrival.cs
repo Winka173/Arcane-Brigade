@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A new map announces itself (owner 23/10/2026: each map should feel its own): on the first fight of a map the
+    /// <summary>A new map announces itself (requirement 23/10/2026: each map should feel its own): on the first fight of a map the
     /// map's name rises on a title banner with one short line of what is different here, for a few seconds, then fades.</summary>
     public sealed class MapArrival : MonoBehaviour
     {

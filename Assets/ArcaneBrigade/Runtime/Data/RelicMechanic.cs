@@ -18,7 +18,7 @@ namespace ArcaneBrigade
         /// <summary>The thirty new items of the content expansion (Docs/Content_Expansion_v5.md §10; Fish Cracker is stats only).</summary>
         TallyChalk, CoinSash, PostageStamp, FrostSalt, RefundSlip, WhetstoneWafer, LateFee, HagglersAbacus, SlipstreamScarf, BrainFreeze, WindChime, SpecimenPin, StarPolish, KiteTailRibbon, MeltingSundae,
         CuckooPendulum, DivingBellLantern, TwinTicket, TreasureMimic, DuelistsRibbon, FrostLedger, UndertowAnchor, FunhouseMirror, SpliceKit, EndlessEncore, MoonClockKey, MirrorOfTwins, StorybookEnding, DreamLoom,
-        /// <summary>The Lone line (owner 23/10/2026): hero-only power for a hero who fights alone or nearly so (RunRelics / LoneRelics).</summary>
+        /// <summary>The Lone line (requirement 23/10/2026): hero-only power for a hero who fights alone or nearly so (RunRelics / LoneRelics).</summary>
         LoneLantern, EmptyChairs, SingleTicket, NightAlone, LastLight, IronResolve, SoloOverture
     }
 }

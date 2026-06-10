@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The hero's own body as its skill begins and while it empowers itself (owner 24/10/2026: "if the hero buffs
+    /// <summary>The hero's own body as its skill begins and while it empowers itself (requirement 24/10/2026: "if the hero buffs
     /// itself, it must show on the hero"). Every transformation opens with a power-up: two silhouettes of the hero in its
     /// colour swell out from behind it and fade, and strokes of light run up beside its body. While a transformation
     /// strengthens the hero itself (speed, attack speed, crits, toughness, healing, a bigger body) the hero keeps an aura:

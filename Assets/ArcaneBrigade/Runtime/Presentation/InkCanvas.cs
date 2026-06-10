@@ -19,7 +19,7 @@ namespace ArcaneBrigade
     {
         private readonly Mesh strokeMesh, washMesh;
         private readonly MeshRenderer strokeRenderer, washRenderer;
-        // owner 23/10/2026: a filled area of light (a disc, a band, a ring) read as a plastic film wrapped over the hero's
+        // requirement 23/10/2026: a filled area of light (a disc, a band, a ring) read as a plastic film wrapped over the hero's
         // skills; a light canvas draws only brushed light, its fills are left out
         private readonly bool light;
         private readonly List<Vector3> sv = new List<Vector3>(), wv = new List<Vector3>();

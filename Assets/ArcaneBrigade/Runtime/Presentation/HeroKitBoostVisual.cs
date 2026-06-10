@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The 36-hero review (owner 24/10/2026): what each transformation was missing, painted in ink. The second
+    /// <summary>The 36-hero review (requirement 24/10/2026): what each transformation was missing, painted in ink. The second
     /// mechanics' strikes (root spikes, pollen, a mirror beam, sleep clouds, kite dives - HeroKitExtras), a spreading root
     /// network round Root Oracle, Glass Dice's three dice over its head with PAIR!/JACKPOT!, Penny Broker's rising market,
     /// Copper Cauldron's pressure and thicker steam, Tide Singer's longer wake, petals round Verdant Matron's feet, crowns on
@@ -131,7 +131,7 @@ namespace ArcaneBrigade
                     foreach (UnitState u in sim.Units)
                         if (u.Alive && u.Faction == Faction.Enemy && u.KitSlowUntil > sim.Elapsed) Token(InkToken.Glint, Head(u) + Vector2.up * .05f, .18f, still ? 0 : t * 160 + u.Id * 30, .85f, true);
                     break;
-                // ---- the second review (owner 24/10/2026)
+                // ---- the second review (requirement 24/10/2026)
                 case KitAction.Gatling: // the stamped addresses carry a big red seal over their heads
                     for (int i = 0; i < sim.HeroIdentityMarkCount; i++) { UnitState u = sim.HeroIdentityMarked(i); if (u == null || !u.Alive) continue; Token(InkToken.Seal, Head(u) + Vector2.up * (.1f + Bob(u.Id) * 2), .3f, still ? 0 : Mathf.Sin(t * 3 + u.Id) * 10, .95f, true); }
                     break;

@@ -174,7 +174,7 @@ namespace ArcaneBrigade
             VisibleCount++;
             // the moment of transforming: a short bright backlight behind the hero (it fades in place, it never spreads out)
             float flash = Activation(), dim = calm ? .45f : 1;
-            // (the wide backlight disc read as a plastic film, owner 23/10/2026: the moment is the hero's tokens springing up)
+            // (the wide backlight disc read as a plastic film, requirement 23/10/2026: the moment is the hero's tokens springing up)
             if (flash > 0)
             {
                 int n = sparse ? 4 : 8;
@@ -226,7 +226,7 @@ namespace ArcaneBrigade
                 case KitAction.Lighthouse:
                 {
                     // the beam is the strike (its simulation strikes are marked Painted, no ink glyph). A volumetric ray of light
-                    // (owner, 22/10/2026): an amber halo and a white-gold core, both a soft gaussian across their width, widening
+                    // (requirement 22/10/2026): an amber halo and a white-gold core, both a soft gaussian across their width, widening
                     // like a cone away from the lamp and fading out along their length, added onto the floor as light; a gentle
                     // shimmer, dust motes turning inside it, a soft bloom at the lamp. No stroke or hard edge anywhere.
                     float angle = (sim.Elapsed - sim.HeroAwakenStarted) * CombatSimulation.LighthouseSweep;
@@ -387,7 +387,7 @@ namespace ArcaneBrigade
             var px = new Color32[w * h];
             for (int y = 0; y < h; y++)
             {
-                // owner 23/10/2026: a triangle - a point of light at the lamp, widest at the far end, steadily dimmer as it goes
+                // requirement 23/10/2026: a triangle - a point of light at the lamp, widest at the far end, steadily dimmer as it goes
                 float v = (y + .5f) / h, spread = Mathf.Lerp(.05f, 1f, v);
                 float along = Mathf.SmoothStep(0, 1, v / .08f) * Mathf.Pow(1 - v, 1.35f) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.88f, 1f, v)));
                 for (int x = 0; x < w; x++)
@@ -459,7 +459,7 @@ namespace ArcaneBrigade
         private readonly Vector2[] echoLast = new Vector2[3]; private readonly bool[] echoLeft = new bool[3];
         /// <summary>The copies: dreams and performers follow the hero's facing, faint; jellies (solid) are fighters of their own,
         /// fully drawn and facing the way they walk. Each plays its attack when it strikes: a springy squash and its tokens
-        /// thrown up (owner 23/10/2026: the copies attacked without moving).</summary>
+        /// thrown up (requirement 23/10/2026: the copies attacked without moving).</summary>
         private void Echoes(UnitState hero, Sprite body, Color tint, float remaining, InkToken token, InkPalette pal, bool solid = false)
         {
             if (dreamEchoes == null)

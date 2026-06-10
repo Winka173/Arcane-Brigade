@@ -185,8 +185,8 @@ namespace ArcaneBrigade
                 Rect box = new Rect(bounds.x + 230 + i % columns * (width + 8), bounds.y + i / columns * 140, width, 132);
                 bool activates = row.Activates;
                 Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
-                // code-drawn tile (owner, 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
-                if (activates) ArcadeSkin.BlinkStrong(box, clock); // the tile this purchase lights blinks strongly (owner, 22/10/2026)
+                // code-drawn tile (requirement 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
+                if (activates) ArcadeSkin.BlinkStrong(box, clock); // the tile this purchase lights blinks strongly (requirement 22/10/2026)
                 ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
                 if (activates) { ArcadeSkin.BlinkOver(box, clock); ArcadeSkin.BlinkStrong(box, clock, true); }
                 Rect bi = ArcadeSkin.Content(box, KitPiece.Tile); // inside the tile's rim with the standard padding
@@ -212,14 +212,14 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>The card's weapon chip: the weapon's short name and its whole damage ("Moon Scythe · 34 dmg").</summary>
-        /// <summary>A generic icon by weapon type, never the weapon's own picture (owner, 22/10/2026): crossed swords for close-range
+        /// <summary>A generic icon by weapon type, never the weapon's own picture (requirement 22/10/2026): crossed swords for close-range
         /// weapons (the Striker badge), the bow for ranged ones (the ranged-damage stat icon).</summary>
         public Sprite AttackIcon => Attack == null ? null : (Attack.Weapon != null ? Attack.Weapon.Kind != WeaponKind.Projectile : !Attack.Ranged)
             ? CompanionRoles.Badge(CompanionRole.Striker) : rangedIcon != null ? rangedIcon : rangedIcon = Resources.Load<Sprite>("MienCho/ActOne/Stat_RangedDamage");
         private static Sprite rangedIcon;
         public string AttackLabel => Attack == null ? "" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) + " · " + RecruitAttackReadout.Damage(Attack.MaxDamage) + " dmg"
             : RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " dmg";
-        /// <summary>An HP-priced offer opens its COSTS with what it really costs (owner, 22/10/2026): "−N max HP for this run",
+        /// <summary>An HP-priced offer opens its COSTS with what it really costs (requirement 22/10/2026): "−N max HP for this run",
         /// before any other cost line (which then joins the same red plate).</summary>
         private static string WithBloodCost(string text, ShopOffer offer)
         {

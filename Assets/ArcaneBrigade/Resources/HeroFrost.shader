@@ -1,4 +1,4 @@
-// Frost on a frozen enemy (owner 24/10/2026): its sprite whitened and laid with crystal facets, brightest at the facet
+// Frost on a frozen enemy (requirement 24/10/2026): its sprite whitened and laid with crystal facets, brightest at the facet
 // edges; vertex alpha melts it away.
 Shader "ArcaneBrigade/HeroFrost"
 {

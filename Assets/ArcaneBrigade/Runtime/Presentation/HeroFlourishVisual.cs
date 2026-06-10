@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Two touches round a hero's skill (owner 24/10/2026): the weapon charging while the gauge flashes full, and
+    /// <summary>Two touches round a hero's skill (requirement 24/10/2026): the weapon charging while the gauge flashes full, and
     /// afterimages behind a hero whose transformation dashes, skates, rides or slips. The hero's own shape and its weapon,
     /// no discs or rings.</summary>
     public sealed partial class HeroIdentityVisual

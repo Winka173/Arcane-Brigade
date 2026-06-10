@@ -1,4 +1,4 @@
-// The rim of a hero skill (owner 23/10/2026): a solid-colour silhouette of the sprite, drawn in eight offset copies
+// The rim of a hero skill (requirement 23/10/2026): a solid-colour silhouette of the sprite, drawn in eight offset copies
 // behind it so only a thin outline shows. A band of light (_SweepY, world height) runs up the body; vertex colour is
 // the rim's tint and breathing alpha.
 Shader "ArcaneBrigade/SkillRim"

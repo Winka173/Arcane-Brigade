@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Draws the map's living elements (play-test item 24, D11 v2) from MapEnvironmentState: the owner's painted props
+    /// <summary>Draws the map's living elements (play-test item 24, D11 v2) from MapEnvironmentState: the painted props
     /// (Resources/Environment, cut from Art/Playtest/Environment) and their warnings in brushed ink. Warnings are outlines,
     /// arrows and dashed edges (amber for danger, gold for gifts); the lamp light is light on air, never a pool on the floor.</summary>
     public sealed class MapEnvironmentVisual : MonoBehaviour
@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         private ArsenalInk ink;
         private bool drawn;
         private readonly List<SpriteRenderer> pool = new List<SpriteRenderer>();
-        // standing map props float like the rest of the dream (DreamLevitation) and cast a ground shadow (owner, 22/10/2026)
+        // standing map props float like the rest of the dream (DreamLevitation) and cast a ground shadow (requirement 22/10/2026)
         private readonly List<GroundShadow> shadows = new List<GroundShadow>();
         private int used;
         private CombatSimulation sim;
@@ -269,7 +269,7 @@ namespace ArcaneBrigade
             return r;
         }
 
-        /// <summary>How a standing prop is lit (owner 22/10/2026: some props stayed bright on a dark floor): the map's grade and
+        /// <summary>How a standing prop is lit (requirement 22/10/2026: some props stayed bright on a dark floor): the map's grade and
         /// edges (MapAtmosphere.PropShade) and the night's light field like every other prop; a lit lamp's oval lifts it back.</summary>
         private Color Shade(Vector2 at)
         {

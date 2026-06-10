@@ -1,4 +1,4 @@
-// Mirror Keeper's panes (owner 24/10/2026): the pane's alpha shows a reflection of what is round it (the grabbed screen
+// Mirror Keeper's panes (requirement 24/10/2026): the pane's alpha shows a reflection of what is round it (the grabbed screen
 // mirrored about a line through the pane, _Center in screen uv), silvered, with a band of light sweeping across and a
 // ripple (_Ripple) when it catches a shot.
 Shader "ArcaneBrigade/HeroMirror"

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>Owner 23/10/2026: the delivered playtest art goes in at once - the shop's new exit door, twelve map enemies
+    /// <summary>Requirement 23/10/2026: the delivered playtest art goes in at once - the shop's new exit door, twelve map enemies
     /// (three per map, small / medium / large, each a 4x4 sheet: normal form then mutated), the Lone and family relic icons and
     /// the two Wild Stitch friends.</summary>
     public static class PlaytestArtIntegrationBuilder

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The lucid altar in the dream shop (owner, 22/10/2026; rules in LucidRite): its card picks which 3-star friend
+    /// <summary>The lucid altar in the dream shop (requirement 22/10/2026; rules in LucidRite): its card picks which 3-star friend
     /// wakes, shows what it gains and the price in eggs and gold. Waking plays the rite: a column of light rises over the friend,
     /// motes spiral in, rays burst, and an ink crown draws itself on while LUCID and the friend's name show. Every lucid friend
     /// then wears that crown and slow orbiting sparks, in the shop and in battle. All drawn in code (ink strokes and light).

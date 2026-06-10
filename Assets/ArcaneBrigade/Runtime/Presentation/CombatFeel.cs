@@ -26,7 +26,7 @@ namespace ArcaneBrigade
     /// never pauses for a hit or a kill; flashes, shake, impact words and knockback carry the weight instead.</summary>
     public sealed class CombatFeel
     {
-        public const float MaxShake = 0.18f;         // world units at full trauma (about 24 px at 1080p; was 0.3: too much shaking, owner 19/10/2026)
+        public const float MaxShake = 0.18f;         // world units at full trauma (about 24 px at 1080p; was 0.3: too much shaking, requirement 19/10/2026)
         private const float RoutineTraumaCap = 0.3f;  // kills, crits and heavy hits alone never shake harder than this (was 0.42)
         private float trauma, clock, slow, flash;
         /// <summary>The only time the fight slows: the wave-20 boss falls (seconds of real time, at SlowMotionSpeed).</summary>
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
                     case CombatEventKind.Detonation when value.Faction == Faction.Companion: AddTrauma(Mathf.Clamp(value.Value * 0.07f, 0.04f, 0.12f), true); break;
                     case CombatEventKind.Detonation: AddTrauma(Mathf.Clamp(value.Value * 0.16f, 0.14f, 0.34f), false); break;
                     // the moment a hero transforms is the beat of the fight
-                    // owner 23/10/2026: the transformation lands as a beat - the action catches for an instant and the screen jolts
+                    // requirement 23/10/2026: the transformation lands as a beat - the action catches for an instant and the screen jolts
                     case CombatEventKind.HeroIdentityCast when value.Value >= 1: AddTrauma(0.42f, false); bias = Vector2.up; if (!PresentationSettings.ReducedMotion) slow = Mathf.Max(slow, AwakenBeat); break;
                     // a royal blow, a whale's spout or a gale: big single moments of the new relics and friends
                     case CombatEventKind.Proc when value.Cause.ItemId == "curio-royal" || value.Cause.ItemId == "curio-quilt": AddTrauma(0.16f, true); break;

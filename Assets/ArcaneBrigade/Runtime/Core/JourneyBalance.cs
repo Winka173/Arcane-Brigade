@@ -15,11 +15,11 @@ namespace ArcaneBrigade
         // round 5: Restless only (78% bot wins vs ~65% target): health 1.3 -> 1.4, damage 1.15 -> 1.3
         // round 6 (21/10/2026, unmeasured nudge toward 89/78/72/56/44/28 from 89/89/67/44/39/22): Wandering harder (health 1 -> 1.05,
         // damage .8 -> .88), Nightmare easier (damage 1.6 -> 1.45), Sleepless/Beyond ~5% less damage (2.2 -> 2.1, 3 -> 2.85).
-        // round 7 (22/10/2026, owner, unmeasured): every enemy +20% health and +15% damage at its base (BaseHealth/BaseDamage), and the
+        // round 7 (requirement 22/10/2026, unmeasured): every enemy +20% health and +15% damage at its base (BaseHealth/BaseDamage), and the
         // difficulties spread further apart, the high ones much harder (was health .7/1.05/1.4/1.75/2.3/2.95, damage .38/.88/1.3/1.45/2.1/2.85,
         // density 1/1.05/1.1/1.15/1.2/1.25)
         public const float BaseHealth = 1.2f, BaseDamage = 1.15f;
-        /// <summary>Enemy health added per wave (owner 22/10/2026: steeper growth; was .10, wave 20 now about +20% health).</summary>
+        /// <summary>Enemy health added per wave (requirement 22/10/2026: steeper growth; was .10, wave 20 now about +20% health).</summary>
         public const float WaveHealthStep = .13f;
         // the last two (Lightless, The Last Night; 24/10/2026) open only with the whole Lamp Tree lit
         public static readonly float[] HealthFactor = { .7f, 1.1f, 1.55f, 2.1f, 2.85f, 3.8f, 5.1f, 6.8f };

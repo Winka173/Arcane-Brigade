@@ -253,7 +253,7 @@ namespace ArcaneBrigade
                 {
                     // wide pulses (the bell's sound, a field's beat): three thin, faint ripples rolling out one after another,
                     // over the floor and under the bodies, so a big area reads without covering anyone
-                    // owner 23/10/2026: no plain ripples; the motes rolling out carry the pulse
+                    // requirement 23/10/2026: no plain ripples; the motes rolling out carry the pulse
                     SpriteRenderer[] waves = { b.Ring, b.Glow, b.Core };
                     foreach (SpriteRenderer wave in waves) wave.enabled = false;
                     for (int k = 0; k < 0; k++)
@@ -274,7 +274,7 @@ namespace ArcaneBrigade
                     // a flash at the heart, the painted ring opening outward, motes thrown off its rim (or rising, for a heal)
                     Sprite ring = CombatVfxArtwork.Frame("BlastRing", 0) ?? fallbackRing;
                     float open = still ? 1 : 0.35f + 0.65f * Ease(t);
-                    b.Ring.enabled = false; // no plain ring opening (owner 23/10/2026): a spark at the heart and the motes thrown off
+                    b.Ring.enabled = false; // no plain ring opening (requirement 23/10/2026): a spark at the heart and the motes thrown off
                     Fit(b.Glow, softGlow, centre, Mathf.Min(.7f, 2 * r * (0.5f + 0.6f * t)), 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.45f * flash));
                     b.Core.enabled = false;
                     for (int i = 0; i < b.Motes.Length; i++)

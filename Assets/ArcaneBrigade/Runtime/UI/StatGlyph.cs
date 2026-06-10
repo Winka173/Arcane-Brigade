@@ -10,7 +10,7 @@ namespace ArcaneBrigade
         {
             // gold and max-HP lines show the HUD's own coin and heart (one picture per currency, play-test 20/10/2026)
             Sprite currency = CurrencyIcons.For(effect);
-            // the coin and heart paintings run to their edges; inset them to the painted icons' size so they stay inside their frame (owner 24/10/2026)
+            // the coin and heart paintings run to their edges; inset them to the painted icons' size so they stay inside their frame (requirement 24/10/2026)
             if (currency != null) { float m = Mathf.Min(bounds.width, bounds.height) * .14f; RunHud.Sprite(new Rect(bounds.x + m, bounds.y + m, bounds.width - 2 * m, bounds.height - 2 * m), currency); return; }
             if (PaintedStatIcons.TryDraw(bounds, effect)) return;
             if (!cache.TryGetValue(effect, out Texture2D texture)) { texture = Create(effect); cache[effect] = texture; }

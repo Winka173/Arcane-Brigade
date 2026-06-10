@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>One opening for every card (owner 23/10/2026: many cards popped in with no transition): the first frame a card
+    /// <summary>One opening for every card (requirement 23/10/2026: many cards popped in with no transition): the first frame a card
     /// is drawn again after being away, it rises from a little below at 88% size with a small overshoot and fades in over
     /// 0.22s, like the visitor card. Reduced Motion: the fade only. Call it where the card starts drawing, inside the 1920x1080
     /// viewport; it returns the colour to restore when the card is done (the caller restores GUI.matrix as it already does).</summary>

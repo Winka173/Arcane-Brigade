@@ -53,7 +53,7 @@ namespace ArcaneBrigade
         public static float WeaponWidth(UnitState unit)
         {
             float width = unit.Definition.Weapon.VisualWidth * (unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Projectile ? 1.45f : 1);
-            // owner 24/10/2026: a swung blade or club is never stubby (Key Cleaver and the short sabres looked small: +10% or more)
+            // requirement 24/10/2026: a swung blade or club is never stubby (Key Cleaver and the short sabres looked small: +10% or more)
             WeaponMotion swing = unit.Definition.Weapon.Motion;
             if (unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Melee && (swing == WeaponMotion.Slash || swing == WeaponMotion.Slam || swing == WeaponMotion.Hammer)) width = Mathf.Max(width, .86f);
             // a held item stays modest, never much larger than its bearer (theme rule; 18/10/2026: melee was allowed 2.7x and heroes had no cap)
@@ -97,7 +97,7 @@ namespace ArcaneBrigade
             bool preparing = age < windup;
             float charge = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / Mathf.Max(0.001f, windup)));
             float recovery = Mathf.Clamp01((age - windup) / Mathf.Max(0.001f, weapon.Recovery));
-            // owner 24/10/2026: a blow must read - a melee stroke is a wide arc that takes a third of the recovery (it used to be
+            // requirement 24/10/2026: a blow must read - a melee stroke is a wide arc that takes a third of the recovery (it used to be
             // over in a frame or two), starts fast, and holds its follow-through before it settles back
             bool swung = weapon.Kind == WeaponKind.Melee;
             float stroke = swung ? .34f : .18f, hold = swung ? .5f : .18f;

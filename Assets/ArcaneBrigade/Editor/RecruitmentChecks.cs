@@ -43,7 +43,7 @@ namespace ArcaneBrigade.Editor
             Check(ordinary.Length == 5 && specials.Length == 3, "Catalog supplies ordinary and special recruit fixtures");
             using (var known = Session(c, 2))
             {
-                // owner 22/10/2026: a friend's weapon is known before buying, and buying gives exactly that weapon
+                // requirement 22/10/2026: a friend's weapon is known before buying, and buying gives exactly that weapon
                 var offer = Offer(known, ordinary[0].Id); WeaponDefinition shown = known.OfferWeapon(offer);
                 Check(shown != null && offer.WeaponId == shown.Id && known.OfferWeapon(offer) == shown, "Offer weapon is rolled once and kept on the offer");
                 Check(known.Buy(offer.Token) && known.State.Roster.Any(r => r.UnitId == offer.Id && r.WeaponId == shown.Id), "Buying a friend gives the weapon shown on its offer");
@@ -167,7 +167,7 @@ namespace ArcaneBrigade.Editor
                 }
                 Check(counts.All(n => n >= 400), "Banked allowance guarantees a new-species offer even with larger deployed teams: " + string.Join("/", counts));
             }
-            // owner 22/10/2026: the shop never sells what can't be bought. A new species left on the shelf when the new-species
+            // requirement 22/10/2026: the shop never sells what can't be bought. A new species left on the shelf when the new-species
             // quota closes is replaced in its place (a copy of an owned species within the copy quota, or a relic)
             foreach (int wave in new[] { 2, 8, 20 })
             {

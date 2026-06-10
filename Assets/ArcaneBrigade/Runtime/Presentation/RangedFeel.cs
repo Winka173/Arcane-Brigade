@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>How our ranged weapons feel (19/10/2026, owner's R1-R8): one place for the rules the presentation shares.
+    /// <summary>How our ranged weapons feel (19/10/2026, requirements R1-R8): one place for the rules the presentation shares.
     /// Heft (how heavy a shot is: a gumball flick to a cannon), which shots are pointy enough to stay stuck in an enemy,
     /// which weapons are guns that eject a casing, which are slow enough to charge, each weapon's own muzzle flourish,
     /// a long-range critical, and the climbing pitch of a piercing shot. Presentation only: the simulation never reads it.</summary>

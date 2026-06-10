@@ -104,7 +104,7 @@ namespace ArcaneBrigade
             string talent = unit.ReferenceCompanion;
             if (OctoberHero == "Jade Cabbage" && talent == "Little Cabbage") State.LeafPurchases++;
             if (talent == "\"Expert Nurturer\" Daisy") State.Eggs = BoundedCounter((long)State.Eggs + 6);
-            if (talent == "\"The Creator\" Roger") State.Gold = BoundedCounter((long)State.Gold + ScaledGold(100)); // on the gold curve (owner, 22/10/2026)
+            if (talent == "\"The Creator\" Roger") State.Gold = BoundedCounter((long)State.Gold + ScaledGold(100)); // on the gold curve (requirement 22/10/2026)
             if (talent == "\"GLHF\" Nia")
             {
                 int pick = Next(ref State.WeaponRandom, 4); State.OctoberGains.Add(new StatModifier { Effect = new[] { ItemEffect.Damage, ItemEffect.MoveSpeed, ItemEffect.Luck, ItemEffect.Armor }[pick], Scope = pick == 2 ? ModifierScope.Run : pick == 3 ? ModifierScope.Champion : ModifierScope.Team, Value = pick == 3 ? .12f : .06f });
@@ -148,12 +148,12 @@ namespace ArcaneBrigade
         }
         private int OctoberOfferTier(string id)
         {
-            // owner 22/10/2026 (revised): 3 stars take three copies: 1+1 make 2 stars, then the copy is offered at the owned star
+            // requirement 22/10/2026 (revised): 3 stars take three copies: 1+1 make 2 stars, then the copy is offered at the owned star
             int merge = OctoberMergeTier(id); if (merge > 0) return merge;
             if (OctoberHero == "Card King" && !State.Roster.Exists(r => r.UnitId == id)) return 2;
             if (ActiveRoster.Count >= 7 || State.Wave < 4 || State.Roster.Exists(r => r.UnitId == id)) return 1;
             int roll = Next(ref State.ShopRandom, 100);
-            // a new species rolls 2 stars a little less often (55/30% -> 45/24%) and 3 stars much less (18% -> 6%) (owner 22/10/2026)
+            // a new species rolls 2 stars a little less often (55/30% -> 45/24%) and 3 stars much less (18% -> 6%) (requirement 22/10/2026)
             return State.Wave >= 10 && ActiveRoster.Count <= 3 && roll < 6 ? 3 : roll < (ActiveRoster.Count <= 3 ? 45 : 24) ? 2 : 1;
         }
         private void OctoberRefreshed()

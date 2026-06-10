@@ -45,7 +45,7 @@ namespace ArcaneBrigade
         private CheckpointAudio audioFeedback;
         private readonly ToyboxAudioObserver toyboxAudio = new ToyboxAudioObserver();
         private CombatFeedback combatFeedback;
-        private HitWords hitWords; // comic sound words over struck enemies (owner 24/10/2026)
+        private HitWords hitWords; // comic sound words over struck enemies (requirement 24/10/2026)
         private BossTelegraph bossTelegraph;
         private MapEnvironmentVisual mapVisual;
         private ArcadeEffects arcadeEffects;
@@ -379,7 +379,7 @@ namespace ArcaneBrigade
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
             if (hitWords == null) hitWords = gameObject.AddComponent<HitWords>();
             for (int index = 0; index < simulation.Events.Count; index++) hitWords.Play(simulation, simulation.Events[index]);
-            // stats gained for good mid-wave rise over the hero the way they do in the shop (owner 24/10/2026)
+            // stats gained for good mid-wave rise over the hero the way they do in the shop (requirement 24/10/2026)
             if (combatFeedback != null && simulation.Champion != null)
                 foreach (var gain in simulation.StatGainsToShow)
                     combatFeedback.Label(VisualChampionPosition + Vector2.up * .95f, StatGainText(gain.Key, gain.Value), gain.Value > 0 ? ArcadeSkin.Better : ArcadeSkin.Worse, .6f, 1.3f);
@@ -611,7 +611,7 @@ namespace ArcaneBrigade
             if (!PersistBoundary()) { session.Restore(before); return; }
             details.Close(); pauseGate.ResetSession(); Begin();
         }
-        /// <summary>Owner 24/10/2026: back to the menu without writing this moment; the run resumes from its last save boundary.</summary>
+        /// <summary>Requirement 24/10/2026: back to the menu without writing this moment; the run resumes from its last save boundary.</summary>
         /// <summary>Diagnostics only: a scripted stick for recorded clips.</summary>
         public static Vector2? ScriptedMove;
         public void ExitWithoutSaving() { RunLaunch.OpenHub = false; SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
@@ -758,7 +758,7 @@ namespace ArcaneBrigade
                 Vector2 shotAt = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
                 if (state.FiredAt >= 0)
                 {
-                    // owner 24/10/2026: shots seemed to come out of the hero's body - its first frame was drawn between the
+                    // requirement 24/10/2026: shots seemed to come out of the hero's body - its first frame was drawn between the
                     // body and the muzzle. A shot is never drawn behind its muzzle, and for its first moments it leaves the
                     // weapon's barrel as that barrel is drawn (painted weapons differ from their simulated muzzle)
                     if (Vector2.Dot(shotAt - state.Muzzle, state.Velocity) < 0) shotAt = state.Muzzle;

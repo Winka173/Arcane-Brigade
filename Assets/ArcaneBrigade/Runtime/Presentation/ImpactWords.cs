@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Comic words stamped over the moments that earn them (owner, 19/10/2026; STRIKE! is drawn by ImpactVisual):
+    /// <summary>Comic words stamped over the moments that earn them (requirement 19/10/2026; STRIKE! is drawn by ImpactVisual):
     /// HOME RUN!, SPLAT!, PINNED!, OVERKILL!, ×N PIERCE, RICOCHET ×N, BONK!, CLEAVE ×N, DOMINO!, CRIT! and BREAK!. Each pops in
     /// big, settles, lifts a little and fades. Kept rare on purpose: at most three words a second and four on screen, a higher
     /// word pushing out a lower one; reduced effects keeps only the big ones. Painted punch type with an ink outline.</summary>

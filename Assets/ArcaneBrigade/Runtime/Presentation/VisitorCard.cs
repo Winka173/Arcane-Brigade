@@ -15,7 +15,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private GUIStyle hand, plain, title, verb, amount, caption, chip, plateName, button, mark;
         private bool shown, details; private int page;
-        // a choice is picked first and taken with CONFIRM (owner 22/10/2026: one tap took it before it could be read)
+        // a choice is picked first and taken with CONFIRM (requirement 22/10/2026: one tap took it before it could be read)
         private int picked = -1;
         private readonly ShopDescriptionCard pickedCard = new ShopDescriptionCard();
         private readonly ShopOffer pickedOffer = new ShopOffer();
@@ -25,13 +25,13 @@ namespace ArcaneBrigade
         public bool Open => shown && owner?.Session?.Visitor != null && !owner.StoryConsumesInput && !owner.TransitionPending;
         public void Show() { shown = true; page = 0; details = false; picked = -1; InputConsumedFrame = Time.frameCount; openedAt = Time.unscaledTime; closingAt = -1; }
         // any exit but accepting (LATER, Esc / B, a tap outside the card) only closes the card: the visitor keeps its table for
-        // the whole shop and its card opens again (owner, 22/10/2026); the card shrinks and fades out first
+        // the whole shop and its card opens again (requirement 22/10/2026); the card shrinks and fades out first
         private void Close() { if (closingAt < 0) closingAt = Time.unscaledTime; InputConsumedFrame = Time.frameCount; }
         private float openedAt = -10, closingAt = -1;
         private const float OpenTime = .25f, CloseTime = .16f;
         /// <summary>The open overshoot (as the shop's inspect card): rises past 1 a little, then settles.</summary>
         private static float Overshoot(float t) => 1 + 2.2f * Mathf.Pow(t - 1, 3) + 1.2f * Mathf.Pow(t - 1, 2);
-        // owner 23/10/2026: what is inside the card moves too - the choices rise in one after another as it opens or turns a
+        // requirement 23/10/2026: what is inside the card moves too - the choices rise in one after another as it opens or turns a
         // page (sliding in from the side turned to), the picked one lifts with a small punch, the picked line and the details
         // fade up; a card hidden for a moment (a story line, a transition) opens again rather than snapping back
         private float pickedAt = -10, pageAt = -10, detailsAt = -10; private int pageDir = 1, drawnFrame = -10;
@@ -275,7 +275,7 @@ namespace ArcaneBrigade
                 Lift rise = Rise(plate, Entry(i), 0, PickScale(i == picked));
                 bool hover = o.Enabled && plate.Contains(Event.current.mousePosition);
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
-                // the chosen plate is gold UNDER its words (owner 24/10/2026: the gold laid over it hid the price and the reward)
+                // the chosen plate is gold UNDER its words (requirement 24/10/2026: the gold laid over it hid the price and the reward)
                 ArcadeSkin.Plate(plate, hover || i == picked ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
                 if (hover || i == picked) ArcadeSkin.WorldFocus(plate);
                 Rect pc = ArcadeSkin.Content(plate, KitPiece.Dialogue);
@@ -329,7 +329,7 @@ namespace ArcaneBrigade
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 ArcadeSkin.Plate(slot, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
                 if (hover) ArcadeSkin.WorldFocus(slot);
-                if (RarityOf(o) is ItemRarity rarity) // a relic's or a friend's rarity framed like the shop's cards (owner 23/10/2026)
+                if (RarityOf(o) is ItemRarity rarity) // a relic's or a friend's rarity framed like the shop's cards (requirement 23/10/2026)
                 { RarityDescriptionFrame.Edge(slot, rarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), rarity, Time.unscaledTime); }
                 Sprite icon = IconFor(o);
                 if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), icon);

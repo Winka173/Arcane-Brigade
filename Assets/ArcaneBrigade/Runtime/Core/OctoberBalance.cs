@@ -5,7 +5,7 @@ namespace ArcaneBrigade
     {
         public const int AllySoftLimit = 15;
         public const float WaveSeconds = 52; // 45 before the play-test (+15%, D9)
-        public const float EnemyHealthRelief = 1.03f; // 18/10/2026: was .75; hero kits made the brigade stronger. 24/10/2026: .95 -> 1.03 (owner: all difficulties a little tougher)
+        public const float EnemyHealthRelief = 1.03f; // 18/10/2026: was .75; hero kits made the brigade stronger. 24/10/2026: .95 -> 1.03 (requirement: all difficulties a little tougher)
         public const float EnemyDamageRelief = .96f; // 18/10/2026: was .8
         public const float BossHealthRelief = .6f;
         public const float BossDamageRelief = .7f; // round 3 (19/10/2026, play-test: boss waves too hard): was .9, -22% on everything a boss deals
@@ -24,7 +24,7 @@ namespace ArcaneBrigade
         public static float FlatDamage(float bonus, int wave) => Soften(bonus, 10, Mathf.Lerp(1, .35f, Late(wave)));
         public static float EndlessHealth(int wave, bool endless) => endless ? Mathf.Pow(1.16f, Mathf.Min(200, Mathf.Max(0, wave - 19))) : 1;
         public static float EndlessDamage(int wave, bool endless) => endless ? Mathf.Pow(1.075f, Mathf.Min(200, Mathf.Max(0, wave - 19))) : 1;
-        /// <summary>Owner 23/10/2026: enemies are pushed back less - every knockback at 60%.</summary>
+        /// <summary>Requirement 23/10/2026: enemies are pushed back less - every knockback at 60%.</summary>
         public const float EnemyKnockback = .6f;
         public static float Push(UnitDefinition target, float requested) => target.IsBoss ? 0 : Mathf.Clamp(requested, 0, .45f) * (1 - Mathf.Clamp01(target.KnockbackResistance)) * EnemyKnockback;
         public static void CompileAlly(UnitDefinition unit, int wave)

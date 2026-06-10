@@ -91,7 +91,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Frame(new Rect(240, 120, 1440, 860), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "How to Play");
                 if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
-                HowToPlayBook.Draw(new Rect(300, 270, 1320, 680), owner.Content, owner.Session?.State.ChampionId, ref guidePage); // the picture book (owner 24/10/2026)
+                HowToPlayBook.Draw(new Rect(300, 270, 1320, 680), owner.Content, owner.Session?.State.ChampionId, ref guidePage); // the picture book (requirement 24/10/2026)
                 return;
             }
             ArcadeSkin.Frame(new Rect(640, 230, 640, 680), KitFrame.Dialogue, .6f);
@@ -406,7 +406,7 @@ namespace ArcaneBrigade
                 {
                     Rect go = new Rect(790, 950, 340, 90);
                     ShownShopCard = go;
-                    if (navigation.Button(go, shop.Special ? "TO THE SHOP  →" : "NEXT WAVE  ↓", primary)) shop.Interact(); // the dream shop leads on to the regular shop (owner)
+                    if (navigation.Button(go, shop.Special ? "TO THE SHOP  →" : "NEXT WAVE  ↓", primary)) shop.Interact(); // the dream shop leads on to the regular shop (requirement)
                     return;
                 }
                 if (tooltipStation != station)
@@ -437,7 +437,7 @@ namespace ArcaneBrigade
                     string kind = item ? RunModifierRules.RarityName(rarity) : (offerCard.Role.HasValue ? CompanionRoles.Word(offerCard.Role.Value) : "FRIEND") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
                     ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, CodeTone.Walnut, tagStyle, tag); // code-drawn tag, rarity colour on walnut
                 }
-                // one fixed size for the price button and the i under it, centred in the card's right column (owner, 21/10/2026)
+                // one fixed size for the price button and the i under it, centred in the card's right column (requirement 21/10/2026)
                 const float PriceH = 104, InfoH = 56, ColumnGap = 12;
                 float columnH = station.Offer != null ? PriceH + ColumnGap + InfoH : PriceH;
                 Rect buy = new Rect(panel.xMax - 214, panel.y + Mathf.Round((panel.height - columnH) * .5f), 192, PriceH);
@@ -504,7 +504,7 @@ namespace ArcaneBrigade
         /// <summary>A companion's chips: its weapon's attack and each bond it counts toward (now / next).</summary>
         private float ShopChips(float x, float y, float width)
         {
-            // chips with real room (owner, 22/10/2026): the icon in the chip's socket, 10 px before the words, 16 after them and
+            // chips with real room (requirement 22/10/2026): the icon in the chip's socket, 10 px before the words, 16 after them and
             // 12 between chips; a chip that does not fit first shrinks its words, then starts a second row
             float cx = x, rowY = y; int rows = 1;
             const float H = 50, Lead = 50, Tail = 16, Gap = 12;
@@ -528,7 +528,7 @@ namespace ArcaneBrigade
                 cardChip.fontSize = size;
                 cx += w + Gap;
             }
-            // (no COMBO chip: the owner wants plain counts; a combo is listed under the details' COMBOS)
+            // (no COMBO chip: plain counts are required; a combo is listed under the details' COMBOS)
             Chip(offerCard.AttackIcon, offerCard.AttackLabel, false); // the weapon this friend comes with
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates);
             return rowY + H + 10;
@@ -546,7 +546,7 @@ namespace ArcaneBrigade
             int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
             cardBig.wordWrap = true;
-            // laid out inside the plate's rim with real margins (owner, 22/10/2026): the verb on the upper half, the price on the lower
+            // laid out inside the plate's rim with real margins (requirement 22/10/2026): the verb on the upper half, the price on the lower
             Rect inner = ArcadeSkin.Content(button, KitPiece.Plate);
             Rect verbRect = priced ? new Rect(inner.x, inner.y, inner.width, inner.height * .54f) : inner;
             GUI.Label(verbRect, verb, cardBig);
@@ -575,7 +575,7 @@ namespace ArcaneBrigade
             ShownShopCard = panel;
             RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
-            // stacked blocks inside the frame's padding (owner, 22/10/2026): the header row, the tiles row, then the scrolling text
+            // stacked blocks inside the frame's padding (requirement 22/10/2026): the header row, the tiles row, then the scrolling text
             // starting below the tiles' full height, so nothing sits behind the tiles or on the frame's rim
             Rect inner = new Rect(panel.x + 56, panel.y + 34, panel.width - 112, panel.height - 68);
             RarityDescriptionFrame.Backdrop(new Rect(inner.x, inner.y, 72, 72), rarity, owner.PresentationClock);
@@ -964,7 +964,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(520, 345, 880, 80), "Return to the Waiting Room?", title);
             GUI.Label(new Rect(540, 445, 840, 105), "Save and return keeps this run where it stands. Leave without saving takes it back to its last save: the start of this wave, or your last shop purchase.", text);
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), owner.SaveError, small);
-            // owner 24/10/2026: a way out without saving, beside saving and staying
+            // requirement 24/10/2026: a way out without saving, beside saving and staying
             if (navigation.Button(new Rect(510, 650, 280, 65), "STAY", button)) owner.CancelMenuReturn();
             if (navigation.Button(new Rect(820, 650, 280, 65), "LEAVE, DON'T SAVE", button)) owner.ExitWithoutSaving();
             if (navigation.Button(new Rect(1130, 650, 280, 65), "SAVE AND RETURN", primary ?? button)) owner.ReturnToMenu();

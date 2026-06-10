@@ -80,7 +80,7 @@ namespace ArcaneBrigade
         }
         private IEnumerator Focus(int slot) { var stations = owner.Shop.Stations.Where(s => s.Offer != null).ToList(); if (slot >= stations.Count) { Check(false, "Offer slot " + slot); yield break; } var station = stations[slot]; yield return Stand(station.Position + new Vector2(0, -.3f)); }
 
-        /// <summary>15 (owner, 21/10/2026: two stages kept): the dream market first, its way on says "To the shop".</summary>
+        /// <summary>15 (requirement 21/10/2026: two stages kept): the dream market first, its way on says "To the shop".</summary>
         private IEnumerator TwoStageShop()
         {
             yield return LoadShop(12, true, run => { foreach (var item in catalog.Items.Where(i => i.ShopWeight > 0 && i.EffectiveModifiers.Any(m => m.Value > 0)).Skip(3).Take(3)) run.State.Offers.Add(new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 60, BasePrice = 60, Currency = ShopCurrency.Gold }); });

@@ -18,7 +18,7 @@ namespace ArcaneBrigade
     public sealed partial class CombatSimulation
     {
         public const float GaugeTier = 10f, GaugeTrickle = 30f / 35f, GaugeCap = 30f / 18f, GaugePrimeSeconds = 1f;
-        /// <summary>Owner 24/10/2026: every gauge fills 40% faster (twice raised; the rhythm now ~13s to ~25s).</summary>
+        /// <summary>Requirement 24/10/2026: every gauge fills 40% faster (twice raised; the rhythm now ~13s to ~25s).</summary>
         public const float GaugeSpeed = 1.4f;
         private float gaugePending;
 

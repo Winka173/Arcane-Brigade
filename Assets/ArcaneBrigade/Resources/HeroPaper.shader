@@ -1,4 +1,4 @@
-// A paper puppet (owner 24/10/2026, Archive Curator's Living Exhibit): a recorded enemy drawn as a cream paper cut-out
+// A paper puppet (requirement 24/10/2026, Archive Curator's Living Exhibit): a recorded enemy drawn as a cream paper cut-out
 // with an ink edge, fluttering a little; vertex colour tints it and fades it.
 Shader "ArcaneBrigade/HeroPaper"
 {

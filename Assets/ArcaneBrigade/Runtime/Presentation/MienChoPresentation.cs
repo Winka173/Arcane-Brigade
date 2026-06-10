@@ -70,7 +70,7 @@ namespace ArcaneBrigade
             {
                 if(InputConsumedFrame==Time.frameCount)return;
                 if (!Application.isFocused && !RunPaths.Diagnostic) return;
-                // a choice is picked first and confirmed (owner 22/10/2026)
+                // a choice is picked first and confirmed (requirement 22/10/2026)
                 if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) storyPick = 0;
                 else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.JoystickButton3)) storyPick = 1;
                 else if ((Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return)) && storyPick >= 0 && ActOneCanon.ChoiceOptions[chapter] != null && page == 0 && Memory.Choices[chapter] == 0) { Choose(storyPick); storyPick = -1; }
@@ -244,7 +244,7 @@ namespace ArcaneBrigade
             if (Press(new Rect(850, 925, 200, 65), "PREVIOUS")) Previous();
             if (choosing)
             {
-                // the story waits for the traveller: two choices as cards, picked then confirmed (owner 22/10/2026)
+                // the story waits for the traveller: two choices as cards, picked then confirmed (requirement 22/10/2026)
                 const string meaning = "The next page follows this choice. It shapes the story only; your brigade is not changed.";
                 int taken = ChoiceCards.Draw(new Rect(850, 625, 1000, 285), options, new[] { meaning, meaning }, ref storyPick);
                 if (taken >= 0) { Choose(taken); storyPick = -1; }

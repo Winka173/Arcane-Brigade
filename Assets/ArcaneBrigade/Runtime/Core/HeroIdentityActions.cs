@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         {
             if (HeroIdentityEnabled && !IdentityOwn(cause) && (IdentityId == "ChinaMarionette" || IdentityId == "RainArchivist")) identityRecovered += Mathf.Max(0, recovered);
         }
-        /// <summary>Owner (22/10/2026): the transformation gauge fills 20% slower.</summary>
+        /// <summary>Requirement (22/10/2026): the transformation gauge fills 20% slower.</summary>
         public const float AwakenChargeRate = .8f;
         private void Charge(float amount) { if (amount > 0) identityCharge += amount * (HeroAwakenEnabled ? AwakenChargeRate : 1) * (NightAlone ? 1.3f : 1); }
         private string gaugeLastPerformer; private float kitBountyCoinAt;

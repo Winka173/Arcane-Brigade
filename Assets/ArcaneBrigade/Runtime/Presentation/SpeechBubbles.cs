@@ -202,7 +202,7 @@ namespace ArcaneBrigade
                 float age = now - bubble.Began;
                 float left = bubble.Expires - now;
                 float alpha = Mathf.Clamp01(age / 0.12f) * Mathf.Clamp01(left / 0.3f);
-                // owner 23/10/2026: a bubble grows out of the speaker's mouth with a springy overshoot, breathes while it is
+                // requirement 23/10/2026: a bubble grows out of the speaker's mouth with a springy overshoot, breathes while it is
                 // read and folds back into the speaker as it ends
                 float pop = reduced ? 1 : Mathf.Lerp(0.55f, 1f, EaseOutBack(Mathf.Clamp01(age / 0.26f))) * Mathf.Lerp(0.8f, 1f, Mathf.Clamp01(left / 0.25f));
                 float breathe = reduced || age < 0.26f ? 0 : Mathf.Sin((age - 0.26f) * 2.2f) * 2.5f;

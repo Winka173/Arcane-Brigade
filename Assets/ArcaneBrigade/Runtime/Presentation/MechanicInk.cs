@@ -26,7 +26,7 @@ namespace ArcaneBrigade
 
         public static Material StrokeMaterial { get { if (strokeMaterial == null) strokeMaterial = Make(Stroke(), "MechanicInk stroke"); return strokeMaterial; } }
         public static Material WashMaterial { get { if (washMaterial == null) washMaterial = Make(Wash(), "MechanicInk wash"); return washMaterial; } }
-        // the hero mechanics drawn as light (owner 23/10/2026: they looked wrapped in plastic film): additive like the lantern's
+        // the hero mechanics drawn as light (requirement 23/10/2026: they looked wrapped in plastic film): additive like the lantern's
         // beam - a fill is a smooth glow (no mottled paper, no film), a stroke a brushed band of light; dark ink adds nothing
         private static Material lightStrokeMaterial, lightWashMaterial;
         public static Material LightStrokeMaterial { get { if (lightStrokeMaterial == null) lightStrokeMaterial = MakeLight(Stroke(), "MechanicInk light brush") ?? StrokeMaterial; return lightStrokeMaterial; } }

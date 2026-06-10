@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         public int OctoberInjuries => octoberInjuries;
         public int OctoberDodges => octoberDodges;
         private string ReferenceHero => Champion?.Definition.ReferenceHero ?? "";
-        /// <summary>Closer to the original Dream Seekers (owner 23/10/2026): Card King, Sassy Senior and Clementie never make a
+        /// <summary>Closer to the original Dream Seekers (requirement 23/10/2026): Card King, Sassy Senior and Clementie never make a
         /// basic attack (their friends, their bursts and their body do the work); Anby only attacks while transformed; Billy's
         /// friends never make a basic attack - they answer his critical hits.</summary>
         private bool OctoberBlocksAttack(UnitState unit)

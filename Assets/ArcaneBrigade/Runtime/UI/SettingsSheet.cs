@@ -20,7 +20,7 @@ namespace ArcaneBrigade
         public static readonly string[] WindowNames = { "FULLSCREEN", "BORDERLESS", "WINDOWED" };
 
         private static Vector2 scroll;
-        /// <summary>The settings in four groups (owner 24/10/2026: "settings are too cramped", and the fonts' licence line read as a
+        /// <summary>The settings in four groups (requirement 24/10/2026: "settings are too cramped", and the fonts' licence line read as a
         /// mysterious "font" setting - credits belong in the credits): Sound, Screen, Comfort and Play, rows 60 apart with room
         /// between the plates, scrolling when the sheet is taller than its space.</summary>
         public static void Draw(PlayerProfile current, Vector2 at, ButtonFn buttonFn, Action<Rect, string> label, Func<bool> saveFn, bool inRun)

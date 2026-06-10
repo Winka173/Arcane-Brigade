@@ -72,18 +72,18 @@ namespace ArcaneBrigade
         private void Glow(Vector2 at, float diameter, Color color, float alpha, bool airborne = false)
         {
             if (plain) alpha *= .55f;
-            if (diameter > .75f) return; // owner 23/10/2026: a wide glow disc read as a plastic film round the hero; sparks stay
+            if (diameter > .75f) return; // requirement 23/10/2026: a wide glow disc read as a plastic film round the hero; sparks stay
             Place(MechanicInk.Glow, at, Vector2.one * diameter, 0, A(color, alpha * strength), airborne);
         }
         private InkStroke Brush(float width, float alpha, float seed) => InkStroke.Of(ink, width, alpha * strength, seed);
         /// <summary>A stroke painted as soft light (22/10/2026): halo, body and hot thread, dimmer with Reduced Flashes.</summary>
         private void Soft(InkCanvas canvas, List<Vector2> path, float head, float tail, float width, float alpha)
         {
-            // painted as light, not as a wireframe (owner, 22/10/2026): a wide soft halo, a brighter body and a hot thread,
+            // painted as light, not as a wireframe (requirement 22/10/2026): a wide soft halo, a brighter body and a hot thread,
             // each fading smoothly to nothing at its sides and its ends; no outline anywhere
             if (alpha <= .01f) return;
             float a = alpha * strength * (calm ? .7f : 1); width *= 1.1f;
-            // the halo and body are capped (owner 24/10/2026: a wide stroke from the hero, Soap Skater's ice line, buried it in
+            // the halo and body are capped (requirement 24/10/2026: a wide stroke from the hero, Soap Skater's ice line, buried it in
             // a sheet of white light)
             canvas.GlowRibbon(path, head, tail, Mathf.Min(width * 3.2f, .6f), A(ink.Glow, .32f * a));
             canvas.GlowRibbon(path, head, tail, Mathf.Min(width * 1.4f, .36f), A(Color.Lerp(ink.Body, ink.Light, .35f), .72f * a));
@@ -122,13 +122,13 @@ namespace ArcaneBrigade
                 style = HeroMechanicStyle.For(simulation.Champion.Definition.Id); ink = style.PaletteFor(simulation.HeroIdentityApproach);
                 still = PresentationSettings.ReducedMotion; sparse = PresentationSettings.ReducedEffects || AnimationDetailBudget.Level >= 2;
                 calm = PresentationSettings.ReducedFlashes; plain = PresentationSettings.HighReadability;
-                strength = Mathf.Lerp(1, .72f, EffectDensity.CrowdPressure) * (sparse ? .85f : 1) * 1.25f; // owner 24/10/2026: every skill a touch stronger
+                strength = Mathf.Lerp(1, .72f, EffectDensity.CrowdPressure) * (sparse ? .85f : 1) * 1.25f; // requirement 24/10/2026: every skill a touch stronger
                 sparse |= EffectDensity.CrowdPressure > .6f; // in a crowd keep the washes and rims, drop the flurries of tokens
                 var cam = Camera.main; screenCap = cam != null && cam.orthographic ? Mathf.Max(1.2f, cam.orthographicSize * .45f) : 3;
                 if (simulation.Champion.Alive)
                 {
                     DrawState();
-                    // owner (22/10/2026): when the hero walks behind a map prop, the gauge beside it fades like the hero does
+                    // requirement (22/10/2026): when the hero walks behind a map prop, the gauge beside it fades like the hero does
                     float full = strength; strength *= Mathf.Lerp(1, HeroFocus.PropAlpha, HeroFocus.Covered);
                     if (simulation.HeroAwakenEnabled) DrawAwakenGauge(); else DrawGauge();
                     strength = full;
@@ -235,7 +235,7 @@ namespace ArcaneBrigade
 
         // ------------------------------------------------------------------ live state
         // unit positions are body centres: feet sit half a body below, heads half a body above; taken where the body is drawn
-        // this frame, not the simulation's step, so the marks glide with a walking hero (owner 24/10/2026)
+        // this frame, not the simulation's step, so the marks glide with a walking hero (requirement 24/10/2026)
         private static Vector2 Head(UnitState u) => DrawnAt(u) + Vector2.up * (u.Definition.BodyHeight * .5f + .2f);
         private static Vector2 Chest(UnitState u) => DrawnAt(u) + Vector2.up * u.Definition.BodyHeight * .05f;
         private static Vector2 Feet(UnitState u) => DrawnAt(u) - Vector2.up * u.Definition.BodyHeight * .5f;
@@ -355,12 +355,12 @@ namespace ArcaneBrigade
             VisibleCount++;
         }
         private static readonly InkPalette Bark = new InkPalette(new Color(.15f, .08f, .04f), new Color(.46f, .3f, .16f), new Color(.78f, .62f, .4f), new Color(.6f, .45f, .25f), new Color(.4f, .62f, .3f));
-        /// <summary>A root, a fork or a thorn painted in bark ink on the floor (owner 23/10/2026: drawn as light they read as electricity).</summary>
+        /// <summary>A root, a fork or a thorn painted in bark ink on the floor (requirement 23/10/2026: drawn as light they read as electricity).</summary>
         private void Root(List<Vector2> path, float width, float alpha, InkPalette pal, float seed) => groundInk.Stroke(path, InkStroke.Of(pal, width, Mathf.Clamp01(alpha) * strength, seed));
         private static readonly InkPalette TreeFire = new InkPalette(new Color(.22f, .06f, .04f), new Color(.96f, .46f, .22f), new Color(1f, .9f, .6f), new Color(1f, .62f, .3f), new Color(.62f, .86f, .4f));
         private void Roots()
         {
-            // owner 23/10/2026: gnarled, thorny roots that fork, not three straight lines; while the Living Tree walks they burn
+            // requirement 23/10/2026: gnarled, thorny roots that fork, not three straight lines; while the Living Tree walks they burn
             // amber and their thorns grow long
             var hero = sim.Champion; float charge = Mathf.Clamp01(sim.HeroIdentityCharge / 3); int next = sim.HeroIdentityRootTurn;
             bool grown = sim.HeroAwakening; InkPalette was = ink; if (grown) ink = TreeFire; InkPalette wood = grown ? TreeFire : Bark;
@@ -483,7 +483,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < n; i++)
             {
                 float a = s + i * 360f / n + (i % 2) * 17, size = Mathf.Min(.22f * (1 + .5f * Mathf.Pow(1 - p, 3)), r * .5f);
-                if (style.Id == "SoapSkater") size *= .6f; // owner 23/10/2026: the turn bubble's foam covered the skater
+                if (style.Id == "SoapSkater") size *= .6f; // requirement 23/10/2026: the turn bubble's foam covered the skater
                 float d = Mathf.Min(r - size * .55f, r * .82f * (still ? .7f : OutCubic(p)));
                 Token(style.Token, c + Dir(a) * Mathf.Max(0, d), size, a + p * 120, fade);
             }
@@ -514,7 +514,7 @@ namespace ArcaneBrigade
             }
             ground.Band(a, b, half, A(ink.Glow, .16f * fade * strength), A(ink.Body, .42f * fade * strength));
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .3f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .3f) / .7f));
-            // a thread (China Marionette's needle) flies as a short stitch, never as a ruled line from end to end (owner 23/10/2026)
+            // a thread (China Marionette's needle) flies as a short stitch, never as a ruled line from end to end (requirement 23/10/2026)
             if (style.Brush == InkBrush.Thread) tail = Mathf.Max(tail, head - .28f);
             float seed = Seed(g) * .1f;
             List<Vector2> path; float width;
@@ -532,7 +532,7 @@ namespace ArcaneBrigade
             Soft(air, path, head, tail, width * (pressed ? .6f : .95f), fade); // core +25% (24/10/2026)
             if (pressed)
             {
-                // owner 24/10/2026: a straight stroke swells in its middle like a brush pressed down, instead of a ruled line
+                // requirement 24/10/2026: a straight stroke swells in its middle like a brush pressed down, instead of a ruled line
                 Soft(air, InkCanvas.Line(Vector2.Lerp(a, b, .18f), Vector2.Lerp(a, b, .82f)), Mathf.Clamp01((head - .18f) / .64f), Mathf.Clamp01((tail - .18f) / .64f), width * .95f, fade);
                 Soft(air, InkCanvas.Line(Vector2.Lerp(a, b, .36f), Vector2.Lerp(a, b, .64f)), Mathf.Clamp01((head - .36f) / .28f), Mathf.Clamp01((tail - .36f) / .28f), width * 1.3f, fade);
             }
@@ -563,7 +563,7 @@ namespace ArcaneBrigade
             Soft(air, InkCanvas.Arc(c, radius * 1.02f, radius * 1.02f, heading - half * .72f, heading + half * .72f), head, tail, width * .85f, fade);
             Soft(air, InkCanvas.Arc(c, radius * 1.04f, radius * 1.04f, heading - half * .4f, heading + half * .4f), head, tail, width * 1.2f, fade * .9f);
         }
-        /// <summary>What each hero's brush adds to a swing (owner 24/10/2026: every skill line should feel like its hero).</summary>
+        /// <summary>What each hero's brush adds to a swing (requirement 24/10/2026: every skill line should feel like its hero).</summary>
         private void BrushTrim(Vector2 c, float radius, float heading, float half, float head, float tail, float width, float p, float fade, float seed)
         {
             switch (style.Brush)
@@ -643,7 +643,7 @@ namespace ArcaneBrigade
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .32f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .25f) / .75f));
             // the swing passes through the middle of the area; the inked rim and wash mark its true edge
             float width = Mathf.Min(Mathf.Clamp(r * .26f, .16f, .48f), r * .3f), radius = r * .62f;
-            // owner 24/10/2026 (the skill lines read as plain ruled arcs): a blade, thick in its middle and sharp at both ends,
+            // requirement 24/10/2026 (the skill lines read as plain ruled arcs): a blade, thick in its middle and sharp at both ends,
             // laid as three spans of one sweep, then the brush's own trimming (ripples, tongues, stitches, a twist, forks)
             Blade(c, radius, heading, sweep * CrescentHalf * .96f, head, tail, width, fade);
             Vector2 tip = InkCanvas.Sample(InkCanvas.Arc(c, radius, radius, heading - sweep * CrescentHalf * .96f, heading + sweep * CrescentHalf * .96f), head);
@@ -699,7 +699,7 @@ namespace ArcaneBrigade
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .45f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .4f) / .6f)), alpha = .85f * (1 - Smooth(.7f, 1, p));
             if (style.Token == InkToken.Note)
             {
-                // owner 24/10/2026 (Tin Virtuoso's cue read as a bare line): the cue is a stave - five fine lines bowing from the
+                // requirement 24/10/2026 (Tin Virtuoso's cue read as a bare line): the cue is a stave - five fine lines bowing from the
                 // conductor to the player, notes riding along it and one landing on the player with a bounce
                 for (int k = -2; k <= 2; k++) Soft(air, InkCanvas.Lob(a + Vector2.up * k * .045f, b + Vector2.up * k * .045f, lift, 16), head, tail, .022f, alpha * (k == 0 ? 1 : .8f));
                 for (int i = 0; i < 3; i++)
@@ -750,7 +750,7 @@ namespace ArcaneBrigade
             Token(style.Token, shell, .36f, still ? 0 : p * 420, 1, true, 0, null, squash);
         }
 
-        /// <summary>Lone Jelly's organs land on the enemy itself (owner 23/10/2026), each with its own motion: the bite's jaws
+        /// <summary>Lone Jelly's organs land on the enemy itself (requirement 23/10/2026), each with its own motion: the bite's jaws
         /// open over it and snap shut, the gland's drop arcs over and bursts into droplets, the threadwork's needle stitches
         /// three passes across it and pulls them tight.</summary>
         private void Organ(HeroIdentityGlyph g)

@@ -29,7 +29,7 @@ namespace ArcaneBrigade
     {
         public const int HistoryLimit = 50;
         public static readonly string[] DifficultyNames = { "Peaceful", "Wandering", "Restless", "Nightmare", "Sleepless", "Beyond the Lamp", "Lightless", "The Last Night" };
-        /// <summary>The first difficulty that waits for a whole Lamp Tree (owner 24/10/2026: two extreme ones, opened only when
+        /// <summary>The first difficulty that waits for a whole Lamp Tree (requirement 24/10/2026: two extreme ones, opened only when
         /// every permanent upgrade is done).</summary>
         public const int TreeDifficulty = 6;
         public static readonly string[] ChallengeIds = { "", "night-shift", "first-light", "small-brigade" };
@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
         /// <summary>Lightless opens with the five first branches lit, The Last Night with all nine.</summary>
         public static int UnlockedDifficulty(PlayerProfile profile) => MetaProgression.TreeAllDone(profile) ? DifficultyNames.Length - 1 : MetaProgression.TreeDone(profile) ? TreeDifficulty : TreeDifficulty - 1;
-        /// <summary>Each difficulty's colour, calm to dangerous (owner 24/10/2026): green, moon blue, amber, orange, red, a deep
+        /// <summary>Each difficulty's colour, calm to dangerous (requirement 24/10/2026): green, moon blue, amber, orange, red, a deep
         /// crimson-violet for Beyond the Lamp, then blood red and the enemies' own violet for the two after the whole tree.</summary>
         public static Color DifficultyColor(int difficulty) => Mathf.Clamp(difficulty, 0, 7) switch
         {

@@ -44,7 +44,7 @@ namespace ArcaneBrigade
                 if (source.PendingAttack && source.AttackTargetId == enemy.Id) committedDamage -= source.Definition.Weapon.Damage;
                 WeaponDefinition held = source.Definition.Weapon;
                 bool ranged = held.Kind == WeaponKind.Projectile;
-                // owner 24/10/2026: a shooter takes the nearest foe, or a near and strong one - not one far off because a friend
+                // requirement 24/10/2026: a shooter takes the nearest foe, or a near and strong one - not one far off because a friend
                 // already aims at the closer one (claims weigh little for shooters); spreads still like a crowd
                 float score = (enemy.Position - source.Position).magnitude + claims * (ranged ? .15f : .55f) + IdentityTargetScore(enemy);
                 if (ranged) score -= RangedThreat(enemy) + (held.ProjectileCount >= 3 || held.ProjectileSpread >= .35f ? .25f * Mathf.Min(3, CrowdAround(enemy)) : 0);

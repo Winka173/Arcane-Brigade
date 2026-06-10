@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Choices as cards (owner 22/10/2026: a choice must say what it means and wait for a confirm): each card holds the
+    /// <summary>Choices as cards (requirement 22/10/2026: a choice must say what it means and wait for a confirm): each card holds the
     /// option and, under it, what it leads to; a tap picks it (gold rim, glow and focus light), and CONFIRM takes it. The cards
     /// share the area above the button equally; every line stays in the paper's padded inner area.</summary>
     public static class ChoiceCards

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Blows sound like what they land on (19/10/2026, owner's V10/R16): a shove into the arena's edge, a flung body
+    /// <summary>Blows sound like what they land on (19/10/2026, requirements V10/R16): a shove into the arena's edge, a flung body
     /// bowling into another and a flung body bursting where it lands all use the enemy's body material (paper, metal, wax,
     /// fabric, glass, wood) from the existing cue library, pitched down for weight. Hits already sound by material
     /// (ArcaneCueLibrary.EventId: cmb.hit.&lt;material&gt;). A swarm never spams: at most Budget material impacts per Window.</summary>

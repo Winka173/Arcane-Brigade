@@ -230,7 +230,7 @@ namespace ArcaneBrigade
             }
             if (landed > arrived && Event.current.type == EventType.Repaint)
             {
-                // coins landing in the counter are silent (owner, 22/10/2026)
+                // coins landing in the counter are silent (requirement 22/10/2026)
                 arrived = landed; tallyPulse = Time.unscaledTime;
             }
             // pieces beyond the drawn ones (and merged coins) are counted once the last one lands

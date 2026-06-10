@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Every hero's own signature (owner 23/10/2026: "make them all impressive and satisfying, and easy to tell apart").
+    /// <summary>Every hero's own signature (requirement 23/10/2026: "make them all impressive and satisfying, and easy to tell apart").
     /// Each skill strike ends in that hero's own impact - a stamped seal, a bouncing die, a fountain of coins, petals opening,
     /// gold seams, a lightning crackle - and every transformation carries its own ambient life around the hero. A full gauge
     /// is announced by the hero's tokens circling over its head. Painted tokens and brushed light only: no pools, no plain
@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         private static readonly InkPalette Juice = new InkPalette(new Color(.3f, .13f, .02f), new Color(1f, .62f, .16f), new Color(1, .95f, .7f), new Color(1, .75f, .3f), new Color(.5f, .75f, .25f));
 
         // ------------------------------------------------------------------ motions the signatures are made of
-        /// <summary>Signatures are drawn 35% larger than the mechanic's own tokens so they read on a phone (owner 23/10/2026).</summary>
+        /// <summary>Signatures are drawn 35% larger than the mechanic's own tokens so they read on a phone (requirement 23/10/2026).</summary>
         private const float SignatureSize = 1.35f;
         private float sigScale = 1, sigReach = 1;
         private static readonly InkPalette CreamCore = new InkPalette(new Color(.3f, .26f, .2f), new Color(1f, .96f, .84f), new Color(1f, 1f, .96f), new Color(1f, .93f, .75f), new Color(1f, .9f, .6f));

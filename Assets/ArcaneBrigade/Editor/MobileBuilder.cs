@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade.Editor
 {
-    /// <summary>The phone builds (owner 24/10/2026): an Android APK (IL2CPP, ARM64) and an iOS Xcode project, landscape turning
+    /// <summary>The phone builds (requirement 24/10/2026): an Android APK (IL2CPP, ARM64) and an iOS Xcode project, landscape turning
     /// either way. Run with -buildTarget Android / iOS so the editor imports for that platform (the textures' phone sizes and
     /// ASTC come from BuildSizePolicy's per-platform overrides). The iOS project is finished and signed in Xcode on a Mac.</summary>
     public static class MobileBuilder

@@ -70,7 +70,7 @@ namespace ArcaneBrigade
             ["TopiaryShears"] = new Strike(StrikeForm.Snip, "Green", InkToken.Leaf),
         };
 
-        /// <summary>The heroes' own ranged weapons, hand-picked to match what each one fires (owner 24/10/2026): a music box
+        /// <summary>The heroes' own ranged weapons, hand-picked to match what each one fires (requirement 24/10/2026): a music box
         /// throws notes, a bubble wand bubbles, a scoop launcher scoops. Each (palette, token) is used by one weapon only.</summary>
         public static readonly Dictionary<string, (string palette, InkToken token)> Shots = new Dictionary<string, (string, InkToken)>
         {

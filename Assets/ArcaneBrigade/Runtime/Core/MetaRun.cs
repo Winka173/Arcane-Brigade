@@ -86,7 +86,7 @@ namespace ArcaneBrigade
         /// <summary>A Night Pact curse taken for this run.</summary>
         public bool MetaPact(int pact) => Meta != null && (Meta.Pacts & (1 << pact)) != 0;
         /// <summary>Night Pact "Swift night": every enemy +15% speed.</summary>
-        private float MetaEnemySpeed => MetaPact(MetaProgression.PactSwift) ? 1.08f : 1; // was 1.15 (owner 23/10/2026: no sudden speed-ups)
+        private float MetaEnemySpeed => MetaPact(MetaProgression.PactSwift) ? 1.08f : 1; // was 1.15 (requirement 23/10/2026: no sudden speed-ups)
         /// <summary>Night Pact "Closed market": no dream market this run.</summary>
         private bool MetaNoDreamShop => MetaPact(MetaProgression.PactNoDream);
         /// <summary>The Museum's gold gift: a share more of the gold a fight brings in.</summary>

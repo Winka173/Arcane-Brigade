@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         public int MobileSharpness;
         public bool ReducedFlashes;
         public bool ReducedEffects;
-        public bool UiCrafted; // false: the painted kit (the default, owner 21/10/2026); true: every UI piece drawn in code
+        public bool UiCrafted; // false: the painted kit (the default, requirement 21/10/2026); true: every UI piece drawn in code
         public bool HighlightHero = true; // play-test 20/10/2026: the hero's halo, show-through and edge arrow (older saves: on)
         public bool TutorialSeen;
         public List<string> TipsSeen = new List<string>(); // one-time tips already shown (PlayerGuide); Settings can clear them

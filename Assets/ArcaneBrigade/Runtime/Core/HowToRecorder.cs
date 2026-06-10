@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Records How to Play's clips from real play (owner 24/10/2026: "the guide clips should be our own gameplay"):
+    /// <summary>Records How to Play's clips from real play (requirement 24/10/2026: "the guide clips should be our own gameplay"):
     /// -arcane-howto-record -capturePath DIR. Each clip is staged as a real run (a night, a boss night, a transformation, a
-    /// shop purchase, a merge, a brigade with a bond, a relic) and photographed at its best moment (owner: "take pictures
+    /// shop purchase, a merge, a brigade with a bond, a relic) and photographed at its best moment (requirement: "take pictures
     /// rather than clips"), cropped round the hero to a 960x540 JPG (clipN.jpg) for Resources/HowTo/ClipN.</summary>
     public sealed class HowToRecorder : MonoBehaviour
     {

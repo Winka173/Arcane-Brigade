@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Second mechanics for the transformations that had too little to show (owner 24/10/2026, the 36-hero review): each
+    /// <summary>Second mechanics for the transformations that had too little to show (requirement 24/10/2026, the 36-hero review): each
     /// adds a strike the presentation can paint. Drops of Kind 2+ mark where they land (HeroKitBoostVisual draws them):
     /// 2 a root spike, 3 a pollen burst, 4 a mirror's gathered beam, 5 a sleep cloud, 6 a kite's dive.</summary>
     public sealed partial class CombatSimulation

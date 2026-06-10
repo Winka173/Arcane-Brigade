@@ -67,7 +67,7 @@ namespace ArcaneBrigade
             string[] tabs = { "WEAPONS", "RELICS", "COMPANIONS", "CHAINS", "BOSS" };
             for (int index = 0; index < tabs.Length; index++)
             {
-                // each tab carries an icon beside its name (owner 24/10/2026)
+                // each tab carries an icon beside its name (requirement 24/10/2026)
                 Rect tabRect = new Rect(60 + index * 233, 160, 218, 45);
                 if (GUI.Button(tabRect, "      " + (index == tab ? "• " : "") + tabs[index], controls)) { SelectTab(index); exhibits.Clear(); return; }
                 Rect tabIcon = new Rect(tabRect.x + 12, tabRect.y + 7, 31, 31);

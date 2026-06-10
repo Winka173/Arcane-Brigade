@@ -82,7 +82,7 @@ namespace ArcaneBrigade
             "You all leave together and the shop closes for good. Goodbye is not forgetting.",
             "You all leave together, and one lamp stays lit to guide whoever comes next. One more page of the story."
         };
-        /// <summary>The farewell (owner 22/10/2026): the words on paper so they read on any floor, the two choices as cards that
+        /// <summary>The farewell (requirement 22/10/2026): the words on paper so they read on any floor, the two choices as cards that
         /// say what each means, the one looked at or walked to lit, and CONFIRM to take it. No key hints.</summary>
         public void Draw(GUIStyle text, GUIStyle button)
         {

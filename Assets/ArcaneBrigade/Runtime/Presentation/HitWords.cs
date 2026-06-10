@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Comic sound words over struck enemies (owner 24/10/2026, "ZAP" for the lightning hero and the like): the
+    /// <summary>Comic sound words over struck enemies (requirement 24/10/2026, "ZAP" for the lightning hero and the like): the
     /// hero's own words on its critical blows, on its skill's hits and on a skill's kill, plus a few shared words when a foe
     /// is first shocked, burned or slowed, flung hard or splatted on a wall. Lettered like the skill titles (inked, in the
     /// hero's colours, tilted, popping up then drifting away) but smaller. Kept sparse for small screens: one hero word per

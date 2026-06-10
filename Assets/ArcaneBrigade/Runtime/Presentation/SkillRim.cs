@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A living outline round a sprite while a skill is on (owner 23/10/2026): the hero and its transformed weapon,
+    /// <summary>A living outline round a sprite while a skill is on (requirement 23/10/2026): the hero and its transformed weapon,
     /// the friends a skill empowers, the skill's gauge. Eight solid-colour copies of the sprite sit just behind it, offset by
     /// the rim's width, so only a thin edge shows; it breathes, a band of light runs up it, and it flickers faster as the
     /// skill runs out. Callers ask for it every frame they want it; a frame without a request hides it.</summary>

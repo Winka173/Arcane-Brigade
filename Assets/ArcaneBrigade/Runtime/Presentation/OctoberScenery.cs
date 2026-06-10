@@ -63,7 +63,7 @@ namespace ArcaneBrigade
             if (!owner.PresentationPaused) opening = Mathf.MoveTowards(opening, near || owner.HallExitPending ? 1 : 0, Time.deltaTime * 2.5f);
             int frame = PresentationSettings.ReducedMotion ? near ? 2 : 0 : opening < .25f ? 0 : opening < .7f ? 1 : 2 + (Mathf.Sin(owner.PresentationClock * 2) > .6f ? 1 : 0);
             view.sprite = art.Door[frame];
-            // the new painted exit (owner 23/10/2026): closed far away, open with its lamp lit as the hero comes near
+            // the new painted exit (requirement 23/10/2026): closed far away, open with its lamp lit as the hero comes near
             exitDoor ??= Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             bool painted = exitDoor != null && exitDoor.HallDoor != null && exitDoor.HallDoor.Length == 2 && exitDoor.HallDoor[0] != null && exitDoor.HallDoor[0].texture.name == "Shop_ExitDoor";
             if (painted) view.sprite = exitDoor.HallDoor[opening < .5f ? 0 : 1];

@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             if (cast.enabled)
             {
                 float scale = width / Mathf.Max(0.001f, silhouette.bounds.size.x);
-                // owner 24/10/2026: one light for the whole game - every cast shadow falls the same way, nearly straight down and a
+                // requirement 24/10/2026: one light for the whole game - every cast shadow falls the same way, nearly straight down and a
                 // little to the right, like the shop's wares (The Last Customer's fell sideways toward a lamp)
                 Vector2 target = new Vector2(.3f, -1f).normalized;
                 castDirection = !castDirectionSet || PresentationSettings.ReducedMotion ? target : Vector2.Lerp(castDirection, target, 1 - Mathf.Exp(-Time.unscaledDeltaTime * 1.5f)).normalized;

@@ -361,7 +361,7 @@ namespace ArcaneBrigade
             State.VisitorEffects.RemoveAll(e => e.Id == "Promise" && e.Wave == State.Wave);
             if (State.TwinShop != State.Wave) return;
             State.TwinShop = -1;
-            // a dream-shop friend is only ever upgraded in the dream shop (owner, 22/10/2026): its twin waits there, at its own currency
+            // a dream-shop friend is only ever upgraded in the dream shop (requirement 22/10/2026): its twin waits there, at its own currency
             bool special = State.SpecialOffers.Contains(offer) || catalog.Unit(offer.Id).SpecialRecruit;
             (special ? State.SpecialOffers : State.Offers).Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Companion, Id = offer.Id, Tier = offer.Tier, Price = Mathf.Max(1, offer.Price / 2), BasePrice = Mathf.Max(1, offer.Price / 2), Currency = special ? offer.Currency : ShopCurrency.Gold });
             Notice = "The twin is offered at half price.";

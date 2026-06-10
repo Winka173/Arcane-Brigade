@@ -95,7 +95,7 @@ namespace ArcaneBrigade
         public static float TrackLevel(int track) => track == 1 ? 0.26f : track == 2 ? 0.08f : track == 3 ? 0.13f : 0.18f;
 
         /// <summary>Relative music level per scene (tuning table; ears decide, see Docs/Audio/Audio_QA_Checklist.md).</summary>
-        /// <summary>Owner 23/10/2026: the music a third louder everywhere.</summary>
+        /// <summary>Requirement 23/10/2026: the music a third louder everywhere.</summary>
         public const float MusicBoost = 1.35f;
         public static float SceneLevel(string scene)
         {

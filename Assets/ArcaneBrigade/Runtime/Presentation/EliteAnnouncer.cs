@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A map's named elite announces itself as it walks in (owner 24/10/2026): its name and one line in a boss bubble
+    /// <summary>A map's named elite announces itself as it walks in (requirement 24/10/2026): its name and one line in a boss bubble
     /// over its head, once per elite.</summary>
     public static class EliteAnnouncer
     {

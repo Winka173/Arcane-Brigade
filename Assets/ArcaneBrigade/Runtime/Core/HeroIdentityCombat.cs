@@ -98,7 +98,7 @@ namespace ArcaneBrigade
                 if (!HeroIdentityEnabled) return "";
                 if (HeroAwakening && Kit != null) return Kit.Transformation + " " + (awakenUntil - Elapsed).ToString("0.0") + "s";
                 if (HeroAwakenCooling) return "RESTING";
-                // player words (owner 22/10/2026): the gauge's own word, its steps, then the charge toward the next step
+                // player words (requirement 22/10/2026): the gauge's own word, its steps, then the charge toward the next step
                 if (Kit != null) return HeroIdentities.For(IdentityId).Resource.ToUpperInvariant() + " " + HeroAwakenTier + "/3 · " + Mathf.FloorToInt(identityCharge) + "/" + HeroIdentityRequired.ToString("0");
                 if (IdentityId == "GlassDice") return "NEXT FACE " + identityFace + " / " + Mathf.FloorToInt(identityCharge) + "/6 GOLD";
                 if (IdentityId == "MirrorKeeper") return identityReflections.Count + "/3 REFLECTIONS";
@@ -168,7 +168,7 @@ namespace ArcaneBrigade
             identityStrikes.Add(new IdentityStrike { Shape = shape, Position = at, End = end, Radius = radius, Width = .25f, At = Elapsed + delay,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
                 Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Spread = Mathf.Max(0, spread), Cause = IdentityCause() });
-            var glyph = IdentityGlyph(shape, at, end, radius, .5f, delay, HeroGlyphRole.Strike); glyph.Width = .25f; // .35 -> .5s (owner 23/10/2026)
+            var glyph = IdentityGlyph(shape, at, end, radius, .5f, delay, HeroGlyphRole.Strike); glyph.Width = .25f; // .35 -> .5s (requirement 23/10/2026)
             identityStrikes[identityStrikes.Count - 1].Glyph = glyph;
             return glyph;
         }

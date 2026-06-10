@@ -1,4 +1,4 @@
-// Metal catching the light (owner 24/10/2026): a bright band sweeping across a sprite (brass, gold, ivory), and with
+// Metal catching the light (requirement 24/10/2026): a bright band sweeping across a sprite (brass, gold, ivory), and with
 // _Veins a web of thin metal seams through it (China Marionette's kintsugi, the sap in a sprout's leaves). Added light.
 Shader "ArcaneBrigade/HeroMetal"
 {

@@ -30,7 +30,7 @@ namespace ArcaneBrigade
             foreach (UnitState other in units) if (other.Alive && other.Variant != null && other.Variant.Affix != EnemyAffix.None) affixed++;
             uint seed = unchecked((uint)runSeed ^ (uint)enemy.Id * 2654435761u ^ (uint)catalog.RunWave * 2246822519u);
             seed ^= seed >> 16;
-            // owner 24/10/2026: the harder the difficulty, the sooner and more often any enemy comes as an elite
+            // requirement 24/10/2026: the harder the difficulty, the sooner and more often any enemy comes as an elite
             int chance = Mathf.Min(EliteCap[EliteLevel], 8 + Mathf.Max(0, catalog.RunWave - 5) + EliteBonus[EliteLevel]);
             if (catalog.MetaPactElites) chance = Mathf.Max(chance, 20); // Night Pact: elites every wave
             if (affixed >= 4 + EliteLevel / 2 || seed % 100 >= chance) return;

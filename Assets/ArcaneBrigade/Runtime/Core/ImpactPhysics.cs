@@ -16,7 +16,7 @@ namespace ArcaneBrigade
         public float Progress(float now) => Mathf.Clamp01((now - Started) / Mathf.Max(.05f, Until - Started));
     }
 
-    /// <summary>How hard our blows land (owner, 19/10/2026: B1-B5, V2, V6, V9, R9-R11, R13-R15). Each weapon has a weight
+    /// <summary>How hard our blows land (requirement 19/10/2026: B1-B5, V2, V6, V9, R9-R11, R13-R15). Each weapon has a weight
     /// (light pokes nudge, heavy swings and heavy shots shove); heavy blows stagger; a shove into the arena's edge splats (a
     /// pointed shot pins the enemy there for a moment); a heavy or crushing killing blow flings the body; blasts throw
     /// enemies away from their centre; pulls knock pulled enemies into each other. Ranged weapons have a sweet range.</summary>
@@ -58,7 +58,7 @@ namespace ArcaneBrigade
             return false;
         }
         public static float PushScale(float weight) => Mathf.Lerp(.7f, 1.6f, Mathf.Clamp01(weight));
-        /// <summary>A body flies only when the killing blow dwarfs it (owner, 19/10/2026): a heavy blow dealing over twice the
+        /// <summary>A body flies only when the killing blow dwarfs it (requirement 19/10/2026): a heavy blow dealing over twice the
         /// enemy's health, anything else over three times; bows and darts never fling. overkillShare = (damage − health left) / max health.</summary>
         public static bool Launches(float weight, float overkillShare, bool critical) => weight >= .3f && overkillShare >= (weight >= .75f ? 1f : 2f);
 
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
         {
             float weight = Mathf.Max(ImpactRules.Weight(weapon), impactWeightFloor);
             target.HitWeight = weight;
-            // (N2 knock-up removed, owner 24/10/2026: blows no longer throw enemies up into the air)
+            // (N2 knock-up removed, requirement 24/10/2026: blows no longer throw enemies up into the air)
             // a melee blow always shoves away from the one who struck it (some swings report their aim, not the blow's way)
             UnitState striker = weapon.Kind == WeaponKind.Melee ? UnitWithId(cause.SourceUnitId) : null;
             if (striker != null && striker != target)
@@ -108,7 +108,7 @@ namespace ArcaneBrigade
                 if (away.sqrMagnitude > .0001f && Vector2.Dot(away, direction) < 0) direction = away.normalized;
             }
             if (weight >= .8f && !target.Definition.IsBoss) target.StaggerUntil = Mathf.Max(target.StaggerUntil, Elapsed + ImpactRules.StaggerSeconds);
-            float push = OctoberBalance.Push(target.Definition, impactWeightFloor > 0 ? Mathf.Max(weapon.PushDistance, .45f) : weapon.PushDistance) * ImpactRules.PushScale(weight) * .7f; // owner 24/10/2026: enemies are shoved 30% less
+            float push = OctoberBalance.Push(target.Definition, impactWeightFloor > 0 ? Mathf.Max(weapon.PushDistance, .45f) : weapon.PushDistance) * ImpactRules.PushScale(weight) * .7f; // requirement 24/10/2026: enemies are shoved 30% less
             if (push <= 0) return;
             Vector2 wish = target.Position + direction.normalized * push, kept = ClampPosition(wish, target.Definition.Radius);
             target.Position = kept; spatial.Move(target);
@@ -136,7 +136,7 @@ namespace ArcaneBrigade
         }
         private void Fling(UnitState target, Vector2 direction, float weight, Faction source, float damage, CombatCause cause, FlungBody parent, bool low, bool pointed)
         {
-            // shorter flights than at first (owner, 19/10/2026): about a third of the old distance
+            // shorter flights than at first (requirement 19/10/2026): about a third of the old distance
             float speed = (3.2f + 2.6f * weight) * (1 - Mathf.Clamp01(target.Definition.KnockbackResistance) * .5f) * (parent != null ? .75f : 1);
             var body = new FlungBody
             {

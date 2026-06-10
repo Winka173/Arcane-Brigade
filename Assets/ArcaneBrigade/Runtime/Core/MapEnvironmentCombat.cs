@@ -22,7 +22,7 @@ namespace ArcaneBrigade
         public readonly Vector2[] Doors = new Vector2[4];
         public int CalledDoor = -1, LastDoor = -1, PackLeft;
         public float CallAt = -100, NextCall, NextPackMember;
-        /// <summary>0..1: the hero standing at the called door shuts it (owner 23/10/2026); ShutAt marks the last one shut.</summary>
+        /// <summary>0..1: the hero standing at the called door shuts it (requirement 23/10/2026); ShutAt marks the last one shut.</summary>
         public float DoorShut, ShutAt = -100; public int ShutDoor = -1;
         public float OpenAt => CallAt + MapEnvironmentRules.DoorCall;
         public float CloseAt => OpenAt + MapEnvironmentRules.DoorOpen;
@@ -56,7 +56,7 @@ namespace ArcaneBrigade
         public Vector2 Clock; public float NextChime, ChimeAt = -100, SlowUntil = -100, RushUntil = -100; public int Strikes; public bool Twelfth;
         public sealed class Shelf { public Vector2 Home, Position, From, To; public float WarnAt = -100, MoveAt = -100, MoveEnd = -100; public int Moves; }
         public readonly List<Shelf> Shelves = new List<Shelf>();
-        /// <summary>The map's fixed shape (owner 23/10/2026): rows of fixed chairs (Waiting Room) or shelves (Archive Vault)
+        /// <summary>The map's fixed shape (requirement 23/10/2026): rows of fixed chairs (Waiting Room) or shelves (Archive Vault)
         /// that make aisles and corridors; solid like the moving ones. WallProps are where each piece is drawn.</summary>
         public sealed class Wall { public Vector2 A, B; public float Radius; }
         public readonly List<Wall> Walls = new List<Wall>();
@@ -78,7 +78,7 @@ namespace ArcaneBrigade
     {
         public const float DoorEvery = 15, DoorCall = 2.4f, DoorOpen = 2.2f, ChairEvery = 8, ChairWarn = .9f, ChairSlide = .7f, ChairStay = 4, ChairReturn = 1, ChairRadius = .55f;
         public const float ChuteEvery = 13, ChuteWarn = 1.2f, LetterSpeed = 3.1f, BoostSeconds = 8, GoldBoostSeconds = 11, StampSeconds = 6, StampDamage = 1.2f;
-        // the Post Office is the open floor with the strong draught (owner 23/10/2026): wider, stronger gusts (were 1.3 / 1.4 / 1.1)
+        // the Post Office is the open floor with the strong draught (requirement 23/10/2026): wider, stronger gusts (were 1.3 / 1.4 / 1.1)
         public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, GustHalf = 1.7f, GustShotPush = 1.8f, GustBodyPush = 1.4f, LightBody = .38f;
         public const float ParcelShare = .3f, ParcelWarn = 1.3f, ParcelHatch = 11, ParcelBreakSeconds = 1.8f, ParcelReach = 1.5f;
         public const float LightRadiusX = 2.8f, LightRadiusY = 1.8f, LightDamage = 1.15f, DarkSpeed = 1.03f, SnuffEvery = 15, SnuffReach = 1.4f, SnuffSeconds = 9, MothSpeed = 2.3f, RevealSpeed = 1.05f;
@@ -86,7 +86,7 @@ namespace ArcaneBrigade
         public const float ShelfEvery = 16, ShelfWarn = 1.2f, ShelfMove = 1.6f, ShelfHalf = .7f, ShelfRadius = .4f, LedgerRadius = 2.4f;
         public const int LedgerKillsPerDebt = 5, LedgerMaxDebt = 8;
         public const float BoostSpeed = 1.15f, BoostDamage = 1.15f;
-        // owner 23/10/2026 map rules: shut a door by standing at it; a broken parcel bursts; friends quicker in the lamp light,
+        // requirement 23/10/2026 map rules: shut a door by standing at it; a broken parcel bursts; friends quicker in the lamp light,
         // enemies tougher in the dark, a snuffed lamp relit by walking to it; the chime slows longer with the hero at the clock
         public const float DoorReach = 1.8f, DoorShutSeconds = 1.5f, ParcelBurstRadius = 2.8f, ParcelBurstHits = 4f;
         public const float LightHaste = 1.1f, DarkGuard = .85f, RelightReach = 1.3f, ClockReach = 3f, ClockSlowLonger = 2.5f;
@@ -146,7 +146,7 @@ namespace ArcaneBrigade
             if (mapEnv == null) InitMapEnvironment();
             switch (mapEnv.Theme)
             {
-                // owner 23/10/2026: nothing on a map blocks or pushes anyone - the sliding chairs, the gusts, the moving shelves
+                // requirement 23/10/2026: nothing on a map blocks or pushes anyone - the sliding chairs, the gusts, the moving shelves
                 // and the solid rows are gone; chairs and shelves stay where they stand as scenery
                 case MapTheme.WaitingRoom: StepNumberBoard(deltaTime); break;
                 case MapTheme.PostOffice: StepChute(deltaTime); StepParcel(deltaTime); break;
