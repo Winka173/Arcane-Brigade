@@ -51,6 +51,7 @@ namespace ArcaneBrigade
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
         private ExplosionFeedback explosions;
+        private ElementInk elementInk; // each hero's blows land with its own look (fire, ice, water, storm, void...)
         private PacingFeedback pacing;
         private ArenaToyVisual arenaToyVisual;
         private ExpandedVisual expandedVisual;
@@ -154,6 +155,7 @@ namespace ArcaneBrigade
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arsenalVisual = gameObject.AddComponent<ArsenalVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
+            if (runCatalog != null) { elementInk = new GameObject("Element looks").AddComponent<ElementInk>(); elementInk.Configure(this); }
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
             if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
             if (runCatalog != null) { SecretRoom = gameObject.AddComponent<SecretEventRoom>(); SecretRoom.Configure(this); }
@@ -374,6 +376,7 @@ namespace ArcaneBrigade
                 {
                     if (paintedEffects == null || !paintedEffects.Play(value)) arcadeEffects.Play(value);
                     if (arsenalVisual != null) arsenalVisual.Play(value, Time.time);
+                    if (elementInk != null) elementInk.Observe(value);
                 }
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);

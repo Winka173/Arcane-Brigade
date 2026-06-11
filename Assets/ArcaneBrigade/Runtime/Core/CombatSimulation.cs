@@ -1049,6 +1049,9 @@ namespace ArcaneBrigade
             if (target.EntranceUntil > Elapsed && !injectedDamage) return;
             if (!healthCost) damage = ExpandedDamage(target, damage, source, direction, weapon);
             if (cause.RootId == 0) cause = NewCause(0);
+            // while transformed, every blow of the hero's (its attacks and its skill) by its measured tuning for the enemies alive
+            // (AwakenTuning, requirement 24/10/2026: a transformation must hit harder than the hero's ordinary attacks)
+            if (target.Faction == Faction.Enemy && source != Faction.Enemy && Champion != null && cause.SourceUnitId == Champion.Id && HeroAwakening) damage *= AwakenTuning.Hero(IdentityId, liveEnemyCount);
             damage = IdentityDamage(target, damage, source, cause);
             damage = CompanionSkillDamage(target, damage, source, cause);
             damage = RelicItemDamage(target, damage, source, cause);

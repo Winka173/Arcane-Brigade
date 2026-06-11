@@ -84,6 +84,7 @@ namespace ArcaneBrigade
                 if (Array.IndexOf(args, "-mechanic-tokens") >= 0 && index == 1 || filter != null && Array.IndexOf(args, "-mechanic-tokens") >= 0 && notes.Count == 0) yield return TokenSheet();
                 var sim = owner.Simulation;
                 if (Array.IndexOf(args, "-mechanic-live") >= 0) { yield return LiveSurvey(sim, index.ToString("00") + "-" + hero.Id + "-a" + approach); continue; }
+                if (Array.IndexOf(args, "-mechanic-dps") >= 0) { yield return DpsBench(sim, catalog, hero.Id, int.TryParse(Arg(args, "-mechanic-dps-count"), out int n) ? n : 1); continue; }
                 sim.PrepareMechanicCapture(catalog, crowd ? 12 : 0);
                 Time.timeScale = .35f;
                 int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
@@ -180,6 +181,33 @@ namespace ArcaneBrigade
             lines.Add("HERO weapon " + sim.Champion.Definition.Weapon?.Id + " arsenal " + sim.Champion.Definition.Weapon?.Arsenal + " borrowed " + sim.Champion.Borrowed?.Id);
             File.WriteAllLines(Path.Combine(root, stem + "-live.txt"), lines);
         }
+        /// <summary>-mechanic-dps [-mechanic-dps-count N]: the hero's own damage a second against N still targets in its reach,
+        /// six seconds of ordinary attacks (the gauge held empty), then six seconds transformed. One line a hero in dps.txt.</summary>
+        private IEnumerator DpsBench(CombatSimulation sim, RunCatalog catalog, string id, int count)
+        {
+            sim.PrepareDpsBench(catalog, count);
+            Time.timeScale = 1;
+            float heroNormal = 0, heroAwake = 0, teamNormal = 0, teamAwake = 0, lastStep = -1;
+            float start = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup - start < 6) { sim.HoldGaugeForCapture(); Tally(ref heroNormal, ref teamNormal); yield return null; }
+            start = Time.realtimeSinceStartup;
+            while (!sim.HeroAwakening && Time.realtimeSinceStartup - start < 5) { sim.FillGaugeForCapture(); sim.KeepBenchAlive(); yield return null; }
+            bool transformed = sim.HeroAwakening;
+            start = Time.realtimeSinceStartup;
+            bool shot = false; while (Time.realtimeSinceStartup - start < 6) { Tally(ref heroAwake, ref teamAwake); if (!shot && Time.realtimeSinceStartup - start > 2.5f) { shot = true; yield return Shot(id + "-bench-" + count); } yield return null; }
+            File.AppendAllText(Path.Combine(root, "dps.txt"), $"{id}	{count}	hero {heroNormal / 6:0} -> {heroAwake / 6:0}	team {teamNormal / 6:0} -> {teamAwake / 6:0}	teamRatio {(teamNormal > 0 ? teamAwake / teamNormal : 0):0.00}{(transformed ? "" : "	NO-TRANSFORM")}" + Environment.NewLine);
+            void Tally(ref float hero, ref float team)
+            {
+                sim.KeepBenchAlive();
+                if (sim.Elapsed == lastStep) return; lastStep = sim.Elapsed;
+                foreach (CombatEvent e in sim.Events)
+                {
+                    if (e.Kind != CombatEventKind.Hit || e.Faction != Faction.Enemy) continue;
+                    team += e.Value;
+                    if (e.Cause.SourceUnitId == sim.Champion.Id) hero += e.Value;
+                }
+            }
+        }
         /// <summary>Every hero's painted tokens laid out on a dark card for review.</summary>
         private IEnumerator TokenSheet()
         {
@@ -250,6 +278,39 @@ namespace ArcaneBrigade
                 case "HourglassStag": identityBank = IdentityPower * 1.6f; identityBankAt = 0; break;
                 case "GlassDice": identityFace = 1 + (IdentityApproach * 2 + 2) % 6; break;
             }
+        }
+        /// <summary>Capture-only damage bench: the wave's own enemies gone, N still targets of huge health inside the hero's weapon
+        /// reach (one, or a cluster), the hero untouchable.</summary>
+        public void PrepareDpsBench(RunCatalog c, int count)
+        {
+            if (!HeroMechanicCapture.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
+            catalog.EnemyBudget = 0; catalog.Armor = 100; Champion.Health = Champion.Definition.Health;
+            benchTargets.Clear();
+            foreach (UnitState u in units) if (u.Faction == Faction.Enemy) { u.Health = 0; u.Alive = false; }
+            var dummy = UnityEngine.Object.Instantiate(c.Enemies[0]); dummy.Speed = 0; dummy.Health = 1000000; dummy.ContactDamage = 0; dummy.Behavior = EnemyBehavior.Standard;
+            float reach = Mathf.Clamp(Champion.Definition.Weapon.Range * .7f, .9f, 2.4f);
+            Vector2 centre = Champion.Position + Vector2.right * reach;
+            for (int i = 0; i < count; i++)
+            {
+                Vector2 o = i == 0 ? Vector2.zero : new Vector2(Mathf.Cos(i * 2.4f), Mathf.Sin(i * 2.4f)) * (.45f + .2f * (i % 3));
+                var u = Spawn(dummy, Faction.Enemy, ClampPosition(centre + o, .3f)); u.NextAttack = u.NextContact = float.PositiveInfinity;
+                u.EntranceUntil = 0; benchTargets[u.Id] = u.Position;
+            }
+        }
+        public void HoldGaugeForCapture() { if (HeroMechanicCapture.Requested && !HeroAwakening) { awakenMeter = 0; identityCharge = 0; } }
+        private readonly Dictionary<int, Vector2> benchTargets = new Dictionary<int, Vector2>();
+        /// <summary>Bench upkeep: the hero full, the targets full, every enemy that is not a bench target gone (the map, visitors
+        /// and waiting enemies keep spawning).</summary>
+        public void KeepBenchAlive()
+        {
+            if (!HeroMechanicCapture.Requested) return;
+            Champion.Health = Champion.Definition.Health;
+            foreach (UnitState u in units)
+                if (u.Faction == Faction.Enemy && u.Alive)
+                {
+                    if (!benchTargets.TryGetValue(u.Id, out Vector2 home)) { u.Health = 0; u.Alive = false; }
+                    else { u.Health = u.Definition.Health; u.Position = home; spatial.Move(u); } // blows knock targets away: pin them
+                }
         }
         /// <summary>Capture-only: keeps the hero's trigger topped up until the real mechanic casts.</summary>
         public void FillGaugeForCapture()

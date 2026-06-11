@@ -89,6 +89,7 @@ namespace ArcaneBrigade
             if (!catalog.EnableHeroMechanics || source.Faction == Faction.Enemy) return damage;
             if (source.CriticalEncore) damage *= 1.8f;
             if (HeroHeldBack(source)) damage *= HeldBackDamage;
+            if (source.Faction == Faction.Companion && HeroAwakening) damage *= AwakenTuning.Team(IdentityId, liveEnemyCount); // a transformation that works through friends
             if (source.Faction == Faction.Champion && System.Array.IndexOf(AttackSpecialists, source.Definition.Id) >= 0) damage *= SpecialistDamage;
             if (OctoberTrait(source, "\"Triumphant Return\" Daniel") && Elapsed >= 30) damage *= 3;
             if (source.Faction == Faction.Champion && ReferenceHero == "Frosty") damage *= 1 + Mathf.Min(1.2f, CompanionCount * .12f);

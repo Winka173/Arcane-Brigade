@@ -42,73 +42,25 @@ namespace ArcaneBrigade
     }
     public sealed class OctoberDoor : MonoBehaviour
     {
-        /// <summary>The next night's gate: an upright circle of runes hovering where the door stood. Two broken rings turn
-        /// against each other with rune ticks and glyphs between them; as the hero comes near it turns faster, brightens and a
-        /// swirl of light opens at its heart. Friendly colours (amber, cream, teal); never a flat ring or a filled disc.</summary>
-        private void MagicCircle(Vector3 foot, int order, float alpha, bool near)
-        {
-            if (circleHolder == null)
-            {
-                circleHolder = new GameObject("Next-night magic circle");
-                circleInk = new InkCanvas(circleHolder.transform, "Gate ink", order);
-                circleLight = new InkCanvas(circleHolder.transform, "Gate light", order + 2, true);
-            }
-            circleInk.SetOrder(order); circleLight.SetOrder(order + 2);
-            circleInk.Clear(); circleLight.Clear();
-            bool reduced = PresentationSettings.ReducedMotion;
-            float t = owner.PresentationClock, open = Mathf.SmoothStep(0, 1, opening), r = .7f;
-            Vector2 c = (Vector2)foot + Vector2.up * .9f; // between the middle stall's price tag and the NEXT WAVE label
-            float spin = reduced ? 0 : t * (18 + 50 * open), a = alpha;
-            InkPalette gold = ArsenalInk.Gold, teal = ArsenalInk.Water;
-            // the outer ring: six rune-bars with gaps, turning one way
-            for (int i = 0; i < 6; i++)
-            {
-                float from = spin + i * 60 + 6, to = from + 46;
-                circleInk.Stroke(InkCanvas.Arc(c, r, r, from, to, 14), InkStroke.Of(gold, .13f, a, i));
-            }
-            // rune ticks just inside it, and eight little glyphs on the inner ring
-            circleLight.Ticks(c, r - .13f, 24, .09f, .035f, -spin * .5f, new Color(1f, .93f, .72f, (.55f + .35f * open) * a)); // rune ticks in light: ink vanished on the dark floor
-            for (int i = 0; i < 4; i++)
-            {
-                float from = -spin * 1.4f + i * 90 + 12, to = from + 66;
-                circleInk.Stroke(InkCanvas.Arc(c, r * .68f, r * .68f, from, to, 12), InkStroke.Of(teal, .09f, a, 10 + i));
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                float ang = (-spin * 1.4f + i * 45 + 33) * Mathf.Deg2Rad;
-                Vector2 p = c + new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)) * r * .84f, tangent = new Vector2(-Mathf.Sin(ang), Mathf.Cos(ang));
-                circleInk.Stroke(InkCanvas.Line(p - tangent * .08f, p + tangent * .08f, .03f, 3, true, i), InkStroke.Of(ArsenalInk.Water, .055f, a, 20 + i));
-            }
-            // the heart: three arms of light turning in as it opens (light only, no filled disc)
-            open = Mathf.Max(open, .3f); // a faint turning heart even from afar
-            for (int k = 0; k < 3; k++)
-                {
-                    var path = new System.Collections.Generic.List<Vector2>();
-                    for (int s = 0; s <= 16; s++)
-                    {
-                        float f = s / 16f, ang = (spin * 2.2f + k * 120 + f * 220) * Mathf.Deg2Rad;
-                        path.Add(c + new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)) * r * .62f * (1 - f));
-                    }
-                    circleLight.GlowRibbon(path, 1, 0, .09f + .06f * open, new Color(1f, .86f, .55f, .75f * open * alpha));
-                }
-            // a soft breathing glow along the outer ring's bars (stronger when near)
-            float breath = reduced ? .5f : .5f + .5f * Mathf.Sin(t * 2.4f);
-            for (int i = 0; i < 6; i++)
-            {
-                float from = spin + i * 60 + 10, to = from + 38;
-                circleLight.GlowRibbon(InkCanvas.Arc(c, r, r, from, to, 10), .8f, .8f, .16f, new Color(1f, .8f, .45f, (.3f + .4f * open) * (.7f + .3f * breath) * alpha));
-            }
-            circleInk.Commit(); circleLight.Commit();
-        }
-
         private ArenaController owner; private SpriteRenderer view; private float opening;
         private static PaintedAnimationLibrary exitDoor;
         private GroundShadow grounded;
         private MarketLifecycle lifecycle;
         private DreamSuspension suspension;
-        // the way on is a standing magic circle drawn in ink (requirement 24/10/2026: not a door), the old door art hidden
-        private GameObject circleHolder; private InkCanvas circleInk, circleLight;
-        private void OnDestroy() { if (circleHolder != null) Destroy(circleHolder); }
+        /// <summary>The way on is a painted portal standing on the floor, one for each map, looping its idle frames far away and its
+        /// open frames as the hero comes near (requirement 24/10/2026; art: Docs/Playtest_Art_Prompts/25_Shop_Portals.txt).
+        /// Resources/Shop/Portals/{Map}: 16 frames, 0-7 idle, 8-15 open. Until a map's portal is painted, the arched door stands in.</summary>
+        private static readonly System.Collections.Generic.Dictionary<MapTheme, Sprite[]> portals = new System.Collections.Generic.Dictionary<MapTheme, Sprite[]>();
+        public const int PortalFrames = 8;
+        public const float PortalFps = 10, PortalHeight = 2f;
+        private static Sprite[] Portal(MapTheme theme)
+        {
+            if (portals.TryGetValue(theme, out Sprite[] frames)) return frames;
+            Sprite[] all = Resources.LoadAll<Sprite>("Shop/Portals/" + theme);
+            System.Array.Sort(all, (x, y) => Number(x.name).CompareTo(Number(y.name)));
+            return portals[theme] = all.Length >= PortalFrames * 2 ? all : null;
+            static int Number(string name) { int i = name.Length; while (i > 0 && char.IsDigit(name[i - 1])) i--; return int.TryParse(name.Substring(i), out int n) ? n : 0; }
+        }
         public void Configure(ArenaController controller, SpriteRenderer renderer)
         {
             owner = controller; view = renderer;
@@ -123,6 +75,23 @@ namespace ArcaneBrigade
             var art = OctoberArtwork.Current; if (owner == null || art == null || view == null) return;
             bool near = Vector2.Distance(owner.Simulation.Champion.Position, transform.parent.position) < 2;
             if (!owner.PresentationPaused) opening = Mathf.MoveTowards(opening, near || owner.HallExitPending ? 1 : 0, Time.deltaTime * 2.5f);
+            if (lifecycle == null) lifecycle = GetComponentInParent<MarketLifecycle>();
+            // the next night's map decides the portal (it shows where the way leads)
+            Sprite[] portal = Portal(MapIdentity.For(owner.Session.State.Wave + 1));
+            if (portal != null)
+            {
+                int loop = PresentationSettings.ReducedMotion ? 0 : (int)(owner.PresentationClock * PortalFps) % PortalFrames;
+                view.sprite = portal[(opening >= .5f ? PortalFrames : 0) + loop];
+                transform.localScale = Vector3.one * (PortalHeight / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).height));
+                transform.rotation = Quaternion.identity;
+                Vector3 seat = transform.parent.position + (lifecycle == null ? Vector3.zero : transform.parent.TransformVector(lifecycle.FixtureOffset));
+                WorldSpriteGrounding.Place(view, seat); // it stands on the floor (no hovering)
+                view.sortingOrder = WorldSpriteGrounding.SortAt(transform.parent.position.y);
+                float shown = lifecycle == null ? 1 : lifecycle.FixtureVisibility;
+                view.color = new Color(1, 1, 1, shown);
+                grounded.Display(view.sprite, transform.parent.position, 1.5f, 0, .32f * shown);
+                return;
+            }
             int frame = PresentationSettings.ReducedMotion ? near ? 2 : 0 : opening < .25f ? 0 : opening < .7f ? 1 : 2 + (Mathf.Sin(owner.PresentationClock * 2) > .6f ? 1 : 0);
             view.sprite = art.Door[frame];
             // the new painted exit (requirement 23/10/2026): closed far away, open with its lamp lit as the hero comes near
@@ -134,15 +103,14 @@ namespace ArcaneBrigade
             transform.localScale = Vector3.one * scale;
             transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 41, PresentationSettings.ReducedMotion, .45f));
             // Keep the visible foot suspended relative to the fixed threshold after frame changes.
-            if (lifecycle == null) lifecycle = GetComponentInParent<MarketLifecycle>();
             Vector3 offset = lifecycle == null ? Vector3.zero : transform.parent.TransformVector(lifecycle.FixtureOffset);
             Vector3 hovering = DreamLevitation.Offset(owner.PresentationClock, 41, NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, .75f);
             WorldSpriteGrounding.Place(view, transform.parent.position + offset + hovering);
             view.sortingOrder = WorldSpriteGrounding.SortAt(transform.parent.position.y);
             float alpha = lifecycle == null ? 1 : lifecycle.FixtureVisibility;
-            view.color = new Color(1, 1, 1, 0); // the door's art stays only as the gate's place
-            grounded.Display(view.sprite, transform.parent.position, 1.35f, Mathf.Abs(offset.y) + hovering.y, 0);
-            MagicCircle(transform.parent.position + offset + hovering, view.sortingOrder, alpha, near || owner.HallExitPending);
+            view.color = new Color(1, 1, 1, alpha);
+            grounded.Display(view.sprite, transform.parent.position, 1.35f, Mathf.Abs(offset.y) + hovering.y, .32f * alpha);
+            suspension.Display(transform.parent.position, transform.parent.position + hovering, 1.35f, owner.PresentationClock, 41, view.sortingOrder - 1, alpha, true);
         }
     }
 }
