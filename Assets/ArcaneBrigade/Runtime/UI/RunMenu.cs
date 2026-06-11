@@ -154,6 +154,7 @@ namespace ArcaneBrigade
             if (diagnosticState) return;
             storage = new RunStorage(RunPaths.Root);
             profile = storage.LoadProfile();
+            difficulty = Mathf.Clamp(profile.LastDifficulty, 0, RunMeta.UnlockedDifficulty(profile)); // the difficulty chosen last time
             ArcadeSkin.Bundle = profile.Cosmetic;
             error = storage.LastError;
             ReloadSaveSummary();
@@ -244,6 +245,7 @@ namespace ArcaneBrigade
             RunLaunch.Resume = resume;
             RunLaunch.ChampionId = catalog.Champions[selection].Id;
             RunLaunch.Difficulty = challenge > 0 ? 0 : difficulty;
+            if (!resume && dailyDay == null && profile.LastDifficulty != difficulty) { profile.LastDifficulty = difficulty; SaveProfile(); } // kept for the next new run
             RunLaunch.ChallengeIndex = challenge;
             RunLaunch.StartFriend = nurseryPick; RunLaunch.AltStarter = altCoat; RunLaunch.SecondHabit = habit;
             RunLaunch.Keepsake = keepsakePick; RunLaunch.Daily = dailyDay;
@@ -503,9 +505,9 @@ namespace ArcaneBrigade
                 Rect spot = index < 2 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 2) % 2 * 240, 380 + (index - 2) / 2 * 72, 230, 60);
                 if (index >= 2) caption = "      " + caption; // room for its icon
                 if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume ? primary : smallButton)) ActivateSpot(index);
-                if (index >= 2 && icons[index] != null) RunHud.Sprite(new Rect(spot.x + 16, spot.y + 9, 42, 42), icons[index]);
+                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
-                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(new Rect(spot.xMax - 26, spot.y - 12, 28, 28), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(new Vector2(spot.xMax - 12, spot.y + 2), 22, "!"); }
+                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(navigation.Moved(new Rect(spot.xMax - 26, spot.y - 12, 28, 28)), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(navigation.Moved(new Vector2(spot.xMax - 12, spot.y + 2)), 22, "!"); }
             }
             GUI.enabled = true;
             if (!CanResume) { spotHint.alignment = TextAnchor.UpperLeft; GUI.Label(new Rect(52, 352, 460, 26), "nothing to continue yet", spotHint); spotHint.alignment = TextAnchor.MiddleCenter; }

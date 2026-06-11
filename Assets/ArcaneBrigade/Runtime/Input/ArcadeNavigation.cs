@@ -45,6 +45,16 @@ namespace ArcaneBrigade
         public void Reset() { selected = 0; submit = false; controls.Clear(); keyboardFocus = false; }
         public void QueueSubmit() { submit = true; keyboardFocus = true; }
         public void Begin() { controls.Clear(); }
+        private Rect lastBase, lastDrawn;
+        /// <summary>Where a piece drawn over the last button belongs now (an icon, a badge): it moves and presses with the
+        /// button (requirement 24/10/2026: the plate rose on hover and left its icon behind).</summary>
+        public Rect Moved(Rect r)
+        {
+            if (lastBase.width <= 0 || lastBase.height <= 0) return r;
+            float sx = lastDrawn.width / lastBase.width, sy = lastDrawn.height / lastBase.height;
+            return new Rect(lastDrawn.x + (r.x - lastBase.x) * sx, lastDrawn.y + (r.y - lastBase.y) * sy, r.width * sx, r.height * sy);
+        }
+        public Vector2 Moved(Vector2 p) => Moved(new Rect(p.x, p.y, 0, 0)).position;
         public bool Button(Rect bounds, string caption, GUIStyle style)
         {
             int index = controls.Count;
@@ -63,6 +73,7 @@ namespace ArcaneBrigade
             Rect animatedBounds = new Rect(bounds.x + shift, bounds.y - shift * 0.5f, bounds.width, bounds.height);
             float compression = pressed.TryGetValue(identity, out float began) ? LivingUI.Press(Time.unscaledTime - began, PresentationSettings.ReducedMotion) * 0.025f : 0;
             animatedBounds = new Rect(animatedBounds.x + bounds.width * compression * 0.5f, animatedBounds.y + bounds.height * compression * 0.5f, bounds.width * (1 - compression), bounds.height * (1 - compression));
+            lastBase = bounds; lastDrawn = animatedBounds;
             bool clicked = GUI.Button(animatedBounds, caption, ArcadeSkin.Fit(style, animatedBounds, caption)); // the painted plate where it keeps its aspect, else the code-drawn one; the label fitted
             bool accepted = submit && keyboardFocus && index == selected && GUI.enabled && Event.current.type == EventType.Repaint;
             if (accepted) submit = false;

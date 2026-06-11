@@ -33,6 +33,8 @@ namespace ArcaneBrigade
         public bool VSync = true;
         /// <summary>Frames a second when vsync is off (PC: 60, 120 or 0 for no cap; phones: 60 or 30 to save battery).</summary>
         public int FrameCap;
+        /// <summary>The difficulty last chosen for a new run (hero select opens on it again).</summary>
+        public int LastDifficulty;
         /// <summary>Phones: 0 renders at the screen's full sharpness, 1 at 75% (lighter on the battery and the GPU).</summary>
         public int MobileSharpness;
         public bool ReducedFlashes;
