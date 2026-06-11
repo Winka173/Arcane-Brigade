@@ -228,6 +228,8 @@ namespace ArcaneBrigade
         public int RicochetsRemaining;
         public bool SplitOnImpact;
         public bool IsFragment;
+        /// <summary>An empowered shot bursts where it lands: half its damage to the enemies within this radius (0: none).</summary>
+        public float Blast;
         public float Radius = 0.055f;
         public int SplitCount;
         public int RandomBounces = 8;

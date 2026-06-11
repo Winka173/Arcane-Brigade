@@ -140,6 +140,7 @@ namespace ArcaneBrigade
         /// kind appears, to find what paints over the hero during a normal fight.</summary>
         private IEnumerator LiveSurvey(CombatSimulation sim, string stem)
         {
+            var tally = new Dictionary<string, int>(); // shots and hits per weapon (a hero that never attacks shows here)
             var lines = new List<string>(); var seen = new HashSet<string>(); float started = Time.realtimeSinceStartup, lastHealth = sim.Champion.Health, lastStep = -1;
             bool shots = Array.IndexOf(Environment.GetCommandLineArgs(), "-mechanic-live-shots") >= 0; float nextShot = 4; int shot = 0;
             while (sim.Phase == RunPhase.Combat && Time.realtimeSinceStartup - started < 30)
@@ -152,6 +153,8 @@ namespace ArcaneBrigade
                 if (sim.Elapsed != lastStep)
                 {
                     lastStep = sim.Elapsed;
+                    foreach (CombatEvent e in sim.Events)
+                        if (e.Kind == CombatEventKind.Fire || e.Kind == CombatEventKind.Hit) { string k = e.Kind + " " + (e.Weapon?.Id ?? "-") + " " + e.Faction; tally[k] = tally.TryGetValue(k, out int c) ? c + 1 : 1; }
                     foreach (CombatEvent e in sim.Events)
                         if (e.Kind != CombatEventKind.Hit && e.Kind != CombatEventKind.Fire && e.Kind != CombatEventKind.Kill && (e.Position - hero).sqrMagnitude < 2.25f)
                             lines.Add($"t={sim.Elapsed:0.00} EVENT {e.Kind} {e.Faction} value {e.Value:0.00} weapon {e.Weapon?.Id ?? "-"} cause {e.Cause.ItemId ?? "-"} subject {e.Subject?.Definition?.Id ?? "-"}");
@@ -173,6 +176,8 @@ namespace ArcaneBrigade
                 }
                 if (fresh != null) yield return Shot(stem + "-live-" + seen.Count.ToString("00"));
             }
+            foreach (var kv in tally) lines.Add("TALLY " + kv.Key + " x" + kv.Value);
+            lines.Add("HERO weapon " + sim.Champion.Definition.Weapon?.Id + " arsenal " + sim.Champion.Definition.Weapon?.Arsenal + " borrowed " + sim.Champion.Borrowed?.Id);
             File.WriteAllLines(Path.Combine(root, stem + "-live.txt"), lines);
         }
         /// <summary>Every hero's painted tokens laid out on a dark card for review.</summary>

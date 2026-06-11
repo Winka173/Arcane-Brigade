@@ -39,7 +39,7 @@ namespace ArcaneBrigade
         private Vector2? presentationMoveTarget;
         public void SetPresentationMoveTarget(Vector2? target)
         {
-            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.K7Capture) throw new InvalidOperationException("Movement fixture requires isolated capture mode");
+            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.K7Capture && !HowToRecorder.Requested) throw new InvalidOperationException("Movement fixture requires isolated capture mode");
             presentationMoveTarget = target;
         }
         private CheckpointAudio audioFeedback;

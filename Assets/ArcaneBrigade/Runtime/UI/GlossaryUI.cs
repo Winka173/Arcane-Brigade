@@ -267,6 +267,8 @@ namespace ArcaneBrigade
             if (Time.unscaledTime - openedAt > 30) { Close(); return; }
             float width = Mathf.Min(620, viewport.x - 60);
             Rect panel = new Rect(viewport.x - width - 35, 150, width, 285);
+            Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - openedAt, panel.center);
             ArcadeSkin.Ticket(panel, ArcadeSkin.Ink, ArcadeSkin.Teal);
             StatGlyph.Draw(new Rect(panel.x + 20, panel.y + 18, 36, 36), selected.Effect);
             GUIStyle heading = ArcadeTypography.Style(24, true); heading.normal.textColor = ArcadeSkin.Cream;
@@ -274,6 +276,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(panel.x + 68, panel.y + 20, width - 125, 40), selected.Name, heading);
             if (GUI.Button(new Rect(panel.xMax - 55, panel.y + 15, 40, 40), "×")) Close();
             if (selected != null) GUI.Label(new Rect(panel.x + 25, panel.y + 75, width - 50, 180), selected.Description, body);
+            GUI.matrix = keepMatrix; GUI.color = keepColour;
             if (Time.unscaledTime - openedAt > 30) Close();
         }
     }

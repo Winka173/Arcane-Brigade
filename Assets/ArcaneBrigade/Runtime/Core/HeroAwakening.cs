@@ -46,7 +46,8 @@ namespace ArcaneBrigade
         public int HeroAwakenTier => Mathf.Clamp(Mathf.FloorToInt(awakenMeter * 3 + .001f), 0, 3);
         public bool HeroAwakening => HeroAwakenEnabled && awakenUntil > Elapsed;
         // requirement 24/10/2026: transformations last a quarter longer
-        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) * 1.25f + (IdentityApproach == 2 ? 1.5f : 0) + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 3 : 0) + (NightAlone ? 3 : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
+        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) * 1.55f + // longer again (requirement 24/10/2026; was x1.25)
+             (IdentityApproach == 2 ? 1.5f : 0) + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 3 : 0) + (NightAlone ? 3 : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
         /// <summary>1 at the start of a transformation, 0 at its end.</summary>
         public float HeroAwakenRemaining => HeroAwakening ? Mathf.Clamp01((awakenUntil - Elapsed) / Mathf.Max(.1f, AwakenLength)) : 0;
         public float HeroAwakenStarted => awakenStarted;
@@ -284,7 +285,21 @@ namespace ArcaneBrigade
             if (aim == null) return;
             if (stamps) IdentityMarkTarget(aim);
             AimGun(aim);
-            IdentityShot(Champion.Position, aim.Position - Champion.Position, IdentityPower * budget * ApproachScale, element: IdentityApproach == 1 ? DamageElement.Ember : DamageElement.Physical, homingTarget: aim.Id);
+            IdentityShot(Champion.Position, aim.Position - Champion.Position, IdentityPower * budget * ApproachScale, element: IdentityApproach == 1 ? DamageElement.Ember : DamageElement.Physical, homingTarget: aim.Id, blast: .9f); // empowered: it bursts where it lands
+        }
+        /// <summary>An empowered shot bursts on impact (requirement 24/10/2026): half its damage to every other enemy in the blast
+        /// and the explosion's burst of ink and sound.</summary>
+        private void ProjectileBlast(ProjectileState shot, UnitState struck)
+        {
+            Vector2 at = struck.Position;
+            for (int i = 0; i < units.Count; i++)
+            {
+                UnitState u = units[i];
+                if (u == struck || !CanHit(shot.Faction, u) || (u.Position - at).sqrMagnitude > shot.Blast * shot.Blast) continue;
+                Vector2 away = (u.Position - at).sqrMagnitude > .0001f ? (u.Position - at).normalized : shot.Velocity.normalized;
+                ApplyDamage(u, shot.Damage * .5f, shot.Faction, shot.SourceName, away, cause: shot.Cause.Child("blast"));
+            }
+            events.Add(new CombatEvent(CombatEventKind.Detonation, at, shot.Faction, shot.Blast, shot.Velocity.normalized, cause: shot.Cause));
         }
         private void AimGun(UnitState aim)
         {

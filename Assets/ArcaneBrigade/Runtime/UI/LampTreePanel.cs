@@ -10,9 +10,10 @@ namespace ArcaneBrigade
     public sealed partial class MetaHub
     {
         private string treePick;
+        private float treePickAt;
         private bool respecArmed;
         /// <summary>Diagnostics: opens a lantern's card.</summary>
-        public void PickLantern(string id) => treePick = id;
+        public void PickLantern(string id) { treePick = id; treePickAt = Time.unscaledTime; }
         private static readonly Color TreeInk = new Color(.16f, .1f, .06f, .95f), TreeBark = new Color(.42f, .28f, .15f, 1), TreeLit = new Color(1f, .82f, .45f, 1);
 
         private static Rect TreeArea => new Rect(PanelRect.x + 16, PanelRect.y + 74, PanelRect.width - 32, PanelRect.height - 84);
@@ -90,7 +91,13 @@ namespace ArcaneBrigade
             }
 
             // the chosen lantern's card, beside it
-            if (pick != null) TreeCard(card, pick, profile, save);
+            if (pick != null)
+            {
+                Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+                LivingUI.Pop(Time.unscaledTime - treePickAt, card.center);
+                TreeCard(card, pick, profile, save);
+                GUI.matrix = keepMatrix; GUI.color = keepColour;
+            }
         }
 
         private static Rect CardRect(Vector2 at)
@@ -124,7 +131,7 @@ namespace ArcaneBrigade
             else if (n.Ranks > 1 && open)
                 for (int k = 0; k < n.Ranks; k++)
                     ArcadeSkin.Diamond(new Vector2(at.x + (k - (n.Ranks - 1) * .5f) * 9, r.yMax - 1), 8, k < rank ? ArcadeSkin.Gold : new Color(.22f, .15f, .1f));
-            if (tapped) { treePick = treePick == n.Id ? null : n.Id; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.select"); }
+            if (tapped) { treePick = treePick == n.Id ? null : n.Id; treePickAt = Time.unscaledTime; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.select"); }
         }
 
         private void TreeCard(Rect c, LampNode n, PlayerProfile profile, Func<bool> save)

@@ -17,15 +17,22 @@ namespace ArcaneBrigade
         public int OctoberInjuries => octoberInjuries;
         public int OctoberDodges => octoberDodges;
         private string ReferenceHero => Champion?.Definition.ReferenceHero ?? "";
-        /// <summary>Closer to the original Dream Seekers (requirement 23/10/2026): Card King, Sassy Senior and Clementie never make a
-        /// basic attack (their friends, their bursts and their body do the work); Anby only attacks while transformed; Billy's
-        /// friends never make a basic attack - they answer his critical hits.</summary>
-        private bool OctoberBlocksAttack(UnitState unit)
+        /// <summary>Every hero makes basic attacks (requirement 24/10/2026: the ones that never did - Velvet Regent, Citrus Marshal,
+        /// Storm Fencer outside its transformation, Drowsy Seer standing still - now attack, weaker (Lady Loaded Dice at full strength); see
+        /// <see cref="HeroHeldBack"/>). Billy's friends still never make a basic attack - they answer his critical hits.</summary>
+        private bool OctoberBlocksAttack(UnitState unit) => unit.Faction == Faction.Companion && ReferenceHero == "Billy" && !unit.CriticalEncore;
+        /// <summary>A hero attacking where its template used not to (Card King, Clementie; Anby untransformed; Frosty
+        /// standing still): those blows are weaker.</summary>
+        private bool HeroHeldBack(UnitState unit)
         {
+            if (unit.Faction != Faction.Champion) return false;
             string r = ReferenceHero;
-            if (unit.Faction == Faction.Champion) return r == "Card King" || r == "Sassy Senior" || r == "Clementie" || r == "Anby" && !HeroAwakening || r == "Frosty" && octoberMovement.sqrMagnitude < .001f;
-            return unit.Faction == Faction.Companion && r == "Billy" && !unit.CriticalEncore;
+            return r == "Card King" || r == "Clementie" || r == "Anby" && !HeroAwakening || r == "Frosty" && octoberMovement.sqrMagnitude < .001f;
         }
+        public const float HeldBackDamage = .6f, SpecialistDamage = 1.15f;
+        /// <summary>Heroes built round their own weapon (their gauge fills only from their own hits): their blows are stronger, so
+        /// the heroes who gained attacks do not outshine them.</summary>
+        public static readonly string[] AttackSpecialists = { "Postmaster", "SupperMortar", "TinVirtuoso", "PetalCitadel", "KiteAdmiral" };
         private float sassyBurstAt;
         // Derpy Wolf (original): struck, the hero and friends move and attack 10% faster for 3s.
         // Nekomata (original): every 4s a 25% chance of Run N' Stop - 3s of +20% speed and +40% attack speed.
@@ -81,6 +88,8 @@ namespace ArcaneBrigade
         {
             if (!catalog.EnableHeroMechanics || source.Faction == Faction.Enemy) return damage;
             if (source.CriticalEncore) damage *= 1.8f;
+            if (HeroHeldBack(source)) damage *= HeldBackDamage;
+            if (source.Faction == Faction.Champion && System.Array.IndexOf(AttackSpecialists, source.Definition.Id) >= 0) damage *= SpecialistDamage;
             if (OctoberTrait(source, "\"Triumphant Return\" Daniel") && Elapsed >= 30) damage *= 3;
             if (source.Faction == Faction.Champion && ReferenceHero == "Frosty") damage *= 1 + Mathf.Min(1.2f, CompanionCount * .12f);
             if (ReferenceHero == "Box Shell" && Elapsed >= 25 && source.Faction != Faction.Enemy) damage *= source.Definition.Weapon.Kind == WeaponKind.Melee ? 1.4f : .75f;

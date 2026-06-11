@@ -127,6 +127,7 @@ namespace ArcaneBrigade
             primary = ArcadeSkin.Primary(card);
             label = new GUIStyle(small) { alignment = TextAnchor.MiddleCenter };
         }
+        private int hintShown = -1; private float hintAt, resultAt; private string resultShown;
         private void OnGUI()
         {
             if (owner?.Session == null || owner.PresentationPaused || owner.TransitionPending || SecretEventAssets.Current == null) return;
@@ -135,8 +136,10 @@ namespace ArcaneBrigade
             if (!InRoom)
             {
                 int near = NearestPortal();
+                if (near != hintShown) { hintShown = near; hintAt = Time.unscaledTime; }
                 if (near >= 0)
                 {
+                    LivingUI.Pop(Time.unscaledTime - hintAt, new Vector2(960, 924));
                     ArcadeSkin.Frame(new Rect(400, 850, 1120, 148), KitFrame.Dialogue, .6f);
                     GUI.Label(new Rect(420, 858, 1080, 44), SecretEventAssets.Titles[(int)kinds[near]], heading);
                     GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "", label);
@@ -198,6 +201,8 @@ namespace ArcaneBrigade
                 }
                 else
                 {
+                    if (resultShown != s.Result) { resultShown = s.Result; resultAt = Time.unscaledTime; }
+                    LivingUI.Pop(Time.unscaledTime - resultAt, new Vector2(960, 697));
                     ArcadeSkin.Frame(new Rect(420, 540, 1080, 315), KitFrame.Dialogue, .6f);
                     body.wordWrap = true; float resultHeight = body.CalcHeight(new GUIContent(s.Result), 990);
                     resultScroll = ScrollPanel.Begin(new Rect(455, 562, 1010, 170), resultScroll, new Rect(0, 0, 990, resultHeight));
@@ -215,7 +220,7 @@ namespace ArcaneBrigade
             {
                 GUI.Label(new Rect(24, 1038, 1000, 30), SecretEventAssets.Titles[(int)owner.Session.State.Secrets.Kind], small);
             }
-            GUI.matrix = previous; GUI.depth = depth;
+            GUI.matrix = previous; GUI.depth = depth; GUI.color = Color.white;
         }
         private GUIStyle plateTitle, tagStyle;
         /// <summary>Your relic in the middle of the room: its picture and name; a tap shows the next one you own.</summary>

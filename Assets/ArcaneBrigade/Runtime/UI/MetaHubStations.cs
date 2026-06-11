@@ -137,16 +137,21 @@ namespace ArcaneBrigade
                 bool earned = MetaProgression.LetterEarned(profile, l), read = MetaProgression.LetterRead(profile, l), open = letterOpen == i;
                 Rect row = new Rect(area.x, area.y + i * (rowH + gap), listW, rowH);
                 Flash(row, l.Id);
+                // the open letter glows warm behind its paper (never a rectangle drawn over the painted shape)
+                if (open) ArcadeSkin.Glow(new Rect(row.x - 16, row.y - 14, row.width + 32, row.height + 28), new Color(1f, .82f, .45f, .4f + .1f * Mathf.Sin(Time.unscaledTime * 2.4f)));
                 if (!(earned && ArcadeSkin.PaperArt(row, read ? PaperKind.LetterRead : PaperKind.LetterUnread))) // a painted letter (its wax seal under the icon)
                     ArcadeSkin.CodePlate(row, read ? CodeTone.Cream : earned ? CodeTone.Gold : CodeTone.Walnut, open ? 1 : earned ? 0 : 3);
-                if (open) ArcadeSkin.RunningLight(row, Time.unscaledTime, new Color(1f, .82f, .45f));
                 ItemDefinition relic = catalog.Item(l.Relic);
-                RunHud.Sprite(new Rect(row.x + 12, row.y + 12, 50, 50), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, earned));
+                // the relic (or the postbox) sits on the painted wax seal, centred on it, inside the paper
+                Vector2 seal = new Vector2(row.x + row.width * .2f, row.y + row.height * .47f);
+                if (!earned) ArcadeSkin.Lock(seal, 30, ArcadeSkin.KitCream); // still sealed: a lock, never a stand-in picture
+                else RunHud.Sprite(new Rect(seal.x - 24, seal.y - 24, 48, 48), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, true));
                 Ink(earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
                 // the words start past the wax seal and stop before the folded corner; each line gets its full height
                 Rect words = new Rect(row.x + 86, row.y + 8, row.width - 86 - 44, rowH - 16);
-                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 32), earned ? l.Name : "Sealed", ArcadeSkin.KitInk, body);
-                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 32, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", ArcadeSkin.KitInk, small);
+                Color words2 = earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream; // cream on the dark walnut plate of a sealed letter
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 32), earned ? l.Name : "Sealed", words2, body);
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 32, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
                 if ((GUI.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
                 {
                     letterOpen = i;

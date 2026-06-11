@@ -58,7 +58,18 @@ namespace ArcaneBrigade
         private int pausePage;
         private GUIStyle dangerButton;
         private float shownGold, shownEggs, nextWalletTick, nextHeartbeat, heartbeatAt = -10;
+        private int pauseShown = -1, pauseDrawnFrame = -10; private float pauseAt;
+        /// <summary>The pause menu and its pages, each opening with the shared pop (requirement 24/10/2026).</summary>
         private void DrawPause(ArenaController owner)
+        {
+            if (pausePage != pauseShown || Time.frameCount - pauseDrawnFrame > 2) { pauseShown = pausePage; pauseAt = Time.unscaledTime; }
+            pauseDrawnFrame = Time.frameCount;
+            Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - pauseAt, new Vector2(960, 540));
+            try { DrawPausePage(owner); }
+            finally { GUI.matrix = keepMatrix; GUI.color = keepColour; }
+        }
+        private void DrawPausePage(ArenaController owner)
         {
             if (pausePage == 1)
             {

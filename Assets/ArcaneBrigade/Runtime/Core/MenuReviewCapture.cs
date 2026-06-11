@@ -53,6 +53,11 @@ namespace ArcaneBrigade
                 menu.Hub.OpenStation(MetaStation.Lantern); yield return new WaitForSecondsRealtime(.6f); yield return Shot("08-lamp-tree");
                 menu.Hub.PickLantern("shield.plate"); yield return new WaitForSecondsRealtime(.3f); yield return Shot("09-lamp-card");
                 menu.Hub.PickLantern("forge.crown"); yield return new WaitForSecondsRealtime(.3f); yield return Shot("10-lamp-card-right");
+                // the Postbox (two letters read, one open) and the Wardrobe's arrows
+                meta.SeenBosses.Add("Boss"); meta.Wins = 1; meta.BestWave = 40;
+                foreach (MetaLetter l in MetaProgression.Letters) MetaProgression.ReadLetter(meta, l.Id);
+                menu.Hub.Close(); menu.Hub.OpenStation(MetaStation.Postbox); yield return new WaitForSecondsRealtime(.6f); yield return Shot("11-postbox");
+                menu.Hub.Close(); menu.Hub.OpenStation(MetaStation.Wardrobe); yield return new WaitForSecondsRealtime(.6f); yield return Shot("12-wardrobe");
             }
             Application.Quit(0);
         }

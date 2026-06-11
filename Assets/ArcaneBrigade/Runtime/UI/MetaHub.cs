@@ -55,6 +55,7 @@ namespace ArcaneBrigade
         private int wardrobeHero = -1;
         private string notice = ""; private float noticeAt = -10;
         private float boughtAt = -10; private string bought;
+        private float openedAt = -10, focusAt = -10; private int focusShown = -2;
         private GUIStyle heading, body, small, number, chip;
 
         public MetaStation? Open { get; private set; }
@@ -67,7 +68,7 @@ namespace ArcaneBrigade
         public void OpenStation(MetaStation station)
         {
             if (!MetaProgression.Works(station)) { Say("Coming soon"); CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
-            Open = station; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
+            Open = station; openedAt = Time.unscaledTime; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
         }
         public void Close() { if (Open.HasValue) CheckpointAudio.PlayInterfaceId("ui.back"); Open = null; }
         /// <summary>Diagnostics: stand the traveller beside a station.</summary>
@@ -187,8 +188,13 @@ namespace ArcaneBrigade
             if (!PanelOpen && Focus >= 0)
             {
                 Spot s = Spots[Focus]; Rect r = Bounds(s, MetaIcons.Station(s.Station, false));
+                if (focusShown != Focus) { focusShown = Focus; focusAt = Time.unscaledTime; }
+                Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+                LivingUI.Pop(Time.unscaledTime - focusAt, new Vector2(s.Foot.x, r.y - 23));
                 Tag(new Vector2(s.Foot.x, r.y - 40), MetaProgression.Works(s.Station) ? MetaProgression.StationName(s.Station).ToUpperInvariant() : "COMING SOON");
+                GUI.matrix = keepMatrix; GUI.color = keepColour;
             }
+            else focusShown = -2;
             if (!PanelOpen && DoorFocus) Tag(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "MAIN MENU");
 
             // the room's frame: back, title, purse, the way on
@@ -213,7 +219,15 @@ namespace ArcaneBrigade
                 if (e.type == EventType.MouseDown && Floor.Contains(e.mousePosition)) { WalkTo(e.mousePosition, -1, false); e.Use(); }
             }
             if (Time.unscaledTime - noticeAt < 1.6f) Tag(new Vector2(640, 600), notice);
-            if (PanelOpen) { NavBegin(); DrawPanel(catalog, profile, heroIndex, save); NavEnd(); }
+            if (PanelOpen)
+            {
+                NavBegin();
+                Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+                LivingUI.Pop(Time.unscaledTime - openedAt, PanelRect.center);
+                DrawPanel(catalog, profile, heroIndex, save);
+                GUI.matrix = keepMatrix; GUI.color = keepColour;
+                NavEnd();
+            }
             if (panelAction != HubAction.None) { if (action == HubAction.None) action = panelAction; panelAction = HubAction.None; }
             return action;
         }

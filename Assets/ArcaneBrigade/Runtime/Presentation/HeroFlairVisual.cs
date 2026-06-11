@@ -69,9 +69,7 @@ namespace ArcaneBrigade
             if (still) return .85f;
             if (primed) return Mathf.Repeat(t * 3, 1) < .5f ? 1 : .4f; // a full gauge flashes
             float b = .62f + .38f * Mathf.Sin(t * 5.2f);
-            float left = sim.HeroAwakenRemaining;
-            if (left < .2f) b *= Mathf.Repeat(t * Mathf.Lerp(11, 4, left / .2f), 1) < .5f ? 1 : .25f; // running out: faster and faster
-            return b;
+            return b; // no blinking as the transformation runs out (requirement 24/10/2026): the gauge itself shows what is left
         }
         private void Rims()
         {

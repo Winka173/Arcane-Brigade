@@ -160,6 +160,9 @@ namespace ArcaneBrigade
             if (state == 1) Glow(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20), new Color(Gold.r, Gold.g, Gold.b, .35f));
             Rect face = RoundArt(r, enabled ? kind : KitRound.Disabled, state);
             if (icon != null) RunHud.Sprite(face, icon);
+            // the painted medallion's disc sits a little above the middle of its art (the jewel below is longer than the crest):
+            // glyphs centre on the disc, not the art's box (requirement 24/10/2026)
+            face = new Rect(face.x, face.y - face.height * .04f, face.width, face.height);
             int arrow = glyph == "◀" ? 0 : glyph == "▶" ? 1 : glyph == "▲" ? 2 : glyph == "▼" ? 3 : -1;
             if (arrow >= 0) Arrow(face, arrow, kind == KitRound.Brass ? KitInk : KitCream);
             else if (!string.IsNullOrEmpty(glyph))
@@ -186,6 +189,7 @@ namespace ArcaneBrigade
         public static void Lock(Vector2 c, float size, Color colour)
         {
             if (Event.current.type != EventType.Repaint) return;
+            c.y -= size * .1f; // the drawing runs from the shackle's top (-.37) to the body's foot (+.57): centre its middle on c
             Color ink = new Color(.1f, .06f, .04f, .9f * colour.a);
             Rect bodyR = new Rect(c.x - size * .42f, c.y - size * .05f, size * .84f, size * .62f);
             Line(new Rect(bodyR.x - 2, bodyR.y - 2, bodyR.width + 4, bodyR.height + 4), ink); Line(bodyR, colour);

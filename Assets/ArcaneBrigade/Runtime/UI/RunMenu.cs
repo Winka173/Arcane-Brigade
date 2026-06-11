@@ -25,6 +25,7 @@ namespace ArcaneBrigade
         private int guidePage;
         private GUIStyle dangerStyle, explainTitle, explainBody;
         private string explainHead, explainText; private Rect explainAt; private float explainShown = -10;
+        private bool keepsakeOpen; private Rect keepsakeAt; private float keepsakeOpenedAt = -10;
         private GUIStyle text;
         private GUIStyle button;
         private GUIStyle primary;
@@ -289,7 +290,7 @@ namespace ArcaneBrigade
             switch (CurrentPage)
             {
                 case Page.Landing: DrawLanding(); break;
-                case Page.Roster: DrawRoster(); DrawExplain(); break;
+                case Page.Roster: DrawRoster(); DrawKeepsakePicker(); DrawExplain(); break;
                 case Page.Hub:
                     HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
                     if (chosen == HubAction.NextNight) ShowPage(Page.Landing); else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
@@ -588,8 +589,17 @@ namespace ArcaneBrigade
             // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(17, true)); danger.alignment = TextAnchor.MiddleCenter;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
-            if (sealedDifficulty) ArcadeSkin.Lock(new Vector2(790, 556), 16, danger.normal.textColor);
-            GUI.Label(new Rect(780, 540, 420, 30), RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + (sealedDifficulty ? (difficulty == RunMeta.TreeDifficulty ? "light 5 Lamp Tree branches" : "light the whole Lamp Tree") : DifficultyLine(difficulty)), danger);
+            string dangerText = RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + (sealedDifficulty ? (difficulty == RunMeta.TreeDifficulty ? "light 5 Lamp Tree branches" : "light the whole Lamp Tree") : DifficultyLine(difficulty));
+            Rect dangerRect = new Rect(780, 540, 420, 30);
+            if (sealedDifficulty)
+            {
+                // the padlock stands just before the words, on their middle line, the pair centred together
+                float textW = Mathf.Min(dangerRect.width - 30, danger.CalcSize(new GUIContent(dangerText)).x);
+                float left = dangerRect.center.x - (textW + 26) * .5f;
+                ArcadeSkin.Lock(new Vector2(left + 9, dangerRect.center.y), 16, danger.normal.textColor);
+                dangerRect = new Rect(left + 26, dangerRect.y, textW, dangerRect.height);
+            }
+            GUI.Label(dangerRect, dangerText, danger);
             GUI.enabled = profile.BestWave >= champion.UnlockWave && !sealedDifficulty;
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
@@ -619,11 +629,48 @@ namespace ArcaneBrigade
             if (Event.current.type == EventType.MouseDown && Time.unscaledTime - explainShown > .1f) { explainText = null; return; }
             explainTitle ??= ArcadeTypography.Style(18, true); explainBody ??= ArcadeTypography.Style(16); explainBody.wordWrap = true;
             float w = 330, h = 36 + explainBody.CalcHeight(new GUIContent(explainText), w - 36) + 18;
-            Rect card = new Rect(Mathf.Clamp(explainAt.center.x - w * .5f, 40, 1880 - w), explainAt.yMax + 10, w, h);
-            if (card.yMax > 1040) card.y = explainAt.y - h - 10;
+            Rect card = new Rect(Mathf.Clamp(explainAt.center.x - w * .5f, 20, 1260 - w), explainAt.yMax + 10, w, h); // the menu's 1280x720 space
+            if (card.yMax > 704) card.y = explainAt.y - h - 10;
+            Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - explainShown, new Vector2(card.center.x, card.y));
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
             GUI.Label(new Rect(card.x + 18, card.y + 12, w - 36, 26), explainHead, explainTitle);
             GUI.Label(new Rect(card.x + 18, card.y + 38, w - 36, h - 50), explainText, explainBody);
+            GUI.matrix = keepMatrix; GUI.color = keepColour;
+        }
+        /// <summary>The keepsake picker: every relic kept from a Postbox letter, and "none", in one small card over the slot
+        /// (it pops open; a pick closes it and says what the relic does; a tap elsewhere closes it).</summary>
+        private void DrawKeepsakePicker()
+        {
+            if (!keepsakeOpen) return;
+            var keeps = MetaProgression.Keepsakes(profile, catalog);
+            const float cell = 56, gap = 10, pad = 18;
+            int count = keeps.Count + 1, perRow = Mathf.Min(count, 6), rows = Mathf.CeilToInt(count / (float)perRow);
+            float w = pad * 2 + perRow * cell + (perRow - 1) * gap, h = 46 + rows * (cell + gap) + pad;
+            Rect card = new Rect(Mathf.Clamp(keepsakeAt.center.x - w * .5f, 20, 1260 - w), keepsakeAt.y - h - 10, w, h);
+            if (Event.current.type == EventType.MouseDown && !card.Contains(Event.current.mousePosition) && Time.unscaledTime - keepsakeOpenedAt > .1f) { keepsakeOpen = false; return; }
+            Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - keepsakeOpenedAt, new Vector2(card.center.x, card.yMax));
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
+            explainTitle ??= ArcadeTypography.Style(18, true);
+            GUI.Label(new Rect(card.x + pad, card.y + 10, w - pad * 2, 26), "Bring a keepsake", explainTitle);
+            for (int i = 0; i < count; i++)
+            {
+                Rect slot = new Rect(card.x + pad + (i % perRow) * (cell + gap), card.y + 42 + (i / perRow) * (cell + gap), cell, cell);
+                string id = i == 0 ? null : keeps[i - 1];
+                bool on = keepsakePick == id;
+                if (on) ArcadeSkin.Glow(new Rect(slot.x - 10, slot.y - 10, slot.width + 20, slot.height + 20), new Color(1f, .8f, .45f, .6f));
+                ArcadeSkin.PortraitSlot(slot, on);
+                ItemDefinition relic = id == null ? null : catalog.Item(id);
+                if (relic?.Icon != null) RunHud.Sprite(new Rect(slot.x + 7, slot.y + 7, cell - 14, cell - 14), relic.Icon);
+                else if (id == null) ArcadeSkin.Stroke(new Vector2(slot.x + 18, slot.y + 18), new Vector2(slot.xMax - 18, slot.yMax - 18), 4, ArcadeSkin.KitCream); // none
+                if (GUI.Button(slot, GUIContent.none, GUIStyle.none))
+                {
+                    keepsakePick = id; keepsakeOpen = false; CheckpointAudio.PlayInterfaceId("ui.select");
+                    Explain(keepsakeAt, relic != null ? relic.Name : "No keepsake", relic != null ? RelicDescriptions.Describe(relic, 1) + "\nKept from a Postbox letter; it rides along from the first wave." : "This run starts without a keepsake relic.");
+                }
+            }
+            GUI.matrix = keepMatrix; GUI.color = keepColour;
         }
         private static string DifficultyLine(int d) => d switch { 0 => "a gentle night", 1 => "the usual dream", 2 => "tougher crowds", 3 => "hard and hungry", 4 => "no rest", 5 => "beyond the lamp's light", 6 => "no light at all", _ => "the night never ends" };
 
@@ -652,7 +699,7 @@ namespace ArcaneBrigade
             if (friends.Count > 0)
             {
                 Rect nursery = new Rect(x, row.y + 2, 38, 40); RunHud.Sprite(nursery, MetaIcons.Station(MetaStation.Nursery, true)); x += 42;
-                if (GUI.Button(nursery, GUIContent.none, GUIStyle.none)) Explain(nursery, "Nursery", "Bring one friend you raised in the Waiting Room into this run. Tap a friend to choose, tap again to leave it.");
+                if (GUI.Button(nursery, GUIContent.none, GUIStyle.none)) Explain(nursery, "Cradle friends", "From the Lamp Tree's Cradle: one of these three friends can start the run at your side. They change every run. Tap one to bring it.");
                 foreach (UnitDefinition friend in friends)
                 {
                     Rect cell = new Rect(x, row.y, 44, 44); bool on = nurseryPick == friend.Id;
@@ -668,7 +715,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, row.y, 44, 44);
                 if (altCoat) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Starts with " + RunUICopy.UnitName(coat); }
                 ArcadeSkin.PortraitSlot(cell, altCoat); RunHud.Sprite(new Rect(cell.x + 6, cell.y + 6, 32, 32), coat.Body);
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { altCoat = !altCoat; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second coat", altCoat ? "Start with " + RunUICopy.UnitName(coat) + " instead of the usual first friend." : "Back to the usual first friend."); }
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { altCoat = !altCoat; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second coat", (altCoat ? "Start with " + RunUICopy.UnitName(coat) + " instead of the usual first friend." : "Back to the usual first friend.") + " Earned in the Wardrobe by playing this hero."); }
                 x += 56;
             }
             if (canHabit)
@@ -676,17 +723,17 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, row.y, 44, 44);
                 if (habit) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "").TrimEnd('.'); }
                 ArcadeSkin.PortraitSlot(cell, habit); RunHud.Sprite(new Rect(cell.x + 4, cell.y + 4, 36, 36), MetaIcons.Station(MetaStation.Wardrobe, true));
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second habit", habit ? MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text : "The hero keeps its usual habit."); }
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second habit", (habit ? MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "Swaps one team bonus: ") : "The hero keeps its usual team bonus.") + " Earned in the Wardrobe."); }
                 x += 56;
             }
             if (keeps.Count > 0)
             {
-                // the Postbox: one keepsake relic to bring (a tap moves to the next one, then none)
+                // the Postbox: one keepsake relic to bring; a tap opens the picker with all of them (no cycling through)
                 Rect cell = new Rect(x, row.y, 44, 44); bool on = keepsakePick != null;
                 ItemDefinition relic = on ? catalog.Item(keepsakePick) : null;
                 if (on) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Brings " + relic?.Name; }
                 ArcadeSkin.PortraitSlot(cell, on); RunHud.Sprite(new Rect(cell.x + 5, cell.y + 5, 34, 34), relic?.Icon ?? MetaIcons.Station(MetaStation.Postbox, true));
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { int at = on ? keeps.IndexOf(keepsakePick) : -1; keepsakePick = at + 1 < keeps.Count ? keeps[at + 1] : null; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Postbox keepsake", keepsakePick != null ? "Brings " + catalog.Item(keepsakePick)?.Name + " from the start. Tap for the next one." : "No keepsake this run."); }
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { keepsakeOpen = !keepsakeOpen; keepsakeAt = cell; keepsakeOpenedAt = Time.unscaledTime; explainText = null; CheckpointAudio.PlayInterfaceId("ui.open"); }
             }
             if (caption != null) GUI.Label(new Rect(row.x, row.yMax + 1, row.width, 22), caption, note);
             return true;

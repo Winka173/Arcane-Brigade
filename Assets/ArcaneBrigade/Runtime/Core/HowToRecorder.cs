@@ -30,7 +30,8 @@ namespace ArcaneBrigade
             yield return new WaitForEndOfFrame();
             Texture2D full = ScreenCapture.CaptureScreenshotAsTexture();
             RenderTexture rt = RenderTexture.GetTemporary(Width, Height, 0);
-            Graphics.Blit(full, rt, new Vector2(.62f, .62f), new Vector2(.19f, cropY)); // round the hero (in the shop: the stalls' row)
+            bool whole = Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-full") >= 0; // review: the whole screen
+            if (whole) Graphics.Blit(full, rt); else Graphics.Blit(full, rt, new Vector2(.62f, .62f), new Vector2(.19f, cropY)); // round the hero (in the shop: the stalls' row)
             RenderTexture before = RenderTexture.active; RenderTexture.active = rt;
             var small = new Texture2D(Width, Height, TextureFormat.RGB24, false); small.ReadPixels(new Rect(0, 0, Width, Height), 0, 0); small.Apply();
             RenderTexture.active = before; RenderTexture.ReleaseTemporary(rt);
@@ -143,6 +144,15 @@ namespace ArcaneBrigade
             yield return Load(catalog, storage, "PennyBroker", 8, true, team);
             yield return Film("clip6", t => WalkTo(OfferKind.Item), .9f, () => Arrived);
             ArenaController.ScriptedMove = null;
+            }
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-gate") >= 0)
+            {
+                // review: the hero walks up to the next night's gate in the shop (far, then near: it opens)
+                yield return Load(catalog, storage, "LanternKnight", 6, true, team);
+                yield return Film("gate-far", t => ArenaController.ScriptedMove = Vector2.zero, .8f);
+                ArenaController.ScriptedMove = null;
+                yield return Film("gate-near", t => { var o = Owner; if (o?.Simulation != null) o.Simulation.Champion.Position = WorldShop.ExitPosition + new Vector2(1.3f, .3f); }, 2.4f);
+                ArenaController.ScriptedMove = null;
             }
             File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
             Application.Quit(0);
