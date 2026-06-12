@@ -18,8 +18,8 @@ namespace ArcaneBrigade
             if (Kind == "locomotion")
             {
                 if (unit.PendingAttack) return Frames[5];
-                float age = time - unit.AttackStarted;
                 float windup = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;
+                float age = (time - unit.AttackStarted) / K8Motion.Fit(unit.Definition.Weapon, windup, unit.NextAttack - unit.AttackStarted); // in step with a fast shooter
                 if (age >= windup && age < windup + unit.Definition.Weapon.Recovery)
                     return Frames[age - windup < unit.Definition.Weapon.Recovery * .55f ? 6 : 7];
                 bool moving = (unit.Position - unit.PreviousPosition).sqrMagnitude > .000001f;

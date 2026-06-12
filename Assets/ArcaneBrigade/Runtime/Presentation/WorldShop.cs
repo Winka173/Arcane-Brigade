@@ -7,7 +7,7 @@ namespace ArcaneBrigade
     {
         public const float InteractionRadius = 1.4f; // was 1.1: options showed only on an exact spot (requirement 22/10/2026)
         public const float LayoutLift = 0.5f;
-        public static readonly Vector2 ExitPosition = new Vector2(0, -4.5f);
+        public static readonly Vector2 ExitPosition = new Vector2(-4.7f, -4.9f); // the rift hangs low on the left, the freest floor (requirement 24/10/2026; centre-bottom was cramped, the right edge is the story chair's path)
         public const float ExitInteractionRadius = 1.85f;
         public sealed class Station
         {

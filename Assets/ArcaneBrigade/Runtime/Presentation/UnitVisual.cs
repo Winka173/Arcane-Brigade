@@ -447,7 +447,7 @@ namespace ArcaneBrigade
             if (reactionFrame != null && entrance <= 0) body.sprite = reactionFrame;
             Sprite canonFace = ActOneArtwork.CustomerFace(state, simulationTime);
             if (canonFace != null) body.sprite = canonFace;
-            K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion);
+            K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion, state.NextAttack - state.AttackStarted);
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
             // between blows a friend keeps aiming where it last struck (requirement 24/10/2026: walking while shooting, the weapon
             // swung back and forth between the way it walked and the way it shot)

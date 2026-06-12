@@ -66,7 +66,8 @@ namespace ArcaneBrigade
         {
             float windup = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;
             float age = time - unit.AttackStarted;
-            return unit.Alive && age >= 0 && age < windup + unit.Definition.Weapon.Recovery;
+            float fit = Fit(unit.Definition.Weapon, windup, unit.NextAttack - unit.AttackStarted);
+            return unit.Alive && age >= 0 && age / fit < windup + unit.Definition.Weapon.Recovery;
         }
 
         public static int BodyFrame(UnitState unit, float time, bool reduced)
@@ -91,8 +92,18 @@ namespace ArcaneBrigade
             return UnitVisual.AnimationFrame(time, unit.Id, false, reduced);
         }
 
-        public static Pose Attack(WeaponDefinition weapon, float age, float windup, bool reduced)
+        /// <summary>The time from one blow to the next (NextAttack - AttackStarted): a stroke longer than that is played faster so
+        /// it ends just as the next one starts (requirement 24/10/2026: a fast shooter's next shot cut its kick off and the weapon
+        /// snapped back to the start), and a very fast shooter's kick and tilt are gentler, a steady rattle rather than a judder.</summary>
+        public static float Fit(WeaponDefinition weapon, float windup, float period)
         {
+            float full = windup + weapon.Recovery;
+            return period > .01f && period < full ? Mathf.Clamp(period * .95f / full, .15f, 1) : 1;
+        }
+        public static Pose Attack(WeaponDefinition weapon, float age, float windup, bool reduced, float period = 0)
+        {
+            float fit = Fit(weapon, windup, period);
+            if (fit < 1) age /= fit; // the whole stroke inside the gap to the next blow
             if (reduced || age < 0 || age >= windup + weapon.Recovery) return default;
             bool preparing = age < windup;
             float charge = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / Mathf.Max(0.001f, windup)));
@@ -184,7 +195,9 @@ namespace ArcaneBrigade
                 angle += ring * weight * 4;
                 recoil += ring * weight * .018f;
             }
-            return new Pose(angle, recoil, lean, preparing ? -0.025f * charge : Mathf.Lerp(-0.025f, 0.055f, release) * settle, lift);
+            float squash = preparing ? -0.025f * charge : Mathf.Lerp(-0.025f, 0.055f, release) * settle;
+            if (fit < 1 && !swung) { float soft = Mathf.Lerp(.45f, 1, fit); angle *= soft; recoil *= soft; lift *= soft; lean *= soft; squash *= soft; } // rapid fire: a rattle, not a judder
+            return new Pose(angle, recoil, lean, squash, lift);
         }
 
         private static Sprite star;

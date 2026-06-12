@@ -65,7 +65,7 @@ namespace ArcaneBrigade
                 else upper.transform.localPosition += Vector3.right * Mathf.Sin(gesturePhase * 14) * gesture * 0.018f;
             }
             float windup = state.AttackWindup > 0 ? state.AttackWindup : state.Definition.Weapon.Windup;
-            K8Motion.Pose pose = K8Motion.Attack(state.Definition.Weapon, time - state.AttackStarted, windup, reduced);
+            K8Motion.Pose pose = K8Motion.Attack(state.Definition.Weapon, time - state.AttackStarted, windup, reduced, state.NextAttack - state.AttackStarted);
             upper.transform.localPosition += Vector3.up * pose.Lift * 0.25f;
             float supportAge = time - state.LastSupport;
             float support = reduced || reacting || supportAge < 0 || supportAge >= 0.5f ? 0 : Mathf.Sin(supportAge / 0.5f * Mathf.PI);
