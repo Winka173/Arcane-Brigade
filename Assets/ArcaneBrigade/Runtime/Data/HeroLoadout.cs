@@ -14,6 +14,15 @@ namespace ArcaneBrigade
             public Entry(string weapon, string interim, string friend, string friendWeapon) { Weapon = weapon; Interim = interim; Friend = friend; FriendWeapon = friendWeapon; }
         }
 
+        /// <summary>A second starting friend for the heroes whose gauge or skill runs on friends (requirement 24/10/2026: 0 to 2 at the
+        /// start): Velvet Regent (friends' hits), Patchwork Host (friends' hits and kinds), Juggling Jester (friends' crits),
+        /// Lantern Knight (friends near). Each with its own weapon no other starter carries (melee for a ranged hero; Velvet Regent, melee, gets a ranged one).</summary>
+        public static readonly IReadOnlyDictionary<string, (string Friend, string Weapon)> SecondFriend = new Dictionary<string, (string, string)>
+        {
+            ["VelvetRegent"] = ("StaticFerret", "ScrapMagnet"), ["PatchworkHost"] = ("TeapotPilgrim", "RibbonWheel"),
+            ["JugglingJester"] = ("CourtHerald", "VerdictGavel"), ["LanternKnight"] = ("LampGoat", "DragonLanternGlaive"),
+        };
+
         public static readonly IReadOnlyDictionary<string, Entry> Heroes = new Dictionary<string, Entry>
         {
             ["LanternKnight"] = new Entry("KeyCleaver", null, "KettleBat", "CrescentBow"),
@@ -28,7 +37,7 @@ namespace ArcaneBrigade
             ["TreasureAcorn"] = new Entry("AcornSling", null, "BrassAcorn", "SpoonSabre"),
             ["VerdantMatron"] = new Entry("LeafCrossbow", null, "LittleSprout", "TapeWhip"),
             ["CopperCauldron"] = new Entry("FireExtinguisher", null, "TeacupCricket", "SpringKnocker"),
-            ["ChinaMarionette"] = new Entry("NeedleSinger", null, "RibbonSpider", "RibbonWheel"),
+            ["ChinaMarionette"] = new Entry("NeedleSinger", null, "JellySwordsman", "TwinSabres"), // Ribbon Spider never passed the theme check; a swordsman in front of a ranged hero
             ["SoapSkater"] = new Entry("BubbleWand", null, "SailSquid", "UmbrellaLance"),
             ["VelvetRegent"] = new Entry("StarforgeClaymore", "BellFork", "ButtonBeetle", "ButtonBow"),
             ["ButtonCavalier"] = new Entry("CorkscrewRapier", null, "TinTick", "InkPistol"),
@@ -46,13 +55,13 @@ namespace ArcaneBrigade
             ["SupperMortar"] = new Entry("TeapotPopgun", null, "BreadCrab", "ToastCleaver"),
             ["LanternWeaver"] = new Entry("LanternStaff", null, "ThimbleMoth", "TeabagFlail"),
             ["HourglassStag"] = new Entry("AlarmMortar", null, "DreamCompass", "ParasolNeedle"),
-            ["RainArchivist"] = new Entry("SquirtTrio", "DreamOrbStaff", "RibbonOtter", "TinFish"),
+            ["RainArchivist"] = new Entry("SquirtTrio", "DreamOrbStaff", "RibbonOtter", "PawMitten"),
             // the five expansion heroes (Docs/Content_Expansion_Proposal.md §5; starters from Tools/Content/expansion_design.py)
             ["KiteAdmiral"] = new Entry("KiteSpool", null, "PaperPlanePigeon", "PaperPlaneSquadron"),
-            ["SundaeDuchess"] = new Entry("ScoopLauncher", null, "BakerMouse", "RollingPin"),
-            ["BonsaiClocksmith"] = new Entry("CuckooCannon", null, "TopBeetle", "SpinningTop"),
-            ["JugglingJester"] = new Entry("JugglingPins", null, "LensOwl", "SunLens"),
-            ["BellDiver"] = new Entry("SonarHarpoon", null, "RaincoatFrog", "PlungerPopper"),
+            ["SundaeDuchess"] = new Entry("ScoopLauncher", null, "BakerMouse", "LeekBaton"),
+            ["BonsaiClocksmith"] = new Entry("CuckooCannon", null, "TopBeetle", "BareKnuckles"),
+            ["JugglingJester"] = new Entry("JugglingPins", null, "LensOwl", "HomeRunBat"),
+            ["BellDiver"] = new Entry("SonarHarpoon", null, "RaincoatFrog", "FlySwatter"), // a melee friend in front of every ranged hero (requirement 24/10/2026)
         };
 
         /// <summary>The weapon this hero carries now: its own, or its interim one while its own is not in the catalog yet.</summary>

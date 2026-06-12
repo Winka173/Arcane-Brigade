@@ -141,6 +141,9 @@ namespace ArcaneBrigade
             {
                 State.Roster.Add(catalog.HeroRevision > 0 ? K11HeroRules.Starter(catalog, champion) : new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
                 RememberVariant(State.Roster[0]);
+                // a second starting friend for the heroes whose gauge runs on friends
+                if (catalog.HeroRevision > 0 && HeroLoadout.SecondFriend.TryGetValue(champion.Id, out var second) && catalog.Unit(second.Friend) is UnitDefinition two
+                    && K11HeroRules.Eligible(champion, two) && !OwnsCompanionSpecies(second.Friend)) MetaAddFriend(second.Friend, catalog.Weapon(second.Weapon));
             }
             RecountBonds();
             State.Health = MaximumHealth();
