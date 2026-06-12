@@ -312,6 +312,8 @@ namespace ArcaneBrigade
                     else { u.Health = u.Definition.Health; u.Position = home; spatial.Move(u); } // blows knock targets away: pin them
                 }
         }
+        /// <summary>Capture-only (How to Play review): the wave ends as a win now.</summary>
+        public void ForceVictoryForCapture() { if (HowToRecorder.Requested && Phase == RunPhase.Combat) Phase = RunPhase.Victory; }
         /// <summary>Capture-only: keeps the hero's trigger topped up until the real mechanic casts.</summary>
         public void FillGaugeForCapture()
         {

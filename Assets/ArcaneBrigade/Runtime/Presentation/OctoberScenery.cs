@@ -62,6 +62,8 @@ namespace ArcaneBrigade
             [MapTheme.ArchiveVault] = new Vector4(0.528f, 0.529f, 0.312f, 0.367f),
         };
         public const float PortalHeight = 2.2f;
+        /// <summary>A map's rift art (null when it is not painted yet): the arrival rift uses it too.</summary>
+        public static (Sprite body, Sprite swirl) PortalArt(MapTheme theme) => Portal(theme);
         private static (Sprite body, Sprite swirl) Portal(MapTheme theme)
         {
             if (portals.TryGetValue(theme, out var p)) return p;
@@ -113,6 +115,32 @@ namespace ArcaneBrigade
                 Vector2 rim = centre + new Vector2(Mathf.Cos(a) * half.x * 1.02f, Mathf.Sin(a) * half.y * 1.02f), outward = (rim - centre).normalized;
                 Vector2 tip = rim + outward * (.15f + .35f * life) + Vector2.up * .2f * life + new Vector2(-outward.y, outward.x) * Mathf.Sin(life * 5 + i) * .08f;
                 riftLight.GlowRibbon(InkCanvas.Lob(rim, tip, .1f, 8), 1, 0, .05f * (1 - life * .5f), new Color(glow.r, glow.g, glow.b, (.55f + .3f * opening) * Mathf.Sin(life * Mathf.PI) * shown));
+            }
+            // a few fragments of the rim's own stuff wheel slowly round it, turning over and catching the light
+            for (int i = 0; i < 5; i++)
+            {
+                float a = (still ? i * 72 : t * (14 + 10 * opening) + i * 72) * Mathf.Deg2Rad, flip = still ? 1 : Mathf.Abs(Mathf.Cos(t * 1.7f + i * 1.3f));
+                Vector2 p = centre + new Vector2(Mathf.Cos(a) * half.x * 1.35f, Mathf.Sin(a) * half.y * 1.2f + Mathf.Sin(t * 1.1f + i) * .05f);
+                Vector2 along = new Vector2(Mathf.Cos(a + 1.2f + i), Mathf.Sin(a + 1.2f + i)) * (.07f + .05f * flip);
+                InkPalette bit = map == MapTheme.WaitingRoom ? ArsenalInk.Gold : map == MapTheme.PostOffice ? (i % 2 == 0 ? ArsenalInk.Cream : ArsenalInk.Wine) : map == MapTheme.LampHall ? ArsenalInk.Glass : ArsenalInk.Cream;
+                float thick = map == MapTheme.PostOffice || map == MapTheme.ArchiveVault ? .11f : .07f; // stamps and pages are broad, shards slim
+                riftInk.Stroke(InkCanvas.Line(p - along, p + along, 0, 0, false, 40 + i), InkStroke.Of(bit, thick, .95f * shown, 40 + i));
+                if (flip > .85f) riftLight.GlowRibbon(InkCanvas.Line(p - along * .6f, p + along * .6f), 1, 1, .04f, new Color(1f, .95f, .8f, (flip - .85f) * 5 * .8f * shown)); // the glint as it faces you
+            }
+            // now and then a crack of light runs along the torn rim, as if it were still tearing
+            float crackClock = still ? 0 : t / 1.6f;
+            float crackLife = Mathf.Repeat(crackClock, 1) / .35f;
+            if (!still && crackLife < 1)
+            {
+                int which = Mathf.FloorToInt(crackClock);
+                float from = (which * 137) % 360, span = 50 * Mathf.SmoothStep(0, 1, crackLife);
+                var rim = new System.Collections.Generic.List<Vector2>();
+                for (int k = 0; k <= 8; k++)
+                {
+                    float ang = (from + span * k / 8f) * Mathf.Deg2Rad, jag = k % 2 == 0 ? 1.02f : .97f;
+                    rim.Add(centre + new Vector2(Mathf.Cos(ang) * half.x * jag, Mathf.Sin(ang) * half.y * jag));
+                }
+                riftLight.GlowRibbon(rim, 1, .3f, .05f, new Color(1f, .93f, .7f, Mathf.Sin(crackLife * Mathf.PI) * .95f * shown));
             }
             riftInk.Commit(); riftLight.Commit();
         }

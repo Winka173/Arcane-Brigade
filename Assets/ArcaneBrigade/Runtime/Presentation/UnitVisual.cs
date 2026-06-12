@@ -136,10 +136,10 @@ namespace ArcaneBrigade
             if (ReducedMotion || PresentationSettings.ReducedMotion || state == null || !state.Alive) return;
             tipAt = time; tipSide = shot.x < 0 ? -1 : 1;
         }
-        public void BeginArrival(Vector2 origin)
+        public void BeginArrival(Vector2 origin, bool sound = true)
         {
             arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount;
-            CheckpointAudio.PlayWorldId("up.ally.land", origin);
+            if (sound) CheckpointAudio.PlayWorldId("up.ally.land", origin);
         }
         public bool ReducedMotion { get; set; }
         public bool RestAttention { get; set; }

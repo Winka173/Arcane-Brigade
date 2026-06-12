@@ -155,6 +155,18 @@ namespace ArcaneBrigade
                 yield return Film("gate-near", t => { var o = Owner; if (o?.Simulation != null) o.Simulation.Champion.Position = WorldShop.ExitPosition + new Vector2(1.3f, .3f); }, 2.4f);
                 ArenaController.ScriptedMove = null;
             }
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-waveend") >= 0)
+            {
+                // review: the end of a wave into the shop, a frame every 0.12 s
+                yield return Load(catalog, storage, "LanternKnight", 3, false, team);
+                yield return new WaitForSecondsRealtime(2f);
+                Owner?.Simulation?.ForceVictoryForCapture();
+                for (int f = 0; f < 22; f++) { yield return Grab("end" + f.ToString("00"), f); yield return new WaitForSecondsRealtime(.12f); }
+                // and out of the shop into the next night: the brigade steps out of a rift
+                yield return new WaitForSecondsRealtime(1.5f);
+                Owner?.NextWave();
+                for (int f = 0; f < 18; f++) { yield return Grab("arr" + f.ToString("00"), f); yield return new WaitForSecondsRealtime(.1f); }
+            }
             File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
             Application.Quit(0);
         }

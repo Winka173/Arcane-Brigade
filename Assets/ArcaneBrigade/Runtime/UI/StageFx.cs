@@ -82,17 +82,20 @@ namespace ArcaneBrigade
         private int shownWave = -1;
         private string run;
         private float started = -10;
+        private bool stampDue;
         private GUIStyle number, label;
         private static Texture2D ring;
         public void Observe(string runId, int wave, bool combat)
         {
             if (run != runId) { run = runId; shownWave = combat ? wave : -1; return; }
-            if (combat && wave != shownWave) { shownWave = wave; started = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.wave.stamp"); }
+            // the stamp waits for the arrival rift to stitch shut, so the two never stack over the hero
+            if (combat && wave != shownWave) { shownWave = wave; started = Mathf.Max(Time.unscaledTime, ArrivalRift.ClosesAt); stampDue = true; }
         }
         public void Draw(string caption)
         {
             float age = Time.unscaledTime - started;
             if (age < 0 || age > 1.5f) return;
+            if (stampDue) { stampDue = false; CheckpointAudio.PlayInterfaceId("ui.wave.stamp"); }
             if (number == null)
             {
                 number = ArcadeTypography.Style(78, true); number.alignment = TextAnchor.MiddleCenter; number.wordWrap = false; if (ArcadeTypography.Display != null) number.font = ArcadeTypography.Display;

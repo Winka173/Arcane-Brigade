@@ -64,7 +64,7 @@ namespace ArcaneBrigade
         private Vector2 hallExitTarget;
         private StageTransfer stageTransfer;
         public bool PresentationPaused => pauseGate.Paused;
-        public bool TransitionPending => transitionRemaining > 0 || stageTransfer != null && stageTransfer.Active;
+        public bool TransitionPending => transitionRemaining > 0 || SceneDissolve.Busy || stageTransfer != null && stageTransfer.Active;
         public bool HallExitPending => hallExitPending;
         public float HallCurtain => 0;
         public bool TerminalDelayComplete => resultRevealRemaining <= 0;
@@ -325,7 +325,7 @@ namespace ArcaneBrigade
                 if (transitionRemaining > 0)
                 {
                     transitionRemaining -= Time.deltaTime;
-                    if (transitionRemaining <= 0) Begin(true);
+                    if (transitionRemaining <= 0) SceneDissolve.Then(this, () => Begin(true)); // the fight melts into the shop
                 }
             }
         }
@@ -559,7 +559,18 @@ namespace ArcaneBrigade
                 stageTransfer = carrier.AddComponent<StageTransfer>();
                 stageTransfer.Configure(this, () => { stageTransfer = null; Begin(true); });
             }
-            else Begin(true);
+            else SceneDissolve.Then(this, () => { Begin(true); ArriveThroughRift(); }); // the shop melts into the night, the brigade steps out of a rift
+        }
+        /// <summary>The start of a night: the hero and friends spring out of a rift of the map's own kind, which then stitches shut.</summary>
+        private void ArriveThroughRift()
+        {
+            if (simulation?.Champion == null || session == null) return;
+            Render(1); // the brigade's views exist before they spring out
+            Vector2 centre = simulation.Champion.Position + Vector2.up * .9f;
+            if (ArrivalRift.Play(MapIdentity.For(session.State.Wave), centre, 1000 - Mathf.RoundToInt(simulation.Champion.Position.y * 12f) - 20) == null) return;
+            bool first = true;
+            foreach (UnitVisual visual in units.Values)
+                if (visual.State != null && visual.State.Faction != Faction.Enemy) { visual.BeginArrival(centre, first); first = false; }
         }
         public void ContinueEndless()
         {
