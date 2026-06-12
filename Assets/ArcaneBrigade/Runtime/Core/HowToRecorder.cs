@@ -147,8 +147,9 @@ namespace ArcaneBrigade
             }
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-gate") >= 0)
             {
-                // review: the hero walks up to the next night's gate in the shop (far, then near: it opens)
-                yield return Load(catalog, storage, "LanternKnight", 6, true, team);
+                // review: the hero walks up to the next night's gate in the shop (far, then near: it opens); -howto-gate-wave N picks the map
+                int gateWave = Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-gate-wave") is int gw && gw >= 0 && int.TryParse(Environment.GetCommandLineArgs()[gw + 1], out int parsed) ? parsed : 4;
+                yield return Load(catalog, storage, "LanternKnight", gateWave, true, team);
                 yield return Film("gate-far", t => ArenaController.ScriptedMove = Vector2.zero, .8f);
                 ArenaController.ScriptedMove = null;
                 yield return Film("gate-near", t => { var o = Owner; if (o?.Simulation != null) o.Simulation.Champion.Position = WorldShop.ExitPosition + new Vector2(1.3f, .3f); }, 2.4f);

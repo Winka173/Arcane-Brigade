@@ -47,20 +47,99 @@ namespace ArcaneBrigade
         private GroundShadow grounded;
         private MarketLifecycle lifecycle;
         private DreamSuspension suspension;
-        /// <summary>The way on is a painted portal standing on the floor, one for each map, looping its idle frames far away and its
-        /// open frames as the hero comes near (requirement 24/10/2026; art: Docs/Playtest_Art_Prompts/25_Shop_Portals.txt).
-        /// Resources/Shop/Portals/{Map}: 16 frames, 0-7 idle, 8-15 open. Until a map's portal is painted, the arched door stands in.</summary>
-        private static readonly System.Collections.Generic.Dictionary<MapTheme, Sprite[]> portals = new System.Collections.Generic.Dictionary<MapTheme, Sprite[]>();
-        public const int PortalFrames = 8;
-        public const float PortalFps = 10, PortalHeight = 2f;
-        private static Sprite[] Portal(MapTheme theme)
+        /// <summary>The way on is a painted rift hanging in the air, a tear in space, one for each map (requirement 24/10/2026; art:
+        /// Docs/Playtest_Art_Prompts/25_Shop_Portals.txt): Resources/Shop/Portals/{Map}_Body (the torn rim, its hole empty) and
+        /// {Map}_Swirl (a round four-armed vortex). The swirl turns behind the gate inside its opening - slowly far away, faster,
+        /// larger and brighter as the hero comes near. Until a map's portal is painted, the arched door stands in.</summary>
+        private static readonly System.Collections.Generic.Dictionary<MapTheme, (Sprite body, Sprite swirl)> portals = new System.Collections.Generic.Dictionary<MapTheme, (Sprite, Sprite)>();
+        /// <summary>Each gate's opening in its body art: centre and half size, as shares of the art's width and height (from its
+        /// bottom-left), measured from the painted hole.</summary>
+        public static readonly System.Collections.Generic.Dictionary<MapTheme, Vector4> PortalHoles = new System.Collections.Generic.Dictionary<MapTheme, Vector4>
         {
-            if (portals.TryGetValue(theme, out Sprite[] frames)) return frames;
-            Sprite[] all = Resources.LoadAll<Sprite>("Shop/Portals/" + theme);
-            System.Array.Sort(all, (x, y) => Number(x.name).CompareTo(Number(y.name)));
-            return portals[theme] = all.Length >= PortalFrames * 2 ? all : null;
-            static int Number(string name) { int i = name.Length; while (i > 0 && char.IsDigit(name[i - 1])) i--; return int.TryParse(name.Substring(i), out int n) ? n : 0; }
+            [MapTheme.WaitingRoom] = new Vector4(0.529f, 0.480f, 0.327f, 0.389f),
+            [MapTheme.PostOffice] = new Vector4(0.512f, 0.493f, 0.293f, 0.388f),
+            [MapTheme.LampHall] = new Vector4(0.502f, 0.522f, 0.461f, 0.431f),
+            [MapTheme.ArchiveVault] = new Vector4(0.528f, 0.529f, 0.312f, 0.367f),
+        };
+        public const float PortalHeight = 2.2f;
+        private static (Sprite body, Sprite swirl) Portal(MapTheme theme)
+        {
+            if (portals.TryGetValue(theme, out var p)) return p;
+            Sprite body = Resources.Load<Sprite>("Shop/Portals/" + theme + "_Body"), swirl = Resources.Load<Sprite>("Shop/Portals/" + theme + "_Swirl");
+            return portals[theme] = body != null && swirl != null && PortalHoles.ContainsKey(theme) ? (body, swirl) : (null, null);
         }
+        private Transform swirlHolder; private SpriteRenderer swirlView; private float swirlTurn;
+        private GameObject riftInkHolder; private InkCanvas riftInk, riftLight;
+        private void OnDestroy() { if (riftInkHolder != null) Destroy(riftInkHolder); }
+        /// <summary>The rift's breath, in ink (requirement 24/10/2026): small things of its map drawn in spiralling to the hole (stars
+        /// and gilt flecks, paper scraps, flame motes, pages and ink), and a few wisps of light leaking from the torn rim, curling
+        /// out and fading. Faster and thicker as the hero comes near. Never a ring, a disc or a pool.</summary>
+        private void RiftBreath(MapTheme map, Vector2 centre, Vector2 half, int order, float shown)
+        {
+            if (riftInkHolder == null)
+            {
+                riftInkHolder = new GameObject("Rift breath");
+                riftInk = new InkCanvas(riftInkHolder.transform, "Rift motes", order + 1);
+                riftLight = new InkCanvas(riftInkHolder.transform, "Rift light", order + 3, true);
+            }
+            riftInk.SetOrder(order + 1); riftLight.SetOrder(order + 3);
+            riftInk.Clear(); riftLight.Clear();
+            bool still = PresentationSettings.ReducedMotion;
+            float t = owner.PresentationClock, pull = Mathf.Lerp(.35f, 1.1f, opening);
+            InkPalette ink = map == MapTheme.PostOffice ? ArsenalInk.Cream : map == MapTheme.ArchiveVault ? ArsenalInk.Water : ArsenalInk.Gold;
+            Color glow = map == MapTheme.WaitingRoom ? new Color(.6f, .95f, .9f) : map == MapTheme.PostOffice ? new Color(1f, .9f, .75f) : map == MapTheme.LampHall ? new Color(1f, .8f, .45f) : new Color(.85f, 1f, .95f);
+            int count = still ? 6 : Mathf.RoundToInt(Mathf.Lerp(9, 16, opening));
+            for (int i = 0; i < count; i++)
+            {
+                // each mote starts out beyond the rim and spirals in, shrinking as it is swallowed
+                float life = Mathf.Repeat((still ? .3f : t * pull * .55f) + i / (float)count, 1);
+                float r = Mathf.Lerp(1.9f, .15f, life * life), a = (i * 137.5f + life * 260) * Mathf.Deg2Rad;
+                Vector2 p = centre + new Vector2(Mathf.Cos(a) * half.x * r, Mathf.Sin(a) * half.y * r);
+                Vector2 tangent = new Vector2(-Mathf.Sin(a) * half.x, Mathf.Cos(a) * half.y).normalized;
+                float size = .07f * (1 - .6f * life), alpha = Mathf.Sin(life * Mathf.PI) * shown;
+                if (map == MapTheme.PostOffice || map == MapTheme.ArchiveVault)
+                    riftInk.Stroke(InkCanvas.Line(p - tangent * size, p + tangent * size, 0, 0, false, i), InkStroke.Of(ink, size * 1.1f, alpha, i)); // a scrap of paper
+                else
+                {
+                    riftLight.GlowRibbon(InkCanvas.Line(p - tangent * size * 1.6f, p + tangent * size * .4f, 0, 0, false, i), .2f, 1, size * .9f, new Color(glow.r, glow.g, glow.b, .9f * alpha)); // a mote with a short tail
+                    if (map == MapTheme.WaitingRoom && i % 3 == 0) { riftLight.GlowRibbon(InkCanvas.Line(p - Vector2.right * size, p + Vector2.right * size), 1, 1, size * .3f, new Color(1, .95f, .8f, alpha)); riftLight.GlowRibbon(InkCanvas.Line(p - Vector2.up * size, p + Vector2.up * size), 1, 1, size * .3f, new Color(1, .95f, .8f, alpha)); } // a star
+                }
+            }
+            // light leaking from the rim: short curls that rise out of the tear and fade
+            int wisps = still ? 2 : opening > .5f ? 5 : 3;
+            for (int i = 0; i < wisps; i++)
+            {
+                float life = Mathf.Repeat((still ? .5f : t * .35f) + i / (float)wisps, 1), a = (i * 97 + 40) * Mathf.Deg2Rad;
+                Vector2 rim = centre + new Vector2(Mathf.Cos(a) * half.x * 1.02f, Mathf.Sin(a) * half.y * 1.02f), outward = (rim - centre).normalized;
+                Vector2 tip = rim + outward * (.15f + .35f * life) + Vector2.up * .2f * life + new Vector2(-outward.y, outward.x) * Mathf.Sin(life * 5 + i) * .08f;
+                riftLight.GlowRibbon(InkCanvas.Lob(rim, tip, .1f, 8), 1, 0, .05f * (1 - life * .5f), new Color(glow.r, glow.g, glow.b, (.55f + .3f * opening) * Mathf.Sin(life * Mathf.PI) * shown));
+            }
+            riftInk.Commit(); riftLight.Commit();
+        }
+        private void Swirl(Sprite swirl, Vector4 hole, float shown)
+        {
+            if (swirlHolder == null)
+            {
+                swirlHolder = new GameObject("Portal swirl").transform; swirlHolder.SetParent(view.transform, false);
+                swirlView = new GameObject("Swirl").AddComponent<SpriteRenderer>(); swirlView.transform.SetParent(swirlHolder, false);
+            }
+            swirlHolder.gameObject.SetActive(true);
+            Bounds art = view.sprite.bounds; // in the body's local space
+            Vector3 centre = new Vector3(art.min.x + art.size.x * hole.x, art.min.y + art.size.y * hole.y, 0);
+            swirlHolder.localPosition = centre;
+            float pulse = PresentationSettings.ReducedMotion ? 1 : 1 + .03f * Mathf.Sin(owner.PresentationClock * 2.4f);
+            float grow = Mathf.Lerp(1, 1.08f, opening) * pulse; // a touch larger when it opens (the gate's rim hides the edge)
+            Vector2 size = swirl.bounds.size;
+            swirlHolder.localScale = new Vector3(art.size.x * hole.z * 2.12f / size.x * grow, art.size.y * hole.w * 2.12f / size.y * grow, 1); // the opening, a little over
+            if (!PresentationSettings.ReducedMotion) swirlTurn += Time.deltaTime * Mathf.Lerp(28, 120, opening); // turns faster as the hero comes near
+            swirlView.sprite = swirl; swirlView.transform.localRotation = Quaternion.Euler(0, 0, -swirlTurn);
+            swirlView.sortingOrder = view.sortingOrder - 1; // behind the gate: its rim frames the vortex
+            float lit = Mathf.Lerp(.82f, 1.1f, opening);
+            swirlView.color = new Color(lit, lit, lit, shown);
+            Vector2 half = new Vector2(art.size.x * hole.z, art.size.y * hole.w) * view.transform.lossyScale.x;
+            RiftBreath(currentMap, swirlHolder.position, half, view.sortingOrder, shown);
+        }
+        private MapTheme currentMap;
         public void Configure(ArenaController controller, SpriteRenderer renderer)
         {
             owner = controller; view = renderer;
@@ -77,21 +156,26 @@ namespace ArcaneBrigade
             if (!owner.PresentationPaused) opening = Mathf.MoveTowards(opening, near || owner.HallExitPending ? 1 : 0, Time.deltaTime * 2.5f);
             if (lifecycle == null) lifecycle = GetComponentInParent<MarketLifecycle>();
             // the next night's map decides the portal (it shows where the way leads)
-            Sprite[] portal = Portal(MapIdentity.For(owner.Session.State.Wave + 1));
-            if (portal != null)
+            MapTheme next = MapIdentity.For(owner.Session.State.Wave + 1); currentMap = next;
+            var portal = Portal(next);
+            if (portal.body != null)
             {
-                int loop = PresentationSettings.ReducedMotion ? 0 : (int)(owner.PresentationClock * PortalFps) % PortalFrames;
-                view.sprite = portal[(opening >= .5f ? PortalFrames : 0) + loop];
+                view.sprite = portal.body;
                 transform.localScale = Vector3.one * (PortalHeight / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).height));
-                transform.rotation = Quaternion.identity;
-                Vector3 seat = transform.parent.position + (lifecycle == null ? Vector3.zero : transform.parent.TransformVector(lifecycle.FixtureOffset));
-                WorldSpriteGrounding.Place(view, seat); // it stands on the floor (no hovering)
+                bool still = PresentationSettings.ReducedMotion;
+                transform.rotation = Quaternion.Euler(0, 0, still ? 0 : Mathf.Sin(owner.PresentationClock * .9f) * 1.5f); // it sways a little in the air
+                float lift = .2f + (still ? 0 : Mathf.Sin(owner.PresentationClock * 1.4f) * .06f);
+                Vector3 seat = transform.parent.position + (lifecycle == null ? Vector3.zero : transform.parent.TransformVector(lifecycle.FixtureOffset)) + Vector3.up * lift;
+                WorldSpriteGrounding.Place(view, seat); // it hangs in the air: a rift, not a door
                 view.sortingOrder = WorldSpriteGrounding.SortAt(transform.parent.position.y);
                 float shown = lifecycle == null ? 1 : lifecycle.FixtureVisibility;
                 view.color = new Color(1, 1, 1, shown);
-                grounded.Display(view.sprite, transform.parent.position, 1.5f, 0, .32f * shown);
+                grounded.Display(view.sprite, transform.parent.position, 1.5f, lift, .22f * shown); // a soft shadow on the floor below it
+                Swirl(portal.swirl, PortalHoles[next], shown);
                 return;
             }
+            if (swirlHolder != null) swirlHolder.gameObject.SetActive(false);
+            if (riftInk != null) { riftInk.Hide(); riftLight.Hide(); }
             int frame = PresentationSettings.ReducedMotion ? near ? 2 : 0 : opening < .25f ? 0 : opening < .7f ? 1 : 2 + (Mathf.Sin(owner.PresentationClock * 2) > .6f ? 1 : 0);
             view.sprite = art.Door[frame];
             // the new painted exit (requirement 23/10/2026): closed far away, open with its lamp lit as the hero comes near
