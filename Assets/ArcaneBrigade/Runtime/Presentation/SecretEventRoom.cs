@@ -89,8 +89,9 @@ namespace ArcaneBrigade
             if (owner?.Session == null || SecretEventAssets.Current == null) return;
             SecretEventProgress s = owner.Session.State.Secrets;
             string key = owner.Session.State.RunId + "/" + owner.Session.State.Wave + "/" + owner.Session.State.Phase + "/" + owner.Session.State.OutsideStage + "/" + s?.Stage + "/" + s?.Kind + "/" + s?.Visits + "/" + s?.VisitedMask + "/" + s?.RewardId + "/" + s?.QueuedEvent;
-            if (signature != key) { signature = key; walkingOut = false; returnRift = null; Rebuild(); enteredAt = owner.PresentationClock; selected = 0; hold = 0; armed = false; }
-            if (owner.PresentationPaused || owner.TransitionPending || owner.HallExitPending || closing != null) { hold = 0; return; }
+            if (signature != key) { signature = key; walkingOut = false; picker = 0; returnRift = null; Rebuild(); enteredAt = owner.PresentationClock; selected = 0; hold = 0; armed = false; }
+            if (picker != 0 && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))) picker = 0;
+            if (owner.PresentationPaused || owner.TransitionPending || owner.HallExitPending || closing != null || picker != 0) { hold = 0; return; }
             bool pressed = Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.JoystickButton0);
             bool confirm = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0);
             if (!pressed) armed = true;
@@ -100,7 +101,8 @@ namespace ArcaneBrigade
                 int near = NearestPortal();
                 for (int i = 0; i < portals.Count; i++)
                 {
-                    portals[i].sprite = SecretArt.Portal(kinds[i], i == near);
+                    Sprite look = SecretArt.Portal(kinds[i], i == near);
+                    if (portals[i].sprite != look) { portals[i].sprite = look; Fit(portals[i].transform, look, 1.4f, 1.9f); } // the opened painting is larger: same size on screen
                     float sway = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(owner.PresentationClock * 1.4f + i) * .022f;
                     portals[i].transform.localRotation = Quaternion.Euler(0, 0, sway * 20);
                 }
@@ -130,9 +132,9 @@ namespace ArcaneBrigade
                 gallery = new GameObject("SecretRoom_" + owner.Session.State.Secrets.Kind); gallery.transform.SetParent(transform, false);
                 if (owner.Session.State.Phase == SessionPhase.Shop)
                 {
-                    centerpiece = Prop(gallery.transform, "OpenedSecretDoor", SecretArt.Portal(owner.Session.State.Secrets.Kind, true), new Vector2(0, -.15f), 3.25f, 310);
-                    Prop(gallery.transform, "LeftArtifact", SecretArt.Relic(owner.Session.State.Secrets.Kind), new Vector2(-3, 1.2f), .85f, 310);
-                    Prop(gallery.transform, "RightArtifact", SecretArt.Artifact(owner.Session.State.Secrets.Kind), new Vector2(3, 1.2f), .85f, 310);
+                    centerpiece = Prop(gallery.transform, "OpenedSecretDoor", SecretArt.Portal(owner.Session.State.Secrets.Kind, true), new Vector2(0, -.15f), 3.25f, 310, 4.4f); // wide doorways (the train) keep clear of the curios at either side
+                    Prop(gallery.transform, "LeftArtifact", SecretArt.Relic(owner.Session.State.Secrets.Kind), new Vector2(-3.4f, 1.2f), .85f, 310, 1.1f);
+                    Prop(gallery.transform, "RightArtifact", SecretArt.Artifact(owner.Session.State.Secrets.Kind), new Vector2(3.4f, 1.2f), .85f, 310, 1.1f);
                 }
                 return;
             }
@@ -140,16 +142,17 @@ namespace ArcaneBrigade
             for (int i = 0; i < available.Length; i++)
             {
                 kinds.Add(available[i]);
-                SpriteRenderer p = Prop(transform, "SecretInvitation_" + available[i], SecretArt.Portal(available[i], false), Positions[i], 1.4f, 315); // 1.4 tall: the widest (the train) fits between the wallet and the merchant
+                SpriteRenderer p = Prop(transform, "SecretInvitation_" + available[i], SecretArt.Portal(available[i], false), Positions[i], 1.4f, 315, 1.9f); // 1.4 tall: the widest (the train) fits between the wallet and the merchant
                 portals.Add(p);
                 var glow = new GameObject("PortalGlow"); glow.transform.SetParent(p.transform, false); glow.AddComponent<ShopRarityGlow>().Configure(ItemRarity.Rare, owner, i * 2, p, false);
             }
         }
-        private SpriteRenderer Prop(Transform parent, string name, Sprite sprite, Vector2 at, float height, int order)
+        private static void Fit(Transform t, Sprite sprite, float height, float maxWidth) => t.localScale = Vector3.one * Mathf.Min(height / Mathf.Max(.1f, sprite.bounds.size.y), maxWidth / Mathf.Max(.1f, sprite.bounds.size.x));
+        private SpriteRenderer Prop(Transform parent, string name, Sprite sprite, Vector2 at, float height, int order, float maxWidth = float.PositiveInfinity)
         {
             var obj = new GameObject(name); obj.transform.SetParent(parent, false); obj.transform.localPosition = at;
             SpriteRenderer r = obj.AddComponent<SpriteRenderer>(); r.sprite = sprite; r.sortingOrder = order;
-            obj.transform.localScale = Vector3.one * (height / Mathf.Max(.1f, sprite.bounds.size.y));
+            Fit(obj.transform, sprite, height, maxWidth);
             obj.AddComponent<SuspendedScenery>().Configure(owner, r, at.x * 3 + at.y * 7);
             return r;
         }
@@ -213,7 +216,7 @@ namespace ArcaneBrigade
                     if (!PresentationSettings.ReducedMotion) ArcadeSkin.ScaleAround(Vector2.one * Mathf.Lerp(1, .94f, k), new Vector2(960, 560));
                     GUI.color *= new Color(1, 1, 1, 1 - k);
                 }
-                bool shut = closing != null;
+                bool shut = closing != null || picker != 0; blocked = shut;
                 // the room as plates (play-test 20/10/2026, item 7): the name and one line, your relic in the middle (tap to swap),
                 // three DO / LOSE / GET plates, one confirm button and a small way back
                 // drawn in code (21/10/2026): the room's painted vignette when it has one, a title banner, your relic on a
@@ -278,6 +281,7 @@ namespace ArcaneBrigade
                         GUI.enabled = true;
                         if (ArcadeSkin.DoorTagButton(new Rect(1250, 892, 300, 64), "Back to the shop", card) && !shut) Close(() => owner.LeaveSecret());
                     });
+                    DrawPicker(s); // over everything in the room
                 }
                 else
                 {
@@ -340,7 +344,7 @@ namespace ArcaneBrigade
             ItemDefinition relic = owner.Content.Item(s.TargetItem);
             if (relic?.Icon != null) DrawSprite(ArcadeSkin.PedestalSeat(stand), relic.Icon);
             GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  ⇄" : ""), label);
-            if (GUI.Button(box, GUIContent.none, GUIStyle.none)) CycleTarget(1);
+            if (!blocked && owner.Session.SecretTargets.Count > 1 && GUI.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
                 Rect friend = new Rect(1130, 300, 300, 100);
@@ -348,11 +352,7 @@ namespace ArcaneBrigade
                 UnitDefinition unit = owner.Content.Unit(s.TargetUnit);
                 if (unit?.Body != null) DrawSprite(new Rect(friend.x + 10, friend.y + 10, 80, 80), unit.Body);
                 GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "  ⇄", label);
-                if (GUI.Button(friend, GUIContent.none, GUIStyle.none))
-                {
-                    var roster = owner.Session.State.Roster; int index = roster.FindIndex(r => r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon);
-                    RosterEntry r = roster[(index + 1) % roster.Count]; owner.SecretTarget(r.UnitId, r.WeaponId);
-                }
+                if (!blocked && owner.Session.State.Roster.Count > 1 && GUI.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
             }
         }
         /// <summary>One LOSE (red) or GET (green) row: a coloured tag, a picture when there is one, one short line.</summary>
@@ -367,28 +367,57 @@ namespace ArcaneBrigade
             body.wordWrap = true; GUI.Label(area, text, body);
             body.normal.textColor = keep;
         }
-        private void TargetSelector(SecretEventProgress s)
+        // requirement 24/10/2026 (no tap-to-cycle pickers): the relic or friend you offer is chosen from a popup of all of them
+        private int picker; // 0 closed, 1 relics, 2 friends
+        private float pickerAt;
+        private bool blocked; // a popup or the closing room owns the input this frame
+        private void OpenPicker(int kind) { picker = kind; pickerAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.open"); }
+        private void DrawPicker(SecretEventProgress s)
         {
-            if (s.Kind != SecretEventKind.ImpossibleTailor && s.Kind != SecretEventKind.DeadLetters && s.Kind != SecretEventKind.ThirteenthHour && s.Kind != SecretEventKind.Understudy && s.Kind != SecretEventKind.ContrabandTrain) return;
-            string name = owner.Content.Item(s.TargetItem)?.Name ?? "No eligible relic owned";
-            GUI.DrawTexture(new Rect(550, 310, 820, 72), panel);
-            GUI.Label(new Rect(635, 325, 650, 40), "RELIC: " + name, label);
-            if (ArcadeSkin.SwapArrow(new Rect(555, 314, 64, 64), true)) CycleTarget(-1); // brass swap arrows
-            if (ArcadeSkin.SwapArrow(new Rect(1301, 314, 64, 64), false)) CycleTarget(1);
-            if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
-            {
-                if (GUI.Button(new Rect(550, 392, 820, 49), "FRIEND: " + owner.Content.Unit(s.TargetUnit)?.DisplayName + " / " + s.TargetWeapon + "  >", card))
+            if (picker == 0) return;
+            bool relics = picker == 1;
+            var choices = new List<(string id, string weapon, Sprite icon, string name, bool chosen)>();
+            if (relics)
+                foreach (string id in owner.Session.SecretTargets)
                 {
-                    var roster = owner.Session.State.Roster; int index = roster.FindIndex(r => r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon);
-                    RosterEntry r = roster[(index + 1) % roster.Count]; owner.SecretTarget(r.UnitId, r.WeaponId);
+                    ItemDefinition item = owner.Content.Item(id);
+                    choices.Add((id, "", item?.Icon, item?.Name ?? id, id == s.TargetItem));
                 }
+            else
+                foreach (RosterEntry r in owner.Session.State.Roster)
+                {
+                    UnitDefinition unit = owner.Content.Unit(r.UnitId);
+                    choices.Add((r.UnitId, r.WeaponId, unit?.Body, unit != null ? RunUICopy.UnitName(unit) : r.UnitId, r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon));
+                }
+            Color keep = GUI.color;
+            GUI.color = new Color(0, 0, 0, .55f * Mathf.Clamp01((Time.unscaledTime - pickerAt) / .16f) * keep.a);
+            GUI.DrawTexture(new Rect(0, 0, 1920, 1080), Texture2D.whiteTexture);
+            GUI.color = keep;
+            int columns = Mathf.Clamp(choices.Count, 1, 5), rows = Mathf.Max(1, Mathf.CeilToInt(choices.Count / 5f));
+            const float tile = 160, gap = 16;
+            float w = columns * tile + (columns - 1) * gap + 80, h = rows * (tile + 34) + (rows - 1) * gap + 130;
+            Rect panel = new Rect(960 - w * .5f, 540 - h * .5f, w, h);
+            Matrix4x4 m = GUI.matrix; Color c = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - pickerAt, panel.center);
+            ArcadeSkin.Frame(panel, KitFrame.Dialogue, .6f);
+            GUI.Label(new Rect(panel.x, panel.y + 22, panel.width, 40), relics ? "CHOOSE A RELIC" : "CHOOSE A FRIEND", heading);
+            int picked = -1;
+            for (int i = 0; i < choices.Count; i++)
+            {
+                Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 34 + gap), tile, tile + 34);
+                ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? 1 : 0);
+                if (choices[i].chosen) ArcadeSkin.RunningLight(new Rect(cell.x - 4, cell.y - 4, tile + 8, tile + 8), Time.unscaledTime, new Color(1f, .82f, .45f));
+                if (choices[i].icon != null) DrawSprite(new Rect(cell.x + 22, cell.y + 22, tile - 44, tile - 44), choices[i].icon);
+                GUI.Label(new Rect(cell.x - 6, cell.y + tile + 2, tile + 12, 30), choices[i].name, label);
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;
             }
-        }
-        private void CycleTarget(int step)
-        {
-            string[] items = owner.Session.SecretTargets.ToArray(); if (items.Length == 0) return;
-            int index = Array.IndexOf(items, owner.Session.State.Secrets.TargetItem);
-            owner.SecretTarget(items[(index + step + items.Length) % items.Length]);
+            GUI.matrix = m; GUI.color = c;
+            if (picked >= 0)
+            {
+                if (relics) owner.SecretTarget(choices[picked].id); else owner.SecretTarget(choices[picked].id, choices[picked].weapon);
+                picker = 0;
+            }
+            else if (Event.current.type == EventType.MouseUp && !panel.Contains(Event.current.mousePosition)) { picker = 0; Event.current.Use(); } // a tap outside closes it
         }
         private void DrawSprite(Rect rect, Sprite sprite)
         {

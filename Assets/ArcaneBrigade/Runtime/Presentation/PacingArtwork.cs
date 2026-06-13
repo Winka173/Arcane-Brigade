@@ -12,7 +12,9 @@ namespace ArcaneBrigade
         public static Sprite Bell(RunCatalog catalog) { Load(catalog); return bell; }
         /// <summary>The prism shard: painted art from MienCho/ActOne/Pickup_PrismShard when it arrives, the Rainbow Prism relic until then.</summary>
         public static Sprite Prism(RunCatalog catalog) { Load(catalog); return prism; }
-        public static Sprite For(LootKind kind, RunCatalog catalog) => kind == LootKind.Flare ? Flare(catalog) : kind == LootKind.Bell ? Bell(catalog) : kind == LootKind.Prism ? Prism(catalog) : null;
+        public static Sprite For(LootKind kind, RunCatalog catalog) => kind == LootKind.Flare ? Flare(catalog) : kind == LootKind.Bell ? Bell(catalog) : kind == LootKind.Prism ? Prism(catalog) : kind >= LootKind.Magnet ? Toy(kind, catalog) : null;
+        /// <summary>The toy drops' paintings (Resources/Pickups/Pickup_Magnet, _Spring, _Globe); the bell stands in until they exist.</summary>
+        public static Sprite Toy(LootKind kind, RunCatalog catalog) => Resources.Load<Sprite>("Pickups/Pickup_" + kind) ?? Bell(catalog);
 
         private static void Load(RunCatalog catalog)
         {

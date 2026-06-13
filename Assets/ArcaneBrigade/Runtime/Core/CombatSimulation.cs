@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
     public enum CompanionTravelMode { Patrol, Pursuit }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast, Detonation, Flare, Bell, BodyLaunched, BodyImpact, WallSplat, Strike, ChainBlast }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast, Detonation, Flare, Bell, BodyLaunched, BodyImpact, WallSplat, Strike, ChainBlast, MagnetPull, SpringBurst, GlobeFreeze }
 
     public readonly struct CombatEvent
     {
@@ -1207,6 +1207,7 @@ namespace ArcaneBrigade
                     pickups.RemoveAt(index);
                     continue;
                 }
+                if (pickup.Kind == LootKind.Coin && !pickup.Attracting && Elapsed < MagnetUntil) { pickup.Attracting = pickup.Vacuumed = true; } // the horseshoe is still pulling
                 if (!pickup.Attracting && difference.sqrMagnitude <= RelicPickupRadius * RelicPickupRadius)
                 {
                     pickup.Attracting = true;
@@ -1228,6 +1229,7 @@ namespace ArcaneBrigade
                 if (pickup.Kind == LootKind.Flare) { LanternFlare(); if (Phase != RunPhase.Combat) return; }
                 else if (pickup.Kind == LootKind.Bell) RingBell();
                 else if (pickup.Kind == LootKind.Prism) PrismShards++;
+                else if (pickup.Kind >= LootKind.Magnet) PlayToy(pickup.Kind);
             }
         }
 

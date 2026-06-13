@@ -71,7 +71,7 @@ namespace ArcaneBrigade
             Vector2 head = new Vector2(body.center.x, body.max.y + .08f + (still ? 0 : Mathf.Sin(now * 2.2f) * .025f));
             List<Vector2> crown = InkCanvas.Line(head + Vector2.left * w * .2f, head + Vector2.right * w * .2f, w * .07f, 3, true, 1);
             if (reveal < 1) { int keep = Mathf.Max(2, Mathf.RoundToInt(crown.Count * Mathf.Clamp01(reveal))); crown.RemoveRange(keep, crown.Count - keep); }
-            air.GlowRibbon(crown, 1, 1, w * .16f, new Color(Gold.r, Gold.g, Gold.b, .32f));
+            air.GlowRibbon(crown, 1, 0, w * .16f, new Color(Gold.r, Gold.g, Gold.b, .32f));
             air.Stroke(crown, Brush(.03f, .95f));
             if (still || reveal < 1) return;
             air.Ticks(body.center, body.extents.magnitude * .95f, 5, .07f, .018f, now * 40, new Color(Violet.r, Violet.g, Violet.b, .7f));

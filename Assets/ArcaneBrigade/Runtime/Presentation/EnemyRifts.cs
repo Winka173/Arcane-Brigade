@@ -37,7 +37,7 @@ namespace ArcaneBrigade
                 float age = now - t.Born;
                 // it tears open fast, holds while the body steps out, then pinches shut from both ends
                 float open = age < Open ? Mathf.SmoothStep(0, 1, age / Open) : 1 - Mathf.SmoothStep(0, 1, (age - Open) / (Life - Open));
-                float half = t.Height * .5f * Mathf.Lerp(.35f, 1, Mathf.Sqrt(open)), width = .26f * open;
+                float half = t.Height * .5f * Mathf.Lerp(.35f, 1, Mathf.Sqrt(open)), width = .42f * open;
                 Vector2 top = t.At + new Vector2(.04f, half), bottom = t.At - new Vector2(.04f, half);
                 List<Vector2> slit = InkCanvas.Line(top, bottom, .05f, 0, true, t.Seed);
                 light.GlowRibbon(slit, 1, 0, width * 3.2f, new Color(.62f, .36f, .95f, .55f * open));
@@ -51,7 +51,7 @@ namespace ArcaneBrigade
                         float k = i / 6f, bulge = Mathf.Sin(k * Mathf.PI) * width * .55f;
                         edge.Add(Vector2.Lerp(top, bottom, k) + Vector2.right * side * (bulge + ((i + t.Seed) % 2 == 0 ? .015f : -.01f)));
                     }
-                    light.GlowRibbon(edge, 1, 0, .045f, new Color(.85f, .7f, 1f, .9f * open));
+                    light.GlowRibbon(edge, 1, 0, .09f, new Color(.85f, .7f, 1f, .9f * open));
                 }
             }
             canvas.Commit(); light.Commit();

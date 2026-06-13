@@ -57,7 +57,33 @@ namespace ArcaneBrigade
         // the pause menu's page: 0 the menu, 1 settings, 2 "start over?"
         private int pausePage;
         private GUIStyle dangerButton;
-        private float terminalAt = -1, resultsAt = -1;
+        private float terminalAt = -1, resultsAt = -1, gaugeHelpAt = -1;
+        /// <summary>What the bar under the health bar is: the hero's own move, what fills it, and what happens when it is full.
+        /// Opens from the "i" beside it and closes on a second tap, a tap elsewhere or after eight seconds.</summary>
+        private void DrawGaugeHelp(ArenaController owner, RunSnapshot state)
+        {
+            if (gaugeHelpAt < 0) return;
+            if (Time.unscaledTime - gaugeHelpAt > 8) { gaugeHelpAt = -1; return; }
+            HeroIdentityDefinition identity = HeroIdentities.For(state.ChampionId);
+            string heading = owner.Simulation.HeroIdentityEnabled ? identity.Name : "TRANSFORMATION";
+            string copy = owner.Simulation.HeroIdentityEnabled ? FirstSentences(identity.Description, 2) : "Fills as you fight. When it is full, you transform for a while and hit much harder.";
+            Rect card = new Rect(230, 100, 600, 156);
+            Matrix4x4 m = GUI.matrix; Color c = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - gaugeHelpAt, card.center);
+            ArcadeSkin.Frame(card, KitFrame.Dialogue, .6f);
+            Rect inner = ArcadeSkin.Content(card, KitFrame.Dialogue);
+            GUI.Label(new Rect(inner.x, inner.y, inner.width, 30), heading, title);
+            small.wordWrap = true; GUI.Label(new Rect(inner.x, inner.y + 34, inner.width, inner.height - 34), copy, small);
+            GUI.matrix = m; GUI.color = c;
+            if (Event.current.type == EventType.MouseUp && !card.Contains(Event.current.mousePosition) && !new Rect(100, 70, 60, 50).Contains(Event.current.mousePosition)) gaugeHelpAt = -1;
+        }
+        private static string FirstSentences(string text, int count)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            int at = -1;
+            for (int i = 0; i < count; i++) { int next = text.IndexOf(". ", at + 1, System.StringComparison.Ordinal); if (next < 0) return text; at = next + 1; }
+            return text.Substring(0, at).Trim();
+        }
         private float shownHealth, shownGauge, goldGain, goldGainAt = -10;
         private float shownGold, shownEggs, nextWalletTick, nextHeartbeat, heartbeatAt = -10;
         private int pauseShown = -1, pauseDrawnFrame = -10; private float pauseAt;
@@ -303,6 +329,11 @@ namespace ArcaneBrigade
                 if (PresentationSettings.ReducedMotion) shownGauge = gauge;
                 else if (Event.current.type == EventType.Repaint) shownGauge = Mathf.MoveTowards(shownGauge, gauge, Time.unscaledDeltaTime * (gauge > shownGauge ? 2.5f : 6f));
                 ArcadeSkin.Line(new Rect(charge.x, charge.y, charge.width * shownGauge, charge.height), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
+                // the gauge says what it is (requirement 25/10/2026: icons are tappable and explained): a small brass "i" at its start
+                Rect help = new Rect(charge.x - 30, charge.y - 11, 26, 26);
+                Rect face = ArcadeSkin.RoundArt(help, KitRound.Brass, help.Contains(Event.current.mousePosition) ? 1 : 0);
+                ArcadeSkin.KitCaption(face, "i", ArcadeSkin.KitInk, small, true);
+                if (GUI.Button(help, GUIContent.none, GUIStyle.none)) { gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
                 if (simulation.HeroIdentityEnabled)
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
@@ -420,6 +451,7 @@ namespace ArcaneBrigade
             waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);
             if (state.Phase == SessionPhase.Combat && !owner.TransitionPending) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { coach.Draw(owner, camera); guide.Draw(owner); }
+            if (state.Phase == SessionPhase.Combat) DrawGaugeHelp(owner, state); else gaugeHelpAt = -1;
             cutIn.Draw(new Vector2(1920, 1080));
             navigation.End();
             GUI.matrix = previous;

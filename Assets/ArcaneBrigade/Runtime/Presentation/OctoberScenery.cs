@@ -103,8 +103,8 @@ namespace ArcaneBrigade
                     riftInk.Stroke(InkCanvas.Line(p - tangent * size, p + tangent * size, 0, 0, false, i), InkStroke.Of(ink, size * 1.1f, alpha, i)); // a scrap of paper
                 else
                 {
-                    riftLight.GlowRibbon(InkCanvas.Line(p - tangent * size * 1.6f, p + tangent * size * .4f, 0, 0, false, i), .2f, 1, size * .9f, new Color(glow.r, glow.g, glow.b, .9f * alpha)); // a mote with a short tail
-                    if (map == MapTheme.WaitingRoom && i % 3 == 0) { riftLight.GlowRibbon(InkCanvas.Line(p - Vector2.right * size, p + Vector2.right * size), 1, 1, size * .3f, new Color(1, .95f, .8f, alpha)); riftLight.GlowRibbon(InkCanvas.Line(p - Vector2.up * size, p + Vector2.up * size), 1, 1, size * .3f, new Color(1, .95f, .8f, alpha)); } // a star
+                    riftLight.GlowRibbon(InkCanvas.Line(p - tangent * size * 1.6f, p + tangent * size * .4f, 0, 0, false, i), 1, .2f, size * .9f, new Color(glow.r, glow.g, glow.b, .9f * alpha)); // a mote with a short tail
+                    if (map == MapTheme.WaitingRoom && i % 3 == 0) { riftLight.GlowRibbon(InkCanvas.Line(p - Vector2.right * size, p + Vector2.right * size), 1, 0, size * .3f, new Color(1, .95f, .8f, alpha)); riftLight.GlowRibbon(InkCanvas.Line(p - Vector2.up * size, p + Vector2.up * size), 1, 0, size * .3f, new Color(1, .95f, .8f, alpha)); } // a star
                 }
             }
             // light leaking from the rim: short curls that rise out of the tear and fade
@@ -125,7 +125,7 @@ namespace ArcaneBrigade
                 InkPalette bit = map == MapTheme.WaitingRoom ? ArsenalInk.Gold : map == MapTheme.PostOffice ? (i % 2 == 0 ? ArsenalInk.Cream : ArsenalInk.Wine) : map == MapTheme.LampHall ? ArsenalInk.Glass : ArsenalInk.Cream;
                 float thick = map == MapTheme.PostOffice || map == MapTheme.ArchiveVault ? .11f : .07f; // stamps and pages are broad, shards slim
                 riftInk.Stroke(InkCanvas.Line(p - along, p + along, 0, 0, false, 40 + i), InkStroke.Of(bit, thick, .95f * shown, 40 + i));
-                if (flip > .85f) riftLight.GlowRibbon(InkCanvas.Line(p - along * .6f, p + along * .6f), 1, 1, .04f, new Color(1f, .95f, .8f, (flip - .85f) * 5 * .8f * shown)); // the glint as it faces you
+                if (flip > .85f) riftLight.GlowRibbon(InkCanvas.Line(p - along * .6f, p + along * .6f), 1, 0, .04f, new Color(1f, .95f, .8f, (flip - .85f) * 5 * .8f * shown)); // the glint as it faces you
             }
             // now and then a crack of light runs along the torn rim, as if it were still tearing
             float crackClock = still ? 0 : t / 1.6f;

@@ -65,11 +65,11 @@ namespace ArcaneBrigade
                 float k = Mathf.Clamp01((t - Hold) / (Close - Hold)), fade = t > Close ? 1 - (t - Close) / .15f : 1;
                 Vector2 c = transform.position, half = new Vector2(.75f, .9f) * (1 - .35f * k);
                 Color seam = new Color(1f, .92f, .68f, .9f * fade);
-                stitches.GlowRibbon(InkCanvas.Line(c - Vector2.up * half.y, c + Vector2.up * half.y), 1, 1, .05f, seam);
+                stitches.GlowRibbon(InkCanvas.Line(c - Vector2.up * half.y, c + Vector2.up * half.y), 1, 0, .1f, seam);
                 for (int i = 0; i < 5; i++)
                 {
                     float y = Mathf.Lerp(-half.y * .8f, half.y * .8f, i / 4f), w = Mathf.Lerp(.35f, .12f, k);
-                    stitches.GlowRibbon(InkCanvas.Line(c + new Vector2(-w, y - .06f), c + new Vector2(w, y + .06f)), 1, 1, .035f, seam);
+                    stitches.GlowRibbon(InkCanvas.Line(c + new Vector2(-w, y - .06f), c + new Vector2(w, y + .06f)), 1, 0, .07f, seam);
                 }
             }
             stitches.Commit();

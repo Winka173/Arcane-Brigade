@@ -155,6 +155,17 @@ namespace ArcaneBrigade
                 yield return Film("gate-near", t => { var o = Owner; if (o?.Simulation != null) o.Simulation.Champion.Position = WorldShop.ExitPosition + new Vector2(1.3f, .3f); }, 2.4f);
                 ArenaController.ScriptedMove = null;
             }
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-toys") >= 0)
+            {
+                // review: the three toy drops, each picked up in a crowd (toy-Kind-NN, a frame every 0.15 s)
+                yield return Load(catalog, storage, "LanternKnight", 6, false, team);
+                foreach (LootKind kind in new[] { LootKind.Magnet, LootKind.Spring, LootKind.Globe })
+                {
+                    yield return new WaitForSecondsRealtime(3f);
+                    Owner?.Simulation?.DropToyForCapture(kind);
+                    for (int f = 0; f < 10; f++) { yield return Grab("toy-" + kind + "-" + f.ToString("00"), f); yield return new WaitForSecondsRealtime(.15f); }
+                }
+            }
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-waveend") >= 0)
             {
                 // review: the end of a wave into the shop, a frame every 0.12 s

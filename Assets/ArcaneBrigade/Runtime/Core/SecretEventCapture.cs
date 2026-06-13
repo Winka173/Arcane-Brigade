@@ -72,6 +72,7 @@ namespace ArcaneBrigade
                 Check(owner.Shop.Nearby == null && owner.Shop.Stations.Count >= 0 && owner.SecretRoom.MenuOpen, "Shop interaction replaced by room choices " + k);
                 yield return Shot("room-" + k + "-choices");
                 int option = k == 0 || k == 2 || k == 6 ? 0 : k == 1 ? 2 : k == 7 ? 2 : 0;
+                owner.Session.State.Gold = Mathf.Max(owner.Session.State.Gold, 500); // the fixture's purse (the brass crate costs 172 at shop 8)
                 Check(owner.ChooseSecret(option), "Native commits choice " + k);
                 if (owner.Session.SecretFighting)
                 {
@@ -88,9 +89,9 @@ namespace ArcaneBrigade
                         owner.Simulation.Champion.Definition.Weapon.Damage = 1000000;
                         owner.Simulation.Champion.Definition.Weapon.Cooldown = .1f;
                     }
-                    float deadline = Time.realtimeSinceStartup + 12;
+                    float deadline = Time.realtimeSinceStartup + 45;
                     while (owner.Session.State.Phase != SessionPhase.Shop && Time.realtimeSinceStartup < deadline) yield return null;
-                    yield return new WaitForSecondsRealtime(2.8f);
+                    yield return new WaitForSecondsRealtime(4f); // a boss fall plays DeathFeedback.DurationBoss + 1 s before the room returns
                     Check(owner.ClaimSecret(), "Native battle reward claims " + k);
                 }
                 yield return new WaitForSecondsRealtime(.3f);

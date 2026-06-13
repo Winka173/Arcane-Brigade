@@ -268,10 +268,10 @@ namespace ArcaneBrigade
                     break;
                 case CombatEventKind.Pickup:
                     // requirement (22/10/2026): picking up gold, HP and eggs is silent
-                    id = value.Loot == LootKind.Egg || value.Loot == LootKind.Heart || value.Loot == LootKind.Coin ? null : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
+                    id = value.Loot == LootKind.Egg || value.Loot == LootKind.Heart || value.Loot == LootKind.Coin ? null : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell || value.Loot >= LootKind.Magnet ? "sig.bell" : "loot.coin.pickup";
                     break;
                 case CombatEventKind.Flare: id = "sig.alarm.boom"; gainScale = 1.2f; break;
-                case CombatEventKind.Bell: id = "loot.coin.vacuum"; gainScale = 1.15f; break;
+                case CombatEventKind.Bell: case CombatEventKind.MagnetPull: id = "loot.coin.vacuum"; gainScale = 1.15f; break;
                 case CombatEventKind.Heal: id = "plr.heal"; break;
                 case CombatEventKind.ChestOpened: id = "loot.chest.open"; break;
                 case CombatEventKind.Dodge: id = "plr.dodge"; break;

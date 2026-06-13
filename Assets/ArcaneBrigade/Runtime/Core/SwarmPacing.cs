@@ -62,6 +62,8 @@ namespace ArcaneBrigade
             flareAt = catalog.RunWave >= 3 && catalog.ExtendedLoot ? duration * (0.35f + (float)lootRandom.NextDouble() * 0.3f) : float.PositiveInfinity;
             bellAt = catalog.RunWave >= 2 && catalog.ExtendedLoot ? duration * (0.5f + (float)lootRandom.NextDouble() * 0.25f) : float.PositiveInfinity;
             flaresDropped = bellsDropped = 0;
+            toyAt = catalog.RunWave >= 2 && catalog.ExtendedLoot ? duration * (0.2f + (float)lootRandom.NextDouble() * 0.25f) : float.PositiveInfinity;
+            toysDropped = 0; MagnetUntil = 0;
             SweptGold = SweptCoins = 0; sweptPieces.Clear();
             lastBossFraction = 1;
         }
@@ -300,6 +302,11 @@ namespace ArcaneBrigade
                 DropLoot(LootKind.Flare, target.Position, 1); flaresDropped++;
                 flareAt = Elapsed + Mathf.Max(18f, catalog.WaveDuration * 0.35f);
             }
+            else if (toysDropped < (catalog.RunWave >= 8 ? 2 : 1) && Elapsed >= toyAt && !target.SwarmMinion)
+            {
+                DropLoot(NextToy(), target.Position, 1); toysDropped++;
+                toyAt = Elapsed + Mathf.Max(15f, catalog.WaveDuration * 0.3f);
+            }
             else if (bellsDropped < bells && Elapsed >= bellAt)
             {
                 int coins = 0; foreach (PickupState pickup in pickups) if (pickup.Kind == LootKind.Coin) coins++;
@@ -307,6 +314,56 @@ namespace ArcaneBrigade
                 DropLoot(LootKind.Bell, target.Position, 1); bellsDropped++;
                 bellAt = Elapsed + Mathf.Max(16f, catalog.WaveDuration * 0.3f);
             }
+        }
+
+        // ---- the toy drops (requirement 25/10/2026): a horseshoe magnet, a jack-in-the-box and a snow globe ---------------
+        public const float MagnetSeconds = 8, SpringRadius = 3.4f, SpringPush = 2.4f, GlobeRadius = 3.8f, GlobeFreeze = 2.2f;
+        private float toyAt; private int toysDropped;
+        /// <summary>While the horseshoe pulls, every coin on the floor flies to the hero.</summary>
+        public float MagnetUntil { get; private set; }
+        /// <summary>The toys take turns over the run; a magnet with few coins about gives its turn to the jack-in-the-box.</summary>
+        private LootKind NextToy()
+        {
+            LootKind kind = (LootKind)((int)LootKind.Magnet + (catalog.RunWave + toysDropped) % 3);
+            if (kind == LootKind.Magnet) { int coins = 0; foreach (PickupState p in pickups) if (p.Kind == LootKind.Coin) coins++; if (coins < 8) kind = LootKind.Spring; }
+            return kind;
+        }
+        private void PlayToy(LootKind kind)
+        {
+            CombatCause cause = NewCause(Champion.Id).Child("toy-" + kind.ToString().ToLowerInvariant());
+            Vector2 at = Champion.Position;
+            if (kind == LootKind.Magnet)
+            {
+                MagnetUntil = Elapsed + MagnetSeconds;
+                events.Add(new CombatEvent(CombatEventKind.MagnetPull, at, Faction.Champion, MagnetSeconds, cause: cause));
+                return;
+            }
+            int touched = 0;
+            for (int index = 0; index < units.Count; index++)
+            {
+                UnitState enemy = units[index];
+                if (!enemy.Alive || enemy.Faction != Faction.Enemy) continue;
+                Vector2 away = enemy.Position - at; float distance = away.magnitude;
+                if (kind == LootKind.Spring)
+                {
+                    // the jack springs out: everything near is flung away, the nearest the furthest; a boss only rocks
+                    if (distance > SpringRadius) continue;
+                    away = distance > .001f ? away / distance : Vector2.up;
+                    float push = enemy.Definition.IsBoss ? .25f : SpringPush * (1 - .5f * distance / SpringRadius);
+                    enemy.Position = ClampPosition(enemy.Position + away * push, enemy.Definition.Radius); spatial.Move(enemy);
+                    if (!enemy.Definition.IsBoss) enemy.StaggerUntil = Mathf.Max(enemy.StaggerUntil, Elapsed + .45f);
+                    events.Add(new CombatEvent(CombatEventKind.Knockback, enemy.Position, Faction.Champion, push, away, subjectId: enemy.Id, subject: enemy, cause: cause));
+                }
+                else
+                {
+                    // the globe is shaken: everything near freezes in place; a boss is only slowed
+                    if (distance > GlobeRadius) continue;
+                    if (enemy.Definition.IsBoss) { enemy.KitSlowUntil = Mathf.Max(enemy.KitSlowUntil, Elapsed + GlobeFreeze); enemy.KitSlow = Mathf.Max(enemy.KitSlow, .4f); }
+                    else Freeze(enemy, GlobeFreeze);
+                }
+                touched++;
+            }
+            events.Add(new CombatEvent(kind == LootKind.Spring ? CombatEventKind.SpringBurst : CombatEventKind.GlobeFreeze, at, Faction.Champion, touched, cause: cause));
         }
 
         /// <summary>The Lantern Flare: everything small on screen is burnt away; bigger things are scorched; hostile shots go out.</summary>

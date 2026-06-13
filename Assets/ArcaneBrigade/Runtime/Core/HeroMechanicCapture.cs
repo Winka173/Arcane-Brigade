@@ -314,6 +314,8 @@ namespace ArcaneBrigade
         }
         /// <summary>Capture-only (How to Play review): the wave ends as a win now.</summary>
         public void ForceVictoryForCapture() { if (HowToRecorder.Requested && Phase == RunPhase.Combat) Phase = RunPhase.Victory; }
+        /// <summary>Capture-only: a toy pickup lands right at the hero's feet.</summary>
+        public void DropToyForCapture(LootKind kind) { if (HowToRecorder.Requested && Phase == RunPhase.Combat) DropLoot(kind, Champion.Position, 1); }
         /// <summary>Capture-only: keeps the hero's trigger topped up until the real mechanic casts.</summary>
         public void FillGaugeForCapture()
         {
