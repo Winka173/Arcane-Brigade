@@ -7,7 +7,9 @@ namespace ArcaneBrigade
         public const float WaveSeconds = 52; // 45 before the play-test (+15%, D9)
         public const float EnemyHealthRelief = 1.03f; // 18/10/2026: was .75; hero kits made the brigade stronger. 24/10/2026: .95 -> 1.03 (requirement: all difficulties a little tougher)
         public const float EnemyDamageRelief = .96f; // 18/10/2026: was .8
-        public const float BossHealthRelief = .6f;
+        public const float BossHealthRelief = .5f; // requirement 24/10/2026: was .6 - long boss fights farmed the overtime swarm's gold
+        /// <summary>A boss night lasts this much longer before the boss's overtime swarm begins (requirement 24/10/2026).</summary>
+        public const float BossExtraSeconds = 30;
         public const float BossDamageRelief = .7f; // round 3 (19/10/2026, play-test: boss waves too hard): was .9, -22% on everything a boss deals
         public const float NormalEnemyHealth = 1.1f; // round 3: ordinary (non-boss) enemies +10% health, normal waves felt a little easy
         public static float Crowd(int count) => Mathf.Clamp01((count - 10) / (float)(AllySoftLimit - 10));

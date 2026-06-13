@@ -16,6 +16,8 @@ namespace ArcaneBrigade
         private InkCanvas stitches; private GameObject stitchHolder;
         /// <summary>When the latest rift is stitched shut (unscaled time); the wave stamp waits for it.</summary>
         public static float ClosesAt { get; private set; } = -10;
+        /// <summary>A rift is about to open: voices raised while the night is built already wait for it.</summary>
+        public static void Expect() { ClosesAt = Time.unscaledTime + Close; }
 
         public static ArrivalRift Play(MapTheme theme, Vector2 centre, int order)
         {

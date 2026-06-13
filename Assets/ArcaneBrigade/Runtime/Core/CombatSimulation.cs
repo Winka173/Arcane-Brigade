@@ -961,6 +961,18 @@ namespace ArcaneBrigade
             RelicEmitted(unit, relicFirst);
         }
 
+        /// <summary>Requirement 24/10/2026: running through a crowd of small enemies could take the whole health bar in an instant.
+        /// Their touches together deal at most ContactShare of the hero's maximum health in any ContactWindow seconds; a boss's own
+        /// body is not limited.</summary>
+        public const float ContactShare = .15f, ContactWindow = 1f;
+        private float contactWindowStart = -10, contactWindowDamage;
+        private float CrowdContactLimit(float damage)
+        {
+            if (Elapsed - contactWindowStart >= ContactWindow) { contactWindowStart = Elapsed; contactWindowDamage = 0; }
+            float room = Mathf.Max(0, Champion.Definition.Health * ContactShare - contactWindowDamage);
+            damage = Mathf.Min(damage, room); contactWindowDamage += damage;
+            return damage;
+        }
         private void ProcessContact(UnitState enemy)
         {
             if (enemy.Variant != null && (enemy.Variant.ReleaseAt > 0 || enemy.Variant.RecoveryUntil > Elapsed || enemy.Variant.TravelEnd > Elapsed)) return;
@@ -997,6 +1009,7 @@ namespace ArcaneBrigade
             enemy.NextContact = Elapsed + enemy.Definition.ContactInterval;
             Vector2 impactDirection = (Champion.Position - enemy.Position).normalized;
             float contactDamage = enemy.Definition.ContactDamage * (enemy.Definition.IsBoss ? BossBodyShape.ContactDamageScale : 1) * HeroBodyGuard();
+            if (!enemy.Definition.IsBoss) contactDamage = CrowdContactLimit(contactDamage);
             StrikeChampionCollision(enemy);
             if (contactDamage > 0) ApplyDamage(Champion, contactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", impactDirection, cause: NewCause(enemy.Id));
         }

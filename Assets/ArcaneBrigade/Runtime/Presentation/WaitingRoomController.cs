@@ -246,7 +246,7 @@ namespace ArcaneBrigade
         {
             if(session==null)return false;session.State.WaitingCampaign.Room=0;
             if(!Save()){session.State.WaitingCampaign.Room=room;return false;}
-            RunLaunch.Resume=true;SceneManager.LoadScene("RunArena");return true;
+            RunLaunch.Resume=true;SceneDissolve.Load("RunArena");return true;
         }
         private void ApplyChoices()
         {

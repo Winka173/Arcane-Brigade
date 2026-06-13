@@ -250,7 +250,7 @@ namespace ArcaneBrigade
             RunLaunch.StartFriend = nurseryPick; RunLaunch.AltStarter = altCoat; RunLaunch.SecondHabit = habit;
             RunLaunch.Keepsake = keepsakePick; RunLaunch.Daily = dailyDay;
             if (dailyDay != null) { RunLaunch.Difficulty = 0; RunLaunch.ChallengeIndex = 0; }
-            SceneManager.LoadScene("RunArena");
+            SceneDissolve.Load("RunArena"); // hero select melts into the first night
         }
 
         private bool Button(Rect rectangle, string caption) => navigation.Button(rectangle, caption, button);

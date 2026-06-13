@@ -60,10 +60,12 @@ namespace ArcaneBrigade
                 if (bubbles[drop].Priority > priority) return null;
                 bubbles.RemoveAt(drop);
             }
+            // a voice raised while the brigade steps out of its rift waits until the rift is stitched shut, so it never covers it
+            float wait = tone == SpeechTone.Whisper ? 0 : Mathf.Max(0, ArrivalRift.ClosesAt - now);
             var created = new SpeechBubble
             {
                 Speaker = speaker, Name = name, Text = ArcadeTypography.DisplayText(text), Anchor = anchor, Tone = tone, Prefer = prefer, Priority = priority,
-                Began = now, Expires = now + (seconds > 0 ? seconds : Lifetime(text))
+                Began = now + wait, Expires = now + wait + (seconds > 0 ? seconds : Lifetime(text))
             };
             bubbles.Add(created);
             if (tone == SpeechTone.Companion || tone == SpeechTone.Story) LastCompanionAt = now;
@@ -157,6 +159,7 @@ namespace ArcaneBrigade
             foreach (SpeechBubble bubble in order)
             {
                 bubble.Drawn = false;
+                if (now < bubble.Began) continue; // still waiting for its moment
                 if (bubble.Tone == SpeechTone.Whisper) { DrawWhisper(bubble, now, reduced); continue; }
                 Vector2 anchor;
                 bool tailed = bubble.Tone != SpeechTone.Offscreen;

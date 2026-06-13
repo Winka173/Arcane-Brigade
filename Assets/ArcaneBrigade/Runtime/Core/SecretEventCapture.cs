@@ -57,7 +57,7 @@ namespace ArcaneBrigade
                 for (int seed = 0; seed < 500 && !saved; seed++)
                 using (var s = new RunSession(c))
                 {
-                    s.Start("LanternKnight", seed); s.State.Wave = 7; s.State.Phase = SessionPhase.Shop; s.State.Gold = 200;
+                    s.Start("LanternKnight", seed); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; // a secret shop (ActOneCanon.SecretShop: 3, 8, 13, 18) s.State.Gold = 200;
                     s.State.Items.Add(new ItemStack { Id = c.Items.First(i => !i.Id.StartsWith("Secret") && i.Rarity < ItemRarity.Crimson && i.EffectiveModifiers.Any(m => m.Value > 0)).Id, Count = 1 });
                     s.State.Roster.Add(new RosterEntry { UnitId = c.Companions.First(u => u.Id != s.State.Roster[0].UnitId && !u.Id.StartsWith("Secret") && u.Rarity < ItemRarity.Crimson).Id, WeaponId = c.Weapons.First(w => w.Kind == WeaponKind.Projectile && !w.SpecialOnly).Id });
                     if (!Array.Exists(s.SecretPortals(), kind => (int)kind == k)) continue;
@@ -97,7 +97,7 @@ namespace ArcaneBrigade
                 yield return Shot("room-" + k + "-result");
                 Check(owner.LeaveSecret(), "Native returns to saved shop " + k);
                 yield return new WaitForSecondsRealtime(.4f);
-                Check(owner.Session.State.Phase == SessionPhase.Shop && owner.Session.State.Wave == 7 && !owner.Session.SecretRoomOpen, "Normal flow preserved " + k);
+                Check(owner.Session.State.Phase == SessionPhase.Shop && owner.Session.State.Wave == 8 && !owner.Session.SecretRoomOpen, "Normal flow preserved " + k);
             }
             Check(!failed, "All native secret-event checks passed"); Application.Quit(failed ? 1 : 0);
         }

@@ -57,6 +57,8 @@ namespace ArcaneBrigade
         // the pause menu's page: 0 the menu, 1 settings, 2 "start over?"
         private int pausePage;
         private GUIStyle dangerButton;
+        private float terminalAt = -1, resultsAt = -1;
+        private float shownHealth, shownGauge, goldGain, goldGainAt = -10;
         private float shownGold, shownEggs, nextWalletTick, nextHeartbeat, heartbeatAt = -10;
         private int pauseShown = -1, pauseDrawnFrame = -10; private float pauseAt;
         /// <summary>The pause menu and its pages, each opening with the shared pop (requirement 24/10/2026).</summary>
@@ -230,7 +232,7 @@ namespace ArcaneBrigade
             if (owner.Content.StatRevision > 0) maximum = K10StatRules.MaximumHealth(session, owner.Content);
             int gold = RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0));
             int eggs = RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0));
-            if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; shownGold = gold; shownEggs = eggs; }
+            if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; shownGold = gold; shownEggs = eggs; shownHealth = health; goldGain = 0; }
             // P2: the counters run up to the new total (a soft tick per step while gold comes in); spending runs down silently
             if (Event.current.type == EventType.Repaint)
             {
@@ -240,7 +242,12 @@ namespace ArcaneBrigade
                 shownEggs = PresentationSettings.ReducedMotion ? eggs : Mathf.MoveTowards(shownEggs, eggs, Mathf.Max(6 * step, Mathf.Abs(eggs - shownEggs) * 10 * step));
                 if (rise >= 1 && !PresentationSettings.ReducedAudio && Time.unscaledTime >= nextWalletTick) { nextWalletTick = Time.unscaledTime + 0.07f; CheckpointAudio.PlayInterfaceId("loot.coin.bounce"); }
             }
-            if (lastGold != gold) { goldChanged = simulation.VisualElapsed; lastGold = gold; }
+            if (lastGold != gold)
+            {
+                // gold coming in gathers into one +N beside the counter, so a stream of coins reads as one sum
+                if (gold > lastGold) { if (Time.unscaledTime - goldGainAt > 1.1f) goldGain = 0; goldGain += gold - lastGold; goldGainAt = Time.unscaledTime; }
+                goldChanged = simulation.VisualElapsed; lastGold = gold;
+            }
             if (lastEggs != eggs) { eggsChanged = simulation.VisualElapsed; lastEggs = eggs; }
             bool fighting = state.Phase == SessionPhase.Combat && simulation.Champion.Alive;
             danger = fighting ? Mathf.Clamp01(Mathf.InverseLerp(0.32f, 0.06f, health / maximum)) : 0f;
@@ -258,6 +265,9 @@ namespace ArcaneBrigade
             float bossFlash = owner.Feel != null ? owner.Feel.ScreenFlash : 0;
             if (bossFlash > 0.01f) Fill(new Rect(0, 0, 1920, 1080), new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f)); // a boss falls: the night flashes white
             if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
+            // healing fills the bar up over a moment (the number is already true); a hit drops it at once, the trail follows
+            if (PresentationSettings.ReducedMotion || health < shownHealth) shownHealth = health;
+            else if (Event.current.type == EventType.Repaint) shownHealth = Mathf.MoveTowards(shownHealth, health, Time.unscaledDeltaTime * maximum * 1.2f);
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
             if (ArcadeSkin.HasKit)
@@ -266,7 +276,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.PortraitSlot(new Rect(14, 8, 92, 92), false);
                 Sprite(new Rect(31, 25, 58, 58), owner.Content.Unit(state.ChampionId).Body);
                 NightHud.LightRing(new Vector2(60, 55), 40, CompanionDeployment.Select(state.Roster).Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
-                Rect tube = ArcadeSkin.HealthBar(new Rect(100, 24, 300, 64), Mathf.Clamp01(health / maximum), Mathf.Clamp01(healthTrail / maximum));
+                Rect tube = ArcadeSkin.HealthBar(new Rect(100, 24, 300, 64), Mathf.Clamp01(shownHealth / maximum), Mathf.Clamp01(healthTrail / maximum));
                 numeric.normal.textColor = ArcadeSkin.Cream;
                 ArcadeTypography.ShadowLabel(new Rect(tube.x, tube.y - 4, tube.width, tube.height + 8), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
             }
@@ -277,7 +287,7 @@ namespace ArcaneBrigade
             NightHud.LightRing(new Vector2(66, 51), 40, CompanionDeployment.Select(state.Roster).Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
             ArcadeSkin.Line(new Rect(105, 36, 230, 30), new Color(0.02f, 0.02f, 0.05f, 0.95f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
-            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
+            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(shownHealth / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
             numeric.normal.textColor = health / maximum > 0.45f ? ArcadeSkin.Ink : ArcadeSkin.Cream; // ink reads on the lantern bar
             GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
             Sprite(new Rect(92, 31, 38, 38), owner.Content.HeartSprite);
@@ -288,7 +298,11 @@ namespace ArcaneBrigade
                 float required = simulation.HeroIdentityEnabled ? simulation.HeroIdentityRequired : simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
                 Rect charge = ArcadeSkin.HasKit ? new Rect(160, 90, 210, 6) : new Rect(108, 72, 224, 5);
                 ArcadeSkin.Line(charge, new Color(0.06f, 0.07f, 0.11f, 0.85f));
-                ArcadeSkin.Line(new Rect(charge.x, charge.y, charge.width * Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required), charge.height), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
+                // the gauge glides to its new fill instead of stepping with each hit
+                float gauge = Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required);
+                if (PresentationSettings.ReducedMotion) shownGauge = gauge;
+                else if (Event.current.type == EventType.Repaint) shownGauge = Mathf.MoveTowards(shownGauge, gauge, Time.unscaledDeltaTime * (gauge > shownGauge ? 2.5f : 6f));
+                ArcadeSkin.Line(new Rect(charge.x, charge.y, charge.width * shownGauge, charge.height), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
                 if (simulation.HeroIdentityEnabled)
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
@@ -306,6 +320,15 @@ namespace ArcaneBrigade
             Sprite(new Rect(goldSocket.x - goldPulse, goldSocket.y - goldPulse, goldSocket.width + goldPulse * 2, goldSocket.height + goldPulse * 2), owner.Content.Arena.Coin); // centred in the socket
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
             GUI.Label(goldText, Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
+            float gainAge = Time.unscaledTime - goldGainAt;
+            if (goldGain > 0 && gainAge < 1.1f)
+            {
+                Color keepGain = GUI.color; GUI.color = new Color(keepGain.r, keepGain.g, keepGain.b, keepGain.a * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.7f, 1.1f, gainAge))));
+                numericLeft.normal.textColor = ArcadeSkin.Gold;
+                float rise = PresentationSettings.ReducedMotion ? 0 : (1 - Mathf.Clamp01(gainAge / .18f)) * 6;
+                ArcadeTypography.ShadowLabel(new Rect(goldText.xMax + 10, goldText.y + rise, 110, goldText.height), "+" + goldGain.ToString("N0"), numericLeft);
+                GUI.color = keepGain; numericLeft.normal.textColor = ArcadeSkin.Cream;
+            }
             Sprite(new Rect(eggSocket.x - eggPulse, eggSocket.y - eggPulse, eggSocket.width + eggPulse * 2, eggSocket.height + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
             GUI.Label(eggText, Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
@@ -354,21 +377,28 @@ namespace ArcaneBrigade
             {
                 // a visitor's card owns the screen: no tickets or station card over it
                 if (owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true && owner.GetComponent<WaitingRealmStage>()?.Asking != true) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
-                statFeedback.Draw(owner,camera);
+                if (owner.SecretRoom == null || !owner.SecretRoom.MenuOpen) statFeedback.Draw(owner,camera); // never over the secret room's card
             }
             else
             {
+                // the end of the night opens like every popup: the closing line, then the record
+                if (terminalAt < 0) terminalAt = Time.unscaledTime;
+                if (owner.ResultsReady && resultsAt < 0) resultsAt = Time.unscaledTime;
+                Color resultColour = GUI.color;
                 if (!owner.ResultsReady)
                 {
                     if (owner.Session.EndingChoicePending) { GUI.matrix = previous; GUI.skin = previousSkin; navigation.End(); return; }
+                    LivingUI.Pop(Time.unscaledTime - terminalAt, new Vector2(960, 875));
                     ArcadeSkin.Plate(new Rect(560, 840, 800, 70), state.Phase == SessionPhase.Defeat ? ArcadeSkin.Danger : ArcadeSkin.Gold);
                     bool satDown = (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost;
                     GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? satDown ? "You sat down." : "Your light goes out…" : "Dawn has come…", title);
-                    GUI.matrix = previous;
+                    GUI.matrix = previous; GUI.color = resultColour;
                     GUI.skin = previousSkin;
                     navigation.End();
                     return;
                 }
+                Matrix4x4 resultMatrix = GUI.matrix;
+                LivingUI.Pop(Time.unscaledTime - resultsAt, new Vector2(960, 575));
                 Fill(new Rect(80, 200, 630, 750), Panel);
                 ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost ? "You Sat Down" : "Until You Return");
                 bool fallen = state.Phase == SessionPhase.Defeat;
@@ -382,7 +412,9 @@ namespace ArcaneBrigade
                 if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 750, 560, 60), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
                 if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
                 invoice.Draw(new Rect(770, 200, 1060, 750), state, owner.Content);
+                GUI.matrix = resultMatrix; GUI.color = resultColour;
             }
+            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) terminalAt = resultsAt = -1;
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
             waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);

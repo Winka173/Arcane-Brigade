@@ -30,7 +30,7 @@ namespace ArcaneBrigade
         private const float RoutineTraumaCap = 0.3f;  // kills, crits and heavy hits alone never shake harder than this (was 0.42)
         private float trauma, clock, slow, flash;
         /// <summary>The only time the fight slows: the wave-20 boss falls (seconds of real time, at SlowMotionSpeed).</summary>
-        public const float FinalBossSlowMotion = 0.5f, SlowMotionSpeed = 0.35f, AwakenBeat = 0.14f;
+        public const float FinalBossSlowMotion = 0.5f, SlowMotionSpeed = 0.35f, AwakenBeat = 0.14f, BossArrivalBeat = 0.3f;
         /// <summary>0..1 full-screen flash when a boss falls (drawn by the HUD; Reduced Flashes softens it).</summary>
         public float ScreenFlash => PresentationSettings.ReducedFlashes ? flash * 0.25f : flash;
         private Vector2 bias = Vector2.up;
@@ -90,7 +90,8 @@ namespace ArcaneBrigade
                         break;
                     case CombatEventKind.BodyImpact: AddTrauma(0.06f, true); break; // a flung body bowls into another
                     case CombatEventKind.WallSplat: AddTrauma(0.09f, true); break;
-                    case CombatEventKind.BossLanded: AddTrauma(0.55f, false); bias = Vector2.down; break;
+                    // a boss arriving lands as a beat: the night holds its breath for a moment as it touches down
+                    case CombatEventKind.BossLanded: AddTrauma(0.55f, false); bias = Vector2.down; if (!PresentationSettings.ReducedMotion) slow = Mathf.Max(slow, BossArrivalBeat); break;
                     case CombatEventKind.Detonation when value.Cause.ItemId == "ink-bloater": AddTrauma(0.08f, true); break; // chains rattle, they do not freeze
                     case CombatEventKind.Flare: AddTrauma(0.45f, false); flash = Mathf.Max(flash, 0.35f); break;
                     case CombatEventKind.Detonation when value.Cause.ItemId != null && value.Cause.ItemId.StartsWith("hero-identity-"): AddTrauma(0.07f, true); break; // the hero's own blasts rattle, they do not shake the room

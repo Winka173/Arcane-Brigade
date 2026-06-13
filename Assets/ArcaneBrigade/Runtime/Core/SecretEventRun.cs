@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             Secret.TargetItem = SecretTargets.FirstOrDefault() ?? "";
             RosterEntry first = ActiveRoster.FirstOrDefault();
             Secret.TargetUnit = first?.UnitId ?? ""; Secret.TargetWeapon = first?.WeaponId ?? "";
-            Secret.RewardId = ""; Secret.Result = "";
+            Secret.RewardId = ""; Secret.Result = Secret.ResultPaid = Secret.ResultGot = Secret.ResultIcon = "";
             return true;
         }
 
@@ -67,7 +67,17 @@ namespace ArcaneBrigade
         }
 
         /// <summary>A secret offer as a plate: a verb title, then DO / LOSE / GET in one short line each (play-test 20/10/2026).</summary>
+        // a relic you get always says what it does (play-test 24/10/2026: the name alone told nothing)
         private SecretChoice Choice(string title, string act, string lose, string get, bool enabled = true, string reward = "", bool target = false)
+            => Choice2(title, act, lose, catalog.Item(reward) != null ? get + "\n" + SecretRewardStats(reward) : get, enabled, reward, target);
+        /// <summary>A secret relic's stats in one short line: "Shop discount +8% · Luck +8%".</summary>
+        public string SecretRewardStats(string id)
+        {
+            ItemDefinition item = catalog.Item(id);
+            if (item == null) return catalog.Unit(id) != null ? "Joins your brigade" : "";
+            return string.Join(" · ", item.EffectiveModifiers.Where(m => m.Value != 0).Select(m => RunModifierRules.ModifierName(m.Effect) + " " + RunModifierRules.ValueText(m.Effect, m.Value)));
+        }
+        private SecretChoice Choice2(string title, string act, string lose, string get, bool enabled, string reward, bool target)
             => new SecretChoice { Title = title, Do = act, Lose = lose, Get = get, UsesTarget = target, Copy = act + "\n" + lose + "\n" + get, Enabled = enabled, RewardId = reward, Icon = catalog.Item(reward)?.Icon ?? catalog.Unit(reward)?.Body };
         private string RewardName(string id) => catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName ?? "";
         /// <summary>The verb on the room's one confirm button.</summary>
@@ -199,6 +209,7 @@ namespace ArcaneBrigade
                     break;
             }
             Secret.Result = choice.Title + "\n" + choice.Copy; Secret.Stage = SecretEventStage.Reward; Secret.RewardId = "";
+            Secret.ResultPaid = choice.Lose; Secret.ResultGot = choice.Get; Secret.ResultIcon = choice.RewardId ?? "";
             RecountBonds();
             State.Health = Mathf.Min(State.Health, MaximumHealth());
             RecordSecret(choice.Title);

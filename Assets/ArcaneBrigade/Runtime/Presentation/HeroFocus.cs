@@ -81,6 +81,21 @@ namespace ArcaneBrigade
                 else Target(r, PropAlpha);
                 occluded = true;
             }
+            // a chest that lands on a piece of the room stays in view: whatever prop it overlaps fades like one over the hero
+            if (!inShop)
+                foreach (PickupState loot in simulation.Pickups)
+                {
+                    if (loot.Kind != LootKind.Chest) continue;
+                    var chest = new Bounds((Vector3)(loot.Position + Vector2.up * .35f), new Vector3(1f, .9f, 2000));
+                    foreach (SpriteRenderer r in props)
+                    {
+                        if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder >= 1600 || r.color.a < .05f) continue;
+                        Vector3 size = r.bounds.size;
+                        if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14) continue;
+                        Bounds b = r.bounds; b.extents = new Vector3(b.extents.x, b.extents.y, 1000);
+                        if (b.Intersects(chest)) Target(r, PropAlpha);
+                    }
+                }
             foreach (UnitVisual friend in owner.Views)
             {
                 if (friend == null || friend == view || friend.State == null || friend.State.Faction != Faction.Companion || !friend.State.Alive) continue;

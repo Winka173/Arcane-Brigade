@@ -65,6 +65,10 @@ namespace ArcaneBrigade
         private StageTransfer stageTransfer;
         public bool PresentationPaused => pauseGate.Paused;
         public bool TransitionPending => transitionRemaining > 0 || SceneDissolve.Busy || stageTransfer != null && stageTransfer.Active;
+        /// <summary>The won fight is still on screen (the last falls, a boss's death) before it melts into the shop: the view stays on the fight.</summary>
+        public bool FightStillShown => session != null && session.State.Phase == SessionPhase.Shop && transitionRemaining > 0;
+        /// <summary>Where the boss fell, while its death plays before the shop.</summary>
+        public Vector2? BossFallPoint => simulation != null && simulation.BossDefeated && simulation.Boss != null && transitionRemaining > 0 ? simulation.Boss.Position : (Vector2?)null;
         public bool HallExitPending => hallExitPending;
         public float HallCurtain => 0;
         public bool TerminalDelayComplete => resultRevealRemaining <= 0;
@@ -325,7 +329,7 @@ namespace ArcaneBrigade
                 if (transitionRemaining > 0)
                 {
                     transitionRemaining -= Time.deltaTime;
-                    if (transitionRemaining <= 0) SceneDissolve.Then(this, () => Begin(true)); // the fight melts into the shop
+                    if (transitionRemaining <= 0) SceneryCrossfade.Around(() => Begin(true)); // on the same floor: the last enemies are gone, the shopkeeper drops in and the stock lands (requirement 24/10/2026)
                 }
             }
         }
@@ -394,7 +398,8 @@ namespace ArcaneBrigade
             }
             if (session != null && (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat))
             {
-                session.Settle(simulation);
+                // a won night turns into the shop's room as it settles: its pieces crossfade rather than swap in one frame
+                if (simulation.Phase == RunPhase.Victory) SceneryCrossfade.Around(() => session.Settle(simulation)); else session.Settle(simulation);
                 if (simulation.Phase == RunPhase.Victory)
                 {
                     foreach (UnitVisual visual in units.Values)
@@ -405,7 +410,7 @@ namespace ArcaneBrigade
                 }
                 PersistBoundary();
                 movement.Reset();
-                if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? DeathFeedback.DurationBoss + 0.15f : 0.45f;
+                if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? DeathFeedback.DurationBoss + BossFallHold : 0.45f;
                 else resultRevealRemaining = simulation.Phase == RunPhase.Defeat ? 1f : simulation.BossDefeated ? DeathFeedback.DurationBoss : 1.15f;
             }
         }
@@ -548,19 +553,23 @@ namespace ArcaneBrigade
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
             if (session.OutsideChallengeAvailable) session.DeclineOutsideStage();
+            SceneryCrossfade fade = SceneryCrossfade.Hold(); // the shop's pieces fade out as the night's fade in
             session.ContinueWave();
             if (StageTransfer.ChangesMap(session.State.Wave)) session.RegisterOutsideTransfer();
-            if (session.State.Phase != SessionPhase.Combat) { if (Shop != null) Shop.CancelDeparture(); return; }
-            if (!PersistBoundary()) { session.Restore(before); if (Shop != null) Shop.CancelDeparture(); return; }
+            if (session.State.Phase != SessionPhase.Combat) { fade?.Cancel(); if (Shop != null) Shop.CancelDeparture(); return; }
+            if (!PersistBoundary()) { fade?.Cancel(); session.Restore(before); if (Shop != null) Shop.CancelDeparture(); return; }
             if (Shop != null) Shop.Display();
             if (StageTransfer.ChangesMap(session.State.Wave))
             {
                 var carrier = new GameObject("KeeperHandStageTransfer");
                 stageTransfer = carrier.AddComponent<StageTransfer>();
                 stageTransfer.Configure(this, () => { stageTransfer = null; Begin(true); });
+                fade?.Cancel();
             }
-            else SceneDissolve.Then(this, () => { Begin(true); ArriveThroughRift(); }); // the shop melts into the night, the brigade steps out of a rift
+            else { ArrivalRift.Expect(); Begin(true); fade?.Release(); ArriveThroughRift(); } // the market has flown off; the brigade steps out of a rift onto the same floor
         }
+        /// <summary>Requirement 24/10/2026: the shop came before the boss's death was seen; the fall now plays out with a breath after it.</summary>
+        private const float BossFallHold = 1f;
         /// <summary>The start of a night: the hero and friends spring out of a rift of the map's own kind, which then stitches shut.</summary>
         private void ArriveThroughRift()
         {
@@ -628,8 +637,8 @@ namespace ArcaneBrigade
         /// <summary>Requirement 24/10/2026: back to the menu without writing this moment; the run resumes from its last save boundary.</summary>
         /// <summary>Diagnostics only: a scripted stick for recorded clips.</summary>
         public static Vector2? ScriptedMove;
-        public void ExitWithoutSaving() { RunLaunch.OpenHub = false; SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
-        public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenHub = session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat); SceneManager.LoadScene(session == null ? "Frontend" : "RunFrontend"); }
+        public void ExitWithoutSaving() { RunLaunch.OpenHub = false; SceneDissolve.Load(session == null ? "Frontend" : "RunFrontend"); }
+        public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenHub = session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat); SceneDissolve.Load(session == null ? "Frontend" : "RunFrontend"); }
         /// <summary>Play again: the same hero with the Waiting Room's loadout; the Nursery hands over its first friend and the
         /// Wardrobe keeps the choices last made for this hero.</summary>
         private MetaRunState PlayAgainLoadout(string hero)
@@ -703,6 +712,7 @@ namespace ArcaneBrigade
             EffectDensity.SetSceneLoad(simulation.Projectiles.Count, simulation.Units.Count);
             if (spectacleVisual != null) spectacleVisual.Display(simulation);
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
+            EnemyRifts.Draw(80); // over the floor's ink, under every body
             liveIds.Clear();
             for (int index = 0; index < simulation.Units.Count; index++)
             {
@@ -716,6 +726,7 @@ namespace ArcaneBrigade
                     view.Bind(state, catalog);
                     if (profile != null) view.SetChampionCosmetic(profile.Cosmetic);
                     units.Add(state.Id, view);
+                    if (state.Faction == Faction.Enemy && simulation.Phase == RunPhase.Combat && simulation.Elapsed > .3f) EnemyRifts.Play(state, arenaCamera);
                 }
                 view.ReducedMotion = profile != null && profile.ReducedMotion;
                 RaritySparkle.Ensure(view, state);

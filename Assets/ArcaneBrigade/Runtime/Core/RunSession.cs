@@ -383,7 +383,7 @@ namespace ArcaneBrigade
             CombatCatalog.Boss = bossWave ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
             if (actOne && bossWave) CombatCatalog.Boss = StoryBoss(CombatCatalog.Boss, scaling);
             if (actOne && bossWave && CombatCatalog.Boss != null) CombatCatalog.Boss.Health *= WaveCadence.StoryBossBulk(State.Wave);
-            CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds;
+            CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds + (bossWave ? OctoberBalance.BossExtraSeconds : 0);
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
             CombatCatalog.EnemyBudget = Mathf.Min(Mathf.CeilToInt(600 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
             // waves are 15% longer (D9): the budget grows with them so enemies per second stay the same
@@ -842,7 +842,9 @@ namespace ArcaneBrigade
             State.Gold -= price;
             KitRerollLuck(price);
             RememberShelf(price);
-            RollShop();
+            rerolledAway = new HashSet<string>();
+            foreach (ShopOffer offer in State.Offers) if (!offer.Sold) rerolledAway.Add(offer.Id);
+            try { RollShop(); } finally { rerolledAway = null; }
             State.RerollsThisShop++;
             if (MechanicStacks(RelicMechanic.HagglersAbacus) > 0) ApplyKitPrices();
             OctoberRefreshed();
@@ -1019,6 +1021,9 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>The offers a reroll is replacing, while it rolls (null otherwise); each stays out with RerollKeepsOut% chance.</summary>
+        private HashSet<string> rerolledAway;
+        private const int RerollKeepsOut = 85;
         private void RollShop(bool rollSpecial = false)
         {
             TrackMergeDrought(!rollSpecial);
@@ -1030,6 +1035,15 @@ namespace ArcaneBrigade
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
+            if (rerolledAway != null)
+            {
+                // requirement 24/10/2026: a reroll rarely brings back what it replaced - each old offer stays out (85%), unless
+                // it is a friend ready to merge or too few others are left
+                var away = new HashSet<string>();
+                foreach (string id in rerolledAway) if (Next(ref State.ShopRandom, 100) < RerollKeepsOut) away.Add(id);
+                var freshItems = items.FindAll(item => !away.Contains(item.Id)); if (freshItems.Count >= 4) items = freshItems;
+                var freshUnits = units.FindAll(unit => !away.Contains(unit.Id) || MergeReady(unit.Id)); if (freshUnits.Count > 0) units = freshUnits;
+            }
             var foundation = State.Wave <= 5 ? items.FindAll(item => ShopFoundationRules.Useful(catalog.Unit(State.ChampionId), item)) : new List<ItemDefinition>();
             for (int index = 0; index < catalog.ShopSlots + KitExtraSlots + MetaExtraSlots; index++)
             {

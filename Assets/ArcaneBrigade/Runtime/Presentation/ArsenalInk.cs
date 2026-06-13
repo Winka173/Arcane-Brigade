@@ -732,6 +732,10 @@ namespace ArcaneBrigade
         /// <summary>A wash over a wedge of floor (an aimed danger zone): soft at the apex, pooling toward its far edge.</summary>
         public void Cone(Vector2 apex, float reach, float fromDegrees, float toDegrees, Color colour, float alpha, float apexAlpha)
             => ground.Sector(apex, reach, fromDegrees, toDegrees, A(colour, apexAlpha), A(colour, alpha));
+        /// <summary>A filled wash over an ellipse of floor (a danger zone's ground).</summary>
+        public void FloorZone(Vector2 c, float rx, float ry, Color inner, Color edge) => ground.Ellipse(c, rx, ry, inner, edge);
+        /// <summary>A filled wash along a lane of floor (a danger lane's ground).</summary>
+        public void FloorLane(Vector2 a, Vector2 b, float halfWidth, Color centre, Color edge) => ground.Band(a, b, halfWidth, centre, edge);
         /// <summary>A brush stroke laid on the floor layer (under the units).</summary>
         public void FloorStroke(Vector2 a, Vector2 b, InkPalette pal, float width, float head, float tail, float alpha, float wave = 0, float seed = 0)
         {

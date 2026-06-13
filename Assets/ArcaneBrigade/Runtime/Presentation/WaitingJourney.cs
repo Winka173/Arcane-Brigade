@@ -54,7 +54,7 @@ namespace ArcaneBrigade
             if(!Open || nextAct || room==0 || state.Endless)return false;
             WaitingCampaign.Ensure(state);state.WaitingCampaign.Room=room;
             if(!owner.SaveNightmareBoundary()){state.WaitingCampaign.Room=0;return false;}
-            Close();SceneManager.LoadScene("WaitingRoom");return true;
+            Close();SceneDissolve.Load("WaitingRoom");return true;
         }
         public void Draw(Camera camera)
         {

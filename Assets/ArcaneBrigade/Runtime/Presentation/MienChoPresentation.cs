@@ -157,7 +157,7 @@ namespace ArcaneBrigade
             WaitingCampaign.Ensure(state); state.WaitingCampaign.Room = 2;
             if (!owner.SaveNightmareBoundary()) { state.WaitingCampaign.Room = 0; return false; }
             open = false; owner.SetStoryOpen(false);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("WaitingRoom"); return true;
+            SceneDissolve.Load("WaitingRoom"); return true;
         }
         private void SetPage(int value)
         {

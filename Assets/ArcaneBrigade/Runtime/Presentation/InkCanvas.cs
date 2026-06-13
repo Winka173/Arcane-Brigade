@@ -91,6 +91,25 @@ namespace ArcaneBrigade
                 wt.Add(a + 1); wt.Add(a + 2); wt.Add(b + 1); wt.Add(b + 1); wt.Add(a + 2); wt.Add(b + 2);
             }
         }
+        /// <summary>A wash filling an ellipse, `inner` at the centre to `edge` at the rim (a danger zone's floor).</summary>
+        public void Ellipse(Vector2 centre, float rx, float ry, Color inner, Color edge)
+        {
+            if (light || rx <= .01f || ry <= .01f || edge.a <= .003f && inner.a <= .003f) return;
+            Primitives++;
+            int seg = Mathf.Clamp(Mathf.CeilToInt((rx + ry) * 14), 24, 120), start = wv.Count;
+            Color mid = Color.Lerp(inner, edge, .55f);
+            for (int i = 0; i <= seg; i++)
+            {
+                float a = i * Mathf.PI * 2 / seg; Vector2 d = new Vector2(Mathf.Cos(a) * rx, Mathf.Sin(a) * ry);
+                WashVertex(centre, inner); WashVertex(centre + d * .82f, mid); WashVertex(centre + d, edge);
+            }
+            for (int i = 0; i < seg; i++)
+            {
+                int a = start + i * 3, b = a + 3;
+                wt.Add(a); wt.Add(a + 1); wt.Add(b); wt.Add(b); wt.Add(a + 1); wt.Add(b + 1);
+                wt.Add(a + 1); wt.Add(a + 2); wt.Add(b + 1); wt.Add(b + 1); wt.Add(a + 2); wt.Add(b + 2);
+            }
+        }
         /// <summary>A flat wash of exact width along a segment (the true hit band of a line strike).</summary>
         public void Band(Vector2 a, Vector2 b, float halfWidth, Color centre, Color edge)
         {

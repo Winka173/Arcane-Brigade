@@ -38,6 +38,8 @@ namespace ArcaneBrigade
         public string TargetWeapon = "";
         public string RewardId = "";
         public string Result = "";
+        /// <summary>The deal just made, as the result card shows it: what was paid, what was got (with its stats) and whose picture.</summary>
+        public string ResultPaid = "", ResultGot = "", ResultIcon = "";
         public List<SecretContract> Contracts = new List<SecretContract>();
         public List<SecretStitch> Stitches = new List<SecretStitch>();
         public List<string> ImprovedItems = new List<string>();

@@ -22,6 +22,31 @@ namespace ArcaneBrigade
             Busy = true;
             carrier.StartCoroutine(carrier.Run(change));
         }
+        /// <summary>The same soft change across scenes (menu, hero select, the arena, the waiting room): the kept frame rides
+        /// over the load and fades once the new scene has drawn its first frames.</summary>
+        public static void Load(string scene)
+        {
+            if (Application.isBatchMode || loading) { UnityEngine.SceneManagement.SceneManager.LoadScene(scene); return; }
+            var carrier = new GameObject("Scene dissolve").AddComponent<SceneDissolve>();
+            DontDestroyOnLoad(carrier.gameObject);
+            loading = true;
+            carrier.StartCoroutine(carrier.RunLoad(scene));
+        }
+        private static bool loading;
+        private IEnumerator RunLoad(string scene)
+        {
+            yield return new WaitForEndOfFrame();
+            try { kept = ScreenCapture.CaptureScreenshotAsTexture(); }
+            catch (Exception) { kept = null; }
+            try { UnityEngine.SceneManagement.SceneManager.LoadScene(scene); }
+            finally { loading = false; }
+            started = float.MaxValue; // held fully over the load
+            yield return null; yield return null; yield return null; // the new scene builds and settles its first frames under the kept one
+            started = Time.unscaledTime;
+            float length = PresentationSettings.ReducedMotion ? ReducedSeconds : Seconds;
+            while (Time.unscaledTime - started < length) yield return null;
+            Destroy(gameObject);
+        }
         private IEnumerator Run(Action change)
         {
             yield return new WaitForEndOfFrame();
@@ -38,6 +63,7 @@ namespace ArcaneBrigade
         {
             GUI.depth = -10000; // over every other GUI (the HUD, the menus)
             if (kept == null || started < 0 || Event.current.type != EventType.Repaint) return;
+            if (started == float.MaxValue) { GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), kept, ScaleMode.StretchToFill, false); return; }
             bool reduced = PresentationSettings.ReducedMotion;
             float t = Mathf.Clamp01((Time.unscaledTime - started) / (reduced ? ReducedSeconds : Seconds));
             float alpha = 1 - Mathf.SmoothStep(0, 1, t), swell = reduced ? 1 : 1 + .035f * t;
