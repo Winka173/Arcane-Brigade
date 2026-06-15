@@ -30,7 +30,7 @@ namespace ArcaneBrigade
         private const float RoutineTraumaCap = 0.3f;  // kills, crits and heavy hits alone never shake harder than this (was 0.42)
         private float trauma, clock, slow, flash;
         /// <summary>The only time the fight slows: the wave-20 boss falls (seconds of real time, at SlowMotionSpeed).</summary>
-        public const float FinalBossSlowMotion = 0.5f, SlowMotionSpeed = 0.35f, AwakenBeat = 0.14f, BossArrivalBeat = 0.3f;
+        public const float FinalBossSlowMotion = 0.5f, SlowMotionSpeed = 0.35f, AwakenBeat = 0.14f, BossArrivalBeat = 0.3f, ComboBeat = 0.12f;
         /// <summary>0..1 full-screen flash when a boss falls (drawn by the HUD; Reduced Flashes softens it).</summary>
         public float ScreenFlash => PresentationSettings.ReducedFlashes ? flash * 0.25f : flash;
         private Vector2 bias = Vector2.up;
@@ -88,7 +88,9 @@ namespace ArcaneBrigade
                         kills++; AddTrauma(value.Critical || value.Value > 0.6f ? 0.09f : 0.03f, true);
                         if (BigEnemy(value.Subject)) { AddTrauma(0.14f, true); bias = direction; }
                         break;
-                    case CombatEventKind.BodyImpact: AddTrauma(0.06f, true); break; // a flung body bowls into another
+                    case CombatEventKind.BodyImpact: AddTrauma(0.06f, true); break;
+                    // a combo of four or five friends lands as a beat: a short catch and a jolt
+                    case CombatEventKind.ComboNamed when Combos.Of((ComboId)Mathf.RoundToInt(value.Value)).Members.Length >= 4: AddTrauma(0.22f, false); if (!PresentationSettings.ReducedMotion) slow = Mathf.Max(slow, ComboBeat); break; // a flung body bowls into another
                     case CombatEventKind.WallSplat: AddTrauma(0.09f, true); break;
                     // a boss arriving lands as a beat: the night holds its breath for a moment as it touches down
                     case CombatEventKind.BossLanded: AddTrauma(0.55f, false); bias = Vector2.down; if (!PresentationSettings.ReducedMotion) slow = Mathf.Max(slow, BossArrivalBeat); break;

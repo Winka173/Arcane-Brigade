@@ -354,6 +354,7 @@ namespace ArcaneBrigade
             combatFeel.Play(simulation.Events, units, simulation.VisualElapsed, simulation.Champion != null ? simulation.Champion.Id : 0, FinalBossWave);
             if (pacing != null) pacing.Observe(simulation.Events, simulation.VisualElapsed);
             ToyInk.Observe(simulation.Events);
+            ComboInk.Observe(simulation.Events);
             foreach (CombatEvent value in simulation.Events)
             {
                 if (stagePerformance != null) stagePerformance.Observe(value);
@@ -715,6 +716,7 @@ namespace ArcaneBrigade
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
             EnemyRifts.Draw(80); // over the floor's ink, under every body
             ToyInk.Draw(simulation, simulation.Champion.Position);
+            ComboInk.Draw(simulation);
             liveIds.Clear();
             for (int index = 0; index < simulation.Units.Count; index++)
             {

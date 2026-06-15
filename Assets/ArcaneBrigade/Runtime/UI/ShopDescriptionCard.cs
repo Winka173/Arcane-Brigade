@@ -104,6 +104,16 @@ namespace ArcaneBrigade
                 if (ready && !Combo) b.AppendLine("{mark} Combo with " + RunUICopy.UnitName(partner) + ": " + duet.Line + " ✓");
                 Combo |= ready;
             }
+            // the groups of three to five this friend belongs to: on the card once it would bring one within a friend of complete
+            foreach (ComboDefinition group in Combos.For(unit.Id))
+            {
+                if (group.Members.Length < 3 && Combos.PairFor(group.Members[0], group.Members[1]) != null && Duets.All.Any(d => Combos.PairFor(d.A, d.B) == group)) continue; // a duet: listed above
+                int have = Combos.Owned(session, group) + (session.OwnsCompanionSpecies(unit.Id) ? 0 : 1);
+                bool whole = have >= group.Members.Length;
+                ComboLines += "\n" + group.Name + " " + have + "/" + group.Members.Length + ": " + group.Line + (whole ? " ✓" : "");
+                if (have >= group.Members.Length - 1) b.AppendLine("{mark} " + group.Name + " " + have + "/" + group.Members.Length + (whole ? " ✓" : ""));
+                Combo |= whole;
+            }
             int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == offer.Tier);
             b.AppendLine(session.UpgradeProgress(offer));
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"

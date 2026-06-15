@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
     public enum CompanionTravelMode { Patrol, Pursuit }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast, Detonation, Flare, Bell, BodyLaunched, BodyImpact, WallSplat, Strike, ChainBlast, MagnetPull, SpringBurst, GlobeFreeze }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast, Detonation, Flare, Bell, BodyLaunched, BodyImpact, WallSplat, Strike, ChainBlast, MagnetPull, SpringBurst, GlobeFreeze, ComboMoment, ComboNamed }
 
     public readonly struct CombatEvent
     {
@@ -536,6 +536,7 @@ namespace ArcaneBrigade
                 if (Phase == RunPhase.Combat)
                 {
                     CollectPickups(deltaTime);
+                    ComboTick(deltaTime);
                     SpawnTreasure();
                     ProcessHeroMechanic(deltaTime);
                     ProcessSpectacle();
@@ -1067,6 +1068,7 @@ namespace ArcaneBrigade
             if (target.Faction == Faction.Enemy && source != Faction.Enemy && Champion != null && cause.SourceUnitId == Champion.Id && HeroAwakening) damage *= AwakenTuning.Hero(IdentityId, liveEnemyCount);
             damage = IdentityDamage(target, damage, source, cause);
             damage = CompanionSkillDamage(target, damage, source, cause);
+            damage = ComboDamage(target, damage, source, cause);
             damage = RelicItemDamage(target, damage, source, cause);
             damage = WaitingDamage(target, damage, source);
             damage = MapDamage(target, damage, source);
@@ -1122,6 +1124,7 @@ namespace ArcaneBrigade
             events.Add(new CombatEvent(CombatEventKind.Hit, target.Position, target.Faction, damage, direction, weapon, critical, element, target.Id, target, cause));
             NotifyArenaToyHit(events[events.Count - 1]);
             RelicHit(target, source, cause);
+            if (target.Faction == Faction.Enemy && source == Faction.Companion) ComboAfterHit(target, cause);
             if (target.Health <= 0f && SecondCandle(target)) return; // the Waiting Room's Clock: once a run
             if (target.Health > 0f) return;
             target.Alive = false;
@@ -1135,7 +1138,7 @@ namespace ArcaneBrigade
             else
             {
                 if (target == Boss) BossDefeated = true;
-                EliteFell(target); VarietyFell(target);
+                EliteFell(target); VarietyFell(target); ComboKill();
                 Kills++;
                 if (source != Faction.Enemy) RecordKill(cause);
                 SwarmDeath(target, source, overkill, cause);

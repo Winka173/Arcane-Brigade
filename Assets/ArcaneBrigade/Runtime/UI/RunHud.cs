@@ -147,40 +147,57 @@ namespace ArcaneBrigade
 
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
         private Vector2 comboScroll; private GUIStyle comboLine; private int guidePage;
-        /// <summary>The Combos page (play-test 20/10/2026, item 26): every duet this hero's shop can offer. Pairs you have met
-        /// show both friends and what they do together (lit while both are in the brigade); the rest are silhouettes.</summary>
+        /// <summary>The Combos page (play-test 20/10/2026, item 26; groups of three to five, requirement 25/10/2026): every combo this
+        /// hero's shop can offer, the groups first. A combo shows its friends you have met (the rest as unknown badges), its name once
+        /// two of them are known, and what it does (lit while all of them are in the brigade).</summary>
         private void DrawCombos(ArenaController owner, Rect area)
         {
             RunSession session = owner.Session; RunCatalog catalog = owner.Content;
             UnitDefinition hero = catalog.Unit(session.State.ChampionId);
-            var list = new System.Collections.Generic.List<Duet>();
+            var list = new System.Collections.Generic.List<(string[] members, string name, string line)>();
+            bool Offered(string[] members)
+            {
+                foreach (string m in members)
+                {
+                    UnitDefinition u = catalog.Unit(m);
+                    if (u == null || u.GiftOnly || catalog.HeroRevision > 0 && hero != null && !K11HeroRules.Eligible(hero, u)) return false;
+                }
+                return true;
+            }
+            foreach (ComboDefinition c in Combos.All)
+                if ((c.Members.Length >= 3 || Duets.All.Length > 0 && System.Array.TrueForAll(Duets.All, d => Combos.PairFor(d.A, d.B) != c)) && Offered(c.Members)) list.Add((c.Members, c.Name, c.Line));
             foreach (Duet d in Duets.All)
             {
-                UnitDefinition a = catalog.Unit(d.A), b = catalog.Unit(d.B);
-                if (a == null || b == null || a.GiftOnly || b.GiftOnly) continue;
-                if (catalog.HeroRevision > 0 && hero != null && (!K11HeroRules.Eligible(hero, a) || !K11HeroRules.Eligible(hero, b))) continue;
-                list.Add(d);
+                string[] pair = { d.A, d.B };
+                if (!Offered(pair)) continue;
+                ComboDefinition move = Combos.PairFor(d.A, d.B);
+                list.Add((pair, move != null ? move.Name : null, move != null ? move.Line : d.Line));
             }
-            list.Sort((x, y) => Known(session, y).CompareTo(Known(session, x)));
+            list.Sort((x, y) => y.members.Length != x.members.Length ? y.members.Length.CompareTo(x.members.Length) : Known(session, y.members).CompareTo(Known(session, x.members)));
             comboLine ??= new GUIStyle(text) { fontSize = 22, wordWrap = true };
             const float row = 120;
             comboScroll = ScrollPanel.Begin(area, comboScroll, new Rect(0, 0, area.width - 20, Mathf.Max(area.height, list.Count * row)));
             for (int i = 0; i < list.Count; i++)
             {
-                Duet d = list[i]; int known = Known(session, d); bool active = Duets.Active(session, d);
+                var c = list[i]; int known = Known(session, c.members); bool active = System.Array.TrueForAll(c.members, session.OwnsCompanionSpecies);
                 Rect r = new Rect(0, i * row, area.width - 24, row - 10);
                 ArcadeSkin.Line(r, active ? new Color(.95f, .76f, .33f, .22f) : new Color(1, 1, 1, .05f));
-                Sprite(new Rect(r.x + 8, r.y + 8, 94, 94), Met(session, d.A) ? catalog.Unit(d.A).Body : CompanionRoles.UnknownBadge);
-                Sprite(new Rect(r.x + 110, r.y + 30, 52, 52), CompanionRoles.ComboBadge);
-                Sprite(new Rect(r.x + 170, r.y + 8, 94, 94), Met(session, d.B) ? catalog.Unit(d.B).Body : CompanionRoles.UnknownBadge);
+                float size = c.members.Length <= 2 ? 94 : c.members.Length == 3 ? 80 : 64, x = r.x + 8;
+                for (int k = 0; k < c.members.Length; k++)
+                {
+                    if (k > 0 && c.members.Length == 2) { Sprite(new Rect(x, r.y + 30, 52, 52), CompanionRoles.ComboBadge); x += 60; }
+                    Sprite(new Rect(x, r.y + (row - 10 - size) * .5f, size, size), Met(session, c.members[k]) ? catalog.Unit(c.members[k]).Body : CompanionRoles.UnknownBadge);
+                    x += size + 6;
+                }
+                x = Mathf.Max(x + 14, r.x + 284);
                 comboLine.normal.textColor = active ? ArcadeSkin.Gold : known > 1 ? ArcadeSkin.Cream : new Color(.7f, .68f, .64f);
-                string names = known > 1 ? RunUICopy.UnitName(catalog.Unit(d.A)) + " + " + RunUICopy.UnitName(catalog.Unit(d.B)) : "? + ?";
-                GUI.Label(new Rect(r.x + 284, r.y + 10, r.width - 300, r.height - 20), names + (active ? "  ·  ACTIVE" : "") + "\n" + (known > 1 ? d.Line : "Meet both friends to find this combo."), comboLine);
+                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : "? + ?";
+                string count = c.members.Length > 2 ? "  ·  " + Combos.OwnedOf(session, c.members) + "/" + c.members.Length : "";
+                GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  ACTIVE" : "") + "\n" + (known > 1 ? c.line : "Meet two of these friends to find this combo."), comboLine);
             }
             ScrollPanel.End();
         }
-        /// <summary>How many of a duet's two friends you have had this run (0, 1 or 2).</summary>
-        private static int Known(RunSession session, Duet d) => (Met(session, d.A) ? 1 : 0) + (Met(session, d.B) ? 1 : 0);
+        private static int Known(RunSession session, string[] members) { int n = 0; foreach (string m in members) if (Met(session, m)) n++; return n; }
         private static bool Met(RunSession session, string id) => session.OwnsCompanionSpecies(id) || session.State.AcquiredVariants.Exists(v => v.UnitId == id);
         public void ShowInvoiceEvidenceFixture()
         {

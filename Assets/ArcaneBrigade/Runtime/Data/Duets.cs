@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum DuetEffect { Damage, Speed, Reach, Knockback }
+    public enum DuetEffect { Damage, Speed, Reach, Knockback, Combo }
     public sealed class Duet { public string A, B, Family, Line; public DuetEffect Effect; }
     /// <summary>Pair combos (play-test 20/10/2026, item 26; list in Docs/Playtest_Review_2026-10-20.md): two named friends
     /// fielded together both gain one bonus. Offence and utility only (friends are immortal: no healing, armor or dodge).</summary>
@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         public static readonly Duet[] All =
         {
             new Duet { A = "PinnedBeetle", B = "MailboxImp", Family = "archive", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
-            new Duet { A = "MailboxImp", B = "ThimbleMoth", Family = "archive", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
+            new Duet { A = "MailboxImp", B = "ThimbleMoth", Family = "archive", Effect = DuetEffect.Combo, Line = Combos.PairLine("MailboxImp", "ThimbleMoth") },
             new Duet { A = "ThimbleMoth", B = "SpindleWren", Family = "archive", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "SpindleWren", B = "BrassAcorn", Family = "archive", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "BrassAcorn", B = "BookmarkGolem", Family = "archive", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
@@ -21,31 +21,31 @@ namespace ArcaneBrigade
             new Duet { A = "SecretPatchBear", B = "SecretPaperBird", Family = "archive", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "SecretPaperBird", B = "VelvetChampion", Family = "archive", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "VelvetChampion", B = "ReelOwl", Family = "archive", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
-            new Duet { A = "ReelOwl", B = "LensOwl", Family = "archive", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
+            new Duet { A = "ReelOwl", B = "LensOwl", Family = "archive", Effect = DuetEffect.Combo, Line = Combos.PairLine("ReelOwl", "LensOwl") },
             new Duet { A = "LensOwl", B = "EndlessIndex", Family = "archive", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "EndlessIndex", B = "PinnedBeetle", Family = "archive", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
-            new Duet { A = "MoonJelly", B = "PillowOracle", Family = "astral", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
+            new Duet { A = "MoonJelly", B = "PillowOracle", Family = "astral", Effect = DuetEffect.Combo, Line = Combos.PairLine("MoonJelly", "PillowOracle") },
             new Duet { A = "PillowOracle", B = "SecretDreamLamb", Family = "astral", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "SecretDreamLamb", B = "EclipseEgg", Family = "astral", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "EclipseEgg", B = "PaperPlanePigeon", Family = "astral", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "PaperPlanePigeon", B = "StarSock", Family = "astral", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "StarSock", B = "LittleSprout", Family = "astral", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "LittleSprout", B = "StormKitten", Family = "astral", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
-            new Duet { A = "StormKitten", B = "CometKite", Family = "astral", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
+            new Duet { A = "StormKitten", B = "CometKite", Family = "astral", Effect = DuetEffect.Combo, Line = Combos.PairLine("StormKitten", "CometKite") },
             new Duet { A = "CometKite", B = "DoughForeman", Family = "astral", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "DoughForeman", B = "OrbitMoth", Family = "astral", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "OrbitMoth", B = "MoonJelly", Family = "astral", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "DreamCompass", B = "SpecimenSlime", Family = "clock", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "SpecimenSlime", B = "StapleMole", Family = "clock", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "StapleMole", B = "SpringDuck", Family = "clock", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
-            new Duet { A = "SpringDuck", B = "LampGoat", Family = "clock", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
+            new Duet { A = "SpringDuck", B = "LampGoat", Family = "clock", Effect = DuetEffect.Combo, Line = Combos.PairLine("SpringDuck", "LampGoat") },
             new Duet { A = "LampGoat", B = "RainbowBell", Family = "clock", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "RainbowBell", B = "ButtonBeetle", Family = "clock", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "ButtonBeetle", B = "GrandSprout", Family = "clock", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "GrandSprout", B = "TinTick", Family = "clock", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "TinTick", B = "TopBeetle", Family = "clock", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "TopBeetle", B = "ClockworkPiper", Family = "clock", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
-            new Duet { A = "ClockworkPiper", B = "StaticFerret", Family = "clock", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
+            new Duet { A = "ClockworkPiper", B = "StaticFerret", Family = "clock", Effect = DuetEffect.Combo, Line = Combos.PairLine("ClockworkPiper", "StaticFerret") },
             new Duet { A = "StaticFerret", B = "DreamCompass", Family = "clock", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "FossilArmadillo", B = "ShovelPenguin", Family = "frost", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "ShovelPenguin", B = "RainbowTailor", Family = "frost", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
@@ -55,7 +55,7 @@ namespace ArcaneBrigade
             new Duet { A = "IronLocomotive", B = "HoodWisp", Family = "frost", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "HoodWisp", B = "FridgeWisp", Family = "frost", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "FridgeWisp", B = "SnowSpoon", Family = "frost", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
-            new Duet { A = "SnowSpoon", B = "IceCreamOwl", Family = "frost", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
+            new Duet { A = "SnowSpoon", B = "IceCreamOwl", Family = "frost", Effect = DuetEffect.Combo, Line = Combos.PairLine("SnowSpoon", "IceCreamOwl") },
             new Duet { A = "IceCreamOwl", B = "BobaTadpole", Family = "frost", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "BobaTadpole", B = "FossilArmadillo", Family = "frost", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "BreadCrab", B = "CoilKettle", Family = "hearth", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
@@ -65,7 +65,7 @@ namespace ArcaneBrigade
             new Duet { A = "VelvetEnchantress", B = "BottleGull", Family = "hearth", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "BottleGull", B = "BakerMouse", Family = "hearth", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "BakerMouse", B = "KettleBat", Family = "hearth", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
-            new Duet { A = "KettleBat", B = "SaffronMechanist", Family = "hearth", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
+            new Duet { A = "KettleBat", B = "SaffronMechanist", Family = "hearth", Effect = DuetEffect.Combo, Line = Combos.PairLine("KettleBat", "SaffronMechanist") },
             new Duet { A = "SaffronMechanist", B = "CandleSnail", Family = "hearth", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "CandleSnail", B = "SundaeGolem", Family = "hearth", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "SundaeGolem", B = "TeacupCricket", Family = "hearth", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
@@ -74,10 +74,10 @@ namespace ArcaneBrigade
             new Duet { A = "DiceCrab", B = "RibbonSpider", Family = "oddity", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "RibbonSpider", B = "JellySwordsman", Family = "oddity", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "JellySwordsman", B = "MaskPepper", Family = "oddity", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
-            new Duet { A = "MaskPepper", B = "MirrorNewt", Family = "oddity", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
+            new Duet { A = "MaskPepper", B = "MirrorNewt", Family = "oddity", Effect = DuetEffect.Combo, Line = Combos.PairLine("MaskPepper", "MirrorNewt") },
             new Duet { A = "MirrorNewt", B = "SockCyclops", Family = "oddity", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "SockCyclops", B = "JackInTheBox", Family = "oddity", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
-            new Duet { A = "JackInTheBox", B = "CrayonGremlin", Family = "oddity", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
+            new Duet { A = "JackInTheBox", B = "CrayonGremlin", Family = "oddity", Effect = DuetEffect.Combo, Line = Combos.PairLine("JackInTheBox", "CrayonGremlin") },
             new Duet { A = "CrayonGremlin", B = "VioletRemnant", Family = "oddity", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "VioletRemnant", B = "LostCarousel", Family = "oddity", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "LostCarousel", B = "CarouselPony", Family = "oddity", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
@@ -86,7 +86,7 @@ namespace ArcaneBrigade
             new Duet { A = "CitrusToad", B = "PaperDevil", Family = "orchard", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "PaperDevil", B = "RadishJester", Family = "orchard", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
             new Duet { A = "RadishJester", B = "PearMoth", Family = "orchard", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
-            new Duet { A = "PearMoth", B = "SeedHedgehog", Family = "orchard", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
+            new Duet { A = "PearMoth", B = "SeedHedgehog", Family = "orchard", Effect = DuetEffect.Combo, Line = Combos.PairLine("PearMoth", "SeedHedgehog") },
             new Duet { A = "SeedHedgehog", B = "WateringSnail", Family = "orchard", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "WateringSnail", B = "YoyoSquirrel", Family = "orchard", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
             new Duet { A = "YoyoSquirrel", B = "BristleBall", Family = "orchard", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
@@ -95,12 +95,12 @@ namespace ArcaneBrigade
             new Duet { A = "BalloonMallet", B = "CoralTeacup", Family = "tidal", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "CoralTeacup", B = "AnchorSnail", Family = "tidal", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
             new Duet { A = "AnchorSnail", B = "LighthouseWhale", Family = "tidal", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
-            new Duet { A = "LighthouseWhale", B = "KiteDragon", Family = "tidal", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
+            new Duet { A = "LighthouseWhale", B = "KiteDragon", Family = "tidal", Effect = DuetEffect.Combo, Line = Combos.PairLine("LighthouseWhale", "KiteDragon") },
             new Duet { A = "KiteDragon", B = "RibbonOtter", Family = "tidal", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "RibbonOtter", B = "SailSquid", Family = "tidal", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
-            new Duet { A = "SailSquid", B = "ShellPostman", Family = "tidal", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
+            new Duet { A = "SailSquid", B = "ShellPostman", Family = "tidal", Effect = DuetEffect.Combo, Line = Combos.PairLine("SailSquid", "ShellPostman") },
             new Duet { A = "ShellPostman", B = "VoltEel", Family = "tidal", Effect = DuetEffect.Reach, Line = "both reach 15% farther" },
-            new Duet { A = "VoltEel", B = "BubbleKoi", Family = "tidal", Effect = DuetEffect.Speed, Line = "both attack 12% faster" },
+            new Duet { A = "VoltEel", B = "BubbleKoi", Family = "tidal", Effect = DuetEffect.Combo, Line = Combos.PairLine("VoltEel", "BubbleKoi") },
             new Duet { A = "BubbleKoi", B = "ReturnCaptain", Family = "tidal", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "ReturnCaptain", B = "RaincoatFrog", Family = "tidal", Effect = DuetEffect.Damage, Line = "both hit 15% harder" },
             new Duet { A = "RaincoatFrog", B = "ShantySeaLion", Family = "tidal", Effect = DuetEffect.Knockback, Line = "both push 25% harder" },
@@ -123,6 +123,7 @@ namespace ArcaneBrigade
                     case DuetEffect.Speed: weapon.Cooldown /= SpeedBonus; break;
                     case DuetEffect.Reach: weapon.Range *= ReachBonus; break;
                     case DuetEffect.Knockback: weapon.PushDistance = Mathf.Min(.45f, weapon.PushDistance * KnockbackBonus); break;
+                    case DuetEffect.Combo: break; // its move is played in battle (CompanionCombos)
                 }
             }
         }

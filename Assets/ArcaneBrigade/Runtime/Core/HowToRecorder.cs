@@ -155,6 +155,23 @@ namespace ArcaneBrigade
                 yield return Film("gate-near", t => { var o = Owner; if (o?.Simulation != null) o.Simulation.Champion.Position = WorldShop.ExitPosition + new Vector2(1.3f, .3f); }, 2.4f);
                 ArenaController.ScriptedMove = null;
             }
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-combos") >= 0)
+            {
+                // review: friend combos at work, a group per brigade (combo-G-NN, a frame every 0.25 s for 14 s)
+                string[][] groups =
+                {
+                    new[] { "LighthouseWhale", "AnchorSnail", "SailSquid", "ReturnCaptain", "StormKitten", "VoltEel", "StaticFerret", "CometKite", "BubbleKoi" },
+                    new[] { "CarouselPony", "LostCarousel", "JackInTheBox", "RibbonSpider", "DiceCrab", "CrayonGremlin", "MaskPepper", "MirrorNewt" },
+                    new[] { "ClockworkPiper", "TinTick", "TopBeetle", "GrandSprout", "RainbowBell", "IceCreamOwl", "SnowSpoon", "SundaeGolem", "TeacupCricket", "FridgeWisp", "BobaTadpole" },
+                    new[] { "BakerMouse", "BreadCrab", "DoughForeman", "SaffronMechanist", "KettleBat", "TeapotPilgrim", "TeaDragon", "LensOwl", "ReelOwl", "EndlessIndex", "BookmarkGolem" },
+                };
+                for (int g = 0; g < groups.Length; g++)
+                {
+                    yield return Load(catalog, storage, "LanternKnight", 7, false, groups[g]);
+                    for (int f = 0; f < 56; f++) { yield return Grab("combo-" + g + "-" + f.ToString("00"), f); yield return new WaitForSecondsRealtime(.25f); }
+                    var sim = Owner?.Simulation; if (sim != null) notes.Add("group " + g + ": live " + string.Join(",", sim.LiveCombos) + " pages " + sim.ComboPages);
+                }
+            }
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-howto-toys") >= 0)
             {
                 // review: the three toy drops, each picked up in a crowd (toy-Kind-NN, a frame every 0.15 s)
