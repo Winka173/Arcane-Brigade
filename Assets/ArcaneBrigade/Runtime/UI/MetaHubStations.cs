@@ -148,7 +148,8 @@ namespace ArcaneBrigade
                 else RunHud.Sprite(new Rect(seal.x - 24, seal.y - 24, 48, 48), read && relic?.Icon != null ? relic.Icon : MetaIcons.Station(MetaStation.Postbox, true));
                 Ink(earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
                 // the words start past the wax seal and stop before the folded corner; each line gets its full height
-                Rect words = new Rect(row.x + 86, row.y + 8, row.width - 86 - 44, rowH - 16);
+                float past = seal.x - row.x + 52; // clear of the seal's right edge (the painted seal is about 90 px across)
+                Rect words = new Rect(row.x + past, row.y + 8, row.width - past - 44, rowH - 16);
                 Color words2 = earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream; // cream on the dark walnut plate of a sealed letter
                 ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 32), earned ? l.Name : "Sealed", words2, body);
                 ArcadeSkin.KitCaption(new Rect(words.x, words.y + 32, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
