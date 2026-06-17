@@ -2827,7 +2827,7 @@ MonoBehaviour:
       Value: 0.4
     - Effect: 11
       Scope: 1
-      Value: 0.1
+      Value: 0.2
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -3599,7 +3599,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.8
+      Value: 0.6
     - Effect: 3
       Scope: 0
       Value: -0.08
@@ -6550,7 +6550,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.9
+      Value: 0.7
     - Effect: 3
       Scope: 1
       Value: 0.1

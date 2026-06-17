@@ -399,9 +399,7 @@ namespace ArcaneBrigade
             {
                 CombatCatalog.PassiveHeal *= K10StatRules.Factor(Bonus(ItemEffect.HealCorrection));
                 CombatCatalog.Armor *= K10StatRules.Factor(Bonus(ItemEffect.ArmorCorrection));
-                // requirement 25/10/2026: armour no longer fades in later waves (past 8 points it counted a quarter); the formula's own
-                // curve keeps it from ever reaching 100% (30 points: about 79%)
-                CombatCatalog.Armor = Mathf.Min(3f, CombatCatalog.Armor);
+                // armour no longer fades in later waves (requirement 25/10/2026); each hit keeps at least 15% of itself
                 CombatCatalog.Dodge = Mathf.Clamp(Bonus(ItemEffect.Dodge), 0, OctoberHero == "Sir Purrcival" ? .9f : .6f); // original: his dodge cap is 90%
                 CombatCatalog.HeartHealing = Bonus(ItemEffect.HeartHealing);
                 CombatCatalog.ChestQuality = Bonus(ItemEffect.ChestQuality) + Mathf.Max(0, Bonus(ItemEffect.TreasureDetection)) * 0.25f;
