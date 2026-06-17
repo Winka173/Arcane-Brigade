@@ -290,7 +290,7 @@ namespace ArcaneBrigade
             if (SecretRoom != null && SecretRoom.MenuOpen) moveIntent = Vector2.zero;
             if (ScriptedMove.HasValue && RunPaths.Diagnostic) moveIntent = Vector2.ClampMagnitude(ScriptedMove.Value, 1); // recorded guide clips (HowToRecorder)
             if (Shop != null && !TransitionPending && !hallExitPending && simulation.Phase == RunPhase.Rest && !StoryConsumesInput && (SecretRoom == null || !SecretRoom.MenuOpen)) moveIntent = Shop.TapToWalk(moveIntent, arenaCamera);
-            if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
+            if (Shop != null && !TransitionPending) { Shop.Display(); Shop.WalkIntoExit(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
             if (warning && !warningAudio && !pauseGate.Paused && !ArcaneCueLibrary.Available) audioFeedback.PlayCue(24, true);
             warningAudio = warning;
@@ -329,7 +329,7 @@ namespace ArcaneBrigade
                 if (transitionRemaining > 0)
                 {
                     transitionRemaining -= Time.deltaTime;
-                    if (transitionRemaining <= 0) SceneryCrossfade.Around(() => Begin(true)); // on the same floor: the last enemies are gone, the shopkeeper drops in and the stock lands (requirement 24/10/2026)
+                    if (transitionRemaining <= 0) SceneryCrossfade.Around(() => Begin(true), ActorViews()); // on the same floor: the last enemies are gone, the shopkeeper drops in and the stock lands (requirement 24/10/2026)
                 }
             }
         }
@@ -401,7 +401,7 @@ namespace ArcaneBrigade
             if (session != null && (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat))
             {
                 // a won night turns into the shop's room as it settles: its pieces crossfade rather than swap in one frame
-                if (simulation.Phase == RunPhase.Victory) SceneryCrossfade.Around(() => session.Settle(simulation)); else session.Settle(simulation);
+                if (simulation.Phase == RunPhase.Victory) SceneryCrossfade.Around(() => session.Settle(simulation), ActorViews()); else session.Settle(simulation);
                 if (simulation.Phase == RunPhase.Victory)
                 {
                     foreach (UnitVisual visual in units.Values)
@@ -555,7 +555,7 @@ namespace ArcaneBrigade
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
             if (session.OutsideChallengeAvailable) session.DeclineOutsideStage();
-            SceneryCrossfade fade = SceneryCrossfade.Hold(); // the shop's pieces fade out as the night's fade in
+            SceneryCrossfade fade = SceneryCrossfade.Hold(ActorViews()); // the shop's pieces fade out as the night's fade in
             session.ContinueWave();
             if (StageTransfer.ChangesMap(session.State.Wave)) session.RegisterOutsideTransfer();
             if (session.State.Phase != SessionPhase.Combat) { fade?.Cancel(); if (Shop != null) Shop.CancelDeparture(); return; }
@@ -666,8 +666,22 @@ namespace ArcaneBrigade
         private void OnApplicationFocus(bool focus) { if (!RunPaths.Diagnostic) { pauseGate.FocusLost = !focus; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); } }
         private void OnApplicationPause(bool paused) { pauseGate.Backgrounded = paused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); if (paused) PersistBoundary(); }
 
+        /// <summary>The views of everything that moves (units, shots, coins): never part of the room.</summary>
+        private bool OnScreen(Vector2 at) { Vector3 v = arenaCamera.WorldToViewportPoint(at); return v.x > -.05f && v.x < 1.05f && v.y > -.05f && v.y < 1.05f; }
+        private HashSet<Transform> ActorViews()
+        {
+            var set = new HashSet<Transform>();
+            foreach (UnitVisual v in units.Values) if (v != null) set.Add(v.transform);
+            foreach (UnitVisual v in unitPool) if (v != null) set.Add(v.transform);
+            foreach (SpriteRenderer r in projectileViews.Values) if (r != null) set.Add(r.transform);
+            foreach (SpriteRenderer r in pickupViews.Values) if (r != null) set.Add(r.transform);
+            return set;
+        }
+        // the last enemies of a won night: who has started its quiet defeat, and who is playing it (its view hidden meanwhile)
+        private readonly HashSet<int> nightEndSeen = new HashSet<int>(), nightEndPlayed = new HashSet<int>();
         private void ClearViews()
         {
+            nightEndSeen.Clear(); nightEndPlayed.Clear();
             foreach (UnitVisual view in units.Values) { view.gameObject.SetActive(false); unitPool.Push(view); }
             units.Clear();
             ReleaseAll(projectileViews);
@@ -750,9 +764,11 @@ namespace ArcaneBrigade
                 {
                     if (simulation.Phase == RunPhase.Victory)
                     {
+                        // requirement 25/10/2026: the enemies left when a night is won play their own defeat as the sweep reaches
+                        // them (no burst, no ink pool); off screen, or beyond what the death pool holds, they simply fade
                         float sink = Mathf.Clamp01((terminalVisualAge - WaveClearInk.SweepDelay(state.Position, arenaCamera)) / 0.3f);
-                        view.SetTerminalFade(1 - sink);
-                        if (sink > 0 && sink < 1) (waveClearInk ??= gameObject.AddComponent<WaveClearInk>()).Mark(state.Position, sink, state.Definition.Radius, state.Id);
+                        if (sink > 0 && nightEndSeen.Add(state.Id) && deathFeedback != null && OnScreen(state.Position) && deathFeedback.Play(view, state, 1, true)) nightEndPlayed.Add(state.Id);
+                        view.SetTerminalFade(nightEndPlayed.Contains(state.Id) ? 0 : 1 - sink);
                     }
                     else view.SetTerminalFade(Mathf.Clamp01(1 - terminalVisualAge / 0.35f));
                 }

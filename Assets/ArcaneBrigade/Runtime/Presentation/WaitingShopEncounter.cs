@@ -8,7 +8,7 @@ namespace ArcaneBrigade
     [DefaultExecutionOrder(-55)]
     public sealed class WaitingShopEncounter : MonoBehaviour, ShopFocus.ISource
     {
-        public static readonly Vector2 Anchor = new Vector2(-3.15f, -4.65f);
+        public static readonly Vector2 Anchor = new Vector2(4.3f, -4.55f); // the free low right (requirement 25/10/2026: beside the exit rift, between the stalls, it was cramped)
         public const float Reach = 1.65f;
         private ArenaController owner;
         private SpriteRenderer prop, reflection, tear;
@@ -175,17 +175,18 @@ namespace ArcaneBrigade
             voice.Stop(); Near = false;
             return true;
         }
+        private bool promptShown; private float promptAt;
         private void OnGUI()
         {
-            if (!Visible || !Near || owner.PresentationPaused || owner.StoryConsumesInput) return;
+            if (!Visible || !Near || owner.PresentationPaused || owner.StoryConsumesInput) { promptShown = false; return; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (GUI.Button(StoryPropInput.ClickRect(prop,Camera.main),GUIContent.none,GUIStyle.none)) TryInspect();
-            prompt ??= ArcadeTypography.Style(22, true); prompt.alignment = TextAnchor.MiddleCenter;
-            caption ??= ArcadeTypography.Style(19); caption.alignment = TextAnchor.MiddleCenter;
-            var panel = new Rect(1000, 820, 510, 120); ArcadeSkin.Plate(panel, ArcadeSkin.Teal);
-            string title = active == WaitingEncounter.ReservedTable ? "THREE CHAIRS. TWO CUPS. A NAME YOU HAVE NOT MET." : active == WaitingEncounter.BreathingPhone ? "THE WIRE IS CUT. THE TELEPHONE STILL RINGS." : "THE REFLECTION DOES NOT FOLLOW YOU.";
-            GUI.Label(new Rect(1020, 830, 470, 48), title, caption);
-            if (ArcadeSkin.Button(new Rect(1045, 878, 420, 56), "LIFT THE RECEIVER", KitButton.Primary, true, prompt)) TryInspect();
+            // the shop's one prompt card, as the secret rooms' (requirement 25/10/2026); each thing has its own name and verb
+            if (!promptShown) { promptShown = true; promptAt = Time.unscaledTime; }
+            bool table = active == WaitingEncounter.ReservedTable, phone = active == WaitingEncounter.BreathingPhone;
+            string title = table ? "THE RESERVED TABLE" : phone ? "THE RINGING TELEPHONE" : "THE LATE REFLECTION";
+            string plain = table ? "Three chairs, two cups, and a name you have not met. A story page waits here." : phone ? "The wire is cut, yet it still rings. A story page waits here." : "Your reflection does not follow you. A story page waits here.";
+            if (ShopPrompt.Draw(title, plain, table ? "SIT DOWN" : phone ? "ANSWER" : "LOOK CLOSER", Time.unscaledTime - promptAt)) TryInspect();
             GUI.matrix = previous;
         }
         private void OnDestroy()

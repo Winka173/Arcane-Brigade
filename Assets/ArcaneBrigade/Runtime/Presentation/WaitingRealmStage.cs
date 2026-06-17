@@ -179,8 +179,8 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(inner.x + 10, inner.y + 160, inner.width - 20, 120),
                     "HIDDEN FIGHT · THE NIGHT YOU HID\nThe Bedside and the travellers it wakes fight like wave " + (state.Wave + ActOneCanon.SitWaveBonus) + ". Defeat it before the knocking stops (" + Mathf.RoundToInt(ActOneCanon.KnockSeconds) + " s).\nIf you lose, the journey ends here. Only once per journey.", plain);
                 float buttonsY = inner.yMax - 92;
-                if (ArcadeSkin.Button(new Rect(inner.center.x - 350, buttonsY, 320, 88), "SIT DOWN", KitButton.Danger, true, choice)) Sit();
-                if (ArcadeSkin.Button(new Rect(inner.center.x + 30, buttonsY, 320, 88), "STEP AWAY", KitButton.Secondary, true, choice)) asking = false;
+                if (ArcadeSkin.Button(new Rect(inner.center.x - 350, buttonsY, 320, 88), "SIT DOWN", KitButton.Danger, true, choice) && !CardPop.Closing("warm-chair")) CardPop.CloseThen("warm-chair", Sit);
+                if (ArcadeSkin.Button(new Rect(inner.center.x + 30, buttonsY, 320, 88), "STEP AWAY", KitButton.Secondary, true, choice) && !CardPop.Closing("warm-chair")) CardPop.CloseThen("warm-chair", () => asking = false);
                 GUI.color = popKeep;
             }
             GUI.matrix = previous;

@@ -34,6 +34,7 @@ namespace ArcaneBrigade
 
     public sealed partial class CombatSimulation
     {
+        public const float ThrownPropShare = .55f;
         private void Danger(ExpandedFieldKind kind, UnitState source, Vector2 destination, float radius, float delay, float duration, int organ = -1)
         {
             // no lingering pools on the floor (requirement 19/10/2026): what used to spread there lands once as a dropped blow and is gone
@@ -43,7 +44,9 @@ namespace ArcaneBrigade
             int count = 0;
             foreach (ExpandedField field in fields) if (CarnivalHazards.IsHostile(field.Kind)) count++;
             if (count >= 48) return;
-            Field(kind, source, ClampPosition(destination, radius), (destination - source.Position).normalized, radius, source.Definition.Weapon.Damage, delay, duration, NewCause(source.Id));
+            // requirement 25/10/2026: an ordinary enemy's thrown props (several arcing at once) hit far too hard at full weapon damage
+            float damage = source.Definition.Weapon.Damage * (!source.Definition.IsBoss && kind == ExpandedFieldKind.FallingProp ? ThrownPropShare : 1);
+            Field(kind, source, ClampPosition(destination, radius), (destination - source.Position).normalized, radius, damage, delay, duration, NewCause(source.Id));
             if (organ >= 0)
             {
                 ExpandedField field = fields[fields.Count - 1]; field.SourceOrgan = organ; field.Start = BossPartRules.Position(source, organ);

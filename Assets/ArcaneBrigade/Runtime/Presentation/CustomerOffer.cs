@@ -117,8 +117,9 @@ namespace ArcaneBrigade
                 : "Pick a friend to see what you would give up.", plain);
             float buttonsY = card.yMax - 120;
             Rect sell = new Rect(card.center.x - 380, buttonsY, 340, 88), refuse = new Rect(card.center.x + 40, buttonsY, 340, 88);
-            if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name)) Sell();
-            if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name)) { InputConsumedFrame = Time.frameCount; owner.RefuseCustomer(); }
+            // both answers close the letter with its motion first (requirement 25/10/2026)
+            if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name) && !CardPop.Closing("last-customer")) CardPop.CloseThen("last-customer", Sell);
+            if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name) && !CardPop.Closing("last-customer")) { InputConsumedFrame = Time.frameCount; CardPop.CloseThen("last-customer", () => owner.RefuseCustomer()); }
             if (unfold < .5f && !PresentationSettings.ReducedMotion) ArcadeSkin.Seal(new Vector2(card.center.x, card.y + 40), 60 * (1 - unfold * 2) + 10, "$"); // the seal breaking open
             GUI.color = popKeep;
             GUI.matrix = previous;
@@ -214,7 +215,7 @@ namespace ArcaneBrigade
                 : picked == dark.Count && colours ? "Leave the lanterns dark and choose one of three rainbow gifts now." : "Pick a lantern's memory or the colours to see what it gives.";
             GUI.Label(new Rect(card.x + 60, card.y + 372, card.width - 120, 70), meaning, info);
             bool ready = picked >= 0 && (picked < dark.Count || colours && picked == dark.Count);
-            if (ArcadeSkin.Button(new Rect(card.center.x - 200, card.yMax - 128, 400, 88), ready ? (picked == dark.Count ? "TAKE THE COLOURS" : "RELIGHT") : "PICK ONE", KitButton.Primary, ready, info)) Confirm();
+            if (ArcadeSkin.Button(new Rect(card.center.x - 200, card.yMax - 128, 400, 88), ready ? (picked == dark.Count ? "TAKE THE COLOURS" : "RELIGHT") : "PICK ONE", KitButton.Primary, ready, info) && !CardPop.Closing("memory-return")) CardPop.CloseThen("memory-return", Confirm);
             GUI.color = popKeep;
             GUI.matrix = previous;
         }

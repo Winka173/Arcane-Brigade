@@ -85,7 +85,6 @@ namespace ArcaneBrigade
                 Vector2 aim = boss.TelegraphDirection.normalized, origin = boss.Position + aim * Mathf.Max(.5f, body.Half.x * .9f);
                 float half = HalfSpread(boss) + .06f, reach = 5.6f;
                 FanGround(ink, origin, aim, half, reach, charge, .95f);
-                for (int side = -1; side <= 1; side += 2) DashedLine(ink, origin, origin + Rotate(aim, side * half * Mathf.Rad2Deg) * reach, charge, seed + side, .95f);
                 Arrow(ink, origin + aim * (reach * .92f), aim, .55f + .25f * charge, charge, .95f);
                 Lanes++;
                 return;
@@ -108,8 +107,6 @@ namespace ArcaneBrigade
                     if (axis.sqrMagnitude < .0025f) { Rim(ink, b, field.Radius + .15f, field.Radius + .15f, charge, seed, 1); Rims++; break; }
                     Vector2 dir = axis.normalized, n = new Vector2(-dir.y, dir.x) * (field.Radius + .12f);
                     LaneGround(ink, a, b, field.Radius + .12f, charge, 1);
-                    DashedLine(ink, a + n, b + n, charge, seed, 1); DashedLine(ink, a - n, b - n, charge, seed + 1, 1);
-                    ink.FloorStroke(a + n, a - n, Danger, .09f, 1, 0, .8f, 0, seed + 2);
                     Arrow(ink, b, dir, field.Radius + .35f, charge, 1);
                     Lanes++;
                     break;
@@ -146,7 +143,6 @@ namespace ArcaneBrigade
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
             ink.FloorZone(c, rx, ry, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .42f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .62f * alpha));
             if (s > .02f) ink.FloorZone(c, rx * s, ry * s, new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .22f * alpha), new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .45f * alpha));
-            ink.FloorArc(c, rx, ry, 0, 360, s > .8f ? DangerHot : Danger, Mathf.Clamp((rx + ry) * .035f, .08f, .14f), .95f * alpha);
         }
         /// <summary>A lane's solid ground: the deep red band, filled bright from its start as the blow charges.</summary>
         public static void LaneGround(ArsenalInk ink, Vector2 a, Vector2 b, float halfWidth, float charge, float alpha)

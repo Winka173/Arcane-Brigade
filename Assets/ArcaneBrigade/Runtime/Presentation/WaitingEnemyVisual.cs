@@ -139,8 +139,12 @@ namespace ArcaneBrigade
                 {
                     // the pinned cord: a coiled inked wire with sparks running along it
                     float alpha = Mathf.Min(fade, Mathf.Clamp01((now - m.At) / .12f));
-                    floor.Stroke(InkCanvas.Line(m.A, m.B, .07f, 7, false, seed), InkStroke.Of(Soot, .11f, alpha, seed));
-                    floor.Stroke(InkCanvas.Line(m.A, m.B, .05f, 7, false, seed + 2), InkStroke.Of(Bile, .05f, .8f * alpha, seed + 1));
+                    // it writhes: the coil's waves run along it, and a pulse of current travels from the phone to its catch
+                    float writhe = still ? 0 : now * 9;
+                    floor.Stroke(InkCanvas.Line(m.A, m.B, .09f, 7, false, seed + writhe), InkStroke.Of(Soot, .12f, alpha, seed));
+                    floor.Stroke(InkCanvas.Line(m.A, m.B, .07f, 7, false, seed + 2 - writhe * .8f), InkStroke.Of(Bile, .06f, .85f * alpha, seed + 1));
+                    float pulse = still ? .5f : Mathf.Repeat(now * 1.6f, 1);
+                    floor.GlowRibbon(InkCanvas.Line(m.A, m.B, .08f, 7, false, seed + writhe), Mathf.Min(1, pulse + .12f), Mathf.Max(0, pulse - .12f), .22f, new Color(1f, .78f, .4f, .75f * alpha));
                     for (int i = 0; i < 3; i++)
                     {
                         float t = still ? (i + .5f) / 3 : Mathf.Repeat(now * 1.3f + i / 3f, 1);

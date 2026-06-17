@@ -106,11 +106,10 @@ namespace ArcaneBrigade
             {
                 float fade = Mathf.Clamp01((t - s.ChuteAt) / .3f) * Mathf.Clamp01((chuteEnd - t) / .4f);
                 Put("PostOffice/Chute", new Vector2(s.ChuteX, s.ChuteTop + .35f), 1.25f, Air, fade);
-                // the letters' lane: two gold dashed edges down the floor while the chute opens
+                // the letters' lane: a band of warm gold down the floor while the chute opens, filling as it charges (no outline)
                 float charge = Mathf.Clamp01((t - s.ChuteAt) / MapEnvironmentRules.ChuteWarn);
                 if (t < s.ChuteAt + MapEnvironmentRules.ChuteWarn + 2.5f)
-                    for (int side = -1; side <= 1; side += 2)
-                        Dash(new Vector2(s.ChuteX + side * .6f, s.ChuteTop - .3f), new Vector2(s.ChuteX + side * .6f, s.ChuteBottom), charge, ArsenalInk.Gold, .8f * fade);
+                    Band(new Vector2(s.ChuteX, s.ChuteTop - .3f), new Vector2(s.ChuteX, s.ChuteBottom), .6f, charge, ArsenalInk.Gold, .8f * fade);
             }
             string[] styles = { "PostOffice/Letter_A", "PostOffice/Letter_B", "PostOffice/Letter_C" };
             for (int i = 0; i < s.Letters.Count; i++)
@@ -298,12 +297,26 @@ namespace ArcaneBrigade
                 ink.TokenAt(InkToken.Coin, hot ? ArsenalInk.Gold : ArsenalInk.Leather, at + new Vector2((i - (count - 1) * .5f) * .3f, 0), hot ? .3f : .24f, 0, alpha);
         }
         /// <summary>A dashed brushed rim (outline only) that closes with the charge.</summary>
+        /// <summary>An area of floor in its colour: the whole area softly, filling brighter from the centre as it charges.</summary>
         private void Ring(Vector2 c, float rx, float ry, float charge, InkPalette pal, float alpha, float from = 0, float to = 360)
         {
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            int dashes = Mathf.Clamp(Mathf.RoundToInt((rx + ry) * 4 * (to - from) / 360), 5, 28);
-            float slot = (to - from) / dashes, fill = Mathf.Lerp(.42f, 1.03f, s), spin = still ? 0 : (1 - s) * 30;
-            for (int i = 0; i < dashes; i++) { float a = from + spin + i * slot; ink.FloorArc(c, rx, ry, a, a + slot * fill, pal, .09f, alpha); }
+            Color body = pal.Body, glow = pal.Glow;
+            if (to - from >= 359) ink.FloorZone(c, rx, ry, new Color(body.r, body.g, body.b, .3f * alpha), new Color(body.r, body.g, body.b, .45f * alpha));
+            else ink.Cone(c, Mathf.Max(rx, ry), from, to, body, .45f * alpha, .3f * alpha);
+            if (s > .02f)
+            {
+                if (to - from >= 359) ink.FloorZone(c, rx * s, ry * s, new Color(glow.r, glow.g, glow.b, .2f * alpha), new Color(glow.r, glow.g, glow.b, .4f * alpha));
+                else ink.Cone(c, Mathf.Max(rx, ry) * s, from, to, glow, .4f * alpha, .2f * alpha);
+            }
+            Marks++;
+        }
+        /// <summary>A band of floor in its colour, filling from its start as it charges.</summary>
+        private void Band(Vector2 a, Vector2 b, float half, float charge, InkPalette pal, float alpha)
+        {
+            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge)); Color body = pal.Body, glow = pal.Glow;
+            ink.FloorLane(a, b, half, new Color(body.r, body.g, body.b, .38f * alpha), new Color(body.r, body.g, body.b, .2f * alpha));
+            if (s > .02f) ink.FloorLane(a, Vector2.Lerp(a, b, s), half * .9f, new Color(glow.r, glow.g, glow.b, .35f * alpha), new Color(glow.r, glow.g, glow.b, .15f * alpha));
             Marks++;
         }
         private void Dash(Vector2 a, Vector2 b, float charge, InkPalette pal, float alpha)
@@ -314,12 +327,12 @@ namespace ArcaneBrigade
             for (int i = 0; i < dashes; i++) ink.FloorStroke(Vector2.Lerp(a, b, i / (float)dashes), Vector2.Lerp(a, b, Mathf.Min(1, (i + fill) / dashes)), pal, .08f, 1, 0, alpha, 0, i);
             Marks++;
         }
-        /// <summary>Where something will slide: two dashed edges and an arrowhead.</summary>
+        /// <summary>Where something will slide: its band filled, and an arrowhead.</summary>
         private void Lane(Vector2 from, Vector2 to, float half, float charge, InkPalette pal, float alpha)
         {
             Vector2 axis = to - from; if (axis.sqrMagnitude < .01f) return;
             Vector2 dir = axis.normalized, n = new Vector2(-dir.y, dir.x) * half;
-            Dash(from + n, to + n, charge, pal, alpha); Dash(from - n, to - n, charge, pal, alpha);
+            Band(from, to, half, charge, pal, alpha); // the slide's whole band, and an arrowhead for its way
             ink.FloorStroke(to + n * 1.5f - dir * .6f, to + dir * .25f, pal, .1f, 1, 0, alpha);
             ink.FloorStroke(to - n * 1.5f - dir * .6f, to + dir * .25f, pal, .1f, 1, 0, alpha);
         }

@@ -68,7 +68,13 @@ namespace ArcaneBrigade
 
         private void Update()
         {
-            if (closingAt >= 0) { if (Time.unscaledTime - closingAt >= CloseTime) { shown = false; closingAt = -1; } return; }
+            if (closingAt >= 0)
+            {
+                if (Time.unscaledTime - closingAt < CloseTime) return;
+                shown = false; closingAt = -1;
+                if (pendingChoice >= 0) { int c = pendingChoice; pendingChoice = -1; MakeDeal(c); }
+                return;
+            }
             if (!Open || owner.PresentationPaused) { if (owner?.Session?.Visitor == null) shown = false; return; }
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { Close(); return; }
             List<VisitorOption> options = owner.Session.VisitorOptions();
@@ -83,11 +89,24 @@ namespace ArcaneBrigade
             if (picked != index) { CheckpointAudio.PlayInterfaceId("ui.select"); pickedAt = Time.unscaledTime; }
             picked = index;
         }
+        private int pendingChoice = -1;
+        /// <summary>A deal is chosen: the card closes with its motion first, then the deal is made (requirement 25/10/2026).</summary>
         private void Choose(int index)
         {
-            picked = -1;
+            if (closingAt >= 0) return;
+            picked = -1; pendingChoice = index; Close();
+        }
+        private void MakeDeal(int index)
+        {
             InputConsumedFrame = Time.frameCount;
-            if (owner.VisitorChoose(index) && owner.Session.Visitor == null) shown = false;
+            VisitorDefinition visitor = owner.Session.Visitor;
+            RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(owner.Session.State));
+            List<VisitorOption> options = owner.Session.VisitorOptions();
+            string get = visitor != null && index < options.Count ? ShopVisitors.DealFor(visitor, options[index].Value, owner.Session.State.Wave, owner.Session.GoldScale)?.Get : null;
+            if (!owner.VisitorChoose(index)) return;
+            // what the deal gave, on its own card (requirement 25/10/2026); a deal with a second step shows it once it is done
+            if (owner.Session.Visitor == null) { if (visitor != null) VisitorReceipt.Record(owner, before, visitor.Name, get); }
+            else Show(); // a deal with a second step opens again on it
         }
         private Sprite IconFor(VisitorOption o)
         {

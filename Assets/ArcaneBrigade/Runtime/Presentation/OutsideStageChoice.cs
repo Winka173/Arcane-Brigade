@@ -159,9 +159,21 @@ namespace ArcaneBrigade
                     cardName.alignment = TextAnchor.MiddleLeft; cardName.wordWrap = false; cardName.normal.textColor = RunModifierRules.RarityColor(giftCard.Rarity);
                     GUI.Label(new Rect(tx, panel.y + 20, tw, 40), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     cardLine.normal.textColor = ArcadeSkin.Cream;
-                    GlossaryUI.Text(new Rect(tx, panel.y + 66, tw, panel.height - 90), FirstLines(giftCard.Summary, 4), cardLine);
+                    // a friend shows the weapon it comes with, on the same walnut chip as the shop's card (requirement 25/10/2026)
+                    float below = panel.y + 66;
+                    if (ally != null && !string.IsNullOrEmpty(giftCard.AttackLabel))
+                    {
+                        float chipW = Mathf.Min(tw, 62 + cardLine.CalcSize(new GUIContent(giftCard.AttackLabel)).x + 22);
+                        Rect chip = new Rect(tx, below, chipW, 46);
+                        ArcadeSkin.Chip(chip, false);
+                        if (giftCard.AttackIcon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), giftCard.AttackIcon);
+                        Color keepLine = cardLine.normal.textColor; GUI.Label(new Rect(chip.x + 60, chip.y, chip.width - 70, chip.height), giftCard.AttackLabel, cardLine);
+                        below += 54;
+                    }
+                    GlossaryUI.Text(new Rect(tx, below, tw, panel.yMax - 24 - below), FirstLines(giftCard.Summary, ally != null ? 3 : 4), cardLine);
                     if (takeStyle == null) takeStyle = ArcadeSkin.Primary(new GUIStyle(choiceButton) { fontSize = 30 });
-                    if (ArcadeSkin.KitGuiButton(take, "TAKE", takeStyle) && owner.ClaimOutsideReward(i)) { GUI.color = popKeep; Clear(); mode = 0; GUI.matrix = matrix; GUI.skin = previousSkin; return; }
+                    // the gift taken closes with its motion, then it is given (requirement 25/10/2026)
+                    if (ArcadeSkin.KitGuiButton(take, "TAKE", takeStyle) && !CardPop.Closing("gift-card-" + i)) { int gift = i; CardPop.CloseThen("gift-card-" + i, () => { if (owner.ClaimOutsideReward(gift)) { Clear(); mode = 0; } }); }
                     GUI.color = popKeep;
                 }
                 GlossaryUI.Draw(new Vector2(1920, 1080));

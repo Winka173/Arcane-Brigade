@@ -91,14 +91,15 @@ namespace ArcaneBrigade
             return remnant;
         }
         /// <summary>Returns false when every remnant is busy (the caller then shows a cheap burst instead of nothing).</summary>
-        public bool Play(UnitVisual visual, UnitState state, float force = 1f)
+        /// <param name="quiet">A night's last enemies leaving when it is won: the species' own defeat (no burst, no affix departure).</param>
+        public bool Play(UnitVisual visual, UnitState state, float force = 1f, bool quiet = false)
         {
             if (visual == null || state == null || state.Definition == null) return false;
             bool important = state.Definition.IsBoss || state.Faction == Faction.Champion;
             Remnant remnant = Acquire(important);
             if (remnant == null) return false;
             remnant.Force = PresentationSettings.ReducedMotion ? 1f : Mathf.Clamp(force, 1f, 3f);
-            if (state.Faction == Faction.Enemy && !state.Definition.IsBoss) EnemyAffixDeparture.Play(state, visual.BodyRenderer);
+            if (!quiet && state.Faction == Faction.Enemy && !state.Definition.IsBoss) EnemyAffixDeparture.Play(state, visual.BodyRenderer);
             foreach (BossPartDeathScatter debris in remnant.BossDebris)
                 if (debris != null) { debris.gameObject.SetActive(false); debris.transform.SetParent(null); Destroy(debris.gameObject); }
             visual.CopyDeathPose(remnant.Body, remnant.Shadow, remnant.Weapon, remnant.Hand, remnant.DrawHand, remnant.Grip);
@@ -135,7 +136,7 @@ namespace ArcaneBrigade
             remnant.Gesture = EnsembleMotion.For(state.Definition);
             remnant.Evolution = state.Definition.EvolutionStage;
             remnant.SpeciesIdentity = AnimationTiming.Phase(state.Definition.Id);
-            remnant.Pop = remnant.Species;
+            remnant.Pop = remnant.Species && !quiet;
             remnant.BossBlasted = false;
             remnant.Height = Mathf.Max(0.3f, state.Definition.BodyHeight);
             // a pop holds the struck (hurt) pose; the long painted collapse belongs to heroes and bosses

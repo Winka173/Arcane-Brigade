@@ -310,6 +310,8 @@ namespace ArcaneBrigade
         {
             if(hand==null){hand=ArcadeTypography.Style(34);hand.font=ArcadeTypography.Hand;hand.alignment=TextAnchor.MiddleCenter;hand.wordWrap=true;}
             Rect card=new Rect(460,800,1000,145);
+            Matrix4x4 popMatrix=GUI.matrix;Color popColour=GUI.color;
+            LivingUI.Auto("hob-rescue",card.center); // it pops in like every card (requirement 25/10/2026)
             ArcadeSkin.Ticket(card,ArcadeSkin.Paper,ArcadeSkin.Accent);
             hand.normal.textColor=new Color(.25f,.19f,.14f);
             string line=rescued?"Hob comes up out of the chair like something pulled out of deep water."
@@ -325,6 +327,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(card.x+120,card.y+100,card.width-240,26),helpers+" PULLING",small);
                 small.normal.textColor=was;
             }
+            GUI.matrix=popMatrix;GUI.color=popColour;
         }
         private void OnDestroy(){session?.Dispose();if(floorMaterial!=null)Destroy(floorMaterial);}
     }

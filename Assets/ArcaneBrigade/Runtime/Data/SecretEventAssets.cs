@@ -69,6 +69,12 @@ namespace ArcaneBrigade
         public static readonly string[] Hints = {
             "Someone is knocking from inside a drawer.", "A red thread is sewing a door into the wall.", "Your reflection moved after you stopped.", "The little train has arrived without a timetable.",
             "The clock struck once too many.", "The lamp is asleep. Its shadow is still awake.", "There is applause behind the closed curtains.", "This letter has been waiting for your name." };
+        /// <summary>What each room is for, in plain words (requirement 25/10/2026: the names and riddles alone told nothing).</summary>
+        public static readonly string[] Plain = {
+            "Fight the drawer's guard to rescue a lost friend or relic.", "Re-sew one of your relics to change what it gives.",
+            "Fight a copy of your team for a relic, lend a relic, or rest.", "Pay gold, trade a relic or fight the owner for a rare relic.",
+            "Borrow a relic or gold now and pay it back later.", "Heal fully, end your deals, or gain a friend for 2 nights.",
+            "Win a challenge fight to take a rare relic.", "Post a relic away to grow it, or give it to a friend." };
         public static readonly string[] EntryCues = { "shop.stand.appear", "wpn.needle.volley", "hero.mirror.guard", "menu.spot.printer", "hero.clock.runner", "hero.dream.breath", "ui.cutin.encore", "hero.parcel.express" };
         public static readonly string[] RewardItems = { "SecretWoodHeart", "SecretThread", "SecretMirror", "SecretTicket", "SecretHour", "SecretDream", "SecretCrown", "SecretLetter" };
     }

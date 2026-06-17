@@ -342,10 +342,19 @@ namespace ArcaneBrigade
                 Rect charge = ArcadeSkin.HasKit ? new Rect(160, 90, 210, 6) : new Rect(108, 72, 224, 5);
                 ArcadeSkin.Line(charge, new Color(0.06f, 0.07f, 0.11f, 0.85f));
                 // the gauge glides to its new fill instead of stepping with each hit
-                float gauge = Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required);
+                // while the hero is transformed the bar shows the time left, in a hot gold that flickers (requirement 25/10/2026)
+                bool live = simulation.HeroAwakening;
+                float gauge = live ? simulation.HeroAwakenRemaining : Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required);
                 if (PresentationSettings.ReducedMotion) shownGauge = gauge;
                 else if (Event.current.type == EventType.Repaint) shownGauge = Mathf.MoveTowards(shownGauge, gauge, Time.unscaledDeltaTime * (gauge > shownGauge ? 2.5f : 6f));
-                ArcadeSkin.Line(new Rect(charge.x, charge.y, charge.width * shownGauge, charge.height), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
+                Color fill = simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal;
+                if (live)
+                {
+                    float flicker = PresentationSettings.ReducedFlashes ? .5f : .5f + .5f * Mathf.Sin(Time.unscaledTime * 14f);
+                    fill = Color.Lerp(new Color(1f, .62f, .2f), new Color(1f, .97f, .8f), flicker);
+                    ArcadeSkin.Glow(new Rect(charge.x - 8, charge.y - 8, charge.width * shownGauge + 16, charge.height + 16), new Color(1f, .75f, .35f, .25f + .25f * flicker));
+                }
+                ArcadeSkin.Line(new Rect(charge.x, charge.y, charge.width * shownGauge, charge.height), fill);
                 // the gauge says what it is (requirement 25/10/2026: icons are tappable and explained): a small brass "i" at its start
                 Rect help = new Rect(charge.x - 30, charge.y - 11, 26, 26);
                 Rect face = ArcadeSkin.RoundArt(help, KitRound.Brass, help.Contains(Event.current.mousePosition) ? 1 : 0);
@@ -633,7 +642,7 @@ namespace ArcaneBrigade
             bool affordable = Affordable(owner, station);
             // an HP price reads PAY; short of the price, the button says what is missing (play-test 20/10/2026)
             string verb = station.Offer != null ? (currency == ShopCurrency.Health ? "PAY" : "BUY") : station.Action == "VISITOR" ? "MEET" : station.Action;
-            if (station.Offer != null && !affordable) verb = currency == ShopCurrency.Health ? "NOT ENOUGH HP" : currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : "NOT ENOUGH GOLD";
+            if (!affordable) verb = currency == ShopCurrency.Health ? "NOT ENOUGH HP" : currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : "NOT ENOUGH GOLD";
             bool priced = price > 0 && station.Action != "VISITOR";
             int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
@@ -650,14 +659,16 @@ namespace ArcaneBrigade
             Rect icon = new Rect(left, priceRow.center.y - 14, 28, 28);
             Sprite(icon, currency == ShopCurrency.Health ? owner.Content.HeartSprite : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
             Color priceColor = cardPrice.normal.textColor;
+            if (!affordable) cardPrice.normal.textColor = new Color(.85f, .16f, .2f); // short of it: the price in red
             GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
             cardPrice.normal.textColor = priceColor;
         }
         /// <summary>Whether the player has enough of the offer's currency (HP prices must leave you standing).</summary>
         private static bool Affordable(ArenaController owner, WorldShop.Station station)
         {
-            if (station.Offer == null) return true;
-            RunSnapshot state = owner.Session.State; int price = station.Offer.Price;
+            RunSnapshot state = owner.Session.State;
+            if (station.Offer == null) return station.Action == "VISITOR" || state.Gold >= station.Price; // the reroll and other paid stalls ask gold
+            int price = station.Offer.Price;
             return station.Offer.Currency == ShopCurrency.Health ? owner.Session.BloodAffordable(price) : station.Offer.Currency == ShopCurrency.Eggs ? state.Eggs >= price : state.Gold >= price;
         }
         /// <summary>The full rules of an offer (the i button): attack and bonds, then everything else; BACK returns.</summary>

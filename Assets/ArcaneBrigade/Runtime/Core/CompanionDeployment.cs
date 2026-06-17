@@ -68,11 +68,11 @@ namespace ArcaneBrigade
             int added = CompanionDeployment.MaterialValue(offer.Tier);
             int after = RunSession.BoundedCounter((long)before + added);
             int target = before < 2 ? 2 : 4;
-            if (OctoberAbsorbs) return "Absorb this friend's skill; no extra fighter.";
-            if (HighestOwnedTier(offer.Id) >= catalog.MaximumTier) return "Maximum stars · one fighter. Extra materials remain saved.";
-            return before == 0 ? "New friend · one fighter of this species."
-                : "Upgrade material · " + before + "/" + target + " → " + after + "/" + target
-                    + " · no extra fighter.";
+            // in plain words (requirement 25/10/2026: "upgrade material", "extra fighter" told nothing)
+            if (OctoberAbsorbs) return "Your hero takes this friend's skill.";
+            if (HighestOwnedTier(offer.Id) >= catalog.MaximumTier) return "Already at max stars.";
+            return before == 0 ? "New friend."
+                : "Copy " + after + " of " + target + " for " + (target == 2 ? "2 stars" : "3 stars") + (after >= target ? " · stars up now!" : ".");
         }
     }
 }

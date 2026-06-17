@@ -146,7 +146,8 @@ namespace ArcaneBrigade
                         if (field.Kind == ExpandedFieldKind.Strike) line.loop = false;
                     }
                     line.enabled = hazard || carnival || field.Kind == ExpandedFieldKind.Link && field.Radius == 0 || field.Kind == ExpandedFieldKind.Strike || field.Kind == ExpandedFieldKind.Echo;
-                    if (CarnivalHazards.IsHostile(field.Kind)) line.enabled = !warning && (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave);
+                    // requirement 25/10/2026: no thin red outline over an enemy's area - its ink (CombatFieldPainting) shows the band that hurts
+                    if (CarnivalHazards.IsHostile(field.Kind)) line.enabled = false;
                     if (field.Kind == ExpandedFieldKind.Projector) line.enabled = false;
                     // our own bursts are painted moments; no closed circle round them (warnings and hostile areas keep theirs)
                     if (!hazard && line.loop && line.positionCount == 64 && field.Kind != ExpandedFieldKind.MagnetCone) line.enabled = false;

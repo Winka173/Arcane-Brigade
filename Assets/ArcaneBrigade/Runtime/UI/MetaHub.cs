@@ -68,9 +68,11 @@ namespace ArcaneBrigade
         public void OpenStation(MetaStation station)
         {
             if (!MetaProgression.Works(station)) { Say("Coming soon"); CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
-            Open = station; openedAt = Time.unscaledTime; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
+            Open = station; openedAt = Time.unscaledTime; closingAt = -1; scroll = Vector2.zero; navIndex = 0; navKeys = false; bellArmed = false; respecArmed = false; CheckpointAudio.PlayInterfaceId("ui.open");
         }
-        public void Close() { if (Open.HasValue) CheckpointAudio.PlayInterfaceId("ui.back"); Open = null; }
+        /// <summary>Closes the open station with motion (requirement 25/10/2026): the panel shrinks and fades, then it is gone.</summary>
+        public void Close() { if (!Open.HasValue || closingAt >= 0) return; CheckpointAudio.PlayInterfaceId("ui.back"); closingAt = Time.unscaledTime; }
+        private float closingAt = -1;
         /// <summary>Diagnostics: stand the traveller beside a station.</summary>
         public void Approach(MetaStation station) { Spot s = Array.Find(Spots, x => x.Station == station); hero = s.Foot + new Vector2(s.Foot.x < 640 ? 70 : -70, 30); target = null; UpdateFocus(); }
         private void Say(string line) { notice = line; noticeAt = Time.unscaledTime; }
@@ -223,8 +225,16 @@ namespace ArcaneBrigade
             {
                 NavBegin();
                 Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
-                LivingUI.Pop(Time.unscaledTime - openedAt, PanelRect.center);
-                DrawPanel(catalog, profile, heroIndex, save);
+                bool drawPanel = true;
+                if (closingAt >= 0)
+                {
+                    float k = (Time.unscaledTime - closingAt) / LivingUI.CloseSeconds;
+                    if (k >= 1) { Open = null; closingAt = -1; drawPanel = false; }
+                    else { if (!PresentationSettings.ReducedMotion) ArcadeSkin.ScaleAround(Vector2.one * Mathf.Lerp(1, .9f, k), PanelRect.center); GUI.color *= new Color(1, 1, 1, 1 - k); GUI.enabled = false; }
+                }
+                else LivingUI.Pop(Time.unscaledTime - openedAt, PanelRect.center);
+                if (drawPanel) DrawPanel(catalog, profile, heroIndex, save);
+                GUI.enabled = true;
                 GUI.matrix = keepMatrix; GUI.color = keepColour;
                 NavEnd();
             }

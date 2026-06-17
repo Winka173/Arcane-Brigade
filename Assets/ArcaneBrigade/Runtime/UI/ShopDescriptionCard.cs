@@ -123,9 +123,9 @@ namespace ArcaneBrigade
             RosterEntry fieldedBefore = session.ActiveRoster.Find(r => r.UnitId == unit.Id);
             RosterEntry fieldedAfter = purchased ? preview.ActiveRoster.Find(r => r.UnitId == unit.Id) : null;
             if (fieldedBefore != null && fieldedAfter != null && fieldedAfter.Tier == fieldedBefore.Tier && !session.AbsorbsRecruitCopies)
-                Summary = WithBloodCost(session.UpgradeProgress(offer) + "\nStored for merging. No extra fighter, bond member or passive stats now.\nPurchase-trigger talents still apply.", offer);
+                Summary = WithBloodCost(session.UpgradeProgress(offer) + "\nOnly one of each friend fights; copies wait to merge.", offer);
             else if (fieldedBefore != null && fieldedAfter != null && fieldedAfter.Tier > fieldedBefore.Tier)
-                Summary = "Upgrade to " + fieldedAfter.Tier + " stars · still one fighter.\n" + Summary;
+                Summary = "Stars up to " + fieldedAfter.Tier + "!\n" + Summary;
             string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
             Details = Summary + (ComboLines.Length > 0 ? "\n\nCOMBOS" + ComboLines : "") + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
                 + (unit.Passive != PassiveKind.None ? "\nPASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier) : "")

@@ -198,11 +198,7 @@ namespace ArcaneBrigade
                 if (near != hintShown) { hintShown = near; hintAt = Time.unscaledTime; }
                 if (near >= 0)
                 {
-                    LivingUI.Pop(Time.unscaledTime - hintAt, new Vector2(960, 924));
-                    ArcadeSkin.Frame(new Rect(400, 850, 1120, 148), KitFrame.Dialogue, .6f);
-                    GUI.Label(new Rect(420, 858, 1080, 44), SecretEventAssets.Titles[(int)kinds[near]], heading);
-                    GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "", label);
-                    if (ArcadeSkin.KitGuiButton(new Rect(1260, 916, 230, 56), "DISCOVER", primary)) owner.EnterSecret(kinds[near]);
+                    if (ShopPrompt.Draw(SecretEventAssets.Titles[(int)kinds[near]], SecretEventAssets.Plain[(int)kinds[near]], "DISCOVER", Time.unscaledTime - hintAt)) owner.EnterSecret(kinds[near]);
                 }
             }
             else if (MenuOpen)
@@ -236,7 +232,7 @@ namespace ArcaneBrigade
                 Popped(.04f, new Vector2(960, bannerY + 50), () =>
                 {
                     ArcadeSkin.TitleBanner(new Rect(560, bannerY, 800, 64), SecretEventAssets.Titles[(int)s.Kind], heading);
-                    GUI.Label(new Rect(300, bannerY + 66, 1320, 32), NightmareDialogue.Room(owner.Session.State, s.Kind), label);
+                    GUI.Label(new Rect(300, bannerY + 66, 1320, 32), SecretEventAssets.Plain[(int)s.Kind], label); // what the room is for
                 });
                 if (s.Stage == SecretEventStage.Choosing)
                 {
@@ -306,7 +302,7 @@ namespace ArcaneBrigade
                             DrawSprite(new Rect(x0, frame.y + 100, 160, 160), icon); x0 += 196;
                         }
                         float w = frame.xMax - 50 - x0;
-                        string got = claim ? owner.Session.SecretRewardLabel + "\n" + owner.Session.SecretRewardStats(s.RewardId) : s.ResultGot;
+                        string got = claim ? (owner.Content.Item(s.RewardId) != null ? "New relic" : owner.Session.SecretRewardLabel) + "\n" + owner.Session.SecretRewardStats(s.RewardId) : s.ResultGot;
                         Row(new Rect(x0, frame.y + 84, w, 100), "GET", got, null, CodeTone.Green);
                         if (claim && lines.Length > 1) GUI.Label(new Rect(x0, frame.y + 196, w, 70), lines[1], label);
                         else if (!string.IsNullOrEmpty(s.ResultPaid) && s.ResultPaid != "Nothing") Row(new Rect(x0, frame.y + 196, w, 84), "LOSE", s.ResultPaid, null, CodeTone.Oxblood);
@@ -371,23 +367,32 @@ namespace ArcaneBrigade
         private int picker; // 0 closed, 1 relics, 2 friends
         private float pickerAt;
         private bool blocked; // a popup or the closing room owns the input this frame
+        private GUIStyle pickerWhat;
+        /// <summary>A relic's gifts in a short line: its stats, else its special effect.</summary>
+        private string RelicWhat(ItemDefinition item)
+        {
+            if (item == null) return "";
+            string stats = owner.Session.SecretRewardStats(item.Id);
+            if (!string.IsNullOrEmpty(stats)) return stats;
+            return item.Mechanic != RelicMechanic.None ? RelicDescriptions.ShortMechanic(item.Mechanic) : "";
+        }
         private void OpenPicker(int kind) { picker = kind; pickerAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.open"); }
         private void DrawPicker(SecretEventProgress s)
         {
             if (picker == 0) return;
             bool relics = picker == 1;
-            var choices = new List<(string id, string weapon, Sprite icon, string name, bool chosen)>();
+            var choices = new List<(string id, string weapon, Sprite icon, string name, bool chosen, string what)>();
             if (relics)
                 foreach (string id in owner.Session.SecretTargets)
                 {
                     ItemDefinition item = owner.Content.Item(id);
-                    choices.Add((id, "", item?.Icon, item?.Name ?? id, id == s.TargetItem));
+                    choices.Add((id, "", item?.Icon, item?.Name ?? id, id == s.TargetItem, RelicWhat(item)));
                 }
             else
                 foreach (RosterEntry r in owner.Session.State.Roster)
                 {
                     UnitDefinition unit = owner.Content.Unit(r.UnitId);
-                    choices.Add((r.UnitId, r.WeaponId, unit?.Body, unit != null ? RunUICopy.UnitName(unit) : r.UnitId, r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon));
+                    choices.Add((r.UnitId, r.WeaponId, unit?.Body, unit != null ? RunUICopy.UnitName(unit) : r.UnitId, r.UnitId == s.TargetUnit && r.WeaponId == s.TargetWeapon, RunUICopy.WeaponName(r.WeaponId) + " · " + r.Tier + "★"));
                 }
             Color keep = GUI.color;
             GUI.color = new Color(0, 0, 0, .55f * Mathf.Clamp01((Time.unscaledTime - pickerAt) / .16f) * keep.a);
@@ -395,7 +400,7 @@ namespace ArcaneBrigade
             GUI.color = keep;
             int columns = Mathf.Clamp(choices.Count, 1, 5), rows = Mathf.Max(1, Mathf.CeilToInt(choices.Count / 5f));
             const float tile = 160, gap = 16;
-            float w = columns * tile + (columns - 1) * gap + 80, h = rows * (tile + 34) + (rows - 1) * gap + 130;
+            float w = columns * tile + (columns - 1) * gap + 80, h = rows * (tile + 80) + (rows - 1) * gap + 130;
             Rect panel = new Rect(960 - w * .5f, 540 - h * .5f, w, h);
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             LivingUI.Pop(Time.unscaledTime - pickerAt, panel.center);
@@ -404,11 +409,15 @@ namespace ArcaneBrigade
             int picked = -1;
             for (int i = 0; i < choices.Count; i++)
             {
-                Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 34 + gap), tile, tile + 34);
+                Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 80 + gap), tile, tile + 80);
                 ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? 1 : 0);
                 if (choices[i].chosen) ArcadeSkin.RunningLight(new Rect(cell.x - 4, cell.y - 4, tile + 8, tile + 8), Time.unscaledTime, new Color(1f, .82f, .45f));
                 if (choices[i].icon != null) DrawSprite(new Rect(cell.x + 22, cell.y + 22, tile - 44, tile - 44), choices[i].icon);
                 GUI.Label(new Rect(cell.x - 6, cell.y + tile + 2, tile + 12, 30), choices[i].name, label);
+                // what it does, in a line or two (requirement 25/10/2026: names alone told nothing)
+                pickerWhat ??= new GUIStyle(label) { fontSize = 14, wordWrap = true, alignment = TextAnchor.UpperCenter };
+                pickerWhat.normal.textColor = new Color(.62f, .92f, .66f);
+                GUI.Label(new Rect(cell.x - 10, cell.y + tile + 30, tile + 20, 48), choices[i].what, pickerWhat);
                 if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;
             }
             GUI.matrix = m; GUI.color = c;

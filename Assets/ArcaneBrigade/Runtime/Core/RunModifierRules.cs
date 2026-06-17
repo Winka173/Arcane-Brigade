@@ -100,8 +100,14 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>Armour in whole points (requirement 25/10/2026: "+0.2" read as nothing): one point is 0.1 of the stored value, and
+        /// a hit is multiplied by 10 / (10 + points), so 3 points take off 23%, 10 points half. Never less than one point shown.</summary>
+        public const float ArmorPoint = .1f;
+        public static int ArmorPoints(float value) => value == 0 ? 0 : (int)Mathf.Sign(value) * Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(value) / ArmorPoint));
+        public static string ArmorText(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(ArmorPoints(value));
         public static string ValueText(ItemEffect effect, float value)
         {
+            if (effect == ItemEffect.Armor) return ArmorText(value);
             bool percent = effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
             if (effect >= ItemEffect.ScoreMultiplier) percent = K10StatRules.Percentage(effect);
             // the "final" multipliers read as a factor: Final max HP x1.1

@@ -35,10 +35,12 @@ namespace ArcaneBrigade
             return result.ToArray();
         }
 
+        private (int, int, int, int)? secretUndo;
         public bool EnterSecretEvent(SecretEventKind kind)
         {
             if (!Array.Exists(SecretPortals(), k => k == kind)) return false;
             bool queued = Secret.QueuedEvent == (int)kind;
+            secretUndo = (Secret.VisitWave, Secret.VisitedMask, Secret.Visits, Secret.QueuedEvent); // walking out without a deal gives it all back
             Secret.Kind = kind; Secret.Stage = SecretEventStage.Choosing; Secret.Option = -1;
             Secret.VisitWave = State.Wave; Secret.VisitedMask |= 1 << (int)kind;
             Secret.RoomNights ??= new List<int>(); Secret.RoomNights.Add(State.Wave * 16 + (int)kind); // the next night's journal page remembers it
@@ -69,14 +71,21 @@ namespace ArcaneBrigade
         /// <summary>A secret offer as a plate: a verb title, then DO / LOSE / GET in one short line each (play-test 20/10/2026).</summary>
         // a relic you get always says what it does (play-test 24/10/2026: the name alone told nothing)
         private SecretChoice Choice(string title, string act, string lose, string get, bool enabled = true, string reward = "", bool target = false)
-            => Choice2(title, act, lose, catalog.Item(reward) != null ? get + "\n" + SecretRewardStats(reward) : get, enabled, reward, target);
+            => Choice2(title, act, lose, catalog.Item(reward) != null ? (get == RewardName(reward) ? "New relic" : get.Replace(RewardName(reward), "a relic")) + "\n" + SecretRewardStats(reward) : get, enabled, reward, target);
         /// <summary>A secret relic's stats in one short line: "Shop discount +8% · Luck +8%".</summary>
         public string SecretRewardStats(string id)
         {
             ItemDefinition item = catalog.Item(id);
             if (item == null) return catalog.Unit(id) != null ? "Joins your brigade" : "";
-            return string.Join(" · ", item.EffectiveModifiers.Where(m => m.Value != 0).Select(m => RunModifierRules.ModifierName(m.Effect) + " " + RunModifierRules.ValueText(m.Effect, m.Value)));
+            return string.Join(" · ", item.EffectiveModifiers.Where(m => m.Value != 0).Take(3).Select(m => ShortStat(m.Effect) + " " + RunModifierRules.ValueText(m.Effect, m.Value)));
         }
+        /// <summary>A stat's name short enough for a plate row.</summary>
+        private static string ShortStat(ItemEffect e) => e switch
+        {
+            ItemEffect.Crit => "Crit", ItemEffect.AttackSpeed => "Speed", ItemEffect.AttackRange => "Range", ItemEffect.Health => "Max HP",
+            ItemEffect.Discount => "Discount", ItemEffect.Pickup => "Pickup", ItemEffect.TreasureDetection => "Chests", ItemEffect.HeartHealing => "Heart heal",
+            _ => RunModifierRules.ModifierName(e)
+        };
         private SecretChoice Choice2(string title, string act, string lose, string get, bool enabled, string reward, bool target)
             => new SecretChoice { Title = title, Do = act, Lose = lose, Get = get, UsesTarget = target, Copy = act + "\n" + lose + "\n" + get, Enabled = enabled, RewardId = reward, Icon = catalog.Item(reward)?.Icon ?? catalog.Unit(reward)?.Body };
         private string RewardName(string id) => catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName ?? "";
@@ -220,8 +229,18 @@ namespace ArcaneBrigade
         public bool LeaveSecretEvent()
         {
             if (State.Phase != SessionPhase.Shop || Secret.Stage != SecretEventStage.Choosing && Secret.Stage != SecretEventStage.Reward || !string.IsNullOrEmpty(Secret.RewardId)) return false;
-            RecordSecret(Secret.Stage == SecretEventStage.Reward ? "Returned to the unchanged shop." : "Left without a deal.");
-            Secret.Stage = SecretEventStage.Idle; return true;
+            bool undealt = Secret.Stage == SecretEventStage.Choosing;
+            RecordSecret(!undealt ? "Returned to the unchanged shop." : "Left without a deal.");
+            Secret.Stage = SecretEventStage.Idle;
+            // requirement 25/10/2026 (declined things stay reopenable): leaving without a deal keeps the invitation standing
+            if (undealt && secretUndo.HasValue)
+            {
+                (int wave, int mask, int visits, int queued) = secretUndo.Value;
+                Secret.VisitWave = wave; Secret.VisitedMask = mask; Secret.Visits = visits; Secret.QueuedEvent = queued;
+                if (Secret.RoomNights != null && Secret.RoomNights.Count > 0) Secret.RoomNights.RemoveAt(Secret.RoomNights.Count - 1);
+            }
+            secretUndo = null;
+            return true;
         }
         private bool SecretCompanionRewardUnavailable => catalog.Unit(Secret.RewardId) != null && (SecretSolo || State.Roster.Exists(r => r.UnitId == Secret.RewardId && r.WeaponId == catalog.Unit(Secret.RewardId).Weapon.Id));
         private string SecretCompanionFallback => Secret.RewardId == "SecretPaperBird" ? "SecretLetter" : "SecretWoodHeart";

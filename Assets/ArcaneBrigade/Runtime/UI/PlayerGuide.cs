@@ -117,15 +117,16 @@ namespace ArcaneBrigade
                 if (Event.current.type == EventType.Repaint) shownAt += Time.unscaledDeltaTime;
                 return;
             }
-            Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
+            Color keep = GUI.color; Matrix4x4 keepMatrix = GUI.matrix; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
+            LivingUI.Auto("guide-tip", r.center, false); // a tap closes it with motion (requirement 25/10/2026)
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
             Highlight(r, Time.unscaledTime - shownAt, alpha);
             Sprite icon = null; try { icon = tip.Icon(owner); } catch (Exception) { }
             Rect inner = ArcadeSkin.Content(r, KitFrame.Dialogue); // inside the painted rim and roses
             if (icon != null) RunHud.Sprite(new Rect(inner.x, r.center.y - 34, 68, 68), icon);
             GUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
-            GUI.color = keep;
-            if (GUI.Button(r, GUIContent.none, GUIStyle.none)) showing = null; // a tap closes it
+            GUI.color = keep; GUI.matrix = keepMatrix;
+            if (GUI.Button(r, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("guide-tip")) LivingUI.CloseThen("guide-tip", () => showing = null); // a tap closes it
         }
 
         /// <summary>Guide text must catch the eye (requirement 20/10/2026): a gold rim with two sparks running round it, a warm glow that

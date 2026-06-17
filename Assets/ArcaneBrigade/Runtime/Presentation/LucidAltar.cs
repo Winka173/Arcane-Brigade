@@ -203,7 +203,7 @@ namespace ArcaneBrigade
                 string unitId = state.Roster[candidates[pick]].UnitId;
                 if (session.Lucid(candidates[pick])) { Close(); StartRite(unitId); }
             }
-            if (ArcadeSkin.Button(later, "LATER", KitButton.Secondary, true, button)) Close();
+            if (ArcadeSkin.Button(later, "LATER", KitButton.Secondary, true, button) && !CardPop.Closing("lucid-altar")) CardPop.CloseThen("lucid-altar", Close);
             if (Event.current.type == EventType.MouseDown && !card.Contains(Event.current.mousePosition)) { Close(); Event.current.Use(); }
             GUI.color = tint;
         }

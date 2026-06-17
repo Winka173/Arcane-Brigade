@@ -19,31 +19,45 @@ namespace ArcaneBrigade
         private float started = -1;
 
         /// <summary>Keeps the scenery as it is, runs the change, then crossfades what went and what came.</summary>
-        public static void Around(System.Action change)
+        public static void Around(System.Action change, HashSet<Transform> exclude = null)
         {
-            SceneryCrossfade fade = Hold();
+            SceneryCrossfade fade = Hold(exclude);
             change();
             fade?.Release();
         }
         /// <summary>Keeps the scenery as it is now (null under reduced motion); Release once the change is made, or Cancel.</summary>
-        public static SceneryCrossfade Hold()
+        /// <param name="exclude">The moving actors' views (units, shots, coins): never scenery, and on a busy night there are
+        /// hundreds of them (requirement 25/10/2026: the change stuttered on crowded nights).</param>
+        public static SceneryCrossfade Hold(HashSet<Transform> exclude = null)
         {
             if (PresentationSettings.ReducedMotion) return null;
             var fade = new GameObject("Scenery crossfade").AddComponent<SceneryCrossfade>();
+            fade.exclude = exclude;
             fade.Keep();
             return fade;
         }
         public void Release() { started = Time.unscaledTime; }
         public void Cancel() { Destroy(gameObject); }
-        private static bool Scenery(SpriteRenderer r) => r != null && r.enabled && r.gameObject.activeInHierarchy && r.sprite != null && r.color.a > .02f
-            && r.GetComponentInParent<UnitVisual>() == null && r.GetComponentInParent<CoinVisual>() == null && r.GetComponentInParent<ProjectileVisual>() == null && r.GetComponentInParent<SceneryCrossfade>() == null;
+        private HashSet<Transform> exclude;
+        private float nextScan;
+        private bool Scenery(SpriteRenderer r)
+        {
+            if (r == null || !r.enabled || r.sprite == null || r.color.a <= .02f || !r.gameObject.activeInHierarchy) return false;
+            Vector3 size = r.bounds.size; if (size.x < .3f && size.y < .3f) return false; // sparks and chips are effects, not the room
+            for (Transform t = r.transform; t != null; t = t.parent)
+            {
+                if (t == transform || t.name == "DeathRemnant" || exclude != null && exclude.Contains(t)) return false;
+                if (t.GetComponent<UnitVisual>() != null) return false; // a pooled view the caller did not list
+            }
+            return true;
+        }
         private void Keep()
         {
             foreach (SpriteRenderer r in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
             {
                 if (!Scenery(r)) continue;
                 before.Add(r);
-                if (ghosts.Count >= 400) continue;
+                if (ghosts.Count >= 150) continue;
                 var copy = new GameObject("ghost").AddComponent<SpriteRenderer>(); copy.transform.SetParent(transform, false);
                 copy.sprite = r.sprite; copy.color = r.color; copy.flipX = r.flipX; copy.flipY = r.flipY; copy.sharedMaterial = r.sharedMaterial;
                 copy.sortingLayerID = r.sortingLayerID; copy.sortingOrder = r.sortingOrder; copy.drawMode = r.drawMode; if (r.drawMode != SpriteDrawMode.Simple) copy.size = r.size;
@@ -65,9 +79,12 @@ namespace ArcaneBrigade
                 if (!stayed) { g.Gone = Time.unscaledTime; g.Copy.enabled = true; }
                 else if (age >= Watch) { Destroy(g.Copy.gameObject); ghosts.RemoveAt(i); }
             }
-            if (age < Watch)
+            if (age < Watch && Time.unscaledTime >= nextScan)
+            {
+                nextScan = Time.unscaledTime + .07f; // three looks for newcomers are enough
                 foreach (SpriteRenderer r in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
                     if (!before.Contains(r) && !rising.ContainsKey(r) && Scenery(r)) rising[r] = new Rise { Found = Time.unscaledTime };
+            }
             bool fading = false;
             foreach (Ghost g in ghosts)
             {

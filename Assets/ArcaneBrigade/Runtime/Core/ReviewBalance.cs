@@ -19,7 +19,7 @@ namespace ArcaneBrigade
                 ItemEffect.MeleeDamage or ItemEffect.RangedDamage => Mathf.Max(4, value * 2),
                 ItemEffect.CollisionDamage => Mathf.Max(10, value * 2),
                 ItemEffect.Health => Mathf.Max(24, value * 2),
-                ItemEffect.Armor => Mathf.Max(0.22f, value * 1.8f),
+                ItemEffect.Armor => Mathf.Max(0.2f, Mathf.Round(value * 18) / 10), // whole armour points
                 ItemEffect.Dodge => Mathf.Max(0.08f, value * 1.5f),
                 ItemEffect.MoveSpeed => Mathf.Max(0.1f, value * 1.5f),
                 ItemEffect.Crit => Mathf.Max(0.1f, value * 1.6f),

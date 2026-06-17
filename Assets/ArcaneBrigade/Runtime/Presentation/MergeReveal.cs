@@ -179,7 +179,8 @@ namespace ArcaneBrigade
                 CreateCaption();
             }
             if (Scrub >= 0) { age = Scrub; PresentStage(); return; }
-            age += Mathf.Min(Time.unscaledDeltaTime, 0.05f);
+            // requirement 25/10/2026: a star-up plays longer (two stars at 70% pace, three at 60%: about 2.5 s and 5 s)
+            age += Mathf.Min(Time.unscaledDeltaTime, 0.05f) * (ReducedMotion ? 1 : Grand ? .6f : .7f);
             PresentStage();
             if (age >= Finish) { CompletedCount++; ClearStage(); }
         }

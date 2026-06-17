@@ -131,9 +131,7 @@ namespace ArcaneBrigade
                         // a bar: inked where it starts and a light lane where its open side will pass
                         Vector2 across = new Vector2(-f.Direction.y, f.Direction.x) * f.Length * .5f;
                         BossTelegraph.LaneGround(ink, f.Start, end, f.Length * .5f, Mathf.Clamp01(alpha / .8f), alpha);
-                        ink.FloorStroke(f.Start - across, f.Start + across, BossTelegraph.Danger, .12f, 1, 0, alpha, .03f, seed);
-                        BossTelegraph.DashedLine(ink, f.Start - across, end - across, Mathf.Clamp01(alpha / .8f), seed + 1, alpha * .8f);
-                        BossTelegraph.DashedLine(ink, f.Start + across, end + across, Mathf.Clamp01(alpha / .8f), seed + 2, alpha * .8f);
+
                     }
                     else if (f.Motion == TrademarkMotion.Fuse) ink.FloorStroke(f.Start, end, Wax, .07f, 1, 0, alpha, .05f, seed);
                     else
@@ -142,8 +140,7 @@ namespace ArcaneBrigade
                         Vector2 n = new Vector2(-f.Direction.y, f.Direction.x) * (f.Radius + .12f);
                         float charge = Mathf.Clamp01(alpha / .8f);
                         BossTelegraph.LaneGround(ink, f.Start, end, f.Radius + .12f, charge, alpha);
-                        BossTelegraph.DashedLine(ink, f.Start + n, end + n, charge, seed, alpha);
-                        BossTelegraph.DashedLine(ink, f.Start - n, end - n, charge, seed + 1, alpha);
+
                         BossTelegraph.Arrow(ink, end, f.Direction, f.Radius + .35f, charge, alpha);
                     }
                     break;

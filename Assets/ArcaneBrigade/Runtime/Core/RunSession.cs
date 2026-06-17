@@ -870,7 +870,9 @@ namespace ArcaneBrigade
             }
         }
         // a feather or Mary takes one first-refresh fee off (the first refresh then costs the 1-gold minimum); Nicole adds one, Belle takes half off
-        private int RerollBaseCost => Mathf.Max(1, (int)Math.Min(int.MaxValue, Math.Ceiling(MeanShopPrice * RerollShare * (Math.Pow(RerollGrowth, State.RerollsThisShop)
+        // requirement 25/10/2026: the fee rose in jumps (9, 10, 12, 90, 63...) because it followed whatever the shelf held; it now
+        // follows the shop's steady price stage and grows by half the first fee each time (9, 13, 18, 22...)
+        private int RerollBaseCost => Mathf.Max(1, (int)Math.Min(int.MaxValue, Math.Ceiling(MidOfferPrice * RerollShare * ((1 + (RerollGrowth - 1) * State.RerollsThisShop)
             - (MechanicStacks(RelicMechanic.RerollFeather) + Talent("\"Leisurely Walk\" Mary") - (OctoberHero == "Nicole" ? 1 : OctoberHero == "Belle" ? -.5 : 0))))));
         /// <summary>A typical relic's gold price in this shop (the median catalogue relic, its rarity markup, the wave's curve).</summary>
         public float MidOfferPrice

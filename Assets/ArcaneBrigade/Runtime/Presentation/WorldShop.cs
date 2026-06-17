@@ -227,6 +227,17 @@ namespace ArcaneBrigade
                     }
             }
         }
+        private bool exitArmed = true;
+        /// <summary>Requirement 25/10/2026: the way on is a rift you walk into, no key or button needed. Stepping into its heart
+        /// goes through once; it waits for the hero to step away before it can take them again (a refused exit does not loop).</summary>
+        public void WalkIntoExit()
+        {
+            if (owner?.Simulation == null || owner.Session == null || owner.Session.State.Phase != SessionPhase.Shop) return;
+            float distance = Vector2.Distance(owner.Simulation.Champion.Position, ExitPosition);
+            if (distance > 1.2f) { exitArmed = true; return; }
+            if (!exitArmed || distance > .65f || Nearby == null || Nearby.Action != "NEXT HALL") return;
+            exitArmed = false; Interact();
+        }
         public bool Interact()
         {
             if (owner.SecretRoom != null && owner.SecretRoom.BlocksShop) return false;
@@ -760,7 +771,7 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 priceStyle.fontSize = 25;
                 while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;
-                bool short_ = station.Offer != null ? !owner.Session.CanBuy(station.Offer) : station.Action == "VISITOR" && owner.Session.State.Gold < station.Price;
+                bool short_ = station.Offer != null ? !owner.Session.CanBuy(station.Offer) : (station.Action == "VISITOR" || station.Action == "REROLL") && owner.Session.State.Gold < station.Price; // not enough gold: the price turns red
                 priceStyle.normal.textColor = short_ ? new Color(0.75f, 0.15f, 0.2f) : ArcadeSkin.Ink;
                 GUI.Label(new Rect(ticket.x + 48, ticket.y, ticket.width - 54, ticket.height), price, priceStyle); // 12 px after the coin, centred on the tag
                 priceStyle.normal.textColor = ArcadeSkin.Ink;

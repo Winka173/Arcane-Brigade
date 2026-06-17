@@ -85,7 +85,7 @@ namespace ArcaneBrigade
                 return x;
             }
             Actor hero=Add("hero",a.Champion,1,false);hero.Values["Max HP"]=a.Champion.Health;hero.Values["Current HP"]=session.State.Health;
-            hero.Values["Armor"]=a.Armor;hero.Values["Dodge %"]=a.Dodge*100;hero.Values["Regen HP/s"]=a.PassiveHeal;hero.Values["Heart healing"]=a.HeartHealing;
+            hero.Values["Armor"]=Mathf.RoundToInt(a.Armor/RunModifierRules.ArmorPoint);hero.Values["Dodge %"]=a.Dodge*100;hero.Values["Regen HP/s"]=a.PassiveHeal;hero.Values["Heart healing"]=a.HeartHealing;
             hero.Values["Pickup"]=a.PickupRadius;hero.Values["Chest reach"]=a.ChestOpenRadius;
             hero.Values["Gold"]=session.State.Gold;hero.Values["Eggs"]=session.State.Eggs;
             foreach(ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))

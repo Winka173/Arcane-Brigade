@@ -96,13 +96,13 @@ namespace ArcaneBrigade
             N("dream.keen", 4, 5, "Keen dream", "Gauge starts +5%", 120, null, "gauge", 0, s => s.GaugeStart += .05f, ranks: 2),
             N("dream.crown", 4, 6, "Keepsake dreams", "+1 Keepsake for a run of 10+ waves", 6, null, "keep", 0, null, K),
             // the shield: the hero's own defence (friends never get armour)
-            N("shield.plate", 5, 0, "Plate", "+3% armour", 30, ItemEffect.Armor, null, .8f, Add(ItemEffect.Armor, Hero, .03f)),
+            N("shield.plate", 5, 0, "Plate", "+1 armor", 30, ItemEffect.Armor, null, .8f, Add(ItemEffect.Armor, Hero, .1f)),
             N("shield.heart", 5, 1, "Stout heart", "+4% max HP", 45, ItemEffect.Health, null, 1, s => s.Health += .04f),
-            N("shield.plate2", 5, 2, "Plate II", "+3% armour", 60, ItemEffect.Armor, null, .8f, Add(ItemEffect.Armor, Hero, .03f)),
+            N("shield.plate2", 5, 2, "Plate II", "+1 armor", 60, ItemEffect.Armor, null, .8f, Add(ItemEffect.Armor, Hero, .1f)),
             N("shield.nimble", 5, 3, "Nimble", "+5% dodge", 5, ItemEffect.Dodge, null, 2, Add(ItemEffect.Dodge, Hero, .05f), K),
-            N("shield.oak", 5, 3, "Oak skin", "+6% armour", 5, ItemEffect.Armor, null, 1.6f, Add(ItemEffect.Armor, Hero, .06f), K),
-            N("shield.plate3", 5, 4, "Plate III", "+3% armour", 90, ItemEffect.Armor, null, .8f, Add(ItemEffect.Armor, Hero, .03f)),
-            N("shield.bulwark", 5, 5, "Bulwark", "+2% armour, +3% max HP", 120, ItemEffect.Armor, null, 1.3f, s => { AddStat(s, ItemEffect.Armor, Hero, .02f); s.Health += .03f; }),
+            N("shield.oak", 5, 3, "Oak skin", "+2 armor", 5, ItemEffect.Armor, null, 1.6f, Add(ItemEffect.Armor, Hero, .2f), K),
+            N("shield.plate3", 5, 4, "Plate III", "+1 armor", 90, ItemEffect.Armor, null, .8f, Add(ItemEffect.Armor, Hero, .1f)),
+            N("shield.bulwark", 5, 5, "Bulwark", "+1 armor, +3% max HP", 120, ItemEffect.Armor, null, 1.3f, s => { AddStat(s, ItemEffect.Armor, Hero, .1f); s.Health += .03f; }),
             N("shield.crown", 5, 6, "Lamp shell", "Each wave, the first hit on you is blocked", 7, null, "shell", 0, s => s.WaveShield = true, K),
             // the forge: the hero's weapon and the brigade's blows
             N("forge.edge", 6, 0, "Edge", "+3% damage, you", 30, ItemEffect.ChampionDamage, null, .8f, Add(ItemEffect.ChampionDamage, Hero, .03f)),
@@ -137,7 +137,7 @@ namespace ArcaneBrigade
         public static readonly LampNode[] Roots =
         {
             N("root.heart", -1, 0, "Heart root", "+1% max HP", 120, ItemEffect.Health, null, 0, s => s.Health += .01f, ranks: RootRanks),
-            N("root.bark", -1, 1, "Bark root", "+1% armour", 120, ItemEffect.Armor, null, 0, Add(ItemEffect.Armor, Hero, .01f), ranks: RootRanks),
+            N("root.bark", -1, 1, "Bark root", "+1 armor", 120, ItemEffect.Armor, null, 0, Add(ItemEffect.Armor, Hero, .1f), ranks: RootRanks),
             N("root.thorn", -1, 2, "Thorn root", "+1% damage, you and friends", 120, ItemEffect.Damage, null, 0, s => s.Damage += .01f, ranks: RootRanks),
             N("root.gold", -1, 3, "Gold root", "+1% gold from fights", 120, null, "coin", 0, s => s.Gold += .01f, ranks: RootRanks),
         };

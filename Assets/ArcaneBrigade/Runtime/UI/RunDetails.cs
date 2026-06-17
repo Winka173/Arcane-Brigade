@@ -162,7 +162,7 @@ namespace ArcaneBrigade
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(30, 20, 1860, 1040), KitFrame.Dialogue, .7f); else RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
-            if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
+            if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button) && !CardPop.Closing("brigade")) CardPop.CloseThen("brigade", owner.ToggleDetails);
             // requirement 24/10/2026 ("FRIENDS 3, RELICS 0, LINK 55 - nobody understands"): each tab has an icon and a plain name, its
             // count in a little bubble
             string[] names = { "STATS", "FRIENDS", "RELICS", "BONDS" };

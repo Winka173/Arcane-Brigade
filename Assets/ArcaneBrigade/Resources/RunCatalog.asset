@@ -641,7 +641,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.2
+      Value: 0.1
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -750,7 +750,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.15
+      Value: 0.2
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -1438,7 +1438,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 2
-      Value: 0.24000001
+      Value: 0.12
     - Effect: 1
       Scope: 2
       Value: -0.05
@@ -2827,7 +2827,7 @@ MonoBehaviour:
       Value: 0.4
     - Effect: 11
       Scope: 1
-      Value: 0.07
+      Value: 0.1
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
@@ -3390,7 +3390,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.2
+      Value: 0.3
     - Effect: 3
       Scope: 0
       Value: -0.06
@@ -3599,7 +3599,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.55
+      Value: 0.8
     - Effect: 3
       Scope: 0
       Value: -0.08
@@ -3649,7 +3649,7 @@ MonoBehaviour:
       Value: 2.5
     - Effect: 11
       Scope: 1
-      Value: 0.12
+      Value: 0.2
     Rarity: 3
     Stacking: 0
     MaximumStacks: 4
@@ -3728,7 +3728,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.12
+      Value: 0.06
     - Effect: 22
       Scope: 0
       Value: 0.2
@@ -3944,7 +3944,7 @@ MonoBehaviour:
       Value: 0.15
     - Effect: 8
       Scope: 0
-      Value: 0.08
+      Value: 0.04
     Rarity: 1
     Stacking: 1
     MaximumStacks: 1
@@ -4457,7 +4457,7 @@ MonoBehaviour:
       Value: 3
     - Effect: 8
       Scope: 0
-      Value: 0.08
+      Value: 0.04
     Rarity: 0
     Stacking: 0
     MaximumStacks: 8
@@ -4497,7 +4497,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.12
+      Value: 0.2
     - Effect: 17
       Scope: 3
       Value: 0.15
@@ -4755,7 +4755,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.25
+      Value: 0.4
     - Effect: 16
       Scope: 3
       Value: -0.08
@@ -5260,7 +5260,7 @@ MonoBehaviour:
       Value: 0.6
     - Effect: 11
       Scope: 1
-      Value: -0.15
+      Value: -0.2
     Rarity: 1
     Stacking: 0
     MaximumStacks: 8
@@ -5536,7 +5536,7 @@ MonoBehaviour:
       Value: 1
     - Effect: 8
       Scope: 0
-      Value: 0.2
+      Value: 0.1
     - Effect: 20
       Scope: 0
       Value: -2
@@ -6285,7 +6285,7 @@ MonoBehaviour:
       Value: 0.1
     - Effect: 8
       Scope: 1
-      Value: 0.1
+      Value: 0.05
     Rarity: 2
     Stacking: 0
     MaximumStacks: 8
@@ -6550,7 +6550,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.6
+      Value: 0.9
     - Effect: 3
       Scope: 1
       Value: 0.1
@@ -6784,7 +6784,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.3
+      Value: 0.15
     - Effect: 25
       Scope: 0
       Value: 1
@@ -7342,7 +7342,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.4
+      Value: 0.2
     - Effect: 11
       Scope: 1
       Value: -0.7
@@ -7437,13 +7437,13 @@ MonoBehaviour:
       Value: 0.2
     - Effect: 8
       Scope: 0
-      Value: 0.15
+      Value: 0.075
     - Effect: 22
       Scope: 0
       Value: 0.2
     - Effect: 11
       Scope: 1
-      Value: 0.2
+      Value: 0.3
     - Effect: 3
       Scope: 1
       Value: -0.3
@@ -7773,7 +7773,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 1
-      Value: 0.32
+      Value: 0.16
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -9028,7 +9028,7 @@ MonoBehaviour:
       Value: 0.08
     - Effect: 8
       Scope: 0
-      Value: 0.05
+      Value: 0.03
     Rarity: 1
     Stacking: 0
     MaximumStacks: 3
@@ -9361,7 +9361,7 @@ MonoBehaviour:
       Value: 0.1
     - Effect: 8
       Scope: 0
-      Value: 0.06
+      Value: 0.03
     Rarity: 1
     Stacking: 0
     MaximumStacks: 3
@@ -9417,7 +9417,7 @@ MonoBehaviour:
       Value: 0.15
     - Effect: 8
       Scope: 0
-      Value: 0.08
+      Value: 0.04
     Rarity: 3
     Stacking: 0
     MaximumStacks: 3

@@ -137,16 +137,17 @@ namespace ArcaneBrigade
         {
             if ((Application.isFocused || RunPaths.Diagnostic) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0))) Inspect();
         }
+        private float promptAt; private int promptFrame;
         private void OnGUI()
         {
             if (!Rest || !visible || owner.StoryConsumesInput || owner.PresentationPaused || Camera.main == null || !ShopFocus.Has(this,0,owner.Simulation.Champion.Position)) return;
             var matrix = ArcadeTypography.BeginViewport(Camera.main.pixelRect,1920,1080);
             if (GUI.Button(StoryPropInput.ClickRect(evidence,Camera.main),GUIContent.none,GUIStyle.none)) Inspect();
-            caption ??= ArcadeTypography.Style(23,true); caption.wordWrap = true; caption.alignment = TextAnchor.MiddleCenter;
+            // the shop's one prompt card (requirement 25/10/2026: every nearby thing uses the same card)
             string line = wave == 17 ? "HOB CHOSE THIS SEAT" : wave == 18 ? "TALLY'S PLACE IS EMPTY" : wave == 15 ? "THE UMBRELLA IS STILL WET" : "THE REPLY WAS SEWN SHUT";
-            Rect panel = new Rect(650,835,620,112); ArcadeSkin.Ticket(panel,ArcadeSkin.Paper,ArcadeSkin.Wax);
-            caption.normal.textColor = new Color(.22f,.17f,.12f);
-            if (GUI.Button(panel,line + "\nExamine",caption)) Inspect();
+            if (Time.frameCount - promptFrame > 3) promptAt = Time.unscaledTime;
+            promptFrame = Time.frameCount;
+            if (ShopPrompt.Draw(line, "Something was left here. A story page waits.", "EXAMINE", Time.unscaledTime - promptAt)) Inspect();
             GUI.matrix = matrix;
         }
         private void OnDestroy() { ReleaseLayout(); if (Active == this) Active = null; ShopFocus.Unregister(this); }
