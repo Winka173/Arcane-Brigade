@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             var catalog = Resources.Load<RunCatalog>("RunCatalog"); var storage = new RunStorage(RunPaths.Root);
             var log = new List<string>();
             int failures = 0;
-            var cases = new (int wave, bool dream, bool card)[] { (1, false, false), (4, false, false), (8, false, false), (12, false, false), (16, false, false), (19, false, false), (12, true, false), (4, true, false), (8, false, true), (3, false, false), (8, true, false), (13, false, false), (18, false, false), (17, false, false) }; // 3/8/13/18: secret invitations in the room; 17: the Keeper's hand
+            var cases = new (int wave, bool dream, bool card)[] { (1, false, false), (4, false, false), (7, false, false), (8, false, false), (12, false, false), (16, false, false), (19, false, false), (12, true, false), (4, true, false), (8, false, true), (3, false, false), (8, true, false), (13, false, false), (18, false, false), (17, false, false) }; // 3/8/13/18: secret invitations in the room; 17: the Keeper's hand
             foreach (var c in cases)
             {
                 using (var session = new RunSession(catalog))

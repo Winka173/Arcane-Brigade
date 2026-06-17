@@ -290,7 +290,7 @@ namespace ArcaneBrigade
             if (SecretRoom != null && SecretRoom.MenuOpen) moveIntent = Vector2.zero;
             if (ScriptedMove.HasValue && RunPaths.Diagnostic) moveIntent = Vector2.ClampMagnitude(ScriptedMove.Value, 1); // recorded guide clips (HowToRecorder)
             if (Shop != null && !TransitionPending && !hallExitPending && simulation.Phase == RunPhase.Rest && !StoryConsumesInput && (SecretRoom == null || !SecretRoom.MenuOpen)) moveIntent = Shop.TapToWalk(moveIntent, arenaCamera);
-            if (Shop != null && !TransitionPending) { Shop.Display(); Shop.WalkIntoExit(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
+            if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
             if (warning && !warningAudio && !pauseGate.Paused && !ArcaneCueLibrary.Available) audioFeedback.PlayCue(24, true);
             warningAudio = warning;

@@ -38,7 +38,7 @@ namespace ArcaneBrigade
         public bool Focused => !InRoom && NearestPortal() >= 0;
         public bool BlocksShop => InRoom || Focused;
         public bool MenuOpen => InRoom && owner.Session.State.Phase == SessionPhase.Shop && !walkingOut;
-        // requirement 24/10/2026: after the deal the way back is a rift you walk into, not a button
+        // after the deal the way back is a rift: stand by it and press (Space or its button) to go through, like every door
         public static readonly Vector2 ReturnSpot = new Vector2(0, -3.4f);
         private const float ReturnReach = .9f;
         private bool walkingOut;
@@ -65,6 +65,8 @@ namespace ArcaneBrigade
             root.transform.localScale = new Vector3(.15f, .02f, 1); // it tears open (WalkOut grows it)
         }
         /// <summary>The return rift turns and opens wider as the hero nears; stepping into it leaves the room.</summary>
+        private bool nearReturn; private float returnPromptAt = -1;
+        private void GoBack() { walkingOut = false; returnRift = null; nearReturn = false; owner.LeaveSecret(); }
         private void WalkOut()
         {
             if (returnRift == null) return;
@@ -76,7 +78,9 @@ namespace ArcaneBrigade
             returnRift.localScale = still ? Vector3.one * target : new Vector3(Mathf.MoveTowards(scale.x, target, Time.deltaTime * 4), Mathf.MoveTowards(scale.y, target, Time.deltaTime * 4), 1);
             if (!still) returnTurn += Time.deltaTime * Mathf.Lerp(60, 240, near);
             returnSwirl.localRotation = Quaternion.Euler(0, 0, -returnTurn);
-            if (Vector2.Distance(hero, ReturnSpot) <= ReturnReach && returnRift.localScale.y > .9f) { walkingOut = false; returnRift = null; owner.LeaveSecret(); }
+            nearReturn = Vector2.Distance(hero, ReturnSpot) <= ReturnReach + .6f && returnRift.localScale.y > .9f;
+            if (!nearReturn) returnPromptAt = -1;
+            if (nearReturn && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) GoBack();
         }
         private int NearestPortal()
         {
@@ -311,6 +315,11 @@ namespace ArcaneBrigade
                         else if (ArcadeSkin.KitGuiButton(go, "OK", primary) && !shut) Close(BeginWalkOut); // then walk into the rift
                     }
                 }
+            }
+            else if (walkingOut && nearReturn)
+            {
+                if (returnPromptAt < 0) returnPromptAt = Time.unscaledTime;
+                if (ShopPrompt.Draw("THE WAY BACK", "The rift leads back to the shop.", "GO THROUGH", Time.unscaledTime - returnPromptAt)) GoBack();
             }
             else if (owner.Session.SecretFighting)
             {

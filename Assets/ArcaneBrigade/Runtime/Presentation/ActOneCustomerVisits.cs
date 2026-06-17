@@ -56,7 +56,10 @@ namespace ArcaneBrigade
             Vector2 preferred = chair.ChairAnchor + new Vector2(-1.9f, .1f), anchor = preferred;
             float height = wave == 12 ? 2.15f : 2.6f, fit = 1;
             Vector2 size = picture == null ? new Vector2(1.5f,height) : SpriteInkMetrics.BoundsOf(picture).size * (height / Mathf.Max(.01f,SpriteInkMetrics.BoundsOf(picture).height));
-            if (wave == 7) size.x += .7f;
+            // wave 7: the window stands beside him, never over him (requirement 25/10/2026: it read as a prop on top of him)
+            const float WindowRoom = 1.3f;
+            float ownWidth = size.x;
+            if (wave == 7) size.x += WindowRoom;
             bool room = true;
             if (actor && ShopLayout.Active != null)
             {
@@ -71,15 +74,17 @@ namespace ArcaneBrigade
             if (visible)
             {
                 float lean = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01((elapsed - .7f) / 2) * Mathf.PI) * -5;
-                Place(customer,anchor,height * fit,WorldSpriteGrounding.SortAt(anchor.y));
+                Vector2 figure = wave == 7 ? anchor - new Vector2(WindowRoom * .5f, 0) : anchor;
+                Place(customer,figure,height * fit,WorldSpriteGrounding.SortAt(anchor.y));
                 customer.transform.rotation = Quaternion.Euler(0,0,lean);
                 customer.color = new Color(light,light * .94f,light * .85f);
                 shadow.SortingBase = customer.sortingOrder - 12;
-                shadow.Display(picture,anchor,size.x * fit,0,.24f);
+                shadow.Display(picture,figure,ownWidth * fit,0,.24f);
                 if (window.enabled)
                 {
-                    Place(window,anchor + new Vector2(.3f,.2f),height * .64f * fit,customer.sortingOrder + 2);
-                    floatingWindow.Display(anchor + new Vector2(.3f,.2f),now,NightmareRules.Depth(wave));
+                    Vector2 beside = figure + new Vector2(ownWidth * .5f + WindowRoom * .5f + .05f, .2f);
+                    Place(window,beside,height * .64f * fit,customer.sortingOrder + 2);
+                    floatingWindow.Display(beside,now,NightmareRules.Depth(wave));
                     window.sortingOrder = customer.sortingOrder + 2;
                     window.color = new Color(light * .65f,light * .7f,light * .78f);
                 }
@@ -93,7 +98,7 @@ namespace ArcaneBrigade
                 var coin = coins[i];
                 coin.enabled = visible && Payment(wave) && coin.sprite != null && elapsed > 1.1f + i * .15f && t < 1;
                 if (!coin.enabled) continue;
-                Vector2 source = anchor + new Vector2(.55f,height * .49f * fit);
+                Vector2 source = (wave == 7 ? anchor - new Vector2(WindowRoom * .5f, 0) : anchor) + new Vector2(.55f,height * .49f * fit);
                 Vector2 point = Vector2.Lerp(source,target + Vector2.right * (i - 1) * .13f,t);
                 if (!PresentationSettings.ReducedMotion) point.y += Mathf.Sin(t * Mathf.PI) * (wave == 7 ? .85f : .3f);
                 Place(coin,point,.18f,Mathf.Max(customer.sortingOrder,WorldSpriteGrounding.SortAt(chair.ChairAnchor.y)) + 16);

@@ -101,8 +101,8 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Armour in whole points (requirement 25/10/2026: "+0.2" read as nothing): one point is 0.1 of the stored value, and
-        /// a hit is multiplied by 10 / (10 + points), so 3 points take off 23%, 10 points half. Never less than one point shown.</summary>
-        public const float ArmorPoint = .1f;
+        /// a hit is multiplied by 8 / (8 + points), so 3 points take off 27%, 8 points half. Never less than one point shown.</summary>
+        public const float ArmorPoint = .1f, ArmorStrength = 1.25f;
         public static int ArmorPoints(float value) => value == 0 ? 0 : (int)Mathf.Sign(value) * Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(value) / ArmorPoint));
         public static string ArmorText(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(ArmorPoints(value));
         public static string ValueText(ItemEffect effect, float value)

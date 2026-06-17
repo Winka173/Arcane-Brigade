@@ -1084,7 +1084,8 @@ namespace ArcaneBrigade
                     return;
                 }
                 if (!injectedDamage) damage = Mathf.Min(damage, target.Definition.Health * 0.22f);
-                damage *= catalog.Armor >= 0 ? 1f / (1f + catalog.Armor) : 1 + Mathf.Min(1, -catalog.Armor);
+                // armour in points (a tenth of the stored value): a hit times 8 / (8 + points) - 3 points take 27% off, 8 half
+                damage *= catalog.Armor >= 0 ? 1f / (1f + catalog.Armor * RunModifierRules.ArmorStrength) : 1 + Mathf.Min(1, -catalog.Armor);
                 if (catalog.SecretWard && !injectedDamage) damage *= .85f;
                 if (!injectedDamage) damage *= KitDamageTaken(cause);
                 if (!injectedDamage) damage = OctoberIncoming(damage);

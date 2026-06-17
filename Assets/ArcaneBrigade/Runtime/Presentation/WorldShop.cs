@@ -227,17 +227,6 @@ namespace ArcaneBrigade
                     }
             }
         }
-        private bool exitArmed = true;
-        /// <summary>Requirement 25/10/2026: the way on is a rift you walk into, no key or button needed. Stepping into its heart
-        /// goes through once; it waits for the hero to step away before it can take them again (a refused exit does not loop).</summary>
-        public void WalkIntoExit()
-        {
-            if (owner?.Simulation == null || owner.Session == null || owner.Session.State.Phase != SessionPhase.Shop) return;
-            float distance = Vector2.Distance(owner.Simulation.Champion.Position, ExitPosition);
-            if (distance > 1.2f) { exitArmed = true; return; }
-            if (!exitArmed || distance > .65f || Nearby == null || Nearby.Action != "NEXT HALL") return;
-            exitArmed = false; Interact();
-        }
         public bool Interact()
         {
             if (owner.SecretRoom != null && owner.SecretRoom.BlocksShop) return false;

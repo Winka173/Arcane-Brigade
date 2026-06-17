@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             Add(result, "bounce", "Bounce chance", ItemEffect.BulletBounce, "Chance for a shot to bounce on to another enemy.");
             Add(result, "critical", "Crit", ItemEffect.Crit, "Chance for a hit to land twice as hard.", "crit");
             Add(result, "dodge", "Dodge", ItemEffect.Dodge, "Chance to take no damage from a hit (max 60%).", "dodge");
-            Add(result, "armor", "Armor", ItemEffect.Armor, "Each hit is cut by armor: 3 armor takes off 23%, 10 armor half.", "armor");
+            Add(result, "armor", "Armor", ItemEffect.Armor, "Each hit is cut by armor: 3 armor takes off 27%, 8 armor half.", "armor");
             Add(result, "damage", "Damage", ItemEffect.Damage, "How hard every hit lands.");
             Add(result, "bond", "Bond", ItemEffect.CompanionDamage, "Friends of the same family together unlock a bonus; the card shows how many you need.");
             Add(result, "merge", "Merge", ItemEffect.CompanionDamage, "Two of the same friend at the same stars become one friend with one more star.");
