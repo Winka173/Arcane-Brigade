@@ -58,6 +58,8 @@ namespace ArcaneBrigade
         private int pausePage;
         private GUIStyle dangerButton;
         private float terminalAt = -1, resultsAt = -1, gaugeHelpAt = -1;
+        private bool lanternHelp; // the help card explains the lantern row instead of the gauge
+        private static readonly Rect LanternRow = new Rect(22, 188, 190, 34);
         /// <summary>What the bar under the health bar is: the hero's own move, what fills it, and what happens when it is full.
         /// Opens from the "i" beside it and closes on a second tap, a tap elsewhere or after eight seconds.</summary>
         private void DrawGaugeHelp(ArenaController owner, RunSnapshot state)
@@ -65,9 +67,10 @@ namespace ArcaneBrigade
             if (gaugeHelpAt < 0) return;
             if (Time.unscaledTime - gaugeHelpAt > 8) { gaugeHelpAt = -1; return; }
             HeroIdentityDefinition identity = HeroIdentities.For(state.ChampionId);
-            string heading = owner.Simulation.HeroIdentityEnabled ? identity.Name : "TRANSFORMATION";
-            string copy = owner.Simulation.HeroIdentityEnabled ? FirstSentences(identity.Description, 2) : "Fills as you fight. When it is full, you transform for a while and hit much harder.";
-            Rect card = new Rect(230, 100, 600, 156);
+            string heading = lanternHelp ? "THE LANTERNS" : owner.Simulation.HeroIdentityEnabled ? identity.Name : "TRANSFORMATION";
+            string copy = lanternHelp ? "Each lantern keeps a memory of someone who came looking for you. Some go dark as the nights pass; the warm chair can light one again."
+                : owner.Simulation.HeroIdentityEnabled ? FirstSentences(identity.Description, 2) : "Fills as you fight. When it is full, you transform for a while and hit much harder.";
+            Rect card = lanternHelp ? new Rect(230, 180, 600, 156) : new Rect(230, 100, 600, 156);
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             LivingUI.Pop(Time.unscaledTime - gaugeHelpAt, card.center);
             ArcadeSkin.Frame(card, KitFrame.Dialogue, .6f);
@@ -75,7 +78,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(inner.x, inner.y, inner.width, 30), heading, title);
             small.wordWrap = true; GUI.Label(new Rect(inner.x, inner.y + 34, inner.width, inner.height - 34), copy, small);
             GUI.matrix = m; GUI.color = c;
-            if (Event.current.type == EventType.MouseUp && !card.Contains(Event.current.mousePosition) && !new Rect(100, 70, 60, 50).Contains(Event.current.mousePosition)) gaugeHelpAt = -1;
+            if (Event.current.type == EventType.MouseUp && !card.Contains(Event.current.mousePosition) && !new Rect(100, 70, 60, 50).Contains(Event.current.mousePosition) && !LanternRow.Contains(Event.current.mousePosition)) gaugeHelpAt = -1;
         }
         private static string FirstSentences(string text, int count)
         {
@@ -361,7 +364,7 @@ namespace ArcaneBrigade
                 Rect help = new Rect(charge.x - 30, charge.y - 11, 26, 26);
                 Rect face = ArcadeSkin.RoundArt(help, KitRound.Brass, help.Contains(Event.current.mousePosition) ? 1 : 0);
                 ArcadeSkin.KitCaption(face, "i", ArcadeSkin.KitInk, small, true);
-                if (GUI.Button(help, GUIContent.none, GUIStyle.none)) { gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
+                if (GUI.Button(help, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
                 if (simulation.HeroIdentityEnabled && !owner.PresentationPaused && !PlayerGuide.ModalOpen(owner)) // a modal page covers it whole, never half
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
@@ -409,7 +412,7 @@ namespace ArcaneBrigade
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
             // the eight lanterns sit quietly under the wallet; the old wave road is gone
-            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) NightHud.Lanterns(new Rect(22, 188, 190, 34), state);
+            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { NightHud.Lanterns(LanternRow, state); if (GUI.Button(LanternRow, GUIContent.none, GUIStyle.none)) { bool same = lanternHelp && gaugeHelpAt > 0; lanternHelp = true; gaugeHelpAt = same ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); } } // tap: what the lanterns are
             if (state.Phase == SessionPhase.Combat) { NightHud.LampLoss(new Rect(560, 150, 800, 60)); NightHud.Knocking(new Rect(610, 130, 700, 48), simulation.KnockRemaining); }
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
@@ -479,7 +482,7 @@ namespace ArcaneBrigade
             waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);
             if (state.Phase == SessionPhase.Combat && !owner.TransitionPending) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { coach.Draw(owner, camera); guide.Draw(owner); }
-            if (state.Phase == SessionPhase.Combat) DrawGaugeHelp(owner, state); else gaugeHelpAt = -1;
+            if (state.Phase == SessionPhase.Combat || lanternHelp && state.Phase == SessionPhase.Shop) DrawGaugeHelp(owner, state); else gaugeHelpAt = -1;
             cutIn.Draw(new Vector2(1920, 1080));
             navigation.End();
             GUI.matrix = previous;
@@ -902,6 +905,7 @@ namespace ArcaneBrigade
                     }
             }
             if (bondSummary.Rows.Count == 0 && newBonds.Count == 0) return;
+            if (owner.PresentationPaused) return; // a pause page covers the panel whole, never under its corner
             const float rowHeight = BondHudSummary.RowHeight, width = BondHudSummary.Width;
             Rect card = new Rect(1900 - width, 18, width, bondSummary.Height + newBonds.Count * rowHeight);
             bool still = owner.Profile != null && owner.Profile.ReducedMotion, calm = PresentationSettings.ReducedFlashes;

@@ -80,9 +80,7 @@ namespace ArcaneBrigade
             if (page < 0 || page >= clips.Length) return false;
             if (!clipTried[page]) { clipTried[page] = true; clips[page] = Resources.Load<Texture2D>("HowTo/Clip" + page); }
             Texture2D atlas = clips[page]; if (atlas == null) return false;
-            float w = area.width, h = w * 9 / 16f; if (h > area.height) { h = area.height; w = h * 16 / 9f; }
-            Rect r = new Rect(area.center.x - w * .5f, area.center.y - h * .5f, w, h);
-            GUI.DrawTexture(r, atlas, ScaleMode.ScaleToFit);
+            GUI.DrawTexture(area, atlas, ScaleMode.ScaleAndCrop); // fills its frame (no black bars round the picture)
             return true;
         }
         private static Sprite Hero(RunCatalog c, string heroId) => (heroId != null ? c.Unit(heroId)?.Body : null) ?? (c.Champions != null && c.Champions.Length > 0 ? c.Champions[0].Body : null);
