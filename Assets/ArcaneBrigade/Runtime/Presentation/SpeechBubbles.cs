@@ -140,6 +140,8 @@ namespace ArcaneBrigade
             if (drawnFrame == Time.frameCount) return;
             drawnFrame = Time.frameCount;
             float now = Time.unscaledTime;
+            // the shopkeeper's lines belong to the shop: a fight starting ends them
+            if (combat) foreach (SpeechBubble bubble in bubbles) if (bubble.Tone == SpeechTone.Shopkeeper) bubble.Expires = Mathf.Min(bubble.Expires, now + .45f);
             bubbles.RemoveAll(bubble => now >= bubble.Expires);
             DrawnCount = 0;
             if (bubbles.Count == 0) return;
@@ -149,6 +151,7 @@ namespace ArcaneBrigade
             Matrix4x4 inverse = GUI.matrix.inverse;
             placed.Clear(); order.Clear(); order.AddRange(bubbles);
             placed.AddRange(AlwaysReserved);
+            if (PlayerGuide.ShownTip.width > 0) placed.Add(PlayerGuide.ShownTip); // a fresh bubble never lands on the tip card
             if (combat) placed.AddRange(CombatReserved);
             // Existing sentences keep their space even when a newly queued voice has higher priority.
             foreach (var visible in bubbles)
@@ -166,6 +169,8 @@ namespace ArcaneBrigade
                 if (bubble.PlacementLocked)
                 {
                     anchor = bubble.LockedAnchor;
+                    // its speaker has gone: the box fades out instead of pointing at nothing
+                    if (tailed && bubble.Anchor?.Invoke() == null) bubble.Expires = Mathf.Min(bubble.Expires, now + .45f);
                     // the speaker moved: the box and its tail move with it (same side, kept on screen)
                     if (tailed && Live(bubble, camera, inverse, out Vector2 live) && (live - anchor).sqrMagnitude > .25f)
                     {

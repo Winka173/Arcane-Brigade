@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         private RunStorage storage;
         private PlayerProfile profile;
         private readonly RunHud runHud = new RunHud();
+        public bool GoalCardShowing => runHud.Guide.GoalShowing;
         private readonly RunPauseGate pauseGate = new RunPauseGate();
         private readonly RunDetails details = new RunDetails();
         public RunDetails Details => details;
@@ -475,7 +476,7 @@ namespace ArcaneBrigade
                 if (delta > 0) CheckpointAudio.PlayInterfaceId("ui.achievement");
                 foreach (UnitDefinition champion in runCatalog.Champions)
                     if (previousBestWave < champion.UnlockWave && profile.BestWave >= champion.UnlockWave) { CheckpointAudio.PlayInterfaceId("ui.unlock", 0.15f); break; }
-                MetaNotice = delta > 0 ? "SAVED " + delta + " NEW DISCOVERIES / ACHIEVEMENTS · VISIT MUSEUM" : "";
+                MetaNotice = delta > 0 ? (delta == 1 ? "1 NEW FIND" : delta + " NEW FINDS") + " IN THE MUSEUM" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
             return true;

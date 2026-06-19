@@ -15,7 +15,7 @@ namespace ArcaneBrigade
                 "Bullhorn Warrior" => "Clockwork Union friends gain 8% movement and attack speed per talent. Combined with Intelligent Construct, this buff is capped at 25%.",
                 "Intelligent Construct" => "Clockwork Union friends gain 4% movement AND attack speed per talent. Combined with Bullhorn Warrior, this buff is capped at 25%.",
                 "Fierce Fighter" => "Each basic attack adds 1% attack speed to this friend, up to 20% this wave. A hit from every third basic attack can make a 0.8-radius blast at 15% weapon damage; once every 1s, no recursive blast.",
-                "Grey Mage" => "Your basic attack prompts this friend to fire one bolt for 65% of its own weapon damage. once every 0.7s. Secondary attacks cannot trigger another response.",
+                "Grey Mage" => "Your basic attack prompts this friend to fire one bolt for 65% of its own weapon damage, once every 0.7s.",
                 "Hopping Zombie" => "Hero maximum HP +4 per talent. Each 8 team kills gives this friend 1% attack speed, up to 15% this wave.",
                 "Iron Swordsman" => "This friend gains 10% attack speed per Iron Swordsman talent, including itself, up to 30%. Count includes absorbed talents; star levels do not multiply this count.",
                 "Jungle Folk" => "Each Wild Stitch or Springstep bond level grants this friend 10% weapon damage and 5% reach. Caps: +50% damage, +20% reach; final reach cap still applies.",

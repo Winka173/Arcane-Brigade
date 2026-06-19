@@ -497,20 +497,19 @@ namespace ArcaneBrigade
             if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(Time.unscaledTime * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(knight.center.x + Mathf.Sin(r * 7 + i * 2) * 120, knight.yMax - r * 420), 6 + 6 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .8f * Mathf.Sin(r * Mathf.PI))); }
             if (spotPlate == null) { spotPlate = ArcadeTypography.Style(15, true); }
             Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true) };
-            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 17 };
+            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 15 }; // one size that fits the longest label, so the grid reads even
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 GUI.enabled = SpotEnabled(index);
-                string caption = index == 1 && CanResume ? "CONTINUE · WAVE " + saved.Wave : SpotLabels[index];
+                string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 Rect spot = index < 2 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 2) % 2 * 240, 380 + (index - 2) / 2 * 72, 230, 60);
                 if (index >= 2) caption = "      " + caption; // room for its icon
                 if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume ? primary : smallButton)) ActivateSpot(index);
                 if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
-                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(navigation.Moved(new Rect(spot.xMax - 26, spot.y - 12, 28, 28)), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(navigation.Moved(new Vector2(spot.xMax - 12, spot.y + 2)), 22, "!"); }
+                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(navigation.Moved(new Rect(spot.xMax - 36, spot.y, 28, 28)), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(navigation.Moved(new Vector2(spot.xMax - 22, spot.y + 14)), 22, "!"); } // inside the plate's corner
             }
             GUI.enabled = true;
-            if (!CanResume) { spotHint.alignment = TextAnchor.UpperLeft; GUI.Label(new Rect(52, 352, 460, 26), "nothing to continue yet", spotHint); spotHint.alignment = TextAnchor.MiddleCenter; }
         }
         private GUIStyle spotPlate;
 
@@ -518,6 +517,7 @@ namespace ArcaneBrigade
         {
             if (catalog.Champions == null || catalog.Champions.Length == 0) { Label(new Rect(75, 200, 1100, 90), "No hero available."); return; }
             selection = Mathf.Clamp(selection, 0, catalog.Champions.Length - 1);
+            RosterOverlays(false); // an open picker or details card takes the taps before the page under it
             GUIStyle caption = portraitCaption ?? (portraitCaption = ArcadeTypography.Style(18, true));
             caption.alignment = TextAnchor.MiddleCenter;
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(16));
@@ -564,15 +564,13 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(918, 150, 290, 70), RunUICopy.UnitName(champion), rosterTitle);
             ArcadeSkin.Tag(new Rect(918, 222, 280, 28), RunUICopy.WeaponName(champion.Weapon.Id).ToUpperInvariant(), CodeTone.Walnut, chip);
             GUI.Label(new Rect(918, 256, 290, 34), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
-            string description = RunUICopy.ChampionDescription(champion);
+            // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
+            string fullDescription = RunUICopy.ChampionDescription(champion);
+            string description = ShortHero(champion);
             if (catalog.HeroRevision > 0)
             {
-                description += "\n\nRECRUIT THEMES: ";
-                foreach (BondDefinition bond in catalog.Bonds)
-                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) description += bond.Name + " · ";
-                // the fixed pool: only these bonds can come together in this hero's shop
-                description += "\nBONDS IN THIS HERO'S SHOP: ";
-                foreach (BondDefinition bond in K11HeroRules.PoolBonds(catalog, champion)) description += bond.Name + " · ";
+                fullDescription += "\n\nBONDS IN THIS HERO'S SHOP: ";
+                foreach (BondDefinition bond in K11HeroRules.PoolBonds(catalog, champion)) fullDescription += bond.Name + " · ";
             }
             description += "\n\nSTARTS WITH\n";
             foreach (StatModifier modifier in champion.ChampionModifiers)
@@ -582,11 +580,14 @@ namespace ArcaneBrigade
             rosterDescriptionScroll = ScrollPanel.Begin(new Rect(780, 300, 425, loadout ? 98 : 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
             ScrollPanel.End();
+            heroDetailsText = fullDescription; heroDetailsName = RunUICopy.UnitName(champion);
+            if (ArcadeSkin.Medallion(new Rect(1166, 262, 40, 40), KitMedallion.Info)) { heroDetailsAt = Time.unscaledTime; heroDetailsScroll = Vector2.zero; }
             // one journey only (play-test 20/10/2026): the Night Shift / First Light / Small Crew challenges are off the menu;
             // their rules stay in RunMeta, dormant, for a later daily run
             challenge = 0;
             // every difficulty is shown in turn; the two after the whole Lamp Tree show a lock until it is lit
-            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % RunMeta.DifficultyNames.Length;
+            // requirement 25/10/2026 (no tap-to-cycle pickers): the difficulty is chosen from a list of all of them
+            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficultyPickerAt = Time.unscaledTime;
             bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile);
             // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(17, true)); danger.alignment = TextAnchor.MiddleCenter;
@@ -605,6 +606,75 @@ namespace ArcaneBrigade
             GUI.enabled = profile.BestWave >= champion.UnlockWave && !sealedDifficulty;
             if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
+            RosterOverlays(true);
+        }
+        // ---- hero select's two popups: all of a hero's details, and the difficulty list --------------------------------------
+        private float heroDetailsAt = -1, difficultyPickerAt = -1;
+        private string heroDetailsText = "", heroDetailsName = "";
+        private Vector2 heroDetailsScroll;
+        private GUIStyle overlayTitle, overlayLine;
+        /// <summary>The hero in two lines: its own move's name and first sentence, and what it turns into.</summary>
+        private static string ShortHero(UnitDefinition champion)
+        {
+            HeroIdentityDefinition identity = HeroIdentities.For(champion.Id);
+            if (identity == null) return RunUICopy.ChampionDescription(champion);
+            string first = identity.Description; int stop = first.IndexOf(". ", System.StringComparison.Ordinal); if (stop > 0) first = first.Substring(0, stop + 1);
+            HeroKit kit = HeroKits.For(champion.Id);
+            return identity.Name + "\n" + first + (kit != null ? "\nTransforms into " + kit.Transformation + "." : "");
+        }
+        /// <summary>Drawn twice a frame: first (paint false) to take the taps before the page, last (paint true) to draw on top.</summary>
+        private void RosterOverlays(bool paint)
+        {
+            bool details = heroDetailsAt >= 0, picker = difficultyPickerAt >= 0;
+            if (!details && !picker) return;
+            if (paint != (Event.current.type == EventType.Repaint)) return;
+            overlayTitle ??= new GUIStyle(ArcadeTypography.Style(26, true)) { alignment = TextAnchor.MiddleCenter };
+            overlayLine ??= new GUIStyle(ArcadeTypography.Style(16)) { wordWrap = true };
+            RunHud.Fill(new Rect(0, 0, 1280, 720), new Color(0, 0, 0, .5f));
+            Matrix4x4 m = GUI.matrix; Color c = GUI.color;
+            if (details)
+            {
+                Rect card = new Rect(240, 70, 800, 580);
+                if (LivingUI.Auto("hero-details", card.center))
+                {
+                    ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f);
+                    GUI.Label(new Rect(card.x, card.y + 22, card.width, 40), heroDetailsName, overlayTitle);
+                    float h = Mathf.Max(400, GlossaryUI.Height(heroDetailsText, overlayLine, 700) + 10);
+                    heroDetailsScroll = ScrollPanel.Begin(new Rect(card.x + 40, card.y + 76, 720, card.height - 110), heroDetailsScroll, new Rect(0, 0, 700, h));
+                    GlossaryUI.Text(new Rect(0, 0, 700, h), heroDetailsText, overlayLine);
+                    ScrollPanel.End();
+                    if (ArcadeSkin.Medallion(new Rect(card.xMax - 52, card.y - 4, 56, 56), KitMedallion.Close) && !LivingUI.Closing("hero-details")) LivingUI.CloseThen("hero-details", () => heroDetailsAt = -1);
+                }
+            }
+            else
+            {
+                int count = RunMeta.DifficultyNames.Length, unlocked = RunMeta.UnlockedDifficulty(profile);
+                Rect card = new Rect(290, 40, 700, 110 + count * 64);
+                if (LivingUI.Auto("difficulty-picker", card.center))
+                {
+                    ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f);
+                    GUI.Label(new Rect(card.x, card.y + 20, card.width, 40), "CHOOSE THE NIGHT'S DIFFICULTY", overlayTitle);
+                    for (int i = 0; i < count; i++)
+                    {
+                        Rect row = new Rect(card.x + 40, card.y + 76 + i * 64, card.width - 80, 56);
+                        bool sealedRow = i > unlocked, chosen = i == difficulty;
+                        ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? 1 : 0);
+                        if (chosen) ArcadeSkin.RunningLight(row, Time.unscaledTime, ArcadeSkin.Gold, .7f);
+                        overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = RunMeta.DifficultyColor(i);
+                        GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
+                        if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);
+                        overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
+                        GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), sealedRow ? (i == RunMeta.TreeDifficulty ? "Light 5 Lamp Tree branches" : "Light the whole Lamp Tree") : DifficultyLine(i), overlayLine);
+                        overlayLine.alignment = TextAnchor.UpperLeft;
+                        int pick = i;
+                        if (!sealedRow && GUI.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => { difficulty = pick; difficultyPickerAt = -1; });
+                    }
+                    overlayTitle.fontSize = 26; overlayTitle.alignment = TextAnchor.MiddleCenter; overlayTitle.normal.textColor = ArcadeSkin.KitCream;
+                    if (ArcadeSkin.Medallion(new Rect(card.xMax - 52, card.y - 4, 56, 56), KitMedallion.Close) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => difficultyPickerAt = -1);
+                }
+            }
+            GUI.matrix = m; GUI.color = c;
+            if (!paint && Event.current.isMouse) Event.current.Use(); // nothing under the popup takes the tap
         }
         /// <summary>The Window's Daily Dream: today's hero and pact, Peaceful, the day's seed; straight into the night.</summary>
         private void StartDaily()
@@ -674,7 +744,8 @@ namespace ArcaneBrigade
             }
             GUI.matrix = keepMatrix; GUI.color = keepColour;
         }
-        private static string DifficultyLine(int d) => d switch { 0 => "a gentle night", 1 => "the usual dream", 2 => "tougher crowds", 3 => "hard and hungry", 4 => "no rest", 5 => "beyond the lamp's light", 6 => "no light at all", _ => "the night never ends" };
+        // what a difficulty does, in numbers (requirement 25/10/2026: the poetic lines said nothing)
+        private static string DifficultyLine(int d) => "enemies ×" + JourneyBalance.HealthFactor[Mathf.Clamp(d, 0, JourneyBalance.HealthFactor.Length - 1)].ToString("0.##") + " health, ×" + JourneyBalance.DamageFactor[Mathf.Clamp(d, 0, JourneyBalance.DamageFactor.Length - 1)].ToString("0.##") + " damage";
 
         private bool DrawLoadout(UnitDefinition champion, Rect row, GUIStyle note)
         {

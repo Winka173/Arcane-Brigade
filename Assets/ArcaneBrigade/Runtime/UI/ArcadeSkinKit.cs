@@ -149,7 +149,8 @@ namespace ArcaneBrigade
             Color text = KitText(kind, enabled);
             if (state == 1 && kind == KitButton.Secondary) text = new Color(1f, .88f, .60f);
             Rect inner = Content(r, KitPiece.Button, false); // inside the caps, vertically centred on the face
-            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y, inner.width, r.height), label, text, like, true);
+            float gem = kind == KitButton.Primary ? r.height * .16f : 0; // the primary plate's gem crest sits on its top rim: the word starts below it
+            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y + gem, inner.width, r.height - gem), label, text, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
 

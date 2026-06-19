@@ -94,12 +94,12 @@ namespace ArcaneBrigade
                 case "ClockCrescent": return "Clock Crescent";
                 case "UmbrellaLance": return "Umbrella Lance";
                 case "StampHammer": return "Stamp Hammer";
-                default: return string.IsNullOrEmpty(id) ? "Unknown weapon" : id;
+                default: return string.IsNullOrEmpty(id) ? "Unknown weapon" : System.Text.RegularExpressions.Regex.Replace(id, "(?<=[a-z])(?=[A-Z])", " "); // SpinningTop reads Spinning Top
             }
         }
         public static string WeaponKindName(WeaponKind kind) => kind == WeaponKind.Projectile ? "Ranged" : kind == WeaponKind.Melee ? "Melee" : "Contact";
         public static string ElementName(DamageElement element) => element == DamageElement.Ember ? "Ember" : element == DamageElement.Frost ? "Frost" : element == DamageElement.Arcane ? "Arcane" : "Physical";
-        public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Unlocked" : "Unlock: wave " + unit.UnlockWave;
+        public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "" : "Unlock: reach wave " + unit.UnlockWave;
         public static string ChampionDescription(UnitDefinition unit)
         {
             var identity = HeroIdentities.For(unit.Id);

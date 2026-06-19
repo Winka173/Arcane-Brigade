@@ -51,7 +51,7 @@ namespace ArcaneBrigade
                 {
                     string tiers = "Most stars reached: ";
                     for (int tier = 1; tier <= catalog.MaximumTier; tier++) if (profile.SeenTiers.Contains(weapon.Id + "/" + tier)) tiers += tier + " ";
-                    exhibits.Add(new Exhibit { Id = weapon.Id, Name = weapon.Id, Icon = weapon.Sprite, Seen = profile.SeenWeapons.Contains(weapon.Id), Detail = tiers + "\n\n" + weapon.Kind + " / " + weapon.Element + "\nBase: " + FriendlyWeaponBalance.BaseDamage(weapon).ToString("0.#") + " damage · cycle " + weapon.Cooldown.ToString("0.##") + "s · range " + weapon.Range.ToString("0.#") + "\n\n" + SignatureDescription.Describe(weapon, 1) + "\n\nSandbox can preview other tiers; previews do not count as ownership." });
+                    exhibits.Add(new Exhibit { Id = weapon.Id, Name = RunUICopy.WeaponName(weapon.Id), Icon = weapon.Sprite, Seen = profile.SeenWeapons.Contains(weapon.Id), Detail = tiers + "\n\n" + weapon.Kind + " / " + weapon.Element + "\n" + FriendlyWeaponBalance.BaseDamage(weapon).ToString("0.#") + " damage · attacks every " + weapon.Cooldown.ToString("0.##") + "s · reach " + weapon.Range.ToString("0.#") + "\n\n" + SignatureDescription.Describe(weapon, 1) });
                 }
             if (tab == 1)
                 foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = RelicDescriptions.Describe(item,1,catalog) });
@@ -184,7 +184,7 @@ namespace ArcaneBrigade
                 ScrollPanel.End();
             }
             int found = exhibits.FindAll(exhibit => exhibit.Seen).Count;
-            GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + (tab == 2 || tab == 4 ? " · Arrows: sample · Enter/A: pose · T: tier" : " · Tab / LB/RB: category · arrows / X/Y: sample · Enter/A: try"), body);
+            GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + " found", body); // no key hints (mobile-first)
         }
         public static Rect DescriptionBounds(float titleTop, float titleHeight)
         {

@@ -241,7 +241,7 @@ namespace ArcaneBrigade
             Rect slip = new Rect(222, 98, 176, 36);
             ArcadeSkin.Ticket(new Rect(slip.x - pop, slip.y - pop, slip.width + pop * 2, slip.height + pop * 2), ArcadeSkin.Cream, ArcadeSkin.Gold);
             hand.normal.textColor = ArcadeSkin.Ink; hand.fontSize = 26;
-            GUI.Label(new Rect(slip.x + 8, slip.y - 2, 70, slip.height), "swept", hand);
+            GUI.Label(new Rect(slip.x + 8, slip.y - 2, 70, slip.height), "gold", hand);
             numbers.normal.textColor = new Color(0.55f, 0.36f, 0.08f);
             GUI.Label(new Rect(slip.x + 72, slip.y, slip.width - 78, slip.height), "+" + tallyShown.ToString("N0"), numbers);
             hand.fontSize = 30;

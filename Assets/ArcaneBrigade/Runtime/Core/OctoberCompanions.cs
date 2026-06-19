@@ -11,7 +11,7 @@ namespace ArcaneBrigade
             "Bullhorn Warrior" => "Clockwork Union friends gain 8% movement and attack speed.", "Camo Shroom" => "Basic hits slow ordinary enemies for 0.4 seconds.",
             "Cheer Bunny" => "Team movement speed +5%.", "Chieftain" => "Team damage +5%.", "Clown" => "After you take damage, heal 1 HP. at most once every 1s.",
             "Fierce Fighter" => "Each attack adds 1% attack speed, up to 20%, this wave. Every third hit makes a small blast.",
-            "Floofy" => "Hero · Max HP +5 · Armor +1.", "Grey Mage" => "When you attack, fire an extra bolt. once every 0.7s; cannot trigger another response.",
+            "Floofy" => "Hero · Max HP +5 · Armor +1.", "Grey Mage" => "When you attack, fire an extra bolt (once every 0.7s).",
             "Hopping Zombie" => "Hero · Max HP +4. Each 8 kills grants this friend 1% attack speed, up to 15% per wave.",
             "Intelligent Construct" => "Clockwork Union friends attack 4% faster.", "Iron Swordsman" => "Each friend of this same species grants it 10% attack speed, up to 30%.",
             "Judge" => "Each Lucky Leaves activation adds 4 wave income.", "Jungle Folk" => "Each Wild Stitch or Springstep activation grants this friend 10% damage and 5% reach.",

@@ -99,7 +99,7 @@ namespace ArcaneBrigade
                 if (HeroAwakening && Kit != null) return Kit.Transformation + " " + (awakenUntil - Elapsed).ToString("0.0") + "s";
                 if (HeroAwakenCooling) return "RESTING";
                 // player words (requirement 22/10/2026): the gauge's own word, its steps, then the charge toward the next step
-                if (Kit != null) return HeroIdentities.For(IdentityId).Resource.ToUpperInvariant() + " " + HeroAwakenTier + "/3 · " + Mathf.FloorToInt(identityCharge) + "/" + HeroIdentityRequired.ToString("0");
+                if (Kit != null) return HeroIdentities.For(IdentityId).Resource.ToUpperInvariant() + " · LEVEL " + HeroAwakenTier + "/3"; // the gauge under the health bar shows the charge
                 if (IdentityId == "GlassDice") return "NEXT FACE " + identityFace + " / " + Mathf.FloorToInt(identityCharge) + "/6 GOLD";
                 if (IdentityId == "MirrorKeeper") return identityReflections.Count + "/3 REFLECTIONS";
                 if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAM " + (identityGhostUntil - Elapsed).ToString("0.0") + "s";

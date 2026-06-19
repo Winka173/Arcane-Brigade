@@ -282,11 +282,11 @@ namespace ArcaneBrigade
             if (sway != 0) ArcadeSkin.TurnAround(sway, new Vector2(note.x + 12, note.y + 6));
             ArcadeSkin.Ticket(note, ArcadeSkin.Paper, ArcadeSkin.Wax);
             noteHand.normal.textColor = new Color(.25f, .19f, .14f);
-            GUI.Label(new Rect(note.x + 16, note.y + 2, note.width - 64, 34), count > 1 ? count + " new pages" : "a new page", noteHand);
+            GUI.Label(new Rect(note.x + 16, note.y + 2, note.width - 64, 34), count > 1 ? "new pages" : "a new page", noteHand);
             noteKey.normal.textColor = new Color(.25f, .19f, .14f, .8f);
             noteKey.alignment = TextAnchor.MiddleLeft;
-            GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "OPEN THE NOTE OR ARCHIVE", noteKey);
-            ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 9 ? "9+" : count.ToString());
+            GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "TAP TO READ", noteKey);
+            ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 99 ? "99+" : count.ToString());
             GUI.matrix = before;
             if (GUI.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();
         }

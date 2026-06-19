@@ -745,6 +745,9 @@ namespace ArcaneBrigade
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
                 Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);
                 ticket.y = Mathf.Min(ticket.y, 778);
+                // the open card already shows this stall's price; its crest would cover the tag
+                Rect shownCard = RunHud.ShownShopCard;
+                if (station.Focus > .5f && shownCard.width > 0 && ticket.xMax > shownCard.x && ticket.x < shownCard.xMax && ticket.yMax > shownCard.y - 70) continue;
                 bool denied = owner.PresentationClock < station.DeniedUntil;
                 // Hanging ticket: a short string from a hook above, gentle sway, a hard shake when the purchase is denied.
                 bool reduced = PresentationSettings.ReducedMotion;
@@ -770,8 +773,8 @@ namespace ArcaneBrigade
                     string fit = merge ? null : owner.Session.BuildFit(station.Offer, out fitIcon);
                     bool item = station.Offer.Kind == OfferKind.Item;
                     Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : owner.Content.Unit(station.Offer.Id).Rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(owner.Content.Unit(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
-                    Rect category = new Rect(point.x - (merge ? 60 : fit != null ? 56 : 45), ticket.y - 29, merge ? 120 : fit != null ? 112 : 90, 26);
-                    ArcadeSkin.Slant(category, fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "BUILD" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
+                    Rect category = new Rect(point.x - (merge ? 60 : fit != null ? 66 : 45), ticket.y - 29, merge ? 120 : fit != null ? 132 : 90, 26);
+                    ArcadeSkin.Slant(category, fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
                     if (merge)
                     {
                         GUI.Label(new Rect(category.x + 3, category.y, 77, category.height), "MERGE", categoryStyle);

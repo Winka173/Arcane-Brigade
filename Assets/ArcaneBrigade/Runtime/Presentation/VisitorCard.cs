@@ -96,6 +96,8 @@ namespace ArcaneBrigade
             if (closingAt >= 0) return;
             picked = -1; pendingChoice = index; Close();
         }
+        /// <summary>Captures take a deal the way a tap does: close, deal, then the receipt card.</summary>
+        public void ChooseForCapture(int index) => Choose(index);
         private void MakeDeal(int index)
         {
             InputConsumedFrame = Time.frameCount;

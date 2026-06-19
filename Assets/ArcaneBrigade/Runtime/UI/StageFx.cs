@@ -126,7 +126,6 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(centre.x - 100, centre.y - 78, 200, 24), word.Length > 0 ? word : "WAVE", label);
             number.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, alpha);
             GUI.Label(new Rect(centre.x - 110, centre.y - 50, 220, 100), digits, number);
-            GUI.Label(new Rect(centre.x - 100, centre.y + 52, 200, 24), "MIEN CHO", label);
             GUI.matrix = previous;
         }
 

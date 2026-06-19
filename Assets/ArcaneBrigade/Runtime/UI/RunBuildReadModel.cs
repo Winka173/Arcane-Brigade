@@ -24,10 +24,10 @@ namespace ArcaneBrigade
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
             WeaponDefinition weapon = champion.Weapon;
             model.ShopStats = ShopStatSnapshot.Capture(readSession, catalog, compiled);
-            model.Stat("Hero health", health.ToString("0.0") + " / " + compiled.Champion.Health.ToString("0.0"), "Maximum health includes base HP, run bonuses and health correction, minimum 1. The Waiting Room's Lantern adds a little. Every cleared wave restores full HP.");
-            model.Stat("Hero damage", compiled.Champion.Weapon.Damage.ToString("0.0"), "Weapon base " + FriendlyWeaponBalance.BaseDamage(weapon).ToString("0.0") + "; hero power x" + PlayerBuildBalance.HeroPower(champion.Id).ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
+            model.Stat("Hero health", Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(compiled.Champion.Health), "Maximum health includes base HP, run bonuses and health correction, minimum 1. The Waiting Room's Lantern adds a little. Every cleared wave restores full HP.");
+            model.Stat("Hero damage", compiled.Champion.Weapon.Damage.ToString("0"), "Weapon base " + FriendlyWeaponBalance.BaseDamage(weapon).ToString("0.0") + "; hero power x" + PlayerBuildBalance.HeroPower(champion.Id).ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
             model.Stat("Hero attack cycle", compiled.Champion.Weapon.Cooldown.ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
-            model.Stat("Movement speed", compiled.Champion.Speed.ToString("0.00"), "Base " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; minimum multiplier 0.1.");
+            model.Stat("Movement speed", compiled.Champion.Speed.ToString("0.0"), "Base " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; minimum multiplier 0.1.");
             model.Stat("Hero critical chance", Percent(compiled.Champion.CriticalChance), "Base " + Percent(champion.CriticalChance) + "; bonuses add before the 0–100% cap.");
             model.Stat("Hero projectile count", compiled.Champion.Weapon.ProjectileCount.ToString(), "Applies only to projectile weapons; does not turn melee attacks into bullets.");
             model.Stat("Hero armor", compiled.Armor.ToString("0.00"), "Positive armor reduces incoming damage; negative armor increases it, capped before the per-hit limit.");
@@ -173,7 +173,7 @@ namespace ArcaneBrigade
                     }
                 row.Explanation += sources + (sourceCount == 0 ? "No additional sources for this stat.\n" : "Sources are shown before limits, stars and passives; applied values appear in the stat table.\n");
             }
-            if (HeroIdentities.For(champion.Id) != null) model.Stats.Insert(0,new Row { Name = "Hero / " + HeroIdentities.For(champion.Id).Name,
+            if (HeroIdentities.For(champion.Id) != null) model.Stats.Insert(0,new Row { Name = HeroIdentities.For(champion.Id).Name,
                 Summary = simulation != null && simulation.HeroIdentityEnabled ? simulation.HeroIdentityStatus : session.HeroIdentityShopSummary,
                 Explanation = HeroIdentities.Describe(champion.Id), Icon = champion.Body });
             return model;

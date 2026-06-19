@@ -90,7 +90,7 @@ namespace ArcaneBrigade
             foreach (Member m in members)
                 lines.AppendLine(Name(m.UnitId, catalog) + Stars(m.Stars) + (m.Damage > 0 ? " · " + Mathf.RoundToInt(m.Share * 100) + "% of damage · " + Short(m.Damage) : "") + (m.Kills > 0 ? " · " + Short(m.Kills) + " defeated" : ""));
             foreach (BondRow row in Bonds(run, catalog))
-                lines.AppendLine("BOND  " + row.Bond.Name + " · " + row.Count + " members · " + (row.Bond.ActiveLevel(row.Count) > 0 ? "level " + row.Bond.ActiveLevel(row.Count) : "not ready"));
+                lines.AppendLine("BOND  " + row.Bond.Name + " · " + row.Count + (row.Count == 1 ? " member · " : " members · ") + (row.Bond.ActiveLevel(row.Count) > 0 ? "level " + row.Bond.ActiveLevel(row.Count) : "not ready"));
             var (relic, relicDamage) = BestRelic(run, catalog);
             if (relic != null) lines.AppendLine("\nBEST RELIC  " + relic.Name + " · " + Short(relicDamage) + " damage");
             if (run.Items.Count > 0)
@@ -201,7 +201,7 @@ namespace ArcaneBrigade
                     RunHud.Sprite(new Rect(4, y + 4, 40, 40), row.Bond.Icon);
                     GUI.Label(new Rect(54, y, inner - 58, 26), row.Bond.Name, body);
                     int level = row.Bond.ActiveLevel(row.Count);
-                    GUI.Label(new Rect(54, y + 26, inner - 58, 24), row.Count + " members · " + (level > 0 ? "Level " + level : "Not ready"), small);
+                    GUI.Label(new Rect(54, y + 26, inner - 58, 24), row.Count + (row.Count == 1 ? " member · " : " members · ") + (level > 0 ? "Level " + level : "Not ready"), small);
                     y += 54;
                 }
             }
@@ -210,9 +210,9 @@ namespace ArcaneBrigade
             float cardW = (inner - 24) / 3f;
             Member richest = null, slayer = null;
             foreach (Member m in cachedMembers) { if (m.Gold > 0 && (richest == null || m.Gold > richest.Gold)) richest = m; if (m.Kills > 0 && (slayer == null || m.Kills > slayer.Kills)) slayer = m; }
-            Trophy(new Rect(0, y, cardW, 108), "BEST RELIC", relic?.Icon, relic != null ? relic.Name : "—", relic != null ? Short(relicDamage) + " damage" : "", body, small);
-            Trophy(new Rect(cardW + 12, y, cardW, 108), "MOST GOLD", richest != null ? catalog.Unit(richest.UnitId)?.Body : null, richest != null ? Name(richest.UnitId, catalog) : "—", richest != null ? Short(richest.Gold) + " gold" : "", body, small);
-            Trophy(new Rect(cardW * 2 + 24, y, cardW, 108), "MOST DEFEATED", slayer != null ? catalog.Unit(slayer.UnitId)?.Body : null, slayer != null ? Name(slayer.UnitId, catalog) : "—", slayer != null ? Short(slayer.Kills) : "", body, small);
+            Trophy(new Rect(0, y, cardW, 108), "BEST RELIC", relic?.Icon, relic != null ? relic.Name : "No relic yet", relic != null ? Short(relicDamage) + " damage" : "", body, small);
+            Trophy(new Rect(cardW + 12, y, cardW, 108), "MOST GOLD", richest != null ? catalog.Unit(richest.UnitId)?.Body : null, richest != null ? Name(richest.UnitId, catalog) : "None yet", richest != null ? Short(richest.Gold) + " gold" : "", body, small);
+            Trophy(new Rect(cardW * 2 + 24, y, cardW, 108), "MOST DEFEATED", slayer != null ? catalog.Unit(slayer.UnitId)?.Body : null, slayer != null ? Name(slayer.UnitId, catalog) : "None yet", slayer != null ? Short(slayer.Kills) : "", body, small);
             y += 120;
             if (run.Items.Count > 0)
             {

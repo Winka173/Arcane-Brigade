@@ -87,9 +87,10 @@ namespace ArcaneBrigade
                 yield return Shot(id + "-world");
                 owner.GetComponent<VisitorCard>().Show(); yield return new WaitForSecondsRealtime(.5f);
                 yield return Shot(id + "-card");
-                Check(owner.VisitorChoose(0), id + " gift commits in the Windows player");
-                Check(owner.Session.Visitor == null && !owner.VisitorChoose(0), id + " gift cannot be claimed again");
-                yield return new WaitForSecondsRealtime(.5f); yield return Shot(id + "-received");
+                owner.GetComponent<VisitorCard>().ChooseForCapture(0); yield return new WaitForSecondsRealtime(1.4f);
+                Check(owner.Session.Visitor == null, id + " gift commits in the Windows player");
+                Check(!owner.VisitorChoose(0), id + " gift cannot be claimed again");
+                yield return Shot(id + "-received"); // the YOU RECEIVED card
             }
             Debug.Log("RARE_VISITORS_NATIVE_" + (failed ? "FAILED" : "PASSED") + " " + checks.Count);
             Application.Quit(failed ? 1 : 0);

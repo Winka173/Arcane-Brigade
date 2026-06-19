@@ -16,7 +16,7 @@ namespace ArcaneBrigade
         {
             MapTheme.WaitingRoom => "A called door lets a pack out. Stand at the door to shut it.",
             MapTheme.PostOffice => "Letters give a boost. Break a parcel: it bursts and spills gold.",
-            MapTheme.LampHall => "Friends fight faster in the light; foes are tougher in the dark. Relight the lamps.",
+            MapTheme.LampHall => "Friends are faster in the light, foes tougher in the dark. Relight the lamps.",
             _ => "Stand by the clock when it chimes: enemies slow for longer."
         };
 
@@ -34,6 +34,7 @@ namespace ArcaneBrigade
 
         private void OnGUI()
         {
+            if (owner != null && owner.GoalCardShowing) { if (Time.unscaledTime - since < 4.2f) since = Time.unscaledTime; return; } // one card at a time: the map's card waits for the goal card
             float t = Time.unscaledTime - since;
             if (t > 4.2f || owner?.Session == null || Camera.main == null || owner.PresentationPaused || owner.StoryConsumesInput) return;
             GUI.depth = -40;
@@ -48,10 +49,10 @@ namespace ArcaneBrigade
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             MapTheme map = MapIdentity.For(owner.Session.State.Wave);
             ArcadeSkin.TitleBanner(new Rect(560, 150 + rise, 800, 72), MapIdentity.Name(map).ToUpperInvariant(), banner);
-            Rect plate = new Rect(610, 236 + rise, 700, 78);
+            Rect plate = new Rect(580, 236 + rise, 760, 96);
             ArcadeSkin.Ticket(plate, ArcadeSkin.Paper, ArcadeSkin.Accent);
             line.normal.textColor = new Color(.22f, .16f, .1f);
-            GUI.Label(ArcadeSkin.Content(plate, KitFrame.Card), Tagline(map), line);
+            GUI.Label(new Rect(plate.x + 30, plate.y + 10, plate.width - 60, plate.height - 20), Tagline(map), line); // two lines fit inside the ticket's rim
             GUI.color = keep;
             GUI.matrix = previous;
         }

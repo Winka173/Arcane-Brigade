@@ -141,21 +141,21 @@ namespace ArcaneBrigade
         private static void Ground(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float alpha)
         {
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            ink.FloorZone(c, rx, ry, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .42f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .62f * alpha));
+            ink.FloorZone(c, rx, ry, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .55f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .75f * alpha)); // dense enough to read through a crowd
             if (s > .02f) ink.FloorZone(c, rx * s, ry * s, new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .22f * alpha), new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .45f * alpha));
         }
         /// <summary>A lane's solid ground: the deep red band, filled bright from its start as the blow charges.</summary>
         public static void LaneGround(ArsenalInk ink, Vector2 a, Vector2 b, float halfWidth, float charge, float alpha)
         {
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            ink.FloorLane(a, b, halfWidth, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .5f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .62f * alpha));
+            ink.FloorLane(a, b, halfWidth, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .6f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .75f * alpha));
             if (s > .02f) ink.FloorLane(a, Vector2.Lerp(a, b, s), halfWidth * .92f, new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .4f * alpha), new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .25f * alpha));
         }
         /// <summary>An aimed fan's solid ground: the wedge it will sweep, filled bright from the apex as it charges.</summary>
         public static void FanGround(ArsenalInk ink, Vector2 apex, Vector2 aim, float half, float reach, float charge, float alpha)
         {
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge)), mid = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg, spread = half * Mathf.Rad2Deg;
-            ink.Cone(apex, reach, mid - spread, mid + spread, ZoneGround, .62f * alpha, .4f * alpha);
+            ink.Cone(apex, reach, mid - spread, mid + spread, ZoneGround, .72f * alpha, .6f * alpha);
             if (s > .02f) ink.Cone(apex, reach * s, mid - spread, mid + spread, ZoneCharge, .4f * alpha, .2f * alpha);
         }
         /// <summary>Where a blow will land: the solid ground, and cracks running out from the centre to the area's true edge as the

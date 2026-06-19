@@ -65,6 +65,7 @@ namespace ArcaneBrigade
 
         public void Draw(ArenaController owner)
         {
+            ShownTip = Rect.zero;
             if (owner?.Session == null || owner.Profile == null || RunPaths.Diagnostic && !Forced) return;
             Styles();
             RunSnapshot state = owner.Session.State;
@@ -73,7 +74,9 @@ namespace ArcaneBrigade
             if (goalAt < 0 && state.Phase == SessionPhase.Combat && state.Wave == 1 && !state.Endless && !Seen(owner.Profile, "goal")) { goalAt = Time.unscaledTime; Mark(owner, "goal"); }
             if (GoalShowing) { DrawGoal(owner); return; }
             // the first two shops: what to do now
-            if (state.Phase == SessionPhase.Shop && state.Wave <= 2 && !state.Endless && owner.Shop != null && !owner.Shop.Special && !owner.HallExitPending) DrawShopHint(owner);
+            // one card at a time: the strip steps aside for a tip, an open card or the pause menu
+            if (state.Phase == SessionPhase.Shop && state.Wave <= 2 && !state.Endless && owner.Shop != null && !owner.Shop.Special && !owner.HallExitPending
+                && showing == null && !ModalOpen(owner) && RunHud.ShownShopCard.height < 300 && !owner.PresentationPaused) DrawShopHint(owner);
             if (showing == null)
                 foreach (Tip tip in Tips)
                     if (!Seen(owner.Profile, tip.Id) && Due(owner, tip.Id)) { showing = tip; shownAt = Time.unscaledTime; Mark(owner, tip.Id); CheckpointAudio.PlayInterfaceId("ui.coach.pop"); break; }
@@ -107,16 +110,19 @@ namespace ArcaneBrigade
             SecretEventRoom room = owner.GetComponent<SecretEventRoom>(); return room != null && room.MenuOpen;
         }
 
+        /// <summary>The tip card on screen this frame (zero when none), so speech bubbles keep off it.</summary>
+        public static Rect ShownTip { get; private set; }
         private void DrawTip(ArenaController owner, Tip tip, float alpha)
         {
             Rect r = new Rect(560, 150, 800, 104);
             // never over an open card (the shop's details, an inspect card): the tip waits until it is closed
             Rect shown = RunHud.ShownShopCard;
-            if (shown.height > 0 && shown.Overlaps(r) || ModalOpen(owner))
+            if (shown.height > 0 && shown.Overlaps(r) || ModalOpen(owner) || owner.PresentationPaused)
             {
                 if (Event.current.type == EventType.Repaint) shownAt += Time.unscaledDeltaTime;
                 return;
             }
+            ShownTip = r;
             Color keep = GUI.color; Matrix4x4 keepMatrix = GUI.matrix; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             LivingUI.Auto("guide-tip", r.center, false); // a tap closes it with motion (requirement 25/10/2026)
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);

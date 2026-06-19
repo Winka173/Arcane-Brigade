@@ -191,9 +191,9 @@ namespace ArcaneBrigade
                 }
                 x = Mathf.Max(x + 14, r.x + 284);
                 comboLine.normal.textColor = active ? ArcadeSkin.Gold : known > 1 ? ArcadeSkin.Cream : new Color(.7f, .68f, .64f);
-                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : "? + ?";
-                string count = c.members.Length > 2 ? "  ·  " + Combos.OwnedOf(session, c.members) + "/" + c.members.Length : "";
-                GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  ACTIVE" : "") + "\n" + (known > 1 ? c.line : "Meet two of these friends to find this combo."), comboLine);
+                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : "UNKNOWN COMBO";
+                string count = c.members.Length > 2 && known > 1 ? "  ·  " + Combos.OwnedOf(session, c.members) + " of " + c.members.Length + " in party" : "";
+                GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  ACTIVE" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
             }
             ScrollPanel.End();
         }
@@ -424,8 +424,8 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
-                    ArcadeSkin.Line(new Rect(425 + 1070 * 0.5f - 2, 948, 4, 42), ArcadeSkin.Cream);
-                    GUI.Label(new Rect(425, 950, 1070, 38), Mathf.CeilToInt(simulation.Boss.Health) + " / " + Mathf.CeilToInt(simulation.Boss.Definition.Health), numeric);
+                    // the boss's health as a share: six-digit numbers split by a divider were unreadable
+                    GUI.Label(new Rect(425, 950, 1070, 38), Mathf.CeilToInt(bossShare * 100) + "%", numeric);
                 }
                 if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
                 else pausePage = 0;
@@ -549,9 +549,12 @@ namespace ArcaneBrigade
                 string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
                 string body = Fit(source, width, panel.yMax - 12 - y, out int more);
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
+                // short of the price, the button is drawn dimmed so it does not read as pressable
+                Color buyTint = GUI.color; if (!Affordable(owner, station)) GUI.color = new Color(buyTint.r * .55f, buyTint.g * .55f, buyTint.b * .55f, buyTint.a);
                 if (navigation.Button(buy, "", primary)) shop.Interact();
+                GUI.color = buyTint;
                 DrawPriceButton(buy, station, owner);
-                if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + ColumnGap, buy.width, InfoH), more > 0 ? "i  +" + more : "i", button)) SetShopDetails(true);
+                if (station.Offer != null && navigation.Button(new Rect(buy.x, buy.yMax + ColumnGap, buy.width, InfoH), "DETAILS", button)) SetShopDetails(true);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }
@@ -642,7 +645,7 @@ namespace ArcaneBrigade
             bool affordable = Affordable(owner, station);
             // an HP price reads PAY; short of the price, the button says what is missing (play-test 20/10/2026)
             string verb = station.Offer != null ? (currency == ShopCurrency.Health ? "PAY" : "BUY") : station.Action == "VISITOR" ? "MEET" : station.Action;
-            if (!affordable) verb = currency == ShopCurrency.Health ? "NOT ENOUGH HP" : currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : "NOT ENOUGH GOLD";
+            if (!affordable) verb = "NOT ENOUGH"; // one line; the red price and its icon say which currency
             bool priced = price > 0 && station.Action != "VISITOR";
             int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
@@ -705,7 +708,7 @@ namespace ArcaneBrigade
             return new Rect(485, 1030 - height, 950, height);
         }
         private readonly ShopDescriptionCard offerCard = new ShopDescriptionCard();
-        public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSSES" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
+        public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSS" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
 
         private void DrawControls(ArenaController owner)
         {
@@ -907,7 +910,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(card.x + 12, card.y + 5, 74, 23), "BONDS", programStyle);
             programStyle.fontSize = 13;
             programStyle.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(card.x + 90, card.y + 5, width - 104, 23), bondSummary.Active + " ACTIVE / " + bondSummary.Rows.Count, programStyle);
+            GUI.Label(new Rect(card.x + 90, card.y + 5, width - 104, 23), bondSummary.Active + " OF " + bondSummary.Rows.Count + " ACTIVE", programStyle);
             programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;
@@ -1000,7 +1003,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(line.x + 34, line.y - 1, 150, 26), bond.Name, programStyle);
             int next = Mathf.Max(after, bond.NextThreshold(after));
             programStyle.fontSize = 12; programStyle.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(line.x + 160, line.y, 76, 24), previewing && after != count ? count + "→" + after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
+            GUI.Label(new Rect(line.x + 160, line.y, 76, 24), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
             programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));

@@ -27,14 +27,15 @@ namespace ArcaneBrigade
         {
             var s = owner.Session; var d = s.HeroIdentityDefinition; if (d == null) return;
             if (choice == null) choice = new GUIStyle(GUI.skin.button) { fontSize = 17, wordWrap = true }; if (approachChoice == null) approachChoice = new GUIStyle(choice) { padding = new RectOffset(46, 8, choice.padding.top, choice.padding.bottom) };
-            GUI.Label(new Rect(area.x,area.y,area.width,50),s.CanConfigureHero ? "APPROACH / 1-3 or X / F or L3: special" : "Approach choices unlock while resting",text);
+            GUI.Label(new Rect(area.x,area.y,area.width,50),s.CanConfigureHero ? "APPROACH: tap one" : "Change the approach in the shop",text);
             bool enabled = GUI.enabled; GUI.enabled = s.CanConfigureHero;
             var style=HeroMechanicStyle.For(s.State.ChampionId);
             for (int i=0;i<3;i++)
             {
-                int option=i; bool chosen=s.State.HeroIdentity.Approach==i; string name=(chosen?"• ":"")+d.Approaches[i];
+                int option=i; bool chosen=s.State.HeroIdentity.Approach==i; string name=d.Approaches[i];
                 Rect button=new Rect(area.x+i*200,area.y+51,190,52);
                 if(GUI.Button(button,name,approachChoice))owner.ConfigureHeroIdentity(()=>s.ChooseHeroApproach(option));
+                if(chosen)ArcadeSkin.RunningLight(button,Time.unscaledTime,ArcadeSkin.Gold,.7f); // the chosen approach is lit
                 if(Event.current.type==EventType.Repaint)ApproachIcon(new Rect(button.x+4,button.y+button.height*.5f-20,40,40),style,i,chosen,GUI.enabled);
             }
             string id=s.State.ChampionId;

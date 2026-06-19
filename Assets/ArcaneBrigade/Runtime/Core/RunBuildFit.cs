@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             ItemDefinition item = catalog.Item(offer.Id);
             if (item == null || hero == null) return null;
             foreach (string theme in item.ShopThemes ?? Array.Empty<string>())
-                if (theme.StartsWith("fam-", StringComparison.Ordinal) && Array.IndexOf(hero.RecruitThemes, theme) >= 0) { icon = item.Icon; return "BUILD"; }
+                if (theme.StartsWith("fam-", StringComparison.Ordinal) && Array.IndexOf(hero.RecruitThemes, theme) >= 0) { icon = item.Icon; return "FOR HERO"; } // a relic of the hero's own theme
             return null;
         }
     }
