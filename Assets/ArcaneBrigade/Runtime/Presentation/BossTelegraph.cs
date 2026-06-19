@@ -112,9 +112,8 @@ namespace ArcaneBrigade
                     break;
                 }
                 case ExpandedFieldKind.Shockwave:
-                    // the ring that will run out to this radius: its outer rim, and a faint inner one where it starts
+                    // the area the shock will run out over, one colour to its edge
                     Rim(ink, field.Position, field.Radius, field.Radius, charge, seed, 1);
-                    Rim(ink, field.Position, field.Radius * .45f, field.Radius * .45f, charge, seed + 30, .45f);
                     Rims++;
                     break;
                 default:
@@ -135,28 +134,32 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ the shared marks (BossTrademarkVisual uses them too)
-        // requirement 24/10/2026: a zone is a solid painted area, never a faint outline over an empty floor - a deep red ground
-        // fills the whole area at once, a brighter red fills it from the centre as the blow charges, and a solid inked rim closes it
+        // requirement 24-25/10/2026: a zone is a solid painted area in ONE colour from its centre to its edge - no rim of another
+        // colour or density, no outline; the whole area turns from deep red to bright red as the blow charges
         private static readonly Color ZoneGround = new Color(.42f, .04f, .07f), ZoneCharge = new Color(.95f, .2f, .14f);
-        private static void Ground(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float alpha)
+        private static Color ZoneColour(float charge, float alpha)
         {
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            ink.FloorZone(c, rx, ry, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .55f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .75f * alpha)); // dense enough to read through a crowd
-            if (s > .02f) ink.FloorZone(c, rx * s, ry * s, new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .22f * alpha), new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .45f * alpha));
+            Color c = Color.Lerp(ZoneGround, ZoneCharge, s * .75f); c.a = (.6f + .15f * s) * alpha; // dense enough to read through a crowd
+            return c;
+        }
+        private static void Ground(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float alpha)
+        {
+            Color fill = ZoneColour(charge, alpha);
+            ink.FloorZone(c, rx, ry, fill, fill);
         }
         /// <summary>A lane's solid ground: the deep red band, filled bright from its start as the blow charges.</summary>
         public static void LaneGround(ArsenalInk ink, Vector2 a, Vector2 b, float halfWidth, float charge, float alpha)
         {
-            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            ink.FloorLane(a, b, halfWidth, new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .6f * alpha), new Color(ZoneGround.r, ZoneGround.g, ZoneGround.b, .75f * alpha));
-            if (s > .02f) ink.FloorLane(a, Vector2.Lerp(a, b, s), halfWidth * .92f, new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .4f * alpha), new Color(ZoneCharge.r, ZoneCharge.g, ZoneCharge.b, .25f * alpha));
+            Color fill = ZoneColour(charge, alpha);
+            ink.FloorLane(a, b, halfWidth, fill, fill);
         }
         /// <summary>An aimed fan's solid ground: the wedge it will sweep, filled bright from the apex as it charges.</summary>
         public static void FanGround(ArsenalInk ink, Vector2 apex, Vector2 aim, float half, float reach, float charge, float alpha)
         {
-            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge)), mid = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg, spread = half * Mathf.Rad2Deg;
-            ink.Cone(apex, reach, mid - spread, mid + spread, ZoneGround, .72f * alpha, .6f * alpha);
-            if (s > .02f) ink.Cone(apex, reach * s, mid - spread, mid + spread, ZoneCharge, .4f * alpha, .2f * alpha);
+            float mid = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg, spread = half * Mathf.Rad2Deg;
+            Color fill = ZoneColour(charge, 1);
+            ink.Cone(apex, reach, mid - spread, mid + spread, fill, fill.a * alpha, fill.a * alpha);
         }
         /// <summary>Where a blow will land: the solid ground, and cracks running out from the centre to the area's true edge as the
         /// blow charges, a hot spark at each tip in the last beat.</summary>
@@ -169,14 +172,13 @@ namespace ArcaneBrigade
             for (int i = 0; i < cracks; i++)
             {
                 float ang = (seed + i * 360f / cracks + Mathf.Sin(i * 2.3f) * 10) * Mathf.Deg2Rad;
-                Vector2 dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)), perp = new Vector2(-dir.y, dir.x), end = c + new Vector2(dir.x * rx, dir.y * ry) * Mathf.Lerp(.3f, 1, s);
+                Vector2 dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)), perp = new Vector2(-dir.y, dir.x), end = c + new Vector2(dir.x * rx, dir.y * ry) * Mathf.Lerp(.25f, .8f, s); // inside the area: nothing marks its edge
                 Vector2 prev = c + new Vector2(dir.x * rx, dir.y * ry) * .12f;
                 for (int k = 1; k <= 3; k++)
                 {
                     Vector2 p = Vector2.Lerp(c, end, k / 3f) + perp * (((i * 7 + k * 3) % 5 - 2) * .025f * (rx + ry)) * (k < 3 ? 1 : 0);
                     ink.FloorStroke(prev, p, Danger, width * (1.15f - k * .15f), 1, 0, a, 0, seed + i * 3 + k); prev = p;
                 }
-                if (s > .7f) ink.FloorStroke(end - perp * .1f, end + perp * .1f, DangerHot, width * .7f, 1, 0, a * (s - .7f) / .3f);
             }
         }
         /// <summary>A lane's edge as a jagged crack that runs its whole length as the blow charges (no dashes).</summary>

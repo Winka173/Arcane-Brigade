@@ -388,7 +388,7 @@ namespace ArcaneBrigade
                 {
                     // a flat star-mesh print pressed into the floor, a little dust puffing out of its edges
                     float press = still ? 1 : OutBack(Mathf.Min(1, p / .2f)), h = size * .42f * press, life = 1 - Smooth(.5f, 1, p);
-                    ground.Sector(at, h * 1.15f, 0, 360, A(Wine.Body, .12f * life), A(Wine.Body, .38f * life));
+                    ground.Sector(at, h * 1.15f, 0, 360, A(Wine.Body, .3f * life), A(Wine.Body, 0)); // soft to nothing at its edge: no circle
                     for (int k = -2; k <= 2; k++)
                     {
                         float o = k * h * .4f;
@@ -402,7 +402,7 @@ namespace ArcaneBrigade
                     Scatter(at + dir * size * .7f, size * .6f, p, InkToken.Sand, Gold, 7, .12f, seed, .6f, Amber, null, 110, face);
                     break;
                 case Moment.BrickDust:
-                    ground.Sector(at, size * .9f, 0, 360, A(Terracotta.Ink, .05f * fade), A(Terracotta.Ink, .22f * fade));
+                    ground.Sector(at, size * .9f, 0, 360, A(Terracotta.Ink, .2f * fade), A(Terracotta.Ink, 0));
                     Cloud(at, size * .4f, p, Dust, seed, .12f, 5, 1, true);
                     Rays(at, size * .55f, p, Terracotta, 5, seed, .045f, size * .3f);
                     Scatter(at, size * 1.05f, p, InkToken.Shard, Terracotta, 6, .11f, seed, .45f, Dust, InkToken.Sand);
@@ -421,13 +421,12 @@ namespace ArcaneBrigade
                     if (p < .22f)
                     {
                         // the gavel's shadow gathers under it as it falls, and the spot it will strike warms
-                        ground.Sector(at, size * .7f * fall, 0, 360, A(Gold.Body, .03f), A(Gold.Body, .16f * fall));
+                        ground.Sector(at, size * .7f * fall, 0, 360, A(Gold.Body, .16f * fall), A(Gold.Body, 0));
                         ground.Sector(at + Vector2.down * .05f, size * (.25f + .2f * fall), 0, 360, A(Midnight.Ink, .1f + .15f * fall), A(Midnight.Ink, .02f));
                         break;
                     }
                     float ring = still ? 1 : OutCubic(after);
                     Glow(at, size * 2.4f, Gold.Glow, .32f * (1 - after));
-                    ground.Sector(at, size * (.75f + .35f * ring), 0, 360, A(Gold.Glow, .12f * (1 - after)), A(Gold.Body, .42f * (1 - after)));
                     Rays(at, size * .7f, after, Cream, 8, seed, .05f, size * .35f);
                     Scatter(at, size * 1.1f, after, InkToken.Coin, Gold, 4, .16f, seed, 1.1f);
                     break;

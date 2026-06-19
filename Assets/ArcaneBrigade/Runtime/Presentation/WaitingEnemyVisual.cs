@@ -91,16 +91,9 @@ namespace ArcaneBrigade
                     // the seat unfolds under the hero: amber light pooling toward a broken wine rim that closes as it snaps
                     float alpha = warning ? Mathf.SmoothStep(0, 1, charge) : fade;
                     float r = m.Radius * (!warning && m.Hit ? Mathf.Lerp(.82f, .9f, fade) : 1);
-                    floor.Sector(m.A, r, 0, 360, A(AmberGlow, .04f * alpha), A(AmberGlow, (warning ? .3f : .45f) * alpha));
-                    float gap = warning ? Mathf.Lerp(30, 6, charge) : 3, turn = still ? 0 : now * 20;
-                    for (int k = 0; k < 4; k++)
-                        floor.Stroke(InkCanvas.Arc(m.A, r, r, turn + k * 90 + gap * .5f, turn + (k + 1) * 90 - gap * .5f), InkStroke.Of(Wine, .075f, .92f * alpha, seed + k));
-                    if (warning) floor.Stroke(InkCanvas.Arc(m.A, r * .84f, r * .84f, 90, 90 - 360 * charge), InkStroke.Of(Ember, .05f, .85f));
-                    for (int k = 0; k < 4; k++)
-                    {
-                        float a = (turn + k * 90 + 45) * Mathf.Deg2Rad;
-                        ink.Token(InkToken.Button, Wine, m.A + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r, .17f, 0, .9f * alpha, false);
-                    }
+                    // one amber wash over the whole seat, no rim (requirement 25/10/2026)
+                    float wash = (warning ? .3f + .15f * charge : .45f) * alpha;
+                    floor.Sector(m.A, r, 0, 360, A(AmberGlow, wash), A(AmberGlow, wash));
                     if (!warning && m.Hit) ink.Token(InkToken.Knot, Wine, m.A + Vector2.up * .35f, .34f, still ? 0 : now * 60, fade);
                     break;
                 }
@@ -158,9 +151,7 @@ namespace ArcaneBrigade
                     float k = Mathf.Clamp01(1 - (m.At - now) / CombatSimulation.KnockBeat);
                     if (k <= 0) break;
                     float alpha = warning ? k : fade;
-                    floor.Sector(m.A, m.Radius, 0, 360, A(Ember.Body, 0), A(Ember.Body, .16f * alpha));
-                    floor.Ticks(m.A, m.Radius, m.Index >= 2 ? 18 : 12, .2f, .045f, seed, A(Ember.Ink, .8f * alpha));
-                    for (int q = 0; q < 3; q++) floor.Stroke(InkCanvas.Arc(m.A, m.Radius, m.Radius, q * 120 + 10, q * 120 + 100), InkStroke.Of(Ember, .045f, .7f * alpha, seed + q));
+                    floor.Sector(m.A, m.Radius, 0, 360, A(Ember.Body, .28f * alpha), A(Ember.Body, .28f * alpha)); // one wash, no rim
                     break;
                 }
                 case WaitingMarkKind.Tally:

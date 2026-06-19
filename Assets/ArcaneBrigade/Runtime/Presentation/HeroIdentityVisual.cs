@@ -667,25 +667,26 @@ namespace ArcaneBrigade
 
         private void RingStrike(HeroIdentityGlyph g)
         {
-            // the true hit band is shown by a procession of the hero's tokens racing round it, not by a drawn ring (17/10/2026)
+            // the hit band is shown by the hero's tokens bursting out from the middle to its reach, never laid round a circle
+            // (requirement 25/10/2026: nothing on our side draws a circle)
             Phases(g, out bool pre, out float q, out float p, out float fade);
             Vector2 c = g.Position; float r = Fit(Mathf.Max(.3f, g.Radius)), s = Seed(g);
             int n = sparse ? 6 : 12;
             if (pre)
             {
-                for (int i = 0; i < n; i++)
+                for (int i = 0; i < n; i += 2)
                 {
                     float f = i / (float)n; if (!still && f > OutCubic(q)) continue;
-                    DimToken(style.Token, c + Dir(s + 360 * f) * r, .12f, .55f * q);
+                    DimToken(style.Token, c + Dir(s + 360 * f + 13 * i) * r * (.35f + .25f * (i % 3)), .12f, .55f * q);
                 }
                 return;
             }
             float head = still ? 1 : OutCubic(Mathf.Min(1, p / .4f));
             for (int i = 0; i < n; i++)
             {
-                float f = i / (float)n; if (f > head) continue;
+                float f = i / (float)n;
                 float age = Mathf.Clamp01((head - f) * 3);
-                Vector2 pos = c + Dir(s + 360 * f) * r;
+                Vector2 pos = c + Dir(s + 360 * f + (i % 2) * 17) * r * head * (.55f + .45f * ((i * 7) % 5) / 4f); // scattered out, never on one circle
                 Token(style.Token, pos, .22f * (1 - .35f * age), s + f * 360 + p * 120, fade * (1 - .5f * age));
                 if (!sparse && i % 3 == 0) Glow(pos, .5f, ink.Glow, .2f * fade * (1 - age));
             }
@@ -811,7 +812,7 @@ namespace ArcaneBrigade
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created)); Vector2 c = DrawnAt(sim.Champion) + Vector2.up * .35f;
             float head = still ? 1 : OutCubic(p), from = 200;
-            Soft(air, InkCanvas.Arc(c, .58f, .36f, from, from + 300 * head), 1, 0, .06f, 1 - Smooth(.6f, 1, p));
+            Soft(air, InkCanvas.Arc(c, .58f, .36f, from, from + 140 * head), 1, 0, .06f, 1 - Smooth(.6f, 1, p)); // a short sweep, not a circle
             Token(style.Token, c + Vector2.up * (.6f + (still ? 0 : .3f * OutCubic(p))), .22f, 0, 1 - InQuad(p));
         }
 

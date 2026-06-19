@@ -269,6 +269,8 @@ namespace ArcaneBrigade
 
     public sealed partial class CombatSimulation
     {
+        /// <summary>From this wave the packs bring fewer small bodies (requirement 25/10/2026).</summary>
+        public const int LateSwarmWave = 8;
         private readonly CheckpointCatalog catalog;
         private readonly List<UnitState> units = new List<UnitState>();
         private readonly Dictionary<int, UnitState> unitLookup = new Dictionary<int, UnitState>();
@@ -596,8 +598,8 @@ namespace ArcaneBrigade
             if (overtime && (catalog.BossSwarmBudget <= 0 || Boss == null || !Boss.Alive)) return;
             if (Elapsed < nextSpawn) return;
             nextSpawn = Elapsed + Mathf.Max(0.12f, catalog.SpawnInterval * VisitorSpawnScale * WaveCadence.Envelope(catalog.RunWave, Elapsed, catalog.WaveDuration) * WaveCadence.SwarmInterval(catalog.RunWave, Elapsed)) * (overtime ? 2.2f : 1f);
-            int enemyCount = 0;
-            for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
+            int enemyCount = 0, minionsAlive = 0;
+            for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) { enemyCount++; if (units[index].SwarmMinion) minionsAlive++; }
             int budget = overtime ? catalog.BossSwarmBudget : catalog.EnemyBudget;
             if (enemyCount >= budget) return;
             int batch = catalog.ExpandedContent ? WaveCadence.SwarmBatch(catalog.RunWave, Elapsed) : 1;
@@ -606,6 +608,15 @@ namespace ArcaneBrigade
             int leaders = mixedPack ? 2 : 1;
             if (mixedPack) batch = leaders + Mathf.CeilToInt(Mathf.Max(0, batch - 1) * .5f);
             if (overtime) batch = Mathf.Min(batch, 4);
+            // requirement 25/10/2026: fewer small bodies in the later waves - from wave 8 each pack brings 15% fewer, down to 40%
+            // fewer at wave 20, and they never fill more than 70% (wave 8) to 50% (wave 20) of the hall's budget
+            int minionCap = int.MaxValue;
+            if (catalog.ExpandedContent && !overtime && catalog.RunWave >= LateSwarmWave)
+            {
+                float late = Mathf.Clamp01((catalog.RunWave - LateSwarmWave) / 12f);
+                batch = leaders + Mathf.RoundToInt(Mathf.Max(0, batch - leaders) * Mathf.Lerp(.85f, .6f, late));
+                minionCap = Mathf.CeilToInt(budget * Mathf.Lerp(.7f, .5f, late));
+            }
             Vector2 packAnchor = Vector2.zero;
             UnitDefinition herd = catalog.ExpandedContent ? HerdDefinition() : catalog.MeleeEnemy;
             bool packStarted = false;
@@ -651,6 +662,8 @@ namespace ArcaneBrigade
                         if (shield != null) definition = shield;
                     }
                     bool minion = catalog.ExpandedContent && (member >= leaders || overtime);
+                    if (minion && minionsAlive >= minionCap) break;
+                    if (minion) minionsAlive++;
                     if (!minion && definition.SpecialEnemy != SpecialEnemyKind.None && ActiveSpecialists() >= 3) definition = SwarmDefinition();
                     if (!minion && WaitingSpawnBlocked(definition)) definition = SwarmDefinition();
                     if (minion) definition = herd;

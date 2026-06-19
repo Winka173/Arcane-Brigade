@@ -166,9 +166,8 @@ namespace ArcaneBrigade
                     float left = s.HatchAt - t;
                     bool shaking = left < 3;
                     Put(s.ParcelBreak > .35f || shaking ? "PostOffice/Parcel_Cracked" : "PostOffice/Parcel_Intact", s.Parcel, 1.5f, angle: shaking && !still ? Mathf.Sin(t * 26) * 4 : 0);
-                    // stand here: a gold dashed rim at the reach, and the break filling as a solid gold arc
-                    Ring(s.Parcel + Vector2.up * .2f, MapEnvironmentRules.ParcelReach, MapEnvironmentRules.ParcelReach * .62f, .3f, ArsenalInk.Gold, .55f);
-                    if (s.ParcelBreak > 0) ink.FloorArc(s.Parcel + Vector2.up * .2f, MapEnvironmentRules.ParcelReach, MapEnvironmentRules.ParcelReach * .62f, 90, 90 + 360 * s.ParcelBreak, ArsenalInk.Gold, .13f, 1);
+                    // stand here: one gold area that brightens as the parcel breaks (no rim, no progress ring)
+                    Ring(s.Parcel + Vector2.up * .2f, MapEnvironmentRules.ParcelReach, MapEnvironmentRules.ParcelReach * .62f, Mathf.Max(.3f, s.ParcelBreak), ArsenalInk.Gold, .55f);
                     Marks++;
                     break;
                 }
@@ -190,9 +189,8 @@ namespace ArcaneBrigade
                 MapEnvironmentState.Lamp lamp = s.Lamps[i];
                 Put(lamp.Lit ? "LampHall/Lamp_Lit" : "LampHall/Lamp_Snuffed", lamp.Base, 2.7f);
                 if (!lamp.Lit) continue;
-                // the light on air (painted glow), and its edge in a faint warm dashed line so the bonus reads
+                // the light on the floor is the painted glow alone (requirement 25/10/2026: no circle drawn round a friendly area)
                 Put("LampHall/LightGlow", lamp.Light, 2 * ry * 1.06f, Floor, .62f, tint: new Color(1, .93f, .78f));
-                Ring(lamp.Light, rx, ry, 1, ArsenalInk.Gold, .32f);
             }
             if (s.SnuffTarget >= 0 && t >= s.ReachAt && t < s.SnuffAt + .9f)
             {
@@ -231,11 +229,10 @@ namespace ArcaneBrigade
                 if (warning && (shelf.To - shelf.From).sqrMagnitude > .01f) Lane(shelf.From, shelf.To, .8f, Mathf.Clamp01((t - shelf.WarnAt) / MapEnvironmentRules.ShelfWarn), ArsenalInk.Amber, .95f);
                 Put(moving ? "ArchiveVault/Shelf_Turning" : "ArchiveVault/Shelf_Straight", shelf.Position, 2.4f);
             }
-            // the ledger plaque and its ink ring (an outline on the floor, slowly turning: kills inside it pay double)
+            // the ledger plaque and its area, one wine wash (kills inside it pay double; no outline ring)
             Put("ArchiveVault/Ledger", s.Ledger + Vector2.up * .1f, 1.7f);
-            float r = MapEnvironmentRules.LedgerRadius, spin = still ? 0 : t * 10;
-            for (int i = 0; i < 18; i++) ink.FloorArc(s.Ledger, r, r, spin + i * 20, spin + i * 20 + 13, ArsenalInk.Wine, .1f, .8f);
-            Marks++;
+            float r = MapEnvironmentRules.LedgerRadius;
+            Ring(s.Ledger, r, r, .3f, ArsenalInk.Wine, .6f);
         }
 
         // ------------------------------------------------------------------ helpers
@@ -300,23 +297,23 @@ namespace ArcaneBrigade
         /// <summary>An area of floor in its colour: the whole area softly, filling brighter from the centre as it charges.</summary>
         private void Ring(Vector2 c, float rx, float ry, float charge, InkPalette pal, float alpha, float from = 0, float to = 360)
         {
-            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            Color body = pal.Body, glow = pal.Glow;
-            if (to - from >= 359) ink.FloorZone(c, rx, ry, new Color(body.r, body.g, body.b, .3f * alpha), new Color(body.r, body.g, body.b, .45f * alpha));
-            else ink.Cone(c, Mathf.Max(rx, ry), from, to, body, .45f * alpha, .3f * alpha);
-            if (s > .02f)
-            {
-                if (to - from >= 359) ink.FloorZone(c, rx * s, ry * s, new Color(glow.r, glow.g, glow.b, .2f * alpha), new Color(glow.r, glow.g, glow.b, .4f * alpha));
-                else ink.Cone(c, Mathf.Max(rx, ry) * s, from, to, glow, .4f * alpha, .2f * alpha);
-            }
+            // one colour from the centre to the edge (requirement 25/10/2026): the whole area brightens as it charges
+            Color fill = Fill(pal, charge, alpha);
+            if (to - from >= 359) ink.FloorZone(c, rx, ry, fill, fill);
+            else ink.Cone(c, Mathf.Max(rx, ry), from, to, fill, fill.a, fill.a);
             Marks++;
+        }
+        private static Color Fill(InkPalette pal, float charge, float alpha)
+        {
+            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
+            Color c = Color.Lerp(pal.Body, pal.Glow, s * .6f); c.a = (.34f + .14f * s) * alpha;
+            return c;
         }
         /// <summary>A band of floor in its colour, filling from its start as it charges.</summary>
         private void Band(Vector2 a, Vector2 b, float half, float charge, InkPalette pal, float alpha)
         {
-            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge)); Color body = pal.Body, glow = pal.Glow;
-            ink.FloorLane(a, b, half, new Color(body.r, body.g, body.b, .38f * alpha), new Color(body.r, body.g, body.b, .2f * alpha));
-            if (s > .02f) ink.FloorLane(a, Vector2.Lerp(a, b, s), half * .9f, new Color(glow.r, glow.g, glow.b, .35f * alpha), new Color(glow.r, glow.g, glow.b, .15f * alpha));
+            Color fill = Fill(pal, charge, alpha);
+            ink.FloorLane(a, b, half, fill, fill);
             Marks++;
         }
         private void Dash(Vector2 a, Vector2 b, float charge, InkPalette pal, float alpha)

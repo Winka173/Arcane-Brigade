@@ -122,23 +122,17 @@ namespace ArcaneBrigade
             {
                 case "ShockRing":
                 {
-                    // the expanding shock: a soft ember band at its true edge, a hot thread along it and sparks lifting off
+                    // the expanding shock: one ember wash spreading out to its true reach, the same colour to its edge
+                    // (requirement 25/10/2026: no ring, no thread or sparks along the edge)
                     float r = Mathf.Max(.1f, CarnivalHazards.ShockRadius(field, time));
-                    ink.Annulus(c, Mathf.Max(0, r - .4f), r + .1f, A(Ember, 0), A(Ember, .55f * fade));
-                    ink.GlowRibbon(InkCanvas.Arc(c, r, r, 0, 360), 1, 0, .22f, A(Hot, .8f * fade));
-                    if (!sparse) for (int i = 0; i < 10; i++)
-                    {
-                        float a = (i * 36 + seed) * Mathf.Deg2Rad, lift = Mathf.Repeat(clock * 1.4f + i * .37f, 1);
-                        Vector2 at = c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * (r - .05f) + Vector2.up * lift * .35f;
-                        ink.Sector(at, .07f + .05f * (1 - lift), 0, 360, A(Hot, .85f * fade * (1 - lift)), A(Ember, 0));
-                    }
+                    ink.Sector(c, r + .1f, 0, 360, A(Ember, .4f * fade), A(Ember, .4f * fade));
                     break;
                 }
                 case "ShadowPool":
                 {
                     // the lingering dark: a dusk-violet wash that deepens toward its true edge, a soft crimson rim, ink motes rising
                     float r = Mathf.Max(.1f, field.Radius), breathe = still || calm ? 1 : .85f + .15f * Mathf.Sin(time * 4 + seed);
-                    ink.Sector(c, r, 0, 360, A(Night, .12f * fade), A(Night, .42f * fade));
+                    ink.Sector(c, r, 0, 360, A(Night, .32f * fade), A(Night, .32f * fade)); // one colour to its edge
                     // (its glowing rim is gone: requirement 24/10/2026, no outlined zones)
                     if (!sparse) for (int i = 0; i < 6; i++)
                     {
