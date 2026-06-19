@@ -186,7 +186,17 @@ namespace ArcaneBrigade
             if (current != signature) { Build(); signature = current; }
             scenery.SetActive(true); Nearby = null;
             if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
-            if (merchant != null) merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
+            if (merchant != null)
+            {
+                merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
+                // the counter is solid: the hero walks round it, never through it
+                UnitState hero = owner.Simulation.Champion;
+                float half = MerchantHeight * .32f, deskY = MerchantCenter.y - MerchantHeight * .45f + .35f;
+                Vector2 a = new Vector2(MerchantCenter.x - half, deskY), b = new Vector2(MerchantCenter.x + half, deskY);
+                Vector2 near = a + (b - a) * Mathf.Clamp01(Vector2.Dot(hero.Position - a, b - a) / Mathf.Max(.0001f, (b - a).sqrMagnitude));
+                Vector2 off = hero.Position - near; const float DeskReach = .5f;
+                if (off.sqrMagnitude < DeskReach * DeskReach) hero.Position = near + (off.sqrMagnitude > 1e-6f ? off.normalized : Vector2.down) * DeskReach;
+            }
             // the stall in front of the traveller, unless something else in the room is nearer (ShopFocus)
             for (int index = 0; index < stations.Count; index++)
                 if (ShopFocus.Has(this, index, owner.Simulation.Champion.Position)) Nearby = stations[index];

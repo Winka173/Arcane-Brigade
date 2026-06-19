@@ -45,7 +45,16 @@ namespace ArcaneBrigade
             }
             bool ready = picked >= 0 && picked < n;
             Rect go = new Rect(area.center.x - 200, area.yMax - ButtonH, 400, ButtonH);
-            return ArcadeSkin.Button(go, ready ? confirm : "CHOOSE ONE", KitButton.Primary, ready, button) ? picked : -1;
+            if (!ready) { Hint(go); return -1; } // nothing picked yet: a plain hint, not a greyed button that looks broken
+            return ArcadeSkin.Button(go, confirm, KitButton.Primary, true, button) ? picked : -1;
+        }
+        private static GUIStyle hintStyle;
+        /// <summary>The line shown where the confirm button will be, until a card is picked.</summary>
+        public static void Hint(Rect where)
+        {
+            hintStyle ??= new GUIStyle(ArcadeTypography.Style(26, true)) { alignment = TextAnchor.MiddleCenter };
+            hintStyle.normal.textColor = ArcadeSkin.KitCream;
+            GUI.Label(where, "Tap a card to choose", hintStyle);
         }
     }
 }

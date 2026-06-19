@@ -103,7 +103,7 @@ namespace ArcaneBrigade
             string canon = NightmareDialogue.Pick(Context, special, moment, cursor++);
             LastBark = bark; lastTrigger = bark != null ? wanted : null;
             bool story = wanted != null && wanted.StartsWith("story");
-            line = bark == null ? canon : moment == MerchantMoment.Enter && !story ? bark.Text + "\n" + canon : bark.Text;
+            line = bark == null ? canon : bark.Text; // one greeting at a time, never two joined in one bubble
             began = now;
             float voiced = bark != null ? VoiceDirector.Remaining(bank) : 0;
             expires = now + (bark == null || moment == MerchantMoment.Enter && !story ? Mathf.Max(3.8f, line.Length / 32f + 1.5f) : Mathf.Max(2.6f, line.Length / 22f + 1.4f, voiced + 0.6f));

@@ -7,14 +7,14 @@ namespace ArcaneBrigade
     {
         public static void Append(RunBuildReadModel model, RunSession session, RunCatalog catalog, float health, CheckpointCatalog compiled)
         {
-            model.Stats[0].Summary = health.ToString("0.0") + " / " + K10StatRules.MaximumHealth(session, catalog).ToString("0.0");
+            model.Stats[0].Summary = Mathf.CeilToInt(Mathf.Min(health, K10StatRules.MaximumHealth(session, catalog))) + " / " + Mathf.CeilToInt(K10StatRules.MaximumHealth(session, catalog)); // whole numbers on the page
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
             WeaponDefinition weapon = champion.Weapon;
             float damage = compiled.Champion.Weapon.Damage;
-            model.Stats[1].Summary = damage.ToString("0.0");
-            model.Stats[3].Summary = (champion.Speed * CarnivalBalance.UnitPace * Mathf.Max(0.1f, 1 + CarnivalBalance.MoveBonus(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))) * K10StatRules.Factor(session.Bonus(ItemEffect.SpeedCorrection, ModifierScope.Champion))).ToString("0.00");
+            model.Stats[1].Summary = damage.ToString("0");
+            model.Stats[3].Summary = (champion.Speed * CarnivalBalance.UnitPace * Mathf.Max(0.1f, 1 + CarnivalBalance.MoveBonus(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))) * K10StatRules.Factor(session.Bonus(ItemEffect.SpeedCorrection, ModifierScope.Champion))).ToString("0.0");
             model.Stats[6].Explanation = "Positive armor divides damage by 1+armor. Negative armor increases damage, up to ×2 before the per-hit cap.";
-            model.Stats[6].Summary = (session.Bonus(ItemEffect.Armor) * K10StatRules.Factor(session.Bonus(ItemEffect.ArmorCorrection))).ToString("0.00");
+            model.Stats[6].Summary = RunModifierRules.ArmorText(session.Bonus(ItemEffect.Armor) * K10StatRules.Factor(session.Bonus(ItemEffect.ArmorCorrection))); // armour in whole points
             foreach (RunBuildReadModel.Row row in model.Stats)
             {
                 if (row.Name == "Luck") row.Explanation = "Increases loot chance and adds 25% of Luck to shop-rarity weights. Does not increase damage or critical chance.";

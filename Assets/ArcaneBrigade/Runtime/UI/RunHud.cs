@@ -217,6 +217,8 @@ namespace ArcaneBrigade
 
         public static void Fill(Rect rectangle, Color color)
         {
+            // a whole-screen cover reaches past the 16:9 frame, so wider or taller screens show no edge of the world beside it
+            if (rectangle.x == 0 && rectangle.y == 0 && rectangle.width == 1920 && rectangle.height == 1080) rectangle = new Rect(-2000, -1200, 5920, 3480);
             if (rectangle.height >= 35f && rectangle.width >= 55f) { ArcadeSkin.Panel(rectangle, color); return; }
             Color previous = GUI.color;
             GUI.color = color;
@@ -906,12 +908,12 @@ namespace ArcaneBrigade
             float clock = Time.unscaledTime, blink = still || calm ? .6f : .5f + .5f * Mathf.Sin(clock * 7f);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Color deep = Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Ink, 0.4f);
-            programStyle.fontSize = 15; programStyle.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 12, card.y + 5, 74, 23), "BONDS", programStyle);
-            programStyle.fontSize = 13;
+            programStyle.fontSize = 18; programStyle.normal.textColor = deep;
+            GUI.Label(new Rect(card.x + 12, card.y + 4, 96, 27), "BONDS", programStyle);
+            programStyle.fontSize = 16;
             programStyle.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(card.x + 90, card.y + 5, width - 104, 23), bondSummary.Active + " OF " + bondSummary.Rows.Count + " ACTIVE", programStyle);
-            programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+            GUI.Label(new Rect(card.x + 110, card.y + 4, width - 124, 27), bondSummary.Active + " OF " + bondSummary.Rows.Count + " ACTIVE", programStyle);
+            programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;
             // bonds the offer would start (none yet): drawn first, greyed, with a gold blink and a NEW stamp
@@ -925,7 +927,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
                 programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Ink;
                 GUI.Label(stamp, "NEW", programStyle);
-                programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+                programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             }
             for (int index = 0; index < bondSummary.VisibleCount; index++)
             {
@@ -960,7 +962,7 @@ namespace ArcaneBrigade
                     ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
                     programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.Cream;
                     GUI.Label(stamp, rising ? "LV" + bond.ActiveLevel(preview.After) + "▲" : "LV" + level, programStyle);
-                    programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+                    programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
                 }
                 if (bondHit == null) bondHit = new GUIStyle();
                 if (GUI.Button(line, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
@@ -970,7 +972,7 @@ namespace ArcaneBrigade
                     tooltipTop = line.y;
                 }
             }
-            programStyle.fontSize = 13; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = deep;
+            programStyle.fontSize = 16; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = deep;
             Rect footer = new Rect(card.x + 10, card.yMax - 28, width - 20, 24);
             string more = bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount + " MORE  ·  VIEW ALL" : "VIEW ALL BONDS";
             if (GUI.Button(footer, more, programStyle))
@@ -1000,11 +1002,11 @@ namespace ArcaneBrigade
             Sprite(new Rect(line.x + 1 - burst * 2, line.y + 1 - burst * 2, 26 + burst * 4, 26 + burst * 4), bond.Icon);
             GUI.color = previous;
             programStyle.normal.textColor = grey ? new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .5f) : ArcadeSkin.Ink;
-            GUI.Label(new Rect(line.x + 34, line.y - 1, 150, 26), bond.Name, programStyle);
+            GUI.Label(new Rect(line.x + 34, line.y + 1, 190, 30), bond.Name, programStyle);
             int next = Mathf.Max(after, bond.NextThreshold(after));
-            programStyle.fontSize = 12; programStyle.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(line.x + 160, line.y, 76, 24), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
-            programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+            programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleRight;
+            GUI.Label(new Rect(line.x + 210, line.y + 2, 90, 28), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
+            programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
             int shown = Mathf.Max(count, bond.NextThreshold(count));

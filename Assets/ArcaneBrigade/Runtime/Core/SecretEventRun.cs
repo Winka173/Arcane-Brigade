@@ -260,7 +260,11 @@ namespace ArcaneBrigade
             if (Secret.Kind == SecretEventKind.LostProperty) { Secret.RescuedToy = true; Secret.RescuedId = id ?? ""; }
             RememberNightmareChoice(Secret.Kind,Secret.Option,true);
             RecountBonds();
-            Secret.RewardId = ""; RecordSecret("Received " + (string.IsNullOrEmpty(id) ? ScaledGold(25) + " gold" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName));
+            // the won prize stays on the result card (its picture and what it gives), like every other deal's result
+            string prize = string.IsNullOrEmpty(id) ? ScaledGold(25) + " gold" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName;
+            string stats = string.IsNullOrEmpty(id) ? "" : SecretRewardStats(id);
+            Secret.Result = "YOU WON THE FIGHT"; Secret.ResultGot = prize + (string.IsNullOrEmpty(stats) ? "" : "\n" + stats); Secret.ResultIcon = id ?? ""; Secret.ResultPaid = "";
+            Secret.RewardId = ""; RecordSecret("Received " + prize);
             return true;
         }
         private void RecordSecret(string text)

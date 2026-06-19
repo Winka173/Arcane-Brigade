@@ -5,7 +5,7 @@ namespace ArcaneBrigade
     public sealed class BondHudSummary
     {
         public const int MaximumRows = 5;
-        public const float RowHeight = 32, Width = 310;
+        public const float RowHeight = 38, Width = 345; // large enough to read on a phone
         private readonly List<BondDefinition> rows = new List<BondDefinition>();
         private BondDefinition[] source;
         private int signature;

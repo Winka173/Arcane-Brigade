@@ -118,7 +118,8 @@ namespace ArcaneBrigade
                 if (ready && GUI.Button(card, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             bool can = ready && picked >= 0;
-            if (ArcadeSkin.Button(new Rect(760, 968, 400, 88), can ? "CONFIRM" : "CHOOSE ONE", KitButton.Primary, can, button) && !CardPop.Closing("farewell")) { int choice = picked; CardPop.CloseThen("farewell", () => Select(choice)); }
+            if (!can) ChoiceCards.Hint(new Rect(760, 968, 400, 88));
+            else if (ArcadeSkin.Button(new Rect(760, 968, 400, 88), "CONFIRM", KitButton.Primary, true, button) && !CardPop.Closing("farewell")) { int choice = picked; CardPop.CloseThen("farewell", () => Select(choice)); }
             GUI.color = popKeep;
             if (owner.PresentationPaused && ArcadeSkin.Button(new Rect(760, 650, 400, 84), "RESUME", KitButton.Primary, true, button)) owner.TogglePause();
         }

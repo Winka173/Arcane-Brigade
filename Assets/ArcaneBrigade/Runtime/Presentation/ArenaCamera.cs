@@ -21,7 +21,7 @@ namespace ArcaneBrigade
             Refresh();
             arenaCamera.orthographicSize = DesiredHeight;
             Vector2 target = InShop ? Vector2.zero : owner.Simulation.Champion.Position;
-            Vector2 position = ClampCenter(target, owner.WorldBounds, arenaCamera.orthographicSize, 16f / 9f);
+            Vector2 position = ClampCenter(target, owner.WorldBounds, arenaCamera.orthographicSize, arenaCamera.aspect);
             transform.position = new Vector3(position.x, position.y, transform.position.z);
             trackedPosition = transform.position;
             velocity = Vector3.zero;
@@ -35,11 +35,11 @@ namespace ArcaneBrigade
             arenaCamera.orthographicSize = PresentationSettings.ReducedMotion ? height : Mathf.SmoothDamp(arenaCamera.orthographicSize, height, ref heightVelocity, 0.3f, Mathf.Infinity, Time.deltaTime);
             height = arenaCamera.orthographicSize;
             Vector2 target = InShop ? Vector2.zero : owner.VisualChampionPosition + BossLean();
-            Vector2 center = ClampCenter(target, owner.WorldBounds, height, 16f / 9f);
+            Vector2 center = ClampCenter(target, owner.WorldBounds, height, arenaCamera.aspect);
             Vector3 next = Vector3.SmoothDamp(trackedPosition, new Vector3(center.x, center.y, transform.position.z), ref velocity, 0.16f, Mathf.Infinity, Time.deltaTime);
-            Vector2 clamped = ClampCenter(next, owner.WorldBounds, height, 16f / 9f);
+            Vector2 clamped = ClampCenter(next, owner.WorldBounds, height, arenaCamera.aspect);
             trackedPosition = new Vector3(clamped.x, clamped.y, next.z);
-            Vector2 accented = ClampCenter(clamped + owner.CameraAccent, owner.WorldBounds + Vector2.one * (CombatFeel.MaxShake * 2f), height, 16f / 9f);
+            Vector2 accented = ClampCenter(clamped + owner.CameraAccent, owner.WorldBounds + Vector2.one * (CombatFeel.MaxShake * 2f), height, arenaCamera.aspect);
             transform.position = new Vector3(accented.x, accented.y, next.z);
         }
         /// <summary>While a boss makes its entrance the view leans toward it (and back over half a second after it lands), so
@@ -61,12 +61,11 @@ namespace ArcaneBrigade
         public void Refresh()
         {
             if (arenaCamera == null) arenaCamera = GetComponent<Camera>();
-            float ratio = 16f / 9f;
+            // the world fills the whole screen at any shape (no black bars on wide phones or 21:9); the HUD keeps its 16:9 frame
+            // in the middle (ArcadeTypography.FitViewport)
             float actual = Screen.width / (float)Mathf.Max(1, Screen.height);
-            arenaCamera.rect = actual > ratio
-                ? new Rect((1f - ratio / actual) * 0.5f, 0f, ratio / actual, 1f)
-                : new Rect(0f, (1f - actual / ratio) * 0.5f, 1f, actual / ratio);
-            arenaCamera.aspect = ratio;
+            arenaCamera.rect = new Rect(0f, 0f, 1f, 1f);
+            arenaCamera.aspect = actual;
         }
     }
 }

@@ -206,7 +206,7 @@ namespace ArcaneBrigade
                 RunHud.Fill(new Rect(0,0,1920,1080),new Color(.045f,.035f,.06f,1));
                 int page = owner.Session.State.Nightmare.EndingPage;
                 float pan = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01((owner.PresentationClock - pageAt) / 12) * 8;
-                Rect image = new Rect(450 - pan * 1.5f,30 - pan,1020 + pan * 3,680 + pan * 2);
+                Rect image = new Rect(495 - pan * 1.5f,56 - pan,930 + pan * 3,620 + pan * 2); // padded from the top edge, a clear gap above the title
                 int illustration = Mathf.Min(page, 3);
                 if (page == 2 && owner.GetComponent<MienChoPresentation>() != null) owner.GetComponent<MienChoPresentation>().DrawDawn(image);
                 else if (page >= 3 && !(page == 3 && owner.Session.State.Nightmare.Farewell == NightmareFarewell.LeaveLight) && ActOneArtwork.Picture("Panel_Thursday") != null) GUI.DrawTexture(image, ActOneArtwork.Picture("Panel_Thursday").texture, ScaleMode.ScaleToFit);
@@ -223,11 +223,11 @@ namespace ArcaneBrigade
                 string[] lines = EndingLines(NightmareDialogue.Ending(owner.Session.State,page));
                 int line = Mathf.Clamp(endingLine, 1, Mathf.Max(1, lines.Length - 1));
                 bool more = line < lines.Length - 1;
-                if (lines.Length > 0) GUI.Label(new Rect(170,716,1580,44),lines[0],endingTitle);
-                if (line >= 2) GUI.Label(new Rect(170,764,1580,60),lines[line - 1],endingPrevious);
+                if (lines.Length > 0) GUI.Label(new Rect(320,700,1280,44),lines[0],endingTitle);
+                if (line >= 2) GUI.Label(new Rect(320,752,1280,60),lines[line - 1],endingPrevious);
                 float fresh = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01((owner.PresentationClock - lineAt) / .35f);
                 Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * fresh);
-                if (lines.Length > 1) GUI.Label(new Rect(170,826,1580,130),lines[line],endingCurrent);
+                if (lines.Length > 1) GUI.Label(new Rect(320,816,1280,140),lines[line],endingCurrent);
                 GUI.color = keep;
                 Rect next = new Rect(720,970,480,80);
                 // a tap anywhere on the page shows the next line (the button too)

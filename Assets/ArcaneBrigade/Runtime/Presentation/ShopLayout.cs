@@ -218,7 +218,8 @@ namespace ArcaneBrigade
         private bool Fits(Rect rect, Rect view, bool rim = false, bool transient = false)
         {
             // things at the rim of the room (watchers, seated travellers) may lean out past the left and right edges
-            float lean = rim || transient ? rect.width * 0.4f : 0;
+            // (a visiting figure such as the Last Customer stays whole on screen; rim watchers lean out only a little)
+            float lean = rim ? rect.width * 0.25f : 0;
             if (rect.xMin < view.xMin - lean || rect.xMax > view.xMax + lean || rect.yMin < view.yMin || rect.yMax > view.yMax) return false;
             if (rim && rect.Overlaps(Floor)) return false;
             Rect padded = new Rect(rect.x - Pad, rect.y - Pad, rect.width + Pad * 2, rect.height + Pad * 2);
@@ -237,8 +238,9 @@ namespace ArcaneBrigade
             // screen furniture (1920x1080 HUD rects converted at the fixed shop framing)
             Reserve("hud:wallet+note", Gui(0, 0, 385, 300));
             Reserve("hud:wave", Gui(380, 18, 290, 64));
-            Reserve("hud:bonds", Gui(1585, 10, 325, 145));
+            Reserve("hud:bonds", Gui(1545, 10, 365, 260));
             Reserve("hud:continue", Gui(720, 925, 480, 110));
+            Reserve("hud:card", Gui(400, 815, 1120, 265)); // the stall's description card: nothing stands behind it
             if (owner.Shop != null)
             {
                 Vector2 merchant = owner.Shop.MerchantCenter; float height = owner.Shop.MerchantHeight;
@@ -252,7 +254,7 @@ namespace ArcaneBrigade
                     Vector2 at = station.Position;
                     if (station.Action == "NEXT HALL") Reserve("exit", Rect.MinMaxRect(at.x - 1.05f, -HalfHeight, at.x + 1.05f, at.y + 1.6f));
                     else if (station.Action == "REROLL") Reserve("reroll", Rect.MinMaxRect(at.x - 0.62f, at.y - 1.05f, at.x + 0.62f, at.y + 0.72f));
-                    else Reserve("station:" + station.Action, Rect.MinMaxRect(at.x - 0.82f, at.y - 0.6f, at.x + 0.82f, at.y + 2.25f)); // pedestal, floating stock and price ticket
+                    else Reserve("station:" + station.Action, Rect.MinMaxRect(at.x - 1.05f, at.y - 0.9f, at.x + 1.05f, at.y + 2.25f)); // pedestal, floating stock, its tag and price ticket with room to breathe
                 }
             }
             // every place the warm chair will stand on this journey, not only today's

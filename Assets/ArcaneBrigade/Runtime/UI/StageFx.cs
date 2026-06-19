@@ -29,6 +29,9 @@ namespace ArcaneBrigade
         private GUIStyle title, subtitle;
         private const float Duration = 1.6f;
         public bool Busy => live != null || queue.Count > 0;
+        /// <summary>A cut-in band is on screen this frame (speech bubbles wait for it to pass).</summary>
+        public static bool LiveNow => Time.frameCount - liveFrame <= 2;
+        private static int liveFrame = -10;
 
         public void Show(string heading, string caption, Sprite sprite, Color color, string cue = "ui.unlock")
         {
@@ -43,6 +46,7 @@ namespace ArcaneBrigade
             if (live == null) return;
             float age = now - live.Started;
             if (age >= Duration) { live = null; return; }
+            liveFrame = Time.frameCount;
             if (title == null)
             {
                 title = ArcadeTypography.Style(64, true); title.wordWrap = false; title.alignment = TextAnchor.MiddleLeft; if (ArcadeTypography.Display != null) title.font = ArcadeTypography.Display;
@@ -108,7 +112,7 @@ namespace ArcaneBrigade
             int split = caption.LastIndexOf(' ');
             string word = split > 0 ? caption.Substring(0, split) : "", digits = split > 0 ? caption.Substring(split + 1) : caption;
             Matrix4x4 previous = GUI.matrix;
-            Vector2 centre = new Vector2(960, 420);
+            Vector2 centre = new Vector2(960, 310); // above the hero (the camera keeps the hero at the middle), below the wave banner
             ArcadeSkin.TurnAround(-9, centre);
             ArcadeSkin.ScaleAround(Vector2.one * press, centre);
             Color ink = new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.9f * alpha);

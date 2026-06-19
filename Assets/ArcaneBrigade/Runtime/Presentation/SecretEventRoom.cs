@@ -309,7 +309,7 @@ namespace ArcaneBrigade
                         string[] lines = s.Result.Split('\n');
                         GUI.Label(new Rect(frame.x + 40, frame.y + 24, frame.width - 80, 44), lines[0], heading);
                         string iconId = claim ? s.RewardId : s.ResultIcon;
-                        Sprite icon = owner.Content.Item(iconId)?.Icon ?? owner.Content.Unit(iconId)?.Body;
+                        Sprite icon = owner.Content.Item(iconId)?.Icon ?? owner.Content.Unit(iconId)?.Body ?? SecretArt.Relic(s.Kind); // every result shows a picture
                         float x0 = frame.x + 50;
                         if (icon != null)
                         {
@@ -318,9 +318,11 @@ namespace ArcaneBrigade
                         }
                         float w = frame.xMax - 50 - x0;
                         string got = claim ? (owner.Content.Item(s.RewardId) != null ? "New relic" : owner.Session.SecretRewardLabel) + "\n" + owner.Session.SecretRewardStats(s.RewardId) : s.ResultGot;
-                        Row(new Rect(x0, frame.y + 84, w, 100), "GET", got, null, CodeTone.Green);
+                        // the same order as the choice plates: LOSE above GET
+                        bool paid = !claim && !string.IsNullOrEmpty(s.ResultPaid) && s.ResultPaid != "Nothing";
+                        if (paid) Row(new Rect(x0, frame.y + 84, w, 84), "LOSE", s.ResultPaid, null, CodeTone.Oxblood);
+                        Row(new Rect(x0, frame.y + (paid ? 178 : 84), w, 100), "GET", got, null, CodeTone.Green);
                         if (claim && lines.Length > 1) GUI.Label(new Rect(x0, frame.y + 196, w, 70), lines[1], label);
-                        else if (!string.IsNullOrEmpty(s.ResultPaid) && s.ResultPaid != "Nothing") Row(new Rect(x0, frame.y + 196, w, 84), "LOSE", s.ResultPaid, null, CodeTone.Oxblood);
                         Rect go = new Rect(frame.center.x - 300, frame.yMax - 100, 600, 68);
                         if (claim) { if (ArcadeSkin.KitGuiButton(go, "CLAIM", primary) && !shut) owner.ClaimSecret(); }
                         else if (ArcadeSkin.KitGuiButton(go, "OK", primary) && !shut) Close(BeginWalkOut); // then walk into the rift
@@ -382,10 +384,11 @@ namespace ArcaneBrigade
             body.normal.textColor = tone == CodeTone.Cream ? ArcadeSkin.KitInk : tone == CodeTone.Green ? new Color(.86f, 1f, .86f) : new Color(1f, .86f, .82f);
             body.wordWrap = true;
             area = new Rect(area.x, area.y, area.width - 14, area.height); // clear of the ribbon's right gem
-            int size = body.fontSize;
+            int size = body.fontSize; TextAnchor align = body.alignment;
             while (body.fontSize > 13 && body.CalcHeight(new GUIContent(text), area.width) > area.height) body.fontSize--; // two lines stay inside the ribbon
+            body.alignment = TextAnchor.MiddleLeft; // centred in its ribbon's height
             GUI.Label(area, text, body);
-            body.fontSize = size; body.normal.textColor = keep;
+            body.fontSize = size; body.alignment = align; body.normal.textColor = keep;
         }
         // requirement 24/10/2026 (no tap-to-cycle pickers): the relic or friend you offer is chosen from a popup of all of them
         private int picker; // 0 closed, 1 relics, 2 friends

@@ -130,7 +130,7 @@ namespace ArcaneBrigade
 
         // HUD furniture boxes stay clear of: wallet and lamps (top left), bonds (top right); in a fight also the wave plate,
         // timer and lamp line (top centre) and the boss bar (bottom centre)
-        private static readonly Rect[] AlwaysReserved = { new Rect(0, 0, 400, 236), new Rect(1580, 0, 340, 214) };
+        private static readonly Rect[] AlwaysReserved = { new Rect(0, 0, 400, 236), new Rect(1545, 0, 375, 270) };
         private static readonly Rect[] CombatReserved = { new Rect(560, 0, 800, 214), new Rect(410, 896, 1100, 110) };
 
         /// <summary>Draws every live bubble once per frame (the first caller wins: the shop draws them under its tooltips).</summary>
@@ -140,6 +140,12 @@ namespace ArcaneBrigade
             if (drawnFrame == Time.frameCount) return;
             drawnFrame = Time.frameCount;
             float now = Time.unscaledTime;
+            if (StageCutIn.LiveNow)
+            {
+                // a boss's name band is across the screen: every voice waits (its time paused) until the band has gone
+                foreach (SpeechBubble waiting in bubbles) { waiting.Began += Time.unscaledDeltaTime; waiting.Expires += Time.unscaledDeltaTime; }
+                DrawnCount = 0; return;
+            }
             // the shopkeeper's lines belong to the shop: a fight starting ends them
             if (combat) foreach (SpeechBubble bubble in bubbles) if (bubble.Tone == SpeechTone.Shopkeeper) bubble.Expires = Mathf.Min(bubble.Expires, now + .45f);
             bubbles.RemoveAll(bubble => now >= bubble.Expires);

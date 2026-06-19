@@ -272,16 +272,22 @@ namespace ArcaneBrigade
                 chip.alignment = TextAnchor.MiddleCenter;
                 chip.normal.textColor = ArcadeSkin.Ink;
             }
+            // the menu's room fills the whole screen at any shape (no black bars on wide phones); the page keeps its 16:9 frame
+            if (Event.current.type == EventType.Repaint)
+            {
+                Rect whole = new Rect(0, 0, Screen.width, Screen.height);
+                Texture2D wide = CurrentPage == Page.Hub ? null : Backdrop();
+                GUI.DrawTexture(whole, Texture2D.whiteTexture, ScaleMode.StretchToFill, false, 0, ArcadeSkin.Ink, 0, 0);
+                if (wide != null) GUI.DrawTexture(whole, wide, ScaleMode.ScaleAndCrop);
+                if (wide != null && CurrentPage != Page.Landing) GUI.DrawTexture(whole, Texture2D.whiteTexture, ScaleMode.StretchToFill, false, 0, new Color(0.02f, 0.03f, 0.055f, PresentationSettings.HighReadability ? 0.97f : 0.84f), 0, 0);
+            }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(new Rect(0, 0, Screen.width, Screen.height), 1280, 720);
             Color previousTint = GUI.color;
             LivingUI.Enter(Time.unscaledTime - pageChangedAt, new Vector2(640, 360));
             GlossaryUI.BlockUnderlying(new Vector2(1280, 720));
-            ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub)
             {
-                Texture2D room = Backdrop();
-                if (room != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room, ScaleMode.ScaleAndCrop);
-                ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0.02f, 0.03f, 0.055f, PresentationSettings.HighReadability ? 0.97f : 0.84f));
+                // (the room and its shade are drawn across the whole screen above)
                 ArcadeSkin.Header(new Rect(60, 32, 940, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage));
             }
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub && Button(new Rect(1010, 40, 200, 50), "BACK"))
@@ -455,8 +461,6 @@ namespace ArcaneBrigade
 
         private void DrawLanding()
         {
-            Texture2D room = Backdrop();
-            if (room != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room, ScaleMode.ScaleAndCrop);
             if (landingShade == null)
             {
                 landingShade = new Texture2D(64, 1, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
@@ -464,7 +468,9 @@ namespace ArcaneBrigade
                 for (int index = 0; index < pixels.Length; index++) pixels[index] = new Color(0.02f, 0.03f, 0.06f, Mathf.Lerp(0.75f, 0, index / 63f));
                 landingShade.SetPixels(pixels); landingShade.Apply(false, true);
             }
-            GUI.DrawTexture(new Rect(0, 0, 600, 720), landingShade);
+            // the shade runs on past the frame on wider or taller screens, so no edge shows
+            ArcadeSkin.Line(new Rect(-1200, -600, 1200, 1920), new Color(0.02f, 0.03f, 0.06f, 0.75f));
+            GUI.DrawTexture(new Rect(0, -600, 600, 1920), landingShade);
             DrawChairVoice();
             bool reduced = profile.ReducedMotion;
             float breathe = reduced ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 1.1f);

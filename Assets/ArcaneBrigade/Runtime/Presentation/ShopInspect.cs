@@ -66,7 +66,7 @@ namespace ArcaneBrigade
                 if (view == null || !view.enabled || view.sprite == null || view.color.a < 0.2f) continue;
                 string id = child.name;
                 if (id.StartsWith("SecretInvitation_", StringComparison.Ordinal) && Enum.TryParse(id.Substring(17), out SecretEventKind kind))
-                    Add(id, SecretEventAssets.Titles[(int)kind], SecretEventAssets.Hints[(int)kind] + " A door into a secret room: a deal, a trade or a fight. Fights in there end the run if you lose; at most two rooms are visited each run.",
+                    Add(id, SecretEventAssets.Titles[(int)kind], SecretEventAssets.Hints[(int)kind] + " A secret room: a deal, a trade or a fight. Losing a fight there ends the run.",
                         "Step beside it to enter", Ink(view), view.sortingOrder);
                 else if (id == "TheUnoccupiedChair")
                     Add(id, "THE WARM CHAIR", "It is always a little warm, as if someone has only just stood up. The shopkeeper: “Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.”",
@@ -75,7 +75,7 @@ namespace ArcaneBrigade
                     Add(id, "THE LAST CUSTOMER", id.EndsWith("BorrowedFace", StringComparison.Ordinal) ? "It stands by the warm chair wearing a face you almost know. It has been buying all night, and it has never once paid." : "A pleasant stranger who stands by the warm chair. It buys what nobody should sell, and it would like to buy something from you.",
                         state.Wave == 8 ? "It will make you an offer once you have read the telephone page" : "It only waits", Ink(view), view.sortingOrder);
                 else if (id == "TheHandWaits")
-                    Add(id, "THE KEEPER, WHOLE", "The Keeper that carried the shop with its hand, its carpet and its eye has come to the edge of the road, whole, and its hand is open. Before it gives you the colours it will test you. Its body takes only a fifth of each blow while the hand, the carpet and the eye hold; break all three and it kneels. Win: choose one rainbow gift. Hold on for three minutes without winning and it sets you down: no gift, no harm. Fall, and the run ends.", "Step up to it to take the test", Ink(view), view.sortingOrder);
+                    Add(id, "THE KEEPER, WHOLE", "An optional boss. Break its hand, carpet and eye and it kneels.\nWin: pick one rainbow gift.\nLast 3 minutes: no gift, no harm.\nFall: the run ends.", "Step up to it to take the test", Ink(view), view.sortingOrder);
                 else if (id.StartsWith("PrismaticReward", StringComparison.Ordinal))
                     Add(id, "AN IMPOSSIBLE GIFT", "The Keeper's reward. Take one of the three; the others go back into the dark.", "Step up to it to take it", Ink(view), view.sortingOrder);
             }
