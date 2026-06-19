@@ -4,8 +4,6 @@ namespace ArcaneBrigade
     public sealed class HeroIdentityOptions
     {
         private GUIStyle choice, approachChoice;
-        private Vector2 approachScroll;
-        private string inspected;
         /// <summary>The hero's painted token with a small mark of the approach (one, a fan of three, or a circle of four),
         /// lit when chosen. Approaches are identified by their order, matching the 1-3 keys.</summary>
         private static void ApproachIcon(Rect r, HeroMechanicStyle style, int approach, bool chosen, bool enabled)
@@ -22,6 +20,12 @@ namespace ArcaneBrigade
             else if (approach == 1) for (int k = -1; k <= 1; k++) Draw(new Rect(c.x - small * .5f + k * small * .55f, c.y - small * .5f - (k == 0 ? small * .22f : -small * .08f), small, small));
             else for (int k = 0; k < 4; k++) { float a = k * Mathf.PI * .5f + Mathf.PI * .25f; Draw(new Rect(c.x - small * .5f + Mathf.Cos(a) * small * .48f, c.y - small * .5f + Mathf.Sin(a) * small * .48f, small, small)); }
             GUI.color = previous;
+        }
+        /// <summary>The hero's state and the chosen approach in words, appended to the brigade page's own scroll.</summary>
+        public static string Details(ArenaController owner)
+        {
+            var s = owner.Session; var d = s.HeroIdentityDefinition; if (d == null) return "";
+            return s.HeroIdentityShopSummary + "\n\nAPPROACH: " + d.Approaches[s.State.HeroIdentity.Approach].ToUpperInvariant() + "\n" + d.ApproachDescriptions[s.State.HeroIdentity.Approach];
         }
         public void Draw(ArenaController owner, Rect area, GUIStyle text)
         {
@@ -49,13 +53,7 @@ namespace ArcaneBrigade
                 if(GUI.Button(new Rect(area.x+i*200,area.y+115,190,58),label,choice))owner.ConfigureHeroIdentity(()=>s.CycleMemoryOrgan(slot));
             }
             GUI.enabled=enabled;
-            string current=id+"/"+s.State.HeroIdentity.Approach;
-            if(inspected!=current){inspected=current;approachScroll=Vector2.zero;}
-            string details=s.HeroIdentityShopSummary+"\n\n"+d.ApproachDescriptions[s.State.HeroIdentity.Approach];
-            float height=Mathf.Max(110,text.CalcHeight(new GUIContent(details),555)+12);
-            approachScroll=ScrollPanel.Begin(new Rect(area.x,area.y+182,590,110),approachScroll,new Rect(0,0,565,height));
-            GUI.Label(new Rect(0,0,555,height),details,text);
-            ScrollPanel.End();
+            // the chosen approach's text is read in the page's one scroll (Details), never in a second small scroll box
             if(Event.current.type==EventType.KeyDown && s.CanConfigureHero)
             {
                 var key=Event.current.keyCode;

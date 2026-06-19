@@ -321,7 +321,7 @@ namespace ArcaneBrigade
                 NightHud.LightRing(new Vector2(60, 55), 40, CompanionDeployment.Select(state.Roster).Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
                 Rect tube = ArcadeSkin.HealthBar(new Rect(100, 24, 300, 64), Mathf.Clamp01(shownHealth / maximum), Mathf.Clamp01(healthTrail / maximum));
                 numeric.normal.textColor = ArcadeSkin.Cream;
-                ArcadeTypography.ShadowLabel(new Rect(tube.x, tube.y - 4, tube.width, tube.height + 8), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
+                ArcadeTypography.ShadowLabel(new Rect(tube.x, tube.y - 4, tube.width, tube.height + 8), Mathf.CeilToInt(Mathf.Min(health, maximum)) + " / " + Mathf.CeilToInt(maximum), numeric);
             }
             else
             {
@@ -332,7 +332,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(shownHealth / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
             numeric.normal.textColor = health / maximum > 0.45f ? ArcadeSkin.Ink : ArcadeSkin.Cream; // ink reads on the lantern bar
-            GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
+            GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(Mathf.Min(health, maximum)) + " / " + Mathf.CeilToInt(maximum), numeric);
             Sprite(new Rect(92, 31, 38, 38), owner.Content.HeartSprite);
             }
             numeric.normal.textColor = ArcadeSkin.Cream;
@@ -360,7 +360,7 @@ namespace ArcaneBrigade
                 Rect face = ArcadeSkin.RoundArt(help, KitRound.Brass, help.Contains(Event.current.mousePosition) ? 1 : 0);
                 ArcadeSkin.KitCaption(face, "i", ArcadeSkin.KitInk, small, true);
                 if (GUI.Button(help, GUIContent.none, GUIStyle.none)) { gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
-                if (simulation.HeroIdentityEnabled)
+                if (simulation.HeroIdentityEnabled && !owner.PresentationPaused && !PlayerGuide.ModalOpen(owner)) // a modal page covers it whole, never half
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
                     if (identityStyle == null) { identityStyle = new GUIStyle(small) { font = ArcadeTypography.Punch, fontSize = 22, wordWrap = false }; }

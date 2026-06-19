@@ -351,7 +351,7 @@ namespace ArcaneBrigade
             bubble.PlacementLocked = true;
             Color previous = GUI.color;
             GUI.color = new Color(1, 1, 1, alpha);
-            ArcadeSkin.Glow(new Rect(rect.x - 70, rect.y - 50, rect.width + 140, rect.height + 100), new Color(0.02f, 0.02f, 0.04f, 0.85f));
+            for (int pass = 0; pass < 2; pass++) ArcadeSkin.Glow(new Rect(rect.x - 70, rect.y - 50, rect.width + 140, rect.height + 100), new Color(0.02f, 0.02f, 0.04f, 0.85f)); // a deeper shade so the words read over busy art
             whisperStyle.normal.textColor = new Color(0.86f, 0.82f, 0.9f, 1);
             GUI.Label(rect, bubble.Text, whisperStyle);
             GUI.color = previous;

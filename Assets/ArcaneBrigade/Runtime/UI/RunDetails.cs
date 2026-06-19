@@ -256,12 +256,13 @@ namespace ArcaneBrigade
                 }
             }
             if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
-            float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
             bool heroSelected = tab == 0 && selection == 0 && owner.Session.HeroIdentityDefinition != null;
-            explanationScroll = ScrollPanel.Begin(new Rect(1180, (tab == 2 ? 445 : 325) + quoteHeight, 625, (heroSelected ? 290 : tab == 2 ? 490 : 610) - quoteHeight), explanationScroll, new Rect(0, 0, 585, explanationHeight));
+            if (heroSelected) explanation += "\n\n" + HeroIdentityOptions.Details(owner); // one scroll for the whole column
+            float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
+            explanationScroll = ScrollPanel.Begin(new Rect(1180, (tab == 2 ? 445 : 325) + quoteHeight, 625, (heroSelected ? 430 : tab == 2 ? 490 : 610) - quoteHeight), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);
             ScrollPanel.End();
-            if (heroSelected) heroOptions.Draw(owner, new Rect(1185, 632, 610, 315), text);
+            if (heroSelected) heroOptions.Draw(owner, new Rect(1185, 770, 610, 177), text);
             GlossaryUI.Draw(new Vector2(1920, 1080));
             GUI.matrix = previous;
             GUI.color = previousTint;

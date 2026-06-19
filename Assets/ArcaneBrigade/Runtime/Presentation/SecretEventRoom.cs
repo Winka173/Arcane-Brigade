@@ -236,7 +236,10 @@ namespace ArcaneBrigade
                 Popped(.04f, new Vector2(960, bannerY + 50), () =>
                 {
                     ArcadeSkin.TitleBanner(new Rect(560, bannerY, 800, 64), SecretEventAssets.Titles[(int)s.Kind], heading);
-                    GUI.Label(new Rect(300, bannerY + 66, 1320, 32), SecretEventAssets.Plain[(int)s.Kind], label); // what the room is for
+                    // what the room is for, on its own dark plate so it reads over the room's art
+                    float plainW = Mathf.Min(1320, label.CalcSize(new GUIContent(SecretEventAssets.Plain[(int)s.Kind])).x + 60);
+                    ArcadeSkin.CodePlate(new Rect(960 - plainW * .5f, bannerY + 66, plainW, 36), CodeTone.Walnut, 0);
+                    GUI.Label(new Rect(300, bannerY + 68, 1320, 32), SecretEventAssets.Plain[(int)s.Kind], label);
                 });
                 if (s.Stage == SecretEventStage.Choosing)
                 {
@@ -244,7 +247,7 @@ namespace ArcaneBrigade
                     if (target) Popped(.08f, new Vector2(960, 350), () => TargetRelic(s));
                     SecretChoice[] choices = owner.Session.SecretChoices();
                     if (!choices[selected].Enabled) for (int i = 0; i < 3; i++) if (choices[i].Enabled) { selected = i; break; }
-                    float top = target ? 470 : 300, height = 360;
+                    float top = target ? 492 : 300, height = 360; // the offered relic's name stays clear of the plates' badges
                     Sprite relic = owner.Content.Item(s.TargetItem)?.Icon;
                     for (int i = 0; i < 3; i++)
                     {
@@ -258,6 +261,7 @@ namespace ArcaneBrigade
                         if (lit) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), Time.unscaledTime, new Color(1f, .82f, .45f));
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .55f);
                         Rect pc = creamPlate ? ArcadeSkin.EventContent(plate) : new Rect(plate.x + 18, plate.y + 14, plate.width - 36, plate.height - 28);
+                        if (creamPlate) { float clear = Mathf.Max(0, plate.y + SocketY + SocketSize * .5f + 4 - pc.y); pc.y += clear; pc.height -= clear; } // the title starts below the socket badge
                         if (plateTitle == null) Row(Rect.zero, null, null, null, CodeTone.Cream);
                         Color titleTone = plateTitle.normal.textColor; if (creamPlate) plateTitle.normal.textColor = ArcadeSkin.KitInk; // ink on the cream plate
                         GUI.Label(new Rect(pc.x, pc.y, pc.width, 38), c.Title, plateTitle);
@@ -269,7 +273,14 @@ namespace ArcaneBrigade
                         // what you get sits in the plate's round socket (it stood empty); a deal with no relic shows the room's own
                         if (creamPlate) DrawSprite(new Rect(plate.center.x - SocketSize * .5f, plate.y + SocketY - SocketSize * .5f, SocketSize, SocketSize), c.Icon != null ? c.Icon : SecretArt.Relic(s.Kind));
                         GUI.color = keep;
-                        if (!c.Enabled) GUI.Label(new Rect(x, top + height + 4, 460, 30), "Not available now", label);
+                        if (!c.Enabled)
+                        {
+                            // a closed deal shows a lock and says so on the plate itself
+                            Rect shade = new Rect(plate.x + 60, plate.center.y - 34, plate.width - 120, 68);
+                            ArcadeSkin.CodePlate(shade, CodeTone.Walnut, 0);
+                            ArcadeSkin.Lock(new Vector2(shade.x + 34, shade.center.y), 16, ArcadeSkin.KitCream);
+                            GUI.Label(new Rect(shade.x + 60, shade.y, shade.width - 70, shade.height), "Not available now", label);
+                        }
                         else if (!shut && GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                         GUI.matrix = plateMatrix; GUI.color = plateColour;
                     }
@@ -279,7 +290,7 @@ namespace ArcaneBrigade
                         int pick = selected;
                         if (ArcadeSkin.RibbonButton(new Rect(740, 880, 440, 84), owner.Session.SecretVerb, GUI.enabled, primary) && !shut) Close(() => owner.ChooseSecret(pick)); // the wax-sealed contract ribbon
                         GUI.enabled = true;
-                        if (ArcadeSkin.DoorTagButton(new Rect(1250, 892, 300, 64), "Back to the shop", card) && !shut) Close(() => owner.LeaveSecret());
+                        if (ArcadeSkin.Button(new Rect(1250, 892, 300, 64), "BACK TO THE SHOP") && !shut) Close(() => owner.LeaveSecret()); // a full button, not a faint tag
                     });
                     DrawPicker(s); // over everything in the room
                 }
@@ -323,7 +334,7 @@ namespace ArcaneBrigade
             }
             else if (owner.Session.SecretFighting)
             {
-                GUI.Label(new Rect(24, 1038, 1000, 30), SecretEventAssets.Titles[(int)owner.Session.State.Secrets.Kind], small);
+                GUI.Label(new Rect(48, 1020, 1000, 30), SecretEventAssets.Titles[(int)owner.Session.State.Secrets.Kind], small); // padded in from the corner
             }
             GUI.matrix = previous; GUI.depth = depth; GUI.color = Color.white;
         }
@@ -348,7 +359,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Pedestal(stand, Time.unscaledTime); // velvet cushion on a brass stand, drawn in code
             ItemDefinition relic = owner.Content.Item(s.TargetItem);
             if (relic?.Icon != null) DrawSprite(ArcadeSkin.PedestalSeat(stand), relic.Icon);
-            GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  ⇄" : ""), label);
+            GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  tap to change" : ""), label);
             if (!blocked && owner.Session.SecretTargets.Count > 1 && GUI.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
@@ -356,7 +367,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Plate(friend, ArcadeSkin.Accent);
                 UnitDefinition unit = owner.Content.Unit(s.TargetUnit);
                 if (unit?.Body != null) DrawSprite(new Rect(friend.x + 10, friend.y + 10, 80, 80), unit.Body);
-                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "  ⇄", label);
+                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "\ntap to change", label);
                 if (!blocked && owner.Session.State.Roster.Count > 1 && GUI.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
             }
         }
@@ -369,8 +380,12 @@ namespace ArcaneBrigade
             if (icon != null) DrawSprite(new Rect(r.x + 18, r.y + 38, Mathf.Min(48, r.height - 44), Mathf.Min(48, r.height - 44)), icon);
             Color keep = body.normal.textColor;
             body.normal.textColor = tone == CodeTone.Cream ? ArcadeSkin.KitInk : tone == CodeTone.Green ? new Color(.86f, 1f, .86f) : new Color(1f, .86f, .82f);
-            body.wordWrap = true; GUI.Label(area, text, body);
-            body.normal.textColor = keep;
+            body.wordWrap = true;
+            area = new Rect(area.x, area.y, area.width - 14, area.height); // clear of the ribbon's right gem
+            int size = body.fontSize;
+            while (body.fontSize > 13 && body.CalcHeight(new GUIContent(text), area.width) > area.height) body.fontSize--; // two lines stay inside the ribbon
+            GUI.Label(area, text, body);
+            body.fontSize = size; body.normal.textColor = keep;
         }
         // requirement 24/10/2026 (no tap-to-cycle pickers): the relic or friend you offer is chosen from a popup of all of them
         private int picker; // 0 closed, 1 relics, 2 friends

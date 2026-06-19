@@ -129,7 +129,7 @@ namespace ArcaneBrigade
                         Choice("THE OWNER'S CRATE", "Fight the collector", Fight, RewardName("SecretCrown"), CanSecretItem("SecretCrown"), "SecretCrown") };
                 case SecretEventKind.ThirteenthHour:
                     return new[] {
-                        Choice("BORROW AN HOUR", "Borrow it for 3 waves", "Gone after 3 waves", RewardName("SecretHour"), contract && StackCount("SecretHour") == 0, "SecretHour"),
+                        Choice("BORROW AN HOUR", "Borrow an hour for 3 waves", "Gone after 3 waves", RewardName("SecretHour"), contract && StackCount("SecretHour") == 0, "SecretHour"),
                         Choice("GOLD NOW", "Take a loan", "25% of wave gold for 2 waves", SecretLoan + " gold now", contract),
                         Choice("DEPOSIT A RELIC", "Leave " + name + " for 2 waves", name + " sleeps for 2 waves", name + " returns with +25% stats", contract && owned && CanImproveSecretItem(item), "", true) };
                 case SecretEventKind.SleepingGarden:
