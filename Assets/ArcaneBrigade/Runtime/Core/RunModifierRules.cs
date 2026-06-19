@@ -101,14 +101,18 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Armour in whole points (requirement 25/10/2026: "+0.2" read as nothing): one point is 0.1 of the stored value, and
-        /// each point takes one damage off every hit (never below 1, or 15% of a big hit). Never less than one point shown.</summary>
-        public const float ArmorPoint = .1f, ArmorFloor = .15f;
+        /// each point takes one damage off every hit, and what is left is cut by points / (points + 20) more (3 points: 13%, 10: a
+        /// third, requirement 25/10/2026); a hit never drops below 1, or 15% of a big hit. Never less than one point shown.</summary>
+        public const float ArmorPoint = .1f, ArmorFloor = .15f, ArmorShareKnee = 20;
         public static float AfterArmor(float damage, float armor)
         {
             float points = armor / ArmorPoint;
-            if (points >= 0) return Mathf.Max(Mathf.Min(damage, Mathf.Max(1, damage * ArmorFloor)), damage - points);
-            return damage - points; // a cost: its points are added to every hit
+            if (points < 0) return damage - points; // a cost: its points are added to every hit
+            float left = (damage - points) * ArmorShareKnee / (ArmorShareKnee + points);
+            return Mathf.Max(Mathf.Min(damage, Mathf.Max(1, damage * ArmorFloor)), left);
         }
+        /// <summary>The share armour takes off what is left of a hit, for the stat panels.</summary>
+        public static float ArmorShare(float armor) { float p = Mathf.Max(0, armor / ArmorPoint); return p / (p + ArmorShareKnee); }
         public static int ArmorPoints(float value) => value == 0 ? 0 : (int)Mathf.Sign(value) * Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(value) / ArmorPoint));
         public static string ArmorText(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(ArmorPoints(value));
         public static string ValueText(ItemEffect effect, float value)
