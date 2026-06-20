@@ -186,17 +186,7 @@ namespace ArcaneBrigade
             if (current != signature) { Build(); signature = current; }
             scenery.SetActive(true); Nearby = null;
             if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
-            if (merchant != null)
-            {
-                merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
-                // the counter is solid: the hero walks round it, never through it
-                UnitState hero = owner.Simulation.Champion;
-                float half = MerchantHeight * .32f, deskY = MerchantCenter.y - MerchantHeight * .45f + .35f;
-                Vector2 a = new Vector2(MerchantCenter.x - half, deskY), b = new Vector2(MerchantCenter.x + half, deskY);
-                Vector2 near = a + (b - a) * Mathf.Clamp01(Vector2.Dot(hero.Position - a, b - a) / Mathf.Max(.0001f, (b - a).sqrMagnitude));
-                Vector2 off = hero.Position - near; const float DeskReach = .5f;
-                if (off.sqrMagnitude < DeskReach * DeskReach) hero.Position = near + (off.sqrMagnitude > 1e-6f ? off.normalized : Vector2.down) * DeskReach;
-            }
+            if (merchant != null) merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
             // the stall in front of the traveller, unless something else in the room is nearer (ShopFocus)
             for (int index = 0; index < stations.Count; index++)
                 if (ShopFocus.Has(this, index, owner.Simulation.Champion.Position)) Nearby = stations[index];
@@ -237,6 +227,9 @@ namespace ArcaneBrigade
                     }
             }
         }
+        /// <summary>Where the last friend was bought and when: the new friend starts at that stall and walks down from it.</summary>
+        public Vector2 RecruitFrom { get; private set; }
+        public float RecruitAt { get; private set; } = -100;
         public bool Interact()
         {
             if (owner.SecretRoom != null && owner.SecretRoom.BlocksShop) return false;
@@ -255,6 +248,7 @@ namespace ArcaneBrigade
             Display();
             if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;
+            if (station.Offer != null && station.Offer.Kind == OfferKind.Companion) { RecruitFrom = position; RecruitAt = Time.unscaledTime; }
             bool completed;
             RunSnapshot before = null;
             if (station.Offer != null)
@@ -757,9 +751,9 @@ namespace ArcaneBrigade
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
                 Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);
                 ticket.y = Mathf.Min(ticket.y, 778);
-                // the open card already shows this stall's price; its crest would cover the tag
+                // the open card's crest never covers a stall's price: the tag and its label ride above the card's top edge
                 Rect shownCard = RunHud.ShownShopCard;
-                if (station.Focus > .5f && shownCard.width > 0 && ticket.xMax > shownCard.x && ticket.x < shownCard.xMax && ticket.yMax > shownCard.y - 70) continue;
+                if (shownCard.width > 0 && ticket.xMax > shownCard.x && ticket.x < shownCard.xMax) ticket.y = Mathf.Min(ticket.y, shownCard.y - 66 - ticket.height);
                 bool denied = owner.PresentationClock < station.DeniedUntil;
                 // Hanging ticket: a short string from a hook above, gentle sway, a hard shake when the purchase is denied.
                 bool reduced = PresentationSettings.ReducedMotion;

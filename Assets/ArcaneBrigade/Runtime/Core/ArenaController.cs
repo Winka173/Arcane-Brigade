@@ -232,6 +232,8 @@ namespace ArcaneBrigade
                 simulation.Champion.Position = simulation.Champion.PreviousPosition = championPosition.Value;
                 foreach (UnitState unit in simulation.Units)
                     if (unit.Faction == Faction.Companion && positions.TryGetValue(unit.Definition.Id + "/" + unit.Definition.Weapon.Id, out Vector2 position)) unit.Position = unit.PreviousPosition = position;
+                    // a friend just bought starts at its stall (where it hopped out) and walks down from there, never from above
+                    else if (unit.Faction == Faction.Companion && Shop != null && Time.unscaledTime - Shop.RecruitAt < 3) unit.Position = unit.PreviousPosition = Shop.RecruitFrom;
             }
             movement.Reset();
             if (session != null && session.State.Phase == SessionPhase.Shop) simulation.SetShopBounds(ReviewBalance.ShopHalfExtents(runCatalog.RestViewHeight));

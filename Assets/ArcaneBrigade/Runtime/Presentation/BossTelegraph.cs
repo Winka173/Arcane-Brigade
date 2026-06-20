@@ -140,7 +140,7 @@ namespace ArcaneBrigade
         private static Color ZoneColour(float charge, float alpha)
         {
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            Color c = Color.Lerp(ZoneGround, ZoneCharge, s * .75f); c.a = (.6f + .15f * s) * alpha; // dense enough to read through a crowd
+            Color c = Color.Lerp(ZoneGround, ZoneCharge, s * .75f); c.a = Mathf.Min(.95f, (.8f + .15f * s) * alpha); // dense: it reads through any crowd (requirement 25/10/2026: darker zones)
             return c;
         }
         private static void Ground(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float alpha)

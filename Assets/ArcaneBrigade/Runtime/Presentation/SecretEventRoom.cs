@@ -44,10 +44,14 @@ namespace ArcaneBrigade
         private bool walkingOut;
         private Transform returnRift, returnSwirl;
         private float returnTurn;
+        private string chosenTitle = "", chosenWhat = ""; private float chosenAt = -1;
         private void BeginWalkOut()
         {
             if (walkingOut || gallery == null) return;
             walkingOut = true;
+            // the deal just made, on a notice that lands as the way back tears open (requirement 25/10/2026)
+            SecretEventProgress done = owner.Session.State.Secrets;
+            chosenTitle = done != null ? done.Result.Split('\n')[0] : ""; chosenWhat = done != null ? done.ResultGot : ""; chosenAt = Time.unscaledTime;
             MapTheme theme = MapIdentity.For(owner.Session.State.Wave);
             var art = OctoberDoor.PortalArt(theme);
             if (art.body == null) { walkingOut = false; owner.LeaveSecret(); return; }
@@ -66,7 +70,7 @@ namespace ArcaneBrigade
         }
         /// <summary>The return rift turns and opens wider as the hero nears; stepping into it leaves the room.</summary>
         private bool nearReturn; private float returnPromptAt = -1;
-        private void GoBack() { walkingOut = false; returnRift = null; nearReturn = false; owner.LeaveSecret(); }
+        private void GoBack() { if (SceneDissolve.Busy) return; walkingOut = false; returnRift = null; nearReturn = false; SceneDissolve.Then(owner, () => owner.LeaveSecret()); } // the shop melts back in
         private void WalkOut()
         {
             if (returnRift == null) return;
@@ -170,7 +174,7 @@ namespace ArcaneBrigade
             panel = Solid(new Color(.055f, .065f, .105f, .96f)); paper = Solid(new Color(.93f, .86f, .71f)); disabled = Solid(new Color(.15f, .17f, .22f));
             heading = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 30, alignment = TextAnchor.MiddleCenter, wordWrap = true }; heading.normal.textColor = new Color(1, .79f, .39f);
             if (ArcadeTypography.Display != null) heading.font = ArcadeTypography.Display;
-            body = new GUIStyle(heading) { font = ArcadeTypography.Body, fontSize = 19, alignment = TextAnchor.UpperLeft }; body.normal.textColor = new Color(.95f, .92f, .84f);
+            body = new GUIStyle(heading) { font = ArcadeTypography.Body, fontSize = 19, alignment = TextAnchor.UpperLeft }; body.normal.textColor = new Color(.95f, .92f, .84f); body.richText = true;
             small = new GUIStyle(body) { fontSize = 16 };
             card = new GUIStyle(ArcadeSkin.Skin.button) { font = ArcadeTypography.Body, fontSize = 20, wordWrap = true, alignment = TextAnchor.MiddleCenter };
             primary = ArcadeSkin.Primary(card);
@@ -202,7 +206,7 @@ namespace ArcaneBrigade
                 if (near != hintShown) { hintShown = near; hintAt = Time.unscaledTime; }
                 if (near >= 0)
                 {
-                    if (ShopPrompt.Draw(SecretEventAssets.Titles[(int)kinds[near]], SecretEventAssets.Plain[(int)kinds[near]], "DISCOVER", Time.unscaledTime - hintAt)) owner.EnterSecret(kinds[near]);
+                    if (ShopPrompt.Draw(SecretEventAssets.Titles[(int)kinds[near]], SecretEventAssets.Plain[(int)kinds[near]], "DISCOVER", Time.unscaledTime - hintAt) && !SceneDissolve.Busy) { SecretEventKind kind = kinds[near]; SceneDissolve.Then(owner, () => owner.EnterSecret(kind)); } // the room melts in
                 }
             }
             else if (MenuOpen)
@@ -249,6 +253,7 @@ namespace ArcaneBrigade
                     if (!choices[selected].Enabled) for (int i = 0; i < 3; i++) if (choices[i].Enabled) { selected = i; break; }
                     float top = target ? 492 : 300, height = 360; // the offered relic's name stays clear of the plates' badges
                     Sprite relic = owner.Content.Item(s.TargetItem)?.Icon;
+                    markRelic = owner.Content.Item(s.TargetItem)?.Name; UnitDefinition markUnit = owner.Content.Unit(s.TargetUnit); markFriend = markUnit != null ? RunUICopy.UnitName(markUnit) : null;
                     for (int i = 0; i < 3; i++)
                     {
                         float x = 260 + i * 470; SecretChoice c = choices[i];
@@ -332,6 +337,7 @@ namespace ArcaneBrigade
             else if (walkingOut && nearReturn)
             {
                 if (returnPromptAt < 0) returnPromptAt = Time.unscaledTime;
+                DrawChosen();
                 if (ShopPrompt.Draw("THE WAY BACK", "The rift leads back to the shop.", "GO THROUGH", Time.unscaledTime - returnPromptAt)) GoBack();
             }
             else if (owner.Session.SecretFighting)
@@ -374,8 +380,34 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>One LOSE (red) or GET (green) row: a coloured tag, a picture when there is one, one short line.</summary>
+        private string markRelic, markFriend;
+        /// <summary>The offered relic's and friend's names in colour, so a plate says plainly who gains or loses what.</summary>
+        private string Marked(string text, CodeTone tone)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            string colour = tone == CodeTone.Cream ? "#9a5200" : "#ffd76a";
+            if (!string.IsNullOrEmpty(markRelic)) text = text.Replace(markRelic, "<color=" + colour + "><b>" + markRelic + "</b></color>");
+            if (!string.IsNullOrEmpty(markFriend) && markFriend != markRelic) text = text.Replace(markFriend, "<color=" + colour + "><b>" + markFriend + "</b></color>");
+            return text;
+        }
+        private GUIStyle chosenStyle;
+        /// <summary>A notice at the top while walking out: what was chosen and what it gave.</summary>
+        private void DrawChosen()
+        {
+            if (chosenAt < 0 || string.IsNullOrEmpty(chosenTitle)) return;
+            float age = Time.unscaledTime - chosenAt; if (age > 6) return;
+            float enter = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / .3f)), leave = Mathf.Clamp01((6 - age) / .5f);
+            chosenStyle ??= new GUIStyle(label) { alignment = TextAnchor.MiddleCenter, wordWrap = true, richText = true, fontSize = 22 };
+            string what = string.IsNullOrEmpty(chosenWhat) ? "" : "\n" + chosenWhat.Replace("\n", " · ");
+            Rect strip = new Rect(560, 120 - (1 - enter) * 30, 800, string.IsNullOrEmpty(what) ? 70 : 100);
+            Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * enter * leave);
+            ArcadeSkin.CodePlate(strip, CodeTone.Walnut, 1);
+            GUI.Label(new Rect(strip.x + 30, strip.y + 6, strip.width - 60, strip.height - 12), "<b>" + chosenTitle + "</b>" + what, chosenStyle);
+            GUI.color = keep;
+        }
         private void Row(Rect r, string tag, string text, Sprite icon, CodeTone tone)
         {
+            text = Marked(text, tone);
             if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 26 }; tagStyle = new GUIStyle(label) { fontSize = 16, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
             if (tag == null) return;
             Rect area = ArcadeSkin.EventRow(r, tag, tone, tagStyle);

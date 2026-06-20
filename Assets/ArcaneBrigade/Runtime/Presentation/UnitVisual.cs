@@ -347,11 +347,14 @@ namespace ArcaneBrigade
             if (state != null && state.Faction == Faction.Champion && choice == 1)
                 shadowColor = shadow.color = new Color(0.015f, 0.025f, 0.045f, 0.38f);
         }
+        /// <summary>How far the painted feet sit above the bottom of the picture (its clear margin), in world units: shadows meet
+        /// the feet, not the picture's edge (requirement 25/10/2026).</summary>
+        private float FootPad() => body != null && body.sprite != null ? Mathf.Max(0, body.transform.TransformVector(new Vector3(0, WorldSpriteGrounding.Foot(body.sprite).y - body.sprite.bounds.min.y, 0)).y) : 0;
         public void TransportShadow(Vector2 offset, float lift)
         {
             if (state == null || grounded == null) return;
             float height = K8Motion.BodyHeight(state);
-            Vector2 ground = state.Position + offset - Vector2.up * (height * 0.5f + lift);
+            Vector2 ground = state.Position + offset - Vector2.up * (height * 0.5f + lift - FootPad());
             grounded.Display(body.sprite, ground, height * 0.85f, lift, 0.3f);
             if (groundedWeapon != null && weapon.enabled && grip.gameObject.activeSelf)
                 groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y), K8Motion.WeaponWidth(state), lift, 0.1f);
@@ -590,12 +593,13 @@ namespace ArcaneBrigade
                     : state.FuseAt > 0 ? 1f + Mathf.Clamp01(1 - (state.FuseAt - simulationTime) / SwarmPacingRules.FuseLight) * 0.45f : 1.06f;
                 body.transform.localScale *= swell;
             }
-            shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
+            float footPad = FootPad();
+            shadow.transform.localPosition = new Vector3(0f, -height * 0.5f + footPad, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
-            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
+            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.PinCastToFoot = true; grounded.Configure(body.sprite); }
             grounded.Essential = state.Definition.IsBoss || state.Faction == Faction.Champion;
             float lift = entrance > 0 ? entrance * 6 : arrivalAge < 0.405f ? Mathf.Sin(Mathf.Clamp01(arrivalAge / 0.405f) * Mathf.PI) * 0.85f : 0;
-            Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f - (entrance > 0 ? transform.position.y - state.Position.y : lift));
+            Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f + footPad - (entrance > 0 ? transform.position.y - state.Position.y : lift));
             grounded.Display(body.sprite, ground, height * 0.85f, lift + celebrationLift + Mathf.Abs(bob) + Mathf.Max(0, state.BodyLift), state.Definition.IsBoss ? 0.42f : 0.36f);
             if (weapon.enabled && grip.gameObject.activeSelf)
             {

@@ -22,7 +22,7 @@ namespace ArcaneBrigade
             customer = Make("Customer beside the seat"); window = Make("The window between us");
             window.sprite = ActOneArtwork.Picture("Prop_InwardWindow");
             floatingWindow = window.gameObject.AddComponent<FloatingStoryProp>(); floatingWindow.Configure(window,749);
-            shadow = customer.gameObject.AddComponent<GroundShadow>();
+            shadow = customer.gameObject.AddComponent<GroundShadow>(); shadow.PinCastToFoot = true; // he stands on the floor: the shadow meets his feet
             for (int i = 0; i < coins.Length; i++) { coins[i] = Make("Customer's payment " + i); coins[i].sprite = owner.Content.Arena.Coin; }
         }
         private SpriteRenderer Make(string label)

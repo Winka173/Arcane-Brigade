@@ -218,7 +218,10 @@ namespace ArcaneBrigade
             Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : dreamMerchant ? Mathf.Clamp01(arrival * 1.8f) : 1; view.color = tint;
             transform.localRotation = Quaternion.Euler(0, 0, reduced || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
             if (floorFixture || pedestalDisplay || merchantActor) transform.localRotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, phase + (merchantActor ? 13 : 7), reduced, merchantActor ? .55f : .7f));
-            view.sortingOrder = merchandise || pedestalDisplay
+            // the shopkeeper sorts by the foot of its counter, so a hero who walks behind the counter is drawn behind it (and
+            // HeroFocus fades the shopkeeper to show them), never on top of the desk
+            view.sortingOrder = merchantActor ? WorldSpriteGrounding.SortAt(transform.parent.TransformPoint(origin - Vector3.up * height * (view.sprite.pivot.y / view.sprite.rect.height)).y)
+                : merchandise || pedestalDisplay
                 ? 1000 - Mathf.RoundToInt(transform.parent.position.y * 12) + (merchandise ? 8 : 0)
                 : 1000 - Mathf.RoundToInt(transform.position.y * 12);
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.PinCastToFoot = true; grounded.Configure(view.sprite); }

@@ -218,6 +218,15 @@ namespace ArcaneBrigade
         }
         private static readonly Color Panel = ArcadeSkin.Deep;
 
+        /// <summary>A large number kept short: 950, 12.4K, 331K, 1.2M.</summary>
+        public static string ShortNumber(float value)
+        {
+            float v = Mathf.Max(0, Mathf.Ceil(value));
+            if (v < 10000) return v.ToString("0");
+            if (v < 100000) return (v / 1000f).ToString("0.#") + "K";
+            if (v < 1000000) return (v / 1000f).ToString("0") + "K";
+            return (v / 1000000f).ToString("0.#") + "M";
+        }
         public static void Fill(Rect rectangle, Color color)
         {
             // a whole-screen cover reaches past the 16:9 frame, so wider or taller screens show no edge of the world beside it
@@ -429,8 +438,8 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
-                    // the boss's health as a share: six-digit numbers split by a divider were unreadable
-                    GUI.Label(new Rect(425, 950, 1070, 38), Mathf.CeilToInt(bossShare * 100) + "%", numeric);
+                    // the boss's health in short numbers (330K / 331K), no divider through them and no percentage
+                    GUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(simulation.Boss.Health) + " / " + ShortNumber(simulation.Boss.Definition.Health), numeric);
                 }
                 if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
                 else pausePage = 0;
@@ -501,7 +510,7 @@ namespace ArcaneBrigade
             WorldShop shop = owner.Shop;
             if (shop == null) return;
             shop.DrawMerchantDialogue();
-            if (owner.Simulation.Phase == RunPhase.Paused) { DrawPause(owner); return; }
+            if (owner.Simulation.Phase == RunPhase.Paused || owner.PresentationPaused) { DrawPause(owner); return; } // also in a secret room, where losing focus pauses too
             pausePage = 0;
             WorldShop.Station station = shop.Nearby;
             ShownShopCard = Rect.zero;

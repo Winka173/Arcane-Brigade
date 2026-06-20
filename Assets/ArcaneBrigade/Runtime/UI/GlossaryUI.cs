@@ -154,7 +154,33 @@ namespace ArcaneBrigade
             _ => "A bonus for this run."
         };
 
-        public static float Height(string text, GUIStyle style, float width) => Layout(new Rect(0, 0, width, 10000), text, style, false);
+        // requirement 25/10/2026 (pages with long text lagged): the text's words, their widths and its height are worked out once
+        // and kept, and inside a scroll only the lines on screen are drawn
+        private static readonly Dictionary<(string, GUIStyle, float, int), float> heights = new Dictionary<(string, GUIStyle, float, int), float>();
+        private static readonly Dictionary<string, MatchCollection> tokenCache = new Dictionary<string, MatchCollection>();
+        private static readonly Dictionary<(string, Font, int, FontStyle), float> widths = new Dictionary<(string, Font, int, FontStyle), float>();
+        public static float Height(string text, GUIStyle style, float width)
+        {
+            var key = (text ?? "", style, width, style.fontSize);
+            if (heights.TryGetValue(key, out float known)) return known;
+            if (heights.Count > 512) heights.Clear();
+            return heights[key] = Layout(new Rect(0, 0, width, 10000), text, style, false);
+        }
+        private static MatchCollection Tokens(string text)
+        {
+            text ??= "";
+            if (tokenCache.TryGetValue(text, out MatchCollection found)) return found;
+            if (tokenCache.Count > 256) tokenCache.Clear();
+            found = tokens.Matches(text); _ = found.Count; // evaluated now, kept for later frames
+            return tokenCache[text] = found;
+        }
+        private static float Measure(GUIStyle style, string word)
+        {
+            var key = (word, style.font, style.fontSize, style.fontStyle);
+            if (widths.TryGetValue(key, out float known)) return known;
+            if (widths.Count > 4096) widths.Clear();
+            return widths[key] = style.CalcSize(new GUIContent(word)).x;
+        }
         public static void Text(Rect bounds, string text, GUIStyle style) { Layout(bounds, text, style, true); }
         private static float Layout(Rect bounds, string text, GUIStyle style, bool draw)
         {
@@ -163,10 +189,12 @@ namespace ArcaneBrigade
                 if (wordStyles.Count > 32) wordStyles.Clear();
                 words = new GUIStyle(style) { wordWrap = false, clipping = TextClipping.Overflow, padding = new RectOffset(), margin = new RectOffset() }; wordStyles[style] = words;
             }
-            if (draw && words.font != null) words.font.RequestCharactersInTexture(text ?? "", words.fontSize, words.fontStyle);
+            if (draw && words.font != null && Event.current.type == EventType.Repaint) words.font.RequestCharactersInTexture(text ?? "", words.fontSize, words.fontStyle);
             float line = Mathf.Max(style.lineHeight, style.fontSize * 1.25f);
             float horizontal = 0, vertical = 0;
-            MatchCollection all = tokens.Matches(text ?? "");
+            MatchCollection all = Tokens(text);
+            Rect seen = draw && ScrollPanel.Inside ? ScrollPanel.Visible : new Rect(-1e6f, -1e6f, 2e6f, 2e6f);
+            bool Seen(float v) => bounds.y + v + line >= seen.yMin && bounds.y + v <= seen.yMax;
             for (int tokenIndex = 0; tokenIndex < all.Count; tokenIndex++)
             {
                 Match token = all[tokenIndex];
@@ -176,7 +204,7 @@ namespace ArcaneBrigade
                 {
                     // a small gold lozenge that opens each effect line of a shop card
                     float mark = line * .38f;
-                    if (draw)
+                    if (draw && Seen(vertical))
                     {
                         Rect m = new Rect(bounds.x + horizontal + 2, bounds.y + vertical + (line - mark) * .5f, mark, mark);
                         Matrix4x4 keep = GUI.matrix; ArcadeSkin.TurnAround(45, m.center);
@@ -190,8 +218,8 @@ namespace ArcaneBrigade
                     // the card's GIVES (green) and COSTS (red) plates (play-test 20/10/2026, item 11)
                     bool gives = word == "{gives}"; string caption = gives ? "GIVES" : "COSTS";
                     FontStyle keptStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
-                    float plate = words.CalcSize(new GUIContent(caption)).x * .82f + 16;
-                    if (draw)
+                    float plate = Measure(words, caption) * .82f + 16;
+                    if (draw && Seen(vertical))
                     {
                         Rect r = new Rect(bounds.x + horizontal, bounds.y + vertical + line * .12f, plate, line * .76f);
                         ArcadeSkin.Line(r, gives ? new Color(.14f, .40f, .25f, .95f) : new Color(.50f, .11f, .12f, .95f));
@@ -211,17 +239,17 @@ namespace ArcaneBrigade
                     ItemEffect effect = (ItemEffect)Enum.Parse(typeof(ItemEffect), bonus[0]);
                     float glyph = line * .85f;
                     string caption = bonus[1] + " " + bonus[2];
-                    float normalValue = words.CalcSize(new GUIContent(bonus[2])).x;
+                    float normalValue = Measure(words, bonus[2]);
                     FontStyle measuredStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
-                    float boldValue = words.CalcSize(new GUIContent(bonus[2])).x; words.fontStyle = measuredStyle;
-                    float size = words.CalcSize(new GUIContent(caption)).x + glyph + 5 + boldValue - normalValue;
+                    float boldValue = Measure(words, bonus[2]); words.fontStyle = measuredStyle;
+                    float size = Measure(words, caption) + glyph + 5 + boldValue - normalValue;
                     if (horizontal > 0 && horizontal + size > bounds.width) { horizontal = 0; vertical += line; }
-                    if (draw)
+                    if (draw && Seen(vertical))
                     {
                         Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, size, line);
                         StatGlyph.Draw(new Rect(target.x, target.y, glyph, line), effect);
                         GUI.Label(new Rect(target.x + glyph + 3, target.y, size - glyph, line), bonus[1], words);
-                        float offset = glyph + 3 + words.CalcSize(new GUIContent(bonus[1] + " ")).x;
+                        float offset = glyph + 3 + Measure(words, bonus[1] + " ");
                         Color prior = GUI.color; GUI.color *= ShopDescriptionCard.BenefitColor(effect, bonus[2].StartsWith("-") || bonus[2].StartsWith("−") || bonus[2].StartsWith("×0") ? -1 : 1);
                         FontStyle previousStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
                         GUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
@@ -232,9 +260,9 @@ namespace ArcaneBrigade
                 float icon = entry == null || entry.Name == "Effect scope" || entry.Name == "Champion" || entry.Name == "Companions" ? 0 : line * 0.85f;
                 bool number = signedValue.IsMatch(word) || char.IsDigit(word[0]);
                 FontStyle measuredWordStyle = words.fontStyle; if (number) words.fontStyle = FontStyle.Bold;
-                float width = words.CalcSize(new GUIContent(word)).x + icon + (entry == null ? 0 : 2); words.fontStyle = measuredWordStyle;
+                float width = Measure(words, word) + icon + (entry == null ? 0 : 2); words.fontStyle = measuredWordStyle;
                 if (horizontal > 0 && horizontal + width > bounds.width) { horizontal = 0; vertical += line; }
-                if (draw)
+                if (draw && Seen(vertical))
                 {
                     Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, width, line);
                     if (entry != null)

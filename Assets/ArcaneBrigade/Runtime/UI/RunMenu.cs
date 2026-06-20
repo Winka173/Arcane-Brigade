@@ -528,7 +528,7 @@ namespace ArcaneBrigade
             caption.alignment = TextAnchor.MiddleCenter;
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(16));
             Label(new Rect(65, 142, 660, 32), "CHOOSE YOUR HERO");
-            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 470), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
+            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 460), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
                 UnitDefinition unit = catalog.Champions[index];
@@ -563,13 +563,16 @@ namespace ArcaneBrigade
                     }
                 if (iconIndex > 0) GUI.Label(new Rect(690 - iconIndex * 34 - 130, 145, 125, 28), "RECRUIT THEMES", note);
             }
-            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(760, 135, 460, 445), KitFrame.Dialogue, .45f); else RunHud.Fill(new Rect(760, 135, 460, 445), ArcadeSkin.Card);
+            // requirement 25/10/2026 (the text box was too small): the hero's panel is the whole right column; the difficulty sits
+            // under the hero grid and STEP THROUGH under the panel, one bottom row
+            Rect heroPanel = new Rect(745, 135, 490, 505);
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(heroPanel, KitFrame.Dialogue, .45f); else RunHud.Fill(heroPanel, ArcadeSkin.Card);
             ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
             RunHud.Sprite(new Rect(775, 145, 132, 142), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
-            GUI.Label(new Rect(918, 150, 290, 70), RunUICopy.UnitName(champion), rosterTitle);
+            GUI.Label(new Rect(918, 150, 300, 70), RunUICopy.UnitName(champion), rosterTitle);
             ArcadeSkin.Tag(new Rect(918, 222, 280, 28), RunUICopy.WeaponName(champion.Weapon.Id).ToUpperInvariant(), CodeTone.Walnut, chip);
-            GUI.Label(new Rect(918, 256, 290, 34), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
+            GUI.Label(new Rect(918, 256, 250, 34), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
             // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
             string fullDescription = RunUICopy.ChampionDescription(champion);
             string description = ShortHero(champion);
@@ -581,36 +584,35 @@ namespace ArcaneBrigade
             description += "\n\nSTARTS WITH\n";
             foreach (StatModifier modifier in champion.ChampionModifiers)
                 description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
-            float descriptionHeight = Mathf.Max(180, GlossaryUI.Height(description, text, 400) + 8);
-            bool loadout = DrawLoadout(champion, new Rect(780, 402, 425, 44), note);
-            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(780, 300, 425, loadout ? 98 : 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
-            GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
+            float descriptionHeight = Mathf.Max(210, GlossaryUI.Height(description, text, 425) + 8);
+            bool loadout = DrawLoadout(champion, new Rect(770, 560, 450, 44), note);
+            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(770, 298, 450, loadout ? 254 : 322), rosterDescriptionScroll, new Rect(0, 0, 430, descriptionHeight));
+            GlossaryUI.Text(new Rect(0, 0, 425, descriptionHeight), description, text);
             ScrollPanel.End();
             heroDetailsText = fullDescription; heroDetailsName = RunUICopy.UnitName(champion);
-            if (ArcadeSkin.Medallion(new Rect(1166, 262, 40, 40), KitMedallion.Info)) { heroDetailsAt = Time.unscaledTime; heroDetailsScroll = Vector2.zero; }
+            if (ArcadeSkin.Medallion(new Rect(1176, 254, 40, 40), KitMedallion.Info)) { heroDetailsAt = Time.unscaledTime; heroDetailsScroll = Vector2.zero; }
             // one journey only (play-test 20/10/2026): the Night Shift / First Light / Small Crew challenges are off the menu;
             // their rules stay in RunMeta, dormant, for a later daily run
             challenge = 0;
             // every difficulty is shown in turn; the two after the whole Lamp Tree show a lock until it is lit
             // requirement 25/10/2026 (no tap-to-cycle pickers): the difficulty is chosen from a list of all of them
-            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficultyPickerAt = Time.unscaledTime;
+            if (Button(new Rect(65, 656, 330, 52), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficultyPickerAt = Time.unscaledTime;
             bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile);
             // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
-            GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(17, true)); danger.alignment = TextAnchor.MiddleCenter;
+            GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(15, true)); danger.alignment = TextAnchor.MiddleLeft; danger.wordWrap = true;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
-            string dangerText = RunMeta.DifficultyNames[difficulty].ToUpperInvariant() + "  ·  " + (sealedDifficulty ? (difficulty == RunMeta.TreeDifficulty ? "light 5 Lamp Tree branches" : "light the whole Lamp Tree") : DifficultyLine(difficulty));
-            Rect dangerRect = new Rect(780, 540, 420, 30);
+            // beside the button, what the difficulty does (its name is already on the button)
+            string dangerText = sealedDifficulty ? (difficulty == RunMeta.TreeDifficulty ? "Light 5 Lamp Tree branches" : "Light the whole Lamp Tree") : DifficultyLine(difficulty);
+            Rect dangerRect = new Rect(410, 656, 315, 52);
             if (sealedDifficulty)
             {
                 // the padlock stands just before the words, on their middle line, the pair centred together
-                float textW = Mathf.Min(dangerRect.width - 30, danger.CalcSize(new GUIContent(dangerText)).x);
-                float left = dangerRect.center.x - (textW + 26) * .5f;
-                ArcadeSkin.Lock(new Vector2(left + 9, dangerRect.center.y), 16, danger.normal.textColor);
-                dangerRect = new Rect(left + 26, dangerRect.y, textW, dangerRect.height);
+                ArcadeSkin.Lock(new Vector2(dangerRect.x + 9, dangerRect.center.y), 16, danger.normal.textColor);
+                dangerRect = new Rect(dangerRect.x + 26, dangerRect.y, dangerRect.width - 26, dangerRect.height);
             }
             GUI.Label(dangerRect, dangerText, danger);
             GUI.enabled = profile.BestWave >= champion.UnlockWave && !sealedDifficulty;
-            if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
+            if (navigation.Button(new Rect(770, 650, 450, 62), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
             RosterOverlays(true);
         }

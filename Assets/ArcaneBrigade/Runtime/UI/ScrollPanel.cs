@@ -17,6 +17,9 @@ namespace ArcaneBrigade
         public static readonly Color DefaultShade = new Color(0.02f, 0.02f, 0.04f, 0.55f);
 
         public static Vector2 Begin(Rect view, Vector2 scroll, Rect content) => Begin(view, scroll, content, DefaultShade);
+        /// <summary>Inside an open scroll: the part of its content on screen (content coordinates), so long text draws only that.</summary>
+        public static bool Inside => open.Count > 0;
+        public static Rect Visible { get { var top = open.Peek(); return new Rect(0, top.Item3, top.Item1.width, top.Item1.height); } }
         public static Vector2 Begin(Rect view, Vector2 scroll, Rect content, Color shade)
         {
             int id = GUIUtility.GetControlID(FocusType.Passive);
