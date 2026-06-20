@@ -8,7 +8,8 @@ namespace ArcaneBrigade
     public sealed class PrismShardHud : MonoBehaviour
     {
         private ArenaController owner;
-        private GUIStyle text;
+        private GUIStyle text, helpTitle, helpText;
+        private float helpAt = -1; // the tap card: what the shards are for
         private Sprite icon;
         public void Configure(ArenaController value) => owner = value;
         private int Carried => owner?.Session == null ? 0 : owner.Session.State.PrismShards + (owner.Simulation != null && owner.Session.State.Phase == SessionPhase.Combat ? owner.Simulation.PrismShards : 0);
@@ -26,6 +27,24 @@ namespace ArcaneBrigade
             if (icon != null) RunHud.Sprite(new Rect(plate.x + 8, plate.y + 3, 30, 30), icon);
             text.normal.textColor = new Color(0.68f, 1, 0.92f);
             GUI.Label(new Rect(plate.x + 46, plate.y, plate.width - 50, plate.height), "PRISM  " + Mathf.Min(carried, 99) + " / 3", text);
+            if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { helpAt = helpAt >= 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
+            if (helpAt >= 0 && Time.unscaledTime - helpAt > 8) helpAt = -1;
+            if (helpAt >= 0)
+            {
+                // tapped: a small card says what the shards are for (icons are tappable and explained)
+                Rect card = new Rect(250, 280, 560, 132);
+                Matrix4x4 m = GUI.matrix; Color c = GUI.color;
+                LivingUI.Pop(Time.unscaledTime - helpAt, card.center);
+                ArcadeSkin.Frame(card, KitFrame.Dialogue, .6f);
+                Rect inner = ArcadeSkin.Content(card, KitFrame.Dialogue);
+                helpTitle ??= ArcadeTypography.Style(22, true);
+                helpText ??= new GUIStyle(ArcadeTypography.Style(18)) { wordWrap = true };
+                helpTitle.normal.textColor = new Color(0.68f, 1, 0.92f); helpText.normal.textColor = ArcadeSkin.KitCream;
+                GUI.Label(new Rect(inner.x, inner.y, inner.width, 28), "PRISM SHARDS", helpTitle);
+                GUI.Label(new Rect(inner.x, inner.y + 30, inner.width, inner.height - 30), "Collect 3 and the next shop gives you a rainbow gift. Elite enemies and won secret fights drop them.", helpText);
+                GUI.matrix = m; GUI.color = c;
+                if (Event.current.type == EventType.MouseUp && !card.Contains(Event.current.mousePosition) && !plate.Contains(Event.current.mousePosition)) helpAt = -1;
+            }
             GUI.matrix = previous;
         }
     }

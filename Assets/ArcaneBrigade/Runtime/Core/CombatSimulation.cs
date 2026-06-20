@@ -271,6 +271,8 @@ namespace ArcaneBrigade
     {
         /// <summary>From this wave the packs bring fewer small bodies (requirement 25/10/2026).</summary>
         public const int LateSwarmWave = 8;
+        /// <summary>The shape of the player's screen (set by the camera): wider screens see further, so packs arrive further out.</summary>
+        public static float ViewAspect = 16f / 9f;
         private readonly CheckpointCatalog catalog;
         private readonly List<UnitState> units = new List<UnitState>();
         private readonly Dictionary<int, UnitState> unitLookup = new Dictionary<int, UnitState>();
@@ -624,7 +626,7 @@ namespace ArcaneBrigade
             {
                 // bodies arrive just past the edge of the screen from the first wave on, so the hall is never empty
                 Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 0.4f;
-                half = Vector2.Min(half, new Vector2(9, 5.6f));
+                half = Vector2.Min(half, new Vector2(9 * Mathf.Max(1, ViewAspect / (16f / 9f)), 5.6f)); // past the edge of a wider screen too
                 Vector2 position = Vector2.zero;
                 bool found = false;
                 for (int attempt = 0; attempt < 12; attempt++)

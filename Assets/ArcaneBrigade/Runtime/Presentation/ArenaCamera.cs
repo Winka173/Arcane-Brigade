@@ -66,6 +66,7 @@ namespace ArcaneBrigade
             float actual = Screen.width / (float)Mathf.Max(1, Screen.height);
             arenaCamera.rect = new Rect(0f, 0f, 1f, 1f);
             arenaCamera.aspect = actual;
+            CombatSimulation.ViewAspect = actual;
         }
     }
 }

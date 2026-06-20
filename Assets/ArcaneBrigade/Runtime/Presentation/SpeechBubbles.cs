@@ -93,7 +93,8 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Head-top anchor of a simulated unit (positions are body centres).</summary>
-        public static Vector3 Head(UnitState unit) => (Vector3)(unit.Position + Vector2.up * (Mathf.Min(K8Motion.BodyHeight(unit) * 0.5f, 2.1f) + 0.12f));
+        // a boss speaks from beside its head, not from the middle of its chest (its body is far taller than a friend's)
+        public static Vector3 Head(UnitState unit) => (Vector3)(unit.Position + Vector2.up * ((unit.Definition.IsBoss ? K8Motion.BodyHeight(unit) * 0.82f : Mathf.Min(K8Motion.BodyHeight(unit) * 0.5f, 2.1f)) + 0.12f));
 
         private static void Styles()
         {
@@ -220,6 +221,18 @@ namespace ArcaneBrigade
                 // read and folds back into the speaker as it ends
                 float pop = reduced ? 1 : Mathf.Lerp(0.55f, 1f, EaseOutBack(Mathf.Clamp01(age / 0.26f))) * Mathf.Lerp(0.8f, 1f, Mathf.Clamp01(left / 0.25f));
                 float breathe = reduced || age < 0.26f ? 0 : Mathf.Sin((age - 0.26f) * 2.2f) * 2.5f;
+                // while the words are still appearing the box is only as tall as the lines shown so far (no half-empty box),
+                // growing away from its tail so the tail stays on the speaker
+                if (!reduced)
+                {
+                    int typed = Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 1, bubble.Text.Length);
+                    if (typed < bubble.Text.Length)
+                    {
+                        float tall = Mathf.Min(rect.height, top + style.CalcHeight(new GUIContent(bubble.Text.Substring(0, typed)), textWidth) + 18);
+                        if (tailed && anchor.y > rect.center.y) rect.y += rect.height - tall;
+                        rect.height = tall;
+                    }
+                }
                 Colours(bubble.Tone, out Color paper, out Color stamp, out Color ink, out Color label);
                 Matrix4x4 restore = GUI.matrix;
                 Color previous = GUI.color;

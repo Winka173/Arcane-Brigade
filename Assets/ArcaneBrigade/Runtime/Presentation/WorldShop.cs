@@ -639,6 +639,8 @@ namespace ArcaneBrigade
             if (pedestal && actor != null) actor.MountMerchandise(support);
             if (!pedestal && actor != null) actor.SetFloorFixture();
             if (action == "NEXT HALL" && actor != null && OctoberArtwork.Current != null) actor.gameObject.AddComponent<OctoberDoor>().Configure(owner, actor.View);
+            // the rift stands on the floor: a soft shadow under it so it does not read as a picture pasted on the room
+            if (action == "NEXT HALL" && actor != null && sprite != null) actor.gameObject.AddComponent<GroundShadow>().Display(sprite, marker.transform.position, 1.7f, 0, .32f);
             var station = new Station { Position = position, Action = action, Marker = marker.transform, Icon = sprite, Actor = actor, Renderers = marker.GetComponentsInChildren<SpriteRenderer>() };
             stations.Add(station); return station;
         }

@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         public static readonly Vector2 ChallengePosition = new Vector2(5.2f, -3.3f);
         /// <summary>In Act I (shop 17) the warm chair stands by the bottom-right corner, so the hand waits on the right under
         /// the merchant's speech instead (the secret invitations' spot; shop 17 has none).</summary>
-        public static readonly Vector2 ActOneChallengePosition = new Vector2(5.05f, -1.3f);
+        public static readonly Vector2 ActOneChallengePosition = new Vector2(6.6f, -0.4f); // on the right, clear of the relic stall, the chair and the bonds panel
         private Vector2 HandAt => owner?.Session != null && !owner.Session.State.Endless && owner.Session.State.Wave <= ActOneCanon.Waves ? ActOneChallengePosition : ChallengePosition;
         public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
         public int SpotCount => mode == 1 ? 1 : mode == 2 ? 3 : 0;

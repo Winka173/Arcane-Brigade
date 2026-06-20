@@ -156,6 +156,13 @@ namespace ArcaneBrigade
             bool reduced = profile.ReducedMotion;
             float t = Time.unscaledTime, breathe = reduced ? .5f : .5f + .5f * Mathf.Sin(t * 1.3f);
             Sprite room = MetaIcons.Room;
+            if (room != null && Event.current.type == EventType.Repaint)
+            {
+                // wider or taller screens: the room itself, enlarged and darkened, fills the space round the 16:9 frame
+                Rect beyond = new Rect(-1280, -720, 3840, 2160);
+                GUI.DrawTexture(beyond, room.texture, ScaleMode.ScaleAndCrop);
+                GUI.DrawTexture(beyond, Texture2D.whiteTexture, ScaleMode.StretchToFill, false, 0, new Color(0.02f, 0.03f, 0.055f, 0.62f), 0, 0);
+            }
             if (room != null) { if (Event.current.type == EventType.Repaint) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room.texture, ScaleMode.ScaleAndCrop); }
             else ArcadeSkin.MenuBackdrop(new Rect(0, 0, 1280, 720));
             // the door breathes the next night's light
