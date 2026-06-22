@@ -40,14 +40,18 @@ namespace ArcaneBrigade
         public void Cancel() { Destroy(gameObject); }
         private HashSet<Transform> exclude;
         private float nextScan;
+        // requirement 25/10/2026: a renderer found to belong to an actor (or to this fade) stays one; the looks for newcomers
+        // skip it instead of walking its parents again on every scan
+        private readonly HashSet<SpriteRenderer> actorParts = new HashSet<SpriteRenderer>();
         private bool Scenery(SpriteRenderer r)
         {
             if (r == null || !r.enabled || r.sprite == null || r.color.a <= .02f || !r.gameObject.activeInHierarchy) return false;
+            if (actorParts.Contains(r)) return false;
             Vector3 size = r.bounds.size; if (size.x < .3f && size.y < .3f) return false; // sparks and chips are effects, not the room
             for (Transform t = r.transform; t != null; t = t.parent)
             {
-                if (t == transform || t.name == "DeathRemnant" || exclude != null && exclude.Contains(t)) return false;
-                if (t.GetComponent<UnitVisual>() != null) return false; // a pooled view the caller did not list
+                if (t == transform || t.name == "DeathRemnant" || exclude != null && exclude.Contains(t)) { actorParts.Add(r); return false; }
+                if (t.GetComponent<UnitVisual>() != null) { actorParts.Add(r); return false; } // a pooled view the caller did not list
             }
             return true;
         }

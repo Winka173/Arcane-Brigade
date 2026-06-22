@@ -197,10 +197,16 @@ namespace ArcaneBrigade
                 var points = new List<Vector2>();
                 for (float x = -HalfWidth + 0.2f; x <= HalfWidth - 0.2f; x += 0.125f)
                     for (float y = -HalfHeight + 0.05f; y <= HalfHeight - 0.4f; y += 0.125f) points.Add(new Vector2(x, y));
-                grid = points.ToArray(); distances = new float[grid.Length]; byDistance = new int[grid.Length];
+                grid = points.ToArray(); distances = new float[grid.Length]; byDistance = new int[grid.Length]; sortedValid = false;
             }
-            for (int i = 0; i < grid.Length; i++) { distances[i] = (grid[i] - prop.Preferred).sqrMagnitude; byDistance[i] = i; }
-            System.Array.Sort(distances, byDistance);
+            // requirement 25/10/2026: a prop retried smaller (shrink, a one-visit figure) asks from the same spot; the ~10,000
+            // floor points are sorted once per spot, not once per try
+            if (!sortedValid || sortedFor.x != prop.Preferred.x || sortedFor.y != prop.Preferred.y)
+            {
+                for (int i = 0; i < grid.Length; i++) { distances[i] = (grid[i] - prop.Preferred).sqrMagnitude; byDistance[i] = i; }
+                System.Array.Sort(distances, byDistance);
+                sortedFor = prop.Preferred; sortedValid = true;
+            }
             for (int i = 0; i < byDistance.Length; i++)
             {
                 if (distances[i] > within * within) break;
@@ -212,6 +218,8 @@ namespace ArcaneBrigade
         private static Vector2[] grid;
         private static float[] distances;
         private static int[] byDistance;
+        private static Vector2 sortedFor;
+        private static bool sortedValid;
         private static readonly Rect Floor = Rect.MinMaxRect(-5.4f, -3.7f, 5.4f, 2.9f); // where the traveller shops
         /// <param name="transient">a figure that is only here on this one visit (the Last Customer beside the chair) may
         /// stand where the chair will be on other visits, never on today's chair</param>

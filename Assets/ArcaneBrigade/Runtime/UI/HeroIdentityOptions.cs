@@ -25,7 +25,12 @@ namespace ArcaneBrigade
         public static string Details(ArenaController owner)
         {
             var s = owner.Session; var d = s.HeroIdentityDefinition; if (d == null) return "";
-            return s.HeroIdentityShopSummary + "\n\nAPPROACH: " + d.Approaches[s.State.HeroIdentity.Approach].ToUpperInvariant() + "\n" + d.ApproachDescriptions[s.State.HeroIdentity.Approach];
+            // all three approaches with what each does, the chosen one marked (requirement 25/10/2026: the buttons said nothing)
+            HeroKit kit = HeroKits.For(s.State.ChampionId);
+            string copy = s.HeroIdentityShopSummary + "\n\nAPPROACH" + (kit != null ? " (how " + kit.Transformation + " works)" : "") + " · change it in the shop";
+            for (int i = 0; i < d.Approaches.Length && i < d.ApproachDescriptions.Length; i++)
+                copy += "\n\n" + (i == s.State.HeroIdentity.Approach ? "▶ " : "") + d.Approaches[i].ToUpperInvariant() + (i == s.State.HeroIdentity.Approach ? " (chosen)" : "") + "\n" + d.ApproachDescriptions[i];
+            return copy;
         }
         public void Draw(ArenaController owner, Rect area, GUIStyle text)
         {

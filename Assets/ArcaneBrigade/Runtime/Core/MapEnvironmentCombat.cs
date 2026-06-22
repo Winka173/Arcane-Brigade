@@ -42,6 +42,8 @@ namespace ArcaneBrigade
         public int ParcelState; // 0 not yet, 1 falling, 2 sitting, 3 broken open (gold), 4 opened into an elite
         public Vector2 Parcel; public float ParcelDue, ParcelAt, HatchAt, ParcelBreak;
         public int BoostKind = -1; public float BoostUntil;
+        /// <summary>Letters caught from the chute's current drop, and every catch so far (the presentation counts them over the hero).</summary>
+        public int LetterStreak, LettersCaught;
         public readonly Dictionary<int, float> Stamped = new Dictionary<int, float>();
 
         // Lamp Hall: the lamps and their sweeping light, the snuffer's round, the moths
@@ -77,6 +79,7 @@ namespace ArcaneBrigade
     public static class MapEnvironmentRules
     {
         public const float DoorEvery = 15, DoorCall = 2.4f, DoorOpen = 2.2f, ChairEvery = 8, ChairWarn = .9f, ChairSlide = .7f, ChairStay = 4, ChairReturn = 1, ChairRadius = .55f;
+        public const int FullDelivery = 3; public const float FullDeliveryBonus = 4;
         public const float ChuteEvery = 13, ChuteWarn = 1.2f, LetterSpeed = 3.1f, BoostSeconds = 8, GoldBoostSeconds = 11, StampSeconds = 6, StampDamage = 1.2f;
         // the Post Office is the open floor with the strong draught (requirement 23/10/2026): wider, stronger gusts (were 1.3 / 1.4 / 1.1)
         public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, GustHalf = 1.7f, GustShotPush = 1.8f, GustBodyPush = 1.4f, LightBody = .38f;
@@ -242,7 +245,7 @@ namespace ArcaneBrigade
                 Vector2 half = catalog.ArenaSize * .5f - Vector2.one;
                 s.ChuteX = Mathf.Clamp(Champion.Position.x + side, -half.x, half.x);
                 s.ChuteTop = Mathf.Min(half.y, Champion.Position.y + 4.6f); s.ChuteBottom = Mathf.Max(-half.y, Champion.Position.y - 5.2f);
-                s.LettersToDrop = 5; s.NextLetter = t + MapEnvironmentRules.ChuteWarn;
+                s.LettersToDrop = 5; s.NextLetter = t + MapEnvironmentRules.ChuteWarn; s.LetterStreak = 0;
                 s.Shown.Add(MapIdentity.Element.Chute);
             }
             if (s.LettersToDrop > 0 && t >= s.NextLetter)
@@ -258,6 +261,9 @@ namespace ArcaneBrigade
                 if ((letter.Position - Champion.Position).sqrMagnitude < Mathf.Pow(Champion.Definition.Radius + .45f, 2))
                 {
                     s.BoostKind = mapRandom.Next(3); s.BoostUntil = t + (letter.Gold ? MapEnvironmentRules.GoldBoostSeconds : MapEnvironmentRules.BoostSeconds);
+                    // requirement 25/10/2026: catches count up (x1, x2...); three from one drop is a full delivery, a longer boost
+                    s.LetterStreak++; s.LettersCaught++;
+                    if (s.LetterStreak == MapEnvironmentRules.FullDelivery) s.BoostUntil += MapEnvironmentRules.FullDeliveryBonus;
                     s.Letters.RemoveAt(i); continue;
                 }
                 foreach (UnitState u in units)

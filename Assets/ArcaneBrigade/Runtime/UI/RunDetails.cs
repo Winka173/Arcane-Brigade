@@ -21,6 +21,7 @@ namespace ArcaneBrigade
         private float openedAt;
         private float selectedAt;
         private readonly HeroIdentityOptions heroOptions = new HeroIdentityOptions();
+        private GUIStyle rarityStyle;
         public bool Open => model != null;
         public int Tab => tab;
         public bool HeroSelected => Open && tab == 0 && selection == 0;
@@ -200,7 +201,9 @@ namespace ArcaneBrigade
                 RunBuildReadModel.Row row = rows[index];
                 Rect tile = new Rect(5 + index % cols * (tileW + tileGap), 5 + index / cols * (tileH + tileGap), tileW, tileH);
                 RunHud.Fill(tile, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
-                if (tab == 2 && row.Rarity is ItemRarity tileRarity) { RarityDescriptionFrame.Edge(tile, tileRarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(tile.x + 38, tile.y + 16, 110, 100), tileRarity, Time.unscaledTime); }
+                // requirement 25/10/2026: every friend and relic says its rarity in words (the border colour alone was hard to read)
+                ItemRarity? shownRarity = tab == 2 ? row.Rarity : tab == 1 && !string.IsNullOrEmpty(row.UnitId) ? owner.Content.Unit(row.UnitId)?.Rarity : null;
+                if (shownRarity is ItemRarity tileRarity) { RarityDescriptionFrame.Edge(tile, tileRarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(tile.x + 38, tile.y + 16, 110, 100), tileRarity, Time.unscaledTime); }
                 else if (index == selection) ArcadeSkin.Line(new Rect(tile.x, tile.yMax - 5, tile.width, 5), ArcadeSkin.Accent);
                 if (row.Icon != null) RunHud.Sprite(new Rect(tile.x + 38, tile.y + 16, 110, 100), row.Icon);
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(tile.xMax - 62, tile.y + 80, 46, 46), row.WeaponIcon);
@@ -208,6 +211,14 @@ namespace ArcaneBrigade
                     for (int st = 0; st < stars; st++) { Vector2 sp = new Vector2(tile.x + 22 + st * 20, tile.y + 22); ArcadeSkin.Diamond(sp, 18, new Color(.1f, .06f, .04f, .9f)); ArcadeSkin.Diamond(sp, 13, new Color(1f, .8f, .3f)); }
                 tileName ??= ArcadeTypography.Style(17, true); tileName.alignment = TextAnchor.MiddleCenter; tileName.wordWrap = true; tileName.normal.textColor = ArcadeSkin.Paper;
                 GUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
+                if (shownRarity is ItemRarity tagRarity)
+                {
+                    Rect rarityTag = new Rect(tile.xMax - 104, tile.y + 8, 96, 22);
+                    ArcadeSkin.Slant(rarityTag, RunModifierRules.RarityColor(tagRarity));
+                    rarityStyle ??= new GUIStyle(ArcadeTypography.Style(12, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
+                    rarityStyle.normal.textColor = ArcadeSkin.Ink;
+                    GUI.Label(rarityTag, RunModifierRules.RarityName(tagRarity).ToUpperInvariant(), rarityStyle);
+                }
                 if (GUI.Button(tile, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
             for (int index = 0; index < rows.Count && !grid; index++)

@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             var choices = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items)
                 if (item.Rarity <= ItemRarity.Mythic && item.ShopWeight > 0 && item.Mechanic != RelicMechanic.CompanionGift
-                    && (Eligible(item, ShopPool.Gold) || Eligible(item, ShopPool.Eggs))) choices.Add(item);
+                    && (Eligible(item, ShopPool.Gold) || Eligible(item, ShopPool.Eggs)) && HeroFits(item)) choices.Add(item);
             return choices;
         }
         private bool RareVisitorFits(string id) => id == "StarMender" ? VisitorStarCandidates(2).Count > 0

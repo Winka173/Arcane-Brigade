@@ -6,7 +6,7 @@ namespace ArcaneBrigade
     {
         /// <summary>Act I waves grow from a short first night to a full minute (Brotato-like): 30 s, +2.5 s a wave, 60 s from wave 13.</summary>
         /// <summary>Prices climb with the night: the hall is far busier than it was, and every swarm body drops a coin.</summary>
-        public static float PriceRamp(int wave) => 1f + Mathf.Min(0.6f, Mathf.Max(0, wave - 2) * 0.045f);
+        public static float PriceRamp(int wave) => 1f + Mathf.Min(0.4f, Mathf.Max(0, wave - 2) * 0.045f); // requirement 25/10/2026: capped lower (was 0.6) so late shops are not out of reach
         /// <summary>Act I story bosses stand long enough for their fight (and its light swarm) to happen: bot builds felled them in 4-14 s.</summary>
         public static float StoryBossBulk(int wave) => wave >= 20 ? 5f : wave >= 15 ? 3.5f : wave >= 10 ? 3f : 2f;
         /// <summary>Play-test 20/10/2026 (D9): waves 15% longer than before: 34.5 s, +2.875 s a wave, 69 s from wave 13.</summary>

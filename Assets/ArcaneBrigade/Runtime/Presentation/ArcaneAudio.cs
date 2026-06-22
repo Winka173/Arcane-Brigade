@@ -138,6 +138,31 @@ namespace ArcaneBrigade
             return def.loaded[index];
         }
 
+        /// <summary>Requirement 25/10/2026: the first purchase, the first shop and the first walk down stuttered while their sounds
+        /// were read from disk on the spot. The clips of the cues starting with these prefixes load in the background, one at a
+        /// time, long before they are needed; a cue played before its clip arrives still loads it as before.</summary>
+        public static System.Collections.IEnumerator Warm(params string[] prefixes)
+        {
+            EnsureLoaded();
+            if (cues == null || prefixes == null) yield break;
+            var wanted = new List<ArcaneCueDef>();
+            foreach (ArcaneCueDef def in cues.Values)
+                foreach (string prefix in prefixes)
+                    if (def.id != null && def.id.StartsWith(prefix, StringComparison.Ordinal)) { wanted.Add(def); break; }
+            foreach (ArcaneCueDef def in wanted)
+            {
+                if (def.clips == null || def.clips.Length == 0) continue;
+                if (def.loaded == null) def.loaded = new AudioClip[def.clips.Length];
+                for (int index = 0; index < def.clips.Length; index++)
+                {
+                    if (def.loaded[index] != null) continue;
+                    ResourceRequest request = Resources.LoadAsync<AudioClip>("Audio/Arcane/" + def.clips[index]);
+                    yield return request;
+                    if (def.loaded != null && index < def.loaded.Length && def.loaded[index] == null) def.loaded[index] = request.asset as AudioClip;
+                }
+            }
+        }
+
         public static AudioClip[] LoadStems(ArcanePieceDef piece)
         {
             if (piece.loaded != null) return piece.loaded;

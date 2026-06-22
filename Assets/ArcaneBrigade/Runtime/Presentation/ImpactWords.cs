@@ -47,9 +47,9 @@ namespace ArcaneBrigade
                 if (weakest == null || weakest.Rank >= rank) return false;
                 words.Remove(weakest);
             }
-            // words never pile on one spot: a weaker word near a live one is dropped, a stronger one takes its place
-            Word near = words.Find(w => (w.At - at).sqrMagnitude < 1.6f);
-            if (near != null) { if (near.Rank >= rank) return false; words.Remove(near); }
+            // requirement 25/10/2026: every number stays shown (the numbers are the game's satisfaction); a word landing on a
+            // live one is lifted above it instead of piling on the same spot
+            for (int lift = 0; lift < 4 && words.Exists(w => (w.At - at).sqrMagnitude < .5f); lift++) at += new Vector2(.25f, .55f);
             born.Add(now);
             words.Add(new Word { Text = text, At = at, Born = now, Scale = scale, Angle = angle, Colour = colour, Rank = rank });
             return true;

@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             return false;
         }
         private Tip showing; private float shownAt; private float goalAt = -1; private string goalRun;
-        private GUIStyle line, title, small;
+        private GUIStyle line, title, small, hintLine;
         public string Showing => showing?.Id;
         public bool GoalShowing => goalAt >= 0 && Time.unscaledTime - goalAt < GoalSeconds;
         private const float TipSeconds = 6.5f, GoalSeconds = 7f;
@@ -220,7 +220,7 @@ namespace ArcaneBrigade
             RunCatalog c = owner.Content;
             Sprite friend = c.Companions.Length > 0 ? c.Companions[0].Body : null;
             (Sprite icon, string word)[] steps = { (friend, "Friends"), (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics"), (null, "Stairs ↓") };
-            GUIStyle s = new GUIStyle(line) { fontSize = 22, alignment = TextAnchor.MiddleLeft, wordWrap = false };
+            GUIStyle s = hintLine ??= new GUIStyle(line) { fontSize = 22, alignment = TextAnchor.MiddleLeft, wordWrap = false }; // made once, not every GUI pass
             for (int i = 0; i < steps.Length; i++)
             {
                 Rect cell = new Rect(r.x + 14 + i * 196, r.y + 4, 190, 44);

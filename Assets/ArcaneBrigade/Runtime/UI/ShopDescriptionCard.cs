@@ -28,13 +28,43 @@ namespace ArcaneBrigade
         private int refreshedFrame = -1;
         private RunSession refreshedSession;
         private ShopOffer refreshedOffer;
+        private RunSession keyedSession;
+        private ShopOffer keyedOffer;
+        private int quickKey;
+        private float fullCheckAt;
         private GUIStyle label, value, muted;
+
+        /// <summary>A cheap hash of what the card reads: the offer, the wallet, the wave, the roster, the relics and the bonds.</summary>
+        private static int Fingerprint(RunSession session, ShopOffer offer)
+        {
+            unchecked
+            {
+                RunSnapshot s = session.State;
+                int h = 17;
+                h = h * 31 + offer.Token; h = h * 31 + (int)offer.Kind; h = h * 31 + (offer.Id?.GetHashCode() ?? 0);
+                h = h * 31 + offer.Tier; h = h * 31 + offer.Price; h = h * 31 + (int)offer.Currency; h = h * 31 + (offer.Sold ? 1 : 0);
+                h = h * 31 + s.Gold; h = h * 31 + s.Eggs; h = h * 31 + s.Wave; h = h * 31 + (int)s.Phase; h = h * 31 + s.Health.GetHashCode();
+                h = h * 31 + s.RerollsThisShop; h = h * 31 + s.Offers.Count; h = h * 31 + session.GoldScale.GetHashCode();
+                foreach (RosterEntry r in s.Roster)
+                    h = h * 31 + (r.UnitId?.GetHashCode() ?? 0) * 7 + (r.WeaponId?.GetHashCode() ?? 0) * 3 + r.Tier * 2 + (r.Lucid ? 1 : 0);
+                foreach (ItemStack stack in s.Items) h = h * 31 + (stack.Id?.GetHashCode() ?? 0) + stack.Count;
+                foreach (var bond in session.BondCounts) h = h * 31 + bond.Key.GetHashCode() + bond.Value;
+                return h;
+            }
+        }
 
         public void Refresh(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
             if (Application.isPlaying && refreshedFrame == Time.frameCount && ReferenceEquals(session, refreshedSession) && ReferenceEquals(offer, refreshedOffer)) return;
             refreshedFrame = Time.frameCount; refreshedSession = session; refreshedOffer = offer;
+            // requirement 25/10/2026: the shop stuttered while a card was shown (the whole run was turned into JSON every frame).
+            // A cheap fingerprint of what the card reads is checked every frame; the full run is compared only twice a second,
+            // to catch anything the fingerprint does not cover.
+            int quick = Fingerprint(session, offer);
+            bool sameTarget = ReferenceEquals(session, keyedSession) && ReferenceEquals(offer, keyedOffer);
+            if (cacheKey != null && sameTarget && quick == quickKey && (Application.isPlaying && Time.unscaledTime < fullCheckAt)) return;
             string key = JsonUtility.ToJson(session.State) + ":" + JsonUtility.ToJson(offer);
+            keyedSession = session; keyedOffer = offer; quickKey = quick; fullCheckAt = Time.unscaledTime + .5f;
             if (key == cacheKey) return;
             cacheKey = key; Bonds.Clear(); Attack = null;
             if (offer.Kind == OfferKind.Item)

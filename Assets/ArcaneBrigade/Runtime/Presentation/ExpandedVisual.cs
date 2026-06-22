@@ -149,11 +149,12 @@ namespace ArcaneBrigade
                     // requirement 25/10/2026: no thin red outline over an enemy's area - its ink (CombatFieldPainting) shows the band that hurts
                     if (CarnivalHazards.IsHostile(field.Kind)) line.enabled = false;
                     if (field.Kind == ExpandedFieldKind.Projector) line.enabled = false;
+                    if (hazard) line.enabled = false; // requirement 25/10/2026: no enemy area is an outline - it is a filled wash
                     // our own bursts are painted moments; no closed circle round them (warnings and hostile areas keep theirs)
                     if (!hazard && line.loop && line.positionCount == 64 && field.Kind != ExpandedFieldKind.MagnetCone) line.enabled = false;
                     MeshRenderer fill = fills[slot];
                     fill.enabled = (hazard || field.Kind == ExpandedFieldKind.Projector) && field.Radius > 0;
-                    if (hazard) fill.enabled = !warning && field.Kind == ExpandedFieldKind.ShadowPool;
+                    if (hazard) fill.enabled = field.Radius > 0 && (CarnivalHazards.IsHostile(field.Kind) ? !warning && field.Kind == ExpandedFieldKind.ShadowPool : true);
                     if (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave) fill.enabled = false;
                     if (field.Kind == ExpandedFieldKind.Tea) { fill.enabled = field.Radius > 0; line.enabled = false; } // spilt tea: a soft amber stain, not porcelain
                     if (fill.enabled)
@@ -178,7 +179,7 @@ namespace ArcaneBrigade
                             fill.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                             fill.transform.localScale = new Vector3(direction.magnitude + field.Radius, field.Radius, 1);
                         }
-                        Color wash = color; wash.a *= hazard ? 0.14f : field.Kind == ExpandedFieldKind.Tea ? 0.32f : 0.65f;
+                        Color wash = color; wash.a *= hazard ? 0.42f : field.Kind == ExpandedFieldKind.Tea ? 0.32f : 0.65f;
                         tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
                     }
                     bool painted = CarnivalHazards.IsHostile(field.Kind) && field.Source != null && field.Source.Variant != null && (field.Source.Variant.Affix != EnemyAffix.None || field.Source.Definition.SpecialEnemy != SpecialEnemyKind.None) && field.Kind != ExpandedFieldKind.FallingProp;

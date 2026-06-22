@@ -7,7 +7,7 @@ namespace ArcaneBrigade
         public static float ShopPrice(int wave)
         {
             float stage = Mathf.Max(0, wave - 1);
-            return Mathf.Min(10000, (1 + stage * 0.12f + stage * stage * 0.009f) * (1 + Mathf.Min(0.2f, Mathf.Max(0, wave - 3) * 0.01f)) * (1 + Mathf.Max(0, wave - 7) * .065f) * SwarmCoinPressure(wave));
+            return Mathf.Min(10000, (1 + stage * 0.12f + stage * stage * 0.009f) * (1 + Mathf.Min(0.2f, Mathf.Max(0, wave - 3) * 0.01f)) * (1 + Mathf.Max(0, wave - 7) * .04f) * SwarmCoinPressure(wave)); // requirement 25/10/2026: late prices a notch lower (was .065 a wave from wave 7)
         }
         /// <summary>Balance pass 19/10/2026: swarm coins grow far faster than prices after wave 5 (bot wallet / mean offer 5.6 at
         /// waves 1–5, 12.5 at 6–10, 16 at 11–19; 18 relics bought per late shop). Prices catch up to x2.2 by wave 13, keeping

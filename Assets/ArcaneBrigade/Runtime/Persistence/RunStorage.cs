@@ -185,10 +185,28 @@ namespace ArcaneBrigade
                 bool hauled = MetaProgression.Credit(profile, run, catalog); // before RunMeta.Credit marks the run completed
                 RunMeta.Credit(profile, run);
                 RunAchievements.Credit(profile, run, catalog);
-                SaveProfile(profile);
+                // requirement 25/10/2026: the profile carries up to 50 finished runs (well over 1 MB); every shop purchase, reroll
+                // and wave boundary records progress, so it is written only when it differs from what this path last wrote
+                string after = JsonUtility.ToJson(profile);
+                string path = Path.Combine(directory, "profile.json");
+                if (!AlreadyWritten(path, after)) { SaveProfile(profile); Remember(path, after); }
                 if (hauled) SaveRun(run); // the haul shows on the summary when the run is reopened
             }
             catch { JsonUtility.FromJsonOverwrite(before, profile); throw; }
+        }
+
+        // the compact profile last written by RecordProgress at each path and the file's write time just after; any other
+        // write (settings, tips, another storage) changes that time, so the next record writes again
+        private static readonly Dictionary<string, (string Json, DateTime Written)> recorded = new Dictionary<string, (string, DateTime)>();
+        private static bool AlreadyWritten(string path, string json)
+        {
+            try { return recorded.TryGetValue(path, out var last) && last.Json == json && File.Exists(path) && File.GetLastWriteTimeUtc(path) == last.Written; }
+            catch { return false; }
+        }
+        private static void Remember(string path, string json)
+        {
+            try { recorded[path] = (json, File.GetLastWriteTimeUtc(path)); }
+            catch { recorded.Remove(path); }
         }
     }
 }

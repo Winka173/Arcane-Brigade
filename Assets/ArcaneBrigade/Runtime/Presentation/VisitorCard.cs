@@ -173,21 +173,22 @@ namespace ArcaneBrigade
             GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * fade);
             if (!still) ArcadeSkin.ScaleAround(Vector2.one * (closingAt >= 0 ? Mathf.Lerp(1, .9f, tClose) : .88f + .12f * Overshoot(tOpen)), card.center + Vector2.up * ((1 - tOpen) * 18 + tClose * 10));
             if (closingAt >= 0) GUI.enabled = false; // no choice is taken while the card closes
-            ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
+            // requirement 25/10/2026: the visitor's card is the game's own description frame (as in the shop), not a paper ticket
+            RarityDescriptionFrame.Draw(card, ItemRarity.Rare, Time.unscaledTime);
             Sprite portrait = ExpansionArtwork.Current?.Visitor(v.Id, 1) ?? ExpansionArtwork.Current?.Visitor(v.Id, 0);
-            Rect inner = ArcadeSkin.Content(card, KitFrame.Card); // inside the paper's rim and lantern corners
+            Rect inner = new Rect(card.x + 48, card.y + 40, card.width - 96, card.height - 76); // inside the frame's rim
             ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y + 10, 250, 320), portrait);
             float x = card.x + 300;
 
             // who: the name, one dimmed line in the visitor's hand (the full offer waits under the i)
-            title.normal.textColor = Brown;
+            title.normal.textColor = ArcadeSkin.Gold;
             GUI.Label(new Rect(x, inner.y - 6, width - 90, 50), v.Name, title);
             Rect info = new Rect(inner.xMax - 66, inner.y - 6, 66, 66);
             if (ArcadeSkin.Medallion(info, KitMedallion.Info, details)) { details = !details; detailsAt = Time.unscaledTime; } // the painted brass "i" (UI kit)
             Rect said = new Rect(x, card.y + 76, width - 20, 70);
             Lift line = Rise(said, (Time.unscaledTime - Mathf.Max(openedAt + .04f, detailsAt)) / .2f, 0, 1);
-            if (details) { plain.normal.textColor = new Color(.18f, .14f, .1f); GUI.Label(said, ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
-            else { hand.normal.textColor = new Color(.30f, .22f, .16f, .75f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
+            if (details) { plain.normal.textColor = ArcadeSkin.Cream; GUI.Label(said, ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
+            else { hand.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, .72f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
             Settle(line);
 
             if (pictures) DrawPick(v, state, options, x, card.y + Head, width, true);
@@ -376,7 +377,7 @@ namespace ArcaneBrigade
                 Rect prev = new Rect(ax, y + SlotH * .5f - 46, aw, 92), next = new Rect(ax + aw + 12, prev.y, aw, 92);
                 if (ArcadeSkin.IconButton(prev, KitRound.Walnut, "◀", null, true, mark)) { page = (page + pages - 1) % pages; pageAt = Time.unscaledTime; pageDir = -1; }
                 if (ArcadeSkin.IconButton(next, KitRound.Walnut, "▶", null, true, mark)) { page = (page + 1) % pages; pageAt = Time.unscaledTime; pageDir = 1; }
-                caption.normal.textColor = Brown; GUI.Label(new Rect(ax, prev.yMax + 8, aw * 2 + 12, 24), (page + 1) + " / " + pages, caption); caption.normal.textColor = ArcadeSkin.Cream;
+                caption.normal.textColor = ArcadeSkin.Cream; GUI.Label(new Rect(ax, prev.yMax + 8, aw * 2 + 12, 24), (page + 1) + " / " + pages, caption);
             }
             return y - top + SlotH;
         }

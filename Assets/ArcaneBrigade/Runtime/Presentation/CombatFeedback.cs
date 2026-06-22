@@ -6,6 +6,7 @@ namespace ArcaneBrigade
 {
     public sealed class CombatFeedback : MonoBehaviour
     {
+        private float lastDodgeWord = -10;
         private sealed class Spark
         {
             public SpriteRenderer View;
@@ -70,7 +71,8 @@ namespace ArcaneBrigade
             if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
             // requirement 24/10/2026: healing reads as a green +N over the hero, a dodge as a small word
             if (combatEvent.Kind == CombatEventKind.Heal && combatEvent.Faction == Faction.Champion && combatEvent.Value >= .5f) ShowHeal(combatEvent);
-            if (combatEvent.Kind == CombatEventKind.Dodge && combatEvent.Faction == Faction.Champion) Label(combatEvent.Position + Vector2.up * .7f, "Dodge", new Color(.55f, 1f, .9f), .62f);
+            // one "Dodge" at a time: a burst of dodged hits shows the word once, not stacked
+            if (combatEvent.Kind == CombatEventKind.Dodge && combatEvent.Faction == Faction.Champion && Time.unscaledTime - lastDodgeWord > .6f) { lastDodgeWord = Time.unscaledTime; Label(combatEvent.Position + Vector2.up * .7f, "Dodge", new Color(.55f, 1f, .9f), .62f); }
             if (sprite == null || PresentationSettings.ReducedMotion || (!hit && !kill && !pickup) || hit && combatEvent.Value <= 0) return;
             bool important = combatEvent.Faction == Faction.Champion || combatEvent.Critical;
             bool heavy = combatEvent.Weapon != null && (combatEvent.Weapon.Motion == WeaponMotion.Hammer || combatEvent.Weapon.Motion == WeaponMotion.Slam);
@@ -151,7 +153,8 @@ namespace ArcaneBrigade
             }
             bool champion = combatEvent.Faction == Faction.Champion;
             // Readability: ordinary companion/champion hits stay small and few; crits and damage taken always read.
-            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 12) return;
+            // requirement 25/10/2026: the numbers are the satisfaction - many more ordinary hits stay shown (was 12)
+            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 28) return;
             DamageNumber number = Take(champion);
             if (number == null) return;
             number.Kind = 0;
@@ -183,7 +186,7 @@ namespace ArcaneBrigade
         private DamageNumber Take(bool priority)
         {
             DamageNumber number = numbers.Find(candidate => candidate.Age >= candidate.Life);
-            if (number == null && numbers.Count >= 32)
+            if (number == null && numbers.Count >= 64)
             {
                 if (!priority) return null;
                 number = numbers.Find(candidate => !candidate.Champion) ?? numbers[0];

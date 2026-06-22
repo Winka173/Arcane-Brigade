@@ -31,6 +31,7 @@ namespace ArcaneBrigade
         private int preview;
         private readonly ShopDescriptionCard giftCard = new ShopDescriptionCard();
         private GUIStyle takeStyle;
+        private GUIStyle choiceButton, choiceSource;
         private static string FirstLines(string text, int lines)
         {
             if (string.IsNullOrEmpty(text)) return "";
@@ -102,7 +103,8 @@ namespace ArcaneBrigade
         {
             if (mode == 0 || owner == null || owner.TransitionPending || owner.PresentationPaused) return;
             GUISkin previousSkin = GUI.skin; GUI.skin = ArcadeSkin.Skin;
-            GUIStyle choiceButton = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = 22, wordWrap = true, padding = new RectOffset(16, 16, 8, 8) };
+            // made once per skin, not on every GUI pass (requirement 25/10/2026: no per-frame style allocations)
+            if (choiceButton == null || choiceSource != GUI.skin.button) { choiceSource = GUI.skin.button; choiceButton = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = 22, wordWrap = true, padding = new RectOffset(16, 16, 8, 8) }; }
             if (title == null)
             {
                 title = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 28, alignment = TextAnchor.MiddleCenter, wordWrap = true };

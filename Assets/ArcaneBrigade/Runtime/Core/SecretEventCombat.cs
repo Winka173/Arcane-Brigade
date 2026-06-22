@@ -111,7 +111,10 @@ namespace ArcaneBrigade
                 secretSecondActor.NextAttack = 3.5f;
             }
         }
-        private bool SecretVictoryReady() => catalog.SecretEncounter == 6 ? BossDefeated && (secretSecondActor == null || !secretSecondActor.Alive) : catalog.Boss == null ? Elapsed >= catalog.WaveDuration : BossDefeated;
+        // requirement 25/10/2026: a boss beaten early does not end the wave - the night runs on to its time like any other; a
+        // secret fight, the Keeper and the Last Customer's last hall still end when their foe falls
+        private bool SecretVictoryReady() => catalog.SecretEncounter == 6 ? BossDefeated && (secretSecondActor == null || !secretSecondActor.Alive) : catalog.Boss == null ? Elapsed >= catalog.WaveDuration
+            : catalog.SecretEncounter > 0 || catalog.WholeKeeper || catalog.Boss.Id == NightmareRules.CustomerId ? BossDefeated : BossDefeated && Elapsed >= catalog.WaveDuration;
 
         private bool ProcessSecretBoss(UnitState boss)
         {

@@ -19,6 +19,8 @@ namespace ArcaneBrigade
                 default: return 1;
             }
         }
-        public static float BaseDamage(WeaponDefinition weapon) => weapon.Damage * Scale(weapon.Id);
+        /// <summary>Every hero's and friend's base weapon damage, raised across the board (requirement 25/10/2026).</summary>
+        public const float BaseBoost = 1.15f;
+        public static float BaseDamage(WeaponDefinition weapon) => weapon.Damage * Scale(weapon.Id) * BaseBoost;
     }
 }

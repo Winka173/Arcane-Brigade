@@ -318,6 +318,8 @@ namespace ArcaneBrigade
                         float x0 = frame.x + 50;
                         if (icon != null)
                         {
+                            ItemDefinition won = owner.Content.Item(iconId);
+                            VisitorReceipt.Rays(new Vector2(x0 + 80, frame.y + 180), 200, Time.unscaledTime - resultAt, won != null ? RunModifierRules.RarityColor(won.Rarity) : ArcadeSkin.Gold); // held up to the light
                             ArcadeSkin.Glow(new Rect(x0 - 30, frame.y + 70, 220, 220), new Color(1f, .82f, .5f, .3f));
                             DrawSprite(new Rect(x0, frame.y + 100, 160, 160), icon); x0 += 196;
                         }

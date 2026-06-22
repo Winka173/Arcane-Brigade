@@ -56,7 +56,7 @@ namespace ArcaneBrigade
             var candidates = new List<ItemDefinition>();
             RelicCategory category = (RelicCategory)h.Approach;
             foreach (ItemDefinition i in catalog.Items)
-                if (i.Category == category && i.UnlockWave <= (long)State.Wave + 1 && i.ShopWeight > 0 && ReviewBalance.ExclusivePool(i) == ShopPool.Gold && OctoberItemEligible(i) && StackCount(i.Id) < i.StackLimit) candidates.Add(i);
+                if (i.Category == category && i.UnlockWave <= (long)State.Wave + 1 && i.ShopWeight > 0 && ReviewBalance.ExclusivePool(i) == ShopPool.Gold && OctoberItemEligible(i) && HeroFits(i) && StackCount(i.Id) < i.StackLimit) candidates.Add(i);
             if (candidates.Count == 0) { Notice = "No eligible forward order in this category."; return false; }
             ItemDefinition item = candidates[Next(ref State.ShopRandom, candidates.Count)];
             int basePrice = Mathf.CeilToInt(item.Price * .85f * (1 + (int)item.Rarity * .4f) * CarnivalBalance.ShopPrice(State.Wave + 1));

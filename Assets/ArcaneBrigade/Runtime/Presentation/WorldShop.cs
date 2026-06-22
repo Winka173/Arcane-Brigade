@@ -128,6 +128,8 @@ namespace ArcaneBrigade
             dialogue.Anchor = MerchantMouth;
             ShopFocus.Register(this);
             gameObject.AddComponent<ShopInspect>().Configure(controller); // every placed thing can be clicked and read
+            // the shop's, the wave clear's and the upgrades' sounds load in the background during the first night, not at the first purchase
+            if (ArcaneCueLibrary.Available) StartCoroutine(ArcaneCueLibrary.Warm("shop.", "up.", "sting.waveclear"));
         }
         private void OnDestroy() => ShopFocus.Unregister(this);
         // every unsold stall, the reroll machine, the way out and the altar, while the room is up and settled

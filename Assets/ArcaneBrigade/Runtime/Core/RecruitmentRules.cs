@@ -75,6 +75,7 @@ namespace ArcaneBrigade
                 foreach (UnitDefinition unit in catalog.Companions) if (OwnsCompanionSpecies(unit.Id) && RegularShelfSpecies(unit)) copies.Add(unit);
             var items = new List<ItemDefinition>();
             if (copies.Count == 0) foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
+            items = HeroRelicPools.Pool(catalog.Unit(State.ChampionId), items);
             if (copies.Count == 0 && items.Count == 0) return null;
             bool recruit = copies.Count > 0;
             UnitDefinition friend = recruit ? copies[RecruitChoice(copies)] : null;

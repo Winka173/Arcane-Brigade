@@ -12,10 +12,11 @@ namespace ArcaneBrigade
             HeroKit kit = HeroKits.For(id);
             if (kit == null) return Legacy(id);
             string name = kit.Transformation;
+            // requirement 25/10/2026: plain words - what changes while transformed, and when to pick it
             return new[] {
-                name + " focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.",
-                name + " spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.",
-                name + " lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on." };
+                "While you are " + name + ", each strike hits 15% harder but reaches at most 3 enemies. Pick it for bosses and big enemies.",
+                "While you are " + name + ", each strike reaches up to 5 enemies at normal strength. Pick it for crowds.",
+                name + " lasts 1.5s longer and heals you 1 HP every 2s, but each strike hits 15% weaker. Pick it to stay alive." };
         }
         /// <summary>The approaches as they read before hero kits (kept for heroes without a kit).</summary>
         private static string[] Legacy(string id) => id switch

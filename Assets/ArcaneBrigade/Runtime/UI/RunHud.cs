@@ -589,6 +589,18 @@ namespace ArcaneBrigade
         {
             more = 0;
             if (string.IsNullOrEmpty(source)) return "";
+            // requirement 25/10/2026: the card is fitted once per text and size, not re-measured on every GUI pass
+            if (ReferenceEquals(source, fitSource) && width == fitWidth && height == fitHeight && cardLine.fontSize == fitFont) { more = fitMore; return fitKept; }
+            string kept = FitLines(source, width, height, out more);
+            fitSource = source; fitWidth = width; fitHeight = height; fitFont = cardLine.fontSize; fitKept = kept; fitMore = more;
+            return kept;
+        }
+        private string fitSource, fitKept;
+        private float fitWidth, fitHeight;
+        private int fitFont, fitMore;
+        private string FitLines(string source, float width, float height, out int more)
+        {
+            more = 0;
             string[] all = source.Replace("\r", "").Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
             string kept = "";
             int taken = 0;
@@ -642,7 +654,9 @@ namespace ArcaneBrigade
                 if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
                 if (icon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), icon); // on the socket's measured centre
                 cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
-                GUI.Label(new Rect(chip.x + Lead, chip.y, w - Lead - Tail + 6, H), label, cardChip);
+                // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
+                float middle = ArcadeSkin.ChipIconRect(chip).center.y + H * .1f; // the font sits high in its line box
+                GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail + 6, H), label, cardChip);
                 cardChip.fontSize = size;
                 cx += w + Gap;
             }
@@ -663,10 +677,12 @@ namespace ArcaneBrigade
             bool priced = price > 0 && station.Action != "VISITOR";
             int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
-            cardBig.wordWrap = true;
             // laid out inside the plate's rim with real margins (requirement 22/10/2026): the verb on the upper half, the price on the lower
             Rect inner = ArcadeSkin.Content(button, KitPiece.Plate);
             Rect verbRect = priced ? new Rect(inner.x, inner.y, inner.width, inner.height * .54f) : inner;
+            // one line that shrinks to fit, never wrapped into a second line the plate cuts off
+            cardBig.wordWrap = false;
+            while (cardBig.fontSize > 12 && cardBig.CalcSize(new GUIContent(verb)).x > verbRect.width - 6) cardBig.fontSize--;
             GUI.Label(verbRect, verb, cardBig);
             cardBig.fontSize = bigSize; cardBig.normal.textColor = bigColor;
             if (!priced) return;

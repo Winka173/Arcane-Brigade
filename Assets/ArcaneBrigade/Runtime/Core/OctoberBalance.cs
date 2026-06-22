@@ -5,8 +5,12 @@ namespace ArcaneBrigade
     {
         public const int AllySoftLimit = 15;
         public const float WaveSeconds = 52; // 45 before the play-test (+15%, D9)
-        public const float EnemyHealthRelief = .92f; // requirement 25/10/2026: every enemy a little softer at every difficulty (was 1.03)
-        public const float EnemyDamageRelief = .86f; // requirement 25/10/2026: and hits a little lighter (was .96)
+        public const float EnemyHealthRelief = .82f; // requirement 25/10/2026 (third pass): every enemy a little softer at every difficulty (was .87, .92, 1.03)
+        public const float EnemyDamageRelief = 1f;   // requirement 25/10/2026 (third pass): hits a little harder again at every difficulty (was .93, .86)
+        /// <summary>From wave 5, at every difficulty, a night brings fewer enemies: a smaller crowd and slower arrivals.</summary>
+        public const int LaterCrowdWave = 5; public const float LaterCrowd = .72f; // (second pass; was .85)
+        /// <summary>From wave 10 the crowd thins again (requirement 25/10/2026: too many to count) and never passes a hard cap.</summary>
+        public const int DeepCrowdWave = 10; public const float DeepCrowd = .55f; public const int CrowdCap = 220;
         public const float BossHealthRelief = .5f; // requirement 24/10/2026: was .6 - long boss fights farmed the overtime swarm's gold
         /// <summary>A boss night lasts this much longer before the boss's overtime swarm begins (requirement 24/10/2026).</summary>
         public const float BossExtraSeconds = 30;

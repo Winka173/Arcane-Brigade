@@ -66,13 +66,13 @@ namespace ArcaneBrigade
             bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop;
             foreach (SpriteRenderer r in props)
             {
-                if (inShop && !IsShopkeeper(r)) continue;
+                if (inShop && !Shopkeeper(r)) continue;
                 if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder <= heroOrder || r.sortingOrder >= 1600) continue;
                 Vector3 size = r.bounds.size;
                 if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14 || r.color.a < .05f) continue;
                 Bounds b = r.bounds; b.extents = new Vector3(b.extents.x, b.extents.y, 1000);
                 if (!b.Intersects(covered)) continue;
-                if (IsShopkeeper(r))
+                if (Shopkeeper(r))
                 {
                     // The animated portrait is cut in two. Fade the whole portrait together to avoid a visible seam.
                     foreach (SpriteRenderer piece in r.GetComponentInParent<ShopDisplayActor>().GetComponentsInChildren<SpriteRenderer>())
@@ -130,6 +130,15 @@ namespace ArcaneBrigade
             f.Target = Mathf.Min(f.Target, alpha);
         }
 
+        // requirement 25/10/2026: the shop checked every prop's parents for the shopkeeper every frame; a renderer's answer is
+        // kept (forgotten with the prop scan's own cache)
+        private readonly Dictionary<SpriteRenderer, bool> shopkeeperParts = new Dictionary<SpriteRenderer, bool>();
+        private bool Shopkeeper(SpriteRenderer renderer)
+        {
+            if (renderer == null) return false;
+            if (!shopkeeperParts.TryGetValue(renderer, out bool keeper)) shopkeeperParts[renderer] = keeper = IsShopkeeper(renderer);
+            return keeper;
+        }
         public static bool IsShopkeeper(SpriteRenderer renderer)
         {
             var actor = renderer != null ? renderer.GetComponentInParent<ShopDisplayActor>() : null;
@@ -158,7 +167,7 @@ namespace ArcaneBrigade
         private void Scan()
         {
             nextScan = Time.unscaledTime + .5f;
-            if (Time.unscaledTime >= nextForget) { classified.Clear(); nextForget = Time.unscaledTime + 10; }
+            if (Time.unscaledTime >= nextForget) { classified.Clear(); shopkeeperParts.Clear(); nextForget = Time.unscaledTime + 10; }
             props.Clear();
             foreach (SpriteRenderer r in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
             {
@@ -189,16 +198,7 @@ namespace ArcaneBrigade
             float glow = (moving ? .62f : .42f) + (PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(t * 2.4f) * .05f);
             Color light = Color.Lerp(tint, new Color(1, .93f, .7f), .45f);
             ring.GlowRibbon(InkCanvas.Arc(feet, width * 1.04f, height * 1.04f, 0, 360, 40), 1, 0, .16f, new Color(light.r, light.g, light.b, glow * .55f));
-            var palette = new InkPalette(new Color(tint.r * .25f, tint.g * .22f, tint.b * .25f), Color.Lerp(tint, Color.white, .15f), Color.Lerp(tint, Color.white, .7f), light, ArcadeSkin.Gold);
-            float spin = PresentationSettings.ReducedMotion ? 0 : t * 22;
-            // two brush strokes that leave small gaps: a rim drawn by hand, not a plain ellipse
-            for (int arc = 0; arc < 2; arc++)
-            {
-                float from = spin + arc * 180 + 12, to = from + 156;
-                InkStroke s = InkStroke.Of(palette, .045f, moving ? .95f : .8f, arc * .37f);
-                s.Taper = .6f;
-                ring.Stroke(InkCanvas.Arc(feet, width, height, from, to, 22), s);
-            }
+            // (the two gapped brush strokes round the glow are gone: requirement 25/10/2026, no dashed rim round our side)
             ring.Commit();
             RingVisible = true;
         }

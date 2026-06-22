@@ -389,6 +389,17 @@ namespace ArcaneBrigade
             // waves are 15% longer (D9): the budget grows with them so enemies per second stay the same
             CombatCatalog.EnemyBudget = Mathf.Min(Mathf.CeilToInt(690 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(CombatCatalog.EnemyBudget * WaveCadence.LengthScale));
             CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
+            if (State.Wave >= OctoberBalance.LaterCrowdWave)
+            {
+                // requirement 25/10/2026: fewer enemies from wave 5 at every difficulty
+                CombatCatalog.EnemyBudget = Mathf.CeilToInt(CombatCatalog.EnemyBudget * OctoberBalance.LaterCrowd);
+                CombatCatalog.SpawnInterval /= OctoberBalance.LaterCrowd;
+            }
+            if (State.Wave >= OctoberBalance.DeepCrowdWave)
+            {
+                CombatCatalog.EnemyBudget = Mathf.Min(OctoberBalance.CrowdCap, Mathf.CeilToInt(CombatCatalog.EnemyBudget * OctoberBalance.DeepCrowd));
+                CombatCatalog.SpawnInterval /= OctoberBalance.DeepCrowd;
+            }
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
             CombatCatalog.PickupRadius = Mathf.Max(3.2f, catalog.Arena.PickupRadius * 2.4f) + Bonus(ItemEffect.Pickup);
@@ -486,7 +497,7 @@ namespace ArcaneBrigade
             CombatCatalog.KillCoinBatchSize = CarnivalBalance.KillCoinBatch(State.Wave);
             CombatCatalog.KillCoinRewardPercent = 90;
             CombatCatalog.CoinValueScale = CarnivalBalance.CoinGoldValue;
-            CombatCatalog.EnemyBudget = Mathf.Min(690, CombatCatalog.EnemyBudget);
+            CombatCatalog.EnemyBudget = Mathf.Min(State.Wave >= OctoberBalance.DeepCrowdWave ? OctoberBalance.CrowdCap : 690, CombatCatalog.EnemyBudget); // the cap holds after pacts and visitors too
             PrepareVisitors();
             CombatCatalog.BossSwarmBudget = bossWave ? Mathf.CeilToInt(CombatCatalog.EnemyBudget * 0.22f) : 0;
             CombatCatalog.FinalDuel = false;
@@ -533,7 +544,7 @@ namespace ArcaneBrigade
             if (!companion) unit.CollisionDamage = Mathf.Max(3, source.CollisionDamage);
             unit.PassiveStrength = source.Passive == PassiveKind.Scavenge ? ScavengeGold(source.PassiveStrength, tier, catalog.TierSupportMultiplier, GoldScale)
                 : source.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
-            unit.Weapon.Damage *= FriendlyWeaponBalance.Scale(weapon.Id) * DamageMultiplier(source, tier, companion);
+            unit.Weapon.Damage *= FriendlyWeaponBalance.Scale(weapon.Id) * FriendlyWeaponBalance.BaseBoost * DamageMultiplier(source, tier, companion);
             unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, PlayerBuildBalance.AttackSpeedSlope(companion)), .25f, PlayerBuildBalance.AttackSpeedCap(companion));
             unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
             unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
@@ -909,6 +920,8 @@ namespace ArcaneBrigade
         // Kept for read-model/API compatibility; availability now follows the saved 3–4-wave schedule, not held eggs.
         public float AltarActivationChance => !MetaNoDreamShop && (State.Wave >= State.NextSpecialShopWave || OctoberHero == "Periwinky") ? 1 : 0;
 
+        /// <summary>The relic fits the hero's own pool (HeroRelicPools); random relic gifts and swaps draw from it too.</summary>
+        private bool HeroFits(ItemDefinition item) => HeroRelicPools.Fits(catalog.Unit(State.ChampionId), item);
         private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && OctoberItemEligible(item) && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && ReviewBalance.ExclusivePool(item) == pool) && StackCount(item.Id) < item.StackLimit;
 
         private int WeightedItem(List<ItemDefinition> items)
@@ -944,7 +957,10 @@ namespace ArcaneBrigade
         }
         /// <summary>The Lone line comes three times as often while two friends or fewer are deployed, less with a big brigade.</summary>
         private float LoneWeight(ItemDefinition item) => item.Mechanic < RelicMechanic.LoneLantern ? 1 : ActiveRoster.Count <= 2 ? 3 : ActiveRoster.Count >= 6 ? .4f : 1;
-        private int BaseItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + KitRarityBonus + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4) * (item.Category == RelicCategory.Drink ? 1 + .05f * MechanicStacks(RelicMechanic.DrinkTempo) + (State.RelicDiscountWave == State.Wave ? 1 : 0) : 1)));
+        // requirement 25/10/2026: rarer relics come much more often in every shop, and more again with each refresh in that shop
+        public const float RareLiftBase = .5f, RareLiftPerReroll = .3f;
+        private float ShopRareLift => RareLiftBase + RareLiftPerReroll * Mathf.Min(State.RerollsThisShop + (rerolledAway != null ? 1 : 0), 10); // the refresh being rolled counts
+        private int BaseItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + KitRarityBonus + ShopRareLift + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4) * (item.Category == RelicCategory.Drink ? 1 + .05f * MechanicStacks(RelicMechanic.DrinkTempo) + (State.RelicDiscountWave == State.Wave ? 1 : 0) : 1)));
 
         public float NewRecruitChance
         {
@@ -1036,6 +1052,7 @@ namespace ArcaneBrigade
             foreach (UnitDefinition unit in catalog.Companions) if (RegularShelfSpecies(unit) && RegularRecruitOpen(unit.Id)) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
+            items = HeroRelicPools.Pool(catalog.Unit(State.ChampionId), items); // requirement 25/10/2026: each hero's shop offers only relics that fit it
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
             if (rerolledAway != null)
             {
@@ -1091,6 +1108,7 @@ namespace ArcaneBrigade
             if (State.NextOffer > int.MaxValue - 4) throw new InvalidOperationException("Shop token counter exhausted");
             var specialItems = new List<ItemDefinition>();
             foreach (ItemDefinition candidate in catalog.Items) if (Eligible(candidate, ShopPool.Eggs)) specialItems.Add(candidate);
+            specialItems = HeroRelicPools.Pool(catalog.Unit(State.ChampionId), specialItems);
             if (specialItems.Count == 0) throw new InvalidOperationException("No eligible altar offers");
             State.SpecialOffers.Clear();
             var specialUnits = new List<UnitDefinition>();

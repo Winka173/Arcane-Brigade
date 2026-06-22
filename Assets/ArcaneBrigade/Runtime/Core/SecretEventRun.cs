@@ -21,9 +21,10 @@ namespace ArcaneBrigade
         {
             if (SecretEventAssets.Current == null || State.Phase != SessionPhase.Shop || SecretRoomOpen || State.OutsideStage == OutsideStageStatus.Reward) return Array.Empty<SecretEventKind>();
             if (Secret.QueuedEvent >= 0 && Secret.VisitWave != State.Wave) return new[] { (SecretEventKind)Secret.QueuedEvent };
-            // Act I: the middle of each zone (shops 3, 8, 13, 18), never a boss night's shop; endless keeps every fourth
-            bool invited = !State.Endless && State.Wave <= ActOneCanon.Waves ? ActOneCanon.SecretShop(State.Wave) : State.Wave >= 3 && State.Wave % 4 == 3;
-            if (Secret.Visits >= 2 || !invited || Secret.VisitWave == State.Wave) return Array.Empty<SecretEventKind>();
+            // requirement 25/10/2026: after every wave a 30% chance of a secret door, +30% for each shop without one (so one
+            // comes within four shops), back to 30% once one appears; no cap on visits (each room is still met once)
+            bool invited = SecretInvited(State.Wave);
+            if (!invited || Secret.VisitWave == State.Wave) return Array.Empty<SecretEventKind>();
             var kinds = Enumerable.Range(0, 8).Where(k => (Secret.VisitedMask & (1 << k)) == 0).ToList();
             uint hash = unchecked((uint)State.Seed ^ (uint)State.Wave * 0x9e3779b9u);
             var result = new List<SecretEventKind>();
@@ -35,6 +36,21 @@ namespace ArcaneBrigade
             return result.ToArray();
         }
 
+        public const float SecretInviteBase = .3f, SecretInviteStep = .3f;
+        /// <summary>Whether this wave's shop has a secret door: rolled from the run's seed wave by wave (a miss raises the next
+        /// chance), so it is the same every time the shop is opened or the run is loaded.</summary>
+        private bool SecretInvited(int wave)
+        {
+            int misses = 0;
+            for (int w = 1; w <= wave; w++)
+            {
+                uint h = unchecked((uint)State.Seed * 2654435761u ^ (uint)w * 0x85ebca6bu); h ^= h >> 13; h = unchecked(h * 0xc2b2ae35u); h ^= h >> 16;
+                bool hit = (h % 10000) / 10000f < Mathf.Min(1, SecretInviteBase + SecretInviteStep * misses);
+                if (w == wave) return hit;
+                misses = hit ? 0 : misses + 1;
+            }
+            return false;
+        }
         private (int, int, int, int)? secretUndo;
         public bool EnterSecretEvent(SecretEventKind kind)
         {

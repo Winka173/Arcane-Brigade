@@ -168,7 +168,7 @@ namespace ArcaneBrigade
                 {
                     ItemStack s = State.Items[o.Value]; ItemDefinition item = catalog.Item(s.Id);
                     var pool = new List<ItemDefinition>();
-                    foreach (ItemDefinition c in catalog.Items) if (c.Rarity == item.Rarity && c.Id != item.Id && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && StackCount(c.Id) < c.StackLimit) pool.Add(c);
+                    foreach (ItemDefinition c in catalog.Items) if (c.Rarity == item.Rarity && c.Id != item.Id && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && HeroFits(c) && StackCount(c.Id) < c.StackLimit) pool.Add(c);
                     if (pool.Count == 0) return false;
                     ItemDefinition swap = pool[Next(ref State.VisitorRandom, pool.Count)];
                     RemoveOneItem(s); AddItem(swap); Notice = item.Name + " traded for " + swap.Name + ".";
@@ -310,7 +310,7 @@ namespace ArcaneBrigade
         private ItemDefinition GiveRandomItem(ItemRarity rarity, bool lent)
         {
             var pool = new List<ItemDefinition>();
-            foreach (ItemDefinition c in catalog.Items) if (c.Rarity == rarity && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && StackCount(c.Id) < c.StackLimit && (!lent || c.Mechanic == RelicMechanic.None || c.Stacking != StackPolicy.Unique)) pool.Add(c);
+            foreach (ItemDefinition c in catalog.Items) if (c.Rarity == rarity && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && HeroFits(c) && StackCount(c.Id) < c.StackLimit && (!lent || c.Mechanic == RelicMechanic.None || c.Stacking != StackPolicy.Unique)) pool.Add(c);
             if (pool.Count == 0) { State.Gold = BoundedCounter((long)State.Gold + ScaledGold(10)); return null; }
             ItemDefinition item = pool[Next(ref State.VisitorRandom, pool.Count)];
             AddItem(item); return item;
@@ -325,7 +325,7 @@ namespace ArcaneBrigade
                 ItemRarity want = (ItemRarity)Mathf.Clamp((int)item.Rarity + step, 0, (int)ItemRarity.Mythic);
                 if (want == ItemRarity.Crimson) want = ItemRarity.Mythic;
                 var pool = new List<ItemDefinition>();
-                foreach (ItemDefinition c in catalog.Items) if (c.Rarity == want && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && StackCount(c.Id) < c.StackLimit) pool.Add(c);
+                foreach (ItemDefinition c in catalog.Items) if (c.Rarity == want && c.ShopWeight > 0 && Eligible(c, ShopPool.Gold) && HeroFits(c) && StackCount(c.Id) < c.StackLimit) pool.Add(c);
                 if (pool.Count == 0) continue;
                 ItemDefinition next = pool[Next(ref State.VisitorRandom, pool.Count)];
                 // the shelf's own price (rarity markup and the wave's gold curve), then the visitor's +30% / -30%

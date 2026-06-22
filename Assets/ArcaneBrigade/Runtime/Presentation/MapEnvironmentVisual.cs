@@ -99,8 +99,19 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ Post Office
+        private int lettersSeen;
         private void PostOffice(MapEnvironmentState s, float t)
         {
+            // each letter caught pops over the hero: its count in this drop and the boost it gives; a full delivery says so
+            if (s.LettersCaught < lettersSeen) lettersSeen = s.LettersCaught;
+            if (s.LettersCaught > lettersSeen && sim.Champion != null)
+            {
+                lettersSeen = s.LettersCaught;
+                Vector2 head = (Vector2)SpeechBubbles.Head(sim.Champion) + Vector2.up * .5f;
+                string boost = s.BoostKind == 0 ? "SPEED" : s.BoostKind == 1 ? "DAMAGE" : "GOLD";
+                if (s.LetterStreak >= MapEnvironmentRules.FullDelivery && s.LetterStreak == MapEnvironmentRules.FullDelivery) ImpactWords.Pop("FULL DELIVERY! +" + MapEnvironmentRules.FullDeliveryBonus.ToString("0") + "s", head, new Color(1f, .82f, .35f), 5, 1.15f);
+                else ImpactWords.Pop("LETTER ×" + s.LetterStreak + " · " + boost, head, new Color(1f, .92f, .7f), 4, .9f);
+            }
             float chuteEnd = s.ChuteAt + MapEnvironmentRules.ChuteWarn + 5 * .45f + 3.6f;
             if (t >= s.ChuteAt && t < chuteEnd)
             {
