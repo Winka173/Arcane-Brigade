@@ -108,9 +108,11 @@ namespace ArcaneBrigade
             {
                 lettersSeen = s.LettersCaught;
                 Vector2 head = (Vector2)SpeechBubbles.Head(sim.Champion) + Vector2.up * .5f;
-                string boost = s.BoostKind == 0 ? "SPEED" : s.BoostKind == 1 ? "DAMAGE" : "GOLD";
-                if (s.LetterStreak >= MapEnvironmentRules.FullDelivery && s.LetterStreak == MapEnvironmentRules.FullDelivery) ImpactWords.Pop("FULL DELIVERY! +" + MapEnvironmentRules.FullDeliveryBonus.ToString("0") + "s", head, new Color(1f, .82f, .35f), 5, 1.15f);
-                else ImpactWords.Pop("LETTER ×" + s.LetterStreak + " · " + boost, head, new Color(1f, .92f, .7f), 4, .9f);
+                // the stat it gives, in numbers, and for how long (requirement 25/10/2026)
+                int seconds = Mathf.RoundToInt(s.BoostUntil - t);
+                string boost = s.BoostKind == 0 ? "+" + Mathf.RoundToInt((MapEnvironmentRules.BoostSpeed - 1) * 100) + "% SPEED" : s.BoostKind == 1 ? "+" + Mathf.RoundToInt((MapEnvironmentRules.BoostDamage - 1) * 100) + "% DAMAGE" : "+1 GOLD A KILL";
+                if (s.LetterStreak == MapEnvironmentRules.FullDelivery) ImpactWords.Pop("FULL DELIVERY! " + boost + " · " + seconds + "s", head, new Color(1f, .82f, .35f), 5, 1.15f);
+                else ImpactWords.Pop("LETTER ×" + s.LetterStreak + " · " + boost + " · " + seconds + "s", head, new Color(1f, .92f, .7f), 4, .9f);
             }
             float chuteEnd = s.ChuteAt + MapEnvironmentRules.ChuteWarn + 5 * .45f + 3.6f;
             if (t >= s.ChuteAt && t < chuteEnd)
@@ -192,8 +194,18 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ Lamp Hall
+        private bool heroLit;
         private void LampHall(MapEnvironmentState s, float t)
         {
+            // stepping into a lamp's light (or out into the dark) says what it gives over the hero's head (requirement 25/10/2026)
+            bool lit = sim.HeroInMapLight;
+            if (lit != heroLit && sim.Champion != null)
+            {
+                Vector2 head = (Vector2)SpeechBubbles.Head(sim.Champion) + Vector2.up * .5f;
+                if (lit) ImpactWords.Pop("IN THE LIGHT · +" + Mathf.RoundToInt((MapEnvironmentRules.LightDamage - 1) * 100) + "% DAMAGE · FRIENDS FASTER", head, new Color(1f, .9f, .55f), 4, .85f);
+                else ImpactWords.Pop("IN THE DARK · FOES TOUGHER", head, new Color(.7f, .72f, 1f), 4, .8f);
+            }
+            heroLit = lit;
             float rx = MapEnvironmentRules.LightRadiusX, ry = MapEnvironmentRules.LightRadiusY;
             for (int i = 0; i < s.Lamps.Count; i++)
             {

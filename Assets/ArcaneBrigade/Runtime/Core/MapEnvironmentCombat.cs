@@ -384,6 +384,8 @@ namespace ArcaneBrigade
                 }
             }
         }
+        /// <summary>The hero stands in a lit lamp's light (the presentation says so over the hero's head).</summary>
+        public bool HeroInMapLight => Champion != null && InMapLight(Champion.Position);
         private bool InMapLight(Vector2 position)
         {
             if (mapEnv == null || mapEnv.Theme != MapTheme.LampHall) return false;
