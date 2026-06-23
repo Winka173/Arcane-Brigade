@@ -11,7 +11,7 @@ namespace ArcaneBrigade
 
     /// <summary>What the map's living elements are doing right now (read by MapEnvironmentVisual, the guide and the checks).
     /// Times are simulation seconds. Every element is telegraphed and mild, and none is a pool on the floor.</summary>
-    public sealed class MapEnvironmentState
+    public sealed partial class MapEnvironmentState
     {
         public MapTheme Theme;
         public Vector2 Anchor;
@@ -92,6 +92,7 @@ namespace ArcaneBrigade
         // requirement 23/10/2026 map rules: shut a door by standing at it; a broken parcel bursts; friends quicker in the lamp light,
         // enemies tougher in the dark, a snuffed lamp relit by walking to it; the chime slows longer with the hero at the clock
         public const float DoorReach = 1.8f, DoorShutSeconds = 1.5f, ParcelBurstRadius = 2.8f, ParcelBurstHits = 4f;
+        public const float LightArmor = 2, DarkCycle = 1.25f; // the lamp's light lends 2 armour; the drowsy dark slows enemy attacks 20%
         public const float LightHaste = 1.1f, DarkGuard = .85f, RelightReach = 1.3f, ClockReach = 3f, ClockSlowLonger = 2.5f;
     }
 
@@ -495,10 +496,18 @@ namespace ArcaneBrigade
                     else if (s.RushUntil > t) scale *= MapEnvironmentRules.RushSpeed;
                     break;
             }
-            return scale;
+            return scale * MapEnemyFactor(unit, MapEnemyAxis.Speed);
         }
         /// <summary>A friend standing in the Lamp Hall's light attacks 10% faster (a cooldown factor).</summary>
-        private float MapCycle(UnitState unit) => mapEnv != null && mapEnv.Theme == MapTheme.LampHall && unit.Faction == Faction.Companion && InMapLight(unit.Position) ? 1 / MapEnvironmentRules.LightHaste : 1;
+        private float MapCycle(UnitState unit)
+        {
+            if (mapEnv == null) return 1;
+            if (unit.Faction == Faction.Enemy) return MapEnemyFactor(unit, MapEnemyAxis.Cycle);
+            float cycle = 1;
+            if (unit == Champion) cycle /= 1 + MapBoostValue(MapStat.AttackSpeed); // a map's attack-speed boost
+            if (mapEnv.Theme == MapTheme.LampHall && unit.Faction == Faction.Companion && InMapLight(unit.Position)) cycle /= MapEnvironmentRules.LightHaste;
+            return cycle;
+        }
         private float MapHeroScale
         {
             get
@@ -507,19 +516,22 @@ namespace ArcaneBrigade
                 float scale = 1;
                 if (s.BoostKind == 0 && s.BoostUntil > Elapsed) scale *= MapEnvironmentRules.BoostSpeed;
                 if (s.Theme == MapTheme.ArchiveVault && s.RushUntil > Elapsed && s.SlowUntil <= Elapsed) scale *= MapEnvironmentRules.RushHero;
+                scale *= 1 + MapBoostValue(MapStat.MoveSpeed); // a map's speed boost
                 return scale * OctoberHeroPace;
             }
         }
         /// <summary>Damage on an enemy: stamped by a letter, struck from inside the lamp light, or by a hero with the sharp boost.</summary>
-        private float MapDamage(UnitState target, float damage, Faction source)
+        private float MapDamage(UnitState target, float damage, Faction source, int attackerId = 0)
         {
             MapEnvironmentState s = mapEnv;
-            if (s == null || target.Faction != Faction.Enemy || source == Faction.Enemy) return damage;
+            if (s == null) return damage;
+            // an enemy's blow on our side: the map may strengthen or weaken that enemy's hits
+            if (source == Faction.Enemy) return target.Faction == Faction.Enemy ? damage : damage * MapEnemyFactor(UnitWithId(attackerId), MapEnemyAxis.DamageDealt);
+            if (target.Faction != Faction.Enemy) return damage;
             if (s.Stamped.Count > 0 && s.Stamped.TryGetValue(target.Id, out float stamped) && stamped > Elapsed) damage *= MapEnvironmentRules.StampDamage;
-            if (s.Theme == MapTheme.LampHall && s.HeroLit) damage *= MapEnvironmentRules.LightDamage;
-            if (s.Theme == MapTheme.LampHall && !InMapLight(target.Position)) damage *= MapEnvironmentRules.DarkGuard; // tougher in the dark
             if (s.BoostKind == 1 && s.BoostUntil > Elapsed) damage *= MapEnvironmentRules.BoostDamage;
-            return damage;
+            damage *= 1 + MapBoostValue(MapStat.Damage); // the map's damage boosts (and standing in a lamp's light)
+            return damage * MapEnemyFactor(target, MapEnemyAxis.DamageTaken);
         }
         /// <summary>A fallen enemy's coin: more in the dark of the Lamp Hall, double inside the ledger's ring (which adds debt),
         /// one more with the rich boost.</summary>
@@ -528,7 +540,7 @@ namespace ArcaneBrigade
             MapEnvironmentState s = mapEnv;
             if (s == null || coins <= 0 || target.Faction != Faction.Enemy) return coins;
             if (target.DoorPack) return 0; // a door's pack drops no gold
-            if (s.Theme == MapTheme.LampHall && !InMapLight(target.Position) && (!target.SwarmMinion || target.Id % 4 == 0)) coins += 1;
+            if (!target.SwarmMinion) coins += Mathf.RoundToInt(MapBoostValue(MapStat.Gold)); // a map's gold-a-kill boost
             if (s.Theme == MapTheme.ArchiveVault && (target.Position - s.Ledger).sqrMagnitude < MapEnvironmentRules.LedgerRadius * MapEnvironmentRules.LedgerRadius) { coins *= 2; s.LedgerKills++; }
             if (s.BoostKind == 2 && s.BoostUntil > Elapsed && !target.SwarmMinion) coins += 1;
             return coins;

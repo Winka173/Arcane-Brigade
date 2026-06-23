@@ -165,6 +165,7 @@ namespace ArcaneBrigade
             if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
             if (runCatalog != null) { SecretRoom = gameObject.AddComponent<SecretEventRoom>(); SecretRoom.Configure(this); }
             gameObject.AddComponent<WorldEdgeVeil>().Configure(this); // endless dark past the fight's floor
+            gameObject.AddComponent<MapBoostView>().Configure(this); // what a map lends the hero, over its head and in a row
             gameObject.AddComponent<PrismShardHud>().Configure(this);
             if (runCatalog != null) gameObject.AddComponent<HeroFocus>().Configure(this);
             if (runCatalog != null) gameObject.AddComponent<K8ArenaScenery>().Configure(this);

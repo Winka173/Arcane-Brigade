@@ -1086,7 +1086,7 @@ namespace ArcaneBrigade
             damage = ComboDamage(target, damage, source, cause);
             damage = RelicItemDamage(target, damage, source, cause);
             damage = WaitingDamage(target, damage, source);
-            damage = MapDamage(target, damage, source);
+            damage = MapDamage(target, damage, source, cause.SourceUnitId);
             if (target.Faction == Faction.Champion && !healthCost)
             {
                 if (relicQuiltUntil > Elapsed) return;
@@ -1102,7 +1102,7 @@ namespace ArcaneBrigade
                 // armour takes its points straight off every hit (requirement 25/10/2026: a 5-damage shot with 3 armour lands for 2,
                 // and as the enemies grow a hit creeps back up, so armour keeps being worth buying); a hit always lands for at
                 // least 1 or 15% of itself. Negative armour adds its points.
-                damage = RunModifierRules.AfterArmor(damage, catalog.Armor);
+                damage = RunModifierRules.AfterArmor(damage, catalog.Armor + MapBoostValue(MapStat.Armor) * RunModifierRules.ArmorPoint); // a map's armour boost counts in points
                 if (catalog.SecretWard && !injectedDamage) damage *= .85f;
                 if (!injectedDamage) damage *= KitDamageTaken(cause);
                 if (!injectedDamage) damage = OctoberIncoming(damage);
