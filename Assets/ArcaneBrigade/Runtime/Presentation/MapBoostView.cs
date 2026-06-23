@@ -70,7 +70,7 @@ namespace ArcaneBrigade
             foreach (MapBoost b in owner.Simulation.MapBoosts)
             {
                 float left = b.Until - owner.Simulation.Elapsed; if (left <= 0) continue;
-                string text = MapBoostText.Label(b.Stat, b.Value) + "  " + Mathf.CeilToInt(left) + "s";
+                string text = MapBoostText.Label(b.Stat, b.Value);
                 float w = chip.CalcSize(new GUIContent(text)).x + 26;
                 if (x + w > 420) { x = 22; top += 34; }
                 Rect plate = new Rect(x, top, w, 30);

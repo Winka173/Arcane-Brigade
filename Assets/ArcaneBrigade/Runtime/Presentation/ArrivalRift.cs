@@ -26,7 +26,7 @@ namespace ArcaneBrigade
             var rift = new GameObject("Arrival rift").AddComponent<ArrivalRift>();
             ClosesAt = Time.unscaledTime + Close;
             rift.transform.position = centre;
-            rift.Build(art.body, art.swirl, OctoberDoor.PortalHoles[theme], order);
+            rift.Build(art.body, art.swirl, OctoberDoor.PortalHole(theme), order);
             return rift;
         }
         private void Build(Sprite bodySprite, Sprite swirlSprite, Vector4 h, int order)

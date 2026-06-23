@@ -17,6 +17,8 @@ namespace ArcaneBrigade
             MapTheme.WaitingRoom => "A called door lets a pack out. Stand at the door to shut it.",
             MapTheme.PostOffice => "Letters give a boost. Break a parcel: it bursts and spills gold.",
             MapTheme.LampHall => "Friends are faster in the light, foes tougher in the dark. Relight the lamps.",
+            MapTheme.Glasshouse => "Pots bloom with boosts. Sun dazzles foes, rain slows them.", // requirement 25/10/2026: placeholder until its mechanics land
+            MapTheme.Theatre => "Stay in the spotlight: its colour is your boost.",
             _ => "Stand by the clock when it chimes: enemies slow for longer."
         };
 

@@ -11,8 +11,10 @@ namespace ArcaneBrigade
     /// The colour grade, vignette, fog, haze and shafts sit on the floor UNDER the map's floor marks, telegraphs and bodies,
     /// so darkness never hides an enemy, a bullet or a warning; only tiny motes float among the units. Counts are capped and
     /// follow AnimationDetailBudget; Reduced Effects keeps a still, particle-free version; Reduced Motion stops all drift;
-    /// Reduced Flashes stops the flicker and blinking.</summary>
-    public sealed class MapAtmosphere : MonoBehaviour
+    /// Reduced Flashes stops the flicker and blinking.
+    /// Requirement 25/10/2026: each map's air is in its own file under Presentation/Maps (Air{Theme}); the Glasshouse and the
+    /// Theatre borrow their stand-in's air (MapIdentity.StandIn) until their own is written.</summary>
+    public sealed partial class MapAtmosphere : MonoBehaviour
     {
         // MapEnvironmentVisual's floor marks and the lamps' light are at -40: the grade stays under them
         private const int TintOrder = -46, VignetteOrder = -45, HazeOrder = -44, AirOrder = 2140;
@@ -41,96 +43,15 @@ namespace ArcaneBrigade
                 int motes = sparse ? 0 : level >= 2 ? 6 : level == 1 ? 12 : 20;
                 switch (s.Theme)
                 {
-                    case MapTheme.WaitingRoom: WaitingRoom(motes); break;
-                    case MapTheme.PostOffice: PostOffice(motes); break;
-                    case MapTheme.LampHall: LampHall(s, motes, simulation.Elapsed); break;
-                    default: ArchiveVault(motes, simulation.Elapsed); break;
+                    case MapTheme.WaitingRoom: AirWaitingRoom(s, motes, simulation.Elapsed); break;
+                    case MapTheme.PostOffice: AirPostOffice(s, motes, simulation.Elapsed); break;
+                    case MapTheme.Glasshouse: AirGlasshouse(s, motes, simulation.Elapsed); break;
+                    case MapTheme.LampHall: AirLampHall(s, motes, simulation.Elapsed); break;
+                    case MapTheme.Theatre: AirTheatre(s, motes, simulation.Elapsed); break;
+                    case MapTheme.ArchiveVault: AirArchiveVault(s, motes, simulation.Elapsed); break;
                 }
             }
             for (int i = used; i < pool.Count; i++) pool[i].enabled = false;
-        }
-
-        // ------------------------------------------------------------------ maps
-        private void WaitingRoom(int motes)
-        {
-            Grade(new Color(.96f, .84f, .66f, .07f), new Color(.2f, .11f, .05f, .32f));
-            // low fog banks along the floor, drifting slowly across
-            for (int i = 0; i < 5; i++)
-            {
-                float y = Mathf.Lerp(-.85f, .55f, i / 4f) * halfH;
-                Vector2 at = Wrap(new Vector2(H(i, 1) * 30, 0), new Vector2(.18f + .06f * H(i, 2), 0)); at.y = centre.y + y;
-                Put(MechanicInk.Glow, at, new Vector2(halfW * 1.1f, 1.3f + H(i, 3) * .6f), 0, new Color(.93f, .9f, .86f, .13f), HazeOrder);
-            }
-            // dust motes turning in the lamp light
-            for (int i = 0; i < motes; i++)
-            {
-                Vector2 at = Wrap(new Vector2(H(i, 4) * 40, H(i, 5) * 40), new Vector2(.05f * (H(i, 6) - .5f), .07f + .05f * H(i, 7)));
-                at.x += still ? 0 : Mathf.Sin(t * .7f + i) * .15f;
-                float twinkle = calm || still ? .7f : .55f + .45f * Mathf.Sin(t * 1.3f + i * 2.1f);
-                Put(MechanicInk.Glow, at, Vector2.one * (.07f + .06f * H(i, 8)), 0, new Color(1, .93f, .72f, .42f * twinkle), AirOrder);
-            }
-        }
-
-        private void PostOffice(int motes)
-        {
-            Grade(new Color(.68f, .8f, 1f, .08f), new Color(.03f, .06f, .16f, .34f));
-            // cool window light falling in long soft shafts from the upper left
-            for (int i = 0; i < 3; i++)
-            {
-                float breathe = still || calm ? 1 : .8f + .2f * Mathf.Sin(t * .4f + i * 1.7f);
-                Vector2 at = centre + new Vector2((-.55f + i * .5f) * halfW, .1f * halfH);
-                Put(MechanicInk.Glow, at, new Vector2(1.5f + .4f * i, halfH * 3f), -28, new Color(.74f, .88f, 1f, .12f * breathe), HazeOrder);
-            }
-            // paper scraps fluttering down and ash-like flecks on the draught
-            for (int i = 0; i < motes; i++)
-            {
-                bool scrap = i % 3 == 0;
-                Vector2 at = Wrap(new Vector2(H(i, 1) * 40, H(i, 2) * 40), scrap ? new Vector2(.25f, -.35f - .15f * H(i, 3)) : new Vector2(.45f, -.22f - .1f * H(i, 3)));
-                at.x += still ? 0 : Mathf.Sin(t * 1.6f + i) * (scrap ? .25f : .08f);
-                if (scrap) Put(flat, at, new Vector2(.15f, .1f * (still ? 1 : .4f + .6f * Mathf.Abs(Mathf.Cos(t * 2.2f + i)))), still ? 15 : t * 60 + i * 40, new Color(.96f, .94f, .87f, .6f), AirOrder);
-                else Put(MechanicInk.Glow, at, Vector2.one * (.06f + .04f * H(i, 4)), 0, new Color(.72f, .74f, .8f, .38f), AirOrder);
-            }
-        }
-
-        private void LampHall(MapEnvironmentState s, int motes, float clock)
-        {
-            // deep night on the floor; the lamps' painted light (floor order -40) cuts through it
-            // the round floor around the lamps: its edges sink deeper into the dark (requirement 23/10/2026; edge was .5)
-            Grade(new Color(.04f, .04f, .12f, .36f), new Color(.01f, .01f, .05f, .8f));
-            int glints = 0;
-            for (int i = 0; i < s.Lamps.Count && glints < Mathf.Max(motes, 4); i++)
-            {
-                MapEnvironmentState.Lamp lamp = s.Lamps[i];
-                if (!lamp.Lit) continue;
-                // moths' wing glints circling the light
-                for (int k = 0; k < 2 && glints < Mathf.Max(motes, 4); k++, glints++)
-                {
-                    float a = (still || sparse ? 0 : clock * (1.1f + .3f * k)) + i * 2.3f + k * 3.1f;
-                    Vector2 at = lamp.Base + new Vector2(Mathf.Cos(a) * (.5f + .2f * k), 2.3f + Mathf.Sin(a * 1.7f) * .3f);
-                    float blink = calm || still || sparse ? .5f : Mathf.Pow(Mathf.Abs(Mathf.Sin(clock * 9 + i * 1.3f + k * 2f)), 4);
-                    Put(MechanicInk.Glow, at, Vector2.one * .16f, 0, new Color(1, .96f, .85f, .8f * blink), AirOrder);
-                }
-            }
-        }
-
-        private void ArchiveVault(int motes, float clock)
-        {
-            // the vault clock's slow tick: a faint lift of the dusk light on each second (none with Reduced Flashes or Motion)
-            float tick = calm || still || sparse ? 0 : Mathf.Exp(-Mathf.Repeat(clock, 1f) * 5f);
-            Grade(new Color(.86f, .58f, .48f, .1f + .035f * tick), new Color(.13f, .05f, .15f, .4f));
-            // heavy haze banks
-            for (int i = 0; i < 4; i++)
-            {
-                Vector2 at = Wrap(new Vector2(H(i, 1) * 30, 0), new Vector2(-.08f, 0)); at.y = centre.y + Mathf.Lerp(-.7f, .7f, i / 3f) * halfH;
-                Put(MechanicInk.Glow, at, new Vector2(halfW * 1.3f, 2.2f), 0, new Color(.74f, .6f, .7f, .12f), HazeOrder);
-            }
-            // ink motes drifting up
-            for (int i = 0; i < motes; i++)
-            {
-                Vector2 at = Wrap(new Vector2(H(i, 2) * 40, H(i, 3) * 40), new Vector2(.04f * (H(i, 4) - .5f), .16f + .1f * H(i, 5)));
-                at.x += still ? 0 : Mathf.Sin(t * .9f + i * 1.7f) * .12f;
-                Put(MechanicInk.Glow, at, Vector2.one * (.08f + .06f * H(i, 6)), 0, new Color(.16f, .09f, .26f, .5f), AirOrder);
-            }
         }
 
         // ------------------------------------------------------------------ helpers

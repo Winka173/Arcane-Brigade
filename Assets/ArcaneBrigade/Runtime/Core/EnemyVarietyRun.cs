@@ -29,11 +29,11 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>The map's elite when this is the map's third wave and its art has been built in; otherwise null.</summary>
+        /// <summary>The map's elite on its elite wave (MapIdentity.EliteWave) when its art has been built in; otherwise null.</summary>
         public static UnitDefinition MapElite(RunCatalog catalog, int wave, bool endless, Func<UnitDefinition, UnitDefinition> build)
         {
             if (catalog?.MapElites == null || wave > 20 && !endless) return null;
-            if (wave - MapIdentity.FirstWave(wave) != 2) return null;
+            if (!MapIdentity.EliteWave(wave)) return null; // requirement 25/10/2026: its third wave, its second when the third is a boss night
             int map = (int)MapIdentity.For(wave);
             UnitDefinition elite = map < catalog.MapElites.Length ? catalog.MapElites[map] : null;
             return elite == null ? null : build(elite);

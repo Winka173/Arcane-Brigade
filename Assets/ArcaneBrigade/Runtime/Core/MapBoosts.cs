@@ -55,7 +55,7 @@ namespace ArcaneBrigade
             MapBoost held = s.Boosts.Find(b => b.Stat == stat && b.Source == source && b.Until > now);
             if (held != null) { held.Value = Mathf.Max(held.Value, value); held.Until = Mathf.Min(now + MapBoostCap, held.Until + seconds); }
             else s.Boosts.Add(held = new MapBoost { Stat = stat, Value = value, Until = now + seconds, Source = source });
-            MapSay((prefix != null ? prefix + " · " : "") + MapBoostText.Label(stat, held.Value) + " · " + Mathf.CeilToInt(held.Until - now) + "s", MapBoostText.Colour(stat));
+            MapSay((prefix != null ? prefix + " · " : "") + MapBoostText.Label(stat, held.Value), MapBoostText.Colour(stat)); // the stat and its size, no seconds
         }
         /// <summary>A line over the hero's head (the presentation shows each once, stacked, never dropped).</summary>
         public void MapSay(string text, Color colour) { if (mapEnv != null && mapEnv.Pops.Count < 12) mapEnv.Pops.Add(new MapPop { Text = text, Colour = colour }); }
@@ -74,30 +74,38 @@ namespace ArcaneBrigade
         /// <summary>The boosts active now (for the HUD row).</summary>
         public IReadOnlyList<MapBoost> MapBoosts => mapEnv != null ? mapEnv.Boosts : (IReadOnlyList<MapBoost>)System.Array.Empty<MapBoost>();
 
-        /// <summary>A stat the hero gets only while standing somewhere (a lamp's light, a spotlight, a flower bed). Each map adds its own.</summary>
+        /// <summary>A stat the hero gets only while standing somewhere (a lamp's light, a spotlight, a flower bed). Each map adds its
+        /// own in its file under Core/Maps (requirement 25/10/2026).</summary>
         private float MapStandingBoost(MapStat stat)
         {
             MapEnvironmentState s = mapEnv; if (s == null || Champion == null) return 0;
-            switch (s.Theme)
+            return s.Theme switch
             {
-                case MapTheme.LampHall:
-                    if (!InMapLight(Champion.Position)) return 0;
-                    return stat == MapStat.Damage ? MapEnvironmentRules.LightDamage - 1 : stat == MapStat.Armor ? MapEnvironmentRules.LightArmor : 0;
-                default: return 0;
-            }
+                MapTheme.WaitingRoom => WaitingRoomStandingBoost(stat),
+                MapTheme.PostOffice => PostOfficeStandingBoost(stat),
+                MapTheme.Glasshouse => GlasshouseStandingBoost(stat),
+                MapTheme.LampHall => LampHallStandingBoost(stat),
+                MapTheme.Theatre => TheatreStandingBoost(stat),
+                MapTheme.ArchiveVault => ArchiveVaultStandingBoost(stat),
+                _ => 0
+            };
         }
 
-        /// <summary>How the map changes one enemy along one axis right now (1 = unchanged). Each map adds its own rules.</summary>
+        /// <summary>How the map changes one enemy along one axis right now (1 = unchanged). Each map adds its own rules in its file
+        /// under Core/Maps (requirement 25/10/2026).</summary>
         public float MapEnemyFactor(UnitState unit, MapEnemyAxis axis)
         {
             MapEnvironmentState s = mapEnv; if (s == null || unit == null || unit.Faction != Faction.Enemy) return 1;
-            switch (s.Theme)
+            return s.Theme switch
             {
-                case MapTheme.LampHall:
-                    if (axis == MapEnemyAxis.Cycle && !InMapLight(unit.Position)) return MapEnvironmentRules.DarkCycle; // the drowsy dark
-                    return 1;
-                default: return 1;
-            }
+                MapTheme.WaitingRoom => WaitingRoomEnemyFactor(unit, axis),
+                MapTheme.PostOffice => PostOfficeEnemyFactor(unit, axis),
+                MapTheme.Glasshouse => GlasshouseEnemyFactor(unit, axis),
+                MapTheme.LampHall => LampHallEnemyFactor(unit, axis),
+                MapTheme.Theatre => TheatreEnemyFactor(unit, axis),
+                MapTheme.ArchiveVault => ArchiveVaultEnemyFactor(unit, axis),
+                _ => 1
+            };
         }
     }
 }

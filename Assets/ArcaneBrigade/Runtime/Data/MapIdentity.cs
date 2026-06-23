@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The four maps of the Waiting Realm (play-test item 24, decision D11 v2). The map changes every five waves
-    /// (StageTransfer.ChangesMap): Waiting Room w1-5, Post Office w6-10, Lamp Hall w11-15, Archive Vault w16-20; endless
-    /// cycles them again.</summary>
-    public enum MapTheme { WaitingRoom, PostOffice, LampHall, ArchiveVault }
+    /// <summary>The six maps of the Waiting Realm (requirement 25/10/2026, Docs/Map_Mechanics_2026-10-25.md). Act I: Waiting Room
+    /// w1-4, Post Office w5-8, Glasshouse w9-11, Lamp Hall w12-14, Theatre w15-17, Archive Vault w18-20; endless repeats this
+    /// 20-wave cycle (StageTransfer.ChangesMap follows it). New maps are appended so the first four keep their ints
+    /// (RunCatalog.MapElites and the families are indexed by them); the order on the road is MapIdentity.Order.</summary>
+    public enum MapTheme { WaitingRoom, PostOffice, LampHall, ArchiveVault, Glasshouse, Theatre }
 
     /// <summary>Each map's identity: its family of enemies (mostly they walk in, plus a few carry-overs), its own elite affix,
     /// its living elements (MapEnvironmentCombat) and one short guide line per element.</summary>
@@ -24,13 +25,54 @@ namespace ArcaneBrigade
             return offParts.Length > 0 && offParts.Contains("," + part + ",");
         }
         private static string offParts;
-        public static MapTheme For(int wave) => (MapTheme)((Mathf.Max(1, wave) - 1) / 5 % 4);
-        public static int FirstWave(int wave) => (Mathf.Max(1, wave) - 1) / 5 * 5 + 1;
+        // requirement 25/10/2026: six maps of uneven length on the road; the story bosses (5/10/15/20) are not map boundaries
+        /// <summary>The maps in the order they are met.</summary>
+        public static readonly MapTheme[] Order = { MapTheme.WaitingRoom, MapTheme.PostOffice, MapTheme.Glasshouse, MapTheme.LampHall, MapTheme.Theatre, MapTheme.ArchiveVault };
+        /// <summary>The first wave of each map in Order, inside one Cycle.</summary>
+        private static readonly int[] Starts = { 1, 5, 9, 12, 15, 18 };
+        /// <summary>Waves before the maps repeat (Act I's length; endless cycles again).</summary>
+        public const int Cycle = 20;
+        private static int InCycle(int wave) => (Mathf.Max(1, wave) - 1) % Cycle + 1;
+        /// <summary>The wave's place in Order (0 = the Waiting Room).</summary>
+        public static int Leg(int wave)
+        {
+            int w = InCycle(wave), leg = Starts.Length - 1;
+            while (leg > 0 && Starts[leg] > w) leg--;
+            return leg;
+        }
+        public static MapTheme For(int wave) => Order[Leg(wave)];
+        /// <summary>The first wave of the map this wave belongs to.</summary>
+        public static int FirstWave(int wave) => Mathf.Max(1, wave) - (InCycle(wave) - Starts[Leg(wave)]);
+        /// <summary>The last wave of the map this wave belongs to.</summary>
+        public static int LastWave(int wave)
+        {
+            int leg = Leg(wave);
+            return FirstWave(wave) + (leg + 1 < Starts.Length ? Starts[leg + 1] : Cycle + 1) - Starts[leg] - 1;
+        }
+        /// <summary>The map met just before this one (the Archive Vault before the Waiting Room).</summary>
+        public static MapTheme Previous(MapTheme map) => Order[(Array.IndexOf(Order, map) + Order.Length - 1) % Order.Length];
+        /// <summary>The painted map whose art (portal, music, air) stands in until a new map's own exists.</summary>
+        public static MapTheme StandIn(MapTheme map) => map switch
+        {
+            MapTheme.Glasshouse => MapTheme.PostOffice, // window light and a draught
+            MapTheme.Theatre => MapTheme.LampHall, // a dark hall cut by light
+            _ => map
+        };
+        /// <summary>The map's named elite comes on its third wave, or its second when the third is a story boss's night
+        /// (multiples of five), where no elite walks in.</summary>
+        public static bool EliteWave(int wave)
+        {
+            int first = FirstWave(wave), elite = first + 2;
+            if (elite % 5 == 0 || elite > LastWave(wave)) elite = first + 1;
+            return wave == elite;
+        }
         public static string Name(MapTheme map) => map switch
         {
             MapTheme.WaitingRoom => "The Waiting Room",
             MapTheme.PostOffice => "The Post Office",
+            MapTheme.Glasshouse => "The Glasshouse",
             MapTheme.LampHall => "The Lamp Hall",
+            MapTheme.Theatre => "The Forgotten Theatre",
             _ => "The Archive Vault"
         };
         /// <summary>Folder of the map's painted props under Resources/Environment.</summary>
@@ -44,6 +86,10 @@ namespace ArcaneBrigade
             new[] { "SewnLetter", "PartyLine", "RibbonHydra", "MoonMagnet", "BroomSkater", "ChargerRam", "BlastPuffer", "StampTick", "SealHound", "SackGolem" },
             new[] { "LampSnuffer", "InkMoth", "CurtainWisp", "RuneWisp", "LostLanternSoul", "SmokeWraith", "BlueFlameFiend", "TwinFlameFurnace", "EmberProcession", "AshSwallower", "WickImp", "LampshadeJelly", "ChandelierCrawler", "FireScreenWarden", "TwinWickLantern", "CandleShade" },
             new[] { "LedgerHound", "SmokingCoffin", "ClockBat", "BurrowBell", "RedFlameBerserker", "SirenSeal", "InkNotary", "ClipMite", "InkToad", "CabinetMimic", "SpyglassSniper", "DrawerBroodmother", "LedgerTortoise" }, // + the playtest map enemies (requirement 23/10/2026)
+            // requirement 25/10/2026: the Glasshouse's garden (spores, puffers, rain, toads, burrowers, splinters, ribbon vines)
+            new[] { "SporeBishop", "BlastPuffer", "UmbrellaStalker", "InkToad", "BurrowBell", "BristleImp", "RibbonHydra", "HopperKeg", "BroomSkater" },
+            // requirement 25/10/2026: the Theatre's stage (curtains, stage smoke, footlights, the chandelier, mimics, the singer, tickets)
+            new[] { "CurtainWisp", "SmokeWraith", "CandleShade", "ChandelierCrawler", "SleepMimic", "SirenSeal", "TicketMoth", "MoonMagnet", "FireScreenWarden", "CabinetMimic", "EmberProcession" },
         };
         public static IReadOnlyList<string> Family(MapTheme map) => Families[(int)map];
         public static bool InFamily(MapTheme map, string id) => Array.IndexOf(Families[(int)map], id) >= 0;
@@ -68,6 +114,8 @@ namespace ArcaneBrigade
             MapTheme.WaitingRoom => EnemyAffix.BlackSmoke,
             MapTheme.PostOffice => EnemyAffix.RedFlame,
             MapTheme.LampHall => EnemyAffix.BlueFlame,
+            MapTheme.Glasshouse => EnemyAffix.TwinFlame,
+            MapTheme.Theatre => EnemyAffix.BlackSmoke, // stage smoke (five affixes for six maps)
             _ => EnemyAffix.Blackfire
         };
 
@@ -76,7 +124,7 @@ namespace ArcaneBrigade
         public static List<UnitDefinition> Theme(List<UnitDefinition> pool, int wave, int seed)
         {
             if (pool == null || pool.Count == 0) return pool;
-            MapTheme map = For(wave), previous = (MapTheme)(((int)map + 3) % 4);
+            MapTheme map = For(wave), previous = Previous(map);
             var familyIds = new HashSet<string>(); var others = new List<string>();
             foreach (UnitDefinition unit in pool)
             {
@@ -121,7 +169,7 @@ namespace ArcaneBrigade
         }
 
         /// <summary>The living elements (D11 v2), one guide line each in player words, shown the first time it appears.</summary>
-        public enum Element { Board, Chairs, Chute, Gust, Parcel, Light, Snuffer, Moths, Clock, Shelves, Ledger }
+        public enum Element { Board, Chairs, Chute, Gust, Parcel, Light, Snuffer, Moths, Clock, Shelves, Ledger, Blooms, Spotlight }
         public static string TipId(Element element) => "env." + element.ToString().ToLowerInvariant();
         public static string TipLine(Element element) => element switch
         {
@@ -135,6 +183,9 @@ namespace ArcaneBrigade
             Element.Moths => "Moths follow you and lead enemies to you. Keep moving to shake them off.",
             Element.Clock => "The clock chimes: enemies slow down, much longer if you stand by the clock. The twelfth strike speeds everyone up.",
             Element.Shelves => "Shelves glide and change the paths. Follow the arrows.",
+            // requirement 25/10/2026: one short line for each new map until its mechanics are written
+            Element.Blooms => "The Glasshouse: pots bloom. Walk through a bloom to pick its boost.",
+            Element.Spotlight => "The Theatre: stand in the spotlight. Its colour is its boost.",
             _ => "Kills inside the ledger's ink ring pay double gold, but the next wave gets a little busier."
         };
         public static string Prop(Element element) => element switch
@@ -142,7 +193,9 @@ namespace ArcaneBrigade
             Element.Board => "WaitingRoom/Board_Flash", Element.Chairs => "WaitingRoom/Chair_Slide",
             Element.Chute => "PostOffice/Letter_Gold", Element.Gust => "PostOffice/Scrap_A", Element.Parcel => "PostOffice/Parcel_Intact",
             Element.Light => "LampHall/Lamp_Lit", Element.Snuffer => "LampHall/Hand_Snuff", Element.Moths => "LampHall/Moths_0",
-            Element.Clock => "ArchiveVault/Clock_Chime", Element.Shelves => "ArchiveVault/Shelf_Turning", _ => "ArchiveVault/Ledger"
+            Element.Clock => "ArchiveVault/Clock_Chime", Element.Shelves => "ArchiveVault/Shelf_Turning",
+            Element.Blooms => "Glasshouse/Pot_Bloom", Element.Spotlight => "Theatre/Curtain", // art to come (Docs/Map_Mechanics_2026-10-25.md)
+            _ => "ArchiveVault/Ledger"
         };
         private static readonly Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
         public static Sprite Sprite(string path)

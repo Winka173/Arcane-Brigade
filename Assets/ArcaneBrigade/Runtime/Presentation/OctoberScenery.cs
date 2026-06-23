@@ -64,11 +64,22 @@ namespace ArcaneBrigade
         public const float PortalHeight = 2.2f;
         /// <summary>A map's rift art (null when it is not painted yet): the arrival rift uses it too.</summary>
         public static (Sprite body, Sprite swirl) PortalArt(MapTheme theme) => Portal(theme);
+        /// <summary>The opening of the art PortalArt gave for this map (a new map borrows its stand-in's rift and hole).</summary>
+        public static Vector4 PortalHole(MapTheme theme)
+        {
+            Portal(theme);
+            return portalSource.TryGetValue(theme, out MapTheme source) && PortalHoles.TryGetValue(source, out Vector4 hole) ? hole : new Vector4(.5f, .5f, .32f, .38f);
+        }
+        private static readonly System.Collections.Generic.Dictionary<MapTheme, MapTheme> portalSource = new System.Collections.Generic.Dictionary<MapTheme, MapTheme>();
         private static (Sprite body, Sprite swirl) Portal(MapTheme theme)
         {
             if (portals.TryGetValue(theme, out var p)) return p;
             Sprite body = Resources.Load<Sprite>("Shop/Portals/" + theme + "_Body"), swirl = Resources.Load<Sprite>("Shop/Portals/" + theme + "_Swirl");
-            return portals[theme] = body != null && swirl != null && PortalHoles.ContainsKey(theme) ? (body, swirl) : (null, null);
+            if (body != null && swirl != null && PortalHoles.ContainsKey(theme)) { portalSource[theme] = theme; return portals[theme] = (body, swirl); }
+            // requirement 25/10/2026: a new map's rift until its own is painted is its stand-in's (MapIdentity.StandIn)
+            MapTheme standIn = MapIdentity.StandIn(theme);
+            if (standIn != theme) { var borrowed = Portal(standIn); if (portalSource.TryGetValue(standIn, out MapTheme source)) portalSource[theme] = source; return portals[theme] = borrowed; }
+            return portals[theme] = (null, null);
         }
         private Transform swirlHolder; private SpriteRenderer swirlView; private float swirlTurn;
         private GameObject riftInkHolder; private InkCanvas riftInk, riftLight;
@@ -89,7 +100,9 @@ namespace ArcaneBrigade
             bool still = PresentationSettings.ReducedMotion;
             float t = owner.PresentationClock, pull = Mathf.Lerp(.35f, 1.1f, opening);
             InkPalette ink = map == MapTheme.PostOffice ? ArsenalInk.Cream : map == MapTheme.ArchiveVault ? ArsenalInk.Water : ArsenalInk.Gold;
-            Color glow = map == MapTheme.WaitingRoom ? new Color(.6f, .95f, .9f) : map == MapTheme.PostOffice ? new Color(1f, .9f, .75f) : map == MapTheme.LampHall ? new Color(1f, .8f, .45f) : new Color(.85f, 1f, .95f);
+            // requirement 25/10/2026: the Glasshouse breathes green-gold pollen, the Theatre warm footlight red
+            Color glow = map == MapTheme.WaitingRoom ? new Color(.6f, .95f, .9f) : map == MapTheme.PostOffice ? new Color(1f, .9f, .75f) : map == MapTheme.LampHall ? new Color(1f, .8f, .45f)
+                : map == MapTheme.Glasshouse ? new Color(.78f, 1f, .6f) : map == MapTheme.Theatre ? new Color(1f, .62f, .55f) : new Color(.85f, 1f, .95f);
             int count = still ? 6 : Mathf.RoundToInt(Mathf.Lerp(9, 16, opening));
             for (int i = 0; i < count; i++)
             {
@@ -122,7 +135,8 @@ namespace ArcaneBrigade
                 float a = (still ? i * 72 : t * (14 + 10 * opening) + i * 72) * Mathf.Deg2Rad, flip = still ? 1 : Mathf.Abs(Mathf.Cos(t * 1.7f + i * 1.3f));
                 Vector2 p = centre + new Vector2(Mathf.Cos(a) * half.x * 1.35f, Mathf.Sin(a) * half.y * 1.2f + Mathf.Sin(t * 1.1f + i) * .05f);
                 Vector2 along = new Vector2(Mathf.Cos(a + 1.2f + i), Mathf.Sin(a + 1.2f + i)) * (.07f + .05f * flip);
-                InkPalette bit = map == MapTheme.WaitingRoom ? ArsenalInk.Gold : map == MapTheme.PostOffice ? (i % 2 == 0 ? ArsenalInk.Cream : ArsenalInk.Wine) : map == MapTheme.LampHall ? ArsenalInk.Glass : ArsenalInk.Cream;
+                InkPalette bit = map == MapTheme.WaitingRoom ? ArsenalInk.Gold : map == MapTheme.PostOffice ? (i % 2 == 0 ? ArsenalInk.Cream : ArsenalInk.Wine) : map == MapTheme.LampHall || map == MapTheme.Glasshouse ? ArsenalInk.Glass
+                    : map == MapTheme.Theatre ? (i % 2 == 0 ? ArsenalInk.Wine : ArsenalInk.Gold) : ArsenalInk.Cream; // glass panes; velvet and gilt
                 float thick = map == MapTheme.PostOffice || map == MapTheme.ArchiveVault ? .11f : .07f; // stamps and pages are broad, shards slim
                 riftInk.Stroke(InkCanvas.Line(p - along, p + along, 0, 0, false, 40 + i), InkStroke.Of(bit, thick, .95f * shown, 40 + i));
                 if (flip > .85f) riftLight.GlowRibbon(InkCanvas.Line(p - along * .6f, p + along * .6f), 1, 0, .04f, new Color(1f, .95f, .8f, (flip - .85f) * 5 * .8f * shown)); // the glint as it faces you
@@ -199,7 +213,7 @@ namespace ArcaneBrigade
                 float shown = lifecycle == null ? 1 : lifecycle.FixtureVisibility;
                 view.color = new Color(1, 1, 1, shown);
                 grounded.Display(view.sprite, transform.parent.position, 1.5f, lift, .22f * shown); // a soft shadow on the floor below it
-                Swirl(portal.swirl, PortalHoles[next], shown);
+                Swirl(portal.swirl, PortalHole(next), shown);
                 return;
             }
             if (swirlHolder != null) swirlHolder.gameObject.SetActive(false);

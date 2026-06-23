@@ -2,7 +2,7 @@
 
 Six maps, each with five slots:
 
-1. **Stat boost:** base stats only (damage, attack speed, armour, gold, move speed). Every boost shows text over the hero's head: stat, amount and seconds left (e.g. "+15% DAMAGE · 8s").
+1. **Stat boost:** base stats only (damage, attack speed, armour, gold, move speed). Every boost shows text over the hero's head: the stat and its amount (e.g. "+15% DAMAGE"), no seconds.
 2. **Atmosphere:** debuffs enemies.
 3. **Enemy mechanic:** buffs enemies, but we profit if a condition is met.
 4. **Unique 1:** buffs enemies, but we profit if a condition is met.

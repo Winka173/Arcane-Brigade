@@ -204,8 +204,14 @@ namespace ArcaneBrigade
             if (endless) return SceneEndless;
             // each map has its own pair of fight pieces (requirement 23/10/2026: maps should feel unique): Waiting Room toys and
             // spoons, Post Office carousel and last train, Lamp Hall overtime and encore, Archive Vault clockwork and never-close
-            return CombatMapScene(MapIdentity.For(wave));
+            // requirement 25/10/2026: a new map with no pieces of its own yet plays its stand-in's (MapIdentity.StandIn)
+            MapTheme map = MapIdentity.For(wave);
+            string own = CombatMapScene(map);
+            if (map == MapIdentity.StandIn(map)) return own;
+            if (!scored.TryGetValue(map, out bool has)) scored[map] = has = PieceForScene(own, 0) != null;
+            return has ? own : CombatMapScene(MapIdentity.StandIn(map));
         }
+        private static readonly Dictionary<MapTheme, bool> scored = new Dictionary<MapTheme, bool>();
 
         // ------------------------------------------------------------ event -> cue id
         private static readonly string[] MaterialNames = { "paper", "metal", "wax", "fabric", "glass", "wood" };

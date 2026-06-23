@@ -24,6 +24,7 @@ namespace ArcaneBrigade
             MapTip(MapIdentity.Element.Board), MapTip(MapIdentity.Element.Chairs), MapTip(MapIdentity.Element.Chute), MapTip(MapIdentity.Element.Gust),
             MapTip(MapIdentity.Element.Parcel), MapTip(MapIdentity.Element.Light), MapTip(MapIdentity.Element.Snuffer), MapTip(MapIdentity.Element.Moths),
             MapTip(MapIdentity.Element.Clock), MapTip(MapIdentity.Element.Shelves), MapTip(MapIdentity.Element.Ledger),
+            MapTip(MapIdentity.Element.Blooms), MapTip(MapIdentity.Element.Spotlight), // the Glasshouse and the Theatre (requirement 25/10/2026)
         };
         private static Tip MapTip(MapIdentity.Element element) => new Tip { Id = MapIdentity.TipId(element), Line = MapIdentity.TipLine(element), Icon = o => MapIdentity.Sprite(MapIdentity.Prop(element)) };
         private static bool MapShown(CombatSimulation sim, string id)

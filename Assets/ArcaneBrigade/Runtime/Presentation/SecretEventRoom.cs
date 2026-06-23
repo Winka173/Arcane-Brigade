@@ -59,7 +59,7 @@ namespace ArcaneBrigade
             var body = new GameObject("Rim").AddComponent<SpriteRenderer>(); body.transform.SetParent(root.transform, false);
             body.sprite = art.body; body.sortingOrder = 312;
             body.transform.localScale = Vector3.one * (2f / Mathf.Max(.01f, art.body.bounds.size.y));
-            Bounds b = art.body.bounds; Vector4 hole = OctoberDoor.PortalHoles[theme];
+            Bounds b = art.body.bounds; Vector4 hole = OctoberDoor.PortalHole(theme);
             var holder = new GameObject("Swirl holder").transform; holder.SetParent(body.transform, false);
             holder.localPosition = new Vector3(b.min.x + b.size.x * hole.x, b.min.y + b.size.y * hole.y, 0);
             holder.localScale = new Vector3(b.size.x * hole.z * 2.12f / art.swirl.bounds.size.x, b.size.y * hole.w * 2.12f / art.swirl.bounds.size.y, 1);

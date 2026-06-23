@@ -15,6 +15,18 @@ namespace ArcaneBrigade
         private readonly List<(SpriteRenderer view, Vector2 anchor, bool dusty)> surfaces = new List<(SpriteRenderer, Vector2, bool)>();
         private static string[][] ZoneProps => ArenaLayoutPlan.ZoneProps; // the arena layout plans their footprints
         private static readonly string[] Floors = { "Floor_Crossing", "Floor_Platform", "Floor_House", "Floor_PerfectRoom" };
+        /// <summary>Requirement 25/10/2026: the Act I floor follows the map, not the story zone (the four old floors keep their maps:
+        /// the Crossing was the Waiting Room's, the Platform the Post Office's, the House the Lamp Hall's, the Perfect Room the
+        /// Archive Vault's). A new map's floor (Resources/MienCho/ActOne, 1256x1256 seamless) falls back to the zone's floor until painted.</summary>
+        public static string MapFloor(MapTheme map) => map switch
+        {
+            MapTheme.WaitingRoom => "Floor_Crossing",
+            MapTheme.PostOffice => "Floor_Platform",
+            MapTheme.Glasshouse => "Floor_Glasshouse",
+            MapTheme.LampHall => "Floor_House",
+            MapTheme.Theatre => "Floor_Theatre",
+            _ => "Floor_PerfectRoom"
+        };
         public void Configure(ArenaController value)
         {
             owner = value;
@@ -30,8 +42,8 @@ namespace ArcaneBrigade
             bool shop = state.Phase == SessionPhase.Shop;
             int zone = ActOneCanon.Zone(state.Wave);
             bool hidden = state.ActOne?.SitCloser == ActOneProgress.Fighting;
-            string floorName = hidden ? "Floor_NightYouHid" : Floors[zone];
-            Sprite tile = ActOneArtwork.Picture(floorName);
+            string floorName = hidden ? "Floor_NightYouHid" : MapFloor(MapIdentity.For(state.Wave));
+            Sprite tile = ActOneArtwork.Picture(floorName) ?? ActOneArtwork.Picture(Floors[zone]);
             if (floor == null)
             {
                 var ground = GameObject.Find("HD_TiledFloor");
