@@ -914,7 +914,7 @@ namespace ArcaneBrigade
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
             if (unit == Champion && HeroAwakenReplacesAttacks) return; // a transformed weapon fires instead of the usual one
-            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? HitPadding : 0), true) : FindTarget(unit, weapon.Range,true);
+            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? HitPadding : 0), true) : FindTarget(unit, weapon.Range * MapEnemyFactor(unit, MapEnemyAxis.Range), true); // a map can shorten an enemy's reach
             if (unit.Faction == Faction.Companion) nearest = LeadGuardTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? HitPadding : 0)) ?? nearest; // round 6: Patchwork Host's lead guards the hero
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;

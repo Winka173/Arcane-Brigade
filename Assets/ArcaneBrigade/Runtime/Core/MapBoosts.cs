@@ -35,7 +35,8 @@ namespace ArcaneBrigade
 
     /// <summary>How a map changes one enemy: its pace, its attack rhythm (a cooldown factor, above 1 = slower), the damage it
     /// deals and the damage it takes.</summary>
-    public enum MapEnemyAxis { Speed, Cycle, DamageDealt, DamageTaken }
+    /// <summary>Range: how far an enemy looks for a target (smoke shortens it). Knockback: how far our blows push it (rain lengthens it).</summary>
+    public enum MapEnemyAxis { Speed, Cycle, DamageDealt, DamageTaken, Range, Knockback }
 
     public sealed partial class MapEnvironmentState
     {
