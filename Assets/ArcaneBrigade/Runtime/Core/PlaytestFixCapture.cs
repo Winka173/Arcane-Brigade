@@ -238,7 +238,7 @@ namespace ArcaneBrigade
             else Check(false, "Wave 5 boss for the telegraph shots");
 
             // 24: each map's living elements (waves 3, 8, 13, 19: no carrier transfer on the way in)
-            foreach (var (wave, name) in new[] { (3, "WaitingRoom"), (8, "PostOffice"), (13, "LampHall"), (19, "ArchiveVault") })
+            foreach (var (wave, name) in new[] { (3, "WaitingRoom"), (8, "PostOffice"), (9, "Glasshouse"), (13, "LampHall"), (17, "Theatre"), (19, "ArchiveVault") }) // all six maps
             {
                 yield return LoadShop(wave - 1, false);
                 owner.NextWave(); yield return KeepAlive(2.5f);

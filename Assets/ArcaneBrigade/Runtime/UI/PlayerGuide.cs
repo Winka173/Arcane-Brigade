@@ -21,16 +21,22 @@ namespace ArcaneBrigade
             new Tip { Id = "boss", Line = "A boss! Red ink marks where its blows land: step out before the rim closes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
             new Tip { Id = "visitor", Line = "A visitor waits at the table. Walk up to see the deal.", Icon = o => ExpansionArtwork.Current?.Visitor(o.Session.State.Visitor) },
             // the maps' living elements (play-test item 24): one line each, the first time it appears
-            MapTip(MapIdentity.Element.Board), MapTip(MapIdentity.Element.Chairs), MapTip(MapIdentity.Element.Chute), MapTip(MapIdentity.Element.Gust),
-            MapTip(MapIdentity.Element.Parcel), MapTip(MapIdentity.Element.Light), MapTip(MapIdentity.Element.Snuffer), MapTip(MapIdentity.Element.Moths),
-            MapTip(MapIdentity.Element.Clock), MapTip(MapIdentity.Element.Shelves), MapTip(MapIdentity.Element.Ledger),
-            MapTip(MapIdentity.Element.Blooms), MapTip(MapIdentity.Element.Spotlight), // the Glasshouse and the Theatre (requirement 25/10/2026)
+            // requirement 25/10/2026: one guide line for every element of the six maps
+            MapTip(MapIdentity.Element.Tickets), MapTip(MapIdentity.Element.Board), MapTip(MapIdentity.Element.Dust), MapTip(MapIdentity.Element.Waiters), MapTip(MapIdentity.Element.WallClock),
+            MapTip(MapIdentity.Element.Chute), MapTip(MapIdentity.Element.Planes), MapTip(MapIdentity.Element.Gust), MapTip(MapIdentity.Element.Stamps), MapTip(MapIdentity.Element.Parcel),
+            MapTip(MapIdentity.Element.Blooms), MapTip(MapIdentity.Element.Weather), MapTip(MapIdentity.Element.Pollen), MapTip(MapIdentity.Element.Turret), MapTip(MapIdentity.Element.Roof),
+            MapTip(MapIdentity.Element.Light), MapTip(MapIdentity.Element.Oil), MapTip(MapIdentity.Element.Snuffer), MapTip(MapIdentity.Element.Lantern),
+            MapTip(MapIdentity.Element.Spotlight), MapTip(MapIdentity.Element.Smoke), MapTip(MapIdentity.Element.Audience), MapTip(MapIdentity.Element.Curtain), MapTip(MapIdentity.Element.Fireworks),
+            MapTip(MapIdentity.Element.Pages), MapTip(MapIdentity.Element.InkFog), MapTip(MapIdentity.Element.SkyStamp), MapTip(MapIdentity.Element.Bookworms), MapTip(MapIdentity.Element.Inkpot),
         };
         private static Tip MapTip(MapIdentity.Element element) => new Tip { Id = MapIdentity.TipId(element), Line = MapIdentity.TipLine(element), Icon = o => MapIdentity.Sprite(MapIdentity.Prop(element)) };
         private static bool MapShown(CombatSimulation sim, string id)
         {
             if (sim?.MapEnvironment == null) return false;
             foreach (MapIdentity.Element element in sim.MapEnvironment.Shown) if (MapIdentity.TipId(element) == id) return true;
+            // each element of the map being played is explained in turn: the first at 4 s, one more every 8 s
+            MapIdentity.Element[] here = MapIdentity.Elements(sim.MapEnvironment.Theme);
+            for (int k = 0; k < here.Length; k++) if (MapIdentity.TipId(here[k]) == id) return sim.Elapsed >= 4 + k * 8;
             return false;
         }
         private Tip showing; private float shownAt; private float goalAt = -1; private string goalRun;

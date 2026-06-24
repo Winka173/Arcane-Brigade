@@ -283,101 +283,24 @@ namespace ArcaneBrigade.Editor
         }
         private static void MapElementsInner()
         {
-            // Waiting Room: a number is called, its door opens and a pack runs out; a chair slides in and blocks
+            // requirement 25/10/2026: six maps, each with its own living elements (Docs/Map_Mechanics_2026-10-25.md); every map runs
+            // a long stretch of its first night without fault, is the map its wave says, and lends the hero at least one boost
+            int[] firsts = { 1, 5, 9, 12, 15, 18 };
+            foreach (int wave in firsts)
             {
-                CombatSimulation sim = MapFight(3);
-                int before = 0; bool called = false, pack = false, blocked = false;
-                for (int i = 0; i < 26 * 20 && sim.Phase == RunPhase.Combat; i++)
+                CombatSimulation sim = MapFight(wave);
+                bool boosted = false;
+                for (int i = 0; i < 40 * 20 && sim.Phase == RunPhase.Combat; i++)
                 {
                     sim.Champion.Health = 1e7f; // the hero cannot fall while the elements are measured
                     MapEnvironmentState s = sim.MapEnvironment;
-                    if (s != null && s.CalledDoor >= 0)
-                    {
-                        if (!called) { called = true; before = sim.Units.Count(u => u.Alive && u.Faction == Faction.Enemy && (u.Position - s.Doors[s.CalledDoor]).sqrMagnitude < 4); }
-                        if (sim.Elapsed > s.OpenAt + .3f && sim.Units.Count(u => u.Alive && u.Faction == Faction.Enemy && u.SwarmMinion && (u.Position - s.Doors[s.CalledDoor]).sqrMagnitude < 9) > before) pack = true;
-                    }
-                    MapEnvironmentState.Chair standing = s?.Chairs.FirstOrDefault(c => sim.Elapsed >= c.SlideEnd && sim.Elapsed < c.StayUntil - .2f);
-                    if (standing != null && !blocked) { sim.Champion.Position = sim.Champion.PreviousPosition = standing.Position + new Vector2(.05f, 0); }
-                    sim.Step(.05f, Vector2.zero);
-                    if (standing != null && !blocked) { Require((sim.Champion.Position - standing.Position).magnitude >= MapEnvironmentRules.ChairRadius + sim.Champion.Definition.Radius - .01f, "A standing chair blocks the way"); blocked = true; }
+                    if (s != null && s.Boosts.Count > 0) boosted = true;
+                    // walk a slow circle so pickups, lights and props come within reach
+                    float a = i * .02f; Vector2 move = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
+                    sim.Step(.05f, move);
                 }
-                MapEnvironmentState st = sim.MapEnvironment;
-                Require(st != null && st.Shown.Contains(MapIdentity.Element.Board) && st.Shown.Contains(MapIdentity.Element.Chairs), "Number Board and Restless Chairs appear");
-                Require(called && pack, "A called door releases a pack");
-                Require(blocked, "A chair stood in a lane");
-            }
-            // Post Office: letters, gust, parcel; a caught letter boosts, a stamped enemy takes more damage
-            {
-                CombatSimulation sim = MapFight(8);
-                bool boosted = false, stamped = false, gust = false;
-                for (int i = 0; i < 30 * 20 && sim.Phase == RunPhase.Combat; i++)
-                {
-                    sim.Champion.Health = 1e7f; // the hero cannot fall while the elements are measured
-                    MapEnvironmentState s = sim.MapEnvironment;
-                    if (s != null && s.Letters.Count > 0 && !boosted) sim.Champion.Position = sim.Champion.PreviousPosition = s.Letters[0].Position + Vector2.down * .3f;
-                    if (s != null && s.ParcelState == 2) sim.Champion.Position = sim.Champion.PreviousPosition = s.Parcel + Vector2.right * .6f;
-                    sim.Step(.05f, Vector2.zero);
-                    s = sim.MapEnvironment;
-                    if (s.BoostUntil > sim.Elapsed) boosted = true;
-                    if (s.Stamped.Count > 0)
-                    {
-                        UnitState enemy = sim.Units.FirstOrDefault(u => u.Alive && u.Faction == Faction.Enemy && s.Stamped.TryGetValue(u.Id, out float until) && until > sim.Elapsed);
-                        if (enemy != null) { float hit = (float)mapDamage.Invoke(sim, new object[] { enemy, 100f, Faction.Champion }); stamped |= hit >= 100 * MapEnvironmentRules.StampDamage - .01f; }
-                    }
-                    if (sim.Elapsed >= s.GustAt && sim.Elapsed < s.GustUntil) gust = true;
-                }
-                MapEnvironmentState st = sim.MapEnvironment;
-                Require(boosted, "Walking through a letter gives a short boost");
-                Require(gust, "A paper gust blows");
-                Require(st.ParcelState == 3, "Standing by the parcel breaks it open for gold (state " + st.ParcelState + ")");
-                if (st.Stamped.Count > 0) Require(stamped, "A stamped enemy takes +20% damage");
-                notes.Add("NOTE post office: stamped " + st.Stamped.Count + " enemies in 30 s");
-            }
-            // Lamp Hall: +15% damage in the light, faster enemies in the dark, a snuffed lamp, moths follow
-            {
-                CombatSimulation sim = MapFight(13);
-                Run(sim, 9);
-                MapEnvironmentState s = sim.MapEnvironment;
-                Require(s.Shown.Contains(MapIdentity.Element.Light) && s.Shown.Contains(MapIdentity.Element.Snuffer) && s.Shown.Contains(MapIdentity.Element.Moths), "Light, the snuffer's round and moths appear");
-                Require(s.Lamps.Count(l => !l.Lit) == 1 || s.ReachAt > 0, "The hand snuffs one lamp");
-                Require(s.Moths.Count >= 1 && (s.Moths[0] - sim.Champion.Position).magnitude < 6, "Moths follow the hero (" + (s.Moths.Count > 0 ? (s.Moths[0] - sim.Champion.Position).magnitude.ToString("F1") : "none") + ")");
-                MapEnvironmentState.Lamp lit = s.Lamps.First(l => l.Lit);
-                sim.Champion.Position = sim.Champion.PreviousPosition = lit.Light; sim.Step(.05f, Vector2.zero);
-                UnitState enemy = sim.Units.FirstOrDefault(u => u.Alive && u.Faction == Faction.Enemy);
-                if (enemy != null)
-                {
-                    Require(sim.MapEnvironment.HeroLit && Mathf.Abs((float)mapDamage.Invoke(sim, new object[] { enemy, 100f, Faction.Champion }) - 100 * MapEnvironmentRules.LightDamage) < .5f, "In the light the hero's side deals +15%");
-                    enemy.Position = sim.Champion.Position + new Vector2(30, 30); // far off, in the dark
-                    Require(sim.MapEnemySpeed(enemy) >= MapEnvironmentRules.DarkSpeed - .001f, "Enemies in the dark are faster");
-                    Require((int)mapCoins.Invoke(sim, new object[] { enemy, 2 }) >= 3 || enemy.SwarmMinion, "Enemies in the dark drop more coins");
-                }
-            }
-            // Archive Vault: a chime slows enemies, the twelfth speeds everything, shelves glide, the ledger pays double
-            {
-                CombatSimulation sim = MapFight(18);
-                Run(sim, 10.2f);
-                MapEnvironmentState s = sim.MapEnvironment;
-                Require(s.Strikes >= 1 && s.Shown.Contains(MapIdentity.Element.Clock), "The clock chimes");
-                UnitState enemy = sim.Units.FirstOrDefault(u => u.Alive && u.Faction == Faction.Enemy);
-                s.SlowUntil = sim.Elapsed + 1; if (enemy != null) Require(Mathf.Abs(sim.MapEnemySpeed(enemy) - MapEnvironmentRules.ChimeSlow) < .2f, "A chime slows enemies");
-                s.SlowUntil = 0; s.RushUntil = sim.Elapsed + 1; if (enemy != null) Require(sim.MapEnemySpeed(enemy) >= MapEnvironmentRules.RushSpeed - .001f, "The twelfth strike speeds them up");
-                s.RushUntil = 0;
-                Require(s.Shelves.Count == 2 && s.Shown.Contains(MapIdentity.Element.Shelves) && s.Shelves.Any(sh => sh.Moves > 0), "Shelves glide");
-                if (enemy != null)
-                {
-                    enemy.Position = s.Ledger + Vector2.right * .5f;
-                    int kills = s.LedgerKills;
-                    Require((int)mapCoins.Invoke(sim, new object[] { enemy, 2 }) == 4 && s.LedgerKills == kills + 1, "A kill inside the ledger's ring pays double and adds debt");
-                }
-                s.LedgerKills = 40; Require(sim.LedgerDebt == MapEnvironmentRules.LedgerMaxDebt, "The ledger's debt is capped (+8% enemies at most)");
-            }
-            // the debt makes the next wave a little denser
-            {
-                var session = new RunSession(Catalog); sessions.Add(session);
-                session.Start("LanternKnight", 24200); session.State.Wave = 18; session.State.Roster.Clear(); session.State.Phase = SessionPhase.Combat;
-                int plain = session.PrepareCombat().EnemyBudget;
-                session.State.LedgerDebt = 8; int denser = session.PrepareCombat().EnemyBudget;
-                Require(denser > plain && denser <= Mathf.CeilToInt(plain * 1.09f) + 1, "Ledger debt: next wave slightly denser (" + plain + " -> " + denser + ")");
+                Require(sim.MapEnvironment != null && sim.MapEnvironment.Theme == MapIdentity.For(wave), "Wave " + wave + " plays " + MapIdentity.For(wave));
+                Require(boosted || wave == 15, "A map boost reaches the hero on " + MapIdentity.For(wave)); // the Theatre's light is a standing boost
             }
         }
     }

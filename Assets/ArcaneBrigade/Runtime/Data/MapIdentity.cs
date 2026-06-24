@@ -169,33 +169,69 @@ namespace ArcaneBrigade
         }
 
         /// <summary>The living elements (D11 v2), one guide line each in player words, shown the first time it appears.</summary>
-        public enum Element { Board, Chairs, Chute, Gust, Parcel, Light, Snuffer, Moths, Clock, Shelves, Ledger, Blooms, Spotlight }
+        /// <summary>The living elements of the six maps (Docs/Map_Mechanics_2026-10-25.md), one guide line each in player words.</summary>
+        public enum Element
+        {
+            Board, Chute, Gust, Parcel, Light, Snuffer, Blooms, Spotlight,
+            Tickets, Dust, Waiters, WallClock, Stamps, Planes, Weather, Pollen, Roof, Turret, Oil, Lantern,
+            Smoke, Audience, Curtain, Fireworks, Pages, InkFog, Bookworms, Inkpot, SkyStamp
+        }
+        /// <summary>Each map's elements in the order their guide lines are shown on its first night.</summary>
+        public static Element[] Elements(MapTheme map) => map switch
+        {
+            MapTheme.WaitingRoom => new[] { Element.Tickets, Element.Board, Element.Dust, Element.Waiters, Element.WallClock },
+            MapTheme.PostOffice => new[] { Element.Chute, Element.Planes, Element.Gust, Element.Stamps, Element.Parcel },
+            MapTheme.Glasshouse => new[] { Element.Blooms, Element.Weather, Element.Pollen, Element.Turret, Element.Roof },
+            MapTheme.LampHall => new[] { Element.Light, Element.Oil, Element.Snuffer, Element.Lantern },
+            MapTheme.Theatre => new[] { Element.Spotlight, Element.Smoke, Element.Audience, Element.Curtain, Element.Fireworks },
+            _ => new[] { Element.Pages, Element.InkFog, Element.SkyStamp, Element.Bookworms, Element.Inkpot }
+        };
         public static string TipId(Element element) => "env." + element.ToString().ToLowerInvariant();
         public static string TipLine(Element element) => element switch
         {
-            Element.Board => "A number is called and its door bursts open: a pack runs out with no gold. Stand at the door to shut it.",
-            Element.Chairs => "Restless chairs slide in to block your way for a moment. Enemies trip on them too.",
-            Element.Chute => "Letters fall from the chute. Walk through one for a short boost; enemies they hit take more damage.",
-            Element.Gust => "A paper gust blows shots and small enemies sideways.",
-            Element.Parcel => "A giant parcel! Stand by it: it bursts, hurting enemies around it, and spills gold. Leave it and an elite climbs out.",
-            Element.Light => "Lamp light: you deal +15% damage and friends attack faster in it. In the dark, enemies are tougher and faster but drop more coins.",
-            Element.Snuffer => "A giant hand snuffs one lamp at a time. Walk to a dark lamp to light it again.",
-            Element.Moths => "Moths follow you and lead enemies to you. Keep moving to shake them off.",
-            Element.Clock => "The clock chimes: enemies slow down, much longer if you stand by the clock. The twelfth strike speeds everyone up.",
-            Element.Shelves => "Shelves glide and change the paths. Follow the arrows.",
-            // requirement 25/10/2026: one short line for each new map until its mechanics are written
-            Element.Blooms => "The Glasshouse: pots bloom. Walk through a bloom to pick its boost.",
-            Element.Spotlight => "The Theatre: stand in the spotlight. Its colour is its boost.",
-            _ => "Kills inside the ledger's ink ring pay double gold, but the next wave gets a little busier."
+            Element.Tickets => "Walk over a queue ticket for its colour's boost. A ticket with the board's number gives double.",
+            Element.Board => "A number is called: its door shakes, 3-2-1. Break it in time for gold and a ticket, or a pack pours out.",
+            Element.Dust => "Ceiling dust: enemies in it move and attack slower.",
+            Element.Waiters => "An enemy left waiting gets angry: faster and stronger, but it takes more damage and drops double gold.",
+            Element.WallClock => "At twelve the wall clock glows. Stand by it: every enemy freezes for 5 s.",
+            Element.Chute => "Catch falling letters for a boost. Three from one drop: Full Delivery!",
+            Element.Gust => "Paper wind: enemies walking into it slow down, and their shots drift and slow.",
+            Element.Stamps => "A stamped enemy is faster and hits harder. Kill it before the stamp burns out: it bursts and drops a letter.",
+            Element.Parcel => "A giant parcel lands! Break it: it bursts and spills gold. Leave it and an elite climbs out.",
+            Element.Planes => "Paper planes sweep the lit lane and strike every enemy in it.",
+            Element.Blooms => "Pots bloom, faster in the sun. Walk through one for its colour's boost.",
+            Element.Weather => "Sun and rain take turns. Sun: foes attack slower. Rain: foes are slowed and knocked further.",
+            Element.Pollen => "A foe with a gold aura speeds up those near it. Kill it for a flower bed: more damage and attack speed inside.",
+            Element.Roof => "Red floor: a roof pane is about to fall. Step out and let foes stand in it.",
+            Element.Turret => "Stand by a big bud to open it: it shoots nearby foes for 15 s.",
+            Element.Light => "Lamp light: +15% damage and +2 armour, and friends attack faster. In the dark foes are quick but drowsy; stepping into light dazzles them.",
+            Element.Oil => "Lit lamps drop oil vials. Walk through one for a short boost.",
+            Element.Snuffer => "A hand snuffs a lamp. Relight it within 3 s and it flares, stunning foes in its light.",
+            Element.Lantern => "Stand by a lantern to carry it: you become a light and its flame burns foes close by.",
+            Element.Spotlight => "Stand in the spotlight: white damage, yellow attack speed, pink armour. Stay 3 s for an ENCORE.",
+            Element.Smoke => "Stage smoke slows enemies and shortens their shots. The drum clears it.",
+            Element.Audience => "Outside the light the ghost audience throws at you. In it, they throw coins.",
+            Element.Curtain => "The curtain falls where the floor glows: it crushes enemies, but your shots can't pass it.",
+            Element.Fireworks => "Kills in the spotlight load the firework machine. Then stand by it to hit and freeze every enemy.",
+            Element.Pages => "Catch flying pages for a boost. Three in 30 s is a CHAPTER: all three for longer.",
+            Element.InkFog => "Ink fog slows enemies and weakens their hits.",
+            Element.Bookworms => "Bookworms eat pages to grow. Kill one to get its pages back, with gold.",
+            Element.Inkpot => "Spilled ink makes enemies faster and stronger, but they burst when they die in it.",
+            _ => "The stamp falls on the biggest crowd. Survivors take more damage."
         };
         public static string Prop(Element element) => element switch
         {
-            Element.Board => "WaitingRoom/Board_Flash", Element.Chairs => "WaitingRoom/Chair_Slide",
-            Element.Chute => "PostOffice/Letter_Gold", Element.Gust => "PostOffice/Scrap_A", Element.Parcel => "PostOffice/Parcel_Intact",
-            Element.Light => "LampHall/Lamp_Lit", Element.Snuffer => "LampHall/Hand_Snuff", Element.Moths => "LampHall/Moths_0",
-            Element.Clock => "ArchiveVault/Clock_Chime", Element.Shelves => "ArchiveVault/Shelf_Turning",
-            Element.Blooms => "Glasshouse/Pot_Bloom", Element.Spotlight => "Theatre/Curtain", // art to come (Docs/Map_Mechanics_2026-10-25.md)
-            _ => "ArchiveVault/Ledger"
+            Element.Tickets => "WaitingRoom/Ticket_Red", Element.Board => "WaitingRoom/Board_Flash", Element.Dust => "WaitingRoom/Board_Idle",
+            Element.Waiters => "WaitingRoom/Door_Ajar", Element.WallClock => "WaitingRoom/Clock_Wall",
+            Element.Chute => "PostOffice/Letter_Gold", Element.Gust => "PostOffice/Scrap_A", Element.Stamps => "PostOffice/Stamp",
+            Element.Parcel => "PostOffice/Parcel_Intact", Element.Planes => "PostOffice/Paper_Plane",
+            Element.Blooms => "Glasshouse/Bloom_Red", Element.Weather => "Glasshouse/Bloom_Blue", Element.Pollen => "Glasshouse/Bloom_Yellow",
+            Element.Roof => "Glasshouse/Pot_Bud", Element.Turret => "Glasshouse/Flower_Turret",
+            Element.Light => "LampHall/Lamp_Lit", Element.Oil => "LampHall/Oil_Vial", Element.Snuffer => "LampHall/Hand_Snuff", Element.Lantern => "LampHall/Lantern_Carry",
+            Element.Spotlight => "Theatre/Curtain_Velvet", Element.Smoke => "Theatre/Seats_Row", Element.Audience => "Theatre/Seats_Row",
+            Element.Curtain => "Theatre/Curtain_Velvet", Element.Fireworks => "Theatre/Firework_Machine",
+            Element.Pages => "ArchiveVault/Page_A", Element.InkFog => "ArchiveVault/Inkpot_Up", Element.Bookworms => "ArchiveVault/Page_B",
+            Element.Inkpot => "ArchiveVault/Inkpot_Tipped", _ => "ArchiveVault/Stamp_Giant"
         };
         private static readonly Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
         public static Sprite Sprite(string path)

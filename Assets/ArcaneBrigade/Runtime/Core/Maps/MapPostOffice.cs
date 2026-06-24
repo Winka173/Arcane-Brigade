@@ -4,70 +4,136 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     // The Post Office (waves 5-8; Docs/Map_Mechanics_2026-10-25.md section 2). Requirement 25/10/2026: each map's state, tunings
-    // and rules live in its own file; MapEnvironmentCombat and MapBoosts only dispatch to the hooks below.
+    // and rules live in its own file; MapEnvironmentCombat and MapBoosts only dispatch to the hooks below. Five slots:
+    // chute letters (boost), paper wind (atmosphere), stamped enemies (enemy), the giant parcel (unique 1), paper planes
+    // (unique 2). The old gust that pushed bodies is gone.
 
     public sealed partial class MapEnvironmentState
     {
-        // Post Office: the mail chute, the paper gust, the giant parcel; the letter's boost and the stamped enemies
-        public sealed class Letter { public Vector2 Position; public float Born; public bool Gold, Gone; public int Style; }
+        // ---- chute letters: each gives one of the five base stats (Stat = (int)MapStat)
+        public sealed class Letter { public Vector2 Position; public float Born, Until; public bool Gold, Gone, Grounded; public int Style, Stat; }
         public float ChuteAt = -100, NextChute, ChuteX, ChuteTop, ChuteBottom;
         public int LettersToDrop; public float NextLetter;
         public readonly List<Letter> Letters = new List<Letter>();
-        public float GustWarnAt = -100, NextGust, GustY; public int GustDirection = 1;
+        /// <summary>Letters caught from the chute's current drop, and every catch so far; until when the last letter's boost runs.</summary>
+        public int LetterStreak, LettersCaught; public float BoostUntil;
+        /// <summary>The stats caught from the current drop (a full delivery lengthens each), and when the last full delivery was.</summary>
+        public readonly List<int> PostDropStats = new List<int>();
+        public float PostDeliveredAt = -100;
+
+        // ---- paper wind: the whole room, one way, for 4 s every 11 s (warned 1 s before)
+        public float GustWarnAt = -100, NextGust; public Vector2 PostWind = Vector2.right;
         public float GustAt => GustWarnAt + MapEnvironmentRules.GustWarning;
         public float GustUntil => GustAt + MapEnvironmentRules.GustSeconds;
-        public int ParcelState; // 0 not yet, 1 falling, 2 sitting, 3 broken open (gold), 4 opened into an elite
-        public Vector2 Parcel; public float ParcelDue, ParcelAt, HatchAt, ParcelBreak;
-        public int BoostKind = -1; public float BoostUntil;
-        /// <summary>Letters caught from the chute's current drop, and every catch so far (the presentation counts them over the hero).</summary>
-        public int LetterStreak, LettersCaught;
+        public bool PostWindBlowing(float t) => t >= GustAt && t < GustUntil;
+
+        // ---- stamped enemies: id -> until when the stamp burns, and when it was stamped
         public readonly Dictionary<int, float> Stamped = new Dictionary<int, float>();
+        public readonly Dictionary<int, float> PostStampedAt = new Dictionary<int, float>();
+        public readonly Dictionary<int, UnitState> PostStampHolders = new Dictionary<int, UnitState>();
+        public float PostNextStamp;
+        public sealed class PostBurst { public Vector2 Position; public float At, Radius; }
+        /// <summary>The latest stamp bursts (the presentation's moments).</summary>
+        public readonly List<PostBurst> PostBursts = new List<PostBurst>();
+
+        // ---- the giant parcel (about a third of nights)
+        public int ParcelState; // 0 not yet (or not tonight), 1 falling, 2 sitting, 3 broken open (gold), 4 opened into an elite
+        public Vector2 Parcel; public float ParcelDue, ParcelAt, HatchAt;
+        public bool PostParcelNight;
+        /// <summary>The parcel's body: shots and blades break it from any range.</summary>
+        public readonly StruckProp ParcelProp = new StruckProp();
+
+        // ---- paper planes: a pass every 18 s along a lane 1.5 units wide (warned 1.5 s before)
+        public Vector2 PostLaneFrom, PostLaneTo; public float PostPlanesWarnAt = -100, PostNextPlanes; public int PostPlaneCount;
+        public float PostPlanesAt => PostPlanesWarnAt + MapEnvironmentRules.PostPlaneWarn;
+        public float PostLaneLength => (PostLaneTo - PostLaneFrom).magnitude;
+        public Vector2 PostLaneDirection => (PostLaneTo - PostLaneFrom).sqrMagnitude > 1e-4f ? (PostLaneTo - PostLaneFrom).normalized : Vector2.right;
+        public float PostPlanesEnd => PostPlanesAt + (PostPlaneCount - 1) * MapEnvironmentRules.PostPlaneGap + PostLaneLength / MapEnvironmentRules.PostPlaneSpeed;
+        /// <summary>How far along the lane plane i is at time t (negative before it is launched, past the length once through).</summary>
+        public float PostPlaneAlong(int i, float t) => (t - PostPlanesAt - i * MapEnvironmentRules.PostPlaneGap) * MapEnvironmentRules.PostPlaneSpeed;
+        /// <summary>Plane i's sideways place in the lane.</summary>
+        public static float PostPlaneSide(int i) => (((i * 37) % 9) - 4) / 4f * MapEnvironmentRules.PostPlaneSpread;
+        public sealed class PostPlaneStrike { public Vector2 Position; public float At; }
+        public readonly List<PostPlaneStrike> PostPlaneHits = new List<PostPlaneStrike>();
+        public readonly Dictionary<int, int> PostPassHits = new Dictionary<int, int>();
+        public readonly List<HashSet<int>> PostPlaneVictims = new List<HashSet<int>>();
     }
 
     public static partial class MapEnvironmentRules
     {
+        // chute letters: 5 every 13 s, the third gold; 8 s each (gold 11 s); three from one drop: all three +4 s
         public const int FullDelivery = 3; public const float FullDeliveryBonus = 4;
-        public const float ChuteEvery = 13, ChuteWarn = 1.2f, LetterSpeed = 3.1f, BoostSeconds = 8, GoldBoostSeconds = 11, StampSeconds = 6, StampDamage = 1.2f;
-        // the Post Office is the open floor with the strong draught (requirement 23/10/2026): wider, stronger gusts (were 1.3 / 1.4 / 1.1)
-        public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, GustHalf = 1.7f, GustShotPush = 1.8f, GustBodyPush = 1.4f, LightBody = .38f;
-        public const float ParcelShare = .3f, ParcelWarn = 1.3f, ParcelHatch = 11, ParcelBreakSeconds = 1.8f, ParcelReach = 1.5f;
-        public const float BoostSpeed = 1.15f, BoostDamage = 1.15f;
-        // requirement 23/10/2026: a broken parcel bursts
+        public const float ChuteEvery = 13, ChuteWarn = 1.2f, LetterSpeed = 3.1f, BoostSeconds = 8, GoldBoostSeconds = 11, PostLetterReach = .45f, PostLetterLies = 8;
+        public const float PostLetterDamage = .15f, PostLetterHaste = .15f, PostLetterArmor = 2, PostLetterGold = 1, PostLetterSpeed = .15f;
+        // paper wind: 4 s every 11 s, warned 1 s; walking against it 20% slower; enemy shots drift and fly 25% slower
+        public const float GustEvery = 11, GustWarning = 1, GustSeconds = 4, PostWindAgainst = .8f, PostWindShotPace = .75f, PostWindDrift = 1.5f;
+        // stamped enemies: one every 10 s for 8 s (+20% pace, +20% damage dealt); killed stamped, it bursts (1.5 units, 30% of its max health)
+        public const float PostStampEvery = 10, StampSeconds = 8, PostStampPace = 1.2f, StampDamage = 1.2f, PostStampRadius = 1.5f, PostStampBurst = .3f, PostStampReach = 7.5f;
+        // the giant parcel: a third of nights, warned 1.3 s, an elite after 11 s; about 4 ordinary enemies' health;
+        // breaking it bursts in 2.8 units for 4x the hero hit and spills 10-25 gold
+        public const float ParcelShare = .3f, ParcelWarn = 1.3f, ParcelHatch = 11, PostParcelChance = 1 / 3f, PostParcelHealth = 4, PostParcelRadius = .95f;
         public const float ParcelBurstRadius = 2.8f, ParcelBurstHits = 4f;
+        public const int PostParcelGoldMin = 10, PostParcelGoldMax = 25;
+        // paper planes: every 18 s, 8-12 along a lane 1.5 wide, warned 1.5 s; 50% of the hero hit each, at most 3 per enemy a pass
+        public const float PostPlaneEvery = 18, PostPlaneWarn = 1.5f, PostPlaneHalf = .75f, PostPlaneSpeed = 12, PostPlaneGap = .14f, PostPlaneSpread = .42f, PostPlaneHit = .5f, PostLaneHalfLength = 13;
+        public const int PostPlanesMin = 8, PostPlanesMax = 12, PostPlaneHitsPerEnemy = 3;
     }
 
     public sealed partial class CombatSimulation
     {
+        private const int PostParcelVictim = -7201;
+        private static readonly string[] PostLetterSources = { "letter-damage", "letter-haste", "letter-armor", "letter-gold", "letter-speed" };
+        private readonly List<int> postGone = new List<int>();
+        private CombatCause postPlaneCause;
+
         private void InitPostOffice(MapEnvironmentState s)
         {
-            s.NextChute = 5; s.NextGust = 8;
-            s.ParcelDue = Mathf.Max(6, catalog.WaveDuration * MapEnvironmentRules.ParcelShare);
+            s.NextChute = 5; s.NextGust = 8; s.PostNextStamp = 6; s.PostNextPlanes = 9;
+            // requirement 25/10/2026: a giant parcel lands on about a third of nights
+            s.PostParcelNight = mapRandom.NextDouble() < MapEnvironmentRules.PostParcelChance;
+            s.ParcelDue = s.PostParcelNight ? Mathf.Max(6, catalog.WaveDuration * MapEnvironmentRules.ParcelShare) : float.MaxValue;
         }
 
-        // requirement 23/10/2026: nothing on a map blocks or pushes anyone - the gusts are gone
-        private void StepPostOffice(float deltaTime) { StepChute(deltaTime); StepParcel(deltaTime); }
+        private void StepPostOffice(float deltaTime)
+        {
+            PostStepChute(deltaTime);
+            PostStepWind(deltaTime);
+            PostStepStamps();
+            PostStepParcel();
+            PostStepPlanes(deltaTime);
+        }
 
         /// <summary>A stat the hero gets while standing somewhere on this map (MapBoosts.MapStandingBoost).</summary>
         private float PostOfficeStandingBoost(MapStat stat) => 0;
-        /// <summary>How this map changes one enemy along one axis (1 = unchanged): a stamped enemy, or any enemy while the hero
-        /// holds the letter's sharp boost, takes more damage.</summary>
+        /// <summary>How this map changes one enemy along one axis (1 = unchanged): a stamped enemy is 20% quicker and hits 20%
+        /// harder; walking against the paper wind is 20% slower.</summary>
         private float PostOfficeEnemyFactor(UnitState unit, MapEnemyAxis axis)
         {
-            MapEnvironmentState s = mapEnv;
-            if (axis != MapEnemyAxis.DamageTaken) return 1;
-            float factor = 1;
-            if (s.Stamped.Count > 0 && s.Stamped.TryGetValue(unit.Id, out float stamped) && stamped > Elapsed) factor *= MapEnvironmentRules.StampDamage;
-            if (s.BoostKind == 1 && s.BoostUntil > Elapsed) factor *= MapEnvironmentRules.BoostDamage;
-            return factor;
+            MapEnvironmentState s = mapEnv; float t = Elapsed;
+            bool stamped = s.Stamped.Count > 0 && s.Stamped.TryGetValue(unit.Id, out float until) && until > t;
+            switch (axis)
+            {
+                case MapEnemyAxis.Speed:
+                    float pace = stamped ? MapEnvironmentRules.PostStampPace : 1;
+                    if (s.PostWindBlowing(t))
+                    {
+                        Vector2 step = unit.Position - unit.PreviousPosition;
+                        if (step.sqrMagnitude > 1e-8f && Vector2.Dot(step.normalized, s.PostWind) < -.3f) pace *= MapEnvironmentRules.PostWindAgainst;
+                    }
+                    return pace;
+                case MapEnemyAxis.DamageDealt: return stamped ? MapEnvironmentRules.StampDamage : 1;
+                default: return 1;
+            }
         }
         /// <summary>The attack cooldown factor of the hero or a friend on this map (below 1 = faster).</summary>
         private float PostOfficeAllyCycle(UnitState unit) => 1;
-        /// <summary>The hero's pace on this map beyond the move-speed boosts: the letter's quick boost.</summary>
-        private float PostOfficeHeroPace() => mapEnv.BoostKind == 0 && mapEnv.BoostUntil > Elapsed ? MapEnvironmentRules.BoostSpeed : 1;
-        /// <summary>A fallen enemy's coins on this map: one more with the letter's rich boost.</summary>
-        private int PostOfficeCoins(UnitState target, int coins) => mapEnv.BoostKind == 2 && mapEnv.BoostUntil > Elapsed && !target.SwarmMinion ? coins + 1 : coins;
+        /// <summary>The hero's pace on this map beyond the move-speed boosts.</summary>
+        private float PostOfficeHeroPace() => 1;
+        /// <summary>A fallen enemy's coins on this map.</summary>
+        private int PostOfficeCoins(UnitState target, int coins) => coins;
 
-        private void StepChute(float deltaTime)
+        // ------------------------------------------------------------------ chute letters
+        private void PostStepChute(float deltaTime)
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
             if (t >= s.NextChute)
@@ -77,59 +143,133 @@ namespace ArcaneBrigade
                 Vector2 half = catalog.ArenaSize * .5f - Vector2.one;
                 s.ChuteX = Mathf.Clamp(Champion.Position.x + side, -half.x, half.x);
                 s.ChuteTop = Mathf.Min(half.y, Champion.Position.y + 4.6f); s.ChuteBottom = Mathf.Max(-half.y, Champion.Position.y - 5.2f);
-                s.LettersToDrop = 5; s.NextLetter = t + MapEnvironmentRules.ChuteWarn; s.LetterStreak = 0;
+                s.LettersToDrop = 5; s.NextLetter = t + MapEnvironmentRules.ChuteWarn; s.LetterStreak = 0; s.PostDropStats.Clear();
                 s.Shown.Add(MapIdentity.Element.Chute);
             }
             if (s.LettersToDrop > 0 && t >= s.NextLetter)
             {
-                s.Letters.Add(new MapEnvironmentState.Letter { Position = new Vector2(s.ChuteX + MapNext(-.25f, .25f), s.ChuteTop), Born = t, Gold = s.LettersToDrop == 3, Style = mapRandom.Next(3) });
+                s.Letters.Add(new MapEnvironmentState.Letter { Position = new Vector2(s.ChuteX + MapNext(-.25f, .25f), s.ChuteTop), Born = t, Gold = s.LettersToDrop == 3, Style = mapRandom.Next(3), Stat = mapRandom.Next(5) });
                 s.LettersToDrop--; s.NextLetter = t + .45f;
             }
+            float grab = Champion.Definition.Radius + MapEnvironmentRules.PostLetterReach;
             for (int i = s.Letters.Count - 1; i >= 0; i--)
             {
                 MapEnvironmentState.Letter letter = s.Letters[i];
-                letter.Position += new Vector2(Mathf.Sin((t - letter.Born) * 3 + i) * .35f * deltaTime, -MapEnvironmentRules.LetterSpeed * deltaTime);
-                if (letter.Position.y < s.ChuteBottom) { s.Letters.RemoveAt(i); continue; }
-                if ((letter.Position - Champion.Position).sqrMagnitude < Mathf.Pow(Champion.Definition.Radius + .45f, 2))
+                if (letter.Grounded) { if (t >= letter.Until) { s.Letters.RemoveAt(i); continue; } }
+                else
                 {
-                    s.BoostKind = mapRandom.Next(3); s.BoostUntil = t + (letter.Gold ? MapEnvironmentRules.GoldBoostSeconds : MapEnvironmentRules.BoostSeconds);
-                    // requirement 25/10/2026: catches count up (x1, x2...); three from one drop is a full delivery, a longer boost
-                    s.LetterStreak++; s.LettersCaught++;
-                    if (s.LetterStreak == MapEnvironmentRules.FullDelivery) s.BoostUntil += MapEnvironmentRules.FullDeliveryBonus;
-                    s.Letters.RemoveAt(i); continue;
+                    letter.Position += new Vector2(Mathf.Sin((t - letter.Born) * 3 + i) * .35f * deltaTime, -MapEnvironmentRules.LetterSpeed * deltaTime);
+                    if (s.PostWindBlowing(t)) letter.Position += s.PostWind * MapEnvironmentRules.PostWindDrift * .5f * deltaTime; // the wind carries the letters a little
+                    if (letter.Position.y < s.ChuteBottom) { s.Letters.RemoveAt(i); continue; }
                 }
-                foreach (UnitState u in units)
-                    if (u.Alive && u.Faction == Faction.Enemy && (u.Position - letter.Position).sqrMagnitude < Mathf.Pow(u.Definition.Radius + .35f, 2))
-                        s.Stamped[u.Id] = t + MapEnvironmentRules.StampSeconds;
+                if ((letter.Position - Champion.Position).sqrMagnitude >= grab * grab) continue;
+                PostCatchLetter(letter);
+                s.Letters.RemoveAt(i);
             }
         }
+        private void PostCatchLetter(MapEnvironmentState.Letter letter)
+        {
+            MapEnvironmentState s = mapEnv; float t = Elapsed;
+            MapStat stat = (MapStat)Mathf.Clamp(letter.Stat, 0, 4);
+            float seconds = letter.Gold ? MapEnvironmentRules.GoldBoostSeconds : MapEnvironmentRules.BoostSeconds;
+            GrantMapBoost(stat, PostLetterValue(stat), seconds, PostLetterSources[(int)stat], letter.Gold ? "GOLD LETTER" : null);
+            s.BoostUntil = Mathf.Max(s.BoostUntil, t + seconds); s.LettersCaught++;
+            if (letter.Grounded) return; // a stamp's letter is not part of a drop
+            s.LetterStreak++; s.PostDropStats.Add((int)stat);
+            if (s.LetterStreak != MapEnvironmentRules.FullDelivery) return;
+            // a full delivery: the three letters' boosts all run together, each 4 s longer
+            s.PostDeliveredAt = t;
+            foreach (MapBoost b in s.Boosts)
+                if (b.Until > t && System.Array.IndexOf(PostLetterSources, b.Source) >= 0 && s.PostDropStats.Contains((int)b.Stat))
+                    b.Until = Mathf.Min(t + MapBoostCap, b.Until + MapEnvironmentRules.FullDeliveryBonus);
+            MapSay("FULL DELIVERY!", new Color(1f, .82f, .35f));
+        }
+        private static float PostLetterValue(MapStat stat) => stat switch
+        {
+            MapStat.Damage => MapEnvironmentRules.PostLetterDamage, MapStat.AttackSpeed => MapEnvironmentRules.PostLetterHaste,
+            MapStat.Armor => MapEnvironmentRules.PostLetterArmor, MapStat.Gold => MapEnvironmentRules.PostLetterGold, _ => MapEnvironmentRules.PostLetterSpeed
+        };
 
-        private void StepGust(float deltaTime)
+        // ------------------------------------------------------------------ paper wind
+        private void PostStepWind(float deltaTime)
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
             if (t >= s.NextGust)
             {
                 s.NextGust = t + MapEnvironmentRules.GustEvery; s.GustWarnAt = t;
-                s.GustY = Mathf.Clamp(Champion.Position.y + MapNext(-2, 2), -catalog.ArenaSize.y * .5f + 1.5f, catalog.ArenaSize.y * .5f - 1.5f);
-                s.GustDirection = mapRandom.Next(2) == 0 ? -1 : 1;
+                float angle = MapNext(-15, 15) + (mapRandom.Next(2) == 0 ? 0 : 180);
+                s.PostWind = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 s.Shown.Add(MapIdentity.Element.Gust);
             }
-            if (t < s.GustAt || t >= s.GustUntil) return;
-            float push = s.GustDirection * deltaTime;
-            foreach (ProjectileState p in projectiles)
-                if (Mathf.Abs(p.Position.y - s.GustY) < MapEnvironmentRules.GustHalf) p.Position += new Vector2(push * MapEnvironmentRules.GustShotPush, 0);
-            foreach (UnitState u in units)
-                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && !u.Elite && u.Definition.Radius <= MapEnvironmentRules.LightBody && Mathf.Abs(u.Position.y - s.GustY) < MapEnvironmentRules.GustHalf)
-                    u.Position = ClampPosition(u.Position + new Vector2(push * MapEnvironmentRules.GustBodyPush, 0), u.Definition.Radius);
+            if (!s.PostWindBlowing(t)) return;
+            // enemy shots drift with the wind and fly 25% slower (nothing on our side is pushed)
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                ProjectileState p = projectiles[i];
+                if (p.Faction != Faction.Enemy) continue;
+                Vector2 step = p.Position - p.PreviousPosition;
+                if (step.sqrMagnitude > 4) continue;
+                p.Position = p.PreviousPosition + step * MapEnvironmentRules.PostWindShotPace + s.PostWind * MapEnvironmentRules.PostWindDrift * deltaTime;
+            }
         }
 
-        private void StepParcel(float deltaTime)
+        // ------------------------------------------------------------------ stamped enemies
+        private void PostStepStamps()
+        {
+            MapEnvironmentState s = mapEnv; float t = Elapsed;
+            if (t >= s.PostNextStamp)
+            {
+                s.PostNextStamp = t + MapEnvironmentRules.PostStampEvery;
+                int seen = 0; UnitState pick = null; float reach = MapEnvironmentRules.PostStampReach * MapEnvironmentRules.PostStampReach;
+                foreach (UnitState u in units)
+                {
+                    if (!u.Alive || u.Faction != Faction.Enemy || u.Definition.IsBoss || u.EntranceUntil > t || s.PostStampHolders.ContainsKey(u.Id)) continue;
+                    if ((u.Position - Champion.Position).sqrMagnitude > reach) continue;
+                    if (mapRandom.Next(++seen) == 0) pick = u;
+                }
+                if (pick != null)
+                {
+                    s.Stamped[pick.Id] = t + MapEnvironmentRules.StampSeconds; s.PostStampedAt[pick.Id] = t; s.PostStampHolders[pick.Id] = pick;
+                }
+            }
+            if (s.PostStampHolders.Count == 0) return;
+            postGone.Clear();
+            foreach (KeyValuePair<int, UnitState> pair in s.PostStampHolders)
+            {
+                UnitState u = pair.Value;
+                float until = s.Stamped.TryGetValue(pair.Key, out float x) ? x : 0;
+                if (!u.Alive) { if (u.Health <= 0 && until >= t - .1f) PostBurstStamp(u); postGone.Add(pair.Key); }
+                else if (until <= t) postGone.Add(pair.Key);
+            }
+            foreach (int id in postGone) { s.PostStampHolders.Remove(id); s.Stamped.Remove(id); s.PostStampedAt.Remove(id); }
+        }
+        /// <summary>A stamped enemy killed before its stamp burns out bursts: 30% of its max health on the enemies within 1.5
+        /// units (bosses at most 5% of theirs), and it drops a letter.</summary>
+        private void PostBurstStamp(UnitState dead)
+        {
+            MapEnvironmentState s = mapEnv; float t = Elapsed;
+            float blast = MapEnvironmentRules.PostStampBurst * Mathf.Max(1, dead.Definition.Health);
+            CombatCause cause = NewCause(Champion.Id).Child("map-stamp-burst");
+            foreach (UnitState u in RoomUnitsSnapshot())
+            {
+                if (u == dead || !u.Alive || u.Faction != Faction.Enemy) continue;
+                float reach = MapEnvironmentRules.PostStampRadius + u.Definition.Radius * .5f;
+                if ((u.Position - dead.Position).sqrMagnitude > reach * reach) continue;
+                ApplyDamage(u, u.Definition.IsBoss ? Mathf.Min(blast, u.Definition.Health * .05f) : blast, Faction.Champion, "Stamp burst", u.Position - dead.Position, cause: cause);
+            }
+            s.PostBursts.Add(new MapEnvironmentState.PostBurst { Position = dead.Position, At = t, Radius = MapEnvironmentRules.PostStampRadius });
+            if (s.PostBursts.Count > 10) s.PostBursts.RemoveAt(0);
+            s.Letters.Add(new MapEnvironmentState.Letter { Position = ClampPosition(dead.Position, .4f), Born = t, Until = t + MapEnvironmentRules.PostLetterLies, Grounded = true, Style = mapRandom.Next(3), Stat = mapRandom.Next(5) });
+        }
+
+        // ------------------------------------------------------------------ the giant parcel
+        private void PostStepParcel()
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
             switch (s.ParcelState)
             {
                 case 0:
-                    if (t < s.ParcelDue) return;
+                    if (!s.PostParcelNight || t < s.ParcelDue) return;
                     float angle = MapNext(0, Mathf.PI * 2);
                     s.Parcel = ClampPosition(Champion.Position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * .7f) * 4.2f, 1.5f);
                     s.ParcelAt = t; s.ParcelState = 1; s.Shown.Add(MapIdentity.Element.Parcel);
@@ -137,22 +277,20 @@ namespace ArcaneBrigade
                 case 1:
                     if (t < s.ParcelAt + MapEnvironmentRules.ParcelWarn) return;
                     s.ParcelState = 2; s.ParcelAt = t; s.HatchAt = t + MapEnvironmentRules.ParcelHatch; // it lands; nothing is pushed
+                    s.ParcelProp.Reset(s.Parcel + Vector2.up * .55f, MapEnvironmentRules.PostParcelRadius, MapEnvironmentRules.PostParcelHealth * RoomOrdinaryHealth());
                     break;
                 case 2:
-                    if ((Champion.Position - s.Parcel).sqrMagnitude < MapEnvironmentRules.ParcelReach * MapEnvironmentRules.ParcelReach)
-                        s.ParcelBreak = Mathf.Min(1, s.ParcelBreak + deltaTime / MapEnvironmentRules.ParcelBreakSeconds);
-                    if (s.ParcelBreak >= 1)
+                    RoomStrikeProp(s.ParcelProp, PostParcelVictim);
+                    if (s.ParcelProp.Health <= 0)
                     {
                         s.ParcelState = 3; s.ParcelAt = t;
-                        float perCoin = Mathf.Max(.01f, KitCoinScale * Mathf.Max(.01f, catalog.CoinValueScale));
-                        int coins = Mathf.Max(4, Mathf.RoundToInt(Mathf.Max(8, catalog.ChestGold) * .5f / perCoin));
-                        for (int i = 0; i < 4; i++) DropLoot(LootKind.Coin, s.Parcel + new Vector2((i % 2) * .5f - .25f, (i / 2) * .4f - .2f), coins / 4 + (i == 0 ? coins % 4 : 0));
+                        RoomSpillGold(s.Parcel, MapEnvironmentRules.PostParcelGoldMin + mapRandom.Next(MapEnvironmentRules.PostParcelGoldMax - MapEnvironmentRules.PostParcelGoldMin + 1), 5);
                         // it bursts: splinters of the crate hit every enemy close by (four of the hero's own hits)
                         CombatCause burst = NewCause(Champion.Id).Child("map-parcel-burst");
-                        float splinters = Champion.Definition.Weapon.Damage * MapEnvironmentRules.ParcelBurstHits;
-                        foreach (UnitState u in units.ToArray())
+                        float splinters = RoomHeroHit * MapEnvironmentRules.ParcelBurstHits;
+                        foreach (UnitState u in RoomUnitsSnapshot())
                             if (u.Alive && u.Faction == Faction.Enemy && (u.Position - s.Parcel).sqrMagnitude < MapEnvironmentRules.ParcelBurstRadius * MapEnvironmentRules.ParcelBurstRadius)
-                                ApplyDamage(u, u.Definition.IsBoss ? splinters * .5f : splinters, Faction.Champion, "Parcel", u.Position - s.Parcel, cause: burst);
+                                ApplyDamage(u, splinters, Faction.Champion, "Parcel", u.Position - s.Parcel, cause: burst);
                         events.Add(new CombatEvent(CombatEventKind.SignaturePulse, s.Parcel, Faction.Champion, MapEnvironmentRules.ParcelBurstRadius, subject: Champion, element: DamageElement.Physical, cause: burst));
                     }
                     else if (t >= s.HatchAt)
@@ -173,17 +311,83 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>For captures: the chute, its letters, a gust, a parcel being broken and stamped enemies on one frame.</summary>
-        private void PostOfficeCaptureFixture()
+        // ------------------------------------------------------------------ paper planes
+        private void PostStepPlanes(float deltaTime)
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
-            s.ChuteAt = t - 1.6f; s.ChuteX = Champion.Position.x + 2.2f; s.ChuteTop = Champion.Position.y + 4.4f; s.ChuteBottom = Champion.Position.y - 5; s.NextChute = t + 30;
-            s.Letters.Clear(); for (int i = 0; i < 4; i++) s.Letters.Add(new MapEnvironmentState.Letter { Position = new Vector2(s.ChuteX + (i % 2) * .3f - .15f, s.ChuteTop - .4f - i * 1.6f), Born = t - i, Gold = i == 2, Style = i % 3 });
+            if (t >= s.PostNextPlanes)
+            {
+                s.PostNextPlanes = t + MapEnvironmentRules.PostPlaneEvery;
+                PostChooseLane(s);
+                s.PostPlanesWarnAt = t;
+                s.PostPlaneCount = MapEnvironmentRules.PostPlanesMin + mapRandom.Next(MapEnvironmentRules.PostPlanesMax - MapEnvironmentRules.PostPlanesMin + 1);
+                s.PostPassHits.Clear();
+                while (s.PostPlaneVictims.Count < s.PostPlaneCount) s.PostPlaneVictims.Add(new HashSet<int>());
+                for (int i = 0; i < s.PostPlaneVictims.Count; i++) s.PostPlaneVictims[i].Clear();
+                postPlaneCause = NewCause(Champion.Id).Child("map-paper-plane");
+            }
+            if (t < s.PostPlanesAt || t > s.PostPlanesEnd + deltaTime) return;
+            Vector2 dir = s.PostLaneDirection, normal = new Vector2(-dir.y, dir.x);
+            float length = s.PostLaneLength, hit = RoomHeroHit * MapEnvironmentRules.PostPlaneHit;
+            foreach (UnitState u in RoomUnitsSnapshot())
+            {
+                if (!u.Alive || u.Faction != Faction.Enemy || u.EntranceUntil > t) continue;
+                Vector2 rel = u.Position - s.PostLaneFrom;
+                float along = Vector2.Dot(rel, dir), side = Vector2.Dot(rel, normal);
+                if (along < -.5f || along > length + .5f || Mathf.Abs(side) > MapEnvironmentRules.PostPlaneHalf + u.Definition.Radius * .5f) continue;
+                s.PostPassHits.TryGetValue(u.Id, out int struck);
+                for (int i = 0; i < s.PostPlaneCount && i < s.PostPlaneVictims.Count && struck < MapEnvironmentRules.PostPlaneHitsPerEnemy && u.Alive; i++)
+                {
+                    float now = s.PostPlaneAlong(i, t), before = now - MapEnvironmentRules.PostPlaneSpeed * deltaTime;
+                    if (now < 0 || before > length || along < before - .3f || along > now + .3f || !s.PostPlaneVictims[i].Add(u.Id)) continue;
+                    struck++;
+                    ApplyDamage(u, hit, Faction.Champion, "Paper plane", dir, cause: postPlaneCause);
+                    s.PostPlaneHits.Add(new MapEnvironmentState.PostPlaneStrike { Position = u.Position, At = t });
+                    if (s.PostPlaneHits.Count > 24) s.PostPlaneHits.RemoveAt(0);
+                }
+                s.PostPassHits[u.Id] = struck;
+            }
+        }
+        /// <summary>A lane across the room through the thickest knot of enemies near the hero, mostly side to side.</summary>
+        private void PostChooseLane(MapEnvironmentState s)
+        {
+            Vector2 centre = Champion.Position; int best = -1, looked = 0;
+            foreach (UnitState u in units)
+            {
+                if (!u.Alive || u.Faction != Faction.Enemy || (u.Position - Champion.Position).sqrMagnitude > 64) continue;
+                if (++looked > 48) break;
+                int near = 0;
+                foreach (UnitState o in units)
+                    if (o.Alive && o.Faction == Faction.Enemy && (o.Position - u.Position).sqrMagnitude < 4) near++;
+                if (near > best) { best = near; centre = u.Position; }
+            }
+            float angle = (MapNext(-32, 32) + (mapRandom.Next(2) == 0 ? 0 : 180)) * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            s.PostLaneFrom = centre - dir * MapEnvironmentRules.PostLaneHalfLength; s.PostLaneTo = centre + dir * MapEnvironmentRules.PostLaneHalfLength;
+        }
+
+        /// <summary>For captures: the chute and its letters, the wind blowing, a parcel half broken, stamped enemies and a pass of
+        /// planes in flight, on one frame.</summary>
+        private void PostOfficeCaptureFixture()
+        {
+            MapEnvironmentState s = mapEnv; float t = Elapsed; Vector2 h = Champion.Position;
+            s.ChuteAt = t - 1.6f; s.ChuteX = h.x + 2.2f; s.ChuteTop = h.y + 4.4f; s.ChuteBottom = h.y - 5; s.NextChute = t + 30;
+            s.Letters.Clear();
+            for (int i = 0; i < 4; i++) s.Letters.Add(new MapEnvironmentState.Letter { Position = new Vector2(s.ChuteX + (i % 2) * .3f - .15f, s.ChuteTop - .4f - i * 1.6f), Born = t - i, Gold = i == 2, Style = i % 3, Stat = i });
+            s.Letters.Add(new MapEnvironmentState.Letter { Position = h + new Vector2(-1.4f, -1.6f), Born = t - 1, Until = t + 7, Grounded = true, Stat = 4, Style = 1 });
             s.LettersToDrop = 0;
-            s.GustWarnAt = t - MapEnvironmentRules.GustWarning - .5f; s.GustY = Champion.Position.y - 1.6f; s.GustDirection = 1; s.NextGust = t + 30;
-            s.Parcel = ClampPosition(Champion.Position + new Vector2(-3.2f, .6f), 1.5f); s.ParcelState = 2; s.ParcelAt = t - 2; s.HatchAt = t + 6; s.ParcelBreak = .45f;
-            foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && (u.Position - Champion.Position).sqrMagnitude < 36) s.Stamped[u.Id] = t + 6;
-            s.BoostKind = 1; s.BoostUntil = t + 6;
+            s.GustWarnAt = t - MapEnvironmentRules.GustWarning - .5f; s.PostWind = Vector2.right; s.NextGust = t + 30;
+            s.PostParcelNight = true; s.Parcel = ClampPosition(h + new Vector2(-3.2f, .6f), 1.5f); s.ParcelState = 2; s.ParcelAt = t - 2; s.HatchAt = t + 6;
+            s.ParcelProp.Reset(s.Parcel + Vector2.up * .55f, MapEnvironmentRules.PostParcelRadius, MapEnvironmentRules.PostParcelHealth * RoomOrdinaryHealth());
+            s.ParcelProp.Health = s.ParcelProp.MaxHealth * .45f; s.ParcelProp.HitAt = t - .05f; s.ParcelProp.HitFrom = h;
+            int stamped = 0;
+            foreach (UnitState u in units)
+                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - h).sqrMagnitude < 36 && stamped++ < 2)
+                { s.Stamped[u.Id] = t + 6; s.PostStampedAt[u.Id] = t - 2; s.PostStampHolders[u.Id] = u; }
+            s.PostNextStamp = t + 30;
+            s.PostLaneFrom = h + new Vector2(-13, -1.2f); s.PostLaneTo = h + new Vector2(13, -1.2f);
+            s.PostPlanesWarnAt = t - MapEnvironmentRules.PostPlaneWarn - .9f; s.PostPlaneCount = 10; s.PostNextPlanes = t + 30;
+            while (s.PostPlaneVictims.Count < s.PostPlaneCount) s.PostPlaneVictims.Add(new HashSet<int>());
             s.Shown.Add(MapIdentity.Element.Chute); s.Shown.Add(MapIdentity.Element.Gust); s.Shown.Add(MapIdentity.Element.Parcel);
         }
     }
