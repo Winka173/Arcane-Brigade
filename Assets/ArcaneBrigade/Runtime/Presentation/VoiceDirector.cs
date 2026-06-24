@@ -152,6 +152,7 @@ namespace ArcaneBrigade
         {
             if (boss == null) return null;
             if (boss.Id == NightmareRules.CustomerId) return VoiceLines.LastCustomer;
+            if (MidMapBossRules.Is(boss.Id)) return boss.Id; // the mid-map bosses speak under their own ids
             return boss.DisplayName switch
             {
                 "THE KEEPER" or "THE KEEPER, WHOLE" => VoiceLines.Keeper,

@@ -248,6 +248,21 @@ namespace ArcaneBrigade
                 yield return Shot("Item24_Map" + name);
             }
 
+            // 25: the boss in the middle of each map comes 15 s into its night; the first one is beaten and keeps its lamp
+            foreach (var (wave, name) in new[] { (3, "WaitingRoom"), (8, "PostOffice"), (11, "Glasshouse"), (13, "LampHall"), (17, "Theatre"), (19, "ArchiveVault") })
+            {
+                yield return LoadShop(wave - 1, false);
+                owner.NextWave(); yield return KeepAlive(1f);
+                for (int k = 0; k < 40 && (owner.Simulation == null || owner.Simulation.Elapsed < .5f); k++) yield return KeepAlive(.25f); // a story zone is carried in first
+                owner.Simulation.MidBossCaptureFixture(false); yield return KeepAlive(2.6f);
+                Check(owner.Simulation.Boss != null && owner.Simulation.Boss.Definition.Id == MidMapBossRules.For(wave), "Mid-map boss arrives on " + name);
+                yield return Shot("Item25_MidBoss" + name);
+                if (wave != 3) continue;
+                owner.Simulation.MidBossCaptureFixture(true); yield return KeepAlive(1.4f);
+                Check(owner.Simulation.MidBossDefeated, "Mid-map boss beaten on " + name);
+                yield return Shot("Item25_MidBossBeaten");
+            }
+
             // 32: the run summary as the results screen draws it
             summary = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(owner.Session.State));
             summary.Phase = SessionPhase.Victory; summary.Wave = 20; summary.TotalKills = 12523; summary.BossKills = 4; summary.CombatSeconds = 1415;

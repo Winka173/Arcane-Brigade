@@ -362,6 +362,7 @@ namespace ArcaneBrigade
             CompanionCount = 0;
             BossDefeated = false;
             Boss = null;
+            ResetMidBoss();
             LastDamageSource = "";
             LastDamageAmount = 0f;
             LastDamageKind = "";
@@ -553,6 +554,7 @@ namespace ArcaneBrigade
                     StepPufferBursts();
                     ProcessWaitingEnemies(deltaTime);
                     ProcessMapEnvironment(deltaTime);
+                    ProcessMidBoss();
                     ProcessSwarmPacing(deltaTime);
                     ProcessBuildMorphs();
                     ProcessOctoberShots();

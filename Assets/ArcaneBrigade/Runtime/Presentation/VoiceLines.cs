@@ -287,6 +287,44 @@ namespace ArcaneBrigade
                 "There was someone there.|a confession",
                 "An umbrella. Still wet.|barely audible");
 
+            // THE MID-MAP BOSSES (waves 3, 8, 11, 13, 17, 19): each carries off the memory of its night unless beaten.
+            B("SleepCollector", "enter",
+                "Shh. Their voice is mine now.|lullaby, hushed");
+            B("SleepCollector", "phase",
+                "Close your eyes. Stop listening.|sing-song, strained");
+            B("SleepCollector", "defeat",
+                "Keep it, then. Keep the voice.|yawning away");
+            B("ChoirEngine", "enter",
+                "Every letter sings for me.|booming chord");
+            B("ChoirEngine", "phase",
+                "Louder! Drown out the knocking!|discordant howl");
+            B("ChoirEngine", "defeat",
+                "The pipes... go quiet...|wheezing last chord");
+            B("WaxAdmiral", "enter",
+                "Melt it down. Every memory.|stately, dripping");
+            B("WaxAdmiral", "phase",
+                "Hold the line! Hold the wick!|captain's bark, melting");
+            B("WaxAdmiral", "defeat",
+                "Burnt down to the wick.|guttering");
+            B("LastLantern", "enter",
+                "One flame left. Mine.|cold flicker");
+            B("LastLantern", "phase",
+                "I'll snuff the face you keep.|hissing");
+            B("LastLantern", "defeat",
+                "Then burn for them.|fading glow");
+            B("MarqueeMaw", "enter",
+                "Tonight only! Your last act!|showman roar");
+            B("MarqueeMaw", "phase",
+                "Encore! I said ENCORE!|frantic applause");
+            B("MarqueeMaw", "defeat",
+                "Curtain... down...|bulbs dying one by one");
+            B("ScarletIndex", "enter",
+                "Every name, filed and forgotten.|dry rustle");
+            B("ScarletIndex", "phase",
+                "Strike it from the record!|scratching quill");
+            B("ScarletIndex", "defeat",
+                "Their name... still on the card.|whisper");
+
             // THE LAST CUSTOMER (boss, wave 20): polite, smooth, unsettling. Wears faces he bought. Never uses the counter.
             B(LastCustomer, "enter",
                 "Ah. We meet properly.|courteous, pleased",

@@ -30,6 +30,7 @@ Story bosses stay where they are: 5 Coin Widow, 10 Chair Porter, 15 Door That St
   - The Marquee Maw (Theatre);
   - Scarlet Index (Archive Vault).
 - Each arrives at 15 s into the wave with about 40% of that stage's closing-boss health.
+- Its night is 15 s longer so the fight is not a race against the clock.
 - **Defeat it:** that night's memory lamp is kept, plus 1 prism shard. The wave runs on to its time.
 - **Fail:** the lamp goes out as today.
 - Each needs 2-3 lines of dialogue (enter, half health, defeat).

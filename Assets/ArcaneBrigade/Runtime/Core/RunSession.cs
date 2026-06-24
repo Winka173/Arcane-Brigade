@@ -384,6 +384,9 @@ namespace ArcaneBrigade
             if (actOne && bossWave) CombatCatalog.Boss = StoryBoss(CombatCatalog.Boss, scaling);
             if (actOne && bossWave && CombatCatalog.Boss != null) CombatCatalog.Boss.Health *= WaveCadence.StoryBossBulk(State.Wave);
             CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds + (bossWave ? OctoberBalance.BossExtraSeconds : 0);
+            // requirement 25/10/2026: one boss in the middle of each map (waves 3, 8, 11, 13, 17, 19)
+            CombatCatalog.MidBoss = actOne && !bossWave ? MidMapBoss(scaling) : null;
+            if (CombatCatalog.MidBoss != null) CombatCatalog.WaveDuration += MidMapBossRules.ExtraSeconds;
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
             CombatCatalog.EnemyBudget = Mathf.Min(Mathf.CeilToInt(600 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
             // waves are 15% longer (D9): the budget grows with them so enemies per second stay the same
@@ -649,7 +652,7 @@ namespace ArcaneBrigade
             State.LastDamageKind = simulation.LastDamageKind;
             simulation.SweepRemaining();
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold + MetaGold(simulation.Gold)); // + the Museum's gold gift
-            SettleNewRelics(simulation); SettleVisitors(simulation); SettleMapIdentity(simulation);
+            SettleNewRelics(simulation); SettleVisitors(simulation); SettleMapIdentity(simulation); SettleMidMapBoss(simulation);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
