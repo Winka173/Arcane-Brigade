@@ -18,7 +18,7 @@ namespace ArcaneBrigade
         // the queue tickets' colours: red, yellow, grey, white, blue
         private static readonly InkPalette[] RoomTicketInk = { RoomRed, ArsenalInk.Gold, ArsenalInk.Silver, ArsenalInk.Cotton, ArsenalInk.Cyan };
         private static readonly string[] RoomTicketArt = { "WaitingRoom/Ticket_Red", "WaitingRoom/Ticket_Yellow", "WaitingRoom/Ticket_Grey", "WaitingRoom/Ticket_White", "WaitingRoom/Ticket_Blue" };
-        private const float RoomClockHeight = 1.8f, RoomClockFace = .62f, RoomClockDial = .5f;
+        private const float RoomClockHeight = 1.8f, RoomClockFace = .58f, RoomClockDial = .34f; // the painted face: its centre and radius
 
         // what was already said (each word once), the door's blows seen, the waiters whose temper was announced
         private float roomSaidCall = -100, roomSaidBroken = -100, roomSaidOpen = -100; private int roomSaidBeat = -1, roomDoorHits;
