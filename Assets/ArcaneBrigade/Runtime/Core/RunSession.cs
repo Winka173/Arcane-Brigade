@@ -652,7 +652,7 @@ namespace ArcaneBrigade
             State.LastDamageKind = simulation.LastDamageKind;
             simulation.SweepRemaining();
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold + MetaGold(simulation.Gold)); // + the Museum's gold gift
-            SettleNewRelics(simulation); SettleVisitors(simulation); SettleMapIdentity(simulation); SettleMidMapBoss(simulation);
+            SettleNewRelics(simulation); SettleVisitors(simulation); SettleMidMapBoss(simulation);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);

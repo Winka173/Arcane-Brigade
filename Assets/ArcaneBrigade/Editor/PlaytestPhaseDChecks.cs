@@ -228,11 +228,11 @@ namespace ArcaneBrigade.Editor
             }
             string[] props =
             {
-                "WaitingRoom/Board_Idle", "WaitingRoom/Board_Flash", "WaitingRoom/Door_Closed", "WaitingRoom/Door_Ajar", "WaitingRoom/Door_Open", "WaitingRoom/Chair_Stand", "WaitingRoom/Chair_Slide",
+                "WaitingRoom/Board_Idle", "WaitingRoom/Board_Flash", "WaitingRoom/Door_Closed", "WaitingRoom/Door_Ajar", "WaitingRoom/Door_Open", "WaitingRoom/Chair_Stand",
                 "PostOffice/Chute", "PostOffice/Letter_A", "PostOffice/Letter_B", "PostOffice/Letter_C", "PostOffice/Letter_Gold", "PostOffice/Stamp", "PostOffice/Scrap_A", "PostOffice/Scrap_B", "PostOffice/Scrap_C", "PostOffice/Scrap_D",
                 "PostOffice/Parcel_Intact", "PostOffice/Parcel_Cracked", "PostOffice/Parcel_Burst",
-                "LampHall/Lamp_Lit", "LampHall/Lamp_Snuffed", "LampHall/LightGlow", "LampHall/Hand_Reach", "LampHall/Hand_Snuff", "LampHall/Moths_0", "LampHall/Moths_1", "LampHall/Moths_2", "LampHall/Moths_3",
-                "ArchiveVault/Clock_Idle", "ArchiveVault/Clock_Chime", "ArchiveVault/Clock_Twelfth", "ArchiveVault/Shelf_Straight", "ArchiveVault/Shelf_Turning", "ArchiveVault/Ledger",
+                "LampHall/Lamp_Lit", "LampHall/Lamp_Snuffed", "LampHall/LightGlow", "LampHall/Hand_Reach", "LampHall/Hand_Snuff",
+                "ArchiveVault/Clock_Idle", "ArchiveVault/Shelf_Straight",
             };
             foreach (string prop in props)
             {

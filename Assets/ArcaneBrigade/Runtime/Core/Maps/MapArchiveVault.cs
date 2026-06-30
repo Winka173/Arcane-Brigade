@@ -39,8 +39,6 @@ namespace ArcaneBrigade
         public Vector2 VaultClock;
 
         // kept only because MapEnvironmentCombat's blockers still read them: there are no shelves any more (always empty)
-        public sealed class Shelf { public Vector2 Position; }
-        public readonly List<Shelf> Shelves = new List<Shelf>();
     }
 
     public static partial class MapEnvironmentRules
@@ -62,8 +60,6 @@ namespace ArcaneBrigade
         // PROCESSED (+25% damage taken) for 8 s; never the hero
         public const float VaultStampEvery = 15, VaultStampWarn = 1.5f, VaultStampRadius = 2.5f, VaultStampHits = 3, VaultProcessedSeconds = 8, VaultProcessedDamage = 1.25f;
         // kept only because MapEnvironmentCombat (blockers) and MapIdentityRun (the ledger's debt) still read them
-        public const float ShelfHalf = .7f, ShelfRadius = .4f;
-        public const int LedgerMaxDebt = 8;
     }
 
     public sealed partial class CombatSimulation
@@ -122,7 +118,6 @@ namespace ArcaneBrigade
             return coins;
         }
         /// <summary>The ledger's debt is gone with the ledger (MapIdentityRun still reads it).</summary>
-        public int LedgerDebt => 0;
 
         // ------------------------------------------------------------------ flying pages and the CHAPTER
         private static MapStat VaultPageStat(int kind) => kind switch { 0 => MapStat.Damage, 1 => MapStat.AttackSpeed, 2 => MapStat.Armor, 3 => MapStat.Gold, _ => MapStat.MoveSpeed };

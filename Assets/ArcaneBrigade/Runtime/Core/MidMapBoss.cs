@@ -15,6 +15,17 @@ namespace ArcaneBrigade
         {
             3 => "SleepCollector", 8 => "ChoirEngine", 11 => "WaxAdmiral", 13 => "LastLantern", 17 => "MarqueeMaw", 19 => "ScarletIndex", _ => null
         };
+        /// <summary>The museum's line for a mid-map boss: where it waits and what it carries off.</summary>
+        public static string Journal(string id) => id switch
+        {
+            "SleepCollector" => "Waiting Room, night 3. It sings their voice to sleep and takes it.",
+            "ChoirEngine" => "Post Office, night 8. It howls over every letter so no knock is heard.",
+            "WaxAdmiral" => "Glasshouse, night 11. It melts the memories down to candle wax.",
+            "LastLantern" => "Lamp Hall, night 13. The last flame, and it wants their face.",
+            "MarqueeMaw" => "Theatre, night 17. It swallows their handwriting for its marquee.",
+            "ScarletIndex" => "Archive Vault, night 19. It files every name away to be forgotten.",
+            _ => null
+        };
         public static bool Is(string id) => id is "SleepCollector" or "ChoirEngine" or "WaxAdmiral" or "LastLantern" or "MarqueeMaw" or "ScarletIndex";
         /// <summary>The story boss that closes the stage the wave belongs to (5, 10, 15, 20).</summary>
         public static int ClosingWave(int wave) => (wave + 4) / 5 * 5;

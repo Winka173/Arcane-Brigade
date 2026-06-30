@@ -14,12 +14,6 @@ namespace ArcaneBrigade
         [NonSerialized] public UnitDefinition[] HerdPool;
     }
 
-    public sealed partial class RunSnapshot
-    {
-        /// <summary>The Archive Vault's ledger: kills inside its ink ring last wave (each point: +1% enemies this wave).</summary>
-        public int LedgerDebt;
-    }
-
     /// <summary>Where the four map identities join a run (play-test item 24): the wave's enemy pool is themed to its map, and the
     /// map's living elements run in its ordinary waves.</summary>
     public sealed partial class RunSession
@@ -39,15 +33,6 @@ namespace ArcaneBrigade
             }
             if (bossWave || CombatCatalog.Boss != null || State.Wave < 2 || MapIdentity.Off("env")) return;
             CombatCatalog.MapEnvironment = (int)map;
-            // the ledger's debt from last wave: a little denser now (once)
-            if (State.LedgerDebt > 0)
-            {
-                float denser = 1 + .01f * Mathf.Min(MapEnvironmentRules.LedgerMaxDebt, State.LedgerDebt);
-                CombatCatalog.EnemyBudget = Mathf.Min(690, Mathf.CeilToInt(CombatCatalog.EnemyBudget * denser));
-                CombatCatalog.SpawnInterval /= denser;
-            }
         }
-
-        private void SettleMapIdentity(CombatSimulation simulation) => State.LedgerDebt = simulation?.LedgerDebt ?? 0;
     }
 }

@@ -64,8 +64,6 @@ namespace ArcaneBrigade
 
         // requirement 25/10/2026: the sliding chairs are removed. The type and its (always empty) list stay only because
         // MapEnvironmentCombat's blocker loop and the play-test checks still name them.
-        public sealed class Chair { public Vector2 Home, Position, From, To; public float WarnAt = -100, SlideAt = -100, SlideEnd = -100, StayUntil = -100, ReturnEnd = -100; }
-        public readonly List<Chair> Chairs = new List<Chair>();
     }
 
     public static partial class MapEnvironmentRules
@@ -83,7 +81,6 @@ namespace ArcaneBrigade
         // the wall clock: round every 30 s, glowing 6 s at twelve; stand within 2 units: every enemy stunned 5 s (bosses 1.5 s)
         public const float RoomClockTurn = 30, RoomClockGlow = 6, RoomClockReachX = 2, RoomClockReachY = 1.3f, RoomClockStun = 5, RoomClockBossStun = 1.5f;
         /// <summary>Kept for the play-test checks only (the chairs are removed).</summary>
-        public const float ChairRadius = .55f;
     }
 
     public sealed partial class CombatSimulation

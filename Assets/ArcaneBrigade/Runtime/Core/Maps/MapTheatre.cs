@@ -259,18 +259,22 @@ namespace ArcaneBrigade
                     if (u.Alive && u.Faction == Faction.Enemy && Mathf.Abs(u.Position.y - y) < half + u.Definition.Radius * .5f)
                         ApplyDamage(u, u.Definition.Health * (u.Definition.IsBoss ? MapEnvironmentRules.TheatreCurtainBossCrush : MapEnvironmentRules.TheatreCurtainCrush), Faction.Champion, "Velvet curtain", Vector2.down, cause: crush);
             }
-            // while it hangs, our shots (the hero's and the friends') do not pass it; enemy shots do
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-            {
-                ProjectileState p = projectiles[i];
-                if (p.Faction == Faction.Enemy) continue;
-                bool inside = Mathf.Abs(p.Position.y - y) < half;
-                bool crossed = (p.PreviousPosition.y - y) * (p.Position.y - y) < 0 && (p.PreviousPosition - p.Position).sqrMagnitude < 9;
-                if (!inside && !crossed) continue;
-                if (s.TheatreSwallowed.Count >= 16) s.TheatreSwallowed.RemoveAt(0);
-                s.TheatreSwallowed.Add(new Vector3(p.Position.x, inside ? p.Position.y : y, t));
-                projectiles.RemoveAt(i);
-            }
+        }
+
+        /// <summary>While the curtain hangs, our shots (the hero's and the friends') stop at it before they can hit anything beyond;
+        /// enemy shots pass. Asked by MoveProjectiles before a shot moves.</summary>
+        private bool TheatreStopsShot(ProjectileState p, float deltaTime)
+        {
+            MapEnvironmentState s = mapEnv; float t = Elapsed;
+            if (s == null || s.Theme != MapTheme.Theatre || p.Faction == Faction.Enemy || t < s.TheatreCurtainDropAt || t >= s.TheatreCurtainUpAt) return false;
+            float half = MapEnvironmentRules.TheatreCurtainHalf, y = s.TheatreCurtainY;
+            Vector2 next = p.Position + p.Velocity * deltaTime;
+            bool inside = Mathf.Abs(p.Position.y - y) < half;
+            bool crossing = (p.Position.y - y) * (next.y - y) <= 0 || Mathf.Abs(next.y - y) < half;
+            if (!inside && !crossing) return false;
+            if (s.TheatreSwallowed.Count >= 16) s.TheatreSwallowed.RemoveAt(0);
+            s.TheatreSwallowed.Add(new Vector3(p.Position.x, inside ? p.Position.y : y, t));
+            return true;
         }
         /// <summary>Where the curtain falls: across the row near the hero with the most enemies in it (never quite on the hero).</summary>
         private float TheatreCurtainLine()

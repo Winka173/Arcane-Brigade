@@ -1039,6 +1039,7 @@ namespace ArcaneBrigade
                 ProjectileState projectile = projectiles[index];
                 if (projectile.TravelLeft == 0) projectile.Remaining = Mathf.Min(projectile.Remaining, deltaTime);
                 if (VisitorUmbrella(projectile)) { projectiles.RemoveAt(index); continue; }
+                if (TheatreStopsShot(projectile, deltaTime)) { projectiles.RemoveAt(index); continue; } // the Theatre's curtain
                 if (projectile.IdentityTargetId > 0)
                 {
                     UnitState address = UnitWithId(projectile.IdentityTargetId);

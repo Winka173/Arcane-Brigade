@@ -61,7 +61,7 @@ namespace ArcaneBrigade
                 foreach (BuildLinkRule link in catalog.BuildLinks)
                     if (link.Id.StartsWith("signature-", System.StringComparison.Ordinal)) exhibits.Add(new Exhibit { Id = link.Id, Name = link.Name, Seen = profile.SeenChains.Contains(link.Id), Detail = link.Description + "\n\nDiscoveries require recorded activations/damage/healing, not merely equipping or viewing a graph." });
             if (tab == 4)
-                foreach (UnitDefinition boss in catalog.Bosses) exhibits.Add(new Exhibit { Id = boss.Id, Name = boss.DisplayName, Icon = boss.Body, Unit = boss, Seen = profile.SeenBosses.Contains(boss.Id), Detail = boss.Description + "\n" + boss.Motif + " / " + boss.Material + "\nActually defeated, not previewed." });
+                foreach (UnitDefinition boss in catalog.Bosses) exhibits.Add(new Exhibit { Id = boss.Id, Name = boss.DisplayName, Icon = boss.Body, Unit = boss, Seen = profile.SeenBosses.Contains(boss.Id), Detail = boss.Description + "\n" + (MidMapBossRules.Journal(boss.Id) is string night ? night + "\n" : "") + boss.Motif + " / " + boss.Material + "\nActually defeated, not previewed." });
             GUIStyle controls = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = 13, wordWrap = false, clipping = TextClipping.Clip, alignment = TextAnchor.MiddleCenter, padding = new RectOffset(10, 10, 5, 5) };
             GUIStyle poseControls = new GUIStyle(controls) { fontSize = 11, padding = new RectOffset(6, 6, 4, 4) };
             string[] tabs = { "WEAPONS", "RELICS", "COMPANIONS", "CHAINS", "BOSS" };

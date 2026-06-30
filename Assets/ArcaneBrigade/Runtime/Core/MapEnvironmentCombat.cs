@@ -117,26 +117,15 @@ namespace ArcaneBrigade
         };
 
         // ------------------------------------------------------------------ blockers, speeds, damage, coins
-        /// <summary>Chairs and shelves are solid: anyone standing in one is moved to its edge (bosses ignore them).</summary>
+        /// <summary>Walls are solid: anyone standing in one is moved to its edge (bosses ignore them).</summary>
         private void KeepOutOfMapBlockers()
         {
-            MapEnvironmentState s = mapEnv; float t = Elapsed;
-            if (s.Theme != MapTheme.WaitingRoom && s.Theme != MapTheme.ArchiveVault && s.Walls.Count == 0) return;
+            MapEnvironmentState s = mapEnv;
+            if (s.Walls.Count == 0) return;
             foreach (UnitState u in units)
             {
                 if (!u.Alive || u.Definition.IsBoss || u.BodyLift > .4f) continue;
                 Vector2 p = u.Position; float r = u.Definition.Radius;
-                if (s.Theme == MapTheme.WaitingRoom)
-                {
-                    foreach (MapEnvironmentState.Chair chair in s.Chairs)
-                    {
-                        if (t < chair.SlideAt || t >= chair.ReturnEnd) continue;
-                        p = PushOutOfSegment(p, chair.Position, chair.Position, MapEnvironmentRules.ChairRadius + r);
-                    }
-                }
-                else
-                    foreach (MapEnvironmentState.Shelf shelf in s.Shelves)
-                        p = PushOutOfSegment(p, shelf.Position + Vector2.left * MapEnvironmentRules.ShelfHalf, shelf.Position + Vector2.right * MapEnvironmentRules.ShelfHalf, MapEnvironmentRules.ShelfRadius + r);
                 foreach (MapEnvironmentState.Wall wall in s.Walls) p = PushOutOfSegment(p, wall.A, wall.B, wall.Radius + r);
                 if (p != u.Position) u.Position = ClampPosition(p, r);
             }
