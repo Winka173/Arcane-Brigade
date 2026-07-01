@@ -581,9 +581,19 @@ namespace ArcaneBrigade
                 fullDescription += "\n\nBONDS IN THIS HERO'S SHOP: ";
                 foreach (BondDefinition bond in K11HeroRules.PoolBonds(catalog, champion)) fullDescription += bond.Name + " · ";
             }
-            description += "\n\nSTARTS WITH\n";
-            foreach (StatModifier modifier in champion.ChampionModifiers)
-                description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
+            // requirement 25/10/2026: the hero's basic numbers, each with its stat icon, then any bonus it starts with
+            WeaponDefinition arm = champion.Weapon;
+            description += "\n\nBASICS\n" + Basic(ItemEffect.Health, "Health", Mathf.RoundToInt(champion.Health).ToString())
+                + Basic(ItemEffect.Damage, "Damage", Mathf.RoundToInt(FriendlyWeaponBalance.BaseDamage(arm)).ToString())
+                + Basic(ItemEffect.AttackSpeed, "Attacks a second", (1f / Mathf.Max(.05f, arm.Cooldown)).ToString("0.0"))
+                + Basic(ItemEffect.AttackRange, "Range", arm.Range.ToString("0.0"))
+                + Basic(ItemEffect.MoveSpeed, "Move speed", champion.Speed.ToString("0.0"));
+            if (champion.ChampionModifiers != null && champion.ChampionModifiers.Length > 0)
+            {
+                description += "\nSTARTS WITH\n";
+                foreach (StatModifier modifier in champion.ChampionModifiers)
+                    description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
+            }
             float descriptionHeight = Mathf.Max(210, GlossaryUI.Height(description, text, 425) + 8);
             bool loadout = DrawLoadout(champion, new Rect(770, 560, 450, 44), note);
             rosterDescriptionScroll = ScrollPanel.Begin(new Rect(770, 298, 450, loadout ? 254 : 322), rosterDescriptionScroll, new Rect(0, 0, 430, descriptionHeight));
@@ -622,6 +632,7 @@ namespace ArcaneBrigade
         private Vector2 heroDetailsScroll;
         private GUIStyle overlayTitle, overlayLine;
         /// <summary>The hero in two lines: its own move's name and first sentence, and what it turns into.</summary>
+        private static string Basic(ItemEffect icon, string name, string value) => "{bonus:" + icon + "|" + name + "|" + value + "}\n";
         private static string ShortHero(UnitDefinition champion)
         {
             HeroIdentityDefinition identity = HeroIdentities.For(champion.Id);

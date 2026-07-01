@@ -232,26 +232,24 @@ namespace ArcaneBrigade
             Slant(new Rect(r.x + 8, r.y + 8, r.width - 16, r.height - 16), new Color(1f, .93f, .75f, .1f * BuyBlink(clock)));
         }
 
-        /// <summary>A light running round a highlighted thing (a bond the purchase lights, a selected plate, an active combo):
-        /// a thin rim in the colour and two soft sparks chasing each other round it. Reduced Motion keeps the still rim.</summary>
+        /// <summary>A highlighted thing (a bond the purchase lights, a selected plate, an active combo): two twinkling stars on its
+        /// ends, never a rim or a box round it (requirement 25/10/2026: painted shapes are not outlined by rectangles). Reduced
+        /// Motion keeps the stars still.</summary>
         public static void RunningLight(Rect r, float clock, Color colour, float alpha = 1)
         {
             if (Event.current.type != EventType.Repaint || OnLitPainted(r)) return;
-            Color rim = new Color(colour.r, colour.g, colour.b, .75f * alpha);
-            Line(new Rect(r.x + 1, r.y, r.width - 2, 2), rim); Line(new Rect(r.x + 1, r.yMax - 2, r.width - 2, 2), rim);
-            Line(new Rect(r.x, r.y + 1, 2, r.height - 2), rim); Line(new Rect(r.xMax - 2, r.y + 1, 2, r.height - 2), rim);
-            if (PresentationSettings.ReducedMotion || PresentationSettings.ReducedFlashes) return;
-            float perimeter = 2 * (r.width + r.height), speed = Mathf.Clamp(perimeter * .35f, 120, 420);
+            bool still = PresentationSettings.ReducedMotion || PresentationSettings.ReducedFlashes;
+            float size = Mathf.Clamp(r.height * .5f, 12, 30);
             for (int k = 0; k < 2; k++)
             {
-                float head = Mathf.Repeat(clock * speed + k * perimeter * .5f, perimeter);
-                for (int s = 0; s < 12; s++)
-                {
-                    Vector2 p = OnRim(r, Mathf.Repeat(head - s * 6f, perimeter));
-                    float size = Mathf.Lerp(18, 5, s / 12f);
-                    Color spark = Color.Lerp(Color.white, colour, s / 12f); spark.a = alpha * (1 - s / 12f);
-                    Glow(new Rect(p.x - size * .5f, p.y - size * .5f, size, size), spark);
-                }
+                float beat = still ? 1 : .6f + .4f * Mathf.Sin(clock * 3.2f + k * Mathf.PI);
+                Vector2 c = new Vector2(k == 0 ? r.x + 2 : r.xMax - 2, r.center.y + (still ? 0 : Mathf.Sin(clock * 2.1f + k * 1.7f) * r.height * .1f));
+                float s = size * (.8f + .2f * beat);
+                Glow(new Rect(c.x - s, c.y - s, s * 2, s * 2), new Color(colour.r, colour.g, colour.b, .5f * alpha * beat));
+                Color core = Color.Lerp(Color.white, colour, .25f); core.a = alpha * beat;
+                Glow(new Rect(c.x - s * .95f, c.y - 2, s * 1.9f, 4), core);
+                Glow(new Rect(c.x - 2, c.y - s * .95f, 4, s * 1.9f), core);
+                Glow(new Rect(c.x - s * .3f, c.y - s * .3f, s * .6f, s * .6f), core);
             }
         }
         private static Vector2 OnRim(Rect r, float d)
