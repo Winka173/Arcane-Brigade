@@ -52,8 +52,10 @@ namespace ArcaneBrigade
             yield return new WaitForEndOfFrame();
             try { kept = ScreenCapture.CaptureScreenshotAsTexture(); }
             catch (Exception) { kept = null; }
-            try { change(); }
-            finally { Busy = false; }
+            // the change runs as an ordinary action: a guard that refuses during a transition must not refuse the change the
+            // dissolve carries (it left the secret room stuck: the way back was refused)
+            Busy = false;
+            change();
             started = Time.unscaledTime;
             float length = PresentationSettings.ReducedMotion ? ReducedSeconds : Seconds;
             while (Time.unscaledTime - started < length) yield return null;

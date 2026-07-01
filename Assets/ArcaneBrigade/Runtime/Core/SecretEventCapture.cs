@@ -96,6 +96,15 @@ namespace ArcaneBrigade
                 }
                 yield return new WaitForSecondsRealtime(.3f);
                 yield return Shot("room-" + k + "-result");
+                Check(owner.SecretRoom.RiftOpen, "The way back opens with the deal's card " + k);
+                if (k == 0)
+                {
+                    // walking into the open rift goes back to the shop (requirement 25/10/2026)
+                    owner.Simulation.Champion.Position = SecretEventRoom.ReturnSpot + Vector2.up * 2.5f; yield return new WaitForSecondsRealtime(1f);
+                    owner.Simulation.Champion.Position = SecretEventRoom.ReturnSpot; yield return new WaitForSecondsRealtime(3f);
+                    Check(!owner.Session.SecretRoomOpen && owner.Session.State.Phase == SessionPhase.Shop, "Walking into the rift returns to the shop");
+                    continue;
+                }
                 Check(owner.LeaveSecret(), "Native returns to saved shop " + k);
                 yield return new WaitForSecondsRealtime(.4f);
                 Check(owner.Session.State.Phase == SessionPhase.Shop && owner.Session.State.Wave == 8 && !owner.Session.SecretRoomOpen, "Normal flow preserved " + k);

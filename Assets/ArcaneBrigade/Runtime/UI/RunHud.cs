@@ -448,7 +448,7 @@ namespace ArcaneBrigade
             {
                 // a visitor's card owns the screen: no tickets or station card over it
                 if (owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true && owner.GetComponent<WaitingRealmStage>()?.Asking != true) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
-                if (owner.SecretRoom == null || !owner.SecretRoom.MenuOpen) statFeedback.Draw(owner,camera); // never over the secret room's card
+                if (owner.SecretRoom == null || !owner.SecretRoom.InRoom) statFeedback.Draw(owner,camera); // never over the secret room's card
             }
             else
             {

@@ -44,14 +44,13 @@ namespace ArcaneBrigade
         private bool walkingOut;
         private Transform returnRift, returnSwirl;
         private float returnTurn;
-        private string chosenTitle = "", chosenWhat = ""; private float chosenAt = -1;
+        // the deal's card stays over the room while the way back is open; OK puts it away, walking into the rift leaves anyway
+        private bool cardOpen, riftArmed; private float cardClosingAt = -1;
+        public bool RiftOpen => walkingOut && returnRift != null;
         private void BeginWalkOut()
         {
             if (walkingOut || gallery == null) return;
-            walkingOut = true;
-            // the deal just made, on a notice that lands as the way back tears open (requirement 25/10/2026)
-            SecretEventProgress done = owner.Session.State.Secrets;
-            chosenTitle = done != null ? done.Result.Split('\n')[0] : ""; chosenWhat = done != null ? done.ResultGot : ""; chosenAt = Time.unscaledTime;
+            walkingOut = true; cardOpen = true; cardClosingAt = -1; riftArmed = false;
             MapTheme theme = MapIdentity.For(owner.Session.State.Wave);
             var art = OctoberDoor.PortalArt(theme);
             if (art.body == null) { walkingOut = false; owner.LeaveSecret(); return; }
@@ -82,8 +81,15 @@ namespace ArcaneBrigade
             returnRift.localScale = still ? Vector3.one * target : new Vector3(Mathf.MoveTowards(scale.x, target, Time.deltaTime * 4), Mathf.MoveTowards(scale.y, target, Time.deltaTime * 4), 1);
             if (!still) returnTurn += Time.deltaTime * Mathf.Lerp(60, 240, near);
             returnSwirl.localRotation = Quaternion.Euler(0, 0, -returnTurn);
-            nearReturn = Vector2.Distance(hero, ReturnSpot) <= ReturnReach + .6f && returnRift.localScale.y > .9f;
+            float distance = Vector2.Distance(hero, ReturnSpot);
+            nearReturn = distance <= ReturnReach + .6f && returnRift.localScale.y > .9f;
             if (!nearReturn) returnPromptAt = -1;
+            // requirement 25/10/2026 (walking in did nothing): stepping into the open rift goes through it; a hero already
+            // standing on it when it opens must step off once first
+            if (distance > ReturnReach + .4f) riftArmed = true;
+            if (riftArmed && distance <= ReturnReach && returnRift.localScale.y > .9f) { GoBack(); return; }
+            bool confirm = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0);
+            if (cardOpen && !nearReturn) { if (confirm && cardClosingAt < 0) cardClosingAt = Time.unscaledTime; return; } // the first press puts the card away
             if (nearReturn && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) GoBack();
         }
         private int NearestPortal()
@@ -118,6 +124,8 @@ namespace ArcaneBrigade
             }
             else if (MenuOpen)
             {
+                // the deal is done: the way back opens at once, under the deal's card (requirement 25/10/2026)
+                if (s.Stage != SecretEventStage.Choosing && string.IsNullOrEmpty(s.RewardId)) { BeginWalkOut(); return; }
                 if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) { selected = (selected + 2) % 3; hold = 0; }
                 if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) { selected = (selected + 1) % 3; hold = 0; }
                 for (int i = 0; i < 3; i++) if (Input.GetKeyDown(KeyCode.Alpha1 + i)) { selected = i; hold = 0; }
@@ -126,7 +134,7 @@ namespace ArcaneBrigade
                     armed = false; hold = 0;
                     int pick = selected;
                     if (s.Stage == SecretEventStage.Choosing) Close(() => owner.ChooseSecret(pick));
-                    else if (!string.IsNullOrEmpty(s.RewardId)) owner.ClaimSecret(); else Close(BeginWalkOut);
+                    else if (!string.IsNullOrEmpty(s.RewardId)) owner.ClaimSecret();
                 }
             }
         }
@@ -251,40 +259,46 @@ namespace ArcaneBrigade
                     if (target) Popped(.08f, new Vector2(960, 350), () => TargetRelic(s));
                     SecretChoice[] choices = owner.Session.SecretChoices();
                     if (!choices[selected].Enabled) for (int i = 0; i < 3; i++) if (choices[i].Enabled) { selected = i; break; }
-                    float top = target ? 492 : 300, height = 360; // the offered relic's name stays clear of the plates' badges
+                    float top = target ? 470 : 300; // the offered relic's name stays clear of the cards' sockets
                     Sprite relic = owner.Content.Item(s.TargetItem)?.Icon;
                     markRelic = owner.Content.Item(s.TargetItem)?.Name; UnitDefinition markUnit = owner.Content.Unit(s.TargetUnit); markFriend = markUnit != null ? RunUICopy.UnitName(markUnit) : null;
+                    // requirement 25/10/2026 (cramped, text on the frame, the badge off its socket): one painted card each, its
+                    // picture centred in the card's own socket, the title and three gem lines on open parchment with wide margins
+                    Sprite cardArt = ArcadeSkin.KitSprite("SecretEvent/Card");
+                    float cw = 540, ch = cardArt != null ? cw * cardArt.rect.height / cardArt.rect.width : 430, gap = 24;
+                    if (top + ch > 868) top = 868 - ch; // the deal button stays clear below
                     for (int i = 0; i < 3; i++)
                     {
-                        float x = 260 + i * 470; SecretChoice c = choices[i];
-                        Rect plate = new Rect(x, top, 460, height);
-                        Matrix4x4 plateMatrix = GUI.matrix; Color plateColour = GUI.color;
-                        LivingUI.Pop(Time.unscaledTime - roomAt - .12f - i * .06f, plate.center); // the three plates land one after another
+                        SecretChoice c = choices[i];
                         bool lit = selected == i && c.Enabled;
-                        bool creamPlate = ArcadeSkin.EventPlate(plate, lit, c.Enabled); // the painted cream plate, else the walnut code plate
-                        if (!creamPlate) ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
-                        if (lit) ArcadeSkin.RunningLight(new Rect(plate.x - 5, plate.y - 5, plate.width + 10, plate.height + 10), Time.unscaledTime, new Color(1f, .82f, .45f));
-                        Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .55f);
-                        Rect pc = creamPlate ? ArcadeSkin.EventContent(plate) : new Rect(plate.x + 18, plate.y + 14, plate.width - 36, plate.height - 28);
-                        if (creamPlate) { float clear = Mathf.Max(0, plate.y + SocketY + SocketSize * .5f + 4 - pc.y); pc.y += clear; pc.height -= clear; } // the title starts below the socket badge
+                        Rect plate = new Rect(960 - cw * 1.5f - gap + i * (cw + gap), top - (lit ? 10 : 0), cw, ch); // the chosen card lifts
+                        Matrix4x4 plateMatrix = GUI.matrix; Color plateColour = GUI.color;
+                        LivingUI.Pop(Time.unscaledTime - roomAt - .12f - i * .06f, plate.center); // the three cards land one after another
+                        Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r * .7f, keep.g * .7f, keep.b * .75f, keep.a * .7f);
+                        if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
+                        if (lit) ArcadeSkin.RunningLight(plate, Time.unscaledTime, new Color(1f, .82f, .45f));
+                        Vector2 socket = new Vector2(plate.center.x, plate.y + ch * CardSocketV);
+                        float hole = cw * CardSocketD;
+                        DrawFitted(new Rect(socket.x - hole * .4f, socket.y - hole * .4f, hole * .8f, hole * .8f), c.Icon != null ? c.Icon : SecretArt.Relic(s.Kind));
+                        float padX = cw * CardPadX, y0 = socket.y + hole * .5f + 8, y1 = plate.yMax - ch * CardPadBottom;
                         if (plateTitle == null) Row(Rect.zero, null, null, null, CodeTone.Cream);
-                        Color titleTone = plateTitle.normal.textColor; if (creamPlate) plateTitle.normal.textColor = ArcadeSkin.KitInk; // ink on the cream plate
-                        GUI.Label(new Rect(pc.x, pc.y, pc.width, 38), c.Title, plateTitle);
-                        plateTitle.normal.textColor = titleTone;
-                        float bandH = creamPlate ? 84 : 96; // the painted plate's rim takes a little height
-                        Row(new Rect(pc.x, pc.y + 40, pc.width, creamPlate ? 64 : 76), "DO", c.Do, null, CodeTone.Cream);
-                        Row(new Rect(pc.x, pc.y + (creamPlate ? 108 : 124), pc.width, bandH), "LOSE", c.Lose, null, CodeTone.Oxblood);
-                        Row(new Rect(pc.x, pc.y + (creamPlate ? 198 : 226), pc.width, bandH), "GET", c.Get, null, CodeTone.Green);
-                        // what you get sits in the plate's round socket (it stood empty); a deal with no relic shows the room's own
-                        if (creamPlate) DrawSprite(new Rect(plate.center.x - SocketSize * .5f, plate.y + SocketY - SocketSize * .5f, SocketSize, SocketSize), c.Icon != null ? c.Icon : SecretArt.Relic(s.Kind));
+                        Color titleTone = plateTitle.normal.textColor; plateTitle.normal.textColor = cardArt != null ? ArcadeSkin.KitInk : titleTone;
+                        int titleSize = plateTitle.fontSize; plateTitle.fontSize = 26;
+                        GUI.Label(new Rect(plate.x + padX, y0, cw - padX * 2, 34), c.Title, plateTitle);
+                        plateTitle.fontSize = titleSize; plateTitle.normal.textColor = titleTone;
+                        float rowsTop = y0 + (c.Enabled ? 40 : 70), rowH = (y1 - rowsTop) / 3; // a closed deal says so under its title
+                        GemRow(new Rect(plate.x + padX, rowsTop, cw - padX * 2, rowH), "DO", c.Do, CodeTone.Cream, true);
+                        GemRow(new Rect(plate.x + padX, rowsTop + rowH, cw - padX * 2, rowH), "LOSE", c.Lose, CodeTone.Oxblood, true);
+                        GemRow(new Rect(plate.x + padX, rowsTop + rowH * 2, cw - padX * 2, rowH), "GET", c.Get, CodeTone.Green, true);
                         GUI.color = keep;
                         if (!c.Enabled)
                         {
-                            // a closed deal shows a lock and says so on the plate itself
-                            Rect shade = new Rect(plate.x + 60, plate.center.y - 34, plate.width - 120, 68);
-                            ArcadeSkin.CodePlate(shade, CodeTone.Walnut, 0);
-                            ArcadeSkin.Lock(new Vector2(shade.x + 34, shade.center.y), 16, ArcadeSkin.KitCream);
-                            GUI.Label(new Rect(shade.x + 60, shade.y, shade.width - 70, shade.height), "Not available now", label);
+                            // a closed deal: a lock and the words on their own line under the title, no box drawn over the card
+                            Vector2 mid = new Vector2(plate.center.x, y0 + 52);
+                            ArcadeSkin.Lock(new Vector2(mid.x - 96, mid.y), 16, ArcadeSkin.KitInk);
+                            Color was = label.normal.textColor; label.normal.textColor = ArcadeSkin.KitInk;
+                            GUI.Label(new Rect(mid.x - 80, mid.y - 20, 200, 40), "Not available now", label);
+                            label.normal.textColor = was;
                         }
                         else if (!shut && GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                         GUI.matrix = plateMatrix; GUI.color = plateColour;
@@ -299,48 +313,16 @@ namespace ArcaneBrigade
                     });
                     DrawPicker(s); // over everything in the room
                 }
-                else
-                {
-                    if (resultShown != s.Result + "/" + s.RewardId) { resultShown = s.Result + "/" + s.RewardId; resultAt = Time.unscaledTime; }
-                    LivingUI.Pop(Time.unscaledTime - resultAt, new Vector2(960, 680));
-                    bool claim = !string.IsNullOrEmpty(s.RewardId);
-                    if (!claim && string.IsNullOrEmpty(s.ResultGot)) LegacyResult(s, shut);
-                    else
-                    {
-                        // the deal as a card (play-test 24/10/2026: plain lines did not say what was bought): its picture, GET with
-                        // what it does, LOSE with what it cost, one button
-                        Rect frame = new Rect(440, 470, 1040, 430);
-                        ArcadeSkin.Frame(frame, KitFrame.Dialogue, .6f);
-                        string[] lines = s.Result.Split('\n');
-                        GUI.Label(new Rect(frame.x + 40, frame.y + 24, frame.width - 80, 44), lines[0], heading);
-                        string iconId = claim ? s.RewardId : s.ResultIcon;
-                        Sprite icon = owner.Content.Item(iconId)?.Icon ?? owner.Content.Unit(iconId)?.Body ?? SecretArt.Relic(s.Kind); // every result shows a picture
-                        float x0 = frame.x + 50;
-                        if (icon != null)
-                        {
-                            ItemDefinition won = owner.Content.Item(iconId);
-                            VisitorReceipt.Rays(new Vector2(x0 + 80, frame.y + 180), 200, Time.unscaledTime - resultAt, won != null ? RunModifierRules.RarityColor(won.Rarity) : ArcadeSkin.Gold); // held up to the light
-                            ArcadeSkin.Glow(new Rect(x0 - 30, frame.y + 70, 220, 220), new Color(1f, .82f, .5f, .3f));
-                            DrawSprite(new Rect(x0, frame.y + 100, 160, 160), icon); x0 += 196;
-                        }
-                        float w = frame.xMax - 50 - x0;
-                        string got = claim ? (owner.Content.Item(s.RewardId) != null ? "New relic" : owner.Session.SecretRewardLabel) + "\n" + owner.Session.SecretRewardStats(s.RewardId) : s.ResultGot;
-                        // the same order as the choice plates: LOSE above GET
-                        bool paid = !claim && !string.IsNullOrEmpty(s.ResultPaid) && s.ResultPaid != "Nothing";
-                        if (paid) Row(new Rect(x0, frame.y + 84, w, 84), "LOSE", s.ResultPaid, null, CodeTone.Oxblood);
-                        Row(new Rect(x0, frame.y + (paid ? 178 : 84), w, 100), "GET", got, null, CodeTone.Green);
-                        if (claim && lines.Length > 1) GUI.Label(new Rect(x0, frame.y + 196, w, 70), lines[1], label);
-                        Rect go = new Rect(frame.center.x - 300, frame.yMax - 100, 600, 68);
-                        if (claim) { if (ArcadeSkin.KitGuiButton(go, "CLAIM", primary) && !shut) owner.ClaimSecret(); }
-                        else if (ArcadeSkin.KitGuiButton(go, "OK", primary) && !shut) Close(BeginWalkOut); // then walk into the rift
-                    }
-                }
+                else DrawDeal(s, shut);
             }
-            else if (walkingOut && nearReturn)
+            else if (walkingOut)
             {
-                if (returnPromptAt < 0) returnPromptAt = Time.unscaledTime;
-                DrawChosen();
-                if (ShopPrompt.Draw("THE WAY BACK", "The rift leads back to the shop.", "GO THROUGH", Time.unscaledTime - returnPromptAt)) GoBack();
+                if (cardOpen) DrawDeal(owner.Session.State.Secrets, cardClosingAt >= 0);
+                if (nearReturn)
+                {
+                    if (returnPromptAt < 0) returnPromptAt = Time.unscaledTime;
+                    if (ShopPrompt.Draw("THE WAY BACK", "The rift leads back to the shop.", "GO THROUGH", Time.unscaledTime - returnPromptAt)) GoBack();
+                }
             }
             else if (owner.Session.SecretFighting)
             {
@@ -349,8 +331,6 @@ namespace ArcaneBrigade
             GUI.matrix = previous; GUI.depth = depth; GUI.color = Color.white;
         }
         private GUIStyle plateTitle, tagStyle;
-        /// <summary>Where the painted plate's round badge socket sits (its centre, measured from the plate's top) and its size.</summary>
-        private const float SocketY = 8, SocketSize = 54;
         /// <summary>A result saved before deals kept their parts: its lines as they were written.</summary>
         private void LegacyResult(SecretEventProgress s, bool shut)
         {
@@ -359,7 +339,7 @@ namespace ArcaneBrigade
             resultScroll = ScrollPanel.Begin(new Rect(455, 562, 1010, 170), resultScroll, new Rect(0, 0, 990, resultHeight));
             GUI.Label(new Rect(0, 0, 990, resultHeight), s.Result, body);
             ScrollPanel.End();
-            if (ArcadeSkin.KitGuiButton(new Rect(660, 745, 600, 68), "OK", primary) && !shut) Close(BeginWalkOut);
+            if (ArcadeSkin.KitGuiButton(new Rect(660, 745, 600, 68), "OK", primary) && !shut) cardClosingAt = Time.unscaledTime;
         }
         /// <summary>Your relic in the middle of the room: its picture and name; a tap shows the next one you own.</summary>
         private void TargetRelic(SecretEventProgress s)
@@ -392,20 +372,78 @@ namespace ArcaneBrigade
             if (!string.IsNullOrEmpty(markFriend) && markFriend != markRelic) text = text.Replace(markFriend, "<color=" + colour + "><b>" + markFriend + "</b></color>");
             return text;
         }
-        private GUIStyle chosenStyle;
-        /// <summary>A notice at the top while walking out: what was chosen and what it gave.</summary>
-        private void DrawChosen()
+        /// <summary>The deal's card (requirement 25/10/2026: roomy, the picture in the panel, no light wheel round it): its
+        /// picture, LOSE and GET as gem lines, one button. OK puts it away; a reward is claimed from it.</summary>
+        private void DrawDeal(SecretEventProgress s, bool shut)
         {
-            if (chosenAt < 0 || string.IsNullOrEmpty(chosenTitle)) return;
-            float age = Time.unscaledTime - chosenAt; if (age > 6) return;
-            float enter = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / .3f)), leave = Mathf.Clamp01((6 - age) / .5f);
-            chosenStyle ??= new GUIStyle(label) { alignment = TextAnchor.MiddleCenter, wordWrap = true, richText = true, fontSize = 22 };
-            string what = string.IsNullOrEmpty(chosenWhat) ? "" : "\n" + chosenWhat.Replace("\n", " · ");
-            Rect strip = new Rect(560, 120 - (1 - enter) * 30, 800, string.IsNullOrEmpty(what) ? 70 : 100);
-            Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * enter * leave);
-            ArcadeSkin.CodePlate(strip, CodeTone.Walnut, 1);
-            GUI.Label(new Rect(strip.x + 30, strip.y + 6, strip.width - 60, strip.height - 12), "<b>" + chosenTitle + "</b>" + what, chosenStyle);
-            GUI.color = keep;
+            if (s == null) return;
+            if (resultShown != s.Result + "/" + s.RewardId) { resultShown = s.Result + "/" + s.RewardId; resultAt = Time.unscaledTime; }
+            bool claim = !string.IsNullOrEmpty(s.RewardId);
+            float away = cardClosingAt < 0 ? 0 : (Time.unscaledTime - cardClosingAt) / CloseSeconds;
+            if (away >= 1) { cardOpen = false; cardClosingAt = -1; return; }
+            Matrix4x4 m = GUI.matrix; Color c = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - resultAt, new Vector2(960, 560));
+            if (away > 0) { if (!PresentationSettings.ReducedMotion) ArcadeSkin.ScaleAround(Vector2.one * Mathf.Lerp(1, .94f, away), new Vector2(960, 560)); GUI.color *= new Color(1, 1, 1, 1 - away); }
+            if (!claim && string.IsNullOrEmpty(s.ResultGot)) { LegacyResult(s, shut); GUI.matrix = m; GUI.color = c; return; }
+            Sprite panelArt = ArcadeSkin.KitSprite("SecretEvent/Panel");
+            float pw = 1040, ph = panelArt != null ? pw * panelArt.rect.height / panelArt.rect.width : 430;
+            Rect frame = new Rect(960 - pw * .5f, 330, pw, ph);
+            if (panelArt != null) DrawSprite(frame, panelArt); else ArcadeSkin.Frame(frame, KitFrame.Dialogue, .6f);
+            float pad = pw * PanelPad, x0 = frame.x + pad, top = frame.y + ph * PanelPadTop, bottom = frame.yMax - ph * PanelPadTop;
+            string[] lines = s.Result.Split('\n');
+            GUI.Label(new Rect(x0, top, frame.width - pad * 2, 44), lines[0], heading);
+            string iconId = claim ? s.RewardId : s.ResultIcon;
+            Sprite icon = owner.Content.Item(iconId)?.Icon ?? owner.Content.Unit(iconId)?.Body ?? SecretArt.Relic(s.Kind); // every deal shows a picture
+            float rowsTop = top + 56, buttonH = 64, rowsBottom = bottom - buttonH - 14;
+            if (icon != null)
+            {
+                float size = Mathf.Min(170, rowsBottom - rowsTop);
+                Rect pic = new Rect(x0 + 10, (rowsTop + rowsBottom) * .5f - size * .5f, size, size);
+                ArcadeSkin.Glow(new Rect(pic.x - size * .25f, pic.y - size * .25f, size * 1.5f, size * 1.5f), new Color(1f, .82f, .5f, .28f)); // held up to the light, inside the panel
+                DrawFitted(pic, icon); x0 = pic.xMax + 36;
+            }
+            float w = frame.xMax - pad - x0;
+            string got = claim ? (owner.Content.Item(s.RewardId) != null ? "New relic" : owner.Session.SecretRewardLabel) + " · " + owner.Session.SecretRewardStats(s.RewardId) : s.ResultGot;
+            bool paid = !claim && !string.IsNullOrEmpty(s.ResultPaid) && s.ResultPaid != "Nothing";
+            float rowH = (rowsBottom - rowsTop) / (paid ? 2 : 1);
+            if (paid) GemRow(new Rect(x0, rowsTop, w, rowH), "LOSE", s.ResultPaid, CodeTone.Oxblood, false);
+            GemRow(new Rect(x0, rowsTop + (paid ? rowH : 0), w, rowH), "GET", got.Replace("\n", " · "), CodeTone.Green, false);
+            Rect go = new Rect(frame.center.x - 260, bottom - buttonH, 520, buttonH);
+            if (claim) { if (ArcadeSkin.KitGuiButton(go, "CLAIM", primary) && !shut) owner.ClaimSecret(); }
+            else if (ArcadeSkin.KitGuiButton(go, "OK", primary) && !shut) cardClosingAt = Time.unscaledTime; // the way back is already open
+            GUI.matrix = m; GUI.color = c;
+        }
+        // the painted card and panel: the card's socket (centre from its top, diameter, both shares of the card) and the margins
+        private const float CardSocketV = .118f, CardSocketD = .114f, CardPadX = .12f, CardPadBottom = .12f, PanelPad = .08f, PanelPadTop = .1f;
+        private GUIStyle gemTag, gemText;
+        /// <summary>One line of a deal: its gem, the word (DO, LOSE, GET) and what it means, on parchment (ink) or navy (light).</summary>
+        private void GemRow(Rect r, string tag, string text, CodeTone tone, bool parchment)
+        {
+            gemTag ??= new GUIStyle(label) { fontSize = 15, fontStyle = FontStyle.Bold, alignment = TextAnchor.UpperLeft };
+            gemText ??= new GUIStyle(body) { wordWrap = true, richText = true, alignment = TextAnchor.UpperLeft };
+            Sprite gem = ArcadeSkin.KitSprite(tone == CodeTone.Oxblood ? "SecretEvent/GemLose" : tone == CodeTone.Green ? "SecretEvent/GemGet" : "SecretEvent/GemDo");
+            float g = Mathf.Min(34, r.height * .5f);
+            if (gem != null) DrawFitted(new Rect(r.x, r.y + 4, g, g), gem);
+            Color tagColour = parchment
+                ? (tone == CodeTone.Oxblood ? new Color(.62f, .1f, .08f) : tone == CodeTone.Green ? new Color(.1f, .4f, .16f) : new Color(.42f, .28f, .14f))
+                : (tone == CodeTone.Oxblood ? new Color(1f, .5f, .45f) : tone == CodeTone.Green ? new Color(.55f, .95f, .55f) : ArcadeSkin.KitCream);
+            gemTag.normal.textColor = tagColour;
+            float x = r.x + g + 12, tw = r.xMax - x;
+            GUI.Label(new Rect(x, r.y, tw, 20), tag, gemTag);
+            gemText.normal.textColor = parchment ? (tone == CodeTone.Cream ? ArcadeSkin.KitInk : Color.Lerp(ArcadeSkin.KitInk, tagColour, .55f)) : new Color(.96f, .93f, .86f);
+            string marked = Marked(text, parchment ? CodeTone.Cream : tone);
+            Rect area = new Rect(x, r.y + 21, tw, r.height - 25);
+            gemText.fontSize = parchment ? 18 : 21;
+            while (gemText.fontSize > 13 && gemText.CalcHeight(new GUIContent(marked), area.width) > area.height) gemText.fontSize--; // it fits its line
+            GUI.Label(area, marked, gemText);
+        }
+        /// <summary>A picture kept to its own shape inside the box, centred.</summary>
+        private void DrawFitted(Rect box, Sprite sprite)
+        {
+            if (sprite == null) return;
+            float aspect = sprite.rect.width / Mathf.Max(1, sprite.rect.height), w = box.width, h = box.height;
+            if (aspect > w / h) h = w / aspect; else w = h * aspect;
+            DrawSprite(new Rect(box.center.x - w * .5f, box.center.y - h * .5f, w, h), sprite);
         }
         private void Row(Rect r, string tag, string text, Sprite icon, CodeTone tone)
         {
