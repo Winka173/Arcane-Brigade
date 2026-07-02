@@ -322,6 +322,7 @@ namespace ArcaneBrigade
         public int Generation { get; private set; }
         public int CompanionCount { get; private set; }
         public bool BossDefeated { get; private set; }
+        public float BossFellAt { get; private set; } = -100;
         public UnitState Boss { get; private set; }
         public bool IsBossOvertime => Boss != null && Boss.Alive && Elapsed >= WaveDuration && (Phase == RunPhase.Combat || Phase == RunPhase.Paused && phaseBeforePause == RunPhase.Combat);
         public float BossOvertimeSeconds => IsBossOvertime ? Mathf.Max(0f, Elapsed - WaveDuration) : 0f;
@@ -360,7 +361,7 @@ namespace ArcaneBrigade
             Eggs = ChestsOpened = 0;
             Kills = 0;
             CompanionCount = 0;
-            BossDefeated = false;
+            BossDefeated = false; BossFellAt = -100;
             Boss = null;
             ResetMidBoss();
             LastDamageSource = "";
@@ -1158,7 +1159,7 @@ namespace ArcaneBrigade
             if (target.Faction == Faction.Champion) Phase = RunPhase.Defeat;
             else
             {
-                if (target == Boss) BossDefeated = true;
+                if (target == Boss) { BossDefeated = true; BossFellAt = Elapsed; }
                 EliteFell(target); VarietyFell(target); ComboKill();
                 Kills++;
                 if (source != Faction.Enemy) RecordKill(cause);

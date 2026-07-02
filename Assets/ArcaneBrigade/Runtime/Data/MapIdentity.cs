@@ -58,13 +58,17 @@ namespace ArcaneBrigade
             MapTheme.Theatre => MapTheme.LampHall, // a dark hall cut by light
             _ => map
         };
-        /// <summary>The map's named elite comes on its third wave, or its second when the third is a story boss's night
-        /// (multiples of five), where no elite walks in.</summary>
+        /// <summary>The map's named elite comes on its third wave, else its second, else its fourth: never on a story boss's
+        /// night (multiples of five) nor on the night of the map's mid-map boss (requirement 25/10/2026: one big foe a night).</summary>
         public static bool EliteWave(int wave)
         {
-            int first = FirstWave(wave), elite = first + 2;
-            if (elite % 5 == 0 || elite > LastWave(wave)) elite = first + 1;
-            return wave == elite;
+            int first = FirstWave(wave), last = LastWave(wave);
+            foreach (int elite in new[] { first + 2, first + 1, first + 3, first })
+            {
+                if (elite > last || elite % 5 == 0 || MidMapBossRules.For(elite) != null) continue;
+                return wave == elite;
+            }
+            return false;
         }
         public static string Name(MapTheme map) => map switch
         {

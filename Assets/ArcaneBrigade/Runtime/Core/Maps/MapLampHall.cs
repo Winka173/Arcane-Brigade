@@ -176,6 +176,7 @@ namespace ArcaneBrigade
                     case 1: GrantMapBoost(MapStat.Gold, MapEnvironmentRules.LampOilGold, MapEnvironmentRules.LampOilSeconds, "lamp-oil-1", "LAMP OIL"); break;
                     default: GrantMapBoost(MapStat.MoveSpeed, MapEnvironmentRules.LampOilSpeed, MapEnvironmentRules.LampOilSeconds, "lamp-oil-2", "LAMP OIL"); break;
                 }
+                MapCaught(oil.Position, new Color(1f, .74f, .36f));
                 s.LampOils.RemoveAt(i);
             }
         }

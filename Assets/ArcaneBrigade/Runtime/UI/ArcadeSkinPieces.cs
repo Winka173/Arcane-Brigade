@@ -78,8 +78,8 @@ namespace ArcaneBrigade
                 k = kw; r = new Rect(r.x, r.center.y - body.height * k * .5f, r.width, body.height * k);
                 if (audit) Audit(key, asked, "drawn shorter than asked (narrow), centred");
             }
-            if (audit && (k < .3f || k > 2f)) Audit(key, asked, k < .3f ? "too short for the painting" : "too tall for the painting");
-            return k >= .3f && k <= 2f;
+            if (audit && (k < .12f || k > 2f)) Audit(key, asked, k < .12f ? "too short for the painting" : "too tall for the painting");
+            return k >= .12f && k <= 2f; // the buttons are painted at twice their old size (25/10/2026): they draw down to an eighth
         }
 
         /// <summary>Draws a painted piece so that its body is exactly <paramref name="r"/>; ornaments bleed outside. Returns false

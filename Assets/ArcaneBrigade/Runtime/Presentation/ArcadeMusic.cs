@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     /// <summary>
     /// Adaptive soundtrack. Each composition is four sample-aligned looping stems (base / rhythm / melody / intensity)
-    /// started on one dspTime, so they cannot drift. Scene changes crossfade on a bar line of the departing piece.
+    /// started on one dspTime, so they cannot drift. Scene changes crossfade at once (a short fade, no wait for a bar line).
     /// If the Arcane music manifest or its clips are missing, the original four licensed tracks play as before.
     /// </summary>
     public sealed class ArcadeMusic : MonoBehaviour
@@ -245,16 +245,10 @@ namespace ArcaneBrigade
             AudioClip[] stems = ArcaneCueLibrary.LoadStems(piece);
             if (stems == null) { StopAdaptive(); return; } // clips missing: MusicAvailable is now false, legacy tracks take over next frame
 
-            bool immediate = live == null || desired == ArcaneCueLibrary.SceneBoss || live.fadingOut;
-            double start = dsp + 0.15;
-            float fade = immediate ? 0.5f : 1.4f;
-            if (!immediate)
-            {
-                double bar = live.piece.BarSeconds;
-                double boundary = live.startDsp + Math.Ceiling((dsp - live.startDsp) / bar) * bar;
-                if (boundary - dsp < 0.25) boundary += bar;
-                start = boundary;
-            }
+            // requirement 25/10/2026 (the change lagged behind the scene): the new piece starts at once with a short crossfade,
+            // never waiting for the departing piece's bar line
+            double start = dsp + 0.05;
+            float fade = 0.35f;
             int slot = current < 0 ? 0 : 1 - current;
             Deck next = decks[slot];
             if (next.Live) KillDeck(next);
@@ -379,7 +373,7 @@ namespace ArcaneBrigade
                 AudioSource track = tracks[index];
                 float target = index == selected ? TrackLevel(index) * busGainValue : 0;
                 if (target > 0 && !track.isPlaying && track.clip != null) track.Play();
-                track.volume = Mathf.MoveTowards(track.volume, target, Time.unscaledDeltaTime * (target < track.volume ? 0.6f : 0.22f));
+                track.volume = Mathf.MoveTowards(track.volume, target, Time.unscaledDeltaTime * (target < track.volume ? 3f : 2.5f)); // the new track comes in at once (requirement 25/10/2026)
                 if (target == 0 && track.volume == 0 && track.isPlaying) track.Stop();
             }
         }

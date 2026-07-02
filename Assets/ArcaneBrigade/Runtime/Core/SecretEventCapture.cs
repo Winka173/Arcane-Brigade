@@ -71,7 +71,7 @@ namespace ArcaneBrigade
                 Check(owner.EnterSecret((SecretEventKind)k), "Enter actual secret room " + k); yield return new WaitForSecondsRealtime(.3f);
                 Check(owner.Shop.Nearby == null && owner.Shop.Stations.Count >= 0 && owner.SecretRoom.MenuOpen, "Shop interaction replaced by room choices " + k);
                 yield return Shot("room-" + k + "-choices");
-                int option = k == 0 || k == 2 || k == 6 ? 0 : k == 1 ? 2 : k == 7 ? 2 : 0;
+                int option = k == 0 || k == 2 ? 0 : k == 6 ? 2 : k == 1 ? 2 : k == 7 ? 2 : 0; // the theatre's duet: two bosses
                 owner.Session.State.Gold = Mathf.Max(owner.Session.State.Gold, 500); // the fixture's purse (the brass crate costs 172 at shop 8)
                 Check(owner.ChooseSecret(option), "Native commits choice " + k);
                 if (owner.Session.SecretFighting)
@@ -80,6 +80,7 @@ namespace ArcaneBrigade
                     owner.Session.CombatCatalog.PassiveHeal = 10000;
                     yield return new WaitForSecondsRealtime(2.5f);
                     yield return Shot("room-" + k + "-battle");
+                    if (k == 6) Check(owner.Simulation.SecretSecondActor != null && owner.Simulation.SecretSecondActor.Definition.IsBoss, "The duet's second actor is a boss");
                     Check(owner.Simulation.Units.Any(u => u.Faction == Faction.Enemy), "Optional encounter has real actors " + k);
                     // Deliberately accelerated diagnostic fixture, not normal balance evidence.
                     owner.Session.CombatCatalog.WaveDuration = 0;
@@ -92,6 +93,7 @@ namespace ArcaneBrigade
                     float deadline = Time.realtimeSinceStartup + 45;
                     while (owner.Session.State.Phase != SessionPhase.Shop && Time.realtimeSinceStartup < deadline) yield return null;
                     yield return new WaitForSecondsRealtime(4f); // a boss fall plays DeathFeedback.DurationBoss + 1 s before the room returns
+                    yield return Shot("room-" + k + "-claim"); // the relic won, on the shop's description card
                     Check(owner.ClaimSecret(), "Native battle reward claims " + k);
                 }
                 yield return new WaitForSecondsRealtime(.3f);
@@ -99,10 +101,12 @@ namespace ArcaneBrigade
                 Check(owner.SecretRoom.RiftOpen, "The way back opens with the deal's card " + k);
                 if (k == 0)
                 {
-                    // walking into the open rift goes back to the shop (requirement 25/10/2026)
-                    owner.Simulation.Champion.Position = SecretEventRoom.ReturnSpot + Vector2.up * 2.5f; yield return new WaitForSecondsRealtime(1f);
-                    owner.Simulation.Champion.Position = SecretEventRoom.ReturnSpot; yield return new WaitForSecondsRealtime(3f);
-                    Check(!owner.Session.SecretRoomOpen && owner.Session.State.Phase == SessionPhase.Shop, "Walking into the rift returns to the shop");
+                    // touching the rift does not leave by itself (requirement 25/10/2026); going through it (Space or GO THROUGH)
+                    // leaves under the dissolve, which must not refuse the leaving
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = SecretEventRoom.ReturnSpot; yield return new WaitForSecondsRealtime(1f);
+                    Check(owner.Session.SecretRoomOpen, "Touching the rift alone stays in the room");
+                    SceneDissolve.Then(owner, () => owner.LeaveSecret()); yield return new WaitForSecondsRealtime(2f);
+                    Check(!owner.Session.SecretRoomOpen && owner.Session.State.Phase == SessionPhase.Shop, "Going through the rift returns to the shop");
                     continue;
                 }
                 Check(owner.LeaveSecret(), "Native returns to saved shop " + k);

@@ -417,7 +417,8 @@ namespace ArcaneBrigade
                 }
                 PersistBoundary();
                 movement.Reset();
-                if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? DeathFeedback.DurationBoss + BossFallHold : 0.45f;
+                // requirement 25/10/2026 (stuck a few seconds after the fight): only a boss that fell just now holds the scene, and briefly
+                if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? Mathf.Max(0.45f, BossFallHold - (simulation.Elapsed - simulation.BossFellAt)) : 0.45f;
                 else resultRevealRemaining = simulation.Phase == RunPhase.Defeat ? 1f : simulation.BossDefeated ? DeathFeedback.DurationBoss : 1.15f;
             }
         }
@@ -576,7 +577,7 @@ namespace ArcaneBrigade
             else { ArrivalRift.Expect(); Begin(true); fade?.Release(); ArriveThroughRift(); } // the market has flown off; the brigade steps out of a rift onto the same floor
         }
         /// <summary>Requirement 24/10/2026: the shop came before the boss's death was seen; the fall now plays out with a breath after it.</summary>
-        private const float BossFallHold = 1f;
+        private const float BossFallHold = 1.2f;
         /// <summary>The start of a night: the hero and friends spring out of a rift of the map's own kind, which then stitches shut.</summary>
         private void ArriveThroughRift()
         {
@@ -720,6 +721,8 @@ namespace ArcaneBrigade
 
         private readonly HashSet<int> heldInCeremony = new HashSet<int>();
         private WaveClearInk waveClearInk;
+        /// <summary>A word over the hero's head in the stat-gain style (a map's boosts and moments).</summary>
+        public void HeroWord(string text, Color colour) { if (combatFeedback != null && simulation?.Champion != null) combatFeedback.Label(VisualChampionPosition + Vector2.up * .95f, text, colour, .6f, 1.3f); }
         private static string StatGainText(ItemEffect effect, float value)
         {
             string name = effect switch { ItemEffect.Health => "Max HP", ItemEffect.Heal => "Regen", ItemEffect.Armor => "Armor", ItemEffect.Damage => "Damage", ItemEffect.Luck => "Luck", ItemEffect.Crit => "Crit", _ => effect.ToString() };

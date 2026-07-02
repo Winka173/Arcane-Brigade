@@ -426,9 +426,13 @@ namespace ArcaneBrigade
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
             {
-                if (simulation.Boss != null && simulation.Boss.Alive)
+                UnitState second = simulation.SecretSecondActor; // the duet: one bar for the two of them
+                bool secondUp = second != null && second.Alive;
+                if (simulation.Boss != null && (simulation.Boss.Alive || secondUp))
                 {
-                    float bossShare = Mathf.Clamp01(simulation.Boss.Health / simulation.Boss.Definition.Health);
+                    float bossNow = (simulation.Boss.Alive ? simulation.Boss.Health : 0) + (secondUp ? second.Health : 0);
+                    float bossMax = simulation.Boss.Definition.Health + (second != null ? second.Definition.Health : 0);
+                    float bossShare = Mathf.Clamp01(bossNow / Mathf.Max(1, bossMax));
                     string bossTitle = RunUICopy.UnitName(simulation.Boss.Definition).ToUpperInvariant();
                     float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(new GUIContent(bossTitle)).x + 16, 350, 990);
                     ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
@@ -439,7 +443,7 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
                     // the boss's health in short numbers (330K / 331K), no divider through them and no percentage
-                    GUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(simulation.Boss.Health) + " / " + ShortNumber(simulation.Boss.Definition.Health), numeric);
+                    GUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
                 }
                 if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
                 else pausePage = 0;

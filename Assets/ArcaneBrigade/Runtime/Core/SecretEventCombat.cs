@@ -66,7 +66,8 @@ namespace ArcaneBrigade
             actor.DisplayName = encounter == 2 ? "The Understudy" : encounter == 3 ? "The Contraband Collector" : encounter == 5 ? "The Leading Actor" : encounter == 6 ? "The Hostile Duet" : "The Cabinet Warden";
             actor.IsBoss = true; actor.HeroMechanic = HeroMechanic.None; actor.SpecialEnemy = SpecialEnemyKind.None; actor.Mutation = EnemyMutation.None;
             // requirement 25/10/2026: the secret actors fell too quickly - twice the base and the run's own enemy-health curve
-            actor.Health = (650 + State.Wave * 140) * 2 * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave) * (encounter == 5 ? 1.3f : 1);
+            // requirement 25/10/2026 (again: the cabinet was still weak): three times the base
+            actor.Health = (650 + State.Wave * 140) * 3 * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave) * (encounter == 5 ? 1.3f : 1);
             actor.BodyHeight = encounter == 2 ? 1.5f : 2.3f; actor.Radius = .65f; actor.Speed = encounter == 2 ? 1.15f : .6f;
             actor.ContactDamage = (5 + State.Wave * .12f)*1.08f*1.6f*1.25f; actor.ContactInterval = 1.17f; actor.KnockbackResistance = 1;
             actor.Weapon.Damage*=1.08f*1.25f;
@@ -74,10 +75,13 @@ namespace ArcaneBrigade
             CombatCatalog.Boss = actor;
             if (encounter == 6)
             {
-                UnitDefinition partner = BuildEnemy(catalog.Enemies.FirstOrDefault(e => e.Weapon.Kind == WeaponKind.Projectile) ?? catalog.Enemies[0], 1 + State.Wave * .1f);
-                partner.Id = "SecretSupportingActor"; partner.DisplayName = "The Supporting Actor";
-                partner.Health = actor.Health * .5f; partner.SpecialEnemy = SpecialEnemyKind.None; partner.Mutation = EnemyMutation.None;
-                partner.Weapon.Cooldown = 2.8f; partner.Weapon.ProjectileCount = 2; partner.Weapon.Damage = 7;
+                // requirement 25/10/2026 (the duet showed one boss): the second actor is a boss too, the Theatre's Marquee Maw as
+                // the second lead, with its own blows; the boss bar counts the two together
+                UnitDefinition body = Array.Find(catalog.Bosses, b => b != null && b.Id == "MarqueeMaw") ?? catalog.Bosses[0];
+                UnitDefinition partner = BuildEnemy(body, 1 + State.Wave * .1f);
+                partner.Id = "SecretSupportingActor"; partner.DisplayName = "The Second Lead";
+                partner.Health = actor.Health * .7f; partner.SpecialEnemy = SpecialEnemyKind.None; partner.Mutation = EnemyMutation.None;
+                partner.ContactDamage = actor.ContactDamage; partner.Weapon.Damage = actor.Weapon.Damage; partner.Speed = .7f; partner.KnockbackResistance = 1;
                 CombatCatalog.SecretPartner = partner;
             }
         }
@@ -101,6 +105,8 @@ namespace ArcaneBrigade
         private float secretChampionAttack = -100, secretMirrorAt;
         private Vector2 secretMirrorDirection;
         private UnitState secretSecondActor;
+        /// <summary>The duet's second boss (null in every other fight).</summary>
+        public UnitState SecretSecondActor => secretSecondActor;
         private float secretNextEcho;
         private void StartSecretCombat()
         {

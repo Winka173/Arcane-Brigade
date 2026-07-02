@@ -63,7 +63,8 @@ namespace ArcaneBrigade
             int heroOrder = body.sortingOrder, layer = body.sortingLayerID;
             bool occluded = false;
             // Shop wares stay readable; the merchant may fade when its body hides the hero.
-            bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop;
+            // requirement 25/10/2026 (asked many times): in a secret room every prop the hero walks behind fades (the room has no wares)
+            bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop && (owner.SecretRoom == null || !owner.SecretRoom.InRoom);
             foreach (SpriteRenderer r in props)
             {
                 if (inShop && !Shopkeeper(r)) continue;

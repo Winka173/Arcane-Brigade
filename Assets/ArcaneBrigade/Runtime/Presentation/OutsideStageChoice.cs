@@ -99,6 +99,7 @@ namespace ArcaneBrigade
                 actors.Add(actor);
             }
         }
+        private GUIStyle chipLine;
         private void OnGUI()
         {
             if (mode == 0 || owner == null || owner.TransitionPending || owner.PresentationPaused) return;
@@ -169,7 +170,11 @@ namespace ArcaneBrigade
                         Rect chip = new Rect(tx, below, chipW, 46);
                         ArcadeSkin.Chip(chip, false);
                         if (giftCard.AttackIcon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), giftCard.AttackIcon);
-                        Color keepLine = cardLine.normal.textColor; GUI.Label(new Rect(chip.x + 60, chip.y, chip.width - 70, chip.height), giftCard.AttackLabel, cardLine);
+                        // the words on the chip's own middle line, as on the shop's card (requirement 25/10/2026: they rode high)
+                        chipLine ??= new GUIStyle(cardLine) { alignment = TextAnchor.MiddleLeft, wordWrap = false };
+                        chipLine.normal.textColor = cardLine.normal.textColor;
+                        float middle = ArcadeSkin.ChipIconRect(chip).center.y + chip.height * .1f;
+                        GUI.Label(new Rect(chip.x + 60, middle - chip.height * .5f, chip.width - 70, chip.height), giftCard.AttackLabel, chipLine);
                         below += 54;
                     }
                     GlossaryUI.Text(new Rect(tx, below, tw, panel.yMax - 24 - below), FirstLines(giftCard.Summary, ally != null ? 3 : 4), cardLine);

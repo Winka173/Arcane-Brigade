@@ -287,16 +287,21 @@ namespace ArcaneBrigade
             layer.Front.Sector(face, .05f, 0, 360, new Color(.95f, .78f, .4f), new Color(.6f, .42f, .2f));
             float near = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.8f, 1, hand));
             ink.TokenAt(InkToken.Glint, ArsenalInk.Gold, face + Vector2.up * (RoomClockDial + .12f), .2f + .12f * (glowing ? pulse : near), 0, glowing ? 1 : .35f + .6f * near);
-            // struck: the dial flares and its light rays out; time stands still for every enemy
-            float sp = (t - s.RoomClockStruckAt) / 1.2f;
-            if (sp >= 0 && sp < 1)
+            // struck (requirement 25/10/2026: the stop must be seen over the whole map): the dial flares, a wave of held light
+            // sweeps out over the whole floor with long rays, and each enemy freezes as the wave reaches it (a flash, then a pause mark)
+            float since = t - s.RoomClockStruckAt;
+            float front = still ? RoomClockSweep : RoomClockSweep * RoomOutCubic(Mathf.Clamp01(since / 1.1f));
+            if (since >= 0 && since < 1.8f)
             {
-                ink.Light(face, 7f * RoomOutCubic(sp / .4f), new Color(1f, .92f, .7f), .6f * (1 - sp));
-                for (int k = 0; k < 12; k++)
+                float sp = since / 1.8f;
+                ink.Light(face, 7f * RoomOutCubic(Mathf.Clamp01(since / .4f)), new Color(1f, .92f, .7f), .65f * (1 - sp));
+                ink.Light(face, front * 2f, new Color(1f, .88f, .6f), .3f * (1 - sp)); // the sweep itself: soft light, no rim
+                ink.Light(face, front * 1.2f, new Color(1f, .96f, .84f), .22f * (1 - sp));
+                for (int k = 0; k < 16; k++)
                 {
-                    Vector2 d = new Vector2(Mathf.Cos(k * 30 * Mathf.Deg2Rad), Mathf.Sin(k * 30 * Mathf.Deg2Rad));
-                    float reach = still ? .5f : RoomOutCubic(sp);
-                    ink.Stroke(face + d * (.6f + 1.4f * reach), face + d * (.95f + 2.6f * reach), ArsenalInk.Gold, .07f, 1, 0, 1 - sp);
+                    Vector2 d = new Vector2(Mathf.Cos((k * 22.5f + 11) * Mathf.Deg2Rad), Mathf.Sin((k * 22.5f + 11) * Mathf.Deg2Rad));
+                    float reach = Mathf.Min(1, front / RoomClockSweep), len = k % 2 == 0 ? 1f : .6f;
+                    ink.Stroke(face + d * (.6f + front * .35f * len), face + d * (.95f + front * .8f * len), ArsenalInk.Gold, k % 2 == 0 ? .09f : .06f, 1, 0, (1 - sp) * (.5f + .5f * reach));
                 }
             }
             if (t < s.RoomClockStunUntil)
@@ -306,15 +311,26 @@ namespace ArcaneBrigade
                 for (int r = 0; r < roster.Count; r++)
                 {
                     UnitState u = roster[r];
-                    if (n >= 40) break;
+                    if (n >= 60) break;
                     if (!u.Alive || u.Faction != Faction.Enemy || u.SleepUntil <= t) continue;
+                    float dist = Vector2.Distance(u.Position, face);
+                    if (dist > front) continue; // the wave has not reached it yet
                     n++;
-                    Vector2 h = Head(u) + Vector2.up * .28f; float fade = Mathf.Clamp01((u.SleepUntil - t) / .4f) * Mathf.Clamp01((t - s.RoomClockStruckAt) / .25f);
+                    float reached = since - (still ? 0 : 1.1f * Mathf.Clamp01(dist / RoomClockSweep)); // when the wave passed it (roughly)
+                    Vector2 h = Head(u) + Vector2.up * .28f; float fade = Mathf.Clamp01((u.SleepUntil - t) / .4f);
+                    if (reached < .35f && !calm)
+                    {
+                        float f = Mathf.Clamp01(reached / .35f);
+                        ink.Light(u.Position + Vector2.up * u.Definition.BodyHeight * .45f, 1.6f * u.Definition.BodyHeight, new Color(1f, .93f, .75f), .55f * (1 - f));
+                        ink.TokenAt(InkToken.Glint, ArsenalInk.Cream, h + new Vector2(.18f, 0), .26f, 0, 1 - f);
+                    }
                     ink.Stroke(h + new Vector2(-.07f, -.1f), h + new Vector2(-.07f, .1f), ArsenalInk.Cream, .065f, 1, 0, fade);
                     ink.Stroke(h + new Vector2(.07f, -.1f), h + new Vector2(.07f, .1f), ArsenalInk.Cream, .065f, 1, 0, fade);
                 }
             }
         }
+        /// <summary>How far the clock's held light reaches: the whole fight floor.</summary>
+        private const float RoomClockSweep = 30;
 
         // ------------------------------------------------------------------ impatient waiters
         private void RoomDrawWaiters(MapEnvironmentState s, float t)
@@ -363,7 +379,7 @@ namespace ArcaneBrigade
         private void AirWaitingRoom(MapEnvironmentState s, int motes, float clock)
         {
             float hush = clock < s.RoomClockStunUntil ? Mathf.Clamp01((s.RoomClockStunUntil - clock) / .8f) * Mathf.Clamp01((clock - s.RoomClockStruckAt) / .3f) : 0;
-            Grade(Color.Lerp(new Color(.96f, .84f, .66f, .07f), new Color(1f, .88f, .62f, .15f), hush), Color.Lerp(new Color(.2f, .11f, .05f, .32f), new Color(.26f, .15f, .05f, .42f), hush));
+            Grade(Color.Lerp(new Color(.96f, .84f, .66f, .07f), new Color(.98f, .92f, .78f, .26f), hush), Color.Lerp(new Color(.2f, .11f, .05f, .32f), new Color(.3f, .2f, .08f, .52f), hush)); // time held: the room goes pale gold
             // low fog banks along the floor, drifting slowly across
             for (int i = 0; i < 5; i++)
             {

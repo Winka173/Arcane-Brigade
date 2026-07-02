@@ -164,6 +164,7 @@ namespace ArcaneBrigade
                 }
                 if ((letter.Position - Champion.Position).sqrMagnitude >= grab * grab) continue;
                 PostCatchLetter(letter);
+                MapCaught(letter.Position, letter.Gold ? new Color(1f, .84f, .4f) : MapBoostText.Colour((MapStat)Mathf.Clamp(letter.Stat, 0, 4)));
                 s.Letters.RemoveAt(i);
             }
         }

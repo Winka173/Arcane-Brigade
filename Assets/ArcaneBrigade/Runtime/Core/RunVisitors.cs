@@ -32,6 +32,11 @@ namespace ArcaneBrigade
     /// at their table until answered or until the shop is left. Rare gift visitors use a separate low-probability roll.</summary>
     public sealed partial class RunSession
     {
+        // requirement 25/10/2026 (the three bets were the same deal, the big one worse): a bigger bet asks the hero to keep more of
+        // its health through the next wave and pays a larger share back
+        private static readonly int[] DiceWin = { 8, 20, 52 }, DiceHold = { 50, 70, 85 };
+        private static float DiceHoldShare(string target) => target != null && target.StartsWith("paid:") && int.TryParse(target.Substring(5), out int hold) ? hold / 100f : .5f;
+
         /// <summary>Which visitors may appear (painted ones in the game; checks may allow all).</summary>
         public static Func<string, bool> VisitorPainted = id => ExpansionArtwork.Current != null && ExpansionArtwork.Current.Visitor(id) != null;
 
@@ -141,7 +146,7 @@ namespace ArcaneBrigade
                 case "GateKeeper": AddVisitorEffect("Dare"); break;
                 case "LostPostman": AddVisitorEffect("Letter", ScaledGold(15)); break;
                 // the bet is taken now; the effect keeps what the elder pays back (the card's GET), both on the gold curve
-                case "DiceElder": { int bet = ScaledGold(new[] { 5, 10, 20 }[o.Value]); State.Gold -= bet; AddVisitorEffect("Bet", ScaledGold(new[] { 8, 15, 30 }[o.Value]), "paid"); break; }
+                case "DiceElder": { int bet = ScaledGold(new[] { 5, 10, 20 }[o.Value]); State.Gold -= bet; AddVisitorEffect("Bet", ScaledGold(DiceWin[o.Value]), "paid:" + DiceHold[o.Value]); break; }
                 case "Pawnbroker":
                 {
                     ItemStack s = State.Items[o.Value]; ItemDefinition item = catalog.Item(s.Id); int price = ScaledGold(item.Price / 2);
@@ -438,7 +443,7 @@ namespace ArcaneBrigade
             int w = State.Wave; bool won = sim.Phase == RunPhase.Victory; var notes = new List<string>();
             if (won && VisitorActive("Dare", w) && GiveRandomItem(w >= 12 ? ItemRarity.Uncommon : ItemRarity.Common, false) is ItemDefinition dare) notes.Add("The Gatekeeper pays: " + dare.Name);
             if (won && VisitorActive("Letter", w) && sim.OctoberInjuries <= 5) { int pay = Reward("Letter", w, 15); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("Letter delivered: " + pay + " gold"); }
-            if (VisitorEffectFor("Bet", w) is VisitorEffect bet && won && sim.LowestChampionShare >= .5f) { int pay = bet.Target == "paid" ? Mathf.RoundToInt(bet.Value) : Mathf.RoundToInt(bet.Value * 1.5f); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The Dice Elder pays " + pay + " gold"); }
+            if (VisitorEffectFor("Bet", w) is VisitorEffect bet && won && sim.LowestChampionShare >= DiceHoldShare(bet.Target)) { int pay = bet.Target != null && bet.Target.StartsWith("paid") ? Mathf.RoundToInt(bet.Value) : Mathf.RoundToInt(bet.Value * 1.5f); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The Dice Elder pays " + pay + " gold"); }
             if (VisitorActive("Toy", w) && sim.VisitorToySeconds >= 20) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The lost toy found its way home (an egg)"); }
             if (won && VisitorActive("Lullaby", w) && sim.Kills >= 80) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The child sleeps (an egg)"); }
             if (VisitorActive("Collect", w) && sim.VisitorSpeciesKills >= 10) { int pay = Reward("Collect", w, 12); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The collector pays " + pay + " gold"); }

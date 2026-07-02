@@ -55,8 +55,8 @@ namespace ArcaneBrigade
                 .With(D("Take the dare", "EnemyCount:+20% enemies + elite:2 elites", "relic:Common", Next)),
             V("LostPostman", "The Lost Postman", "Would you carry this letter through the next hall? Gently, please.", "Next wave: take no more than 5 hits and earn 15 gold.")
                 .With(D("Carry the letter", F, "gold:15", "next wave · 5 hits max")),
-            V("DiceElder", "The Dice Elder", "A small wager on your nerve?", "Finish the next wave above half health and win back 1.5 times your bet.", O, 0, "Bet 5 gold", "Bet 10 gold", "Bet 20 gold")
-                .With(D("Bet 5", "gold:5", "gold:8", "next wave · HP 50%+"), D("Bet 10", "gold:10", "gold:15", "next wave · HP 50%+"), D("Bet 20", "gold:20", "gold:30", "next wave · HP 50%+")),
+            V("DiceElder", "The Dice Elder", "A small wager on your nerve?", "Keep your health high through the next wave: the bigger the bet, the higher it must stay and the more it pays.", O, 0, "Bet 5 gold", "Bet 10 gold", "Bet 20 gold")
+                .With(D("Bet 5", "gold:5", "gold:8", "next wave · HP 50%+"), D("Bet 10", "gold:10", "gold:20", "next wave · HP 70%+"), D("Bet 20", "gold:20", "gold:52", "next wave · HP 85%+")),
             V("Pawnbroker", "The Roadside Pawnbroker", "I'll keep it safe. Mostly.", "Pawn a relic for half its price; redeem it within 2 waves for the same.", I)
                 .With(D("Pawn a relic", "relic:1 relic", "gold:half price", "buy back within 2 waves")),
             V("ParcelCourier", "The Unmarked Parcel", "(the parcel rustles, hopeful to be opened)", "Open it for 10 gold: 15 gold, an egg, a Common relic - or an empty box and a note.", A, 10)

@@ -246,6 +246,14 @@ namespace ArcaneBrigade
                 var map = owner.GetComponent<MapEnvironmentVisual>();
                 Check(owner.Simulation.MapEnvironment != null && map != null && map.Props >= 4, "Map elements on screen: " + name + " (" + (map != null ? map.Props : 0) + " props)");
                 yield return Shot("Item24_Map" + name);
+                if (wave == 3)
+                {
+                    // the wall clock struck: its held light sweeps the whole map and every enemy freezes as it passes
+                    Vector2 clockAt = owner.Simulation.MapEnvironment.RoomClock;
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = clockAt; yield return KeepAlive(.45f);
+                    Check(owner.Simulation.MapEnvironment.RoomClockStruck, "The wall clock strikes when the hero reaches it");
+                    yield return Shot("Item24_ClockStruck");
+                }
             }
 
             // 25: the boss in the middle of each map comes 15 s into its night; the first one is beaten and keeps its lamp

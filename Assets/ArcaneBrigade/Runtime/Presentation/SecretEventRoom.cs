@@ -45,12 +45,12 @@ namespace ArcaneBrigade
         private Transform returnRift, returnSwirl;
         private float returnTurn;
         // the deal's card stays over the room while the way back is open; OK puts it away, walking into the rift leaves anyway
-        private bool cardOpen, riftArmed; private float cardClosingAt = -1;
+        private bool cardOpen; private float cardClosingAt = -1;
         public bool RiftOpen => walkingOut && returnRift != null;
         private void BeginWalkOut()
         {
             if (walkingOut || gallery == null) return;
-            walkingOut = true; cardOpen = true; cardClosingAt = -1; riftArmed = false;
+            walkingOut = true; cardOpen = true; cardClosingAt = -1;
             MapTheme theme = MapIdentity.For(owner.Session.State.Wave);
             var art = OctoberDoor.PortalArt(theme);
             if (art.body == null) { walkingOut = false; owner.LeaveSecret(); return; }
@@ -84,10 +84,7 @@ namespace ArcaneBrigade
             float distance = Vector2.Distance(hero, ReturnSpot);
             nearReturn = distance <= ReturnReach + .6f && returnRift.localScale.y > .9f;
             if (!nearReturn) returnPromptAt = -1;
-            // requirement 25/10/2026 (walking in did nothing): stepping into the open rift goes through it; a hero already
-            // standing on it when it opens must step off once first
-            if (distance > ReturnReach + .4f) riftArmed = true;
-            if (riftArmed && distance <= ReturnReach && returnRift.localScale.y > .9f) { GoBack(); return; }
+            // requirement 25/10/2026: touching the rift never takes you through by itself; standing by it, Space (or GO THROUGH) does
             bool confirm = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0);
             if (cardOpen && !nearReturn) { if (confirm && cardClosingAt < 0) cardClosingAt = Time.unscaledTime; return; } // the first press puts the card away
             if (nearReturn && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) GoBack();
@@ -103,7 +100,7 @@ namespace ArcaneBrigade
             if (owner?.Session == null || SecretEventAssets.Current == null) return;
             SecretEventProgress s = owner.Session.State.Secrets;
             string key = owner.Session.State.RunId + "/" + owner.Session.State.Wave + "/" + owner.Session.State.Phase + "/" + owner.Session.State.OutsideStage + "/" + s?.Stage + "/" + s?.Kind + "/" + s?.Visits + "/" + s?.VisitedMask + "/" + s?.RewardId + "/" + s?.QueuedEvent;
-            if (signature != key) { signature = key; walkingOut = false; picker = 0; returnRift = null; Rebuild(); enteredAt = owner.PresentationClock; selected = 0; hold = 0; armed = false; }
+            if (signature != key) { signature = key; walkingOut = false; picker = 0; returnRift = null; Rebuild(); enteredAt = Time.unscaledTime; selected = 0; hold = 0; armed = false; }
             if (picker != 0 && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))) picker = 0;
             if (owner.PresentationPaused || owner.TransitionPending || owner.HallExitPending || closing != null || picker != 0) { hold = 0; return; }
             bool pressed = Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.JoystickButton0);
@@ -120,7 +117,9 @@ namespace ArcaneBrigade
                     float sway = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(owner.PresentationClock * 1.4f + i) * .022f;
                     portals[i].transform.localRotation = Quaternion.Euler(0, 0, sway * 20);
                 }
-                if (near >= 0 && confirm && armed && owner.PresentationClock - enteredAt > .2f) { armed = false; owner.EnterSecret(kinds[near]); }
+                // requirement 25/10/2026 (Space did nothing here): real time, not the presentation clock (it can stand still after a
+                // boss's slow motion), and the same way in as the DISCOVER button
+                if (near >= 0 && confirm && armed && Time.unscaledTime - enteredAt > .2f && !SceneDissolve.Busy) { armed = false; SecretEventKind kind = kinds[near]; SceneDissolve.Then(owner, () => owner.EnterSecret(kind)); }
             }
             else if (MenuOpen)
             {
@@ -129,7 +128,7 @@ namespace ArcaneBrigade
                 if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) { selected = (selected + 2) % 3; hold = 0; }
                 if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) { selected = (selected + 1) % 3; hold = 0; }
                 for (int i = 0; i < 3; i++) if (Input.GetKeyDown(KeyCode.Alpha1 + i)) { selected = i; hold = 0; }
-                if (confirm && armed && owner.PresentationClock - enteredAt > .2f)
+                if (confirm && armed && Time.unscaledTime - enteredAt > .2f)
                 {
                     armed = false; hold = 0;
                     int pick = selected;
@@ -385,6 +384,7 @@ namespace ArcaneBrigade
             LivingUI.Pop(Time.unscaledTime - resultAt, new Vector2(960, 560));
             if (away > 0) { if (!PresentationSettings.ReducedMotion) ArcadeSkin.ScaleAround(Vector2.one * Mathf.Lerp(1, .94f, away), new Vector2(960, 560)); GUI.color *= new Color(1, 1, 1, 1 - away); }
             if (!claim && string.IsNullOrEmpty(s.ResultGot)) { LegacyResult(s, shut); GUI.matrix = m; GUI.color = c; return; }
+            if (claim && owner.Content.Item(s.RewardId) != null) { RewardCard(s, shut); GUI.matrix = m; GUI.color = c; return; }
             Sprite panelArt = ArcadeSkin.KitSprite("SecretEvent/Panel");
             float pw = 1040, ph = panelArt != null ? pw * panelArt.rect.height / panelArt.rect.width : 430;
             Rect frame = new Rect(960 - pw * .5f, 330, pw, ph);
@@ -412,6 +412,45 @@ namespace ArcaneBrigade
             if (claim) { if (ArcadeSkin.KitGuiButton(go, "CLAIM", primary) && !shut) owner.ClaimSecret(); }
             else if (ArcadeSkin.KitGuiButton(go, "OK", primary) && !shut) cardClosingAt = Time.unscaledTime; // the way back is already open
             GUI.matrix = m; GUI.color = c;
+        }
+        private ShopDescriptionCard rewardCard; private string rewardCardId;
+        private GUIStyle rewardName, rewardKind, rewardLine;
+        /// <summary>The relic won in a fight, on the shop's own description card (requirement 25/10/2026): its rarity frame, the
+        /// picture rising on its rarity backdrop, its name and kind, its full description with stat icons, and CLAIM.</summary>
+        private void RewardCard(SecretEventProgress s, bool shut)
+        {
+            if (rewardCardId != s.RewardId || rewardCard == null)
+            {
+                rewardCard = new ShopDescriptionCard(); rewardCardId = s.RewardId;
+                rewardCard.Refresh(owner.Session, owner.Content, new ShopOffer { Token = -89, Kind = OfferKind.Item, Id = s.RewardId, Tier = 1, Price = 0 });
+            }
+            ItemDefinition item = owner.Content.Item(s.RewardId);
+            rewardName ??= new GUIStyle(ArcadeTypography.Style(32, true)) { wordWrap = false };
+            rewardKind ??= new GUIStyle(ArcadeTypography.Style(18)) { wordWrap = false };
+            rewardLine ??= new GUIStyle(ArcadeTypography.Style(22)) { wordWrap = true };
+            rewardName.normal.textColor = rewardLine.normal.textColor = ArcadeSkin.Cream;
+            rewardKind.normal.textColor = RunModifierRules.RarityColor(rewardCard.Rarity);
+            const float width = 1000, textW = width - 120 - 190;
+            string summary = rewardCard.Summary ?? "";
+            float textH = Mathf.Max(150, 64 + GlossaryUI.Height(summary, rewardLine, textW));
+            float h = 96 + textH + 130;
+            Rect card = new Rect(960 - width * .5f, Mathf.Max(260, 600 - h * .5f), width, h);
+            RarityDescriptionFrame.Draw(card, rewardCard.Rarity, Time.unscaledTime);
+            Rect inner = new Rect(card.x + 60, card.y + 34, card.width - 120, card.height - 68);
+            GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), s.Result.Split('\n')[0], heading);
+            // the relic rises onto its rarity's backdrop with a little bounce and settles
+            float held = Time.unscaledTime - resultAt, top = inner.y + 64;
+            float rise = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01(held / .45f), bounce = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01(held / .7f) * Mathf.PI) * 14;
+            float side = 130 * (PresentationSettings.ReducedMotion ? 1 : Mathf.Lerp(.55f, 1, Mathf.SmoothStep(0, 1, rise)));
+            RarityDescriptionFrame.Backdrop(new Rect(inner.x + 10, top, 150, 150), rewardCard.Rarity, Time.unscaledTime);
+            if (item.Icon != null) ShopDescriptionCard.DrawSprite(new Rect(inner.x + 85 - side * .5f, top + 75 - side * .5f - bounce, side, side), item.Icon);
+            float tx = inner.x + 190;
+            GUI.Label(new Rect(tx, top - 4, textW, 42), item.Name, rewardName);
+            GUI.Label(new Rect(tx, top + 36, textW, 24), "NEW RELIC · " + rewardCard.Identity, rewardKind);
+            GlossaryUI.Text(new Rect(tx, top + 66, textW, textH - 64), summary, rewardLine);
+            GlossaryUI.Draw(new Vector2(1920, 1080));
+            Rect go = new Rect(card.center.x - 220, card.yMax - 104, 440, 68);
+            if (ArcadeSkin.KitGuiButton(go, "CLAIM", primary) && !shut) owner.ClaimSecret();
         }
         // the painted card and panel: the card's socket (centre from its top, diameter, both shares of the card) and the margins
         private const float CardSocketV = .118f, CardSocketD = .114f, CardPadX = .12f, CardPadBottom = .12f, PanelPad = .08f, PanelPadTop = .1f;

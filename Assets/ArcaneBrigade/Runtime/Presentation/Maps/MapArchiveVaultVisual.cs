@@ -273,6 +273,9 @@ namespace ArcaneBrigade
                 if (vaultPagesSeen.TryGetValue(pair.Key, out int seen) && worm.Pages > seen)
                     ImpactWords.Pop("GULP!", Head(u) + Vector2.up * .55f, VaultViolet, 1, .8f);
                 vaultPagesSeen[pair.Key] = worm.Pages;
+                // the page it just ate is torn to scraps at its mouth
+                float ate = t - worm.AteAt;
+                if (ate >= 0 && ate < .6f) ink.Draw(ArsenalInk.Moment.PaperScraps, nose + Vector2.up * .1f, Vector2.up, ate / .6f, .8f, pair.Key * 13);
                 // a hungry one shows the way to the page it crawls to
                 if (worm.Pages >= MapEnvironmentRules.VaultWormPages) continue;
                 MapEnvironmentState.VaultPage target = null; float near = float.MaxValue;

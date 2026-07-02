@@ -42,7 +42,10 @@ namespace ArcaneBrigade
     {
         public readonly List<MapBoost> Boosts = new List<MapBoost>();
         public readonly List<MapPop> Pops = new List<MapPop>();
+        /// <summary>Things picked up a moment ago (a letter, an oil vial): the presentation flashes them and flies their light to the hero.</summary>
+        public readonly List<MapCatch> Catches = new List<MapCatch>();
     }
+    public struct MapCatch { public Vector2 At; public float Time; public Color Colour; }
 
     public sealed partial class CombatSimulation
     {
@@ -58,6 +61,8 @@ namespace ArcaneBrigade
             else s.Boosts.Add(held = new MapBoost { Stat = stat, Value = value, Until = now + seconds, Source = source });
             MapSay((prefix != null ? prefix + " · " : "") + MapBoostText.Label(stat, held.Value), MapBoostText.Colour(stat)); // the stat and its size, no seconds
         }
+        /// <summary>Marks a pickup so it never just vanishes (requirement 25/10/2026: no moment without its animation).</summary>
+        public void MapCaught(Vector2 at, Color colour) { if (mapEnv == null) return; if (mapEnv.Catches.Count >= 12) mapEnv.Catches.RemoveAt(0); mapEnv.Catches.Add(new MapCatch { At = at, Time = Elapsed, Colour = colour }); }
         /// <summary>A line over the hero's head (the presentation shows each once, stacked, never dropped).</summary>
         public void MapSay(string text, Color colour) { if (mapEnv != null && mapEnv.Pops.Count < 12) mapEnv.Pops.Add(new MapPop { Text = text, Colour = colour }); }
         /// <summary>The sum of a stat lent by the map right now (timed boosts plus standing-in effects such as a lamp's light).</summary>

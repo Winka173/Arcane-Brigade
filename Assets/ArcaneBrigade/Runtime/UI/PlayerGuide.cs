@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             return false;
         }
         private Tip showing; private float shownAt; private float goalAt = -1; private string goalRun;
-        private GUIStyle line, title, small, hintLine;
+        private GUIStyle line, title, small;
         public string Showing => showing?.Id;
         public bool GoalShowing => goalAt >= 0 && Time.unscaledTime - goalAt < GoalSeconds;
         private const float TipSeconds = 6.5f, GoalSeconds = 7f;
@@ -82,8 +82,7 @@ namespace ArcaneBrigade
             if (GoalShowing) { DrawGoal(owner); return; }
             // the first two shops: what to do now
             // one card at a time: the strip steps aside for a tip, an open card or the pause menu
-            if (state.Phase == SessionPhase.Shop && state.Wave <= 2 && !state.Endless && owner.Shop != null && !owner.Shop.Special && !owner.HallExitPending
-                && showing == null && !ModalOpen(owner) && RunHud.ShownShopCard.height < 300 && !owner.PresentationPaused) DrawShopHint(owner);
+            // (the first shops' "Friends -> Relics -> Stairs" strip is gone, requirement 25/10/2026: it read as a riddle)
             if (showing == null)
                 foreach (Tip tip in Tips)
                     if (!Seen(owner.Profile, tip.Id) && Due(owner, tip.Id)) { showing = tip; shownAt = Time.unscaledTime; Mark(owner, tip.Id); CheckpointAudio.PlayInterfaceId("ui.coach.pop"); break; }
@@ -217,23 +216,6 @@ namespace ArcaneBrigade
             }
             GUI.color = keep;
             if (GUI.Button(r, GUIContent.none, GUIStyle.none)) goalAt = -100;
-        }
-
-        private void DrawShopHint(ArenaController owner)
-        {
-            Rect r = new Rect(660, 96, 600, 52);
-            ArcadeSkin.Plate(r, ArcadeSkin.Accent); // a walnut plate (UI kit)
-            Highlight(r, Time.unscaledTime, 1);
-            RunCatalog c = owner.Content;
-            Sprite friend = c.Companions.Length > 0 ? c.Companions[0].Body : null;
-            (Sprite icon, string word)[] steps = { (friend, "Friends"), (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics"), (null, "Stairs ↓") };
-            GUIStyle s = hintLine ??= new GUIStyle(line) { fontSize = 22, alignment = TextAnchor.MiddleLeft, wordWrap = false }; // made once, not every GUI pass
-            for (int i = 0; i < steps.Length; i++)
-            {
-                Rect cell = new Rect(r.x + 14 + i * 196, r.y + 4, 190, 44);
-                if (steps[i].icon != null) RunHud.Sprite(new Rect(cell.x, cell.y + 2, 40, 40), steps[i].icon);
-                GUI.Label(new Rect(cell.x + (steps[i].icon != null ? 46 : 6), cell.y, 140, 44), (i > 0 ? "" : "") + steps[i].word + (i < steps.Length - 1 ? "  →" : ""), s);
-            }
         }
 
         /// <summary>The "How to play" cards (pause menu): six pictures, one line each, re-readable any time.</summary>

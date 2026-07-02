@@ -50,10 +50,29 @@ namespace ArcaneBrigade
                 case MapTheme.Theatre: DrawTheatre(s, simulation.Elapsed); break;
                 case MapTheme.ArchiveVault: DrawArchiveVault(s, simulation.Elapsed); break;
             }
+            DrawCatches(s, simulation.Elapsed);
             ink.End();
             for (int i = used; i < pool.Count; i++) { pool[i].enabled = false; shadows[i].Hide(); }
         }
 
+        /// <summary>A pickup flashes where it lay and its light flies into the hero in a few sparks.</summary>
+        private void DrawCatches(MapEnvironmentState s, float t)
+        {
+            if (sim.Champion == null) return;
+            Vector2 hero = Head(sim.Champion) - Vector2.up * .3f;
+            foreach (MapCatch c in s.Catches)
+            {
+                float age = t - c.Time; if (age < 0 || age > .75f) continue;
+                float k = age / .75f;
+                ink.Light(c.At, 1.4f + 1.2f * k, c.Colour, .65f * (1 - k));
+                for (int i = 0; i < 6; i++)
+                {
+                    float d = still ? 1 : Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - i * .035f) / .45f));
+                    Vector2 side = new Vector2(Mathf.Cos(i * 60 * Mathf.Deg2Rad), Mathf.Sin(i * 60 * Mathf.Deg2Rad)) * .55f * Mathf.Sin(d * Mathf.PI);
+                    ink.TokenAt(InkToken.Glint, ArsenalInk.Gold, Vector2.Lerp(c.At, hero, d) + side, .22f, i * 40 + age * 300, 1 - Mathf.Clamp01((age - .5f) / .25f));
+                }
+            }
+        }
         /// <summary>How much a map's own light lifts a standing prop at this spot back to full (0 none, 1 fully lit).</summary>
         private float MapPropLight(MapEnvironmentState s, Vector2 at) => s.Theme switch
         {
