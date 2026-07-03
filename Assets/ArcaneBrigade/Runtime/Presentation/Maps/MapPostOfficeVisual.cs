@@ -93,14 +93,14 @@ namespace ArcaneBrigade
             float clock = still ? 0 : t;
             // the draught itself: long streaks racing across the whole room
             Material sheet = sparse ? null : MapWaitingRoomLayer.Shader("MapPostOfficeWind");
-            bool shaded = layer.Quad(sheet, centre, new Vector2(halfW * 2.3f, halfH * 2.3f), 0, new Color(1f, .97f, .9f, calm ? .45f : .7f), MapWaitingRoomLayer.WindOrder, clock, 3, new Vector4(wind.x, wind.y, blow, 0));
-            int streaks = shaded ? 4 : sparse ? 6 : 12;
+            bool shaded = layer.Quad(sheet, centre, new Vector2(halfW * 2.3f, halfH * 2.3f), 0, new Color(1f, .97f, .9f, calm ? .2f : .32f), MapWaitingRoomLayer.WindOrder, clock, 3, new Vector4(wind.x, wind.y, blow, 0));
+            int streaks = shaded ? 2 : sparse ? 3 : 6; // requirement 26/10/2026: a lighter draught
             for (int k = 0; k < streaks; k++)
             {
                 float lane = (k + .5f) / streaks * 2 - 1;
                 float run = Mathf.Repeat(k * .37f + clock * (.55f + .2f * (k % 3)), 1);
                 Vector2 at = centre + across * lane * halfH * .9f + wind * ((run * 2 - 1) * halfW * 1.2f);
-                ink.Stroke(at - wind * (1.4f + .5f * (k % 2)), at, ArsenalInk.Cream, .05f, 1, 0, .55f * blow * Mathf.Sin(run * Mathf.PI), .06f, k);
+                ink.Stroke(at - wind * (1.4f + .5f * (k % 2)), at, ArsenalInk.Cream, .04f, 1, 0, .3f * blow * Mathf.Sin(run * Mathf.PI), .06f, k);
             }
             // the warning: big cream chevrons drifting the wind's way
             if (t < s.GustAt)
@@ -112,7 +112,7 @@ namespace ArcaneBrigade
                     ink.Stroke(tip - wind * .55f - across * .5f, tip, ArsenalInk.Cream, .1f, 1, 0, a);
                 }
             // paper scraps riding the gust
-            int scraps = sparse ? 3 : 7;
+            int scraps = sparse ? 2 : 4;
             for (int k = 0; k < scraps; k++)
             {
                 float run = Mathf.Repeat(k * .29f + clock * (.35f + .12f * (k % 3)), 1);
@@ -263,7 +263,7 @@ namespace ArcaneBrigade
             // the lane: one solid teal band 1.5 units wide, filling through the warning, fading once the last plane is through
             float charge = Mathf.Clamp01((t - s.PostPlanesWarnAt) / MapEnvironmentRules.PostPlaneWarn);
             float fade = 1 - PostSmooth(s.PostPlanesEnd - .2f, s.PostPlanesEnd + .5f, t);
-            Band(from, to, MapEnvironmentRules.PostPlaneHalf, charge, PostTeal, .9f * fade);
+            // requirement 26/10/2026: our own blows draw no hit zone; the chevrons alone show the planes' way
             // chevrons running along it the planes' way
             float clock = still ? 0 : t;
             for (int k = 0; k < 9; k++)
@@ -335,10 +335,10 @@ namespace ArcaneBrigade
             if (s.Theme != MapTheme.PostOffice || clock < s.GustAt - .3f || clock >= s.GustUntil + .5f) return;
             float gust = Mathf.Clamp01((clock - s.GustAt + .3f) / .5f) * Mathf.Clamp01((s.GustUntil + .5f - clock) / .6f);
             Vector2 wind = s.PostWind;
-            for (int i = 0; i < motes; i++)
+            for (int i = 0; i < motes / 2; i++)
             {
                 Vector2 at = Wrap(new Vector2(H(i, 11) * 40, H(i, 12) * 40), wind * (5 + 3 * H(i, 13)));
-                Put(flat, at, new Vector2(.32f + .2f * H(i, 14), .035f), Mathf.Atan2(wind.y, wind.x) * Mathf.Rad2Deg, new Color(1f, .97f, .9f, .5f * gust), AirOrder);
+                Put(flat, at, new Vector2(.22f + .14f * H(i, 14), .025f), Mathf.Atan2(wind.y, wind.x) * Mathf.Rad2Deg, new Color(1f, .97f, .9f, .28f * gust), AirOrder);
             }
         }
     }

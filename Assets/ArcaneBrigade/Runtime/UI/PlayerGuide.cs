@@ -207,7 +207,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(r.x, r.y + 18, r.width, 50), "Reach the dawn", title);
             RunCatalog c = owner.Content;
             Sprite[] icons = { c.Unit(owner.Session.State.ChampionId)?.Body, c.Bosses.Length > 0 ? c.Bosses[0].Body : null, c.Arena.Coin };
-            string[] words = { "Survive 20 nights", "Every 5th night, a boss", "Between nights, spend in the shop" };
+            string[] words = { "Survive 20 nights", "Every 4th night, a boss", "Between nights, spend in the shop" };
             for (int i = 0; i < 3; i++)
             {
                 Rect cell = new Rect(r.x + 30 + i * 285, r.y + 80, 270, 200);
@@ -225,7 +225,7 @@ namespace ArcaneBrigade
             RunCatalog c = owner.Content;
             (Sprite icon, string head, string body)[] cards =
             {
-                (c.Unit(owner.Session.State.ChampionId)?.Body, "The goal", "Survive 20 nights. Every 5th night a boss comes."),
+                (c.Unit(owner.Session.State.ChampionId)?.Body, "The goal", "Survive 20 nights. Every 4th night a boss comes."),
                 (c.Unit(owner.Session.State.ChampionId)?.Weapon?.Sprite, "Move", "Just move. Your hero and friends attack by themselves."),
                 (c.Arena.Coin, "Gold and eggs", "Pick them up. Gold buys in the shop, eggs in the dream shop."),
                 (c.Bonds.Length > 0 ? c.Bonds[0].Icon : null, "Friends and bonds", "Friends of one family together unlock a bond."),

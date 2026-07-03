@@ -15,10 +15,11 @@ namespace ArcaneBrigade
         public static int Zone(int wave) => Mathf.Clamp((Mathf.Max(1, wave) - 1) / 5, 0, 3);
         public static bool ZoneStarts(int wave) => wave > 1 && wave <= Waves && (wave - 1) % 5 == 0;
 
-        // Story bosses close each zone. Wave 20 stays the Last Customer's final hall.
-        public static bool BossWave(int wave) => wave >= 5 && wave <= Waves && wave % 5 == 0;
+        // requirement 26/10/2026 (too many bosses): one boss every fourth night - the Coin Widow (4), the Chair Porter (8), the Door
+        // That Stayed Shut (12), the Marquee Maw (16); wave 20 stays the Last Customer's final hall.
+        public static bool BossWave(int wave) => wave >= 4 && wave <= Waves && wave % 4 == 0;
         public const string KeeperWave = "Keeper";
-        public static string BossName(int wave) => wave switch { 5 => "THE COIN WIDOW", 10 => "THE CHAIR PORTER", 15 => "THE DOOR THAT STAYED SHUT", _ => null };
+        public static string BossName(int wave) => wave switch { 4 => "THE COIN WIDOW", 8 => "THE CHAIR PORTER", 12 => "THE DOOR THAT STAYED SHUT", _ => null };
 
         // Each lamp is one of the eight times the visitor came looking. The eighth never goes out in Act I.
         public static readonly int[] BreakWave = { 3, 5, 8, 10, 13, 14, 17, int.MaxValue };

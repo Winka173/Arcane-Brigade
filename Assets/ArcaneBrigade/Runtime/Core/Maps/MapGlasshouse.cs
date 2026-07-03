@@ -153,8 +153,8 @@ namespace ArcaneBrigade
             if (turn != s.GlassWeatherTurn)
             {
                 s.GlassWeatherTurn = turn;
-                if (sunny) MapSay("SUN · FOES DAZZLED, ATTACK SLOWER", new Color(1f, .9f, .55f));
-                else MapSay("RAIN · FOES SLOWED, KNOCKED FURTHER", new Color(.6f, .88f, .95f));
+                if (sunny) MapSay("Sun", new Color(1f, .9f, .55f));
+                else MapSay("Rain", new Color(.6f, .88f, .95f));
             }
             if (!sunny) return;
             foreach (UnitState u in units)
@@ -229,7 +229,9 @@ namespace ArcaneBrigade
             if (inBed && !s.GlassHeroInBed && t - s.GlassBedSaidAt > 2.5f)
             {
                 s.GlassBedSaidAt = t;
-                MapSay("FLOWER BED · +" + Mathf.RoundToInt(MapEnvironmentRules.GlassBedDamage * 100) + "% DAMAGE · +" + Mathf.RoundToInt(MapEnvironmentRules.GlassBedHaste * 100) + "% ATTACK SPEED", new Color(.62f, .95f, .8f));
+                // requirement 26/10/2026: one plain line per stat, like a skill's gain
+                MapSay(MapBoostText.Label(MapStat.Damage, MapEnvironmentRules.GlassBedDamage), new Color(.62f, .95f, .8f));
+                MapSay(MapBoostText.Label(MapStat.AttackSpeed, MapEnvironmentRules.GlassBedHaste), new Color(.62f, .95f, .8f));
             }
             s.GlassHeroInBed = inBed;
         }
@@ -291,7 +293,7 @@ namespace ArcaneBrigade
                 {
                     bud.Hold = 0; bud.OpenAt = t; bud.NextShot = t + .35f;
                     bud.ReadyAt = t + MapEnvironmentRules.GlassTurretSeconds + MapEnvironmentRules.GlassTurretRegrow;
-                    MapSay("SHOOTING FLOWER · OPEN", new Color(.7f, .95f, .6f));
+                    MapSay("Flower opened", new Color(.7f, .95f, .6f));
                 }
             }
             CombatCause seedCause = default;

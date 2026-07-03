@@ -65,7 +65,7 @@ namespace ArcaneBrigade
             int first = FirstWave(wave), last = LastWave(wave);
             foreach (int elite in new[] { first + 2, first + 1, first + 3, first })
             {
-                if (elite > last || elite % 5 == 0 || MidMapBossRules.For(elite) != null) continue;
+                if (elite > last || ActOneCanon.BossWave(elite)) continue;
                 return wave == elite;
             }
             return false;

@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public const int DeepCrowdWave = 10; public const float DeepCrowd = .55f; public const int CrowdCap = 220;
         public const float BossHealthRelief = .5f; // requirement 24/10/2026: was .6 - long boss fights farmed the overtime swarm's gold
         /// <summary>A boss night lasts this much longer before the boss's overtime swarm begins (requirement 24/10/2026).</summary>
-        public const float BossExtraSeconds = 30;
+        public const float BossExtraSeconds = 10; // requirement 26/10/2026: boss nights 20 s shorter
         public const float BossDamageRelief = .7f; // round 3 (19/10/2026, play-test: boss waves too hard): was .9, -22% on everything a boss deals
         public const float NormalEnemyHealth = 1.1f; // round 3: ordinary (non-boss) enemies +10% health, normal waves felt a little easy
         public static float Crowd(int count) => Mathf.Clamp01((count - 10) / (float)(AllySoftLimit - 10));

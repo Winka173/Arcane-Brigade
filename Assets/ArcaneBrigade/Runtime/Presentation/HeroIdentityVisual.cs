@@ -506,7 +506,7 @@ namespace ArcaneBrigade
             if (sim.Champion != null && (a - sim.Champion.Position).sqrMagnitude < .09f && length > 1) { float clear = Mathf.Min(.5f, length * .25f); a += axis * clear; length -= clear; }
             if (pre)
             {
-                ground.Band(a, b, half, A(ink.Body, .02f * strength), A(ink.Body, (.05f + .1f * q) * strength));
+                // requirement 26/10/2026: our own skills paint no hit zone ahead of the blow, only the thin gathering line
                 float reveal = still ? 1 : OutCubic(q);
                 Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
                 Gather(b, q);

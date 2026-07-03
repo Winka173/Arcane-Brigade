@@ -17,23 +17,13 @@ Rules that apply to every map:
 
 Map order: Waiting Room waves 1-4, Post Office 5-8, Glasshouse 9-11, Lamp Hall 12-14, Theatre 15-17, Archive Vault 18-20 (endless repeats the cycle).
 
-Story bosses stay where they are: 5 Coin Widow, 10 Chair Porter, 15 Door That Stayed Shut, 20 Last Customer.
+**Bosses (changed 26/10/2026: too many bosses):** one boss every fourth night.
+- 4 Coin Widow, 8 Chair Porter, 12 Door That Stayed Shut, 16 The Marquee Maw, 20 Last Customer.
+- A boss night is 10 s longer than an ordinary one (was 30 s).
+- The six mid-map bosses are gone from the road (their bodies remain in endless).
+- The Keeper's carry happens on nights 6, 11 and 17 (never a boss night).
 
 **Removed:** sliding chairs, sliding shelves, the old gust push, moths, the ledger ring.
-
-## Mid-map bosses
-- One per map, at wave 3, 8, 11, 13, 17 and 19:
-  - Sleep Collector (Waiting Room);
-  - The Howling Organ (Post Office);
-  - Wax Admiral (Glasshouse);
-  - Last Lantern (Lamp Hall);
-  - The Marquee Maw (Theatre);
-  - Scarlet Index (Archive Vault).
-- Each arrives at 15 s into the wave with about 40% of that stage's closing-boss health.
-- Its night is 15 s longer so the fight is not a race against the clock.
-- **Defeat it:** that night's memory lamp is kept, plus 1 prism shard. The wave runs on to its time.
-- **Fail:** the lamp goes out as today.
-- Each needs 2-3 lines of dialogue (enter, half health, defeat).
 
 ## 1. The Waiting Room (1-4)
 - **Boost – Queue tickets.**

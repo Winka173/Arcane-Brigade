@@ -154,7 +154,7 @@ namespace ArcaneBrigade
         private void TheatreSaySpot()
         {
             int colour = mapEnv.TheatreSpotColour; MapStat stat = TheatreSpotStat(colour);
-            MapSay("SPOTLIGHT · " + MapBoostText.Label(stat, TheatreSpotValue(colour)), MapBoostText.Colour(stat));
+            MapSay(MapBoostText.Label(stat, TheatreSpotValue(colour)), MapBoostText.Colour(stat));
         }
 
         // ------------------------------------------------------------------ stage smoke and the drum

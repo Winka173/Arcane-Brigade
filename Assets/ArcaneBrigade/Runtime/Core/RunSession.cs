@@ -377,7 +377,7 @@ namespace ArcaneBrigade
             // Act I closes each of its four zones with a story boss (waves 5, 10, 15, 20); endless keeps the catalog rhythm.
             bool actOne = !State.Endless && State.Wave <= catalog.NormalWaves;
             bool bossWave = actOne ? ActOneCanon.BossWave(State.Wave) : State.Wave % catalog.BossEvery == 0;
-            int bossStage = actOne ? State.Wave / 5 - 1 : State.Wave / catalog.BossEvery - 1;
+            int bossStage = actOne ? State.Wave / 4 - 1 : State.Wave / catalog.BossEvery - 1;
             int bossIndex = Mathf.Max(0, bossStage) % catalog.Bosses.Length;
             if (catalog.Bosses.Length == 10) bossIndex = Mathf.Max(0, bossStage) % 5 + (((State.Seed ^ bossStage) & 1) == 0 ? 0 : 5);
             CombatCatalog.Boss = bossWave ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
@@ -594,11 +594,11 @@ namespace ArcaneBrigade
             if (reference == null) return null;
             // wave 5: the Coin Widow, who collects for the Last Customer and has chained the Keeper to its own gate. The Keeper
             // is not fought on the road; it carries the shop (hand, carpet, eye) and tests the traveller once, at shop 17.
-            string stand = State.Wave == 5 ? "CoinWidow" : State.Wave == 10 ? "SuitcaseLeviathan" : State.Wave == 15 ? "UndeliveredKing" : null;
+            string stand = State.Wave == 4 ? "CoinWidow" : State.Wave == 8 ? "SuitcaseLeviathan" : State.Wave == 12 ? "UndeliveredKing" : State.Wave == 16 ? "MarqueeMaw" : null;
             UnitDefinition body = stand == null ? null : Array.Find(catalog.Bosses, boss => boss != null && boss.Id == stand);
             UnitDefinition story = body != null && body.Id != reference.Id ? BuildEnemy(body, scaling) : reference;
             // the first boss night keeps the first boss's weight: the Coin Widow borrows its health and blows (as the Keeper did)
-            if (State.Wave == 5 && story != reference) { story.Health = reference.Health; story.ContactDamage = reference.ContactDamage; story.Weapon.Damage = reference.Weapon.Damage; }
+            if (State.Wave == 4 && story != reference) { story.Health = reference.Health; story.ContactDamage = reference.ContactDamage; story.Weapon.Damage = reference.Weapon.Damage; }
             if (ActOneCanon.BossName(State.Wave) != null) story.DisplayName = ActOneCanon.BossName(State.Wave);
             return story;
         }
@@ -659,7 +659,7 @@ namespace ArcaneBrigade
             State.Eggs = BoundedCounter((long)State.Eggs + simulation.Eggs + (simulation.BossDefeated ? 3 : 1));
             State.PrismShards = Mathf.Min(99, State.PrismShards + simulation.PrismShards); State.PrismShardDrops = Mathf.Min(99, State.PrismShardDrops + simulation.PrismShards);
             // a story boss (wave 10 or 15) beaten without the traveller ever falling below half health gives a shard
-            if (simulation.BossDefeated && !State.Endless && (State.Wave == 10 || State.Wave == 15) && simulation.LowestChampionShare >= 0.5f) State.PrismShards = Mathf.Min(99, State.PrismShards + 1);
+            if (simulation.BossDefeated && !State.Endless && (State.Wave == 8 || State.Wave == 12 || State.Wave == 16) && simulation.LowestChampionShare >= 0.5f) State.PrismShards = Mathf.Min(99, State.PrismShards + 1);
             if (simulation.BossDefeated)
             {
                 State.BossKills = BoundedCounter((long)State.BossKills + 1);

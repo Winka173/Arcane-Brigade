@@ -120,7 +120,7 @@ namespace ArcaneBrigade
                 int stunned = 0;
                 foreach (UnitState u in units)
                     if (u.Alive && u.Faction == Faction.Enemy && InLampOval(u.Position, lamp.Light)) { Sleep(u, MapEnvironmentRules.FlareStun); stunned++; }
-                MapSay(stunned > 0 ? "FLARE! " + stunned + " FOES STUNNED" : "FLARE!", new Color(1f, .86f, .45f));
+                MapSay("Flare!", new Color(1f, .86f, .45f));
             }
             if (t >= s.NextSnuff)
             {
@@ -143,8 +143,10 @@ namespace ArcaneBrigade
             if (lit && !s.HeroLit && t - s.LightSaidAt > 4)
             {
                 s.LightSaidAt = t;
-                MapSay("IN THE LIGHT · +" + Mathf.RoundToInt((MapEnvironmentRules.LightDamage - 1) * 100) + "% DAMAGE · +" + Mathf.RoundToInt(MapEnvironmentRules.LightArmor) + " ARMOR", new Color(1f, .9f, .55f));
-                MapSay("FRIENDS +" + Mathf.RoundToInt((MapEnvironmentRules.LightHaste - 1) * 100) + "% ATTACK SPEED", new Color(1f, .86f, .4f));
+                // requirement 26/10/2026: one plain line per stat, like a skill's gain
+                MapSay(MapBoostText.Label(MapStat.Damage, MapEnvironmentRules.LightDamage - 1), new Color(1f, .9f, .55f));
+                MapSay(MapBoostText.Label(MapStat.Armor, MapEnvironmentRules.LightArmor), new Color(1f, .9f, .55f));
+                MapSay("Friends attack speed +" + Mathf.RoundToInt((MapEnvironmentRules.LightHaste - 1) * 100) + "%", new Color(1f, .86f, .4f));
             }
             s.HeroLit = lit;
         }
@@ -211,7 +213,7 @@ namespace ArcaneBrigade
                 if (s.LanternHold >= 1)
                 {
                     s.LanternLying = false; s.LanternHold = 0; s.LanternUntil = t + MapEnvironmentRules.LanternSeconds; s.NextLanternBurn = t + .25f;
-                    MapSay("LANTERN · YOU ARE A LIGHT, ITS FLAME BURNS", new Color(1f, .78f, .4f));
+                    MapSay("Lantern carried", new Color(1f, .78f, .4f));
                     held = true;
                 }
             }

@@ -285,7 +285,7 @@ namespace ArcaneBrigade.Editor
         {
             // requirement 25/10/2026: six maps, each with its own living elements (Docs/Map_Mechanics_2026-10-25.md); every map runs
             // a long stretch of its first night without fault, is the map its wave says, and lends the hero at least one boost
-            int[] firsts = { 1, 5, 9, 12, 15, 18 };
+            int[] firsts = { 1, 5, 9, 13, 15, 18 }; // 12 is a boss night: no living elements
             foreach (int wave in firsts)
             {
                 CombatSimulation sim = MapFight(wave);

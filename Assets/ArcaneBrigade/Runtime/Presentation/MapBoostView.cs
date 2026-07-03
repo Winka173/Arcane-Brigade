@@ -22,7 +22,7 @@ namespace ArcaneBrigade
             foreach (MapPop pop in s.Pops) waiting.Enqueue(pop);
             s.Pops.Clear();
             // a line waits its turn rather than being dropped, and lines rise a beat apart so each can be read
-            if (waiting.Count > 0 && Time.unscaledTime - lastShown > .3f && !owner.PresentationPaused)
+            if (waiting.Count > 0 && Time.unscaledTime - lastShown > .55f && !owner.PresentationPaused)
             {
                 MapPop next = waiting.Dequeue(); lastShown = Time.unscaledTime;
                 owner.HeroWord(next.Text, next.Text.Contains("+") ? ArcadeSkin.Better : next.Colour);

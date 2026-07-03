@@ -339,7 +339,7 @@ namespace ArcaneBrigade.Editor
             var wave = new ExpandedField { Kind = ExpandedFieldKind.Shockwave, Position = Vector2.zero, Radius = 4, At = 1, Until = 3 };
             Require(CarnivalHazards.Contains(wave, new Vector2(2, 0), 0.1f, 2) && !CarnivalHazards.Contains(wave, Vector2.zero, 0.1f, 2), "Shockwave ring leaves a safe interior");
             // the Keeper's carry stays on the story zones (waves 6, 11, 16), never on a story boss night; the map itself can change in between
-            Require(StageTransfer.ChangesMap(6) && StageTransfer.ChangesMap(11) && StageTransfer.ChangesMap(16) && !StageTransfer.ChangesMap(5), "The carry happens when Act I enters a new zone (waves 6, 11, 16)");
+            Require(StageTransfer.ChangesMap(6) && StageTransfer.ChangesMap(11) && StageTransfer.ChangesMap(17) && !StageTransfer.ChangesMap(16), "The carry happens when Act I enters a new zone (waves 6, 11, 16)");
             Require(Vector2.Distance(StageTransfer.PassengerPosition(new Vector2(0, -5), 2.6f), new Vector2(0, -0.2f)) < 0.001f, "Transport lands exactly, without scene loading");
             File.WriteAllLines("PreviewExports/K17/Focused_Checks.txt", notes);
             Debug.Log("K17_CHECKS_PASSED " + notes.Count);

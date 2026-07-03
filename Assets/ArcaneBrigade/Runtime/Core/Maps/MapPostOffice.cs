@@ -183,7 +183,7 @@ namespace ArcaneBrigade
             foreach (MapBoost b in s.Boosts)
                 if (b.Until > t && System.Array.IndexOf(PostLetterSources, b.Source) >= 0 && s.PostDropStats.Contains((int)b.Stat))
                     b.Until = Mathf.Min(t + MapBoostCap, b.Until + MapEnvironmentRules.FullDeliveryBonus);
-            MapSay("FULL DELIVERY!", new Color(1f, .82f, .35f));
+            MapSay("Full delivery!", new Color(1f, .82f, .35f));
         }
         private static float PostLetterValue(MapStat stat) => stat switch
         {

@@ -17,11 +17,12 @@ namespace ArcaneBrigade
     {
         public static string Label(MapStat stat, float value) => stat switch
         {
-            MapStat.Damage => "+" + Mathf.RoundToInt(value * 100) + "% DAMAGE",
-            MapStat.AttackSpeed => "+" + Mathf.RoundToInt(value * 100) + "% ATTACK SPEED",
-            MapStat.Armor => "+" + Mathf.RoundToInt(value) + " ARMOR",
-            MapStat.Gold => "+" + Mathf.RoundToInt(value) + " GOLD A KILL",
-            _ => "+" + Mathf.RoundToInt(value * 100) + "% SPEED"
+            // requirement 26/10/2026: said plainly, like a stat gained from a skill ("Damage +15%")
+            MapStat.Damage => "Damage +" + Mathf.RoundToInt(value * 100) + "%",
+            MapStat.AttackSpeed => "Attack speed +" + Mathf.RoundToInt(value * 100) + "%",
+            MapStat.Armor => "Armor +" + Mathf.RoundToInt(value),
+            MapStat.Gold => "Gold a kill +" + Mathf.RoundToInt(value),
+            _ => "Move speed +" + Mathf.RoundToInt(value * 100) + "%"
         };
         public static Color Colour(MapStat stat) => stat switch
         {
@@ -59,7 +60,7 @@ namespace ArcaneBrigade
             MapBoost held = s.Boosts.Find(b => b.Stat == stat && b.Source == source && b.Until > now);
             if (held != null) { held.Value = Mathf.Max(held.Value, value); held.Until = Mathf.Min(now + MapBoostCap, held.Until + seconds); }
             else s.Boosts.Add(held = new MapBoost { Stat = stat, Value = value, Until = now + seconds, Source = source });
-            MapSay((prefix != null ? prefix + " · " : "") + MapBoostText.Label(stat, held.Value), MapBoostText.Colour(stat)); // the stat and its size, no seconds
+            MapSay(MapBoostText.Label(stat, held.Value), MapBoostText.Colour(stat)); // only the stat and its size: no source, no seconds
         }
         /// <summary>Marks a pickup so it never just vanishes (requirement 25/10/2026: no moment without its animation).</summary>
         public void MapCaught(Vector2 at, Color colour) { if (mapEnv == null) return; if (mapEnv.Catches.Count >= 12) mapEnv.Catches.RemoveAt(0); mapEnv.Catches.Add(new MapCatch { At = at, Time = Elapsed, Colour = colour }); }

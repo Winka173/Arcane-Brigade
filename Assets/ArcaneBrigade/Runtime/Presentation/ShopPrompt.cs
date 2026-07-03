@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     {
         private static GUIStyle heading, line, primary;
         public static readonly Rect Frame = new Rect(400, 850, 1120, 148);
+        private static int shownFrame = -10;
+        /// <summary>True while the card is on screen: a tap on it belongs to its button, never to tap-to-walk.</summary>
+        public static bool Showing => Time.frameCount - shownFrame <= 2;
         /// <summary>Draws the card in 1920x1080 GUI space; true when its button is pressed.</summary>
         public static bool Draw(string title, string plain, string verb, float age)
         {
@@ -20,6 +23,7 @@ namespace ArcaneBrigade
                 line.normal.textColor = new Color(.95f, .92f, .84f);
                 primary = ArcadeSkin.Primary(new GUIStyle(ArcadeSkin.Skin.button) { font = ArcadeTypography.Body, fontSize = 20, wordWrap = true, alignment = TextAnchor.MiddleCenter });
             }
+            shownFrame = Time.frameCount;
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             LivingUI.Pop(age, Frame.center);
             ArcadeSkin.Frame(Frame, KitFrame.Dialogue, .6f);

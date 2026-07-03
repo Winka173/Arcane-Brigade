@@ -62,13 +62,13 @@ namespace ArcaneBrigade.Editor
             Check(MienChoStory.NextPage(8, 0, 0) == -1 && MienChoStory.NextPage(8, 0, 2) == 2 && MienChoStory.NextPage(8, 1, 1) == 3 && MienChoStory.NextPage(8, 2, 2) == 3 && MienChoStory.PreviousPage(8, 3, 1) == 1 && MienChoStory.NextPage(3, 0, 0) == 1, "Choice pages skip the branch not taken");
             Check(ActOneCanon.Broken(2) == 0 && ActOneCanon.Broken(3) == 1 && ActOneCanon.Broken(14) == 6 && ActOneCanon.Broken(20) == 7 && ActOneCanon.Broken(500) == 7, "Seven lanterns break on their canon waves; the eighth survives the act");
             Check(ActOneCanon.LampState(7, 18) == 0 && ActOneCanon.LampState(7, 19) == 1 && ActOneCanon.LampState(0, 2) == 1 && ActOneCanon.LampState(0, 3) == 2 && ActOneCanon.LampLoss(4).Contains("face"), "Lantern states flicker before breaking and name what was lost");
-            Check(ActOneCanon.Zone(5) == 0 && ActOneCanon.Zone(6) == 1 && ActOneCanon.Zone(15) == 2 && ActOneCanon.Zone(20) == 3 && ActOneCanon.BossWave(5) && ActOneCanon.BossWave(20) && !ActOneCanon.BossWave(4) && !ActOneCanon.BossWave(12), "Four zones of five waves, each closed by a boss");
-            foreach (int wave in new[] { 4, 5, 10, 15 })
+            Check(ActOneCanon.Zone(5) == 0 && ActOneCanon.Zone(6) == 1 && ActOneCanon.Zone(15) == 2 && ActOneCanon.Zone(20) == 3 && ActOneCanon.BossWave(4) && ActOneCanon.BossWave(16) && ActOneCanon.BossWave(20) && !ActOneCanon.BossWave(5) && !ActOneCanon.BossWave(10), "Four zones of five waves; a boss every fourth night");
+            foreach (int wave in new[] { 3, 4, 8, 12 })
             {
                 using var s = new RunSession(c); s.Start("LanternKnight", 161040); s.State.Wave = wave;
                 var combat = s.PrepareCombat();
-                Check(wave == 4 ? combat.Boss == null : combat.Boss != null && combat.Boss.DisplayName == ActOneCanon.BossName(wave), "Act I story boss on wave " + wave);
-                if (wave == 5) Check(combat.Boss.Id == "CoinWidow", "The Coin Widow holds the gate at wave 5 (the Keeper carries the shop and tests you at shop 17)");
+                Check(wave == 3 ? combat.Boss == null : combat.Boss != null && combat.Boss.DisplayName == ActOneCanon.BossName(wave), "Act I story boss on wave " + wave);
+                if (wave == 4) Check(combat.Boss.Id == "CoinWidow", "The Coin Widow holds the gate at wave 4 (the Keeper carries the shop and tests you at shop 17)");
             }
             using (var s = new RunSession(c))
             {

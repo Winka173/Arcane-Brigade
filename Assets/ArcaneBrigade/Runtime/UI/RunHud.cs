@@ -1038,7 +1038,9 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(line.x + 34, line.y + 1, 190, 30), bond.Name, programStyle);
             int next = Mathf.Max(after, bond.NextThreshold(after));
             programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(line.x + 210, line.y + 2, 90, 28), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
+            // requirement 26/10/2026: the count ends before the LV stamp (it was cut under it: "3/")
+            float countRight = active || activates ? line.xMax - 42 : line.xMax - 6;
+            GUI.Label(new Rect(countRight - 80, line.y + 2, 80, 28), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
             programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));

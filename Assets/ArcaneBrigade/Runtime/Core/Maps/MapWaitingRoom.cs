@@ -291,7 +291,7 @@ namespace ArcaneBrigade
             s.RoomClockStruck = true; s.RoomClockStruckAt = t; s.RoomClockStunUntil = t + MapEnvironmentRules.RoomClockStun;
             foreach (UnitState u in units)
                 if (u.Alive && u.Faction == Faction.Enemy) RoomStun(u, MapEnvironmentRules.RoomClockStun, MapEnvironmentRules.RoomClockBossStun);
-            MapSay("TIME STANDS STILL", new Color(1f, .93f, .72f));
+            MapSay("Time stands still", new Color(1f, .93f, .72f));
         }
 
         /// <summary>For captures: the board calling a cracked door, tickets (one matching), the dust, an angry waiter and the

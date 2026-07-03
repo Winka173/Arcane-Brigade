@@ -61,10 +61,10 @@ namespace ArcaneBrigade.Editor
             {
                 using (var run = new RunSession(catalog))
                 {
-                    run.Start("LanternKnight", 18018); run.State.Wave = 5;
+                    run.Start("LanternKnight", 18018); run.State.Wave = 4;
                     var sim = new CombatSimulation(run.PrepareCombat()); sim.Start(18018);
                     UnitState boss = sim.Boss;
-                    Require(boss != null, "Wave 5 has a boss to telegraph");
+                    Require(boss != null, "Wave 4 has a boss to telegraph");
                     copy = UnityEngine.Object.Instantiate(boss.Definition); boss.Definition = copy;
                     BossTelegraph telegraph = host.AddComponent<BossTelegraph>();
                     telegraph.Display(sim);

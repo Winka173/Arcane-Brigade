@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         private static readonly string[] Titles = { "Survive the Night", "Just Move", "Fill Your Gauge", "The Shop", "Merge Friends", "Wake a Bond", "Keep Relics" };
         private static readonly string[][] Lines =
         {
-            new[] { "Survive 20 nights.", "Every 5th night a boss comes.", "Clearing a night heals you fully." },
+            new[] { "Survive 20 nights.", "Every 4th night a boss comes.", "Clearing a night heals you fully." },
             new[] { "Just move: your hero and your friends attack by themselves.", "Swords want you close; bows like distance." },
             new[] { "Fighting fills your hero's gauge.", "Full, the hero transforms for a few seconds: a new power and stronger stats." },
             new[] { "Between nights, walk up to a stall to see what it sells.", "Gold buys friends and relics. Eggs pay in the dream shop." },
@@ -107,7 +107,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < 20; i++)
                     {
                         Vector2 p = new Vector2(d.x + 40 * u + i % 10 * (d.width - 80 * u) / 9, d.y + (i < 10 ? 120 : 210) * u);
-                        bool boss = (i + 1) % 5 == 0;
+                        bool boss = (i + 1) % 4 == 0;
                         ArcadeSkin.Diamond(p, (boss ? 30 : 20) * u, i < lit ? (boss ? new Color(.95f, .3f, .3f) : accent) : new Color(.25f, .24f, .3f));
                     }
                     Sprite(new Vector2(d.x + 40 * u + Mathf.Min(lit, 19) % 10 * (d.width - 80 * u) / 9, d.y + (lit < 10 ? 60 : 300) * u + Mathf.Abs(Mathf.Sin(t * 8)) * -6 * u), 90 * u, Hero(c, heroId));

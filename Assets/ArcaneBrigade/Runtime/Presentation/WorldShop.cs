@@ -94,7 +94,8 @@ namespace ArcaneBrigade
             {
                 Matrix4x4 fit = ArcadeTypography.FitViewport(camera.pixelRect, Screen.safeArea, Screen.height, 1920, 1080);
                 Vector3 design = fit.inverse.MultiplyPoint3x4(new Vector3(Input.mousePosition.x, Screen.height - Input.mousePosition.y, 0));
-                if (!RunHud.ShownShopCard.Contains(design) && !SpeechBubbles.OverlapsDialogue(new Rect(design.x - 1, design.y - 1, 2, 2)))
+                // requirement 26/10/2026 (DISCOVER did nothing on a click): a tap on the prompt card is its button's, not a walk
+                if (!RunHud.ShownShopCard.Contains(design) && !(ShopPrompt.Showing && ShopPrompt.Frame.Contains(design)) && !SpeechBubbles.OverlapsDialogue(new Rect(design.x - 1, design.y - 1, 2, 2)))
                 {
                     Vector2 world = camera.ScreenToWorldPoint(Input.mousePosition);
                     Station best = null; float nearest = 1.4f;

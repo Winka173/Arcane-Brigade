@@ -99,8 +99,8 @@ namespace ArcaneBrigade
                 .With(D("Hunt for him", F, "gold:12", "next wave · 10 of one kind")),
             V("Engraver", "The Name Engraver", "Whose name shall I carve?", "Engrave one friend: next wave it deals +15% damage.", C, 6)
                 .With(D("Engrave a friend", "gold:6", "CompanionDamage:+15%", Next)),
-            V("Waker", "The Waker", "Up early, up ready!", "Next wave your gauge starts a third full.", A, 6)
-                .With(D("Wake early", "gold:6", "gauge:1/3", "next wave start")),
+            V("Waker", "The Waker", "Up early, up ready!", "Next wave your hero's transformation gauge starts a third full.", A, 6)
+                .With(D("Wake early", "gold:6", "gauge:Transform gauge starts 1/3 full", "next wave")), // requirement 26/10/2026: "1/3" alone said nothing
             V("DreamSeller", "The Dream Seller", "Three dreams, sealed. Which one is yours?", "A small surprise for the next wave.", O, 0, "The silver jar", "The blue jar", "The golden jar")
                 .With(D("Silver jar", F, "?:surprise", Next), D("Blue jar", F, "?:surprise", Next), D("Golden jar", F, "?:surprise", Next)),
             V("Twins", "The Twins", "Buy one, and the other comes along - half price!", "The next friend you buy in this shop is offered again at half price.")

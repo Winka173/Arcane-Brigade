@@ -217,7 +217,7 @@ namespace ArcaneBrigade.Editor
                 Check(session.PrepareCombat().EnemyBudget > 51 && session.ActiveModifier.Every == 7, "Clockstorm wave modifier is selected by rule rather than localized name", results);
                 session.State.Wave = 11;
                 Check(session.PrepareCombat().PassiveHeal >= 0.25f, "Quiet stacks wave modifier", results);
-                session.State.Wave = 5; // the first boss wave (Act I bosses arrive on waves 5/10/15/20)
+                session.State.Wave = 4; // the first boss wave (Act I bosses arrive on waves 4/8/12/16/20)
                 catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
                 simulation = new CombatSimulation(catalog);

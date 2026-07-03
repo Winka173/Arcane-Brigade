@@ -59,7 +59,7 @@ namespace ArcaneBrigade.Editor
             // Resolve actual damage after armor/caps. Child causes cover delayed skills and projectiles after the boss dies.
             using (var run = new RunSession(catalog))
             {
-                run.Start("LanternKnight", 17026); run.State.Wave = 5;
+                run.Start("LanternKnight", 17026); run.State.Wave = 4;
                 var arena = run.PrepareCombat(); arena.Dodge = 0; arena.Armor = 0;
                 var sim = new CombatSimulation(arena); sim.Start(17026);
                 sim.Champion.EntranceUntil = 0;

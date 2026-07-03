@@ -62,7 +62,7 @@ namespace ArcaneBrigade
                 float scaling = (1f + 14 * JourneyBalance.WaveHealthStep) * JourneyBalance.EnemyHealth(State.Difficulty, 15);
                 int stage = 2, index = catalog.Bosses.Length == 10 ? stage % 5 + (((State.Seed ^ stage) & 1) == 0 ? 0 : 5) : stage % catalog.Bosses.Length;
                 UnitDefinition door = BuildEnemy(catalog.Bosses[index], scaling);
-                CombatCatalog.Boss.Health = door.Health * WaveCadence.StoryBossBulk(15) * KeeperHealthShare; // see PreviewExports/Pacing/Keeper17.csv
+                CombatCatalog.Boss.Health = door.Health * WaveCadence.StoryBossBulk(12) * KeeperHealthShare; // see PreviewExports/Pacing/Keeper17.csv
                 CombatCatalog.Boss.DisplayName = "THE KEEPER, WHOLE"; CombatCatalog.WholeKeeper = true;
                 CombatCatalog.Boss.Weapon.Damage = door.Weapon.Damage * 1.6f; CombatCatalog.Boss.ContactDamage = door.ContactDamage * 1.6f;
             }

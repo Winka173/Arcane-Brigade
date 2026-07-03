@@ -45,9 +45,11 @@ namespace ArcaneBrigade
             for(int i=0;i<Mathf.Min(8,pending.Count);i++)
             {
                 var a=pending[i];UnitState unit=a.Key=="hero"?owner.Simulation.Champion:null;
-                if(unit==null)foreach(var u in owner.Simulation.Units)if(u.Faction==Faction.Companion && u.Definition.Id+"|"+u.Definition.Weapon.Id==a.Key){unit=u;break;}
-                Vector2 world=unit==null?owner.Simulation.Champion.Position:unit.Position;
-                Vector3 screen=camera.WorldToViewportPoint(world+Vector2.up*(unit==null?.7f:unit.Definition.BodyHeight*.65f+.2f));
+                if(unit==null)foreach(var u in owner.Simulation.Units)if(u.Faction==Faction.Companion && u.Alive && u.Definition.Id+"|"+u.Definition.Weapon.Id==a.Key){unit=u;break;}
+                // requirement 26/10/2026: a friend's gain rises over that friend only; never over the hero when the friend is not found
+                if(unit==null)continue;
+                Vector2 world=unit.Position;
+                Vector3 screen=camera.WorldToViewportPoint(world+Vector2.up*(unit.Definition.BodyHeight*.65f+.2f));
                 if(a.Started<0)a.Started=clock;
                 float age=clock-a.Started;
                 float rise=PresentationSettings.ReducedMotion?0:Mathf.SmoothStep(0,1,Mathf.Clamp01(age/Duration))*28;
