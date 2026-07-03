@@ -234,7 +234,9 @@ namespace ArcaneBrigade
         {
             scene = desired;
             if (desired == ArcaneCueLibrary.SceneBoss) bossIntroUntil = Time.unscaledTime + MusicArrangement.BossIntroSeconds; // the boss's melody only in its intro
-            ArcanePieceDef piece = string.IsNullOrEmpty(desired) ? null : ArcaneCueLibrary.PieceForScene(desired, wave);
+            // boss nights fall every fourth night (all even), so the boss pieces take turns by the boss's number, not the wave's
+            int variant = desired == ArcaneCueLibrary.SceneBoss ? wave / 4 : wave;
+            ArcanePieceDef piece = string.IsNullOrEmpty(desired) ? null : ArcaneCueLibrary.PieceForScene(desired, variant);
             Deck live = current >= 0 && decks[current].Live ? decks[current] : null;
             if (piece == null)
             {
