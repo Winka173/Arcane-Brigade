@@ -64,9 +64,11 @@ namespace ArcaneBrigade.Editor
                 string id = ArcaneCueLibrary.LegacyId(cue);
                 Require(id == null || ArcaneCueLibrary.Get(id) != null, "legacy cue " + cue + " maps to a real cue (" + id + ")");
             }
-            Require(ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 1, 20, false, false) == ArcaneCueLibrary.SceneCombatEarly
-                && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 10, 20, false, false) == ArcaneCueLibrary.SceneCombatMid
-                && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 19, 20, false, false) == ArcaneCueLibrary.SceneCombatLate
+            // fights take their map's own scene (requirement 23/10/2026; the Glasshouse and the Theatre have pieces of their own since 26/10/2026)
+            Require(ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 1, 20, false, false) == "combat_map_waitingroom"
+                && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 10, 20, false, false) == "combat_map_glasshouse"
+                && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 17, 20, false, false) == "combat_map_theatre"
+                && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 19, 20, false, false) == "combat_map_archivevault"
                 && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, true, 5, 20, false, false) == ArcaneCueLibrary.SceneBoss
                 && ArcaneCueLibrary.SceneFor(SessionPhase.Combat, false, 25, 20, true, false) == ArcaneCueLibrary.SceneEndless
                 && ArcaneCueLibrary.SceneFor(SessionPhase.Shop, false, 3, 20, false, true) == ArcaneCueLibrary.SceneShopDream

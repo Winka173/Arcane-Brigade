@@ -328,6 +328,334 @@
     "Music/hub_waitingroom/hub_waitingroom_melody",
     "Music/hub_waitingroom/hub_waitingroom_intensity"
    ]
+  },
+  {
+   "id": "menu_moth",
+   "title": "Moth Lullaby",
+   "bpm": 66,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 116.36362811791383,
+   "loopSamples": 5131636,
+   "sampleRate": 44100,
+   "scenes": [
+    "menu"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/menu_moth/menu_moth_base",
+    "Music/menu_moth/menu_moth_rhythm",
+    "Music/menu_moth/menu_moth_melody",
+    "Music/menu_moth/menu_moth_intensity"
+   ]
+  },
+  {
+   "id": "select_lanternroll",
+   "title": "Choosing Hour",
+   "bpm": 92,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 83.47825396825397,
+   "loopSamples": 3681391,
+   "sampleRate": 44100,
+   "scenes": [
+    "select"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/select_lanternroll/select_lanternroll_base",
+    "Music/select_lanternroll/select_lanternroll_rhythm",
+    "Music/select_lanternroll/select_lanternroll_melody",
+    "Music/select_lanternroll/select_lanternroll_intensity"
+   ]
+  },
+  {
+   "id": "hub_corridor",
+   "title": "The Long Corridor",
+   "bpm": 66,
+   "beatsPerBar": 3,
+   "bars": 32,
+   "loopSeconds": 87.27272108843538,
+   "loopSamples": 3848727,
+   "sampleRate": 44100,
+   "scenes": [
+    "hub"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/hub_corridor/hub_corridor_base",
+    "Music/hub_corridor/hub_corridor_rhythm",
+    "Music/hub_corridor/hub_corridor_melody",
+    "Music/hub_corridor/hub_corridor_intensity"
+   ]
+  },
+  {
+   "id": "combat_queue",
+   "title": "Number Called",
+   "bpm": 118,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 81.3559410430839,
+   "loopSamples": 3587797,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_early",
+    "combat_map_waitingroom"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_queue/combat_queue_base",
+    "Music/combat_queue/combat_queue_rhythm",
+    "Music/combat_queue/combat_queue_melody",
+    "Music/combat_queue/combat_queue_intensity"
+   ]
+  },
+  {
+   "id": "combat_airmail",
+   "title": "Air Mail",
+   "bpm": 126,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 76.19047619047619,
+   "loopSamples": 3360000,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid",
+    "combat_map_postoffice"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_airmail/combat_airmail_base",
+    "Music/combat_airmail/combat_airmail_rhythm",
+    "Music/combat_airmail/combat_airmail_melody",
+    "Music/combat_airmail/combat_airmail_intensity"
+   ]
+  },
+  {
+   "id": "combat_wick",
+   "title": "Wick Trimmer",
+   "bpm": 122,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 78.6885260770975,
+   "loopSamples": 3470164,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late",
+    "combat_map_lamphall"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_wick/combat_wick_base",
+    "Music/combat_wick/combat_wick_rhythm",
+    "Music/combat_wick/combat_wick_melody",
+    "Music/combat_wick/combat_wick_intensity"
+   ]
+  },
+  {
+   "id": "combat_cardindex",
+   "title": "Card Index",
+   "bpm": 114,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 84.21052154195011,
+   "loopSamples": 3713684,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid",
+    "combat_map_archivevault"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_cardindex/combat_cardindex_base",
+    "Music/combat_cardindex/combat_cardindex_rhythm",
+    "Music/combat_cardindex/combat_cardindex_melody",
+    "Music/combat_cardindex/combat_cardindex_intensity"
+   ]
+  },
+  {
+   "id": "combat_pollen",
+   "title": "Pollen Count",
+   "bpm": 120,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 80.0,
+   "loopSamples": 3528000,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid",
+    "combat_map_glasshouse"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_pollen/combat_pollen_base",
+    "Music/combat_pollen/combat_pollen_rhythm",
+    "Music/combat_pollen/combat_pollen_melody",
+    "Music/combat_pollen/combat_pollen_intensity"
+   ]
+  },
+  {
+   "id": "combat_rain",
+   "title": "Rain on Glass",
+   "bpm": 126,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 76.19047619047619,
+   "loopSamples": 3360000,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late",
+    "combat_map_glasshouse"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_rain/combat_rain_base",
+    "Music/combat_rain/combat_rain_rhythm",
+    "Music/combat_rain/combat_rain_melody",
+    "Music/combat_rain/combat_rain_intensity"
+   ]
+  },
+  {
+   "id": "combat_housedown",
+   "title": "House Lights Down",
+   "bpm": 118,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 81.3559410430839,
+   "loopSamples": 3587797,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid",
+    "combat_map_theatre"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_housedown/combat_housedown_base",
+    "Music/combat_housedown/combat_housedown_rhythm",
+    "Music/combat_housedown/combat_housedown_melody",
+    "Music/combat_housedown/combat_housedown_intensity"
+   ]
+  },
+  {
+   "id": "combat_secondact",
+   "title": "Second Act",
+   "bpm": 130,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 73.84614512471656,
+   "loopSamples": 3256615,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late",
+    "combat_map_theatre"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/combat_secondact/combat_secondact_base",
+    "Music/combat_secondact/combat_secondact_rhythm",
+    "Music/combat_secondact/combat_secondact_melody",
+    "Music/combat_secondact/combat_secondact_intensity"
+   ]
+  },
+  {
+   "id": "boss_marionette",
+   "title": "Strings Attached",
+   "bpm": 66,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 72.72727891156462,
+   "loopSamples": 3207273,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_marionette/boss_marionette_base",
+    "Music/boss_marionette/boss_marionette_rhythm",
+    "Music/boss_marionette/boss_marionette_melody",
+    "Music/boss_marionette/boss_marionette_intensity"
+   ]
+  },
+  {
+   "id": "boss_pipes",
+   "title": "The Howling Pipes",
+   "bpm": 60,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 80.0,
+   "loopSamples": 3528000,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_pipes/boss_pipes_base",
+    "Music/boss_pipes/boss_pipes_rhythm",
+    "Music/boss_pipes/boss_pipes_melody",
+    "Music/boss_pipes/boss_pipes_intensity"
+   ]
+  },
+  {
+   "id": "shop_receipts",
+   "title": "Receipts and Rain",
+   "bpm": 104,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 73.84614512471656,
+   "loopSamples": 3256615,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_gold"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/shop_receipts/shop_receipts_base",
+    "Music/shop_receipts/shop_receipts_rhythm",
+    "Music/shop_receipts/shop_receipts_melody",
+    "Music/shop_receipts/shop_receipts_intensity"
+   ]
+  },
+  {
+   "id": "shop_harbour",
+   "title": "Pillow Fort Harbour",
+   "bpm": 76,
+   "beatsPerBar": 3,
+   "bars": 32,
+   "loopSeconds": 75.78947845804989,
+   "loopSamples": 3342316,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_dream"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/shop_harbour/shop_harbour_base",
+    "Music/shop_harbour/shop_harbour_rhythm",
+    "Music/shop_harbour/shop_harbour_melody",
+    "Music/shop_harbour/shop_harbour_intensity"
+   ]
+  },
+  {
+   "id": "endless_lastorders",
+   "title": "Last Orders",
+   "bpm": 112,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 85.71428571428571,
+   "loopSamples": 3780000,
+   "sampleRate": 44100,
+   "scenes": [
+    "endless"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/endless_lastorders/endless_lastorders_base",
+    "Music/endless_lastorders/endless_lastorders_rhythm",
+    "Music/endless_lastorders/endless_lastorders_melody",
+    "Music/endless_lastorders/endless_lastorders_intensity"
+   ]
   }
  ]
 }

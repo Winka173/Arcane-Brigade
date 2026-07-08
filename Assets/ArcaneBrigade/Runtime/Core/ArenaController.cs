@@ -273,7 +273,7 @@ namespace ArcaneBrigade
                 music.ForceScene(dawn && session.State.Nightmare.EndingPage >= 2 ? "menu" : null);
             }
             if (music != null && session != null) music.SetPhase(TransitionPending ? SessionPhase.Combat : session.State.Phase, pauseGate.Paused || simulation.Phase == RunPhase.Paused, simulation.Boss != null && simulation.Boss.Alive);
-            if (music != null && session != null) music.SetContext(session.State.Wave, runCatalog.NormalWaves, session.State.Endless, Shop != null && Shop.Special, simulation.Units);
+            if (music != null && session != null) { music.RunSeed = session.State.Seed; music.SetContext(session.State.Wave, runCatalog.NormalWaves, session.State.Endless, Shop != null && Shop.Special, simulation.Units); }
             if (session != null && Input.GetKeyDown(KeyCode.I)) ToggleDetails();
             if (details.Open && Input.GetKeyDown(KeyCode.Tab)) details.SelectTab((details.Tab + 1) % RunDetails.TabCount);
             if (details.Open && Input.GetKeyDown(KeyCode.DownArrow)) details.MoveSelection(1);

@@ -230,13 +230,38 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ adaptive
+        /// <summary>The run's seed: each run starts its map's rotation of pieces in a different place.</summary>
+        public int RunSeed;
+        private readonly Dictionary<string, int> entries = new Dictionary<string, int>();
+        private int launchOffset = -1;
+
+        /// <summary>Which of a scene's pieces to play (requirement 26/10/2026: a scene now has several). A map's fights go through its
+        /// pieces by the night's place in the map (boss nights do not count), the boss nights by the boss's number, shops and endless
+        /// by the wave, all shifted by the run's seed; menus, hero select and the hub alternate each time they are entered.</summary>
+        private int PieceVariant(string scene)
+        {
+            int shift = Mathf.Abs(RunSeed % 1000);
+            if (scene == ArcaneCueLibrary.SceneBoss) return wave / 4 + shift;
+            if (scene.StartsWith("combat_map_", System.StringComparison.Ordinal))
+            {
+                int ordinal = 0;
+                for (int night = MapIdentity.FirstWave(wave); night < wave; night++) if (!ActOneCanon.BossWave(night)) ordinal++;
+                return ordinal + shift;
+            }
+            if (scene == ArcaneCueLibrary.SceneMenu || scene == ArcaneCueLibrary.SceneSelect || scene == ArcaneCueLibrary.SceneHub)
+            {
+                if (launchOffset < 0) launchOffset = UnityEngine.Random.Range(0, 1000);
+                entries.TryGetValue(scene, out int visits); entries[scene] = visits + 1;
+                return launchOffset + visits;
+            }
+            return wave + shift;
+        }
+
         private void ChangeScene(string desired, double dsp)
         {
             scene = desired;
             if (desired == ArcaneCueLibrary.SceneBoss) bossIntroUntil = Time.unscaledTime + MusicArrangement.BossIntroSeconds; // the boss's melody only in its intro
-            // boss nights fall every fourth night (all even), so the boss pieces take turns by the boss's number, not the wave's
-            int variant = desired == ArcaneCueLibrary.SceneBoss ? wave / 4 : wave;
-            ArcanePieceDef piece = string.IsNullOrEmpty(desired) ? null : ArcaneCueLibrary.PieceForScene(desired, variant);
+            ArcanePieceDef piece = string.IsNullOrEmpty(desired) ? null : ArcaneCueLibrary.PieceForScene(desired, PieceVariant(desired));
             Deck live = current >= 0 && decks[current].Live ? decks[current] : null;
             if (piece == null)
             {

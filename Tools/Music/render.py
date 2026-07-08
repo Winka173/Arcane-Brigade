@@ -2,7 +2,7 @@
 pan -> stem bus + circular convolution room -> scene-mix loudness -> 4 sample-aligned OGG Vorbis stems per piece.
 
 Usage: python render.py [--out <Music dir>] [--preview <dir>] [--json] [piece_id ...]
-Env:   AB_FLUIDSYNTH (fluidsynth.exe), AB_SF2 (GeneralUser-GS.sf2), AB_FFMPEG (ffmpeg.exe), AB_WORK (scratch dir)
+Env:   AB_FLUIDSYNTH (fluidsynth.exe), AB_SF2 (GeneralUser-GS.sf2), AB_FFMPEG (ffmpeg.exe), AB_WORK (scratch dir), AB_TRACKS (tracks | tracks2)
 """
 import argparse
 import json
@@ -19,7 +19,10 @@ from scipy.ndimage import maximum_filter1d, minimum_filter1d, uniform_filter1d
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from compose import write_part  # noqa: E402
-import tracks  # noqa: E402
+import importlib  # noqa: E402
+
+# AB_TRACKS picks the piece list: 'tracks' (the first sixteen, default) or 'tracks2' (the second set)
+tracks = importlib.import_module(os.environ.get('AB_TRACKS', 'tracks'))
 
 SR = 44100
 HERE = os.path.dirname(os.path.abspath(__file__))
