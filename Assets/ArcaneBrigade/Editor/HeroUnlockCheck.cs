@@ -26,7 +26,7 @@ namespace ArcaneBrigade.Editor
             var done = new PlayerProfile(); MetaProgress m = MetaProgression.Ensure(done);
             done.BestWave = 60; done.Wins = 3; done.TotalKills = 99999;
             foreach (string boss in new[] { "CoinWidow", "SuitcaseLeviathan", "UndeliveredKing", "MarqueeMaw" }) done.SeenBosses.Add(boss);
-            m.WonMask = 1 << 3; m.Found.AddRange(new[] { "secret/0", "secret/1", "secret/2", "secret/3", "daily/2026-10-27" });
+            m.WonMask = 1 << 2; m.Found.AddRange(new[] { "secret/0", "secret/1", "secret/2", "secret/3", "daily/2026-10-27" });
             MetaProgression.Mastery(done, "LanternKnight", true).Waves = 25; MetaProgression.Mastery(done, "LanternKnight", true).Wins = 1;
             int open = catalog.Champions.Count(h => HeroUnlocks.Open(done, h));
             log.AppendLine("HEROCHECK full profile: " + open + " of " + catalog.Champions.Length + " heroes open");

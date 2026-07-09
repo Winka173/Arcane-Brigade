@@ -52,7 +52,7 @@ namespace ArcaneBrigade.Editor
                 Check(run.EarnedNewSpeciesAllowance == 10 && run.State.RegularAllowanceCarryover == 2, "Legacy wave-20 allowance is retained without taking back banked recruitment");
                 Check(run.State.NextSpecialShopWave >= 23 && run.State.NextSpecialShopWave <= 24, "Legacy dream-shop schedule starts three or four waves after migration");
             }
-            Check(RunMeta.UnlockedDifficulty(new PlayerProfile()) == 5 && RunMeta.UnlockedDifficulty(null) == 5, "All six difficulties unlocked even for a fresh profile");
+            Check(RunMeta.UnlockedDifficulty(new PlayerProfile()) == 3 && RunMeta.UnlockedDifficulty(null) == 3, "The first four difficulties are unlocked even for a fresh profile");
             using (var run = new RunSession(c))
             {
                 run.Start("LanternKnight", 231026); run.State.Roster.Clear();

@@ -5,7 +5,7 @@ namespace ArcaneBrigade
         public static string Capture(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
             if (!session.CanBuy(offer)) return "Cannot purchase: check currency/HP, stack limit or weapon variants.";
-            if (offer.Kind == OfferKind.Companion) return "Comes with the weapon shown. Two of the same friend at the same stars merge into one.";
+            if (offer.Kind == OfferKind.Companion) return "Comes with the weapon shown. Three of the same friend at the same stars merge into one.";
             RunBuildReadModel before;
             using (var baseline = new RunSession(catalog)) { baseline.Restore(session.State); before = RunBuildReadModel.Capture(baseline, catalog, baseline.State.Health); }
             using (var preview = new RunSession(catalog))

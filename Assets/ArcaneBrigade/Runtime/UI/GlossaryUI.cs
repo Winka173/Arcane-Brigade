@@ -72,7 +72,7 @@ namespace ArcaneBrigade
             Add(result, "armor", "Armor", ItemEffect.Armor, "Each point of armor takes 1 damage off every hit, then cuts the rest a little more (3 armor: 13%, 10 armor: a third). A hit still deals at least 1.", "armor");
             Add(result, "damage", "Damage", ItemEffect.Damage, "How hard every hit lands.");
             Add(result, "bond", "Bond", ItemEffect.CompanionDamage, "Friends of the same family together unlock a bonus; the card shows how many you need.");
-            Add(result, "merge", "Merge", ItemEffect.CompanionDamage, "Two of the same friend at the same stars become one friend with one more star.");
+            Add(result, "merge", "Merge", ItemEffect.CompanionDamage, "Three of the same friend at the same stars become one friend with one more star (two of three show half a star more).");
             Add(result, "altar", "Dream shop", ItemEffect.Luck, "A shop that takes eggs or HP instead of gold. HP prices lower your max HP for the rest of the run.");
             Add(result, "reroll", "Reroll", ItemEffect.Discount, "Pay gold for new offers in the shop.");
             Add(result, "stack", "Stackable", ItemEffect.Damage, "More copies add more of the same bonus.", "stackable");

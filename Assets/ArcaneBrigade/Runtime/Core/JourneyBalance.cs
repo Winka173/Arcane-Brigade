@@ -24,16 +24,18 @@ namespace ArcaneBrigade
         // the last two (Lightless, The Last Night; 24/10/2026) open only with the whole Lamp Tree lit
         // requirement 24/10/2026: the high difficulties (Nightmare and up) a little gentler, about 8% less health and damage
         // (was health 2.1/2.85/3.8/5.1/6.8, damage 1.8/2.55/3.5/4.6/6)
-        public static readonly float[] HealthFactor = { .7f, 1.1f, 1.55f, 1.95f, 2.62f, 3.5f, 4.7f, 6.25f };
-        public static readonly float[] DamageFactor = { .38f, .92f, 1.4f, 1.65f, 2.35f, 3.22f, 4.23f, 5.5f };
-        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.12f, 1.2f, 1.3f, 1.42f, 1.56f, 1.72f };
+        // requirement 27/10/2026 (too many difficulties): five now - Peaceful, Wandering, Nightmare, Sleepless, The Last Night; Restless,
+        // Beyond the Lamp and Lightless are gone, the others keep their old numbers
+        public static readonly float[] HealthFactor = { .7f, 1.1f, 1.95f, 2.62f, 6.25f };
+        public static readonly float[] DamageFactor = { .38f, .92f, 1.65f, 2.35f, 5.5f };
+        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.2f, 1.3f, 1.72f };
         private static float Level(float[] table, int difficulty) => table[Mathf.Clamp(difficulty, 0, table.Length - 1)];
 
         public static float EnemyHealth(int difficulty, int wave) => BaseHealth * (1 + (Level(HealthFactor, difficulty) - 1) * Ramp(wave));
         public static float EnemyDamage(int difficulty, int wave) => BaseDamage * .62f * (1 + (Level(DamageFactor, difficulty) - 1) * Ramp(wave));
         /// <summary>From Nightmare up, the first three stages (waves 1-15) bring a few more enemies (+10%), so the gentler
         /// enemies still fill the hall early on.</summary>
-        public const int HighDifficulty = 3, EarlyStageWaves = 15;
+        public const int HighDifficulty = 2, EarlyStageWaves = 15;
         public const float EarlyStageCrowd = 1.1f;
         public static float EnemyDensity(int difficulty, int wave) => (1 + (Level(DensityFactor, difficulty) - 1) * Ramp(wave)) * (difficulty >= HighDifficulty && wave <= EarlyStageWaves ? EarlyStageCrowd : 1);
         public static float LoneJellyDamage(int wave) => 1.2f + .3f * OctoberBalance.Late(wave);

@@ -26,7 +26,7 @@ namespace ArcaneBrigade
             ["ChinaMarionette"] = R(HeroGate.Boss, 0, "CoinWidow"), ["ButtonCavalier"] = R(HeroGate.Boss, 0, "SuitcaseLeviathan"),
             ["ArchiveCurator"] = R(HeroGate.Boss, 0, "UndeliveredKing"), ["TinVirtuoso"] = R(HeroGate.Boss, 0, "MarqueeMaw"),
             // finish things
-            ["NightMaw"] = R(HeroGate.Win, 1), ["PetalCitadel"] = R(HeroGate.Difficulty, 3), ["LanternWeaver"] = R(HeroGate.WinWith, 1, "LanternKnight"),
+            ["NightMaw"] = R(HeroGate.Win, 1), ["PetalCitadel"] = R(HeroGate.Difficulty, 2), ["LanternWeaver"] = R(HeroGate.WinWith, 1, "LanternKnight"),
             ["SoapSkater"] = R(HeroGate.Secrets, 1), ["PatchworkHost"] = R(HeroGate.Secrets, 4), ["CitrusMarshal"] = R(HeroGate.Daily, 1),
             ["PennyBroker"] = R(HeroGate.Kills, 3000), ["StormFencer"] = R(HeroGate.Mastery, 2), ["MoonProwler"] = R(HeroGate.Endless, 25),
             // waiting for a later update: finished in the data, not released

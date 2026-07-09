@@ -91,7 +91,7 @@ namespace ArcaneBrigade
             foreach (AchievementMetric m in run.AchievementEvidence ?? new List<AchievementMetric>()) Mark(profile.AchievementEvidence, m.Id, m.Value);
             void Set(string id, float value) => Mark(profile.AchievementEvidence, id, value);
             bool won = run.Phase == SessionPhase.Victory && !run.Endless;
-            if (won) { Set("win-" + run.ChampionId, 1); Set("difficulty", run.Difficulty + 1); if (run.Difficulty >= 4) Set("master-" + run.ChampionId, 1); }
+            if (won) { Set("win-" + run.ChampionId, 1); Set("difficulty", run.Difficulty + 1); if (run.Difficulty >= 3) Set("master-" + run.ChampionId, 1); }
             int cleared = run.Phase == SessionPhase.Shop || run.Phase == SessionPhase.Victory ? run.Wave : run.Wave - 1;
             Set("cleared", cleared); if (run.Endless) Set("endless-cleared", cleared);
             Set("score", RunMeta.Score(run)); Set("keeper", run.OutsideStage == OutsideStageStatus.Reward || run.OutsideStage == OutsideStageStatus.Completed ? 1 : 0);

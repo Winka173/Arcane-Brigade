@@ -8,7 +8,9 @@ namespace ArcaneBrigade
     /// Equal-star ties keep the first owned weapon, so buying an ingredient never silently swaps the fighter.</summary>
     public static class CompanionDeployment
     {
-        public const int MergeCopies = 2;
+        /// <summary>requirement 27/10/2026 (stars came too easily): three copies of a friend at the same star make one with a new
+        /// star; with two of the three it shows half a star more (1.5, 2.5).</summary>
+        public const int MergeCopies = 3;
         public static List<RosterEntry> Select(IReadOnlyList<RosterEntry> owned)
         {
             var result = new List<RosterEntry>();
@@ -23,7 +25,7 @@ namespace ArcaneBrigade
             return result;
         }
 
-        public static int MaterialValue(int tier) => tier >= 3 ? 4 : tier == 2 ? 2 : 1;
+        public static int MaterialValue(int tier) => tier >= 3 ? 9 : tier == 2 ? 3 : 1;
         public static int OwnedValue(IReadOnlyList<RosterEntry> owned, string id)
         {
             long value = 0;
@@ -61,18 +63,32 @@ namespace ArcaneBrigade
             return false;
         }
 
+        /// <summary>The stars a friend shows: its highest star, plus a half when two of the three copies for the next star are owned.</summary>
+        public float StarProgress(string id)
+        {
+            int top = HighestOwnedTier(id);
+            if (top <= 0) return 0;
+            if (top >= catalog.MaximumTier || catalog.Unit(id)?.ReferenceCompanion == "Evil") return top;
+            int copies = State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == top).Count;
+            return top + (copies >= CompanionDeployment.MergeCopies - 1 ? .5f : 0);
+        }
+        /// <summary>True when this friend's top star has two of its three copies (it shows a half star more and hits a little harder).</summary>
+        public bool HalfStar(string id, int tier) => tier == HighestOwnedTier(id) && tier < catalog.MaximumTier && catalog.Unit(id)?.ReferenceCompanion != "Evil"
+            && State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier).Count == CompanionDeployment.MergeCopies - 1;
+        public static string StarText(float stars) => Mathf.Approximately(stars, Mathf.Floor(stars)) ? ((int)stars).ToString() : stars.ToString("0.0");
+
         public string UpgradeProgress(ShopOffer offer)
         {
             if (offer == null || offer.Kind != OfferKind.Companion) return "";
             int before = CompanionDeployment.OwnedValue(State.Roster, offer.Id);
             int added = CompanionDeployment.MaterialValue(offer.Tier);
             int after = RunSession.BoundedCounter((long)before + added);
-            int target = before < 2 ? 2 : 4;
+            int target = before < 3 ? 3 : 9;
             // in plain words (requirement 25/10/2026: "upgrade material", "extra fighter" told nothing)
             if (OctoberAbsorbs) return "Your hero takes this friend's skill.";
             if (HighestOwnedTier(offer.Id) >= catalog.MaximumTier) return "Already at max stars.";
             return before == 0 ? "New friend."
-                : "Copy " + after + " of " + target + " for " + (target == 2 ? "2 stars" : "3 stars") + (after >= target ? " · stars up now!" : ".");
+                : "Copy " + after + " of " + target + " for " + (target == 3 ? "2 stars" : "3 stars") + (after >= target ? " · stars up now!" : ".");
         }
     }
 }

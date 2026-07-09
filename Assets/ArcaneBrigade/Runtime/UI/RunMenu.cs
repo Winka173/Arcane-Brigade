@@ -612,7 +612,7 @@ namespace ArcaneBrigade
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(15, true)); danger.alignment = TextAnchor.MiddleLeft; danger.wordWrap = true;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
             // beside the button, what the difficulty does (its name is already on the button)
-            string dangerText = sealedDifficulty ? (difficulty == RunMeta.TreeDifficulty ? "Light 5 Lamp Tree branches" : "Light the whole Lamp Tree") : DifficultyLine(difficulty);
+            string dangerText = sealedDifficulty ? "Light the whole Lamp Tree" : DifficultyLine(difficulty);
             Rect dangerRect = new Rect(410, 656, 315, 52);
             if (sealedDifficulty)
             {
@@ -683,7 +683,7 @@ namespace ArcaneBrigade
                         GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
                         if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);
                         overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
-                        GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), sealedRow ? (i == RunMeta.TreeDifficulty ? "Light 5 Lamp Tree branches" : "Light the whole Lamp Tree") : DifficultyLine(i), overlayLine);
+                        GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), sealedRow ? "Light the whole Lamp Tree" : DifficultyLine(i), overlayLine);
                         overlayLine.alignment = TextAnchor.UpperLeft;
                         int pick = i;
                         if (!sealedRow && GUI.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => { difficulty = pick; difficultyPickerAt = -1; });

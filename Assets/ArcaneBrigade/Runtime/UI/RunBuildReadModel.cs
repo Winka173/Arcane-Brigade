@@ -55,14 +55,14 @@ namespace ArcaneBrigade
                 int tierSteps = catalog.ContentRevision > 0 ? Mathf.Max(0, entry.Tier - 1) : 0;
                 float range = applied.Weapon.Range;
                 float passive = unit.Passive == PassiveKind.Scavenge ? session.ScavengeGold(unit, entry.Tier) : unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
-                model.Companions.Add(new Row { Name = session.Stranger(unit.Id) ? "???" : RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Stars " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
+                model.Companions.Add(new Row { Name = session.Stranger(unit.Id) ? "???" : RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Stars " + RunSession.StarText(session.StarProgress(unit.Id)) + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
                     Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Stars bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Stars bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each friend body counts once toward bonds." });
                 model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier,session.GoldScale);
                 int savedValue = CompanionDeployment.OwnedValue(session.State.Roster, unit.Id);
                 int reserveCopies = session.State.Roster.FindAll(r => r.UnitId == unit.Id).Count - 1;
                 model.Companions[model.Companions.Count - 1].Summary += "\nOne fighter · " + reserveCopies + " saved materials · "
-                    + (entry.Tier >= 3 ? "maximum stars" : savedValue + "/" + (entry.Tier < 2 ? 2 : 4) + " upgrade value");
+                    + (entry.Tier >= 3 ? "maximum stars" : savedValue + "/" + (entry.Tier < 2 ? 3 : 9) + " upgrade value");
                 model.Companions[model.Companions.Count - 1].Explanation += "\nSaved materials do not attack, add bond members or provide passive stats. All purchased weapons are kept until used in a merge.";
             }
             foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])

@@ -42,7 +42,7 @@ namespace ArcaneBrigade.Editor
                 require(profile.History[0].Nickname == "Midnight photo booth" && profile.History[0].Score == 26070, "Measured dominant weapon yields stable stored nickname");
                 state.Contributions[0].Damage = 200;
                 require(profile.History[0].Build.Contributions[0].Damage == 11, "History is a deep frozen build not live reference");
-                require(RunMeta.UnlockedDifficulty(profile) == RunMeta.DifficultyNames.Length - 1, "All difficulties are available without permanent stats");
+                require(RunMeta.UnlockedDifficulty(profile) == RunMeta.DifficultyNames.Length - 2, "All difficulties but the last are available without permanent stats");
                 PlayerProfile loaded = storage.LoadProfile();
                 require(loaded.History[0].Nickname == profile.History[0].Nickname && loaded.Records.Count == 1 && loaded.Wins == 1, "History records and dedupe persist across reload");
                 string normalId = state.RunId; string roster = JsonUtility.ToJson(new RosterHolder { Entries = state.Roster });
@@ -91,7 +91,7 @@ namespace ArcaneBrigade.Editor
                     require(before == JsonUtility.ToJson(session.State), "Challenge " + index + " seed and streams stable on resume");
                     session.State.Phase = SessionPhase.Victory; session.State.Wave = 20;
                     var challengeProfile = new PlayerProfile(); storage.RecordProgress(challengeProfile, session.State, catalog);
-                    require(challengeProfile.Achievements.Contains("challenge-" + session.State.ChallengeId) && RunMeta.UnlockedDifficulty(challengeProfile) == RunMeta.DifficultyNames.Length - 1, "Challenge " + index + " keeps its own reward and all difficulties remain available");
+                    require(challengeProfile.Achievements.Contains("challenge-" + session.State.ChallengeId) && RunMeta.UnlockedDifficulty(challengeProfile) == RunMeta.DifficultyNames.Length - 2, "Challenge " + index + " keeps its own reward and all difficulties remain available");
                 }
                 RunSnapshot invalid = Copy(session.State); invalid.Difficulty = 5;
                 require(Reject(() => session.Validate(invalid)), "Reject invalid difficulty");

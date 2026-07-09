@@ -29,9 +29,13 @@ namespace ArcaneBrigade
         public int CompanionPurchasesRemaining => NewRecruitsRemaining + CopyRecruitsRemaining;
         public bool NewSpeciesCooldown => false; // the dream shop is independent of the regular allowance
         public bool RegularNewSpeciesCooldown => BankedNewSpeciesAllowance <= 0;
-        public int NewRecruitsRemaining => BankedNewSpeciesAllowance > 0 && State.NewSpeciesRecruitsThisWave == 0 ? 1 : 0;
+        /// <summary>requirement 27/10/2026: from wave 20 on the brigade is closed to new friends (the shops before it included, since
+        /// what is bought there fights in it); copies of friends you own still merge.</summary>
+        public const int NoNewAlliesFrom = 20;
+        public bool NewAlliesClosed => State.Wave + 1 >= NoNewAlliesFrom;
+        public int NewRecruitsRemaining => !NewAlliesClosed && BankedNewSpeciesAllowance > 0 && State.NewSpeciesRecruitsThisWave == 0 ? 1 : 0;
         public bool RegularRecruitOpen(string id) => OwnsCompanionSpecies(id) ? CopyRecruitsRemaining > 0 : NewRecruitsRemaining > 0;
-        public int SpecialNewRecruitsRemaining => Math.Max(0, 1 - State.SpecialNewSpeciesRecruitsThisWave);
+        public int SpecialNewRecruitsRemaining => NewAlliesClosed ? 0 : Math.Max(0, 1 - State.SpecialNewSpeciesRecruitsThisWave);
         public bool OwnsCompanionSpecies(string id) => State.Roster.Exists(r => r.UnitId == id) || (State.AbsorbedSkills?.Contains(id) ?? false);
         // Source shop matters, not currency or the companion's catalog rarity.
         private bool CountsTowardRecruitLimit(ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && !State.SpecialOffers.Contains(offer);

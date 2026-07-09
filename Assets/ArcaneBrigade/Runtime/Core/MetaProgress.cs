@@ -17,7 +17,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class MetaProgress
     {
-        public const int CurrentRevision = 4; // 2: the Postbox, Museum, Night Pact, Window and Bell (additive, no migration); 3: the Lamp Tree (old ranks refunded); 4: its ranks
+        public const int CurrentRevision = 5; // 2: the Postbox, Museum, Night Pact, Window and Bell (additive, no migration); 3: the Lamp Tree (old ranks refunded); 4: its ranks
         public int Revision;
         public int LampOil, Keepsakes, LampOilEarned, KeepsakesEarned;
         public List<MetaRank> Ranks = new List<MetaRank>();
@@ -107,7 +107,7 @@ namespace ArcaneBrigade
     public static partial class MetaProgression
     {
         public const float PowerCap = 40f; // was 25 (requirement 24/10/2026: more permanent stats)
-        public static readonly float[] DifficultyOil = { 1f, 1.2f, 1.4f, 1.6f, 1.8f, 2f, 2.4f, 2.8f };
+        public static readonly float[] DifficultyOil = { 1f, 1.2f, 1.6f, 1.8f, 2.8f }; // Peaceful, Wandering, Nightmare, Sleepless, The Last Night
         public const int OilPerWave = 4, OilPerBoss = 12, OilPerBestWave = 8, FindsCap = 60;
         public static readonly int[] MasteryWaves = { 8, 20, 40 };
         /// <summary>The stations in the room: the Lantern is the Lamp Tree now; the Ledger, Nursery and Clock went into its branches (24/10/2026).</summary>
@@ -160,12 +160,22 @@ namespace ArcaneBrigade
 
         // ------------------------------------------------------------------ profile
         /// <summary>Makes the block whole (older profiles, hand-edited saves) and runs the one-time migration.</summary>
+        /// <summary>The eight old difficulties' win bits on the five now (Restless counts as Wandering, Beyond the Lamp as Sleepless,
+        /// Lightless as The Last Night).</summary>
+        private static int RemapDifficultyBits(int old)
+        {
+            int[] to = { 0, 1, 1, 2, 3, 3, 4, 4 };
+            int bits = 0;
+            for (int i = 0; i < to.Length; i++) if ((old & (1 << i)) != 0) bits |= 1 << to[i];
+            return bits;
+        }
         public static MetaProgress Ensure(PlayerProfile profile)
         {
             MetaProgress m = profile.Meta ??= new MetaProgress();
             m.Ranks ??= new List<MetaRank>(); m.Found ??= new List<string>(); m.Mastery ??= new List<HeroMastery>();
             m.Heirloom ??= ""; m.PaidRun ??= ""; m.Tree ??= new List<string>(); m.Lamps ??= new List<MetaRank>();
             if (m.Revision < 3) RefundRetired(m); // before the old ranks are dropped below
+            if (m.Revision < 5) { m.WonMask = RemapDifficultyBits(m.WonMask); } // the difficulties went from eight to five (27/10/2026)
             MoveLitIntoRanks(m);
             { var lit = new HashSet<string>(); m.Lamps.RemoveAll(r => r == null || Node(r.Id) == null || !lit.Add(r.Id)); }
             foreach (MetaRank r in m.Lamps) r.Rank = Mathf.Clamp(r.Rank, 0, Node(r.Id).Ranks);

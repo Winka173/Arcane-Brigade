@@ -207,8 +207,15 @@ namespace ArcaneBrigade
                 else if (index == selection) ArcadeSkin.Line(new Rect(tile.x, tile.yMax - 5, tile.width, 5), ArcadeSkin.Accent);
                 if (row.Icon != null) RunHud.Sprite(new Rect(tile.x + 38, tile.y + 16, 110, 100), row.Icon);
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(tile.xMax - 62, tile.y + 80, 46, 46), row.WeaponIcon);
-                if (tab == 1 && row.Summary != null && row.Summary.StartsWith("Stars ") && int.TryParse(row.Summary.Substring(6, 1), out int stars))
-                    for (int st = 0; st < stars; st++) { Vector2 sp = new Vector2(tile.x + 22 + st * 20, tile.y + 22); ArcadeSkin.Diamond(sp, 18, new Color(.1f, .06f, .04f, .9f)); ArcadeSkin.Diamond(sp, 13, new Color(1f, .8f, .3f)); }
+                if (tab == 1 && row.Summary != null && row.Summary.StartsWith("Stars ") && float.TryParse(row.Summary.Substring(6, 3).Trim(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float starsShown))
+                {
+                    int whole = Mathf.FloorToInt(starsShown); bool half = starsShown - whole > .25f;
+                    for (int st = 0; st < whole + (half ? 1 : 0); st++)
+                    {
+                        Vector2 sp = new Vector2(tile.x + 22 + st * 20, tile.y + 22); bool halfStar = half && st == whole; // half a star: a smaller, paler diamond
+                        ArcadeSkin.Diamond(sp, halfStar ? 14 : 18, new Color(.1f, .06f, .04f, .9f)); ArcadeSkin.Diamond(sp, halfStar ? 8 : 13, halfStar ? new Color(1f, .86f, .5f, .7f) : new Color(1f, .8f, .3f));
+                    }
+                }
                 tileName ??= ArcadeTypography.Style(17, true); tileName.alignment = TextAnchor.MiddleCenter; tileName.wordWrap = true; tileName.normal.textColor = ArcadeSkin.Paper;
                 GUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
                 if (shownRarity is ItemRarity tagRarity)

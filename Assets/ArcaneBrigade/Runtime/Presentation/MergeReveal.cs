@@ -120,6 +120,18 @@ namespace ArcaneBrigade
             lastReceipt = after.NextReceipt;
             if (ReadOnly) { Skip(); return; }
             foreach (Beat beat in beats) queue.Enqueue(beat);
+            // a copy that does not merge but brings the next star within one copy: a half star, a lighter flourish
+            if (beats.Count == 0 && !altar && before != null && before.RunId == after.RunId)
+            {
+                var seen = new System.Collections.Generic.HashSet<string>();
+                foreach (RosterEntry entry in after.Roster)
+                {
+                    if (!seen.Add(entry.UnitId)) continue;
+                    int top = 0; foreach (RosterEntry r in after.Roster) if (r.UnitId == entry.UnitId) top = Mathf.Max(top, r.Tier);
+                    int now = after.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count, was = before.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count;
+                    if (top < 3 && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) StarBurst.Play(position, top + .5f, false);
+                }
+            }
         }
 
         /// <summary>Plays a star-up for a unit already on the roster (captures and tools; no receipt is involved).</summary>
@@ -363,6 +375,7 @@ namespace ArcaneBrigade
         {
             void Once(int bit, float at, string id) { if (t >= at && (cues & bit) == 0) { cues |= bit; CheckpointAudio.PlayInterfaceId(id); } }
             Once(1, revealAt, "up.merge");
+            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && !active.Altar) StarBurst.Play(active.Position, Mathf.Clamp(active.Result.Tier, 2, 3), true); } // a flourish over the ceremony
             Once(2, starFirst, grand ? "up.star3" : "up.star2");
             if (grand) Once(4, crownAt, "up.rarity.gold");
         }
