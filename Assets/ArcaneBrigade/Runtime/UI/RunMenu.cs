@@ -226,7 +226,7 @@ namespace ArcaneBrigade
 
         private void Launch(bool resume)
         {
-            if (resume && !CanResume || !resume && (profile.BestWave < catalog.Champions[selection].UnlockWave || difficulty > RunMeta.UnlockedDifficulty(profile))) return;
+            if (resume && !CanResume || !resume && (!HeroUnlocks.Open(profile, catalog.Champions[selection]) || difficulty > RunMeta.UnlockedDifficulty(profile))) return;
             CheckpointAudio.PlayInterfaceId("ui.confirm");
             if (!resume && existingSave)
             {
@@ -532,7 +532,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
                 UnitDefinition unit = catalog.Champions[index];
-                bool unlocked = profile.BestWave >= unit.UnlockWave;
+                bool unlocked = HeroUnlocks.Open(profile, unit);
                 Rect card = RosterCardBounds(index);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .42f); else RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 if (index == selection) { ArcadeSkin.Glow(new Rect(card.x + 10, card.y, card.width - 20, 150), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.26f)); ArcadeSkin.Slant(new Rect(card.x + 14, card.yMax - 16, card.width - 28, 8), ArcadeSkin.Teal); }
@@ -547,7 +547,7 @@ namespace ArcaneBrigade
                 TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
                 GUI.Label(new Rect(card.x + 10, top + 120, card.width - 20, 52), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
-                if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 20, card.y + 186, 160, 26), "LOCKED · WAVE " + unit.UnlockWave, CodeTone.Cream, chip);
+                if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 186, card.width - 24, 26), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
             }
             ScrollPanel.End();
             UnitDefinition champion = catalog.Champions[selection];
@@ -572,7 +572,7 @@ namespace ArcaneBrigade
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
             GUI.Label(new Rect(918, 150, 300, 70), RunUICopy.UnitName(champion), rosterTitle);
             ArcadeSkin.Tag(new Rect(918, 222, 280, 28), RunUICopy.WeaponName(champion.Weapon.Id).ToUpperInvariant(), CodeTone.Walnut, chip);
-            GUI.Label(new Rect(918, 256, 250, 34), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
+            GUI.Label(new Rect(918, 256, 250, 34), HeroUnlocks.Full(profile, champion, catalog), note);
             // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
             string fullDescription = RunUICopy.ChampionDescription(champion);
             string description = ShortHero(champion);
@@ -621,8 +621,8 @@ namespace ArcaneBrigade
                 dangerRect = new Rect(dangerRect.x + 26, dangerRect.y, dangerRect.width - 26, dangerRect.height);
             }
             GUI.Label(dangerRect, dangerText, danger);
-            GUI.enabled = profile.BestWave >= champion.UnlockWave && !sealedDifficulty;
-            if (navigation.Button(new Rect(770, 650, 450, 62), profile.BestWave >= champion.UnlockWave && !sealedDifficulty ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
+            GUI.enabled = HeroUnlocks.Open(profile, champion) && !sealedDifficulty;
+            if (navigation.Button(new Rect(770, 650, 450, 62), HeroUnlocks.Open(profile, champion) && !sealedDifficulty ? "STEP THROUGH ▶" : HeroUnlocks.Coming(champion) ? "COMING SOON" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
             RosterOverlays(true);
         }

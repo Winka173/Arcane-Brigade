@@ -224,7 +224,7 @@ namespace ArcaneBrigade
         public static UnitDefinition DailyHero(PlayerProfile p, RunCatalog c, string day)
         {
             var open = new List<UnitDefinition>();
-            foreach (UnitDefinition u in c.Champions) if (u != null && p.BestWave >= u.UnlockWave) open.Add(u);
+            foreach (UnitDefinition u in c.Champions) if (u != null && HeroUnlocks.Open(p, u)) open.Add(u);
             return open.Count == 0 ? null : open[(int)((uint)DailySeed(day) / 13u % (uint)open.Count)];
         }
         public static MetaScore DailyRecord(PlayerProfile p, string day) => Ensure(p).DailyBest.Find(s => s.Key == day);

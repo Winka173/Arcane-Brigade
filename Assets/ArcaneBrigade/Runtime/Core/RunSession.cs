@@ -925,7 +925,7 @@ namespace ArcaneBrigade
 
         /// <summary>The relic fits the hero's own pool (HeroRelicPools); random relic gifts and swaps draw from it too.</summary>
         private bool HeroFits(ItemDefinition item) => HeroRelicPools.Fits(catalog.Unit(State.ChampionId), item);
-        private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && OctoberItemEligible(item) && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && ReviewBalance.ExclusivePool(item) == pool) && StackCount(item.Id) < item.StackLimit;
+        private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && (State.Meta?.Endgame ?? 0) >= HeroUnlocks.EndgameNeeds(item.Id) && OctoberItemEligible(item) && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && ReviewBalance.ExclusivePool(item) == pool) && StackCount(item.Id) < item.StackLimit;
 
         private int WeightedItem(List<ItemDefinition> items)
         {

@@ -10,7 +10,7 @@ namespace ArcaneBrigade
 
     [Serializable] public sealed class MetaRank { public string Id; public int Rank; }
     /// <summary>Wardrobe mastery: waves cleared with one hero, and the run-start choices last picked for it.</summary>
-    [Serializable] public sealed class HeroMastery { public string Hero; public int Waves; public bool AltStarter; public bool SecondHabit; }
+    [Serializable] public sealed class HeroMastery { public string Hero; public int Waves; public bool AltStarter; public bool SecondHabit; public int Wins; /* runs won with this hero (HeroUnlocks) */ }
 
     /// <summary>The meta block of the profile (play-test 20/10/2026, item 27, "The Waiting Room"). Versioned: a profile saved
     /// before it loads with <see cref="Revision"/> 0 and is migrated once (Lamp Oil for its best wave, nothing else).</summary>
@@ -65,6 +65,8 @@ namespace ArcaneBrigade
         public int RewindAt;
         /// <summary>Discoveries made in this run (first friend / relic / boss ever seen), counted as the profile learns them.</summary>
         public int FoundUnits, FoundItems, FoundBosses;
+        /// <summary>Endless milestones the profile had reached when the run began: endgame relics join the shops at 1 and 3.</summary>
+        public int Endgame;
         /// <summary>The haul, written when the run is credited: Lamp Oil and Keepsakes and one "kind|words|amount" line each.</summary>
         public int HaulOil, HaulKeepsakes;
         public List<string> HaulLines = new List<string>();
@@ -177,7 +179,7 @@ namespace ArcaneBrigade
             m.Ranks.RemoveAll(r => !seen.Add(r.Id));
             foreach (MetaRank r in m.Ranks) r.Rank = Mathf.Clamp(r.Rank, 0, Track(r.Id).Max);
             m.Mastery.RemoveAll(h => h == null || string.IsNullOrEmpty(h.Hero));
-            foreach (HeroMastery h in m.Mastery) h.Waves = Mathf.Max(0, h.Waves);
+            foreach (HeroMastery h in m.Mastery) { h.Waves = Mathf.Max(0, h.Waves); h.Wins = Mathf.Max(0, h.Wins); }
             m.Found.RemoveAll(string.IsNullOrEmpty);
             EnsureStations(m);
             if (m.Revision < 1)
@@ -308,6 +310,7 @@ namespace ArcaneBrigade
         {
             Ensure(profile);
             var s = new MetaRunState();
+            s.Endgame = HeroUnlocks.EndgameTier(profile);
             StationLoadout(profile, catalog, s, keepsake, daily);
             MetaRunState tree = TreeLoadout(profile, out _);
             s.Health = tree.Health;
@@ -414,6 +417,15 @@ namespace ArcaneBrigade
             for (int k = 0; k < 8; k++)
                 if ((mask & (1 << k)) != 0 && !profile.Meta.Found.Contains("secret/" + k)) { found.Add("secret/" + k); secrets++; }
             if (secrets > 0) { keepsakes += secrets; lines.Add("keep|Secret rooms found ×" + secrets + "|" + secrets); }
+            // requirement 27/10/2026: Endless nights are milestones, each paid once; the first two open endgame relics in the shops
+            if (run.Endless || run.Wave > 20)
+                foreach ((int night, int reward) in HeroUnlocks.EndlessMilestones)
+                {
+                    string key = "endless/" + night;
+                    if (run.Wave < night || profile.Meta.Found.Contains(key) || found.Contains(key)) continue;
+                    found.Add(key); keepsakes += reward;
+                    lines.Add("keep|Endless night " + night + (night == 25 ? " · new relics in the shops" : night == 40 ? " · more relics in the shops" : "") + "|" + reward);
+                }
             int duets = 0;
             foreach (Duet duet in Duets.All)
             {
@@ -460,6 +472,7 @@ namespace ArcaneBrigade
             if (run.Phase == SessionPhase.Victory) m.WonMask |= 1 << Mathf.Clamp(run.Difficulty, 0, 30);
             m.DuetsFound += duets;
             if (payWaves > 0) { HeroMastery h = Mastery(profile, run.ChampionId, true); h.Waves = RunSession.BoundedCounter((long)h.Waves + payWaves); }
+            if (run.Phase == SessionPhase.Victory && !run.Endless) { HeroMastery won = Mastery(profile, run.ChampionId, true); won.Wins = RunSession.BoundedCounter((long)won.Wins + 1); }
             run.Meta.HaulOil = oil; run.Meta.HaulKeepsakes = keepsakes; run.Meta.HaulLines = lines;
             RecordScores(profile, run);
             return true;

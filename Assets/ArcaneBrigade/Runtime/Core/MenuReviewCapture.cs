@@ -38,6 +38,11 @@ namespace ArcaneBrigade
             if (menu != null)
             {
                 menu.ShowPage(RunMenu.Page.Roster); yield return new WaitForSecondsRealtime(.8f); yield return Shot("03-hero-select");
+                if (RunPaths.K7Capture)
+                {
+                    // a locked hero shows its condition (requirement 27/10/2026)
+                    menu.SelectChampionForDiagnostics(17); yield return new WaitForSecondsRealtime(.6f); yield return Shot("03b-hero-locked");
+                }
                 menu.ShowPage(RunMenu.Page.Help); yield return new WaitForSecondsRealtime(1.2f); yield return Shot("04-how-to-play");
                 menu.ShowPage(RunMenu.Page.Settings); yield return new WaitForSecondsRealtime(.6f); yield return Shot("05-settings");
                 menu.ShowPage(RunMenu.Page.Museum); yield return new WaitForSecondsRealtime(.6f); yield return Shot("06-collection");

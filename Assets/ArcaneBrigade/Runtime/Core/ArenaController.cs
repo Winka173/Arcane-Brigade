@@ -480,12 +480,13 @@ namespace ArcaneBrigade
             try
             {
                 int before = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count;
-                int previousBestWave = profile.BestWave;
+                var openBefore = new bool[runCatalog.Champions.Length];
+                for (int hero = 0; hero < openBefore.Length; hero++) openBefore[hero] = HeroUnlocks.Open(profile, runCatalog.Champions[hero]);
                 storage.RecordProgress(profile, session.State, runCatalog);
                 int delta = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count - before;
                 if (delta > 0) CheckpointAudio.PlayInterfaceId("ui.achievement");
-                foreach (UnitDefinition champion in runCatalog.Champions)
-                    if (previousBestWave < champion.UnlockWave && profile.BestWave >= champion.UnlockWave) { CheckpointAudio.PlayInterfaceId("ui.unlock", 0.15f); break; }
+                for (int hero = 0; hero < openBefore.Length; hero++)
+                    if (!openBefore[hero] && HeroUnlocks.Open(profile, runCatalog.Champions[hero])) { CheckpointAudio.PlayInterfaceId("ui.unlock", 0.15f); break; }
                 MetaNotice = delta > 0 ? (delta == 1 ? "1 NEW FIND" : delta + " NEW FINDS") + " IN THE MUSEUM" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
