@@ -19,6 +19,9 @@ namespace ArcaneBrigade
         public static void Targets(string scene, float density, bool bossIntro, float[] levels)
         {
             levels[0] = 1f;
+            // requirement 27/10/2026: a secret room's piece plays like a shop's, the ending like a menu
+            if (scene != null && scene.StartsWith("secret_", System.StringComparison.Ordinal)) { levels[1] = 0.9f; levels[2] = 1f; levels[3] = 0.75f; return; }
+            if (scene == ArcaneCueLibrary.SceneEnding) { levels[1] = 0.85f; levels[2] = 1f; levels[3] = 0f; return; }
             switch (scene)
             {
                 case ArcaneCueLibrary.SceneMenu:

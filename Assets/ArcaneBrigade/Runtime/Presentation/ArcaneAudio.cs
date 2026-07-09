@@ -72,6 +72,7 @@ namespace ArcaneBrigade
         public const string SceneEndless = "endless";
         public const string SceneShopGold = "shop_gold";
         public const string SceneShopDream = "shop_dream";
+        public const string SceneEnding = "ending"; // the victory and dawn screens (ending_dawn)
         public const string SceneHub = "hub";   // the Waiting Room meta hub (its own piece, hub_waitingroom)
 
         private static Dictionary<string, ArcaneCueDef> cues;
@@ -199,6 +200,7 @@ namespace ArcaneBrigade
         public static string SceneFor(SessionPhase phase, bool boss, int wave, int normalWaves, bool endless, bool dreamShop)
         {
             if (phase == SessionPhase.Shop) return dreamShop ? SceneShopDream : SceneShopGold;
+            if (phase == SessionPhase.Victory && PieceForScene(SceneEnding, 0) != null) return SceneEnding;
             if (phase != SessionPhase.Combat) return SceneMenu;
             if (boss) return SceneBoss;
             if (endless) return SceneEndless;

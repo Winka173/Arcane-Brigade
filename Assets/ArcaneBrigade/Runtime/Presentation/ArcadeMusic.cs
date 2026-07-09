@@ -232,6 +232,8 @@ namespace ArcaneBrigade
         // ------------------------------------------------------------------ adaptive
         /// <summary>The run's seed: each run starts its map's rotation of pieces in a different place.</summary>
         public int RunSeed;
+        /// <summary>The sound key of the boss on the field (ArcaneCueLibrary.BossKey), or null.</summary>
+        public string BossKey;
         private readonly Dictionary<string, int> entries = new Dictionary<string, int>();
         private int launchOffset = -1;
 
@@ -261,7 +263,9 @@ namespace ArcaneBrigade
         {
             scene = desired;
             if (desired == ArcaneCueLibrary.SceneBoss) bossIntroUntil = Time.unscaledTime + MusicArrangement.BossIntroSeconds; // the boss's melody only in its intro
-            ArcanePieceDef piece = string.IsNullOrEmpty(desired) ? null : ArcaneCueLibrary.PieceForScene(desired, PieceVariant(desired));
+            // a boss with a piece of its own (boss_<key>) plays that one, any other boss one of the shared boss pieces
+            ArcanePieceDef piece = desired == ArcaneCueLibrary.SceneBoss && !string.IsNullOrEmpty(BossKey) ? ArcaneCueLibrary.PieceForScene("boss_" + BossKey, 0) : null;
+            if (piece == null && !string.IsNullOrEmpty(desired)) piece = ArcaneCueLibrary.PieceForScene(desired, PieceVariant(desired));
             Deck live = current >= 0 && decks[current].Live ? decks[current] : null;
             if (piece == null)
             {

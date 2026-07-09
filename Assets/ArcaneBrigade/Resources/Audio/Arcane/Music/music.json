@@ -656,6 +656,286 @@
     "Music/endless_lastorders/endless_lastorders_melody",
     "Music/endless_lastorders/endless_lastorders_intensity"
    ]
+  },
+  {
+   "id": "boss_coinwidow",
+   "title": "Interest Compounds",
+   "bpm": 68,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 70.58823129251701,
+   "loopSamples": 3112941,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss_coinwidow"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_coinwidow/boss_coinwidow_base",
+    "Music/boss_coinwidow/boss_coinwidow_rhythm",
+    "Music/boss_coinwidow/boss_coinwidow_melody",
+    "Music/boss_coinwidow/boss_coinwidow_intensity"
+   ]
+  },
+  {
+   "id": "boss_chairporter",
+   "title": "Heavy Load",
+   "bpm": 40,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 109.09090702947846,
+   "loopSamples": 4810909,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss_chairporter"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_chairporter/boss_chairporter_base",
+    "Music/boss_chairporter/boss_chairporter_rhythm",
+    "Music/boss_chairporter/boss_chairporter_melody",
+    "Music/boss_chairporter/boss_chairporter_intensity"
+   ]
+  },
+  {
+   "id": "boss_doorthatstayedshut",
+   "title": "Nobody Home",
+   "bpm": 38,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 114.28571428571429,
+   "loopSamples": 5040000,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss_doorthatstayedshut"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_doorthatstayedshut/boss_doorthatstayedshut_base",
+    "Music/boss_doorthatstayedshut/boss_doorthatstayedshut_rhythm",
+    "Music/boss_doorthatstayedshut/boss_doorthatstayedshut_melody",
+    "Music/boss_doorthatstayedshut/boss_doorthatstayedshut_intensity"
+   ]
+  },
+  {
+   "id": "boss_marqueemaw",
+   "title": "Tonight Only",
+   "bpm": 66,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 72.72727891156462,
+   "loopSamples": 3207273,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss_marqueemaw"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_marqueemaw/boss_marqueemaw_base",
+    "Music/boss_marqueemaw/boss_marqueemaw_rhythm",
+    "Music/boss_marqueemaw/boss_marqueemaw_melody",
+    "Music/boss_marqueemaw/boss_marqueemaw_intensity"
+   ]
+  },
+  {
+   "id": "boss_lastcustomer",
+   "title": "Always Open",
+   "bpm": 36,
+   "beatsPerBar": 2,
+   "bars": 40,
+   "loopSeconds": 120.0,
+   "loopSamples": 5292000,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss_lastcustomer"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/boss_lastcustomer/boss_lastcustomer_base",
+    "Music/boss_lastcustomer/boss_lastcustomer_rhythm",
+    "Music/boss_lastcustomer/boss_lastcustomer_melody",
+    "Music/boss_lastcustomer/boss_lastcustomer_intensity"
+   ]
+  },
+  {
+   "id": "secret_lostproperty",
+   "title": "Lost and Found",
+   "bpm": 84,
+   "beatsPerBar": 3,
+   "bars": 32,
+   "loopSeconds": 68.57142857142857,
+   "loopSamples": 3024000,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_lostproperty"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_lostproperty/secret_lostproperty_base",
+    "Music/secret_lostproperty/secret_lostproperty_rhythm",
+    "Music/secret_lostproperty/secret_lostproperty_melody",
+    "Music/secret_lostproperty/secret_lostproperty_intensity"
+   ]
+  },
+  {
+   "id": "secret_impossibletailor",
+   "title": "Thread and Needle",
+   "bpm": 108,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 71.11111111111111,
+   "loopSamples": 3136000,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_impossibletailor"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_impossibletailor/secret_impossibletailor_base",
+    "Music/secret_impossibletailor/secret_impossibletailor_rhythm",
+    "Music/secret_impossibletailor/secret_impossibletailor_melody",
+    "Music/secret_impossibletailor/secret_impossibletailor_intensity"
+   ]
+  },
+  {
+   "id": "secret_understudy",
+   "title": "Waiting in the Wings",
+   "bpm": 88,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 87.27272108843538,
+   "loopSamples": 3848727,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_understudy"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_understudy/secret_understudy_base",
+    "Music/secret_understudy/secret_understudy_rhythm",
+    "Music/secret_understudy/secret_understudy_melody",
+    "Music/secret_understudy/secret_understudy_intensity"
+   ]
+  },
+  {
+   "id": "secret_contrabandtrain",
+   "title": "Night Express",
+   "bpm": 100,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 76.8,
+   "loopSamples": 3386880,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_contrabandtrain"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_contrabandtrain/secret_contrabandtrain_base",
+    "Music/secret_contrabandtrain/secret_contrabandtrain_rhythm",
+    "Music/secret_contrabandtrain/secret_contrabandtrain_melody",
+    "Music/secret_contrabandtrain/secret_contrabandtrain_intensity"
+   ]
+  },
+  {
+   "id": "secret_thirteenthhour",
+   "title": "Thirteenth Chime",
+   "bpm": 70,
+   "beatsPerBar": 3,
+   "bars": 32,
+   "loopSeconds": 82.28571428571429,
+   "loopSamples": 3628800,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_thirteenthhour"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_thirteenthhour/secret_thirteenthhour_base",
+    "Music/secret_thirteenthhour/secret_thirteenthhour_rhythm",
+    "Music/secret_thirteenthhour/secret_thirteenthhour_melody",
+    "Music/secret_thirteenthhour/secret_thirteenthhour_intensity"
+   ]
+  },
+  {
+   "id": "secret_sleepinggarden",
+   "title": "Sleepers",
+   "bpm": 66,
+   "beatsPerBar": 3,
+   "bars": 32,
+   "loopSeconds": 87.27272108843538,
+   "loopSamples": 3848727,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_sleepinggarden"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_sleepinggarden/secret_sleepinggarden_base",
+    "Music/secret_sleepinggarden/secret_sleepinggarden_rhythm",
+    "Music/secret_sleepinggarden/secret_sleepinggarden_melody",
+    "Music/secret_sleepinggarden/secret_sleepinggarden_intensity"
+   ]
+  },
+  {
+   "id": "secret_emptytheatre",
+   "title": "Empty Seats",
+   "bpm": 78,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 98.46154195011339,
+   "loopSamples": 4342154,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_emptytheatre"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_emptytheatre/secret_emptytheatre_base",
+    "Music/secret_emptytheatre/secret_emptytheatre_rhythm",
+    "Music/secret_emptytheatre/secret_emptytheatre_melody",
+    "Music/secret_emptytheatre/secret_emptytheatre_intensity"
+   ]
+  },
+  {
+   "id": "secret_deadletters",
+   "title": "Return to Sender",
+   "bpm": 76,
+   "beatsPerBar": 3,
+   "bars": 32,
+   "loopSeconds": 75.78947845804989,
+   "loopSamples": 3342316,
+   "sampleRate": 44100,
+   "scenes": [
+    "secret_deadletters"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/secret_deadletters/secret_deadletters_base",
+    "Music/secret_deadletters/secret_deadletters_rhythm",
+    "Music/secret_deadletters/secret_deadletters_melody",
+    "Music/secret_deadletters/secret_deadletters_intensity"
+   ]
+  },
+  {
+   "id": "ending_dawn",
+   "title": "First Light",
+   "bpm": 58,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 132.41378684807256,
+   "loopSamples": 5839448,
+   "sampleRate": 44100,
+   "scenes": [
+    "ending"
+   ],
+   "family": "storybook_v5",
+   "stems": [
+    "Music/ending_dawn/ending_dawn_base",
+    "Music/ending_dawn/ending_dawn_rhythm",
+    "Music/ending_dawn/ending_dawn_melody",
+    "Music/ending_dawn/ending_dawn_intensity"
+   ]
   }
  ]
 }

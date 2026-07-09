@@ -270,7 +270,12 @@ namespace ArcaneBrigade
             {
                 bool dawn = session.State.Nightmare?.CustomerDefeated == true && !session.State.Endless;
                 music.SetDreamDepth(NightmareRules.Depth(session.State.Wave),dawn);
-                music.ForceScene(dawn && session.State.Nightmare.EndingPage >= 2 ? "menu" : null);
+                // the dawn ending and a secret room's open choices have pieces of their own (requirement 27/10/2026)
+                SecretEventProgress room = session.State.Secrets;
+                string pinned = dawn && session.State.Nightmare.EndingPage >= 2 ? ArcaneCueLibrary.SceneEnding
+                    : session.SecretRoomOpen && room.Stage != SecretEventStage.Fighting ? "secret_" + room.Kind.ToString().ToLowerInvariant() : null;
+                music.ForceScene(pinned);
+                music.BossKey = simulation.Boss != null && simulation.Boss.Alive ? ArcaneCueLibrary.BossKey(simulation.Boss.Definition) : null;
             }
             if (music != null && session != null) music.SetPhase(TransitionPending ? SessionPhase.Combat : session.State.Phase, pauseGate.Paused || simulation.Phase == RunPhase.Paused, simulation.Boss != null && simulation.Boss.Alive);
             if (music != null && session != null) { music.RunSeed = session.State.Seed; music.SetContext(session.State.Wave, runCatalog.NormalWaves, session.State.Endless, Shop != null && Shop.Special, simulation.Units); }

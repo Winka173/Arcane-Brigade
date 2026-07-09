@@ -31,6 +31,12 @@ namespace ArcaneBrigade.Editor
                 for (int v = 0; v < 8; v++) { ArcanePieceDef p = ArcaneCueLibrary.PieceForScene(scene, v); if (p != null && !all.Contains(p.id)) all.Add(p.id); }
                 log.AppendLine("MUSICCHECK scene " + scene + " | " + string.Join(", ", all));
             }
+            foreach (string key in new[] { "coinwidow", "chairporter", "doorthatstayedshut", "marqueemaw", "lastcustomer", "keeper" })
+            { ArcanePieceDef b = ArcaneCueLibrary.PieceForScene("boss_" + key, 0); log.AppendLine("MUSICCHECK boss " + key + " | " + (b != null ? b.id + " - " + b.title : "(shared boss pieces)")); }
+            foreach (SecretEventKind kind in System.Enum.GetValues(typeof(SecretEventKind)))
+            { ArcanePieceDef r = ArcaneCueLibrary.PieceForScene("secret_" + kind.ToString().ToLowerInvariant(), 0); log.AppendLine("MUSICCHECK room " + kind + " | " + (r != null ? r.id + " - " + r.title : "NONE")); }
+            ArcanePieceDef e = ArcaneCueLibrary.PieceForScene(ArcaneCueLibrary.SceneEnding, 0);
+            log.AppendLine("MUSICCHECK ending | " + (e != null ? e.id + " - " + e.title : "NONE") + " | victory scene " + ArcaneCueLibrary.SceneFor(SessionPhase.Victory, false, 20, 20, false, false));
             Debug.Log(log.ToString());
         }
     }

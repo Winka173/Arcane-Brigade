@@ -2,7 +2,7 @@
 pan -> stem bus + circular convolution room -> scene-mix loudness -> 4 sample-aligned OGG Vorbis stems per piece.
 
 Usage: python render.py [--out <Music dir>] [--preview <dir>] [--json] [piece_id ...]
-Env:   AB_FLUIDSYNTH (fluidsynth.exe), AB_SF2 (GeneralUser-GS.sf2), AB_FFMPEG (ffmpeg.exe), AB_WORK (scratch dir), AB_TRACKS (tracks | tracks2)
+Env:   AB_FLUIDSYNTH (fluidsynth.exe), AB_SF2 (GeneralUser-GS.sf2), AB_FFMPEG (ffmpeg.exe), AB_WORK (scratch dir), AB_TRACKS (tracks | tracks2 | tracks3)
 """
 import argparse
 import json
@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from compose import write_part  # noqa: E402
 import importlib  # noqa: E402
 
-# AB_TRACKS picks the piece list: 'tracks' (the first sixteen, default) or 'tracks2' (the second set)
+# AB_TRACKS picks the piece list: 'tracks' (the first sixteen, default), 'tracks2' or 'tracks3'
 tracks = importlib.import_module(os.environ.get('AB_TRACKS', 'tracks'))
 
 SR = 44100
@@ -39,7 +39,12 @@ COMBAT_MIX = [1, 1, 0, 0]
 
 
 def scene_mix(song):
-    return SCENE_MIX.get(song.scenes[0], COMBAT_MIX)
+    first = song.scenes[0]
+    if first.startswith('secret_'):  # a secret room's piece plays like a shop's
+        return SCENE_MIX['shop_gold']
+    if first == 'ending':  # the ending plays like a menu
+        return SCENE_MIX['menu']
+    return SCENE_MIX.get(first, COMBAT_MIX)  # boss_<key> pieces fall to the boss mix
 
 
 def fold(x, n):
