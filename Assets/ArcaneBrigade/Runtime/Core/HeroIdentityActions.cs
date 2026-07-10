@@ -203,7 +203,7 @@ namespace ArcaneBrigade
         {
             if (!HeroIdentityEnabled || !Champion.Alive || Phase != RunPhase.Combat) return;
             identityGlyphs.RemoveAll(g => g.Until <= Elapsed);
-            liveEnemyCount = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy) liveEnemyCount++;
+            liveEnemyCount = 0; foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy) liveEnemyCount++;
             identityMarks.RemoveAll(m => !m.Target.Alive || m.Until <= Elapsed);
             ResolveIdentityStrikes();
             if (!Champion.Alive || Phase != RunPhase.Combat) return;

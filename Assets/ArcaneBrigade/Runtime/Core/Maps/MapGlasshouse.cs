@@ -157,7 +157,7 @@ namespace ArcaneBrigade
                 else MapSay("Rain", new Color(.6f, .88f, .95f));
             }
             if (!sunny) return;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || !GlassAdmiral(u) || u.EntranceUntil > t) continue;
                 Vector2 step = u.Position - u.PreviousPosition;
@@ -211,7 +211,7 @@ namespace ArcaneBrigade
                 {
                     // a fair pick among the enemies in sight: ordinary bodies first, never a boss
                     UnitState pick = null; int seen = 0; bool ordinary = false;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         if (!u.Alive || u.Faction != Faction.Enemy || u.Definition.IsBoss || u.EntranceUntil > t) continue;
                         float d = (u.Position - Champion.Position).sqrMagnitude;
@@ -274,7 +274,7 @@ namespace ArcaneBrigade
                 {
                     if (t < bud.NextShot) continue;
                     UnitState target = null; float best = range2;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         if (!u.Alive || !CanHit(Faction.Champion, u) || u.EntranceUntil > t) continue;
                         float d = (u.Position - bud.Position).sqrMagnitude; if (d < best) { best = d; target = u; }
@@ -324,7 +324,7 @@ namespace ArcaneBrigade
             }
             s.GlassWeatherShift = MapEnvironmentRules.GlassWeatherSeconds * 1.5f - t; s.GlassWeatherTurn = -1; // mid-rain
             UnitState enemy = null;
-            foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (enemy == null || (u.Position - h).sqrMagnitude < (enemy.Position - h).sqrMagnitude)) enemy = u;
+            foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (enemy == null || (u.Position - h).sqrMagnitude < (enemy.Position - h).sqrMagnitude)) enemy = u;
             s.GlassCarriers.Clear();
             if (enemy != null) s.GlassCarriers.Add(new MapEnvironmentState.GlassCarrier { Id = enemy.Id, Last = enemy.Position, Since = t });
             s.GlassNextCarrier = t + 30;

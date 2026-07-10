@@ -46,7 +46,7 @@ namespace ArcaneBrigade
         private void AdjustLotus(int direction)
         {
             int count = RelicCount(RelicMechanic.FreshLotus);
-            foreach (UnitState ally in units)
+            foreach (UnitState ally in StableUnits)
                 if (ally.Faction != Faction.Enemy)
                 {
                     ally.Definition.Weapon.ProjectilePierce += direction * 3 * count;
@@ -78,9 +78,9 @@ namespace ArcaneBrigade
             if (effect == ItemEffect.Armor) catalog.Armor += value;
             if (effect == ItemEffect.Heal) catalog.PassiveHeal += value;
             if (effect == ItemEffect.Luck) catalog.Luck += value;
-            if (effect == ItemEffect.Crit) foreach (UnitState ally in units) if (ally.Faction != Faction.Enemy) ally.Definition.CriticalChance += value;
+            if (effect == ItemEffect.Crit) foreach (UnitState ally in StableUnits) if (ally.Faction != Faction.Enemy) ally.Definition.CriticalChance += value;
             if (effect == ItemEffect.Damage)
-                foreach (UnitState ally in units) if (ally.Faction != Faction.Enemy) ally.Definition.Weapon.Damage *= Mathf.Max(.05f,1 + value);
+                foreach (UnitState ally in StableUnits) if (ally.Faction != Faction.Enemy) ally.Definition.Weapon.Damage *= Mathf.Max(.05f,1 + value);
             events.Add(new CombatEvent(CombatEventKind.Proc,Champion.Position,Faction.Champion,value,cause:NewCause(Champion.Id).Child("curio-growth")));
         }
 
@@ -126,7 +126,7 @@ namespace ArcaneBrigade
         private void RelicStrike(float damage, int count, string id)
         {
             var enemies = new List<UnitState>();
-            foreach (UnitState enemy in units) if (enemy.Alive && enemy.Faction == Faction.Enemy && enemy.EntranceUntil <= 0) enemies.Add(enemy);
+            foreach (UnitState enemy in StableUnits) if (enemy.Alive && enemy.Faction == Faction.Enemy && enemy.EntranceUntil <= 0) enemies.Add(enemy);
             for (int index = 0; index < count && enemies.Count > 0; index++)
             {
                 int choice = combatRandom.Next(enemies.Count); UnitState enemy = enemies[choice]; enemies.RemoveAt(choice);
@@ -155,7 +155,7 @@ namespace ArcaneBrigade
             if (RelicCount(RelicMechanic.StillRecovery) > 0 && relicStanding) Heal(3 * RelicCount(RelicMechanic.StillRecovery) * deltaTime,NewCause(Champion.Id).Child("curio-still-heal"));
             if (Kills / 10 > relicLastKills && RelicCount(RelicMechanic.SoloOverdrive) > 0) Heal((Kills / 10 - relicLastKills) * 3,NewCause(Champion.Id).Child("curio-overdrive-heal"));
             relicLastKills = Kills / 10;
-            foreach (UnitState enemy in units)
+            foreach (UnitState enemy in StableUnits)
                 if (enemy.Alive && enemy.Faction == Faction.Enemy && enemy.RelicPoisonUntil > Elapsed && enemy.RelicPoisonAt <= Elapsed)
                 { enemy.RelicPoisonAt = Elapsed + 1; ApplyDamage(enemy,Mathf.Max(1,catalog.RelicIncome) * RelicLateFee,Faction.Champion,"curio-poison",cause:NewCause(Champion.Id).Child("curio-poison")); }
             if (Elapsed >= relicSecondAt)
@@ -169,7 +169,7 @@ namespace ArcaneBrigade
                 int gamble = RelicCount(RelicMechanic.GambleRecovery);
                 if (gamble > 0 && combatRandom.NextDouble() < .5) Heal(20 * gamble,NewCause(Champion.Id).Child("curio-gamble"));
                 if (gamble > 0 && combatRandom.NextDouble() < .5) ApplyDamage(Champion,8 * gamble,Faction.Enemy,"Gamble sandwich",cause:NewCause(Champion.Id).Child("curio-cost"),injectedDamage:true);
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                     if (enemy.Alive && enemy.Faction == Faction.Enemy && enemy.EntranceUntil <= 0)
                     {
                         float damage = RelicCount(RelicMechanic.SorrowPulse) * Champion.Definition.Health * .2f + RelicCount(RelicMechanic.VoidPulse) * enemy.Health * .15f;
@@ -187,7 +187,7 @@ namespace ArcaneBrigade
                 phantom.NextAttack = Elapsed + Mathf.Max(.2f,weapon.Cooldown);
                 if (weapon.Kind == WeaponKind.Projectile) EmitProjectile(phantom,RelicAttackDamage(phantom,weapon.Damage),false,NewCause(Champion.Id).Child("curio-sixfold"));
                 else
-                    foreach (UnitState enemy in units)
+                    foreach (UnitState enemy in StableUnits)
                         if (CanHit(Faction.Champion,enemy) && InBody(enemy, Champion.Position, weapon.Range))
                             ApplyWeaponDamage(enemy,RelicAttackDamage(phantom,weapon.Damage),Faction.Champion,weapon.Element,"Phantom weapon",(enemy.Position - Champion.Position).normalized,weapon,false,NewCause(Champion.Id).Child("curio-sixfold"));
                 events.Add(new CombatEvent(CombatEventKind.Fire,Champion.Position,Faction.Champion,direction:phantom.AttackDirection,weapon:weapon,cause:NewCause(Champion.Id).Child("curio-sixfold")));

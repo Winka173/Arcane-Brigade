@@ -97,7 +97,7 @@ namespace ArcaneBrigade
             if (RelicCount(RelicMechanic.BorrowedCrown) == 0 || Elapsed < relicCrownAt) return;
             WeaponDefinition weapon = Champion.Definition.Weapon;
             UnitState bearer = null;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Companion && (bearer == null || u.Definition.CombatTier > bearer.Definition.CombatTier)) bearer = u;
             if (bearer == null) return;
             UnitState target = FindTarget(bearer, Mathf.Max(4, weapon.Range));
@@ -137,7 +137,7 @@ namespace ArcaneBrigade
                 && performer.Definition.Weapon.Kind == WeaponKind.Melee)
             {
                 UnitState partner = null; float best = 9;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                     if (u != performer && u.Alive && u.Faction == Faction.Companion && u.Definition.Weapon.Kind == WeaponKind.Melee && u.ThreadAt <= Elapsed)
                     { float d = (u.Position - performer.Position).sqrMagnitude; if (d < best) { best = d; partner = u; } }
                 if (partner == null) return;
@@ -149,7 +149,7 @@ namespace ArcaneBrigade
         private UnitState NearestEnemy(Vector2 at, float range)
         {
             UnitState best = null; float bestDistance = range * range;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Enemy && u.EntranceUntil <= Elapsed) { float d = (u.Position - at).sqrMagnitude; if (d < bestDistance) { bestDistance = d; best = u; } }
             return best;
         }

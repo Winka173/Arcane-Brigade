@@ -18,7 +18,7 @@ namespace ArcaneBrigade
             lastLightUsed = false; lastLightUntil = -1;
             int polish = RelicCount(RelicMechanic.StarPolish);
             UnitState strongest = null;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (u.Faction != Faction.Companion) continue;
                 if (polish > 0 && u.Definition.CombatTier >= 3 && u.Definition.Weapon.Kind == WeaponKind.Projectile) u.Definition.Weapon.ProjectileCount += polish;
@@ -96,7 +96,7 @@ namespace ArcaneBrigade
         {
             if (RelicCount(RelicMechanic.MeltingSundae) == 0 || Elapsed < relicSundaeAt) return;
             relicSundaeAt = Elapsed + 4;
-            foreach (UnitState enemy in units)
+            foreach (UnitState enemy in StableUnits)
                 if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - Champion.Position).sqrMagnitude <= 4) Freeze(enemy, .5f);
             events.Add(new CombatEvent(CombatEventKind.Proc, Champion.Position, Faction.Champion, 0, subject: Champion, cause: NewCause(Champion.Id).Child("curio-sundae")));
         }
@@ -106,14 +106,14 @@ namespace ArcaneBrigade
             if (Elapsed >= relicCuckooAt && RelicCount(RelicMechanic.CuckooPendulum) > 0)
             {
                 relicCuckooAt = Elapsed + 12;
-                foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Companion) u.CuckooReady = true;
+                foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Companion) u.CuckooReady = true;
                 events.Add(new CombatEvent(CombatEventKind.Proc, Champion.Position, Faction.Champion, 0, subject: Champion, cause: NewCause(Champion.Id).Child("curio-cuckoo")));
             }
             if (Elapsed >= relicUndertowAt && RelicCount(RelicMechanic.UndertowAnchor) > 0)
             {
                 relicUndertowAt = Elapsed + 8;
                 var near = new List<UnitState>();
-                foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.EntranceUntil <= Elapsed) near.Add(u);
+                foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.EntranceUntil <= Elapsed) near.Add(u);
                 near.Sort((a, b) => (a.Position - Champion.Position).sqrMagnitude.CompareTo((b.Position - Champion.Position).sqrMagnitude));
                 CombatCause cause = NewCause(Champion.Id).Child("curio-undertow");
                 for (int i = 0; i < Mathf.Min(5, near.Count); i++)
@@ -167,7 +167,7 @@ namespace ArcaneBrigade
             if (melee && RelicCount(RelicMechanic.WhetstoneWafer) > 0)
             {
                 UnitState beside = null; float best = 1.44f;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                     if (u != target && u.Alive && u.Faction == Faction.Enemy) { float d = (u.Position - target.Position).sqrMagnitude; if (d < best) { best = d; beside = u; } }
                 if (beside != null) ApplyDamage(beside, e.Value * .4f, performer.Faction, "Whetstone wafer", beside.Position - performer.Position, cause: e.Cause.Child("curio-whetstone"));
             }
@@ -190,7 +190,7 @@ namespace ArcaneBrigade
             if (RelicCount(RelicMechanic.WindChime) > 0 && ++relicChimeCrits >= 10)
             {
                 relicChimeCrits = 0;
-                foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Companion) u.ChimeShots = 3;
+                foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Companion) u.ChimeShots = 3;
                 events.Add(new CombatEvent(CombatEventKind.Proc, Champion.Position, Faction.Champion, 0, subject: Champion, cause: NewCause(Champion.Id).Child("curio-chime")));
             }
         }

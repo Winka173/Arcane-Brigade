@@ -50,8 +50,11 @@ namespace ArcaneBrigade
         private void ProcessHostileCollateral(ExpandedField field)
         {
             if (!catalog.ExpandedContent || !EnemyInteractionRules.HasCollateral(field.Kind)) return;
-            foreach (UnitState target in units)
+            // Damage callbacks can spawn units. Only bodies present when this field resolves are eligible.
+            int targetCount = units.Count;
+            for (int targetIndex = 0; targetIndex < targetCount; targetIndex++)
             {
+                UnitState target = units[targetIndex];
                 if (!target.Alive || target.Faction != Faction.Enemy || target == field.Source || field.CollateralVictims.Contains(target.Id) || !CarnivalHazards.Contains(field, target.Position, target.Definition.Radius, Elapsed)) continue;
                 field.CollateralVictims.Add(target.Id);
                 float damage = Mathf.Min(field.Damage * 0.6f, target.Definition.Health * (target.Definition.IsBoss ? 0.015f : 0.12f));

@@ -57,7 +57,7 @@ namespace ArcaneBrigade
         private ContributionEntry Contribution(CombatCause cause)
         {
             UnitState source = null;
-            foreach (UnitState candidate in units) if (candidate.Id == cause.SourceUnitId) { source = candidate; break; }
+            foreach (UnitState candidate in StableUnits) if (candidate.Id == cause.SourceUnitId) { source = candidate; break; }
             string unitId = source == null ? "ARENA" : source.Definition.Id;
             string weaponId = source == null ? "" : source.Definition.Weapon.Id;
             string effectId = string.IsNullOrEmpty(cause.ItemId) ? "primary" : cause.ItemId;

@@ -14,7 +14,7 @@ namespace ArcaneBrigade
             }
             if (weapon.Mechanic == CarnivalWeapon.EchoBlade)
             {
-                foreach (UnitState target in units)
+                foreach (UnitState target in StableUnits)
                 {
                     Vector2 offset = target.Position - source.Position;
                     if (CanHit(source.Faction, target) && offset.magnitude <= weapon.Range + target.Definition.Radius && Vector2.Dot(offset.normalized, source.AttackDirection) >= weapon.ConeDot)

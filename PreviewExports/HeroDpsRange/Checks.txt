@@ -1,0 +1,1 @@
+1080 passed: all catalog weapon ranges at waves 1/10/20 and stars 1/2/3; actual flight for every shot pattern; shop merchant fade/restoration with flat and split portraits; wares stay opaque; drill/buoy end-of-flight and returning Arsenal stages; Billy uses equipped attacks only after hero crits; queued responses clear at shop entry.

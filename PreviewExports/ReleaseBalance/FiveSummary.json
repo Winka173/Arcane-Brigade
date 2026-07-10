@@ -1,0 +1,1463 @@
+{
+  "damageGate": "max/min <= 1.30 within matched target count, wave and investment; average approaches and movement modes equally",
+  "dps": [
+    {
+      "path": "PreviewExports/HeroDpsRange/FiveHeldout20261027",
+      "samples": 2592,
+      "bands": [
+        {
+          "targets": 1,
+          "wave": 10,
+          "values": {
+            "ArchiveCurator": 473.9279,
+            "BellDiver": 519.0746,
+            "BonsaiClocksmith": 498.4449,
+            "ButtonCavalier": 445.9321,
+            "ChinaMarionette": 486.7571,
+            "CitrusMarshal": 347.3975,
+            "CometRunner": 468.1768,
+            "CopperCauldron": 617.7582,
+            "DrowsySeer": 567.5204,
+            "GlassDice": 818.661,
+            "HourglassStag": 426.9359,
+            "IvorySovereign": 489.072,
+            "JugglingJester": 499.1373,
+            "KiteAdmiral": 436.3835,
+            "LanternKnight": 770.775,
+            "LanternWeaver": 479.0626,
+            "LoneJelly": 506.925,
+            "MirrorKeeper": 486.6345,
+            "MoonProwler": 457.6044,
+            "NightMaw": 558.104,
+            "PatchworkHost": 590.7078,
+            "PennyBroker": 454.7535,
+            "PetalCitadel": 542.2928,
+            "Postmaster": 582.579,
+            "RainArchivist": 560.9646,
+            "RootOracle": 601.9501,
+            "SoapSkater": 239.9638,
+            "StormFencer": 527.6327,
+            "SundaeDuchess": 468.2418,
+            "SupperMortar": 473.2153,
+            "ThornTreasurer": 320.7216,
+            "TideSinger": 561.7134,
+            "TinVirtuoso": 222.8627,
+            "TreasureAcorn": 568.5475,
+            "VelvetRegent": 648.3873,
+            "VerdantMatron": 461.4867
+          },
+          "lowest": "TinVirtuoso",
+          "highest": "GlassDice",
+          "maxMinRatio": 3.6734,
+          "withinThirtyPercent": false
+        },
+        {
+          "targets": 1,
+          "wave": 20,
+          "values": {
+            "ArchiveCurator": 359.3292,
+            "BellDiver": 385.2326,
+            "BonsaiClocksmith": 376.7839,
+            "ButtonCavalier": 341.2781,
+            "ChinaMarionette": 368.9587,
+            "CitrusMarshal": 258.8939,
+            "CometRunner": 355.4625,
+            "CopperCauldron": 456.1397,
+            "DrowsySeer": 434.5545,
+            "GlassDice": 623.8901,
+            "HourglassStag": 319.0094,
+            "IvorySovereign": 371.4788,
+            "JugglingJester": 371.2532,
+            "KiteAdmiral": 314.009,
+            "LanternKnight": 559.5552,
+            "LanternWeaver": 359.8143,
+            "LoneJelly": 571.8116,
+            "MirrorKeeper": 365.3564,
+            "MoonProwler": 348.5623,
+            "NightMaw": 405.6949,
+            "PatchworkHost": 449.2026,
+            "PennyBroker": 341.4881,
+            "PetalCitadel": 407.5151,
+            "Postmaster": 446.8092,
+            "RainArchivist": 420.1267,
+            "RootOracle": 453.5673,
+            "SoapSkater": 179.6837,
+            "StormFencer": 395.4186,
+            "SundaeDuchess": 360.7436,
+            "SupperMortar": 358.7428,
+            "ThornTreasurer": 243.3744,
+            "TideSinger": 414.5147,
+            "TinVirtuoso": 167.8344,
+            "TreasureAcorn": 462.4333,
+            "VelvetRegent": 484.9883,
+            "VerdantMatron": 336.5113
+          },
+          "lowest": "TinVirtuoso",
+          "highest": "GlassDice",
+          "maxMinRatio": 3.7173,
+          "withinThirtyPercent": false
+        },
+        {
+          "targets": 8,
+          "wave": 10,
+          "values": {
+            "ArchiveCurator": 2271.4281,
+            "BellDiver": 2115.3131,
+            "BonsaiClocksmith": 2104.1801,
+            "ButtonCavalier": 1987.0622,
+            "ChinaMarionette": 2126.5827,
+            "CitrusMarshal": 1393.7991,
+            "CometRunner": 1893.7181,
+            "CopperCauldron": 2138.8498,
+            "DrowsySeer": 2521.3986,
+            "GlassDice": 3588.7098,
+            "HourglassStag": 2084.0422,
+            "IvorySovereign": 2225.3763,
+            "JugglingJester": 2222.3324,
+            "KiteAdmiral": 2017.8521,
+            "LanternKnight": 3532.8247,
+            "LanternWeaver": 2364.3933,
+            "LoneJelly": 952.4514,
+            "MirrorKeeper": 2182.6831,
+            "MoonProwler": 2410.5113,
+            "NightMaw": 2310.9367,
+            "PatchworkHost": 2198.8389,
+            "PennyBroker": 2101.5013,
+            "PetalCitadel": 2644.8013,
+            "Postmaster": 2204.0899,
+            "RainArchivist": 2135.9464,
+            "RootOracle": 2721.9616,
+            "SoapSkater": 1161.0109,
+            "StormFencer": 2351.7434,
+            "SundaeDuchess": 2116.251,
+            "SupperMortar": 2204.1924,
+            "ThornTreasurer": 1299.4069,
+            "TideSinger": 2120.3803,
+            "TinVirtuoso": 399.5525,
+            "TreasureAcorn": 2459.6369,
+            "VelvetRegent": 2843.981,
+            "VerdantMatron": 2027.8772
+          },
+          "lowest": "TinVirtuoso",
+          "highest": "GlassDice",
+          "maxMinRatio": 8.9818,
+          "withinThirtyPercent": false
+        },
+        {
+          "targets": 8,
+          "wave": 20,
+          "values": {
+            "ArchiveCurator": 1692.1092,
+            "BellDiver": 1559.7371,
+            "BonsaiClocksmith": 1584.9751,
+            "ButtonCavalier": 1484.2986,
+            "ChinaMarionette": 1586.9944,
+            "CitrusMarshal": 1003.2922,
+            "CometRunner": 1414.0053,
+            "CopperCauldron": 1576.9778,
+            "DrowsySeer": 1840.867,
+            "GlassDice": 2728.4786,
+            "HourglassStag": 1533.3666,
+            "IvorySovereign": 1752.0989,
+            "JugglingJester": 1649.3841,
+            "KiteAdmiral": 1489.7337,
+            "LanternKnight": 2538.1539,
+            "LanternWeaver": 1771.6932,
+            "LoneJelly": 1115.5014,
+            "MirrorKeeper": 1639.4792,
+            "MoonProwler": 1697.8432,
+            "NightMaw": 1677.0447,
+            "PatchworkHost": 1599.6894,
+            "PennyBroker": 1586.328,
+            "PetalCitadel": 2012.0183,
+            "Postmaster": 1666.1159,
+            "RainArchivist": 1565.1874,
+            "RootOracle": 2044.0422,
+            "SoapSkater": 833.1024,
+            "StormFencer": 1753.1142,
+            "SundaeDuchess": 1580.7728,
+            "SupperMortar": 1692.4931,
+            "ThornTreasurer": 1013.5616,
+            "TideSinger": 1541.2012,
+            "TinVirtuoso": 280.8786,
+            "TreasureAcorn": 1978.0549,
+            "VelvetRegent": 2075.4584,
+            "VerdantMatron": 1475.9969
+          },
+          "lowest": "TinVirtuoso",
+          "highest": "GlassDice",
+          "maxMinRatio": 9.7141,
+          "withinThirtyPercent": false
+        }
+      ],
+      "interpretation": "Controlled offence only. Total team includes hero; SoloMaw has no brigade. No survival/win-rate claim. Support bonus columns must not be added again."
+    },
+    {
+      "path": "PreviewExports/HeroDpsRange/FiveHeldout20261027Invested",
+      "samples": 2592,
+      "bands": [
+        {
+          "targets": 1,
+          "wave": 10,
+          "values": {
+            "ArchiveCurator": 954.18,
+            "BellDiver": 1079.8478,
+            "BonsaiClocksmith": 1026.6587,
+            "ButtonCavalier": 937.8697,
+            "ChinaMarionette": 1028.572,
+            "CitrusMarshal": 695.7772,
+            "CometRunner": 963.0784,
+            "CopperCauldron": 1228.2421,
+            "DrowsySeer": 1268.2134,
+            "GlassDice": 1555.4302,
+            "HourglassStag": 855.2009,
+            "IvorySovereign": 965.8708,
+            "JugglingJester": 1049.8956,
+            "KiteAdmiral": 889.3153,
+            "LanternKnight": 1542.3974,
+            "LanternWeaver": 957.7721,
+            "LoneJelly": 860.3897,
+            "MirrorKeeper": 1018.4063,
+            "MoonProwler": 942.6621,
+            "NightMaw": 1149.1356,
+            "PatchworkHost": 1193.5004,
+            "PennyBroker": 907.8983,
+            "PetalCitadel": 1120.0127,
+            "Postmaster": 1181.9023,
+            "RainArchivist": 1111.4492,
+            "RootOracle": 1137.4976,
+            "SoapSkater": 634.3406,
+            "StormFencer": 1064.0059,
+            "SundaeDuchess": 1013.4741,
+            "SupperMortar": 924.9528,
+            "ThornTreasurer": 752.928,
+            "TideSinger": 1124.1148,
+            "TinVirtuoso": 651.9281,
+            "TreasureAcorn": 938.9227,
+            "VelvetRegent": 1489.0913,
+            "VerdantMatron": 908.565
+          },
+          "lowest": "SoapSkater",
+          "highest": "GlassDice",
+          "maxMinRatio": 2.452,
+          "withinThirtyPercent": false
+        },
+        {
+          "targets": 1,
+          "wave": 20,
+          "values": {
+            "ArchiveCurator": 735.5155,
+            "BellDiver": 829.2804,
+            "BonsaiClocksmith": 786.9547,
+            "ButtonCavalier": 682.1472,
+            "ChinaMarionette": 767.2845,
+            "CitrusMarshal": 519.9026,
+            "CometRunner": 724.4651,
+            "CopperCauldron": 936.2239,
+            "DrowsySeer": 936.7136,
+            "GlassDice": 1141.3768,
+            "HourglassStag": 649.591,
+            "IvorySovereign": 737.5999,
+            "JugglingJester": 805.2058,
+            "KiteAdmiral": 632.711,
+            "LanternKnight": 1090.4058,
+            "LanternWeaver": 711.3508,
+            "LoneJelly": 1027.3118,
+            "MirrorKeeper": 779.0925,
+            "MoonProwler": 699.504,
+            "NightMaw": 869.4318,
+            "PatchworkHost": 922.9511,
+            "PennyBroker": 715.5005,
+            "PetalCitadel": 856.7595,
+            "Postmaster": 873.8243,
+            "RainArchivist": 836.734,
+            "RootOracle": 930.4293,
+            "SoapSkater": 476.7761,
+            "StormFencer": 815.5544,
+            "SundaeDuchess": 799.9375,
+            "SupperMortar": 706.5314,
+            "ThornTreasurer": 593.2382,
+            "TideSinger": 841.9094,
+            "TinVirtuoso": 565.7328,
+            "TreasureAcorn": 756.449,
+            "VelvetRegent": 1193.6994,
+            "VerdantMatron": 697.448
+          },
+          "lowest": "SoapSkater",
+          "highest": "VelvetRegent",
+          "maxMinRatio": 2.5037,
+          "withinThirtyPercent": false
+        },
+        {
+          "targets": 8,
+          "wave": 10,
+          "values": {
+            "ArchiveCurator": 4570.8237,
+            "BellDiver": 4226.0997,
+            "BonsaiClocksmith": 4158.3521,
+            "ButtonCavalier": 3954.7683,
+            "ChinaMarionette": 4306.5166,
+            "CitrusMarshal": 2728.1828,
+            "CometRunner": 3696.1198,
+            "CopperCauldron": 4137.3597,
+            "DrowsySeer": 5061.4312,
+            "GlassDice": 6599.5696,
+            "HourglassStag": 3981.2979,
+            "IvorySovereign": 4430.8774,
+            "JugglingJester": 4529.905,
+            "KiteAdmiral": 3962.5079,
+            "LanternKnight": 6585.2744,
+            "LanternWeaver": 4621.5859,
+            "LoneJelly": 1736.0236,
+            "MirrorKeeper": 4284.1639,
+            "MoonProwler": 4529.6819,
+            "NightMaw": 4654.3888,
+            "PatchworkHost": 4171.8897,
+            "PennyBroker": 4202.7542,
+            "PetalCitadel": 5177.8542,
+            "Postmaster": 4259.5522,
+            "RainArchivist": 4083.898,
+            "RootOracle": 4978.595,
+            "SoapSkater": 2755.5536,
+            "StormFencer": 4399.9271,
+            "SundaeDuchess": 4274.1631,
+            "SupperMortar": 4402.0371,
+            "ThornTreasurer": 2993.9434,
+            "TideSinger": 4109.1404,
+            "TinVirtuoso": 1865.9122,
+            "TreasureAcorn": 4131.049,
+            "VelvetRegent": 6644.2956,
+            "VerdantMatron": 3855.4449
+          },
+          "lowest": "LoneJelly",
+          "highest": "VelvetRegent",
+          "maxMinRatio": 3.8273,
+          "withinThirtyPercent": false
+        },
+        {
+          "targets": 8,
+          "wave": 20,
+          "values": {
+            "ArchiveCurator": 3278.3506,
+            "BellDiver": 3069.2998,
+            "BonsaiClocksmith": 2999.6112,
+            "ButtonCavalier": 2900.7261,
+            "ChinaMarionette": 3018.807,
+            "CitrusMarshal": 1964.723,
+            "CometRunner": 2723.2649,
+            "CopperCauldron": 3064.3062,
+            "DrowsySeer": 3704.0644,
+            "GlassDice": 4689.4317,
+            "HourglassStag": 2980.0719,
+            "IvorySovereign": 3200.073,
+            "JugglingJester": 3263.2172,
+            "KiteAdmiral": 2882.5647,
+            "LanternKnight": 4630.6129,
+            "LanternWeaver": 3391.0457,
+            "LoneJelly": 2106.7312,
+            "MirrorKeeper": 3093.1188,
+            "MoonProwler": 3246.3014,
+            "NightMaw": 3476.7291,
+            "PatchworkHost": 3143.1556,
+            "PennyBroker": 3082.7859,
+            "PetalCitadel": 3860.2994,
+            "Postmaster": 3201.5542,
+            "RainArchivist": 3009.8598,
+            "RootOracle": 3947.2584,
+            "SoapSkater": 2002.2379,
+            "StormFencer": 3368.4551,
+            "SundaeDuchess": 3325.6044,
+            "SupperMortar": 3201.738,
+            "ThornTreasurer": 2271.724,
+            "TideSinger": 2951.7319,
+            "TinVirtuoso": 1454.7666,
+            "TreasureAcorn": 3149.3983,
+            "VelvetRegent": 4773.2936,
+            "VerdantMatron": 2837.551
+          },
+          "lowest": "TinVirtuoso",
+          "highest": "VelvetRegent",
+          "maxMinRatio": 3.2811,
+          "withinThirtyPercent": false
+        }
+      ],
+      "interpretation": "Controlled offence only. Total team includes hero; SoloMaw has no brigade. No survival/win-rate claim. Support bonus columns must not be added again."
+    }
+  ],
+  "campaigns": {
+    "compiledSamples": 2700,
+    "compiledDifficultyLaddersPass": true,
+    "difficulties": [
+      {
+        "index": "0",
+        "name": "Peaceful",
+        "requiresTree": "False"
+      },
+      {
+        "index": "1",
+        "name": "Wandering",
+        "requiresTree": "False"
+      },
+      {
+        "index": "2",
+        "name": "Nightmare",
+        "requiresTree": "False"
+      },
+      {
+        "index": "3",
+        "name": "Sleepless",
+        "requiresTree": "False"
+      },
+      {
+        "index": "4",
+        "name": "The Last Night",
+        "requiresTree": "True"
+      }
+    ],
+    "plannedRuns": 180,
+    "campaignMatrixComplete": true,
+    "completedRuns": 180,
+    "measuredWaves": 2297,
+    "ignoredPartialWaves": 0,
+    "outcomes": [
+      {
+        "difficulty": 0,
+        "policy": "Hybrid",
+        "runs": 36,
+        "difficultyName": "Peaceful",
+        "metaLevels": [
+          0
+        ],
+        "wins": 20,
+        "defeats": 15,
+        "unresolved": 1,
+        "meanTerminalWave": 17.8611
+      },
+      {
+        "difficulty": 1,
+        "policy": "Hybrid",
+        "runs": 36,
+        "difficultyName": "Wandering",
+        "metaLevels": [
+          0
+        ],
+        "wins": 15,
+        "defeats": 20,
+        "unresolved": 1,
+        "meanTerminalWave": 14.5556
+      },
+      {
+        "difficulty": 2,
+        "policy": "Hybrid",
+        "runs": 36,
+        "difficultyName": "Nightmare",
+        "metaLevels": [
+          0
+        ],
+        "wins": 1,
+        "defeats": 33,
+        "unresolved": 2,
+        "meanTerminalWave": 8.3333
+      },
+      {
+        "difficulty": 3,
+        "policy": "Hybrid",
+        "runs": 36,
+        "difficultyName": "Sleepless",
+        "metaLevels": [
+          0
+        ],
+        "wins": 4,
+        "defeats": 31,
+        "unresolved": 1,
+        "meanTerminalWave": 8.3611
+      },
+      {
+        "difficulty": 4,
+        "policy": "Hybrid",
+        "runs": 36,
+        "difficultyName": "The Last Night",
+        "metaLevels": [
+          1
+        ],
+        "wins": 16,
+        "defeats": 17,
+        "unresolved": 3,
+        "meanTerminalWave": 14.6944
+      }
+    ],
+    "economy": [
+      {
+        "waves": "1-3",
+        "metaLevel": 0,
+        "samples": 431,
+        "walletPerMeanOffer": 3.9126,
+        "medianWalletPerMeanOffer": 3.92,
+        "meanBuys": 3.5429,
+        "meanRerollSpent": 3.7053
+      },
+      {
+        "waves": "4-7",
+        "metaLevel": 0,
+        "samples": 460,
+        "walletPerMeanOffer": 6.0576,
+        "medianWalletPerMeanOffer": 5.5719,
+        "meanBuys": 5.5891,
+        "meanRerollSpent": 13.9
+      },
+      {
+        "waves": "8-11",
+        "metaLevel": 0,
+        "samples": 307,
+        "walletPerMeanOffer": 4.8943,
+        "medianWalletPerMeanOffer": 3.8946,
+        "meanBuys": 4.9479,
+        "meanRerollSpent": 44.4137
+      },
+      {
+        "waves": "12-15",
+        "metaLevel": 0,
+        "samples": 236,
+        "walletPerMeanOffer": 7.0004,
+        "medianWalletPerMeanOffer": 3.324,
+        "meanBuys": 5.4619,
+        "meanRerollSpent": 292.8898
+      },
+      {
+        "waves": "16-19",
+        "metaLevel": 0,
+        "samples": 190,
+        "walletPerMeanOffer": 16.9247,
+        "medianWalletPerMeanOffer": 3.1212,
+        "meanBuys": 6.3263,
+        "meanRerollSpent": 834.9
+      },
+      {
+        "waves": "1-3",
+        "metaLevel": 1,
+        "samples": 108,
+        "walletPerMeanOffer": 6.2234,
+        "medianWalletPerMeanOffer": 5.4778,
+        "meanBuys": 5.9074,
+        "meanRerollSpent": 2.6944
+      },
+      {
+        "waves": "4-7",
+        "metaLevel": 1,
+        "samples": 138,
+        "walletPerMeanOffer": 9.8794,
+        "medianWalletPerMeanOffer": 9.1303,
+        "meanBuys": 8.7174,
+        "meanRerollSpent": 23.4638
+      },
+      {
+        "waves": "8-11",
+        "metaLevel": 1,
+        "samples": 102,
+        "walletPerMeanOffer": 14.1518,
+        "medianWalletPerMeanOffer": 7.2386,
+        "meanBuys": 8.451,
+        "meanRerollSpent": 149.3627
+      },
+      {
+        "waves": "12-15",
+        "metaLevel": 1,
+        "samples": 81,
+        "walletPerMeanOffer": 31.5394,
+        "medianWalletPerMeanOffer": 5.2855,
+        "meanBuys": 7.9383,
+        "meanRerollSpent": 444.8765
+      },
+      {
+        "waves": "16-19",
+        "metaLevel": 1,
+        "samples": 64,
+        "walletPerMeanOffer": 85.4764,
+        "medianWalletPerMeanOffer": 5.5898,
+        "meanBuys": 8.5469,
+        "meanRerollSpent": 909.6562
+      }
+    ],
+    "bosses": [
+      {
+        "wave": 4,
+        "samples": 179,
+        "kills": 157,
+        "meanEncounterSecondsOnKill": 62.5331,
+        "meanBossFellAt": 25.0315,
+        "timeouts": 0
+      },
+      {
+        "wave": 8,
+        "samples": 140,
+        "kills": 109,
+        "meanEncounterSecondsOnKill": 67.5804,
+        "meanBossFellAt": 46.5867,
+        "timeouts": 0
+      },
+      {
+        "wave": 12,
+        "samples": 99,
+        "kills": 84,
+        "meanEncounterSecondsOnKill": 75.9096,
+        "meanBossFellAt": 59.5909,
+        "timeouts": 0
+      },
+      {
+        "wave": 16,
+        "samples": 77,
+        "kills": 64,
+        "meanEncounterSecondsOnKill": 90.4924,
+        "meanBossFellAt": 83.5792,
+        "timeouts": 4
+      },
+      {
+        "wave": 20,
+        "samples": 62,
+        "kills": 56,
+        "meanEncounterSecondsOnKill": 95.4365,
+        "meanBossFellAt": 95.4365,
+        "timeouts": 4
+      }
+    ],
+    "bossesByDifficulty": [
+      {
+        "difficulty": 0,
+        "wave": 4,
+        "samples": 36,
+        "kills": 36,
+        "meanBossFellAt": 18.0125,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 0,
+        "wave": 8,
+        "samples": 36,
+        "kills": 36,
+        "meanBossFellAt": 29.6554,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 0,
+        "wave": 12,
+        "samples": 36,
+        "kills": 33,
+        "meanBossFellAt": 39.6529,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 0,
+        "wave": 16,
+        "samples": 29,
+        "kills": 23,
+        "meanBossFellAt": 65.8524,
+        "timeouts": 1
+      },
+      {
+        "difficulty": 0,
+        "wave": 20,
+        "samples": 21,
+        "kills": 20,
+        "meanBossFellAt": 89.9139,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 1,
+        "wave": 4,
+        "samples": 36,
+        "kills": 35,
+        "meanBossFellAt": 21.0671,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 1,
+        "wave": 8,
+        "samples": 32,
+        "kills": 28,
+        "meanBossFellAt": 36.5926,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 1,
+        "wave": 12,
+        "samples": 25,
+        "kills": 20,
+        "meanBossFellAt": 50.1774,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 1,
+        "wave": 16,
+        "samples": 18,
+        "kills": 17,
+        "meanBossFellAt": 70.9829,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 1,
+        "wave": 20,
+        "samples": 17,
+        "kills": 15,
+        "meanBossFellAt": 113.8525,
+        "timeouts": 1
+      },
+      {
+        "difficulty": 2,
+        "wave": 4,
+        "samples": 36,
+        "kills": 29,
+        "meanBossFellAt": 27.3619,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 2,
+        "wave": 8,
+        "samples": 20,
+        "kills": 9,
+        "meanBossFellAt": 64.3279,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 2,
+        "wave": 12,
+        "samples": 6,
+        "kills": 4,
+        "meanBossFellAt": 72.7257,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 2,
+        "wave": 16,
+        "samples": 4,
+        "kills": 3,
+        "meanBossFellAt": 128.1532,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 2,
+        "wave": 20,
+        "samples": 3,
+        "kills": 1,
+        "meanBossFellAt": 121.0528,
+        "timeouts": 2
+      },
+      {
+        "difficulty": 3,
+        "wave": 4,
+        "samples": 35,
+        "kills": 22,
+        "meanBossFellAt": 33.5657,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 3,
+        "wave": 8,
+        "samples": 18,
+        "kills": 9,
+        "meanBossFellAt": 81.034,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 3,
+        "wave": 12,
+        "samples": 8,
+        "kills": 6,
+        "meanBossFellAt": 91.1093,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 3,
+        "wave": 16,
+        "samples": 6,
+        "kills": 5,
+        "meanBossFellAt": 124.903,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 3,
+        "wave": 20,
+        "samples": 5,
+        "kills": 4,
+        "meanBossFellAt": 95.8637,
+        "timeouts": 1
+      },
+      {
+        "difficulty": 4,
+        "wave": 4,
+        "samples": 36,
+        "kills": 35,
+        "meanBossFellAt": 28.9201,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 4,
+        "wave": 8,
+        "samples": 34,
+        "kills": 27,
+        "meanBossFellAt": 62.1298,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 4,
+        "wave": 12,
+        "samples": 24,
+        "kills": 21,
+        "meanBossFellAt": 88.3799,
+        "timeouts": 0
+      },
+      {
+        "difficulty": 4,
+        "wave": 16,
+        "samples": 20,
+        "kills": 16,
+        "meanBossFellAt": 101.1738,
+        "timeouts": 3
+      },
+      {
+        "difficulty": 4,
+        "wave": 20,
+        "samples": 16,
+        "kills": 16,
+        "meanBossFellAt": 83.367,
+        "timeouts": 0
+      }
+    ],
+    "matchedDifficultyInversions": [
+      {
+        "hero": "LanternKnight",
+        "seed": 271026,
+        "policy": "Hybrid",
+        "metaLevel": 0,
+        "lowerDifficulty": 2,
+        "lowerResult": "TIMEOUT",
+        "lowerWave": 20,
+        "higherDifficulty": 3,
+        "higherResult": "Victory"
+      },
+      {
+        "hero": "DrowsySeer",
+        "seed": 271026,
+        "policy": "Hybrid",
+        "metaLevel": 0,
+        "lowerDifficulty": 2,
+        "lowerResult": "Defeat",
+        "lowerWave": 16,
+        "higherDifficulty": 3,
+        "higherResult": "Victory"
+      },
+      {
+        "hero": "CometRunner",
+        "seed": 271026,
+        "policy": "Hybrid",
+        "metaLevel": 0,
+        "lowerDifficulty": 0,
+        "lowerResult": "Defeat",
+        "lowerWave": 16,
+        "higherDifficulty": 1,
+        "higherResult": "Victory"
+      },
+      {
+        "hero": "VelvetRegent",
+        "seed": 271026,
+        "policy": "Hybrid",
+        "metaLevel": 0,
+        "lowerDifficulty": 0,
+        "lowerResult": "TIMEOUT",
+        "lowerWave": 16,
+        "higherDifficulty": 1,
+        "higherResult": "Victory"
+      },
+      {
+        "hero": "VelvetRegent",
+        "seed": 271026,
+        "policy": "Hybrid",
+        "metaLevel": 0,
+        "lowerDifficulty": 2,
+        "lowerResult": "Defeat",
+        "lowerWave": 8,
+        "higherDifficulty": 3,
+        "higherResult": "Victory"
+      },
+      {
+        "hero": "BellDiver",
+        "seed": 271026,
+        "policy": "Hybrid",
+        "metaLevel": 0,
+        "lowerDifficulty": 0,
+        "lowerResult": "Defeat",
+        "lowerWave": 19,
+        "higherDifficulty": 1,
+        "higherResult": "Victory"
+      }
+    ],
+    "checks": [
+      "BuildBalance\tFAIL\tBroad-pool hero gets setup time while retaining full late drawback",
+      "Recruitment\tFAIL\tNew normal species accepted 20/0",
+      "HeroIdentity\tFAIL\tHero identity: Identity row does not overwrite stat summaries LanternKnight / 0",
+      "HeroAwakening\tFAIL\tHeroAwakening LanternKnight: the transformation ends and rests",
+      "SecretEvents\tPASS",
+      "Visitors\tFAIL\tVisitors: Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:Transform gauge starts 1/3 full | next wave",
+      "RareVisitors\tFAIL\tVisitors: Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:Transform gauge starts 1/3 full | next wave",
+      "Modes\tFAIL\tMode balance: Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 1",
+      "ReleaseCombat\tPASS",
+      "FiveDifficulties\tFAIL\tFive difficulties: 6/72 checks failed; see FiveDifficultyChecks/Checks.txt"
+    ],
+    "releaseChecksPass": false,
+    "caveats": [
+      "Bot survival changes the sampled population at late waves.",
+      "Read Method.txt and metaLevel: tree-gated campaigns may use a full owned-profile fixture; they are not fresh-profile outcomes.",
+      "Optional event deals are declined; do not infer event balance.",
+      "TIMEOUT and BLOCKED_SHOP remain unresolved, never counted as defeats or wins."
+    ]
+  },
+  "additionalCampaigns": [
+    {
+      "compiledSamples": 2700,
+      "compiledDifficultyLaddersPass": true,
+      "difficulties": [
+        {
+          "index": "0",
+          "name": "Peaceful",
+          "requiresTree": "False"
+        },
+        {
+          "index": "1",
+          "name": "Wandering",
+          "requiresTree": "False"
+        },
+        {
+          "index": "2",
+          "name": "Nightmare",
+          "requiresTree": "False"
+        },
+        {
+          "index": "3",
+          "name": "Sleepless",
+          "requiresTree": "False"
+        },
+        {
+          "index": "4",
+          "name": "The Last Night",
+          "requiresTree": "True"
+        }
+      ],
+      "plannedRuns": 30,
+      "campaignMatrixComplete": true,
+      "completedRuns": 30,
+      "measuredWaves": 399,
+      "ignoredPartialWaves": 0,
+      "outcomes": [
+        {
+          "difficulty": 0,
+          "policy": "Hybrid",
+          "runs": 6,
+          "difficultyName": "Peaceful",
+          "metaLevels": [
+            0
+          ],
+          "wins": 3,
+          "defeats": 2,
+          "unresolved": 1,
+          "meanTerminalWave": 17.8333
+        },
+        {
+          "difficulty": 1,
+          "policy": "Hybrid",
+          "runs": 6,
+          "difficultyName": "Wandering",
+          "metaLevels": [
+            0
+          ],
+          "wins": 2,
+          "defeats": 4,
+          "unresolved": 0,
+          "meanTerminalWave": 15
+        },
+        {
+          "difficulty": 2,
+          "policy": "Hybrid",
+          "runs": 6,
+          "difficultyName": "Nightmare",
+          "metaLevels": [
+            0
+          ],
+          "wins": 1,
+          "defeats": 5,
+          "unresolved": 0,
+          "meanTerminalWave": 9.8333
+        },
+        {
+          "difficulty": 3,
+          "policy": "Hybrid",
+          "runs": 6,
+          "difficultyName": "Sleepless",
+          "metaLevels": [
+            0
+          ],
+          "wins": 1,
+          "defeats": 5,
+          "unresolved": 0,
+          "meanTerminalWave": 8.5
+        },
+        {
+          "difficulty": 4,
+          "policy": "Hybrid",
+          "runs": 6,
+          "difficultyName": "The Last Night",
+          "metaLevels": [
+            1
+          ],
+          "wins": 3,
+          "defeats": 3,
+          "unresolved": 0,
+          "meanTerminalWave": 15.3333
+        }
+      ],
+      "economy": [
+        {
+          "waves": "1-3",
+          "metaLevel": 0,
+          "samples": 71,
+          "walletPerMeanOffer": 4.4041,
+          "medianWalletPerMeanOffer": 3.7683,
+          "meanBuys": 3.8451,
+          "meanRerollSpent": 3.1127
+        },
+        {
+          "waves": "4-7",
+          "metaLevel": 0,
+          "samples": 87,
+          "walletPerMeanOffer": 7.8708,
+          "medianWalletPerMeanOffer": 6.2129,
+          "meanBuys": 6.2874,
+          "meanRerollSpent": 22.3563
+        },
+        {
+          "waves": "8-11",
+          "metaLevel": 0,
+          "samples": 52,
+          "walletPerMeanOffer": 10.28,
+          "medianWalletPerMeanOffer": 6.1964,
+          "meanBuys": 9.5192,
+          "meanRerollSpent": 277.0962
+        },
+        {
+          "waves": "12-15",
+          "metaLevel": 0,
+          "samples": 40,
+          "walletPerMeanOffer": 36.369,
+          "medianWalletPerMeanOffer": 9.2571,
+          "meanBuys": 16.525,
+          "meanRerollSpent": 2281.375
+        },
+        {
+          "waves": "16-19",
+          "metaLevel": 0,
+          "samples": 33,
+          "walletPerMeanOffer": 147.2228,
+          "medianWalletPerMeanOffer": 7.4971,
+          "meanBuys": 19.1818,
+          "meanRerollSpent": 4695.0909
+        },
+        {
+          "waves": "1-3",
+          "metaLevel": 1,
+          "samples": 18,
+          "walletPerMeanOffer": 6.6661,
+          "medianWalletPerMeanOffer": 5.402,
+          "meanBuys": 6.5556,
+          "meanRerollSpent": 4.3889
+        },
+        {
+          "waves": "4-7",
+          "metaLevel": 1,
+          "samples": 23,
+          "walletPerMeanOffer": 13.0231,
+          "medianWalletPerMeanOffer": 11.4494,
+          "meanBuys": 10.2174,
+          "meanRerollSpent": 45.8261
+        },
+        {
+          "waves": "8-11",
+          "metaLevel": 1,
+          "samples": 20,
+          "walletPerMeanOffer": 18.7795,
+          "medianWalletPerMeanOffer": 7.581,
+          "meanBuys": 11.9,
+          "meanRerollSpent": 420.65
+        },
+        {
+          "waves": "12-15",
+          "metaLevel": 1,
+          "samples": 13,
+          "walletPerMeanOffer": 113.6348,
+          "medianWalletPerMeanOffer": 11.9791,
+          "meanBuys": 16.5385,
+          "meanRerollSpent": 1879.2308
+        },
+        {
+          "waves": "16-19",
+          "metaLevel": 1,
+          "samples": 12,
+          "walletPerMeanOffer": 297.7667,
+          "medianWalletPerMeanOffer": 14.8798,
+          "meanBuys": 15.75,
+          "meanRerollSpent": 3703.9167
+        }
+      ],
+      "bosses": [
+        {
+          "wave": 4,
+          "samples": 29,
+          "kills": 29,
+          "meanEncounterSecondsOnKill": 62.0493,
+          "meanBossFellAt": 15.0845,
+          "timeouts": 0
+        },
+        {
+          "wave": 8,
+          "samples": 25,
+          "kills": 20,
+          "meanEncounterSecondsOnKill": 64.2345,
+          "meanBossFellAt": 41.2324,
+          "timeouts": 0
+        },
+        {
+          "wave": 12,
+          "samples": 18,
+          "kills": 15,
+          "meanEncounterSecondsOnKill": 72.8433,
+          "meanBossFellAt": 56.4303,
+          "timeouts": 0
+        },
+        {
+          "wave": 16,
+          "samples": 13,
+          "kills": 12,
+          "meanEncounterSecondsOnKill": 78.2169,
+          "meanBossFellAt": 71.3754,
+          "timeouts": 1
+        },
+        {
+          "wave": 20,
+          "samples": 10,
+          "kills": 10,
+          "meanEncounterSecondsOnKill": 97.3367,
+          "meanBossFellAt": 97.3367,
+          "timeouts": 0
+        }
+      ],
+      "bossesByDifficulty": [
+        {
+          "difficulty": 0,
+          "wave": 4,
+          "samples": 6,
+          "kills": 6,
+          "meanBossFellAt": 8.4917,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 0,
+          "wave": 8,
+          "samples": 6,
+          "kills": 6,
+          "meanBossFellAt": 18.1333,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 0,
+          "wave": 12,
+          "samples": 6,
+          "kills": 5,
+          "meanBossFellAt": 36.4002,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 0,
+          "wave": 16,
+          "samples": 5,
+          "kills": 4,
+          "meanBossFellAt": 56.4624,
+          "timeouts": 1
+        },
+        {
+          "difficulty": 0,
+          "wave": 20,
+          "samples": 3,
+          "kills": 3,
+          "meanBossFellAt": 85.9842,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 1,
+          "wave": 4,
+          "samples": 6,
+          "kills": 6,
+          "meanBossFellAt": 11.6,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 1,
+          "wave": 8,
+          "samples": 6,
+          "kills": 6,
+          "meanBossFellAt": 30.9998,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 1,
+          "wave": 12,
+          "samples": 5,
+          "kills": 4,
+          "meanBossFellAt": 50.2878,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 1,
+          "wave": 16,
+          "samples": 3,
+          "kills": 3,
+          "meanBossFellAt": 59.9333,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 1,
+          "wave": 20,
+          "samples": 2,
+          "kills": 2,
+          "meanBossFellAt": 150.4795,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 2,
+          "wave": 4,
+          "samples": 6,
+          "kills": 6,
+          "meanBossFellAt": 16.15,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 2,
+          "wave": 8,
+          "samples": 5,
+          "kills": 2,
+          "meanBossFellAt": 42.7747,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 2,
+          "wave": 12,
+          "samples": 1,
+          "kills": 1,
+          "meanBossFellAt": 120.0027,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 2,
+          "wave": 16,
+          "samples": 1,
+          "kills": 1,
+          "meanBossFellAt": 86.0507,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 2,
+          "wave": 20,
+          "samples": 1,
+          "kills": 1,
+          "meanBossFellAt": 109.8021,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 3,
+          "wave": 4,
+          "samples": 5,
+          "kills": 5,
+          "meanBossFellAt": 21.18,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 3,
+          "wave": 8,
+          "samples": 3,
+          "kills": 1,
+          "meanBossFellAt": 111.7522,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 3,
+          "wave": 12,
+          "samples": 1,
+          "kills": 1,
+          "meanBossFellAt": 64.7494,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 3,
+          "wave": 16,
+          "samples": 1,
+          "kills": 1,
+          "meanBossFellAt": 89.9009,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 3,
+          "wave": 20,
+          "samples": 1,
+          "kills": 1,
+          "meanBossFellAt": 121.1528,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 4,
+          "wave": 4,
+          "samples": 6,
+          "kills": 6,
+          "meanBossFellAt": 19.0166,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 4,
+          "wave": 8,
+          "samples": 5,
+          "kills": 5,
+          "meanBossFellAt": 66.5096,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 4,
+          "wave": 12,
+          "samples": 5,
+          "kills": 4,
+          "meanBossFellAt": 69.6374,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 4,
+          "wave": 16,
+          "samples": 3,
+          "kills": 3,
+          "meanBossFellAt": 91.6343,
+          "timeouts": 0
+        },
+        {
+          "difficulty": 4,
+          "wave": 20,
+          "samples": 3,
+          "kills": 3,
+          "meanBossFellAt": 61.1669,
+          "timeouts": 0
+        }
+      ],
+      "matchedDifficultyInversions": [
+        {
+          "hero": "GlassDice",
+          "seed": 814907,
+          "policy": "Hybrid",
+          "metaLevel": 0,
+          "lowerDifficulty": 0,
+          "lowerResult": "Defeat",
+          "lowerWave": 19,
+          "higherDifficulty": 1,
+          "higherResult": "Victory"
+        }
+      ],
+      "checks": [
+        "BuildBalance\tFAIL\tBroad-pool hero gets setup time while retaining full late drawback",
+        "Recruitment\tFAIL\tNew normal species accepted 20/0",
+        "HeroIdentity\tFAIL\tHero identity: Identity row does not overwrite stat summaries LanternKnight / 0",
+        "HeroAwakening\tFAIL\tHeroAwakening LanternKnight: the transformation ends and rests",
+        "SecretEvents\tPASS",
+        "Visitors\tFAIL\tVisitors: Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:Transform gauge starts 1/3 full | next wave",
+        "RareVisitors\tFAIL\tVisitors: Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:Transform gauge starts 1/3 full | next wave",
+        "Modes\tFAIL\tMode balance: Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 1",
+        "ReleaseCombat\tPASS",
+        "FiveDifficulties\tPASS"
+      ],
+      "releaseChecksPass": false,
+      "caveats": [
+        "Bot survival changes the sampled population at late waves.",
+        "Read Method.txt and metaLevel: tree-gated campaigns may use a full owned-profile fixture; they are not fresh-profile outcomes.",
+        "Optional event deals are declined; do not infer event balance.",
+        "TIMEOUT and BLOCKED_SHOP remain unresolved, never counted as defeats or wins."
+      ]
+    }
+  ],
+  "compiledComparison": {
+    "before": "PreviewExports/ReleaseBalance/FiveLevels20261027/Compiled.tsv",
+    "after": "PreviewExports/ReleaseBalance/FiveHeldout20261027/Compiled.tsv",
+    "identical": true,
+    "samples": 2700
+  },
+  "damageGatePass": false,
+  "inputSha256": {
+    "PreviewExports/HeroDpsRange/FiveHeldout20261027/Heroes.tsv": "638657258a0858f0ce921b67616fbe1ebf6f250142f0aa0ebcc6d6f63277583f",
+    "PreviewExports/HeroDpsRange/FiveHeldout20261027/Ranges.tsv": "171da3bcd8ff1e578c9ca847f19f6d876f79d6615b3c9ee8df47ac0067a842cd",
+    "PreviewExports/HeroDpsRange/FiveHeldout20261027Invested/Heroes.tsv": "b01cfd110a11f664210c47be1b0660804361af00af09ee8c69b8867b413b7298",
+    "PreviewExports/HeroDpsRange/FiveHeldout20261027Invested/Ranges.tsv": "171da3bcd8ff1e578c9ca847f19f6d876f79d6615b3c9ee8df47ac0067a842cd",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Assembly.txt": "a2a119d1fe25ddd88ecb4974c8c6d53cded6df49666924eea52125c17fdb8662",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/CampaignPlan.tsv": "cd8117cc56790a746c926d3e875c2faa740294f895c495a47995c3cd11242e2f",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Campaigns.tsv": "81ab6abefa496e2d87db68fd517e38f7e2b758b56a430fdb57498b20c14b6002",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Checks.tsv": "cd1ab5ec1c1d28e31886eb450d5391a7cb9befb3b93c0a7fb9ba2eb3919c947b",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Companions.tsv": "309669a9604dbdab8e952c80b22bad0cd4ea8b14dcb36c8a7cf2b424c78e2c75",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Compiled.tsv": "d7134e15b167db911f093be123da8978b108100b3ce842bce8ab14478affd472",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Difficulties.tsv": "092efc0a7a4e40b5f46a5c849f2092e26a159b8dfeaa6c1ca971ada56f377854",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/FiveDifficultyChecks.Before.txt": "6df953b03fde8dbfda109fe803effd25713c5b9bdcff512c8c8a8535ad238666",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Items.tsv": "fc786545a59e88b2c9b50bfb4baabdcdba1e9c44c054b0e2869a9e891d550a4e",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/ArchiveCurator.json": "d09a781571c485600783062b1a5bc7047f14d450ab6beac9fbded23f998de871",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/BellDiver.json": "82e75d1da0486dcc1d7efdcf7b29b3037cb11c49c05a2cbe64dc36c57f04e669",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/BonsaiClocksmith.json": "95a216fb81bd4d054c1012c3da204a2335f02e0418732d233bfebf43f59cc169",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/ButtonCavalier.json": "662cb4791332c846b5532729789efe1330295ec560987c079b1bc416f542520d",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/ChinaMarionette.json": "0b33e8d9dcaaa738d0564a45ac019f7098e0cd153f5ef58a06f5502393931812",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/CitrusMarshal.json": "8f84b2fedd60b963453cd5501dd435cb7f5a4d5e71b293f449cbe9209416fb51",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/CometRunner.json": "0a315f96ef410784fe0eadf1109b45ac96f86aef08662e461abf1e7cc5d839c9",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/CopperCauldron.json": "bc77451e91b944a235ca14286894c7bbb8bfb6f47771438f4771fdf06301428c",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/DrowsySeer.json": "c19629a813c9da63d75764a7f8816910519d4d682edbbfb08fc3f1b08c5c3e95",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/GlassDice.json": "f68dc6ba891b61a835bcf3ad61bf6a9ed96e360a8127fa037aaa523bd0385812",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/HourglassStag.json": "662cb4791332c846b5532729789efe1330295ec560987c079b1bc416f542520d",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/IvorySovereign.json": "f868f57716426a0b7e133cfe238b44c4c074ce51cbde054720161493d3bdeb3f",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/JugglingJester.json": "eb719fad8bc6f4c9b051f27f092e01c9205a842371a54781b47a6e297afe81ae",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/KiteAdmiral.json": "7bd54ff16f4fa25574fcc26abf401173d5900e5a835d850541fb9aaa0c62dc57",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/LanternKnight.json": "66fc70b4615cffe8fc659d118e4810b257f208e4bcf403986e6920f57048e3c7",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/LanternWeaver.json": "b7b66b663589691257cf1b8cabb3d8e81202a017db69950f708aeb521f8090ab",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/LoneJelly.json": "390e9f88d8704cb3f8fb1dd5c413d8891746384541e14fca1f049fa985ea73db",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/MirrorKeeper.json": "4e00261e9466c3b06981ead75b7c73870f3312446efe1138da8ab7ae1e056ace",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/MoonProwler.json": "c19629a813c9da63d75764a7f8816910519d4d682edbbfb08fc3f1b08c5c3e95",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/NightMaw.json": "8a843875c0c72e23aeb23726eec9e4fc5470a5657ac84a72e7fe52790df96f93",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/PatchworkHost.json": "7f9d030848451b1a2fd9ee8df9b3c3539388a2feea6a898cafda45b12a6b2c0d",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/PennyBroker.json": "37280ec1c9f2d4064cd0300a4a435f37df4125f0e70c60f375ecd4515c704f4d",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/PetalCitadel.json": "4233a5124ddf17da32eb51226ef518a83972a411fc64bd365bdf907585fc4cd7",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/Postmaster.json": "a5c9c85a87faeeb3c59f769d3c7a287d6c1b306939cb6ed1239e248da3e1a5d6",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/RainArchivist.json": "af9b7833d721d07ae8a65c31308b5bf2f87caf2b2423b67afc9ddfa4eb0a4bba",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/RootOracle.json": "51d196e959db92d4cd190f6ba0505696beb2d0c127d6ef9613916c25e34de1a9",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/SoapSkater.json": "f0f944507915fda4a503d228f99caf0570d325a282b378ce61ed612eb7d63718",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/StormFencer.json": "bc8d47e4263ab69befed61963f5080c7448fe1629c7d6c55484fbebf3ca11da4",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/SundaeDuchess.json": "efcd8c79b6d29f076dc6e613b31b09bba7699ef193209de04b625dfafa24d6ab",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/SupperMortar.json": "7f9d030848451b1a2fd9ee8df9b3c3539388a2feea6a898cafda45b12a6b2c0d",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/ThornTreasurer.json": "51d196e959db92d4cd190f6ba0505696beb2d0c127d6ef9613916c25e34de1a9",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/TideSinger.json": "85ea6db380ccff610afa8fb2e3ca02c74421fc123fc44cf0c912455d3b3f6b3c",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/TinVirtuoso.json": "36f6b5e7ea1a6173a030fe1da7ae48cfd4891f9238ed5561808f9e41aa716b42",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/TreasureAcorn.json": "11dbfe31ec2378c371d1f4577d2448215f34e9ffacbd47568912aa8f664228c9",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/VelvetRegent.json": "0eda809a0c341b72de85bbf257b954944c5b72833f31014ad18febaea1659526",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Meta/VerdantMatron.json": "ec73195b7cc17008b243da89c28213791d5ec45a7ecbf362a9834bbccf698963",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Method.txt": "aab92ec4efb6a3fc779c7a22b8ae734551477d828acc4b2130b0dc21523fe48b",
+    "PreviewExports/ReleaseBalance/FiveLevels20261027/Waves.tsv": "ee5c9f2fb6152be40586aff29e4f583f496587c88a71986f018940c3bf56b6f3",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Assembly.txt": "6079bfccbc39ae090d09420da34618f06e7a46c5dfaafdaddb13e79ea69f6613",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/CampaignPlan.tsv": "6858004e779107aadee31eab959763069d5d7886f340235c0a462748ff6a9a3d",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Campaigns.tsv": "1b2150f95d427f87decdc282f8ac86cf0dedcc89abeb0cf68060cfe82f104f41",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Checks.tsv": "3668e319651e81586f5aeed166c8a81dd323950c6f2ef2d453dfb2803b229f7a",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Companions.tsv": "309669a9604dbdab8e952c80b22bad0cd4ea8b14dcb36c8a7cf2b424c78e2c75",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Compiled.tsv": "d7134e15b167db911f093be123da8978b108100b3ce842bce8ab14478affd472",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Difficulties.tsv": "092efc0a7a4e40b5f46a5c849f2092e26a159b8dfeaa6c1ca971ada56f377854",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/FiveDifficultyChecks.After.txt": "f5ff78e71998f92d148c8f9252f9c1ce0915027a3c2460e74887528990bcd923",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Items.tsv": "fc786545a59e88b2c9b50bfb4baabdcdba1e9c44c054b0e2869a9e891d550a4e",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Meta/GlassDice.json": "f68dc6ba891b61a835bcf3ad61bf6a9ed96e360a8127fa037aaa523bd0385812",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Meta/KiteAdmiral.json": "7bd54ff16f4fa25574fcc26abf401173d5900e5a835d850541fb9aaa0c62dc57",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Meta/LanternKnight.json": "66fc70b4615cffe8fc659d118e4810b257f208e4bcf403986e6920f57048e3c7",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Meta/LoneJelly.json": "390e9f88d8704cb3f8fb1dd5c413d8891746384541e14fca1f049fa985ea73db",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Meta/Postmaster.json": "a5c9c85a87faeeb3c59f769d3c7a287d6c1b306939cb6ed1239e248da3e1a5d6",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Meta/RootOracle.json": "51d196e959db92d4cd190f6ba0505696beb2d0c127d6ef9613916c25e34de1a9",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Method.txt": "622a97d738a5bac2b714f9684bd868b71d6ea3705415e0e1c3d7eaee7e7c2968",
+    "PreviewExports/ReleaseBalance/FiveHeldout20261027/Waves.tsv": "85a5abbf25c750f6ba7ce4d779ccbd7f0ede731984afa8e07cb9abed2beac67a"
+  }
+}

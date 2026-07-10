@@ -118,7 +118,7 @@ namespace ArcaneBrigade
                 case KitAction.Spring: Every(.65f, () => Spring(target)); HealEvery(1); break; // round 6: blossom every .8 -> .65 s
                 case KitAction.Kintsugi: Every(.4f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position - Forward() * .8f, target.Position + Forward() * .8f, 0, .42f, .3f, element: DamageElement.Ember); }); break;
                 case KitAction.Rink: Every(.35f, () => { Vector2 way = target != null ? (target.Position - Champion.Position).normalized : Forward(); Hit(MorphGeometry.Line, Champion.Position + way * .6f, Champion.Position + way * 3.8f, 0, .6f, .1f, slow: .6f); /* starts clear of the skater: the line never sweeps over the hero (24/10/2026) */ }); break; // round 6: Soap Skater ice line every .5 -> .35 s, .5 -> .6 W
-                case KitAction.Parade: Every(1.2f, () => { foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion) IdentityGlyph(MorphGeometry.Seal, f.Position + Vector2.up * .5f, f.Position, .2f, .5f, role: HeroGlyphRole.Emblem); }); break; // Knighting (KitDamageDealt, KitCycle)
+                case KitAction.Parade: Every(1.2f, () => { foreach (UnitState f in StableUnits) if (f.Alive && f.Faction == Faction.Companion) IdentityGlyph(MorphGeometry.Seal, f.Position + Vector2.up * .5f, f.Position, .2f, .5f, role: HeroGlyphRole.Emblem); }); break; // Knighting (KitDamageDealt, KitCycle)
                 case KitAction.Symphony: Every(1f, () => IdentityPerform(IdentityPower * .9f * ApproachScale, 5)); break;
                 case KitAction.Duel: Duel(); break;
                 case KitAction.Feast: Every(.4f, () => Feast()); break;
@@ -194,7 +194,7 @@ namespace ArcaneBrigade
             for (int n = 0; n < 5; n++) // round 6: Kite Admiral flies 4 -> 5 kites
             {
                 UnitState best = null; float near = float.PositiveInfinity;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (!u.Alive || u.Faction != Faction.Companion || u.Definition.Weapon.Kind != WeaponKind.Projectile || awakenFleet.Contains(u)) continue;
                     float d = (u.Position - Champion.Position).sqrMagnitude; if (d < near) { near = d; best = u; }
@@ -207,7 +207,7 @@ namespace ArcaneBrigade
         private void SundaeScoop()
         {
             UnitState pick = null; int seen = 0;
-            foreach (UnitState u in units) { if (!CanHit(Faction.Champion, u) || u.FrozenUntil > Elapsed || (u.Position - Champion.Position).sqrMagnitude > 49) continue; if (combatRandom.Next(++seen) == 0) pick = u; }
+            foreach (UnitState u in StableUnits) { if (!CanHit(Faction.Champion, u) || u.FrozenUntil > Elapsed || (u.Position - Champion.Position).sqrMagnitude > 49) continue; if (combatRandom.Next(++seen) == 0) pick = u; }
             pick ??= IdentityTarget(Champion.Position, 7);
             if (pick == null) return;
             const float fall = .5f;
@@ -233,7 +233,7 @@ namespace ArcaneBrigade
             for (int n = 0; n < 5; n++)
             {
                 UnitState best = null; float near = 49;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (!CanHit(Faction.Champion, u) || awakenPicks.Contains(u)) continue;
                     float d = (u.Position - Champion.Position).sqrMagnitude; if (d < near) { near = d; best = u; }

@@ -97,7 +97,7 @@ namespace ArcaneBrigade
             if (projectile.RicochetsRemaining <= 0) return false;
             UnitState nearest = null;
             float best = 9f;
-            foreach (UnitState target in units)
+            foreach (UnitState target in StableUnits)
             {
                 if (!CanHit(projectile.Faction, target) || projectile.Victims.Contains(target.Id)) continue;
                 float distance = (target.Position - projectile.Position).sqrMagnitude;

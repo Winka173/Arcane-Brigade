@@ -10,12 +10,12 @@ namespace ArcaneBrigade
             {
                 if (Elapsed < heroReadyAt) return;
                 bool threat = false;
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                     threat |= enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - Champion.Position).sqrMagnitude <= 6.25f;
                 if (!threat) return;
                 CombatCause pulse = NewCause(Champion.Id).Child(mechanic == HeroMechanic.RootedOracle ? "root-ward" : "solo-whirl");
                 Vector2 ward = ThreatPoint(2.5f);
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     if (!enemy.Alive || enemy.Faction != Faction.Enemy || (enemy.Position - ward).sqrMagnitude > 1.69f) continue;
                     ApplyWeaponDamage(enemy, Champion.Definition.Weapon.Damage * (mechanic == HeroMechanic.RootedOracle ? 1 : 0.8f), Faction.Champion, mechanic == HeroMechanic.RootedOracle ? DamageElement.Frost : DamageElement.Physical, "Personal ward", cause: pulse);
@@ -66,7 +66,7 @@ namespace ArcaneBrigade
                 CombatCause cause = NewCause(Champion.Id).Child("hero-" + mechanic);
                 if (mechanic == HeroMechanic.TideCollector) Heal(3, cause);
                 Vector2 burst = ThreatPoint(3);
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     if (!enemy.Alive || enemy.Faction != Faction.Enemy || (enemy.Position - burst).sqrMagnitude > 1.96f) continue;
                     if (mechanic == HeroMechanic.GlassGambler)

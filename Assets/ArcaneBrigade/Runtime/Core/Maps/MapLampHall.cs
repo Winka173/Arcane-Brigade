@@ -118,7 +118,7 @@ namespace ArcaneBrigade
                 if (!flare) continue;
                 lamp.FlareAt = t;
                 int stunned = 0;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                     if (u.Alive && u.Faction == Faction.Enemy && InLampOval(u.Position, lamp.Light)) { Sleep(u, MapEnvironmentRules.FlareStun); stunned++; }
                 MapSay("Flare!", new Color(1f, .86f, .45f));
             }
@@ -223,7 +223,7 @@ namespace ArcaneBrigade
             // the six nearest enemies in the flame's reach
             const float r2 = MapEnvironmentRules.LanternRadius * MapEnvironmentRules.LanternRadius;
             lanternTargets.Clear();
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && CanHit(Faction.Champion, u) && u.EntranceUntil <= t && (u.Position - Champion.Position).sqrMagnitude < r2) lanternTargets.Add(u);
             lanternTargets.Sort((a, b) => (a.Position - Champion.Position).sqrMagnitude.CompareTo((b.Position - Champion.Position).sqrMagnitude));
             CombatCause flame = NewCause(Champion.Id).Child("map-lantern-flame");
@@ -244,7 +244,7 @@ namespace ArcaneBrigade
         private void StepNightProwlers()
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || u.Faction != Faction.Enemy) continue;
                 bool lit = InMapLight(u.Position), was = s.LampLitFoes.Contains(u.Id);

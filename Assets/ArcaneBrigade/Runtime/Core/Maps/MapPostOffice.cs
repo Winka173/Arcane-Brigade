@@ -222,7 +222,7 @@ namespace ArcaneBrigade
             {
                 s.PostNextStamp = t + MapEnvironmentRules.PostStampEvery;
                 int seen = 0; UnitState pick = null; float reach = MapEnvironmentRules.PostStampReach * MapEnvironmentRules.PostStampReach;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (!u.Alive || u.Faction != Faction.Enemy || u.Definition.IsBoss || u.EntranceUntil > t || s.PostStampHolders.ContainsKey(u.Id)) continue;
                     if ((u.Position - Champion.Position).sqrMagnitude > reach) continue;
@@ -353,12 +353,12 @@ namespace ArcaneBrigade
         private void PostChooseLane(MapEnvironmentState s)
         {
             Vector2 centre = Champion.Position; int best = -1, looked = 0;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || u.Faction != Faction.Enemy || (u.Position - Champion.Position).sqrMagnitude > 64) continue;
                 if (++looked > 48) break;
                 int near = 0;
-                foreach (UnitState o in units)
+                foreach (UnitState o in StableUnits)
                     if (o.Alive && o.Faction == Faction.Enemy && (o.Position - u.Position).sqrMagnitude < 4) near++;
                 if (near > best) { best = near; centre = u.Position; }
             }
@@ -382,7 +382,7 @@ namespace ArcaneBrigade
             s.ParcelProp.Reset(s.Parcel + Vector2.up * .55f, MapEnvironmentRules.PostParcelRadius, MapEnvironmentRules.PostParcelHealth * RoomOrdinaryHealth());
             s.ParcelProp.Health = s.ParcelProp.MaxHealth * .45f; s.ParcelProp.HitAt = t - .05f; s.ParcelProp.HitFrom = h;
             int stamped = 0;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - h).sqrMagnitude < 36 && stamped++ < 2)
                 { s.Stamped[u.Id] = t + 6; s.PostStampedAt[u.Id] = t - 2; s.PostStampHolders[u.Id] = u; }
             s.PostNextStamp = t + 30;

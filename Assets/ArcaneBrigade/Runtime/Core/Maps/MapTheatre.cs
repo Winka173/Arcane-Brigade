@@ -284,7 +284,7 @@ namespace ArcaneBrigade
             {
                 if (Mathf.Abs(k) < 3) continue;
                 float y = Champion.Position.y + k * .4f; int count = 0;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                     if (u.Alive && u.Faction == Faction.Enemy && Mathf.Abs(u.Position.x - Champion.Position.x) < 10 && Mathf.Abs(u.Position.y - y) < half) count++;
                 if (count > most || count == most && count > 0 && Mathf.Abs(Mathf.Abs(k * .4f) - 2) < Mathf.Abs(Mathf.Abs(best - Champion.Position.y) - 2)) { most = count; best = y; }
             }
@@ -312,7 +312,7 @@ namespace ArcaneBrigade
                 if (u == null || !u.Alive) TheatreLoadKill(seen.Key, u != null ? u.Position : seen.Value);
             }
             s.TheatreInLight.Clear();
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Enemy && InTheatreSpot(u.Position)) s.TheatreInLight[u.Id] = u.Position;
             bool ready = s.TheatreLoad >= MapEnvironmentRules.TheatreFireworkLoad;
             bool near = (Champion.Position - s.TheatreMachine).sqrMagnitude < MapEnvironmentRules.TheatreFireworkReach * MapEnvironmentRules.TheatreFireworkReach;

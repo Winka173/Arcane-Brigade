@@ -1,0 +1,106 @@
+PASS Five named difficulties in display order
+PASS Every difficulty table has exactly five entries
+PASS Strict health/damage/density ladder 1/1
+PASS Strict health/damage/density ladder 2/1
+PASS Strict health/damage/density ladder 3/1
+PASS Strict health/damage/density ladder 4/1
+PASS Strict health/damage/density ladder 1/4
+PASS Strict health/damage/density ladder 2/4
+PASS Strict health/damage/density ladder 3/4
+PASS Strict health/damage/density ladder 4/4
+PASS Strict health/damage/density ladder 1/8
+PASS Strict health/damage/density ladder 2/8
+PASS Strict health/damage/density ladder 3/8
+PASS Strict health/damage/density ladder 4/8
+PASS Strict health/damage/density ladder 1/15
+PASS Strict health/damage/density ladder 2/15
+PASS Strict health/damage/density ladder 3/15
+PASS Strict health/damage/density ladder 4/15
+PASS Strict health/damage/density ladder 1/16
+PASS Strict health/damage/density ladder 2/16
+PASS Strict health/damage/density ladder 3/16
+PASS Strict health/damage/density ladder 4/16
+PASS Strict health/damage/density ladder 1/20
+PASS Strict health/damage/density ladder 2/20
+PASS Strict health/damage/density ladder 3/20
+PASS Strict health/damage/density ladder 4/20
+PASS Strict health/damage/density ladder 1/30
+PASS Strict health/damage/density ladder 2/30
+PASS Strict health/damage/density ladder 3/30
+PASS Strict health/damage/density ladder 4/30
+PASS Strict health/damage/density ladder 1/50
+PASS Strict health/damage/density ladder 2/50
+PASS Strict health/damage/density ladder 3/50
+PASS Strict health/damage/density ladder 4/50
+PASS New profile can select four ordinary difficulties; last waits for tree
+PASS Full diagnostic Lamp Tree actually unlocks The Last Night
+PASS Current save round-trip difficulty 0
+PASS Current save round-trip difficulty 1
+PASS Current save round-trip difficulty 2
+PASS Current save round-trip difficulty 3
+PASS Current save round-trip difficulty 4
+PASS Reject invalid new-run difficulty -1
+PASS Reject invalid new-run difficulty 5
+PASS Reject invalid new-run difficulty 6
+PASS Reject invalid new-run difficulty 7
+PASS Reject invalid new-run difficulty 8
+PASS New friends still possible before the final recruitment boundary
+PASS Regular and dream new-species recruitment close before wave 20
+PASS Legacy profile victory bit remaps 0 -> 0
+PASS Profile migration is idempotent 0
+PASS Legacy unfinished run remaps 0 -> 0
+PASS Migration leaves input snapshot unchanged 0
+PASS Legacy profile victory bit remaps 1 -> 1
+PASS Profile migration is idempotent 1
+PASS Legacy unfinished run remaps 1 -> 1
+PASS Migration leaves input snapshot unchanged 1
+PASS Legacy profile victory bit remaps 2 -> 1
+PASS Profile migration is idempotent 2
+PASS Legacy unfinished run remaps 2 -> 1
+PASS Migration leaves input snapshot unchanged 2
+PASS Legacy profile victory bit remaps 3 -> 2
+PASS Profile migration is idempotent 3
+PASS Legacy unfinished run remaps 3 -> 2
+PASS Migration leaves input snapshot unchanged 3
+PASS Legacy profile victory bit remaps 4 -> 3
+PASS Profile migration is idempotent 4
+PASS Legacy unfinished run remaps 4 -> 3
+PASS Migration leaves input snapshot unchanged 4
+PASS Legacy profile victory bit remaps 5 -> 3
+PASS Profile migration is idempotent 5
+PASS Legacy unfinished run remaps 5 -> 3
+PASS Migration leaves input snapshot unchanged 5
+PASS Legacy profile victory bit remaps 6 -> 4
+PASS Profile migration is idempotent 6
+PASS Legacy unfinished run remaps 6 -> 4
+PASS Migration leaves input snapshot unchanged 6
+PASS Legacy profile victory bit remaps 7 -> 4
+PASS Profile migration is idempotent 7
+PASS Legacy unfinished run remaps 7 -> 4
+PASS Migration leaves input snapshot unchanged 7
+PASS Difficulty migration preserves older dream-shop migration schema 3
+PASS Difficulty migration preserves older dream-shop migration schema 4
+PASS Checksummed legacy run loads from disk 0
+PASS Migrated run remains stable after save/load 0
+PASS Checksummed legacy run loads from disk 1
+PASS Migrated run remains stable after save/load 1
+PASS Checksummed legacy run loads from disk 2
+PASS Migrated run remains stable after save/load 2
+PASS Checksummed legacy run loads from disk 3
+PASS Migrated run remains stable after save/load 3
+PASS Checksummed legacy run loads from disk 4
+PASS Migrated run remains stable after save/load 4
+PASS Checksummed legacy run loads from disk 5
+PASS Migrated run remains stable after save/load 5
+PASS Checksummed legacy run loads from disk 6
+PASS Migrated run remains stable after save/load 6
+PASS Checksummed legacy run loads from disk 7
+PASS Migrated run remains stable after save/load 7
+PASS Profile disk migration preserves legacy high-difficulty history
+PASS Profile selection and victory bits agree after migration
+PASS Colliding difficulty score keys retain the best score
+PASS Difficulty achievements and progress migrate together
+PASS Previously paid boss/Keeper rewards remain paid after merged difficulties
+PASS Migration preserves currencies and completed-run identity without paying rewards again
+PASS Profile migration remains stable after repeated disk save/load
+PASS Profile disk migration never edits the caller's old snapshot

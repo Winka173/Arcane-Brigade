@@ -96,7 +96,7 @@ namespace ArcaneBrigade
             {
                 if (Elapsed < crowdAt) return crowdScale;
                 crowdAt = Elapsed + .25f; int n = 0;
-                foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && (u.Position - Champion.Position).sqrMagnitude <= 36) n++;
+                foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy && (u.Position - Champion.Position).sqrMagnitude <= 36) n++;
                 crowdScale = 1 + .5f * Mathf.Clamp01((n - 10) / 30f);
                 return crowdScale;
             }

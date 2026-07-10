@@ -47,7 +47,7 @@ namespace ArcaneBrigade
         {
             octoberPoison.Clear(); octoberTalents.Clear(); octoberDodges = octoberInjuries = octoberHearts = octoberChests = 0;
             octoberRecoveryUsed = false; octoberHurtAt = -100; octoberRebateAt = octoberTickAt = octoberMoveTime = octoberResponseAt = octoberSpiritAt = 0;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 u.MountId = u.RiderId = u.OctoberAttacks = u.OctoberKills = 0; u.OctoberNext = 0;
                 string name = u.Definition.ReferenceCompanion;
@@ -65,7 +65,7 @@ namespace ArcaneBrigade
             {
                 if (pony == Champion) continue;
                 UnitState rider = null; float best = float.PositiveInfinity;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (u.Faction != Faction.Companion || u == pony || u.MountId != 0 || u.Definition.ReferenceCompanion == "Pony") continue;
                     float distance = (u.Position - pony.Position).sqrMagnitude;
@@ -151,7 +151,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < 3; i++)
             {
                 UnitState next = null; float best = i == 0 ? 36 : 9;
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     float distance = (enemy.Position - point).sqrMagnitude;
                     if (CanHit(source.Faction, enemy) && !pins.Contains(enemy) && distance < best) { next = enemy; best = distance; }
@@ -219,7 +219,7 @@ namespace ArcaneBrigade
                     {
                         // she explodes when hurt: the burst grows with each Four-Leaf Clover friend
                         sassyBurstAt = Elapsed + .4f;
-                        int clovers = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Companion && System.Array.IndexOf(u.Definition.Tags, "clover") >= 0) clovers++;
+                        int clovers = 0; foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Companion && System.Array.IndexOf(u.Definition.Tags, "clover") >= 0) clovers++;
                         Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.6f, Champion.Definition.Weapon.Damage * 3 * (1 + .5f * clovers), .08f, .2f, NewCause(Champion.Id).Child("sassy-burst"));
                     }
                     if (ReferenceHero == "Card Queen")
@@ -272,7 +272,7 @@ namespace ArcaneBrigade
                 {
                     Vector2 sand = ThreatPoint(3);
                     Field(ExpandedFieldKind.Echo, Champion, sand, Vector2.zero, 1.3f, Champion.Definition.Weapon.Damage * .65f, .1f, .35f, NewCause(Champion.Id).Child("hourglass-ring"));
-                    foreach (UnitState enemy in units) if (enemy.Faction == Faction.Enemy && !enemy.Definition.IsBoss && (enemy.Position - sand).sqrMagnitude < 1.69f) enemy.ChillUntil = Elapsed + .7f;
+                    foreach (UnitState enemy in StableUnits) if (enemy.Faction == Faction.Enemy && !enemy.Definition.IsBoss && (enemy.Position - sand).sqrMagnitude < 1.69f) enemy.ChillUntil = Elapsed + .7f;
                 }
                 foreach (UnitState u in OctoberUnits("Domestic Spiked Ball")) u.Definition.CollisionDamage = (18 + Mathf.Min(20, octoberInjuries)) * 1.08f;
             }

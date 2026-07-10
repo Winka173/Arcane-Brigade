@@ -56,7 +56,7 @@ namespace ArcaneBrigade
         private void PrepareCombos()
         {
             combosReady = true; liveCombos.Clear(); comboMembers.Clear();
-            foreach (UnitState u in units) if (u.Faction == Faction.Companion && !comboMembers.ContainsKey(u.Definition.Id)) comboMembers[u.Definition.Id] = u;
+            foreach (UnitState u in StableUnits) if (u.Faction == Faction.Companion && !comboMembers.ContainsKey(u.Definition.Id)) comboMembers[u.Definition.Id] = u;
             foreach (ComboDefinition c in Combos.All)
             {
                 bool all = true; foreach (string m in c.Members) if (!comboMembers.ContainsKey(m)) { all = false; break; }

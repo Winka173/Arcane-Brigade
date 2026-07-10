@@ -263,8 +263,8 @@ namespace ArcaneBrigade
             }
             switch (IdentityId)
             {
-                case "Postmaster": foreach (UnitState u in units) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u); break;
-                case "LanternWeaver": foreach (UnitState u in units) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u); identityCounter = 1; break;
+                case "Postmaster": foreach (UnitState u in StableUnits) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u); break;
+                case "LanternWeaver": foreach (UnitState u in StableUnits) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u); identityCounter = 1; break;
                 case "CometRunner": case "CitrusMarshal":
                     identityTrail.Clear(); identityTrail.Add(p + new Vector2(-1.4f, -1.2f)); identityTrail.Add(p + new Vector2(-.3f, -.2f)); identityTrail.Add(p + new Vector2(1.2f, .5f)); identityTrail.Add(p + new Vector2(2.6f, .1f)); break;
                 case "MirrorKeeper":
@@ -286,7 +286,7 @@ namespace ArcaneBrigade
             if (!HeroMechanicCapture.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
             catalog.EnemyBudget = 0; catalog.Armor = 100; Champion.Health = Champion.Definition.Health;
             benchTargets.Clear();
-            foreach (UnitState u in units) if (u.Faction == Faction.Enemy) { u.Health = 0; u.Alive = false; }
+            foreach (UnitState u in StableUnits) if (u.Faction == Faction.Enemy) { u.Health = 0; u.Alive = false; }
             var dummy = UnityEngine.Object.Instantiate(c.Enemies[0]); dummy.Speed = 0; dummy.Health = 1000000; dummy.ContactDamage = 0; dummy.Behavior = EnemyBehavior.Standard;
             float reach = Mathf.Clamp(Champion.Definition.Weapon.Range * .7f, .9f, 2.4f);
             Vector2 centre = Champion.Position + Vector2.right * reach;
@@ -305,7 +305,7 @@ namespace ArcaneBrigade
         {
             if (!HeroMechanicCapture.Requested) return;
             Champion.Health = Champion.Definition.Health;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Faction == Faction.Enemy && u.Alive)
                 {
                     if (!benchTargets.TryGetValue(u.Id, out Vector2 home)) { u.Health = 0; u.Alive = false; }
@@ -355,7 +355,7 @@ namespace ArcaneBrigade
                 case "PetalCitadel": catalog.HeroPetals = new[] { 2, 1, 1, 1 }; identityCharge = 4; break;
                 case "CometRunner": case "CitrusMarshal": identityCharge = HeroIdentityRequired; break;
                 case "Postmaster": case "LanternWeaver":
-                    if (identityMarks.Count == 0) foreach (UnitState u in units) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u);
+                    if (identityMarks.Count == 0) foreach (UnitState u in StableUnits) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u);
                     if (IdentityId == "LanternWeaver") identityCounter = 1; else identityCharge = 3; break;
                 case "TreasureAcorn": if (identityBounty == null) identityBounty = captureTarget; identityCharge = 3; break;
                 case "RainArchivist": if (identityPages.Count < 3) { identityPages.Clear(); identityPages.Add(0); identityPages.Add(2); identityPages.Add(3); } identityCharge = 3; break;

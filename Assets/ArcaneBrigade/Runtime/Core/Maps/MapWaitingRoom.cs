@@ -177,7 +177,7 @@ namespace ArcaneBrigade
             if (!s.RoomDoorBroken && t >= s.OpenAt && s.PackLeft > 0 && t >= s.NextPackMember)
             {
                 // not in time: the pack pours out, with no gold
-                int alive = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy) alive++;
+                int alive = 0; foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy) alive++;
                 if (alive < catalog.EnemyBudget)
                 {
                     Vector2 spot = ClampPosition(at + new Vector2(MapNext(-.55f, .55f), -.7f), .5f);
@@ -256,7 +256,7 @@ namespace ArcaneBrigade
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
             float budge = MapEnvironmentRules.RoomWaitBudge * MapEnvironmentRules.RoomWaitBudge;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || u.Faction != Faction.Enemy || u.Definition.IsBoss) continue;
                 if (!s.RoomWaiters.TryGetValue(u.Id, out MapEnvironmentState.RoomWaiter w)) { s.RoomWaiters[u.Id] = new MapEnvironmentState.RoomWaiter { Anchor = u.Position, Since = t }; continue; }
@@ -289,7 +289,7 @@ namespace ArcaneBrigade
             if (d.x * d.x / (MapEnvironmentRules.RoomClockReachX * MapEnvironmentRules.RoomClockReachX) + d.y * d.y / (MapEnvironmentRules.RoomClockReachY * MapEnvironmentRules.RoomClockReachY) >= 1) return;
             // the hero by the glowing clock: time stands still for every enemy (bosses only briefly)
             s.RoomClockStruck = true; s.RoomClockStruckAt = t; s.RoomClockStunUntil = t + MapEnvironmentRules.RoomClockStun;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Enemy) RoomStun(u, MapEnvironmentRules.RoomClockStun, MapEnvironmentRules.RoomClockBossStun);
             MapSay("Time stands still", new Color(1f, .93f, .72f));
         }
@@ -311,7 +311,7 @@ namespace ArcaneBrigade
             s.RoomNextTicket = t + 30;
             for (int i = 0; i < s.RoomDust.Count; i++) { MapEnvironmentState.RoomDustPatch p = s.RoomDust[i]; p.From = p.To = h + new Vector2(-3.4f + i * 3.1f, i % 2 == 0 ? -2.4f : 2.2f); p.MovedAt = -100; }
             s.RoomNextDust = t + 30;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - h).sqrMagnitude < 25)
                 { s.RoomWaiters[u.Id] = new MapEnvironmentState.RoomWaiter { Anchor = u.Position, Since = t + 6, AngryAt = t - .4f, AngryUntil = t + 5 }; break; }
             s.RoomClock = h + new Vector2(2.6f, 2.2f);

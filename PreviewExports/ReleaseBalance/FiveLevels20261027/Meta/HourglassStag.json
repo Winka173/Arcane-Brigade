@@ -1,0 +1,100 @@
+{
+    "Revision": 1,
+    "Health": 0.268256276845932,
+    "MoveSpeed": 0.05365125834941864,
+    "Pickup": 0.75,
+    "Crit": 0.05365125462412834,
+    "ChestGold": 0.48000001907348635,
+    "TwoStarChance": 0.13114750385284425,
+    "CandleShare": 0.4000000059604645,
+    "CandleShield": 2.0,
+    "GaugeStart": 0.5400000214576721,
+    "StartGold": 60,
+    "Interest": 6,
+    "ExtraSlots": 0,
+    "FreeRefresh": true,
+    "RewindOwned": true,
+    "RewindUsed": false,
+    "CandleUsed": false,
+    "SecondHabit": true,
+    "Heirloom": "clock",
+    "StartFriend": "ButtonBeetle",
+    "AltStarter": "",
+    "RewindShop": "",
+    "RewindAt": 0,
+    "FoundUnits": 0,
+    "FoundItems": 0,
+    "FoundBosses": 0,
+    "Endgame": 0,
+    "HaulOil": 0,
+    "HaulKeepsakes": 0,
+    "HaulLines": [],
+    "Damage": 0.035767506808042529,
+    "Gold": 0.08999999612569809,
+    "Pacts": 0,
+    "Keepsake": "",
+    "Daily": "",
+    "FirstFriendStar": true,
+    "FirstFriendUsed": false,
+    "FirstShopRare": true,
+    "FirstShopDone": false,
+    "ChestQuality": 0.0,
+    "Stats": [
+        {
+            "Effect": 14,
+            "Scope": 2,
+            "Value": 0.10730251669883728
+        },
+        {
+            "Effect": 11,
+            "Scope": 1,
+            "Value": 0.7153502702713013
+        },
+        {
+            "Effect": 23,
+            "Scope": 1,
+            "Value": 0.02980625629425049
+        },
+        {
+            "Effect": 12,
+            "Scope": 1,
+            "Value": 0.10134126245975495
+        },
+        {
+            "Effect": 1,
+            "Scope": 1,
+            "Value": 0.10134126245975495
+        },
+        {
+            "Effect": 22,
+            "Scope": 1,
+            "Value": 0.08941876888275147
+        },
+        {
+            "Effect": 25,
+            "Scope": 1,
+            "Value": 1.0
+        },
+        {
+            "Effect": 36,
+            "Scope": 3,
+            "Value": -0.10134126245975495
+        },
+        {
+            "Effect": 35,
+            "Scope": 3,
+            "Value": -0.07153500616550446
+        },
+        {
+            "Effect": 15,
+            "Scope": 3,
+            "Value": 0.17999997735023499
+        }
+    ],
+    "WaveShield": true,
+    "DreamSooner": true,
+    "RegularDeal": true,
+    "EnemyWeaken": 0.07999999821186066,
+    "RerollDiscount": 3,
+    "DreamExtra": 0
+}

@@ -105,7 +105,7 @@ namespace ArcaneBrigade
                 visitorCandyAt = Elapsed + 10;
                 float a = (float)combatRandom.NextDouble() * Mathf.PI * 2;
                 ArsenalProp sweet = VisitorProp(ArsenalPropKind.Candy, Champion.Position + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 2.2f, .5f); sweet.Until = Elapsed + 2.5f;
-                foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - sweet.Position).sqrMagnitude <= 16) { u.LureUntil = Elapsed + 2; u.LurePoint = sweet.Position; }
+                foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - sweet.Position).sqrMagnitude <= 16) { u.LureUntil = Elapsed + 2; u.LurePoint = sweet.Position; }
             }
             if (Elapsed >= visitorTickAt)
             {
@@ -113,9 +113,9 @@ namespace ArcaneBrigade
                 foreach (ArsenalProp p in arsenalProps)
                 {
                     if (p.Kind == ArsenalPropKind.VisitorLamp)
-                        foreach (UnitState u in units) if (CanHit(Faction.Champion, u) && (u.Position - p.Position).sqrMagnitude <= p.Radius * p.Radius) { u.BurnUntil = Mathf.Max(u.BurnUntil, Elapsed + 2); u.BurnCause = p.Cause.Child("visitor-lamp"); }
+                        foreach (UnitState u in StableUnits) if (CanHit(Faction.Champion, u) && (u.Position - p.Position).sqrMagnitude <= p.Radius * p.Radius) { u.BurnUntil = Mathf.Max(u.BurnUntil, Elapsed + 2); u.BurnCause = p.Cause.Child("visitor-lamp"); }
                     if (p.Kind == ArsenalPropKind.Puddle)
-                        foreach (UnitState u in units) if (CanHit(Faction.Champion, u) && (u.Position - p.Position).sqrMagnitude <= p.Radius * p.Radius) u.KitWetUntil = Mathf.Max(u.KitWetUntil, Elapsed + 2);
+                        foreach (UnitState u in StableUnits) if (CanHit(Faction.Champion, u) && (u.Position - p.Position).sqrMagnitude <= p.Radius * p.Radius) u.KitWetUntil = Mathf.Max(u.KitWetUntil, Elapsed + 2);
                 }
             }
             if (visitorToy != null)
@@ -131,7 +131,7 @@ namespace ArcaneBrigade
             {
                 // the stitched cloak: once, the enemies around the hero are thrown back
                 visitorCloakUsed = true;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     Vector2 off = u.Position - Champion.Position;
                     if (!CanHit(Faction.Champion, u) || u.Definition.IsBoss || off.sqrMagnitude > 9) continue;

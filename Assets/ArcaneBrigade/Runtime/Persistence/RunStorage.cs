@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class PlayerProfile
     {
-        public const int CurrentVersion = 4; // 4: the Waiting Room's meta block (play-test item 27)
+        public const int CurrentVersion = 5; // 5: five-difficulty history, records and selection
         public int Version = CurrentVersion;
         public int BestWave;
         public int Wins;
@@ -35,6 +35,7 @@ namespace ArcaneBrigade
         public int FrameCap;
         /// <summary>The difficulty last chosen for a new run (hero select opens on it again).</summary>
         public int LastDifficulty;
+        public int DifficultyLayoutRevision;
         /// <summary>Phones: 0 renders at the screen's full sharpness, 1 at 75% (lighter on the battery and the GPU).</summary>
         public int MobileSharpness;
         public bool ReducedFlashes;
@@ -82,6 +83,7 @@ namespace ArcaneBrigade
                     string payload = Read("run.json" + suffix);
                     if (payload == null) continue;
                     RunSnapshot run = JsonUtility.FromJson<RunSnapshot>(payload);
+                    run = DifficultySaveMigration.ForRead(run);
                     session.Validate(run);
                     return run;
                 }
@@ -112,6 +114,7 @@ namespace ArcaneBrigade
                     if (profile.SeenBosses == null) profile.SeenBosses = new List<string>();
                     if (profile.History == null) profile.History = new List<RunRecord>();
                     if (profile.Records == null) profile.Records = new List<ScoreRecord>();
+                    DifficultySaveMigration.ProfileForRead(profile);
                     var historyIds = new HashSet<string>();
                     if (profile.History.Count > RunMeta.HistoryLimit) throw new InvalidOperationException("Invalid history limit");
                     foreach (RunRecord record in profile.History)

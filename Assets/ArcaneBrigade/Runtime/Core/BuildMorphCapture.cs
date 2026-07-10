@@ -158,7 +158,7 @@ namespace ArcaneBrigade
             if (!BuildMorphCapture.Requested) throw new InvalidOperationException("Isolated form capture required");
             catalog.EnemyBudget = 0; Champion.NextAttack = float.PositiveInfinity;
             Champion.Health = Champion.Definition.Health = 100000;
-            foreach (UnitState source in units) if (source.Faction == Faction.Companion) source.Definition.Weapon.Cooldown = .35f;
+            foreach (UnitState source in StableUnits) if (source.Faction == Faction.Companion) source.Definition.Weapon.Cooldown = .35f;
             for (int i = 0; i < 14; i++)
             {
                 Vector2 at = Champion.Position + new Vector2(2.4f + i % 4 * .48f, -.85f + i / 4 * .52f);

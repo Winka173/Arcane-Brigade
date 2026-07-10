@@ -122,7 +122,7 @@ namespace ArcaneBrigade
         {
             MapEnvironmentState s = mapEnv;
             if (s.Walls.Count == 0) return;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || u.Definition.IsBoss || u.BodyLift > .4f) continue;
                 Vector2 p = u.Position; float r = u.Definition.Radius;

@@ -33,14 +33,14 @@ namespace ArcaneBrigade
         private Vector2 ThreatPoint(float reach)
         {
             UnitState nearest = null; float best = reach * reach;
-            foreach (UnitState u in units) { float d = (u.Position - Champion.Position).sqrMagnitude; if (u.Alive && u.Faction == Faction.Enemy && d <= best) { best = d; nearest = u; } }
+            foreach (UnitState u in StableUnits) { float d = (u.Position - Champion.Position).sqrMagnitude; if (u.Alive && u.Faction == Faction.Enemy && d <= best) { best = d; nearest = u; } }
             return nearest != null ? nearest.Position : Champion.Position + Champion.Facing * Mathf.Min(reach, 1.5f);
         }
 
         private void ClearArsenal()
         {
             arsenalProps.Clear(); ArsenalBursts = 0;
-            foreach (UnitState unit in units) { unit.ArsenalBeat = 0; unit.ArsenalHeat = 0; unit.Borrowed = unit.BorrowNext = null; }
+            foreach (UnitState unit in StableUnits) { unit.ArsenalBeat = 0; unit.ArsenalHeat = 0; unit.Borrowed = unit.BorrowNext = null; }
         }
 
         private int ArsenalTier(UnitState unit) => Mathf.Clamp(unit.Definition.CombatTier, 1, 3);
@@ -234,7 +234,7 @@ namespace ArcaneBrigade
                 case ArsenalWeapon.PlushShark:
                 {
                     UnitState far = null; float best = -1;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         float d = (u.Position - source.Position).sqrMagnitude;
                         if (CanHit(source.Faction, u) && d <= 5.5f * 5.5f && d > best) { best = d; far = u; }
@@ -353,7 +353,7 @@ namespace ArcaneBrigade
                 {
                     // the twig finds the weakest enemy in reach and flies to it
                     UnitState weakest = null; float low = float.PositiveInfinity;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                         if (CanHit(source.Faction, u) && (u.Position - source.Position).sqrMagnitude <= weapon.Range * weapon.Range && u.Health < low) { low = u.Health; weakest = u; }
                     UnitState mark = weakest ?? target;
                     if (mark == null) return true;
@@ -444,7 +444,7 @@ namespace ArcaneBrigade
                     ArsenalLine(source, weapon, from, to, 0.18f, damage * 0.6f, critical, cause);
                     // the second snip goes for the toughest enemy in reach (down the same line when there is none)
                     UnitState tough = null; float most = 0;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         Vector2 to2 = u.Position - source.Position;
                         if (CanHit(source.Faction, u) && to2.sqrMagnitude <= Mathf.Pow(weapon.Range + 0.8f, 2) && Vector2.Dot(to2.normalized, aim) > 0.2f && u.Health > most) { most = u.Health; tough = u; }
@@ -478,7 +478,7 @@ namespace ArcaneBrigade
                     ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 9f, weapon.Range + 0.5f, damage, critical, cause, 0.13f);
                     if (source.ArsenalBeat % 3 != 0 || OwnedProps(source, ArsenalPropKind.Cuckoo) > 0) return true;
                     UnitState far = null; float best = -1;
-                    foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d <= Mathf.Pow(weapon.Range + 1, 2) && d > best) { best = d; far = u; } }
+                    foreach (UnitState u in StableUnits) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d <= Mathf.Pow(weapon.Range + 1, 2) && d > best) { best = d; far = u; } }
                     if (far == null) return true;
                     ArsenalProp bird = PlaceProp(ArsenalPropKind.Cuckoo, source, far.Position, damage * 1.8f, 0.55f, critical, cause.Child("cuckoo-dive"));
                     bird.Start = source.Position + Vector2.up * 1.2f; bird.TargetId = far.Id; bird.LandAt = Elapsed + 0.6f; bird.Until = bird.LandAt + 0.05f;
@@ -493,7 +493,7 @@ namespace ArcaneBrigade
                         if (OwnedProps(source, ArsenalPropKind.Pin) >= (circus ? 4 : 2)) return true;
                         // the next pin picks another enemy than the last one
                         UnitState mark = null; float best = Mathf.Pow(weapon.Range + 0.5f, 2);
-                        foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && u.Id != source.ArsenalLastTarget && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; mark = u; } }
+                        foreach (UnitState u in StableUnits) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && u.Id != source.ArsenalLastTarget && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; mark = u; } }
                         mark ??= target; if (mark == null) return true;
                         source.ArsenalLastTarget = mark.Id;
                         ArsenalProp pin = PlaceProp(ArsenalPropKind.Pin, source, mark.Position, damage, 0.45f, critical, toss == 0 ? cause : cause.Child("circus-pin"));
@@ -526,7 +526,7 @@ namespace ArcaneBrigade
                     for (int i = 0; i < 3 - flying; i++)
                     {
                         UnitState next = null; float best = Mathf.Pow(weapon.Range + 1, 2);
-                        foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && !picked.Contains(u) && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; next = u; } }
+                        foreach (UnitState u in StableUnits) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && !picked.Contains(u) && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; next = u; } }
                         if (next == null) break;
                         picked.Add(next);
                         ProjectileState plane = ArsenalShot(source, ArsenalMuzzle(source), ArsenalTurn(aim, -30 + 30 * i), 6f, weapon.Range + 2f, damage * 0.55f, critical, i == 0 ? cause : cause.Child("paper-plane-" + i), 0.12f);
@@ -603,11 +603,11 @@ namespace ArcaneBrigade
         private Vector2? ArsenalCrowd(UnitState source, float reach)
         {
             UnitState best = null; int most = 0;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!CanHit(source.Faction, u) || (u.Position - source.Position).sqrMagnitude > reach * reach) continue;
                 int near = 0;
-                foreach (UnitState v in units) if (CanHit(source.Faction, v) && (v.Position - u.Position).sqrMagnitude <= 1.44f) near++;
+                foreach (UnitState v in StableUnits) if (CanHit(source.Faction, v) && (v.Position - u.Position).sqrMagnitude <= 1.44f) near++;
                 if (near > most) { most = near; best = u; }
             }
             return best?.Position;
@@ -735,7 +735,7 @@ namespace ArcaneBrigade
                     if ((chased == null || !chased.Alive) && source != null)
                     {
                         chased = null; float best = 9;
-                        foreach (UnitState u in units) { float d = (u.Position - shot.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; chased = u; } }
+                        foreach (UnitState u in StableUnits) { float d = (u.Position - shot.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; chased = u; } }
                         shot.OrbitTargetId = chased != null ? chased.Id : 0;
                     }
                     if (chased != null) shot.Velocity = Vector2.Lerp(shot.Velocity, (chased.Position - shot.Position).normalized * 6f, Mathf.Clamp01(delta * 5));
@@ -769,7 +769,7 @@ namespace ArcaneBrigade
                     if (shot.ArsenalHops <= 0) { shot.Remaining = 0; return; }
                     float reach = shot.Arsenal == ArsenalWeapon.DreamRacket ? 2.6f : 2.4f;
                     UnitState next = null; float best = reach * reach;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         float d = (u.Position - target.Position).sqrMagnitude;
                         if (CanHit(source.Faction, u) && !shot.Victims.Contains(u.Id) && d < best) { best = d; next = u; }
@@ -870,7 +870,7 @@ namespace ArcaneBrigade
                     {
                         if (Elapsed < p.LandAt) break;
                         bool touched = false;
-                        foreach (UnitState u in units) if (CanHit(source.Faction, u) && InBody(u, p.Position, 0.5f)) { touched = true; break; }
+                        foreach (UnitState u in StableUnits) if (CanHit(source.Faction, u) && InBody(u, p.Position, 0.5f)) { touched = true; break; }
                         if (!touched && Elapsed < p.FuseAt) break;
                         ArsenalBurst(source, weapon, p.Position, p.Radius, p.Damage, p.Critical, p.Cause);
                         // the chain: sticks nearby go off a beat later
@@ -892,7 +892,7 @@ namespace ArcaneBrigade
                         if (!p.Resolved && Elapsed >= p.At)
                         {
                             p.Resolved = true;
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                             {
                                 if (!CanHit(source.Faction, u) || !InBody(u, p.Position, p.Radius)) continue;
                                 ApplyWeaponDamage(u, p.Damage, source.Faction, weapon.Element, weapon.Id, p.Direction, weapon, p.Critical, p.Cause);
@@ -906,7 +906,7 @@ namespace ArcaneBrigade
                         if (Elapsed >= p.NextTick)
                         {
                             p.NextTick = Elapsed + (p.Kind == ArsenalPropKind.Drill ? 0.2f : 0.3f);
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                             {
                                 if (!CanHit(source.Faction, u) || !InBody(u, p.Position, p.Radius)) continue;
                                 ApplyDamage(u, p.Damage, source.Faction, weapon.Id, p.Direction, weapon, p.Critical, cause: p.Cause);
@@ -931,7 +931,7 @@ namespace ArcaneBrigade
                             {
                                 // its friend is gone: hop to the nearest enemy close by, or come home
                                 UnitState next = null; float best = 2.5f * 2.5f;
-                                foreach (UnitState u in units) { float d = (u.Position - p.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; next = u; } }
+                                foreach (UnitState u in StableUnits) { float d = (u.Position - p.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; next = u; } }
                                 if (next != null) { p.TargetId = next.Id; held = next; }
                                 else { p.Stage = 2; p.Start = p.Position; p.FuseAt = Elapsed; p.Until = Elapsed + 0.45f; break; }
                             }
@@ -940,7 +940,7 @@ namespace ArcaneBrigade
                             {
                                 p.NextTick = Elapsed + 0.4f;
                                 ApplyWeaponDamage(held, p.Damage, source.Faction, weapon.Element, weapon.Id, Vector2.zero, weapon, p.Critical, p.Cause);
-                                foreach (UnitState u in units) if (u != held && CanHit(source.Faction, u) && InBody(u, p.Position, p.Radius)) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + 0.5f);
+                                foreach (UnitState u in StableUnits) if (u != held && CanHit(source.Faction, u) && InBody(u, p.Position, p.Radius)) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + 0.5f);
                             }
                             if (Elapsed >= p.FuseAt) { p.Stage = 2; p.Start = p.Position; p.FuseAt = Elapsed; p.Until = Elapsed + 0.45f; }
                             break;
@@ -952,7 +952,7 @@ namespace ArcaneBrigade
                         if (Elapsed >= p.NextTick)
                         {
                             p.NextTick = Elapsed + 0.3f;
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                             {
                                 if (!CanHit(source.Faction, u)) continue;
                                 Vector2 off = u.Position - p.Position;
@@ -976,7 +976,7 @@ namespace ArcaneBrigade
                         if (Elapsed < p.LandAt) break;
                         if (p.Stage == 0)
                         {
-                            foreach (UnitState u in units) if (CanHit(source.Faction, u) && InBody(u, p.Position, 1f)) { p.Stage = 1; p.FuseAt = Elapsed + 0.6f; p.NextTick = Elapsed; break; }
+                            foreach (UnitState u in StableUnits) if (CanHit(source.Faction, u) && InBody(u, p.Position, 1f)) { p.Stage = 1; p.FuseAt = Elapsed + 0.6f; p.NextTick = Elapsed; break; }
                             if (Elapsed > p.Until) arsenalProps.Remove(p);
                             break;
                         }
@@ -1008,7 +1008,7 @@ namespace ArcaneBrigade
                         carried.ChillUntil = Mathf.Max(carried.ChillUntil, Elapsed + 0.2f);
                         p.Position = carried.Position;
                         if (p.Kind == ArsenalPropKind.Batted || Elapsed >= p.LandAt)
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                             {
                                 if (!CanHit(source.Faction, u) || p.Victims.Contains(u.Id) || !InBody(u, carried.Position, p.Radius)) continue;
                                 p.Victims.Add(u.Id);
@@ -1076,7 +1076,7 @@ namespace ArcaneBrigade
                         if (Elapsed >= p.NextTick)
                         {
                             p.NextTick = Elapsed + 0.25f;
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                             {
                                 if (!CanHit(source.Faction, u) || !InBody(u, p.Position, p.Radius)) continue;
                                 ApplyDamage(u, p.Damage, source.Faction, weapon.Id, Vector2.zero, weapon, p.Critical, cause: p.Cause);
@@ -1089,7 +1089,7 @@ namespace ArcaneBrigade
                     {
                         if (Elapsed < p.LandAt) break;
                         UnitState stepped = null;
-                        foreach (UnitState u in units) if (CanHit(source.Faction, u) && InBody(u, p.Position, p.Radius)) { stepped = u; break; }
+                        foreach (UnitState u in StableUnits) if (CanHit(source.Faction, u) && InBody(u, p.Position, p.Radius)) { stepped = u; break; }
                         if (stepped == null) { if (Elapsed > p.Until) arsenalProps.Remove(p); break; }
                         // BZZT: the one who stepped on it, then up to three neighbours in a chain
                         UnitState from = stepped; p.Victims.Clear();
@@ -1099,7 +1099,7 @@ namespace ArcaneBrigade
                             ApplyWeaponDamage(from, p.Damage, source.Faction, DamageElement.Arcane, weapon.Id, Vector2.zero, weapon, p.Critical, p.Cause);
                             if (from.Alive && !from.Definition.IsBoss) from.ChillUntil = Mathf.Max(from.ChillUntil, Elapsed + 0.3f);
                             UnitState next = null; float best = 2.2f * 2.2f;
-                            foreach (UnitState u in units) { float d = (u.Position - from.Position).sqrMagnitude; if (CanHit(source.Faction, u) && !p.Victims.Contains(u.Id) && d < best) { best = d; next = u; } }
+                            foreach (UnitState u in StableUnits) { float d = (u.Position - from.Position).sqrMagnitude; if (CanHit(source.Faction, u) && !p.Victims.Contains(u.Id) && d < best) { best = d; next = u; } }
                             if (next != null) fields.Add(new ExpandedField { Kind = ExpandedFieldKind.Link, Start = from.Position, Position = next.Position, At = Elapsed, Until = Elapsed + 0.22f, Resolved = true });
                             from = next;
                         }
@@ -1171,7 +1171,7 @@ namespace ArcaneBrigade
                         if (Elapsed >= p.NextTick)
                         {
                             p.NextTick = Elapsed + 0.25f;
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                                 if (CanHit(source.Faction, u) && InBody(u, p.Position, p.Radius)) u.ProbedUntil = Mathf.Max(u.ProbedUntil, Elapsed + 3f);
                         }
                         if (Elapsed > p.Until) arsenalProps.Remove(p);
@@ -1180,7 +1180,7 @@ namespace ArcaneBrigade
                         if (Elapsed >= p.NextTick)
                         {
                             p.NextTick = Elapsed + 0.2f;
-                            foreach (UnitState u in units)
+                            foreach (UnitState u in StableUnits)
                                 if (CanHit(source.Faction, u) && !p.Victims.Contains(u.Id) && InBody(u, p.Position, p.Radius))
                                 { p.Victims.Add(u.Id); if (!u.Definition.IsBoss) Sleep(u, 0.5f); }
                         }
@@ -1193,7 +1193,7 @@ namespace ArcaneBrigade
                         if (prey == null || !CanHit(source.Faction, prey))
                         {
                             prey = null; float best = 16;
-                            foreach (UnitState u in units) { float d = (u.Position - p.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; prey = u; } }
+                            foreach (UnitState u in StableUnits) { float d = (u.Position - p.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; prey = u; } }
                             p.TargetId = prey != null ? prey.Id : 0;
                         }
                         if (prey != null) p.Position = Vector2.MoveTowards(p.Position, prey.Position, 2.5f * delta);
@@ -1250,7 +1250,7 @@ namespace ArcaneBrigade
                         Vector2 away = (stuck.Position - source.Position).sqrMagnitude > 0.0001f ? (stuck.Position - source.Position).normalized : ArsenalAim(source);
                         ApplyWeaponDamage(stuck, p.Damage, source.Faction, weapon.Element, weapon.Id, away, weapon, p.Critical, p.Cause);
                         // the pop knocks the enemy into its neighbours (not itself again)
-                        foreach (UnitState u in units)
+                        foreach (UnitState u in StableUnits)
                             if (u != stuck && CanHit(source.Faction, u) && InBody(u, stuck.Position, 0.7f))
                                 ApplyWeaponDamage(u, p.Damage * 0.5f, source.Faction, weapon.Element, weapon.Id, away, weapon, p.Critical, p.Cause.Child("plunger-knock"));
                         if (stuck.Alive && !stuck.Definition.IsBoss) { stuck.Position = ClampPosition(stuck.Position + away * OctoberBalance.Push(stuck.Definition, 0.8f), stuck.Definition.Radius); spatial.Move(stuck); }
@@ -1264,7 +1264,7 @@ namespace ArcaneBrigade
         /// <summary>Starforge Claymore: from its wind-up to the end of the swing, the blade's arc in front destroys hostile shots.</summary>
         private void ArsenalGuards()
         {
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
             {
                 if (unit.Alive && unit.Faction != Faction.Enemy && unit.Definition.Weapon.Arsenal == ArsenalWeapon.CatcherMitt) { Catch(unit); continue; }
                 if (!unit.Alive || unit.Faction == Faction.Enemy || unit.Definition.Weapon.Arsenal != ArsenalWeapon.StarforgeClaymore) continue;

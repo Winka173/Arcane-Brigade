@@ -1,0 +1,72 @@
+PASS Five named difficulties in display order
+PASS Every difficulty table has exactly five entries
+PASS Strict health/damage/density ladder 1/1
+PASS Strict health/damage/density ladder 2/1
+PASS Strict health/damage/density ladder 3/1
+PASS Strict health/damage/density ladder 4/1
+PASS Strict health/damage/density ladder 1/4
+PASS Strict health/damage/density ladder 2/4
+PASS Strict health/damage/density ladder 3/4
+PASS Strict health/damage/density ladder 4/4
+PASS Strict health/damage/density ladder 1/8
+PASS Strict health/damage/density ladder 2/8
+PASS Strict health/damage/density ladder 3/8
+PASS Strict health/damage/density ladder 4/8
+PASS Strict health/damage/density ladder 1/15
+PASS Strict health/damage/density ladder 2/15
+PASS Strict health/damage/density ladder 3/15
+PASS Strict health/damage/density ladder 4/15
+PASS Strict health/damage/density ladder 1/16
+PASS Strict health/damage/density ladder 2/16
+PASS Strict health/damage/density ladder 3/16
+PASS Strict health/damage/density ladder 4/16
+PASS Strict health/damage/density ladder 1/20
+PASS Strict health/damage/density ladder 2/20
+PASS Strict health/damage/density ladder 3/20
+PASS Strict health/damage/density ladder 4/20
+PASS Strict health/damage/density ladder 1/30
+PASS Strict health/damage/density ladder 2/30
+PASS Strict health/damage/density ladder 3/30
+PASS Strict health/damage/density ladder 4/30
+PASS Strict health/damage/density ladder 1/50
+PASS Strict health/damage/density ladder 2/50
+PASS Strict health/damage/density ladder 3/50
+PASS Strict health/damage/density ladder 4/50
+PASS New profile can select four ordinary difficulties; last waits for tree
+PASS Full diagnostic Lamp Tree actually unlocks The Last Night
+PASS Current save round-trip difficulty 0
+PASS Current save round-trip difficulty 1
+PASS Current save round-trip difficulty 2
+PASS Current save round-trip difficulty 3
+PASS Current save round-trip difficulty 4
+PASS Reject invalid new-run difficulty -1
+PASS Reject invalid new-run difficulty 5
+PASS Reject invalid new-run difficulty 6
+PASS Reject invalid new-run difficulty 7
+PASS Reject invalid new-run difficulty 8
+PASS New friends still possible before the final recruitment boundary
+PASS Regular and dream new-species recruitment close before wave 20
+PASS Legacy profile victory bit remaps 0 -> 0
+PASS Profile migration is idempotent 0
+PASS Legacy unfinished run remaps 0 -> 0
+PASS Legacy profile victory bit remaps 1 -> 1
+PASS Profile migration is idempotent 1
+PASS Legacy unfinished run remaps 1 -> 1
+PASS Legacy profile victory bit remaps 2 -> 1
+PASS Profile migration is idempotent 2
+FAIL Legacy unfinished run remaps 2 -> 1
+PASS Legacy profile victory bit remaps 3 -> 2
+PASS Profile migration is idempotent 3
+FAIL Legacy unfinished run remaps 3 -> 2
+PASS Legacy profile victory bit remaps 4 -> 3
+PASS Profile migration is idempotent 4
+FAIL Legacy unfinished run remaps 4 -> 3
+PASS Legacy profile victory bit remaps 5 -> 3
+PASS Profile migration is idempotent 5
+FAIL Legacy unfinished run 5 rejected: Invalid run meta identity
+PASS Legacy profile victory bit remaps 6 -> 4
+PASS Profile migration is idempotent 6
+FAIL Legacy unfinished run 6 rejected: Invalid run meta identity
+PASS Legacy profile victory bit remaps 7 -> 4
+PASS Profile migration is idempotent 7
+FAIL Legacy unfinished run 7 rejected: Invalid run meta identity

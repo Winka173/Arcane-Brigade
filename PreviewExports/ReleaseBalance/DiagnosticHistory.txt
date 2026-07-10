@@ -1,0 +1,49 @@
+Base source commit: 69860c9b379f18e659db468e261dd75da71f77c7
+Prior dirty art metadata and incomplete ReleaseBaseline20261027 DPS data were preserved and are excluded from this delivery.
+
+ReleaseBalanceBaseline (aborted diagnostic, not a completed measurement):
+InvalidOperationException: Collection was modified; enumeration operation may not execute.
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNextRare () [0x00013] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNext () [0x0004a] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at ArcaneBrigade.CombatSimulation.ProcessHostileCollateral (ArcaneBrigade.ExpandedField field) [0x00190] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\EnemyInteractionRules.cs:53
+  at ArcaneBrigade.CombatSimulation.ProcessExpansion (System.Single delta) [0x00234] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\ExpandedCombat.cs:263
+  at ArcaneBrigade.CombatSimulation.Step (System.Single deltaTime, UnityEngine.Vector2 movement) [0x00494] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CombatSimulation.cs:552
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Campaigns (ArcaneBrigade.RunCatalog c) [0x002ac] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:95
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Run () [0x00034] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:28
+
+(Filename: Assets/ArcaneBrigade/Editor/ReleaseBalanceAudit.cs Line: 95)
+
+Release20261027-Campaigns (aborted diagnostic, not a completed measurement):
+InvalidOperationException: Collection was modified; enumeration operation may not execute.
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNextRare () [0x00013] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNext () [0x0004a] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at ArcaneBrigade.CombatSimulation.ProcessArsenal (System.Single delta) [0x01417] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\ArsenalCombat.cs:1079
+  at ArcaneBrigade.CombatSimulation.ProcessExpansion (System.Single delta) [0x00018] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\ExpandedCombat.cs:245
+  at ArcaneBrigade.CombatSimulation.Step (System.Single deltaTime, UnityEngine.Vector2 movement) [0x00494] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CombatSimulation.cs:552
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Campaigns (ArcaneBrigade.RunCatalog c) [0x00226] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:109
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Run () [0x00131] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:40
+
+(Filename: Assets/ArcaneBrigade/Editor/ReleaseBalanceAudit.cs Line: 109)
+
+ReleaseStable20261027-Campaigns (aborted diagnostic, not a completed measurement):
+InvalidOperationException: Collection was modified; enumeration operation may not execute.
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNextRare () [0x00013] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNext () [0x0004a] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at ArcaneBrigade.CombatSimulation.ResolveExpandedAttack (ArcaneBrigade.UnitState source, System.Single damage, System.Boolean critical, ArcaneBrigade.CombatCause cause) [0x003f4] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\ExpandedCombat.cs:94
+  at ArcaneBrigade.CombatSimulation.ProcessAttack (ArcaneBrigade.UnitState unit) [0x001c8] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CombatSimulation.cs:890
+  at ArcaneBrigade.CombatSimulation.Step (System.Single deltaTime, UnityEngine.Vector2 movement) [0x003ff] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CombatSimulation.cs:534
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Campaigns (ArcaneBrigade.RunCatalog c) [0x00226] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:109
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Run () [0x00131] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:40
+
+(Filename: Assets/ArcaneBrigade/Editor/ReleaseBalanceAudit.cs Line: 109)
+
+ReleaseSweep20261027-Campaigns (aborted diagnostic, not a completed measurement):
+InvalidOperationException: Collection was modified; enumeration operation may not execute.
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNextRare () [0x00013] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at System.Collections.Generic.List`1+Enumerator[T].MoveNext () [0x0004a] in <f713e1c3c5f545ce9b1df47230f4f853>:0
+  at ArcaneBrigade.CombatSimulation.ResolveCarnivalAttack (ArcaneBrigade.UnitState source, System.Single damage, System.Boolean critical, ArcaneBrigade.CombatCause cause) [0x00115] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CarnivalCombat.cs:17
+  at ArcaneBrigade.CombatSimulation.ResolveExpandedAttack (ArcaneBrigade.UnitState source, System.Single damage, System.Boolean critical, ArcaneBrigade.CombatCause cause) [0x00044] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\ExpandedCombat.cs:62
+  at ArcaneBrigade.CombatSimulation.ProcessAttack (ArcaneBrigade.UnitState unit) [0x001c8] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CombatSimulation.cs:890
+  at ArcaneBrigade.CombatSimulation.Step (System.Single deltaTime, UnityEngine.Vector2 movement) [0x003ff] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Runtime\Core\CombatSimulation.cs:534
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Campaigns (ArcaneBrigade.RunCatalog c) [0x00226] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:109
+  at ArcaneBrigade.Editor.ReleaseBalanceAudit.Run () [0x00131] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\ReleaseBalanceAudit.cs:40

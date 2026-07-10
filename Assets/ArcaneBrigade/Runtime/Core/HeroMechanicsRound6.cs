@@ -79,7 +79,7 @@ namespace ArcaneBrigade
         {
             if (unit != identityLead || IdentityId != "PatchworkHost") return null;
             UnitState best = null; float bestDistance = LeadGuardRadius * LeadGuardRadius;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || !CanHit(unit.Faction, u)) continue;
                 float toHero = (u.Position - Champion.Position).sqrMagnitude;

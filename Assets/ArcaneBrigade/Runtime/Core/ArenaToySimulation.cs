@@ -77,7 +77,7 @@ namespace ArcaneBrigade
             Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 1.1f;
             if (half.x <= 0f || half.y <= 0f || !FiniteArenaVector(position) || Mathf.Abs(position.x) > half.x || Mathf.Abs(position.y) > half.y) return false;
             if (ArenaLayout != null && ArenaLayout.Blocks(position, ArenaToyFootprint)) return false; // never on a prop
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
             {
                 if (!unit.Alive) continue;
                 float clearance = unit.Definition.Radius + (unit.Faction == Faction.Champion ? 2f : 0.85f);
@@ -114,7 +114,7 @@ namespace ArcaneBrigade
         public void NotifyArenaToyHit(Vector2 point, Vector2 direction, CombatCause cause)
         {
             UnitState source = null;
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
                 if (unit.Id == cause.SourceUnitId) { source = unit; break; }
             NotifyArenaToyHit(source, point, point, 0f, direction, cause);
         }
@@ -205,7 +205,7 @@ namespace ArcaneBrigade
         private void RingStageBell(ArenaToyState toy)
         {
             targetCandidates.Clear();
-            foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && (u.Position - toy.Position).sqrMagnitude <= 36f) targetCandidates.Add(u);
+            foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Enemy && (u.Position - toy.Position).sqrMagnitude <= 36f) targetCandidates.Add(u);
             targetCandidates.Sort((a, b) => (a.Position - toy.Position).sqrMagnitude.CompareTo((b.Position - toy.Position).sqrMagnitude));
             Sprite chime = CombatVfxArtwork.Frame("BellChime", 0);
             var ring = new HashSet<int>(); // each enemy is struck once per ring
@@ -243,7 +243,7 @@ namespace ArcaneBrigade
             else
             {
                 // the music box plays to each friend nearby: a note gathers on each of them (no ring round the box)
-                foreach (UnitState ally in units)
+                foreach (UnitState ally in StableUnits)
                     if (ally.Alive && ally.Faction != Faction.Enemy && (ally.Position - toy.Position).sqrMagnitude < 16f)
                     {
                         ally.NextAttack = Mathf.Max(Elapsed, ally.NextAttack - 0.2f);
@@ -254,7 +254,7 @@ namespace ArcaneBrigade
 
         private void DamageArenaToyArea(ArenaToyState toy, Vector2 start, Vector2 end, float radius)
         {
-            foreach (UnitState target in units)
+            foreach (UnitState target in StableUnits)
             {
                 if (!target.Alive || target.Faction != Faction.Enemy || toy.Victims.Contains(target.Id) ||
                     SegmentCircle(start, end, target.Position, radius + target.Definition.Radius) < 0f) continue;

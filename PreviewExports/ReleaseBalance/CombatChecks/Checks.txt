@@ -1,0 +1,5 @@
+PASS hostile collateral kills two splitters, spawns four unharmed halves without invalidating iteration
+PASS friendly area kills two splitters, spawns four unharmed halves without invalidating iteration
+PASS arsenal fizz kills two splitters, spawns four unharmed halves without invalidating iteration
+PASS expanded melee kills two splitters, spawns four unharmed halves without invalidating iteration
+PASS echo blade kills two splitters, spawns four unharmed halves without invalidating iteration

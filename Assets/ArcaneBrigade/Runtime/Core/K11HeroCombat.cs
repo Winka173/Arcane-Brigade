@@ -37,7 +37,7 @@ namespace ArcaneBrigade
             {
                 float reach = mechanic == HeroMechanic.LanternStride ? 2.4f : 3;
                 bool threat = false;
-                foreach (UnitState enemy in units) threat |= enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - Champion.Position).sqrMagnitude <= reach * reach;
+                foreach (UnitState enemy in StableUnits) threat |= enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - Champion.Position).sqrMagnitude <= reach * reach;
                 if (mechanic == HeroMechanic.DreamBreath)
                     foreach (ProjectileState projectile in projectiles) threat |= projectile.Faction == Faction.Enemy && (projectile.Position - Champion.Position).sqrMagnitude <= 9;
                 if (!threat) return;
@@ -58,7 +58,7 @@ namespace ArcaneBrigade
             {
                 // lands on the nearest threat (radius 1.3 round it), not as a ring round the hero
                 float radius = 1.3f; Vector2 centre = ThreatPoint(mechanic == HeroMechanic.LanternStride ? 2.4f : 3);
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                     if (enemy.Alive && enemy.Faction == Faction.Enemy && InBody(enemy, centre, radius))
                     {
                         if (mechanic == HeroMechanic.LanternStride) ApplyWeaponDamage(enemy, Champion.Definition.Weapon.Damage * 0.65f, Faction.Champion, DamageElement.Ember, Champion.Definition.DisplayName, (enemy.Position - Champion.Position).normalized, Champion.Definition.Weapon, cause: cause);

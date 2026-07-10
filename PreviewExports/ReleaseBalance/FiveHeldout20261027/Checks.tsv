@@ -1,0 +1,10 @@
+BuildBalance	FAIL	Broad-pool hero gets setup time while retaining full late drawback
+Recruitment	FAIL	New normal species accepted 20/0
+HeroIdentity	FAIL	Hero identity: Identity row does not overwrite stat summaries LanternKnight / 0
+HeroAwakening	FAIL	HeroAwakening LanternKnight: the transformation ends and rests
+SecretEvents	PASS
+Visitors	FAIL	Visitors: Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:Transform gauge starts 1/3 full | next wave
+RareVisitors	FAIL	Visitors: Waker every term has a known icon and a short amount: Wake early | gold:6 | gauge:Transform gauge starts 1/3 full | next wave
+Modes	FAIL	Mode balance: Peaceful is the gentlest layer (no tougher than the old base; balance pass round 2, 19/10/2026) 1
+ReleaseCombat	PASS
+FiveDifficulties	PASS

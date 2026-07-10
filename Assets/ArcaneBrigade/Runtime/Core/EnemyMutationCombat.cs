@@ -26,7 +26,7 @@ namespace ArcaneBrigade
             Vector2 offset = Champion.Position - enemy.Position;
             if (offset.sqrMagnitude > 56.25f) return false;
             int charging = 0;
-            foreach (UnitState other in units) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) charging++;
+            foreach (UnitState other in StableUnits) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) charging++;
             if (charging >= 4) { enemy.NextEvolutionAttack = Elapsed + 0.4f + enemy.Id % 5 * 0.08f; return false; }
             enemy.NextEvolutionAttack = Elapsed + 7.5f + enemy.Id % 5 * 0.35f;
             enemy.EvolutionOrigin = enemy.Position;

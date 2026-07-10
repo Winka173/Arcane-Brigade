@@ -233,7 +233,7 @@ namespace ArcaneBrigade
                 foreach (MapEnvironmentState.VaultPage page in s.VaultPages)
                 {
                     if (!VaultOnFloor(page, t)) continue;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         if (!u.Alive || u.Faction != Faction.Enemy || u.Definition.IsBoss || u.Elite || u.SwarmMinion || s.VaultWorms.ContainsKey(u.Id)) continue;
                         float d = (u.Position - page.To).sqrMagnitude;
@@ -316,7 +316,7 @@ namespace ArcaneBrigade
                 // the pot stands beside where the ink will run, toward the enemies round the hero, and tips sideways into it
                 s.VaultNextPot = t + MapEnvironmentRules.VaultPotEvery; s.VaultPotAt = t;
                 Vector2 toward = Vector2.zero; int count = 0;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                     if (u.Alive && u.Faction == Faction.Enemy && (u.Position - Champion.Position).sqrMagnitude < 64) { toward += u.Position - Champion.Position; count++; }
                 Vector2 dir = count > 0 && toward.sqrMagnitude > .01f ? toward.normalized : new Vector2(MapNext(-1, 1), MapNext(-1, 1)).normalized;
                 if (dir.sqrMagnitude < .01f) dir = Vector2.right;
@@ -336,7 +336,7 @@ namespace ArcaneBrigade
                     if (u == null || !u.Alive) VaultFallen(seen.Key, u != null ? u.Position : new Vector2(seen.Value.x, seen.Value.y), seen.Value.z);
                 }
                 s.VaultInPool.Clear();
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                     if (u.Alive && u.Faction == Faction.Enemy && InVaultPool(u.Position)) s.VaultInPool[u.Id] = new Vector3(u.Position.x, u.Position.y, u.Definition.Health);
             }
             // each burst: half the fallen enemy's max health on the enemies within 1.5 units; those it fells in the pool burst next
@@ -367,16 +367,16 @@ namespace ArcaneBrigade
             {
                 // the densest crowd near the hero: the enemy with the most others within the stamp's reach
                 UnitState best = null; int most = 0; float r2 = MapEnvironmentRules.VaultStampRadius * MapEnvironmentRules.VaultStampRadius;
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (!u.Alive || u.Faction != Faction.Enemy || (u.Position - Champion.Position).sqrMagnitude > 100) continue;
                     int around = 0;
-                    foreach (UnitState v in units) if (v.Alive && v.Faction == Faction.Enemy && (v.Position - u.Position).sqrMagnitude < r2) around++;
+                    foreach (UnitState v in StableUnits) if (v.Alive && v.Faction == Faction.Enemy && (v.Position - u.Position).sqrMagnitude < r2) around++;
                     if (around > most) { most = around; best = u; }
                 }
                 if (best == null) { s.VaultNextStamp = t + 2; return; }
                 Vector2 centre = Vector2.zero; int n = 0;
-                foreach (UnitState v in units) if (v.Alive && v.Faction == Faction.Enemy && (v.Position - best.Position).sqrMagnitude < r2) { centre += v.Position; n++; }
+                foreach (UnitState v in StableUnits) if (v.Alive && v.Faction == Faction.Enemy && (v.Position - best.Position).sqrMagnitude < r2) { centre += v.Position; n++; }
                 s.VaultStamp = ClampPosition(n > 0 ? centre / n : best.Position, .5f);
                 s.VaultStampAt = t; s.VaultStamped = false; s.VaultNextStamp = t + MapEnvironmentRules.VaultStampEvery;
             }
@@ -406,7 +406,7 @@ namespace ArcaneBrigade
             foreach (MapEnvironmentState.VaultPage page in s.VaultPages) page.Position = VaultPageAt(page, t);
             s.VaultNextPage = t + 30;
             PlaceVaultFog(s, hero, true); s.VaultNextFog = t + 30;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && (u.Position - hero).sqrMagnitude < 36)
                 {
                     var worm = new MapEnvironmentState.VaultWorm { Pages = 2, Last = u.Position, BornAt = t - 3, AteAt = t - .3f };

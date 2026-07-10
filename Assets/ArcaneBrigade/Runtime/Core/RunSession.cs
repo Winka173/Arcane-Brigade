@@ -38,7 +38,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed partial class RunSnapshot
     {
-        public const int CurrentSchemaRevision = 5;
+        public const int CurrentSchemaRevision = 6; // eight-to-five difficulty save migration
         public int SchemaRevision = CurrentSchemaRevision;
         public string Version;
         public string RunId;
@@ -153,6 +153,7 @@ namespace ArcaneBrigade
         public static bool IsStoryBossId(string id) => id == "OutsideStageKeeper" || id == NightmareRules.CustomerId;
         public void Restore(RunSnapshot snapshot)
         {
+            snapshot = DifficultySaveMigration.ForRead(snapshot);
             Validate(snapshot);
             State = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(snapshot));
             if (snapshot.SchemaRevision < 3)
@@ -200,6 +201,7 @@ namespace ArcaneBrigade
 
         public void Validate(RunSnapshot snapshot)
         {
+            snapshot = DifficultySaveMigration.ForRead(snapshot);
             // runs saved while a story boss was wrongly recorded as a discovery: drop it here, where loading and every
             // transaction check validate, so the run loads and plays on
             snapshot?.DefeatedBosses?.RemoveAll(id => IsStoryBossId(id) && !Array.Exists(catalog.Bosses, boss => boss.Id == id));

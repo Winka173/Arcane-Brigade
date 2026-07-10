@@ -21,7 +21,7 @@ namespace ArcaneBrigade
             if (target.Definition.Behavior == EnemyBehavior.Armored && Vector2.Dot(from, target.Facing.sqrMagnitude > .01f ? target.Facing.normalized : from) > .2f)
                 factor *= ArmorFront; // struck in its ledger shell: from behind it takes the full blow
             if (weapon != null && weapon.Kind == WeaponKind.Projectile)
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (u == target || !u.Alive || u.Faction != Faction.Enemy || u.Definition.Behavior != EnemyBehavior.Shielder) continue;
                     Vector2 toward = Champion.Position - u.Position, ward = target.Position - u.Position;
@@ -82,7 +82,7 @@ namespace ArcaneBrigade
                     break;
                 case EnemyBehavior.Summoner:
                 {
-                    int alive = 0; foreach (UnitState u in units) if (u.Alive && u.SummonedBy == enemy.Id) alive++;
+                    int alive = 0; foreach (UnitState u in StableUnits) if (u.Alive && u.SummonedBy == enemy.Id) alive++;
                     UnitDefinition mite = catalog.EnemyPool != null ? System.Array.Find(catalog.EnemyPool, e => e != null && e.Id == "ClipMite") : null;
                     if (mite == null || alive >= SummonCap) break;
                     enemy.TelegraphUntil = Elapsed + .5f;

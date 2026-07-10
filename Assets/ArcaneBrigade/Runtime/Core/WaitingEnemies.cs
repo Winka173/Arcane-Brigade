@@ -111,7 +111,7 @@ namespace ArcaneBrigade
             WaitingEnemyKind kind = definition == null ? WaitingEnemyKind.None : definition.WaitingKind;
             if (kind == WaitingEnemyKind.None) return false;
             int same = 0, all = 0;
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
             {
                 if (!unit.Alive || unit.Faction != Faction.Enemy) continue;
                 WaitingEnemyKind other = unit.Definition.WaitingKind;
@@ -213,7 +213,7 @@ namespace ArcaneBrigade
             {
                 if (lanternDim[lamp] <= 0) continue;
                 bool pinched = false;
-                foreach (UnitState unit in units)
+                foreach (UnitState unit in StableUnits)
                     if (unit.Alive && unit.Faction == Faction.Enemy && unit.Waiting != null && unit.Waiting.Kind == WaitingEnemyKind.LampSnuffer && unit.Waiting.Step == 1 && unit.Waiting.Lantern == lamp) { pinched = true; break; }
                 if (!pinched) lanternDim[lamp] = Mathf.Max(0, lanternDim[lamp] - deltaTime / 2.5f);
             }
@@ -249,7 +249,7 @@ namespace ArcaneBrigade
         private bool WaitingCanWindUp()
         {
             int charging = 0;
-            foreach (UnitState other in units) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) charging++;
+            foreach (UnitState other in StableUnits) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) charging++;
             return charging < 4;
         }
 
@@ -512,7 +512,7 @@ namespace ArcaneBrigade
         private UnitState NotaryAlly(UnitState notary)
         {
             UnitState best = null; float bestDistance = 36;
-            foreach (UnitState other in units)
+            foreach (UnitState other in StableUnits)
             {
                 if (other == notary || !other.Alive || other.Faction != Faction.Enemy || other.Definition.IsBoss || other.Definition.WaitingKind == WaitingEnemyKind.InkNotary) continue;
                 if (other.Waiting != null && other.Waiting.Paid) continue;

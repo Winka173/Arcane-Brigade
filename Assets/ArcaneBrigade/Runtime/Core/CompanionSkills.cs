@@ -26,14 +26,14 @@ namespace ArcaneBrigade
         private UnitState Strongest(Vector2 origin, float range)
         {
             UnitState best = null;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
                 if (CanHit(Faction.Champion, u) && (u.Position - origin).sqrMagnitude <= range * range && (best == null || u.Health > best.Health)) best = u;
             return best;
         }
         private UnitState Nearest(Vector2 origin, float range)
         {
             UnitState best = null; float d = range * range;
-            foreach (UnitState u in units) if (CanHit(Faction.Champion, u)) { float s = (u.Position - origin).sqrMagnitude; if (s <= d) { d = s; best = u; } }
+            foreach (UnitState u in StableUnits) if (CanHit(Faction.Champion, u)) { float s = (u.Position - origin).sqrMagnitude; if (s <= d) { d = s; best = u; } }
             return best;
         }
         /// <summary>Sleep or freeze: the enemy neither moves (EnemySleepScale) nor attacks for `seconds`; bosses only briefly.</summary>
@@ -79,7 +79,7 @@ namespace ArcaneBrigade
                     {
                         // the reel replays the strongest friend nearby: its blow lands again on the owl's target
                         float best = 0;
-                        foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion && f != actor && (f.Position - actor.Position).sqrMagnitude <= 9) best = Mathf.Max(best, f.Definition.Weapon.Damage);
+                        foreach (UnitState f in StableUnits) if (f.Alive && f.Faction == Faction.Companion && f != actor && (f.Position - actor.Position).sqrMagnitude <= 9) best = Mathf.Max(best, f.Definition.Weapon.Damage);
                         if (best > 0) { ApplyWeaponDamage(target, best * .8f, Faction.Companion, DamageElement.Arcane, "Reel Owl", (target.Position - actor.Position).normalized, cause: NewCause(actor.Id).Child("reel-owl")); Skill(actor, MorphGeometry.Line, actor.Position, target.Position, 0); }
                     }
                 }
@@ -87,7 +87,7 @@ namespace ArcaneBrigade
                 {
                     // Static Club: the hit arcs on to the nearest other enemy for half the friend's weapon damage
                     UnitState next = null; float best = 2.5f * 2.5f;
-                    foreach (UnitState u in units) if (u != e.Subject && CanHit(Faction.Champion, u)) { float d = (u.Position - e.Subject.Position).sqrMagnitude; if (d < best) { best = d; next = u; } }
+                    foreach (UnitState u in StableUnits) if (u != e.Subject && CanHit(Faction.Champion, u)) { float d = (u.Position - e.Subject.Position).sqrMagnitude; if (d < best) { best = d; next = u; } }
                     if (next != null)
                     {
                         ApplyWeaponDamage(next, actor.Definition.Weapon.Damage * .5f, Faction.Companion, DamageElement.Arcane, "Static Club", (next.Position - e.Subject.Position).normalized, cause: NewCause(actor.Id).Child("static-club"));
@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                 }
             }
             ProcessNewCompanionSkills();
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!u.Alive || u.Faction != Faction.Companion) continue;
                 switch (u.Definition.Id)
@@ -112,7 +112,7 @@ namespace ArcaneBrigade
                     case "ClockworkPiper":
                         if (Nearest(u.Position, 7) != null && SkillReady(u, 6))
                         {
-                            foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion && (f.Position - u.Position).sqrMagnitude <= 9) f.HasteUntil = Elapsed + 2;
+                            foreach (UnitState f in StableUnits) if (f.Alive && f.Faction == Faction.Companion && (f.Position - u.Position).sqrMagnitude <= 9) f.HasteUntil = Elapsed + 2;
                             Skill(u, MorphGeometry.Disc, u.Position, u.Position, .4f);
                         }
                         break;

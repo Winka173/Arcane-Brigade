@@ -22,7 +22,7 @@ namespace ArcaneBrigade
             if (tacticalClaimTime != Elapsed || tacticalGeneration != Generation)
             {
                 tacticalClaimTime = Elapsed; tacticalGeneration = Generation; tacticalClaims.Clear(); tacticalDamage.Clear();
-                foreach (UnitState ally in units)
+                foreach (UnitState ally in StableUnits)
                 {
                     if (!ally.Alive || ally.Faction != Faction.Companion) continue;
                     if (ally.TacticalTargetId != 0) tacticalClaims[ally.TacticalTargetId] = tacticalClaims.TryGetValue(ally.TacticalTargetId, out int count) ? count + 1 : 1;

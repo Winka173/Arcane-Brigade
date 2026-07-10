@@ -76,7 +76,7 @@ namespace ArcaneBrigade
                     case "EndlessIndex": pages = Mathf.Max(pages, Mathf.Min(3, catalog.IndexPages / 10)); break;
                 }
             }
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (u.Faction != Faction.Companion) continue;
                 if (herald) u.HeraldShot = true;
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
         {
             Vector2 dir = (ahead.Position - u.Position).normalized;
             skillTargets.Clear();
-            foreach (UnitState t in units)
+            foreach (UnitState t in StableUnits)
             {
                 Vector2 off = t.Position - u.Position;
                 if (CanHit(Faction.Champion, t) && off.sqrMagnitude <= 3.5f * 3.5f && Vector2.Dot(off.normalized, dir) > .6f) skillTargets.Add(t);
@@ -129,7 +129,7 @@ namespace ArcaneBrigade
             for (int h = 0; h < hops; h++)
             {
                 UnitState next = null; float best = 2.5f * 2.5f;
-                foreach (UnitState u in units) if (!struck.Contains(u.Id) && CanHit(Faction.Champion, u)) { float d = (u.Position - from.Position).sqrMagnitude; if (d < best) { best = d; next = u; } }
+                foreach (UnitState u in StableUnits) if (!struck.Contains(u.Id) && CanHit(Faction.Champion, u)) { float d = (u.Position - from.Position).sqrMagnitude; if (d < best) { best = d; next = u; } }
                 if (next == null) return;
                 struck.Add(next.Id);
                 ApplyWeaponDamage(next, damage * (h == 0 ? .5f : .35f), Faction.Companion, DamageElement.Arcane, id, (next.Position - from.Position).normalized, cause: NewCause(actor.Id).Child(id));
@@ -241,7 +241,7 @@ namespace ArcaneBrigade
                     case "JackInTheBox":
                         if (Nearest(u.Position, 3.5f) != null && SkillReady(u, 6))
                         {
-                            foreach (UnitState t in units)
+                            foreach (UnitState t in StableUnits)
                                 if (CanHit(Faction.Champion, t) && !t.Definition.IsBoss && (t.Position - u.Position).sqrMagnitude <= 3.5f * 3.5f) { t.TauntBy = u.Id; t.TauntUntil = Elapsed + 1.5f; }
                             SkillProp(ArsenalPropKind.Taunt, u, u.Position, 0, 3.5f, 1.5f, "ringmaster-ball");
                             CompanionSkillCasts++;
@@ -288,7 +288,7 @@ namespace ArcaneBrigade
                         }
                         break;
                     case "FossilArmadillo":
-                        foreach (UnitState t in units)
+                        foreach (UnitState t in StableUnits)
                             if (CanHit(Faction.Champion, t) && t.PinReadyAt <= Elapsed && (t.Position - u.Position).sqrMagnitude <= Mathf.Pow(u.Definition.Radius + t.Definition.Radius + .15f, 2))
                             { t.PinReadyAt = Elapsed + 2; Sleep(t, .3f); Skill(u, MorphGeometry.Disc, t.Position, t.Position, .25f); }
                         break;
@@ -296,7 +296,7 @@ namespace ArcaneBrigade
                 if (u.Definition.Description == "EclipseEgg_Support" && SkillReady(u, 4))
                 {
                     // the herald form hastens the friends near it
-                    foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion && (f.Position - u.Position).sqrMagnitude <= 9) f.HasteUntil = Elapsed + 2;
+                    foreach (UnitState f in StableUnits) if (f.Alive && f.Faction == Faction.Companion && (f.Position - u.Position).sqrMagnitude <= 9) f.HasteUntil = Elapsed + 2;
                     Skill(u, MorphGeometry.Disc, u.Position, u.Position, .35f);
                 }
             }
@@ -305,7 +305,7 @@ namespace ArcaneBrigade
 
         private void ProcessSkillProps()
         {
-            foreach (UnitState u in units) if (u.Faction == Faction.Enemy && Elapsed - u.CreamSeen > .2f) u.CreamTime = 0;
+            foreach (UnitState u in StableUnits) if (u.Faction == Faction.Enemy && Elapsed - u.CreamSeen > .2f) u.CreamTime = 0;
             for (int i = arsenalProps.Count - 1; i >= 0; i--)
             {
                 if (i >= arsenalProps.Count) continue;
@@ -331,7 +331,7 @@ namespace ArcaneBrigade
                         }
                         break;
                     case ArsenalPropKind.Cream:
-                        foreach (UnitState t in units)
+                        foreach (UnitState t in StableUnits)
                         {
                             if (!CanHit(Faction.Champion, t) || (t.Position - p.Position).sqrMagnitude > Mathf.Pow(p.Radius + t.Definition.Radius * .5f, 2)) continue;
                             if (Elapsed - t.CreamSeen > .2f) t.CreamTime = 0;

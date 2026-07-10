@@ -1,0 +1,5 @@
+Production catalog; compiled coverage all heroes, all difficulties, selected waves 1-50. Campaigns use real income, prices, rerolls, quotas, merge, earned prism rewards and story parties; no injected HP/gold/items. No permanent Lamp Tree bonuses injected: difficulties 6/7 are compilation probes, not valid endgame win-rate measurements. Ordinary encounter cutoff90s, boss240s. TIMEOUT stays unresolved. Bot outcomes are not human win probabilities. Six-body preference applies only to Buff buyers. Optional events are declined; transaction tests do not establish event balance. allyDamage is ALL non-hero ledger damage, including ARENA, not pure companion damage. Spending is net gold wallet change, never egg/HP value.
+Campaign difficulties: 1,3
+Seeds: 271026
+Policies: Hybrid
+Heroes: ALL

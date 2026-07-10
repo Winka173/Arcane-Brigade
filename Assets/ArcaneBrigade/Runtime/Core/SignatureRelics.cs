@@ -16,7 +16,7 @@ namespace ArcaneBrigade
                 CombatEvent trigger = events[index];
                 if (trigger.Kind != CombatEventKind.Pickup || trigger.Loot != LootKind.Coin || trigger.Cause.Depth != 0) continue;
                 UnitState bell = null; float best = 36;
-                foreach (UnitState source in units)
+                foreach (UnitState source in StableUnits)
                 {
                     if (!source.Alive || source.Faction == Faction.Enemy || source.Definition.Weapon.Signature != SignatureWeapon.Bell) continue;
                     float distance = (source.Position - Champion.Position).sqrMagnitude;

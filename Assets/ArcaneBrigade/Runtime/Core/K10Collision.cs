@@ -8,7 +8,7 @@ namespace ArcaneBrigade
         {
             if (source.Faction == Faction.Champion || source.Definition.CollisionDamage <= 0 || Elapsed < source.NextCollision) return;
             bool struck = false;
-            foreach (UnitState enemy in units)
+            foreach (UnitState enemy in StableUnits)
             {
                 if (!enemy.Alive || enemy.Faction != Faction.Enemy || enemy.EntranceUntil > Elapsed || enemy.BodyLift > 0.4f) continue;
                 float reach = source.Definition.Radius + enemy.Definition.Radius;

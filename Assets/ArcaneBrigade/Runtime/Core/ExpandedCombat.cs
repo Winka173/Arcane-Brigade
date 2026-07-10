@@ -76,7 +76,7 @@ namespace ArcaneBrigade
             if (weapon.Family == ExpandedWeapon.Camera)
             {
                 int count = 0;
-                foreach (UnitState target in units)
+                foreach (UnitState target in StableUnits)
                 {
                     Vector2 delta = target.Position - source.Position;
                     if (!CanHit(source.Faction, target) || delta.sqrMagnitude > weapon.Range * weapon.Range || Vector2.Dot(delta.normalized, source.AttackDirection) < 0.55f || count >= (source.Definition.CombatTier >= 2 ? 4 : 3)) continue;
@@ -91,7 +91,7 @@ namespace ArcaneBrigade
                 Field(ExpandedFieldKind.Strike, source, source.Position, Quaternion.Euler(0, 0, -18) * source.AttackDirection, weapon.Range, damage * 0.65f, 0, 0.05f, cause);
                 Field(ExpandedFieldKind.Strike, source, source.Position, Quaternion.Euler(0, 0, 18) * source.AttackDirection, weapon.Range, damage * 0.65f, 0.12f, 0.1f, cause); return true;
             }
-            foreach (UnitState target in units)
+            foreach (UnitState target in StableUnits)
             {
                 Vector2 delta = target.Position - source.Position;
                 if (!CanHit(source.Faction, target) || delta.magnitude > MeleeTactics.Reach(source,target) || Vector2.Dot(delta.normalized, source.AttackDirection) < weapon.ConeDot) continue;
@@ -115,7 +115,7 @@ namespace ArcaneBrigade
             if ((family == ExpandedWeapon.MusicBox || projectile.Weapon.HomingOutbound && !projectile.Returning) && projectile.Faction != Faction.Enemy)
             {
                 UnitState nearest = null; float best = 16;
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     float distance = (enemy.Position - projectile.Position).sqrMagnitude;
                     if (!enemy.Alive || enemy.Faction != Faction.Enemy || projectile.Victims.Contains(enemy.Id) || distance >= best) continue;
@@ -184,7 +184,7 @@ namespace ArcaneBrigade
                 for (int link = 0; link < (source.Definition.CombatTier >= 2 ? 3 : 2); link++)
                 {
                     UnitState next = null; float best = 4;
-                    foreach (UnitState enemy in units)
+                    foreach (UnitState enemy in StableUnits)
                     {
                         float distance = (enemy.Position - previous.Position).sqrMagnitude;
                         if (!enemy.Alive || enemy.Faction != Faction.Enemy || visited.Contains(enemy.Id) || distance >= best) continue;
@@ -223,7 +223,7 @@ namespace ArcaneBrigade
                 PullBump(target, bolt.Damage, source.Faction, bolt.Cause); // V6
             }
             int pulled = 0, most = 2 + Mathf.Clamp(source.Definition.CombatTier, 1, 3);
-            foreach (UnitState enemy in units)
+            foreach (UnitState enemy in StableUnits)
             {
                 if (enemy == target || !CanHit(source.Faction, enemy) || (enemy.Position - anchor).sqrMagnitude > 1.8f * 1.8f) continue;
                 if (pulled++ >= most) break;
@@ -268,8 +268,11 @@ namespace ArcaneBrigade
                     }
                     continue;
                 }
-                foreach (UnitState enemy in units)
+                // Hit/death reactions may add bodies; defer those to the next field/tick.
+                int fieldTargetCount = units.Count;
+                for (int targetIndex = 0; targetIndex < fieldTargetCount; targetIndex++)
                 {
+                    UnitState enemy = units[targetIndex];
                     if (!enemy.Alive || enemy.Faction != Faction.Enemy) continue;
                     Vector2 offset = enemy.Position - field.Position;
                     bool inside = field.Kind == ExpandedFieldKind.Iron ? SegmentCircle(field.Position - field.Direction, field.Position + field.Direction, enemy.Position, field.Radius + enemy.Definition.Radius) >= 0 : offset.sqrMagnitude <= (field.Radius + enemy.Definition.Radius) * (field.Radius + enemy.Definition.Radius);

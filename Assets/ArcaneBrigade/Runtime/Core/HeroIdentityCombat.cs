@@ -126,7 +126,7 @@ namespace ArcaneBrigade
             identityTrail.Add(Champion.Position);
             ResetAwakening(); ResetKit();
             if (!HeroIdentityEnabled) return;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (u.Faction != Faction.Companion) continue;
                 if (u.Definition.Id == catalog.HeroLeadUnit && u.Definition.Weapon.Id == catalog.HeroLeadWeapon) { identityLead = u; break; }
@@ -191,7 +191,7 @@ namespace ArcaneBrigade
                 // filled blast at their centre would lie about the area; they no longer detonate. One blast per 0.3s at most.
                 if (s.Shape == MorphGeometry.Disc && s.Radius >= 1f && Elapsed >= identityBlastAt)
                 { identityBlastAt = Elapsed + .3f; events.Add(new CombatEvent(CombatEventKind.Detonation, s.Position, Faction.Champion, s.Radius / 1.4f, s.Direction, element: s.Element, cause: s.Cause)); }
-                foreach (UnitState u in units)
+                foreach (UnitState u in StableUnits)
                 {
                     if (!CanHit(Faction.Champion, u)) continue;
                     float distance = Vector2.Distance(u.Position, s.Position), r = u.Definition.Radius;
@@ -217,7 +217,7 @@ namespace ArcaneBrigade
         private UnitState IdentityTarget(Vector2 origin, float range = 8, int preference = 0)
         {
             UnitState best = null; float score = float.PositiveInfinity;
-            foreach (UnitState u in units)
+            foreach (UnitState u in StableUnits)
             {
                 if (!CanHit(Faction.Champion, u) || (u.Position - origin).sqrMagnitude > range * range) continue;
                 float next = (u.Position - origin).sqrMagnitude;
@@ -251,7 +251,7 @@ namespace ArcaneBrigade
         private void IdentityPerform(float budget, int wanted)
         {
             identityPerformers.Clear();
-            foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Companion) identityPerformers.Add(u);
+            foreach (UnitState u in StableUnits) if (u.Alive && u.Faction == Faction.Companion) identityPerformers.Add(u);
             if (identityPerformers.Count == 0) identityPerformers.Add(Champion);
             int count = Mathf.Min(wanted, identityPerformers.Count);
             bool ownWeapons = IdentityId == "TinVirtuoso" || IdentityId == "VelvetRegent";

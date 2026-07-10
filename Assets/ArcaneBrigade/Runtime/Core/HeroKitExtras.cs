@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         private UnitState KitNearest(Vector2 at, float range, UnitState not = null)
         {
             UnitState best = null; float d = range * range;
-            foreach (UnitState u in units) { if (u == not || !CanHit(Faction.Champion, u)) continue; float e = (u.Position - at).sqrMagnitude; if (e < d) { d = e; best = u; } }
+            foreach (UnitState u in StableUnits) { if (u == not || !CanHit(Faction.Champion, u)) continue; float e = (u.Position - at).sqrMagnitude; if (e < d) { d = e; best = u; } }
             return best;
         }
 
@@ -61,7 +61,7 @@ namespace ArcaneBrigade
                 case KitAction.Parade: // every four seconds the whole knighted brigade swings at once
                 {
                     extraAt = Elapsed + 4f;
-                    foreach (UnitState f in units)
+                    foreach (UnitState f in StableUnits)
                     {
                         if (!f.Alive || f.Faction != Faction.Companion) continue;
                         UnitState u = KitNearest(f.Position, 3.5f); if (u == null) continue;
@@ -78,7 +78,7 @@ namespace ArcaneBrigade
                 case KitAction.Citadel: // foes that press against the petal walls are cut by them
                 {
                     extraAt = Elapsed + .6f; int cut = 0;
-                    foreach (UnitState u in units)
+                    foreach (UnitState u in StableUnits)
                     {
                         if (cut >= 3 || !CanHit(Faction.Champion, u)) continue;
                         float d = (u.Position - Champion.Position).magnitude; if (d < 1.1f || d > 2.1f) continue;

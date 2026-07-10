@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         private void ClearEnemyVariants()
         {
             ashRemnants.Clear();
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
                 if (unit.Variant != null) { unit.Variant.ReleaseAt = 0; unit.Variant.RecoveryUntil = 0; unit.Variant.TravelEnd = -100; unit.Variant.DecoyUntil = 0; }
         }
         // per difficulty (Peaceful .. The Last Night): the first wave elites can come, the added chance (%), its ceiling (%)
@@ -27,7 +27,7 @@ namespace ArcaneBrigade
         {
             if (!catalog.ExpandedContent || enemy.Variant == null || enemy.Variant.Affix != EnemyAffix.None || enemy.SwarmMinion || enemy.Variant.Summoned || enemy.Definition.IsBoss || catalog.RunWave < (catalog.MetaPactElites ? 1 : EliteFirstWave[EliteLevel])) return;
             int affixed = 0;
-            foreach (UnitState other in units) if (other.Alive && other.Variant != null && other.Variant.Affix != EnemyAffix.None) affixed++;
+            foreach (UnitState other in StableUnits) if (other.Alive && other.Variant != null && other.Variant.Affix != EnemyAffix.None) affixed++;
             uint seed = unchecked((uint)runSeed ^ (uint)enemy.Id * 2654435761u ^ (uint)catalog.RunWave * 2246822519u);
             seed ^= seed >> 16;
             // requirement 24/10/2026: the harder the difficulty, the sooner and more often any enemy comes as an elite
@@ -55,7 +55,7 @@ namespace ArcaneBrigade
                 if (ashRemnants.Count == 24) ashRemnants.RemoveAt(0);
                 ashRemnants.Add(new AshRemnant { Position = target.Position, Until = Elapsed + 7 });
             }
-            foreach (UnitState follower in units)
+            foreach (UnitState follower in StableUnits)
                 if (follower.Alive && follower.Variant != null && follower.Variant.LeaderId == target.Id)
                 {
                     follower.Variant.LeaderLost = true;
@@ -66,7 +66,7 @@ namespace ArcaneBrigade
         private int ActiveSpecialists()
         {
             int active = 0;
-            foreach (UnitState unit in units) if (unit.Alive && unit.Faction == Faction.Enemy && unit.Definition.SpecialEnemy != SpecialEnemyKind.None && (unit.Variant == null || !unit.Variant.Summoned)) active++;
+            foreach (UnitState unit in StableUnits) if (unit.Alive && unit.Faction == Faction.Enemy && unit.Definition.SpecialEnemy != SpecialEnemyKind.None && (unit.Variant == null || !unit.Variant.Summoned)) active++;
             return active;
         }
         private bool MoveEnemyVariant(UnitState enemy)
@@ -120,7 +120,7 @@ namespace ArcaneBrigade
             bool specialReady = enemy.Definition.SpecialEnemy != SpecialEnemyKind.None && Elapsed >= state.NextSpecial;
             if (!affixReady && !specialReady || (Champion.Position - enemy.Position).sqrMagnitude > 64) return false;
             int casting = 0;
-            foreach (UnitState other in units) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) casting++;
+            foreach (UnitState other in StableUnits) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) casting++;
             if (casting >= 4) return false;
             state.CastingAffix = affixReady;
             state.Heading = (Champion.Position - enemy.Position).sqrMagnitude > 0.001f ? (Champion.Position - enemy.Position).normalized : Vector2.down;
@@ -238,7 +238,7 @@ namespace ArcaneBrigade
         {
             if (catalog.RunWave <= 1) return;
             int summons = 0, enemies = 0;
-            foreach (UnitState other in units) if (other.Alive && other.Faction == Faction.Enemy) { enemies++; if (other.Variant != null && other.Variant.Summoned) summons++; }
+            foreach (UnitState other in StableUnits) if (other.Alive && other.Faction == Faction.Enemy) { enemies++; if (other.Variant != null && other.Variant.Summoned) summons++; }
             for (int index = 0; index < count && summons < 12 && enemies < Mathf.Min(240, catalog.EnemyBudget); index++, summons++, enemies++)
             {
                 UnitDefinition definition = procession ? source.Definition : SwarmDefinition();

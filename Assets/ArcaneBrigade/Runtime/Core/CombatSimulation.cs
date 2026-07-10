@@ -426,7 +426,7 @@ namespace ArcaneBrigade
             ClearSignatures();
             ClearArenaToys();
             ClearExpansion();
-            foreach (UnitState unit in units) { unit.PendingAttack = unit.CriticalEncore = false; unit.AttackStarted = -100f; unit.BurnUntil = unit.ChillUntil = 0f; }
+            foreach (UnitState unit in StableUnits) { unit.PendingAttack = unit.CriticalEncore = false; unit.AttackStarted = -100f; unit.BurnUntil = unit.ChillUntil = 0f; }
             spatial.Rebuild(units);
             Phase = RunPhase.Rest;
         }
@@ -436,13 +436,13 @@ namespace ArcaneBrigade
             if (Phase != RunPhase.Rest || !float.IsFinite(deltaTime) || deltaTime <= 0f || deltaTime > 0.1f) return;
             if (!float.IsFinite(movement.x) || !float.IsFinite(movement.y)) movement = Vector2.zero;
             restElapsed += deltaTime;
-            foreach (UnitState unit in units) unit.PreviousPosition = unit.Position;
+            foreach (UnitState unit in StableUnits) unit.PreviousPosition = unit.Position;
             movement = Vector2.ClampMagnitude(movement, 1f);
             Vector2 current = Champion.Position;
             Vector2 bounded = RestrictToShop(current);
             Champion.Position = (current - bounded).sqrMagnitude > 0.0001f ? Vector2.MoveTowards(current, bounded, Mathf.Max(8, Champion.Definition.Speed * 2) * deltaTime) : RestrictToShop(current + movement * Champion.Definition.Speed * deltaTime);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
             {
                 if (unit.Faction != Faction.Companion) continue;
                 if (FollowOctoberMount(unit)) continue;
@@ -469,12 +469,12 @@ namespace ArcaneBrigade
             if (Phase != RunPhase.Victory || !Champion.Alive || !float.IsFinite(deltaTime) || deltaTime <= 0 || deltaTime > 0.1f) return;
             if (!float.IsFinite(movement.x) || !float.IsFinite(movement.y)) movement = Vector2.zero;
             finaleElapsed += deltaTime;
-            foreach (UnitState unit in units) unit.PreviousPosition = unit.Position;
+            foreach (UnitState unit in StableUnits) unit.PreviousPosition = unit.Position;
             movement = Vector2.ClampMagnitude(movement, 1);
             if (Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle && !HeroIdentityEnabled) movement = Vector2.zero; // with identities on, Root Oracle walks (its identity roots it)
             Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * VisitorHeroScale * deltaTime, Champion.Definition.Radius);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
                 if (unit.Alive && unit.Faction == Faction.Companion)
                 {
                     unit.Position = ClampPosition(CompanionMotion.Step(unit, Champion, units, null, catalog, Elapsed + finaleElapsed, deltaTime), unit.Definition.Radius);
@@ -772,7 +772,7 @@ namespace ArcaneBrigade
                 case PassiveKind.ChillAura:
                     float auraRadius = 2f + unit.Definition.PassiveStrength * 0.625f;
                     bool chilled = false;
-                    foreach (UnitState enemy in units)
+                    foreach (UnitState enemy in StableUnits)
                         if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - unit.Position).sqrMagnitude < auraRadius * auraRadius) { enemy.ChillUntil = Elapsed + (enemy.Definition.IsBoss ? 0.6f : 1.5f); chilled = true; }
                     if (chilled)
                     {
@@ -1206,7 +1206,7 @@ namespace ArcaneBrigade
             }
             else if (element == DamageElement.Arcane)
             {
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                     if (enemy != target && enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - target.Position).sqrMagnitude < 2.25f) { ApplyDamage(enemy, damage * 0.35f, source, cause: cause.Child("arcane-chain")); break; }
             }
         }
@@ -1342,7 +1342,7 @@ namespace ArcaneBrigade
                     events.Add(new CombatEvent(CombatEventKind.Proc, trigger.Position, Faction.Champion, rule.Power * active.Stacks, cause: cause));
                     if (rule.Action == ProcAction.HealChampion) Heal(rule.Power * active.Stacks, cause);
                     else
-                        foreach (UnitState target in units)
+                        foreach (UnitState target in StableUnits)
                             if (target.Alive && target.Faction == Faction.Enemy && (target.Position - trigger.Position).sqrMagnitude <= rule.Radius * rule.Radius) ApplyDamage(target, rule.Power * active.Stacks, Faction.Champion, rule.Id, cause: cause);
                 }
             }

@@ -81,6 +81,9 @@ namespace ArcaneBrigade.Editor
                                             if (!targets[i].Alive) targets[i] = sim.AddFixture(dummy, Faction.Enemy, positions[i]);
                                             targets[i].Position = positions[i];
                                         }
+                                        // This measures offence, including self-draining kits, rather than time to death.
+                                        // Replenish equally in every mode; contact below still applies real incoming damage.
+                                        sim.Champion.Health = Mathf.Max(sim.Champion.Health, sim.Champion.Definition.Health * .75f);
                                         // Small real steps, then rest: tests movement and stillness mechanics without leaving melee reach.
                                         float phase = Mathf.Repeat(sim.Elapsed, 6);
                                         Vector2 move = mode == "moving" && phase < 4 ? Vector2.up * (Mathf.Repeat(phase, .4f) < .2f ? .5f : -.5f) : Vector2.zero;

@@ -244,7 +244,7 @@ namespace ArcaneBrigade
             Vector2 outward = SideVector(side), across = new Vector2(-outward.y, outward.x);
             float distance = outward.x != 0 ? 10.2f : 6.4f, span = outward.x != 0 ? 6.2f : 10.5f;
             int rows = 2, perRow = Mathf.CeilToInt(size / (float)rows);
-            int alive = 0; foreach (UnitState unit in units) if (unit.Alive && unit.Faction == Faction.Enemy) alive++;
+            int alive = 0; foreach (UnitState unit in StableUnits) if (unit.Alive && unit.Faction == Faction.Enemy) alive++;
             int room = Mathf.Max(0, Mathf.CeilToInt(Mathf.Max(catalog.EnemyBudget, catalog.BossSwarmBudget) * 1.3f) + 40 - alive);
             size = Mathf.Min(size, Mathf.Min(room, 640 - alive));
             for (int index = 0; index < size; index++)

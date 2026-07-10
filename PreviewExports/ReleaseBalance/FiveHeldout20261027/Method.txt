@@ -1,0 +1,5 @@
+Production catalog; compiled coverage all heroes, all difficulties, selected waves 1-50. Campaigns use real income, prices, rerolls, quotas, merge, earned prism rewards and story parties; no injected combat HP/gold/items. Compile probes have no meta. Campaign meta mode: required. Required mode applies a deterministic full Lamp Tree/mastery loadout only to tree-gated difficulties. Full applies it everywhere; none nowhere. These owned-profile fixtures are separate from fresh-profile outcomes; exact loadouts saved under Meta/. Ordinary encounter cutoff90s, boss240s. TIMEOUT stays unresolved. Bot outcomes are not human win probabilities. Six-body preference applies only to Buff buyers. Optional events are declined; transaction tests do not establish event balance. allyDamage is ALL non-hero ledger damage, including ARENA, not pure companion damage. Spending is net gold wallet change, never egg/HP value. bossFellAt is real boss-death time (-100 when not killed), not encounter duration.
+Campaign difficulties: 0,1,2,3,4
+Seeds: 814907
+Policies: Hybrid
+Heroes: LanternKnight,LoneJelly,Postmaster,RootOracle,GlassDice,KiteAdmiral

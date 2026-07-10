@@ -70,7 +70,7 @@ namespace ArcaneBrigade
             if (weapon.Kind != WeaponKind.Melee || weapon.Family == ExpandedWeapon.Fish || weapon.Mechanic == CarnivalWeapon.SatelliteDisc || weapon.Mechanic == CarnivalWeapon.YoYo || cooperationCollector == source || !CooperationAlly(cooperationCollector) || Elapsed >= cooperationCollectUntil) return;
             int victims = 0;
             CombatCause sweep = cause.Child("cooperation-collected-sweep");
-            foreach (UnitState target in units)
+            foreach (UnitState target in StableUnits)
             {
                 Vector2 offset = target.Position - source.Position;
                 if (!cooperationCollected.Contains(target.Id) || !CanHit(source.Faction, target) || !InArc(target, source.Position, source.AttackDirection, Mathf.Min(weapon.Range, 3f), weapon.ConeDot)) continue;

@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         {
             stamps.Clear(); signaturePulses.Clear(); expiredStamps.Clear();
             BellWaves = UmbrellaOpenings = StampBursts = 0;
-            foreach (UnitState unit in units) { unit.AttackBeat = unit.VisibleMarks = 0; unit.MarkVisibleUntil = unit.ExposedUntil = 0; }
+            foreach (UnitState unit in StableUnits) { unit.AttackBeat = unit.VisibleMarks = 0; unit.MarkVisibleUntil = unit.ExposedUntil = 0; }
         }
 
         private void AdvanceSignatureBeat(UnitState unit, float damage, CombatCause cause, int charge = 1)
@@ -89,7 +89,7 @@ namespace ArcaneBrigade
             ApplyDamage(target, damage * Mathf.Max(0, weapon.SignatureScale), source.Faction, "Dream stamp burst", weapon: weapon, cause: cause.Child("stamp-burst"));
             if (source.Definition.CombatTier < 2) return;
             UnitState neighbor = null; float best = weapon.SignatureRadius * weapon.SignatureRadius;
-            foreach (UnitState candidate in units)
+            foreach (UnitState candidate in StableUnits)
             {
                 if (candidate == target || !candidate.Alive || candidate.Faction != Faction.Enemy) continue;
                 float distance = (candidate.Position - target.Position).sqrMagnitude;
@@ -115,7 +115,7 @@ namespace ArcaneBrigade
             foreach (KeyValuePair<long, StampState> pair in stamps)
                 if (!pair.Value.Target.Alive || !pair.Value.Source.Alive || pair.Value.Expires <= Elapsed) expiredStamps.Add(pair.Key);
             foreach (long key in expiredStamps) stamps.Remove(key);
-            foreach (UnitState unit in units)
+            foreach (UnitState unit in StableUnits)
             {
                 unit.VisibleMarks = 0; unit.MarkVisibleUntil = 0;
             }
@@ -148,7 +148,7 @@ namespace ArcaneBrigade
             if (aim.sqrMagnitude < 0.0001f)
             {
                 float best = float.PositiveInfinity;
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     float distance = (enemy.Position - source.Position).sqrMagnitude;
                     if (CanHit(source.Faction, enemy) && distance < best) { best = distance; aim = enemy.Position - source.Position; }

@@ -26,7 +26,7 @@ namespace ArcaneBrigade
         private void ClearBuildMorphs()
         {
             morphStrikes.Clear(); morphVictims.Clear(); morphPins.Clear(); BuildMorphReleases = 0;
-            foreach (UnitState unit in units) { unit.MorphAttacks = 0; unit.NextMorph = 0; unit.LastMorphAt = -100; }
+            foreach (UnitState unit in StableUnits) { unit.MorphAttacks = 0; unit.NextMorph = 0; unit.LastMorphAt = -100; }
         }
 
         private float ReleaseBuildMorph(UnitState source, float damage, CombatCause cause)
@@ -56,7 +56,7 @@ namespace ArcaneBrigade
                     for (int pin = 0; pin < stage + 1; pin++)
                     {
                         UnitState next = null; float best = 2.7f * 2.7f;
-                        foreach (UnitState enemy in units)
+                        foreach (UnitState enemy in StableUnits)
                         {
                             float d = (enemy.Position - morphPins[morphPins.Count - 1].Position).sqrMagnitude;
                             if (!CanHit(source.Faction, enemy) || morphPins.Contains(enemy) || d >= best) continue;
@@ -181,7 +181,7 @@ namespace ArcaneBrigade
                 if (!strike.Source.Alive || Elapsed >= strike.Until) { morphStrikes.RemoveAt(i); continue; }
                 if (strike.Resolved || Elapsed < strike.At) continue;
                 strike.Resolved = true; morphVictims.Clear();
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     if (!CanHit(strike.Source.Faction, enemy) || !MorphContains(strike, enemy)) continue;
                     // Nearest victims win deterministically; do not depend on spawn-list ordering.

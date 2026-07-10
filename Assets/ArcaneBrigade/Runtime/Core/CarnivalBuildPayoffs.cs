@@ -16,7 +16,7 @@ namespace ArcaneBrigade
                 if (tier >= 2)
                 {
                     int caught = 0;
-                    foreach (UnitState enemy in units)
+                    foreach (UnitState enemy in StableUnits)
                     {
                         if (!CanHit(source.Faction, enemy) || enemy == target || enemy.Definition.IsBoss || SegmentCircle(source.Position, target.Position, enemy.Position, enemy.Definition.Radius + 0.25f) < 0) continue;
                         enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + 0.3f);
@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             for (int link = 0; link < tier - 1; link++)
             {
                 UnitState next = null; float best = 1.8f * 1.8f;
-                foreach (UnitState enemy in units)
+                foreach (UnitState enemy in StableUnits)
                 {
                     float distance = (enemy.Position - previous.Position).sqrMagnitude;
                     if (!CanHit(source.Faction, enemy) || visited.Contains(enemy.Id) || distance >= best) continue;
