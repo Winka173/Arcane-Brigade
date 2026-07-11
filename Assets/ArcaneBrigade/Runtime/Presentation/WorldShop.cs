@@ -571,6 +571,26 @@ namespace ArcaneBrigade
             if (station.Recipe != null) return "FUSION · " + station.Action.Substring(5);
             return station.Action;
         }
+        // a friend that stars up runs to where its animation plays and stands beside it (requirement 27/10/2026)
+        private string summonId;
+        private Vector2 summonAt;
+        private float summonUntil;
+        private float summonStart;
+        public void Summon(string unitId, Vector2 at, float seconds)
+        {
+            if (summonId != unitId || Time.unscaledTime > summonUntil) summonStart = Time.unscaledTime;
+            summonId = unitId; summonAt = at + new Vector2(-1.3f, -.15f); summonUntil = Time.unscaledTime + seconds;
+        }
+        /// <summary>True once the called friend stands at its spot (or after 2.5 s, whatever stops it): the animation waits for it.</summary>
+        public bool SummonArrived(string unitId)
+        {
+            if (summonId != unitId || Time.unscaledTime > summonUntil || Time.unscaledTime > summonStart + 2.5f) return true;
+            foreach (UnitState unit in owner.Simulation.Units)
+                if (unit.Faction == Faction.Companion && unit.Definition.Id == unitId) return (unit.Position - summonAt).sqrMagnitude < .16f;
+            return true;
+        }
+        private bool Summoned(UnitState unit, out Vector2 at) { at = summonAt; return Time.unscaledTime < summonUntil && unit.Definition.Id == summonId; }
+
         public void ResolveCompanionPositions()
         {
             if (scenery == null || !scenery.activeSelf || owner.Simulation.Phase != RunPhase.Rest) return;
@@ -581,6 +601,13 @@ namespace ArcaneBrigade
             {
                 if (unit.Faction != Faction.Companion) continue;
                 if (unit.MountId > 0) continue;
+                if (Summoned(unit, out Vector2 call))
+                {
+                    unit.Position = Vector2.MoveTowards(unit.PreviousPosition, call, Mathf.Max(9f, unit.Definition.Speed * 3.2f) * Time.fixedDeltaTime);
+                    unit.Velocity = (unit.Position - unit.PreviousPosition) / Time.fixedDeltaTime;
+                    unit.Facing = (call - unit.Position).sqrMagnitude > .05f ? (call - unit.Position).normalized : Vector2.right;
+                    continue;
+                }
                 if (MergePreview.Destination(unit, out Vector2 mergeDestination))
                 {
                     Vector2 destination = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(mergeDestination - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
@@ -782,13 +809,17 @@ namespace ArcaneBrigade
                     string fit = merge ? null : owner.Session.BuildFit(station.Offer, out fitIcon);
                     bool item = station.Offer.Kind == OfferKind.Item;
                     Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : owner.Content.Unit(station.Offer.Id).Rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(owner.Content.Unit(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
-                    Rect category = new Rect(point.x - (merge ? 60 : fit != null ? 66 : 45), ticket.y - 29, merge ? 120 : fit != null ? 132 : 90, 26);
+                    int mergeTier = merge ? ShopMergePreview.ProjectedTier(owner.Session, station.Offer) : 0;
+                    float mergeWidth = 84 + mergeTier * 15;
+                    Rect category = new Rect(point.x - (merge ? mergeWidth / 2 : fit != null ? 66 : 45), ticket.y - 29, merge ? mergeWidth : fit != null ? 132 : 90, 26);
                     ArcadeSkin.Slant(category, fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
                     if (merge)
                     {
                         GUI.Label(new Rect(category.x + 3, category.y, 77, category.height), "MERGE", categoryStyle);
-                        int tier = ShopMergePreview.ProjectedTier(owner.Session, station.Offer);
-                        for (int star = 0; star < tier; star++) RunHud.Sprite(new Rect(category.x + 81 + star * 11, category.y + 7, 11, 11), K8Motion.TierStar());
+                        // the stars it will make, plain and in the star's colour: silver two, gold three, purple four
+                        Color keepTint = GUI.color; GUI.color = UnitVisual.StarColour(mergeTier);
+                        for (int star = 0; star < mergeTier; star++) RunHud.Sprite(new Rect(category.x + 75 + star * 15, category.y + 5, 15, 15), K8Motion.TierStar());
+                        GUI.color = keepTint;
                     }
                     else if (fit != null)
                     {

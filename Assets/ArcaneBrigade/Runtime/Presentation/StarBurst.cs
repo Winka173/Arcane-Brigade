@@ -20,6 +20,7 @@ namespace ArcaneBrigade
             StarBurst burst = go.AddComponent<StarBurst>();
             burst.at = at; burst.stars = stars; burst.merge = merge;
             burst.born = Time.unscaledTime;
+            GrandStarCeremony.PlayLight(at, stars);
             bool three = stars >= 3f;
             burst.life = merge ? (three ? 1.9f : 1.5f) : 1.7f;
             burst.glints = PresentationSettings.ReducedEffects ? 4 : merge ? (three ? 22 : 14) : 18;

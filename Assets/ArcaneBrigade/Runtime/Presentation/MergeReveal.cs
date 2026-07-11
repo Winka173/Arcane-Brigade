@@ -120,8 +120,6 @@ namespace ArcaneBrigade
             lastReceipt = after.NextReceipt;
             if (ReadOnly) { Skip(); return; }
             foreach (Beat beat in beats) queue.Enqueue(beat);
-            // a Rainbow Thread weaves a 4-star friend without any merge: the rainbow ceremony plays on its own
-            if (before != null && before.RunId == after.RunId && after.Roster.FindAll(r => r.Tier >= 5).Count > before.Roster.FindAll(r => r.Tier >= 5).Count && !beats.Exists(b => b.Result.Tier >= 5)) GrandStarCeremony.Play(position, 5);
             // a copy that does not merge but brings the next star within one copy: a half star, a lighter flourish
             if (beats.Count == 0 && !altar && before != null && before.RunId == after.RunId)
             {
@@ -131,7 +129,7 @@ namespace ArcaneBrigade
                     if (!seen.Add(entry.UnitId)) continue;
                     int top = 0; foreach (RosterEntry r in after.Roster) if (r.UnitId == entry.UnitId) top = Mathf.Max(top, r.Tier);
                     int now = after.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count, was = before.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count;
-                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) StarBurst.Play(position, top + .5f, false);
+                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { halves.Enqueue(new Half { Id = entry.UnitId, At = position, Stars = top + .5f }); owner.Shop?.Summon(entry.UnitId, position, 30f); }
                 }
             }
         }
@@ -144,7 +142,7 @@ namespace ArcaneBrigade
             queue.Enqueue(new Beat { Result = Copy(result), Materials = materials, Position = position, Altar = altar });
         }
 
-        public void Skip() { queue.Clear(); ClearStage(); }
+        public void Skip() { queue.Clear(); halves.Clear(); ClearStage(); }
 
         /// <summary>True while a ceremony (playing or waiting) is for this unit: the real unit stays hidden where the
         /// ceremony stands and steps out of it when it ends, instead of appearing somewhere nearby.</summary>
@@ -163,9 +161,35 @@ namespace ArcaneBrigade
         /// <summary>The ceremony's clock: a three-star holds one frame for GrandHold when the braid knots.</summary>
         private float VisualTime => !Grand || age < GrandKnotAt ? age : age < GrandKnotAt + GrandHold ? GrandKnotAt : age - GrandHold;
 
+        private sealed class Half { public string Id; public Vector2 At; public float Stars; }
+        private readonly Queue<Half> halves = new Queue<Half>();
+        private int seenFives = -1;
+        private string seenFivesRun;
+        /// <summary>A Rainbow Thread weaves a 4-star friend wherever it came from (a secret room, a visitor, a boss): the 5-star ceremony
+        /// plays the moment a new 5-star friend appears, with its old 4-star self as the one donor.</summary>
+        private void WatchRainbow()
+        {
+            RunSnapshot state = owner.Session.State;
+            int fives = state.Roster.FindAll(r => r.Tier >= 5).Count;
+            if (seenFivesRun != state.RunId || seenFives < 0) { seenFivesRun = state.RunId; seenFives = fives; return; }
+            if (fives > seenFives && !ReadOnly && owner.Simulation.Champion != null)
+            {
+                RosterEntry woven = state.Roster.FindLast(r => r.Tier >= 5);
+                if (woven != null && !System.Linq.Enumerable.Any(queue, b => b.Result.Tier >= 5) && (active == null || active.Result.Tier < 5))
+                    Stage(woven, new List<RosterEntry> { new RosterEntry { UnitId = woven.UnitId, WeaponId = woven.WeaponId, Tier = 4 } }, owner.Simulation.Champion.Position + Vector2.up * .8f + Vector2.right * 1.6f);
+            }
+            seenFives = fives;
+        }
+
         private void Update()
         {
             if (owner == null || owner.Session == null || owner.Simulation == null) { Idle(); return; }
+            WatchRainbow();
+            // a half star plays when its friend has run to the spot
+            if (halves.Count > 0 && (owner.Shop == null || owner.Shop.SummonArrived(halves.Peek().Id)))
+            {
+                Half h = halves.Dequeue(); StarBurst.Play(h.At, h.Stars, false); owner.Shop?.Summon(h.Id, h.At, 3.2f);
+            }
             if (ReadOnly) { Skip(); return; }
             if (owner.Session.State.RunId != runId || owner.Session.State.Phase != SessionPhase.Shop) { Skip(); return; }
             if (owner.Simulation.Phase == RunPhase.Paused || owner.Details.Open || owner.MenuConfirmation) { Skip(); return; }
@@ -173,7 +197,12 @@ namespace ArcaneBrigade
             if (active == null)
             {
                 if (queue.Count == 0) { Idle(); return; }
+                // the friend already on the map runs to the animation first; the animation starts when it stands there
+                Beat next = queue.Peek();
+                owner.Shop?.Summon(next.Result.UnitId, next.Position, 30f);
+                if (owner.Shop != null && !owner.Shop.SummonArrived(next.Result.UnitId)) { Idle(); return; }
                 active = queue.Dequeue(); age = 0; cues = 0;
+                owner.Shop?.Summon(active.Result.UnitId, active.Position, Finish / .65f + .8f);
                 CheckpointAudio.PlayInterfaceId("up.merge.gather");
                 if (active.Altar) CheckpointAudio.PlayInterfaceId("shop.fusion", 0.09f);
                 stage = new GameObject(active.Altar ? "AltarRevealGhosts" : "MergeRevealGhosts");
@@ -181,6 +210,7 @@ namespace ArcaneBrigade
                 stage.transform.position = active.Position + Vector2.up * 1.3f;
                 foreach (RosterEntry material in active.Materials) ghosts.Add(CreateGhost(material));
                 ghosts.Add(CreateGhost(active.Result));
+                BuildLight();
                 if (!active.Altar)
                 {
                     var material = new GameObject("PurchasedBodyShadow_NoUnobservedWeapon");
@@ -292,12 +322,19 @@ namespace ArcaneBrigade
                 Vector2 foot = new Vector2(cx, feet + 0.05f);
                 Bezier(chest, chest + new Vector2(-spread * 0.2f, 0.9f), foot + new Vector2(spread * 0.35f, -0.1f), foot, 24);
                 float head = OutCubic(Mathf.Clamp01((t - 0.06f) / (gatherEnd * 0.8f))), tail = InQuad(Mathf.Clamp01((t - gatherEnd * 0.6f) / (gatherEnd * 0.55f)));
-                back.Ribbon(path, i % 2 == 0 ? main : second, 0.06f, head, tail, 1);
+                if (threadMaterial != null && weave != null) DonorThread(i, head, tail, topTier); else back.Ribbon(path, i % 2 == 0 ? main : second, 0.06f, head, tail, 1);
             }
 
             if (!still)
             {
-                if (grand) Braid(t, cx, feet, height, rx, main, second);
+                if (weave != null)
+                {
+                    float wHead = grand ? OutCubic(Mathf.Clamp01((t - 0.26f) / 0.72f)) : OutCubic(Mathf.Clamp01((t - 0.3f) / 0.34f));
+                    float wTail = grand ? InQuad(Mathf.Clamp01((t - GrandKnotAt - 0.02f) / 0.32f)) : InQuad(Mathf.Clamp01((t - 0.5f) / 0.32f));
+                    float knotAt = grand ? GrandKnotAt : revealAt, knot = Mathf.Clamp01(1 - Mathf.Abs(t - knotAt) / (grand ? .3f : .18f));
+                    Weave(t, cx, feet, height, rx, wHead, wTail, grand ? 3 : Mathf.Clamp(donors, 2, 3), grand ? 1.75f : 2.1f, knot * (grand ? 1 : .5f), topTier, fade);
+                }
+                else if (grand) Braid(t, cx, feet, height, rx, main, second);
                 else Wind(t, Mathf.Clamp(donors, 2, 3), cx, feet, height, rx, main, second);
             }
 
@@ -327,7 +364,7 @@ namespace ArcaneBrigade
             }
 
             // the stars stamp on above the head (an arch of gold for three stars)
-            Sprite star = ArsenalArtwork.Frame(grand ? "StarUp_GoldStar" : "StarUp_SilverStar", 0) ?? MechanicInk.Drawn(InkToken.Star, main);
+            Sprite star = ArsenalArtwork.Frame(topTier >= 5 ? "StarUp_RainbowStar" : topTier == 4 ? "StarUp_PurpleStar" : grand ? "StarUp_GoldStar" : "StarUp_SilverStar", 0) ?? MechanicInk.Drawn(InkToken.Star, mythic ? GrandStarCeremony.StarPalette(topTier, 0, 0) : main);
             float middleRise = grand ? starSize * 0.2f : 0;
             for (int k = 0; k < tier; k++)
             {
@@ -339,7 +376,7 @@ namespace ArcaneBrigade
                 Vector2 at = new Vector2(cx + (k - mid) * starSize * spread, top + starSize * 0.45f + (tier >= 3 ? middleRise * (1 - u * u) : 0)) + shake;
                 float scale = still ? 1 : Mathf.LerpUnclamped(2.1f, 1, OutBack(q));
                 float angle = still ? 0 : (1 - q) * -28 + Mathf.Sin(t * 2.2f + k) * 4;
-                front.Place(mythic ? MechanicInk.Drawn(InkToken.Star, GrandStarCeremony.StarPalette(topTier, k, 0)) : star, at, starSize * scale, angle, new Color(1, 1, 1, (still ? 1 : Mathf.Clamp01(since / 0.05f)) * fade), true);
+                front.Place(star, at, starSize * scale, angle, new Color(1, 1, 1, (still ? 1 : Mathf.Clamp01(since / 0.05f)) * fade), true);
                 if (still) continue;
                 // flecks knocked off as it lands: silver glints, or gold leaf for three stars
                 float fleck = (since - 0.1f) / 0.4f;
@@ -358,7 +395,13 @@ namespace ArcaneBrigade
             if (grand)
             {
                 float since = still ? 1 : t - crownAt;
-                if (since >= 0 && !mythic) { crownShown = true; Crown(new Vector2(cx, top + starSize * 0.95f + middleRise) + shake, since, still, fade); }
+                if (since >= 0)
+                {
+                    crownShown = true;
+                    Vector2 crownAt2 = new Vector2(cx, top + starSize * 0.95f + middleRise) + shake;
+                    if (weave != null) Halo(crownAt2 + Vector2.up * .15f, (still ? 1 : Mathf.Clamp01(since / .25f) * (1 + 1.2f * Mathf.Exp(-since * 5))) * fade);
+                    else if (!mythic) Crown(crownAt2, since, still, fade);
+                }
                 if (!still && !mythic) Curtain(t, cx, centre.y, fade);
             }
             else if (!still) Petals(t, cx, top, main, second, fade);
@@ -386,6 +429,62 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Two stars: the ribbons wind up round the silhouette from its feet to its head, passing behind and in front.</summary>
+        // the thread winding round the friend and the halo over its head are light (StarWeave shader); the donors' threads are the
+        // shop's thread of light (MergeThread). Without the shaders the old brush ribbons and the painted crown draw instead.
+        private static Material weaveMaterial, threadMaterial;
+        private static bool lightTried;
+        private MeshRenderer weave;
+        private readonly List<LineRenderer> donorThreads = new List<LineRenderer>();
+
+        private void BuildLight()
+        {
+            if (!lightTried)
+            {
+                lightTried = true;
+                Shader w = Resources.Load<Shader>("Shaders/StarWeave"), th = Resources.Load<Shader>("Shaders/MergeThread");
+                if (w != null && w.isSupported) weaveMaterial = new Material(w) { hideFlags = HideFlags.DontSave };
+                if (th != null && th.isSupported) threadMaterial = new Material(th) { hideFlags = HideFlags.DontSave };
+            }
+            weave = null; donorThreads.Clear();
+            if (weaveMaterial == null) return;
+            var go = new GameObject("StarWeave"); go.transform.SetParent(stage.transform, false);
+            go.AddComponent<MeshFilter>().sharedMesh = GrandStarCeremony.Quad();
+            weave = go.AddComponent<MeshRenderer>(); weave.sharedMaterial = weaveMaterial; weave.sortingOrder = 2305;
+            weave.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; weave.receiveShadows = false;
+        }
+
+        private Color ThreadTone(int top) => top >= 5 ? Color.white : top == 4 ? new Color(.7f, .45f, 1f) : top == 3 ? new Color(1f, .8f, .4f) : new Color(.85f, .92f, 1f);
+
+        /// <summary>The thread winding up the friend (head and tail along its height), knotting at the reveal.</summary>
+        private void Weave(float t, float cx, float feet, float height, float rx, float head, float tail, float strands, float turns, float knot, int top, float fade)
+        {
+            weave.transform.position = new Vector3(cx, feet + height * .6f, 0); weave.transform.localScale = new Vector3(6f, 5.5f, 1);
+            Material m = weaveMaterial;
+            m.SetVector("_Rect", new Vector4(cx, feet, rx * 1.2f, height)); m.SetVector("_Weave", new Vector4(head, tail, strands, turns));
+            m.SetVector("_Halo", Vector4.zero); m.SetColor("_Tone", ThreadTone(top)); m.SetFloat("_Rainbow", top >= 5 ? 1 : 0);
+            m.SetFloat("_Clock", Time.unscaledTime); m.SetFloat("_Knot", knot); m.SetFloat("_Fade", fade);
+        }
+        private void Halo(Vector2 at, float strength) { weaveMaterial.SetVector("_Halo", new Vector4(at.x, at.y, .9f, strength)); }
+
+        /// <summary>A donor's thread of light from its chest to the new friend's feet, drawn for the part of the path between tail and head.</summary>
+        private void DonorThread(int index, float head, float tail, int top)
+        {
+            while (donorThreads.Count <= index)
+            {
+                var go = new GameObject("DonorThread" + donorThreads.Count); go.transform.SetParent(stage.transform, false);
+                LineRenderer line = go.AddComponent<LineRenderer>();
+                line.sharedMaterial = threadMaterial; line.useWorldSpace = true; line.textureMode = LineTextureMode.Stretch; line.widthMultiplier = .3f; line.sortingOrder = 2290;
+                donorThreads.Add(line);
+            }
+            LineRenderer l = donorThreads[index];
+            int last = path.Count - 1, from = Mathf.Clamp(Mathf.FloorToInt(tail * last), 0, last), to = Mathf.Clamp(Mathf.CeilToInt(head * last), 0, last);
+            l.enabled = to - from >= 1;
+            if (!l.enabled) return;
+            l.positionCount = to - from + 1;
+            for (int k = from; k <= to; k++) l.SetPosition(k - from, path[k]);
+            threadMaterial.SetColor("_Tint", ThreadTone(top)); threadMaterial.SetFloat("_Clock", Time.unscaledTime);
+        }
+
         private void Wind(float t, int strands, float cx, float feet, float height, float rx, InkPalette main, InkPalette second)
         {
             float head = OutCubic(Mathf.Clamp01((t - 0.3f) / 0.34f)), tail = InQuad(Mathf.Clamp01((t - 0.5f) / 0.32f));
@@ -632,6 +731,7 @@ namespace ArcaneBrigade
 
         private void ClearStage()
         {
+            weave = null; donorThreads.Clear();
             if (stage != null) { stage.SetActive(false); Destroy(stage); }
             foreach (UnitDefinition definition in definitions) Destroy(definition);
             definitions.Clear(); ghosts.Clear(); stage = null; active = null; purchaseShadow = null; tierCaption = null;

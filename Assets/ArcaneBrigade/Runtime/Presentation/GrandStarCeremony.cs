@@ -20,7 +20,9 @@ namespace ArcaneBrigade
         private MeshRenderer aura;
         private Vector2 at;
         private float born, life;
-        private int tier, said, heard;
+        private int tier, said, heard, mode;
+        private bool lightOnly;
+        private float power = 1, spark = 1;
 
         public static float Duration(int tier) => tier >= 5 ? 16f : 10f;
 
@@ -34,14 +36,27 @@ namespace ArcaneBrigade
         public static InkPalette StarPalette(int tier, int k, float clock)
             => tier >= 5 ? Hue(k / 5f + clock * .15f) : tier == 4 ? (k % 2 == 0 ? Amethyst : Orchid) : ArsenalInk.Gold;
 
+        /// <summary>The same light, smaller, for the first stars: a half star, two or three stars (gold; a half past three in purple).</summary>
+        public static void PlayLight(Vector2 at, float stars)
+        {
+            var go = new GameObject("StarLight");
+            GrandStarCeremony c = go.AddComponent<GrandStarCeremony>();
+            bool half = !Mathf.Approximately(stars, Mathf.Floor(stars));
+            c.at = at; c.tier = 3; c.lightOnly = true; c.born = Time.unscaledTime;
+            c.life = half ? 2.8f : stars >= 3f ? 4.8f : 3.6f;
+            c.power = half ? .6f : stars >= 3f ? 1f : .8f; c.spark = half ? 1.1f : stars >= 3f ? 1.6f : 1.3f;
+            c.mode = stars >= 3.5f ? 0 : 2;
+        }
+
         public static void Play(Vector2 at, int tier)
         {
             var go = new GameObject("GrandStarCeremony");
             GrandStarCeremony c = go.AddComponent<GrandStarCeremony>();
             c.at = at; c.tier = Mathf.Clamp(tier, 4, 5); c.born = Time.unscaledTime; c.life = Duration(c.tier);
+            c.mode = 0; c.power = c.tier >= 5 ? 1.25f : 1f; c.spark = c.tier >= 5 ? 2.6f : 1.6f;
         }
 
-        private Color Tone(float h, float s = .45f) => tier >= 5 ? Color.HSVToRGB(h - Mathf.Floor(h), s, 1f) : Color.Lerp(Purple, Color.white, s * .5f);
+        private Color Tone(float h, float s = .45f) => mode == 2 ? Color.Lerp(new Color(1f, .84f, .45f), Color.white, s * .5f) : tier >= 5 ? Color.HSVToRGB(h - Mathf.Floor(h), s, 1f) : Color.Lerp(Purple, Color.white, s * .5f);
         private static float Rand(int i, int salt) { float v = Mathf.Sin(i * 12.9898f + salt * 78.233f) * 43758.5453f; return v - Mathf.Floor(v); }
 
         private void Word(float age, int slot, float when, string text, float h, float scale)
@@ -56,7 +71,7 @@ namespace ArcaneBrigade
             heard |= 1 << bit; CheckpointAudio.PlayInterfaceId(id);
         }
 
-        private static Mesh Quad()
+        public static Mesh Quad()
         {
             if (quad != null) return quad;
             quad = new Mesh { name = "StarAuraQuad", hideFlags = HideFlags.DontSave };
@@ -97,10 +112,11 @@ namespace ArcaneBrigade
             Vector2 heart = at + Vector2.up * .8f;
 
             // the flashes: the first as the star lands (2.6 s), the rainbow adds three more
-            float flash = Pulse(age, 2.6f, 1f);
+            float open = lightOnly ? .3f : 2.6f;
+            float flash = Pulse(age, open, power);
             if (rainbow) flash = Mathf.Max(flash, Mathf.Max(Pulse(age, 6f, .8f), Mathf.Max(Pulse(age, 9.5f, .9f), Pulse(age, 12.2f, 1f))));
             if (soft) flash *= .35f;
-            float rise = Ease((age - .6f) / 2f);
+            float rise = lightOnly ? Ease((age - .05f) / .7f) : Ease((age - .6f) / 2f);
 
             if (aura != null)
             {
@@ -115,7 +131,8 @@ namespace ArcaneBrigade
                 m.SetVector("_Heart", new Vector4(heart.x, heart.y, 0, 0));
                 m.SetFloat("_Age", still ? 3f : age); m.SetFloat("_Rise", rise); m.SetFloat("_Flash", flash); m.SetFloat("_Rainbow", rainbow ? 1 : 0);
                 m.SetFloat("_Fade", fade * (calm ? .6f : 1f)); m.SetFloat("_Calm", calm ? 1 : 0); m.SetFloat("_Ground", at.y - heart.y - .15f);
-                float[] launches = rainbow ? new[] { 2.6f, 2.95f, 3.3f, 6f, 6.35f, 9.5f, 9.85f, 12.2f } : new[] { 2.6f, 3f, 3.4f, -1f, -1f, -1f, -1f, -1f };
+                m.SetFloat("_Mode", mode); m.SetFloat("_Power", power); m.SetFloat("_Spark", spark);
+                float[] launches = lightOnly ? new[] { .3f, life > 4f ? .6f : -1f, -1f, -1f, -1f, -1f, -1f, -1f } : rainbow ? new[] { 2.6f, 2.95f, 3.3f, 6f, 6.35f, 9.5f, 9.85f, 12.2f } : new[] { 2.6f, 3f, 3.4f, -1f, -1f, -1f, -1f, -1f };
                 var ring = new float[8];
                 for (int i = 0; i < 8; i++) ring[i] = launches[i] < 0 || age < launches[i] ? -1 : age - launches[i];
                 m.SetVector("_Rings", new Vector4(ring[0], ring[1], ring[2], ring[3])); m.SetVector("_Rings2", new Vector4(ring[4], ring[5], ring[6], ring[7]));
@@ -126,7 +143,7 @@ namespace ArcaneBrigade
             Color glow = Tone(hue0 + .2f, .5f);
             ink.Light(heart, 2.6f + flash * 5f, glow, (.32f * rise + flash * .5f) * fade);
             ink.Light(heart + Vector2.up * .5f, 1.4f, Color.white, (.18f * rise + flash * .5f) * fade);
-            if (age > 2.6f)
+            if (age > 2.6f && !lightOnly)
             {
                 float g = Ease((age - 2.6f) / .8f) * fade;
                 for (int i = 0; i < (calm ? 8 : 22); i++)
@@ -139,6 +156,7 @@ namespace ArcaneBrigade
             }
             ink.End();
 
+            if (lightOnly) return;
             Sound(age, 2.55f, "up.merge", 0); Sound(age, 2.6f, "up.star3", 1);
             Word(age, 0, 2.6f, rainbow ? "5 STARS!" : "4 STARS!", hue0, 1.5f);
             Word(age, 1, 4.5f, rainbow ? "RAINBOW" : "AWAKENED", hue0 + .3f, 1.2f); Sound(age, 4.5f, "up.rarity.gold", 2);

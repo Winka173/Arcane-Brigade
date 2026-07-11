@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,18 +59,50 @@ namespace ArcaneBrigade
             MergeReveal reveal = owner.Shop.Reveal;
             Vector2 at = owner.Simulation.Champion.Position + Vector2.up * .8f + Vector2.right * 1.6f; // beside the hero, clear of the shopkeeper
             RosterEntry Entry(int tier) => new RosterEntry { UnitId = unit, WeaponId = weapon, Tier = tier };
-            List<RosterEntry> Materials(int tier, int count) { var list = new List<RosterEntry>(); for (int i = 0; i < count; i++) list.Add(Entry(tier)); return list; }
+            RunSnapshot state = owner.Session.State;
+            state.Gold = 99999;
 
-            var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(53);
+            // the hero comes to the stall and buys a copy of the friend, exactly as in play: the roster is set to what the player would
+            // hold before the purchase, the stall offers that friend at the star they own, the hero walks up and presses the key
+            IEnumerator Buy(string words, int owned, int ownedTier, int offerTier, float wait)
+            {
+                caption = words; state.NewRecruitsThisWave = 0; // the wave's copy quota would stop a video of seven purchases
+                state.Roster.Clear();
+                for (int i = 0; i < owned; i++) state.Roster.Add(Entry(ownedTier));
+                if (state.Offers.Count == 0) state.Offers.Add(new ShopOffer { Token = ++state.NextOffer });
+                ShopOffer offer = state.Offers[0];
+                offer.Kind = OfferKind.Companion; offer.Id = unit; offer.Tier = offerTier; offer.Price = 1; offer.Sold = false; offer.Currency = ShopCurrency.Gold;
+                owner.Shop.Display(); yield return null; yield return null;
+                WorldShop.Station stall = owner.Shop.Stations.FirstOrDefault(st => st.Offer == offer);
+                if (stall == null) { caption = "(no stall)"; yield return new WaitForSecondsRealtime(wait); yield break; }
+                Vector2 from = stall.Position + new Vector2(-4.2f, -2.2f), to = stall.Position + new Vector2(0f, -.8f);
+                for (float t = 0; t < 1.3f; t += Time.unscaledDeltaTime)
+                {
+                    Vector2 p = Vector2.Lerp(from, to, Mathf.SmoothStep(0, 1, t / 1.3f));
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = p;
+                    yield return null;
+                }
+                owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = to;
+                for (int i = 0; i < 30 && owner.Shop.Nearby != stall; i++) yield return null;
+                yield return new WaitForSecondsRealtime(.4f);
+                for (int tries = 0; tries < 80 && !offer.Sold; tries++) { owner.Shop.Interact(); yield return new WaitForSecondsRealtime(.1f); } // the key is ignored while a ceremony still plays
+                yield return new WaitForSecondsRealtime(wait);
+            }
+
+            var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(100);
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoReady.txt"), "recording");
             yield return new WaitForSecondsRealtime(1.2f);
-            caption = "1.5 stars: two of three copies"; StarBurst.Play(at, 1.5f, false); yield return new WaitForSecondsRealtime(3.2f);
-            caption = "2 stars: three copies merge"; reveal.Stage(Entry(2), Materials(1, 3), at); yield return new WaitForSecondsRealtime(5.0f);
-            caption = "2.5 stars: two of three 2-star copies"; StarBurst.Play(at, 2.5f, false); yield return new WaitForSecondsRealtime(3.0f);
-            caption = "3 stars: three 2-star copies merge"; reveal.Stage(Entry(3), Materials(2, 3), at); yield return new WaitForSecondsRealtime(7.0f);
-            caption = "3.5 stars: two of three 3-star copies"; StarBurst.Play(at, 3.5f, false); yield return new WaitForSecondsRealtime(3.0f);
-            caption = "4 stars (purple): three 3-star copies merge"; reveal.Stage(Entry(4), Materials(3, 3), at); yield return new WaitForSecondsRealtime(11.0f);
-            caption = "5 stars (rainbow): a Rainbow Thread"; reveal.Stage(Entry(5), Materials(4, 3), at); yield return new WaitForSecondsRealtime(17.5f);
+            yield return Buy("1.5 stars: you own one, buy a second", 1, 1, 1, 3.4f);
+            yield return Buy("2 stars: the third copy merges", 2, 1, 1, 5.0f);
+            yield return Buy("2.5 stars: you own one 2-star, buy a second", 1, 2, 2, 3.4f);
+            yield return Buy("3 stars: the third 2-star copy merges", 2, 2, 2, 6.5f);
+            yield return Buy("3.5 stars: you own one 3-star, buy a second", 1, 3, 3, 3.4f);
+            yield return Buy("4 stars (purple): the third 3-star copy merges", 2, 3, 3, 11.5f);
+            caption = "5 stars (rainbow): a Rainbow Thread from a special event";
+            state.Roster.Clear(); state.Roster.Add(Entry(4));
+            yield return new WaitForSecondsRealtime(1.0f);
+            owner.Session.GiveRainbowThread();
+            yield return new WaitForSecondsRealtime(17.5f);
             caption = "";
             while (!recorder.Complete) yield return null;
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoDone.txt"), recorder.Passed ? "PASS" : "FAIL");

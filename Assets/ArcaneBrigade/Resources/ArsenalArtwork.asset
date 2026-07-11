@@ -824,6 +824,12 @@ MonoBehaviour:
   - Name: StarUp_GoldStar
     Frames:
     - {fileID: 21300000, guid: c167b6151e862884bb21d1d297e240c4, type: 3}
+  - Name: StarUp_PurpleStar
+    Frames:
+    - {fileID: 21300000, guid: f1bc9aed54ab4bdfb985d54e83c4901c, type: 3}
+  - Name: StarUp_RainbowStar
+    Frames:
+    - {fileID: 21300000, guid: 698225cfa7d24e7381d060a03e3d883f, type: 3}
   - Name: StarUp_SilverStar
     Frames:
     - {fileID: 21300000, guid: 2aaf8f88f8cab4e498abbc0bbd69aec6, type: 3}

@@ -21,7 +21,7 @@ Shader "ArcaneBrigade/StarAura"
             float4 _Heart;   // xy the friend's heart in the world
             float4 _Rings;   // ages of four shock rings (negative: not launched)
             float4 _Rings2;  // four more
-            float _Age, _Rise, _Flash, _Rainbow, _Fade, _Calm, _Ground;
+            float _Age, _Rise, _Flash, _Rainbow, _Fade, _Calm, _Ground, _Mode, _Power, _Spark;
 
             struct appdata { float4 vertex : POSITION; };
             struct v2f { float4 pos : SV_POSITION; float2 world : TEXCOORD0; };
@@ -49,7 +49,8 @@ Shader "ArcaneBrigade/StarAura"
             float3 pal(float x)
             {
                 float3 purple = lerp(float3(.46, .2, 1), float3(1, .5, 1), saturate(x));
-                return lerp(purple, hsv(x, .68, 1), _Rainbow);
+                float3 gold = lerp(float3(1, .72, .3), float3(1, .95, .7), saturate(frac(x * 2)));
+                return lerp(lerp(purple, gold, step(1.5, _Mode)), hsv(x, .68, 1), _Rainbow);
             }
             float ringTerm(float age, float2 p)
             {
@@ -67,19 +68,19 @@ Shader "ArcaneBrigade/StarAura"
                 float3 col = 0;
 
                 // a hot core that breathes, and flares with each flash
-                col += pal(hue + .1) * exp(-r * r * .55) * (.55 + .12 * sin(t * 3) + _Flash * 2.4);
+                col += pal(hue + .1) * exp(-r * r * .55) * (.55 + .12 * sin(t * 3) + _Flash * 2.4) * _Power;
                 col += float3(1, .96, 1) * exp(-r * r * 3) * _Flash * 1.2;
 
                 // the pillar: a column of light from the floor, narrowing as it climbs
                 float width = lerp(.55, 1.5, _Flash) * (1 + .15 * noise(float2(p.y * .7, t)));
                 float column = exp(-p.x * p.x / (width * width)) * smoothstep(_Ground, _Ground + .6, p.y) * exp(-max(p.y, 0) * .16);
-                col += pal(hue + p.y * .05) * column * _Rise * (.55 + _Flash);
+                col += pal(hue + p.y * .05) * column * _Rise * (.55 + _Flash) * _Power;
 
                 // god rays, slowly turning, broken up by drifting noise
                 float n1 = noise(float2(a * 2.2 + t * .15, t * .3));
                 float rays = pow(saturate(sin(a * 7 + t * .45 + n1 * 5) * .5 + .5), 5) + .55 * pow(saturate(sin(a * 15 - t * .3 + n1 * 3) * .5 + .5), 8);
                 rays *= exp(-r * .2) * smoothstep(.4, 2.2, r) * _Rise;
-                col += pal(hue + .3) * rays * (.7 + _Flash * .9);
+                col += pal(hue + .3) * rays * (.7 + _Flash * .9) * _Power;
 
                 // caustic shimmer, like light through water, over the floor and the air
                 float shimmer = noise(p * 2.6 + float2(t * .5, -t * .3)) * noise(p * 4.1 - float2(t * .4, t * .6));
@@ -88,22 +89,28 @@ Shader "ArcaneBrigade/StarAura"
                 // shock rings
                 float ringSum = ringTerm(_Rings.x, p) + ringTerm(_Rings.y, p) + ringTerm(_Rings.z, p) + ringTerm(_Rings.w, p)
                               + ringTerm(_Rings2.x, p) + ringTerm(_Rings2.y, p) + ringTerm(_Rings2.z, p) + ringTerm(_Rings2.w, p);
-                col += pal(hue + .45) * ringSum * 1.5;
+                col += pal(hue + .45) * ringSum * 1.5 * _Power;
 
-                // twinkling sparks: each cell may hold one that blinks, with a small cross of light
+                // twinkling sparks on three scales (fine dust, glints with a cross of light, a few big stars), and motes rising
                 if (_Calm < .5)
                 {
-                    float2 g = p * 3.2, cell = floor(g), f = frac(g) - .5;
-                    float h = hash(cell), h2 = hash(cell + 7.7);
-                    float2 off = (float2(h, h2) - .5) * .5;
-                    float twinkle = pow(saturate(sin(t * (1.5 + h * 3) + h * 40) * .5 + .5), 10);
-                    float2 q = f - off;
-                    float spark = exp(-dot(q, q) * 260) + .5 * (exp(-q.x * q.x * 900 - q.y * q.y * 14) + exp(-q.y * q.y * 900 - q.x * q.x * 14));
-                    col += (float3(1, .95, 1) * .5 + pal(h)) * spark * twinkle * step(.55, h) * exp(-r * .1) * _Rise * 1.6;
+                    float sp = 0;
+                    for (int layer = 0; layer < 3; layer++)
+                    {
+                        float sc = layer == 0 ? 6.5 : layer == 1 ? 3.2 : 1.5;
+                        float2 g = p * sc + float2(0, t * (layer == 0 ? .35 : .12)), cell = floor(g), f = frac(g) - .5;
+                        float h = hash(cell + layer * 17.3), h2 = hash(cell + 7.7 + layer);
+                        float2 off = (float2(h, h2) - .5) * .5, q = f - off;
+                        float twinkle = pow(saturate(sin(t * (1.5 + h * 4) + h * 40) * .5 + .5), layer == 2 ? 6 : 10);
+                        float size = layer == 0 ? 520 : layer == 1 ? 260 : 120, arm = layer == 2 ? 5 : 14;
+                        float s1 = exp(-dot(q, q) * size) + (layer > 0 ? .6 * (exp(-q.x * q.x * size * 3.5 - q.y * q.y * arm) + exp(-q.y * q.y * size * 3.5 - q.x * q.x * arm)) : 0);
+                        sp += s1 * twinkle * step(layer == 2 ? .8 : .45, h) * (layer == 2 ? 1.5 : 1);
+                    }
+                    col += (float3(1, .95, 1) * .55 + pal(hue + .2)) * sp * exp(-r * .08) * _Rise * 1.5 * _Spark;
                 }
 
                 // the whole view takes a faint tint of the star's colour while the light is up
-                col += pal(hue) * .05 * _Rise;
+                col += pal(hue) * .05 * _Rise * _Power;
                 col = 1 - exp(-col * 1.25);
                 return fixed4(col * _Fade * .8, 1);
             }
