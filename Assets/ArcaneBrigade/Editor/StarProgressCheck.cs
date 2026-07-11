@@ -31,8 +31,25 @@ namespace ArcaneBrigade.Editor
             run.State.Roster.Clear();
             run.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = weapon, Tier = 3 });
             run.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = weapon, Tier = 3 });
-            Require(Mathf.Approximately(run.StarProgress(friend.Id), 3f), "a 3-star friend shows no half star");
-            Debug.Log("STARCHECK ok: 1 -> 1.5 -> merge at three; 2 -> 2.5; 3 stays 3");
+            Require(Mathf.Approximately(run.StarProgress(friend.Id), 3.5f) && run.HalfStar(friend.Id, 3), "two 3-star copies: 3.5 stars");
+            // three 3-star copies make 4 stars (purple); 4 stars is where the shop stops
+            run.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = weapon, Tier = 3 });
+            run.Rescan();
+            Require(run.State.Roster.Count == 1 && run.State.Roster[0].Tier == 4, "three 3-star copies merge into 4 stars");
+            Require(Mathf.Approximately(run.StarProgress(friend.Id), 4f), "4 stars shows no half star");
+            run.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = weapon, Tier = 4 });
+            run.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = weapon, Tier = 4 });
+            run.Rescan();
+            Require(run.State.Roster.TrueForAll(e => e.Tier == 4), "the shop never makes a 5th star");
+            // a Rainbow Thread weaves a 4-star friend to 5 (a thread with no 4-star friend waits)
+            run.State.Roster.Clear(); run.State.RainbowThreads = 0;
+            run.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = weapon, Tier = 3 });
+            run.GiveRainbowThread();
+            Require(run.State.RainbowThreads == 1 && run.State.Roster[0].Tier == 3, "a thread waits for a 4-star friend");
+            run.State.Roster[0].Tier = 4; run.Rescan();
+            Require(run.State.RainbowThreads == 0 && run.State.Roster[0].Tier == 5, "the waiting thread weaves the 4-star friend to 5");
+            Require(RunSession.StarSurplus(5) > RunSession.StarSurplus(4) && RunSession.StarSurplus(4) > 1f, "each star past 3 hits harder");
+            Debug.Log("STARCHECK ok: 1 -> 1.5 -> merge at three; 2 -> 2.5; 3 -> 3.5 -> 4 (purple); 5 only by a Rainbow Thread");
         }
     }
 }

@@ -108,7 +108,7 @@ namespace ArcaneBrigade
         }
         public static string Describe(UnitDefinition u,int tier=1,float support=3,float goldScale=1)
         {
-            var b=new StringBuilder();b.AppendLine("FRIEND · "+RunModifierRules.RarityName(u.Rarity)+" · "+new string('★',Mathf.Clamp(tier,1,3)));
+            var b=new StringBuilder();b.AppendLine("FRIEND · "+RunModifierRules.RarityName(u.Rarity)+" · "+new string('★',Mathf.Clamp(tier,1,5)));
             b.AppendLine("TALENT\n"+Talent(u));
             if(CombatSimulation.SkillCopy.TryGetValue(u.Id,out string own)&&own!=Talent(u))b.AppendLine("\nOWN SKILL\n"+own);
             b.AppendLine("\nSUPPORT WHILE OWNED\n"+RunModifierRules.DescribeCompanion(u,tier));

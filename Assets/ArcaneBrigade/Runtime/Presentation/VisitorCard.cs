@@ -364,7 +364,7 @@ namespace ArcaneBrigade
                     Icon(new Rect(l, foot.y + (foot.height - g) * .5f, g, g), "gold");
                     amount.normal.textColor = GetTone; GUI.Label(new Rect(l + g + 6, foot.y, w, foot.height), text, amount);
                 }
-                else if (o.Tier > 0) { chip.fontSize = 22; chip.normal.textColor = ArcadeSkin.Gold; GUI.Label(foot, new string('★', Mathf.Clamp(o.Tier, 1, 3)), chip); chip.fontSize = 19; }
+                else if (o.Tier > 0) { chip.fontSize = 22; chip.normal.textColor = ArcadeSkin.Gold; GUI.Label(foot, new string('★', Mathf.Clamp(o.Tier, 1, 5)), chip); chip.fontSize = 19; }
                 GUI.color = keep;
                 if (!o.Enabled && d != null) Missing(new Rect(slot.xMax - 50, slot.y - 12, 50, 50), v, d, state);
                 if (first + i == picked) ArcadeSkin.WorldFocus(slot);

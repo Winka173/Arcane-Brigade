@@ -54,6 +54,7 @@ namespace ArcaneBrigade
         }
         private bool GiveVisitorRelic()
         {
+            if (State.Wave >= RainbowFirstGiftWave && Next(ref State.VisitorRandom, 100) < RainbowKeeperChance) { GiveRainbowThread(); return true; }
             var choices = VisitorRelicCandidates();
             if (choices.Count == 0) return false;
             // Conditional rarity weights among available tiers: 45 / 30 / 20 / 5. Never Crimson or Rainbow.

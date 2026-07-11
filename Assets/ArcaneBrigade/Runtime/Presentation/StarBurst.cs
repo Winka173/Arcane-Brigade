@@ -30,7 +30,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
-            if (ink == null) ink = new ArsenalInk(transform);
+            if (ink == null) ink = new ArsenalInk(transform, 66, 2400); // above the shop's own sprites
             float age = Time.unscaledTime - born;
             ink.Begin();
             if (age >= life) { ink.End(); Destroy(gameObject); return; }

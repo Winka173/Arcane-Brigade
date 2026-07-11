@@ -82,6 +82,7 @@ namespace ArcaneBrigade
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-shop-presentation-capture") >= 0) return;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k11") >= 0) return;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7-shop-video") >= 0) return;
+            if (StarVideoCapture.Requested) return;
             if (!RunPaths.K7Capture || FindAnyObjectByType<K7PlayerCapture>() != null) return;
             var runner = new GameObject("K7PlayerCapture"); DontDestroyOnLoad(runner); runner.AddComponent<K7PlayerCapture>();
         }

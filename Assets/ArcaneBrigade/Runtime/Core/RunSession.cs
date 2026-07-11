@@ -551,7 +551,7 @@ namespace ArcaneBrigade
                 : source.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= FriendlyWeaponBalance.Scale(weapon.Id) * FriendlyWeaponBalance.BaseBoost * DamageMultiplier(source, tier, companion);
             // two of the three copies for the next star: half a star's damage more (the 1.5 and 2.5 stars; requirement 27/10/2026)
-            if (companion && HalfStar(source.Id, tier)) unit.Weapon.Damage *= Mathf.Sqrt(Mathf.Min(2.7f, catalog.TierDamageMultiplier));
+            if (companion && HalfStar(source.Id, tier)) unit.Weapon.Damage *= Mathf.Sqrt(tier >= 3 ? StarStep(tier + 1) : Mathf.Min(2.7f, catalog.TierDamageMultiplier));
             unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, PlayerBuildBalance.AttackSpeedSlope(companion)), .25f, PlayerBuildBalance.AttackSpeedCap(companion));
             unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
             unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
@@ -584,9 +584,13 @@ namespace ArcaneBrigade
             return unit;
         }
 
+        /// <summary>What the step from the star below to this star multiplies damage by past three stars (4 purple x1.9, 5 rainbow x2.3).</summary>
+        public static float StarStep(int tier) => tier >= 5 ? 2.3f : tier == 4 ? 1.9f : 2.7f;
+        public static float StarSurplus(int tier) => (tier >= 4 ? StarStep(4) : 1f) * (tier >= 5 ? StarStep(5) : 1f);
+
         public float DamageMultiplier(UnitDefinition unit, int tier, bool companion)
         {
-            float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), tier - 1) * Mathf.Max(0.1f, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, PlayerBuildBalance.DamageSlope(companion)));
+            float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), Mathf.Min(tier, 3) - 1) * StarSurplus(tier) * Mathf.Max(0.1f, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, PlayerBuildBalance.DamageSlope(companion)));
             if (unit.Passive == PassiveKind.Rally) value *= 1f + unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1) * 0.01f * ActiveRoster.Count;
             return value * (companion ? CarnivalBalance.RecruitDamage(unit.Rarity) : PlayerBuildBalance.HeroPower(unit.Id));
         }
@@ -675,6 +679,7 @@ namespace ArcaneBrigade
                 // only roster bosses are discoveries; story bosses outside the roster (the Keeper of the outside stage,
                 // like the Last Customer above) were once recorded here and made every later save fail validation
                 else if (Array.Exists(catalog.Bosses, boss => boss.Id == simulation.Boss.Definition.Id)) RunMeta.Add(State.DefeatedBosses, simulation.Boss.Definition.Id);
+                RainbowBossGift();
             }
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
             State.Health = MaximumHealth();
@@ -814,7 +819,7 @@ namespace ArcaneBrigade
         private void MergeCompanions(string id)
         {
             if (catalog.Unit(id).ReferenceCompanion == "Evil") return;
-            for (int tier = 1; tier < catalog.MaximumTier; tier++)
+            for (int tier = 1; tier < CompanionDeployment.ShopMaxTier; tier++)
             {
                 List<RosterEntry> materials = State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier);
                 while (materials.Count >= CompanionDeployment.MergeCopies)

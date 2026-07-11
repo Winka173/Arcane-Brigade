@@ -120,6 +120,8 @@ namespace ArcaneBrigade
             lastReceipt = after.NextReceipt;
             if (ReadOnly) { Skip(); return; }
             foreach (Beat beat in beats) queue.Enqueue(beat);
+            // a Rainbow Thread weaves a 4-star friend without any merge: the rainbow ceremony plays on its own
+            if (before != null && before.RunId == after.RunId && after.Roster.FindAll(r => r.Tier >= 5).Count > before.Roster.FindAll(r => r.Tier >= 5).Count && !beats.Exists(b => b.Result.Tier >= 5)) GrandStarCeremony.Play(position, 5);
             // a copy that does not merge but brings the next star within one copy: a half star, a lighter flourish
             if (beats.Count == 0 && !altar && before != null && before.RunId == after.RunId)
             {
@@ -129,17 +131,17 @@ namespace ArcaneBrigade
                     if (!seen.Add(entry.UnitId)) continue;
                     int top = 0; foreach (RosterEntry r in after.Roster) if (r.UnitId == entry.UnitId) top = Mathf.Max(top, r.Tier);
                     int now = after.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count, was = before.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count;
-                    if (top < 3 && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) StarBurst.Play(position, top + .5f, false);
+                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) StarBurst.Play(position, top + .5f, false);
                 }
             }
         }
 
         /// <summary>Plays a star-up for a unit already on the roster (captures and tools; no receipt is involved).</summary>
-        public void Stage(RosterEntry result, List<RosterEntry> materials, Vector2 position)
+        public void Stage(RosterEntry result, List<RosterEntry> materials, Vector2 position, bool altar = false)
         {
             if (owner == null || owner.Session == null) return;
             runId = owner.Session.State.RunId;
-            queue.Enqueue(new Beat { Result = Copy(result), Materials = materials, Position = position, Altar = false });
+            queue.Enqueue(new Beat { Result = Copy(result), Materials = materials, Position = position, Altar = altar });
         }
 
         public void Skip() { queue.Clear(); ClearStage(); }
@@ -205,8 +207,9 @@ namespace ArcaneBrigade
             bool grand = Grand, still = ReducedMotion;
             float t = still ? Finish - 0.35f : VisualTime, finish = Finish;
             float fade = still ? 1 : Mathf.Clamp01((finish - age) / 0.3f);
-            InkPalette main = active.Altar ? ArsenalInk.Cyan : grand ? ArsenalInk.Gold : ArsenalInk.Silver;
-            InkPalette second = active.Altar ? ArsenalInk.Water : grand ? ArsenalInk.Amber : ArsenalInk.Cream;
+            int topTier = active.Result.Tier;
+            InkPalette main = active.Altar ? ArsenalInk.Cyan : topTier >= 5 ? GrandStarCeremony.Hue(Time.unscaledTime * .5f) : topTier == 4 ? GrandStarCeremony.Amethyst : grand ? ArsenalInk.Gold : ArsenalInk.Silver;
+            InkPalette second = active.Altar ? ArsenalInk.Water : topTier >= 5 ? GrandStarCeremony.Hue(Time.unscaledTime * .5f + .4f) : topTier == 4 ? GrandStarCeremony.Orchid : grand ? ArsenalInk.Amber : ArsenalInk.Cream;
             float revealAt = grand ? GrandKnotAt : RevealAt, landAt = grand ? GrandLandAt : LandAt;
             float gatherEnd = grand ? 0.62f : 0.42f;
             int tier = Mathf.Clamp(active.Result.Tier, 1, 3);
@@ -375,7 +378,7 @@ namespace ArcaneBrigade
         {
             void Once(int bit, float at, string id) { if (t >= at && (cues & bit) == 0) { cues |= bit; CheckpointAudio.PlayInterfaceId(id); } }
             Once(1, revealAt, "up.merge");
-            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && !active.Altar) StarBurst.Play(active.Position, Mathf.Clamp(active.Result.Tier, 2, 3), true); } // a flourish over the ceremony
+            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else StarBurst.Play(active.Position, Mathf.Clamp(active.Result.Tier, 2, 3), true); } } // a flourish over the ceremony
             Once(2, starFirst, grand ? "up.star3" : "up.star2");
             if (grand) Once(4, crownAt, "up.rarity.gold");
         }
@@ -603,7 +606,7 @@ namespace ArcaneBrigade
             // thick inked lettering (Lilita One with an ink outline), larger for three stars
             InkedText text = InkedText.Create(stage.transform, "CommittedTierLabel", ArcadeTypography.Punch, 64, Grand ? 0.05f : 0.042f, 2310, Grand ? 0.034f : 0.028f);
             text.transform.localPosition = Vector3.down * 0.8f;
-            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? "MASTERED" : "STAR UP";
+            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "RAINBOW" : active.Result.Tier == 4 ? "AWAKENED" : "MASTERED") : "STAR UP";
             text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
             text.gameObject.SetActive(false);
         }

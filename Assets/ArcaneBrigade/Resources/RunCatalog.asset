@@ -10054,6 +10054,6 @@ MonoBehaviour:
   ShopSlots: 3
   SpecialShopEvery: 2
   SpecialShopPrice: 2
-  MaximumTier: 3
+  MaximumTier: 5
   TierDamageMultiplier: 2.7
   TierSupportMultiplier: 3

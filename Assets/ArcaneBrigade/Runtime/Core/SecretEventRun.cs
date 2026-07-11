@@ -275,6 +275,7 @@ namespace ArcaneBrigade
             if (!success) return false;
             if (Secret.Kind == SecretEventKind.LostProperty) { Secret.RescuedToy = true; Secret.RescuedId = id ?? ""; }
             RememberNightmareChoice(Secret.Kind,Secret.Option,true);
+            if (State.Difficulty >= 2) GiveRainbowThread();
             RecountBonds();
             // the won prize stays on the result card (its picture and what it gives), like every other deal's result
             string prize = string.IsNullOrEmpty(id) ? ScaledGold(25) + " gold" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName;

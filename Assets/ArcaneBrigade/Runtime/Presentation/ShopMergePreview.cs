@@ -12,15 +12,15 @@ namespace ArcaneBrigade
         private Vector2 stock;
         private int hintedToken = -1;
         public int ApproachingCount => identities.Count;
-        public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && offer.Tier < 3
-            && session.CanBuy(offer) && session.State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == Mathf.Clamp(offer.Tier, 1, 3)).Count >= CompanionDeployment.MergeCopies - 1;
+        public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && offer.Tier < CompanionDeployment.ShopMaxTier
+            && session.CanBuy(offer) && session.State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == Mathf.Clamp(offer.Tier, 1, 4)).Count >= CompanionDeployment.MergeCopies - 1;
         public static int ProjectedTier(RunSession session, ShopOffer offer)
         {
-            if (!Ready(session, offer)) return offer == null ? 1 : Mathf.Clamp(offer.Tier, 1, 3);
-            var counts = new int[4];
-            foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == offer.Id) counts[Mathf.Clamp(entry.Tier, 1, 3)]++;
-            int result = Mathf.Clamp(offer.Tier, 1, 3); counts[result]++;
-            for (int tier = 1; tier < 3; tier++)
+            if (!Ready(session, offer)) return offer == null ? 1 : Mathf.Clamp(offer.Tier, 1, 4);
+            var counts = new int[6];
+            foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == offer.Id) counts[Mathf.Clamp(entry.Tier, 1, 5)]++;
+            int result = Mathf.Clamp(offer.Tier, 1, 4); counts[result]++;
+            for (int tier = 1; tier < CompanionDeployment.ShopMaxTier; tier++)
                 if (counts[tier] >= CompanionDeployment.MergeCopies) { counts[tier + 1] += counts[tier] / CompanionDeployment.MergeCopies; counts[tier] %= CompanionDeployment.MergeCopies; result = tier + 1; }
             return result;
         }

@@ -147,7 +147,7 @@ namespace ArcaneBrigade
             int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == offer.Tier);
             b.AppendLine(session.UpgradeProgress(offer));
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
-                : offer.Tier >= catalog.MaximumTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
+                : offer.Tier >= CompanionDeployment.ShopMaxTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
                 : "Owned " + copies + "/" + CompanionDeployment.MergeCopies + " at " + offer.Tier + "-star" + (copies == CompanionDeployment.MergeCopies - 1 ? " (" + offer.Tier + ".5 stars) · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
             Summary = WithBloodCost(b.ToString().Trim(), offer);
             RosterEntry fieldedBefore = session.ActiveRoster.Find(r => r.UnitId == unit.Id);

@@ -33,6 +33,8 @@ namespace ArcaneBrigade
             CheckpointAudio.PlayInterfaceId("ui.open");
         }
         private void Close() { shown = false; InputConsumedFrame = Time.frameCount; }
+        /// <summary>Plays the rite on a friend without the card (the star-up video).</summary>
+        public void PlayRite(string unitId, Vector2 at) { riteFallback = at; StartRite(unitId); }
 
         private void Update()
         {

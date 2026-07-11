@@ -165,7 +165,7 @@ namespace ArcaneBrigade
         private int OctoberMergeTier(string id)
         {
             if (catalog.Unit(id).ReferenceCompanion == "Evil") return 0;
-            for (int tier = 2; tier >= 1; tier--) if (State.Roster.FindAll(r => r.UnitId == id && r.Tier == tier).Count >= CompanionDeployment.MergeCopies - 1) return tier;
+            for (int tier = CompanionDeployment.ShopMaxTier - 1; tier >= 1; tier--) if (State.Roster.FindAll(r => r.UnitId == id && r.Tier == tier).Count >= CompanionDeployment.MergeCopies - 1) return tier;
             return 0;
         }
         private List<RosterEntry> AltarMaterials(AltarRecipe recipe)

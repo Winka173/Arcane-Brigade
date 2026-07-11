@@ -187,7 +187,7 @@ namespace ArcaneBrigade
         public int ShopSlots = 3;
         public int SpecialShopEvery = 2;
         public int SpecialShopPrice = 2;
-        public int MaximumTier = 3;
+        public int MaximumTier = 5;
         public float TierDamageMultiplier = 3.6f;
         public float TierSupportMultiplier = 3f;
 

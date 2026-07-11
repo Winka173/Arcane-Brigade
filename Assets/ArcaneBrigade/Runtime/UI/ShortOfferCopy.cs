@@ -14,7 +14,7 @@ namespace ArcaneBrigade
                 int beforeTier = 0; for (int tier = 1; tier < tiers.Length; tier++) if (tiers[tier] > 0) beforeTier = tier;
                 float before = beforeTier > 0 ? UnitDefinition.ModifierScale(beforeTier) : 0;
                 int projected = UnityEngine.Mathf.Clamp(offer.Tier, 1, 3); tiers[projected]++;
-                for (int tier = 1; tier < catalog.MaximumTier && unit.ReferenceCompanion != "Evil"; tier++)
+                for (int tier = 1; tier < CompanionDeployment.ShopMaxTier && unit.ReferenceCompanion != "Evil"; tier++)
                     if (tiers[tier] >= CompanionDeployment.MergeCopies) { tiers[tier + 1] += tiers[tier] / CompanionDeployment.MergeCopies; tiers[tier] %= CompanionDeployment.MergeCopies; projected = tier + 1; }
                 int afterTier = 0; for (int tier = 1; tier < tiers.Length; tier++) if (tiers[tier] > 0) afterTier = tier;
                 float after = afterTier > 0 ? UnitDefinition.ModifierScale(afterTier) : 0;

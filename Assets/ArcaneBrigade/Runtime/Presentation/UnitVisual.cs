@@ -75,7 +75,13 @@ namespace ArcaneBrigade
         private Material entranceMaterial;
         private BossEmergence emergence;
         private float lastDisplayTime;
-        private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
+        private readonly SpriteRenderer[] tierStars = new SpriteRenderer[5];
+        /// <summary>The colour of a friend's stars: cool two, gold three, purple four, and the rainbow's five turning through every hue.</summary>
+        public static Color StarColour(int tier, int index = 0)
+        {
+            if (tier >= 5) return Color.HSVToRGB((Time.unscaledTime * .35f + index * .2f) % 1f, .6f, 1f);
+            return tier == 4 ? new Color(.72f, .5f, 1f) : tier == 3 ? new Color(1, 0.77f, 0.25f) : new Color(0.7f, 0.93f, 1);
+        }
         private SpriteRenderer tierCrest;
         private float holdUntil;
         private float holdPose;
@@ -650,7 +656,7 @@ namespace ArcaneBrigade
             {
                 // a starred companion keeps an edge of its rank: a cool silver line at two stars, a warm gold one at three
                 bool gold = state.Definition.CombatTier >= 3;
-                flashProperties.SetColor("_RimColor", gold ? new Color(1, 0.8f, 0.36f) : new Color(0.82f, 0.9f, 1));
+                flashProperties.SetColor("_RimColor", state.Definition.CombatTier >= 4 ? StarColour(state.Definition.CombatTier) : gold ? new Color(1, 0.8f, 0.36f) : new Color(0.82f, 0.9f, 1));
                 flashProperties.SetFloat("_RimAmount", gold ? 0.42f : 0.24f);
             }
             body.SetPropertyBlock(flashProperties);
@@ -768,14 +774,14 @@ namespace ArcaneBrigade
 
         private void DisplayTier(int order, float height)
         {
-            int tier = Mathf.Clamp(state.Definition.CombatTier, 1, 3);
+            int tier = Mathf.Clamp(state.Definition.CombatTier, 1, 5);
             bool showCrest = state.Alive && state.Faction == Faction.Companion && tier > 1 && (adornment == null || adornment.PieceCount == 0);
             if (showCrest && tierCrest == null) { tierCrest = CreateSprite("TierChestCrest", transform); tierCrest.sprite = K8Motion.TierStar(); }
             if (tierCrest != null)
             {
                 tierCrest.enabled = showCrest; tierCrest.sortingOrder = order + 4;
-                tierCrest.color = tier == 3 ? new Color(1, 0.77f, 0.25f) : new Color(0.7f, 0.93f, 1);
-                tierCrest.transform.localScale = Vector3.one * height * (tier == 3 ? 0.16f : 0.12f);
+                tierCrest.color = StarColour(tier);
+                tierCrest.transform.localScale = Vector3.one * height * (tier >= 4 ? 0.2f : tier == 3 ? 0.16f : 0.12f);
                 tierCrest.transform.localPosition = body.transform.localPosition + Vector3.down * height * 0.17f;
                 tierCrest.transform.localRotation = Quaternion.Euler(0, 0, tier == 2 ? 45 : 0);
             }
@@ -792,7 +798,7 @@ namespace ArcaneBrigade
                 if (tierStars[index] == null) continue;
                 tierStars[index].enabled = visible;
                 tierStars[index].sortingOrder = order + 8;
-                tierStars[index].color = tier == 3 ? new Color(1, 0.77f, 0.25f) : new Color(0.65f, 0.94f, 1);
+                tierStars[index].color = StarColour(tier, index);
                 tierStars[index].transform.localPosition = new Vector3((index - (tier - 1) * 0.5f) * 0.095f, top + 0.065f, 0);
             }
         }

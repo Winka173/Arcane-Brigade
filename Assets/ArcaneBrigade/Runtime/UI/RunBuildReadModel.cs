@@ -62,7 +62,7 @@ namespace ArcaneBrigade
                 int savedValue = CompanionDeployment.OwnedValue(session.State.Roster, unit.Id);
                 int reserveCopies = session.State.Roster.FindAll(r => r.UnitId == unit.Id).Count - 1;
                 model.Companions[model.Companions.Count - 1].Summary += "\nOne fighter · " + reserveCopies + " saved materials · "
-                    + (entry.Tier >= 3 ? "maximum stars" : savedValue + "/" + (entry.Tier < 2 ? 3 : 9) + " upgrade value");
+                    + (entry.Tier >= CompanionDeployment.ShopMaxTier ? "maximum stars" : savedValue + "/" + (entry.Tier < 2 ? 3 : entry.Tier < 3 ? 9 : 27) + " upgrade value");
                 model.Companions[model.Companions.Count - 1].Explanation += "\nSaved materials do not attack, add bond members or provide passive stats. All purchased weapons are kept until used in a merge.";
             }
             foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])
