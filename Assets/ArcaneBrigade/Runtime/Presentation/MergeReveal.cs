@@ -159,7 +159,7 @@ namespace ArcaneBrigade
         }
 
         private bool Grand => active != null && !active.Altar && active.Result.Tier >= 3;
-        private float Finish => Grand ? GrandFinishAt : FinishAt;
+        private float Finish => Grand ? (active.Result.Tier >= 5 ? 9.4f : active.Result.Tier == 4 ? 5.8f : GrandFinishAt) : FinishAt; // purple and rainbow stars stay for their whole ceremony
         /// <summary>The ceremony's clock: a three-star holds one frame for GrandHold when the braid knots.</summary>
         private float VisualTime => !Grand || age < GrandKnotAt ? age : age < GrandKnotAt + GrandHold ? GrandKnotAt : age - GrandHold;
 
@@ -212,7 +212,8 @@ namespace ArcaneBrigade
             InkPalette second = active.Altar ? ArsenalInk.Water : topTier >= 5 ? GrandStarCeremony.Hue(Time.unscaledTime * .5f + .4f) : topTier == 4 ? GrandStarCeremony.Orchid : grand ? ArsenalInk.Amber : ArsenalInk.Cream;
             float revealAt = grand ? GrandKnotAt : RevealAt, landAt = grand ? GrandLandAt : LandAt;
             float gatherEnd = grand ? 0.62f : 0.42f;
-            int tier = Mathf.Clamp(active.Result.Tier, 1, 3);
+            int tier = Mathf.Clamp(active.Result.Tier, 1, 5);
+            bool mythic = topTier >= 4; // four purple stars, five rainbow stars
             float starFirst = grand ? 1.42f : 0.78f, starStep = grand ? 0.12f : 0.09f, starSize = grand ? 0.6f : 0.5f;
             float crownAt = starFirst + 3 * starStep + 0.1f;
             Vector2 centre = stage.transform.position;
@@ -258,7 +259,7 @@ namespace ArcaneBrigade
                     result.transform.localRotation = Quaternion.identity;
                     // a flat silhouette until the wipe: cream for two stars, gold for three
                     float line = still ? -1 : t < revealAt ? 2 : Mathf.Lerp(1.1f, -0.2f, Smooth(revealAt + (grand ? 0.06f : 0.02f), revealAt + (grand ? 0.42f : 0.26f), t));
-                    Color tone = grand ? new Color(1, 0.83f, 0.42f) : active.Altar ? new Color(0.8f, 0.97f, 1) : new Color(1, 0.97f, 0.88f);
+                    Color tone = mythic ? (topTier >= 5 ? Color.HSVToRGB(Mathf.Repeat(Time.unscaledTime * .3f, 1), .35f, 1f) : new Color(.8f, .62f, 1f)) : grand ? new Color(1, 0.83f, 0.42f) : active.Altar ? new Color(0.8f, 0.97f, 1) : new Color(1, 0.97f, 0.88f);
                     Silhouette(result, tone, 1, line);
                     result.SetTerminalFade(still ? 1 : Smooth(grand ? 0.25f : 0.3f, grand ? 0.5f : 0.48f, t) * fade);
                     Measure(result, ref cx, ref feet, ref height, ref rx);
@@ -309,7 +310,7 @@ namespace ArcaneBrigade
 
             if (!still && t >= revealAt)
             {
-                if (grand) Gilding(t, cx, feet, height, rx, fade);
+                if (mythic) { } else if (grand) Gilding(t, cx, feet, height, rx, fade);
                 else
                 {
                     // the wet brush painting the colour back in, top-down, and a diagonal flick behind
@@ -327,17 +328,18 @@ namespace ArcaneBrigade
 
             // the stars stamp on above the head (an arch of gold for three stars)
             Sprite star = ArsenalArtwork.Frame(grand ? "StarUp_GoldStar" : "StarUp_SilverStar", 0) ?? MechanicInk.Drawn(InkToken.Star, main);
-            float middleRise = grand && tier == 3 ? starSize * 0.2f : 0;
+            float middleRise = grand ? starSize * 0.2f : 0;
             for (int k = 0; k < tier; k++)
             {
                 float since = still ? 1 : t - (starFirst + k * starStep);
                 if (since < 0) continue;
                 starsShown++;
                 float q = Mathf.Clamp01(since / 0.13f);
-                Vector2 at = new Vector2(cx + (k - (tier - 1) * 0.5f) * starSize * 0.62f, top + starSize * 0.45f + (k == 1 ? middleRise : 0)) + shake;
+                float mid = (tier - 1) * 0.5f, spread = mythic ? 0.56f : 0.62f, u = mid > 0 ? (k - mid) / mid : 0;
+                Vector2 at = new Vector2(cx + (k - mid) * starSize * spread, top + starSize * 0.45f + (tier >= 3 ? middleRise * (1 - u * u) : 0)) + shake;
                 float scale = still ? 1 : Mathf.LerpUnclamped(2.1f, 1, OutBack(q));
                 float angle = still ? 0 : (1 - q) * -28 + Mathf.Sin(t * 2.2f + k) * 4;
-                front.Place(star, at, starSize * scale, angle, new Color(1, 1, 1, (still ? 1 : Mathf.Clamp01(since / 0.05f)) * fade), true);
+                front.Place(mythic ? MechanicInk.Drawn(InkToken.Star, GrandStarCeremony.StarPalette(topTier, k, 0)) : star, at, starSize * scale, angle, new Color(1, 1, 1, (still ? 1 : Mathf.Clamp01(since / 0.05f)) * fade), true);
                 if (still) continue;
                 // flecks knocked off as it lands: silver glints, or gold leaf for three stars
                 float fleck = (since - 0.1f) / 0.4f;
@@ -346,7 +348,7 @@ namespace ArcaneBrigade
                     {
                         float side = f == 0 ? -1 : f == 1 ? 1 : (k % 2 == 0 ? -0.35f : 0.35f);
                         Vector2 kick = new Vector2(side * 0.32f, f == 2 ? 0.18f : 0.06f) * OutCubic(fleck) + Vector2.down * 0.45f * fleck * fleck;
-                        front.TokenAt(grand ? InkToken.Coin : InkToken.Glint, grand ? ArsenalInk.Gold : main, at + kick, (grand ? 0.22f : 0.2f) * (1 - 0.4f * fleck), side * fleck * 300, (1 - fleck) * fade);
+                        front.TokenAt(grand && !mythic ? InkToken.Coin : InkToken.Glint, mythic ? GrandStarCeremony.StarPalette(topTier, k, 0) : grand ? ArsenalInk.Gold : main, at + kick, (grand ? 0.22f : 0.2f) * (1 - 0.4f * fleck), side * fleck * 300, (1 - fleck) * fade);
                     }
                 // a glint passing over each star once it has settled
                 float shine = (since - 0.3f) / 0.25f;
@@ -356,8 +358,8 @@ namespace ArcaneBrigade
             if (grand)
             {
                 float since = still ? 1 : t - crownAt;
-                if (since >= 0) { crownShown = true; Crown(new Vector2(cx, top + starSize * 0.95f + middleRise) + shake, since, still, fade); }
-                if (!still) Curtain(t, cx, centre.y, fade);
+                if (since >= 0 && !mythic) { crownShown = true; Crown(new Vector2(cx, top + starSize * 0.95f + middleRise) + shake, since, still, fade); }
+                if (!still && !mythic) Curtain(t, cx, centre.y, fade);
             }
             else if (!still) Petals(t, cx, top, main, second, fade);
 
@@ -366,7 +368,7 @@ namespace ArcaneBrigade
                 float shown = still ? 1 : Smooth(landAt, landAt + 0.15f, t);
                 tierCaption.gameObject.SetActive(shown > 0);
                 tierCaption.transform.localPosition = new Vector3(0, -0.8f + (1 - shown) * -0.12f, 0);
-                Color tint = grand ? new Color(1, 0.8f, 0.34f) : active.Altar ? new Color(0.6f, 1, 0.92f) : new Color(0.86f, 0.93f, 1);
+                Color tint = mythic ? (topTier >= 5 ? Color.HSVToRGB(Mathf.Repeat(Time.unscaledTime * .3f, 1), .45f, 1f) : new Color(.78f, .6f, 1f)) : grand ? new Color(1, 0.8f, 0.34f) : active.Altar ? new Color(0.6f, 1, 0.92f) : new Color(0.86f, 0.93f, 1);
                 tint.a = shown * fade; tierCaption.Color = tint;
             }
 

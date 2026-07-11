@@ -63,7 +63,7 @@ namespace ArcaneBrigade
             var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(53);
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoReady.txt"), "recording");
             yield return new WaitForSecondsRealtime(1.2f);
-            caption = "1.5 stars: two of three copies"; StarBurst.Play(at, 1.5f, false); yield return new WaitForSecondsRealtime(3.0f);
+            caption = "1.5 stars: two of three copies"; StarBurst.Play(at, 1.5f, false); yield return new WaitForSecondsRealtime(3.2f);
             caption = "2 stars: three copies merge"; reveal.Stage(Entry(2), Materials(1, 3), at); yield return new WaitForSecondsRealtime(5.0f);
             caption = "2.5 stars: two of three 2-star copies"; StarBurst.Play(at, 2.5f, false); yield return new WaitForSecondsRealtime(3.0f);
             caption = "3 stars: three 2-star copies merge"; reveal.Stage(Entry(3), Materials(2, 3), at); yield return new WaitForSecondsRealtime(7.0f);

@@ -21,10 +21,10 @@ namespace ArcaneBrigade
             burst.at = at; burst.stars = stars; burst.merge = merge;
             burst.born = Time.unscaledTime;
             bool three = stars >= 3f;
-            burst.life = merge ? (three ? 1.9f : 1.5f) : 1.0f;
-            burst.glints = PresentationSettings.ReducedEffects ? 4 : merge ? (three ? 22 : 14) : 6;
+            burst.life = merge ? (three ? 1.9f : 1.5f) : 1.7f;
+            burst.glints = PresentationSettings.ReducedEffects ? 4 : merge ? (three ? 22 : 14) : 18;
             string word = Mathf.Approximately(stars, Mathf.Floor(stars)) ? (int)stars + " STARS!" : stars.ToString("0.0") + " STARS";
-            ImpactWords.Pop(word, at + Vector2.up * 1.25f, three ? ImpactWords.Gold : ImpactWords.Cream, merge ? 3 : 2, merge ? 1.05f : .8f, merge ? -5f : 4f);
+            ImpactWords.Pop(word, at + Vector2.up * 1.25f, stars >= 3.5f ? GrandStarCeremony.Purple : three ? ImpactWords.Gold : ImpactWords.Cream, merge ? 3 : 2, merge ? 1.05f : 1.5f, merge ? -5f : 4f);
             CheckpointAudio.PlayInterfaceId(merge ? (three ? "up.star3" : "up.star2") : "up.star2", merge ? 0f : 0.08f);
         }
 
@@ -35,8 +35,9 @@ namespace ArcaneBrigade
             ink.Begin();
             if (age >= life) { ink.End(); Destroy(gameObject); return; }
             bool still = PresentationSettings.ReducedMotion;
+            InkPalette tint = stars >= 3.5f && !merge ? GrandStarCeremony.Amethyst : ArsenalInk.Gold;
             float k = age / life, out_ = 1 - (1 - k) * (1 - k) * (1 - k), fade = Mathf.Clamp01((1 - k) / .35f);
-            float reach = merge ? (stars >= 3f ? 1.6f : 1.2f) : .75f;
+            float reach = merge ? (stars >= 3f ? 1.6f : 1.2f) : 1.5f;
             for (int i = 0; i < glints; i++)
             {
                 // each glint leaves the star on its own spiral, a little later than the one before
@@ -44,12 +45,12 @@ namespace ArcaneBrigade
                 if (q <= 0) continue;
                 float angle = (i * 360f / glints + (still ? 0 : q * 160f)) * Mathf.Deg2Rad, r = reach * (1 - (1 - q) * (1 - q)) * (.55f + .45f * ((i * 7) % 5) / 4f);
                 Vector2 p = at + Vector2.up * (1.1f + q * .9f) + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * .7f) * r;
-                ink.TokenAt(i % 3 == 0 ? InkToken.Star : InkToken.Glint, ArsenalInk.Gold, p, (merge ? .26f : .2f) * (1 - .4f * q), still ? 0 : q * 240f, (1 - q) * .95f);
+                ink.TokenAt(i % 3 == 0 ? InkToken.Star : InkToken.Glint, tint, p, (merge ? .26f : .55f) * (1 - .4f * q), still ? 0 : q * 240f, (1 - q) * .95f);
             }
             // the star itself rises, swells and settles; a half star is a smaller, paler one
-            float size = (merge ? .7f : .42f) * (.7f + .3f * Mathf.Sin(Mathf.Clamp01(k * 3f) * Mathf.PI * .5f));
-            ink.TokenAt(InkToken.Star, merge ? ArsenalInk.Gold : ArsenalInk.Cream, at + Vector2.up * (1.1f + out_ * .8f), size, still ? 0 : k * 90f, fade);
-            if (merge && !PresentationSettings.ReducedEffects) ink.Light(at + Vector2.up * (1.1f + out_ * .8f), 1.8f + out_ * 1.2f, new Color(1f, .86f, .45f), .4f * fade);
+            float size = (merge ? .7f : 1.35f) * (.7f + .3f * Mathf.Sin(Mathf.Clamp01(k * 3f) * Mathf.PI * .5f));
+            ink.TokenAt(InkToken.Star, merge ? ArsenalInk.Gold : stars >= 3.5f ? GrandStarCeremony.Orchid : ArsenalInk.Cream, at + Vector2.up * (1.1f + out_ * .8f), size, still ? 0 : k * 90f, fade);
+            if (!PresentationSettings.ReducedEffects) ink.Light(at + Vector2.up * (1.1f + out_ * .8f), (merge ? 1.8f : 4.2f) + out_ * 1.6f, stars >= 3.5f && !merge ? new Color(.74f, .5f, 1f) : new Color(1f, .86f, .45f), (merge ? .4f : .85f) * fade);
             ink.End();
         }
     }
