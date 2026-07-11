@@ -786,8 +786,6 @@ namespace ArcaneBrigade
             int encores = 0;
             UnitDefinition encoreUnit = null;
             foreach (RosterEntry entry in owner.Session.ActiveRoster) if (entry.Tier >= 3) { encores++; encoreUnit = owner.Content.Unit(entry.UnitId); }
-            if (encoreCount >= 0 && encores > encoreCount && encoreUnit != null)
-                cutIn.Show(RunUICopy.UnitName(encoreUnit), "★★★  SHINES BRIGHTER", encoreUnit.Body, ArcadeSkin.Gold, "ui.cutin.encore");
             encoreCount = encores;
             foreach (BondDefinition bond in owner.Content.Bonds)
             {

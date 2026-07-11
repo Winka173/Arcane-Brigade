@@ -27,7 +27,7 @@ namespace ArcaneBrigade
         public bool GiveRainbowThread()
         {
             State.RainbowThreads = BoundedCounter((long)State.RainbowThreads + 1);
-            Notice = "A Rainbow Thread. A 4-star friend can wake in every colour.";
+            Notice = "A Starlight Thread. A 4-star friend can shine as never before.";
             return WeaveRainbow();
         }
 
@@ -40,7 +40,7 @@ namespace ArcaneBrigade
                 RosterEntry entry = RainbowCandidate();
                 if (entry == null) break;
                 entry.Tier = catalog.MaximumTier; State.RainbowThreads--; RememberVariant(entry); any = true;
-                Notice = RunUICopy.UnitName(catalog.Unit(entry.UnitId)) + " wakes in every colour: 5 stars.";
+                Notice = RunUICopy.UnitName(catalog.Unit(entry.UnitId)) + " shines as never before: 5 stars.";
             }
             if (any) RecountBonds();
             return any;

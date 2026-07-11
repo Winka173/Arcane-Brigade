@@ -571,25 +571,35 @@ namespace ArcaneBrigade
             if (station.Recipe != null) return "FUSION · " + station.Action.Substring(5);
             return station.Action;
         }
-        // a friend that stars up runs to where its animation plays and stands beside it (requirement 27/10/2026)
-        private string summonId;
-        private Vector2 summonAt;
-        private float summonUntil;
-        private float summonStart;
-        public void Summon(string unitId, Vector2 at, float seconds)
+        // the friend on the map that stars up vanishes in a puff while its animation plays and returns in a puff (requirement 27/10/2026)
+        private string vanishId;
+        private float vanishUntil;
+        private bool vanished;
+        private Vector2 vanishOrigin;
+        /// <summary>The friend vanishes for the animation at origin (its stall) and walks out from there when it ends, like a bought friend.</summary>
+        public void Vanish(string unitId, float seconds, Vector2 origin) { vanishId = unitId; vanishUntil = Time.unscaledTime + seconds; vanishOrigin = origin; }
+
+        private void LateUpdate()
         {
-            if (summonId != unitId || Time.unscaledTime > summonUntil) summonStart = Time.unscaledTime;
-            summonId = unitId; summonAt = at + new Vector2(-1.3f, -.15f); summonUntil = Time.unscaledTime + seconds;
+            if (owner == null || string.IsNullOrEmpty(vanishId)) return;
+            bool gone = Time.unscaledTime < vanishUntil;
+            foreach (UnitVisual view in owner.Views)
+            {
+                if (view == null || view.State == null || view.State.Faction != Faction.Companion || view.State.Definition.Id != vanishId) continue;
+                if (view.gameObject.activeSelf == !gone) continue;
+                if (gone) VanishPoof.Play(view.State.Position + Vector2.up * .4f, false);
+                else
+                {
+                    view.State.Position = view.State.PreviousPosition = vanishOrigin;
+                    view.gameObject.SetActive(true);
+                    view.BeginArrival(vanishOrigin);
+                    VanishPoof.Play(vanishOrigin + Vector2.up * .4f, true);
+                    continue;
+                }
+                view.gameObject.SetActive(!gone);
+            }
+            if (!gone) vanishId = null;
         }
-        /// <summary>True once the called friend stands at its spot (or after 2.5 s, whatever stops it): the animation waits for it.</summary>
-        public bool SummonArrived(string unitId)
-        {
-            if (summonId != unitId || Time.unscaledTime > summonUntil || Time.unscaledTime > summonStart + 2.5f) return true;
-            foreach (UnitState unit in owner.Simulation.Units)
-                if (unit.Faction == Faction.Companion && unit.Definition.Id == unitId) return (unit.Position - summonAt).sqrMagnitude < .16f;
-            return true;
-        }
-        private bool Summoned(UnitState unit, out Vector2 at) { at = summonAt; return Time.unscaledTime < summonUntil && unit.Definition.Id == summonId; }
 
         public void ResolveCompanionPositions()
         {
@@ -601,13 +611,6 @@ namespace ArcaneBrigade
             {
                 if (unit.Faction != Faction.Companion) continue;
                 if (unit.MountId > 0) continue;
-                if (Summoned(unit, out Vector2 call))
-                {
-                    unit.Position = Vector2.MoveTowards(unit.PreviousPosition, call, Mathf.Max(9f, unit.Definition.Speed * 3.2f) * Time.fixedDeltaTime);
-                    unit.Velocity = (unit.Position - unit.PreviousPosition) / Time.fixedDeltaTime;
-                    unit.Facing = (call - unit.Position).sqrMagnitude > .05f ? (call - unit.Position).normalized : Vector2.right;
-                    continue;
-                }
                 if (MergePreview.Destination(unit, out Vector2 mergeDestination))
                 {
                     Vector2 destination = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(mergeDestination - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);

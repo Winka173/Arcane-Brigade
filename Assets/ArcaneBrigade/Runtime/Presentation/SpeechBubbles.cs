@@ -48,7 +48,7 @@ namespace ArcaneBrigade
 
         public static SpeechBubble Show(string speaker, string name, string text, Func<Vector3?> anchor, SpeechTone tone, float seconds = 0, int priority = 1, BubbleSide prefer = BubbleSide.Above)
         {
-            if (string.IsNullOrEmpty(text)) return null;
+            if (string.IsNullOrEmpty(text) || MergeReveal.Busy) return null; // no one speaks over a star-up
             float now = Time.unscaledTime;
             bubbles.RemoveAll(bubble => bubble.Speaker == speaker || now >= bubble.Expires);
             while (bubbles.Count >= MaxBubbles)

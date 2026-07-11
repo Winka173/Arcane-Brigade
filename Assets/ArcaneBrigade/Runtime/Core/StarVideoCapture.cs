@@ -98,7 +98,7 @@ namespace ArcaneBrigade
             yield return Buy("3 stars: the third 2-star copy merges", 2, 2, 2, 6.5f);
             yield return Buy("3.5 stars: you own one 3-star, buy a second", 1, 3, 3, 3.4f);
             yield return Buy("4 stars (purple): the third 3-star copy merges", 2, 3, 3, 11.5f);
-            caption = "5 stars (rainbow): a Rainbow Thread from a special event";
+            caption = "5 stars: a Starlight Thread from a special event";
             state.Roster.Clear(); state.Roster.Add(Entry(4));
             yield return new WaitForSecondsRealtime(1.0f);
             owner.Session.GiveRainbowThread();

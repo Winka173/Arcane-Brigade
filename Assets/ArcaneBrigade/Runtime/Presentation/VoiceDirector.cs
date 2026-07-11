@@ -76,6 +76,7 @@ namespace ArcaneBrigade
         /// the trigger is resting. Audio is optional: without a clip the line is still returned.</summary>
         public static VoiceLine Say(string speaker, string trigger, int priority = Normal, bool ignoreCooldown = false)
         {
+            if (MergeReveal.Busy) return null;
             if (!ignoreCooldown && !Ready(speaker, trigger)) return null;
             VoiceLine line = Pick(speaker, trigger);
             if (line == null) return null;

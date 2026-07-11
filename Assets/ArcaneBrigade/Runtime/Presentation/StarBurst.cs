@@ -7,6 +7,9 @@ namespace ArcaneBrigade
     /// comic word; the half star is shorter and quieter. It draws itself and removes itself.</summary>
     public sealed class StarBurst : MonoBehaviour
     {
+        public static int Alive;
+        private void Awake() { Alive++; }
+        private void OnDestroy() { Alive--; }
         private ArsenalInk ink;
         private Vector2 at;
         private float born, life, stars;

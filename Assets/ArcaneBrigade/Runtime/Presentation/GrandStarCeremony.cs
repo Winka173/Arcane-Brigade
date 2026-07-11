@@ -24,6 +24,8 @@ namespace ArcaneBrigade
         private bool lightOnly;
         private float power = 1, spark = 1;
 
+        public static int Alive;
+        private void Awake() { Alive++; }
         public static float Duration(int tier) => tier >= 5 ? 16f : 10f;
 
         /// <summary>A palette of one hue (0 to 1): the rainbow's colours.</summary>
@@ -159,8 +161,8 @@ namespace ArcaneBrigade
             if (lightOnly) return;
             Sound(age, 2.55f, "up.merge", 0); Sound(age, 2.6f, "up.star3", 1);
             Word(age, 0, 2.6f, rainbow ? "5 STARS!" : "4 STARS!", hue0, 1.5f);
-            Word(age, 1, 4.5f, rainbow ? "RAINBOW" : "AWAKENED", hue0 + .3f, 1.2f); Sound(age, 4.5f, "up.rarity.gold", 2);
-            Word(age, 2, 6.5f, rainbow ? "LEGEND" : "PURPLE STAR", hue0 + .6f, 1.2f); Sound(age, 6.5f, "up.star3", 3);
+            Word(age, 1, 4.5f, rainbow ? "ONE OF A KIND" : "RADIANT", hue0 + .3f, 1.2f); Sound(age, 4.5f, "up.rarity.gold", 2);
+            Word(age, 2, 6.5f, rainbow ? "UNFORGETTABLE" : "TREASURED", hue0 + .6f, 1.2f); Sound(age, 6.5f, "up.star3", 3);
             if (rainbow)
             {
                 Sound(age, 6f, "up.star3", 4); Sound(age, 9.5f, "up.rarity.gold", 5); Sound(age, 12.2f, "up.star3", 6);
@@ -171,6 +173,6 @@ namespace ArcaneBrigade
         /// <summary>A flash that opens at <paramref name="when"/> and dies away over a second.</summary>
         private static float Pulse(float age, float when, float strength) => age < when ? 0 : strength * Mathf.Clamp01(1 - (age - when) / 1f) * Mathf.Clamp01((age - when) / .06f + .0f) * (1 - Mathf.Clamp01((age - when) / 1f) * .2f);
 
-        private void OnDestroy() { ink?.Destroy(); }
+        private void OnDestroy() { Alive--; ink?.Destroy(); }
     }
 }

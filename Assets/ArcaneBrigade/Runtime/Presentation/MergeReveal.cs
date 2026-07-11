@@ -120,6 +120,7 @@ namespace ArcaneBrigade
             lastReceipt = after.NextReceipt;
             if (ReadOnly) { Skip(); return; }
             foreach (Beat beat in beats) queue.Enqueue(beat);
+            if (beats.Count > 0) { QuietUntil = Time.unscaledTime + 1f; SpeechBubbles.ClearAll(); }
             // a copy that does not merge but brings the next star within one copy: a half star, a lighter flourish
             if (beats.Count == 0 && !altar && before != null && before.RunId == after.RunId)
             {
@@ -129,7 +130,7 @@ namespace ArcaneBrigade
                     if (!seen.Add(entry.UnitId)) continue;
                     int top = 0; foreach (RosterEntry r in after.Roster) if (r.UnitId == entry.UnitId) top = Mathf.Max(top, r.Tier);
                     int now = after.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count, was = before.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count;
-                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { halves.Enqueue(new Half { Id = entry.UnitId, At = position, Stars = top + .5f }); owner.Shop?.Summon(entry.UnitId, position, 30f); }
+                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { StarBurst.Play(position, top + .5f, false); owner.Shop?.Vanish(entry.UnitId, 2.4f, position); QuietUntil = Time.unscaledTime + 2.6f; SpeechBubbles.ClearAll(); }
                 }
             }
         }
@@ -142,7 +143,7 @@ namespace ArcaneBrigade
             queue.Enqueue(new Beat { Result = Copy(result), Materials = materials, Position = position, Altar = altar });
         }
 
-        public void Skip() { queue.Clear(); halves.Clear(); ClearStage(); }
+        public void Skip() { queue.Clear(); ClearStage(); }
 
         /// <summary>True while a ceremony (playing or waiting) is for this unit: the real unit stays hidden where the
         /// ceremony stands and steps out of it when it ends, instead of appearing somewhere nearby.</summary>
@@ -161,8 +162,9 @@ namespace ArcaneBrigade
         /// <summary>The ceremony's clock: a three-star holds one frame for GrandHold when the braid knots.</summary>
         private float VisualTime => !Grand || age < GrandKnotAt ? age : age < GrandKnotAt + GrandHold ? GrandKnotAt : age - GrandHold;
 
-        private sealed class Half { public string Id; public Vector2 At; public float Stars; }
-        private readonly Queue<Half> halves = new Queue<Half>();
+        /// <summary>True while a star-up plays (and a moment after): no one speaks over it.</summary>
+        public static float QuietUntil;
+        public static bool Busy => Time.unscaledTime < QuietUntil;
         private int seenFives = -1;
         private string seenFivesRun;
         /// <summary>A Rainbow Thread weaves a 4-star friend wherever it came from (a secret room, a visitor, a boss): the 5-star ceremony
@@ -185,11 +187,8 @@ namespace ArcaneBrigade
         {
             if (owner == null || owner.Session == null || owner.Simulation == null) { Idle(); return; }
             WatchRainbow();
-            // a half star plays when its friend has run to the spot
-            if (halves.Count > 0 && (owner.Shop == null || owner.Shop.SummonArrived(halves.Peek().Id)))
-            {
-                Half h = halves.Dequeue(); StarBurst.Play(h.At, h.Stars, false); owner.Shop?.Summon(h.Id, h.At, 3.2f);
-            }
+            // everyone else keeps quiet while a star-up plays and for a moment after
+            if (active != null || queue.Count > 0 || GrandStarCeremony.Alive > 0 || StarBurst.Alive > 0) QuietUntil = Time.unscaledTime + .8f;
             if (ReadOnly) { Skip(); return; }
             if (owner.Session.State.RunId != runId || owner.Session.State.Phase != SessionPhase.Shop) { Skip(); return; }
             if (owner.Simulation.Phase == RunPhase.Paused || owner.Details.Open || owner.MenuConfirmation) { Skip(); return; }
@@ -197,12 +196,9 @@ namespace ArcaneBrigade
             if (active == null)
             {
                 if (queue.Count == 0) { Idle(); return; }
-                // the friend already on the map runs to the animation first; the animation starts when it stands there
-                Beat next = queue.Peek();
-                owner.Shop?.Summon(next.Result.UnitId, next.Position, 30f);
-                if (owner.Shop != null && !owner.Shop.SummonArrived(next.Result.UnitId)) { Idle(); return; }
                 active = queue.Dequeue(); age = 0; cues = 0;
-                owner.Shop?.Summon(active.Result.UnitId, active.Position, Finish / .65f + .8f);
+                owner.Shop?.Vanish(active.Result.UnitId, Finish / .65f + .4f, active.Position);
+                SpeechBubbles.ClearAll();
                 CheckpointAudio.PlayInterfaceId("up.merge.gather");
                 if (active.Altar) CheckpointAudio.PlayInterfaceId("shop.fusion", 0.09f);
                 stage = new GameObject(active.Altar ? "AltarRevealGhosts" : "MergeRevealGhosts");
@@ -707,7 +703,7 @@ namespace ArcaneBrigade
             // thick inked lettering (Lilita One with an ink outline), larger for three stars
             InkedText text = InkedText.Create(stage.transform, "CommittedTierLabel", ArcadeTypography.Punch, 64, Grand ? 0.05f : 0.042f, 2310, Grand ? 0.034f : 0.028f);
             text.transform.localPosition = Vector3.down * 0.8f;
-            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "RAINBOW" : active.Result.Tier == 4 ? "AWAKENED" : "MASTERED") : "STAR UP";
+            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "LEGEND" : active.Result.Tier == 4 ? "RADIANT" : "MASTERED") : "STAR UP";
             text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
             text.gameObject.SetActive(false);
         }

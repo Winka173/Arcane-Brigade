@@ -115,6 +115,7 @@ namespace ArcaneBrigade
         /// <summary>A bark outside the purchase flow (idle, the warm chair): voiced and pinned, without changing the moment.</summary>
         public bool Say(bool special, string trigger, float now, int priority = VoiceDirector.Normal)
         {
+            if (MergeReveal.Busy) return false;
             string bank = Bank(special);
             VoiceLine bark = trigger.StartsWith("story:") ? Bark(bank, trigger, priority) : VoiceDirector.Say(bank, trigger, priority);
             if (bark == null || string.IsNullOrEmpty(bark.Text)) return false;

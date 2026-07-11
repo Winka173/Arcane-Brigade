@@ -52,7 +52,7 @@ namespace ArcaneBrigade
                 runId = state.RunId; baseline = false; queue.Clear(); contextSaid.Clear(); boss = null; chairConfessed = false;
                 shopWave = state.Phase == SessionPhase.Shop ? state.Wave : -1; hobRescued = state.ActOne?.HobRescued ?? 0;
             }
-            bool blocked = owner.PresentationPaused || owner.StoryOpen || owner.TransitionPending || owner.Session.EndingPending || owner.Session.SecretRoomOpen;
+            bool blocked = owner.PresentationPaused || owner.StoryOpen || owner.TransitionPending || owner.Session.EndingPending || owner.Session.SecretRoomOpen || MergeReveal.Busy;
             ObserveRoster(state);
             ObserveShop(state, blocked);
             ObserveBoss(state);
@@ -122,7 +122,7 @@ namespace ArcaneBrigade
             string name = (RunSession.Stranger(owner.Session.State, id) ? "???" : unit.DisplayName) + (tier >= 3 ? "  ★★★" : "  ★★");
             string text = StarLine(id, tier, owner.Session.State.Wave);
             // the merge reveal plays first; the new star speaks once it has landed
-            Enqueue(1.1f, 7f, true, () => CompanionSays(id, tier, name, text, "starup", VoiceDirector.Normal, SpeechTone.Companion));
+            Enqueue(1.1f, 16f, true, () => CompanionSays(id, tier, name, text, "starup", VoiceDirector.Normal, SpeechTone.Companion));
         }
 
         private bool CompanionSays(string id, int tier, string name, string text, string trigger, int priority, SpeechTone tone)
