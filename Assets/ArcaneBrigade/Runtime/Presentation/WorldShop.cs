@@ -577,29 +577,44 @@ namespace ArcaneBrigade
         private bool vanished;
         private Vector2 vanishOrigin;
         /// <summary>The friend vanishes for the animation at origin (its stall) and walks out from there when it ends, like a bought friend.</summary>
-        public void Vanish(string unitId, float seconds, Vector2 origin) { vanishId = unitId; vanishUntil = Time.unscaledTime + seconds; vanishOrigin = origin; }
+        public void Vanish(string unitId, float seconds, Vector2 origin) { vanishId = unitId; vanishUntil = Time.unscaledTime + seconds; vanishOrigin = origin; vanishStart = Time.unscaledTime; vanishStage = 0; }
 
+        private float vanishStart;
+        private int vanishStage; // 0 on the map, 1 faded out and gone, 2 back and fading in
         private void LateUpdate()
         {
             if (owner == null || string.IsNullOrEmpty(vanishId)) return;
-            bool gone = Time.unscaledTime < vanishUntil;
+            float now = Time.unscaledTime;
             foreach (UnitVisual view in owner.Views)
             {
                 if (view == null || view.State == null || view.State.Faction != Faction.Companion || view.State.Definition.Id != vanishId) continue;
-                if (view.gameObject.activeSelf == !gone) continue;
-                if (gone) VanishPoof.Play(view.State.Position + Vector2.up * .4f, false);
+                if (now < vanishUntil)
+                {
+                    // it fades out in a puff (0.4 s), then is gone while the animation plays
+                    if (vanishStage == 0) { VanishPoof.Play(view.State.Position + Vector2.up * .4f, false); vanishStage = 0; }
+                    float fade = Mathf.Clamp01(1 - (now - vanishStart) / .4f);
+                    view.SetTerminalFade(fade);
+                    if (fade <= 0 && view.gameObject.activeSelf) { view.gameObject.SetActive(false); vanishStage = 1; }
+                    else if (vanishStage == 0) vanishStage = 3; // the puff has played
+                }
                 else
                 {
-                    view.State.Position = view.State.PreviousPosition = vanishOrigin;
-                    view.gameObject.SetActive(true);
-                    view.BeginArrival(vanishOrigin);
-                    VanishPoof.Play(vanishOrigin + Vector2.up * .4f, true);
-                    continue;
+                    // back at its stall in a puff, fading in, then it simply walks out like any friend
+                    if (vanishStage != 2)
+                    {
+                        view.State.Position = view.State.PreviousPosition = vanishOrigin;
+                        view.gameObject.SetActive(true);
+                        VanishPoof.Play(vanishOrigin + Vector2.up * .4f, true);
+                        vanishStage = 2; vanishUntilBack = now;
+                    }
+                    float fade = Mathf.Clamp01((now - vanishUntilBack) / .45f);
+                    view.SetTerminalFade(fade);
+                    if (fade >= 1) vanishId = null;
                 }
-                view.gameObject.SetActive(!gone);
             }
-            if (!gone) vanishId = null;
+            if (vanishId != null && now >= vanishUntil && vanishStage == 2 && now - vanishUntilBack > 1f) vanishId = null;
         }
+        private float vanishUntilBack;
 
         public void ResolveCompanionPositions()
         {
