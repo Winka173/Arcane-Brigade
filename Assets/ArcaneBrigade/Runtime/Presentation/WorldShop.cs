@@ -577,7 +577,10 @@ namespace ArcaneBrigade
         private bool vanished;
         private Vector2 vanishOrigin;
         /// <summary>The friend vanishes for the animation at origin (its stall) and walks out from there when it ends, like a bought friend.</summary>
-        public void Vanish(string unitId, float seconds, Vector2 origin) { vanishId = unitId; vanishUntil = Time.unscaledTime + seconds; vanishOrigin = origin; vanishStart = Time.unscaledTime; vanishStage = 0; }
+        private bool instantReturn;
+        /// <summary>A star-up animation is over: its body is taken away and the friend stands exactly there (one body only) and walks on.</summary>
+        public void Release(string unitId, Vector2 at) { if (vanishId != unitId) return; vanishUntil = Time.unscaledTime; vanishOrigin = at; instantReturn = true; }
+        public void Vanish(string unitId, float seconds, Vector2 origin) { instantReturn = false; vanishId = unitId; vanishUntil = Time.unscaledTime + seconds; vanishOrigin = origin; vanishStart = Time.unscaledTime; vanishStage = 0; }
 
         private float vanishStart;
         private int vanishStage; // 0 on the map, 1 faded out and gone, 2 back and fading in
@@ -604,8 +607,8 @@ namespace ArcaneBrigade
                     {
                         view.State.Position = view.State.PreviousPosition = vanishOrigin;
                         view.gameObject.SetActive(true);
-                        VanishPoof.Play(vanishOrigin + Vector2.up * .4f, true);
-                        vanishStage = 2; vanishUntilBack = now;
+                        if (!instantReturn) VanishPoof.Play(vanishOrigin + Vector2.up * .4f, true);
+                        vanishStage = 2; vanishUntilBack = now - (instantReturn ? 1f : 0f);
                     }
                     float fade = Mathf.Clamp01((now - vanishUntilBack) / .45f);
                     view.SetTerminalFade(fade);

@@ -551,7 +551,7 @@ namespace ArcaneBrigade
                 : source.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= FriendlyWeaponBalance.Scale(weapon.Id) * FriendlyWeaponBalance.BaseBoost * DamageMultiplier(source, tier, companion);
             // two of the three copies for the next star: half a star's damage more (the 1.5 and 2.5 stars; requirement 27/10/2026)
-            if (companion && HalfStar(source.Id, tier)) unit.Weapon.Damage *= Mathf.Sqrt(tier >= 3 ? StarStep(tier + 1) : Mathf.Min(2.7f, catalog.TierDamageMultiplier));
+            if (companion && HalfStar(source.Id, tier)) { unit.Weapon.Damage *= HalfStarDamage(tier); unit.Weapon.Range *= HalfStarReach; unit.BodyHeight *= HalfStarBody; }
             unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, PlayerBuildBalance.AttackSpeedSlope(companion)), .25f, PlayerBuildBalance.AttackSpeedCap(companion));
             unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
             unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
@@ -585,6 +585,9 @@ namespace ArcaneBrigade
         }
 
         /// <summary>What the step from the star below to this star multiplies damage by past three stars (4 purple x1.9, 5 rainbow x2.3).</summary>
+        /// <summary>What a half star adds on the way to the next star: damage (half the next step, geometrically), 4% reach, 3% body.</summary>
+        public float HalfStarDamage(int tier) => Mathf.Sqrt(tier >= 3 ? StarStep(tier + 1) : Mathf.Min(2.7f, catalog.TierDamageMultiplier));
+        public const float HalfStarReach = 1.04f, HalfStarBody = 1.03f;
         public static float StarStep(int tier) => tier >= 5 ? 2.3f : tier == 4 ? 1.9f : 2.7f;
         public static float StarSurplus(int tier) => (tier >= 4 ? StarStep(4) : 1f) * (tier >= 5 ? StarStep(5) : 1f);
 

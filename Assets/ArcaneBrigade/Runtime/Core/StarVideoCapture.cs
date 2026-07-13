@@ -101,8 +101,9 @@ namespace ArcaneBrigade
             caption = "5 stars: a Starlight Thread from a special event";
             state.Roster.Clear(); state.Roster.Add(Entry(4));
             yield return new WaitForSecondsRealtime(1.0f);
-            owner.Session.GiveRainbowThread();
+            owner.GiveStarlightThread();
             yield return new WaitForSecondsRealtime(17.5f);
+            caption = "The 5-star friend keeps its light"; yield return new WaitForSecondsRealtime(6f);
             caption = "";
             while (!recorder.Complete) yield return null;
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoDone.txt"), recorder.Passed ? "PASS" : "FAIL");

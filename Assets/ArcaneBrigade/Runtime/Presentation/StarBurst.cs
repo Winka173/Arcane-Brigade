@@ -11,18 +11,21 @@ namespace ArcaneBrigade
         private void Awake() { Alive++; }
         private void OnDestroy() { Alive--; }
         private ArsenalInk ink;
+        private string[] lines;
+        private InkedText[] lineTexts;
         private Vector2 at;
         private float born, life, stars;
         private int glints;
         private bool merge;
 
         /// <param name="stars">1.5 and 2.5 are half stars; 2 and 3 are merges.</param>
-        public static void Play(Vector2 at, float stars, bool merge)
+        public static void Play(Vector2 at, float stars, bool merge, string[] lines = null)
         {
             var go = new GameObject("StarBurst");
             StarBurst burst = go.AddComponent<StarBurst>();
             burst.at = at; burst.stars = stars; burst.merge = merge;
             burst.born = Time.unscaledTime;
+            burst.lines = lines;
             GrandStarCeremony.PlayLight(at, stars);
             bool three = stars >= 3f;
             burst.life = merge ? (three ? 1.9f : 1.5f) : 1.7f;
@@ -30,6 +33,12 @@ namespace ArcaneBrigade
             string word = Mathf.Approximately(stars, Mathf.Floor(stars)) ? (int)stars + " STARS!" : stars.ToString("0.0") + " STARS";
             ImpactWords.Pop(word, at + Vector2.up * 1.25f, stars >= 3.5f ? GrandStarCeremony.Purple : three ? ImpactWords.Gold : ImpactWords.Cream, merge ? 3 : 2, merge ? 1.05f : 1.5f, merge ? -5f : 4f);
             CheckpointAudio.PlayInterfaceId(merge ? (three ? "up.star3" : "up.star2") : "up.star2", merge ? 0f : 0.08f);
+        }
+
+        private Sprite StarArt()
+        {
+            int next = Mathf.FloorToInt(stars) + 1; // the star it is on the way to
+            return ArsenalArtwork.Frame(next >= 5 ? "StarUp_RainbowStar" : next == 4 ? "StarUp_PurpleStar" : next == 3 ? "StarUp_GoldStar" : "StarUp_SilverStar", 0);
         }
 
         private void Update()
@@ -50,6 +59,31 @@ namespace ArcaneBrigade
                 float angle = (i * 360f / glints + (still ? 0 : q * 160f)) * Mathf.Deg2Rad, r = reach * (1 - (1 - q) * (1 - q)) * (.55f + .45f * ((i * 7) % 5) / 4f);
                 Vector2 p = at + Vector2.up * (1.1f + q * .9f) + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * .7f) * r;
                 ink.TokenAt(i % 3 == 0 ? InkToken.Star : InkToken.Glint, tint, p, (merge ? .26f : .55f) * (1 - .4f * q), still ? 0 : q * 240f, (1 - q) * .95f);
+            }
+            // a half star shows the painted star it is on the way to, popping in with a halo, then the stats it just earned
+            if (!merge)
+            {
+                Sprite art = StarArt();
+                float pop = Mathf.Clamp01(age / .28f), over = 1 + 1.7f * Mathf.Pow(pop - 1, 3) + .7f * Mathf.Pow(pop - 1, 2);
+                Vector2 starAt = at + Vector2.up * (1.45f + Mathf.Sin(age * 3f) * .05f);
+                if (art != null) ink.Place(art, starAt, .95f * over, still ? 0 : Mathf.Sin(age * 2.2f) * 6f, new Color(1, 1, 1, .92f * fade), true);
+                if (lines != null && lineTexts == null)
+                {
+                    lineTexts = new InkedText[lines.Length];
+                    for (int i = 0; i < lines.Length; i++)
+                    {
+                        lineTexts[i] = InkedText.Create(transform, "HalfStarStat" + i, ArcadeTypography.Punch, 64, .04f, 2420, .03f);
+                        lineTexts[i].Text = lines[i];
+                    }
+                }
+                if (lineTexts != null)
+                    for (int i = 0; i < lineTexts.Length; i++)
+                    {
+                        float since = Mathf.Clamp01((age - .35f - i * .22f) / .3f);
+                        lineTexts[i].transform.position = new Vector3(starAt.x, starAt.y + .85f + i * .5f + since * .15f, 0);
+                        Color c = stars >= 3.5f ? GrandStarCeremony.Purple : stars >= 2.5f ? new Color(1f, .86f, .4f) : new Color(.85f, .95f, 1f);
+                        c.a = since * fade; lineTexts[i].Color = c;
+                    }
             }
             // the star itself rises, swells and settles; a half star is a smaller, paler one
             float size = (merge ? .7f : 1.35f) * (.7f + .3f * Mathf.Sin(Mathf.Clamp01(k * 3f) * Mathf.PI * .5f));

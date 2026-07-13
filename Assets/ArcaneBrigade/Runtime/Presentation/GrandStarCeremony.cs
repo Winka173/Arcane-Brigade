@@ -116,7 +116,6 @@ namespace ArcaneBrigade
             // the flashes: the first as the star lands (2.6 s), the rainbow adds three more
             float open = lightOnly ? .3f : 2.6f;
             float flash = Pulse(age, open, power);
-            if (rainbow) flash = Mathf.Max(flash, Mathf.Max(Pulse(age, 6f, .8f), Mathf.Max(Pulse(age, 9.5f, .9f), Pulse(age, 12.2f, 1f))));
             if (soft) flash *= .35f;
             float rise = lightOnly ? Ease((age - .05f) / .7f) : Ease((age - .6f) / 2f);
 
@@ -134,7 +133,7 @@ namespace ArcaneBrigade
                 m.SetFloat("_Age", still ? 3f : age); m.SetFloat("_Rise", rise); m.SetFloat("_Flash", flash); m.SetFloat("_Rainbow", rainbow ? 1 : 0);
                 m.SetFloat("_Fade", fade * (calm ? .6f : 1f)); m.SetFloat("_Calm", calm ? 1 : 0); m.SetFloat("_Ground", at.y - heart.y - .15f);
                 m.SetFloat("_Mode", mode); m.SetFloat("_Power", power); m.SetFloat("_Spark", spark);
-                float[] launches = lightOnly ? new[] { .3f, life > 4f ? .6f : -1f, -1f, -1f, -1f, -1f, -1f, -1f } : rainbow ? new[] { 2.6f, 2.95f, 3.3f, 6f, 6.35f, 9.5f, 9.85f, 12.2f } : new[] { 2.6f, 3f, 3.4f, -1f, -1f, -1f, -1f, -1f };
+                float[] launches = lightOnly ? new[] { .3f, life > 4f ? .6f : -1f, -1f, -1f, -1f, -1f, -1f, -1f } : rainbow ? new[] { 2.6f, 2.8f, 3f, 3.2f, 3.4f, 3.6f, 3.8f, -1f } : new[] { 2.6f, 3f, 3.4f, -1f, -1f, -1f, -1f, -1f };
                 var ring = new float[8];
                 for (int i = 0; i < 8; i++) ring[i] = launches[i] < 0 || age < launches[i] ? -1 : age - launches[i];
                 m.SetVector("_Rings", new Vector4(ring[0], ring[1], ring[2], ring[3])); m.SetVector("_Rings2", new Vector4(ring[4], ring[5], ring[6], ring[7]));
@@ -165,7 +164,6 @@ namespace ArcaneBrigade
             Word(age, 2, 6.5f, rainbow ? "UNFORGETTABLE" : "TREASURED", hue0 + .6f, 1.2f); Sound(age, 6.5f, "up.star3", 3);
             if (rainbow)
             {
-                Sound(age, 6f, "up.star3", 4); Sound(age, 9.5f, "up.rarity.gold", 5); Sound(age, 12.2f, "up.star3", 6);
                 Word(age, 3, 9.5f, "BEYOND STARS", hue0, 1.2f);
             }
         }

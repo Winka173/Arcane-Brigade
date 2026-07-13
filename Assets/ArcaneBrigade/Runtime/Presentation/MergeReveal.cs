@@ -130,7 +130,7 @@ namespace ArcaneBrigade
                     if (!seen.Add(entry.UnitId)) continue;
                     int top = 0; foreach (RosterEntry r in after.Roster) if (r.UnitId == entry.UnitId) top = Mathf.Max(top, r.Tier);
                     int now = after.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count, was = before.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count;
-                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { StarBurst.Play(position, top + .5f, false); owner.Shop?.Vanish(entry.UnitId, 2.4f, position); QuietUntil = Time.unscaledTime + 2.6f; SpeechBubbles.ClearAll(); }
+                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { StarBurst.Play(position, top + .5f, false, HalfLines(top)); owner.Shop?.Vanish(entry.UnitId, 2.4f, position); QuietUntil = Time.unscaledTime + 2.6f; SpeechBubbles.ClearAll(); }
                 }
             }
         }
@@ -165,6 +165,12 @@ namespace ArcaneBrigade
         /// <summary>True while a star-up plays (and a moment after): no one speaks over it.</summary>
         public static float QuietUntil;
         public static bool Busy => Time.unscaledTime < QuietUntil;
+        /// <summary>The stats a half star just added, as short lines.</summary>
+        private string[] HalfLines(int top)
+        {
+            float damage = (owner.Session.HalfStarDamage(top) - 1) * 100f;
+            return new[] { "Damage +" + Mathf.RoundToInt(damage) + "%", "Reach +" + Mathf.RoundToInt((RunSession.HalfStarReach - 1) * 100f) + "%", "Body +" + Mathf.RoundToInt((RunSession.HalfStarBody - 1) * 100f) + "%" };
+        }
         private int seenFives = -1;
         private string seenFivesRun;
         /// <summary>A Rainbow Thread weaves a 4-star friend wherever it came from (a secret room, a visitor, a boss): the 5-star ceremony
@@ -197,7 +203,7 @@ namespace ArcaneBrigade
             {
                 if (queue.Count == 0) { Idle(); return; }
                 active = queue.Dequeue(); age = 0; cues = 0;
-                owner.Shop?.Vanish(active.Result.UnitId, Finish / .65f + .4f, active.Position);
+                owner.Shop?.Vanish(active.Result.UnitId, 40f, active.Position); // held until the animation ends; its body then becomes the friend
                 SpeechBubbles.ClearAll();
                 CheckpointAudio.PlayInterfaceId("up.merge.gather");
                 if (active.Altar) CheckpointAudio.PlayInterfaceId("shop.fusion", 0.09f);
@@ -727,6 +733,7 @@ namespace ArcaneBrigade
 
         private void ClearStage()
         {
+            if (active != null && owner != null && owner.Shop != null) owner.Shop.Release(active.Result.UnitId, stage != null ? (Vector2)stage.transform.position : active.Position);
             weave = null; donorThreads.Clear();
             if (stage != null) { stage.SetActive(false); Destroy(stage); }
             foreach (UnitDefinition definition in definitions) Destroy(definition);

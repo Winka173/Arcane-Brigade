@@ -493,6 +493,8 @@ namespace ArcaneBrigade
             return true;
         }
 
+        /// <summary>Hands over a Starlight Thread as any event would (a committed change that rebuilds the brigade).</summary>
+        public bool GiveStarlightThread() => Transaction("Starlight thread", () => session.GiveRainbowThread(), -1);
         private bool Transaction(string title, Func<bool> operation, int cue = 20)
         {
             if (pauseGate.Paused || TransitionPending || hallExitPending) return false;

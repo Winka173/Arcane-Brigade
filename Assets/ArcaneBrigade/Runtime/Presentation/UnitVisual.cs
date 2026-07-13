@@ -692,6 +692,7 @@ namespace ArcaneBrigade
                 if (weaponMechanism != null) weaponMechanism.Hide();
             }
             DisplayWeakspot(simulationTime, order);
+            DisplayStarAura(Mathf.Clamp(state.Definition.CombatTier, 1, 5), order, K8Motion.BodyHeight(state));
             if (anatomyVisual != null) anatomyVisual.Display(state, simulationTime, order, ReducedMotion);
             if (variantVisual == null && state.Faction == Faction.Enemy && !state.Definition.IsBoss) variantVisual = gameObject.AddComponent<EnemyVariantVisual>();
             if (variantVisual != null) variantVisual.Display(state, body, simulationTime, ReducedMotion);
@@ -770,6 +771,35 @@ namespace ArcaneBrigade
                 Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
                 drawnMuzzle[state.Id] = (weapon.transform.TransformPoint(new Vector3(ink.xMax, weapon.flipY ? -ink.center.y : ink.center.y, 0)), Time.frameCount);
             }
+        }
+
+        // a friend of three stars or more carries a soft light in its star's colour for good: gold, purple, or turning through
+        // every hue at five (requirement 27/10/2026)
+        private SpriteRenderer starAura, starAuraCore;
+        private static Sprite auraSprite;
+        private static Material auraMaterial;
+        private void DisplayStarAura(int tier, int order, float height)
+        {
+            bool show = state.Alive && state.Faction == Faction.Companion && tier >= 2 && !PresentationSettings.ReducedEffects;
+            if (!show) { if (starAura != null) { starAura.enabled = false; starAuraCore.enabled = false; } return; }
+            if (starAura == null)
+            {
+                if (auraMaterial == null) auraMaterial = Resources.Load<Material>("MienCho/WaitingGlow");
+                if (auraSprite == null) auraSprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, Texture2D.whiteTexture.width, Texture2D.whiteTexture.height), Vector2.one * .5f, Texture2D.whiteTexture.width);
+                starAura = CreateSprite("StarAura", transform); starAuraCore = CreateSprite("StarAuraCore", transform);
+                foreach (SpriteRenderer r in new[] { starAura, starAuraCore }) { r.sprite = auraSprite; if (auraMaterial != null) r.sharedMaterial = auraMaterial; }
+            }
+            float clock = Time.unscaledTime, pulse = .5f + .5f * Mathf.Sin(clock * 1.6f + state.Id);
+            Color tone = StarColour(tier, state.Id % 5);
+            Vector3 centre = body.transform.localPosition + Vector3.up * height * .1f;
+            starAura.enabled = starAuraCore.enabled = true;
+            starAura.sortingOrder = order - 1; starAuraCore.sortingOrder = order - 1;
+            starAura.transform.localPosition = starAuraCore.transform.localPosition = centre;
+            starAura.transform.localScale = Vector3.one * height * (3.2f + .25f * pulse) * (tier >= 4 ? 1.2f : 1f);
+            starAuraCore.transform.localScale = Vector3.one * height * (1.7f + .15f * pulse);
+            float strength = tier >= 5 ? .95f : tier == 4 ? .85f : tier == 3 ? .6f : .35f;
+            starAura.color = new Color(tone.r, tone.g, tone.b, strength * (.75f + .25f * pulse));
+            starAuraCore.color = new Color(Mathf.Lerp(tone.r, 1, .4f), Mathf.Lerp(tone.g, 1, .4f), Mathf.Lerp(tone.b, 1, .4f), strength * .7f);
         }
 
         private void DisplayTier(int order, float height)
