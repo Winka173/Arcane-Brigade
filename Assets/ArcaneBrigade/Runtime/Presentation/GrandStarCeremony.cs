@@ -159,12 +159,10 @@ namespace ArcaneBrigade
 
             if (lightOnly) return;
             Sound(age, 2.55f, "up.merge", 0); Sound(age, 2.6f, "up.star3", 1);
-            Word(age, 0, 2.6f, rainbow ? "5 STARS!" : "4 STARS!", hue0, 1.5f);
-            Word(age, 1, 4.5f, rainbow ? "ONE OF A KIND" : "RADIANT", hue0 + .3f, 1.2f); Sound(age, 4.5f, "up.rarity.gold", 2);
-            Word(age, 2, 6.5f, rainbow ? "UNFORGETTABLE" : "TREASURED", hue0 + .6f, 1.2f); Sound(age, 6.5f, "up.star3", 3);
+            Sound(age, 4.5f, "up.rarity.gold", 2);
+            Sound(age, 6.5f, "up.star3", 3);
             if (rainbow)
             {
-                Word(age, 3, 9.5f, "BEYOND STARS", hue0, 1.2f);
             }
         }
 

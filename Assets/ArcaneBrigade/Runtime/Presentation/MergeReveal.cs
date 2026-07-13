@@ -423,6 +423,8 @@ namespace ArcaneBrigade
 
             if (tierCaption != null)
             {
+                // the five-star friend is named LEGENDARY first and, once that has sunk in, ONE OF A KIND
+                if (!still && active.Result.Tier >= 5 && !active.Half && t > landAt + 3.2f && tierCaption.Text != "ONE OF A KIND") tierCaption.Text = "ONE OF A KIND";
                 float shown = still ? 1 : Smooth(landAt, landAt + 0.15f, t);
                 tierCaption.gameObject.SetActive(shown > 0);
                 tierCaption.transform.localPosition = new Vector3(0, -0.8f + (1 - shown) * -0.12f, 0);
@@ -438,8 +440,8 @@ namespace ArcaneBrigade
         {
             void Once(int bit, float at, string id) { if (t >= at && (cues & bit) == 0) { cues |= bit; CheckpointAudio.PlayInterfaceId(id); } }
             Once(1, revealAt, "up.merge");
-            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && active.Half) { GrandStarCeremony.PlayLight(active.Position, active.HalfStars); ImpactWords.Pop(active.HalfStars.ToString("0.0") + " STARS", active.Position + Vector2.up * 1.9f, active.HalfStars >= 3.5f ? GrandStarCeremony.Purple : active.HalfStars >= 2.5f ? ImpactWords.Gold : ImpactWords.Cream, 2, 1.4f, 4f); }
-                else if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else { int n = Mathf.Clamp(active.Result.Tier, 2, 3); GrandStarCeremony.PlayLight(active.Position, n); ImpactWords.Pop(n + " STARS!", active.Position + Vector2.up * 1.9f, n >= 3 ? ImpactWords.Gold : ImpactWords.Cream, 3, 1.2f, -4f); } } } // a flourish over the ceremony
+            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && active.Half) { GrandStarCeremony.PlayLight(active.Position, active.HalfStars); }
+                else if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else { int n = Mathf.Clamp(active.Result.Tier, 2, 3); GrandStarCeremony.PlayLight(active.Position, n); } } } // a flourish over the ceremony
             Once(2, starFirst, grand ? "up.star3" : "up.star2");
             if (grand) Once(4, crownAt, "up.rarity.gold");
         }
@@ -758,7 +760,7 @@ namespace ArcaneBrigade
             // thick inked lettering (Lilita One with an ink outline), larger for three stars
             InkedText text = InkedText.Create(stage.transform, "CommittedTierLabel", ArcadeTypography.Punch, 64, Grand ? 0.05f : 0.042f, 2310, Grand ? 0.034f : 0.028f);
             text.transform.localPosition = Vector3.down * 0.8f;
-            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "LEGEND" : active.Result.Tier == 4 ? "RADIANT" : "MASTERED") : active.Half ? "HALF A STAR" : "STAR UP";
+            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "LEGENDARY" : active.Result.Tier == 4 ? "RADIANT" : "CHERISHED") : active.Half ? "NEARLY THERE" : "SHINING BRIGHT";
             text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
             text.gameObject.SetActive(false);
         }

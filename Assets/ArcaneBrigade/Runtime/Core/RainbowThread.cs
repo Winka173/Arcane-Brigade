@@ -40,7 +40,7 @@ namespace ArcaneBrigade
                 RosterEntry entry = RainbowCandidate();
                 if (entry == null) break;
                 entry.Tier = catalog.MaximumTier; State.RainbowThreads--; RememberVariant(entry); any = true;
-                Notice = RunUICopy.UnitName(catalog.Unit(entry.UnitId)) + " shines as never before: 5 stars.";
+                Notice = RunUICopy.UnitName(catalog.Unit(entry.UnitId)) + " is ONE OF A KIND: 5 stars.";
             }
             if (any) RecountBonds();
             return any;
