@@ -26,6 +26,10 @@ namespace ArcaneBrigade
             public List<RosterEntry> Materials;
             public Vector2 Position;
             public bool Altar;
+            /// <summary>A half star (1.5, 2.5, 3.5): a short ceremony on the same stage, one star popping in with the stats it earned.</summary>
+            public bool Half;
+            public float HalfStars;
+            public string[] Lines;
         }
 
         private ArenaController owner;
@@ -130,7 +134,7 @@ namespace ArcaneBrigade
                     if (!seen.Add(entry.UnitId)) continue;
                     int top = 0; foreach (RosterEntry r in after.Roster) if (r.UnitId == entry.UnitId) top = Mathf.Max(top, r.Tier);
                     int now = after.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count, was = before.Roster.FindAll(r => r.UnitId == entry.UnitId && r.Tier == top).Count;
-                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { StarBurst.Play(position, top + .5f, false, HalfLines(top)); owner.Shop?.Vanish(entry.UnitId, 2.4f, position); QuietUntil = Time.unscaledTime + 2.6f; SpeechBubbles.ClearAll(); }
+                    if (top < CompanionDeployment.ShopMaxTier && now == CompanionDeployment.MergeCopies - 1 && was == now - 1) { RosterEntry topEntry = after.Roster.FindLast(r => r.UnitId == entry.UnitId && r.Tier == top); queue.Enqueue(new Beat { Result = Copy(topEntry), Materials = new List<RosterEntry>(), Position = position, Half = true, HalfStars = top + .5f, Lines = HalfLines(top) }); QuietUntil = Time.unscaledTime + 1f; SpeechBubbles.ClearAll(); }
                 }
             }
         }
@@ -157,8 +161,8 @@ namespace ArcaneBrigade
             return false;
         }
 
-        private bool Grand => active != null && !active.Altar && active.Result.Tier >= 3;
-        private float Finish => Grand ? (active.Result.Tier >= 5 ? 9.4f : active.Result.Tier == 4 ? 5.8f : GrandFinishAt) : FinishAt; // purple and rainbow stars stay for their whole ceremony
+        private bool Grand => active != null && !active.Altar && !active.Half && active.Result.Tier >= 3;
+        private float Finish => active != null && active.Half ? 1.9f : Grand ? (active.Result.Tier >= 5 ? 9.4f : active.Result.Tier == 4 ? 5.8f : GrandFinishAt) : FinishAt; // purple and rainbow stars stay for their whole ceremony
         /// <summary>The ceremony's clock: a three-star holds one frame for GrandHold when the braid knots.</summary>
         private float VisualTime => !Grand || age < GrandKnotAt ? age : age < GrandKnotAt + GrandHold ? GrandKnotAt : age - GrandHold;
 
@@ -240,6 +244,8 @@ namespace ArcaneBrigade
             float t = still ? Finish - 0.35f : VisualTime, finish = Finish;
             float fade = still ? 1 : Mathf.Clamp01((finish - age) / 0.3f);
             int topTier = active.Result.Tier;
+            int toneTier = active.Half ? topTier + 1 : topTier; // a half star glows in the colour of the star it is heading for
+            bool synced = weave != null; // the same light, thread and painted stars for every star-up
             InkPalette main = active.Altar ? ArsenalInk.Cyan : topTier >= 5 ? GrandStarCeremony.Hue(Time.unscaledTime * .5f) : topTier == 4 ? GrandStarCeremony.Amethyst : grand ? ArsenalInk.Gold : ArsenalInk.Silver;
             InkPalette second = active.Altar ? ArsenalInk.Water : topTier >= 5 ? GrandStarCeremony.Hue(Time.unscaledTime * .5f + .4f) : topTier == 4 ? GrandStarCeremony.Orchid : grand ? ArsenalInk.Amber : ArsenalInk.Cream;
             float revealAt = grand ? GrandKnotAt : RevealAt, landAt = grand ? GrandLandAt : LandAt;
@@ -324,7 +330,7 @@ namespace ArcaneBrigade
                 Vector2 foot = new Vector2(cx, feet + 0.05f);
                 Bezier(chest, chest + new Vector2(-spread * 0.2f, 0.9f), foot + new Vector2(spread * 0.35f, -0.1f), foot, 24);
                 float head = OutCubic(Mathf.Clamp01((t - 0.06f) / (gatherEnd * 0.8f))), tail = InQuad(Mathf.Clamp01((t - gatherEnd * 0.6f) / (gatherEnd * 0.55f)));
-                if (threadMaterial != null && weave != null) DonorThread(i, head, tail, topTier); else back.Ribbon(path, i % 2 == 0 ? main : second, 0.06f, head, tail, 1);
+                if (threadMaterial != null && weave != null) DonorThread(i, head, tail, toneTier); else back.Ribbon(path, i % 2 == 0 ? main : second, 0.06f, head, tail, 1);
             }
 
             if (!still)
@@ -334,7 +340,7 @@ namespace ArcaneBrigade
                     float wHead = grand ? OutCubic(Mathf.Clamp01((t - 0.26f) / 0.72f)) : OutCubic(Mathf.Clamp01((t - 0.3f) / 0.34f));
                     float wTail = grand ? InQuad(Mathf.Clamp01((t - GrandKnotAt - 0.02f) / 0.32f)) : InQuad(Mathf.Clamp01((t - 0.5f) / 0.32f));
                     float knotAt = grand ? GrandKnotAt : revealAt, knot = Mathf.Clamp01(1 - Mathf.Abs(t - knotAt) / (grand ? .3f : .18f));
-                    Weave(t, cx, feet, height, rx, wHead, wTail, grand ? 3 : Mathf.Clamp(donors, 2, 3), grand ? 1.75f : 2.1f, knot * (grand ? 1 : .5f), topTier, fade);
+                    Weave(t, cx, feet, height, rx, wHead, wTail, grand ? 3 : Mathf.Clamp(donors, 2, 3), grand ? 1.75f : 2.1f, knot * (grand ? 1 : .5f), toneTier, fade);
                 }
                 else if (grand) Braid(t, cx, feet, height, rx, main, second);
                 else Wind(t, Mathf.Clamp(donors, 2, 3), cx, feet, height, rx, main, second);
@@ -349,7 +355,7 @@ namespace ArcaneBrigade
 
             if (!still && t >= revealAt)
             {
-                if (mythic) { } else if (grand) Gilding(t, cx, feet, height, rx, fade);
+                if (synced) { } else if (grand) Gilding(t, cx, feet, height, rx, fade);
                 else
                 {
                     // the wet brush painting the colour back in, top-down, and a diagonal flick behind
@@ -366,9 +372,9 @@ namespace ArcaneBrigade
             }
 
             // the stars stamp on above the head (an arch of gold for three stars)
-            Sprite star = ArsenalArtwork.Frame(topTier >= 5 ? "StarUp_RainbowStar" : topTier == 4 ? "StarUp_PurpleStar" : grand ? "StarUp_GoldStar" : "StarUp_SilverStar", 0) ?? MechanicInk.Drawn(InkToken.Star, mythic ? GrandStarCeremony.StarPalette(topTier, 0, 0) : main);
+            Sprite star = ArsenalArtwork.Frame(toneTier >= 5 ? "StarUp_RainbowStar" : toneTier == 4 ? "StarUp_PurpleStar" : grand ? "StarUp_GoldStar" : "StarUp_SilverStar", 0) ?? MechanicInk.Drawn(InkToken.Star, mythic ? GrandStarCeremony.StarPalette(topTier, 0, 0) : main);
             float middleRise = grand ? starSize * 0.2f : 0;
-            for (int k = 0; k < tier; k++)
+            for (int k = 0; k < (active.Half ? 0 : tier); k++)
             {
                 float since = still ? 1 : t - (starFirst + k * starStep);
                 if (since < 0) continue;
@@ -387,7 +393,7 @@ namespace ArcaneBrigade
                     {
                         float side = f == 0 ? -1 : f == 1 ? 1 : (k % 2 == 0 ? -0.35f : 0.35f);
                         Vector2 kick = new Vector2(side * 0.32f, f == 2 ? 0.18f : 0.06f) * OutCubic(fleck) + Vector2.down * 0.45f * fleck * fleck;
-                        front.TokenAt(grand && !mythic ? InkToken.Coin : InkToken.Glint, mythic ? GrandStarCeremony.StarPalette(topTier, k, 0) : grand ? ArsenalInk.Gold : main, at + kick, (grand ? 0.22f : 0.2f) * (1 - 0.4f * fleck), side * fleck * 300, (1 - fleck) * fade);
+                        front.TokenAt(grand && !synced ? InkToken.Coin : InkToken.Glint, synced ? GrandStarCeremony.StarPalette(topTier, k, 0) : grand ? ArsenalInk.Gold : main, at + kick, (grand ? 0.22f : 0.2f) * (1 - 0.4f * fleck), side * fleck * 300, (1 - fleck) * fade);
                     }
                 // a glint passing over each star once it has settled
                 float shine = (since - 0.3f) / 0.25f;
@@ -404,9 +410,16 @@ namespace ArcaneBrigade
                     if (weave != null) Halo(crownAt2 + Vector2.up * .15f, (still ? 1 : Mathf.Clamp01(since / .25f) * (1 + 1.2f * Mathf.Exp(-since * 5))) * fade);
                     else if (!mythic) Crown(crownAt2, since, still, fade);
                 }
-                if (!still && !mythic) Curtain(t, cx, centre.y, fade);
+                if (!still && !synced) Curtain(t, cx, centre.y, fade);
             }
-            else if (!still) Petals(t, cx, top, main, second, fade);
+            else if (synced && !active.Half && !still && t >= crownAt)
+            {
+                // two stars get the same halo over the head, a little smaller
+                float since2 = t - crownAt;
+                Halo(new Vector2(cx, top + starSize * 0.95f) + shake + Vector2.up * .15f, Mathf.Clamp01(since2 / .25f) * (1 + 1.2f * Mathf.Exp(-since2 * 5)) * .8f * fade);
+            }
+            else if (!still && !synced) Petals(t, cx, top, main, second, fade);
+            if (active.Half) DrawHalfStar(t, cx, top, starSize, starFirst, toneTier, still, fade, shake);
 
             if (tierCaption != null)
             {
@@ -425,7 +438,8 @@ namespace ArcaneBrigade
         {
             void Once(int bit, float at, string id) { if (t >= at && (cues & bit) == 0) { cues |= bit; CheckpointAudio.PlayInterfaceId(id); } }
             Once(1, revealAt, "up.merge");
-            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else StarBurst.Play(active.Position, Mathf.Clamp(active.Result.Tier, 2, 3), true); } } // a flourish over the ceremony
+            if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && active.Half) { GrandStarCeremony.PlayLight(active.Position, active.HalfStars); ImpactWords.Pop(active.HalfStars.ToString("0.0") + " STARS", active.Position + Vector2.up * 1.9f, active.HalfStars >= 3.5f ? GrandStarCeremony.Purple : active.HalfStars >= 2.5f ? ImpactWords.Gold : ImpactWords.Cream, 2, 1.4f, 4f); }
+                else if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else { int n = Mathf.Clamp(active.Result.Tier, 2, 3); GrandStarCeremony.PlayLight(active.Position, n); ImpactWords.Pop(n + " STARS!", active.Position + Vector2.up * 1.9f, n >= 3 ? ImpactWords.Gold : ImpactWords.Cream, 3, 1.2f, -4f); } } } // a flourish over the ceremony
             Once(2, starFirst, grand ? "up.star3" : "up.star2");
             if (grand) Once(4, crownAt, "up.rarity.gold");
         }
@@ -447,12 +461,47 @@ namespace ArcaneBrigade
                 if (w != null && w.isSupported) weaveMaterial = new Material(w) { hideFlags = HideFlags.DontSave };
                 if (th != null && th.isSupported) threadMaterial = new Material(th) { hideFlags = HideFlags.DontSave };
             }
-            weave = null; donorThreads.Clear();
+            weave = null; donorThreads.Clear(); halfTexts = null;
             if (weaveMaterial == null) return;
             var go = new GameObject("StarWeave"); go.transform.SetParent(stage.transform, false);
             go.AddComponent<MeshFilter>().sharedMesh = GrandStarCeremony.Quad();
             weave = go.AddComponent<MeshRenderer>(); weave.sharedMaterial = weaveMaterial; weave.sortingOrder = 2305;
             weave.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; weave.receiveShadows = false;
+            if (active.Half && active.Lines != null)
+            {
+                halfTexts = new InkedText[active.Lines.Length];
+                for (int i = 0; i < halfTexts.Length; i++)
+                {
+                    halfTexts[i] = InkedText.Create(stage.transform, "HalfStarStat" + i, ArcadeTypography.Punch, 64, .04f, 2420, .03f);
+                    halfTexts[i].Text = active.Lines[i]; halfTexts[i].Color = new Color(1, 1, 1, 0);
+                }
+            }
+        }
+
+        private InkedText[] halfTexts;
+        /// <summary>The half star: the painted star it is heading for pops in over the head with a glow, then the stats it earned.</summary>
+        private void DrawHalfStar(float t, float cx, float top, float starSize, float starFirst, int toneTier, bool still, float fade, Vector2 shake)
+        {
+            float since = still ? 1 : t - starFirst;
+            if (since < 0) return;
+            Sprite art = ArsenalArtwork.Frame(toneTier >= 5 ? "StarUp_RainbowStar" : toneTier == 4 ? "StarUp_PurpleStar" : toneTier == 3 ? "StarUp_GoldStar" : "StarUp_SilverStar", 0);
+            float q = Mathf.Clamp01(since / 0.25f), scale = still ? 1 : Mathf.LerpUnclamped(2.3f, 1, OutBack(q));
+            Vector2 at = new Vector2(cx, top + starSize * 0.6f + Mathf.Sin(t * 3f) * 0.03f) + shake;
+            Color tone = ThreadTone(toneTier);
+            front.Light(at, 2.4f, tone, .55f * Mathf.Clamp01(since / .2f) * fade);
+            if (art != null) front.Place(art, at, starSize * 1.25f * scale, still ? 0 : Mathf.Sin(t * 2.2f) * 6f, new Color(1, 1, 1, Mathf.Clamp01(since / 0.05f) * fade), true);
+            for (int g = 0; g < 8 && !still; g++)
+            {
+                float a = (g * 45f + since * 120f) * Mathf.Deg2Rad, r = .35f + .55f * Mathf.Clamp01(since / .6f);
+                front.TokenAt(g % 2 == 0 ? InkToken.Glint : InkToken.Star, GrandStarCeremony.StarPalette(toneTier, g, 0), at + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * .8f) * r, .2f, since * 200f, (1 - Mathf.Clamp01(since / 1.4f)) * fade);
+            }
+            if (halfTexts != null)
+                for (int i = 0; i < halfTexts.Length; i++)
+                {
+                    float s2 = Mathf.Clamp01((since - .35f - i * .2f) / .3f);
+                    halfTexts[i].transform.position = new Vector3(at.x, at.y + .85f + i * .5f + s2 * .12f, 0);
+                    Color c = tone; c.a = s2 * fade; halfTexts[i].Color = c;
+                }
         }
 
         private Color ThreadTone(int top) => top >= 5 ? Color.white : top == 4 ? new Color(.7f, .45f, 1f) : top == 3 ? new Color(1f, .8f, .4f) : new Color(.85f, .92f, 1f);
@@ -709,7 +758,7 @@ namespace ArcaneBrigade
             // thick inked lettering (Lilita One with an ink outline), larger for three stars
             InkedText text = InkedText.Create(stage.transform, "CommittedTierLabel", ArcadeTypography.Punch, 64, Grand ? 0.05f : 0.042f, 2310, Grand ? 0.034f : 0.028f);
             text.transform.localPosition = Vector3.down * 0.8f;
-            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "LEGEND" : active.Result.Tier == 4 ? "RADIANT" : "MASTERED") : "STAR UP";
+            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "LEGEND" : active.Result.Tier == 4 ? "RADIANT" : "MASTERED") : active.Half ? "HALF A STAR" : "STAR UP";
             text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
             text.gameObject.SetActive(false);
         }
@@ -734,7 +783,7 @@ namespace ArcaneBrigade
         private void ClearStage()
         {
             if (active != null && owner != null && owner.Shop != null) owner.Shop.Release(active.Result.UnitId, stage != null ? (Vector2)stage.transform.position : active.Position);
-            weave = null; donorThreads.Clear();
+            weave = null; donorThreads.Clear(); halfTexts = null;
             if (stage != null) { stage.SetActive(false); Destroy(stage); }
             foreach (UnitDefinition definition in definitions) Destroy(definition);
             definitions.Clear(); ghosts.Clear(); stage = null; active = null; purchaseShadow = null; tierCaption = null;

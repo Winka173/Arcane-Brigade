@@ -36,7 +36,7 @@ namespace ArcaneBrigade
         }
         /// <summary>The colour of star k of a friend of this many stars: gold below four, purple at four, a spectrum at five.</summary>
         public static InkPalette StarPalette(int tier, int k, float clock)
-            => tier >= 5 ? Hue(k / 5f + clock * .15f) : tier == 4 ? (k % 2 == 0 ? Amethyst : Orchid) : ArsenalInk.Gold;
+            => tier >= 5 ? Hue(k / 5f + clock * .15f) : tier == 4 ? (k % 2 == 0 ? Amethyst : Orchid) : tier == 3 ? ArsenalInk.Gold : ArsenalInk.Silver;
 
         /// <summary>The same light, smaller, for the first stars: a half star, two or three stars (gold; a half past three in purple).</summary>
         public static void PlayLight(Vector2 at, float stars)
