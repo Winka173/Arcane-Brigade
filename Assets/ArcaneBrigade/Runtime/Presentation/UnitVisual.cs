@@ -792,12 +792,12 @@ namespace ArcaneBrigade
             float clock = Time.unscaledTime, pulse = .5f + .5f * Mathf.Sin(clock * 1.6f + state.Id);
             Color tone = StarColour(tier, state.Id % 5);
             Vector3 centre = body.transform.localPosition + Vector3.up * height * .1f;
-            starAura.enabled = starAuraCore.enabled = true;
+            starAura.enabled = true; starAuraCore.enabled = false; // one soft outer layer only
             starAura.sortingOrder = order - 1; starAuraCore.sortingOrder = order - 1;
             starAura.transform.localPosition = starAuraCore.transform.localPosition = centre;
-            starAura.transform.localScale = Vector3.one * height * (3.2f + .25f * pulse) * (tier >= 4 ? 1.2f : 1f);
+            starAura.transform.localScale = Vector3.one * height * (1.75f + .1f * pulse);
             starAuraCore.transform.localScale = Vector3.one * height * (1.7f + .15f * pulse);
-            float strength = tier >= 5 ? .95f : tier == 4 ? .85f : tier == 3 ? .6f : .35f;
+            float strength = tier >= 5 ? .5f : tier == 4 ? .45f : tier == 3 ? .34f : .2f;
             starAura.color = new Color(tone.r, tone.g, tone.b, strength * (.75f + .25f * pulse));
             starAuraCore.color = new Color(Mathf.Lerp(tone.r, 1, .4f), Mathf.Lerp(tone.g, 1, .4f), Mathf.Lerp(tone.b, 1, .4f), strength * .7f);
         }
