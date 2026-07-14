@@ -64,11 +64,22 @@ namespace ArcaneBrigade
 
             // the hero comes to the stall and buys a copy of the friend, exactly as in play: the roster is set to what the player would
             // hold before the purchase, the stall offers that friend at the star they own, the hero walks up and presses the key
-            IEnumerator Buy(string words, int owned, int ownedTier, int offerTier, float wait)
+            void Friends(int count)
+            {
+                // other friends in the brigade, who cheer after a high star-up
+                foreach (UnitDefinition other in catalog.Companions)
+                {
+                    if (count <= 0) break;
+                    if (other.Id == unit || other.SpecialRecruit || other.ReferenceCompanion == "Evil") continue;
+                    state.Roster.Add(new RosterEntry { UnitId = other.Id, WeaponId = weapon, Tier = 1 }); count--;
+                }
+            }
+            IEnumerator Buy(string words, int owned, int ownedTier, int offerTier, float wait, int friends = 0)
             {
                 caption = words; state.NewRecruitsThisWave = 0; // the wave's copy quota would stop a video of seven purchases
                 state.Roster.Clear();
                 for (int i = 0; i < owned; i++) state.Roster.Add(Entry(ownedTier));
+                Friends(friends);
                 if (state.Offers.Count == 0) state.Offers.Add(new ShopOffer { Token = ++state.NextOffer });
                 ShopOffer offer = state.Offers[0];
                 offer.Kind = OfferKind.Companion; offer.Id = unit; offer.Tier = offerTier; offer.Price = 1; offer.Sold = false; offer.Currency = ShopCurrency.Gold;
@@ -89,21 +100,20 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(wait);
             }
 
-            var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(100);
+            var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(110);
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoReady.txt"), "recording");
             yield return new WaitForSecondsRealtime(1.2f);
             yield return Buy("1.5 stars: you own one, buy a second", 1, 1, 1, 3.4f);
             yield return Buy("2 stars: the third copy merges", 2, 1, 1, 5.0f);
             yield return Buy("2.5 stars: you own one 2-star, buy a second", 1, 2, 2, 3.4f);
-            yield return Buy("3 stars: the third 2-star copy merges", 2, 2, 2, 6.5f);
-            yield return Buy("3.5 stars: you own one 3-star, buy a second", 1, 3, 3, 3.4f);
-            yield return Buy("4 stars (purple): the third 3-star copy merges", 2, 3, 3, 11.5f);
+            yield return Buy("3 stars: the third 2-star copy merges", 2, 2, 2, 8.5f, 4);
+            yield return Buy("3.5 stars: you own one 3-star, buy a second", 1, 3, 3, 3.4f, 4);
+            yield return Buy("4 stars (purple): the third 3-star copy merges", 2, 3, 3, 13.5f, 4);
             caption = "5 stars: a Starlight Thread from a special event";
-            state.Roster.Clear(); state.Roster.Add(Entry(4));
+            state.Roster.Clear(); state.Roster.Add(Entry(4)); Friends(4);
             yield return new WaitForSecondsRealtime(1.0f);
             owner.GiveStarlightThread();
-            yield return new WaitForSecondsRealtime(17.5f);
-            caption = "The 5-star friend keeps its light"; yield return new WaitForSecondsRealtime(6f);
+            yield return new WaitForSecondsRealtime(21f);
             caption = "";
             while (!recorder.Complete) yield return null;
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoDone.txt"), recorder.Passed ? "PASS" : "FAIL");

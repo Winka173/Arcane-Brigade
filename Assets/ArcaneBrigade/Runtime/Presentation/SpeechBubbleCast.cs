@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     /// shop is quiet or when someone wanders too close to the warm chair. Chatter keeps polite gaps (see Voice_System.md).</summary>
     public sealed class SpeechBubbleCast : MonoBehaviour
     {
-        private sealed class Pending { public float At, Until; public Func<bool> Run; public bool Companion, Context; }
+        private sealed class Pending { public float At, Until; public Func<bool> Run; public bool Companion, Context, Chorus; }
         private const float CompanionGap = 2.6f;
         private ArenaController owner;
         private string runId;
@@ -79,7 +79,7 @@ namespace ArcaneBrigade
                     int remaining = scratch.TryGetValue(lower, out int bodies) ? bodies : 0;
                     bool merged = tier >= 2 && state.KitMerges > observedMerges && roster.TryGetValue(lower, out int ingredients)
                         && ingredients - remaining >= CompanionDeployment.MergeCopies - 1;
-                    if (merged) StarUp(id, tier); else Join(id);
+                    if (merged || tier >= 5) StarUp(id, tier); else Join(id); // a Starlight Thread weaves a friend without any merge
                 }
             }
             roster.Clear(); foreach (KeyValuePair<string, int> pair in scratch) roster[pair.Key] = pair.Value;
@@ -90,6 +90,11 @@ namespace ArcaneBrigade
         private static readonly string[] JoinFallback = { "I'll walk with you.", "Room for one more?", "Hello. I'm coming too.", "Same road. Better company.", "Lead on. I'm right behind you.", "I was hoping someone would ask." };
         private static readonly string[] SecondStar = { "Both of us. One stubborn heart.", "Bigger shoes. Same feet.", "I remember all of me.", "We held on. Now we hold more.", "Stronger. Still walking with you.", "Two little histories. One of me." };
         private static readonly string[] ThirdStar = { "Everything I was, all at once.", "Brightest I have ever been.", "Whole. Finally whole.", "Nothing in the dark is this bright.", "Lean on me. I can take it." };
+        private static readonly string[] FourthStar = { "Past three, there is more.", "Violet, and so bright.", "I can see all of the road now.", "Look how far we came.", "Stars on stars. I am humming." };
+        private static readonly string[] FifthStar = { "Every colour. All of me.", "One of a kind, they said.", "I was never small.", "The whole night is in me.", "Remember this. Remember me." };
+        private static readonly string[] Cheer3 = { "Look at them go!", "That is our friend.", "Well earned.", "Shining, that one." };
+        private static readonly string[] Cheer4 = { "Four stars! Did you see that light?", "They glow like a lantern now.", "So proud of that one.", "Purple, like a night sky." };
+        private static readonly string[] Cheer5 = { "ONE OF A KIND!", "I will remember this forever.", "Every colour at once!", "We are so lucky.", "Never seen anything like it.", "A legend walks with us!" };
         private static int Hash(string value) { int hash = 17; foreach (char c in value ?? "") hash = hash * 31 + c; return hash & 0x7fffffff; }
 
         public static string JoinLine(string unitId, RunSnapshot state)
@@ -102,7 +107,7 @@ namespace ArcaneBrigade
         {
             string personal = CompanionReactions.Line(unitId, CompanionReactionKind.Merge);
             if (personal != null) return personal;
-            string[] lines = tier >= 3 ? ThirdStar : SecondStar;
+            string[] lines = tier >= 5 ? FifthStar : tier == 4 ? FourthStar : tier >= 3 ? ThirdStar : SecondStar;
             return lines[Hash(unitId + tier + wave) % lines.Length];
         }
 
@@ -119,10 +124,26 @@ namespace ArcaneBrigade
         {
             UnitDefinition unit = owner.Content.Unit(id);
             if (unit == null) return;
-            string name = (RunSession.Stranger(owner.Session.State, id) ? "???" : unit.DisplayName) + (tier >= 3 ? "  ★★★" : "  ★★");
+            string name = (RunSession.Stranger(owner.Session.State, id) ? "???" : unit.DisplayName) + "  " + new string('★', Mathf.Clamp(tier, 2, 5));
             string text = StarLine(id, tier, owner.Session.State.Wave);
             // the merge reveal plays first; the new star speaks once it has landed
-            Enqueue(1.1f, 16f, true, () => CompanionSays(id, tier, name, text, "starup", VoiceDirector.Normal, SpeechTone.Companion));
+            Enqueue(1.1f, 16f, true, () => CompanionSays(id, tier, name, text, "starup", VoiceDirector.Normal, SpeechTone.Companion), false, tier >= 3);
+            // once the animation ends the brigade reacts: how many friends cheer, and what they say, grows with the star
+            // (three stars one friend, four two, five all of them at once, up to the bubble limit)
+            int others = tier >= 5 ? SpeechBubbles.MaxBubbles - 1 : tier == 4 ? 2 : tier == 3 ? 1 : 0;
+            string[] pool = tier >= 5 ? Cheer5 : tier == 4 ? Cheer4 : Cheer3;
+            int spoken = 0;
+            foreach (RosterEntry e in owner.Session.ActiveRoster)
+            {
+                if (spoken >= others) break;
+                if (e.UnitId == id) continue;
+                UnitDefinition friend = owner.Content.Unit(e.UnitId);
+                if (friend == null) continue;
+                string friendId = e.UnitId, friendName = (RunSession.Stranger(owner.Session.State, friendId) ? "???" : friend.DisplayName) + "  " + new string('★', Mathf.Clamp(e.Tier, 1, 5));
+                string line = pool[(Hash(friendId + tier) + spoken) % pool.Length]; int friendTier = e.Tier;
+                Enqueue(1.1f + spoken * (tier >= 5 ? .04f : .3f), 16f, true, () => CompanionSays(friendId, friendTier, friendName, line, "cheer", VoiceDirector.Normal, SpeechTone.Companion), false, true);
+                spoken++;
+            }
         }
 
         private bool CompanionSays(string id, int tier, string name, string text, string trigger, int priority, SpeechTone tone)
@@ -322,11 +343,11 @@ namespace ArcaneBrigade
 
         // ----- timing -----
 
-        private void Enqueue(float delay, float patience, bool companion, Func<bool> run, bool context = false)
+        private void Enqueue(float delay, float patience, bool companion, Func<bool> run, bool context = false, bool chorus = false)
         {
-            if (queue.Count >= 6) queue.RemoveAt(0);
+            if (queue.Count >= 8) queue.RemoveAt(0);
             float now = Time.unscaledTime;
-            queue.Add(new Pending { At = now + delay, Until = now + patience, Run = run, Companion = companion, Context = context });
+            queue.Add(new Pending { At = now + delay, Until = now + patience, Run = run, Companion = companion, Context = context, Chorus = chorus });
         }
 
         private void Flush(bool blocked)
@@ -338,6 +359,8 @@ namespace ArcaneBrigade
                 if (blocked) { pending.At = Mathf.Max(pending.At, now + 0.6f); pending.Until += Time.unscaledDeltaTime; continue; }
                 if (now > pending.Until) { queue.RemoveAt(index--); continue; }
                 if (now < pending.At) continue;
+                // a star-up chorus speaks together, once the animation is over: no gaps, no waiting for the shopkeeper, all in one frame
+                if (pending.Chorus) { if (!(owner.Shop?.Reveal != null && owner.Shop.Reveal.PendingCount > 0)) { queue.RemoveAt(index--); pending.Run(); } continue; }
                 if (pending.Companion && now - SpeechBubbles.LastCompanionAt < CompanionGap) continue;
                 if (pending.Companion && owner.Shop?.Dialogue.ExpiresAt > owner.PresentationClock) continue;
                 if (pending.Context && (SpeechBubbles.CountTone(SpeechTone.Companion) > 0 || SpeechBubbles.CountTone(SpeechTone.Story) > 0)) continue;
