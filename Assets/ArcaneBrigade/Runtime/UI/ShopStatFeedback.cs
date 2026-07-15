@@ -31,7 +31,7 @@ namespace ArcaneBrigade
         {
             var s=owner.Session;
             Observe(s);
-            if(s.State.Phase!=SessionPhase.Shop || owner.Simulation.Phase!=RunPhase.Rest || owner.TransitionPending || owner.HallExitPending || owner.Details.Open || pending.Count==0)return;
+            if(s.State.Phase!=SessionPhase.Shop || owner.Simulation.Phase!=RunPhase.Rest || owner.TransitionPending || owner.HallExitPending || owner.Details.Open || pending.Count==0 || MergeReveal.Busy)return; // a star-up plays first; its stat lines follow
             if(text==null){text=ArcadeTypography.Style(21,true);text.fontStyle=FontStyle.Bold;text.alignment=TextAnchor.MiddleLeft;}
             float clock=owner.PresentationClock;
             for(int i=Mathf.Min(8,pending.Count)-1;i>=0;i--)

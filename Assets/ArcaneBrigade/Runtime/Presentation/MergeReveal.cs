@@ -424,11 +424,32 @@ namespace ArcaneBrigade
             if (tierCaption != null)
             {
                 // the five-star friend is named LEGENDARY first and, once that has sunk in, ONE OF A KIND
-                if (!still && active.Result.Tier >= 5 && !active.Half && t > landAt + 3.2f && tierCaption.Text != "ONE OF A KIND") tierCaption.Text = "ONE OF A KIND";
+                if (!still && active.Result.Tier >= 5 && !active.Half && t > landAt + 3.2f && tierCaption.Text != "ONE OF A KIND") { tierCaption.Text = "ONE OF A KIND"; captionSwapAt = t; }
                 float shown = still ? 1 : Smooth(landAt, landAt + 0.15f, t);
                 tierCaption.gameObject.SetActive(shown > 0);
-                tierCaption.transform.localPosition = new Vector3(0, -0.8f + (1 - shown) * -0.12f, 0);
+                // the lettering lives: it pops in with an overshoot, sways and breathes, shimmers, and every new word punches in with a flash
+                float pop = still ? 1 : OutBack(Mathf.Clamp01((t - landAt) / 0.4f)), swap = captionSwapAt >= 0 ? Mathf.Clamp01((t - captionSwapAt) / 0.4f) : 1;
+                float scale = still ? 1 : Mathf.LerpUnclamped(0.2f, 1, pop) * (1 + 0.035f * Mathf.Sin(t * 3f)) * Mathf.LerpUnclamped(1.5f, 1, OutBack(swap));
+                tierCaption.transform.localScale = Vector3.one * scale;
+                tierCaption.transform.localRotation = Quaternion.Euler(0, 0, still ? 0 : Mathf.Sin(t * 1.8f) * 2f);
+                tierCaption.transform.localPosition = new Vector3(0, -0.8f + (1 - shown) * -0.12f + (still ? 0 : Mathf.Sin(t * 2.4f) * 0.03f), 0);
+                if (!still)
+                {
+                    // sparks fly off the lettering when it lands and again at every new word
+                    Vector2 capAt = (Vector2)stage.transform.position + Vector2.down * 0.8f;
+                    foreach (float born in new[] { landAt, captionSwapAt })
+                    {
+                        float since = born < 0 ? -1 : (t - born) / 0.7f;
+                        if (since < 0 || since > 1) continue;
+                        for (int g = 0; g < 10; g++)
+                        {
+                            float a = (g * 36f + 18f) * Mathf.Deg2Rad, r = (0.3f + 1.1f * (1 - (1 - since) * (1 - since))) * (g % 2 == 0 ? 1f : 0.7f);
+                            front.TokenAt(g % 3 == 0 ? InkToken.Star : InkToken.Glint, GrandStarCeremony.StarPalette(toneTier, g, 0), capAt + new Vector2(Mathf.Cos(a) * r * 1.6f, Mathf.Sin(a) * r * 0.5f), 0.2f, since * 160f, (1 - since) * fade);
+                        }
+                    }
+                }
                 Color tint = mythic ? (topTier >= 5 ? Color.HSVToRGB(Mathf.Repeat(Time.unscaledTime * .3f, 1), .45f, 1f) : new Color(.78f, .6f, 1f)) : grand ? new Color(1, 0.8f, 0.34f) : active.Altar ? new Color(0.6f, 1, 0.92f) : new Color(0.86f, 0.93f, 1);
+                if (!still) tint = Color.Lerp(tint, Color.white, 0.18f + 0.18f * Mathf.Sin(t * 5f) + (1 - swap) * 0.6f);
                 tint.a = shown * fade; tierCaption.Color = tint;
             }
 
@@ -480,6 +501,7 @@ namespace ArcaneBrigade
             }
         }
 
+        private float captionSwapAt = -1;
         private InkedText[] halfTexts;
         /// <summary>The half star: the painted star it is heading for pops in over the head with a glow, then the stats it earned.</summary>
         private void DrawHalfStar(float t, float cx, float top, float starSize, float starFirst, int toneTier, bool still, float fade, Vector2 shake)
@@ -761,7 +783,7 @@ namespace ArcaneBrigade
             InkedText text = InkedText.Create(stage.transform, "CommittedTierLabel", ArcadeTypography.Punch, 64, Grand ? 0.05f : 0.042f, 2310, Grand ? 0.034f : 0.028f);
             text.transform.localPosition = Vector3.down * 0.8f;
             text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? (active.Result.Tier >= 5 ? "LEGENDARY" : active.Result.Tier == 4 ? "RADIANT" : "CHERISHED") : active.Half ? "NEARLY THERE" : "SHINING BRIGHT";
-            text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
+            text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text; captionSwapAt = -1;
             text.gameObject.SetActive(false);
         }
 
