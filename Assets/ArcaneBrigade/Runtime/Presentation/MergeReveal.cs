@@ -215,7 +215,7 @@ namespace ArcaneBrigade
             if (active == null)
             {
                 if (queue.Count == 0) { Idle(); return; }
-                active = queue.Dequeue(); age = 0; cues = 0;
+                active = queue.Dequeue(); age = 0; cues = 0; starNotes = 0;
                 owner.Shop?.Vanish(active.Result.UnitId, 40f, active.Position); // held until the animation ends; its body then becomes the friend
                 SpeechBubbles.ClearAll();
                 CheckpointAudio.PlayInterfaceId("up.merge.gather");
@@ -388,6 +388,13 @@ namespace ArcaneBrigade
                 float since = still ? 1 : t - (starFirst + k * starStep);
                 if (since < 0) continue;
                 starsShown++;
+                // each star rings its own note the moment it lands, rising with the count; the last one adds the level's bell
+                if (!still && (starNotes & (1 << k)) == 0)
+                {
+                    starNotes |= 1 << k;
+                    CheckpointAudio.PlayInterfaceId("up.note." + (k + 1));
+                    if (k == tier - 1) CheckpointAudio.PlayInterfaceId(tier >= 5 ? "up.bell.5" : tier == 4 ? "up.bell.4" : tier == 3 ? "up.bell.3" : "up.bell.2");
+                }
                 float q = Mathf.Clamp01(since / 0.13f);
                 float mid = (tier - 1) * 0.5f, spread = mythic ? 0.56f : 0.62f, u = mid > 0 ? (k - mid) / mid : 0;
                 Vector2 at = new Vector2(cx + (k - mid) * starSize * spread, top + starSize * 0.45f + (tier >= 3 ? middleRise * (1 - u * u) : 0)) + shake;
@@ -473,10 +480,6 @@ namespace ArcaneBrigade
             Once(1, revealAt, "up.merge");
             if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && active.Half) { GrandStarCeremony.PlayLight(active.Position, active.HalfStars); }
                 else if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else { int n = Mathf.Clamp(active.Result.Tier, 2, 3); GrandStarCeremony.PlayLight(active.Position, n); } } } // a flourish over the ceremony
-            // each star level has its own bell: a half star one soft bell, then a chime that grows richer with every star
-            // (four and five stars ring from their light ceremony, in step with its flash)
-            if (active != null && !active.Altar && active.Result.Tier < 4 || active != null && active.Half)
-                Once(2, starFirst, active.Half ? "up.bell.half" : active.Result.Tier >= 3 ? "up.bell.3" : "up.bell.2");
         }
 
         /// <summary>Two stars: the ribbons wind up round the silhouette from its feet to its head, passing behind and in front.</summary>
@@ -513,6 +516,7 @@ namespace ArcaneBrigade
             }
         }
 
+        private int starNotes;
         private float captionSwapAt = -1;
         private InkedText[] halfTexts;
         /// <summary>The half star: the painted star it is heading for pops in over the head with a glow, then the stats it earned.</summary>
@@ -520,6 +524,7 @@ namespace ArcaneBrigade
         {
             float since = still ? 1 : t - starFirst;
             if (since < 0) return;
+            if (!still && (cues & 16) == 0) { cues |= 16; CheckpointAudio.PlayInterfaceId("up.note." + Mathf.Clamp(toneTier, 1, 5)); CheckpointAudio.PlayInterfaceId("up.bell.half"); }
             Sprite art = ArsenalArtwork.Frame(toneTier >= 5 ? "StarUp_RainbowStar" : toneTier == 4 ? "StarUp_PurpleStar" : toneTier == 3 ? "StarUp_GoldStar" : "StarUp_SilverStar", 0);
             float q = Mathf.Clamp01(since / 0.25f), scale = still ? 1 : Mathf.LerpUnclamped(2.3f, 1, OutBack(q));
             Vector2 at = new Vector2(cx, top + starSize * 0.6f + Mathf.Sin(t * 3f) * 0.03f) + shake;

@@ -4374,6 +4374,76 @@
    "clips": [
     "Sfx/up_bell5b_00"
    ]
+  },
+  {
+   "id": "up.note.1",
+   "bus": "Foley",
+   "priority": 85,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_note1_00"
+   ]
+  },
+  {
+   "id": "up.note.2",
+   "bus": "Foley",
+   "priority": 85,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_note2_00"
+   ]
+  },
+  {
+   "id": "up.note.3",
+   "bus": "Foley",
+   "priority": 85,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_note3_00"
+   ]
+  },
+  {
+   "id": "up.note.4",
+   "bus": "Foley",
+   "priority": 85,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_note4_00"
+   ]
+  },
+  {
+   "id": "up.note.5",
+   "bus": "Foley",
+   "priority": 85,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_note5_00"
+   ]
   }
  ]
 }

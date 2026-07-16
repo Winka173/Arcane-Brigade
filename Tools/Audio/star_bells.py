@@ -119,7 +119,17 @@ def one_of_a_kind():
     return finish(reverb(m, 2.4, .45), .75)
 
 
-CUES = [("up.bell.half", "up_bell_half", half, -9, 130), ("up.bell.2", "up_bell2", star2, -9, 100), ("up.bell.3", "up_bell3", star3, -9, 90),
+def star_note(n):
+    def make():
+        m = np.zeros(int(SR * 1.6))
+        place(m, bell(note(n), 1.5, 1, .9, 3.4), 0)
+        return finish(reverb(m, .9, .25), .8)
+    return make
+
+
+NOTES = [("up.note.%d" % (i + 1), "up_note%d" % (i + 1), star_note(n), -11, 85) for i, n in enumerate((72, 76, 79, 84, 88))]
+
+CUES = NOTES + [("up.bell.half", "up_bell_half", half, -9, 130), ("up.bell.2", "up_bell2", star2, -9, 100), ("up.bell.3", "up_bell3", star3, -9, 90),
         ("up.bell.4", "up_bell4", star4, -9, 80), ("up.bell.5", "up_bell5", star5, -8, 70), ("up.bell.5b", "up_bell5b", one_of_a_kind, -9, 75)]
 
 
@@ -141,6 +151,8 @@ def main():
     known = {c["id"] for c in cues["cues"]}
     loud_add = []
     for cid, name, fn, gain, prio in CUES:
+        if cid in known and os.path.exists(os.path.join(SFX, name + "_00.wav")):
+            continue  # already made: keep the existing sound as it is
         x = fn(); p = write(name, x)
         rms = 20 * np.log10(np.sqrt(np.mean(x ** 2)) + 1e-9)
         mp = p + ".meta"

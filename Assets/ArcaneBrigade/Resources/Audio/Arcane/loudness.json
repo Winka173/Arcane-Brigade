@@ -3115,6 +3115,31 @@
             "clip": "up_bell5b_00",
             "rmsDb": -25.38,
             "gainDb": 13.31
+        },
+        {
+            "clip": "up_note1_00",
+            "rmsDb": -23.99,
+            "gainDb": 11.92
+        },
+        {
+            "clip": "up_note2_00",
+            "rmsDb": -22.37,
+            "gainDb": 10.3
+        },
+        {
+            "clip": "up_note3_00",
+            "rmsDb": -23.42,
+            "gainDb": 11.35
+        },
+        {
+            "clip": "up_note4_00",
+            "rmsDb": -25.59,
+            "gainDb": 13.52
+        },
+        {
+            "clip": "up_note5_00",
+            "rmsDb": -24.5,
+            "gainDb": 12.43
         }
     ]
 }
