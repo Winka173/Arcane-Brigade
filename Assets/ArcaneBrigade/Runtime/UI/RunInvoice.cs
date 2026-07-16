@@ -63,7 +63,7 @@ namespace ArcaneBrigade
         /// <summary>Big numbers the short way: 940, 12.5K, 3.8M.</summary>
         public static string Short(double value) => value >= 1e9 ? (value / 1e9).ToString("0.#") + "B" : value >= 1e6 ? (value / 1e6).ToString("0.#") + "M" : value >= 1e4 ? (value / 1e3).ToString("0.#") + "K" : Math.Round(value).ToString("N0");
         public static string Time(float seconds) { int s = Mathf.Max(0, Mathf.RoundToInt(seconds)); return s / 60 + ":" + (s % 60).ToString("00"); }
-        private static string Stars(int tier) => tier > 0 ? " " + new string('★', Mathf.Clamp(tier, 1, 5)) : "";
+        private static string Stars(int tier) => tier > 0 ? " " + new string('★', Mathf.Clamp(tier, 1, 5)) + (tier >= 5 ? "  ONE OF A KIND" : "") : "";
         private static string Name(string unitId, RunCatalog catalog) => RunUICopy.UnitName(unitId, catalog.Unit(unitId)?.DisplayName);
 
         /// <summary>The best relic: the relic whose effects did the most damage.</summary>

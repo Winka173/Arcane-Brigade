@@ -19,6 +19,7 @@ namespace ArcaneBrigade
             if(session.State.Phase!=SessionPhase.Shop){pending.Clear();observed=session.ShopStatRevision;return;}
             if(observed==session.ShopStatRevision)return;
             observed=session.ShopStatRevision;
+            if(MergeReveal.Busy)return; // a star-up shows its own stat lines
             foreach(var delta in session.LastShopStatChanges)
             {
                 if(delta.Label=="Gold" || delta.Label=="Eggs" || delta.Label=="Next refresh cost" || delta.Label.StartsWith("Relic / "))continue;

@@ -158,9 +158,7 @@ namespace ArcaneBrigade
             ink.End();
 
             if (lightOnly) return;
-            Sound(age, 2.55f, "up.merge", 0); Sound(age, 2.6f, "up.star3", 1);
-            Sound(age, 4.5f, "up.rarity.gold", 2);
-            Sound(age, 6.5f, "up.star3", 3);
+            Sound(age, 2.55f, "up.merge", 0); Sound(age, 2.6f, rainbow ? "up.bell.5" : "up.bell.4", 1);
             if (rainbow)
             {
             }

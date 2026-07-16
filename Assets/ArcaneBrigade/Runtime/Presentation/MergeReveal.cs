@@ -107,7 +107,7 @@ namespace ArcaneBrigade
                 if (materials.Count < (altar ? 2 : CompanionDeployment.MergeCopies - 1) || !altar && result.Tier <= 1) continue;
                 var copies = new List<RosterEntry>();
                 foreach (RosterEntry material in materials) copies.Add(Copy(material));
-                beats.Add(new Beat { Result = Copy(result), Materials = copies, Position = position, Altar = altar });
+                beats.Add(new Beat { Result = Copy(result), Materials = copies, Position = position, Altar = altar, Lines = altar ? null : StarLines(result.Tier) });
                 foreach (RosterEntry material in materials) removed.Remove(material);
                 if (altar) break;
             }
@@ -144,7 +144,7 @@ namespace ArcaneBrigade
         {
             if (owner == null || owner.Session == null) return;
             runId = owner.Session.State.RunId;
-            queue.Enqueue(new Beat { Result = Copy(result), Materials = materials, Position = position, Altar = altar });
+            queue.Enqueue(new Beat { Result = Copy(result), Materials = materials, Position = position, Altar = altar, Lines = altar ? null : StarLines(result.Tier) });
         }
 
         public void Skip() { queue.Clear(); ClearStage(); }
@@ -170,6 +170,15 @@ namespace ArcaneBrigade
         public static float QuietUntil;
         public static bool Busy => Time.unscaledTime < QuietUntil;
         /// <summary>The stats a half star just added, as short lines.</summary>
+        /// <summary>What the new star adds: damage, reach and body (the same three lines a half star shows).</summary>
+        private static string[] StarLines(int tier)
+        {
+            if (tier < 2) return null;
+            int damage = Mathf.RoundToInt((RunSession.StarStep(tier) - 1) * 100f), reach = Mathf.RoundToInt((CompanionTierScaling.Reach(tier) / CompanionTierScaling.Reach(tier - 1) - 1) * 100f);
+            int body = Mathf.RoundToInt((CompanionTierScaling.Body(tier) / CompanionTierScaling.Body(tier - 1) - 1) * 100f);
+            return new[] { "Damage +" + damage + "%", "Reach +" + reach + "%", "Body +" + body + "%" };
+        }
+
         private string[] HalfLines(int top)
         {
             float damage = (owner.Session.HalfStarDamage(top) - 1) * 100f;
@@ -420,11 +429,12 @@ namespace ArcaneBrigade
             }
             else if (!still && !synced) Petals(t, cx, top, main, second, fade);
             if (active.Half) DrawHalfStar(t, cx, top, starSize, starFirst, toneTier, still, fade, shake);
+            else if (halfTexts != null) DrawStatLines(t, cx, top, starSize, crownAt, toneTier, still, fade, shake);
 
             if (tierCaption != null)
             {
                 // the five-star friend is named LEGENDARY first and, once that has sunk in, ONE OF A KIND
-                if (!still && active.Result.Tier >= 5 && !active.Half && t > landAt + 3.2f && tierCaption.Text != "ONE OF A KIND") { tierCaption.Text = "ONE OF A KIND"; captionSwapAt = t; }
+                if (!still && active.Result.Tier >= 5 && !active.Half && t > landAt + 3.2f && tierCaption.Text != "ONE OF A KIND") { tierCaption.Text = "ONE OF A KIND"; captionSwapAt = t; CheckpointAudio.PlayInterfaceId("up.bell.5b"); }
                 float shown = still ? 1 : Smooth(landAt, landAt + 0.15f, t);
                 tierCaption.gameObject.SetActive(shown > 0);
                 // the lettering lives: it pops in with an overshoot, sways and breathes, shimmers, and every new word punches in with a flash
@@ -463,8 +473,10 @@ namespace ArcaneBrigade
             Once(1, revealAt, "up.merge");
             if (t >= revealAt && (cues & 8) == 0) { cues |= 8; if (active != null && active.Half) { GrandStarCeremony.PlayLight(active.Position, active.HalfStars); }
                 else if (active != null && !active.Altar) { if (active.Result.Tier >= 4) GrandStarCeremony.Play(active.Position, active.Result.Tier); else { int n = Mathf.Clamp(active.Result.Tier, 2, 3); GrandStarCeremony.PlayLight(active.Position, n); } } } // a flourish over the ceremony
-            Once(2, starFirst, grand ? "up.star3" : "up.star2");
-            if (grand) Once(4, crownAt, "up.rarity.gold");
+            // each star level has its own bell: a half star one soft bell, then a chime that grows richer with every star
+            // (four and five stars ring from their light ceremony, in step with its flash)
+            if (active != null && !active.Altar && active.Result.Tier < 4 || active != null && active.Half)
+                Once(2, starFirst, active.Half ? "up.bell.half" : active.Result.Tier >= 3 ? "up.bell.3" : "up.bell.2");
         }
 
         /// <summary>Two stars: the ribbons wind up round the silhouette from its feet to its head, passing behind and in front.</summary>
@@ -490,7 +502,7 @@ namespace ArcaneBrigade
             go.AddComponent<MeshFilter>().sharedMesh = GrandStarCeremony.Quad();
             weave = go.AddComponent<MeshRenderer>(); weave.sharedMaterial = weaveMaterial; weave.sortingOrder = 2305;
             weave.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; weave.receiveShadows = false;
-            if (active.Half && active.Lines != null)
+            if (active.Lines != null)
             {
                 halfTexts = new InkedText[active.Lines.Length];
                 for (int i = 0; i < halfTexts.Length; i++)
@@ -526,6 +538,19 @@ namespace ArcaneBrigade
                     halfTexts[i].transform.position = new Vector3(at.x, at.y + .85f + i * .5f + s2 * .12f, 0);
                     Color c = tone; c.a = s2 * fade; halfTexts[i].Color = c;
                 }
+        }
+
+        /// <summary>The stats of the new star, stacked above the halo and bobbing in one after another (same look as a half star's).</summary>
+        private void DrawStatLines(float t, float cx, float top, float starSize, float crownAt, int toneTier, bool still, float fade, Vector2 shake)
+        {
+            Color tone = ThreadTone(toneTier);
+            for (int i = 0; i < halfTexts.Length; i++)
+            {
+                float s2 = still ? 1 : Mathf.Clamp01((t - crownAt - 0.25f - i * 0.22f) / 0.3f);
+                halfTexts[i].transform.position = new Vector3(cx + shake.x, top + starSize * 2.1f + (halfTexts.Length - 1 - i) * 0.5f + s2 * 0.12f + shake.y, 0);
+                Color c = toneTier >= 5 ? Color.HSVToRGB(Mathf.Repeat(Time.unscaledTime * .3f + i * .12f, 1), .4f, 1f) : tone;
+                c.a = s2 * fade; halfTexts[i].Color = c;
+            }
         }
 
         private Color ThreadTone(int top) => top >= 5 ? Color.white : top == 4 ? new Color(.7f, .45f, 1f) : top == 3 ? new Color(1f, .8f, .4f) : new Color(.85f, .92f, 1f);

@@ -11,6 +11,44 @@ namespace ArcaneBrigade
     /// <summary>Records every star-up flourish in the real shop: the half star (1.5), 2 stars, 2.5, 3 stars and the two that go past
     /// it (the altar's fusion and the lucid rite), each with a caption. Run with -arcane-k7-capture -arcane-star-video -capturePath DIR
     /// -ffmpegPath ffmpeg.exe -videoPath out.mp4 at 1920x1080 (the framebuffer recorder needs it).</summary>
+    /// <summary>Records what the listener hears (the game's whole mix) into a 16-bit stereo WAV beside the video, so the clip can carry
+    /// sound: each frame it reads the newest samples the listener output (the listener's object carries several audio sources, so a
+    /// filter cannot sit on it).</summary>
+    public sealed class StarVideoAudioTap : MonoBehaviour
+    {
+        private readonly List<short> samples = new List<short>(48000 * 2 * 120);
+        private readonly float[] left = new float[4096], right = new float[4096];
+        private int rate = 48000;
+        private bool recording;
+        private double carry;
+
+        public void Begin() { rate = AudioSettings.outputSampleRate; samples.Clear(); recording = true; carry = 0; }
+
+        private void Update()
+        {
+            if (!recording) return;
+            carry += Time.unscaledDeltaTime * rate;
+            int n = Mathf.Min(left.Length, (int)carry); carry -= n;
+            if (n <= 0) return;
+            AudioListener.GetOutputData(left, 0); AudioListener.GetOutputData(right, 1);
+            for (int i = left.Length - n; i < left.Length; i++) { samples.Add((short)(Mathf.Clamp(left[i], -1f, 1f) * 32767f)); samples.Add((short)(Mathf.Clamp(right[i], -1f, 1f) * 32767f)); }
+        }
+
+        public void Save(string path)
+        {
+            recording = false;
+            using (var stream = new FileStream(path, FileMode.Create))
+            using (var w = new BinaryWriter(stream))
+            {
+                int bytes = samples.Count * 2;
+                w.Write(System.Text.Encoding.ASCII.GetBytes("RIFF")); w.Write(36 + bytes); w.Write(System.Text.Encoding.ASCII.GetBytes("WAVEfmt "));
+                w.Write(16); w.Write((short)1); w.Write((short)2); w.Write(rate); w.Write(rate * 4); w.Write((short)4); w.Write((short)16);
+                w.Write(System.Text.Encoding.ASCII.GetBytes("data")); w.Write(bytes);
+                foreach (short v in samples) w.Write(v);
+            }
+        }
+    }
+
     public sealed class StarVideoCapture : MonoBehaviour
     {
         public static bool Requested => RunPaths.K7Capture && Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-star-video") >= 0;
@@ -101,6 +139,8 @@ namespace ArcaneBrigade
             }
 
             var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(110);
+            AudioListener listener = FindAnyObjectByType<AudioListener>();
+            StarVideoAudioTap tap = listener != null ? gameObject.AddComponent<StarVideoAudioTap>() : null; tap?.Begin();
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoReady.txt"), "recording");
             yield return new WaitForSecondsRealtime(1.2f);
             yield return Buy("1.5 stars: you own one, buy a second", 1, 1, 1, 3.4f);
@@ -116,6 +156,8 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(21f);
             caption = "";
             while (!recorder.Complete) yield return null;
+            int videoArg = Array.IndexOf(args, "-videoPath");
+            if (tap != null && videoArg >= 0 && videoArg + 1 < args.Length) tap.Save(args[videoArg + 1] + ".wav");
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoDone.txt"), recorder.Passed ? "PASS" : "FAIL");
             Application.Quit(recorder.Passed ? 0 : 1);
         }

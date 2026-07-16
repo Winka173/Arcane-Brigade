@@ -4290,6 +4290,90 @@
     "Sfx/ui_merge_hint_00",
     "Sfx/ui_merge_hint_01"
    ]
+  },
+  {
+   "id": "up.bell.half",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bell_half_00"
+   ]
+  },
+  {
+   "id": "up.bell.2",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bell2_00"
+   ]
+  },
+  {
+   "id": "up.bell.3",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bell3_00"
+   ]
+  },
+  {
+   "id": "up.bell.4",
+   "bus": "Foley",
+   "priority": 80,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bell4_00"
+   ]
+  },
+  {
+   "id": "up.bell.5",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -8,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bell5_00"
+   ]
+  },
+  {
+   "id": "up.bell.5b",
+   "bus": "Foley",
+   "priority": 75,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bell5b_00"
+   ]
   }
  ]
 }
