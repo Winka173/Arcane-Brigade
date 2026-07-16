@@ -388,12 +388,11 @@ namespace ArcaneBrigade
                 float since = still ? 1 : t - (starFirst + k * starStep);
                 if (since < 0) continue;
                 starsShown++;
-                // each star rings its own note the moment it lands, rising with the count; the last one adds the level's bell
-                if (!still && (starNotes & (1 << k)) == 0)
+                // the level's whole bell (its run of notes climbs as the stars land) starts with the first star
+                if (!still && k == 0 && (starNotes & 1) == 0)
                 {
-                    starNotes |= 1 << k;
-                    CheckpointAudio.PlayInterfaceId("up.note." + (k + 1));
-                    if (k == tier - 1) CheckpointAudio.PlayInterfaceId(tier >= 5 ? "up.bell.5" : tier == 4 ? "up.bell.4" : tier == 3 ? "up.bell.3" : "up.bell.2");
+                    starNotes |= 1;
+                    CheckpointAudio.PlayInterfaceId(tier >= 5 ? "up.bell.5" : tier == 4 ? "up.bell.4" : tier == 3 ? "up.bell.3" : "up.bell.2");
                 }
                 float q = Mathf.Clamp01(since / 0.13f);
                 float mid = (tier - 1) * 0.5f, spread = mythic ? 0.56f : 0.62f, u = mid > 0 ? (k - mid) / mid : 0;
@@ -524,7 +523,7 @@ namespace ArcaneBrigade
         {
             float since = still ? 1 : t - starFirst;
             if (since < 0) return;
-            if (!still && (cues & 16) == 0) { cues |= 16; CheckpointAudio.PlayInterfaceId("up.note." + Mathf.Clamp(toneTier, 1, 5)); CheckpointAudio.PlayInterfaceId("up.bell.half"); }
+            if (!still && (cues & 16) == 0) { cues |= 16; CheckpointAudio.PlayInterfaceId("up.bell.half"); }
             Sprite art = ArsenalArtwork.Frame(toneTier >= 5 ? "StarUp_RainbowStar" : toneTier == 4 ? "StarUp_PurpleStar" : toneTier == 3 ? "StarUp_GoldStar" : "StarUp_SilverStar", 0);
             float q = Mathf.Clamp01(since / 0.25f), scale = still ? 1 : Mathf.LerpUnclamped(2.3f, 1, OutBack(q));
             Vector2 at = new Vector2(cx, top + starSize * 0.6f + Mathf.Sin(t * 3f) * 0.03f) + shake;
