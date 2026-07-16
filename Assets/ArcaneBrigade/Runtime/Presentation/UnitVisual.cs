@@ -654,10 +654,15 @@ namespace ArcaneBrigade
             }
             else if (state.Faction == Faction.Companion && state.Definition.CombatTier >= 2)
             {
-                // a starred companion keeps an edge of its rank: a cool silver line at two stars, a warm gold one at three
-                bool gold = state.Definition.CombatTier >= 3;
-                flashProperties.SetColor("_RimColor", state.Definition.CombatTier >= 4 ? StarColour(state.Definition.CombatTier) : gold ? new Color(1, 0.8f, 0.36f) : new Color(0.82f, 0.9f, 1));
-                flashProperties.SetFloat("_RimAmount", gold ? 0.42f : 0.24f);
+                // a starred companion carries its rank in the body: a coloured edge and a sweep of light in the painting itself (UnitFlash),
+                // silver at two stars, gold at three, purple at four, every colour at five; stronger with each star
+                int rank = Mathf.Clamp(state.Definition.CombatTier, 2, 5);
+                Color tone = StarColour(rank, state.Id % 5);
+                flashProperties.SetColor("_RimColor", rank >= 4 ? tone : rank == 3 ? new Color(1, 0.8f, 0.36f) : new Color(0.82f, 0.9f, 1));
+                flashProperties.SetFloat("_RimAmount", rank == 5 ? .72f : rank == 4 ? .62f : rank == 3 ? .5f : .3f);
+                flashProperties.SetColor("_StarTone", tone);
+                flashProperties.SetFloat("_StarAmount", PresentationSettings.ReducedEffects ? 0 : rank == 5 ? .8f : rank == 4 ? .65f : rank == 3 ? .45f : .28f);
+                flashProperties.SetFloat("_StarRainbow", rank >= 5 ? 1 : 0);
             }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
@@ -792,14 +797,17 @@ namespace ArcaneBrigade
             float clock = Time.unscaledTime, pulse = .5f + .5f * Mathf.Sin(clock * 1.6f + state.Id);
             Color tone = StarColour(tier, state.Id % 5);
             Vector3 centre = body.transform.localPosition + Vector3.up * height * .1f;
-            starAura.enabled = true; starAuraCore.enabled = false; // one soft outer layer only
+            starAura.enabled = true; starAuraCore.enabled = true;
             starAura.sortingOrder = order - 1; starAuraCore.sortingOrder = order - 1;
             starAura.transform.localPosition = starAuraCore.transform.localPosition = centre;
             starAura.transform.localScale = Vector3.one * height * (1.75f + .1f * pulse);
-            starAuraCore.transform.localScale = Vector3.one * height * (1.7f + .15f * pulse);
+            // the outer layer hugs the body; the second is a flat pool of light on the floor under the feet, which reads from far away
+            starAuraCore.transform.localPosition = (shadow != null ? shadow.transform.localPosition : Vector3.down * height * .45f) + Vector3.up * .02f;
+            starAuraCore.sortingOrder = order - 3;
+            starAuraCore.transform.localScale = new Vector3(height * (3.2f + .25f * pulse), height * 1.3f, 1);
             float strength = tier >= 5 ? .5f : tier == 4 ? .45f : tier == 3 ? .34f : .2f;
             starAura.color = new Color(tone.r, tone.g, tone.b, strength * (.75f + .25f * pulse));
-            starAuraCore.color = new Color(Mathf.Lerp(tone.r, 1, .4f), Mathf.Lerp(tone.g, 1, .4f), Mathf.Lerp(tone.b, 1, .4f), strength * .7f);
+            starAuraCore.color = new Color(tone.r, tone.g, tone.b, Mathf.Min(1f, strength * 2.2f));
         }
 
         private void DisplayTier(int order, float height)

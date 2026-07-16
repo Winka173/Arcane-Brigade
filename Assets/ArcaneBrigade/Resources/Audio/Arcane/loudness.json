@@ -3088,33 +3088,33 @@
         },
         {
             "clip": "up_bell_half_00",
-            "rmsDb": -24.82,
-            "gainDb": 12.75
+            "rmsDb": -23.84,
+            "gainDb": 11.77
         },
         {
             "clip": "up_bell2_00",
-            "rmsDb": -23.12,
-            "gainDb": 11.05
+            "rmsDb": -24.22,
+            "gainDb": 12.15
         },
         {
             "clip": "up_bell3_00",
-            "rmsDb": -22.62,
-            "gainDb": 10.55
+            "rmsDb": -22.16,
+            "gainDb": 10.09
         },
         {
             "clip": "up_bell4_00",
-            "rmsDb": -21.5,
-            "gainDb": 9.43
+            "rmsDb": -22.02,
+            "gainDb": 9.95
         },
         {
             "clip": "up_bell5_00",
-            "rmsDb": -21.86,
-            "gainDb": 9.79
+            "rmsDb": -22.38,
+            "gainDb": 10.31
         },
         {
             "clip": "up_bell5b_00",
-            "rmsDb": -25.38,
-            "gainDb": 13.31
+            "rmsDb": -24.0,
+            "gainDb": 11.93
         },
         {
             "clip": "up_note1_00",

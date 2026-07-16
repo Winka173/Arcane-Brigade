@@ -494,6 +494,8 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Hands over a Starlight Thread as any event would (a committed change that rebuilds the brigade).</summary>
+        /// <summary>Rebuilds the brigade from the roster as a committed change (captures).</summary>
+        public bool RefreshBrigade() => Transaction("Brigade", () => true, -1);
         public bool GiveStarlightThread() => Transaction("Starlight thread", () => session.GiveRainbowThread(), -1);
         private bool Transaction(string title, Func<bool> operation, int cue = 20)
         {

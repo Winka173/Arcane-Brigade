@@ -138,7 +138,7 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(wait);
             }
 
-            var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(110);
+            var recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(125);
             AudioListener listener = FindAnyObjectByType<AudioListener>();
             StarVideoAudioTap tap = listener != null ? gameObject.AddComponent<StarVideoAudioTap>() : null; tap?.Begin();
             File.WriteAllText(Path.Combine(RunPaths.Root, "StarVideoReady.txt"), "recording");
@@ -154,6 +154,9 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(1.0f);
             owner.GiveStarlightThread();
             yield return new WaitForSecondsRealtime(21f);
+            caption = "The brigade: 1, 2, 3, 4 and 5 stars side by side";
+            { int[] tiers = { 2, 3, 4, 1 }; int slot = 0; foreach (RosterEntry e in state.Roster) if (e.UnitId != unit && slot < tiers.Length) e.Tier = tiers[slot++]; }
+            owner.RefreshBrigade(); yield return new WaitForSecondsRealtime(9f);
             caption = "";
             while (!recorder.Complete) yield return null;
             int videoArg = Array.IndexOf(args, "-videoPath");

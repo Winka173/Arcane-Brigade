@@ -18,6 +18,9 @@ Shader "ArcaneBrigade/UnitFlash"
         _RimColor ("Warm edge light", Color) = (1,0.88,0.62,1)
         _ShadeAmount ("Paint shading", Range(0,1)) = 0
         _RimAmount ("Edge strength", Range(0,1)) = 0
+        _StarTone ("Star tone", Color) = (1,1,1,1)
+        _StarAmount ("Star sheen", Range(0,1)) = 0
+        _StarRainbow ("Star rainbow", Range(0,1)) = 0
         _Saturation ("Paint saturation", Range(0,2)) = 1
         _NightVisibility ("Night visibility", Range(0,1)) = 1
         _HostileShift ("Warm colours pushed to violet (enemies)", Range(0,1)) = 0
@@ -47,6 +50,9 @@ Shader "ArcaneBrigade/UnitFlash"
             fixed4 _ShadeColor;
             fixed4 _RimColor;
             float _ShadeAmount, _RimAmount, _Saturation;
+            fixed4 _StarTone;
+            float _StarAmount, _StarRainbow;
+            float3 starHue(float h) { float3 k = saturate(abs(frac(h + float3(0, 2.0 / 3.0, 1.0 / 3.0)) * 6 - 3) - 1); return lerp(float3(1, 1, 1), k, .7); }
             float _NightVisibility;
             float _HostileShift;
             float _Exposure;
@@ -98,6 +104,15 @@ Shader "ArcaneBrigade/UnitFlash"
                 float inside = step(_UvRect.x, neighbor.x) * step(_UvRect.y, neighbor.y) * step(neighbor.x, _UvRect.x + _UvRect.z) * step(neighbor.y, _UvRect.y + _UvRect.w);
                 float edge = saturate(color.a - SampleSpriteTexture(neighbor).a * inside);
                 color.rgb = lerp(color.rgb, _RimColor.rgb, edge * _RimAmount);
+                // a starred friend carries its star in the body itself (requirement 27/10/2026): a band of star-coloured light sweeps over
+                // the painting and a faint glow breathes inside it, so the rank reads from far away (rainbow at five stars)
+                if (_StarAmount > 0)
+                {
+                    float3 tone = lerp(_StarTone.rgb, starHue(local.y * .5 + local.x * .3 + _Time.y * .25), _StarRainbow);
+                    float band = pow(saturate(sin((local.x * 1.5 + local.y * 1.1 - _Time.y * .7) * 6.2832) * .5 + .5), 5);
+                    float breathe = .5 + .5 * sin(_Time.y * 2.2 + local.y * 4);
+                    color.rgb = saturate(color.rgb + tone * (band * .55 + breathe * .12) * _StarAmount * color.a);
+                }
                 float luminance = dot(color.rgb, fixed3(0.2126,0.7152,0.0722));
                 color.rgb = saturate(lerp(luminance.xxx, color.rgb, _Saturation));
                 // enemies (requirement 24/10/2026): gold, amber, brass and cream are the friends' colours, so on an enemy they turn to a

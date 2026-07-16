@@ -63,52 +63,91 @@ def finish(x, peak=.8):
     return x
 
 
+def place_st(mix, sig, at, pan=0.0):
+    """mix is (2, N); pan -1 (left) to 1 (right)."""
+    i = int(at * SR)
+    end = min(mix.shape[1], i + len(sig))
+    l, r = np.cos((pan + 1) * np.pi / 4), np.sin((pan + 1) * np.pi / 4)
+    mix[0, i:end] += l * sig[:end - i]
+    mix[1, i:end] += r * sig[:end - i]
+
+
+def reverb_st(m, tail=2.4, wet=.4):
+    return np.stack([reverb(m[0], tail, wet), reverb(m[1], tail, wet)])  # two different tails: a wide room
+
+
+def finish_st(x, peak=.8):
+    x = x - x.mean(axis=1, keepdims=True)
+    x = x / (np.max(np.abs(x)) + 1e-9) * peak
+    fade = int(SR * .08)
+    x[:, -fade:] *= np.linspace(1, 0, fade)
+    return x
+
+
+def soften(sig, cutoff=9000):
+    """A gentle low-pass so the top of the bells is glass, not needles."""
+    spec = np.fft.rfft(sig)
+    f = np.fft.rfftfreq(len(sig), 1 / SR)
+    spec *= 1 / (1 + (f / cutoff) ** 4)
+    return np.fft.irfft(spec, len(sig))
+
+
+STAR_GAP = {2: .13, 3: .2, 4: .2, 5: .2}  # the stars land this far apart in the ceremony, the notes ring in step with them
+
+
 def half():
-    m = np.zeros(int(SR * 1.8))
-    place(m, bell(note(84), 1.6, 1, .8, 3.2), 0)
-    place(m, bell(note(91), 1.2, .35, .6, 4), .09)
-    return finish(reverb(m, 1.2, .3))
+    m = np.zeros((2, int(SR * 1.8)))
+    place_st(m, soften(bell(note(84), 1.6, 1, .8, 3.2)), 0, -.2)
+    place_st(m, soften(bell(note(91), 1.2, .35, .6, 4)), .09, .3)
+    return finish_st(reverb_st(m, 1.2, .3))
+
+
+def climb(m, notes, gap, dur, amp=.85, bright=1.0, decay=2.6, spread=.5):
+    for i, n in enumerate(notes):
+        place_st(m, soften(bell(note(n), dur, amp, bright, decay)), gap * i, spread * np.sin(i * 1.7))
 
 
 def star2():
-    m = np.zeros(int(SR * 2.4))
-    place(m, bell(note(79), 1.8, .9, .9, 3), 0)
-    place(m, bell(note(86), 2.0, 1, 1, 2.8), .13)
-    place(m, bell(note(91), 1.4, .4, .7, 3.5), .26)
-    return finish(reverb(m, 1.6, .35))
+    m = np.zeros((2, int(SR * 2.8)))
+    climb(m, (79, 86), STAR_GAP[2], 1.9, .95, .9, 2.8)
+    place_st(m, soften(bell(note(91), 1.4, .35, .7, 3.5)), .32, .4)
+    place_st(m, pad([note(67), note(71)], 2.2, .15, .3), 0)
+    return finish_st(reverb_st(m, 1.6, .35))
 
 
 def star3():
-    m = np.zeros(int(SR * 3.4))
-    place(m, bell(note(60), 3.0, .7, .5, 1.6), 0)  # a warm low bell under the climb
-    for i, n in enumerate((72, 76, 79, 84, 88)):
-        place(m, bell(note(n), 2.2, .85, 1, 2.6), .11 * i)
-    place(m, pad([note(72), note(76), note(79)], 3.0, .22, .5), .3)
-    return finish(reverb(m, 2.0, .4))
+    m = np.zeros((2, int(SR * 3.8)))
+    place_st(m, bell(note(60), 3.0, .6, .5, 1.6), 0, 0)
+    climb(m, (72, 76, 79), STAR_GAP[3], 2.4, .9, 1, 2.4)          # one note per star
+    place_st(m, soften(bell(note(84), 2.4, .8, 1.1, 2.2)), .6, .3)   # and the crown note
+    place_st(m, pad([note(72), note(76), note(79)], 3.0, .22, .5), .3)
+    return finish_st(reverb_st(m, 2.0, .42))
 
 
 def star4():
-    m = np.zeros(int(SR * 5.2))
-    place(m, bell(note(50), 4.2, .8, .5, 1.1), 0)
-    place(m, pad([note(62), note(66), note(69), note(73), note(76)], 4.4, .35, .9), .1)
-    for i, n in enumerate((74, 78, 81, 85, 88, 93)):  # D major add9 reaching up
-        place(m, bell(note(n), 2.8, .8, 1.1, 2.2), .2 + .14 * i)
-    for k in range(10):  # shimmer: little high bells scattered after the climb
-        place(m, bell(note(rng.choice((93, 97, 100, 105))), 1.2, .22, 1.3, 3.5), 1.2 + rng.uniform(0, 2.4))
-    return finish(reverb(m, 3.0, .45))
+    m = np.zeros((2, int(SR * 5.4)))
+    place_st(m, bell(note(50), 4.2, .7, .5, 1.1), 0, 0)
+    place_st(m, pad([note(62), note(66), note(69), note(73), note(76)], 4.4, .33, .9), .1)
+    climb(m, (74, 78, 81, 85), STAR_GAP[4], 3.0, .9, 1.1, 2.1)      # D major add9, a note for each of the four stars
+    place_st(m, soften(bell(note(88), 3.2, .85, 1.2, 2.0)), .8, .2)
+    place_st(m, soften(bell(note(93), 3.0, .7, 1.2, 2.0)), 1.0, -.2)
+    for k in range(10):
+        place_st(m, soften(bell(note(rng.choice((93, 97, 100, 105))), 1.2, .2, 1.3, 3.5)), 1.4 + rng.uniform(0, 2.4), rng.uniform(-.8, .8))
+    return finish_st(reverb_st(m, 3.0, .46))
 
 
 def star5():
-    m = np.zeros(int(SR * 8.0))
-    place(m, bell(note(48), 6.0, .9, .5, .8), 0)
-    place(m, pad([note(60), note(64), note(67), note(71), note(74), note(79)], 6.5, .45, 1.4), .1)
-    for i, n in enumerate((72, 76, 79, 83, 84, 88, 91, 95, 96)):  # a long rising run in C major 9
-        place(m, bell(note(n), 3.4, .85, 1.2, 1.9), .25 + .16 * i)
-    for k in range(26):  # a rain of high sparks over the whole glory
-        place(m, bell(note(rng.choice((96, 100, 103, 105, 108))), 1.4, .2, 1.4, 3.2), 1.4 + rng.uniform(0, 4.4))
-    place(m, pad([note(72), note(76), note(79), note(83), note(86)], 4.5, .35, .5), 3.2)  # the second swell
-    place(m, bell(note(96), 4.0, .9, 1, 1.4), 3.3)
-    return finish(reverb(m, 4.0, .5))
+    m = np.zeros((2, int(SR * 8.2)))
+    place_st(m, bell(note(48), 6.0, .85, .5, .8), 0, 0)
+    place_st(m, pad([note(60), note(64), note(67), note(71), note(74), note(79)], 6.5, .42, 1.4), .1)
+    climb(m, (72, 76, 79, 83, 86), STAR_GAP[5], 3.4, .9, 1.2, 1.9)   # C major 9, a note for each of the five stars
+    for i, n in enumerate((88, 91, 95, 96)):                          # then the run carries on over the glory
+        place_st(m, soften(bell(note(n), 3.4, .85, 1.2, 1.9)), 1.0 + .17 * i, .6 * np.sin(i))
+    for k in range(26):
+        place_st(m, soften(bell(note(rng.choice((96, 100, 103, 105, 108))), 1.4, .2, 1.4, 3.2)), 1.6 + rng.uniform(0, 4.4), rng.uniform(-.9, .9))
+    place_st(m, pad([note(72), note(76), note(79), note(83), note(86)], 4.5, .33, .5), 3.2)
+    place_st(m, soften(bell(note(96), 4.0, .9, 1, 1.4)), 3.3, 0)
+    return finish_st(reverb_st(m, 4.0, .5))
 
 
 def one_of_a_kind():
@@ -136,8 +175,9 @@ CUES = NOTES + [("up.bell.half", "up_bell_half", half, -9, 130), ("up.bell.2", "
 def write(name, x):
     path = os.path.join(SFX, name + "_00.wav")
     with wave.open(path, "wb") as w:
-        w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
-        w.writeframes((np.clip(x, -1, 1) * 32767).astype("<i2").tobytes())
+        w.setnchannels(1 if x.ndim == 1 else 2); w.setsampwidth(2); w.setframerate(SR)
+        data = x if x.ndim == 1 else x.T.reshape(-1)
+        w.writeframes((np.clip(data, -1, 1) * 32767).astype("<i2").tobytes())
     return path
 
 
@@ -151,7 +191,7 @@ def main():
     known = {c["id"] for c in cues["cues"]}
     loud_add = []
     for cid, name, fn, gain, prio in CUES:
-        if cid in known and os.path.exists(os.path.join(SFX, name + "_00.wav")):
+        if cid in known and os.path.exists(os.path.join(SFX, name + "_00.wav")) and not os.environ.get("FORCE"):
             continue  # already made: keep the existing sound as it is
         x = fn(); p = write(name, x)
         rms = 20 * np.log10(np.sqrt(np.mean(x ** 2)) + 1e-9)
@@ -163,9 +203,12 @@ def main():
             c["clips"] = ["Sfx/" + name + "_00"]
             cues["cues"].append(c)
         loud_add.append((name + "_00", round(float(rms), 2), round(float(-12.07 - rms), 2)))
-        print(cid, name, round(len(x) / SR, 2), "s rms", round(float(rms), 1))
+        print(cid, name, round(x.shape[-1] / SR, 2), "s rms", round(float(rms), 1))
     nl = "\r\n" if "\r\n" in cues_raw else "\n"
     open(cues_path, "w", encoding="utf-8", newline="").write(json.dumps(cues, indent=1, ensure_ascii=False).replace("\n", nl) + (nl if cues_raw.endswith("\n") else ""))
+    import re as _re
+    for c, r, g in loud_add:  # clips that already have an entry (regenerated sounds) get their new loudness
+        loud_raw = _re.sub(r'("clip": "' + c + r'",\s*"rmsDb": )[-0-9.]+(,\s*"gainDb": )[-0-9.]+', lambda m: m.group(1) + str(r) + m.group(2) + str(g), loud_raw)
     NL = chr(13) + chr(10)
     LF = chr(10)
     nl2 = NL if NL in loud_raw else LF
