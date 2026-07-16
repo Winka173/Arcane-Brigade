@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     /// shop is quiet or when someone wanders too close to the warm chair. Chatter keeps polite gaps (see Voice_System.md).</summary>
     public sealed class SpeechBubbleCast : MonoBehaviour
     {
-        private sealed class Pending { public float At, Until; public Func<bool> Run; public bool Companion, Context, Chorus; }
+        private sealed class Pending { public float At, Until; public Func<bool> Run; public bool Companion, Context, Chorus; public float Jitter; }
         private const float CompanionGap = 2.6f;
         private ArenaController owner;
         private string runId;
@@ -141,7 +141,8 @@ namespace ArcaneBrigade
                 if (friend == null) continue;
                 string friendId = e.UnitId, friendName = (RunSession.Stranger(owner.Session.State, friendId) ? "???" : friend.DisplayName) + "  " + new string('★', Mathf.Clamp(e.Tier, 1, 5));
                 string line = pool[(Hash(friendId + tier) + spoken) % pool.Length]; int friendTier = e.Tier;
-                Enqueue(1.1f + spoken * (tier >= 5 ? .04f : .3f), 16f, true, () => CompanionSays(friendId, friendTier, friendName, line, "cheer", VoiceDirector.Normal, SpeechTone.Companion), false, true);
+                Enqueue(1.1f, 16f, true, () => CompanionSays(friendId, friendTier, friendName, line, "cheer", VoiceDirector.Normal, SpeechTone.Companion), false, true);
+                queue[queue.Count - 1].Jitter = UnityEngine.Random.Range(0.25f, 1.1f) + spoken * 0.12f; // not all at once: each friend speaks at its own moment
                 spoken++;
             }
         }
@@ -360,7 +361,7 @@ namespace ArcaneBrigade
                 if (now > pending.Until) { queue.RemoveAt(index--); continue; }
                 if (now < pending.At) continue;
                 // a star-up chorus speaks together, once the animation is over: no gaps, no waiting for the shopkeeper, all in one frame
-                if (pending.Chorus) { if (!(owner.Shop?.Reveal != null && owner.Shop.Reveal.PendingCount > 0)) { queue.RemoveAt(index--); pending.Run(); } continue; }
+                if (pending.Chorus) { if (now < pending.At + pending.Jitter) continue; if (!(owner.Shop?.Reveal != null && owner.Shop.Reveal.PendingCount > 0)) { queue.RemoveAt(index--); pending.Run(); } continue; }
                 if (pending.Companion && now - SpeechBubbles.LastCompanionAt < CompanionGap) continue;
                 if (pending.Companion && owner.Shop?.Dialogue.ExpiresAt > owner.PresentationClock) continue;
                 if (pending.Context && (SpeechBubbles.CountTone(SpeechTone.Companion) > 0 || SpeechBubbles.CountTone(SpeechTone.Story) > 0)) continue;

@@ -79,8 +79,8 @@ namespace ArcaneBrigade
         /// <summary>The colour of a friend's stars: cool two, gold three, purple four, and the rainbow's five turning through every hue.</summary>
         public static Color StarColour(int tier, int index = 0)
         {
-            if (tier >= 5) return Color.HSVToRGB((Time.unscaledTime * .35f + index * .2f) % 1f, .6f, 1f);
-            return tier == 4 ? new Color(.72f, .5f, 1f) : tier == 3 ? new Color(1, 0.77f, 0.25f) : new Color(0.7f, 0.93f, 1);
+            if (tier >= 5) return Color.HSVToRGB((Time.unscaledTime * .35f + index * .2f) % 1f, .85f, 1f);
+            return tier == 4 ? new Color(.66f, .3f, 1f) : tier == 3 ? new Color(1f, .7f, .1f) : new Color(.4f, .78f, 1f); // vivid: the colour is what tells the star
         }
         private SpriteRenderer tierCrest;
         private float holdUntil;
@@ -658,8 +658,8 @@ namespace ArcaneBrigade
                 // silver at two stars, gold at three, purple at four, every colour at five; stronger with each star
                 int rank = Mathf.Clamp(state.Definition.CombatTier, 2, 5);
                 Color tone = StarColour(rank, state.Id % 5);
-                flashProperties.SetColor("_RimColor", rank >= 4 ? tone : rank == 3 ? new Color(1, 0.8f, 0.36f) : new Color(0.82f, 0.9f, 1));
-                flashProperties.SetFloat("_RimAmount", rank == 5 ? .72f : rank == 4 ? .62f : rank == 3 ? .5f : .3f);
+                flashProperties.SetColor("_RimColor", tone);
+                flashProperties.SetFloat("_RimAmount", rank == 5 ? .8f : rank == 4 ? .72f : rank == 3 ? .62f : .45f); // a thin edge, like a hero's skill light
                 flashProperties.SetColor("_StarTone", tone);
                 flashProperties.SetFloat("_StarAmount", PresentationSettings.ReducedEffects ? 0 : rank == 5 ? .8f : rank == 4 ? .65f : rank == 3 ? .45f : .28f);
                 flashProperties.SetFloat("_StarRainbow", rank >= 5 ? 1 : 0);
@@ -800,14 +800,14 @@ namespace ArcaneBrigade
             starAura.enabled = true; starAuraCore.enabled = true;
             starAura.sortingOrder = order - 1; starAuraCore.sortingOrder = order - 1;
             starAura.transform.localPosition = starAuraCore.transform.localPosition = centre;
-            starAura.transform.localScale = Vector3.one * height * (1.75f + .1f * pulse);
+            starAura.transform.localScale = Vector3.one * height * (1.35f + .06f * pulse);
             // the outer layer hugs the body; the second is a flat pool of light on the floor under the feet, which reads from far away
             starAuraCore.transform.localPosition = (shadow != null ? shadow.transform.localPosition : Vector3.down * height * .45f) + Vector3.up * .02f;
             starAuraCore.sortingOrder = order - 3;
-            starAuraCore.transform.localScale = new Vector3(height * (3.2f + .25f * pulse), height * 1.3f, 1);
-            float strength = tier >= 5 ? .5f : tier == 4 ? .45f : tier == 3 ? .34f : .2f;
+            starAuraCore.transform.localScale = new Vector3(height * (1.9f + .1f * pulse), height * .75f, 1);
+            float strength = tier >= 5 ? .4f : tier == 4 ? .36f : tier == 3 ? .28f : .18f;
             starAura.color = new Color(tone.r, tone.g, tone.b, strength * (.75f + .25f * pulse));
-            starAuraCore.color = new Color(tone.r, tone.g, tone.b, Mathf.Min(1f, strength * 2.2f));
+            starAuraCore.color = new Color(tone.r, tone.g, tone.b, Mathf.Min(1f, strength * 1.1f));
         }
 
         private void DisplayTier(int order, float height)
