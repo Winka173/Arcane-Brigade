@@ -36,21 +36,10 @@ namespace ArcaneBrigade
             return result.ToArray();
         }
 
-        public const float SecretInviteBase = .3f, SecretInviteStep = .3f;
-        /// <summary>Whether this wave's shop has a secret door: rolled from the run's seed wave by wave (a miss raises the next
-        /// chance), so it is the same every time the shop is opened or the run is loaded.</summary>
-        private bool SecretInvited(int wave)
-        {
-            int misses = 0;
-            for (int w = 1; w <= wave; w++)
-            {
-                uint h = unchecked((uint)State.Seed * 2654435761u ^ (uint)w * 0x85ebca6bu); h ^= h >> 13; h = unchecked(h * 0xc2b2ae35u); h ^= h >> 16;
-                bool hit = (h % 10000) / 10000f < Mathf.Min(1, SecretInviteBase + SecretInviteStep * misses);
-                if (w == wave) return hit;
-                misses = hit ? 0 : misses + 1;
-            }
-            return false;
-        }
+        /// <summary>The secret door opens on a fixed rhythm (requirement 27/10/2026: no luck of the draw): the shop after every third night,
+        /// from night 3. The same every run, so a player can plan for it.</summary>
+        public const int SecretEvery = 3;
+        private bool SecretInvited(int wave) => wave >= SecretEvery && wave % SecretEvery == 0;
         private (int, int, int, int)? secretUndo;
         public bool EnterSecretEvent(SecretEventKind kind)
         {

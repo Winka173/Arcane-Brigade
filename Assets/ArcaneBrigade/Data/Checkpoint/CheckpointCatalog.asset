@@ -29,7 +29,7 @@ MonoBehaviour:
   RangedEnemy: {fileID: 11400000, guid: 6de4f866923b4a849b41da97ce633ca2, type: 2}
   Hand: {fileID: 244465793, guid: c01ddd2345183a748957710cb09f682d, type: 3}
   Projectile: {fileID: 1125835779, guid: c01ddd2345183a748957710cb09f682d, type: 3}
-  Coin: {fileID: -1589700613, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Coin: {fileID: 21300000, guid: 84585bef93d74b61b6df8f1a5f3e3082, type: 3}
   ImpactSprite: {fileID: 21300000, guid: 73c46aa0c6d777b489ee34565420ff09, type: 3}
   UnitPrefab: {fileID: 2916724516397582577, guid: dfce1ed7f695e0b4dbbb7e4f2e80b9af, type: 3}
   ArenaSize: {x: 22, y: 11}

@@ -641,7 +641,7 @@ namespace ArcaneBrigade
             // chips with real room (requirement 22/10/2026): the icon in the chip's socket, 10 px before the words, 16 after them and
             // 12 between chips; a chip that does not fit first shrinks its words, then starts a second row
             float cx = x, rowY = y; int rows = 1;
-            const float H = 50, Lead = 50, Tail = 16, Gap = 12;
+            const float H = 50, Lead = 46, Tail = 22, Gap = 12;
             void Chip(Sprite icon, string label, bool lit)
             {
                 int size = cardChip.fontSize;
@@ -659,8 +659,8 @@ namespace ArcaneBrigade
                 if (icon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), icon); // on the socket's measured centre
                 cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
                 // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
-                float middle = ArcadeSkin.ChipIconRect(chip).center.y + H * .1f; // the font sits high in its line box
-                GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail + 6, H), label, cardChip);
+                float middle = ArcadeSkin.ChipIconRect(chip).center.y + H * .03f; // the words centre on the socket's line (they sat too low and too far right)
+                GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail + 8, H), label, cardChip);
                 cardChip.fontSize = size;
                 cx += w + Gap;
             }

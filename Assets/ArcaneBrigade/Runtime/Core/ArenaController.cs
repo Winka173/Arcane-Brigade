@@ -263,6 +263,9 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            // losing the window's focus pauses the same way however it was lost (the Win key, a click on another window, alt-tab): the
+            // focus events are not delivered for every case, so the state is read every frame
+            if (!RunPaths.Diagnostic && pauseGate.FocusLost == Application.isFocused) { pauseGate.FocusLost = !Application.isFocused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); }
             if (simulation == null) return;
             if (StoryConsumesInput) { Render(1); return; }
             runHud.ReadNavigation(pauseGate.Manual || pauseGate.Navigation || session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat));

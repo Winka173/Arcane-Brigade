@@ -359,6 +359,7 @@ namespace ArcaneBrigade
         public void TransportShadow(Vector2 offset, float lift)
         {
             if (state == null || grounded == null) return;
+            lift = Mathf.Min(lift, .28f); // a carried or lifted friend keeps its shadow near its feet, so it reads as standing, never flying
             float height = K8Motion.BodyHeight(state);
             Vector2 ground = state.Position + offset - Vector2.up * (height * 0.5f + lift - FootPad());
             grounded.Display(body.sprite, ground, height * 0.85f, lift, 0.3f);
