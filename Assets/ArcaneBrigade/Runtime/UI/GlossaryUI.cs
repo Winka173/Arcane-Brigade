@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     {
         public sealed class Entry { public string Name; public string Description; public ItemEffect Effect; }
         private static readonly Dictionary<string, Entry> entries = Build();
-        private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{gives\\}|\\{costs\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{gives\\}|\\{costs\\}|\\{tag:[^}]+\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         private static readonly Regex signedValue = new Regex("^[+−-]\\d+(?:\\.\\d+)?%?$", RegexOptions.CultureInvariant);
         public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.WhoFor(effect, scope) + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
         private static ItemEffect NearbyEffect(MatchCollection all, int index)
@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             Add(result, "bounce", "Bounce chance", ItemEffect.BulletBounce, "Chance for a shot to bounce on to another enemy.");
             Add(result, "critical", "Crit", ItemEffect.Crit, "Chance for a hit to land twice as hard.", "crit");
             Add(result, "dodge", "Dodge", ItemEffect.Dodge, "Chance to take no damage from a hit (max 60%).", "dodge");
-            Add(result, "armor", "Armor", ItemEffect.Armor, "Each point of armor takes 1 damage off every hit, then cuts the rest a little more (3 armor: 13%, 10 armor: a third). A hit still deals at least 1.", "armor");
+            Add(result, "armor", "Armor", ItemEffect.Armor, "Cuts every hit you take: 15 armor halves it, 30 takes two thirds. At least a quarter of a hit always lands, so stacking armor never makes you untouchable.", "armor");
             Add(result, "damage", "Damage", ItemEffect.Damage, "How hard every hit lands.");
             Add(result, "bond", "Bond", ItemEffect.CompanionDamage, "Friends of the same family together unlock a bonus; the card shows how many you need.");
             Add(result, "merge", "Merge", ItemEffect.CompanionDamage, "Three of the same friend at the same stars become one friend with one more star (two of three show half a star more).");
@@ -212,6 +212,24 @@ namespace ArcaneBrigade
                         GUI.matrix = keep;
                     }
                     horizontal += mark + 9; continue;
+                }
+                if (word.StartsWith("{tag:", StringComparison.Ordinal))
+                {
+                    // a neutral plate naming what the item is (DRINK, FOOD), the same shape as GIVES and COSTS
+                    string caption = word.Substring(5, word.Length - 6);
+                    FontStyle keptTag = words.fontStyle; words.fontStyle = FontStyle.Bold;
+                    float plate = Measure(words, caption) * .82f + 16;
+                    if (draw && Seen(vertical))
+                    {
+                        Rect r = new Rect(bounds.x + horizontal, bounds.y + vertical + line * .12f, plate, line * .76f);
+                        ArcadeSkin.Line(r, new Color(.45f, .31f, .1f, .95f));
+                        int size = words.fontSize; words.fontSize = Mathf.RoundToInt(size * .8f);
+                        Color prior = GUI.color; GUI.color *= new Color(1f, .93f, .72f);
+                        words.alignment = TextAnchor.MiddleCenter; GUI.Label(r, caption, words); words.alignment = TextAnchor.UpperLeft;
+                        GUI.color = prior; words.fontSize = size;
+                    }
+                    words.fontStyle = keptTag;
+                    horizontal += plate + 8; continue;
                 }
                 if (word == "{gives}" || word == "{costs}")
                 {

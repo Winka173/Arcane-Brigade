@@ -26,7 +26,7 @@ namespace ArcaneBrigade
                 case ModifierScope.Champion: return "You";
                 case ModifierScope.Companions: return "Friends";
                 case ModifierScope.Run: return "Run";
-                default: return "Everyone";
+                default: return "Hero & friends";
             }
         }
 
@@ -100,25 +100,26 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Armour in whole points (requirement 25/10/2026: "+0.2" read as nothing): one point is 0.1 of the stored value, and
-        /// each point takes one damage off every hit, and what is left is cut by points / (points + 20) more (3 points: 13%, 10: a
-        /// third, requirement 25/10/2026); a hit never drops below 1, or 15% of a big hit. Never less than one point shown.</summary>
-        public const float ArmorPoint = .1f, ArmorFloor = .15f, ArmorShareKnee = 20;
+        /// <summary>Armour in whole points (one point is 0.1 of the stored value). Reworked 27/10/2026 after players stacked it into
+        /// immortality: it is now the proven hyperbolic curve of Brotato and League of Legends, a hit keeps knee / (knee + points)
+        /// of itself (15 points halve it, 30 cut it to a third), and two hard stops that no stack can pass: at least 25% of a hit always
+        /// lands (75% is the most armour can take off) and no hit drops below 1. Negative armour adds its points to every hit.</summary>
+        public const float ArmorPoint = .1f, ArmorFloor = .25f, ArmorShareKnee = 15;
         public static float AfterArmor(float damage, float armor)
         {
             float points = armor / ArmorPoint;
             if (points < 0) return damage - points; // a cost: its points are added to every hit
-            float left = (damage - points) * ArmorShareKnee / (ArmorShareKnee + points);
-            return Mathf.Max(Mathf.Min(damage, Mathf.Max(1, damage * ArmorFloor)), left);
+            float kept = damage * ArmorShareKnee / (ArmorShareKnee + points);
+            return Mathf.Max(kept, Mathf.Max(damage * ArmorFloor, Mathf.Min(damage, 1f)));
         }
-        /// <summary>The share armour takes off what is left of a hit, for the stat panels.</summary>
-        public static float ArmorShare(float armor) { float p = Mathf.Max(0, armor / ArmorPoint); return p / (p + ArmorShareKnee); }
+        /// <summary>The share armour takes off a hit, for the stat panels (never more than 75%).</summary>
+        public static float ArmorShare(float armor) { float p = Mathf.Max(0, armor / ArmorPoint); return Mathf.Min(1 - ArmorFloor, p / (p + ArmorShareKnee)); }
         public static int ArmorPoints(float value) => value == 0 ? 0 : (int)Mathf.Sign(value) * Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(value) / ArmorPoint));
         public static string ArmorText(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(ArmorPoints(value));
         public static string ValueText(ItemEffect effect, float value)
         {
             if (effect == ItemEffect.Armor) return ArmorText(value);
-            bool percent = effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
+            bool percent = effect == ItemEffect.Luck || effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
             if (effect >= ItemEffect.ScoreMultiplier) percent = K10StatRules.Percentage(effect);
             // the "final" multipliers read as a factor: Final max HP x1.1
             if (Final(effect)) return "×" + (1 + value).ToString("0.##");
@@ -128,11 +129,11 @@ namespace ArcaneBrigade
         /// <summary>Who a stat line is for, in player words: "You · ", "Friends · ", or nothing when it is for everyone or the run.</summary>
         public static string Who(ModifierScope scope) => scope == ModifierScope.Champion ? "You · " : scope == ModifierScope.Companions ? "Friends · " : "";
         /// <summary>Who a card's stat line is for, always said (requirement 22/10/2026: never a bare stat): "Hero · ", "Friends · ",
-        /// "Everyone · ", "Run · " for the run's economy; enemy stats already name their target.</summary>
+        /// "Hero & friends · ", "Run · " for the run's economy; enemy stats already name their target.</summary>
         public static string WhoFor(ItemEffect effect, ModifierScope scope)
         {
             if (effect == ItemEffect.EnemyCount || effect == ItemEffect.EnemyHealth || effect == ItemEffect.EnemySpeed) return "";
-            return scope == ModifierScope.Champion ? "Hero · " : scope == ModifierScope.Companions ? "Friends · " : scope == ModifierScope.Run ? "Run · " : "Everyone · ";
+            return scope == ModifierScope.Champion ? "Hero · " : scope == ModifierScope.Companions ? "Friends · " : scope == ModifierScope.Run ? "Run · " : "Hero & friends · ";
         }
         /// <summary>One stat line as the player reads it: who, the stat's name, its value (e.g. "You · Max HP -5").</summary>
         // a move-speed bonus is shown as it counts (CarnivalBalance.MoveBonus)

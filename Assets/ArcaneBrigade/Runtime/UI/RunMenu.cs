@@ -815,7 +815,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, row.y, 44, 44);
                 if (habit) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "").TrimEnd('.'); }
                 ArcadeSkin.PortraitSlot(cell, habit); RunHud.Sprite(new Rect(cell.x + 4, cell.y + 4, 36, 36), MetaIcons.Station(MetaStation.Wardrobe, true));
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second habit", (habit ? MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "Swaps one team bonus: ") : "The hero keeps its usual team bonus.") + " Earned in the Wardrobe."); }
+                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second habit", (habit ? MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "Swaps one hero & friends bonus: ") : "The hero keeps its usual hero & friends bonus.") + " Earned in the Wardrobe."); }
                 x += 56;
             }
             if (keeps.Count > 0)
@@ -877,11 +877,11 @@ namespace ArcaneBrigade
             for (int index = 0; index < profile.History.Count; index++)
             {
                 RunRecord record = profile.History[index];
-                if (Button(new Rect(0, vertical, 515, 85), record.Nickname + "\n" + record.Score.ToString("N0") + " points · " + RunUICopy.UnitName(record.Build.ChampionId) + " · " + (record.Build.Endless ? "Endless" : "Journey"))) historySelection = index;
+                if (Button(new Rect(0, vertical, 515, 85), record.Nickname + "\n" + "Night " + record.Score + " · " + RunUICopy.UnitName(record.Build.ChampionId) + " · " + (record.Build.Endless ? "Endless" : "Journey"))) historySelection = index;
                 vertical += 95;
             }
             Label(new Rect(0, vertical, 510, 50), "RECORDS BY HERO / MODE / DIFFICULTY"); vertical += 60;
-            foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + record.Score.ToString("N0") + " points · wave " + record.Hall); vertical += 65; }
+            foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + "Night " + record.Score); vertical += 65; }
               foreach (string achievement in profile.Achievements) if (!achievement.StartsWith("journal-")) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
             ScrollPanel.End();
             if (profile.History.Count > 0)

@@ -77,12 +77,13 @@ namespace ArcaneBrigade
                 var copy = new StringBuilder();
                 // GIVES (green) first, then COSTS (red): a trade-off is never mixed into the bonuses (play-test 20/10/2026)
                 AppendSplit(copy, item.EffectiveModifiers, 1, item.Mechanic != RelicMechanic.None || item.SignatureRole != SignatureRelicKind.None);
-                if (item.Mechanic == RelicMechanic.ChaosIncome) copy.AppendLine("{mark} Each wave start: " + session.ScaledGold(25) + "-" + session.ScaledGold(75) + " random gold."); // on the gold curve
-                else if (item.Mechanic != RelicMechanic.None) copy.AppendLine("{mark} " + RelicDescriptions.ShortMechanic(item.Mechanic));
-                if (item.SignatureRole != SignatureRelicKind.None) copy.AppendLine("{mark} " + RelicDescriptions.ShortSignature(item.SignatureRole));
+                string gm = copy.ToString().Contains("{gives}") ? "{gives} " : "{mark} "; // a gain under a GIVES plate carries the plate too
+                if (item.Mechanic == RelicMechanic.ChaosIncome) copy.AppendLine(gm + "Each wave start: " + session.ScaledGold(25) + "-" + session.ScaledGold(75) + " random gold."); // on the gold curve
+                else if (item.Mechanic != RelicMechanic.None) copy.AppendLine(gm + RelicDescriptions.ShortMechanic(item.Mechanic));
+                if (item.SignatureRole != SignatureRelicKind.None) copy.AppendLine(gm + RelicDescriptions.ShortSignature(item.SignatureRole));
                 foreach (var proc in catalog.ProcRules ?? Array.Empty<ProcRule>())
-                    if (proc.ItemId == item.Id) copy.AppendLine("{mark} " + ProcLine(proc));
-                if (item.Category != RelicCategory.Curio) copy.AppendLine("{mark} Counts as a " + RelicDescriptions.Category(item).ToLowerInvariant() + ".");
+                    if (proc.ItemId == item.Id) copy.AppendLine(gm + ProcLine(proc));
+                if (item.Category != RelicCategory.Curio) copy.AppendLine("{tag:" + RelicDescriptions.Category(item).ToUpperInvariant() + "}");
                 AppendCosts(copy, item.EffectiveModifiers, 1);
                 int held = session.StackCount(item.Id);
                 if (held > 0 || item.StackLimit < 100000) copy.AppendLine("Owned " + held + (item.StackLimit < 100000 ? " / " + item.StackLimit : "") + (item.Stacking == StackPolicy.Unique ? " · unique" : ""));
@@ -117,12 +118,13 @@ namespace ArcaneBrigade
             b.AppendLine(CompanionRoles.Tagline(Role.Value)); // what it does, first (play-test 20/10/2026, item 26)
             AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier), true);
             // the skill, talent and passive belong to GIVES (before the COSTS plate), never as stray lines under it
-            if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine("{mark} " + skill);
+            string gm2 = b.ToString().Contains("{gives}") ? "{gives} " : "{mark} ";
+            if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine(gm2 + skill);
             string talent = CompanionDescriptions.ShortTalent(unit);
             if (unit.ReferenceCompanion is "\"The Creator\" Roger" or "Smiley Fox") talent = ShopVisitors.ScaleText(talent, session.GoldScale); // their gold is on the curve
-            if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine("{mark} " + talent);
+            if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine(gm2 + talent);
             string passive = CompanionDescriptions.ShortPassive(unit, offer.Tier, catalog.TierSupportMultiplier, session.GoldScale);
-            if (passive.Length > 0) b.AppendLine("{mark} " + passive);
+            if (passive.Length > 0) b.AppendLine(gm2 + passive);
             AppendCosts(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
             // its duets: who it pairs with and what they do together (lit when the partner is already in the brigade)
             Combo = false; ComboLines = "";

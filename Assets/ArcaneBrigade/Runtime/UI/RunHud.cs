@@ -694,7 +694,7 @@ namespace ArcaneBrigade
             float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = inner.center.x - wide * .5f;
             Rect priceRow = new Rect(inner.x, inner.y + inner.height * .54f, inner.width, inner.height * .46f);
             Rect icon = new Rect(left, priceRow.center.y - 14, 28, 28);
-            Sprite(icon, currency == ShopCurrency.Health ? owner.Content.HeartSprite : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
+            Sprite(icon, currency == ShopCurrency.Health ? CurrencyIcons.Heart : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
             Color priceColor = cardPrice.normal.textColor;
             if (!affordable) cardPrice.normal.textColor = new Color(.85f, .16f, .2f); // short of it: the price in red
             GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);

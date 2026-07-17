@@ -1103,9 +1103,7 @@ namespace ArcaneBrigade
                     return;
                 }
                 if (!injectedDamage) damage = Mathf.Min(damage, target.Definition.Health * 0.22f);
-                // armour takes its points straight off every hit (requirement 25/10/2026: a 5-damage shot with 3 armour lands for 2,
-                // and as the enemies grow a hit creeps back up, so armour keeps being worth buying); a hit always lands for at
-                // least 1 or 15% of itself. Negative armour adds its points.
+                // armour keeps a share of every hit (RunModifierRules.AfterArmor: hyperbolic, never more than 75% off, never below 1)
                 damage = RunModifierRules.AfterArmor(damage, catalog.Armor + MapBoostValue(MapStat.Armor) * RunModifierRules.ArmorPoint); // a map's armour boost counts in points
                 if (catalog.SecretWard && !injectedDamage) damage *= .85f;
                 if (!injectedDamage) damage *= KitDamageTaken(cause);

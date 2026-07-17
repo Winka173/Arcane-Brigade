@@ -106,12 +106,12 @@ namespace ArcaneBrigade
             if (identity == null) return LegacyChampionDescription(unit);
             string innate = unit.Id switch {
                 "LanternKnight" => "Start with +5 HP, +5% movement speed and 0.2 HP/s. Rally strengthens personal attacks with your brigade.",
-                "Postmaster" => "Team flat ranged damage +3 and melee damage -2. After 25s, team melee attacks deal 40% more and ranged attacks 25% less.",
+                "Postmaster" => "Hero & friends flat ranged damage +3 and melee damage -2. After 25s, hero & friends melee attacks deal 40% more and ranged attacks 25% less.",
                 "DrowsySeer" => "Basic attacks work while moving or resting; rest to recover 5% max HP each second. Friends strengthen your personal shots and body while their own damage is reduced slightly.",
                 "RootOracle" => "Stationary in battle; walks in shops. Whole-arena pickup, 30% shop discount, no dodge and -100% treasure detection.",
                 "LoneJelly" => "Fight without friend bodies. Buying friends absorbs their talents. Solo weapon damage grows with wave, within its cap.",
-                "GlassDice" => "Uses the equipped weapon normally. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.",
-                "CometRunner" => "Team movement speed +20%; start with +10% dodge and crit, but armor -0.15.",
+                "GlassDice" => "Uses the equipped weapon normally. Half of positive Luck also grants hero & friends damage, up to 50%. Collected hearts add run Luck.",
+                "CometRunner" => "Hero & friends movement speed +20%; start with +10% dodge and crit, but armor -0.15.",
                 "MirrorKeeper" => "Each Prizefighter bond level adds 3 hero collision damage. Standing still prepares the borrowed volley.",
                 "StormFencer" => "Equipped weapon attacks normally. Hero collision damage doubles. Start with +20% dodge.",
                 "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Friends use their weapons and also answer conducted phrases.",

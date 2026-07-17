@@ -25,8 +25,7 @@ namespace ArcaneBrigade
                 Add("master-" + u.Id, u.DisplayName + " / Night keeper", "Finish Sleepless or harder with " + u.DisplayName + ".", "master-" + u.Id, 1);
             }
             for (int i = 0; i < RunMeta.DifficultyNames.Length; i++) Add("difficulty-" + i, RunMeta.DifficultyNames[i] + " / Dawn", "Finish a normal journey at this difficulty or harder.", "difficulty", i + 1);
-            int[] scores = { 10000, 50000, 100000, 250000, 500000, 1000000 };
-            foreach (int goal in scores) Add("score-" + goal, "Receipt worth " + goal.ToString("N0"), "Earn this score in one journey. Endless counts.", "score", goal);
+            foreach (int goal in new[] { 20, 30, 40, 50, 75, 100 }) Add("night-" + goal, "Night " + goal, "Reach night " + goal + " in one journey. Endless counts.", "score", goal);
             foreach (int goal in new[] { 200, 500, 800 }) Add("gold-" + goal, "A purse of " + goal, "Collect this much combat gold in one wave.", "battle-gold", goal);
             // Stable IDs preserve earned records while the new goals fit the fifteen-body cap.
             foreach (int previousGoal in new[] { 10, 15, 20 })
@@ -47,7 +46,6 @@ namespace ArcaneBrigade
             Add("tempo", "A quicker clock", "Reach +70% attack speed before diminishing returns.", "tempo", .7f);
             Add("speed", "Wind in the ribbons", "Reach 6.5 compiled movement speed.", "speed", 6.5f);
             Add("income", "The shop pays you", "Reach 80 wave income.", "income", 80);
-            Add("score-bonus", "A signed receipt", "Reach +20% score multiplier.", "score-bonus", .2f);
             Add("body", "Room to grow", "Increase champion body size by at least 20%.", "body", 1.2f);
             Add("wave12", "Still open at midnight", "Clear wave 12.", "cleared", 12);
             Add("wave30", "The long staircase", "Clear endless wave 30.", "endless-cleared", 30);
@@ -79,7 +77,7 @@ namespace ArcaneBrigade
             Set("projectiles", compiled.Champion.Weapon.ProjectileCount); Set("crit", compiled.Champion.CriticalChance);
             Set("damage", session.Bonus(ItemEffect.Damage, ModifierScope.Champion) + session.Bonus(ItemEffect.ChampionDamage, ModifierScope.Champion));
             Set("luck", session.Bonus(ItemEffect.Luck)); Set("dodge", session.Bonus(ItemEffect.Dodge)); Set("tempo", session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion));
-            Set("speed", compiled.Champion.Speed); Set("income", r.LastIncome); Set("score-bonus", session.Bonus(ItemEffect.ScoreMultiplier));
+            Set("speed", compiled.Champion.Speed); Set("income", r.LastIncome);
             Set("body", compiled.Champion.BodyHeight / Mathf.Max(.01f, catalog.Unit(r.ChampionId).BodyHeight));
             int bonds = 0; foreach (BondDefinition b in catalog.Bonds) if (session.BondCounts.TryGetValue(b.Id, out int count) && b.ActiveLevel(count) > 0) bonds++;
             Set("bonds", bonds);

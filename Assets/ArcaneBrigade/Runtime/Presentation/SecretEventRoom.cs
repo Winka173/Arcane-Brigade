@@ -505,7 +505,7 @@ namespace ArcaneBrigade
         private int picker; // 0 closed, 1 relics, 2 friends
         private float pickerAt;
         private bool blocked; // a popup or the closing room owns the input this frame
-        private GUIStyle pickerWhat;
+        private GUIStyle pickerWhat, pickerName;
         /// <summary>A relic's gifts in a short line: its stats, else its special effect.</summary>
         private string RelicWhat(ItemDefinition item)
         {
@@ -538,7 +538,7 @@ namespace ArcaneBrigade
             GUI.color = keep;
             int columns = Mathf.Clamp(choices.Count, 1, 5), rows = Mathf.Max(1, Mathf.CeilToInt(choices.Count / 5f));
             const float tile = 160, gap = 16;
-            float w = columns * tile + (columns - 1) * gap + 80, h = rows * (tile + 80) + (rows - 1) * gap + 130;
+            float w = columns * tile + (columns - 1) * gap + 80, h = rows * (tile + 118) + (rows - 1) * gap + 130;
             Rect panel = new Rect(960 - w * .5f, 540 - h * .5f, w, h);
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             LivingUI.Pop(Time.unscaledTime - pickerAt, panel.center);
@@ -547,15 +547,17 @@ namespace ArcaneBrigade
             int picked = -1;
             for (int i = 0; i < choices.Count; i++)
             {
-                Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 80 + gap), tile, tile + 80);
+                Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 118 + gap), tile, tile + 118);
                 ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? 1 : 0);
                 if (choices[i].chosen) ArcadeSkin.RunningLight(new Rect(cell.x - 4, cell.y - 4, tile + 8, tile + 8), Time.unscaledTime, new Color(1f, .82f, .45f));
                 if (choices[i].icon != null) DrawSprite(new Rect(cell.x + 22, cell.y + 22, tile - 44, tile - 44), choices[i].icon);
-                GUI.Label(new Rect(cell.x - 6, cell.y + tile + 2, tile + 12, 30), choices[i].name, label);
+                // names and short descriptions wrap inside the tile's column and never run under each other (long names take two lines)
+                pickerName ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter };
+                GUI.Label(new Rect(cell.x - 10, cell.y + tile + 2, tile + 20, 48), choices[i].name, pickerName);
                 // what it does, in a line or two (requirement 25/10/2026: names alone told nothing)
-                pickerWhat ??= new GUIStyle(label) { fontSize = 14, wordWrap = true, alignment = TextAnchor.UpperCenter };
+                pickerWhat ??= new GUIStyle(label) { fontSize = 14, wordWrap = true, alignment = TextAnchor.UpperCenter, clipping = TextClipping.Overflow };
                 pickerWhat.normal.textColor = new Color(.62f, .92f, .66f);
-                GUI.Label(new Rect(cell.x - 10, cell.y + tile + 30, tile + 20, 48), choices[i].what, pickerWhat);
+                GUI.Label(new Rect(cell.x - 10, cell.y + tile + 52, tile + 20, 64), choices[i].what, pickerWhat);
                 if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;
             }
             GUI.matrix = m; GUI.color = c;

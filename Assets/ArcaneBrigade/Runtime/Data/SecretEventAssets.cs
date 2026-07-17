@@ -72,9 +72,9 @@ namespace ArcaneBrigade
         /// <summary>What each room is for, in plain words (requirement 25/10/2026: the names and riddles alone told nothing).</summary>
         public static readonly string[] Plain = {
             "Fight the drawer's guard to rescue a lost friend or relic.", "Re-sew one of your relics to change what it gives.",
-            "Fight a copy of your team for a relic, lend a relic, or rest.", "Pay gold, trade a relic or fight the owner for a rare relic.",
+            "Fight a copy of your hero & friends for a relic, lend a relic, or rest.", "Pay gold, trade a relic or fight the owner for a rare relic.",
             "Borrow a relic or gold now and pay it back later.", "Heal fully, end your deals, or gain a friend for 2 waves.",
-            "Win a challenge fight to take a rare relic.", "Post a relic away to grow it, or give it to a friend." };
+            "Win a challenge fight to take a rare relic.", "Send a relic away to grow it, or give it to a friend." };
         public static readonly string[] EntryCues = { "shop.stand.appear", "wpn.needle.volley", "hero.mirror.guard", "menu.spot.printer", "hero.clock.runner", "hero.dream.breath", "ui.cutin.encore", "hero.parcel.express" };
         public static readonly string[] RewardItems = { "SecretWoodHeart", "SecretThread", "SecretMirror", "SecretTicket", "SecretHour", "SecretDream", "SecretCrown", "SecretLetter" };
     }

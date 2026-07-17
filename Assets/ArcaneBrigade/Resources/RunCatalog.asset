@@ -1743,7 +1743,7 @@ MonoBehaviour:
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 0
     Pools: 2
     AltarCurrency: 2
     AltarPrice: 7
@@ -2374,7 +2374,7 @@ MonoBehaviour:
       Run
       / Enemy count: +10%
 
-      Run / Score multiplier: +20%
+      Run / Income: +6
 
       Champion / Maximum
       health: -5
@@ -2390,9 +2390,9 @@ MonoBehaviour:
     - Effect: 34
       Scope: 3
       Value: 0.1
-    - Effect: 18
+    - Effect: 24
       Scope: 3
-      Value: 0.2
+      Value: 6
     - Effect: 2
       Scope: 1
       Value: -5
@@ -2418,7 +2418,7 @@ MonoBehaviour:
       Run
       / Enemy health: +10%
 
-      Run / Score multiplier: +20%
+      Run / Income: +6
 
       Champion /
       Maximum health: -6
@@ -2435,9 +2435,9 @@ MonoBehaviour:
     - Effect: 35
       Scope: 3
       Value: 0.1
-    - Effect: 18
+    - Effect: 24
       Scope: 3
-      Value: 0.2
+      Value: 6
     - Effect: 2
       Scope: 1
       Value: -6
@@ -2465,7 +2465,7 @@ MonoBehaviour:
       Run
       / Enemy speed: +10%
 
-      Run / Score multiplier: +20%
+      Run / Income: +6
 
       Champion / Maximum
       health: -5
@@ -2481,9 +2481,9 @@ MonoBehaviour:
     - Effect: 36
       Scope: 3
       Value: 0.1
-    - Effect: 18
+    - Effect: 24
       Scope: 3
-      Value: 0.2
+      Value: 6
     - Effect: 2
       Scope: 1
       Value: -5
@@ -8861,8 +8861,8 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes: []
   - Id: EmptyChairs
-    Name: Empty Chairs
-    Description: Hero attack speed +6% for each empty seat.
+    Name: Lone Spotlight
+    Description: Hero attack speed +7% for each friend fewer than 6 beside you.
     Price: 60
     Effect: 12
     Value: 0

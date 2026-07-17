@@ -44,15 +44,8 @@ namespace ArcaneBrigade
             0 => new Color(.56f, .9f, .62f), 1 => new Color(.56f, .8f, 1f), 2 => new Color(1f, .55f, .24f),
             3 => new Color(.96f, .26f, .24f), _ => new Color(.62f, .32f, 1f),
         };
-        public static int Score(RunSnapshot run, int liveKills = 0, bool liveBoss = false)
-        {
-            int cleared = Mathf.Max(0, run.Wave - Mathf.Max(1, run.StartHall));
-            if (run.Wave >= run.StartHall && (run.Phase == SessionPhase.Shop || run.Phase == SessionPhase.Victory)) cleared++;
-            long value = (long)cleared * 1000 + ((long)run.TotalKills + liveKills) * 10 + ((long)run.BossKills + (liveBoss ? 1 : 0)) * 500;
-            if (run.Phase == SessionPhase.Victory) value += 5000;
-            float build = float.IsFinite(run.BuildScoreMultiplier) && run.BuildScoreMultiplier > 0 ? run.BuildScoreMultiplier : 1;
-            return RunSession.BoundedCounter((long)(value * (100 + run.Difficulty * 20) / 100 * (double)Mathf.Clamp(build, 0.1f, 100)));
-        }
+        /// <summary>The ranking number (requirement 27/10/2026: the old points are gone): the farthest night the run reached, Endless included.</summary>
+        public static int Score(RunSnapshot run, int liveKills = 0, bool liveBoss = false) => Mathf.Max(0, run.Wave);
         public static string Nickname(RunSnapshot run)
         {
             ContributionEntry strongest = null;

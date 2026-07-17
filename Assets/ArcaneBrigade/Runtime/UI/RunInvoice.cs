@@ -157,7 +157,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(x, rectangle.y + 14, w, 40), nickname ?? RunMeta.Nickname(run), heading);
             string journey = (run.Endless ? "Endless" : "Journey") + " · " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " · " + (run.Phase == SessionPhase.Victory ? "Dawn reached" : "Ended at wave " + run.Wave);
             GUI.Label(new Rect(x, rectangle.y + 54, w, 28), journey, body);
-            GUI.Label(new Rect(x, rectangle.y + 86, w, 32), "WAVE " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " BOSS" : " BOSSES") + "  ·  SCORE " + (frozenScore < 0 ? RunMeta.Score(run) : frozenScore).ToString("N0"), number);
+            GUI.Label(new Rect(x, rectangle.y + 86, w, 32), "WAVE " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " BOSS" : " BOSSES"), number);
             ArcadeSkin.Divider(new Rect(x, rectangle.y + 126, w, 2), ArcadeSkin.Ink);
 
             Rect view = new Rect(rectangle.x + 16, rectangle.y + 136, rectangle.width - 32, rectangle.height - 150);

@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             int score = RunMeta.Score(run);
             if ((meta.Pacts & PactMask) != 0)
             {
-                int pactScore = RunSession.BoundedCounter((long)(score * (double)PactMultiplier(meta.Pacts)));
+                int pactScore = score; // the farthest night; a pact's heat is shown beside it, it no longer multiplies points
                 Best(profile.Meta.PactBest, run.ChampionId, pactScore, run.Wave, PactHeat(meta.Pacts));
             }
             if (!string.IsNullOrEmpty(meta.Daily))

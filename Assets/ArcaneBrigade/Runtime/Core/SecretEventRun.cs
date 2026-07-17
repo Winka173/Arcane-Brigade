@@ -88,7 +88,7 @@ namespace ArcaneBrigade
         // a relic you get always says what it does (play-test 24/10/2026: the name alone told nothing)
         private SecretChoice Choice(string title, string act, string lose, string get, bool enabled = true, string reward = "", bool target = false)
             => Choice2(title, act, lose, catalog.Item(reward) != null ? (get == RewardName(reward) ? "New relic" : get.Replace(RewardName(reward), "a relic")) + "\n" + SecretRewardStats(reward) : get, enabled, reward, target);
-        /// <summary>A secret relic's stats in one short line: "Shop discount +8% · Luck +8%".</summary>
+        /// <summary>A secret relic's stats in one short line: "Shop discount +8% · Luck +8%" (luck is a percent like every chance).</summary>
         public string SecretRewardStats(string id)
         {
             ItemDefinition item = catalog.Item(id);
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
         private static string ShortStat(ItemEffect e) => e switch
         {
             ItemEffect.Crit => "Crit", ItemEffect.AttackSpeed => "Speed", ItemEffect.AttackRange => "Range", ItemEffect.Health => "Max HP",
-            ItemEffect.Discount => "Discount", ItemEffect.Pickup => "Pickup", ItemEffect.TreasureDetection => "Chests", ItemEffect.HeartHealing => "Heart heal",
+            ItemEffect.Pickup => "Pickup", ItemEffect.TreasureDetection => "Chests", ItemEffect.HeartHealing => "Heart heal",
             _ => RunModifierRules.ModifierName(e)
         };
         private SecretChoice Choice2(string title, string act, string lose, string get, bool enabled, string reward, bool target)
@@ -110,7 +110,7 @@ namespace ArcaneBrigade
         {
             SecretEventKind.ImpossibleTailor => "STITCH", SecretEventKind.ContrabandTrain => "DEAL", SecretEventKind.ThirteenthHour => "SIGN",
             SecretEventKind.SleepingGarden => "WAKE", SecretEventKind.EmptyTheatre => "PERFORM", SecretEventKind.LostProperty => "GO",
-            SecretEventKind.Understudy => "AGREE", _ => "POST"
+            SecretEventKind.Understudy => "AGREE", _ => "SEND"
         };
         /// <summary>Whether this room's offers work on one of your relics (shown in the middle, tap to swap).</summary>
         public bool SecretUsesTarget => Secret.Kind == SecretEventKind.ImpossibleTailor || Secret.Kind == SecretEventKind.DeadLetters || Secret.Kind == SecretEventKind.ThirteenthHour || Secret.Kind == SecretEventKind.Understudy || Secret.Kind == SecretEventKind.ContrabandTrain;
@@ -136,7 +136,7 @@ namespace ArcaneBrigade
                 case SecretEventKind.Understudy:
                     return new[] {
                         Choice("FIGHT YOUR REFLECTION", "Fight a copy of your brigade", Fight, RewardName("SecretMirror"), CanSecretItem("SecretMirror"), "SecretMirror"),
-                        Choice("LEND A RELIC", "Lend " + name + " for 2 waves", name + " sleeps for 2 waves", SecretSolo ? "+20% hero damage for 2 waves" : "A shadow friend for 2 waves", owned && contract, "", true),
+                        Choice("LEND A RELIC", "Lend " + name + " for 2 waves", name + " is away for 2 waves", SecretSolo ? "+20% hero damage for 2 waves" : "A shadow friend for 2 waves", owned && contract, "", true),
                         Choice("A KIND REFLECTION", "Look, then leave", "Nothing", "Heal 20% of max HP") };
                 case SecretEventKind.ContrabandTrain:
                     return new[] {
@@ -147,7 +147,7 @@ namespace ArcaneBrigade
                     return new[] {
                         Choice("BORROW AN HOUR", "Borrow an hour for 3 waves", "Gone after 3 waves", RewardName("SecretHour"), contract && StackCount("SecretHour") == 0, "SecretHour"),
                         Choice("GOLD NOW", "Take a loan", "25% of wave gold for 2 waves", SecretLoan + " gold now", contract),
-                        Choice("DEPOSIT A RELIC", "Leave " + name + " for 2 waves", name + " sleeps for 2 waves", name + " returns with +25% stats", contract && owned && CanImproveSecretItem(item), "", true) };
+                        Choice("DEPOSIT A RELIC", "Leave " + name + " for 2 waves", name + " is away for 2 waves", name + " comes back with +25% stats", contract && owned && CanImproveSecretItem(item), "", true) };
                 case SecretEventKind.SleepingGarden:
                     return new[] {
                         Choice("WAKE THE HEALER", "Wake her gently", "Nothing", "Full HP · " + RewardName("SecretDream"), CanSecretItem("SecretDream"), "SecretDream"),
@@ -161,8 +161,8 @@ namespace ArcaneBrigade
                 default:
                     string friend = catalog.Unit(Secret.TargetUnit)?.DisplayName ?? "a friend";
                     return new[] {
-                        Choice("TO YOURSELF", "Post " + name + " for 2 waves", name + " sleeps for 2 waves", name + " returns with +25% stats", owned && contract && CanImproveSecretItem(item), "", true),
-                        Choice("TO A FRIEND", "Post " + name + " to " + friend, "1 × " + name, friend + ": +20% weapon damage", owned && !SecretSolo && State.Roster.Exists(r => r.UnitId == Secret.TargetUnit && r.WeaponId == Secret.TargetWeapon) && !Secret.AllyGifts.Exists(g => g.UnitId == Secret.TargetUnit && g.WeaponId == Secret.TargetWeapon), "", true),
+                        Choice("TO YOURSELF", "Send " + name + " away for 2 waves", name + " is away for 2 waves", name + " comes back with +25% stats", owned && contract && CanImproveSecretItem(item), "", true),
+                        Choice("TO A FRIEND", "Send " + name + " to " + friend, "1 × " + name, friend + ": +20% weapon damage", owned && !SecretSolo && State.Roster.Exists(r => r.UnitId == Secret.TargetUnit && r.WeaponId == Secret.TargetWeapon) && !Secret.AllyGifts.Exists(g => g.UnitId == Secret.TargetUnit && g.WeaponId == Secret.TargetWeapon), "", true),
                         Choice("OUTSIDE THE STAGE", "Send an invitation", "Nothing", RewardName("SecretLetter") + " · a secret show later" + (Secret.RescuedToy && !Secret.ThankYouClaimed ? " · " + ScaledGold(15) + " gold" : ""), !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
             }
         }

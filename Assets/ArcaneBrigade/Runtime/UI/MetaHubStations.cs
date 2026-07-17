@@ -276,7 +276,7 @@ namespace ArcaneBrigade
             UnitDefinition traveller = catalog.Champions[Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1)];
             MetaScore record = MetaProgression.PactRecord(profile, traveller.Id);
             small.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(sum.x + 200, sum.y, sum.width - 216, sum.height), RunUICopy.UnitName(traveller) + " · " + (record != null ? "best " + record.Score.ToString("N0") : "no pact run yet"), small);
+            GUI.Label(new Rect(sum.x + 200, sum.y, sum.width - 216, sum.height), RunUICopy.UnitName(traveller) + " · " + (record != null ? "best night " + record.Score : "no pact run yet"), small);
             small.alignment = TextAnchor.UpperLeft;
             for (int i = 0; i < MetaProgression.Pacts.Length; i++)
             {
@@ -346,7 +346,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(x + 50, card.y + 136, w - 50, 22), MetaProgression.Pacts[pact].Line, small);
             RunHud.Sprite(new Rect(x + 4, card.y + 168, 32, 32), MetaIcons.Keepsake);
             GUI.Label(new Rect(x + 50, card.y + 172, w - 50, 26), MetaProgression.DailyPaid(profile, day) ? "Paid today" : "+" + MetaProgression.DailyKeepsakes + " the first dream today", number);
-            GUI.Label(new Rect(x + 50, card.y + 206, w - 50, 26), best != null ? "Best today " + best.Score.ToString("N0") + " · wave " + best.Wave : "No dream yet today", small);
+            GUI.Label(new Rect(x + 50, card.y + 206, w - 50, 26), best != null ? "Best today: night " + best.Score : "No dream yet today", small);
             Rect go = new Rect(area.center.x - 170, card.yMax + 16, 340, 58);
             bool can = hero != null;
             if ((ArcadeSkin.Button(go, "DREAM TONIGHT ▶", KitButton.Primary, can, body) | Nav(go, can)) && can) { panelAction = HubAction.Daily; CheckpointAudio.PlayInterfaceId("ui.confirm"); }
@@ -355,7 +355,7 @@ namespace ArcaneBrigade
             foreach (MetaScore past in profile.Meta.DailyBest)
             {
                 if (past.Key == day || shownDays >= 3) continue;
-                GUI.Label(new Rect(area.x + 40, y, area.width - 80, 26), past.Key + "   " + past.Score.ToString("N0") + " · wave " + past.Wave, small);
+                GUI.Label(new Rect(area.x + 40, y, area.width - 80, 26), past.Key + "   " + "night " + past.Score, small);
                 y += 28; shownDays++;
             }
         }

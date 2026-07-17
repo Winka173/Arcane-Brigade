@@ -16,7 +16,7 @@ namespace ArcaneBrigade
                 "Intelligent Construct" => "Clockwork Union friends gain 4% movement AND attack speed per talent. Combined with Bullhorn Warrior, this buff is capped at 25%.",
                 "Fierce Fighter" => "Each basic attack adds 1% attack speed to this friend, up to 20% this wave. A hit from every third basic attack can make a 0.8-radius blast at 15% weapon damage; once every 1s, no recursive blast.",
                 "Grey Mage" => "Your basic attack prompts this friend to fire one bolt for 65% of its own weapon damage, once every 0.7s.",
-                "Hopping Zombie" => "Hero maximum HP +4 per talent. Each 8 team kills gives this friend 1% attack speed, up to 15% this wave.",
+                "Hopping Zombie" => "Hero maximum HP +4 per talent. Each 8 hero & friends kills gives this friend 1% attack speed, up to 15% this wave.",
                 "Iron Swordsman" => "This friend gains 10% attack speed per Iron Swordsman talent, including itself, up to 30%. Count includes absorbed talents; star levels do not multiply this count.",
                 "Jungle Folk" => "Each Wild Stitch or Springstep bond level grants this friend 10% weapon damage and 5% reach. Caps: +50% damage, +20% reach; final reach cap still applies.",
                 "Little Witch" => "Runic School friends gain +2 projectile pierce and 30% wider projectile visuals, but they attack 15% slower. Extra copies add nothing.",
@@ -37,12 +37,12 @@ namespace ArcaneBrigade
                 "Prince" => "Each Princess talent grants this friend +1 projectile, up to +3. Projectile count helps projectile weapons; this does not turn a melee weapon into a ranged weapon.",
                 "Princess" => "Each Prince talent grants this friend 8% reach, up to 24%. Final melee/ranged reach caps still apply.",
                 "TV Head" => "A critical basic hit has a 25% chance to grant 1 gold. All TV Head talents share a once every 0.8s; extra hits cannot bypass it.",
-                "\"Art of Food\" Roshi" => "Each FOOD purchased adds +1 flat melee AND +1 flat ranged team damage per Roshi talent. Hero maximum HP loses 0.5 per food per talent, up to 20 HP lost. Applied in the next prepared battle.",
+                "\"Art of Food\" Roshi" => "Each FOOD purchased adds +1 flat melee AND +1 flat ranged hero & friends damage per Roshi talent. Hero maximum HP loses 0.5 per food per talent, up to 20 HP lost. Applied in the next prepared battle.",
                 "\"Colorful Fantasy\" Pinky" => "An ordinary incoming hit is reduced by 25% if at least 6s have passed since the last recorded hero injury. This protection does not stack from multiple copies; deliberate health costs are not reduced.",
                 "\"Enduring Suffering\" Dorothy" => "Once per wave, a recorded hero injury permanently removes 2 maximum HP for that battle and then attempts a full heal. Royal health cannot be refilled; hero healing restrictions still apply. Shared across copies.",
                 "\"Expert Nurturer\" Daisy" => "ON RECRUIT / ALTAR CREATION: gain 6 eggs immediately once. Merely keeping this friend does not grant 6 eggs every wave.",
                 "\"Formatting Pixie\" Quentin" => "All friend bodies are 12% smaller. Extra copies add nothing.",
-                "\"GLHF\" Nia" => "ON RECRUIT / ALTAR CREATION: gain one seeded random run bonus: +6% team damage, +6% team movement speed, +0.06 Luck, or +0.12 hero armor. Once per acquisition.",
+                "\"GLHF\" Nia" => "ON RECRUIT / ALTAR CREATION: gain one seeded random run bonus: +6% hero & friends damage, +6% hero & friends movement speed, +0.06 Luck, or +0.12 hero armor. Once per acquisition.",
                 "\"Leisurely Walk\" Mary" => "Paid refreshes cost 2 less gold per talent, minimum 1 gold. Applies to both normal and dream-stock refreshes.",
                 "\"Misfortune\" Emily" => "A recorded hero injury grants 3 gold. at most once every 2s; shares the rebate timer with TV Head. Multiple copies do not multiply the payout.",
                 "\"Naming Demon\" Yan" => "Every third basic attack may fire a coloured echo for 25% weapon damage. Shares this friend's once every 0.7s. The echo cannot trigger itself.",
@@ -138,17 +138,17 @@ namespace ArcaneBrigade
             RelicMechanic.RerollFeather=>"Refreshes cost 2 less gold per active stack; minimum 1 gold.",
             RelicMechanic.ChestLightning=>"Opening a chest strikes 1-3 different enemies for max(8,100 times Treasure Detection) damage per copy.",
             RelicMechanic.DrinkVitality=>"ON EACH DRINK PURCHASE: permanently gain +4 maximum HP per active stack for this run. A drink carrying this effect counts itself when purchased.",
-            RelicMechanic.DrinkTempo=>"ON EACH DRINK PURCHASE: permanently gain +6% team attack speed per active stack for this run. Drink shop weight also increases 5% per copy.",
+            RelicMechanic.DrinkTempo=>"ON EACH DRINK PURCHASE: permanently gain +6% hero & friends attack speed per active stack for this run. Drink shop weight also increases 5% per copy.",
             RelicMechanic.PanicMagnet=>"When hit, 5% chance to attract all pickups currently on the floor.",
             RelicMechanic.ChestLuck=>"Opening a chest permanently adds +0.06 Luck per active stack for this run.",
             RelicMechanic.ChaosIncome=>"At each wave start, gain a seeded random 25-75 gold per active stack.",
-            RelicMechanic.HoardPower=>"Team damage bonus +1% per 5 gold held (gold counted at its wave-1 value), at most +40% per copy. Changes as collected combat gold grows your wallet.",
+            RelicMechanic.HoardPower=>"Hero & friends damage bonus +1% per 5 gold held (gold counted at its wave-1 value), at most +40% per copy. Changes as collected combat gold grows your wallet.",
             RelicMechanic.HalfHealthSeed=>"At each battle start, current hero HP is reduced to at most 50% maximum HP; it does not reduce maximum HP.",
             RelicMechanic.StillRecovery=>"Standing still heals 3 HP/s per active stack, subject to hero healing restrictions.",
             RelicMechanic.CoinLightning=>"Each coin pickup strikes one enemy for max(4,50 times Luck) damage per active stack.",
             RelicMechanic.TurnDiscount=>"ON PURCHASE: other unsold gold-shop relics cost 30% less for the current shop. Also adds 30% discount to newly generated prices that shop, subject to the total discount cap.",
             RelicMechanic.CloseFollowers=>"Friend leash and outer patrol radius are multiplied by 0.65. Extra copies add nothing.",
-            RelicMechanic.WaveGrowth=>"At every wave start, permanently gain +3 flat melee damage, +3 flat ranged damage and +6% team damage per copy for this run.",
+            RelicMechanic.WaveGrowth=>"At every wave start, permanently gain +3 flat melee damage, +3 flat ranged damage and +6% hero & friends damage per copy for this run.",
             RelicMechanic.MeleeToCollision=>"Hero contact damage gains 50% of the positive hero flat melee bonus, per copy.",
             RelicMechanic.SlowToArmor=>"Hero armor gains the absolute value of negative hero movement-speed bonus, per copy.",
             RelicMechanic.DodgeMending=>"On a successful dodge, 30% chance to heal 10 HP per active stack.",
@@ -157,11 +157,11 @@ namespace ArcaneBrigade
             RelicMechanic.SorrowPulse=>"Every 3s, all eligible enemies take damage equal to 20% of hero maximum HP per copy.",
             RelicMechanic.BleedingAlarm=>"During combat, take 1 injected damage per copy each second. Armor and other injected-damage rules still apply; this differs from hunger's direct HP cost.",
             RelicMechanic.CollisionOnly=>"Hero basic attacks stop. Contact damage gains 10 times positive armor per copy. Independent triggered attacks may still fire.",
-            RelicMechanic.SoloOverdrive=>"NEXT WAVE ONLY: friends stop their basic attacks and your hero attacks 6 times as often. Every 10 team kills attempts to heal 3 HP.",
+            RelicMechanic.SoloOverdrive=>"NEXT WAVE ONLY: friends stop their basic attacks and your hero attacks 6 times as often. Every 10 hero & friends kills attempts to heal 3 HP.",
             RelicMechanic.FreshLotus=>"Start each wave with +3 pierce and +30% crit per copy. The temporary bonus ends on the first recorded hero hit.",
             RelicMechanic.EggGift=>"ON PURCHASE: receive 3 eggs immediately once per acquisition.",
             RelicMechanic.CompanionGift=>"ON PURCHASE: up to 2 ordinary friends from your hero's pool join. New species use saved regular allowance: one every 2 waves through wave 9, then every 3; at most one new species this wave. Solo heroes get none.",
-            RelicMechanic.FragilePower=>"Each recorded hero hit removes 5% team damage per copy, including a saved run penalty. Its positive listed modifiers are separate.",
+            RelicMechanic.FragilePower=>"Each recorded hero hit removes 5% hero & friends damage per copy, including a saved run penalty. Its positive listed modifiers are separate.",
             RelicMechanic.StatFloor=>"ON PURCHASE: record current modifier bonuses as floors; future bonuses cannot fall below those recorded floors. Does not remove every direct combat restriction or HP cost.",
             RelicMechanic.LuckToHealth=>"Maximum HP gains 100 times positive Luck, at most +80 per copy.",
             RelicMechanic.GambleRecovery=>"Every 3s make two independent rolls: 50% to heal 20 HP per copy; 50% to take 8 injected damage per copy. Both or neither can occur.",
@@ -172,7 +172,7 @@ namespace ArcaneBrigade
             RelicMechanic.StillPower=>"During each battle, +16 flat attack damage per copy until you move for the first time. Stopping later does not restore this bonus.",
             RelicMechanic.StaticFollowers=>"Friends stop moving; their range and projectile lifetime double and pierce increases by 3.",
             RelicMechanic.VoidPulse=>"Every 3s, all eligible enemies lose damage equal to 15% of their CURRENT HP per copy. Not an instant execution.",
-            RelicMechanic.SixWeapons=>"ON FIRST PURCHASE: remember 6 random weapons. Replace ordinary team basic attacks with six phantom weapons fired from the hero. Each uses its own weapon stats.",
+            RelicMechanic.SixWeapons=>"ON FIRST PURCHASE: remember 6 random weapons. Replace ordinary hero & friends basic attacks with six phantom weapons fired from the hero. Each uses its own weapon stats.",
             RelicMechanic.RoyalBlow=>"Every 8th hit of the hero is a royal blow: triple damage.",
             RelicMechanic.QuiltGuard=>"Once per wave, a blow that would defeat the hero leaves 1 HP and 1.5s of safety instead.",
             RelicMechanic.ApronShove=>"Enemies that strike the hero up close are shoved back 1.5 units (once per second).",
@@ -183,10 +183,10 @@ namespace ArcaneBrigade
             RelicMechanic.SealBurst=>"A collision stamps a crimson seal; 1s later it bursts for triple the collision damage around the enemy.",
             RelicMechanic.SpringDouble=>"Every 4s each friend's next attack springs twice.",
             RelicMechanic.BorrowedCrown=>"Your highest-star friend also fires your hero's weapon.",
-            RelicMechanic.ClockworkHeart=>"Every merge winds the heart: the team gains +3% attack speed for the run (max +30%).",
+            RelicMechanic.ClockworkHeart=>"Every merge winds the heart: the hero & friends gains +3% attack speed for the run (max +30%).",
             RelicMechanic.ImpossiblePrism=>"Split shots of friends break into three colours: ember, frost and arcane.",
             RelicMechanic.LivingThread=>"Melee friends are stitched together: a melee friend's blow pulls a strike (50%) from the nearest other melee friend.",
-            RelicMechanic.TallyChalk=>"Every 25 enemies defeated this wave: the team deals +1% damage (max +8%).",
+            RelicMechanic.TallyChalk=>"Every 25 enemies defeated this wave: the hero & friends deals +1% damage (max +8%).",
             RelicMechanic.CoinSash=>"While the hero runs, pickup reach +0.5.",
             RelicMechanic.PostageStamp=>"Marked enemies (stamped, pinned, exposed or anchored) take +10% damage.",
             RelicMechanic.FrostSalt=>"Freezes last 0.3s longer.",
@@ -196,7 +196,7 @@ namespace ArcaneBrigade
             RelicMechanic.HagglersAbacus=>"Each refresh in this shop takes 1 gold off every gold offer (at most 30% off).",
             RelicMechanic.SlipstreamScarf=>"Friends gain +1% attack speed for every 5% movement speed bonus of the hero (max +15%).",
             RelicMechanic.BrainFreeze=>"A critical hit on a frozen enemy breaks off 3 ice shards (30% of the hit each).",
-            RelicMechanic.WindChime=>"Every 10 critical hits of the team ring the chime: the next 3 shots of every friend pierce one more enemy.",
+            RelicMechanic.WindChime=>"Every 10 critical hits of the hero & friends ring the chime: the next 3 shots of every friend pierce one more enemy.",
             RelicMechanic.SpecimenPin=>"Every enemy species defeated in this run gives +1% critical chance (max +20%).",
             RelicMechanic.StarPolish=>"Three-star friends with shooting weapons fire one more projectile.",
             RelicMechanic.KiteTailRibbon=>"Critical shots of ranged friends bounce on to one more enemy.",
@@ -213,10 +213,10 @@ namespace ArcaneBrigade
             RelicMechanic.EndlessEncore=>"Transformations last 3s longer. No rest after one: the gauge restarts a third full.",
             RelicMechanic.MoonClockKey=>"Every active bond counts one more member.",
             RelicMechanic.MirrorOfTwins=>"Your strongest friend deals +60% damage and its shooting weapon fires one more projectile.",
-            RelicMechanic.StorybookEnding=>"Every wave won adds a page to the story: the team gains one random stat for the rest of the run.",
+            RelicMechanic.StorybookEnding=>"Every wave won adds a page to the story: the hero & friends gains one random stat for the rest of the run.",
             RelicMechanic.DreamLoom=>"Common items give double their stats.",
             RelicMechanic.LoneLantern=>"Hero damage +45%, 8% less for each friend in the fight.",
-            RelicMechanic.EmptyChairs=>"Hero attack speed +6% for each empty seat (8 seats).",
+            RelicMechanic.EmptyChairs=>"Hero attack speed +7% for each friend fewer than 6 fighting beside you (up to +42%).",
             RelicMechanic.SingleTicket=>"With 2 friends or fewer: the hero fires 1 more shot that pierces 1 more.",
             RelicMechanic.NightAlone=>"With no friends in the fight: the gauge fills 30% faster and transformations last 3s longer.",
             RelicMechanic.LastLight=>"Once a wave, under 30% health: the hero gets +60% damage and attack speed for 6s.",
@@ -236,17 +236,17 @@ namespace ArcaneBrigade
             RelicMechanic.RerollFeather=>"Refreshes cost 2 gold less.",
             RelicMechanic.ChestLightning=>"Opening a chest strikes 1-3 enemies.",
             RelicMechanic.DrinkVitality=>"Each drink bought: +4 max HP for the run.",
-            RelicMechanic.DrinkTempo=>"Each drink bought: +6% team attack speed for the run.",
+            RelicMechanic.DrinkTempo=>"Each drink bought: +6% hero & friends attack speed for the run.",
             RelicMechanic.PanicMagnet=>"When hit: 5% chance to pull in every pickup.",
             RelicMechanic.ChestLuck=>"Each chest opened: +0.06 Luck for the run.",
             RelicMechanic.ChaosIncome=>"Each wave start: 25-75 random gold.",
-            RelicMechanic.HoardPower=>"+1% team damage per 5 gold you hold, max +40%.",
+            RelicMechanic.HoardPower=>"+1% hero & friends damage per 5 gold you hold, max +40%.",
             RelicMechanic.HalfHealthSeed=>"Each fight starts with the hero at half HP at most.",
             RelicMechanic.StillRecovery=>"Standing still heals 3 HP per second.",
             RelicMechanic.CoinLightning=>"Each coin picked up strikes an enemy.",
             RelicMechanic.TurnDiscount=>"On buy: the other relics in this shop cost 30% less.",
             RelicMechanic.CloseFollowers=>"Friends stay closer to the hero.",
-            RelicMechanic.WaveGrowth=>"Each wave start: +3 melee, +3 ranged and +6% team damage for the run.",
+            RelicMechanic.WaveGrowth=>"Each wave start: +3 melee, +3 ranged and +6% hero & friends damage for the run.",
             RelicMechanic.MeleeToCollision=>"Hero contact damage gains half your flat melee bonus.",
             RelicMechanic.SlowToArmor=>"Hero armor grows with your hero speed penalty.",
             RelicMechanic.DodgeMending=>"On a dodge: 30% chance to heal 10 HP.",
@@ -259,7 +259,7 @@ namespace ArcaneBrigade
             RelicMechanic.FreshLotus=>"Each wave starts with +3 pierce and +30% crit until the hero is hit.",
             RelicMechanic.EggGift=>"On buy: 3 eggs.",
             RelicMechanic.CompanionGift=>"On buy: up to 2 friends from your hero's pool join.",
-            RelicMechanic.FragilePower=>"Each hit on the hero: -5% team damage for the run.",
+            RelicMechanic.FragilePower=>"Each hit on the hero: -5% hero & friends damage for the run.",
             RelicMechanic.StatFloor=>"On buy: your current bonuses can no longer drop.",
             RelicMechanic.LuckToHealth=>"+100 max HP per point of Luck, max +80.",
             RelicMechanic.GambleRecovery=>"Every 3s: 50% heal 20 HP, 50% take 8 damage.",
@@ -302,8 +302,6 @@ namespace ArcaneBrigade
         public static string Describe(ItemDefinition item,int stacks=1,RunCatalog catalog=null)
         {
             var b=new StringBuilder();b.AppendLine(Category(item)+" · "+RunModifierRules.RarityName(item.Rarity)+" · "+(item.Stacking==StackPolicy.Unique?"ONE ONLY":"STACKS"));
-            if(item.Category==RelicCategory.Drink)b.AppendLine("Counts as a drink when bought.");
-            if(item.Category==RelicCategory.Food)b.AppendLine("Counts as a food when bought.");
             int copies=item.EffectiveStacks(stacks);
             bool any=false;foreach(var m in item.EffectiveModifiers)if(m.Value!=0){if(!any)b.AppendLine("\nWHILE YOU HAVE IT"+(copies>1?" (×"+copies+")":""));b.AppendLine(RunModifierRules.Line(m.Effect,m.Scope,m.Value*copies));any=true;}
             string mechanic=Mechanic(item.Mechanic),signature=Signature(item.SignatureRole);
@@ -324,12 +322,12 @@ namespace ArcaneBrigade
                 int alien=Talents("Alien");if(alien>0)b.AppendLine("Your "+alien+" drink-reactive friend/memory talent(s): each relevant friend gets +4% weapon damage, cap +40%, for the next battle.");
                 int hp=Stacks(RelicMechanic.DrinkVitality),speed=Stacks(RelicMechanic.DrinkTempo);
                 if(hp>0)b.AppendLine("Drink relics: gain +"+(hp*4)+" maximum HP this run.");
-                if(speed>0)b.AppendLine("Drink relics: gain +"+(speed*6)+"% team attack-speed bonus this run, before soft caps.");
+                if(speed>0)b.AppendLine("Drink relics: gain +"+(speed*6)+"% hero & friends attack-speed bonus this run, before soft caps.");
                 if(s.State.ChampionId=="TideSinger")b.AppendLine("Tide Singer: +2 max HP, -0.02 armor (penalty cap 0.4), +2% enemies (cap 40%); refund 1 + floor(new max HP/10) gold, up to 16. Every second drink adds a tide note, up to 3 extra.");
             }
             if(item.Category==RelicCategory.Food)
             {
-                int roshi=Talents("\"Art of Food\" Roshi");if(roshi>0)b.AppendLine("Food talents: +"+roshi+" flat melee and ranged team damage. Hero max HP penalty increases by "+(roshi*.5f).ToString("0.###")+", capped at 20 total, before HP limits.");
+                int roshi=Talents("\"Art of Food\" Roshi");if(roshi>0)b.AppendLine("Food talents: +"+roshi+" flat melee and ranged hero & friends damage. Hero max HP penalty increases by "+(roshi*.5f).ToString("0.###")+", capped at 20 total, before HP limits.");
                 int growth=Stacks(RelicMechanic.FoodGrowth);if(growth>0)b.AppendLine("Food relics: +"+(growth*10)+" maximum HP, +"+(growth*.5f).ToString("0.###")+" HP/s and +"+(growth*5)+"% body size this run.");
                 if(s.State.ChampionId=="SupperMortar")b.AppendLine("Supper Mortar: food expands shell radius by 0.025, up to +0.35 units.");
             }

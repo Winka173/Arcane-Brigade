@@ -816,7 +816,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Line(new Rect(hook.x - 1, hook.y - 10, 2, ticket.y - hook.y + 12), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, 0.85f));
                 ArcadeSkin.Line(new Rect(hook.x - 4, hook.y - 14, 8, 8), ArcadeSkin.Gold);
                 ArcadeSkin.Ticket(ticket, denied ? new Color(1, 0.48f, 0.4f) : ArcadeSkin.Cream, station.Currency == ShopCurrency.Eggs ? ArcadeSkin.Teal : new Color(1, 0.48f, 0.36f));
-                Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? owner.Content.HeartSprite : owner.Content.Arena.Coin;
+                Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? CurrencyIcons.Heart : owner.Content.Arena.Coin;
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 priceStyle.fontSize = 25;
                 while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;

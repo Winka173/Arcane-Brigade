@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             }
             Add("OrchardFizz", "Fruit Crush", 1, false, RelicCategory.Drink, RelicMechanic.None, "+20 health. -2 income.", Stat(ItemEffect.Health,20), Stat(ItemEffect.Income,-2));
             Add("GraveChime", "Midnight Ballad", 1, false, RelicCategory.Drink, RelicMechanic.None, "+10 contact damage. -5% speed.", Stat(ItemEffect.CollisionDamage,10,ModifierScope.Champion),Stat(ItemEffect.MoveSpeed,-.05f,ModifierScope.Champion));
-            Add("BreathJar", "Oxygen Bubble", 1, false, RelicCategory.Drink, RelicMechanic.None, "+20% team damage. -4% attack speed.",Stat(ItemEffect.Damage,.2f),Stat(ItemEffect.AttackSpeed,-.04f));
+            Add("BreathJar", "Oxygen Bubble", 1, false, RelicCategory.Drink, RelicMechanic.None, "+20% hero & friends damage. -4% attack speed.",Stat(ItemEffect.Damage,.2f),Stat(ItemEffect.AttackSpeed,-.04f));
             Add("CoralBroth", "Peach Sea", 1, false, RelicCategory.Drink, RelicMechanic.None, "+1 regeneration. -4 health.",Stat(ItemEffect.Heal,1),Stat(ItemEffect.Health,-4));
             Add("FangPin", "Shark Button", 1, false, RelicCategory.Curio, RelicMechanic.None, "Player: double knockback. +20% attack speed.",Stat(ItemEffect.Knockback,1,ModifierScope.Champion),Stat(ItemEffect.AttackSpeed,.2f,ModifierScope.Champion));
             Add("RicochetSeltzer", "Soda Tea", 1, false, RelicCategory.Drink, RelicMechanic.None, "+6 ranged damage. +25% bounce. -5% damage.",Stat(ItemEffect.RangedDamage,6),Stat(ItemEffect.BulletBounce,.25f),Stat(ItemEffect.Damage,-.05f));
@@ -49,7 +49,7 @@ namespace ArcaneBrigade
             Add("InkFeather", "Quill", 2, false, RelicCategory.Curio, RelicMechanic.RerollFeather, "Rerolls cost 2 less. Minimum cost: 1.");
             Add("MulberryRiot", "Rock 'n' Roll Mulberry", 2, false, RelicCategory.Drink, RelicMechanic.None, "+30 income. +60% treasure detection. -0.3 armor.",Stat(ItemEffect.Income,30),Stat(ItemEffect.TreasureDetection,.6f),Stat(ItemEffect.Armor,-.3f));
             Add("DreamBlindfold", "Sleep Mask", 2, false, RelicCategory.Curio, RelicMechanic.ChestLightning, "Chests strike up to 3 foes. +10% luck, +25% treasure.",Stat(ItemEffect.Luck,.1f),Stat(ItemEffect.TreasureDetection,.25f));
-            Add("SleepyMist", "Sleep Well", 2, false, RelicCategory.Drink, RelicMechanic.None, "+35% damage. Everyone moves 20% slower.",Stat(ItemEffect.Damage,.35f),Stat(ItemEffect.MoveSpeed,-.2f),Stat(ItemEffect.EnemySpeed,-.2f));
+            Add("SleepyMist", "Sleep Well", 2, false, RelicCategory.Drink, RelicMechanic.None, "+35% damage. Hero & friends moves 20% slower.",Stat(ItemEffect.Damage,.35f),Stat(ItemEffect.MoveSpeed,-.2f),Stat(ItemEffect.EnemySpeed,-.2f));
             Add("ClearSip", "Spring Water", 2, false, RelicCategory.Drink, RelicMechanic.DrinkVitality, "Buying drinks grants +4 health. -1 contact damage.",Stat(ItemEffect.CollisionDamage,-1,ModifierScope.Champion));
             Add("OddElixir", "Strangely Favored Drink", 2, false, RelicCategory.Curio, RelicMechanic.DrinkTempo, "Buying drinks grants +6% attack speed. More drinks appear.");
             Add("DaylightBonnet", "Sun Hat", 2, false, RelicCategory.Curio, RelicMechanic.PanicMagnet, "+40 health. Hurt: 5% chance to attract all loot.",Stat(ItemEffect.Health,40));
@@ -58,7 +58,7 @@ namespace ArcaneBrigade
             Add("CourageJuice", "Vitamin C Rage", 2, false, RelicCategory.Drink, RelicMechanic.None, "+20% speed. +5 melee damage. -10 health.",Stat(ItemEffect.MoveSpeed,.2f),Stat(ItemEffect.MeleeDamage,5),Stat(ItemEffect.Health,-10));
             Add("CrookedEight", "Weird Pool Ball", 2, false, RelicCategory.Curio, RelicMechanic.None, "+40% luck. +20% bounce. -6% damage.",Stat(ItemEffect.Luck,.4f),Stat(ItemEffect.BulletBounce,.2f),Stat(ItemEffect.Damage,-.06f));
             Add("TornAlmanac", "Chaos Calendar", 3, false, RelicCategory.Curio, RelicMechanic.ChaosIncome, "Wave income randomly gains 25-75. -5% damage.",Stat(ItemEffect.Damage,-.05f));
-            Add("HoardersLocket", "Cowardice", 3, true, RelicCategory.Curio, RelicMechanic.HoardPower, "Every 5 gold held grants +1% team damage.");
+            Add("HoardersLocket", "Cowardice", 3, true, RelicCategory.Curio, RelicMechanic.HoardPower, "Every 5 gold held grants +1% hero & friends damage.");
             Add("SplitKernel", "Cracked Seed", 3, true, RelicCategory.Food, RelicMechanic.HalfHealthSeed, "+3 regeneration. Start battles at half health.",Stat(ItemEffect.Heal,3));
             Add("WildPigment", "Crazy Paint", 3, false, RelicCategory.Drink, RelicMechanic.None, "+15% speed. +7 melee damage. -3 ranged damage.",Stat(ItemEffect.MoveSpeed,.15f),Stat(ItemEffect.MeleeDamage,7),Stat(ItemEffect.RangedDamage,-3));
             Add("StillwaterUrn", "Despair", 3, true, RelicCategory.Curio, RelicMechanic.StillRecovery, "Standing still: +3 regeneration, +20 contact damage. -5% speed.",Stat(ItemEffect.MoveSpeed,-.05f,ModifierScope.Champion));

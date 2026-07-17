@@ -169,7 +169,7 @@ namespace ArcaneBrigade
                 {
                     GUI.Label(new Rect(paper.x, paper.y + 4, paper.width, 22), "THE CHEST GIVES", small);
                     RunCatalog content = owner.Content;
-                    Sprite coin = content.Arena.Coin, egg = content.EggSprite, heart = content.HeartSprite, lamp = PacingArtwork.Flare(content);
+                    Sprite coin = content.Arena.Coin, egg = content.EggSprite, heart = CurrencyIcons.Heart, lamp = PacingArtwork.Flare(content);
                     Sprite[] faces = { coin, egg, heart, lamp };
                     for (int reel = 0; reel < count; reel++)
                     {

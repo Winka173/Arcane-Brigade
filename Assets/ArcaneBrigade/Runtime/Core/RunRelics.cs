@@ -35,7 +35,7 @@ namespace ArcaneBrigade
             int allies = ActiveRoster.Count;
             float value = 0;
             if (effect == ItemEffect.ChampionDamage) value += MechanicStacks(RelicMechanic.LoneLantern) * Mathf.Max(0, .45f - .08f * allies) + MechanicStacks(RelicMechanic.SoloOverture) * 1f;
-            if (effect == ItemEffect.AttackSpeed) value += MechanicStacks(RelicMechanic.EmptyChairs) * .06f * Mathf.Max(0, 8 - allies);
+            if (effect == ItemEffect.AttackSpeed) value += MechanicStacks(RelicMechanic.EmptyChairs) * .07f * Mathf.Max(0, 6 - allies); // the fewer friends beside you, the faster you attack (up to +42%)
             if (allies <= 2 && (effect == ItemEffect.Projectiles || effect == ItemEffect.BulletPierce)) value += MechanicStacks(RelicMechanic.SingleTicket);
             if (effect == ItemEffect.Armor) value += MechanicStacks(RelicMechanic.IronResolve) * Mathf.Max(0, .25f - .03f * allies);
             if (effect == ItemEffect.MoveSpeed) value += MechanicStacks(RelicMechanic.IronResolve) * Mathf.Max(0, .15f - .05f * allies);

@@ -71,7 +71,7 @@ namespace ArcaneBrigade
                 {
                     string kind = amount.Groups[1].Value.ToLowerInvariant(); int count = int.Parse(amount.Groups[2].Value);
                     bool isEgg = kind.StartsWith("egg"), isGold = kind == "gold";
-                    Add(isEgg ? catalog.EggSprite : isGold ? catalog.Arena.Coin : owner.Content.HeartSprite, "+" + count + (isEgg ? count == 1 ? " egg" : " eggs" : isGold ? " gold" : " HP"), true);
+                    Add(isEgg ? catalog.EggSprite : isGold ? catalog.Arena.Coin : CurrencyIcons.Heart, "+" + count + (isEgg ? count == 1 ? " egg" : " eggs" : isGold ? " gold" : " HP"), true);
                 }
                 else if (!string.IsNullOrEmpty(what)) Add(null, what, true);
             }

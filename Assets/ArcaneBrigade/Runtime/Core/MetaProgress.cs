@@ -261,7 +261,7 @@ namespace ArcaneBrigade
         public static int MasteryRank(int waves) { int r = 0; while (r < MasteryWaves.Length && waves >= MasteryWaves[r]) r++; return r; }
         public static int MasteryRank(PlayerProfile profile, string hero) => MasteryRank(Mastery(profile, hero)?.Waves ?? 0);
         public static readonly string[] MasteryNames = { "Spare coat", "Warm gauge", "Second habit" };
-        public static readonly string[] MasteryLines = { "Another starting friend", "Gauge starts 25% full", "Swap a team passive" };
+        public static readonly string[] MasteryLines = { "Another starting friend", "Gauge starts 25% full", "Swap a hero & friends passive" };
 
         /// <summary>The hero's other starting friend (Wardrobe rank 1): the first friend of its own themes that is not its usual one.</summary>
         public static UnitDefinition AltStarter(RunCatalog catalog, UnitDefinition champion)
