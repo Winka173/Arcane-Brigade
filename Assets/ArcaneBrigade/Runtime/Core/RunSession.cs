@@ -591,9 +591,12 @@ namespace ArcaneBrigade
         public static float StarStep(int tier) => tier >= 5 ? 2.3f : tier == 4 ? 1.9f : 2.7f;
         public static float StarSurplus(int tier) => (tier >= 4 ? StarStep(4) : 1f) * (tier >= 5 ? StarStep(5) : 1f);
 
+        /// <summary>Damage penalties (a relic's -30% a copy) can never take more than half of a unit's damage: stacked Void Doubloons once left
+        /// the whole brigade at 1 damage a hit for the rest of the run (play-test 27/10/2026).</summary>
+        public const float MinimumDamageShare = .5f;
         public float DamageMultiplier(UnitDefinition unit, int tier, bool companion)
         {
-            float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), Mathf.Min(tier, 3) - 1) * StarSurplus(tier) * Mathf.Max(0.1f, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, PlayerBuildBalance.DamageSlope(companion)));
+            float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), Mathf.Min(tier, 3) - 1) * StarSurplus(tier) * Mathf.Max(MinimumDamageShare, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, PlayerBuildBalance.DamageSlope(companion)));
             if (unit.Passive == PassiveKind.Rally) value *= 1f + unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1) * 0.01f * ActiveRoster.Count;
             return value * (companion ? CarnivalBalance.RecruitDamage(unit.Rarity) : PlayerBuildBalance.HeroPower(unit.Id));
         }

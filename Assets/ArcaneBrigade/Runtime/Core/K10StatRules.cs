@@ -13,6 +13,9 @@ namespace ArcaneBrigade
             int index = (int)effect - (int)ItemEffect.ScoreMultiplier;
             return index >= 0 && index < Names.Length ? Names[index] : "Invalid effect";
         }
+        /// <summary>Flat damage penalties (a helm's -6 a copy) can cut a weapon's base damage by at most 75%: stacked, they once took the whole
+        /// brigade down to 1 damage a hit (play-test 27/10/2026).</summary>
+        public const float MinimumFlatShare = .25f;
         public static float Factor(float bonus, float minimum = 0.1f, float maximum = 10f) => Mathf.Clamp(1 + bonus, minimum, maximum);
         /// <summary>Per-body friend damage after the slower recruitment (play-test 20/10/2026, item 25).</summary>
         public const float CompanionBodyBuff = 1.14f;
@@ -27,7 +30,7 @@ namespace ArcaneBrigade
             ModifierScope scope = companion ? ModifierScope.Companions : ModifierScope.Champion;
             WeaponDefinition weapon = unit.Weapon;
             ItemEffect flat = weapon.Kind == WeaponKind.Projectile ? ItemEffect.RangedDamage : ItemEffect.MeleeDamage;
-            weapon.Damage = Mathf.Max(0, FriendlyWeaponBalance.BaseDamage(original) + OctoberBalance.FlatDamage(session.Bonus(flat, scope), session.State.Wave)) * session.DamageMultiplier(source, tier, companion) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
+            weapon.Damage = Mathf.Max(FriendlyWeaponBalance.BaseDamage(original) * MinimumFlatShare, FriendlyWeaponBalance.BaseDamage(original) + OctoberBalance.FlatDamage(session.Bonus(flat, scope), session.State.Wave)) * session.DamageMultiplier(source, tier, companion) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
             float range = Factor(OctoberBalance.Soften(session.Bonus(ItemEffect.AttackRange, scope), .5f, .15f), .4f, 1.8f);
             weapon.Range *= range;
             weapon.ProjectileSpeed *= Factor(session.Bonus(ItemEffect.BulletSpeed, scope));

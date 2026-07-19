@@ -323,7 +323,7 @@ namespace ArcaneBrigade
         {
             if (snapshot?.Secrets == null) return; // old saves migrate lazily
             SecretEventProgress s = snapshot.Secrets;
-            bool invalid = !Enum.IsDefined(typeof(SecretEventStage), s.Stage) || !Enum.IsDefined(typeof(SecretEventKind), s.Kind) || s.Visits < 0 || s.Visits > 2 || s.VisitedMask < 0 || s.VisitedMask > 255 || s.VisitWave < 0 || s.VisitWave > snapshot.Wave || s.LastContractWave < 0 || s.LastContractWave > snapshot.Wave || s.QueuedEvent < -1 || s.QueuedEvent > 7 || s.Option < -1 || s.Option > 2;
+            bool invalid = !Enum.IsDefined(typeof(SecretEventStage), s.Stage) || !Enum.IsDefined(typeof(SecretEventKind), s.Kind) || s.Visits < 0 || s.Visits > 64 || s.VisitedMask < 0 || s.VisitedMask > 255 || s.VisitWave < 0 || s.VisitWave > snapshot.Wave || s.LastContractWave < 0 || s.LastContractWave > snapshot.Wave || s.QueuedEvent < -1 || s.QueuedEvent > 7 || s.Option < -1 || s.Option > 2;
             invalid |= s.Contracts == null || s.Stitches == null || s.AllyGifts == null || s.ImprovedItems == null || s.Journal == null;
             if (invalid) throw new InvalidOperationException("Invalid secret-event save");
             if (s.Stage == SecretEventStage.Fighting && snapshot.Phase != SessionPhase.Combat && snapshot.Phase != SessionPhase.Defeat || (s.Stage == SecretEventStage.Choosing || s.Stage == SecretEventStage.Reward) && snapshot.Phase != SessionPhase.Shop) throw new InvalidOperationException("Invalid secret-event phase");

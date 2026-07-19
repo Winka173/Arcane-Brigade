@@ -7594,7 +7594,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Damage: -30%
+      / Damage: -20%
 
 
       SPECIAL EFFECT
@@ -7604,7 +7604,7 @@ MonoBehaviour:
 
 
       Owned
-      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+      effective copies: 1. Stack limit: 3. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -7613,10 +7613,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: -0.3
+      Value: -0.2
     Rarity: 3
     Stacking: 0
-    MaximumStacks: 8
+    MaximumStacks: 3
     ShopWeight: 28
     Pools: 1
     AltarCurrency: 1

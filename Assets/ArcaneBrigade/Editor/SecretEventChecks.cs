@@ -17,7 +17,7 @@ namespace ArcaneBrigade.Editor
             for (int seed = 0; seed < 500; seed++)
             {
                 var s = new RunSession(c); s.Start((solo ? c.Champions.First(u => u.HeroMechanic == HeroMechanic.SoloMaw) : c.Champions.First(u => u.HeroMechanic != HeroMechanic.SoloMaw)).Id, seed);
-                s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Gold = 200; // Act I invites in the middle of each zone: shops 3, 8, 13, 18
+                s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Gold = 200; s.State.Secrets.QueuedEvent = (int)kind; // the door itself opens on a fixed rhythm (every third night, RunSession.SecretEvery); a queued room stands in for it here
                 s.State.Items.Add(new ItemStack { Id = c.Items.First(i => !i.Id.StartsWith("Secret") && i.Rarity < ItemRarity.Crimson && i.EffectiveModifiers.Any(m => m.Value > 0)).Id, Count = 1 });
                 if (Array.Exists(s.SecretPortals(), k => k == kind)) { Check(s.EnterSecretEvent(kind), "Natural seeded entry " + kind); return s; }
                 s.Dispose();
@@ -176,6 +176,13 @@ namespace ArcaneBrigade.Editor
                 Check(s.SecretPortals().SequenceEqual(new[] { SecretEventKind.EmptyTheatre }), "Letter unlocks saved follow-up past two-visit cap");
                 Roundtrip(s, "letter chain");
                 Check(s.EnterSecretEvent(SecretEventKind.EmptyTheatre) && s.State.Secrets.Visits == 2, "Follow-up does not overrun visit validator");
+            }
+            // the third and fourth secret door of a run must open (a limit of two visits once refused them: DISCOVER did nothing)
+            using (RunSession s = Room(SecretEventKind.DeadLetters))
+            {
+                s.LeaveSecretEvent(); s.State.Secrets.Visits = 3;
+                try { s.Validate(s.State); Check(true, ""); } catch (System.Exception e) { Check(false, "Third secret visit validates: " + e.Message); }
+                Roundtrip(s, "third visit");
             }
             using (RunSession s = Room(SecretEventKind.LostProperty))
             {
