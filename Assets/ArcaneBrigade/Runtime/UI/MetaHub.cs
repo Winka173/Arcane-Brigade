@@ -42,6 +42,13 @@ namespace ArcaneBrigade
             new Spot { Station = MetaStation.Window, Foot = new Vector2(150, 640), Height = 108 },
             new Spot { Station = MetaStation.Bell, Foot = new Vector2(1130, 640), Height = 84 },
         };
+        /// <summary>Things that live in the room without being stations (a tea table with steam, a sleeping cat): they only fill the empty carpet.</summary>
+        public sealed class Decor { public string Name; public Vector2 Foot; public float Height; public Sprite Sprite; public bool Tried; }
+        public static readonly Decor[] Decorations =
+        {
+            new Decor { Name = "TeaTable", Foot = new Vector2(500, 470), Height = 120 },
+            new Decor { Name = "CatCushion", Foot = new Vector2(820, 452), Height = 78 },
+        };
         public static readonly Rect DoorArea = new Rect(582, 4, 116, 128);
         public static readonly Vector2 DoorFoot = new Vector2(640, 168);
         public static readonly Rect Floor = new Rect(60, 160, 1160, 545);
@@ -172,11 +179,28 @@ namespace ArcaneBrigade
             var order = new List<(float y, int index)>();
             for (int i = 0; i < Spots.Length; i++) order.Add((Spots[i].Foot.y, i));
             order.Add((hero.y, -1));
+            // the room is lived in: friends the traveller has met wander the carpet, and warm motes drift up through the lamp light
+            List<(UnitDefinition unit, Vector2 at, bool left)> residents = Residents(catalog, profile, t, reduced);
+            for (int i = 0; i < residents.Count; i++) order.Add((residents[i].at.y, -2 - i));
+            for (int i = 0; i < Decorations.Length; i++)
+            {
+                Decor d = Decorations[i];
+                if (!d.Tried) { d.Tried = true; d.Sprite = Resources.Load<Sprite>("Hub/Props/" + d.Name); }
+                if (d.Sprite != null) order.Add((d.Foot.y, -100 - i));
+            }
+            if (!reduced && Event.current.type == EventType.Repaint)
+                for (int i = 0; i < 16; i++)
+                {
+                    float q = Mathf.Repeat(t * (.05f + .02f * (i % 4)) + i * .137f, 1), x = 120 + (i * 331 % 1040) + Mathf.Sin(t * .6f + i) * 24, y = 700 - q * 560;
+                    ArcadeSkin.Glow(new Rect(x - 12, y - 12, 24, 24), new Color(1f, .82f, .5f, .5f * Mathf.Sin(q * Mathf.PI) * (.6f + .4f * Mathf.Sin(t * 3 + i * 2))));
+                }
             order.Sort((a, b) => a.y.CompareTo(b.y));
             UnitDefinition traveller = catalog.Champions[Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1)];
             foreach (var (_, index) in order)
             {
-                if (index < 0) { DrawTraveller(traveller, heroIndex, reduced); continue; }
+                if (index == -1) { DrawTraveller(traveller, heroIndex, reduced); continue; }
+                if (index <= -100) { DrawDecor(Decorations[-100 - index], t, reduced); continue; }
+                if (index < -1) { DrawResident(residents[-2 - index], reduced); continue; }
                 Spot spot = Spots[index];
                 bool works = MetaProgression.Works(spot.Station), restored = MetaProgression.Restored(profile, spot.Station);
                 Sprite sprite = MetaIcons.Station(spot.Station, restored);
@@ -191,6 +215,17 @@ namespace ArcaneBrigade
                 if (!works) GUI.color = new Color(keep.r * .78f, keep.g * .76f, keep.b * .74f, keep.a);
                 RunHud.Sprite(r, sprite);
                 GUI.color = keep;
+            }
+
+            // the Lamp Tree is where the permanent upgrades are bought: it always wears a call-out above it, and a lit badge when the oil can buy something
+            if (!PanelOpen)
+            {
+                Spot lamp = Array.Find(Spots, x => x.Station == MetaStation.Lantern);
+                Rect lr = Bounds(lamp, MetaIcons.Station(MetaStation.Lantern, MetaProgression.Restored(profile, MetaStation.Lantern)));
+                float bob = reduced ? 0 : Mathf.Sin(t * 2.4f) * 5;
+                bool afford = Affordable(profile);
+                if (Focus < 0 || Spots[Focus].Station != MetaStation.Lantern) Tag(new Vector2(lamp.Foot.x, lr.y - 52 + bob), afford ? "UPGRADES READY" : "PERMANENT UPGRADES");
+                if (afford) { ArcadeSkin.Glow(new Rect(lr.xMax - 54, lr.y - 14 + bob, 46, 46), new Color(1f, .82f, .45f, .6f)); ArcadeSkin.Seal(new Vector2(lr.xMax - 31, lr.y + 9 + bob), 26, "!"); }
             }
 
             // what is near: a paper tag over it
@@ -249,16 +284,98 @@ namespace ArcaneBrigade
             return action;
         }
 
+        private readonly List<UnitDefinition> residentPool = new List<UnitDefinition>();
+        private string residentsFor;
+        /// <summary>Up to five friends the traveller has met, each on a slow loop across the carpet (clear of the stations).</summary>
+        private List<(UnitDefinition unit, Vector2 at, bool left)> Residents(RunCatalog catalog, PlayerProfile profile, float t, bool reduced)
+        {
+            var result = new List<(UnitDefinition, Vector2, bool)>();
+            string key = (profile.SeenUnits?.Count ?? 0) + "/" + catalog.Companions.Length;
+            if (residentsFor != key)
+            {
+                residentsFor = key; residentPool.Clear();
+                foreach (UnitDefinition u in catalog.Companions) if (u != null && u.Body != null && profile.SeenUnits != null && profile.SeenUnits.Contains(u.Id) && !u.SpecialRecruit) residentPool.Add(u);
+                residentPool.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+                // a new traveller has met no one yet: the first friends of the roster keep the room company so it is never empty
+                foreach (UnitDefinition u in catalog.Companions)
+                {
+                    if (residentPool.Count >= 3) break;
+                    if (u != null && u.Body != null && !u.SpecialRecruit && !residentPool.Contains(u)) residentPool.Add(u);
+                }
+            }
+            int count = Mathf.Min(5, residentPool.Count);
+            for (int i = 0; i < count; i++)
+            {
+                UnitDefinition u = residentPool[(i * 7) % residentPool.Count];
+                float phase = i * 1.9f, speed = .09f + .02f * (i % 3);
+                Vector2 home = new Vector2(300 + i * 170, 440 + (i % 2) * 120);
+                float a = reduced ? phase : t * speed + phase, b = reduced ? phase : t * speed * 1.4f + phase;
+                Vector2 at = home + new Vector2(Mathf.Sin(a) * 90, Mathf.Cos(b) * 38);
+                at.y = Mathf.Clamp(at.y, 380, 650);
+                result.Add((u, at, Mathf.Cos(a) < 0));
+            }
+            return result;
+        }
+        private void DrawDecor(Decor d, float t, bool reduced)
+        {
+            float ratio = d.Sprite.rect.width / d.Sprite.rect.height, h = d.Height, w = h * ratio;
+            float breathe = d.Name == "CatCushion" && !reduced ? 1 + .018f * Mathf.Sin(t * 1.7f) : 1;
+            Rect r = new Rect(d.Foot.x - w * .5f, d.Foot.y - h * breathe, w, h * breathe);
+            r.y += FootPad(d.Sprite, new Rect(r.x, r.y, w, h)) * .5f;
+            ArcadeSkin.Glow(new Rect(d.Foot.x - w * .45f, d.Foot.y - 10, w * .9f, 22), new Color(0, 0, 0, .45f));
+            RunHud.Sprite(r, d.Sprite);
+            if (d.Name == "TeaTable" && !reduced && Event.current.type == EventType.Repaint)
+                for (int i = 0; i < 4; i++)
+                {
+                    float q = Mathf.Repeat(t * .35f + i * .25f, 1);
+                    ArcadeSkin.Glow(new Rect(d.Foot.x - 8 + Mathf.Sin(t * 1.5f + i * 2) * 10 - q * 6, d.Foot.y - h * .78f - q * 46, 26 + q * 18, 26 + q * 18), new Color(1, 1, 1, .22f * Mathf.Sin(q * Mathf.PI)));
+                }
+        }
+        private void DrawResident((UnitDefinition unit, Vector2 at, bool left) r, bool reduced)
+        {
+            Sprite body = r.unit.Body;
+            float bob = reduced ? 0 : Mathf.Abs(Mathf.Sin(Time.unscaledTime * 2.2f + r.at.x)) * 3;
+            Rect rect = new Rect(r.at.x - 34, r.at.y - 76, 68, 76);
+            rect.y += FootPad(body, rect) - bob;
+            ArcadeSkin.Glow(new Rect(r.at.x - 30, r.at.y - 9, 60, 18), new Color(0, 0, 0, .5f));
+            Matrix4x4 keep = GUI.matrix;
+            if (r.left) ArcadeSkin.ScaleAround(new Vector2(-1, 1), rect.center);
+            RunHud.Sprite(rect, body);
+            GUI.matrix = keep;
+        }
+
         private void DrawTraveller(UnitDefinition unit, int identity, bool reduced)
         {
             Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced)] ?? unit.Body : unit.Body;
             Rect r = new Rect(hero.x - 58, hero.y - 128, 116, 128);
+            r.y += FootPad(pose, r); // the painting's empty strip under the feet would lift it off its shadow: the feet stand on the shadow
             ArcadeSkin.Glow(new Rect(hero.x - 120, hero.y - 150, 240, 190), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, .18f));
             ArcadeSkin.Glow(new Rect(hero.x - 46, hero.y - 14, 92, 26), new Color(0, 0, 0, .5f));
             Matrix4x4 keep = GUI.matrix;
             if (facingLeft) ArcadeSkin.ScaleAround(new Vector2(-1, 1), r.center);
             RunHud.Sprite(r, pose);
             GUI.matrix = keep;
+        }
+
+        /// <summary>How far below a sprite's feet its picture runs on (empty paint), in the pixels of a rect it is fitted into.</summary>
+        private static float FootPad(Sprite sprite, Rect fit)
+        {
+            if (sprite == null) return 0;
+            Rect ink = SpriteInkMetrics.BoundsOf(sprite);
+            float pad = Mathf.Max(0, ink.yMin - sprite.bounds.min.y) / Mathf.Max(.001f, sprite.bounds.size.y);
+            float ratio = sprite.rect.width / sprite.rect.height, drawn = Mathf.Min(fit.height, fit.width / ratio);
+            return pad * drawn;
+        }
+
+        /// <summary>Whether the lamp oil or keepsakes can buy something here now (the lit badge on the Lamp Tree and on the menu).</summary>
+        public static bool Affordable(PlayerProfile profile)
+        {
+            if (profile == null) return false;
+            if (MetaProgression.AnyLightable(profile)) return true;
+            foreach (MetaStation station in MetaProgression.Working)
+                foreach (MetaTrack track in MetaProgression.For(station))
+                    if (MetaProgression.Blocked(profile, track) == null) return true;
+            return false;
         }
 
         private void Tag(Vector2 topCentre, string text)

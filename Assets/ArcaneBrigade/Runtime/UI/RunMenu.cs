@@ -508,12 +508,20 @@ namespace ArcaneBrigade
             {
                 GUI.enabled = SpotEnabled(index);
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
-                Rect spot = index < 2 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 2) % 2 * 240, 380 + (index - 2) / 2 * 72, 230, 60);
-                if (index >= 2) caption = "      " + caption; // room for its icon
-                if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume ? primary : smallButton)) ActivateSpot(index);
-                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
+                // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
+                Rect spot = index < 3 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 462 + (index - 3) / 2 * 72, 230, 60);
+                if (index == 2) caption = "         WAITING ROOM · PERMANENT UPGRADES";
+                else if (index >= 3) caption = "      " + caption; // room for its icon
+                if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume || index == 2 ? primary : smallButton)) ActivateSpot(index);
+                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 14, spot.y + 8, 52, 52) : new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
-                if (index == 2 && HubAffordable()) { ArcadeSkin.Glow(navigation.Moved(new Rect(spot.xMax - 36, spot.y, 28, 28)), new Color(1f, .82f, .45f, .55f)); ArcadeSkin.Seal(navigation.Moved(new Vector2(spot.xMax - 22, spot.y + 14)), 22, "!"); } // inside the plate's corner
+                if (index == 2 && HubAffordable())
+                {
+                    // the plate itself pulses and a seal says it: there is something to buy
+                    ArcadeSkin.Glow(navigation.Moved(new Rect(spot.x - 18, spot.y - 14, spot.width + 36, spot.height + 28)), new Color(1f, .82f, .45f, .22f + .18f * breathe));
+                    ArcadeSkin.Glow(navigation.Moved(new Rect(spot.xMax - 50, spot.y + 6, 44, 44)), new Color(1f, .82f, .45f, .6f));
+                    ArcadeSkin.Seal(navigation.Moved(new Vector2(spot.xMax - 28, spot.y + 28)), 30, "!");
+                }
             }
             GUI.enabled = true;
         }

@@ -10,7 +10,7 @@ namespace ArcaneBrigade
         {
             string name=u.ReferenceCompanion??"";
             return name switch {
-                "Alien" => "Each DRINK purchased during this run adds 4% to this friend's weapon damage, up to +40%. not a team-wide damage buff.",
+                "Alien" => "Each DRINK purchased during this run adds 4% to this friend's weapon damage, up to +40%. not a brigade-wide damage buff.",
                 "Applehead" => "Orchard friends gain 8% attack speed per Applehead talent, up to 24%. Does not affect the hero. Stacks by talent bodies/memories, not star level.",
                 "Bullhorn Warrior" => "Clockwork Union friends gain 8% movement and attack speed per talent. Combined with Intelligent Construct, this buff is capped at 25%.",
                 "Intelligent Construct" => "Clockwork Union friends gain 4% movement AND attack speed per talent. Combined with Bullhorn Warrior, this buff is capped at 25%.",
@@ -206,7 +206,7 @@ namespace ArcaneBrigade
             RelicMechanic.TwinTicket=>"A merge into a three-star friend brings a free one-star copy of it.",
             RelicMechanic.TreasureMimic=>"The first chest opened each wave wakes up and bites the nearest enemy every 0.5s for 10s.",
             RelicMechanic.DuelistsRibbon=>"Every 4th hit of each melee friend strikes twice.",
-            RelicMechanic.FrostLedger=>"Every frozen enemy defeated this wave gives the team +2% damage for the wave (max +20%).",
+            RelicMechanic.FrostLedger=>"Every frozen enemy defeated this wave gives hero & friends +2% damage for the wave (max +20%).",
             RelicMechanic.UndertowAnchor=>"Every 8s an undertow from the front line pushes the 5 enemies nearest the hero back 2 units and soaks them.",
             RelicMechanic.FunhouseMirror=>"Every 10s one friend's weapon is warped for 3s: double size and damage, half the speed.",
             RelicMechanic.SpliceKit=>"Once per wave, three different one-star friends are spliced into one random two-star friend.",
@@ -270,7 +270,7 @@ namespace ArcaneBrigade
             RelicMechanic.StillPower=>"+16 attack damage until the hero first moves in a fight.",
             RelicMechanic.StaticFollowers=>"Friends stand still with double range and +3 pierce.",
             RelicMechanic.VoidPulse=>"Every 3s all enemies lose 15% of their current HP.",
-            RelicMechanic.SixWeapons=>"Six phantom weapons fire from the hero instead of the team's attacks.",
+            RelicMechanic.SixWeapons=>"Six phantom weapons fire from the hero instead of the friends' attacks.",
             _=>Mechanic(m)
         };
         public static string ShortSignature(SignatureRelicKind role)=>role switch {

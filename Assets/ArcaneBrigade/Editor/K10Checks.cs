@@ -58,7 +58,7 @@ namespace ArcaneBrigade.Editor
                     session.State.BuildScoreMultiplier = 1;
                     int normalScore = RunMeta.Score(session.State, 10);
                     session.State.BuildScoreMultiplier = 2;
-                    require(RunMeta.Score(session.State, 10) == normalScore * 2, "Stored build score multiplier changes actual calculated score");
+                    require(RunMeta.Score(session.State, 10) == normalScore, "The ranking number is the farthest night: a stored score multiplier no longer changes it");
                     float bonus = session.Bonus(ItemEffect.BulletSplit);
                     session.State.Phase = SessionPhase.Shop; session.ContinueWave();
                     require(session.Bonus(ItemEffect.BulletSplit) == bonus, "Purchased stats persist across wave transition");

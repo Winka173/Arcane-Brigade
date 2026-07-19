@@ -109,7 +109,7 @@ namespace ArcaneBrigade
 
         /// <summary>The Waiting Room's haul of a finished run (play-test item 27): Lamp Oil and Keepsakes, line by line.</summary>
         public static bool HasHaul(RunSnapshot run) => run?.Meta != null && (run.Meta.HaulOil > 0 || run.Meta.HaulKeepsakes > 0) && run.Meta.HaulLines != null;
-        private static float HaulHeight(RunSnapshot run) => HasHaul(run) ? 58 + run.Meta.HaulLines.Count * 26 + 16 : 0;
+        private static float HaulHeight(RunSnapshot run) => HasHaul(run) ? 58 + run.Meta.HaulLines.Count * 26 + 16 + 30 : 0;
         private void DrawHaul(float y, float inner, RunSnapshot run, GUIStyle body, GUIStyle number, GUIStyle small)
         {
             ArcadeSkin.Line(new Rect(0, y, inner, HaulHeight(run) - 10), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
@@ -130,6 +130,8 @@ namespace ArcaneBrigade
                 small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner - 90, row, 80, 24), "+" + p[2], small); small.alignment = TextAnchor.UpperLeft;
                 row += 26;
             }
+            // where to spend it (players did not know the permanent upgrades were there)
+            GUI.Label(new Rect(10, row + 2, inner - 20, 26), "Spend them on permanent upgrades: Main menu → WAITING ROOM → Lamp Tree.", small);
         }
 
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)

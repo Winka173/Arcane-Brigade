@@ -225,7 +225,7 @@ namespace ArcaneBrigade
                 H(KitPassive.Innate, 0, "A Verdict execution restores 1 royal HP (once per 3s)."),
                 T(KitPassive.RoyalPick, .3f, "Royal pick: each shop's rarest item costs 30% less."),
                 T(KitPassive.TeamDamageWhileHeroHealthy, .06f, "While you hold at least 6 HP, friends deal +6% damage."),
-                T(KitPassive.RareBuyDamage, .05f, "Every Mythic or Prismatic you buy gives the team +5% damage for the run (max +25%)."),
+                T(KitPassive.RareBuyDamage, .05f, "Every Mythic or Prismatic you buy gives hero & friends +5% damage for the run (max +25%)."),
                 T(KitPassive.BossGold, 5, "Each boss defeated pays 5 gold.")),
                 k => { k.Held = true; }),
             With(K("PetalCitadel", "PETAL CITADEL", KitAction.Citadel, "your attacks", "A citadel of petals rises around you: you shoot from its walls with 20% damage reduction.",
