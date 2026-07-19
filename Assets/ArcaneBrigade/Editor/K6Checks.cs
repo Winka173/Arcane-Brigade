@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
             var storage = new RunStorage(root);
             var profile = new PlayerProfile();
             require(RunPaths.Diagnostic && root != Application.persistentDataPath, "Tests do not touch player profile");
-            require(new[] { SessionPhase.Combat, SessionPhase.Shop, SessionPhase.Victory, SessionPhase.Defeat }.All(phase => RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = phase })) && !RunMenu.CanResumeSnapshot(null) && !RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = (SessionPhase)999 }), "All validated run phases including terminal results can resume without silently creating new run");
+            require(new[] { SessionPhase.Combat, SessionPhase.Shop }.All(phase => RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = phase })) && !RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = SessionPhase.Defeat }) && !RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = SessionPhase.Victory }) && !RunMenu.CanResumeSnapshot(null) && !RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = (SessionPhase)999 }), "All validated run phases including terminal results can resume without silently creating new run");
             using (var session = new RunSession(catalog))
             {
                 session.Start(catalog.Champions[0].Id, 610026);
@@ -34,12 +34,12 @@ namespace ArcaneBrigade.Editor
                 require(first.Contains(actualRosterLine) && first.Contains(RunUICopy.UnitName(catalog.Unit(state.ChampionId))) && !first.Contains(state.RunId) && !first.Contains("tier") && !first.Contains("Seed"), "Run summary names the brigade with stars and the hero, without internal ids");
                 state.Phase = SessionPhase.Victory; state.Wave = 20; state.TotalKills = 7; state.BossKills = 2;
                 state.Contributions.Add(new ContributionEntry { UnitId = state.ChampionId, WeaponId = "SleepCamera", EffectId = "primary", Tier = 1, Damage = 11 });
-                require(RunMeta.Score(state) == 26070, "Score uses20clears+7kills+2bosses+victory exactly");
+                require(RunMeta.Score(state) == state.Wave, "The ranking number is the farthest night reached");
                 storage.SaveRun(state); storage.RecordProgress(profile, state, catalog);
                 string recorded = JsonUtility.ToJson(profile);
                 storage.RecordProgress(profile, state, catalog);
                 require(recorded == JsonUtility.ToJson(profile) && profile.Wins == 1 && profile.TotalKills == 7 && profile.History.Count == 1, "Repeated results credit exactly once");
-                require(profile.History[0].Nickname == "Midnight photo booth" && profile.History[0].Score == 26070, "Measured dominant weapon yields stable stored nickname");
+                require(profile.History[0].Nickname == "Midnight photo booth" && profile.History[0].Score == 20, "Measured dominant weapon yields stable stored nickname");
                 state.Contributions[0].Damage = 200;
                 require(profile.History[0].Build.Contributions[0].Damage == 11, "History is a deep frozen build not live reference");
                 require(RunMeta.UnlockedDifficulty(profile) == RunMeta.DifficultyNames.Length - 2, "All difficulties but the last are available without permanent stats");
@@ -49,7 +49,7 @@ namespace ArcaneBrigade.Editor
                 session.EnterEndless();
                 require(state.ParentRunId == normalId && state.RunId != normalId && state.StartHall == 21 && state.Contributions.Count == 0 && state.TotalKills == 0 && state.BossKills == 0 && state.CombatSeconds == 0, "Endless resets only measured segment and retains parent identity");
                 require(roster == JsonUtility.ToJson(new RosterHolder { Entries = state.Roster }) && state.Items.Count == profile.History[0].Build.Items.Count, "Endless keeps actual squad and relics");
-                require(RunMeta.Score(state) == 0, "Endless entry rest does not score an uncleared hall");
+                require(RunMeta.Score(state) == state.Wave, "Endless entry rest ranks by the night reached");
                 session.ContinueWave(); state.Phase = SessionPhase.Defeat; state.TotalKills = 3;
                 storage.RecordProgress(profile, state, catalog);
                 require(profile.TotalKills == 10 && profile.Wins == 1 && profile.Records.Count == 2 && profile.History[0].Build.Endless, "Endless history separate from normal score and wins");

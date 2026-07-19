@@ -146,7 +146,8 @@ namespace ArcaneBrigade
             scroll = sandboxReturnScroll;
         }
         private void OnDisable() { CloseWeaponSandbox(); museum.Close(); }
-        public static bool CanResumeSnapshot(RunSnapshot snapshot) => snapshot != null && Enum.IsDefined(typeof(SessionPhase), snapshot.Phase);
+        /// <summary>A run still in play can be continued; a finished one (lost or won) cannot: its summary was shown and recorded already (play-test 27/10/2026).</summary>
+        public static bool CanResumeSnapshot(RunSnapshot snapshot) => snapshot != null && Enum.IsDefined(typeof(SessionPhase), snapshot.Phase) && snapshot.Phase != SessionPhase.Victory && snapshot.Phase != SessionPhase.Defeat;
         private bool CanResume => CanResumeSnapshot(saved);
 
         private void Start()
@@ -374,9 +375,9 @@ namespace ArcaneBrigade
         // the letters on the side table are the ones you kept, the lamp sets light and sound. How to play lives only
         // in the bottom row; the row mirrors every entry one-to-one in the same order as before.
         // requirement 22/10/2026: NEW JOURNEY goes straight to hero select; the Waiting Room (permanent upgrades) is its own entry
-        private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "WAITING ROOM", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
-        private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Spend lamp oil on the room's stations", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works" };
-        private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.lamp", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
+        private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "WAITING ROOM", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY", "EXIT" };
+        private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Spend lamp oil on the room's stations", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works", "Close the game" };
+        private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.lamp", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell", "menu.spot.door" };
         public static readonly Rect[] SpotAreas =
         {
             new Rect(800, 0, 312, 452),    // the carved door
@@ -386,9 +387,10 @@ namespace ArcaneBrigade
             new Rect(400, 280, 160, 86),   // the letters on the side table
             new Rect(340, 118, 190, 152),  // the lamp
             Rect.zero,
+            Rect.zero,                     // exit (the bottom row only)
         };
         // where each entry's paper label sits in the room (centre x, top y)
-        private static readonly Vector2[] SpotTags = { new Vector2(956, 372), new Vector2(222, 300), new Vector2(0, 0), new Vector2(1180, 280), new Vector2(480, 372), new Vector2(436, 80), new Vector2(0, 0) };
+        private static readonly Vector2[] SpotTags = { new Vector2(956, 372), new Vector2(222, 300), new Vector2(0, 0), new Vector2(1180, 280), new Vector2(480, 372), new Vector2(436, 80), new Vector2(0, 0), new Vector2(0, 0) };
         private int hoveredSpot = -1;
         private GUIStyle smallButton;
         private GUIStyle spotHint;
@@ -405,6 +407,15 @@ namespace ArcaneBrigade
                     if (MetaProgression.Blocked(profile, track) == null) return true;
             return false;
         }
+        /// <summary>The run is saved at every boundary already, so leaving is just closing the window.</summary>
+        private void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
         private void ActivateSpot(int index)
         {
             if (!SpotEnabled(index)) { CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
@@ -416,6 +427,7 @@ namespace ArcaneBrigade
                 case 3: ShowPage(Page.Museum); break;
                 case 4: ShowPage(Page.Records); break;
                 case 5: ShowPage(Page.Settings); break;
+                case 7: QuitGame(); break;
                 default: ShowPage(Page.Help); break;
             }
         }
@@ -502,10 +514,11 @@ namespace ArcaneBrigade
             RunHud.Sprite(knight, pose);
             if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(Time.unscaledTime * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(knight.center.x + Mathf.Sin(r * 7 + i * 2) * 120, knight.yMax - r * 420), 6 + 6 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .8f * Mathf.Sin(r * Mathf.PI))); }
             if (spotPlate == null) { spotPlate = ArcadeTypography.Style(15, true); }
-            Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true) };
+            Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true), null };
             if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 15 }; // one size that fits the longest label, so the grid reads even
             for (int index = 0; index < SpotLabels.Length; index++)
             {
+                if (index == 7 && (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer)) continue; // a phone leaves with its own button
                 GUI.enabled = SpotEnabled(index);
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
