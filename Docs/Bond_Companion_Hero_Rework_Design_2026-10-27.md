@@ -76,3 +76,30 @@ Shop and merge (stars), `HeroRelicPools`, `K11HeroRules.Eligible`, duets/combos,
 ## 10. Open questions for the owner
 - Art for the 14 bond icons and floor objects: code ink (as all effects are) or painted?
 - Should the old duets/combos be folded into bonds or stay as an extra layer?
+
+## 11. Picks from the idea bank (27/10, owner said "follow the proposal")
+Companions are immortal, so no pick relies on a friend falling; "revive" and "redirect" ideas become shields, tethers or hits absorbed by the hero's armour.
+
+| Bond | Picked ideas (bank no.) | What is new about it |
+|---|---|---|
+| Hearth | 5 Campfire + 12 Jade Statues | camp you place and move; friends near a statue fill skill bars faster |
+| Archive | 16 Records + 35 Mirage | every run one random recorded-bonus family (damage, coin, page copy) |
+| Clockwork | 29 Echo + 8 Workbench | skills fire twice, weaker; the turret takes relics as slots |
+| Frost | 11 Ice Soldiers + 32 Thunderclap | first enemies to die each wave rise as ice allies; a cold storm after 20 s |
+| Garden | 6 Garden + 25 Sprouting | front plants root enemies, back plants shoot; friends grow while standing in it |
+| Tide | 4 Weather | weather cycles every 20 s; each friend likes one weather |
+| Starlight | 3 Constellation + 19 Mode | pick a constellation per run, then a mode at step 1 |
+| Carnival | 7 Spotlight + 14 Gambit | moving light; cash out or Double Down every 3 waves |
+| Court | 2 Decree | write a law (cause + effect); more steps unlock causes and effects |
+| Brawl | 22 Stance + 33 Dawn | duelist/executioner/juggernaut stance; once per wave at half health the hero's brigade leaps back and stuns |
+| Windborne | 20 Rider | one big beast; choose how it fights by dragging a friend onto it |
+| Patchwork | 21 Mutation + 36 Fed | one chosen mutation per friend; duplicate copies feed stats instead of merging |
+| Springstep | 34 Hermit | only active with exactly 1 or 4 different friends of the bond; strong but lopsided |
+| Lantern | 27 Eclipse + 28 Doom | after 8 s the weakest enemy falls every 3.5 s; each marked enemy gives 12% strength to your best friend |
+| Ember | 15 Souls (enemy kills only) + 9 Void Egg | kills feed Heat; an egg of coals hatches into a burning ally |
+| Storm | 17 Underdog + 26 Hatching | luck rises as health falls; after N waves a friend becomes a storm form |
+
+**Run-wide pick:** Power Up (D) and Patron (D) both go in: Power Up twice per run, Patron at waves 3, 6, 9.
+**Enemy picks:** all 24 in section C of the bank, in three tiers by night: nights 1-15 (Stitcher, Flanker, Smasher, Grower, Decoy, Shielder, Splitter, Teleporter), 16-40 (Healer, Buffer, Bomber, Thief, Trapper, Marker, Cone-brute, Arriving-brute), 41+ (Summoner, Darkener, Binder, Drainer, Bribe, Immune, Storm-eye, Armour-grower). Bosses combine two or three and change at health thresholds.
+
+Next: write the 96 companion skills in bond batches (start with Hearth, Frost, Ember so the first playable build has three elements).
