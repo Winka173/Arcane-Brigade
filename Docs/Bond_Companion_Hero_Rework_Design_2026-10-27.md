@@ -103,3 +103,12 @@ Companions are immortal, so no pick relies on a friend falling; "revive" and "re
 **Enemy picks:** all 24 in section C of the bank, in three tiers by night: nights 1-15 (Stitcher, Flanker, Smasher, Grower, Decoy, Shielder, Splitter, Teleporter), 16-40 (Healer, Buffer, Bomber, Thief, Trapper, Marker, Cone-brute, Arriving-brute), 41+ (Summoner, Darkener, Binder, Drainer, Bribe, Immune, Storm-eye, Armour-grower). Bosses combine two or three and change at health thresholds.
 
 Next: write the 96 companion skills in bond batches (start with Hearth, Frost, Ember so the first playable build has three elements).
+
+## 12. Major and minor bonds: how many (27/10)
+Assumption: "at most 10 companions" = at most 10 companions in one bond.
+
+- **Major bond** (16, section 4): steps 2/4/6, its own mechanic. 6 to 10 companions each, 7.5 on average.
+- **Minor bond** (16 more): steps 2/4 only, one small offence or utility effect, no object on the floor. 4 to 5 companions each. Candidates (old tags): Sweet-tooth, Gear, Rune, Hat, Mask, Horn, Hide, Paper-wings, Sea-shanty, Rain-script, Big-top, Ball, Gauntlet, Shoe, Clover, Root. Offence and utility only (companions are immortal).
+- **Total 32 bonds** (old: 33).
+- **Companions: keep 96.** Each has one major and one minor bond: 96 x 2 = 192 slots = 16 x 7.5 + 16 x 4.5. The 12 personal-trait companions keep their major bond and add the personal trait instead of a minor one.
+- **Hero build** = 1 major + 1 or 2 minors (about 12 to 15 companions); 2 to 4 builds per hero; the pool of about 30 is the union. 36 heroes x 3 builds = about 108 builds over 16 x 16 = 256 possible pairs, so builds stay distinct and every bond serves about 7 builds.
