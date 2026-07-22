@@ -112,3 +112,9 @@ Assumption: "at most 10 companions" = at most 10 companions in one bond.
 - **Total 32 bonds** (old: 33).
 - **Companions: keep 96.** Each has one major and one minor bond: 96 x 2 = 192 slots = 16 x 7.5 + 16 x 4.5. The 12 personal-trait companions keep their major bond and add the personal trait instead of a minor one.
 - **Hero build** = 1 major + 1 or 2 minors (about 12 to 15 companions); 2 to 4 builds per hero; the pool of about 30 is the union. 36 heroes x 3 builds = about 108 builds over 16 x 16 = 256 possible pairs, so builds stay distinct and every bond serves about 7 builds.
+
+### 12b. Owner change (27/10): major 8, minor 6 or 4
+- Major bond: 8 companions each (16 x 8 = 128 slots).
+- Minor bond: 8 minors with 6 companions (the broad ones: damage, speed, utility used by many heroes) and 8 minors with 4 (the narrow, sharper ones) = 80 slots.
+- Total 208 slots for 96 companions: every companion has one major and one minor (192), and **16 more slots go to a third bond on 16 companions** (Mythic and Rainbow first, then Rare), so no new art is needed and the roster stays at 96. The 12 personal-trait companions keep major + minor + personal trait.
+- If the owner prefers a clean two-bonds rule instead, the alternative is 8 new companions (104 x 2 = 208); that needs 8 new paintings.
