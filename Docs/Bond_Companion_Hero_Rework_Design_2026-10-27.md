@@ -202,3 +202,9 @@ Per house: 4 shared (in both majors), 4 only in the first major, 4 only in the s
 - **Only Clockwork:** Tin Tick [Gear], Button Beetle [Shoe]?, Clockwork Piper [Gear], Specimen Slime [Shoe]?
 - **Only Springstep:** Citrus Toad [Shoe], Star Sock [Shoe], Sock Cyclops [Shoe]?, Yo-yo Squirrel [Shoe]
 
+
+## 14. Owner change (27/10): redraw allowed, 1 to 3 bonds per companion, 1 to 2 per hero
+- Companions, and where needed heroes, enemies and items, may be redrawn so the look fits the house, the bond and the skill. A companion has 1 to 3 bonds (the roster above stays the starting point).
+- A **hero has 1 to 2 bonds and counts as a member of them** (so a team of 10 companions plus the hero can reach 8 with 7 companions). Hero directions (2 to 4 builds) are the houses of the hero's bonds plus one neighbour house.
+- Art is replaced in place at the same size (build-size budget), delivered house by house (12 companions + that house's heroes + its object/icon art), so every batch ends in a playable build.
+- Each house gets one **visual language** (trim, colour accent, ornament) so a bond is readable from the silhouette; bond objects and icons stay code ink.
