@@ -221,3 +221,6 @@ Per house: 4 shared (in both majors), 4 only in the first major, 4 only in the s
 - **Heroes 36 to 24:** the 8 coming-soon heroes (Supper Mortar, Hourglass Stag, Rain Archivist, Kite Admiral, Sundae Duchess, Bonsai Clocksmith, Juggling Jester, Bell Diver) wait for a later release, plus 4 playable heroes whose theme belonged to the dropped houses (proposal: Verdant Matron, Petal Citadel, Patchwork Host, Thorn Treasurer; owner to confirm).
 - **Migration:** saves that own a dropped companion or hero keep a harmless stub (refund its material value) so nothing breaks.
 - **Art and effects:** redraw only the 72 companions and 24 heroes that stay; skill effects are code ink, art only for floor objects (summoned tree, turret, banner...).
+
+### 15b. Owner confirmation (27/10)
+The 4 extra heroes (Verdant Matron, Petal Citadel, Patchwork Host, Thorn Treasurer) are dropped. Old saves do not matter: no stubs, no refunds, no migration for dropped companions or heroes. Art for the 5 remaining houses and the 23 heroes went to painting in parallel the same day (house 1 earlier).
