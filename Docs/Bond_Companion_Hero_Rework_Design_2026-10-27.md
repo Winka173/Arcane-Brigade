@@ -208,3 +208,8 @@ Per house: 4 shared (in both majors), 4 only in the first major, 4 only in the s
 - A **hero has 1 to 2 bonds and counts as a member of them** (so a team of 10 companions plus the hero can reach 8 with 7 companions). Hero directions (2 to 4 builds) are the houses of the hero's bonds plus one neighbour house.
 - Art is replaced in place at the same size (build-size budget), delivered house by house (12 companions + that house's heroes + its object/icon art), so every batch ends in a playable build.
 - Each house gets one **visual language** (trim, colour accent, ornament) so a bond is readable from the silhouette; bond objects and icons stay code ink.
+
+### 14b. Owner decisions (27/10)
+- **Redraw all 96 companions and all heroes** to unify style: some companions and heroes carry far more detail than others. Enemies and items only if they clash.
+- **Heroes get minor bonds only (1 to 2)**, never a major bond, so a hero's 2 to 4 build directions stay open. A hero counts as a member of its minor bonds (a 6-minor needs 5 companions and the hero).
+- Order: style pilot (3 sheets: one common companion, one mythic companion, one hero) to lock the style; then house by house (12 companions + that house's heroes). Brief: `Docs/Style_Brief_2026-10-27.md`.
