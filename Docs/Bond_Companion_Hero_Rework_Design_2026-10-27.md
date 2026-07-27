@@ -224,3 +224,23 @@ Per house: 4 shared (in both majors), 4 only in the first major, 4 only in the s
 
 ### 15b. Owner confirmation (27/10)
 The 4 extra heroes (Verdant Matron, Petal Citadel, Patchwork Host, Thorn Treasurer) are dropped. Old saves do not matter: no stubs, no refunds, no migration for dropped companions or heroes. Art for the 5 remaining houses and the 23 heroes went to painting in parallel the same day (house 1 earlier).
+
+## 16. House 1 skills: Hearth + Ember (first draft, 27/10)
+Bars fill with time only (Shooter 6 s, Controller 9 s, Guard 10 s, Support 8 s). All effects are code ink; only the "Object" column needs art. Companions are immortal, so nothing here heals or shields companions: healing goes to the hero, buffs are offence or utility. Bond counters: **Warmth** (Hearth, healing done) and **Heat** (Ember, enemies burning).
+
+| Companion | Bars | Skill | What it does | Bond tie-in | Object (art) |
+|---|---|---|---|---|---|
+| Teapot Pilgrim | 6 s | Steep | throws a kettle; the steam pool heals the hero and burns enemies standing in it for 4 s | Hearth: pool also fills Warmth; Ember: pool leaves coals | none |
+| Tea Dragon (Mythic) | 6 s | Steam Breath | a cone of steam; each enemy hit burns and gives the hero 1 HP; every 3rd breath is a long flame | personal trait: its flames never go out between waves (coals stay) | none |
+| Baker Mouse | 6 s | Rolling Pin | rolls a dough ball across the field; flattens and slows what it passes | Hearth: dough heals the hero when it hits 3+ enemies | none |
+| Boba Tadpole | 6 s | Pearl Volley | spits 6 tapioca pearls in a fan; each bounces once | Hearth: a pearl that kills drops a Snack (small Warmth) | none |
+| Candle Snail | 9 s | Wax Trail | leaves a wax trail for 5 s; enemies on it slow 30% and take burn | Ember: the head of the trail lights, burning enemies add Heat | none |
+| Coil Kettle (Mythic) | 9 s | Spring Boil | bounces three times; each landing stuns 0.8 s and vents steam | personal trait: the third bounce is a coil-shot that chains to one more enemy | none |
+| Sundae Golem (Rainbow) | 9 s | Sprinkle Freeze | a scoop of freezing sprinkles, 2 s freeze in a circle | every 3rd cast drops a Cherry that heals the hero; personal trait: cherry also adds Warmth | cherry pickup (small art) |
+| Saffron Mechanist (Rare) | 10 s | Pressure Valve | taunts nearby enemies while pressure builds, then a steam blast pushes them back | Ember: the blast lights enemies | none |
+| Bread Crab | 10 s | Toast Shell | taunts for 3 s then a crumb pulse | Hearth: crumbs fill Warmth per enemy hit | none |
+| Mailbox Imp | 8 s | Hot Delivery | places a mailbox forge; the 3 nearest friends gain +20% damage for 6 s; a hot letter flies to the farthest enemy and explodes | Ember: the explosion leaves coals | mailbox forge (art) |
+| Dice Crab | 8 s | Loaded Roll | rolls a glowing die: 1 to 6 sets a fire pulse (N x base); a 6 rolls twice | Ember: a 6 adds +10 Heat | none |
+| Mask Pepper | 8 s | Spicy Face | switches mask: Angry (+15% attack speed to friends 5 s) or Cheer (+10% crit 5 s), then a fire ring lights nearby enemies | Ember: lit enemies feed Heat | none |
+
+Hearth object: **campfire** (art, one prop). Ember object: **coals** (code ink on the floor).
