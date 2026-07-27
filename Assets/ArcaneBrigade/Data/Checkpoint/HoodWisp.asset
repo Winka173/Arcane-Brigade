@@ -14,19 +14,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HoodWisp
   DisplayName: HoodWisp
-  Body: {fileID: 1562468698, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
+  Body: {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
   AnimationFrames:
-  - {fileID: 1562468698, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  - {fileID: -2076530699, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  - {fileID: -895171987, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  - {fileID: 818367368, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 3a597888dbba9db4c86023ff7643f9e1, type: 2}
+  - {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 2e36acc41201fd94290ff493434dfb48, type: 2}
   Health: 1
   Speed: 5.2
   Radius: 0.25
   BodyHeight: 0.85
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: 
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 0
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

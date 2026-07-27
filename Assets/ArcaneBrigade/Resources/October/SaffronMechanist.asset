@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SaffronMechanist
   DisplayName: Saffron Mechanist
-  Body: {fileID: -1286938619, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  Body: {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
   AnimationFrames:
-  - {fileID: -1286938619, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: -735578347, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: 672810446, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: -660285542, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: bb8f6b0ad2af04d419160ebace4dbcb7, type: 2}
+  - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
@@ -52,8 +49,8 @@ MonoBehaviour:
     their stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
     special reward, subject to hero theme and unlock wave.\r\nBonds: hearth, resolve.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
+    unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Shove Around" Bella'
   ExclusiveHero: 

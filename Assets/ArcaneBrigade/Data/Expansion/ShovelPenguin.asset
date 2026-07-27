@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ShovelPenguin
   DisplayName: Shovel Penguin
-  Body: {fileID: 1044811771, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  Body: {fileID: 21300000, guid: 6dad7e7ab6395aa4db99522eadfe653a, type: 3}
   AnimationFrames:
-  - {fileID: 1044811771, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  - {fileID: -308885504, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  - {fileID: 1924704328, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  - {fileID: 1551651725, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 028bf552499781b45b24e37e4ad10526, type: 2}
+  - {fileID: 21300000, guid: 6dad7e7ab6395aa4db99522eadfe653a, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: bc9159edc29072e4599c931f0422594a, type: 2}
   Health: 100
   Speed: 4

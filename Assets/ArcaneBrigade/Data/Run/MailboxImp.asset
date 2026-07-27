@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MailboxImp
   DisplayName: Mailbox Imp
-  Body: {fileID: 631945764, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  Body: {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
   AnimationFrames:
-  - {fileID: 631945764, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -1628974644, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: 332875552, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -1385106106, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 86edea8ee5a9ef647a692362b9489cea, type: 2}
+  - {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 120
   Speed: 5.1
@@ -54,8 +51,8 @@ MonoBehaviour:
     a coin.\r\n\nNamed talents count bodies and absorbed memories; their stated percentages
     are not multiplied by star level unless explicitly stated. Listed support modifiers
     scale separately at 1/2/4.\r\nBonds: archive, gauntlet, ball. Immortal. Weapon
-    rolls on recruitment; two equal-species/equal-star bodies merge unless the
-    talent forbids it."
+    rolls on recruitment; two equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Athlete
   ExclusiveHero: 

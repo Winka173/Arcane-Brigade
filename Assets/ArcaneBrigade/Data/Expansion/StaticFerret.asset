@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StaticFerret
   DisplayName: Static Ferret
-  Body: {fileID: -561937331, guid: dd06b217388551445add17810971495e, type: 3}
+  Body: {fileID: 21300000, guid: 2e26ccbfd9e8ab740aeaa9a19d59e0c2, type: 3}
   AnimationFrames:
-  - {fileID: -561937331, guid: dd06b217388551445add17810971495e, type: 3}
-  - {fileID: 1261471298, guid: dd06b217388551445add17810971495e, type: 3}
-  - {fileID: -18484529, guid: dd06b217388551445add17810971495e, type: 3}
-  - {fileID: 1142298069, guid: dd06b217388551445add17810971495e, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 292aa53bfa6377540a5f69ca41a7e3de, type: 2}
+  - {fileID: 21300000, guid: 2e26ccbfd9e8ab740aeaa9a19d59e0c2, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 9747390739a53b14fbbfba85a3d6a9bb, type: 2}
   Health: 100
   Speed: 4

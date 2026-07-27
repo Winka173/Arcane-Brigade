@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: VoltEel
   DisplayName: Volt Eel
-  Body: {fileID: -981022083, guid: dd06b217388551445add17810971495e, type: 3}
+  Body: {fileID: 21300000, guid: f43edb44f9b35f04a97cfb9462fea171, type: 3}
   AnimationFrames:
-  - {fileID: -981022083, guid: dd06b217388551445add17810971495e, type: 3}
-  - {fileID: -842055912, guid: dd06b217388551445add17810971495e, type: 3}
-  - {fileID: 1881700536, guid: dd06b217388551445add17810971495e, type: 3}
-  - {fileID: -907860404, guid: dd06b217388551445add17810971495e, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 91fb013a95ee7da4fa06e7f4b6759345, type: 2}
+  - {fileID: 21300000, guid: f43edb44f9b35f04a97cfb9462fea171, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 219cd7bf8c403a44e95e6b526751f79d, type: 2}
   Health: 100
   Speed: 4

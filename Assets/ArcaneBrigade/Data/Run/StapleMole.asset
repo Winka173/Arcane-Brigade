@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StapleMole
   DisplayName: Staple Mole
-  Body: {fileID: -882396376, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
+  Body: {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
   AnimationFrames:
-  - {fileID: -882396376, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
-  - {fileID: 2034576200, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
-  - {fileID: 73632883, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
-  - {fileID: -728246416, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 3ec2c4e229782f24b81b3945e152b8ef, type: 2}
+  - {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 7f5c0f391f15f844b99467e2edbff077, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -54,8 +51,8 @@ MonoBehaviour:
     does not count as collecting a coin.\r\n\nNamed talents count bodies and absorbed
     memories; their stated percentages are not multiplied by star level unless explicitly
     stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds: clock,
-    clover. Immortal. Weapon rolls on recruitment; two equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    clover. Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Judge
   ExclusiveHero: 

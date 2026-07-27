@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TideSinger
   DisplayName: The Tide Singer
-  Body: {fileID: 1944905412, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
+  Body: {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
   AnimationFrames:
-  - {fileID: 1944905412, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
-  - {fileID: -359843229, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
-  - {fileID: 1464982646, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
-  - {fileID: -567726642, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 777a6b61daf8fd643aac92798932d20f, type: 2}
+  - {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: a9b27cddf2286b24bacaed7af9c6ba1f, type: 2}
   Health: 95
   Speed: 3.1

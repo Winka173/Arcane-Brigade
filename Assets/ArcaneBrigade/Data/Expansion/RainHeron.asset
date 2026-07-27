@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RainHeron
   DisplayName: Rain Heron
-  Body: {fileID: -2026011047, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  Body: {fileID: 21300000, guid: d61a2e9b350bf3c498ceff643d6c1c78, type: 3}
   AnimationFrames:
-  - {fileID: -2026011047, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  - {fileID: 1421848777, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  - {fileID: 2023913308, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  - {fileID: -1601139673, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 95278dfd22944b742a1ea12f96ca4c36, type: 2}
+  - {fileID: 21300000, guid: d61a2e9b350bf3c498ceff643d6c1c78, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: e7379a1fb6cf83d42b03a082caef1783, type: 2}
   Health: 100
   Speed: 4

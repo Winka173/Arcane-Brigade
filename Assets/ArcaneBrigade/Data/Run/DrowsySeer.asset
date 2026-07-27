@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DrowsySeer
   DisplayName: Drowsy Seer
-  Body: {fileID: -1975547014, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
+  Body: {fileID: 21300000, guid: ad3fcf2734da1bf449af67757e470951, type: 3}
   AnimationFrames:
-  - {fileID: -1975547014, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
-  - {fileID: -979646957, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
-  - {fileID: -398145817, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
-  - {fileID: 339113356, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 5d15494ffc681bd4eb9134cd2d3b1e34, type: 2}
+  - {fileID: 21300000, guid: ad3fcf2734da1bf449af67757e470951, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: c17055c95ef3e904e9cfab0028006e2a, type: 2}
   Health: 120
   Speed: 3.1

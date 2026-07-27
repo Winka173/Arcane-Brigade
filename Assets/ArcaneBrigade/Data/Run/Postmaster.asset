@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: Postmaster
   DisplayName: Postmaster
-  Body: {fileID: 1426825289, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
+  Body: {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
   AnimationFrames:
-  - {fileID: 1426825289, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
-  - {fileID: 1780996085, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
-  - {fileID: 1392846759, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
-  - {fileID: -1461515756, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ca229cdc4e987f042b9a7526d6d4ce60, type: 2}
+  - {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 90
   Speed: 3.65

@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MonsterMarble
   DisplayName: Monster Marble
-  Body: {fileID: 1786174103, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  Body: {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
   AnimationFrames:
-  - {fileID: 1786174103, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: -441658426, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: 2068720186, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: -354829006, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 763ce61589318a24a9971050216a4ad7, type: 2}
+  - {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
@@ -52,8 +49,8 @@ MonoBehaviour:
     percentages are not multiplied by star level unless explicitly stated. Listed
     support modifiers scale separately at 1/2/4.\r\nSource: gift / nursery / special
     reward; not ordinary shop stock.\r\nBonds: frost, mask. Immortal. Weapon rolls
-    on recruitment; two equal-species/equal-star bodies merge unless the talent
-    forbids it."
+    on recruitment; two equal-species/equal-star bodies merge unless the talent forbids
+    it."
   ReferenceHero: 
   ReferenceCompanion: Monster Friend
   ExclusiveHero: 

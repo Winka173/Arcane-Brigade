@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ChinaMarionette
   DisplayName: China Marionette
-  Body: {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Body: {fileID: 21300000, guid: 6c0a8250f0ed17d44b7894f2a08a8e17, type: 3}
   AnimationFrames:
-  - {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1101891540, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1441727185, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -208621334, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: b17ce48747df5d74d8eccb22556c313e, type: 2}
+  - {fileID: 21300000, guid: 6c0a8250f0ed17d44b7894f2a08a8e17, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 015f03d51fcddeb4ba68078faeb87f48, type: 2}
   Health: 85
   Speed: 4.5

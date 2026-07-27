@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: FossilArmadillo
   DisplayName: Fossil Armadillo
-  Body: {fileID: 388370416, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  Body: {fileID: 21300000, guid: db5c340519f8f2043b97ee43d9bdfa51, type: 3}
   AnimationFrames:
-  - {fileID: 388370416, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: 1244861827, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -1384796228, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -796614770, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 85035b34e639c15479fb51ae310d196a, type: 2}
+  - {fileID: 21300000, guid: db5c340519f8f2043b97ee43d9bdfa51, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 541aa0ae0656e134e9f975088cb63ec8, type: 2}
   Health: 100
   Speed: 4

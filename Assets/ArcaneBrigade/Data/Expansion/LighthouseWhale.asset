@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LighthouseWhale
   DisplayName: Harbor Whale
-  Body: {fileID: 513976457, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  Body: {fileID: 21300000, guid: c798036fab2597f4a8bafc62fa44bf9e, type: 3}
   AnimationFrames:
-  - {fileID: 513976457, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: -2139363182, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: -316031991, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: 1864987897, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: c408ff1c60724e2499d3ba7e041f7dec, type: 2}
+  - {fileID: 21300000, guid: c798036fab2597f4a8bafc62fa44bf9e, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: c971d53a1ca417741965028a924447a0, type: 2}
   Health: 100
   Speed: 4

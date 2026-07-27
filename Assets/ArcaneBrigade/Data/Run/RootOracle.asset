@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RootOracle
   DisplayName: The Root Oracle
-  Body: {fileID: 846692243, guid: 5d374551bb405524897f97d4253485f9, type: 3}
+  Body: {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
   AnimationFrames:
-  - {fileID: 846692243, guid: 5d374551bb405524897f97d4253485f9, type: 3}
-  - {fileID: -1291838256, guid: 5d374551bb405524897f97d4253485f9, type: 3}
-  - {fileID: -75686805, guid: 5d374551bb405524897f97d4253485f9, type: 3}
-  - {fileID: 345926815, guid: 5d374551bb405524897f97d4253485f9, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 359991782d4a69940903f3d0d6ebcad4, type: 2}
+  - {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 242ff161ed0ac2d4d9c99fb62c6589f0, type: 2}
   Health: 145
   Speed: 3.1

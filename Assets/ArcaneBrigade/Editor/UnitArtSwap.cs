@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         {
             if (!AssetDatabase.IsValidFolder(Folder.TrimEnd('/'))) { Debug.Log("UNIT_ART_SWAP no folder"); return; }
             var all = new List<UnitDefinition>();
-            foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources/October" }))
+            foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources" }))
             { var u = AssetDatabase.LoadAssetAtPath<UnitDefinition>(AssetDatabase.GUIDToAssetPath(guid)); if (u != null && !string.IsNullOrEmpty(u.Id)) all.Add(u); }
             var acting = AssetDatabase.LoadAssetAtPath<CharacterActingLibrary>("Assets/ArcaneBrigade/Resources/CharacterActingLibrary.asset");
             var entries = acting == null ? new List<CharacterActingEntry>() : acting.Entries.ToList();

@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CometRunner
   DisplayName: The Comet Courier
-  Body: {fileID: 1185872940, guid: fab8335ae380d02418d7557613bd952c, type: 3}
+  Body: {fileID: 21300000, guid: 7921e80e9f1a86e4dbcfb92a32bf47f9, type: 3}
   AnimationFrames:
-  - {fileID: 1185872940, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-  - {fileID: -171682940, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-  - {fileID: 2036680448, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-  - {fileID: -1935658674, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ad785cd2777847f4f82ede0b689a9edc, type: 2}
+  - {fileID: 21300000, guid: 7921e80e9f1a86e4dbcfb92a32bf47f9, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 4138d0a4f34677f4f8ba4f30f795c6d1, type: 2}
   Health: 110
   Speed: 3.8

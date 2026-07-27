@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: EndlessIndex
   DisplayName: The Endless Index
-  Body: {fileID: 1432060746, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
+  Body: {fileID: 21300000, guid: 938ed874b25cd3f478218b111a8ab7f4, type: 3}
   AnimationFrames:
-  - {fileID: 1432060746, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  - {fileID: 1702040, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  - {fileID: 1199726340, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  - {fileID: 305725240, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 2f0175cc38f9b4a44ba606eb939fbda6, type: 2}
+  - {fileID: 21300000, guid: 938ed874b25cd3f478218b111a8ab7f4, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 0dd7d51a07a96624f9438c02e7ee4139, type: 2}
   Health: 100
   Speed: 4

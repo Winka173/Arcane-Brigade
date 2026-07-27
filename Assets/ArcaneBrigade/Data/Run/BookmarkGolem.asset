@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BookmarkGolem
   DisplayName: Bookmark Golem
-  Body: {fileID: -1816689956, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
+  Body: {fileID: 21300000, guid: d750efecbaea23640b3de720b493b6dd, type: 3}
   AnimationFrames:
-  - {fileID: -1816689956, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
-  - {fileID: -697148921, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
-  - {fileID: 907893055, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
-  - {fileID: 658929009, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: b3f26a7ea42d0194aba6aa9ee51d9613, type: 2}
+  - {fileID: 21300000, guid: d750efecbaea23640b3de720b493b6dd, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 842c8b3c2d1512940b012f06c97790fb, type: 2}
   Health: 100
   Speed: 4.2

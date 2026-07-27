@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: IronLocomotive
   DisplayName: Iron Locomotive
-  Body: {fileID: 608420082, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  Body: {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
   AnimationFrames:
-  - {fileID: 608420082, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  - {fileID: -1147157780, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  - {fileID: -1876162280, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  - {fileID: 1414962376, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 5f90c7da6b30b7c46ac1d38b0320731a, type: 2}
+  - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 2316220e7ed8b8c46934e1a30b91f538, type: 2}
   Health: 100
   Speed: 4
@@ -53,8 +50,8 @@ MonoBehaviour:
     their stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
     special reward, subject to hero theme and unlock wave.\r\nBonds: frost, resolve.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
+    unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Unstoppable" Paul'
   ExclusiveHero: 

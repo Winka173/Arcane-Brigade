@@ -22,9 +22,9 @@ namespace ArcaneBrigade.Editor
             if (!AssetDatabase.IsValidFolder(Folder.TrimEnd('/'))) { Debug.Log("ART_REDO no folder"); return; }
             var units = new Dictionary<string, UnitDefinition>(); var weapons = new Dictionary<string, WeaponDefinition>();
             var allUnits = new List<UnitDefinition>(); var allWeapons = new List<WeaponDefinition>();
-            foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources/October" }))
+            foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources" }))
             { var u = AssetDatabase.LoadAssetAtPath<UnitDefinition>(AssetDatabase.GUIDToAssetPath(guid)); if (u == null || string.IsNullOrEmpty(u.Id)) continue; allUnits.Add(u); if (!units.ContainsKey(u.Id)) units[u.Id] = u; }
-            foreach (string guid in AssetDatabase.FindAssets("t:WeaponDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources/October" }))
+            foreach (string guid in AssetDatabase.FindAssets("t:WeaponDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources" }))
             { var w = AssetDatabase.LoadAssetAtPath<WeaponDefinition>(AssetDatabase.GUIDToAssetPath(guid)); if (w == null || string.IsNullOrEmpty(w.Id)) continue; allWeapons.Add(w); if (!weapons.ContainsKey(w.Id)) weapons[w.Id] = w; }
             var actingLibrary = AssetDatabase.LoadAssetAtPath<CharacterActingLibrary>("Assets/ArcaneBrigade/Resources/CharacterActingLibrary.asset");
             var actingEntries = actingLibrary == null ? new List<CharacterActingEntry>() : actingLibrary.Entries.ToList();

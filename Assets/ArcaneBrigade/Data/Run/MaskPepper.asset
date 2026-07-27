@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MaskPepper
   DisplayName: Mask Pepper
-  Body: {fileID: -965578735, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  Body: {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
   AnimationFrames:
-  - {fileID: -965578735, guid: 41caa1c1b27715d47955758f92680071, type: 3}
-  - {fileID: -1182767963, guid: 41caa1c1b27715d47955758f92680071, type: 3}
-  - {fileID: -906399397, guid: 41caa1c1b27715d47955758f92680071, type: 3}
-  - {fileID: -1481352938, guid: 41caa1c1b27715d47955758f92680071, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: fab095e746b90804e99a8d1aff02c2c1, type: 2}
+  - {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 69dfbe399ffa9b2499b2be0eb7bf8c92, type: 2}
   Health: 100
   Speed: 4.3999996
