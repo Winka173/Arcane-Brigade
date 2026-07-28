@@ -17,9 +17,13 @@ namespace ArcaneBrigade.Editor
         private const string Folder = "Assets/ArcaneBrigade/Art/Playtest/Redo/";
 
         [MenuItem("Arcane Brigade/Art/Put repainted characters and weapons in")]
-        public static void Build()
+        public static void Build() { Build(Folder, null); }
+
+        /// <summary>Puts the sheets of <paramref name="folder"/> in; <paramref name="pixelsPerUnit"/> (by unit id) overrides the default 256 pixels per unit of a sheet.</summary>
+        public static void Build(string folder, IDictionary<string, float> pixelsPerUnit)
         {
-            if (!AssetDatabase.IsValidFolder(Folder.TrimEnd('/'))) { Debug.Log("ART_REDO no folder"); return; }
+            overrides = pixelsPerUnit;
+            if (!AssetDatabase.IsValidFolder(folder.TrimEnd('/'))) { Debug.Log("ART_REDO no folder"); return; }
             var units = new Dictionary<string, UnitDefinition>(); var weapons = new Dictionary<string, WeaponDefinition>();
             var allUnits = new List<UnitDefinition>(); var allWeapons = new List<WeaponDefinition>();
             foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources" }))
@@ -30,7 +34,7 @@ namespace ArcaneBrigade.Editor
             var actingEntries = actingLibrary == null ? new List<CharacterActingEntry>() : actingLibrary.Entries.ToList();
             var performance = AssetDatabase.LoadAssetAtPath<ExpandedPerformanceLibrary>("Assets/ArcaneBrigade/Resources/ExpandedPerformanceLibrary.asset");
             int characters = 0, arms = 0, actingSheets = 0;
-            foreach (string path in Directory.GetFiles(Folder, "*.png").Select(p => p.Replace('\\', '/')).OrderBy(p => p, System.StringComparer.Ordinal))
+            foreach (string path in Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/')).OrderBy(p => p, System.StringComparer.Ordinal))
             {
                 string name = Path.GetFileNameWithoutExtension(path);
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
@@ -165,11 +169,18 @@ namespace ArcaneBrigade.Editor
                 throw new System.Exception("Stale or missing sprite reference; expected " + path);
         }
 
+        private static IDictionary<string, float> overrides;
+        private static float PixelsPerUnit(string path)
+        {
+            string id = Path.GetFileNameWithoutExtension(path); if (id.EndsWith("_Acting", System.StringComparison.Ordinal)) id = id.Substring(0, id.Length - 7);
+            return overrides != null && overrides.TryGetValue(id, out float value) ? value : 256;
+        }
+
         private static TextureImporter Prepare(string path)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite; importer.alphaIsTransparency = true; importer.mipmapEnabled = false;
-            importer.spritePixelsPerUnit = 256; importer.npotScale = TextureImporterNPOTScale.None; importer.maxTextureSize = 2048;
+            importer.spritePixelsPerUnit = PixelsPerUnit(path); importer.npotScale = TextureImporterNPOTScale.None; importer.maxTextureSize = 2048;
             importer.filterMode = FilterMode.Bilinear; importer.wrapMode = TextureWrapMode.Clamp;
             importer.textureCompression = TextureImporterCompression.CompressedHQ; importer.compressionQuality = 80;
             return importer;
