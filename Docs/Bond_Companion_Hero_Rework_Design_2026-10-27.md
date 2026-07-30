@@ -307,3 +307,7 @@ Primary bond (first major) gives the body colour.
 - **Only Stone:** Bristle Ball [Horn], Monster Marble [Horn], Lamp Goat [Horn], Stitched Pangolin [Horn]
 - **Only Clockwork:** Tin Tick [Gear], Spring Duck [Gear], Dream Compass [Horn], Clockwork Piper [Gear]
 
+
+### 17b. Review fixes (28/10)
+- Swaps for fit: Iron Locomotive to Stone + Clockwork (a steam train, primary Clockwork) and Specimen Slime to Frost + Tide; Fossil Armadillo to Stone and Lamp Goat to Lantern (a goat carrying a lamp); Pear Moth to Garden + Venom and Paper Inventor to Archive.
+- Palettes: Stone granite grey with moss (not sand-ochre, which looked like Archive parchment), Dusk charcoal-black with violet glints (not plum, which looked like Court purple).
