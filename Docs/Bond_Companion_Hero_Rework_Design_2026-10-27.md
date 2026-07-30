@@ -244,3 +244,66 @@ Bars fill with time only (Shooter 6 s, Controller 9 s, Guard 10 s, Support 8 s).
 | Mask Pepper | 8 s | Spicy Face | switches mask: Angry (+15% attack speed to friends 5 s) or Cheer (+10% crit 5 s), then a fire ring lights nearby enemies | Ember: lit enemies feed Heat | none |
 
 Hearth object: **campfire** (art, one prop). Ember object: **coals** (code ink on the floor).
+
+## 17. Version C (28/10): 16 elemental majors, 96 companions, 36 heroes (supersedes sections 15 and 13)
+Owner changes: Hearth must buff stats (not only support); Brawl (wrestling) is replaced by an element; 4 more bonds; more heroes and companions; then rebalance.
+
+- **16 major bonds, 8 houses** (Brawl, Springstep and Patchwork are gone): Hearth + Ember, Frost + Tide, Storm + Windborne, **Garden + Venom**, **Starlight + Dusk**, **Carnival + Court**, Archive + Lantern, **Stone + Clockwork**. New: Venom (poison), Dusk (shadow), Stone (earth), Garden (plant) back, Clockwork (metal and time) back.
+- **16 minor bonds** (6 of 6, so 8 of 6 and 8 of 4), two per house: Sweet-tooth/Ball, Gauntlet/Sea-shanty, Paper-wings/Rain-script, Shoe/Root, Hat/Clover, Mask/Big-top, Rune/Exhibit-hall, Horn/Gear.
+- **96 companions** (12 per house: 4 shared, 4 + 4), **36 heroes** (the 8 coming-soon heroes join and the 4 cut heroes return: Verdant Matron, Petal Citadel and Thorn Treasurer anchor the Garden house, Patchwork Host the Dusk/Court side), **4 hero-only relics each = 144**.
+- **Hearth is a stat engine:** 2: +8% damage and +8% skill speed to the whole team; 4: each campfire gives +12% damage and +10% max health to the hero inside it, Warmth full = a Feast (+15% damage 8 s and a hero heal); 6: campfire radius doubles and the team also gains +10% attack speed; 8: the hearth kitchen: a permanent campfire at the hero, all Hearth stats doubled, a Feast every 10 s. Healing stays on the hero (companions are immortal).
+- **Bond colours (body palette):** Hearth apricot, Ember crimson, Frost ice blue, Tide teal, Storm slate + electric yellow, Windborne pearl + lilac, Garden leaf green + pink, Venom chartreuse + violet, Starlight indigo, Dusk charcoal + plum, Carnival magenta + cream, Court royal purple, Archive parchment brown, Lantern amber + olive, Stone sand-ochre + grey-brown, Clockwork gunmetal + brass.
+- **Uniqueness rule:** no two characters share a species or object (one snail, one owl, one cat, one frog...); 19 redesigns plus 12 new hero designs follow it.
+- **Balance plan:** every major bond gets a power budget (step 2 about 4%, 4 about 12%, 6 about 25%, 8 about 45% of a base build) tested with a simulation of the 8+6 / 6+6 / 8+4 team shapes over waves 1 to 20; Hearth stats and Venom damage-over-time are tuned against Ember and Storm; hero relic power tuned per hero direction; a nightly run of the simulation over all 16 x 16 pairs flags builds more than 20% above the median.
+
+### Roster by house (final)
+Primary bond (first major) gives the body colour.
+
+#### Hearth + Ember (minors: Sweet-tooth 6, Ball 4)
+
+- **Shared:** Candle Snail [Sweet-tooth], Coil Kettle, Saffron Mechanist, Tea Dragon
+- **Only Hearth:** Bread Crab [Sweet-tooth], Baker Mouse [Sweet-tooth], Sundae Golem [Sweet-tooth], Boba Tadpole [Sweet-tooth,Ball]
+- **Only Ember:** Teapot Pilgrim [Sweet-tooth], Mailbox Imp [Ball], Dice Crab [Ball], Mask Pepper [Ball]
+
+#### Frost + Tide (minors: Gauntlet 6, Sea-shanty 4)
+
+- **Shared:** Coral Teacup [Sea-shanty], Anchor Snail, Sail Squid [Gauntlet], Iron Locomotive
+- **Only Frost:** Snow Spoon [Gauntlet], Fridge Wisp [Gauntlet], The Impossible Tailor [Gauntlet], Shovel Penguin [Gauntlet]
+- **Only Tide:** Shell Postman [Sea-shanty], Balloon Mallet [Gauntlet], Shanty Sea Lion [Sea-shanty], Bottle Gull [Sea-shanty]
+
+#### Storm + Windborne (minors: Paper-wings 6, Rain-script 4)
+
+- **Shared:** Comet Kite [Paper-wings], Kite Dragon [Paper-wings], Static Ferret, Storm Kitten
+- **Only Storm:** Ribbon Otter [Rain-script], Rain Heron [Rain-script], Raincoat Frog [Rain-script], Volt Eel [Rain-script]
+- **Only Windborne:** Kettle Bat [Paper-wings], The Folded Courier [Paper-wings], Spindle Wren [Paper-wings], Paper Plane Pigeon [Paper-wings]
+
+#### Garden + Venom (minors: Shoe 6, Root 4)
+
+- **Shared:** Mushroom Librarian, Seed Hedgehog [Root], Paper Inventor, Watering Snail [Root]
+- **Only Garden:** Citrus Toad [Shoe], Grand Sprout [Root], Yo-yo Squirrel [Shoe], The First Seed [Root]
+- **Only Venom:** Sock Cyclops [Shoe], Mirror Newt [Shoe], Ribbon Spider [Shoe], Paper Devil [Shoe]
+
+#### Starlight + Dusk (minors: Hat 6, Clover 4)
+
+- **Shared:** Pillow Oracle, Eclipse Egg, Orbit Moth [Hat], The Sleeping Friend
+- **Only Starlight:** Moon Jelly [Hat], Star Sock [Clover], Bubble Koi [Clover], Little Sprout [Hat,Clover]
+- **Only Dusk:** Ice Cream Owl [Hat], The Forgotten Patchwork [Hat], Violet Remnant [Hat], Saddle Moth [Clover]
+
+#### Carnival + Court (minors: Mask 6, Big-top 4)
+
+- **Shared:** Jelly Swordsman, Brass Acorn [Mask], Button Beetle, Carousel Pony
+- **Only Carnival:** Radish Jester [Mask,Big-top], Crayon Gremlin [Big-top], Ringmaster Jack [Big-top], The Lost Carousel [Big-top]
+- **Only Court:** Return Captain [Mask], Dough Foreman [Mask], Velvet Enchantress [Mask], Court Herald [Mask]
+
+#### Archive + Lantern (minors: Rune 6, Exhibit-hall 4)
+
+- **Shared:** Thimble Moth, Reel Owl, Velvet Champion, Lens Owl [Rune]
+- **Only Archive:** Bookmark Golem [Rune,Exhibit-hall], Pear Moth [Rune], The Endless Index [Rune], Pinned Beetle [Exhibit-hall]
+- **Only Lantern:** Hood Wisp [Rune], Teacup Cricket [Exhibit-hall], Harbor Whale [Rune], Fossil Armadillo [Exhibit-hall]
+
+#### Stone + Clockwork (minors: Horn 6, Gear 4)
+
+- **Shared:** Staple Mole, The Last Bell, Top Beetle [Gear], Specimen Slime [Horn]
+- **Only Stone:** Bristle Ball [Horn], Monster Marble [Horn], Lamp Goat [Horn], Stitched Pangolin [Horn]
+- **Only Clockwork:** Tin Tick [Gear], Spring Duck [Gear], Dream Compass [Horn], Clockwork Piper [Gear]
+
