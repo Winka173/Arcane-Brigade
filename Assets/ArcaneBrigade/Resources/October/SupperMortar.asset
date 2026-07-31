@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SupperMortar
   DisplayName: Supper Mortar
-  Body: {fileID: -1569377356, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  Body: {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
   AnimationFrames:
-  - {fileID: -1569377356, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 1734318939, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 1813122247, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -306007852, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: c496937fb56caa94d8808e82c1197543, type: 2}
+  - {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
   Health: 75
   Speed: 4.5

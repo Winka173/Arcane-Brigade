@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ClockworkPiper
   DisplayName: Clockwork Piper
-  Body: {fileID: -1543454478, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  Body: {fileID: 21300000, guid: 689fe38473418a14294cd5eb78b8931e, type: 3}
   AnimationFrames:
-  - {fileID: -1543454478, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: -904527440, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: 960524914, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: -1805226658, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 4ebb950ed5154e04da14660340905645, type: 2}
+  - {fileID: 21300000, guid: 689fe38473418a14294cd5eb78b8931e, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 44e23b50769665f4cad5b5478d278116, type: 2}
   Health: 100
   Speed: 4

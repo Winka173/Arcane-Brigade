@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SpecimenSlime
   DisplayName: Specimen Slime
-  Body: {fileID: 1418844408, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  Body: {fileID: 21300000, guid: a12cf68ffe6e6794f8205452c9673f4a, type: 3}
   AnimationFrames:
-  - {fileID: 1418844408, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: 76589581, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -288870481, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -575121771, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: d68b6a57f0153d24694fe03556bded0d, type: 2}
+  - {fileID: 21300000, guid: a12cf68ffe6e6794f8205452c9673f4a, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 957aab8abe6c27d479bd65d13b675866, type: 2}
   Health: 100
   Speed: 4

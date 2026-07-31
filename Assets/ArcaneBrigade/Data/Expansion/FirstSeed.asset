@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: FirstSeed
   DisplayName: The First Seed
-  Body: {fileID: -1054698949, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
+  Body: {fileID: 21300000, guid: b865304654fb15d41aa65b2a33516530, type: 3}
   AnimationFrames:
-  - {fileID: -1054698949, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  - {fileID: 253160833, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  - {fileID: 1676530964, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  - {fileID: -2029388756, guid: 80a69bb508cbacf40a0424dbd50fff65, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ebe079058035f754a88f20ae4e62e5ac, type: 2}
+  - {fileID: 21300000, guid: b865304654fb15d41aa65b2a33516530, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 8e49518cf57ab504e950f5bca6d76c45, type: 2}
   Health: 100
   Speed: 4

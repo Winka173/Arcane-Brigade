@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: GrandSprout
   DisplayName: Grand Sprout
-  Body: {fileID: 623220464, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  Body: {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
   AnimationFrames:
-  - {fileID: 623220464, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
-  - {fileID: 732484277, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
-  - {fileID: 486211331, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
-  - {fileID: -1825282109, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 7cc04f0fdbaf2be4fb57c00e59b7d529, type: 2}
+  - {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

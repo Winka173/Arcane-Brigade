@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: KiteAdmiral
   DisplayName: Kite Admiral
-  Body: {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  Body: {fileID: 21300000, guid: 3d34ca748ba8f3240b7b64ba57f21830, type: 3}
   AnimationFrames:
-  - {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -129306102, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -426866675, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -305756245, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 4e91eb42b6a3cac48b0db5d6e10d934c, type: 2}
+  - {fileID: 21300000, guid: 3d34ca748ba8f3240b7b64ba57f21830, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: c8e00062d6460614a8b91500c5c77096, type: 2}
   Health: 80
   Speed: 4.5

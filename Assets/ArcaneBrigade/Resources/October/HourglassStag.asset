@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HourglassStag
   DisplayName: Hourglass Stag
-  Body: {fileID: -1810599672, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  Body: {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
   AnimationFrames:
-  - {fileID: -1810599672, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1451481879, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1182781427, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1960348592, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: c6990205a62574a45a7784ca15c36f96, type: 2}
+  - {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: bcabc075bfdc0ff449271494e19dea5e, type: 2}
   Health: 90
   Speed: 4.5

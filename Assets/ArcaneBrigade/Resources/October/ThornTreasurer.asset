@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ThornTreasurer
   DisplayName: Thorn Treasurer
-  Body: {fileID: -1060079577, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  Body: {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
   AnimationFrames:
-  - {fileID: -1060079577, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: 505706740, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: 522086982, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -10593826, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 9b53f44734a1e8d448ce467ac321ba54, type: 2}
+  - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: b649907fd99ce334fb19d7150c56fe38, type: 2}
   Health: 90
   Speed: 4.5
@@ -42,9 +39,9 @@ MonoBehaviour:
   - archive
   Passive: 0
   PassiveStrength: 0.8
-  Description: "Dream shops follow the shared 3-4-wave schedule. At wave start, maximum HP follows saved
-    gold (20\u2013400). Buying a spiked relic recruits a Bristle Ball. Team damage
-    -20%."
+  Description: "Dream shops follow the shared 3-4-wave schedule. At wave start, maximum
+    HP follows saved gold (20\u2013400). Buying a spiked relic recruits a Bristle
+    Ball. Team damage -20%."
   ReferenceHero: Periwinky
   ReferenceCompanion: 
   ExclusiveHero: 

@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StarSock
   DisplayName: Star Sock
-  Body: {fileID: -2118691660, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
+  Body: {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
   AnimationFrames:
-  - {fileID: -2118691660, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
-  - {fileID: -1625309273, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
-  - {fileID: 205357071, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
-  - {fileID: 1586187915, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 7da0654b8bb31a849adb0347add49836, type: 2}
+  - {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: b26b42583b43d0c4ba23a33460a7ca62, type: 2}
   Health: 100
   Speed: 4.3999996

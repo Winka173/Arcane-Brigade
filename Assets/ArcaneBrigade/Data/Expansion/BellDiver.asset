@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BellDiver
   DisplayName: Bell Diver
-  Body: {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  Body: {fileID: 21300000, guid: 4648d47e5f917b840bdc4006600ff4b0, type: 3}
   AnimationFrames:
-  - {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 1258514703, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 1365316754, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: -1712603620, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: a916734c8b2e21f4da16962ed057d76b, type: 2}
+  - {fileID: 21300000, guid: 4648d47e5f917b840bdc4006600ff4b0, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: af2231280b1e5a544946bb1bf280d5f8, type: 2}
   Health: 130
   Speed: 4.5
