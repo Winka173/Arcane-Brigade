@@ -13,20 +13,24 @@ MonoBehaviour:
   m_Name: AnchorSnailRedoMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -831240064, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: -1563477700, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: 494783042, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: 707158465, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: 1532607817, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
+  - {fileID: -1586722666, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
   Walk:
-  - {fileID: 2034785707, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: 1162101909, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: 2034785707, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: 1162101909, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: -217770136, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: 577573695, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
+  - {fileID: -1931141868, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: 1055633635, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
   Windup:
-  - {fileID: -1875142764, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: 1982479802, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: -270379124, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: 833196461, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: -1597496340, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
   Release:
-  - {fileID: -1886743585, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: -1886743585, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: -1145518858, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: -360919739, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
   Recovery:
-  - {fileID: 1131575082, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
-  - {fileID: -831240064, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
+  - {fileID: -998785228, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
+  - {fileID: -1348751489, guid: a79c0c9a7ed4d7044a24167dd89e87ec, type: 3}
+  - {fileID: 494783042, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
   IllustratedHeight: 0

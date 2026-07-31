@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BonsaiClocksmithRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -45523307, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: 1375279998, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -1832232564, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  - {fileID: -356256624, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  Walk:
+  - {fileID: -731744155, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -555406276, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  - {fileID: -1074048480, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -622501739, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  Windup:
+  - {fileID: 1157893473, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -1018203015, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -1826222380, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  Release:
+  - {fileID: 738304555, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -1543261373, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  Recovery:
+  - {fileID: -663782880, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  - {fileID: -792969744, guid: a3110ce279130ce4eba43da79db3dbfa, type: 3}
+  - {fileID: -45523307, guid: 6cb5f099530c18846b98076ebd066488, type: 3}
+  IllustratedHeight: 0

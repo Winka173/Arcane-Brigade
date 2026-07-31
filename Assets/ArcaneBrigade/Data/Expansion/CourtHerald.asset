@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CourtHerald
   DisplayName: Court Herald
-  Body: {fileID: 21300000, guid: b97f66c5c23270244b94a215191e75ed, type: 3}
+  Body: {fileID: -812048282, guid: 42540b043a61be14c9b570e684a71725, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: b97f66c5c23270244b94a215191e75ed, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -812048282, guid: 42540b043a61be14c9b570e684a71725, type: 3}
+  - {fileID: -685611060, guid: 42540b043a61be14c9b570e684a71725, type: 3}
+  - {fileID: 142316915, guid: 42540b043a61be14c9b570e684a71725, type: 3}
+  - {fileID: -1275756224, guid: 42540b043a61be14c9b570e684a71725, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 614b1f1cd1881bf489f266d04b5cd363, type: 2}
   Weapon: {fileID: 11400000, guid: e7379a1fb6cf83d42b03a082caef1783, type: 2}
   Health: 100
   Speed: 4

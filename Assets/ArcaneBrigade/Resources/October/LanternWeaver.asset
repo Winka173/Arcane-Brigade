@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LanternWeaver
   DisplayName: Lantern Weaver
-  Body: {fileID: 21300000, guid: 27cd6f39dc41d034fa08a469aa8c3226, type: 3}
+  Body: {fileID: -1258094445, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 27cd6f39dc41d034fa08a469aa8c3226, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1258094445, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
+  - {fileID: 845400430, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
+  - {fileID: 1842371193, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
+  - {fileID: -1906902736, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 45bf572916cd8c646b53b313c38e039f, type: 2}
   Weapon: {fileID: 11400000, guid: b786846ce06a5a84f9219410e266774f, type: 2}
   Health: 85
   Speed: 4.5

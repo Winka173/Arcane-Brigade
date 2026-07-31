@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: EclipseEgg
   DisplayName: Eclipse Egg
-  Body: {fileID: 21300000, guid: 2b287a7678868cb45a789dd70f909cf7, type: 3}
+  Body: {fileID: 1186418822, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 2b287a7678868cb45a789dd70f909cf7, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1186418822, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
+  - {fileID: -1033137339, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
+  - {fileID: -1386261360, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
+  - {fileID: 1774281813, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 317d90923e66dc4478440270ea3ba3de, type: 2}
   Weapon: {fileID: 11400000, guid: 8129ea8b110ee314ba2ab88b74d0d6d9, type: 2}
   Health: 100
   Speed: 4.2

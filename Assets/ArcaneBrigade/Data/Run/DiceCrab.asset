@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DiceCrab
   DisplayName: Dice Crab
-  Body: {fileID: 21300000, guid: a5a209c3d23f4654cb68f478337594fa, type: 3}
+  Body: {fileID: 1665540061, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: a5a209c3d23f4654cb68f478337594fa, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1665540061, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
+  - {fileID: 577889234, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
+  - {fileID: -205940619, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
+  - {fileID: -1761467553, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: b599cbc00315e4b4a8507e8f45be980d, type: 2}
   Weapon: {fileID: 11400000, guid: 842c8b3c2d1512940b012f06c97790fb, type: 2}
   Health: 100
   Speed: 4.2

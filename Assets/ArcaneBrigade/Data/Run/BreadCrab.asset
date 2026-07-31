@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BreadCrab
   DisplayName: Bread Crab
-  Body: {fileID: 21300000, guid: 6ff17d8436b72b54eb93d57f20b7c3de, type: 3}
+  Body: {fileID: -319893663, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 6ff17d8436b72b54eb93d57f20b7c3de, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -319893663, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
+  - {fileID: -2052258653, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
+  - {fileID: 1326263775, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
+  - {fileID: 1034715513, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 179703953122bb449963a8a0b60b17ca, type: 2}
   Weapon: {fileID: 11400000, guid: 87c0733b128c4494cbd5888830067d47, type: 2}
   Health: 100
   Speed: 4.3999996

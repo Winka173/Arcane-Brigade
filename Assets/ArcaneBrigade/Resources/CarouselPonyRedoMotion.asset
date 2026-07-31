@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CarouselPonyRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1610987287, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 4747937, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 2065245429, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  - {fileID: 1989489717, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  Walk:
+  - {fileID: -1287178816, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: -2078318245, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  - {fileID: 1124750905, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 1354195374, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  Windup:
+  - {fileID: 1699997936, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 1198272380, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: -1229888986, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  Release:
+  - {fileID: 1234999858, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: -824970816, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  Recovery:
+  - {fileID: -602130194, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 598687655, guid: fe1bd765db6708c4bb21af734ee9df7e, type: 3}
+  - {fileID: 1610987287, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  IllustratedHeight: 0

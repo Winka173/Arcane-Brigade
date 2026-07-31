@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BristleBall
   DisplayName: Bristle Ball
-  Body: {fileID: 21300000, guid: 2d1a5a9664040cc4dbc5101da956533e, type: 3}
+  Body: {fileID: -1420667005, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 2d1a5a9664040cc4dbc5101da956533e, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1420667005, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
+  - {fileID: -2100144856, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
+  - {fileID: 1947886593, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
+  - {fileID: -222983628, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: bdbd67d9a73af654ea30c605f62b8dc5, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

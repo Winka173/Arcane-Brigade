@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DoughForeman
   DisplayName: Dough Foreman
-  Body: {fileID: 21300000, guid: 6c519ea28e4449c4384f219301f13acc, type: 3}
+  Body: {fileID: 1031307619, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 6c519ea28e4449c4384f219301f13acc, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1031307619, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -230371869, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -1063110812, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -299744576, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f08056ebd358a55448f5232f59bb90a7, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
