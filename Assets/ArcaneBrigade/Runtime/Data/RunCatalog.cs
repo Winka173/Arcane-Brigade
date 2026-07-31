@@ -84,6 +84,15 @@ namespace ArcaneBrigade
         public float Value;
     }
 
+    /// <summary>One stat package of a stepped bond (steps 2, 4, 6, 8): every step reached adds its stat.</summary>
+    [System.Serializable]
+    public sealed class BondStep
+    {
+        public int Count;
+        public ItemEffect Effect;
+        public float Value;
+    }
+
     [System.Serializable]
     public sealed class BondDefinition
     {
@@ -95,6 +104,15 @@ namespace ArcaneBrigade
         public ItemEffect Effect;
         public float Value = 0.06f;
         public BondThresholdBonus[] ExtraBonuses = new BondThresholdBonus[0];
+        /// <summary>Stat packages on top of the primary Effect (bond rework 28/10/2026: Hearth gives damage, speed and health by step).</summary>
+        public BondStep[] Steps = new BondStep[0];
+
+        public float StepReward(ItemEffect effect, int count)
+        {
+            float sum = 0;
+            foreach (BondStep step in Steps ?? new BondStep[0]) if (step.Effect == effect && count >= step.Count) sum += step.Value;
+            return sum;
+        }
 
         public int ActiveLevel(int count) => Mathf.Max(0, count) / Mathf.Max(1, Threshold);
 

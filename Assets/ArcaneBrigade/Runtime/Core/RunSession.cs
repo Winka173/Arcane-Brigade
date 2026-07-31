@@ -301,6 +301,8 @@ namespace ArcaneBrigade
             }
             foreach (BondDefinition bond in catalog.Bonds)
                 if (bond.Effect == effect && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && BondCounts.TryGetValue(bond.Id, out int count)) value += bond.Reward(count);
+            foreach (BondDefinition bond in catalog.Bonds)
+                if (bond.Steps != null && bond.Steps.Length > 0 && RunModifierRules.Applies(RunModifierRules.DefaultScope(effect), target) && BondCounts.TryGetValue(bond.Id, out int stepCount)) value += bond.StepReward(effect, stepCount);
             value += SecretBonus(effect, target);
             value += OctoberBonus(effect, target);
             foreach (string id in State.AbsorbedSkills ?? new List<string>())
@@ -311,6 +313,8 @@ namespace ArcaneBrigade
             if (OctoberHero == "Wise" && target == ModifierScope.Champion && value > 0) value *= 1.25f;
             return value;
         }
+
+        private bool StepBond(string id) { BondDefinition bond = Array.Find(catalog.Bonds, b => b.Id == id); return bond != null && bond.Steps != null && bond.Steps.Length > 0; }
 
         private void RecountBonds()
         {
@@ -330,7 +334,7 @@ namespace ArcaneBrigade
                 foreach (RosterEntry entry in ActiveRoster)
                 {
                     UnitDefinition unit = catalog.Unit(entry.UnitId);
-                    if (Stranger(entry.UnitId) || unit.Rarity != ItemRarity.Rare || unit.Tags.Length < 2) continue;
+                    if (Stranger(entry.UnitId) || unit.Rarity != ItemRarity.Rare || unit.Tags.Length < 2 || StepBond(unit.Tags[1])) continue; // stepped bonds count each member once
                     BondDefinition bond = Array.Find(catalog.Bonds, b => b.Id == unit.Tags[1]);
                     if (bond != null && BondCounts.TryGetValue(bond.Id, out int members) && members >= bond.Threshold) BondCounts[bond.Id] = members + 1;
                 }
