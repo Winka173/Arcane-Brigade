@@ -239,7 +239,7 @@ Bars fill with time only (Shooter 6 s, Controller 9 s, Guard 10 s, Support 8 s).
 | Sundae Golem (Rainbow) | 9 s | Sprinkle Freeze | a scoop of freezing sprinkles, 2 s freeze in a circle | every 3rd cast drops a Cherry that heals the hero; personal trait: cherry also adds Warmth | cherry pickup (small art) |
 | Saffron Mechanist (Rare) | 10 s | Pressure Valve | taunts nearby enemies while pressure builds, then a steam blast pushes them back | Ember: the blast lights enemies | none |
 | Bread Crab | 10 s | Toast Shell | taunts for 3 s then a crumb pulse | Hearth: crumbs fill Warmth per enemy hit | none |
-| Mailbox Imp | 8 s | Hot Delivery | places a mailbox forge; the 3 nearest friends gain +20% damage for 6 s; a hot letter flies to the farthest enemy and explodes | Ember: the explosion leaves coals | mailbox forge (art) |
+| Mailbox Imp (now a flying envelope imp) | 8 s | Hot Delivery | throws sealed hot letters (its own wax seal and envelope): the 3 nearest friends gain +20% damage for 6 s and one letter explodes on the farthest enemy | Ember: the explosion leaves coals | none: the letter is a piece of its own body |
 | Dice Crab | 8 s | Loaded Roll | rolls a glowing die: 1 to 6 sets a fire pulse (N x base); a 6 rolls twice | Ember: a 6 adds +10 Heat | none |
 | Mask Pepper | 8 s | Spicy Face | switches mask: Angry (+15% attack speed to friends 5 s) or Cheer (+10% crit 5 s), then a fire ring lights nearby enemies | Ember: lit enemies feed Heat | none |
 
@@ -311,3 +311,6 @@ Primary bond (first major) gives the body colour.
 ### 17b. Review fixes (28/10)
 - Swaps for fit: Iron Locomotive to Stone + Clockwork (a steam train, primary Clockwork) and Specimen Slime to Frost + Tide; Fossil Armadillo to Stone and Lamp Goat to Lantern (a goat carrying a lamp); Pear Moth to Garden + Venom and Paper Inventor to Archive.
 - Palettes: Stone granite grey with moss (not sand-ochre, which looked like Archive parchment), Dusk charcoal-black with violet glints (not plum, which looked like Court purple).
+
+### 17c. Rule for every skill (28/10)
+A skill and the object it makes must come from the creature's own look (its shell, hat, satchel, seal, jar...), so the art is a piece of the creature and easy to paint. Effects stay code ink. When a skill table row names an object, the object is a recognisable part of that creature.
