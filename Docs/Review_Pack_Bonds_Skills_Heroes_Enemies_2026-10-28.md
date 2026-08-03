@@ -13,7 +13,7 @@ One file for review. Everything here is a DRAFT: numbers are placeholders for ba
 
 ## 1. Numbers and rules
 
-- 8 houses of 12 companions = 96 companions; each house is a twin pair of major bonds (4 companions in both, 4 + 4) and two minor bonds (6 and 4). A team of 10 companions plus the hero can reach `8+6+2+2+2`, `6+6+2+2+2` or `8+4+2+4+2`.
+- 8 houses of 12 companions = 96 companions; each house is a twin pair of major bonds (6 companions in both, 3 + 3) and two minor bonds (7 and 5 members). **A bond that needs 8 to reach its top step has 9 members, 6 needs 7, 4 needs 5 (one spare, so a build can choose).** A team of 10 companions plus the hero can reach `8+6+2+2+2`, `6+6+2+2+2` or `8+4+2+4+2`.
 - A companion has 1 to 3 bonds. A hero has 1 to 2 minor bonds (it counts as a member) and 2 to 4 build directions (a house each, or a house plus a neighbour), a pool of about 30 companions, 4 hero-only relics.
 - Body colour of a companion = its main bond (Hearth apricot, Ember crimson, Frost ice blue, Tide teal, Storm slate + yellow, Windborne pearl + lilac, Garden leaf green, Venom chartreuse, Starlight indigo, Dusk charcoal, Carnival magenta, Court purple, Archive parchment, Lantern amber, Stone granite, Clockwork gunmetal).
 
@@ -23,184 +23,184 @@ One file for review. Everything here is a DRAFT: numbers are placeholders for ba
 
 #### 1. Hearth (warmth and food (stat engine)) - house Hearth + Ember
 
-- **Object:** Campfire (art, one prop). **Counter:** Warmth: healing done and food eaten.
-- **2:** a campfire every 15 s; the hero standing in it regenerates; +4% damage per 2 members
-- **4:** Warmth full = a Feast: +15% damage for 8 s and a hero heal; +8% attack speed
-- **6:** campfire radius doubles; +15% max health
-- **8 (capstone):** the hearth kitchen: a permanent campfire at the hero, a Feast every 10 s, all Hearth stats double
-- **Stat package:** Damage 4% per 2; step 4 AttackSpeed 8%; step 6 Health 15%; step 8 Damage 10% and AttackSpeed 10%
-- **Members (8):** Candle Snail, Bread Crab, Coil Kettle, Saffron Mechanist, Baker Mouse, Tea Dragon, Sundae Golem, Boba Tadpole
+- **Mechanic types:** [Wave-start buff] + [Timed pulse]. **Counter:** Warmth: hero healing and food eaten.
+- **2:** [Wave-start buff] Hearty Meal: at the start of every wave all friends gain +12% damage and attack speed, fading over 20 s
+- **4:** [Timed pulse] Feast every 12 s: the team gets +15% attack speed for 6 s and the hero heals 5% max health
+- **6:** [Leech] Hearth friends' hits heal the hero for 1% of the damage they deal
+- **8 (capstone):** [Summon] the Kitchen: a Chef spirit joins each wave and throws pies at the densest cluster; Feast every 6 s; all Hearth stats double
+- **Stat package (the numbers part of each step):** Damage 4% per 2; step 4 AttackSpeed 8%; step 6 Health 15%; step 8 Damage 10% and AttackSpeed 10%
+- **Members (9):** Teapot Pilgrim, Candle Snail, Bread Crab, Coil Kettle, Saffron Mechanist, Baker Mouse, Tea Dragon, Sundae Golem, Boba Tadpole
 
 #### 2. Ember (fire) - house Hearth + Ember
 
-- **Object:** Coals (code ink on the floor). **Counter:** Heat: enemies burning.
-- **2:** hits set enemies alight
-- **4:** fire jumps to nearby enemies; coals stay and burn
-- **6:** coals ignite whoever crosses them; more burn damage
-- **8 (capstone):** wildfire: all fire spreads on its own and burn doubles; at 100 Heat an inferno triples burn for 5 s; a Void Egg of coals hatches a burning ally once a wave
-- **Stat package:** Damage 5% per 2; step 4 AttackSpeed 6%; step 6 Damage 10%; step 8 Crit 10%
-- **Members (8):** Teapot Pilgrim, Candle Snail, Mailbox Imp, Dice Crab, Mask Pepper, Coil Kettle, Saffron Mechanist, Tea Dragon
+- **Mechanic types:** [On-hit stacks] -> [Burst] -> [Summon]. **Counter:** Heat: enemies burning.
+- **2:** [On-hit stacks] every Ember hit applies Burn (stacks to 3, damage over time)
+- **4:** [Burst] at 3 Burn stacks an enemy bursts in a fire explosion (100% weapon damage in a small radius) and spreads 1 stack to each neighbour
+- **6:** [Death effect] enemies that die while burning leave Embers that ignite whoever crosses them for 4 s
+- **8 (capstone):** [Summon] a Phoenix hatches once a wave and fights for 15 s; at 100 Heat an Inferno triples all burn for 5 s
+- **Stat package (the numbers part of each step):** Damage 5% per 2; step 4 AttackSpeed 6%; step 6 Damage 10%; step 8 Crit 10%
+- **Members (9):** Teapot Pilgrim, Candle Snail, Mailbox Imp, Dice Crab, Mask Pepper, Coil Kettle, Saffron Mechanist, Baker Mouse, Tea Dragon
 
 #### 3. Frost (ice) - house Frost + Tide
 
-- **Object:** Ice patch. **Counter:** Chill: enemies slowed.
-- **2:** slowed enemies take +8%
-- **4:** frozen enemies shatter for area damage; the first enemies to fall each wave rise as ice soldiers
-- **6:** a blizzard zone follows the hero; a cold storm after 20 s
-- **8 (capstone):** permanent winter: the whole arena chills enemies
-- **Stat package:** Damage 3% per 2; step 4 Armor 2; step 6 Health 12%; step 8 Damage 15%
-- **Members (8):** Snow Spoon, Fridge Wisp, Coral Teacup, Anchor Snail, Sail Squid, The Impossible Tailor, Shovel Penguin, Specimen Slime
+- **Mechanic types:** [Stacking slow] -> [Freeze] -> [Summon]. **Counter:** Chill: enemies slowed.
+- **2:** [Stacking slow] every Frost hit adds a Chill stack (-6% speed each, up to 5)
+- **4:** [Freeze] at 5 stacks an enemy freezes for 1.5 s; frozen enemies take +25% from the next hit and shatter in an area burst when they die
+- **6:** [Summon] the first enemies to die each wave rise as Ice Soldiers (allies for 12 s)
+- **8 (capstone):** [Wave-start debuff] permanent winter: every enemy starts each wave with 2 Chill stacks, and a blizzard sweeps every 20 s
+- **Stat package (the numbers part of each step):** Damage 3% per 2; step 4 Armor 2; step 6 Health 12%; step 8 Damage 15%
+- **Members (9):** Snow Spoon, Fridge Wisp, Shell Postman, Coral Teacup, Anchor Snail, Sail Squid, The Impossible Tailor, Shovel Penguin, Specimen Slime
 
 #### 4. Tide (water and weather) - house Frost + Tide
 
-- **Object:** Puddles. **Counter:** Soak: enemies wet.
-- **2:** puddles soak enemies; weather changes every 20 s (rain, sun, wind, fog) and each friend likes one weather
-- **4:** soaked enemies take +10% from every source and slow
-- **6:** a tide wave sweeps the screen every 12 s
-- **8 (capstone):** flood: soak never wears off while the wave runs
-- **Stat package:** AttackRange 4% per 2; step 4 Pickup 10%; step 6 Damage 8%; step 8 Income 2
-- **Members (8):** Shell Postman, Coral Teacup, Anchor Snail, Sail Squid, Balloon Mallet, Shanty Sea Lion, Bottle Gull, Specimen Slime
+- **Mechanic types:** [Every Nth hit] -> [Cycle] -> [Summon]. **Counter:** Soak: enemies wet.
+- **2:** [Every Nth hit] every 5th Tide hit splashes: enemies in the splash are Soaked and take +8% from all sources
+- **4:** [Timed pulse] Riptide every 10 s: a wave shoves all enemies back and soaks them
+- **6:** [Weather cycle] the weather changes every 20 s (rain, sun, wind, fog): each friend likes one weather and gets +15% in it, Tide friends get +25%
+- **8 (capstone):** [Summon] the Leviathan: a tide spirit surfaces once a wave and sweeps the screen
+- **Stat package (the numbers part of each step):** AttackRange 4% per 2; step 4 Pickup 10%; step 6 Damage 8%; step 8 Income 2
+- **Members (9):** Snow Spoon, Shell Postman, Coral Teacup, Anchor Snail, Sail Squid, Balloon Mallet, Shanty Sea Lion, Bottle Gull, Specimen Slime
 
 #### 5. Storm (lightning) - house Storm + Windborne
 
-- **Object:** Charged rod. **Counter:** Charge: hits landed.
-- **2:** every 6th hit chains lightning; luck rises as health falls
-- **4:** rods link and arc between them
-- **6:** thunderclap: stuns all charged enemies; after N waves a friend takes a storm form
-- **8 (capstone):** a permanent storm cloud follows the hero and strikes the most charged cluster every 2 s
-- **Stat package:** CompanionAttackSpeed 5% per 2; step 4 Crit 5%; step 6 ChainChance 5%; step 8 Damage 12%
-- **Members (8):** Comet Kite, Ribbon Otter, Rain Heron, Raincoat Frog, Kite Dragon, Static Ferret, Storm Kitten, Volt Eel
+- **Mechanic types:** [Every Nth hit chain] -> [Charge] -> [Low health]. **Counter:** Charge: hits landed.
+- **2:** [Every Nth hit] every 6th Storm hit chains lightning to 3 enemies (60% weapon damage)
+- **4:** [Stacking charge] every hit adds Charge to an enemy; at 5 Charge it discharges to everything near it for 50% weapon damage
+- **6:** [Low health] Underdog: while the hero is below 50% health, crit and luck rise by 15%; after 20 hits in a row a thunderclap stuns the nearest cluster
+- **8 (capstone):** [Aura] a permanent storm cloud follows the hero and strikes the most charged cluster every 2 s
+- **Stat package (the numbers part of each step):** CompanionAttackSpeed 5% per 2; step 4 Crit 5%; step 6 ChainChance 5%; step 8 Damage 12%
+- **Members (9):** Kettle Bat, Comet Kite, Ribbon Otter, Rain Heron, Raincoat Frog, Kite Dragon, Static Ferret, Storm Kitten, Volt Eel
 
 #### 6. Windborne (wind) - house Storm + Windborne
 
-- **Object:** Wind lane. **Counter:** Volleys: shots fired.
-- **2:** shots through a lane fly farther
-- **4:** every 10th volley pierces everything
-- **6:** a Wind Beast joins (rider: drag a friend onto it to choose how it fights); a gale lane pushes enemies back
-- **8 (capstone):** gale: every volley pushes all enemies back and pierces
-- **Stat package:** BulletSpeed 6% per 2; step 4 AttackRange 8%; step 6 BulletPierce 1; step 8 Damage 10%
-- **Members (8):** Kettle Bat, Comet Kite, The Folded Courier, Spindle Wren, Paper Plane Pigeon, Kite Dragon, Static Ferret, Storm Kitten
+- **Mechanic types:** [Movement] -> [Volley counter] -> [Summon]. **Counter:** Volleys: shots fired.
+- **2:** [Movement] Tailwind: moving builds Momentum, +1% damage per second moving (up to 10%, lost when you stop for 2 s)
+- **4:** [Every Nth volley] every 10th volley pierces everything in its path
+- **6:** [Summon] a Wind Beast joins: drag a friend onto it to choose how it fights (guard, shoot or sweep)
+- **8 (capstone):** [Timed pulse] Gale every 8 s: a gust pushes enemies back and speeds all friends +20% for 4 s
+- **Stat package (the numbers part of each step):** BulletSpeed 6% per 2; step 4 AttackRange 8%; step 6 BulletPierce 1; step 8 Damage 10%
+- **Members (9):** Kettle Bat, Comet Kite, The Folded Courier, Ribbon Otter, Spindle Wren, Paper Plane Pigeon, Kite Dragon, Static Ferret, Storm Kitten
 
 #### 7. Garden (plants) - house Garden + Venom
 
-- **Object:** Seed pod (grows each wave). **Counter:** Growth: waves survived.
-- **2:** a pod each wave; friends grow while standing in the garden
-- **4:** pods flower into gold, healing or thorns; front plants root enemies, back plants shoot
-- **6:** the oldest tree becomes a Guardian that fights
-- **8 (capstone):** the Great Tree: pods fruit every 5 s
-- **Stat package:** Health 6% per 2; step 4 HeartHealing 10%; step 6 Income 1; step 8 Health 15% and Damage 8%
-- **Members (8):** Pear Moth, Mushroom Librarian, Citrus Toad, Seed Hedgehog, Grand Sprout, Watering Snail, Yo-yo Squirrel, The First Seed
+- **Mechanic types:** [Permanent growth] -> [Summon plants]. **Counter:** Growth: waves survived.
+- **2:** [Permanent growth] every wave survived, each friend gains +2% health and damage for the rest of the run
+- **4:** [Summon] seed pods sprout into allied Sprouts (up to 4) that shoot enemies; front Sprouts root enemies
+- **6:** [Summon] the oldest Sprout grows into a Treant Guardian that taunts and fights
+- **8 (capstone):** [Economy] the Great Tree fruits every wave: choose gold, a hero heal or +damage
+- **Stat package (the numbers part of each step):** Health 6% per 2; step 4 HeartHealing 10%; step 6 Income 1; step 8 Health 15% and Damage 8%
+- **Members (9):** Pear Moth, Mushroom Librarian, Citrus Toad, Seed Hedgehog, Grand Sprout, Paper Devil, Watering Snail, Yo-yo Squirrel, The First Seed
 
 #### 8. Venom (poison) - house Garden + Venom
 
-- **Object:** Poison puddle and spore cloud. **Counter:** Toxin: stacks on enemies.
-- **2:** hits apply poison that stacks to 5
-- **4:** poisoned enemies spread poison when they fall
-- **6:** a spore cloud bursts where a poisoned enemy falls
-- **8 (capstone):** plague: poison doubles and spreads on its own
-- **Stat package:** Damage 4% per 2; step 4 CollisionDamage 2; step 6 Crit 6%; step 8 Damage 14%
-- **Members (8):** Pear Moth, Mushroom Librarian, Seed Hedgehog, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Watering Snail
+- **Mechanic types:** [Stacking DoT] -> [Death spread] -> [Rot]. **Counter:** Toxin: stacks on enemies.
+- **2:** [Stacking DoT] every Venom hit applies Poison (stacks to 5, damage over time)
+- **4:** [Death effect] poisoned enemies spread their stacks to neighbours when they die
+- **6:** [Percent health] at 8+ stacks the enemy Rots: it loses 3% of its max health per second (strong against bosses)
+- **8 (capstone):** [Aura] plague: poison keeps spreading between nearby enemies on its own and slows them 20%
+- **Stat package (the numbers part of each step):** Damage 4% per 2; step 4 CollisionDamage 2; step 6 Crit 6%; step 8 Damage 14%
+- **Members (9):** Pear Moth, Mushroom Librarian, Citrus Toad, Seed Hedgehog, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Watering Snail
 
 #### 9. Starlight (stars and luck) - house Starlight + Dusk
 
-- **Object:** Falling-star patch. **Counter:** Wishes: critical hits.
-- **2:** pick a constellation per run (it decides which floor patches glow); a star falls where the hero last crit
-- **4:** wishes buy a free reroll at the next shop; pick a mode (Conduit, Challenger or Replicator)
-- **6:** a comet shower every 15 s
-- **8 (capstone):** the constellation completes: its blessing doubles and a comet falls on each crit
-- **Stat package:** Crit 4% per 2; step 4 Luck 5%; step 6 Damage 8%; step 8 Crit 10%
-- **Members (8):** Pillow Oracle, Moon Jelly, Star Sock, Eclipse Egg, Orbit Moth, Bubble Koi, The Sleeping Friend, Little Sprout
+- **Mechanic types:** [Crit trigger] -> [Economy] -> [Choice]. **Counter:** Wishes: critical hits.
+- **2:** [Crit trigger] every crit has a chance to call a falling star onto a cluster
+- **4:** [Economy] every 5 crits buy a free reroll at the next shop
+- **6:** [Choice] pick a constellation per run: each changes the bonus (Archer: range, Bear: health, Twins: companion damage)
+- **8 (capstone):** [Transform] Starfall: a comet falls on every crit, and once a wave all friends take a Celestial form for 8 s
+- **Stat package (the numbers part of each step):** Crit 4% per 2; step 4 Luck 5%; step 6 Damage 8%; step 8 Crit 10%
+- **Members (9):** Pillow Oracle, Ice Cream Owl, Moon Jelly, Star Sock, Eclipse Egg, Orbit Moth, Bubble Koi, The Sleeping Friend, Little Sprout
 
 #### 10. Dusk (shadow) - house Starlight + Dusk
 
-- **Object:** Shadow patch. **Counter:** Dusk: enemies defeated in shadow.
-- **2:** at the wave start the first 10 enemies hit are marked: each loses 12% strength and gives it to your best friend
-- **4:** enemies defeated in shadow rise as allied shades
-- **6:** shadow patches drift with the hero; friends inside gain crit
-- **8 (capstone):** eclipse: after 8 s the weakest 5% of enemies fall every 3.5 s
-- **Stat package:** Damage 4% per 2; step 4 CompanionDamage 6%; step 6 ChampionDamage 8%; step 8 Damage 12%
-- **Members (8):** Pillow Oracle, Ice Cream Owl, Eclipse Egg, Orbit Moth, The Forgotten Patchwork, The Sleeping Friend, Violet Remnant, Saddle Moth
+- **Mechanic types:** [Mark] -> [Summon] -> [Execute]. **Counter:** Dusk: enemies defeated under a mark.
+- **2:** [Mark] at the wave start the first 10 enemies hit are marked: each loses 12% strength and gives it to your best friend
+- **4:** [Summon] marked enemies that die rise as allied Shades
+- **6:** [Execute] marked enemies below 12% health die at once
+- **8 (capstone):** [Timed] eclipse: after 8 s the weakest 5% of enemies fall every 3.5 s
+- **Stat package (the numbers part of each step):** Damage 4% per 2; step 4 CompanionDamage 6%; step 6 ChampionDamage 8%; step 8 Damage 12%
+- **Members (9):** Pillow Oracle, Ice Cream Owl, Moon Jelly, Eclipse Egg, Orbit Moth, The Forgotten Patchwork, The Sleeping Friend, Violet Remnant, Saddle Moth
 
 #### 11. Carnival (circus and chance) - house Carnival + Court
 
-- **Object:** Prize wheel. **Counter:** Applause: different skills cast within 5 s.
-- **2:** a wheel appears: stepping on it gives a random buff; a moving spotlight gives a bonus to whoever stands in it
-- **4:** applause fills it: jackpot; every 3 waves cash out gem power or Double Down
-- **6:** the wheel stays and spins on its own
-- **8 (capstone):** the wheel lands on jackpot once a wave
-- **Stat package:** Luck 5% per 2; step 4 Income 1; step 6 Discount 4%; step 8 Damage 10%
-- **Members (8):** Jelly Swordsman, Brass Acorn, Button Beetle, Radish Jester, Crayon Gremlin, Carousel Pony, Ringmaster Jack, The Lost Carousel
+- **Mechanic types:** [Random] -> [Economy] -> [Choice]. **Counter:** Applause: different skills cast within 5 s.
+- **2:** [Random] every 5th hit rolls a die: damage burst, coin, slow, speed, crit or nothing
+- **4:** [Economy] applause fills a jackpot: coins and a buff when it is full
+- **6:** [Choice] every 3 waves cash out the jackpot or Double Down
+- **8 (capstone):** [Transform] Grand Finale: once a wave all friends cast their skills together
+- **Stat package (the numbers part of each step):** Luck 5% per 2; step 4 Income 1; step 6 Discount 4%; step 8 Damage 10%
+- **Members (9):** Jelly Swordsman, Brass Acorn, Button Beetle, Radish Jester, Crayon Gremlin, Return Captain, Carousel Pony, Ringmaster Jack, The Lost Carousel
 
 #### 12. Court (royalty and law) - house Carnival + Court
 
-- **Object:** Royal banner. **Counter:** Rank: stars of the best friend.
-- **2:** banner: friends inside get +10% damage
-- **4:** the best-star friend is crowned (an extra skill)
-- **6:** decree: write one law for the run (a cause and an effect; more steps unlock more causes)
-- **8 (capstone):** coronation: two laws
-- **Stat package:** CompanionDamage 5% per 2; step 4 Discount 3%; step 6 RecruitDiscount 5%; step 8 Damage 10%
-- **Members (8):** Jelly Swordsman, Brass Acorn, Button Beetle, Return Captain, Dough Foreman, Velvet Enchantress, Carousel Pony, Court Herald
+- **Mechanic types:** [Choice] -> [Transform] -> [Rule]. **Counter:** Rank: stars of the best friend.
+- **2:** [Choice] at each wave start choose 1 of 3 small edicts for that wave
+- **4:** [Transform] the best-star friend is crowned and gains an extra skill
+- **6:** [Rule] decree: write one law for the run (a cause and an effect; more steps unlock more causes)
+- **8 (capstone):** [Rule] coronation: two laws
+- **Stat package (the numbers part of each step):** CompanionDamage 5% per 2; step 4 Discount 3%; step 6 RecruitDiscount 5%; step 8 Damage 10%
+- **Members (9):** Jelly Swordsman, Brass Acorn, Button Beetle, Radish Jester, Return Captain, Dough Foreman, Velvet Enchantress, Carousel Pony, Court Herald
 
 #### 13. Archive (knowledge) - house Archive + Lantern
 
-- **Object:** Pinned note on a species. **Counter:** Records: species recorded.
-- **2:** the first hit marks a species: +12% damage to it; each run one random recorded-bonus family (damage, coin or page copy)
-- **4:** each new species recorded: +1% damage for the run
-- **6:** recorded species pay a coin and drop a Page (a copy of a skill)
-- **8 (capstone):** complete set: every recorded species is permanently weakened 15%
-- **Stat package:** Damage 3% per 2; step 4 Crit 4%; step 6 Luck 5%; step 8 Damage 10%
-- **Members (8):** Bookmark Golem, Thimble Moth, Reel Owl, Velvet Champion, Lens Owl, The Endless Index, Pinned Beetle, Paper Inventor
+- **Mechanic types:** [Mark] -> [Permanent growth] -> [Copy]. **Counter:** Records: species recorded.
+- **2:** [Mark] the first hit marks a species: +12% damage to it; each run one random recorded-bonus family (damage, coin or page copy)
+- **4:** [Permanent growth] each new species recorded gives +1% damage for the run
+- **6:** [Copy] recorded species drop a Page: a copy of a skill, usable once
+- **8 (capstone):** [Debuff] complete set: every recorded species is permanently weakened 15%
+- **Stat package (the numbers part of each step):** Damage 3% per 2; step 4 Crit 4%; step 6 Luck 5%; step 8 Damage 10%
+- **Members (9):** Hood Wisp, Bookmark Golem, Thimble Moth, Reel Owl, Velvet Champion, Lens Owl, The Endless Index, Pinned Beetle, Paper Inventor
 
 #### 14. Lantern (lamplight) - house Archive + Lantern
 
-- **Object:** Lamp. **Counter:** Light: enemies in lamplight.
-- **2:** lamps light a zone: +attack range
-- **4:** enemies in the light take more damage
-- **6:** lamps follow the hero; friends in light fill skill bars 15% faster
-- **8 (capstone):** a lighthouse: one huge lamp lights the arena, enemies in light take +25%
-- **Stat package:** AttackRange 5% per 2; step 4 Damage 5%; step 6 ChampionDamage 8%; step 8 Crit 8%
-- **Members (8):** Hood Wisp, Thimble Moth, Reel Owl, Velvet Champion, Teacup Cricket, Lens Owl, Harbor Whale, Lamp Goat
+- **Mechanic types:** [Stillness] -> [Aura] -> [Summon]. **Counter:** Light: enemies in lamplight.
+- **2:** [Stillness] Steady Flame: standing still for 2 s gives +15% range and damage until you move
+- **4:** [Aura] enemies within 6 units of the hero are Lit and take +8% damage
+- **6:** [Summon] lamp wisps orbit the hero and shoot beams
+- **8 (capstone):** [Aura] a lighthouse: one huge lamp lights the arena; enemies in light take +25%
+- **Stat package (the numbers part of each step):** AttackRange 5% per 2; step 4 Damage 5%; step 6 ChampionDamage 8%; step 8 Crit 8%
+- **Members (9):** Hood Wisp, Bookmark Golem, Thimble Moth, Reel Owl, Velvet Champion, Teacup Cricket, Lens Owl, Harbor Whale, Lamp Goat
 
 #### 15. Stone (earth) - house Stone + Clockwork
 
-- **Object:** Standing stone. **Counter:** Weight: enemies knocked back.
-- **2:** knocked-back enemies take +10%
-- **4:** a standing stone rises each wave and blocks enemy bullets
-- **6:** an earthquake every 12 s
-- **8 (capstone):** the Colossus: a stone golem ally fights for the wave
-- **Stat package:** Health 6% per 2; step 4 Knockback 10%; step 6 Armor 2; step 8 Damage 12%
-- **Members (8):** Iron Locomotive, Fossil Armadillo, Staple Mole, The Last Bell, Bristle Ball, Monster Marble, Top Beetle, Stitched Pangolin
+- **Mechanic types:** [Reflect] -> [Collision] -> [Summon]. **Counter:** Weight: enemies knocked back.
+- **2:** [Reflect] Thorn Skin: enemies that touch the hero take 30% of their own attack back
+- **4:** [Collision] knocked-back enemies that hit others deal 100% weapon damage to them (collision chain)
+- **6:** [Timed pulse] an earthquake every 12 s: enemies near the hero are stunned 0.5 s
+- **8 (capstone):** [Summon] the Colossus: a stone golem ally fights for the wave
+- **Stat package (the numbers part of each step):** Health 6% per 2; step 4 Knockback 10%; step 6 Armor 2; step 8 Damage 12%
+- **Members (9):** Iron Locomotive, Fossil Armadillo, Tin Tick, Staple Mole, The Last Bell, Bristle Ball, Monster Marble, Top Beetle, Stitched Pangolin
 
 #### 16. Clockwork (metal and time) - house Stone + Clockwork
 
-- **Object:** Gear turret. **Counter:** Ticks: skills cast.
-- **2:** skill bars fill 20% faster
-- **4:** every 8 casts a turret rises (it accepts relics as upgrade slots)
-- **6:** every skill of the bond fires a second time, weaker; 1.5 s time stop every 20 s
-- **8 (capstone):** overclock: all skill bars fill twice as fast for 10 s after each time stop
-- **Stat package:** CompanionAttackSpeed 5% per 2; step 4 AttackSpeed 5%; step 6 MoveSpeed 8%; step 8 AttackSpeed 10%
-- **Members (8):** Iron Locomotive, Tin Tick, Spring Duck, Staple Mole, Dream Compass, The Last Bell, Clockwork Piper, Top Beetle
+- **Mechanic types:** [Time] -> [Echo] -> [Summon]. **Counter:** Ticks: skills cast.
+- **2:** [Time] skill bars fill 20% faster
+- **4:** [Echo] every 8th cast all skills of the bond fire twice (the second at half strength)
+- **6:** [Time] time stop: 1.5 s every 20 s (enemies freeze, friends keep acting)
+- **8 (capstone):** [Summon] overclock turrets: a gear turret per 8 casts (up to 3, they accept relics as upgrade slots); skill bars fill twice as fast for 10 s after each time stop
+- **Stat package (the numbers part of each step):** CompanionAttackSpeed 5% per 2; step 4 AttackSpeed 5%; step 6 MoveSpeed 8%; step 8 AttackSpeed 10%
+- **Members (9):** Iron Locomotive, Fossil Armadillo, Tin Tick, Spring Duck, Staple Mole, Dream Compass, The Last Bell, Clockwork Piper, Top Beetle
 
-### 2b. Sixteen minor bonds (steps 2 / 4, and 6 for the six-companion ones)
+### 2b. Sixteen minor bonds (steps 2 / 4, and 6 for the seven-companion ones; five or seven members)
 
 | Bond | Companions | Effect | House |
 |---|---|---|---|
-| Sweet Tooth | 0:  | +1 coin per 2 members (a food drops a Snack) | Hearth + Ember |
-| Bouncing Ball | 0:  | projectiles bounce +1 per 2 members | Hearth + Ember |
-| Gauntlet | 0:  | +6% melee damage per 2 | Frost + Tide |
-| Sea Shanty | 0:  | +5% companion attack speed per 2 (rhythm) | Frost + Tide |
-| Paper Wings | 0:  | +8% bullet distance per 2 | Storm + Windborne |
-| Rain Script | 0:  | -3% shop prices per 2 | Storm + Windborne |
-| Quicksoles | 0:  | +6% move speed per 2 | Garden + Venom |
-| Root | 0:  | +5% max health per 2 | Garden + Venom |
-| Hats | 0:  | -4% recruit prices per 2 | Starlight + Dusk |
-| Clover | 0:  | +6% luck per 2 | Starlight + Dusk |
-| Masks | 0:  | +4% crit per 2 | Carnival + Court |
-| Big Top | 0:  | +3% damage per 2 (combo) | Carnival + Court |
-| Runes | 0:  | +5% crit per 2 | Archive + Lantern |
-| Exhibit Hall | 0:  | +6% max health per 2 | Archive + Lantern |
-| Horns | 0:  | +10% knockback per 2 | Stone + Clockwork |
-| Gears | 0:  | +4% attack speed per 2 | Stone + Clockwork |
+| Sweet Tooth | 0:  | [Drop] every 15 kills a Snack drops and heals the hero 3% (4: every 10 kills; 6: also +1 coin) | Hearth + Ember |
+| Bouncing Ball | 0:  | [Projectile] shots bounce once (4: twice, each bounce keeps 70% damage) | Hearth + Ember |
+| Gauntlet | 0:  | [Stacking] melee hits stack Grit: +2% damage each up to +10% (resets after 4 s idle; 4: up to 20%; 6: stacks never reset in a wave) | Frost + Tide |
+| Sea Shanty | 0:  | [Every Nth hit] every 4th attack by any friend gives all friends +3% attack speed for 4 s (4: every 3rd) | Frost + Tide |
+| Paper Wings | 0:  | [Projectile] shots curve in a gentle spiral (+10% distance; 4: they return like a boomerang; 6: twice) | Storm + Windborne |
+| Rain Script | 0:  | [Economy] every reroll gives +0.5% permanent damage (4: +1%) | Storm + Windborne |
+| Quicksoles | 0:  | [Movement] +6% move speed and a short dash every 8 s (4: every 6 s; 6: the dash leaves a shock wave) | Garden + Venom |
+| Root | 0:  | [Stillness] standing still for 2 s: +20% health regeneration and +2 armor (4: +40% and +4) | Garden + Venom |
+| Hats | 0:  | [Economy] the first recruit each shop is 25% cheaper (4: 40%; 6: free once a run) | Starlight + Dusk |
+| Clover | 0:  | [Random] every 20 kills a lucky Clover drops: a free reroll (4: every 12 kills) | Starlight + Dusk |
+| Masks | 0:  | [Crit] +4% crit; every 5th crit deals double damage (4: every 4th; 6: every 3rd) | Carnival + Court |
+| Big Top | 0:  | [Combo] hitting different enemies in a row builds a combo: +1% damage per link up to +10% (4: +20%) | Carnival + Court |
+| Runes | 0:  | [Every Nth hit] every 10th hit casts a rune strike for 80% weapon damage in a ring (4: every 8th; 6: every 6th) | Archive + Lantern |
+| Exhibit Hall | 0:  | [Survival] +6% max health; once per run the hero survives a fatal hit with 1 HP (4: also heals 20%) | Archive + Lantern |
+| Horns | 0:  | [Every Nth hit] every 10th hit shoves enemies back and stuns them 0.3 s (4: every 8th; 6: every 6th) | Stone + Clockwork |
+| Gears | 0:  | [Every Nth hit] every 6th hit fires a bonus shot (4: every 4th) | Stone + Clockwork |
 
 ## 3. Personal traits (12)
 
@@ -227,15 +227,15 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Teapot Pilgrim | Common Shooter | Ember, Sweet-tooth | 6 s | **Steep** (Zone) | throws its teapot head: a steam pool for 4 s heals the hero and burns enemies in it. Bond tie: pool fills Warmth; leaves coals (Ember) | its teapot head |
+| Teapot Pilgrim | Common Shooter | Ember, Hearth, Sweet-tooth | 6 s | **Steep** (Zone) | throws its teapot head: a steam pool for 4 s heals the hero and burns enemies in it. Bond tie: pool fills Warmth; leaves coals (Ember) | its teapot head |
 | Candle Snail | Uncommon Controller | Hearth, Ember, Sweet-tooth | 9 s | **Wax Mine** (Trap or mine) | drips wax puddles that stick and ignite when an enemy steps on them. Bond tie: burning enemies add Heat | its candle-cake shell |
-| Mailbox Imp | Common Support | Ember, Ball | 8 s | **Hot Delivery** (Team buff) | throws sealed hot letters: the 3 nearest friends +20% damage for 6 s, one letter explodes on the farthest enemy. Bond tie: explosion leaves coals | its envelope body and wax seal |
-| Bread Crab | Common Guard | Hearth, Sweet-tooth | 10 s | **Toast Shell** (Taunt) | shells up and taunts for 3 s, then a crumb pulse. Bond tie: crumbs fill Warmth | its toast shell |
+| Mailbox Imp | Common Support | Ember, Ball, Sweet-tooth | 8 s | **Hot Delivery** (Team buff) | throws sealed hot letters: the 3 nearest friends +20% damage for 6 s, one letter explodes on the farthest enemy. Bond tie: explosion leaves coals | its envelope body and wax seal |
+| Bread Crab | Common Guard | Hearth, Sweet-tooth, Ball | 10 s | **Toast Shell** (Taunt) | shells up and taunts for 3 s, then a crumb pulse. Bond tie: crumbs fill Warmth | its toast shell |
 | Dice Crab | Common Support | Ember, Ball | 8 s | **Loaded Roll** (Random) | rolls its die shell: 1 to 6 sets a fire pulse (N x base), a 6 rolls twice. Bond tie: a 6 adds +10 Heat | its die shell |
 | Mask Pepper | Common Support | Ember, Ball | 8 s | **Masquerade** (Swap) | swaps places with the hero (both teleport); a fire ring bursts at both spots and ignites every enemy in it. Bond tie: lit enemies feed Heat | its theatre mask |
 | Coil Kettle | Mythic Controller | Hearth, Ember | 9 s | **Spring Boil** (Chain) | bounces three times; each landing stuns 0.8 s and vents steam. Bond tie: third bounce chains to one more enemy | its spring-coil spout |
 | Saffron Mechanist | Rare Guard | Hearth, Ember | 10 s | **Pressure Valve** (Eruption) | a ring builds under it (telegraphed), then bursts in a steam blast that pushes enemies back. Bond tie: the blast lights enemies | its wrench and steam valve |
-| Baker Mouse | Uncommon Shooter | Hearth, Sweet-tooth | 6 s | **Rolling Pin** (Projectile pattern) | throws a rolling pin that returns like a boomerang, flattening and slowing enemies both ways. Bond tie: dough heals the hero when 3+ are hit | its rolling pin and apron |
+| Baker Mouse | Uncommon Shooter | Hearth, Ember, Sweet-tooth | 6 s | **Rolling Pin** (Projectile pattern) | throws a rolling pin that returns like a boomerang, flattening and slowing enemies both ways. Bond tie: dough heals the hero when 3+ are hit | its rolling pin and apron |
 | Tea Dragon | Mythic Shooter | Hearth, Ember | 6 s | **Steam Breath** (Beam or channel) | a 2 s flame channel in a cone; each enemy hit burns and gives the hero 1 HP. Bond tie: coals stay between waves | its steaming teapot spout |
 | Sundae Golem | Rainbow Controller | Hearth, Sweet-tooth | 9 s | **Sprinkle Freeze** (Enemy debuff) | a scoop of freezing sprinkles: 2 s freeze in a circle; every 3rd cast drops a Cherry that heals the hero. Bond tie: cherry fills Warmth | its scoops, sprinkles and cherry |
 | Boba Tadpole | Common Shooter | Hearth, Sweet-tooth, Ball | 6 s | **Pearl Orbit** (Orbit) | tapioca pearls circle it for 5 s and burst on contact. Bond tie: a pearl that kills drops a Snack | its boba pearls |
@@ -244,11 +244,11 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Snow Spoon | Common Support | Frost, Gauntlet | 8 s | **Frost Scoop** (Mark) | scoops a wide frost arc: every enemy in the cone is marked and takes +15% from everyone for 5 s. Bond tie: chilled enemies count as marked | its spoon bowl |
-| Fridge Wisp | Common Guard | Frost, Gauntlet | 10 s | **Door Slam** (Dash or leap) | floats forward and slams its door: knock-back and 1 s stun in a line. Bond tie: leaves a cold patch | its fridge door |
-| Shell Postman | Common Shooter | Tide, Sea-shanty | 6 s | **Special Delivery** (Projectile pattern) | lobs a letter shell onto the densest cluster; it bursts and soaks the area. Bond tie: soaked enemies (Tide) | its stamp and mail satchel |
+| Snow Spoon | Common Support | Frost, Tide, Gauntlet | 8 s | **Frost Scoop** (Mark) | scoops a wide frost arc: every enemy in the cone is marked and takes +15% from everyone for 5 s. Bond tie: chilled enemies count as marked | its spoon bowl |
+| Fridge Wisp | Common Guard | Frost, Gauntlet, Sea-shanty | 10 s | **Door Slam** (Dash or leap) | floats forward and slams its door: knock-back and 1 s stun in a line. Bond tie: leaves a cold patch | its fridge door |
+| Shell Postman | Common Shooter | Tide, Frost, Sea-shanty | 6 s | **Special Delivery** (Projectile pattern) | lobs a letter shell onto the densest cluster; it bursts and soaks the area. Bond tie: soaked enemies (Tide) | its stamp and mail satchel |
 | Coral Teacup | Uncommon Support | Frost, Tide, Sea-shanty | 8 s | **Tea Time** (Economy) | brews a cup: the next 2 rerolls cost 1 less coin. Bond tie: wet enemies pay 1 extra coin | its teacup and coral antlers |
-| Anchor Snail | Uncommon Controller | Frost, Tide | 9 s | **Drag Anchor** (Pull or push) | drags its anchor in a line: every enemy on the line is pulled toward the hero. Bond tie: pulled enemies are soaked | its anchor and rope |
+| Anchor Snail | Uncommon Controller | Frost, Tide, Gauntlet | 9 s | **Drag Anchor** (Pull or push) | drags its anchor in a line: every enemy on the line is pulled toward the hero. Bond tie: pulled enemies are soaked | its anchor and rope |
 | Sail Squid | Uncommon Guard | Frost, Tide, Gauntlet | 10 s | **Ink Cloud** (Enemy debuff) | an ink cloud halves enemy shields and healing and lowers their damage 15% for 5 s. Bond tie: cloud is a puddle (Tide) | its sail cap and ink |
 | The Impossible Tailor | Rainbow Striker | Frost, Gauntlet | 7 s | **Thread** (Tether) | sews a thread between itself and the hero for 5 s: enemies crossing the thread take damage and slow. Bond tie: chilled crossers shatter | its needles and thread |
 | Balloon Mallet | Uncommon Guard | Tide, Gauntlet | 10 s | **Balloon Pop** (Eruption) | swells (telegraphed) and pops: knock-back and a freezing mist. Bond tie: mist soaks enemies | its balloon body |
@@ -261,12 +261,12 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Kettle Bat | Common Support | Windborne, Paper-wings | 8 s | **Whistle Gale** (Weather) | whistles up a gale: enemies are blown away for 3 s. Bond tie: gale carries lightning (Storm) | its kettle belly and wings |
+| Kettle Bat | Common Support | Windborne, Storm, Paper-wings | 8 s | **Whistle Gale** (Weather) | whistles up a gale: enemies are blown away for 3 s. Bond tie: gale carries lightning (Storm) | its kettle belly and wings |
 | Comet Kite | Common Support | Storm, Windborne, Paper-wings | 8 s | **Slipstream** (Time) | friends flying through its trail fill skill bars 20% faster for 5 s. Bond tie: trail is a wind lane | its tail ribbon |
 | The Folded Courier | Rare Shooter | Windborne, Paper-wings | 6 s | **Unfold** (Transform) | unfolds into a larger paper form for 5 s and fires paper blades. Bond tie: every blade is a volley | its folded paper wings |
-| Ribbon Otter | Uncommon Guard | Storm, Rain-script | 10 s | **Ribbon Wrap** (Tether) | ties a ribbon to the hero: enemies that hit the hero are zapped. Bond tie: zaps add Charge | its ribbons and satchel |
-| Spindle Wren | Uncommon Support | Windborne, Paper-wings | 8 s | **Weave Wind** (Team buff) | spins thread: friends in a ring gain +10% range and +10% projectile speed for 6 s. Bond tie: adds to Paper-wings | its spool body |
-| Rain Heron | Rare Shooter | Storm, Rain-script | 6 s | **Long Strike** (Projectile pattern) | a piercing spear shot through every enemy in a line. Bond tie: pierced enemies are soaked | its long beak |
+| Ribbon Otter | Uncommon Guard | Storm, Windborne, Rain-script | 10 s | **Ribbon Wrap** (Tether) | ties a ribbon to the hero: enemies that hit the hero are zapped. Bond tie: zaps add Charge | its ribbons and satchel |
+| Spindle Wren | Uncommon Support | Windborne, Paper-wings, Rain-script | 8 s | **Weave Wind** (Team buff) | spins thread: friends in a ring gain +10% range and +10% projectile speed for 6 s. Bond tie: adds to Paper-wings | its spool body |
+| Rain Heron | Rare Shooter | Storm, Rain-script, Paper-wings | 6 s | **Long Strike** (Projectile pattern) | a piercing spear shot through every enemy in a line. Bond tie: pierced enemies are soaked | its long beak |
 | Paper Plane Pigeon | Common Shooter | Windborne, Paper-wings | 6 s | **Squadron** (Summon) | releases 4 paper planes that circle and dive at enemies. Bond tie: every plane is a volley | its paper-plane wings |
 | Raincoat Frog | Uncommon Shooter | Storm, Rain-script | 6 s | **Rain Dance** (Weather) | summons a rain zone: enemies inside are wet and slowed 20%. Bond tie: wet enemies conduct (Storm) | its raincoat and boots |
 | Kite Dragon | Rainbow Shooter | Storm, Windborne, Paper-wings | 6 s | **Ribbon Sweep** (Beam or channel) | a rotating ribbon beam sweeps 360 degrees for 3 s. Bond tie: personal trait: sweeps leave gale lanes | its long ribbon tail |
@@ -278,15 +278,15 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Pear Moth | Uncommon Striker | Garden, Venom | 7 s | **Pollen Dash** (Dash or leap) | dashes through enemies leaving poisoned pollen. Bond tie: pollen blooms (Garden) | its leaf wings and pear body |
-| Mushroom Librarian | Common Controller | Garden, Venom | 9 s | **Hush** (Enemy debuff) | spores silence enemy skills for 3 s. Bond tie: spores add poison | its book-page mushroom cap |
-| Citrus Toad | Uncommon Support | Garden, Shoe | 8 s | **Sour Surprise** (Random) | squirts a random citrus: 1 of 4 effects (slow, blind, burst, coin). Bond tie: peels bloom | its orange-wedge body |
+| Pear Moth | Uncommon Striker | Garden, Venom, Shoe | 7 s | **Pollen Dash** (Dash or leap) | dashes through enemies leaving poisoned pollen. Bond tie: pollen blooms (Garden) | its leaf wings and pear body |
+| Mushroom Librarian | Common Controller | Garden, Venom, Root | 9 s | **Hush** (Enemy debuff) | spores silence enemy skills for 3 s. Bond tie: spores add poison | its book-page mushroom cap |
+| Citrus Toad | Uncommon Support | Garden, Venom, Shoe | 8 s | **Sour Surprise** (Random) | squirts a random citrus: 1 of 4 effects (slow, blind, burst, coin). Bond tie: peels bloom | its orange-wedge body |
 | Seed Hedgehog | Common Controller | Garden, Venom, Root | 9 s | **Seed Spikes** (Trap or mine) | plants seed mines that sprout thorn plants when stepped on. Bond tie: plants root enemies | its seed-sprouting spines |
 | Sock Cyclops | Common Striker | Venom, Shoe | 7 s | **Sock Puppets** (Summon) | throws two sock puppets that fight for 6 s. Bond tie: puppets carry venom | its striped sock nightcap |
 | Mirror Newt | Mythic Shooter | Venom, Shoe | 6 s | **Mirror Image** (Clone or echo) | a decoy copy that draws fire and shoots for 6 s. Bond tie: decoy leaves poison | its mirror scales |
 | Ribbon Spider | Common Striker | Venom, Shoe | 7 s | **Web Wrap** (Poison) | spins a web zone: slow and stacking poison. Bond tie: poison stacks to 8 | its satin ribbon legs |
 | Grand Sprout | Uncommon Guard | Garden, Root | 10 s | **Bulb Guard** (Taunt) | roots itself, taunts and grows thorns for 4 s. Bond tie: thorns bloom | its bulb body and leaf plates |
-| Paper Devil | Uncommon Guard | Venom, Shoe | 10 s | **Dark Harvest** (Zone) | a dark ring around it drains every enemy inside for 4 s. Bond tie: drain adds Venom stacks | its folded wings and tail |
+| Paper Devil | Uncommon Guard | Venom, Garden, Shoe | 10 s | **Dark Harvest** (Zone) | a dark ring around it drains every enemy inside for 4 s. Bond tie: drain adds Venom stacks | its folded wings and tail |
 | Watering Snail | Uncommon Controller | Garden, Venom, Root | 9 s | **Rain Can** (Zone) | waters an area for 5 s: plants grow and enemies are slowed. Bond tie: growth counts a Garden wave | its watering-can body |
 | Yo-yo Squirrel | Rare Shooter | Garden, Shoe | 6 s | **Yo-yo** (Projectile pattern) | a yo-yo that goes out and comes back, hitting twice. Bond tie: hits poison | its yo-yo |
 | The First Seed | Rainbow Shooter | Garden, Root | 6 s | **Sprout** (Transform) | grows into a small tree for 6 s and shoots thorns. Bond tie: personal trait: the tree stays a pod | its bean-sprout leaves |
@@ -295,11 +295,11 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Pillow Oracle | Mythic Support | Starlight, Dusk | 8 s | **Lullaby** (Enemy debuff) | a lullaby wave: every enemy in a big radius sleeps 1.5 s; waking hurts them. Bond tie: sleepers are dusk-marked | its pillow body and night cap |
-| Ice Cream Owl | Uncommon Controller | Dusk, Hat | 9 s | **Brain Freeze** (Enemy debuff) | a cone of cold: every enemy hit loses 30% attack speed for 5 s. Bond tie: frozen cones feed Wishes | its scoops and cone |
-| Moon Jelly | Rare Shooter | Starlight, Hat | 6 s | **Moonbeam** (Beam or channel) | a 3 s beam; each enemy it crosses loses 15% damage. Bond tie: crit enemies add Wishes | its crescent body |
+| Pillow Oracle | Mythic Support | Starlight, Dusk, Hat | 8 s | **Lullaby** (Enemy debuff) | a lullaby wave: every enemy in a big radius sleeps 1.5 s; waking hurts them. Bond tie: sleepers are dusk-marked | its pillow body and night cap |
+| Ice Cream Owl | Uncommon Controller | Dusk, Starlight, Hat | 9 s | **Brain Freeze** (Enemy debuff) | a cone of cold: every enemy hit loses 30% attack speed for 5 s. Bond tie: frozen cones feed Wishes | its scoops and cone |
+| Moon Jelly | Rare Shooter | Starlight, Dusk, Hat | 6 s | **Moonbeam** (Beam or channel) | a 3 s beam; each enemy it crosses loses 15% damage. Bond tie: crit enemies add Wishes | its crescent body |
 | Star Sock | Uncommon Shooter | Starlight, Clover | 6 s | **Falling Star** (Eruption) | marks a spot (telegraphed) and a star crashes there. Bond tie: star fires on crits | its star patch |
-| Eclipse Egg | Rainbow Support | Starlight, Dusk | 8 s | **Mega Form** (Transform) | hatches into a bigger form for the rest of the wave. Bond tie: form is dark or bright by bond | its cracked starry shell |
+| Eclipse Egg | Rainbow Support | Starlight, Dusk, Clover | 8 s | **Mega Form** (Transform) | hatches into a bigger form for the rest of the wave. Bond tie: form is dark or bright by bond | its cracked starry shell |
 | Orbit Moth | Common Controller | Starlight, Dusk, Hat | 9 s | **Orbit** (Orbit) | four orbs circle it and explode on contact. Bond tie: orbs are stars or shadows | its ring and wrapped body |
 | Bubble Koi | Common Support | Starlight, Clover | 8 s | **Slow Bubble** (Time) | a big time bubble on the ground: every enemy inside moves at 20% speed for 3 s. Bond tie: bubble pops into a wish | its bubbles and fins |
 | The Forgotten Patchwork | Rare Shooter | Dusk, Hat | 6 s | **Patch Pup** (Summon) | sews a rag minion from patches that fights for 8 s. Bond tie: minion carries shadow | its patches and thread |
@@ -312,13 +312,13 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Jelly Swordsman | Common Guard | Carnival, Court | 10 s | **Jelly Split** (Clone or echo) | splits into two cubes that fight for 5 s. Bond tie: cubes jiggle (Applause) | its jelly cube body and sword |
+| Jelly Swordsman | Common Guard | Carnival, Court, Mask | 10 s | **Jelly Split** (Clone or echo) | splits into two cubes that fight for 5 s. Bond tie: cubes jiggle (Applause) | its jelly cube body and sword |
 | Brass Acorn | Common Striker | Carnival, Court, Mask | 7 s | **Acorn Charge** (Dash or leap) | rolls through enemies in a line, knocking them aside. Bond tie: court rank counts | its brass acorn cap |
-| Button Beetle | Common Support | Carnival, Court | 8 s | **Button Bomb** (Trap or mine) | drops a button mine that stuns on contact. Bond tie: applause when it fires | its button shell |
-| Radish Jester | Common Support | Carnival, Mask, Big-top | 8 s | **Joker Draw** (Random) | draws a card 1 to 9: the damage follows the card. Bond tie: a 9 adds Applause | its jester leaf hat and bells |
+| Button Beetle | Common Support | Carnival, Court, Big-top | 8 s | **Button Bomb** (Trap or mine) | drops a button mine that stuns on contact. Bond tie: applause when it fires | its button shell |
+| Radish Jester | Common Support | Carnival, Court, Mask | 8 s | **Joker Draw** (Random) | draws a card 1 to 9: the damage follows the card. Bond tie: a 9 adds Applause | its jester leaf hat and bells |
 | Crayon Gremlin | Common Controller | Carnival, Big-top | 9 s | **Scribble Pen** (Zone) | draws a crayon circle that enemies cannot cross for 3 s. Bond tie: drawing is a show | its crayon crown |
-| Return Captain | Mythic Shooter | Court, Mask | 6 s | **Return Command** (Time) | refunds 25% of the skill bar of the 3 nearest friends. Bond tie: rank refunds more | its captain hat and badge |
-| Dough Foreman | Rare Guard | Court, Mask | 10 s | **Rising Dough** (Eruption) | a dough mound rises (telegraphed) and heaves enemies aside. Bond tie: court rank counts | its dough bucket and apron |
+| Return Captain | Mythic Shooter | Court, Carnival, Mask | 6 s | **Return Command** (Time) | refunds 25% of the skill bar of the 3 nearest friends. Bond tie: rank refunds more | its captain hat and badge |
+| Dough Foreman | Rare Guard | Court, Mask, Big-top | 10 s | **Rising Dough** (Eruption) | a dough mound rises (telegraphed) and heaves enemies aside. Bond tie: court rank counts | its dough bucket and apron |
 | Velvet Enchantress | Uncommon Controller | Court, Mask | 9 s | **Hex Cloud** (Enemy debuff) | a hex cloud: every enemy inside is harmless for 2 s. Bond tie: decree strengthens it | its witch hat and wings |
 | Carousel Pony | Uncommon Shooter | Carnival, Court | 6 s | **Standard** (Dash or leap) | throws a banner then charges to it, stunning on arrival. Bond tie: banner is a royal banner | its saddle and pole |
 | Ringmaster Jack | Mythic Shooter | Carnival, Big-top | 6 s | **Spotlight** (Mark) | a spotlight on the ground: every enemy in it is drawn toward its centre for 3 s. Bond tie: spotlight adds Applause | its box and top hat |
@@ -329,11 +329,11 @@ A trait only that companion has, on top of its bonds and skill.
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Hood Wisp | Common Shooter | Lantern, Rune | 6 s | **Lure** (Pull or push) | its flame lures enemies toward it for 2 s. Bond tie: lit enemies glow | its hooded flame |
-| Bookmark Golem | Rare Support | Archive, Rune, Exhibit-hall | 8 s | **Bookmark** (Mark) | bookmarks an enemy species: +12% damage from everyone to it. Bond tie: new species adds Records | its bookmark body |
-| Thimble Moth | Rare Shooter | Archive, Lantern | 6 s | **Thread Beam** (Beam or channel) | a 2 s thread beam sews through enemies, slowing them. Bond tie: beam leaves a note | its thimble hat and thread |
-| Reel Owl | Mythic Shooter | Archive, Lantern | 6 s | **Sample & Remix** (Steal or copy) | records the hero last shot and replays it three times from the owl. Bond tie: replays are archived | its film reel |
-| Velvet Champion | Rare Guard | Archive, Lantern | 10 s | **Stand United** (Tether) | tethers to the best damage dealer and draws fire for it. Bond tie: tether glows | its cape and medal |
+| Hood Wisp | Common Shooter | Lantern, Archive, Rune | 6 s | **Lure** (Pull or push) | its flame lures enemies toward it for 2 s. Bond tie: lit enemies glow | its hooded flame |
+| Bookmark Golem | Rare Support | Archive, Lantern, Rune | 8 s | **Bookmark** (Mark) | bookmarks an enemy species: +12% damage from everyone to it. Bond tie: new species adds Records | its bookmark body |
+| Thimble Moth | Rare Shooter | Archive, Lantern, Rune | 6 s | **Thread Beam** (Beam or channel) | a 2 s thread beam sews through enemies, slowing them. Bond tie: beam leaves a note | its thimble hat and thread |
+| Reel Owl | Mythic Shooter | Archive, Lantern, Exhibit-hall | 6 s | **Sample & Remix** (Steal or copy) | records the hero last shot and replays it three times from the owl. Bond tie: replays are archived | its film reel |
+| Velvet Champion | Rare Guard | Archive, Lantern, Exhibit-hall | 10 s | **Stand United** (Tether) | tethers to the best damage dealer and draws fire for it. Bond tie: tether glows | its cape and medal |
 | Teacup Cricket | Uncommon Guard | Lantern, Exhibit-hall | 10 s | **Cup Guard** (Taunt) | drops its teacup lid as a shield stance: taunt for 3 s. Bond tie: lid is a lamp | its teacup shell |
 | Lens Owl | Rare Shooter | Archive, Lantern, Rune | 6 s | **Lens Echo** (Clone or echo) | refracts its shot into 3 weaker shots. Bond tie: beams light enemies | its magnifier lens body |
 | The Endless Index | Rainbow Shooter | Archive, Rune | 6 s | **Last Page** (Steal or copy) | copies the last skill a friend cast. Bond tie: personal trait: pages recorded | its book wings and pages |
@@ -347,10 +347,10 @@ A trait only that companion has, on top of its bonds and skill.
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
 | Iron Locomotive | Mythic Controller | Clockwork, Stone, Horn | 9 s | **Full Steam** (Dash or leap) | charges in a straight line across the arena, bowling enemies over. Bond tie: rails glow | its steam engine |
-| Fossil Armadillo | Uncommon Controller | Stone, Horn | 9 s | **Stone Double** (Clone or echo) | leaves a stone copy as a decoy. Bond tie: copy is stone | its fossil shell |
-| Tin Tick | Common Controller | Clockwork, Gear | 9 s | **Countdown** (Time) | starts a timer that speeds up; at zero a burst. Bond tie: ticks add Clockwork | its tin tick body and key |
-| Spring Duck | Rare Guard | Clockwork, Gear | 10 s | **Bounce Pad** (Pull or push) | a spring pad launches enemies upward and sideways. Bond tie: pad is a gear | its coil spring |
-| Staple Mole | Common Support | Stone, Clockwork | 8 s | **Burrow** (Swap) | burrows and swaps places with the hero for a moment. Bond tie: dust slows enemies | its staple teeth |
+| Fossil Armadillo | Uncommon Controller | Stone, Clockwork, Horn | 9 s | **Stone Double** (Clone or echo) | leaves a stone copy as a decoy. Bond tie: copy is stone | its fossil shell |
+| Tin Tick | Common Controller | Clockwork, Stone, Gear | 9 s | **Countdown** (Time) | starts a timer that speeds up; at zero a burst. Bond tie: ticks add Clockwork | its tin tick body and key |
+| Spring Duck | Rare Guard | Clockwork, Gear, Horn | 10 s | **Bounce Pad** (Pull or push) | a spring pad launches enemies upward and sideways. Bond tie: pad is a gear | its coil spring |
+| Staple Mole | Common Support | Stone, Clockwork, Gear | 8 s | **Burrow** (Swap) | burrows and swaps places with the hero for a moment. Bond tie: dust slows enemies | its staple teeth |
 | Dream Compass | Common Shooter | Clockwork, Horn | 6 s | **Treasure Map** (Economy) | points to hidden coins: 3 coins drop around the hero. Bond tie: needle counts as a tick | its brass compass needle |
 | The Last Bell | Rainbow Shooter | Stone, Clockwork | 6 s | **Toll** (Eruption) | each cast changes its note; the third note explodes in a ring. Bond tie: every third toll adds a tick | its bronze bell and crystal heart |
 | Clockwork Piper | Mythic Summoner | Clockwork, Gear | 12 s | **Tune the Clocks** (Team buff) | plays a tune: all skill bars +20% fill speed for 6 s. Bond tie: personal trait: tunes stack | its pipe flute and gear crown |
@@ -747,3 +747,4 @@ Enemies have a skill bar that fills with time and shows a warning ring. Tiers by
 - Hero directions and relics are concepts derived from today's themes; which heroes should get a real build rework first?
 - Hero mechanics: 26 of 36 heroes have no special mechanic today (stat heroes). Should each get one?
 - Enemy skills: the three tiers are a start; which roles matter most for your pacing?
+- **Immortality:** if companions can fall, what changes: Guard roles and taunts matter, heals and shields on friends become real, death-trigger bonds (explode, revive, rise as Shades) and a Patchwork-like revive become possible. Options: (a) permanent death for a wave and they return next wave, (b) down for 10 s then they stand up, (c) permanent loss with a revive item. Which one?

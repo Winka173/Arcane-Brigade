@@ -314,3 +314,8 @@ Primary bond (first major) gives the body colour.
 
 ### 17c. Rule for every skill (28/10)
 A skill and the object it makes must come from the creature's own look (its shell, hat, satchel, seal, jar...), so the art is a piece of the creature and easy to paint. Effects stay code ink. When a skill table row names an object, the object is a recognisable part of that creature.
+
+## 18. Owner changes (28/10): varied mechanics and one spare member
+- **Spare member rule:** a bond that needs 8 to reach its top step has 9 members; 6 needs 7; 4 needs 5. Houses are now 6 shared + 3 + 3 companions (majors 9 each), minors 7 and 5. Each companion has 2 or 3 bonds (48 and 48).
+- **Mechanics must be varied, not floor objects:** every bond mixes several rule types: on-hit stacks that burst (Ember), stacking slow then freeze (Frost), every Nth hit chain lightning (Storm), poison that spreads on death (Venom), permanent growth and summoned plants (Garden), execute (Dusk), echo and time (Clockwork), reflect and collisions (Stone), random die and combos (Carnival), edicts and laws (Court), stillness and movement (Lantern, Windborne), economy (Starlight, Archive), summons (ten bonds have one). Minor bonds are mini mechanics too (every Nth hit, combo, boomerang shots, stillness, a survived fatal hit). Full text in `Docs/Review_Pack_Bonds_Skills_Heroes_Enemies_2026-10-28.md` section 2.
+- **Immortality of companions is under review by the owner;** see the question in the review pack. Bonds that need a death rule are written so they can work either way.
