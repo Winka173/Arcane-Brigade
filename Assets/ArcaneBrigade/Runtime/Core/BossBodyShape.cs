@@ -168,9 +168,9 @@ namespace ArcaneBrigade
         }
 
         /// <summary>The melee unit's weapon reaches the target's body (MeleeTactics.Reach, or the boss's painted body).</summary>
-        private static bool MeleeReaches(UnitState unit, UnitState target)
+        private bool MeleeReaches(UnitState unit, UnitState target)
         {
-            float reach = MeleeTactics.Reach(unit, target);
+            float reach = MeleeTactics.Reach(unit, target) * (unit.Faction != Faction.Enemy ? 1 + (Bonds?.RangeBonus ?? 0) : 1);
             return (target.Position - unit.Position).sqrMagnitude <= reach * reach || target.Definition.IsBoss && BossBodyShape.Hits(target, unit.Position, reach - target.Definition.Radius);
         }
 

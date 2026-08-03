@@ -13,6 +13,7 @@ namespace ArcaneBrigade
 
         private UnitState SelectCompanionTarget(UnitState source, float radius, bool attackOnly = false)
         {
+            radius *= 1 + (Bonds?.RangeBonus ?? 0);
             bool melee = source.Definition.Weapon.Kind == WeaponKind.Melee;
             if (!attackOnly && melee && source.PendingAttack)
             {

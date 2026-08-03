@@ -356,6 +356,8 @@ namespace ArcaneBrigade
             RecountBonds();
             BeginRelicWave();
             CombatCatalog = Clone(catalog.Arena);
+            CombatCatalog.RuntimeBonds = catalog.Bonds;
+            CombatCatalog.RuntimeBondCounts = new Dictionary<string, int>(BondCounts);
             CombatCatalog.EnableHeroMechanics = catalog.HeroRevision > 0;
             CombatCatalog.ArenaSize = catalog.WorldSize;
             List<RosterEntry> deployed = ActiveRoster;
