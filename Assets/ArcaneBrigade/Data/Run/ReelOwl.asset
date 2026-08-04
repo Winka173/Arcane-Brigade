@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ReelOwl
   DisplayName: Reel Owl
-  Body: {fileID: 21300000, guid: 97feddd84f4edcb4999244a78198da9c, type: 3}
+  Body: {fileID: -1497701418, guid: c98de4de9a5efb14785707d405343422, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 97feddd84f4edcb4999244a78198da9c, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1497701418, guid: c98de4de9a5efb14785707d405343422, type: 3}
+  - {fileID: -531425422, guid: c98de4de9a5efb14785707d405343422, type: 3}
+  - {fileID: -1509052957, guid: c98de4de9a5efb14785707d405343422, type: 3}
+  - {fileID: 1708952559, guid: c98de4de9a5efb14785707d405343422, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: a20338085f1ce264396e73ead6e8544b, type: 2}
   Weapon: {fileID: 11400000, guid: fed53ce8a61de6e45a3f809068f6c93e, type: 2}
   Health: 100
   Speed: 5.1

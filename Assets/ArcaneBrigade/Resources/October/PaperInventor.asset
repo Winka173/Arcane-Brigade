@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PaperInventor
   DisplayName: Paper Inventor
-  Body: {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
+  Body: {fileID: -1959443584, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1959443584, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+  - {fileID: -706640060, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+  - {fileID: 1797475251, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+  - {fileID: 2061679917, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c062477318b72a04fad30a5f3dd0983b, type: 2}
   Weapon: {fileID: 11400000, guid: cefba0cd756c4784a8f5a61842f913d4, type: 2}
   Health: 100
   Speed: 4

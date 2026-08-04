@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: VerdantMatronRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1640897381, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: -388165260, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: 1595686689, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  - {fileID: -419406209, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  Walk:
+  - {fileID: -777903985, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: -1791895292, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  - {fileID: 753506663, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: 1956372712, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  Windup:
+  - {fileID: -800710729, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: 1735876785, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: 709611378, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  Release:
+  - {fileID: 666182042, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: 981120450, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  Recovery:
+  - {fileID: 239093571, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: -845859456, guid: 65fe6a5ebbe903644a130caf96c71d58, type: 3}
+  - {fileID: 1640897381, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  IllustratedHeight: 0

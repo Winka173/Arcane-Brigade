@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TopBeetle
   DisplayName: Top Beetle
-  Body: {fileID: 21300000, guid: 8c4a2e460e1c0d84cb2722091826bac3, type: 3}
+  Body: {fileID: 1699947622, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 8c4a2e460e1c0d84cb2722091826bac3, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1699947622, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
+  - {fileID: 1840112422, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
+  - {fileID: 1176860277, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
+  - {fileID: -1539977712, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 01cf68db700f0b94098bce8ef5e94996, type: 2}
   Weapon: {fileID: 11400000, guid: 214cc9051e9acba4c8c03923575809b5, type: 2}
   Health: 100
   Speed: 4

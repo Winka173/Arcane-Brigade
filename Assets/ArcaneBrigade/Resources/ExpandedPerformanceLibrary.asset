@@ -566,8 +566,15 @@ MonoBehaviour:
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -529639052, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: 530221161, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: -1983376546, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: 1945233994, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: -1983376546, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: 2118416133, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: 62498059, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    - {fileID: -1405116218, guid: 016437e6804b7cd4bb8283c5de199f11, type: 3}
+    ReferenceHeight: 1.6753926
   - Id: DrowsySeer
     Kind: locomotion
     Evolution: 0
@@ -580,19 +587,33 @@ MonoBehaviour:
     - {fileID: -1007238837, guid: 3331bdde751f53245982d0111ff2d53d, type: 3}
     - {fileID: 2131721288, guid: 3331bdde751f53245982d0111ff2d53d, type: 3}
     - {fileID: 1479839245, guid: 3331bdde751f53245982d0111ff2d53d, type: 3}
-    ReferenceHeight: 1.7777778
+    ReferenceHeight: 3.5959396
   - Id: RootOracle
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 29819564, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: -2076228304, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: 1119684451, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: 1617274935, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: 1119684451, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: -11064745, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: -595212990, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    - {fileID: 1042080746, guid: f4b792cf50cd7d94bae7ea607544707a, type: 3}
+    ReferenceHeight: 2.0382166
   - Id: LoneJelly
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 1122216339, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: -1365161237, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: 1774321751, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: -1663931587, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: 1774321751, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: 1481932764, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: -925544896, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    - {fileID: 387704864, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+    ReferenceHeight: 2.064516
   - Id: GlassDice
     Kind: locomotion
     Evolution: 0
@@ -605,13 +626,20 @@ MonoBehaviour:
     - {fileID: -556371287, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
     - {fileID: -544353412, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
     - {fileID: -1822258409, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
-    ReferenceHeight: 1.7297298
+    ReferenceHeight: 3.312186
   - Id: TideSinger
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 807873447, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: -1117550692, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: -167421954, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: 2004886361, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: -167421954, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: -2047282514, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: -1971948947, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    - {fileID: 437961959, guid: 3b9849d13eeaab94785a6ab46ab5d148, type: 3}
+    ReferenceHeight: 1.939394
   - Id: CometRunner
     Kind: locomotion
     Evolution: 0
@@ -624,25 +652,46 @@ MonoBehaviour:
     - {fileID: 1911419990, guid: 4d294342637280248bc34168ee5be6d5, type: 3}
     - {fileID: -1293701720, guid: 4d294342637280248bc34168ee5be6d5, type: 3}
     - {fileID: -274791943, guid: 4d294342637280248bc34168ee5be6d5, type: 3}
-    ReferenceHeight: 2
+    ReferenceHeight: 5.12
   - Id: MirrorKeeper
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 7dcfbec547f4e2a4d93dab0f0a4bfb6e, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 590263105, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: 2080527265, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: 535089277, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: -1815499645, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: 535089277, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: -67413054, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: -1287913675, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    - {fileID: -688000668, guid: 41c4173edcc0bfd418d2a31923d2c492, type: 3}
+    ReferenceHeight: 1.5686275
   - Id: TreasureAcorn
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 475b580af746f484b86cb55681928239, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 1350244905, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: 1360434172, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: 1456531454, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: -1770257272, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: 1456531454, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: 1510695868, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: -1506629614, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    - {fileID: -611913637, guid: ac03779bba8c943498dfe89b8ad39896, type: 3}
+    ReferenceHeight: 1.8079095
   - Id: VerdantMatron
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 9e4fdeaf8a0d0ad489f9fa9af88d1403, type: 3}
-    ReferenceHeight: 2.5488281
+    - {fileID: 1640897381, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: -388165260, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: -777903985, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: 753506663, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: -777903985, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: 1735876785, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: 666182042, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    - {fileID: 239093571, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+    ReferenceHeight: 3.3121827
   - Id: CopperCauldron
     Kind: locomotion
     Evolution: 0
@@ -655,7 +704,7 @@ MonoBehaviour:
     - {fileID: -650971131, guid: ef40746e68e5e004ba6916833f2d1c4c, type: 3}
     - {fileID: 579555705, guid: ef40746e68e5e004ba6916833f2d1c4c, type: 3}
     - {fileID: 1666287252, guid: ef40746e68e5e004ba6916833f2d1c4c, type: 3}
-    ReferenceHeight: 3.4806626
+    ReferenceHeight: 6.962812
   - Id: ChinaMarionette
     Kind: locomotion
     Evolution: 0
@@ -668,19 +717,33 @@ MonoBehaviour:
     - {fileID: -743516212, guid: 7796140e869e09e45a86bf679c338c55, type: 3}
     - {fileID: -406026404, guid: 7796140e869e09e45a86bf679c338c55, type: 3}
     - {fileID: -643539468, guid: 7796140e869e09e45a86bf679c338c55, type: 3}
-    ReferenceHeight: 3.7261906
+    ReferenceHeight: 5.5374064
   - Id: SoapSkater
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
-    ReferenceHeight: 2.265625
+    - {fileID: 2008643358, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -1831125072, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -195172004, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -851542049, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -195172004, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -67433370, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -1220327293, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    - {fileID: -1476732936, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+    ReferenceHeight: 3.473054
   - Id: VelvetRegent
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 74df6363ab5dcb54e9dd4ace113fc751, type: 3}
-    ReferenceHeight: 2.7832031
+    - {fileID: 623324294, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: -215884053, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: 665231751, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: -1964151096, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: 665231751, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: -624759121, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: 555392842, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    - {fileID: 1183972257, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+    ReferenceHeight: 3.544776
   - Id: ButtonCavalier
     Kind: locomotion
     Evolution: 0
@@ -693,7 +756,7 @@ MonoBehaviour:
     - {fileID: -1404214626, guid: 8883032123ee5b645845a8cc4a3d6949, type: 3}
     - {fileID: 516966283, guid: 8883032123ee5b645845a8cc4a3d6949, type: 3}
     - {fileID: -375163456, guid: 8883032123ee5b645845a8cc4a3d6949, type: 3}
-    ReferenceHeight: 3.8020835
+    ReferenceHeight: 6.7592597
   - Id: NightMaw
     Kind: locomotion
     Evolution: 0
@@ -706,13 +769,20 @@ MonoBehaviour:
     - {fileID: 596820790, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
     - {fileID: -695119239, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
     - {fileID: 1891673704, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
-    ReferenceHeight: 3.7083335
+    ReferenceHeight: 7.500906
   - Id: ThornTreasurer
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
-    ReferenceHeight: 2.8222656
+    - {fileID: -562053203, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: -33582687, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: 1019784645, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: 646742660, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: 1019784645, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: 1970216469, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: -107167731, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    - {fileID: -871405773, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+    ReferenceHeight: 4.036313
   - Id: CitrusMarshal
     Kind: locomotion
     Evolution: 0
@@ -725,7 +795,7 @@ MonoBehaviour:
     - {fileID: 1215268571, guid: 51b6ab587f1400a49872b830242e5e45, type: 3}
     - {fileID: -1257118417, guid: 51b6ab587f1400a49872b830242e5e45, type: 3}
     - {fileID: 1457453191, guid: 51b6ab587f1400a49872b830242e5e45, type: 3}
-    ReferenceHeight: 3.0792682
+    ReferenceHeight: 7.5030828
   - Id: IvorySovereign
     Kind: locomotion
     Evolution: 0
@@ -738,19 +808,33 @@ MonoBehaviour:
     - {fileID: -355793117, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
     - {fileID: 444138505, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
     - {fileID: -1817449298, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
-    ReferenceHeight: 3.3984375
+    ReferenceHeight: 6.0416665
   - Id: PetalCitadel
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 281f7e97ce2e57041a824974221db40d, type: 3}
-    ReferenceHeight: 2.1484375
+    - {fileID: -1706743760, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: -382331798, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: 1069353283, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: -199235908, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: 1069353283, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: -2042841110, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: -1104708875, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    - {fileID: 376539933, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+    ReferenceHeight: 2.9411764
   - Id: PatchworkHost
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: c634aab8911ba1f46b4c6382df583005, type: 3}
-    ReferenceHeight: 2.5390625
+    - {fileID: -1401857689, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: -900446915, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: 1313935402, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: -195239808, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: 1313935402, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: 920351670, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: -1449057034, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    - {fileID: 606850489, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+    ReferenceHeight: 3.5326087
   - Id: ArchiveCurator
     Kind: locomotion
     Evolution: 0
@@ -763,25 +847,46 @@ MonoBehaviour:
     - {fileID: 1231155750, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
     - {fileID: 101174557, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
     - {fileID: -541792210, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
-    ReferenceHeight: 3.9732144
+    ReferenceHeight: 9.225786
   - Id: PennyBroker
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 68217744bebd52f4080d887c9d1fe801, type: 3}
-    ReferenceHeight: 2.6074219
+    - {fileID: 610566383, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: -751475305, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: -1483904499, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: -1462409623, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: -1483904499, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: 1923050272, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: -1155446682, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    - {fileID: -1462002679, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+    ReferenceHeight: 3.7083335
   - Id: StormFencer
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: b0f877152bc482a4a99a131c63364701, type: 3}
-    ReferenceHeight: 2.4414062
+    - {fileID: -1052080586, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: 1006877025, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: -548880072, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: 165733725, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: -548880072, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: -1157158251, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: 2019750423, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    - {fileID: -1233065819, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+    ReferenceHeight: 3.1887755
   - Id: TinVirtuoso
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
-    ReferenceHeight: 2.7539062
+    - {fileID: 939082852, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: -550744840, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: 666675840, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: 1221243025, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: 666675840, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: -1597931204, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: -1205017971, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    - {fileID: 1555621180, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+    ReferenceHeight: 3.8736262
   - Id: MoonProwler
     Kind: locomotion
     Evolution: 0
@@ -794,13 +899,20 @@ MonoBehaviour:
     - {fileID: -1713448908, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
     - {fileID: 2086183110, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
     - {fileID: -1529756569, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-    ReferenceHeight: 3.4226189
+    ReferenceHeight: 7.947306
   - Id: SupperMortar
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
-    ReferenceHeight: 2.2363281
+    - {fileID: -1874729901, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: 583962604, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: -384770369, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: -679196481, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: -384770369, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: 515006534, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: -1370012497, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    - {fileID: 507064570, guid: 2385803789f7d054c8e4d9f22a0b76d1, type: 3}
+    ReferenceHeight: 4.089286
   - Id: LanternWeaver
     Kind: locomotion
     Evolution: 0
@@ -813,25 +925,46 @@ MonoBehaviour:
     - {fileID: 874875550, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
     - {fileID: 1973455759, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
     - {fileID: 1296909167, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
-    ReferenceHeight: 2.9427083
+    ReferenceHeight: 5.2314816
   - Id: HourglassStag
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
-    ReferenceHeight: 2.6757812
+    - {fileID: 1031780916, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: -1551967374, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: -1679762027, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: 765837712, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: -1679762027, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: -456490735, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: -1366132377, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    - {fileID: -2065147374, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+    ReferenceHeight: 3.9825583
   - Id: RainArchivist
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 1f9e381f5963bee4fbc2a103e2a224c8, type: 3}
-    ReferenceHeight: 2.2363281
+    - {fileID: -1211992507, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: 665557747, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: -372348323, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: -762227440, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: -372348323, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: -494378817, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: -1835336867, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    - {fileID: -535757065, guid: e0f3d0b66ffb19241a48103e8cd81d39, type: 3}
+    ReferenceHeight: 3.0452127
   - Id: TeapotPilgrim
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: f014232ab7b05c8409036ee0de84a211, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1362076229, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: -1723870100, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: -480621851, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: 1309794322, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: -480621851, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: -1970216632, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: 878755630, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    - {fileID: 714315466, guid: a661dae4f10d2364a9cf095f53d85d9b, type: 3}
+    ReferenceHeight: 1.7021277
   - Id: CandleSnail
     Kind: locomotion
     Evolution: 0
@@ -844,37 +977,72 @@ MonoBehaviour:
     - {fileID: -286904935, guid: dbba62ebd348eb040840cadb67787457, type: 3}
     - {fileID: 1471126790, guid: dbba62ebd348eb040840cadb67787457, type: 3}
     - {fileID: 1072992528, guid: dbba62ebd348eb040840cadb67787457, type: 3}
-    ReferenceHeight: 1.7977529
+    ReferenceHeight: 3.7185183
   - Id: MailboxImp
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
-    ReferenceHeight: 1.0429688
+    - {fileID: -655586702, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: -1423308658, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: -766557050, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: -262031268, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: -766557050, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: 1815356276, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: -1584535182, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    - {fileID: 825190395, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+    ReferenceHeight: 2.1023622
   - Id: PillowOracle
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -345145378, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: 354291327, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: 893970624, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: -882939450, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: 893970624, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: 1638466708, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: -1654542322, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    - {fileID: 641208605, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+    ReferenceHeight: 1.9753085
   - Id: MushroomLibrarian
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 78d7f5f202abe50408eb0cee22bf9a34, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 1514231062, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: -130314029, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: 1977941372, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: -282302435, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: 1977941372, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: -1135282472, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: -147119809, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    - {fileID: -1628410990, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+    ReferenceHeight: 1.904762
   - Id: HoodWisp
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 278621316, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: -1622420207, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: 1502448872, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: 1820757527, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: 1502448872, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: 2027638102, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: 797923500, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    - {fileID: -869348015, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+    ReferenceHeight: 2.0253165
   - Id: JellySwordsman
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 52c37d2ceef013e498ff718529ef9d00, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 185692149, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: 1592347969, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: -1634652556, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: -1096044303, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: -1634652556, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: 1258397885, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: -1318304047, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    - {fileID: 215273984, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+    ReferenceHeight: 2.3357666
   - Id: BrassAcorn
     Kind: locomotion
     Evolution: 0
@@ -887,7 +1055,7 @@ MonoBehaviour:
     - {fileID: 1958497860, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
     - {fileID: 1694348501, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
     - {fileID: -1600734950, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
-    ReferenceHeight: 1.882353
+    ReferenceHeight: 4.268577
   - Id: BreadCrab
     Kind: locomotion
     Evolution: 0
@@ -900,13 +1068,20 @@ MonoBehaviour:
     - {fileID: -2048950457, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
     - {fileID: 1512207483, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
     - {fileID: 398332174, guid: 05bc95e643efcbe4ca2927606f5dae70, type: 3}
-    ReferenceHeight: 1.871345
+    ReferenceHeight: 4.1941266
   - Id: KettleBat
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
-    ReferenceHeight: 0.94140625
+    - {fileID: -1153539944, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: 1759758697, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: -1966036622, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: 1786259198, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: -1966036622, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: 1935533297, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: 2013992050, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    - {fileID: 1077784379, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+    ReferenceHeight: 1.7092198
   - Id: BookmarkGolem
     Kind: locomotion
     Evolution: 0
@@ -919,19 +1094,33 @@ MonoBehaviour:
     - {fileID: -1600699171, guid: 733fc19f33dac824bb0b526e6a007db2, type: 3}
     - {fileID: 1457939628, guid: 733fc19f33dac824bb0b526e6a007db2, type: 3}
     - {fileID: 1188021443, guid: 733fc19f33dac824bb0b526e6a007db2, type: 3}
-    ReferenceHeight: 1.6243654
+    ReferenceHeight: 2.7430341
   - Id: TinTick
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 0d0c097398377ef43855dc377c77dc5a, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -521273467, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: 56043509, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: 1012001575, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: -659334737, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: 1012001575, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: -930757699, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: -1251748321, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    - {fileID: 1577478058, guid: 439ebbf05aa4a4b4fae0b5ee5801cc72, type: 3}
+    ReferenceHeight: 2.1192052
   - Id: SpringDuck
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1831491631, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: -2086403776, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: -10091044, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: -1517446508, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: -10091044, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: 891905712, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: -1694432670, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    - {fileID: 849859584, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+    ReferenceHeight: 1.871345
   - Id: ButtonBeetle
     Kind: locomotion
     Evolution: 0
@@ -944,25 +1133,46 @@ MonoBehaviour:
     - {fileID: -422681635, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
     - {fileID: -372032979, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
     - {fileID: -263905842, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
-    ReferenceHeight: 2.2068965
+    ReferenceHeight: 6.8790092
   - Id: StapleMole
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -777829280, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: 803916624, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: -171505860, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: -548777710, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: -171505860, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: 2069467897, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: -338400152, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    - {fileID: 1238192184, guid: 716efb1bb9711f247be20d50262ad849, type: 3}
+    ReferenceHeight: 1.9753085
   - Id: SnowSpoon
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: d3701d3ac42656043a5b89ef0fbaa4b4, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -76058480, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: 1239857902, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: 1639338581, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: -61320858, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: 1639338581, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: -937560712, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: 1654146745, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    - {fileID: -642416259, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+    ReferenceHeight: 1.6494845
   - Id: IceCreamOwl
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 639199060, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: 1331657267, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: -1641365671, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: -1154778838, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: -1641365671, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: -2102326981, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: -839202982, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    - {fileID: 26020907, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+    ReferenceHeight: 1.632653
   - Id: FridgeWisp
     Kind: locomotion
     Evolution: 0
@@ -975,7 +1185,7 @@ MonoBehaviour:
     - {fileID: -1304272547, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
     - {fileID: -217493972, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
     - {fileID: -1184099347, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
-    ReferenceHeight: 1.8390805
+    ReferenceHeight: 3.980908
   - Id: PearMoth
     Kind: locomotion
     Evolution: 0
@@ -988,7 +1198,7 @@ MonoBehaviour:
     - {fileID: -1594285633, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
     - {fileID: 1721255290, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
     - {fileID: -685218866, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
-    ReferenceHeight: 1.6666666
+    ReferenceHeight: 2.9629629
   - Id: CitrusToad
     Kind: locomotion
     Evolution: 0
@@ -1001,31 +1211,59 @@ MonoBehaviour:
     - {fileID: 594247331, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
     - {fileID: 1500276893, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
     - {fileID: 887474327, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
-    ReferenceHeight: 2.3357666
+    ReferenceHeight: 8.155831
   - Id: RadishJester
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: b9541fb4d5238774e9610e07718a0213, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1948480205, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: -916439117, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: 1690824299, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: -819017433, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: 1690824299, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: 68745675, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: 1071595273, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    - {fileID: 583955403, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+    ReferenceHeight: 1.8497111
   - Id: SeedHedgehog
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: f44d4acad6c3f954cae5f79205b5488d, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -922632213, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: -865892829, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: -291872115, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: -1855380021, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: -291872115, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: -420144190, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: 477380157, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    - {fileID: 618875030, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+    ReferenceHeight: 1.8497111
   - Id: MoonJelly
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 6c06dd0432331a94cbfdb156275e4299, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -685562162, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 1937728986, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 1112830661, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 2107477808, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 1112830661, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 806394464, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 464742968, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    - {fileID: 430890009, guid: 76520da8d9590054bb40068b7fedc750, type: 3}
+    ReferenceHeight: 1.9512196
   - Id: StarSock
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1165248051, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: -1571198658, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: -1786579799, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: 366112964, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: -1786579799, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: -719722004, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: -1559207401, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    - {fileID: 151540250, guid: 9633cce9288956d4fa582452281b618e, type: 3}
+    ReferenceHeight: 1.5686275
   - Id: CometKite
     Kind: locomotion
     Evolution: 0
@@ -1038,7 +1276,7 @@ MonoBehaviour:
     - {fileID: -1625553651, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
     - {fileID: 956471810, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
     - {fileID: 1337472039, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
-    ReferenceHeight: 1.632653
+    ReferenceHeight: 2.7852342
   - Id: EclipseEgg
     Kind: locomotion
     Evolution: 0
@@ -1051,13 +1289,20 @@ MonoBehaviour:
     - {fileID: 294874795, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
     - {fileID: 996953988, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
     - {fileID: 626165202, guid: 43d5e592b1f85ae4baf425f2c67ab34a, type: 3}
-    ReferenceHeight: 1.6666666
+    ReferenceHeight: 2.9629629
   - Id: OrbitMoth
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 3e40eb35632c4714980d0404efa9151d, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 783874841, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: -1369157313, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: -1875276657, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: 936410315, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: -1875276657, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: -1911273352, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: -409595046, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    - {fileID: 127260381, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+    ReferenceHeight: 1.9631903
   - Id: DreamCompass
     Kind: locomotion
     Evolution: 0
@@ -1070,13 +1315,20 @@ MonoBehaviour:
     - {fileID: -1611438778, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
     - {fileID: 2079346356, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
     - {fileID: -1061377602, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
-    ReferenceHeight: 1.5458937
+    ReferenceHeight: 2.3643887
   - Id: ShellPostman
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1253212194, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: 1495241012, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: -1987852448, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: 1996209857, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: -1987852448, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: -244233389, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: -1589772577, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    - {fileID: -2081038689, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+    ReferenceHeight: 1.5920398
   - Id: CoralTeacup
     Kind: locomotion
     Evolution: 0
@@ -1089,7 +1341,7 @@ MonoBehaviour:
     - {fileID: -1089169973, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
     - {fileID: 393889809, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
     - {fileID: -659577150, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
-    ReferenceHeight: 2
+    ReferenceHeight: 5.12
   - Id: BubbleKoi
     Kind: locomotion
     Evolution: 0
@@ -1102,7 +1354,7 @@ MonoBehaviour:
     - {fileID: 1201988479, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
     - {fileID: 527713132, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
     - {fileID: 784578486, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
-    ReferenceHeight: 2.147651
+    ReferenceHeight: 6.339735
   - Id: AnchorSnail
     Kind: locomotion
     Evolution: 0
@@ -1115,19 +1367,33 @@ MonoBehaviour:
     - {fileID: 833196461, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
     - {fileID: -1145518858, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
     - {fileID: -998785228, guid: a395640cfc74e20469e045c8faf61dfe, type: 3}
-    ReferenceHeight: 2.2222223
+    ReferenceHeight: 12.485902
   - Id: SailSquid
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1848249134, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: -570794705, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: 809483769, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: -702245024, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: 809483769, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: -26624328, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: 913973032, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    - {fileID: 1410346365, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+    ReferenceHeight: 1.72043
   - Id: SockCyclops
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 1870522440, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: 1614810812, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: -432537723, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: 1508631321, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: -432537723, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: -1450085868, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: 2020766002, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    - {fileID: -1613663644, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+    ReferenceHeight: 1.904762
   - Id: DiceCrab
     Kind: locomotion
     Evolution: 0
@@ -1140,13 +1406,20 @@ MonoBehaviour:
     - {fileID: -1908515078, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
     - {fileID: 1974166118, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
     - {fileID: 1249885590, guid: 0c76ccf7628d7e54d803adfa16527192, type: 3}
-    ReferenceHeight: 2.3357666
+    ReferenceHeight: 8.155831
   - Id: MaskPepper
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: 1092785931, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: 1225321234, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: 1598111312, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: -1945269047, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: 1598111312, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: 246233945, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: 1643532870, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    - {fileID: 380625942, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
+    ReferenceHeight: 1.8390805
   - Id: CrayonGremlin
     Kind: locomotion
     Evolution: 0
@@ -1159,43 +1432,85 @@ MonoBehaviour:
     - {fileID: -2139678425, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
     - {fileID: -1573893363, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
     - {fileID: 1109563918, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
-    ReferenceHeight: 1.6080402
+    ReferenceHeight: 2.661158
   - Id: MirrorNewt
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 4cbfd36c6e48bbe42a40c493399901e0, type: 3}
-    ReferenceHeight: 1.1914062
+    - {fileID: 1172119987, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: 2005659458, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: -1804856491, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: 1764936999, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: -1804856491, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: -1442419290, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: 741481611, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    - {fileID: 965872602, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+    ReferenceHeight: 2.6068377
   - Id: RibbonSpider
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -31654802, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: 443490456, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: 1822216252, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: -1403140598, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: 1822216252, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: -1338720905, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: -1237036953, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    - {fileID: -743510321, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+    ReferenceHeight: 2.6666667
   - Id: RainbowTailor
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 1d2d75cbca6aadc43a49c642fd22eeac, type: 3}
-    ReferenceHeight: 1.1718749
+    - {fileID: -510368104, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: 1898344265, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: 707319676, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: 1845127152, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: 707319676, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: -94715555, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: -99772387, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    - {fileID: 1504244442, guid: a59570f4af02ee6428d459856702e64e, type: 3}
+    ReferenceHeight: 1.1764705
   - Id: RainbowBell
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 7ca5840740c95b34d9ac49d900bb30d9, type: 3}
-    ReferenceHeight: 1.3085938
+    - {fileID: -1088451092, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: 1417564980, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: -1344732229, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: -1186615054, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: -1344732229, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: 1759390080, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: 1678854316, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    - {fileID: 1927524916, guid: cbf074255b93b7648b04e18cf60af73d, type: 3}
+    ReferenceHeight: 1.4255319
   - Id: SecretPaperBird
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 1716c2ebe6d62a245865b8b7329221b5, type: 3}
-    ReferenceHeight: 1.2109375
+    - {fileID: -1382175607, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: -283530545, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: -388019408, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: -2023747422, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: -388019408, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: -1214725974, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: 1743920379, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    - {fileID: -1620461358, guid: 9029f1c1894086b4480c6d80d30542ea, type: 3}
+    ReferenceHeight: 1.8931298
   - Id: SaffronMechanist
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
-    ReferenceHeight: 2.4804688
+    - {fileID: -485120776, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: 2045043241, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: 1502410100, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: -1070198158, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: 1502410100, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: -1127602345, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: -201380624, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    - {fileID: 709907219, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+    ReferenceHeight: 3.6285715
   - Id: ClockworkPiper
     Kind: locomotion
     Evolution: 0
@@ -1208,25 +1523,46 @@ MonoBehaviour:
     - {fileID: 842527788, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
     - {fileID: 824291691, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
     - {fileID: 1185796561, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
-    ReferenceHeight: 3.2070706
+    ReferenceHeight: 5.361151
   - Id: VelvetChampion
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: bbc5e214af20ded45b6cad0183c5464c, type: 3}
-    ReferenceHeight: 1.9824219
+    - {fileID: -1485288459, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: 61641507, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: -887014502, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: 53644582, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: -887014502, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: 459912549, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: 569847461, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    - {fileID: -1690424470, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+    ReferenceHeight: 3.5992908
   - Id: PaperInventor
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
-    ReferenceHeight: 2.3925781
+    - {fileID: -1959443584, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: -706640060, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: 1797475251, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: 2061679917, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: 1797475251, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: -1725314106, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: 522559658, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    - {fileID: 1757019605, guid: 661e3b984af4d654789b9f261083e8ed, type: 3}
+    ReferenceHeight: 3.6458335
   - Id: ReturnCaptain
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 799d41bde00af6f498fb55d7314c2291, type: 3}
-    ReferenceHeight: 2.3925781
+    - {fileID: -280000480, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: 978353276, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: 1307069053, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: -1014954465, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: 1307069053, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: 1885968380, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: 1419964565, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    - {fileID: 1720688656, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+    ReferenceHeight: 3.9516127
   - Id: DoughForeman
     Kind: locomotion
     Evolution: 0
@@ -1239,31 +1575,59 @@ MonoBehaviour:
     - {fileID: -2081510636, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
     - {fileID: 164015527, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
     - {fileID: -1857768095, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
-    ReferenceHeight: 3.6944444
+    ReferenceHeight: 7.472812
   - Id: IronLocomotive
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
-    ReferenceHeight: 2.0703125
+    - {fileID: 1792603031, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: 1900315483, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: -967354433, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: 232952883, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: -967354433, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: -1725730952, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: -726531686, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    - {fileID: -2067523450, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+    ReferenceHeight: 3.397436
   - Id: VioletRemnant
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 619927a9603bd3548bcdf8fc4ee958c8, type: 3}
-    ReferenceHeight: 2.3339844
+    - {fileID: 663476832, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: -1709263300, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: 1856912738, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: -1838985767, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: 1856912738, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: -1932605043, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: 1001021268, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    - {fileID: -1429340334, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+    ReferenceHeight: 3.930921
   - Id: VelvetEnchantress
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
-    ReferenceHeight: 2.4023438
+    - {fileID: -151306320, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: -194564136, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: -966759111, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: 150574862, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: -966759111, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: -407181097, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: -1328813831, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    - {fileID: -1276437731, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+    ReferenceHeight: 3.4745762
   - Id: GrandSprout
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
-    ReferenceHeight: 2.5390625
+    - {fileID: 1007030503, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: 489886193, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: 386202590, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: 808674538, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: 386202590, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: -721278172, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: -1868164399, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    - {fileID: -668341790, guid: 133eaa6f56900c547a82a8824286197f, type: 3}
+    ReferenceHeight: 3.6723163
   - Id: BristleBall
     Kind: locomotion
     Evolution: 0
@@ -1276,13 +1640,20 @@ MonoBehaviour:
     - {fileID: 7181315, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
     - {fileID: -1926671344, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
     - {fileID: 1141930501, guid: b2a38dc6e65a428499f6dd66d6d749f9, type: 3}
-    ReferenceHeight: 2.8664923
+    ReferenceHeight: 5.149487
   - Id: PaperDevil
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 9a80cd622b4a52f4b9f85047e4bf3d5a, type: 3}
-    ReferenceHeight: 2.1972656
+    - {fileID: 620059063, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: 652518582, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: 930721157, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: 97313170, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: 930721157, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: 1201443965, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: -839126223, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    - {fileID: 1477819395, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+    ReferenceHeight: 3.3482144
   - Id: BalloonMallet
     Kind: locomotion
     Evolution: 0
@@ -1295,19 +1666,33 @@ MonoBehaviour:
     - {fileID: -1704875971, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
     - {fileID: 2096185472, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
     - {fileID: -1071855121, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
-    ReferenceHeight: 1.7021277
+    ReferenceHeight: 3.1561408
   - Id: LittleSprout
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
-    ReferenceHeight: 2.4414062
+    - {fileID: 1748727056, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: -1847812969, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: -121727296, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: -967507825, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: -121727296, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: -188089578, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: 784874424, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    - {fileID: 1639459279, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+    ReferenceHeight: 3.0940595
   - Id: MonsterMarble
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
-    ReferenceHeight: 1.25
+    - {fileID: -1708907206, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: -1897310083, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: -230176885, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: 905465900, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: -230176885, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: -2088022323, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: 297267878, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    - {fileID: 1370147581, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+    ReferenceHeight: 2
   - Id: CarouselPony
     Kind: locomotion
     Evolution: 0
@@ -1320,25 +1705,46 @@ MonoBehaviour:
     - {fileID: 1198272380, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
     - {fileID: 1234999858, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
     - {fileID: -602130194, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
-    ReferenceHeight: 3.6060605
+    ReferenceHeight: 8.680506
   - Id: TeacupCricket
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
-    ReferenceHeight: 2.4023438
+    - {fileID: 1290255973, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: -1115690047, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: -1087758299, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: 1507365374, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: -1087758299, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: -888321336, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: -1908042236, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    - {fileID: -1061092798, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+    ReferenceHeight: 3.617647
   - Id: RibbonOtter
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: a656c7bf3b7d42143896b7703ba219ce, type: 3}
-    ReferenceHeight: 2.2753906
+    - {fileID: -1797603618, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: -1770412501, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: 1234665000, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: -2035403904, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: 1234665000, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: 114348955, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: 1086981088, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    - {fileID: -1252322601, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+    ReferenceHeight: 3.509036
   - Id: SpindleWren
     Kind: locomotion
     Evolution: 0
     Frames:
-    - {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
-    ReferenceHeight: 2.0800781
+    - {fileID: -305414094, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: -150268387, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: -75722154, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: -909021779, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: -75722154, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: 193291556, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: 551154498, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    - {fileID: 272970470, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+    ReferenceHeight: 3.0428572
   - Id: HushMite
     Kind: enemies
     Evolution: 0

@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SpringDuck
   DisplayName: Spring Duck
-  Body: {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
+  Body: {fileID: -1831491631, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1831491631, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+  - {fileID: -2086403776, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+  - {fileID: -10091044, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+  - {fileID: -1517446508, guid: 2ea7491d8bf919649bbe850646e82d6d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 20acb0f4a416d674f8e1c6a97dc78bcd, type: 2}
   Weapon: {fileID: 11400000, guid: 8184162313aaa4147a285272c25678ea, type: 2}
   Health: 100
   Speed: 4.6

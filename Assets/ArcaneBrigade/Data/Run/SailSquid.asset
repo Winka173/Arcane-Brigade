@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SailSquid
   DisplayName: Sail Squid
-  Body: {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
+  Body: {fileID: -1848249134, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1848249134, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+  - {fileID: -570794705, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+  - {fileID: 809483769, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+  - {fileID: -702245024, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 6335177634eb78349915cb0064066cd4, type: 2}
   Weapon: {fileID: 11400000, guid: 87c0733b128c4494cbd5888830067d47, type: 2}
   Health: 100
   Speed: 4.3999996

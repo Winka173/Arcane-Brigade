@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: IronLocomotive
   DisplayName: Iron Locomotive
-  Body: {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
+  Body: {fileID: 1792603031, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1792603031, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+  - {fileID: 1900315483, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+  - {fileID: -967354433, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+  - {fileID: 232952883, guid: 9e24ff84ee268f84db77fc7370a7a9ab, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0e7ca64335c1cbd40bff4a6c158cd45d, type: 2}
   Weapon: {fileID: 11400000, guid: 2316220e7ed8b8c46934e1a30b91f538, type: 2}
   Health: 100
   Speed: 4

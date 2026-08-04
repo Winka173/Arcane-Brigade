@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LampGoat
   DisplayName: Lamp Goat
-  Body: {fileID: 21300000, guid: a11b08fa2b4c2ea4fa746046bbb71efc, type: 3}
+  Body: {fileID: -444528041, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: a11b08fa2b4c2ea4fa746046bbb71efc, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -444528041, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 70280569, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 738558570, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 1688151393, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f6af6a96138246f4f8275c9eb5279f41, type: 2}
   Weapon: {fileID: 11400000, guid: 62de65cf91cd0854999f05b3e490a49c, type: 2}
   Health: 100
   Speed: 4

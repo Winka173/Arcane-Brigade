@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LittleSprout
   DisplayName: Little Sprout
-  Body: {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
+  Body: {fileID: 1748727056, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1748727056, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  - {fileID: -1847812969, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  - {fileID: -121727296, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  - {fileID: -967507825, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 004bd7f2f37a21f4cbc1fa249039d10b, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

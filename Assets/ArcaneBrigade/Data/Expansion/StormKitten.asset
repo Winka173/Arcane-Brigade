@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StormKitten
   DisplayName: Storm Kitten
-  Body: {fileID: 21300000, guid: b4fe06e332f4b2f49bb0b98a7ef0735a, type: 3}
+  Body: {fileID: -1095342835, guid: e931f62e12b84eb4faa5d95d68688c77, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: b4fe06e332f4b2f49bb0b98a7ef0735a, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1095342835, guid: e931f62e12b84eb4faa5d95d68688c77, type: 3}
+  - {fileID: 267088852, guid: e931f62e12b84eb4faa5d95d68688c77, type: 3}
+  - {fileID: 2008022919, guid: e931f62e12b84eb4faa5d95d68688c77, type: 3}
+  - {fileID: -1307057162, guid: e931f62e12b84eb4faa5d95d68688c77, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0e010d849c8992e4f979d9378322e6af, type: 2}
   Weapon: {fileID: 11400000, guid: ad77b091edb0a8143959dcbfaa2af897, type: 2}
   Health: 100
   Speed: 4

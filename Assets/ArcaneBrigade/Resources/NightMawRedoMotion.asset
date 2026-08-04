@@ -15,18 +15,22 @@ MonoBehaviour:
   Idle:
   - {fileID: 1383474984, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
   - {fileID: -1123032167, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+  - {fileID: -1148958941, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
+  - {fileID: -623064942, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
   Walk:
   - {fileID: 1842982967, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+  - {fileID: 932995536, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
   - {fileID: 307495393, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
-  - {fileID: 1842982967, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
-  - {fileID: 307495393, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+  - {fileID: -1238136878, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
   Windup:
   - {fileID: -1768705573, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
   - {fileID: 596820790, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+  - {fileID: 60840837, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
   Release:
   - {fileID: -695119239, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
-  - {fileID: -695119239, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+  - {fileID: -569519678, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
   Recovery:
   - {fileID: 1891673704, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+  - {fileID: 788458072, guid: 62b8aa8d5ed1395419f2f00df8327013, type: 3}
   - {fileID: 1383474984, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
   IllustratedHeight: 0

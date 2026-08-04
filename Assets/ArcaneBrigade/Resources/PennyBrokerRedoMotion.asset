@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PennyBrokerRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 610566383, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: -751475305, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: 1274964731, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  - {fileID: 561291739, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  Walk:
+  - {fileID: -1483904499, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: 958384739, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  - {fileID: -1462409623, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: 2104853081, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  Windup:
+  - {fileID: -1961591141, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: 1923050272, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: -354645513, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  Release:
+  - {fileID: -1155446682, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: 385082975, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  Recovery:
+  - {fileID: -1462002679, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: 1903941116, guid: 194a0f16d3805a24386bfb6176186cb6, type: 3}
+  - {fileID: 610566383, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  IllustratedHeight: 0

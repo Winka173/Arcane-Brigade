@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SpindleWren
   DisplayName: Spindle Wren
-  Body: {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
+  Body: {fileID: -305414094, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -305414094, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+  - {fileID: -150268387, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+  - {fileID: -75722154, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+  - {fileID: -909021779, guid: c4a2cbad3e99bc04eb2d23bf40b9a43d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: bbd2d1da6636cf944b6acfef39810c19, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

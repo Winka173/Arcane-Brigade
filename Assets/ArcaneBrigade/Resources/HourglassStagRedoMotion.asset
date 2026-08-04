@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: HourglassStagRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1031780916, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: -1551967374, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: 2119253922, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  - {fileID: 529969756, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  Walk:
+  - {fileID: -1679762027, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: 1957955448, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  - {fileID: 765837712, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: 1362821204, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  Windup:
+  - {fileID: -1987183583, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: -456490735, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: -958521567, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  Release:
+  - {fileID: -1366132377, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: 906706080, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  Recovery:
+  - {fileID: -2065147374, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  - {fileID: 557552500, guid: 92a65ac810bcf7b4a9c27c77df214949, type: 3}
+  - {fileID: 1031780916, guid: 5b26cb0827e010d45a47025073929b5e, type: 3}
+  IllustratedHeight: 0

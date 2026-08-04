@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SoapSkater
   DisplayName: Soap Skater
-  Body: {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
+  Body: {fileID: 2008643358, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 2008643358, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+  - {fileID: -1831125072, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+  - {fileID: -195172004, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+  - {fileID: -851542049, guid: 6b5ba663f9e825249be7d7d01650ebfb, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: ee5cb72039cb5bf4581bf44bb0251d59, type: 2}
   Weapon: {fileID: 11400000, guid: 3a552c526a3998a428518fbbccaa188b, type: 2}
   Health: 90
   Speed: 4.5

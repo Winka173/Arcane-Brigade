@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SaffronMechanist
   DisplayName: Saffron Mechanist
-  Body: {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
+  Body: {fileID: -485120776, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -485120776, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 2045043241, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 1502410100, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: -1070198158, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 38d1523200a4a0f4f8b1c5c06a8aacd1, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

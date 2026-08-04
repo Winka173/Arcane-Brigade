@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: KettleBat
   DisplayName: Kettle Bat
-  Body: {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
+  Body: {fileID: -1153539944, guid: 7c21c63310204ad40a089722746d7268, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1153539944, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+  - {fileID: 1759758697, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+  - {fileID: -1966036622, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+  - {fileID: 1786259198, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c463a389dd186f24ba59be82ad813f05, type: 2}
   Weapon: {fileID: 11400000, guid: 542fe4212187c014fbbbca11b1a4b631, type: 2}
   Health: 100
   Speed: 4.6

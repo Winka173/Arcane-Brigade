@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TeacupCricket
   DisplayName: Teacup Cricket
-  Body: {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
+  Body: {fileID: 1290255973, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1290255973, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+  - {fileID: -1115690047, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+  - {fileID: -1087758299, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+  - {fileID: 1507365374, guid: 1070dbb16d578cb4696ccf7117f543ff, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: baf728a73d9cebe4aa2b5d0aa0dcdaa1, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
