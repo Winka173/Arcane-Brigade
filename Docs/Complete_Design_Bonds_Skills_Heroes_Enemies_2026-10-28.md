@@ -237,42 +237,114 @@ Each step starts with a tag naming the kind of rule it is, so the variety is vis
 
 ## 3. Minor bonds (32)
 
-Each minor is a small rule of its own. Steps 2 and 4 (and 6 for the seven-member ones). The minors that do not belong to a house can appear on companions of any house.
+Each minor is a small rule of its own. The lower step starts a resource or a board state (stacks, Glyphs, Sugar, Cogs, trails) and the top step spends it, so the top step changes how the bond plays instead of only raising a number. Seven-member minors step at 2/4/6, five-member ones at 2/4. The minors that do not belong to a house can appear on companions of any house.
 
-| Bond | Members | Rule | House |
-|---|---|---|---|
-| Sweet Tooth | 7: Teapot Pilgrim, Candle Snail, Mailbox Imp, Bread Crab, Baker Mouse, Sundae Golem, Boba Tadpole | [Drop] every 15 kills a Snack drops and heals the hero 3% (4: every 10 kills; 6: also +1 coin) | Hearth + Ember |
-| Bouncing Ball | 5: Mailbox Imp, Bread Crab, Dice Crab, Mask Pepper, Boba Tadpole | [Projectile] shots bounce once (4: twice, each bounce keeps 70% damage) | Hearth + Ember |
-| Gauntlet | 7: Snow Spoon, Fridge Wisp, Anchor Snail, Sail Squid, The Impossible Tailor, Balloon Mallet, Shovel Penguin | [Stacking] melee hits stack Grit: +2% damage each up to +10% (resets after 4 s idle; 4: up to 20%; 6: stacks never reset in a wave) | Frost + Tide |
-| Sea Shanty | 5: Fridge Wisp, Shell Postman, Coral Teacup, Shanty Sea Lion, Bottle Gull | [Every Nth hit] every 4th attack by any friend gives all friends +3% attack speed for 4 s (4: every 3rd) | Frost + Tide |
-| Paper Wings | 7: Kettle Bat, Comet Kite, The Folded Courier, Spindle Wren, Rain Heron, Paper Plane Pigeon, Kite Dragon | [Projectile] shots curve in a gentle spiral (+10% distance; 4: they return like a boomerang; 6: twice) | Storm + Windborne |
-| Rain Script | 5: Ribbon Otter, Spindle Wren, Rain Heron, Raincoat Frog, Volt Eel | [Economy] every reroll gives +0.5% permanent damage (4: +1%) | Storm + Windborne |
-| Quicksoles | 7: Pear Moth, Citrus Toad, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Yo-yo Squirrel | [Movement] +6% move speed and a short dash every 8 s (4: every 6 s; 6: the dash leaves a shock wave) | Garden + Venom |
-| Root | 5: Mushroom Librarian, Seed Hedgehog, Grand Sprout, Watering Snail, The First Seed | [Stillness] standing still for 2 s: +20% health regeneration and +2 armor (4: +40% and +4) | Garden + Venom |
-| Hats | 7: Pillow Oracle, Ice Cream Owl, Moon Jelly, Orbit Moth, The Forgotten Patchwork, Violet Remnant, Little Sprout | [Economy] the first recruit each shop is 25% cheaper (4: 40%; 6: free once a run) | Starlight + Dusk |
-| Clover | 5: Star Sock, Eclipse Egg, Bubble Koi, Little Sprout, Saddle Moth | [Random] every 20 kills a lucky Clover drops: a free reroll (4: every 12 kills) | Starlight + Dusk |
-| Masks | 7: Jelly Swordsman, Brass Acorn, Radish Jester, Return Captain, Dough Foreman, Velvet Enchantress, Court Herald | [Crit] +4% crit; every 5th crit deals double damage (4: every 4th; 6: every 3rd) | Carnival + Court |
-| Big Top | 5: Button Beetle, Crayon Gremlin, Dough Foreman, Ringmaster Jack, The Lost Carousel | [Combo] hitting different enemies in a row builds a combo: +1% damage per link up to +10% (4: +20%) | Carnival + Court |
-| Runes | 7: Hood Wisp, Bookmark Golem, Thimble Moth, Lens Owl, The Endless Index, Harbor Whale, Paper Inventor | [Every Nth hit] every 10th hit casts a rune strike for 80% weapon damage in a ring (4: every 8th; 6: every 6th) | Archive + Lantern |
-| Exhibit Hall | 5: Reel Owl, Velvet Champion, Teacup Cricket, Pinned Beetle, Lamp Goat | [Survival] +6% max health; once per run the hero survives a fatal hit with 1 HP (4: also heals 20%) | Archive + Lantern |
-| Horns | 7: Iron Locomotive, Fossil Armadillo, Spring Duck, Dream Compass, Bristle Ball, Monster Marble, Stitched Pangolin | [Every Nth hit] every 10th hit shoves enemies back and stuns them 0.3 s (4: every 8th; 6: every 6th) | Stone + Clockwork |
-| Gears | 5: Tin Tick, Spring Duck, Staple Mole, Clockwork Piper, Top Beetle | [Every Nth hit] every 6th hit fires a bonus shot (4: every 4th) | Stone + Clockwork |
-| Shield | 7: Tower Rook, Totem Pole, Brass Lion, Quilt Walrus, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow | [Shield] every wave start each Shield member shields itself for 8% max health (4: also the nearest friend; 6: shield renews every 20 s) | Bulwark + Spirit |
-| Mend | 5: Lifebuoy Hippo, Nurse Hen, Phoenix Chick, Dandelion Puff, Plaster Panda | [Heal] friends below 50% health heal 1% a second (4: 2% a second) | Bulwark + Spirit |
-| Echo | 7: Metronome, Harp Swan, Bagpipe Octopus, Cymbal Monkey, Choir Canary, Piano Crocodile, Satellite Bee | [Repeat] every 6th cast repeats at 50% (4: every 4th; 6: every 3rd) | Melody + Gravity |
-| Singularity | 5: Anvil Ox, Sinkhole Worm, Planet Hamster, Newton Apple, Bowling Sloth | [Pull] every 12th hit pulls enemies in a small ring toward the target (4: every 8th) | Melody + Gravity |
-| Bastion | 5: Dice Crab, Shovel Penguin, Specimen Slime, Brass Lion, Plaster Panda | [Wave-start shield] the whole team starts each wave with a shield worth 6% max health (4: 10%) | any |
-| Spiky Shell | 5: Teacup Cricket, Grand Sprout, Yo-yo Squirrel, The First Seed, Bowling Sloth | [Reflect] enemies that hit a friend take 40% of that damage back (4: 80%) | any |
-| Unstoppable | 5: Saffron Mechanist, Monster Marble, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow | [Immunity] members cannot be stunned or pushed; they charge into the nearest cluster after a kill (4: the charge stuns) | any |
-| Monolith | 5: Balloon Mallet, Violet Remnant, Bristle Ball, Stitched Pangolin, Quilt Walrus | [Armor per enemy] +1 armor for each enemy within 4 units, up to +6 (4: up to +10) | any |
-| Sniper | 5: The Folded Courier, Paper Plane Pigeon, Raincoat Frog, Storm Kitten, Paper Inventor | [Distance] +2% damage per unit of distance to the target, up to +16% (4: up to +30%) | any |
-| Bludgeoner | 5: Tea Dragon, Harbor Whale, Sock Cyclops, Mirror Newt, The Last Bell | [Armor ignore] shots ignore 15% of armor (4: 30%) | any |
-| Desperado | 5: Shanty Sea Lion, Carousel Pony, Ringmaster Jack, The Lost Carousel, Court Herald | [Every Nth hit] every 8th hit fires 5 extra shots at the nearest enemies for 40% weapon damage (4: every 6th) | any |
-| Bladenado | 5: The Impossible Tailor, Static Ferret, Ribbon Spider, Lamp Goat, Cymbal Monkey | [Splash] hits deal 25% of their damage to every enemy within 2 units of the target (4: 50%) | any |
-| Rapidfire | 5: Volt Eel, Bottle Gull, Dream Compass, The Sleeping Friend, Satellite Bee | [On-hit stacks] every hit gives +2% attack speed, up to 10 stacks, lost after 3 s idle (4: +3% per stack) | any |
-| Demolitionist | 5: Coil Kettle, Sundae Golem, Crayon Gremlin, Velvet Enchantress, Newton Apple | [Stun] skill damage stuns for 0.3 s (4: 0.6 s, but only the first 10 enemies hit) | any |
-| Cloud | 5: Mask Pepper, Star Sock, Bubble Koi, The Forgotten Patchwork, Saddle Moth | [Dodge] the team has a 6% chance to dodge a hit (4: 12%) | any |
-| Multicaster | 5: The Endless Index, Pinned Beetle, Clockwork Piper, Choir Canary, Piano Crocodile | [Repeat] the first skill each wave is cast twice (4: the first two) | any |
+- **Sweet Tooth** (7, Hearth + Ember): Teapot Pilgrim, Candle Snail, Mailbox Imp, Bread Crab, Baker Mouse, Sundae Golem, Boba Tadpole
+  - **2:** [Drop + stacks] every 15 kills a Snack drops; the hero eats it to heal 3% and gain 1 Sugar (+2% attack speed for the wave, up to 5)
+  - **4:** [Rush] Snacks drop every 10 kills; at 5 Sugar a Sugar Rush fires: for 6 s all skill bars fill 30% faster, then Sugar resets
+  - **6:** [Payoff] each Sugar Rush makes every Sweet Tooth friend throw a candy volley at the densest cluster and drops 1 coin per member
+- **Bouncing Ball** (5, Hearth + Ember): Mailbox Imp, Bread Crab, Dice Crab, Mask Pepper, Boba Tadpole
+  - **2:** [Projectile] shots bounce once to another enemy at 70% damage
+  - **4:** [Build-up] shots bounce twice, and each bounce adds +15% damage to the next one, so the last bounce hits hardest
+- **Gauntlet** (7, Frost + Tide): Snow Spoon, Fridge Wisp, Anchor Snail, Sail Squid, The Impossible Tailor, Balloon Mallet, Shovel Penguin
+  - **2:** [Stacking] melee hits stack Grit: +2% damage each up to +10%, lost after 4 s idle
+  - **4:** [Haymaker] Grit goes to +20%; at full Grit the next hit is a Haymaker, a shock wave in a cone ahead for 150% weapon damage
+  - **6:** [Payoff] Grit never resets in a wave, a Haymaker comes every 4th hit at full Grit, and it throws enemies into each other
+- **Sea Shanty** (5, Frost + Tide): Fridge Wisp, Shell Postman, Coral Teacup, Shanty Sea Lion, Bottle Gull
+  - **2:** [Every Nth hit] every 4th attack by any friend sings a Verse: +3% attack speed for 4 s, stacking to 5
+  - **4:** [Chorus] at 5 Verses the crew sings a Chorus: 6 s of +15% damage and Sea Shanty friends' shots splash
+- **Paper Wings** (7, Storm + Windborne): Kettle Bat, Comet Kite, The Folded Courier, Spindle Wren, Rain Heron, Paper Plane Pigeon, Kite Dragon
+  - **2:** [Projectile] shots curve in a gentle spiral (+10% distance)
+  - **4:** [Boomerang] shots return like a boomerang and hit again on the way back at 60%
+  - **6:** [Payoff] shots return twice, and two returning shots that cross fold into a Paper Crane that dives onto the densest cluster
+- **Rain Script** (5, Storm + Windborne): Ribbon Otter, Spindle Wren, Rain Heron, Raincoat Frog, Volt Eel
+  - **2:** [Economy] every reroll gives +0.5% permanent damage
+  - **4:** [Payoff] every reroll gives +1%, and every 10 rerolls in a run write a Verse: the next shop's first item is half price
+- **Quicksoles** (7, Garden + Venom): Pear Moth, Citrus Toad, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Yo-yo Squirrel
+  - **2:** [Movement] +6% move speed and a short dash every 8 s
+  - **4:** [Slipstream] a dash every 6 s that leaves a trail for 3 s; friendly shots that cross it deal +15% damage
+  - **6:** [Payoff] each dash sends a shock wave along the trail that shoves enemies back, and refunds 1 s of every Quicksoles friend's skill bar
+- **Root** (5, Garden + Venom): Mushroom Librarian, Seed Hedgehog, Grand Sprout, Watering Snail, The First Seed
+  - **2:** [Stillness] after 2 s standing still: +20% health regeneration and +2 armor
+  - **4:** [Payoff] +40% and +4; while the hero stands still, Root friends' hits root enemies for 0.5 s
+- **Hats** (7, Starlight + Dusk): Pillow Oracle, Ice Cream Owl, Moon Jelly, Orbit Moth, The Forgotten Patchwork, Violet Remnant, Little Sprout
+  - **2:** [Economy] the first recruit each shop is 25% cheaper
+  - **4:** [Hats] 40% cheaper, and every new recruit arrives wearing a Hat: +10% damage for that friend for the run
+  - **6:** [Payoff] one free recruit a run; Hats stack on the same friend, and a friend with 3 Hats becomes a Top Hat whose skill casts twice
+- **Clover** (5, Starlight + Dusk): Star Sock, Eclipse Egg, Bubble Koi, Little Sprout, Saddle Moth
+  - **2:** [Random] every 20 kills a Clover drops: a free reroll
+  - **4:** [Payoff] every 12 kills; 4 Clovers held at once bloom into a Four-Leaf: the next shop shows one item a rarity higher
+- **Masks** (7, Carnival + Court): Jelly Swordsman, Brass Acorn, Radish Jester, Return Captain, Dough Foreman, Velvet Enchantress, Court Herald
+  - **2:** [Crit] +4% crit; every 5th crit deals double damage
+  - **4:** [Shards] every 4th crit; a double crit breaks the mask, and its shards hit 3 enemies near the target for 40%
+  - **6:** [Payoff] every 3rd crit, and each shard that hits gives +1% crit for the wave (up to +10%)
+- **Big Top** (5, Carnival + Court): Button Beetle, Crayon Gremlin, Dough Foreman, Ringmaster Jack, The Lost Carousel
+  - **2:** [Combo] hitting different enemies in a row builds a combo: +1% damage per link up to +10%
+  - **4:** [Payoff] up to +20%; at full combo the next skill is Showtime: it also lands on a second cluster
+- **Runes** (7, Archive + Lantern): Hood Wisp, Bookmark Golem, Thimble Moth, Lens Owl, The Endless Index, Harbor Whale, Paper Inventor
+  - **2:** [Every Nth hit] every 10th hit casts a rune strike: 80% weapon damage in a ring around the target
+  - **4:** [Glyphs] every 8th hit; rune strikes leave a Glyph for 4 s, and enemies on a Glyph take +10% damage
+  - **6:** [Payoff] every 6th hit; a rune strike that lands on a Glyph detonates it for triple damage
+- **Exhibit Hall** (5, Archive + Lantern): Reel Owl, Velvet Champion, Teacup Cricket, Pinned Beetle, Lamp Goat
+  - **2:** [Survival] +6% max health; once per run the hero survives a fatal hit with 1 HP
+  - **4:** [Payoff] the save also heals 20%, and once a wave the first fallen friend is put on Display: it stands up after 5 s instead of 15
+- **Horns** (7, Stone + Clockwork): Iron Locomotive, Fossil Armadillo, Spring Duck, Dream Compass, Bristle Ball, Monster Marble, Stitched Pangolin
+  - **2:** [Every Nth hit] every 10th hit shoves enemies back and stuns them 0.3 s
+  - **4:** [Pile-up] every 8th hit; shoved enemies that hit others stun them too
+  - **6:** [Payoff] every 6th hit; stunned enemies take +20% damage from Horns friends
+- **Gears** (5, Stone + Clockwork): Tin Tick, Spring Duck, Staple Mole, Clockwork Piper, Top Beetle
+  - **2:** [Every Nth hit] every 6th hit fires a bonus shot
+  - **4:** [Payoff] every 4th hit; each bonus shot that lands adds a Cog, and 10 Cogs fill every friend's skill bar by 20%
+- **Shield** (7, Bulwark + Spirit): Tower Rook, Totem Pole, Brass Lion, Quilt Walrus, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow
+  - **2:** [Shield] every wave start each Shield member shields itself for 8% max health
+  - **4:** [Burst] the nearest friend gets the shield too; a shield that breaks bursts and shoves nearby enemies back
+  - **6:** [Payoff] shields renew every 20 s and their bursts deal 100% weapon damage
+- **Mend** (5, Bulwark + Spirit): Lifebuoy Hippo, Nurse Hen, Phoenix Chick, Dandelion Puff, Plaster Panda
+  - **2:** [Heal] friends below 50% health heal 1% a second
+  - **4:** [Payoff] 2% a second; healing past full health becomes a Patch shield (up to 10% max health)
+- **Echo** (7, Melody + Gravity): Metronome, Harp Swan, Bagpipe Octopus, Cymbal Monkey, Choir Canary, Piano Crocodile, Satellite Bee
+  - **2:** [Repeat] every 6th cast repeats at 50%
+  - **4:** [Travel] every 4th cast; the echo lands on the next-densest cluster instead of the same spot
+  - **6:** [Payoff] every 3rd cast; an echo can echo once more at 25%
+- **Singularity** (5, Melody + Gravity): Anvil Ox, Sinkhole Worm, Planet Hamster, Newton Apple, Bowling Sloth
+  - **2:** [Pull] every 12th hit pulls enemies in a small ring toward the target
+  - **4:** [Payoff] every 8th hit; pulled enemies that land together are crushed for 60% weapon damage
+- **Bastion** (5, any): Dice Crab, Shovel Penguin, Specimen Slime, Brass Lion, Plaster Panda
+  - **2:** [Wave-start shield] the whole team starts each wave with a shield worth 6% max health
+  - **4:** [Payoff] 10%, and while a friend has a shield it deals +10% damage
+- **Spiky Shell** (5, any): Teacup Cricket, Grand Sprout, Yo-yo Squirrel, The First Seed, Bowling Sloth
+  - **2:** [Reflect] enemies that hit a friend take 40% of that damage back
+  - **4:** [Payoff] 80%, and the reflected damage also hits enemies within 2 units of the attacker
+- **Unstoppable** (5, any): Saffron Mechanist, Monster Marble, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow
+  - **2:** [Immunity] members cannot be stunned or pushed; after a kill they charge into the nearest cluster
+  - **4:** [Payoff] the charge stuns, and each charge gives +5% damage for 4 s (stacks 3)
+- **Monolith** (5, any): Balloon Mallet, Violet Remnant, Bristle Ball, Stitched Pangolin, Quilt Walrus
+  - **2:** [Armor per enemy] +1 armor for each enemy within 4 units, up to +6
+  - **4:** [Payoff] up to +10; at full armor a member draws the enemies around it onto itself
+- **Sniper** (5, any): The Folded Courier, Paper Plane Pigeon, Raincoat Frog, Storm Kitten, Paper Inventor
+  - **2:** [Distance] +2% damage per unit of distance to the target, up to +16%
+  - **4:** [Payoff] up to +30%, and a kill from 8+ units carries on to the next enemy in the line
+- **Bludgeoner** (5, any): Tea Dragon, Harbor Whale, Sock Cyclops, Mirror Newt, The Last Bell
+  - **2:** [Armor ignore] shots ignore 15% of armor
+  - **4:** [Payoff] 30%, and each hit on an armored enemy breaks 1 armor for the wave
+- **Desperado** (5, any): Shanty Sea Lion, Carousel Pony, Ringmaster Jack, The Lost Carousel, Court Herald
+  - **2:** [Every Nth hit] every 8th hit fires 5 extra shots at the nearest enemies for 40% weapon damage
+  - **4:** [Payoff] every 6th hit; each extra shot that kills fires one more
+- **Bladenado** (5, any): The Impossible Tailor, Static Ferret, Ribbon Spider, Lamp Goat, Cymbal Monkey
+  - **2:** [Splash] hits deal 25% of their damage to every enemy within 2 units of the target
+  - **4:** [Payoff] 50%, and splash hits leave a spinning blade on the ground for 2 s
+- **Rapidfire** (5, any): Volt Eel, Bottle Gull, Dream Compass, The Sleeping Friend, Satellite Bee
+  - **2:** [On-hit stacks] every hit gives +2% attack speed, up to 10 stacks, lost after 3 s idle
+  - **4:** [Payoff] +3% per stack; at 10 stacks shots pierce 1 enemy
+- **Demolitionist** (5, any): Coil Kettle, Sundae Golem, Crayon Gremlin, Velvet Enchantress, Newton Apple
+  - **2:** [Stun] skill damage stuns for 0.3 s
+  - **4:** [Payoff] 0.6 s (first 10 enemies hit), and stunned enemies take +15% skill damage
+- **Cloud** (5, any): Mask Pepper, Star Sock, Bubble Koi, The Forgotten Patchwork, Saddle Moth
+  - **2:** [Dodge] the team has a 6% chance to dodge a hit
+  - **4:** [Payoff] 12%, and every dodge leaves a cloud puff that slows enemies inside it 30% for 2 s
+- **Multicaster** (5, any): The Endless Index, Pinned Beetle, Clockwork Piper, Choir Canary, Piano Crocodile
+  - **2:** [Repeat] the first skill each wave is cast twice
+  - **4:** [Payoff] the first two, and every 10th cast after that is cast twice too
 
 ## 4. Build recipes (examples with 10 companions; the hero joins its two minors)
 
