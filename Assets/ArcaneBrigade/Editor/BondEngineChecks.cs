@@ -61,8 +61,75 @@ namespace ArcaneBrigade.Editor
 
         public static void Run()
         {
-            ThresholdsAndPeriodicHits(); Ember(); Frost(); Storm(); Venom(); Dusk(); MinorState(); Resets();
+            Require(BondBuildRecipes.All.Length == 12, "Twelve section 4 build recipes");
+            V3CatalogAndRules(); ThresholdsAndPeriodicHits(); Ember(); Frost(); Storm(); Venom(); Dusk(); MinorState(); Resets();
             Debug.Log("BondEngineChecks: PASS (100-enemy deterministic fixtures; all requested steps and reset rules)");
+        }
+        private static void V3CatalogAndRules()
+        {
+            BondDefinition[] definitions = BondV3Catalog.CreateDefinitions();
+            Require(definitions.Length == BondTuning.MajorCount + BondTuning.MinorCount, "V3 has 52 bonds");
+            var members = new Dictionary<string, int>(); int roster = 0;
+            foreach (string id in BondV3Catalog.CompanionIds)
+            {
+                roster++; string[] tags = BondV3Catalog.Tags(id); var unique = new HashSet<string>();
+                foreach (string tag in tags) { Require(unique.Add(tag), "No duplicate membership for " + id); members[tag] = members.TryGetValue(tag, out int n) ? n + 1 : 1; }
+            }
+            Require(roster == BondTuning.RosterCount, "All 120 companions have canonical memberships");
+            foreach (BondDefinition definition in definitions)
+            {
+                Require(members.TryGetValue(definition.Id, out int total), "Every bond has members");
+                bool major = BondV3Catalog.IsMajor(definition.Id);
+                Require(major ? total == BondTuning.MajorMembers : total == BondTuning.SmallMinorMembers || total == BondTuning.LargeMinorMembers, "One spare member for " + definition.Id);
+                var runtime = new BondRuntime(definitions, new Dictionary<string, int> { [definition.Id] = total });
+                Require(runtime.Active(definition.Id) && runtime.Active(definition.Id, 4), "First two steps for " + definition.Id);
+                Require(runtime.Active(definition.Id, 6) == (major || total == BondTuning.LargeMinorMembers), "Third step for " + definition.Id);
+                Require(runtime.Active(definition.Id, 8) == major, "Fourth step only on majors");
+            }
+            using (var fight = new Fight("tidal", 4))
+            {
+                for (int i = 0; i < BondTuning.TideEvery; i++) fight.Hit();
+                Require(fight.Runtime.State(fight.Enemies[0]).SoakedUntil > 0, "Fifth Tide hit soaks an area");
+                fight.Runtime.Tick(BondTuning.RiptidePeriod);
+                foreach (UnitState enemy in fight.Enemies) Require(fight.Runtime.State(enemy).SoakedUntil > fight.Runtime.Time, "Riptide covers 100 enemies");
+            }
+            using (var fight = new Fight("bulwark", 8))
+            {
+                Require(fight.Runtime.SupportRequests.Count(r => r.Kind == BondSupportKind.Shield) == 2, "Bulwark shields the hero and companion");
+                Require(fight.Runtime.TryPreventFall(fight.Friend), "First friend gets a last stand");
+                Require(!fight.Runtime.TryPreventFall(fight.Hero), "Last stand only once per wave");
+                fight.Reset(); Require(fight.Runtime.TryPreventFall(fight.Hero), "Last stand renews next wave");
+            }
+            using (var fight = new Fight("spirit", 6))
+            {
+                fight.Runtime.OnFriendFell(fight.Friend); fight.Runtime.OnFriendFell(fight.Hero);
+                Require(fight.Runtime.SupportRequests.Count(r => r.Kind == BondSupportKind.Revive) == 1, "Only first fall gets Revenant");
+                Near(fight.Runtime.ReviveTimeReduction, BondTuning.SpiritReviveReduction, "Spirit shortens revival by four seconds");
+            }
+            using (var fight = new Fight("melody", 6))
+            {
+                fight.Runtime.Tick(BondTuning.StillSeconds);
+                for (int i = 0; i < BondTuning.MelodyEvery; i++) fight.Runtime.OnCast(fight.Friend);
+                Require(fight.Runtime.Beats == 1, "Fourth cast gives a Beat");
+                fight.Runtime.Tick(BondTuning.BeatSeconds);
+                Require(fight.Runtime.AttackSpeedBonus > 0, "Stillness doubles Beat duration");
+            }
+            using (var fight = new Fight("orchard", 2))
+            {
+                fight.Runtime.OnWaveSurvived(); BondRunProgress progress = fight.Runtime.RunProgress;
+                var next = new BondRuntime(definitions, new Dictionary<string, int> { ["orchard"] = 2 }, progress);
+                Near(next.RunDamageBonus, BondTuning.GrowthPerWave, "Garden growth survives runtime replacement");
+                Near(next.RunHealthBonus, BondTuning.GrowthPerWave, "Garden also grows health");
+            }
+            using (var fight = new Fight("gravity", 8))
+            {
+                fight.Enemies[1].Position = fight.Enemies[0].Position + Vector2.right;
+                fight.Enemies[2].Position = fight.Enemies[0].Position + Vector2.up;
+                fight.Enemies[3].Position = fight.Enemies[0].Position - Vector2.up;
+                fight.Runtime.Tick(.1f);
+                Require(fight.Runtime.State(fight.Enemies[0]).ClusterNeighbors >= BondTuning.ClusterMinimum, "Clump count is cached across 100 enemies");
+                Require(fight.Runtime.SpeedScale(fight.Enemies[0]) < 1, "Gravity well slows nearby enemies");
+            }
         }
         private static void ThresholdsAndPeriodicHits()
         {

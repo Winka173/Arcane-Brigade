@@ -1,8 +1,9 @@
 namespace ArcaneBrigade
 {
-    /// <summary>Review pack section 2 numbers; unspecified draft values live here too.</summary>
-    public static class BondTuning
+    /// <summary>Design v3 numbers; unspecified draft balance values live here too.</summary>
+    public static partial class BondTuning
     {
+        public const float HearthDouble = 2f;
         public const int BurnStacks = 3, BurnAfterBurst = 1, BurnSpreadStacks = 1, ChillStacks = 5, PoisonHitCap = 5, PoisonSpreadCap = 20, RotStacks = 8;
         public const float BurnSeconds = 4, BurnDps = .1f, BurstDamage = 1, BurstRadius = 2;
         public const float EmberSeconds = 4, PhoenixSeconds = 15, InfernoSeconds = 5;

@@ -13,17 +13,17 @@ namespace ArcaneBrigade
     public sealed partial class CombatSimulation
     {
         public BondRuntime Bonds { get; private set; }
-        private readonly Queue<BondDamageRequest> bondDamage = new Queue<BondDamageRequest>();
-        private readonly HashSet<int> bondRoots = new HashSet<int>();
+        private readonly Queue<BondDamageRequest> bondDamage = new Queue<BondDamageRequest>(BondTuning.RequestCapacity);
+        private readonly HashSet<int> bondRoots = new HashSet<int>(BondTuning.RequestCapacity);
         private CombatCause BondCause(int sourceId, string rule)
         {
-            CombatCause cause = NewCause(sourceId).Child("bond-" + rule);
+            CombatCause cause = NewCause(sourceId).Child(rule=="execute"?"bond-execute":rule=="eclipse"?"bond-eclipse":"bond-generated");
             bondRoots.Add(cause.RootId); return cause;
         }
         private void StartBonds()
         {
             bondDamage.Clear(); bondRoots.Clear();
-            Bonds = new BondRuntime(catalog.RuntimeBonds, catalog.RuntimeBondCounts);
+            Bonds = new BondRuntime(catalog.RuntimeBonds, catalog.RuntimeBondCounts, catalog.RulesV3BondProgress);
             Bonds.DamageRequested += request => bondDamage.Enqueue(request);
             Bonds.BonusShotRequested += (attacker, damage) =>
             {

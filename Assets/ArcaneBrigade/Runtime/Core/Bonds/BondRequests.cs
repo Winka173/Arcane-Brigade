@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum BondSpawnKind { Phoenix, IceSoldier, Shade, LampWisp, Snack, Clover }
+    public enum BondSpawnKind { Phoenix, IceSoldier, Shade, LampWisp, Snack, Clover, Chef, Leviathan, WindBeast, Sprout, Treant, Colossus, Turret, Spirit, Orchestra }
     public readonly struct BondSpawnRequest
     {
         public readonly BondSpawnKind Kind;
@@ -36,6 +36,8 @@ namespace ArcaneBrigade
     public sealed class BondEnemyState
     {
         public int Burn, Chill, Poison, Charge;
+        public float SoakedUntil;
+        public int ClusterNeighbors;
         public float BurnUntil, PoisonUntil, FrozenUntil, StunnedUntil, BurnWeapon, PoisonWeapon;
         public bool Marked, FrozenHitReady, DeathHandled;
         public UnitState BurnSource, PoisonSource;

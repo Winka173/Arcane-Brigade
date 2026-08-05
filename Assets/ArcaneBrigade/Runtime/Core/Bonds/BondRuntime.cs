@@ -5,20 +5,20 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     /// <summary>Wave-local gameplay state. Generated damage never feeds OnHit again.</summary>
-    public sealed class BondRuntime
+    public sealed partial class BondRuntime
     {
         private readonly Dictionary<string, BondDefinition> definitions = new Dictionary<string, BondDefinition>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, int> members = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<UnitState, BondEnemyState> enemies = new Dictionary<UnitState, BondEnemyState>();
-        private readonly List<UnitState> friends = new List<UnitState>();
-        private readonly Dictionary<string, int> hits = new Dictionary<string, int>();
-        private readonly Dictionary<int, float> casts = new Dictionary<int, float>();
-        private readonly List<EmberPatch> patches = new List<EmberPatch>();
-        private readonly List<BondSpawnRequest> spawnRequests = new List<BondSpawnRequest>();
+        private readonly List<UnitState> friends = new List<UnitState>(BondTuning.TeamCapacity);
+        private readonly Dictionary<string, int> hits = new Dictionary<string, int>(BondTuning.RequestCapacity);
+        private readonly Dictionary<int, float> casts = new Dictionary<int, float>(BondTuning.TeamCapacity);
+        private readonly List<EmberPatch> patches = new List<EmberPatch>(BondTuning.RequestCapacity);
+        private readonly List<BondSpawnRequest> spawnRequests = new List<BondSpawnRequest>(BondTuning.RequestCapacity);
         public IReadOnlyList<BondSpawnRequest> SpawnRequests => spawnRequests;
         public void ClearSpawnRequests() => spawnRequests.Clear();
         private void Spawn(BondSpawnRequest request) { spawnRequests.Add(request); SpawnRequested?.Invoke(request); }
-        private sealed class EmberPatch { public Vector2 Position; public float Until, Weapon; public UnitState Source; }
+        private struct EmberPatch { public Vector2 Position; public float Until, Weapon; public UnitState Source; }
         private UnitState hero, bestFriend, lastCombo;
         private float time, still, lastGrit, grit, stolenStrength, shantyUntil, infernoUntil, plagueAt, cloudAt, blizzardAt, eclipseAt;
         private int marked, soldiers, kills, crits, combo, stormHits, thunderHits;
@@ -49,8 +49,9 @@ namespace ArcaneBrigade
         public event Action<UnitState, float> BonusShotRequested;
         public event Action<Vector2, float> EmbersCreated;
 
-        public BondRuntime(IEnumerable<BondDefinition> bonds, IDictionary<string, int> counts)
+        public BondRuntime(IEnumerable<BondDefinition> bonds, IDictionary<string, int> counts, BondRunProgress progress = null)
         {
+            RestoreProgress(progress);
             if (bonds != null) foreach (BondDefinition bond in bonds) if (bond != null && bond.Id != null) definitions[bond.Id] = bond;
             if (counts != null) foreach (var pair in counts) members[pair.Key] = pair.Value;
         }
@@ -64,10 +65,14 @@ namespace ArcaneBrigade
                 foreach (BondStep entry in bond.Steps) if (entry.Count == step) return true;
                 return false;
             }
-            return step <= (id == "mask" || id == "horn" || id == "rune" || id == "gauntlet" || id == "sweet-tooth" ? 6 : 4);
+            return step <= (id == "mask" || id == "horn" || id == "rune" || id == "gauntlet" || id == "sweet-tooth" || id == "paper-wings" || id == "shoe" || id == "hat" || id == "shield" || id == "echo" ? 6 : 4);
         }
-        private bool Has(UnitState unit, string id) => unit != null && unit.Definition != null &&
-            Array.Exists(unit.Definition.Tags ?? Array.Empty<string>(), tag => string.Equals(tag, id, StringComparison.OrdinalIgnoreCase));
+        private bool Has(UnitState unit, string id)
+        {
+            if (unit == null || unit.Definition == null || unit.Definition.Tags == null) return false;
+            foreach (string tag in unit.Definition.Tags) if (string.Equals(tag, id, StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
+        }
         private bool Member(UnitState unit, string id) => Active(id) && Has(unit, id);
         private static float Weapon(UnitState unit) => unit?.Definition?.Weapon == null ? 0 : unit.Definition.Weapon.Damage;
         private void Emit(string rule, UnitState unit, float value = 0) => RuleTriggered?.Invoke(new BondRuleEvent(rule, unit, value));
@@ -77,7 +82,9 @@ namespace ArcaneBrigade
 
         public void ResetWave(UnitState champion, IEnumerable<UnitState> units)
         {
+            traitApplause=0;traitApplauseUntil=0;DuskFallen=0;
             enemies.Clear(); friends.Clear(); hits.Clear(); casts.Clear(); patches.Clear(); spawnRequests.Clear();
+            foreach (string key in BondTuning.HitCounterKeys) hits[key] = 0;
             hero = champion; bestFriend = lastCombo = null;
             time = still = lastGrit = grit = stolenStrength = shantyUntil = infernoUntil = 0;
             plagueAt = BondTuning.PlaguePeriod; cloudAt = BondTuning.CloudPeriod;
@@ -94,6 +101,7 @@ namespace ArcaneBrigade
                     if (bestFriend == null || Weapon(unit) > Weapon(bestFriend)) bestFriend = unit;
                 }
             }
+            ResetV3();
             if (hero != null && Active("ember", 8)) Spawn(new BondSpawnRequest(BondSpawnKind.Phoenix, hero.Position, lifetime: BondTuning.PhoenixSeconds, damage: Weapon(bestFriend)));
             if (hero != null && Active("lantern-guild", 6)) Spawn(new BondSpawnRequest(BondSpawnKind.LampWisp, hero.Position, damage: Weapon(bestFriend)));
         }
@@ -103,12 +111,25 @@ namespace ArcaneBrigade
             enemies.Add(enemy, new BondEnemyState { Chill = Active("frost", 8) ? BondTuning.WinterStacks : 0 });
             RefreshCounters();
         }
+        // Scratch lists are reused; nested area work rotates to a different buffer.
+        private readonly List<UnitState>[] nearbyBuffers = { new List<UnitState>(BondTuning.EnemyCapacity), new List<UnitState>(BondTuning.EnemyCapacity), new List<UnitState>(BondTuning.EnemyCapacity), new List<UnitState>(BondTuning.EnemyCapacity) };
+        private sealed class NearbyOrder : IComparer<UnitState>
+        {
+            public Vector2 Center;
+            public int Compare(UnitState a,UnitState b)
+            {int order=(a.Position-Center).sqrMagnitude.CompareTo((b.Position-Center).sqrMagnitude);return order!=0?order:a.Id.CompareTo(b.Id);}
+        }
+        private readonly NearbyOrder[] nearbyOrders={new NearbyOrder(),new NearbyOrder(),new NearbyOrder(),new NearbyOrder()};
+        private int nearbyCursor;
         private List<UnitState> Nearby(UnitState center, float radius, bool includeCenter = false)
         {
-            var result = new List<UnitState>();
+            int slot=nearbyCursor++ % nearbyBuffers.Length;
+            List<UnitState> result = nearbyBuffers[slot]; result.Clear();
+            float square = radius * radius;
             foreach (var pair in enemies) if (pair.Key.Alive && (includeCenter || pair.Key != center) &&
-                (pair.Key.Position - center.Position).sqrMagnitude <= radius * radius) result.Add(pair.Key);
-            result.Sort((a, b) => { int order = (a.Position - center.Position).sqrMagnitude.CompareTo((b.Position - center.Position).sqrMagnitude); return order != 0 ? order : a.Id.CompareTo(b.Id); });
+                (pair.Key.Position - center.Position).sqrMagnitude <= square) result.Add(pair.Key);
+            // Cached comparers keep dense-area ordering deterministic without per-hit closures.
+            nearbyOrders[slot].Center=center.Position;result.Sort(nearbyOrders[slot]);
             return result;
         }
         private void Area(UnitState center, UnitState source, float damage, string rule, bool ring = false)
@@ -135,12 +156,13 @@ namespace ArcaneBrigade
             if (attacker == bestFriend) damage += stolenStrength;
             if (isCrit && Active("mask") && ++crits % Interval("mask", BondTuning.MaskEvery, BondTuning.MaskFourEvery, BondTuning.MaskSixEvery) == 0)
             { damage *= BondTuning.MaskMultiplier; Emit("mask-double", enemy, BondTuning.MaskMultiplier); }
-            return damage;
+            return ModifyV3(attacker, enemy, damage);
         }
         public void OnHit(UnitState attacker, UnitState enemy, float damage, bool isCrit)
         {
             if (attacker == null || attacker.Faction == Faction.Enemy || enemy == null || enemy.Faction != Faction.Enemy || !enemy.Alive) return;
             RegisterEnemy(enemy); BondEnemyState state = State(enemy); float weapon = Weapon(attacker);
+            HitV3(attacker, enemy, damage, isCrit);
             if (isCrit) Wishes++;
             if (Active("big-top")) { combo = lastCombo == enemy ? 0 : combo + 1; lastCombo = enemy; Emit("combo", enemy, Mathf.Min(combo * BondTuning.ComboPerLink, Active("big-top", 4) ? BondTuning.ComboHighCap : BondTuning.ComboCap)); }
             if (Active("gauntlet") && attacker.Definition.Weapon != null && attacker.Definition.Weapon.Kind == WeaponKind.Melee)
@@ -234,7 +256,7 @@ namespace ArcaneBrigade
         public void OnKill(UnitState enemy)
         {
             BondEnemyState state = State(enemy); if (state == null || state.DeathHandled) return;
-            state.DeathHandled = true; kills++;
+            state.DeathHandled = true; if(state.Marked)DuskFallen++; kills++; KillV3(enemy);
             if (state.Burn > 0 && state.BurnUntil > time && Active("ember", 6))
             { patches.Add(new EmberPatch { Position = enemy.Position, Until = time + BondTuning.EmberSeconds, Source = state.BurnSource, Weapon = state.BurnWeapon }); EmbersCreated?.Invoke(enemy.Position, BondTuning.EmberSeconds); }
             if (state.FrozenUntil > time && Active("frost", 4)) Area(enemy, null, Weapon(bestFriend) * BondTuning.ShatterDamage, "shatter");
@@ -250,26 +272,26 @@ namespace ArcaneBrigade
             RefreshCounters();
         }
         public void OnCast(UnitState companion)
-        { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshCounters(); Emit("cast", companion); }
-        public void OnVolley() { Volleys++; }
+        { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshCounters(); CastV3(companion); Emit("cast", companion); }
+        public void OnVolley() { Volleys++; if (Active("windborne", 4) && Volleys % BondTuning.PiercingVolley == 0 && hero != null) Request(BondSupportKind.PiercingVolley, hero, 1, 0, "piercing-volley"); }
         public void OnHeal(float amount) { Warmth += Mathf.Max(0, amount); }
         public void OnSoak() { Soak++; }
         public void OnRecord() { Records++; }
         public bool Underdog => Active("static-club", 6) && hero != null && hero.Health < hero.Definition.Health * BondTuning.UnderdogHealth;
         public float CriticalBonus => Underdog ? BondTuning.UnderdogBonus : 0;
         public float LuckBonus => Underdog ? BondTuning.UnderdogBonus : 0;
-        public float RangeBonus => Active("lantern-guild") && still >= BondTuning.StillSeconds ? BondTuning.LanternBonus : 0;
+        public float RangeBonus => ConstellationRange + (Active("lantern-guild") && still >= BondTuning.StillSeconds ? BondTuning.LanternBonus : 0);
         public float RegenBonus => Active("root") && still >= BondTuning.StillSeconds ? (Active("root", 4) ? BondTuning.RootHighRegen : BondTuning.RootRegen) : 0;
         public float ArmorBonus => Active("root") && still >= BondTuning.StillSeconds ? (Active("root", 4) ? BondTuning.RootHighArmor : BondTuning.RootArmor) : 0;
-        public float AttackSpeedBonus => time < shantyUntil ? BondTuning.ShantySpeed : 0;
-        public float OutgoingScale(UnitState enemy) => State(enemy)?.Marked == true ? 1 - BondTuning.StrengthSteal : 1;
+        public float AttackSpeedBonus => (time < shantyUntil ? BondTuning.ShantySpeed : 0) + V3AttackSpeed;
+        public float OutgoingScale(UnitState enemy) => (State(enemy)?.Marked == true ? 1 - BondTuning.StrengthSteal : 1) * (Active("archive", 8) && recordedSpecies.Contains(enemy.Definition.Id ?? "") ? 1 - BondTuning.CompleteSetWeakness : 1);
         private float LitBonus(UnitState enemy) => Active("lantern-guild", 8) ? BondTuning.LighthouseBonus :
             Active("lantern-guild", 4) && hero != null && (enemy.Position - hero.Position).sqrMagnitude <= BondTuning.LanternRadius * BondTuning.LanternRadius ? BondTuning.LitBonus : 0;
         public float SpeedScale(UnitState enemy)
         {
             BondEnemyState state = State(enemy); if (state == null) return 1;
             if (state.FrozenUntil > time || state.StunnedUntil > time) return 0;
-            return (1 - state.Chill * BondTuning.ChillSlow) * (Active("venom", 8) && state.Poison > 0 && state.PoisonUntil > time ? 1 - BondTuning.PlagueSlow : 1);
+            return GravitySpeed(enemy) * (1 - state.Chill * BondTuning.ChillSlow) * (Active("venom", 8) && state.Poison > 0 && state.PoisonUntil > time ? 1 - BondTuning.PlagueSlow : 1);
         }
         public bool Frozen(UnitState enemy) => State(enemy) != null && State(enemy).FrozenUntil > time;
         public bool BlocksAction(UnitState enemy) => Frozen(enemy) || State(enemy) != null && State(enemy).StunnedUntil > time;
@@ -284,12 +306,14 @@ namespace ArcaneBrigade
                 if (Active("root")) Emit("root-stillness", hero, RegenBonus);
                 if (Active("lantern-guild")) Emit("lantern-stillness", hero, RangeBonus);
             }
+            TickV3(dt);
             if (!Underdog) thunderHits = 0;
             if (!Active("gauntlet", 6) && time - lastGrit >= BondTuning.GritIdle) grit = 0;
             RefreshCounters();
             if (Active("ember", 8) && !infernoUsed && Heat >= BondTuning.InfernoHeat)
             { infernoUsed = true; infernoUntil = before + BondTuning.InfernoSeconds; if (hero != null) Emit("inferno", hero, BondTuning.InfernoMultiplier); }
-            foreach (UnitState enemy in new List<UnitState>(enemies.Keys))
+            enemyTickBuffer.Clear(); foreach (var pair in enemies) enemyTickBuffer.Add(pair.Key);
+            foreach (UnitState enemy in enemyTickBuffer)
             {
                 if (!enemy.Alive) continue; BondEnemyState state = State(enemy);
                 if (state.Burn > 0)
@@ -313,8 +337,8 @@ namespace ArcaneBrigade
             if (Active("venom", 8)) while (time >= plagueAt)
             {
                 plagueAt += BondTuning.PlaguePeriod;
-                var sources = new List<UnitState>(); foreach (var pair in enemies) if (pair.Key.Alive && pair.Value.Poison > 0) sources.Add(pair.Key);
-                foreach (UnitState source in sources) foreach (UnitState next in Nearby(source, BondTuning.BurstRadius))
+                poisonBuffer.Clear(); foreach (var pair in enemies) if (pair.Key.Alive && pair.Value.Poison > 0) poisonBuffer.Add(pair.Key);
+                foreach (UnitState source in poisonBuffer) foreach (UnitState next in Nearby(source, BondTuning.BurstRadius))
                     AddPoison(next, State(source).PoisonSource, State(source).PoisonWeapon, 1, true);
             }
             if (Active("frost", 8)) while (time >= blizzardAt)
@@ -334,13 +358,25 @@ namespace ArcaneBrigade
             }
             if (Active("dusk", 8)) while (time >= eclipseAt)
             {
-                eclipseAt += BondTuning.EclipsePeriod; var live = new List<UnitState>(); foreach (var pair in enemies) if (pair.Key.Alive) live.Add(pair.Key);
-                live.Sort((a, b) => { int order = a.Health.CompareTo(b.Health); return order != 0 ? order : a.Id.CompareTo(b.Id); });
+                eclipseAt += BondTuning.EclipsePeriod; List<UnitState> live = eclipseBuffer; live.Clear(); foreach (var pair in enemies) if (pair.Key.Alive) live.Add(pair.Key);
+                live.Sort(HealthOrder);
                 int count = Mathf.CeilToInt(live.Count * BondTuning.EclipseFraction);
                 for (int i = 0; i < count; i++) Damage(live[i], bestFriend, live[i].Health, "eclipse");
                 if (hero != null) Emit("eclipse", hero, count);
             }
             RefreshCounters();
+        }
+        private readonly List<UnitState> enemyTickBuffer = new List<UnitState>(), poisonBuffer = new List<UnitState>(), eclipseBuffer = new List<UnitState>();
+        private static int HealthOrder(UnitState a, UnitState b) { int order = a.Health.CompareTo(b.Health); return order != 0 ? order : a.Id.CompareTo(b.Id); }
+        private int traitApplause;
+        private float traitApplauseUntil;
+        public int DuskFallen { get; private set; }
+        public void OnTraitCounter(string rule)
+        {
+            if(rule=="centre-stage"){traitApplause++;traitApplauseUntil=time+BondTuning.ApplauseWindow;}
+            else if(rule=="dawn-wishes")Wishes++;
+            else if(rule=="dusk-form")DuskFallen++;
+            else if(rule=="cherry-warmth")Warmth++;
         }
         private void RefreshCounters()
         {
@@ -354,6 +390,7 @@ namespace ArcaneBrigade
                 if (LitBonus(pair.Key) > 0) Light++;
             }
             foreach (float at in casts.Values) if (time - at <= BondTuning.ApplauseWindow) Applause++;
+            if(time<traitApplauseUntil)Applause+=traitApplause;else traitApplause=0;
         }
     }
 }

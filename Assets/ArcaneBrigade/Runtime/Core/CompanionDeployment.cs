@@ -19,7 +19,7 @@ namespace ArcaneBrigade
             foreach (RosterEntry entry in owned)
             {
                 if (!indices.TryGetValue(entry.UnitId, out int index))
-                { indices.Add(entry.UnitId, result.Count); result.Add(entry); }
+                { if(result.Count>=RulesV3Tuning.CompanionLimit)continue;indices.Add(entry.UnitId, result.Count); result.Add(entry); }
                 else if (entry.Tier > result[index].Tier) result[index] = entry;
             }
             return result;
