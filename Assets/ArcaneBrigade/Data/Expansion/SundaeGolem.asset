@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SundaeGolem
   DisplayName: Sundae Golem
-  Body: {fileID: 21300000, guid: 3432f6c81c9562042af3039d2da7d8ec, type: 3}
+  Body: {fileID: 1022151539, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 3432f6c81c9562042af3039d2da7d8ec, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1022151539, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -2019077580, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -1913715580, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -1670452692, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: a080cdce619ecd14cb77d120a4f1546b, type: 2}
   Weapon: {fileID: 11400000, guid: 47d13be737948024186abbb9e0e1e303, type: 2}
   Health: 100
   Speed: 4

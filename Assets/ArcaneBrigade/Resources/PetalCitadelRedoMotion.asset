@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PetalCitadelRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1706743760, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -382331798, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: 2030933796, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  - {fileID: -576898403, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  Walk:
+  - {fileID: 1069353283, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -1803286612, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  - {fileID: -199235908, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -993497785, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  Windup:
+  - {fileID: -527990030, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -2042841110, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: 726714888, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  Release:
+  - {fileID: -1104708875, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -1790903517, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  Recovery:
+  - {fileID: 376539933, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -1773396324, guid: 28586a5e5c553c84082b0b3385007374, type: 3}
+  - {fileID: -1706743760, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  IllustratedHeight: 0

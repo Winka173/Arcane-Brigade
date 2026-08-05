@@ -4,6 +4,9 @@ Version 3. Replaces the review pack of the same day. DRAFT: numbers are placehol
 
 ## 0. Changes since the last file
 
+- **v5 trait rules (TFT):** step 2 works on members only, step 4 opens the rule to the whole team, step 6 amplifies, step 8 is the capstone. Members get a signature stat at every step (about three times the team share); the team gets a share from step 6. Minors give members a role stat at every step. See "How bonds scale".
+- **Armor for friends:** class base armor and health, stars, bond stats; same formula as the hero. See section 1b.
+- **v4:** bond steps 4 and 6 build what the top step spends; small enemies have no skills.
 - **Companions are mortal.** A friend has health. At 0 it falls and stands up **15 s** later with 40% health. If every friend is down at the same time, the wave is lost. At the start of each wave all fallen friends are back with full health.
 - **Houses:** 10 houses, 20 major bonds (9 members each, steps 2/4/6/8), 32 minor bonds (5 or 7 members, steps 2/4/6), **120 companions**, **36 heroes**. Two new houses: **Bulwark + Spirit** and **Melody + Gravity**.
 - **Crowd rule:** late waves hold 100+ enemies. Every skill hits an area, line, cone, ring, cluster or species, or works on the hero, friends, economy or time; weak single-target and tiny-summon skills were rewritten. Numbers scale with the enemies in range (capped), never with one enemy.
@@ -31,248 +34,371 @@ Version 3. Replaces the review pack of the same day. DRAFT: numbers are placehol
 - **Effects** are code ink; art is only a piece of the creature itself. No two characters share a species. Body colour = main bond.
 - **Houses (10):** Hearth + Ember; Frost + Tide; Storm + Windborne; Garden + Venom; Starlight + Dusk; Carnival + Court; Archive + Lantern; Stone + Clockwork; Bulwark + Spirit; Melody + Gravity.
 
+## 1b. Armor and health of friends
+
+- **Same formula as the hero:** damage kept = 15 / (15 + armor points), never below 25% of the hit. 15 points halve a hit.
+- **Base by class (points; health multiplier):** Guard 12 (x1.6), Striker 6 (x1.2), Controller 5 (x1.0), Summoner 4 (x0.9), Support 3 (x0.9), Shooter 2 (x0.8).
+- **Stars:** +2 armor points and +40% health per star above 1.
+- **Other sources:** bond stats (Frost, Stone, Bulwark majors; Root, Shield, Bastion, Spiky Shell minors), protection skills and relics. The hero's armour items also give every friend half their points (rounded down), so armour items help the whole team.
+- **Enemy answers:** a few large enemies and bosses break armour (Cleanser removes shields; armour-break hits take 1 point for the wave), so stacking only armour is not enough.
+- **Shown** on the companion card as a shield icon with its points.
+
 ## 2. Major bonds (20)
 
-Each step starts with a tag naming the kind of rule it is, so the variety is visible. The "stat package" is the plain number part that comes with the steps.
+### How bonds scale (from TFT)
+
+- **Two kinds.** Majors are like TFT origins: the rule is the point and stats come with it. Minors are like TFT classes: a role stat at every step, with a smaller rule on top.
+- **Step 2, a taste (about +5% team power):** the rule works for the bond's own members only, plus a small member stat. Cheap enough to splash into any build.
+- **Step 4, online (about +12%):** the rule opens to the whole team (every friend's hits count) and starts building a counter or a board state (stacks, pools, marks, Sprouts, Mass).
+- **Step 6, the core (about +25%):** an amplifier that feeds the counter and changes how the fight looks; the whole team gets a share of the stat.
+- **Step 8, the capstone (about +50%, a win condition):** a transform or summon that spends what steps 4 and 6 built. It costs 8 of 10 slots, so it may be stronger than anything else.
+- **Members first.** Member stats are about three times the team share, so fielding the bond's own companions matters more than reaching a number.
+- **Power per slot rises with the step** (each extra member is worth more than the last), which rewards going deep instead of spreading over many 2s.
+
+Each step starts with a tag naming the kind of rule it is, so the variety is visible. Steps 4 and 6 are not flat bonuses: they build the board state or the counter that step 8 spends (stacks, pools, marks, Sprouts, Mass), so a bond grows into its capstone. The "stat package" is the plain number part that comes with the steps.
 
 ### 1. Hearth (warmth and food (stat engine)), house Hearth + Ember
 
 - **Rule kinds:** [Wave-start buff] + [Timed pulse]. **Counter:** Warmth: hero healing and food eaten.
-- **2:** [Wave-start buff] Hearty Meal: at the start of every wave all friends gain +12% damage and attack speed, fading over 20 s
-- **4:** [Timed pulse] Feast every 12 s: the team gets +15% attack speed for 6 s and the hero heals 5% max health
-- **6:** [Leech] Hearth friends' hits heal the hero for 1% of the damage they deal
-- **8:** [Summon] the Kitchen: a Chef spirit joins each wave and throws pies at the densest cluster; Feast every 6 s; all Hearth stats double
-- **Stat package:** Damage 4% per 2; step 4 AttackSpeed 8%; step 6 Health 15%; step 8 Damage 10% and AttackSpeed 10%
+- **2:** [Wave-start buff] Hearty Meal: Hearth friends start each wave with +15% damage and attack speed, fading over 20 s
+- **4:** [Food drop + stacks] kills by any friend drop a Dish (at most one per 8 s); the hero eats it for 3 Warmth, and a Feast every 12 s adds 1 more. Each Warmth gives the whole team +2% damage and attack speed for the wave (up to 10)
+- **6:** [Overflow] at 10 Warmth the hero's overhealing becomes a team shield, and each Feast also fills every friend's skill bar by 10%
+- **8:** [Summon] the Kitchen: a Chef spirit joins each wave and throws pies at the densest cluster; every pie that kills drops a Dish; Warmth caps at 20 and all Hearth stats double
+- **Stats:** members damage and attack speed 6/14/24/40% at steps 2/4/6/8; the whole team damage and attack speed 5/10% at steps 6/8
 - **Members (9):** Teapot Pilgrim, Candle Snail, Bread Crab, Coil Kettle, Saffron Mechanist, Baker Mouse, Tea Dragon, Sundae Golem, Boba Tadpole
 
 ### 2. Ember (fire), house Hearth + Ember
 
 - **Rule kinds:** [On-hit stacks] -> [Burst] -> [Summon]. **Counter:** Heat: enemies burning.
-- **2:** [On-hit stacks] every Ember hit applies Burn (stacks to 3, damage over time)
-- **4:** [Burst] at 3 Burn stacks an enemy bursts in a fire explosion (100% weapon damage in a small radius) and spreads 1 stack to each neighbour
-- **6:** [Death effect] enemies that die while burning leave Embers that ignite whoever crosses them for 4 s
-- **8:** [Summon] a Phoenix hatches once a wave and fights for 15 s; at 100 Heat an Inferno triples all burn for 5 s
-- **Stat package:** Damage 5% per 2; step 4 AttackSpeed 6%; step 6 Damage 10%; step 8 Crit 10%
+- **2:** [On-hit stacks] Ember friends' hits apply Burn (stacks to 3, damage over time)
+- **4:** [Burst chain] every friend's hits apply Burn; at 3 Burn an enemy bursts (100% weapon damage, small radius) and gives 1 Burn to each neighbour, so bursts set off bursts (an enemy bursts at most once per 2 s); each burst adds 1 Heat
+- **6:** [Fuel] Burn stacks to 5; a burst at 5 stacks deals double and leaves a Firepit for 4 s that burns whoever crosses it; Heat no longer fades between bursts
+- **8:** [Summon] at 50 Heat a Phoenix hatches for 15 s and flies through the Firepits, re-lighting them; at 100 Heat an Inferno makes every burst also burst its neighbours for 5 s
+- **Stats:** members damage 8/18/30/45% at steps 2/4/6/8; the whole team damage 6/12% at steps 6/8
 - **Members (9):** Teapot Pilgrim, Candle Snail, Mailbox Imp, Dice Crab, Mask Pepper, Coil Kettle, Saffron Mechanist, Baker Mouse, Tea Dragon
 
 ### 3. Frost (ice), house Frost + Tide
 
 - **Rule kinds:** [Stacking slow] -> [Freeze] -> [Summon]. **Counter:** Chill: enemies slowed.
-- **2:** [Stacking slow] every Frost hit adds a Chill stack (-6% speed each, up to 5)
-- **4:** [Freeze] at 5 stacks an enemy freezes for 1.5 s; frozen enemies take +25% from the next hit and shatter in an area burst when they die
-- **6:** [Summon] the first enemies to die each wave rise as Ice Soldiers (allies for 12 s)
-- **8:** [Wave-start debuff] permanent winter: every enemy starts each wave with 2 Chill stacks, and a blizzard sweeps every 20 s
-- **Stat package:** Damage 3% per 2; step 4 Armor 2; step 6 Health 12%; step 8 Damage 15%
+- **2:** [Stacking slow] Frost friends' hits add Chill (-6% speed each, up to 5)
+- **4:** [Freeze + shatter] every friend's hits add Chill; at 5 Chill an enemy freezes for 1.5 s, the next hit shatters it for 150% weapon damage and the shards give 2 Chill to everything near it
+- **6:** [Ice floor] every shatter leaves an Ice patch for 3 s that adds Chill to anyone on it; Frost friends deal +30% to frozen enemies; frozen enemies that die rise as Ice Soldiers (up to 4, 12 s)
+- **8:** [Wave-start debuff] permanent winter: every enemy starts each wave with 2 Chill; a blizzard every 20 s freezes every enemy that has 3+ Chill at once, and Ice patches double in size
+- **Stats:** members armor 3/6/10/15 points at steps 2/4/6/8; the whole team armor 2/4 points at steps 6/8
 - **Members (9):** Snow Spoon, Fridge Wisp, Shell Postman, Coral Teacup, Anchor Snail, Sail Squid, The Impossible Tailor, Shovel Penguin, Specimen Slime
 
 ### 4. Tide (water and weather), house Frost + Tide
 
 - **Rule kinds:** [Every Nth hit] -> [Cycle] -> [Summon]. **Counter:** Soak: enemies wet.
-- **2:** [Every Nth hit] every 5th Tide hit splashes: enemies in the splash are Soaked and take +8% from all sources
-- **4:** [Timed pulse] Riptide every 10 s: a wave shoves all enemies back and soaks them
-- **6:** [Weather cycle] the weather changes every 20 s (rain, sun, wind, fog): each friend likes one weather and gets +15% in it, Tide friends get +25%
-- **8:** [Summon] the Leviathan: a tide spirit surfaces once a wave and sweeps the screen
-- **Stat package:** AttackRange 4% per 2; step 4 Pickup 10%; step 6 Damage 8%; step 8 Income 2
+- **2:** [Every Nth hit] every 5th hit by a Tide friend splashes: enemies in the splash are Soaked and take +8% from all sources
+- **4:** [Pools] every friend's 5th hit splashes; each splash leaves a Tide pool for 4 s where enemies are Soaked again and drift toward the centre, so crowds bunch up
+- **6:** [Reactions] Soaked enemies react with other bonds: Burn makes Steam (enemies inside miss 30%), Chill freezes them at once, Charge shocks the whole pool; every Riptide (every 10 s) shoves all enemies back into the nearest pools
+- **8:** [Summon] the Leviathan surfaces once a wave from the largest pool and sweeps the screen, Soaking everything; pools last twice as long
+- **Stats:** members skill haste 8/18/30/45% at steps 2/4/6/8; the whole team health 6/12% at steps 6/8
 - **Members (9):** Snow Spoon, Shell Postman, Coral Teacup, Anchor Snail, Sail Squid, Balloon Mallet, Shanty Sea Lion, Bottle Gull, Specimen Slime
 
 ### 5. Storm (lightning), house Storm + Windborne
 
 - **Rule kinds:** [Every Nth hit chain] -> [Charge] -> [Low health]. **Counter:** Charge: hits landed.
-- **2:** [Every Nth hit] every 6th Storm hit chains lightning to 3 enemies (60% weapon damage)
-- **4:** [Stacking charge] every hit adds Charge to an enemy; at 5 Charge it discharges to everything near it for 50% weapon damage
-- **6:** [Low health] Underdog: while the hero is below 50% health, crit and luck rise by 15%; after 20 hits in a row a thunderclap stuns the nearest cluster
-- **8:** [Aura] a permanent storm cloud follows the hero and strikes the most charged cluster every 2 s
-- **Stat package:** CompanionAttackSpeed 5% per 2; step 4 Crit 5%; step 6 ChainChance 5%; step 8 Damage 12%
+- **2:** [Every Nth hit] every 6th hit by a Storm friend chains lightning to 3 enemies (60% weapon damage)
+- **4:** [Charge] every friend's 6th hit chains; chain hits leave 1 Charge, and at 5 Charge an enemy discharges to everything near it for 50% weapon damage, which counts as a chain hit
+- **6:** [Lightning rod] every 15 s a rod lands on the densest cluster for 6 s: chains that pass near it jump to 3 more enemies and give 2 Charge to each
+- **8:** [Aura] a storm cloud follows the hero and strikes the most charged cluster every 2 s; a strike uses up the Charge for double damage, and every discharge drops a small rod for 3 s
+- **Stats:** members attack speed 8/18/30/45% at steps 2/4/6/8; the whole team crit 4/8% at steps 6/8
 - **Members (9):** Kettle Bat, Comet Kite, Ribbon Otter, Rain Heron, Raincoat Frog, Kite Dragon, Static Ferret, Storm Kitten, Volt Eel
 
 ### 6. Windborne (wind), house Storm + Windborne
 
 - **Rule kinds:** [Movement] -> [Volley counter] -> [Summon]. **Counter:** Volleys: shots fired.
-- **2:** [Movement] Tailwind: moving builds Momentum, +1% damage per second moving (up to 10%, lost when you stop for 2 s)
-- **4:** [Every Nth volley] every 10th volley pierces everything in its path
-- **6:** [Summon] a Wind Beast joins: drag a friend onto it to choose how it fights (guard, shoot or sweep)
-- **8:** [Timed pulse] Gale every 8 s: a gust pushes enemies back and speeds all friends +20% for 4 s
-- **Stat package:** BulletSpeed 6% per 2; step 4 AttackRange 8%; step 6 BulletPierce 1; step 8 Damage 10%
+- **2:** [Movement] Tailwind: while the hero moves, Windborne friends gain up to +15% attack speed (lost after 2 s standing still)
+- **4:** [Wind lanes] every friend's 10th volley pierces everything and leaves a wind lane for 3 s; friendly bullets that cross a lane gain +20% speed and +1 pierce
+- **6:** [Momentum] at full Momentum Windborne friends fire +1 projectile per volley; a Wind Beast joins and runs along the lanes (drag a friend onto it to pick guard, shoot or sweep)
+- **8:** [Timed pulse] a Gale every 8 s turns every lane into a cyclone that drags enemies along it, and gives all friends +20% speed for 4 s
+- **Stats:** members range 8/16/26/40% at steps 2/4/6/8; the whole team attack speed 5/10% at steps 6/8
 - **Members (9):** Kettle Bat, Comet Kite, The Folded Courier, Ribbon Otter, Spindle Wren, Paper Plane Pigeon, Kite Dragon, Static Ferret, Storm Kitten
 
 ### 7. Garden (plants), house Garden + Venom
 
 - **Rule kinds:** [Permanent growth] -> [Summon plants]. **Counter:** Growth: waves survived.
-- **2:** [Permanent growth] every wave survived, each friend gains +2% health and damage for the rest of the run
-- **4:** [Summon] seed pods sprout into allied Sprouts (up to 4) that shoot enemies; front Sprouts root enemies
-- **6:** [Summon] the oldest Sprout grows into a Treant Guardian that taunts and fights
-- **8:** [Economy] the Great Tree fruits every wave: choose gold, a hero heal or +damage
-- **Stat package:** Health 6% per 2; step 4 HeartHealing 10%; step 6 Income 1; step 8 Health 15% and Damage 8%
+- **2:** [Permanent growth] every wave survived, Garden friends gain +2% health and damage for the rest of the run
+- **4:** [Summon + growth] growth also reaches the rest of the team at half rate; seed pods sprout into Sprouts (up to 4) that shoot and grow one stage every 2 waves (a Sapling roots the enemies in front of it)
+- **6:** [Grove] Sprouts within 4 units link with vines; enemies crossing a vine are rooted for 1 s; the oldest plant becomes a Treant Guardian that taunts
+- **8:** [Economy] the Treant grows into the Great Tree: it fruits every wave (choose gold, a hero heal or +damage) and every Sprout grows one stage at once
+- **Stats:** members health 10/22/36/55% at steps 2/4/6/8; the whole team health 6/12% at steps 6/8
 - **Members (9):** Pear Moth, Mushroom Librarian, Citrus Toad, Seed Hedgehog, Grand Sprout, Paper Devil, Watering Snail, Yo-yo Squirrel, The First Seed
 
 ### 8. Venom (poison), house Garden + Venom
 
 - **Rule kinds:** [Stacking DoT] -> [Death spread] -> [Rot]. **Counter:** Toxin: stacks on enemies.
-- **2:** [Stacking DoT] every Venom hit applies Poison (stacks to 5, damage over time)
-- **4:** [Death effect] poisoned enemies spread their stacks to neighbours when they die
-- **6:** [Percent health] at 8+ stacks the enemy Rots: it loses 3% of its max health per second (strong against bosses)
-- **8:** [Aura] plague: poison keeps spreading between nearby enemies on its own and slows them 20%
-- **Stat package:** Damage 4% per 2; step 4 CollisionDamage 2; step 6 Crit 6%; step 8 Damage 14%
+- **2:** [Stacking DoT] Venom friends' hits apply Poison (stacks to 5, damage over time)
+- **4:** [Death spread] every friend's hits apply Poison; poisoned enemies that die pass their stacks +1 to each neighbour, and poisoned enemies deal 10% less damage
+- **6:** [Rot] at 8+ stacks an enemy Rots: it loses 3% of its max health a second (strong against bosses) and gives off a cloud that adds 1 stack a second to its neighbours, pushing them toward Rot
+- **8:** [Aura] plague: poison spreads on its own between nearby enemies and slows them 20%; a Rotting enemy that dies bursts its cloud; at 200 Toxin a Pandemic gives every enemy +3 stacks
+- **Stats:** members damage 8/18/30/45% at steps 2/4/6/8; the whole team damage 6/12% at steps 6/8
 - **Members (9):** Pear Moth, Mushroom Librarian, Citrus Toad, Seed Hedgehog, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Watering Snail
 
 ### 9. Starlight (stars and luck), house Starlight + Dusk
 
 - **Rule kinds:** [Crit trigger] -> [Economy] -> [Choice]. **Counter:** Wishes: critical hits.
-- **2:** [Crit trigger] every crit has a chance to call a falling star onto a cluster
-- **4:** [Economy] every 5 crits buy a free reroll at the next shop
-- **6:** [Choice] pick a constellation per run: each changes the bonus (Archer: range, Bear: health, Twins: companion damage)
-- **8:** [Transform] Starfall: a comet falls on every crit, and once a wave all friends take a Celestial form for 8 s
-- **Stat package:** Crit 4% per 2; step 4 Luck 5%; step 6 Damage 8%; step 8 Crit 10%
+- **2:** [Crit trigger] Starlight friends' crits have a 15% chance to call a falling star onto the cluster they hit
+- **4:** [Stardust] every friend's crits can call stars; stars leave Stardust for 4 s (bullets through it +15% crit chance); every 5 crits make a Wish (free shop rerolls)
+- **6:** [Choice] pick a constellation for the run (Archer: range, Bear: health, Twins: companion damage), and stars that land in Stardust split into 3
+- **8:** [Transform] Starfall: a comet falls on every crit, and once a wave all friends take a Celestial form for 8 s (+25% crit chance, +50% crit damage)
+- **Stats:** members crit 6/12/20/30% at steps 2/4/6/8; the whole team crit 4/8% at steps 6/8
 - **Members (9):** Pillow Oracle, Ice Cream Owl, Moon Jelly, Star Sock, Eclipse Egg, Orbit Moth, Bubble Koi, The Sleeping Friend, Little Sprout
 
 ### 10. Dusk (shadow), house Starlight + Dusk
 
 - **Rule kinds:** [Mark] -> [Summon] -> [Execute]. **Counter:** Dusk: enemies defeated under a mark.
-- **2:** [Mark] at the wave start the first 10 enemies hit are marked: each loses 12% strength and gives it to your best friend
-- **4:** [Summon] marked enemies that die rise as allied Shades
-- **6:** [Execute] marked enemies below 12% health die at once
-- **8:** [Timed] eclipse: after 8 s the weakest 5% of enemies fall every 3.5 s
-- **Stat package:** Damage 4% per 2; step 4 CompanionDamage 6%; step 6 ChampionDamage 8%; step 8 Damage 12%
+- **2:** [Mark] each wave, Dusk friends mark the first 5 enemies they hit: each loses 12% strength and gives it to that friend
+- **4:** [Passing mark] every friend marks, up to 10 at once; a marked enemy that dies passes its Mark to the nearest unmarked one and rises as a Shade (up to 5)
+- **6:** [Execute] marked enemies below 12% health die at once; each execute gives Shades +10% damage for the wave, and Shades mark what they hit
+- **8:** [Timed] eclipse: after 8 s the weakest 5% of enemies fall every 3.5 s, and during the eclipse every enemy counts as marked
+- **Stats:** members damage 8/18/30/45% at steps 2/4/6/8; the whole team damage 6/12% at steps 6/8
 - **Members (9):** Pillow Oracle, Ice Cream Owl, Moon Jelly, Eclipse Egg, Orbit Moth, The Forgotten Patchwork, The Sleeping Friend, Violet Remnant, Saddle Moth
 
 ### 11. Carnival (circus and chance), house Carnival + Court
 
 - **Rule kinds:** [Random] -> [Economy] -> [Choice]. **Counter:** Applause: different skills cast within 5 s.
-- **2:** [Random] every 5th hit rolls a die: damage burst, coin, slow, speed, crit or nothing
-- **4:** [Economy] applause fills a jackpot: coins and a buff when it is full
-- **6:** [Choice] every 3 waves cash out the jackpot or Double Down
-- **8:** [Transform] Grand Finale: once a wave all friends cast their skills together
-- **Stat package:** Luck 5% per 2; step 4 Income 1; step 6 Discount 4%; step 8 Damage 10%
+- **2:** [Random] every 5th hit by a Carnival friend rolls a die: damage burst, coin, slow, speed, crit or nothing
+- **4:** [Jackpot] applause (different skills cast within 5 s by any friend) and dice rolls fill a jackpot; full: a coin shower and +15% team damage for 6 s; the die gains a 7th face, Encore (the last skill casts again)
+- **6:** [Loaded dice] roll twice and keep the better face; every 3 waves cash out the jackpot or Double Down
+- **8:** [Transform] Grand Finale: when the jackpot fills, all friends cast their skills together, and for 5 s the die rolls on every hit
+- **Stats:** members luck 8/18/30/45% at steps 2/4/6/8; the whole team luck 5/10% at steps 6/8
 - **Members (9):** Jelly Swordsman, Brass Acorn, Button Beetle, Radish Jester, Crayon Gremlin, Return Captain, Carousel Pony, Ringmaster Jack, The Lost Carousel
 
 ### 12. Court (royalty and law), house Carnival + Court
 
 - **Rule kinds:** [Choice] -> [Transform] -> [Rule]. **Counter:** Rank: stars of the best friend.
-- **2:** [Choice] at each wave start choose 1 of 3 small edicts for that wave
-- **4:** [Transform] the best-star friend is crowned and gains an extra skill
-- **6:** [Rule] decree: write one law for the run (a cause and an effect; more steps unlock more causes)
-- **8:** [Rule] coronation: two laws
-- **Stat package:** CompanionDamage 5% per 2; step 4 Discount 3%; step 6 RecruitDiscount 5%; step 8 Damage 10%
+- **2:** [Choice] at each wave start choose 1 of 3 small edicts for Court friends
+- **4:** [Crown] edicts reach the whole team; the best-star friend is crowned and gains an extra skill, and whenever it casts every Court friend's skill bar fills 15%
+- **6:** [Rule] decree: write one law for the run (a cause and an effect); edicts now offer 4 choices and the crowned friend's casts count as a cause
+- **8:** [Rule] coronation: two laws, and a second friend is crowned
+- **Stats:** members damage 8/18/30/45% at steps 2/4/6/8; the whole team skill haste 6/12% at steps 6/8
 - **Members (9):** Jelly Swordsman, Brass Acorn, Button Beetle, Radish Jester, Return Captain, Dough Foreman, Velvet Enchantress, Carousel Pony, Court Herald
 
 ### 13. Archive (knowledge), house Archive + Lantern
 
 - **Rule kinds:** [Mark] -> [Permanent growth] -> [Copy]. **Counter:** Records: species recorded.
-- **2:** [Mark] the first hit marks a species: +12% damage to it; each run one random recorded-bonus family (damage, coin or page copy)
-- **4:** [Permanent growth] each new species recorded gives +1% damage for the run
-- **6:** [Copy] recorded species drop a Page: a copy of a skill, usable once
-- **8:** [Debuff] complete set: every recorded species is permanently weakened 15%
-- **Stat package:** Damage 3% per 2; step 4 Crit 4%; step 6 Luck 5%; step 8 Damage 10%
+- **2:** [Mark] the first hit on a species records it: Archive friends deal +12% to recorded species
+- **4:** [Records + pages] the bonus reaches the whole team, and each new species gives +1% damage for the run; the first kill of each new species drops a Page (a one-use copy of a friend's skill, cast on the largest cluster)
+- **6:** [Chapter] 3 Pages bind into a Chapter that casts all three at once; recorded species take +10% damage from Pages
+- **8:** [Debuff] complete set: every recorded species is permanently weakened 15%, and Pages drop twice as often
+- **Stats:** members skill haste 8/18/30/45% at steps 2/4/6/8; the whole team damage 6/12% at steps 6/8
 - **Members (9):** Hood Wisp, Bookmark Golem, Thimble Moth, Reel Owl, Velvet Champion, Lens Owl, The Endless Index, Pinned Beetle, Paper Inventor
 
 ### 14. Lantern (lamplight), house Archive + Lantern
 
 - **Rule kinds:** [Stillness] -> [Aura] -> [Summon]. **Counter:** Light: enemies in lamplight.
-- **2:** [Stillness] Steady Flame: standing still for 2 s gives +15% range and damage until you move
-- **4:** [Aura] enemies within 6 units of the hero are Lit and take +8% damage
-- **6:** [Summon] lamp wisps orbit the hero and shoot beams
-- **8:** [Aura] a lighthouse: one huge lamp lights the arena; enemies in light take +25%
-- **Stat package:** AttackRange 5% per 2; step 4 Damage 5%; step 6 ChampionDamage 8%; step 8 Crit 8%
+- **2:** [Stillness] Steady Flame: after the hero stands still for 2 s, Lantern friends gain +20% range and damage until it moves
+- **4:** [Aura + wicks] enemies within 6 units of the hero are Lit and take +8% damage from every friend; Lit enemies that die leave a Wick that widens the light 0.5 units for the wave (up to +3)
+- **6:** [Summon] lamp wisps orbit the hero and shoot beams; while Steady Flame holds, the wisps fly out and stand as lamps that light their own area
+- **8:** [Aura] a lighthouse: one huge lamp lights the arena; enemies in any light take +25%, and Wicks also power the lamp wisps
+- **Stats:** members range 8/16/26/40% at steps 2/4/6/8; the whole team crit 4/8% at steps 6/8
 - **Members (9):** Hood Wisp, Bookmark Golem, Thimble Moth, Reel Owl, Velvet Champion, Teacup Cricket, Lens Owl, Harbor Whale, Lamp Goat
 
 ### 15. Stone (earth), house Stone + Clockwork
 
 - **Rule kinds:** [Reflect] -> [Collision] -> [Summon]. **Counter:** Weight: enemies knocked back.
-- **2:** [Reflect] Thorn Skin: enemies that touch the hero take 30% of their own attack back
-- **4:** [Collision] knocked-back enemies that hit others deal 100% weapon damage to them (collision chain)
-- **6:** [Timed pulse] an earthquake every 12 s: enemies near the hero are stunned 0.5 s
-- **8:** [Summon] the Colossus: a stone golem ally fights for the wave
-- **Stat package:** Health 6% per 2; step 4 Knockback 10%; step 6 Armor 2; step 8 Damage 12%
+- **2:** [Reflect] Thorn Skin: enemies that hit a Stone friend or the hero take 30% of that hit back
+- **4:** [Collision] every friend's knockbacks count: enemies knocked into others deal 100% weapon damage to them, and an enemy hit by 3 collisions is Cracked (+15% damage taken)
+- **6:** [Timed pulse] an earthquake every 12 s stuns enemies near the hero for 0.5 s and throws Cracked enemies into their neighbours, setting off more collisions
+- **8:** [Summon] the Colossus: a stone golem ally fights for the wave and its stomps are earthquakes
+- **Stats:** members armor 4/8/12/18 points at steps 2/4/6/8; the whole team armor 2/4 points at steps 6/8
 - **Members (9):** Iron Locomotive, Fossil Armadillo, Tin Tick, Staple Mole, The Last Bell, Bristle Ball, Monster Marble, Top Beetle, Stitched Pangolin
 
 ### 16. Clockwork (metal and time), house Stone + Clockwork
 
 - **Rule kinds:** [Time] -> [Echo] -> [Summon]. **Counter:** Ticks: skills cast.
-- **2:** [Time] skill bars fill 20% faster
-- **4:** [Echo] every 8th cast all skills of the bond fire twice (the second at half strength)
-- **6:** [Time] time stop: 1.5 s every 20 s (enemies freeze, friends keep acting)
+- **2:** [Time] Clockwork friends' skill bars fill 25% faster
+- **4:** [Echo] every 8th cast by any friend fires all Clockwork skills twice (the second at half strength); each echo winds a Spring
+- **6:** [Time stop] 1.5 s every 20 s (enemies freeze, friends keep acting); skills cast during a stop hit all at once when time resumes, and each Spring makes the next stop 0.1 s longer
 - **8:** [Summon] overclock turrets: a gear turret per 8 casts (up to 3, they accept relics as upgrade slots); skill bars fill twice as fast for 10 s after each time stop
-- **Stat package:** CompanionAttackSpeed 5% per 2; step 4 AttackSpeed 5%; step 6 MoveSpeed 8%; step 8 AttackSpeed 10%
+- **Stats:** members skill haste 10/22/36/55% at steps 2/4/6/8; the whole team attack speed 5/10% at steps 6/8
 - **Members (9):** Iron Locomotive, Fossil Armadillo, Tin Tick, Spring Duck, Staple Mole, Dream Compass, The Last Bell, Clockwork Piper, Top Beetle
 
 ### 17. Bulwark (protection), house Bulwark + Spirit
 
 - **Rule kinds:** [Wave-start shield] -> [Damage sharing] -> [Summon wall] -> [Last stand]. **Counter:** Guard: damage absorbed for friends.
-- **2:** [Wave-start shield] every friend starts each wave with a shield worth 15% of its max health
-- **4:** [Damage sharing] a friend that is hit passes 25% of the damage to the nearest Bulwark friend, which takes it at -30%
-- **6:** [Summon] a Bastion wall rises where the most friends stand every 15 s; it blocks bullets and bodies for 6 s
+- **2:** [Wave-start shield] Bulwark friends start each wave with a shield worth 25% of their max health
+- **4:** [Damage sharing] every friend starts with a 10% shield; a friend that is hit passes 25% of the damage to the nearest Bulwark friend, which takes it at -30%; absorbed damage fills Guard, and full Guard slams a shock wave line ahead
+- **6:** [Summon wall] a Bastion wall rises where the most friends stand every 15 s and blocks bullets and bodies for 6 s; damage the wall takes counts double toward Guard, and broken shields refill once while it stands
 - **8:** [Last stand] once a wave the first friend that would fall stays at 1 HP and is untouchable for 3 s; the whole team gains +3 armor
-- **Stat package:** Health 6% per 2; step 4 Armor 2; step 6 Health 12%; step 8 Armor 3 and Damage 8%
+- **Stats:** members armor 4/8/12/18 points and health 6/12/20/30% at steps 2/4/6/8; the whole team armor 2/4 points at steps 6/8
 - **Members (9):** Tower Rook, Lifebuoy Hippo, Nurse Hen, Phoenix Chick, Dandelion Puff, Totem Pole, Brass Lion, Quilt Walrus, Plaster Panda
 
 ### 18. Spirit (souls and revival), house Bulwark + Spirit
 
 - **Rule kinds:** [Death effect] -> [Revive] -> [Revenant] -> [Aura]. **Counter:** Souls: friends and enemies fallen.
-- **2:** [Death effect] a friend that falls leaves a Spirit that fights for 6 s
-- **4:** [Revive] fallen friends stand up 4 s sooner (11 s) and Spirits heal the hero 1% a second
-- **6:** [Revenant] the first friend that falls each wave rises at once with 50% health
-- **8:** [Aura] the Spirit Realm: for 15 s each wave friends cannot fall (they drop to 1 HP and keep fighting); enemies that die gather souls: +1% damage per 10 souls this wave
-- **Stat package:** Health 5% per 2; step 4 HeartHealing 10%; step 6 CompanionDamage 8%; step 8 Damage 12%
+- **2:** [Death effect] a fallen Spirit friend leaves a Spirit that fights for 6 s and stands up 4 s sooner
+- **4:** [Revive] every fallen friend leaves a Spirit and stands up 4 s sooner (11 s); Spirits heal the hero 1% a second, and enemies they kill give Souls
+- **6:** [Revenant] the first friend that falls each wave rises at once with 50% health; every 5 Souls make Spirits last 1 s longer
+- **8:** [Aura] the Spirit Realm: for 15 s each wave friends cannot fall (they drop to 1 HP and keep fighting); +1% damage per 10 Souls this wave
+- **Stats:** members health 10/22/36/55% at steps 2/4/6/8; the whole team damage 6/12% at steps 6/8
 - **Members (9):** Tower Rook, Lifebuoy Hippo, Nurse Hen, Phoenix Chick, Dandelion Puff, Totem Pole, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow
 
 ### 19. Melody (sound and rhythm), house Melody + Gravity
 
 - **Rule kinds:** [Every Nth cast] -> [Timed pulse] -> [Stillness] -> [Summon]. **Counter:** Beats: skills cast.
-- **2:** [Every Nth cast] every 4th cast by any friend is a Beat: all friends gain +10% attack speed for 4 s
-- **4:** [Timed pulse] a Chorus every 10 s: every friend casts a free small copy of its last skill
-- **6:** [Stillness] Hold the Note: standing still for 2 s makes the next Beat last twice as long and reach the whole arena
-- **8:** [Summon] the Orchestra: three musician spirits join each wave and play (shield, damage and speed notes)
-- **Stat package:** CompanionAttackSpeed 6% per 2; step 4 AttackSpeed 6%; step 6 Crit 6%; step 8 Damage 10% and AttackSpeed 8%
+- **2:** [Every Nth cast] every 4th cast by a Melody friend is a Beat: Melody friends gain +15% attack speed for 4 s
+- **4:** [Chorus] every friend's casts count and Beats reach the whole team; a Chorus every 10 s makes every friend cast a free small copy of its last skill
+- **6:** [Crescendo] Beats stack up to 3; standing still for 2 s makes the next Beat last twice as long and reach the whole arena
+- **8:** [Summon] the Orchestra: three musician spirits join each wave and play damage, speed and shield notes on every Beat
+- **Stats:** members attack speed 8/18/30/45% at steps 2/4/6/8; the whole team skill haste 5/10% at steps 6/8
 - **Members (9):** Metronome, Harp Swan, Bagpipe Octopus, Anvil Ox, Sinkhole Worm, Planet Hamster, Cymbal Monkey, Choir Canary, Piano Crocodile
 
 ### 20. Gravity (space and weight), house Melody + Gravity
 
 - **Rule kinds:** [Pull] -> [Clump bonus] -> [Summon hole] -> [Aura]. **Counter:** Mass: enemies pulled together.
-- **2:** [Pull] every Gravity hit pulls the enemy 1 unit toward the hero (good against crowds)
-- **4:** [Clump bonus] enemies standing within 2 units of three or more others take +12% damage
-- **6:** [Summon] a Singularity opens every 12 s on the densest cluster: it drags and damages for 3 s, then collapses in a blast
-- **8:** [Aura] a gravity well follows the hero: enemies inside move 25% slower and bunch up
-- **Stat package:** Damage 4% per 2; step 4 Knockback 10%; step 6 Damage 8%; step 8 Damage 14%
+- **2:** [Pull] Gravity friends' hits pull the enemy 1 unit toward the hero
+- **4:** [Clump bonus] enemies within 2 units of three or more others take +12% damage from every friend; pulled enemies that slam into a clump deal 50% weapon damage to it and add 1 Mass
+- **6:** [Summon hole] a Singularity opens every 12 s on the densest cluster: it drags and damages for 3 s, then collapses in a blast; every 10 Mass cuts 1 s off its cooldown
+- **8:** [Aura] a gravity well follows the hero: enemies inside move 25% slower and bunch up, and every Singularity collapse leaves a smaller hole for 3 s
+- **Stats:** members damage 8/18/30/45% at steps 2/4/6/8; the whole team damage 6/12% at steps 6/8
 - **Members (9):** Metronome, Harp Swan, Bagpipe Octopus, Anvil Ox, Sinkhole Worm, Planet Hamster, Newton Apple, Bowling Sloth, Satellite Bee
 
 ## 3. Minor bonds (32)
 
-Each minor is a small rule of its own. Steps 2 and 4 (and 6 for the seven-member ones). The minors that do not belong to a house can appear on companions of any house.
+Minors work like TFT classes: every step gives their members a role stat, and the rule on top steps up into a payoff. The lower step starts a resource or a board state (stacks, Glyphs, Sugar, Cogs, trails) and the top step spends it, so the top step changes how the bond plays instead of only raising a number. Seven-member minors step at 2/4/6, five-member ones at 2/4. The minors that do not belong to a house can appear on companions of any house.
 
-| Bond | Members | Rule | House |
-|---|---|---|---|
-| Sweet Tooth | 7: Teapot Pilgrim, Candle Snail, Mailbox Imp, Bread Crab, Baker Mouse, Sundae Golem, Boba Tadpole | [Drop] every 15 kills a Snack drops and heals the hero 3% (4: every 10 kills; 6: also +1 coin) | Hearth + Ember |
-| Bouncing Ball | 5: Mailbox Imp, Bread Crab, Dice Crab, Mask Pepper, Boba Tadpole | [Projectile] shots bounce once (4: twice, each bounce keeps 70% damage) | Hearth + Ember |
-| Gauntlet | 7: Snow Spoon, Fridge Wisp, Anchor Snail, Sail Squid, The Impossible Tailor, Balloon Mallet, Shovel Penguin | [Stacking] melee hits stack Grit: +2% damage each up to +10% (resets after 4 s idle; 4: up to 20%; 6: stacks never reset in a wave) | Frost + Tide |
-| Sea Shanty | 5: Fridge Wisp, Shell Postman, Coral Teacup, Shanty Sea Lion, Bottle Gull | [Every Nth hit] every 4th attack by any friend gives all friends +3% attack speed for 4 s (4: every 3rd) | Frost + Tide |
-| Paper Wings | 7: Kettle Bat, Comet Kite, The Folded Courier, Spindle Wren, Rain Heron, Paper Plane Pigeon, Kite Dragon | [Projectile] shots curve in a gentle spiral (+10% distance; 4: they return like a boomerang; 6: twice) | Storm + Windborne |
-| Rain Script | 5: Ribbon Otter, Spindle Wren, Rain Heron, Raincoat Frog, Volt Eel | [Economy] every reroll gives +0.5% permanent damage (4: +1%) | Storm + Windborne |
-| Quicksoles | 7: Pear Moth, Citrus Toad, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Yo-yo Squirrel | [Movement] +6% move speed and a short dash every 8 s (4: every 6 s; 6: the dash leaves a shock wave) | Garden + Venom |
-| Root | 5: Mushroom Librarian, Seed Hedgehog, Grand Sprout, Watering Snail, The First Seed | [Stillness] standing still for 2 s: +20% health regeneration and +2 armor (4: +40% and +4) | Garden + Venom |
-| Hats | 7: Pillow Oracle, Ice Cream Owl, Moon Jelly, Orbit Moth, The Forgotten Patchwork, Violet Remnant, Little Sprout | [Economy] the first recruit each shop is 25% cheaper (4: 40%; 6: free once a run) | Starlight + Dusk |
-| Clover | 5: Star Sock, Eclipse Egg, Bubble Koi, Little Sprout, Saddle Moth | [Random] every 20 kills a lucky Clover drops: a free reroll (4: every 12 kills) | Starlight + Dusk |
-| Masks | 7: Jelly Swordsman, Brass Acorn, Radish Jester, Return Captain, Dough Foreman, Velvet Enchantress, Court Herald | [Crit] +4% crit; every 5th crit deals double damage (4: every 4th; 6: every 3rd) | Carnival + Court |
-| Big Top | 5: Button Beetle, Crayon Gremlin, Dough Foreman, Ringmaster Jack, The Lost Carousel | [Combo] hitting different enemies in a row builds a combo: +1% damage per link up to +10% (4: +20%) | Carnival + Court |
-| Runes | 7: Hood Wisp, Bookmark Golem, Thimble Moth, Lens Owl, The Endless Index, Harbor Whale, Paper Inventor | [Every Nth hit] every 10th hit casts a rune strike for 80% weapon damage in a ring (4: every 8th; 6: every 6th) | Archive + Lantern |
-| Exhibit Hall | 5: Reel Owl, Velvet Champion, Teacup Cricket, Pinned Beetle, Lamp Goat | [Survival] +6% max health; once per run the hero survives a fatal hit with 1 HP (4: also heals 20%) | Archive + Lantern |
-| Horns | 7: Iron Locomotive, Fossil Armadillo, Spring Duck, Dream Compass, Bristle Ball, Monster Marble, Stitched Pangolin | [Every Nth hit] every 10th hit shoves enemies back and stuns them 0.3 s (4: every 8th; 6: every 6th) | Stone + Clockwork |
-| Gears | 5: Tin Tick, Spring Duck, Staple Mole, Clockwork Piper, Top Beetle | [Every Nth hit] every 6th hit fires a bonus shot (4: every 4th) | Stone + Clockwork |
-| Shield | 7: Tower Rook, Totem Pole, Brass Lion, Quilt Walrus, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow | [Shield] every wave start each Shield member shields itself for 8% max health (4: also the nearest friend; 6: shield renews every 20 s) | Bulwark + Spirit |
-| Mend | 5: Lifebuoy Hippo, Nurse Hen, Phoenix Chick, Dandelion Puff, Plaster Panda | [Heal] friends below 50% health heal 1% a second (4: 2% a second) | Bulwark + Spirit |
-| Echo | 7: Metronome, Harp Swan, Bagpipe Octopus, Cymbal Monkey, Choir Canary, Piano Crocodile, Satellite Bee | [Repeat] every 6th cast repeats at 50% (4: every 4th; 6: every 3rd) | Melody + Gravity |
-| Singularity | 5: Anvil Ox, Sinkhole Worm, Planet Hamster, Newton Apple, Bowling Sloth | [Pull] every 12th hit pulls enemies in a small ring toward the target (4: every 8th) | Melody + Gravity |
-| Bastion | 5: Dice Crab, Shovel Penguin, Specimen Slime, Brass Lion, Plaster Panda | [Wave-start shield] the whole team starts each wave with a shield worth 6% max health (4: 10%) | any |
-| Spiky Shell | 5: Teacup Cricket, Grand Sprout, Yo-yo Squirrel, The First Seed, Bowling Sloth | [Reflect] enemies that hit a friend take 40% of that damage back (4: 80%) | any |
-| Unstoppable | 5: Saffron Mechanist, Monster Marble, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow | [Immunity] members cannot be stunned or pushed; they charge into the nearest cluster after a kill (4: the charge stuns) | any |
-| Monolith | 5: Balloon Mallet, Violet Remnant, Bristle Ball, Stitched Pangolin, Quilt Walrus | [Armor per enemy] +1 armor for each enemy within 4 units, up to +6 (4: up to +10) | any |
-| Sniper | 5: The Folded Courier, Paper Plane Pigeon, Raincoat Frog, Storm Kitten, Paper Inventor | [Distance] +2% damage per unit of distance to the target, up to +16% (4: up to +30%) | any |
-| Bludgeoner | 5: Tea Dragon, Harbor Whale, Sock Cyclops, Mirror Newt, The Last Bell | [Armor ignore] shots ignore 15% of armor (4: 30%) | any |
-| Desperado | 5: Shanty Sea Lion, Carousel Pony, Ringmaster Jack, The Lost Carousel, Court Herald | [Every Nth hit] every 8th hit fires 5 extra shots at the nearest enemies for 40% weapon damage (4: every 6th) | any |
-| Bladenado | 5: The Impossible Tailor, Static Ferret, Ribbon Spider, Lamp Goat, Cymbal Monkey | [Splash] hits deal 25% of their damage to every enemy within 2 units of the target (4: 50%) | any |
-| Rapidfire | 5: Volt Eel, Bottle Gull, Dream Compass, The Sleeping Friend, Satellite Bee | [On-hit stacks] every hit gives +2% attack speed, up to 10 stacks, lost after 3 s idle (4: +3% per stack) | any |
-| Demolitionist | 5: Coil Kettle, Sundae Golem, Crayon Gremlin, Velvet Enchantress, Newton Apple | [Stun] skill damage stuns for 0.3 s (4: 0.6 s, but only the first 10 enemies hit) | any |
-| Cloud | 5: Mask Pepper, Star Sock, Bubble Koi, The Forgotten Patchwork, Saddle Moth | [Dodge] the team has a 6% chance to dodge a hit (4: 12%) | any |
-| Multicaster | 5: The Endless Index, Pinned Beetle, Clockwork Piper, Choir Canary, Piano Crocodile | [Repeat] the first skill each wave is cast twice (4: the first two) | any |
+- **Sweet Tooth** (7, Hearth + Ember): Teapot Pilgrim, Candle Snail, Mailbox Imp, Bread Crab, Baker Mouse, Sundae Golem, Boba Tadpole
+  - **Stats:** members health 8/16/28%
+  - **2:** [Drop + stacks] every 15 kills a Snack drops; the hero eats it to heal 3% and gain 1 Sugar (+2% attack speed for the wave, up to 5)
+  - **4:** [Rush] Snacks drop every 10 kills; at 5 Sugar a Sugar Rush fires: for 6 s all skill bars fill 30% faster, then Sugar resets
+  - **6:** [Payoff] each Sugar Rush makes every Sweet Tooth friend throw a candy volley at the densest cluster and drops 1 coin per member
+- **Bouncing Ball** (5, Hearth + Ember): Mailbox Imp, Bread Crab, Dice Crab, Mask Pepper, Boba Tadpole
+  - **Stats:** members damage 8/20%
+  - **2:** [Projectile] shots bounce once to another enemy at 70% damage
+  - **4:** [Build-up] shots bounce twice, and each bounce adds +15% damage to the next one, so the last bounce hits hardest
+- **Gauntlet** (7, Frost + Tide): Snow Spoon, Fridge Wisp, Anchor Snail, Sail Squid, The Impossible Tailor, Balloon Mallet, Shovel Penguin
+  - **Stats:** members damage 6/14/24%
+  - **2:** [Stacking] melee hits stack Grit: +2% damage each up to +10%, lost after 4 s idle
+  - **4:** [Haymaker] Grit goes to +20%; at full Grit the next hit is a Haymaker, a shock wave in a cone ahead for 150% weapon damage
+  - **6:** [Payoff] Grit never resets in a wave, a Haymaker comes every 4th hit at full Grit, and it throws enemies into each other
+- **Sea Shanty** (5, Frost + Tide): Fridge Wisp, Shell Postman, Coral Teacup, Shanty Sea Lion, Bottle Gull
+  - **Stats:** members attack speed 8/20%
+  - **2:** [Every Nth hit] every 4th attack by any friend sings a Verse: +3% attack speed for 4 s, stacking to 5
+  - **4:** [Chorus] at 5 Verses the crew sings a Chorus: 6 s of +15% damage and Sea Shanty friends' shots splash
+- **Paper Wings** (7, Storm + Windborne): Kettle Bat, Comet Kite, The Folded Courier, Spindle Wren, Rain Heron, Paper Plane Pigeon, Kite Dragon
+  - **Stats:** members range 8/16/28%
+  - **2:** [Projectile] shots curve in a gentle spiral (+10% distance)
+  - **4:** [Boomerang] shots return like a boomerang and hit again on the way back at 60%
+  - **6:** [Payoff] shots return twice, and two returning shots that cross fold into a Paper Crane that dives onto the densest cluster
+- **Rain Script** (5, Storm + Windborne): Ribbon Otter, Spindle Wren, Rain Heron, Raincoat Frog, Volt Eel
+  - **Stats:** members skill haste 8/20%
+  - **2:** [Economy] every reroll gives +0.5% permanent damage
+  - **4:** [Payoff] every reroll gives +1%, and every 10 rerolls in a run write a Verse: the next shop's first item is half price
+- **Quicksoles** (7, Garden + Venom): Pear Moth, Citrus Toad, Sock Cyclops, Mirror Newt, Ribbon Spider, Paper Devil, Yo-yo Squirrel
+  - **Stats:** members attack speed 6/14/24%
+  - **2:** [Movement] +6% move speed and a short dash every 8 s
+  - **4:** [Slipstream] a dash every 6 s that leaves a trail for 3 s; friendly shots that cross it deal +15% damage
+  - **6:** [Payoff] each dash sends a shock wave along the trail that shoves enemies back, and refunds 1 s of every Quicksoles friend's skill bar
+- **Root** (5, Garden + Venom): Mushroom Librarian, Seed Hedgehog, Grand Sprout, Watering Snail, The First Seed
+  - **Stats:** members armor 3/8 points
+  - **2:** [Stillness] after 2 s standing still: +20% health regeneration and +2 armor
+  - **4:** [Payoff] +40% and +4; while the hero stands still, Root friends' hits root enemies for 0.5 s
+- **Hats** (7, Starlight + Dusk): Pillow Oracle, Ice Cream Owl, Moon Jelly, Orbit Moth, The Forgotten Patchwork, Violet Remnant, Little Sprout
+  - **Stats:** members damage 6/14/24%
+  - **2:** [Economy] the first recruit each shop is 25% cheaper
+  - **4:** [Hats] 40% cheaper, and every new recruit arrives wearing a Hat: +10% damage for that friend for the run
+  - **6:** [Payoff] one free recruit a run; Hats stack on the same friend, and a friend with 3 Hats becomes a Top Hat whose skill casts twice
+- **Clover** (5, Starlight + Dusk): Star Sock, Eclipse Egg, Bubble Koi, Little Sprout, Saddle Moth
+  - **Stats:** members luck 8/20%
+  - **2:** [Random] every 20 kills a Clover drops: a free reroll
+  - **4:** [Payoff] every 12 kills; 4 Clovers held at once bloom into a Four-Leaf: the next shop shows one item a rarity higher
+- **Masks** (7, Carnival + Court): Jelly Swordsman, Brass Acorn, Radish Jester, Return Captain, Dough Foreman, Velvet Enchantress, Court Herald
+  - **Stats:** members crit 5/10/18%
+  - **2:** [Crit] every 5th crit deals double damage
+  - **4:** [Shards] every 4th crit; a double crit breaks the mask, and its shards hit 3 enemies near the target for 40%
+  - **6:** [Payoff] every 3rd crit, and each shard that hits gives +1% crit for the wave (up to +10%)
+- **Big Top** (5, Carnival + Court): Button Beetle, Crayon Gremlin, Dough Foreman, Ringmaster Jack, The Lost Carousel
+  - **Stats:** members damage 8/20%
+  - **2:** [Combo] hitting different enemies in a row builds a combo: +1% damage per link up to +10%
+  - **4:** [Payoff] up to +20%; at full combo the next skill is Showtime: it also lands on a second cluster
+- **Runes** (7, Archive + Lantern): Hood Wisp, Bookmark Golem, Thimble Moth, Lens Owl, The Endless Index, Harbor Whale, Paper Inventor
+  - **Stats:** members skill haste 6/14/24%
+  - **2:** [Every Nth hit] every 10th hit casts a rune strike: 80% weapon damage in a ring around the target
+  - **4:** [Glyphs] every 8th hit; rune strikes leave a Glyph for 4 s, and enemies on a Glyph take +10% damage
+  - **6:** [Payoff] every 6th hit; a rune strike that lands on a Glyph detonates it for triple damage
+- **Exhibit Hall** (5, Archive + Lantern): Reel Owl, Velvet Champion, Teacup Cricket, Pinned Beetle, Lamp Goat
+  - **Stats:** members health 10/25%
+  - **2:** [Survival] +6% max health; once per run the hero survives a fatal hit with 1 HP
+  - **4:** [Payoff] the save also heals 20%, and once a wave the first fallen friend is put on Display: it stands up after 5 s instead of 15
+- **Horns** (7, Stone + Clockwork): Iron Locomotive, Fossil Armadillo, Spring Duck, Dream Compass, Bristle Ball, Monster Marble, Stitched Pangolin
+  - **Stats:** members health 6/14/24%
+  - **2:** [Every Nth hit] every 10th hit shoves enemies back and stuns them 0.3 s
+  - **4:** [Pile-up] every 8th hit; shoved enemies that hit others stun them too
+  - **6:** [Payoff] every 6th hit; stunned enemies take +20% damage from Horns friends
+- **Gears** (5, Stone + Clockwork): Tin Tick, Spring Duck, Staple Mole, Clockwork Piper, Top Beetle
+  - **Stats:** members attack speed 8/20%
+  - **2:** [Every Nth hit] every 6th hit fires a bonus shot
+  - **4:** [Payoff] every 4th hit; each bonus shot that lands adds a Cog, and 10 Cogs fill every friend's skill bar by 20%
+- **Shield** (7, Bulwark + Spirit): Tower Rook, Totem Pole, Brass Lion, Quilt Walrus, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow
+  - **Stats:** members armor 3/6/10 points
+  - **2:** [Shield] every wave start each Shield member shields itself for 8% max health
+  - **4:** [Burst] the nearest friend gets the shield too; a shield that breaks bursts and shoves nearby enemies back
+  - **6:** [Payoff] shields renew every 20 s and their bursts deal 100% weapon damage
+- **Mend** (5, Bulwark + Spirit): Lifebuoy Hippo, Nurse Hen, Phoenix Chick, Dandelion Puff, Plaster Panda
+  - **Stats:** members health 10/22%
+  - **2:** [Heal] friends below 50% health heal 1% a second
+  - **4:** [Payoff] 2% a second; healing past full health becomes a Patch shield (up to 10% max health)
+- **Echo** (7, Melody + Gravity): Metronome, Harp Swan, Bagpipe Octopus, Cymbal Monkey, Choir Canary, Piano Crocodile, Satellite Bee
+  - **Stats:** members skill haste 6/14/24%
+  - **2:** [Repeat] every 6th cast repeats at 50%
+  - **4:** [Travel] every 4th cast; the echo lands on the next-densest cluster instead of the same spot
+  - **6:** [Payoff] every 3rd cast; an echo can echo once more at 25%
+- **Singularity** (5, Melody + Gravity): Anvil Ox, Sinkhole Worm, Planet Hamster, Newton Apple, Bowling Sloth
+  - **Stats:** members damage 8/20%
+  - **2:** [Pull] every 12th hit pulls enemies in a small ring toward the target
+  - **4:** [Payoff] every 8th hit; pulled enemies that land together are crushed for 60% weapon damage
+- **Bastion** (5, any): Dice Crab, Shovel Penguin, Specimen Slime, Brass Lion, Plaster Panda
+  - **Stats:** members armor 4/10 points
+  - **2:** [Wave-start shield] the whole team starts each wave with a shield worth 6% max health
+  - **4:** [Payoff] 10%, and while a friend has a shield it deals +10% damage
+- **Spiky Shell** (5, any): Teacup Cricket, Grand Sprout, Yo-yo Squirrel, The First Seed, Bowling Sloth
+  - **Stats:** members armor 3/8 points
+  - **2:** [Reflect] enemies that hit a friend take 40% of that damage back
+  - **4:** [Payoff] 80%, and the reflected damage also hits enemies within 2 units of the attacker
+- **Unstoppable** (5, any): Saffron Mechanist, Monster Marble, Pumpkin Reaper, Bone Xylophone, Scarecrow Crow
+  - **Stats:** members health 12/28%
+  - **2:** [Immunity] members cannot be stunned or pushed; after a kill they charge into the nearest cluster
+  - **4:** [Payoff] the charge stuns, and each charge gives +5% damage for 4 s (stacks 3)
+- **Monolith** (5, any): Balloon Mallet, Violet Remnant, Bristle Ball, Stitched Pangolin, Quilt Walrus
+  - **Stats:** members health 8/18%
+  - **2:** [Armor per enemy] +1 armor for each enemy within 4 units, up to +6
+  - **4:** [Payoff] up to +10; at full armor a member draws the enemies around it onto itself
+- **Sniper** (5, any): The Folded Courier, Paper Plane Pigeon, Raincoat Frog, Storm Kitten, Paper Inventor
+  - **Stats:** members range 10/20%
+  - **2:** [Distance] +2% damage per unit of distance to the target, up to +16%
+  - **4:** [Payoff] up to +30%, and a kill from 8+ units carries on to the next enemy in the line
+- **Bludgeoner** (5, any): Tea Dragon, Harbor Whale, Sock Cyclops, Mirror Newt, The Last Bell
+  - **Stats:** members damage 6/14%
+  - **2:** [Armor ignore] shots ignore 15% of armor
+  - **4:** [Payoff] 30%, and each hit on an armored enemy breaks 1 armor for the wave
+- **Desperado** (5, any): Shanty Sea Lion, Carousel Pony, Ringmaster Jack, The Lost Carousel, Court Herald
+  - **Stats:** members attack speed 8/18%
+  - **2:** [Every Nth hit] every 8th hit fires 5 extra shots at the nearest enemies for 40% weapon damage
+  - **4:** [Payoff] every 6th hit; each extra shot that kills fires one more
+- **Bladenado** (5, any): The Impossible Tailor, Static Ferret, Ribbon Spider, Lamp Goat, Cymbal Monkey
+  - **Stats:** members damage 6/14%
+  - **2:** [Splash] hits deal 25% of their damage to every enemy within 2 units of the target
+  - **4:** [Payoff] 50%, and splash hits leave a spinning blade on the ground for 2 s
+- **Rapidfire** (5, any): Volt Eel, Bottle Gull, Dream Compass, The Sleeping Friend, Satellite Bee
+  - **Stats:** members damage 6/14%
+  - **2:** [On-hit stacks] every hit gives +2% attack speed, up to 10 stacks, lost after 3 s idle
+  - **4:** [Payoff] +3% per stack; at 10 stacks shots pierce 1 enemy
+- **Demolitionist** (5, any): Coil Kettle, Sundae Golem, Crayon Gremlin, Velvet Enchantress, Newton Apple
+  - **Stats:** members skill haste 8/18%
+  - **2:** [Stun] skill damage stuns for 0.3 s
+  - **4:** [Payoff] 0.6 s (first 10 enemies hit), and stunned enemies take +15% skill damage
+- **Cloud** (5, any): Mask Pepper, Star Sock, Bubble Koi, The Forgotten Patchwork, Saddle Moth
+  - **Stats:** members health 8/18%
+  - **2:** [Dodge] the team has a 6% chance to dodge a hit
+  - **4:** [Payoff] 12%, and every dodge leaves a cloud puff that slows enemies inside it 30% for 2 s
+- **Multicaster** (5, any): The Endless Index, Pinned Beetle, Clockwork Piper, Choir Canary, Piano Crocodile
+  - **Stats:** members skill haste 10/22%
+  - **2:** [Repeat] the first skill each wave is cast twice
+  - **4:** [Payoff] the first two, and every 10th cast after that is cast twice too
 
 ## 4. Build recipes (examples with 10 companions; the hero joins its two minors)
 
@@ -890,44 +1016,64 @@ The hero joins its two minor bonds as a member (a 7-member minor reaches step 6 
 
 Late waves hold 100+ enemies, so enemy skills are built for crowds: auras, packs and area telegraphs (solid filled shapes on the ground). Friends are mortal, so many enemies hunt the weakest friend. Nights are when a kind first appears; kinds stay in later waves.
 
-| Enemy | Nights | Role | Skill | Telegraph |
+**Who has skills:** small enemies (most of every wave) have no skill, only a body: speed, health and how they move. Medium enemies are plain bodies with one trait, and only a few of them (8) have a skill. Large and special enemies, elites and bosses carry the skills. On screen at once: at most 2 large or special enemies on early nights, rising to 8 late; small enemies make up at least 80% of a wave.
+
+### Small (no skill)
+
+| Enemy | Nights | Role | Body | Look |
 |---|---|---|---|---|
-| Crumb Swarm | 1+ | Fodder | spawns 30 to 60 at once; each dies in one hit; when 20 are alive close together they merge into a Crumb Giant | a crowd of tiny sprites; the giant has a crown of crumbs |
-| Marcher | 1+ | Fodder | moves in ranks; each neighbour adds +5% speed to everyone (up to +30%) so a thick rank rushes | ranks with matching stripes |
-| Pillbug | 1+ | Fodder | rolls into a ball and charges the nearest friend in a straight line, then stops dizzy for 1.5 s | a rolling stripe on the ground, solid red |
-| Flanker | 1+ | Fodder | at the wave start it leaps behind the hero and attacks from behind | a blue arrow on the ground |
+| Crumb Swarm | 1+ | Fodder | comes 30 to 60 at once; each dies in one hit | a crowd of tiny sprites; the giant has a crown of crumbs |
+| Marcher | 1+ | Fodder | walks in tight ranks | ranks with matching stripes |
+| Pillbug | 1+ | Fodder | rolls fast in straight lines | a rolling stripe on the ground, solid red |
+| Flanker | 1+ | Fodder | enters behind the hero | a blue arrow on the ground |
+| Decoy | 1+ | Trick | looks like a rare enemy; dies in one hit | a faint wobble |
+| Blinker | 1+ | Trick | moves in short hops (already in the game) | a flash on the ground |
+| Ambusher | 24+ | Trick | hard to see until 3 units away | a ripple in the ground |
+| Phase Walker | 26+ | Hunter | walks through walls and friends | a wavering outline |
+
+### Medium, plain (one body trait, no skill)
+
+| Enemy | Nights | Role | Trait | Look |
+|---|---|---|---|---|
+| Grower | 1+ | Brute | larger and tougher each wave stage | grows visibly larger |
+| Splitter | 1+ | Brute | splits in two when it dies (already in the game) | a seam on its body |
+| Shield Wall | 18+ | Brute | immune to hits from the front | a big tower shield |
+| Immune | 48+ | Brute | cannot be stunned or slowed | a metallic sheen |
+| Thief | 14+ | Trick | grabs dropped coins and runs; killing it returns 110% | a sack on its back |
+| Gluttonous Mouth | 30+ | Trick | eats dropped coins and pickups; kill it to get them back | a wide mouth |
+
+### Medium with a skill (8)
+
+| Enemy | Nights | Role | Skill | Look |
+|---|---|---|---|---|
 | Smasher | 1+ | Brute | a telegraphed slam: area damage and a short stun on friends | a filled red circle for 1 s |
-| Stitcher | 1+ | Support | when another of its kind falls near it, it heals to full; kill the group together | stitches glow between members |
-| Grower | 1+ | Brute | gains +10% health and +5% attack for each wave stage alive | grows visibly larger |
-| Decoy | 1+ | Trick | looks like a rare enemy; dies in one hit and wastes a skill cast | a faint wobble |
-| Shielder | 1+ | Support | shields the group behind it (already in the game) | a dome over the group |
-| Splitter | 1+ | Brute | splits in two when it dies, then each half in two (already in the game) | a seam on its body |
-| Blinker | 1+ | Trick | blinks behind the hero (already in the game) | a flash on the ground |
 | Sniper Doll | 5+ | Ranged | stands outside the arena and shoots the lowest-health friend; a thin line shows its target for 1 s first | a red laser line |
-| Leech | 8+ | Hunter | latches onto a friend and drains it, healing itself; hits on the friend also hit the leech | a thread between the leech and the friend |
 | Bomber | 10+ | Brute | swells, then bursts and leaves a poison pool on friends' ground | a swelling red body |
 | Healer | 10+ | Support | heals the weakest enemies nearby for 5% a second | green motes |
-| Buffer | 10+ | Support | cheers: every enemy within 8 units gains +30% speed for 4 s | a horn note ring |
 | Banner Bearer | 12+ | Support | while alive every enemy within 6 units deals +20% damage; the banner drops on death and can be picked up by friends | a waving banner |
+| Egg Layer | 16+ | Support | lays an egg that hatches into 3 small enemies after 5 s unless it is destroyed | a shaking egg |
+| Kamikaze Candle | 28+ | Hunter | runs at the largest friend cluster and explodes in a wide area | a lit fuse |
 | Charger | 12+ | Hunter | charges the farthest friend in a line that passes through everything; hitting a wall stuns it | a long red strip on the ground |
-| Thief | 14+ | Trick | grabs dropped coins and runs; killing it returns 110% of what it took | a sack on its back |
+
+### Large and special (skills)
+
+| Enemy | Nights | Role | Skill | Look |
+|---|---|---|---|---|
+| Stitcher | 1+ | Support | when another of its kind falls near it, it heals to full; kill the group together | stitches glow between members |
+| Shielder | 1+ | Support | shields the group behind it (already in the game) | a dome over the group |
+| Leech | 8+ | Hunter | latches onto a friend and drains it, healing itself; hits on the friend also hit the leech | a thread between the leech and the friend |
+| Buffer | 10+ | Support | cheers: every enemy within 8 units gains +30% speed for 4 s | a horn note ring |
 | Trapper | 14+ | Trick | lays spikes, cocoons or mines under friends' feet | small marked tiles |
 | Marker | 15+ | Support | marks the hero: every enemy turns toward the hero | a target over the hero |
 | Cone-brute | 16+ | Brute | its hits splash in a cone behind the target | a cone shape on the ground |
-| Egg Layer | 16+ | Support | lays an egg that hatches into 3 small enemies after 5 s unless it is destroyed | a shaking egg |
-| Shield Wall | 18+ | Brute | front-facing shield: immune to hits from the front; hit it from the side or behind | a big tower shield |
 | Magnet Brute | 18+ | Brute | pulls friendly projectiles toward itself and absorbs them (a bullet sponge for projectile builds) | a horseshoe magnet and field lines |
 | Mourner | 20+ | Support | when it dies every enemy within 8 units gains +40% speed for 5 s | a black veil |
 | Silencer | 22+ | Control | a ring around it pauses the skill bars of friends inside for 3 s | a hushed ring on the ground |
 | Time Eater | 22+ | Control | an aura halves the skill-bar fill speed of friends within 6 units | a pale clock face |
 | Cleanser | 24+ | Control | removes buffs and shields from friends in an area | white sparks |
-| Ambusher | 24+ | Trick | invisible until 3 units away; jumps the lowest-health friend | a ripple in the ground |
-| Phase Walker | 26+ | Hunter | walks through walls and friends; taunts do not affect it | a wavering outline |
 | Burrower | 26+ | Hunter | tunnels under the arena and bursts up beneath a friend cluster | a moving mound, then a filled circle |
-| Kamikaze Candle | 28+ | Hunter | runs at the largest friend cluster and explodes in a wide area | a lit fuse |
 | Gravity Imp | 28+ | Control | pulls friends together into a clump (bad against area attacks, good for the enemy) | a spiral on the ground |
 | Shrieker | 30+ | Control | a scream makes friends flee 1 s and breaks stillness effects | sound rings |
-| Gluttonous Mouth | 30+ | Trick | eats dropped coins and health pickups; kill it to get them back | a wide mouth |
 | Rallier | 32+ | Support | when it falls below 50% health every enemy within 8 units gains a 15% shield | a raised fist |
 | Mirror Imp | 34+ | Trick | reflects 30% of ranged damage while facing the hero | a mirror shield |
 | Reviver | 36+ | Support | revives one fallen enemy within 8 units after 5 s; kill it first | a green cross over bodies |
@@ -936,7 +1082,6 @@ Late waves hold 100+ enemies, so enemy skills are built for crowds: auras, packs
 | Binder | 42+ | Control | chains two enemies: if one falls the other takes 40% of its health (Tethered in the game) | a chain between enemies |
 | Drainer | 44+ | Control | drains coins or health of friends inside a zone | a pink spiral |
 | Charmer | 46+ | Control | charms one friend for 3 s: it attacks other friends | hearts over the friend |
-| Immune | 48+ | Brute | cannot be stunned or slowed; every 3rd attack is charged | a metallic sheen |
 | Storm-eye | 50+ | Ranged | every 3rd attack chains lightning to 4 more targets | a crackling eye |
 | Armour-grower | 55+ | Brute | grows and slams, then has armour for 4 s (Armored in the game) | plates growing on its body |
 | Meteor Caller | 60+ | Ranged | calls meteors onto the largest friend cluster (solid filled circles, 1.5 s) | filled red circles |

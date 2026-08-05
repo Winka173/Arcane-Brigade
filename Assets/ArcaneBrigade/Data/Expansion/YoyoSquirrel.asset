@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: YoyoSquirrel
   DisplayName: Yo-yo Squirrel
-  Body: {fileID: 21300000, guid: a4db16e16cb03b3469c80212e1cbe34f, type: 3}
+  Body: {fileID: 1047660288, guid: 08b31c9c1cb2fed47913820c92bb8dfc, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: a4db16e16cb03b3469c80212e1cbe34f, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1047660288, guid: 08b31c9c1cb2fed47913820c92bb8dfc, type: 3}
+  - {fileID: 1640777640, guid: 08b31c9c1cb2fed47913820c92bb8dfc, type: 3}
+  - {fileID: -764965763, guid: 08b31c9c1cb2fed47913820c92bb8dfc, type: 3}
+  - {fileID: -1695198115, guid: 08b31c9c1cb2fed47913820c92bb8dfc, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 63e7f4406d1f48c4ead0358cff7fa801, type: 2}
   Weapon: {fileID: 11400000, guid: cc77bd7305310c148846b1770824c525, type: 2}
   Health: 100
   Speed: 4

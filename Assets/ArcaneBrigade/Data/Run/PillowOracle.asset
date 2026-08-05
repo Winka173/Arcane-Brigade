@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PillowOracle
   DisplayName: Pillow Oracle
-  Body: {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
+  Body: {fileID: -345145378, guid: 739ab3574acbdf042a75096a75365681, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -345145378, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+  - {fileID: 354291327, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+  - {fileID: 893970624, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+  - {fileID: -882939450, guid: 739ab3574acbdf042a75096a75365681, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0eec0a47db282214988cec40c8e10874, type: 2}
   Weapon: {fileID: 11400000, guid: cf064ecfc15c0ab49abc48188f557b6f, type: 2}
   Health: 120
   Speed: 5.1

@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RibbonSpider
   DisplayName: Ribbon Spider
-  Body: {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
+  Body: {fileID: -31654802, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -31654802, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+  - {fileID: 443490456, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+  - {fileID: 1822216252, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+  - {fileID: -1403140598, guid: 5ca8aad15900ffb4bad29b1c6456c0aa, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: ef2d074e0d01eee47b8078d35e08a10f, type: 2}
   Weapon: {fileID: 11400000, guid: 7f5c0f391f15f844b99467e2edbff077, type: 2}
   Health: 100
   Speed: 4.3999996

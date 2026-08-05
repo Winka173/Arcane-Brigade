@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SaffronMechanistRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -485120776, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 2045043241, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 185640343, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  - {fileID: 404229970, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  Walk:
+  - {fileID: 1502410100, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 893414168, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  - {fileID: -1070198158, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 1490713798, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  Windup:
+  - {fileID: -1330300618, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: -1127602345, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 646871337, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  Release:
+  - {fileID: -201380624, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: 1166246845, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  Recovery:
+  - {fileID: 709907219, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  - {fileID: -1848663865, guid: 770a8753a40233249b0865931634ce4f, type: 3}
+  - {fileID: -485120776, guid: b89f9d382dddbeb47a135b462579340f, type: 3}
+  IllustratedHeight: 0

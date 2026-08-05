@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LoneJelly
   DisplayName: The Lone Jelly
-  Body: {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
+  Body: {fileID: 1122216339, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1122216339, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+  - {fileID: -1365161237, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+  - {fileID: 1774321751, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+  - {fileID: -1663931587, guid: a8fffc4ab1015384492183c3a300bb52, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 4942859e4dce4114a910c19f610dbe8b, type: 2}
   Weapon: {fileID: 11400000, guid: 957aab8abe6c27d479bd65d13b675866, type: 2}
   Health: 180
   Speed: 3.4

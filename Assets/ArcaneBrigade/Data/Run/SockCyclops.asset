@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SockCyclops
   DisplayName: Sock Cyclops
-  Body: {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
+  Body: {fileID: 1870522440, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1870522440, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+  - {fileID: 1614810812, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+  - {fileID: -432537723, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+  - {fileID: 1508631321, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 3f1afb857a06a094e8b63c29fe16d077, type: 2}
   Weapon: {fileID: 11400000, guid: 542fe4212187c014fbbbca11b1a4b631, type: 2}
   Health: 100
   Speed: 4.6

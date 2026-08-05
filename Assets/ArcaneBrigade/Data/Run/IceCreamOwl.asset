@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: IceCreamOwl
   DisplayName: Ice Cream Owl
-  Body: {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
+  Body: {fileID: 639199060, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 639199060, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+  - {fileID: 1331657267, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+  - {fileID: -1641365671, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+  - {fileID: -1154778838, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 5d035e550aa73ba4b9c3f4e3f9030e7e, type: 2}
   Weapon: {fileID: 11400000, guid: b851de8e90261f941b7e58cc4bd81cc8, type: 2}
   Health: 100
   Speed: 4.2

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: RaincoatFrogRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 551747151, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 2010917424, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 968638354, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  - {fileID: 377955203, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  Walk:
+  - {fileID: -4437966, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 1858766794, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  - {fileID: 1447356625, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: -1582783196, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  Windup:
+  - {fileID: 2044107880, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 1080718360, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: -147487741, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  Release:
+  - {fileID: -1165723328, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 1756931794, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  Recovery:
+  - {fileID: 208055159, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: -640374199, guid: 9f074565a9c914a44b4ee9f1753e42d5, type: 3}
+  - {fileID: 551747151, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  IllustratedHeight: 0

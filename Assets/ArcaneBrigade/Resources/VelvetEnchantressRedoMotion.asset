@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: VelvetEnchantressRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -151306320, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -194564136, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: 1268893298, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  - {fileID: 973057226, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  Walk:
+  - {fileID: -966759111, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -1089072560, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  - {fileID: 150574862, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -2105769896, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  Windup:
+  - {fileID: -1118029135, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -407181097, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: 1460098110, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  Release:
+  - {fileID: -1328813831, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -168667795, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  Recovery:
+  - {fileID: -1276437731, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: 565191732, guid: 61519be41c343dc49b6372e0631e1541, type: 3}
+  - {fileID: -151306320, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  IllustratedHeight: 0

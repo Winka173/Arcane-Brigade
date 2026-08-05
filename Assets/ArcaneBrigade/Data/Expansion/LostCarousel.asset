@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LostCarousel
   DisplayName: The Lost Carousel
-  Body: {fileID: 21300000, guid: 84051a1e802f2c348b9094d7ac860519, type: 3}
+  Body: {fileID: -97295633, guid: 58213d5eb72438f44b517c8ffd1e83a1, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 84051a1e802f2c348b9094d7ac860519, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -97295633, guid: 58213d5eb72438f44b517c8ffd1e83a1, type: 3}
+  - {fileID: -577131018, guid: 58213d5eb72438f44b517c8ffd1e83a1, type: 3}
+  - {fileID: -686692801, guid: 58213d5eb72438f44b517c8ffd1e83a1, type: 3}
+  - {fileID: 1512388338, guid: 58213d5eb72438f44b517c8ffd1e83a1, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: bd01599e4b6cfdb4dad9d01d29eedf8d, type: 2}
   Weapon: {fileID: 11400000, guid: 7fa473c8e1f221346a1f8bc89b745830, type: 2}
   Health: 100
   Speed: 4

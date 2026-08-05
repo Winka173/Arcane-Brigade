@@ -15,7 +15,7 @@ MonoBehaviour:
   Entries:
   - Id: LanternKnight
     Alias: 
-    ReferenceHeight: 1.6666666
+    ReferenceHeight: 2.9629629
     Curious:
     - {fileID: 2063088560, guid: d877ac796690edb408537e59ed5d4d94, type: 3}
     - {fileID: 41989713, guid: d877ac796690edb408537e59ed5d4d94, type: 3}
@@ -34,18 +34,26 @@ MonoBehaviour:
     - {fileID: -670528780, guid: d877ac796690edb408537e59ed5d4d94, type: 3}
   - Id: Postmaster
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.6753926
     Curious:
-    - {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
+    - {fileID: -103185221, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: -2081416545, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: 919943004, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: 1482802051, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
+    - {fileID: 170925198, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: 1420875398, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: 1333852562, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: 810781112, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
+    - {fileID: -511059578, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: -12612378, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: f8828b233588f6c40a7ed75953df664b, type: 3}
+    - {fileID: 1779678165, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
+    - {fileID: -582614594, guid: ff485bdf06f3e6e4c9d85eab91a40d6d, type: 3}
   - Id: DrowsySeer
     Alias: 
-    ReferenceHeight: 1.7777778
+    ReferenceHeight: 3.5959396
     Curious:
     - {fileID: -1277190001, guid: 0c4745b9b53e5034d96c778bbe3cdc25, type: 3}
     - {fileID: 2078353510, guid: 0c4745b9b53e5034d96c778bbe3cdc25, type: 3}
@@ -64,53 +72,83 @@ MonoBehaviour:
     - {fileID: -1976878227, guid: 0c4745b9b53e5034d96c778bbe3cdc25, type: 3}
   - Id: RootOracle
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.0382166
     Curious:
-    - {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
+    - {fileID: 2061494889, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: -1898357317, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: -1244108738, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: 678299193, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
+    - {fileID: 577513549, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: 666694889, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: 1853280206, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: -228864267, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
+    - {fileID: -85540209, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: -451652900, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: fdcb6b45f596267408e468b910b71d10, type: 3}
+    - {fileID: -1044801000, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
+    - {fileID: 1714819341, guid: d72913ed9492bc548b4b8a60dc0ff71c, type: 3}
   - Id: LoneJelly
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.064516
     Curious:
-    - {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
+    - {fileID: -997944296, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: -1024195059, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: -1327883335, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: 1958838647, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
+    - {fileID: 683013257, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: 2074267286, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: 1864482801, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: -1071594960, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
+    - {fileID: 865846922, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: 1535879829, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: eb2f71ca583feee429f55fc907e2776c, type: 3}
+    - {fileID: -1326369337, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
+    - {fileID: -1263997989, guid: 2e799c32eb4166d4da8614bc2073b3dd, type: 3}
   - Id: GlassDice
     Alias: 
-    ReferenceHeight: 1.7297298
+    ReferenceHeight: 3.312186
     Curious:
-    - {fileID: -285916409, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
-    - {fileID: -1851482525, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
+    - {fileID: 1166671974, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -19781548, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -1840194715, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -629636866, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
     Cheer:
-    - {fileID: -544353412, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
-    - {fileID: -1822258409, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
+    - {fileID: 356123081, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -2042223637, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -608533719, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: 380990025, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
     Hurt:
-    - {fileID: -556371287, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
+    - {fileID: -2028036302, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -1838033192, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
     Defeat:
-    - {fileID: -1822258409, guid: d66391a0450274c4e9e497954584aa1e, type: 3}
+    - {fileID: 839697162, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
+    - {fileID: -1733592, guid: b3465697dfd929145b3afee0a03a8c40, type: 3}
   - Id: TideSinger
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.939394
     Curious:
-    - {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
+    - {fileID: 1970618964, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: -594822818, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: 1689403942, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: -1389261788, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
+    - {fileID: 1278200865, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: 901202886, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: -773552974, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: 247448454, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
+    - {fileID: 1939366344, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: -2131536193, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 6d1f377853bf8ae44b2e1eee70e07181, type: 3}
+    - {fileID: 234242437, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
+    - {fileID: 1455212744, guid: 8e92992a16d44e24385b7bd4841a8d54, type: 3}
   - Id: CometRunner
     Alias: 
-    ReferenceHeight: 2
+    ReferenceHeight: 5.12
     Curious:
     - {fileID: 1689657571, guid: 18738c323c77eed4da0d310c21a04b24, type: 3}
     - {fileID: 123287456, guid: 18738c323c77eed4da0d310c21a04b24, type: 3}
@@ -129,40 +167,64 @@ MonoBehaviour:
     - {fileID: 537153613, guid: 18738c323c77eed4da0d310c21a04b24, type: 3}
   - Id: MirrorKeeper
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.5686275
     Curious:
-    - {fileID: 21300000, guid: 7dcfbec547f4e2a4d93dab0f0a4bfb6e, type: 3}
+    - {fileID: -1382529436, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: 2097461633, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: -588982344, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: 1881653945, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 7dcfbec547f4e2a4d93dab0f0a4bfb6e, type: 3}
+    - {fileID: -1392077669, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: 392007697, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: 1394718689, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: -687260753, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 7dcfbec547f4e2a4d93dab0f0a4bfb6e, type: 3}
+    - {fileID: -1309974118, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: -263518844, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 7dcfbec547f4e2a4d93dab0f0a4bfb6e, type: 3}
+    - {fileID: 1269216874, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
+    - {fileID: 994289590, guid: 0010b991e3184b141969d71087ef19cd, type: 3}
   - Id: TreasureAcorn
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.8079095
     Curious:
-    - {fileID: 21300000, guid: 475b580af746f484b86cb55681928239, type: 3}
+    - {fileID: 420788715, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: 869663615, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: 1677020896, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: -1016859817, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 475b580af746f484b86cb55681928239, type: 3}
+    - {fileID: 1997038018, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: -303738979, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: -37463640, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: 1936594383, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 475b580af746f484b86cb55681928239, type: 3}
+    - {fileID: 564000381, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: 1878184193, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 475b580af746f484b86cb55681928239, type: 3}
+    - {fileID: -1190570519, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
+    - {fileID: 972303470, guid: f88f4471047080b47aa5291e6e87d415, type: 3}
   - Id: VerdantMatron
     Alias: 
-    ReferenceHeight: 2.5488281
+    ReferenceHeight: 3.3121827
     Curious:
-    - {fileID: 21300000, guid: 9e4fdeaf8a0d0ad489f9fa9af88d1403, type: 3}
+    - {fileID: 1182694121, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: 258779889, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: 1859430056, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: -2075290868, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 9e4fdeaf8a0d0ad489f9fa9af88d1403, type: 3}
+    - {fileID: 1183490153, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: 1137284831, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: 1236646954, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: -1316767810, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 9e4fdeaf8a0d0ad489f9fa9af88d1403, type: 3}
+    - {fileID: 701122683, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: -341749547, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 9e4fdeaf8a0d0ad489f9fa9af88d1403, type: 3}
+    - {fileID: -1921712636, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
+    - {fileID: 850298869, guid: 6bdec798598db3144953d70a7bf9e621, type: 3}
   - Id: CopperCauldron
     Alias: 
-    ReferenceHeight: 3.4806626
+    ReferenceHeight: 6.962812
     Curious:
     - {fileID: -283002987, guid: 382fc0a602cef6b41bef5532b7509978, type: 3}
     - {fileID: -1038535525, guid: 382fc0a602cef6b41bef5532b7509978, type: 3}
@@ -181,7 +243,7 @@ MonoBehaviour:
     - {fileID: -1262414612, guid: 382fc0a602cef6b41bef5532b7509978, type: 3}
   - Id: ChinaMarionette
     Alias: 
-    ReferenceHeight: 3.7261906
+    ReferenceHeight: 5.5374064
     Curious:
     - {fileID: 1831770750, guid: 2d56129955287344c9d7ac8c1ddc97a5, type: 3}
     - {fileID: 443272466, guid: 2d56129955287344c9d7ac8c1ddc97a5, type: 3}
@@ -200,29 +262,45 @@ MonoBehaviour:
     - {fileID: -202802053, guid: 2d56129955287344c9d7ac8c1ddc97a5, type: 3}
   - Id: SoapSkater
     Alias: 
-    ReferenceHeight: 2.265625
+    ReferenceHeight: 3.473054
     Curious:
-    - {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
+    - {fileID: -619134043, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: -1674498865, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: -1301125652, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: 214957236, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
+    - {fileID: 1938714865, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: 1897046030, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: 613012657, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: 1963650299, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
+    - {fileID: -336282541, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: 1990650442, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: c241ce079541450468acb8d4229a39a3, type: 3}
+    - {fileID: 1745700263, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
+    - {fileID: 1527664042, guid: 6c6ed840fd223ca468463d48100b66c0, type: 3}
   - Id: VelvetRegent
     Alias: 
-    ReferenceHeight: 2.7832031
+    ReferenceHeight: 3.544776
     Curious:
-    - {fileID: 21300000, guid: 74df6363ab5dcb54e9dd4ace113fc751, type: 3}
+    - {fileID: 1743630658, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: -1537793280, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: 420557221, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: -1846303394, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 74df6363ab5dcb54e9dd4ace113fc751, type: 3}
+    - {fileID: -257259087, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: 709645371, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: -840310714, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: -2063006512, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 74df6363ab5dcb54e9dd4ace113fc751, type: 3}
+    - {fileID: 1871101869, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: -763469996, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 74df6363ab5dcb54e9dd4ace113fc751, type: 3}
+    - {fileID: -1259930530, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
+    - {fileID: 933354623, guid: b7cfc181775b40d43adf8d4979c58e02, type: 3}
   - Id: ButtonCavalier
     Alias: 
-    ReferenceHeight: 3.8020835
+    ReferenceHeight: 6.7592597
     Curious:
     - {fileID: 2032647718, guid: 91e145fa8f6ca5241821cac958643dbf, type: 3}
     - {fileID: 1501278365, guid: 91e145fa8f6ca5241821cac958643dbf, type: 3}
@@ -241,31 +319,45 @@ MonoBehaviour:
     - {fileID: -1989228893, guid: 91e145fa8f6ca5241821cac958643dbf, type: 3}
   - Id: NightMaw
     Alias: 
-    ReferenceHeight: 3.7083335
+    ReferenceHeight: 7.500906
     Curious:
-    - {fileID: 1383474984, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
-    - {fileID: -1123032167, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+    - {fileID: -1174931613, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: 379683427, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: -131110393, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: 117314191, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
     Cheer:
-    - {fileID: -695119239, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
-    - {fileID: 1891673704, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+    - {fileID: -496500048, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: 1493295790, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: 748090292, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: 1317452018, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
     Hurt:
-    - {fileID: 596820790, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+    - {fileID: -1557740159, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: 1256894708, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
     Defeat:
-    - {fileID: 1891673704, guid: e182e45e5939ed64e80e22cc66036a6c, type: 3}
+    - {fileID: -1230910022, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
+    - {fileID: -272088562, guid: b3433b27939bff44794ab17b40be27c7, type: 3}
   - Id: ThornTreasurer
     Alias: 
-    ReferenceHeight: 2.8222656
+    ReferenceHeight: 4.036313
     Curious:
-    - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
+    - {fileID: 1613296063, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: 106771984, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: -1563726981, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: -2044365462, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
+    - {fileID: 1593828095, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: 652866810, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: -643888770, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: 2007801617, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
+    - {fileID: 401284454, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: 661277500, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
+    - {fileID: -735414324, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
+    - {fileID: 492616364, guid: ad81688cf34a4a84980478bc9a650b17, type: 3}
   - Id: CitrusMarshal
     Alias: 
-    ReferenceHeight: 3.0792682
+    ReferenceHeight: 7.5030828
     Curious:
     - {fileID: -956671994, guid: 99b9e926f0a180f4db7d0d8452edb375, type: 3}
     - {fileID: -262981199, guid: 99b9e926f0a180f4db7d0d8452edb375, type: 3}
@@ -284,7 +376,7 @@ MonoBehaviour:
     - {fileID: 1204847141, guid: 99b9e926f0a180f4db7d0d8452edb375, type: 3}
   - Id: IvorySovereign
     Alias: 
-    ReferenceHeight: 3.3984375
+    ReferenceHeight: 6.0416665
     Curious:
     - {fileID: 694952337, guid: 4adfa129f669220439158bc8c787e271, type: 3}
     - {fileID: -1349528401, guid: 4adfa129f669220439158bc8c787e271, type: 3}
@@ -303,29 +395,45 @@ MonoBehaviour:
     - {fileID: 1235140293, guid: 4adfa129f669220439158bc8c787e271, type: 3}
   - Id: PetalCitadel
     Alias: 
-    ReferenceHeight: 2.1484375
+    ReferenceHeight: 2.9411764
     Curious:
-    - {fileID: 21300000, guid: 281f7e97ce2e57041a824974221db40d, type: 3}
+    - {fileID: 535888258, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: 380334033, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: 1445352721, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: -992266223, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 281f7e97ce2e57041a824974221db40d, type: 3}
+    - {fileID: -1510935566, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: -1430832469, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: 935300759, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: 128333204, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 281f7e97ce2e57041a824974221db40d, type: 3}
+    - {fileID: 983137548, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: 1564032095, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 281f7e97ce2e57041a824974221db40d, type: 3}
+    - {fileID: 1475671075, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
+    - {fileID: -249435287, guid: 1646887d9824d4847855d3e4087dbc59, type: 3}
   - Id: PatchworkHost
     Alias: 
-    ReferenceHeight: 2.5390625
+    ReferenceHeight: 3.5326087
     Curious:
-    - {fileID: 21300000, guid: c634aab8911ba1f46b4c6382df583005, type: 3}
+    - {fileID: -71844853, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: -578059015, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: 296220891, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: 1929314075, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: c634aab8911ba1f46b4c6382df583005, type: 3}
+    - {fileID: 814792005, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: -691361283, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: 1178654047, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: -1745704157, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: c634aab8911ba1f46b4c6382df583005, type: 3}
+    - {fileID: 1288398124, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: -1110836296, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: c634aab8911ba1f46b4c6382df583005, type: 3}
+    - {fileID: -102298121, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
+    - {fileID: -1964858976, guid: ac598b8a31a69af4ebdca6e68c8ad0c2, type: 3}
   - Id: ArchiveCurator
     Alias: 
-    ReferenceHeight: 3.9732144
+    ReferenceHeight: 9.225786
     Curious:
     - {fileID: -744083787, guid: d6e08a48db7ef4a4abeae8fd842416a3, type: 3}
     - {fileID: 1075828464, guid: d6e08a48db7ef4a4abeae8fd842416a3, type: 3}
@@ -344,64 +452,102 @@ MonoBehaviour:
     - {fileID: 1264288154, guid: d6e08a48db7ef4a4abeae8fd842416a3, type: 3}
   - Id: PennyBroker
     Alias: 
-    ReferenceHeight: 2.6074219
+    ReferenceHeight: 3.7083335
     Curious:
-    - {fileID: 21300000, guid: 68217744bebd52f4080d887c9d1fe801, type: 3}
+    - {fileID: -2009817298, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: -867997042, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: 1330935160, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: -1024461546, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 68217744bebd52f4080d887c9d1fe801, type: 3}
+    - {fileID: -663651877, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: -1148802141, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: 1918046385, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: 1582543067, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 68217744bebd52f4080d887c9d1fe801, type: 3}
+    - {fileID: -1112320102, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: 1598039916, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 68217744bebd52f4080d887c9d1fe801, type: 3}
+    - {fileID: 1445454763, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
+    - {fileID: -1416476287, guid: 0cafb7b44bbf52748aca4dee513e3c8a, type: 3}
   - Id: StormFencer
     Alias: 
-    ReferenceHeight: 2.4414062
+    ReferenceHeight: 3.1887755
     Curious:
-    - {fileID: 21300000, guid: b0f877152bc482a4a99a131c63364701, type: 3}
+    - {fileID: -1783512202, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 62907288, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 757172789, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 1314720890, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: b0f877152bc482a4a99a131c63364701, type: 3}
+    - {fileID: 61829306, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 1136708248, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: -394953229, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 900582882, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: b0f877152bc482a4a99a131c63364701, type: 3}
+    - {fileID: -1445618433, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 1864435095, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: b0f877152bc482a4a99a131c63364701, type: 3}
+    - {fileID: -712869025, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
+    - {fileID: 1515131584, guid: 3a140b7ba47f1734bbd30715e159481c, type: 3}
   - Id: TinVirtuoso
     Alias: 
-    ReferenceHeight: 2.7539062
+    ReferenceHeight: 3.8736262
     Curious:
-    - {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
+    - {fileID: -533978297, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: 1546548343, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: 978797459, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: -834010377, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
+    - {fileID: 1885567940, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: 246661300, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: -1437570359, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: 207087906, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
+    - {fileID: 1789174647, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: 1148105567, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
+    - {fileID: 503321855, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
+    - {fileID: -1006533081, guid: 4dd500470bb6e524db49b5617b61a914, type: 3}
   - Id: MoonProwler
     Alias: 
-    ReferenceHeight: 3.4226189
+    ReferenceHeight: 7.947306
     Curious:
-    - {fileID: 200964291, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-    - {fileID: -1165113587, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
+    - {fileID: -586025630, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 206814756, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 1041648892, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: -1404667204, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
     Cheer:
-    - {fileID: 2086183110, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-    - {fileID: -1529756569, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
+    - {fileID: -654487241, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 2039525375, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 1841583375, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 184090139, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
     Hurt:
-    - {fileID: -1713448908, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
+    - {fileID: 1956567476, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 438192269, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
     Defeat:
-    - {fileID: -1529756569, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
+    - {fileID: 577931002, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
+    - {fileID: 1436005915, guid: 7ef37f42e06ce2148a77aa08573e3fd4, type: 3}
   - Id: SupperMortar
     Alias: 
-    ReferenceHeight: 2.2363281
+    ReferenceHeight: 4.089286
     Curious:
-    - {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
+    - {fileID: 1933725132, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 27591908, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: -1728993595, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 667151498, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
+    - {fileID: -1051312246, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 533730570, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 2015398249, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 1499841987, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
+    - {fileID: -992934051, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 2125571734, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: aac57f3f09550f44c9a2b1475528108b, type: 3}
+    - {fileID: -2055575102, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
+    - {fileID: 1003847811, guid: 823832a282495ef4cb56ddd93c18c4cc, type: 3}
   - Id: LanternWeaver
     Alias: 
-    ReferenceHeight: 2.9427083
+    ReferenceHeight: 5.2314816
     Curious:
     - {fileID: -598934071, guid: f8b61320e33ccb64388daa7a7cca308d, type: 3}
     - {fileID: 1019221678, guid: f8b61320e33ccb64388daa7a7cca308d, type: 3}
@@ -420,40 +566,64 @@ MonoBehaviour:
     - {fileID: -1135657203, guid: f8b61320e33ccb64388daa7a7cca308d, type: 3}
   - Id: HourglassStag
     Alias: 
-    ReferenceHeight: 2.6757812
+    ReferenceHeight: 3.9825583
     Curious:
-    - {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
+    - {fileID: -984711783, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: 578018717, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: -486772448, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: -675324485, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
+    - {fileID: 217429953, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: 636730063, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: 1534528454, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: -11195404, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
+    - {fileID: 663886738, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: -614121567, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: df5c722644fcd9e4390b0c9ac7f7e526, type: 3}
+    - {fileID: -1625903332, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
+    - {fileID: -727407062, guid: 247eaa914b71f124fb515c5e7ab5ee90, type: 3}
   - Id: RainArchivist
     Alias: 
-    ReferenceHeight: 2.2363281
+    ReferenceHeight: 3.0452127
     Curious:
-    - {fileID: 21300000, guid: 1f9e381f5963bee4fbc2a103e2a224c8, type: 3}
+    - {fileID: -1893860551, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: 900189098, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: 773887445, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: 898625136, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 1f9e381f5963bee4fbc2a103e2a224c8, type: 3}
+    - {fileID: -723408036, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: 889032036, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: 658021429, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: 1541816852, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 1f9e381f5963bee4fbc2a103e2a224c8, type: 3}
+    - {fileID: -1531311915, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: -1903676755, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 1f9e381f5963bee4fbc2a103e2a224c8, type: 3}
+    - {fileID: 83669782, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
+    - {fileID: -1662207136, guid: a97d63adaba52574fafa1973c035e0ed, type: 3}
   - Id: TeapotPilgrim
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.7021277
     Curious:
-    - {fileID: 21300000, guid: f014232ab7b05c8409036ee0de84a211, type: 3}
+    - {fileID: -1732607464, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: -1548117620, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: -808467918, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: 1433254416, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: f014232ab7b05c8409036ee0de84a211, type: 3}
+    - {fileID: 1498426979, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: -518344470, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: 1864859074, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: 83502947, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: f014232ab7b05c8409036ee0de84a211, type: 3}
+    - {fileID: -1809008542, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: 82414921, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: f014232ab7b05c8409036ee0de84a211, type: 3}
+    - {fileID: 1718524666, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
+    - {fileID: -1251143655, guid: 277e9224ad4d78c418c7c12cc2ee67b0, type: 3}
   - Id: CandleSnail
     Alias: 
-    ReferenceHeight: 1.7977529
+    ReferenceHeight: 3.7185183
     Curious:
     - {fileID: -2042309475, guid: 8fc2d14588171a44e89a27b7254da43a, type: 3}
     - {fileID: 1164462444, guid: 8fc2d14588171a44e89a27b7254da43a, type: 3}
@@ -472,62 +642,102 @@ MonoBehaviour:
     - {fileID: -1418091980, guid: 8fc2d14588171a44e89a27b7254da43a, type: 3}
   - Id: MailboxImp
     Alias: 
-    ReferenceHeight: 1.0429688
+    ReferenceHeight: 2.1023622
     Curious:
-    - {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
+    - {fileID: 1266232699, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: -373328445, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: 1758892547, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: -668946513, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
+    - {fileID: -575449194, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: -789267852, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: 783831148, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: -941275299, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
+    - {fileID: 1811851684, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: 887710311, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 3e3ddefad672b67439b12ee61f0353b5, type: 3}
+    - {fileID: 892246630, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
+    - {fileID: 1718104222, guid: f5a9b1b1120fd234bac7604593a07bf3, type: 3}
   - Id: PillowOracle
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.9753085
     Curious:
-    - {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
+    - {fileID: 252019940, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: 1095972593, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: -1105062702, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: -1630673362, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
+    - {fileID: 1992939056, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: 325439560, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: 582848259, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: -414882859, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
+    - {fileID: -848348317, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: 882127100, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 4293b5fc9fa20c349b5c6ba4faacac26, type: 3}
+    - {fileID: 2085214637, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
+    - {fileID: 216613250, guid: 8b7909df847834c4294b897f78bb0d44, type: 3}
   - Id: MushroomLibrarian
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.904762
     Curious:
-    - {fileID: 21300000, guid: 78d7f5f202abe50408eb0cee22bf9a34, type: 3}
+    - {fileID: 1914354301, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: 554941607, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: 1221064956, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: 341904110, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 78d7f5f202abe50408eb0cee22bf9a34, type: 3}
+    - {fileID: 1168688433, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: 1089409289, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: 1715871177, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: -1453003211, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 78d7f5f202abe50408eb0cee22bf9a34, type: 3}
+    - {fileID: 1488130916, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: 121258880, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 78d7f5f202abe50408eb0cee22bf9a34, type: 3}
+    - {fileID: 58520865, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
+    - {fileID: -323726582, guid: c71a7c071d77ce643b35d96663a7232a, type: 3}
   - Id: HoodWisp
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.0253165
     Curious:
-    - {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
+    - {fileID: 1266665919, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: -519438652, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: 709996245, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: 1386711239, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
+    - {fileID: 1509662715, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: -1563548819, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: -1173165594, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: 876718826, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
+    - {fileID: 911314820, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: -1819699176, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 35fc4bc656b46ef4985760788004ed42, type: 3}
+    - {fileID: -1450405516, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
+    - {fileID: -870992306, guid: 0b3d9d46e699a4643ab90c714348cd7e, type: 3}
   - Id: JellySwordsman
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.3357666
     Curious:
-    - {fileID: 21300000, guid: 52c37d2ceef013e498ff718529ef9d00, type: 3}
+    - {fileID: 1344515989, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: -1194256964, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: 1122928434, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: 1118599179, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 52c37d2ceef013e498ff718529ef9d00, type: 3}
+    - {fileID: -849881224, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: -149122385, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: 1813268093, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: -1375017603, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 52c37d2ceef013e498ff718529ef9d00, type: 3}
+    - {fileID: -1349662203, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: 1458517483, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 52c37d2ceef013e498ff718529ef9d00, type: 3}
+    - {fileID: -1280569449, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
+    - {fileID: 75585910, guid: 003ab7326e7881048b193dd72bea13db, type: 3}
   - Id: BreadCrab
     Alias: 
-    ReferenceHeight: 1.871345
+    ReferenceHeight: 4.1941266
     Curious:
     - {fileID: -1983153980, guid: 1ee7cf8ae17ee214a8ee90f4a41b53b0, type: 3}
     - {fileID: -1399476968, guid: 1ee7cf8ae17ee214a8ee90f4a41b53b0, type: 3}
@@ -546,18 +756,26 @@ MonoBehaviour:
     - {fileID: 1376919974, guid: 1ee7cf8ae17ee214a8ee90f4a41b53b0, type: 3}
   - Id: KettleBat
     Alias: 
-    ReferenceHeight: 0.94140625
+    ReferenceHeight: 1.7092198
     Curious:
-    - {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
+    - {fileID: 2028686339, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: 948228233, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: 1556909335, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: -275887790, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
+    - {fileID: 1114867515, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: 776136236, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: 518980890, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: 352242413, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
+    - {fileID: 459661371, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: 1072689595, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 6de4e2e6a02d4ed4daac976139d5459f, type: 3}
+    - {fileID: 72850306, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
+    - {fileID: -997261152, guid: 82cdc732624addb4caf926aa98a3fa26, type: 3}
   - Id: BookmarkGolem
     Alias: 
-    ReferenceHeight: 1.6243654
+    ReferenceHeight: 2.7430341
     Curious:
     - {fileID: -190842115, guid: bd21a2b3285a65c4a87d1d2c72105359, type: 3}
     - {fileID: 49648594, guid: bd21a2b3285a65c4a87d1d2c72105359, type: 3}
@@ -576,29 +794,45 @@ MonoBehaviour:
     - {fileID: 909710143, guid: bd21a2b3285a65c4a87d1d2c72105359, type: 3}
   - Id: TinTick
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.1192052
     Curious:
-    - {fileID: 21300000, guid: 0d0c097398377ef43855dc377c77dc5a, type: 3}
+    - {fileID: -301187661, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: 1715751918, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: 86804177, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: 135649337, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 0d0c097398377ef43855dc377c77dc5a, type: 3}
+    - {fileID: 706943149, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: -24706825, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: -631129476, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: -1863561835, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 0d0c097398377ef43855dc377c77dc5a, type: 3}
+    - {fileID: 1820473967, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: 735259620, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 0d0c097398377ef43855dc377c77dc5a, type: 3}
+    - {fileID: -701495059, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
+    - {fileID: -1057645809, guid: 06c4493433ee0de4882b5c5668458bb6, type: 3}
   - Id: SpringDuck
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.871345
     Curious:
-    - {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
+    - {fileID: 96377507, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: 550822246, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: -883881508, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: 1506423231, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
+    - {fileID: -960112290, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: -1480541799, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: 747131305, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: 1196732931, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
+    - {fileID: 1329255823, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: -1201885349, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 2df4b0c0931047449924cae79045e16c, type: 3}
+    - {fileID: -1472849237, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
+    - {fileID: -1006586587, guid: a5cfb532488e5a143a8d8ca97f9d35da, type: 3}
   - Id: ButtonBeetle
     Alias: 
-    ReferenceHeight: 2.2068965
+    ReferenceHeight: 6.8790092
     Curious:
     - {fileID: 1673068370, guid: 9e8e7ee042c32574182095e6b2c78556, type: 3}
     - {fileID: -561489480, guid: 9e8e7ee042c32574182095e6b2c78556, type: 3}
@@ -617,66 +851,102 @@ MonoBehaviour:
     - {fileID: -845830197, guid: 9e8e7ee042c32574182095e6b2c78556, type: 3}
   - Id: StapleMole
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.9753085
     Curious:
-    - {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
+    - {fileID: 1499394721, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: 2133302646, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: -470065109, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: -271408510, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
+    - {fileID: 757401556, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: 1061682440, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: -1213035456, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: -85893802, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
+    - {fileID: -1802753934, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: 2144498978, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 151b90dcb5088af498cff92f8449f072, type: 3}
+    - {fileID: 1190231904, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
+    - {fileID: -1376056435, guid: a69abc3868285534d998b5ca8ce3201c, type: 3}
   - Id: SnowSpoon
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.6494845
     Curious:
-    - {fileID: 21300000, guid: d3701d3ac42656043a5b89ef0fbaa4b4, type: 3}
+    - {fileID: 1754898420, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: 264707073, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: 1796003375, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: -968523521, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: d3701d3ac42656043a5b89ef0fbaa4b4, type: 3}
+    - {fileID: 584048632, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: 1618604209, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: -742234298, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: 1536833139, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: d3701d3ac42656043a5b89ef0fbaa4b4, type: 3}
+    - {fileID: 1123257750, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: -1725379748, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: d3701d3ac42656043a5b89ef0fbaa4b4, type: 3}
+    - {fileID: 1635510049, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
+    - {fileID: 103279799, guid: 4ba4267bdfc22af4eb23750b1e5f2a1a, type: 3}
   - Id: IceCreamOwl
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.632653
     Curious:
-    - {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
+    - {fileID: 771589342, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: 319363239, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: 1585790722, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: 1281608636, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
+    - {fileID: -1100171094, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: 938098833, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: -1556680116, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: -446212523, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
+    - {fileID: -543131343, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: -982508575, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 5c33f3db959266142911873b19113a65, type: 3}
+    - {fileID: -327419058, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
+    - {fileID: -1651835947, guid: cb0f0cad6017226419c7a97b8b1af782, type: 3}
   - Id: FridgeWisp
     Alias: 
-    ReferenceHeight: 1.8390805
+    ReferenceHeight: 3.980908
     Curious:
-    - {fileID: 1840995754, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
-    - {fileID: -578800753, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
+    - {fileID: -129452968, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: -940972971, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: 266947936, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: 1819996652, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
     Cheer:
-    - {fileID: -217493972, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
-    - {fileID: -1184099347, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
+    - {fileID: -1251004914, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: 615791011, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: -1708544729, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: -1430492071, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
     Hurt:
-    - {fileID: -1304272547, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
+    - {fileID: 294105997, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: -590364073, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
     Defeat:
-    - {fileID: -1184099347, guid: e5b653caa7479e042b0f5faf76747f2d, type: 3}
+    - {fileID: 428482767, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
+    - {fileID: 258771734, guid: f6f05b37d9c03a0458e42be97a4d7967, type: 3}
   - Id: PearMoth
     Alias: 
-    ReferenceHeight: 1.6666666
+    ReferenceHeight: 2.9629629
     Curious:
-    - {fileID: 718593438, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
-    - {fileID: 579248942, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
+    - {fileID: -447351988, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: 1064397992, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: -1807900121, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: 179062949, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
     Cheer:
-    - {fileID: 1721255290, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
-    - {fileID: -685218866, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
+    - {fileID: 1536364005, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: -347199276, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: -1561622793, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: 10379132, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
     Hurt:
-    - {fileID: -1594285633, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
+    - {fileID: -217625140, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: -1544051858, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
     Defeat:
-    - {fileID: -685218866, guid: fa6ad3394114f7d4e84750ccbf475df6, type: 3}
+    - {fileID: -1088878308, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
+    - {fileID: 124982566, guid: 6dd10edbf48292b4380ecdd673cda3d8, type: 3}
   - Id: CitrusToad
     Alias: 
-    ReferenceHeight: 2.3357666
+    ReferenceHeight: 8.155831
     Curious:
     - {fileID: 1705954141, guid: 1e900c1a6f214294f8a989317afc1b24, type: 3}
     - {fileID: 1471754554, guid: 1e900c1a6f214294f8a989317afc1b24, type: 3}
@@ -695,51 +965,83 @@ MonoBehaviour:
     - {fileID: 1068729524, guid: 1e900c1a6f214294f8a989317afc1b24, type: 3}
   - Id: RadishJester
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.8497111
     Curious:
-    - {fileID: 21300000, guid: b9541fb4d5238774e9610e07718a0213, type: 3}
+    - {fileID: -1453834977, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: -705055842, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: 132887373, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: -1459371955, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: b9541fb4d5238774e9610e07718a0213, type: 3}
+    - {fileID: -596898973, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: 851478059, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: 962705389, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: -1762005402, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: b9541fb4d5238774e9610e07718a0213, type: 3}
+    - {fileID: 904590373, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: -563831968, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: b9541fb4d5238774e9610e07718a0213, type: 3}
+    - {fileID: -829062076, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
+    - {fileID: -2056490555, guid: c215119dad8df0d40b7b2df3472eab87, type: 3}
   - Id: SeedHedgehog
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.8497111
     Curious:
-    - {fileID: 21300000, guid: f44d4acad6c3f954cae5f79205b5488d, type: 3}
+    - {fileID: -1284573980, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 2119300794, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 1871780113, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 560156297, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: f44d4acad6c3f954cae5f79205b5488d, type: 3}
+    - {fileID: -239950070, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 1836616302, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: -511591759, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 1948071534, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: f44d4acad6c3f954cae5f79205b5488d, type: 3}
+    - {fileID: -1898670087, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 1197875665, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: f44d4acad6c3f954cae5f79205b5488d, type: 3}
+    - {fileID: 934954606, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
+    - {fileID: 1888531850, guid: 8045d10a16897c54c96ea3d2d769deb5, type: 3}
   - Id: MoonJelly
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.9512196
     Curious:
-    - {fileID: 21300000, guid: 6c06dd0432331a94cbfdb156275e4299, type: 3}
+    - {fileID: 728568191, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: -1215796307, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: -417453510, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: -1036325947, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 6c06dd0432331a94cbfdb156275e4299, type: 3}
+    - {fileID: -1530542570, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: 307599455, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: -1522150348, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: -595905579, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 6c06dd0432331a94cbfdb156275e4299, type: 3}
+    - {fileID: 491355517, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: 1064989828, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 6c06dd0432331a94cbfdb156275e4299, type: 3}
+    - {fileID: 450970924, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
+    - {fileID: -963763901, guid: 4e7f7f389a6498745860f6ecf0b7b4d2, type: 3}
   - Id: StarSock
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.5686275
     Curious:
-    - {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
+    - {fileID: 61849080, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 1052495671, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 725205266, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 1916104496, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
+    - {fileID: -321189186, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 871653520, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 64178919, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 275416108, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
+    - {fileID: 2035618515, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: 432769897, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: b18f172cc08196a42996c312fa7753f1, type: 3}
+    - {fileID: -797760284, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
+    - {fileID: -2116285264, guid: 3084e0bde571fb04188fb21e7ed201b4, type: 3}
   - Id: EclipseEgg
     Alias: 
-    ReferenceHeight: 1.6666666
+    ReferenceHeight: 2.9629629
     Curious:
     - {fileID: -931227048, guid: b25e8f07d81b04e49840dcd050e92b2b, type: 3}
     - {fileID: 1504510250, guid: b25e8f07d81b04e49840dcd050e92b2b, type: 3}
@@ -758,18 +1060,26 @@ MonoBehaviour:
     - {fileID: 1846329878, guid: b25e8f07d81b04e49840dcd050e92b2b, type: 3}
   - Id: OrbitMoth
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.9631903
     Curious:
-    - {fileID: 21300000, guid: 3e40eb35632c4714980d0404efa9151d, type: 3}
+    - {fileID: -1543724734, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: 1462209480, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: -303821073, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: -1977824412, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 3e40eb35632c4714980d0404efa9151d, type: 3}
+    - {fileID: -489939199, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: -999283202, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: 41120301, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: 1541598538, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 3e40eb35632c4714980d0404efa9151d, type: 3}
+    - {fileID: 1611729859, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: -1830274499, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 3e40eb35632c4714980d0404efa9151d, type: 3}
+    - {fileID: -1965042043, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
+    - {fileID: -248322734, guid: 99b70ab4aec7eac479cd7af70d98466c, type: 3}
   - Id: DreamCompass
     Alias: 
-    ReferenceHeight: 1.5458937
+    ReferenceHeight: 2.3643887
     Curious:
     - {fileID: 455096809, guid: daef0efb235ddfa478ed50770448b0db, type: 3}
     - {fileID: -311724363, guid: daef0efb235ddfa478ed50770448b0db, type: 3}
@@ -788,18 +1098,26 @@ MonoBehaviour:
     - {fileID: 520327413, guid: daef0efb235ddfa478ed50770448b0db, type: 3}
   - Id: ShellPostman
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.5920398
     Curious:
-    - {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
+    - {fileID: -1172786585, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: 1958403192, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: -50251122, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: -1372945844, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
+    - {fileID: 525429697, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: 1452593633, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: -921616018, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: 420097141, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
+    - {fileID: -142909695, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: 502930463, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
+    - {fileID: -1389284295, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
+    - {fileID: -1884766369, guid: d2380ef2c910b6a4d82b6c72991991bd, type: 3}
   - Id: CoralTeacup
     Alias: 
-    ReferenceHeight: 2
+    ReferenceHeight: 5.12
     Curious:
     - {fileID: 518942842, guid: 0ab322eb633751544a626ad7ede5018c, type: 3}
     - {fileID: -139715963, guid: 0ab322eb633751544a626ad7ede5018c, type: 3}
@@ -818,7 +1136,7 @@ MonoBehaviour:
     - {fileID: 2091940, guid: 0ab322eb633751544a626ad7ede5018c, type: 3}
   - Id: AnchorSnail
     Alias: 
-    ReferenceHeight: 2.2222223
+    ReferenceHeight: 12.485902
     Curious:
     - {fileID: 446599095, guid: 3d120f3bf73d4354d8f5064ff3af4297, type: 3}
     - {fileID: 101725470, guid: 3d120f3bf73d4354d8f5064ff3af4297, type: 3}
@@ -837,40 +1155,64 @@ MonoBehaviour:
     - {fileID: -882711896, guid: 3d120f3bf73d4354d8f5064ff3af4297, type: 3}
   - Id: SailSquid
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.72043
     Curious:
-    - {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
+    - {fileID: 1972573905, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: 1337235120, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: -1855534212, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: 16534527, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
+    - {fileID: -445503112, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: 696959204, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: -1342547330, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: 512622626, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
+    - {fileID: -1836722355, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: 1881290162, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: c20732c469a4b5f49ac02fcc74d177b5, type: 3}
+    - {fileID: -2022010328, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
+    - {fileID: 429733437, guid: 479d6a8e08a4ebd4d8c08da7d3c48bb3, type: 3}
   - Id: SockCyclops
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.904762
     Curious:
-    - {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
+    - {fileID: -934221611, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: 600174533, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: 1171640797, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: -1833990421, guid: 0af2609613a68b04c8c384961114f472, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
+    - {fileID: 567148358, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: 2121358570, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: 2083950738, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: 1633513969, guid: 0af2609613a68b04c8c384961114f472, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
+    - {fileID: 1605521, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: -1830778314, guid: 0af2609613a68b04c8c384961114f472, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 9af0bdfe33013cb40862dc4660afefad, type: 3}
+    - {fileID: 1029636851, guid: 0af2609613a68b04c8c384961114f472, type: 3}
+    - {fileID: 1714390238, guid: 0af2609613a68b04c8c384961114f472, type: 3}
   - Id: MaskPepper
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 1.8390805
     Curious:
-    - {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
+    - {fileID: 1017703968, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: -24641114, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: -1072272440, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: 1806287353, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
+    - {fileID: -1585788836, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: 304563074, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: 518745547, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: -1437127504, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
+    - {fileID: 1532678985, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: -1738969361, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: e81e6768b1e4c40488ed8284827472ef, type: 3}
+    - {fileID: -302132895, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
+    - {fileID: 1831298915, guid: d06f7415997a5ea4dbf59c35e435c8fe, type: 3}
   - Id: CrayonGremlin
     Alias: 
-    ReferenceHeight: 1.6080402
+    ReferenceHeight: 2.661158
     Curious:
     - {fileID: 745355053, guid: 5cdf1ed386f0c9d4b919fc312b94311d, type: 3}
     - {fileID: -1725165148, guid: 5cdf1ed386f0c9d4b919fc312b94311d, type: 3}
@@ -889,18 +1231,26 @@ MonoBehaviour:
     - {fileID: -368298870, guid: 5cdf1ed386f0c9d4b919fc312b94311d, type: 3}
   - Id: RibbonSpider
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.6666667
     Curious:
-    - {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
+    - {fileID: -1803519231, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: 726979333, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: -34682229, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: 1757559166, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
+    - {fileID: -1965121039, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: -548722905, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: -1797357354, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: 565124442, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
+    - {fileID: -1930887025, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: -519642498, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 4cfb07908ab7afc49a2be1a3769fdcf0, type: 3}
+    - {fileID: 2133335903, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
+    - {fileID: 750061608, guid: 842c9c5cdd0168140889d1a3c3b0475c, type: 3}
   - Id: CoilKettle
     Alias: 
-    ReferenceHeight: 1.8497111
+    ReferenceHeight: 4.050341
     Curious:
     - {fileID: -872600787, guid: 5dc70af774e7d664c9ab92f6b6aaa549, type: 3}
     - {fileID: 213005801, guid: 5dc70af774e7d664c9ab92f6b6aaa549, type: 3}
@@ -919,95 +1269,159 @@ MonoBehaviour:
     - {fileID: -83397041, guid: 5dc70af774e7d664c9ab92f6b6aaa549, type: 3}
   - Id: ThimbleMoth
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.064516
     Curious:
-    - {fileID: 21300000, guid: aefcb9e44137feb4faf99384e6557a38, type: 3}
+    - {fileID: 827572104, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: -2009334929, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: 896481005, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: -995475898, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: aefcb9e44137feb4faf99384e6557a38, type: 3}
+    - {fileID: 2132506016, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: 276511513, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: -133559082, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: 271657321, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: aefcb9e44137feb4faf99384e6557a38, type: 3}
+    - {fileID: -994489900, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: 665407862, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: aefcb9e44137feb4faf99384e6557a38, type: 3}
+    - {fileID: -697174699, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
+    - {fileID: -757053372, guid: e606fc06fa3be3045a2cd0b74d060182, type: 3}
   - Id: ReelOwl
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2.2222223
     Curious:
-    - {fileID: 21300000, guid: 97feddd84f4edcb4999244a78198da9c, type: 3}
+    - {fileID: 1787242783, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: 462591525, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: -2104619473, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: -240963679, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 97feddd84f4edcb4999244a78198da9c, type: 3}
+    - {fileID: 753818627, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: -1942448462, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: 496171476, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: -2061602745, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 97feddd84f4edcb4999244a78198da9c, type: 3}
+    - {fileID: -1245797499, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: -763444318, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 97feddd84f4edcb4999244a78198da9c, type: 3}
+    - {fileID: -1924997098, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
+    - {fileID: -1761361482, guid: 7e7a052889032cd4994b50462cda20cd, type: 3}
   - Id: RainbowTailor
     Alias: 
-    ReferenceHeight: 1.1718749
+    ReferenceHeight: 1.1764705
     Curious:
-    - {fileID: 21300000, guid: 1d2d75cbca6aadc43a49c642fd22eeac, type: 3}
+    - {fileID: -105784952, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: -1310282642, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: -1532545963, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: 679896590, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 1d2d75cbca6aadc43a49c642fd22eeac, type: 3}
+    - {fileID: 1119091373, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: 1789679898, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: 759270664, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: 1188666231, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 1d2d75cbca6aadc43a49c642fd22eeac, type: 3}
+    - {fileID: -1701586445, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: 1386266608, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 1d2d75cbca6aadc43a49c642fd22eeac, type: 3}
+    - {fileID: 2032076246, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
+    - {fileID: -900548400, guid: 71e94785994dfdb409643c91b7d85a2e, type: 3}
   - Id: RainbowBell
     Alias: 
-    ReferenceHeight: 1.3085938
+    ReferenceHeight: 1.4255319
     Curious:
-    - {fileID: 21300000, guid: 7ca5840740c95b34d9ac49d900bb30d9, type: 3}
+    - {fileID: 631223741, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: 884781844, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: 310563782, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: 1718848582, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 7ca5840740c95b34d9ac49d900bb30d9, type: 3}
+    - {fileID: 1212183356, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: 1600829211, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: -1849117930, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: -440274188, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 7ca5840740c95b34d9ac49d900bb30d9, type: 3}
+    - {fileID: 1861261619, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: 11253660, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 7ca5840740c95b34d9ac49d900bb30d9, type: 3}
+    - {fileID: 1773480209, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
+    - {fileID: -1534632335, guid: 1432bdc025aa9274ebffde08ab8f1a43, type: 3}
   - Id: SecretPatchBear
     Alias: 
-    ReferenceHeight: 1.3574219
+    ReferenceHeight: 1.4404144
     Curious:
-    - {fileID: 21300000, guid: f5e2e0d725448d54f9cfad1d264ce36a, type: 3}
+    - {fileID: 510820623, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: 1121951323, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: -23770840, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: 105386228, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: f5e2e0d725448d54f9cfad1d264ce36a, type: 3}
+    - {fileID: -367430170, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: -1519287047, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: 414881101, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: 1863392325, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: f5e2e0d725448d54f9cfad1d264ce36a, type: 3}
+    - {fileID: 2044871895, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: -2130069027, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: f5e2e0d725448d54f9cfad1d264ce36a, type: 3}
+    - {fileID: -528709941, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
+    - {fileID: 1641619607, guid: 923f52ce63c4a664dba95efb79749818, type: 3}
   - Id: SecretPaperBird
     Alias: 
-    ReferenceHeight: 1.2109375
+    ReferenceHeight: 1.8931298
     Curious:
-    - {fileID: 21300000, guid: 1716c2ebe6d62a245865b8b7329221b5, type: 3}
+    - {fileID: 2132527176, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: -1744429557, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: -267045580, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: -1681860100, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 1716c2ebe6d62a245865b8b7329221b5, type: 3}
+    - {fileID: -593027628, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: 792325597, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: -1863774370, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: 902713425, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 1716c2ebe6d62a245865b8b7329221b5, type: 3}
+    - {fileID: -616113727, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: -1456587754, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 1716c2ebe6d62a245865b8b7329221b5, type: 3}
+    - {fileID: -803147929, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
+    - {fileID: 371747386, guid: 333647cebd52b7242ac2bba8332e5663, type: 3}
   - Id: SecretDreamLamb
     Alias: 
-    ReferenceHeight: 1.4368896
+    ReferenceHeight: 2.3464568
     Curious:
-    - {fileID: 21300000, guid: b989c2b0524ef224c9e44e1b4a9dc255, type: 3}
+    - {fileID: -424103678, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: -1996255405, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: 1754498428, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: 862167316, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: b989c2b0524ef224c9e44e1b4a9dc255, type: 3}
+    - {fileID: -1823390698, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: 1305191655, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: 1007470055, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: 676943820, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: b989c2b0524ef224c9e44e1b4a9dc255, type: 3}
+    - {fileID: -1848518997, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: -205439902, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: b989c2b0524ef224c9e44e1b4a9dc255, type: 3}
+    - {fileID: 1834671635, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
+    - {fileID: -949604334, guid: f8004590ffe20d94a9396993e6a59ee0, type: 3}
   - Id: SaffronMechanist
     Alias: 
-    ReferenceHeight: 2.4804688
+    ReferenceHeight: 3.6285715
     Curious:
-    - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
+    - {fileID: -50487473, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 1617713696, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 841984258, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 64901632, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
+    - {fileID: -1579644335, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 627274237, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 729671544, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 1956142412, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
+    - {fileID: -1307563274, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: -968939971, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 456609eae6e56d844b05cc0ba3a704ee, type: 3}
+    - {fileID: -372547584, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
+    - {fileID: 680647250, guid: 02c989e4d30c49040ad538c87b12fa68, type: 3}
   - Id: ClockworkPiper
     Alias: 
-    ReferenceHeight: 3.2070706
+    ReferenceHeight: 5.361151
     Curious:
     - {fileID: -1538639123, guid: 8a7021c7415e0854d803a3a81752b3d6, type: 3}
     - {fileID: -1240740175, guid: 8a7021c7415e0854d803a3a81752b3d6, type: 3}
@@ -1026,40 +1440,64 @@ MonoBehaviour:
     - {fileID: -1043285752, guid: 8a7021c7415e0854d803a3a81752b3d6, type: 3}
   - Id: VelvetChampion
     Alias: 
-    ReferenceHeight: 1.9824219
+    ReferenceHeight: 3.5992908
     Curious:
-    - {fileID: 21300000, guid: bbc5e214af20ded45b6cad0183c5464c, type: 3}
+    - {fileID: -1518771714, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: 564776241, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: -1258505488, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: -1221395221, guid: dc154088059fad7428e1fb36c6878760, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: bbc5e214af20ded45b6cad0183c5464c, type: 3}
+    - {fileID: 314459092, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: 2063148018, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: -165279663, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: -856385660, guid: dc154088059fad7428e1fb36c6878760, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: bbc5e214af20ded45b6cad0183c5464c, type: 3}
+    - {fileID: -1314593946, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: -2007057112, guid: dc154088059fad7428e1fb36c6878760, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: bbc5e214af20ded45b6cad0183c5464c, type: 3}
+    - {fileID: 889385603, guid: dc154088059fad7428e1fb36c6878760, type: 3}
+    - {fileID: -1726629527, guid: dc154088059fad7428e1fb36c6878760, type: 3}
   - Id: PaperInventor
     Alias: 
-    ReferenceHeight: 2.3925781
+    ReferenceHeight: 3.6458335
     Curious:
-    - {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
+    - {fileID: -1158503331, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: -865952011, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: 1121750677, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: -779408915, guid: dc66330079438864b8c33450fcc4925e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
+    - {fileID: -161618887, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: -1558934433, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: 1870573038, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: -86481761, guid: dc66330079438864b8c33450fcc4925e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
+    - {fileID: -738159111, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: 938235177, guid: dc66330079438864b8c33450fcc4925e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: a38be94b1a9b99343a57a2885503b287, type: 3}
+    - {fileID: -1310405737, guid: dc66330079438864b8c33450fcc4925e, type: 3}
+    - {fileID: 624643823, guid: dc66330079438864b8c33450fcc4925e, type: 3}
   - Id: ReturnCaptain
     Alias: 
-    ReferenceHeight: 2.3925781
+    ReferenceHeight: 3.9516127
     Curious:
-    - {fileID: 21300000, guid: 799d41bde00af6f498fb55d7314c2291, type: 3}
+    - {fileID: 1416287979, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: 1626670950, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: -1470522975, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: -868802194, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 799d41bde00af6f498fb55d7314c2291, type: 3}
+    - {fileID: 1747936039, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: 884056797, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: -1018459180, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: 1971181083, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 799d41bde00af6f498fb55d7314c2291, type: 3}
+    - {fileID: 694825435, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: 248709680, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 799d41bde00af6f498fb55d7314c2291, type: 3}
+    - {fileID: -974446393, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
+    - {fileID: -431991313, guid: 21360d5c5c182454696ce2b48e460445, type: 3}
   - Id: DoughForeman
     Alias: 
-    ReferenceHeight: 3.6944444
+    ReferenceHeight: 7.472812
     Curious:
     - {fileID: 1951423897, guid: afa0ac45ea03e094fb3b6b2b49dc159a, type: 3}
     - {fileID: -338746588, guid: afa0ac45ea03e094fb3b6b2b49dc159a, type: 3}
@@ -1078,51 +1516,83 @@ MonoBehaviour:
     - {fileID: 924623968, guid: afa0ac45ea03e094fb3b6b2b49dc159a, type: 3}
   - Id: IronLocomotive
     Alias: 
-    ReferenceHeight: 2.0703125
+    ReferenceHeight: 3.397436
     Curious:
-    - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
+    - {fileID: 1564966271, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: 398603046, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: 1058822791, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: 842014267, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
+    - {fileID: -725830436, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: 805564633, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: 1775825495, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: -782338846, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
+    - {fileID: 839271295, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: -836619822, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 682116049254a5943baeec91e2cbe3f5, type: 3}
+    - {fileID: 1005310229, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
+    - {fileID: 2028650692, guid: e7cb1ff4f3bad1a4fad8dbaa914818fd, type: 3}
   - Id: VioletRemnant
     Alias: 
-    ReferenceHeight: 2.3339844
+    ReferenceHeight: 3.930921
     Curious:
-    - {fileID: 21300000, guid: 619927a9603bd3548bcdf8fc4ee958c8, type: 3}
+    - {fileID: -1257730547, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: -1095756362, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: -119279716, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: -2023292696, guid: e7423594da63d8e459612bfb16892be5, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 619927a9603bd3548bcdf8fc4ee958c8, type: 3}
+    - {fileID: 1222979845, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: 1211268282, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: -438524725, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: 1204311586, guid: e7423594da63d8e459612bfb16892be5, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 619927a9603bd3548bcdf8fc4ee958c8, type: 3}
+    - {fileID: 1470958520, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: -1054699470, guid: e7423594da63d8e459612bfb16892be5, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 619927a9603bd3548bcdf8fc4ee958c8, type: 3}
+    - {fileID: 910582862, guid: e7423594da63d8e459612bfb16892be5, type: 3}
+    - {fileID: -853619999, guid: e7423594da63d8e459612bfb16892be5, type: 3}
   - Id: VelvetEnchantress
     Alias: 
-    ReferenceHeight: 2.4023438
+    ReferenceHeight: 3.4745762
     Curious:
-    - {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
+    - {fileID: -95782295, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 1157011700, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 1318933639, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 424783546, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
+    - {fileID: 1733027359, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: -1981483099, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 2124279124, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 1411972360, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
+    - {fileID: -105599671, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 1087164442, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
+    - {fileID: 629930033, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
+    - {fileID: 1286159058, guid: 18edbe4101bb7594e9d5d5f45b4947ae, type: 3}
   - Id: GrandSprout
     Alias: 
-    ReferenceHeight: 2.5390625
+    ReferenceHeight: 3.6723163
     Curious:
-    - {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
+    - {fileID: -1140619170, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: -1909933861, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: 1992096027, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: 903995001, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
+    - {fileID: -828889576, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: 916003475, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: -514062285, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: 1451160165, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
+    - {fileID: 1885570935, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: -940127703, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: e0fdbe945f7491940a8fe84ceba6cf99, type: 3}
+    - {fileID: -1080002071, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
+    - {fileID: -609519178, guid: a9e7007c09541c149be450f1c80776bd, type: 3}
   - Id: BristleBall
     Alias: 
-    ReferenceHeight: 2.8664923
+    ReferenceHeight: 5.149487
     Curious:
     - {fileID: -1843691284, guid: b4a65d2f0ad0bc64f9e6eed678366392, type: 3}
     - {fileID: -880967556, guid: b4a65d2f0ad0bc64f9e6eed678366392, type: 3}
@@ -1141,18 +1611,26 @@ MonoBehaviour:
     - {fileID: 678091999, guid: b4a65d2f0ad0bc64f9e6eed678366392, type: 3}
   - Id: PaperDevil
     Alias: 
-    ReferenceHeight: 2.1972656
+    ReferenceHeight: 3.3482144
     Curious:
-    - {fileID: 21300000, guid: 9a80cd622b4a52f4b9f85047e4bf3d5a, type: 3}
+    - {fileID: -2105342572, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: -1671448027, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 277953476, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 1249777620, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 9a80cd622b4a52f4b9f85047e4bf3d5a, type: 3}
+    - {fileID: -43979556, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 709843123, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 1184659004, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 449035179, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 9a80cd622b4a52f4b9f85047e4bf3d5a, type: 3}
+    - {fileID: -518477222, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 735379104, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 9a80cd622b4a52f4b9f85047e4bf3d5a, type: 3}
+    - {fileID: -1416368132, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
+    - {fileID: 1027413557, guid: fe6d6ec4e5aee63489e796481023f4b8, type: 3}
   - Id: BalloonMallet
     Alias: 
-    ReferenceHeight: 1.7021277
+    ReferenceHeight: 3.1561408
     Curious:
     - {fileID: 1667475767, guid: 41b095e2047118d41a82e7e3a06ac075, type: 3}
     - {fileID: -1475210355, guid: 41b095e2047118d41a82e7e3a06ac075, type: 3}
@@ -1171,29 +1649,45 @@ MonoBehaviour:
     - {fileID: 294142134, guid: 41b095e2047118d41a82e7e3a06ac075, type: 3}
   - Id: LittleSprout
     Alias: 
-    ReferenceHeight: 2.4414062
+    ReferenceHeight: 3.0940595
     Curious:
-    - {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
+    - {fileID: -125753992, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: -945959698, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: 645908813, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: -1530581779, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
+    - {fileID: -1241998385, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: 1151435666, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: -1329882748, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: 1144551042, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
+    - {fileID: 1992445201, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: 775866192, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 1bd494696c6e43540bd8aeae59e436de, type: 3}
+    - {fileID: 539598840, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
+    - {fileID: -1097001012, guid: c3518801ded35f14f893e11c2b036fbd, type: 3}
   - Id: MonsterMarble
     Alias: 
-    ReferenceHeight: 1.25
+    ReferenceHeight: 2
     Curious:
-    - {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
+    - {fileID: 1446932426, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: 2105174930, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: 1776151848, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: -1963890289, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
+    - {fileID: 1735877766, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: -26120929, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: 1673239626, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: 25043351, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
+    - {fileID: 1309928535, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: 1592174417, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 3664a42468b5cb74fa48fa6b0836b60a, type: 3}
+    - {fileID: 643022927, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
+    - {fileID: 1162808886, guid: afa2ad12474aaf3418588bd77276d109, type: 3}
   - Id: CarouselPony
     Alias: 
-    ReferenceHeight: 3.6060605
+    ReferenceHeight: 8.680506
     Curious:
     - {fileID: 93021870, guid: 0473d0a2051dcdb43aa68d30a049bdb9, type: 3}
     - {fileID: -739519314, guid: 0473d0a2051dcdb43aa68d30a049bdb9, type: 3}
@@ -1212,40 +1706,64 @@ MonoBehaviour:
     - {fileID: -156362796, guid: 0473d0a2051dcdb43aa68d30a049bdb9, type: 3}
   - Id: TeacupCricket
     Alias: 
-    ReferenceHeight: 2.4023438
+    ReferenceHeight: 3.617647
     Curious:
-    - {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
+    - {fileID: -1717868108, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: 1006931047, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: 2145126754, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: -258660760, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
+    - {fileID: -1481670502, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: 929113127, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: 1218472733, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: 1369902199, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
+    - {fileID: -308799641, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: -2051783063, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 5acd9002a3818424899722e58de11396, type: 3}
+    - {fileID: -1282945488, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
+    - {fileID: 1741292240, guid: dfccf4bb34377b54aabc5a8305322e7e, type: 3}
   - Id: RibbonOtter
     Alias: 
-    ReferenceHeight: 2.2753906
+    ReferenceHeight: 3.509036
     Curious:
-    - {fileID: 21300000, guid: a656c7bf3b7d42143896b7703ba219ce, type: 3}
+    - {fileID: -1746319222, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: 1239606592, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: -343609502, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: 1175464614, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: a656c7bf3b7d42143896b7703ba219ce, type: 3}
+    - {fileID: -175995560, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: 54583082, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: -1533379388, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: 2026257845, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: a656c7bf3b7d42143896b7703ba219ce, type: 3}
+    - {fileID: -1077877769, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: 1110011461, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: a656c7bf3b7d42143896b7703ba219ce, type: 3}
+    - {fileID: -1957495825, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
+    - {fileID: 2037806578, guid: 6711d713414f58848b40b3e84eb7396e, type: 3}
   - Id: SpindleWren
     Alias: 
-    ReferenceHeight: 2.0800781
+    ReferenceHeight: 3.0428572
     Curious:
-    - {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
+    - {fileID: -840511527, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: 1544055149, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: -1779146531, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: -886711021, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
+    - {fileID: 852341589, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: 287017868, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: 1435786895, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: 130804729, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
+    - {fileID: -740526368, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: 669808456, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: f21b78e8c192bc44a838a6a98e10b7d6, type: 3}
+    - {fileID: 1432410208, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
+    - {fileID: 1092660120, guid: 8b747898247fd5e408743698c96efcb9, type: 3}
   - Id: BrassAcorn
     Alias: 
-    ReferenceHeight: 1.882353
+    ReferenceHeight: 4.268577
     Curious:
     - {fileID: -113737262, guid: f2c09cf5e52e4784fbb81c612ba16819, type: 3}
     - {fileID: -773360778, guid: f2c09cf5e52e4784fbb81c612ba16819, type: 3}
@@ -1264,7 +1782,7 @@ MonoBehaviour:
     - {fileID: 547803765, guid: f2c09cf5e52e4784fbb81c612ba16819, type: 3}
   - Id: BubbleKoi
     Alias: 
-    ReferenceHeight: 2.147651
+    ReferenceHeight: 6.339735
     Curious:
     - {fileID: -1987852804, guid: aab16291c9fedc8428b3f9dc27ce1560, type: 3}
     - {fileID: 1993487268, guid: aab16291c9fedc8428b3f9dc27ce1560, type: 3}
@@ -1283,7 +1801,7 @@ MonoBehaviour:
     - {fileID: -1608804812, guid: aab16291c9fedc8428b3f9dc27ce1560, type: 3}
   - Id: CometKite
     Alias: 
-    ReferenceHeight: 1.632653
+    ReferenceHeight: 2.7852342
     Curious:
     - {fileID: -2486733, guid: ef1c4c4f99740794b86248deba6cc1b9, type: 3}
     - {fileID: 506044907, guid: ef1c4c4f99740794b86248deba6cc1b9, type: 3}
@@ -1302,7 +1820,7 @@ MonoBehaviour:
     - {fileID: -187659548, guid: ef1c4c4f99740794b86248deba6cc1b9, type: 3}
   - Id: DiceCrab
     Alias: 
-    ReferenceHeight: 2.3357666
+    ReferenceHeight: 8.155831
     Curious:
     - {fileID: 2068127235, guid: b16fd07b1fdde194f9cfc65d0769ffb9, type: 3}
     - {fileID: -1218676418, guid: b16fd07b1fdde194f9cfc65d0769ffb9, type: 3}
@@ -1321,18 +1839,26 @@ MonoBehaviour:
     - {fileID: 481005921, guid: b16fd07b1fdde194f9cfc65d0769ffb9, type: 3}
   - Id: MirrorNewt
     Alias: 
-    ReferenceHeight: 1.1914062
+    ReferenceHeight: 2.6068377
     Curious:
-    - {fileID: 21300000, guid: 4cbfd36c6e48bbe42a40c493399901e0, type: 3}
+    - {fileID: -829862185, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: -1207918250, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: -740641899, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: 73989399, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 4cbfd36c6e48bbe42a40c493399901e0, type: 3}
+    - {fileID: -2127759996, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: -1821997709, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: 1036171445, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: -1799411276, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 4cbfd36c6e48bbe42a40c493399901e0, type: 3}
+    - {fileID: 287610600, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: 1702240135, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 4cbfd36c6e48bbe42a40c493399901e0, type: 3}
+    - {fileID: 10580398, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
+    - {fileID: 1151956487, guid: c870ab42bd7719a4fa311d4aa95e5a41, type: 3}
   - Id: BakerMouse
     Alias: 
-    ReferenceHeight: 3.0859375
+    ReferenceHeight: 5.4861116
     Curious:
     - {fileID: 1355211667, guid: 0dd1653d79c9eb14d813ab983b002f8f, type: 3}
     - {fileID: 380257495, guid: 0dd1653d79c9eb14d813ab983b002f8f, type: 3}
@@ -1351,7 +1877,7 @@ MonoBehaviour:
     - {fileID: 497485797, guid: 0dd1653d79c9eb14d813ab983b002f8f, type: 3}
   - Id: BobaTadpole
     Alias: 
-    ReferenceHeight: 3.1593406
+    ReferenceHeight: 6.2507715
     Curious:
     - {fileID: 963655679, guid: cab548c5950e3114c9b58b8d205b7eb9, type: 3}
     - {fileID: 136065393, guid: cab548c5950e3114c9b58b8d205b7eb9, type: 3}
@@ -1370,7 +1896,7 @@ MonoBehaviour:
     - {fileID: -942795894, guid: cab548c5950e3114c9b58b8d205b7eb9, type: 3}
   - Id: BottleGull
     Alias: 
-    ReferenceHeight: 2.7980132
+    ReferenceHeight: 8.042217
     Curious:
     - {fileID: -1906314445, guid: e4622c8b3ebedc842b7f59a08cdfe641, type: 3}
     - {fileID: 1575821119, guid: e4622c8b3ebedc842b7f59a08cdfe641, type: 3}
@@ -1389,7 +1915,7 @@ MonoBehaviour:
     - {fileID: -138687751, guid: e4622c8b3ebedc842b7f59a08cdfe641, type: 3}
   - Id: CourtHerald
     Alias: 
-    ReferenceHeight: 3.1410258
+    ReferenceHeight: 5.413551
     Curious:
     - {fileID: -697142424, guid: 7567d111f326a9a4f88c18bbc11a7ca9, type: 3}
     - {fileID: -766741088, guid: 7567d111f326a9a4f88c18bbc11a7ca9, type: 3}
@@ -1408,7 +1934,7 @@ MonoBehaviour:
     - {fileID: 1951074047, guid: 7567d111f326a9a4f88c18bbc11a7ca9, type: 3}
   - Id: EndlessIndex
     Alias: 
-    ReferenceHeight: 2.7139037
+    ReferenceHeight: 5.086173
     Curious:
     - {fileID: 484511766, guid: 4b086d9793170974db1385a84f999ef3, type: 3}
     - {fileID: 651909313, guid: 4b086d9793170974db1385a84f999ef3, type: 3}
@@ -1427,7 +1953,7 @@ MonoBehaviour:
     - {fileID: -1674976253, guid: 4b086d9793170974db1385a84f999ef3, type: 3}
   - Id: FossilArmadillo
     Alias: 
-    ReferenceHeight: 3.387681
+    ReferenceHeight: 11.658005
     Curious:
     - {fileID: 485153420, guid: 0f28b6de8857db54bb7c0b201ad293e1, type: 3}
     - {fileID: 891838735, guid: 0f28b6de8857db54bb7c0b201ad293e1, type: 3}
@@ -1446,194 +1972,330 @@ MonoBehaviour:
     - {fileID: 1218612800, guid: 0f28b6de8857db54bb7c0b201ad293e1, type: 3}
   - Id: JackInTheBox
     Alias: 
-    ReferenceHeight: 2.2460938
+    ReferenceHeight: 3.0585108
     Curious:
-    - {fileID: 21300000, guid: 774efaa97d321634aa95585e309e1a1a, type: 3}
+    - {fileID: 1697568647, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: 2094198262, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: -360342590, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: 280657963, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 774efaa97d321634aa95585e309e1a1a, type: 3}
+    - {fileID: -1985169302, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: 1158573498, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: -666025849, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: -1542602127, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 774efaa97d321634aa95585e309e1a1a, type: 3}
+    - {fileID: 970067818, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: 843389438, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 774efaa97d321634aa95585e309e1a1a, type: 3}
+    - {fileID: -1343990627, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
+    - {fileID: 223681680, guid: ae5c9328cc4f0714f9b276453faf4901, type: 3}
   - Id: KiteDragon
     Alias: 
-    ReferenceHeight: 2.0410156
+    ReferenceHeight: 3.554422
     Curious:
-    - {fileID: 21300000, guid: 31879be925b470b4e885a2252e2165a4, type: 3}
+    - {fileID: -1227589164, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: -2095200551, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: -979271447, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: 1370528113, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 31879be925b470b4e885a2252e2165a4, type: 3}
+    - {fileID: -1448932578, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: 1518504584, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: -1735635067, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: -1259793239, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 31879be925b470b4e885a2252e2165a4, type: 3}
+    - {fileID: 1702514141, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: -133942209, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 31879be925b470b4e885a2252e2165a4, type: 3}
+    - {fileID: -151372309, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
+    - {fileID: 2141045421, guid: a4e5ccc711f860f4e9a8d66820d22258, type: 3}
   - Id: LampGoat
     Alias: 
-    ReferenceHeight: 2.0898438
+    ReferenceHeight: 3.2621949
     Curious:
-    - {fileID: 21300000, guid: a11b08fa2b4c2ea4fa746046bbb71efc, type: 3}
+    - {fileID: 1649397384, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: 778841482, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: -2100207556, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: 1822284658, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: a11b08fa2b4c2ea4fa746046bbb71efc, type: 3}
+    - {fileID: -1170708800, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: 1860297266, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: -1308213847, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: -1584688921, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: a11b08fa2b4c2ea4fa746046bbb71efc, type: 3}
+    - {fileID: -693828995, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: 1563623526, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: a11b08fa2b4c2ea4fa746046bbb71efc, type: 3}
+    - {fileID: 1710103066, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
+    - {fileID: -471362950, guid: 34794fd74083afd43a2b4888eab6f392, type: 3}
   - Id: LensOwl
     Alias: 
-    ReferenceHeight: 2.0019531
+    ReferenceHeight: 3.9423077
     Curious:
-    - {fileID: 21300000, guid: dba363e00c4c1e949a6081a90dde1e68, type: 3}
+    - {fileID: -438443003, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: 1171810823, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: -1196883826, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: -222620529, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: dba363e00c4c1e949a6081a90dde1e68, type: 3}
+    - {fileID: -917807751, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: -1650394268, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: -2048270370, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: -1785182764, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: dba363e00c4c1e949a6081a90dde1e68, type: 3}
+    - {fileID: 2073544683, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: 194416491, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: dba363e00c4c1e949a6081a90dde1e68, type: 3}
+    - {fileID: 1662851672, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
+    - {fileID: -1554560730, guid: 02caab401865ddd49b5b4d39cfb02c83, type: 3}
   - Id: LighthouseWhale
     Alias: 
-    ReferenceHeight: 2.265625
+    ReferenceHeight: 3.452381
     Curious:
-    - {fileID: 21300000, guid: c798036fab2597f4a8bafc62fa44bf9e, type: 3}
+    - {fileID: 1478069482, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: 132537838, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: -988959014, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: -280631330, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: c798036fab2597f4a8bafc62fa44bf9e, type: 3}
+    - {fileID: 1638812799, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: -1181554805, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: -1344447475, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: 51442161, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: c798036fab2597f4a8bafc62fa44bf9e, type: 3}
+    - {fileID: 773680049, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: 1354026078, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: c798036fab2597f4a8bafc62fa44bf9e, type: 3}
+    - {fileID: 1306595226, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
+    - {fileID: 1161681352, guid: 65220ada950fac24b857e4c00a1f3b1d, type: 3}
   - Id: LostCarousel
     Alias: 
-    ReferenceHeight: 2.3535154
+    ReferenceHeight: 3.0124996
     Curious:
-    - {fileID: 21300000, guid: 84051a1e802f2c348b9094d7ac860519, type: 3}
+    - {fileID: -1762191395, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: 1805859661, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: -541621563, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: -929887448, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 84051a1e802f2c348b9094d7ac860519, type: 3}
+    - {fileID: -1138111768, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: -992094118, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: -474419069, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: -1123025625, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 84051a1e802f2c348b9094d7ac860519, type: 3}
+    - {fileID: -1191359213, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: 1715446959, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 84051a1e802f2c348b9094d7ac860519, type: 3}
+    - {fileID: 925963189, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
+    - {fileID: -1938137446, guid: 17ec64452ffd2204a8a1e9aa8a984e1e, type: 3}
   - Id: PaperPlanePigeon
     Alias: 
-    ReferenceHeight: 1.8847656
+    ReferenceHeight: 2.5802138
     Curious:
-    - {fileID: 21300000, guid: 4f0f7f8d910d46846a158e1e9f25a789, type: 3}
+    - {fileID: -787617998, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: 695196926, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: -1718536346, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: -1782520529, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 4f0f7f8d910d46846a158e1e9f25a789, type: 3}
+    - {fileID: -994218146, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: 2031617058, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: 852702111, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: 1312567147, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 4f0f7f8d910d46846a158e1e9f25a789, type: 3}
+    - {fileID: 353907140, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: -1480927338, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 4f0f7f8d910d46846a158e1e9f25a789, type: 3}
+    - {fileID: -143195346, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
+    - {fileID: 102454949, guid: 943b23ad2390bdd498112e89e7e5e652, type: 3}
   - Id: PinnedBeetle
     Alias: 
-    ReferenceHeight: 2.1289062
+    ReferenceHeight: 3.4935899
     Curious:
-    - {fileID: 21300000, guid: eb4f7e8e6a5a4d94db0bf92f7d902f6c, type: 3}
+    - {fileID: -1737808297, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: -1911391818, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: 1143016402, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: -1710321222, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: eb4f7e8e6a5a4d94db0bf92f7d902f6c, type: 3}
+    - {fileID: -1506267481, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: 1327340441, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: 1813756442, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: -1525666762, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: eb4f7e8e6a5a4d94db0bf92f7d902f6c, type: 3}
+    - {fileID: 510933916, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: 1494471669, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: eb4f7e8e6a5a4d94db0bf92f7d902f6c, type: 3}
+    - {fileID: 1371668426, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
+    - {fileID: 106075057, guid: 2a405c2e6b1922a4688b4544acc43270, type: 3}
   - Id: RainHeron
     Alias: 
-    ReferenceHeight: 2.4414062
+    ReferenceHeight: 4.432624
     Curious:
-    - {fileID: 21300000, guid: d61a2e9b350bf3c498ceff643d6c1c78, type: 3}
+    - {fileID: -1139923636, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: -468346929, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: 253796451, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: 1367980310, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: d61a2e9b350bf3c498ceff643d6c1c78, type: 3}
+    - {fileID: 1877146329, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: 911955289, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: -1401221522, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: 1061579198, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: d61a2e9b350bf3c498ceff643d6c1c78, type: 3}
+    - {fileID: 908472504, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: 49869890, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: d61a2e9b350bf3c498ceff643d6c1c78, type: 3}
+    - {fileID: 482555535, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
+    - {fileID: -112789840, guid: ff9fd5896473aa049bae427b8ab4195c, type: 3}
   - Id: RaincoatFrog
     Alias: 
-    ReferenceHeight: 2.1191406
+    ReferenceHeight: 2.8856382
     Curious:
-    - {fileID: 21300000, guid: 2b237d37c6f12d249a892802199a8c0d, type: 3}
+    - {fileID: -1626230003, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: 123833494, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: 833244726, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: -16257170, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 2b237d37c6f12d249a892802199a8c0d, type: 3}
+    - {fileID: -1022723376, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: -787433568, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: 1893092554, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: 670230652, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 2b237d37c6f12d249a892802199a8c0d, type: 3}
+    - {fileID: 1096881301, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: 1983394854, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 2b237d37c6f12d249a892802199a8c0d, type: 3}
+    - {fileID: -504114160, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
+    - {fileID: -1047921452, guid: 5d7d4b7d569ea694abfd049b3e4f6303, type: 3}
   - Id: ShantySeaLion
     Alias: 
-    ReferenceHeight: 1.9238281
+    ReferenceHeight: 2.9315476
     Curious:
-    - {fileID: 21300000, guid: 0035dee0803d9914993f2125e7b5ef2b, type: 3}
+    - {fileID: -1099139767, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: 1919894291, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: 182819622, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: -756629700, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 0035dee0803d9914993f2125e7b5ef2b, type: 3}
+    - {fileID: -776926469, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: 660746381, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: 525258822, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: -1904845305, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 0035dee0803d9914993f2125e7b5ef2b, type: 3}
+    - {fileID: -1062212389, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: 991378531, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 0035dee0803d9914993f2125e7b5ef2b, type: 3}
+    - {fileID: -1919794057, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
+    - {fileID: 2008546072, guid: 1720ccea189fa2848a0878400410c74e, type: 3}
   - Id: ShovelPenguin
     Alias: 
-    ReferenceHeight: 2.0410156
+    ReferenceHeight: 3.2656252
     Curious:
-    - {fileID: 21300000, guid: 6dad7e7ab6395aa4db99522eadfe653a, type: 3}
+    - {fileID: -1480078242, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: -789628055, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: 334426285, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: -50926165, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 6dad7e7ab6395aa4db99522eadfe653a, type: 3}
+    - {fileID: 837557608, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: 763667832, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: -1473350979, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: 985325355, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 6dad7e7ab6395aa4db99522eadfe653a, type: 3}
+    - {fileID: -1712471672, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: 1139992118, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 6dad7e7ab6395aa4db99522eadfe653a, type: 3}
+    - {fileID: -1112975498, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
+    - {fileID: -91685361, guid: 8eae946f213004a4eac92b7d1f3f61c0, type: 3}
   - Id: StaticFerret
     Alias: 
-    ReferenceHeight: 1.9238281
+    ReferenceHeight: 3.2401314
     Curious:
-    - {fileID: 21300000, guid: 2e26ccbfd9e8ab740aeaa9a19d59e0c2, type: 3}
+    - {fileID: -241262943, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: -1055342886, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: 807178755, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: 556851611, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 2e26ccbfd9e8ab740aeaa9a19d59e0c2, type: 3}
+    - {fileID: 223634565, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: -473787732, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: -1458087576, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: -59010820, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 2e26ccbfd9e8ab740aeaa9a19d59e0c2, type: 3}
+    - {fileID: -358951702, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: 1279637347, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 2e26ccbfd9e8ab740aeaa9a19d59e0c2, type: 3}
+    - {fileID: 2024149403, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
+    - {fileID: 1771910778, guid: be16f5a09d135794982c9bf8a02adc6b, type: 3}
   - Id: StormKitten
     Alias: 
-    ReferenceHeight: 1.953125
+    ReferenceHeight: 3.4013605
     Curious:
-    - {fileID: 21300000, guid: b4fe06e332f4b2f49bb0b98a7ef0735a, type: 3}
+    - {fileID: -721412881, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: -490961235, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: -1601949281, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: 1955378215, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: b4fe06e332f4b2f49bb0b98a7ef0735a, type: 3}
+    - {fileID: -587572336, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: 1684486279, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: 630727698, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: 1874334119, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: b4fe06e332f4b2f49bb0b98a7ef0735a, type: 3}
+    - {fileID: -2115383798, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: -1799645863, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: b4fe06e332f4b2f49bb0b98a7ef0735a, type: 3}
+    - {fileID: -980165366, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
+    - {fileID: 808689689, guid: 99bd3b770b89cd843a460095d05dfb6c, type: 3}
   - Id: SundaeGolem
     Alias: 
-    ReferenceHeight: 2.2851562
+    ReferenceHeight: 3.3238635
     Curious:
-    - {fileID: 21300000, guid: 3432f6c81c9562042af3039d2da7d8ec, type: 3}
+    - {fileID: -1513101305, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: 79159152, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: -1798280498, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: 1113167978, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 3432f6c81c9562042af3039d2da7d8ec, type: 3}
+    - {fileID: -536786339, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: 1419419347, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: -1145130166, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: -1094387904, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 3432f6c81c9562042af3039d2da7d8ec, type: 3}
+    - {fileID: 1994314922, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: -1706001602, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 3432f6c81c9562042af3039d2da7d8ec, type: 3}
+    - {fileID: -697836506, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
+    - {fileID: 1730208501, guid: f7eb6cd6f78613140b9e8b511a54e18a, type: 3}
   - Id: TeaDragon
     Alias: 
-    ReferenceHeight: 1.7871094
+    ReferenceHeight: 2.859375
     Curious:
-    - {fileID: 21300000, guid: 6d5af2a1912f3a745949c30974d3c131, type: 3}
+    - {fileID: 132108073, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 1099312879, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: -1693183222, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 1612307127, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 6d5af2a1912f3a745949c30974d3c131, type: 3}
+    - {fileID: 1773196682, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 2099431744, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 194960795, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 1207560684, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 6d5af2a1912f3a745949c30974d3c131, type: 3}
+    - {fileID: 1279165044, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 399913568, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 6d5af2a1912f3a745949c30974d3c131, type: 3}
+    - {fileID: -93881935, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
+    - {fileID: 341815131, guid: 56c299d42d0c09344954ceabe58bb0d8, type: 3}
   - Id: VoltEel
     Alias: 
-    ReferenceHeight: 2.109375
+    ReferenceHeight: 3.624161
     Curious:
-    - {fileID: 21300000, guid: f43edb44f9b35f04a97cfb9462fea171, type: 3}
+    - {fileID: -2031392222, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: 130774939, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: 376168193, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: -1975893412, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: f43edb44f9b35f04a97cfb9462fea171, type: 3}
+    - {fileID: -727355903, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: -2109202165, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: 1973186327, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: -1755858505, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: f43edb44f9b35f04a97cfb9462fea171, type: 3}
+    - {fileID: -1113453477, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: -1390532136, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: f43edb44f9b35f04a97cfb9462fea171, type: 3}
+    - {fileID: 929062415, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
+    - {fileID: -821292174, guid: 3807f4757bab0354a9d3559ca868a20e, type: 3}
   - Id: BellDiver
     Alias: 
-    ReferenceHeight: 2.7328432
+    ReferenceHeight: 4.303624
     Curious:
     - {fileID: -1841605760, guid: 9c6cc5a1df27c074ba5504a4b99d410a, type: 3}
     - {fileID: 1605750000, guid: 9c6cc5a1df27c074ba5504a4b99d410a, type: 3}
@@ -1652,7 +2314,7 @@ MonoBehaviour:
     - {fileID: -1100684890, guid: 9c6cc5a1df27c074ba5504a4b99d410a, type: 3}
   - Id: BonsaiClocksmith
     Alias: 
-    ReferenceHeight: 3.1353593
+    ReferenceHeight: 6.272058
     Curious:
     - {fileID: 1765133309, guid: 4d159fe755916ec428c343084465d4f9, type: 3}
     - {fileID: 350957947, guid: 4d159fe755916ec428c343084465d4f9, type: 3}
@@ -1671,7 +2333,7 @@ MonoBehaviour:
     - {fileID: -178782453, guid: 4d159fe755916ec428c343084465d4f9, type: 3}
   - Id: FirstSeed
     Alias: 
-    ReferenceHeight: 2.7560976
+    ReferenceHeight: 4.2980037
     Curious:
     - {fileID: 1062415907, guid: 28227d731ce6249409612248968db683, type: 3}
     - {fileID: -341179535, guid: 28227d731ce6249409612248968db683, type: 3}
@@ -1690,100 +2352,172 @@ MonoBehaviour:
     - {fileID: 1093819062, guid: 28227d731ce6249409612248968db683, type: 3}
   - Id: JugglingJester
     Alias: 
-    ReferenceHeight: 2.109375
+    ReferenceHeight: 3.2142856
     Curious:
-    - {fileID: 21300000, guid: 939cc676d147bbc42938072bddbc0207, type: 3}
+    - {fileID: 727260125, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: 831833669, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: 1253061589, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: -2140929060, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 939cc676d147bbc42938072bddbc0207, type: 3}
+    - {fileID: 1336161432, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: 92966839, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: -1550576850, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: 430657058, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 939cc676d147bbc42938072bddbc0207, type: 3}
+    - {fileID: 1288636527, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: 225500934, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 939cc676d147bbc42938072bddbc0207, type: 3}
+    - {fileID: -1674175870, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
+    - {fileID: -1024956497, guid: aa5863b3ed51a074a96c7b626f42a1af, type: 3}
   - Id: KiteAdmiral
     Alias: 
-    ReferenceHeight: 1.953125
+    ReferenceHeight: 2.8089888
     Curious:
-    - {fileID: 21300000, guid: 3d34ca748ba8f3240b7b64ba57f21830, type: 3}
+    - {fileID: 611138208, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: -1398430887, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: 993970028, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: -239900436, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 3d34ca748ba8f3240b7b64ba57f21830, type: 3}
+    - {fileID: 1823470471, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: 1328755652, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: -2042176316, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: -571296143, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 3d34ca748ba8f3240b7b64ba57f21830, type: 3}
+    - {fileID: 1344279271, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: -1796135413, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 3d34ca748ba8f3240b7b64ba57f21830, type: 3}
+    - {fileID: -2029871156, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
+    - {fileID: -1257245254, guid: 8235f58f9ecf85d45a08434ea7ebce9e, type: 3}
   - Id: SaddleMoth
     Alias: 
-    ReferenceHeight: 2.5
+    ReferenceHeight: 4.266667
     Curious:
-    - {fileID: 21300000, guid: ca4b6ddcc6212bd4baa002135287ed90, type: 3}
+    - {fileID: -833226164, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: 1200783928, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: -1149099668, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: -1760231777, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: ca4b6ddcc6212bd4baa002135287ed90, type: 3}
+    - {fileID: -771981696, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: -303151125, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: 1104568321, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: 1596703490, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: ca4b6ddcc6212bd4baa002135287ed90, type: 3}
+    - {fileID: 560284043, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: 316384673, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: ca4b6ddcc6212bd4baa002135287ed90, type: 3}
+    - {fileID: -1485796710, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
+    - {fileID: -249539761, guid: da52c40aa8f971646b079d02f0d34073, type: 3}
   - Id: SpecimenSlime
     Alias: 
-    ReferenceHeight: 1.9238281
+    ReferenceHeight: 2.6766305
     Curious:
-    - {fileID: 21300000, guid: a12cf68ffe6e6794f8205452c9673f4a, type: 3}
+    - {fileID: -987477116, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: -611677093, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: 1683152887, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: 1893668163, guid: 172543afc266d484c97d75c598edd557, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: a12cf68ffe6e6794f8205452c9673f4a, type: 3}
+    - {fileID: -1642967773, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: -161457654, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: -1567539191, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: 1574717369, guid: 172543afc266d484c97d75c598edd557, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: a12cf68ffe6e6794f8205452c9673f4a, type: 3}
+    - {fileID: -31529166, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: -465749798, guid: 172543afc266d484c97d75c598edd557, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: a12cf68ffe6e6794f8205452c9673f4a, type: 3}
+    - {fileID: -113949423, guid: 172543afc266d484c97d75c598edd557, type: 3}
+    - {fileID: -644437598, guid: 172543afc266d484c97d75c598edd557, type: 3}
   - Id: StitchedPangolin
     Alias: 
-    ReferenceHeight: 1.96875
+    ReferenceHeight: 4.460177
     Curious:
-    - {fileID: 21300000, guid: e8d8219474f86324f9b8909ce2d3dc6a, type: 3}
+    - {fileID: 1949296189, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 2125849587, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 480481524, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 161225062, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: e8d8219474f86324f9b8909ce2d3dc6a, type: 3}
+    - {fileID: 634528026, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 160216517, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 966197894, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 341747602, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: e8d8219474f86324f9b8909ce2d3dc6a, type: 3}
+    - {fileID: 243279525, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: 307846948, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: e8d8219474f86324f9b8909ce2d3dc6a, type: 3}
+    - {fileID: 2036306773, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
+    - {fileID: -1067044364, guid: 35c0cd03028efbe478197c6c25cc2760, type: 3}
   - Id: SundaeDuchess
     Alias: 
-    ReferenceHeight: 2.3632812
+    ReferenceHeight: 3.2010581
     Curious:
-    - {fileID: 21300000, guid: cbf722bc9f18413469e4db30e693db97, type: 3}
+    - {fileID: 1236320161, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: 1351592545, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: -459575347, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: 1413038940, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: cbf722bc9f18413469e4db30e693db97, type: 3}
+    - {fileID: -895312490, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: 90608638, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: 153945974, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: 1937095629, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: cbf722bc9f18413469e4db30e693db97, type: 3}
+    - {fileID: -91410350, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: -828695048, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: cbf722bc9f18413469e4db30e693db97, type: 3}
+    - {fileID: 1600895222, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
+    - {fileID: -1471489867, guid: e33fd726739e41e4c81c13e637f229f3, type: 3}
   - Id: TopBeetle
     Alias: 
-    ReferenceHeight: 2.0898438
+    ReferenceHeight: 2.622549
     Curious:
-    - {fileID: 21300000, guid: 8c4a2e460e1c0d84cb2722091826bac3, type: 3}
+    - {fileID: 1076899640, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: 413882900, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: 897291066, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: -761031846, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 8c4a2e460e1c0d84cb2722091826bac3, type: 3}
+    - {fileID: 129003783, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: -214569390, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: -1453348124, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: 679857563, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 8c4a2e460e1c0d84cb2722091826bac3, type: 3}
+    - {fileID: 591722765, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: -600464549, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 8c4a2e460e1c0d84cb2722091826bac3, type: 3}
+    - {fileID: -874210279, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
+    - {fileID: -343410180, guid: b773a7c5cf3b88b49b78a9b8b5c7efc0, type: 3}
   - Id: WateringSnail
     Alias: 
-    ReferenceHeight: 1.875
+    ReferenceHeight: 3.380282
     Curious:
-    - {fileID: 21300000, guid: 1d56c36c7d27a76469469c9b5eb94c37, type: 3}
+    - {fileID: -1120910374, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: 941498470, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: -1214704536, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: -722779909, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: 1d56c36c7d27a76469469c9b5eb94c37, type: 3}
+    - {fileID: -492570727, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: -507090538, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: -1583222618, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: -907952618, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: 1d56c36c7d27a76469469c9b5eb94c37, type: 3}
+    - {fileID: 933742061, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: 331367256, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: 1d56c36c7d27a76469469c9b5eb94c37, type: 3}
+    - {fileID: -452503100, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
+    - {fileID: 1205481161, guid: 8f8b2e09cd178ec4ba937136a597204f, type: 3}
   - Id: YoyoSquirrel
     Alias: 
-    ReferenceHeight: 2.0019531
+    ReferenceHeight: 3.6870503
     Curious:
-    - {fileID: 21300000, guid: a4db16e16cb03b3469c80212e1cbe34f, type: 3}
+    - {fileID: -1249353411, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: 946340829, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: -213905298, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: 1588398041, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
     Cheer:
-    - {fileID: 21300000, guid: a4db16e16cb03b3469c80212e1cbe34f, type: 3}
+    - {fileID: 523880890, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: -1828579311, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: -16206863, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: -1742957757, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
     Hurt:
-    - {fileID: 21300000, guid: a4db16e16cb03b3469c80212e1cbe34f, type: 3}
+    - {fileID: 1955144604, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: -16367238, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
     Defeat:
-    - {fileID: 21300000, guid: a4db16e16cb03b3469c80212e1cbe34f, type: 3}
+    - {fileID: -1723239543, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}
+    - {fileID: -938553106, guid: 75a9e64bf25172841ba82798346d3b23, type: 3}

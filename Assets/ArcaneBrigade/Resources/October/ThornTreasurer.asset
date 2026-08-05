@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ThornTreasurer
   DisplayName: Thorn Treasurer
-  Body: {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
+  Body: {fileID: -562053203, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: ea063f1b4a34b5a48be0383a2bfcb499, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -562053203, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+  - {fileID: -33582687, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+  - {fileID: 1019784645, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+  - {fileID: 646742660, guid: e907d9857d2c7d0498497a856d6ce647, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 60c2abf0909af904fa94ec7849edd984, type: 2}
   Weapon: {fileID: 11400000, guid: b649907fd99ce334fb19d7150c56fe38, type: 2}
   Health: 90
   Speed: 4.5

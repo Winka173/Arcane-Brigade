@@ -13,20 +13,24 @@ MonoBehaviour:
   m_Name: MonsterMarbleRedoMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 1786174103, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: -441658426, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: -1708907206, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -1897310083, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -1088024234, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
+  - {fileID: 787468377, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
   Walk:
-  - {fileID: 2068720186, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: -354829006, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: 2068720186, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: -354829006, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: -230176885, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -91583093, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
+  - {fileID: 905465900, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -1234801820, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
   Windup:
-  - {fileID: 1882155409, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: 375004851, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: 776911386, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -2088022323, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -1522234916, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
   Release:
-  - {fileID: -236185236, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: -236185236, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: 297267878, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: 913860638, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
   Recovery:
-  - {fileID: 898421596, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
-  - {fileID: 1786174103, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
+  - {fileID: 1370147581, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
+  - {fileID: -391085302, guid: 5f88eba758111a448bc38bf6ab8f4f41, type: 3}
+  - {fileID: -1708907206, guid: 36aee119e4578cc4d9d2d95572983df0, type: 3}
   IllustratedHeight: 0

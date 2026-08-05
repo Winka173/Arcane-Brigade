@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SundaeGolemRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1022151539, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -2019077580, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: 2082727582, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  - {fileID: 277925465, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  Walk:
+  - {fileID: -1913715580, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: 1963624895, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  - {fileID: -1670452692, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -108435207, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  Windup:
+  - {fileID: 1092655962, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: 95235175, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: 1338371683, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  Release:
+  - {fileID: 519547394, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -771058124, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  Recovery:
+  - {fileID: -2003713854, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  - {fileID: -598706489, guid: 11186108e1003da4fb4404225e1eb8f3, type: 3}
+  - {fileID: 1022151539, guid: a0ad10726ce51184f86d89e0c4087735, type: 3}
+  IllustratedHeight: 0

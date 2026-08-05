@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ShellPostman
   DisplayName: Shell Postman
-  Body: {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
+  Body: {fileID: -1253212194, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: a733ca557331762469de8c5863a47d5b, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1253212194, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+  - {fileID: 1495241012, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+  - {fileID: -1987852448, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+  - {fileID: 1996209857, guid: fcad84c822bca0e4a93a5fdd20e67138, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 719d3cdf4ddffce4788e15fe9265f78f, type: 2}
   Weapon: {fileID: 11400000, guid: b786846ce06a5a84f9219410e266774f, type: 2}
   Health: 100
   Speed: 4.2

@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TinVirtuoso
   DisplayName: Tin Virtuoso
-  Body: {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
+  Body: {fileID: 939082852, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: 8cba5d8283e6a5144b14c42692748251, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 939082852, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+  - {fileID: -550744840, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+  - {fileID: 666675840, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+  - {fileID: 1221243025, guid: b0ce32d1cc0f7614f99c3eec348e441d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 4246f22f9243b364ca812e581f95c64f, type: 2}
   Weapon: {fileID: 11400000, guid: c111c8775c40a7543990846407155683, type: 2}
   Health: 90
   Speed: 4.5

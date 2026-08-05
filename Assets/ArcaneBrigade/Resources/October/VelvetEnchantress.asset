@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: VelvetEnchantress
   DisplayName: Velvet Enchantress
-  Body: {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
+  Body: {fileID: -151306320, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
   AnimationFrames:
-  - {fileID: 21300000, guid: ce6b56cf3f0f3984facf81d9039fb150, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -151306320, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -194564136, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: -966759111, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  - {fileID: 150574862, guid: 7fcd93e6941f5fe43b11165d6c94e91f, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 6b394e64b07209e4f814ef11ff5ba952, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
