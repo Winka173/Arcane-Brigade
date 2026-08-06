@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 namespace ArcaneBrigade
 {
-    public enum RulesV3EntityKind { Ally, Snack, Clover, Feather, Page, Pumpkin, Skull, Banner, Seed, WindLane }
+    public enum RulesV3EntityKind { Ally, Snack, Clover, Feather, Page, Pumpkin, Skull, Banner, Seed, WindLane, Dish }
     public enum RulesV3EntityChange { Created, Collected, Expired }
     public enum RulesV3MountMode { Guard, Shoot, Sweep }
     public readonly struct RulesV3EntityRequest
@@ -59,9 +59,9 @@ namespace ArcaneBrigade
         }
         private void ApplyV3BondSpawn(BondSpawnRequest request)
         {
-            if(request.Kind==BondSpawnKind.Snack || request.Kind==BondSpawnKind.Clover)
+            if(request.Kind==BondSpawnKind.Snack || request.Kind==BondSpawnKind.Clover || request.Kind==BondSpawnKind.Dish)
             {
-                AddV3Entity(request.Kind==BondSpawnKind.Snack?RulesV3EntityKind.Snack:RulesV3EntityKind.Clover,request.Kind.ToString(),request.Position,
+                AddV3Entity(request.Kind==BondSpawnKind.Snack?RulesV3EntityKind.Snack:request.Kind==BondSpawnKind.Dish?RulesV3EntityKind.Dish:RulesV3EntityKind.Clover,request.Kind.ToString(),request.Position,
                     request.SourceId,duration:request.Lifetime,heal:request.HealMaxHealthFraction,coins:request.Coins,rerolls:request.FreeRerolls);return;
             }
             float damage=request.Damage>0?request.Damage:Champion.Definition.Weapon.Damage;
@@ -86,7 +86,7 @@ namespace ArcaneBrigade
         public bool UpgradeRulesV3Turret(int entityId)
         { for(int i=0;i<v3Entities.Length;i++)if(v3Entities[i].Active && v3Entities[i].Id==entityId && v3Entities[i].Rule=="Turret" && v3Entities[i].Upgrades<RulesV3Tuning.TurretUpgradeLimit){v3Entities[i].Upgrades++;return true;}return false; }
         private float V3Heal(UnitState unit,float amount)
-        { float actual=Mortality.Heal(unit,amount);if(unit==Champion && actual>0)Bonds.OnHeal(actual);return actual; }
+        { float actual=Mortality.Heal(unit,amount);if(unit!=null && unit.Alive)Bonds.OnOverheal(unit,Mathf.Max(0,amount-actual));if(unit==Champion && actual>0)Bonds.OnHeal(actual);return actual; }
         private void TickRulesV3World()
         {
             for(int i=0;i<v3Entities.Length;i++)
@@ -96,15 +96,18 @@ namespace ArcaneBrigade
                 if(entity.Kind==RulesV3EntityKind.Ally || entity.Kind==RulesV3EntityKind.Skull || entity.Kind==RulesV3EntityKind.Seed)
                 {
                     if(entity.Next>Elapsed)continue;v3Entities[i].Next=Elapsed+RulesV3Tuning.ConstructTick;
+                    entity.Position=Bonds.BondAllyPosition(entity.Rule,entity.Source,entity.Position);v3Entities[i].Position=entity.Position;
                     Vector2 cluster=V3CrowdCenter(entity.Position);
-                    if(entity.Rule=="Spirit" && Bonds.Active("spirit",4))V3Heal(Champion,Champion.Definition.Health*BondTuning.SpiritHeal);
-                    if(entity.Rule=="WindBeast" && entity.Mode==RulesV3MountMode.Guard || entity.Rule=="Orchestra")
+
+                    if(entity.Rule=="WindBeast" && entity.Mode==RulesV3MountMode.Guard)
                         for(int f=0;f<Mortality.FriendCount;f++)Mortality.Shield(Mortality.FriendAt(f),RulesV3Tuning.AllyShield,RulesV3Tuning.ConstructTick);
                     foreach(UnitState enemy in StableUnits)
                     {
                         if(!enemy.Alive || enemy.Faction!=Faction.Enemy || (enemy.Position-cluster).sqrMagnitude>entity.Radius*entity.Radius)continue;
                         if(entity.Kind==RulesV3EntityKind.Skull){enemy.TauntBy=Champion.Id;enemy.TauntUntil=entity.Until;continue;}
-                        ApplyDamage(enemy,entity.Value*(1+entity.Upgrades*RulesV3Tuning.TurretUpgradeDamage),Faction.Companion,cause:NewCause(entity.Source).Child("v3-ally"));
+                        ApplyDamage(enemy,entity.Value*Bonds.BondAllyDamageScale(entity.Rule,entity.Source)*(1+entity.Upgrades*RulesV3Tuning.TurretUpgradeDamage),Faction.Companion,cause:NewCause(entity.Source).Child("v3-ally"));
+                        Bonds.OnAllyHit(entity.Rule,enemy);
+                        if(!enemy.Alive)Bonds.OnAllyKill(entity.Rule,enemy);
                     }
                     continue;
                 }
@@ -116,12 +119,15 @@ namespace ArcaneBrigade
                 }
                 UnitState collector=null;
                 for(int f=0;f<Mortality.FriendCount;f++)
-                { UnitState friend=Mortality.FriendAt(f);if(friend.Alive && (friend.Position-entity.Position).sqrMagnitude<=RulesV3Tuning.RulePickupRadius*RulesV3Tuning.RulePickupRadius){collector=friend;break;} }
+                { UnitState friend=Mortality.FriendAt(f);if((entity.Kind!=RulesV3EntityKind.Dish || friend==Champion) && friend.Alive && (friend.Position-entity.Position).sqrMagnitude<=RulesV3Tuning.RulePickupRadius*RulesV3Tuning.RulePickupRadius){collector=friend;break;} }
                 if(collector==null)continue;
                 v3Entities[i].Active=false;EntityEvent(entity,RulesV3EntityChange.Collected);
+                if(entity.Kind==RulesV3EntityKind.Dish)Bonds.OnPickup(BondSpawnKind.Dish);
+                if(entity.Kind==RulesV3EntityKind.Snack)Bonds.OnPickup(BondSpawnKind.Snack);
+                if(entity.Kind==RulesV3EntityKind.Clover)Bonds.OnPickup(BondSpawnKind.Clover);
                 if(entity.Kind==RulesV3EntityKind.Feather)
                 { UnitState fallen=UnitWithId(entity.Target);if(Mortality.ReviveNow(fallen,entity.Value))TraitsV3.OnFeatherRevive(UnitWithId(entity.Source),fallen); }
-                else if(entity.Kind==RulesV3EntityKind.Page)QueueV3Copy(collector.Faction==Faction.Companion?collector:V3BestCompanion(),entity.Value);
+                else if(entity.Kind==RulesV3EntityKind.Page)QueueV3Copy(collector.Faction==Faction.Companion?collector:V3BestCompanion(),entity.Value,position:V3CrowdCenter(entity.Position),page:true);
                 else if(entity.Kind==RulesV3EntityKind.Banner)
                 {V3Status state=V3State(collector);state.Damage=entity.Value;state.DamageUntil=entity.Until;}
                 else V3Heal(entity.Rule=="cherry"?Champion:collector,MortalityRuntime.MaxHealth(entity.Rule=="cherry"?Champion:collector)*entity.Heal);

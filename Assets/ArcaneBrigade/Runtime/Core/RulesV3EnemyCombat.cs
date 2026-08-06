@@ -17,6 +17,8 @@ namespace ArcaneBrigade
             EnemyRulesV3=new EnemyRulesV3Runtime();
             EnemyRulesV3.Requested+=ApplyV3Enemy;
             EnemyRulesV3.ResetWave(units,Champion,catalog.RunWave,unchecked((uint)runSeed));
+            foreach(UnitDefinition body in catalog.EnemyPool)
+                if(EnemyRulesV3Catalog.IsSmall(body)){EnemyRulesV3.ConfigureSmallFallback(body);break;}
             StartRulesV3Objectives();
         }
         private void ApplyV3Enemy(EnemyRuleRequest request)
@@ -88,6 +90,7 @@ namespace ArcaneBrigade
                         state.Miss=request.Value;state.MissUntil=Elapsed+request.Duration;break;
                     case EnemyRuleAction.Charm: state.CharmUntil=Elapsed+request.Duration;SkillsV3.Pause(friend.Id,request.Duration);break;
                     case EnemyRuleAction.Swallow: state.SwallowUntil=Elapsed+request.Duration;SkillsV3.Pause(friend.Id,request.Duration);break;
+                    case EnemyRuleAction.ArmorBreak: Mortality.BreakArmor(friend,request.Value);break;
                     case EnemyRuleAction.Cleanse:
                         Mortality.RemoveProtection(friend);state.DamageUntil=state.AttackUntil=state.CritUntil=state.ReflectUntil=state.ArmorUntil=state.UntouchableUntil=0;break;
                 }
@@ -125,8 +128,8 @@ namespace ArcaneBrigade
             {
                 float along=(float)spawnRandom.NextDouble()*2-1;
                 Vector2 position=edge==0?new Vector2(-half.x,along*half.y):edge==1?new Vector2(half.x,along*half.y):edge==2?new Vector2(along*half.x,-half.y):new Vector2(along*half.x,half.y);
-                UnitState enemy=Spawn(definition,Faction.Enemy,ClampPosition(position,definition.Radius));
-                enemy.Elite=catalog.RunWave>=RulesV3Tuning.EliteFirstWave && ++swarmSpawns%RulesV3Tuning.EliteEvery==0;
+                bool elite=catalog.RunWave>=RulesV3Tuning.EliteFirstWave && ++swarmSpawns%RulesV3Tuning.EliteEvery==0;
+                Spawn(definition,Faction.Enemy,ClampPosition(position,definition.Radius),elite);
             }
             return true;
         }

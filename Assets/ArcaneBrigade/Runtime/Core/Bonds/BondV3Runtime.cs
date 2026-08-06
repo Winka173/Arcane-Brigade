@@ -19,6 +19,7 @@ namespace ArcaneBrigade
         private float singularityUntil, singularityPulseAt;
         private float feastUntil, galeUntil, beatUntil, overclockUntil, stopUntil, lastMoveAt, momentum, rapidAt, clusterAt;
         private int rapidStacks, turrets, souls, v3HitCount, echoCasts, jackpot;
+        private int rerolls {get=>runProgress.Rerolls;set=>runProgress.Rerolls=value;}
         private int runWaves { get => runProgress.Waves; set => runProgress.Waves = value; }
         private int growthWaves { get => runProgress.GrowthWaves; set => runProgress.GrowthWaves = value; }
         private uint randomState = BondTuning.RandomSeed;
@@ -59,9 +60,9 @@ namespace ArcaneBrigade
         public int Beats { get; private set; }
         public int Mass { get; private set; }
         public float Guard { get; private set; }
-        public float RunHealthBonus => growthWaves * BondTuning.GrowthPerWave + ConstellationHealth;
-        public float RunDamageBonus => runDamage + growthWaves * BondTuning.GrowthPerWave;
-        public float SkillFillBonus => EdictSkillFill + (Active("clock") ? BondTuning.ClockFill : 0) + (Active("clock", 8) && time < overclockUntil ? 1 : 0);
+        public float RunHealthBonus => HealthGrowthFor(hero) + ConstellationHealth;
+        public float RunDamageBonus => runDamage;
+        public float SkillFillBonus => SkillFillBonusFor(hero);
         public float ReviveTimeReduction => Active("spirit", 4) ? BondTuning.SpiritReviveReduction : 0;
         public bool SpiritRealm => Active("spirit", 8) && time < BondTuning.RealmSeconds;
         public float FriendMoveSpeedBonus => time < galeUntil ? BondTuning.GaleSpeed : 0;
@@ -73,9 +74,9 @@ namespace ArcaneBrigade
         public float ArmorIgnored => Active("bludgeoner") ? (Active("bludgeoner", 4) ? BondTuning.ArmorIgnoreHigh : BondTuning.ArmorIgnore) : 0;
         private float MealBonus => Active("hearth") ? BondTuning.MealBonus * Mathf.Clamp01(1 - time / BondTuning.MealFade) * (Active("hearth", 8) ? BondTuning.SecondStep / BondTuning.FirstStep : 1) : 0;
         private float V3AttackSpeed => MealBonus + (time < feastUntil ? BondTuning.FeastSpeed : 0) + (time < beatUntil ? BondTuning.BeatSpeed : 0) + (Active("rapidfire") && time - rapidAt < BondTuning.RapidIdle ? rapidStacks * (Active("rapidfire", 4) ? BondTuning.RapidHighSpeed : BondTuning.RapidSpeed) : 0);
-        private void Request(BondSupportKind kind, UnitState subject, float amount, float duration, string rule, float radius = 0)
+        private void Request(BondSupportKind kind, UnitState subject, float amount, float duration, string rule, float radius = 0, Vector2? copyPosition=null)
         {
-            var request = new BondSupportRequest(kind, subject, amount, duration, radius, rule);
+            var request = new BondSupportRequest(kind, subject, amount, duration, radius, rule,copyPosition);
             supportRequests.Add(request); SupportRequested?.Invoke(request);
         }
         private void TeamRequest(BondSupportKind kind, float fraction, float duration, string rule)
@@ -86,7 +87,7 @@ namespace ArcaneBrigade
         private void ResetV3()
         {
             supportRequests.Clear(); personalCasts.Clear(); spiritDeadlines.Clear(); singularityCenter = null; nearbyCursor = 0;
-            feastAt = Active("hearth", 8) ? BondTuning.FeastHighPeriod : BondTuning.FeastPeriod;
+            feastAt = BondTuning.FeastPeriod;
             riptideAt = BondTuning.RiptidePeriod; weatherAt = BondTuning.WeatherPeriod; galeAt = BondTuning.GalePeriod;
             earthquakeAt = BondTuning.EarthquakePeriod; stopAt = BondTuning.ClockStopPeriod; wallAt = BondTuning.WallPeriod;
             chorusAt = BondTuning.ChorusPeriod; singularityAt = BondTuning.SingularityPeriod; shieldAt = BondTuning.ShieldPeriod;
@@ -95,19 +96,19 @@ namespace ArcaneBrigade
             rapidStacks = turrets = souls = v3HitCount = echoCasts = jackpot = Beats = Mass = 0; Guard = 0;
             lastStandUsed = revenantUsed = treeChosen = finaleUsed = celestialUsed = false; Weather = BondWeather.Rain; Records = recordedSpecies.Count;
             Edict = BondEdict.Damage;
-            if (Active("bulwark")) TeamRequest(BondSupportKind.Shield, BondTuning.BulwarkShield, 0, "bulwark-shield");
+            if (Active("bulwark")) { foreach(UnitState friend in friends) if(Has(friend,"bulwark")) Request(BondSupportKind.Shield,friend,BondV5Tuning.BulwarkMemberShield,0,"bulwark-shield"); if(Active("bulwark",4)) TeamRequest(BondSupportKind.Shield,BondV5Tuning.BulwarkTeamShield,0,"bulwark-team-shield"); }
             if (Active("bastion")) TeamRequest(BondSupportKind.Shield, Active("bastion", 4) ? BondTuning.BastionHighShield : BondTuning.BastionShield, 0, "bastion-shield");
             if (Active("shield")) RenewMinorShields();
             if (Active("hearth", 8) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.Chef, hero.Position, damage: Weapon(bestFriend)));
-            if (Active("tidal", 8) && hero != null) { Spawn(new BondSpawnRequest(BondSpawnKind.Leviathan, hero.Position, damage: Weapon(bestFriend))); WholeArena("leviathan", Weapon(bestFriend)); }
+
             if (Active("windborne", 6) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.WindBeast, hero.Position, damage: Weapon(bestFriend)));
             if (Active("orchard", 4) && hero != null)
-                for (int i = 0; i < BondTuning.SproutLimit; i++) Spawn(new BondSpawnRequest(i == 0 && Active("orchard", 6) ? BondSpawnKind.Treant : BondSpawnKind.Sprout, hero.Position, damage: Weapon(bestFriend)));
+                for (int i = 0; i < BondTuning.SproutLimit; i++) Spawn(new BondSpawnRequest(i == 0 && Active("orchard",8)?BondSpawnKind.GreatTree:i == 0 && Active("orchard",6)?BondSpawnKind.Treant:PlantStage>=1?BondSpawnKind.Sapling:BondSpawnKind.Sprout, hero.Position + Vector2.right*i,sourceId:i, damage: Weapon(bestFriend)));
             if (Active("stone", 8) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.Colossus, hero.Position, damage: Weapon(bestFriend)));
             if (Active("melody", 8) && hero != null) for (int i = 0; i < BondTuning.OrchestraCount; i++) Spawn(new BondSpawnRequest(BondSpawnKind.Orchestra, hero.Position, sourceId: i, damage: Weapon(bestFriend)));
             if (Active("spirit", 8)) TeamRequest(BondSupportKind.SpiritRealm, 1, BondTuning.RealmSeconds, "spirit-realm");
-            if (Active("regal")) Request(BondSupportKind.Choice, hero, BondTuning.SmallChoiceCount, 0, "court-edict");
-            if (Active("regal", 4) && bestFriend != null) Request(BondSupportKind.Crown, HighestTierFriend(), 1, BondTuning.WaveBuffSeconds, "crown");
+            if (Active("regal")) Request(BondSupportKind.Choice, hero, Active("regal",6)?BondTuning.SecondStep:BondTuning.SmallChoiceCount, 0, "court-edict");
+            if (Active("regal", 4) && bestFriend != null) {UnitState crowned=HighestTierFriend();Request(BondSupportKind.Crown,crowned,1,BondTuning.WaveBuffSeconds,"crown");if(Active("regal",8)){UnitState second=null;foreach(UnitState friend in friends)if(friend!=crowned&&(second==null||friend.Definition.CombatTier>second.Definition.CombatTier))second=friend;if(second!=null)Request(BondSupportKind.Crown,second,1,BondTuning.WaveBuffSeconds,"second-crown");}}
             if (Active("regal", 6)) Request(BondSupportKind.Law, hero, Active("regal", 8) ? BondTuning.SecondStep / BondTuning.FirstStep : 1, 0, "court-laws");
             if (Active("orchard", 8)) Request(BondSupportKind.Choice, hero, BondTuning.SmallChoiceCount, 0, "great-tree");
             if (Active("oddity", 6) && runWaves > 0 && runWaves % BondTuning.CashoutWaves == 0) Request(BondSupportKind.Choice, hero, BondTuning.SecondStep / BondTuning.FirstStep, 0, "cash-out-or-double-down");
@@ -144,10 +145,10 @@ namespace ArcaneBrigade
         }
         private float ModifyV3(UnitState attacker, UnitState enemy, float amount)
         {
-            float bonus = RunDamageBonus + MealBonus + momentum + EdictDamage + WeatherDamageBonus(attacker) + (attacker.Faction == Faction.Companion ? ConstellationCompanionDamage : 0);
+            float bonus = ChargeDamageFor(attacker) + HatDamageFor(attacker) + RunDamageBonus + HealthGrowthFor(attacker) + MealBonusFor(attacker) + WarmthBonus + (RuleApplies(attacker,"regal")?EdictDamage:0) + (attacker.Faction == Faction.Companion ? ConstellationCompanionDamage : 0);
             if (State(enemy)?.SoakedUntil > time) bonus += BondTuning.SoakVulnerability;
-            if (Active("archive") && recordedSpecies.Contains(enemy.Definition.Id ?? "")) bonus += BondTuning.RecordBonus;
-            if (Active("sniper")) bonus += Mathf.Min((enemy.Position - attacker.Position).magnitude * BondTuning.SniperPerUnit, Active("sniper", 4) ? BondTuning.SniperHighCap : BondTuning.SniperCap);
+            if (RuleApplies(attacker,"archive") && recordedSpecies.Contains(enemy.Definition.Id ?? "")) bonus += BondTuning.RecordBonus;
+            if (Member(attacker,"sniper")) bonus += Mathf.Min((enemy.Position - attacker.Position).magnitude * BondTuning.SniperPerUnit, Active("sniper", 4) ? BondTuning.SniperHighCap : BondTuning.SniperCap);
             if (Active("gravity", 4) && State(enemy) != null && State(enemy).ClusterNeighbors >= BondTuning.ClusterMinimum) bonus += BondTuning.ClumpBonus;
             if (Active("spirit", 8)) bonus += souls / BondTuning.SoulsPerBonus * BondTuning.SoulsDamage;
             return amount * (1 + bonus);
@@ -155,85 +156,83 @@ namespace ArcaneBrigade
         private void HitV3(UnitState attacker, UnitState enemy, float amount, bool critical)
         {
             v3HitCount++; if (critical) TriggerLaws(BondLawCause.Critical, enemy);
-            if (Member(attacker, "hearth") && Active("hearth", 6) && hero != null) Request(BondSupportKind.Heal, hero, amount * BondTuning.HearthLeech / Mathf.Max(1, hero.Definition.Health), 0, "hearth-leech");
-            if (Member(attacker, "tidal") && Every("tide-splash", BondTuning.TideEvery))
+            HitV5(attacker,enemy,amount,critical);
+            if (RuleApplies(attacker, "tidal") && EveryUnit("tide",attacker,BondTuning.TideEvery))
             {
                 foreach (UnitState next in Nearby(enemy, BondTuning.BurstRadius, true)) State(next).SoakedUntil = time + BondTuning.SoakSeconds;
-                Emit("tide-splash", enemy, BondTuning.SoakSeconds);
+                if(Active("tidal",4))AddZone("tide-pool",enemy,Active("tidal",8)?BondV5Tuning.PoolSeconds*BondV5Tuning.Double:BondV5Tuning.PoolSeconds); Emit("tide-splash", enemy, BondTuning.SoakSeconds);
             }
-            if (Member(attacker, "gravity") && hero != null) { enemy.Position += (hero.Position - enemy.Position).normalized * BondTuning.GravityPull; Mass++; Emit("gravity-pull", enemy, BondTuning.GravityPull); }
-            if (Active("singularity") && Every("minor-singularity", Active("singularity", 4) ? BondTuning.SingularityHighEvery : BondTuning.SingularityEvery))
-                foreach (UnitState next in Nearby(enemy, BondTuning.BurstRadius)) { next.Position += (enemy.Position - next.Position).normalized * BondTuning.GravityPull; Mass++; }
-            if (Active("bladenado")) Area(enemy, attacker, amount * (Active("bladenado", 4) ? BondTuning.BladeHighSplash : BondTuning.BladeSplash), "bladenado");
-            if (Active("rapidfire")) { rapidStacks = Mathf.Min(BondTuning.RapidStackCap, time - rapidAt >= BondTuning.RapidIdle ? 1 : rapidStacks + 1); rapidAt = time; }
-            if (Active("desperado") && Every("desperado", Active("desperado", 4) ? BondTuning.DesperadoHighEvery : BondTuning.DesperadoEvery))
-            { Area(enemy, attacker, Weapon(attacker) * BondTuning.DesperadoDamage * BondTuning.DesperadoShots, "desperado-volley"); }
-            if (Active("archive") && recordedSpecies.Add(enemy.Definition.Id ?? ""))
+            if (RuleApplies(attacker, "gravity") && hero != null) { enemy.Position += (hero.Position - enemy.Position).normalized * BondTuning.GravityPull; Emit("gravity-pull", enemy, BondTuning.GravityPull); }
+            if (Member(attacker,"singularity") && Every("minor-singularity", Active("singularity", 4) ? BondTuning.SingularityHighEvery : BondTuning.SingularityEvery))
+                {foreach (UnitState next in Nearby(enemy, BondTuning.BurstRadius)) { next.Position += (enemy.Position - next.Position).normalized * BondTuning.GravityPull; } if(Active("singularity",4))Area(enemy,attacker,Weapon(attacker)*BondV5Tuning.CrushDamage,"minor-crush");}
+            if (Member(attacker,"bladenado")) Area(enemy, attacker, amount * (Active("bladenado", 4) ? BondTuning.BladeHighSplash : BondTuning.BladeSplash), "bladenado");
+            if(Member(attacker,"rapidfire"))OnRapidHit(attacker);
+            if (Member(attacker,"desperado") && Every("desperado", Active("desperado", 4) ? BondTuning.DesperadoHighEvery : BondTuning.DesperadoEvery))
+            { DesperadoVolley(attacker); }
+            if (RuleApplies(attacker,"archive") && recordedSpecies.Add(enemy.Definition.Id ?? ""))
             {
                 Records = recordedSpecies.Count; if (Active("archive", 4)) runDamage += BondTuning.RecordGrowth;
                 Emit("species-recorded", enemy, Records);
                 if (RecordedBonus == BondRecordedBonus.Coin) Request(BondSupportKind.Coin, hero, 1, 0, "archive-record-coin");
                 else if (RecordedBonus == BondRecordedBonus.PageCopy) Request(BondSupportKind.Page, enemy, BondTuning.CopyStrength, 0, "archive-record-copy");
-                else runDamage += BondTuning.RecordGrowth;
+
             }
-            if (critical && Active("astral"))
+            if (critical && RuleApplies(attacker,"astral"))
             {
-                if (Active("astral", 8) || RandomFraction() < BondTuning.StarChance) Area(enemy, attacker, Weapon(attacker) * BondTuning.StarDamage, "falling-star");
+                if (Active("astral", 8) || RandomFraction() < BondV5Tuning.StarChance) { bool split=Active("astral",6)&&InZone("stardust",enemy.Position); Area(enemy,attacker,Weapon(attacker)*BondTuning.StarDamage*(split?BondV5Tuning.StarSplit:1),"falling-star"); if(Active("astral",4))AddZone("stardust",enemy,BondV5Tuning.StardustSeconds); }
                 if (Active("astral", 4) && Every("star-reroll", BondTuning.StarRerollEvery)) Request(BondSupportKind.Reroll, hero, 1, 0, "wish-reroll");
-                if (Active("astral", 8) && !celestialUsed) { celestialUsed = true; TeamRequest(BondSupportKind.Transform, 1, BondTuning.CelestialSeconds, "celestial"); }
+                if (Active("astral", 8) && !celestialUsed) { celestialUsed = true; celestialUntil=time+BondTuning.CelestialSeconds; TeamRequest(BondSupportKind.Transform,0,BondTuning.CelestialSeconds,"celestial"); }
             }
-            if (Active("oddity") && v3HitCount % BondTuning.DieEvery == 0)
+            if (RuleApplies(attacker,"oddity") && (time<finaleUntil || Every("carnival-roll",BondTuning.DieEvery)))
             {
-                int face = Mathf.Min(BondTuning.DieFaces - 1, (int)(RandomFraction() * BondTuning.DieFaces));
+                int faces=Active("oddity",4)?BondTuning.DieFaces+1:BondTuning.DieFaces; int face = Mathf.Min(faces - 1, (int)(RandomFraction() * faces)); if(Active("oddity",6)){int next=Mathf.Min(faces-1,(int)(RandomFraction()*faces));if(BondV5Tuning.DieRank[next]>BondV5Tuning.DieRank[face])face=next;} if(Active("oddity",4))AddJackpot(attacker);
                 if (face == 0) Area(enemy, attacker, Weapon(attacker), "carnival-burst");
                 else if (face == 1) Request(BondSupportKind.Coin, hero, 1, 0, "carnival-coin");
-                else if (face == 2) StunArea(enemy, BondTuning.HornStun, "carnival-slow", false);
-                else if (face == 3) TeamRequest(BondSupportKind.Speed, BondTuning.BeatSpeed, BondTuning.BeatSeconds, "carnival-speed");
-                else if (face == 4) Emit("carnival-crit", attacker, BondTuning.ChoiceBonus);
-                else Emit("carnival-nothing", attacker);
+                else if(face==2)AddZone("carnival-slow",enemy,BondTuning.BeatSeconds,attacker);
+                else if(face==3)RuleTeamRequest("oddity",BondSupportKind.Speed,BondTuning.BeatSpeed,BondTuning.BeatSeconds,"carnival-speed");
+                else if(face==4)Request(BondSupportKind.CritBuff,attacker,BondTuning.ChoiceBonus,BondTuning.BeatSeconds,"carnival-crit");
+                else if(face==BondTuning.DieFaces && lastCastFriend!=null)Request(BondSupportKind.SkillCopy,lastCastFriend,1,0,"encore"); else Emit("carnival-nothing", attacker);
             }
         }
         private bool celestialUsed;
         private void KillV3(UnitState enemy)
         {
-            souls++; TriggerLaws(BondLawCause.Kill, enemy);
-            if (Active("archive", 6) && recordedSpecies.Contains(enemy.Definition.Id ?? "")) Request(BondSupportKind.Page, enemy, BondTuning.CopyStrength, 0, "record-page");
+            KillV5(enemy); if(Active("spirit",8))souls++; TriggerLaws(BondLawCause.Kill, enemy);
+
             if (Active("unstoppable") && hero != null)
             {
                 UnitState cluster = DensestCluster();
                 if (cluster != null) foreach (UnitState friend in friends) if (friend.Alive && Has(friend, "unstoppable"))
-                { Request(BondSupportKind.Dash, friend, BondTuning.DashDistance, BondTuning.DashSeconds, "unstoppable-charge", BondTuning.BurstRadius); if (Active("unstoppable", 4)) StunArea(cluster, BondTuning.HornStun, "unstoppable-stun", false); }
+                { Request(BondSupportKind.Dash, friend, BondTuning.DashDistance, BondTuning.DashSeconds, "unstoppable-charge", BondTuning.BurstRadius); if (Active("unstoppable", 4)) {OnCharge(friend);StunArea(cluster, BondTuning.HornStun, "unstoppable-stun", false);} }
             }
         }
         private void CastV3(UnitState friend)
         {
-            TriggerLaws(BondLawCause.Cast, friend);
+            CastV5(friend); TriggerLaws(BondLawCause.Cast, friend);
             personalCasts.TryGetValue(friend.Id, out int count); personalCasts[friend.Id] = ++count;
-            if (Active("multicaster") && count <= (Active("multicaster", 4) ? BondTuning.MulticastsHigh : BondTuning.Multicasts)) Request(BondSupportKind.SkillCopy, friend, 1, 0, "multicaster");
-            if (Active("echo") && ++echoCasts % Interval("echo", BondTuning.MinorEchoEvery, BondTuning.MinorEchoFour, BondTuning.MinorEchoSix) == 0) Request(BondSupportKind.SkillCopy, friend, BondTuning.CopyStrength, 0, "echo");
-            if (Active("clock", 4) && Ticks % BondTuning.EchoEvery == 0) foreach (UnitState other in friends) if (other.Alive && Has(other, "clock")) Request(BondSupportKind.SkillCopy, other, BondTuning.CopyStrength, 0, "clock-echo");
+            if (Member(friend,"multicaster") && (count <= (Active("multicaster", 4) ? BondTuning.MulticastsHigh : BondTuning.Multicasts) || Active("multicaster",4)&&count % BondV5Tuning.MulticastEvery==0)) Request(BondSupportKind.SkillCopy, friend, 1, 0, "multicaster");
+            if (Member(friend,"echo") && ++echoCasts % Interval("echo", BondTuning.MinorEchoEvery, BondTuning.MinorEchoFour, BondTuning.MinorEchoSix) == 0) {Request(BondSupportKind.SkillCopy,friend,BondTuning.CopyStrength,0,Active("echo",4)?"echo-next-cluster":"echo",copyPosition:Active("echo",4)?(Vector2?)AlternateClusterPosition():null);if(Active("echo",6))Request(BondSupportKind.SkillCopy,friend,BondTuning.CopyStrength*BondTuning.CopyStrength,0,"echo-secondary");}
+            if (Active("clock", 4) && Ticks % BondTuning.EchoEvery == 0) foreach (UnitState other in friends) if (other.Alive && Has(other, "clock")) { springs++; Request(BondSupportKind.SkillCopy, other, BondTuning.CopyStrength, 0, "clock-echo"); }
             if (Active("clock", 8) && Ticks % BondTuning.EchoEvery == 0 && turrets < BondTuning.TurretLimit) { turrets++; Spawn(new BondSpawnRequest(BondSpawnKind.Turret, friend.Position, damage: Weapon(friend))); }
-            if (Active("melody") && Ticks % BondTuning.MelodyEvery == 0) { Beats++; beatUntil = time + BondTuning.BeatSeconds * (Active("melody", 6) && still >= BondTuning.StillSeconds ? BondTuning.SecondStep / BondTuning.FirstStep : 1); Emit("beat", friend, beatUntil - time); }
-            if (Active("oddity", 4) && ++jackpot >= BondTuning.JackpotCasts) { jackpot = 0; Request(BondSupportKind.Coin, hero, BondTuning.JackpotCoins * (doubledDown ? BondTuning.SecondStep / BondTuning.FirstStep : 1), 0, "jackpot"); TeamRequest(BondSupportKind.Speed, BondTuning.JackpotSpeed, BondTuning.JackpotSeconds, "jackpot-buff"); }
-            if (Active("oddity", 8) && !finaleUsed && Applause >= friends.Count) { finaleUsed = true; foreach (UnitState other in friends) if (other.Alive) Request(BondSupportKind.ForceCast, other, 1, 0, "grand-finale"); }
+            if (RuleApplies(friend,"melody") && Every("melody-beat",BondTuning.MelodyEvery)) { Beats++; beatStacks=Mathf.Min(Active("melody",6)?BondV5Tuning.BeatStackCap:1,beatStacks+1); beatUntil=time+BondTuning.BeatSeconds*(Active("melody",6)&&still>=BondTuning.StillSeconds?BondV5Tuning.Double:1); Emit("beat",friend,beatUntil-time);OnBeat(friend); }
+            if(Active("oddity",4)&&(!jackpotSkillTimes.TryGetValue(friend.Id,out float lastAt)||time-lastAt>BondTuning.ApplauseWindow)){jackpotSkillTimes[friend.Id]=time;AddJackpot(friend);}
         }
         private float GravitySpeed(UnitState enemy) => time < stopUntil ? 0 : Active("gravity", 8) && hero != null && (enemy.Position - hero.Position).sqrMagnitude <= BondTuning.GravityRadius * BondTuning.GravityRadius ? 1 - BondTuning.GravitySlow : 1;
         private void TickV3(float dt)
         {
             if (hero == null) return;
-            if (Moving) { lastMoveAt = time; if (Active("windborne")) momentum = Mathf.Min(BondTuning.MomentumCap, momentum + dt * BondTuning.MomentumPerSecond); }
+            if (Moving) { lastMoveAt = time; if (Active("windborne")) momentum = Mathf.Min(BondV5Tuning.WindSpeed, momentum + dt * BondTuning.MomentumPerSecond); }
             else if (time - lastMoveAt >= BondTuning.MomentumIdle) momentum = 0;
-            if (Active("hearth", 4)) while (time >= feastAt) { feastAt += Active("hearth", 8) ? BondTuning.FeastHighPeriod : BondTuning.FeastPeriod; feastUntil = time + BondTuning.FeastSeconds; Request(BondSupportKind.Heal, hero, BondTuning.FeastHeal, 0, "feast"); Emit("feast", hero, BondTuning.FeastSeconds); }
-            if (Active("tidal", 4)) while (time >= riptideAt) { riptideAt += BondTuning.RiptidePeriod; foreach (var pair in enemies) if (pair.Key.Alive) { pair.Value.SoakedUntil = time + BondTuning.SoakSeconds; pair.Key.Position += (pair.Key.Position - hero.Position).normalized * BondTuning.RiptidePush; } Emit("riptide", hero); }
-            if (Active("tidal", 6)) while (time >= weatherAt) { weatherAt += BondTuning.WeatherPeriod; Weather = (BondWeather)(((int)Weather + 1) % BondTuning.SecondStep); Emit("weather", hero, (int)Weather); }
-            if (Active("windborne", 8)) while (time >= galeAt) { galeAt += BondTuning.GalePeriod; galeUntil = time + BondTuning.GaleSeconds; foreach (var pair in enemies) if (pair.Key.Alive) pair.Key.Position += (pair.Key.Position - hero.Position).normalized * BondTuning.RiptidePush; Emit("gale", hero, BondTuning.GaleSeconds); }
-            if (Active("stone", 6)) while (time >= earthquakeAt) { earthquakeAt += BondTuning.EarthquakePeriod; StunArea(hero, BondTuning.EarthquakeStun, "earthquake", false); }
-            if (Active("clock", 6)) while (time >= stopAt) { stopAt += BondTuning.ClockStopPeriod; stopUntil = time + BondTuning.ClockStopSeconds; overclockUntil = time + BondTuning.OverclockSeconds; foreach (var pair in enemies) if (pair.Key.Alive) { pair.Value.StunnedUntil = Mathf.Max(pair.Value.StunnedUntil, stopUntil); pair.Key.NextAttack = Mathf.Max(pair.Key.NextAttack, stopUntil); } Request(BondSupportKind.TimeStop, hero, 1, BondTuning.ClockStopSeconds, "time-stop"); }
+            if (Active("hearth",4)) while(time>=feastAt) { feastAt+=BondTuning.FeastPeriod; AddWarmth(BondV5Tuning.FeastWarmth); if(Active("hearth",6))TeamRequest(BondSupportKind.SkillFill,BondV5Tuning.FeastFill,0,"feast-fill"); Emit("feast",hero); }
+            if (Active("tidal",6)) while(time>=riptideAt){riptideAt+=BondTuning.RiptidePeriod;Riptide();}
+            if (Active("windborne", 8)) while (time >= galeAt) { galeAt += BondTuning.GalePeriod; galeUntil = time + BondTuning.GaleSeconds; GaleLanes(); Emit("gale", hero, BondTuning.GaleSeconds); }
+            if (Active("stone",6)) while(time>=earthquakeAt){earthquakeAt+=BondTuning.EarthquakePeriod;Earthquake();}
+            if (Active("clock", 6)) while (time >= stopAt) { stopAt += BondTuning.ClockStopPeriod; stopUntil = time + BondTuning.ClockStopSeconds + springs*BondV5Tuning.SpringSeconds; springs=0; overclockUntil = stopUntil + BondTuning.OverclockSeconds; foreach (var pair in enemies) if (pair.Key.Alive) { pair.Value.StunnedUntil = Mathf.Max(pair.Value.StunnedUntil, stopUntil); pair.Key.NextAttack = Mathf.Max(pair.Key.NextAttack, stopUntil); } Request(BondSupportKind.TimeStop, hero, 1, stopUntil-time, "time-stop"); }
             if (Active("bulwark", 6)) while (time >= wallAt) { wallAt += BondTuning.WallPeriod; Request(BondSupportKind.Wall, FriendCluster(), 1, BondTuning.WallSeconds, "bastion-wall", BondTuning.BurstRadius); }
             if (Active("melody", 4)) while (time >= chorusAt) { chorusAt += BondTuning.ChorusPeriod; foreach (UnitState friend in friends) if (friend.Alive) Request(BondSupportKind.SkillCopy, friend, BondTuning.ChorusStrength, 0, "chorus"); }
             if (Active("gravity", 6)) while (time >= singularityAt)
             {
-                singularityAt += BondTuning.SingularityPeriod; singularityCenter = DensestCluster();
+                singularityAt += Mathf.Max(BondV5Tuning.MinHoleCooldown,BondTuning.SingularityPeriod-Mass/BondV5Tuning.MassPerSecond); singularityCenter = DensestCluster();
                 if (singularityCenter != null) { singularityUntil = time + BondTuning.SingularitySeconds; singularityPulseAt = time; Request(BondSupportKind.Pull, singularityCenter, BondTuning.GravityPull, BondTuning.SingularitySeconds, "singularity", BondTuning.GravityRadius); }
             }
             if (singularityCenter != null)
@@ -243,12 +242,12 @@ namespace ArcaneBrigade
                     singularityPulseAt += BondTuning.PlaguePeriod;
                     foreach (UnitState next in Nearby(singularityCenter, BondTuning.GravityRadius, true)) { next.Position += (singularityCenter.Position - next.Position).normalized * BondTuning.GravityPull; Mass++; Damage(next, bestFriend, Weapon(bestFriend) * BondTuning.SingularityDamage, "singularity-drag"); }
                 }
-                else if (time >= singularityUntil) { Area(singularityCenter, bestFriend, Weapon(bestFriend), "singularity-collapse"); singularityCenter = null; }
+                else if (time >= singularityUntil) { Area(singularityCenter, bestFriend, Weapon(bestFriend), "singularity-collapse"); if(Active("gravity",8))AddZone("after-hole",singularityCenter,BondTuning.SingularitySeconds,bestFriend); singularityCenter = null; }
             }
             for (int i = spiritDeadlines.Count - 1; i >= 0; i--) if (spiritDeadlines[i] <= time) spiritDeadlines.RemoveAt(i);
             if (Active("spirit", 4) && spiritDeadlines.Count > 0) Request(BondSupportKind.Heal, hero, spiritDeadlines.Count * BondTuning.SpiritHeal * dt, 0, "spirit-heal");
             if (Active("shield", 6)) while (time >= shieldAt) { shieldAt += BondTuning.ShieldPeriod; RenewMinorShields(); }
-            if (Active("shoe") && Moving && time >= dashAt) { dashAt = time + (Active("shoe", 4) ? BondTuning.DashHighPeriod : BondTuning.DashPeriod); Request(BondSupportKind.Dash, hero, BondTuning.DashDistance, BondTuning.DashSeconds, "quicksoles-dash"); if (Active("shoe", 6)) StunArea(hero, BondTuning.HornStun, "dash-shockwave", true); }
+            if (Active("shoe") && Moving && time >= dashAt) { dashAt = time + (Active("shoe", 4) ? BondTuning.DashHighPeriod : BondTuning.DashPeriod); Request(BondSupportKind.Dash, hero, BondTuning.DashDistance, BondTuning.DashSeconds, "quicksoles-dash"); if(Active("shoe",4))AddZone("quicksoles-trail",hero,BondV5Tuning.TrailSeconds); if (Active("shoe", 6)) {StunArea(hero, BondTuning.HornStun, "dash-shockwave", true);foreach(UnitState friend in friends)if(friend.Alive&&Has(friend,"shoe"))Request(BondSupportKind.SkillFill,friend,1,0,"quicksoles-refund-seconds");} }
             if (Active("mend")) { float rate = (Active("mend", 4) ? BondTuning.MendHighRate : BondTuning.MendRate) * dt; if (hero.Alive && hero.Health < hero.Definition.Health * BondTuning.MendHealthThreshold) Request(BondSupportKind.Heal, hero, rate, 0, "mend"); foreach (UnitState friend in friends) if (friend.Alive && friend.Health < friend.Definition.Health * BondTuning.MendHealthThreshold) Request(BondSupportKind.Heal, friend, rate, 0, "mend"); }
             if (time >= clusterAt) { clusterAt = time + BondTuning.PlaguePeriod; Soak = 0; foreach (var pair in enemies) if (pair.Key.Alive) { if (pair.Value.SoakedUntil > time) Soak++; int count = 0; foreach (var other in enemies) if (other.Key != pair.Key && other.Key.Alive && (other.Key.Position - pair.Key.Position).sqrMagnitude <= BondTuning.ClumpRadius * BondTuning.ClumpRadius) count++; pair.Value.ClusterNeighbors = count; } }
         }
@@ -259,9 +258,9 @@ namespace ArcaneBrigade
             return best;
         }
         public float MonolithArmor(UnitState friend)
-        { if (!Active("monolith")) return 0; int count = 0; foreach (var pair in enemies) if (pair.Key.Alive && (pair.Key.Position - friend.Position).sqrMagnitude <= BondTuning.MonolithRadius * BondTuning.MonolithRadius) count++; return Mathf.Min(count, Active("monolith", 4) ? BondTuning.MonolithHighCap : BondTuning.MonolithCap); }
+        { return friend!=null&&monolithArmor.TryGetValue(friend.Id,out float amount)?amount:0; }
         public bool IgnoresStunAndPush(UnitState friend) => Member(friend, "unstoppable");
-        public void OnReroll() { if (Active("rain-script")) runDamage += Active("rain-script", 4) ? BondTuning.RerollHighGrowth : BondTuning.RerollGrowth; }
+        public void OnReroll() { if (Active("rain-script")) {runDamage += Active("rain-script", 4) ? BondTuning.RerollHighGrowth : BondTuning.RerollGrowth; if(Active("rain-script",4)&&++rerolls%BondV5Tuning.RunRerolls==0){runProgress.PendingRainVerses++;Request(BondSupportKind.Choice,hero,BondTuning.CopyStrength,0,"rain-verse-discount");}} }
         public void OnWaveSurvived() { runWaves++; if (Active("orchard")) growthWaves++; }
         public void ChooseConstellation(BondConstellation choice) { Constellation = choice; }
         public float FirstRecruitDiscount(bool firstRecruit, bool consumeFree = false)
@@ -274,7 +273,7 @@ namespace ArcaneBrigade
             UnitState nearest = null; float square = float.PositiveInfinity;
             foreach (UnitState other in friends) if (other != friend && other.Alive && Has(other, "bulwark") && (other.Position - friend.Position).sqrMagnitude < square) { nearest = other; square = (other.Position - friend.Position).sqrMagnitude; }
             if (nearest == null) return amount;
-            float share = amount * BondTuning.DamageShare; Guard += share;
+            float share = amount * BondTuning.DamageShare; FillGuard(share);
             Request(BondSupportKind.DamageShared, nearest, share * (1 - BondTuning.ShareReduction), 0, "bulwark-share"); return amount - share;
         }
         public bool TryPreventFall(UnitState friend)
@@ -286,19 +285,20 @@ namespace ArcaneBrigade
         }
         public void OnFriendFell(UnitState friend)
         {
-            souls++;
-            if (Active("spirit")) { spiritDeadlines.Add(time + BondTuning.SpiritSeconds); Spawn(new BondSpawnRequest(BondSpawnKind.Spirit, friend.Position, friend.Id, BondTuning.SpiritSeconds, Weapon(friend))); }
+            if(Active("spirit"))souls++;
+            if(Active("exhibit-hall",4)&&!displayUsed){displayUsed=true;Request(BondSupportKind.ReviveDelay,friend,BondV5Tuning.DisplaySeconds,0,"display-revive");}
+            if (RuleApplies(friend,"spirit")) { float duration=BondTuning.SpiritSeconds+(Active("spirit",6)?souls/BondV5Tuning.SoulsPerSecond:0); spiritDeadlines.Add(time+duration); Spawn(new BondSpawnRequest(BondSpawnKind.Spirit,friend.Position,friend.Id,duration,Weapon(friend))); Request(BondSupportKind.ReviveDelay,friend,BondV5Tuning.SpiritRiseSeconds,0,"spirit-revive-delay"); }
             if (Active("spirit", 6) && !revenantUsed) { revenantUsed = true; Request(BondSupportKind.Revive, friend, BondTuning.RevenantHealth, 0, "revenant"); }
         }
         public void OnFriendDamaged(UnitState friend, UnitState attacker, float amount)
         {
             if (attacker == null) return;
-            float reflect = (Active("spiky-shell") ? (Active("spiky-shell", 4) ? BondTuning.SpikyHighReflect : BondTuning.SpikyReflect) : 0) + (friend == hero && Active("stone") ? BondTuning.StoneReflect : 0);
+            float reflect = (Active("spiky-shell") ? (Active("spiky-shell", 4) ? BondTuning.SpikyHighReflect : BondTuning.SpikyReflect) : 0) + (Active("stone") && (friend==hero || Has(friend,"stone") || Active("stone",4)) ? BondTuning.StoneReflect : 0);
             if (reflect > 0) Area(attacker, friend, amount * reflect, "thorn-reflect");
         }
         public void OnCollision(UnitState knocked, UnitState other)
-        { if (Active("stone", 4) && knocked != null && other != null && other.Faction == Faction.Enemy) { Weight++; Area(other, bestFriend, Weapon(bestFriend) * BondTuning.CollisionMultiplier, "stone-collision"); } }
+        { if (Active("stone", 4) && knocked != null && other != null && other.Faction == Faction.Enemy) { Weight++; BondEnemyState state=State(other); if(state!=null)state.Collisions++; Area(other, bestFriend, Weapon(bestFriend) * BondTuning.CollisionMultiplier, "stone-collision"); } }
         public void OnSkillDamage(UnitState friend, UnitState enemy, int indexInCast)
-        { if (Active("demolitionist") && (!Active("demolitionist", 4) || indexInCast < BondTuning.DemolitionLimit) && State(enemy) != null) { float seconds = Active("demolitionist", 4) ? BondTuning.DemolitionHighStun : BondTuning.DemolitionStun; State(enemy).StunnedUntil = time + seconds; enemy.NextAttack = Mathf.Max(enemy.NextAttack, time + seconds); Emit("demolitionist-stun", enemy, seconds); } }
+        { if (Member(friend,"demolitionist") && (!Active("demolitionist", 4) || indexInCast < BondTuning.DemolitionLimit) && State(enemy) != null) { float seconds = Active("demolitionist", 4) ? BondTuning.DemolitionHighStun : BondTuning.DemolitionStun; State(enemy).StunnedUntil = time + seconds; enemy.NextAttack = Mathf.Max(enemy.NextAttack, time + seconds); Emit("demolitionist-stun", enemy, seconds); } }
     }
 }

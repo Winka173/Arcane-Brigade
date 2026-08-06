@@ -141,6 +141,20 @@ namespace ArcaneBrigade
             for (int i = 0; i < BondTuning.MajorCount; i++) if (BondTuning.V3Definitions[i].Id == id) return true;
             return false;
         }
+        // The hero supplies only its two minor tags; major team shares still reach it.
+        public static float Stat(ItemEffect effect, IDictionary<string, int> counts, string[] memberTags)
+        {
+            if (counts == null) return 0;
+            float total = 0;
+            foreach (KeyValuePair<string, int> pair in counts)
+            {
+                bool member = false;
+                if (memberTags != null) for (int i = 0; i < memberTags.Length; i++)
+                    if (string.Equals(memberTags[i], pair.Key, StringComparison.Ordinal)) { member = true; break; }
+                total += BondTuning.Stat(pair.Key, effect, pair.Value, member);
+            }
+            return total;
+        }
         public static BondDefinition[] CreateDefinitions()
         {
             var result = new BondDefinition[BondTuning.V3Definitions.Length];

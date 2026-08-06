@@ -20,6 +20,17 @@ namespace ArcaneBrigade.Editor
             UnitDefinition definition = ScriptableObject.CreateInstance<UnitDefinition>();
             try
             {
+                Near(FriendDefenseTuning.Armor("TowerRook",1),12,"Guard base armor");
+                Near(FriendDefenseTuning.Armor("PumpkinReaper",1),6,"Striker base armor");
+                Near(FriendDefenseTuning.Armor("BagpipeOctopus",1),5,"Controller base armor");
+                Near(FriendDefenseTuning.Armor("ClockworkPiper",1),4,"Summoner base armor");
+                Near(FriendDefenseTuning.Armor("NurseHen",1),3,"Support base armor");
+                Near(FriendDefenseTuning.Armor("BoneXylophone",1),2,"Shooter base armor");
+                Near(FriendDefenseTuning.Health("TowerRook",3),1.6f*1.8f,"class health times additive star health");
+                Near(FriendDefenseTuning.Armor("TowerRook",3),16,"two armor per extra star");
+                Near(FriendDefenseTuning.SharedItemPoints(1.5f),7,"half armor-item points round down");
+                Near(RunModifierRules.AfterArmor(100,15*RunModifierRules.ArmorPoint),50,"15 points halve friend damage");
+                Near(RunModifierRules.AfterArmor(100,1000*RunModifierRules.ArmorPoint),25,"friend armor retains quarter hit");
                 definition.Health = Health;
                 UnitState hero = Unit(1, Faction.Champion, definition);
                 UnitState friend = Unit(2, Faction.Companion, definition);

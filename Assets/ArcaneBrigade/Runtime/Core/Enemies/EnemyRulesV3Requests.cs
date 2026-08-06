@@ -6,8 +6,9 @@ namespace ArcaneBrigade
     [Flags]
     public enum EnemyAffixV3 { None=0, Swift=1, Armored=2, Vampiric=4, Explosive=8, Shielded=16, Splitting=32, Burning=64, Frozen=128, Teleporting=256, Regenerating=512, Commanding=1024, Reflective=2048 }
     public enum EnemyBossV3 { None, PastryTyrant, ClockworkWarden, StormHerald, HollowChoir, GravityMaw, LanternQueen }
+    public enum EnemyBodyTier { Small, MediumPlain, MediumSkilled, LargeSpecial }
     public enum EnemyDangerShape { Circle, Line, Cone, Ring, Arena }
-    public enum EnemyRuleAction { Damage, Poison, Burn, Chill, Slow, Stun, Fear, Pull, PauseSkills, SkillFill, Cleanse, MissShots, Charm, DrainCoins, DrainPickups, MarkHero, Swallow, Darken, Banner, Chain, ChainCut, Countdown, Phase, HealEnemy, ReviveEnemy, Spawn, Despawn, ShieldEnemy, Reflect, LeechLink }
+    public enum EnemyRuleAction { Damage, Poison, Burn, Chill, Slow, Stun, Fear, Pull, PauseSkills, SkillFill, Cleanse, MissShots, Charm, DrainCoins, DrainPickups, MarkHero, Swallow, Darken, Banner, Chain, ChainCut, Countdown, Phase, HealEnemy, ReviveEnemy, Spawn, Despawn, ShieldEnemy, Reflect, LeechLink, ArmorBreak }
     /// <summary>Warning geometry is immutable; delayed hits resolve this geometry after WarningTime.</summary>
     public readonly struct EnemyDangerRequest
     {
@@ -33,7 +34,9 @@ namespace ArcaneBrigade
     }
     public sealed class EnemyRuleDefinition
     {
-        public EnemyKindV3 Kind; public string Id, Name, Role, Skill, Telegraph; public int Night;
+        public EnemyKindV3 Kind; public string Id, Name, Role, Skill, Body, Telegraph; public int Night;
+        public EnemyBodyTier Tier => EnemyRulesV3Catalog.Tier(Kind);
+        public bool HasSkill => EnemyRulesV3Catalog.HasSkill(Kind);
     }
     public sealed class EnemyBossDefinition
     {

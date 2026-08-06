@@ -17,7 +17,7 @@ namespace ArcaneBrigade
             public float Miss, MissUntil, CharmUntil, FearUntil, SwallowUntil;
             public float MoveSpeed, MoveUntil, ContactAt, ContactDamage;
             public Vector2 FearOrigin;
-            public int ReflectHits, ShareSource, FeatherSource;
+            public int ReflectHits, ShareSource, FeatherSource, SkillHitCount;
             public float Share, ShareUntil;
             public bool FeatherUsed;
             public UnitState DotSource;
@@ -29,14 +29,16 @@ namespace ArcaneBrigade
             public float Radius, Until;
             public int Source;
         }
-        private struct V3Copy { public int Id; public float Strength; public string Skill; }
+        private struct V3Copy { public int Id; public float Strength, ReadyAt; public string Skill; public Vector2? Position; public bool Page; }
         private readonly Dictionary<int,V3Status> v3Statuses = new Dictionary<int,V3Status>();
         private readonly V3Construct[] v3Constructs = new V3Construct[RulesV3Tuning.ConstructCapacity];
         private readonly bool[] v3WallChosen=new bool[MortalityTuning.TeamCapacity];
         private readonly Queue<V3Copy> v3Copies = new Queue<V3Copy>(RulesV3Tuning.CopyCapacity);
         private bool v3FreeCast, v3Sharing;
+        private float v3BastionWallUntil;
+        private readonly HashSet<int> v3WallShieldRefills=new HashSet<int>(MortalityTuning.TeamCapacity);
         private bool v3PiercingVolley;
-        private int v3CrownedId;
+        private readonly HashSet<int> v3CrownedIds=new HashSet<int>(MortalityTuning.TeamCapacity);
         private float v3CopyHealAt=-1;
         private string v3CopyHealSkill;
         private int v3TeamReflectHits;
@@ -49,30 +51,40 @@ namespace ArcaneBrigade
         private void StartRulesV3()
         {
             v3Statuses.Clear(); v3Copies.Clear(); Array.Clear(v3Constructs,0,v3Constructs.Length);
-            RulesV3Rerolls = RulesV3RerollDiscount = 0; v3FreeCast = v3Sharing = v3PiercingVolley = false;v3CrownedId=0;
-            v3TeamReflectHits=0;v3TeamReflectUntil=0;
+            RulesV3Rerolls = RulesV3RerollDiscount = 0; v3FreeCast = v3Sharing = v3PiercingVolley = false;v3CrownedIds.Clear();
+            v3TeamReflectHits=0;v3TeamReflectUntil=0;v3BastionWallUntil=0;v3WallShieldRefills.Clear();
             Mortality = new MortalityRuntime(); Mortality.ResetWave(units);
+            Mortality.ShieldAbsorbed += (friend,amount)=>Bonds.OnFriendShieldAbsorbed(amount);
+            Mortality.ShieldBroken += friend=>
+            {
+                Bonds.OnShieldBroken(friend);
+                if(v3BastionWallUntil>Elapsed && v3WallShieldRefills.Add(friend.Id))
+                    Mortality.Shield(friend,Mortality.ShieldCapacity(friend)/MortalityRuntime.MaxHealth(friend),v3BastionWallUntil-Elapsed);
+            };
             Mortality.WaveLost += value => { Phase = RunPhase.Defeat; };
             Mortality.Fell += value =>
             {
                 UnitState friend = UnitWithId(value.FriendId);
                 Bonds.OnFriendFell(friend);
-                if (Bonds.ReviveTimeReduction > 0) Mortality.ReviveSooner(friend,Bonds.ReviveTimeReduction);
             };
             SkillsV3 = new CompanionSkillRuntime();
+            SkillsV3.BondFillBonus = Bonds.SkillFillBonusFor;
+            SkillsV3.HoldCasts = () => Bonds.TimeStopRemaining>0;
             SkillsV3.ResetWave(units,Champion,catalog.RunWave,unchecked((uint)runSeed));
             SkillsV3.DamageRequested += request =>
             {
                 if (!request.Target.Alive) return;
-                ApplyDamage(request.Target,request.Damage,Faction.Companion,cause: NewCause(request.Attacker.Id).Child("skill-v3"));
+                ApplyDamage(request.Target,request.Damage*Bonds.SkillDamageScale(request.Attacker,request.Target)*(request.PageCopy?Bonds.PageDamageScale(request.Target):1),Faction.Companion,cause: NewCause(request.Attacker.Id).Child("skill-v3"));
                 if(!request.Target.Alive)SkillsV3.OnKill(request.Attacker,request.Target,request.SkillId);
-                Bonds.OnSkillDamage(request.Attacker,request.Target,0);
+                V3Status castState=V3State(request.Attacker);
+                Bonds.OnSkillDamage(request.Attacker,request.Target,castState==null?0:castState.SkillHitCount++);
             };
             SkillsV3.CastRequested += request =>
             {
                 CompanionSkillCasts++;
+                V3Status castState=V3State(UnitWithId(request.SourceId));if(castState!=null)castState.SkillHitCount=0;
                 if (!v3FreeCast) Bonds.OnCast(UnitWithId(request.SourceId));
-                if (!v3FreeCast && request.SourceId==v3CrownedId)QueueV3Copy(UnitWithId(request.SourceId),request.Strength);
+                if (!v3FreeCast && v3CrownedIds.Contains(request.SourceId))QueueV3Copy(UnitWithId(request.SourceId),request.Strength);
             };
             SkillsV3.FriendRequested += ApplyV3Friend;
             SkillsV3.EnemyEffectRequested += ApplyV3EnemyEffect;
@@ -86,12 +98,14 @@ namespace ArcaneBrigade
         private void TickRulesV3(float dt)
         {
             Mortality.Tick(dt);
-            SkillsV3.Tick(dt,Bonds.SkillFillBonus);
+            SkillsV3.Tick(dt);
             int copies = 0;
             v3FreeCast = true;
-            while (v3Copies.Count>0 && copies++<RulesV3Tuning.CopyCapacity)
-            { V3Copy copy=v3Copies.Dequeue(); if(copy.Skill==null)SkillsV3.CastFree(copy.Id,copy.Strength);else SkillsV3.CastCopy(UnitWithId(copy.Id),copy.Skill,copy.Strength); }
-            v3FreeCast = false; v3Copies.Clear();
+            int pendingCopies=v3Copies.Count;
+            while (v3Copies.Count>0 && copies++<pendingCopies)
+            { V3Copy copy=v3Copies.Dequeue(); if(copy.ReadyAt>Elapsed){v3Copies.Enqueue(copy);continue;} SkillsV3.PageCopyContext=copy.Page;if(copy.Position.HasValue){if(copy.Skill==null)SkillsV3.CastFreeAt(copy.Id,copy.Strength,copy.Position.Value);else SkillsV3.CastCopyAt(UnitWithId(copy.Id),copy.Skill,copy.Strength,copy.Position.Value);}
+              else if(copy.Skill==null)SkillsV3.CastFree(copy.Id,copy.Strength);else SkillsV3.CastCopy(UnitWithId(copy.Id),copy.Skill,copy.Strength);SkillsV3.PageCopyContext=false; }
+            v3FreeCast = false;
             foreach (UnitState unit in StableUnits)
             {
                 V3Status status=V3State(unit);
@@ -102,8 +116,8 @@ namespace ArcaneBrigade
             Bonds.ClearSupportRequests();
         }
 
-        private void QueueV3Copy(UnitState unit,float strength)
-        { if(unit!=null && v3Copies.Count<RulesV3Tuning.CopyCapacity) v3Copies.Enqueue(new V3Copy { Id=unit.Id,Strength=strength }); }
+        private void QueueV3Copy(UnitState unit,float strength,float delay=0,Vector2? position=null,bool page=false)
+        { if(unit!=null && v3Copies.Count<RulesV3Tuning.CopyCapacity) v3Copies.Enqueue(new V3Copy { Id=unit.Id,Strength=strength,ReadyAt=Elapsed+delay,Position=position,Page=page }); }
 
         private void ApplyV3Friend(SkillFriendRequest request)
         {
@@ -211,7 +225,7 @@ namespace ArcaneBrigade
             for(int i=0;i<v3Constructs.Length;i++)
             {
                 V3Construct wall=v3Constructs[i];
-                if(wall.Active && wall.Bullets && wall.Until>Elapsed && (V3SegmentsCross(shot.Position,shot.Position+shot.Velocity*dt,wall.Start,wall.End) || CompanionSkillRuntime.Contains(SkillShape.Line,wall.Start,wall.End,wall.Radius+shot.Radius,shot.Position+shot.Velocity*dt))) return true;
+                if(wall.Active && wall.Bullets && wall.Until>Elapsed && (V3SegmentsCross(shot.Position,shot.Position+shot.Velocity*dt,wall.Start,wall.End) || CompanionSkillRuntime.Contains(SkillShape.Line,wall.Start,wall.End,wall.Radius+shot.Radius,shot.Position+shot.Velocity*dt))){Bonds.OnWallAbsorbed(shot.Damage);return true;}
             }
             return false;
         }
@@ -234,13 +248,19 @@ namespace ArcaneBrigade
                 case BondSupportKind.Page: AddV3Entity(RulesV3EntityKind.Page,request.Rule,request.Position,value:request.Amount);break;
                 case BondSupportKind.Speed: if(status!=null){status.AttackSpeed=request.Amount;status.AttackUntil=Elapsed+request.Duration;}break;
                 case BondSupportKind.Transform: if(status!=null){status.Damage=request.Amount;status.DamageUntil=Elapsed+request.Duration;}break;
-                case BondSupportKind.Crown: if(unit!=null)v3CrownedId=unit.Id;break;
+                case BondSupportKind.Crown: if(unit!=null)v3CrownedIds.Add(unit.Id);break;
                 case BondSupportKind.Dash: if(unit!=null)unit.Position=ClampPosition(Vector2.MoveTowards(unit.Position,V3CrowdCenter(unit.Position),request.Amount),unit.Definition.Radius);break;
                 case BondSupportKind.PiercingVolley: v3PiercingVolley=true;break;
-                case BondSupportKind.SkillCopy: case BondSupportKind.ForceCast: QueueV3Copy(unit,request.Amount); break;
+                case BondSupportKind.SkillCopy: case BondSupportKind.ForceCast: QueueV3Copy(unit,request.Amount,request.Duration,request.HasCopyPosition?(Vector2?)request.CopyPosition:null); break;
+                case BondSupportKind.SkillFill: if(unit!=null){if(request.Rule=="quicksoles-refund-seconds")SkillsV3.RefundSeconds(unit.Id,request.Amount);else SkillsV3.Refund(unit.Id,request.Amount);}break;
+                case BondSupportKind.DamageBuff: if(status!=null){status.Damage=request.Amount;status.DamageUntil=Elapsed+request.Duration;}break;
+                case BondSupportKind.CritBuff: if(status!=null){status.Crit=request.Amount;status.CritUntil=Elapsed+request.Duration;}break;
+                case BondSupportKind.ReviveDelay: Mortality.ReviveSooner(unit,Mathf.Max(0,MortalityTuning.RiseSeconds-request.Amount));break;
+                case BondSupportKind.ArmorBreak: if(unit!=null && unit.Faction==Faction.Enemy)EnemyRulesV3?.BreakArmor(unit,request.Amount);break;
                 case BondSupportKind.Coin: Gold=RunSession.BoundedCounter((long)Gold+Mathf.RoundToInt(request.Amount)); break;
                 case BondSupportKind.Reroll: RulesV3Rerolls+=Mathf.RoundToInt(request.Amount); break;
                 case BondSupportKind.Wall:
+                    if(request.Rule=="bastion-wall"){v3BastionWallUntil=Elapsed+request.Duration;v3WallShieldRefills.Clear();}
                     AddV3Wall(request.Position-Vector2.right*request.Radius,request.Position+Vector2.right*request.Radius,RulesV3Tuning.ContactPadding,request.Duration*(TraitsV3?.BastionDurationScale??1),unit==null?0:unit.Id); break;
                 case BondSupportKind.Pull:
                     foreach(UnitState enemy in StableUnits) if(enemy.Alive && enemy.Faction==Faction.Enemy && (enemy.Position-request.Position).sqrMagnitude<=request.Radius*request.Radius)
@@ -255,21 +275,24 @@ namespace ArcaneBrigade
         private float V3HitDamage(UnitState target,float damage,Faction source,CombatCause cause,WeaponDefinition weapon,Vector2 direction)
         {
             V3Status status=V3State(target), attacker=V3State(UnitWithId(cause.SourceUnitId));
+            if(target.Faction==Faction.Enemy && Mortality.ShieldAmount(UnitWithId(cause.SourceUnitId))>0)damage*=Bonds.ShieldedDamageScale;
             if(attacker!=null)
             {
                 if(attacker.DamageUntil>Elapsed) damage*=1+attacker.Damage;
                 if(attacker.WeakenUntil>Elapsed) damage*=1-attacker.Weaken;
             }
+            if(source==Faction.Enemy && Bonds.EnemyMissChance(UnitWithId(cause.SourceUnitId))>0 && combatRandom.NextDouble()<Bonds.EnemyMissChance(UnitWithId(cause.SourceUnitId)))return 0;
             if(source==Faction.Enemy && EnemyRulesV3!=null) damage=EnemyRulesV3.ModifyOutgoing(UnitWithId(cause.SourceUnitId),target,damage);
             if(target.Faction==Faction.Enemy)
             { if(status!=null && status.MarkUntil>Elapsed) damage*=1+status.Mark;
-                return EnemyRulesV3==null?damage:EnemyRulesV3.ModifyIncoming(target,damage,UnitWithId(cause.SourceUnitId),weapon,direction); }
+                return EnemyRulesV3==null?damage:EnemyRulesV3.ModifyIncoming(target,damage,UnitWithId(cause.SourceUnitId),weapon,direction,Bonds.ArmorIgnoredFor(UnitWithId(cause.SourceUnitId))); }
+            if(Bonds.DodgeChance>0 && combatRandom.NextDouble()<Bonds.DodgeChance){Bonds.OnDodge(target);return 0;}
             if(v3TeamReflectHits>0 && v3TeamReflectUntil>Elapsed){v3TeamReflectHits--;V3ReflectArea(target,UnitWithId(cause.SourceUnitId),damage);return 0;}
             if(status!=null)
             {
                 if(status.UntouchableUntil>Elapsed) return 0;
                 if(status.ReflectHits>0 && status.ReflectUntil>Elapsed) { status.ReflectHits--;V3ReflectArea(target,UnitWithId(cause.SourceUnitId),damage);return 0; }
-                if(status.ArmorUntil>Elapsed) damage=RunModifierRules.AfterArmor(damage,status.Armor);
+
                 if(!v3Sharing && status.ShareUntil>Elapsed)
                 {
                     UnitState receiver=UnitWithId(status.ShareSource);
@@ -281,8 +304,17 @@ namespace ArcaneBrigade
                 }
             }
             if(!v3Sharing) damage=Bonds.AdjustFriendDamage(target,damage);
-            if(target.Faction==Faction.Companion)damage=RunModifierRules.AfterArmor(damage,catalog.Armor+(Bonds.ArmorBonus+Bonds.MonolithArmor(target)+Bonds.EdictArmor)*RunModifierRules.ArmorPoint);
+            damage=RunModifierRules.AfterArmor(damage, FriendArmorPoints(target)*RunModifierRules.ArmorPoint);
             return Mortality.ModifyIncomingDamage(target,damage);
+        }
+        public float FriendArmorPoints(UnitState unit)
+        {
+            if(unit == null || unit.Faction == Faction.Enemy) return 0;
+            V3Status status=V3State(unit);
+            float extra=Bonds.ArmorBonusFor(unit)+Bonds.MonolithArmor(unit)+Bonds.EdictArmorFor(unit);
+            if(status!=null && status.ArmorUntil>Elapsed)extra+=status.Armor;
+            if(unit==Champion)extra+=catalog.Armor/RunModifierRules.ArmorPoint+MapBoostValue(MapStat.Armor)+(HeroRulesV3?.ArmorBonus??0);
+            return MortalityRuntime.ArmorPoints(unit,extra);
         }
         private float V3CriticalBonus(UnitState unit)
         { V3Status status=V3State(unit);return (status!=null && status.CritUntil>Elapsed?status.Crit:0)+(unit==Champion?HeroRulesV3?.CriticalBonus??0:HeroRulesV3?.FriendCriticalBonus(unit)??0); }

@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             public Vector2 Position, End;
             public float Next, Until, Strength, Radius;
             public int Remaining;
-            public bool Trap, Wake;
+            public bool Trap, Wake, PageCopy;
             public UnitState HealTarget;
             public float HealFraction;
             public Vector2 SourcePosition;
@@ -47,13 +47,22 @@ namespace ArcaneBrigade
         public event Action<SkillEnemyEffectRequest> EnemyEffectRequested;
         public event Action<SkillFriendRequest> FriendRequested;
         public event Action<SkillConstructRequest> ConstructRequested;
+        public Func<UnitState,float> BondFillBonus;
+        public Func<bool> HoldCasts;
+        public bool PageCopyContext;
+        private struct HeldCast { public UnitState Source; public CompanionSkillDefinition Skill; public float Strength; public int Number; public Vector2? Position; public bool PageCopy; }
+        private readonly HeldCast[] heldCasts=new HeldCast[CompanionSkillTuning.HeldCastCapacity];
+        private int heldCount;
+        private Vector2? castPosition;
+        public int HeldCastCount => heldCount;
         public float Time => time;
         public int CastCount { get; private set; }
         public int DroppedZones { get; private set; }
 
         public void ResetWave(IList<UnitState> roster, UnitState champion, int waveNumber, uint seed=1)
         {
-            units=roster; hero=champion; wave=waveNumber; count=0; time=0; randomState=seed==0?1:seed;
+            heldCount=0; Array.Clear(heldCasts,0,heldCasts.Length);
+            units=roster; hero=champion; wave=waveNumber; count=0; time=0; PageCopyContext=false; randomState=seed==0?1:seed;
             lastSkill=null; CastCount=0; DroppedZones=0; lastHeroDamage=0;
             Array.Clear(active,0,active.Length); Array.Clear(bars,0,bars.Length);
             for(int i=0;i<units.Count && count<bars.Length;i++)
@@ -71,6 +80,8 @@ namespace ArcaneBrigade
         { for(int i=0;i<count;i++) if(bars[i].Unit.Id==id) bars[i].PauseUntil=Mathf.Max(bars[i].PauseUntil,time+seconds); }
         public void Accelerate(int id,float amount,float seconds)
         { for(int i=0;i<count;i++) if(bars[i].Unit.Id==id) { bars[i].Speed=amount; bars[i].SpeedUntil=time+seconds; } }
+        public void RefundSeconds(int id,float seconds)
+        { for(int i=0;i<count;i++)if(bars[i].Unit.Id==id)bars[i].Fill=Mathf.Min(bars[i].Skill.Tuning.Bar,bars[i].Fill+Mathf.Max(0,seconds)); }
         public void Refund(int id,float fraction)
         { for(int i=0;i<count;i++) if(bars[i].Unit.Id==id) bars[i].Fill=Mathf.Min(bars[i].Skill.Tuning.Bar,bars[i].Fill+bars[i].Skill.Tuning.Bar*fraction); }
         public bool IsRooted(int id)
@@ -110,11 +121,16 @@ namespace ArcaneBrigade
         {
             if(units==null || dt<=0) return;
             time+=dt;
+            if(!(HoldCasts?.Invoke()??false) && heldCount>0)
+            {
+                int ready=heldCount;heldCount=0;
+                for(int h=0;h<ready;h++){HeldCast held=heldCasts[h];heldCasts[h]=default;if(held.Source.Alive){castPosition=held.Position;PageCopyContext=held.PageCopy;Cast(held.Source,held.Skill,held.Strength,held.Number);castPosition=null;PageCopyContext=false;}}
+            }
             for(int i=0;i<count;i++)
             {
                 BarState state=bars[i];
                 if(!state.Unit.Alive || state.PauseUntil>time) continue;
-                state.Fill+=dt*Mathf.Max(0,1+globalFillBonus+(state.SpeedUntil>time?state.Speed:0));
+                state.Fill+=dt*Mathf.Max(0,1+state.Unit.Definition.SkillHaste+globalFillBonus+(BondFillBonus?.Invoke(state.Unit)??0)+(state.SpeedUntil>time?state.Speed:0));
                 int safety=0;
                 while(state.Fill>=state.Skill.Tuning.Bar && safety++<CompanionSkillTuning.MaxCastsPerTick)
                 {
@@ -149,7 +165,9 @@ namespace ArcaneBrigade
                         if(action.Skill.Mechanic==SkillMechanic.Tether) action.End=hero.Position;
                     }
                     if(action.Skill.CompanionId=="StormKitten") action.Position=Vector2.MoveTowards(action.Position,Cluster(action.Position),action.Skill.Tuning.Growth);
+                    bool previousPage=PageCopyContext;PageCopyContext=action.PageCopy;
                     Execute(action.Source,action.Skill,action.Position,action.End,action.Radius,action.Strength,action.Wake);
+                    PageCopyContext=previousPage;
                 }
                 action.Remaining--; action.Next+=CompanionSkillTuning.TickInterval;
                 action.Radius+=action.Skill.Tuning.Growth;
@@ -158,6 +176,10 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>Explicit free copies are permitted; they do not add hit-based bar charge or recurse.</summary>
+        public void CastFreeAt(int sourceId,float strength,Vector2 position)
+        { Vector2? previous=castPosition;castPosition=position;try{CastFree(sourceId,strength);}finally{castPosition=previous;} }
+        public void CastCopyAt(UnitState source,string skillId,float strength,Vector2 position)
+        { Vector2? previous=castPosition;castPosition=position;try{CastCopy(source,skillId,strength);}finally{castPosition=previous;} }
         public void CastFree(int sourceId,float strength)
         { for(int i=0;i<count;i++) if(bars[i].Unit.Id==sourceId && bars[i].Unit.Alive) Cast(bars[i].Unit,bars[i].Skill,strength,bars[i].Casts); }
         public void CastCopy(UnitState source,string skillId,float strength)
@@ -165,8 +187,13 @@ namespace ArcaneBrigade
 
         private void Cast(UnitState source,CompanionSkillDefinition skill,float strength,int castNumber)
         {
+            if(HoldCasts?.Invoke()??false)
+            {
+                if(heldCount<heldCasts.Length)heldCasts[heldCount++]=new HeldCast{Source=source,Skill=skill,Strength=strength,Number=castNumber,Position=castPosition,PageCopy=PageCopyContext};
+                return;
+            }
             SkillProfile p=skill.Tuning;
-            Vector2 origin=source.Position, center=Cluster(origin), direction=source.Facing;
+            Vector2 origin=source.Position, center=castPosition??Cluster(origin), direction=castPosition.HasValue?(castPosition.Value-origin).normalized:source.Facing;
             if(direction.sqrMagnitude<CompanionSkillTuning.Epsilon) direction=Vector2.right;
             Vector2 end=origin+direction.normalized*p.Length;
             if(skill.Mechanic==SkillMechanic.Line || skill.Mechanic==SkillMechanic.Dash || skill.Mechanic==SkillMechanic.Channel) center=origin;
@@ -243,7 +270,7 @@ namespace ArcaneBrigade
         {
             for(int i=0;i<active.Length;i++) if(!active[i].Active)
             {
-                active[i]=new ActiveSkill { Active=true,Source=source,SourcePosition=source.Position,Skill=skill,Position=position,End=end,Radius=radius,Strength=strength,Next=next,Until=next+Mathf.Max(skill.Tuning.Duration,repeats*CompanionSkillTuning.TickInterval),Remaining=repeats,Trap=trap,Wake=wake };
+                active[i]=new ActiveSkill { Active=true,Source=source,SourcePosition=source.Position,Skill=skill,Position=position,End=end,Radius=radius,Strength=strength,Next=next,Until=next+Mathf.Max(skill.Tuning.Duration,repeats*CompanionSkillTuning.TickInterval),Remaining=repeats,Trap=trap,Wake=wake,PageCopy=PageCopyContext };
                 return;
             }
             DroppedZones++;
@@ -272,7 +299,7 @@ namespace ArcaneBrigade
                     EnemyEffectRequested?.Invoke(new SkillEnemyEffectRequest(source,target,skill.CompanionId,enemy,position,(target.Position-position).normalized,p.Status,enemy==SkillEnemyEffect.Blind?CompanionSkillTuning.CitrusBlind:p.Amount,p.Secondary,p.StackCap));
                 float damage=damageOverride??p.Damage;
                 if(damage>0)
-                    DamageRequested?.Invoke(new SkillDamageRequest(source,target,skill.CompanionId,weapon*damage*strength*(p.Duration>0?1:p.Repeats)));
+                    DamageRequested?.Invoke(new SkillDamageRequest(source,target,skill.CompanionId,weapon*damage*strength*(p.Duration>0?1:p.Repeats),PageCopyContext));
                 if(skill.CompanionId=="CourtHerald") Construct(source,target,skill,"coins",target.Position,end,p.Economy,1);
             }
             if(skill.CompanionId=="TeaDragon" && hits>0) Friend(source,hero,skill,SkillFriendEffect.HealFlat,hits*p.FlatHeal*strength,0);
@@ -285,7 +312,7 @@ namespace ArcaneBrigade
             Vector2 end=source.Position+direction.normalized*skill.Tuning.Length;
             for(int i=0;i<units.Count;i++)
                 if(IsEnemy(units[i]) && Contains(SkillShape.Line,source.Position,end,skill.Tuning.Radius,units[i].Position))
-                    DamageRequested?.Invoke(new SkillDamageRequest(source,units[i],skill.CompanionId,damage*strength));
+                    DamageRequested?.Invoke(new SkillDamageRequest(source,units[i],skill.CompanionId,damage*strength,PageCopyContext));
         }
         private void Protect(UnitState source,CompanionSkillDefinition skill,Vector2 position,Vector2 end,float strength,int casts)
         {

@@ -563,7 +563,7 @@ namespace ArcaneBrigade
             if (companion) unit.BodyHeight *= CompanionTierScaling.Body(tier);
             K10StatRules.ApplyUnit(this, catalog, unit, source, weapon, tier, companion);
             if (companion) unit.Health = Mathf.Max(MortalityTuning.MinimumMaxHealth, (source.Health + Bonus(ItemEffect.Health, ModifierScope.Companions)) * K10StatRules.Factor(Bonus(ItemEffect.HealthCorrection, ModifierScope.Companions)));
-            unit.Health *= 1 + RulesV3BondProgress.GrowthWaves * BondTuning.GrowthPerWave + (!companion && State.ChampionId=="RootOracle" && RulesV3HeroProgress.Relics.Contains("RootOracle-2")?HeroRulesV3Tuning.RootHealth:0);
+            unit.Health *= 1 + RulesV3BondProgress.GrowthWaves * BondTuning.GrowthPerWave * RulesV5GrowthShare(source, companion) + (!companion && State.ChampionId=="RootOracle" && RulesV3HeroProgress.Relics.Contains("RootOracle-2")?HeroRulesV3Tuning.RootHealth:0);
             if (!companion && source.HeroMechanic == HeroMechanic.SoloMaw) { unit.Weapon.Damage *= 1.6f * (1 + Mathf.Min(1, Mathf.Max(0, State.Wave - 1) * .04f)); unit.Weapon.Range *= 1.4f; }
             if (!companion && source.Id == "LoneJelly") unit.Weapon.Damage *= JourneyBalance.LoneJellyDamage(State.Wave);
             if (!companion && source.HeroMechanic == HeroMechanic.RootedOracle) { unit.Weapon.Damage *= 1.8f; unit.Weapon.Range *= 1.6f; }
@@ -584,6 +584,7 @@ namespace ArcaneBrigade
             KitCompileUnit(unit, source, companion);
             ApplySecretUnit(unit, companion);
             OctoberBalance.CompileAlly(unit, State.Wave);
+            CompileRulesV5Friend(unit, source, tier, companion);
             return unit;
         }
 
@@ -884,7 +885,7 @@ namespace ArcaneBrigade
             State.RerollsThisShop++;
             if (MechanicStacks(RelicMechanic.HagglersAbacus) > 0) ApplyKitPrices();
             OctoberRefreshed();
-            if (RulesV3FreeRerolls > 0) RulesV3FreeRerolls--;
+            if (RulesV3FreeRerolls > 0){RulesV3FreeRerolls--;new BondRuntime(catalog.Bonds,BondCounts,RulesV3BondProgress).OnCloverSpent();}
             RulesV3Rerolled();
             Notice = "Shop refreshed.";
             return true;
@@ -1119,6 +1120,7 @@ namespace ArcaneBrigade
             OfferWiseHero();
             ApplyHeroOrder();
             ApplyKitPrices(); kitRarerRoll = false;
+            if(rollSpecial && State.SpecialShopRollWave!=State.Wave)BondV5ShopRules.Apply(RulesV3BondProgress,State.Offers,items);
             if (!rollSpecial) return;
             if (State.SpecialShopRollWave == State.Wave) return;
             State.SpecialShopRollWave = State.Wave;

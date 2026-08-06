@@ -9,8 +9,8 @@ namespace ArcaneBrigade
         public const float EmberSeconds = 4, PhoenixSeconds = 15, InfernoSeconds = 5;
         public const int InfernoHeat = 100;
         public const float InfernoMultiplier = 3, ChillSlow = .06f, FreezeSeconds = 1.5f, FrozenBonus = .25f;
-        public const float ShatterDamage = 1, IceSoldierSeconds = 12, BlizzardPeriod = 20;
-        public const int IceSoldierLimit = 3, WinterStacks = 2;
+        public const float ShatterDamage = 1.5f, IceSoldierSeconds = 12, BlizzardPeriod = 20;
+        public const int IceSoldierLimit = 4, WinterStacks = 2;
         public const int StormEvery = 6, ChainTargets = 3, DischargeStacks = 5, ThunderHits = 20;
         public const float ChainDamage = .6f, DischargeDamage = .5f, UnderdogHealth = .5f, UnderdogBonus = .15f;
         public const float ThunderStun = 1, CloudPeriod = 2, CloudDamage = 1;
@@ -25,7 +25,7 @@ namespace ArcaneBrigade
         public const float ShantySpeed = .03f, ShantySeconds = 4;
         public const int MaskEvery = 5, MaskFourEvery = 4, MaskSixEvery = 3;
         public const float MaskMultiplier = 2, ComboPerLink = .01f, ComboCap = .1f, ComboHighCap = .2f;
-        public const float StillSeconds = 2, LanternBonus = .15f, LanternRadius = 6, LitBonus = .08f, LighthouseBonus = .25f;
+        public const float StillSeconds = 2, LanternBonus = .2f, LanternRadius = 6, LitBonus = .08f, LighthouseBonus = .25f;
         public const float RootRegen = .2f, RootHighRegen = .4f, RootArmor = 2, RootHighArmor = 4;
         public const int CloverEvery = 20, CloverFourEvery = 12, SnackEvery = 15, SnackFourEvery = 10;
         public const float SnackHeal = .03f, ApplauseWindow = 5;

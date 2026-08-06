@@ -6,17 +6,17 @@ namespace ArcaneBrigade
     public static class EnemyRulesV3Catalog
     {
         public static readonly EnemyRuleDefinition[] Definitions={
-            new EnemyRuleDefinition { Kind=EnemyKindV3.CrumbSwarm, Id="CrumbSwarm", Name="Crumb Swarm", Night=EnemyRulesV3Tuning.Nights[0], Role="Fodder", Skill="spawns 30 to 60 at once; each dies in one hit; when 20 are alive close together they merge into a Crumb Giant", Telegraph="a crowd of tiny sprites; the giant has a crown of crumbs" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Marcher, Id="Marcher", Name="Marcher", Night=EnemyRulesV3Tuning.Nights[1], Role="Fodder", Skill="moves in ranks; each neighbour adds +5% speed to everyone (up to +30%) so a thick rank rushes", Telegraph="ranks with matching stripes" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Pillbug, Id="Pillbug", Name="Pillbug", Night=EnemyRulesV3Tuning.Nights[2], Role="Fodder", Skill="rolls into a ball and charges the nearest friend in a straight line, then stops dizzy for 1.5 s", Telegraph="a rolling stripe on the ground, solid red" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Flanker, Id="Flanker", Name="Flanker", Night=EnemyRulesV3Tuning.Nights[3], Role="Fodder", Skill="at the wave start it leaps behind the hero and attacks from behind", Telegraph="a blue arrow on the ground" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.CrumbSwarm, Id="CrumbSwarm", Name="Crumb Swarm", Night=EnemyRulesV3Tuning.Nights[0], Role="Fodder", Body="comes 30 to 60 at once; each dies in one hit", Skill=null, Telegraph="a crowd of tiny sprites; the giant has a crown of crumbs" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Marcher, Id="Marcher", Name="Marcher", Night=EnemyRulesV3Tuning.Nights[1], Role="Fodder", Body="walks in tight ranks", Skill=null, Telegraph="ranks with matching stripes" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Pillbug, Id="Pillbug", Name="Pillbug", Night=EnemyRulesV3Tuning.Nights[2], Role="Fodder", Body="rolls fast in straight lines", Skill=null, Telegraph="a rolling stripe on the ground, solid red" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Flanker, Id="Flanker", Name="Flanker", Night=EnemyRulesV3Tuning.Nights[3], Role="Fodder", Body="enters behind the hero", Skill=null, Telegraph="a blue arrow on the ground" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Smasher, Id="Smasher", Name="Smasher", Night=EnemyRulesV3Tuning.Nights[4], Role="Brute", Skill="a telegraphed slam: area damage and a short stun on friends", Telegraph="a filled red circle for 1 s" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Stitcher, Id="Stitcher", Name="Stitcher", Night=EnemyRulesV3Tuning.Nights[5], Role="Support", Skill="when another of its kind falls near it, it heals to full; kill the group together", Telegraph="stitches glow between members" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Grower, Id="Grower", Name="Grower", Night=EnemyRulesV3Tuning.Nights[6], Role="Brute", Skill="gains +10% health and +5% attack for each wave stage alive", Telegraph="grows visibly larger" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Decoy, Id="Decoy", Name="Decoy", Night=EnemyRulesV3Tuning.Nights[7], Role="Trick", Skill="looks like a rare enemy; dies in one hit and wastes a skill cast", Telegraph="a faint wobble" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Grower, Id="Grower", Name="Grower", Night=EnemyRulesV3Tuning.Nights[6], Role="Brute", Body="larger and tougher each wave stage", Skill=null, Telegraph="grows visibly larger" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Decoy, Id="Decoy", Name="Decoy", Night=EnemyRulesV3Tuning.Nights[7], Role="Trick", Body="looks like a rare enemy; dies in one hit", Skill=null, Telegraph="a faint wobble" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Shielder, Id="Shielder", Name="Shielder", Night=EnemyRulesV3Tuning.Nights[8], Role="Support", Skill="shields the group behind it (already in the game)", Telegraph="a dome over the group" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Splitter, Id="Splitter", Name="Splitter", Night=EnemyRulesV3Tuning.Nights[9], Role="Brute", Skill="splits in two when it dies, then each half in two (already in the game)", Telegraph="a seam on its body" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Blinker, Id="Blinker", Name="Blinker", Night=EnemyRulesV3Tuning.Nights[10], Role="Trick", Skill="blinks behind the hero (already in the game)", Telegraph="a flash on the ground" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Splitter, Id="Splitter", Name="Splitter", Night=EnemyRulesV3Tuning.Nights[9], Role="Brute", Body="splits in two when it dies", Skill=null, Telegraph="a seam on its body" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Blinker, Id="Blinker", Name="Blinker", Night=EnemyRulesV3Tuning.Nights[10], Role="Trick", Body="moves in short hops", Skill=null, Telegraph="a flash on the ground" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.SniperDoll, Id="SniperDoll", Name="Sniper Doll", Night=EnemyRulesV3Tuning.Nights[11], Role="Ranged", Skill="stands outside the arena and shoots the lowest-health friend; a thin line shows its target for 1 s first", Telegraph="a red laser line" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Leech, Id="Leech", Name="Leech", Night=EnemyRulesV3Tuning.Nights[12], Role="Hunter", Skill="latches onto a friend and drains it, healing itself; hits on the friend also hit the leech", Telegraph="a thread between the leech and the friend" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Bomber, Id="Bomber", Name="Bomber", Night=EnemyRulesV3Tuning.Nights[13], Role="Brute", Skill="swells, then bursts and leaves a poison pool on friends' ground", Telegraph="a swelling red body" },
@@ -24,24 +24,24 @@ namespace ArcaneBrigade
             new EnemyRuleDefinition { Kind=EnemyKindV3.Buffer, Id="Buffer", Name="Buffer", Night=EnemyRulesV3Tuning.Nights[15], Role="Support", Skill="cheers: every enemy within 8 units gains +30% speed for 4 s", Telegraph="a horn note ring" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.BannerBearer, Id="BannerBearer", Name="Banner Bearer", Night=EnemyRulesV3Tuning.Nights[16], Role="Support", Skill="while alive every enemy within 6 units deals +20% damage; the banner drops on death and can be picked up by friends", Telegraph="a waving banner" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Charger, Id="Charger", Name="Charger", Night=EnemyRulesV3Tuning.Nights[17], Role="Hunter", Skill="charges the farthest friend in a line that passes through everything; hitting a wall stuns it", Telegraph="a long red strip on the ground" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Thief, Id="Thief", Name="Thief", Night=EnemyRulesV3Tuning.Nights[18], Role="Trick", Skill="grabs dropped coins and runs; killing it returns 110% of what it took", Telegraph="a sack on its back" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Thief, Id="Thief", Name="Thief", Night=EnemyRulesV3Tuning.Nights[18], Role="Trick", Body="grabs dropped coins and runs; killing it returns 110%", Skill=null, Telegraph="a sack on its back" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Trapper, Id="Trapper", Name="Trapper", Night=EnemyRulesV3Tuning.Nights[19], Role="Trick", Skill="lays spikes, cocoons or mines under friends' feet", Telegraph="small marked tiles" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Marker, Id="Marker", Name="Marker", Night=EnemyRulesV3Tuning.Nights[20], Role="Support", Skill="marks the hero: every enemy turns toward the hero", Telegraph="a target over the hero" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.ConeBrute, Id="ConeBrute", Name="Cone-brute", Night=EnemyRulesV3Tuning.Nights[21], Role="Brute", Skill="its hits splash in a cone behind the target", Telegraph="a cone shape on the ground" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.EggLayer, Id="EggLayer", Name="Egg Layer", Night=EnemyRulesV3Tuning.Nights[22], Role="Support", Skill="lays an egg that hatches into 3 small enemies after 5 s unless it is destroyed", Telegraph="a shaking egg" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.ShieldWall, Id="ShieldWall", Name="Shield Wall", Night=EnemyRulesV3Tuning.Nights[23], Role="Brute", Skill="front-facing shield: immune to hits from the front; hit it from the side or behind", Telegraph="a big tower shield" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.ShieldWall, Id="ShieldWall", Name="Shield Wall", Night=EnemyRulesV3Tuning.Nights[23], Role="Brute", Body="immune to hits from the front", Skill=null, Telegraph="a big tower shield" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.MagnetBrute, Id="MagnetBrute", Name="Magnet Brute", Night=EnemyRulesV3Tuning.Nights[24], Role="Brute", Skill="pulls friendly projectiles toward itself and absorbs them (a bullet sponge for projectile builds)", Telegraph="a horseshoe magnet and field lines" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Mourner, Id="Mourner", Name="Mourner", Night=EnemyRulesV3Tuning.Nights[25], Role="Support", Skill="when it dies every enemy within 8 units gains +40% speed for 5 s", Telegraph="a black veil" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Silencer, Id="Silencer", Name="Silencer", Night=EnemyRulesV3Tuning.Nights[26], Role="Control", Skill="a ring around it pauses the skill bars of friends inside for 3 s", Telegraph="a hushed ring on the ground" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.TimeEater, Id="TimeEater", Name="Time Eater", Night=EnemyRulesV3Tuning.Nights[27], Role="Control", Skill="an aura halves the skill-bar fill speed of friends within 6 units", Telegraph="a pale clock face" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Cleanser, Id="Cleanser", Name="Cleanser", Night=EnemyRulesV3Tuning.Nights[28], Role="Control", Skill="removes buffs and shields from friends in an area", Telegraph="white sparks" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Ambusher, Id="Ambusher", Name="Ambusher", Night=EnemyRulesV3Tuning.Nights[29], Role="Trick", Skill="invisible until 3 units away; jumps the lowest-health friend", Telegraph="a ripple in the ground" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.PhaseWalker, Id="PhaseWalker", Name="Phase Walker", Night=EnemyRulesV3Tuning.Nights[30], Role="Hunter", Skill="walks through walls and friends; taunts do not affect it", Telegraph="a wavering outline" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Ambusher, Id="Ambusher", Name="Ambusher", Night=EnemyRulesV3Tuning.Nights[29], Role="Trick", Body="hard to see until 3 units away", Skill=null, Telegraph="a ripple in the ground" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.PhaseWalker, Id="PhaseWalker", Name="Phase Walker", Night=EnemyRulesV3Tuning.Nights[30], Role="Hunter", Body="walks through walls and friends", Skill=null, Telegraph="a wavering outline" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Burrower, Id="Burrower", Name="Burrower", Night=EnemyRulesV3Tuning.Nights[31], Role="Hunter", Skill="tunnels under the arena and bursts up beneath a friend cluster", Telegraph="a moving mound, then a filled circle" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.KamikazeCandle, Id="KamikazeCandle", Name="Kamikaze Candle", Night=EnemyRulesV3Tuning.Nights[32], Role="Hunter", Skill="runs at the largest friend cluster and explodes in a wide area", Telegraph="a lit fuse" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.GravityImp, Id="GravityImp", Name="Gravity Imp", Night=EnemyRulesV3Tuning.Nights[33], Role="Control", Skill="pulls friends together into a clump (bad against area attacks, good for the enemy)", Telegraph="a spiral on the ground" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Shrieker, Id="Shrieker", Name="Shrieker", Night=EnemyRulesV3Tuning.Nights[34], Role="Control", Skill="a scream makes friends flee 1 s and breaks stillness effects", Telegraph="sound rings" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.GluttonousMouth, Id="GluttonousMouth", Name="Gluttonous Mouth", Night=EnemyRulesV3Tuning.Nights[35], Role="Trick", Skill="eats dropped coins and health pickups; kill it to get them back", Telegraph="a wide mouth" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.GluttonousMouth, Id="GluttonousMouth", Name="Gluttonous Mouth", Night=EnemyRulesV3Tuning.Nights[35], Role="Trick", Body="eats dropped coins and pickups; kill it to get them back", Skill=null, Telegraph="a wide mouth" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Rallier, Id="Rallier", Name="Rallier", Night=EnemyRulesV3Tuning.Nights[36], Role="Support", Skill="when it falls below 50% health every enemy within 8 units gains a 15% shield", Telegraph="a raised fist" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.MirrorImp, Id="MirrorImp", Name="Mirror Imp", Night=EnemyRulesV3Tuning.Nights[37], Role="Trick", Skill="reflects 30% of ranged damage while facing the hero", Telegraph="a mirror shield" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Reviver, Id="Reviver", Name="Reviver", Night=EnemyRulesV3Tuning.Nights[38], Role="Support", Skill="revives one fallen enemy within 8 units after 5 s; kill it first", Telegraph="a green cross over bodies" },
@@ -50,7 +50,7 @@ namespace ArcaneBrigade
             new EnemyRuleDefinition { Kind=EnemyKindV3.Binder, Id="Binder", Name="Binder", Night=EnemyRulesV3Tuning.Nights[41], Role="Control", Skill="chains two enemies: if one falls the other takes 40% of its health (Tethered in the game)", Telegraph="a chain between enemies" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Drainer, Id="Drainer", Name="Drainer", Night=EnemyRulesV3Tuning.Nights[42], Role="Control", Skill="drains coins or health of friends inside a zone", Telegraph="a pink spiral" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.Charmer, Id="Charmer", Name="Charmer", Night=EnemyRulesV3Tuning.Nights[43], Role="Control", Skill="charms one friend for 3 s: it attacks other friends", Telegraph="hearts over the friend" },
-            new EnemyRuleDefinition { Kind=EnemyKindV3.Immune, Id="Immune", Name="Immune", Night=EnemyRulesV3Tuning.Nights[44], Role="Brute", Skill="cannot be stunned or slowed; every 3rd attack is charged", Telegraph="a metallic sheen" },
+            new EnemyRuleDefinition { Kind=EnemyKindV3.Immune, Id="Immune", Name="Immune", Night=EnemyRulesV3Tuning.Nights[44], Role="Brute", Body="cannot be stunned or slowed", Skill=null, Telegraph="a metallic sheen" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.StormEye, Id="StormEye", Name="Storm-eye", Night=EnemyRulesV3Tuning.Nights[45], Role="Ranged", Skill="every 3rd attack chains lightning to 4 more targets", Telegraph="a crackling eye" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.ArmourGrower, Id="ArmourGrower", Name="Armour-grower", Night=EnemyRulesV3Tuning.Nights[46], Role="Brute", Skill="grows and slams, then has armour for 4 s (Armored in the game)", Telegraph="plates growing on its body" },
             new EnemyRuleDefinition { Kind=EnemyKindV3.MeteorCaller, Id="MeteorCaller", Name="Meteor Caller", Night=EnemyRulesV3Tuning.Nights[47], Role="Ranged", Skill="calls meteors onto the largest friend cluster (solid filled circles, 1.5 s)", Telegraph="filled red circles" },
@@ -95,14 +95,30 @@ namespace ArcaneBrigade
         public static bool Recognizes(UnitDefinition unit) => unit!=null && (Find(unit.Id)!=null || FindBoss(unit.Id)!=null);
         public static EnemyBossDefinition BossForNight(int night)
         { foreach(var boss in Bosses) if(boss.FirstNight==night || boss.RepeatNight==night)return boss; return null; }
+        public static EnemyBodyTier Tier(EnemyKindV3 kind)
+        {
+            switch(kind)
+            {
+                case EnemyKindV3.CrumbSwarm: case EnemyKindV3.Marcher: case EnemyKindV3.Pillbug: case EnemyKindV3.Flanker:
+                case EnemyKindV3.Decoy: case EnemyKindV3.Blinker: case EnemyKindV3.Ambusher: case EnemyKindV3.PhaseWalker: return EnemyBodyTier.Small;
+                case EnemyKindV3.Grower: case EnemyKindV3.Splitter: case EnemyKindV3.ShieldWall: case EnemyKindV3.Immune:
+                case EnemyKindV3.Thief: case EnemyKindV3.GluttonousMouth: return EnemyBodyTier.MediumPlain;
+                case EnemyKindV3.Smasher: case EnemyKindV3.SniperDoll: case EnemyKindV3.Bomber: case EnemyKindV3.Healer:
+                case EnemyKindV3.BannerBearer: case EnemyKindV3.EggLayer: case EnemyKindV3.KamikazeCandle: case EnemyKindV3.Charger: return EnemyBodyTier.MediumSkilled;
+                default: return EnemyBodyTier.LargeSpecial;
+            }
+        }
+        public static bool HasSkill(EnemyKindV3 kind) => Tier(kind)==EnemyBodyTier.MediumSkilled || Tier(kind)==EnemyBodyTier.LargeSpecial;
+        public static bool IsSmall(UnitDefinition unit) => Find(unit?.Id)?.Tier==EnemyBodyTier.Small;
+        public static bool IsLargeOrSpecial(UnitDefinition unit) => Find(unit?.Id)?.Tier==EnemyBodyTier.LargeSpecial;
         public static UnitDefinition Create(EnemyRuleDefinition row)
         {
             UnitDefinition unit=ScriptableObject.CreateInstance<UnitDefinition>();
             unit.Id=row.Id; unit.DisplayName=row.Name; unit.UnlockWave=row.Night;
             unit.Health=row.Kind==EnemyKindV3.CrumbSwarm || row.Kind==EnemyKindV3.Decoy?EnemyRulesV3Tuning.OneHitHealth:EnemyRulesV3Tuning.DefaultHealth;
-            unit.Speed=EnemyRulesV3Tuning.DefaultSpeed; unit.Radius=EnemyRulesV3Tuning.DefaultRadiusBody;
+            unit.Speed=EnemyRulesV3Tuning.DefaultSpeed*(row.Kind==EnemyKindV3.Pillbug?EnemyRulesV3Tuning.ChargedScale:1); unit.Radius=EnemyRulesV3Tuning.DefaultRadiusBody;
             unit.ContactDamage=EnemyRulesV3Tuning.DefaultDamage; unit.ContactInterval=EnemyRulesV3Tuning.DefaultCooldown;
-            unit.Description=row.Skill; unit.Weapon=CreateWeapon(row.Id,row.Role=="Ranged");
+            unit.Description=row.HasSkill?row.Skill:row.Body; unit.Weapon=CreateWeapon(row.Id,row.Role=="Ranged");
             return unit;
         }
         public static UnitDefinition CreateBoss(EnemyBossDefinition row)
@@ -133,4 +149,3 @@ namespace ArcaneBrigade
         }
     }
 }
-

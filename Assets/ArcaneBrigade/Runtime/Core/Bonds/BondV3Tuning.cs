@@ -9,11 +9,11 @@ namespace ArcaneBrigade
         public const float SingularityDamage = .5f;
         public const int MajorCount = 20, MinorCount = 32, RosterCount = 120, MajorMembers = 9, SmallMinorMembers = 5, LargeMinorMembers = 7;
         public const int FirstStep = 2, SecondStep = 4, ThirdStep = 6, FourthStep = 8;
-        public const float MealBonus = .12f, MealFade = 20, FeastPeriod = 12, FeastHighPeriod = 6, FeastSeconds = 6, FeastSpeed = .15f, FeastHeal = .05f, HearthLeech = .01f;
+        public const float MealBonus = .15f, MealFade = 20, FeastPeriod = 12, FeastHighPeriod = 6, FeastSeconds = 6, FeastSpeed = .15f, FeastHeal = .05f, HearthLeech = .01f;
         public const float SoakVulnerability = .08f, SoakSeconds = 10, RiptidePeriod = 10, RiptidePush = 2, WeatherPeriod = 20, WeatherBonus = .15f, TideWeatherBonus = .25f;
         public const int TideEvery = 5, PiercingVolley = 10, SproutLimit = 4, DieEvery = 5, DieFaces = 6, StarRerollEvery = 5, EchoEvery = 8, TurretLimit = 3;
-        public const float MomentumPerSecond = .01f, MomentumCap = .1f, MomentumIdle = 2, GalePeriod = 8, GaleSpeed = .2f, GaleSeconds = 4, GrowthPerWave = .02f;
-        public const float StarChance = .2f, StarDamage = 1, CelestialSeconds = 8, RecordBonus = .12f, RecordGrowth = .01f, CompleteSetWeakness = .15f;
+        public const float MomentumPerSecond = .01f, MomentumCap = .15f, MomentumIdle = 2, GalePeriod = 8, GaleSpeed = .2f, GaleSeconds = 4, GrowthPerWave = .02f;
+        public const float StarChance = .15f, StarDamage = 1, CelestialSeconds = 8, RecordBonus = .12f, RecordGrowth = .01f, CompleteSetWeakness = .15f;
         public const float StoneReflect = .3f, CollisionMultiplier = 1, EarthquakePeriod = 12, EarthquakeStun = .5f, ClockFill = .2f, ClockStopPeriod = 20, ClockStopSeconds = 1.5f, OverclockSeconds = 10;
         public const float BulwarkShield = .15f, DamageShare = .25f, ShareReduction = .3f, WallPeriod = 15, WallSeconds = 6, LastStandSeconds = 3, LastStandArmor = 3;
         public const float SpiritSeconds = 6, SpiritReviveReduction = 4, SpiritHeal = .01f, RevenantHealth = .5f, RealmSeconds = 15, SoulsDamage = .01f;
@@ -27,70 +27,175 @@ namespace ArcaneBrigade
         public const float CopyStrength = .5f, RerollGrowth = .005f, RerollHighGrowth = .01f, HatDiscount = .25f, HatHighDiscount = .4f, DashPeriod = 8, DashHighPeriod = 6, DashDistance = 1, DashSeconds = .2f;
         public const float BallRetention = .7f, PaperDistance = .1f, ExhibitHeal = .2f, ChoiceBonus = .1f, JackpotSpeed = .1f, JackpotSeconds = 6, WaveBuffSeconds = 9999;
         public const int JackpotCasts = 5, JackpotCoins = 3, TreeCoins = 5, SmallChoiceCount = 3, CashoutWaves = 3, BoomerangHighReturns = 2;
-        public static readonly BondDefinition[] V3Definitions = {
-            M("hearth", "Hearth", ItemEffect.Damage, .04f, (4, ItemEffect.AttackSpeed, .08f), (6, ItemEffect.Health, .15f), (8, ItemEffect.Damage, .10f), (8, ItemEffect.AttackSpeed, .10f)),
-            M("ember", "Ember", ItemEffect.Damage, .05f, (4, ItemEffect.AttackSpeed, .06f), (6, ItemEffect.Damage, .10f), (8, ItemEffect.Crit, .10f)),
-            M("frost", "Frost", ItemEffect.Damage, .03f, (4, ItemEffect.Armor, 2f), (6, ItemEffect.Health, .12f), (8, ItemEffect.Damage, .15f)),
-            M("tidal", "Tide", ItemEffect.AttackRange, .04f, (4, ItemEffect.Pickup, .10f), (6, ItemEffect.Damage, .08f), (8, ItemEffect.Income, 2f)),
-            M("static-club", "Storm", ItemEffect.CompanionAttackSpeed, .05f, (4, ItemEffect.Crit, .05f), (6, ItemEffect.ChainChance, .05f), (8, ItemEffect.Damage, .12f)),
-            M("windborne", "Windborne", ItemEffect.BulletSpeed, .06f, (4, ItemEffect.AttackRange, .08f), (6, ItemEffect.BulletPierce, 1f), (8, ItemEffect.Damage, .10f)),
-            M("orchard", "Garden", ItemEffect.Health, .06f, (4, ItemEffect.HeartHealing, .10f), (6, ItemEffect.Income, 1f), (8, ItemEffect.Health, .15f), (8, ItemEffect.Damage, .08f)),
-            M("venom", "Venom", ItemEffect.Damage, .04f, (4, ItemEffect.CollisionDamage, 2f), (6, ItemEffect.Crit, .06f), (8, ItemEffect.Damage, .14f)),
-            M("astral", "Starlight", ItemEffect.Crit, .04f, (4, ItemEffect.Luck, .05f), (6, ItemEffect.Damage, .08f), (8, ItemEffect.Crit, .10f)),
-            M("dusk", "Dusk", ItemEffect.Damage, .04f, (4, ItemEffect.CompanionDamage, .06f), (6, ItemEffect.ChampionDamage, .08f), (8, ItemEffect.Damage, .12f)),
-            M("oddity", "Carnival", ItemEffect.Luck, .05f, (4, ItemEffect.Income, 1f), (6, ItemEffect.Discount, .04f), (8, ItemEffect.Damage, .10f)),
-            M("regal", "Court", ItemEffect.CompanionDamage, .05f, (4, ItemEffect.Discount, .03f), (6, ItemEffect.RecruitDiscount, .05f), (8, ItemEffect.Damage, .10f)),
-            M("archive", "Archive", ItemEffect.Damage, .03f, (4, ItemEffect.Crit, .04f), (6, ItemEffect.Luck, .05f), (8, ItemEffect.Damage, .10f)),
-            M("lantern-guild", "Lantern", ItemEffect.AttackRange, .05f, (4, ItemEffect.Damage, .05f), (6, ItemEffect.ChampionDamage, .08f), (8, ItemEffect.Crit, .08f)),
-            M("stone", "Stone", ItemEffect.Health, .06f, (4, ItemEffect.Knockback, .10f), (6, ItemEffect.Armor, 2f), (8, ItemEffect.Damage, .12f)),
-            M("clock", "Clockwork", ItemEffect.CompanionAttackSpeed, .05f, (4, ItemEffect.AttackSpeed, .05f), (6, ItemEffect.MoveSpeed, .08f), (8, ItemEffect.AttackSpeed, .10f)),
-            M("bulwark", "Bulwark", ItemEffect.Health, .06f, (4, ItemEffect.Armor, 2f), (6, ItemEffect.Health, .12f), (8, ItemEffect.Armor, 3f), (8, ItemEffect.Damage, .08f)),
-            M("spirit", "Spirit", ItemEffect.Health, .05f, (4, ItemEffect.HeartHealing, .10f), (6, ItemEffect.CompanionDamage, .08f), (8, ItemEffect.Damage, .12f)),
-            M("melody", "Melody", ItemEffect.CompanionAttackSpeed, .06f, (4, ItemEffect.AttackSpeed, .06f), (6, ItemEffect.Crit, .06f), (8, ItemEffect.Damage, .10f), (8, ItemEffect.AttackSpeed, .08f)),
-            M("gravity", "Gravity", ItemEffect.Damage, .04f, (4, ItemEffect.Knockback, .10f), (6, ItemEffect.Damage, .08f), (8, ItemEffect.Damage, .14f)),
-            N("sweet-tooth", "Sweet Tooth", ItemEffect.Damage, 0f, 7),
-            N("ball", "Bouncing Ball", ItemEffect.Damage, 0f, 5),
-            N("rune", "Runes", ItemEffect.Damage, 0f, 7),
-            N("paper-wings", "Paper Wings", ItemEffect.Damage, 0f, 7),
-            N("gauntlet", "Gauntlet", ItemEffect.Damage, 0f, 7),
-            N("sea-shanty", "Sea Shanty", ItemEffect.Damage, 0f, 5),
-            N("shoe", "Quicksoles", ItemEffect.MoveSpeed, .06f, 7),
-            N("bastion", "Bastion", ItemEffect.Damage, 0f, 5),
-            N("cloud", "Cloud", ItemEffect.Damage, 0f, 5),
-            N("demolitionist", "Demolitionist", ItemEffect.Damage, 0f, 5),
-            N("exhibit-hall", "Exhibit Hall", ItemEffect.Health, .06f, 5),
-            N("bladenado", "Bladenado", ItemEffect.Damage, 0f, 5),
-            N("sniper", "Sniper", ItemEffect.Damage, 0f, 5),
-            N("unstoppable", "Unstoppable", ItemEffect.Damage, 0f, 5),
-            N("horn", "Horns", ItemEffect.Damage, 0f, 7),
-            N("monolith", "Monolith", ItemEffect.Damage, 0f, 5),
-            N("spiky-shell", "Spiky Shell", ItemEffect.Damage, 0f, 5),
-            N("rain-script", "Rain Script", ItemEffect.Damage, 0f, 5),
-            N("bludgeoner", "Bludgeoner", ItemEffect.Damage, 0f, 5),
-            N("multicaster", "Multicaster", ItemEffect.Damage, 0f, 5),
-            N("rapidfire", "Rapidfire", ItemEffect.Damage, 0f, 5),
-            N("desperado", "Desperado", ItemEffect.Damage, 0f, 5),
-            N("hat", "Hats", ItemEffect.Damage, 0f, 7),
-            N("root", "Root", ItemEffect.Damage, 0f, 5),
-            N("mask", "Masks", ItemEffect.Crit, .04f, 7),
-            N("gear", "Gears", ItemEffect.Damage, 0f, 5),
-            N("big-top", "Big Top", ItemEffect.Damage, 0f, 5),
-            N("clover", "Clover", ItemEffect.Damage, 0f, 5),
-            N("shield", "Shield", ItemEffect.Damage, 0f, 7),
-            N("mend", "Mend", ItemEffect.Damage, 0f, 5),
-            N("echo", "Echo", ItemEffect.Damage, 0f, 7),
-            N("singularity", "Singularity", ItemEffect.Damage, 0f, 5),
+        // Values are totals at the highest reached step; member and team shares add.
+        public static readonly BondV5StatLine[] V5Stats = {
+            new BondV5StatLine("hearth", ItemEffect.Damage, true, new[] { 0.06f, 0.14f, 0.24f, 0.4f }),
+            new BondV5StatLine("hearth", ItemEffect.AttackSpeed, true, new[] { 0.06f, 0.14f, 0.24f, 0.4f }),
+            new BondV5StatLine("hearth", ItemEffect.Damage, false, new[] { 0f, 0f, 0.05f, 0.1f }),
+            new BondV5StatLine("hearth", ItemEffect.AttackSpeed, false, new[] { 0f, 0f, 0.05f, 0.1f }),
+            new BondV5StatLine("ember", ItemEffect.Damage, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("ember", ItemEffect.Damage, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("frost", ItemEffect.Armor, true, new[] { 3f, 6f, 10f, 15f }),
+            new BondV5StatLine("frost", ItemEffect.Armor, false, new[] { 0f, 0f, 2f, 4f }),
+            new BondV5StatLine("tidal", ItemEffect.SkillHaste, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("tidal", ItemEffect.Health, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("static-club", ItemEffect.AttackSpeed, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("static-club", ItemEffect.Crit, false, new[] { 0f, 0f, 0.04f, 0.08f }),
+            new BondV5StatLine("windborne", ItemEffect.AttackRange, true, new[] { 0.08f, 0.16f, 0.26f, 0.4f }),
+            new BondV5StatLine("windborne", ItemEffect.AttackSpeed, false, new[] { 0f, 0f, 0.05f, 0.1f }),
+            new BondV5StatLine("orchard", ItemEffect.Health, true, new[] { 0.1f, 0.22f, 0.36f, 0.55f }),
+            new BondV5StatLine("orchard", ItemEffect.Health, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("venom", ItemEffect.Damage, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("venom", ItemEffect.Damage, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("astral", ItemEffect.Crit, true, new[] { 0.06f, 0.12f, 0.2f, 0.3f }),
+            new BondV5StatLine("astral", ItemEffect.Crit, false, new[] { 0f, 0f, 0.04f, 0.08f }),
+            new BondV5StatLine("dusk", ItemEffect.Damage, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("dusk", ItemEffect.Damage, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("oddity", ItemEffect.Luck, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("oddity", ItemEffect.Luck, false, new[] { 0f, 0f, 0.05f, 0.1f }),
+            new BondV5StatLine("regal", ItemEffect.Damage, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("regal", ItemEffect.SkillHaste, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("archive", ItemEffect.SkillHaste, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("archive", ItemEffect.Damage, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("lantern-guild", ItemEffect.AttackRange, true, new[] { 0.08f, 0.16f, 0.26f, 0.4f }),
+            new BondV5StatLine("lantern-guild", ItemEffect.Crit, false, new[] { 0f, 0f, 0.04f, 0.08f }),
+            new BondV5StatLine("stone", ItemEffect.Armor, true, new[] { 4f, 8f, 12f, 18f }),
+            new BondV5StatLine("stone", ItemEffect.Armor, false, new[] { 0f, 0f, 2f, 4f }),
+            new BondV5StatLine("clock", ItemEffect.SkillHaste, true, new[] { 0.1f, 0.22f, 0.36f, 0.55f }),
+            new BondV5StatLine("clock", ItemEffect.AttackSpeed, false, new[] { 0f, 0f, 0.05f, 0.1f }),
+            new BondV5StatLine("bulwark", ItemEffect.Armor, true, new[] { 4f, 8f, 12f, 18f }),
+            new BondV5StatLine("bulwark", ItemEffect.Health, true, new[] { 0.06f, 0.12f, 0.2f, 0.3f }),
+            new BondV5StatLine("bulwark", ItemEffect.Armor, false, new[] { 0f, 0f, 2f, 4f }),
+            new BondV5StatLine("spirit", ItemEffect.Health, true, new[] { 0.1f, 0.22f, 0.36f, 0.55f }),
+            new BondV5StatLine("spirit", ItemEffect.Damage, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("melody", ItemEffect.AttackSpeed, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("melody", ItemEffect.SkillHaste, false, new[] { 0f, 0f, 0.05f, 0.1f }),
+            new BondV5StatLine("gravity", ItemEffect.Damage, true, new[] { 0.08f, 0.18f, 0.3f, 0.45f }),
+            new BondV5StatLine("gravity", ItemEffect.Damage, false, new[] { 0f, 0f, 0.06f, 0.12f }),
+            new BondV5StatLine("sweet-tooth", ItemEffect.Health, true, new[] { 0.08f, 0.16f, 0.28f }),
+            new BondV5StatLine("ball", ItemEffect.Damage, true, new[] { 0.08f, 0.2f }),
+            new BondV5StatLine("rune", ItemEffect.SkillHaste, true, new[] { 0.06f, 0.14f, 0.24f }),
+            new BondV5StatLine("paper-wings", ItemEffect.AttackRange, true, new[] { 0.08f, 0.16f, 0.28f }),
+            new BondV5StatLine("gauntlet", ItemEffect.Damage, true, new[] { 0.06f, 0.14f, 0.24f }),
+            new BondV5StatLine("sea-shanty", ItemEffect.AttackSpeed, true, new[] { 0.08f, 0.2f }),
+            new BondV5StatLine("shoe", ItemEffect.AttackSpeed, true, new[] { 0.06f, 0.14f, 0.24f }),
+            new BondV5StatLine("bastion", ItemEffect.Armor, true, new[] { 4f, 10f }),
+            new BondV5StatLine("cloud", ItemEffect.Health, true, new[] { 0.08f, 0.18f }),
+            new BondV5StatLine("demolitionist", ItemEffect.SkillHaste, true, new[] { 0.08f, 0.18f }),
+            new BondV5StatLine("exhibit-hall", ItemEffect.Health, true, new[] { 0.1f, 0.25f }),
+            new BondV5StatLine("bladenado", ItemEffect.Damage, true, new[] { 0.06f, 0.14f }),
+            new BondV5StatLine("sniper", ItemEffect.AttackRange, true, new[] { 0.1f, 0.2f }),
+            new BondV5StatLine("unstoppable", ItemEffect.Health, true, new[] { 0.12f, 0.28f }),
+            new BondV5StatLine("horn", ItemEffect.Health, true, new[] { 0.06f, 0.14f, 0.24f }),
+            new BondV5StatLine("monolith", ItemEffect.Health, true, new[] { 0.08f, 0.18f }),
+            new BondV5StatLine("spiky-shell", ItemEffect.Armor, true, new[] { 3f, 8f }),
+            new BondV5StatLine("rain-script", ItemEffect.SkillHaste, true, new[] { 0.08f, 0.2f }),
+            new BondV5StatLine("bludgeoner", ItemEffect.Damage, true, new[] { 0.06f, 0.14f }),
+            new BondV5StatLine("multicaster", ItemEffect.SkillHaste, true, new[] { 0.1f, 0.22f }),
+            new BondV5StatLine("rapidfire", ItemEffect.Damage, true, new[] { 0.06f, 0.14f }),
+            new BondV5StatLine("desperado", ItemEffect.AttackSpeed, true, new[] { 0.08f, 0.18f }),
+            new BondV5StatLine("hat", ItemEffect.Damage, true, new[] { 0.06f, 0.14f, 0.24f }),
+            new BondV5StatLine("root", ItemEffect.Armor, true, new[] { 3f, 8f }),
+            new BondV5StatLine("mask", ItemEffect.Crit, true, new[] { 0.05f, 0.1f, 0.18f }),
+            new BondV5StatLine("gear", ItemEffect.AttackSpeed, true, new[] { 0.08f, 0.2f }),
+            new BondV5StatLine("big-top", ItemEffect.Damage, true, new[] { 0.08f, 0.2f }),
+            new BondV5StatLine("clover", ItemEffect.Luck, true, new[] { 0.08f, 0.2f }),
+            new BondV5StatLine("shield", ItemEffect.Armor, true, new[] { 3f, 6f, 10f }),
+            new BondV5StatLine("mend", ItemEffect.Health, true, new[] { 0.1f, 0.22f }),
+            new BondV5StatLine("echo", ItemEffect.SkillHaste, true, new[] { 0.06f, 0.14f, 0.24f }),
+            new BondV5StatLine("singularity", ItemEffect.Damage, true, new[] { 0.08f, 0.2f }),
         };
-        private static BondDefinition M(string id, string name, ItemEffect effect, float value, params (int, ItemEffect, float)[] steps)
+        public static float MemberStat(string id, ItemEffect effect, int count) => StatShare(id, effect, count, true);
+        public static float TeamStat(string id, ItemEffect effect, int count) => StatShare(id, effect, count, false);
+        public static float Stat(string id, ItemEffect effect, int count, bool isMember) => TeamStat(id, effect, count) + (isMember ? MemberStat(id, effect, count) : 0);
+        private static float StatShare(string id, ItemEffect effect, int count, bool members)
         {
-            var authored = new BondStep[steps.Length];
-            for (int i = 0; i < steps.Length; i++) authored[i] = new BondStep { Count = steps[i].Item1, Effect = steps[i].Item2, Value = steps[i].Item3 };
-            return new BondDefinition { Id = id, Name = name, Threshold = FirstStep, Effect = effect, Value = value, Steps = authored };
+            float total = 0;
+            for (int i = 0; i < V5Stats.Length; i++)
+            {
+                BondV5StatLine line = V5Stats[i];
+                if (line.Id == id && line.Effect == effect && line.Members == members) total += line.At(count);
+            }
+            return id == "hearth" && count >= FourthStep ? total * HearthDouble : total;
         }
-        private static BondDefinition N(string id, string name, ItemEffect effect, float value, int members)
+        public static readonly BondDefinition[] V3Definitions = {
+            M("hearth", "Hearth"),
+            M("ember", "Ember"),
+            M("frost", "Frost"),
+            M("tidal", "Tide"),
+            M("static-club", "Storm"),
+            M("windborne", "Windborne"),
+            M("orchard", "Garden"),
+            M("venom", "Venom"),
+            M("astral", "Starlight"),
+            M("dusk", "Dusk"),
+            M("oddity", "Carnival"),
+            M("regal", "Court"),
+            M("archive", "Archive"),
+            M("lantern-guild", "Lantern"),
+            M("stone", "Stone"),
+            M("clock", "Clockwork"),
+            M("bulwark", "Bulwark"),
+            M("spirit", "Spirit"),
+            M("melody", "Melody"),
+            M("gravity", "Gravity"),
+            N("sweet-tooth", "Sweet Tooth", 7),
+            N("ball", "Bouncing Ball", 5),
+            N("rune", "Runes", 7),
+            N("paper-wings", "Paper Wings", 7),
+            N("gauntlet", "Gauntlet", 7),
+            N("sea-shanty", "Sea Shanty", 5),
+            N("shoe", "Quicksoles", 7),
+            N("bastion", "Bastion", 5),
+            N("cloud", "Cloud", 5),
+            N("demolitionist", "Demolitionist", 5),
+            N("exhibit-hall", "Exhibit Hall", 5),
+            N("bladenado", "Bladenado", 5),
+            N("sniper", "Sniper", 5),
+            N("unstoppable", "Unstoppable", 5),
+            N("horn", "Horns", 7),
+            N("monolith", "Monolith", 5),
+            N("spiky-shell", "Spiky Shell", 5),
+            N("rain-script", "Rain Script", 5),
+            N("bludgeoner", "Bludgeoner", 5),
+            N("multicaster", "Multicaster", 5),
+            N("rapidfire", "Rapidfire", 5),
+            N("desperado", "Desperado", 5),
+            N("hat", "Hats", 7),
+            N("root", "Root", 5),
+            N("mask", "Masks", 7),
+            N("gear", "Gears", 5),
+            N("big-top", "Big Top", 5),
+            N("clover", "Clover", 5),
+            N("shield", "Shield", 7),
+            N("mend", "Mend", 5),
+            N("echo", "Echo", 7),
+            N("singularity", "Singularity", 5),
+        };
+        private static BondDefinition M(string id, string name)
         {
-            return new BondDefinition { Id = id, Name = name, Threshold = FirstStep, Effect = effect, Value = value,
+            return new BondDefinition { RulesV3 = true, Id = id, Name = name, Threshold = FirstStep, Value = 0,
+                Steps = new[] { new BondStep { Count = SecondStep }, new BondStep { Count = ThirdStep }, new BondStep { Count = FourthStep } } };
+        }
+        private static BondDefinition N(string id, string name, int members)
+        {
+            return new BondDefinition { RulesV3 = true, Id = id, Name = name, Threshold = FirstStep, Value = 0,
                 Steps = members == LargeMinorMembers ? new[] { new BondStep { Count = SecondStep }, new BondStep { Count = ThirdStep } } : new[] { new BondStep { Count = SecondStep } } };
+        }
+    }
+    /// <summary>Signature totals at steps 2/4/6/8, or 2/4(/6) for minors.</summary>
+    public sealed class BondV5StatLine
+    {
+        public readonly string Id;
+        public readonly ItemEffect Effect;
+        public readonly bool Members;
+        public readonly float[] Values;
+        public BondV5StatLine(string id, ItemEffect effect, bool members, float[] values)
+        { Id = id; Effect = effect; Members = members; Values = values; }
+        public float At(int count)
+        {
+            int index = Math.Min(Values.Length, Math.Max(0, count) / BondTuning.FirstStep) - 1;
+            return index < 0 ? 0 : Values[index];
         }
     }
 }

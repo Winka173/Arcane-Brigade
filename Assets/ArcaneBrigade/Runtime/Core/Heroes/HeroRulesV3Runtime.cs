@@ -72,10 +72,12 @@ namespace ArcaneBrigade
         }
         public void OnWaveSurvived() { run.WavesSurvived++; }
         public void OnSproutRemoved() { sprouts=Mathf.Max(0,sprouts-1); }
-        public void Tick(float dt,float movementDistance)
+        public void Tick(float dt,float movementDistance,float skillFillBonus=0)
         {
             if(hero==null||definition==null||!hero.Alive||!Finite(dt)||dt<=0)return;
             time+=dt;
+            // Haste advances cooldown readiness without shortening effect durations or movement thresholds.
+            next-=dt*Mathf.Max(0,hero.Definition.SkillHaste+skillFillBonus);
             if(HeroId=="Postmaster"&&coinCharge>=(Relic(0)?HeroRulesV3Tuning.ExpressCoins:HeroRulesV3Tuning.ParcelCoins)&&time>=next)OnCoins(0);
             if(HeroId=="HourglassStag"&&activeUntil>0&&activeUntil<=time) {activeUntil=0;if(Relic(3))Emit(HeroRuleAction.Stun,"antler-bell",HeroRulesV3Tuning.Radius,HeroRulesV3Tuning.HourglassStun);}
             distance+=Mathf.Max(0,movementDistance); still=movementDistance>0?0:still+dt;
@@ -325,4 +327,3 @@ namespace ArcaneBrigade
         { Requested?.Invoke(new HeroRuleRequest(action,rule,hero?.Id??0,position??hero?.Position??Vector2.zero,radius,duration,value,shape,end,friendId,count,species,Options(action,rule))); }
     }
 }
-

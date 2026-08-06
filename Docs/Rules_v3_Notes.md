@@ -1,4 +1,4 @@
-# Rules v3 integration and presentation handoff
+# Rules v3 integration and presentation handoff (design v5 update)
 
 The rules source is [Complete design v3, sections 1–9](Complete_Design_Bonds_Skills_Heroes_Enemies_2026-10-28.md). Membership is compiled from `DesignInput/roster120.json`. No scenes, sprites, shaders, particles, UI or GameObjects are created by these packages.
 
@@ -10,7 +10,7 @@ Subscribe to simulation-level events **before** `Start()`. Package runtime objec
 
 There are 20 majors with nine roster members each and gates 2/4/6/8, and 32 minors with five or seven members and their authored gates. `BondV3Catalog.Configure` supplies canonical definitions and tags. `BondReworkBuilder.Run` writes existing companion memberships and bond definitions without generating art. The runtime catalog adapter also supplies the 24 missing companion definitions in memory. `BondBuildRecipes.All` exposes the twelve recipes from section 4.
 
-Canonical major stat rewards stop at step 8, retain their full authored values, and double Hearth's package at eight. Fractional health rewards compile as health correction. The hero contributes its two minor memberships; Planet Hamster and Tower Rook contribute their extra trait memberships. Existing excess species remain stored, with at most ten distinct companions deployed.
+Canonical `Stats:` rewards are totals at the highest active step, capped at eight. Members receive their signature at every step; major team shares start at six and add to the member signature. Hearth doubles both shares at eight. Minor signatures apply only to members. `BondV3Catalog.Stat` and `BondTuning.V5Stats` replace the old global stat packages; legacy definition values are zero. Health fractions multiply compiled maximum health, armor uses whole points, and skill haste affects time-based fill. The hero contributes its two minor memberships; Planet Hamster and Tower Rook contribute their extra trait memberships. Existing excess species remain stored, with at most ten distinct companions deployed.
 
 | Event | Payload | What presentation draws |
 |---|---|---|
@@ -65,7 +65,7 @@ Confirmed skill kills produce the relevant pickups. Feathers revive on collectio
 
 ## Enemies, affixes and bosses
 
-`EnemyRulesV3Catalog` supplies 53 enemy kinds, 12 affixes and six phased bosses, including rules-only definitions when art is absent. `BossForNight` follows the exact authored nights. Spawned crumbs arrive in packs of 30–60, subject to the wave budget. Recognized enemies bypass legacy movement and variant handlers. Corpses needed by revival and simultaneous boss mechanics remain available during the wave.
+`EnemyRulesV3Catalog` supplies 53 enemy kinds, 12 affixes and six phased bosses, including rules-only definitions when art is absent. Eight kinds are small bodies without skills, six plain mediums have one body trait, exactly eight mediums have skills, and the other 31 kinds are large/special skill users. `BossForNight` follows the exact authored nights. Spawned crumbs arrive in packs of 30–60, subject to the wave budget. Recognized enemies bypass legacy movement and variant handlers. Corpses needed by revival and simultaneous boss mechanics remain available during the wave.
 
 | Event | Payload | What presentation draws |
 |---|---|---|
@@ -83,10 +83,40 @@ Egg and Warden-chain objectives have `StrikeRulesV3Objective(id)`, with ordinary
 ## Draft choices and review limits
 
 - The roster has some four/five-tag companions, although section 1 says two/three. Its explicit membership lists are retained. Legacy house indices in the input are not used as bond identities.
-- The document leaves many damage amounts, radii, summon attack cadences, favored weather, law choices, jackpot/fruit amounts and minor interaction details unspecified. They are explicit tuning/default choices, not additional approved balance requirements. Weather preference uses a stable ID-derived default; Court exposes damage/armor/haste edicts and crit/kill/cast → heal/shield/burst laws.
+- The document leaves many damage amounts, radii, summon attack cadences, law choices, jackpot/fruit amounts and minor interaction details unspecified. They are explicit tuning/default choices, not additional approved balance requirements. Court exposes damage/armor/haste/regeneration edicts and crit/kill/cast → heal/shield/burst laws.
 - Hero mortality is interpreted as the same revival rule as other friends, because the task makes the hero mortal and says all friends down loses. Section 10 asks the question, but the task explicitly authorizes this loss rule.
 - Physical dash, chain, orbit, fleet, juggling, summon and transformation skills use deterministic geometry and pooled pulses rather than new independent physics actors. This is gameplay behavior, not a promise that a later visual trajectory changes hit timing. Bespoke motion/ricochet tuning should be reviewed in Unity with the effects implementation.
 - Several hero relic descriptions assume systems that have no precise v3 definition: chest tiers, turret relic slots, absorbed trait combinations and selecting borrowed skills. The current adapters expose their rule state and use draft tuning where an existing system permits a concrete effect. These interactions need design review; a catalog description alone should not be treated as evidence that every possible relic combination has been play-tested.
 - No Unity import, Editor execution, play session or visual validation was performed. See [verification](Rules_v3_Verification.md) for the managed compilation and deterministic checks that did run.
 
 Changes are intentionally uncommitted on `feat/bond-engine` for review.
+
+## Design v5 changes and new contracts
+
+Major step two rules apply to members, step four opens their rules to the team, and later steps build and spend wave resources and board zones. Tide/Storm hit cadence and Windborne volleys are counted per friend. Heat comes from bursts; five-stack fuel leaves Firepits; pools release Leviathan; Pages bind into Chapters; Springs extend the next time stop; Beats release Orchestra notes. Resource reset/persistence follows the rule: Warmth, Heat, Sugar, Cogs, Springs, Glyphs and temporary zones reset each wave; Records, growth, Hats, rerolls and held Clovers survive via `BondRunProgress`.
+
+| New or changed contract | Fields / interpretation |
+|---|---|
+| `BondRuntime.ZoneRequested` / `BondZoneRequest` | `Rule`, `Position`, `End`, `Radius`, `Duration`, `SourceId`. Draw a rule-owned board zone: `ice-patch`, `tide-pool`, `wind-lane`, `lane-cyclone`, `stardust`, `steam`, `lightning-rod`, `glyph`, `quicksoles-trail`, `spinning-blade`, `cloud-puff`, `carnival-slow`, `rot-cloud`, `after-hole`. The runtime applies zone gameplay; do not apply it again. |
+| `BondSupportRequest.HasCopyPosition`, `CopyPosition` | Optional fixed alternate cluster for Echo and Showtime. `Subject` remains the casting friend. The cast queue preserves this geometry through a time stop. |
+| New `BondSupportKind` values | `SkillFill` adds a fraction of the bar immediately; `quicksoles-refund-seconds` specifically refunds seconds. `DamageBuff` and `CritBuff` are fractional bonuses for `Duration`. `ReviveDelay` is the desired elapsed fall-to-rise time in seconds. `ArmorBreak` removes enemy armor points for the wave. |
+| New `BondSpawnKind` values | `Dish` is a hero-collected Hearth pickup; `Sapling` and `GreatTree` are plant stages. The existing `RulesV3EntityChanged` event now also carries `RulesV3EntityKind.Dish`. Dishes build Warmth on collection, not when dropped. |
+| `MortalityRuntime.ShieldAbsorbed` | `(UnitState friend, float damage)`: actual armor-reduced damage absorbed by the shield. Feeds Guard; presentation may show the absorption. |
+| `MortalityRuntime.ShieldBroken` | `(UnitState friend)`: a positive shield was consumed by damage. Feeds Shield bursts and the once-per-friend refill while a Bastion wall stands. Expiration and Cleanser removal do not count as damage breaking a shield. |
+| `SkillDamageRequest.PageCopy` | Identifies Page/Chapter damage, including scheduled pulses, so recorded species receive Archive's Page bonus once. Damage remains already resolved by the simulation adapter. |
+
+Additional `RuleTriggered` keys describe `warmth`, `sugar-rush`, `wick`, `species-recorded`, `inferno-burst`, `pool-shock`, `glyph`, `cog-fill`, `chapter`, `guard-shockwave`, `orchestra-damage-note`, `orchestra-speed-note`, `orchestra-shield-note`, `paper-crane` and the corresponding support requests. Some mechanics use a damage/support/zone request instead of an additional rule event; observe the request stream appropriate to that mechanic.
+
+`RangeBonusFor`, `AttackSpeedBonusFor`, `SkillFillBonusFor`, `CriticalBonusFor`, `ArmorBonusFor` and `EdictArmorFor` take the actual acting friend. Projectiles consume the per-friend distance, bounce, return and pierce APIs and zone-crossing bonuses. `SkillFillBonus` compatibility accessors describe the hero; they must not be broadcast back to every friend. `CompanionSkillRuntime.HoldCasts` holds complete casts during Clockwork stops, retaining their source, strength and optional copy position; release occurs once when time resumes. Bar fill continues with elapsed time and applicable haste.
+
+Friend defenses compile from the canonical roster class, stars, member/team signatures, other armor modifiers and half the hero's armor-item points rounded down. `UnitDefinition.FriendArmorPoints`, `SkillHaste` and `BondLuck` are run-compiled values. `CombatSimulation.FriendArmorPoints(friend)` includes active armor and wave-long breaks; it is the rules-side value for a later card shield icon. Damage combines armor sources once through `RunModifierRules.AfterArmor`, before shields. `MortalityRuntime.BreakArmor` removes one point by default and `UnitState.BrokenArmorPoints` survives revival, resetting at wave start. Hero armor relic bonuses enter the same aggregate.
+
+`EnemyRulesV3Catalog.Tier` / `HasSkill` expose the section-nine classification. Every simulation enemy creation passes through `SelectSpawn`, including enemy-created bodies. Small bodies remain at least 80% of non-boss wave spawns. Elites count toward the non-small quota and live special cap. `ConfigureSmallFallback` preserves an eligible wave-scaled small definition when a spawn must be replaced. Special revivals respect the live cap. `EnemyRuleAction.ArmorBreak` carries points in `Value` and warned area geometry; Cleanser continues to remove protection rather than armor points.
+
+V5 draft choices: the special cap ramps with floor-linear interpolation from 2 at night 1 to 8 at night 80; boss bodies are outside the ordinary-body composition budget. Armour-grower and Pastry Tyrant are the armor-breaking species. Stat team shares add to member totals. The fourth Court edict regenerates 1% health/second; the design names four choices without specifying all four effects. Guard capacity, plant growth damage, zone pulse cadence, return motion and other unspecified amounts remain explicit tuning. Monolith crowd armor is cached on the periodic crowd tick so incoming hits use a constant-time lookup.
+
+Run `python Tools/Verify-RulesV3.py`. It compiles all runtime code, the affected editor suites and builder, then executes `RulesV3AllChecks.Run()` under the managed harness, including `BondV5RulesChecks`. Unity is not launched. No art, effects, UI or scene changes are part of this task.
+
+Rain Script's pending Verse discounts and Clover's Four-Leaf rewards are run state. `BondV5ShopRules.Apply` consumes them on the next shop's initial shelf, affecting the first unsold item. A Four-Leaf selects an eligible item exactly one rarity above it, retaining that shelf price; if no such candidate exists, its reward remains pending. Multiple rewards queue across shops. The design does not specify replacement identity, price or unavailable-tier behavior; these are deterministic draft choices. Recruitment Hats are stored by species and survive combat runtime replacement and save serialization.
+
+Burst and discharge cascades are bounded to avoid infinite crowd loops. Guard fills at 100 provisional absorbed damage; three wisps and lane dimensions are tunable. Sniper carry uses a narrow line under the crowd rule. Chapters bank three Page resources and release three copies together. These choices need balance review alongside the design's other unspecified values.

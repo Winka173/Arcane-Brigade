@@ -16,8 +16,8 @@ namespace ArcaneBrigade
             public float ChargeUntil, DizzyUntil, LastDamage, NextTeleport, Countdown, DiedAt, StageAt;
             public Vector2 From, To;
             public int Attacks, Phase, Generation, ParentId, GroupId, Stages, Stolen, SingerTotal, SingersAlive;
-            public float FirstSingerDeath, LastSingerDeath;
-            public bool Fell, Rallied, Reflected, ChainCut, Singer, CrumbGiant, SingerDeathSeen;
+            public float FirstSingerDeath, LastSingerDeath, BodyAt, ArmorBroken;
+            public bool Fell, Rallied, Reflected, ChainCut, Singer, SingerDeathSeen;
             public int LeechId, BinderId;
             public float AuraSpeed, AuraDamage, AuraShield, AuraArmor, DamageSinceAura;
         }
@@ -40,7 +40,35 @@ namespace ArcaneBrigade
         private readonly Dictionary<int,FriendVenom> venom=new Dictionary<int,FriendVenom>();
         private readonly Pending[] pending=new Pending[EnemyRulesV3Tuning.MaxWarnings];
         private float time, auraAt, markUntil;
-        private int wave, nextWarning;
+        private int wave, nextWarning, waveBodies, waveSmall;
+        private UnitDefinition smallFallback;
+        public int WaveBodies => waveBodies;
+        public int WaveSmall => waveSmall;
+        public int LiveLargeSpecial
+        { get { int count=0;for(int i=0;i<states.Count;i++)if(states[i].Unit.Alive && states[i].Boss==null && (states[i].Unit.Elite || states[i].Row?.Tier==EnemyBodyTier.LargeSpecial))count++;return count; } }
+        // The combat catalog supplies a wave-scaled unlocked body for quota replacements.
+        public void ConfigureSmallFallback(UnitDefinition definition)
+        {
+            EnemyRuleDefinition row=EnemyRulesV3Catalog.Find(definition?.Id);
+            if(definition==null || definition.IsBoss || row==null || row.Tier!=EnemyBodyTier.Small || row.Night>wave)
+                throw new ArgumentException("Fallback must be an unlocked small enemy body.",nameof(definition));
+            smallFallback=definition;
+        }
+        public bool CanSpawnElite(UnitDefinition requested)
+        {return requested!=null && !requested.IsBoss && waveSmall >= (waveBodies+1)*EnemyRulesV3Tuning.MinimumSmallFraction && LiveLargeSpecial<EnemyRulesV3Tuning.LargeSpecialCap(wave);}
+        // A replacement is a small body so a saturated special budget never stalls the wave.
+        public UnitDefinition SelectSpawn(UnitDefinition requested,bool elite=false)
+        {
+            if(requested==null || requested.IsBoss)return requested;
+            bool small=EnemyRulesV3Catalog.IsSmall(requested) && !elite;
+            bool special=elite || EnemyRulesV3Catalog.IsLargeOrSpecial(requested);
+            if((!small && waveSmall < (waveBodies+1)*EnemyRulesV3Tuning.MinimumSmallFraction) || (special && LiveLargeSpecial>=EnemyRulesV3Tuning.LargeSpecialCap(wave)))
+            {
+                if(smallFallback==null)smallFallback=EnemyRulesV3Catalog.Create(EnemyRulesV3Catalog.Find("Marcher"));
+                return smallFallback;
+            }
+            return requested;
+        }
         private uint random;
         public event Action<EnemyDangerRequest> DangerRequested;
         public event Action<EnemyRuleRequest> Requested;
@@ -49,7 +77,7 @@ namespace ArcaneBrigade
 
         public void ResetWave(IList<UnitState> all,UnitState champion,int night,uint seed=1)
         {
-            units=all; hero=champion; wave=night; time=auraAt=markUntil=0; nextWarning=0;
+            units=all; hero=champion; wave=night; waveBodies=waveSmall=0; smallFallback=null; time=auraAt=markUntil=0; nextWarning=0;
             random=seed==0?1:seed; DroppedWarnings=0; states.Clear(); byId.Clear(); friends.Clear();leeches.Clear();venom.Clear();Array.Clear(pending,0,pending.Length);
             if(all!=null)for(int i=0;i<all.Count;i++){RegisterEnemy(all[i]);RegisterFriend(all[i]);}
         }
@@ -64,10 +92,12 @@ namespace ArcaneBrigade
             if(row==null && boss==null)return;
             var state=new State { Unit=unit, Row=row, Boss=boss, Next=time+Period(row), StageAt=time+EnemyRulesV3Tuning.StageSeconds, LastDamage=-EnemyRulesV3Tuning.OutOfCombat };
             byId.Add(unit.Id,state); states.Add(state);
+            if(boss==null){waveBodies++;if(row.Tier==EnemyBodyTier.Small && !unit.Elite){waveSmall++;if(smallFallback==null)smallFallback=unit.Definition;}}
+            state.From=unit.Position;state.To=unit.Facing.sqrMagnitude>EnemyRulesV3Tuning.Epsilon?unit.Facing.normalized:Vector2.left;
             if(row!=null && (row.Kind==EnemyKindV3.CrumbSwarm || row.Kind==EnemyKindV3.Decoy)) unit.Health=EnemyRulesV3Tuning.OneHitHealth;
             if(unit.Elite)AssignAffixes(unit,ChooseAffixes());
             if(row!=null && row.Kind==EnemyKindV3.Flanker && hero!=null)
-            { Vector2 back=hero.Facing.sqrMagnitude>EnemyRulesV3Tuning.Epsilon?-hero.Facing.normalized:Vector2.left; unit.Position=hero.Position+back*EnemyRulesV3Tuning.BehindDistance; Emit(EnemyRuleAction.Phase,state,"flank",unit.Position); }
+            { Vector2 back=hero.Facing.sqrMagnitude>EnemyRulesV3Tuning.Epsilon?-hero.Facing.normalized:Vector2.left; unit.Position=hero.Position+back*EnemyRulesV3Tuning.BehindDistance; }
         }
         public void RegisterSpawned(UnitState unit,int parentId,string rule,int groupId=0)
         {
@@ -87,6 +117,16 @@ namespace ArcaneBrigade
         }
         public int SpawnPackCount(UnitDefinition definition)
         { return EnemyRulesV3Catalog.Find(definition?.Id)?.Kind==EnemyKindV3.CrumbSwarm?EnemyRulesV3Tuning.CrumbPackMin+Roll(EnemyRulesV3Tuning.CrumbPackMax-EnemyRulesV3Tuning.CrumbPackMin+1):1; }
+        // Elite promotion spends a non-small slot even when its underlying body is small.
+        public bool TryMakeElite(UnitState unit)
+        {
+            State state=Get(unit);if(state==null || state.Boss!=null || !unit.Alive)return false;
+            if(unit.Elite)return true;
+            bool small=state.Row.Tier==EnemyBodyTier.Small;
+            if(small && waveSmall-1 < waveBodies*EnemyRulesV3Tuning.MinimumSmallFraction)return false;
+            if(state.Row.Tier!=EnemyBodyTier.LargeSpecial && LiveLargeSpecial>=EnemyRulesV3Tuning.LargeSpecialCap(wave))return false;
+            unit.Elite=true;if(small)waveSmall--;AssignAffixes(unit,ChooseAffixes());return true;
+        }
         public void AssignAffixes(UnitState unit,EnemyAffixV3 flags)
         {
             State state=Get(unit); if(state==null)return;
@@ -106,7 +146,6 @@ namespace ArcaneBrigade
         public float MaxHealth(UnitState unit)
         {
             State state=Get(unit);
-            if(state!=null && state.CrumbGiant)return EnemyRulesV3Tuning.DefaultHealth;
             return Mathf.Max(EnemyRulesV3Tuning.OneHitHealth,unit.Definition.Health)*(1+(state==null?0:state.Stages)*EnemyRulesV3Tuning.GrowHealth);
         }
         private static bool Has(State state,EnemyAffixV3 flag) => (state.Affixes&flag)!=0;
@@ -133,8 +172,9 @@ namespace ArcaneBrigade
                 { state.StageAt=time+EnemyRulesV3Tuning.StageSeconds; state.Stages++; unit.Health+=unit.Definition.Health*EnemyRulesV3Tuning.GrowHealth; }
                 if(state.Row.Kind==EnemyKindV3.Rallier && !state.Rallied && unit.Health/MaxHealth(unit)<EnemyRulesV3Tuning.LowHealth)
                 { state.Rallied=true;ShieldArea(state,EnemyRulesV3Tuning.GroupRadius,EnemyRulesV3Tuning.RallierShield); }
+                BodyTick(state);
                 if(time>=state.Next && state.DizzyUntil<=time)
-                { state.Next=time+Period(state.Row); Begin(state); }
+                { state.Next=time+Period(state.Row); if(state.Row.HasSkill)Begin(state);else if(Has(state,EnemyAffixV3.Burning))Warn(state,EnemyRuleAction.Burn,"burning-affix",unit.Position,duration:EnemyRulesV3Tuning.PoolSeconds,repeat:true); }
             }
             for(int i=0;i<pending.Length;i++)
             {
@@ -162,7 +202,6 @@ namespace ArcaneBrigade
             for(int i=0;i<count;i++)
             {
                 State source=states[i]; if(!source.Unit.Alive)continue;
-                if(source.Row!=null && source.Row.Kind==EnemyKindV3.CrumbSwarm && !source.CrumbGiant)TryMerge(source);
                 for(int j=0;j<count;j++)
                 {
                     State target=states[j]; if(!target.Unit.Alive)continue;
@@ -173,8 +212,6 @@ namespace ArcaneBrigade
                     if(source.Row==null)continue;
                     switch(source.Row.Kind)
                     {
-                        case EnemyKindV3.Marcher:
-                            if(source!=target && square<=EnemyRulesV3Tuning.RankRadius*EnemyRulesV3Tuning.RankRadius)target.AuraSpeed=Mathf.Min(EnemyRulesV3Tuning.MarcherCap,target.AuraSpeed+EnemyRulesV3Tuning.MarcherSpeed);break;
                         case EnemyKindV3.BannerBearer:
                             if(square<=EnemyRulesV3Tuning.BannerRadius*EnemyRulesV3Tuning.BannerRadius)target.AuraDamage+=EnemyRulesV3Tuning.BannerDamage;break;
                         case EnemyKindV3.Shielder:
@@ -209,17 +246,13 @@ namespace ArcaneBrigade
         }
         public void CleanseFriend(UnitState friend)
         {if(friend!=null && venom.TryGetValue(friend.Id,out FriendVenom state))state.Until=0;}
-        private void TryMerge(State source)
+        private void BodyTick(State state)
         {
-            int count=0;
-            for(int i=0;i<states.Count;i++)if(states[i].Unit.Alive && states[i].Row!=null && states[i].Row.Kind==EnemyKindV3.CrumbSwarm && !states[i].CrumbGiant && (states[i].Unit.Position-source.Unit.Position).sqrMagnitude<=EnemyRulesV3Tuning.RankRadius*EnemyRulesV3Tuning.RankRadius)count++;
-            if(count<EnemyRulesV3Tuning.CrumbMerge)return;
-            source.CrumbGiant=true; source.Unit.Health=EnemyRulesV3Tuning.DefaultHealth;
-            Emit(EnemyRuleAction.Phase,source,"crumb-giant",source.Unit.Position,value:EnemyRulesV3Tuning.CrumbMerge);
-            int remove=EnemyRulesV3Tuning.CrumbMerge-1;
-            for(int i=0;i<states.Count && remove>0;i++)
-            { State other=states[i]; if(other==source || !other.Unit.Alive || other.Row==null || other.Row.Kind!=EnemyKindV3.CrumbSwarm || other.CrumbGiant || (other.Unit.Position-source.Unit.Position).sqrMagnitude>EnemyRulesV3Tuning.RankRadius*EnemyRulesV3Tuning.RankRadius)continue;
-                other.Unit.Alive=false; other.Unit.Health=0;other.Fell=true;remove--;Emit(EnemyRuleAction.Despawn,other,"crumb-merge",other.Unit.Position,target:other.Unit.Id); }
+            EnemyKindV3 kind=state.Row.Kind;
+            if((kind==EnemyKindV3.Thief || kind==EnemyKindV3.GluttonousMouth) && time>=state.BodyAt)
+            {state.BodyAt=time+EnemyRulesV3Tuning.DefaultPeriod;Emit(EnemyRuleAction.DrainPickups,state,kind==EnemyKindV3.Thief?"coin-thief":"glutton",state.Unit.Position,EnemyRulesV3Tuning.StealRadius,target:state.Unit.Id);}
+            if(kind==EnemyKindV3.Blinker && time>=state.BodyAt)
+            {state.BodyAt=time+EnemyRulesV3Tuning.HopPeriod;UnitState friend=SelectFriend(state.Unit.Position,false);if(friend!=null)state.Unit.Position=Vector2.MoveTowards(state.Unit.Position,friend.Position,EnemyRulesV3Tuning.HopDistance);}
         }
         private void Begin(State state)
         {
@@ -228,10 +261,7 @@ namespace ArcaneBrigade
             Vector2 point=target==null?unit.Position:target.Position;
             switch(state.Row.Kind)
             {
-                case EnemyKindV3.CrumbSwarm: if(state.CrumbGiant)Warn(state,EnemyRuleAction.Damage,"crumb-slam",unit.Position);break;
-                case EnemyKindV3.Pillbug: Warn(state,EnemyRuleAction.Damage,"pillbug-charge",unit.Position,EnemyRulesV3Tuning.ChargeWidth,EnemyRulesV3Tuning.DefaultWarning,shape:EnemyDangerShape.Line,end:point);break;
                 case EnemyKindV3.Smasher: Warn(state,EnemyRuleAction.Damage,"slam",unit.Position,warning:EnemyRulesV3Tuning.SlamWarning);Warn(state,EnemyRuleAction.Stun,"slam-stun",unit.Position,duration:EnemyRulesV3Tuning.SlamStun);break;
-                case EnemyKindV3.Blinker: if(hero!=null)unit.Position=hero.Position-hero.Facing*EnemyRulesV3Tuning.BehindDistance;break;
                 case EnemyKindV3.SniperDoll: Warn(state,EnemyRuleAction.Damage,"sniper-line",unit.Position,EnemyRulesV3Tuning.ChargeWidth,EnemyRulesV3Tuning.SniperWarning,shape:EnemyDangerShape.Line,end:point);break;
                 case EnemyKindV3.Bomber: Warn(state,EnemyRuleAction.Damage,"bomber-burst",point,EnemyRulesV3Tuning.BurstRadius);Warn(state,EnemyRuleAction.Poison,"bomber-pool",point,EnemyRulesV3Tuning.BurstRadius,duration:EnemyRulesV3Tuning.PoolSeconds,repeat:true);break;
                 case EnemyKindV3.Healer:
@@ -241,7 +271,6 @@ namespace ArcaneBrigade
                 case EnemyKindV3.Charger:
                     target=SelectFarthest(unit.Position);point=target==null?point:target.Position;
                     Warn(state,EnemyRuleAction.Damage,"charger-charge",unit.Position,EnemyRulesV3Tuning.ChargeWidth,shape:EnemyDangerShape.Line,end:point);break;
-                case EnemyKindV3.Thief: case EnemyKindV3.GluttonousMouth: Emit(EnemyRuleAction.DrainPickups,state,state.Row.Kind==EnemyKindV3.Thief?"coin-thief":"glutton",unit.Position,EnemyRulesV3Tuning.StealRadius,target:unit.Id);break;
                 case EnemyKindV3.Trapper: Warn(state,EnemyRuleAction.Damage,"trap",point);Warn(state,EnemyRuleAction.Stun,"cocoon",point,duration:EnemyRulesV3Tuning.DefaultStatus);break;
                 case EnemyKindV3.Marker: markUntil=time+EnemyRulesV3Tuning.DefaultStatus;Emit(EnemyRuleAction.MarkHero,state,"hero-mark",hero==null?point:hero.Position,duration:EnemyRulesV3Tuning.DefaultStatus);break;
                 case EnemyKindV3.ConeBrute: Warn(state,EnemyRuleAction.Damage,"cone-splash",unit.Position,shape:EnemyDangerShape.Cone,end:point);break;
@@ -249,7 +278,6 @@ namespace ArcaneBrigade
                 case EnemyKindV3.MagnetBrute: Emit(EnemyRuleAction.Pull,state,"projectile-magnet",unit.Position,EnemyRulesV3Tuning.DefaultRadius);break;
                 case EnemyKindV3.Silencer: Warn(state,EnemyRuleAction.PauseSkills,"silence",unit.Position,duration:EnemyRulesV3Tuning.SilenceSeconds,shape:EnemyDangerShape.Ring);break;
                 case EnemyKindV3.Cleanser: Warn(state,EnemyRuleAction.Cleanse,"cleanse",point);break;
-                case EnemyKindV3.Ambusher: if(target!=null){unit.Position=point;Warn(state,EnemyRuleAction.Damage,"ambush",point,warning:EnemyRulesV3Tuning.AuraTick);}break;
                 case EnemyKindV3.Burrower: point=FriendCluster();Warn(state,EnemyRuleAction.Damage,"burrow",point);unit.Position=point;break;
                 case EnemyKindV3.KamikazeCandle: point=FriendCluster();Warn(state,EnemyRuleAction.Damage,"kamikaze",point,EnemyRulesV3Tuning.BurstRadius);break;
                 case EnemyKindV3.GravityImp: Warn(state,EnemyRuleAction.Pull,"gravity-pull",FriendCluster(),value:EnemyRulesV3Tuning.PullDistance);break;
@@ -263,7 +291,7 @@ namespace ArcaneBrigade
                     for(int i=0;i<states.Count;i++)if(states[i]!=state && states[i].Unit.Alive && states[i].BinderId==0){state.BinderId=states[i].Unit.Id;states[i].BinderId=unit.Id;Emit(EnemyRuleAction.Chain,state,"binder-chain",states[i].Unit.Position,target:states[i].Unit.Id);break;}break;
                 case EnemyKindV3.Drainer: Warn(state,EnemyRuleAction.DrainCoins,"drain",point,duration:EnemyRulesV3Tuning.DefaultStatus,value:EnemyRulesV3Tuning.DrainFraction,repeat:true);break;
                 case EnemyKindV3.Charmer: if(target!=null)Emit(EnemyRuleAction.Charm,state,"charm",point,duration:EnemyRulesV3Tuning.CharmSeconds,target:target.Id);break;
-                case EnemyKindV3.ArmourGrower: Warn(state,EnemyRuleAction.Damage,"armour-slam",unit.Position);state.ArmorUntil=time+EnemyRulesV3Tuning.ArmorSeconds;break;
+                case EnemyKindV3.ArmourGrower: Warn(state,EnemyRuleAction.Damage,"armour-slam",unit.Position);Warn(state,EnemyRuleAction.ArmorBreak,"armour-break",unit.Position,value:EnemyRulesV3Tuning.ArmorBreakPoints);state.ArmorUntil=time+EnemyRulesV3Tuning.ArmorSeconds;break;
                 case EnemyKindV3.MeteorCaller: Warn(state,EnemyRuleAction.Damage,"meteor",FriendCluster(),warning:EnemyRulesV3Tuning.MeteorWarning);break;
                 case EnemyKindV3.TideBrute: Warn(state,EnemyRuleAction.Slow,"flood",unit.Position,duration:EnemyRulesV3Tuning.DefaultStatus,value:EnemyRulesV3Tuning.TideSlow,repeat:true);break;
                 case EnemyKindV3.FireBrute: Warn(state,EnemyRuleAction.Burn,"fire-trail",unit.Position,duration:EnemyRulesV3Tuning.PoolSeconds,repeat:true);break;
@@ -289,26 +317,29 @@ namespace ArcaneBrigade
         private void SpeedArea(State source,float amount,float seconds)
         { for(int i=0;i<states.Count;i++)if(states[i].Unit.Alive && (states[i].Unit.Position-source.Unit.Position).sqrMagnitude<=EnemyRulesV3Tuning.GroupRadius*EnemyRulesV3Tuning.GroupRadius){states[i].SpeedBonus=amount;states[i].SpeedUntil=time+seconds;} }
 
-        public float ModifyIncoming(UnitState target,float damage,UnitState attacker=null,WeaponDefinition weapon=null,Vector2 direction=default)
+        public float ArmorPoints(UnitState enemy)
+        {State state=Get(enemy);return state==null?0:Mathf.Max(0,(Has(state,EnemyAffixV3.Armored)||state.ArmorUntil>time?EnemyRulesV3Tuning.Armor:0)-state.ArmorBroken);}
+        public void BreakArmor(UnitState enemy,float points)
+        {State state=Get(enemy);if(state!=null && points>0 && !float.IsNaN(points) && !float.IsInfinity(points))state.ArmorBroken+=points;}
+        public float ModifyIncoming(UnitState target,float damage,UnitState attacker=null,WeaponDefinition weapon=null,Vector2 direction=default,float armorIgnore=0)
         {
             State state=Get(target);if(state==null)return damage;
             state.LastDamage=time;
             if(state.ImmuneUntil>time || ChoirProtected(state))return 0;
             if(state.Row!=null && state.Row.Kind==EnemyKindV3.ShieldWall && Vector2.Dot(-direction,target.Facing)>EnemyRulesV3Tuning.FrontDot)return 0;
-            if(state.Row!=null && (state.Row.Kind==EnemyKindV3.Decoy || state.Row.Kind==EnemyKindV3.CrumbSwarm && !state.CrumbGiant))return target.Health;
+            if(state.Row!=null && (state.Row.Kind==EnemyKindV3.Decoy || state.Row.Kind==EnemyKindV3.CrumbSwarm))return target.Health;
             if(state.Row!=null && state.Row.Kind==EnemyKindV3.MirrorImp && weapon!=null && weapon.Kind==WeaponKind.Projectile && Vector2.Dot(-direction,target.Facing)>EnemyRulesV3Tuning.ReflectFrontDot && attacker!=null)
                 Emit(EnemyRuleAction.Reflect,state,"mirror-reflect",attacker.Position,value:damage*EnemyRulesV3Tuning.MirrorReflect,target:attacker.Id);
             if(Has(state,EnemyAffixV3.Reflective) && !state.Reflected && attacker!=null)
             {state.Reflected=true;Emit(EnemyRuleAction.Reflect,state,"reflective-affix",attacker.Position,value:damage*EnemyRulesV3Tuning.Reflect,target:attacker.Id);}
-            if(Has(state,EnemyAffixV3.Armored)||state.ArmorUntil>time)damage=RunModifierRules.AfterArmor(damage,EnemyRulesV3Tuning.Armor);
+            damage=RunModifierRules.AfterArmor(damage,ArmorPoints(target)*(1-Mathf.Clamp01(armorIgnore)));
             damage*=1-state.AuraShield;
             float absorbed=Mathf.Min(state.Shield,damage);state.Shield-=absorbed;return damage-absorbed;
         }
         public float ModifyOutgoing(UnitState attacker,UnitState target,float damage)
         {
             State state=Get(attacker);if(state==null)return damage;
-            damage*=1+state.AuraDamage+state.DamageBonus+state.Stages*EnemyRulesV3Tuning.GrowDamage;
-            if(state.Row!=null && state.Row.Kind==EnemyKindV3.Immune && state.Attacks%EnemyRulesV3Tuning.AttackEvery==0)damage*=EnemyRulesV3Tuning.ChargedScale;
+            damage*=1+state.AuraDamage+state.DamageBonus;
             return damage;
         }
         public void OnDamageDealt(UnitState attacker,UnitState victim,float damage)
@@ -358,8 +389,8 @@ namespace ArcaneBrigade
                     for(int i=0;i<states.Count;i++)if(states[i].Unit.Alive && states[i].Row!=null && states[i].Row.Kind==EnemyKindV3.Stitcher && (states[i].Unit.Position-unit.Position).sqrMagnitude<=EnemyRulesV3Tuning.GroupRadius*EnemyRulesV3Tuning.GroupRadius)states[i].Unit.Health=MaxHealth(states[i].Unit);
                 if(state.Row.Kind==EnemyKindV3.Mourner)SpeedArea(state,EnemyRulesV3Tuning.MournerSpeed,EnemyRulesV3Tuning.MournerSeconds);
                 if(state.Row.Kind==EnemyKindV3.BannerBearer)Emit(EnemyRuleAction.Banner,state,"fallen-banner",unit.Position,EnemyRulesV3Tuning.BannerRadius,EnemyRulesV3Tuning.PoolSeconds,EnemyRulesV3Tuning.BannerDamage);
-                if(state.Row.Kind==EnemyKindV3.Splitter && state.Generation<EnemyRulesV3Tuning.MaxSplitGeneration)Spawn(state,"split",unit.Position,state.Row.Id,EnemyRulesV3Tuning.SplitCount);
-                if((state.Row.Kind==EnemyKindV3.Thief || state.Row.Kind==EnemyKindV3.GluttonousMouth)&&state.Stolen>0)Emit(EnemyRuleAction.DrainCoins,state,"refund",unit.Position,value:Mathf.CeilToInt(state.Stolen*EnemyRulesV3Tuning.ThiefRefund));
+                if(state.Row.Kind==EnemyKindV3.Splitter && state.Generation==0)Spawn(state,"split",unit.Position,state.Row.Id,EnemyRulesV3Tuning.SplitCount);
+                if((state.Row.Kind==EnemyKindV3.Thief || state.Row.Kind==EnemyKindV3.GluttonousMouth)&&state.Stolen>0)Emit(EnemyRuleAction.DrainCoins,state,"refund",unit.Position,value:Mathf.CeilToInt(state.Stolen*(state.Row.Kind==EnemyKindV3.Thief?EnemyRulesV3Tuning.ThiefRefund:1)));
             }
             if(Has(state,EnemyAffixV3.Splitting)&&state.Generation<EnemyRulesV3Tuning.MaxSplitGeneration)Spawn(state,"split",unit.Position,unit.Definition.Id,EnemyRulesV3Tuning.SplitCount);
             if(Has(state,EnemyAffixV3.Explosive))Warn(state,EnemyRuleAction.Damage,"explosive",unit.Position,EnemyRulesV3Tuning.BurstRadius);
@@ -368,6 +399,7 @@ namespace ArcaneBrigade
         public void Revive(UnitState enemy)
         {
             State state=Get(enemy);if(state==null)return;
+            if(!enemy.Alive && state.Boss==null && (enemy.Elite || state.Row?.Tier==EnemyBodyTier.LargeSpecial) && LiveLargeSpecial>=EnemyRulesV3Tuning.LargeSpecialCap(wave))return;
             if(state.Singer && state.Fell && byId.TryGetValue(state.ParentId,out State conductor))
             {conductor.SingersAlive++;if(conductor.SingersAlive>=conductor.SingerTotal)conductor.SingerDeathSeen=false;}
             state.Fell=false;enemy.Alive=true;enemy.Health=MaxHealth(enemy);
@@ -383,6 +415,7 @@ namespace ArcaneBrigade
         public bool MoveOverride(UnitState enemy,float dt)
         {
             State state=Get(enemy);if(state==null)return false;
+            if(state.Row?.Kind==EnemyKindV3.Pillbug){enemy.Position+=state.To*enemy.Definition.Speed*dt;return true;}
             if(state.ChargeUntil>time){enemy.Position=Vector2.MoveTowards(enemy.Position,state.To,enemy.Definition.Speed*EnemyRulesV3Tuning.ChargedScale*dt);return true;}
             return state.DizzyUntil>time || state.ImmuneUntil>time || state.Row?.Kind==EnemyKindV3.SniperDoll;
         }
@@ -447,7 +480,7 @@ namespace ArcaneBrigade
         {
             switch(state.Boss.Kind)
             {
-                case EnemyBossV3.PastryTyrant:Warn(state,EnemyRuleAction.Damage,"pastry-smash",FriendCluster(),EnemyRulesV3Tuning.BossRadius);Spawn(state,"crumb-swarm",state.Unit.Position,"CrumbSwarm",EnemyRulesV3Tuning.CrumbWaveCount);break;
+                case EnemyBossV3.PastryTyrant:Warn(state,EnemyRuleAction.Damage,"pastry-smash",FriendCluster(),EnemyRulesV3Tuning.BossRadius);Warn(state,EnemyRuleAction.ArmorBreak,"pastry-armour-break",FriendCluster(),EnemyRulesV3Tuning.BossRadius,value:EnemyRulesV3Tuning.ArmorBreakPoints);Spawn(state,"crumb-swarm",state.Unit.Position,"CrumbSwarm",EnemyRulesV3Tuning.CrumbWaveCount);break;
                 case EnemyBossV3.ClockworkWarden:Warn(state,EnemyRuleAction.PauseSkills,"time-bubble",FriendCluster(),EnemyRulesV3Tuning.BossRadius,duration:EnemyRulesV3Tuning.SilenceSeconds);break;
                 case EnemyBossV3.StormHerald:Warn(state,EnemyRuleAction.Damage,"lightning-rain",FriendCluster(),EnemyRulesV3Tuning.BossRadius,EnemyRulesV3Tuning.MeteorWarning);break;
                 case EnemyBossV3.HollowChoir:Warn(state,EnemyRuleAction.PauseSkills,"choir-silence",FriendCluster(),EnemyRulesV3Tuning.BossRadius,duration:EnemyRulesV3Tuning.SilenceSeconds,shape:EnemyDangerShape.Ring);break;

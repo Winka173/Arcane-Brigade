@@ -44,9 +44,10 @@ unity_refs += list((UNITY / 'Managed/UnityEngine').glob('*.dll'))
 runtime = OUT / 'Runtime.dll'
 compile_cs('runtime', common + ['-target:library', '-out:"' + str(runtime) + '"'] +
            reference(unity_refs) + ['"' + str(p) + '"' for p in (ROOT / 'Assets/ArcaneBrigade/Runtime').rglob('*.cs')])
-checks = ['BondEngineChecks', 'MortalityChecks', 'CompanionRulesV3Checks', 'HeroRulesV3Checks',
+checks = ['BondEngineChecks', 'BondV5RulesChecks', 'MortalityChecks', 'CompanionRulesV3Checks', 'HeroRulesV3Checks',
           'EnemyRulesV3Checks', 'RulesV3IntegrationChecks']
 editor_sources = [ROOT / ('Assets/ArcaneBrigade/Editor/' + name + '.cs') for name in checks]
+editor_sources += [ROOT / 'Assets/ArcaneBrigade/Editor/RulesV3AllChecks.cs']
 editor_sources += [ROOT / 'Assets/ArcaneBrigade/Editor/BondReworkBuilder.cs']
 editor_refs = []  # UnityEditor modules are already in Managed/UnityEngine; omit the facade.
 compile_cs('editor', common + ['-target:library', '-out:"' + str(OUT / 'Editor.dll') + '"'] +
@@ -59,7 +60,7 @@ for source in editor_sources[:-1]:
     text = source.read_text(encoding='utf-8-sig')
     text = re.sub(r'ScriptableObject.CreateInstance<([^>]+)>\(\)', r'ManagedAssets.Create<\1>()', text)
     text = re.sub(r'(?:UnityEngine\.)?Object.DestroyImmediate\(([^;]+)\);', '{}', text)
-    text = text.replace('Debug.Log(', 'System.Console.WriteLine(')
+    text = text.replace('UnityEngine.Debug.Log(', 'System.Console.WriteLine(').replace('Debug.Log(', 'System.Console.WriteLine(')
     path = OUT / source.name
     path.write_text(text, encoding='utf-8')
     adapted.append(path)
@@ -79,7 +80,7 @@ static class ManagedAssets {
 }
 class Program { static int Main() { try {
 '''
-program += '\n'.join('ArcaneBrigade.Editor.' + name + '.Run();' for name in checks)
+program += 'ArcaneBrigade.Editor.RulesV3AllChecks.Run();'
 program += '\nreturn 0; } catch(Exception error) { Console.Error.WriteLine(error); return 1; } } }'
 (OUT / 'Program.cs').write_text(program, encoding='utf-8')
 netrefs = sorted((DOTNET / 'packs/Microsoft.NETCore.App.Ref').glob('*/ref/net9.0'))[-1]
@@ -94,4 +95,3 @@ result = subprocess.run(['dotnet', str(OUT / 'Checks.dll')], cwd=ROOT, text=True
 print(result.stdout + result.stderr)
 (OUT / 'checks.log').write_text(result.stdout + result.stderr, encoding='utf-8')
 raise SystemExit(result.returncode)
-

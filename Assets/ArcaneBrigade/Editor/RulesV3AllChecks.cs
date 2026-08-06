@@ -6,6 +6,7 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             BondEngineChecks.Run();
+            BondV5RulesChecks.Run();
             MortalityChecks.Run();
             CompanionRulesV3Checks.Run();
             HeroRulesV3Checks.Run();

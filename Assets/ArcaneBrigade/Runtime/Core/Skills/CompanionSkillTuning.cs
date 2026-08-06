@@ -13,6 +13,7 @@ namespace ArcaneBrigade
     }
     public static class CompanionSkillTuning
     {
+        public const int HeldCastCapacity = 1024;
         public const int CompanionCount=120, ProtectionCount=27, MaxFriends=11, MaxZones=256, MaxCastsPerTick=4;
         public const int GridSize=33, GridHalf=16;
         public const float TickInterval=1, DefaultShieldDuration=6, CellSize=3, LineHalfWidth=.75f, ConeCosine=.5f, RingInnerFraction=.2f;

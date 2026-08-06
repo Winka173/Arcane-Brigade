@@ -36,6 +36,7 @@ namespace ArcaneBrigade
             {
                 State.RulesV3Receipts.Add(new RulesV3RecruitReceipt {UnitId=offer.Id,Paid=offer.Currency==ShopCurrency.Gold?offer.Price:0});
                 var bonds=new BondRuntime(catalog.Bonds,BondCounts,RulesV3BondProgress);
+                bonds.OnRecruit(offer.Id);
                 bonds.FirstRecruitDiscount(State.RulesV3RecruitWave!=State.Wave,true);State.RulesV3RecruitWave=State.Wave;
                 if(State.ChampionId=="LoneJelly")foreach(PersonalTraitV3Definition trait in HeroRulesV3Catalog.Traits)
                     if(trait.CompanionId==offer.Id) { RulesV3HeroProgress.AbsorbedTraits.Add(offer.Id);RulesV3HeroProgress.AbsorbedCount++;break; }

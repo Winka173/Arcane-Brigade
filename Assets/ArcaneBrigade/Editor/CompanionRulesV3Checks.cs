@@ -71,8 +71,26 @@ namespace ArcaneBrigade.Editor
                 }
             }
             Require(protection==CompanionSkillTuning.ProtectionCount,"27 protections");
-            PauseAndRevive(); Geometry(); RandomIsDeterministic(); HistoriesAndHealing();
+            HasteAndHeldCasts(); PauseAndRevive(); Geometry(); RandomIsDeterministic(); HistoriesAndHealing();
             Debug.Log("CompanionRulesV3Checks: PASS (120 skills, 27 protections, 100-enemy fixtures, time-only bars)");
+        }
+        private static float GetBar(string id){CompanionSkillTable.TryGet(id,out CompanionSkillDefinition skill);return skill.Tuning.Bar;}
+        private static void HasteAndHeldCasts()
+        {
+            using(var f=new Fixture("RainHeron"))
+            {
+                float bar=GetBar("RainHeron");
+                f.Source.Definition.SkillHaste=1;
+                f.Runtime.Tick(bar*.5f);
+                Require(f.Casts==1,"member skill haste changes only time fill");
+                f.Runtime.ResetWave(f.Units,f.Hero,8);f.Casts=0;
+                bool hold=true;f.Runtime.HoldCasts=()=>hold;int before=f.Damage.Count;
+                f.Runtime.Tick(bar*.5f);
+                Require(f.Casts==0 && f.Damage.Count==before && f.Runtime.HeldCastCount==1,"clock stop holds a complete cast");
+                int damage=f.Damage.Count;hold=false;f.Runtime.Tick(BeforeReady);
+                Require(f.Casts==1 && f.Runtime.HeldCastCount==0 && f.Damage.Count>damage,"held cast resolves once on release");
+                f.Runtime.Tick(BeforeReady);Require(f.Casts==1,"held cast is not duplicated");
+            }
         }
         private static void PauseAndRevive()
         {

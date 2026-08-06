@@ -38,7 +38,7 @@ namespace ArcaneBrigade
         }
         private void TickHeroRulesV3(float dt)
         {
-            HeroRulesV3.Tick(dt,(Champion.Position-Champion.PreviousPosition).magnitude);
+            HeroRulesV3.Tick(dt,(Champion.Position-Champion.PreviousPosition).magnitude,Bonds.SkillFillBonusFor(Champion));
             TraitsV3.Tick(dt);
             for(int i=0;i<heroZones.Length;i++)
             {

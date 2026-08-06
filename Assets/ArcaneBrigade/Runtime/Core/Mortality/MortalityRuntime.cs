@@ -11,11 +11,13 @@ namespace ArcaneBrigade
         {
             public UnitState Unit;
             public bool Fallen;
-            public float RiseAt, Shield, ShieldUntil, Reduction, ReductionUntil;
+            public float RiseAt, Shield, ShieldCapacity, ShieldUntil, Reduction, ReductionUntil;
         }
 
         private readonly List<FriendState> friends = new List<FriendState>(MortalityTuning.TeamCapacity);
         private readonly Dictionary<int, FriendState> byId = new Dictionary<int, FriendState>(MortalityTuning.TeamCapacity);
+        public event Action<UnitState> ShieldBroken;
+        public event Action<UnitState,float> ShieldAbsorbed;
         public event Action<FriendMortalityEvent> Fell;
         public event Action<FriendMortalityEvent> Rose;
         public event Action<FriendWaveLostEvent> WaveLost;
@@ -46,9 +48,19 @@ namespace ArcaneBrigade
             if (!IsFriend(unit) || byId.ContainsKey(unit.Id)) return;
             var state = new FriendState { Unit = unit };
             friends.Add(state); byId.Add(unit.Id, state);
+            unit.BrokenArmorPoints = 0;
             unit.Health = MaxHealth(unit); unit.Alive = true; unit.PendingAttack = false;
             LivingCount++;
         }
+
+        /// <summary>One point per armour-breaking hit, retained through falls and revivals until wave reset.</summary>
+        public void BreakArmor(UnitState unit, float points = FriendDefenseTuning.ArmorBreakPerHit)
+        {
+            if (unit != null && unit.Alive && byId.ContainsKey(unit.Id) && Finite(points) && points > 0)
+                unit.BrokenArmorPoints += points;
+        }
+        public static float ArmorPoints(UnitState unit, float extraPoints = 0)
+            => unit == null ? 0 : Mathf.Max(0, unit.Definition.FriendArmorPoints + extraPoints - unit.BrokenArmorPoints);
 
         public bool IsFallen(UnitState unit) => unit != null && byId.TryGetValue(unit.Id, out FriendState state) && state.Fallen;
         public float RiseAt(UnitState unit) => unit != null && byId.TryGetValue(unit.Id, out FriendState state) && state.Fallen ? state.RiseAt : 0;
@@ -104,9 +116,14 @@ namespace ArcaneBrigade
             {
                 float absorbed = Mathf.Min(state.Shield, damage);
                 state.Shield -= absorbed; damage -= absorbed;
+                if(absorbed > 0)ShieldAbsorbed?.Invoke(unit,absorbed);
+                if(absorbed > 0 && state.Shield <= 0)ShieldBroken?.Invoke(unit);
             }
             return damage;
         }
+
+        public float ShieldCapacity(UnitState unit) => unit!=null && byId.TryGetValue(unit.Id,out FriendState state) ? state.ShieldCapacity : 0;
+        public float ShieldAmount(UnitState unit) => unit!=null && byId.TryGetValue(unit.Id,out FriendState state) && state.ShieldUntil>Elapsed ? state.Shield : 0;
 
         public float ApplyDamage(UnitState unit, float damage, int sourceId = 0)
         {
@@ -141,6 +158,7 @@ namespace ArcaneBrigade
         {
             if (unit == null || !Finite(healthFraction) || !Finite(duration) || !byId.TryGetValue(unit.Id, out FriendState state) || state.Fallen) return;
             state.Shield = Mathf.Max(state.ShieldUntil > Elapsed ? state.Shield : 0, MaxHealth(unit) * Mathf.Clamp01(healthFraction));
+            state.ShieldCapacity=state.Shield;
             state.ShieldUntil = Mathf.Max(state.ShieldUntil, Elapsed + Mathf.Max(0, duration));
         }
 

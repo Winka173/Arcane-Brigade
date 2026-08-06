@@ -33,8 +33,9 @@ namespace ArcaneBrigade
         public readonly UnitState Attacker, Target;
         public readonly string SkillId;
         public readonly float Damage;
-        public SkillDamageRequest(UnitState attacker, UnitState target, string skill, float damage)
-        { Attacker=attacker; Target=target; SkillId=skill; Damage=damage; }
+        public readonly bool PageCopy;
+        public SkillDamageRequest(UnitState attacker, UnitState target, string skill, float damage,bool pageCopy=false)
+        { Attacker=attacker; Target=target; SkillId=skill; Damage=damage; PageCopy=pageCopy; }
     }
     public readonly struct SkillEnemyEffectRequest
     {

@@ -42,18 +42,91 @@ namespace ArcaneBrigade.Editor
         }
         public static void Run()
         {
-            Catalog();Warnings();Affixes();Passives();Bosses();AllKinds();
+            Catalog();Composition();BodyOnly();Warnings();Affixes();Passives();Bosses();AllKinds();
             Debug.Log("EnemyRulesV3Checks: PASS (53 kinds, 12 affixes, 6 bosses, 100-enemy fixtures)");
         }
         private static void Catalog()
         {
-            Require(EnemyRulesV3Catalog.Definitions.Length==EnemyRulesV3Tuning.KindCount,"53 enemy skills");
+            Require(EnemyRulesV3Catalog.Definitions.Length==EnemyRulesV3Tuning.KindCount,"53 enemy bodies");
             Require(EnemyRulesV3Catalog.Bosses.Length==EnemyRulesV3Tuning.BossCount,"six bosses");
             Require(EnemyRulesV3Catalog.Affixes.Length==EnemyRulesV3Tuning.AffixCount,"twelve affix definitions");
-            var ids=new HashSet<string>();foreach(var row in EnemyRulesV3Catalog.Definitions){Require(ids.Add(row.Id),"unique kind ids");Require(!string.IsNullOrEmpty(row.Skill),"every kind has an authored skill");}
+            var ids=new HashSet<string>();foreach(var row in EnemyRulesV3Catalog.Definitions){Require(ids.Add(row.Id),"unique kind ids");Require(row.HasSkill?!string.IsNullOrEmpty(row.Skill):string.IsNullOrEmpty(row.Skill)&&!string.IsNullOrEmpty(row.Body),"skill/body classification "+row.Id);}
+            int small=0,plain=0,skilled=0;
+            foreach(var row in EnemyRulesV3Catalog.Definitions){if(row.Tier==EnemyBodyTier.Small)small++;if(row.Tier==EnemyBodyTier.MediumPlain)plain++;if(row.Tier==EnemyBodyTier.MediumSkilled)skilled++;}
+            Require(small==EnemyRulesV3Tuning.SmallCount && plain==EnemyRulesV3Tuning.PlainMediumCount && skilled==EnemyRulesV3Tuning.SkilledMediumCount,"eight small, six plain medium, exactly eight medium skills");
             Require(EnemyRulesV3Catalog.BossForNight(10).Kind==EnemyBossV3.PastryTyrant,"night 10 boss");
             Require(EnemyRulesV3Catalog.BossForNight(80).Kind==EnemyBossV3.LanternQueen,"night 80 boss");
             Require(EnemyRulesV3Catalog.BossForNight(11)==null,"no invented boss night");
+        }
+        private static void Composition()
+        {
+            Require(EnemyRulesV3Tuning.LargeSpecialCap(1)==2 && EnemyRulesV3Tuning.LargeSpecialCap(80)==8,"large/special early and late caps");
+            for(int night=1;night<=80;night++)Require(EnemyRulesV3Tuning.LargeSpecialCap(night)>=2 && EnemyRulesV3Tuning.LargeSpecialCap(night)<=8,"cap stays bounded");
+            using(var fight=new Fight("Stitcher"))
+            {
+                fight.Runtime.ResetWave(fight.Units,fight.Hero,80);
+                for(int i=1;i<EnemyRulesV3Tuning.LateLargeSpecialCap;i++)
+                {UnitDefinition chosen=fight.Runtime.SelectSpawn(fight.Enemy.Definition);Require(chosen==fight.Enemy.Definition,"late cap permits eight specials");var unit=new UnitState {Id=Crowd+20+i,Faction=Faction.Enemy,Definition=chosen,Health=Health};fight.Units.Add(unit);fight.Runtime.RegisterEnemy(unit);}
+                Require(fight.Runtime.LiveLargeSpecial==EnemyRulesV3Tuning.LateLargeSpecialCap && EnemyRulesV3Catalog.IsSmall(fight.Runtime.SelectSpawn(fight.Enemy.Definition)),"ninth late special replaced by small");
+            }
+            using(var fight=new Fight("Stitcher"))
+            {
+                UnitDefinition scaledSmall=fight.Definition("Marcher");scaledSmall.Health=Health*Crowd;
+                fight.Runtime.ConfigureSmallFallback(scaledSmall);
+                // Two early special slots are occupied before testing their replacement body.
+                var second=new UnitState {Id=Crowd*3,Faction=Faction.Enemy,Definition=fight.Enemy.Definition,Health=Health};fight.Units.Add(second);fight.Runtime.RegisterEnemy(second);
+                UnitDefinition replacement=fight.Runtime.SelectSpawn(fight.Enemy.Definition);
+                Require(ReferenceEquals(replacement,scaledSmall),"quota fallback preserves the combat catalog's wave-scaled definition");
+                bool rejected=false;try{fight.Runtime.ConfigureSmallFallback(fight.Enemy.Definition);}catch(ArgumentException){rejected=true;}Require(rejected,"fallback rejects a special body");
+            }
+            using(var fight=new Fight("ArmourGrower"))
+            {
+                fight.Runtime.AssignAffixes(fight.Enemy,EnemyAffixV3.Armored);
+                fight.Runtime.BreakArmor(fight.Enemy,EnemyRulesV3Tuning.ArmorBreakPoints);
+                Near(fight.Runtime.ModifyIncoming(fight.Enemy,Damage),RunModifierRules.AfterArmor(Damage,EnemyRulesV3Tuning.Armor-EnemyRulesV3Tuning.ArmorBreakPoints),"enemy armor break persists for wave");
+                Near(fight.Runtime.ModifyIncoming(fight.Enemy,Damage,armorIgnore:1),Damage,"armor ignore applies before formula");
+                fight.Runtime.ResetWave(fight.Units,fight.Hero,1);fight.Runtime.AssignAffixes(fight.Enemy,EnemyAffixV3.Armored);
+                Near(fight.Runtime.ArmorPoints(fight.Enemy),EnemyRulesV3Tuning.Armor,"enemy armor resets next wave");
+            }
+            using(var fight=new Fight("Marcher"))
+            {
+                Require(fight.Runtime.TryMakeElite(fight.Enemy) && fight.Runtime.TryMakeElite(fight.Units[3]),"early screen allows two elites");
+                Require(!fight.Runtime.TryMakeElite(fight.Units[4]) && fight.Runtime.WaveSmall==Crowd-2,"elite promotion respects cap and small quota");
+            }
+            using(var fight=new Fight("Stitcher"))
+            {
+                UnitDefinition special=fight.Enemy.Definition;
+                for(int i=0;i<Crowd;i++)
+                {
+                    UnitDefinition chosen=fight.Runtime.SelectSpawn(special);
+                    UnitState unit=new UnitState {Id=Crowd+20+i,Faction=Faction.Enemy,Definition=chosen,Health=Health};fight.Units.Add(unit);fight.Runtime.RegisterEnemy(unit);
+                    Require(fight.Runtime.WaveSmall>=fight.Runtime.WaveBodies*EnemyRulesV3Tuning.MinimumSmallFraction,"small bodies stay at 80 percent or higher");
+                    Require(fight.Runtime.LiveLargeSpecial<=EnemyRulesV3Tuning.EarlyLargeSpecialCap,"on-screen cap prevents special flooding");
+                }
+                fight.Runtime.OnEnemyDeath(fight.Enemy);
+                Require(fight.Runtime.SelectSpawn(special)==special,"a fallen special frees its screen slot");
+                var replacement=new UnitState {Id=Crowd*3,Faction=Faction.Enemy,Definition=special,Health=Health};fight.Units.Add(replacement);fight.Runtime.RegisterEnemy(replacement);
+                fight.Runtime.Revive(fight.Enemy);Require(!fight.Enemy.Alive,"revive cannot exceed the live special cap");
+            }
+        }
+        private static void BodyOnly()
+        {
+            foreach(var row in EnemyRulesV3Catalog.Definitions)
+            {
+                if(row.Tier!=EnemyBodyTier.Small)continue;
+                using(var fight=new Fight(row.Id))
+                {
+                    // Crowd all 100 bodies to catch removed merging and rank aura behavior.
+                    foreach(var unit in fight.Units)if(unit.Faction==Faction.Enemy)unit.Position=Vector2.zero;
+                    fight.Events.Clear();fight.Runtime.Tick(EnemyRulesV3Tuning.DefaultPeriod);fight.Runtime.Tick(EnemyRulesV3Tuning.DefaultWarning);
+                    Require(fight.Warnings.Count==0 && fight.Events.Count==0,row.Id+" has no active skill or aura");
+                    Near(fight.Runtime.SpeedScale(fight.Units[3]),1,"small ranks give no speed aura");
+                }
+            }
+            using(var fight=new Fight("Immune"))
+            {for(int i=0;i<EnemyRulesV3Tuning.AttackEvery;i++)fight.Runtime.OnAttack(fight.Enemy);Near(fight.Runtime.ModifyOutgoing(fight.Enemy,fight.Hero,Damage),Damage,"Immune has only control immunity, no charged attack");}
+            using(var fight=new Fight("ArmourGrower"))
+            {fight.Runtime.Tick(EnemyRulesV3Tuning.DefaultPeriod);fight.Runtime.Tick(EnemyRulesV3Tuning.DefaultWarning);Require(fight.Count(EnemyRuleAction.ArmorBreak)==1,"armour-slam removes one wave armor point");}
         }
         private static void Warnings()
         {

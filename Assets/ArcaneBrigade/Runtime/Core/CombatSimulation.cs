@@ -42,6 +42,7 @@ namespace ArcaneBrigade
     public sealed class UnitState
     {
         public int Id;
+        public float BrokenArmorPoints; // Armour-break lasts until the next wave.
         public int PackCoinBonus; // escorts carry the rewards of the small bodies removed from their pack
         /// <summary>While a hero is transformed: the painted art key of its transformed weapon (presentation only).</summary>
         public string AwakenArt;
@@ -223,6 +224,8 @@ namespace ArcaneBrigade
         public CombatCause Cause;
         public WeaponDefinition Weapon;
         public bool Returning;
+        public int BondReturnsRemaining, BondBounceCount;
+        public bool BondLane, BondTrail, BondCrane, BondReturnFlight, BondReturnDamage, BondBonusShot;
         public float Age;
         public bool FinalNote;
         public int RicochetsRemaining;
@@ -371,6 +374,7 @@ namespace ArcaneBrigade
             LastDamageKind = "";
             maximumRadius = maximumSpeed = 0f; bossBodyReach = 0f;
             Generation++;
+            EnemyRulesV3 = null; Mortality = null;
             Champion = Spawn(catalog.Champion, Faction.Champion, Vector2.zero);
             if (!catalog.ExplicitStartingRoster && (catalog.StartingCompanions == null || catalog.StartingCompanions.Length == 0))
                 AddCompanion(catalog.Companion);
@@ -514,7 +518,7 @@ namespace ArcaneBrigade
             StepRelics(deltaTime, movement);
             if (Phase != RunPhase.Combat) return;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * V3MoveScale(Champion) * (1 + (HeroRulesV3?.SpeedBonus ?? 0) + Bonds.FriendMoveSpeedBonus) * KitHeroSpeed() * VisitorHeroScale * WaitingHeroScale * MapHeroScale * deltaTime, Champion.Definition.Radius);
+            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * V3MoveScale(Champion) * (1 + (HeroRulesV3?.SpeedBonus ?? 0) + Bonds.MoveSpeedBonusFor(Champion)) * KitHeroSpeed() * VisitorHeroScale * WaitingHeroScale * MapHeroScale * deltaTime, Champion.Definition.Radius);
             Bonds.Moving = (Champion.Position - Champion.PreviousPosition).sqrMagnitude > 0.000001f;
             Bonds.Tick(deltaTime);
             TickRulesV3(deltaTime);
@@ -601,12 +605,20 @@ namespace ArcaneBrigade
                 if (!units[index].Alive && units[index].Faction == Faction.Enemy && !EnemyRulesV3.Recognizes(units[index])) { unitLookup.Remove(units[index].Id); units.RemoveAt(index); }
         }
 
-        private UnitState Spawn(UnitDefinition definition, Faction faction, Vector2 position)
+        private UnitState Spawn(UnitDefinition definition, Faction faction, Vector2 position, bool elite = false)
         {
+            if(faction == Faction.Enemy && EnemyRulesV3 != null)
+            {
+                elite = elite && EnemyRulesV3.CanSpawnElite(definition);
+                UnitDefinition selected = EnemyRulesV3.SelectSpawn(definition, elite);
+                if(selected != definition)elite = false;
+                definition = selected;
+            }
             var unit = new UnitState
             {
                 Id = ++nextId,
                 Definition = definition,
+                Elite = elite,
                 Faction = faction,
                 Position = position,
                 PreviousPosition = position,
@@ -726,7 +738,7 @@ namespace ArcaneBrigade
             float neighborhood = Mathf.Max(catalog.CompanionSeparation, unit.Definition.Radius + maximumRadius + 0.35f) + maximumSpeed * deltaTime;
             spatial.Query(unit.PreviousPosition - Vector2.one * neighborhood, unit.PreviousPosition + Vector2.one * neighborhood, separationCandidates);
             Vector2 next = CompanionMotion.Step(unit, Champion, separationCandidates, target, catalog, Elapsed, deltaTime);
-            next=unit.PreviousPosition+(next-unit.PreviousPosition)*V3MoveScale(unit)*(1+Bonds.FriendMoveSpeedBonus);
+            next=unit.PreviousPosition+(next-unit.PreviousPosition)*V3MoveScale(unit)*(1+Bonds.MoveSpeedBonusFor(unit));
             next = Champion.Position + Vector2.ClampMagnitude(next - Champion.Position, leash);
             unit.Position = ClampPosition(next, unit.Definition.Radius);
             if (!unit.PendingAttack && unit.Velocity.sqrMagnitude > 0.01f) unit.Facing = unit.Velocity.normalized;
@@ -760,6 +772,7 @@ namespace ArcaneBrigade
             if (unit.TelegraphUntil > Elapsed) return;
             if (unit.Definition.IsBoss && unit.BossRecoveryUntil > Elapsed) return;
             }
+            if(!(EnemyRulesV3?.ImmuneToControl(unit)??false) && (Bonds?.SpeedScale(unit)??1)<=0)return;
             if (EnemyRulesV3 != null && EnemyRulesV3.MoveOverride(unit,deltaTime)) { Vector2 raw=unit.Position;unit.Position=ClampPosition(raw,unit.Definition.Radius);if((raw-unit.Position).sqrMagnitude>RulesV3Tuning.Epsilon)EnemyRulesV3.OnWallHit(unit);return; }
             UnitState friendTarget = EnemyRulesV3?.PreferredFriend(unit) ?? V3NearestFriend(unit,float.PositiveInfinity);
             if (friendTarget == null || !V3Targetable(friendTarget)) friendTarget=V3NearestFriend(unit,float.PositiveInfinity);
@@ -776,7 +789,7 @@ namespace ArcaneBrigade
             }
             bool ranged = unit.Definition.Weapon.Kind == WeaponKind.Projectile;
             float stopDistance = ranged ? 4.8f : unit.Definition.Radius + Champion.Definition.Radius;
-            float speed = unit.Definition.Speed * (EnemyRulesV3?.SpeedScale(unit) ?? 1) * V3MoveScale(unit) * (EnemyRulesV3 != null && EnemyRulesV3.ImmuneToControl(unit) ? 1 : Bonds?.SpeedScale(unit) ?? 1) * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.StaggerUntil > Elapsed ? ImpactRules.StaggerSpeed : 1f) * (unit.PinnedUntil > Elapsed || unit.AirborneDamage > 0 ? 0f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1) * KitEnemySpeed(unit) * (EnemyRulesV3 != null && EnemyRulesV3.ImmuneToControl(unit) ? 1 : EnemySleepScale(unit)) * VisitorEnemyScale(unit);
+            float speed = unit.Definition.Speed * (EnemyRulesV3?.SpeedScale(unit) ?? 1) * V3MoveScale(unit) * (EnemyRulesV3 != null && EnemyRulesV3.ImmuneToControl(unit) ? 1 : (Bonds?.SpeedScale(unit) ?? 1)) * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.StaggerUntil > Elapsed ? ImpactRules.StaggerSpeed : 1f) * (unit.PinnedUntil > Elapsed || unit.AirborneDamage > 0 ? 0f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1) * KitEnemySpeed(unit) * (EnemyRulesV3 != null && EnemyRulesV3.ImmuneToControl(unit) ? 1 : EnemySleepScale(unit)) * VisitorEnemyScale(unit);
             if (distance > stopDistance)
                 unit.Position = ClampPosition(unit.Position + travelDirection * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
         }
@@ -886,7 +899,7 @@ namespace ArcaneBrigade
 
         private UnitState FindTarget(UnitState source, float range, bool weaponReach=false)
         {
-            if (source.Faction != Faction.Enemy) range *= 1 + (Bonds?.RangeBonus ?? 0);
+            if (source.Faction != Faction.Enemy) range *= 1 + (Bonds?.RangeBonusFor(source) ?? 0);
             bool melee=weaponReach && source.Definition.Weapon.Kind==WeaponKind.Melee;
             if (source.Faction!=Faction.Enemy && V3AttackFaction(source)==Faction.Enemy) return V3HostileFriendTarget(source,range);
             if (source.Faction == Faction.Enemy)
@@ -931,7 +944,7 @@ namespace ArcaneBrigade
                 float damage = IdentityAttackDamage(unit, OctoberAttackDamage(unit, RelicAttackDamage(unit, weapon.Damage)));
                 CombatCause attackCause = unit.CriticalEncore ? NewCause(unit.Id).Child("critical-encore") : NewCause(unit.Id);
                 UnitState locked = UnitWithId(unit.AttackTargetId);
-                bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + V3CriticalBonus(unit) + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0) + KitCrit(unit, locked) + RelicCrit(unit) + (unit.Faction != Faction.Enemy ? Bonds?.CriticalBonus ?? 0 : 0));
+                bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + V3CriticalBonus(unit) + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0) + KitCrit(unit, locked) + RelicCrit(unit) + (unit.Faction != Faction.Enemy ? Bonds?.CriticalBonusFor(unit) ?? 0 : 0));
                 if (unit == Champion && HeroRulesV3.NextShotCritical) critical = true;
                 if (critical) { damage *= 1.5f; TraitsV3?.OnCritical(); }
                 SkillsV3?.RecordAttack(unit,damage,unit.AttackDirection);
@@ -967,7 +980,7 @@ namespace ArcaneBrigade
                 KitEmitted(unit, kitFirst);
                 AdvanceSignatureBeat(unit, damage, attackCause);
                 unit.CriticalEncore = false;
-                if (unit.Faction != Faction.Enemy) Bonds?.OnVolley();
+                if (unit.Faction != Faction.Enemy) Bonds?.OnVolley(unit);
                 v3PiercingVolley = v3PiercingVolley || unit == Champion && HeroRulesV3.NextShotPierces;
                 events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, subject: unit, cause: attackCause));
             }
@@ -982,7 +995,7 @@ namespace ArcaneBrigade
             unit.AttackStarted = Elapsed;
             unit.AttackWindup = weapon.Windup * (weapon.Family == ExpandedWeapon.Hammer ? 1.17f : 1); // every slam alike (was: every third heavier)
             unit.ImpactTime = Elapsed + unit.AttackWindup;
-            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown / (1 + (unit.Faction != Faction.Enemy ? (Bonds?.AttackSpeedBonus ?? 0) + V3AttackSpeed(unit) : 0)) * OctoberCycle(unit) * KitCycle(unit) * CompanionHaste(unit) * RelicCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
+            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown / (1 + (unit.Faction != Faction.Enemy ? (Bonds?.AttackSpeedBonusFor(unit) ?? 0) + V3AttackSpeed(unit) : 0)) * OctoberCycle(unit) * KitCycle(unit) * CompanionHaste(unit) * RelicCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
             unit.PendingAttack = true;
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
@@ -996,9 +1009,10 @@ namespace ArcaneBrigade
             Vector2 position = unit.Position + unit.AttackDirection * (weapon.MountDistance - weapon.RecoilDistance) + rotatedMuzzle;
             if (unit.Faction == Faction.Enemy) position = unit.Position + unit.AttackDirection * unit.Definition.Radius * 0.9f;
             int relicFirst = projectiles.Count;
-            for (int index = 0; index < Mathf.Clamp(weapon.ProjectileCount, 1, 96) && projectiles.Count < 4096; index++)
+            int bondProjectileCount=weapon.ProjectileCount+(unit.Faction==Faction.Enemy?0:Bonds.ExtraProjectilesFor(unit));
+            for (int index = 0; index < Mathf.Clamp(bondProjectileCount, 1, 96) && projectiles.Count < 4096; index++)
             {
-                float angle = (index - (weapon.ProjectileCount - 1) * 0.5f) * weapon.ProjectileSpread;
+                float angle = (index - (bondProjectileCount - 1) * 0.5f) * weapon.ProjectileSpread;
                 Vector2 direction = Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg) * unit.AttackDirection;
                 projectiles.Add(new ProjectileState
                 {
@@ -1009,8 +1023,8 @@ namespace ArcaneBrigade
                     Muzzle = position, FiredAt = Elapsed,
                     Velocity = direction * (unit.Faction == Faction.Enemy && catalog.RunWave > 0 ? Mathf.Min(2.4f, weapon.ProjectileSpeed) : weapon.ProjectileSpeed),
                     Damage = damage,
-                    Remaining = weapon.ProjectileLifetime * (unit.Faction != Faction.Enemy ? 1 + (Bonds?.RangeBonus ?? 0) : 1),
-                    TravelLeft = unit.Faction == Faction.Enemy || FriendlyReach.Returns(weapon) ? -1 : FriendlyReach.Flight(weapon, rotatedMuzzle.magnitude, unit.Definition.Weapon.Range) * (1 + (Bonds?.RangeBonus ?? 0)),
+                    Remaining = weapon.ProjectileLifetime * (unit.Faction != Faction.Enemy ? 1 + (Bonds?.RangeBonusFor(unit) ?? 0) : 1),
+                    TravelLeft = unit.Faction == Faction.Enemy || FriendlyReach.Returns(weapon) ? -1 : FriendlyReach.Flight(weapon, rotatedMuzzle.magnitude, unit.Definition.Weapon.Range) * (1 + (Bonds?.RangeBonusFor(unit) ?? 0)),
                     Color = weapon.ProjectileColor,
                     Element = weapon.Element,
                     SourceName = unit.Definition.DisplayName + " projectile",
@@ -1036,7 +1050,7 @@ namespace ArcaneBrigade
             for(int shotIndex=relicFirst;shotIndex<projectiles.Count;shotIndex++)
             {
                 ProjectileState shot=projectiles[shotIndex];
-                if(unit.Faction!=Faction.Enemy){shot.TravelLeft*=1+Bonds.ProjectileDistanceBonus;shot.RicochetsRemaining+=Bonds.BallBounces;}
+                if(unit.Faction!=Faction.Enemy){shot.TravelLeft*=1+Bonds.ProjectileDistanceBonusFor(unit);shot.RicochetsRemaining+=Bonds.BallBouncesFor(unit);shot.ExtraPierce+=Bonds.ProjectilePierceFor(unit);shot.BondReturnsRemaining=Bonds.BoomerangReturnsFor(unit);}
                 if(v3PiercingVolley)shot.ExtraPierce+=RulesV3Tuning.PierceAll;
                 V3Status shotStatus=V3State(unit);if(shotStatus!=null && shotStatus.ProjectileUntil>Elapsed)shot.Velocity*=1+shotStatus.ProjectileSpeed;
             }
@@ -1101,9 +1115,11 @@ namespace ArcaneBrigade
 
         private void MoveProjectiles(float deltaTime)
         {
+            v5ReturnCells.Clear();
             for (int index = projectiles.Count - 1; index >= 0 && Phase == RunPhase.Combat; index--)
             {
                 ProjectileState projectile = projectiles[index];
+                if(!AdvanceV5Projectile(projectile,deltaTime)){projectiles.RemoveAt(index);continue;}
                 if (projectile.TravelLeft == 0) projectile.Remaining = Mathf.Min(projectile.Remaining, deltaTime);
                 if (projectile.Faction!=Faction.Enemy) V3StrikeObjectives(projectile.Position,projectile.Position+projectile.Velocity*deltaTime,projectile.Radius,SkillShape.Line);
                 if (EnemyRulesV3 != null && EnemyRulesV3.AbsorbProjectile(projectile,deltaTime)) { projectiles.RemoveAt(index); continue; }
@@ -1167,13 +1183,14 @@ namespace ArcaneBrigade
                 if (!injectedDamage && MetaShell(target)) return; // the Lamp Tree's Lamp shell
                 if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .9f : .6f))
                 {
+                    Bonds?.OnDodge(target);
                     events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
                     if (RelicCount(RelicMechanic.DodgeMending) > 0 && combatRandom.NextDouble() < .3) Heal(10 * RelicCount(RelicMechanic.DodgeMending), NewCause(target.Id).Child("curio-dodge"));
                     return;
                 }
                 if (!injectedDamage) damage = Mathf.Min(damage, target.Definition.Health * 0.22f);
                 // armour keeps a share of every hit (RunModifierRules.AfterArmor: hyperbolic, never more than 75% off, never below 1)
-                damage = RunModifierRules.AfterArmor(damage, catalog.Armor + (Bonds?.ArmorBonus ?? 0) * RunModifierRules.ArmorPoint + MapBoostValue(MapStat.Armor) * RunModifierRules.ArmorPoint); // a map's armour boost counts in points
+                // Section 1b combines every armor source once in V3HitDamage.
                 if (catalog.SecretWard && !injectedDamage) damage *= .85f;
                 if (!injectedDamage) damage *= KitDamageTaken(cause);
                 if (!injectedDamage) damage = OctoberIncoming(damage);
@@ -1234,7 +1251,7 @@ namespace ArcaneBrigade
             if (target.Health <= 0f && SecondCandle(target)) return; // the Waiting Room's Clock: once a run
             if (target.Health > 0f) return;
             target.Alive = false;
-            if (target.Faction == Faction.Enemy) { EnemyRulesV3?.OnEnemyDeath(target); Bonds?.OnKill(target); HeroRulesV3?.OnKill(target,critical); TraitsV3?.OnKill(); }
+            if (target.Faction == Faction.Enemy) { EnemyRulesV3?.OnEnemyDeath(target); Bonds?.OnKill(target); if(!BondGenerated(cause))Bonds?.OnGeneratedKill(cause.ItemId,UnitWithId(cause.SourceUnitId),target,damage); HeroRulesV3?.OnKill(target,critical); TraitsV3?.OnKill(); }
             RememberVariantDeath(target);
             WaitingDeath(target);
             target.PendingAttack = false;
@@ -1260,8 +1277,8 @@ namespace ArcaneBrigade
                     // elite eggs piled up ~50 a wave late, far more than the dream shop can take)
                     bool sure = target.Definition.IsBoss || target.Elite && eliteEggs < EliteEggsPerWave;
                     if (sure && target.Elite && !target.Definition.IsBoss) eliteEggs++;
-                    if (sure || lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * (1f + catalog.Luck + (Bonds?.LuckBonus ?? 0)))) DropLoot(LootKind.Egg, target.Position, 1);
-                    if (lootRandom.NextDouble() < Mathf.Clamp01(catalog.HeartDropChance * (1f + catalog.Luck + (Bonds?.LuckBonus ?? 0)))) DropLoot(LootKind.Heart, target.Position, 8);
+                    if (sure || lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * (1f + catalog.Luck + (UnitWithId(cause.SourceUnitId)?.Definition.BondLuck ?? 0) + (Bonds?.LuckBonus ?? 0)))) DropLoot(LootKind.Egg, target.Position, 1);
+                    if (lootRandom.NextDouble() < Mathf.Clamp01(catalog.HeartDropChance * (1f + catalog.Luck + (UnitWithId(cause.SourceUnitId)?.Definition.BondLuck ?? 0) + (Bonds?.LuckBonus ?? 0)))) DropLoot(LootKind.Heart, target.Position, 8);
                 }
             }
         }
@@ -1384,8 +1401,8 @@ namespace ArcaneBrigade
             ChestsOpened++;
             RelicChest();
             CombatCause cause = NewCause(Champion.Id);
-            bool egg = lootRandom.NextDouble() < Mathf.Clamp01(0.35f + catalog.Luck * 0.2f + (HeroRulesV3?.ChestTierBonus??0)*RulesV3Tuning.ChestTierChance);
-            bool heart = lootRandom.NextDouble() < Mathf.Clamp01(0.5f + catalog.Luck * 0.2f);
+            bool egg = lootRandom.NextDouble() < Mathf.Clamp01(0.35f + (catalog.Luck + Champion.Definition.BondLuck) * 0.2f + (HeroRulesV3?.ChestTierBonus??0)*RulesV3Tuning.ChestTierChance);
+            bool heart = lootRandom.NextDouble() < Mathf.Clamp01(0.5f + (catalog.Luck + Champion.Definition.BondLuck) * 0.2f);
             // the chest's coin follows the shop's gold curve (play-test 20/10/2026), so a chest stays worth opening late
             // an average chest (value 8) holds about one mid-priced offer of the shop's wave (play-test 20/10/2026, items 12/20)
             float perCoin = Mathf.Max(.01f, KitCoinScale * Mathf.Max(.01f, catalog.CoinValueScale));
@@ -1408,6 +1425,7 @@ namespace ArcaneBrigade
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0, amount) * catalog.OctoberHealingReceived);
             RecordHealing(cause, Champion.Health - previous);
             Bonds?.OnHeal(Champion.Health - previous);
+            Bonds?.OnOverheal(Champion,Mathf.Max(0,amount)*catalog.OctoberHealingReceived-(Champion.Health-previous));
             if (Champion.Health > previous) events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - previous, subjectId: Champion.Id, cause: cause));
         }
 

@@ -33,8 +33,8 @@ namespace ArcaneBrigade
                 {
                     Id = ++nextId, Faction = attacker.Faction, Position = attacker.Position, PreviousPosition = attacker.Position,
                     Velocity = direction * weapon.ProjectileSpeed, Damage = damage, Remaining = weapon.ProjectileLifetime,
-                    TravelLeft = FriendlyReach.Flight(weapon, 0) * (1 + Bonds.RangeBonus), SourceUnitId = attacker.Id,
-                    Cause = BondCause(attacker.Id, "gear"), Weapon = weapon, Element = weapon.Element,
+                    TravelLeft = FriendlyReach.Flight(weapon, 0) * (1 + Bonds.RangeBonusFor(attacker)), SourceUnitId = attacker.Id,
+                    Cause = BondCause(attacker.Id, "gear"), BondBonusShot=true, Weapon = weapon, Element = weapon.Element,
                     Color = weapon.ProjectileColor, Radius = weapon.ProjectileRadius, Sprite = weapon.ProjectileSprite,
                     VisualWidth = weapon.ProjectileVisualWidth
                 });
@@ -47,8 +47,10 @@ namespace ArcaneBrigade
             while (bondDamage.Count > 0 && Phase == RunPhase.Combat)
             {
                 BondDamageRequest request = bondDamage.Dequeue();
-                if (request.Target.Alive) ApplyDamage(request.Target, request.Damage, request.Attacker?.Faction ?? Faction.Companion,
+                if (!request.Target.Alive)continue;
+                ApplyDamage(request.Target, request.Damage, request.Attacker?.Faction ?? Faction.Companion,
                     cause: BondCause(request.Attacker?.Id ?? 0, request.Rule));
+                if(!request.Target.Alive)Bonds.OnGeneratedKill(request.Rule,request.Attacker,request.Target,request.Damage);
             }
         }
         private bool BondGenerated(CombatCause cause) => bondRoots.Contains(cause.RootId) ||

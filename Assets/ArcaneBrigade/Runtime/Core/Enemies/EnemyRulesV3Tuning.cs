@@ -5,6 +5,10 @@ namespace ArcaneBrigade
         public const int KindCount=53, AffixCount=12, BossCount=6, MaxAffixes=3, MaxWarnings=512;
         public const int CrumbPackMin=30, CrumbPackMax=60, CrumbMerge=20, MaxSplitGeneration=2, SplitCount=2;
         public const int EggCount=3, SummonCount=6, SummonCap=6, AttackEvery=3, ChainTargets=4, Singers=3;
+        public const int SmallCount=8, PlainMediumCount=6, SkilledMediumCount=8;
+        public const int EarlyLargeSpecialCap=2, LateLargeSpecialCap=8, EarlyCapNight=1, LateCapNight=80;
+        public const float MinimumSmallFraction=.8f, ArmorBreakPoints=1f, HopDistance=1f, HopPeriod=1.5f;
+        public static int LargeSpecialCap(int night) => EarlyLargeSpecialCap + UnityEngine.Mathf.FloorToInt(UnityEngine.Mathf.Clamp01((night-EarlyCapNight)/(float)(LateCapNight-EarlyCapNight))*(LateLargeSpecialCap-EarlyLargeSpecialCap));
         public const int KitchenCount=12, CrumbWaveCount=30;
         public const float AuraTick=.5f, DotTick=1f, DefaultPeriod=6f, DefaultRadius=3f, DefaultWarning=1f;
         public const float DefaultStatus=3f, DefaultDamage=8f, DefaultHealth=100f, BossHealth=2500f;

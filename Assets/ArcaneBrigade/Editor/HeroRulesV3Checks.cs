@@ -35,6 +35,10 @@ namespace ArcaneBrigade.Editor
                 heroDef.Id="ArchiveCurator";rules.ResetWave(hero,units,1,state);rules.Tick(1,0);
                 Require(state.Species.Count==1,"species counted once across crowd");rules.ResetWave(hero,units,2,state);rules.Tick(1,0);Require(state.Species.Count==1,"species persist across wave");
                 Near(rules.ModifyOutgoing(hero,units[1],100),101,"catalogue run damage");
+                heroDef.Id="CitrusMarshal";heroDef.SkillHaste=1;requests.Clear();rules.ResetWave(hero,units,1);
+                rules.Tick(HeroRulesV3Tuning.SignPeriod*.5f,0);
+                Require(requests.Exists(r=>r.Rule=="signpost"),"hero shares team skill haste without accelerating effect clocks");
+                Near(rules.Time,HeroRulesV3Tuning.SignPeriod*.5f,"hero haste leaves elapsed time unchanged");heroDef.SkillHaste=0;
                 heroDef.Id="MoonProwler";rules.ResetWave(hero,units,1);rules.Tick(HeroRulesV3Tuning.ProwlStill,0);Require(rules.Untargetable,"standing still enters stealth");
                 Near(rules.ModifyOutgoing(hero,units[1],10),30,"stealth triple hit");Near(rules.ModifyOutgoing(hero,units[1],10),10,"stealth consumed once");
                 heroDef.Id="Postmaster";requests.Clear();rules.ResetWave(hero,units,1);rules.OnCoins(HeroRulesV3Tuning.ParcelCoins,false);Require(requests.Count==0,"passive income does not charge parcels");rules.OnCoins(HeroRulesV3Tuning.ParcelCoins);Require(requests.Exists(r=>r.Rule=="parcel-express"),"collected gold charges parcels");

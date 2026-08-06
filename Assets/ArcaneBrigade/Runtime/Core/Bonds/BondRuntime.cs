@@ -74,6 +74,7 @@ namespace ArcaneBrigade
             return false;
         }
         private bool Member(UnitState unit, string id) => Active(id) && Has(unit, id);
+        private bool RuleApplies(UnitState unit, string id) => Active(id) && (Has(unit,id) || Active(id, BondTuning.SecondStep));
         private static float Weapon(UnitState unit) => unit?.Definition?.Weapon == null ? 0 : unit.Definition.Weapon.Damage;
         private void Emit(string rule, UnitState unit, float value = 0) => RuleTriggered?.Invoke(new BondRuleEvent(rule, unit, value));
         private void Damage(UnitState unit, UnitState source, float amount, string rule)
@@ -102,14 +103,13 @@ namespace ArcaneBrigade
                 }
             }
             ResetV3();
-            if (hero != null && Active("ember", 8)) Spawn(new BondSpawnRequest(BondSpawnKind.Phoenix, hero.Position, lifetime: BondTuning.PhoenixSeconds, damage: Weapon(bestFriend)));
-            if (hero != null && Active("lantern-guild", 6)) Spawn(new BondSpawnRequest(BondSpawnKind.LampWisp, hero.Position, damage: Weapon(bestFriend)));
+            ResetV5();
+            if (hero != null && Active("lantern-guild",6))for(int i=0;i<BondV5Tuning.WispCount;i++)Spawn(new BondSpawnRequest(BondSpawnKind.LampWisp,hero.Position,sourceId:i,damage:Weapon(bestFriend)));
         }
         public void RegisterEnemy(UnitState enemy)
         {
             if (enemy == null || enemy.Faction != Faction.Enemy || enemies.ContainsKey(enemy)) return;
             enemies.Add(enemy, new BondEnemyState { Chill = Active("frost", 8) ? BondTuning.WinterStacks : 0 });
-            RefreshCounters();
         }
         // Scratch lists are reused; nested area work rotates to a different buffer.
         private readonly List<UnitState>[] nearbyBuffers = { new List<UnitState>(BondTuning.EnemyCapacity), new List<UnitState>(BondTuning.EnemyCapacity), new List<UnitState>(BondTuning.EnemyCapacity), new List<UnitState>(BondTuning.EnemyCapacity) };
@@ -147,15 +147,20 @@ namespace ArcaneBrigade
         {
             if (attacker == null || attacker.Faction == Faction.Enemy || !enemy.Alive) return damage;
             BondEnemyState state = State(enemy);
+            if(isCrit&&time<celestialUntil)damage*=(BondV5Tuning.BaseCritMultiplier+BondV5Tuning.CelestialCritDamage)/BondV5Tuning.BaseCritMultiplier;
             if (state != null && state.FrozenHitReady && state.FrozenUntil > time)
-            { damage *= 1 + BondTuning.FrozenBonus; state.FrozenHitReady = false; Emit("frozen-hit", enemy, BondTuning.FrozenBonus); }
-            if (Active("big-top")) damage *= 1 + Mathf.Min(combo * BondTuning.ComboPerLink, Active("big-top", 4) ? BondTuning.ComboHighCap : BondTuning.ComboCap);
-            if (Active("gauntlet") && attacker.Definition.Weapon != null && attacker.Definition.Weapon.Kind == WeaponKind.Melee) damage *= 1 + grit;
-            if (Active("lantern-guild") && still >= BondTuning.StillSeconds) damage *= 1 + BondTuning.LanternBonus;
+            { damage *= 1 + BondTuning.FrozenBonus; state.FrozenHitReady = false; Shatter(enemy, attacker); Emit("frozen-hit", enemy, BondTuning.FrozenBonus); }
+            if (Member(attacker,"big-top")) damage *= 1 + Mathf.Min(combo * BondTuning.ComboPerLink, Active("big-top", 4) ? BondTuning.ComboHighCap : BondTuning.ComboCap);
+            if (Member(attacker,"gauntlet") && attacker.Definition.Weapon != null && attacker.Definition.Weapon.Kind == WeaponKind.Melee) damage *= 1 + grit;
+            if (RuleApplies(attacker,"lantern-guild") && still >= BondTuning.StillSeconds) damage *= 1 + BondTuning.LanternBonus;
             damage *= 1 + LitBonus(enemy);
-            if (attacker == bestFriend) damage += stolenStrength;
-            if (isCrit && Active("mask") && ++crits % Interval("mask", BondTuning.MaskEvery, BondTuning.MaskFourEvery, BondTuning.MaskSixEvery) == 0)
-            { damage *= BondTuning.MaskMultiplier; Emit("mask-double", enemy, BondTuning.MaskMultiplier); }
+            if(State(enemy)?.Collisions>=BondV5Tuning.CollisionCrack)damage*=1+BondV5Tuning.CrackBonus;
+            if(Member(attacker,"frost")&&Active("frost",6)&&Frozen(enemy))damage*=1+BondV5Tuning.FrostMemberDamage;
+            if(Member(attacker,"horn")&&Active("horn",6)&&State(enemy)?.StunnedUntil>time)damage*=1+BondTuning.ChoiceBonus*BondV5Tuning.Double;
+            if(InZone("glyph",enemy.Position))damage*=1+BondV5Tuning.GlyphBonus;
+            damage += StolenDamageFor(attacker);
+            if (isCrit && Member(attacker,"mask") && ++crits % Interval("mask", BondTuning.MaskEvery, BondTuning.MaskFourEvery, BondTuning.MaskSixEvery) == 0)
+            { damage *= BondTuning.MaskMultiplier; MaskShards(enemy,attacker); Emit("mask-double", enemy, BondTuning.MaskMultiplier); }
             return ModifyV3(attacker, enemy, damage);
         }
         public void OnHit(UnitState attacker, UnitState enemy, float damage, bool isCrit)
@@ -164,59 +169,32 @@ namespace ArcaneBrigade
             RegisterEnemy(enemy); BondEnemyState state = State(enemy); float weapon = Weapon(attacker);
             HitV3(attacker, enemy, damage, isCrit);
             if (isCrit) Wishes++;
-            if (Active("big-top")) { combo = lastCombo == enemy ? 0 : combo + 1; lastCombo = enemy; Emit("combo", enemy, Mathf.Min(combo * BondTuning.ComboPerLink, Active("big-top", 4) ? BondTuning.ComboHighCap : BondTuning.ComboCap)); }
-            if (Active("gauntlet") && attacker.Definition.Weapon != null && attacker.Definition.Weapon.Kind == WeaponKind.Melee)
+            if (Member(attacker,"big-top")) { combo = lastCombo == enemy ? 0 : combo + 1; lastCombo = enemy; Emit("combo", enemy, Mathf.Min(combo * BondTuning.ComboPerLink, Active("big-top", 4) ? BondTuning.ComboHighCap : BondTuning.ComboCap)); }
+            if (Member(attacker,"gauntlet") && attacker.Definition.Weapon != null && attacker.Definition.Weapon.Kind == WeaponKind.Melee)
             { grit = Mathf.Min(grit + BondTuning.GritPerHit, Active("gauntlet", 4) ? BondTuning.GritHighCap : BondTuning.GritCap); lastGrit = time; Emit("grit", attacker, grit); }
-            if (Member(attacker, "ember")) AddBurn(enemy, attacker, weapon);
-            if (Member(attacker, "frost"))
+            if (RuleApplies(attacker, "ember")) AddBurn(enemy, attacker, weapon);
+            if (RuleApplies(attacker, "frost"))
             {
                 state.Chill = Mathf.Min(BondTuning.ChillStacks, state.Chill + 1);
                 Emit("chill-stack", enemy, state.Chill);
                 if (Active("frost", 4) && state.Chill == BondTuning.ChillStacks && state.FrozenUntil <= time)
                 { state.FrozenUntil = time + BondTuning.FreezeSeconds; state.FrozenHitReady = true; Emit("freeze", enemy, BondTuning.FreezeSeconds); }
             }
-            if (Member(attacker, "venom")) AddPoison(enemy, attacker, weapon, 1, false);
-            if (Member(attacker, "static-club"))
-            {
-                Charge++; stormHits++;
-                Emit("charge", enemy, Charge);
-                if (stormHits % BondTuning.StormEvery == 0)
-                {
-                    List<UnitState> chain = Nearby(enemy, float.PositiveInfinity);
-                    for (int i = 0; i < Mathf.Min(BondTuning.ChainTargets, chain.Count); i++) Damage(chain[i], attacker, weapon * BondTuning.ChainDamage, "storm-chain");
-                    Emit("storm-chain", enemy, weapon * BondTuning.ChainDamage);
-                }
-                if (Active("static-club", 4) && ++state.Charge >= BondTuning.DischargeStacks)
-                { state.Charge = 0; Area(enemy, attacker, weapon * BondTuning.DischargeDamage, "discharge"); }
-                if (Underdog)
-                {
-                    if (++thunderHits % BondTuning.ThunderHits == 0)
-                    {
-                        List<UnitState> nearest = hero == null ? null : Nearby(hero, float.PositiveInfinity);
-                        StunArea(nearest != null && nearest.Count > 0 ? nearest[0] : enemy, BondTuning.ThunderStun, "thunderclap", false);
-                    }
-                }
-                else thunderHits = 0;
-            }
-            if (Active("dusk") && !state.Marked && marked < BondTuning.DuskMarks)
-            {
-                state.Marked = true; marked++;
-                stolenStrength += Mathf.Max(Weapon(enemy), enemy.Definition.ContactDamage) * BondTuning.StrengthSteal;
-                StrengthStolen?.Invoke(enemy, bestFriend, BondTuning.StrengthSteal); Emit("dusk-mark", enemy, BondTuning.StrengthSteal);
-            }
+            if (RuleApplies(attacker, "venom")) AddPoison(enemy, attacker, weapon, 1, false);
+            if (RuleApplies(attacker, "static-club") && EveryUnit("storm",attacker,BondTuning.StormEvery)) StormChain(enemy, attacker, weapon);
+            if (RuleApplies(attacker,"dusk") && !state.Marked && marked < (Active("dusk",4)?BondTuning.DuskMarks:BondV5Tuning.EarlyMarks)) Mark(enemy,attacker);
             CheckExecute(enemy, attacker);
-            if (Active("horn") && Every("horn", Interval("horn", BondTuning.HornEvery, BondTuning.HornFourEvery, BondTuning.HornSixEvery))) StunArea(enemy, BondTuning.HornStun, "horn", true);
-            if (Active("rune") && Every("rune", Interval("rune", BondTuning.RuneEvery, BondTuning.RuneFourEvery, BondTuning.RuneSixEvery))) Area(enemy, attacker, weapon * BondTuning.RuneDamage, "rune", true);
-            if (Active("gear") && Every("gear", Interval("gear", BondTuning.GearEvery, BondTuning.GearFourEvery)))
+            if (Member(attacker,"horn") && Every("horn", Interval("horn", BondTuning.HornEvery, BondTuning.HornFourEvery, BondTuning.HornSixEvery))) StunArea(enemy, BondTuning.HornStun, "horn", true);
+            if (Member(attacker,"rune") && Every("rune", Interval("rune", BondTuning.RuneEvery, BondTuning.RuneFourEvery, BondTuning.RuneSixEvery))) RuneStrike(enemy,attacker,weapon);
+            if (Member(attacker,"gear") && Every("gear", Interval("gear", BondTuning.GearEvery, BondTuning.GearFourEvery)))
             { BonusShotRequested?.Invoke(attacker, weapon); Emit("gear", attacker, weapon); }
-            if (Active("sea-shanty") && Every("sea-shanty", Interval("sea-shanty", BondTuning.ShantyEvery, BondTuning.ShantyFourEvery)))
-            { shantyUntil = time + BondTuning.ShantySeconds; Emit("sea-shanty", attacker, BondTuning.ShantySpeed); }
-            RefreshCounters();
+            if (Active("sea-shanty") && Every("sea-shanty", BondTuning.ShantyEvery))
+            { verses=time>=shantyUntil?1:Mathf.Min(BondV5Tuning.VerseCap,verses+1);shantyUntil=time+BondTuning.ShantySeconds;if(Active("sea-shanty",4)&&verses>=BondV5Tuning.VerseCap){verses=0;chorusUntil=time+BondV5Tuning.ChorusSeconds;TeamRequest(BondSupportKind.DamageBuff,BondV5Tuning.ChorusDamage,BondV5Tuning.ChorusSeconds,"shanty-chorus");} Emit("sea-shanty",attacker,BondTuning.ShantySpeed); }
         }
         public void CheckExecute(UnitState enemy, UnitState attacker)
         {
-            if (State(enemy)?.Marked == true && Active("dusk", 6) && enemy.Health > 0 && enemy.Health < enemy.Definition.Health * BondTuning.ExecuteHealth)
-                Damage(enemy, attacker, enemy.Health, "execute");
+            if ((State(enemy)?.Marked == true || Active("dusk",8)&&time>=BondTuning.EclipseStart) && Active("dusk", 6) && enemy.Health > 0 && enemy.Health < enemy.Definition.Health * BondTuning.ExecuteHealth)
+                { shadeDamage+=BondTuning.ChoiceBonus; Damage(enemy, attacker, enemy.Health, "execute"); Emit("shade-execute-growth",enemy,shadeDamage); }
         }
         private void StunArea(UnitState center, float seconds, string rule, bool push)
         {
@@ -225,23 +203,29 @@ namespace ArcaneBrigade
                 enemy.SleepUntil = Mathf.Max(enemy.SleepUntil, time + seconds);
                 State(enemy).StunnedUntil = Mathf.Max(State(enemy).StunnedUntil, time + seconds);
                 enemy.NextAttack = Mathf.Max(enemy.NextAttack, time + seconds); enemy.NextContact = Mathf.Max(enemy.NextContact, time + seconds);
-                if (push) { Vector2 direction = hero == null ? Vector2.up : (enemy.Position - hero.Position).normalized; enemy.Position += direction * BondTuning.HornPush; Weight++; }
+                if (push)
+                {
+                    Vector2 direction=hero==null?Vector2.up:(enemy.Position-hero.Position).normalized;
+                    enemy.Position+=direction*BondTuning.HornPush;Weight++;
+                    if(rule=="horn"&&Active("horn",4))foreach(var pair in enemies)
+                    {
+                        UnitState other=pair.Key;if(other==enemy||!other.Alive)continue;
+                        float contact=enemy.Definition.Radius+other.Definition.Radius;
+                        if((other.Position-enemy.Position).sqrMagnitude>contact*contact)continue;
+                        pair.Value.StunnedUntil=Mathf.Max(pair.Value.StunnedUntil,time+seconds);
+                        Emit("horn-pile-up",other,seconds);
+                    }
+                }
             }
             Emit(rule, center, seconds);
         }
         private void AddBurn(UnitState enemy, UnitState source, float weapon)
         {
-            BondEnemyState state = State(enemy); if (state == null) return;
-            state.Burn = Mathf.Min(BondTuning.BurnStacks, state.Burn + 1); state.BurnUntil = time + BondTuning.BurnSeconds; state.BurnWeapon = weapon; state.BurnSource = source;
-            Emit("burn-stack", enemy, state.Burn);
-            if (state.Burn == BondTuning.BurnStacks && Active("ember", 4))
-            {
-                state.Burn = 0; Area(enemy, source, weapon * BondTuning.BurstDamage, "burn-burst");
-                // Spread adds one stack without recursively bursting the neighbours in this call.
-                foreach (UnitState next in Nearby(enemy, BondTuning.BurstRadius))
-                { BondEnemyState other = State(next); other.Burn = Mathf.Min(BondTuning.BurnStacks, other.Burn + BondTuning.BurnSpreadStacks); other.BurnUntil = time + BondTuning.BurnSeconds; other.BurnWeapon = weapon; other.BurnSource = source; }
-                state.Burn = BondTuning.BurnAfterBurst;
-            }
+            BondEnemyState state=State(enemy); if(state==null)return;
+            int cap=Active("ember",6)?BondV5Tuning.HighBurnStacks:BondTuning.BurnStacks;
+            state.Burn=Mathf.Min(cap,state.Burn+1);state.BurnUntil=time+BondTuning.BurnSeconds;state.BurnWeapon=weapon;state.BurnSource=source;
+            Emit("burn-stack",enemy,state.Burn);
+            QueueBurst(enemy); DrainBursts();
         }
         private void AddPoison(UnitState enemy, UnitState source, float weapon, int stacks, bool spread)
         {
@@ -257,41 +241,39 @@ namespace ArcaneBrigade
         {
             BondEnemyState state = State(enemy); if (state == null || state.DeathHandled) return;
             state.DeathHandled = true; if(state.Marked)DuskFallen++; kills++; KillV3(enemy);
-            if (state.Burn > 0 && state.BurnUntil > time && Active("ember", 6))
-            { patches.Add(new EmberPatch { Position = enemy.Position, Until = time + BondTuning.EmberSeconds, Source = state.BurnSource, Weapon = state.BurnWeapon }); EmbersCreated?.Invoke(enemy.Position, BondTuning.EmberSeconds); }
-            if (state.FrozenUntil > time && Active("frost", 4)) Area(enemy, null, Weapon(bestFriend) * BondTuning.ShatterDamage, "shatter");
-            if (Active("frost", 6) && soldiers < BondTuning.IceSoldierLimit)
+
+            if (Active("frost", 6) && state.FrozenUntil > time && soldiers < BondTuning.IceSoldierLimit)
             { soldiers++; Spawn(new BondSpawnRequest(BondSpawnKind.IceSoldier, enemy.Position, enemy.Id, BondTuning.IceSoldierSeconds, Weapon(bestFriend))); }
             if (state.Poison > 0 && state.PoisonUntil > time && Active("venom", 4))
-                foreach (UnitState next in Nearby(enemy, BondTuning.BurstRadius)) AddPoison(next, state.PoisonSource, state.PoisonWeapon, state.Poison, true);
-            if (state.Marked && Active("dusk", 4)) Spawn(new BondSpawnRequest(BondSpawnKind.Shade, enemy.Position, enemy.Id, BondTuning.ShadeSeconds, Weapon(bestFriend)));
+                foreach (UnitState next in Nearby(enemy, BondTuning.BurstRadius)) AddPoison(next, state.PoisonSource, state.PoisonWeapon, state.Poison + BondV5Tuning.PoisonDeathBonus, true);
+            PassMark(enemy);
             if (Active("clover") && kills % Interval("clover", BondTuning.CloverEvery, BondTuning.CloverFourEvery) == 0)
                 Spawn(new BondSpawnRequest(BondSpawnKind.Clover, enemy.Position, freeRerolls: 1));
             if (Active("sweet-tooth") && kills % Interval("sweet-tooth", BondTuning.SnackEvery, BondTuning.SnackFourEvery) == 0)
                 Spawn(new BondSpawnRequest(BondSpawnKind.Snack, enemy.Position, healMaxHealthFraction: BondTuning.SnackHeal, coins: Active("sweet-tooth", 6) ? 1 : 0));
-            RefreshCounters();
         }
         public void OnCast(UnitState companion)
-        { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshCounters(); CastV3(companion); Emit("cast", companion); }
-        public void OnVolley() { Volleys++; if (Active("windborne", 4) && Volleys % BondTuning.PiercingVolley == 0 && hero != null) Request(BondSupportKind.PiercingVolley, hero, 1, 0, "piercing-volley"); }
-        public void OnHeal(float amount) { Warmth += Mathf.Max(0, amount); }
+        { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshApplause(); CastV3(companion); Emit("cast", companion); }
+        public void OnVolley() { OnVolley(hero); }
+        public void OnVolley(UnitState source) { Volleys++; if (RuleApplies(source,"windborne") && Active("windborne",4) && EveryUnit("wind",source,BondTuning.PiercingVolley)) { Request(BondSupportKind.PiercingVolley,source,1,0,"piercing-volley"); AddZone("wind-lane",source,BondV5Tuning.LaneSeconds); } }
+        public void OnHeal(float amount) { if(amount>0 && Active("hearth") && hero!=null) Emit("warmth-heal",hero,amount); }
         public void OnSoak() { Soak++; }
         public void OnRecord() { Records++; }
-        public bool Underdog => Active("static-club", 6) && hero != null && hero.Health < hero.Definition.Health * BondTuning.UnderdogHealth;
+        public bool Underdog => false;
         public float CriticalBonus => Underdog ? BondTuning.UnderdogBonus : 0;
         public float LuckBonus => Underdog ? BondTuning.UnderdogBonus : 0;
-        public float RangeBonus => ConstellationRange + (Active("lantern-guild") && still >= BondTuning.StillSeconds ? BondTuning.LanternBonus : 0);
+        public float RangeBonus => RangeBonusFor(hero);
         public float RegenBonus => Active("root") && still >= BondTuning.StillSeconds ? (Active("root", 4) ? BondTuning.RootHighRegen : BondTuning.RootRegen) : 0;
         public float ArmorBonus => Active("root") && still >= BondTuning.StillSeconds ? (Active("root", 4) ? BondTuning.RootHighArmor : BondTuning.RootArmor) : 0;
-        public float AttackSpeedBonus => (time < shantyUntil ? BondTuning.ShantySpeed : 0) + V3AttackSpeed;
-        public float OutgoingScale(UnitState enemy) => (State(enemy)?.Marked == true ? 1 - BondTuning.StrengthSteal : 1) * (Active("archive", 8) && recordedSpecies.Contains(enemy.Definition.Id ?? "") ? 1 - BondTuning.CompleteSetWeakness : 1);
+        public float AttackSpeedBonus => AttackSpeedBonusFor(hero);
+        public float OutgoingScale(UnitState enemy) => (Active("venom",4) && State(enemy)?.Poison>0 ? 1-BondV5Tuning.PoisonWeakness : 1) * (IsEnemyMarked(enemy) ? 1 - BondTuning.StrengthSteal : 1) * (Active("archive", 8) && recordedSpecies.Contains(enemy.Definition.Id ?? "") ? 1 - BondTuning.CompleteSetWeakness : 1);
         private float LitBonus(UnitState enemy) => Active("lantern-guild", 8) ? BondTuning.LighthouseBonus :
-            Active("lantern-guild", 4) && hero != null && (enemy.Position - hero.Position).sqrMagnitude <= BondTuning.LanternRadius * BondTuning.LanternRadius ? BondTuning.LitBonus : 0;
+            Active("lantern-guild", 4) && hero != null && ((enemy.Position - hero.Position).sqrMagnitude <= LightRadius * LightRadius || LampLights(enemy.Position)) ? BondTuning.LitBonus : 0;
         public float SpeedScale(UnitState enemy)
         {
             BondEnemyState state = State(enemy); if (state == null) return 1;
-            if (state.FrozenUntil > time || state.StunnedUntil > time) return 0;
-            return GravitySpeed(enemy) * (1 - state.Chill * BondTuning.ChillSlow) * (Active("venom", 8) && state.Poison > 0 && state.PoisonUntil > time ? 1 - BondTuning.PlagueSlow : 1);
+            if (state.FrozenUntil > time || state.StunnedUntil > time || state.RootedUntil>time) return 0;
+            return ZoneSpeedScale(enemy) * GravitySpeed(enemy) * (1 - state.Chill * BondTuning.ChillSlow) * (Active("venom", 8) && state.Poison > 0 && state.PoisonUntil > time ? 1 - BondTuning.PlagueSlow : 1);
         }
         public bool Frozen(UnitState enemy) => State(enemy) != null && State(enemy).FrozenUntil > time;
         public bool BlocksAction(UnitState enemy) => Frozen(enemy) || State(enemy) != null && State(enemy).StunnedUntil > time;
@@ -306,7 +288,7 @@ namespace ArcaneBrigade
                 if (Active("root")) Emit("root-stillness", hero, RegenBonus);
                 if (Active("lantern-guild")) Emit("lantern-stillness", hero, RangeBonus);
             }
-            TickV3(dt);
+            TickV3(dt); TickV5(dt);
             if (!Underdog) thunderHits = 0;
             if (!Active("gauntlet", 6) && time - lastGrit >= BondTuning.GritIdle) grit = 0;
             RefreshCounters();
@@ -319,9 +301,9 @@ namespace ArcaneBrigade
                 if (state.Burn > 0)
                 {
                     float duration = Mathf.Max(0, Mathf.Min(time, state.BurnUntil) - before);
-                    float boosted = Mathf.Max(0, Mathf.Min(Mathf.Min(time, state.BurnUntil), infernoUntil) - before);
+
                     Damage(enemy, state.BurnSource, state.BurnWeapon * state.Burn * BondTuning.BurnDps *
-                        (duration + boosted * (BondTuning.InfernoMultiplier - 1)), "burn");
+                        duration, "burn");
                 }
                 if (state.Poison > 0)
                 {
@@ -334,15 +316,15 @@ namespace ArcaneBrigade
                 foreach (EmberPatch patch in patches) if (patch.Until > time && (enemy.Position - patch.Position).sqrMagnitude <= BondTuning.BurstRadius * BondTuning.BurstRadius && state.Burn == 0) AddBurn(enemy, patch.Source, patch.Weapon);
             }
             patches.RemoveAll(patch => patch.Until <= time);
-            if (Active("venom", 8)) while (time >= plagueAt)
+            if (Active("venom", 6)) while (time >= plagueAt)
             {
                 plagueAt += BondTuning.PlaguePeriod;
-                poisonBuffer.Clear(); foreach (var pair in enemies) if (pair.Key.Alive && pair.Value.Poison > 0) poisonBuffer.Add(pair.Key);
+                poisonBuffer.Clear(); foreach (var pair in enemies) if (pair.Key.Alive && pair.Value.Poison > 0 && (Active("venom",8) || pair.Value.Poison>=BondTuning.RotStacks)) poisonBuffer.Add(pair.Key);
                 foreach (UnitState source in poisonBuffer) foreach (UnitState next in Nearby(source, BondTuning.BurstRadius))
                     AddPoison(next, State(source).PoisonSource, State(source).PoisonWeapon, 1, true);
             }
             if (Active("frost", 8)) while (time >= blizzardAt)
-            { blizzardAt += BondTuning.BlizzardPeriod; foreach (var pair in enemies) if (pair.Key.Alive) { pair.Value.Chill = BondTuning.ChillStacks; pair.Value.FrozenUntil = time + BondTuning.FreezeSeconds; pair.Value.FrozenHitReady = true; } if (hero != null) Emit("blizzard", hero); }
+            { blizzardAt += BondTuning.BlizzardPeriod; foreach (var pair in enemies) if (pair.Key.Alive && pair.Value.Chill >= BondV5Tuning.BlizzardChill) { pair.Value.Chill = BondTuning.ChillStacks; pair.Value.FrozenUntil = time + BondTuning.FreezeSeconds; pair.Value.FrozenHitReady = true; } if (hero != null) Emit("blizzard", hero); }
             if (Active("static-club", 8)) while (time >= cloudAt)
             {
                 cloudAt += BondTuning.CloudPeriod; UnitState charged = null;
@@ -354,7 +336,7 @@ namespace ArcaneBrigade
                     if (clusterCharge > mostCharge || clusterCharge == mostCharge && (charged == null || pair.Key.Id < charged.Id))
                     { charged = pair.Key; mostCharge = clusterCharge; }
                 }
-                if (charged != null) Area(charged, bestFriend, Weapon(bestFriend) * BondTuning.CloudDamage, "storm-cloud");
+                if (charged != null) { Area(charged,bestFriend,Weapon(bestFriend)*BondTuning.CloudDamage*(mostCharge>0?BondV5Tuning.Double:1),"storm-cloud"); foreach(UnitState next in Nearby(charged,BondTuning.BurstRadius,true)) State(next).Charge=0; }
             }
             if (Active("dusk", 8)) while (time >= eclipseAt)
             {
@@ -376,19 +358,24 @@ namespace ArcaneBrigade
             if(rule=="centre-stage"){traitApplause++;traitApplauseUntil=time+BondTuning.ApplauseWindow;}
             else if(rule=="dawn-wishes")Wishes++;
             else if(rule=="dusk-form")DuskFallen++;
-            else if(rule=="cherry-warmth")Warmth++;
+            else if(rule=="cherry-warmth")AddWarmth(1);
         }
         private void RefreshCounters()
         {
-            Heat = Chill = Toxin = Light = Applause = 0;
+            Chill = Toxin = Light = 0;
             foreach (var pair in enemies)
             {
                 if (!pair.Key.Alive || pair.Value.DeathHandled) continue; BondEnemyState state = pair.Value;
-                if (state.Burn > 0 && state.BurnUntil > time) Heat++;
+
                 if (state.Chill > 0) Chill++;
                 if (state.PoisonUntil > time) Toxin += state.Poison;
                 if (LitBonus(pair.Key) > 0) Light++;
             }
+            RefreshApplause();
+        }
+        private void RefreshApplause()
+        {
+            Applause=0;
             foreach (float at in casts.Values) if (time - at <= BondTuning.ApplauseWindow) Applause++;
             if(time<traitApplauseUntil)Applause+=traitApplause;else traitApplause=0;
         }
