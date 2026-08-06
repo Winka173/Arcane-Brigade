@@ -4,6 +4,7 @@ Version 3. Replaces the review pack of the same day. DRAFT: numbers are placehol
 
 ## 0. Changes since the last file
 
+- **Classes rebalanced (26 moves):** skills that summon, clone or orbit are Summoners, close and dash skills are Strikers, heals and shields are Supports, crowd control is Controllers. Classes now: Shooter 28, Controller 23, Support 23, Guard 19, Striker 18, Summoner 9. Every companion's art shows its class kit (Guard: shield and light armour).
 - **v5 trait rules (TFT):** step 2 works on members only, step 4 opens the rule to the whole team, step 6 amplifies, step 8 is the capstone. Members get a signature stat at every step (about three times the team share); the team gets a share from step 6. Minors give members a role stat at every step. See "How bonds scale".
 - **Armor for friends:** class base armor and health, stars, bond stats; same formula as the hero. See section 1b.
 - **v4:** bond steps 4 and 6 build what the top step spends; small enemies have no skills.
@@ -453,13 +454,13 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Mailbox Imp | Common Support | Ember, Bouncing Ball, Sweet Tooth | 8 s | **Hot Delivery** (Team buff) | throws sealed hot letters: the 3 nearest friends +20% damage for 6 s, one letter explodes on the farthest enemy. Bond tie: explosion leaves coals | its envelope body and wax seal |
 | Bread Crab | Common Guard | Hearth, Sweet Tooth, Bouncing Ball | 10 s | **Toast Shell** (Protection) **R** | shells up: taunts nearby enemies for 3 s while taking 40% less damage, then a crumb pulse. Bond tie: crumbs fill Warmth | its toast shell |
 | Dice Crab | Common Support | Ember, Bouncing Ball, Bastion | 8 s | **Loaded Roll** (Random) | rolls its die shell: 1 to 6 sets a fire pulse (N x base), a 6 rolls twice. Bond tie: a 6 adds +10 Heat | its die shell |
-| Mask Pepper | Common Support | Ember, Bouncing Ball, Cloud | 8 s | **Masquerade** (Swap) | swaps places with the hero (both teleport); a fire ring bursts at both spots and ignites every enemy in it. Bond tie: lit enemies feed Heat | its theatre mask |
+| Mask Pepper | Common Striker | Ember, Bouncing Ball, Cloud | 7 s | **Masquerade** (Swap) | swaps places with the hero (both teleport); a fire ring bursts at both spots and ignites every enemy in it. Bond tie: lit enemies feed Heat | its theatre mask |
 | Coil Kettle | Mythic Controller | Hearth, Ember, Demolitionist | 9 s | **Spring Boil** (Chain) | bounces three times; each landing stuns 0.8 s and vents steam. Bond tie: third bounce chains to one more enemy | its spring-coil spout |
 | Saffron Mechanist | Rare Guard | Hearth, Ember, Unstoppable | 10 s | **Pressure Valve** (Eruption) | a ring builds under it (telegraphed), then bursts in a steam blast that pushes enemies back. Bond tie: the blast lights enemies | its wrench and steam valve |
-| Baker Mouse | Uncommon Shooter | Hearth, Ember, Sweet Tooth | 6 s | **Rolling Pin** (Projectile pattern) | throws a rolling pin that returns like a boomerang, flattening and slowing enemies both ways. Bond tie: dough heals the hero when 3+ are hit | its rolling pin and apron |
-| Tea Dragon | Mythic Shooter | Hearth, Ember, Bludgeoner | 6 s | **Steam Breath** (Beam or channel) | a 2 s flame channel in a cone; each enemy hit burns and gives the hero 1 HP. Bond tie: coals stay between waves | its steaming teapot spout |
+| Baker Mouse | Uncommon Striker | Hearth, Ember, Sweet Tooth | 7 s | **Rolling Pin** (Projectile pattern) | throws a rolling pin that returns like a boomerang, flattening and slowing enemies both ways. Bond tie: dough heals the hero when 3+ are hit | its rolling pin and apron |
+| Tea Dragon | Mythic Striker | Hearth, Ember, Bludgeoner | 7 s | **Steam Breath** (Beam or channel) | a 2 s flame channel in a cone; each enemy hit burns and gives the hero 1 HP. Bond tie: coals stay between waves | its steaming teapot spout |
 | Sundae Golem | Rainbow Controller | Hearth, Sweet Tooth, Demolitionist | 9 s | **Sprinkle Freeze** (Enemy debuff) | a scoop of freezing sprinkles: 2 s freeze in a circle; every 3rd cast drops a Cherry that heals the hero. Bond tie: cherry fills Warmth | its scoops, sprinkles and cherry |
-| Boba Tadpole | Common Shooter | Hearth, Sweet Tooth, Bouncing Ball | 6 s | **Pearl Orbit** (Orbit) | tapioca pearls circle it for 5 s and burst on contact. Bond tie: a pearl that kills drops a Snack | its boba pearls |
+| Boba Tadpole | Common Summoner | Hearth, Sweet Tooth, Bouncing Ball | 12 s | **Pearl Orbit** (Orbit) | tapioca pearls circle it for 5 s and burst on contact. Bond tie: a pearl that kills drops a Snack | its boba pearls |
 
 ### House: Frost + Tide
 
@@ -475,20 +476,20 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Balloon Mallet | Uncommon Guard | Tide, Gauntlet, Monolith | 10 s | **Balloon Pop** (Eruption) | swells (telegraphed) and pops: knock-back and a freezing mist. Bond tie: mist soaks enemies | its balloon body |
 | Shovel Penguin | Rare Shooter | Frost, Gauntlet, Bastion | 6 s | **Ice Hole** (Trap or mine) | digs a wide hole: every enemy falling in is frozen in a bubble for 2.5 s. Bond tie: bubbled enemies count as chilled | its shovel |
 | Shanty Sea Lion | Common Shooter | Tide, Sea Shanty, Desperado | 6 s | **Shanty** (Team buff) | plays its accordion: all friends +15% attack speed for 6 s. Bond tie: rhythm adds to Sea-shanty | its accordion |
-| Bottle Gull | Uncommon Shooter | Tide, Sea Shanty, Rapidfire | 6 s | **Bottle Rain** (Summon) **R** | a rain of bottles bursts across a wide area. Bond tie: bottles soak enemies | its bottle and scarf |
-| Specimen Slime | Rare Shooter | Frost, Tide, Bastion | 6 s | **Split Slime** (Clone or echo) | splits into two mini slimes that shoot too for 6 s. Bond tie: slimes are cold and slow | its slime in a jar |
+| Bottle Gull | Uncommon Summoner | Tide, Sea Shanty, Rapidfire | 12 s | **Bottle Rain** (Summon) **R** | a rain of bottles bursts across a wide area. Bond tie: bottles soak enemies | its bottle and scarf |
+| Specimen Slime | Rare Summoner | Frost, Tide, Bastion | 12 s | **Split Slime** (Clone or echo) | splits into two mini slimes that shoot too for 6 s. Bond tie: slimes are cold and slow | its slime in a jar |
 
 ### House: Storm + Windborne
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Kettle Bat | Common Support | Windborne, Storm, Paper Wings | 8 s | **Whistle Gale** (Weather) | whistles up a gale: enemies are blown away for 3 s. Bond tie: gale carries lightning (Storm) | its kettle belly and wings |
+| Kettle Bat | Common Controller | Windborne, Storm, Paper Wings | 9 s | **Whistle Gale** (Weather) | whistles up a gale: enemies are blown away for 3 s. Bond tie: gale carries lightning (Storm) | its kettle belly and wings |
 | Comet Kite | Common Support | Storm, Windborne, Paper Wings | 8 s | **Slipstream** (Time) | friends flying through its trail fill skill bars 20% faster for 5 s. Bond tie: trail is a wind lane | its tail ribbon |
-| The Folded Courier | Rare Shooter | Windborne, Paper Wings, Sniper | 6 s | **Unfold** (Transform) | unfolds into a larger paper form for 5 s and fires paper blades. Bond tie: every blade is a volley | its folded paper wings |
+| The Folded Courier | Rare Striker | Windborne, Paper Wings, Sniper | 7 s | **Unfold** (Transform) | unfolds into a larger paper form for 5 s and fires paper blades. Bond tie: every blade is a volley | its folded paper wings |
 | Ribbon Otter | Uncommon Guard | Storm, Windborne, Rain Script | 10 s | **Ribbon Wrap** (Tether) | ties a ribbon to the hero: enemies that hit the hero are zapped. Bond tie: zaps add Charge | its ribbons and satchel |
 | Spindle Wren | Uncommon Support | Windborne, Paper Wings, Rain Script | 8 s | **Weave Wind** (Protection) **R** | weaves a thread shield around the 4 nearest friends (8% max health) and +10% projectile speed for 6 s. Bond tie: adds to Paper Wings | its spool body |
 | Rain Heron | Rare Shooter | Storm, Rain Script, Paper Wings | 6 s | **Long Strike** (Projectile pattern) | a piercing spear shot through every enemy in a line. Bond tie: pierced enemies are soaked | its long beak |
-| Paper Plane Pigeon | Common Shooter | Windborne, Paper Wings, Sniper | 6 s | **Squadron** (Summon) | releases 4 paper planes that circle and dive at enemies. Bond tie: every plane is a volley | its paper-plane wings |
+| Paper Plane Pigeon | Common Summoner | Windborne, Paper Wings, Sniper | 12 s | **Squadron** (Summon) | releases 4 paper planes that circle and dive at enemies. Bond tie: every plane is a volley | its paper-plane wings |
 | Raincoat Frog | Uncommon Shooter | Storm, Rain Script, Sniper | 6 s | **Rain Dance** (Weather) | summons a rain zone: enemies inside are wet and slowed 20%. Bond tie: wet enemies conduct (Storm) | its raincoat and boots |
 | Kite Dragon | Rainbow Shooter | Storm, Windborne, Paper Wings | 6 s | **Ribbon Sweep** (Beam or channel) | a rotating ribbon beam sweeps 360 degrees for 3 s. Bond tie: personal trait: sweeps leave gale lanes | its long ribbon tail |
 | Static Ferret | Common Striker | Storm, Windborne, Bladenado | 7 s | **Flair** (Chain) | lightning ricochets between up to 5 enemies. Bond tie: each jump adds Charge | its static-charged fur |
@@ -504,10 +505,10 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Citrus Toad | Uncommon Support | Garden, Venom, Quicksoles | 8 s | **Sour Surprise** (Random) | squirts a random citrus: 1 of 4 effects (slow, blind, burst, coin). Bond tie: peels bloom | its orange-wedge body |
 | Seed Hedgehog | Common Controller | Garden, Venom, Root | 9 s | **Seed Spikes** (Trap or mine) | plants seed mines that sprout thorn plants when stepped on. Bond tie: plants root enemies | its seed-sprouting spines |
 | Sock Cyclops | Common Striker | Venom, Quicksoles, Bludgeoner | 7 s | **Sock Pile** (Summon) **R** | socks fall on the densest cluster; every sock stuns for 0.5 s. Bond tie: socks carry venom | its striped sock nightcap |
-| Mirror Newt | Mythic Shooter | Venom, Quicksoles, Bludgeoner | 6 s | **Hall of Mirrors** (Protection) **R** | mirror decoys absorb the next 6 hits aimed at friends and send them back. Bond tie: decoys leave poison | its mirror scales |
+| Mirror Newt | Mythic Summoner | Venom, Quicksoles, Bludgeoner | 12 s | **Hall of Mirrors** (Protection) **R** | mirror decoys absorb the next 6 hits aimed at friends and send them back. Bond tie: decoys leave poison | its mirror scales |
 | Ribbon Spider | Common Striker | Venom, Quicksoles, Bladenado | 7 s | **Web Wrap** (Poison) | spins a web zone: slow and stacking poison. Bond tie: poison stacks to 8 | its satin ribbon legs |
 | Grand Sprout | Uncommon Guard | Garden, Root, Spiky Shell | 10 s | **Bulb Guard** (Taunt) | roots itself, taunts and grows thorns for 4 s. Bond tie: thorns bloom | its bulb body and leaf plates |
-| Paper Devil | Uncommon Guard | Venom, Garden, Quicksoles | 10 s | **Dark Harvest** (Zone) | a dark ring around it drains every enemy inside for 4 s. Bond tie: drain adds Venom stacks | its folded wings and tail |
+| Paper Devil | Uncommon Controller | Venom, Garden, Quicksoles | 9 s | **Dark Harvest** (Zone) | a dark ring around it drains every enemy inside for 4 s. Bond tie: drain adds Venom stacks | its folded wings and tail |
 | Watering Snail | Uncommon Controller | Garden, Venom, Root | 9 s | **Rain Can** (Zone) | waters an area for 5 s: plants grow and enemies are slowed. Bond tie: growth counts a Garden wave | its watering-can body |
 | Yo-yo Squirrel | Rare Shooter | Garden, Quicksoles, Spiky Shell | 6 s | **Yo-yo** (Projectile pattern) | a yo-yo that goes out and comes back, hitting twice. Bond tie: hits poison | its yo-yo |
 | The First Seed | Rainbow Shooter | Garden, Root, Spiky Shell | 6 s | **Sprout** (Transform) | grows into a small tree for 6 s and shoots thorns. Bond tie: personal trait: the tree stays a pod | its bean-sprout leaves |
@@ -516,24 +517,24 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Pillow Oracle | Mythic Support | Starlight, Dusk, Hats | 8 s | **Lullaby** (Enemy debuff) **R** | a lullaby wave: every enemy in a big radius sleeps 1.5 s; waking hurts them a lot. Bond tie: sleepers are dusk-marked | its pillow body and night cap |
+| Pillow Oracle | Mythic Controller | Starlight, Dusk, Hats | 9 s | **Lullaby** (Enemy debuff) **R** | a lullaby wave: every enemy in a big radius sleeps 1.5 s; waking hurts them a lot. Bond tie: sleepers are dusk-marked | its pillow body and night cap |
 | Ice Cream Owl | Uncommon Controller | Dusk, Starlight, Hats | 9 s | **Brain Freeze** (Enemy debuff) | a cone of cold: every enemy hit loses 30% attack speed for 5 s. Bond tie: frozen cones feed Wishes | its scoops and cone |
 | Moon Jelly | Rare Shooter | Starlight, Dusk, Hats | 6 s | **Moonbeam** (Beam or channel) | a 3 s beam; each enemy it crosses loses 15% damage. Bond tie: crit enemies add Wishes | its crescent body |
 | Star Sock | Uncommon Shooter | Starlight, Clover, Cloud | 6 s | **Falling Star** (Eruption) | marks a spot (telegraphed) and a star crashes there. Bond tie: star fires on crits | its star patch |
 | Eclipse Egg | Rainbow Support | Starlight, Dusk, Clover | 8 s | **Mega Form** (Transform) | hatches into a bigger form for the rest of the wave. Bond tie: form is dark or bright by bond | its cracked starry shell |
 | Orbit Moth | Common Controller | Starlight, Dusk, Hats | 9 s | **Orbit** (Orbit) | four orbs circle it and explode on contact. Bond tie: orbs are stars or shadows | its ring and wrapped body |
-| Bubble Koi | Common Support | Starlight, Clover, Cloud | 8 s | **Slow Bubble** (Time) | a big time bubble on the ground: every enemy inside moves at 20% speed for 3 s. Bond tie: bubble pops into a wish | its bubbles and fins |
-| The Forgotten Patchwork | Rare Shooter | Dusk, Hats, Cloud | 6 s | **Patch Up** (Protection) **R** | sews wounds: heals the 3 lowest-health friends 15% and mends a fallen one 6 s sooner. Bond tie: minion carries shadow | its patches and thread |
+| Bubble Koi | Common Controller | Starlight, Clover, Cloud | 9 s | **Slow Bubble** (Time) | a big time bubble on the ground: every enemy inside moves at 20% speed for 3 s. Bond tie: bubble pops into a wish | its bubbles and fins |
+| The Forgotten Patchwork | Rare Support | Dusk, Hats, Cloud | 8 s | **Patch Up** (Protection) **R** | sews wounds: heals the 3 lowest-health friends 15% and mends a fallen one 6 s sooner. Bond tie: minion carries shadow | its patches and thread |
 | The Sleeping Friend | Rare Shooter | Starlight, Dusk, Rapidfire | 6 s | **Dream Mist** (Weather) | a mist zone: enemies inside miss 30%. Bond tie: mist hides friends too | its dream mist and night cap |
 | Violet Remnant | Uncommon Guard | Dusk, Hats, Monolith | 10 s | **Haunt** (Protection) **R** | taunts nearby enemies and takes 50% less damage for 3 s, draining them while it lasts. Bond tie: drain feeds Dusk | its cloth ghost and thimble helm |
-| Little Sprout | Uncommon Guard | Starlight, Hats, Clover | 10 s | **Moonbloom** (Protection) **R** | a bloom lights a circle: friends inside gain +10% crit and a 10% shield for 6 s. Bond tie: crits add Wishes | its leaf and bud |
+| Little Sprout | Uncommon Support | Starlight, Hats, Clover | 8 s | **Moonbloom** (Protection) **R** | a bloom lights a circle: friends inside gain +10% crit and a 10% shield for 6 s. Bond tie: crits add Wishes | its leaf and bud |
 | Saddle Moth | Rare Support | Dusk, Clover, Cloud | 8 s | **Rescue Swap** (Protection) **R** | swaps places with the lowest-health friend, taking its place and shielding it for 8%. Bond tie: swap leaves a shadow | its saddle and wings |
 
 ### House: Carnival + Court
 
 | Companion | Rarity / role | Bonds | Bar | Skill | What it does | Comes from |
 |---|---|---|---|---|---|---|
-| Jelly Swordsman | Common Guard | Carnival, Court, Masks | 10 s | **Jelly Wave** (Clone or echo) **R** | a wobbling wave shoves and slows every enemy in a cone. Bond tie: wave jiggles (Applause) | its jelly cube body and sword |
+| Jelly Swordsman | Common Striker | Carnival, Court, Masks | 7 s | **Jelly Wave** (Clone or echo) **R** | a wobbling wave shoves and slows every enemy in a cone. Bond tie: wave jiggles (Applause) | its jelly cube body and sword |
 | Brass Acorn | Common Striker | Carnival, Court, Masks | 7 s | **Acorn Charge** (Dash or leap) | rolls through enemies in a line, knocking them aside. Bond tie: court rank counts | its brass acorn cap |
 | Button Beetle | Common Support | Carnival, Court, Big Top | 8 s | **Button Bomb** (Trap or mine) | drops a button mine that stuns on contact. Bond tie: applause when it fires | its button shell |
 | Radish Jester | Common Support | Carnival, Court, Masks | 8 s | **Joker Draw** (Random) | draws a card 1 to 9: the damage follows the card. Bond tie: a 9 adds Applause | its jester leaf hat and bells |
@@ -541,9 +542,9 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Return Captain | Mythic Shooter | Court, Carnival, Masks | 6 s | **Return Command** (Time) | refunds 25% of the skill bar of the 3 nearest friends. Bond tie: rank refunds more | its captain hat and badge |
 | Dough Foreman | Rare Guard | Court, Masks, Big Top | 10 s | **Rising Dough** (Eruption) | a dough mound rises (telegraphed) and heaves enemies aside. Bond tie: court rank counts | its dough bucket and apron |
 | Velvet Enchantress | Uncommon Controller | Court, Masks, Demolitionist | 9 s | **Hex Cloud** (Enemy debuff) | a hex cloud: every enemy inside is harmless for 2 s. Bond tie: decree strengthens it | its witch hat and wings |
-| Carousel Pony | Uncommon Shooter | Carnival, Court, Desperado | 6 s | **Standard** (Dash or leap) | throws a banner then charges to it, stunning on arrival. Bond tie: banner is a royal banner | its saddle and pole |
+| Carousel Pony | Uncommon Striker | Carnival, Court, Desperado | 7 s | **Standard** (Dash or leap) | throws a banner then charges to it, stunning on arrival. Bond tie: banner is a royal banner | its saddle and pole |
 | Ringmaster Jack | Mythic Shooter | Carnival, Big Top, Desperado | 6 s | **Spotlight** (Mark) | a spotlight on the ground: every enemy in it is drawn toward its centre for 3 s. Bond tie: spotlight adds Applause | its box and top hat |
-| The Lost Carousel | Rainbow Shooter | Carnival, Big Top, Desperado | 6 s | **Merry-go-round** (Orbit) | little horses circle it for 6 s and trample enemies. Bond tie: personal trait: the arena spins | its canopy and horses |
+| The Lost Carousel | Rainbow Summoner | Carnival, Big Top, Desperado | 12 s | **Merry-go-round** (Orbit) | little horses circle it for 6 s and trample enemies. Bond tie: personal trait: the arena spins | its canopy and horses |
 | Court Herald | Common Shooter | Court, Masks, Desperado | 6 s | **Decree Tax** (Economy) | enemies hit this cast pay 1 coin each. Bond tie: decree stronger with Rank | its trumpet and tabard |
 
 ### House: Archive + Lantern
@@ -560,7 +561,7 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | The Endless Index | Rainbow Shooter | Archive, Runes, Multicaster | 6 s | **Last Page** (Steal or copy) | copies the last skill a friend cast. Bond tie: personal trait: pages recorded | its book wings and pages |
 | Harbor Whale | Mythic Shooter | Lantern, Runes, Bludgeoner | 6 s | **Fog Horn** (Weather) | a fog bank rolls in, enemies in it lose 20% damage and are lit. Bond tie: beam sweeps the fog | its lighthouse and bell |
 | Pinned Beetle | Common Shooter | Archive, Exhibit Hall, Multicaster | 6 s | **Pinned Down** (Trap or mine) | scatters pins: every enemy walking over them is rooted for 1 s. Bond tie: pinned species are recorded | its horn and pinned tag |
-| Paper Inventor | Mythic Shooter | Archive, Runes, Sniper | 6 s | **Fold Wall** (Protection) **R** | folds a paper wall that blocks bullets for 5 s and shields friends behind it. Bond tie: blueprints are archived | its folded paper body |
+| Paper Inventor | Mythic Support | Archive, Runes, Sniper | 8 s | **Fold Wall** (Protection) **R** | folds a paper wall that blocks bullets for 5 s and shields friends behind it. Bond tie: blueprints are archived | its folded paper body |
 | Lamp Goat | Uncommon Striker | Lantern, Exhibit Hall, Bladenado | 7 s | **Lamp Oil** (Time) | its lamp burns brighter: friends in light fill skill bars 15% faster. Bond tie: light counts for Lantern | its hanging lantern |
 
 ### House: Stone + Clockwork
@@ -570,14 +571,14 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Iron Locomotive | Mythic Controller | Clockwork, Stone, Horns | 9 s | **Full Steam** (Dash or leap) | charges in a straight line across the arena, bowling enemies over. Bond tie: rails glow | its steam engine |
 | Fossil Armadillo | Uncommon Controller | Stone, Clockwork, Horns | 9 s | **Stone Wall** (Protection) **R** | a line of stone blocks bullets and bodies for 6 s. Bond tie: wall is stone | its fossil shell |
 | Tin Tick | Common Controller | Clockwork, Stone, Gears | 9 s | **Countdown** (Time) | starts a timer that speeds up; at zero a burst. Bond tie: ticks add Clockwork | its tin tick body and key |
-| Spring Duck | Rare Guard | Clockwork, Gears, Horns | 10 s | **Bounce Pad** (Pull or push) | a spring pad launches enemies upward and sideways. Bond tie: pad is a gear | its coil spring |
+| Spring Duck | Rare Controller | Clockwork, Gears, Horns | 9 s | **Bounce Pad** (Pull or push) | a spring pad launches enemies upward and sideways. Bond tie: pad is a gear | its coil spring |
 | Staple Mole | Common Support | Stone, Clockwork, Gears | 8 s | **Burrow Rescue** (Protection) **R** | burrows to a fallen friend and carries it back: it rises at once with 20% health (once a wave). Bond tie: dust slows enemies | its staple teeth |
 | Dream Compass | Common Shooter | Clockwork, Horns, Rapidfire | 6 s | **Treasure Map** (Economy) **R** | points to hidden coins: coins equal to the wave number (max 20) drop around the hero. Bond tie: needle counts as a tick | its brass compass needle |
 | The Last Bell | Rainbow Shooter | Stone, Clockwork, Bludgeoner | 6 s | **Toll** (Eruption) | each cast changes its note; the third note explodes in a ring. Bond tie: every third toll adds a tick | its bronze bell and crystal heart |
 | Clockwork Piper | Mythic Summoner | Clockwork, Gears, Multicaster | 12 s | **Tune the Clocks** (Team buff) | plays a tune: all skill bars +20% fill speed for 6 s. Bond tie: personal trait: tunes stack | its pipe flute and gear crown |
 | Bristle Ball | Uncommon Guard | Stone, Horns, Monolith | 10 s | **Burr Defense** (Protection) **R** | curls up: taunts for 3 s taking 50% less damage and reflecting 30%, then leaps on the largest group. Bond tie: stone plates | its burr shell |
-| Monster Marble | Uncommon Guard | Stone, Horns, Unstoppable | 10 s | **Gravity** (Pull or push) | pulls all nearby enemies into a clump for 1.5 s. Bond tie: clumped enemies take stone | its galaxy swirls |
-| Top Beetle | Rare Shooter | Stone, Clockwork, Gears | 6 s | **Spinning Top** (Chain) | bounces between enemies, spinning faster each time. Bond tie: each bounce adds a tick | its top body |
+| Monster Marble | Uncommon Controller | Stone, Horns, Unstoppable | 9 s | **Gravity** (Pull or push) | pulls all nearby enemies into a clump for 1.5 s. Bond tie: clumped enemies take stone | its galaxy swirls |
+| Top Beetle | Rare Striker | Stone, Clockwork, Gears | 7 s | **Spinning Top** (Chain) | bounces between enemies, spinning faster each time. Bond tie: each bounce adds a tick | its top body |
 | Stitched Pangolin | Uncommon Guard | Stone, Horns, Monolith | 10 s | **Scale Armor** (Protection) **R** | its scales fly to the 5 nearest friends and shield them for 10% max health. Bond tie: scales are stone | its stitched scales |
 
 ### House: Bulwark + Spirit
@@ -587,14 +588,14 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Tower Rook | Rare Guard | Bulwark, Spirit, Shield | 10 s | **Castle Wall** (Protection) | raises stone wall segments in front of the 4 friends nearest to enemies; they block bullets for 6 s. Bond tie: wall counts as a Bastion wall | a chess-rook tower with a face and tiny arms |
 | Lifebuoy Hippo | Uncommon Guard | Bulwark, Spirit, Mend | 10 s | **Lifeline** (Protection) | throws its lifebuoy to the lowest-health friend: a shield that pulls it to safety; a fallen friend in reach rises 7 s sooner. Bond tie: the revive feeds Souls | a round hippo wearing a lifebuoy |
 | Nurse Hen | Uncommon Support | Bulwark, Spirit, Mend | 8 s | **Ward Round** (Protection) | heals the 3 lowest friends for 20% and cleanses them; a fallen friend nearby rises 5 s sooner. Bond tie: healing adds Guard | a hen with a nurse cap and a red-cross satchel |
-| Phoenix Chick | Mythic Shooter | Bulwark, Spirit, Mend | 6 s | **Rebirth Spark** (Protection) | fires sparks; when a friend falls a feather drops, and picking it up revives that friend at once with 30% health (once a wave). Bond tie: trait: Second Wind (see traits) | a downy phoenix chick with ember tail feathers |
+| Phoenix Chick | Mythic Support | Bulwark, Spirit, Mend | 8 s | **Rebirth Spark** (Protection) | fires sparks; when a friend falls a feather drops, and picking it up revives that friend at once with 30% health (once a wave). Bond tie: trait: Second Wind (see traits) | a downy phoenix chick with ember tail feathers |
 | Dandelion Puff | Rare Support | Bulwark, Spirit, Mend | 8 s | **Wish Seeds** (Protection) | seeds drift onto 4 friends and heal 10% over 5 s; a seed on a fallen friend shortens its revive by 5 s. Bond tie: seeds become Spirits when they land on fallen friends | a dandelion puff with a tiny face |
 | Totem Pole | Rare Support | Bulwark, Spirit, Shield | 8 s | **Totem Aura** (Protection) | plants a totem: friends within 5 units take 20% less damage for 6 s; the totem also draws 30% of enemy shots. Bond tie: the totem counts as a Bastion wall | a small carved totem pole with three stacked faces |
 | Brass Lion | Uncommon Guard | Bulwark, Shield, Bastion | 10 s | **Roar Ring** (Protection) | a roar pushes everything in a cone and gives the 5 nearest friends 20% damage reduction for 5 s. Bond tie: reduction counts as damage shared | a brass door-knocker lion with a ring through its nose |
 | Quilt Walrus | Common Guard | Bulwark, Shield, Monolith | 10 s | **Quilt Blanket** (Protection) | drapes a quilt: the 5 nearest friends gain a shield worth 15% of their max health for 6 s. Bond tie: shield renews Wave shields | a quilted walrus |
 | Plaster Panda | Common Support | Bulwark, Mend, Bastion | 8 s | **Bandage Burst** (Protection) | bandages burst over an area and heal every friend inside 12% of max health. Bond tie: healing feeds Mend | a panda covered in bandages and plasters |
 | Pumpkin Reaper | Uncommon Striker | Spirit, Shield, Unstoppable | 7 s | **Harvest Sweep** (Zone) | a scythe sweep around it hits everything within 3 units; every enemy slain pops a pumpkin that heals friends 2%. Bond tie: kills gather Souls | a pumpkin-headed reaper with a small scythe |
-| Bone Xylophone | Common Shooter | Spirit, Shield, Unstoppable | 6 s | **Rattle Barrage** (Projectile pattern) | bone mallets bounce through the cluster; each bone that kills leaves a Skull that taunts for 3 s. Bond tie: skulls are Spirits | a walking skeleton xylophone |
+| Bone Xylophone | Common Striker | Spirit, Shield, Unstoppable | 7 s | **Rattle Barrage** (Projectile pattern) | bone mallets bounce through the cluster; each bone that kills leaves a Skull that taunts for 3 s. Bond tie: skulls are Spirits | a walking skeleton xylophone |
 | Scarecrow Crow | Uncommon Striker | Spirit, Shield, Unstoppable | 7 s | **Murder Dive** (Dash or leap) | a flock dives along a line: enemies hit flee for 1.5 s and each hit leaves a feather that boosts friends 3% damage. Bond tie: feathers drop when friends fall | a crow perched on a scarecrow pole |
 
 ### House: Melody + Gravity
@@ -606,9 +607,9 @@ Bar, kind, what it does and which part of the creature it comes from. Rewritten 
 | Bagpipe Octopus | Uncommon Controller | Melody, Gravity, Echo | 9 s | **Skirl** (Enemy debuff) | a wail stuns every enemy in a wide ring for 1 s and lowers their damage 10% for 5 s. Bond tie: wails fill Beats | an octopus playing a bagpipe with its arms |
 | Anvil Ox | Uncommon Guard | Melody, Gravity, Singularity | 10 s | **Anvil Drop** (Protection) | drops an anvil on the densest cluster (stun) and gives friends nearby 25% damage reduction for 4 s. Bond tie: the drop makes a Singularity pull | an ox with an anvil on its back |
 | Sinkhole Worm | Common Controller | Melody, Gravity, Singularity | 9 s | **Sinkhole** (Pull or push) | opens a hole that drags enemies in and slows them 40% for 3 s. Bond tie: a hole is a Singularity | a long friendly worm with a gaping mouth |
-| Planet Hamster | Mythic Shooter | Melody, Gravity, Singularity | 6 s | **Orbit Rings** (Orbit) | rings of light orbit the hamster and pull in enemy bullets for 6 s, bursting when full. Bond tie: trait: Gravity Well (see traits) | a hamster with a small ringed planet on its back |
+| Planet Hamster | Mythic Summoner | Melody, Gravity, Singularity | 12 s | **Orbit Rings** (Orbit) | rings of light orbit the hamster and pull in enemy bullets for 6 s, bursting when full. Bond tie: trait: Gravity Well (see traits) | a hamster with a small ringed planet on its back |
 | Cymbal Monkey | Common Striker | Melody, Echo, Bladenado | 7 s | **Crash** (Eruption) | a clap stuns every enemy in a ring for 0.5 s and counts as a Beat. Bond tie: crash is a Beat | a wind-up monkey clapping two cymbals |
-| Choir Canary | Common Shooter | Melody, Echo, Multicaster | 6 s | **Chorus Call** (Clone or echo) | calls two echoes that repeat the nearest friend's last two attacks. Bond tie: echo feeds Beats | a small yellow canary in a choir robe |
+| Choir Canary | Common Summoner | Melody, Echo, Multicaster | 12 s | **Chorus Call** (Clone or echo) | calls two echoes that repeat the nearest friend's last two attacks. Bond tie: echo feeds Beats | a small yellow canary in a choir robe |
 | Piano Crocodile | Rare Controller | Melody, Echo, Multicaster | 9 s | **Chord Slam** (Eruption) | slams a keyboard line: waves of damage travel along the line, one per second. Bond tie: chords are Beats | a crocodile whose jaws are piano keys |
 | Newton Apple | Common Shooter | Gravity, Singularity, Demolitionist | 6 s | **Falling Fruit** (Eruption) | apples fall on clusters and split into smaller apples that roll. Bond tie: apples are small masses | a red apple with a small leaf hat |
 | Bowling Sloth | Uncommon Guard | Gravity, Singularity, Spiky Shell | 10 s | **Strike** (Dash or leap) | rolls through a line, bowling enemies over, and shields the friends it passes (6%). Bond tie: bowling counts Mass | a sloth curled into a bowling ball |
