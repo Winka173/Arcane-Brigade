@@ -195,6 +195,7 @@ namespace ArcaneBrigade
                         spatial.Move(enemy);
                     }
                     events.Add(new CombatEvent(CombatEventKind.BodyImpact, Vector2.Lerp(body.Position, enemy.Position, .5f), body.Source, body.Weight, along, cause: body.Cause));
+                    Bonds?.OnCollision(UnitWithId(body.UnitId),enemy);
                     ApplyDamage(enemy, body.Damage, body.Source, "Flung body", along, null, cause: body.Cause);
                     body.Velocity *= .7f;
                     if (enemy.Alive) continue;
@@ -227,6 +228,7 @@ namespace ArcaneBrigade
                 Vector2 along = (other.Position - pulled.Position).sqrMagnitude > .0001f ? (other.Position - pulled.Position).normalized : Vector2.right;
                 float knock = Mathf.Max(1, hit * .2f);
                 events.Add(new CombatEvent(CombatEventKind.BodyImpact, Vector2.Lerp(pulled.Position, other.Position, .5f), source, .5f, along, cause: cause.Child("pull-bump")));
+                Bonds?.OnCollision(pulled,other);
                 ApplyDamage(other, knock, source, "Knocked together", along, null, cause: cause.Child("pull-bump"));
                 ApplyDamage(pulled, knock, source, "Knocked together", -along, null, cause: cause.Child("pull-bump"));
                 return;

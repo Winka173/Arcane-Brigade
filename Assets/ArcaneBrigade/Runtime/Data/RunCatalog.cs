@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection, ScoreMultiplier, CollisionDamage, MeleeDamage, RangedDamage, AttackRange, Dodge, Income, BulletPierce, BulletSplit, BulletBounce, BulletSize, BulletSpeed, BulletDistance, Knockback, BodySize, CompanionSize, EnemyCount, EnemyHealth, EnemySpeed, HeartHealing, ChestQuality, RecruitDiscount, RelicDiscount, ShopRarity, HealthCorrection, DamageCorrection, SpeedCorrection, ArmorCorrection, HealCorrection, CollisionFrequency, ChestReach, ChainChance, RecordedDamage }
+    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection, ScoreMultiplier, CollisionDamage, MeleeDamage, RangedDamage, AttackRange, Dodge, Income, BulletPierce, BulletSplit, BulletBounce, BulletSize, BulletSpeed, BulletDistance, Knockback, BodySize, CompanionSize, EnemyCount, EnemyHealth, EnemySpeed, HeartHealing, ChestQuality, RecruitDiscount, RelicDiscount, ShopRarity, HealthCorrection, DamageCorrection, SpeedCorrection, ArmorCorrection, HealCorrection, CollisionFrequency, ChestReach, ChainChance, RecordedDamage, SkillHaste }
     public enum ModifierScope { Team, Champion, Companions, Run }
     public enum ItemRarity { Common, Uncommon, Rare, Mythic, Crimson, Rainbow }
     public enum StackPolicy { Additive, Unique }
@@ -99,6 +99,8 @@ namespace ArcaneBrigade
         public const float PositiveRewardScale = .9f;
         public string Id;
         public string Name;
+        public bool RulesV3;
+        public ItemEffect StatEffect => RulesV3 && Effect == ItemEffect.Health ? ItemEffect.HealthCorrection : Effect;
         public int Threshold = 2;
         public Sprite Icon;
         public ItemEffect Effect;
@@ -110,11 +112,11 @@ namespace ArcaneBrigade
         public float StepReward(ItemEffect effect, int count)
         {
             float sum = 0;
-            foreach (BondStep step in Steps ?? new BondStep[0]) if (step.Effect == effect && count >= step.Count) sum += step.Value;
-            return sum;
+            foreach (BondStep step in Steps ?? new BondStep[0]) if ((RulesV3 && step.Effect == ItemEffect.Health ? ItemEffect.HealthCorrection : step.Effect) == effect && count >= step.Count) sum += step.Value;
+            return RulesV3 && Id == "hearth" && count >= BondTuning.FourthStep ? sum * BondTuning.HearthDouble : sum;
         }
 
-        public int ActiveLevel(int count) => Mathf.Max(0, count) / Mathf.Max(1, Threshold);
+        public int ActiveLevel(int count) => RulesV3 ? Mathf.Min(BondTuning.FourthStep / BondTuning.FirstStep, Mathf.Max(0,count) / Mathf.Max(1,Threshold)) : Mathf.Max(0,count) / Mathf.Max(1,Threshold);
 
         public int NextThreshold(int count)
         {
@@ -129,6 +131,7 @@ namespace ArcaneBrigade
             float reward = ActiveLevel(count) * Value;
             foreach (BondThresholdBonus bonus in ExtraBonuses ?? new BondThresholdBonus[0])
                 if (count >= bonus.Threshold) reward += bonus.Value;
+            if (RulesV3) return Id == "hearth" && count >= BondTuning.FourthStep ? reward * BondTuning.HearthDouble : reward;
             return BalanceReward(reward);
         }
         /// <summary>Whole-number stats (pierce, split, shots) are floored when compiled: scaling them by 0.9 turned the first level's

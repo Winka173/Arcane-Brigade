@@ -14,6 +14,8 @@ namespace ArcaneBrigade
         public AuthoredMotionSet AuthoredMotion;
         public WeaponDefinition Weapon;
         public float Health = 100f;
+        // Run-compiled friend defense and time-only skill fill; armor is measured in points.
+        public float FriendArmorPoints, SkillHaste, BondLuck;
         public float Speed = 4.8f;
         public float Radius = 0.25f;
         public float BodyHeight = 0.8f;

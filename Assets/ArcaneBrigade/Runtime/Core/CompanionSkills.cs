@@ -58,6 +58,7 @@ namespace ArcaneBrigade
         private void Skill(UnitState u, MorphGeometry shape, Vector2 at, Vector2 end, float radius)
         {
             CompanionSkillCasts++;
+            Bonds?.OnCast(u);
             IdentityGlyph(shape, at, end, radius, .45f, 0, shape == MorphGeometry.Line ? HeroGlyphRole.Strike : HeroGlyphRole.Mark);
         }
 
