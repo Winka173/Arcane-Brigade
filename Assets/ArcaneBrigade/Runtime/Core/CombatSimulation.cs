@@ -605,9 +605,9 @@ namespace ArcaneBrigade
                 if (!units[index].Alive && units[index].Faction == Faction.Enemy && !EnemyRulesV3.Recognizes(units[index])) { unitLookup.Remove(units[index].Id); units.RemoveAt(index); }
         }
 
-        private UnitState Spawn(UnitDefinition definition, Faction faction, Vector2 position, bool elite = false)
+        private UnitState Spawn(UnitDefinition definition, Faction faction, Vector2 position, bool elite = false, bool selectPopulation = true)
         {
-            if(faction == Faction.Enemy && EnemyRulesV3 != null)
+            if(selectPopulation && faction == Faction.Enemy && EnemyRulesV3 != null)
             {
                 elite = elite && EnemyRulesV3.CanSpawnElite(definition);
                 UnitDefinition selected = EnemyRulesV3.SelectSpawn(definition, elite);
@@ -1486,7 +1486,9 @@ namespace ArcaneBrigade
 #if UNITY_EDITOR
         public void ProcessProcFixture() => ProcessProcs();
         public void LootFixture(LootKind kind, Vector2 position, int value) => DropLoot(kind, position, value);
-        public UnitState AddFixture(UnitDefinition definition, Faction faction, Vector2 position) => Spawn(definition, faction, position);
+        // Explicit bodies retain their health, weapon and species; population quotas belong to wave selection.
+        public UnitState AddFixture(UnitDefinition definition, Faction faction, Vector2 position) => Spawn(definition, faction, position, selectPopulation: false);
+        public UnitState AddWaveEnemyFixture(UnitDefinition definition, Vector2 position) => Spawn(definition, Faction.Enemy, position);
         public void DamageFixture(UnitState target, float damage) => ApplyDamage(target, damage, Faction.Enemy, injectedDamage: true);
         public void WeaponDamageFixture(UnitState target, float damage, DamageElement element) => ApplyWeaponDamage(target, damage, Faction.Companion, element);
         public void ProjectileFixture(Vector2 position, Vector2 velocity, float damage, Faction faction, DamageElement element = DamageElement.Physical)

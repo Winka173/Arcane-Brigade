@@ -17,14 +17,15 @@ namespace ArcaneBrigade.Editor
                 if (!valid) throw new InvalidOperationException("October: " + caption);
             }
             RunCatalog c = Resources.Load<RunCatalog>("RunCatalog"); OctoberRoster manifest = OctoberContent.Roster;
-            Check(c.Champions.Length >= 31 && c.Companions.Length == 94, "31 heroes (36 with the expansion's) and 94 ally species installed");
-            foreach (var row in manifest.heroes) Check(c.Champions.Any(u => u.Id == row.id && !string.IsNullOrEmpty(u.ReferenceHero)), "Hero counterpart " + row.reference + " / " + row.id);
+            Check(c.Champions.Length == 36 && c.Companions.Length == 120, "Design roster: 36 heroes and 120 companion species installed");
+            foreach (var row in manifest.heroes) Check(c.Champions.Any(u => u.Id == row.id && HeroRulesV3Catalog.Find(u.Id) != null), "Hero counterpart " + row.reference + " / " + row.id);
             foreach (var row in manifest.allies) Check(c.Companions.Any(u => u.Id == row.id && u.ReferenceCompanion == (row.reference == "Original" ? "Original:" + row.id : row.reference)), "Ally counterpart " + row.reference + " / " + row.id);
             ItemDefinition[] reference = ReferenceRelicCatalog.Create();
             Check(reference.Length == 76 && reference.All(r => c.Items.Count(i => i.ReferenceName == r.ReferenceName && i.Icon != null) == 1), "All 76 reference relics installed once with artwork");
             Check(c.Items.Where(i => !string.IsNullOrEmpty(i.ReferenceName)).Select(i => i.Icon).Distinct().Count() == 76, "76 distinct relic icon slices");
-            Check(OctoberContent.BondIds.All(id => c.Bonds.Count(b => b.Id == id) == (id == "fruit" || id == "ball" ? 0 : 1)), "All reference bond counterparts installed (Fruit Basket and Lantern Revel retired 18/10/2026)");
-            Check(c.Bonds.Any(b => b.Id == "lantern-guild") && c.Bonds.Any(b => b.Id == "rain-script"), "Two original bond families");
+            Check(c.Bonds.Length == BondTuning.MajorCount + BondTuning.MinorCount, "Design installs 20 major and 32 minor bonds");
+            foreach (var bond in BondTuning.V3Definitions)
+                Check(c.Bonds.Count(installed => installed.Id == bond.Id) == 1, "Canonical v3 bond installed once " + bond.Id);
             foreach (var row in manifest.newHeroes.Concat(manifest.newAllies))
             {
                 UnitDefinition u = c.Unit(row.id);
@@ -42,7 +43,7 @@ namespace ArcaneBrigade.Editor
                 Check(Mathf.Approximately(a.WaveDuration, WaveCadence.WaveLength(12)) && float.IsFinite(a.Champion.Health) && a.Champion.Health > 0 && a.Champion.Weapon.Cooldown >= .28f, "Playable compiles with the wave-length ramp and bounded stats " + hero.Id);
                 var sim = new CombatSimulation(a); sim.Start(662314);
                 for (int tick = 0; tick < 120; tick++) { sim.Champion.Health = sim.Champion.Definition.Health; sim.Step(.05f, new Vector2(.4f, .2f)); }
-                Check(sim.Units.All(u => float.IsFinite(u.Position.x) && float.IsFinite(u.Position.y) && (u.Faction != Faction.Companion || u.Alive && float.IsPositiveInfinity(u.Health))), "Playable live simulation finite; allies immortal " + hero.Id);
+                Check(sim.Units.All(u => float.IsFinite(u.Position.x) && float.IsFinite(u.Position.y) && (u.Faction != Faction.Companion || float.IsFinite(u.Health) && u.Health >= 0)), "Playable live simulation finite; companions have mortal health " + hero.Id);
                 s.Validate(s.State); var save = JsonUtility.ToJson(s.State); s.Restore(JsonUtility.FromJson<RunSnapshot>(save));
                 Check(s.State.ChampionId == hero.Id && s.State.AchievementEvidence.Count > 0, "Progress save round trip " + hero.Id);
             }
@@ -68,11 +69,15 @@ namespace ArcaneBrigade.Editor
                 typeof(RunSession).GetMethod("MergeCompanions", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(s, new object[] { ally.Id });
                 Check(s.State.Roster.Count == 1 && s.State.Roster[0].Tier == 2 && weapons.Any(w => w.Id == s.State.Roster[0].WeaponId), "Merge preserves exactly one actual ingredient weapon");
             }
+            // Section 8: only Lone Jelly absorbs; the Curator records enemy species instead.
             foreach (var heroId in new[] { "ArchiveCurator", "LoneJelly" })
             {
                 using var s = new RunSession(c); s.Start(heroId, 99); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Gold = 1000;
-                var offer = new ShopOffer { Token = ++s.State.NextOffer, Kind = OfferKind.Companion, Id = "TeapotPilgrim", Price = 1 }; s.State.Offers.Add(offer);
-                int before = s.State.Roster.Count; Check(s.Buy(offer.Token) && s.State.Roster.Count == before && s.State.AbsorbedSkills.Contains(offer.Id), "Memory purchase absorbs a trait without body " + heroId);
+                var trait = HeroRulesV3Catalog.Traits[0];
+                var offer = new ShopOffer { Token = ++s.State.NextOffer, Kind = OfferKind.Companion, Id = trait.CompanionId, Price = 1 }; s.State.Offers.Add(offer);
+                s.State.Roster.Clear();
+                Check(s.Buy(offer.Token), "Companion purchase " + heroId);
+                Check(heroId == "LoneJelly" ? s.State.Roster.Count == 0 && s.RulesV3HeroProgress.AbsorbedTraits.Contains(offer.Id) : s.State.Roster.Any(entry => entry.UnitId == offer.Id), "Only Lone Jelly absorbs a personal trait without a body " + heroId);
             }
             foreach (UnitDefinition hero in c.Champions)
             {
@@ -82,53 +87,8 @@ namespace ArcaneBrigade.Editor
                 Check(stock.Where(o => o.Kind == OfferKind.Companion).All(o => K11HeroRules.Eligible(hero, c.Unit(o.Id))), "Both recruit shelves respect themes " + hero.Id);
                 Check(stock.Where(o => o.Kind == OfferKind.Item).All(o => s.OctoberItemEligible(c.Item(o.Id))), "Both relic shelves respect themes " + hero.Id);
             }
-            using (var s = new RunSession(c))
-            {
-                s.Start("VerdantMatron", 78); s.State.Wave = 12; s.State.Roster.Clear();
-                var weapons = c.Weapons.Where(w => !w.SpecialOnly).Take(3).ToArray();
-                foreach (var w in weapons) s.State.Roster.Add(new RosterEntry { UnitId = "LittleSprout", WeaponId = w.Id });
-                typeof(RunSession).GetMethod("MergeCompanions", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(s, new object[] { "LittleSprout" });
-                Check(s.State.Roster.Count == 2 && s.State.Roster.All(r => r.Tier == 2) && s.State.Roster.Any(r => r.UnitId == "GrandSprout") && s.State.Roster.Any(r => r.UnitId != "GrandSprout" && r.UnitId != "LittleSprout"), "Three nursery sprouts produce both a random evolved friend and Grand Sprout");
-                Check(s.State.Roster.All(r => weapons.Any(w => w.Id == r.WeaponId)), "Both nursery rewards inherit ingredient weapons");
-                s.Validate(s.State);
-            }
-            using (var s = new RunSession(c))
-            {
-                s.Start("NightMaw", 78); var a = s.PrepareCombat(); a.Armor = 1000; a.Dodge = 1; a.EnemyBudget = 0;
-                var sim = new CombatSimulation(a); sim.Start(78); float before = sim.Champion.Health; sim.Step(.05f, Vector2.zero);
-                Check(Mathf.Abs(before - sim.Champion.Health - 1) < .001f, "Hunger spends exactly one HP through armor and dodge");
-            }
-            foreach (string hero in new[] { "LanternWeaver", "RainArchivist" })
-            {
-                using var s = new RunSession(c); s.Start(hero, 78); s.State.Roster.Clear(); var a = s.PrepareCombat();
-                a.EnableHeroIdentities = false;
-                a.EnemyBudget = 0; a.Armor = 1000;
-                var sim = new CombatSimulation(a); sim.Start(78); sim.Champion.Position = sim.Champion.PreviousPosition = Vector2.zero;
-                UnitDefinition dummy = UnityEngine.Object.Instantiate(a.MeleeEnemy); dummy.Health = 100000; dummy.Speed = 0;
-                for (int i = 0; i < 3; i++) { var enemy = sim.AddFixture(dummy, Faction.Enemy, new Vector2(1.8f + i * .6f, i * .2f)); enemy.NextAttack = float.PositiveInfinity; }
-                if (hero == "RainArchivist") for (int i = 0; i < 3; i++) sim.LootFixture(LootKind.Chest, Vector2.zero, 1);
-                bool observed = false;
-                for (int tick = 0; tick < 400 && !observed; tick++)
-                {
-                    sim.Step(.05f, Vector2.zero);
-                    if (hero == "LanternWeaver")
-                    {
-                        var stitches = sim.MorphStrikes.Where(m => m.Cause.ItemId == "lantern-weave").ToArray();
-                        if (stitches.Length == 0) continue;
-                        Check(stitches.Length == 3 && stitches.All(m => m.MaxTargets == 1) && Mathf.Abs(stitches.Sum(m => m.Budget) - a.Champion.Weapon.Damage * .45f) < .001f, "Fourth attack creates three delayed stitches sharing one damage budget");
-                        observed = true;
-                    }
-                    else
-                    {
-                        var fan = sim.Projectiles.Where(p => p.Cause.ItemId == "companion-response").ToArray();
-                        if (fan.Length == 0) continue;
-                        Check(sim.OctoberChestsOpened == 3 && fan.Length == 3 && fan.Select(p => p.Velocity).Distinct().Count() == 3, "Third opened chest releases a real three-direction rain fan");
-                        observed = true;
-                    }
-                }
-                Check(observed, "Original hero signature executes in live combat " + hero);
-                UnityEngine.Object.DestroyImmediate(dummy);
-            }
+            // Nursery merges, hunger self-damage, delayed stitches and chest rain were replaced by section 8.
+            HeroRulesV3Checks.Run();
             using (var s = new RunSession(c))
             {
                 s.Start("CopperCauldron", 78); s.State.Roster.Clear();
@@ -160,29 +120,13 @@ namespace ArcaneBrigade.Editor
                 var offer = new ShopOffer { Id = "TeapotPilgrim", Tier = 2, Kind = OfferKind.Companion, Price = 1, Token = ++s.State.NextOffer }; s.State.Offers.Add(offer);
                 Check(s.State.Roster.Count == 20 && s.Buy(offer.Token) && s.State.Roster.Count == 19 && s.State.Roster.Any(r => r.UnitId == offer.Id && r.Tier == 3), "Full party can complete a tier-two merge without exceeding the saved body cap");
                 s.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = "TinFish" });
-                offer = new ShopOffer { Id = "CarouselPony", Tier = 1, Kind = OfferKind.Companion, Price = 1, Token = ++s.State.NextOffer }; s.State.Offers.Add(offer);
-                Check(!s.CompanionCapacityBlocks(offer), "A full party is not capped: a new body is paced by recruit quotas, not a body cap");
+                offer = new ShopOffer { Id = c.Companions.First(unit => !s.OwnsCompanionSpecies(unit.Id)).Id, Tier = 1, Kind = OfferKind.Companion, Price = 1, Token = ++s.State.NextOffer }; s.State.Offers.Add(offer);
+                Check(s.ActiveRoster.Count == RulesV3Tuning.CompanionLimit && s.CompanionCapacityBlocks(offer), "Ten deployed species block a new species while owned upgrade copies remain legal");
             }
             Check(c.Companions.Where(u => u.GiftOnly).All(u => c.Champions.All(h => !K11HeroRules.Eligible(h, u))), "Gift-only allies never enter ordinary theme pools");
             Check(RunAchievements.Definitions(c).Count >= 90 && RunAchievements.Definitions(c).Select(d => d.Id).Distinct().Count() == RunAchievements.Definitions(c).Count, "Achievement journal has distinct attainable conditions");
-            foreach (UnitDefinition boss in c.Bosses.Concat(new[] { OutsideStageAssets.Current.Boss, Resources.Load<UnitDefinition>("TheLastCustomer") }))
-            {
-                using var s = new RunSession(c); s.Start("LanternKnight", 8817); var a = s.PrepareCombat();
-                a.Boss = UnityEngine.Object.Instantiate(boss); a.Boss.Weapon = UnityEngine.Object.Instantiate(boss.Weapon);
-                a.Boss.Health = 1000000; a.Boss.KnockbackResistance = 1; a.EnemyBudget = 0; a.WaveDuration = 100;
-                a.StartingCompanions = Array.Empty<UnitDefinition>(); a.Champion.Weapon.Damage = 0;
-                var sim = new CombatSimulation(a); sim.Start(8817); sim.Champion.NextAttack = float.PositiveInfinity;
-                var patterns = new HashSet<string>(); bool lunge = false;
-                for (int t = 0; t < 1000; t++)
-                {
-                    sim.Champion.Health = sim.Champion.Definition.Health; sim.Step(.05f, Vector2.zero);
-                    foreach (ProjectileState p in sim.Projectiles) if (p.Cause.ItemId != null && p.Cause.ItemId.StartsWith("boss-encore-")) patterns.Add(p.Cause.ItemId);
-                    lunge |= sim.Boss.OctoberLungeUntil > sim.Elapsed;
-                }
-                Check(patterns.Count == 6, "Six distinct live projectile patterns " + boss.Id);
-                if (boss.Id != "OutsideStageKeeper" && boss.Id != NightmareRules.CustomerId) Check(lunge, "Telegraphed new boss movement " + boss.Id);
-                UnityEngine.Object.DestroyImmediate(a.Boss.Weapon); UnityEngine.Object.DestroyImmediate(a.Boss);
-            }
+            // Section 9 replaces the old six-pattern encore on every boss with tiered enemy and boss rules.
+            EnemyRulesV3Checks.Run();
             K24OutsideStageChecks.Run();
             Debug.Log("OCTOBER_CHECKS " + notes.Count + " passed");
         }

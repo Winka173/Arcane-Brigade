@@ -18,7 +18,9 @@ namespace ArcaneBrigade.Editor
                 UnitDefinition definition = AssetDatabase.LoadAssetAtPath<UnitDefinition>("Assets/ArcaneBrigade/Data/Run/" + id + ".asset"); AuthoredMotionSet art = definition.AuthoredMotion;
                 require(art != null, "Authored motion " + id);
                 Sprite[] all = art.Idle.Concat(art.Walk).Concat(art.Windup).Concat(art.Release).Concat(art.Recovery).ToArray();
-                int expected = definition.IsBoss && AssetDatabase.GetAssetPath(definition.Body).Contains("/K21/") || !AssetDatabase.GetAssetPath(art.Idle[0]).Contains("/K16/") ? 8 : 12; // Act I repainted canon actors carry 8 poses
+                bool redo = art.name.EndsWith("RedoMotion", StringComparison.Ordinal);
+                if (redo) require(art.Idle.Length == 4 && art.Walk.Length == 4 && art.Windup.Length == 3 && art.Release.Length == 2 && art.Recovery.Length == 3, "Exact RedoMotion pose layout " + id);
+                int expected = redo ? 15 : (definition.IsBoss && AssetDatabase.GetAssetPath(definition.Body).Contains("/K21/") || !AssetDatabase.GetAssetPath(art.Idle[0]).Contains("/K16/") ? 8 : 12); // RedoMotion's final recovery reuses idle; Act I actors carry 8 poses
                 require(all.Distinct().Count() == expected, expected + " separate drawings " + id + " (has " + all.Distinct().Count() + ")");
                 require(all.All(frame => frame != null && frame.pivot.y == 0), "Ground-anchored pose pivots " + id);
                 require(art.ReferenceHeight > 0 && definition.Body == art.Idle[0], "Stable idle height and portrait " + id);

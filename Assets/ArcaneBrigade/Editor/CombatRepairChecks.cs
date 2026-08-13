@@ -27,7 +27,7 @@ namespace ArcaneBrigade.Editor
                 {
                     view.Display(art.Form(BuildMorphKind.Chorus),shape,Vector2.zero,Vector2.right*2,Vector2.right,1.2f,0,1,.25f,Color.white,false);
                     var drawn=parent.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();
-                    Check(view.VisibleSprites>0 && drawn.All(r=>r.sortingOrder<100) && drawn.OfType<SpriteRenderer>().All(r=>r.sprite==null || !art.Forms.Contains(r.sprite)),"Mechanic area draws as clean geometry on the floor, never a painted wreath: "+shape);
+                    Check(drawn.Length>0 && drawn.All(r=>r.sortingOrder<100) && drawn.OfType<SpriteRenderer>().All(r=>r.sprite==null || !art.Forms.Contains(r.sprite)),"Mechanic area draws weapon motes or strokes on the floor, never a painted wreath: "+shape);
                 }
                 view.Hide();Check(parent.GetComponentsInChildren<Renderer>().All(r=>!r.enabled),"Pooled area layers clear completely");
             }

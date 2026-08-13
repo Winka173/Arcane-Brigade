@@ -47,7 +47,7 @@ namespace ArcaneBrigade.Editor
                 simulation.EnemyRulesV3.ConfigureSmallFallback(enemy);
                 UnitDefinition special=ScriptableObject.CreateInstance<UnitDefinition>();assets.Add(special);
                 special.Id="Stitcher";special.Weapon=weapon;special.Health=Health;
-                for(int i=0;i<20;i++)simulation.AddFixture(special,Faction.Enemy,new Vector2(30,30));
+                for(int i=0;i<20;i++)simulation.AddWaveEnemyFixture(special,new Vector2(30,30));
                 Require(simulation.EnemyRulesV3.LiveLargeSpecial==EnemyRulesV3Tuning.LargeSpecialCap(1),"shared spawn path enforces early special cap");
                 Require(simulation.EnemyRulesV3.WaveSmall>=simulation.EnemyRulesV3.WaveBodies*EnemyRulesV3Tuning.MinimumSmallFraction,"shared spawn path preserves wave small quota");
                 companion.FriendArmorPoints=15;

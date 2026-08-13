@@ -101,7 +101,8 @@ namespace ArcaneBrigade.Editor
                 require(front.Health < 1000 && back.Health == 1000, "Umbrella drops fly forward only, not another full ring");
                 require(front.Position.x > 1 && front.Position.x <= 1.8f, "Umbrella pushes enemy within bounded distance");
                 require(boss.Position.x - 1 < front.Position.x - 1, "Boss resists umbrella push");
-                require(float.IsPositiveInfinity(fixture.Simulation.AddCompanion(fixture.Source.Definition).Health), "Ally remains immortal, no signature ally damage");
+                UnitState ally = fixture.Simulation.AddCompanion(fixture.Source.Definition);
+                require(ally.Alive && ally.Health == ally.Definition.Health && !float.IsInfinity(ally.Health), "Section 1 mortal ally joins at full finite health after umbrella volley");
                 require(!fixture.Combat.CompanionInterceptor, "Umbrella does not silently grant bullet blocking");
                 fixture.Source.Definition.CombatTier = 2;
                 UnitState outer = fixture.Enemy(new Vector2(2.4f, 0));

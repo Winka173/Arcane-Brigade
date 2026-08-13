@@ -48,6 +48,7 @@ namespace ArcaneBrigade.Editor
         }
         public static void Run()
         {
+            ClassRoster();
             Require(CompanionSkillTable.All.Length==CompanionSkillTuning.CompanionCount,"120 authored skills");
             var ids=new HashSet<string>(); int protection=0;
             for(int i=0;i<CompanionSkillTable.All.Length;i++)
@@ -73,6 +74,43 @@ namespace ArcaneBrigade.Editor
             Require(protection==CompanionSkillTuning.ProtectionCount,"27 protections");
             HasteAndHeldCasts(); PauseAndRevive(); Geometry(); RandomIsDeterministic(); HistoriesAndHealing();
             Debug.Log("CompanionRulesV3Checks: PASS (120 skills, 27 protections, 100-enemy fixtures, time-only bars)");
+        }
+        private static void ClassRoster()
+        {
+            var checkedIds = new HashSet<string>();
+            CheckClass(checkedIds, CompanionRole.Shooter, 6, 2, .8f,
+                "TeapotPilgrim HoodWisp ShellPostman ThimbleMoth ReelOwl LensOwl EndlessIndex ShovelPenguin RainHeron RaincoatFrog LighthouseWhale KiteDragon StormKitten VoltEel ShantySeaLion PinnedBeetle MoonJelly StarSock DreamCompass RainbowBell SecretDreamLamb ReturnCaptain YoyoSquirrel FirstSeed JackInTheBox CourtHerald NewtonApple SatelliteBee");
+            CheckClass(checkedIds, CompanionRole.Controller, 9, 5, 1,
+                "CandleSnail KettleBat AnchorSnail CoilKettle IronLocomotive SundaeGolem FossilArmadillo PillowOracle MushroomLibrarian TinTick SpringDuck IceCreamOwl SeedHedgehog OrbitMoth BubbleKoi CrayonGremlin VelvetEnchantress PaperDevil MonsterMarble WateringSnail BagpipeOctopus SinkholeWorm PianoCrocodile");
+            CheckClass(checkedIds, CompanionRole.Support, 8, 3, .9f,
+                "MailboxImp BookmarkGolem SnowSpoon CometKite CoralTeacup DiceCrab SpindleWren ButtonBeetle StapleMole CitrusToad RadishJester EclipseEgg SecretPatchBear PaperInventor LittleSprout SaddleMoth NurseHen PhoenixChick DandelionPuff TotemPole PlasterPanda Metronome HarpSwan");
+            CheckClass(checkedIds, CompanionRole.Guard, 10, 12, 1.6f,
+                "BreadCrab FridgeWisp SailSquid SaffronMechanist VelvetChampion BalloonMallet TeacupCricket RibbonOtter DoughForeman VioletRemnant GrandSprout BristleBall StitchedPangolin TowerRook LifebuoyHippo BrassLion QuiltWalrus AnvilOx BowlingSloth");
+            CheckClass(checkedIds, CompanionRole.Striker, 7, 6, 1.2f,
+                "PearMoth MaskPepper RainbowTailor SecretPaperBird BakerMouse TeaDragon StaticFerret JellySwordsman BrassAcorn SockCyclops RibbonSpider CarouselPony LampGoat TopBeetle PumpkinReaper BoneXylophone ScarecrowCrow CymbalMonkey");
+            CheckClass(checkedIds, CompanionRole.Summoner, 12, 4, .9f,
+                "BobaTadpole PaperPlanePigeon BottleGull MirrorNewt ClockworkPiper LostCarousel SpecimenSlime PlanetHamster ChoirCanary");
+            Require(checkedIds.Count == 120, "all roster classes checked");
+            for (int i = 0; i < CompanionSkillTable.All.Length; i++)
+                Require(checkedIds.Contains(CompanionSkillTable.All[i].CompanionId), "skill has an authored class");
+        }
+        private static void CheckClass(HashSet<string> checkedIds, CompanionRole role, float bar, float armor, float health, string members)
+        {
+            UnitDefinition definition = ScriptableObject.CreateInstance<UnitDefinition>();
+            try
+            {
+                foreach (string id in members.Split(' '))
+                {
+                    Require(checkedIds.Add(id), "class roster has no duplicate " + id);
+                    Require(CompanionClassTuning.TryGetRole(id, out CompanionRole actual) && actual == role, "authored class " + id);
+                    definition.Id = id;
+                    Require(CompanionRoles.For(definition) == role, "card uses authored class " + id);
+                    Require(CompanionSkillTable.TryGet(id, out CompanionSkillDefinition skill) && Mathf.Abs(skill.Tuning.Bar - bar) < .001f, "class skill bar " + id);
+                    Require(Mathf.Abs(FriendDefenseTuning.Armor(id, 1) - armor) < .001f, "class armor " + id);
+                    Require(Mathf.Abs(FriendDefenseTuning.Health(id, 1) - health) < .001f, "class health " + id);
+                }
+            }
+            finally { UnityEngine.Object.DestroyImmediate(definition); }
         }
         private static float GetBar(string id){CompanionSkillTable.TryGet(id,out CompanionSkillDefinition skill);return skill.Tuning.Bar;}
         private static void HasteAndHeldCasts()
