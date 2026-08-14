@@ -14,7 +14,18 @@ namespace ArcaneBrigade
         private enum AreaShape { Disc, Ring, Line, Cone, Arena }
         private struct Area { public AreaShape Shape; public bool Hostile; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
 
-        private const int MaxAreas = 48, MaxBurstsPerFrame = 6;
+        private enum AuraKind { Shield, Heal, Buff, Untouchable }
+        private struct Aura { public int Unit; public AuraKind Kind; public float Born, Until; public ElementLook Look; }
+        private struct Chain { public Vector2 A, B; public float Born; public int Seed; }
+        private struct Wall { public Vector2 A, B; public float Born, Until; public ElementLook Look; }
+
+        private const int MaxAreas = 48, MaxBurstsPerFrame = 6, MaxAuras = 40, MaxChains = 24, MaxChainsPerFrame = 8, MaxWalls = 12;
+        private const float ChainLife = .2f;
+        private readonly List<Aura> auras = new List<Aura>();
+        private readonly List<Chain> chains = new List<Chain>();
+        private readonly List<Wall> walls = new List<Wall>();
+        private float stillUntil, realmUntil;
+        private int chainsThisFrame;
         private readonly List<Area> areas = new List<Area>();
         private readonly Dictionary<int, FriendMortalityEvent> fallen = new Dictionary<int, FriendMortalityEvent>();
         private readonly Dictionary<int, RulesV3EntityRequest> entities = new Dictionary<int, RulesV3EntityRequest>();
@@ -32,6 +43,9 @@ namespace ArcaneBrigade
         public int DangerAreas { get; private set; }
         public int Fallen { get; private set; }
         public int Entities { get; private set; }
+        public int Auras { get; private set; }
+        public int Chains { get; private set; }
+        public int Walls { get; private set; }
 
         public void Configure(ArenaController controller, ElementInk elementInk)
         {
@@ -110,15 +124,25 @@ namespace ArcaneBrigade
             CombatSimulation sim = owner != null ? owner.Simulation : null;
             if (sim != boundSimulation)
             {
-                if (boundSimulation != null) boundSimulation.RulesV3EntityChanged -= OnEntity;
+                if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; }
                 boundSimulation = sim;
-                if (sim != null) sim.RulesV3EntityChanged += OnEntity;
-                entities.Clear(); fallen.Clear(); areas.Clear();
+                if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; }
+                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); stillUntil = realmUntil = 0;
             }
             if (sim == null) return;
             // package runtimes are replaced on every start: follow them
-            if (sim.Bonds != boundBonds) { if (boundBonds != null) boundBonds.RuleTriggered -= OnBondRule; boundBonds = sim.Bonds; if (boundBonds != null) boundBonds.RuleTriggered += OnBondRule; }
-            if (sim.SkillsV3 != boundSkills) { if (boundSkills != null) boundSkills.CastRequested -= OnCast; boundSkills = sim.SkillsV3; if (boundSkills != null) boundSkills.CastRequested += OnCast; }
+            if (sim.Bonds != boundBonds)
+            {
+                if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; }
+                boundBonds = sim.Bonds;
+                if (boundBonds != null) { boundBonds.RuleTriggered += OnBondRule; boundBonds.DamageRequested += OnBondDamage; }
+            }
+            if (sim.SkillsV3 != boundSkills)
+            {
+                if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; }
+                boundSkills = sim.SkillsV3;
+                if (boundSkills != null) { boundSkills.CastRequested += OnCast; boundSkills.FriendRequested += OnFriend; boundSkills.ConstructRequested += OnConstruct; }
+            }
             if (sim.EnemyRulesV3 != boundEnemies) { if (boundEnemies != null) boundEnemies.DangerRequested -= OnDanger; boundEnemies = sim.EnemyRulesV3; if (boundEnemies != null) boundEnemies.DangerRequested += OnDanger; }
             if (sim.Mortality != boundMortality)
             {
@@ -130,9 +154,9 @@ namespace ArcaneBrigade
 
         private void OnDestroy()
         {
-            if (boundSimulation != null) boundSimulation.RulesV3EntityChanged -= OnEntity;
-            if (boundBonds != null) boundBonds.RuleTriggered -= OnBondRule;
-            if (boundSkills != null) boundSkills.CastRequested -= OnCast;
+            if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; }
+            if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; }
+            if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; }
             if (boundEnemies != null) boundEnemies.DangerRequested -= OnDanger;
             if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; }
             ink?.Destroy();
@@ -163,6 +187,75 @@ namespace ArcaneBrigade
             Add(new Area { Shape = shape, Hostile = true, A = d.Position, B = d.End, R = Mathf.Max(.4f, d.Radius), Born = Now, Warn = Mathf.Max(.1f, d.WarningTime), Life = Mathf.Max(.1f, d.WarningTime) + Mathf.Max(.2f, d.Duration), Look = ElementLook.Fire, Seed = ++seed });
         }
 
+        /// <summary>A chained bond hit (Storm, discharge): a forked lightning stroke from the attacker to the enemy it reached,
+        /// a few per frame at most.</summary>
+        public void OnBondDamage(BondDamageRequest d)
+        {
+            if (d.Attacker == null || d.Target == null || chainsThisFrame >= MaxChainsPerFrame) return;
+            string r = d.Rule ?? string.Empty;
+            if (r.IndexOf("chain", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("discharge", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("storm", StringComparison.OrdinalIgnoreCase) < 0) return;
+            chainsThisFrame++;
+            if (chains.Count >= MaxChains) chains.RemoveAt(0);
+            chains.Add(new Chain { A = d.Attacker.Position, B = d.Target.Position, Born = Now, Seed = ++seed });
+        }
+
+        /// <summary>A bond's support: shields and heals as auras on the friend, walls as inked segments, time stop and the
+        /// Spirit Realm as a field-wide tint for their duration.</summary>
+        public void OnSupport(BondSupportRequest s)
+        {
+            float now = Now, until = now + Mathf.Max(.8f, s.Duration);
+            switch (s.Kind)
+            {
+                case BondSupportKind.Shield: case BondSupportKind.Armor: AddAura(s.Subject, AuraKind.Shield, until, LookFor(s.Rule)); break;
+                case BondSupportKind.Heal: case BondSupportKind.Revive: case BondSupportKind.Cleanse: AddAura(s.Subject, AuraKind.Heal, now + .9f, ElementLook.Bloom); break;
+                case BondSupportKind.Untouchable: AddAura(s.Subject, AuraKind.Untouchable, until, ElementLook.Light); break;
+                case BondSupportKind.DamageBuff: case BondSupportKind.CritBuff: case BondSupportKind.Speed: AddAura(s.Subject, AuraKind.Buff, now + Mathf.Clamp(s.Duration, .8f, 4), LookFor(s.Rule)); break;
+                case BondSupportKind.Wall:
+                    Vector2 c = s.Subject != null ? s.Subject.Position : s.Position, half = new Vector2(Mathf.Max(1.2f, s.Radius), 0);
+                    if (walls.Count >= MaxWalls) walls.RemoveAt(0);
+                    walls.Add(new Wall { A = c - half + Vector2.up * .8f, B = c + half + Vector2.up * .8f, Born = now, Until = until, Look = ElementLook.Crystal });
+                    break;
+                case BondSupportKind.TimeStop: stillUntil = Mathf.Max(stillUntil, now + Mathf.Max(.5f, s.Duration)); break;
+                case BondSupportKind.SpiritRealm: realmUntil = Mathf.Max(realmUntil, until); break;
+            }
+        }
+
+        /// <summary>A companion skill's effect on a friend: protection as a shield aura, healing as rising leaves, buffs as the
+        /// skill's element rising off the friend.</summary>
+        public void OnFriend(SkillFriendRequest f)
+        {
+            if (f.Target == null) return;
+            float now = Now;
+            ElementLook look = LookFor(f.SkillId); if (look == ElementLook.Gold) look = LookFor(MainBond(f.SourceId));
+            switch (f.Kind)
+            {
+                case SkillFriendEffect.ShieldFraction: case SkillFriendEffect.DamageReduction: case SkillFriendEffect.ShareDamage: case SkillFriendEffect.Reflect: case SkillFriendEffect.ReflectHits:
+                    AddAura(f.Target, AuraKind.Shield, now + Mathf.Max(.8f, f.Duration), look); break;
+                case SkillFriendEffect.HealFraction: case SkillFriendEffect.HealFlat: case SkillFriendEffect.ReviveSooner: case SkillFriendEffect.ReviveNow: case SkillFriendEffect.Cleanse:
+                    AddAura(f.Target, AuraKind.Heal, now + .9f, ElementLook.Bloom); break;
+                case SkillFriendEffect.None: break;
+                default: AddAura(f.Target, AuraKind.Buff, now + Mathf.Clamp(f.Duration, .8f, 4), look); break;
+            }
+        }
+
+        /// <summary>A skill wall: an inked segment; other constructs (summons, pickups) arrive as rule entities.</summary>
+        public void OnConstruct(SkillConstructRequest c)
+        {
+            if (!c.BlocksBodies && !c.BlocksBullets) return;
+            Vector2 a = c.Position, b = (c.End - c.Position).sqrMagnitude > .01f ? c.End : c.Position + Vector2.right * Mathf.Max(1.2f, c.Radius * 2);
+            if (walls.Count >= MaxWalls) walls.RemoveAt(0);
+            walls.Add(new Wall { A = a, B = b, Born = Now, Until = Now + Mathf.Max(.8f, c.Duration), Look = LookFor(MainBond(c.SourceId)) });
+        }
+
+        private void AddAura(UnitState unit, AuraKind kind, float until, ElementLook look)
+        {
+            if (unit == null) return;
+            for (int i = 0; i < auras.Count; i++)
+                if (auras[i].Unit == unit.Id && auras[i].Kind == kind) { Aura a = auras[i]; a.Until = Mathf.Max(a.Until, until); auras[i] = a; return; }
+            if (auras.Count >= MaxAuras) auras.RemoveAt(0);
+            auras.Add(new Aura { Unit = unit.Id, Kind = kind, Born = Now, Until = until, Look = look });
+        }
+
         public void OnFell(FriendMortalityEvent e) => fallen[e.FriendId] = e;
         public void OnRose(FriendMortalityEvent e) { fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
 
@@ -190,15 +283,18 @@ namespace ArcaneBrigade
 
         private void LateUpdate()
         {
-            burstsThisFrame = 0;
+            burstsThisFrame = chainsThisFrame = 0;
             if (ink == null) return;
             Bind();
-            FriendAreas = DangerAreas = Fallen = Entities = 0;
+            FriendAreas = DangerAreas = Fallen = Entities = Auras = Chains = Walls = 0;
             ink.Begin();
             CombatSimulation sim = boundSimulation;
             bool live = sim != null && (sim.Phase == RunPhase.Combat || sim.Phase == RunPhase.Paused);
-            if (!live) { areas.Clear(); fallen.Clear(); ink.End(); return; }
+            if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); ink.End(); return; }
             float now = sim.Elapsed;
+            if (now < stillUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Silver.Body, .05f, .3f);
+            if (now < realmUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Midnight.Glow, .04f, .26f);
+            for (int i = walls.Count - 1; i >= 0; i--) { if (now > walls[i].Until) { walls.RemoveAt(i); continue; } DrawWall(walls[i], now); Walls++; }
             for (int i = areas.Count - 1; i >= 0; i--)
             {
                 Area a = areas[i]; float age = now - a.Born;
@@ -208,6 +304,18 @@ namespace ArcaneBrigade
             }
             foreach (KeyValuePair<int, RulesV3EntityRequest> pair in entities) { DrawEntity(pair.Value, now); Entities++; }
             foreach (KeyValuePair<int, FriendMortalityEvent> pair in fallen) { DrawFallen(pair.Value, now); Fallen++; }
+            for (int i = auras.Count - 1; i >= 0; i--)
+            {
+                UnitState unit = sim.UnitForPresentation(auras[i].Unit);
+                if (now > auras[i].Until || unit == null || !unit.Alive) { auras.RemoveAt(i); continue; }
+                DrawAura(auras[i], unit, now); Auras++;
+            }
+            for (int i = chains.Count - 1; i >= 0; i--)
+            {
+                float age = now - chains[i].Born;
+                if (age > ChainLife || age < 0) { chains.RemoveAt(i); continue; }
+                DrawChain(chains[i], age); Chains++;
+            }
             ink.End();
         }
 
@@ -317,6 +425,66 @@ namespace ArcaneBrigade
 
         private static Vector2 Perp(Vector2 d) { if (d.sqrMagnitude < .0001f) return Vector2.up; d.Normalize(); return new Vector2(-d.y, d.x); }
         private static float R(int seed, int i) { uint h = (uint)(seed * 7919 + i * 104729); h ^= h >> 13; h *= 0x5bd1e995; h ^= h >> 15; return (h & 0xffff) / 65535f; }
+
+        /// <summary>Shield: a glassy rim turning around the friend; heal: leaves rising; buff: the element's pieces rising off
+        /// the friend; untouchable: a gold rim.</summary>
+        private void DrawAura(Aura a, UnitState unit, float now)
+        {
+            Vector2 at = unit.Position + Vector2.up * .35f;
+            float left = a.Until - now, fade = Mathf.Clamp01(left / .3f) * Mathf.Clamp01((now - a.Born) / .15f);
+            float r = Mathf.Max(.45f, unit.Definition.Radius * 1.6f);
+            switch (a.Kind)
+            {
+                case AuraKind.Shield:
+                {
+                    InkPalette p = a.Look == ElementLook.Gold ? ArsenalInk.Glass : PaletteFor(a.Look);
+                    ink.Wash(at, r, p.Light, .14f * fade, true);
+                    ink.Ribbon(InkCanvas.Arc(at, r, r * .9f, now * 40, now * 40 + 300, 24), p, .05f, 1, .2f, .85f * fade, true);
+                    break;
+                }
+                case AuraKind.Untouchable:
+                    ink.Ribbon(InkCanvas.Arc(at, r * 1.1f, r, 0, 360, 28), ArsenalInk.Gold, .07f, 1, 1, fade, true);
+                    break;
+                default:
+                {
+                    InkPalette p = PaletteFor(a.Look);
+                    InkToken token = a.Kind == AuraKind.Heal ? InkToken.Leaf : TokenFor(a.Look);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float u = Mathf.Repeat((now - a.Born) * 1.2f + i / 3f, 1);
+                        Vector2 p0 = unit.Position + new Vector2((i - 1) * r * .45f, .1f + u * .9f);
+                        ink.Token(token, p, p0, .26f, i * 40, fade * (1 - u), true);
+                    }
+                    break;
+                }
+            }
+        }
+
+        /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
+        private void DrawChain(Chain c, float age)
+        {
+            float a = 1 - age / ChainLife;
+            int flick = c.Seed + Mathf.FloorToInt(age * 40);
+            ink.Ribbon(InkCanvas.Line(c.A + Vector2.up * .3f, c.B + Vector2.up * .3f, .18f, 7, true, flick), ArsenalInk.Cyan, .07f, 1, 1, a, true);
+        }
+
+        /// <summary>A friendly wall: a thick inked band in its element with a lit top edge, fading out at its end.</summary>
+        private void DrawWall(Wall w, float now)
+        {
+            InkPalette p = PaletteFor(w.Look);
+            float fade = Mathf.Clamp01((w.Until - now) / .3f) * Mathf.Clamp01((now - w.Born) / .15f);
+            ink.FloorLane(w.A, w.B, .22f, A(p.Body, .75f * fade), A(p.Ink, .5f * fade));
+            ink.FloorStroke(w.A + Vector2.up * .18f, w.B + Vector2.up * .18f, p, .08f, 1, 1, fade, 0, 0);
+            ink.FloorStroke(w.A - Vector2.up * .2f, w.B - Vector2.up * .2f, p, .06f, 1, 1, .8f * fade, 0, 1);
+            // stone joints along the wall and its element's pieces on the crest, so it reads as built, not as a bar
+            float length = (w.B - w.A).magnitude; int joints = Mathf.Clamp(Mathf.RoundToInt(length / .38f), 2, 16);
+            for (int i = 1; i < joints; i++)
+            {
+                Vector2 at = Vector2.Lerp(w.A, w.B, i / (float)joints), off = Vector2.up * (i % 2 == 0 ? .1f : -.1f);
+                ink.FloorStroke(at + off + Vector2.up * .1f, at + off - Vector2.up * .1f, p, .04f, 1, 1, .7f * fade, 0, i);
+                if (i % 3 == 1) ink.Token(TokenFor(w.Look), p, at + Vector2.up * .3f, .28f, i * 25, fade, false);
+            }
+        }
 
         /// <summary>A fallen friend: a grey shadow at its feet and a ring that closes as the 15 s pass, gold in the last 2 s.</summary>
         private void DrawFallen(FriendMortalityEvent e, float now)

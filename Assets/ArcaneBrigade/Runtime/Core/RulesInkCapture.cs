@@ -34,7 +34,7 @@ namespace ArcaneBrigade
         private void OnLog(string message, string trace, LogType type) { if (type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }
         private void Count(string when, RulesV3Ink ink)
         {
-            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities);
+            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls);
             CombatSimulation sim = FindAnyObjectByType<ArenaController>()?.Simulation;
             if (sim == null) return;
             // every unit on screen must have a painting
@@ -92,6 +92,12 @@ namespace ArcaneBrigade
             ink.OnEntity(new RulesV3EntityRequest(9003, source, 0, RulesV3EntityKind.Page, RulesV3EntityChange.Created, "page", h + new Vector2(-2.2f, 0.2f), Vector2.zero, .4f, 30, 0));
             ink.OnEntity(new RulesV3EntityRequest(9004, source, 0, RulesV3EntityKind.WindLane, RulesV3EntityChange.Created, "wind-lane", h + new Vector2(-4.5f, 3.2f), h + new Vector2(-1.8f, 4.0f), .5f, 30, 0));
             for (int i = 0; i < 6; i++) ink.OnBondRule(new BondRuleEvent(i % 2 == 0 ? "burn-stack" : "freeze", sim.Champion, 1));
+            var friends = sim.Units.Where(u => u.Faction == Faction.Companion && u.Alive).ToList();
+            if (friends.Count > 1) ink.OnSupport(new BondSupportRequest(BondSupportKind.Shield, friends[1], .2f, 30, 0, "bulwark"));
+            if (friends.Count > 2) ink.OnSupport(new BondSupportRequest(BondSupportKind.DamageBuff, friends[2], .1f, 30, 0, "warmth"));
+            ink.OnSupport(new BondSupportRequest(BondSupportKind.Wall, sim.Champion, 0, 30, 1.6f, "bastion"));
+            var foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).Take(4).ToList();
+            if (friends.Count > 0) foreach (UnitState foe in foes) ink.OnBondDamage(new BondDamageRequest(foe, friends[0], 10, "storm-chain"));
             sim.Pause(false);
             for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(.35f + shot * .4f); Count("staged " + shot, ink); yield return Shot("staged-" + shot); }
             ink.OnDanger(new EnemyDangerRequest(4, source, EnemyDangerShape.Arena, EnemyRuleAction.Countdown, "countdown", h, Vector2.zero, 14, 1.5f, 30, 1));
