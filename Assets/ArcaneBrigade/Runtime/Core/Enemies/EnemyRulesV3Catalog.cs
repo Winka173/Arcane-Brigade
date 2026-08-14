@@ -135,17 +135,38 @@ namespace ArcaneBrigade
             weapon.Damage=EnemyRulesV3Tuning.DefaultDamage; weapon.Range=EnemyRulesV3Tuning.DefaultRange;
             weapon.Cooldown=EnemyRulesV3Tuning.DefaultCooldown; return weapon;
         }
-        /// <summary>Missing rules bodies have no art; existing bodies with exact identities keep their assets.</summary>
+        /// <summary>Existing bodies with exact identities keep their assets. Every enemy on screen must be drawn, so a kind
+        /// with no painting yet wears a painted body from the existing enemies (small kinds the smallest, large kinds the
+        /// largest, a stable pick inside that band) until its own art exists.</summary>
         public static void Configure(RunCatalog catalog)
         {
             if(catalog==null)throw new ArgumentNullException(nameof(catalog));
+            List<UnitDefinition> painted=PaintedSorted(catalog.Enemies), paintedBosses=PaintedSorted(catalog.Bosses);
             var enemies=new List<UnitDefinition>();
             foreach(var row in Definitions)
-            { UnitDefinition found=null; if(catalog.Enemies!=null)foreach(var unit in catalog.Enemies)if(unit!=null && unit.Id==row.Id){found=unit;break;} enemies.Add(found??Create(row)); }
+            { UnitDefinition found=null; if(catalog.Enemies!=null)foreach(var unit in catalog.Enemies)if(unit!=null && unit.Id==row.Id){found=unit;break;} enemies.Add(found??Dress(Create(row),painted,row.Tier)); }
             var bosses=new List<UnitDefinition>();
             foreach(var row in Bosses)
-            { UnitDefinition found=null; if(catalog.Bosses!=null)foreach(var unit in catalog.Bosses)if(unit!=null && unit.Id==row.Id){found=unit;break;} bosses.Add(found??CreateBoss(row)); }
+            { UnitDefinition found=null; if(catalog.Bosses!=null)foreach(var unit in catalog.Bosses)if(unit!=null && unit.Id==row.Id){found=unit;break;} bosses.Add(found??Dress(CreateBoss(row),paintedBosses,EnemyBodyTier.LargeSpecial)); }
             catalog.Enemies=enemies.ToArray(); catalog.Bosses=bosses.ToArray();
+        }
+        public static bool Painted(UnitDefinition unit) => unit!=null && (unit.Body!=null || unit.AuthoredMotion!=null || unit.AnimationFrames!=null && unit.AnimationFrames.Length>0);
+        private static List<UnitDefinition> PaintedSorted(UnitDefinition[] units)
+        {
+            var list=new List<UnitDefinition>();
+            if(units!=null)foreach(UnitDefinition unit in units)if(Painted(unit))list.Add(unit);
+            list.Sort((a,b)=>a.Radius.CompareTo(b.Radius)!=0?a.Radius.CompareTo(b.Radius):string.CompareOrdinal(a.Id,b.Id));
+            return list;
+        }
+        private static UnitDefinition Dress(UnitDefinition unit,List<UnitDefinition> painted,EnemyBodyTier tier)
+        {
+            if(Painted(unit) || painted.Count==0)return unit;
+            int third=Mathf.Max(1,painted.Count/3), start=tier==EnemyBodyTier.Small?0:tier==EnemyBodyTier.LargeSpecial?painted.Count-third:third;
+            int span=Mathf.Min(third,painted.Count-start); uint hash=17; foreach(char c in unit.Id)hash=hash*31+c;
+            UnitDefinition donor=painted[start+(int)(hash%(uint)span)];
+            unit.Body=donor.Body; unit.AnimationFrames=donor.AnimationFrames; unit.AuthoredMotion=donor.AuthoredMotion;
+            unit.BodyScale=donor.BodyScale; unit.Tint=donor.Tint; unit.Radius=donor.Radius;
+            return unit;
         }
     }
 }

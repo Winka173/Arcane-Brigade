@@ -1,0 +1,103 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace ArcaneBrigade
+{
+    /// <summary>Native review of the v3/v5 rules ink. Run with -arcane-rulesink-capture -capturePath DIR (isolated diagnostics
+    /// save): a wave-12 night with a ten-companion brigade from one bond house plays for real, then every drawn shape is staged
+    /// next to the hero (friendly disc, ring, line, cone; enemy circle, line, cone, arena; a fallen friend; allies and pickups)
+    /// so each can be judged on a frame. Counts of what was drawn go to RulesInk.txt.</summary>
+    public sealed class RulesInkCapture : MonoBehaviour
+    {
+        public static bool Requested => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-rulesink-capture") >= 0;
+        private string root;
+        private readonly List<string> log = new List<string>();
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Init()
+        {
+            if (!Requested || FindAnyObjectByType<RulesInkCapture>() != null) return;
+            var go = new GameObject("RulesInkCapture"); DontDestroyOnLoad(go); go.AddComponent<RulesInkCapture>();
+        }
+        private static string Arg(string key) { string[] a = Environment.GetCommandLineArgs(); int i = Array.IndexOf(a, key); return i >= 0 && i + 1 < a.Length ? a[i + 1] : null; }
+        private IEnumerator Shot(string name)
+        {
+            yield return new WaitForEndOfFrame();
+            Texture2D image = ScreenCapture.CaptureScreenshotAsTexture();
+            File.WriteAllBytes(Path.Combine(root, name + ".png"), image.EncodeToJPG(82)); Destroy(image);
+        }
+        private void Write() => File.WriteAllLines(Path.Combine(root, "RulesInk.txt"), log);
+        private void OnLog(string message, string trace, LogType type) { if (type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }
+        private void Count(string when, RulesV3Ink ink)
+        {
+            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities);
+            CombatSimulation sim = FindAnyObjectByType<ArenaController>()?.Simulation;
+            if (sim == null) return;
+            // every unit on screen must have a painting
+            var bare = sim.Units.Where(u => u.Definition.Body == null && u.Definition.AuthoredMotion == null && (u.Definition.AnimationFrames == null || u.Definition.AnimationFrames.Length == 0)).Select(u => u.Faction + ":" + u.Definition.Id).Distinct().ToArray();
+            if (bare.Length > 0) log.Add("  unpainted: " + string.Join(", ", bare));
+        }
+
+        private IEnumerator Start()
+        {
+            root = Arg("-capturePath"); if (root == null) { Application.Quit(1); yield break; }
+            root = Path.GetFullPath(root); Directory.CreateDirectory(root); Application.runInBackground = true; Application.logMessageReceived += OnLog;
+            if (!RunPaths.Root.Contains("ArcaneBrigadeDiagnostics")) { Application.Quit(1); yield break; }
+            var catalog = Resources.Load<RunCatalog>("RunCatalog"); var storage = new RunStorage(RunPaths.Root);
+            storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
+            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.5f);
+            string house = Arg("-house") ?? "Ember";
+            using (var session = new RunSession(catalog))
+            {
+                session.Start("LanternKnight", 280601); session.State.Wave = 12; session.State.Phase = SessionPhase.Combat;
+                string bond = BondV3Catalog.BondId(house) ?? house;
+                UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(10).ToArray();
+                string weapon = catalog.Weapons.Where(w => w != null && w.Kind != WeaponKind.Contact).Select(w => w.Id).FirstOrDefault();
+                session.State.Roster.Clear();
+                foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = weapon, Tier = 2 });
+                try { session.Validate(session.State); } catch (Exception problem) { log.Add("INVALID RUN: " + problem.Message); }
+                storage.SaveRun(session.State);
+                log.Add("house " + house + ": " + string.Join(", ", members.Select(m => m.Id)));
+            }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+            ArenaController owner = null;
+            for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
+            if (owner?.Simulation == null || owner.RulesInk == null) { log.Add("NO COMBAT OR NO RULES INK"); Write(); Application.Quit(1); yield break; }
+            RulesV3Ink ink = owner.RulesInk;
+            // the real fight: bond steps and skills fire on their own
+            for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(2.5f); Count("live " + shot, ink); yield return Shot("live-" + shot); }
+
+            // staged shapes around the hero, so each look can be judged
+            CombatSimulation sim = owner.Simulation;
+            owner.Simulation.Pause(true);
+            Vector2 h = sim.Champion.Position;
+            int source = sim.Champion.Id;
+            UnitState caster = sim.Units.FirstOrDefault(u => u.Faction == Faction.Companion);
+            int cast = caster != null ? caster.Id : source;
+            ink.OnCast(new SkillCastRequest(cast, "Steep", SkillShape.Disc, h + new Vector2(-3.2f, 1.2f), Vector2.zero, 1.4f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "Lullaby", SkillShape.Ring, h + new Vector2(0, 2.4f), Vector2.zero, 1.6f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "Rain Spear", SkillShape.Line, h + new Vector2(-3.5f, -1.6f), h + new Vector2(-0.6f, -1.6f), .45f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "Frost Arc", SkillShape.Cone, h + new Vector2(2.2f, 1.6f), h + new Vector2(4.6f, 2.4f), 2.4f, 30, 0, 1));
+            ink.OnDanger(new EnemyDangerRequest(1, source, EnemyDangerShape.Circle, EnemyRuleAction.Damage, "slam", h + new Vector2(3.6f, -1.4f), Vector2.zero, 1.3f, 1.5f, 30, 1));
+            ink.OnDanger(new EnemyDangerRequest(2, source, EnemyDangerShape.Line, EnemyRuleAction.Damage, "charge", h + new Vector2(0.4f, -2.8f), h + new Vector2(4.4f, -2.8f), .5f, 1.5f, 30, 1));
+            ink.OnDanger(new EnemyDangerRequest(3, source, EnemyDangerShape.Cone, EnemyRuleAction.Damage, "cone", h + new Vector2(-1.2f, 3.4f), h + new Vector2(-3.6f, 4.4f), 2.6f, 1.5f, 30, 1));
+            UnitState friend = sim.Units.FirstOrDefault(u => u.Faction == Faction.Companion);
+            if (friend != null) ink.OnFell(new FriendMortalityEvent(friend, source, sim.Elapsed - 9, 100, sim.Elapsed + 6));
+            ink.OnEntity(new RulesV3EntityRequest(9001, source, 0, RulesV3EntityKind.Ally, RulesV3EntityChange.Created, "phoenix", h + new Vector2(1.6f, -0.4f), Vector2.zero, .8f, 30, 0));
+            ink.OnEntity(new RulesV3EntityRequest(9002, source, 0, RulesV3EntityKind.Snack, RulesV3EntityChange.Created, "sugar-rush", h + new Vector2(-1.4f, -0.6f), Vector2.zero, .4f, 30, 0));
+            ink.OnEntity(new RulesV3EntityRequest(9003, source, 0, RulesV3EntityKind.Page, RulesV3EntityChange.Created, "page", h + new Vector2(-2.2f, 0.2f), Vector2.zero, .4f, 30, 0));
+            ink.OnEntity(new RulesV3EntityRequest(9004, source, 0, RulesV3EntityKind.WindLane, RulesV3EntityChange.Created, "wind-lane", h + new Vector2(-4.5f, 3.2f), h + new Vector2(-1.8f, 4.0f), .5f, 30, 0));
+            for (int i = 0; i < 6; i++) ink.OnBondRule(new BondRuleEvent(i % 2 == 0 ? "burn-stack" : "freeze", sim.Champion, 1));
+            sim.Pause(false);
+            for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(.35f + shot * .4f); Count("staged " + shot, ink); yield return Shot("staged-" + shot); }
+            ink.OnDanger(new EnemyDangerRequest(4, source, EnemyDangerShape.Arena, EnemyRuleAction.Countdown, "countdown", h, Vector2.zero, 14, 1.5f, 30, 1));
+            yield return new WaitForSecondsRealtime(.6f); Count("arena", ink); yield return Shot("staged-arena");
+            Write(); Application.Quit(0);
+        }
+        private void OnDestroy() { Application.logMessageReceived -= OnLog; }
+    }
+}
