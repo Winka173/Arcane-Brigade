@@ -51,6 +51,18 @@ namespace ArcaneBrigade.Editor
                 Require(traitState.Coals.Count==HeroRulesV3Tuning.CoalsCap,"coals cap");Near(traitState.Coals[0].Damage,15,"coals power");requests.Clear();traits.ResetWave(units);Require(requests.Count==HeroRulesV3Tuning.CoalsCap,"coals persist next wave");
                 friendDef.Id="ClockworkPiper";traits.OnSkill(friend,"Tune the Clocks");traits.OnSkill(friend,"Tune the Clocks");traits.OnSkill(friend,"Tune the Clocks");traits.OnSkill(friend,"Tune the Clocks");Near(traits.PiperFillBonus(friend),.3f,"piper capped at three");traits.Tick(HeroRulesV3Tuning.PiperSeconds);Near(traits.PiperFillBonus(friend),0,"piper expires");
                 friendDef.Id="TowerRook";Near(traits.BastionDurationScale,2,"Stronghold doubles wall");Require(HeroRulesV3Catalog.ExtraMembership("PlanetHamster","gravity")==1,"Gravity Well double membership");Require(HeroRulesV3Catalog.ExtraMembership("TowerRook","spirit")==1,"Stronghold double membership");
+                heroDef.HeroMechanic=HeroMechanic.SoloMaw;heroDef.ReferenceHero=string.Empty;
+                foreach(var definition in HeroRulesV3Catalog.Definitions)
+                {
+                    heroDef.Id=definition.Id;
+                    foreach(var skill in CompanionSkillTable.All)
+                    {
+                        friendDef.Id=skill.CompanionId;
+                        Require(K11HeroRules.Eligible(heroDef,friendDef),"current hero can purchase each roster species, including absorbed traits: "+heroDef.Id+" / "+friendDef.Id);
+                    }
+                }
+                friendDef.GiftOnly=true;
+                Require(!K11HeroRules.Eligible(heroDef,friendDef),"non-roster gift bodies remain excluded from recruitment");
             }
             finally{foreach(var asset in assets)UnityEngine.Object.DestroyImmediate(asset);}
             Debug.Log("HeroRulesV3Checks: PASS (36 heroes, 144 relic definitions, 16 traits, 100-enemy fixtures)");

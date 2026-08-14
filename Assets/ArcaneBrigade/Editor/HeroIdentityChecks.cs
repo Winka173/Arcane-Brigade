@@ -85,7 +85,13 @@ namespace ArcaneBrigade.Editor
             {
                 string copy=RelicDescriptions.Describe(item,1,catalog);
                 Check(copy.StartsWith(RelicDescriptions.Category(item)),"Category visible "+item.Id);
-                foreach(var m in item.EffectiveModifiers)if(m.Value!=0)Check(copy.Contains(RunModifierRules.ValueText(m.Effect,m.Value)),"Effective item value present "+item.Id+" / "+m.Effect);
+                // The 22 October balance pass makes positive movement bonuses count at 60%; cards show the applied value.
+                foreach(var m in item.EffectiveModifiers)if(m.Value!=0)
+                {
+                    float applied = m.Effect == ItemEffect.MoveSpeed ? CarnivalBalance.MoveBonus(m.Value) : m.Value;
+                    string expected = RunModifierRules.WhoFor(m.Effect,m.Scope) + RunModifierRules.ModifierName(m.Effect) + " " + RunModifierRules.ValueText(m.Effect,applied);
+                    Check(copy.Contains(expected),"Effective scoped item value present "+item.Id+" / "+m.Effect);
+                }
                 if(item.Mechanic!=RelicMechanic.None)Check(copy.Contains(RelicDescriptions.Mechanic(item.Mechanic)),"Special item mechanic present "+item.Id);
                 if(item.SignatureRole!=SignatureRelicKind.None)Check(copy.Contains(RelicDescriptions.Signature(item.SignatureRole)),"Weapon synergy present "+item.Id);
                 foreach(var proc in catalog.ProcRules.Where(p=>p.ItemId==item.Id))Check(copy.Contains(proc.Trigger==ProcTrigger.CoinCollected?"pick up a coin":proc.Trigger==ProcTrigger.ChestOpened?"open a chest":"enemy falls")&&copy.Contains(proc.Power.ToString("0.#"))&&!copy.Contains(proc.Trigger.ToString()),"Authored proc visible in player words "+item.Id);

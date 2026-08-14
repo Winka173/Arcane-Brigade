@@ -9,6 +9,8 @@ namespace ArcaneBrigade
         public static bool Eligible(UnitDefinition champion, UnitDefinition companion)
         {
             if (companion.GiftOnly) return false;
+            // Section 8 build directions cross houses; Lone Jelly buys traits through the same recruit pool.
+            if (HeroRulesV3Catalog.Find(champion.Id) != null && CompanionSkillTable.TryGet(companion.Id, out _)) return true;
             if (champion.HeroMechanic == HeroMechanic.SoloMaw && champion.ReferenceHero != "Capped Gallant") return false;
             if (!string.IsNullOrEmpty(companion.ExclusiveHero)) return companion.ExclusiveHero == champion.ReferenceHero;
             if (champion.ReferenceHero == "Belle") return true; // original: every friend may appear in Belle's store

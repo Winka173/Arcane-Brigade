@@ -40,12 +40,29 @@ namespace ArcaneBrigade.Editor
             {
                 using var s = new RunSession(c); s.Start(hero.Id, 662314);
                 s.State.Wave = 12; CheckpointCatalog a = s.PrepareCombat();
-                Check(Mathf.Approximately(a.WaveDuration, WaveCadence.WaveLength(12)) && float.IsFinite(a.Champion.Health) && a.Champion.Health > 0 && a.Champion.Weapon.Cooldown >= .28f, "Playable compiles with the wave-length ramp and bounded stats " + hero.Id);
+                Check(a.Boss == null && Mathf.Approximately(a.WaveDuration, WaveCadence.WaveLength(12)), "Playable compiles wave 12 without a boss and with the wave-length ramp " + hero.Id);
+                Check(float.IsFinite(a.Champion.Health) && a.Champion.Health > 0 && a.Champion.Weapon.Cooldown >= .28f, "Playable compiles with bounded stats " + hero.Id);
                 var sim = new CombatSimulation(a); sim.Start(662314);
                 for (int tick = 0; tick < 120; tick++) { sim.Champion.Health = sim.Champion.Definition.Health; sim.Step(.05f, new Vector2(.4f, .2f)); }
                 Check(sim.Units.All(u => float.IsFinite(u.Position.x) && float.IsFinite(u.Position.y) && (u.Faction != Faction.Companion || float.IsFinite(u.Health) && u.Health >= 0)), "Playable live simulation finite; companions have mortal health " + hero.Id);
                 s.Validate(s.State); var save = JsonUtility.ToJson(s.State); s.Restore(JsonUtility.FromJson<RunSnapshot>(save));
                 Check(s.State.ChampionId == hero.Id && s.State.AchievementEvidence.Count > 0, "Progress save round trip " + hero.Id);
+            }
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 662316);
+                foreach (int night in new[] { 4, 8, 10, 11, 12, 13, 25, 35 })
+                {
+                    s.State.Wave = night; s.State.Endless = night > c.NormalWaves;
+                    var combat = s.PrepareCombat();
+                    var boss = EnemyRulesV3Catalog.BossForNight(night);
+                    float expectedDuration = !s.State.Endless && boss == null ? WaveCadence.WaveLength(night)
+                        : OctoberBalance.WaveSeconds + (boss != null ? OctoberBalance.BossExtraSeconds : 0);
+                    Check((combat.Boss?.Id == boss?.Id) && combat.MidBoss == null && Mathf.Approximately(combat.WaveDuration, expectedDuration),
+                        "Section 9 boss identity and duration agree without retired mid-map time " + night);
+                    Check(boss == null ? combat.BossSwarmBudget == 0 : combat.BossSwarmBudget > 0,
+                        "Boss swarm budget follows the installed section 9 schedule " + night);
+                }
             }
             using (var s = new RunSession(c))
             {

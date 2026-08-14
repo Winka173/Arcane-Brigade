@@ -8,6 +8,7 @@ namespace ArcaneBrigade.Editor
 {
     public static class FullRunChecks
     {
+        private const float PlainEnemyHealth = 1000f;
         public static void Run(RunCatalog catalog)
         {
             var results = new List<string>();
@@ -97,11 +98,25 @@ namespace ArcaneBrigade.Editor
                 Check(Mathf.Abs(ranked.PassiveStrength - catalog.Companions[0].PassiveStrength * 3f) < 0.001f, "Merge preserves three copies of healing potency", results);
                 foreach (string tag in catalog.Companions[0].Tags) Check(session.BondCounts[tag] - session.KitBondExtra(tag) == 1, "Bond counts bodies not stars (besides the hero kit's extra members): " + tag, results);
                 session.Validate(session.State);
-                var invalid = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
-                invalid.Roster.Add(invalid.Roster[0]);
-                bool rejected = false;
-                try { session.Validate(invalid); } catch (InvalidOperationException) { rejected = true; }
-                Check(rejected, "Duplicate identity save rejected", results);
+                // Since schema 4 the owned roster stores repeated merge ingredients; only one body per species deploys.
+                var copies = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
+                copies.Roster.Add(new RosterEntry { UnitId = copies.Roster[0].UnitId, WeaponId = copies.Roster[0].WeaponId, Tier = copies.Roster[0].Tier });
+                session.Validate(copies);
+                restored.Restore(copies);
+                Check(restored.State.Roster.Count == 2 && restored.ActiveRoster.Count == 1 &&
+                    restored.State.Roster.TrueForAll(entry => entry.UnitId == copies.Roster[0].UnitId && entry.WeaponId == copies.Roster[0].WeaponId && entry.Tier == 2),
+                    "Repeated merge ingredients survive save restore with one deployed species", results);
+                var legacy = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(copies));
+                legacy.SchemaRevision = 3;
+                CheckRejectedRoster(session, legacy, "Legacy duplicate identity save rejected", results);
+                foreach (string field in new[] { "species", "weapon", "tier" })
+                {
+                    var invalid = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
+                    if (field == "species") invalid.Roster[0].UnitId = "missing-save-species";
+                    else if (field == "weapon") invalid.Roster[0].WeaponId = "missing-save-weapon";
+                    else invalid.Roster[0].Tier = catalog.MaximumTier + 1;
+                    CheckRejectedRoster(session, invalid, "Invalid roster " + field + " save rejected", results);
+                }
 
                 string root = Path.Combine(".utmp", "FullRunChecks", Guid.NewGuid().ToString("N"));
                 var storage = new RunStorage(root);
@@ -125,14 +140,14 @@ namespace ArcaneBrigade.Editor
                 session.ContinueWave();
                 Check(session.State.Phase == SessionPhase.Combat && session.State.Offers.Count == 0, "Next hall starts combat", results);
 
-                session.State.Wave = catalog.BossEvery;
+                session.State.Wave = 10;
                 combat = session.PrepareCombat();
                 combat.EnemyBudget = 0;
                 combat.WaveDuration = 0.1f;
                 simulation = new CombatSimulation(combat);
                 simulation.Start(combat.Seed);
                 simulation.Step(0.1f, Vector2.zero);
-                Check(simulation.Boss != null && simulation.Phase == RunPhase.Combat, "Boss hall cannot clear on timer", results);
+                Check(simulation.Boss != null && simulation.Boss.Definition.Id == "PastryTyrant" && simulation.Phase == RunPhase.Combat, "Section 9 night 10 Pastry Tyrant cannot clear on timer", results);
                 simulation.DamageFixture(simulation.Boss, 100000f);
                 simulation.Step(0.1f, Vector2.zero);
                 Check(simulation.BossDefeated && simulation.Phase == RunPhase.Victory, "Boss death clears hall", results);
@@ -165,6 +180,7 @@ namespace ArcaneBrigade.Editor
                 CheckpointCatalog catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
                 catalog.RunWave = 0;
+                UsePlainEnemyFixtures(catalog);
                 float baselineLeash = catalog.CompanionLeash;
                 var simulation = new CombatSimulation(catalog);
                 simulation.Start(42);
@@ -193,9 +209,14 @@ namespace ArcaneBrigade.Editor
                 simulation.Champion.NextPassive = float.PositiveInfinity;
                 simulation.Units[1].NextPassive = float.PositiveInfinity;
                 simulation.Units[1].Position = new Vector2(-0.5f, 0f);
+                float interceptorBefore = simulation.Units[1].Health;
+                float interceptedDamage = RunModifierRules.AfterArmor(5f * OctoberBalance.EnemyDamageRelief,
+                    simulation.FriendArmorPoints(simulation.Units[1]) * RunModifierRules.ArmorPoint);
                 simulation.ProjectileFixture(new Vector2(-2f, 0), Vector2.right * 40f, 5f, Faction.Enemy);
                 simulation.Step(0.1f, Vector2.zero);
-                Check(simulation.Champion.Health == catalog.Champion.Health && simulation.Projectiles.Count == 0, "Interceptor absorbs enemy projectile without ally damage", results);
+                Check(simulation.Champion.Health == catalog.Champion.Health && simulation.Projectiles.Count == 0 &&
+                    Mathf.Abs(simulation.Units[1].Health - interceptorBefore + interceptedDamage) < .001f,
+                    "Mortal interceptor takes the projectile after relief and armor while protecting the hero", results);
                 catalog.Armor = 15 * RunModifierRules.ArmorPoint;
                 float heroBefore = simulation.Champion.Health;
                 float expectedReceived = 10 * 15 / (15 + simulation.FriendArmorPoints(simulation.Champion));
@@ -228,6 +249,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Wave = 1;
                 catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
+                UsePlainEnemyFixtures(catalog);
                 catalog.StartingCompanions[0].Speed = 0;
                 catalog.MeleeEnemy.Speed = 0;
                 simulation = new CombatSimulation(catalog);
@@ -258,7 +280,7 @@ namespace ArcaneBrigade.Editor
                     Check(session.State.Wave == wave && session.State.Phase == (wave == catalog.NormalWaves ? SessionPhase.Victory : SessionPhase.Shop), "Authored schedule hall " + wave + " (accelerated fixture)", results);
                     if (wave < catalog.NormalWaves) session.ContinueWave();
                 }
-                Check(session.State.BossKills == Enumerable.Range(1, catalog.NormalWaves).Count(ActOneCanon.BossWave), "Every scheduled Act I boss reward (kills " + session.State.BossKills + " of " + catalog.NormalWaves + "/" + catalog.BossEvery + ")", results);
+                Check(session.State.BossKills == Enumerable.Range(1, catalog.NormalWaves).Count(wave => EnemyRulesV3Catalog.BossForNight(wave) != null), "Every section 9 scheduled boss reward (kills " + session.State.BossKills + " through night " + catalog.NormalWaves + ")", results);
                 // Act I: the dawn ending is told (and a farewell chosen) before the endless road opens
                 if (session.EndingChoicePending) session.ChooseFarewell((NightmareFarewell)1);
                 for (int page = 0; page < 30 && session.EndingPending; page++) session.AdvanceEnding();
@@ -277,6 +299,7 @@ namespace ArcaneBrigade.Editor
                 {
                     session.Start(source.Champions[0].Id, 92);
                     CheckpointCatalog catalog = session.PrepareCombat();
+                    UsePlainEnemyFixtures(catalog);
                     catalog.Champion.Health = 1000000;
                     catalog.StartingCompanions[0].Health = 1000000;
                     catalog.MeleeEnemy.Health = catalog.RangedEnemy.Health = 1000000;
@@ -305,6 +328,30 @@ namespace ArcaneBrigade.Editor
         {
             if (!condition) throw new InvalidOperationException("Full run check failed: " + label);
             results.Add("PASS " + label);
+        }
+
+        private static void CheckRejectedRoster(RunSession session, RunSnapshot snapshot, string label, List<string> results)
+        {
+            bool rejected = false;
+            try { session.Validate(snapshot); } catch (InvalidOperationException) { rejected = true; }
+            Check(rejected, label, results);
+        }
+
+        private static void UsePlainEnemyFixtures(CheckpointCatalog catalog)
+        {
+            // These session-owned bodies measure weapon damage and sustained combat, rather than species skills.
+            // In particular, section 9 Crumb Swarm always has one-hit health even when a fixture raises its health.
+            catalog.MeleeEnemy.Id = "FullRunMeleeTarget";
+            catalog.RangedEnemy.Id = "FullRunRangedTarget";
+            foreach (UnitDefinition body in new[] { catalog.MeleeEnemy, catalog.RangedEnemy })
+            {
+                body.Health = PlainEnemyHealth;
+                body.IsBoss = false;
+                body.Behavior = EnemyBehavior.Standard;
+                body.Mutation = EnemyMutation.None;
+                body.SpecialEnemy = SpecialEnemyKind.None;
+                body.WaitingKind = WaitingEnemyKind.None;
+            }
         }
     }
 }

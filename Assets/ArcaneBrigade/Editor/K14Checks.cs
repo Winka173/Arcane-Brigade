@@ -39,7 +39,7 @@ namespace ArcaneBrigade.Editor
                 require(unit != null && unit.AnimationFrames.Length == 4 && unit.AnimationFrames.Distinct().Count() == 4, "Four painted poses " + id);
                 require(unit.CompanionModifiers.Any(modifier => modifier.Value > 0) && unit.CompanionModifiers.Any(modifier => modifier.Value < 0), "Recruit has bonus and tradeoff " + id);
                 require(catalog.Champions.Any(champion => K11HeroRules.Eligible(champion, unit)), "Recruit matches champion theme " + id);
-                require(unit.RecruitThemeLocked, "New recruit keeps its theme in the dream pool " + id);
+                require(unit.Tags.SequenceEqual(BondV3Catalog.Tags(id)), "Recruit retains its section 2/3 bond memberships " + id);
             }
             using (var sample = new K14BalanceDiagnostics.Sample(catalog, catalog.Weapon("TwinSabres"), 1, 8))
             {
@@ -57,7 +57,7 @@ namespace ArcaneBrigade.Editor
             using (var session = new RunSession(catalog))
             {
                 session.Start("LanternKnight", 14000);
-                session.State.Wave = 10; session.State.Roster.Clear(); // Act I boss waves are 5, 10, 15, 20
+                session.State.Wave = EnemyRulesV3Tuning.BossFirstNights[0]; session.State.Roster.Clear(); // Section 9's first boss is night 10.
                 CheckpointCatalog combat = session.PrepareCombat(); combat.EnemyBudget = 0; combat.WaveDuration = 1000; combat.StoryCompanions = new UnitDefinition[0];
                 combat.Champion.Health = 10000; combat.Boss.Speed = 0;
                 combat.EnableArenaToys = combat.EnableBossArenaPhase = false;
@@ -72,7 +72,7 @@ namespace ArcaneBrigade.Editor
             for (int difficulty = 0; difficulty < 5; difficulty++)
                 using (var session = new RunSession(catalog))
                 {
-                    session.Start("LanternKnight", 14001, difficulty); session.State.Wave = 10;
+                    session.Start("LanternKnight", 14001, difficulty); session.State.Wave = EnemyRulesV3Tuning.BossFirstNights[0];
                     float health = session.PrepareCombat().Boss.Health;
                     require(health > previousHealth, "Difficulty increases boss durability " + difficulty); previousHealth = health;
                 }

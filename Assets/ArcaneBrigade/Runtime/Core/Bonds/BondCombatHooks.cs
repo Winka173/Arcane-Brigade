@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         private readonly HashSet<int> bondRoots = new HashSet<int>(BondTuning.RequestCapacity);
         private CombatCause BondCause(int sourceId, string rule)
         {
-            CombatCause cause = NewCause(sourceId).Child(rule=="execute"?"bond-execute":rule=="eclipse"?"bond-eclipse":"bond-generated");
+            CombatCause cause = NewCause(sourceId).Child(rule=="execute"?"bond-execute":rule=="eclipse"?"bond-eclipse":"bond-generated").WithAttribution("bond:" + rule);
             bondRoots.Add(cause.RootId); return cause;
         }
         private void StartBonds()

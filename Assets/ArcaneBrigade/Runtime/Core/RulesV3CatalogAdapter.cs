@@ -142,7 +142,12 @@ namespace ArcaneBrigade
                 { if(melee==null && weapon.Kind==WeaponKind.Melee) melee=weapon; if(ranged==null && weapon.Kind==WeaponKind.Projectile) ranged=weapon; }
             foreach(FriendRow row in Friends)
             {
-                bool exists=false;foreach(UnitDefinition unit in companions) if(unit.Id==row.Id){exists=true;break;}
+                bool exists=false;foreach(UnitDefinition unit in companions) if(unit.Id==row.Id)
+                {
+                    // Section 6 makes these roster species available independently of retired hero gifts and exclusives.
+                    unit.GiftOnly=false;unit.ExclusiveHero=string.Empty;
+                    exists=true;break;
+                }
                 if(exists)continue;
                 UnitDefinition friend=ScriptableObject.CreateInstance<UnitDefinition>();
                 friend.hideFlags=HideFlags.DontSave; friend.Id=row.Id;friend.DisplayName=row.Name;friend.Rarity=row.Rarity;

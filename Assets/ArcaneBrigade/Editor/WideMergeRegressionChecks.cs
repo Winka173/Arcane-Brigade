@@ -32,6 +32,11 @@ namespace ArcaneBrigade.Editor
                 Require(ReferenceEquals(target.Definition, enemy) && target.Health == Health,
                     "explicit spawn retains requested species, health and collision body");
 
+                UnitDefinition crumbs = Body(assets, "CrumbSwarm", contact);
+                UnitState oneHit = simulation.AddFixture(crumbs, Faction.Enemy, Vector2.up * 20);
+                Require(ReferenceEquals(oneHit.Definition, crumbs) && oneHit.Health == EnemyRulesV3Tuning.OneHitHealth,
+                    "explicit species still registers its designed one-hit health before any weapon attack");
+
                 WeaponDefinition bell = ScriptableObject.CreateInstance<WeaponDefinition>(); assets.Add(bell);
                 bell.Id = "WideBell"; bell.Kind = WeaponKind.Contact; bell.Signature = SignatureWeapon.Bell;
                 bell.Damage = Budget; bell.SignatureBeats = 3; bell.SignatureDelay = .2f; bell.SignatureScale = 1;
@@ -40,6 +45,9 @@ namespace ArcaneBrigade.Editor
                 simulation.SignatureBeatFixture(bellSource);
                 Require(simulation.PendingSignaturePulses == 1 && target.Health == Health,
                     "bell schedules one delayed volley without immediate damage");
+                simulation.Step(Frame,Vector2.zero);
+                Require(simulation.PendingSignaturePulses == 1 && target.Health == Health,
+                    "neutral weapon fixture retains health and one pending pulse during the delay");
                 simulation.EnterRest(); simulation.Start(23006);
                 simulation.Champion.Position = simulation.Champion.PreviousPosition = Vector2.left * 6;
                 target = simulation.AddFixture(enemy, Faction.Enemy, Vector2.right * 2);

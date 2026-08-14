@@ -368,19 +368,14 @@ namespace ArcaneBrigade
                 CombatCatalog.MeleeEnemy = BuildEnemy(firstContact, scaling);
                 CombatCatalog.RangedEnemy = CombatCatalog.MeleeEnemy;
             }
-            // Act I closes each of its four zones with a story boss (waves 5, 10, 15, 20); endless keeps the catalog rhythm.
+            // Section 9 replaces the story cadence; duration and swarm settings must use the boss actually installed below.
             bool actOne = !State.Endless && State.Wave <= catalog.NormalWaves;
-            bool bossWave = actOne ? ActOneCanon.BossWave(State.Wave) : State.Wave % catalog.BossEvery == 0;
-            int bossStage = actOne ? State.Wave / 4 - 1 : State.Wave / catalog.BossEvery - 1;
-            int bossIndex = Mathf.Max(0, bossStage) % catalog.Bosses.Length;
-            if (catalog.Bosses.Length == 10) bossIndex = Mathf.Max(0, bossStage) % 5 + (((State.Seed ^ bossStage) & 1) == 0 ? 0 : 5);
-            CombatCatalog.Boss = bossWave ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
-            if (actOne && bossWave) CombatCatalog.Boss = StoryBoss(CombatCatalog.Boss, scaling);
-            if (actOne && bossWave && CombatCatalog.Boss != null) CombatCatalog.Boss.Health *= WaveCadence.StoryBossBulk(State.Wave);
+            EnemyBossDefinition v3Boss = EnemyRulesV3Catalog.BossForNight(State.Wave);
+            bool bossWave = v3Boss != null;
+            CombatCatalog.Boss = bossWave ? BuildEnemy(Array.Find(catalog.Bosses, b => b.Id == v3Boss.Id), scaling) : null;
             CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds + (bossWave ? OctoberBalance.BossExtraSeconds : 0);
-            // requirement 25/10/2026: one boss in the middle of each map (waves 3, 8, 11, 13, 17, 19)
-            CombatCatalog.MidBoss = actOne && !bossWave ? MidMapBoss(scaling) : null;
-            if (CombatCatalog.MidBoss != null) CombatCatalog.WaveDuration += MidMapBossRules.ExtraSeconds;
+            // Section 9 has no additional mid-map boss or time extension.
+            CombatCatalog.MidBoss = null;
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
             CombatCatalog.EnemyBudget = Mathf.Min(Mathf.CeilToInt(600 * CarnivalBalance.EnemyCountScale), Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
             // waves are 15% longer (D9): the budget grows with them so enemies per second stay the same
@@ -510,19 +505,21 @@ namespace ArcaneBrigade
             CompileOctoberRoster();
             PrepareHeroIdentity();
             PrepareMeta();
-            ApplyEnemyDifficultyRelief();
-            RunAchievements.Observe(this, catalog, CombatCatalog);
             // the arena's fixed props (none in secret rooms): toys and spectacles keep off them
             CombatCatalog.Scenery = SecretRoomOpen ? (ArenaScenery?)null : ArenaScenery.For(State, CombatCatalog.ArenaSize);
-            var v3Pool=new List<UnitDefinition>();
-            foreach(UnitDefinition enemy in catalog.Enemies)if(enemy.UnlockWave<=State.Wave)v3Pool.Add(BuildEnemy(enemy,scaling));
-            CombatCatalog.EnemyPool=v3Pool.ToArray();
-            CombatCatalog.MeleeEnemy=v3Pool.Count>0?v3Pool[0]:CombatCatalog.MeleeEnemy;
-            CombatCatalog.RangedEnemy=CombatCatalog.MeleeEnemy;
-            EnemyBossDefinition v3Boss=EnemyRulesV3Catalog.BossForNight(State.Wave);
-            CombatCatalog.Boss=v3Boss==null?null:BuildEnemy(Array.Find(catalog.Bosses,b=>b.Id==v3Boss.Id),scaling);
-            CombatCatalog.MidBoss=null;
+            // Explicit optional encounters keep the boss and isolated pools prepared by their encounter hooks.
+            if (!SecretRoomOpen && State.OutsideStage != OutsideStageStatus.Fighting && (State.ActOne?.SitCloser ?? 0) != ActOneProgress.Fighting)
+            {
+                var v3Pool=new List<UnitDefinition>();
+                foreach(UnitDefinition enemy in catalog.Enemies)if(enemy.UnlockWave<=State.Wave)v3Pool.Add(BuildEnemy(enemy,scaling));
+                CombatCatalog.EnemyPool=v3Pool.ToArray();
+                CombatCatalog.MeleeEnemy=v3Pool.Count>0?v3Pool[0]:CombatCatalog.MeleeEnemy;
+                CombatCatalog.RangedEnemy=CombatCatalog.MeleeEnemy;
+            }
             if(State.ChampionId=="IvorySovereign" && RulesV3HeroProgress.Decree==2)CombatCatalog.EnemyBudget=Mathf.CeilToInt(CombatCatalog.EnemyBudget*(1-HeroRulesV3Tuning.DecreeEnemyReduction));
+            // All final bodies, including encounter overrides and v3 pools, receive relief exactly once.
+            ApplyEnemyDifficultyRelief();
+            RunAchievements.Observe(this, catalog, CombatCatalog);
             return CombatCatalog;
         }
 

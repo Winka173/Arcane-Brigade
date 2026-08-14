@@ -28,6 +28,7 @@ namespace ArcaneBrigade.Editor
             Require(RunModifierRules.RarityName(ItemRarity.Rainbow) == "PRISMATIC", "The top rarity reads PRISMATIC");
             foreach (var friend in catalog.Companions)
             {
+                Require(!friend.GiftOnly && string.IsNullOrEmpty(friend.ExclusiveHero), friend.Id + " uses the section 6 roster rather than retired hero gifts or exclusives");
                 Require(friend.Tags.Length >= 2 && friend.Tags.Length <= 3 && friend.Tags.All(tag => catalog.Bonds.Any(b => b.Id == tag)), friend.Id + " has two or three valid bonds");
                 Require(CompanionSkillTable.TryGet(friend.Id, out var skill) && !string.IsNullOrEmpty(skill.Name), friend.Id + " has its section 6 skill");
             }
