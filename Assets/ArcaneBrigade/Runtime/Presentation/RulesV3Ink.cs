@@ -12,7 +12,9 @@ namespace ArcaneBrigade
     public sealed class RulesV3Ink : MonoBehaviour
     {
         private enum AreaShape { Disc, Ring, Line, Cone, Arena }
-        private struct Area { public AreaShape Shape; public bool Hostile; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
+        private struct Area { public AreaShape Shape; public bool Hostile, Gloom; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
+        private struct Link { public int From, To; public float Until; }
+        private readonly List<Link> links = new List<Link>();
 
         private enum AuraKind { Shield, Heal, Buff, Untouchable }
         private struct Aura { public int Unit; public AuraKind Kind; public float Born, Until; public ElementLook Look; }
@@ -124,10 +126,10 @@ namespace ArcaneBrigade
             CombatSimulation sim = owner != null ? owner.Simulation : null;
             if (sim != boundSimulation)
             {
-                if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; }
+                if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
                 boundSimulation = sim;
-                if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; }
-                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); stillUntil = realmUntil = 0;
+                if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; sim.RulesV3HeroApplied += OnHero; }
+                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); stillUntil = realmUntil = 0;
             }
             if (sim == null) return;
             // package runtimes are replaced on every start: follow them
@@ -143,7 +145,12 @@ namespace ArcaneBrigade
                 boundSkills = sim.SkillsV3;
                 if (boundSkills != null) { boundSkills.CastRequested += OnCast; boundSkills.FriendRequested += OnFriend; boundSkills.ConstructRequested += OnConstruct; }
             }
-            if (sim.EnemyRulesV3 != boundEnemies) { if (boundEnemies != null) boundEnemies.DangerRequested -= OnDanger; boundEnemies = sim.EnemyRulesV3; if (boundEnemies != null) boundEnemies.DangerRequested += OnDanger; }
+            if (sim.EnemyRulesV3 != boundEnemies)
+            {
+                if (boundEnemies != null) { boundEnemies.DangerRequested -= OnDanger; boundEnemies.Requested -= OnEnemyRule; }
+                boundEnemies = sim.EnemyRulesV3;
+                if (boundEnemies != null) { boundEnemies.DangerRequested += OnDanger; boundEnemies.Requested += OnEnemyRule; }
+            }
             if (sim.Mortality != boundMortality)
             {
                 if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; }
@@ -154,10 +161,10 @@ namespace ArcaneBrigade
 
         private void OnDestroy()
         {
-            if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; }
+            if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
             if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; }
             if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; }
-            if (boundEnemies != null) boundEnemies.DangerRequested -= OnDanger;
+            if (boundEnemies != null) { boundEnemies.DangerRequested -= OnDanger; boundEnemies.Requested -= OnEnemyRule; }
             if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; }
             ink?.Destroy();
         }
@@ -256,6 +263,41 @@ namespace ArcaneBrigade
             auras.Add(new Aura { Unit = unit.Id, Kind = kind, Born = Now, Until = until, Look = look });
         }
 
+        /// <summary>The hero's rule actions: areas in the hero's own element look, shields and heals as auras on the friend.</summary>
+        public void OnHero(HeroRuleRequest h)
+        {
+            UnitState hero = boundSimulation?.Champion;
+            ElementLook look = hero != null ? ElementInk.For(hero.Definition.Id) : ElementLook.Gold;
+            if (look == ElementLook.None) look = LookFor(h.Rule);
+            switch (h.Action)
+            {
+                case HeroRuleAction.Heal: AddAura(boundSimulation?.UnitForPresentation(h.FriendId) ?? hero, AuraKind.Heal, Now + .9f, ElementLook.Bloom); return;
+                case HeroRuleAction.Shield: AddAura(boundSimulation?.UnitForPresentation(h.FriendId) ?? hero, AuraKind.Shield, Now + Mathf.Max(.8f, h.Duration), look); return;
+            }
+            if (h.Radius <= 0) return;
+            AreaShape shape = h.Shape == HeroRuleShape.Line ? AreaShape.Line : h.Shape == HeroRuleShape.Ring ? AreaShape.Ring : h.Shape == HeroRuleShape.Arena ? AreaShape.Ring : AreaShape.Disc;
+            Add(new Area { Shape = shape, A = h.Position, B = h.End, R = Mathf.Min(h.Radius, 6), Born = Now, Life = Mathf.Max(.45f, h.Duration), Look = look, Seed = ++seed });
+        }
+
+        /// <summary>Enemy rule effects that are not a warned blow: gloom zones (dark, silence, time, flood) as a solid violet
+        /// ground, leech and binder links as a red cord, charm as hearts over the friend.</summary>
+        public void OnEnemyRule(EnemyRuleRequest e)
+        {
+            switch (e.Action)
+            {
+                case EnemyRuleAction.Darken: case EnemyRuleAction.PauseSkills: case EnemyRuleAction.MissShots: case EnemyRuleAction.SkillFill: case EnemyRuleAction.Slow: case EnemyRuleAction.DrainCoins: case EnemyRuleAction.DrainPickups:
+                    if (e.Radius <= 0) return;
+                    Add(new Area { Shape = e.Shape == EnemyDangerShape.Ring ? AreaShape.Ring : AreaShape.Disc, Gloom = true, A = e.Position, R = e.Radius, Born = Now, Life = Mathf.Max(.6f, e.Duration), Look = e.Action == EnemyRuleAction.Slow ? ElementLook.Water : ElementLook.Void, Seed = ++seed });
+                    return;
+                case EnemyRuleAction.LeechLink: case EnemyRuleAction.Chain:
+                    if (links.Count >= 24) links.RemoveAt(0);
+                    links.Add(new Link { From = e.SourceId, To = e.TargetId, Until = Now + Mathf.Max(.6f, e.Duration) });
+                    return;
+                case EnemyRuleAction.ChainCut: links.RemoveAll(l => l.From == e.SourceId || l.To == e.SourceId); return;
+                case EnemyRuleAction.Charm: AddAura(boundSimulation?.UnitForPresentation(e.TargetId), AuraKind.Buff, Now + Mathf.Max(.8f, e.Duration), ElementLook.Sound); return;
+            }
+        }
+
         public void OnFell(FriendMortalityEvent e) => fallen[e.FriendId] = e;
         public void OnRose(FriendMortalityEvent e) { fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
 
@@ -290,7 +332,7 @@ namespace ArcaneBrigade
             ink.Begin();
             CombatSimulation sim = boundSimulation;
             bool live = sim != null && (sim.Phase == RunPhase.Combat || sim.Phase == RunPhase.Paused);
-            if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); ink.End(); return; }
+            if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); return; }
             float now = sim.Elapsed;
             if (now < stillUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Silver.Body, .05f, .3f);
             if (now < realmUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Midnight.Glow, .04f, .26f);
@@ -299,7 +341,8 @@ namespace ArcaneBrigade
             {
                 Area a = areas[i]; float age = now - a.Born;
                 if (age > a.Life || age < -1) { areas.RemoveAt(i); continue; }
-                if (a.Hostile) { DrawDanger(a, age); DangerAreas++; }
+                if (a.Gloom) { DrawGloom(a, age); DangerAreas++; }
+                else if (a.Hostile) { DrawDanger(a, age); DangerAreas++; }
                 else { DrawFriendly(a, age); FriendAreas++; }
             }
             foreach (KeyValuePair<int, RulesV3EntityRequest> pair in entities) { DrawEntity(pair.Value, now); Entities++; }
@@ -309,6 +352,12 @@ namespace ArcaneBrigade
                 UnitState unit = sim.UnitForPresentation(auras[i].Unit);
                 if (now > auras[i].Until || unit == null || !unit.Alive) { auras.RemoveAt(i); continue; }
                 DrawAura(auras[i], unit, now); Auras++;
+            }
+            for (int i = links.Count - 1; i >= 0; i--)
+            {
+                UnitState from = sim.UnitForPresentation(links[i].From), to = sim.UnitForPresentation(links[i].To);
+                if (now > links[i].Until || from == null || to == null || !from.Alive || !to.Alive) { links.RemoveAt(i); continue; }
+                ink.Cord(from.Position + Vector2.up * .3f, to.Position + Vector2.up * .3f, BossTelegraph.Danger, .06f, true, .9f);
             }
             for (int i = chains.Count - 1; i >= 0; i--)
             {
@@ -341,6 +390,16 @@ namespace ArcaneBrigade
                     BossTelegraph.Rim(ink, a.A, a.R, a.R * .62f, charge, a.Seed, alpha);
                     break;
             }
+        }
+
+        /// <summary>An enemy gloom zone: a solid dark-violet ground (filled, never outline-only) with a brushed rim and its pieces.</summary>
+        private void DrawGloom(Area a, float age)
+        {
+            InkPalette p = PaletteFor(a.Look);
+            float now = boundSimulation.Elapsed, t = Mathf.Clamp01(age / a.Life), grow = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / .25f)), alpha = 1 - t * t;
+            ink.FloorZone(a.A, a.R * grow, a.R * .62f * grow, A(p.Ink, .62f * alpha), A(p.Body, .45f * alpha));
+            Rim(a, p, grow, alpha, now);
+            Pieces(a, p, grow, alpha * .8f, now);
         }
 
         /// <summary>A friendly skill area: its element's filled wash, a brushed rim and the element's own pieces moving inside it
