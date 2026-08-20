@@ -5,4 +5,6 @@ live 2: friendly 3, danger 0, fallen 0, entities 0, auras 1, chains 0, walls 0, 
 staged 0: friendly 6, danger 3, fallen 1, entities 4, auras 3, chains 0, walls 1, status 1
 staged 1: friendly 7, danger 4, fallen 1, entities 6, auras 4, chains 0, walls 1, status 2
 staged 2: friendly 8, danger 3, fallen 1, entities 7, auras 4, chains 0, walls 1, status 2
-arena: friendly 7, danger 4, fallen 1, entities 7, auras 4, chains 0, walls 1, status 3
+blizzard: friendly 7, danger 3, fallen 1, entities 7, auras 4, chains 0, walls 1, status 3
+riptide: friendly 6, danger 3, fallen 1, entities 7, auras 4, chains 0, walls 1, status 2
+arena: friendly 6, danger 4, fallen 1, entities 7, auras 4, chains 0, walls 1, status 0

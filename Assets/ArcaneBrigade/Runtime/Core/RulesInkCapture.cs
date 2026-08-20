@@ -78,10 +78,10 @@ namespace ArcaneBrigade
             int source = sim.Champion.Id;
             UnitState caster = sim.Units.FirstOrDefault(u => u.Faction == Faction.Companion);
             int cast = caster != null ? caster.Id : source;
-            ink.OnCast(new SkillCastRequest(cast, "Steep", SkillShape.Disc, h + new Vector2(-3.2f, 1.2f), Vector2.zero, 1.4f, 30, 0, 1));
-            ink.OnCast(new SkillCastRequest(cast, "Lullaby", SkillShape.Ring, h + new Vector2(0, 2.4f), Vector2.zero, 1.6f, 30, 0, 1));
-            ink.OnCast(new SkillCastRequest(cast, "Rain Spear", SkillShape.Line, h + new Vector2(-3.5f, -1.6f), h + new Vector2(-0.6f, -1.6f), .45f, 30, 0, 1));
-            ink.OnCast(new SkillCastRequest(cast, "Frost Arc", SkillShape.Cone, h + new Vector2(2.2f, 1.6f), h + new Vector2(4.6f, 2.4f), 2.4f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "TeapotPilgrim", SkillShape.Disc, h + new Vector2(-3.2f, 1.2f), Vector2.zero, 1.4f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "PillowOracle", SkillShape.Ring, h + new Vector2(0, 2.4f), Vector2.zero, 1.6f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "RainHeron", SkillShape.Line, h + new Vector2(-3.5f, -1.6f), h + new Vector2(-0.6f, -1.6f), .45f, 30, 0, 1));
+            ink.OnCast(new SkillCastRequest(cast, "SnowSpoon", SkillShape.Cone, h + new Vector2(2.2f, 1.6f), h + new Vector2(4.6f, 2.4f), 2.4f, 30, 0, 1));
             ink.OnDanger(new EnemyDangerRequest(1, source, EnemyDangerShape.Circle, EnemyRuleAction.Damage, "slam", h + new Vector2(3.6f, -1.4f), Vector2.zero, 1.3f, 1.5f, 30, 1));
             ink.OnDanger(new EnemyDangerRequest(2, source, EnemyDangerShape.Line, EnemyRuleAction.Damage, "charge", h + new Vector2(0.4f, -2.8f), h + new Vector2(4.4f, -2.8f), .5f, 1.5f, 30, 1));
             ink.OnDanger(new EnemyDangerRequest(3, source, EnemyDangerShape.Cone, EnemyRuleAction.Damage, "cone", h + new Vector2(-1.2f, 3.4f), h + new Vector2(-3.6f, 4.4f), 2.6f, 1.5f, 30, 1));
@@ -100,6 +100,10 @@ namespace ArcaneBrigade
             if (friends.Count > 0) foreach (UnitState foe in foes) ink.OnBondDamage(new BondDamageRequest(foe, friends[0], 10, "storm-chain"));
             sim.Pause(false);
             for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(.35f + shot * .4f); Count("staged " + shot, ink); yield return Shot("staged-" + shot); }
+            ink.OnBondRule(new BondRuleEvent("blizzard", sim.Champion, 1));
+            yield return new WaitForSecondsRealtime(.7f); Count("blizzard", ink); yield return Shot("field-blizzard");
+            ink.OnBondRule(new BondRuleEvent("riptide", sim.Champion, 1));
+            yield return new WaitForSecondsRealtime(.5f); Count("riptide", ink); yield return Shot("field-riptide");
             ink.OnDanger(new EnemyDangerRequest(4, source, EnemyDangerShape.Arena, EnemyRuleAction.Countdown, "countdown", h, Vector2.zero, 14, 1.5f, 30, 1));
             yield return new WaitForSecondsRealtime(.6f); Count("arena", ink); yield return Shot("staged-arena");
             Write(); Application.Quit(0);

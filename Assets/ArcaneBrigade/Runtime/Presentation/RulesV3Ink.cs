@@ -12,7 +12,10 @@ namespace ArcaneBrigade
     public sealed class RulesV3Ink : MonoBehaviour
     {
         private enum AreaShape { Disc, Ring, Line, Cone, Arena }
-        private struct Area { public AreaShape Shape; public bool Hostile, Gloom; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
+        private struct Area { public AreaShape Shape; public bool Hostile, Gloom, HasMotif; public InkToken Motif; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
+        private enum FieldKind { Blizzard, Eclipse, Gale, Riptide, Inferno, Pandemic, Realm }
+        private struct Field { public FieldKind Kind; public float Born, Life; public Vector2 Dir; }
+        private readonly List<Field> fields = new List<Field>();
         private struct Link { public int From, To; public float Until; }
         private readonly List<Link> links = new List<Link>();
 
@@ -78,6 +81,44 @@ namespace ArcaneBrigade
             return ElementLook.Gold;
         }
 
+        /// <summary>A skill's pieces come from the part of the creature it uses ("its teapot head" -> steam puffs, "its die
+        /// shell" -> dice, "its envelope body" -> letters), so every companion's skill shows its own look.</summary>
+        public static bool MotifFor(string bodySource, out InkToken token)
+        {
+            token = InkToken.Spark;
+            if (string.IsNullOrEmpty(bodySource)) return false;
+            string k = bodySource.ToLowerInvariant();
+            if (Has(k, "teapot", "teacup", "kettle", "steam", "cup", "mist", "cloud", "fog", "pillow")) token = InkToken.Puff;
+            else if (Has(k, "candle", "flame", "fire", "ember", "coal", "lamp", "lantern", "wick")) token = InkToken.Ember;
+            else if (Has(k, "envelope", "letter", "mail", "post", "parcel", "stamp")) token = InkToken.Envelope;
+            else if (Has(k, "dice", " die", "die ")) token = InkToken.Die;
+            else if (Has(k, "pepper", "citrus", "lemon", "lime", "orange", "pear", "apple", "fruit", "cherry", "radish", "pumpkin")) token = InkToken.Citrus;
+            else if (Has(k, "petal", "flower", "bloom", "dandelion", "rose")) token = InkToken.Petal;
+            else if (Has(k, "leaf", "sprout", "seed", "root", "bonsai", "mushroom", "acorn", "tree", "vine")) token = InkToken.Leaf;
+            else if (Has(k, "moon", "night", "eclipse", "shadow", "egg")) token = InkToken.Moon;
+            else if (Has(k, "star", "comet", "orbit", "planet", "satellite", "wish")) token = InkToken.Star;
+            else if (Has(k, "bell", "harp", "horn", "drum", "piano", "choir", "trumpet", "xylophone", "bagpipe", "cymbal", "metronome", "accordion", "music", "note", "song", "flute", "pipe", "whistle")) token = InkToken.Note;
+            else if (Has(k, "ice", "snow", "frost", "spoon", "fridge", "glass", "mirror", "lens", "crystal", "shard", "china")) token = InkToken.Shard;
+            else if (Has(k, "bubble", "boba", "tapioca", "pearl", "soap")) token = InkToken.Bubble;
+            else if (Has(k, "water", "rain", "coral", "bottle", "sea", "shell", "ink", "drop", "tide", "whale", "squid", "lifebuoy")) token = InkToken.Drop;
+            else if (Has(k, "button")) token = InkToken.Button;
+            else if (Has(k, "thread", "ribbon", "yarn", "stitch", "needle", "thimble", "spindle", "knot", "rope", "string", "yo-yo", "yoyo")) token = InkToken.Knot;
+            else if (Has(k, "quilt", "patch", "sock", "bandage", "plaster", "cloth", "rag")) token = InkToken.Patch;
+            else if (Has(k, "book", "page", "paper", "folded", "index", "bookmark", "kite", "card", "map")) token = InkToken.Page;
+            else if (Has(k, "coin", "gold", "penny", "treasure", "brass", "medal", "crown")) token = InkToken.Coin;
+            else if (Has(k, "bolt", "storm", "static", "volt", "lightning", "eel", "spark")) token = InkToken.Bolt;
+            else if (Has(k, "spear", "sword", "lance", "beak", "needle", "pin")) token = InkToken.Spear;
+            else if (Has(k, "fang", "jaw", "mouth", "teeth", "tooth", "maw")) token = InkToken.Fang;
+            else if (Has(k, "thorn", "bristle", "spike", "quill", "cactus", "hedgehog")) token = InkToken.Thorn;
+            else if (Has(k, "sand", "stone", "rock", "marble", "fossil", "brick", "anvil", "rook", "tower", "clay")) token = InkToken.Sand;
+            else if (Has(k, "dumpling", "bun", "dough", "bread", "pie", "toast", "sundae", "cake", "ice cream", "cookie", "sugar", "sweet")) token = InkToken.Dumpling;
+            else if (Has(k, "gear", "clock", "tick", "spring", "key", "wind-up", "hourglass", "compass")) token = InkToken.Knot;
+            else if (Has(k, "seal", "wax", "badge")) token = InkToken.Seal;
+            else if (Has(k, "feather", "wing", "bird", "owl", "swan", "gull", "wren", "pigeon", "hen", "canary", "crow")) token = InkToken.Petal;
+            else return false;
+            return true;
+        }
+
         private static bool Has(string k, params string[] words) { foreach (string w in words) if (k.Contains(w)) return true; return false; }
 
         private static InkPalette PaletteFor(ElementLook look)
@@ -129,7 +170,7 @@ namespace ArcaneBrigade
                 if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
                 boundSimulation = sim;
                 if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; sim.RulesV3HeroApplied += OnHero; }
-                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); stillUntil = realmUntil = 0;
+                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); fields.Clear(); stillUntil = realmUntil = 0;
             }
             if (sim == null) return;
             // package runtimes are replaced on every start: follow them
@@ -173,6 +214,13 @@ namespace ArcaneBrigade
 
         public void OnBondRule(BondRuleEvent e)
         {
+            FieldKind field;
+            if (FieldFor(e.Rule, out field, out float life))
+            {
+                for (int i = fields.Count - 1; i >= 0; i--) if (fields[i].Kind == field) fields.RemoveAt(i);
+                float ang = (++seed * 47) % 360 * Mathf.Deg2Rad;
+                fields.Add(new Field { Kind = field, Born = Now, Life = life, Dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .4f).normalized });
+            }
             // a bond step fires: a burst in its element on the subject, capped per frame for big crowds
             if (bursts == null || burstsThisFrame >= MaxBurstsPerFrame) return;
             burstsThisFrame++;
@@ -185,7 +233,8 @@ namespace ArcaneBrigade
             if (look == ElementLook.Gold) look = LookFor(MainBond(c.SourceId));
             AreaShape shape = c.Shape == SkillShape.Ring ? AreaShape.Ring : c.Shape == SkillShape.Line ? AreaShape.Line : c.Shape == SkillShape.Cone ? AreaShape.Cone : AreaShape.Disc;
             if (c.Shape == SkillShape.Species) { if (bursts != null) bursts.Burst(look, c.Position, Vector2.right, 1.2f); return; }
-            Add(new Area { Shape = shape, Hostile = false, A = c.Position, B = c.End, R = Mathf.Max(.4f, c.Radius), Born = Now, Warn = c.WarningTime, Life = Mathf.Max(.45f, c.WarningTime + Mathf.Max(.35f, c.Duration)), Look = look, Seed = ++seed });
+            bool motif = CompanionSkillTable.TryGet(c.SkillId, out CompanionSkillDefinition skill) & MotifFor(skill?.BodySource, out InkToken token);
+            Add(new Area { Shape = shape, Hostile = false, A = c.Position, B = c.End, R = Mathf.Max(.4f, c.Radius), Born = Now, Warn = c.WarningTime, Life = Mathf.Max(.45f, c.WarningTime + Mathf.Max(.35f, c.Duration)), Look = look, Seed = ++seed, HasMotif = motif, Motif = token });
         }
 
         public void OnDanger(EnemyDangerRequest d)
@@ -298,6 +347,71 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>Bond capstone moments that change the whole field get a field-wide look for their length.</summary>
+        private static bool FieldFor(string rule, out FieldKind kind, out float life)
+        {
+            kind = FieldKind.Blizzard; life = 0;
+            if (string.IsNullOrEmpty(rule)) return false;
+            string k = rule.ToLowerInvariant();
+            if (k.Contains("blizzard")) { kind = FieldKind.Blizzard; life = 1.6f; }
+            else if (k.Contains("eclipse")) { kind = FieldKind.Eclipse; life = 2.2f; }
+            else if (k.Contains("gale")) { kind = FieldKind.Gale; life = 1.2f; }
+            else if (k.Contains("riptide")) { kind = FieldKind.Riptide; life = 1.1f; }
+            else if (k.Contains("inferno")) { kind = FieldKind.Inferno; life = 5f; }
+            else if (k.Contains("pandemic")) { kind = FieldKind.Pandemic; life = 1.4f; }
+            else return false;
+            return true;
+        }
+
+        /// <summary>A field moment: a tinted veil over the arena plus moving strokes in its element (snow for a blizzard,
+        /// gusts for a gale, a wave band for a riptide, heat shimmer for an inferno, spores for a pandemic, dusk for an eclipse).</summary>
+        private void DrawField(Field f, Vector2 centre, float now)
+        {
+            float t = Mathf.Clamp01((now - f.Born) / f.Life), a = Mathf.Sin(t * Mathf.PI);
+            if (PresentationSettings.ReducedEffects) a *= .5f;
+            switch (f.Kind)
+            {
+                case FieldKind.Blizzard:
+                    ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .12f * a, .4f * a);
+                    for (int i = 0; i < 18; i++)
+                    {
+                        Vector2 p = centre + new Vector2(Mathf.Repeat(R(f.Born.GetHashCode(), i) * 20 + now * 6, 20) - 10, Mathf.Repeat(R(7, i) * 12 - now * 3, 12) - 6);
+                        ink.Token(InkToken.Shard, ArsenalInk.Glass, p, .22f, now * 90 + i * 30, a, true);
+                    }
+                    break;
+                case FieldKind.Eclipse:
+                    ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .25f * a, .6f * a);
+                    break;
+                case FieldKind.Gale:
+                    ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .04f * a, .16f * a);
+                    for (int i = 0; i < 14; i++)
+                    {
+                        Vector2 p = centre + new Vector2(Mathf.Repeat(R(3, i) * 22 + now * 14, 22) - 11, R(5, i) * 12 - 6);
+                        ink.Streaks(p, f.Dir.sqrMagnitude > .01f ? f.Dir : Vector2.right, a);
+                    }
+                    break;
+                case FieldKind.Riptide:
+                {
+                    float x = Mathf.Lerp(-12, 12, t);
+                    Vector2 a0 = centre + new Vector2(x, -7), a1 = centre + new Vector2(x, 7);
+                    ink.FloorLane(a0, a1, 1.4f, A(ArsenalInk.Water.Body, .45f * a), A(ArsenalInk.Water.Glow, .1f * a));
+                    ink.FloorStroke(a0 + Vector2.right * 1.3f, a1 + Vector2.right * 1.3f, ArsenalInk.Water, .1f, 1, 1, a, .15f, 3);
+                    break;
+                }
+                case FieldKind.Inferno:
+                    ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .08f * a, .32f * a);
+                    break;
+                case FieldKind.Pandemic:
+                    ink.Vignette(centre, 28, ArsenalInk.Green.Body, .1f * a, .35f * a);
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Vector2 p = centre + new Vector2(R(11, i) * 20 - 10, R(13, i) * 12 - 6 + t * 1.5f);
+                        ink.Token(InkToken.Bubble, ArsenalInk.Green, p, .2f, 0, a, true);
+                    }
+                    break;
+            }
+        }
+
         public void OnFell(FriendMortalityEvent e) => fallen[e.FriendId] = e;
         public void OnRose(FriendMortalityEvent e) { fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
 
@@ -334,6 +448,7 @@ namespace ArcaneBrigade
             bool live = sim != null && (sim.Phase == RunPhase.Combat || sim.Phase == RunPhase.Paused);
             if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); return; }
             float now = sim.Elapsed;
+            for (int i = fields.Count - 1; i >= 0; i--) { if (now - fields[i].Born > fields[i].Life) { fields.RemoveAt(i); continue; } DrawField(fields[i], sim.Champion.Position, now); }
             if (now < stillUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Silver.Body, .05f, .3f);
             if (now < realmUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Midnight.Glow, .04f, .26f);
             for (int i = walls.Count - 1; i >= 0; i--) { if (now > walls[i].Until) { walls.RemoveAt(i); continue; } DrawWall(walls[i], now); Walls++; }
@@ -461,7 +576,7 @@ namespace ArcaneBrigade
         /// <summary>The element's own pieces drifting inside the area (fewer with reduced effects).</summary>
         private void Pieces(Area a, InkPalette p, float grow, float alpha, float now)
         {
-            InkToken token = TokenFor(a.Look);
+            InkToken token = a.HasMotif ? a.Motif : TokenFor(a.Look);
             int n = PresentationSettings.ReducedEffects ? 3 : 6;
             for (int i = 0; i < n; i++)
             {
