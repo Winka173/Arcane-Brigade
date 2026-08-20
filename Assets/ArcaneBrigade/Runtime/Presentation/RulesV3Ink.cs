@@ -16,6 +16,11 @@ namespace ArcaneBrigade
         private enum FieldKind { Blizzard, Eclipse, Gale, Riptide, Inferno, Pandemic, Realm }
         private struct Field { public FieldKind Kind; public float Born, Life; public Vector2 Dir; }
         private readonly List<Field> fields = new List<Field>();
+        private struct Pop { public Vector2 At; public ElementLook Look; public float Born, Size; public int Seed; }
+        private readonly List<Pop> pops = new List<Pop>();
+        private const int MaxPops = 40, MaxPopsPerFrame = 6;
+        private const float PopLife = .5f;
+        private int popsThisFrame;
         private struct Link { public int From, To; public float Until; }
         private readonly List<Link> links = new List<Link>();
 
@@ -25,7 +30,7 @@ namespace ArcaneBrigade
         private struct Wall { public Vector2 A, B; public float Born, Until; public ElementLook Look; }
 
         private const int MaxAreas = 48, MaxBurstsPerFrame = 6, MaxAuras = 40, MaxChains = 24, MaxChainsPerFrame = 8, MaxWalls = 12;
-        private const float ChainLife = .2f;
+        private const float ChainLife = .32f;
         private readonly List<Aura> auras = new List<Aura>();
         private readonly List<Chain> chains = new List<Chain>();
         private readonly List<Wall> walls = new List<Wall>();
@@ -170,7 +175,7 @@ namespace ArcaneBrigade
                 if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
                 boundSimulation = sim;
                 if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; sim.RulesV3HeroApplied += OnHero; }
-                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); fields.Clear(); stillUntil = realmUntil = 0;
+                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); fields.Clear(); pops.Clear(); stillUntil = realmUntil = 0;
             }
             if (sim == null) return;
             // package runtimes are replaced on every start: follow them
@@ -222,9 +227,15 @@ namespace ArcaneBrigade
                 fields.Add(new Field { Kind = field, Born = Now, Life = life, Dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .4f).normalized });
             }
             // a bond step fires: a burst in its element on the subject, capped per frame for big crowds
+            if (popsThisFrame < MaxPopsPerFrame && Loud(e.Rule, out float size))
+            {
+                popsThisFrame++;
+                if (pops.Count >= MaxPops) pops.RemoveAt(0);
+                pops.Add(new Pop { At = e.Position, Look = LookFor(e.Rule), Born = Now, Size = size, Seed = ++seed });
+            }
             if (bursts == null || burstsThisFrame >= MaxBurstsPerFrame) return;
             burstsThisFrame++;
-            bursts.Burst(LookFor(e.Rule), e.Position, Vector2.right, 1f);
+            bursts.Burst(LookFor(e.Rule), e.Position, Vector2.right, 1.6f);
         }
 
         public void OnCast(SkillCastRequest c)
@@ -348,6 +359,17 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Bond capstone moments that change the whole field get a field-wide look for their length.</summary>
+        /// <summary>Bond moments that deserve a loud impact on the spot (bursts, freezes, shatters, discharges, executes...).</summary>
+        private static bool Loud(string rule, out float size)
+        {
+            size = 1;
+            if (string.IsNullOrEmpty(rule)) return false;
+            string k = rule.ToLowerInvariant();
+            if (Has(k, "inferno", "shatter", "execute", "pandemic", "colossus", "leviathan")) { size = 1.6f; return true; }
+            if (Has(k, "burst", "freeze", "frozen", "discharge", "rot", "crack", "pile-up", "collision", "sugar-rush", "mask-double", "chain", "splash", "eclipse", "gale", "riptide", "blizzard", "feast", "beat")) { size = 1.1f; return true; }
+            return false;
+        }
+
         private static bool FieldFor(string rule, out FieldKind kind, out float life)
         {
             kind = FieldKind.Blizzard; life = 0;
@@ -372,7 +394,7 @@ namespace ArcaneBrigade
             switch (f.Kind)
             {
                 case FieldKind.Blizzard:
-                    ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .12f * a, .4f * a);
+                    ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .25f * a, .7f * a);
                     for (int i = 0; i < 18; i++)
                     {
                         Vector2 p = centre + new Vector2(Mathf.Repeat(R(f.Born.GetHashCode(), i) * 20 + now * 6, 20) - 10, Mathf.Repeat(R(7, i) * 12 - now * 3, 12) - 6);
@@ -380,10 +402,10 @@ namespace ArcaneBrigade
                     }
                     break;
                 case FieldKind.Eclipse:
-                    ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .25f * a, .6f * a);
+                    ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .4f * a, .8f * a);
                     break;
                 case FieldKind.Gale:
-                    ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .04f * a, .16f * a);
+                    ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a);
                     for (int i = 0; i < 14; i++)
                     {
                         Vector2 p = centre + new Vector2(Mathf.Repeat(R(3, i) * 22 + now * 14, 22) - 11, R(5, i) * 12 - 6);
@@ -399,10 +421,10 @@ namespace ArcaneBrigade
                     break;
                 }
                 case FieldKind.Inferno:
-                    ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .08f * a, .32f * a);
+                    ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
                     break;
                 case FieldKind.Pandemic:
-                    ink.Vignette(centre, 28, ArsenalInk.Green.Body, .1f * a, .35f * a);
+                    ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a);
                     for (int i = 0; i < 12; i++)
                     {
                         Vector2 p = centre + new Vector2(R(11, i) * 20 - 10, R(13, i) * 12 - 6 + t * 1.5f);
@@ -412,7 +434,9 @@ namespace ArcaneBrigade
             }
         }
 
-        public void OnFell(FriendMortalityEvent e) => fallen[e.FriendId] = e;
+        public void OnFell(FriendMortalityEvent e) { fallen[e.FriendId] = e; fallenAt[e.FriendId] = Now; }
+        // the mortality clock may differ from the combat clock: the countdown runs from when the fall was seen
+        private readonly Dictionary<int, float> fallenAt = new Dictionary<int, float>();
         public void OnRose(FriendMortalityEvent e) { fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
 
         public void OnEntity(RulesV3EntityRequest e)
@@ -439,7 +463,7 @@ namespace ArcaneBrigade
 
         private void LateUpdate()
         {
-            burstsThisFrame = chainsThisFrame = 0;
+            burstsThisFrame = chainsThisFrame = popsThisFrame = 0;
             if (ink == null) return;
             Bind();
             FriendAreas = DangerAreas = Fallen = Entities = Auras = Chains = Walls = 0;
@@ -469,6 +493,12 @@ namespace ArcaneBrigade
                 DrawAura(auras[i], unit, now); Auras++;
             }
             if (boundBonds != null) DrawStatuses(sim, now);
+            for (int i = pops.Count - 1; i >= 0; i--)
+            {
+                float age = now - pops[i].Born;
+                if (age > PopLife || age < 0) { pops.RemoveAt(i); continue; }
+                DrawPop(pops[i], age / PopLife);
+            }
             for (int i = links.Count - 1; i >= 0; i--)
             {
                 UnitState from = sim.UnitForPresentation(links[i].From), to = sim.UnitForPresentation(links[i].To);
@@ -553,9 +583,16 @@ namespace ArcaneBrigade
                     ink.Ribbon(InkCanvas.Arc(a.A, a.R * grow, a.R * .62f * grow, 0, 360, 40), p, .14f, 1, 1, alpha, true);
                     break;
                 default:
-                    ink.FloorZone(a.A, a.R * grow, a.R * .62f * grow, A(p.Glow, .62f * alpha), A(p.Body, .3f * alpha));
+                    ink.FloorZone(a.A, a.R * grow, a.R * .62f * grow, A(p.Glow, .75f * alpha), A(p.Body, .45f * alpha));
                     ink.Pool(a.A, a.R * .8f * grow, a.Life, p, a.Seed, alpha * .8f);
                     break;
+            }
+            if (age < .4f)
+            {
+                // birth burst: the area lands with a ring racing to its edge
+                float k = age / .4f, rr = a.R * (.3f + .95f * Mathf.Sqrt(k));
+                ink.Ribbon(InkCanvas.Arc(a.A, rr, rr * .62f, 0, 360, 32), p, .22f * (1 - k) + .04f, 1, 1, 1 - k, true);
+                ink.Wash(a.A, a.R * .8f, p.Glow, .5f * (1 - k), true);
             }
             Rim(a, p, grow, alpha, now);
             Pieces(a, p, grow, alpha, now);
@@ -565,11 +602,13 @@ namespace ArcaneBrigade
         private void Rim(Area a, InkPalette p, float grow, float alpha, float now)
         {
             if (a.Shape == AreaShape.Line || a.Shape == AreaShape.Cone) return;
-            const int dashes = 10;
+            // a soft glowing band under brushed dashes that turn around the edge
+            ink.Ribbon(InkCanvas.Arc(a.A, a.R * grow, a.R * .62f * grow, 0, 360, 40), p, .2f, 1, 1, .45f * alpha, true);
+            const int dashes = 12;
             for (int i = 0; i < dashes; i++)
             {
-                float from = i * 360f / dashes + now * 18 + a.Seed * 7, to = from + 360f / dashes * .62f;
-                ink.Ribbon(InkCanvas.Arc(a.A, a.R * grow, a.R * .62f * grow, from, to, 6), p, .09f, 1, .5f, alpha, true);
+                float from = i * 360f / dashes + now * 24 + a.Seed * 7, to = from + 360f / dashes * .6f;
+                ink.Ribbon(InkCanvas.Arc(a.A, a.R * grow, a.R * .62f * grow, from, to, 6), p, .12f, 1, .5f, alpha, true);
             }
         }
 
@@ -577,10 +616,10 @@ namespace ArcaneBrigade
         private void Pieces(Area a, InkPalette p, float grow, float alpha, float now)
         {
             InkToken token = a.HasMotif ? a.Motif : TokenFor(a.Look);
-            int n = PresentationSettings.ReducedEffects ? 3 : 6;
+            int n = PresentationSettings.ReducedEffects ? 4 : 11;
             for (int i = 0; i < n; i++)
             {
-                float u = (i + .5f) / n, spin = now * 50 + i * 67 + a.Seed;
+                float u = (i + .5f) / n, spin = now * 70 + i * 67 + a.Seed;
                 Vector2 at;
                 if (a.Shape == AreaShape.Line) at = Vector2.Lerp(a.A, a.B, Mathf.Repeat(u + now * .4f, 1) * grow) + Perp(a.B - a.A) * a.R * (R(a.Seed, i) - .5f);
                 else if (a.Shape == AreaShape.Cone)
@@ -594,7 +633,9 @@ namespace ArcaneBrigade
                     float ang = (u * 360 + now * 22 + a.Seed) * Mathf.Deg2Rad, dist = (.25f + .5f * R(a.Seed, i)) * grow;
                     at = a.A + new Vector2(Mathf.Cos(ang) * a.R * dist, Mathf.Sin(ang) * a.R * .62f * dist);
                 }
-                ink.Token(token, p, at + Vector2.up * Mathf.Sin(now * 3 + i) * .05f, .44f, spin, alpha, false);
+                float bob = Mathf.Abs(Mathf.Sin(now * 4 + i * 1.7f));
+                ink.Token(token, p, at + Vector2.up * bob * .14f, .52f + .1f * bob, spin, alpha, false);
+                if (i % 3 == 0) ink.Wash(at + Vector2.up * .1f, .28f, p.Glow, .5f * alpha * bob, true);
             }
         }
 
@@ -613,22 +654,25 @@ namespace ArcaneBrigade
                 case AuraKind.Shield:
                 {
                     InkPalette p = a.Look == ElementLook.Gold ? ArsenalInk.Glass : PaletteFor(a.Look);
-                    ink.Wash(at, r, p.Light, .14f * fade, true);
-                    ink.Ribbon(InkCanvas.Arc(at, r, r * .9f, now * 40, now * 40 + 300, 24), p, .05f, 1, .2f, .85f * fade, true);
+                    ink.Wash(at, r * 1.15f, p.Light, .32f * fade, true);
+                    ink.Ribbon(InkCanvas.Arc(at, r, r * .9f, now * 60, now * 60 + 280, 26), p, .11f, 1, .25f, fade, true);
+                    ink.Ribbon(InkCanvas.Arc(at, r * .82f, r * .74f, -now * 90, -now * 90 + 200, 20), p, .07f, 1, .3f, .8f * fade, true);
                     break;
                 }
                 case AuraKind.Untouchable:
-                    ink.Ribbon(InkCanvas.Arc(at, r * 1.1f, r, 0, 360, 28), ArsenalInk.Gold, .07f, 1, 1, fade, true);
+                    ink.Wash(at, r * 1.3f, ArsenalInk.Gold.Glow, .4f * fade, true);
+                    ink.Ribbon(InkCanvas.Arc(at, r * 1.1f, r, 0, 360, 28), ArsenalInk.Gold, .13f, 1, 1, fade, true);
                     break;
                 default:
                 {
                     InkPalette p = PaletteFor(a.Look);
                     InkToken token = a.Kind == AuraKind.Heal ? InkToken.Leaf : TokenFor(a.Look);
-                    for (int i = 0; i < 3; i++)
+                    ink.Wash(at, r, p.Glow, .3f * fade, true);
+                    for (int i = 0; i < 6; i++)
                     {
-                        float u = Mathf.Repeat((now - a.Born) * 1.2f + i / 3f, 1);
-                        Vector2 p0 = unit.Position + new Vector2((i - 1) * r * .45f, .1f + u * .9f);
-                        ink.Token(token, p, p0, .26f, i * 40, fade * (1 - u), true);
+                        float u = Mathf.Repeat((now - a.Born) * 1.3f + i / 6f, 1);
+                        Vector2 p0 = unit.Position + new Vector2((i - 2.5f) * r * .28f + Mathf.Sin(now * 5 + i) * .08f, .1f + u * 1.3f);
+                        ink.Token(token, p, p0, .4f, i * 40 + now * 60, fade * (1 - u * u), true);
                     }
                     break;
                 }
@@ -668,8 +712,28 @@ namespace ArcaneBrigade
         private void Meter(Vector2 head, float width, int row, float fill, InkPalette p)
         {
             Vector2 a = head + new Vector2(-width * .5f, row * .13f), b = a + Vector2.right * width;
-            ink.Ribbon(InkCanvas.Line(a, b), p, .05f, 1, 1, .35f, false);
-            if (fill > 0) ink.Ribbon(InkCanvas.Line(a, Vector2.Lerp(a, b, Mathf.Clamp01(fill))), p, .08f, 1, 1, 1, true);
+            ink.Ribbon(InkCanvas.Line(a, b), p, .08f, 1, 1, .45f, false);
+            if (fill > 0) ink.Ribbon(InkCanvas.Line(a, Vector2.Lerp(a, b, Mathf.Clamp01(fill))), p, .13f, 1, 1, 1, true);
+        }
+
+        /// <summary>A loud impact: a bright shock ring racing out, a flash at the centre and the element's pieces flung out
+        /// and falling, all in under half a second.</summary>
+        private void DrawPop(Pop p, float t)
+        {
+            InkPalette pal = PaletteFor(p.Look);
+            float o = 1 - (1 - t) * (1 - t) * (1 - t), a = 1 - t, r = (.35f + 1.25f * o) * p.Size;
+            Vector2 c = p.At + Vector2.up * .3f;
+            ink.Wash(c, .9f * p.Size * (1 - .5f * t), pal.Glow, .55f * a, true);
+            ink.Ribbon(InkCanvas.Arc(c, r, r * .7f, 0, 360, 28), pal, .16f * a + .03f, 1, 1, a, true);
+            ink.Ribbon(InkCanvas.Arc(c, r * .6f, r * .42f, 0, 360, 20), pal, .08f, 1, 1, .7f * a, true);
+            InkToken token = TokenFor(p.Look);
+            int n = PresentationSettings.ReducedEffects ? 4 : 9;
+            for (int i = 0; i < n; i++)
+            {
+                float ang = (i * 360f / n + R(p.Seed, i) * 25) * Mathf.Deg2Rad, d = (.3f + 1.3f * o) * p.Size * (.7f + .5f * R(p.Seed, i + 9));
+                Vector2 at = c + new Vector2(Mathf.Cos(ang) * d, Mathf.Sin(ang) * d * .7f + o * .4f - t * t * .9f);
+                ink.Token(token, pal, at, (.42f - .2f * t) * p.Size, ang * 57 + t * 360, a, true);
+            }
         }
 
         /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
@@ -677,7 +741,11 @@ namespace ArcaneBrigade
         {
             float a = 1 - age / ChainLife;
             int flick = c.Seed + Mathf.FloorToInt(age * 40);
-            ink.Ribbon(InkCanvas.Line(c.A + Vector2.up * .3f, c.B + Vector2.up * .3f, .18f, 7, true, flick), ArsenalInk.Cyan, .07f, 1, 1, a, true);
+            Vector2 from = c.A + Vector2.up * .3f, to = c.B + Vector2.up * .3f;
+            ink.Ribbon(InkCanvas.Line(from, to, .22f, 7, true, flick), ArsenalInk.Cyan, .13f, 1, 1, a, true);
+            ink.Ribbon(InkCanvas.Line(from, to, .3f, 5, true, flick + 17), ArsenalInk.Silver, .06f, 1, 1, .8f * a, true);
+            ink.Wash(to, .55f, ArsenalInk.Cyan.Glow, .6f * a, true);
+            ink.Token(InkToken.Bolt, ArsenalInk.Cyan, to, .5f, flick * 37 % 360, a, true);
         }
 
         /// <summary>A friendly wall: a thick inked band in its element with a lit top edge, fading out at its end.</summary>
@@ -703,7 +771,8 @@ namespace ArcaneBrigade
         {
             UnitState unit = boundSimulation.UnitForPresentation(e.FriendId);
             Vector2 at = unit != null ? unit.Position : e.Position;
-            float total = Mathf.Max(.1f, e.RiseAt - e.Time), left = Mathf.Max(0, e.RiseAt - now), done = 1 - left / total;
+            float total = Mathf.Max(.1f, e.RiseAt - e.Time), seen = fallenAt.TryGetValue(e.FriendId, out float at0) ? at0 : now;
+            float left = Mathf.Max(0, total - (now - seen)), done = 1 - left / total;
             ink.FloorZone(at, .55f, .3f, new Color(.1f, .1f, .14f, .4f), new Color(.1f, .1f, .14f, 0));
             InkPalette p = left < 2 ? ArsenalInk.Gold : ArsenalInk.Silver;
             ink.Ribbon(InkCanvas.Arc(at, .62f, .38f, 90, 90 - 360 * done, 32), p, .07f, 1, 1, .9f, left < 2);

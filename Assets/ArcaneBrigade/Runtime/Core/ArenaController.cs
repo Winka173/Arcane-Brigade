@@ -758,7 +758,8 @@ namespace ArcaneBrigade
             for (int index = 0; index < simulation.Units.Count; index++)
             {
                 UnitState state = simulation.Units[index];
-                if (!state.Alive) continue;
+                // a fallen friend stays on the field in its defeat pose until it stands up (15 s)
+                if (!state.Alive && (state.Faction == Faction.Enemy || simulation.Mortality == null || !simulation.Mortality.IsFallen(state))) continue;
                 liveIds.Add(state.Id);
                 if (!units.TryGetValue(state.Id, out UnitVisual view))
                 {

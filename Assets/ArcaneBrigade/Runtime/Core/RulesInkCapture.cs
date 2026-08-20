@@ -86,7 +86,8 @@ namespace ArcaneBrigade
             ink.OnDanger(new EnemyDangerRequest(2, source, EnemyDangerShape.Line, EnemyRuleAction.Damage, "charge", h + new Vector2(0.4f, -2.8f), h + new Vector2(4.4f, -2.8f), .5f, 1.5f, 30, 1));
             ink.OnDanger(new EnemyDangerRequest(3, source, EnemyDangerShape.Cone, EnemyRuleAction.Damage, "cone", h + new Vector2(-1.2f, 3.4f), h + new Vector2(-3.6f, 4.4f), 2.6f, 1.5f, 30, 1));
             UnitState friend = sim.Units.FirstOrDefault(u => u.Faction == Faction.Companion);
-            if (friend != null) ink.OnFell(new FriendMortalityEvent(friend, source, sim.Elapsed - 9, 100, sim.Elapsed + 6));
+            // a real fall: the body must stay on the field in its defeat pose with the countdown
+            if (friend != null && sim.Mortality != null) { friend.Health = 0; sim.Mortality.OnLethal(friend, source); }
             ink.OnEntity(new RulesV3EntityRequest(9001, source, 0, RulesV3EntityKind.Ally, RulesV3EntityChange.Created, "phoenix", h + new Vector2(1.6f, -0.4f), Vector2.zero, .8f, 30, 0));
             ink.OnEntity(new RulesV3EntityRequest(9002, source, 0, RulesV3EntityKind.Snack, RulesV3EntityChange.Created, "sugar-rush", h + new Vector2(-1.4f, -0.6f), Vector2.zero, .4f, 30, 0));
             ink.OnEntity(new RulesV3EntityRequest(9003, source, 0, RulesV3EntityKind.Page, RulesV3EntityChange.Created, "page", h + new Vector2(-2.2f, 0.2f), Vector2.zero, .4f, 30, 0));
@@ -99,7 +100,7 @@ namespace ArcaneBrigade
             var foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).Take(4).ToList();
             if (friends.Count > 0) foreach (UnitState foe in foes) ink.OnBondDamage(new BondDamageRequest(foe, friends[0], 10, "storm-chain"));
             sim.Pause(false);
-            for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(.35f + shot * .4f); Count("staged " + shot, ink); yield return Shot("staged-" + shot); }
+            for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(.12f + shot * .45f); Count("staged " + shot, ink); yield return Shot("staged-" + shot); }
             ink.OnBondRule(new BondRuleEvent("blizzard", sim.Champion, 1));
             yield return new WaitForSecondsRealtime(.7f); Count("blizzard", ink); yield return Shot("field-blizzard");
             ink.OnBondRule(new BondRuleEvent("riptide", sim.Champion, 1));
