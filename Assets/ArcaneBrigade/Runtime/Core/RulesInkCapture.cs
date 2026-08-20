@@ -34,7 +34,7 @@ namespace ArcaneBrigade
         private void OnLog(string message, string trace, LogType type) { if (type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }
         private void Count(string when, RulesV3Ink ink)
         {
-            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls);
+            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls + ", status " + ink.StatusMarks);
             CombatSimulation sim = FindAnyObjectByType<ArenaController>()?.Simulation;
             if (sim == null) return;
             // every unit on screen must have a painting

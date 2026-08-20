@@ -353,6 +353,7 @@ namespace ArcaneBrigade
                 if (now > auras[i].Until || unit == null || !unit.Alive) { auras.RemoveAt(i); continue; }
                 DrawAura(auras[i], unit, now); Auras++;
             }
+            if (boundBonds != null) DrawStatuses(sim, now);
             for (int i = links.Count - 1; i >= 0; i--)
             {
                 UnitState from = sim.UnitForPresentation(links[i].From), to = sim.UnitForPresentation(links[i].To);
@@ -517,6 +518,43 @@ namespace ArcaneBrigade
                     break;
                 }
             }
+        }
+
+        private const int MaxStatusEnemies = 60;
+        public int StatusMarks { get; private set; }
+
+        /// <summary>Bond stacks on enemies, so the player sees a burst or a freeze coming: a short arc over the head fills per
+        /// stack (Burn amber of 3, Chill ice of 5, Poison green of 5, Charge cyan of 5); frozen enemies wear a glassy wash,
+        /// marked ones a violet ring at their feet, soaked ones a water wash. At most 60 enemies per frame.</summary>
+        private void DrawStatuses(CombatSimulation sim, float now)
+        {
+            StatusMarks = 0;
+            foreach (UnitState enemy in sim.Units)
+            {
+                if (StatusMarks >= MaxStatusEnemies) break;
+                if (enemy.Faction != Faction.Enemy || !enemy.Alive) continue;
+                BondEnemyState s = boundBonds.State(enemy);
+                if (s == null) continue;
+                bool any = false;
+                Vector2 head = enemy.Position + Vector2.up * (enemy.Definition.Radius * 2.2f + .35f);
+                float w = Mathf.Max(.3f, enemy.Definition.Radius * 1.4f);
+                int row = 0;
+                if (s.Burn > 0) { Meter(head, w, row++, s.Burn / 3f, ArsenalInk.Amber); any = true; }
+                if (s.Chill > 0) { Meter(head, w, row++, s.Chill / 5f, ArsenalInk.Glass); any = true; }
+                if (s.Poison > 0) { Meter(head, w, row++, Mathf.Min(1, s.Poison / 5f), ArsenalInk.Green); any = true; }
+                if (s.Charge > 0) { Meter(head, w, row++, s.Charge / 5f, ArsenalInk.Cyan); any = true; }
+                if (s.FrozenUntil > now) { ink.Wash(enemy.Position + Vector2.up * enemy.Definition.Radius, enemy.Definition.Radius * 1.8f, ArsenalInk.Glass.Light, .35f, true); any = true; }
+                if (s.Marked) { ink.Ribbon(InkCanvas.Arc(enemy.Position, w, w * .45f, 0, 360, 16), ArsenalInk.Violet, .05f, 1, 1, .9f, true); any = true; }
+                if (s.SoakedUntil > now) { ink.Wash(enemy.Position, w * 1.2f, ArsenalInk.Water.Glow, .25f); any = true; }
+                if (any) StatusMarks++;
+            }
+        }
+
+        private void Meter(Vector2 head, float width, int row, float fill, InkPalette p)
+        {
+            Vector2 a = head + new Vector2(-width * .5f, row * .13f), b = a + Vector2.right * width;
+            ink.Ribbon(InkCanvas.Line(a, b), p, .05f, 1, 1, .35f, false);
+            if (fill > 0) ink.Ribbon(InkCanvas.Line(a, Vector2.Lerp(a, b, Mathf.Clamp01(fill))), p, .08f, 1, 1, 1, true);
         }
 
         /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
