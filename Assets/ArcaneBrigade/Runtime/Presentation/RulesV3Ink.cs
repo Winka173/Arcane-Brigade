@@ -534,6 +534,9 @@ namespace ArcaneBrigade
                     break;
                 default:
                     BossTelegraph.Rim(ink, a.A, a.R, a.R * .62f, charge, a.Seed, alpha);
+                    // a hot pulsing edge that quickens as the blow nears, so the warning cannot be missed
+                    float beat = .5f + .5f * Mathf.Sin(age * (8 + 18 * charge));
+                    ink.Ribbon(InkCanvas.Arc(a.A, a.R, a.R * .62f, 0, 360, 36), BossTelegraph.DangerHot, .08f + .1f * charge, 1, 1, alpha * (.5f + .5f * beat), true);
                     break;
             }
         }
@@ -791,10 +794,20 @@ namespace ArcaneBrigade
                     ink.Stripes(e.Position, e.End, Mathf.Max(.3f, e.Radius) * .6f, now, .7f);
                     break;
                 case RulesV3EntityKind.Ally:
-                    ink.Wash(at, .9f, p.Light, .22f);
-                    ink.Orbit(at, .55f, now, TokenFor(look), p, 3, .95f);
-                    ink.Token(TokenFor(look), p, at + Vector2.up * (.35f + Mathf.Sin(now * 3 + e.Id) * .06f), .5f, 0, 1);
+                {
+                    // a bond summon: its painting when it exists (Resources/BondSummons/<Kind>), on a glowing sigil in its element
+                    float size = SummonSize(e.Rule), bob = Mathf.Sin(now * 3 + e.Id) * .08f;
+                    ink.Wash(at, size * .9f, p.Glow, .45f, false);
+                    ink.Ribbon(InkCanvas.Arc(at, size * .75f, size * .38f, now * 50, now * 50 + 300, 28), p, .1f, 1, .3f, .95f, true);
+                    Sprite art = SummonArt(e.Rule);
+                    if (art != null) ink.Place(art, at + Vector2.up * (size * .5f + bob), size, 0, Color.white, true);
+                    else
+                    {
+                        ink.Orbit(at + Vector2.up * .3f, size * .6f, now, TokenFor(look), p, 5, 1);
+                        ink.Token(TokenFor(look), p, at + Vector2.up * (size * .45f + bob), size * .7f, now * 30, 1);
+                    }
                     break;
+                }
                 default:
                     InkToken token = e.Kind == RulesV3EntityKind.Snack || e.Kind == RulesV3EntityKind.Dish ? InkToken.Dumpling
                         : e.Kind == RulesV3EntityKind.Clover || e.Kind == RulesV3EntityKind.Seed ? InkToken.Leaf
@@ -803,12 +816,29 @@ namespace ArcaneBrigade
                         : e.Kind == RulesV3EntityKind.Pumpkin ? InkToken.Citrus
                         : e.Kind == RulesV3EntityKind.Skull ? InkToken.Moon
                         : e.Kind == RulesV3EntityKind.Banner ? InkToken.Seal : TokenFor(look);
-                    ink.Wash(at, .45f, p.Light, .18f);
-                    ink.Token(token, p, at + Vector2.up * (.18f + Mathf.Sin(now * 2.4f + e.Id) * .04f), .42f, 0, 1, false);
+                {
+                    // a pickup: a pulsing glow and a sparkle so it is easy to spot among 100 enemies
+                    float pulse = .5f + .5f * Mathf.Sin(now * 5 + e.Id), bob = Mathf.Sin(now * 2.4f + e.Id) * .06f;
+                    ink.Wash(at, .7f, p.Glow, .35f + .25f * pulse, false);
+                    ink.Ribbon(InkCanvas.Arc(at, .5f + .1f * pulse, .25f + .05f * pulse, 0, 360, 20), p, .07f, 1, 1, .8f, true);
+                    Sprite art = SummonArt(e.Kind.ToString());
+                    if (art != null) ink.Place(art, at + Vector2.up * (.3f + bob), .62f, 0, Color.white, true);
+                    else ink.Token(token, p, at + Vector2.up * (.25f + bob), .6f, 0, 1, true);
+                    ink.Token(InkToken.Glint, ArsenalInk.Gold, at + new Vector2(.25f, .55f + bob), .3f * pulse, now * 90, pulse, true);
                     break;
+                }
             }
         }
 
         private static Color A(Color c, float a) { c.a = a; return c; }
+
+        private static readonly Dictionary<string, Sprite> summonArt = new Dictionary<string, Sprite>();
+        private static Sprite SummonArt(string kind)
+        {
+            if (string.IsNullOrEmpty(kind)) return null;
+            if (!summonArt.TryGetValue(kind, out Sprite sprite)) summonArt[kind] = sprite = Resources.Load<Sprite>("BondSummons/" + kind);
+            return sprite;
+        }
+        private static float SummonSize(string kind) => kind == "Leviathan" || kind == "GreatTree" || kind == "Colossus" ? 2.4f : kind == "Treant" ? 1.7f : 1.15f;
     }
 }
