@@ -24,12 +24,12 @@ namespace ArcaneBrigade
         private struct Link { public int From, To; public float Until; }
         private readonly List<Link> links = new List<Link>();
 
-        private enum AuraKind { Shield, Heal, Buff, Untouchable }
+        private enum AuraKind { Shield, Heal, Buff, Untouchable, Stun, Sleep, Root }
         private struct Aura { public int Unit; public AuraKind Kind; public float Born, Until; public ElementLook Look; }
         private struct Chain { public Vector2 A, B; public float Born; public int Seed; }
         private struct Wall { public Vector2 A, B; public float Born, Until; public ElementLook Look; }
 
-        private const int MaxAreas = 48, MaxBurstsPerFrame = 6, MaxAuras = 40, MaxChains = 24, MaxChainsPerFrame = 8, MaxWalls = 12;
+        private const int MaxAreas = 48, MaxBurstsPerFrame = 6, MaxAuras = 90, MaxChains = 24, MaxChainsPerFrame = 8, MaxWalls = 12;
         private const float ChainLife = .32f;
         private readonly List<Aura> auras = new List<Aura>();
         private readonly List<Chain> chains = new List<Chain>();
@@ -187,9 +187,9 @@ namespace ArcaneBrigade
             }
             if (sim.SkillsV3 != boundSkills)
             {
-                if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; }
+                if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; boundSkills.EnemyEffectRequested -= OnEnemyEffect; }
                 boundSkills = sim.SkillsV3;
-                if (boundSkills != null) { boundSkills.CastRequested += OnCast; boundSkills.FriendRequested += OnFriend; boundSkills.ConstructRequested += OnConstruct; }
+                if (boundSkills != null) { boundSkills.CastRequested += OnCast; boundSkills.FriendRequested += OnFriend; boundSkills.ConstructRequested += OnConstruct; boundSkills.EnemyEffectRequested += OnEnemyEffect; }
             }
             if (sim.EnemyRulesV3 != boundEnemies)
             {
@@ -209,7 +209,7 @@ namespace ArcaneBrigade
         {
             if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
             if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; }
-            if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; }
+            if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; boundSkills.EnemyEffectRequested -= OnEnemyEffect; }
             if (boundEnemies != null) { boundEnemies.DangerRequested -= OnDanger; boundEnemies.Requested -= OnEnemyRule; }
             if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; }
             ink?.Destroy();
@@ -289,6 +289,25 @@ namespace ArcaneBrigade
 
         /// <summary>A companion skill's effect on a friend: protection as a shield aura, healing as rising leaves, buffs as the
         /// skill's element rising off the friend.</summary>
+        /// <summary>A skill's status on an enemy, shown on that enemy for its length: stars circling a stunned head, moons
+        /// drifting off a sleeper, leaves gripping a rooted one's feet, the element rising off burning, chilled or poisoned ones.</summary>
+        public void OnEnemyEffect(SkillEnemyEffectRequest e)
+        {
+            if (e.Target == null || !e.Target.Alive) return;
+            float until = Now + Mathf.Clamp(e.Duration, .6f, 6);
+            SkillEnemyEffect f = e.Effects;
+            if ((f & (SkillEnemyEffect.Stun | SkillEnemyEffect.Freeze)) != 0) AddAura(e.Target, AuraKind.Stun, until, (f & SkillEnemyEffect.Freeze) != 0 ? ElementLook.Ice : ElementLook.Light);
+            else if ((f & SkillEnemyEffect.Sleep) != 0) AddAura(e.Target, AuraKind.Sleep, until, ElementLook.Dream);
+            else if ((f & SkillEnemyEffect.Root) != 0) AddAura(e.Target, AuraKind.Root, until, ElementLook.Bloom);
+            else if ((f & SkillEnemyEffect.Burn) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Fire);
+            else if ((f & SkillEnemyEffect.Poison) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Poison);
+            else if ((f & (SkillEnemyEffect.Chill | SkillEnemyEffect.Slow | SkillEnemyEffect.AttackSlow)) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Ice);
+            else if ((f & (SkillEnemyEffect.Mark | SkillEnemyEffect.DuskMark | SkillEnemyEffect.Weaken)) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Void);
+            else if ((f & SkillEnemyEffect.Charge) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Storm);
+            else if ((f & (SkillEnemyEffect.Lit | SkillEnemyEffect.Blind)) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Light);
+            else if ((f & SkillEnemyEffect.Soak) != 0) AddAura(e.Target, AuraKind.Buff, until, ElementLook.Water);
+        }
+
         public void OnFriend(SkillFriendRequest f)
         {
             if (f.Target == null) return;
@@ -355,10 +374,31 @@ namespace ArcaneBrigade
                     return;
                 case EnemyRuleAction.ChainCut: links.RemoveAll(l => l.From == e.SourceId || l.To == e.SourceId); return;
                 case EnemyRuleAction.Charm: AddAura(boundSimulation?.UnitForPresentation(e.TargetId), AuraKind.Buff, Now + Mathf.Max(.8f, e.Duration), ElementLook.Sound); return;
+                // the enemy's own moments, loud enough to answer in a crowd
+                case EnemyRuleAction.HealEnemy: AddAura(boundSimulation?.UnitForPresentation(e.TargetId != 0 ? e.TargetId : e.SourceId), AuraKind.Heal, Now + .9f, ElementLook.Bloom); return;
+                case EnemyRuleAction.ShieldEnemy: AddAura(boundSimulation?.UnitForPresentation(e.TargetId != 0 ? e.TargetId : e.SourceId), AuraKind.Shield, Now + Mathf.Max(1, e.Duration), ElementLook.Void); return;
+                case EnemyRuleAction.MarkHero: AddAura(boundSimulation?.Champion, AuraKind.Buff, Now + Mathf.Max(1, e.Duration), ElementLook.Fire); return;
+                case EnemyRuleAction.ReviveEnemy: EnemyPop(e.Position, ElementLook.Bloom, 1.4f); return;
+                case EnemyRuleAction.Spawn: EnemyPop(e.Position, ElementLook.Void, 1.2f); return;
+                case EnemyRuleAction.Swallow: EnemyPop(e.Position, ElementLook.Void, 1.6f); return;
+                case EnemyRuleAction.Reflect: EnemyPop(e.Position, ElementLook.Crystal, 1f); return;
+                case EnemyRuleAction.ArmorBreak: EnemyPop(boundSimulation?.UnitForPresentation(e.TargetId)?.Position ?? e.Position, ElementLook.Earth, 1f); return;
+                case EnemyRuleAction.Phase:
+                    EnemyPop(e.Position, ElementLook.Fire, 2.6f);
+                    fields.Add(new Field { Kind = FieldKind.Realm, Born = Now, Life = 1.2f });
+                    return;
             }
         }
 
         /// <summary>Bond capstone moments that change the whole field get a field-wide look for their length.</summary>
+        private void EnemyPop(Vector2 at, ElementLook look, float size)
+        {
+            if (popsThisFrame >= MaxPopsPerFrame) return;
+            popsThisFrame++;
+            if (pops.Count >= MaxPops) pops.RemoveAt(0);
+            pops.Add(new Pop { At = at, Look = look, Born = Now, Size = size, Seed = ++seed });
+        }
+
         /// <summary>Bond moments that deserve a loud impact on the spot (bursts, freezes, shatters, discharges, executes...).</summary>
         private static bool Loud(string rule, out float size)
         {
@@ -422,6 +462,10 @@ namespace ArcaneBrigade
                 }
                 case FieldKind.Inferno:
                     ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
+                    break;
+                case FieldKind.Realm:
+                    // a boss changes phase: the arena flashes red and settles
+                    ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a);
                     break;
                 case FieldKind.Pandemic:
                     ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a);
@@ -660,6 +704,39 @@ namespace ArcaneBrigade
                     ink.Wash(at, r * 1.15f, p.Light, .32f * fade, true);
                     ink.Ribbon(InkCanvas.Arc(at, r, r * .9f, now * 60, now * 60 + 280, 26), p, .11f, 1, .25f, fade, true);
                     ink.Ribbon(InkCanvas.Arc(at, r * .82f, r * .74f, -now * 90, -now * 90 + 200, 20), p, .07f, 1, .3f, .8f * fade, true);
+                    break;
+                }
+                case AuraKind.Stun:
+                {
+                    // stars (or ice shards) circling over the head
+                    InkPalette p = PaletteFor(a.Look);
+                    Vector2 head = unit.Position + Vector2.up * (unit.Definition.Radius * 2.2f + .3f);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        float ang = (now * 240 + i * 90) * Mathf.Deg2Rad;
+                        ink.Token(a.Look == ElementLook.Ice ? InkToken.Shard : InkToken.Star, p, head + new Vector2(Mathf.Cos(ang) * r * .7f, Mathf.Sin(ang) * r * .22f), .32f, now * 200, fade, true);
+                    }
+                    break;
+                }
+                case AuraKind.Sleep:
+                {
+                    InkPalette p = PaletteFor(ElementLook.Dream);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float u = Mathf.Repeat(now * .8f + i / 3f, 1);
+                        ink.Token(InkToken.Moon, p, unit.Position + new Vector2(.2f + u * .4f, unit.Definition.Radius * 2 + u * .9f), .26f + .18f * u, -20, fade * (1 - u), true);
+                    }
+                    break;
+                }
+                case AuraKind.Root:
+                {
+                    InkPalette p = PaletteFor(ElementLook.Bloom);
+                    ink.Ribbon(InkCanvas.Arc(unit.Position, r * .9f, r * .4f, 0, 360, 20), p, .1f, 1, 1, fade, true);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        float ang = (i * 72 + a.Unit * 13) * Mathf.Deg2Rad;
+                        ink.Token(InkToken.Leaf, p, unit.Position + new Vector2(Mathf.Cos(ang) * r * .85f, Mathf.Sin(ang) * r * .38f + .1f), .3f, i * 72, fade, false);
+                    }
                     break;
                 }
                 case AuraKind.Untouchable:
