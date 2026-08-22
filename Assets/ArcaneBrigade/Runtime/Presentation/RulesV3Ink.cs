@@ -693,7 +693,7 @@ namespace ArcaneBrigade
         private void Land(Area a)
         {
             Vector2 c = a.Shape == AreaShape.Line ? (a.A + a.B) * .5f : a.A;
-            float size = Mathf.Clamp(a.R * 1.1f, .9f, 3.2f);
+            float size = Mathf.Clamp(a.R * .9f, .9f, 2.2f);
             AddPop(c, a.Look, size, 0);
             vfx.Spray(Bits(a.Look), c, PresentationSettings.ReducedEffects ? 5 : 14, 2.4f * size, 2.2f, .42f, .9f, Color.white);
         }
