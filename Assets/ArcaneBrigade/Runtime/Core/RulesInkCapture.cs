@@ -34,7 +34,7 @@ namespace ArcaneBrigade
         private void OnLog(string message, string trace, LogType type) { if (type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }
         private void Count(string when, RulesV3Ink ink)
         {
-            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls + ", status " + ink.StatusMarks);
+            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls + ", status " + ink.StatusMarks + "; painted areas " + (ink.Vfx != null ? ink.Vfx.Areas + (ink.Vfx.Ready ? "" : " (shader missing)") + ", bursts " + ink.Vfx.Flips + ", particles " + ink.Vfx.Particles : "none"));
             CombatSimulation sim = FindAnyObjectByType<ArenaController>()?.Simulation;
             if (sim == null) return;
             // every unit on screen must have a painting
@@ -53,7 +53,7 @@ namespace ArcaneBrigade
             string house = Arg("-house") ?? "Ember";
             using (var session = new RunSession(catalog))
             {
-                session.Start("LanternKnight", 280601); session.State.Wave = 12; session.State.Phase = SessionPhase.Combat;
+                session.Start("LanternKnight", 280601); session.State.Wave = int.TryParse(Arg("-wave"), out int wave) ? wave : 12; session.State.Phase = SessionPhase.Combat;
                 string bond = BondV3Catalog.BondId(house) ?? house;
                 UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(10).ToArray();
                 string weapon = catalog.Weapons.Where(w => w != null && w.Kind != WeaponKind.Contact).Select(w => w.Id).FirstOrDefault();
@@ -73,7 +73,15 @@ namespace ArcaneBrigade
             if (owner.Simulation.Bonds != null) owner.Simulation.Bonds.RuleTriggered += e => rules[e.Rule] = rules.TryGetValue(e.Rule, out int n) ? n + 1 : 1;
             if (owner.Simulation.SkillsV3 != null) owner.Simulation.SkillsV3.CastRequested += c => rules["cast:" + c.SkillId] = rules.TryGetValue("cast:" + c.SkillId, out int n) ? n + 1 : 1;
             // the real fight: bond steps and skills fire on their own
-            for (int shot = 0; shot < 4; shot++) { yield return new WaitForSecondsRealtime(3f); Count("live " + shot, ink); yield return Shot(house + "-live-" + shot); }
+            for (int shot = 0; shot < 4; shot++)
+            {
+                // frame cost with every rules effect on: frames and worst frame over each 3 s
+                int frames = 0; float worst = 0, until = Time.realtimeSinceStartup + 3f;
+                while (Time.realtimeSinceStartup < until) { yield return null; frames++; worst = Mathf.Max(worst, Time.unscaledDeltaTime); }
+                Count("live " + shot, ink);
+                log.Add("  fps " + (frames / 3f).ToString("0") + ", worst frame " + (worst * 1000).ToString("0") + " ms, enemies " + owner.Simulation.Units.Count(u => u.Faction == Faction.Enemy && u.Alive));
+                yield return Shot(house + "-live-" + shot);
+            }
 
             log.Add("rules seen: " + string.Join(", ", rules.Select(r => r.Key + " x" + r.Value)));
             if (Arg("-liveonly") != null) { Write(); Application.Quit(0); yield break; }

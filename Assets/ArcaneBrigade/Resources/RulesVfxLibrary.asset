@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c841c5c9903b84cac05f1859ddeb0c, type: 3}
+  m_Name: RulesVfxLibrary
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.RulesVfxLibrary
+  Entries:
+  - Key: Fire_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Fire_Bits
+    Frames:
+    - {fileID: 21300000, guid: 9c1024802dab0da4e9a1ced32040a43c, type: 3}
+  - Key: Ice_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Ice_Bits
+    Frames:
+    - {fileID: 21300000, guid: 5e3d7337ecd2bf44a824b7bc327af6dc, type: 3}
+  - Key: Water_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Water_Bits
+    Frames:
+    - {fileID: 21300000, guid: af2affd7861ef184bb481f1baaa267db, type: 3}
+    - {fileID: 21300000, guid: f638004fd500a0a4b84f0fdbf3a9060e, type: 3}
+  - Key: Storm_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Storm_Bits
+    Frames:
+    - {fileID: 21300000, guid: 4aa2a58e66756e941896b7a815477492, type: 3}
+    - {fileID: 21300000, guid: e7fbc09728c29a749ab457ed6f71ced9, type: 3}
+  - Key: Wind_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Wind_Bits
+    Frames:
+    - {fileID: 21300000, guid: 12de6da16a076eb4e83ed2048fee0a6c, type: 3}
+    - {fileID: 21300000, guid: ae908dd54d77e864983ab1625e6bc6a2, type: 3}
+  - Key: Poison_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Poison_Bits
+    Frames:
+    - {fileID: 21300000, guid: f638004fd500a0a4b84f0fdbf3a9060e, type: 3}
+  - Key: Bloom_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Bloom_Bits
+    Frames:
+    - {fileID: 21300000, guid: 9642901da0a783346a70a678211207ed, type: 3}
+  - Key: Void_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Void_Bits
+    Frames:
+    - {fileID: 21300000, guid: 5d90632934a4d9d45b12018ef4213bb6, type: 3}
+    - {fileID: 21300000, guid: 20dd2155a9c2c2145976637da4ddd3d5, type: 3}
+  - Key: Light_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Light_Bits
+    Frames:
+    - {fileID: 21300000, guid: 5a3e9d44488ff9c4f9f109b00a054074, type: 3}
+    - {fileID: 21300000, guid: 4aa2a58e66756e941896b7a815477492, type: 3}
+  - Key: Paper_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Paper_Bits
+    Frames:
+    - {fileID: 21300000, guid: 42a83f2ecc611f840a3d766352e69951, type: 3}
+  - Key: Earth_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Earth_Bits
+    Frames:
+    - {fileID: 21300000, guid: 329d35d357b63cb438fe30899f55880d, type: 3}
+    - {fileID: 21300000, guid: 9674528604b554947b4037a362e62bb4, type: 3}
+    - {fileID: 21300000, guid: 309b604793c784643b0655dac9ce2128, type: 3}
+    - {fileID: 21300000, guid: 15f8f64b3169cc747b01640f4c5dc315, type: 3}
+    - {fileID: 21300000, guid: 734d1ff1a07b78a478b917b7d3e7f08d, type: 3}
+    - {fileID: 21300000, guid: ab2586893d038aa4e881417a1dac11ae, type: 3}
+  - Key: Time_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Time_Bits
+    Frames:
+    - {fileID: 21300000, guid: 78502a8190855fc42ac231e2add070e7, type: 3}
+  - Key: Sound_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Sound_Bits
+    Frames:
+    - {fileID: 21300000, guid: c3f7150e33a977b45874b87529639686, type: 3}
+    - {fileID: 21300000, guid: aabf13f3fb168cf4a91f40bee45ba6a2, type: 3}
+  - Key: Dream_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Dream_Bits
+    Frames:
+    - {fileID: 21300000, guid: 5a3e9d44488ff9c4f9f109b00a054074, type: 3}
+  - Key: Crystal_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Crystal_Bits
+    Frames:
+    - {fileID: 21300000, guid: 5e3d7337ecd2bf44a824b7bc327af6dc, type: 3}
+  - Key: Gold_Burst
+    Frames:
+    - {fileID: 21300000, guid: 54a9e30a0321621459348e144bc68b04, type: 3}
+    - {fileID: 21300000, guid: f5596a72edb259a43aab6723b6678f47, type: 3}
+    - {fileID: 21300000, guid: 675628df692eebc4fa12071ad49883ae, type: 3}
+    - {fileID: 21300000, guid: ae794b43ff48ad2478598108a01a019b, type: 3}
+  - Key: Gold_Bits
+    Frames:
+    - {fileID: 21300000, guid: 4aa2a58e66756e941896b7a815477492, type: 3}
+    - {fileID: 21300000, guid: 5a3e9d44488ff9c4f9f109b00a054074, type: 3}
+  - Key: Danger_Burst
+    Frames:
+    - {fileID: 21300000, guid: 309ccd1126961b04c8bc153a8a9c2550, type: 3}
+    - {fileID: 21300000, guid: 72cfbc3d8ef28aa4a8655a4ab13d150c, type: 3}
+    - {fileID: 21300000, guid: 1a9868fdc4958d942a66ae017105b616, type: 3}
+    - {fileID: 21300000, guid: 9fc36b4342cc53246ac814411c7954b2, type: 3}
