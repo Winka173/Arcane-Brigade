@@ -13,7 +13,7 @@ namespace ArcaneBrigade
     {
         private enum AreaShape { Disc, Ring, Line, Cone, Arena }
         private struct Area { public AreaShape Shape; public bool Hostile, Gloom, HasMotif; public InkToken Motif; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
-        private enum FieldKind { Blizzard, Eclipse, Gale, Riptide, Inferno, Pandemic, Realm }
+        private enum FieldKind { Blizzard, Eclipse, Gale, Riptide, Inferno, Pandemic, Realm, Lost }
         private struct Field { public FieldKind Kind; public float Born, Life; public Vector2 Dir; }
         private readonly List<Field> fields = new List<Field>();
         private struct Pop { public Vector2 At; public ElementLook Look; public float Born, Size; public int Seed; }
@@ -26,7 +26,7 @@ namespace ArcaneBrigade
 
         private enum AuraKind { Shield, Heal, Buff, Untouchable, Stun, Sleep, Root }
         private struct Aura { public int Unit; public AuraKind Kind; public float Born, Until; public ElementLook Look; }
-        private struct Chain { public Vector2 A, B; public float Born; public int Seed; }
+        private struct Chain { public Vector2 A, B; public float Born; public int Seed; public bool Violet; }
         private struct Wall { public Vector2 A, B; public float Born, Until; public ElementLook Look; }
 
         private const int MaxAreas = 48, MaxBurstsPerFrame = 6, MaxAuras = 90, MaxChains = 24, MaxChainsPerFrame = 8, MaxWalls = 12;
@@ -181,9 +181,9 @@ namespace ArcaneBrigade
             // package runtimes are replaced on every start: follow them
             if (sim.Bonds != boundBonds)
             {
-                if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; }
+                if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; }
                 boundBonds = sim.Bonds;
-                if (boundBonds != null) { boundBonds.RuleTriggered += OnBondRule; boundBonds.DamageRequested += OnBondDamage; }
+                if (boundBonds != null) { boundBonds.RuleTriggered += OnBondRule; boundBonds.DamageRequested += OnBondDamage; boundBonds.StrengthStolen += OnStolen; boundBonds.EmbersCreated += OnEmbers; }
             }
             if (sim.SkillsV3 != boundSkills)
             {
@@ -199,19 +199,19 @@ namespace ArcaneBrigade
             }
             if (sim.Mortality != boundMortality)
             {
-                if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; }
+                if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; boundMortality.WaveLost -= OnWaveLost; boundMortality.ShieldBroken -= OnShieldBroken; }
                 boundMortality = sim.Mortality; fallen.Clear();
-                if (boundMortality != null) { boundMortality.Fell += OnFell; boundMortality.Rose += OnRose; }
+                if (boundMortality != null) { boundMortality.Fell += OnFell; boundMortality.Rose += OnRose; boundMortality.WaveLost += OnWaveLost; boundMortality.ShieldBroken += OnShieldBroken; }
             }
         }
 
         private void OnDestroy()
         {
             if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
-            if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; }
+            if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; }
             if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; boundSkills.EnemyEffectRequested -= OnEnemyEffect; }
             if (boundEnemies != null) { boundEnemies.DangerRequested -= OnDanger; boundEnemies.Requested -= OnEnemyRule; }
-            if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; }
+            if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; boundMortality.WaveLost -= OnWaveLost; boundMortality.ShieldBroken -= OnShieldBroken; }
             ink?.Destroy();
         }
 
@@ -463,6 +463,9 @@ namespace ArcaneBrigade
                 case FieldKind.Inferno:
                     ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
                     break;
+                case FieldKind.Lost:
+                    ink.Vignette(centre, 28, ArsenalInk.Midnight.Ink, .5f * Mathf.Min(1, t * 3), .95f * Mathf.Min(1, t * 3));
+                    break;
                 case FieldKind.Realm:
                     // a boss changes phase: the arena flashes red and settles
                     ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a);
@@ -477,6 +480,25 @@ namespace ArcaneBrigade
                     break;
             }
         }
+
+        /// <summary>Dusk takes strength from a marked enemy: a violet ribbon from the enemy to the friend that gains it.</summary>
+        public void OnStolen(UnitState enemy, UnitState friend, float fraction)
+        {
+            if (enemy == null || friend == null || chainsThisFrame >= MaxChainsPerFrame) return;
+            chainsThisFrame++;
+            if (chains.Count >= MaxChains) chains.RemoveAt(0);
+            chains.Add(new Chain { A = enemy.Position, B = friend.Position, Born = Now, Seed = ++seed, Violet = true });
+        }
+
+        /// <summary>Ember leaves embers where a burning enemy died: a small firepit for their lifetime.</summary>
+        public void OnEmbers(Vector2 at, float lifetime)
+            => Add(new Area { Shape = AreaShape.Disc, A = at, R = .8f, Born = Now, Life = Mathf.Max(.6f, lifetime), Look = ElementLook.Fire, Seed = ++seed, HasMotif = true, Motif = InkToken.Ember });
+
+        /// <summary>A shield breaking on a friend: a loud glass pop.</summary>
+        public void OnShieldBroken(UnitState friend) { if (friend != null) EnemyPop(friend.Position, ElementLook.Crystal, 1.1f); }
+
+        /// <summary>Every friend down at once: the arena darkens before the wave ends.</summary>
+        public void OnWaveLost(FriendWaveLostEvent e) => fields.Add(new Field { Kind = FieldKind.Lost, Born = Now, Life = 2.5f });
 
         public void OnFell(FriendMortalityEvent e) { fallen[e.FriendId] = e; fallenAt[e.FriendId] = Now; }
         // the mortality clock may differ from the combat clock: the countdown runs from when the fall was seen
@@ -822,6 +844,13 @@ namespace ArcaneBrigade
             float a = 1 - age / ChainLife;
             int flick = c.Seed + Mathf.FloorToInt(age * 40);
             Vector2 from = c.A + Vector2.up * .3f, to = c.B + Vector2.up * .3f;
+            if (c.Violet)
+            {
+                // strength flowing: a smooth violet ribbon with motes sliding toward the friend
+                ink.Ribbon(InkCanvas.Line(from, to, .12f, 2, false, c.Seed), ArsenalInk.Violet, .12f, 1, 1, a, true);
+                for (int i = 0; i < 3; i++) ink.Token(InkToken.Moon, ArsenalInk.Violet, Vector2.Lerp(from, to, Mathf.Repeat(age * 3 + i / 3f, 1)), .3f, 0, a, true);
+                return;
+            }
             ink.Ribbon(InkCanvas.Line(from, to, .22f, 7, true, flick), ArsenalInk.Cyan, .13f, 1, 1, a, true);
             ink.Ribbon(InkCanvas.Line(from, to, .3f, 5, true, flick + 17), ArsenalInk.Silver, .06f, 1, 1, .8f * a, true);
             ink.Wash(to, .55f, ArsenalInk.Cyan.Glow, .6f * a, true);
