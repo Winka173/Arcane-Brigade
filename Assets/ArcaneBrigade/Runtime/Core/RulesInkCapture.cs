@@ -68,9 +68,15 @@ namespace ArcaneBrigade
             for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
             if (owner?.Simulation == null || owner.RulesInk == null) { log.Add("NO COMBAT OR NO RULES INK"); Write(); Application.Quit(1); yield break; }
             RulesV3Ink ink = owner.RulesInk;
+            // every bond rule key and skill seen in the live fight, to judge each house's look
+            var rules = new SortedDictionary<string, int>();
+            if (owner.Simulation.Bonds != null) owner.Simulation.Bonds.RuleTriggered += e => rules[e.Rule] = rules.TryGetValue(e.Rule, out int n) ? n + 1 : 1;
+            if (owner.Simulation.SkillsV3 != null) owner.Simulation.SkillsV3.CastRequested += c => rules["cast:" + c.SkillId] = rules.TryGetValue("cast:" + c.SkillId, out int n) ? n + 1 : 1;
             // the real fight: bond steps and skills fire on their own
-            for (int shot = 0; shot < 3; shot++) { yield return new WaitForSecondsRealtime(2.5f); Count("live " + shot, ink); yield return Shot("live-" + shot); }
+            for (int shot = 0; shot < 4; shot++) { yield return new WaitForSecondsRealtime(3f); Count("live " + shot, ink); yield return Shot(house + "-live-" + shot); }
 
+            log.Add("rules seen: " + string.Join(", ", rules.Select(r => r.Key + " x" + r.Value)));
+            if (Arg("-liveonly") != null) { Write(); Application.Quit(0); yield break; }
             // staged shapes around the hero, so each look can be judged
             CombatSimulation sim = owner.Simulation;
             owner.Simulation.Pause(true);

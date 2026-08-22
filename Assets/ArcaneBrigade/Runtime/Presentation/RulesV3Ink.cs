@@ -18,6 +18,9 @@ namespace ArcaneBrigade
         private readonly List<Field> fields = new List<Field>();
         private struct Pop { public Vector2 At; public ElementLook Look; public float Born, Size; public int Seed; }
         private readonly List<Pop> pops = new List<Pop>();
+        private struct Throw { public Vector2 From, To; public float Born, Life; public ElementLook Look; public InkToken Token; public int Seed; }
+        private readonly List<Throw> throws = new List<Throw>();
+        private const int MaxThrows = 16;
         private const int MaxPops = 40, MaxPopsPerFrame = 6;
         private const float PopLife = .5f;
         private int popsThisFrame;
@@ -175,7 +178,7 @@ namespace ArcaneBrigade
                 if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
                 boundSimulation = sim;
                 if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; sim.RulesV3HeroApplied += OnHero; }
-                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); fields.Clear(); pops.Clear(); stillUntil = realmUntil = 0;
+                entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); fields.Clear(); pops.Clear(); throws.Clear(); stillUntil = realmUntil = 0;
             }
             if (sim == null) return;
             // package runtimes are replaced on every start: follow them
@@ -245,7 +248,21 @@ namespace ArcaneBrigade
             AreaShape shape = c.Shape == SkillShape.Ring ? AreaShape.Ring : c.Shape == SkillShape.Line ? AreaShape.Line : c.Shape == SkillShape.Cone ? AreaShape.Cone : AreaShape.Disc;
             if (c.Shape == SkillShape.Species) { if (bursts != null) bursts.Burst(look, c.Position, Vector2.right, 1.2f); return; }
             bool motif = CompanionSkillTable.TryGet(c.SkillId, out CompanionSkillDefinition skill) & MotifFor(skill?.BodySource, out InkToken token);
-            Add(new Area { Shape = shape, Hostile = false, A = c.Position, B = c.End, R = Mathf.Max(.4f, c.Radius), Born = Now, Warn = c.WarningTime, Life = Mathf.Max(.45f, c.WarningTime + Mathf.Max(.35f, c.Duration)), Look = look, Seed = ++seed, HasMotif = motif, Motif = token });
+            // the cast leaves the companion: a flash on it, its piece lobbed to the spot, and the area lands when it arrives
+            UnitState caster = boundSimulation?.UnitForPresentation(c.SourceId);
+            float flight = 0;
+            if (caster != null && caster.Alive)
+            {
+                EnemyPop(caster.Position, look, .7f);
+                float distance = (c.Position - caster.Position).magnitude;
+                if (distance > 1.2f)
+                {
+                    flight = Mathf.Clamp(distance * .05f, .16f, .38f);
+                    if (throws.Count >= MaxThrows) throws.RemoveAt(0);
+                    throws.Add(new Throw { From = caster.Position + Vector2.up * .5f, To = c.Position, Born = Now, Life = flight, Look = look, Token = motif ? token : TokenFor(look), Seed = ++seed });
+                }
+            }
+            Add(new Area { Shape = shape, Hostile = false, A = c.Position, B = c.End, R = Mathf.Max(.4f, c.Radius), Born = Now + flight, Warn = c.WarningTime, Life = Mathf.Max(.45f, c.WarningTime + Mathf.Max(.35f, c.Duration)), Look = look, Seed = ++seed, HasMotif = motif, Motif = token });
         }
 
         public void OnDanger(EnemyDangerRequest d)
@@ -546,6 +563,7 @@ namespace ArcaneBrigade
             {
                 Area a = areas[i]; float age = now - a.Born;
                 if (age > a.Life || age < -1) { areas.RemoveAt(i); continue; }
+                if (age < 0) continue; // still in flight
                 if (a.Gloom) { DrawGloom(a, age); DangerAreas++; }
                 else if (a.Hostile) { DrawDanger(a, age); DangerAreas++; }
                 else { DrawFriendly(a, age); FriendAreas++; }
@@ -559,6 +577,12 @@ namespace ArcaneBrigade
                 DrawAura(auras[i], unit, now); Auras++;
             }
             if (boundBonds != null) DrawStatuses(sim, now);
+            for (int i = throws.Count - 1; i >= 0; i--)
+            {
+                float k = (now - throws[i].Born) / throws[i].Life;
+                if (k > 1 || k < 0) { throws.RemoveAt(i); continue; }
+                DrawThrow(throws[i], k);
+            }
             for (int i = pops.Count - 1; i >= 0; i--)
             {
                 float age = now - pops[i].Born;
@@ -836,6 +860,18 @@ namespace ArcaneBrigade
                 Vector2 at = c + new Vector2(Mathf.Cos(ang) * d, Mathf.Sin(ang) * d * .7f + o * .4f - t * t * .9f);
                 ink.Token(token, pal, at, (.42f - .2f * t) * p.Size, ang * 57 + t * 360, a, true);
             }
+        }
+
+        /// <summary>A skill's piece in flight: a glowing arc trail behind the spinning piece.</summary>
+        private void DrawThrow(Throw w, float k)
+        {
+            InkPalette p = PaletteFor(w.Look);
+            float height = Mathf.Clamp((w.To - w.From).magnitude * .35f, .8f, 3f);
+            var path = InkCanvas.Lob(w.From, w.To, height, 18);
+            ink.Ribbon(path, p, .14f, k, Mathf.Max(0, k - .45f), 1, true);
+            Vector2 head = InkCanvas.Sample(InkCanvas.Lob(w.From, w.To, height, 18), k);
+            ink.Wash(head, .5f, p.Glow, .6f, true);
+            ink.Token(w.Token, p, head, .6f, k * 720, 1, true);
         }
 
         /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
