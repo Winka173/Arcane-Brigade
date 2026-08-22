@@ -18,7 +18,7 @@ namespace ArcaneBrigade
         private readonly List<Field> fields = new List<Field>();
         private struct Pop { public Vector2 At; public ElementLook Look; public float Born, Size; public int Seed; }
         private readonly List<Pop> pops = new List<Pop>();
-        private struct Throw { public Vector2 From, To; public float Born, Life; public ElementLook Look; public InkToken Token; public int Seed; }
+        private struct Throw { public Vector2 From, To; public float Born, Life; public ElementLook Look; public InkToken Token; public int Seed; public bool Straight; }
         private readonly List<Throw> throws = new List<Throw>();
         private const int MaxThrows = 16;
         private const int MaxPops = 40, MaxPopsPerFrame = 6;
@@ -234,7 +234,14 @@ namespace ArcaneBrigade
             {
                 popsThisFrame++;
                 if (pops.Count >= MaxPops) pops.RemoveAt(0);
-                pops.Add(new Pop { At = e.Position, Look = LookFor(e.Rule), Born = Now, Size = size, Seed = ++seed });
+                float delay = 0;
+                if (e.Rule != null && e.Rule.IndexOf("star", StringComparison.OrdinalIgnoreCase) >= 0 && throws.Count < MaxThrows)
+                {
+                    // a falling star streaks down from the sky and bursts where it lands
+                    delay = .28f;
+                    throws.Add(new Throw { From = e.Position + new Vector2(2.4f, 7.5f), To = e.Position, Born = Now, Life = delay, Look = ElementLook.Light, Token = InkToken.Star, Seed = ++seed, Straight = true });
+                }
+                pops.Add(new Pop { At = e.Position, Look = LookFor(e.Rule), Born = Now + delay, Size = size, Seed = ++seed });
             }
             if (bursts == null || burstsThisFrame >= MaxBurstsPerFrame) return;
             burstsThisFrame++;
@@ -422,8 +429,8 @@ namespace ArcaneBrigade
             size = 1;
             if (string.IsNullOrEmpty(rule)) return false;
             string k = rule.ToLowerInvariant();
-            if (Has(k, "inferno", "shatter", "execute", "pandemic", "colossus", "leviathan")) { size = 1.6f; return true; }
-            if (Has(k, "burst", "freeze", "frozen", "discharge", "rot", "crack", "pile-up", "collision", "sugar-rush", "mask-double", "chain", "splash", "eclipse", "gale", "riptide", "blizzard", "feast", "beat")) { size = 1.1f; return true; }
+            if (Has(k, "inferno", "shatter", "execute", "pandemic", "colossus", "leviathan", "falling-star", "star")) { size = 1.6f; return true; }
+            if (Has(k, "burst", "freeze", "frozen", "discharge", "rot", "crack", "pile-up", "collision", "sugar-rush", "mask-double", "chain", "splash", "eclipse", "gale", "riptide", "blizzard", "feast", "beat", "rune", "carnival", "horn", "thorn", "root-hit")) { size = 1.1f; return true; }
             return false;
         }
 
@@ -535,7 +542,11 @@ namespace ArcaneBrigade
         private string MainBond(int unitId)
         {
             UnitState unit = boundSimulation?.UnitForPresentation(unitId);
-            return unit != null && unit.Definition.Tags != null && unit.Definition.Tags.Length > 0 ? unit.Definition.Tags[0] : null;
+            if (unit == null || unit.Definition.Tags == null || unit.Definition.Tags.Length == 0) return null;
+            // tags are bond ids ("static-club", "tidal", "orchard"...): read the bond's name, which names its element
+            string id = unit.Definition.Tags[0];
+            foreach (BondDefinition bond in BondTuning.V3Definitions) if (bond != null && string.Equals(bond.Id, id, StringComparison.OrdinalIgnoreCase)) return bond.Name;
+            return id;
         }
 
         private void Add(Area a)
@@ -586,7 +597,8 @@ namespace ArcaneBrigade
             for (int i = pops.Count - 1; i >= 0; i--)
             {
                 float age = now - pops[i].Born;
-                if (age > PopLife || age < 0) { pops.RemoveAt(i); continue; }
+                if (age > PopLife) { pops.RemoveAt(i); continue; }
+                if (age < 0) continue;
                 DrawPop(pops[i], age / PopLife);
             }
             for (int i = links.Count - 1; i >= 0; i--)
@@ -709,7 +721,8 @@ namespace ArcaneBrigade
         private void Pieces(Area a, InkPalette p, float grow, float alpha, float now)
         {
             InkToken token = a.HasMotif ? a.Motif : TokenFor(a.Look);
-            int n = PresentationSettings.ReducedEffects ? 4 : 11;
+            // big areas carry more pieces so they never read as an empty wash
+            int n = PresentationSettings.ReducedEffects ? 4 : Mathf.Clamp(8 + Mathf.RoundToInt(a.R * 3), 10, 26);
             for (int i = 0; i < n; i++)
             {
                 float u = (i + .5f) / n, spin = now * 70 + i * 67 + a.Seed;
@@ -866,10 +879,10 @@ namespace ArcaneBrigade
         private void DrawThrow(Throw w, float k)
         {
             InkPalette p = PaletteFor(w.Look);
-            float height = Mathf.Clamp((w.To - w.From).magnitude * .35f, .8f, 3f);
-            var path = InkCanvas.Lob(w.From, w.To, height, 18);
-            ink.Ribbon(path, p, .14f, k, Mathf.Max(0, k - .45f), 1, true);
-            Vector2 head = InkCanvas.Sample(InkCanvas.Lob(w.From, w.To, height, 18), k);
+            float height = w.Straight ? 0 : Mathf.Clamp((w.To - w.From).magnitude * .35f, .8f, 3f);
+            var path = w.Straight ? InkCanvas.Line(w.From, w.To) : InkCanvas.Lob(w.From, w.To, height, 18);
+            ink.Ribbon(path, p, w.Straight ? .22f : .14f, k, Mathf.Max(0, k - .45f), 1, true);
+            Vector2 head = w.Straight ? Vector2.Lerp(w.From, w.To, k) : InkCanvas.Sample(InkCanvas.Lob(w.From, w.To, height, 18), k);
             ink.Wash(head, .5f, p.Glow, .6f, true);
             ink.Token(w.Token, p, head, .6f, k * 720, 1, true);
         }
