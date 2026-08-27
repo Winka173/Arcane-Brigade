@@ -888,8 +888,12 @@ namespace ArcaneBrigade
             var path = w.Straight ? InkCanvas.Line(w.From, w.To) : InkCanvas.Lob(w.From, w.To, height, 18);
             ink.Ribbon(path, p, w.Straight ? .22f : .14f, k, Mathf.Max(0, k - .45f), 1, true);
             Vector2 head = w.Straight ? Vector2.Lerp(w.From, w.To, k) : InkCanvas.Sample(InkCanvas.Lob(w.From, w.To, height, 18), k);
-            ink.Wash(head, .5f, p.Glow, .6f, true);
-            ink.Token(w.Token, p, head, .6f, k * 720, 1, true);
+            ink.Wash(head, .7f, p.Glow, .7f, true);
+            // the flying piece: the creature's own token riding a painted piece of its element, shedding a trail of bits
+            Sprite[] bits = Bits(w.Look);
+            if (bits != null) vfx.Flip(new[] { bits[w.Seed % bits.Length] }, head, .9f, .5f, k * 720, Color.white);
+            ink.Token(w.Token, p, head, .62f, -k * 540, 1, true);
+            if (Random.value < .6f) vfx.Spray(bits, head, 1, .5f, .4f, .26f, .45f, Color.white);
         }
 
         /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
