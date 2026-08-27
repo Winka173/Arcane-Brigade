@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         private enum FieldKind { Blizzard, Eclipse, Gale, Riptide, Inferno, Pandemic, Realm, Lost }
         private struct Field { public FieldKind Kind; public float Born, Life; public Vector2 Dir; }
         private readonly List<Field> fields = new List<Field>();
-        private struct Pop { public Vector2 At; public ElementLook Look; public float Born, Size; public int Seed; }
+        private struct Pop { public Vector2 At; public ElementLook Look; public float Born, Size; public int Seed; public bool Hostile; }
         private readonly List<Pop> pops = new List<Pop>();
         private struct Throw { public Vector2 From, To; public float Born, Life; public ElementLook Look; public InkToken Token; public int Seed; public bool Straight; }
         private readonly List<Throw> throws = new List<Throw>();
@@ -585,6 +585,7 @@ namespace ArcaneBrigade
                 if (age > a.Life || age < -1) { areas.RemoveAt(i); continue; }
                 if (age < 0) continue; // still in flight
                 if (!a.Landed && !a.Hostile) { Land(a); a.Landed = true; areas[i] = a; }
+                if (!a.Landed && a.Hostile && !a.Gloom && age >= a.Warn) { Strike(a); a.Landed = true; areas[i] = a; }
                 if (a.Gloom) { DrawGloom(a, age); DangerAreas++; }
                 else if (a.Hostile) { DrawDanger(a, age); DangerAreas++; }
                 else { DrawFriendly(a, age); FriendAreas++; }
@@ -861,7 +862,7 @@ namespace ArcaneBrigade
             float o = 1 - (1 - t) * (1 - t) * (1 - t), a = 1 - t;
             Vector2 c = p.At + Vector2.up * .3f;
             ink.Wash(c, 1.1f * p.Size * (1 - .4f * t), pal.Glow, .6f * a, true);
-            Sprite[] frames = vfx.Library?.Get(p.Look + "_Burst");
+            Sprite[] frames = vfx.Library?.Get(p.Hostile ? "Danger_Burst" : p.Look + "_Burst");
             vfx.Flip(frames, c, 2.1f * p.Size, t, p.Seed * 37 % 360, Color.white);
             InkToken token = TokenFor(p.Look);
             int n = PresentationSettings.ReducedEffects ? 3 : 7;
@@ -871,6 +872,23 @@ namespace ArcaneBrigade
                 Vector2 at = c + new Vector2(Mathf.Cos(ang) * d, Mathf.Sin(ang) * d * .7f + o * .4f - t * t * .9f);
                 ink.Token(token, pal, at, (.42f - .2f * t) * p.Size, ang * 57 + t * 360, a, true);
             }
+        }
+
+        /// <summary>An enemy blow lands when its warning ends: the painted enemy burst over the struck ground and stone chips
+        /// thrown up, along the lane for a charge.</summary>
+        private void Strike(Area a)
+        {
+            float size = Mathf.Clamp(a.R * .8f, 1, 2.4f);
+            if (a.Shape == AreaShape.Line)
+                for (int i = 0; i <= 3; i++) AddHostilePop(Vector2.Lerp(a.A, a.B, i / 3f), size * .7f);
+            else AddHostilePop(a.Shape == AreaShape.Cone ? Vector2.Lerp(a.A, a.B, .6f) : a.A, size);
+        }
+
+        private void AddHostilePop(Vector2 at, float size)
+        {
+            if (pops.Count >= MaxPops) pops.RemoveAt(0);
+            pops.Add(new Pop { At = at, Look = ElementLook.Fire, Born = Now, Size = size, Seed = ++seed, Hostile = true });
+            vfx.Spray(Bits(ElementLook.Earth), at, PresentationSettings.ReducedEffects ? 3 : 8, 2.2f * size, 2.4f, .34f, .9f, Color.white);
         }
 
         private void AddPop(Vector2 at, ElementLook look, float size, float delay)
