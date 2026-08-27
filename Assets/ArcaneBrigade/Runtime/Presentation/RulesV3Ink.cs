@@ -474,6 +474,7 @@ namespace ArcaneBrigade
                     ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .4f * a, .8f * a);
                     break;
                 case FieldKind.Gale:
+                    if (Random.value < Time.deltaTime * 30 * a) vfx.Spray(Bits(ElementLook.Wind), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 0, .4f, 1.6f, Color.white, f.Dir * 6);
                     ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a);
                     for (int i = 0; i < 14; i++)
                     {
@@ -482,6 +483,7 @@ namespace ArcaneBrigade
                     }
                     break;
                 case FieldKind.Riptide:
+                    if (Random.value < Time.deltaTime * 30 * a) vfx.Spray(Bits(ElementLook.Water), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 1.5f, .4f, 1.6f, Color.white, Vector2.right * 3);
                 {
                     float x = Mathf.Lerp(-12, 12, t);
                     Vector2 a0 = centre + new Vector2(x, -7), a1 = centre + new Vector2(x, 7);
@@ -490,6 +492,7 @@ namespace ArcaneBrigade
                     break;
                 }
                 case FieldKind.Inferno:
+                    if (Random.value < Time.deltaTime * 24 * a) vfx.Spray(Bits(ElementLook.Fire), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 2.5f, .4f, 1.6f, Color.white, Vector2.up);
                     ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
                     break;
                 case FieldKind.Lost:
@@ -500,6 +503,7 @@ namespace ArcaneBrigade
                     ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a);
                     break;
                 case FieldKind.Pandemic:
+                    if (Random.value < Time.deltaTime * 24 * a) vfx.Spray(Bits(ElementLook.Poison), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 1.2f, .4f, 1.6f, Color.white, default);
                     ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a);
                     for (int i = 0; i < 12; i++)
                     {
@@ -799,6 +803,8 @@ namespace ArcaneBrigade
                     InkPalette p = PaletteFor(a.Look);
                     InkToken token = a.Kind == AuraKind.Heal ? InkToken.Leaf : TokenFor(a.Look);
                     ink.Wash(at, r, p.Glow, .3f * fade, true);
+                    if (Random.value < Time.deltaTime * 7 * fade)
+                        vfx.Spray(a.Kind == AuraKind.Heal ? (vfx.Library?.Get("Heal_Bits") ?? Bits(ElementLook.Bloom)) : Bits(a.Look), unit.Position + new Vector2((Random.value - .5f) * r, .2f), 1, .25f, 2.6f, .3f, .8f, Color.white);
                     for (int i = 0; i < 6; i++)
                     {
                         float u = Mathf.Repeat((now - a.Born) * 1.3f + i / 6f, 1);
@@ -902,6 +908,7 @@ namespace ArcaneBrigade
             ink.Ribbon(InkCanvas.Line(from, to, .22f, 7, true, flick), ArsenalInk.Cyan, .13f, 1, 1, a, true);
             ink.Ribbon(InkCanvas.Line(from, to, .3f, 5, true, flick + 17), ArsenalInk.Silver, .06f, 1, 1, .8f * a, true);
             ink.Wash(to, .55f, ArsenalInk.Cyan.Glow, .6f * a, true);
+            vfx.Flip(vfx.Library?.Get("Storm_Burst"), to, 1.1f, age / ChainLife, c.Seed * 41 % 360, Color.white);
             ink.Token(InkToken.Bolt, ArsenalInk.Cyan, to, .5f, flick * 37 % 360, a, true);
         }
 
@@ -910,6 +917,7 @@ namespace ArcaneBrigade
         {
             InkPalette p = PaletteFor(w.Look);
             float fade = Mathf.Clamp01((w.Until - now) / .3f) * Mathf.Clamp01((now - w.Born) / .15f);
+            vfx.Area(RulesVfx.Shape.Lane, w.A, w.B, .42f, 0, A(Saturate(p.Body), .7f), A(p.Glow, .9f), 1, fade, .1f, 3, false, Ground(w.Look));
             ink.FloorLane(w.A, w.B, .22f, A(p.Body, .75f * fade), A(p.Ink, .5f * fade));
             ink.FloorStroke(w.A + Vector2.up * .18f, w.B + Vector2.up * .18f, p, .08f, 1, 1, fade, 0, 0);
             ink.FloorStroke(w.A - Vector2.up * .2f, w.B - Vector2.up * .2f, p, .06f, 1, 1, .8f * fade, 0, 1);
