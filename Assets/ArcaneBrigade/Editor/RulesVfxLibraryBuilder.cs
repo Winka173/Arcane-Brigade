@@ -12,7 +12,7 @@ namespace ArcaneBrigade.Editor
     /// Run with -executeMethod ArcaneBrigade.Editor.RulesVfxLibraryBuilder.Run.</summary>
     public static class RulesVfxLibraryBuilder
     {
-        private const string NewArt = "Assets/ArcaneBrigade/Art/RulesVFX", Old = "Assets/ArcaneBrigade/Art/CombatVFX", Output = "Assets/ArcaneBrigade/Resources/RulesVfxLibrary.asset";
+        private const string Summons = "Assets/ArcaneBrigade/Resources/BondSummons", NewArt = "Assets/ArcaneBrigade/Art/RulesVFX", Old = "Assets/ArcaneBrigade/Art/CombatVFX", Output = "Assets/ArcaneBrigade/Resources/RulesVfxLibrary.asset";
         private static readonly string[] Looks = { "Fire", "Ice", "Water", "Storm", "Wind", "Poison", "Bloom", "Void", "Light", "Paper", "Earth", "Time", "Sound", "Dream", "Crystal", "Gold" };
         private static readonly Dictionary<string, string[]> OldBits = new Dictionary<string, string[]>
         {
@@ -28,6 +28,7 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             if (Directory.Exists(NewArt)) PrepareNewArt();
+            if (Directory.Exists(Summons)) PrepareSummons();
             var library = AssetDatabase.LoadAssetAtPath<RulesVfxLibrary>(Output);
             if (library == null) { library = ScriptableObject.CreateInstance<RulesVfxLibrary>(); Directory.CreateDirectory(Path.GetDirectoryName(Output)); AssetDatabase.CreateAsset(library, Output); }
             library.Entries.Clear();
@@ -67,6 +68,21 @@ namespace ArcaneBrigade.Editor
             if (!File.Exists(path)) return null;
             Sprite[] parts = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name, System.StringComparer.Ordinal).ToArray();
             return parts.Length > 1 ? parts : null;
+        }
+
+        /// <summary>Bond summon and pickup paintings (Resources/BondSummons/&lt;Kind&gt;.png) import as single sprites with the feet at
+        /// the bottom, sized for the field.</summary>
+        private static void PrepareSummons()
+        {
+            foreach (string path in Directory.GetFiles(Summons, "*.png").Select(p => p.Replace('\\', '/')))
+            {
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null || importer.textureType == TextureImporterType.Sprite && importer.spriteImportMode == SpriteImportMode.Single && importer.maxTextureSize == 256) continue;
+                importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single; importer.alphaIsTransparency = true;
+                importer.mipmapEnabled = false; importer.maxTextureSize = 256;
+                var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); settings.spriteAlignment = (int)SpriteAlignment.BottomCenter; importer.SetTextureSettings(settings);
+                importer.SaveAndReimport();
+            }
         }
 
         /// <summary>New paintings import as sprites; "_Bits" sheets are cut into a 4x2 grid; grounds wrap clamp.</summary>
