@@ -845,7 +845,7 @@ namespace ArcaneBrigade
                     string resultId = id;
                     if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage")
                     {
-                        UnitDefinition[] pool = Array.FindAll(catalog.Companions, u => !u.SpecialRecruit && !StorySpecies(u.Id) && string.IsNullOrEmpty(u.ExclusiveHero) && u.UnlockWave <= State.Wave && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), u));
+                        UnitDefinition[] pool = Array.FindAll(catalog.Companions, u => u.HasPainting && !u.SpecialRecruit && !StorySpecies(u.Id) && string.IsNullOrEmpty(u.ExclusiveHero) && u.UnlockWave <= State.Wave && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), u));
                         pool = HeroNurseryPool(pool);
                         if (pool.Length > 0) resultId = pool[Next(ref State.WeaponRandom, pool.Length)].Id;
                     }
@@ -1059,7 +1059,7 @@ namespace ArcaneBrigade
             foreach (MergeDroughtEntry drought in State.MergeDrought)
             {
                 UnitDefinition unit = catalog.Unit(drought.UnitId);
-                if (unit.SpecialRecruit != (offers == State.SpecialOffers) || unit.UnlockWave > State.Wave || !Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && VariantFree(unit.Id, weapon))) continue;
+                if (!unit.HasPainting || unit.SpecialRecruit != (offers == State.SpecialOffers) || unit.UnlockWave > State.Wave || !Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && VariantFree(unit.Id, weapon))) continue;
                 drought.Misses = (offers ?? State.Offers).Exists(offer => !offer.Sold && offer.Kind == OfferKind.Companion && offer.Id == drought.UnitId) ? 0 : Mathf.Min(6, drought.Misses + 1);
             }
         }
