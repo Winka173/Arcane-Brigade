@@ -29,6 +29,13 @@ namespace ArcaneBrigade.Editor
         {
             if (Directory.Exists(NewArt)) PrepareNewArt();
             if (Directory.Exists(Summons)) PrepareSummons();
+            // new enemy kinds and companions drawn later: single sprites, feet at the bottom, sized to their class on screen
+            PrepareUnits("Assets/ArcaneBrigade/Resources/EnemiesV3", id =>
+            {
+                EnemyRuleDefinition row = EnemyRulesV3Catalog.Find(id);
+                return row == null ? 1.3f : row.Tier == EnemyBodyTier.Small ? .9f : row.Tier == EnemyBodyTier.LargeSpecial ? 1.8f : 1.3f;
+            });
+            PrepareUnits("Assets/ArcaneBrigade/Resources/CompanionsV3", id => 1.2f);
             var library = AssetDatabase.LoadAssetAtPath<RulesVfxLibrary>(Output);
             if (library == null) { library = ScriptableObject.CreateInstance<RulesVfxLibrary>(); Directory.CreateDirectory(Path.GetDirectoryName(Output)); AssetDatabase.CreateAsset(library, Output); }
             library.Entries.Clear();
@@ -68,6 +75,23 @@ namespace ArcaneBrigade.Editor
             if (!File.Exists(path)) return null;
             Sprite[] parts = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name, System.StringComparer.Ordinal).ToArray();
             return parts.Length > 1 ? parts : null;
+        }
+
+        private static void PrepareUnits(string folder, System.Func<string, float> height)
+        {
+            if (!Directory.Exists(folder)) return;
+            foreach (string path in Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/')))
+            {
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null) continue;
+                importer.GetSourceTextureWidthAndHeight(out int w, out int h);
+                float ppu = Mathf.Max(1, Mathf.Min(h, 512) / height(Path.GetFileNameWithoutExtension(path)));
+                if (importer.textureType == TextureImporterType.Sprite && Mathf.Abs(importer.spritePixelsPerUnit - ppu) < .5f) continue;
+                importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single; importer.alphaIsTransparency = true;
+                importer.mipmapEnabled = false; importer.maxTextureSize = 512; importer.spritePixelsPerUnit = ppu;
+                var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); settings.spriteAlignment = (int)SpriteAlignment.BottomCenter; importer.SetTextureSettings(settings);
+                importer.SaveAndReimport();
+            }
         }
 
         /// <summary>Bond summon and pickup paintings (Resources/BondSummons/&lt;Kind&gt;.png) import as single sprites with the feet at

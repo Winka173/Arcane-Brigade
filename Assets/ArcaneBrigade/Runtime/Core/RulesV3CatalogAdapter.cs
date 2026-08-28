@@ -152,7 +152,9 @@ namespace ArcaneBrigade
                 UnitDefinition friend=ScriptableObject.CreateInstance<UnitDefinition>();
                 friend.hideFlags=HideFlags.DontSave; friend.Id=row.Id;friend.DisplayName=row.Name;friend.Rarity=row.Rarity;
                 friend.Health=MortalityTuning.DefaultMaxHealth;friend.Weapon=row.Melee?melee:ranged;friend.Tags=BondV3Catalog.Tags(row.Id);
-                friend.Price=RulesV3Tuning.RecruitPrice;companions.Add(friend);
+                friend.Price=RulesV3Tuning.RecruitPrice;
+                // its painting once drawn (Resources/CompanionsV3/<Id>); without one the shops keep it out
+                friend.Body=Resources.Load<Sprite>("CompanionsV3/"+row.Id);companions.Add(friend);
             }
             catalog.Companions=companions.ToArray();
             BondV3Catalog.Configure(catalog);

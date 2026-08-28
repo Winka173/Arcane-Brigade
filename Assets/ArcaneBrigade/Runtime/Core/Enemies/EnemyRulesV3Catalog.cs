@@ -160,7 +160,11 @@ namespace ArcaneBrigade
         }
         private static UnitDefinition Dress(UnitDefinition unit,List<UnitDefinition> painted,EnemyBodyTier tier)
         {
-            if(Painted(unit) || painted.Count==0)return unit;
+            if(Painted(unit))return unit;
+            // its own painting when it has been drawn (Resources/EnemiesV3/<Id>), otherwise a borrowed painted body
+            Sprite own=Resources.Load<Sprite>("EnemiesV3/"+unit.Id);
+            if(own!=null){unit.Body=own;unit.BodyScale=1;return unit;}
+            if(painted.Count==0)return unit;
             int third=Mathf.Max(1,painted.Count/3), start=tier==EnemyBodyTier.Small?0:tier==EnemyBodyTier.LargeSpecial?painted.Count-third:third;
             int span=Mathf.Min(third,painted.Count-start); uint hash=17; foreach(char c in unit.Id)hash=hash*31+c;
             UnitDefinition donor=painted[start+(int)(hash%(uint)span)];
