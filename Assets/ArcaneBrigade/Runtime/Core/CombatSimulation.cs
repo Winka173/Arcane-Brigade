@@ -1479,7 +1479,7 @@ namespace ArcaneBrigade
 
         public UnitState AddExpandedPresentationFixture(UnitDefinition definition, Vector2 position, float health)
         {
-            if (!RunPaths.K5Capture && !(RunPaths.K7Capture && Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k13") >= 0)) throw new InvalidOperationException("Expanded fixture requires isolated capture mode");
+            if (!RunPaths.K5Capture && !RulesInkCapture.Requested && !(RunPaths.K7Capture && Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k13") >= 0)) throw new InvalidOperationException("Expanded fixture requires isolated capture mode");
             UnitState enemy = Spawn(definition, Faction.Enemy, position); enemy.Health = health; return enemy;
         }
 

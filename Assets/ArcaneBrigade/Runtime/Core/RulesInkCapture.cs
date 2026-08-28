@@ -73,7 +73,18 @@ namespace ArcaneBrigade
             if (owner.Simulation.Bonds != null) owner.Simulation.Bonds.RuleTriggered += e => rules[e.Rule] = rules.TryGetValue(e.Rule, out int n) ? n + 1 : 1;
             if (owner.Simulation.SkillsV3 != null) owner.Simulation.SkillsV3.CastRequested += c => rules["cast:" + c.SkillId] = rules.TryGetValue("cast:" + c.SkillId, out int n) ? n + 1 : 1;
             // the real fight: bond steps and skills fire on their own
-            for (int shot = 0; shot < 4; shot++)
+            int shots = int.TryParse(Arg("-shots"), out int wanted) ? wanted : 4;
+            if (int.TryParse(Arg("-crowd"), out int crowd) && crowd > 0)
+            {
+                // a late-wave crowd around the hero, to measure frame cost with every effect on
+                UnitDefinition[] kinds = catalog.Enemies.Where(u => u != null && !u.IsBoss).ToArray();
+                for (int i = 0; i < crowd && kinds.Length > 0; i++)
+                {
+                    float ang = i * 2.399f, dist = 3 + (i % 9) * .9f;
+                    owner.Simulation.AddExpandedPresentationFixture(kinds[i % kinds.Length], owner.Simulation.Champion.Position + new Vector2(Mathf.Cos(ang) * dist, Mathf.Sin(ang) * dist * .7f), kinds[i % kinds.Length].Health * 60);
+                }
+            }
+            for (int shot = 0; shot < shots; shot++)
             {
                 // frame cost with every rules effect on: frames and worst frame over each 3 s
                 int frames = 0; float worst = 0, until = Time.realtimeSinceStartup + 3f;
