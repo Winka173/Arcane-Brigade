@@ -50,6 +50,7 @@ namespace ArcaneBrigade
             var catalog = Resources.Load<RunCatalog>("RunCatalog"); var storage = new RunStorage(RunPaths.Root);
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.5f);
+            if (Arg("-videoPath") != null) { yield return Showcase(catalog, storage); yield break; }
             string house = Arg("-house") ?? "Ember";
             using (var session = new RunSession(catalog))
             {
@@ -134,6 +135,81 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(.6f); Count("arena", ink); yield return Shot("staged-arena");
             Write(); Application.Quit(0);
         }
+        private static void SaveHouseRun(RunCatalog catalog, RunStorage storage, string house, int wave, int seed)
+        {
+            using (var session = new RunSession(catalog))
+            {
+                session.Start("LanternKnight", seed); session.State.Wave = wave; session.State.Phase = SessionPhase.Combat;
+                string bond = BondV3Catalog.BondId(house) ?? house;
+                UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(10).ToArray();
+                string weapon = catalog.Weapons.Where(w => w != null && w.Kind != WeaponKind.Contact).Select(w => w.Id).FirstOrDefault();
+                session.State.Roster.Clear();
+                foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = weapon, Tier = 2 });
+                storage.SaveRun(session.State);
+            }
+        }
+
+        // the bond moments each house shows in the clip
+        private static readonly Dictionary<string, string[]> Moments = new Dictionary<string, string[]>
+        {
+            { "Ember", new[] { "burst", "burst", "inferno" } }, { "Frost", new[] { "freeze", "shatter", "blizzard" } },
+            { "Storm", new[] { "discharge", "storm-cloud", "discharge" } }, { "Tide", new[] { "tide-splash", "riptide", "tide-splash" } },
+            { "Venom", new[] { "rot", "rot", "pandemic" } }, { "Starlight", new[] { "falling-star", "falling-star", "falling-star" } },
+            { "Stone", new[] { "horn-pile-up", "collision", "crack" } }, { "Archive", new[] { "rune", "rune", "species-recorded" } },
+        };
+
+        /// <summary>A clip of the rules effects (-videoPath out.mp4 -ffmpegPath ffmpeg.exe [-houses A,B]): for each house a real
+        /// wave-12 fight with its own team, then its companions cast their skills around the hero, its bond moments fire, an
+        /// enemy blow lands, and a field moment sweeps the arena.</summary>
+        private IEnumerator Showcase(RunCatalog catalog, RunStorage storage)
+        {
+            string[] houses = (Arg("-houses") ?? "Ember,Frost,Storm,Tide,Venom,Starlight,Stone,Archive").Split(',');
+            const float perHouse = 10.5f;
+            var recorder = gameObject.AddComponent<K7FramebufferRecorder>();
+            bool started = false;
+            int index = 0;
+            foreach (string house in houses)
+            {
+                SaveHouseRun(catalog, storage, house, 12, 281000 + index++);
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+                ArenaController owner = null;
+                for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
+                if (owner?.Simulation == null || owner.RulesInk == null) { log.Add("NO COMBAT " + house); continue; }
+                if (!started) { recorder.Begin(houses.Length * perHouse + 1); started = true; }
+                RulesV3Ink ink = owner.RulesInk; CombatSimulation sim = owner.Simulation;
+                float houseStart = Time.realtimeSinceStartup;
+                yield return new WaitForSecondsRealtime(3.5f);   // the real fight first
+                var friends = sim.Units.Where(u => u.Faction == Faction.Companion && u.Alive).Take(4).ToList();
+                Vector2 h = sim.Champion.Position;
+                Vector2[] spots = { new Vector2(-3.4f, 1.6f), new Vector2(3.2f, 1.2f), new Vector2(-2.6f, -2f), new Vector2(2.8f, -2.2f) };
+                for (int i = 0; i < friends.Count; i++)
+                {
+                    UnitState c = friends[i];
+                    SkillShape shape = i == 2 ? SkillShape.Line : i == 3 ? SkillShape.Cone : SkillShape.Disc;
+                    Vector2 at = h + spots[i];
+                    ink.OnCast(new SkillCastRequest(c.Id, c.Definition.Id, shape, at, shape == SkillShape.Line ? at + new Vector2(3.4f, .3f) : at + new Vector2(2.4f, .9f), shape == SkillShape.Line ? .5f : 1.5f, 3.5f, 0, 1));
+                    yield return new WaitForSecondsRealtime(.45f);
+                }
+                string[] moments = Moments.TryGetValue(house, out string[] m) ? m : new[] { "burst" };
+                var foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).Take(6).ToList();
+                foreach (string rule in moments)
+                {
+                    UnitState subject = foes.Count > 0 ? foes[UnityEngine.Random.Range(0, foes.Count)] : sim.Champion;
+                    ink.OnBondRule(new BondRuleEvent(rule, subject, 1));
+                    if (house == "Storm" && friends.Count > 0) foreach (UnitState foe in foes) ink.OnBondDamage(new BondDamageRequest(foe, friends[0], 10, "storm-chain"));
+                    yield return new WaitForSecondsRealtime(.6f);
+                }
+                ink.OnDanger(new EnemyDangerRequest(index, sim.Champion.Id, EnemyDangerShape.Circle, EnemyRuleAction.Damage, "slam", h + new Vector2(.5f, 3f), Vector2.zero, 1.4f, 1.2f, .4f, 1));
+                if (friends.Count > 1) ink.OnSupport(new BondSupportRequest(BondSupportKind.Shield, friends[1], .2f, 3, 0, "bulwark"));
+                if (friends.Count > 2) ink.OnSupport(new BondSupportRequest(BondSupportKind.Heal, friends[2], .2f, 1, 0, "mend"));
+                while (Time.realtimeSinceStartup - houseStart < perHouse) yield return null;
+            }
+            float wait = 0;
+            while (started && !recorder.Complete && wait < 30) { yield return new WaitForSecondsRealtime(.5f); wait += .5f; }
+            log.Add("video " + (recorder.Passed ? "ok" : "FAILED") + " " + Arg("-videoPath"));
+            Write(); Application.Quit(recorder.Passed ? 0 : 1);
+        }
+
         private void OnDestroy() { Application.logMessageReceived -= OnLog; }
     }
 }
