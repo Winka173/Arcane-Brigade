@@ -135,6 +135,9 @@ namespace ArcaneBrigade
             sequence++;
         }
 
+        /// <summary>The element colour of a hit's source, when it has one (set by the rules ink, which knows the bonds).</summary>
+        public static System.Func<CombatEvent, Color?> ElementTint;
+
         private void ShowDamage(CombatEvent combatEvent)
         {
             if (!PresentationSettings.DamageNumbers) return;
@@ -165,6 +168,8 @@ namespace ArcaneBrigade
             float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
             float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
             number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
+            // our damage reads in the element that dealt it (fire orange, frost blue, venom green...); a crit is that colour, brighter
+            if (!champion && ElementTint != null && ElementTint(combatEvent) is Color element) number.Color = combatEvent.Critical ? Color.Lerp(element, Color.white, .3f) : element;
             number.Age = 0f;
             number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
             float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));

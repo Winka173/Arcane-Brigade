@@ -8,22 +8,13 @@ namespace ArcaneBrigade.Editor
 {
     /// <summary>Builds Resources/RulesVfxLibrary.asset: the painted effect art for the rules effects. New paintings in
     /// Art/RulesVFX (&lt;Look&gt;_Burst_f0..f3, &lt;Look&gt;_Ground, &lt;Look&gt;_Bits as a 4x2 sheet, Shield_f0..f3, Heal/Snow/Rain_Bits,
-    /// Danger_Ground, Danger_Burst_f0..f3) win; until they exist each key falls back to the game's existing CombatVFX paintings.
+    /// Danger_Ground, Danger_Burst_f0..f3, &lt;Look&gt;_Loop_f0..f3); a key with no drawn art is left out and the effect falls back to
+    /// code ink (old CombatVFX bullets are never reused).
     /// Run with -executeMethod ArcaneBrigade.Editor.RulesVfxLibraryBuilder.Run.</summary>
     public static class RulesVfxLibraryBuilder
     {
-        private const string Summons = "Assets/ArcaneBrigade/Resources/BondSummons", NewArt = "Assets/ArcaneBrigade/Art/RulesVFX", Old = "Assets/ArcaneBrigade/Art/CombatVFX", Output = "Assets/ArcaneBrigade/Resources/RulesVfxLibrary.asset";
+        private const string Summons = "Assets/ArcaneBrigade/Resources/BondSummons", NewArt = "Assets/ArcaneBrigade/Art/RulesVFX", Output = "Assets/ArcaneBrigade/Resources/RulesVfxLibrary.asset";
         private static readonly string[] Looks = { "Fire", "Ice", "Water", "Storm", "Wind", "Poison", "Bloom", "Void", "Light", "Paper", "Earth", "Time", "Sound", "Dream", "Crystal", "Gold" };
-        private static readonly Dictionary<string, string[]> OldBits = new Dictionary<string, string[]>
-        {
-            { "Fire", new[] { "Allied/LanternEmber_v1" } }, { "Ice", new[] { "Allied/GlobeShard_v1" } }, { "Water", new[] { "Allied/TeaDrop_v1", "Allied/Bubble_v1" } },
-            { "Storm", new[] { "Allied/AllySpark_v1", "Allied/MagnetBolt_v1" } }, { "Wind", new[] { "Juice/InkPuff_f0_v1", "Juice/InkPuff_f1_v1" } },
-            { "Poison", new[] { "Allied/Bubble_v1" } }, { "Bloom", new[] { "Allied/LeafBolt_v1" } }, { "Void", new[] { "Juice/InkPuff_f2_v1", "Juice/InkPuff_f3_v1" } },
-            { "Light", new[] { "Allied/Star_v1", "Allied/AllySpark_v1" } }, { "Paper", new[] { "Allied/Letter_v1" } },
-            { "Earth", new[] { "Juice/Chip_0_v1", "Juice/Chip_1_v1", "Juice/Chip_2_v1", "Juice/Chip_3_v1", "Juice/Chip_4_v1", "Juice/Chip_5_v1" } },
-            { "Time", new[] { "Allied/CompassDart_v1" } }, { "Sound", new[] { "Allied/MusicNote_v1", "Allied/BellChime_v1" } }, { "Dream", new[] { "Allied/Star_v1" } },
-            { "Crystal", new[] { "Allied/GlobeShard_v1" } }, { "Gold", new[] { "Allied/AllySpark_v1", "Allied/Star_v1" } },
-        };
 
         public static void Run()
         {
@@ -40,18 +31,18 @@ namespace ArcaneBrigade.Editor
             if (library == null) { library = ScriptableObject.CreateInstance<RulesVfxLibrary>(); Directory.CreateDirectory(Path.GetDirectoryName(Output)); AssetDatabase.CreateAsset(library, Output); }
             library.Entries.Clear();
             int fresh = 0;
+            // only art drawn for these effects: old bullets and projectiles are never reused as effect pieces
             foreach (string look in Looks)
             {
-                fresh += Add(library, look + "_Burst", Frames(NewArt + "/" + look + "_Burst_f{0}.png", 4) ?? Frames(Old + "/Juice/BlastFlash_f{0}_v1.png", 4), Frames(NewArt + "/" + look + "_Burst_f{0}.png", 4) != null);
+                fresh += Add(library, look + "_Burst", Frames(NewArt + "/" + look + "_Burst_f{0}.png", 4), true);
+                fresh += Add(library, look + "_Loop", Frames(NewArt + "/" + look + "_Loop_f{0}.png", 4), true);
                 fresh += Add(library, look + "_Ground", One(NewArt + "/" + look + "_Ground.png"), true);
-                Sprite[] bits = Sheet(NewArt + "/" + look + "_Bits.png");
-                fresh += Add(library, look + "_Bits", bits ?? OldBits[look].Select(p => SpriteAt(Old + "/" + p + ".png")).Where(s => s != null).ToArray(), bits != null);
+                fresh += Add(library, look + "_Bits", Sheet(NewArt + "/" + look + "_Bits.png"), true);
             }
             fresh += Add(library, "Shield", Frames(NewArt + "/Shield_f{0}.png", 4), true);
             foreach (string key in new[] { "Heal_Bits", "Snow_Bits", "Rain_Bits" }) fresh += Add(library, key, Sheet(NewArt + "/" + key + ".png"), true);
             fresh += Add(library, "Danger_Ground", One(NewArt + "/Danger_Ground.png"), true);
-            Sprite[] danger = Frames(NewArt + "/Danger_Burst_f{0}.png", 4);
-            fresh += Add(library, "Danger_Burst", danger ?? Frames(Old + "/Juice/HostileBlast_f{0}_v1.png", 4), danger != null);
+            fresh += Add(library, "Danger_Burst", Frames(NewArt + "/Danger_Burst_f{0}.png", 4), true);
             EditorUtility.SetDirty(library); AssetDatabase.SaveAssets();
             Debug.Log("RulesVfxLibraryBuilder: " + library.Entries.Count + " keys, " + fresh + " from new paintings");
         }

@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     /// stays cheap.</summary>
     public sealed class RulesVfx : MonoBehaviour
     {
-        private const int AreaOrder = 65, BurstOrder = 2150, ParticleOrder = 2160, MaxParticlesPerSystem = 300;
+        private const int AreaOrder = 65, LoopOrder = 72, BurstOrder = 2150, ParticleOrder = 2160, MaxParticlesPerSystem = 300;
         private sealed class AreaView { public GameObject Go; public MeshRenderer Renderer; }
         private sealed class FlipView { public SpriteRenderer Renderer; }
         private readonly List<AreaView> areas = new List<AreaView>();
@@ -122,8 +122,27 @@ namespace ArcaneBrigade
                 flips.Add(new FlipView { Renderer = sr });
             }
             SpriteRenderer r = flips[usedFlips++].Renderer;
-            r.enabled = true; r.sprite = sprite; r.color = tint;
+            r.enabled = true; r.sprite = sprite; r.color = tint; r.sortingOrder = BurstOrder;
             float unit = Mathf.Max(.01f, Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y)), scale = size * (.85f + .3f * t) / unit;
+            r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale, scale, 1);
+        }
+
+        /// <summary>One frame of a looping painted motif (flame, swirl, sparks...): phase in cycles picks the frame; constant size.</summary>
+        public void Loop(Sprite[] frames, Vector2 at, float size, float phase, float angle, Color tint)
+        {
+            if (frames == null || frames.Length == 0 || size <= .01f) return;
+            Sprite sprite = frames[Mathf.Clamp((int)(Mathf.Repeat(phase, 1) * frames.Length), 0, frames.Length - 1)];
+            if (sprite == null) return;
+            if (usedFlips == flips.Count)
+            {
+                var go = new GameObject("Rules ink burst"); go.transform.SetParent(transform, false);
+                var sr = go.AddComponent<SpriteRenderer>(); sr.sortingOrder = BurstOrder;
+                flips.Add(new FlipView { Renderer = sr });
+            }
+            SpriteRenderer r = flips[usedFlips++].Renderer;
+            // element loops stand on the floor: over the floor ink, under the bodies
+            r.enabled = true; r.sprite = sprite; r.color = tint; r.sortingOrder = LoopOrder;
+            float unit = Mathf.Max(.01f, Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y)), scale = size / unit;
             r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale, scale, 1);
         }
 

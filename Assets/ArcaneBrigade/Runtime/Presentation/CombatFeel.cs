@@ -51,6 +51,9 @@ namespace ArcaneBrigade
             }
         }
         public void Clear() { trauma = slow = flash = 0; }
+        /// <summary>A rules moment with weight (a capstone, a shatter, an enemy blow landing, a boss phase): a shake and an optional
+        /// soft flash; never a held frame. Reduced Shake / Reduced Flashes still apply through CameraOffset and ScreenFlash.</summary>
+        public void Accent(float shake, float flashAmount) { AddTrauma(shake, shake < RoutineTraumaCap); flash = Mathf.Max(flash, flashAmount); }
         public void Advance(float delta)
         {
             clock += delta; trauma = Mathf.Max(0, trauma - delta * 1.8f);
