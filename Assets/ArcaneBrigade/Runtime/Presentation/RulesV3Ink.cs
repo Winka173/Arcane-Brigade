@@ -246,6 +246,7 @@ namespace ArcaneBrigade
                 float ang = (++seed * 47) % 360 * Mathf.Deg2Rad;
                 fields.Add(new Field { Kind = field, Born = Now, Life = life, Dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .4f).normalized });
                 owner?.Feel.Accent(.35f, .15f);
+                Sound("rules.field", e.Position);
             }
             // a bond step fires: a burst in its element on the subject, capped per frame for big crowds
             if (popsThisFrame < MaxPopsPerFrame && Loud(e.Rule, out float size))
@@ -260,6 +261,7 @@ namespace ArcaneBrigade
                     throws.Add(new Throw { From = e.Position + new Vector2(2.4f, 7.5f), To = e.Position, Born = Now, Life = delay, Look = ElementLook.Light, Token = InkToken.Star, Seed = ++seed, Straight = true });
                 }
                 AddPop(e.Position, LookFor(e.Rule), size, delay);
+                Sound(LookFor(e.Rule), "burst", e.Position);
                 if (size >= 1.5f) owner?.Feel.Accent(.3f, .1f); else if (size >= 1.1f) owner?.Feel.Accent(.12f, 0);
             }
             if (bursts == null || burstsThisFrame >= MaxBurstsPerFrame) return;
@@ -280,6 +282,7 @@ namespace ArcaneBrigade
             if (caster != null && caster.Alive)
             {
                 EnemyPop(caster.Position, look, .7f);
+                Sound(look, "cast", caster.Position);
                 float distance = (c.Position - caster.Position).magnitude;
                 if (distance > 1.2f)
                 {
@@ -294,6 +297,7 @@ namespace ArcaneBrigade
         public void OnDanger(EnemyDangerRequest d)
         {
             AreaShape shape = d.Shape == EnemyDangerShape.Line ? AreaShape.Line : d.Shape == EnemyDangerShape.Cone ? AreaShape.Cone : d.Shape == EnemyDangerShape.Ring ? AreaShape.Ring : d.Shape == EnemyDangerShape.Arena ? AreaShape.Arena : AreaShape.Disc;
+            Sound("rules.warn", d.Position);
             Add(new Area { Shape = shape, Hostile = true, A = d.Position, B = d.End, R = Mathf.Max(.4f, d.Radius), Born = Now, Warn = Mathf.Max(.1f, d.WarningTime), Life = Mathf.Max(.1f, d.WarningTime) + Mathf.Max(.2f, d.Duration), Look = ElementLook.Fire, Seed = ++seed });
         }
 
@@ -307,6 +311,7 @@ namespace ArcaneBrigade
             chainsThisFrame++;
             if (chains.Count >= MaxChains) chains.RemoveAt(0);
             chains.Add(new Chain { A = d.Attacker.Position, B = d.Target.Position, Born = Now, Seed = ++seed });
+            Sound("rules.chain", d.Target.Position);
         }
 
         /// <summary>A bond's support: shields and heals as auras on the friend, walls as inked segments, time stop and the
@@ -383,6 +388,7 @@ namespace ArcaneBrigade
                 if (auras[i].Unit == unit.Id && auras[i].Kind == kind) { Aura a = auras[i]; a.Until = Mathf.Max(a.Until, until); auras[i] = a; return; }
             if (auras.Count >= MaxAuras) auras.RemoveAt(0);
             auras.Add(new Aura { Unit = unit.Id, Kind = kind, Born = Now, Until = until, Look = look });
+            if (unit.Faction != Faction.Enemy && (kind == AuraKind.Heal || kind == AuraKind.Shield)) Sound(kind == AuraKind.Heal ? "rules.heal" : "rules.shield", unit.Position);
         }
 
         /// <summary>The hero's rule actions: areas in the hero's own element look, shields and heals as auras on the friend.</summary>
@@ -429,6 +435,7 @@ namespace ArcaneBrigade
                 case EnemyRuleAction.Phase:
                     EnemyPop(e.Position, ElementLook.Fire, 2.6f);
                     owner?.Feel.Accent(.55f, .35f);
+                    Sound("rules.phase", e.Position);
                     fields.Add(new Field { Kind = FieldKind.Realm, Born = Now, Life = 1.2f });
                     return;
             }
@@ -544,15 +551,15 @@ namespace ArcaneBrigade
             => Add(new Area { Shape = AreaShape.Disc, A = at, R = .8f, Born = Now, Life = Mathf.Max(.6f, lifetime), Look = ElementLook.Fire, Seed = ++seed, HasMotif = true, Motif = InkToken.Ember });
 
         /// <summary>A shield breaking on a friend: a loud glass pop.</summary>
-        public void OnShieldBroken(UnitState friend) { if (friend != null) EnemyPop(friend.Position, ElementLook.Crystal, 1.1f); }
+        public void OnShieldBroken(UnitState friend) { if (friend != null) { EnemyPop(friend.Position, ElementLook.Crystal, 1.1f); Sound("rules.shieldbreak", friend.Position); } }
 
         /// <summary>Every friend down at once: the arena darkens before the wave ends.</summary>
         public void OnWaveLost(FriendWaveLostEvent e) => fields.Add(new Field { Kind = FieldKind.Lost, Born = Now, Life = 2.5f });
 
-        public void OnFell(FriendMortalityEvent e) { fallen[e.FriendId] = e; fallenAt[e.FriendId] = Now; }
+        public void OnFell(FriendMortalityEvent e) { fallen[e.FriendId] = e; fallenAt[e.FriendId] = Now; Sound("rules.fall", e.Position); }
         // the mortality clock may differ from the combat clock: the countdown runs from when the fall was seen
         private readonly Dictionary<int, float> fallenAt = new Dictionary<int, float>();
-        public void OnRose(FriendMortalityEvent e) { fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
+        public void OnRose(FriendMortalityEvent e) { Sound("rules.rise", e.Position); fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
 
         public void OnEntity(RulesV3EntityRequest e)
         {
@@ -560,6 +567,7 @@ namespace ArcaneBrigade
             else
             {
                 entities.Remove(e.Id);
+                if (e.Change == RulesV3EntityChange.Collected) Sound("rules.pickup", e.Position);
                 if (e.Change == RulesV3EntityChange.Collected && bursts != null) bursts.Burst(LookFor(e.Rule), e.Position, Vector2.up, .8f);
             }
         }
@@ -733,6 +741,7 @@ namespace ArcaneBrigade
             Vector2 c = a.Shape == AreaShape.Line ? (a.A + a.B) * .5f : a.A;
             float size = Mathf.Clamp(a.R * .9f, .9f, 2.2f);
             AddPop(c, a.Look, size, 0);
+            Sound(a.Look, "land", c);
             vfx.Spray(Bits(a.Look), c, PresentationSettings.ReducedEffects ? 5 : 14, 2.4f * size, 2.2f, .42f, .9f, Color.white);
         }
 
@@ -908,6 +917,7 @@ namespace ArcaneBrigade
         {
             float size = Mathf.Clamp(a.R * .8f, 1, 2.4f);
             owner?.Feel.Accent(.2f + .06f * size, 0);
+            Sound("rules.strike", a.A);
             if (a.Shape == AreaShape.Line)
                 for (int i = 0; i <= 3; i++) AddHostilePop(Vector2.Lerp(a.A, a.B, i / 3f), size * .7f);
             else AddHostilePop(a.Shape == AreaShape.Cone ? Vector2.Lerp(a.A, a.B, .6f) : a.A, size);
@@ -1048,6 +1058,11 @@ namespace ArcaneBrigade
         }
 
         private static Color A(Color c, float a) { c.a = a; return c; }
+
+        /// <summary>The rules sound for an element moment (rules.&lt;look&gt;.cast / land / burst) or a shared one (rules.heal...),
+        /// placed in the world so off-screen ones are culled; cue cooldowns keep a crowd from stacking them.</summary>
+        private static void Sound(string id, Vector2 at) => CheckpointAudio.PlayWorldId(id, at);
+        private static void Sound(ElementLook look, string kind, Vector2 at) { if (look != ElementLook.None) Sound("rules." + look.ToString().ToLowerInvariant() + "." + kind, at); }
         /// <summary>The element colour pushed toward full saturation, so an added glow stays its colour instead of going white.</summary>
         private static Color Saturate(Color c) { Color.RGBToHSV(c, out float h, out float s, out float v); return Color.HSVToRGB(h, Mathf.Min(1, s * 1.5f + .15f), v); }
 

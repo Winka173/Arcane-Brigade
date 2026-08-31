@@ -20,6 +20,7 @@ namespace ArcaneBrigade.Editor
         {
             if (Directory.Exists(NewArt)) PrepareNewArt();
             if (Directory.Exists(Summons)) PrepareSummons();
+            PrepareSounds();
             // new enemy kinds and companions drawn later: single sprites, feet at the bottom, sized to their class on screen
             PrepareUnits("Assets/ArcaneBrigade/Resources/EnemiesV3", id =>
             {
@@ -66,6 +67,22 @@ namespace ArcaneBrigade.Editor
             if (!File.Exists(path)) return null;
             Sprite[] parts = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name, System.StringComparer.Ordinal).ToArray();
             return parts.Length > 1 ? parts : null;
+        }
+
+        /// <summary>The rules sounds import like the game's other effect sounds: mono Vorbis at 0.8, compressed in memory.</summary>
+        private static void PrepareSounds()
+        {
+            const string folder = "Assets/ArcaneBrigade/Resources/Audio/Arcane/Sfx";
+            if (!Directory.Exists(folder)) return;
+            foreach (string path in Directory.GetFiles(folder, "rules_*.wav").Select(p => p.Replace('\\', '/')))
+            {
+                var importer = AssetImporter.GetAtPath(path) as AudioImporter;
+                if (importer == null) continue;
+                AudioImporterSampleSettings s = importer.defaultSampleSettings;
+                if (s.loadType == AudioClipLoadType.CompressedInMemory && s.compressionFormat == AudioCompressionFormat.Vorbis && Mathf.Abs(s.quality - .8f) < .01f && importer.forceToMono) continue;
+                s.loadType = AudioClipLoadType.CompressedInMemory; s.compressionFormat = AudioCompressionFormat.Vorbis; s.quality = .8f;
+                importer.defaultSampleSettings = s; importer.forceToMono = true; importer.SaveAndReimport();
+            }
         }
 
         private static void PrepareUnits(string folder, System.Func<string, float> height)
