@@ -188,18 +188,43 @@ MonoBehaviour:
     - {fileID: 8789494428654656458, guid: 5e6bfb45bf8fae34ba3ebaf4b146e2c5, type: 3}
     - {fileID: -2911218899684781087, guid: 5e6bfb45bf8fae34ba3ebaf4b146e2c5, type: 3}
     - {fileID: -4719285357256662591, guid: 5e6bfb45bf8fae34ba3ebaf4b146e2c5, type: 3}
+  - Key: Void_Burst
+    Frames:
+    - {fileID: 21300000, guid: ba7f994913c8190448fc6802ae8caa3b, type: 3}
+    - {fileID: 21300000, guid: 61daec3e4b851c943a00e5d42167c031, type: 3}
+    - {fileID: 21300000, guid: f59f0c1ce96b27243b44941a498d529e, type: 3}
+    - {fileID: 21300000, guid: bba80ee8d7c3e3244be1823043c30850, type: 3}
   - Key: Void_Loop
     Frames:
     - {fileID: 21300000, guid: 59fb03c9b6d58964ebcd77620dd615c3, type: 3}
     - {fileID: 21300000, guid: 5333e2193f387c74cb16d820c2f58d6d, type: 3}
     - {fileID: 21300000, guid: 3e28cfed9a0d10c4894d037116d8b67f, type: 3}
     - {fileID: 21300000, guid: 175cd4dc5eb4e684e9e527b4757e3618, type: 3}
+  - Key: Void_Ground
+    Frames:
+    - {fileID: 21300000, guid: 93a93dc34972c0442aa86f8b6aaf851e, type: 3}
+  - Key: Void_Bits
+    Frames:
+    - {fileID: -3554840975128400248, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: 1457421771780757145, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: -6364949500802695297, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: -7145990747214850390, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: 7941748322345052234, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: -1053046740794517759, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: 8258869628367641686, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
+    - {fileID: 4793605121601514907, guid: 4dc2833cda50efc4c8c36f566defaacc, type: 3}
   - Key: Light_Burst
     Frames:
     - {fileID: 21300000, guid: a554f17f5148bd8468471207aafec6c7, type: 3}
     - {fileID: 21300000, guid: 68bf247cd903afa44a063f324de1812b, type: 3}
     - {fileID: 21300000, guid: 438196544e2ad534e81bbd5bb66f765a, type: 3}
     - {fileID: 21300000, guid: 331ee09c05508564499e9f251d6c98da, type: 3}
+  - Key: Light_Loop
+    Frames:
+    - {fileID: 21300000, guid: 0fd18b3f07e7b044fa2e4bba8a0d4814, type: 3}
+    - {fileID: 21300000, guid: b02e06d1cb162234a802ec96b667ba2c, type: 3}
+    - {fileID: 21300000, guid: dc4134efe4c5e1e4187946e650ee0ac4, type: 3}
+    - {fileID: 21300000, guid: d5807c670bdb6f04787e46262342adc9, type: 3}
   - Key: Light_Ground
     Frames:
     - {fileID: 21300000, guid: 23958fd7fcef39b42a1952b3bc434951, type: 3}
@@ -219,6 +244,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 22a7ae5a8e87bb34b9879f2ecfbba22c, type: 3}
     - {fileID: 21300000, guid: 3041bda6042b7914aa5582e267ad3de0, type: 3}
     - {fileID: 21300000, guid: ea83f9c67ae4f0f4eba7b1c4645b2db4, type: 3}
+  - Key: Paper_Loop
+    Frames:
+    - {fileID: 21300000, guid: c33a4b0867fe7c34ba61334c45954f3b, type: 3}
+    - {fileID: 21300000, guid: 40d8f4422ff81c84b83b89abc16bc65d, type: 3}
+    - {fileID: 21300000, guid: 0e0e18652fbb8f343b674e06b1f366ad, type: 3}
+    - {fileID: 21300000, guid: 1a3fddf29711dc346b8918276218607a, type: 3}
   - Key: Paper_Ground
     Frames:
     - {fileID: 21300000, guid: 9b38804ad0de668458e6718069446152, type: 3}
@@ -238,6 +269,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4ebe0885fda6b5a4999beb124fda2d60, type: 3}
     - {fileID: 21300000, guid: 0f22b4ffbbff59d4396ec6310dd22eb7, type: 3}
     - {fileID: 21300000, guid: 56ecc6aaa600cef4587cf6b8b1a8448f, type: 3}
+  - Key: Earth_Loop
+    Frames:
+    - {fileID: 21300000, guid: 85fdc921d62e4cd45860c5d33de2a29e, type: 3}
+    - {fileID: 21300000, guid: 41f59fde998eb214695baca48b669a99, type: 3}
+    - {fileID: 21300000, guid: 2362ada6a4203db4ea9ebf4963ece7ae, type: 3}
+    - {fileID: 21300000, guid: 691196bdfa5639441ad24bfd777cf079, type: 3}
   - Key: Earth_Ground
     Frames:
     - {fileID: 21300000, guid: bbe12717a6e0fef4d87ff2180ecfb24a, type: 3}
@@ -257,6 +294,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 10ca6b81f4cde764a86e21d5528dc4b2, type: 3}
     - {fileID: 21300000, guid: 37e19325919189841afe42d4e603a8a2, type: 3}
     - {fileID: 21300000, guid: e260d2ca53848b7429b715085ee1d6f6, type: 3}
+  - Key: Time_Loop
+    Frames:
+    - {fileID: 21300000, guid: d877f43a89105db47904defd215100ed, type: 3}
+    - {fileID: 21300000, guid: deb602e7622a92d44bce6b3ae7af1601, type: 3}
+    - {fileID: 21300000, guid: 6cdb20f0eea0ac94cb7490bb1080d464, type: 3}
+    - {fileID: 21300000, guid: 6a9bcb7603442c14eb35091c37d5ed27, type: 3}
   - Key: Time_Ground
     Frames:
     - {fileID: 21300000, guid: c980fedf4e4ecf54e85c33e7cb32af29, type: 3}
@@ -276,6 +319,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: aab34328a5f00ed4e9aecfa512b4fefa, type: 3}
     - {fileID: 21300000, guid: b06418ef3f1335d40909deaadcf46ce8, type: 3}
     - {fileID: 21300000, guid: 7b68886ef646a9d47b74756b01358f06, type: 3}
+  - Key: Sound_Loop
+    Frames:
+    - {fileID: 21300000, guid: 9b79f51f5ced92445b5f48d3e5c6d10c, type: 3}
+    - {fileID: 21300000, guid: 0f21ec884f47f0c4093af142fdfa9f5f, type: 3}
+    - {fileID: 21300000, guid: e1a239b57ea7ba4479de4ab4eccfbf7e, type: 3}
+    - {fileID: 21300000, guid: 519c03ebef621fa409c67a0402f80355, type: 3}
   - Key: Sound_Ground
     Frames:
     - {fileID: 21300000, guid: 6b702c39c24545744a0d318467baa0cd, type: 3}
@@ -295,6 +344,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 786f393bacc5e1541af19cf320096629, type: 3}
     - {fileID: 21300000, guid: dce278f4665e7b541aa7a08a42a7af17, type: 3}
     - {fileID: 21300000, guid: 1f47d522109394c44bd63820d49b890f, type: 3}
+  - Key: Dream_Loop
+    Frames:
+    - {fileID: 21300000, guid: 1972aed5ea4f6a947a5cf37f23b2aaf9, type: 3}
+    - {fileID: 21300000, guid: 91ec1d8ddd74ffd46afe7c9ef7151fb1, type: 3}
+    - {fileID: 21300000, guid: 0c6d793664609f04c9eb44b79d36bcd1, type: 3}
+    - {fileID: 21300000, guid: 52fec9d684c82304b83fff9ee9d242af, type: 3}
   - Key: Dream_Ground
     Frames:
     - {fileID: 21300000, guid: 54047d153cc1cdb4e86437ab3424f769, type: 3}
@@ -314,6 +369,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: afec4bdb4c943984c8330e0f5bec44da, type: 3}
     - {fileID: 21300000, guid: 62055582f3990254da28d0dcfac41259, type: 3}
     - {fileID: 21300000, guid: 610ec74d4e8adc948b6df8af716284f1, type: 3}
+  - Key: Crystal_Loop
+    Frames:
+    - {fileID: 21300000, guid: 3c21924d94cf584498469986a3a39369, type: 3}
+    - {fileID: 21300000, guid: f719d36186d9f0c47a1f58e5eb05185e, type: 3}
+    - {fileID: 21300000, guid: 823fc9e75d13f5f4ea80d8d90af47fe4, type: 3}
+    - {fileID: 21300000, guid: df4c849c428ab29489ac5f955617ca88, type: 3}
   - Key: Crystal_Ground
     Frames:
     - {fileID: 21300000, guid: 5f646696694e0e14b86b1a2369ce86e8, type: 3}
@@ -333,6 +394,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 2be61bcda445a7d49a0b5cff9002a738, type: 3}
     - {fileID: 21300000, guid: f8cd26b6a3b5f0047ab8b6befe456119, type: 3}
     - {fileID: 21300000, guid: 7219503a49580ff41bea223b6443f31a, type: 3}
+  - Key: Gold_Loop
+    Frames:
+    - {fileID: 21300000, guid: d467de4cd12d1964a937adf36648ce44, type: 3}
+    - {fileID: 21300000, guid: acb44c62752c0a240885036cd75f64f1, type: 3}
+    - {fileID: 21300000, guid: d9fc8be23e9ae3d438443dfdfb27f2f5, type: 3}
+    - {fileID: 21300000, guid: 75d81c497412d094b80f9f95265a5ad5, type: 3}
   - Key: Gold_Ground
     Frames:
     - {fileID: 21300000, guid: 02796d522a1d8d54fbde296127a0cae4, type: 3}
