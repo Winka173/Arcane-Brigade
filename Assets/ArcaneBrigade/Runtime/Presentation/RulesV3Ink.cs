@@ -46,6 +46,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private ElementInk bursts;
         private ArsenalInk ink;
+        private InkCanvas light;
         private RulesVfx vfx;
         public RulesVfx Vfx => vfx;
         private CombatSimulation boundSimulation;
@@ -69,6 +70,7 @@ namespace ArcaneBrigade
             vfx = gameObject.AddComponent<RulesVfx>();
             CombatFeedback.ElementTint = ElementColour;
             ink = new ArsenalInk(transform);
+            light = new InkCanvas(transform, "Rules light", 2141, true);
         }
 
         /// <summary>The colour of a hit's element: its source companion's main bond, the hero's own look, else none.</summary>
@@ -485,8 +487,11 @@ namespace ArcaneBrigade
             {
                 case FieldKind.Blizzard:
                     ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .25f * a, .7f * a);
-                    if (Random.value < Time.deltaTime * 40 * a)
-                        vfx.Spray(vfx.Library?.Get("Snow_Bits") ?? Bits(ElementLook.Ice), centre + new Vector2((Random.value - .5f) * 18, 6), 1, .3f, -2.5f, .32f, 2.2f, Color.white, new Vector2(-1.2f, -1.5f));
+                    for (int i = 0; i < 26; i++)
+                    {
+                        float u = Mathf.Repeat(now * .35f + R(9, i), 1);
+                        Glint(centre + new Vector2((R(5, i) - .5f) * 20 - u * 2, 6 - u * 12), .07f, ArsenalInk.Glass, a * Mathf.Sin(u * Mathf.PI));
+                    }
                     for (int i = 0; i < 18; i++)
                     {
                         Vector2 p = centre + new Vector2(Mathf.Repeat(R(f.Born.GetHashCode(), i) * 20 + now * 6, 20) - 10, Mathf.Repeat(R(7, i) * 12 - now * 3, 12) - 6);
@@ -497,7 +502,7 @@ namespace ArcaneBrigade
                     ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .4f * a, .8f * a);
                     break;
                 case FieldKind.Gale:
-                    if (Random.value < Time.deltaTime * 30 * a) vfx.Spray(Bits(ElementLook.Wind), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 0, .4f, 1.6f, Color.white, f.Dir * 6);
+                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Wind, centre + new Vector2((R(30, i) - .5f) * 18, (R(31, i) - .5f) * 10), centre + new Vector2((R(30, i + 1) - .5f) * 18, (R(31, i + 1) - .5f) * 10), i, 30, now, 1.2f, a);
                     ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a);
                     for (int i = 0; i < 14; i++)
                     {
@@ -506,7 +511,7 @@ namespace ArcaneBrigade
                     }
                     break;
                 case FieldKind.Riptide:
-                    if (Random.value < Time.deltaTime * 30 * a) vfx.Spray(Bits(ElementLook.Water), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 1.5f, .4f, 1.6f, Color.white, Vector2.right * 3);
+                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Water, centre + new Vector2((R(30, i) - .5f) * 18, (R(31, i) - .5f) * 10), centre + new Vector2((R(30, i + 1) - .5f) * 18, (R(31, i + 1) - .5f) * 10), i, 30, now, 1.2f, a);
                 {
                     float x = Mathf.Lerp(-12, 12, t);
                     Vector2 a0 = centre + new Vector2(x, -7), a1 = centre + new Vector2(x, 7);
@@ -515,7 +520,7 @@ namespace ArcaneBrigade
                     break;
                 }
                 case FieldKind.Inferno:
-                    if (Random.value < Time.deltaTime * 24 * a) vfx.Spray(Bits(ElementLook.Fire), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 2.5f, .4f, 1.6f, Color.white, Vector2.up);
+                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Fire, centre + new Vector2((R(24, i) - .5f) * 18, (R(25, i) - .5f) * 10), centre + new Vector2((R(24, i + 1) - .5f) * 18, (R(25, i + 1) - .5f) * 10), i, 24, now, 1.2f, a);
                     ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
                     break;
                 case FieldKind.Lost:
@@ -526,7 +531,7 @@ namespace ArcaneBrigade
                     ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a);
                     break;
                 case FieldKind.Pandemic:
-                    if (Random.value < Time.deltaTime * 24 * a) vfx.Spray(Bits(ElementLook.Poison), centre + new Vector2((Random.value - .5f) * 18, (Random.value - .5f) * 10), 1, .4f, 1.2f, .4f, 1.6f, Color.white, default);
+                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Poison, centre + new Vector2((R(24, i) - .5f) * 18, (R(25, i) - .5f) * 10), centre + new Vector2((R(24, i + 1) - .5f) * 18, (R(25, i + 1) - .5f) * 10), i, 24, now, 1.2f, a);
                     ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a);
                     for (int i = 0; i < 12; i++)
                     {
@@ -594,10 +599,10 @@ namespace ArcaneBrigade
             if (ink == null) return;
             Bind();
             FriendAreas = DangerAreas = Fallen = Entities = Auras = Chains = Walls = 0;
-            ink.Begin(); vfx.Begin();
+            ink.Begin(); vfx.Begin(); light.Clear();
             CombatSimulation sim = boundSimulation;
             bool live = sim != null && (sim.Phase == RunPhase.Combat || sim.Phase == RunPhase.Paused);
-            if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); vfx.End(); vfx.ClearParticles(); return; }
+            if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); vfx.End(); light.Commit(); vfx.ClearParticles(); return; }
             float now = sim.Elapsed;
             for (int i = fields.Count - 1; i >= 0; i--) { if (now - fields[i].Born > fields[i].Life) { fields.RemoveAt(i); continue; } DrawField(fields[i], sim.Champion.Position, now); }
             if (now < stillUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Silver.Body, .05f, .3f);
@@ -648,7 +653,7 @@ namespace ArcaneBrigade
                 if (age > ChainLife || age < 0) { chains.RemoveAt(i); continue; }
                 DrawChain(chains[i], age); Chains++;
             }
-            ink.End(); vfx.End();
+            ink.End(); vfx.End(); light.Commit();
         }
 
         /// <summary>Enemy danger: solid red ground, filled brighter as the blow charges, cracks to the true edge.</summary>
@@ -693,29 +698,24 @@ namespace ArcaneBrigade
         {
             InkPalette p = PaletteFor(a.Look);
             float now = boundSimulation.Elapsed, t = Mathf.Clamp01(age / a.Life), fadeOut = Mathf.Clamp01((1 - t) / .2f);
-            Sprite[] loop = vfx.Library?.Get(a.Look + "_Loop");
-            InkToken token = TokenFor(a.Look);
             int n = Spots(a);
             for (int i = 0; i < n; i++)
             {
-                float delay = R(a.Seed, i + 50) * .3f, born = Mathf.Clamp01((age - delay) / .25f);
+                float delay = R(a.Seed, i + 50) * .3f, born = Mathf.Clamp01((age - delay) / .2f);
                 if (born <= 0) continue;
-                Vector2 at = Spot(a, i, n, now);
-                float size = (.8f + .5f * R(a.Seed, i + 70)) * Mathf.SmoothStep(0, 1, born) * fadeOut;
-                float sway = Mathf.Sin(now * 2.2f + i) * 8;
-                if (loop != null) vfx.Loop(loop, at + Vector2.up * .3f * size, 1.05f * size, now * 1.6f + R(a.Seed, i + 90), sway, Color.white);
-                else ink.Token(token, p, at + Vector2.up * .25f, .55f * size, sway + now * 40, fadeOut, true);
-                if (a.HasMotif && i % 3 == 0) ink.Token(a.Motif, p, at + new Vector2(.15f, .55f + Mathf.Abs(Mathf.Sin(now * 3 + i)) * .2f), .46f * size, now * 60 + i * 40, fadeOut, true);
+                // the sunflower spread's near neighbour is five steps on; lanes and cones run in order
+                Vector2 at = Spot(a, i, n, now), next = Spot(a, (i + (a.Shape == AreaShape.Line || a.Shape == AreaShape.Cone ? 1 : 5)) % n, n, now);
+                ElementStroke(a.Look, at, next, i, a.Seed, now, 1, Mathf.SmoothStep(0, 1, born) * fadeOut);
+                // the creature's own piece, small, among the light
+                if (a.HasMotif && i % 4 == 0) ink.Token(a.Motif, p, at + new Vector2(.1f, .35f + Mathf.Abs(Mathf.Sin(now * 3 + i)) * .12f), .3f, now * 60 + i * 40, fadeOut, true);
             }
-            if (Random.value < Time.deltaTime * (5 + n) * fadeOut)
-                vfx.Spray(Bits(a.Look), Spot(a, Random.Range(0, n), n, now), 1, .4f, 1.8f, .34f, .9f, Color.white);
         }
 
-        /// <summary>How many element loops a skill's shape carries: enough to fill it without a ground, capped for crowds.</summary>
+        /// <summary>How many element strokes a skill's shape carries: enough to fill it without a ground, capped for crowds.</summary>
         private static int Spots(Area a)
         {
             float span = a.Shape == AreaShape.Line ? (a.B - a.A).magnitude / .75f + 1 : a.Shape == AreaShape.Cone ? Mathf.Max(a.R, (a.B - a.A).magnitude) * 2.2f : a.R * a.R * 1.5f + 3;
-            return Mathf.Clamp(Mathf.RoundToInt(span), 3, PresentationSettings.ReducedEffects ? 10 : 28);
+            return Mathf.Clamp(Mathf.RoundToInt(span * 1.4f), 4, PresentationSettings.ReducedEffects ? 12 : 36);
         }
 
         /// <summary>A stable, evenly spread spot inside the skill's shape (sunflower spread for discs, jittered steps for lanes
@@ -742,7 +742,6 @@ namespace ArcaneBrigade
             float size = Mathf.Clamp(a.R * .9f, .9f, 2.2f);
             AddPop(c, a.Look, size, 0);
             Sound(a.Look, "land", c);
-            vfx.Spray(Bits(a.Look), c, PresentationSettings.ReducedEffects ? 5 : 14, 2.4f * size, 2.2f, .42f, .9f, Color.white);
         }
 
         private Sprite[] Bits(ElementLook look) => vfx.Library?.Get(look + "_Bits") ?? vfx.Library?.Get("Gold_Bits");
@@ -775,6 +774,162 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>The hero-skill standard for energy: light, not paint. A soft halo, a brighter body and a hot thread along the
+        /// path, each fading to nothing at its sides and ends; no outline. Widths stay thin so many strokes never turn to mush.</summary>
+        private void Light(List<Vector2> path, InkPalette p, float width, float alpha, float head = 1, float tail = 0)
+        {
+            if (alpha <= .01f || path == null || path.Count < 2) return;
+            if (PresentationSettings.ReducedEffects) alpha *= .75f;
+            light.GlowRibbon(path, head, tail, Mathf.Min(width * 3.2f, .45f), A(p.Glow, .3f * alpha));
+            light.GlowRibbon(path, head, tail, Mathf.Min(width * 1.4f, .26f), A(Color.Lerp(p.Body, p.Light, .35f), .75f * alpha));
+            light.GlowRibbon(path, head, tail, width * .5f, A(Color.Lerp(p.Light, Color.white, .45f), .92f * alpha));
+        }
+        private void Glint(Vector2 at, float size, InkPalette p, float alpha)
+        {
+            Light(InkCanvas.Line(at - Vector2.right * size, at + Vector2.right * size), p, size * .22f, alpha);
+            Light(InkCanvas.Line(at - Vector2.up * size, at + Vector2.up * size), p, size * .22f, alpha);
+        }
+        private readonly List<Vector2> flame = new List<Vector2>(12);
+        // flame light: a deep orange body with a red-orange halo, and a yellow-white heart
+        private static readonly InkPalette Ember = new InkPalette(new Color(.3f, .06f, .02f), new Color(1f, .42f, .08f), new Color(1f, .78f, .35f), new Color(1f, .3f, .05f), new Color(1f, .6f, .2f));
+        private static readonly InkPalette FlameHeart = new InkPalette(new Color(.3f, .2f, .05f), new Color(1f, .85f, .3f), new Color(1f, .97f, .75f), new Color(1f, .7f, .2f), new Color(1f, .9f, .5f));
+        private static Vector2 Dir(float degrees) => new Vector2(Mathf.Cos(degrees * Mathf.Deg2Rad), Mathf.Sin(degrees * Mathf.Deg2Rad));
+
+        /// <summary>One element's living stroke at a spot of a skill, drawn as light and redrawn every frame: lightning forks to the
+        /// next spot and flickers 18 times a second, flame tongues lick upward with embers, water curls, frost shards glint,
+        /// wind streaks, bubbles rise, leaves turn, notes wave, clock hands turn. Sizes are small; a skill reads from many of them.</summary>
+        private void ElementStroke(ElementLook look, Vector2 at, Vector2 next, int i, int seed, float now, float s, float alpha)
+        {
+            if (alpha <= .01f || s <= .01f) return;
+            InkPalette p = PaletteFor(look);
+            int frame = Mathf.FloorToInt(now * 18), k0 = seed + i * 13;
+            float r1 = R(seed, i), r2 = R(seed, i + 31), wob = Mathf.Sin(now * 7 + i * 1.9f);
+            switch (look)
+            {
+                case ElementLook.Storm:
+                {
+                    Vector2 d = next - at; float len = d.magnitude;
+                    if (len > .2f && len < 3.2f) Light(InkCanvas.Line(at, next, .12f + len * .06f, 0, true, k0 + frame), p, .045f, alpha);
+                    Vector2 mid = Vector2.Lerp(at, next, .4f + .2f * r1);
+                    if ((frame + i) % 3 != 0) Light(InkCanvas.Line(mid, mid + Dir(r2 * 360 + frame * 23) * .3f * s, .05f, 0, true, k0 + frame + 5), p, .03f, alpha * .8f);
+                    if ((frame + i) % 4 == 0) Glint(at, .09f * s, p, alpha);
+                    break;
+                }
+                case ElementLook.Fire:
+                    // flame tongues: a deep orange body that narrows to a curling tip, a yellow heart inside, embers rising
+                    for (int k = 0; k < 3; k++)
+                    {
+                        Vector2 b = at + new Vector2((k - 1) * .09f * s, 0);
+                        float h = (k == 1 ? .42f : .28f) * s * (.8f + .2f * Mathf.Sin(now * 10 + k * 2.1f + i)) * (.85f + .3f * R(seed, i * 3 + k));
+                        flame.Clear();
+                        for (int q = 0; q <= 8; q++)
+                        {
+                            float u = q / 8f, sway = Mathf.Sin(now * 7 + k * 1.7f + i - u * 3) * .07f * s * u;
+                            flame.Add(b + new Vector2(sway, u * h));
+                        }
+                        Light(flame, Ember, .09f * s * (k == 1 ? 1.15f : .9f), alpha, 1, 0);
+                        flame.RemoveRange(6, flame.Count - 6);
+                        Light(flame, FlameHeart, .045f * s, alpha, 1, 0);
+                    }
+                    for (int e = 0; e < 2; e++)
+                    {
+                        float u = Mathf.Repeat(now * .8f + R(seed, i + e * 7), 1);
+                        Vector2 ember = at + new Vector2(Mathf.Sin(now * 3 + e + i) * .12f, .35f + u * .6f) * s;
+                        Light(InkCanvas.Line(ember, ember + Vector2.up * .035f), Ember, .03f, alpha * (1 - u));
+                    }
+                    break;
+                case ElementLook.Water:
+                {
+                    float from = now * 140 + i * 57;
+                    Light(InkCanvas.Arc(at, .2f * s, .1f * s, from, from + 150, 10), p, .04f * s, alpha);
+                    Light(InkCanvas.Arc(at + new Vector2(.12f, .05f) * s, .11f * s, .06f * s, from + 180, from + 300, 8), p, .03f * s, alpha * .8f);
+                    float u = Mathf.Repeat(now * 1.1f + r1, 1);
+                    Glint(at + new Vector2(.1f, .25f + u * .2f) * s, .04f, p, alpha * (1 - u));
+                    break;
+                }
+                case ElementLook.Ice: case ElementLook.Crystal:
+                    for (int k = 0; k < 4; k++)
+                    {
+                        float ang = k * 90 + r1 * 50 + (look == ElementLook.Crystal ? now * 20 : 0), len = (.12f + .12f * R(seed, i * 4 + k)) * s;
+                        Light(InkCanvas.Line(at, at + Dir(ang) * len), p, .035f * s, alpha * (.55f + .45f * Mathf.Sin(now * 5 + k + i)));
+                    }
+                    if ((frame + i) % 5 == 0) Glint(at + Dir(r2 * 360) * .14f * s, .07f * s, p, alpha);
+                    break;
+                case ElementLook.Wind:
+                {
+                    Vector2 dir = Dir(15 + r1 * 20); float u = Mathf.Repeat(now * .9f + r2, 1);
+                    Vector2 c = at + dir * (u - .5f) * .6f * s;
+                    Light(InkCanvas.Line(c - dir * .3f * s, c + dir * .3f * s, .06f * s, 2.5f, false, k0), p, .03f * s, alpha * Mathf.Sin(u * Mathf.PI));
+                    break;
+                }
+                case ElementLook.Poison:
+                    for (int k = 0; k < 2; k++)
+                    {
+                        float u = Mathf.Repeat(now * .55f + k * .5f + r1, 1), rr = (.04f + .03f * k) * s;
+                        Vector2 c = at + new Vector2((k - .5f) * .12f * s + Mathf.Sin(now * 2 + k) * .03f, u * .45f * s);
+                        Light(InkCanvas.Arc(c, rr, rr, 20, 250, 8), p, .025f, alpha * (1 - u));
+                    }
+                    Light(InkCanvas.Line(at, at + new Vector2(.08f * wob, .3f) * s, .05f, 2, false, k0), p, .03f * s, alpha * .6f);
+                    break;
+                case ElementLook.Bloom:
+                {
+                    float ang = now * 60 + r1 * 360, fall = Mathf.Repeat(now * .4f + r2, 1);
+                    Vector2 c = at + new Vector2(Mathf.Sin(now + i) * .1f, (.5f - fall) * .4f) * s;
+                    Light(InkCanvas.Arc(c, .1f * s, .045f * s, ang, ang + 180, 8), p, .03f * s, alpha);
+                    Light(InkCanvas.Arc(c, .1f * s, .045f * s, ang + 180, ang + 360, 8), p, .03f * s, alpha * .7f);
+                    break;
+                }
+                case ElementLook.Void: case ElementLook.Dream:
+                {
+                    Vector2 curl = Dir(now * 80 + r1 * 360) * .25f * s;
+                    Light(InkCanvas.Line(at, at + curl, .06f * s, 2, false, k0 + frame / 6), p, .035f * s, alpha);
+                    if ((frame + i) % 6 == 0) Glint(at + curl, .05f, PaletteFor(ElementLook.Light), alpha);
+                    break;
+                }
+                case ElementLook.Sound:
+                {
+                    Vector2 dir = Dir(r1 * 360); float u = Mathf.Repeat(now * 1.2f + r2, 1);
+                    Vector2 a0 = at + dir * u * .3f * s;
+                    Light(InkCanvas.Line(a0, a0 + dir * .3f * s, .04f * s, 6, false, k0), p, .03f * s, alpha * (1 - u));
+                    break;
+                }
+                case ElementLook.Time:
+                    Light(InkCanvas.Line(at, at + Dir(90 - now * 160 - r1 * 360) * .16f * s), p, .035f * s, alpha);
+                    Light(InkCanvas.Line(at, at + Dir(90 - now * 14 - r2 * 360) * .1f * s), p, .045f * s, alpha);
+                    if ((frame + i) % 6 == 0) Glint(at, .05f, p, alpha);
+                    break;
+                case ElementLook.Earth: case ElementLook.Paper:
+                {
+                    // dust and scraps are matter, not light: thin ink strokes that drift and settle
+                    float u = Mathf.Repeat(now * .7f + r1, 1);
+                    Vector2 c = at + new Vector2((r2 - .5f) * .3f, u * .35f) * s;
+                    ink.FloorStroke(c, c + Dir(r2 * 180) * .12f * s, p, .04f, 1, 1, alpha * (1 - u), .02f, k0);
+                    break;
+                }
+                default:
+                    if ((frame + i) % 3 == 0) Glint(at + new Vector2(0, .15f) * s, (.06f + .05f * r1) * s, p, alpha);
+                    break;
+            }
+        }
+
+        /// <summary>An element burst in the hero standard: rays of the element's light thrown from the point (forked for storm,
+        /// tongues for fire, shards for frost...) and a short hot cross; no painted sprite, no ring.</summary>
+        private void LightBurst(Vector2 c, ElementLook look, float size, float t, int seed)
+        {
+            InkPalette p = PaletteFor(look);
+            float grow = 1 - (1 - t) * (1 - t) * (1 - t), fade = 1 - t * t;
+            int rays = PresentationSettings.ReducedEffects ? 5 : 9, frame = Mathf.FloorToInt(Now * 18);
+            for (int i = 0; i < rays; i++)
+            {
+                float ang = seed * 37 % 360 + i * 360f / rays + R(seed, i) * 20, reach = (.35f + .45f * R(seed, i + 9)) * size;
+                Vector2 end = c + Dir(ang) * reach * grow;
+                bool zig = look == ElementLook.Storm;
+                float amp = look == ElementLook.Fire || look == ElementLook.Water ? .05f : zig ? reach * .12f : 0;
+                Light(InkCanvas.Line(c, end, amp, zig ? 0 : 3, zig, seed + i + (zig ? frame : 0)), p, .045f * Mathf.Sqrt(size), fade, 1, Mathf.Max(0, t * 1.2f - .2f));
+            }
+            if (t < .35f) Glint(c, .22f * size * (1 - t), p, 1 - t / .35f);
+        }
+
         private static Vector2 Perp(Vector2 d) { if (d.sqrMagnitude < .0001f) return Vector2.up; d.Normalize(); return new Vector2(-d.y, d.x); }
         private static float R(int seed, int i) { uint h = (uint)(seed * 7919 + i * 104729); h ^= h >> 13; h *= 0x5bd1e995; h ^= h >> 15; return (h & 0xffff) / 65535f; }
 
@@ -790,12 +945,10 @@ namespace ArcaneBrigade
                 case AuraKind.Shield:
                 {
                     InkPalette p = a.Look == ElementLook.Gold ? ArsenalInk.Glass : PaletteFor(a.Look);
-                    Sprite[] cloak = vfx.Library?.Get("Shield");
-                    if (cloak != null) vfx.Flip(cloak, at, r * 2.8f, Mathf.Repeat(now * 1.6f + a.Unit * .13f, .999f), 0, new Color(1, 1, 1, .9f * fade));
-                    else for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 4; i++)
                     {
-                        float ang = (now * 70 + i * 72) * Mathf.Deg2Rad;
-                        ink.Token(InkToken.Shard, p, at + new Vector2(Mathf.Cos(ang) * r, Mathf.Sin(ang) * r * .55f), .34f, ang * 57, fade, true);
+                        float ang = now * 80 + i * 90; Vector2 pt = at + new Vector2(Mathf.Cos(ang * Mathf.Deg2Rad) * r, Mathf.Sin(ang * Mathf.Deg2Rad) * r * .55f);
+                        Light(InkCanvas.Line(pt, pt + Dir(ang + 90) * .14f), p, .035f, fade);
                     }
                     break;
                 }
@@ -842,8 +995,11 @@ namespace ArcaneBrigade
                 {
                     InkPalette p = PaletteFor(a.Look);
                     InkToken token = a.Kind == AuraKind.Heal ? InkToken.Leaf : TokenFor(a.Look);
-                    if (Random.value < Time.deltaTime * 7 * fade)
-                        vfx.Spray(a.Kind == AuraKind.Heal ? (vfx.Library?.Get("Heal_Bits") ?? Bits(ElementLook.Bloom)) : Bits(a.Look), unit.Position + new Vector2((Random.value - .5f) * r, .2f), 1, .25f, 2.6f, .3f, .8f, Color.white);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        float u = Mathf.Repeat(now * .9f + i / 3f + a.Unit * .17f, 1);
+                        Glint(unit.Position + new Vector2((i - 1) * r * .35f, .25f + u * 1.1f), .06f * (1 - u * .5f), p, fade * (1 - u));
+                    }
                     for (int i = 0; i < 6; i++)
                     {
                         float u = Mathf.Repeat((now - a.Born) * 1.3f + i / 6f, 1);
@@ -878,9 +1034,9 @@ namespace ArcaneBrigade
                 if (s.Chill > 0) { Meter(head, w, row++, s.Chill / 5f, ArsenalInk.Glass); any = true; }
                 if (s.Poison > 0) { Meter(head, w, row++, Mathf.Min(1, s.Poison / 5f), ArsenalInk.Green); any = true; }
                 if (s.Charge > 0) { Meter(head, w, row++, s.Charge / 5f, ArsenalInk.Cyan); any = true; }
-                if (s.FrozenUntil > now) { Sprite[] ice = vfx.Library?.Get("Ice_Loop"); if (ice != null) vfx.Loop(ice, enemy.Position + Vector2.up * enemy.Definition.Radius, enemy.Definition.Radius * 2.6f, now * 1.2f + enemy.Id * .1f, 0, Color.white); else ink.Token(InkToken.Shard, ArsenalInk.Glass, enemy.Position + Vector2.up * enemy.Definition.Radius, .5f, now * 30, 1, true); any = true; }
+                if (s.FrozenUntil > now) { ElementStroke(ElementLook.Ice, enemy.Position + Vector2.up * enemy.Definition.Radius, enemy.Position, enemy.Id, enemy.Id, now, 1.3f, 1); any = true; }
                 if (s.Marked) { ink.Token(InkToken.Moon, ArsenalInk.Violet, head + Vector2.up * (.18f + row * .13f), .34f, 0, 1, true); any = true; }
-                if (s.SoakedUntil > now) { if (Random.value < Time.deltaTime * 2) vfx.Spray(Bits(ElementLook.Water), enemy.Position + Vector2.up * enemy.Definition.Radius * 2, 1, .2f, -.5f, .22f, .6f, Color.white); any = true; }
+                if (s.SoakedUntil > now) { float u = Mathf.Repeat(now * 1.5f + enemy.Id * .3f, 1); Vector2 drip = enemy.Position + Vector2.up * (enemy.Definition.Radius * 2 - u * .5f); Light(InkCanvas.Line(drip, drip + Vector2.down * .07f), ArsenalInk.Water, .03f, 1 - u); any = true; }
                 if (any) StatusMarks++;
             }
         }
@@ -896,19 +1052,19 @@ namespace ArcaneBrigade
         /// out and falling, all in under half a second (no ring).</summary>
         private void DrawPop(Pop p, float t)
         {
-            InkPalette pal = PaletteFor(p.Look);
-            float o = 1 - (1 - t) * (1 - t) * (1 - t), a = 1 - t;
             Vector2 c = p.At + Vector2.up * .3f;
-            Sprite[] frames = vfx.Library?.Get(p.Hostile ? "Danger_Burst" : p.Look + "_Burst");
-            vfx.Flip(frames, c, 2.1f * p.Size, t, p.Seed * 37 % 360, Color.white);
-            InkToken token = TokenFor(p.Look);
-            int n = PresentationSettings.ReducedEffects ? 3 : 7;
-            for (int i = 0; i < n; i++)
+            if (p.Hostile)
             {
-                float ang = (i * 360f / n + R(p.Seed, i) * 25) * Mathf.Deg2Rad, d = (.3f + 1.3f * o) * p.Size * (.7f + .5f * R(p.Seed, i + 9));
-                Vector2 at = c + new Vector2(Mathf.Cos(ang) * d, Mathf.Sin(ang) * d * .7f + o * .4f - t * t * .9f);
-                ink.Token(token, pal, at, (.42f - .2f * t) * p.Size, ang * 57 + t * 360, a, true);
+                // an enemy blow: dark red ink cracks and dust thrown up, matter not light
+                float o = 1 - (1 - t) * (1 - t), a = 1 - t;
+                for (int i = 0; i < 7; i++)
+                {
+                    float ang = p.Seed * 29 % 360 + i * 51 + R(p.Seed, i) * 20;
+                    ink.FloorStroke(p.At, p.At + Dir(ang) * (.4f + .6f * R(p.Seed, i + 4)) * p.Size * o, BossTelegraph.Danger, .07f, 1, 0, a, .03f, p.Seed + i);
+                }
+                return;
             }
+            LightBurst(c, p.Look, p.Size, t, p.Seed);
         }
 
         /// <summary>An enemy blow lands when its warning ends: the painted enemy burst over the struck ground and stone chips
@@ -927,14 +1083,12 @@ namespace ArcaneBrigade
         {
             if (pops.Count >= MaxPops) pops.RemoveAt(0);
             pops.Add(new Pop { At = at, Look = ElementLook.Fire, Born = Now, Size = size, Seed = ++seed, Hostile = true });
-            vfx.Spray(Bits(ElementLook.Earth), at, PresentationSettings.ReducedEffects ? 3 : 8, 2.2f * size, 2.4f, .34f, .9f, Color.white);
         }
 
         private void AddPop(Vector2 at, ElementLook look, float size, float delay)
         {
             if (pops.Count >= MaxPops) pops.RemoveAt(0);
             pops.Add(new Pop { At = at, Look = look, Born = Now + delay, Size = size, Seed = ++seed });
-            if (delay <= 0 && vfx != null) vfx.Spray(Bits(look), at + Vector2.up * .3f, PresentationSettings.ReducedEffects ? 3 : 9, 2.2f * size, 2f, .36f * Mathf.Sqrt(size), .8f, Color.white);
         }
 
         /// <summary>A skill's piece in flight: a glowing arc trail behind the spinning piece.</summary>
@@ -943,13 +1097,9 @@ namespace ArcaneBrigade
             InkPalette p = PaletteFor(w.Look);
             float height = w.Straight ? 0 : Mathf.Clamp((w.To - w.From).magnitude * .35f, .8f, 3f);
             var path = w.Straight ? InkCanvas.Line(w.From, w.To) : InkCanvas.Lob(w.From, w.To, height, 18);
-            ink.Ribbon(path, p, w.Straight ? .22f : .14f, k, Mathf.Max(0, k - .45f), 1, true);
+            Light(path, p, w.Straight ? .07f : .05f, 1, k, Mathf.Max(0, k - .4f));
             Vector2 head = w.Straight ? Vector2.Lerp(w.From, w.To, k) : InkCanvas.Sample(InkCanvas.Lob(w.From, w.To, height, 18), k);
-            // the flying piece: the creature's own token riding a painted piece of its element, shedding a trail of bits
-            Sprite[] bits = Bits(w.Look);
-            if (bits != null) vfx.Flip(new[] { bits[w.Seed % bits.Length] }, head, .9f, .5f, k * 720, Color.white);
-            ink.Token(w.Token, p, head, .62f, -k * 540, 1, true);
-            if (Random.value < .6f) vfx.Spray(bits, head, 1, .5f, .4f, .26f, .45f, Color.white);
+            ink.Token(w.Token, p, head, .42f, -k * 540, 1, true);
         }
 
         /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
@@ -967,7 +1117,7 @@ namespace ArcaneBrigade
             }
             ink.Ribbon(InkCanvas.Line(from, to, .22f, 7, true, flick), ArsenalInk.Cyan, .13f, 1, 1, a, true);
             ink.Ribbon(InkCanvas.Line(from, to, .3f, 5, true, flick + 17), ArsenalInk.Silver, .06f, 1, 1, .8f * a, true);
-            vfx.Flip(vfx.Library?.Get("Storm_Burst"), to, 1.1f, age / ChainLife, c.Seed * 41 % 360, Color.white);
+            Glint(to, .16f * a, ArsenalInk.Cyan, a);
             ink.Token(InkToken.Bolt, ArsenalInk.Cyan, to, .5f, flick * 37 % 360, a, true);
         }
 
@@ -976,12 +1126,8 @@ namespace ArcaneBrigade
         {
             InkPalette p = PaletteFor(w.Look);
             float fade = Mathf.Clamp01((w.Until - now) / .3f) * Mathf.Clamp01((now - w.Born) / .15f);
-            Sprite[] crystal = vfx.Library?.Get(w.Look + "_Loop") ?? vfx.Library?.Get("Crystal_Loop");
-            if (crystal != null)
-            {
-                int stones = Mathf.Clamp(Mathf.RoundToInt((w.B - w.A).magnitude / .55f), 2, 14);
-                for (int i = 0; i <= stones; i++) vfx.Loop(crystal, Vector2.Lerp(w.A, w.B, i / (float)stones) + Vector2.up * .25f, .8f * fade, now * 1.3f + i * .23f, 0, Color.white);
-            }
+            int stones = Mathf.Clamp(Mathf.RoundToInt((w.B - w.A).magnitude / .45f), 2, 16);
+            for (int i = 0; i <= stones; i++) ElementStroke(ElementLook.Crystal, Vector2.Lerp(w.A, w.B, i / (float)stones) + Vector2.up * .2f, w.B, i, 3, now, .9f, fade);
             ink.FloorLane(w.A, w.B, .22f, A(p.Body, .75f * fade), A(p.Ink, .5f * fade));
             ink.FloorStroke(w.A + Vector2.up * .18f, w.B + Vector2.up * .18f, p, .08f, 1, 1, fade, 0, 0);
             ink.FloorStroke(w.A - Vector2.up * .2f, w.B - Vector2.up * .2f, p, .06f, 1, 1, .8f * fade, 0, 1);
@@ -1026,8 +1172,7 @@ namespace ArcaneBrigade
                 {
                     // a bond summon: its painting when it exists (Resources/BondSummons/<Kind>), on a glowing sigil in its element
                     float size = SummonSize(e.Rule), bob = Mathf.Sin(now * 3 + e.Id) * .08f;
-                    Sprite[] aura = vfx.Library?.Get(look + "_Loop");
-                    if (aura != null) for (int i = 0; i < 3; i++) vfx.Loop(aura, at + new Vector2((i - 1) * size * .45f, .1f), .7f * size, now * 1.4f + i * .33f, 0, Color.white);
+                    for (int i = 0; i < 4; i++) ElementStroke(look, at + new Vector2((i - 1.5f) * size * .3f, .05f), at + new Vector2((i - .5f) * size * .3f, .05f), i, e.Id, now, .8f, .9f);
                     Sprite art = SummonArt(e.Rule);
                     if (art != null) ink.Place(art, at + Vector2.up * (size * .5f + bob), size, 0, Color.white, true);
                     else
