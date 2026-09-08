@@ -199,6 +199,95 @@ namespace ArcaneBrigade
             return system;
         }
 
-        public void ClearParticles() { foreach (ParticleSystem s in systems.Values) if (s != null) s.Clear(); }
+        public void ClearParticles()
+        {
+            foreach (ParticleSystem s in systems.Values) if (s != null) s.Clear();
+            foreach (ParticleSystem s in rampSystems.Values) if (s != null) s.Clear();
+        }
+
+        // ------------------------------------------------------------------ element particles with colour ramps
+        /// <summary>How a particle of an element lives: its colour over life (hot core to element colour to nothing), whether it
+        /// adds light or covers (smoke, dust), how gravity takes it (flames and smoke rise, sparks fall) and how it grows.</summary>
+        public sealed class Ramp
+        {
+            public Gradient Colour; public bool Additive = true; public float Gravity; public AnimationCurve Size;
+            public Ramp(bool additive, float gravity, AnimationCurve size, params (float t, Color c)[] keys)
+            {
+                Additive = additive; Gravity = gravity; Size = size;
+                Colour = new Gradient();
+                var colours = new GradientColorKey[keys.Length]; var alphas = new GradientAlphaKey[keys.Length];
+                for (int i = 0; i < keys.Length; i++) { colours[i] = new GradientColorKey(keys[i].c, keys[i].t); alphas[i] = new GradientAlphaKey(keys[i].c.a, keys[i].t); }
+                Colour.SetKeys(colours, alphas);
+            }
+        }
+        private static AnimationCurve Curve(params float[] v) { var c = new AnimationCurve(); for (int i = 0; i < v.Length; i++) c.AddKey(i / (float)(v.Length - 1), v[i]); return c; }
+        private static Color C(float r, float g, float b, float a = 1) => new Color(r, g, b, a);
+        public static readonly Dictionary<string, Ramp> Ramps = new Dictionary<string, Ramp>
+        {
+            { "fire",   new Ramp(true, -.25f, Curve(.7f, 1f, .75f, .35f), (0, C(1, .95f, .7f)), (.25f, C(1, .62f, .16f)), (.6f, C(.95f, .25f, .05f, .8f)), (1, C(.4f, .05f, .02f, 0))) },
+            { "ember",  new Ramp(true, -.15f, Curve(1f, .8f, 0f), (0, C(1, .9f, .5f)), (.5f, C(1, .45f, .1f)), (1, C(.8f, .15f, .02f, 0))) },
+            { "smoke",  new Ramp(false, -.12f, Curve(.5f, 1f, 1.6f), (0, C(.25f, .2f, .22f, 0)), (.2f, C(.22f, .18f, .2f, .45f)), (1, C(.15f, .12f, .14f, 0))) },
+            { "storm",  new Ramp(true, 0, Curve(1f, .7f, 0f), (0, C(1, 1, 1)), (.3f, C(.6f, .9f, 1)), (1, C(.2f, .45f, 1, 0))) },
+            { "spark",  new Ramp(true, .9f, Curve(1f, .8f, 0f), (0, C(1, 1, .9f)), (.4f, C(1, .85f, .4f)), (1, C(1, .5f, .1f, 0))) },
+            { "ice",    new Ramp(true, .1f, Curve(.6f, 1f, .2f), (0, C(1, 1, 1)), (.35f, C(.75f, .93f, 1)), (1, C(.4f, .7f, 1, 0))) },
+            { "water",  new Ramp(true, .6f, Curve(1f, .9f, .3f), (0, C(.9f, 1, 1)), (.3f, C(.4f, .85f, 1)), (1, C(.1f, .5f, .8f, 0))) },
+            { "poison", new Ramp(true, -.1f, Curve(.6f, 1f, .5f), (0, C(.85f, 1, .5f)), (.35f, C(.4f, .9f, .25f)), (1, C(.3f, .5f, .1f, 0))) },
+            { "bloom",  new Ramp(true, .15f, Curve(.8f, 1f, .2f), (0, C(1, 1, .85f)), (.4f, C(.55f, .95f, .45f)), (1, C(1, .6f, .75f, 0))) },
+            { "void",   new Ramp(true, -.05f, Curve(.6f, 1f, .3f), (0, C(.9f, .8f, 1)), (.4f, C(.6f, .35f, .95f)), (1, C(.25f, .1f, .5f, 0))) },
+            { "light",  new Ramp(true, -.05f, Curve(.4f, 1f, 0f), (0, C(1, 1, 1)), (.4f, C(1, .9f, .55f)), (1, C(1, .7f, .2f, 0))) },
+            { "sound",  new Ramp(true, -.1f, Curve(.6f, 1f, .2f), (0, C(1, .95f, 1)), (.4f, C(1, .6f, .85f)), (1, C(.8f, .4f, 1, 0))) },
+            { "time",   new Ramp(true, 0, Curve(.6f, 1f, .2f), (0, C(1, 1, .95f)), (.4f, C(.9f, .85f, .6f)), (1, C(.7f, .7f, .8f, 0))) },
+            { "dust",   new Ramp(false, .35f, Curve(.6f, 1f, 1.3f), (0, C(.6f, .45f, .3f, 0)), (.15f, C(.55f, .42f, .28f, .6f)), (1, C(.4f, .3f, .2f, 0))) },
+            { "glow",   new Ramp(true, 0, Curve(.5f, 1.15f, 1.3f), (0, C(1, 1, 1, .9f)), (.3f, C(1, 1, 1, .45f)), (1, C(1, 1, 1, 0))) },
+        };
+        private readonly Dictionary<string, ParticleSystem> rampSystems = new Dictionary<string, ParticleSystem>();
+        private Material additiveMaterial;
+
+        /// <summary>Emit one element particle: a texture from the particle library, its element's ramp (tinted by the optional
+        /// tint, e.g. a glow in the element's colour), a velocity, a size, a life and a spin.</summary>
+        public void Emit(Sprite sprite, string ramp, Vector2 at, Vector2 velocity, float size, float life, float spin, Color? tint = null)
+        {
+            if (sprite == null || !Ramps.TryGetValue(ramp, out Ramp r)) return;
+            ParticleSystem system = RampSystem(sprite, ramp, r);
+            if (system == null) return;
+            var emit = new ParticleSystem.EmitParams
+            {
+                position = new Vector3(at.x, at.y, 0), velocity = new Vector3(velocity.x, velocity.y, 0),
+                startSize = size, startLifetime = life, rotation = Random.value * 360, angularVelocity = spin,
+                startColor = tint ?? Color.white,
+            };
+            system.Emit(emit, 1);
+        }
+
+        private ParticleSystem RampSystem(Sprite sprite, string ramp, Ramp r)
+        {
+            string key = ramp + "|" + sprite.GetInstanceID();
+            if (rampSystems.TryGetValue(key, out ParticleSystem found)) return found;
+            if (additiveMaterial == null && Resources.Load<Shader>("Shaders/RulesAdditive") is Shader add) additiveMaterial = new Material(add) { name = "Rules additive particle" };
+            var go = new GameObject("Rules ink " + ramp + " " + sprite.name); go.transform.SetParent(transform, false);
+            var system = go.AddComponent<ParticleSystem>();
+            system.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main = system.main; main.loop = false; main.playOnAwake = false; main.maxParticles = MaxParticlesPerSystem;
+            main.simulationSpace = ParticleSystemSimulationSpace.World; main.gravityModifier = r.Gravity; main.startSpeed = 0;
+            var emission = system.emission; emission.enabled = false;
+            var shape = system.shape; shape.enabled = false;
+            var size = system.sizeOverLifetime; size.enabled = true; size.size = new ParticleSystem.MinMaxCurve(1, r.Size);
+            var colour = system.colorOverLifetime; colour.enabled = true; colour.color = r.Colour;
+            var limit = system.limitVelocityOverLifetime; limit.enabled = true; limit.dampen = .08f; limit.limit = 30;
+            var renderer = go.GetComponent<ParticleSystemRenderer>();
+            Material baseMaterial = r.Additive && additiveMaterial != null ? additiveMaterial : particleMaterial;
+            renderer.sharedMaterial = new Material(baseMaterial) { mainTexture = sprite.texture, name = "Rules " + ramp + " " + sprite.name };
+            renderer.sortingOrder = r.Additive ? ParticleOrder + 2 : ParticleOrder; renderer.renderMode = ParticleSystemRenderMode.Billboard;
+            system.Play();
+            rampSystems[key] = system;
+            return system;
+        }
+
+        /// <summary>A texture family from the particle library (K_flame, K_smoke, K_spark, K_trace, K_light...), one at random.</summary>
+        public Sprite Tex(string family)
+        {
+            Sprite[] all = Library?.Get("K_" + family);
+            return all == null || all.Length == 0 ? null : all[Random.Range(0, all.Length)];
+        }
     }
 }

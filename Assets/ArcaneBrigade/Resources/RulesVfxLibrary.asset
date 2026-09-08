@@ -413,6 +413,105 @@ MonoBehaviour:
     - {fileID: 5985435109744175797, guid: 19b58ee469eb276488bf7a56bd83d7c9, type: 3}
     - {fileID: 2464432307024946540, guid: 19b58ee469eb276488bf7a56bd83d7c9, type: 3}
     - {fileID: -7489813801229419276, guid: 19b58ee469eb276488bf7a56bd83d7c9, type: 3}
+  - Key: K_dirt
+    Frames:
+    - {fileID: 21300000, guid: b627a82436081a248beef97f8129c989, type: 3}
+    - {fileID: 21300000, guid: 5a8c3ee3dd851d04d8485a92d3c8d247, type: 3}
+    - {fileID: 21300000, guid: c3674624b55f8cd4785ecf5d802de393, type: 3}
+  - Key: K_fire
+    Frames:
+    - {fileID: 21300000, guid: b3bdaf718d9f02140ada0d32b226a998, type: 3}
+    - {fileID: 21300000, guid: 5e9862077252e1a469879db4817926c7, type: 3}
+  - Key: K_flame
+    Frames:
+    - {fileID: 21300000, guid: df92a2b8b9a625344b23fb7b2acf9f3f, type: 3}
+    - {fileID: 21300000, guid: 3f1e051970917204897615d5012a8f4f, type: 3}
+    - {fileID: 21300000, guid: 6b54096284756e44b913488465a9c67a, type: 3}
+    - {fileID: 21300000, guid: 1b641e10a8865d84c9955e061e28a24e, type: 3}
+    - {fileID: 21300000, guid: cf5c0746f5795cc43aa7fc4ed2a45305, type: 3}
+    - {fileID: 21300000, guid: ec26dfe099233694793a49559583f2af, type: 3}
+  - Key: K_flare
+    Frames:
+    - {fileID: 21300000, guid: f136628e2dc441843a0fcf69ea567328, type: 3}
+  - Key: K_light
+    Frames:
+    - {fileID: 21300000, guid: 1e7b67b0e6c739946a3773970c9bde05, type: 3}
+    - {fileID: 21300000, guid: ab0f796e71ff06e4283faabe7f9eb275, type: 3}
+    - {fileID: 21300000, guid: f70d446eb10affb4eafb5c8e28405ec2, type: 3}
+  - Key: K_magic
+    Frames:
+    - {fileID: 21300000, guid: 3b2b69301ac69ca4cad14be0205e0917, type: 3}
+    - {fileID: 21300000, guid: 81fecf946eeecb040b434efe14734f20, type: 3}
+    - {fileID: 21300000, guid: bbc22e7f86403d24d9a29a4cb2e967c7, type: 3}
+    - {fileID: 21300000, guid: 7d7fb1ae2232b5d4e8eb236aed304a79, type: 3}
+    - {fileID: 21300000, guid: 797226756ba93ee469ec8ca96e6049c4, type: 3}
+  - Key: K_muzzle
+    Frames:
+    - {fileID: 21300000, guid: 9072ac805188ed64eadbb1a27248c741, type: 3}
+    - {fileID: 21300000, guid: 888bdc1bcdaeeca408353cf111f65c94, type: 3}
+    - {fileID: 21300000, guid: b1cb59d56a5a47849bd0e802ded82a22, type: 3}
+    - {fileID: 21300000, guid: a2e9d93b290c4654085de0abe4806f5f, type: 3}
+    - {fileID: 21300000, guid: 4651b3a25cf1f7f40ae4793d2d2d4d14, type: 3}
+  - Key: K_scorch
+    Frames:
+    - {fileID: 21300000, guid: 081e573d310166249a37698f13f40357, type: 3}
+    - {fileID: 21300000, guid: 5690bceed3310bb45a2b7592156d08c3, type: 3}
+    - {fileID: 21300000, guid: 4429d5ff17df00f489c84be8b1595e9d, type: 3}
+  - Key: K_scratch
+    Frames:
+    - {fileID: 21300000, guid: 313bbf23129877946bcd3e74f9bf6ae0, type: 3}
+  - Key: K_slash
+    Frames:
+    - {fileID: 21300000, guid: f7d263710aea50a488dc26a64a410d8b, type: 3}
+    - {fileID: 21300000, guid: 2976bec72a7c9eb4dab5158643f18c9c, type: 3}
+    - {fileID: 21300000, guid: 9dc221c9f206baa4aa800c0f14d28dc6, type: 3}
+    - {fileID: 21300000, guid: 53429b52d201abe4f8bca61fd7847c5a, type: 3}
+  - Key: K_smoke
+    Frames:
+    - {fileID: 21300000, guid: 5dca012432a64684c99cd3eae9b1608d, type: 3}
+    - {fileID: 21300000, guid: f621d5b7607a32a4498b072df1bb1fcf, type: 3}
+    - {fileID: 21300000, guid: 08c7470a2949f9e46b9cd74657cf2bae, type: 3}
+    - {fileID: 21300000, guid: bcb6f51374cf8324c8fa1c3ea4200c03, type: 3}
+    - {fileID: 21300000, guid: 0a7f1cd73c55cca4696e7b3c3e902238, type: 3}
+    - {fileID: 21300000, guid: d1c6e39b5a4736e46a99178a440b45d1, type: 3}
+    - {fileID: 21300000, guid: 159d12822972cad4f8ce5304b34eceed, type: 3}
+    - {fileID: 21300000, guid: 6445920aa0479ad408bf0f42f66b3815, type: 3}
+    - {fileID: 21300000, guid: e625148b22435504abd90129f4e7e61a, type: 3}
+    - {fileID: 21300000, guid: 5647754b4aa1a8d4c876f5e1a85ca91c, type: 3}
+  - Key: K_spark
+    Frames:
+    - {fileID: 21300000, guid: 90893a022ffec294d85f961b9d71a6d2, type: 3}
+    - {fileID: 21300000, guid: b7231e70b9094ec4c8568268774b3a12, type: 3}
+    - {fileID: 21300000, guid: aec39c9473aabca43a7e2ec253717ce7, type: 3}
+    - {fileID: 21300000, guid: 0c0cd7e410ccec54ca97b9a007ac4031, type: 3}
+    - {fileID: 21300000, guid: 2c10a2d7dfd42d644887b1fd8e75b96b, type: 3}
+    - {fileID: 21300000, guid: 1352813ad41c6d84fabf255d80830d45, type: 3}
+    - {fileID: 21300000, guid: 02ccd8eaa27ee554ba56b09cdbeaac70, type: 3}
+  - Key: K_star
+    Frames:
+    - {fileID: 21300000, guid: 25612446319ea6f40ae06d373b715bc4, type: 3}
+    - {fileID: 21300000, guid: d52cbe3e87f146a499afaf42d0e344bd, type: 3}
+    - {fileID: 21300000, guid: 98661cfbde8bac549983fcab2797727c, type: 3}
+    - {fileID: 21300000, guid: d0c6f22249a1a3b4abb31c52002ac9c5, type: 3}
+    - {fileID: 21300000, guid: 949501977d7376842a25b555305ac72b, type: 3}
+    - {fileID: 21300000, guid: 3b3b6a1e45aada04895f4af71023caac, type: 3}
+    - {fileID: 21300000, guid: e1deb55922b53fb4695a0d5bdb634259, type: 3}
+    - {fileID: 21300000, guid: 8f9856c89ea57d848907f23049b7da4c, type: 3}
+    - {fileID: 21300000, guid: e60333f38838d5945ab950b6bbd89978, type: 3}
+  - Key: K_trace
+    Frames:
+    - {fileID: 21300000, guid: 3ecabdbef7dd5d548ae1896b0c57f1e9, type: 3}
+    - {fileID: 21300000, guid: ee0fa057c4ddaf44990a6dbf0c79b4ac, type: 3}
+    - {fileID: 21300000, guid: d9bdb0277c667844badf68c3d0cac9db, type: 3}
+    - {fileID: 21300000, guid: 70c32eb77f328434c93cbf480d3ef661, type: 3}
+    - {fileID: 21300000, guid: 494705e27b5d01046b6156538e091d61, type: 3}
+    - {fileID: 21300000, guid: 4629ea1cb229bf343acd51c9a62faafe, type: 3}
+    - {fileID: 21300000, guid: 29b6c6a31a6dd514881cfead1dd1e5be, type: 3}
+  - Key: K_twirl
+    Frames:
+    - {fileID: 21300000, guid: a69b706f0c5554546a5083ed3b99a470, type: 3}
+    - {fileID: 21300000, guid: d6a265edeab83a14db0f69f83fae23f6, type: 3}
+    - {fileID: 21300000, guid: 388b7cafa209c194791ad7e9bcccb4b7, type: 3}
   - Key: Rain_Bits
     Frames:
     - {fileID: 7594516856796014244, guid: 3ce73229ae8ccd6419e2ed90f605c00c, type: 3}

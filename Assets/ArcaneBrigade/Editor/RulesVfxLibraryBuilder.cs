@@ -40,6 +40,14 @@ namespace ArcaneBrigade.Editor
                 fresh += Add(library, look + "_Ground", One(NewArt + "/" + look + "_Ground.png"), true);
                 fresh += Add(library, look + "_Bits", Sheet(NewArt + "/" + look + "_Bits.png"), true);
             }
+            // the CC0 particle textures (Kenney): one key per family, K_flame, K_smoke, K_spark...
+            const string kenney = NewArt + "/Kenney";
+            if (Directory.Exists(kenney))
+            {
+                PrepareKenney(kenney);
+                foreach (var family in Directory.GetFiles(kenney, "*.png").Select(p => p.Replace('\\', '/')).GroupBy(p => Path.GetFileNameWithoutExtension(p).Split('_')[0]))
+                    Add(library, "K_" + family.Key, family.OrderBy(p => p, System.StringComparer.Ordinal).Select(SpriteAt).Where(s => s != null).ToArray(), false);
+            }
             fresh += Add(library, "Shield", Frames(NewArt + "/Shield_f{0}.png", 4), true);
             foreach (string key in new[] { "Heal_Bits", "Snow_Bits", "Rain_Bits" }) fresh += Add(library, key, Sheet(NewArt + "/" + key + ".png"), true);
             fresh += Add(library, "Danger_Ground", One(NewArt + "/Danger_Ground.png"), true);
@@ -67,6 +75,19 @@ namespace ArcaneBrigade.Editor
             if (!File.Exists(path)) return null;
             Sprite[] parts = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name, System.StringComparer.Ordinal).ToArray();
             return parts.Length > 1 ? parts : null;
+        }
+
+        /// <summary>Particle textures: single sprites, no mipmaps, small.</summary>
+        private static void PrepareKenney(string folder)
+        {
+            foreach (string path in Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/')))
+            {
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null || importer.textureType == TextureImporterType.Sprite && importer.maxTextureSize == 256 && !importer.mipmapEnabled) continue;
+                importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single; importer.alphaIsTransparency = true;
+                importer.mipmapEnabled = false; importer.maxTextureSize = 256; importer.wrapMode = TextureWrapMode.Clamp;
+                importer.SaveAndReimport();
+            }
         }
 
         /// <summary>The rules sounds import like the game's other effect sounds: mono Vorbis at 0.8, compressed in memory.</summary>
