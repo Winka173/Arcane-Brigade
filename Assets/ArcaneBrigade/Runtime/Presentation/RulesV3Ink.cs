@@ -840,21 +840,39 @@ namespace ArcaneBrigade
                     break;
                 case ElementLook.Water:
                 {
-                    float from = now * 140 + i * 57;
-                    Light(InkCanvas.Arc(at, .2f * s, .1f * s, from, from + 150, 10), p, .04f * s, alpha);
-                    Light(InkCanvas.Arc(at + new Vector2(.12f, .05f) * s, .11f * s, .06f * s, from + 180, from + 300, 8), p, .03f * s, alpha * .8f);
-                    float u = Mathf.Repeat(now * 1.1f + r1, 1);
-                    Glint(at + new Vector2(.1f, .25f + u * .2f) * s, .04f, p, alpha * (1 - u));
+                    // a wave crest rolling over: a rising line that curls into its tip, drops flicked off the lip
+                    float roll = Mathf.Repeat(now * .7f + r1, 1), lift = Mathf.Sin(roll * Mathf.PI);
+                    Vector2 b = at + new Vector2((roll - .5f) * .3f * s, 0);
+                    flame.Clear();
+                    for (int q = 0; q <= 9; q++)
+                    {
+                        float u = q / 9f, ang = 200 - u * 230;
+                        flame.Add(u < .55f ? b + new Vector2(u * .42f * s, Mathf.Sin(u * 2.8f) * .16f * s * lift) : b + new Vector2(.23f * s, .14f * s * lift) + Dir(ang) * .09f * s * lift);
+                    }
+                    Light(flame, p, .05f * s, alpha * (.4f + .6f * lift));
+                    for (int d = 0; d < 3; d++)
+                    {
+                        float u = Mathf.Repeat(now * 1.4f + d * .33f + r2, 1);
+                        Vector2 drop = b + new Vector2(.28f * s + d * .05f, .2f * s * lift) + new Vector2(u * .18f, u * .15f - u * u * .45f) * s;
+                        Light(InkCanvas.Line(drop, drop + new Vector2(.02f, -.04f)), p, .03f, alpha * (1 - u) * lift);
+                    }
                     break;
                 }
                 case ElementLook.Ice: case ElementLook.Crystal:
-                    for (int k = 0; k < 4; k++)
+                {
+                    // a frost crystal: six arms with side twigs, slowly turning, a glint running along it
+                    float turn = r1 * 60 + (look == ElementLook.Crystal ? now * 25 : now * 6), arm = (.13f + .07f * r2) * s;
+                    float shine = .55f + .45f * Mathf.Sin(now * 4 + i * 1.3f);
+                    for (int k = 0; k < 6; k++)
                     {
-                        float ang = k * 90 + r1 * 50 + (look == ElementLook.Crystal ? now * 20 : 0), len = (.12f + .12f * R(seed, i * 4 + k)) * s;
-                        Light(InkCanvas.Line(at, at + Dir(ang) * len), p, .035f * s, alpha * (.55f + .45f * Mathf.Sin(now * 5 + k + i)));
+                        Vector2 d = Dir(turn + k * 60), tip = at + d * arm, twig = at + d * arm * .55f;
+                        Light(InkCanvas.Line(at, tip), p, .028f * s, alpha * shine);
+                        Light(InkCanvas.Line(twig, twig + Dir(turn + k * 60 + 45) * arm * .35f), p, .02f * s, alpha * shine * .85f);
+                        Light(InkCanvas.Line(twig, twig + Dir(turn + k * 60 - 45) * arm * .35f), p, .02f * s, alpha * shine * .85f);
                     }
-                    if ((frame + i) % 5 == 0) Glint(at + Dir(r2 * 360) * .14f * s, .07f * s, p, alpha);
+                    if ((frame + i) % 7 == 0) Glint(at + Dir(turn) * arm, .08f * s, p, alpha);
                     break;
+                }
                 case ElementLook.Wind:
                 {
                     Vector2 dir = Dir(15 + r1 * 20); float u = Mathf.Repeat(now * .9f + r2, 1);
