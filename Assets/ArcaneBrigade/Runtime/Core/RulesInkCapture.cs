@@ -57,9 +57,10 @@ namespace ArcaneBrigade
                 session.Start("LanternKnight", 280601); session.State.Wave = int.TryParse(Arg("-wave"), out int wave) ? wave : 12; session.State.Phase = SessionPhase.Combat;
                 string bond = BondV3Catalog.BondId(house) ?? house;
                 UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(10).ToArray();
+                // each friend keeps its own weapon, as in a real run; the first weapon only stands in for one without
                 string weapon = catalog.Weapons.Where(w => w != null && w.Kind != WeaponKind.Contact).Select(w => w.Id).FirstOrDefault();
                 session.State.Roster.Clear();
-                foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = weapon, Tier = 2 });
+                foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = member.Weapon != null ? member.Weapon.Id : weapon, Tier = 2 });
                 try { session.Validate(session.State); } catch (Exception problem) { log.Add("INVALID RUN: " + problem.Message); }
                 storage.SaveRun(session.State);
                 log.Add("house " + house + ": " + string.Join(", ", members.Select(m => m.Id)));
@@ -144,7 +145,7 @@ namespace ArcaneBrigade
                 UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(10).ToArray();
                 string weapon = catalog.Weapons.Where(w => w != null && w.Kind != WeaponKind.Contact).Select(w => w.Id).FirstOrDefault();
                 session.State.Roster.Clear();
-                foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = weapon, Tier = 2 });
+                foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = member.Weapon != null ? member.Weapon.Id : weapon, Tier = 2 });
                 storage.SaveRun(session.State);
             }
         }

@@ -392,10 +392,13 @@ namespace ArcaneBrigade
             if (explosions != null)
                 foreach (CombatEvent value in simulation.Events)
                     if (value.Kind == CombatEventKind.Detonation || value.Kind == CombatEventKind.BossLanded) explosions.Observe(value, true);
+            // under the rules v3 the friendly side's skills, hits and procs are drawn by RulesV3Ink; the old painted slashes,
+            // impact sprites, rings, glyphs and stars of PaintedEffects and ArcadeEffects stay retired there
+            bool oldCues = simulation.SkillsV3 == null;
             if (arcadeEffects != null)
                 foreach (CombatEvent value in simulation.Events)
                 {
-                    if (paintedEffects == null || !paintedEffects.Play(value)) arcadeEffects.Play(value);
+                    if (oldCues && (paintedEffects == null || !paintedEffects.Play(value))) arcadeEffects.Play(value);
                     if (arsenalVisual != null) arsenalVisual.Play(value, Time.time);
                     if (elementInk != null) elementInk.Observe(value);
                 }
@@ -423,7 +426,7 @@ namespace ArcaneBrigade
                         if (visual.State.Faction != Faction.Enemy) visual.Celebrate(simulation.VisualElapsed);
                     float restored = session.State.Health - simulation.Champion.Health;
                     simulation.Champion.Health = session.State.Health;
-                    if (restored > 0 && paintedEffects != null) paintedEffects.Play(new CombatEvent(CombatEventKind.Heal, simulation.Champion.Position, Faction.Champion, restored));
+                    if (restored > 0 && paintedEffects != null && simulation.SkillsV3 == null) paintedEffects.Play(new CombatEvent(CombatEventKind.Heal, simulation.Champion.Position, Faction.Champion, restored));
                 }
                 PersistBoundary();
                 movement.Reset();

@@ -247,7 +247,7 @@ namespace ArcaneBrigade
             // cartoon smoke puffs: soft plum-greys in flat bands, thinning away
             { "toonsmoke", new Ramp(false, -.1f, Curve(.6f, 1f, 1.3f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.3f, .26f, .31f), C(.45f, .41f, .47f), C(.58f, .54f, .6f), C(.7f, .66f, .72f)) },
             { "toonpoison", new Ramp(false, -.1f, Curve(.6f, 1f, 1.2f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.13f, .3f, .1f), C(.3f, .58f, .16f), C(.5f, .8f, .22f), C(.78f, .95f, .45f)) },
-            { "toondust", new Ramp(false, .1f, Curve(.6f, 1f, 1.3f), (0, C(1, 1, 1, .5f)), (.15f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.3f, .21f, .14f), C(.5f, .37f, .24f), C(.66f, .52f, .35f), C(.8f, .68f, .5f)) },
+            { "toondust", new Ramp(false, .1f, Curve(.6f, 1f, 1.3f), (0, C(1, 1, 1, .5f)), (.15f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.45f, .34f, .24f), C(.64f, .52f, .38f), C(.78f, .67f, .52f), C(.9f, .82f, .68f)) },
             { "toonvoid", new Ramp(false, -.05f, Curve(.6f, 1f, 1.2f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.15f, .07f, .28f), C(.33f, .16f, .55f), C(.52f, .3f, .82f), C(.78f, .62f, 1f)) },
             { "glow",   new Ramp(true, 0, Curve(.5f, 1.15f, 1.3f), (0, C(1, 1, 1, .9f)), (.3f, C(1, 1, 1, .45f)), (1, C(1, 1, 1, 0))) },
         };
