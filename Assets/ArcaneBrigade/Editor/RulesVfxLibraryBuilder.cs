@@ -48,6 +48,14 @@ namespace ArcaneBrigade.Editor
                 foreach (var family in Directory.GetFiles(kenney, "*.png").Select(p => p.Replace('\\', '/')).GroupBy(p => Path.GetFileNameWithoutExtension(p).Split('_')[0]))
                     Add(library, "K_" + family.Key, family.OrderBy(p => p, System.StringComparer.Ordinal).Select(SpriteAt).Where(s => s != null).ToArray(), false);
             }
+            // the CC0 flipbooks (Unity Labs): <Name>_<cols>x<rows>.png cut into its frames in play order, key UL_<Name>
+            const string flipbooks = NewArt + "/UnityLabs";
+            if (Directory.Exists(flipbooks))
+                foreach (string path in Directory.GetFiles(flipbooks, "*.png").Select(p => p.Replace('\\', '/')))
+                {
+                    string name = Path.GetFileNameWithoutExtension(path);
+                    Add(library, "UL_" + name.Substring(0, name.LastIndexOf('_')), Flipbook(path), false);
+                }
             fresh += Add(library, "Shield", Frames(NewArt + "/Shield_f{0}.png", 4), true);
             foreach (string key in new[] { "Heal_Bits", "Snow_Bits", "Rain_Bits" }) fresh += Add(library, key, Sheet(NewArt + "/" + key + ".png"), true);
             fresh += Add(library, "Danger_Ground", One(NewArt + "/Danger_Ground.png"), true);
@@ -75,6 +83,30 @@ namespace ArcaneBrigade.Editor
             if (!File.Exists(path)) return null;
             Sprite[] parts = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name, System.StringComparer.Ordinal).ToArray();
             return parts.Length > 1 ? parts : null;
+        }
+
+        /// <summary>A flipbook sheet imported as a grid of frames, top-left first, row by row.</summary>
+        private static Sprite[] Flipbook(string path)
+        {
+            string grid = Path.GetFileNameWithoutExtension(path).Split('_').Last();
+            string[] parts = grid.Split('x');
+            if (parts.Length != 2 || !int.TryParse(parts[0], out int cols) || !int.TryParse(parts[1], out int rows)) return null;
+            var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer == null) return null;
+            importer.GetSourceTextureWidthAndHeight(out int w, out int h);
+#pragma warning disable 618
+            if (importer.spriteImportMode != SpriteImportMode.Multiple || importer.spritesheet.Length != cols * rows || importer.maxTextureSize != 1024 || importer.mipmapEnabled)
+            {
+                importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Multiple; importer.alphaIsTransparency = true;
+                importer.mipmapEnabled = false; importer.maxTextureSize = 1024; importer.wrapMode = TextureWrapMode.Clamp;
+                var cells = new List<SpriteMetaData>();
+                for (int row = 0; row < rows; row++) for (int col = 0; col < cols; col++)
+                    cells.Add(new SpriteMetaData { name = Path.GetFileNameWithoutExtension(path) + "_" + (row * cols + col).ToString("000"), rect = new Rect(col * w / (float)cols, (rows - 1 - row) * h / (float)rows, w / (float)cols, h / (float)rows), alignment = (int)SpriteAlignment.Center, pivot = new Vector2(.5f, .5f) });
+                importer.spritesheet = cells.ToArray();
+                importer.SaveAndReimport();
+            }
+#pragma warning restore 618
+            return Sheet(path);
         }
 
         /// <summary>Particle textures: single sprites, no mipmaps, small.</summary>

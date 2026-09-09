@@ -211,6 +211,10 @@ namespace ArcaneBrigade
         public sealed class Ramp
         {
             public Gradient Colour; public bool Additive = true; public float Gravity; public AnimationCurve Size;
+            /// <summary>Cartoon matter: four flat bands (outline, outer, inner, heart) painted on the shape; the colour ramp
+            /// then only thins the shape over life.</summary>
+            public Color[] Toon;
+            public Ramp Cartoon(params Color[] bands) { Toon = bands; Additive = false; return this; }
             public Ramp(bool additive, float gravity, AnimationCurve size, params (float t, Color c)[] keys)
             {
                 Additive = additive; Gravity = gravity; Size = size;
@@ -238,10 +242,18 @@ namespace ArcaneBrigade
             { "sound",  new Ramp(true, -.1f, Curve(.6f, 1f, .2f), (0, C(1, .95f, 1)), (.4f, C(1, .6f, .85f)), (1, C(.8f, .4f, 1, 0))) },
             { "time",   new Ramp(true, 0, Curve(.6f, 1f, .2f), (0, C(1, 1, .95f)), (.4f, C(.9f, .85f, .6f)), (1, C(.7f, .7f, .8f, 0))) },
             { "dust",   new Ramp(false, .35f, Curve(.6f, 1f, 1.3f), (0, C(.6f, .45f, .3f, 0)), (.15f, C(.55f, .42f, .28f, .6f)), (1, C(.4f, .3f, .2f, 0))) },
+            // cartoon flame on a flipbook's moving shape: dark red outline, red, orange, yellow heart; it shrinks as it dies
+            { "flame",  new Ramp(false, -.05f, Curve(.85f, 1f, 1f), (0, C(1, 1, 1)), (.5f, C(1, 1, 1, .95f)), (1, C(1, 1, 1, .25f))).Cartoon(C(.55f, .07f, .06f), C(.93f, .22f, .1f), C(1, .55f, .1f), C(1, .9f, .45f)) },
+            // cartoon smoke puffs: soft plum-greys in flat bands, thinning away
+            { "toonsmoke", new Ramp(false, -.1f, Curve(.6f, 1f, 1.3f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.3f, .26f, .31f), C(.45f, .41f, .47f), C(.58f, .54f, .6f), C(.7f, .66f, .72f)) },
+            { "toonpoison", new Ramp(false, -.1f, Curve(.6f, 1f, 1.2f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.13f, .3f, .1f), C(.3f, .58f, .16f), C(.5f, .8f, .22f), C(.78f, .95f, .45f)) },
+            { "toondust", new Ramp(false, .1f, Curve(.6f, 1f, 1.3f), (0, C(1, 1, 1, .5f)), (.15f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.3f, .21f, .14f), C(.5f, .37f, .24f), C(.66f, .52f, .35f), C(.8f, .68f, .5f)) },
+            { "toonvoid", new Ramp(false, -.05f, Curve(.6f, 1f, 1.2f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.15f, .07f, .28f), C(.33f, .16f, .55f), C(.52f, .3f, .82f), C(.78f, .62f, 1f)) },
             { "glow",   new Ramp(true, 0, Curve(.5f, 1.15f, 1.3f), (0, C(1, 1, 1, .9f)), (.3f, C(1, 1, 1, .45f)), (1, C(1, 1, 1, 0))) },
         };
         private readonly Dictionary<string, ParticleSystem> rampSystems = new Dictionary<string, ParticleSystem>();
         private Material additiveMaterial;
+        private Material toonMaterial;
 
         /// <summary>Emit one element particle: a texture from the particle library, its element's ramp (tinted by the optional
         /// tint, e.g. a glow in the element's colour), a velocity, a size, a life and a spin.</summary>
@@ -259,7 +271,25 @@ namespace ArcaneBrigade
             system.Emit(emit, 1);
         }
 
-        private ParticleSystem RampSystem(Sprite sprite, string ramp, Ramp r)
+        /// <summary>Emit one flipbook particle (a filmed flame, fireball, explosion or smoke from the UL_ library): it plays its
+        /// frames once over its life, keeps the frame's shape (a tall flame stays tall) and stands on its point when grounded.</summary>
+        public void EmitFlip(string key, string ramp, Vector2 at, Vector2 velocity, float height, float life, float spin = 0, Color? tint = null, bool grounded = false)
+        {
+            Sprite[] frames = Library?.Get(key);
+            if (frames == null || frames.Length == 0 || !Ramps.TryGetValue(ramp, out Ramp r)) return;
+            ParticleSystem system = RampSystem(frames[0], ramp, r, frames);
+            if (system == null) return;
+            float aspect = frames[0].rect.width / Mathf.Max(1, frames[0].rect.height);
+            var emit = new ParticleSystem.EmitParams
+            {
+                position = new Vector3(at.x, at.y + (grounded ? height * .45f : 0), 0), velocity = new Vector3(velocity.x, velocity.y, 0),
+                startSize3D = new Vector3(height * aspect, height, 1), startLifetime = life, rotation = spin == 0 ? 0 : Random.value * 360, angularVelocity = spin,
+                startColor = tint ?? Color.white,
+            };
+            system.Emit(emit, 1);
+        }
+
+        private ParticleSystem RampSystem(Sprite sprite, string ramp, Ramp r, Sprite[] flipbook = null)
         {
             string key = ramp + "|" + sprite.GetInstanceID();
             if (rampSystems.TryGetValue(key, out ParticleSystem found)) return found;
@@ -274,9 +304,19 @@ namespace ArcaneBrigade
             var size = system.sizeOverLifetime; size.enabled = true; size.size = new ParticleSystem.MinMaxCurve(1, r.Size);
             var colour = system.colorOverLifetime; colour.enabled = true; colour.color = r.Colour;
             var limit = system.limitVelocityOverLifetime; limit.enabled = true; limit.dampen = .08f; limit.limit = 30;
+            if (flipbook != null && flipbook.Length > 1)
+            {
+                main.startSize3D = true;
+                var sheet = system.textureSheetAnimation; sheet.enabled = true; sheet.mode = ParticleSystemAnimationMode.Sprites;
+                foreach (Sprite frame in flipbook) sheet.AddSprite(frame);
+                sheet.frameOverTime = new ParticleSystem.MinMaxCurve(1, AnimationCurve.Linear(0, 0, 1, 1)); sheet.cycleCount = 1;
+            }
             var renderer = go.GetComponent<ParticleSystemRenderer>();
-            Material baseMaterial = r.Additive && additiveMaterial != null ? additiveMaterial : particleMaterial;
-            renderer.sharedMaterial = new Material(baseMaterial) { mainTexture = sprite.texture, name = "Rules " + ramp + " " + sprite.name };
+            if (toonMaterial == null && Resources.Load<Shader>("Shaders/RulesToon") is Shader toon) toonMaterial = new Material(toon) { name = "Rules cartoon particle" };
+            Material baseMaterial = r.Toon != null && toonMaterial != null ? toonMaterial : r.Additive && additiveMaterial != null ? additiveMaterial : particleMaterial;
+            var made = new Material(baseMaterial) { mainTexture = sprite.texture, name = "Rules " + ramp + " " + sprite.name };
+            if (r.Toon != null) for (int b = 0; b < 4; b++) made.SetColor("_C" + b, r.Toon[b]);
+            renderer.sharedMaterial = made;
             renderer.sortingOrder = r.Additive ? ParticleOrder + 2 : ParticleOrder; renderer.renderMode = ParticleSystemRenderMode.Billboard;
             system.Play();
             rampSystems[key] = system;
