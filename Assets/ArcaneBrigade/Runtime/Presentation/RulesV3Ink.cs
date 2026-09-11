@@ -92,6 +92,7 @@ namespace ArcaneBrigade
         /// about twenty a second, so hundreds of enemies never bury the field.</summary>
         public void OnCombat(CombatEvent e)
         {
+            if (e.Kind == CombatEventKind.Fire && e.Faction != Faction.Enemy && e.Weapon != null) { AddSwing(e); return; }
             if (cartoon == null || e.Kind != CombatEventKind.Hit || e.Faction != Faction.Enemy || e.Value <= 0) return;
             float now = Time.time;
             if (now >= hitBudgetAt) { hitBudgetAt = now + .1f; hitBudget = PresentationSettings.ReducedEffects ? 1 : 2; }
@@ -108,6 +109,84 @@ namespace ArcaneBrigade
             Vector2 at = e.Position + Vector2.up * .3f;
             cartoon.Play(key, at, e.Critical ? .55f : .4f);
             if (e.Critical) cartoon.Play("hit_crit", at, .45f, Random.value * 360);
+        }
+
+        /// <summary>An enemy falls: a cartoon smoke puff sized by its body (a star poof on a critical), at most about thirty a
+        /// second so a crowd melting never buries the field.</summary>
+        public void OnKill(CombatEvent e)
+        {
+            if (cartoon == null || e.Subject == null) return;
+            float now = Time.time;
+            if (now >= killBudgetAt) { killBudgetAt = now + .1f; killBudget = PresentationSettings.ReducedEffects ? 1 : 3; }
+            if (killBudget-- <= 0) return;
+            float body = Mathf.Clamp(e.Subject.Definition.Radius * 2, .4f, 1.6f);
+            Vector2 at = e.Position + Vector2.up * body * .4f;
+            cartoon.Play(e.Critical ? "burst_poof" : "hit_smoke", at, .35f + body * .3f);
+        }
+        private float killBudgetAt; private int killBudget;
+
+        // ------------------------------------------------------------------ our shots and swings
+        private sealed class Swing { public Vector2 At, Dir; public float Born, Reach; public ElementLook Look; public bool Melee; public int Seed; }
+        private readonly List<Swing> swings = new List<Swing>();
+        private readonly Dictionary<int, ElementLook> shotLooks = new Dictionary<int, ElementLook>();
+        private const float SwingLife = .2f;
+
+        private ElementLook LookOfUnit(int id)
+        {
+            UnitState source = boundSimulation?.UnitForPresentation(id);
+            if (source == null) return ElementLook.Gold;
+            ElementLook look = source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : source.Faction == Faction.Champion ? ElementInk.For(source.Definition.Id) : ElementLook.None;
+            return look == ElementLook.None ? ElementLook.Gold : look;
+        }
+
+        /// <summary>One of our attacks leaves its wielder: a melee swing is a curved stroke of light in the wielder's element
+        /// sweeping its reach; a shot gets a small glint at the muzzle (the shot itself is drawn by DrawShots).</summary>
+        private void AddSwing(CombatEvent e)
+        {
+            if (swings.Count > 48) return;
+            Vector2 dir = e.Direction.sqrMagnitude > .0001f ? e.Direction.normalized : Vector2.right;
+            bool melee = e.Weapon.Kind == WeaponKind.Melee;
+            swings.Add(new Swing { At = e.Position, Dir = dir, Born = Time.time, Reach = melee ? Mathf.Clamp(e.Weapon.Range, .7f, 1.8f) : .5f, Look = LookOfUnit(e.Cause.SourceUnitId), Melee = melee, Seed = ++seed });
+        }
+
+        private void DrawSwings()
+        {
+            float now = Time.time;
+            for (int i = swings.Count - 1; i >= 0; i--)
+            {
+                Swing s = swings[i];
+                float t = (now - s.Born) / SwingLife;
+                if (t > 1) { swings.RemoveAt(i); continue; }
+                InkPalette p = s.Look == ElementLook.Fire ? Ember : PaletteFor(s.Look);
+                if (!s.Melee) { Glint(s.At + s.Dir * s.Reach, .14f * (1 - t), p, 1 - t); continue; }
+                // the arc sweeps from one side of the aim to the other; its tail fades behind the head
+                float aim = Mathf.Atan2(s.Dir.y, s.Dir.x) * Mathf.Rad2Deg, from = aim + 60, to = aim - 60, head = Mathf.Lerp(from, to, Mathf.SmoothStep(0, 1, Mathf.Min(1, t * 1.6f)));
+                float tail = Mathf.Lerp(from, head, Mathf.Clamp01(t * 1.4f));
+                if (Mathf.Abs(head - tail) < 2) continue;
+                Light(InkCanvas.Arc(s.At, s.Reach * .85f, s.Reach * .85f * .7f, tail, head, 14), p, .07f, 1 - t * t, 1, 0);
+            }
+        }
+
+        /// <summary>Our ordinary shots under the rules v3: a short bolt of light in the shooter's element (hero standard:
+        /// halo, body, hot thread), a flickering glint at its head and a thin trail of the element's matter.</summary>
+        private void DrawShots(CombatSimulation sim, float now)
+        {
+            if (sim.Projectiles == null) return;
+            int frame = Mathf.FloorToInt(now * 18);
+            if (shotLooks.Count > 512) shotLooks.Clear();
+            foreach (ProjectileState shot in sim.Projectiles)
+            {
+                if (shot.Faction == Faction.Enemy || shot.Cause.ItemId != null && shot.Cause.ItemId.StartsWith("hero-identity")) continue;
+                if (!shotLooks.TryGetValue(shot.Id, out ElementLook look)) shotLooks[shot.Id] = look = LookOfUnit(shot.SourceUnitId);
+                InkPalette p = look == ElementLook.Fire ? Ember : PaletteFor(look);
+                float speed = shot.Velocity.magnitude;
+                Vector2 dir = speed > .01f ? shot.Velocity / speed : Vector2.right, head = shot.Position;
+                float len = Mathf.Clamp(speed * .04f, .3f, .8f);
+                if (look == ElementLook.Storm) Light(Bolt(head - dir * len, head, .06f, shot.Id * 7 + frame), p, .045f, 1);
+                else Light(InkCanvas.Line(head - dir * len, head), p, .05f, 1, 1, 0);
+                if ((frame + shot.Id) % 2 == 0) Glint(head, .09f, p, .9f);
+                FieldParticles(look, head, .7f, .35f, .45f);
+            }
         }
 
         /// <summary>The colour of a hit's element: its source companion's main bond, the hero's own look, else none.</summary>
@@ -512,8 +591,9 @@ namespace ArcaneBrigade
             return true;
         }
 
-        /// <summary>A field moment: a tinted veil over the arena plus moving strokes in its element (snow for a blizzard,
-        /// gusts for a gale, a wave band for a riptide, heat shimmer for an inferno, spores for a pandemic, dusk for an eclipse).</summary>
+        /// <summary>A field moment is weather over the whole arena, one continuous body of its element: a tinted veil plus
+        /// snow falling everywhere for a blizzard, long gusts of light for a gale, a wave crest sweeping across for a riptide,
+        /// cartoon flames rising all over for an inferno, venom fumes for a pandemic, dusk for an eclipse.</summary>
         private void DrawField(Field f, Vector2 centre, float now)
         {
             float t = Mathf.Clamp01((now - f.Born) / f.Life), a = Mathf.Sin(t * Mathf.PI);
@@ -522,41 +602,43 @@ namespace ArcaneBrigade
             {
                 case FieldKind.Blizzard:
                     ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .25f * a, .7f * a);
-                    for (int i = 0; i < 26; i++)
-                    {
-                        float u = Mathf.Repeat(now * .35f + R(9, i), 1);
-                        Glint(centre + new Vector2((R(5, i) - .5f) * 20 - u * 2, 6 - u * 12), .07f, ArsenalInk.Glass, a * Mathf.Sin(u * Mathf.PI));
-                    }
-                    for (int i = 0; i < 18; i++)
-                    {
-                        Vector2 p = centre + new Vector2(Mathf.Repeat(R(f.Born.GetHashCode(), i) * 20 + now * 6, 20) - 10, Mathf.Repeat(R(7, i) * 12 - now * 3, 12) - 6);
-                        ink.Token(InkToken.Shard, ArsenalInk.Glass, p, .22f, now * 90 + i * 30, a, true);
-                    }
+                    Weather(ElementLook.Ice, centre, a, 3);
+                    for (int i = 0; i < 6 && Random.value < Time.deltaTime * 40 * a; i++)
+                        vfx.Emit(vfx.Tex("star"), "ice", centre + new Vector2((Random.value - .5f) * 22, 6.5f), new Vector2(-.8f - Random.value, -2.2f - Random.value), .1f + Random.value * .1f, 3f, (Random.value - .5f) * 120);
                     break;
                 case FieldKind.Eclipse:
                     ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .4f * a, .8f * a);
+                    Weather(ElementLook.Void, centre, a, 1);
                     break;
                 case FieldKind.Gale:
-                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Wind, centre + new Vector2((R(30, i) - .5f) * 18, (R(31, i) - .5f) * 10), centre + new Vector2((R(30, i + 1) - .5f) * 18, (R(31, i + 1) - .5f) * 10), i, 30, now, 1.2f, a);
-                    ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a);
-                    for (int i = 0; i < 14; i++)
-                    {
-                        Vector2 p = centre + new Vector2(Mathf.Repeat(R(3, i) * 22 + now * 14, 22) - 11, R(5, i) * 12 - 6);
-                        ink.Streaks(p, f.Dir.sqrMagnitude > .01f ? f.Dir : Vector2.right, a);
-                    }
-                    break;
-                case FieldKind.Riptide:
-                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Water, centre + new Vector2((R(30, i) - .5f) * 18, (R(31, i) - .5f) * 10), centre + new Vector2((R(30, i + 1) - .5f) * 18, (R(31, i + 1) - .5f) * 10), i, 30, now, 1.2f, a);
                 {
+                    ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a);
+                    Vector2 dir = f.Dir.sqrMagnitude > .01f ? f.Dir.normalized : Vector2.right, side = new Vector2(-dir.y, dir.x);
+                    for (int k = 0; k < 7; k++)
+                    {
+                        // long gusts crossing the arena, each a wavy stroke of light running with the wind
+                        float run = Mathf.Repeat(now * .45f + R(3, k), 1), lane = (R(5, k) - .5f) * 11;
+                        Vector2 mid = centre + side * lane + dir * Mathf.Lerp(-13, 13, run);
+                        path.Clear();
+                        for (int q = 0; q <= 20; q++) { float u = q / 20f; path.Add(mid + dir * (u - .5f) * 5 + side * Mathf.Sin(u * 6.3f + now * 3 + k) * .25f); }
+                        Light(path, PaletteFor(ElementLook.Wind), .035f, a * Mathf.Sin(run * Mathf.PI), 1, 0);
+                    }
+                    Weather(ElementLook.Wind, centre, a, 2);
+                    break;
+                }
+                case FieldKind.Riptide:
+                {
+                    // one wave crest sweeping across the arena, spray thrown off its lip
                     float x = Mathf.Lerp(-12, 12, t);
-                    Vector2 a0 = centre + new Vector2(x, -7), a1 = centre + new Vector2(x, 7);
-                    ink.FloorLane(a0, a1, 1.4f, A(ArsenalInk.Water.Body, .45f * a), A(ArsenalInk.Water.Glow, .1f * a));
-                    ink.FloorStroke(a0 + Vector2.right * 1.3f, a1 + Vector2.right * 1.3f, ArsenalInk.Water, .1f, 1, 1, a, .15f, 3);
+                    path.Clear();
+                    for (int q = 0; q <= 30; q++) { float u = q / 30f; path.Add(centre + new Vector2(x + Mathf.Sin(u * 9 + now * 4) * .35f, Mathf.Lerp(-7, 7, u))); }
+                    Light(path, PaletteFor(ElementLook.Water), .09f, a, 1, 0);
+                    for (int i = 0; i < 3; i++) FieldParticles(ElementLook.Water, centre + new Vector2(x, Mathf.Lerp(-7, 7, Random.value)), a, 4, 1.2f);
                     break;
                 }
                 case FieldKind.Inferno:
-                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Fire, centre + new Vector2((R(24, i) - .5f) * 18, (R(25, i) - .5f) * 10), centre + new Vector2((R(24, i + 1) - .5f) * 18, (R(25, i + 1) - .5f) * 10), i, 24, now, 1.2f, a);
                     ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
+                    Weather(ElementLook.Fire, centre, a, 1.5f);
                     break;
                 case FieldKind.Lost:
                     ink.Vignette(centre, 28, ArsenalInk.Midnight.Ink, .5f * Mathf.Min(1, t * 3), .95f * Mathf.Min(1, t * 3));
@@ -566,15 +648,19 @@ namespace ArcaneBrigade
                     ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a);
                     break;
                 case FieldKind.Pandemic:
-                    for (int i = 0; i < 16; i++) ElementStroke(ElementLook.Poison, centre + new Vector2((R(24, i) - .5f) * 18, (R(25, i) - .5f) * 10), centre + new Vector2((R(24, i + 1) - .5f) * 18, (R(25, i + 1) - .5f) * 10), i, 24, now, 1.2f, a);
                     ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a);
-                    for (int i = 0; i < 12; i++)
-                    {
-                        Vector2 p = centre + new Vector2(R(11, i) * 20 - 10, R(13, i) * 12 - 6 + t * 1.5f);
-                        ink.Token(InkToken.Bubble, ArsenalInk.Green, p, .2f, 0, a, true);
-                    }
+                    Weather(ElementLook.Poison, centre, a, 3);
                     break;
             }
+        }
+
+        /// <summary>An element's matter born at fresh random points all over the arena every frame, so a field reads as
+        /// weather rather than a pattern of spots.</summary>
+        private void Weather(ElementLook look, Vector2 centre, float alpha, float rate)
+        {
+            int samples = PresentationSettings.ReducedEffects ? 3 : 8;
+            for (int i = 0; i < samples; i++)
+                FieldParticles(look, centre + new Vector2((Random.value - .5f) * 20, (Random.value - .5f) * 11), alpha, rate, 1);
         }
 
         /// <summary>Dusk takes strength from a marked enemy: a violet ribbon from the enemy to the friend that gains it.</summary>
@@ -663,6 +749,8 @@ namespace ArcaneBrigade
                 DrawAura(auras[i], unit, now); Auras++;
             }
             if (boundBonds != null) DrawStatuses(sim, now);
+            DrawShots(sim, now);
+            DrawSwings();
             for (int i = throws.Count - 1; i >= 0; i--)
             {
                 float k = (now - throws[i].Born) / throws[i].Life;

@@ -368,8 +368,11 @@ namespace ArcaneBrigade
             if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.SimulationMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - simulationStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
             combatFeel.Play(simulation.Events, units, simulation.VisualElapsed, simulation.Champion != null ? simulation.Champion.Id : 0, FinalBossWave);
             if (pacing != null) pacing.Observe(simulation.Events, simulation.VisualElapsed);
-            ToyInk.Observe(simulation.Events);
-            ComboInk.Observe(simulation.Events);
+            // under the rules v3 the friendly side is drawn by RulesV3Ink alone (light strokes, cartoon matter, Cartoon FX);
+            // the old ink and painted cues (toy and combo scribbles, painted slashes and impacts, rings, glyphs, weapon ink,
+            // casings, ink kill pops, element ink bursts) stay retired there
+            bool oldCues = simulation.SkillsV3 == null;
+            if (oldCues) { ToyInk.Observe(simulation.Events); ComboInk.Observe(simulation.Events); }
             foreach (CombatEvent value in simulation.Events)
             {
                 if (stagePerformance != null) stagePerformance.Observe(value);
@@ -387,21 +390,21 @@ namespace ArcaneBrigade
                     temporary.gameObject.SetActive(false);
                     unitPool.Push(temporary);
                 }
-                if (explosions != null) explosions.Observe(value, shown);
+                if (!oldCues && RulesInk != null && value.Faction == Faction.Enemy && !value.Subject.Definition.IsBoss) RulesInk.OnKill(value);
+                else if (explosions != null) explosions.Observe(value, shown);
             }
             if (explosions != null)
                 foreach (CombatEvent value in simulation.Events)
                     if (value.Kind == CombatEventKind.Detonation || value.Kind == CombatEventKind.BossLanded) explosions.Observe(value, true);
-            // under the rules v3 the friendly side's skills, hits and procs are drawn by RulesV3Ink; the old painted slashes,
-            // impact sprites, rings, glyphs and stars of PaintedEffects and ArcadeEffects stay retired there
-            bool oldCues = simulation.SkillsV3 == null;
             if (arcadeEffects != null)
                 foreach (CombatEvent value in simulation.Events)
                 {
                     if (oldCues && (paintedEffects == null || !paintedEffects.Play(value))) arcadeEffects.Play(value);
                     else if (!oldCues && RulesInk != null) RulesInk.OnCombat(value); // our hits as cartoon hits in the dealer's element
-                    if (arsenalVisual != null) arsenalVisual.Play(value, Time.time);
-                    if (elementInk != null) elementInk.Observe(value);
+                    // the hostile side's code-ink blows (enemy claw rakes, boss landings) stay
+                    bool hostileBlow = value.Kind == CombatEventKind.BossLanded || value.Kind == CombatEventKind.Fire && value.Faction == Faction.Enemy;
+                    if (arsenalVisual != null && (oldCues || hostileBlow)) arsenalVisual.Play(value, Time.time);
+                    if (elementInk != null && oldCues) elementInk.Observe(value);
                 }
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
@@ -843,6 +846,10 @@ namespace ArcaneBrigade
                 float projectileSize = state.Faction == Faction.Enemy ? 0.2f : ProjectileVisual.Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
                 Sprite missile = HeroIdentityVisual.Missile(state, catalog.Projectile, simulation.Elapsed, out float missileTurn, out float missileSize);
                 if (missile != null) { view.sprite = missile; projectileSize = missileSize; }
+                // under the rules v3 our ordinary shots are bolts of light in the shooter's element (RulesV3Ink), never painted bullets
+                bool lightShot = simulation.SkillsV3 != null && state.Faction != Faction.Enemy && missile == null && RulesInk != null;
+                view.enabled = !lightShot;
+                if (lightShot) { view.GetComponent<ProjectileVisual>().SetFade(0); continue; }
                 // our painted shots are sized by their painted ink, not their transparent canvas
                 float drawn = state.Faction == Faction.Enemy || missile != null ? view.sprite.bounds.size.x : Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(view.sprite).width);
                 view.transform.localScale = Vector3.one * (projectileSize / drawn);
