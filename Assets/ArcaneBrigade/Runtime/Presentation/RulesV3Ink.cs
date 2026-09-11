@@ -398,12 +398,56 @@ namespace ArcaneBrigade
                     throws.Add(new Throw { From = e.Position + new Vector2(2.4f, 7.5f), To = e.Position, Born = Now, Life = delay, Look = ElementLook.Light, Token = InkToken.Star, Seed = ++seed, Straight = true });
                 }
                 AddPop(e.Position, LookFor(e.Rule), size, delay);
+                Signature(e.Rule, e.Position, size);
                 Sound(LookFor(e.Rule), "burst", e.Position);
                 if (size >= 1.5f) owner?.Feel.Accent(.3f, .1f); else if (size >= 1.1f) owner?.Feel.Accent(.12f, 0);
             }
-            if (bursts == null || burstsThisFrame >= MaxBurstsPerFrame) return;
-            burstsThisFrame++;
-            bursts.Burst(LookFor(e.Rule), e.Position, Vector2.right, 1.6f);
+        }
+
+        private float nextFrozenWord, nextBoomWord;
+
+        /// <summary>Each trait's own moment on top of its element's burst, so traits never look alike: frost locks a foe in
+        /// ice, a splash throws water, a pull draws matter into its point, dusk lets souls escape, a horn or demolition blow
+        /// booms, warmth and sweets rise as sparkles. Comic words stay rare (one per kind every few seconds).</summary>
+        private void Signature(string rule, Vector2 at, float size)
+        {
+            if (cartoon == null || string.IsNullOrEmpty(rule)) return;
+            Vector2 c = at + Vector2.up * .3f;
+            float now = Time.time;
+            switch (rule)
+            {
+                case "freeze":
+                    cartoon.Play("hit_ice", c, .6f);
+                    for (int i = 0; i < 6; i++) Puff(ElementLook.Ice, c + Random.insideUnitCircle * .25f, Random.insideUnitCircle * .4f, .3f, .7f);
+                    if (now >= nextFrozenWord) { nextFrozenWord = now + 4; cartoon.Play("word_frozen", c + Vector2.up * .9f, .45f); }
+                    break;
+                case "frozen-hit": case "shatter":
+                    cartoon.Play("hit_ice", c, .5f);
+                    break;
+                case "tide-splash": case "sea-shanty":
+                    cartoon.Play("burst_water", at, .5f * size);
+                    break;
+                case "gravity-pull":
+                    // matter drawn into the point from all round
+                    for (int i = 0; i < 10; i++) { Vector2 from = Random.insideUnitCircle.normalized * (.9f + .4f * Random.value); Puff(ElementLook.Void, c + from, -from * 1.8f, .25f, .5f); }
+                    break;
+                case "dusk-mark": case "shade-execute-growth": case "eclipse":
+                    cartoon.Play("burst_souls", c, .4f * size);
+                    break;
+                case "horns-vulnerability": case "horn-pile-up": case "demolitionist-stun":
+                    cartoon.Play("burst_boom", c, .3f * size);
+                    if (now >= nextBoomWord) { nextBoomWord = now + 4; cartoon.Play(rule == "demolitionist-stun" ? "word_boom" : "word_wham", c + Vector2.up * .9f, .45f); }
+                    break;
+                case "root-hit": case "root-stillness":
+                    for (int i = 0; i < 6; i++) Puff(ElementLook.Bloom, c + Random.insideUnitCircle * .3f, Vector2.up * .4f + Random.insideUnitCircle * .3f, .25f, .7f);
+                    break;
+                case "warmth": case "warmth-heal": case "feast": case "sugar-rush": case "wick": case "lantern-stillness":
+                    for (int i = 0; i < 6; i++) vfx.Emit(vfx.Tex("star"), "light", c + Random.insideUnitCircle * .3f, new Vector2((Random.value - .5f) * .6f, 1 + Random.value), .14f, .8f, 200);
+                    break;
+                case "rot":
+                    for (int i = 0; i < 4; i++) Puff(ElementLook.Poison, c + Random.insideUnitCircle * .25f, Vector2.up * .35f, .3f, .9f);
+                    break;
+            }
         }
 
         public void OnCast(SkillCastRequest c)
@@ -411,7 +455,7 @@ namespace ArcaneBrigade
             ElementLook look = LookFor(c.SkillId);
             if (look == ElementLook.Gold) look = LookFor(MainBond(c.SourceId));
             AreaShape shape = c.Shape == SkillShape.Ring ? AreaShape.Ring : c.Shape == SkillShape.Line ? AreaShape.Line : c.Shape == SkillShape.Cone ? AreaShape.Cone : AreaShape.Disc;
-            if (c.Shape == SkillShape.Species) { if (bursts != null) bursts.Burst(look, c.Position, Vector2.right, 1.2f); return; }
+            if (c.Shape == SkillShape.Species) { AddPop(c.Position, look, 1.2f, 0); return; }
             bool motif = CompanionSkillTable.TryGet(c.SkillId, out CompanionSkillDefinition skill) & MotifFor(skill?.BodySource, out InkToken token);
             // the cast leaves the companion: a flash on it, its piece lobbed to the spot, and the area lands when it arrives
             UnitState caster = boundSimulation?.UnitForPresentation(c.SourceId);
@@ -706,7 +750,7 @@ namespace ArcaneBrigade
         public void OnFell(FriendMortalityEvent e) { fallen[e.FriendId] = e; fallenAt[e.FriendId] = Now; Sound("rules.fall", e.Position); }
         // the mortality clock may differ from the combat clock: the countdown runs from when the fall was seen
         private readonly Dictionary<int, float> fallenAt = new Dictionary<int, float>();
-        public void OnRose(FriendMortalityEvent e) { Sound("rules.rise", e.Position); fallen.Remove(e.FriendId); if (bursts != null) bursts.Burst(ElementLook.Light, e.Position, Vector2.up, 1.1f); }
+        public void OnRose(FriendMortalityEvent e) { Sound("rules.rise", e.Position); fallen.Remove(e.FriendId); AddPop(e.Position, ElementLook.Light, 1.1f, 0); }
 
         public void OnEntity(RulesV3EntityRequest e)
         {
@@ -715,7 +759,7 @@ namespace ArcaneBrigade
             {
                 entities.Remove(e.Id);
                 if (e.Change == RulesV3EntityChange.Collected) Sound("rules.pickup", e.Position);
-                if (e.Change == RulesV3EntityChange.Collected && bursts != null) bursts.Burst(LookFor(e.Rule), e.Position, Vector2.up, .8f);
+                if (e.Change == RulesV3EntityChange.Collected) cartoon?.Play("burst_poof", e.Position + Vector2.up * .3f, .3f);
             }
         }
 
@@ -1231,23 +1275,6 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>An element burst in the hero standard: rays of the element's light thrown from the point (forked for storm,
-        /// tongues for fire, shards for frost...) and a short hot cross; no painted sprite, no ring.</summary>
-        private void LightBurst(Vector2 c, ElementLook look, float size, float t, int seed)
-        {
-            InkPalette p = PaletteFor(look);
-            float grow = 1 - (1 - t) * (1 - t) * (1 - t), fade = 1 - t * t;
-            int rays = PresentationSettings.ReducedEffects ? 5 : 9, frame = Mathf.FloorToInt(Now * 18);
-            for (int i = 0; i < rays; i++)
-            {
-                float ang = seed * 37 % 360 + i * 360f / rays + R(seed, i) * 20, reach = (.35f + .45f * R(seed, i + 9)) * size;
-                Vector2 end = c + Dir(ang) * reach * grow;
-                bool zig = look == ElementLook.Storm;
-                float amp = look == ElementLook.Fire || look == ElementLook.Water ? .05f : zig ? reach * .12f : 0;
-                Light(zig ? Bolt(c, end, amp, seed * 31 + i + frame * 7) : InkCanvas.Line(c, end, amp, 3, false, seed + i), p, .045f * Mathf.Sqrt(size), fade, 1, Mathf.Max(0, t * 1.2f - .2f));
-            }
-            if (t < .35f) Glint(c, .22f * size * (1 - t), p, 1 - t / .35f);
-        }
 
         /// <summary>The particle layers of an element where a skill acts, emitted at a rate (per second) so the field keeps
         /// burning: fire is flame tongues rising through orange to red with embers and a little smoke; storm is lightning
@@ -1544,7 +1571,7 @@ namespace ArcaneBrigade
                 }
                 return;
             }
-            LightBurst(c, p.Look, p.Size, t, p.Seed);
+            if (t < .3f) Glint(c, .22f * p.Size * (1 - t), PaletteFor(p.Look), 1 - t / .3f);
         }
 
         /// <summary>An enemy blow lands when its warning ends: the painted enemy burst over the struck ground and stone chips
