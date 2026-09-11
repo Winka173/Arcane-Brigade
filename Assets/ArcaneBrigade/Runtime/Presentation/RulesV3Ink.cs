@@ -69,9 +69,30 @@ namespace ArcaneBrigade
             owner = controller; bursts = elementInk;
             vfx = gameObject.AddComponent<RulesVfx>();
             cartoon = gameObject.AddComponent<CartoonFx>();
+            Current = this;
             CombatFeedback.ElementTint = ElementColour;
             ink = new ArsenalInk(transform);
             light = new InkCanvas(transform, "Rules light", 2141, true);
+        }
+
+        /// <summary>The live rules ink, for the hero's skill strokes to shed their element's cartoon matter.</summary>
+        public static RulesV3Ink Current { get; private set; }
+
+        /// <summary>Cartoon matter shed along a stroke of light (a hero's swing, bolt or beam): puffs of the element born at
+        /// fresh points along it, a few per unit of length per second, drifting a little.</summary>
+        public void PuffAlong(ElementLook look, List<Vector2> stroke, float alpha)
+        {
+            if (vfx == null || stroke == null || stroke.Count < 2 || alpha < .05f) return;
+            float length = 0;
+            for (int i = 1; i < stroke.Count; i++) length += Vector2.Distance(stroke[i - 1], stroke[i]);
+            for (float want = Time.deltaTime * Mathf.Min(length, 8) * (PresentationSettings.ReducedEffects ? 2 : 5) * alpha; want > 0; want -= 1)
+            {
+                if (Random.value > want) continue;
+                int k = Random.Range(1, stroke.Count);
+                Vector2 at = Vector2.Lerp(stroke[k - 1], stroke[k], Random.value);
+                if (look == ElementLook.Fire) vfx.EmitFlip(Flames[Random.Range(0, Flames.Length)], "flame", at, new Vector2(0, .3f), .3f + Random.value * .2f, .5f, 0, null, true);
+                else Puff(look, at, Random.insideUnitCircle * .3f + Vector2.up * .2f, .16f + Random.value * .12f, .5f);
+            }
         }
 
         private CartoonFx cartoon;
@@ -900,22 +921,13 @@ namespace ArcaneBrigade
                     }
                     break;
                 }
-                case ElementLook.Water: Spiral(c, r, 3, now * 2.4f, 3.6f, p, .05f, show); break;
-                case ElementLook.Wind: Spiral(c, r, 4, now * 4f, 2.6f, p, .03f, show * .85f); break;
-                case ElementLook.Void: case ElementLook.Dream: Spiral(c, r, 3, -now * 1.8f, -4f, p, .045f, show); break;
-                case ElementLook.Bloom: Spiral(c, r * .85f, 5, now * .8f, 2.2f, p, .035f, show * .8f); break;
+                case ElementLook.Water: case ElementLook.Wind: case ElementLook.Bloom: Swirl(a.Look, c, r, show, 1); break;
+                case ElementLook.Void: case ElementLook.Dream: Swirl(a.Look, c, r, show, -1); break;
                 case ElementLook.Fire: break; // the cartoon flames are the whole bonfire
                 case ElementLook.Light: case ElementLook.Gold: case ElementLook.Sound:
-                {
-                    // rays from the heart, turning slowly; sound's rays ripple
-                    bool sound = a.Look == ElementLook.Sound;
-                    for (int k = 0; k < 7; k++)
-                    {
-                        float ang = now * 20 + k * 360f / 7 + a.Seed;
-                        Light(InkCanvas.Line(c, c + Flat(Dir(ang)) * r, sound ? .06f : 0, sound ? 5 : 0, false, a.Seed + k), p, .035f, show * (.6f + .4f * Mathf.Sin(now * 5 + k)));
-                    }
+                    // the puffs carry the body; a bright heart pulses in it
+                    if (frame % 4 == 0) Glint(c + Vector2.up * .2f, .22f, p, show);
                     break;
-                }
                 case ElementLook.Time:
                     ElementStroke(ElementLook.Time, c, c, 0, a.Seed, now, r * 5, show);
                     break;
@@ -933,23 +945,38 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Spiral arms of light turning about a centre: a whirlpool, a gust, a void drawing in, a swirl of petals.</summary>
-        private void Spiral(Vector2 c, float r, int arms, float turn, float twist, InkPalette p, float width, float alpha)
+        /// <summary>A mass that turns: cartoon puffs of the element carried round the heart (a whirlpool, a whirlwind, a
+        /// swirl of petals; dusk draws them in). Born at fresh points every frame so the turning body never shows a pattern.</summary>
+        private void Swirl(ElementLook look, Vector2 c, float r, float alpha, float turn)
         {
-            for (int k = 0; k < arms; k++)
+            for (float want = Time.deltaTime * (PresentationSettings.ReducedEffects ? 6 : 16) * alpha * Mathf.Clamp(r, .6f, 2.5f); want > 0; want -= 1)
             {
-                path.Clear();
-                for (int q = 0; q <= 18; q++)
-                {
-                    float u = q / 18f, ang = turn + k * Mathf.PI * 2 / arms + u * twist, rad = r * (.1f + .9f * u);
-                    path.Add(c + new Vector2(Mathf.Cos(ang) * rad, Mathf.Sin(ang) * rad * .62f));
-                }
-                Light(path, p, width, alpha, 1, 0);
+                if (Random.value > want) continue;
+                float u = .3f + .7f * Random.value, ang = Random.value * 360;
+                Vector2 at = c + Flat(Dir(ang)) * r * u, spin = Flat(Dir(ang + 90 * turn)) * r * 1.8f;
+                if (turn < 0) spin -= Flat(Dir(ang)) * r * .8f;
+                Puff(look, at, spin, .3f * (1.2f - u * .4f), .6f);
+            }
+        }
+
+        /// <summary>A stream of an element's cartoon puffs from a point along a direction (a lane's jet, a cone's spray).</summary>
+        private void Stream(ElementLook look, Vector2 from, Vector2 dir, float spread, float reach, float alpha, float perSecond)
+        {
+            if (look == ElementLook.Fire) return; // fire has its own fireballs and standing flames
+            float aim = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, speed = reach / .55f;
+            for (float want = Time.deltaTime * perSecond * alpha * (PresentationSettings.ReducedEffects ? .4f : 1); want > 0; want -= 1)
+            {
+                if (Random.value > want) continue;
+                Vector2 velocity = Dir(aim + (Random.value - .5f) * 2 * spread) * speed * (.8f + .4f * Random.value);
+                // light, gold and notes fly as sparkles with a few puffs; the rest as big overlapping puffs that merge into one body
+                if ((look == ElementLook.Light || look == ElementLook.Gold || look == ElementLook.Sound) && Random.value < .6f)
+                    vfx.Emit(vfx.Tex("star"), look == ElementLook.Sound ? "sound" : "light", from + dir * .2f, velocity, .14f + Random.value * .12f, .55f, (Random.value - .5f) * 300);
+                else Puff(look, from + dir * .2f, velocity, .34f + Random.value * .18f, .55f);
             }
         }
 
         /// <summary>A lane skill as one unbroken jet from end to end, growing out from its start: a lightning bolt with forks,
-        /// a frost spine with twigs, or braided strands of the element's light (flame, water, venom...) with its matter along it.</summary>
+        /// frost crystals among frost puffs, or the element's cartoon matter pouring down the lane.</summary>
         private void Jet(Area a, InkPalette p, float show, float grow, float now)
         {
             Vector2 d = a.B - a.A; float len = d.magnitude;
@@ -972,42 +999,21 @@ namespace ArcaneBrigade
                     break;
                 case ElementLook.Ice: case ElementLook.Crystal:
                 {
-                    Light(InkCanvas.Line(a.A, head), p, .05f, show);
-                    int twigs = Mathf.Max(2, Mathf.FloorToInt(len * grow / .4f));
-                    for (int j = 1; j <= twigs; j++)
-                    {
-                        Vector2 at = Vector2.Lerp(a.A, head, j / (twigs + 1f)); float s = j % 2 == 0 ? 1 : -1;
-                        Light(InkCanvas.Line(at, at + (dir * .6f + side * s).normalized * a.R * .55f), p, .03f, show * .85f);
-                    }
+                    // small frost crystals grown along the lane among the frost puffs
+                    int crystals = Mathf.Max(2, Mathf.FloorToInt(len * grow / .8f));
+                    for (int j = 1; j <= crystals; j++) ElementStroke(a.Look, Vector2.Lerp(a.A, head, j / (crystals + 1f)) + side * ((j % 2) - .5f) * a.R * .4f, a.B, j, a.Seed, now, .8f, show);
+                    Stream(a.Look, a.A, dir, 6, len * grow, show, 10 + len * 4);
                     break;
                 }
                 default:
-                {
-                    // two or three strands braided along the lane, swelling in the middle
-                    InkPalette pal = a.Look == ElementLook.Fire ? Ember : p;
-                    int strands = a.Look == ElementLook.Wind ? 2 : 3;
-                    for (int k = 0; k < strands; k++)
-                    {
-                        path.Clear();
-                        // a few long waves over the whole lane (never more waves than the points can draw)
-                        float waves = Mathf.Clamp(len * .45f, 1, 3);
-                        for (int q = 0; q <= 32; q++)
-                        {
-                            float u = q / 32f;
-                            // a nearly straight core and two strands of different wave and speed, so they never braid into a helix
-                            float wave = Mathf.Sin(u * waves * (1 + k * .6f) * Mathf.PI * 2 - now * (5 + k * 2.5f) + k * 1.3f);
-                            path.Add(Vector2.Lerp(a.A, head, u) + side * wave * a.R * (k == 0 ? .08f : k == 1 ? .38f : .24f) * (.3f + .7f * Mathf.Sin(u * Mathf.PI)));
-                        }
-                        Light(path, pal, k == 0 ? .055f : .035f, show * (k == 0 ? 1 : .7f));
-                    }
-                    if (a.Look == ElementLook.Fire) Light(InkCanvas.Line(a.A, head), FlameHeart, .03f, show * .8f);
+                    // the element's matter pouring down the lane from its start
+                    Stream(a.Look, a.A, dir, 6, len * grow, show, 14 + len * 5);
                     break;
-                }
             }
         }
 
-        /// <summary>A cone skill as a spray from its point: strands of the element fanning out and its matter flying along
-        /// them (a flamethrower of filmed fireballs, forked lightning, a fan of frost or water).</summary>
+        /// <summary>A cone skill as a spray from its point: the element's cartoon puffs fanning out (a flamethrower of
+        /// cartoon fireballs, a gush of water, a gust, a fan of frost), forked lightning for a storm.</summary>
         private void Spray(Area a, InkPalette p, float show, float grow, float now)
         {
             Vector2 aim = (a.B - a.A).sqrMagnitude > .001f ? (a.B - a.A).normalized : Vector2.right;
@@ -1021,14 +1027,13 @@ namespace ArcaneBrigade
             }
             if (a.Look == ElementLook.Fire && Random.value < Time.deltaTime * 16 * show)
                 vfx.EmitFlip("UL_FireBall01", "flame", a.A + aim * .25f, Dir(aimAng + (Random.value - .5f) * 1.6f * half) * reach / .55f, .45f + Random.value * .2f, .55f, 0);
-            InkPalette pal = a.Look == ElementLook.Fire ? Ember : p;
-            for (int k = 0; k < 5; k++)
-            {
-                float ang = aimAng + (k / 4f - .5f) * 2 * half * .85f + Mathf.Sin(now * 3 + k) * 3;
-                Vector2 end = a.A + Dir(ang) * reach * (.75f + .25f * R(a.Seed, k));
-                if (a.Look == ElementLook.Storm) Light(Bolt(a.A, end, .1f, a.Seed + frame * 11 + k), p, .045f, show);
-                else Light(InkCanvas.Line(a.A, end, .05f, 3, false, a.Seed + k + now * 2), pal, k == 2 ? .05f : .035f, show * (k == 2 ? 1 : .75f));
-            }
+            Stream(a.Look, a.A, aim, half * .7f, reach, show, 34);
+            if (a.Look == ElementLook.Storm)
+                for (int k = 0; k < 3; k++)
+                {
+                    float ang = aimAng + (R(a.Seed + frame / 3, k) - .5f) * 2 * half * .8f;
+                    Light(Bolt(a.A, a.A + Dir(ang) * reach * (.7f + .3f * R(a.Seed, k)), .1f, a.Seed + frame * 11 + k), p, .045f, show);
+                }
         }
 
         /// <summary>An area lands: a painted burst at its centre and its bits thrown out (no ring).</summary>
@@ -1249,6 +1254,24 @@ namespace ArcaneBrigade
         /// flashes and white-blue sparks; frost is glinting stars and drifting crystals; water is swirls and leaping drops;
         /// venom is green fumes and bubbles; and so on. Every layer is a CC0 particle texture tinted by its ramp.</summary>
         private static readonly string[] Flames = { "UL_Flame02", "UL_Flame03" };
+
+        /// <summary>The cartoon ramp an element's matter is painted in (four flat bands with an outline).</summary>
+        private static string ToonRamp(ElementLook look) => look switch
+        {
+            ElementLook.Water => "toonwater", ElementLook.Ice or ElementLook.Crystal => "toonice", ElementLook.Wind => "toonwind",
+            ElementLook.Light or ElementLook.Gold => "toonlight", ElementLook.Bloom => "toonbloom", ElementLook.Sound => "toonsound",
+            ElementLook.Time => "toontime", ElementLook.Storm => "toonstorm", ElementLook.Poison => "toonpoison",
+            ElementLook.Void or ElementLook.Dream => "toonvoid", ElementLook.Earth or ElementLook.Paper => "toondust", _ => "toonsmoke",
+        };
+
+        /// <summary>One cartoon puff of an element's matter: a flame for fire, a round puff (a moving flipbook shape) for
+        /// water, frost, light, petals, notes and storm cloud, a wisp for fumes, dust, dusk and time.</summary>
+        private void Puff(ElementLook look, Vector2 at, Vector2 velocity, float size, float life)
+        {
+            if (look == ElementLook.Fire) { vfx.EmitFlip(Flames[Random.Range(0, Flames.Length)], "flame", at, velocity, size * 1.3f, life, 0, null, velocity.sqrMagnitude < .5f); return; }
+            bool round = look is ElementLook.Water or ElementLook.Ice or ElementLook.Crystal or ElementLook.Light or ElementLook.Gold or ElementLook.Bloom or ElementLook.Sound or ElementLook.Storm or ElementLook.Wind;
+            vfx.EmitFlip(round ? "UL_FireBall01" : "UL_WispySmoke01", ToonRamp(look), at, velocity, size, life, (Random.value - .5f) * 60);
+        }
         private void FieldParticles(ElementLook look, Vector2 at, float alpha, float rateScale, float scale = 1)
         {
             if (alpha <= .05f) return;
@@ -1264,47 +1287,50 @@ namespace ArcaneBrigade
                     if (Random.value < dt * .3f) vfx.EmitFlip("UL_WispySmoke01", "toonsmoke", at + jitter + Vector2.up * .8f * scale, new Vector2((Random.value - .5f) * .2f, .5f), (.4f + Random.value * .25f) * scale, 1.2f, (Random.value - .5f) * 30);
                     break;
                 case ElementLook.Storm:
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("trace"), "storm", at + jitter, Vector2.zero, .5f + Random.value * .4f, .1f + Random.value * .08f, 0);
-                    if (Random.value < dt * 8) vfx.Emit(vfx.Tex("spark"), "storm", at + jitter, Random.insideUnitCircle * 2.4f, .05f + Random.value * .04f, .25f + Random.value * .2f, 0);
-                    if (Random.value < dt * 2) vfx.Emit(vfx.Tex("light"), "glow", at, Vector2.zero, .55f, .18f, 0, new Color(.55f, .85f, 1f, .7f));
+                    // a crackling storm-cloud puff with lightning flicks and sparks
+                    if (Random.value < dt * 2.5f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .3f, .2f), (.3f + Random.value * .2f) * scale, .55f);
+                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("trace"), "storm", at + jitter, Vector2.zero, .45f + Random.value * .3f, .1f + Random.value * .08f, 0);
+                    if (Random.value < dt * 6) vfx.Emit(vfx.Tex("spark"), "storm", at + jitter, Random.insideUnitCircle * 2.4f, .05f + Random.value * .04f, .25f + Random.value * .2f, 0);
                     break;
                 case ElementLook.Ice: case ElementLook.Crystal:
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "ice", at + jitter, new Vector2(0, .15f), .14f + Random.value * .14f, .55f + Random.value * .3f, (Random.value - .5f) * 90);
-                    if (Random.value < dt * 4) vfx.Emit(vfx.Tex("spark"), "ice", at + jitter + Vector2.up * .3f, new Vector2((Random.value - .5f) * .4f, -.2f), .05f, 1f, 30);
-                    if (Random.value < dt * .8f) vfx.Emit(vfx.Tex("magic"), "ice", at, Vector2.zero, .4f, .5f, 40, new Color(1, 1, 1, .6f));
+                    // frost puffs and glinting stars
+                    if (Random.value < dt * 2.5f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .2f, .15f), (.28f + Random.value * .2f) * scale, .8f);
+                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "ice", at + jitter + Vector2.up * .2f, new Vector2(0, .15f), .12f + Random.value * .1f, .55f + Random.value * .3f, (Random.value - .5f) * 90);
                     break;
                 case ElementLook.Water:
-                    if (Random.value < dt * 2) vfx.Emit(vfx.Tex("twirl"), "water", at + jitter, new Vector2(0, .1f), .35f + Random.value * .2f, .55f, (Random.value > .5f ? 1 : -1) * 260);
-                    if (Random.value < dt * 7) vfx.Emit(vfx.Tex("light"), "water", at + jitter, new Vector2((Random.value - .5f) * 1.2f, 1.4f + Random.value), .06f + Random.value * .04f, .6f, 0);
+                    // splash puffs leaping and falling back, drops flicked off
+                    if (Random.value < dt * 3) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .6f, .9f + Random.value * .6f), (.28f + Random.value * .2f) * scale, .75f);
+                    if (Random.value < dt * 5) vfx.Emit(vfx.Tex("light"), "water", at + jitter, new Vector2((Random.value - .5f) * 1.2f, 1.4f + Random.value), .06f + Random.value * .04f, .6f, 0);
                     break;
                 case ElementLook.Poison:
-                    if (Random.value < dt * 2.2f) vfx.EmitFlip("UL_WispySmoke01", "toonpoison", at + jitter, new Vector2((Random.value - .5f) * .2f, .35f), .3f + Random.value * .2f, 1f, (Random.value - .5f) * 50);
-                    if (Random.value < dt * 4) vfx.Emit(vfx.Tex("light"), "poison", at + jitter, new Vector2((Random.value - .5f) * .2f, .6f + Random.value * .4f), .06f + Random.value * .05f, .8f, 0);
+                    if (Random.value < dt * 2.2f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .2f, .35f), (.3f + Random.value * .2f) * scale, 1f);
+                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("light"), "poison", at + jitter, new Vector2((Random.value - .5f) * .2f, .6f + Random.value * .4f), .06f + Random.value * .05f, .8f, 0);
                     break;
                 case ElementLook.Bloom:
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("magic"), "bloom", at + jitter, new Vector2((Random.value - .5f) * .3f, .3f), .18f + Random.value * .1f, .8f, 90);
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "bloom", at + jitter + Vector2.up * .4f, new Vector2((Random.value - .5f) * .5f, -.1f), .08f, 1.1f, 120);
+                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .3f, .3f), (.25f + Random.value * .15f) * scale, .8f);
+                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("magic"), "bloom", at + jitter, new Vector2((Random.value - .5f) * .3f, .3f), .16f + Random.value * .1f, .8f, 90);
                     break;
                 case ElementLook.Void: case ElementLook.Dream:
-                    if (Random.value < dt * 2.2f) vfx.EmitFlip("UL_WispySmoke01", "toonvoid", at + jitter, new Vector2((Random.value - .5f) * .2f, .25f), .32f + Random.value * .2f, .9f, (Random.value - .5f) * 60);
+                    if (Random.value < dt * 2.2f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .2f, .25f), (.32f + Random.value * .2f) * scale, .9f);
                     if (Random.value < dt * 2) vfx.Emit(vfx.Tex("star"), "light", at + jitter + Vector2.up * .3f, Vector2.zero, .07f, .5f, 90);
                     break;
                 case ElementLook.Light: case ElementLook.Gold:
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "light", at + jitter, new Vector2(0, .3f), .14f + Random.value * .12f, .5f, 120);
-                    if (Random.value < dt * 1) vfx.Emit(vfx.Tex("flare"), "light", at, Vector2.zero, .5f, .25f, 0);
+                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2(0, .35f), (.25f + Random.value * .15f) * scale, .6f);
+                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "light", at + jitter, new Vector2(0, .3f), .12f + Random.value * .1f, .5f, 120);
                     break;
                 case ElementLook.Sound:
-                    if (Random.value < dt * 2.5f) vfx.Emit(vfx.Tex("magic"), "sound", at + jitter, new Vector2((Random.value - .5f) * .6f, .5f), .16f + Random.value * .1f, .7f, 140);
+                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .6f, .5f), (.22f + Random.value * .15f) * scale, .7f);
                     break;
                 case ElementLook.Time:
-                    if (Random.value < dt * 2) vfx.Emit(vfx.Tex("magic"), "time", at + jitter, Vector2.zero, .3f, .6f, 180);
+                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2(0, .2f), (.25f + Random.value * .15f) * scale, .8f);
                     break;
                 case ElementLook.Earth: case ElementLook.Paper:
                     if (Random.value < dt * 3) vfx.Emit(vfx.Tex("dirt"), "dust", at + jitter, new Vector2((Random.value - .5f) * .8f, .8f + Random.value * .6f), .18f + Random.value * .12f, .7f, (Random.value - .5f) * 200);
-                    if (Random.value < dt * 1) vfx.EmitFlip("UL_WispySmoke01", "toondust", at + jitter, new Vector2(0, .3f), .35f, 1f, 30);
+                    if (Random.value < dt * 1.5f) Puff(look, at + jitter, new Vector2(0, .3f), .35f * scale, 1f);
                     break;
                 case ElementLook.Wind:
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("trace"), "time", at + jitter, new Vector2(1.6f, .2f), .35f, .35f, 0, new Color(1, 1, 1, .5f));
+                    // gust puffs blown along
+                    if (Random.value < dt * 3) Puff(look, at + jitter, new Vector2(1.4f + Random.value * .6f, .15f), (.2f + Random.value * .15f) * scale, .55f);
                     break;
             }
         }

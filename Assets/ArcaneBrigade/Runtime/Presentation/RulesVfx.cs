@@ -226,6 +226,9 @@ namespace ArcaneBrigade
         }
         private static AnimationCurve Curve(params float[] v) { var c = new AnimationCurve(); for (int i = 0; i < v.Length; i++) c.AddKey(i / (float)(v.Length - 1), v[i]); return c; }
         private static Color C(float r, float g, float b, float a = 1) => new Color(r, g, b, a);
+        /// <summary>A cartoon puff of an element: grows a little as it flies, thins away band by band.</summary>
+        private static Ramp Puff(float gravity, Color outline, Color outer, Color inner, Color heart)
+            => new Ramp(false, gravity, Curve(.55f, 1f, 1.15f), (0, C(1, 1, 1, .6f)), (.15f, C(1, 1, 1, 1)), (.6f, C(1, 1, 1, .85f)), (1, C(1, 1, 1, .15f))).Cartoon(outline, outer, inner, heart);
         public static readonly Dictionary<string, Ramp> Ramps = new Dictionary<string, Ramp>
         {
             { "fire",   new Ramp(true, -.25f, Curve(.7f, 1f, .75f, .35f), (0, C(1, .95f, .7f)), (.25f, C(1, .62f, .16f)), (.6f, C(.95f, .25f, .05f, .8f)), (1, C(.4f, .05f, .02f, 0))) },
@@ -249,6 +252,15 @@ namespace ArcaneBrigade
             { "toonpoison", new Ramp(false, -.1f, Curve(.6f, 1f, 1.2f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.13f, .3f, .1f), C(.3f, .58f, .16f), C(.5f, .8f, .22f), C(.78f, .95f, .45f)) },
             { "toondust", new Ramp(false, .1f, Curve(.6f, 1f, 1.3f), (0, C(1, 1, 1, .5f)), (.15f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.45f, .34f, .24f), C(.64f, .52f, .38f), C(.78f, .67f, .52f), C(.9f, .82f, .68f)) },
             { "toonvoid", new Ramp(false, -.05f, Curve(.6f, 1f, 1.2f), (0, C(1, 1, 1, .5f)), (.2f, C(1, 1, 1, 1)), (1, C(1, 1, 1, .2f))).Cartoon(C(.15f, .07f, .28f), C(.33f, .16f, .55f), C(.52f, .3f, .82f), C(.78f, .62f, 1f)) },
+            // every element's matter as cartoon puffs in its own four bands, like the flames: outline, outer, inner, heart
+            { "toonwater", Puff(.25f, C(.08f, .22f, .5f), C(.15f, .45f, .85f), C(.4f, .75f, 1f), C(.85f, .97f, 1f)) },
+            { "toonice", Puff(.05f, C(.25f, .45f, .7f), C(.55f, .8f, .95f), C(.78f, .93f, 1f), C(1, 1, 1)) },
+            { "toonwind", Puff(0, C(.42f, .58f, .64f), C(.72f, .88f, .9f), C(.88f, .97f, .97f), C(1, 1, 1)) },
+            { "toonlight", Puff(-.05f, C(.75f, .45f, .1f), C(1, .75f, .2f), C(1, .9f, .45f), C(1, 1, .85f)) },
+            { "toonbloom", Puff(.05f, C(.55f, .15f, .35f), C(.95f, .45f, .65f), C(1, .7f, .82f), C(1, .95f, .95f)) },
+            { "toonsound", Puff(-.05f, C(.45f, .15f, .5f), C(.85f, .4f, .85f), C(1, .65f, .95f), C(1, .92f, 1)) },
+            { "toontime", Puff(0, C(.4f, .33f, .2f), C(.7f, .6f, .38f), C(.88f, .8f, .58f), C(1, .96f, .82f)) },
+            { "toonstorm", Puff(0, C(.15f, .2f, .55f), C(.35f, .55f, 1f), C(.65f, .85f, 1f), C(1, 1, 1)) },
             { "glow",   new Ramp(true, 0, Curve(.5f, 1.15f, 1.3f), (0, C(1, 1, 1, .9f)), (.3f, C(1, 1, 1, .45f)), (1, C(1, 1, 1, 0))) },
         };
         private readonly Dictionary<string, ParticleSystem> rampSystems = new Dictionary<string, ParticleSystem>();
