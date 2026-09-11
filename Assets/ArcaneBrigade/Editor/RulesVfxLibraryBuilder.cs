@@ -62,6 +62,7 @@ namespace ArcaneBrigade.Editor
             fresh += Add(library, "Danger_Burst", Frames(NewArt + "/Danger_Burst_f{0}.png", 4), true);
             EditorUtility.SetDirty(library); AssetDatabase.SaveAssets();
             Debug.Log("RulesVfxLibraryBuilder: " + library.Entries.Count + " keys, " + fresh + " from new paintings");
+            CartoonFxLibraryBuilder.Run();
         }
 
         private static int Add(RulesVfxLibrary library, string key, Sprite[] frames, bool fresh)

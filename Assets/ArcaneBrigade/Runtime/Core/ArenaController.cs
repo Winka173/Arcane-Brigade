@@ -399,6 +399,7 @@ namespace ArcaneBrigade
                 foreach (CombatEvent value in simulation.Events)
                 {
                     if (oldCues && (paintedEffects == null || !paintedEffects.Play(value))) arcadeEffects.Play(value);
+                    else if (!oldCues && RulesInk != null) RulesInk.OnCombat(value); // our hits as cartoon hits in the dealer's element
                     if (arsenalVisual != null) arsenalVisual.Play(value, Time.time);
                     if (elementInk != null) elementInk.Observe(value);
                 }

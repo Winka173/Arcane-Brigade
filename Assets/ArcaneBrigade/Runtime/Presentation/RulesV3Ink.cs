@@ -68,17 +68,52 @@ namespace ArcaneBrigade
         {
             owner = controller; bursts = elementInk;
             vfx = gameObject.AddComponent<RulesVfx>();
+            cartoon = gameObject.AddComponent<CartoonFx>();
             CombatFeedback.ElementTint = ElementColour;
             ink = new ArsenalInk(transform);
             light = new InkCanvas(transform, "Rules light", 2141, true);
         }
 
+        private CartoonFx cartoon;
+        public CartoonFx Cartoon => cartoon;
+        private readonly Dictionary<int, float> nextHitAt = new Dictionary<int, float>();
+        private float hitBudgetAt; private int hitBudget; private float nextWordAt;
+
+        /// <summary>The element a hit's dealer fights with: a friend's main bond, the hero's own look, else none.</summary>
+        private ElementLook DealerLook(CombatEvent e)
+        {
+            UnitState source = boundSimulation?.UnitForPresentation(e.Cause.SourceUnitId);
+            if (source == null) return ElementLook.None;
+            return source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : source.Faction == Faction.Champion ? ElementInk.For(source.Definition.Id) : ElementLook.None;
+        }
+
+        /// <summary>A cartoon hit (Cartoon FX) where our side strikes an enemy, in the dealer's element: a fire, frost,
+        /// lightning, light or smoke puff, a red star on a critical. Each enemy shows one hit at a time and a crowd at most
+        /// about twenty a second, so hundreds of enemies never bury the field.</summary>
+        public void OnCombat(CombatEvent e)
+        {
+            if (cartoon == null || e.Kind != CombatEventKind.Hit || e.Faction != Faction.Enemy || e.Value <= 0) return;
+            float now = Time.time;
+            if (now >= hitBudgetAt) { hitBudgetAt = now + .1f; hitBudget = PresentationSettings.ReducedEffects ? 1 : 2; }
+            if (!e.Critical && (hitBudget <= 0 || nextHitAt.TryGetValue(e.SubjectId, out float until) && now < until)) return;
+            if (nextHitAt.Count > 256) nextHitAt.Clear();
+            nextHitAt[e.SubjectId] = now + .25f; hitBudget--;
+            ElementLook look = DealerLook(e);
+            string key = look switch
+            {
+                ElementLook.Fire => "hit_fire", ElementLook.Ice or ElementLook.Crystal => "hit_ice", ElementLook.Storm => "hit_storm",
+                ElementLook.Light or ElementLook.Gold or ElementLook.Time or ElementLook.Sound => "hit_light",
+                ElementLook.Earth or ElementLook.Paper or ElementLook.Poison or ElementLook.Void or ElementLook.Dream => "hit_smoke", _ => "hit_misc",
+            };
+            Vector2 at = e.Position + Vector2.up * .3f;
+            cartoon.Play(key, at, e.Critical ? .55f : .4f);
+            if (e.Critical) cartoon.Play("hit_crit", at, .45f, Random.value * 360);
+        }
+
         /// <summary>The colour of a hit's element: its source companion's main bond, the hero's own look, else none.</summary>
         private Color? ElementColour(CombatEvent e)
         {
-            UnitState source = boundSimulation?.UnitForPresentation(e.Cause.SourceUnitId);
-            if (source == null) return null;
-            ElementLook look = source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : source.Faction == Faction.Champion ? ElementInk.For(source.Definition.Id) : ElementLook.None;
+            ElementLook look = DealerLook(e);
             if (look == ElementLook.None) return null;
             Color c = Saturate(PaletteFor(look).Glow);
             return Color.Lerp(c, Color.white, .15f);
@@ -1193,6 +1228,27 @@ namespace ArcaneBrigade
             int n = PresentationSettings.ReducedEffects ? 4 : 10;
             Color tint = Saturate(PaletteFor(look).Glow); tint.a = .8f;
             vfx.Emit(vfx.Tex("light"), "glow", c, Vector2.zero, 1.5f * size, .4f, 0, tint);
+            if (cartoon != null)
+            {
+                // the cartoon blast of the element (Cartoon FX), and now and then a comic word over a big one
+                string blast = look switch
+                {
+                    ElementLook.Fire => "burst_fire", ElementLook.Storm => "burst_storm", ElementLook.Water => "burst_water",
+                    ElementLook.Earth or ElementLook.Paper => "burst_boom", ElementLook.Void or ElementLook.Dream => "burst_souls",
+                    ElementLook.Ice or ElementLook.Crystal => "hit_ice", ElementLook.Light or ElementLook.Gold => "burst_flash", _ => "burst_poof",
+                };
+                cartoon.Play(blast, c, (blast == "burst_flash" || blast == "burst_boom" ? .3f : .45f) * size);
+                if (size >= 1.6f && Time.time >= nextWordAt && !PresentationSettings.ReducedEffects)
+                {
+                    nextWordAt = Time.time + 3f;
+                    string word = look switch
+                    {
+                        ElementLook.Ice or ElementLook.Crystal => "word_frozen", ElementLook.Poison => "word_poisoned",
+                        ElementLook.Fire or ElementLook.Earth => "word_boom", ElementLook.Storm or ElementLook.Light => "word_pow", _ => "word_wham",
+                    };
+                    cartoon.Play(word, c + Vector2.up * (.8f + .3f * size), .5f);
+                }
+            }
             if (look == ElementLook.Fire)
             {
                 // a cartoon fireball puff, then a cartoon smoke puff rolling up off it
