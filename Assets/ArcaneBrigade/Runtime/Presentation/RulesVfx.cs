@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     /// stays cheap.</summary>
     public sealed class RulesVfx : MonoBehaviour
     {
-        private const int AreaOrder = 65, LoopOrder = 72, BurstOrder = 2150, ParticleOrder = 2160, MaxParticlesPerSystem = 300;
+        private const int GroundOrder = 66, AreaOrder = 65, LoopOrder = 72, BurstOrder = 2150, ParticleOrder = 2160, MaxParticlesPerSystem = 300;
         private sealed class AreaView { public GameObject Go; public MeshRenderer Renderer; }
         private sealed class FlipView { public SpriteRenderer Renderer; }
         private readonly List<AreaView> areas = new List<AreaView>();
@@ -214,6 +214,10 @@ namespace ArcaneBrigade
             /// <summary>Cartoon matter: four flat bands (outline, outer, inner, heart) painted on the shape; the colour ramp
             /// then only thins the shape over life.</summary>
             public Color[] Toon;
+            /// <summary>Stretched along its flight (sparks and drops streak); lies on the floor under the bodies (scorch, floor light).</summary>
+            public bool Stretch, Ground;
+            public Ramp Streaks() { Stretch = true; return this; }
+            public Ramp Floor() { Ground = true; return this; }
             public Ramp Cartoon(params Color[] bands) { Toon = bands; Additive = false; return this; }
             public Ramp(bool additive, float gravity, AnimationCurve size, params (float t, Color c)[] keys)
             {
@@ -232,12 +236,12 @@ namespace ArcaneBrigade
         public static readonly Dictionary<string, Ramp> Ramps = new Dictionary<string, Ramp>
         {
             { "fire",   new Ramp(true, -.25f, Curve(.7f, 1f, .75f, .35f), (0, C(1, .95f, .7f)), (.25f, C(1, .62f, .16f)), (.6f, C(.95f, .25f, .05f, .8f)), (1, C(.4f, .05f, .02f, 0))) },
-            { "ember",  new Ramp(true, -.15f, Curve(1f, .8f, 0f), (0, C(1, .9f, .5f)), (.5f, C(1, .45f, .1f)), (1, C(.8f, .15f, .02f, 0))) },
+            { "ember",  new Ramp(true, -.15f, Curve(1f, .8f, 0f), (0, C(1, .9f, .5f)), (.5f, C(1, .45f, .1f)), (1, C(.8f, .15f, .02f, 0))).Streaks() },
             { "smoke",  new Ramp(false, -.12f, Curve(.5f, 1f, 1.6f), (0, C(.25f, .2f, .22f, 0)), (.2f, C(.22f, .18f, .2f, .45f)), (1, C(.15f, .12f, .14f, 0))) },
             { "storm",  new Ramp(true, 0, Curve(1f, .7f, 0f), (0, C(1, 1, 1)), (.3f, C(.6f, .9f, 1)), (1, C(.2f, .45f, 1, 0))) },
-            { "spark",  new Ramp(true, .9f, Curve(1f, .8f, 0f), (0, C(1, 1, .9f)), (.4f, C(1, .85f, .4f)), (1, C(1, .5f, .1f, 0))) },
+            { "spark",  new Ramp(true, .9f, Curve(1f, .8f, 0f), (0, C(1, 1, .9f)), (.4f, C(1, .85f, .4f)), (1, C(1, .5f, .1f, 0))).Streaks() },
             { "ice",    new Ramp(true, .1f, Curve(.6f, 1f, .2f), (0, C(1, 1, 1)), (.35f, C(.75f, .93f, 1)), (1, C(.4f, .7f, 1, 0))) },
-            { "water",  new Ramp(true, .6f, Curve(1f, .9f, .3f), (0, C(.9f, 1, 1)), (.3f, C(.4f, .85f, 1)), (1, C(.1f, .5f, .8f, 0))) },
+            { "water",  new Ramp(true, .6f, Curve(1f, .9f, .3f), (0, C(.9f, 1, 1)), (.3f, C(.4f, .85f, 1)), (1, C(.1f, .5f, .8f, 0))).Streaks() },
             { "poison", new Ramp(true, -.1f, Curve(.6f, 1f, .5f), (0, C(.85f, 1, .5f)), (.35f, C(.4f, .9f, .25f)), (1, C(.3f, .5f, .1f, 0))) },
             { "bloom",  new Ramp(true, .15f, Curve(.8f, 1f, .2f), (0, C(1, 1, .85f)), (.4f, C(.55f, .95f, .45f)), (1, C(1, .6f, .75f, 0))) },
             { "void",   new Ramp(true, -.05f, Curve(.6f, 1f, .3f), (0, C(.9f, .8f, 1)), (.4f, C(.6f, .35f, .95f)), (1, C(.25f, .1f, .5f, 0))) },
@@ -261,6 +265,10 @@ namespace ArcaneBrigade
             { "toonsound", Puff(-.05f, C(.45f, .15f, .5f), C(.85f, .4f, .85f), C(1, .65f, .95f), C(1, .92f, 1)) },
             { "toontime", Puff(0, C(.4f, .33f, .2f), C(.7f, .6f, .38f), C(.88f, .8f, .58f), C(1, .96f, .82f)) },
             { "toonstorm", Puff(0, C(.15f, .2f, .55f), C(.35f, .55f, 1f), C(.65f, .85f, 1f), C(1, 1, 1)) },
+            // a burnt patch left on the floor under a blast, fading slowly
+            { "toonscorch", new Ramp(false, 0, Curve(.8f, 1f, 1f), (0, C(1, 1, 1, .2f)), (.05f, C(1, 1, 1, 1)), (.7f, C(1, 1, 1, .85f)), (1, C(1, 1, 1, .1f))).Cartoon(C(.07f, .05f, .06f, .55f), C(.13f, .09f, .09f, .6f), C(.2f, .13f, .1f, .6f), C(.28f, .17f, .1f, .55f)).Floor() },
+            // the light an effect throws on the floor round it (tinted by the element), quick and flickering
+            { "floorlight", new Ramp(true, 0, Curve(.8f, 1.05f, 1.1f), (0, C(1, 1, 1, 0)), (.08f, C(1, 1, 1, .9f)), (.4f, C(1, 1, 1, .5f)), (1, C(1, 1, 1, 0))).Floor() },
             { "glow",   new Ramp(true, 0, Curve(.5f, 1.15f, 1.3f), (0, C(1, 1, 1, .9f)), (.3f, C(1, 1, 1, .45f)), (1, C(1, 1, 1, 0))) },
         };
         private readonly Dictionary<string, ParticleSystem> rampSystems = new Dictionary<string, ParticleSystem>();
@@ -277,10 +285,19 @@ namespace ArcaneBrigade
             var emit = new ParticleSystem.EmitParams
             {
                 position = new Vector3(at.x, at.y, 0), velocity = new Vector3(velocity.x, velocity.y, 0),
-                startSize = size, startLifetime = life, rotation = Random.value * 360, angularVelocity = spin,
+                startSize3D = new Vector3(size, size, 1), startLifetime = life, rotation = Random.value * 360, angularVelocity = spin,
                 startColor = tint ?? Color.white,
             };
             system.Emit(emit, 1);
+        }
+
+        /// <summary>Emit one particle with its own width and height (a floor light or a scorch lies flat: wide and low).</summary>
+        public void EmitSized(Sprite sprite, string ramp, Vector2 at, Vector2 size, float life, Color? tint = null)
+        {
+            if (sprite == null || !Ramps.TryGetValue(ramp, out Ramp r)) return;
+            ParticleSystem system = RampSystem(sprite, ramp, r);
+            if (system == null) return;
+            system.Emit(new ParticleSystem.EmitParams { position = new Vector3(at.x, at.y, 0), startSize3D = new Vector3(size.x, size.y, 1), startLifetime = life, rotation = 0, startColor = tint ?? Color.white }, 1);
         }
 
         /// <summary>Emit one flipbook particle (a filmed flame, fireball, explosion or smoke from the UL_ library): it plays its
@@ -316,9 +333,14 @@ namespace ArcaneBrigade
             var size = system.sizeOverLifetime; size.enabled = true; size.size = new ParticleSystem.MinMaxCurve(1, r.Size);
             var colour = system.colorOverLifetime; colour.enabled = true; colour.color = r.Colour;
             var limit = system.limitVelocityOverLifetime; limit.enabled = true; limit.dampen = .08f; limit.limit = 30;
+            main.startSize3D = true;
+            if (flipbook == null && (sprite.rect.width < sprite.texture.width - 1 || sprite.rect.height < sprite.texture.height - 1))
+            {
+                // one cell of a sheet shown still (a scorch splat cut from a flipbook)
+                var cell = system.textureSheetAnimation; cell.enabled = true; cell.mode = ParticleSystemAnimationMode.Sprites; cell.AddSprite(sprite);
+            }
             if (flipbook != null && flipbook.Length > 1)
             {
-                main.startSize3D = true;
                 var sheet = system.textureSheetAnimation; sheet.enabled = true; sheet.mode = ParticleSystemAnimationMode.Sprites;
                 foreach (Sprite frame in flipbook) sheet.AddSprite(frame);
                 sheet.frameOverTime = new ParticleSystem.MinMaxCurve(1, AnimationCurve.Linear(0, 0, 1, 1)); sheet.cycleCount = 1;
@@ -329,7 +351,9 @@ namespace ArcaneBrigade
             var made = new Material(baseMaterial) { mainTexture = sprite.texture, name = "Rules " + ramp + " " + sprite.name };
             if (r.Toon != null) for (int b = 0; b < 4; b++) made.SetColor("_C" + b, r.Toon[b]);
             renderer.sharedMaterial = made;
-            renderer.sortingOrder = r.Additive ? ParticleOrder + 2 : ParticleOrder; renderer.renderMode = ParticleSystemRenderMode.Billboard;
+            renderer.sortingOrder = r.Ground ? GroundOrder + (r.Additive ? 1 : 0) : r.Additive ? ParticleOrder + 2 : ParticleOrder;
+            renderer.renderMode = r.Stretch ? ParticleSystemRenderMode.Stretch : ParticleSystemRenderMode.Billboard;
+            if (r.Stretch) { renderer.velocityScale = .06f; renderer.lengthScale = 1.2f; }
             system.Play();
             rampSystems[key] = system;
             return system;

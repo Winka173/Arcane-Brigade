@@ -320,7 +320,14 @@ namespace ArcaneBrigade
             LowHealthVignette.Draw(new Vector2(1920, 1080), Mathf.Clamp01(danger * (1 + 0.35f * beat)));
             if (state.Phase == SessionPhase.Combat) NightHud.EdgeEyes(simulation, camera, new Vector2(1920, 1080));
             float bossFlash = owner.Feel != null ? owner.Feel.ScreenFlash : 0;
-            if (bossFlash > 0.01f) Fill(new Rect(0, 0, 1920, 1080), new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f)); // a boss falls: the night flashes white
+            if (bossFlash > 0.01f && Event.current.type == EventType.Repaint)
+            {
+                // a boss falls (or a big blow lands): the night flashes white - a see-through wash of light, never Fill, whose
+                // whole-screen panel painted an opaque grey plate over the world for a frame
+                Color tintBefore = GUI.color; GUI.color = new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f);
+                GUI.DrawTexture(new Rect(-2000, -1200, 5920, 3480), Texture2D.whiteTexture);
+                GUI.color = tintBefore;
+            }
             if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
             // healing fills the bar up over a moment (the number is already true); a hit drops it at once, the trail follows
             if (PresentationSettings.ReducedMotion || health < shownHealth) shownHealth = health;

@@ -143,6 +143,8 @@ namespace ArcaneBrigade
             float body = Mathf.Clamp(e.Subject.Definition.Radius * 2, .4f, 1.6f);
             Vector2 at = e.Position + Vector2.up * body * .4f;
             cartoon.Play(e.Critical ? "burst_poof" : "hit_smoke", at, .35f + body * .3f);
+            // a big body thumps down: dust rolls out from under it
+            if (body >= .8f && vfx != null) DustKick(e.Position, body * .8f, ElementLook.Earth);
         }
         private float killBudgetAt; private int killBudget;
 
@@ -470,6 +472,7 @@ namespace ArcaneBrigade
                     flight = Mathf.Clamp(distance * .05f, .16f, .38f);
                     if (throws.Count >= MaxThrows) throws.RemoveAt(0);
                     throws.Add(new Throw { From = caster.Position + Vector2.up * .5f, To = c.Position, Born = Now, Life = flight, Look = look, Token = motif ? token : TokenFor(look), Seed = ++seed });
+                    Gather(look, c.Position, Mathf.Max(.6f, c.Radius), flight);
                 }
             }
             Add(new Area { Shape = shape, Hostile = false, A = c.Position, B = c.End, R = Mathf.Max(.4f, c.Radius), Born = Now + flight, Warn = c.WarningTime, Life = Mathf.Max(.45f, c.WarningTime + Mathf.Max(.35f, c.Duration)), Look = look, Seed = ++seed, HasMotif = motif, Motif = token });
@@ -841,6 +844,7 @@ namespace ArcaneBrigade
                 if (age > ChainLife || age < 0) { chains.RemoveAt(i); continue; }
                 DrawChain(chains[i], age); Chains++;
             }
+            DrawWarps();
             ink.End(); vfx.End(); light.Commit();
         }
 
@@ -945,6 +949,8 @@ namespace ArcaneBrigade
                         Light(Bolt(mid, mid + Flat(Dir(ang + (R(strike, k + 9) - .5f) * 100)) * reach * .4f, .05f, frame * 3 + k), p, .03f, show * .8f);
                     }
                     if (frame % 3 != 0) Glint(c, .3f, p, show);
+                    // each strike flashes the floor blue-white
+                    if (strike != lastStrikeLit) { lastStrikeLit = strike; FloorLight(ElementLook.Storm, c, r * 3f, .18f); }
                     break;
                 }
                 case ElementLook.Ice: case ElementLook.Crystal:
@@ -967,10 +973,15 @@ namespace ArcaneBrigade
                 }
                 case ElementLook.Water: case ElementLook.Wind: case ElementLook.Bloom: Swirl(a.Look, c, r, show, 1); break;
                 case ElementLook.Void: case ElementLook.Dream: Swirl(a.Look, c, r, show, -1); break;
-                case ElementLook.Fire: break; // the cartoon flames are the whole bonfire
+                case ElementLook.Fire:
+                    // the cartoon flames are the bonfire; it lights the floor in flickers and the air shimmers over it
+                    if (Random.value < Time.deltaTime * 10 * show) FloorLight(ElementLook.Fire, c + Flat(Random.insideUnitCircle) * r * .4f, r * 2.6f * (.8f + .4f * Random.value), .3f);
+                    AddHaze(c + Vector2.up * (.6f + r * .3f), r * 1.8f, show);
+                    break;
                 case ElementLook.Light: case ElementLook.Gold: case ElementLook.Sound:
-                    // the puffs carry the body; a bright heart pulses in it
+                    // the puffs carry the body; a bright heart pulses in it and lights the floor
                     if (frame % 4 == 0) Glint(c + Vector2.up * .2f, .22f, p, show);
+                    if (Random.value < Time.deltaTime * 6 * show) FloorLight(a.Look, c, r * 2.4f, .35f);
                     break;
                 case ElementLook.Time:
                     ElementStroke(ElementLook.Time, c, c, 0, a.Seed, now, r * 5, show);
@@ -1001,6 +1012,95 @@ namespace ArcaneBrigade
                 if (turn < 0) spin -= Flat(Dir(ang)) * r * .8f;
                 Puff(look, at, spin, .3f * (1.2f - u * .4f), .6f);
             }
+        }
+
+        private int lastStrikeLit;
+
+        /// <summary>The light an effect throws on the floor round it, in its element's colour: a wide, low, soft patch that
+        /// flares and fades (fire flickers it, lightning flashes it). Light, not a disc: no edge, gone in a moment.</summary>
+        private void FloorLight(ElementLook look, Vector2 at, float width, float life)
+        {
+            if (PresentationSettings.ReducedFlashes) width *= .7f;
+            Color c = Saturate(look == ElementLook.Fire ? Ember.Glow : PaletteFor(look).Glow); c.a = PresentationSettings.ReducedFlashes ? .3f : .55f;
+            vfx.EmitSized(vfx.Tex("light"), "floorlight", at, new Vector2(width, width * .5f), life, c);
+        }
+
+        /// <summary>Dust kicked out along the ground where a blow lands: cartoon puffs rolling outward low and wide (spray
+        /// for water, powder snow for frost, dust for the rest).</summary>
+        private void DustKick(Vector2 at, float size, ElementLook matter)
+        {
+            int n = PresentationSettings.ReducedEffects ? 3 : 8;
+            for (int i = 0; i < n; i++)
+            {
+                float side = i % 2 == 0 ? 1 : -1, speed = (1.4f + Random.value * 1.4f) * Mathf.Sqrt(size);
+                Puff(matter, at + new Vector2(side * .2f, Random.value * .1f), new Vector2(side * speed, .25f + Random.value * .5f), (.26f + Random.value * .14f) * Mathf.Sqrt(size), .65f);
+            }
+        }
+
+        /// <summary>A burnt patch left on the floor under a blast (a still cartoon splat), fading over a few seconds.</summary>
+        private void Scorch(Vector2 at, float size)
+        {
+            Sprite[] sheet = vfx.Library?.Get("UL_FireBall01");
+            if (sheet == null || sheet.Length < 20) return;
+            vfx.EmitSized(sheet[12 + Random.Range(0, 6)], "toonscorch", at, new Vector2(1.5f, .75f) * size, 2.6f);
+        }
+
+        /// <summary>Anticipation: while a cast flies to its spot the spot draws its element in, so the blast lands on a
+        /// gathering of its own matter.</summary>
+        private void Gather(ElementLook look, Vector2 at, float radius, float flight)
+        {
+            int n = PresentationSettings.ReducedEffects ? 3 : 7;
+            for (int i = 0; i < n; i++)
+            {
+                Vector2 from = Flat(Random.insideUnitCircle.normalized) * radius * (1 + Random.value * .4f);
+                Puff(look, at + from, -from / Mathf.Max(.12f, flight), .2f, flight);
+            }
+        }
+
+        // ------------------------------------------------------------------ the air: shock bulges and heat haze (HeroRefract)
+        private sealed class Warp { public Vector2 At, Flow; public float Born, Life, Size, Bend, Alpha; }
+        private readonly List<Warp> warps = new List<Warp>();
+        private readonly List<SpriteRenderer> warpViews = new List<SpriteRenderer>();
+        private Material refract; private Sprite warpBlob; private MaterialPropertyBlock warpBlock;
+        private bool WarpReady => !PresentationSettings.ReducedEffects && SystemInfo.graphicsShaderLevel >= 30 && EffectDensity.CrowdPressure < .8f;
+
+        /// <summary>The air bulges out from a blast and settles (a shockwave seen only as the floor bending, never drawn).</summary>
+        private void AddShock(Vector2 at, float size) { if (WarpReady && warps.Count < 16) warps.Add(new Warp { At = at, Born = Time.time, Life = .32f, Size = size, Bend = .045f, Alpha = 1 }); }
+        /// <summary>Heat shimmering over a fire, for this frame (added again every frame while the fire burns).</summary>
+        private void AddHaze(Vector2 at, float size, float alpha) { if (WarpReady && warps.Count < 16) warps.Add(new Warp { At = at, Born = Time.time, Life = 0, Size = size, Bend = .012f, Flow = new Vector2(0, -1.2f), Alpha = alpha }); }
+
+        private void DrawWarps()
+        {
+            int used = 0;
+            if (refract == null && Resources.Load<Shader>("HeroRefract") is Shader shader && shader.isSupported) refract = new Material(shader) { name = "Rules air", hideFlags = HideFlags.DontSave };
+            if (warpBlob == null)
+            {
+                var tex = new Texture2D(64, 64, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
+                var px = new Color32[64 * 64];
+                for (int y = 0; y < 64; y++) for (int x = 0; x < 64; x++) { float u = (x + .5f) / 32 - 1, v = (y + .5f) / 32 - 1; px[y * 64 + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(Mathf.Exp(-(u * u + v * v) * 2.6f) - .07f) * 255)); }
+                tex.SetPixels32(px); tex.Apply(false, true);
+                warpBlob = Sprite.Create(tex, new Rect(0, 0, 64, 64), new Vector2(.5f, .5f), 64, 0, SpriteMeshType.FullRect);
+            }
+            float now = Time.time;
+            for (int i = warps.Count - 1; i >= 0; i--)
+            {
+                Warp w = warps[i];
+                bool haze = w.Life <= 0;
+                float t = haze ? 0 : (now - w.Born) / w.Life;
+                if (haze) warps.RemoveAt(i); // a haze lives one frame
+                else if (t > 1) { warps.RemoveAt(i); continue; }
+                if (refract == null) continue;
+                if (used == warpViews.Count) { var go = new GameObject("Rules air " + used); go.transform.SetParent(transform, false); warpViews.Add(go.AddComponent<SpriteRenderer>()); }
+                SpriteRenderer r = warpViews[used++]; r.enabled = true; r.sharedMaterial = refract; r.sprite = warpBlob; r.sortingOrder = 2058;
+                float e = 1 - (1 - t) * (1 - t) * (1 - t), size = haze ? w.Size : w.Size * (.5f + .8f * e);
+                r.color = new Color(1, .97f, .92f, (1 - t) * .9f * w.Alpha);
+                r.transform.position = w.At; r.transform.localScale = new Vector3(size, haze ? size * 1.3f : size * .7f, 1);
+                warpBlock ??= new MaterialPropertyBlock(); warpBlock.Clear();
+                warpBlock.SetFloat("_Strength", w.Bend * (1 - t)); warpBlock.SetVector("_Flow", w.Flow);
+                warpBlock.SetFloat("_Darken", 0); warpBlock.SetFloat("_Desat", 0); warpBlock.SetFloat("_Swirl", 0); warpBlock.SetVector("_Hole", Vector4.zero);
+                r.SetPropertyBlock(warpBlock);
+            }
+            for (int i = used; i < warpViews.Count; i++) warpViews[i].enabled = false;
         }
 
         /// <summary>A stream of an element's cartoon puffs from a point along a direction (a lane's jet, a cone's spray).</summary>
@@ -1086,6 +1186,8 @@ namespace ArcaneBrigade
             Vector2 c = a.Shape == AreaShape.Line ? (a.A + a.B) * .5f : a.A;
             float size = Mathf.Clamp(a.R * .9f, .9f, 2.2f);
             AddPop(c, a.Look, size, 0);
+            // a big skill landing kicks the camera a little (no hit-stop)
+            if (size >= 1.2f) owner?.Feel.Accent(.06f + .05f * size, size >= 1.8f ? .08f : 0);
             Sound(a.Look, "land", c);
         }
 
@@ -1366,9 +1468,16 @@ namespace ArcaneBrigade
         /// smoke, lightning flashes and sparks, frost stars, water drops, fumes, dust...). Emitted once when the burst begins.</summary>
         private void BurstParticles(ElementLook look, Vector2 c, float size)
         {
-            int n = PresentationSettings.ReducedEffects ? 4 : 10;
+            int n = PresentationSettings.ReducedEffects ? 6 : 16;
             Color tint = Saturate(PaletteFor(look).Glow); tint.a = .8f;
             vfx.Emit(vfx.Tex("light"), "glow", c, Vector2.zero, 1.5f * size, .4f, 0, tint);
+            // the staged blast: light thrown on the floor, the air bulging out, dust rolling along the ground, a burnt patch
+            Vector2 floor = c + Vector2.down * .3f;
+            FloorLight(look, floor, 2.4f * size, .45f);
+            if (size >= 1f) AddShock(c, 1.6f * size);
+            DustKick(floor, size, look == ElementLook.Water ? ElementLook.Water : look == ElementLook.Ice || look == ElementLook.Crystal ? ElementLook.Ice : ElementLook.Earth);
+            if (look == ElementLook.Fire || look == ElementLook.Earth || look == ElementLook.Storm || look == ElementLook.Void) Scorch(floor, size);
+            if (size >= 1.4f && cartoon != null) cartoon.Play("burst_flash", c, .22f * size);
             if (cartoon != null)
             {
                 // the cartoon blast of the element (Cartoon FX), and now and then a comic word over a big one
