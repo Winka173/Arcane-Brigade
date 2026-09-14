@@ -390,8 +390,7 @@ namespace ArcaneBrigade
                     temporary.gameObject.SetActive(false);
                     unitPool.Push(temporary);
                 }
-                if (!oldCues && RulesInk != null && value.Faction == Faction.Enemy && !value.Subject.Definition.IsBoss) RulesInk.OnKill(value);
-                else if (explosions != null) explosions.Observe(value, shown);
+                if (explosions != null) explosions.Observe(value, shown);
             }
             if (explosions != null)
                 foreach (CombatEvent value in simulation.Events)
@@ -845,11 +844,11 @@ namespace ArcaneBrigade
                 view.transform.position = shotAt + state.PatternOffset; // a swaying shot is drawn off its true line
                 float projectileSize = state.Faction == Faction.Enemy ? 0.2f : ProjectileVisual.Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
                 Sprite missile = HeroIdentityVisual.Missile(state, catalog.Projectile, simulation.Elapsed, out float missileTurn, out float missileSize);
+                // under the rules v3 our ordinary shots fly as the shooter's token like the hero's identity bolts, never old bullet paintings
+                if (missile == null && simulation.SkillsV3 != null && state.Faction != Faction.Enemy && RulesInk != null)
+                    missile = RulesInk.ShotSprite(state, simulation.Elapsed, out missileTurn, out missileSize);
                 if (missile != null) { view.sprite = missile; projectileSize = missileSize; }
-                // under the rules v3 our ordinary shots are bolts of light in the shooter's element (RulesV3Ink), never painted bullets
-                bool lightShot = simulation.SkillsV3 != null && state.Faction != Faction.Enemy && missile == null && RulesInk != null;
-                view.enabled = !lightShot;
-                if (lightShot) { view.GetComponent<ProjectileVisual>().SetFade(0); continue; }
+                view.enabled = true;
                 // our painted shots are sized by their painted ink, not their transparent canvas
                 float drawn = state.Faction == Faction.Enemy || missile != null ? view.sprite.bounds.size.x : Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(view.sprite).width);
                 view.transform.localScale = Vector3.one * (projectileSize / drawn);

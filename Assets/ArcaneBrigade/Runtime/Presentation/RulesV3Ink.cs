@@ -69,36 +69,12 @@ namespace ArcaneBrigade
             owner = controller; bursts = elementInk;
             vfx = gameObject.AddComponent<RulesVfx>();
             cartoon = gameObject.AddComponent<CartoonFx>();
-            Current = this;
             CombatFeedback.ElementTint = ElementColour;
             ink = new ArsenalInk(transform);
             light = new InkCanvas(transform, "Rules light", 2141, true);
         }
 
-        /// <summary>The live rules ink, for the hero's skill strokes to shed their element's cartoon matter.</summary>
-        public static RulesV3Ink Current { get; private set; }
 
-        /// <summary>Cartoon matter shed along a stroke of light (a hero's swing, bolt or beam): puffs of the element born at
-        /// fresh points along it, a few per unit of length per second, drifting a little.</summary>
-        public void PuffAlong(ElementLook look, List<Vector2> stroke, float alpha)
-        {
-            if (vfx == null || stroke == null || stroke.Count < 2 || alpha < .05f) return;
-            float length = 0;
-            for (int i = 1; i < stroke.Count; i++) length += Vector2.Distance(stroke[i - 1], stroke[i]);
-            for (float want = Time.deltaTime * Mathf.Min(length, 8) * (PresentationSettings.ReducedEffects ? 2 : 5) * alpha; want > 0; want -= 1)
-            {
-                if (Random.value > want) continue;
-                int k = Random.Range(1, stroke.Count);
-                Vector2 at = Vector2.Lerp(stroke[k - 1], stroke[k], Random.value);
-                if (look == ElementLook.Fire) vfx.EmitFlip(Flames[Random.Range(0, Flames.Length)], "flame", at, new Vector2(0, .3f), .3f + Random.value * .2f, .5f, 0, null, true);
-                else Puff(look, at, Random.insideUnitCircle * .3f + Vector2.up * .2f, .16f + Random.value * .12f, .5f);
-            }
-        }
-
-        private CartoonFx cartoon;
-        public CartoonFx Cartoon => cartoon;
-        private readonly Dictionary<int, float> nextHitAt = new Dictionary<int, float>();
-        private float hitBudgetAt; private int hitBudget; private float nextWordAt;
 
         /// <summary>The element a hit's dealer fights with: a friend's main bond, the hero's own look, else none.</summary>
         private ElementLook DealerLook(CombatEvent e)
@@ -108,51 +84,80 @@ namespace ArcaneBrigade
             return source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : source.Faction == Faction.Champion ? ElementInk.For(source.Definition.Id) : ElementLook.None;
         }
 
-        /// <summary>A cartoon hit (Cartoon FX) where our side strikes an enemy, in the dealer's element: a fire, frost,
-        /// lightning, light or smoke puff, a red star on a critical. Each enemy shows one hit at a time and a crowd at most
-        /// about twenty a second, so hundreds of enemies never bury the field.</summary>
-        public void OnCombat(CombatEvent e)
+        // ------------------------------------------------------------------ the two kinds of our effects
+        /// <summary>Our side's effects come in two kinds only (requirement 28/10/2026). A targeted effect is a strike from its
+        /// source to each target, like Storm Fencer's chained lightning (the hero renderer's line strike in the element's hero
+        /// brush). An area effect is a blast over its area, like fire or frost bursting (the hero renderer's disc strike with
+        /// the element's hero signature where it lands).</summary>
+        private void Targeted(ElementLook look, Vector2 from, Vector2 to, float delay = 0)
         {
-            if (e.Kind == CombatEventKind.Fire && e.Faction != Faction.Enemy && e.Weapon != null) { AddSwing(e); return; }
-            if (cartoon == null || e.Kind != CombatEventKind.Hit || e.Faction != Faction.Enemy || e.Value <= 0) return;
-            float now = Time.time;
-            if (now >= hitBudgetAt) { hitBudgetAt = now + .1f; hitBudget = PresentationSettings.ReducedEffects ? 1 : 2; }
-            if (!e.Critical && (hitBudget <= 0 || nextHitAt.TryGetValue(e.SubjectId, out float until) && now < until)) return;
-            if (nextHitAt.Count > 256) nextHitAt.Clear();
-            nextHitAt[e.SubjectId] = now + .25f; hitBudget--;
-            ElementLook look = DealerLook(e);
-            string key = look switch
+            if ((to - from).sqrMagnitude < .04f) { Blast(look, to, .5f, delay); return; }
+            float at = Now + delay;
+            HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Line, Position = from + Vector2.up * .3f, End = to + Vector2.up * .3f,
+                Direction = (to - from).normalized, Width = .35f, Created = at, At = at, Until = at + .5f, Seed = ++seed }, HeroIdentityVisual.GuestStyle(look));
+        }
+
+        private CartoonFx cartoon;
+        private struct Burst { public string Key; public Vector2 At; public float Scale, When; }
+        private readonly List<Burst> blastQueue = new List<Burst>();
+
+        /// <summary>The element's explosion from the Cartoon FX library under an area blast, sized to the area.</summary>
+        private static string BlastKey(ElementLook look) => look switch
+        {
+            ElementLook.Fire => "burst_fire", ElementLook.Ice or ElementLook.Crystal => "hit_ice", ElementLook.Storm => "burst_storm",
+            ElementLook.Water => "burst_water", ElementLook.Poison => "burst_poison", ElementLook.Earth or ElementLook.Paper => "burst_boom",
+            ElementLook.Void or ElementLook.Dream => "burst_souls", ElementLook.Light or ElementLook.Gold => "burst_flash", _ => "burst_poof",
+        };
+
+        private void Blast(ElementLook look, Vector2 at, float radius, float delay = 0, float gather = .12f)
+        {
+            float when = Now + delay;
+            if (blastQueue.Count < 48) blastQueue.Add(new Burst { Key = BlastKey(look), At = at + Vector2.up * .2f, Scale = (.3f + Mathf.Min(radius, 3) * .3f) * (look == ElementLook.Light || look == ElementLook.Gold ? .6f : 1), When = when + gather });
+            HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Disc, Position = at, End = at, Direction = Vector2.right,
+                Radius = Mathf.Max(.35f, radius), Created = when, At = when + gather, Until = when + gather + .6f, Seed = ++seed, Big = radius >= 1.5f }, HeroIdentityVisual.GuestStyle(look));
+        }
+
+        /// <summary>A big trait step (6 and 8) blasts the enemies where they crowd: up to six blasts on enemies spread over the
+        /// arena, a moment apart; a chaining trait instead strikes from enemy to enemy.</summary>
+        private void BlastCrowds(ElementLook look, Vector2 near, bool chain)
+        {
+            if (boundSimulation == null) return;
+            var picked = new List<Vector2>();
+            foreach (UnitState unit in boundSimulation.Units)
             {
-                ElementLook.Fire => "hit_fire", ElementLook.Ice or ElementLook.Crystal => "hit_ice", ElementLook.Storm => "hit_storm",
-                ElementLook.Light or ElementLook.Gold or ElementLook.Time or ElementLook.Sound => "hit_light",
-                ElementLook.Earth or ElementLook.Paper or ElementLook.Poison or ElementLook.Void or ElementLook.Dream => "hit_smoke", _ => "hit_misc",
-            };
-            Vector2 at = e.Position + Vector2.up * .3f;
-            cartoon.Play(key, at, e.Critical ? .55f : .4f);
-            if (e.Critical) cartoon.Play("hit_crit", at, .45f, Random.value * 360);
+                if (unit == null || !unit.Alive || unit.Faction != Faction.Enemy) continue;
+                bool apart = true;
+                foreach (Vector2 q in picked) if ((q - unit.Position).sqrMagnitude < 2.25f) { apart = false; break; }
+                if (apart) picked.Add(unit.Position);
+                if (picked.Count >= 6) break;
+            }
+            if (picked.Count == 0) { Blast(look, near, 1.6f); return; }
+            Vector2 from = near;
+            for (int i = 0; i < picked.Count; i++)
+            {
+                if (chain) { Targeted(look, from, picked[i], i * .09f); from = picked[i]; }
+                else Blast(look, picked[i], 1.3f, i * .08f);
+            }
         }
 
-        /// <summary>An enemy falls: a cartoon smoke puff sized by its body (a star poof on a critical), at most about thirty a
-        /// second so a crowd melting never buries the field.</summary>
-        public void OnKill(CombatEvent e)
+
+        /// <summary>Basic attacks draw nothing of their own under the rules v3 (only skills, traits and chains do).</summary>
+        public void OnCombat(CombatEvent e) { }
+
+        /// <summary>Our ordinary shots under the rules v3 fly as the shooter's own painted token in its element's hero palette,
+        /// the way the hero's identity bolts do (HeroIdentityVisual.Missile), never as an old bullet painting.</summary>
+        public Sprite ShotSprite(ProjectileState shot, float time, out float turn, out float size)
         {
-            if (cartoon == null || e.Subject == null) return;
-            float now = Time.time;
-            if (now >= killBudgetAt) { killBudgetAt = now + .1f; killBudget = PresentationSettings.ReducedEffects ? 1 : 3; }
-            if (killBudget-- <= 0) return;
-            float body = Mathf.Clamp(e.Subject.Definition.Radius * 2, .4f, 1.6f);
-            Vector2 at = e.Position + Vector2.up * body * .4f;
-            cartoon.Play(e.Critical ? "burst_poof" : "hit_smoke", at, .35f + body * .3f);
-            // a big body thumps down: dust rolls out from under it
-            if (body >= .8f && vfx != null) DustKick(e.Position, body * .8f, ElementLook.Earth);
+            ElementLook look = LookOfUnit(shot.SourceUnitId);
+            InkToken token = TokenFor(look);
+            HeroMechanicStyle style = HeroIdentityVisual.GuestStyle(look);
+            bool spin = token == InkToken.Star || token == InkToken.Coin || token == InkToken.Spark || token == InkToken.Shard || token == InkToken.Petal || token == InkToken.Leaf;
+            turn = spin && !PresentationSettings.ReducedMotion ? time * 520 + shot.Id * 47 : -90;
+            size = .3f;
+            return MechanicInk.Token(token, style.Palette, 0);
         }
-        private float killBudgetAt; private int killBudget;
 
-        // ------------------------------------------------------------------ our shots and swings
-        private sealed class Swing { public Vector2 At, Dir; public float Born, Reach; public ElementLook Look; public bool Melee; public int Seed; }
-        private readonly List<Swing> swings = new List<Swing>();
-        private readonly Dictionary<int, ElementLook> shotLooks = new Dictionary<int, ElementLook>();
-        private const float SwingLife = .2f;
+
 
         private ElementLook LookOfUnit(int id)
         {
@@ -162,55 +167,8 @@ namespace ArcaneBrigade
             return look == ElementLook.None ? ElementLook.Gold : look;
         }
 
-        /// <summary>One of our attacks leaves its wielder: a melee swing is a curved stroke of light in the wielder's element
-        /// sweeping its reach; a shot gets a small glint at the muzzle (the shot itself is drawn by DrawShots).</summary>
-        private void AddSwing(CombatEvent e)
-        {
-            if (swings.Count > 48) return;
-            Vector2 dir = e.Direction.sqrMagnitude > .0001f ? e.Direction.normalized : Vector2.right;
-            bool melee = e.Weapon.Kind == WeaponKind.Melee;
-            swings.Add(new Swing { At = e.Position, Dir = dir, Born = Time.time, Reach = melee ? Mathf.Clamp(e.Weapon.Range, .7f, 1.8f) : .5f, Look = LookOfUnit(e.Cause.SourceUnitId), Melee = melee, Seed = ++seed });
-        }
 
-        private void DrawSwings()
-        {
-            float now = Time.time;
-            for (int i = swings.Count - 1; i >= 0; i--)
-            {
-                Swing s = swings[i];
-                float t = (now - s.Born) / SwingLife;
-                if (t > 1) { swings.RemoveAt(i); continue; }
-                InkPalette p = s.Look == ElementLook.Fire ? Ember : PaletteFor(s.Look);
-                if (!s.Melee) { Glint(s.At + s.Dir * s.Reach, .14f * (1 - t), p, 1 - t); continue; }
-                // the arc sweeps from one side of the aim to the other; its tail fades behind the head
-                float aim = Mathf.Atan2(s.Dir.y, s.Dir.x) * Mathf.Rad2Deg, from = aim + 60, to = aim - 60, head = Mathf.Lerp(from, to, Mathf.SmoothStep(0, 1, Mathf.Min(1, t * 1.6f)));
-                float tail = Mathf.Lerp(from, head, Mathf.Clamp01(t * 1.4f));
-                if (Mathf.Abs(head - tail) < 2) continue;
-                Light(InkCanvas.Arc(s.At, s.Reach * .85f, s.Reach * .85f * .7f, tail, head, 14), p, .07f, 1 - t * t, 1, 0);
-            }
-        }
 
-        /// <summary>Our ordinary shots under the rules v3: a short bolt of light in the shooter's element (hero standard:
-        /// halo, body, hot thread), a flickering glint at its head and a thin trail of the element's matter.</summary>
-        private void DrawShots(CombatSimulation sim, float now)
-        {
-            if (sim.Projectiles == null) return;
-            int frame = Mathf.FloorToInt(now * 18);
-            if (shotLooks.Count > 512) shotLooks.Clear();
-            foreach (ProjectileState shot in sim.Projectiles)
-            {
-                if (shot.Faction == Faction.Enemy || shot.Cause.ItemId != null && shot.Cause.ItemId.StartsWith("hero-identity")) continue;
-                if (!shotLooks.TryGetValue(shot.Id, out ElementLook look)) shotLooks[shot.Id] = look = LookOfUnit(shot.SourceUnitId);
-                InkPalette p = look == ElementLook.Fire ? Ember : PaletteFor(look);
-                float speed = shot.Velocity.magnitude;
-                Vector2 dir = speed > .01f ? shot.Velocity / speed : Vector2.right, head = shot.Position;
-                float len = Mathf.Clamp(speed * .04f, .3f, .8f);
-                if (look == ElementLook.Storm) Light(Bolt(head - dir * len, head, .06f, shot.Id * 7 + frame), p, .045f, 1);
-                else Light(InkCanvas.Line(head - dir * len, head), p, .05f, 1, 1, 0);
-                if ((frame + shot.Id) % 2 == 0) Glint(head, .09f, p, .9f);
-                FieldParticles(look, head, .7f, .35f, .45f);
-            }
-        }
 
         /// <summary>The colour of a hit's element: its source companion's main bond, the hero's own look, else none.</summary>
         private Color? ElementColour(CombatEvent e)
@@ -381,9 +339,12 @@ namespace ArcaneBrigade
             FieldKind field;
             if (FieldFor(e.Rule, out field, out float life))
             {
-                for (int i = fields.Count - 1; i >= 0; i--) if (fields[i].Kind == field) fields.RemoveAt(i);
-                float ang = (++seed * 47) % 360 * Mathf.Deg2Rad;
-                fields.Add(new Field { Kind = field, Born = Now, Life = life, Dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .4f).normalized });
+                if (field == FieldKind.Realm)
+                {
+                    for (int i = fields.Count - 1; i >= 0; i--) if (fields[i].Kind == field) fields.RemoveAt(i);
+                    fields.Add(new Field { Kind = field, Born = Now, Life = life });
+                }
+                else BlastCrowds(LookFor(e.Rule), e.Position, false);
                 owner?.Feel.Accent(.35f, .15f);
                 Sound("rules.field", e.Position);
             }
@@ -391,91 +352,51 @@ namespace ArcaneBrigade
             if (popsThisFrame < MaxPopsPerFrame && Loud(e.Rule, out float size))
             {
                 popsThisFrame++;
-                if (pops.Count >= MaxPops) pops.RemoveAt(0);
-                float delay = 0;
-                if (e.Rule != null && e.Rule.IndexOf("star", StringComparison.OrdinalIgnoreCase) >= 0 && throws.Count < MaxThrows)
-                {
-                    // a falling star streaks down from the sky and bursts where it lands
-                    delay = .28f;
-                    throws.Add(new Throw { From = e.Position + new Vector2(2.4f, 7.5f), To = e.Position, Born = Now, Life = delay, Look = ElementLook.Light, Token = InkToken.Star, Seed = ++seed, Straight = true });
-                }
-                AddPop(e.Position, LookFor(e.Rule), size, delay);
-                Signature(e.Rule, e.Position, size);
+                AddPop(e.Position, LookFor(e.Rule), size, 0);
                 Sound(LookFor(e.Rule), "burst", e.Position);
                 if (size >= 1.5f) owner?.Feel.Accent(.3f, .1f); else if (size >= 1.1f) owner?.Feel.Accent(.12f, 0);
             }
         }
 
-        private float nextFrozenWord, nextBoomWord;
 
-        /// <summary>Each trait's own moment on top of its element's burst, so traits never look alike: frost locks a foe in
-        /// ice, a splash throws water, a pull draws matter into its point, dusk lets souls escape, a horn or demolition blow
-        /// booms, warmth and sweets rise as sparkles. Comic words stay rare (one per kind every few seconds).</summary>
-        private void Signature(string rule, Vector2 at, float size)
-        {
-            if (cartoon == null || string.IsNullOrEmpty(rule)) return;
-            Vector2 c = at + Vector2.up * .3f;
-            float now = Time.time;
-            switch (rule)
-            {
-                case "freeze":
-                    cartoon.Play("hit_ice", c, .6f);
-                    for (int i = 0; i < 6; i++) Puff(ElementLook.Ice, c + Random.insideUnitCircle * .25f, Random.insideUnitCircle * .4f, .3f, .7f);
-                    if (now >= nextFrozenWord) { nextFrozenWord = now + 4; cartoon.Play("word_frozen", c + Vector2.up * .9f, .45f); }
-                    break;
-                case "frozen-hit": case "shatter":
-                    cartoon.Play("hit_ice", c, .5f);
-                    break;
-                case "tide-splash": case "sea-shanty":
-                    cartoon.Play("burst_water", at, .5f * size);
-                    break;
-                case "gravity-pull":
-                    // matter drawn into the point from all round
-                    for (int i = 0; i < 10; i++) { Vector2 from = Random.insideUnitCircle.normalized * (.9f + .4f * Random.value); Puff(ElementLook.Void, c + from, -from * 1.8f, .25f, .5f); }
-                    break;
-                case "dusk-mark": case "shade-execute-growth": case "eclipse":
-                    cartoon.Play("burst_souls", c, .4f * size);
-                    break;
-                case "horns-vulnerability": case "horn-pile-up": case "demolitionist-stun":
-                    cartoon.Play("burst_boom", c, .3f * size);
-                    if (now >= nextBoomWord) { nextBoomWord = now + 4; cartoon.Play(rule == "demolitionist-stun" ? "word_boom" : "word_wham", c + Vector2.up * .9f, .45f); }
-                    break;
-                case "root-hit": case "root-stillness":
-                    for (int i = 0; i < 6; i++) Puff(ElementLook.Bloom, c + Random.insideUnitCircle * .3f, Vector2.up * .4f + Random.insideUnitCircle * .3f, .25f, .7f);
-                    break;
-                case "warmth": case "warmth-heal": case "feast": case "sugar-rush": case "wick": case "lantern-stillness":
-                    for (int i = 0; i < 6; i++) vfx.Emit(vfx.Tex("star"), "light", c + Random.insideUnitCircle * .3f, new Vector2((Random.value - .5f) * .6f, 1 + Random.value), .14f, .8f, 200);
-                    break;
-                case "rot":
-                    for (int i = 0; i < 4; i++) Puff(ElementLook.Poison, c + Random.insideUnitCircle * .25f, Vector2.up * .35f, .3f, .9f);
-                    break;
-            }
-        }
 
         public void OnCast(SkillCastRequest c)
         {
             ElementLook look = LookFor(c.SkillId);
             if (look == ElementLook.Gold) look = LookFor(MainBond(c.SourceId));
-            AreaShape shape = c.Shape == SkillShape.Ring ? AreaShape.Ring : c.Shape == SkillShape.Line ? AreaShape.Line : c.Shape == SkillShape.Cone ? AreaShape.Cone : AreaShape.Disc;
-            if (c.Shape == SkillShape.Species) { AddPop(c.Position, look, 1.2f, 0); return; }
-            bool motif = CompanionSkillTable.TryGet(c.SkillId, out CompanionSkillDefinition skill) & MotifFor(skill?.BodySource, out InkToken token);
-            // the cast leaves the companion: a flash on it, its piece lobbed to the spot, and the area lands when it arrives
-            UnitState caster = boundSimulation?.UnitForPresentation(c.SourceId);
-            float flight = 0;
-            if (caster != null && caster.Alive)
+            if (c.Shape == SkillShape.Species)
             {
-                EnemyPop(caster.Position, look, .7f);
-                Sound(look, "cast", caster.Position);
-                float distance = (c.Position - caster.Position).magnitude;
-                if (distance > 1.2f)
+                // a skill on a cluster or a species is targeted: struck from the caster to its spot
+                UnitState from = boundSimulation?.UnitForPresentation(c.SourceId);
+                Targeted(look, from != null ? from.Position : c.Position, c.Position);
+                return;
+            }
+            UnitState caster = boundSimulation?.UnitForPresentation(c.SourceId);
+            if (caster != null && caster.Alive) Sound(look, "cast", caster.Position);
+            Vector2 source = caster != null ? caster.Position : c.Position;
+            float warn = Mathf.Max(0, c.WarningTime);
+            int strikes = c.Duration > 1.5f ? Mathf.Min(5, Mathf.FloorToInt(c.Duration)) : 1; // a lasting skill bursts again each second
+            for (int k = 0; k < strikes; k++)
+            {
+                float delay = warn + k;
+                switch (c.Shape)
                 {
-                    flight = Mathf.Clamp(distance * .05f, .16f, .38f);
-                    if (throws.Count >= MaxThrows) throws.RemoveAt(0);
-                    throws.Add(new Throw { From = caster.Position + Vector2.up * .5f, To = c.Position, Born = Now, Life = flight, Look = look, Token = motif ? token : TokenFor(look), Seed = ++seed });
-                    Gather(look, c.Position, Mathf.Max(.6f, c.Radius), flight);
+                    case SkillShape.Line:
+                    {
+                        // a lane bursts along its length, start to end
+                        float length = (c.End - c.Position).magnitude; int n = Mathf.Clamp(Mathf.RoundToInt(length / 1.6f), 2, 4);
+                        for (int i = 0; i < n; i++) Blast(look, Vector2.Lerp(c.Position, c.End, (i + .5f) / n), Mathf.Max(.6f, c.Radius * 1.2f), delay + i * .07f);
+                        break;
+                    }
+                    case SkillShape.Cone:
+                    {
+                        float reach = Mathf.Max(c.Radius, (c.End - c.Position).magnitude);
+                        Blast(look, Vector2.Lerp(c.Position, c.End, .6f), reach * .55f, delay);
+                        break;
+                    }
+                    default: Blast(look, c.Position, Mathf.Max(.5f, c.Radius), delay); break;
                 }
             }
-            Add(new Area { Shape = shape, Hostile = false, A = c.Position, B = c.End, R = Mathf.Max(.4f, c.Radius), Born = Now + flight, Warn = c.WarningTime, Life = Mathf.Max(.45f, c.WarningTime + Mathf.Max(.35f, c.Duration)), Look = look, Seed = ++seed, HasMotif = motif, Motif = token });
         }
 
         public void OnDanger(EnemyDangerRequest d)
@@ -493,8 +414,7 @@ namespace ArcaneBrigade
             string r = d.Rule ?? string.Empty;
             if (r.IndexOf("chain", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("discharge", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("storm", StringComparison.OrdinalIgnoreCase) < 0) return;
             chainsThisFrame++;
-            if (chains.Count >= MaxChains) chains.RemoveAt(0);
-            chains.Add(new Chain { A = d.Attacker.Position, B = d.Target.Position, Born = Now, Seed = ++seed });
+            Targeted(ElementLook.Storm, d.Attacker.Position, d.Target.Position);
             Sound("rules.chain", d.Target.Position);
         }
 
@@ -587,8 +507,11 @@ namespace ArcaneBrigade
                 case HeroRuleAction.Shield: AddAura(boundSimulation?.UnitForPresentation(h.FriendId) ?? hero, AuraKind.Shield, Now + Mathf.Max(.8f, h.Duration), look); return;
             }
             if (h.Radius <= 0) return;
-            AreaShape shape = h.Shape == HeroRuleShape.Line ? AreaShape.Line : h.Shape == HeroRuleShape.Ring ? AreaShape.Ring : h.Shape == HeroRuleShape.Arena ? AreaShape.Ring : AreaShape.Disc;
-            Add(new Area { Shape = shape, A = h.Position, B = h.End, R = Mathf.Min(h.Radius, 6), Born = Now, Life = Mathf.Max(.45f, h.Duration), Look = look, Seed = ++seed });
+            MorphGeometry geometry = h.Shape == HeroRuleShape.Line ? MorphGeometry.Line : h.Shape == HeroRuleShape.Circle ? MorphGeometry.Disc : MorphGeometry.Ring;
+            HeroMechanicStyle style = hero != null ? HeroMechanicStyle.For(hero.Definition.Id) : HeroIdentityVisual.GuestStyle(look);
+            float now = Now;
+            HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = geometry, Position = h.Position, End = h.End, Direction = (h.End - h.Position).sqrMagnitude > .001f ? (h.End - h.Position).normalized : Vector2.right,
+                Radius = Mathf.Min(h.Radius, 6), Width = .4f, Created = now, At = now + .18f, Until = now + .18f + Mathf.Clamp(h.Duration, .5f, 1f), Seed = ++seed, Big = h.Radius >= 2 }, style);
         }
 
         /// <summary>Enemy rule effects that are not a warned blow: gloom zones (dark, silence, time, flood) as a solid violet
@@ -659,90 +582,35 @@ namespace ArcaneBrigade
             return true;
         }
 
-        /// <summary>A field moment is weather over the whole arena, one continuous body of its element: a tinted veil plus
-        /// snow falling everywhere for a blizzard, long gusts of light for a gale, a wave crest sweeping across for a riptide,
-        /// cartoon flames rising all over for an inferno, venom fumes for a pandemic, dusk for an eclipse.</summary>
+        /// <summary>A field moment tints the arena in its element (a boss changing phase flashes it red).</summary>
         private void DrawField(Field f, Vector2 centre, float now)
         {
             float t = Mathf.Clamp01((now - f.Born) / f.Life), a = Mathf.Sin(t * Mathf.PI);
             if (PresentationSettings.ReducedEffects) a *= .5f;
             switch (f.Kind)
             {
-                case FieldKind.Blizzard:
-                    ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .25f * a, .7f * a);
-                    Weather(ElementLook.Ice, centre, a, 3);
-                    for (int i = 0; i < 6 && Random.value < Time.deltaTime * 40 * a; i++)
-                        vfx.Emit(vfx.Tex("star"), "ice", centre + new Vector2((Random.value - .5f) * 22, 6.5f), new Vector2(-.8f - Random.value, -2.2f - Random.value), .1f + Random.value * .1f, 3f, (Random.value - .5f) * 120);
-                    break;
-                case FieldKind.Eclipse:
-                    ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .4f * a, .8f * a);
-                    Weather(ElementLook.Void, centre, a, 1);
-                    break;
-                case FieldKind.Gale:
-                {
-                    ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a);
-                    Vector2 dir = f.Dir.sqrMagnitude > .01f ? f.Dir.normalized : Vector2.right, side = new Vector2(-dir.y, dir.x);
-                    for (int k = 0; k < 7; k++)
-                    {
-                        // long gusts crossing the arena, each a wavy stroke of light running with the wind
-                        float run = Mathf.Repeat(now * .45f + R(3, k), 1), lane = (R(5, k) - .5f) * 11;
-                        Vector2 mid = centre + side * lane + dir * Mathf.Lerp(-13, 13, run);
-                        path.Clear();
-                        for (int q = 0; q <= 20; q++) { float u = q / 20f; path.Add(mid + dir * (u - .5f) * 5 + side * Mathf.Sin(u * 6.3f + now * 3 + k) * .25f); }
-                        Light(path, PaletteFor(ElementLook.Wind), .035f, a * Mathf.Sin(run * Mathf.PI), 1, 0);
-                    }
-                    Weather(ElementLook.Wind, centre, a, 2);
-                    break;
-                }
-                case FieldKind.Riptide:
-                {
-                    // one wave crest sweeping across the arena, spray thrown off its lip
-                    float x = Mathf.Lerp(-12, 12, t);
-                    path.Clear();
-                    for (int q = 0; q <= 30; q++) { float u = q / 30f; path.Add(centre + new Vector2(x + Mathf.Sin(u * 9 + now * 4) * .35f, Mathf.Lerp(-7, 7, u))); }
-                    Light(path, PaletteFor(ElementLook.Water), .09f, a, 1, 0);
-                    for (int i = 0; i < 3; i++) FieldParticles(ElementLook.Water, centre + new Vector2(x, Mathf.Lerp(-7, 7, Random.value)), a, 4, 1.2f);
-                    break;
-                }
-                case FieldKind.Inferno:
-                    ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a);
-                    Weather(ElementLook.Fire, centre, a, 1.5f);
-                    break;
-                case FieldKind.Lost:
-                    ink.Vignette(centre, 28, ArsenalInk.Midnight.Ink, .5f * Mathf.Min(1, t * 3), .95f * Mathf.Min(1, t * 3));
-                    break;
-                case FieldKind.Realm:
-                    // a boss changes phase: the arena flashes red and settles
-                    ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a);
-                    break;
-                case FieldKind.Pandemic:
-                    ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a);
-                    Weather(ElementLook.Poison, centre, a, 3);
-                    break;
+                case FieldKind.Blizzard: ink.Vignette(centre, 28, ArsenalInk.Glass.Light, .25f * a, .7f * a); break;
+                case FieldKind.Eclipse: ink.Vignette(centre, 28, ArsenalInk.Violet.Ink, .4f * a, .8f * a); break;
+                case FieldKind.Gale: ink.Vignette(centre, 28, ArsenalInk.Cotton.Light, .12f * a, .35f * a); break;
+                case FieldKind.Riptide: ink.Vignette(centre, 28, ArsenalInk.Water.Body, .14f * a, .4f * a); break;
+                case FieldKind.Inferno: ink.Vignette(centre, 28, ArsenalInk.Amber.Glow, .22f * a, .6f * a); break;
+                case FieldKind.Lost: ink.Vignette(centre, 28, ArsenalInk.Midnight.Ink, .5f * Mathf.Min(1, t * 3), .95f * Mathf.Min(1, t * 3)); break;
+                case FieldKind.Realm: ink.Vignette(centre, 28, BossTelegraph.Danger.Body, .3f * a, .8f * a); break;
+                case FieldKind.Pandemic: ink.Vignette(centre, 28, ArsenalInk.Green.Body, .22f * a, .6f * a); break;
             }
         }
 
-        /// <summary>An element's matter born at fresh random points all over the arena every frame, so a field reads as
-        /// weather rather than a pattern of spots.</summary>
-        private void Weather(ElementLook look, Vector2 centre, float alpha, float rate)
-        {
-            int samples = PresentationSettings.ReducedEffects ? 3 : 8;
-            for (int i = 0; i < samples; i++)
-                FieldParticles(look, centre + new Vector2((Random.value - .5f) * 20, (Random.value - .5f) * 11), alpha, rate, 1);
-        }
 
         /// <summary>Dusk takes strength from a marked enemy: a violet ribbon from the enemy to the friend that gains it.</summary>
         public void OnStolen(UnitState enemy, UnitState friend, float fraction)
         {
             if (enemy == null || friend == null || chainsThisFrame >= MaxChainsPerFrame) return;
             chainsThisFrame++;
-            if (chains.Count >= MaxChains) chains.RemoveAt(0);
-            chains.Add(new Chain { A = enemy.Position, B = friend.Position, Born = Now, Seed = ++seed, Violet = true });
+            Targeted(ElementLook.Void, enemy.Position, friend.Position);
         }
 
         /// <summary>Ember leaves embers where a burning enemy died: a small firepit for their lifetime.</summary>
-        public void OnEmbers(Vector2 at, float lifetime)
-            => Add(new Area { Shape = AreaShape.Disc, A = at, R = .8f, Born = Now, Life = Mathf.Max(.6f, lifetime), Look = ElementLook.Fire, Seed = ++seed, HasMotif = true, Motif = InkToken.Ember });
+        public void OnEmbers(Vector2 at, float lifetime) => AddPop(at, ElementLook.Fire, 1, 0);
 
         /// <summary>A shield breaking on a friend: a loud glass pop.</summary>
         public void OnShieldBroken(UnitState friend) { if (friend != null) { EnemyPop(friend.Position, ElementLook.Crystal, 1.1f); Sound("rules.shieldbreak", friend.Position); } }
@@ -762,7 +630,7 @@ namespace ArcaneBrigade
             {
                 entities.Remove(e.Id);
                 if (e.Change == RulesV3EntityChange.Collected) Sound("rules.pickup", e.Position);
-                if (e.Change == RulesV3EntityChange.Collected) cartoon?.Play("burst_poof", e.Position + Vector2.up * .3f, .3f);
+                if (e.Change == RulesV3EntityChange.Collected) AddPop(e.Position, LookFor(e.Rule), .7f, 0);
             }
         }
 
@@ -802,12 +670,13 @@ namespace ArcaneBrigade
                 Area a = areas[i]; float age = now - a.Born;
                 if (age > a.Life || age < -1) { areas.RemoveAt(i); continue; }
                 if (age < 0) continue; // still in flight
-                if (!a.Landed && !a.Hostile) { Land(a); a.Landed = true; areas[i] = a; }
                 if (!a.Landed && a.Hostile && !a.Gloom && age >= a.Warn) { Strike(a); a.Landed = true; areas[i] = a; }
                 if (a.Gloom) { DrawGloom(a, age); DangerAreas++; }
                 else if (a.Hostile) { DrawDanger(a, age); DangerAreas++; }
-                else { DrawFriendly(a, age); FriendAreas++; }
+                else FriendAreas++;
             }
+            for (int i = blastQueue.Count - 1; i >= 0; i--)
+                if (now >= blastQueue[i].When) { if (cartoon != null && now - blastQueue[i].When < .5f) cartoon.Play(blastQueue[i].Key, blastQueue[i].At, blastQueue[i].Scale); blastQueue.RemoveAt(i); }
             foreach (KeyValuePair<int, RulesV3EntityRequest> pair in entities) { DrawEntity(pair.Value, now); Entities++; }
             foreach (KeyValuePair<int, FriendMortalityEvent> pair in fallen) { DrawFallen(pair.Value, now); Fallen++; }
             for (int i = auras.Count - 1; i >= 0; i--)
@@ -817,14 +686,6 @@ namespace ArcaneBrigade
                 DrawAura(auras[i], unit, now); Auras++;
             }
             if (boundBonds != null) DrawStatuses(sim, now);
-            DrawShots(sim, now);
-            DrawSwings();
-            for (int i = throws.Count - 1; i >= 0; i--)
-            {
-                float k = (now - throws[i].Born) / throws[i].Life;
-                if (k > 1 || k < 0) { throws.RemoveAt(i); continue; }
-                DrawThrow(throws[i], k);
-            }
             for (int i = pops.Count - 1; i >= 0; i--)
             {
                 float age = now - pops[i].Born;
@@ -838,13 +699,6 @@ namespace ArcaneBrigade
                 if (now > links[i].Until || from == null || to == null || !from.Alive || !to.Alive) { links.RemoveAt(i); continue; }
                 ink.Cord(from.Position + Vector2.up * .3f, to.Position + Vector2.up * .3f, BossTelegraph.Danger, .06f, true, .9f);
             }
-            for (int i = chains.Count - 1; i >= 0; i--)
-            {
-                float age = now - chains[i].Born;
-                if (age > ChainLife || age < 0) { chains.RemoveAt(i); continue; }
-                DrawChain(chains[i], age); Chains++;
-            }
-            DrawWarps();
             ink.End(); vfx.End(); light.Commit();
         }
 
@@ -883,21 +737,6 @@ namespace ArcaneBrigade
             Pieces(a, p, grow, alpha * .8f, now);
         }
 
-        /// <summary>A friendly skill shows as one living body of its element where it acts, never a target zone and never a
-        /// scatter of separate spots: a disc is a mass burning densest at its heart and thinning to its edge (a bonfire,
-        /// a whirlpool, lightning struck out from the heart, frost grown from it); a lane is one unbroken jet or bolt from end
-        /// to end; a cone is a spray from its point. The creature's own piece rides once at the heart.</summary>
-        private void DrawFriendly(Area a, float age)
-        {
-            InkPalette p = PaletteFor(a.Look);
-            float now = boundSimulation.Elapsed, t = Mathf.Clamp01(age / a.Life), fadeOut = Mathf.Clamp01((1 - t) / .2f);
-            float grow = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / .3f)), show = grow * fadeOut;
-            Vector2 heart;
-            if (a.Shape == AreaShape.Line) { Jet(a, p, show, grow, now); heart = Vector2.Lerp(a.A, a.B, .5f); }
-            else if (a.Shape == AreaShape.Cone) { Spray(a, p, show, grow, now); heart = Vector2.Lerp(a.A, a.B, .55f); }
-            else { Mass(a, p, show, grow, now); heart = a.A; }
-            if (a.HasMotif) ink.Token(a.Motif, p, heart + new Vector2(0, .45f + Mathf.Abs(Mathf.Sin(now * 3)) * .12f), .4f, now * 60, fadeOut, true);
-        }
 
         private static Vector2 Flat(Vector2 v) => new Vector2(v.x, v.y * .62f);
 
@@ -921,275 +760,19 @@ namespace ArcaneBrigade
         private int Samples(float span) => PresentationSettings.ReducedEffects ? 3 : Mathf.Clamp(Mathf.RoundToInt(4 + span * 2.5f), 5, 14);
         private readonly List<Vector2> path = new List<Vector2>(32);
 
-        /// <summary>A disc skill as one mass: its matter is born every frame at fresh points, most at the heart and few at the
-        /// edge, so it reads as one body; its light is one connected shape grown from the heart.</summary>
-        private void Mass(Area a, InkPalette p, float show, float grow, float now)
-        {
-            Vector2 c = a.A;
-            float r = a.R * (.35f + .65f * grow);
-            int samples = Samples(a.R * 1.5f), frame = Mathf.FloorToInt(now * 18);
-            float rate = Mathf.Clamp((a.R * a.R * 1.5f + 3) * 1.4f, 4, 30) / samples;
-            for (int i = 0; i < samples; i++)
-            {
-                float u = Mathf.Pow(Random.value, 1.7f), ang = Random.value * 360;
-                FieldParticles(a.Look, c + Flat(Dir(ang)) * r * u, show * (1 - u * .6f), rate, 1.5f - u);
-            }
-            switch (a.Look)
-            {
-                case ElementLook.Storm:
-                {
-                    // lightning struck out from the heart, new forks about nine times a second, each flickering
-                    int strike = Mathf.FloorToInt(now * 9), bolts = Mathf.Clamp(3 + Mathf.RoundToInt(a.R * 1.5f), 4, 8);
-                    for (int k = 0; k < bolts; k++)
-                    {
-                        float ang = R(a.Seed + strike, k) * 360, reach = r * (.55f + .45f * R(a.Seed + strike, k + 20));
-                        Vector2 end = c + Flat(Dir(ang)) * reach;
-                        Light(Bolt(c, end, .06f + reach * .05f, a.Seed + frame * 7 + k), p, .05f, show);
-                        Vector2 mid = Vector2.Lerp(c, end, .5f + .2f * R(strike, k));
-                        Light(Bolt(mid, mid + Flat(Dir(ang + (R(strike, k + 9) - .5f) * 100)) * reach * .4f, .05f, frame * 3 + k), p, .03f, show * .8f);
-                    }
-                    if (frame % 3 != 0) Glint(c, .3f, p, show);
-                    // each strike flashes the floor blue-white
-                    if (strike != lastStrikeLit) { lastStrikeLit = strike; FloorLight(ElementLook.Storm, c, r * 3f, .18f); }
-                    break;
-                }
-                case ElementLook.Ice: case ElementLook.Crystal:
-                {
-                    // one frost crystal grown from the heart to the edge, twigs along each arm, small crystals at the tips
-                    float turn = a.Seed * 17 % 60 + now * (a.Look == ElementLook.Crystal ? 14 : 4), shine = .65f + .35f * Mathf.Sin(now * 3);
-                    for (int k = 0; k < 6; k++)
-                    {
-                        float ang = turn + k * 60; Vector2 tip = c + Flat(Dir(ang)) * r * .95f;
-                        Light(InkCanvas.Line(c, tip), p, .05f, show * shine);
-                        for (int j = 1; j <= 3; j++)
-                        {
-                            Vector2 at = Vector2.Lerp(c, tip, j / 4f); float len = r * (.36f - j * .07f);
-                            Light(InkCanvas.Line(at, at + Flat(Dir(ang + 50)) * len), p, .03f, show * shine * .85f);
-                            Light(InkCanvas.Line(at, at + Flat(Dir(ang - 50)) * len), p, .03f, show * shine * .85f);
-                        }
-                        ElementStroke(a.Look, tip, tip, k, a.Seed, now, .8f, show);
-                    }
-                    break;
-                }
-                case ElementLook.Water: case ElementLook.Wind: case ElementLook.Bloom: Swirl(a.Look, c, r, show, 1); break;
-                case ElementLook.Void: case ElementLook.Dream: Swirl(a.Look, c, r, show, -1); break;
-                case ElementLook.Fire:
-                    // the cartoon flames are the bonfire; it lights the floor in flickers and the air shimmers over it
-                    if (Random.value < Time.deltaTime * 10 * show) FloorLight(ElementLook.Fire, c + Flat(Random.insideUnitCircle) * r * .4f, r * 2.6f * (.8f + .4f * Random.value), .3f);
-                    AddHaze(c + Vector2.up * (.6f + r * .3f), r * 1.8f, show);
-                    break;
-                case ElementLook.Light: case ElementLook.Gold: case ElementLook.Sound:
-                    // the puffs carry the body; a bright heart pulses in it and lights the floor
-                    if (frame % 4 == 0) Glint(c + Vector2.up * .2f, .22f, p, show);
-                    if (Random.value < Time.deltaTime * 6 * show) FloorLight(a.Look, c, r * 2.4f, .35f);
-                    break;
-                case ElementLook.Time:
-                    ElementStroke(ElementLook.Time, c, c, 0, a.Seed, now, r * 5, show);
-                    break;
-                case ElementLook.Earth: case ElementLook.Paper:
-                    // cracks run out from the heart
-                    for (int k = 0; k < 6; k++)
-                    {
-                        float ang = a.Seed * 31 % 360 + k * 60 + R(a.Seed, k) * 25;
-                        ink.FloorStroke(c, c + Flat(Dir(ang)) * r * (.7f + .3f * R(a.Seed, k + 5)), p, .05f, 1, 1, show, .12f, a.Seed + k);
-                    }
-                    break;
-                default:
-                    ElementStroke(a.Look, c, c, 0, a.Seed, now, 1.4f, show);
-                    break;
-            }
-        }
 
-        /// <summary>A mass that turns: cartoon puffs of the element carried round the heart (a whirlpool, a whirlwind, a
-        /// swirl of petals; dusk draws them in). Born at fresh points every frame so the turning body never shows a pattern.</summary>
-        private void Swirl(ElementLook look, Vector2 c, float r, float alpha, float turn)
-        {
-            for (float want = Time.deltaTime * (PresentationSettings.ReducedEffects ? 6 : 16) * alpha * Mathf.Clamp(r, .6f, 2.5f); want > 0; want -= 1)
-            {
-                if (Random.value > want) continue;
-                float u = .3f + .7f * Random.value, ang = Random.value * 360;
-                Vector2 at = c + Flat(Dir(ang)) * r * u, spin = Flat(Dir(ang + 90 * turn)) * r * 1.8f;
-                if (turn < 0) spin -= Flat(Dir(ang)) * r * .8f;
-                Puff(look, at, spin, .3f * (1.2f - u * .4f), .6f);
-            }
-        }
 
-        private int lastStrikeLit;
 
-        /// <summary>The light an effect throws on the floor round it, in its element's colour: a wide, low, soft patch that
-        /// flares and fades (fire flickers it, lightning flashes it). Light, not a disc: no edge, gone in a moment.</summary>
-        private void FloorLight(ElementLook look, Vector2 at, float width, float life)
-        {
-            if (PresentationSettings.ReducedFlashes) width *= .7f;
-            Color c = Saturate(look == ElementLook.Fire ? Ember.Glow : PaletteFor(look).Glow); c.a = PresentationSettings.ReducedFlashes ? .3f : .55f;
-            vfx.EmitSized(vfx.Tex("light"), "floorlight", at, new Vector2(width, width * .5f), life, c);
-        }
 
-        /// <summary>Dust kicked out along the ground where a blow lands: cartoon puffs rolling outward low and wide (spray
-        /// for water, powder snow for frost, dust for the rest).</summary>
-        private void DustKick(Vector2 at, float size, ElementLook matter)
-        {
-            int n = PresentationSettings.ReducedEffects ? 3 : 8;
-            for (int i = 0; i < n; i++)
-            {
-                float side = i % 2 == 0 ? 1 : -1, speed = (1.4f + Random.value * 1.4f) * Mathf.Sqrt(size);
-                Puff(matter, at + new Vector2(side * .2f, Random.value * .1f), new Vector2(side * speed, .25f + Random.value * .5f), (.26f + Random.value * .14f) * Mathf.Sqrt(size), .65f);
-            }
-        }
 
-        /// <summary>A burnt patch left on the floor under a blast (a still cartoon splat), fading over a few seconds.</summary>
-        private void Scorch(Vector2 at, float size)
-        {
-            Sprite[] sheet = vfx.Library?.Get("UL_FireBall01");
-            if (sheet == null || sheet.Length < 20) return;
-            vfx.EmitSized(sheet[12 + Random.Range(0, 6)], "toonscorch", at, new Vector2(1.5f, .75f) * size, 2.6f);
-        }
 
-        /// <summary>Anticipation: while a cast flies to its spot the spot draws its element in, so the blast lands on a
-        /// gathering of its own matter.</summary>
-        private void Gather(ElementLook look, Vector2 at, float radius, float flight)
-        {
-            int n = PresentationSettings.ReducedEffects ? 3 : 7;
-            for (int i = 0; i < n; i++)
-            {
-                Vector2 from = Flat(Random.insideUnitCircle.normalized) * radius * (1 + Random.value * .4f);
-                Puff(look, at + from, -from / Mathf.Max(.12f, flight), .2f, flight);
-            }
-        }
 
-        // ------------------------------------------------------------------ the air: shock bulges and heat haze (HeroRefract)
-        private sealed class Warp { public Vector2 At, Flow; public float Born, Life, Size, Bend, Alpha; }
-        private readonly List<Warp> warps = new List<Warp>();
-        private readonly List<SpriteRenderer> warpViews = new List<SpriteRenderer>();
-        private Material refract; private Sprite warpBlob; private MaterialPropertyBlock warpBlock;
-        private bool WarpReady => !PresentationSettings.ReducedEffects && SystemInfo.graphicsShaderLevel >= 30 && EffectDensity.CrowdPressure < .8f;
 
-        /// <summary>The air bulges out from a blast and settles (a shockwave seen only as the floor bending, never drawn).</summary>
-        private void AddShock(Vector2 at, float size) { if (WarpReady && warps.Count < 16) warps.Add(new Warp { At = at, Born = Time.time, Life = .32f, Size = size, Bend = .045f, Alpha = 1 }); }
-        /// <summary>Heat shimmering over a fire, for this frame (added again every frame while the fire burns).</summary>
-        private void AddHaze(Vector2 at, float size, float alpha) { if (WarpReady && warps.Count < 16) warps.Add(new Warp { At = at, Born = Time.time, Life = 0, Size = size, Bend = .012f, Flow = new Vector2(0, -1.2f), Alpha = alpha }); }
 
-        private void DrawWarps()
-        {
-            int used = 0;
-            if (refract == null && Resources.Load<Shader>("HeroRefract") is Shader shader && shader.isSupported) refract = new Material(shader) { name = "Rules air", hideFlags = HideFlags.DontSave };
-            if (warpBlob == null)
-            {
-                var tex = new Texture2D(64, 64, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
-                var px = new Color32[64 * 64];
-                for (int y = 0; y < 64; y++) for (int x = 0; x < 64; x++) { float u = (x + .5f) / 32 - 1, v = (y + .5f) / 32 - 1; px[y * 64 + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(Mathf.Exp(-(u * u + v * v) * 2.6f) - .07f) * 255)); }
-                tex.SetPixels32(px); tex.Apply(false, true);
-                warpBlob = Sprite.Create(tex, new Rect(0, 0, 64, 64), new Vector2(.5f, .5f), 64, 0, SpriteMeshType.FullRect);
-            }
-            float now = Time.time;
-            for (int i = warps.Count - 1; i >= 0; i--)
-            {
-                Warp w = warps[i];
-                bool haze = w.Life <= 0;
-                float t = haze ? 0 : (now - w.Born) / w.Life;
-                if (haze) warps.RemoveAt(i); // a haze lives one frame
-                else if (t > 1) { warps.RemoveAt(i); continue; }
-                if (refract == null) continue;
-                if (used == warpViews.Count) { var go = new GameObject("Rules air " + used); go.transform.SetParent(transform, false); warpViews.Add(go.AddComponent<SpriteRenderer>()); }
-                SpriteRenderer r = warpViews[used++]; r.enabled = true; r.sharedMaterial = refract; r.sprite = warpBlob; r.sortingOrder = 2058;
-                float e = 1 - (1 - t) * (1 - t) * (1 - t), size = haze ? w.Size : w.Size * (.5f + .8f * e);
-                r.color = new Color(1, .97f, .92f, (1 - t) * .9f * w.Alpha);
-                r.transform.position = w.At; r.transform.localScale = new Vector3(size, haze ? size * 1.3f : size * .7f, 1);
-                warpBlock ??= new MaterialPropertyBlock(); warpBlock.Clear();
-                warpBlock.SetFloat("_Strength", w.Bend * (1 - t)); warpBlock.SetVector("_Flow", w.Flow);
-                warpBlock.SetFloat("_Darken", 0); warpBlock.SetFloat("_Desat", 0); warpBlock.SetFloat("_Swirl", 0); warpBlock.SetVector("_Hole", Vector4.zero);
-                r.SetPropertyBlock(warpBlock);
-            }
-            for (int i = used; i < warpViews.Count; i++) warpViews[i].enabled = false;
-        }
 
-        /// <summary>A stream of an element's cartoon puffs from a point along a direction (a lane's jet, a cone's spray).</summary>
-        private void Stream(ElementLook look, Vector2 from, Vector2 dir, float spread, float reach, float alpha, float perSecond)
-        {
-            if (look == ElementLook.Fire) return; // fire has its own fireballs and standing flames
-            float aim = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, speed = reach / .55f;
-            for (float want = Time.deltaTime * perSecond * alpha * (PresentationSettings.ReducedEffects ? .4f : 1); want > 0; want -= 1)
-            {
-                if (Random.value > want) continue;
-                Vector2 velocity = Dir(aim + (Random.value - .5f) * 2 * spread) * speed * (.8f + .4f * Random.value);
-                // light, gold and notes fly as sparkles with a few puffs; the rest as big overlapping puffs that merge into one body
-                if ((look == ElementLook.Light || look == ElementLook.Gold || look == ElementLook.Sound) && Random.value < .6f)
-                    vfx.Emit(vfx.Tex("star"), look == ElementLook.Sound ? "sound" : "light", from + dir * .2f, velocity, .14f + Random.value * .12f, .55f, (Random.value - .5f) * 300);
-                else Puff(look, from + dir * .2f, velocity, .34f + Random.value * .18f, .55f);
-            }
-        }
 
-        /// <summary>A lane skill as one unbroken jet from end to end, growing out from its start: a lightning bolt with forks,
-        /// frost crystals among frost puffs, or the element's cartoon matter pouring down the lane.</summary>
-        private void Jet(Area a, InkPalette p, float show, float grow, float now)
-        {
-            Vector2 d = a.B - a.A; float len = d.magnitude;
-            if (len < .05f) { Mass(a, p, show, grow, now); return; }
-            Vector2 dir = d / len, side = Perp(d), head = Vector2.Lerp(a.A, a.B, grow);
-            int frame = Mathf.FloorToInt(now * 18), samples = Samples(len * .7f);
-            float rate = Mathf.Clamp((len / .75f + 1) * 1.4f, 4, 30) / samples;
-            for (int i = 0; i < samples; i++)
-                FieldParticles(a.Look, Vector2.Lerp(a.A, head, Random.value) + side * (Random.value - .5f) * a.R * .7f, show, rate, 1);
-            switch (a.Look)
-            {
-                case ElementLook.Storm:
-                    Light(Bolt(a.A, head, .14f, a.Seed + frame), p, .06f, show);
-                    Light(Bolt(a.A, head, .22f, a.Seed + frame + 997), p, .035f, show * .55f);
-                    for (int k = 0; k < 3; k++)
-                    {
-                        Vector2 at = Vector2.Lerp(a.A, head, R(frame, k));
-                        Light(Bolt(at, at + (dir + side * (R(frame, k + 4) > .5f ? 1 : -1)).normalized * .55f, .06f, frame * 5 + k), p, .03f, show * .8f);
-                    }
-                    break;
-                case ElementLook.Ice: case ElementLook.Crystal:
-                {
-                    // small frost crystals grown along the lane among the frost puffs
-                    int crystals = Mathf.Max(2, Mathf.FloorToInt(len * grow / .8f));
-                    for (int j = 1; j <= crystals; j++) ElementStroke(a.Look, Vector2.Lerp(a.A, head, j / (crystals + 1f)) + side * ((j % 2) - .5f) * a.R * .4f, a.B, j, a.Seed, now, .8f, show);
-                    Stream(a.Look, a.A, dir, 6, len * grow, show, 10 + len * 4);
-                    break;
-                }
-                default:
-                    // the element's matter pouring down the lane from its start
-                    Stream(a.Look, a.A, dir, 6, len * grow, show, 14 + len * 5);
-                    break;
-            }
-        }
 
-        /// <summary>A cone skill as a spray from its point: the element's cartoon puffs fanning out (a flamethrower of
-        /// cartoon fireballs, a gush of water, a gust, a fan of frost), forked lightning for a storm.</summary>
-        private void Spray(Area a, InkPalette p, float show, float grow, float now)
-        {
-            Vector2 aim = (a.B - a.A).sqrMagnitude > .001f ? (a.B - a.A).normalized : Vector2.right;
-            float reach = Mathf.Max(a.R, (a.B - a.A).magnitude) * grow, aimAng = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg, half = 28;
-            int frame = Mathf.FloorToInt(now * 18), samples = Samples(reach);
-            float rate = Mathf.Clamp(reach * 2.2f * 1.4f, 4, 30) / samples;
-            for (int i = 0; i < samples; i++)
-            {
-                float u = Mathf.Sqrt(Random.value);
-                FieldParticles(a.Look, a.A + Dir(aimAng + (Random.value - .5f) * 2 * half * u) * reach * u, show, rate, .6f + u * .5f);
-            }
-            if (a.Look == ElementLook.Fire && Random.value < Time.deltaTime * 16 * show)
-                vfx.EmitFlip("UL_FireBall01", "flame", a.A + aim * .25f, Dir(aimAng + (Random.value - .5f) * 1.6f * half) * reach / .55f, .45f + Random.value * .2f, .55f, 0);
-            Stream(a.Look, a.A, aim, half * .7f, reach, show, 34);
-            if (a.Look == ElementLook.Storm)
-                for (int k = 0; k < 3; k++)
-                {
-                    float ang = aimAng + (R(a.Seed + frame / 3, k) - .5f) * 2 * half * .8f;
-                    Light(Bolt(a.A, a.A + Dir(ang) * reach * (.7f + .3f * R(a.Seed, k)), .1f, a.Seed + frame * 11 + k), p, .045f, show);
-                }
-        }
 
-        /// <summary>An area lands: a painted burst at its centre and its bits thrown out (no ring).</summary>
-        private void Land(Area a)
-        {
-            Vector2 c = a.Shape == AreaShape.Line ? (a.A + a.B) * .5f : a.A;
-            float size = Mathf.Clamp(a.R * .9f, .9f, 2.2f);
-            AddPop(c, a.Look, size, 0);
-            // a big skill landing kicks the camera a little (no hit-stop)
-            if (size >= 1.2f) owner?.Feel.Accent(.06f + .05f * size, size >= 1.8f ? .08f : 0);
-            Sound(a.Look, "land", c);
-        }
 
         private Sprite[] Bits(ElementLook look) => vfx.Library?.Get(look + "_Bits") ?? vfx.Library?.Get("Gold_Bits");
         private Sprite Ground(ElementLook look) { Sprite[] g = vfx.Library?.Get(look + "_Ground"); return g != null && g.Length > 0 ? g[0] : null; }
@@ -1382,169 +965,9 @@ namespace ArcaneBrigade
         /// burning: fire is flame tongues rising through orange to red with embers and a little smoke; storm is lightning
         /// flashes and white-blue sparks; frost is glinting stars and drifting crystals; water is swirls and leaping drops;
         /// venom is green fumes and bubbles; and so on. Every layer is a CC0 particle texture tinted by its ramp.</summary>
-        private static readonly string[] Flames = { "UL_Flame02", "UL_Flame03" };
 
-        /// <summary>The cartoon ramp an element's matter is painted in (four flat bands with an outline).</summary>
-        private static string ToonRamp(ElementLook look) => look switch
-        {
-            ElementLook.Water => "toonwater", ElementLook.Ice or ElementLook.Crystal => "toonice", ElementLook.Wind => "toonwind",
-            ElementLook.Light or ElementLook.Gold => "toonlight", ElementLook.Bloom => "toonbloom", ElementLook.Sound => "toonsound",
-            ElementLook.Time => "toontime", ElementLook.Storm => "toonstorm", ElementLook.Poison => "toonpoison",
-            ElementLook.Void or ElementLook.Dream => "toonvoid", ElementLook.Earth or ElementLook.Paper => "toondust", _ => "toonsmoke",
-        };
 
-        /// <summary>One cartoon puff of an element's matter: a flame for fire, a round puff (a moving flipbook shape) for
-        /// water, frost, light, petals, notes and storm cloud, a wisp for fumes, dust, dusk and time.</summary>
-        private void Puff(ElementLook look, Vector2 at, Vector2 velocity, float size, float life)
-        {
-            if (look == ElementLook.Fire) { vfx.EmitFlip(Flames[Random.Range(0, Flames.Length)], "flame", at, velocity, size * 1.3f, life, 0, null, velocity.sqrMagnitude < .5f); return; }
-            bool round = look is ElementLook.Water or ElementLook.Ice or ElementLook.Crystal or ElementLook.Light or ElementLook.Gold or ElementLook.Bloom or ElementLook.Sound or ElementLook.Storm or ElementLook.Wind;
-            vfx.EmitFlip(round ? "UL_FireBall01" : "UL_WispySmoke01", ToonRamp(look), at, velocity, size, life, (Random.value - .5f) * 60);
-        }
-        private void FieldParticles(ElementLook look, Vector2 at, float alpha, float rateScale, float scale = 1)
-        {
-            if (alpha <= .05f) return;
-            float dt = Time.deltaTime * rateScale * alpha * (PresentationSettings.ReducedEffects ? .4f : 1);
-            Vector2 jitter = new Vector2((Random.value - .5f) * .25f, (Random.value - .5f) * .12f);
-            switch (look)
-            {
-                case ElementLook.Fire:
-                    // cartoon flames standing on the spot: a flipbook's moving shape painted in flat bands (dark red outline,
-                    // red, orange, yellow heart), overlapping into one fire; embers fly up and cartoon smoke puffs off the top
-                    if (Random.value < dt * 5) vfx.EmitFlip(Flames[Random.Range(0, Flames.Length)], "flame", at + jitter * .5f, new Vector2((Random.value - .5f) * .15f, .15f), (.35f + Random.value * Random.value * .7f) * scale, .55f + Random.value * .5f, 0, null, true);
-                    if (Random.value < dt * 5) vfx.Emit(vfx.Tex("spark"), "ember", at + jitter, new Vector2((Random.value - .5f) * 1.2f, 1.2f + Random.value * 1.4f), .06f + Random.value * .05f, .7f + Random.value * .5f, 200);
-                    if (Random.value < dt * .3f) vfx.EmitFlip("UL_WispySmoke01", "toonsmoke", at + jitter + Vector2.up * .8f * scale, new Vector2((Random.value - .5f) * .2f, .5f), (.4f + Random.value * .25f) * scale, 1.2f, (Random.value - .5f) * 30);
-                    break;
-                case ElementLook.Storm:
-                    // a crackling storm-cloud puff with lightning flicks and sparks
-                    if (Random.value < dt * 2.5f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .3f, .2f), (.3f + Random.value * .2f) * scale, .55f);
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("trace"), "storm", at + jitter, Vector2.zero, .45f + Random.value * .3f, .1f + Random.value * .08f, 0);
-                    if (Random.value < dt * 6) vfx.Emit(vfx.Tex("spark"), "storm", at + jitter, Random.insideUnitCircle * 2.4f, .05f + Random.value * .04f, .25f + Random.value * .2f, 0);
-                    break;
-                case ElementLook.Ice: case ElementLook.Crystal:
-                    // frost puffs and glinting stars
-                    if (Random.value < dt * 2.5f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .2f, .15f), (.28f + Random.value * .2f) * scale, .8f);
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "ice", at + jitter + Vector2.up * .2f, new Vector2(0, .15f), .12f + Random.value * .1f, .55f + Random.value * .3f, (Random.value - .5f) * 90);
-                    break;
-                case ElementLook.Water:
-                    // splash puffs leaping and falling back, drops flicked off
-                    if (Random.value < dt * 3) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .6f, .9f + Random.value * .6f), (.28f + Random.value * .2f) * scale, .75f);
-                    if (Random.value < dt * 5) vfx.Emit(vfx.Tex("light"), "water", at + jitter, new Vector2((Random.value - .5f) * 1.2f, 1.4f + Random.value), .06f + Random.value * .04f, .6f, 0);
-                    break;
-                case ElementLook.Poison:
-                    if (Random.value < dt * 2.2f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .2f, .35f), (.3f + Random.value * .2f) * scale, 1f);
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("light"), "poison", at + jitter, new Vector2((Random.value - .5f) * .2f, .6f + Random.value * .4f), .06f + Random.value * .05f, .8f, 0);
-                    break;
-                case ElementLook.Bloom:
-                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .3f, .3f), (.25f + Random.value * .15f) * scale, .8f);
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("magic"), "bloom", at + jitter, new Vector2((Random.value - .5f) * .3f, .3f), .16f + Random.value * .1f, .8f, 90);
-                    break;
-                case ElementLook.Void: case ElementLook.Dream:
-                    if (Random.value < dt * 2.2f) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .2f, .25f), (.32f + Random.value * .2f) * scale, .9f);
-                    if (Random.value < dt * 2) vfx.Emit(vfx.Tex("star"), "light", at + jitter + Vector2.up * .3f, Vector2.zero, .07f, .5f, 90);
-                    break;
-                case ElementLook.Light: case ElementLook.Gold:
-                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2(0, .35f), (.25f + Random.value * .15f) * scale, .6f);
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("star"), "light", at + jitter, new Vector2(0, .3f), .12f + Random.value * .1f, .5f, 120);
-                    break;
-                case ElementLook.Sound:
-                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2((Random.value - .5f) * .6f, .5f), (.22f + Random.value * .15f) * scale, .7f);
-                    break;
-                case ElementLook.Time:
-                    if (Random.value < dt * 2) Puff(look, at + jitter, new Vector2(0, .2f), (.25f + Random.value * .15f) * scale, .8f);
-                    break;
-                case ElementLook.Earth: case ElementLook.Paper:
-                    if (Random.value < dt * 3) vfx.Emit(vfx.Tex("dirt"), "dust", at + jitter, new Vector2((Random.value - .5f) * .8f, .8f + Random.value * .6f), .18f + Random.value * .12f, .7f, (Random.value - .5f) * 200);
-                    if (Random.value < dt * 1.5f) Puff(look, at + jitter, new Vector2(0, .3f), .35f * scale, 1f);
-                    break;
-                case ElementLook.Wind:
-                    // gust puffs blown along
-                    if (Random.value < dt * 3) Puff(look, at + jitter, new Vector2(1.4f + Random.value * .6f, .15f), (.2f + Random.value * .15f) * scale, .55f);
-                    break;
-            }
-        }
 
-        /// <summary>The particle burst of an element: a glow in its colour, a hot flash, then its own matter thrown out (flames and
-        /// smoke, lightning flashes and sparks, frost stars, water drops, fumes, dust...). Emitted once when the burst begins.</summary>
-        private void BurstParticles(ElementLook look, Vector2 c, float size)
-        {
-            int n = PresentationSettings.ReducedEffects ? 6 : 16;
-            Color tint = Saturate(PaletteFor(look).Glow); tint.a = .8f;
-            vfx.Emit(vfx.Tex("light"), "glow", c, Vector2.zero, 1.5f * size, .4f, 0, tint);
-            // the staged blast: light thrown on the floor, the air bulging out, dust rolling along the ground, a burnt patch
-            Vector2 floor = c + Vector2.down * .3f;
-            FloorLight(look, floor, 2.4f * size, .45f);
-            if (size >= 1f) AddShock(c, 1.6f * size);
-            DustKick(floor, size, look == ElementLook.Water ? ElementLook.Water : look == ElementLook.Ice || look == ElementLook.Crystal ? ElementLook.Ice : ElementLook.Earth);
-            if (look == ElementLook.Fire || look == ElementLook.Earth || look == ElementLook.Storm || look == ElementLook.Void) Scorch(floor, size);
-            if (size >= 1.4f && cartoon != null) cartoon.Play("burst_flash", c, .22f * size);
-            if (cartoon != null)
-            {
-                // the cartoon blast of the element (Cartoon FX), and now and then a comic word over a big one
-                string blast = look switch
-                {
-                    ElementLook.Fire => "burst_fire", ElementLook.Storm => "burst_storm", ElementLook.Water => "burst_water",
-                    ElementLook.Earth or ElementLook.Paper => "burst_boom", ElementLook.Void or ElementLook.Dream => "burst_souls",
-                    ElementLook.Ice or ElementLook.Crystal => "hit_ice", ElementLook.Light or ElementLook.Gold => "burst_flash", _ => "burst_poof",
-                };
-                cartoon.Play(blast, c, (blast == "burst_flash" || blast == "burst_boom" ? .3f : .45f) * size);
-                if (size >= 1.6f && Time.time >= nextWordAt && !PresentationSettings.ReducedEffects)
-                {
-                    nextWordAt = Time.time + 3f;
-                    string word = look switch
-                    {
-                        ElementLook.Ice or ElementLook.Crystal => "word_frozen", ElementLook.Poison => "word_poisoned",
-                        ElementLook.Fire or ElementLook.Earth => "word_boom", ElementLook.Storm or ElementLook.Light => "word_pow", _ => "word_wham",
-                    };
-                    cartoon.Play(word, c + Vector2.up * (.8f + .3f * size), .5f);
-                }
-            }
-            if (look == ElementLook.Fire)
-            {
-                // a cartoon fireball puff, then a cartoon smoke puff rolling up off it
-                vfx.EmitFlip("UL_FireBall01", "flame", c, Vector2.zero, 1.1f * size, .5f, 0);
-                vfx.EmitFlip("UL_WispySmoke01", "toonsmoke", c + Vector2.up * .35f * size, Vector2.up * .4f, 1f * size, 1.1f, 20);
-            }
-            else vfx.Emit(vfx.Tex("flare"), "light", c, Vector2.zero, .8f * size, .22f, 0);
-            for (int i = 0; i < n; i++)
-            {
-                Vector2 v = Random.insideUnitCircle.normalized * (1.6f + Random.value * 2f) * Mathf.Sqrt(size);
-                switch (look)
-                {
-                    case ElementLook.Fire:
-                        if (i % 2 == 0) vfx.EmitFlip("UL_FireBall01", "flame", c, v * .5f + Vector2.up * .5f, .35f * size, .45f + Random.value * .2f, 0);
-                        vfx.Emit(vfx.Tex("spark"), "ember", c, v * 1.3f, .07f, .7f, 200);
-                        if (i % 4 == 0) vfx.EmitFlip("UL_WispySmoke01", "toonsmoke", c, v * .3f + Vector2.up * .4f, .5f * size, 1.2f, 40);
-                        break;
-                    case ElementLook.Storm:
-                        if (i % 3 == 0) vfx.Emit(vfx.Tex("trace"), "storm", c + v * .12f, Vector2.zero, .7f * size, .14f, 0);
-                        vfx.Emit(vfx.Tex("spark"), "storm", c, v * 1.4f, .06f, .35f, 0);
-                        break;
-                    case ElementLook.Ice: case ElementLook.Crystal:
-                        vfx.Emit(vfx.Tex("star"), "ice", c, v * .8f, .18f * size, .6f, 120);
-                        vfx.Emit(vfx.Tex("spark"), "ice", c, v * 1.2f, .05f, .6f, 0);
-                        break;
-                    case ElementLook.Water:
-                        vfx.Emit(vfx.Tex("light"), "water", c, v + Vector2.up * 1.2f, .08f, .7f, 0);
-                        if (i % 4 == 0) vfx.Emit(vfx.Tex("twirl"), "water", c, v * .2f, .5f * size, .5f, 300);
-                        break;
-                    case ElementLook.Poison:
-                        vfx.EmitFlip("UL_WispySmoke01", "toonpoison", c, v * .4f, .35f * size, .9f, 50);
-                        vfx.Emit(vfx.Tex("light"), "poison", c, v, .07f, .7f, 0);
-                        break;
-                    case ElementLook.Earth: case ElementLook.Paper:
-                        vfx.Emit(vfx.Tex("dirt"), "dust", c, v + Vector2.up * .8f, .2f * size, .7f, 200);
-                        if (i % 3 == 0) vfx.EmitFlip("UL_WispySmoke01", "toondust", c, v * .3f, .5f * size, 1f, 30);
-                        break;
-                    case ElementLook.Void: case ElementLook.Dream:
-                        vfx.EmitFlip("UL_WispySmoke01", "toonvoid", c, v * .5f, .35f * size, .8f, 60);
-                        break;
-                    default:
-                        vfx.Emit(vfx.Tex("star"), look == ElementLook.Sound ? "sound" : look == ElementLook.Bloom ? "bloom" : look == ElementLook.Time ? "time" : "light", c, v, .14f * size, .55f, 160);
-                        break;
-                }
-            }
-        }
 
         private static Vector2 Perp(Vector2 d) { if (d.sqrMagnitude < .0001f) return Vector2.up; d.Normalize(); return new Vector2(-d.y, d.x); }
         private static float R(int seed, int i) { uint h = (uint)(seed * 7919 + i * 104729); h ^= h >> 13; h *= 0x5bd1e995; h ^= h >> 15; return (h & 0xffff) / 65535f; }
@@ -1680,7 +1103,6 @@ namespace ArcaneBrigade
                 }
                 return;
             }
-            if (t < .3f) Glint(c, .22f * p.Size * (1 - t), PaletteFor(p.Look), 1 - t / .3f);
         }
 
         /// <summary>An enemy blow lands when its warning ends: the painted enemy burst over the struck ground and stone chips
@@ -1704,42 +1126,10 @@ namespace ArcaneBrigade
 
         private void AddPop(Vector2 at, ElementLook look, float size, float delay)
         {
-            if (pops.Count >= MaxPops) pops.RemoveAt(0);
-            pops.Add(new Pop { At = at, Look = look, Born = Now + delay, Size = size, Seed = ++seed });
-            if (delay <= 0 && vfx != null) BurstParticles(look, at + Vector2.up * .3f, size);
+            Blast(look, at, .45f * size, delay);
         }
 
-        /// <summary>A skill's piece in flight: a glowing arc trail behind the spinning piece.</summary>
-        private void DrawThrow(Throw w, float k)
-        {
-            InkPalette p = PaletteFor(w.Look);
-            float height = w.Straight ? 0 : Mathf.Clamp((w.To - w.From).magnitude * .35f, .8f, 3f);
-            var path = w.Straight ? InkCanvas.Line(w.From, w.To) : InkCanvas.Lob(w.From, w.To, height, 18);
-            Light(path, p, w.Straight ? .07f : .05f, 1, k, Mathf.Max(0, k - .4f));
-            Vector2 head = w.Straight ? Vector2.Lerp(w.From, w.To, k) : InkCanvas.Sample(InkCanvas.Lob(w.From, w.To, height, 18), k);
-            ink.Token(w.Token, p, head, .42f, -k * 540, 1, true);
-            FieldParticles(w.Look, head, 1, 3);
-        }
 
-        /// <summary>A chained hit: a forked, flickering lightning stroke with a light core.</summary>
-        private void DrawChain(Chain c, float age)
-        {
-            float a = 1 - age / ChainLife;
-            int flick = c.Seed + Mathf.FloorToInt(age * 40);
-            Vector2 from = c.A + Vector2.up * .3f, to = c.B + Vector2.up * .3f;
-            if (c.Violet)
-            {
-                // strength flowing: a smooth violet ribbon with motes sliding toward the friend
-                ink.Ribbon(InkCanvas.Line(from, to, .12f, 2, false, c.Seed), ArsenalInk.Violet, .12f, 1, 1, a, true);
-                for (int i = 0; i < 3; i++) ink.Token(InkToken.Moon, ArsenalInk.Violet, Vector2.Lerp(from, to, Mathf.Repeat(age * 3 + i / 3f, 1)), .3f, 0, a, true);
-                return;
-            }
-            // a chain of lightning in the hero standard: a bright wandering bolt and a fainter twin, re-struck as it flickers
-            Light(Bolt(from, to, .16f, flick * 13), ArsenalInk.Cyan, .055f, a);
-            Light(Bolt(from, to, .24f, flick * 13 + 7), ArsenalInk.Cyan, .03f, .55f * a);
-            Glint(to, .16f * a, ArsenalInk.Cyan, a);
-            ink.Token(InkToken.Bolt, ArsenalInk.Cyan, to, .5f, flick * 37 % 360, a, true);
-        }
 
         /// <summary>A friendly wall: a thick inked band in its element with a lit top edge, fading out at its end.</summary>
         private void DrawWall(Wall w, float now)

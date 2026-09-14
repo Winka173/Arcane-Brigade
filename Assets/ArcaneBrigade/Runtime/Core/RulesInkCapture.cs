@@ -34,7 +34,7 @@ namespace ArcaneBrigade
         private void OnLog(string message, string trace, LogType type) { if (type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }
         private void Count(string when, RulesV3Ink ink)
         {
-            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls + ", status " + ink.StatusMarks + "; painted areas " + (ink.Vfx != null ? ink.Vfx.Areas + (ink.Vfx.Ready ? "" : " (shader missing)") + ", bursts " + ink.Vfx.Flips + ", particles " + ink.Vfx.Particles : "none") + "; cartoon fx " + (ink.Cartoon != null ? ink.Cartoon.Played : 0));
+            log.Add(when + ": friendly " + ink.FriendAreas + ", danger " + ink.DangerAreas + ", fallen " + ink.Fallen + ", entities " + ink.Entities + ", auras " + ink.Auras + ", chains " + ink.Chains + ", walls " + ink.Walls + ", status " + ink.StatusMarks + "; painted areas " + (ink.Vfx != null ? ink.Vfx.Areas + (ink.Vfx.Ready ? "" : " (shader missing)") + ", bursts " + ink.Vfx.Flips + ", particles " + ink.Vfx.Particles : "none") + "; hero-style effects queued " + HeroIdentityVisual.GuestCount);
             CombatSimulation sim = FindAnyObjectByType<ArenaController>()?.Simulation;
             if (sim == null) return;
             // every unit on screen must have a painting

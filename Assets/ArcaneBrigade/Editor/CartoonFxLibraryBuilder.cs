@@ -29,6 +29,7 @@ namespace ArcaneBrigade.Editor
             { "burst_boom", "Explosions/CFXR Explosion 1" },
             { "burst_flash", "Misc/CFXR Flash" },
             { "burst_souls", "Eerie/CFXR2 Souls Escape" },
+            { "burst_poison", "Misc/CFXR2 Poison Cloud" },
             { "word_pow", "Texts/CFXR _POW_" },
             { "word_boom", "Texts/CFXR _BOOM_" },
             { "word_wham", "Texts/CFXR2 _WHAM_ 3" },
