@@ -136,13 +136,13 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(.6f); Count("arena", ink); yield return Shot("staged-arena");
             Write(); Application.Quit(0);
         }
-        private static void SaveHouseRun(RunCatalog catalog, RunStorage storage, string house, int wave, int seed)
+        private static void SaveHouseRun(RunCatalog catalog, RunStorage storage, string house, int wave, int seed, int count = 10)
         {
             using (var session = new RunSession(catalog))
             {
                 session.Start("LanternKnight", seed); session.State.Wave = wave; session.State.Phase = SessionPhase.Combat;
                 string bond = BondV3Catalog.BondId(house) ?? house;
-                UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(10).ToArray();
+                UnitDefinition[] members = catalog.Companions.Where(u => u != null && u.Body != null && !u.SpecialRecruit && (BondV3Catalog.Tags(u.Id).Contains(bond) || BondV3Catalog.Tags(u.Id).Contains(house))).Take(count).ToArray();
                 string weapon = catalog.Weapons.Where(w => w != null && w.Kind != WeaponKind.Contact).Select(w => w.Id).FirstOrDefault();
                 session.State.Roster.Clear();
                 foreach (UnitDefinition member in members) session.State.Roster.Add(new RosterEntry { UnitId = member.Id, WeaponId = member.Weapon != null ? member.Weapon.Id : weapon, Tier = 2 });
@@ -159,54 +159,82 @@ namespace ArcaneBrigade
             { "Stone", new[] { "horn-pile-up", "collision", "crack" } }, { "Archive", new[] { "rune", "rune", "species-recorded" } },
         };
 
-        /// <summary>A clip of the rules effects (-videoPath out.mp4 -ffmpegPath ffmpeg.exe [-houses A,B]): for each house a real
-        /// wave-12 fight with its own team, then its companions cast their skills around the hero, its bond moments fire, an
-        /// enemy blow lands, and a field moment sweeps the arena.</summary>
+        /// <summary>The bond step counts a house shows (2, 4, 6, 8 for a major bond), from the bond's own steps.</summary>
+        private static int[] StepCounts(string house)
+        {
+            string id = BondV3Catalog.BondId(house) ?? house;
+            foreach (BondDefinition bond in BondTuning.V3Definitions)
+                if (bond != null && (bond.Id == id || bond.Name == house) && bond.Steps != null && bond.Steps.Length > 0) return bond.Steps.Select(st => st.Count).Distinct().OrderBy(c => c).ToArray();
+            return new[] { 2, 4, 6, 8 };
+        }
+
+        private string caption = "";
+        private void OnGUI()
+        {
+            if (string.IsNullOrEmpty(caption)) return;
+            var style = new GUIStyle(GUI.skin.label) { fontSize = 34, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
+            style.normal.textColor = Color.white;
+            var rect = new Rect(0, Screen.height - 120, Screen.width, 60);
+            GUI.color = new Color(0, 0, 0, .55f); GUI.DrawTexture(new Rect(Screen.width * .3f, Screen.height - 120, Screen.width * .4f, 60), Texture2D.whiteTexture);
+            GUI.color = Color.white; GUI.Label(rect, caption, style);
+        }
+
+        /// <summary>A clip of the rules effects (-videoPath out.mp4 -ffmpegPath ffmpeg.exe [-houses A,B]): for each house, each of
+        /// its bond steps in turn (a team of exactly 2, 4, 6 and 8 of its friends), a real wave-12 fight in a crowd of enemies
+        /// with the step named on screen, its friends casting their skills, and the step's own bond moment.</summary>
         private IEnumerator Showcase(RunCatalog catalog, RunStorage storage)
         {
             string[] houses = (Arg("-houses") ?? "Ember,Frost,Storm,Tide,Venom,Starlight,Stone,Archive").Split(',');
-            const float perHouse = 10.5f;
+            const float perStep = 7f;
+            int crowd = int.TryParse(Arg("-crowd"), out int wantCrowd) ? wantCrowd : 36;
+            int total = houses.Sum(h => StepCounts(h).Length);
             var recorder = gameObject.AddComponent<K7FramebufferRecorder>();
             bool started = false;
             int index = 0;
             foreach (string house in houses)
             {
-                SaveHouseRun(catalog, storage, house, 12, 281000 + index++);
-                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
-                ArenaController owner = null;
-                for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
-                if (owner?.Simulation == null || owner.RulesInk == null) { log.Add("NO COMBAT " + house); continue; }
-                if (!started) { recorder.Begin(houses.Length * perHouse + 1); started = true; }
-                RulesV3Ink ink = owner.RulesInk; CombatSimulation sim = owner.Simulation;
-                float houseStart = Time.realtimeSinceStartup;
-                yield return new WaitForSecondsRealtime(3.5f);   // the real fight first
-                var friends = sim.Units.Where(u => u.Faction == Faction.Companion && u.Alive).Take(4).ToList();
-                Vector2 h = sim.Champion.Position;
-                Vector2[] spots = { new Vector2(-3.4f, 1.6f), new Vector2(3.2f, 1.2f), new Vector2(-2.6f, -2f), new Vector2(2.8f, -2.2f) };
-                for (int i = 0; i < friends.Count; i++)
+                int[] steps = StepCounts(house);
+                for (int si = 0; si < steps.Length; si++)
                 {
-                    UnitState c = friends[i];
-                    SkillShape shape = i == 2 ? SkillShape.Line : i == 3 ? SkillShape.Cone : SkillShape.Disc;
-                    Vector2 at = h + spots[i];
-                    ink.OnCast(new SkillCastRequest(c.Id, c.Definition.Id, shape, at, shape == SkillShape.Line ? at + new Vector2(3.4f, .3f) : at + new Vector2(2.4f, .9f), shape == SkillShape.Line ? .5f : 1.5f, 3.5f, 0, 1));
-                    yield return new WaitForSecondsRealtime(.45f);
+                    int count = steps[si];
+                    SaveHouseRun(catalog, storage, house, 12, 281000 + index++, count);
+                    RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+                    ArenaController owner = null;
+                    for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
+                    if (owner?.Simulation == null || owner.RulesInk == null) { log.Add("NO COMBAT " + house + " " + count); continue; }
+                    if (!started) { recorder.Begin(total * (perStep + .6f) + 2); started = true; }
+                    RulesV3Ink ink = owner.RulesInk; CombatSimulation sim = owner.Simulation;
+                    caption = house.ToUpperInvariant() + "  -  " + count + " friends";
+                    float stepStart = Time.realtimeSinceStartup;
+                    // a crowd of enemies round the hero: half of them tough enough to stand through the step (so the bond keeps
+                    // firing on them), half ordinary (so kills happen too)
+                    UnitDefinition[] kinds = catalog.Enemies.Where(u => u != null && !u.IsBoss).ToArray();
+                    for (int i = 0; i < crowd && kinds.Length > 0; i++)
+                    {
+                        float ang = i * 2.399f, dist = 2.5f + (i % 9) * .7f;
+                        sim.AddExpandedPresentationFixture(kinds[i % kinds.Length], sim.Champion.Position + new Vector2(Mathf.Cos(ang) * dist, Mathf.Sin(ang) * dist * .7f), kinds[i % kinds.Length].Health * (i % 2 == 0 ? 150 : 8));
+                    }
+                    yield return new WaitForSecondsRealtime(2.5f);   // the real fight: the step's bond fires on its own
+                    var friends = sim.Units.Where(u => u.Faction == Faction.Companion && u.Alive).Take(2).ToList();
+                    var foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).ToList();
+                    for (int i = 0; i < friends.Count && foes.Count > 0; i++)
+                    {
+                        UnitState c = friends[i], target = foes[(i * 7) % foes.Count];
+                        SkillShape shape = i == 0 ? SkillShape.Disc : SkillShape.Line;
+                        ink.OnCast(new SkillCastRequest(c.Id, c.Definition.Id, shape, target.Position, target.Position + new Vector2(3f, .4f), shape == SkillShape.Line ? .5f : 1.5f, 1f, 0, 1));
+                        yield return new WaitForSecondsRealtime(.5f);
+                    }
+                    // the step's own bond moment (the big ones from step 6)
+                    string[] moments = Moments.TryGetValue(house, out string[] m) ? m : new[] { "burst" };
+                    string rule = moments[Mathf.Min(moments.Length - 1, si * moments.Length / Mathf.Max(1, steps.Length))];
+                    foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).ToList();
+                    if (foes.Count > 0) ink.OnBondRule(new BondRuleEvent(rule, foes[UnityEngine.Random.Range(0, foes.Count)], 1));
+                    while (Time.realtimeSinceStartup - stepStart < perStep) yield return null;
                 }
-                string[] moments = Moments.TryGetValue(house, out string[] m) ? m : new[] { "burst" };
-                var foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).Take(6).ToList();
-                foreach (string rule in moments)
-                {
-                    UnitState subject = foes.Count > 0 ? foes[UnityEngine.Random.Range(0, foes.Count)] : sim.Champion;
-                    ink.OnBondRule(new BondRuleEvent(rule, subject, 1));
-                    if (house == "Storm" && friends.Count > 0) foreach (UnitState foe in foes) ink.OnBondDamage(new BondDamageRequest(foe, friends[0], 10, "storm-chain"));
-                    yield return new WaitForSecondsRealtime(.6f);
-                }
-                ink.OnDanger(new EnemyDangerRequest(index, sim.Champion.Id, EnemyDangerShape.Circle, EnemyRuleAction.Damage, "slam", h + new Vector2(.5f, 3f), Vector2.zero, 1.4f, 1.2f, .4f, 1));
-                if (friends.Count > 1) ink.OnSupport(new BondSupportRequest(BondSupportKind.Shield, friends[1], .2f, 3, 0, "bulwark"));
-                if (friends.Count > 2) ink.OnSupport(new BondSupportRequest(BondSupportKind.Heal, friends[2], .2f, 1, 0, "mend"));
-                while (Time.realtimeSinceStartup - houseStart < perHouse) yield return null;
             }
+            caption = "";
             float wait = 0;
-            while (started && !recorder.Complete && wait < 30) { yield return new WaitForSecondsRealtime(.5f); wait += .5f; }
+            while (started && !recorder.Complete && wait < 60) { yield return new WaitForSecondsRealtime(.5f); wait += .5f; }
             log.Add("video " + (recorder.Passed ? "ok" : "FAILED") + " " + Arg("-videoPath"));
             Write(); Application.Quit(recorder.Passed ? 0 : 1);
         }

@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             owner = controller; bursts = elementInk;
             vfx = gameObject.AddComponent<RulesVfx>();
             cartoon = gameObject.AddComponent<CartoonFx>();
-            CombatFeedback.ElementTint = ElementColour;
+            CombatFeedback.ElementTint = ElementColour; CombatFeedback.ElementTop = ElementNumberTop; CombatFeedback.ElementShape = ElementNumberShape; CombatFeedback.ElementInk = ElementNumberInk;
             ink = new ArsenalInk(transform);
             light = new InkCanvas(transform, "Rules light", 2141, true);
         }
@@ -181,13 +181,61 @@ namespace ArcaneBrigade
 
 
         /// <summary>The colour of a hit's element: its source companion's main bond, the hero's own look, else none.</summary>
+        private readonly Dictionary<int, ElementLook> lastSkillLook = new Dictionary<int, ElementLook>();
+
+        /// <summary>The element a hit was dealt in: a trait's own element for trait damage (a burn is fire, a chain is
+        /// lightning, whoever carries it), the element of the skill its friend just cast for skill damage, else the
+        /// dealer's main bond (or the hero's own look).</summary>
+        private ElementLook HitLook(CombatEvent e)
+        {
+            string attribution = e.Cause.AttributionId;
+            if (!string.IsNullOrEmpty(attribution) && attribution.StartsWith("bond:", StringComparison.Ordinal))
+            {
+                ElementLook rule = LookFor(attribution.Substring(5));
+                if (rule != ElementLook.Gold) return rule;
+            }
+            if (e.Cause.ItemId == "skill-v3" && lastSkillLook.TryGetValue(e.Cause.SourceUnitId, out ElementLook skill)) return skill;
+            return DealerLook(e);
+        }
+
+        /// <summary>Damage numbers read in clearly different colours per element (frost pale cyan, lightning yellow, water deep
+        /// blue, fire orange...), outlined in the element's own dark ink, with its token beside them.</summary>
+        private static Color NumberColour(ElementLook look) => look switch
+        {
+            ElementLook.Fire => new Color(1f, .14f, .04f), ElementLook.Ice or ElementLook.Crystal => new Color(.72f, .95f, 1f),
+            ElementLook.Storm => new Color(.22f, .55f, 1f), ElementLook.Water => new Color(.08f, .28f, .85f),
+            ElementLook.Poison => new Color(.55f, 1f, .2f), ElementLook.Bloom => new Color(1f, .5f, .75f),
+            ElementLook.Void or ElementLook.Dream => new Color(.78f, .45f, 1f), ElementLook.Light => new Color(1f, .98f, .85f),
+            ElementLook.Gold => new Color(1f, .78f, .25f), ElementLook.Wind => new Color(.7f, 1f, .85f),
+            ElementLook.Earth or ElementLook.Paper => new Color(.9f, .66f, .4f), ElementLook.Time => new Color(.92f, .86f, .62f),
+            ElementLook.Sound => new Color(1f, .6f, 1f), _ => Color.white,
+        };
+        private static Color NumberInk(ElementLook look) { Color c = NumberColour(look); return new Color(c.r * .18f, c.g * .14f, c.b * .2f); }
+        /// <summary>The top colour of an element's digits (the bottom is NumberColour): each element its own pair.</summary>
+        private static Color NumberTop(ElementLook look) => look switch
+        {
+            ElementLook.Fire => new Color(1f, .78f, .2f), ElementLook.Ice or ElementLook.Crystal => Color.white,
+            ElementLook.Storm => new Color(.85f, .97f, 1f), ElementLook.Water => new Color(.45f, .75f, 1f),
+            ElementLook.Poison => new Color(.9f, 1f, .5f), ElementLook.Bloom => new Color(1f, .88f, .92f),
+            ElementLook.Void or ElementLook.Dream => new Color(1f, .75f, 1f), ElementLook.Light => Color.white,
+            ElementLook.Gold => new Color(1f, .97f, .65f), ElementLook.Wind => Color.white,
+            ElementLook.Earth or ElementLook.Paper => new Color(1f, .88f, .65f), ElementLook.Time => new Color(1f, .98f, .85f),
+            ElementLook.Sound => new Color(1f, .88f, 1f), _ => Color.white,
+        };
+
         private Color? ElementColour(CombatEvent e)
         {
-            ElementLook look = DealerLook(e);
+            ElementLook look = HitLook(e);
             if (look == ElementLook.None) return null;
-            Color c = Saturate(PaletteFor(look).Glow);
-            return Color.Lerp(c, Color.white, .15f);
+            return NumberColour(look);
         }
+        private Color? ElementNumberInk(CombatEvent e) { ElementLook look = HitLook(e); return look == ElementLook.None ? (Color?)null : NumberInk(look); }
+        private int ElementNumberShape(CombatEvent e) => HitLook(e) switch
+        {
+            ElementLook.Fire => 1, ElementLook.Storm => 2, ElementLook.Ice or ElementLook.Crystal => 3, ElementLook.Water => 4,
+            ElementLook.Poison => 5, ElementLook.Void or ElementLook.Dream => 6, _ => 0,
+        };
+        private Color? ElementNumberTop(CombatEvent e) { ElementLook look = HitLook(e); return look == ElementLook.None ? (Color?)null : NumberTop(look); }
 
         /// <summary>The element look a rule, skill or bond name reads as.</summary>
         public static ElementLook LookFor(string key)
@@ -333,7 +381,7 @@ namespace ArcaneBrigade
 
         private void OnDestroy()
         {
-            if (CombatFeedback.ElementTint == (System.Func<CombatEvent, Color?>)ElementColour) CombatFeedback.ElementTint = null;
+            if (CombatFeedback.ElementTint == (System.Func<CombatEvent, Color?>)ElementColour) { CombatFeedback.ElementTint = null; CombatFeedback.ElementTop = null; CombatFeedback.ElementShape = null; CombatFeedback.ElementInk = null; }
             if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
             if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; }
             if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; boundSkills.EnemyEffectRequested -= OnEnemyEffect; }
@@ -374,6 +422,8 @@ namespace ArcaneBrigade
         {
             ElementLook look = LookFor(c.SkillId);
             if (look == ElementLook.Gold) look = LookFor(MainBond(c.SourceId));
+            if (lastSkillLook.Count > 256) lastSkillLook.Clear();
+            lastSkillLook[c.SourceId] = look;
             if (c.Shape == SkillShape.Species)
             {
                 // a skill on a cluster or a species is targeted: struck from the caster to its spot
