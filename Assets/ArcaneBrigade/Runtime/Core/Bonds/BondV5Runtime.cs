@@ -131,12 +131,17 @@ namespace ArcaneBrigade
         {
             bool rod=Active("static-club",6)&&InZone("lightning-rod",enemy.Position);
             dischargeWave++;stormChainTargets.Clear();
-            foreach(UnitState target in Nearby(enemy,float.PositiveInfinity))stormChainTargets.Add(target);
-            int targets=Mathf.Min(BondTuning.ChainTargets*(rod?BondV5Tuning.Double:1),stormChainTargets.Count);
+            // a chain leaps: from the struck enemy to the nearest enemy it has not struck yet, then on from that one, each leap at
+            // most ChainJump long, so it visibly runs through a crowd instead of striking scattered enemies at once
+            int targets=BondTuning.ChainTargets*(rod?BondV5Tuning.Double:1);UnitState from=enemy;
             for(int i=0;i<targets;i++)
             {
-                UnitState next=stormChainTargets[i];Damage(next,source,weapon*BondTuning.ChainDamage,"storm-chain");
+                UnitState next=null;
+                foreach(UnitState candidate in Nearby(from,BondTuning.ChainJump))if(candidate!=enemy&&!stormChainTargets.Contains(candidate)){next=candidate;break;}
+                if(next==null)break;
+                stormChainTargets.Add(next);Damage(next,source,weapon*BondTuning.ChainDamage,"storm-chain");
                 if(Active("static-club",4))AddCharge(next,rod?BondV5Tuning.Double:1);
+                from=next;
             }
             // A discharge is a chain hit; a wave of discharges visits each enemy at most once.
             while(dischargeQueue.Count>0)

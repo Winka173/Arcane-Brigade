@@ -12,6 +12,8 @@ namespace ArcaneBrigade
         public const float ShatterDamage = 1.5f, IceSoldierSeconds = 12, BlizzardPeriod = 20;
         public const int IceSoldierLimit = 4, WinterStacks = 2;
         public const int StormEvery = 6, ChainTargets = 3, DischargeStacks = 5, ThunderHits = 20;
+        /// <summary>The longest leap a storm chain makes from one enemy to the next.</summary>
+        public const float ChainJump = 3.5f;
         public const float ChainDamage = .6f, DischargeDamage = .5f, UnderdogHealth = .5f, UnderdogBonus = .15f;
         public const float ThunderStun = 1, CloudPeriod = 2, CloudDamage = 1;
         public const float PoisonSeconds = 4, PoisonDps = .1f, RotMaxHealthDps = .03f, PlaguePeriod = 1, PlagueSlow = .2f;

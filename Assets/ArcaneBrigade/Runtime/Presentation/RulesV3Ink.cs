@@ -109,10 +109,20 @@ namespace ArcaneBrigade
             ElementLook.Void or ElementLook.Dream => "burst_souls", ElementLook.Light or ElementLook.Gold => "burst_flash", _ => "burst_poof",
         };
 
+        private static float BlastSize(string key) => key switch
+        {
+            "burst_fire" => 1.6f, "hit_ice" => .95f, "burst_storm" => .7f, "burst_water" => .8f, "burst_poison" => .2f,
+            "burst_boom" => .28f, "burst_souls" => .55f, "burst_flash" => .32f, _ => .8f,
+        };
+
         private void Blast(ElementLook look, Vector2 at, float radius, float delay = 0, float gather = .12f)
         {
             float when = Now + delay;
-            if (blastQueue.Count < 48) blastQueue.Add(new Burst { Key = BlastKey(look), At = at + Vector2.up * .2f, Scale = (.3f + Mathf.Min(radius, 3) * .3f) * (look == ElementLook.Light || look == ElementLook.Gold ? .6f : 1), When = when + gather });
+            string key = BlastKey(look);
+            // sized to the area, never too small to read; each Cartoon FX effect has its own natural size (the earth blast and
+            // the venom cloud are huge, the fire and frost bursts small), so each is scaled to the same footprint
+            float footprint = Mathf.Max(.55f, .35f + Mathf.Min(radius, 3) * .28f);
+            if (blastQueue.Count < 48) blastQueue.Add(new Burst { Key = key, At = at + Vector2.up * .2f, Scale = footprint * BlastSize(key), When = when + gather });
             HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Disc, Position = at, End = at, Direction = Vector2.right,
                 Radius = Mathf.Max(.35f, radius), Created = when, At = when + gather, Until = when + gather + .6f, Seed = ++seed, Big = radius >= 1.5f }, HeroIdentityVisual.GuestStyle(look));
         }
@@ -408,13 +418,21 @@ namespace ArcaneBrigade
 
         /// <summary>A chained bond hit (Storm, discharge): a forked lightning stroke from the attacker to the enemy it reached,
         /// a few per frame at most.</summary>
+        private int chainAttacker = -1, chainHop; private float chainAt = -10; private Vector2 chainLast;
         public void OnBondDamage(BondDamageRequest d)
         {
             if (d.Attacker == null || d.Target == null || chainsThisFrame >= MaxChainsPerFrame) return;
             string r = d.Rule ?? string.Empty;
             if (r.IndexOf("chain", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("discharge", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("storm", StringComparison.OrdinalIgnoreCase) < 0) return;
             chainsThisFrame++;
-            Targeted(ElementLook.Storm, d.Attacker.Position, d.Target.Position);
+            if (r.IndexOf("discharge", StringComparison.OrdinalIgnoreCase) >= 0) { Blast(ElementLook.Storm, d.Target.Position, 1.1f); Sound("rules.chain", d.Target.Position); return; }
+            // the chain leaps from the friend to its first enemy, then from each enemy struck to the next, a beat apart
+            float now = Now;
+            bool sameChain = chainAttacker == d.Attacker.Id && now - chainAt < .05f;
+            Vector2 from = sameChain ? chainLast : d.Attacker.Position;
+            chainHop = sameChain ? chainHop + 1 : 0;
+            Targeted(ElementLook.Storm, from, d.Target.Position, chainHop * .08f);
+            chainAttacker = d.Attacker.Id; chainAt = now; chainLast = d.Target.Position;
             Sound("rules.chain", d.Target.Position);
         }
 
