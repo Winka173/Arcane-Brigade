@@ -33,4 +33,9 @@ MonoBehaviour:
   - {fileID: 1296909167, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
   - {fileID: 1941485963, guid: 197bd8bb53ac181459e53fe49c3bdf90, type: 3}
   - {fileID: -1258094445, guid: cbd6847e4a32b6a41adfd44cd0f5c915, type: 3}
+  Cast:
+  - {fileID: 2026322994, guid: 197bd8bb53ac181459e53fe49c3bdf90, type: 3}
+  - {fileID: 1112945073, guid: 197bd8bb53ac181459e53fe49c3bdf90, type: 3}
+  - {fileID: 1112945073, guid: 197bd8bb53ac181459e53fe49c3bdf90, type: 3}
+  - {fileID: 1112945073, guid: 197bd8bb53ac181459e53fe49c3bdf90, type: 3}
   IllustratedHeight: 0

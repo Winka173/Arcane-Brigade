@@ -74,6 +74,7 @@ namespace ArcaneBrigade.Editor
                 motion.Windup = more == null ? new[] { frames[4], frames[5] } : new[] { frames[4], frames[5], more[4] };
                 motion.Release = more == null ? new[] { frames[6], frames[6] } : new[] { frames[6], more[5] };
                 motion.Recovery = more == null ? new[] { frames[7], frames[0] } : new[] { frames[7], more[6], frames[0] };
+                motion.Cast = more == null ? new Sprite[0] : new[] { more[4], more[7], more[7], more[7] }; // the peak windup, then the cast pose held
                 EditorUtility.SetDirty(motion);
                 unit.Body = frames[0]; unit.AuthoredMotion = motion; unit.AnimationFrames = new[] { frames[0], frames[1], frames[2], frames[3] };
                 // Expanded gait and acting can override AuthoredMotion during rendering. Rebind those too so

@@ -432,7 +432,7 @@ namespace ArcaneBrigade
                 return;
             }
             UnitState caster = boundSimulation?.UnitForPresentation(c.SourceId);
-            if (caster != null && caster.Alive) Sound(look, "cast", caster.Position);
+            if (caster != null && caster.Alive) { Sound(look, "cast", caster.Position); UnitVisual.Live(caster.Id)?.PlayCast(.55f); }
             Vector2 source = caster != null ? caster.Position : c.Position;
             float warn = Mathf.Max(0, c.WarningTime);
             int strikes = c.Duration > 1.5f ? Mathf.Min(5, Mathf.FloorToInt(c.Duration)) : 1; // a lasting skill bursts again each second
