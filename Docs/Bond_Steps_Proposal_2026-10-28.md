@@ -264,3 +264,25 @@ Tên, đồ vật lấy từ chính con vật, và thời gian thanh skill giữ
 - **Triệu hồi mới:** Vệ Binh lính bài, Xe Diễu Hành, Reaper, Bếp Trưởng khổng lồ, Trống Trận, Ngọn Hải Đăng.
 - **Vật thể sự kiện mới:** Sách Khổng Lồ, Nồi Lẩu, Quả Lắc, Đá Lăn, Hành Tinh nhỏ, Cuộn Sắc Lệnh.
 - **Hiệu ứng của Cartoon FX đủ dùng, không cần vẽ thêm:** mây giông, tuyết, mưa, sương độc, đêm sao.
+
+## 6. Đủ vai trò trong mỗi house
+
+Hero không bị khóa vào một house: shop dùng chung, và mỗi hero có 3 hướng build theo cặp house. Vì vậy cần mỗi house đủ vai trò. Mục tiêu cho 12 con một house: Guard 2-3, Striker 2, Shooter 2-3, Controller 2, Support 2 (ít nhất 1 con hồi máu cho hero), Summoner 1.
+
+Hiện có 5 house lệch vai. Đề xuất đổi vai theo hình dáng con vật:
+
+| House | Hiện tại | Đổi | Sau khi đổi |
+|---|---|---|---|
+| Archive + Lantern | Shooter 7, không Controller, không Summoner | Harbor Whale thành Guard; Endless Index thành Controller; Pinned Beetle thành Summoner; Thimble Moth thành Support | Shooter 3, Guard 3, Support 3, Striker 1, Controller 1, Summoner 1 |
+| Bulwark + Spirit | không có Shooter, Controller hay Summoner | Bone Xylophone thành Shooter; Scarecrow Crow thành Controller; Totem Pole thành Summoner | Guard 4, Support 4, mỗi vai còn lại 1 |
+| Starlight + Dusk | không Striker, không Summoner, Guard 1 | Saddle Moth thành Striker; Orbit Moth thành Summoner; Pillow Oracle thành Guard | Shooter 3, Support 3, Guard 2, Controller 1, Striker 1, Summoner 1 |
+| Stone + Clockwork | Controller 5, Striker 1, Support 1 | Iron Locomotive thành Striker; Fossil Armadillo thành Guard; Spring Duck thành Support | Guard 3, Controller 2, Striker 2, Support 2, Shooter 2, Summoner 1 |
+| Storm + Windborne | Shooter 5, Guard 1, Controller 1 | Raincoat Frog thành Guard; Volt Eel thành Controller | Shooter 3, Guard 2, Controller 2, Striker 2, Support 2, Summoner 1 |
+
+Chỉnh nhẹ thêm:
+- **Hearth + Ember:** Tea Dragon từ Striker thành Shooter, vì Hearth chỉ có 1 Shooter.
+- **Garden + Venom:** Seed Hedgehog thành Guard, Watering Snail thành Support hồi máu cho hero.
+- **Carnival + Court:** Brass Acorn thành Guard.
+- **Frost + Tide:** Sail Squid thành Controller (phun mực).
+
+Melody + Gravity đã cân, giữ nguyên.
