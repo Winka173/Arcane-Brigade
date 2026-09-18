@@ -286,3 +286,17 @@ Chỉnh nhẹ thêm:
 - **Frost + Tide:** Sail Squid thành Controller (phun mực).
 
 Melody + Gravity đã cân, giữ nguyên.
+
+## 7. Vũ khí và đạn riêng cho từng nhân vật (bỏ random)
+
+- **Hiện tại:** đồng đội bán trong shop được rút ngẫu nhiên một vũ khí từ khoảng 100 vũ khí chung (`RunSession.OfferWeapon`). Vì vậy Kettle Bat có thể cầm cung, con khác lại cầm lược.
+- **Mới:** 36 hero và 120 đồng đội, mỗi nhân vật có đúng 1 vũ khí riêng.
+  - Vũ khí sinh ra từ chính hình dáng của nó. Ví dụ Teapot Pilgrim rót trà từ vòi ấm và bắn giọt trà nóng; Anchor Snail vung mỏ neo.
+  - Không có hai nhân vật dùng chung một ý tưởng vũ khí. Không còn random.
+- **Loại vũ khí theo vai:** Guard và Striker đánh cận chiến, có vệt chém cùng chất liệu với vũ khí. Shooter, Controller, Support và Summoner bắn xa. Hero giữ ý tưởng vũ khí hiện tại nếu hợp với tranh của hero, không hợp thì đổi.
+- **Chỉ số:** dùng lại các bộ chỉ số vũ khí đang có, chọn theo vai và kiểu đánh. Chỉ phần nhìn là riêng của từng nhân vật. Lên sao thì vũ khí mạnh hơn, không đổi sang vũ khí khác.
+- **Đạn:**
+  - Hình đơn giản, ít chi tiết, dễ đọc khi bay nhanh. Lõi sáng, viền đậm theo màu của nhân vật.
+  - Trong game, đạn và vệt chém được thêm shader phát sáng: viền sáng và vệt đuôi theo màu hệ của bond chính (lửa cam đỏ, băng xanh nhạt, sét xanh và nháy...).
+- **Art cũ:** không xóa. Khi vũ khí mới được cài, toàn bộ art vũ khí cũ (`Art/Arsenal`, 61 MB) chuyển sang `ArtArchive/Arsenal_2026-10-28/` ở gốc repo. Thư mục này nằm ngoài `Assets`, nên không vào bản build nhưng vẫn còn trong git.
+- **Art:** 3 lô `weapons1-3` (52 nhân vật mỗi lô), mỗi nhân vật 1 tấm gồm vũ khí và đạn hoặc vệt chém. Lô vẽ cũng ghi tên vũ khí, loại và mô tả đạn vào `weapons.tsv`. Các lô chạy sau lô animation đang xếp hàng.
