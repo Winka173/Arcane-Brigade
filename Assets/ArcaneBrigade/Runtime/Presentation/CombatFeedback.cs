@@ -69,7 +69,7 @@ namespace ArcaneBrigade
             bool kill = combatEvent.Kind == CombatEventKind.Kill;
             bool pickup = combatEvent.Kind == CombatEventKind.Pickup;
             if ((hit || kill) && combatEvent.Faction == Faction.Companion) return;
-            if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
+            if (hit && combatEvent.Value > 0f) { if (IsDamageOverTime(combatEvent)) GatherDot(combatEvent); else ShowDamage(combatEvent); }
             // requirement 24/10/2026: healing reads as a green +N over the hero, a dodge as a small word
             if (combatEvent.Kind == CombatEventKind.Heal && combatEvent.Faction == Faction.Champion && combatEvent.Value >= .5f) ShowHeal(combatEvent);
             // one "Dodge" at a time: a burst of dodged hits shows the word once, not stacked
@@ -147,7 +147,39 @@ namespace ArcaneBrigade
         private Material gradientText;
         private MaterialPropertyBlock gradientBlock;
 
-        private void ShowDamage(CombatEvent combatEvent)
+        /// <summary>Damage over time (a burn, a skill's lingering damage, venom) ticks many times a second: its ticks are added up per
+        /// enemy and shown as one number every 2 seconds instead.</summary>
+        private static bool IsDamageOverTime(CombatEvent e)
+        {
+            string attribution = e.Cause.AttributionId, item = e.Cause.ItemId;
+            return item == "skill-v3-dot" || attribution == "bond:burn" || attribution == "bond:poison" || attribution == "bond:rot";
+        }
+        private sealed class DotTally { public CombatEvent Last; public float Amount, Since; }
+        private readonly Dictionary<int, DotTally> dots = new Dictionary<int, DotTally>();
+        private const float DotEvery = 2f;
+        private void GatherDot(CombatEvent e)
+        {
+            if (!dots.TryGetValue(e.SubjectId, out DotTally tally)) dots[e.SubjectId] = tally = new DotTally();
+            tally.Last = e; tally.Amount += e.Value;
+        }
+        private void FlushDots(float deltaTime)
+        {
+            if (dots.Count == 0) return;
+            List<int> done = null;
+            foreach (var pair in dots)
+            {
+                DotTally tally = pair.Value; tally.Since += deltaTime;
+                bool gone = tally.Last.Subject == null || !tally.Last.Subject.Alive;
+                if (tally.Since < DotEvery && !gone) continue;
+                if (tally.Amount > 0) ShowDamage(tally.Last, tally.Amount, gone ? tally.Last.Position : tally.Last.Subject.Position);
+                tally.Amount = 0; tally.Since = 0;
+                if (gone) (done ??= new List<int>()).Add(pair.Key);
+            }
+            if (done != null) foreach (int id in done) dots.Remove(id);
+        }
+
+        private void ShowDamage(CombatEvent combatEvent) => ShowDamage(combatEvent, combatEvent.Value, combatEvent.Position);
+        private void ShowDamage(CombatEvent combatEvent, float amount, Vector2 position)
         {
             if (!PresentationSettings.DamageNumbers) return;
             // requirement 28/10/2026: hits are never merged into one number; every hit shows its own
@@ -159,11 +191,11 @@ namespace ArcaneBrigade
             if (number == null) return;
             number.Kind = 0;
             number.Champion = champion;
-            number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
-            number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
+            number.SubjectId = combatEvent.SubjectId; number.Amount = amount; number.Critical = combatEvent.Critical;
+            number.Position = position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
             // size and warmth follow how much of the target's life the hit took
             float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
-            float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
+            float weight = Mathf.Sqrt(Mathf.Clamp01(amount / Mathf.Max(1f, maxHealth)));
             number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
             // our damage reads in the element that dealt it (fire orange, frost blue, venom green...); a crit is that colour, brighter
             Color? bottom = !champion && ElementTint != null ? ElementTint(combatEvent) : null, top = bottom.HasValue && ElementTop != null ? ElementTop(combatEvent) : null;
@@ -179,7 +211,7 @@ namespace ArcaneBrigade
             float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
             number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);
             number.View.characterSize = 0.055f * size;
-            number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
+            number.View.text = Mathf.CeilToInt(amount) + (combatEvent.Critical ? "!" : "");
             foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = number.View.text; outline.color = number.Ink; }
             number.View.color = number.Color;
             number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
@@ -291,6 +323,7 @@ namespace ArcaneBrigade
         {
             if (deltaTime <= 0 || !float.IsFinite(deltaTime)) return;
             if (tactile != null) tactile.Advance(deltaTime);
+            FlushDots(deltaTime);
             foreach (DamageNumber number in numbers)
             {
                 if (number.Age >= number.Life) continue;

@@ -48,14 +48,15 @@ namespace ArcaneBrigade.Editor
                 foreach (var family in Directory.GetFiles(kenney, "*.png").Select(p => p.Replace('\\', '/')).GroupBy(p => Path.GetFileNameWithoutExtension(p).Split('_')[0]))
                     Add(library, "K_" + family.Key, family.OrderBy(p => p, System.StringComparer.Ordinal).Select(SpriteAt).Where(s => s != null).ToArray(), false);
             }
-            // the CC0 flipbooks (Unity Labs): <Name>_<cols>x<rows>.png cut into its frames in play order, key UL_<Name>
-            const string flipbooks = NewArt + "/UnityLabs";
-            if (Directory.Exists(flipbooks))
-                foreach (string path in Directory.GetFiles(flipbooks, "*.png").Select(p => p.Replace('\\', '/')))
-                {
-                    string name = Path.GetFileNameWithoutExtension(path);
-                    Add(library, "UL_" + name.Substring(0, name.LastIndexOf('_')), Flipbook(path), false);
-                }
+            // flipbooks cut into their frames in play order: the CC0 Unity Labs ones (key UL_<Name>) and the summons' animation
+            // sheets drawn (SummonAnim/<Kind>_4x2.png: appear, idle, idle, move, windup, strike, recovery, vanish; key SA_<Kind>)
+            foreach (var (folder, prefix) in new[] { (NewArt + "/UnityLabs", "UL_"), (NewArt + "/SummonAnim", "SA_") })
+                if (Directory.Exists(folder))
+                    foreach (string path in Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/')))
+                    {
+                        string name = Path.GetFileNameWithoutExtension(path);
+                        Add(library, prefix + name.Substring(0, name.LastIndexOf('_')), Flipbook(path), false);
+                    }
             fresh += Add(library, "Shield", Frames(NewArt + "/Shield_f{0}.png", 4), true);
             foreach (string key in new[] { "Heal_Bits", "Snow_Bits", "Rain_Bits" }) fresh += Add(library, key, Sheet(NewArt + "/" + key + ".png"), true);
             fresh += Add(library, "Danger_Ground", One(NewArt + "/Danger_Ground.png"), true);

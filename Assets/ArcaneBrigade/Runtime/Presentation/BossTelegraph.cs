@@ -148,6 +148,8 @@ namespace ArcaneBrigade
             Color fill = ZoneColour(charge, alpha);
             ink.FloorZone(c, rx, ry, fill, fill);
         }
+        /// <summary>Where a blow will land as one solid fill and nothing else (no cracks or lines inside), brightening as it charges.</summary>
+        public static void Zone(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float alpha) => Ground(ink, c, rx, ry, charge, alpha);
         /// <summary>A lane's solid ground: the deep red band, filled bright from its start as the blow charges.</summary>
         public static void LaneGround(ArsenalInk ink, Vector2 a, Vector2 b, float halfWidth, float charge, float alpha)
         {

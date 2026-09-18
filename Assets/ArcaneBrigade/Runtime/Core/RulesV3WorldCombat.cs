@@ -32,6 +32,9 @@ namespace ArcaneBrigade
         private readonly int[] v3ClusterBins=new int[HeroRulesV3Tuning.ClusterBins];
         private readonly Vector2[] v3ClusterSums=new Vector2[HeroRulesV3Tuning.ClusterBins];
         public event Action<RulesV3EntityRequest> RulesV3EntityChanged;
+        /// <summary>Presentation only: a summoned ally struck the crowd it guards (its entity id, where it stands, the crowd's
+        /// centre, its kind), once per tick that hit something.</summary>
+        public event Action<int, Vector2, Vector2, string> RulesV3AllyActed;
         public bool TryGetRulesV3Entity(int index,out RulesV3EntityRequest request)
         {
             request=default;if(index<0 || index>=v3Entities.Length || !v3Entities[index].Active)return false;
@@ -101,14 +104,17 @@ namespace ArcaneBrigade
 
                     if(entity.Rule=="WindBeast" && entity.Mode==RulesV3MountMode.Guard)
                         for(int f=0;f<Mortality.FriendCount;f++)Mortality.Shield(Mortality.FriendAt(f),RulesV3Tuning.AllyShield,RulesV3Tuning.ConstructTick);
+                    bool struck=false;
                     foreach(UnitState enemy in StableUnits)
                     {
                         if(!enemy.Alive || enemy.Faction!=Faction.Enemy || (enemy.Position-cluster).sqrMagnitude>entity.Radius*entity.Radius)continue;
                         if(entity.Kind==RulesV3EntityKind.Skull){enemy.TauntBy=Champion.Id;enemy.TauntUntil=entity.Until;continue;}
+                        struck=true;
                         ApplyDamage(enemy,entity.Value*Bonds.BondAllyDamageScale(entity.Rule,entity.Source)*(1+entity.Upgrades*RulesV3Tuning.TurretUpgradeDamage),Faction.Companion,cause:NewCause(entity.Source).Child("v3-ally"));
                         Bonds.OnAllyHit(entity.Rule,enemy);
                         if(!enemy.Alive)Bonds.OnAllyKill(entity.Rule,enemy);
                     }
+                    if(struck && entity.Kind==RulesV3EntityKind.Ally)RulesV3AllyActed?.Invoke(entity.Id,entity.Position,cluster,entity.Rule);
                     continue;
                 }
                 if(entity.Kind==RulesV3EntityKind.WindLane)

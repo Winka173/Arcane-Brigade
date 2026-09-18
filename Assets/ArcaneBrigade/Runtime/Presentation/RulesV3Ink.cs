@@ -115,6 +115,56 @@ namespace ArcaneBrigade
             "burst_boom" => .28f, "burst_souls" => .55f, "burst_flash" => .32f, _ => .8f,
         };
 
+        /// <summary>The step a trait event belongs to: its moments grow with the step so each step reads differently.</summary>
+        private static int RuleTier(string rule)
+        {
+            switch (rule)
+            {
+                case "freeze": case "frozen-hit": case "root-hit": case "wick": case "horn-pile-up": case "discharge": case "mask-double":
+                case "shade-execute-growth": case "gravity-pull": case "sugar-rush": case "tide-splash": return 4;
+                case "rot": case "horns-vulnerability": case "shatter": case "demolitionist-stun": case "feast": case "species-recorded": case "lightning-rod": return 6;
+                case "inferno": case "blizzard": case "eclipse": case "pandemic": case "riptide": case "gale": case "leviathan": return 8;
+                default: return 2;
+            }
+        }
+
+        /// <summary>A trait step fires, sized by its step: step 2 a small burst on its enemy; step 4 an area blast with the
+        /// element's explosion; step 6 a big blast with its hero signature and strikes leaping out to four enemies around;
+        /// step 8 the element's finale falling from the sky onto the crowds.</summary>
+        private void TierMoment(string rule, ElementLook look, Vector2 at)
+        {
+            switch (RuleTier(rule))
+            {
+                case 2:
+                    HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Disc, Position = at, End = at, Direction = Vector2.right,
+                        Radius = .35f, Created = Now, At = Now + .06f, Until = Now + .5f, Seed = ++seed }, HeroIdentityVisual.GuestStyle(look));
+                    break;
+                case 4: Blast(look, at, .75f); break;
+                case 6:
+                {
+                    Blast(look, at, 1.3f);
+                    int n = 0;
+                    if (boundSimulation != null)
+                        foreach (UnitState unit in boundSimulation.Units)
+                        {
+                            if (unit == null || !unit.Alive || unit.Faction != Faction.Enemy || (unit.Position - at).sqrMagnitude > 9 || (unit.Position - at).sqrMagnitude < .1f) continue;
+                            Targeted(look, at, unit.Position, .1f + n * .05f);
+                            if (++n >= 4) break;
+                        }
+                    break;
+                }
+                default: Finale(look, at); BlastCrowds(look, at, false); break;
+            }
+        }
+
+        /// <summary>A step-8 moment: the element's hero finale (its sign falling from the sky, then its finale burst) at the spot.</summary>
+        private void Finale(ElementLook look, Vector2 at)
+        {
+            float now = Now;
+            HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Disc, Position = at, End = at, Direction = Vector2.right,
+                Radius = 2.2f, Created = now, At = now + .45f, Until = now + 1.6f, Seed = ++seed, Big = true, Finale = true }, HeroIdentityVisual.GuestStyle(look));
+        }
+
         private void Blast(ElementLook look, Vector2 at, float radius, float delay = 0, float gather = .12f)
         {
             float when = Now + delay;
@@ -346,9 +396,9 @@ namespace ArcaneBrigade
             CombatSimulation sim = owner != null ? owner.Simulation : null;
             if (sim != boundSimulation)
             {
-                if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
+                if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; boundSimulation.RulesV3AllyActed -= OnAllyActed; }
                 boundSimulation = sim;
-                if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; sim.RulesV3HeroApplied += OnHero; }
+                if (sim != null) { sim.RulesV3EntityChanged += OnEntity; sim.RulesV3SupportApplied += OnSupport; sim.RulesV3HeroApplied += OnHero; sim.RulesV3AllyActed += OnAllyActed; }
                 entities.Clear(); fallen.Clear(); areas.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); fields.Clear(); pops.Clear(); throws.Clear(); stillUntil = realmUntil = 0;
             }
             if (sim == null) return;
@@ -382,7 +432,7 @@ namespace ArcaneBrigade
         private void OnDestroy()
         {
             if (CombatFeedback.ElementTint == (System.Func<CombatEvent, Color?>)ElementColour) { CombatFeedback.ElementTint = null; CombatFeedback.ElementTop = null; CombatFeedback.ElementShape = null; CombatFeedback.ElementInk = null; }
-            if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; }
+            if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; boundSimulation.RulesV3AllyActed -= OnAllyActed; }
             if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; }
             if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; boundSkills.EnemyEffectRequested -= OnEnemyEffect; }
             if (boundEnemies != null) { boundEnemies.DangerRequested -= OnDanger; boundEnemies.Requested -= OnEnemyRule; }
@@ -402,17 +452,15 @@ namespace ArcaneBrigade
                     for (int i = fields.Count - 1; i >= 0; i--) if (fields[i].Kind == field) fields.RemoveAt(i);
                     fields.Add(new Field { Kind = field, Born = Now, Life = life });
                 }
-                else BlastCrowds(LookFor(e.Rule), e.Position, false);
-                owner?.Feel.Accent(.35f, .15f);
+                else { Finale(LookFor(e.Rule), e.Position); BlastCrowds(LookFor(e.Rule), e.Position, false); }
                 Sound("rules.field", e.Position);
             }
             // a bond step fires: a burst in its element on the subject, capped per frame for big crowds
             if (popsThisFrame < MaxPopsPerFrame && Loud(e.Rule, out float size))
             {
                 popsThisFrame++;
-                AddPop(e.Position, LookFor(e.Rule), size, 0);
+                TierMoment(e.Rule, LookFor(e.Rule), e.Position);
                 Sound(LookFor(e.Rule), "burst", e.Position);
-                if (size >= 1.5f) owner?.Feel.Accent(.3f, .1f); else if (size >= 1.1f) owner?.Feel.Accent(.12f, 0);
             }
         }
 
@@ -609,7 +657,6 @@ namespace ArcaneBrigade
                 case EnemyRuleAction.ArmorBreak: EnemyPop(boundSimulation?.UnitForPresentation(e.TargetId)?.Position ?? e.Position, ElementLook.Earth, 1f); return;
                 case EnemyRuleAction.Phase:
                     EnemyPop(e.Position, ElementLook.Fire, 2.6f);
-                    owner?.Feel.Accent(.55f, .35f);
                     Sound("rules.phase", e.Position);
                     fields.Add(new Field { Kind = FieldKind.Realm, Born = Now, Life = 1.2f });
                     return;
@@ -693,7 +740,7 @@ namespace ArcaneBrigade
 
         public void OnEntity(RulesV3EntityRequest e)
         {
-            if (e.Change == RulesV3EntityChange.Created) entities[e.Id] = e;
+            if (e.Change == RulesV3EntityChange.Created) { entities[e.Id] = e; entityBorn[e.Id] = Now; }
             else
             {
                 entities.Remove(e.Id);
@@ -745,6 +792,9 @@ namespace ArcaneBrigade
             }
             for (int i = blastQueue.Count - 1; i >= 0; i--)
                 if (now >= blastQueue[i].When) { if (cartoon != null && now - blastQueue[i].When < .5f) cartoon.Play(blastQueue[i].Key, blastQueue[i].At, blastQueue[i].Scale); blastQueue.RemoveAt(i); }
+            // summons move in the simulation: follow them every frame
+            for (int i = 0; i < RulesV3Tuning.ConstructCapacity; i++)
+                if (sim.TryGetRulesV3Entity(i, out RulesV3EntityRequest liveEntity) && entities.ContainsKey(liveEntity.Id)) entities[liveEntity.Id] = liveEntity;
             foreach (KeyValuePair<int, RulesV3EntityRequest> pair in entities) { DrawEntity(pair.Value, now); Entities++; }
             foreach (KeyValuePair<int, FriendMortalityEvent> pair in fallen) { DrawFallen(pair.Value, now); Fallen++; }
             for (int i = auras.Count - 1; i >= 0; i--)
@@ -779,7 +829,6 @@ namespace ArcaneBrigade
                 case AreaShape.Line:
                     BossTelegraph.LaneGround(ink, a.A, a.B, a.R, charge, alpha);
                     Vector2 dir = (a.B - a.A).sqrMagnitude > .001f ? (a.B - a.A).normalized : Vector2.right;
-                    BossTelegraph.Arrow(ink, a.B, dir, a.R + .3f, charge, alpha);
                     break;
                 case AreaShape.Cone:
                     Vector2 aim = (a.B - a.A).sqrMagnitude > .001f ? (a.B - a.A).normalized : Vector2.right;
@@ -789,7 +838,7 @@ namespace ArcaneBrigade
                     ink.Vignette(a.A, a.R, BossTelegraph.Danger.Body, .15f * alpha * charge, .45f * alpha * charge);
                     break;
                 default:
-                    BossTelegraph.Rim(ink, a.A, a.R, a.R * .62f, charge, a.Seed, alpha);
+                    BossTelegraph.Zone(ink, a.A, a.R, a.R * .62f, charge, alpha); // one solid fill, no lines inside
                     break;
             }
         }
@@ -1162,14 +1211,7 @@ namespace ArcaneBrigade
             Vector2 c = p.At + Vector2.up * .3f;
             if (p.Hostile)
             {
-                // an enemy blow: dark red ink cracks and dust thrown up, matter not light
-                float o = 1 - (1 - t) * (1 - t), a = 1 - t;
-                for (int i = 0; i < 7; i++)
-                {
-                    float ang = p.Seed * 29 % 360 + i * 51 + R(p.Seed, i) * 20;
-                    ink.FloorStroke(p.At, p.At + Dir(ang) * (.4f + .6f * R(p.Seed, i + 4)) * p.Size * o, BossTelegraph.Danger, .07f, 1, 0, a, .03f, p.Seed + i);
-                }
-                return;
+                return; // an enemy blow lands in its solid zone; no cracks are drawn
             }
         }
 
@@ -1178,7 +1220,6 @@ namespace ArcaneBrigade
         private void Strike(Area a)
         {
             float size = Mathf.Clamp(a.R * .8f, 1, 2.4f);
-            owner?.Feel.Accent(.2f + .06f * size, 0);
             Sound("rules.strike", a.A);
             if (a.Shape == AreaShape.Line)
                 for (int i = 0; i <= 3; i++) AddHostilePop(Vector2.Lerp(a.A, a.B, i / 3f), size * .7f);
@@ -1248,11 +1289,19 @@ namespace ArcaneBrigade
                     break;
                 case RulesV3EntityKind.Ally:
                 {
-                    // a bond summon: its painting when it exists (Resources/BondSummons/<Kind>), on a glowing sigil in its element
-                    float size = SummonSize(e.Rule), bob = Mathf.Sin(now * 3 + e.Id) * .08f;
-                    for (int i = 0; i < 4; i++) ElementStroke(look, at + new Vector2((i - 1.5f) * size * .3f, .05f), at + new Vector2((i - .5f) * size * .3f, .05f), i, e.Id, now, .8f, .9f);
-                    Sprite art = SummonArt(e.Rule);
-                    if (art != null) ink.Place(art, at + Vector2.up * (size * .5f + bob), size, 0, Color.white, true);
+                    // a bond summon acts out what it does: it pops in, stands breathing, steps when it moves with its owner, winds
+                    // up, strikes and recovers each time it hits the crowd, and fades out at its end. Its animation sheet when drawn
+                    // (SA_<Kind>: appear, idle, idle, move, windup, strike, recovery, vanish), else its painting squashed and stretched
+                    float size = SummonSize(e.Rule), age = now - (entityBorn.TryGetValue(e.Id, out float born) ? born : now);
+                    float acted = now - (allyActedAt.TryGetValue(e.Id, out float hit) ? hit : -10);
+                    bool moving = entityLast.TryGetValue(e.Id, out Vector2 was) && (was - at).sqrMagnitude > .0004f; entityLast[e.Id] = at;
+                    int cell = age < .3f ? 0 : e.Duration < .35f ? 7 : acted < .12f ? 4 : acted < .28f ? 5 : acted < .5f ? 6 : moving ? (Mathf.FloorToInt(now * 6) % 2 == 0 ? 3 : 1) : 1 + Mathf.FloorToInt(now * 2.5f + e.Id) % 2;
+                    Sprite[] sheet = vfx.Library?.Get("SA_" + e.Rule);
+                    Sprite art = sheet != null && sheet.Length >= 8 ? sheet[cell] : SummonArt(e.Rule);
+                    float pop = age < .3f ? OutBackPop(age / .3f) : 1, fade = e.Duration < .35f ? Mathf.Clamp01(e.Duration / .35f) : 1;
+                    float squash = sheet != null ? 1 : acted < .12f ? .88f : acted < .28f ? 1.14f : 1;
+                    float bob = sheet != null ? 0 : Mathf.Sin(now * 3 + e.Id) * .08f;
+                    if (art != null) ink.Place(art, at + Vector2.up * (size * .5f * squash + bob), size * pop * (sheet != null ? 1 : 1 / Mathf.Sqrt(squash)), 0, new Color(1, 1, 1, fade), true);
                     else
                     {
                         ink.Orbit(at + Vector2.up * .3f, size * .6f, now, TokenFor(look), p, 5, 1);
@@ -1281,6 +1330,25 @@ namespace ArcaneBrigade
         }
 
         private static Color A(Color c, float a) { c.a = a; return c; }
+        private static float OutBackPop(float x) { x = Mathf.Clamp01(x); const float c = 1.7f; float y = x - 1; return 1 + (c + 1) * y * y * y + c * y * y; }
+        private readonly Dictionary<int, float> entityBorn = new Dictionary<int, float>(), allyActedAt = new Dictionary<int, float>();
+        private readonly Dictionary<int, Vector2> entityLast = new Dictionary<int, Vector2>();
+
+        /// <summary>The element a summon fights in.</summary>
+        private static ElementLook SummonLook(string kind) => kind switch
+        {
+            "Phoenix" or "Chef" => ElementLook.Fire, "IceSoldier" => ElementLook.Ice, "Shade" => ElementLook.Void, "LampWisp" => ElementLook.Light,
+            "Leviathan" => ElementLook.Water, "WindBeast" => ElementLook.Wind, "Sprout" or "Sapling" or "Treant" or "GreatTree" => ElementLook.Bloom,
+            "Colossus" => ElementLook.Earth, "Turret" => ElementLook.Storm, "Spirit" => ElementLook.Dream, "Orchestra" => ElementLook.Sound, _ => LookFor(kind),
+        };
+
+        /// <summary>A summon strikes the crowd it guards: a targeted strike in its element from it to the crowd's centre.</summary>
+        private void OnAllyActed(int id, Vector2 from, Vector2 crowd, string kind)
+        {
+            allyActedAt[id] = Now;
+            if (allyActedAt.Count > 256) allyActedAt.Clear();
+            Targeted(SummonLook(kind), from + Vector2.up * SummonSize(kind) * .5f, crowd, .12f);
+        }
 
         /// <summary>The rules sound for an element moment (rules.&lt;look&gt;.cast / land / burst) or a shared one (rules.heal...),
         /// placed in the world so off-screen ones are culled; cue cooldowns keep a crowd from stacking them.</summary>

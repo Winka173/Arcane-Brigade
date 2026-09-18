@@ -510,7 +510,7 @@ namespace ArcaneBrigade
             {
                 // requirement 26/10/2026: our own skills paint no hit zone ahead of the blow, only the thin gathering line
                 float reveal = still ? 1 : OutCubic(q);
-                Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
+                if (sim.SkillsV3 == null) Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
                 Gather(b, q);
                 return;
             }
