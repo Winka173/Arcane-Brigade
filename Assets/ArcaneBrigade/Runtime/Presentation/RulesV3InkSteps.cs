@@ -52,16 +52,46 @@ namespace ArcaneBrigade
             }
         }
 
+        private readonly Dictionary<int, ElementLook> shotLook = new Dictionary<int, ElementLook>();
+        private static Color Faded(Color c, float a) { c.a = a; return c; }
+
+        /// <summary>Our shots glow in the element of the friend that fired them: a soft halo and a bright core on the light layer,
+        /// so a plain painted shot reads as fire, frost or lightning in flight.</summary>
+        private void DrawShotGlow(CombatSimulation sim, float now)
+        {
+            int drawn = 0;
+            if (shotLook.Count > 512) shotLook.Clear();
+            foreach (ProjectileState shot in sim.Projectiles)
+            {
+                if (shot == null || shot.Faction == Faction.Enemy) continue;
+                if (!shotLook.TryGetValue(shot.SourceUnitId, out ElementLook look))
+                {
+                    UnitState source = sim.UnitForPresentation(shot.SourceUnitId);
+                    look = source == null ? ElementLook.None : source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : ElementInk.For(source.Definition.Id);
+                    shotLook[shot.SourceUnitId] = look;
+                }
+                if (look == ElementLook.None) continue;
+                Color c = NumberColour(look); float flicker = look == ElementLook.Storm ? .7f + .3f * Mathf.PerlinNoise(now * 20, shot.Id) : 1;
+                Vector2 at = shot.Position + shot.PatternOffset, back = shot.Velocity.sqrMagnitude > .01f ? -shot.Velocity.normalized : Vector2.zero;
+                light.Sector(at + back * .18f, .5f, 0, 360, Faded(c, .38f * flicker), Faded(c, 0));
+                light.Sector(at + back * .42f, .32f, 0, 360, Faded(c, .2f * flicker), Faded(c, 0));
+                light.Sector(at, .16f, 0, 360, Faded(Color.Lerp(c, Color.white, .6f), .7f * flicker), Faded(c, 0));
+                if (++drawn >= 160) break;
+            }
+        }
+
         /// <summary>Weather over the arena for the wave, lasting zones bursting where they stand, and the lighthouse beam.</summary>
         private void DrawSteps(CombatSimulation sim, float now)
         {
             Vector2 centre = sim.Champion.Position;
+            DrawShotGlow(sim, now);
             for (int i = weathers.Count - 1; i >= 0; i--)
             {
                 StepWeather w = weathers[i];
                 if (now > w.Until || now < w.Born - 1) { weathers.RemoveAt(i); continue; }
                 float rise = Mathf.Clamp01((now - w.Born) / .8f), fade = Mathf.Clamp01((w.Until - now) / .8f), a = rise * fade * (PresentationSettings.ReducedEffects ? .5f : 1);
-                ink.Vignette(centre, 30, NumberColour(w.Look), .1f * a, .42f * a);
+                float beat = .85f + .15f * Mathf.Sin(now * 2.2f); // the weather breathes slowly so it reads as alive
+                ink.Vignette(centre, 30, NumberColour(w.Look), .2f * a * beat, .62f * a * beat);
             }
             BondRuntime bonds = sim.Bonds;
             if (bonds == null) return;

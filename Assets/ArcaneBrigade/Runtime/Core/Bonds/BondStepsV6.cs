@@ -19,7 +19,8 @@ namespace ArcaneBrigade
     /// crowds on a beat, step 8 weather or a legendary summon for the whole wave. Damage is a share of the best friend's weapon.</summary>
     public static class BondStepTuning
     {
-        public const int StormEvery = 5, StormStrongTargets = 6;
+        public const int StormEvery = 5, StormStrongTargets = 6, WindEvery = 8, VineEvery = 3, SealEvery = 6, ShoveEvery = 4, SpikeEvery = 8, NoteEvery = 4, Notes = 5, Gears = 3;
+        public const float VineSeconds = .5f, SealRadius = .9f, SealDamage = .8f, ShoveStun = .2f, SpikeRadius = 1.4f, SpikeDamage = 1, GearDamage = .6f, CastNoteDamage = .5f, WaveRadius = 2, WaveDamage = .8f, OnHitCooldown = .5f;
         public const float StormStrongStun = .3f;
         public const float ThunderboltPeriod = 6, ThunderboltRadius = 2.5f, ThunderboltDamage = 2.5f, StormRainPeriod = .6f, StormRainRadius = 1.4f, StormRainDamage = 1;
         public const float MeteorPeriod = 8, MeteorRadius = 1.6f, MeteorDamage = 1.6f, PhoenixDivePeriod = 3, PhoenixDiveDamage = 1.5f;
@@ -70,13 +71,56 @@ namespace ArcaneBrigade
         private readonly List<UnitState> spotOrder = new List<UnitState>(BondTuning.EnemyCapacity);
         private readonly Dictionary<UnitState, int> spotCrowd = new Dictionary<UnitState, int>();
         private float fortressUntil, lighthouseAngle;
+        private readonly Dictionary<string, int> ownHits = new Dictionary<string, int>(StringComparer.Ordinal);
+        private readonly Dictionary<string, float> enemyEffectAt = new Dictionary<string, float>(StringComparer.Ordinal);
+
+        /// <summary>"Every Nth hit" counts this friend's own hits only, so a full team never fires it nonstop.</summary>
+        private bool EveryOwn(string kind, UnitState friend, int interval)
+        {
+            string key = kind + "#" + friend.Id; ownHits.TryGetValue(key, out int count); ownHits[key] = ++count; return count % interval == 0;
+        }
+        /// <summary>An enemy takes the same on-hit effect at most once every half second.</summary>
+        private bool Fresh(string kind, UnitState enemy)
+        {
+            string key = kind + "#" + enemy.Id;
+            if (enemyEffectAt.TryGetValue(key, out float at) && time - at < BondStepTuning.OnHitCooldown) return false;
+            enemyEffectAt[key] = time; return true;
+        }
+
+        /// <summary>Steps 2 and 4 on a friend's own hits: vines root (Garden), a royal seal stamps (Court), a shove and a rock spike (Stone).</summary>
+        private void HitV6(UnitState attacker, UnitState enemy)
+        {
+            if (LegacyCapstones || attacker == null || attacker.Faction != Faction.Companion && attacker.Faction != Faction.Champion) return;
+            float w = Weapon(attacker);
+            if (RuleApplies(attacker, "orchard") && EveryOwn("vine", attacker, BondStepTuning.VineEvery) && Fresh("vine", enemy))
+            { BondEnemyState state = State(enemy); if (state != null) state.RootedUntil = Mathf.Max(state.RootedUntil, time + BondStepTuning.VineSeconds); Strike("orchard", "garden-vine", 2, enemy.Position, .6f, 0, StepEffect.Root, 0); }
+            if (RuleApplies(attacker, "regal") && EveryOwn("seal", attacker, BondStepTuning.SealEvery) && Fresh("seal", enemy))
+                Strike("regal", "court-seal", 2, enemy.Position, BondStepTuning.SealRadius, w * BondStepTuning.SealDamage, StepEffect.Stun, .25f);
+            if (RuleApplies(attacker, "stone") && EveryOwn("shove", attacker, BondStepTuning.ShoveEvery) && Fresh("shove", enemy)) StunArea(enemy, BondStepTuning.ShoveStun, "stone-shove", true);
+            if (Active("stone", 4) && RuleApplies(attacker, "stone") && EveryOwn("spike", attacker, BondStepTuning.SpikeEvery))
+                Strike("stone", "stone-spike", 4, enemy.Position, BondStepTuning.SpikeRadius, w * BondStepTuning.SpikeDamage, StepEffect.Knock, .2f);
+        }
+
+        /// <summary>Steps 2 and 4 on a friend's own casts: gears fly at the crowds (Clockwork), notes and then a sound wave (Melody).</summary>
+        private void CastV6(UnitState friend)
+        {
+            if (LegacyCapstones || friend == null || hero == null) return;
+            float w = Weapon(friend); List<Vector2> spots;
+            if (RuleApplies(friend, "clock") && (spots = Spots(BondStepTuning.Gears)).Count > 0)
+                for (int i = 0; i < BondStepTuning.Gears; i++) Strike("clock", "clock-gears", 2, spots[i % spots.Count], .8f, w * BondStepTuning.GearDamage, StepEffect.None, .3f + i * .08f, false, friend.Position);
+            if (RuleApplies(friend, "melody") && EveryOwn("note", friend, BondStepTuning.NoteEvery) && (spots = Spots(BondStepTuning.Notes)).Count > 0)
+            {
+                for (int i = 0; i < BondStepTuning.Notes; i++) Strike("melody", "melody-notes", 2, spots[i % spots.Count], .7f, w * BondStepTuning.CastNoteDamage, StepEffect.None, .3f + i * .07f, false, friend.Position);
+                if (Active("melody", 4)) Strike("melody", "melody-sound-wave", 4, spots[0], BondStepTuning.WaveRadius, w * BondStepTuning.WaveDamage, StepEffect.Knock, .5f);
+            }
+        }
 
         private float StepWeapon => Mathf.Max(Weapon(bestFriend), Weapon(hero));
         private float StepSlow => !LegacyCapstones && Active("frost", 8) ? 1 - BondStepTuning.BlizzardSlow : 1;
 
         private void ResetV6()
         {
-            pendingStrikes.Clear(); stepZones.Clear(); stepTimers.Clear(); fortressUntil = 0; lighthouseAngle = 0;
+            pendingStrikes.Clear(); stepZones.Clear(); stepTimers.Clear(); ownHits.Clear(); enemyEffectAt.Clear(); fortressUntil = 0; lighthouseAngle = 0;
             if (LegacyCapstones || hero == null) return;
             float weapon = StepWeapon;
             void Summon(BondSpawnKind kind, int count) { for (int i = 0; i < count; i++) Spawn(new BondSpawnRequest(kind, hero.Position + new Vector2(i - (count - 1) * .5f, -1), sourceId: i, damage: weapon)); }

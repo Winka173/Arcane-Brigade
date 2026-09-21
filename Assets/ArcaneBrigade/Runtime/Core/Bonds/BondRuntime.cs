@@ -168,7 +168,7 @@ namespace ArcaneBrigade
         {
             if (attacker == null || attacker.Faction == Faction.Enemy || enemy == null || enemy.Faction != Faction.Enemy || !enemy.Alive) return;
             RegisterEnemy(enemy); BondEnemyState state = State(enemy); float weapon = Weapon(attacker);
-            HitV3(attacker, enemy, damage, isCrit);
+            HitV3(attacker, enemy, damage, isCrit); HitV6(attacker, enemy);
             if (isCrit) Wishes++;
             if (Member(attacker,"big-top")) { combo = lastCombo == enemy ? 0 : combo + 1; lastCombo = enemy; Emit("combo", enemy, Mathf.Min(combo * BondTuning.ComboPerLink, Active("big-top", 4) ? BondTuning.ComboHighCap : BondTuning.ComboCap)); }
             if (Member(attacker,"gauntlet") && attacker.Definition.Weapon != null && attacker.Definition.Weapon.Kind == WeaponKind.Melee)
@@ -178,7 +178,7 @@ namespace ArcaneBrigade
             {
                 state.Chill = Mathf.Min(BondTuning.ChillStacks, state.Chill + 1);
                 Emit("chill-stack", enemy, state.Chill);
-                if (Active("frost", 4) && state.Chill == BondTuning.ChillStacks && state.FrozenUntil <= time)
+                if ((Active("frost", 4) || !LegacyCapstones) && state.Chill == BondTuning.ChillStacks && state.FrozenUntil <= time)
                 { state.FrozenUntil = time + BondTuning.FreezeSeconds; state.FrozenHitReady = true; Emit("freeze", enemy, BondTuning.FreezeSeconds); }
             }
             if (RuleApplies(attacker, "venom")) AddPoison(enemy, attacker, weapon, 1, false);
@@ -194,7 +194,7 @@ namespace ArcaneBrigade
         }
         public void CheckExecute(UnitState enemy, UnitState attacker)
         {
-            if ((State(enemy)?.Marked == true || Active("dusk",8)&&time>=BondTuning.EclipseStart) && Active("dusk", 6) && enemy.Health > 0 && enemy.Health < enemy.Definition.Health * BondTuning.ExecuteHealth)
+            if ((State(enemy)?.Marked == true || Active("dusk",8)&&time>=BondTuning.EclipseStart) && (Active("dusk", 6) || !LegacyCapstones && Active("dusk")) && enemy.Health > 0 && enemy.Health < enemy.Definition.Health * BondTuning.ExecuteHealth)
                 { shadeDamage+=BondTuning.ChoiceBonus; Damage(enemy, attacker, enemy.Health, "execute"); Emit("shade-execute-growth",enemy,shadeDamage); }
         }
         private void StunArea(UnitState center, float seconds, string rule, bool push)
@@ -254,9 +254,9 @@ namespace ArcaneBrigade
                 Spawn(new BondSpawnRequest(BondSpawnKind.Snack, enemy.Position, healMaxHealthFraction: BondTuning.SnackHeal, coins: Active("sweet-tooth", 6) ? 1 : 0));
         }
         public void OnCast(UnitState companion)
-        { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshApplause(); CastV3(companion); Emit("cast", companion); }
+        { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshApplause(); CastV3(companion); CastV6(companion); Emit("cast", companion); }
         public void OnVolley() { OnVolley(hero); }
-        public void OnVolley(UnitState source) { Volleys++; if (RuleApplies(source,"windborne") && Active("windborne",4) && EveryUnit("wind",source,BondTuning.PiercingVolley)) { Request(BondSupportKind.PiercingVolley,source,1,0,"piercing-volley"); AddZone("wind-lane",source,BondV5Tuning.LaneSeconds); } }
+        public void OnVolley(UnitState source) { Volleys++; if (RuleApplies(source,"windborne") && (Active("windborne",4) || !LegacyCapstones) && EveryUnit("wind",source,LegacyCapstones?BondTuning.PiercingVolley:BondStepTuning.WindEvery)) { Request(BondSupportKind.PiercingVolley,source,1,0,"piercing-volley"); if(Active("windborne",4))AddZone("wind-lane",source,BondV5Tuning.LaneSeconds); } }
         public void OnHeal(float amount) { if(amount>0 && Active("hearth") && hero!=null) Emit("warmth-heal",hero,amount); }
         public void OnSoak() { Soak++; }
         public void OnRecord() { Records++; }
