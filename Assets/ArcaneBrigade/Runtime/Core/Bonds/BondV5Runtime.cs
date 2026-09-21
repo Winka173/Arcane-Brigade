@@ -133,13 +133,16 @@ namespace ArcaneBrigade
             dischargeWave++;stormChainTargets.Clear();
             // a chain leaps: from the struck enemy to the nearest enemy it has not struck yet, then on from that one, each leap at
             // most ChainJump long, so it visibly runs through a crowd instead of striking scattered enemies at once
-            int targets=BondTuning.ChainTargets*(rod?BondV5Tuning.Double:1);UnitState from=enemy;
+            // step 4 makes the chain fiercer: it leaps twice as far through the crowd and stuns what it strikes
+            bool fierce=!LegacyCapstones&&Active("static-club",4);
+            int targets=(fierce?BondStepTuning.StormStrongTargets:BondTuning.ChainTargets)*(rod?BondV5Tuning.Double:1);UnitState from=enemy;
             for(int i=0;i<targets;i++)
             {
                 UnitState next=null;
                 foreach(UnitState candidate in Nearby(from,BondTuning.ChainJump))if(candidate!=enemy&&!stormChainTargets.Contains(candidate)){next=candidate;break;}
                 if(next==null)break;
                 stormChainTargets.Add(next);Damage(next,source,weapon*BondTuning.ChainDamage,"storm-chain");
+                if(fierce){BondEnemyState stunned=State(next);stunned.StunnedUntil=Mathf.Max(stunned.StunnedUntil,time+BondStepTuning.StormStrongStun);}
                 if(Active("static-club",4))AddCharge(next,rod?BondV5Tuning.Double:1);
                 from=next;
             }
@@ -229,12 +232,12 @@ namespace ArcaneBrigade
         private void TickV5(float dt)
         {
             if(Edict==BondEdict.Regeneration&&Active("regal")){if(RuleApplies(hero,"regal"))Request(BondSupportKind.Heal,hero,BondV5Tuning.EdictRegeneration*dt,0,"court-regeneration");foreach(UnitState friend in friends)if(friend.Alive&&RuleApplies(friend,"regal"))Request(BondSupportKind.Heal,friend,BondV5Tuning.EdictRegeneration*dt,0,"court-regeneration");}
-            if(Active("tidal",8)&&!leviathanUsed){int largest=-1;RuleZone chosen=default;foreach(RuleZone zone in zones)if(zone.Rule=="tide-pool"&&zone.Until>time){int count=0;foreach(var pair in enemies)if(pair.Key.Alive&&(pair.Key.Position-zone.Position).sqrMagnitude<=BondTuning.BurstRadius*BondTuning.BurstRadius)count++;if(count>largest){largest=count;chosen=zone;}}if(largest>=0){leviathanUsed=true;Spawn(new BondSpawnRequest(BondSpawnKind.Leviathan,chosen.Position,damage:Weapon(bestFriend)));foreach(var pair in enemies)if(pair.Key.Alive)pair.Value.SoakedUntil=time+BondTuning.SoakSeconds;WholeArena("leviathan",Weapon(bestFriend));}}
+            if(LegacyCapstones&&Active("tidal",8)&&!leviathanUsed){int largest=-1;RuleZone chosen=default;foreach(RuleZone zone in zones)if(zone.Rule=="tide-pool"&&zone.Until>time){int count=0;foreach(var pair in enemies)if(pair.Key.Alive&&(pair.Key.Position-zone.Position).sqrMagnitude<=BondTuning.BurstRadius*BondTuning.BurstRadius)count++;if(count>largest){largest=count;chosen=zone;}}if(largest>=0){leviathanUsed=true;Spawn(new BondSpawnRequest(BondSpawnKind.Leviathan,chosen.Position,damage:Weapon(bestFriend)));foreach(var pair in enemies)if(pair.Key.Alive)pair.Value.SoakedUntil=time+BondTuning.SoakSeconds;WholeArena("leviathan",Weapon(bestFriend));}}
             if(Active("gravity",8)&&hero!=null)foreach(var pair in enemies)if(pair.Key.Alive&&(pair.Key.Position-hero.Position).sqrMagnitude<=BondTuning.GravityRadius*BondTuning.GravityRadius)pair.Key.Position=Vector2.MoveTowards(pair.Key.Position,hero.Position,BondTuning.GravityPull*dt);
             if(Active("orchard",6)&&hero!=null)foreach(var pair in enemies)if(pair.Key.Alive&&CompanionSkillRuntime.Contains(SkillShape.Line,hero.Position,hero.Position+Vector2.right*(BondTuning.SproutLimit-1),BondTuning.RuneInnerRadius,pair.Key.Position))pair.Value.RootedUntil=Mathf.Max(pair.Value.RootedUntil,time+BondV5Tuning.PlantRootSeconds);
-            if(Active("ember",8)&&!phoenixUsed&&Heat>=BondV5Tuning.PhoenixHeat){phoenixUsed=true;Spawn(new BondSpawnRequest(BondSpawnKind.Phoenix,hero.Position,lifetime:BondTuning.PhoenixSeconds,damage:Weapon(bestFriend)));for(int i=0;i<patches.Count;i++){EmberPatch patch=patches[i];patch.Until=time+BondTuning.EmberSeconds;patches[i]=patch;}}
+            if(LegacyCapstones&&Active("ember",8)&&!phoenixUsed&&Heat>=BondV5Tuning.PhoenixHeat){phoenixUsed=true;Spawn(new BondSpawnRequest(BondSpawnKind.Phoenix,hero.Position,lifetime:BondTuning.PhoenixSeconds,damage:Weapon(bestFriend)));for(int i=0;i<patches.Count;i++){EmberPatch patch=patches[i];patch.Until=time+BondTuning.EmberSeconds;patches[i]=patch;}}
             if(Active("venom",8)&&!pandemicUsed&&Toxin>=BondV5Tuning.PandemicToxin){pandemicUsed=true;foreach(var pair in enemies)if(pair.Key.Alive)AddPoison(pair.Key,bestFriend,Weapon(bestFriend),BondTuning.BurnStacks,true);Emit("pandemic",hero);}
-            if(Active("static-club",6)&&time>=rodAt){rodAt=time+BondV5Tuning.RodPeriod;UnitState cluster=DensestCluster();if(cluster!=null)AddZone("lightning-rod",cluster,BondV5Tuning.RodSeconds);}
+            if(LegacyCapstones&&Active("static-club",6)&&time>=rodAt){rodAt=time+BondV5Tuning.RodPeriod;UnitState cluster=DensestCluster();if(cluster!=null)AddZone("lightning-rod",cluster,BondV5Tuning.RodSeconds);}
 
 
             if(time>=zonePulseAt){zonePulseAt=time+BondTuning.PlaguePeriod;RefreshMonolithArmor();for(int z=zones.Count-1;z>=0;z--){RuleZone zone=zones[z];if(zone.Until<=time){zones.RemoveAt(z);continue;}foreach(var pair in enemies)if(pair.Key.Alive&&ZoneContains(zone,pair.Key.Position)){BondEnemyState state=pair.Value;if(zone.Rule=="ice-patch"){state.Chill=Mathf.Min(BondTuning.ChillStacks,state.Chill+1);if(state.Chill>=BondTuning.ChillStacks&&state.FrozenUntil<=time){state.FrozenUntil=time+BondTuning.FreezeSeconds;state.FrozenHitReady=true;}}if(zone.Rule=="tide-pool"){state.SoakedUntil=time+BondTuning.SoakSeconds;pair.Key.Position=Vector2.MoveTowards(pair.Key.Position,zone.Position,BondTuning.GravityPull);}if(zone.Rule=="rot-cloud")AddPoison(pair.Key,zone.Source,Weapon(zone.Source),1,true);if(zone.Rule=="lane-cyclone"){pair.Key.Position=Vector2.MoveTowards(pair.Key.Position,zone.End,BondTuning.GravityPull);}if(zone.Rule=="after-hole"){pair.Key.Position=Vector2.MoveTowards(pair.Key.Position,zone.Position,BondTuning.GravityPull);Mass++;Damage(pair.Key,zone.Source,Weapon(zone.Source)*BondTuning.SingularityDamage,"after-hole");}if(zone.Rule=="spinning-blade")Damage(pair.Key,zone.Source,Weapon(zone.Source)*BondTuning.BladeSplash,"spinning-blade");}}}

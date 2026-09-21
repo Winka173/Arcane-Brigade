@@ -104,6 +104,7 @@ namespace ArcaneBrigade
             }
             ResetV3();
             ResetV5();
+            ResetV6();
             if (hero != null && Active("lantern-guild",6))for(int i=0;i<BondV5Tuning.WispCount;i++)Spawn(new BondSpawnRequest(BondSpawnKind.LampWisp,hero.Position,sourceId:i,damage:Weapon(bestFriend)));
         }
         public void RegisterEnemy(UnitState enemy)
@@ -181,7 +182,7 @@ namespace ArcaneBrigade
                 { state.FrozenUntil = time + BondTuning.FreezeSeconds; state.FrozenHitReady = true; Emit("freeze", enemy, BondTuning.FreezeSeconds); }
             }
             if (RuleApplies(attacker, "venom")) AddPoison(enemy, attacker, weapon, 1, false);
-            if (RuleApplies(attacker, "static-club") && EveryUnit("storm",attacker,BondTuning.StormEvery)) StormChain(enemy, attacker, weapon);
+            if (RuleApplies(attacker, "static-club") && EveryUnit("storm",attacker,LegacyCapstones?BondTuning.StormEvery:BondStepTuning.StormEvery)) StormChain(enemy, attacker, weapon);
             if (RuleApplies(attacker,"dusk") && !state.Marked && marked < (Active("dusk",4)?BondTuning.DuskMarks:BondV5Tuning.EarlyMarks)) Mark(enemy,attacker);
             CheckExecute(enemy, attacker);
             if (Member(attacker,"horn") && Every("horn", Interval("horn", BondTuning.HornEvery, BondTuning.HornFourEvery, BondTuning.HornSixEvery))) StunArea(enemy, BondTuning.HornStun, "horn", true);
@@ -273,7 +274,7 @@ namespace ArcaneBrigade
         {
             BondEnemyState state = State(enemy); if (state == null) return 1;
             if (state.FrozenUntil > time || state.StunnedUntil > time || state.RootedUntil>time) return 0;
-            return ZoneSpeedScale(enemy) * GravitySpeed(enemy) * (1 - state.Chill * BondTuning.ChillSlow) * (Active("venom", 8) && state.Poison > 0 && state.PoisonUntil > time ? 1 - BondTuning.PlagueSlow : 1);
+            return StepSlow * ZoneSpeedScale(enemy) * GravitySpeed(enemy) * (1 - state.Chill * BondTuning.ChillSlow) * (Active("venom", 8) && state.Poison > 0 && state.PoisonUntil > time ? 1 - BondTuning.PlagueSlow : 1);
         }
         public bool Frozen(UnitState enemy) => State(enemy) != null && State(enemy).FrozenUntil > time;
         public bool BlocksAction(UnitState enemy) => Frozen(enemy) || State(enemy) != null && State(enemy).StunnedUntil > time;
@@ -288,11 +289,11 @@ namespace ArcaneBrigade
                 if (Active("root")) Emit("root-stillness", hero, RegenBonus);
                 if (Active("lantern-guild")) Emit("lantern-stillness", hero, RangeBonus);
             }
-            TickV3(dt); TickV5(dt);
+            TickV3(dt); TickV5(dt); TickV6(dt);
             if (!Underdog) thunderHits = 0;
             if (!Active("gauntlet", 6) && time - lastGrit >= BondTuning.GritIdle) grit = 0;
             RefreshCounters();
-            if (Active("ember", 8) && !infernoUsed && Heat >= BondTuning.InfernoHeat)
+            if (LegacyCapstones && Active("ember", 8) && !infernoUsed && Heat >= BondTuning.InfernoHeat)
             { infernoUsed = true; infernoUntil = before + BondTuning.InfernoSeconds; if (hero != null) Emit("inferno", hero, BondTuning.InfernoMultiplier); }
             enemyTickBuffer.Clear(); foreach (var pair in enemies) enemyTickBuffer.Add(pair.Key);
             foreach (UnitState enemy in enemyTickBuffer)
@@ -323,9 +324,9 @@ namespace ArcaneBrigade
                 foreach (UnitState source in poisonBuffer) foreach (UnitState next in Nearby(source, BondTuning.BurstRadius))
                     AddPoison(next, State(source).PoisonSource, State(source).PoisonWeapon, 1, true);
             }
-            if (Active("frost", 8)) while (time >= blizzardAt)
+            if (LegacyCapstones && Active("frost", 8)) while (time >= blizzardAt)
             { blizzardAt += BondTuning.BlizzardPeriod; foreach (var pair in enemies) if (pair.Key.Alive && pair.Value.Chill >= BondV5Tuning.BlizzardChill) { pair.Value.Chill = BondTuning.ChillStacks; pair.Value.FrozenUntil = time + BondTuning.FreezeSeconds; pair.Value.FrozenHitReady = true; } if (hero != null) Emit("blizzard", hero); }
-            if (Active("static-club", 8)) while (time >= cloudAt)
+            if (LegacyCapstones && Active("static-club", 8)) while (time >= cloudAt)
             {
                 cloudAt += BondTuning.CloudPeriod; UnitState charged = null;
                 int mostCharge = -1;

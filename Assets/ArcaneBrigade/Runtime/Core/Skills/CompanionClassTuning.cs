@@ -1,6 +1,7 @@
 namespace ArcaneBrigade
 {
-    // Design sections 0 and 1: authored roster classes determine bars and defenses.
+    // Design sections 0 and 1: authored roster classes determine bars and defenses; every house holds every class
+    // (Docs/Bond_Steps_Proposal_2026-10-28.md section 6).
     public static class CompanionClassTuning
     {
         public const float ShooterBar = 6, StrikerBar = 7, SupportBar = 8, ControllerBar = 9, GuardBar = 10, SummonerBar = 12;
@@ -11,19 +12,13 @@ namespace ArcaneBrigade
                 case "TeapotPilgrim":
                 case "HoodWisp":
                 case "ShellPostman":
-                case "ThimbleMoth":
                 case "ReelOwl":
                 case "LensOwl":
-                case "EndlessIndex":
                 case "ShovelPenguin":
                 case "RainHeron":
-                case "RaincoatFrog":
-                case "LighthouseWhale":
                 case "KiteDragon":
                 case "StormKitten":
-                case "VoltEel":
                 case "ShantySeaLion":
-                case "PinnedBeetle":
                 case "MoonJelly":
                 case "StarSock":
                 case "DreamCompass":
@@ -36,30 +31,29 @@ namespace ArcaneBrigade
                 case "CourtHerald":
                 case "NewtonApple":
                 case "SatelliteBee":
+                case "BoneXylophone":
+                case "TeaDragon":
                     role = CompanionRole.Shooter; return true;
                 case "CandleSnail":
                 case "KettleBat":
                 case "AnchorSnail":
                 case "CoilKettle":
-                case "IronLocomotive":
                 case "SundaeGolem":
-                case "FossilArmadillo":
-                case "PillowOracle":
                 case "MushroomLibrarian":
                 case "TinTick":
-                case "SpringDuck":
                 case "IceCreamOwl":
-                case "SeedHedgehog":
-                case "OrbitMoth":
                 case "BubbleKoi":
                 case "CrayonGremlin":
                 case "VelvetEnchantress":
                 case "PaperDevil":
                 case "MonsterMarble":
-                case "WateringSnail":
                 case "BagpipeOctopus":
                 case "SinkholeWorm":
                 case "PianoCrocodile":
+                case "EndlessIndex":
+                case "ScarecrowCrow":
+                case "VoltEel":
+                case "SailSquid":
                     role = CompanionRole.Controller; return true;
                 case "MailboxImp":
                 case "BookmarkGolem":
@@ -76,18 +70,18 @@ namespace ArcaneBrigade
                 case "SecretPatchBear":
                 case "PaperInventor":
                 case "LittleSprout":
-                case "SaddleMoth":
                 case "NurseHen":
                 case "PhoenixChick":
                 case "DandelionPuff":
-                case "TotemPole":
                 case "PlasterPanda":
                 case "Metronome":
                 case "HarpSwan":
+                case "ThimbleMoth":
+                case "SpringDuck":
+                case "WateringSnail":
                     role = CompanionRole.Support; return true;
                 case "BreadCrab":
                 case "FridgeWisp":
-                case "SailSquid":
                 case "SaffronMechanist":
                 case "VelvetChampion":
                 case "BalloonMallet":
@@ -104,25 +98,29 @@ namespace ArcaneBrigade
                 case "QuiltWalrus":
                 case "AnvilOx":
                 case "BowlingSloth":
+                case "LighthouseWhale":
+                case "PillowOracle":
+                case "FossilArmadillo":
+                case "RaincoatFrog":
+                case "SeedHedgehog":
+                case "BrassAcorn":
                     role = CompanionRole.Guard; return true;
                 case "PearMoth":
                 case "MaskPepper":
                 case "RainbowTailor":
                 case "SecretPaperBird":
                 case "BakerMouse":
-                case "TeaDragon":
                 case "StaticFerret":
                 case "JellySwordsman":
-                case "BrassAcorn":
                 case "SockCyclops":
                 case "RibbonSpider":
                 case "CarouselPony":
                 case "LampGoat":
                 case "TopBeetle":
                 case "PumpkinReaper":
-                case "BoneXylophone":
-                case "ScarecrowCrow":
                 case "CymbalMonkey":
+                case "SaddleMoth":
+                case "IronLocomotive":
                     role = CompanionRole.Striker; return true;
                 case "BobaTadpole":
                 case "PaperPlanePigeon":
@@ -133,6 +131,9 @@ namespace ArcaneBrigade
                 case "SpecimenSlime":
                 case "PlanetHamster":
                 case "ChoirCanary":
+                case "PinnedBeetle":
+                case "TotemPole":
+                case "OrbitMoth":
                     role = CompanionRole.Summoner; return true;
                 default: role = CompanionRole.Striker; return false;
             }

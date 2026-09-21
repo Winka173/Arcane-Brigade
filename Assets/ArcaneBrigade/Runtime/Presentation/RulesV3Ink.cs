@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     /// requests describe. Requirements: every effect is code ink in its bond's element look; enemy danger is a SOLID filled
     /// area with a warning that lasts exactly its wind-up; friendly areas are a soft filled wash closed by an inked rim; a fallen
     /// friend shows how long until it stands up; bursts are rate-limited so 100+ enemies stay cheap.</summary>
-    public sealed class RulesV3Ink : MonoBehaviour
+    public sealed partial class RulesV3Ink : MonoBehaviour
     {
         private enum AreaShape { Disc, Ring, Line, Cone, Arena }
         private struct Area { public AreaShape Shape; public bool Hostile, Gloom, HasMotif, Landed; public InkToken Motif; public Vector2 A, B; public float R, Born, Warn, Life; public ElementLook Look; public int Seed; }
@@ -405,9 +405,9 @@ namespace ArcaneBrigade
             // package runtimes are replaced on every start: follow them
             if (sim.Bonds != boundBonds)
             {
-                if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; }
-                boundBonds = sim.Bonds;
-                if (boundBonds != null) { boundBonds.RuleTriggered += OnBondRule; boundBonds.DamageRequested += OnBondDamage; boundBonds.StrengthStolen += OnStolen; boundBonds.EmbersCreated += OnEmbers; }
+                if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; boundBonds.MomentRequested -= OnMoment; }
+                boundBonds = sim.Bonds; weathers.Clear();
+                if (boundBonds != null) { boundBonds.RuleTriggered += OnBondRule; boundBonds.DamageRequested += OnBondDamage; boundBonds.StrengthStolen += OnStolen; boundBonds.EmbersCreated += OnEmbers; boundBonds.MomentRequested += OnMoment; }
             }
             if (sim.SkillsV3 != boundSkills)
             {
@@ -433,7 +433,7 @@ namespace ArcaneBrigade
         {
             if (CombatFeedback.ElementTint == (System.Func<CombatEvent, Color?>)ElementColour) { CombatFeedback.ElementTint = null; CombatFeedback.ElementTop = null; CombatFeedback.ElementShape = null; CombatFeedback.ElementInk = null; }
             if (boundSimulation != null) { boundSimulation.RulesV3EntityChanged -= OnEntity; boundSimulation.RulesV3SupportApplied -= OnSupport; boundSimulation.RulesV3HeroApplied -= OnHero; boundSimulation.RulesV3AllyActed -= OnAllyActed; }
-            if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; }
+            if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; boundBonds.MomentRequested -= OnMoment; }
             if (boundSkills != null) { boundSkills.CastRequested -= OnCast; boundSkills.FriendRequested -= OnFriend; boundSkills.ConstructRequested -= OnConstruct; boundSkills.EnemyEffectRequested -= OnEnemyEffect; }
             if (boundEnemies != null) { boundEnemies.DangerRequested -= OnDanger; boundEnemies.Requested -= OnEnemyRule; }
             if (boundMortality != null) { boundMortality.Fell -= OnFell; boundMortality.Rose -= OnRose; boundMortality.WaveLost -= OnWaveLost; boundMortality.ShieldBroken -= OnShieldBroken; }
@@ -777,6 +777,7 @@ namespace ArcaneBrigade
             if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); vfx.End(); light.Commit(); vfx.ClearParticles(); return; }
             float now = sim.Elapsed;
             for (int i = fields.Count - 1; i >= 0; i--) { if (now - fields[i].Born > fields[i].Life) { fields.RemoveAt(i); continue; } DrawField(fields[i], sim.Champion.Position, now); }
+            DrawSteps(sim, now);
             if (now < stillUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Silver.Body, .05f, .3f);
             if (now < realmUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Midnight.Glow, .04f, .26f);
             for (int i = walls.Count - 1; i >= 0; i--) { if (now > walls[i].Until) { walls.RemoveAt(i); continue; } DrawWall(walls[i], now); Walls++; }

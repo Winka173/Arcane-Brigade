@@ -79,17 +79,17 @@ namespace ArcaneBrigade.Editor
         {
             var checkedIds = new HashSet<string>();
             CheckClass(checkedIds, CompanionRole.Shooter, 6, 2, .8f,
-                "TeapotPilgrim HoodWisp ShellPostman ThimbleMoth ReelOwl LensOwl EndlessIndex ShovelPenguin RainHeron RaincoatFrog LighthouseWhale KiteDragon StormKitten VoltEel ShantySeaLion PinnedBeetle MoonJelly StarSock DreamCompass RainbowBell SecretDreamLamb ReturnCaptain YoyoSquirrel FirstSeed JackInTheBox CourtHerald NewtonApple SatelliteBee");
+                "TeapotPilgrim HoodWisp ShellPostman ReelOwl LensOwl ShovelPenguin RainHeron KiteDragon StormKitten ShantySeaLion MoonJelly StarSock DreamCompass RainbowBell SecretDreamLamb ReturnCaptain YoyoSquirrel FirstSeed JackInTheBox CourtHerald NewtonApple SatelliteBee BoneXylophone TeaDragon");
             CheckClass(checkedIds, CompanionRole.Controller, 9, 5, 1,
-                "CandleSnail KettleBat AnchorSnail CoilKettle IronLocomotive SundaeGolem FossilArmadillo PillowOracle MushroomLibrarian TinTick SpringDuck IceCreamOwl SeedHedgehog OrbitMoth BubbleKoi CrayonGremlin VelvetEnchantress PaperDevil MonsterMarble WateringSnail BagpipeOctopus SinkholeWorm PianoCrocodile");
+                "CandleSnail KettleBat AnchorSnail CoilKettle SundaeGolem MushroomLibrarian TinTick IceCreamOwl BubbleKoi CrayonGremlin VelvetEnchantress PaperDevil MonsterMarble BagpipeOctopus SinkholeWorm PianoCrocodile EndlessIndex ScarecrowCrow VoltEel SailSquid");
             CheckClass(checkedIds, CompanionRole.Support, 8, 3, .9f,
-                "MailboxImp BookmarkGolem SnowSpoon CometKite CoralTeacup DiceCrab SpindleWren ButtonBeetle StapleMole CitrusToad RadishJester EclipseEgg SecretPatchBear PaperInventor LittleSprout SaddleMoth NurseHen PhoenixChick DandelionPuff TotemPole PlasterPanda Metronome HarpSwan");
+                "MailboxImp BookmarkGolem SnowSpoon CometKite CoralTeacup DiceCrab SpindleWren ButtonBeetle StapleMole CitrusToad RadishJester EclipseEgg SecretPatchBear PaperInventor LittleSprout NurseHen PhoenixChick DandelionPuff PlasterPanda Metronome HarpSwan ThimbleMoth SpringDuck WateringSnail");
             CheckClass(checkedIds, CompanionRole.Guard, 10, 12, 1.6f,
-                "BreadCrab FridgeWisp SailSquid SaffronMechanist VelvetChampion BalloonMallet TeacupCricket RibbonOtter DoughForeman VioletRemnant GrandSprout BristleBall StitchedPangolin TowerRook LifebuoyHippo BrassLion QuiltWalrus AnvilOx BowlingSloth");
+                "BreadCrab FridgeWisp SaffronMechanist VelvetChampion BalloonMallet TeacupCricket RibbonOtter DoughForeman VioletRemnant GrandSprout BristleBall StitchedPangolin TowerRook LifebuoyHippo BrassLion QuiltWalrus AnvilOx BowlingSloth LighthouseWhale PillowOracle FossilArmadillo RaincoatFrog SeedHedgehog BrassAcorn");
             CheckClass(checkedIds, CompanionRole.Striker, 7, 6, 1.2f,
-                "PearMoth MaskPepper RainbowTailor SecretPaperBird BakerMouse TeaDragon StaticFerret JellySwordsman BrassAcorn SockCyclops RibbonSpider CarouselPony LampGoat TopBeetle PumpkinReaper BoneXylophone ScarecrowCrow CymbalMonkey");
+                "PearMoth MaskPepper RainbowTailor SecretPaperBird BakerMouse StaticFerret JellySwordsman SockCyclops RibbonSpider CarouselPony LampGoat TopBeetle PumpkinReaper CymbalMonkey SaddleMoth IronLocomotive");
             CheckClass(checkedIds, CompanionRole.Summoner, 12, 4, .9f,
-                "BobaTadpole PaperPlanePigeon BottleGull MirrorNewt ClockworkPiper LostCarousel SpecimenSlime PlanetHamster ChoirCanary");
+                "BobaTadpole PaperPlanePigeon BottleGull MirrorNewt ClockworkPiper LostCarousel SpecimenSlime PlanetHamster ChoirCanary PinnedBeetle TotemPole OrbitMoth");
             Require(checkedIds.Count == 120, "all roster classes checked");
             for (int i = 0; i < CompanionSkillTable.All.Length; i++)
                 Require(checkedIds.Contains(CompanionSkillTable.All[i].CompanionId), "skill has an authored class");

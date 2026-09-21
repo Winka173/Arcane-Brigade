@@ -26,7 +26,7 @@ namespace ArcaneBrigade.Editor
                 Near(FriendDefenseTuning.Armor("ClockworkPiper",1),4,"Summoner base armor");
                 Near(FriendDefenseTuning.Armor("NurseHen",1),3,"Support base armor");
                 Near(FriendDefenseTuning.Armor("TeapotPilgrim",1),2,"Shooter base armor");
-                Near(FriendDefenseTuning.Armor("BoneXylophone",1),6,"rebalanced Bone Xylophone is a Striker");
+                Near(FriendDefenseTuning.Armor("BoneXylophone",1),2,"Bone Xylophone shoots: every house holds every class");
                 Near(FriendDefenseTuning.Health("TowerRook",3),1.6f*1.8f,"class health times additive star health");
                 Near(FriendDefenseTuning.Armor("TowerRook",3),16,"two armor per extra star");
                 Near(FriendDefenseTuning.SharedItemPoints(1.5f),7,"half armor-item points round down");

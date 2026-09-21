@@ -5,8 +5,10 @@ namespace ArcaneBrigade.Editor
     {
         public static void Run()
         {
-            BondEngineChecks.Run();
-            BondV5RulesChecks.Run();
+            // the older suites test the rules the step ladder replaced, with those rules switched back on
+            BondRuntime.LegacyCapstones = true;
+            try { BondEngineChecks.Run(); BondV5RulesChecks.Run(); } finally { BondRuntime.LegacyCapstones = false; }
+            BondStepChecks.Run();
             MortalityChecks.Run();
             CompanionRulesV3Checks.Run();
             HeroRulesV3Checks.Run();

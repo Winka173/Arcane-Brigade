@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum BondSpawnKind { Phoenix, IceSoldier, Shade, LampWisp, Snack, Clover, Chef, Leviathan, WindBeast, Sprout, Treant, Colossus, Turret, Spirit, Orchestra, Dish, Sapling, GreatTree }
+    public enum BondSpawnKind { Phoenix, IceSoldier, Shade, LampWisp, Snack, Clover, Chef, Leviathan, WindBeast, Sprout, Treant, Colossus, Turret, Spirit, Orchestra, Dish, Sapling, GreatTree, RoyalGuard, ParadeFloat, Reaper, GrandChef }
     public readonly struct BondSpawnRequest
     {
         public readonly BondSpawnKind Kind;

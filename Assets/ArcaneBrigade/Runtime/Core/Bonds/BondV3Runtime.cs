@@ -99,10 +99,10 @@ namespace ArcaneBrigade
             if (Active("bulwark")) { foreach(UnitState friend in friends) if(Has(friend,"bulwark")) Request(BondSupportKind.Shield,friend,BondV5Tuning.BulwarkMemberShield,0,"bulwark-shield"); if(Active("bulwark",4)) TeamRequest(BondSupportKind.Shield,BondV5Tuning.BulwarkTeamShield,0,"bulwark-team-shield"); }
             if (Active("bastion")) TeamRequest(BondSupportKind.Shield, Active("bastion", 4) ? BondTuning.BastionHighShield : BondTuning.BastionShield, 0, "bastion-shield");
             if (Active("shield")) RenewMinorShields();
-            if (Active("hearth", 8) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.Chef, hero.Position, damage: Weapon(bestFriend)));
+            if (LegacyCapstones && Active("hearth", 8) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.Chef, hero.Position, damage: Weapon(bestFriend)));
 
             if (Active("windborne", 6) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.WindBeast, hero.Position, damage: Weapon(bestFriend)));
-            if (Active("orchard", 4) && hero != null)
+            if (LegacyCapstones && Active("orchard", 4) && hero != null)
                 for (int i = 0; i < BondTuning.SproutLimit; i++) Spawn(new BondSpawnRequest(i == 0 && Active("orchard",8)?BondSpawnKind.GreatTree:i == 0 && Active("orchard",6)?BondSpawnKind.Treant:PlantStage>=1?BondSpawnKind.Sapling:BondSpawnKind.Sprout, hero.Position + Vector2.right*i,sourceId:i, damage: Weapon(bestFriend)));
             if (Active("stone", 8) && hero != null) Spawn(new BondSpawnRequest(BondSpawnKind.Colossus, hero.Position, damage: Weapon(bestFriend)));
             if (Active("melody", 8) && hero != null) for (int i = 0; i < BondTuning.OrchestraCount; i++) Spawn(new BondSpawnRequest(BondSpawnKind.Orchestra, hero.Position, sourceId: i, damage: Weapon(bestFriend)));
