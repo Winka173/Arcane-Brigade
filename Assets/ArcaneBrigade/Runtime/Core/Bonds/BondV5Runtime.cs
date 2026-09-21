@@ -197,7 +197,7 @@ namespace ArcaneBrigade
         }
         public void OnBonusShotHit(UnitState friend){if(!Active("gear",4))return;if(++cogs>=BondV5Tuning.CogCap){cogs=0;TeamRequest(BondSupportKind.SkillFill,BondV5Tuning.CogFill,0,"cog-fill");}}
         public void OnDodge(UnitState friend){if(Active("cloud",4))AddZone("cloud-puff",friend,BondV5Tuning.CloudSeconds);}
-        public void OnShieldBroken(UnitState friend){if(!Active("shield",4))return;StunArea(friend,BondTuning.HornStun,"shield-burst",true);if(Active("shield",6))Area(friend,friend,Weapon(friend),"shield-burst-damage");}
+        public void OnShieldBroken(UnitState friend){OnBastionShieldBroken(friend);if(!Active("shield",4))return;StunArea(friend,BondTuning.HornStun,"shield-burst",true);if(Active("shield",6))Area(friend,friend,Weapon(friend),"shield-burst-damage");}
         public void OnReturningShotsCross(UnitState friend,Vector2 position){if(!Member(friend,"paper-wings")||!Active("paper-wings",6))return;UnitState cluster=DensestCluster();if(cluster!=null)Area(cluster,friend,Weapon(friend),"paper-crane");}
         public float TimeStopRemaining=>Mathf.Max(0,stopUntil-time);
         public float PageDamageScale(UnitState enemy)=>Active("archive",6)&&recordedSpecies.Contains(enemy.Definition.Id??"")?1+BondV5Tuning.PageRecordedBonus:1;

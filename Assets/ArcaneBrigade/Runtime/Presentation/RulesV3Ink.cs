@@ -1300,9 +1300,16 @@ namespace ArcaneBrigade
                     Sprite[] sheet = vfx.Library?.Get("SA_" + e.Rule);
                     Sprite art = sheet != null && sheet.Length >= 8 ? sheet[cell] : SummonArt(e.Rule);
                     float pop = age < .3f ? OutBackPop(age / .3f) : 1, fade = e.Duration < .35f ? Mathf.Clamp01(e.Duration / .35f) : 1;
-                    float squash = sheet != null ? 1 : acted < .12f ? .88f : acted < .28f ? 1.14f : 1;
-                    float bob = sheet != null ? 0 : Mathf.Sin(now * 3 + e.Id) * .08f;
-                    if (art != null) ink.Place(art, at + Vector2.up * (size * .5f * squash + bob), size * pop * (sheet != null ? 1 : 1 / Mathf.Sqrt(squash)), 0, new Color(1, 1, 1, fade), true);
+                    // the painted frames are carried by squash and stretch so the act reads with weight: it crouches on the
+                    // windup, stretches and lunges toward the crowd on the strike, overshoots and settles on the recovery,
+                    // breathes when idle and hops as it walks
+                    float squash = acted < .12f ? .86f : acted < .28f ? 1.16f : acted < .5f ? 1 - .06f * Mathf.Sin((acted - .28f) / .22f * Mathf.PI) : 1 + .025f * Mathf.Sin(now * 3 + e.Id);
+                    if (sheet != null) squash = 1 + (squash - 1) * .6f;
+                    float bob = moving ? Mathf.Abs(Mathf.Sin(now * 9 + e.Id)) * size * .08f : sheet != null ? 0 : Mathf.Sin(now * 3 + e.Id) * .08f;
+                    bool left = allyFacing.TryGetValue(e.Id, out bool faceLeft) && faceLeft;
+                    float lunge = acted >= .12f && acted < .28f ? size * .14f : acted < .5f && acted >= .28f ? size * .14f * (1 - (acted - .28f) / .22f) : 0;
+                    at += new Vector2(left ? -lunge : lunge, 0);
+                    if (art != null) ink.Place(art, at + Vector2.up * (size * .5f * squash + bob), size * pop, 0, new Color(1, 1, 1, fade), true, squash, left);
                     else
                     {
                         ink.Orbit(at + Vector2.up * .3f, size * .6f, now, TokenFor(look), p, 5, 1);
@@ -1344,10 +1351,11 @@ namespace ArcaneBrigade
         };
 
         /// <summary>A summon strikes the crowd it guards: a targeted strike in its element from it to the crowd's centre.</summary>
+        private readonly Dictionary<int, bool> allyFacing = new Dictionary<int, bool>();
         private void OnAllyActed(int id, Vector2 from, Vector2 crowd, string kind)
         {
-            allyActedAt[id] = Now;
-            if (allyActedAt.Count > 256) allyActedAt.Clear();
+            allyActedAt[id] = Now; allyFacing[id] = crowd.x < from.x;
+            if (allyActedAt.Count > 256) { allyActedAt.Clear(); allyFacing.Clear(); }
             Targeted(SummonLook(kind), from + Vector2.up * SummonSize(kind) * .5f, crowd, .12f);
         }
 

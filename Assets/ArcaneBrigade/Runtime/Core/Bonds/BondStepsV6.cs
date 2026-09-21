@@ -51,6 +51,7 @@ namespace ArcaneBrigade
         public const float DrumPeriod = 8, DrumRadius = 2.5f, DrumDamage = .8f, NoteRainPeriod = 1, NoteRadius = 1, NoteDamage = .6f;
         public const int DrumBeats = 3, NoteSpots = 3;
         public const float PlanetPeriod = 10, PlanetRadius = 3.5f, PlanetDamage = 3.5f;
+        public const float LetterPeriod = 10, LetterRadius = 1.6f, LetterDamage = 1, StillRootPeriod = 3, CloudPeriod = 8, CloudRadius = 2, CloudSeconds = 4, CloudSpeed = 1, CloudRain = .25f, MonolithReach = 2.5f, MonolithRadius = 1.8f, ShardDamage = .8f;
         public const float ZoneTick = .5f, KnockDistance = 1.5f, StunSeconds = 1, ClusterApart = 2.5f, Wave = 999;
     }
 
@@ -61,7 +62,7 @@ namespace ArcaneBrigade
         public static bool LegacyCapstones = false;
         public event Action<BondMomentRequest> MomentRequested;
 
-        private enum StepEffect { None, Burn, Freeze, Soak, Root, Poison, Stun, Execute, Knock }
+        private enum StepEffect { None, Burn, Freeze, Soak, Root, Poison, Stun, Execute, Knock, Slow }
         private struct PendingStrike { public string Rule; public Vector2 From, To; public float Radius, Damage, At; public StepEffect Effect; public bool Line, Chain; }
         private struct StepZone { public string Bond, Rule; public Vector2 Position; public float Radius, Until, NextTick, TickDamage, Pull, Speed, EndDamage; public StepEffect Effect, EndEffect; }
         private readonly List<PendingStrike> pendingStrikes = new List<PendingStrike>(BondTuning.RequestCapacity);
@@ -221,6 +222,7 @@ namespace ArcaneBrigade
                 case StepEffect.Poison: AddPoison(enemy, bestFriend ?? hero, StepWeapon, BondTuning.BurnStacks, true); break;
                 case StepEffect.Stun: state.StunnedUntil = Mathf.Max(state.StunnedUntil, time + BondStepTuning.StunSeconds); enemy.NextAttack = Mathf.Max(enemy.NextAttack, time + BondStepTuning.StunSeconds); break;
                 case StepEffect.Execute: if (enemy.Health < enemy.Definition.Health * BondStepTuning.ShadowPitExecute) Damage(enemy, bestFriend ?? hero, enemy.Health, "dusk-execute"); break;
+                case StepEffect.Slow: state.Chill = Mathf.Min(BondTuning.ChillStacks, state.Chill + 2); break;
                 case StepEffect.Knock: if (away.sqrMagnitude > 0) enemy.Position += away.normalized * BondStepTuning.KnockDistance; break;
             }
         }
@@ -232,6 +234,7 @@ namespace ArcaneBrigade
             TickZones(dt);
             if (LegacyCapstones) return;
             float w = StepWeapon; List<Vector2> spots;
+            TickMinors(w);
             // Storm: a bolt from the sky on the crowd, then a thunderstorm raining bolts that chain on
             if (Active("static-club", 6) && Due("thunderbolt", BondStepTuning.ThunderboltPeriod) && (spots = Spots(1)).Count > 0)
                 Strike("static-club", "storm-thunderbolt", 6, spots[0], BondStepTuning.ThunderboltRadius, w * BondStepTuning.ThunderboltDamage, StepEffect.Stun, .35f, true);
@@ -346,6 +349,36 @@ namespace ArcaneBrigade
             // Gravity: under heavy gravity a small planet falls
             if (Active("gravity", 8) && Due("planet", BondStepTuning.PlanetPeriod) && (spots = Spots(1)).Count > 0)
                 Strike("gravity", "gravity-orb", 8, spots[0], BondStepTuning.PlanetRadius, w * BondStepTuning.PlanetDamage, StepEffect.Knock, 1);
+        }
+
+        /// <summary>Minor bonds that used to give only hidden numbers now show on the field: rain of letters (Rain Script),
+        /// roots under the crowd while the hero stands still (Root), drifting clouds (Cloud), stomps among the crowd (Monolith).</summary>
+        private void TickMinors(float w)
+        {
+            List<Vector2> spots;
+            if (Active("rain-script") && Due("letters", BondStepTuning.LetterPeriod))
+            { spots = Spots(Active("rain-script", 4) ? 3 : 1); for (int i = 0; i < spots.Count; i++) Strike("rain-script", "rain-letters", 2, spots[i], BondStepTuning.LetterRadius, w * BondStepTuning.LetterDamage, StepEffect.Soak, .5f + i * .15f); }
+            if (Active("root") && still >= BondTuning.StillSeconds && Due("still-roots", BondStepTuning.StillRootPeriod) && (spots = Spots(1)).Count > 0)
+                Strike("root", "root-eruption", 2, spots[0], Active("root", 4) ? BondStepTuning.RootEruptionRadius * 1.5f : BondStepTuning.RootEruptionRadius, w * BondStepTuning.RootEruptionDamage * .6f, StepEffect.Root, .35f);
+            if (Active("cloud") && Due("cloud", BondStepTuning.CloudPeriod) && (spots = Spots(1)).Count > 0)
+                Zone("cloud", "cloud-drift", 2, spots[0], BondStepTuning.CloudRadius, BondStepTuning.CloudSeconds, Active("cloud", 4) ? w * BondStepTuning.CloudRain : 0, 0, StepEffect.Slow, 0, StepEffect.None, BondStepTuning.CloudSpeed);
+            if (Active("monolith") && Due("monolith", BondStepTuning.StompPeriod * 1.6f))
+                foreach (UnitState friend in friends)
+                {
+                    if (!friend.Alive || !Has(friend, "monolith")) continue;
+                    List<UnitState> near = Nearby(friend, BondStepTuning.MonolithReach);
+                    if (near.Count < 3) continue;
+                    Strike("monolith", "stone-monolith-stomp", 2, near[0].Position, BondStepTuning.MonolithRadius, Weapon(friend) * BondStepTuning.StompDamage * .6f, StepEffect.Stun, .25f);
+                    if (Active("monolith", 4)) Zone("monolith", "stone-monolith-pull", 4, near[0].Position, BondStepTuning.MonolithRadius, 1, 0, BondTuning.GravityPull, StepEffect.None, 0, StepEffect.None);
+                }
+        }
+
+        /// <summary>A Bastion shield that breaks throws its shards at the crowds.</summary>
+        public void OnBastionShieldBroken(UnitState friend)
+        {
+            if (LegacyCapstones || friend == null || !Active("bastion")) return;
+            List<Vector2> spots = Spots(Active("bastion", 4) ? 6 : 3);
+            for (int i = 0; i < spots.Count; i++) Strike("bastion", "bastion-shield-shard", 2, spots[i], .8f, Weapon(friend) * BondStepTuning.ShardDamage, StepEffect.None, .3f + i * .06f, false, friend.Position);
         }
 
         private void AllCast(string bond, string rule)
