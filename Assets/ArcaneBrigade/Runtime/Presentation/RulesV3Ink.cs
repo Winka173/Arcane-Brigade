@@ -92,6 +92,9 @@ namespace ArcaneBrigade
         private void Targeted(ElementLook look, Vector2 from, Vector2 to, float delay = 0)
         {
             if ((to - from).sqrMagnitude < .04f) { Blast(look, to, .5f, delay); return; }
+            // only lightning strikes as a bolt; every other element flies there as its own piece (an ember, an ice shard,
+            // a leaf, a note) on an arc, so fire and frost never look like chain lightning
+            if (look != ElementLook.Storm) { Fly(look, from, to, delay); return; }
             float at = Now + delay;
             HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Line, Position = from + Vector2.up * .3f, End = to + Vector2.up * .3f,
                 Direction = (to - from).normalized, Width = .35f, Created = at, At = at, Until = at + .5f, Seed = ++seed }, HeroIdentityVisual.GuestStyle(look));
@@ -202,7 +205,7 @@ namespace ArcaneBrigade
 
 
         /// <summary>Basic attacks draw nothing of their own under the rules v3 (only skills, traits and chains do).</summary>
-        public void OnCombat(CombatEvent e) { }
+        public void OnCombat(CombatEvent e) => OnMeleeHit(e);
 
         /// <summary>Our ordinary shots under the rules v3 fly as the shooter's own painted token in its element's hero palette,
         /// the way the hero's identity bolts do (HeroIdentityVisual.Missile), never as an old bullet painting.</summary>

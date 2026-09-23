@@ -80,11 +80,72 @@ namespace ArcaneBrigade
             }
         }
 
+        private struct Flight { public Vector2 From, To; public float Born, Time; public ElementLook Look; public int Seed; }
+        private readonly List<Flight> flights = new List<Flight>();
+
+        /// <summary>A targeted strike of any element but lightning: the element's piece flies from its source to the target on
+        /// a short arc, spinning, with a soft glow trail, landing just as its blast goes off.</summary>
+        private void Fly(ElementLook look, Vector2 from, Vector2 to, float delay)
+        {
+            if (flights.Count >= 64) flights.RemoveAt(0);
+            float distance = (to - from).magnitude;
+            flights.Add(new Flight { From = from, To = to, Born = Now + delay, Time = Mathf.Clamp(distance / 14f, .14f, .5f), Look = look, Seed = ++seed });
+        }
+
+        private void DrawFlights(float now)
+        {
+            for (int i = flights.Count - 1; i >= 0; i--)
+            {
+                Flight f = flights[i]; float t = (now - f.Born) / f.Time;
+                if (t > 1) { flights.RemoveAt(i); continue; }
+                if (t < 0) continue;
+                float lift = Mathf.Min(2.2f, (f.To - f.From).magnitude * .22f);
+                Vector2 Point(float k) => Vector2.Lerp(f.From, f.To, k) + Vector2.up * (4 * k * (1 - k) * lift + .3f);
+                Vector2 at = Point(t);
+                Color c = NumberColour(f.Look);
+                for (int k = 1; k <= 4; k++) { float back = Mathf.Max(0, t - k * .07f); light.Sector(Point(back), .28f - k * .04f, 0, 360, Faded(c, .32f - k * .06f), Faded(c, 0)); }
+                light.Sector(at, .42f, 0, 360, Faded(c, .45f), Faded(c, 0));
+                ink.Token(TokenFor(f.Look), PaletteFor(f.Look), at, .5f, now * 540 + f.Seed * 37, 1);
+            }
+        }
+
+        private struct Slash { public Vector2 At; public float Angle, Reach, Born; public ElementLook Look; }
+        private readonly List<Slash> slashes = new List<Slash>();
+
+        /// <summary>A melee hit by our side leaves a glowing swing trail in the striker's element across the enemy it struck.</summary>
+        private void OnMeleeHit(CombatEvent e)
+        {
+            if (e.Kind != CombatEventKind.Hit || e.Weapon == null || e.Weapon.Kind != WeaponKind.Melee || slashes.Count >= 40 || boundSimulation == null) return;
+            UnitState source = boundSimulation.UnitForPresentation(e.Cause.SourceUnitId);
+            if (source == null || source.Faction == Faction.Enemy) return;
+            ElementLook look = source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : ElementInk.For(source.Definition.Id);
+            if (look == ElementLook.None) look = ElementLook.Gold;
+            Vector2 dir = e.Position - source.Position; if (dir.sqrMagnitude < .0001f) dir = e.Direction.sqrMagnitude > 0 ? e.Direction : Vector2.right;
+            slashes.Add(new Slash { At = source.Position + Vector2.up * .3f, Angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Reach = Mathf.Clamp(dir.magnitude + .35f, .8f, 2.4f), Born = Now, Look = look });
+        }
+
+        /// <summary>Each swing trail sweeps through its arc in a tenth of a second and fades: a bright edge in the element's colour.</summary>
+        private void DrawSlashes(float now)
+        {
+            for (int i = slashes.Count - 1; i >= 0; i--)
+            {
+                Slash s = slashes[i]; float age = now - s.Born;
+                if (age > .28f || age < -.1f) { slashes.RemoveAt(i); continue; }
+                float sweep = Mathf.Clamp01(age / .1f), fade = 1 - Mathf.Clamp01((age - .1f) / .18f);
+                Color c = NumberColour(s.Look);
+                float from = s.Angle + 55, to = s.Angle + 55 - 110 * sweep;
+                light.Sector(s.At, s.Reach, Mathf.Min(from, to), Mathf.Max(from, to), Faded(c, 0), Faded(c, .55f * fade), s.Reach * .62f);
+                light.Sector(s.At, s.Reach * .97f, Mathf.Min(from, to), Mathf.Max(from, to), Faded(Color.white, 0), Faded(Color.Lerp(c, Color.white, .7f), .6f * fade), s.Reach * .86f);
+            }
+        }
+
         /// <summary>Weather over the arena for the wave, lasting zones bursting where they stand, and the lighthouse beam.</summary>
         private void DrawSteps(CombatSimulation sim, float now)
         {
             Vector2 centre = sim.Champion.Position;
             DrawShotGlow(sim, now);
+            DrawSlashes(now);
+            DrawFlights(now);
             for (int i = weathers.Count - 1; i >= 0; i--)
             {
                 StepWeather w = weathers[i];
