@@ -481,6 +481,11 @@ namespace ArcaneBrigade
             }
             UnitState caster = boundSimulation?.UnitForPresentation(c.SourceId);
             if (caster != null && caster.Alive) { Sound(look, "cast", caster.Position); UnitVisual.Live(caster.Id)?.PlayCast(.55f); }
+            // a skill that helps the team (a buff, coins, a protection) sends its piece flying to the hero instead of a zone
+            // on our side: no friendly target zones are drawn
+            if (caster != null && boundSimulation?.Champion != null && CompanionSkillTable.TryGet(caster.Definition.Id, out CompanionSkillDefinition helper)
+                && (helper.Mechanic == SkillMechanic.Team || helper.Mechanic == SkillMechanic.Economy || helper.Mechanic == SkillMechanic.Protection))
+            { Targeted(look, caster.Position, boundSimulation.Champion.Position, Mathf.Max(0, c.WarningTime)); return; }
             Vector2 source = caster != null ? caster.Position : c.Position;
             float warn = Mathf.Max(0, c.WarningTime);
             int strikes = c.Duration > 1.5f ? Mathf.Min(5, Mathf.FloorToInt(c.Duration)) : 1; // a lasting skill bursts again each second
