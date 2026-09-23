@@ -241,7 +241,7 @@ namespace ArcaneBrigade
         public void OnKill(UnitState enemy)
         {
             BondEnemyState state = State(enemy); if (state == null || state.DeathHandled) return;
-            state.DeathHandled = true; if(state.Marked)DuskFallen++; kills++; KillV3(enemy);
+            state.DeathHandled = true; if(state.Marked)DuskFallen++; kills++; KillV3(enemy); KillV6(enemy);
 
             if (Active("frost", 6) && state.FrozenUntil > time && soldiers < BondTuning.IceSoldierLimit)
             { soldiers++; Spawn(new BondSpawnRequest(BondSpawnKind.IceSoldier, enemy.Position, enemy.Id, BondTuning.IceSoldierSeconds, Weapon(bestFriend))); }

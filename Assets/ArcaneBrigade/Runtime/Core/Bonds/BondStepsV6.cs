@@ -52,6 +52,8 @@ namespace ArcaneBrigade
         public const int DrumBeats = 3, NoteSpots = 3;
         public const float PlanetPeriod = 10, PlanetRadius = 3.5f, PlanetDamage = 3.5f;
         public const float LetterPeriod = 10, LetterRadius = 1.6f, LetterDamage = 1, StillRootPeriod = 3, CloudPeriod = 8, CloudRadius = 2, CloudSeconds = 4, CloudSpeed = 1, CloudRain = .25f, MonolithReach = 2.5f, MonolithRadius = 1.8f, ShardDamage = .8f;
+        public const float HatReach = 6, HatWidth = .6f, HatDamage = .8f, HatSpread = 20, CloverDamage = 3, StatueSeconds = 3, StatueRadius = 1.8f, StatueDamage = 1.5f, MendPeriod = 6, MendHeal = .02f, MendDamage = .6f, SpikeReach = 4, SpikeWidth = .5f, SpikeDamage2 = .6f;
+        public const int HatEvery = 6, Statues = 3;
         public const float ZoneTick = .5f, KnockDistance = 1.5f, StunSeconds = 1, ClusterApart = 2.5f, Wave = 999;
     }
 
@@ -93,6 +95,7 @@ namespace ArcaneBrigade
         {
             if (LegacyCapstones || attacker == null || attacker.Faction != Faction.Companion && attacker.Faction != Faction.Champion) return;
             float w = Weapon(attacker);
+            Hats(attacker, enemy);
             if (RuleApplies(attacker, "orchard") && EveryOwn("vine", attacker, BondStepTuning.VineEvery) && Fresh("vine", enemy))
             { BondEnemyState state = State(enemy); if (state != null) state.RootedUntil = Mathf.Max(state.RootedUntil, time + BondStepTuning.VineSeconds); Strike("orchard", "garden-vine", 2, enemy.Position, .6f, 0, StepEffect.Root, 0); }
             if (RuleApplies(attacker, "regal") && EveryOwn("seal", attacker, BondStepTuning.SealEvery) && Fresh("seal", enemy))
@@ -121,7 +124,7 @@ namespace ArcaneBrigade
 
         private void ResetV6()
         {
-            pendingStrikes.Clear(); stepZones.Clear(); stepTimers.Clear(); ownHits.Clear(); enemyEffectAt.Clear(); fortressUntil = 0; lighthouseAngle = 0;
+            pendingStrikes.Clear(); stepZones.Clear(); stepTimers.Clear(); ownHits.Clear(); enemyEffectAt.Clear(); statues = 0; fortressUntil = 0; lighthouseAngle = 0;
             if (LegacyCapstones || hero == null) return;
             float weapon = StepWeapon;
             void Summon(BondSpawnKind kind, int count) { for (int i = 0; i < count; i++) Spawn(new BondSpawnRequest(kind, hero.Position + new Vector2(i - (count - 1) * .5f, -1), sourceId: i, damage: weapon)); }
@@ -356,6 +359,7 @@ namespace ArcaneBrigade
         private void TickMinors(float w)
         {
             List<Vector2> spots;
+            Mend();
             if (Active("rain-script") && Due("letters", BondStepTuning.LetterPeriod))
             { spots = Spots(Active("rain-script", 4) ? 3 : 1); for (int i = 0; i < spots.Count; i++) Strike("rain-script", "rain-letters", 2, spots[i], BondStepTuning.LetterRadius, w * BondStepTuning.LetterDamage, StepEffect.Soak, .5f + i * .15f); }
             if (Active("root") && still >= BondTuning.StillSeconds && Due("still-roots", BondStepTuning.StillRootPeriod) && (spots = Spots(1)).Count > 0)
@@ -371,6 +375,63 @@ namespace ArcaneBrigade
                     Strike("monolith", "stone-monolith-stomp", 2, near[0].Position, BondStepTuning.MonolithRadius, Weapon(friend) * BondStepTuning.StompDamage * .6f, StepEffect.Stun, .25f);
                     if (Active("monolith", 4)) Zone("monolith", "stone-monolith-pull", 4, near[0].Position, BondStepTuning.MonolithRadius, 1, 0, BondTuning.GravityPull, StepEffect.None, 0, StepEffect.None);
                 }
+        }
+
+        private int statues;
+        /// <summary>Hats: a member's 6th hit throws its hat spinning through the line of enemies; two hats at step 4; they fly
+        /// back at step 6.</summary>
+        private void Hats(UnitState attacker, UnitState enemy)
+        {
+            if (!Member(attacker, "hat") || !EveryOwn("hat", attacker, BondStepTuning.HatEvery)) return;
+            Vector2 aim = (enemy.Position - attacker.Position).sqrMagnitude > .01f ? (enemy.Position - attacker.Position).normalized : Vector2.right;
+            int hats = Active("hat", 4) ? 2 : 1;
+            for (int i = 0; i < hats; i++)
+            {
+                Vector2 dir = Quaternion.Euler(0, 0, hats == 1 ? 0 : (i == 0 ? -BondStepTuning.HatSpread : BondStepTuning.HatSpread)) * aim;
+                Vector2 end = attacker.Position + dir * BondStepTuning.HatReach;
+                LineStrike("hat", "hat-disc", 2, attacker.Position, end, BondStepTuning.HatWidth, Weapon(attacker) * BondStepTuning.HatDamage, StepEffect.None, .15f);
+                if (Active("hat", 6)) LineStrike("hat", "hat-disc", 6, end, attacker.Position, BondStepTuning.HatWidth, Weapon(attacker) * BondStepTuning.HatDamage, StepEffect.None, .55f);
+            }
+        }
+
+        /// <summary>A picked clover sends a lucky strike (a certain critical) onto the crowd; three at step 4.</summary>
+        private void LuckyClover()
+        {
+            if (LegacyCapstones || hero == null || !Active("clover")) return;
+            List<Vector2> spots = Spots(Active("clover", 4) ? 3 : 1);
+            for (int i = 0; i < spots.Count; i++) Strike("clover", "lucky-clover", 2, spots[i], 1.2f, StepWeapon * BondStepTuning.CloverDamage, StepEffect.None, .35f + i * .12f, false, hero.Position);
+        }
+
+        /// <summary>Exhibit Hall: the first enemies to fall each wave stand as statues that burst after a moment; at step 4 they draw the crowd in first.</summary>
+        private void KillV6(UnitState enemy)
+        {
+            if (LegacyCapstones || !Active("exhibit-hall") || statues >= BondStepTuning.Statues) return;
+            statues++;
+            Zone("exhibit-hall", "exhibit-statue", 2, enemy.Position, BondStepTuning.StatueRadius, BondStepTuning.StatueSeconds, 0, Active("exhibit-hall", 4) ? BondTuning.GravityPull : 0, StepEffect.None, StepWeapon * BondStepTuning.StatueDamage, StepEffect.Stun);
+        }
+
+        /// <summary>Spiky Shell: a member that is struck shoots thorns back through its attacker and the crowd behind it.</summary>
+        private void SpikesV6(UnitState friend, UnitState attacker)
+        {
+            if (LegacyCapstones || friend == null || attacker == null || !Active("spiky-shell") || !(Has(friend, "spiky-shell") || Active("spiky-shell", 4)) || !Fresh("spikes", friend)) return;
+            Vector2 dir = (attacker.Position - friend.Position).sqrMagnitude > .01f ? (attacker.Position - friend.Position).normalized : Vector2.right;
+            int volleys = Active("spiky-shell", 4) ? 2 : 1;
+            for (int i = 0; i < volleys; i++)
+                LineStrike("spiky-shell", "thorn-spikes", 2, friend.Position, attacker.Position + dir * BondStepTuning.SpikeReach, BondStepTuning.SpikeWidth, Weapon(friend) * BondStepTuning.SpikeDamage2, StepEffect.None, .1f + i * .2f);
+        }
+
+        /// <summary>Mend: a member sends a green mending beam to the hero; at step 4 the beam carries on into the crowd.</summary>
+        private void Mend()
+        {
+            if (!Active("mend") || !Due("mend", BondStepTuning.MendPeriod)) return;
+            foreach (UnitState friend in friends)
+            {
+                if (!friend.Alive || !Has(friend, "mend")) continue;
+                Moment("mend", "vine-mend", 2, BondMomentKind.Line, friend.Position, hero.Position, .4f, 0);
+                Request(BondSupportKind.Heal, hero, BondStepTuning.MendHeal, 0, "mend-beam");
+                List<Vector2> spots;
+                if (Active("mend", 4) && (spots = Spots(1)).Count > 0) LineStrike("mend", "vine-mend", 4, hero.Position, spots[0], .6f, Weapon(friend) * BondStepTuning.MendDamage, StepEffect.None, .35f);
+            }
         }
 
         /// <summary>A Bastion shield that breaks throws its shards at the crowds.</summary>

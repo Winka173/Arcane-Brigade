@@ -295,6 +295,7 @@ namespace ArcaneBrigade
             if (attacker == null) return;
             float reflect = (Active("spiky-shell") ? (Active("spiky-shell", 4) ? BondTuning.SpikyHighReflect : BondTuning.SpikyReflect) : 0) + (Active("stone") && (friend==hero || Has(friend,"stone") || Active("stone",4)) ? BondTuning.StoneReflect : 0);
             if (reflect > 0) Area(attacker, friend, amount * reflect, "thorn-reflect");
+            SpikesV6(friend, attacker);
         }
         public void OnCollision(UnitState knocked, UnitState other)
         { if (Active("stone", 4) && knocked != null && other != null && other.Faction == Faction.Enemy) { Weight++; BondEnemyState state=State(other); if(state!=null)state.Collisions++; Area(other, bestFriend, Weapon(bestFriend) * BondTuning.CollisionMultiplier, "stone-collision"); } }

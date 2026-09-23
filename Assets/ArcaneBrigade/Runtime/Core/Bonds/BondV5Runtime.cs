@@ -110,6 +110,7 @@ namespace ArcaneBrigade
         private void AddWarmth(int amount){Warmth=Mathf.Min(Active("hearth",8)?BondV5Tuning.HighWarmthCap:BondV5Tuning.WarmthCap,Warmth+amount);Emit("warmth",hero,Warmth);}
         public void OnPickup(BondSpawnKind kind)
         {
+            if(kind==BondSpawnKind.Clover)LuckyClover();
             if(kind==BondSpawnKind.Dish&&Active("hearth",4))AddWarmth(BondV5Tuning.DishWarmth);
             if(kind==BondSpawnKind.Snack&&Active("sweet-tooth")){sugar=Mathf.Min(BondV5Tuning.SugarCap,sugar+1);if(Active("sweet-tooth",4)&&sugar==BondV5Tuning.SugarCap){sugar=0;sugarUntil=time+BondV5Tuning.SugarSeconds;Emit("sugar-rush",hero,BondV5Tuning.SugarSeconds);if(Active("sweet-tooth",6))foreach(UnitState friend in friends)if(friend.Alive&&Has(friend,"sweet-tooth")){UnitState cluster=DensestCluster();if(cluster!=null)Area(cluster,friend,Weapon(friend),"candy-volley");Request(BondSupportKind.Coin,friend,1,0,"sugar-coin");}}}
             if(kind==BondSpawnKind.Clover&&Active("clover",4)&&++heldClovers>=BondV5Tuning.CloversBloom){heldClovers=0;runProgress.PendingFourLeaves++;Request(BondSupportKind.Choice,hero,1,0,"four-leaf-rarity");}
