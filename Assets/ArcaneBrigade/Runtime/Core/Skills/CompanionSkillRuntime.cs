@@ -196,7 +196,8 @@ namespace ArcaneBrigade
             if(direction.sqrMagnitude<CompanionSkillTuning.Epsilon) direction=Vector2.right;
             Vector2 end=origin+direction.normalized*p.Length;
             if(skill.Mechanic==SkillMechanic.Line || skill.Mechanic==SkillMechanic.Dash || skill.Mechanic==SkillMechanic.Channel) center=origin;
-            if(p.Self || p.Shape==SkillShape.Ring || skill.Mechanic==SkillMechanic.Pull || (skill.Protection && skill.CompanionId!="AnvilOx")) center=origin;
+            // rings and pulls open on the crowd and draw it together there; nothing bursts outward from the friend itself
+            if(p.Self || (skill.Protection && skill.CompanionId!="AnvilOx")) center=origin;
             // a thread or ribbon is cast through the crowd and an orbit circles the crowd, never the friend or the hero: our skills
             // land on the enemies (requirement 28/10/2026)
             if(skill.Mechanic==SkillMechanic.Tether) { Vector2 crowd=Cluster(origin); center=origin; end=origin+((crowd-origin).sqrMagnitude>CompanionSkillTuning.Epsilon?(crowd-origin).normalized:direction)*p.Length; }
