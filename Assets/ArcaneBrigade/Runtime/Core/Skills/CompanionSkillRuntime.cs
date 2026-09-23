@@ -158,11 +158,10 @@ namespace ArcaneBrigade
                 }
                 else
                 {
-                    if(action.Skill.Mechanic==SkillMechanic.Orbit || action.Skill.Mechanic==SkillMechanic.Transform || action.Skill.Mechanic==SkillMechanic.Tether)
+                    if(action.Skill.Mechanic==SkillMechanic.Transform)
                     {
                         Vector2 moved=action.Source.Position-action.SourcePosition;
                         action.Position+=moved; action.End+=moved; action.SourcePosition=action.Source.Position;
-                        if(action.Skill.Mechanic==SkillMechanic.Tether) action.End=hero.Position;
                     }
                     if(action.Skill.CompanionId=="StormKitten") action.Position=Vector2.MoveTowards(action.Position,Cluster(action.Position),action.Skill.Tuning.Growth);
                     bool previousPage=PageCopyContext;PageCopyContext=action.PageCopy;
@@ -197,8 +196,10 @@ namespace ArcaneBrigade
             if(direction.sqrMagnitude<CompanionSkillTuning.Epsilon) direction=Vector2.right;
             Vector2 end=origin+direction.normalized*p.Length;
             if(skill.Mechanic==SkillMechanic.Line || skill.Mechanic==SkillMechanic.Dash || skill.Mechanic==SkillMechanic.Channel) center=origin;
-            if(p.Self || skill.Mechanic==SkillMechanic.Orbit || p.Shape==SkillShape.Ring || skill.Mechanic==SkillMechanic.Pull || (skill.Protection && skill.CompanionId!="AnvilOx")) center=origin;
-            if(skill.Mechanic==SkillMechanic.Tether) { center=origin; end=hero.Position; }
+            if(p.Self || p.Shape==SkillShape.Ring || skill.Mechanic==SkillMechanic.Pull || (skill.Protection && skill.CompanionId!="AnvilOx")) center=origin;
+            // a thread or ribbon is cast through the crowd and an orbit circles the crowd, never the friend or the hero: our skills
+            // land on the enemies (requirement 28/10/2026)
+            if(skill.Mechanic==SkillMechanic.Tether) { Vector2 crowd=Cluster(origin); center=origin; end=origin+((crowd-origin).sqrMagnitude>CompanionSkillTuning.Epsilon?(crowd-origin).normalized:direction)*p.Length; }
             CastCount++;
             CastRequested?.Invoke(new SkillCastRequest(source.Id,skill.CompanionId,Shape(skill),center,end,p.Radius,p.Duration,p.Warning,strength));
             if(skill.Mechanic==SkillMechanic.Copy && skill.CompanionId=="EndlessIndex" && lastSkill!=null && lastSkill.Mechanic!=SkillMechanic.Copy)
