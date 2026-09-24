@@ -30,22 +30,22 @@ namespace ArcaneBrigade
                 case BondMomentKind.Line:
                 {
                     // a sweep along its line (a phoenix dive, a boulder, the leviathan, a pendulum): the strike, then blasts along it
-                    Targeted(look, m.From, m.To, m.Delay * .5f);
+                    Targeted(look, m.From, m.To, m.Delay * .5f, m.Rule);
                     float length = (m.To - m.From).magnitude; int n = Mathf.Clamp(Mathf.RoundToInt(length / 2.2f), 3, 6);
-                    for (int i = 0; i < n; i++) Blast(look, Vector2.Lerp(m.From, m.To, (i + .5f) / n), Mathf.Max(.7f, m.Radius), m.Delay + i * .06f);
+                    for (int i = 0; i < n; i++) Blast(look, Vector2.Lerp(m.From, m.To, (i + .5f) / n), Mathf.Max(.7f, m.Radius), m.Delay + i * .06f, rule: m.Rule);
                     Sound(look, "burst", (m.From + m.To) * .5f);
                     break;
                 }
                 case BondMomentKind.Zone:
-                    Blast(look, m.To, m.Radius, 0);
+                    Blast(look, m.To, m.Radius, 0, rule: m.Rule);
                     break;
                 default:
                 {
                     // a thrown event (a flask, a pie, a shell) flies from the hero; a sky event falls onto the spot
-                    if (FallsFromSky(m.Rule)) Targeted(look, m.To + new Vector2(-1.2f, 7.5f), m.To, Mathf.Max(0, m.Delay - .3f));
-                    else if ((m.From - m.To).sqrMagnitude > .25f) Targeted(look, m.From, m.To, Mathf.Max(0, m.Delay - .3f));
+                    if (FallsFromSky(m.Rule)) Targeted(look, m.To + new Vector2(-1.2f, 7.5f), m.To, Mathf.Max(0, m.Delay - .3f), m.Rule);
+                    else if ((m.From - m.To).sqrMagnitude > .25f) Targeted(look, m.From, m.To, Mathf.Max(0, m.Delay - .3f), m.Rule);
                     if (m.Step >= 8 && m.Radius >= 3) Finale(look, m.To);
-                    Blast(look, m.To, m.Radius, m.Delay);
+                    Blast(look, m.To, m.Radius, m.Delay, rule: m.Rule);
                     if (popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(look, "burst", m.To); }
                     break;
                 }
@@ -80,16 +80,16 @@ namespace ArcaneBrigade
             }
         }
 
-        private struct Flight { public Vector2 From, To; public float Born, Time; public ElementLook Look; public int Seed; }
+        private struct Flight { public Vector2 From, To; public float Born, Time; public ElementLook Look; public int Seed; public InkToken Token; }
         private readonly List<Flight> flights = new List<Flight>();
 
         /// <summary>A targeted strike of any element but lightning: the element's piece flies from its source to the target on
         /// a short arc, spinning, with a soft glow trail, landing just as its blast goes off.</summary>
-        private void Fly(ElementLook look, Vector2 from, Vector2 to, float delay)
+        private void Fly(ElementLook look, Vector2 from, Vector2 to, float delay, InkToken? token = null)
         {
             if (flights.Count >= 64) flights.RemoveAt(0);
             float distance = (to - from).magnitude;
-            flights.Add(new Flight { From = from, To = to, Born = Now + delay, Time = Mathf.Clamp(distance / 14f, .14f, .5f), Look = look, Seed = ++seed });
+            flights.Add(new Flight { From = from, To = to, Born = Now + delay, Time = Mathf.Clamp(distance / 14f, .14f, .5f), Look = look, Seed = ++seed, Token = token ?? TokenFor(look) });
         }
 
         private void DrawFlights(float now)
@@ -105,7 +105,7 @@ namespace ArcaneBrigade
                 Color c = NumberColour(f.Look);
                 for (int k = 1; k <= 4; k++) { float back = Mathf.Max(0, t - k * .07f); light.Sector(Point(back), .28f - k * .04f, 0, 360, Faded(c, .32f - k * .06f), Faded(c, 0)); }
                 light.Sector(at, .42f, 0, 360, Faded(c, .45f), Faded(c, 0));
-                ink.Token(TokenFor(f.Look), PaletteFor(f.Look), at, .5f, now * 540 + f.Seed * 37, 1);
+                ink.Token(f.Token, PaletteFor(f.Look), at, .5f, now * 540 + f.Seed * 37, 1);
             }
         }
 
@@ -161,7 +161,7 @@ namespace ArcaneBrigade
                 if (!bonds.StepZoneAt(i, out string rule, out Vector2 at, out float radius)) continue;
                 int key = rule.GetHashCode() ^ i;
                 if (zonePulse.TryGetValue(key, out float last) && now - last < .45f) continue;
-                zonePulse[key] = now; Blast(LookFor(rule), at, radius * .8f, 0, .05f);
+                zonePulse[key] = now; Blast(LookFor(rule), at, radius * .8f, 0, .05f, rule);
             }
             if (zonePulse.Count > 64) zonePulse.Clear();
             if (bonds.Active("lantern-guild", 8))

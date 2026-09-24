@@ -150,15 +150,6 @@ namespace ArcaneBrigade
             }
         }
 
-        // the bond moments each house shows in the clip
-        private static readonly Dictionary<string, string[]> Moments = new Dictionary<string, string[]>
-        {
-            { "Ember", new[] { "burst", "burst", "inferno" } }, { "Frost", new[] { "freeze", "shatter", "blizzard" } },
-            { "Storm", new[] { "discharge", "storm-cloud", "discharge" } }, { "Tide", new[] { "tide-splash", "riptide", "tide-splash" } },
-            { "Venom", new[] { "rot", "rot", "pandemic" } }, { "Starlight", new[] { "falling-star", "falling-star", "falling-star" } },
-            { "Stone", new[] { "horn-pile-up", "collision", "crack" } }, { "Archive", new[] { "rune", "rune", "species-recorded" } },
-        };
-
         /// <summary>The bond step counts a house shows (2, 4, 6, 8 for a major bond), from the bond's own steps.</summary>
         private static int[] StepCounts(string house)
         {
@@ -184,8 +175,8 @@ namespace ArcaneBrigade
         /// with the step named on screen, its friends casting their skills, and the step's own bond moment.</summary>
         private IEnumerator Showcase(RunCatalog catalog, RunStorage storage)
         {
-            string[] houses = (Arg("-houses") ?? "Ember,Frost,Storm,Tide,Venom,Starlight,Stone,Archive").Split(',');
-            const float perStep = 7f;
+            string[] houses = (Arg("-houses") ?? "Storm,Windborne,Ember,Hearth,Frost,Tide,Garden,Venom,Starlight,Dusk,Carnival,Court,Archive,Lantern,Stone,Clockwork,Bulwark,Spirit,Melody,Gravity").Split(',');
+            const float perStep = 8f;
             int crowd = int.TryParse(Arg("-crowd"), out int wantCrowd) ? wantCrowd : 36;
             int total = houses.Sum(h => StepCounts(h).Length);
             var recorder = gameObject.AddComponent<K7FramebufferRecorder>();
@@ -214,21 +205,7 @@ namespace ArcaneBrigade
                         float ang = i * 2.399f, dist = 2.5f + (i % 9) * .7f;
                         sim.AddExpandedPresentationFixture(kinds[i % kinds.Length], sim.Champion.Position + new Vector2(Mathf.Cos(ang) * dist, Mathf.Sin(ang) * dist * .7f), kinds[i % kinds.Length].Health * (i % 2 == 0 ? 150 : 8));
                     }
-                    yield return new WaitForSecondsRealtime(2.5f);   // the real fight: the step's bond fires on its own
-                    var friends = sim.Units.Where(u => u.Faction == Faction.Companion && u.Alive).Take(2).ToList();
-                    var foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).ToList();
-                    for (int i = 0; i < friends.Count && foes.Count > 0; i++)
-                    {
-                        UnitState c = friends[i], target = foes[(i * 7) % foes.Count];
-                        SkillShape shape = i == 0 ? SkillShape.Disc : SkillShape.Line;
-                        ink.OnCast(new SkillCastRequest(c.Id, c.Definition.Id, shape, target.Position, target.Position + new Vector2(3f, .4f), shape == SkillShape.Line ? .5f : 1.5f, 1f, 0, 1));
-                        yield return new WaitForSecondsRealtime(.5f);
-                    }
-                    // the step's own bond moment (the big ones from step 6)
-                    string[] moments = Moments.TryGetValue(house, out string[] m) ? m : new[] { "burst" };
-                    string rule = moments[Mathf.Min(moments.Length - 1, si * moments.Length / Mathf.Max(1, steps.Length))];
-                    foes = sim.Units.Where(u => u.Faction == Faction.Enemy && u.Alive).ToList();
-                    if (foes.Count > 0) ink.OnBondRule(new BondRuleEvent(rule, foes[UnityEngine.Random.Range(0, foes.Count)], 1));
+                    // only what the bond really does at this step is shown: no staged casts or bond moments
                     while (Time.realtimeSinceStartup - stepStart < perStep) yield return null;
                 }
             }

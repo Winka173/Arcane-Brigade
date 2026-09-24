@@ -54,6 +54,18 @@ namespace ArcaneBrigade.Editor
                     runtime.OnHit(team[0], target, 1, false);
                     Require(chains > 0 && chains <= BondStepTuning.StormStrongTargets, "a friend's own 5th hit chains through up to 6 enemies at step 4");
                 }
+                // no bond moment reuses another's animation: every rule has its own signature, shape and burst, a bond's
+                // rules never share a burst, and every moment the step ladder fires has its own look
+                var keys = new Dictionary<string, string>(); var bursts = new HashSet<string>();
+                foreach (var pair in RulesStepLooks.All)
+                {
+                    Require(!keys.TryGetValue(pair.Value.Look.Key, out string twin), pair.Key + " reuses the look of " + twin);
+                    keys[pair.Value.Look.Key] = pair.Key;
+                    Require(bursts.Add(pair.Value.Bond + "|" + pair.Value.Look.Burst), pair.Key + " repeats a burst inside " + pair.Value.Bond);
+                }
+                string ladder = System.IO.File.ReadAllText("Assets/ArcaneBrigade/Runtime/Core/Bonds/BondStepsV6.cs");
+                foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(ladder, @"(?:Strike|LineStrike|Zone)\(""[a-z-]+"", ""([a-z-]+)"""))
+                    Require(RulesStepLooks.All.ContainsKey(m.Groups[1].Value), "moment " + m.Groups[1].Value + " has no look of its own");
                 Debug.Log("BondStepChecks: PASS");
             }
             finally { UnityEngine.Object.DestroyImmediate(weapon); UnityEngine.Object.DestroyImmediate(friendDefinition); UnityEngine.Object.DestroyImmediate(enemyDefinition); }

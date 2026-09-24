@@ -348,7 +348,7 @@ namespace ArcaneBrigade
             if (Active("melody", 6) && Due("drum", BondStepTuning.DrumPeriod) && (spots = Spots(1)).Count > 0)
                 for (int i = 0; i < BondStepTuning.DrumBeats; i++) Strike("melody", "melody-war-drum", 6, spots[0], BondStepTuning.DrumRadius, w * BondStepTuning.DrumDamage, StepEffect.Stun, .4f + i * .4f);
             if (Active("melody", 8) && Due("notes", BondStepTuning.NoteRainPeriod))
-            { spots = Spots(BondStepTuning.NoteSpots); for (int i = 0; i < spots.Count; i++) Strike("melody", "melody-notes", 8, spots[i], BondStepTuning.NoteRadius, w * BondStepTuning.NoteDamage, StepEffect.None, .3f + i * .1f); }
+            { spots = Spots(BondStepTuning.NoteSpots); for (int i = 0; i < spots.Count; i++) Strike("melody", "melody-note-rain", 8, spots[i], BondStepTuning.NoteRadius, w * BondStepTuning.NoteDamage, StepEffect.None, .3f + i * .1f); }
             // Gravity: under heavy gravity a small planet falls
             if (Active("gravity", 8) && Due("planet", BondStepTuning.PlanetPeriod) && (spots = Spots(1)).Count > 0)
                 Strike("gravity", "gravity-orb", 8, spots[0], BondStepTuning.PlanetRadius, w * BondStepTuning.PlanetDamage, StepEffect.Knock, 1);
@@ -363,7 +363,7 @@ namespace ArcaneBrigade
             if (Active("rain-script") && Due("letters", BondStepTuning.LetterPeriod))
             { spots = Spots(Active("rain-script", 4) ? 3 : 1); for (int i = 0; i < spots.Count; i++) Strike("rain-script", "rain-letters", 2, spots[i], BondStepTuning.LetterRadius, w * BondStepTuning.LetterDamage, StepEffect.Soak, .5f + i * .15f); }
             if (Active("root") && still >= BondTuning.StillSeconds && Due("still-roots", BondStepTuning.StillRootPeriod) && (spots = Spots(1)).Count > 0)
-                Strike("root", "root-eruption", 2, spots[0], Active("root", 4) ? BondStepTuning.RootEruptionRadius * 1.5f : BondStepTuning.RootEruptionRadius, w * BondStepTuning.RootEruptionDamage * .6f, StepEffect.Root, .35f);
+                Strike("root", "root-still-roots", 2, spots[0], Active("root", 4) ? BondStepTuning.RootEruptionRadius * 1.5f : BondStepTuning.RootEruptionRadius, w * BondStepTuning.RootEruptionDamage * .6f, StepEffect.Root, .35f);
             if (Active("cloud") && Due("cloud", BondStepTuning.CloudPeriod) && (spots = Spots(1)).Count > 0)
                 Zone("cloud", "cloud-drift", 2, spots[0], BondStepTuning.CloudRadius, BondStepTuning.CloudSeconds, Active("cloud", 4) ? w * BondStepTuning.CloudRain : 0, 0, StepEffect.Slow, 0, StepEffect.None, BondStepTuning.CloudSpeed);
             if (Active("monolith") && Due("monolith", BondStepTuning.StompPeriod * 1.6f))
@@ -447,7 +447,7 @@ namespace ArcaneBrigade
             foreach (UnitState friend in friends) if (friend.Alive) Request(BondSupportKind.ForceCast, friend, 1, 0, rule);
             Moment(bond, rule, 8, BondMomentKind.Weather, hero.Position, hero.Position, 0, 0, 1.5f);
             List<Vector2> spots = Spots(BondStepTuning.ConfettiShells);
-            for (int i = 0; i < spots.Count; i++) Strike(bond, bond == "oddity" ? "carnival-confetti" : "court-seal", 8, spots[i], BondStepTuning.ConfettiRadius, StepWeapon * BondStepTuning.ConfettiDamage, StepEffect.None, .5f + i * .12f, false, hero.Position);
+            for (int i = 0; i < spots.Count; i++) Strike(bond, bond == "oddity" ? "carnival-confetti" : "court-royal-seal", 8, spots[i], BondStepTuning.ConfettiRadius, StepWeapon * BondStepTuning.ConfettiDamage, StepEffect.None, .5f + i * .12f, false, hero.Position);
         }
 
         private void TickZones(float dt)
