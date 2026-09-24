@@ -31,9 +31,16 @@ namespace ArcaneBrigade
         public int Live => live.Count;
         public int Quads => batch.Quads;
 
+        /// <summary>Every static class with <c>Register(Dictionary&lt;string, Func&lt;FxEffect&gt;&gt;)</c> in the assembly adds its effects: a new
+        /// bond family is one new file, nothing here to edit.</summary>
         static FxDirector()
         {
-            StormFx.Register(Registry);
+            foreach (Type type in typeof(FxDirector).Assembly.GetTypes())
+            {
+                if (!type.IsAbstract || !type.IsSealed || !type.Name.EndsWith("Fx")) continue;
+                var register = type.GetMethod("Register", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static, null, new[] { typeof(Dictionary<string, Func<FxEffect>>) }, null);
+                register?.Invoke(null, new object[] { Registry });
+            }
         }
 
         public FxDirector(Transform parent) { batch = new FxBatch(parent); }

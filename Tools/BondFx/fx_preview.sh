@@ -14,6 +14,7 @@ D="C:/ABClones/$c"
 for f in Assets ProjectSettings Packages; do
   MSYS_NO_PATHCONV=1 robocopy "$(cygpath -w "$MAIN/$f")" "$(cygpath -w "$D/$f")" /MIR /R:2 /W:2 /NFL /NDL /NJH /NJS /NP /XD Library Temp Logs __pycache__ > /dev/null
 done
+[ -n "$OVERLAY" ] && [ -d "$OVERLAY" ] && MSYS_NO_PATHCONV=1 robocopy "$(cygpath -w "$OVERLAY")" "$(cygpath -w "$D")" /E /R:2 /W:2 /NFL /NDL /NJH /NJS /NP > /dev/null
 "$UNITY" -batchmode -projectPath "$D" -executeMethod "$method" "$@" -logFile "$log"
 code=$?
 echo "exit $code ($c)"; exit $code

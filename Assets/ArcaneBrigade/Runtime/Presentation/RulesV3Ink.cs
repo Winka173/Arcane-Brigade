@@ -457,13 +457,14 @@ namespace ArcaneBrigade
                 else { Finale(LookFor(e.Rule), e.Position); BlastCrowds(LookFor(e.Rule), e.Position, false); }
                 Sound("rules.field", e.Position);
             }
-            // a bond step fires: a burst in its element on the subject, capped per frame for big crowds
-            if (popsThisFrame < MaxPopsPerFrame && Loud(e.Rule, out float size))
+            // a bond trait fires on its subject (steps 2 and 4 and the minors): its own effect from the director; no effect, no drawing
+            if (fx != null && FxDirector.Has(e.Rule) && popsThisFrame < MaxPopsPerFrame)
             {
                 popsThisFrame++;
-                TierMoment(e.Rule, LookFor(e.Rule), e.Position);
+                fx.Spawn(new BondMomentRequest(null, e.Rule, RuleTier(e.Rule), BondMomentKind.Strike, e.Position, e.Position, 1f + .25f * Mathf.Clamp(e.Value, 0, 8), 0, 0), Now);
                 Sound(LookFor(e.Rule), "burst", e.Position);
             }
+        }
         }
 
 
