@@ -56,8 +56,11 @@ namespace ArcaneBrigade
             if (counts != null) foreach (var pair in counts) members[pair.Key] = pair.Value;
         }
         // Existing majors encode step 2 in Threshold; minors have no Steps yet. Explicit Steps override later gates.
+        /// <summary>When set (the bond showcase), only this bond fires, so a clip of one bond never shows another's moments.</summary>
+        public static string OnlyBond;
         public bool Active(string id, int step = 2)
         {
+            if (OnlyBond != null && !string.Equals(id, OnlyBond, StringComparison.OrdinalIgnoreCase)) return false;
             if (!definitions.TryGetValue(id, out BondDefinition bond) || !members.TryGetValue(id, out int count) || count < step) return false;
             if (step == 2) return count >= bond.Threshold;
             if (bond.Steps != null && bond.Steps.Length > 0)

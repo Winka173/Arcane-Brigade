@@ -42,8 +42,10 @@ namespace ArcaneBrigade
                 default:
                 {
                     // a thrown event (a flask, a pie, a shell) flies from the hero; a sky event falls onto the spot
-                    if (FallsFromSky(m.Rule)) Targeted(look, m.To + new Vector2(-1.2f, 7.5f), m.To, Mathf.Max(0, m.Delay - .3f), m.Rule);
-                    else if ((m.From - m.To).sqrMagnitude > .25f) Targeted(look, m.From, m.To, Mathf.Max(0, m.Delay - .3f), m.Rule);
+                    bool painted = vfx?.Library?.Get("FX_" + m.Rule) != null;
+                    // a painted animation carries its own fall or throw; the others fly in as their element's piece
+                    if (!painted && FallsFromSky(m.Rule)) Targeted(look, m.To + new Vector2(-1.2f, 7.5f), m.To, Mathf.Max(0, m.Delay - .3f), m.Rule, m.Radius >= 2 ? 1.1f : .35f);
+                    else if (!painted && (m.From - m.To).sqrMagnitude > .25f) Targeted(look, m.From, m.To, Mathf.Max(0, m.Delay - .3f), m.Rule);
                     if (m.Step >= 8 && m.Radius >= 3) Finale(look, m.To);
                     Blast(look, m.To, m.Radius, m.Delay, rule: m.Rule);
                     if (popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(look, "burst", m.To); }
@@ -109,6 +111,21 @@ namespace ArcaneBrigade
             }
         }
 
+        private struct PaintedFlip { public Sprite[] Frames; public Vector2 At; public float Size, Born, Life; }
+        private readonly List<PaintedFlip> flips = new List<PaintedFlip>();
+
+        /// <summary>The painted bond animations playing now, each over its own area, frame by frame.</summary>
+        private void DrawPaintedFlips(float now)
+        {
+            for (int i = flips.Count - 1; i >= 0; i--)
+            {
+                PaintedFlip f = flips[i]; float t = (now - f.Born) / f.Life;
+                if (t >= 1) { flips.RemoveAt(i); continue; }
+                if (t < 0) continue;
+                vfx.Flip(f.Frames, f.At + Vector2.up * f.Size * .3f, f.Size, t, 0, Color.white);
+            }
+        }
+
         private struct Slash { public Vector2 At; public float Angle, Reach, Born; public ElementLook Look; }
         private readonly List<Slash> slashes = new List<Slash>();
 
@@ -146,6 +163,7 @@ namespace ArcaneBrigade
             DrawShotGlow(sim, now);
             DrawSlashes(now);
             DrawFlights(now);
+            DrawPaintedFlips(now);
             for (int i = weathers.Count - 1; i >= 0; i--)
             {
                 StepWeather w = weathers[i];

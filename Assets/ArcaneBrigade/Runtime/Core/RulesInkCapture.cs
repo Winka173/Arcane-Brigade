@@ -188,6 +188,7 @@ namespace ArcaneBrigade
                 for (int si = 0; si < steps.Length; si++)
                 {
                     int count = steps[si];
+                    BondRuntime.OnlyBond = BondV3Catalog.BondId(house);
                     SaveHouseRun(catalog, storage, house, 12, 281000 + index++, count);
                     RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
                     ArenaController owner = null;
@@ -209,7 +210,7 @@ namespace ArcaneBrigade
                     while (Time.realtimeSinceStartup - stepStart < perStep) yield return null;
                 }
             }
-            caption = "";
+            caption = ""; BondRuntime.OnlyBond = null;
             float wait = 0;
             while (started && !recorder.Complete && wait < 60) { yield return new WaitForSecondsRealtime(.5f); wait += .5f; }
             log.Add("video " + (recorder.Passed ? "ok" : "FAILED") + " " + Arg("-videoPath"));

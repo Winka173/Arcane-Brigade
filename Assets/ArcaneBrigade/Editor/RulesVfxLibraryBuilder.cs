@@ -50,7 +50,7 @@ namespace ArcaneBrigade.Editor
             }
             // flipbooks cut into their frames in play order: the CC0 Unity Labs ones (key UL_<Name>) and the summons' animation
             // sheets drawn (SummonAnim/<Kind>_4x2.png: appear, idle, idle, move, windup, strike, recovery, vanish; key SA_<Kind>)
-            foreach (var (folder, prefix) in new[] { (NewArt + "/UnityLabs", "UL_"), (NewArt + "/SummonAnim", "SA_") })
+            foreach (var (folder, prefix) in new[] { (NewArt + "/UnityLabs", "UL_"), (NewArt + "/SummonAnim", "SA_"), (NewArt + "/BondFX", "FX_") })
                 if (Directory.Exists(folder))
                     foreach (string path in Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/')))
                     {

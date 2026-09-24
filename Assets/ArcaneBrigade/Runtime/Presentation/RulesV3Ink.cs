@@ -89,7 +89,7 @@ namespace ArcaneBrigade
         /// source to each target, like Storm Fencer's chained lightning (the hero renderer's line strike in the element's hero
         /// brush). An area effect is a blast over its area, like fire or frost bursting (the hero renderer's disc strike with
         /// the element's hero signature where it lands).</summary>
-        private void Targeted(ElementLook look, Vector2 from, Vector2 to, float delay = 0, string rule = null)
+        private void Targeted(ElementLook look, Vector2 from, Vector2 to, float delay = 0, string rule = null, float width = .35f)
         {
             if ((to - from).sqrMagnitude < .04f) { Blast(look, to, .5f, delay, rule: rule); return; }
             // only lightning strikes as a bolt; every other element flies there as its own piece (an ember, an ice shard,
@@ -97,7 +97,7 @@ namespace ArcaneBrigade
             if (look != ElementLook.Storm) { Fly(look, from, to, delay, RulesStepLooks.TryGet(rule, out StepLook piece) ? piece.Token : (InkToken?)null); return; }
             float at = Now + delay;
             HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Line, Position = from + Vector2.up * .3f, End = to + Vector2.up * .3f,
-                Direction = (to - from).normalized, Width = .35f, Created = at, At = at, Until = at + .5f, Seed = ++seed }, HeroIdentityVisual.GuestStyle(look));
+                Direction = (to - from).normalized, Width = width, Created = at, At = at, Until = at + (width > .5f ? .8f : .5f), Seed = ++seed, Big = width > .5f }, HeroIdentityVisual.GuestStyle(look));
         }
 
         private CartoonFx cartoon;
@@ -138,11 +138,11 @@ namespace ArcaneBrigade
         {
             switch (RuleTier(rule))
             {
-                case 2: Blast(look, at, .45f, 0, .06f, rule); break;
-                case 4: Blast(look, at, .75f, rule: rule); break;
+                case 2: Blast(look, at, 1f, 0, .06f, rule); break;
+                case 4: Blast(look, at, 1.6f, rule: rule); break;
                 case 6:
                 {
-                    Blast(look, at, 1.3f, rule: rule);
+                    Blast(look, at, 2.2f, rule: rule);
                     int n = 0;
                     if (boundSimulation != null)
                         foreach (UnitState unit in boundSimulation.Units)
@@ -169,6 +169,15 @@ namespace ArcaneBrigade
         {
             float when = Now + delay;
             string key = BlastKey(look);
+            // a bond moment drawn as its own painted animation (BondFX/<rule>_4x2.png, key FX_<rule>) plays big over its whole area
+            Sprite[] painted = rule != null ? vfx?.Library?.Get("FX_" + rule) : null;
+            if (painted != null && painted.Length >= 8)
+            {
+                if (flips.Count >= 64) flips.RemoveAt(0);
+                flips.Add(new PaintedFlip { Frames = painted, At = at, Size = Mathf.Max(1.6f, radius * 2.6f), Born = when + gather * .5f, Life = .75f });
+                if (RulesStepLooks.TryGet(rule, out StepLook spoken) && spoken.Word != null && radius >= 1 && blastQueue.Count < 48) blastQueue.Add(new Burst { Key = spoken.Word, At = at + Vector2.up * (radius + .6f), Scale = .6f, When = when + gather + .1f });
+                return;
+            }
             // a bond moment with its own look (RulesStepLooks): its own signature, strike shape, burst and word, in the element's colours
             HeroMechanicStyle style = HeroIdentityVisual.GuestStyle(look); MorphGeometry shape = MorphGeometry.Disc;
             if (RulesStepLooks.TryGet(rule, out StepLook own))
@@ -179,7 +188,7 @@ namespace ArcaneBrigade
             }
             // sized to the area, never too small to read; each Cartoon FX effect has its own natural size (the earth blast and
             // the venom cloud are huge, the fire and frost bursts small), so each is scaled to the same footprint
-            float footprint = Mathf.Max(.55f, .35f + Mathf.Min(radius, 3) * .28f);
+            float footprint = Mathf.Max(.55f, .35f + Mathf.Min(radius, 4.5f) * (radius >= 1.5f ? .42f : .28f));
             if (blastQueue.Count < 48) blastQueue.Add(new Burst { Key = key, At = at + Vector2.up * .2f, Scale = footprint * BlastSize(key), When = when + gather });
             HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = shape, Position = at, End = at + Vector2.right * Mathf.Max(.35f, radius), Direction = Vector2.right,
                 Radius = Mathf.Max(.35f, radius), Created = when, At = when + gather, Until = when + gather + .6f, Seed = ++seed, Big = radius >= 1.5f }, style);
