@@ -259,7 +259,7 @@ namespace ArcaneBrigade
         public void OnCast(UnitState companion)
         { if (companion == null || companion.Faction != Faction.Companion) return; Ticks++; casts[companion.Id] = time; RefreshApplause(); CastV3(companion); CastV6(companion); Emit("cast", companion); }
         public void OnVolley() { OnVolley(hero); }
-        public void OnVolley(UnitState source) { Volleys++; if (RuleApplies(source,"windborne") && (Active("windborne",4) || !LegacyCapstones) && EveryUnit("wind",source,LegacyCapstones?BondTuning.PiercingVolley:BondStepTuning.WindEvery)) { Request(BondSupportKind.PiercingVolley,source,1,0,"piercing-volley"); if(Active("windborne",4))AddZone("wind-lane",source,BondV5Tuning.LaneSeconds); } }
+        public void OnVolley(UnitState source) { Volleys++; if (RuleApplies(source,"windborne") && (Active("windborne",4) || !LegacyCapstones) && EveryUnit("wind",source,LegacyCapstones?BondTuning.PiercingVolley:BondStepTuning.WindEvery)) { Request(BondSupportKind.PiercingVolley,source,1,0,"piercing-volley"); if(!LegacyCapstones&&source!=null)Moment("windborne","piercing-volley",2,BondMomentKind.Line,source.Position,source.Position+source.Facing*7,.5f,0); if(Active("windborne",4))AddZone("wind-lane",source,BondV5Tuning.LaneSeconds); } }
         public void OnHeal(float amount) { if(amount>0 && Active("hearth") && hero!=null) Emit("warmth-heal",hero,amount); }
         public void OnSoak() { Soak++; }
         public void OnRecord() { Records++; }

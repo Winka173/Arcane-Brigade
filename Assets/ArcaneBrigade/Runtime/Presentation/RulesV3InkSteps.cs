@@ -19,6 +19,8 @@ namespace ArcaneBrigade
         public void OnMoment(BondMomentRequest m)
         {
             ElementLook look = LookFor(m.Rule);
+            // a moment drawn in code (RulesV3InkDrawn) carries its whole animation, its fall or throw included
+            if (IsDrawn(m.Rule)) { AddDrawn(m.Rule, m.From, m.To, m.Radius, Now, Now + m.Delay); if (popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(look, "burst", m.To); } return; }
             switch (m.Kind)
             {
                 case BondMomentKind.Weather:
@@ -37,6 +39,7 @@ namespace ArcaneBrigade
                     break;
                 }
                 case BondMomentKind.Zone:
+                    if (m.Rule == "wind-tornado") break; // the funnel itself is drawn wherever it stands
                     Blast(look, m.To, m.Radius, 0, rule: m.Rule);
                     break;
                 default:
@@ -164,6 +167,7 @@ namespace ArcaneBrigade
             DrawSlashes(now);
             DrawFlights(now);
             DrawPaintedFlips(now);
+            DrawDrawn(now);
             for (int i = weathers.Count - 1; i >= 0; i--)
             {
                 StepWeather w = weathers[i];
@@ -177,6 +181,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < bonds.StepZoneCount; i++)
             {
                 if (!bonds.StepZoneAt(i, out string rule, out Vector2 at, out float radius)) continue;
+                if (rule == "wind-tornado") { Tornado(at, radius, now, i); continue; }
                 int key = rule.GetHashCode() ^ i;
                 if (zonePulse.TryGetValue(key, out float last) && now - last < .45f) continue;
                 zonePulse[key] = now; Blast(LookFor(rule), at, radius * .8f, 0, .05f, rule);

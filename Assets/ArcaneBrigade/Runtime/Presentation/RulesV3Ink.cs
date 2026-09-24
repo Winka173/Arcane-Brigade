@@ -168,6 +168,7 @@ namespace ArcaneBrigade
         private void Blast(ElementLook look, Vector2 at, float radius, float delay = 0, float gather = .12f, string rule = null)
         {
             float when = Now + delay;
+            if (IsDrawn(rule)) { AddDrawn(rule, at, at, radius, when, when + gather); return; }
             string key = BlastKey(look);
             // a bond moment drawn as its own painted animation (BondFX/<rule>_4x2.png, key FX_<rule>) plays big over its whole area
             Sprite[] painted = rule != null ? vfx?.Library?.Get("FX_" + rule) : null;
