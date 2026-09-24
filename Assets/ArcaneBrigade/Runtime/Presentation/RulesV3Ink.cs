@@ -72,6 +72,7 @@ namespace ArcaneBrigade
             CombatFeedback.ElementTint = ElementColour; CombatFeedback.ElementTop = ElementNumberTop; CombatFeedback.ElementShape = ElementNumberShape; CombatFeedback.ElementInk = ElementNumberInk;
             ink = new ArsenalInk(transform);
             light = new InkCanvas(transform, "Rules light", 2141, true);
+            fx = new FxDirector(transform);
         }
 
 
@@ -94,7 +95,7 @@ namespace ArcaneBrigade
             if ((to - from).sqrMagnitude < .04f) { Blast(look, to, .5f, delay, rule: rule); return; }
             // only lightning strikes as a bolt; every other element flies there as its own piece (an ember, an ice shard,
             // a leaf, a note) on an arc, so fire and frost never look like chain lightning
-            if (look != ElementLook.Storm) { Fly(look, from, to, delay, RulesStepLooks.TryGet(rule, out StepLook piece) ? piece.Token : (InkToken?)null); return; }
+            if (look != ElementLook.Storm) { Fly(look, from, to, delay); return; }
             float at = Now + delay;
             HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Line, Position = from + Vector2.up * .3f, End = to + Vector2.up * .3f,
                 Direction = (to - from).normalized, Width = width, Created = at, At = at, Until = at + (width > .5f ? .8f : .5f), Seed = ++seed, Big = width > .5f }, HeroIdentityVisual.GuestStyle(look));
@@ -168,25 +169,8 @@ namespace ArcaneBrigade
         private void Blast(ElementLook look, Vector2 at, float radius, float delay = 0, float gather = .12f, string rule = null)
         {
             float when = Now + delay;
-            if (IsDrawn(rule)) { AddDrawn(rule, at, at, radius, when, when + gather); return; }
             string key = BlastKey(look);
-            // a bond moment drawn as its own painted animation (BondFX/<rule>_4x2.png, key FX_<rule>) plays big over its whole area
-            Sprite[] painted = rule != null ? vfx?.Library?.Get("FX_" + rule) : null;
-            if (painted != null && painted.Length >= 8)
-            {
-                if (flips.Count >= 64) flips.RemoveAt(0);
-                flips.Add(new PaintedFlip { Frames = painted, At = at, Size = Mathf.Max(1.6f, radius * 2.6f), Born = when + gather * .5f, Life = .75f });
-                if (RulesStepLooks.TryGet(rule, out StepLook spoken) && spoken.Word != null && radius >= 1 && blastQueue.Count < 48) blastQueue.Add(new Burst { Key = spoken.Word, At = at + Vector2.up * (radius + .6f), Scale = .6f, When = when + gather + .1f });
-                return;
-            }
-            // a bond moment with its own look (RulesStepLooks): its own signature, strike shape, burst and word, in the element's colours
             HeroMechanicStyle style = HeroIdentityVisual.GuestStyle(look); MorphGeometry shape = MorphGeometry.Disc;
-            if (RulesStepLooks.TryGet(rule, out StepLook own))
-            {
-                key = own.Burst; shape = own.Shape;
-                style = new HeroMechanicStyle(own.Hero, own.Token, style.Brush, style.Gauge, style.Palette);
-                if (own.Word != null && radius >= 1 && blastQueue.Count < 48) blastQueue.Add(new Burst { Key = own.Word, At = at + Vector2.up * 1.1f, Scale = .55f, When = when + gather + .08f });
-            }
             // sized to the area, never too small to read; each Cartoon FX effect has its own natural size (the earth blast and
             // the venom cloud are huge, the fire and frost bursts small), so each is scaled to the same footprint
             float footprint = Mathf.Max(.55f, .35f + Mathf.Min(radius, 4.5f) * (radius >= 1.5f ? .42f : .28f));
@@ -424,7 +408,7 @@ namespace ArcaneBrigade
             if (sim.Bonds != boundBonds)
             {
                 if (boundBonds != null) { boundBonds.RuleTriggered -= OnBondRule; boundBonds.DamageRequested -= OnBondDamage; boundBonds.StrengthStolen -= OnStolen; boundBonds.EmbersCreated -= OnEmbers; boundBonds.MomentRequested -= OnMoment; }
-                boundBonds = sim.Bonds; weathers.Clear();
+                boundBonds = sim.Bonds; fx?.Clear();
                 if (boundBonds != null) { boundBonds.RuleTriggered += OnBondRule; boundBonds.DamageRequested += OnBondDamage; boundBonds.StrengthStolen += OnStolen; boundBonds.EmbersCreated += OnEmbers; boundBonds.MomentRequested += OnMoment; }
             }
             if (sim.SkillsV3 != boundSkills)

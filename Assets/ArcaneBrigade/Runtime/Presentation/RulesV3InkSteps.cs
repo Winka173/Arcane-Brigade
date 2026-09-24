@@ -8,53 +8,16 @@ namespace ArcaneBrigade
     /// where they stand, and step-8 weather tints the whole arena in its element for the wave.</summary>
     public sealed partial class RulesV3Ink
     {
-        private struct StepWeather { public ElementLook Look; public string Rule; public float Born, Until; }
-        private readonly List<StepWeather> weathers = new List<StepWeather>();
-        private readonly Dictionary<int, float> zonePulse = new Dictionary<int, float>();
+        private FxDirector fx;
 
         /// <summary>Events that come down from the sky: a strike falls onto the spot before the blast.</summary>
         private static bool FallsFromSky(string rule) => rule.Contains("thunder") || rule.Contains("meteor") || rule.Contains("star") || rule.Contains("comet")
             || rule.Contains("hail") || rule.Contains("orb") || rule.Contains("decree") || rule.Contains("book") || rule.Contains("spikes") || rule.Contains("pages");
 
+        /// <summary>Every bond-step moment is drawn by the effect director (Fx/), one animation per rule; a rule it does not know draws nothing.</summary>
         public void OnMoment(BondMomentRequest m)
         {
-            ElementLook look = LookFor(m.Rule);
-            // a moment drawn in code (RulesV3InkDrawn) carries its whole animation, its fall or throw included
-            if (IsDrawn(m.Rule)) { AddDrawn(m.Rule, m.From, m.To, m.Radius, Now, Now + m.Delay); if (popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(look, "burst", m.To); } return; }
-            switch (m.Kind)
-            {
-                case BondMomentKind.Weather:
-                    for (int i = weathers.Count - 1; i >= 0; i--) if (weathers[i].Rule == m.Rule) weathers.RemoveAt(i);
-                    weathers.Add(new StepWeather { Look = look, Rule = m.Rule, Born = Now, Until = Now + Mathf.Min(m.Duration, 600) });
-                    if (m.Duration < 30) Finale(look, m.To);
-                    Sound("rules.field", m.To);
-                    break;
-                case BondMomentKind.Line:
-                {
-                    // a sweep along its line (a phoenix dive, a boulder, the leviathan, a pendulum): the strike, then blasts along it
-                    Targeted(look, m.From, m.To, m.Delay * .5f, m.Rule);
-                    float length = (m.To - m.From).magnitude; int n = Mathf.Clamp(Mathf.RoundToInt(length / 2.2f), 3, 6);
-                    for (int i = 0; i < n; i++) Blast(look, Vector2.Lerp(m.From, m.To, (i + .5f) / n), Mathf.Max(.7f, m.Radius), m.Delay + i * .06f, rule: m.Rule);
-                    Sound(look, "burst", (m.From + m.To) * .5f);
-                    break;
-                }
-                case BondMomentKind.Zone:
-                    if (m.Rule == "wind-tornado") break; // the funnel itself is drawn wherever it stands
-                    Blast(look, m.To, m.Radius, 0, rule: m.Rule);
-                    break;
-                default:
-                {
-                    // a thrown event (a flask, a pie, a shell) flies from the hero; a sky event falls onto the spot
-                    bool painted = vfx?.Library?.Get("FX_" + m.Rule) != null;
-                    // a painted animation carries its own fall or throw; the others fly in as their element's piece
-                    if (!painted && FallsFromSky(m.Rule)) Targeted(look, m.To + new Vector2(-1.2f, 7.5f), m.To, Mathf.Max(0, m.Delay - .3f), m.Rule, m.Radius >= 2 ? 1.1f : .35f);
-                    else if (!painted && (m.From - m.To).sqrMagnitude > .25f) Targeted(look, m.From, m.To, Mathf.Max(0, m.Delay - .3f), m.Rule);
-                    if (m.Step >= 8 && m.Radius >= 3) Finale(look, m.To);
-                    Blast(look, m.To, m.Radius, m.Delay, rule: m.Rule);
-                    if (popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(look, "burst", m.To); }
-                    break;
-                }
-            }
+            if (fx != null && fx.Spawn(m, Now) && popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(LookFor(m.Rule), "burst", m.To); }
         }
 
         private readonly Dictionary<int, ElementLook> shotLook = new Dictionary<int, ElementLook>();
@@ -114,21 +77,6 @@ namespace ArcaneBrigade
             }
         }
 
-        private struct PaintedFlip { public Sprite[] Frames; public Vector2 At; public float Size, Born, Life; }
-        private readonly List<PaintedFlip> flips = new List<PaintedFlip>();
-
-        /// <summary>The painted bond animations playing now, each over its own area, frame by frame.</summary>
-        private void DrawPaintedFlips(float now)
-        {
-            for (int i = flips.Count - 1; i >= 0; i--)
-            {
-                PaintedFlip f = flips[i]; float t = (now - f.Born) / f.Life;
-                if (t >= 1) { flips.RemoveAt(i); continue; }
-                if (t < 0) continue;
-                vfx.Flip(f.Frames, f.At + Vector2.up * f.Size * .3f, f.Size, t, 0, Color.white);
-            }
-        }
-
         private struct Slash { public Vector2 At; public float Angle, Reach, Born; public ElementLook Look; }
         private readonly List<Slash> slashes = new List<Slash>();
 
@@ -166,27 +114,9 @@ namespace ArcaneBrigade
             DrawShotGlow(sim, now);
             DrawSlashes(now);
             DrawFlights(now);
-            DrawPaintedFlips(now);
-            DrawDrawn(now);
-            for (int i = weathers.Count - 1; i >= 0; i--)
-            {
-                StepWeather w = weathers[i];
-                if (now > w.Until || now < w.Born - 1) { weathers.RemoveAt(i); continue; }
-                float rise = Mathf.Clamp01((now - w.Born) / .8f), fade = Mathf.Clamp01((w.Until - now) / .8f), a = rise * fade * (PresentationSettings.ReducedEffects ? .5f : 1);
-                float beat = .85f + .15f * Mathf.Sin(now * 2.2f); // the weather breathes slowly so it reads as alive
-                ink.Vignette(centre, 30, NumberColour(w.Look), .2f * a * beat, .62f * a * beat);
-            }
+            fx?.Draw(now);
             BondRuntime bonds = sim.Bonds;
             if (bonds == null) return;
-            for (int i = 0; i < bonds.StepZoneCount; i++)
-            {
-                if (!bonds.StepZoneAt(i, out string rule, out Vector2 at, out float radius)) continue;
-                if (rule == "wind-tornado") { Tornado(at, radius, now, i); continue; }
-                int key = rule.GetHashCode() ^ i;
-                if (zonePulse.TryGetValue(key, out float last) && now - last < .45f) continue;
-                zonePulse[key] = now; Blast(LookFor(rule), at, radius * .8f, 0, .05f, rule);
-            }
-            if (zonePulse.Count > 64) zonePulse.Clear();
             if (bonds.Active("lantern-guild", 8))
             {
                 float angle = bonds.LighthouseAngle; Vector2 end = centre + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * BondStepTuning.LighthouseReach;
