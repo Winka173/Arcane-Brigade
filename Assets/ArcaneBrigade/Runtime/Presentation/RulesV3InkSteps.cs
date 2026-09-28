@@ -117,13 +117,8 @@ namespace ArcaneBrigade
             fx?.Draw(now);
             BondRuntime bonds = sim.Bonds;
             if (bonds == null) return;
-            if (bonds.Active("lantern-guild", 8))
-            {
-                float angle = bonds.LighthouseAngle; Vector2 end = centre + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * BondStepTuning.LighthouseReach;
-                ink.Vignette(centre, 1.2f, NumberColour(ElementLook.Light), .5f, .1f);
-                HeroIdentityVisual.AddGuest(new HeroIdentityGlyph { Role = HeroGlyphRole.Strike, Shape = MorphGeometry.Line, Position = centre, End = end, Direction = (end - centre).normalized,
-                    Width = BondStepTuning.LighthouseWidth, Created = now - .2f, At = now - .1f, Until = now + .05f, Seed = 7 }, HeroIdentityVisual.GuestStyle(ElementLook.Light));
-            }
+            // the lighthouse beam (LanternFx) follows the angle the rules really sweep, so what is lit is what is hit
+            if (bonds.Active("lantern-guild", 8)) { LanternFx.BeamLive = true; LanternFx.BeamCentre = centre; LanternFx.BeamAngle = bonds.LighthouseAngle; }
         }
     }
 }

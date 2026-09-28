@@ -1,0 +1,152 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static ArcaneBrigade.FxKit;
+
+namespace ArcaneBrigade
+{
+    /// <summary>Lantern Guild: warm honey lamplight, glass, dust motes and beams. The wick is a candle flame that lights one enemy; the
+    /// lighthouse is a turning beam in a dusky arena full of drifting lanterns.</summary>
+    public static class LanternFx
+    {
+        private const FxShape Prism = (FxShape)47;
+        private static readonly Color Honey = new Color(1f, .72f, .24f, 1), Lamp = new Color(1f, .86f, .5f, 1), Amber = new Color(1f, .55f, .12f, 1), Dusk = new Color(.06f, .04f, .12f, 1);
+
+        /// <summary>Set by the renderer each frame while the lighthouse beam is on (hero position and the bond's beam angle in radians), so
+        /// the drawn beam is the one that really burns. Without it the effect turns its own beam around where it started.</summary>
+        public static bool BeamLive; public static Vector2 BeamCentre; public static float BeamAngle;
+
+        public static void Register(Dictionary<string, Func<FxEffect>> map)
+        {
+            map["wick"] = () => new Wick();
+            map["lighthouse"] = () => new Lighthouse();
+            map["lantern-stillness"] = () => new StillLamp();
+        }
+
+        /// <summary>Step 4 wick. A candle wick sparks and a tall honey flame swells with a flicker over the enemy; a pool of lamplight
+        /// spreads over the floor to the size of the lit area, glass facets glitter round the flame and motes of dust float up out of it.</summary>
+        private sealed class Wick : FxEffect
+        {
+            protected override float Life => 1.45f;
+            public override void Draw(FxBatch b, float now, float pre, float t)
+            {
+                if (t < 0) return;
+                Vector2 at = At; float r = Mathf.Max(1.1f, Radius) * 1.2f, fade = Fade(t, .85f, 1.45f);
+                float grow = EaseOut3(Rise(t, 0, .22f)) * (1 + .18f * Mathf.Sin(t * 35) * Fade(t, .2f, .6f));
+                float flick = .85f + .15f * Mathf.Sin(now * 31) * Mathf.Sin(now * 17 + 1);
+                // the lit pool on the floor
+                b.Floor(FxShape.Glow, at, r * 2.3f * EaseOut(Rise(t, 0, .4f)), A(Honey, .75f * fade), 0, Seed);
+                b.Floor(FxShape.Glow, at, r * .9f, A(Lamp, .55f * fade), 0, Seed);
+                b.Quad(FxShape.Rays, at + Vector2.up * .8f, r * 1.9f, A(Lamp, .45f * fade), t * .5f, Seed, 3);
+                // wick: a thin cream stalk with a charred tip
+                b.Link(at + Vector2.up * .05f, at + Vector2.up * .55f, .06f, A(new Color(.95f, .9f, .75f), fade), Seed, .5f);
+                // the flame: layered tongues, the tall one wobbling
+                for (int k = 0; k < 3; k++)
+                {
+                    float sway = Mathf.Sin(now * (9 + k * 3) + k) * .08f * grow;
+                    Color c = k == 0 ? Amber : k == 1 ? Honey : Lamp;
+                    float fs = r * .6f; b.Quad(FxShape.Flame, at + new Vector2(sway, .35f + 1.45f * grow * fs * (1 - k * .12f)), new Vector2(.75f - k * .17f, 1.6f * grow * (1 - k * .15f)) * flick * fs, 0, A(c, (k == 2 ? .9f : .75f) * fade), t, Seed + k, 1.5f);
+                }
+                b.Quad(FxShape.Glow, at + Vector2.up * 1.3f, 1.6f * grow * flick, A(Lamp, .7f * fade), 0, Seed);
+                // glass facets orbit the flame like the panes of a lantern
+                for (int k = 0; k < 6; k++)
+                {
+                    float ang = k / 6f * Mathf.PI * 2 + t * 3.2f, rad = r * (.75f + .35f * Rise(t, 0, .5f));
+                    Vector2 p = at + new Vector2(Mathf.Cos(ang) * rad, 1f + Mathf.Sin(ang) * rad * .35f + .12f * Mathf.Sin(t * 8 + k));
+                    float depth = .6f + .4f * Mathf.Sin(ang);
+                    b.Quad(Prism, p, new Vector2(.3f, .3f) * (.7f + .5f * depth), t * 90 + k * 40, A(Lamp, .95f * fade * Rise(t, 0, .3f)), 0, Seed + k);
+                }
+                for (int k = 0; k < 14; k++)
+                {
+                    float u = (t * .9f + H(Seed, k)) % 1;
+                    Vector2 p = at + new Vector2((H(Seed, k + 5) - .5f) * r * 1.3f + Mathf.Sin(u * 6 + k) * .15f, .4f + u * 2.4f);
+                    Glint(b, p, .12f + .08f * H(Seed, k + 1), Lamp, .9f * (1 - u) * fade * (.5f + .5f * Mathf.Sin(now * 8 + k)), k * 30);
+                }
+            }
+        }
+
+        /// <summary>Step 8 weather. The arena dims to dusk; hundreds of dust motes drift and twinkle; honey lanterns rise slowly like
+        /// spirit lamps. A great turning beam with a spinning lens flare rakes the floor, leaving a fading wedge of afterglow behind it.</summary>
+        private sealed class Lighthouse : FxEffect
+        {
+            protected override float Life => 1;
+            public override void Draw(FxBatch b, float now, float pre, float t)
+            {
+                if (Moment.Kind != BondMomentKind.Weather) return;
+                float age = now - Born, on = Rise(age, 0, 1.8f) * Fade(now, End - 1.2f, End);
+                Rect a = Arena; Vector2 c = a.center;
+                b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(Dusk, .4f * on), 0, Seed);
+                // drifting lanterns
+                for (int k = 0; k < 7; k++)
+                {
+                    float u = (H(Seed, k) + now * (.025f + .01f * H(Seed, k + 9))) % 1;
+                    Vector2 p = new Vector2(a.xMin + a.width * ((H(Seed, k + 20) + Mathf.Sin(now * .3f + k) * .02f) % 1), a.yMin - 1 + u * (a.height + 2));
+                    float s = .35f + .2f * H(Seed, k + 40);
+                    b.Quad(FxShape.Glow, p, s * 4f, A(Honey, .4f * on * (.7f + .3f * Mathf.Sin(now * 3 + k))), 0, Seed);
+                    b.Quad(Prism, p, new Vector2(s, s * 1.25f), Mathf.Sin(now + k) * 8, A(Lamp, 1f * on), 0, Seed + k);
+                }
+                // dust motes
+                for (int k = 0; k < 90; k++)
+                {
+                    float sp = .12f + .2f * H(Seed, k + 300);
+                    Vector2 p = new Vector2(a.xMin + a.width * ((H(Seed, k) + now * sp * .06f) % 1), a.yMin + a.height * ((H(Seed, k + 150) + now * sp * .05f) % 1));
+                    float tw = .5f + .5f * Mathf.Sin(now * (2 + 4 * H(Seed, k + 60)) + k);
+                    Glint(b, p, .08f + .1f * H(Seed, k + 7), Lamp, .55f * on * tw, now * 20 + k);
+                }
+                // the beam
+                Vector2 hub = BeamLive ? BeamCentre : At;
+                float angle = BeamLive ? BeamAngle : age * BondStepTuning.LighthouseTurn;
+                BeamLive = false;
+                float reach = BondStepTuning.LighthouseReach, wide = BondStepTuning.LighthouseWidth;
+                for (int g = 7; g >= 0; g--)
+                {
+                    float ga = angle - g * .09f, fadeG = g == 0 ? 1 : .32f * (1 - g / 8f);
+                    Vector2 dir = new Vector2(Mathf.Cos(ga), Mathf.Sin(ga));
+                    Vector2 end = hub + dir * reach;
+                    // a widening cone: nested beams from the lamp, each longer and wider, so the light spreads with distance
+                    for (int s = 1; s <= 4; s++)
+                    {
+                        float f = s / 4f; Vector2 p1 = hub + dir * reach * (f * 1.08f);
+                        b.Beam(hub, p1, wide * (.6f + 1.9f * f), A(Honey, (g == 0 ? .3f : .5f) * on * fadeG), age, Seed + s, 0);
+                        if (g == 0) b.Beam(hub, p1, wide * (.35f + .5f * f), A(Lamp, .45f * on), age, Seed + s + 9, .4f);
+                    }
+                    if (g == 0)
+                    {
+                        for (int k = 0; k < 16; k++)
+                        {
+                            float d = (H(Seed, k + 500) + now * .5f * (.4f + H(Seed, k))) % 1;
+                            Vector2 p = hub + dir * reach * d + new Vector2(-dir.y, dir.x) * (H(Seed, k + 5) - .5f) * wide * 2.2f * (.4f + d);
+                            Glint(b, p, .2f, Lamp, .9f * on * (.5f + .5f * Mathf.Sin(now * 10 + k)), k * 25);
+                        }
+                        b.Floor(FxShape.Glow, end, 2.2f, A(Lamp, .35f * on), 0, Seed);
+                    }
+                }
+                b.Quad(FxShape.Glow, hub, 1.7f, A(Lamp, .6f * on), 0, Seed);
+                b.Quad(FxShape.Sparkle, hub, new Vector2(1.6f, 1.6f), angle * Mathf.Rad2Deg, A(Lamp, .9f * on), 0, 0, 3);
+                b.Quad(Prism, hub, new Vector2(.5f, .5f), -angle * 160, A(Lamp, .9f * on), 0, Seed);
+            }
+        }
+    
+        /// <summary>The hero stands still (or moves again): a small glass lantern unfolds on a hook above the hero, its pane glows
+        /// honey as it is lit and swings, a few motes float off. No ring and nothing bursting out of the hero.</summary>
+        private sealed class StillLamp : FxEffect
+        {
+            protected override float Life => 1.3f;
+            public override void Draw(FxBatch b, float now, float pre, float t)
+            {
+                if (t < 0) return;
+                float on = Rise(t, 0, .2f) * Fade(t, .9f, 1.3f), swing = Mathf.Sin(t * 7) * 14 * Fade(t, 0, 1.2f);
+                Vector2 hook = At + Vector2.up * 2.4f, lamp = hook + (Vector2)(Quaternion.Euler(0, 0, swing) * Vector2.down) * .6f;
+                b.Link(hook, lamp, .03f, A(Lamp, .7f * on), Seed, .5f);
+                b.Quad(FxShape.Glow, lamp, 1.1f, A(Honey, .55f * on * (.8f + .2f * Mathf.Sin(now * 23))), 0, Seed);
+                b.Quad(Prism, lamp, new Vector2(.32f, .42f), swing, A(Lamp, 1.1f * on), 0, Seed);
+                b.Quad(FxShape.Flame, lamp + Vector2.up * .05f, new Vector2(.1f, .2f), 0, A(Lamp, on), t, Seed, 1);
+                for (int k = 0; k < 6; k++)
+                {
+                    float u = (t * .9f + H(Seed, k)) % 1;
+                    Glint(b, lamp + new Vector2((H(Seed, k + 3) - .5f) * .9f, u * 1.2f), .1f, Lamp, .8f * on * (1 - u), k * 30);
+                }
+            }
+        }
+    }
+}
