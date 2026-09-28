@@ -465,7 +465,6 @@ namespace ArcaneBrigade
                 Sound(LookFor(e.Rule), "burst", e.Position);
             }
         }
-        }
 
 
 
