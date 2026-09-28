@@ -20,13 +20,12 @@ Shader "ArcaneBrigade/FxProc"
             struct v2f { float4 pos : SV_POSITION; float4 color : COLOR; float2 uv : TEXCOORD0; float4 p : TEXCOORD1; };
             v2f vert (appdata v) { v2f o; o.pos = UnityObjectToClipPos(v.vertex); o.color = v.color; o.uv = v.uv; o.p = v.p; return o; }
 
-            float hash(float2 x) { return frac(sin(dot(x, float2(127.1, 311.7))) * 43758.5453); }
-            float vnoise(float2 x)
-            {
-                float2 i = floor(x), f = frac(x); f = f * f * (3 - 2 * f);
-                return lerp(lerp(hash(i), hash(i + float2(1, 0)), f.x), lerp(hash(i + float2(0, 1)), hash(i + float2(1, 1)), f.x), f.y);
-            }
-            float fbm(float2 x) { return vnoise(x) * .5 + vnoise(x * 2.03 + 7.1) * .25 + vnoise(x * 4.1 + 3.7) * .125 + vnoise(x * 8.3 + 1.3) * .0625; }
+            #include "FxCommon.cginc"
+            #include "FxShapesA.cginc"
+            #include "FxShapesB.cginc"
+            #include "FxShapesC.cginc"
+            #include "FxShapesD.cginc"
+            #include "FxShapesE.cginc"
 
             // p.x = mode, p.y = progress 0..1, p.z = seed, p.w = free parameter
             float4 frag (v2f i) : SV_Target
@@ -49,11 +48,19 @@ Shader "ArcaneBrigade/FxProc"
                     float core = exp(-u.y * u.y / (.02 * thick + .001)), halo = exp(-u.y * u.y / (.32 * thick + .01));
                     I = saturate((core * 1.4 + halo * (.55 + .45 * n)) * ends);
                 }
-                else if (mode > 10.5)                                                                             // 11 link: a beam segment with no end fade (bolts)
+                else if (mode > 10.5 && mode < 11.5)                                                             // 11 link: a beam segment with no end fade (bolts)
                 {
                     float thick = lerp(1, .35, par), ends = smoothstep(1, .88, abs(u.x));
                     float core = exp(-u.y * u.y / (.02 * thick + .001)), halo = exp(-u.y * u.y / (.32 * thick + .01));
                     I = saturate((core * 1.4 + halo * .6) * ends);
+                }
+                else if (mode > 19.5)                                                                             // 20+: shapes of the effect families (FxShapes*.cginc)
+                {
+                    if (mode < 29.5) ShapeA(mode, u, q, seed, par, r, I, hot);
+                    else if (mode < 39.5) ShapeB(mode, u, q, seed, par, r, I, hot);
+                    else if (mode < 49.5) ShapeC(mode, u, q, seed, par, r, I, hot);
+                    else if (mode < 59.5) ShapeD(mode, u, q, seed, par, r, I, hot);
+                    else ShapeE(mode, u, q, seed, par, r, I, hot);
                 }
                 else if (mode < 3.5)                                                                              // 3 vortex: spiral arms around the centre
                 {
