@@ -974,30 +974,21 @@ namespace ArcaneBrigade
                 int level = bond.ActiveLevel(count);
                 bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
-                if (flashing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.55f));
+                if (flashing) { Color fc = BondHudFx.Colour(bond.Id); ArcadeSkin.Slant(line, new Color(fc.r, fc.g, fc.b, 0.55f)); }
                 else if (previewing)
                 {
                     ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, (preview.Activates ? .25f : .12f) + (preview.Activates ? .35f : .15f) * blink));
                     if (preview.Activates) ArcadeSkin.RunningLight(line, Time.unscaledTime, ArcadeSkin.Gold, .75f); // the bond this purchase lights
                 }
-                else if (level > 0)
-                {
-                    // an active bond breathes: a soft teal wash, and now and then a light sweep runs across the row
-                    float breathe = still ? .5f : .5f + .5f * Mathf.Sin(clock * 2.2f + index);
-                    ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, .1f + .1f * breathe));
-                    if (!still && !calm)
-                    {
-                        float sweep = Mathf.Repeat(clock * .45f + index * .23f, 1.6f);
-                        if (sweep < 1) ArcadeSkin.Line(new Rect(line.x + sweep * (line.width - 18), line.y, 18, line.height), new Color(1, 1, 1, .22f * Mathf.Sin(sweep * Mathf.PI)));
-                    }
-                }
+                else if (level > 0) BondHudFx.Row(line, bond.Id, level, index, clock, still, calm); // its element lives in the row
                 float burst = owner.Profile != null && owner.Profile.ReducedMotion ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
+                if (level > 0) BondHudFx.Burst(line, bond.Id, burst);
                 BondRowContent(line, bond, count, previewing ? preview.After : count, level > 0, previewing, previewing && preview.Activates, blink, burst);
                 if (level > 0 || previewing && preview.Activates)
                 {
                     Rect stamp = new Rect(line.xMax - 36, line.y + 2, 34, 21);
                     bool rising = previewing && preview.Activates;
-                    ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
+                    ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : Color.Lerp(BondHudFx.Colour(bond.Id), ArcadeSkin.Ink, .35f));
                     programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.Cream;
                     GUI.Label(stamp, rising ? "LV" + bond.ActiveLevel(preview.After) + "▲" : "LV" + level, programStyle);
                     programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
@@ -1047,11 +1038,11 @@ namespace ArcaneBrigade
             float countRight = active || activates ? line.xMax - 42 : line.xMax - 6;
             GUI.Label(new Rect(countRight - 80, line.y + 2, 80, 28), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
             programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
-            Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
+            Rect progress = new Rect(line.x + 35, line.yMax - 4, line.width - 39, 3);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
             int shown = Mathf.Max(count, bond.NextThreshold(count));
             if (previewing && after > count) ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)after / next), progress.height), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .4f + .5f * blink));
-            ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)count / shown), progress.height), active ? ArcadeSkin.Teal : grey ? new Color(.5f, .5f, .55f) : ArcadeSkin.Gold);
+            ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)count / shown), progress.height), active ? BondHudFx.Colour(bond.Id) : grey ? new Color(.5f, .5f, .55f) : ArcadeSkin.Gold);
         }
 
         private GUIStyle fallenStyle;

@@ -262,6 +262,7 @@ namespace ArcaneBrigade
             ElementLook.Earth or ElementLook.Paper => new Color(.9f, .66f, .4f), ElementLook.Time => new Color(.92f, .86f, .62f),
             ElementLook.Sound => new Color(1f, .6f, 1f), _ => Color.white,
         };
+        public static Color LookColour(ElementLook look) => NumberColour(look);
         private static Color NumberInk(ElementLook look) { Color c = NumberColour(look); return new Color(c.r * .18f, c.g * .14f, c.b * .2f); }
         /// <summary>The top colour of an element's digits (the bottom is NumberColour): each element its own pair.</summary>
         private static Color NumberTop(ElementLook look) => look switch
