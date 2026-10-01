@@ -524,9 +524,20 @@ namespace ArcaneBrigade
         /// <summary>A chained bond hit (Storm, discharge): a forked lightning stroke from the attacker to the enemy it reached,
         /// a few per frame at most.</summary>
         private int chainAttacker = -1, chainHop; private float chainAt = -10; private Vector2 chainLast;
+        private static readonly string[] DamageOnlyRules = { "rune", "falling-star", "carnival-burst" };
+        private readonly Dictionary<string, float> lastDamageFx = new Dictionary<string, float>();
+
         public void OnBondDamage(BondDamageRequest d)
         {
-            if (d.Attacker == null || d.Target == null || chainsThisFrame >= MaxChainsPerFrame) return;
+            if (d.Attacker == null || d.Target == null) return;
+            // rules that only exist as area damage (no trait event): their effect plays where they hit, at most every .2 s each
+            if (d.Rule != null && Array.IndexOf(DamageOnlyRules, d.Rule) >= 0 && FxDirector.Has(d.Rule) && fx != null)
+            {
+                if (!lastDamageFx.TryGetValue(d.Rule, out float last) || Now - last > .2f)
+                { lastDamageFx[d.Rule] = Now; fx.Spawn(new BondMomentRequest(null, d.Rule, 2, BondMomentKind.Strike, d.Attacker.Position, d.Target.Position, 1.2f, 0, 0), Now); }
+                return;
+            }
+            if (chainsThisFrame >= MaxChainsPerFrame) return;
             string r = d.Rule ?? string.Empty;
             if (r.IndexOf("chain", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("discharge", StringComparison.OrdinalIgnoreCase) < 0 && r.IndexOf("storm", StringComparison.OrdinalIgnoreCase) < 0) return;
             chainsThisFrame++;
@@ -546,6 +557,9 @@ namespace ArcaneBrigade
         public void OnSupport(BondSupportRequest s)
         {
             float now = Now, until = now + Mathf.Max(.8f, s.Duration);
+            // the archive's pages and the clock's time stop have their own effects (ArchiveFx, ClockworkFx)
+            if (fx != null && s.Rule != null && (s.Rule == "record-page" || s.Rule == "chapter" || s.Rule == "time-stop") && FxDirector.Has(s.Rule) && popsThisFrame < MaxPopsPerFrame)
+            { popsThisFrame++; Vector2 at = s.Subject != null ? s.Subject.Position : s.Position; fx.Spawn(new BondMomentRequest(null, s.Rule, 6, BondMomentKind.Strike, at, at, Mathf.Max(1.5f, s.Radius), 0, s.Duration), now); }
             switch (s.Kind)
             {
                 case BondSupportKind.Shield: case BondSupportKind.Armor: AddAura(s.Subject, AuraKind.Shield, until, LookFor(s.Rule)); break;

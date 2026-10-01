@@ -61,7 +61,7 @@ namespace ArcaneBrigade.Editor
                 var pending = new SortedSet<string>();
                 foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(ladder, @"(?:Strike|LineStrike|Zone|StepWeather)\(""[a-z-]+"", ""([a-z-]+)"""))
                     if (!FxDirector.Has(m.Groups[1].Value)) pending.Add(m.Groups[1].Value);
-                const bool RebuildDone = false;
+                const bool RebuildDone = true;
                 if (RebuildDone) Require(pending.Count == 0, "moments without an effect: " + string.Join(", ", pending));
                 else Debug.Log("BondStepChecks: " + FxDirector.Rules.Count() + " rules drawn, " + pending.Count + " still to draw: " + string.Join(", ", pending));
                 Debug.Log("BondStepChecks: PASS");
