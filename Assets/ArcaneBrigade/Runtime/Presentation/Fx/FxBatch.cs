@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     /// <summary>The shapes the FxProc shader can draw into one quad (see Resources/Shaders/FxProc.shader).</summary>
-    public enum FxShape { Glow = 0, Flame = 1, Beam = 2, Vortex = 3, Shock = 4, Sparkle = 5, Smoke = 6, Rays = 7, Cracks = 8, Disc = 9, Shade = 10, Link = 11 }
+    public enum FxShape { Glow = 0, Flame = 1, Beam = 2, Vortex = 3, Shock = 4, Sparkle = 5, Smoke = 6, Rays = 7, Cracks = 8, Disc = 9, Shade = 10, Link = 11, Dust = 12 }
 
     /// <summary>Every effect quad of a frame, rebuilt each frame into two meshes: additive light and alpha-blended smoke. One
     /// draw call each, however many pieces an effect is made of.</summary>
@@ -44,6 +44,7 @@ namespace ArcaneBrigade
         private readonly Layer light, dust;
         public int Quads { get; private set; }
         public const int MaxQuads = 6000;
+        private const float BigSpan = 4.5f, MaxSpan = 9f; // half-extents in world units (the arena is 24 x 13)
 
         public FxBatch(Transform parent, int lightOrder = 2145, int dustOrder = 2144)
         {
@@ -58,7 +59,15 @@ namespace ArcaneBrigade
         public void Quad(FxShape shape, Vector2 at, Vector2 size, float degrees, Color tint, float progress = 0, int seed = 0, float param = 0)
         {
             if (Quads >= MaxQuads || tint.a <= .003f) return;
-            Layer l = shape == FxShape.Smoke || shape == FxShape.Shade ? dust : light; Quads++;
+            // a shape bigger than a crowd is dimmed (and kept under a size), so no single effect blinds the field
+            float span = Mathf.Max(size.x, size.y);
+            if (shape != FxShape.Beam && shape != FxShape.Link && span > BigSpan)
+            {
+                tint.a *= Mathf.Clamp01(BigSpan / span) * (shape == FxShape.Shade || shape == FxShape.Smoke || shape == FxShape.Dust ? 1 : .8f);
+                if (span > MaxSpan) size *= MaxSpan / span;
+            }
+            if (tint.a <= .003f) return;
+            Layer l = shape == FxShape.Smoke || shape == FxShape.Shade || shape == FxShape.Dust ? dust : light; Quads++;
             float c = Mathf.Cos(degrees * Mathf.Deg2Rad), s = Mathf.Sin(degrees * Mathf.Deg2Rad);
             Vector2 ax = new Vector2(c, s) * size.x, ay = new Vector2(-s, c) * size.y;
             int n = l.V.Count; var p = new Vector4((float)shape, progress, (seed % 997) * .731f, param);

@@ -516,6 +516,9 @@ namespace ArcaneBrigade
 
         public void OnDanger(EnemyDangerRequest d)
         {
+            // owner 29/10/2026: only bosses show a warning zone; ordinary enemies attack without one
+            UnitState source = boundSimulation?.UnitForPresentation(d.SourceId);
+            if (source == null || source.Definition == null || !source.Definition.IsBoss) return;
             AreaShape shape = d.Shape == EnemyDangerShape.Line ? AreaShape.Line : d.Shape == EnemyDangerShape.Cone ? AreaShape.Cone : d.Shape == EnemyDangerShape.Ring ? AreaShape.Ring : d.Shape == EnemyDangerShape.Arena ? AreaShape.Arena : AreaShape.Disc;
             Sound("rules.warn", d.Position);
             Add(new Area { Shape = shape, Hostile = true, A = d.Position, B = d.End, R = Mathf.Max(.4f, d.Radius), Born = Now, Warn = Mathf.Max(.1f, d.WarningTime), Life = Mathf.Max(.1f, d.WarningTime) + Mathf.Max(.2f, d.Duration), Look = ElementLook.Fire, Seed = ++seed });

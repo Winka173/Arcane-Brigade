@@ -80,11 +80,13 @@ Shader "ArcaneBrigade/FxProc"
                     float c = exp(-abs(u.x) * 18 / (par + 1) - abs(u.y) * 2.2) + exp(-abs(u.y) * 18 / (par + 1) - abs(u.x) * 2.2);
                     I = saturate(c * .8 + exp(-r * r * 14));
                 }
-                else if (mode < 6.5)                                                                              // 6 smoke puff (billowing blob)
+                else if (mode < 6.5)                                                                              // 6 smoke puff: billowing, lit from above-left
                 {
-                    float n = fbm(u * 2.4 + float2(seed, q * .6));
-                    I = smoothstep(.98, .25, r + (n - .5) * .75) * (.55 + .45 * n) * smoothstep(1, .72, r);
-                    hot = float3(.0, .0, .0);
+                    float d = warped(u * 1.7 + seed, q * .8);
+                    float body = smoothstep(.95, .3, r + (d - .5) * .9) * smoothstep(1, .78, r);
+                    float lit = saturate((d - warped(u * 1.7 + seed + float2(-.12, .16), q * .8)) * 4 + .5);
+                    I = body * (.6 + .4 * d);
+                    hot = i.color.rgb * lerp(.45, 1.35, lit);
                 }
                 else if (mode < 7.5)                                                                              // 7 god rays out of the centre
                 {
@@ -103,11 +105,23 @@ Shader "ArcaneBrigade/FxProc"
                     float edge = sqrt(dmin2) - sqrt(dmin), vein = exp(-edge * 26) * 1.7 + exp(-edge * 6) * .12;
                     I = vein * smoothstep(1, .15, r) * smoothstep(0, .08, q);
                 }
+                else if (mode > 11.5 && mode < 12.5)                                                              // 12 dust: grainy, low, drifting
+                {
+                    float d = warped(u * float2(1.4, 2.4) + seed, q * .5);
+                    float grain = hash(floor(u * 90 + seed)) * .35 + .65;
+                    I = smoothstep(.95, .35, r + (d - .5) * 1.1) * smoothstep(1, .8, r) * (.5 + .5 * d) * grain;
+                    hot = i.color.rgb * lerp(.6, 1.2, d);
+                }
                 else if (mode < 9.5) { I = smoothstep(1, .92, r); }                                              // 9 hard disc (flat colour fill, soft rim)
                 else { I = smoothstep(1.0, .35, r); hot = i.color.rgb; }                                          // 10 shade: a soft dark wash (alpha layer)
+                // never a hard quad edge: everything fades out before the corner of its quad
+                if (mode < 1.5 || (mode > 2.5 && mode < 10.5) || mode > 11.5) I *= smoothstep(1, .9, max(abs(u.x), abs(u.y)));
                 I *= i.color.a;
-                float3 col = lerp(i.color.rgb, hot, saturate(I * I * 1.2) * (mode < 6.5 || mode > 6.6 ? 1 : 0));
-                return float4(col, saturate(I));
+                bool matter = (mode > 5.5 && mode < 6.5) || (mode > 11.5 && mode < 12.5);
+                float3 col = matter ? hot : lerp(i.color.rgb, hot, saturate(I * I) * (mode > 8.5 && mode < 9.5 ? .35 : .8));
+                // a touch of noise against banding in big soft glows on the dark floor
+                float dither = (hash(i.pos.xy) - .5) / 128;
+                return float4(col, saturate(I + dither * step(.01, I)));
             }
             ENDCG
         }

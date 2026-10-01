@@ -51,3 +51,15 @@ visible (grep for your bond's names), not only the table's.
 ## Finish
 Reply (Vietnamese, under 250 words): each rule done with a one-line description of its look and how you judged it; rules you could not finish and why;
 anything you saw that looks wrong in someone else's effect or the shared code. Do not claim in-game verification: you only saw frame previews.
+
+## Detail pass (29/10/2026, owner feedback after watching the first in-game clip)
+The owner liked the first pass a lot. Now:
+1. **Smaller areas.** `FxEffect.Radius` is now capped at `FxEffect.MaxRadius` (2.4) and FxBatch dims and shrinks any quad bigger than 4.5 half-extent.
+   Re-check your effects: nothing should cover a big part of the 24 x 13 arena or blind play. Weather is a light touch over the field, never a curtain.
+   Any size you computed from the arena or with big multipliers of Radius: reduce it.
+2. **More detail, cleaner image.** Add secondary detail (small sparks, debris, drips, flecks, secondary motion, a second timing beat) so each effect reads rich up close.
+   Fix anything that looks "broken" (bể): hard edges, blocky noise, banding, whiteouts, shapes clipped by the quad (the shader now fades every quad edge and
+   uses a better sin-free noise; re-check your own cginc shapes look smooth: avoid `floor`-stepped patterns unless intended, keep falloffs soft).
+3. **Smoke and dust.** `FxShape.Smoke` is now billowing lit smoke (warped noise, lighter on top-left); new `FxShape.Dust` (12) is grainy low ground dust.
+   Add smoke, dust, steam or haze where it belongs to the element (impacts, landings, fire, rock, gas), on the alpha layer, under the light.
+Same rules, same workflow (overlay, fx_frames, read frames, copy finished files, run BondStepChecks). Edit only your own family files and cginc.

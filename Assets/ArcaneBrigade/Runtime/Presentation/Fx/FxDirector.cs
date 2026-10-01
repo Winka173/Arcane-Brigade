@@ -9,7 +9,10 @@ namespace ArcaneBrigade
     public abstract class FxEffect
     {
         public BondMomentRequest Moment; public float Born, Land, End; public int Seed; public Rect Arena;
-        public Vector2 At => Moment.To; public Vector2 From => Moment.From; public float Radius => Mathf.Max(.8f, Moment.Radius);
+        public Vector2 At => Moment.To; public Vector2 From => Moment.From;
+        /// <summary>The drawn size: the real area, capped (owner 29/10/2026: big trait effects covered most of the map and blinded play).</summary>
+        public float Radius => Mathf.Clamp(Moment.Radius, .8f, MaxRadius);
+        public const float MaxRadius = 2.4f;
         protected abstract float Life { get; }
         public void Start(BondMomentRequest m, float now, int seed, Rect arena)
         {

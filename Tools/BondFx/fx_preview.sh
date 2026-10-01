@@ -15,6 +15,7 @@ for f in Assets ProjectSettings Packages; do
   MSYS_NO_PATHCONV=1 robocopy "$(cygpath -w "$MAIN/$f")" "$(cygpath -w "$D/$f")" /MIR /R:2 /W:2 /NFL /NDL /NJH /NJS /NP /XD Library Temp Logs __pycache__ > /dev/null
 done
 [ -n "$OVERLAY" ] && [ -d "$OVERLAY" ] && MSYS_NO_PATHCONV=1 robocopy "$(cygpath -w "$OVERLAY")" "$(cygpath -w "$D")" /E /R:2 /W:2 /NFL /NDL /NJH /NJS /NP > /dev/null
-"$UNITY" -batchmode -projectPath "$D" -executeMethod "$method" "$@" -logFile "$log"
+# Hidden window, tiny and not full screen, below-normal priority: the render still uses the GPU but nothing appears on screen or takes focus.
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(cygpath -w "$(dirname "$0")/hidden_unity.ps1")" "$UNITY" -batchmode -screen-fullscreen 0 -screen-width 64 -screen-height 64 -projectPath "\"$D\"" -executeMethod "$method" "$@" -logFile "\"$log\""
 code=$?
 echo "exit $code ($c)"; exit $code
