@@ -73,6 +73,7 @@ namespace ArcaneBrigade
             ink = new ArsenalInk(transform);
             light = new InkCanvas(transform, "Rules light", 2141, true);
             fx = new FxDirector(transform);
+            reactions = new ElementReactions(transform, HitLook); // element marks, combos and deaths (Fx/ElementReactions.cs)
         }
 
 
@@ -204,7 +205,8 @@ namespace ArcaneBrigade
 
 
         /// <summary>Basic attacks draw nothing of their own under the rules v3 (only skills, traits and chains do).</summary>
-        public void OnCombat(CombatEvent e) => OnMeleeHit(e);
+        public void OnCombat(CombatEvent e) { OnMeleeHit(e); reactions?.Observe(e, Now); }
+        private ElementReactions reactions;
 
         /// <summary>Our ordinary shots under the rules v3 fly as the shooter's own painted token in its element's hero palette,
         /// the way the hero's identity bolts do (HeroIdentityVisual.Missile), never as an old bullet painting.</summary>
@@ -796,10 +798,12 @@ namespace ArcaneBrigade
             ink.Begin(); vfx.Begin(); light.Clear();
             CombatSimulation sim = boundSimulation;
             bool live = sim != null && (sim.Phase == RunPhase.Combat || sim.Phase == RunPhase.Paused);
+            if (!live) reactions?.Clear();
             if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); vfx.End(); light.Commit(); vfx.ClearParticles(); return; }
             float now = sim.Elapsed;
             for (int i = fields.Count - 1; i >= 0; i--) { if (now - fields[i].Born > fields[i].Life) { fields.RemoveAt(i); continue; } DrawField(fields[i], sim.Champion.Position, now); }
             DrawSteps(sim, now);
+            reactions?.Draw(sim, now);
             if (now < stillUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Silver.Body, .05f, .3f);
             if (now < realmUntil) ink.Vignette(sim.Champion.Position, 30, ArsenalInk.Midnight.Glow, .04f, .26f);
             for (int i = walls.Count - 1; i >= 0; i--) { if (now > walls[i].Until) { walls.RemoveAt(i); continue; } DrawWall(walls[i], now); Walls++; }
