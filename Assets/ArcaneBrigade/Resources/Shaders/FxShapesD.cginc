@@ -38,12 +38,12 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
     else if (m < 1.5)                                                              // 51 music note
     {
         float head = 0, stem = 0, flag = 0;
-        if (par < 2) { head = smoothstep(1.05, .85, dd_ell(u, float2(-.28, -.52), float2(.36, .25), .5)); stem = dd_stroke(abs(u.x - .06), .06) * step(-.5, u.y) * step(u.y, .78); }
+        if (par < 2) { head = smoothstep(1.05, .85, dd_ell(u, float2(-.28, -.52), float2(.36, .25), .5)); stem = dd_stroke(dd_seg(u, float2(.06, -.5), float2(.06, .78)), .06); }
         if (par > .5 && par < 1.5) flag = dd_stroke(min(dd_seg(u, float2(.08, .76), float2(.42, .5)), min(dd_seg(u, float2(.42, .5), float2(.5, .2)), dd_seg(u, float2(.5, .2), float2(.3, -.06)))), .075);
         if (par > 1.5 && par < 2.5)
         {
             head = max(smoothstep(1.05, .85, dd_ell(u, float2(-.55, -.5), float2(.3, .22), .5)), smoothstep(1.05, .85, dd_ell(u, float2(.4, -.66), float2(.3, .22), .5)));
-            stem = max(dd_stroke(abs(u.x + .27), .055) * step(-.5, u.y) * step(u.y, .62), dd_stroke(abs(u.x - .68), .055) * step(-.66, u.y) * step(u.y, .42));
+            stem = max(dd_stroke(dd_seg(u, float2(-.27, -.5), float2(-.27, .62)), .055), dd_stroke(dd_seg(u, float2(.68, -.66), float2(.68, .42)), .055));
             flag = dd_stroke(dd_seg(u, float2(-.28, .62), float2(.69, .42)), .1);
         }
         if (par > 2.5) { stem = max(max(dd_stroke(dd_seg(u, float2(-.2, -.7), float2(-.2, .7)), .06), dd_stroke(dd_seg(u, float2(.2, -.7), float2(.2, .7)), .06)), max(dd_stroke(dd_seg(u, float2(-.55, -.12), float2(.55, .12)), .1), dd_stroke(dd_seg(u, float2(-.55, .3), float2(.55, .54)), .1))); }
@@ -60,7 +60,7 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
     else if (m < 3.5)                                                              // 53 scythe crescent sweeping counter-clockwise
     {
         float a = atan2(u.y, u.x), hd = lerp(-2.3, 2.3, saturate(q)), L = 1.9, behind = hd - a;
-        float tr = saturate(1 - behind / L), on = step(0, behind + .06) * step(behind, L) * smoothstep(-2.6, -2.2, a) * smoothstep(2.6, 2.2, a);
+        float tr = saturate(1 - behind / L), on = smoothstep(-.08, -.02, behind) * smoothstep(L, L - .1, behind) * smoothstep(-2.6, -2.2, a) * smoothstep(2.6, 2.2, a);
         float R = .93, ri = R - .5 * pow(tr, .7) - .03, tip = smoothstep(-.06, .1, behind);
         float band = smoothstep(ri - .02, ri + .03, r) * smoothstep(R + .02, R - .03, r);
         float edge = exp(-pow((r - R) / .035, 2)) * 1.1;
@@ -71,7 +71,7 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
         float2 hc = float2(.45, 0); float he = length((u - hc) / float2(.3, .27));
         float head = smoothstep(1, .55, he);
         float yc = .13 * sin(u.x * 8 - q * 16 + seed) * saturate(.45 - u.x);
-        float w = .27 * smoothstep(-1, .45, u.x), tail = smoothstep(w, w * .25, abs(u.y - yc)) * smoothstep(-.96, -.25, u.x) * step(u.x, .5) * .8;
+        float w = .27 * smoothstep(-1, .45, u.x), tail = smoothstep(w, w * .25, abs(u.y - yc)) * smoothstep(-.96, -.25, u.x) * smoothstep(.55, .4, u.x) * .8;
         float eyes = smoothstep(.08, .04, length(u - float2(.52, .1))) + smoothstep(.08, .04, length(u - float2(.52, -.1)));
         float mouth = smoothstep(.1, .05, length((u - float2(.66, 0)) / float2(.7, 1)));
         I = saturate(max(head, tail) * (1 - eyes * .95) * (1 - mouth * .6) + exp(-he * he * 1.4) * .22) * box;
@@ -104,20 +104,20 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
         {
             float w = u.y > -.1 ? .72 : .72 * sqrt(saturate((u.y + .92) / .82));
             float de = min(w - abs(u.x), min(.82 - u.y, (u.y + .94) * 1.2));
-            float inside = step(0, de), rim = exp(-pow((de - .06) / .05, 2)), band = exp(-pow((de - .2) / .035, 2)) * .5;
-            float emblem = max(dd_stroke(abs(u.x), .07) * step(abs(u.y), .5), dd_stroke(abs(u.y - .12), .07) * step(abs(u.x), .36));
+            float inside = smoothstep(-.015, .02, de), rim = exp(-pow((de - .06) / .05, 2)), band = exp(-pow((de - .2) / .035, 2)) * .5;
+            float emblem = max(dd_stroke(dd_seg(u, float2(0, -.5), float2(0, .5)), .07), dd_stroke(dd_seg(u, float2(-.36, .12), float2(.36, .12)), .07));
             I = inside * (.28 + .12 * fbm(u * 4 + seed) + rim * 1.1 + band + emblem * .8 + exp(-pow(length(u - float2(0, .12)) / .12, 2)) * .6);
         }
         else if (par < 1.5)
         {
             float d1 = -dot(u - float2(.95, 0), normalize(float2(.5, 1.6))), d2 = -dot(u - float2(.95, 0), normalize(float2(.5, -1.6))), d3 = (u.x + .7);
-            float de = min(min(d1, d2), d3 * .8); float inside = step(0, de);
+            float de = min(min(d1, d2), d3 * .8); float inside = smoothstep(-.015, .02, de);
             I = inside * (.35 + exp(-pow((de - .05) / .05, 2)) * 1.1 + .2 * fbm(u * 5 + seed)) * box;
         }
         else
         {
-            float2 p = abs(u) / float2(.5, .9); float de = min(1 - p.x, 1 - p.y) * .5; float inside = step(0, de);
-            float rune = dd_stroke(abs(u.x), .05) * step(abs(u.y + .1), .55) + dd_stroke(abs(u.y - .15), .045) * step(abs(u.x), .26) + dd_stroke(abs(u.y + .35), .04) * step(abs(u.x), .18);
+            float2 p = abs(u) / float2(.5, .9); float de = min(1 - p.x, 1 - p.y) * .5; float inside = smoothstep(-.012, .015, de);
+            float rune = dd_stroke(dd_seg(u, float2(0, -.65), float2(0, .45)), .05) + dd_stroke(dd_seg(u, float2(-.26, .15), float2(.26, .15)), .045) + dd_stroke(dd_seg(u, float2(-.18, -.35), float2(.18, -.35)), .04);
             float pulse = .6 + .4 * sin(q * 12 + seed);
             I = inside * (.33 + .1 * fbm(u * 6 + seed) + exp(-pow((de - .035) / .035, 2)) * 1.1 + rune * pulse * 1.1);
         }
@@ -125,7 +125,7 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
     else if (m < 7.5)                                                              // 57 clover / leaf / star / gear
     {
         float a = atan2(u.y, u.x);
-        if (par < -.5) { float w = .46 * (1 - u.x * u.x); float d = abs(u.y); I = (smoothstep(w, w - .12, d) * (.45 + .2 * fbm(u * 4 + seed)) + dd_stroke(abs(u.y), .03) * step(abs(u.x), .8) * .6 + exp(-pow((d - w) / .04, 2)) * .5 * step(abs(u.x), .97)) * smoothstep(1, .85, abs(u.x)); }
+        if (par < -.5) { float w = .46 * (1 - u.x * u.x); float d = abs(u.y); I = (smoothstep(w, w - .12, d) * (.45 + .2 * fbm(u * 4 + seed)) + dd_stroke(dd_seg(u, float2(-.8, 0), float2(.8, 0)), .03) * .6 + exp(-pow((d - w) / .04, 2)) * .5 * smoothstep(.97, .85, abs(u.x))) * smoothstep(1, .85, abs(u.x)); }
         else if (par < .5)
         {
             float d = 9;
@@ -157,9 +157,9 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
     {
         if (par > 1.5)
         {
-            float2 p = abs(u) / float2(.78, .56); float de = min(1 - p.x, 1 - p.y) * .4; float inside = step(0, de);
+            float2 p = abs(u) / float2(.78, .56); float de = min(1 - p.x, 1 - p.y) * .4; float inside = smoothstep(-.012, .015, de);
             float lines = 0;
-            for (int k = 0; k < 3; k++) { float y = -.28 + k * .26; lines += dd_stroke(abs(u.y - y), .03) * step(abs(u.x), .5 - .12 * hash(float2(seed, k))); }
+            for (int k = 0; k < 3; k++) { float y = -.28 + k * .26; lines += dd_stroke(dd_seg(u, float2(-.5, y), float2(.5 - .24 * hash(float2(seed, k)), y)), .03); }
             I = inside * (.5 + exp(-pow((de - .03) / .03, 2)) * .9 + lines * .7) * box;
         }
         else
