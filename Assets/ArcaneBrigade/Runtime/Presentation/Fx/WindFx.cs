@@ -22,6 +22,18 @@ namespace ArcaneBrigade
             => b.Quad(Bubble, baseP + Vec(90 + lean) * h, new Vector2(w * 1.5f, h), lean, A(c, a), prog, seed, 10 + par);
         public static float Env(FxEffect e, float now, float fin, float fout) => Rise(now - e.Born, 0, fin) * Fade(now, e.End - fout, e.End);
         public static float Overshoot(float t) { t = Mathf.Clamp01(t); return EaseOut3(t) + .18f * Mathf.Sin(t * Mathf.PI) * (1 - t); }
+        /// <summary>An opaque painted piece on the alpha layer (a soft wash pushed past full so its edge stays crisp): wood, rock, bodies.</summary>
+        public static void Solid(FxBatch b, Vector2 p, Vector2 size, float deg, Color c, float a) { if (a <= .003f) return; c.a = 12f * Mathf.Clamp01(a); b.Quad(FxShape.Shade, p, size, deg, c, 0, 0, 0); }
+        public static void Puff(FxBatch b, Vector2 p, float s, Color c, float a, float prog, int seed) => b.Quad(FxShape.Smoke, p, s, A(c, a), prog, seed);
+        public static void Grit(FxBatch b, Vector2 p, float s, Color c, float a, float prog, int seed) => b.Floor(FxShape.Dust, p, s, A(c, a), prog, seed);
+        /// <summary>A small hot fleck on a gravity arc with a short streak behind it.</summary>
+        public static void Fleck(FxBatch b, Vector2 from, Vector2 vel, float g, float t, float life, float size, Color c, int seed)
+        {
+            float u = t / life; if (u <= 0 || u >= 1) return;
+            Vector2 p = from + vel * t + Vector2.down * g * t * t * .5f, v = vel + Vector2.down * g * t; float al = 1 - u * u;
+            b.Link(p, p - v * .05f, size * .45f, A(c, .75f * al), seed, 1);
+            b.Quad(FxShape.Glow, p, size * 1.7f, A(c, .8f * al), 0, seed);
+        }
     }
 
     /// <summary>Windborne bond: crescent blades, spiral funnels, flying leaves and feathers, long streaks.</summary>
@@ -61,6 +73,18 @@ namespace ArcaneBrigade
                     b.Quad(Blade, p, new Vector2(1.35f * sc, 1.05f * sc), ang + 180, A(Mint, fade), 0, Seed + i);
                     for (int k = 0; k < 3; k++) b.Link(p - dir * .35f + nrm * (k - 1) * .3f * sc, p - dir * (1.9f + .8f * k) * sc + nrm * (k - 1) * .5f * sc, .055f, A(White, .55f * fade), Seed + i * 3 + k, 1);
                     Glint(b, p + dir * .5f, .3f, White, .9f * fade, t * 300 + i * 20);
+                    for (int j = 0; j < 2; j++)
+                    {
+                        float back = .1f + j * .14f; if (u < back) continue; float e2 = 1 - (1 - (u - back)) * (1 - (u - back));
+                        Grit(b, From + dir * len * (.04f + e2 * .98f) + nrm * lat - Vector2.up * .35f, .55f + .25f * j, new Color(.62f, .6f, .48f), .32f * fade * (1 - j * .3f), t + j, Seed + i * 7 + j);
+                    }
+                    for (int j = 0; j < 3; j++) Fleck(b, p + nrm * (j - 1) * .4f, nrm * (j - 1) * 1.6f - dir * 1.2f + Vector2.up * .8f, 3, t - lag - .12f - j * .06f, .45f, .07f, j == 1 ? White : Mint, Seed + i * 5 + j);
+                }
+                for (int k = 0; k < 4; k++)
+                {
+                    float a = Rise(t, .42f + k * .07f, .95f + k * .07f); if (a <= 0 || a >= 1) continue;
+                    Vector2 c = At + nrm * (k - 1.5f) * .55f + dir * a * 1.1f;
+                    b.Quad(Swirl, c, new Vector2(.6f + a * .5f, .4f + a * .3f), ang, A(k % 2 == 0 ? Mint : White, .65f * (1 - a)), a * 2, Seed + k, k % 2 == 0 ? 1 : -1);
                 }
                 for (int k = 0; k < 10; k++)
                 {
@@ -79,13 +103,22 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 float on = Env(this, now, .5f, .6f); if (on <= 0) return;
-                float R = Mathf.Max(1.6f, Moment.Radius) * 1.15f, tall = 3.9f; Vector2 at = At;
-                b.Floor(FxShape.Shade, at, R * 1.5f, A(new Color(.02f, .08f, .08f), .55f * on), 0, Seed);
-                b.Floor(Swirl, at, R * 1.7f, A(Mint, .55f * on), now * 2.4f, Seed + 3, 4);
-                b.Floor(FxShape.Smoke, at + new Vector2(Mathf.Sin(now * 1.7f) * .4f, 0), R * 1.1f, A(new Color(.6f, .55f, .4f), .38f * on), now * .3f, Seed + 4);
+                float R = Radius * .95f, tall = 3.4f; Vector2 at = At; Color dirt = new Color(.6f, .53f, .38f);
+                b.Floor(FxShape.Shade, at, R * 1.3f, A(new Color(.02f, .08f, .08f), .5f * on), 0, Seed);
+                b.Floor(Swirl, at, R * 1.4f, A(Mint, .5f * on), now * 2.4f, Seed + 3, 4);
+                for (int k = 0; k < 3; k++)
+                {
+                    float a = now * (1.6f + .4f * k) + k * 2.1f;
+                    Grit(b, at + new Vector2(Mathf.Cos(a) * R * .55f, Mathf.Sin(a) * R * .3f - .1f), R * (.75f + .15f * k), dirt, .42f * on, now * .8f + k, Seed + 4 + k);
+                }
+                for (int k = 0; k < 4; k++)
+                {
+                    float u = (now * .7f + k * .25f) % 1, a = now * 3 + k * 1.6f;
+                    Puff(b, at + new Vector2(Mathf.Cos(a) * R * (.5f + .5f * u), .1f + u * .9f), .45f + .5f * u, dirt, .4f * on * Mathf.Sin(u * 3.14f), u, Seed + 20 + k);
+                }
                 for (int i = 0; i < 12; i++)
                 {
-                    float f = i / 11f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f, w = R * (.34f + .95f * f * f + .2f * f);
+                    float f = i / 11f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f, w = R * (.3f + .8f * f * f + .18f * f);
                     Vector2 c = at + new Vector2(sway, -.1f + f * tall);
                     b.Quad(Swirl, c, new Vector2(w * 1.15f, w * .42f), 0, A(i % 2 == 0 ? Mint : Teal, (.85f - .3f * f) * on), now * (2.6f + f * 1.5f) * (i % 2 == 0 ? 1 : -1), Seed + i, i % 2 == 0 ? 2 : -3);
                     b.Quad(FxShape.Glow, c, new Vector2(w * 1.1f, w * .5f), 0, A(Teal, .1f * on), 0, Seed);
@@ -93,7 +126,7 @@ namespace ArcaneBrigade
                 for (int k = 0; k < 16; k++)
                 {
                     float spd = 3.5f + 2.5f * H(Seed, k), f = (H(Seed, k + 9) + now * (.28f + .12f * H(Seed, k + 3))) % 1, a = now * spd + k * 1.9f;
-                    float rw = R * (.42f + .95f * f * f + .2f * f) * 1.1f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f;
+                    float rw = R * (.36f + .8f * f * f + .18f * f) * 1.1f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f;
                     Vector2 p = at + new Vector2(sway + Mathf.Cos(a) * rw * 1.15f, -.1f + f * tall + Mathf.Sin(a) * rw * .42f), tan = new Vector2(-Mathf.Sin(a) * 1.15f, Mathf.Cos(a) * .42f);
                     float al = on * Mathf.Sin(f * 3.14f) * 1.3f;
                     if (k % 4 == 3) Lf(b, p, .5f, Ang(tan) + Mathf.Sin(now * 9 + k) * 30, Cream, al, Seed + k, true);
@@ -101,10 +134,23 @@ namespace ArcaneBrigade
                 }
                 for (int k = 0; k < 4; k++)
                 {
-                    float f = .25f + k * .22f, a = now * (5.5f - k * .6f) + k * 1.57f, rw = R * (.5f + .95f * f * f + .25f * f) * 1.3f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f;
+                    float f = .25f + k * .22f, a = now * (5.5f - k * .6f) + k * 1.57f, rw = R * (.42f + .8f * f * f + .2f * f) * 1.25f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f;
                     Vector2 p = at + new Vector2(sway + Mathf.Cos(a) * rw * 1.15f, -.1f + f * tall + Mathf.Sin(a) * rw * .42f), tan = new Vector2(-Mathf.Sin(a) * 1.15f, Mathf.Cos(a) * .42f);
                     b.Quad(Blade, p, new Vector2(.85f, .65f), Ang(tan) + 180, A(White, .95f * on));
                     for (int j = 1; j < 4; j++) { float a2 = a - j * .22f; Vector2 q = at + new Vector2(sway + Mathf.Cos(a2) * rw * 1.15f, -.1f + f * tall + Mathf.Sin(a2) * rw * .42f); Glint(b, q, .22f, Mint, .6f * on * (1 - j / 4f), j * 60); }
+                }
+                for (int k = 0; k < 10; k++)
+                {
+                    float f = .04f + .3f * H(Seed, k + 50), a = now * (4.5f + 2 * H(Seed, k + 51)) + k * .63f, rw = R * (.4f + .25f * f) * 1.2f;
+                    Vector2 p = at + new Vector2(Mathf.Cos(a) * rw * 1.15f, f * tall + Mathf.Sin(a) * rw * .42f);
+                    float sz = .07f + .06f * H(Seed, k + 52); bool front = Mathf.Sin(a) < 0;
+                    Solid(b, p, new Vector2(sz * 1.4f, sz), a * 90, k % 3 == 0 ? new Color(.35f, .25f, .14f) : new Color(.22f, .17f, .12f), on * (front ? 1 : .55f));
+                }
+                float gp = (now - Born) % 1.3f / .8f;
+                if (gp < 1)
+                {
+                    float f = EaseOut(gp), w = R * (.3f + .8f * f * f + .18f * f), sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f;
+                    b.Quad(Swirl, at + new Vector2(sway, f * tall), new Vector2(w * 1.25f, w * .48f), 0, A(White, .7f * on * Mathf.Sin(gp * 3.14f)), now * 5, Seed + 77, 3);
                 }
             }
         }
@@ -117,32 +163,43 @@ namespace ArcaneBrigade
             {
                 float on = Env(this, now, 2f, 1.2f); if (on <= 0) return;
                 Rect a = Arena; float W = a.width + 10;
-                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.2f, .5f, .45f), .17f * on), 0, Seed);
-                for (int k = 0; k < 26; k++)
+                for (int k = 0; k < 8; k++)
+                {
+                    float spd = 9 + 5 * H(Seed, k + 200), u = (H(Seed, k + 201) + now * spd / W) % 1; Vector2 p = new Vector2(a.xMin - 5 + u * W, a.yMin + a.height * H(Seed, k + 202));
+                    Grit(b, p, 1.1f + .5f * H(Seed, k + 203), new Color(.62f, .62f, .5f), .22f * on * Mathf.Sin(u * 3.14f), now * 2 + k, Seed + k);
+                }
+                for (int k = 0; k < 24; k++)
+                {
+                    float spd = 8 + 6 * H(Seed, k + 210), u = (H(Seed, k + 211) + now * spd / W) % 1; float x = a.xMin - 5 + u * W, y = a.yMin + a.height * H(Seed, k + 212) + Mathf.Sin(now * 3 + k) * .3f;
+                    Glint(b, new Vector2(x, y), .1f + .06f * H(Seed, k), k % 3 == 0 ? Cream : White, .7f * on, now * 200 + k * 30);
+                }
+                for (int k = 0; k < 18; k++)
                 {
                     float spd = 7 + 6 * H(Seed, k + 5), u = (H(Seed, k) + now * spd / W) % 1, y0 = a.yMin + a.height * H(Seed, k + 50), x = a.xMin - 5 + u * W, L = 3 + 3 * H(Seed, k + 90);
                     Vector2 prev = new Vector2(x, y0 + Mathf.Sin(x * .5f + k) * .4f);
                     for (int s = 1; s <= 3; s++)
                     {
                         float xx = x - L * s / 3f; Vector2 p = new Vector2(xx, y0 + Mathf.Sin(xx * .5f + k) * .4f);
-                        b.Link(prev, p, .075f, A(k % 4 == 0 ? Cream : Mint, (.75f - .15f * s) * on), Seed + k, 1); prev = p;
+                        b.Link(prev, p, .06f, A(k % 4 == 0 ? Cream : Mint, (.6f - .14f * s) * on), Seed + k, 1); prev = p;
                     }
                     if (k % 3 == 0) b.Quad(Swirl, new Vector2(x, y0 + Mathf.Sin(x * .5f + k) * .4f), .38f, A(White, .55f * on), now * 9 + k, Seed + k, 2);
                 }
-                for (int k = 0; k < 40; k++)
+                for (int k = 0; k < 24; k++)
                 {
                     bool feather = k % 4 == 0; float spd = 6 + 7 * H(Seed, k + 7), u = (H(Seed, k + 20) + now * spd / W) % 1, y0 = a.yMin + a.height * H(Seed, k + 60), x = a.xMin - 5 + u * W;
                     Vector2 p = new Vector2(x, y0 + Mathf.Sin(x * .45f + k * 2) * .9f);
                     Lf(b, p, feather ? .75f : .52f, now * (150 + 90 * H(Seed, k)) * (k % 2 == 0 ? 1 : -1) + k * 50, feather ? Cream : (k % 3 == 0 ? Green : new Color(.75f, 1f, .45f)), .9f * on, Seed + k, feather);
                 }
-                for (int g = 0; g < 3; g++)
+                for (int g = 0; g < 2; g++)
                 {
                     float cyc = 3.4f, tt = (now + g * 1.15f) % cyc / 1.3f; if (tt >= 1) continue;
                     int n = Mathf.FloorToInt((now + g * 1.15f) / cyc); float y0 = a.yMin + a.height * (.2f + .6f * H(Seed + n, g)), x = a.xMin - 3 + tt * (a.width + 6);
                     float al = Mathf.Sin(tt * 3.14f) * .55f * on;
-                    b.Quad(Blade, new Vector2(x, y0), new Vector2(3.4f, 2.4f), 180 + Mathf.Sin(tt * 6) * 8, A(Mint, al), 0, Seed + g);
-                    b.Quad(Blade, new Vector2(x - .6f, y0), new Vector2(4.4f, 3f), 180, A(Teal, al * .4f), 0, Seed + g + 4);
-                    for (int s = 0; s < 4; s++) b.Link(new Vector2(x - 1.2f, y0 + (s - 1.5f) * .7f), new Vector2(x - 5.5f - s, y0 + (s - 1.5f) * 1.1f), .05f, A(White, al), Seed + s, 1);
+                    b.Quad(Blade, new Vector2(x, y0), new Vector2(1.9f, 1.35f), 180 + Mathf.Sin(tt * 6) * 8, A(Mint, al * 1.2f), 0, Seed + g);
+                    b.Quad(Blade, new Vector2(x - .4f, y0), new Vector2(2.5f, 1.7f), 180, A(Teal, al * .45f), 0, Seed + g + 4);
+                    for (int s = 0; s < 4; s++) b.Link(new Vector2(x - .7f, y0 + (s - 1.5f) * .4f), new Vector2(x - 3.4f - s * .6f, y0 + (s - 1.5f) * .65f), .045f, A(White, al), Seed + s, 1);
+                    for (int s = 0; s < 5; s++) Lf(b, new Vector2(x - .8f - s * .7f, y0 + Mathf.Sin(tt * 9 + s) * .6f), .38f, now * 300 + s * 70, s % 2 == 0 ? Green : Cream, al * 1.4f, Seed + g * 9 + s, s % 2 == 1);
+
                 }
             }
         }

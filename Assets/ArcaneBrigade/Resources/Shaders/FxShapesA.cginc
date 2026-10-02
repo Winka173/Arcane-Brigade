@@ -1,6 +1,7 @@
 // Shapes 20-29 of the FxProc shader (family A: Windborne, Ember, Frost, Tide, Garden).
 // 20 crescent blade (horns point +x), 21 leaf / feather (par>=1), 22 crystal shard (tip +x), 23 water drop (tip +y), 24 bubble,
-// 25 spiral streaks (par: arms, sign = turn), 26 snowflake, 27 vine curl (q = growth), 28 blossom, 29 root / tentacle (+y, q = growth).
+// 25 spiral streaks (par: arms, sign = turn), 26 snowflake, 27 vine curl (q = growth), 28 blossom (par >= 10: bark grain), 29 root / tentacle (+y, q = growth).
+// 24 with par >= 10 is a flame tongue.
 #ifndef FX_SHAPES_A
 #define FX_SHAPES_A
 void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout float I, inout float3 hot)
@@ -73,9 +74,10 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
     {
         float a = atan2(u.y, u.x), m = fmod(a + 12.566, 1.0472), b = min(m, 1.0472 - m);
         float perp = r * sin(b), along = r * cos(b);
-        float mn = exp(-perp * perp / .0012) * step(along, .95);
+        float mn = exp(-perp * perp / .0012) * smoothstep(.97, .88, along);
         float d1 = perp - (along - .38), d2 = perp - (along - .6);
-        float br1 = exp(-d1 * d1 / .0012) * step(.38, along) * step(along, .68), br2 = exp(-d2 * d2 / .0012) * step(.6, along) * step(along, .88);
+        float br1 = exp(-d1 * d1 / .0012) * smoothstep(.36, .4, along) * smoothstep(.7, .64, along), br2 = exp(-d2 * d2 / .0012) * smoothstep(.58, .62, along) * smoothstep(.9, .84, along);
+
         I = (mn + (br1 + br2) * .8 + smoothstep(.17, .1, r) * .8 + exp(-r * r * 30) * .6) * smoothstep(1, .85, r);
         hot = float3(1, 1, 1);
     }
@@ -87,6 +89,15 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
         I = exp(-dist * dist / (w * w)) * smoothstep(q, q - .05, rr) * (.7 + .5 * vnoise(float2(r * 14, seed))) * smoothstep(1, .9, r);
         hot = float3(.8, 1, .6);
     }
+    else if (mode < 28.5 && par >= 10)
+    {
+        // bark grain (par >= 10): long wavy streaks along +y with knots, laid faintly over painted wood
+        float x = u.x * 3.2 + .35 * sin(u.y * 2.3 + seed) + .5 * fbm(float2(u.x * 1.5 + seed, u.y * .8));
+        float g = abs(frac(x) - .5), ln = exp(-g * g / .006);
+        float2 kd = (u - float2(.3 * sin(seed * 3.1), .4 * cos(seed * 1.7))) * float2(3, 1.4); float knot = exp(-pow(length(kd) - .25, 2) / .004);
+        I = (ln * (.45 + .55 * vnoise(float2(x * 3, u.y * 4 + seed))) + knot * .8) * smoothstep(1, .65, abs(u.x)) * smoothstep(1, .75, abs(u.y));
+        hot = float3(1, .82, .55);
+    }
     else if (mode < 28.5)
     {
         float a = atan2(u.y, u.x), R = .35 + .6 * pow(.5 + .5 * cos(5 * a), .6);
@@ -97,7 +108,7 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
     else
     {
         float y01 = u.y * .5 + .5, x0 = .22 * (1 + par) * sin(u.y * 4.2 + seed * 1.3) * y01;
-        float w = (.34 * pow(max(1 - y01, 0), .8) + .03) * (1 + .28 * step(.72, frac(u.y * 3 + seed)));
+        float w = (.34 * pow(max(1 - y01, 0), .8) + .03) * (1 + .28 * pow(.5 + .5 * sin(u.y * 18.85 + seed * 6.28), 8));
         float d = u.x - x0, body = smoothstep(w, w - .05, abs(d)) * smoothstep(q, q - .03, y01);
         I = body * (.55 + .45 * vnoise(float2(u.x * 6 + seed, u.y * 14))) * (.7 + .3 * saturate(-d / max(w, .03)));
         hot = float3(.75, .6, .35);

@@ -27,7 +27,24 @@ namespace ArcaneBrigade
                 float r = Mathf.Clamp(Radius, 1.2f, 2.3f), up = EaseOut3(Rise(t, 0, .2f)), fade = Fade(t, .4f, 1.05f); Vector2 at = At;
                 b.Floor(FxShape.Shade, at, r * 1.3f, A(Soot, .6f * Fade(t, .3f, 1.1f)), 0, Seed);
                 b.Floor(FxShape.Glow, at, r * 1.5f, A(Red, .6f * Fade(t, 0, .9f)), 0, Seed);
-                b.Quad(FxShape.Glow, at + Vector2.up * .6f, r * 2.1f, A(Fire, .7f * Fade(t, 0, .55f)), 0, Seed);
+                b.Quad(FxShape.Glow, at + Vector2.up * .6f, r * 1.5f, A(Fire, .7f * Fade(t, 0, .55f)), 0, Seed);
+                for (int k = 0; k < 4; k++)
+                {
+                    float u = Rise(t, .18f + k * .08f, 1.1f + k * .05f); if (u <= 0 || u >= 1) continue;
+                    Puff(b, at + new Vector2((k - 1.5f) * r * .25f + Mathf.Sin(u * 4 + k) * .15f, r * (.9f + 1.3f * u)), r * (.35f + .35f * u), new Color(.16f, .1f, .08f), .6f * Mathf.Sin(u * 3.14f), u, Seed + 40 + k);
+                }
+                for (int k = 0; k < 10; k++)
+                {
+                    Vector2 dd = Dir(Seed + 2, k, 10, .7f);
+                    Fleck(b, at + Vector2.up * r * .4f, new Vector2(dd.x * 3.2f, 3.5f + 2.5f * H(Seed, k + 60)), 9, t - .28f, .7f, .09f, k % 3 == 0 ? White : Gold, Seed + k);
+                }
+                for (int k = 0; k < 8; k++)
+                {
+                    float u = (t * .8f + H(Seed, k + 90)) % 1; if (t < .3f) continue;
+                    Vector2 p = at + new Vector2((H(Seed, k + 91) - .5f) * r * 1.6f + Mathf.Sin(t * 3 + k) * .3f, r * .6f + u * 2.2f);
+                    Solid(b, p, new Vector2(.08f, .05f), t * 200 + k * 40, new Color(.18f, .12f, .1f), (1 - u) * Fade(t, .8f, 1.15f));
+
+                }
                 b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 1.1f, A(White, .7f * Fade(t, 0, .12f)), 0, Seed);
                 Tongue(b, at, 0, r * 2.1f * up, r * .5f, Fire, fade, t, Seed, 1);
                 Tongue(b, at, 0, r * 1.5f * up, r * .3f, Gold, fade, t + .3f, Seed + 3, 2);
@@ -56,7 +73,8 @@ namespace ArcaneBrigade
                 b.Floor(FxShape.Shade, at, r * 1.5f, A(Soot, .55f * Fade(t, .5f, 1.8f)), 0, Seed);
                 b.Floor(FxShape.Glow, at, r * 1.9f, A(Red, .65f * Fade(t, 0, 1.5f)), 0, Seed);
                 b.Quad(FxShape.Cracks, at, new Vector2(r * 1.4f, r * .9f), 0, A(Lava, .7f * Fade(t, .5f, 1.8f)), 1, Seed, 2);
-                b.Quad(FxShape.Glow, at + Vector2.up * .4f, r * 1.6f, A(White, .85f * Fade(t, 0, .18f)), 0, Seed);
+                b.Quad(FxShape.Glow, at + Vector2.up * .4f, r * 1.2f, A(White, .85f * Fade(t, 0, .18f)), 0, Seed);
+                Grit(b, at, r * 1.3f, new Color(.1f, .06f, .05f), .45f * Rise(t, .4f, .9f) * Fade(t, 1.3f, 1.9f), t, Seed + 3);
                 for (int w = 0; w < 3; w++)
                 {
                     float t0 = w * .15f, R = r * (.25f + .95f * EaseOut(Rise(t, t0, t0 + .55f))), al = Fade(t, t0 + .45f, t0 + 1.3f) * Rise(t, t0, t0 + .06f);
@@ -66,6 +84,8 @@ namespace ArcaneBrigade
                     {
                         Vector2 dd = Dir(Seed + w * 7, k, n, .62f), bp = at + dd * R * (.9f + .2f * H(Seed + w, k));
                         Tongue(b, bp, dd.x * -12 + (H(Seed + w, k + 20) - .5f) * 14, (1.25f - .2f * w) * (.8f + .5f * H(Seed, k + w * 9)), .38f, (k + w) % 3 == 0 ? Gold : Fire, al * .95f, t + k * .17f, Seed + k + w * 31);
+                        if (k % 2 == 0) Puff(b, bp + Vector2.up * (1.1f + .6f * (t - t0)), .5f + .3f * (t - t0), new Color(.14f, .09f, .07f), .45f * al, t, Seed + k + w * 13);
+                        if (k % 3 == 0) Fleck(b, bp + Vector2.up * .8f, new Vector2(dd.x * 1.5f, 2.5f + H(Seed, k + w) * 2), 6, t - t0 - .1f, .7f, .07f, Gold, Seed + k + w * 50);
                     }
                 }
                 Tongue(b, at, 0, r * 1.5f * EaseOut3(Rise(t, 0, .3f)), r * .5f, Gold, Fade(t, .5f, 1.5f), t, Seed + 50, 2);
@@ -110,8 +130,18 @@ namespace ArcaneBrigade
                     return;
                 }
                 float fl = Fade(t, 0, .2f), up = EaseOut3(Rise(t, 0, .24f)), fd = Fade(t, .35f, 1.4f);
-                b.Quad(FxShape.Glow, at, r * 3.2f, A(White, .9f * fl), 0, Seed);
-                b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 2.4f, A(Fire, .75f * Fade(t, 0, .9f)), 0, Seed);
+                b.Quad(FxShape.Glow, at, r * 2f, A(White, .9f * fl), 0, Seed);
+                b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 1.8f, A(Fire, .75f * Fade(t, 0, .9f)), 0, Seed);
+                for (int k = 0; k < 10; k++)
+                {
+                    Vector2 dd = Dir(Seed + 6, k, 10, .62f); float u = EaseOut(Rise(t, 0, .9f));
+                    Grit(b, at + dd * r * (.4f + 1f * u), r * (.45f + .3f * u), new Color(.4f, .3f, .22f), .5f * Fade(t, .3f, 1.3f), t + k, Seed + k);
+                }
+                for (int k = 0; k < 14; k++)
+                {
+                    Vector2 dd = Dir(Seed + 8, k, 14, .7f);
+                    Fleck(b, at + Vector2.up * .3f, new Vector2(dd.x * (3 + 2 * H(Seed, k + 30)), 4 + 3 * H(Seed, k + 31)), 10, t - .03f, .8f, .09f, k % 2 == 0 ? Gold : White, Seed + k + 100);
+                }
                 Tongue(b, at, 0, r * 2.4f * up, r * .85f, Fire, fd, t, Seed, 1);
                 Tongue(b, at, 0, r * 1.7f * up, r * .5f, Gold, fd, t + .3f, Seed + 3, 2);
                 for (int k = 0; k < 6; k++)
@@ -128,6 +158,7 @@ namespace ArcaneBrigade
                     float life = .7f + .5f * H(Seed, k + 5), u = t / life; if (u <= 0 || u >= 1) continue;
                     Vector2 dir = Dir(Seed, k, 9, .55f), p = at + dir * r * 1.7f * EaseOut(u) + Vector2.up * (3.6f * H(Seed, k + 9) * u - 5f * u * u + .2f);
                     b.Quad(FxShape.Glow, p, .55f, A(Fire, .5f * (1 - u)), 0, Seed);
+                    for (int j = 1; j < 4; j++) { float uj = Mathf.Max(0, u - j * .05f) * life; Vector2 q = at + dir * r * 1.7f * EaseOut(uj / life) + Vector2.up * (3.6f * H(Seed, k + 9) * uj / life - 5f * uj * uj / life / life + .2f); Puff(b, q, .14f + .07f * j, new Color(.2f, .14f, .1f), .5f * (1 - u) * (1 - j / 4f), u, Seed + k * 3 + j); }
                     b.Quad(FxShape.Smoke, p, .3f + .12f * H(Seed, k + 3), A(new Color(.12f, .04f, .02f), 1 - u * u), 0, Seed + k);
                     b.Quad(FxShape.Cracks, p, .32f, t * 300, A(Gold, 1 - u), 1, Seed + k, 1);
                 }
@@ -148,7 +179,7 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 d = At - From; float len = d.magnitude; if (len < .1f) return;
-                Vector2 dir = d / len, nrm = new Vector2(-dir.y, dir.x); float ang = Ang(dir), s = Mathf.Max(1f, Radius) * 1.35f;
+                Vector2 dir = d / len, nrm = new Vector2(-dir.y, dir.x); float ang = Ang(dir), s = Mathf.Max(1f, Radius) * 1.15f;
                 if (t < 0)
                 {
                     float g = EaseOut(pre);
@@ -167,7 +198,15 @@ namespace ArcaneBrigade
                     float lifeU = a / 1.4f; Vector2 bp = From + dir * path + nrm * Mathf.Sin(i * 2.1f) * .35f;
                     Tongue(b, bp, ((i % 3) - 1) * 14, (.9f + .6f * H(Seed, i)) * s * Mathf.Min(1, a / .15f) * (1 - lifeU * .6f), .6f * s, i % 2 == 0 ? Fire : Gold, 1 - lifeU, t + i * .2f, Seed + i);
                     b.Floor(FxShape.Glow, bp, 1.1f * s, A(Red, .45f * (1 - lifeU)), 0, Seed);
+                    if (i % 2 == 0) Puff(b, bp + Vector2.up * (1.2f + 1.3f * lifeU) * s, (.45f + .5f * lifeU) * s, new Color(.15f, .09f, .07f), .5f * Mathf.Sin(lifeU * 3.14f), lifeU, Seed + i);
+                    if (i % 3 == 0) Grit(b, bp, .9f * s, new Color(.08f, .05f, .04f), .4f * Rise(lifeU, .3f, .7f), lifeU, Seed + i + 3);
                 }
+                for (int k = 0; k < 16; k++)
+                {
+                    float f = (k + .5f) / 16f, a = t - f * 1.05f; Vector2 sp = From + dir * len * (-.1f + 1.2f * f) + nrm * (H(Seed, k + 120) - .5f) * 1.2f * s + Vector2.up * .6f * s;
+                    Fleck(b, sp, new Vector2((H(Seed, k + 121) - .5f) * 2, -1f - H(Seed, k + 122)), 5, a, .6f, .07f, k % 2 == 0 ? Gold : White, Seed + k + 300);
+                }
+
                 for (int k = 0; k < 14; k++)
                 {
                     float f = H(Seed, k + 5), a = t - f * 1.05f - .1f; if (a < 0 || a > .95f) continue; float u = a / .95f;
