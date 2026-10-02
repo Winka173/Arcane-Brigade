@@ -41,8 +41,11 @@ namespace ArcaneBrigade
             public float Life = 0.55f;
             public float Shake;   // a long-range critical's number trembles (RangedFeel.LongShot)
             public int Kind;      // 0 damage, 1 healing, 2 a word or a stat (rises gently instead of being thrown)
+            public int Look;      // the element of the hit (ElementLook index), 0 for none: its ornament is drawn behind the digits
+            public Color Tint;
         }
         private readonly List<DamageNumber> numbers = new List<DamageNumber>();
+        private FxBatch ornaments;
         private Font font;
         private Sprite sprite;
         private int sequence;
@@ -189,7 +192,7 @@ namespace ArcaneBrigade
             if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 48) return;
             DamageNumber number = Take(champion);
             if (number == null) return;
-            number.Kind = 0;
+            number.Kind = 0; number.Look = 0;
             number.Champion = champion;
             number.SubjectId = combatEvent.SubjectId; number.Amount = amount; number.Critical = combatEvent.Critical;
             number.Position = position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
@@ -226,7 +229,9 @@ namespace ArcaneBrigade
                 if (combatEvent.Critical) { t = Color.Lerp(t, Color.white, .3f); b = Color.Lerp(b, Color.white, .15f); }
                 digits.sharedMaterial = gradientText;
                 gradientBlock.Clear(); gradientBlock.SetColor("_Top", t); gradientBlock.SetColor("_Bottom", b); gradientBlock.SetFloat("_Height", number.View.characterSize * number.View.fontSize * .1f);
-                gradientBlock.SetFloat("_Mode", ElementShape != null ? ElementShape(combatEvent) : 0);
+                int look = ElementShape != null ? ElementShape(combatEvent) : 0;
+                gradientBlock.SetFloat("_Mode", look); gradientBlock.SetFloat("_Seed", sequence * .37f);
+                number.Look = look; number.Tint = Color.Lerp(b, t, .4f);
                 digits.SetPropertyBlock(gradientBlock);
             }
             else if (digits.sharedMaterial != font.material) { digits.sharedMaterial = font.material; digits.SetPropertyBlock(null); }
@@ -304,7 +309,7 @@ namespace ArcaneBrigade
         {
             if (!PresentationSettings.DamageNumbers || string.IsNullOrEmpty(text)) return null;
             DamageNumber number = Take(true); if (number == null) return null;
-            number.Kind = 2; number.Champion = true; number.SubjectId = 0; number.Amount = 0; number.Critical = false; number.Shake = 0;
+            number.Kind = 2; number.Look = 0; number.Champion = true; number.SubjectId = 0; number.Amount = 0; number.Critical = false; number.Shake = 0;
             // labels arriving together stack upward instead of on top of one another
             int near = 0; foreach (DamageNumber other in numbers) if (other != number && other.Kind != 0 && other.Age < .35f && (other.Position - at).sqrMagnitude < .6f) near++;
             number.Position = at + Vector2.up * (near * .26f);
@@ -343,6 +348,18 @@ namespace ArcaneBrigade
                 foreach (TextMesh outline in number.Outlines) outline.color = new Color(number.Ink.r, number.Ink.g, number.Ink.b, number.View.color.a * 0.92f);
                 if (number.Age >= number.Life) number.View.gameObject.SetActive(false);
             }
+            // each elemental number carries a small piece of its element behind it (NumberOrnament)
+            if (ornaments == null) ornaments = new FxBatch(transform, 2597, 2596);
+            ornaments.Begin();
+            if (!PresentationSettings.ReducedEffects)
+                foreach (DamageNumber number in numbers)
+                {
+                    if (number.Look <= 0 || number.Kind != 0 || number.Age >= number.Life) continue;
+                    float height = number.View.characterSize * number.View.fontSize * .1f, width = height * .62f * number.View.text.Length;
+                    Vector3 p = number.View.transform.position;
+                    NumberOrnament.Draw(ornaments, number.Look, new Vector2(p.x, p.y), height, width, number.Age / number.Life, number.View.color.a, number.SubjectId * 31 + (int)(number.Amount * 7), number.Tint);
+                }
+            ornaments.End();
             foreach (Spark spark in sparks)
             {
                 if (spark.Age >= spark.Duration) continue;

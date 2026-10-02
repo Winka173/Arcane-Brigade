@@ -283,11 +283,8 @@ namespace ArcaneBrigade
             return NumberColour(look);
         }
         private Color? ElementNumberInk(CombatEvent e) { ElementLook look = HitLook(e); return look == ElementLook.None ? (Color?)null : NumberInk(look); }
-        private int ElementNumberShape(CombatEvent e) => HitLook(e) switch
-        {
-            ElementLook.Fire => 1, ElementLook.Storm => 2, ElementLook.Ice or ElementLook.Crystal => 3, ElementLook.Water => 4,
-            ElementLook.Poison => 5, ElementLook.Void or ElementLook.Dream => 6, _ => 0,
-        };
+        /// <summary>The element's index (ElementLook): DamageText moves and patterns the digits by it, NumberOrnament dresses them.</summary>
+        private int ElementNumberShape(CombatEvent e) => (int)HitLook(e);
         private Color? ElementNumberTop(CombatEvent e) { ElementLook look = HitLook(e); return look == ElementLook.None ? (Color?)null : NumberTop(look); }
 
         /// <summary>The element look a rule, skill or bond name reads as.</summary>
