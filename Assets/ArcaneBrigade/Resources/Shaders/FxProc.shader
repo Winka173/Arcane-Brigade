@@ -110,7 +110,9 @@ Shader "ArcaneBrigade/FxProc"
                     float d = warped(u * float2(1.4, 2.4) + seed, q * .5);
                     float grain = hash(floor(u * 90 + seed)) * .35 + .65;
                     I = smoothstep(.95, .35, r + (d - .5) * 1.1) * smoothstep(1, .8, r) * (.5 + .5 * d) * grain;
-                    hot = i.color.rgb * lerp(.6, 1.2, d);
+                    // dust is lifted toward a pale haze so brown grit still reads on the red carpet and dark boards
+                    hot = lerp(i.color.rgb, float3(1, .94, .82), .38) * lerp(.8, 1.35, d);
+                    I = saturate(I * 1.25);
                 }
                 else if (mode < 9.5) { I = smoothstep(1, .92, r); }                                              // 9 hard disc (flat colour fill, soft rim)
                 else { I = smoothstep(1.0, .35, r); hot = i.color.rgb; }                                          // 10 shade: a soft dark wash (alpha layer)
