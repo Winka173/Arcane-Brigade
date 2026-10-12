@@ -474,6 +474,7 @@ namespace ArcaneBrigade
             if (look == ElementLook.Gold) look = LookFor(MainBond(c.SourceId));
             if (lastSkillLook.Count > 256) lastSkillLook.Clear();
             lastSkillLook[c.SourceId] = look;
+            friendFx?.Fired(c.SourceId, c.Position, Now, boundSkills != null ? boundSkills.Time : 0); // the cast tell lets go (Fx/FriendFxLayer.cs)
             if (c.Shape == SkillShape.Species)
             {
                 // a skill on a cluster or a species is targeted: struck from the caster to its spot

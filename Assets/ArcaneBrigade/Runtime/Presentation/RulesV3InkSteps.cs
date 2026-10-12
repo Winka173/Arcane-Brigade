@@ -30,23 +30,24 @@ namespace ArcaneBrigade
         {
             int drawn = 0;
             if (shotLook.Count > 512) shotLook.Clear();
+            friendFx ??= FriendFxLayer.Create(transform); friendFx.Begin(); // element trails and cast tells (Fx/FriendFxLayer.cs)
             foreach (ProjectileState shot in sim.Projectiles)
             {
                 if (shot == null || shot.Faction == Faction.Enemy) continue;
-                if (!shotLook.TryGetValue(shot.SourceUnitId, out ElementLook look))
-                {
-                    UnitState source = sim.UnitForPresentation(shot.SourceUnitId);
-                    look = source == null ? ElementLook.None : source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : ElementInk.For(source.Definition.Id);
-                    shotLook[shot.SourceUnitId] = look;
-                }
+                ElementLook look = ShotLookOf(sim, shot.SourceUnitId);
                 if (look == ElementLook.None) continue;
-                Color c = NumberColour(look); float flicker = look == ElementLook.Storm ? .7f + .3f * Mathf.PerlinNoise(now * 20, shot.Id) : 1;
-                Vector2 at = shot.Position + shot.PatternOffset, back = shot.Velocity.sqrMagnitude > .01f ? -shot.Velocity.normalized : Vector2.zero;
-                light.Sector(at + back * .18f, .5f, 0, 360, Faded(c, .38f * flicker), Faded(c, 0));
-                light.Sector(at + back * .42f, .32f, 0, 360, Faded(c, .2f * flicker), Faded(c, 0));
-                light.Sector(at, .16f, 0, 360, Faded(Color.Lerp(c, Color.white, .6f), .7f * flicker), Faded(c, 0));
-                if (++drawn >= 160) break;
+                friendFx.Shot(look, shot.Position + shot.PatternOffset, shot.Velocity, shot.Id, now);
+                if (++drawn >= ShotTrails.MaxShots) break;
             }
+            friendFx.DrawTells(sim, boundSkills, now, id => ShotLookOf(sim, id)); friendFx.End();
+        }
+        private FriendFxLayer friendFx;
+        private ElementLook ShotLookOf(CombatSimulation sim, int unitId)
+        {
+            if (shotLook.TryGetValue(unitId, out ElementLook look)) return look;
+            UnitState source = sim.UnitForPresentation(unitId);
+            look = source == null ? ElementLook.None : source.Faction == Faction.Companion ? LookFor(MainBond(source.Id)) : ElementInk.For(source.Definition.Id);
+            return shotLook[unitId] = look;
         }
 
         private struct Flight { public Vector2 From, To; public float Born, Time; public ElementLook Look; public int Seed; public InkToken Token; }
