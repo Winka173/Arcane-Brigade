@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         public void OnMoment(BondMomentRequest m)
         {
             if (fx != null && fx.Spawn(m, Now) && popsThisFrame < MaxPopsPerFrame) { popsThisFrame++; Sound(LookFor(m.Rule), "burst", m.To); }
+            GroundMoment(m); // floor weather and lamp light (Fx/RulesV3InkGround.cs)
             Forewarning.Spawn(fx, m, Now); // the ground takes the element half a second before a step 6/8 moment lands (Fx/Forewarning.cs)
         }
 

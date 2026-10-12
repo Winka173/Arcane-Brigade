@@ -134,7 +134,7 @@ namespace ArcaneBrigade
                 if (t > ElementCombos.Life || t < -1) { combos.RemoveAt(i); continue; }
                 if (t >= 0) ElementCombos.Draw(batch, c.Kind, c.Other, c.At, c.Scale, t, now, c.Seed);
             }
-            int detail = PresentationSettings.ReducedEffects ? 16 : 56, drawn = 0, tinted = 0;
+            int detail = FxBudget.MarkDetail(PresentationSettings.ReducedEffects ? 16 : 56), drawn = 0, tinted = 0;
             gone.Clear();
             foreach (KeyValuePair<int, Mark> pair in marks)
             {
@@ -142,7 +142,7 @@ namespace ArcaneBrigade
                 if (idle > MarkLife || !locate(pair.Key, out Vector2 centre, out float height)) { gone.Add(pair.Key); continue; }
                 float alpha = Mathf.Clamp01((MarkLife - idle) / MarkFade) * Mathf.Clamp01((now - m.Since) / .12f + .3f);
                 if (drawn < detail) { EnemyElementState.Draw(batch, m.Look, centre, height, alpha, now - m.Since, now, m.Seed); drawn++; }
-                else { EnemyElementState.Tint(batch, m.Look, centre, height, alpha); tinted++; }
+                else if (FxBudget.MarkTint(tinted)) { EnemyElementState.Tint(batch, m.Look, centre, height, alpha); tinted++; }
             }
             foreach (int id in gone) marks.Remove(id);
             DetailedMarks = drawn; TintedMarks = tinted;

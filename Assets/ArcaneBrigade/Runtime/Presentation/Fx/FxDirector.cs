@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             }
         }
 
-        public FxDirector(Transform parent) { batch = new FxBatch(parent); }
+        public FxDirector(Transform parent, int lightOrder = 2145, int dustOrder = 2144) { batch = new FxBatch(parent, lightOrder, dustOrder); }
 
         public static bool Has(string rule) => rule != null && Registry.ContainsKey(rule);
         public static IEnumerable<string> Rules => Registry.Keys;
@@ -60,6 +60,9 @@ namespace ArcaneBrigade
         }
 
         public void Clear() { live.Clear(); }
+
+        /// <summary>Everything still playing ends within <paramref name="within"/> s of <paramref name="now"/> (weather and zones fade out on their End).</summary>
+        public void Settle(float now, float within) { foreach (FxEffect e in live) if (e.End > now + within) e.End = now + within; }
 
         /// <summary>Draws every live effect at <paramref name="now"/> (simulation seconds).</summary>
         public void Draw(float now)

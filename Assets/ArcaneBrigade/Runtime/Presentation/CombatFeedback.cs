@@ -351,10 +351,11 @@ namespace ArcaneBrigade
             // each elemental number carries a small piece of its element behind it (NumberOrnament)
             if (ornaments == null) ornaments = new FxBatch(transform, 2597, 2596);
             ornaments.Begin();
+            int ornament = 0; // the effect budget thins ornaments first in a crowd (Fx/FxBudget.cs)
             if (!PresentationSettings.ReducedEffects)
                 foreach (DamageNumber number in numbers)
                 {
-                    if (number.Look <= 0 || number.Kind != 0 || number.Age >= number.Life) continue;
+                    if (number.Look <= 0 || number.Kind != 0 || number.Age >= number.Life || !FxBudget.Ornament(ornament++)) continue;
                     float height = number.View.characterSize * number.View.fontSize * .1f, width = height * .62f * number.View.text.Length;
                     Vector3 p = number.View.transform.position;
                     NumberOrnament.Draw(ornaments, number.Look, new Vector2(p.x, p.y), height, width, number.Age / number.Life, number.View.color.a, number.SubjectId * 31 + (int)(number.Amount * 7), number.Tint);

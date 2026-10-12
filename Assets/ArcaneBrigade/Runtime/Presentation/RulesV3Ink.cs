@@ -458,7 +458,7 @@ namespace ArcaneBrigade
                 Sound("rules.field", e.Position);
             }
             // a bond trait fires on its subject (steps 2 and 4 and the minors): its own effect from the director; no effect, no drawing
-            if (fx != null && FxDirector.Has(e.Rule) && popsThisFrame < MaxPopsPerFrame)
+            if (fx != null && FxDirector.Has(e.Rule) && popsThisFrame < MaxPopsPerFrame && FxBudget.Trait(e.Rule, RuleTier(e.Rule), Now))
             {
                 popsThisFrame++;
                 fx.Spawn(new BondMomentRequest(null, e.Rule, RuleTier(e.Rule), BondMomentKind.Strike, e.Position, e.Position, 1f + .25f * Mathf.Clamp(e.Value, 0, 8), 0, 0), Now);
@@ -537,7 +537,7 @@ namespace ArcaneBrigade
             // rules that only exist as area damage (no trait event): their effect plays where they hit, at most every .2 s each
             if (d.Rule != null && Array.IndexOf(DamageOnlyRules, d.Rule) >= 0 && FxDirector.Has(d.Rule) && fx != null)
             {
-                if (!lastDamageFx.TryGetValue(d.Rule, out float last) || Now - last > .2f)
+                if ((!lastDamageFx.TryGetValue(d.Rule, out float last) || Now - last > .2f) && FxBudget.Trait(d.Rule, 2, Now))
                 { lastDamageFx[d.Rule] = Now; fx.Spawn(new BondMomentRequest(null, d.Rule, 2, BondMomentKind.Strike, d.Attacker.Position, d.Target.Position, 1.2f, 0, 0), Now); }
                 return;
             }
@@ -800,6 +800,7 @@ namespace ArcaneBrigade
             CombatSimulation sim = boundSimulation;
             bool live = sim != null && (sim.Phase == RunPhase.Combat || sim.Phase == RunPhase.Paused);
             if (!live) reactions?.Clear();
+            GroundFrame(sim, live); // budget, floor weather, lamps; outside combat fx play on to their end (Fx/RulesV3InkGround.cs)
             if (!live) { areas.Clear(); fallen.Clear(); auras.Clear(); chains.Clear(); walls.Clear(); links.Clear(); ink.End(); vfx.End(); light.Commit(); vfx.ClearParticles(); return; }
             float now = sim.Elapsed;
             for (int i = fields.Count - 1; i >= 0; i--) { if (now - fields[i].Born > fields[i].Life) { fields.RemoveAt(i); continue; } DrawField(fields[i], sim.Champion.Position, now); }
