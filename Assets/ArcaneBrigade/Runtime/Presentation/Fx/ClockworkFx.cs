@@ -61,7 +61,26 @@ namespace ArcaneBrigade
                     float u = (t - .02f) / (.35f + .2f * H(Seed, k)); if (u <= 0 || u >= 1) continue;
                     Glint(b, at + Dir(Seed, k, 8, .6f) * .9f * EaseOut(u) + Vector2.up * .3f, .13f, k % 2 == 0 ? Steel : Brass, 1 - u, k * 30);
                 }
-                b.Quad(FxShape.Smoke, at + Vector2.up * (.5f + 1.2f * t), .45f, A(new Color(.8f, .75f, .65f), .5f * Fade(t, .3f, .95f)), t, Seed);
+                // metal shavings curl off the bite as bright little streaks, oil spits and the grinding gear vents puffs of steam
+                for (int k = 0; k < 10; k++)
+                {
+                    float u = (t - .03f - (k % 5) * .07f) / .3f; if (u <= 0 || u >= 1) continue;
+                    Vector2 d0 = Dir(Seed + 3, k, 10, .7f), p = at + Vector2.up * .45f + d0 * (.8f + 1.3f * EaseOut(u)) + Vector2.down * u * u * .6f;
+                    b.Link(p - d0 * .32f, p, .045f, A(k % 2 == 0 ? Brass : White, 1 - u), Seed + k, .7f);
+                }
+                for (int k = 0; k < 5; k++)
+                {
+                    float u = (t - .1f - k * .05f) / .45f; if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + new Vector2((k - 2) * .35f, .2f) + new Vector2((k - 2) * .4f * u, 1.1f * u - 2.4f * u * u);
+                    b.Quad(FxShape.Shade, p, .1f, A(new Color(.08f, .05f, .02f), .9f * (1 - u)), 0, Seed + k);
+                    b.Quad(FxShape.Glow, p + new Vector2(-.03f, .03f), .06f, A(Brass, .8f * (1 - u)), 0, Seed + k);
+                }
+                for (int k = 0; k < 5; k++)
+                {
+                    float u = Rise(t, .08f + k * .09f, .75f + k * .05f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + new Vector2((H(Seed, k + 40) - .5f) * 1.2f + Mathf.Sin(u * 5 + k) * .2f, .7f + 1.5f * EaseOut(u));
+                    b.Quad(FxShape.Smoke, p, .3f + .45f * u, 0, A(new Color(.85f, .82f, .76f), .7f * Mathf.Min(1, u * 4) * (1 - u)), u + k, Seed + k);
+                }
             }
         }
 
@@ -74,6 +93,7 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 bool weather = Moment.Kind == BondMomentKind.Weather;
+                if (!weather && t >= 0) SandFreeze(b, now - Born, At, Mathf.Max(1.1f, Radius) * 1.3f);
                 if (!weather && t < 0) return;
                 float age = now - Born, total = weather ? Mathf.Max(1f, End - Born) : Life;
                 float on = Rise(age, 0, .35f) * Fade(age, total - .6f, total);
@@ -84,8 +104,7 @@ namespace ArcaneBrigade
                 float tick = Fade(age, .9f, 1.1f);
                 if (weather)
                 {
-                    b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(new Color(.02f, .1f, .14f), .38f * on), 0, Seed);
-                    b.Quad(FxShape.Glow, c, new Vector2(a.width * .5f, a.height * .5f), 0, A(Teal, .1f * on), 0, Seed);
+                    b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(new Color(.02f, .1f, .14f), .18f * on), 0, Seed);
                 }
                 b.Floor(FxShape.Glow, c, size * 1.1f, A(Teal, .35f * on), 0, Seed);
                 b.Quad(Face, c, new Vector2(size, size * .62f), 0, A(Teal, 1.0f * on), 0, Seed, angle);
@@ -108,7 +127,34 @@ namespace ArcaneBrigade
                 for (int k = 0; k < 3; k++)
                 {
                     float u = ((age * .9f) + k / 3f) % 1;
-                    b.Floor(FxShape.Shock, c, size * (1.5f + u), A(Teal, .55f * on * (1 - u)), u, Seed + k);
+                    b.Floor(FxShape.Shock, c, size * (1.05f + .45f * u), A(Teal, .55f * on * (1 - u)), u, Seed + k);
+                }
+                // the tick that stops time: the face jolts and a crack of broken seconds splits across the glass
+                float crack = Rise(age, .9f, 1f) * on;
+                if (crack > 0)
+                {
+                    for (int k = 0; k < 6; k++)
+                    {
+                        Vector2 e = c + Dir(Seed + 8, k, 6, .62f) * size * .85f * crack, m = Vector2.Lerp(c, e, .5f) + Dir(Seed + 9, k, 6, .62f) * .2f;
+                        b.Link(c, m, .04f, A(White, .8f * crack), Seed + k, .7f);
+                        b.Link(m, e, .03f, A(Steel, .8f * crack), Seed + k + 9, .7f);
+                    }
+                    Glint(b, c + Vector2.up * size * .55f, .7f, White, Fade(age, .9f, 1.2f), 45);
+                }
+            }
+
+            /// <summary>Grains of sand pour down round the face, then hang still in the air the instant the hands stop.</summary>
+            private void SandFreeze(FxBatch b, float age, Vector2 c, float size)
+            {
+                float fall = Mathf.Min(age, .95f), on = Fade(age, 1.1f, 1.5f);
+                for (int k = 0; k < 18; k++)
+                {
+                    float x = (H(Seed, k + 200) - .5f) * size * 2.2f, top = 1.6f + 1.4f * H(Seed, k + 201), sp = 2 + 2 * H(Seed, k + 202);
+                    float y = top - ((fall * sp + H(Seed, k + 203) * 2.5f) % 2.6f);
+                    Vector2 p = c + new Vector2(x, y);
+                    b.Quad(FxShape.Glow, p, .09f, A(Brass, .9f * on), 0, Seed);
+                    if (age > .95f) Glint(b, p, .16f, Teal, .7f * on * (.6f + .4f * Mathf.Sin(age * 9 + k)), k * 20);
+                    else b.Beam(p, p + Vector2.up * .25f, .03f, A(Brass, .5f * on), 0, k, .5f);
                 }
             }
         }
@@ -163,6 +209,20 @@ namespace ArcaneBrigade
                     Glint(b, p, .16f, k % 2 == 0 ? Steel : Brass, 1 - u, k * 40 + t * 200);
                 }
                 if (t >= 0) b.Floor(FxShape.Shock, new Vector2(pos.x, mid.y), w * 1.6f, A(Brass, .7f * Fade(t, 0, 1.3f)), Mathf.Min(1, t * .8f), Seed);
+                // the bob's wind drags grainy dust along the lane under it, and its keel strikes sparks where it skims lowest
+                if (t >= 0) for (int k = 0; k < 8; k++)
+                {
+                    float spawn = (k + .5f) / 8f, u = (u0 - spawn) / .3f; if (u <= 0 || u >= 1) continue;
+                    Vector2 p = Vector2.Lerp(a, z, spawn) + dir * u * 1.2f;
+                    b.Quad(FxShape.Dust, p, new Vector2(w * .9f, w * .45f) * (.6f + .7f * u), 0, A(new Color(.6f, .5f, .36f), .75f * (1 - u) * fade), u, Seed + k);
+                }
+                float skim = 1 - Mathf.Abs(-Mathf.Cos(u0 * Mathf.PI));
+                if (t >= 0 && t < 1.1f && skim > .55f) for (int k = 0; k < 6; k++)
+                {
+                    float v = (t * 5 + H(Seed, k + 300)) % 1; Vector2 o = new Vector2(pos.x, mid.y + .2f);
+                    Glint(b, o + new Vector2(-dir.x * v * 1.4f * (1 + H(Seed, k)), v * (1.2f - 1.6f * v)), .18f, k % 2 == 0 ? White : Brass, (1 - v) * skim, k * 33);
+                }
+
             }
         }
     }

@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 if (t < 0) return;
-                Vector2 at = At; float r = Mathf.Max(1.15f, Radius) * 1.6f;
+                Vector2 at = At; float r = Mathf.Max(1.15f, Radius) * 1.25f;
                 float draw = Rise(t, 0, .5f), fade = Fade(t, .8f, 1.25f), flash = Fade(t, .5f, .8f) * Rise(t, .44f, .5f);
                 // wet ink pooled under the glyph
                 b.Floor(FxShape.Shade, at, r * 1.05f, A(InkDark, .55f * Rise(t, 0, .2f) * fade), 0, Seed);
@@ -49,9 +49,18 @@ namespace ArcaneBrigade
                 b.Floor(FxShape.Glow, at, r * 1.4f, A(Sepia, .45f * draw * fade), 0, Seed);
                 if (flash > 0)
                 {
-                    b.Quad(FxShape.Glow, at, r * 1.9f, A(Cream, .8f * flash), 0, Seed);
-                    b.Quad(FxShape.Sparkle, at + Vector2.up * .2f, new Vector2(r * 1.2f, r * 1.2f), 0, A(Gold, flash), 0, 0, 2);
+                    b.Quad(FxShape.Glow, at, r * 1.3f, A(Cream, .7f * flash), 0, Seed);
+                    b.Quad(FxShape.Sparkle, at + Vector2.up * .2f, new Vector2(r * .9f, r * .9f), 0, A(Gold, flash), 0, 0, 2);
                 }
+                // wet ink steams: dark sepia wisps curl up off the strokes while they are drawn
+                for (int k = 0; k < 6; k++)
+                {
+                    float u = Rise(t, .08f + k * .07f, .75f + k * .07f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + new Vector2((H(Seed, k + 70) - .5f) * r * 1.2f + Mathf.Sin(u * 6 + k) * .15f, (H(Seed, k + 71) - .5f) * r * .5f + 1.4f * EaseOut(u));
+                    b.Quad(FxShape.Smoke, p, .2f + .35f * u, 0, A(new Color(.32f, .2f, .12f), .75f * Mathf.Min(1, u * 4) * (1 - u) * fade), u + k, Seed + k + 70);
+                }
+                // the nib's scratch: a bright point runs along the ring as it is inked
+                if (draw < 1) { float ang = draw * 1.25f * Mathf.PI * 2 - Mathf.PI; Glint(b, at + new Vector2(Mathf.Cos(ang) * r * .82f, Mathf.Sin(ang) * r * .82f * .7f), .35f, White, 1, now * 400); }
                 // ink flicked off the finished glyph
                 for (int k = 0; k < 9; k++)
                 {
@@ -94,6 +103,14 @@ namespace ArcaneBrigade
                     }
                     if (k == 0) Glint(b, p + Vector2.up * .4f, .4f, Gold, 1 - u, now * 60);
                 }
+                // torn scraps from the tear flutter down, and a puff of paper dust where it ripped
+                b.Quad(FxShape.Dust, at + Vector2.up * .2f, new Vector2(.8f, .45f) * (.6f + .6f * Rise(t, 0, .8f)), 0, A(new Color(.95f, .86f, .66f), .7f * Fade(t, .1f, .9f)), t, Seed + 9);
+                for (int k = 0; k < 8; k++)
+                {
+                    float u = (t - .05f) / (.7f + .3f * H(Seed, k + 20)); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + Dir(Seed + 2, k, 8, .7f) * 1.1f * EaseOut(u) + new Vector2(Mathf.Sin(u * 9 + k) * .15f, .8f * u - 1.4f * u * u + .3f);
+                    b.Quad(PageS, p, new Vector2(.11f, .14f) * (.5f + .5f * Mathf.Abs(Mathf.Cos(u * 12 + k))), u * 500 + k * 40, A(Cream, 1.1f * (1 - u)), 0, Seed + k, 0);
+                }
             }
         }
 
@@ -105,11 +122,11 @@ namespace ArcaneBrigade
             protected override float Life => 1.9f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius * 1.12f, halfW = r, halfH = r * 1.12f;
+                Vector2 at = At; float r = Radius * .95f, halfW = r, halfH = r * 1.12f;
                 Vector2 qs = new Vector2(halfW / .8f, halfH / .9f * .85f);
                 if (t < 0)
                 {
-                    float g = EaseOut(pre), fall = 1 - Mathf.Pow(pre, 2.4f), size = 1 + .9f * fall;
+                    float g = EaseOut(pre), fall = 1 - Mathf.Pow(pre, 2.4f), size = 1 + .35f * fall;
                     Vector2 c = at + new Vector2(0, 5.5f * fall);
                     b.Floor(FxShape.Shade, at, r * 1.7f * (.55f + .45f * g), A(InkDark, .6f * g), 0, Seed);
                     b.Floor(FxShape.Glow, at, r * 1.4f, A(Sepia, .3f * g), 0, Seed);
@@ -144,26 +161,33 @@ namespace ArcaneBrigade
                 {
                     float settle = 1 + .06f * Mathf.Sin(t * 30) * Fade(t, .2f, .5f);
                     b.Quad(PageS, at, qs * settle, 0, A(Leather, 1.15f * after), 0, Seed, 1);
-                    b.Quad(PageS, at, qs * settle, 0, A(Gold, .5f * after), 0, Seed, 1);
+                    b.Quad(PageS, at, qs * settle, 0, A(Gold, .25f * after), 0, Seed, 1);
                     Glint(b, at, 1.1f, Gold, .9f * Fade(t, .2f, 1.1f), now * 30);
                 }
                 if (t > .17f)
                 {
                     float u = t - .17f;
-                    b.Quad(FxShape.Glow, at, r * 2.7f, A(Cream, .85f * flash), 0, Seed);
-                    b.Quad(FxShape.Rays, at, r * 2.6f, A(Gold, .7f * Fade(u, 0, .6f)), u, Seed, 5);
-                    // the shut spine blows dust and ink out across the floor
+                    b.Quad(FxShape.Glow, at, r * 1.5f, A(Cream, .45f * flash), 0, Seed);
+                    b.Quad(FxShape.Rays, at, r * 1.7f, A(Gold, .7f * Fade(u, 0, .6f)), u, Seed, 5);
+                    // the shut spine blows a low ring of grainy library dust across the floor, old dust billowing up off it, ink spitting out
                     for (int k = 0; k < 12; k++)
                     {
                         float d = Rise(u, 0, 1.1f); if (d <= 0 || d >= 1) continue;
-                        Vector2 p = at + Dir(Seed, k, 12, .55f) * r * (.4f + 1.4f * EaseOut(d));
-                        b.Quad(FxShape.Smoke, p, new Vector2(r * .55f, r * .4f) * (.6f + d), 0, A(new Color(.55f, .42f, .26f), .75f * (1 - d)), d, Seed + k);
-                        if (k % 2 == 0) b.Quad(FxShape.Smoke, p * .9f + at * .1f, .45f, A(InkDark, .8f * (1 - d)), d, Seed + k + 30);
+                        Vector2 p = at + Dir(Seed, k, 12, .55f) * r * (.35f + 1.0f * EaseOut(d));
+                        b.Quad(FxShape.Dust, p, new Vector2(r * .45f, r * .28f) * (.6f + d), 0, A(new Color(.85f, .72f, .52f), .85f * (1 - d)), d, Seed + k);
+                        if (k % 2 == 0) b.Quad(FxShape.Smoke, p + Vector2.up * (.3f + .6f * d), r * .3f * (.6f + d), 0, A(new Color(.62f, .5f, .36f), .65f * (1 - d)), d + k, Seed + k + 30);
+                    }
+                    for (int k = 0; k < 10; k++)
+                    {
+                        float d = u / (.45f + .25f * H(Seed, k + 60)); if (d <= 0 || d >= 1) continue;
+                        Vector2 p = at + Dir(Seed + 8, k, 10, .6f) * r * 1.1f * EaseOut(d) + Vector2.up * (2f * H(Seed, k + 61) * d - 3f * d * d + .3f);
+                        b.Quad(FxShape.Shade, p, .14f + .08f * H(Seed, k), A(InkDark, .95f * (1 - d)), 0, Seed + k);
+                        Glint(b, p + new Vector2(-.04f, .04f), .1f, Sepia, .8f * (1 - d), k * 30);
                     }
                     for (int k = 0; k < 14; k++)
                     {
                         float life = .9f + .6f * H(Seed, k + 40), d = u / life; if (d <= 0 || d >= 1) continue;
-                        Vector2 p = at + Dir(Seed + 5, k, 14, .6f) * r * 1.9f * EaseOut3(d) + Vector2.up * (Mathf.Sin(d * Mathf.PI) * 1.2f);
+                        Vector2 p = at + Dir(Seed + 5, k, 14, .6f) * r * 1.5f * EaseOut3(d) + Vector2.up * (Mathf.Sin(d * Mathf.PI) * 1.2f);
                         Page(b, p, .5f, d * 500 + k * 25, d * 22 + k, A(Cream, 1.1f * (1 - d * d)), Seed + k);
                     }
                 }
@@ -203,6 +227,14 @@ namespace ArcaneBrigade
                     if (t < .55f) b.Link(p, at, .05f, A(Cream, .6f * Fade(t, .1f, .55f)), Seed + k, .8f);
                 }
                 if (t < .35f) b.Quad(FxShape.Sparkle, at, new Vector2(r * 1.3f, r * 1.3f), t * 200, A(Gold, .9f * Fade(t, 0, .35f)), 0, 0, 2);
+                // every cut snips confetti off the pages, and the whirl lifts paper dust off the floor
+                b.Quad(FxShape.Dust, at, new Vector2(r * 1.4f, r * .7f) * (.7f + .5f * Rise(t, 0, 1)), 0, A(new Color(.95f, .86f, .66f), .6f * Fade(t, .3f, 1.1f)), t, Seed + 3);
+                for (int k = 0; k < 14; k++)
+                {
+                    float u = (t - .05f - (k % 4) * .08f) / .7f; if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + Dir(Seed + 4, k, 14, .6f) * r * (.3f + 1.4f * EaseOut(u)) + Vector2.up * (1.2f * u - 1.6f * u * u + .4f);
+                    b.Quad(PageS, p, new Vector2(.09f, .12f) * (.4f + .6f * Mathf.Abs(Mathf.Cos(u * 14 + k))), u * 700 + k * 50, A(k % 3 == 0 ? Gold : Cream, 1.1f * (1 - u)), 0, Seed + k, 0);
+                }
                 for (int k = 0; k < 10; k++)
                 {
                     float u = (t * 1.4f + H(Seed, k)) % 1; if (t > .9f) break;
@@ -241,7 +273,26 @@ namespace ArcaneBrigade
                     }
                 }
                 float seal = Rise(t, .82f, .9f);
-                if (seal > 0) { Vector2 sp = c + new Vector2(r * .8f, -r * .45f); b.Quad(RuneS, sp, new Vector2(.5f, .5f) * (1.6f - .6f * seal), 0, A(Gold, 1.1f * fade), 1, Seed % 11); b.Quad(FxShape.Glow, sp, .9f, A(Gold, .8f * Fade(t, .85f, 1.1f)), 0, Seed); }
+                if (seal > 0)
+                {
+                    Vector2 sp = c + new Vector2(r * .8f, -r * .45f); b.Quad(RuneS, sp, new Vector2(.5f, .5f) * (1.6f - .6f * seal), 0, A(Gold, 1.1f * fade), 1, Seed % 11); b.Quad(FxShape.Glow, sp, .9f, A(Gold, .8f * Fade(t, .85f, 1.1f)), 0, Seed);
+                    // the stamp spits wax drops and a puff of dust off the card
+                    float su = Rise(t, .88f, 1.25f);
+                    if (su > 0 && su < 1) for (int k = 0; k < 6; k++)
+                    {
+                        Vector2 p = sp + Dir(Seed + 7, k, 6, .7f) * .9f * EaseOut(su) + Vector2.up * (.6f * su - 1.2f * su * su);
+                        b.Quad(FxShape.Glow, p, .09f, A(new Color(1f, .35f, .15f), 1 - su), 0, Seed);
+                        b.Quad(FxShape.Dust, sp + Dir(Seed + 3, k, 6, .5f) * .5f * su, new Vector2(.3f, .2f) * (.6f + su), 0, A(Cream, .55f * (1 - su)), su, Seed + k);
+                    }
+                }
+                // ink drips off the end of each written line
+                for (int line = 0; line < 3; line++)
+                {
+                    float u = Rise(t, .35f + line * .22f, .9f + line * .22f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = new Vector2(c.x - r * 1.05f + r * 2.1f * (line == 2 ? .6f : 1), c.y + r * (.35f - line * .3f) - u * u * .9f);
+                    b.Quad(FxShape.Glow, p, .07f, A(Gold, fade * (1 - u)), 0, Seed);
+                }
+
             }
         }
     }

@@ -35,9 +35,22 @@ namespace ArcaneBrigade
                 float grow = EaseOut3(Rise(t, 0, .22f)) * (1 + .18f * Mathf.Sin(t * 35) * Fade(t, .2f, .6f));
                 float flick = .85f + .15f * Mathf.Sin(now * 31) * Mathf.Sin(now * 17 + 1);
                 // the lit pool on the floor
-                b.Floor(FxShape.Glow, at, r * 2.3f * EaseOut(Rise(t, 0, .4f)), A(Honey, .75f * fade), 0, Seed);
+                b.Floor(FxShape.Glow, at, r * 1.6f * EaseOut(Rise(t, 0, .4f)), A(Honey, .75f * fade), 0, Seed);
                 b.Floor(FxShape.Glow, at, r * .9f, A(Lamp, .55f * fade), 0, Seed);
-                b.Quad(FxShape.Rays, at + Vector2.up * .8f, r * 1.9f, A(Lamp, .45f * fade), t * .5f, Seed, 3);
+                b.Quad(FxShape.Rays, at + Vector2.up * .8f, r * 1.35f, A(Lamp, .45f * fade), t * .5f, Seed, 3);
+                // the wick sparks before it catches
+                for (int k = 0; k < 7; k++)
+                {
+                    float u = t / (.22f + .12f * H(Seed, k + 40)); if (u >= 1) continue;
+                    Vector2 d0 = Dir(Seed + 6, k, 7, .9f); Glint(b, at + Vector2.up * .55f + d0 * .9f * EaseOut(u) + Vector2.down * u * u * .4f, .16f, White, 1 - u, k * 50);
+                }
+                // hot wax drips down the stalk and pools at its foot
+                for (int k = 0; k < 3; k++)
+                {
+                    float u = ((t - .2f) * 1.4f + k / 3f) % 1; if (t < .2f) break;
+                    b.Quad(FxShape.Glow, at + new Vector2((k - 1) * .07f, .5f - u * .45f), .07f, A(Lamp, .9f * fade * (1 - u * .5f)), 0, Seed);
+                }
+                b.Floor(FxShape.Disc, at + Vector2.up * .03f, .22f * Rise(t, .2f, .8f), A(new Color(1f, .9f, .7f), .5f * fade), 0, Seed);
                 // wick: a thin cream stalk with a charred tip
                 b.Link(at + Vector2.up * .05f, at + Vector2.up * .55f, .06f, A(new Color(.95f, .9f, .75f), fade), Seed, .5f);
                 // the flame: layered tongues, the tall one wobbling
@@ -48,6 +61,13 @@ namespace ArcaneBrigade
                     float fs = r * .6f; b.Quad(FxShape.Flame, at + new Vector2(sway, .35f + 1.45f * grow * fs * (1 - k * .12f)), new Vector2(.75f - k * .17f, 1.6f * grow * (1 - k * .15f)) * flick * fs, 0, A(c, (k == 2 ? .9f : .75f) * fade), t, Seed + k, 1.5f);
                 }
                 b.Quad(FxShape.Glow, at + Vector2.up * 1.3f, 1.6f * grow * flick, A(Lamp, .7f * fade), 0, Seed);
+                // as the flame gutters out a ribbon of grey wick smoke curls up from where it burned
+                for (int k = 0; k < 7; k++)
+                {
+                    float u = Rise(t, .8f + k * .06f, 1.45f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + new Vector2(Mathf.Sin(u * 7 + k * .9f) * .25f * (.4f + u), .7f + u * 2.4f + k * .1f);
+                    b.Quad(FxShape.Smoke, p, .16f + .3f * u, 0, A(new Color(.6f, .56f, .55f), .8f * Mathf.Min(1, u * 5) * (1 - u)), u + k, Seed + k);
+                }
                 // glass facets orbit the flame like the panes of a lantern
                 for (int k = 0; k < 6; k++)
                 {
@@ -75,7 +95,7 @@ namespace ArcaneBrigade
                 if (Moment.Kind != BondMomentKind.Weather) return;
                 float age = now - Born, on = Rise(age, 0, 1.8f) * Fade(now, End - 1.2f, End);
                 Rect a = Arena; Vector2 c = a.center;
-                b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(Dusk, .4f * on), 0, Seed);
+                b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(Dusk, .18f * on), 0, Seed);
                 // drifting lanterns
                 for (int k = 0; k < 7; k++)
                 {
@@ -84,6 +104,13 @@ namespace ArcaneBrigade
                     float s = .35f + .2f * H(Seed, k + 40);
                     b.Quad(FxShape.Glow, p, s * 4f, A(Honey, .4f * on * (.7f + .3f * Mathf.Sin(now * 3 + k))), 0, Seed);
                     b.Quad(Prism, p, new Vector2(s, s * 1.25f), Mathf.Sin(now + k) * 8, A(Lamp, 1f * on), 0, Seed + k);
+                    b.Quad(FxShape.Flame, p + Vector2.up * .02f, new Vector2(s * .3f, s * .55f), 0, A(Amber, .9f * on), now, Seed + k, 1);
+                    // two moths fluttering round each lantern
+                    for (int m = 0; m < 2; m++)
+                    {
+                        float ang = now * (3.2f + m) + k + m * 3; Vector2 q = p + new Vector2(Mathf.Cos(ang) * s * 2.2f, Mathf.Sin(ang * 1.3f) * s * 1.4f);
+                        b.Quad(FxShape.Sparkle, q, new Vector2(.14f, .09f * (.4f + .6f * Mathf.Abs(Mathf.Sin(now * 30 + m)))), 0, A(Lamp, .8f * on), 0, 0, 1);
+                    }
                 }
                 // dust motes
                 for (int k = 0; k < 90; k++)
@@ -119,6 +146,8 @@ namespace ArcaneBrigade
                             Glint(b, p, .2f, Lamp, .9f * on * (.5f + .5f * Mathf.Sin(now * 10 + k)), k * 25);
                         }
                         b.Floor(FxShape.Glow, end, 2.2f, A(Lamp, .35f * on), 0, Seed);
+                        // the light catches floating dust in the beam as a warm haze
+                        for (int k = 0; k < 4; k++) b.Quad(FxShape.Dust, hub + dir * reach * (.3f + .2f * k), new Vector2(1.2f + .3f * k, .45f + .15f * k), ga * Mathf.Rad2Deg, A(new Color(1f, .85f, .55f), .28f * on), now * .2f + k, Seed + k);
                     }
                 }
                 b.Quad(FxShape.Glow, hub, 1.7f, A(Lamp, .6f * on), 0, Seed);
@@ -138,6 +167,13 @@ namespace ArcaneBrigade
                 float on = Rise(t, 0, .2f) * Fade(t, .9f, 1.3f), swing = Mathf.Sin(t * 7) * 14 * Fade(t, 0, 1.2f);
                 Vector2 hook = At + Vector2.up * 2.4f, lamp = hook + (Vector2)(Quaternion.Euler(0, 0, swing) * Vector2.down) * .6f;
                 b.Link(hook, lamp, .03f, A(Lamp, .7f * on), Seed, .5f);
+                for (int k = 1; k < 4; k++) b.Quad(FxShape.Glow, Vector2.Lerp(hook, lamp, k / 4f), .05f, A(Lamp, .9f * on), 0, Seed);
+                // a match flares to light it
+                float match = Fade(t, .05f, .35f) * Rise(t, 0, .06f);
+                if (match > 0) { Glint(b, lamp + new Vector2(.3f, -.2f), .45f, White, match, t * 300); b.Quad(FxShape.Flame, lamp + new Vector2(.32f, -.1f), new Vector2(.07f, .16f), 0, A(Amber, match), t, Seed, 1); }
+                // a thread of warm smoke drifts from the chimney cap
+                for (int k = 0; k < 3; k++) { float u = (t * .8f + k / 3f) % 1; b.Quad(FxShape.Smoke, lamp + new Vector2(Mathf.Sin(u * 6 + k) * .1f, .5f + u * .9f), .08f + .15f * u, 0, A(new Color(.7f, .62f, .55f), .6f * on * (1 - u)), u + k, Seed + k); }
+
                 b.Quad(FxShape.Glow, lamp, 1.1f, A(Honey, .55f * on * (.8f + .2f * Mathf.Sin(now * 23))), 0, Seed);
                 b.Quad(Prism, lamp, new Vector2(.32f, .42f), swing, A(Lamp, 1.1f * on), 0, Seed);
                 b.Quad(FxShape.Flame, lamp + Vector2.up * .05f, new Vector2(.1f, .2f), 0, A(Lamp, on), t, Seed, 1);

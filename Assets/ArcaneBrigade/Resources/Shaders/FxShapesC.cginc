@@ -13,7 +13,7 @@ void ShapeC(float mode, float2 u, float q, float seed, float par, float r, inout
         float R = .68 + .2 * smoothstep(-.3, .3, sin(a * teeth));
         float body = smoothstep(R + .035, R - .035, r) * smoothstep(.2, .26, r);
         float groove = exp(-pow((r - .5) / .035, 2));
-        float win = smoothstep(.05, .2, sin(a * 5 + seed)) * step(.31, r) * step(r, .46);
+        float win = smoothstep(.05, .2, sin(a * 5 + seed)) * smoothstep(.29, .33, r) * smoothstep(.48, .44, r);
         float rim = exp(-pow((r - R) / .05, 2)) + exp(-pow((r - .22) / .03, 2)) * .7;
         float shade = .5 + .22 * (u.y * .5 + .5) + .12 * fbm(u * 3 + seed);
         I = saturate(body * shade * (1 - win * .7) + rim * .75 + groove * .18 * body);
@@ -50,25 +50,30 @@ void ShapeC(float mode, float2 u, float q, float seed, float par, float r, inout
             float n = 7; float ang = (a / 6.2831853 + .5) * n; float i0 = floor(ang), f = frac(ang);
             float r0 = .6 + .32 * hash(float2(fmod(i0, n) + seed, 1.7)), r1 = .6 + .32 * hash(float2(fmod(i0 + 1, n) + seed, 1.7));
             float R = lerp(r0, r1, f);
-            float fill = smoothstep(R + .035, R - .035, r);
-            float lit = .2 + .3 * hash(float2(i0, seed + 9)) + .14 * u.y;
-            float edgeLine = smoothstep(.06, 0, min(f, 1 - f)) * smoothstep(.15, .55, r);
-            float crack = exp(-abs(fbm(u * 3.2 + seed) - .5) * 26);
-            float rim = exp(-pow((r - R) / .06, 2)) * .85;
-            I = saturate(fill * (lit + .12 * fbm(u * 6 + seed)) * (1 - crack * .35) + edgeLine * fill * .45 + rim);
+            float fill = smoothstep(R + .03, R - .03, r);
+            // a lit, faceted lump: each facet tilts its own way, shaded from a light at the top-left, so it reads solid
+            float rr = saturate(r / R), ac = (i0 + .5) / n * 6.2831853 - 3.14159265, tone0 = hash(float2(i0, seed + 9));
+            float3 nrm = normalize(float3(lerp(u / R, float2(cos(ac), sin(ac)) * rr, .55), sqrt(1 - rr * rr * .9) + .15));
+            float diff = saturate(dot(nrm, normalize(float3(-.55, .65, .55))));
+            float tone = .1 + .62 * diff * (.8 + .4 * tone0) + .1 * fbm(u * 6 + seed);
+            float edgeLine = smoothstep(.05, 0, min(f, 1 - f)) * smoothstep(.2, .6, r);
+            float crack = exp(-abs(fbm(u * 3.2 + seed) - .5) * 30);
+            float rim = exp(-pow((r - R) / .035, 2)) * .3 * saturate(u.y * .8 + .4);
+            I = saturate(fill * tone * (1 - crack * .5) + edgeLine * fill * .12 + rim);
             hot = float3(.95, .76, .5);
         }
         else
         {
             float h = saturate((u.y + 1) * .5);
-            float jag = .08 * (hash(float2(floor(u.y * 7), seed)) - .5);
+            float jag = .08 * (vnoise(float2(u.y * 7, seed)) - .5);
             float w = (1 - pow(h, .9)) * .78 + jag * (1 - h);
             float ax = abs(u.x - jag * .6);
             float inside = smoothstep(.05, -.05, ax - w) * smoothstep(-1.02, -.88, u.y);
-            float side = u.x - jag * .6 < 0 ? .5 : .22;
-            float strata = .12 * sin(u.y * 16 + u.x * 3 + seed);
-            float rim = exp(-pow((ax - w) / .045, 2)) * smoothstep(-1, -.8, u.y);
-            I = saturate(inside * (side + strata) + rim * .9);
+            float side = lerp(.62, .14, smoothstep(-.25, .25, (u.x - jag * .6) / max(w, .05)));
+            float strata = .07 * sin(u.y * 16 + u.x * 3 + seed) + .08 * fbm(u * float2(3, 8) + seed);
+            float rim = exp(-pow((ax - w) / .035, 2)) * smoothstep(-1, -.8, u.y) * (u.x < 0 ? .4 : .12);
+            I = saturate(inside * (side + strata) * (.75 + .3 * h) + rim);
+
             hot = float3(.95, .74, .48);
         }
     }
@@ -123,7 +128,8 @@ void ShapeC(float mode, float2 u, float q, float seed, float par, float r, inout
         float R = .8 + .045 * sin(a * 24);
         float disc = smoothstep(R + .03, R - .03, r);
         float bar = max(smoothstep(.13, .06, abs(frac((u.x + u.y) * 2.6) - .5)), smoothstep(.13, .06, abs(frac((u.x - u.y) * 2.6) - .5)));
-        float lattice = r < .62 ? bar : 1;
+        float lattice = lerp(bar, 1, smoothstep(.58, .66, r));
+
         float crust = smoothstep(.62, .68, r);
         float fillGap = (1 - lattice) * smoothstep(.62, .5, r);
         float edge = exp(-pow((r - R) / .05, 2));

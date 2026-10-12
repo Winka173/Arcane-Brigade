@@ -32,7 +32,7 @@ namespace ArcaneBrigade
                 Vector2 at = At; float r = Mathf.Max(2f, Radius);
                 // the slop-over puddle on the floor
                 float puddle = EaseOut(Rise(age, .3f, 1.1f));
-                b.Floor(FxShape.Glow, at, r * 1.15f * puddle, A(Broth, .65f * on), 0, Seed);
+                b.Floor(FxShape.Glow, at, r * 1.15f * puddle, A(Broth, .45f * on), 0, Seed);
                 b.Floor(FxShape.Disc, at, r * .95f * puddle, A(new Color(.7f, .26f, .06f), .45f * on), 0, Seed);
                 for (int k = 0; k < 10; k++)
                 {
@@ -40,11 +40,18 @@ namespace ArcaneBrigade
                     float pop = Mathf.Sin(u * Mathf.PI);
                     b.Quad(FxShape.Sparkle, p, new Vector2(.28f, .28f) * pop, 0, A(Gold, .85f * on * pop), 0, 0, 0);
                 }
-                // flames licking round the base
+                // flames licking round the base, sooty smoke curling off their tips and embers spiralling up
                 for (int k = 0; k < 8; k++)
                 {
                     Vector2 p = at + new Vector2(Mathf.Cos(k / 8f * 6.2832f) * r * .62f, Mathf.Sin(k / 8f * 6.2832f) * r * .3f - r * .35f);
                     b.Quad(FxShape.Flame, p + Vector2.up * .45f, new Vector2(.3f, .55f) * (1 + .25f * Mathf.Sin(now * 14 + k * 2)), 0, A(k % 2 == 0 ? Orange : Gold, .65f * on), age, Seed + k, 1.2f);
+                    if (k % 2 == 1) { float v = (age * .9f + H(Seed, k + 90)) % 1; b.Quad(FxShape.Smoke, p + new Vector2(Mathf.Sin(v * 5 + k) * .2f, .9f + v * 1.1f), .22f + .35f * v, 0, A(new Color(.22f, .16f, .12f), .6f * on * (1 - v) * Mathf.Min(1, v * 5)), v + k, Seed + k + 90); }
+                }
+                for (int k = 0; k < 12; k++)
+                {
+                    float v = (age * (.6f + .3f * H(Seed, k + 70)) + H(Seed, k + 71)) % 1;
+                    Vector2 p = at + new Vector2((H(Seed, k + 72) - .5f) * r * 1.5f + Mathf.Sin(v * 7 + k) * .25f, -r * .3f + v * 2.2f);
+                    b.Quad(FxShape.Glow, p, .07f + .05f * H(Seed, k), A(k % 3 == 0 ? Gold : Orange, 1f * on * (1 - v)), 0, Seed);
                 }
                 // the cauldron
                 float s = r * 0.95f, lid = Mathf.Abs(Mathf.Sin(age * 14)) * .22f * (Mathf.Sin(age * 3.1f) > -.3f ? 1 : .3f);
@@ -65,6 +72,15 @@ namespace ArcaneBrigade
                     float u = (age * .7f + H(Seed, k)) % 1;
                     Vector2 p = pc + new Vector2((H(Seed, k + 7) - .5f) * s * 1.4f + Mathf.Sin(u * 6 + k) * .25f, s * .55f + u * 3.4f);
                     b.Quad(FxShape.Smoke, p, new Vector2(.55f + .6f * u, .5f + .7f * u), 0, A(Steam, .6f * on * (1 - u)), u, Seed + k);
+                }
+                // every big hop of the lid slops broth over in fat drops that arc out and splash on the floor
+                float hopPhase = (age * 14 / Mathf.PI) % 1; int hop = Mathf.FloorToInt(age * 14 / Mathf.PI);
+                if (hop % 3 == 0) for (int k = 0; k < 5; k++)
+                {
+                    float v = hopPhase, side = (k % 2 == 0 ? 1 : -1) * (.5f + .5f * H(Seed + hop, k));
+                    Vector2 p = pc + new Vector2(side * (s * .7f + 1.1f * v), s * .45f + 1.2f * v - 2.4f * v * v);
+                    b.Quad(FxShape.Glow, p, .14f + .06f * H(Seed, k), A(Broth, on * (1 - v * .5f)), 0, Seed);
+                    b.Quad(FxShape.Disc, p, .07f, A(Gold, on * (1 - v)), 0, Seed);
                 }
                 // bubbles popping above the rim through the lid gap
                 for (int k = 0; k < 8; k++)
@@ -115,11 +131,17 @@ namespace ArcaneBrigade
                     if (k % 3 == 0) b.Quad(PieS, p, new Vector2(.2f, .15f), u * 600, A(new Color(1f, .75f, .4f), 1.1f * (1 - u)), 0, Seed + k);
                     else { b.Quad(FxShape.Glow, p, .2f + .1f * H(Seed, k), A(k % 2 == 0 ? Red : Broth, .8f * (1 - u * u)), 0, Seed); b.Quad(FxShape.Disc, p, .09f, A(Gold, .9f * (1 - u)), 0, Seed); }
                 }
-                // flour and steam
+                // a low ring of grainy flour blown out by the splat, steam billowing up out of the filling
                 for (int k = 0; k < 8; k++)
                 {
-                    float u = Rise(t, .02f, .9f); Vector2 p = at + Dir(Seed + 3, k, 8, .6f) * r * (.3f + .9f * EaseOut(u)) + Vector2.up * u * 1.2f;
-                    b.Quad(FxShape.Smoke, p, new Vector2(.6f, .45f) * (.7f + u), 0, A(k % 2 == 0 ? Steam : new Color(1f, 1f, 1f), .65f * (1 - u)), u, Seed + k);
+                    float u = Rise(t, .02f, .9f); Vector2 p = at + Dir(Seed + 3, k, 8, .6f) * r * (.3f + .9f * EaseOut(u));
+                    b.Quad(FxShape.Dust, p, new Vector2(.6f, .36f) * (.7f + u), 0, A(new Color(.95f, .9f, .82f), .7f * (1 - u)), u, Seed + k);
+                }
+                for (int k = 0; k < 5; k++)
+                {
+                    float u = Rise(t, .05f + k * .06f, .95f + k * .03f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + new Vector2((k - 2) * .3f + Mathf.Sin(u * 5 + k) * .2f, .3f + 1.6f * EaseOut(u));
+                    b.Quad(FxShape.Smoke, p, .35f + .5f * u, 0, A(Steam, .7f * Mathf.Min(1, u * 4) * (1 - u)), u + k, Seed + k + 30);
                 }
                 // sizzling embers on the sticky floor
                 for (int k = 0; k < 10; k++)
@@ -140,8 +162,8 @@ namespace ArcaneBrigade
                 float age = now - Born, total = Mathf.Max(1, End - Born), on = Rise(age, 0, .6f) * Fade(age, total - .9f, total);
                 if (Moment.Kind != BondMomentKind.Weather) on = Rise(age, 0, .3f) * Fade(age, .8f, 1.4f);
                 Rect a = Arena; Vector2 c = a.center;
-                b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(new Color(.18f, .05f, .0f), .3f * on), 0, Seed);
-                b.Quad(FxShape.Glow, c, new Vector2(a.width * .65f, a.height * .6f), 0, A(Orange, .17f * on), 0, Seed);
+                b.Quad(FxShape.Shade, c, new Vector2(a.width * .8f, a.height * .8f), 0, A(new Color(.18f, .05f, .0f), .12f * on), 0, Seed);
+                b.Quad(FxShape.Glow, c, new Vector2(a.width * .65f, a.height * .6f), 0, A(Orange, .07f * on), 0, Seed);
                 // steam columns from the floor
                 for (int k = 0; k < 7; k++)
                 {
@@ -150,15 +172,17 @@ namespace ArcaneBrigade
                     {
                         float u = (age * .22f + s * .25f + H(Seed, k)) % 1;
                         Vector2 p = new Vector2(x + Mathf.Sin(u * 7 + k) * .6f, a.yMin + u * (a.height + 1));
-                        b.Quad(FxShape.Smoke, p, new Vector2(.9f + 1.1f * u, 1.0f + 1.1f * u), 0, A(Steam, .4f * on * Mathf.Sin(u * Mathf.PI)), u, Seed + k * 4 + s);
+                        b.Quad(FxShape.Smoke, p, new Vector2(.6f + .7f * u, .7f + .7f * u), 0, A(Steam, .3f * on * Mathf.Sin(u * Mathf.PI)), u, Seed + k * 4 + s);
                     }
                 }
                 // banquet
-                for (int k = 0; k < 12; k++)
+                for (int k = 0; k < 8; k++)
                 {
                     float u = (age * .12f + H(Seed, k)) % 1, kind = k % 4;
                     Vector2 p = new Vector2(a.xMin + a.width * ((H(Seed, k + 20) + Mathf.Sin(age * .5f + k) * .02f) % 1), a.yMin - .5f + u * (a.height + 1));
-                    float s = .8f + .35f * H(Seed, k + 5), rot = Mathf.Sin(age * 1.4f + k) * 25;
+                    float s = .55f + .25f * H(Seed, k + 5), rot = Mathf.Sin(age * 1.4f + k) * 25;
+                    // crumbs trickle off each dish as it floats
+                    for (int m = 0; m < 3; m++) { float v = (age * 1.3f + m / 3f + H(Seed, k + m)) % 1; Glint(b, p + new Vector2((m - 1) * s * .4f, -s * .4f - v * .9f), .07f, Gold, .9f * on * (1 - v) * Mathf.Min(1, Mathf.Sin(u * Mathf.PI) * 3), m * 40); }
                     float al = 1.2f * on * Mathf.Min(1, Mathf.Sin(u * Mathf.PI) * 3);
                     b.Quad(FxShape.Glow, p, s * 1.7f, A(Orange, .3f * al), 0, Seed + k);
                     if (kind == 0) b.Quad(Food, p, new Vector2(s * 1.2f, s * 1.2f), rot, A(new Color(1f, .8f, .5f), al), 0, Seed + k, 0);
@@ -191,11 +215,14 @@ namespace ArcaneBrigade
                 b.Quad(Food, c + new Vector2(.55f, -.05f), new Vector2(.3f, .3f), 0, A(new Color(1f, .45f, .35f), on * lift), 0, Seed, 1);
                 b.Quad(Food, c + new Vector2(-.55f, -.05f), new Vector2(.28f, .28f), 0, A(new Color(1f, .45f, .35f), on * lift), 0, Seed + 1, 1);
                 b.Quad(Pot, c + new Vector2(.3f * lift, .3f + 1.1f * lift), new Vector2(.85f, .85f), 25 * lift, A(new Color(.9f, .9f, .95f), 1f * on * (1 - lift * .7f)), 0, Seed, 2);
-                for (int k = 0; k < 4; k++)
+                for (int k = 0; k < 6; k++)
                 {
-                    float u = Rise(t, .35f + k * .05f, 1.2f); if (u <= 0 || u >= 1) continue;
-                    b.Quad(FxShape.Smoke, c + new Vector2((k - 1.5f) * .3f, .3f + u * 1.4f), .35f + .4f * u, A(Steam, .6f * (1 - u)), u, Seed + k);
+                    float u = Rise(t, .3f + k * .05f, 1.25f); if (u <= 0 || u >= 1) continue;
+                    b.Quad(FxShape.Smoke, c + new Vector2((k - 2.5f) * .25f + Mathf.Sin(u * 6 + k) * .15f, .3f + u * 1.4f), .3f + .4f * u, A(Steam, .75f * Mathf.Min(1, u * 4) * (1 - u)), u + k, Seed + k);
                 }
+                // the cloche flashes as it lifts, and a ding sparkles off its rim
+                Glint(b, c + new Vector2(.3f * lift - .45f, .35f + 1.1f * lift), .55f, White, Fade(t, .35f, .7f) * Rise(t, .3f, .38f), t * 120);
+
                 for (int k = 0; k < 10; k++)
                 {
                     float u = (t * 1.1f + H(Seed, k)) % 1; if (t < .4f) break;
