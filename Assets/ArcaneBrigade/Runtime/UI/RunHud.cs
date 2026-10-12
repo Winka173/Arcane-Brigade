@@ -649,7 +649,7 @@ namespace ArcaneBrigade
             // 12 between chips; a chip that does not fit first shrinks its words, then starts a second row
             float cx = x, rowY = y; int rows = 1;
             const float H = 50, Lead = 46, Tail = 22, Gap = 12;
-            void Chip(Sprite icon, string label, bool lit)
+            void Chip(Sprite icon, string label, bool lit, string bond = null)
             {
                 int size = cardChip.fontSize;
                 float Need() => Lead + cardChip.CalcSize(new GUIContent(label)).x + Tail;
@@ -663,6 +663,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Chip(chip, lit); // the painted walnut chip with its icon socket
                 if (lit) ArcadeSkin.BlinkOver(chip, Time.unscaledTime);
                 if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
+                if (lit && bond != null) BondHudFx.Icon(ArcadeSkin.ChipIconRect(chip), bond, Time.unscaledTime, PresentationSettings.ReducedMotion); // the bond this buy lights or levels lives in its element
                 if (icon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), icon); // on the socket's measured centre
                 cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
                 // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
@@ -673,7 +674,7 @@ namespace ArcaneBrigade
             }
             // (no COMBO chip: plain counts are required; a combo is listed under the details' COMBOS)
             Chip(offerCard.AttackIcon, offerCard.AttackLabel, false); // the weapon this friend comes with
-            foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates);
+            foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates, row.Bond.Id);
             return rowY + H + 10;
         }
         /// <summary>The big action button: the verb, and the price with its currency.</summary>

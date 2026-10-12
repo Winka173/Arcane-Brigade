@@ -235,6 +235,7 @@ namespace ArcaneBrigade
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
                 if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
                 float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
+                if (activates) BondHudFx.Icon(new Rect(bi.x, bi.y, 26, 26), bond.Id, clock, !animate); // its element lives round the icon (feature 9)
                 DrawSprite(new Rect(bi.x + 13 - 13 * grow, bi.y + 13 - 13 * grow, 26 * grow, 26 * grow), bond.Icon);
                 int target = activates ? row.Next : bond.NextThreshold(row.After);
                 // the plain count after buying ("2/2", "4/6"), no ACTIVATES / MERGE wording

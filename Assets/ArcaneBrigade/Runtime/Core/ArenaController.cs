@@ -162,7 +162,7 @@ namespace ArcaneBrigade
             if (runCatalog != null) arsenalVisual = gameObject.AddComponent<ArsenalVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { elementInk = new GameObject("Element looks").AddComponent<ElementInk>(); elementInk.Configure(this); }
-            if (runCatalog != null) { RulesInk = new GameObject("Rules v3 ink").AddComponent<RulesV3Ink>(); RulesInk.Configure(this, elementInk); }
+            if (runCatalog != null) { RulesInk = new GameObject("Rules v3 ink").AddComponent<RulesV3Ink>(); RulesInk.Configure(this, elementInk); RulesInk.gameObject.AddComponent<VictoryFinale>().Configure(this); } // the top bond element celebrates a won wave (Fx/VictoryFinale.cs)
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
             if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
             if (runCatalog != null) { SecretRoom = gameObject.AddComponent<SecretEventRoom>(); SecretRoom.Configure(this); }
