@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             protected override float Life => 1.7f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius * 1.3f, off = Fade(t, 1.0f, 1.7f), open = EaseOut(Rise(t, 0, .16f));
+                Vector2 at = At; float r = Radius * 1.1f, off = Fade(t, 1.0f, 1.7f), open = EaseOut(Rise(t, 0, .16f));
                 Vector2 c = at + Vector2.up * .35f;
                 b.Quad(FxShape.Glow, c, r * 1.9f, A(Violet, .8f * Fade(t, 0, .3f)), 0, Seed);
                 b.Floor(FxShape.Shade, at, r * 1.4f, A(Ink, .8f * Rise(t, 0, .2f) * off), 0, Seed);
@@ -45,6 +45,17 @@ namespace ArcaneBrigade
                     b.Quad(Rift, c, new Vector2(r * 1.55f, r * .8f), deg, A(Violet, 1.3f * off), o, Seed + k, 1);
                     b.Quad(Rift, c, new Vector2(r * 1.4f, r * .5f), deg, A(White, .8f * off * Fade(t, .1f, .6f)), o, Seed + k + 3, 0);
                 }
+                // ink flung out of the cut, then the rifts snap shut in a thin flash (second beat)
+                for (int k = 0; k < 10; k++)
+                {
+                    float u = (t - .05f) / (.5f + .3f * H(Seed, k + 90)); if (u <= 0 || u >= 1) continue;
+                    Vector2 d = Dir(Seed + 8, k, 10, .7f), p = c + d * r * 1.3f * EaseOut(u) + Vector2.up * (1.4f * u - 2.2f * u * u);
+                    Blob(b, p, .16f + .1f * H(Seed, k), 0, .95f * (1 - u * u), u, Seed + k + 90);
+                }
+                float snap = Rise(t, .72f, .76f) * Fade(t, .76f, 1.0f);
+                b.Link(c - new Vector2(r * 1.2f, 0), c + new Vector2(r * 1.2f, 0), .12f, A(White, .9f * snap), Seed, .7f);
+                b.Quad(FxShape.Glow, c, new Vector2(r * 1.4f, .5f), 0, A(Magenta, .6f * snap), 0, Seed);
+                for (int k = 0; k < 4; k++) { float u = Rise(t, .8f + k * .08f, 1.6f); if (u <= 0 || u >= 1) continue; b.Quad(FxShape.Smoke, c + new Vector2((k - 1.5f) * .4f, u * 1.6f), .3f + .5f * u, 0, A(Indigo * 1.6f, .7f * (1 - u)), u, Seed + k + 40); }
                 // the ink is pulled in
                 for (int k = 0; k < 9; k++)
                 {
@@ -85,6 +96,9 @@ namespace ArcaneBrigade
                     Blob(b, root + new Vector2(sway * g, h * g * .5f), new Vector2(w * 2.2f, h * g * .55f), 0, .98f, t, Seed + k);
                     b.Quad(FxShape.Glow, root + new Vector2(sway * g, h * g * .5f), new Vector2(w * 2.6f, h * g * .62f), 0, A(Violet, .28f * g), 0, Seed);
                     Glint(b, root + new Vector2(sway * g, h * g), .28f, Magenta, .9f * g, now * 30 + k * 50);
+                    float du = (now * 1.3f + H(Seed, k + 70)) % 1;
+                    Blob(b, root + new Vector2(sway * g + w * .6f, h * g * (.7f - .7f * du * du)), new Vector2(.09f, .14f), 0, .95f * g * (1 - du), 0, Seed + k + 70);
+                    b.Quad(FxShape.Smoke, root + new Vector2(0, .1f), new Vector2(.45f, .25f) * (1 + g), 0, A(Indigo * 1.5f, .6f * g), t * .5f, Seed + k + 80);
                 }
                 float body = EaseOut3(Rise(t, .15f, .75f)) * Fade(t, 1.35f, 2f);
                 float bh = r * 1.25f + .6f, bw = r * .55f + .3f;
@@ -133,6 +147,15 @@ namespace ArcaneBrigade
                     float ang = k * .628f + now * 1.2f; Vector2 pos = at + new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .62f) * r * .92f;
                     Blob(b, pos, new Vector2(r * .3f, .1f) * on, (ang * Mathf.Rad2Deg + 150), .9f, now, Seed + 10 + k);
                 }
+                for (int k = 0; k < 5; k++)
+                {
+                    float bc = now * .9f + H(Seed, k + 100) * 5; int bn = Mathf.FloorToInt(bc); float u = bc - bn;
+                    Vector2 bp = at + new Vector2((H(Seed + bn, k) - .5f) * r * 1.1f, (H(Seed + bn, k + 1) - .5f) * r * .5f);
+                    if (u < .75f) b.Quad((FxShape)30, bp + Vector2.up * u * .2f, .12f + .22f * EaseOut(u / .75f), 0, A(Violet, .9f * on), u, Seed + k, 0);
+                    else { float s = (u - .75f) / .25f; for (int j = 0; j < 4; j++) Glint(b, bp + Dir(Seed + k, j, 4, .8f) * .45f * s + Vector2.up * .3f, .14f, Magenta, on * (1 - s), j * 40); }
+                    float hu = (now * .35f + k * .2f) % 1;
+                    b.Quad(FxShape.Smoke, at + new Vector2((H(Seed, k + 120) - .5f) * r, .3f + hu * 1.8f), .35f + .5f * hu, 0, A(Indigo * 1.4f, .45f * on * Mathf.Sin(hu * Mathf.PI)), hu, Seed + k + 120);
+                }
                 for (int k = 0; k < 22; k++)
                 {
                     float u = (now * (.7f + .4f * H(Seed, k)) + H(Seed, k + 30)) % 1, ang = k * 0.9f + u * 5.5f, rad = r * 1.3f * (1 - u) + .05f;
@@ -170,6 +193,7 @@ namespace ArcaneBrigade
                     b.Quad(FxShape.Glow, (root + top) * .5f, new Vector2(w * 3.2f, h * g * .58f), -lean * 18, A(Violet, .3f * g), 0, Seed);
                     b.Quad(FxShape.Glow, root, w * 3f, A(Violet, .3f * g), 0, Seed);
                     Glint(b, top, .3f, Magenta, g, now * 40 + k * 30);
+                    b.Quad(FxShape.Smoke, root + Vector2.up * .15f, new Vector2(.5f, .3f) * (.6f + g), 0, A(Indigo * 1.5f, .65f * g), t, Seed + k + 90);
                 }
                 for (int k = 0; k < 20; k++)
                 {
@@ -177,6 +201,14 @@ namespace ArcaneBrigade
                     Vector2 p = at + Dir(Seed + 5, k, 20, .7f) * r * 1.1f * EaseOut(u) + Vector2.up * (3.8f * H(Seed, k + 60) * u - 5.2f * u * u + .4f);
                     if (k % 2 == 0) Blob(b, p, .2f + .12f * H(Seed, k), 0, .95f * (1 - u), u, Seed + k);
                     else Glint(b, p, .26f, Violet, 1 - u, k * 60 + now * 200);
+                }
+                // the ink rain lands: flat splats with a violet glint
+                for (int k = 0; k < 10; k++)
+                {
+                    float st = .75f + .5f * H(Seed, k + 140), u = (t - st) / .5f; if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + Dir(Seed + 11, k, 10, .62f) * r * (.4f + .8f * H(Seed, k + 141));
+                    Blob(b, p, new Vector2(.2f + .3f * EaseOut(u * 3), .12f + .12f * EaseOut(u * 3)), 0, .9f * (1 - u), u, Seed + k + 140);
+                    Glint(b, p + Vector2.up * .1f, .2f * (1 - u), Magenta, 1 - u, k * 33);
                 }
             }
         }
@@ -189,13 +221,15 @@ namespace ArcaneBrigade
             protected override float Life => 2.4f;
             private static void Moon(FxBatch b, Vector2 m, float R, float alpha, float now, int seed, float corona)
             {
-                b.Quad(FxShape.Glow, m, R * 3.2f, A(Indigo, .55f * alpha * corona), 0, seed);
-                b.Quad(Ring, m, R * 2.5f, 0, A(Violet, 1.2f * alpha * corona), now * .3f, seed, 3);
+                b.Quad(FxShape.Glow, m, R * 2.6f, A(Indigo, .5f * alpha * corona), 0, seed);
+                b.Quad(FxShape.Rays, m, R * 2.3f, A(Violet, .45f * alpha * corona), now * .2f, seed, 5);
+                b.Quad(Ring, m, R * 2.2f, 0, A(Violet, 1.2f * alpha * corona), now * .3f, seed, 3);
                 b.Quad(Ring, m, R * 1.9f, 0, A(Magenta, .8f * alpha * corona), -now * .5f, seed + 2, 4);
                 for (int k = 0; k < 7; k++) Blob(b, m + Dir(seed, k, 7, 1) * R * .42f, R * .9f, 0, alpha, k * .3f, seed + k);
                 Blob(b, m, R * 1.08f, 0, alpha, .2f, seed + 9);
                 b.Quad(Ring, m, R * 1.12f, 215, A(new Color(.9f, .8f, 1f), .6f * alpha), 0, seed, 6);
                 Glint(b, m + new Vector2(-.7f, -.62f) * R * 1.02f, R * .5f * (.8f + .2f * Mathf.Sin(now * 5)), White, alpha, now * 30);
+                for (int k = 0; k < 3; k++) { float u = (now * .7f + k / 3f) % 1; Blob(b, m + new Vector2((k - 1) * R * .45f, -R * (.85f + 1.2f * u * u)), new Vector2(.1f, .16f) * (1 - u * .5f), 0, alpha * (1 - u), 0, seed + k + 30); }
             }
 
             public override void Draw(FxBatch b, float now, float pre, float t)
@@ -205,9 +239,9 @@ namespace ArcaneBrigade
                 {
                     float on = Rise(t, 0, 2.5f) * Fade(now, End - 1.5f, End);
                     Vector2 m = new Vector2(a.center.x + a.width * .1f, a.center.y + a.height * .2f);
-                    b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.07f, .02f, .2f), .52f * on), 0, Seed);
-                    b.Quad(FxShape.Shade, new Vector2(a.center.x, a.yMax), new Vector2(a.width * .6f, a.height * .3f), 0, A(Ink, .6f * on), 0, Seed + 1);
-                    Moon(b, m, 2.1f, on, now, Seed, .85f + .15f * Mathf.Sin(now * 1.3f));
+                    b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.07f, .02f, .2f), .3f * on), 0, Seed);
+                    b.Quad(FxShape.Shade, new Vector2(a.center.x, a.yMax), new Vector2(a.width * .5f, a.height * .22f), 0, A(Ink, .35f * on), 0, Seed + 1);
+                    Moon(b, m, 1.5f, on, now, Seed, .85f + .15f * Mathf.Sin(now * 1.3f));
                     for (int k = 0; k < 34; k++)
                     {
                         float u = (now * (.1f + .06f * H(Seed, k)) + H(Seed, k + 10)) % 1;
@@ -217,18 +251,18 @@ namespace ArcaneBrigade
                     for (int k = 0; k < 6; k++)
                     {
                         float x = a.xMin + (((k * .17f + now * .015f) % 1.2f) - .1f) * a.width;
-                        Blob(b, new Vector2(x, a.yMin + .8f + 1.2f * H(Seed, k)), new Vector2(3.2f, 1.2f), 0, .6f * on, now * .05f + k, Seed + k);
+                        Blob(b, new Vector2(x, a.yMin + .8f + 1.2f * H(Seed, k)), new Vector2(2.4f, .9f), 0, .35f * on, now * .05f + k, Seed + k);
                     }
                     return;
                 }
                 // trait: a total eclipse that sweeps over the arena
                 float sweep = Mathf.Clamp01(t / 1.5f), dim = Mathf.Sin(Mathf.Clamp01(t / 2.2f) * Mathf.PI);
                 Vector2 mm = new Vector2(Mathf.Lerp(a.xMin - 1.5f, a.xMax + 1.5f, sweep), a.center.y + a.height * .2f);
-                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.06f, .02f, .18f), .62f * dim), 0, Seed);
-                for (int k = 0; k < 5; k++) { Vector2 foot = new Vector2(mm.x + (k - 2) * 2.6f, a.yMin + 2.5f); b.Beam(mm + Vector2.down * 3.2f, foot, .9f, A(Violet, .35f * dim), t, Seed + k, 0); b.Floor(FxShape.Glow, foot, 1.8f, A(Magenta, .3f * dim), 0, Seed); }
-                Moon(b, mm, 2.3f, dim > .02f ? 1 : 0, now, Seed, dim);
+                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.06f, .02f, .18f), .4f * dim), 0, Seed);
+                for (int k = 0; k < 5; k++) { Vector2 foot = new Vector2(mm.x + (k - 2) * 2.6f, a.yMin + 2.5f); b.Beam(mm + Vector2.down * 2.2f, foot, .6f, A(Violet, .32f * dim), t, Seed + k, 0); b.Floor(FxShape.Glow, foot, 1.4f, A(Magenta, .3f * dim), 0, Seed); }
+                Moon(b, mm, 1.6f, dim > .02f ? 1 : 0, now, Seed, dim);
                 float tot = Mathf.Max(0, 1 - Mathf.Abs(sweep - .5f) * 7);
-                b.Quad(Ring, mm, 3.1f, 0, A(White, 1.2f * tot), t, Seed + 7, .7f);
+                b.Quad(Ring, mm, 2.3f, 0, A(White, 1.1f * tot), t, Seed + 7, .7f);
                 for (int k = 0; k < 24; k++)
                 {
                     float u = (t * .8f + H(Seed, k)) % 1;
@@ -254,6 +288,13 @@ namespace ArcaneBrigade
                     Blob(b, at + d * r * (.3f + .7f * sp), new Vector2(.42f, .26f) * (.6f + .4f * sp), Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, .95f * off, t, Seed + k);
                 }
                 b.Quad(FxShape.Glow, m, 1.6f, A(Violet, .45f * off), 0, Seed);
+                for (int k = 0; k < 8; k++)
+                {
+                    float u = (t - .2f) / (.45f + .25f * H(Seed, k + 50)); if (u <= 0 || u >= 1) continue;
+                    Vector2 d = Dir(Seed + 4, k, 8, .6f);
+                    Blob(b, at + d * r * 1.3f * EaseOut(u) + Vector2.up * (1.1f * u - 1.4f * u * u), .12f + .08f * H(Seed, k), 0, .95f * (1 - u), u, Seed + k + 50);
+                }
+                for (int k = 0; k < 3; k++) { float u = (t * 1.2f + k / 3f) % 1; b.Quad(FxShape.Smoke, m + new Vector2((k - 1) * .4f, .3f + u * 1.2f), .2f + .35f * u, 0, A(Indigo * 1.6f, .55f * off * Mathf.Sin(u * Mathf.PI)), u, Seed + k + 60); }
                 b.Quad(Ring, m, new Vector2(.95f, .95f), -20 + Mathf.Sin(t * 6) * 8, A(Violet, 1.3f * off), 0, Seed, 6);
                 b.Quad(Ring, m, new Vector2(.8f, .8f), -20 + Mathf.Sin(t * 6) * 8, A(White, .7f * off), 0, Seed + 1, 6);
                 for (int s = 0; s < 2; s++)

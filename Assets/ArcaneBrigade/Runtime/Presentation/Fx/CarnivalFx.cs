@@ -43,6 +43,17 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>Grey-lilac gunpowder smoke left hanging where a firework burst.</summary>
+        private static void Powder(FxBatch b, Vector2 c, float radius, float u, int seed, int n = 5)
+        {
+            if (u <= 0 || u >= 1) return;
+            for (int k = 0; k < n; k++)
+            {
+                Vector2 d = Dir(seed, k, n, .8f);
+                b.Quad(FxShape.Smoke, c + d * radius * (.25f + .3f * u) + Vector2.down * .4f * u, radius * (.3f + .25f * u), 0, A(new Color(.42f, .38f, .5f), .5f * Mathf.Sin(u * Mathf.PI) * (1 - u * .5f)), u, seed + k);
+            }
+        }
+
         /// <summary>Step 6 and 8: a firework shell arcs up from the party, bursts over the crowd in coloured sparks, and confetti, paper
         /// streamers and glittering chips rain down on the footprint.</summary>
         private sealed class Confetti : FxEffect
@@ -60,7 +71,10 @@ namespace ArcaneBrigade
                     b.Quad(FxShape.Glow, p, .6f, A(White, .8f), 0, Seed);
                     return;
                 }
-                Firework(b, burst, 2.5f + r * .5f, t / .9f, Seed, 16, hue);
+                Firework(b, burst, 2.2f + r * .4f, t / .9f, Seed, 16, hue);
+                Powder(b, burst, 2.2f, t / 1.8f, Seed + 50);
+                // crossettes: three sparks split again into little pops (second beat)
+                for (int k = 0; k < 3; k++) Firework(b, burst + Dir(Seed + 3, k, 3, 1) * (2.2f + r * .4f) * .75f + Vector2.down * .4f, .8f, (t - .45f - k * .06f) / .45f, Seed + k * 31, 7, hue + k + 2);
                 for (int k = 0; k < 70; k++)
                 {
                     float fall = .9f + .8f * H(Seed, k + 5), u = t / fall, keep = Fade(t, 1.5f + .4f * H(Seed, k + 9), 2.3f);
@@ -102,8 +116,11 @@ namespace ArcaneBrigade
                     return;
                 }
                 float u = t - popAt, off = Fade(u, .6f, 1.05f);
-                b.Quad(FxShape.Glow, c, r * 2.4f, A(White, .9f * Fade(u, 0, .16f)), 0, Seed);
-                b.Quad(Star, c, new Vector2(r * 1.5f, r * 1.5f) * (.6f + .5f * EaseOut(u * 5)), u * 40, A(Pal[2], 1.2f * Fade(u, 0, .28f)), 0, Seed, 12);
+                // the gust of air from the pop and the limp string and knot dropping to the floor
+                for (int k = 0; k < 6; k++) { float v = Rise(u, 0, .6f); if (v >= 1) break; b.Quad(FxShape.Dust, c + Dir(Seed + 2, k, 6, .7f) * r * (.4f + 1.0f * EaseOut3(v)), .45f + .4f * v, 0, A(new Color(.8f, .75f, .85f), .45f * (1 - v)), v, Seed + k); }
+                { float v = Rise(u, 0, .7f); Vector2 knot = c + Vector2.down * (.9f + 1.4f * v * v); if (v < 1) { b.Link(knot, knot + new Vector2(Mathf.Sin(u * 14) * .3f * (1 - v), -.9f * (1 - .5f * v)), .025f, A(Pal[2], .8f * (1 - v)), Seed, 1); b.Quad((FxShape)32, knot, .12f, 180, A(Pc(hue), 1.1f * (1 - v)), 0, Seed); } }
+                b.Quad(FxShape.Glow, c, r * 2.4f, A(White, .6f * Fade(u, 0, .16f)), 0, Seed);
+                b.Quad(Star, c, new Vector2(r * 1.5f, r * 1.5f) * (.6f + .5f * EaseOut(u * 5)), u * 40, A(Pal[2], .9f * Fade(u, 0, .28f)), 0, Seed, 12);
                 b.Quad(Star, c, new Vector2(r * 1.0f, r * 1.0f), -u * 60 + 10, A(Pc(hue), 1.2f * Fade(u, 0, .22f)), 0, Seed + 4, 9);
                 for (int k = 0; k < 12; k++)
                 {
@@ -136,13 +153,13 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Rect a = Arena; float dur = Mathf.Max(.5f, Moment.Duration), g = Fade(t, dur * .7f, dur), rise = Rise(t, 0, .12f);
-                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.1f, .02f, .15f), .3f * rise * g), 0, Seed);
+                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.1f, .02f, .15f), .15f * rise * g), 0, Seed);
                 // spotlights from the floor edge, sweeping
                 for (int k = 0; k < 3; k++)
                 {
                     Vector2 from = new Vector2(a.xMin + a.width * (.2f + .3f * k), a.yMin - 1), to = new Vector2(from.x + Mathf.Sin(now * 4 + k * 2) * 5, a.yMax + 1);
-                    b.Beam(from, to, 1.2f, A(Pc(k * 2 + 1), .26f * rise * g), now, Seed + k, 0);
-                    b.Beam(from, to, .35f, A(White, .18f * rise * g), now, Seed + k, 0);
+                    b.Beam(from, to, .85f, A(Pc(k * 2 + 1), .2f * rise * g), now, Seed + k, 0);
+                    b.Beam(from, to, .25f, A(White, .14f * rise * g), now, Seed + k, 0);
                 }
                 // fireworks
                 for (int k = 0; k < 7; k++)
@@ -150,7 +167,8 @@ namespace ArcaneBrigade
                     float start = k * .1f; Vector2 c = new Vector2(a.xMin + a.width * (.1f + .8f * H(Seed, k + 3)), a.center.y + a.height * (.02f + .36f * H(Seed, k + 8)));
                     float u = (t - start) / .85f;
                     if (u > 0 && u < .12f) { b.Quad(Streak, c + Vector2.down * 1.5f * (1 - u / .12f), new Vector2(1.6f, .2f), 90, A(Pc(k), 1), now, Seed + k, 0); }
-                    Firework(b, c, 3.0f + 1.0f * H(Seed, k + 12), (u - .12f) / .88f, Seed + k * 13, 16, k);
+                    Firework(b, c, 2.0f + .7f * H(Seed, k + 12), (u - .12f) / .88f, Seed + k * 13, 16, k);
+                    Powder(b, c, 1.8f, (u - .15f) / 1.2f, Seed + k * 7, 4);
                 }
                 // balloons rising on strings
                 for (int k = 0; k < 13; k++)
@@ -171,7 +189,7 @@ namespace ArcaneBrigade
                         Streamer(b, p, .9f, .26f, Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg, Pc(k + side * 3), 1.05f * g, t * 4 + k, Seed + k + side * 9);
                     }
                 // confetti blizzard
-                for (int k = 0; k < 90; k++)
+                for (int k = 0; k < 70; k++)
                 {
                     float sp = 7 + 4 * H(Seed, k + 80), y0 = a.yMax + 1 - (H(Seed, k + 90) * 4) - t * sp; if (y0 < a.yMin - 1) continue;
                     Vector2 p = new Vector2(a.xMin + a.width * H(Seed, k + 100) + Mathf.Sin(t * 9 + k) * .4f, y0);
