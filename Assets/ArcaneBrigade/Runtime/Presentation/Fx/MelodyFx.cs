@@ -8,6 +8,9 @@ namespace ArcaneBrigade
     /// <summary>Melody bond: musical notes, sound waves, drum pulses, pastel colours.</summary>
     public static class MelodyFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["melody-notes"] = () => new Notes();
@@ -72,7 +75,7 @@ namespace ArcaneBrigade
                 for (int k = 0; k < 5; k++)
                 {
                     float u = t / (.55f + .05f * k); if (u <= 0 || u >= 1) continue;
-                    NoteAt(b, at + new Vector2((k - 2) * .5f * EaseOut(u), 1.8f * u - 2f * u * u + .1f), .36f, (k - 2) * 25 + Mathf.Sin(u * 10) * 15, DKit.Pastel(Seed + k + 1), 1 - u * u, (k + Seed) % 4, Seed + k);
+                    NoteAt(b, at + new Vector2((k - 2) * .5f * EaseOut(u), 1.8f * u - 2f * u * u + .1f), .2f, (k - 2) * 25 + Mathf.Sin(u * 10) * 15, DKit.Pastel(Seed + k + 1), 1 - u * u, (k + Seed) % 4, Seed + k);
                 }
                 Confetti(b, at + Vector2.up * .3f, t, 12, 1.2f, Seed);
             }
@@ -93,7 +96,7 @@ namespace ArcaneBrigade
                     {
                         float a = k / 8f * 6.2832f + pre * 4, rad = r * 1.5f * (1 - EaseOut(pre));
                         Vector2 p = at + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * .62f) * rad;
-                        NoteAt(b, p, .34f, 0, DKit.Pastel(k), .9f * Mathf.Min(1, pre * 4), k % 4, Seed + k);
+                        NoteAt(b, p, .2f, 0, DKit.Pastel(k), .9f * Mathf.Min(1, pre * 4), k % 4, Seed + k);
                         Glint(b, p + new Vector2(Mathf.Sin(a), -Mathf.Cos(a) * .62f) * .35f, .12f, DKit.Pastel(k), .8f * pre, k * 30);
                     }
                     b.Floor(FxShape.Glow, at, r * .7f * pre, A(DKit.Lilac, .3f * pre), 0, Seed);
@@ -118,7 +121,7 @@ namespace ArcaneBrigade
                 {
                     float v = Rise(t, k * .03f, .9f + k * .02f); if (v <= 0 || v >= 1) continue;
                     Vector2 dir = Dir(Seed + 5, k, 10, .62f);
-                    NoteAt(b, at + dir * r * 1.4f * EaseOut(v) + Vector2.up * Mathf.Sin(v * Mathf.PI) * .7f, .3f, Mathf.Sin(v * 9 + k) * 25, DKit.Pastel(k), 1 - v * v, k % 4, Seed + k);
+                    NoteAt(b, at + dir * r * 1.4f * EaseOut(v) + Vector2.up * Mathf.Sin(v * Mathf.PI) * .7f, .18f, Mathf.Sin(v * 9 + k) * 25, DKit.Pastel(k), 1 - v * v, k % 4, Seed + k);
                 }
                 for (int k = 0; k < 12; k++)
                 {
@@ -152,7 +155,7 @@ namespace ArcaneBrigade
                 for (int k = 0; k < 3; k++)
                 {
                     float u = Rise(t, k * .05f, .75f); if (u <= 0 || u >= 1) continue;
-                    NoteAt(b, at + Dir(Seed + idx * 3, k, 3, .62f) * r * 1.0f * EaseOut(u) + Vector2.up * (top + 1.0f * Mathf.Sin(u * 3)), .36f, 0, DKit.Pastel(idx + k), 1 - u, (k + idx) % 4, Seed + k);
+                    NoteAt(b, at + Dir(Seed + idx * 3, k, 3, .62f) * r * 1.0f * EaseOut(u) + Vector2.up * (top + 1.0f * Mathf.Sin(u * 3)), .2f, 0, DKit.Pastel(idx + k), 1 - u, (k + idx) % 4, Seed + k);
                 }
             }
 
@@ -216,14 +219,14 @@ namespace ArcaneBrigade
                     if (u < 1)
                     {
                         float hgt = 4.5f * (1 - DKit.EaseIn(u));
-                        NoteAt(b, new Vector2(x, y + .5f + hgt), .55f, Mathf.Sin(age * 9 + k) * 15, c, 1, k % 4, Seed + k);
+                        NoteAt(b, new Vector2(x, y + .5f + hgt), .3f, Mathf.Sin(age * 9 + k) * 15, c, 1, k % 4, Seed + k);
                         b.Beam(new Vector2(x, y + .9f + hgt), new Vector2(x, y + 1.9f + hgt + u), .05f, A(c, .6f), 0, Seed + k, .5f);
                         Glint(b, new Vector2(x + .15f, y + 1.3f + hgt), .14f, White, .8f, k * 20);
                     }
                     else
                     {
                         float s = age - start - fall; float bounce = Mathf.Abs(Mathf.Sin(s * 9)) * .3f * Fade(s, 0, 1f);
-                        NoteAt(b, new Vector2(x, y + .5f + bounce), .55f, Mathf.Sin(s * 9) * 12, c, fade * Fade(s, .6f, 1.2f), k % 4, Seed + k);
+                        NoteAt(b, new Vector2(x, y + .5f + bounce), .3f, Mathf.Sin(s * 9) * 12, c, fade * Fade(s, .6f, 1.2f), k % 4, Seed + k);
                         float rp = Rise(s, 0, .4f); if (rp > 0 && rp < 1) { b.Quad(FxShape.Shock, new Vector2(x, y), DKit.Sq(.7f), 0, A(c, .9f), rp, Seed + k); b.Quad(FxShape.Dust, new Vector2(x, y + .1f + .2f * rp), new Vector2(.35f + .3f * rp, .2f + .12f * rp), 0, A(Color.Lerp(c, White, .4f), .55f * (1 - rp)), rp, Seed + k); }
                         if (s < .35f) for (int j = 0; j < 3; j++) Glint(b, new Vector2(x, y + .2f) + Dir(Seed + k, j, 3, .7f) * .5f * EaseOut(s / .35f), .1f, c, 1 - s / .35f, j * 60);
                     }
@@ -260,7 +263,7 @@ namespace ArcaneBrigade
                 for (int k = 0; k < 6; k++)
                 {
                     float u = Rise(s, k * .04f, .75f); if (u <= 0 || u >= 1) continue;
-                    NoteAt(b, at + new Vector2((k - 2.5f) * r * .4f, 0) + Vector2.up * (EaseOut(u) * 1.9f - .8f * u * u), .45f, (k - 2.5f) * 10, DKit.Pastel(k), 1 - u * u, k % 4, Seed + k);
+                    NoteAt(b, at + new Vector2((k - 2.5f) * r * .4f, 0) + Vector2.up * (EaseOut(u) * 1.9f - .8f * u * u), .26f, (k - 2.5f) * 10, DKit.Pastel(k), 1 - u * u, k % 4, Seed + k);
                 }
                 Confetti(b, at + Vector2.up * .5f, s, 16, 1.5f, Seed + 3, .8f);
                 DKit.Sparks(b, at + Vector2.up * .3f, s, 8, 3f, 2.8f, DKit.Butter, Seed, .45f, .08f);

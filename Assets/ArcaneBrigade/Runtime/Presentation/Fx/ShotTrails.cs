@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// (each piece's distance behind the shot grows with the shot's speed and wraps), so the trail reads as left behind.</summary>
     public static class ShotTrails
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         /// <summary>Shots drawn per frame; past it the rest fly as their painted token alone.</summary>
         public const int MaxShots = 200;
         private static Vector2 V(float x, float y) => new Vector2(x, y);

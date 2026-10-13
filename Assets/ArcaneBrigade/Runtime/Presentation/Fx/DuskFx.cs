@@ -10,6 +10,9 @@ namespace ArcaneBrigade
     /// pit erupting into ink spikes; eclipse = a black moon with a corona over the arena.</summary>
     public static class DuskFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["execute"] = () => new Execute();
@@ -151,7 +154,7 @@ namespace ArcaneBrigade
                 {
                     float bc = now * .9f + H(Seed, k + 100) * 5; int bn = Mathf.FloorToInt(bc); float u = bc - bn;
                     Vector2 bp = at + new Vector2((H(Seed + bn, k) - .5f) * r * 1.1f, (H(Seed + bn, k + 1) - .5f) * r * .5f);
-                    if (u < .75f) b.Quad((FxShape)30, bp + Vector2.up * u * .2f, .12f + .22f * EaseOut(u / .75f), 0, A(Violet, .9f * on), u, Seed + k, 0);
+                    if (u < .75f) b.Quad((FxShape)30, bp + Vector2.up * u * .2f, .06f + .1f * EaseOut(u / .75f), 0, A(Violet, .9f * on), u, Seed + k, 0);
                     else { float s = (u - .75f) / .25f; for (int j = 0; j < 4; j++) Glint(b, bp + Dir(Seed + k, j, 4, .8f) * .45f * s + Vector2.up * .3f, .14f, Magenta, on * (1 - s), j * 40); }
                     float hu = (now * .35f + k * .2f) % 1;
                     b.Quad(FxShape.Smoke, at + new Vector2((H(Seed, k + 120) - .5f) * r, .3f + hu * 1.8f), .35f + .5f * hu, 0, A(Indigo * 1.4f, .45f * on * Mathf.Sin(hu * Mathf.PI)), hu, Seed + k + 120);
@@ -301,7 +304,7 @@ namespace ArcaneBrigade
                 {
                     float u = ((t - .25f) * 1.6f + s * .5f) % 1; if (t < .25f) continue;
                     Vector2 horn = m + new Vector2(s == 0 ? -.55f : .45f, -.62f);
-                    b.Quad((FxShape)32, horn + Vector2.down * u * 1.4f, .2f, 0, A(Magenta, 1.1f * off * (1 - u)), 0, Seed + s);
+                    b.Quad((FxShape)32, horn + Vector2.down * u * 1.4f, .1f, 0, A(Magenta, 1.1f * off * (1 - u)), 0, Seed + s);
                 }
                 for (int k = 0; k < 2; k++)
                 {

@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// <summary>Garden bond: vines, leaves, roots and blossoms.</summary>
     public static class GardenFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["garden-vine"] = () => new Vine();
@@ -54,11 +57,11 @@ namespace ArcaneBrigade
                     Vector2 dd = Dir(Seed + 5, k, 10, .7f);
                     Fleck(b, at + dd * r * .35f + Vector2.up * r * .8f, new Vector2(dd.x * 2.2f, 1.2f + H(Seed, k + 30)), 5, t - .52f, .55f, .06f, k % 2 == 0 ? LeafG : Pollen, Seed + k + 30);
                 }
-                for (int k = 0; k < 6; k++)
+                for (int k = 0; k < 12; k++)
                 {
-                    float u = Rise(t, .3f + k * .1f, 1.3f + k * .05f); if (u <= 0 || u >= 1) continue;
+                    float u = Rise(t, .3f + k * .05f, 1.3f + k * .025f); if (u <= 0 || u >= 1) continue;
                     Vector2 p = at + new Vector2((H(Seed, k + 80) - .5f) * r * 1.4f + Mathf.Sin(u * 7 + k) * .35f, r * 1.7f - u * r * 1.6f);
-                    Lf(b, p, .22f, Mathf.Sin(u * 9 + k) * 60 + 90, k % 2 == 0 ? LeafG : DeepG, .9f * Fade(u, .7f, 1), Seed + k + 80);
+                    Lf(b, p, .15f, Mathf.Sin(u * 9 + k) * 60 + 90, k % 2 == 0 ? LeafG : DeepG, .9f * Fade(u, .7f, 1), Seed + k + 80);
                 }
                 for (int k = 0; k < 3; k++)
                     b.Floor(Curl, at + Dir(Seed, k, 3, .5f) * r * .45f, r * .75f, A(LeafG, .95f * o), g, Seed + k, k % 2 == 0 ? 1 : -1);
@@ -132,10 +135,10 @@ namespace ArcaneBrigade
                 {
                     float g = EaseOut(pre);
                     b.Floor(FxShape.Shade, at, r * 1.4f * (.4f + .6f * g), A(Mud, .7f * g), 0, Seed);
-                    for (int k = 0; k < 10; k++)
+                    for (int k = 0; k < 18; k++)
                     {
                         float u = (pre * 1.3f + H(Seed, k)) % 1; Vector2 p = at + Pt(Seed, k, r * 1.2f, r * .7f) + Vector2.up * (3 - u * 3);
-                        Lf(b, p, .4f, now * 160 + k * 40, k % 2 == 0 ? LeafG : DeepG, .9f * g * (1 - u), Seed + k);
+                        Lf(b, p, .18f, now * 160 + k * 40, k % 2 == 0 ? LeafG : DeepG, .9f * g * (1 - u), Seed + k);
                     }
                     Fist(b, fist, r, 1, 0, Seed, 0);
                     return;
@@ -163,11 +166,11 @@ namespace ArcaneBrigade
                     b.Quad(Root, mid, new Vector2(r * .2f, L), Ang(dd) - 90, A(Bark, o), spread, Seed + k, .4f);
                     if (spread > .9f) b.Quad(Petal, at + dd * r * 1.25f, .4f * Overshoot(Rise(t, .3f + k * .03f, .5f + k * .03f)), t * 40, A(k % 2 == 0 ? Pink : Pollen, o), 0, Seed + k, 0);
                 }
-                for (int k = 0; k < 20; k++)
+                for (int k = 0; k < 34; k++)
                 {
                     float life = .9f + .5f * H(Seed, k + 70), u = t / life; if (u >= 1) continue;
-                    Vector2 dir = Dir(Seed, k + 40, 20, .5f), p = at + dir * r * (.55f + 1.1f * EaseOut(u)) + Vector2.up * (3.4f * H(Seed, k + 90) * u - 4.2f * u * u + .3f);
-                    Lf(b, p, .42f, k * 50 + t * 400, k % 3 == 0 ? Pink : (k % 3 == 1 ? LeafG : DeepG), (1 - u * u) * Rise(u, 0, .1f), Seed + k);
+                    Vector2 dir = Dir(Seed, k + 40, 34, .5f), p = at + dir * r * (.55f + 1.1f * EaseOut(u)) + Vector2.up * (3.4f * H(Seed, k + 90) * u - 4.2f * u * u + .3f);
+                    Lf(b, p, .18f, k * 50 + t * 400, k % 3 == 0 ? Pink : (k % 3 == 1 ? LeafG : DeepG), (1 - u * u) * Rise(u, 0, .1f), Seed + k);
                 }
                 for (int k = 0; k < 9; k++)
                 {

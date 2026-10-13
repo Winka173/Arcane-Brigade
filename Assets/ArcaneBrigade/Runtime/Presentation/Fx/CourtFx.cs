@@ -10,6 +10,9 @@ namespace ArcaneBrigade
     /// falls with two banners and showers gold coins; court-fanfare = five heraldic swallowtail banners unfurling from the top edge.</summary>
     public static class CourtFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["court-seal"] = () => new SealStamp();
@@ -37,11 +40,11 @@ namespace ArcaneBrigade
 
         private static void Wax(FxBatch b, Vector2 at, float r, float t, int seed, int n, float height)
         {
-            for (int k = 0; k < n; k++)
+            for (int k = 0; k < n * 2; k++)
             {
-                Vector2 d = Dir(seed, k, n, .75f); float life = .55f + .35f * H(seed, k + 4), u = t / life; if (u <= 0 || u >= 1) continue;
+                Vector2 d = Dir(seed, k, n * 2, .75f); float life = .55f + .35f * H(seed, k + 4), u = t / life; if (u <= 0 || u >= 1) continue;
                 Vector2 p = at + d * r * (.5f + .9f * H(seed, k + 9)) * EaseOut(u) + Vector2.up * (height * u * (1 - u) * 4 * .5f + .2f);
-                b.Quad(Drop, p, .26f + .1f * H(seed, k + 2), Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg - 90 + u * 100, A(k % 3 == 0 ? Gold : Crimson, 1.15f * (1 - u * u)), 0, seed + k);
+                b.Quad(Drop, p, .09f + .05f * H(seed, k + 2), Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg - 90 + u * 100, A(k % 3 == 0 ? Gold : Crimson, 1.15f * (1 - u * u)), 0, seed + k);
             }
         }
 
@@ -242,7 +245,7 @@ namespace ArcaneBrigade
                         float swing = Mathf.Sin(now * 5 + k + s) * 18 * drop;
                         Vector2 dir = new Vector2(Mathf.Sin(swing * Mathf.Deg2Rad), -Mathf.Cos(swing * Mathf.Deg2Rad));
                         b.Link(tip, tip + dir * .45f, .025f, A(Gold, .9f * g * rise), Seed + s, .8f);
-                        b.Quad(Drop, tip + dir * .6f, new Vector2(.14f, .2f), 180 + swing, A(Gold, 1.1f * g * rise), 0, Seed + k + s, 0);
+                        b.Quad(Drop, tip + dir * .55f, new Vector2(.09f, .13f), 180 + swing, A(Gold, 1.1f * g * rise), 0, Seed + k + s, 0);
                     }
                     // the shimmer: a band of light sweeping down the banner once it has unfurled
                     float sh = Rise(t, start + .42f, start + .8f);

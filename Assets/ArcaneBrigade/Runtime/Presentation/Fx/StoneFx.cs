@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// hop, dust shudders, cracks jump) and never in the camera.</summary>
     public static class StoneFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private const FxShape Rock = (FxShape)42;
         private static readonly Color Granite = new Color(.82f, .68f, .5f, 1), Slate = new Color(.62f, .6f, .66f, 1), Dust = new Color(.8f, .7f, .54f, 1), Pale = new Color(1f, .9f, .68f, 1);
 
@@ -187,7 +190,7 @@ namespace ArcaneBrigade
                     float shed = H(Seed, k + 90) * .95f, u = (e - shed) / .3f * .7f; if (e < shed || u <= 0 || u >= 1) continue;
                     float side = k % 2 == 0 ? 1 : -1;
                     Vector2 p = a + d * shed + perp * side * (w * .5f + 1.8f * EaseOut(u)) + Vector2.up * (1.9f * u - 2.6f * u * u + .2f);
-                    Chunk(b, p, .13f + .12f * H(Seed, k + 4), u * 600 + k * 20, A(Granite, 1.1f * (1 - u * u)), Seed + k);
+                    Chunk(b, p, .09f + .08f * H(Seed, k + 4), u * 600 + k * 20, A(Granite, 1.1f * (1 - u * u)), Seed + k);
                 }
                 // every bounce slaps a puff of grainy dust out from under the boulder
                 for (int k = 0; k < 6; k++)
@@ -263,7 +266,7 @@ namespace ArcaneBrigade
                 {
                     float u = (t - .03f) / (.6f + .35f * H(Seed, k + 30)); if (u <= 0 || u >= 1) continue;
                     Vector2 p = at + Dir(Seed + 7, k, 22, .55f) * r * 1.6f * EaseOut(u) + Vector2.up * (3.4f * H(Seed, k + 60) * u - 5f * u * u + .2f);
-                    Chunk(b, p, .1f + .12f * H(Seed, k + 6), u * 700 + k * 20, A(Granite, 1.1f * (1 - u * u)), Seed + k);
+                    Chunk(b, p, .08f + .08f * H(Seed, k + 6), u * 700 + k * 20, A(Granite, 1.1f * (1 - u * u)), Seed + k);
                 }
                 // dust ring rolling out low and grainy, billows riding on it, and a mushroom column
                 for (int k = 0; k < 12; k++)

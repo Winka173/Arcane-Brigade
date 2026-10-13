@@ -217,11 +217,11 @@ namespace ArcaneBrigade
                         }
                     break;
                 case ElementLook.Paper: // loose pages flutter down in falling-leaf swings with ink flecks
-                    for (int i = 0; i < 18; i++)
+                    for (int i = 0; i < 30; i++)
                     {
                         float u = Mathf.Repeat(t * (.3f + .1f * H(s, i)) + H(s, i + 1), 1), sw = Mathf.Sin(t * 2.6f + i * 1.3f);
                         Vector2 p = new Vector2(c.x + (H(s, i + 2) - .5f) * 2 * W + sw * .6f, c.y + Hh - u * 2 * Hh + Mathf.Abs(sw) * .2f);
-                        b.Quad(FxShape.Disc, p, new Vector2(.26f, .19f * (.4f + .6f * Mathf.Abs(Mathf.Cos(t * 2 + i)))), sw * 35, A(new Color(1, .94f, .8f), e * Mathf.Sin(u * Mathf.PI)));
+                        b.Quad(FxShape.Disc, p, new Vector2(.14f, .1f * (.4f + .6f * Mathf.Abs(Mathf.Cos(t * 2 + i)))), sw * 35, A(new Color(1, .94f, .8f), e * Mathf.Sin(u * Mathf.PI)));
                         b.Quad(FxShape.Glow, p, .45f, A(new Color(1, .8f, .5f), .15f * e * Mathf.Sin(u * Mathf.PI)));
                     }
                     break;

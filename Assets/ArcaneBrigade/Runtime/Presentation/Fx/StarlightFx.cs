@@ -10,6 +10,9 @@ namespace ArcaneBrigade
     /// back up as a lantern; star-comet = a huge comet that ends in a shock, star shards and a glowing constellation.</summary>
     public static class StarlightFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["falling-star"] = () => new FallingStar();

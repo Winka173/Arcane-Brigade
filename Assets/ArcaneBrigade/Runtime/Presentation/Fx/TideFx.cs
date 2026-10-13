@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// <summary>Tide bond: water, splashes, foam and currents.</summary>
     public static class TideFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["tide-splash"] = () => new Splash();
@@ -44,7 +47,7 @@ namespace ArcaneBrigade
                     float land = .55f + .45f * H(Seed, k + 40), a = (t - land) / .35f; if (a <= 0 || a >= 1) continue;
                     Vector2 p = at + Pt(Seed, k + 40, r * 1.5f, r * .9f);
                     b.Floor(FxShape.Glow, p, .4f, A(Aqua, .6f * (1 - a)), 0, Seed);
-                    for (int j = -1; j <= 1; j += 2) Drip(b, p, new Vector2(j * .9f, 1.8f), 12, a * .3f, .3f, .14f, Foam, Seed + k * 3 + j);
+                    for (int j = -1; j <= 1; j += 2) Drip(b, p, new Vector2(j * .9f, 1.8f), 12, a * .3f, .3f, .09f, Foam, Seed + k * 3 + j);
                 }
                 for (int k = 0; k < 10; k++)
                 {
@@ -56,16 +59,16 @@ namespace ArcaneBrigade
                     float h = (.7f + k * .7f) * r * col, s = r * (.95f - k * .16f) * (.4f + .6f * col);
                     b.Quad(Drop, at + Vector2.up * h, new Vector2(s * .8f, s), Mathf.Sin(t * 20 + k) * 8, A(k % 2 == 0 ? Aqua : Foam, .9f * col), 0, Seed + k, 0);
                 }
-                for (int k = 0; k < 14; k++)
+                for (int k = 0; k < 34; k++)
                 {
-                    Vector2 dd = Dir(Seed, k, 14, .6f);
-                    Drip(b, at + Vector2.up * .4f * r, new Vector2(dd.x * (2.2f + 1.6f * H(Seed, k)) * r, 3.5f + 2.5f * H(Seed, k + 5) + dd.y * 1.5f), 13, t - .12f, .8f, .5f + .3f * H(Seed, k + 3), k % 3 == 0 ? Foam : Aqua, Seed + k);
+                    Vector2 dd = Dir(Seed, k, 34, .6f);
+                    Drip(b, at + Vector2.up * .4f * r, new Vector2(dd.x * (2.2f + 1.6f * H(Seed, k)) * r, 3.5f + 2.5f * H(Seed, k + 5) + dd.y * 1.5f), 13, t - .12f - .03f * H(Seed, k + 9), .8f, .1f + .05f * H(Seed, k + 3), k % 3 == 0 ? Foam : Aqua, Seed + k);
                 }
-                for (int k = 0; k < 9; k++)
+                for (int k = 0; k < 16; k++)
                 {
-                    float u = Rise(t, .1f + k * .04f, .9f + k * .04f); if (u <= 0 || u >= 1) continue;
+                    float u = Rise(t, .1f + k * .025f, .9f + k * .025f); if (u <= 0 || u >= 1) continue;
                     Vector2 p = at + new Vector2((H(Seed, k + 30) - .5f) * r * 1.6f + Mathf.Sin(t * 8 + k) * .15f, .2f + u * 2f);
-                    b.Quad(Bubble, p, .25f + .2f * H(Seed, k), A(Foam, .9f * (1 - u)), 0, Seed + k);
+                    b.Quad(Bubble, p, .08f + .07f * H(Seed, k), A(Foam, .9f * (1 - u)), 0, Seed + k);
                 }
             }
         }
@@ -78,11 +81,11 @@ namespace ArcaneBrigade
             {
                 float r = Mathf.Clamp(Radius, 1.2f, 2.4f) * 1.35f, on = Rise(t, 0, .2f) * Fade(t, .9f, 1.4f); Vector2 at = At;
                 float gulp = Rise(t, .55f, .6f) * Fade(t, .6f, 1.1f);
-                for (int k = 0; k < 7; k++)
+                for (int k = 0; k < 12; k++)
                 {
-                    float u = Rise(t, .55f + k * .03f, 1.05f + k * .03f); if (u <= 0 || u >= 1) continue;
+                    float u = Rise(t, .55f + k * .02f, 1.05f + k * .02f); if (u <= 0 || u >= 1) continue;
                     Vector2 p = at + new Vector2((H(Seed, k + 70) - .5f) * r * .5f, .1f + u * (1.2f + H(Seed, k + 71)));
-                    b.Quad(Bubble, p, .18f + .2f * H(Seed, k + 72) * (1 + u), A(Foam, .9f * (1 - u)), 0, Seed + k);
+                    b.Quad(Bubble, p, .07f + .06f * H(Seed, k + 72) * (1 + u), A(Foam, .9f * (1 - u)), 0, Seed + k);
                 }
                 Puff(b, at + Vector2.up * (.2f + .6f * gulp), r * .45f, new Color(.75f, .92f, 1f), .4f * gulp, t, Seed + 9);
                 for (int k = 0; k < 10; k++)
@@ -103,10 +106,10 @@ namespace ArcaneBrigade
                         if (s > 0) b.Link(prev, p, .14f * (1.2f - f), A(s % 2 == 0 ? Aqua : Foam, .85f * on * (1 - f * .5f)), Seed + k * 10 + s, .5f);
                         prev = p;
                     }
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 5; j++)
                     {
-                        float f = (t * 1.1f + j / 3f + k * .13f) % 1, rho = r * (1.15f - f * .95f), th = th0 + f * 2.4f;
-                        b.Quad(Bubble, at + new Vector2(Mathf.Cos(th) * rho, Mathf.Sin(th) * rho * .6f), .32f * (1 - f * .5f), A(Foam, on * (1 - f)), 0, Seed + j);
+                        float f = (t * 1.1f + j / 5f + k * .13f) % 1, rho = r * (1.15f - f * .95f), th = th0 + f * 2.4f;
+                        b.Quad(Bubble, at + new Vector2(Mathf.Cos(th) * rho, Mathf.Sin(th) * rho * .6f), .12f * (1 - f * .4f), A(Foam, on * (1 - f)), 0, Seed + j);
                     }
                 }
             }
@@ -136,23 +139,23 @@ namespace ArcaneBrigade
                 b.Floor(Swirl, at, R * 1f, A(Foam, .55f * on), now * 2.6f, Seed + 5, -1);
                 b.Floor(Swirl, at, R * .6f, A(Aqua, .8f * on), now * 4f, Seed + 9, 1);
                 b.Floor(FxShape.Shade, at, R * .3f, A(new Color(0, .01f, .04f), .95f * on), 0, Seed);
-                for (int k = 0; k < 26; k++)
+                for (int k = 0; k < 44; k++)
                 {
-                    float a = k / 26f * 6.2832f + now * 1.4f, rr = R * (1.18f + .06f * Mathf.Sin(k * 3 + now * 5));
-                    b.Quad(Bubble, at + new Vector2(Mathf.Cos(a) * rr, Mathf.Sin(a) * rr * .62f), .2f + .1f * H(Seed, k), A(Foam, .85f * on), 0, Seed + k);
+                    float a = k / 44f * 6.2832f + now * 1.4f, rr = R * (1.18f + .06f * Mathf.Sin(k * 3 + now * 5));
+                    b.Quad(Bubble, at + new Vector2(Mathf.Cos(a) * rr, Mathf.Sin(a) * rr * .62f), .08f + .05f * H(Seed, k), A(Foam, .85f * on), 0, Seed + k);
                 }
-                for (int k = 0; k < 12; k++)
+                for (int k = 0; k < 20; k++)
                 {
-                    float f = (H(Seed, k) + now * .45f) % 1, a = k * 2.1f + f * 7f, rho = R * (1.1f - f), s = .32f * (1 - f * .6f);
+                    float f = (H(Seed, k) + now * .45f) % 1, a = k * 2.1f + f * 7f, rho = R * (1.1f - f), s = .13f * (1 - f * .5f);
                     Vector2 p = at + new Vector2(Mathf.Cos(a) * rho, Mathf.Sin(a) * rho * .62f), tan = new Vector2(-Mathf.Sin(a), Mathf.Cos(a) * .62f);
                     if (k % 3 == 0) b.Quad(Bubble, p, s * .8f, A(Foam, on * (1 - f)), 0, Seed + k);
                     else b.Quad(Drop, p, new Vector2(s * .75f, s), Ang(tan) - 90, A(Aqua, on * (1 - f)), 0, Seed + k, 0);
                 }
-                for (int k = 0; k < 10; k++)
+                for (int k = 0; k < 16; k++)
                 {
                     float cyc = .8f + .3f * H(Seed, k), u = ((now + H(Seed, k + 3) * cyc) % cyc) / cyc, a = H(Seed, k + 7) * 6.2832f + Mathf.Floor((now + H(Seed, k + 3) * cyc) / cyc) * 2.3f;
                     Vector2 rim = at + new Vector2(Mathf.Cos(a) * R * 1.15f, Mathf.Sin(a) * R * .7f);
-                    Drip(b, rim, new Vector2(Mathf.Cos(a) * 1.2f, 3.2f), 11, u * .6f, .6f, .3f, Foam, Seed + k);
+                    Drip(b, rim, new Vector2(Mathf.Cos(a) * 1.2f, 3.2f), 11, u * .6f, .6f, .1f, Foam, Seed + k);
                 }
             }
         }
@@ -177,16 +180,16 @@ namespace ArcaneBrigade
                     b.Quad(FxShape.Glow, p, s * 1.6f, A(Aqua, .25f * fall), 0, Seed);
                 }
                 float crest = EaseOut(Rise(t, .05f, .8f)), cAl = Fade(t, .6f, 1.1f) * Rise(t, .05f, .1f);
-                for (int k = 0; k < 22; k++)
+                for (int k = 0; k < 36; k++)
                 {
-                    Vector2 dd = Dir(Seed + 4, k, 22, .62f), p = at + dd * r * (.3f + 1.05f * crest);
-                    b.Quad(Drop, p + Vector2.up * .25f, new Vector2(.32f, .5f), dd.x * -25, A(k % 2 == 0 ? Foam : Aqua, .9f * cAl), 0, Seed + k, 0);
-                    b.Quad(Bubble, p, .22f, A(Foam, .7f * cAl), 0, Seed + k);
+                    Vector2 dd = Dir(Seed + 4, k, 36, .62f), p = at + dd * r * (.3f + 1.05f * crest);
+                    b.Quad(Drop, p + Vector2.up * (.1f + .15f * H(Seed, k + 3)), new Vector2(.1f, .15f), dd.x * -25, A(k % 2 == 0 ? Foam : Aqua, .9f * cAl), 0, Seed + k, 0);
+                    b.Quad(Bubble, p, .08f + .03f * H(Seed, k + 5), A(Foam, .7f * cAl), 0, Seed + k);
                 }
-                for (int k = 0; k < 24; k++)
+                for (int k = 0; k < 40; k++)
                 {
-                    Vector2 dd = Dir(Seed, k, 24, .6f);
-                    Drip(b, at + Vector2.up * 3.3f * up, new Vector2(dd.x * r * (1f + 1.2f * H(Seed, k)), 1.5f + 2f * H(Seed, k + 5)), 11, t - .25f, 1f, .32f + .2f * H(Seed, k + 3), k % 3 == 0 ? Foam : Aqua, Seed + k);
+                    Vector2 dd = Dir(Seed, k, 40, .6f);
+                    Drip(b, at + Vector2.up * 3.3f * up, new Vector2(dd.x * r * (1f + 1.2f * H(Seed, k)), 1.5f + 2f * H(Seed, k + 5)), 11, t - .25f, 1f, .09f + .05f * H(Seed, k + 3), k % 3 == 0 ? Foam : Aqua, Seed + k);
                 }
                 Grit(b, at, r * (.8f + .6f * EaseOut(Rise(t, .1f, 1f))), new Color(.7f, .9f, 1f), .35f * Fade(t, .5f, 1.7f), t, Seed + 5);
                 for (int k = 0; k < 16; k++)
@@ -209,7 +212,7 @@ namespace ArcaneBrigade
                 const float gap = .85f; float bodyLen = N * gap;
                 float age = now - Born, span = (Land - Born) + 1.9f, head = Mathf.Lerp(-1.5f, len + bodyLen + 1, Mathf.Clamp01(age / span));
                 b.Beam(From, At, w * 1.1f, A(Sea, .3f * Rise(age, 0, .3f) * Fade(t, 1.4f, 2.2f)), now, Seed, .2f);
-                if (head < 1.2f) for (int k = 0; k < 8; k++) Drip(b, From, new Vector2((H(Seed, k) - .5f) * 3, 3 + 2 * H(Seed, k + 1)), 10, (age * 1.6f + k * .13f) % .7f, .7f, .35f, Foam, Seed + k);
+                if (head < 1.2f) for (int k = 0; k < 14; k++) Drip(b, From, new Vector2((H(Seed, k) - .5f) * 3, 3 + 2 * H(Seed, k + 1)), 10, (age * 1.6f + k * .08f) % .7f, .7f, .11f, Foam, Seed + k);
                 // the serpent, painted opaque: every segment first a size bigger in deep navy (the outline), then the teal skin,
                 // a pale belly stripe and a lit back; additive scales, fins and spray on top
                 for (int j = 0; j < N; j++)
@@ -264,13 +267,13 @@ namespace ArcaneBrigade
                     if (j % 3 == 1) Puff(b, p - Vector2.up * sz * .3f, sz * .7f, new Color(.78f, .93f, 1f), .3f * sem[j], now + j, Seed + j + 30);
                     if (j % 3 == 0)
                         for (int side = -1; side <= 1; side += 2)
-                            Drip(b, p, n2 * side * 2.2f + Vector2.up * 2.4f, 10, (now * 1.7f + j * .2f) % .5f, .5f, .26f, Foam, Seed + j + side);
+                            Drip(b, p, n2 * side * 2.2f + Vector2.up * 2.4f, 10, (now * 1.7f + j * .2f) % .5f, .5f, .1f, Foam, Seed + j + side);
                 }
-                for (int k = 0; k < 24; k++)
+                for (int k = 0; k < 36; k++)
                 {
                     float s = len * H(Seed, k + 40), a = (head - s) / 3f; if (a <= 0 || a >= 1) continue;
                     Vector2 p = From + dir * s + nrm * (H(Seed, k + 60) - .5f) * w * 3.2f;
-                    b.Quad(Bubble, p, .2f + .2f * H(Seed, k), A(Foam, .9f * (1 - a)), 0, Seed + k);
+                    b.Quad(Bubble, p, .07f + .07f * H(Seed, k), A(Foam, .9f * (1 - a)), 0, Seed + k);
                 }
             }
         }
@@ -300,7 +303,7 @@ namespace ArcaneBrigade
                     float cyc = .55f + .4f * H(Seed, k + 9), ph = (now + H(Seed, k) * cyc) / cyc; int n = Mathf.FloorToInt(ph); float u = ph - n;
                     Vector2 p = new Vector2(a.xMin + a.width * H(Seed + n, k + 3), a.yMin + a.height * H(Seed + n, k + 4));
                     b.Floor(FxShape.Glow, p, .5f, A(Aqua, .35f * on * (1 - u)), 0, Seed);
-                    for (int j = -1; j <= 1; j += 2) Drip(b, p, new Vector2(j * 1f, 2.2f), 12, u * .38f, .38f, .17f, Foam, Seed + k + j);
+                    for (int j = -1; j <= 1; j += 2) Drip(b, p, new Vector2(j * 1f, 2.2f), 12, u * .38f, .38f, .08f, Foam, Seed + k + j);
                 }
             }
         }

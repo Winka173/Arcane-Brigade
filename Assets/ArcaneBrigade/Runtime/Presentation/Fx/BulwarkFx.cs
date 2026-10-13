@@ -8,6 +8,9 @@ namespace ArcaneBrigade
     /// <summary>Drawing helpers of worker D (Bulwark, Spirit, Melody, Gravity, minors). Not an effect family (name does not end in Fx).</summary>
     internal static class DKit
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public const FxShape Hex = (FxShape)50, Note = (FxShape)51, Arcs = (FxShape)52, Scythe = (FxShape)53, Wisp = (FxShape)54, Hole = (FxShape)55,
             Shield = (FxShape)56, Star = (FxShape)57, Pulse = (FxShape)58, Glyph = (FxShape)59;
         public static readonly Color Steel = new Color(.4f, .66f, 1f, 1), Ice = new Color(.82f, .94f, 1f, 1);
@@ -93,6 +96,9 @@ namespace ArcaneBrigade
     /// <summary>Bulwark bond: shield plates, hexagon light, blue-steel domes of metal.</summary>
     public static class BulwarkFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["guard-shockwave"] = () => new GuardShockwave();

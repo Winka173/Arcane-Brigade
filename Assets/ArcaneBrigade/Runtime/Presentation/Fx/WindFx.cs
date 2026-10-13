@@ -39,6 +39,9 @@ namespace ArcaneBrigade
     /// <summary>Windborne bond: crescent blades, spiral funnels, flying leaves and feathers, long streaks.</summary>
     public static class WindFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["piercing-volley"] = () => new Volley();
@@ -86,12 +89,12 @@ namespace ArcaneBrigade
                     Vector2 c = At + nrm * (k - 1.5f) * .55f + dir * a * 1.1f;
                     b.Quad(Swirl, c, new Vector2(.6f + a * .5f, .4f + a * .3f), ang, A(k % 2 == 0 ? Mint : White, .65f * (1 - a)), a * 2, Seed + k, k % 2 == 0 ? 1 : -1);
                 }
-                for (int k = 0; k < 10; k++)
+                for (int k = 0; k < 18; k++)
                 {
-                    float tf = .04f + k * .06f; if (t < tf) continue; float a = (t - tf) / .95f; if (a >= 1) continue;
+                    float tf = .04f + k * .035f; if (t < tf) continue; float a = (t - tf) / .95f; if (a >= 1) continue;
                     Vector2 p0 = From + dir * len * (.12f + .8f * H(Seed, k + 60)) + nrm * (H(Seed, k + 80) - .5f) * 1.3f;
                     Vector2 p = p0 + nrm * (k % 2 == 0 ? 1 : -1) * a * 1f + Vector2.down * a * a * 1.2f;
-                    Lf(b, p, .45f, k * 40 + a * 360, k % 3 == 0 ? Green : Cream, 1 - a, Seed + k, k % 3 != 0);
+                    Lf(b, p, .2f, k * 40 + a * 360, k % 3 == 0 ? Green : Cream, 1 - a, Seed + k, k % 3 != 0);
                 }
             }
         }
@@ -123,14 +126,14 @@ namespace ArcaneBrigade
                     b.Quad(Swirl, c, new Vector2(w * 1.15f, w * .42f), 0, A(i % 2 == 0 ? Mint : Teal, (.85f - .3f * f) * on), now * (2.6f + f * 1.5f) * (i % 2 == 0 ? 1 : -1), Seed + i, i % 2 == 0 ? 2 : -3);
                     b.Quad(FxShape.Glow, c, new Vector2(w * 1.1f, w * .5f), 0, A(Teal, .1f * on), 0, Seed);
                 }
-                for (int k = 0; k < 16; k++)
+                for (int k = 0; k < 28; k++)
                 {
                     float spd = 3.5f + 2.5f * H(Seed, k), f = (H(Seed, k + 9) + now * (.28f + .12f * H(Seed, k + 3))) % 1, a = now * spd + k * 1.9f;
                     float rw = R * (.36f + .8f * f * f + .18f * f) * 1.1f, sway = Mathf.Sin(now * 2.3f + f * 3.2f + Seed) * .32f * f;
                     Vector2 p = at + new Vector2(sway + Mathf.Cos(a) * rw * 1.15f, -.1f + f * tall + Mathf.Sin(a) * rw * .42f), tan = new Vector2(-Mathf.Sin(a) * 1.15f, Mathf.Cos(a) * .42f);
                     float al = on * Mathf.Sin(f * 3.14f) * 1.3f;
-                    if (k % 4 == 3) Lf(b, p, .5f, Ang(tan) + Mathf.Sin(now * 9 + k) * 30, Cream, al, Seed + k, true);
-                    else Lf(b, p, .42f, Ang(tan) + now * 200 * (k % 2 == 0 ? 1 : -1), k % 3 == 0 ? Green : new Color(.7f, 1f, .4f), al, Seed + k);
+                    if (k % 4 == 3) Lf(b, p, .24f, Ang(tan) + Mathf.Sin(now * 9 + k) * 30, Cream, al, Seed + k, true);
+                    else Lf(b, p, .19f, Ang(tan) + now * 200 * (k % 2 == 0 ? 1 : -1), k % 3 == 0 ? Green : new Color(.7f, 1f, .4f), al, Seed + k);
                 }
                 for (int k = 0; k < 4; k++)
                 {
@@ -184,11 +187,11 @@ namespace ArcaneBrigade
                     }
                     if (k % 3 == 0) b.Quad(Swirl, new Vector2(x, y0 + Mathf.Sin(x * .5f + k) * .4f), .38f, A(White, .55f * on), now * 9 + k, Seed + k, 2);
                 }
-                for (int k = 0; k < 24; k++)
+                for (int k = 0; k < 40; k++)
                 {
                     bool feather = k % 4 == 0; float spd = 6 + 7 * H(Seed, k + 7), u = (H(Seed, k + 20) + now * spd / W) % 1, y0 = a.yMin + a.height * H(Seed, k + 60), x = a.xMin - 5 + u * W;
                     Vector2 p = new Vector2(x, y0 + Mathf.Sin(x * .45f + k * 2) * .9f);
-                    Lf(b, p, feather ? .75f : .52f, now * (150 + 90 * H(Seed, k)) * (k % 2 == 0 ? 1 : -1) + k * 50, feather ? Cream : (k % 3 == 0 ? Green : new Color(.75f, 1f, .45f)), .9f * on, Seed + k, feather);
+                    Lf(b, p, feather ? .3f : .2f, now * (150 + 90 * H(Seed, k)) * (k % 2 == 0 ? 1 : -1) + k * 50, feather ? Cream : (k % 3 == 0 ? Green : new Color(.75f, 1f, .45f)), .9f * on, Seed + k, feather);
                 }
                 for (int g = 0; g < 2; g++)
                 {
@@ -198,7 +201,7 @@ namespace ArcaneBrigade
                     b.Quad(Blade, new Vector2(x, y0), new Vector2(1.9f, 1.35f), 180 + Mathf.Sin(tt * 6) * 8, A(Mint, al * 1.2f), 0, Seed + g);
                     b.Quad(Blade, new Vector2(x - .4f, y0), new Vector2(2.5f, 1.7f), 180, A(Teal, al * .45f), 0, Seed + g + 4);
                     for (int s = 0; s < 4; s++) b.Link(new Vector2(x - .7f, y0 + (s - 1.5f) * .4f), new Vector2(x - 3.4f - s * .6f, y0 + (s - 1.5f) * .65f), .045f, A(White, al), Seed + s, 1);
-                    for (int s = 0; s < 5; s++) Lf(b, new Vector2(x - .8f - s * .7f, y0 + Mathf.Sin(tt * 9 + s) * .6f), .38f, now * 300 + s * 70, s % 2 == 0 ? Green : Cream, al * 1.4f, Seed + g * 9 + s, s % 2 == 1);
+                    for (int s = 0; s < 5; s++) Lf(b, new Vector2(x - .8f - s * .7f, y0 + Mathf.Sin(tt * 9 + s) * .6f), .18f, now * 300 + s * 70, s % 2 == 0 ? Green : Cream, al * 1.4f, Seed + g * 9 + s, s % 2 == 1);
 
                 }
             }

@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// lighthouse is a turning beam in a dusky arena full of drifting lanterns.</summary>
     public static class LanternFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private const FxShape Prism = (FxShape)47;
         private static readonly Color Honey = new Color(1f, .72f, .24f, 1), Lamp = new Color(1f, .86f, .5f, 1), Amber = new Color(1f, .55f, .12f, 1), Dusk = new Color(.06f, .04f, .12f, 1);
 

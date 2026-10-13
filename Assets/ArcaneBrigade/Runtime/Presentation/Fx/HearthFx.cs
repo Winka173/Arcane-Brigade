@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// the pie is thrown and splatters, the feast rises from the floor.</summary>
     public static class HearthFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private const FxShape Pot = (FxShape)44, PieS = (FxShape)45, Food = (FxShape)49;
         private static readonly Color Orange = new Color(1f, .5f, .14f, 1), Broth = new Color(1f, .62f, .2f, 1), Steam = new Color(1f, .93f, .84f, 1), Gold = new Color(1f, .8f, .35f, 1), Red = new Color(.95f, .22f, .1f, 1);
 
@@ -38,7 +41,7 @@ namespace ArcaneBrigade
                 {
                     float u = (age * .8f + H(Seed, k)) % 1; Vector2 p = at + Dir(Seed, k, 10, .6f) * r * (.3f + .65f * H(Seed, k + 4)) * puddle;
                     float pop = Mathf.Sin(u * Mathf.PI);
-                    b.Quad(FxShape.Sparkle, p, new Vector2(.28f, .28f) * pop, 0, A(Gold, .85f * on * pop), 0, 0, 0);
+                    b.Quad(FxShape.Sparkle, p, new Vector2(.16f, .16f) * pop, 0, A(Gold, .85f * on * pop), 0, 0, 0);
                 }
                 // flames licking round the base, sooty smoke curling off their tips and embers spiralling up
                 for (int k = 0; k < 8; k++)

@@ -10,6 +10,9 @@ namespace ArcaneBrigade
     /// grand-finale = the whole arena: fireworks, rising balloons, streamer cannons, sweeping spotlights and a confetti blizzard.</summary>
     public static class CarnivalFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
             map["carnival-confetti"] = () => new Confetti();
@@ -23,7 +26,7 @@ namespace ArcaneBrigade
         private static Vector2 Arc(Vector2 a, Vector2 b, float h, float u) => Vector2.Lerp(a, b, u) + Vector2.up * (4 * h * u * (1 - u));
 
         private static void Chip(FxBatch b, Vector2 p, float size, float deg, float flip, Color c, float alpha, int seed)
-            => b.Quad(CardS, p, new Vector2(size * (.12f + Mathf.Abs(Mathf.Cos(flip))), size * .6f), deg, A(c, alpha), 0, seed, 0);
+            => b.Quad(CardS, p, new Vector2(size * .6f * (.12f + Mathf.Abs(Mathf.Cos(flip))), size * .36f), deg, A(c, alpha), 0, seed, 0);
         private static void Streamer(FxBatch b, Vector2 p, float len, float width, float deg, Color c, float alpha, float wave, int seed)
             => b.Quad(Ribbon, p, new Vector2(len, width), deg, A(c, alpha), wave, seed, 0);
 
@@ -39,7 +42,7 @@ namespace ArcaneBrigade
                 Vector2 p = c + d * radius * e + Vector2.down * radius * .35f * u * u, back = c + d * radius * EaseOut(Mathf.Max(0, u - .18f)) + Vector2.down * radius * .35f * Mathf.Pow(Mathf.Max(0, u - .18f), 2);
                 Color col = Pc(hue + k % 3);
                 b.Link(back, p, .06f, A(col, 1f - u), seed + k, .5f);
-                b.Quad(Star, p, new Vector2(.22f, .22f), u * 300 + k * 20, A(k % 4 == 0 ? White : col, 1.2f * (1 - u * u)), 0, seed + k, 4);
+                b.Quad(Star, p, new Vector2(.13f, .13f), u * 300 + k * 20, A(k % 4 == 0 ? White : col, 1.2f * (1 - u * u)), 0, seed + k, 4);
             }
         }
 

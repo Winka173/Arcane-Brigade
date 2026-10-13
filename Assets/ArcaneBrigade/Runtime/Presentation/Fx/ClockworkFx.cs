@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// giant pendulum sweeps a lane.</summary>
     public static class ClockworkFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private const FxShape Gear = (FxShape)40, Face = (FxShape)46, Coil = (FxShape)48;
         private static readonly Color Brass = new Color(1f, .74f, .26f, 1), Copper = new Color(1f, .5f, .22f, 1), Steel = new Color(.7f, .92f, 1f, 1), Teal = new Color(.3f, .95f, .85f, 1);
 

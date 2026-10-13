@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// stationery: a rune is inked onto the floor, a record page rises, a book slams shut, a flock of pages cuts a whirl.</summary>
     public static class ArchiveFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private const FxShape PageS = (FxShape)41, RuneS = (FxShape)43;
         private static readonly Color Sepia = new Color(1f, .74f, .36f, 1), Cream = new Color(1f, .93f, .72f, 1), Gold = new Color(1f, .82f, .3f, 1);
         private static readonly Color InkDark = new Color(.05f, .025f, .012f, 1), Leather = new Color(.62f, .3f, .14f, 1);

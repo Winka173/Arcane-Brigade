@@ -1,7 +1,7 @@
 // Shapes 20-29 of the FxProc shader (family A: Windborne, Ember, Frost, Tide, Garden).
 // 20 crescent blade (horns point +x), 21 leaf / feather (par>=1), 22 crystal shard (tip +x), 23 water drop (tip +y), 24 bubble,
 // 25 spiral streaks (par: arms, sign = turn), 26 snowflake, 27 vine curl (q = growth), 28 blossom (par >= 10: bark grain), 29 root / tentacle (+y, q = growth).
-// 24 with par >= 10 is a flame tongue.
+// 24 with par >= 10 is a flame tongue; par >= 20 a storybook cel flame (20 one tongue, 21 three, 22 five).
 #ifndef FX_SHAPES_A
 #define FX_SHAPES_A
 void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout float I, inout float3 hot)
@@ -46,7 +46,27 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
     }
     else if (mode < 24.5)
     {
-        if (par >= 10)
+        if (par >= 20)
+        {
+            // storybook flame (par 20 + v; v 0: one tongue, 1: three, 2: five): a round bulb with pointed licking tongues, a crisp
+            // flat cel silhouette along +y. Layered by the caller (dark ink, red, orange, yellow). q = flicker time.
+            float v = par - 20, ins = smoothstep(1, .93, length((u - float2(0, -.4)) * float2(1, 1.08)) / .46);
+            float n = v < .5 ? 1 : (v < 1.5 ? 3 : 5);
+            for (int k = 0; k < 5; k++)
+            {
+                if (k >= n) break;
+                float side = k == 0 ? 0 : (k % 2 == 1 ? -1 : 1) * (k < 3 ? 1 : 1.85);
+                float top = k == 0 ? .84 : (k < 3 ? .4 : .08) + .1 * sin(seed * 3.7 + k * 2.1 + q * 1.3);
+                float y01 = (u.y + .5) / (top + .5);
+                float x0 = side * .28 + side * (abs(side) > 1.5 ? .18 : .3) * y01 * y01 + (.07 + .03 * abs(side)) * sin(y01 * 5.2 - q * 10 + seed + k * 1.9) * y01;
+                float w = (k == 0 ? .42 : .3) * pow(saturate(1 - y01), 1.15);
+                ins = max(ins, smoothstep(w, w - .035, abs(u.x - x0)) * step(0, y01) * step(y01, 1));
+            }
+            // solid on the matter layer; only a faint sheen on the additive light layer so the cel colours never burn to white
+            I = ins * (.92 + .08 * smoothstep(.5, -.6, u.y)) * (_Matter > .5 ? 1 : .2);
+            hot = float3(1, .9, .55);
+        }
+        else if (par >= 10)
         {
             float y01 = u.y * .5 + .5, x0 = (.16 + .05 * (par - 10)) * sin(u.y * 3.2 - q * 9 + seed) * smoothstep(-.3, 1, u.y);
             float w = .62 * pow(max(1 - y01, 0), .85) * pow(saturate(y01 * 6 + .3), .5);

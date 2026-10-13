@@ -9,6 +9,9 @@ namespace ArcaneBrigade
     /// hats, clover, statues, vines, thorns, candy, cranes, runes, masks, fists, bubbles, blades, crushes, horns, stars, bombs.</summary>
     public static class MinorFx
     {
+        // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
+        private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
+            => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private delegate void DrawFn(FxEffect e, FxBatch b, float now, float pre, float t);
         private sealed class Fn : FxEffect
         {
@@ -183,7 +186,7 @@ namespace ArcaneBrigade
                 float u = (t * 1.4f + H(e.Seed, k)) % 1f, a = k * .78f + u * 6, rad = r * 1.15f * (1 - u);
                 Vector2 p = at + new Vector2(Mathf.Cos(a) * rad, Mathf.Sin(a) * rad * .62f), tail = at + new Vector2(Mathf.Cos(a - .5f) * rad * 1.1f, Mathf.Sin(a - .5f) * rad * .68f);
                 b.Quad(FxShape.Dust, Vector2.Lerp(tail, p, .4f), new Vector2(.4f, .18f), DKit.Deg(p - tail), A(Stone, .55f * f * (1 - u)), u, e.Seed + k);
-                b.Quad(DKit.Shield, p, new Vector2(.24f, .18f), t * 300 + k * 50, A(Amber, f * (1 - u * .4f)), 0, e.Seed + k, 1);
+                b.Quad(DKit.Shield, p, new Vector2(.14f, .1f), t * 300 + k * 50, A(Amber, f * (1 - u * .4f)), 0, e.Seed + k, 1);
             }
             float puff = Rise(t, .1f, 1f); b.Quad(FxShape.Dust, at + Vector2.up * .2f * puff, new Vector2(.6f + .4f * puff, .3f + .2f * puff), 0, A(Stone, .6f * Mathf.Sin(puff * Mathf.PI) * f), puff, e.Seed + 20);
             for (int k = 0; k < 5; k++) Glint(b, at + Dir(e.Seed, k, 5, .6f) * .35f, .16f, Amber, f * Mathf.Pow(.5f + .5f * Mathf.Sin(t * 25 + k * 2), 4), k * 40);
@@ -422,7 +425,7 @@ namespace ArcaneBrigade
             b.Quad(FxShape.Shock, at, DKit.Sq(r * 1.1f), 0, A(DKit.Steel, 1.1f * Fade(t, 0, .25f)), .35f, e.Seed);
             b.Quad(FxShape.Glow, at + new Vector2(-.3f, .3f) * r, r * .35f, A(White, .9f * Fade(t, 0, .15f)), 0, e.Seed);
             b.Quad(FxShape.Glow, at, r * 1.2f, A(Sea, .6f * Fade(t, 0, .2f)), 0, e.Seed);
-            for (int k = 0; k < 9; k++) { float u = t / (.55f + .2f * H(e.Seed, k)); if (u > 0 && u < 1) { Vector2 p = at + Dir(e.Seed, k, 9, .65f) * r * 1.5f * EaseOut(u) + Vector2.down * .4f * u * u; b.Quad(DKit.Shield, p, new Vector2(.45f, .32f), DKit.Deg(Dir(e.Seed, k, 9, 1f)) + u * 200, A(k % 2 == 0 ? Sea : DKit.Ice, 1.2f * (1 - u * u)), 0, e.Seed + k, 1); Glint(b, p, .16f, White, (1 - u) * Mathf.Pow(.5f + .5f * Mathf.Sin(u * 30 + k), 3), k * 30); } }
+            for (int k = 0; k < 16; k++) { float u = t / (.55f + .2f * H(e.Seed, k)); if (u > 0 && u < 1) { Vector2 p = at + Dir(e.Seed, k, 16, .65f) * r * 1.5f * EaseOut(u) + Vector2.down * .4f * u * u; b.Quad(DKit.Shield, p, new Vector2(.16f, .11f), DKit.Deg(Dir(e.Seed, k, 16, 1f)) + u * 200, A(k % 2 == 0 ? Sea : DKit.Ice, 1.2f * (1 - u * u)), 0, e.Seed + k, 1); Glint(b, p, .16f, White, (1 - u) * Mathf.Pow(.5f + .5f * Mathf.Sin(u * 30 + k), 3), k * 30); } }
             b.Quad(FxShape.Smoke, at + Vector2.up * .2f, DKit.Sq(r * (.6f + .4f * Rise(t, 0, 1))), 0, A(Foam, .35f * Mathf.Sin(Rise(t, 0, 1) * Mathf.PI)), t, e.Seed + 4);
             Drops(b, at + Vector2.up * .2f, t, 8, r * 1.1f, .9f, Foam, e.Seed + 7, .06f, .5f);
             b.Floor(FxShape.Shock, at, r * 1.5f, A(Sea, .9f), Rise(t, 0, .6f), e.Seed);
