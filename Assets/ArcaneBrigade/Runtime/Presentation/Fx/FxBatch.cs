@@ -52,8 +52,24 @@ namespace ArcaneBrigade
             dust = new Layer(parent, "Fx dust", dustOrder, false);
         }
 
-        public void Begin() { light.Clear(); dust.Clear(); Quads = 0; }
-        public void End() { light.Flush(); dust.Flush(); }
+        // Anti-whiteout (owner 29/10/2026: overlapping light burned big areas to white). Every batch adds the light it covers to one
+        // frame total; next frame all light layers are dimmed together when that total is more than the field can take.
+        private static int coverageFrame = -1;
+        private static float coverage, lastCoverage, gain = 1;
+        private const float CoverageLimit = 40f; // world units squared at full alpha, about a sixth of the arena
+        public static float Gain => gain;
+
+        public void Begin()
+        {
+            light.Clear(); dust.Clear(); Quads = 0;
+            if (Time.frameCount != coverageFrame)
+            {
+                coverageFrame = Time.frameCount; lastCoverage = coverage; coverage = 0;
+                float target = lastCoverage > CoverageLimit ? Mathf.Clamp(Mathf.Sqrt(CoverageLimit / lastCoverage), .32f, 1f) : 1f;
+                gain = Mathf.MoveTowards(gain, target, (target < gain ? 6f : 1.5f) * Mathf.Max(Time.unscaledDeltaTime, .001f)); // dim fast, recover gently
+            }
+        }
+        public void End() { light.Renderer.sharedMaterial.SetFloat("_Gain", gain); light.Flush(); dust.Flush(); }
 
         /// <summary>A shape centred on a point. <paramref name="size"/> is the half-extent (world units), rotated by degrees.</summary>
         public void Quad(FxShape shape, Vector2 at, Vector2 size, float degrees, Color tint, float progress = 0, int seed = 0, float param = 0)
@@ -68,6 +84,7 @@ namespace ArcaneBrigade
             }
             if (tint.a <= .003f) return;
             Layer l = shape == FxShape.Smoke || shape == FxShape.Shade || shape == FxShape.Dust ? dust : light; Quads++;
+            if (l == light && shape != FxShape.Link && shape != FxShape.Beam) coverage += size.x * size.y * Mathf.Min(1, tint.a) * (shape == FxShape.Glow || shape == FxShape.Rays || shape == FxShape.Disc || (int)shape >= 20 ? 2.2f : 1.2f);
             float c = Mathf.Cos(degrees * Mathf.Deg2Rad), s = Mathf.Sin(degrees * Mathf.Deg2Rad);
             Vector2 ax = new Vector2(c, s) * size.x, ay = new Vector2(-s, c) * size.y;
             int n = l.V.Count; var p = new Vector4((float)shape, progress, (seed % 997) * .731f, param);

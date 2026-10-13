@@ -458,8 +458,11 @@ namespace ArcaneBrigade
                 Sound("rules.field", e.Position);
             }
             // a bond trait fires on its subject (steps 2 and 4 and the minors): its own effect from the director; no effect, no drawing
+            // the same trait firing again right next to itself is drawn once (a crowd of frozen hits otherwise burned to white)
+            if (fx != null && FxDirector.Has(e.Rule) && traitSeen.TryGetValue(e.Rule, out var seen) && Now - seen.at < .15f && (seen.pos - e.Position).sqrMagnitude < 4f) return;
             if (fx != null && FxDirector.Has(e.Rule) && popsThisFrame < MaxPopsPerFrame && FxBudget.Trait(e.Rule, RuleTier(e.Rule), Now))
             {
+                traitSeen[e.Rule] = (Now, e.Position);
                 popsThisFrame++;
                 fx.Spawn(new BondMomentRequest(null, e.Rule, RuleTier(e.Rule), BondMomentKind.Strike, e.Position, e.Position, 1f + .25f * Mathf.Clamp(e.Value, 0, 8), 0, 0), Now);
                 Sound(LookFor(e.Rule), "burst", e.Position);
@@ -528,6 +531,7 @@ namespace ArcaneBrigade
         /// <summary>A chained bond hit (Storm, discharge): a forked lightning stroke from the attacker to the enemy it reached,
         /// a few per frame at most.</summary>
         private int chainAttacker = -1, chainHop; private float chainAt = -10; private Vector2 chainLast;
+        private readonly Dictionary<string, (float at, Vector2 pos)> traitSeen = new Dictionary<string, (float at, Vector2 pos)>();
         private static readonly string[] DamageOnlyRules = { "rune", "falling-star", "carnival-burst" };
         private readonly Dictionary<string, float> lastDamageFx = new Dictionary<string, float>();
 
