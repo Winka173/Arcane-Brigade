@@ -7,6 +7,8 @@ namespace ArcaneBrigade
     public static class RunPaths
     {
         private static string diagnosticRoot;
+        /// <summary>While the FX sandbox's live fight runs, every save goes to this throwaway folder (null: the real save).</summary>
+        public static string SandboxRoot;
         public static bool K7Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7-capture") >= 0;
         public static bool ArtMaster => RareVisitorCapture.Requested || ArtMasterCapture.Requested || ShopDescriptionCapture.Requested || CompanionReactionCapture.Requested || PlaytestFixCapture.Requested;
         public static bool K7B => K7Capture && Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7b") >= 0;
@@ -25,6 +27,7 @@ namespace ArcaneBrigade
         {
             get
             {
+                if (SandboxRoot != null) return SandboxRoot;
                 if (!Diagnostic) return Application.persistentDataPath;
                 if (diagnosticRoot == null) diagnosticRoot = Path.Combine(Application.temporaryCachePath, "ArcaneBrigadeDiagnostics", Guid.NewGuid().ToString("N"));
                 return diagnosticRoot;

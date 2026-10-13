@@ -136,7 +136,7 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(.6f); Count("arena", ink); yield return Shot("staged-arena");
             Write(); Application.Quit(0);
         }
-        private static void SaveHouseRun(RunCatalog catalog, RunStorage storage, string house, int wave, int seed, int count = 10)
+        public static void SaveHouseRun(RunCatalog catalog, RunStorage storage, string house, int wave, int seed, int count = 10)
         {
             using (var session = new RunSession(catalog))
             {
@@ -151,7 +151,7 @@ namespace ArcaneBrigade
         }
 
         /// <summary>The bond step counts a house shows (2, 4, 6, 8 for a major bond), from the bond's own steps.</summary>
-        private static int[] StepCounts(string house)
+        public static int[] StepCounts(string house)
         {
             string id = BondV3Catalog.BondId(house) ?? house;
             foreach (BondDefinition bond in BondTuning.V3Definitions)

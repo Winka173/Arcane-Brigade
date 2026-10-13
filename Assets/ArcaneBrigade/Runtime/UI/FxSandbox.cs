@@ -490,19 +490,31 @@ Minor: Big Top|2|carnival-nothing|T|1";
             GUI.DrawTexture(new Rect(-400, -50, 765, 820), Texture2D.whiteTexture, ScaleMode.StretchToFill, false, 0, new Color(.04f, .035f, .06f, .96f), 0, 0);
             GUI.Label(new Rect(12, 6, 250, 30), "FX SANDBOX", ArcadeTypography.Style(20, true));
             if (GUI.Button(new Rect(262, 6, 92, 30), "BACK", btn)) { Close(); }
-            if (GUI.Button(new Rect(10, 42, 84, 30), "PLAY", btn)) Play(selected);
-            if (GUI.Button(new Rect(98, 42, 84, 30), "LOOP", loop ? on : btn)) loop = !loop;
-            if (GUI.Button(new Rect(186, 42, 84, 30), "0.25x", slow ? on : btn)) slow = !slow;
-            if (GUI.Button(new Rect(274, 42, 80, 30), "PAUSE", paused ? on : btn)) paused = !paused;
-            if (GUI.Button(new Rect(10, 76, 84, 30), "CLEAR", btn)) ClearAll();
-            if (GUI.Button(new Rect(98, 76, 84, 30), "WALK", walk ? on : btn)) walk = !walk;
+            if (GUI.Button(new Rect(10, 40, 170, 30), "LIVE FIGHT", liveTab ? on : btn)) liveTab = true;
+            if (GUI.Button(new Rect(184, 40, 170, 30), "PREVIEW", liveTab ? btn : on)) liveTab = false;
+            if (liveTab) LivePanel(); else PreviewPanel();
+            if (toast != null && Time.unscaledTime - toastAt < 3)
+                GUI.Label(new Rect(380, 680, 880, 30), toast, ArcadeTypography.Style(16));
+            GUI.Label(new Rect(380, 8, 880, 24), liveTab ? "LIVE FIGHT: a real wave-" + FxSandboxLive.Wave + " fight, only the chosen bond firing · Esc: back"
+                : (paused ? "PAUSED · " : slow ? "SLOW 0.25x · " : "") + "Space: play again · P: pause · Esc: back", ArcadeTypography.Style(13));
+            GUI.matrix = previous; GUI.skin = previousSkin;
+        }
+
+        private void PreviewPanel()
+        {
+            if (GUI.Button(new Rect(10, 76, 84, 30), "PLAY", btn)) Play(selected);
+            if (GUI.Button(new Rect(98, 76, 84, 30), "LOOP", loop ? on : btn)) loop = !loop;
+            if (GUI.Button(new Rect(186, 76, 84, 30), "0.25x", slow ? on : btn)) slow = !slow;
+            if (GUI.Button(new Rect(274, 76, 80, 30), "PAUSE", paused ? on : btn)) paused = !paused;
+            if (GUI.Button(new Rect(10, 110, 84, 30), "CLEAR", btn)) ClearAll();
+            if (GUI.Button(new Rect(98, 110, 84, 30), "WALK", walk ? on : btn)) walk = !walk;
             GUI.enabled = selected != null && selected.Step > 0;
-            if (GUI.Button(new Rect(186, 76, 168, 30), "WHOLE BOND 2→8", btn)) PlayWholeBond(selected.Group);
+            if (GUI.Button(new Rect(186, 110, 168, 30), "WHOLE BOND 2→8", btn)) PlayWholeBond(selected.Group);
             GUI.enabled = true;
-            GUI.Label(new Rect(12, 108, 345, 22), selected != null ? selected.Group + " · " + selected.Name : "Pick an effect below", ArcadeTypography.Style(13));
+            GUI.Label(new Rect(12, 142, 345, 22), selected != null ? selected.Group + " · " + selected.Name : "Pick an effect below", ArcadeTypography.Style(13));
             float y = 0, rowH = 26; var rows = new List<(string group, Entry e)>();
             foreach (string g in groupOrder) { rows.Add((g, null)); if (!open.Contains(g)) continue; if (g == WeatherGroup) foreach (string w in WeatherRules) rows.Add((g, new Entry { Group = g, Name = w, Rule = w })); else foreach (Entry e in entries) if (e.Group == g) rows.Add((g, e)); }
-            Rect view = new Rect(6, 134, 352, 580);
+            Rect view = new Rect(6, 168, 352, 546);
             scroll = GUI.BeginScrollView(view, scroll, new Rect(0, 0, 330, rows.Count * rowH + 4));
             foreach (var row in rows)
             {
@@ -516,11 +528,49 @@ Minor: Big Top|2|carnival-nothing|T|1";
                 GUI.color = Color.white;
             }
             GUI.EndScrollView();
-            if (toast != null && Time.unscaledTime - toastAt < 3)
-                GUI.Label(new Rect(380, 680, 880, 30), toast, ArcadeTypography.Style(16));
-            GUI.Label(new Rect(380, 8, 880, 24), (paused ? "PAUSED · " : slow ? "SLOW 0.25x · " : "") + "Space: play again · P: pause · Esc: back", ArcadeTypography.Style(13));
-            GUI.matrix = previous; GUI.skin = previousSkin;
         }
+
+        // ---- LIVE FIGHT tab: picks a bond, a step and a crowd, then runs the real fight (FxSandboxLive) -------------------------------
+        private Vector2 liveScroll;
+        private void LivePanel()
+        {
+            string house = FxSandboxLive.House; int step = FxSandboxLive.Fit(house, FxSandboxLive.Step);
+            GUI.Label(new Rect(12, 74, 345, 20), "BOND (friends that carry it)", ArcadeTypography.Style(13));
+            string[] houses = FxSandboxLive.Houses;
+            Rect view = new Rect(6, 96, 352, 360);
+            liveScroll = GUI.BeginScrollView(view, liveScroll, new Rect(0, 0, 330, houses.Length * 26 + 4));
+            for (int i = 0; i < houses.Length; i++)
+            {
+                string h = houses[i]; bool any = false; foreach (int s in FxSandboxLive.Steps(h)) any |= FxSandboxLive.CanRun(h, s);
+                GUI.enabled = any;
+                if (GUI.Button(new Rect(14, i * 26, 316, 24), h + "   (" + FxSandboxLive.Friends(h) + ")", h == house ? on : small)) { FxSandboxLive.House = h; FxSandboxLive.Step = FxSandboxLive.Fit(h, step); }
+            }
+            GUI.enabled = true; GUI.EndScrollView();
+            float y = 462; int[] steps = { 2, 4, 6, 8 };
+            GUI.Label(new Rect(12, y, 345, 20), "STEP", ArcadeTypography.Style(13)); y += 22;
+            for (int i = 0; i < 4; i++)
+            {
+                GUI.enabled = FxSandboxLive.CanRun(house, steps[i]);
+                if (GUI.Button(new Rect(10 + i * 86, y, 82, 30), steps[i] + " · " + FxSandboxLive.Team(house, steps[i]) + "f", step == steps[i] ? on : btn)) FxSandboxLive.Step = steps[i];
+            }
+            GUI.enabled = true; y += 36;
+            GUI.Label(new Rect(12, y, 345, 20), "ENEMIES", ArcadeTypography.Style(13)); y += 22;
+            for (int i = 0; i < 3; i++) if (GUI.Button(new Rect(10 + i * 115, y, 111, 30), FxSandboxLive.CrowdNames[i], FxSandboxLive.Crowd == i ? on : btn)) FxSandboxLive.Crowd = i;
+            y += 36;
+            GUI.Label(new Rect(12, y, 345, 20), "SPEED", ArcadeTypography.Style(13)); y += 22;
+            if (GUI.Button(new Rect(10, y, 170, 30), "1x", !FxSandboxLive.Slow ? on : btn)) FxSandboxLive.Slow = false;
+            if (GUI.Button(new Rect(184, y, 170, 30), "0.25x", FxSandboxLive.Slow ? on : btn)) FxSandboxLive.Slow = true;
+            y += 38;
+            if (GUI.Button(new Rect(10, y, 344, 40), "START FIGHT · " + house.ToUpperInvariant() + " " + step, on)) StartLive(house, step);
+            y += 44;
+            GUI.Label(new Rect(12, y, 345, 40), FxSandboxLive.LastFailure ?? "Pause, restart and the same picks are on the fight's own panel.", ArcadeTypography.Style(11));
+        }
+        /// <summary>Starts the LIVE FIGHT for a bond at a step (the sandbox closes; leaving the fight opens it again).</summary>
+        public FxSandboxLive StartLive(string house, int step) => FxSandboxLive.Begin(house, step);
+        private bool liveTab = true;
+        public bool LiveTab => liveTab;
+        public void ShowLiveTab() { liveTab = true; }
+        public void ShowPreviewTab() { liveTab = false; }
 
         /// <summary>Opens a group in the list (the capture uses it to show the list).</summary>
         public void Expand(string group) { open.Add(group); }
