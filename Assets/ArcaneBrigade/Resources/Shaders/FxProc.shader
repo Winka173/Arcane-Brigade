@@ -3,7 +3,7 @@
 // so one batch of quads draws a whole effect. Additive for light, alpha for smoke and dust (set by _Src/_Dst).
 Shader "ArcaneBrigade/FxProc"
 {
-    Properties { [HideInInspector] _Src ("Src", Float) = 5 [HideInInspector] _Dst ("Dst", Float) = 1 [HideInInspector] _Gain ("Gain", Float) = 1 }
+    Properties { [HideInInspector] _Src ("Src", Float) = 5 [HideInInspector] _Dst ("Dst", Float) = 1 [HideInInspector] _Gain ("Gain", Float) = 1 [HideInInspector] _Matter ("Matter", Float) = 0 }
     SubShader
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" "PreviewType"="Plane" }
@@ -20,7 +20,7 @@ Shader "ArcaneBrigade/FxProc"
             struct v2f { float4 pos : SV_POSITION; float4 color : COLOR; float2 uv : TEXCOORD0; float4 p : TEXCOORD1; };
             v2f vert (appdata v) { v2f o; o.pos = UnityObjectToClipPos(v.vertex); o.color = v.color; o.uv = v.uv; o.p = v.p; return o; }
 
-            float _Gain;
+            float _Gain, _Matter;
             #include "FxCommon.cginc"
             #include "FxShapesA.cginc"
             #include "FxShapesB.cginc"
@@ -119,9 +119,9 @@ Shader "ArcaneBrigade/FxProc"
                 else { I = smoothstep(1.0, .35, r); hot = i.color.rgb; }                                          // 10 shade: a soft dark wash (alpha layer)
                 // never a hard quad edge: everything fades out before the corner of its quad
                 if (mode < 1.5 || (mode > 2.5 && mode < 10.5) || mode > 11.5) I *= smoothstep(1, .9, max(abs(u.x), abs(u.y)));
-                I *= i.color.a * _Gain;
+                I *= i.color.a * (_Matter > .5 ? 1 : _Gain);
                 bool matter = (mode > 5.5 && mode < 6.5) || (mode > 11.5 && mode < 12.5);
-                float3 col = matter ? hot : lerp(i.color.rgb, hot, saturate(I * I) * (mode > 8.5 && mode < 9.5 ? .3 : .55));
+                float3 col = matter ? hot : lerp(i.color.rgb, hot, saturate(I * I) * (_Matter > .5 ? .18 : mode > 8.5 && mode < 9.5 ? .3 : .55));
                 // a touch of noise against banding in big soft glows on the dark floor
                 float dither = (hash(i.pos.xy) - .5) / 128;
                 return float4(col, saturate(I + dither * step(.01, I)));
