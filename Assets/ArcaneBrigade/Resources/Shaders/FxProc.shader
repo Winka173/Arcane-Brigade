@@ -22,6 +22,9 @@ Shader "ArcaneBrigade/FxProc"
 
             float _Gain, _Matter;
             #include "FxCommon.cginc"
+            // a beam's soft halo shifted down so it reaches exactly zero at the quad's long sides (it used to stop at ~5% there,
+            // which on wide searchlights and lighthouse cones read as a hard straight edge)
+            float FxBeamHalo(float y, float k) { float e = exp(-1 / k); return saturate((exp(-y * y / k) - e) / (1 - e)) * smoothstep(1, .8, abs(y)); }
             #include "FxShapesA.cginc"
             #include "FxShapesB.cginc"
             #include "FxShapesC.cginc"
@@ -46,13 +49,13 @@ Shader "ArcaneBrigade/FxProc"
                 {
                     float thick = lerp(1, .35, par), ends = smoothstep(1, .55, abs(u.x));
                     float n = vnoise(float2(u.x * 7 - q * 22 + seed, u.y * 3));
-                    float core = exp(-u.y * u.y / (.02 * thick + .001)), halo = exp(-u.y * u.y / (.32 * thick + .01));
+                    float core = exp(-u.y * u.y / (.02 * thick + .001)), halo = FxBeamHalo(u.y, .32 * thick + .01);
                     I = saturate((core * 1.4 + halo * (.55 + .45 * n)) * ends);
                 }
                 else if (mode > 10.5 && mode < 11.5)                                                             // 11 link: a beam segment with no end fade (bolts)
                 {
                     float thick = lerp(1, .35, par), ends = smoothstep(1, .88, abs(u.x));
-                    float core = exp(-u.y * u.y / (.02 * thick + .001)), halo = exp(-u.y * u.y / (.32 * thick + .01));
+                    float core = exp(-u.y * u.y / (.02 * thick + .001)), halo = FxBeamHalo(u.y, .32 * thick + .01);
                     I = saturate((core * 1.4 + halo * .6) * ends);
                 }
                 else if (mode > 19.5)                                                                             // 20+: shapes of the effect families (FxShapes*.cginc)
@@ -78,13 +81,16 @@ Shader "ArcaneBrigade/FxProc"
                 }
                 else if (mode < 5.5)                                                                              // 5 four-point sparkle
                 {
-                    float c = exp(-abs(u.x) * 18 / (par + 1) - abs(u.y) * 2.2) + exp(-abs(u.y) * 18 / (par + 1) - abs(u.x) * 2.2);
+                    // each arm tapers to nothing at its tip (a wide sparkle used to fill its quad and show as a square)
+                    float c = exp(-abs(u.x) * 18 / (par + 1) - abs(u.y) * 2.2) * smoothstep(1, .3, abs(u.y)) * smoothstep(1, .25, abs(u.x))
+                            + exp(-abs(u.y) * 18 / (par + 1) - abs(u.x) * 2.2) * smoothstep(1, .3, abs(u.x)) * smoothstep(1, .25, abs(u.y));
                     I = saturate(c * .8 + exp(-r * r * 14));
                 }
                 else if (mode < 6.5)                                                                              // 6 smoke puff: billowing, lit from above-left
                 {
                     float d = warped(u * 1.7 + seed, q * .8);
-                    float body = smoothstep(.95, .3, r + (d - .5) * .9) * smoothstep(1, .78, r);
+                    // the outer half of the quad is a wide soft fade: a puff on a squashed quad no longer shows a straight top/bottom edge
+                    float body = smoothstep(.95, .3, r + (d - .5) * .9) * smoothstep(1, .35, r);
                     float lit = saturate((d - warped(u * 1.7 + seed + float2(-.12, .16), q * .8)) * 4 + .5);
                     I = body * (.6 + .4 * d);
                     hot = i.color.rgb * lerp(.45, 1.35, lit);
@@ -109,8 +115,8 @@ Shader "ArcaneBrigade/FxProc"
                 else if (mode > 11.5 && mode < 12.5)                                                              // 12 dust: grainy, low, drifting
                 {
                     float d = warped(u * float2(1.4, 2.4) + seed, q * .5);
-                    float grain = hash(floor(u * 90 + seed)) * .35 + .65;
-                    I = smoothstep(.95, .35, r + (d - .5) * 1.1) * smoothstep(1, .8, r) * (.5 + .5 * d) * grain;
+                    float grain = vnoise(u * 70 + seed) * .35 + .65;
+                    I = smoothstep(.95, .35, r + (d - .5) * 1.1) * smoothstep(1, .3, r) * (.5 + .5 * d) * grain;
                     // dust is lifted toward a pale haze so brown grit still reads on the red carpet and dark boards
                     hot = lerp(i.color.rgb, float3(1, .94, .82), .38) * lerp(.8, 1.35, d);
                     I = saturate(I * 1.25);

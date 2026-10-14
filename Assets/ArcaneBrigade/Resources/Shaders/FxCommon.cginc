@@ -10,7 +10,7 @@ float vnoise(float2 x)
 }
 float fbm(float2 x)
 {
-    const float2x2 m = float2x2(.8, .6, -.6, .8); float v = 0, a = .5;
+    const float2x2 m = float2x2(.8, .6, -.6, .8); float v = 0, a = .5; x = mul(m, x); // the first octave turned too: no lattice square lines up with the quad
     for (int k = 0; k < 5; k++) { v += a * vnoise(x); x = mul(m, x) * 2.02 + 3.1; a *= .5; }
     return v / .97;
 }

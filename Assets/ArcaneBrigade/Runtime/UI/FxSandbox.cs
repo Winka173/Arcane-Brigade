@@ -193,8 +193,8 @@ namespace ArcaneBrigade
 Storm|6|storm-thunderbolt|S|2.5|.35
 Storm|8|storm-thunderstorm|W
 Storm|8|storm-thunderstorm|S|1.4|.2
-Windborne|2|piercing-volley|T|1
-Windborne|4|piercing-volley|T|3
+Windborne|2|piercing-volley|L|.5|0|0|1|0|h
+Windborne|4|piercing-volley|L|.5|0|0|1|0|h
 Windborne|6|wind-tornado|Z|1.8|0|5
 Windborne|8|wind-gale|W
 Windborne|8|wind-tornado|Z|1.8|0|5|3|0
@@ -212,6 +212,7 @@ Frost|8|frost-blizzard-hail|S|2|.6
 Tide|2|tide-splash|T|2
 Tide|4|tide-splash|T|4
 Tide|6|tide-whirlpool|Z|2.5|0|3
+Tide|6|tide-whirlpool-burst|S|2.5
 Tide|8|tide-rain|W
 Tide|8|tide-leviathan|L|1.5|.6|0|1|0|X|10
 Tide|8|riptide|T|1|0|0|1|0|h
@@ -233,6 +234,7 @@ Dusk|2|execute|T|1
 Dusk|4|shade-execute-growth|T|1
 Dusk|4|dusk-mark|T|1
 Dusk|6|dusk-pit|Z|2.5|0|1.5
+Dusk|6|dusk-pit-burst|S|2.5
 Dusk|8|eclipse|W
 Carnival|2|carnival-burst|D
 Carnival|6|carnival-confetti|S|1.2|.5|0|6|.15|h
@@ -290,18 +292,31 @@ Minor: Hats|6|hat-disc|L|.6|.55|0|1|0|r
 Minor: Clover|2|lucky-clover|S|1.2|.35|0|1|0|h
 Minor: Clover|4|lucky-clover|S|1.2|.35|0|3|.12|h
 Minor: Exhibit Hall|2|exhibit-statue|Z|1.8|0|3
+Minor: Exhibit Hall|6|exhibit-statue-burst|S|1.8
 Minor: Spiky Shell|2|thorn-spikes|L|.5|.1|0|1|0|f
 Minor: Spiky Shell|4|thorn-spikes|L|.5|.1|0|2|.2|f
+Minor: Spiky Shell|2|thorn-reflect|T|2
 Minor: Mend|2|vine-mend|L|.4|0|0|1|0|s
 Minor: Mend|4|vine-mend|L|.6|.35|0|1|0|h
 Minor: Bastion|2|bastion-shield-shard|S|.8|.3|0|3|.06|f
 Minor: Sweet Tooth|2|sugar-rush|T|1|0|0|1|0|h
+Minor: Horns|2|horn|T|.3
 Minor: Horns|2|horn-pile-up|T|1
 Minor: Horns|6|horns-vulnerability|T|1
 Minor: Masks|2|mask-double|T|1
 Minor: Runes|2|rune|D
 Minor: Demolitionist|2|demolitionist-stun|T|1
-Minor: Big Top|2|carnival-nothing|T|1";
+Minor: Big Top|2|carnival-nothing|T|1
+Minor: Sweet Tooth|6|candy-volley|T|8
+Minor: Paper Wings|6|paper-crane|T|8
+Minor: Gauntlet|4|haymaker|T|8
+Minor: Sea Shanty|4|shanty-splash|T|8
+Minor: Bladenado|2|bladenado|T|8
+Minor: Singularity|4|minor-crush|T|8
+Minor: Unstoppable|4|unstoppable-stun|T|.3
+Minor: Gears|2|gear|T|8|0|0|1|0|f
+Minor: Quicksoles|6|dash-shockwave|T|.3|0|0|1|0|h
+Minor: Shield|6|shield-burst-damage|T|8|0|0|1|0|f";
 
         public static readonly string[] WeatherRules = { "storm-thunderstorm", "wind-gale", "frost-blizzard", "tide-rain", "plague-mist", "starry-night", "eclipse", "lighthouse", "gravity-heavy", "hearth-feast", "bulwark-fortress" };
         public const string WeatherGroup = "Weather";

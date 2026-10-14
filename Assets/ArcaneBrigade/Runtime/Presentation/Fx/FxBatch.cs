@@ -78,6 +78,9 @@ namespace ArcaneBrigade
         public void Quad(FxShape shape, Vector2 at, Vector2 size, float degrees, Color tint, float progress = 0, int seed = 0, float param = 0)
         {
             if (Quads >= MaxQuads || tint.a <= .003f) return;
+            // smoke and dust fade softly over the outer half of their quad (no straight cut-off edges): drawn a little bigger so a
+            // puff keeps the footprint its effect was tuned for
+            if (shape == FxShape.Smoke || shape == FxShape.Dust) size *= 1.15f;
             // a shape bigger than a crowd is dimmed (and kept under a size), so no single effect blinds the field
             float span = Mathf.Max(size.x, size.y);
             if (shape != FxShape.Beam && shape != FxShape.Link && span > BigSpan)

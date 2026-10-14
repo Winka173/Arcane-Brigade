@@ -48,7 +48,7 @@ namespace ArcaneBrigade
                     Vector2 p = at + new Vector2(Mathf.Cos(i * 2.4f), Mathf.Sin(i * 2.4f) * .62f) * (1 + (i % 3) * .6f); float delay = i * .06f;
                     FxSandbox.Later(delay, () =>
                     {
-                        if (FxBudget.Trait("piercing-volley", 2, FxSandbox.Now)) FxSandbox.Spawn("piercing-volley", 2, BondMomentKind.Strike, p, p, 1.2f, 0);
+                        if (FxBudget.Trait("piercing-volley", 2, FxSandbox.Now)) FxSandbox.Spawn("piercing-volley", 2, BondMomentKind.Line, p, p + Vector2.right * 7, .5f, 0); // its real emission: a line, 7 ahead
                         FxSandbox.Number(p + Vector2.up * .8f, 40 + i * 7, ElementLook.Fire);
                     });
                 }
