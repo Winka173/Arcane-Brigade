@@ -26,55 +26,75 @@ namespace ArcaneBrigade
         private const FxShape Rift = (FxShape)35, Ring = (FxShape)36;
         private static readonly Color Ink = new Color(.01f, 0f, .035f), Violet = new Color(.6f, .3f, 1f), Magenta = new Color(.95f, .35f, .95f), Indigo = new Color(.14f, .07f, .36f);
 
+        private static float Ang(Vector2 d) => Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg;
+        private static Vector2 Vec(float deg) { float r = deg * Mathf.Deg2Rad; return new Vector2(Mathf.Cos(r), Mathf.Sin(r)); }
         private static void Blob(FxBatch b, Vector2 p, Vector2 size, float deg, float alpha, float prog, int seed) => b.Quad(FxShape.Smoke, p, size, deg, A(Ink, alpha), prog, seed, 0);
         private static void Blob(FxBatch b, Vector2 p, float size, float deg, float alpha, float prog, int seed) => Blob(b, p, new Vector2(size, size), deg, alpha, prog, seed);
 
-        /// <summary>Trait: two black slashes cross over the target and tear open as violet-rimmed rifts; the ink around is dragged into
-        /// them, then pale souls drift up out of the cut.</summary>
+        /// <summary>Trait: the reaping. A huge shadow scythe forms above the target, swings down through it in one stroke leaving a
+        /// violet smear of light, the stroke opens as one long rift spurting ink, and the target's pale soul is torn out of the cut and
+        /// whirled away up along the blade's path.</summary>
         private sealed class Execute : FxEffect
         {
             protected override float Life => 1.7f;
+            private static Vector2 Tip(Vector2 pivot, float th, float L) => pivot + new Vector2(Mathf.Cos(th * Mathf.Deg2Rad), Mathf.Sin(th * Mathf.Deg2Rad) * .8f) * L;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius * 1.1f, off = Fade(t, 1.0f, 1.7f), open = EaseOut(Rise(t, 0, .16f));
-                Vector2 c = at + Vector2.up * .35f;
-                b.Quad(FxShape.Glow, c, r * 1.9f, A(Violet, .8f * Fade(t, 0, .3f)), 0, Seed);
-                b.Floor(FxShape.Shade, at, r * 1.4f, A(Ink, .8f * Rise(t, 0, .2f) * off), 0, Seed);
-                // the two rifts, one after the other
-                for (int k = 0; k < 2; k++)
+                Vector2 at = At; float r = Mathf.Max(1.3f, Radius * 1.2f), off = Fade(t, 1.1f, 1.7f);
+                Vector2 c = at + Vector2.up * .45f, pivot = c + new Vector2(-r * .2f, r * 1.25f);
+                float form = EaseOut(Rise(t, 0, .14f)), swing = EaseOut3(Rise(t, .12f, .36f)), gone = Rise(t, .5f, .9f), L = r * 1.75f;
+                float th = Mathf.Lerp(150, -75, swing);
+                b.Floor(FxShape.Shade, at, r * 1.3f, A(Ink, .8f * Rise(t, 0, .2f) * off), 0, Seed);
+                // the smear left by the stroke: a fan of fading violet arcs behind the blade's edge, white at the leading edge
+                if (swing > 0)
+                    for (int k = 0; k < 14; k++)
+                    {
+                        float a0 = Mathf.Lerp(150, th, k / 14f), a1 = Mathf.Lerp(150, th, (k + 1) / 14f), f = (k + 1) / 14f, fa = f * f * (1 - gone);
+                        b.Link(Tip(pivot, a0, L * .96f), Tip(pivot, a1, L * .96f), .1f + .3f * f, A(Violet, .55f * fa), Seed + k, .4f);
+                        b.Link(Tip(pivot, a0, L * .75f), Tip(pivot, a1, L * .75f), .06f + .22f * f, A(Magenta, .4f * fa), Seed + k + 20, .5f);
+                        if (k > 9) b.Link(Tip(pivot, a0, L), Tip(pivot, a1, L), .05f, A(White, .8f * fa), Seed + k + 40, .9f);
+                    }
+                // the scythe: a dark shaft from the pivot and a long crescent blade on its end, violet edge, fading after the stroke
+                float sa = form * (1 - gone);
+                if (sa > .01f)
                 {
-                    float o = Mathf.Clamp01(open * (k == 0 ? 1 : EaseOut(Rise(t, .08f, .24f)) )), deg = k == 0 ? 36 : -36;
-                    b.Quad(FxShape.Glow, c, new Vector2(r * 1.4f, r * .35f), deg, A(Magenta, .45f * o * off), 0, Seed);
-                    b.Quad(Rift, c, new Vector2(r * 1.55f, r * .8f), deg, A(Violet, 1.3f * off), o, Seed + k, 1);
-                    b.Quad(Rift, c, new Vector2(r * 1.4f, r * .5f), deg, A(White, .8f * off * Fade(t, .1f, .6f)), o, Seed + k + 3, 0);
+                    Vector2 end = Tip(pivot, th, L * .35f), back = Tip(pivot, th + 180, L * .45f), blade = Tip(pivot, th, L * .72f);
+                    b.Link(back, end, .11f, A(Violet, .5f * sa), Seed, .6f);
+                    b.Quad(FxShape.Shade, (back + end) * .5f, new Vector2((back - end).magnitude * .5f + .1f, .12f), Ang(end - back), A(Ink, sa), 0, Seed);
+                    float bd = th - 75;
+                    b.Quad(Ring, blade, new Vector2(r * 1.05f, r * .55f), bd, A(Ink, sa), 0, Seed, 6);
+                    b.Quad(Ring, blade, new Vector2(r, r * .5f), bd, A(Violet, 1.1f * sa), 0, Seed + 1, 6);
+                    b.Quad(Ring, blade + Vec(bd + 180) * r * .03f, new Vector2(r * .96f, r * .47f), bd, A(White, .5f * sa), 0, Seed + 2, 6);
+                    b.Quad(FxShape.Glow, blade, r * .8f, A(Magenta, .3f * sa), 0, Seed);
                 }
-                // ink flung out of the cut, then the rifts snap shut in a thin flash (second beat)
-                for (int k = 0; k < 10; k++)
+                // the cut: one long rift along the stroke, ink spurting out of it, a thin white line as it snaps shut
+                float open = EaseOut(Rise(t, .26f, .4f)) * (1 - Rise(t, .85f, 1.05f));
+                float cutDeg = -38;
+                if (open > 0)
                 {
-                    float u = (t - .05f) / (.5f + .3f * H(Seed, k + 90)); if (u <= 0 || u >= 1) continue;
-                    Vector2 d = Dir(Seed + 8, k, 10, .7f), p = c + d * r * 1.3f * EaseOut(u) + Vector2.up * (1.4f * u - 2.2f * u * u);
-                    Blob(b, p, .16f + .1f * H(Seed, k), 0, .95f * (1 - u * u), u, Seed + k + 90);
+                    b.Quad(FxShape.Glow, c, new Vector2(r * 1.5f, r * .35f), cutDeg, A(Magenta, .5f * open), 0, Seed);
+                    b.Quad(Rift, c, new Vector2(r * 1.7f, r * .7f), cutDeg, A(Violet, 1.3f * off), open, Seed, 1);
+                    b.Quad(Rift, c, new Vector2(r * 1.5f, r * .45f), cutDeg, A(White, .8f * open), open, Seed + 3, 0);
                 }
-                float snap = Rise(t, .72f, .76f) * Fade(t, .76f, 1.0f);
-                b.Link(c - new Vector2(r * 1.2f, 0), c + new Vector2(r * 1.2f, 0), .12f, A(White, .9f * snap), Seed, .7f);
-                b.Quad(FxShape.Glow, c, new Vector2(r * 1.4f, .5f), 0, A(Magenta, .6f * snap), 0, Seed);
-                for (int k = 0; k < 4; k++) { float u = Rise(t, .8f + k * .08f, 1.6f); if (u <= 0 || u >= 1) continue; b.Quad(FxShape.Smoke, c + new Vector2((k - 1.5f) * .4f, u * 1.6f), .3f + .5f * u, 0, A(Indigo * 1.6f, .7f * (1 - u)), u, Seed + k + 40); }
-                // the ink is pulled in
-                for (int k = 0; k < 9; k++)
+                float snap = Rise(t, .85f, .9f) * Fade(t, .9f, 1.1f);
+                b.Link(c - Vec(cutDeg) * r * 1.4f, c + Vec(cutDeg) * r * 1.4f, .1f, A(White, .9f * snap), Seed, .7f);
+                for (int k = 0; k < 14; k++)
                 {
-                    float u = Rise(t, .05f + .02f * k, .55f); if (u <= 0 || u >= 1) continue;
-                    Vector2 from = at + Dir(Seed, k, 9, .7f) * r * 1.5f, p = Vector2.Lerp(from, c, EaseOut(u));
-                    Blob(b, p, new Vector2(.5f * (1 - u * .6f), .32f), Mathf.Atan2(c.y - from.y, c.x - from.x) * Mathf.Rad2Deg, .95f * (1 - u * u), u, Seed + k);
-                    Glint(b, p + Vector2.up * .1f, .25f, Violet, 1 - u, k * 40 + now * 100);
+                    float u = (t - .3f) / (.5f + .3f * H(Seed, k + 90)); if (u <= 0 || u >= 1) continue;
+                    Vector2 along = c + Vec(cutDeg) * (H(Seed, k + 91) - .5f) * r * 2f, d = Dir(Seed + 8, k, 14, .7f);
+                    Blob(b, along + d * r * .9f * EaseOut(u) + Vector2.up * (1.4f * u - 2.4f * u * u), .14f + .1f * H(Seed, k), 0, .95f * (1 - u * u), u, Seed + k + 90);
                 }
-                Blob(b, c, new Vector2(r * .55f, r * .5f) * (1 - Rise(t, .4f, 1.0f) * .8f), 0, .95f * off * Rise(t, .2f, .4f), t, Seed + 20);
-                // souls drift out of the cut
-                for (int k = 0; k < 7; k++)
+                // the soul: a pale wisp torn out of the cut and whirled up and away along the stroke
+                float su = Rise(t, .4f, 1.5f);
+                if (su > 0 && su < 1)
                 {
-                    float u = (t - .3f - k * .08f) / 1.0f; if (u <= 0 || u >= 1) continue;
-                    Vector2 p = c + new Vector2(Mathf.Sin(u * 6 + k * 2) * .5f + (k - 3) * .18f, 2.7f * EaseOut(u));
-                    b.Quad(FxShape.Glow, p, .5f, A(Magenta, .4f * (1 - u)), 0, Seed);
-                    Glint(b, p, .3f * (1 - u * .4f), k % 2 == 0 ? Violet : White, 1.1f * (1 - u), now * 50 + k * 30);
+                    for (int k = 0; k < 6; k++)
+                    {
+                        float v = Mathf.Max(0, su - k * .04f); Vector2 p = Vector2.Lerp(c, Tip(pivot, 160, L * 1.1f), EaseOut(v)) + new Vector2(Mathf.Sin(v * 9 + k) * .25f, 0);
+                        b.Quad(FxShape.Glow, p, .55f * (1 - k / 7f), A(k == 0 ? White : new Color(.8f, .75f, 1f), .7f * (1 - su) * (1 - k / 7f)), 0, Seed);
+                        if (k == 0) b.Quad(FxShape.Smoke, p, .4f, 0, A(new Color(.75f, .7f, .95f), .6f * (1 - su)), su, Seed + 70);
+                    }
+                    for (int k = 0; k < 5; k++) Glint(b, Vector2.Lerp(c, Tip(pivot, 160, L * 1.1f), EaseOut(su)) + Dir(Seed, k, 5, 1) * .4f, .2f, Violet, 1 - su, now * 80 + k * 50);
                 }
             }
         }
@@ -129,10 +149,16 @@ namespace ArcaneBrigade
         /// spiralling into the middle, a violet whirl and cracked light on the floor around.</summary>
         private sealed class Pit : FxEffect
         {
-            protected override float Life => Moment.Duration + .5f;
+            protected override float Life => Moment.Duration + 1.8f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius, dur = Moment.Duration, on = EaseOut(Rise(t, 0, .3f)) * Fade(t, dur - .1f, dur + .5f), pulse = 1 + .03f * Mathf.Sin(now * 9);
+                // the pit holds its full size for the whole zone, then swallows itself: it shrinks to a point over a second, its rim
+                // flaring, and leaves a stain that fades last
+                Vector2 at = At; float dur = Moment.Duration, shut = EaseOut(Rise(t, dur + .3f, dur + 1.4f)), r = Radius * (1 - .85f * shut);
+                float on = EaseOut(Rise(t, 0, .3f)) * Fade(t, dur + 1.2f, dur + 1.5f), pulse = 1 + .03f * Mathf.Sin(now * 9) + .12f * Mathf.Sin(shut * Mathf.PI);
+                float stain = Rise(t, dur, dur + .3f) * Fade(t, dur + 1.2f, dur + 1.8f);
+                b.Floor(FxShape.Shade, At, Radius * 1.1f, A(Ink, .6f * stain), 0, Seed + 77);
+                b.Floor(FxShape.Glow, At, Radius * 1.2f * (1 - shut * .5f), A(Magenta, .5f * Mathf.Sin(shut * Mathf.PI)), 0, Seed);
                 b.Floor(FxShape.Shade, at, r * 1.5f * on, A(Indigo, .7f * on), 0, Seed);
                 b.Floor(FxShape.Cracks, at, r * 1.35f * on, A(Violet, .3f * on), Rise(t, 0, .4f), Seed, 1);
                 for (int k = 0; k < 4; k++)
@@ -241,10 +267,10 @@ namespace ArcaneBrigade
                 if (Moment.Kind == BondMomentKind.Weather)
                 {
                     float on = Rise(t, 0, 2.5f) * Fade(now, End - 1.5f, End);
-                    Vector2 m = new Vector2(a.center.x + a.width * .1f, a.center.y + a.height * .2f);
+                    Vector2 m = new Vector2(a.center.x - a.width * .18f, a.yMax - 3f); // high in the sky, off the crowd
                     b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.07f, .02f, .2f), .3f * on), 0, Seed);
                     b.Quad(FxShape.Shade, new Vector2(a.center.x, a.yMax), new Vector2(a.width * .5f, a.height * .22f), 0, A(Ink, .35f * on), 0, Seed + 1);
-                    Moon(b, m, 1.5f, on, now, Seed, .85f + .15f * Mathf.Sin(now * 1.3f));
+                    Moon(b, m, .9f, on, now, Seed, .85f + .15f * Mathf.Sin(now * 1.3f));
                     for (int k = 0; k < 34; k++)
                     {
                         float u = (now * (.1f + .06f * H(Seed, k)) + H(Seed, k + 10)) % 1;
@@ -260,10 +286,10 @@ namespace ArcaneBrigade
                 }
                 // trait: a total eclipse that sweeps over the arena
                 float sweep = Mathf.Clamp01(t / 1.5f), dim = Mathf.Sin(Mathf.Clamp01(t / 2.2f) * Mathf.PI);
-                Vector2 mm = new Vector2(Mathf.Lerp(a.xMin - 1.5f, a.xMax + 1.5f, sweep), a.center.y + a.height * .2f);
+                Vector2 mm = new Vector2(Mathf.Lerp(a.xMin - 1.5f, a.xMax + 1.5f, sweep), a.yMax - 3f);
                 b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.06f, .02f, .18f), .4f * dim), 0, Seed);
                 for (int k = 0; k < 5; k++) { Vector2 foot = new Vector2(mm.x + (k - 2) * 2.6f, a.yMin + 2.5f); b.Beam(mm + Vector2.down * 2.2f, foot, .6f, A(Violet, .32f * dim), t, Seed + k, 0); b.Floor(FxShape.Glow, foot, 1.4f, A(Magenta, .3f * dim), 0, Seed); }
-                Moon(b, mm, 1.6f, dim > .02f ? 1 : 0, now, Seed, dim);
+                Moon(b, mm, 1.1f, dim > .02f ? 1 : 0, now, Seed, dim);
                 float tot = Mathf.Max(0, 1 - Mathf.Abs(sweep - .5f) * 7);
                 b.Quad(Ring, mm, 2.3f, 0, A(White, 1.1f * tot), t, Seed + 7, .7f);
                 for (int k = 0; k < 24; k++)
@@ -275,43 +301,56 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Step 2 trait: the enemy is marked. A crescent moon drops onto its head and hangs there, ink splats out under its
-        /// feet and drips from the crescent's horns, two thin violet arcs swing around it like a clock hand, then it all sinks away.</summary>
+        /// <summary>Step 2/4 trait: the enemy is marked. A great violet eye of dusk opens over it, its iris rolling to stare down; black
+        /// ink tendrils drop out of it, writhe and grip the target while ink splats out under its feet; then the eye blinks shut and
+        /// sinks into the target, burning a crescent brand on the floor.</summary>
         private sealed class Mark : FxEffect
         {
-            protected override float Life => 1.5f;
+            protected override float Life => 1.6f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius, drop = EaseOut3(Rise(t, 0, .22f)), off = Fade(t, 1.0f, 1.5f);
-                Vector2 m = at + Vector2.up * (1.6f + 2.4f * (1 - drop));
-                b.Floor(FxShape.Shade, at, r * 1.2f, A(Ink, .8f * off), 0, Seed);
-                for (int k = 0; k < 6; k++)
+                Vector2 at = At; float r = Mathf.Max(1.3f, Radius * 1.2f), off = Fade(t, 1.1f, 1.6f);
+                float open = EaseOut(Rise(t, 0, .25f)) * (1 - EaseOut(Rise(t, .8f, 1f))), sink = EaseOut(Rise(t, .9f, 1.2f));
+                Vector2 eye = Vector2.Lerp(at + Vector2.up * 2f, at + Vector2.up * .5f, sink);
+                float es = r * (1 - .6f * sink);
+                b.Floor(FxShape.Shade, at, r * 1.3f, A(Ink, .85f * off), 0, Seed);
+                for (int k = 0; k < 7; k++)
                 {
-                    Vector2 d = Dir(Seed, k, 6, .62f); float sp = EaseOut(Rise(t, .18f, .4f));
-                    Blob(b, at + d * r * (.3f + .7f * sp), new Vector2(.42f, .26f) * (.6f + .4f * sp), Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, .95f * off, t, Seed + k);
+                    Vector2 d = Dir(Seed, k, 7, .62f); float sp = EaseOut(Rise(t, .3f, .5f));
+                    Blob(b, at + d * r * (.3f + .8f * sp), new Vector2(.5f, .3f) * (.5f + .5f * sp), Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, .95f * off, t, Seed + k);
                 }
-                b.Quad(FxShape.Glow, m, 1.6f, A(Violet, .45f * off), 0, Seed);
-                for (int k = 0; k < 8; k++)
+                // tendrils: wavy ink strands from the eye down to the target, writhing
+                float reach = EaseOut(Rise(t, .2f, .45f)) * (1 - sink);
+                for (int k = 0; k < 5; k++)
                 {
-                    float u = (t - .2f) / (.45f + .25f * H(Seed, k + 50)); if (u <= 0 || u >= 1) continue;
-                    Vector2 d = Dir(Seed + 4, k, 8, .6f);
-                    Blob(b, at + d * r * 1.3f * EaseOut(u) + Vector2.up * (1.1f * u - 1.4f * u * u), .12f + .08f * H(Seed, k), 0, .95f * (1 - u), u, Seed + k + 50);
+                    Vector2 from = eye + new Vector2((k - 2) * es * .32f, -es * .2f), to = at + new Vector2((k - 2) * .28f, .25f + .25f * (k % 2)); Vector2 prev = from;
+                    for (int s = 1; s <= 8; s++)
+                    {
+                        float f = s / 8f; if (f > reach) break;
+                        Vector2 p = Vector2.Lerp(from, to, f) + new Vector2(Mathf.Sin(f * 7 + now * 8 + k * 1.3f) * .18f * Mathf.Sin(f * 3.14f), 0);
+                        b.Link(prev, p, .07f * (1 - f * .5f), A(Violet, .5f * off), Seed + k * 9 + s, .5f);
+                        b.Quad(FxShape.Shade, (prev + p) * .5f, new Vector2((p - prev).magnitude * .5f + .06f, .07f * (1 - f * .5f) + .02f), Ang(p - prev), A(Ink, off), 0, Seed + s);
+                        prev = p;
+                    }
                 }
-                for (int k = 0; k < 3; k++) { float u = (t * 1.2f + k / 3f) % 1; b.Quad(FxShape.Smoke, m + new Vector2((k - 1) * .4f, .3f + u * 1.2f), .2f + .35f * u, 0, A(Indigo * 1.6f, .55f * off * Mathf.Sin(u * Mathf.PI)), u, Seed + k + 60); }
-                b.Quad(Ring, m, new Vector2(.95f, .95f), -20 + Mathf.Sin(t * 6) * 8, A(Violet, 1.3f * off), 0, Seed, 6);
-                b.Quad(Ring, m, new Vector2(.8f, .8f), -20 + Mathf.Sin(t * 6) * 8, A(White, .7f * off), 0, Seed + 1, 6);
-                for (int s = 0; s < 2; s++)
+                // the eye: an ink-lidded almond of violet light with a magenta iris and a black slit pupil that looks round
+                if (open > .01f)
                 {
-                    float u = ((t - .25f) * 1.6f + s * .5f) % 1; if (t < .25f) continue;
-                    Vector2 horn = m + new Vector2(s == 0 ? -.55f : .45f, -.62f);
-                    b.Quad((FxShape)32, horn + Vector2.down * u * 1.4f, .1f, 0, A(Magenta, 1.1f * off * (1 - u)), 0, Seed + s);
+                    Vector2 look = new Vector2(Mathf.Sin(now * 3.1f) * .25f, -.12f - .08f * Mathf.Sin(now * 2.3f)) * es * open;
+                    b.Quad(FxShape.Glow, eye, es * 1.5f, A(Violet, .55f * open), 0, Seed);
+                    b.Quad(FxShape.Shade, eye, new Vector2(es * 1.25f, es * .75f * open + .05f), 0, A(Ink, 1), 0, Seed);
+                    b.Quad(Rift, eye, new Vector2(es * 1.2f, es * 2.1f), 0, A(Violet, 1.4f * off), open, Seed, 2);
+                    b.Quad(FxShape.Glow, eye + look, es * .55f * open, A(Magenta, .95f), 0, Seed);
+                    b.Quad((FxShape)30, eye + look, es * .36f * open, A(Magenta, 1.1f), 0, Seed + 1, 0);
+                    b.Quad(FxShape.Shade, eye + look, new Vector2(es * .09f, es * .3f * open), 0, A(Ink, 1), 0, Seed + 2);
+                    Glint(b, eye + look + new Vector2(-.08f, .08f) * es, es * .3f, White, open, now * 40);
+                    for (int k = 0; k < 6; k++) { float u = (now * .8f + k / 6f) % 1; Glint(b, eye + Dir(Seed, k, 6, .45f) * es * (.8f + .6f * u), .18f, k % 2 == 0 ? Violet : Magenta, (1 - u) * open, k * 40 + now * 60); }
                 }
-                for (int k = 0; k < 2; k++)
-                {
-                    float ang = now * 4 * (k == 0 ? 1 : -1) + k * 3.1f; Vector2 tip = at + Vector2.up * .6f + new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .62f) * r * 1.05f;
-                    b.Link(at + Vector2.up * .6f + (tip - at - Vector2.up * .6f) * .55f, tip, .07f, A(Violet, .9f * off * drop), Seed + k, .5f);
-                    Glint(b, tip, .3f, Magenta, off * drop, now * 90 + k * 40);
-                }
+                // the brand left on the floor after the eye sinks in
+                float brand = Rise(t, 1.0f, 1.15f) * off;
+                b.Floor(Ring, at, r * .9f, A(Magenta, 1.1f * brand), 0, Seed + 5, 6);
+                b.Floor(FxShape.Glow, at, r * 1.1f, A(Violet, .5f * brand), 0, Seed);
+                for (int k = 0; k < 3; k++) { float u = (t * 1.2f + k / 3f) % 1; b.Quad(FxShape.Smoke, at + new Vector2((k - 1) * .4f, .2f + u * 1.2f), .2f + .35f * u, 0, A(Indigo * 1.6f, .55f * brand * Mathf.Sin(u * Mathf.PI)), u, Seed + k + 60); }
             }
         }
     }

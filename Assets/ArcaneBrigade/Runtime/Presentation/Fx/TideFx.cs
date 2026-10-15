@@ -139,10 +139,33 @@ namespace ArcaneBrigade
                 b.Floor(Swirl, at, R * 1f, A(Foam, .55f * on), now * 2.6f, Seed + 5, -1);
                 b.Floor(Swirl, at, R * .6f, A(Aqua, .8f * on), now * 4f, Seed + 9, 1);
                 b.Floor(FxShape.Shade, at, R * .3f, A(new Color(0, .01f, .04f), .95f * on), 0, Seed);
-                for (int k = 0; k < 44; k++)
+                // the foam: a ragged crust, not a bead chain: lumps of uneven size bunched in clusters with gaps, torn streaks of
+                // foam spiralling in, and pale froth patches riding the rim
+                for (int k = 0; k < 9; k++)
                 {
-                    float a = k / 44f * 6.2832f + now * 1.4f, rr = R * (1.18f + .06f * Mathf.Sin(k * 3 + now * 5));
-                    b.Quad(Bubble, at + new Vector2(Mathf.Cos(a) * rr, Mathf.Sin(a) * rr * .62f), .08f + .05f * H(Seed, k), A(Foam, .85f * on), 0, Seed + k);
+                    float a = k / 9f * 6.2832f + (H(Seed, k + 600) - .5f) * .5f + now * 1.4f;
+                    b.Floor(FxShape.Dust, at + new Vector2(Mathf.Cos(a) * R * 1.15f, Mathf.Sin(a) * R * .72f), R * (.3f + .2f * H(Seed, k + 601)), A(new Color(.8f, .95f, 1f), .5f * on), now * .4f + k, Seed + k + 600);
+                }
+                for (int c = 0; c < 7; c++)
+                {
+                    float ca = c / 7f * 6.2832f + (H(Seed, c + 610) - .5f) * .6f + now * 1.4f; int n = 3 + (int)(H(Seed, c + 611) * 6);
+                    for (int k = 0; k < n; k++)
+                    {
+                        float a = ca + (k - n * .5f) * (.05f + .05f * H(Seed, c * 9 + k)), rr = R * (1.08f + .2f * H(Seed, c * 9 + k + 1) + .05f * Mathf.Sin(now * 4 + k));
+                        float sz = .04f + .13f * H(Seed, c * 9 + k + 2) * H(Seed, c * 9 + k + 3);
+                        b.Quad(Bubble, at + new Vector2(Mathf.Cos(a) * rr, Mathf.Sin(a) * rr * .62f), sz, A(Foam, .85f * on), 0, Seed + c * 9 + k);
+                    }
+                }
+                for (int k = 0; k < 6; k++)
+                {
+                    float f0 = (H(Seed, k + 620) + now * .35f) % 1, a0 = k * 1.05f + now * 1.4f; Vector2 prev = Vector2.zero;
+                    for (int s = 0; s <= 6; s++)
+                    {
+                        float f = Mathf.Min(1, f0 + s * .03f), a = a0 + s * .2f + f * 3, rho = R * (1.15f - f * .9f);
+                        Vector2 p = at + new Vector2(Mathf.Cos(a) * rho, Mathf.Sin(a) * rho * .62f);
+                        if (s > 0) b.Link(prev, p, .05f * (1 - s / 8f), A(Foam, .7f * on * (1 - f0)), Seed + k * 7 + s, .5f);
+                        prev = p;
+                    }
                 }
                 for (int k = 0; k < 20; k++)
                 {
@@ -200,85 +223,101 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Step 8. A sea serpent surfaces at one end and swims across the arena along the line: a weaving body of scaled segments with fins, a horned head with glowing eyes, foam and spray in its wake.</summary>
+        /// <summary>Step 8. A sea serpent surfaces at one end and swims across the arena along the line: one smooth undulating scaled body
+        /// tapering to the tail (ink outline, teal skin with a pale belly and a lit back), a crest of spines, a horned head with a glowing
+        /// eye and snapping jaw; the water parts in two foaming bow waves on both sides of it, spray flies, bubbles fizz in its wake.</summary>
         private sealed class Leviathan : FxEffect
         {
-            private const int N = 15; private static readonly Vector2[] sp = new Vector2[N], st = new Vector2[N]; private static readonly float[] ssz = new float[N], sem = new float[N]; private static readonly bool[] on = new bool[N];
+            private const int N = 30; private static readonly Vector2[] sp = new Vector2[N];
             protected override float Life => 2.2f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 d = At - From; float len = d.magnitude; if (len < .1f) return;
-                Vector2 dir = d / len, nrm = new Vector2(-dir.y, dir.x); float w = Mathf.Max(1.1f, Radius) * 1.15f;
-                const float gap = .85f; float bodyLen = N * gap;
-                float age = now - Born, span = (Land - Born) + 1.9f, head = Mathf.Lerp(-1.5f, len + bodyLen + 1, Mathf.Clamp01(age / span));
-                b.Beam(From, At, w * 1.1f, A(Sea, .3f * Rise(age, 0, .3f) * Fade(t, 1.4f, 2.2f)), now, Seed, .2f);
+                Vector2 dir = d / len, nrm = new Vector2(-dir.y, dir.x); float w = Mathf.Max(1.1f, Radius) * 1.05f;
+                const float gap = .42f; float bodyLen = (N - 1) * gap;
+                float age = now - Born, span = (Land - Born) + 1.9f, head = Mathf.Lerp(-1.2f, len + bodyLen + 1, Mathf.Clamp01(age / span));
+                float lane = Rise(age, 0, .3f) * Fade(t, 1.4f, 2.2f);
+                b.Beam(From, At, w * 1.2f, A(Sea, .28f * lane), now, Seed, .2f);
                 if (head < 1.2f) for (int k = 0; k < 14; k++) Drip(b, From, new Vector2((H(Seed, k) - .5f) * 3, 3 + 2 * H(Seed, k + 1)), 10, (age * 1.6f + k * .08f) % .7f, .7f, .11f, Foam, Seed + k);
-                // the serpent, painted opaque: every segment first a size bigger in deep navy (the outline), then the teal skin,
-                // a pale belly stripe and a lit back; additive scales, fins and spray on top
+                // the spine: points along the line, swaying in one smooth travelling wave; only the part above water is drawn
+                int first = -1, last = -1;
                 for (int j = 0; j < N; j++)
                 {
-                    float s = head - j * gap; on[j] = s >= -.8f && s <= len + .8f; if (!on[j]) continue;
-                    float emerge = Mathf.Clamp01((s + .8f) / 1.4f) * Mathf.Clamp01((len + .8f - s) / 1.4f), taper = 1 - j / (float)N * .7f;
-                    float ph = s * .9f - now * 5f;
-                    sp[j] = From + dir * s + nrm * Mathf.Sin(ph) * w * .6f; st[j] = (dir + nrm * Mathf.Cos(ph) * w * .55f).normalized;
-                    ssz[j] = w * taper * (j == 0 ? 1.2f : 1f) * (.55f + .45f * emerge); sem[j] = emerge;
+                    float s = head - j * gap; sp[j] = From + dir * s + nrm * Mathf.Sin(s * .8f - now * 4.5f) * w * .55f;
+                    if (s >= -.6f && s <= len + .6f) { if (first < 0) first = j; last = j; }
                 }
-                Color outl = new Color(.01f, .05f, .12f), skin = new Color(.06f, .36f, .58f), back = new Color(.16f, .55f, .8f), belly = new Color(.55f, .88f, .9f);
-                for (int j = N - 1; j >= 0; j--) if (on[j])
-                {
-                    float sz = ssz[j], ta = Ang(st[j]); Vector2 n2 = new Vector2(-st[j].y, st[j].x);
-                    b.Quad(FxShape.Shade, sp[j] - Vector2.up * sz * .35f, new Vector2(sz * 1.1f, sz * .5f), ta, A(Navy, .5f * sem[j]), 0, Seed);
-                    if (j % 2 == 1 && j < N - 2) for (int side = -1; side <= 1; side += 2)
+                // water parting: dark channel and foam churned along both flanks of the visible body
+                if (first >= 0)
+                    for (int j = first; j <= last; j += 2)
                     {
-                        Vector2 fp = sp[j] + n2 * side * sz * .62f - st[j] * sz * .2f; float fa = ta + 180 + side * 50;
-                        Solid(b, fp, new Vector2(sz * .3f + .06f, sz * .12f + .06f), fa, outl, sem[j]);
-                        Solid(b, fp, new Vector2(sz * .3f, sz * .12f), fa, back, sem[j]);
-                    }
-                    Solid(b, sp[j], new Vector2(Mathf.Max(sz * .72f, gap * .85f) + .07f, sz * .5f + .07f), ta, outl, sem[j]);
-                }
-                for (int j = N - 1; j >= 0; j--) if (on[j])
-                {
-                    float sz = ssz[j], ta = Ang(st[j]); Vector2 n2 = new Vector2(-st[j].y, st[j].x);
-                    Solid(b, sp[j], new Vector2(Mathf.Max(sz * .72f, gap * .85f), sz * .5f), ta, skin, sem[j]);
-                    Solid(b, sp[j] - n2 * sz * .2f, new Vector2(Mathf.Max(sz * .56f, gap * .7f), sz * .16f), ta, belly, sem[j]);
-                    Solid(b, sp[j] + n2 * sz * .22f, new Vector2(Mathf.Max(sz * .5f, gap * .65f), sz * .12f), ta, back, sem[j]);
-                }
-                if (on[0])
-                {
-                    float sz = ssz[0], ta = Ang(st[0]); Vector2 p = sp[0], tan = st[0], n2 = new Vector2(-tan.y, tan.x);
-                    float jaw = .5f + .5f * Mathf.Sin(now * 9);
-                    Solid(b, p + tan * sz * .75f + n2 * sz * .08f, new Vector2(sz * .55f + .07f, sz * .3f + .07f), ta + 8, outl, sem[0]);
-                    Solid(b, p + tan * sz * .65f - n2 * sz * (.2f + .08f * jaw), new Vector2(sz * .45f + .07f, sz * .15f + .07f), ta - 10 - 12 * jaw, outl, sem[0]);
-                    Solid(b, p + tan * sz * .65f - n2 * sz * (.2f + .08f * jaw), new Vector2(sz * .45f, sz * .15f), ta - 10 - 12 * jaw, belly, sem[0]);
-                    Solid(b, p + tan * sz * .75f + n2 * sz * .08f, new Vector2(sz * .55f, sz * .3f), ta + 8, skin, sem[0]);
-                    Solid(b, p + tan * sz * .8f + n2 * sz * .2f, new Vector2(sz * .4f, sz * .1f), ta + 8, back, sem[0]);
-                    for (int side = -1; side <= 1; side += 2)
-                        b.Quad(Shard, p - tan * sz * .1f + n2 * (sz * .45f + side * sz * .12f), new Vector2(sz * .55f, sz * .14f), ta + 160 + side * 18, A(Foam, .9f * sem[0]), 0, Seed + side, 0);
-                    b.Quad(FxShape.Glow, p + tan * sz * .55f + n2 * sz * .2f, sz * .28f, A(new Color(1f, .85f, .2f), sem[0]), 0, Seed);
-                    Glint(b, p + tan * sz * .55f + n2 * sz * .2f, sz * .22f, new Color(1f, .95f, .5f), sem[0], now * 90);
-                    for (int k = 0; k < 4; k++) Fleck(b, p + tan * sz * 1.1f, tan * 2.5f + n2 * (k - 1.5f) * 1.5f + Vector2.up * 2, 9, (now * 2.2f + k * .12f) % .45f, .45f, .06f, Foam, Seed + k + 90);
-                    Puff(b, p + tan * sz * 1.2f, sz * .7f, new Color(.8f, .95f, 1f), .35f * sem[0], now, Seed + 31);
-                }
-                for (int j = 1; j < N; j++) if (on[j])
-                {
-                    float sz = ssz[j], ta = Ang(st[j]); Vector2 p = sp[j], tan = st[j], n2 = new Vector2(-tan.y, tan.x);
-                    b.Quad(Shard, p + n2 * sz * .3f, new Vector2(sz * .45f, sz * .1f), ta + 180, A(Aqua, .55f * sem[j]), 0, Seed + j, 0);
-                    Glint(b, p + n2 * sz * .25f + tan * sz * .2f * Mathf.Sin(now * 3 + j), .14f * sz, Foam, .7f * sem[j] * (.5f + .5f * Mathf.Sin(now * 6 + j * 1.7f)), j * 40);
-                    if (j % 3 == 1) Puff(b, p - Vector2.up * sz * .3f, sz * .7f, new Color(.78f, .93f, 1f), .3f * sem[j], now + j, Seed + j + 30);
-                    if (j % 3 == 0)
+                        Vector2 p = sp[j], tan = (j > 0 ? sp[j - 1] - p : p - sp[j + 1]).normalized, n2 = new Vector2(-tan.y, tan.x); float f = j / (float)(N - 1), ww = w * (.5f - .38f * f);
+                        b.Quad(FxShape.Shade, p, new Vector2(ww * 1.9f, ww * 1.1f), Ang(tan), A(Navy, .5f), 0, Seed + j);
                         for (int side = -1; side <= 1; side += 2)
-                            Drip(b, p, n2 * side * 2.2f + Vector2.up * 2.4f, 10, (now * 1.7f + j * .2f) % .5f, .5f, .1f, Foam, Seed + j + side);
+                        {
+                            Vector2 q = p + n2 * side * (ww * 1.25f + .1f * Mathf.Sin(now * 9 + j));
+                            b.Quad(FxShape.Smoke, q, ww * .55f + .12f, 0, A(new Color(.8f, .95f, 1f), .5f), now * .6f + j, Seed + j + side);
+                            Glint(b, q, .1f, Foam, .7f * (.5f + .5f * Mathf.Sin(now * 7 + j * 1.3f + side)), j * 30);
+                        }
+                    }
+                Color outl = new Color(.01f, .04f, .1f), skin = new Color(.06f, .38f, .58f), back = new Color(.35f, .75f, .9f), spine = new Color(.04f, .22f, .38f);
+                if (first >= 0 && last > first)
+                {
+                    int n = 0; for (int j = last; j >= first; j--) CP[n++] = sp[j];
+                    float wTail = w * (.5f - .42f * last / (float)(N - 1)), wHead = w * (.5f - .38f * first / (float)(N - 1));
+                    // the crest: short dark spines raking back along the top of the body
+                    for (int j = first + 2; j < last; j += 2)
+                    {
+                        Vector2 p = sp[j], tan = (sp[j - 1] - p).normalized, n2 = new Vector2(-tan.y, tan.x); if (n2.y < 0) n2 = -n2;
+                        float ww = w * (.5f - .38f * j / (float)(N - 1));
+                        b.Quad(Shard, p + n2 * ww * .85f - tan * ww * .2f, Fit(new Vector2(ww * .55f, ww * .16f)), Ang(-tan + n2 * .6f), A(spine, 1), 0, Seed + j, 0);
+                    }
+                    TubeDraw(b, n, wTail, wHead, outl, skin, back, 1, 2, Seed, .06f);
+                }
+                // the head
+                if (first == 0)
+                {
+                    Vector2 p = sp[0], tan = (sp[0] - sp[1]).normalized, n2 = new Vector2(-tan.y, tan.x); if (n2.y < 0) n2 = -n2;
+                    float sz = w * .62f, ta = Ang(tan), jaw = .5f + .5f * Mathf.Sin(now * 9);
+                    Color belly = new Color(.55f, .88f, .9f);
+                    // bow waves: two foaming lines spreading back from the snout on both sides, spray thrown off the bow
+                    for (int side = -1; side <= 1; side += 2)
+                    {
+                        Vector2 prev = p + tan * sz * 1.2f;
+                        for (int s = 1; s <= 7; s++)
+                        {
+                            Vector2 q = p + tan * sz * (1.2f - s * .9f) + n2 * side * (sz * .7f + s * .42f) + Vector2.up * .06f * Mathf.Sin(now * 8 + s);
+                            b.Link(prev, q, .11f * (1 - s / 9f), A(Foam, .85f * (1 - s / 8f)), Seed + s + side * 9, .4f);
+                            if (s % 2 == 0) b.Quad(FxShape.Smoke, q, .22f + s * .05f, 0, A(new Color(.85f, .97f, 1f), .5f * (1 - s / 8f)), now + s, Seed + s + side);
+                            prev = q;
+                        }
+                        for (int k = 0; k < 4; k++) Drip(b, p + tan * sz, n2 * side * (1.6f + .5f * k) + tan * 1.2f + Vector2.up * 2.4f, 10, (now * 2.2f + k * .11f) % .45f, .45f, .09f, Foam, Seed + k + side * 7);
+                    }
+                    Solid(b, p + tan * sz * .75f + n2 * sz * .08f, new Vector2(sz * .62f + .07f, sz * .36f + .07f), ta + 8, outl, 1);
+                    Solid(b, p + tan * sz * .65f - n2 * sz * (.2f + .08f * jaw), new Vector2(sz * .48f + .07f, sz * .16f + .07f), ta - 10 - 12 * jaw, outl, 1);
+                    Solid(b, p + tan * sz * .65f - n2 * sz * (.2f + .08f * jaw), new Vector2(sz * .48f, sz * .16f), ta - 10 - 12 * jaw, belly, 1);
+                    Solid(b, p + tan * sz * .75f + n2 * sz * .08f, new Vector2(sz * .62f, sz * .36f), ta + 8, skin, 1);
+                    Solid(b, p + tan * sz * .8f + n2 * sz * .22f, new Vector2(sz * .44f, sz * .1f), ta + 8, back, 1);
+                    for (int side = -1; side <= 1; side += 2)
+                    {
+                        b.Quad(Shard, p - tan * sz * .05f + n2 * (sz * .5f + side * sz * .12f), Fit(new Vector2(sz * .5f + .05f, sz * .14f + .04f)), ta + 160 + side * 18, A(outl, 1), 0, Seed + side, 0);
+                        b.Quad(Shard, p - tan * sz * .05f + n2 * (sz * .5f + side * sz * .12f), Fit(new Vector2(sz * .5f, sz * .14f)), ta + 160 + side * 18, A(new Color(.85f, .8f, .65f), 1), 0, Seed + side, 0);
+                    }
+                    Vector2 eye = p + tan * sz * .62f + n2 * sz * .2f;
+                    Solid(b, eye, new Vector2(sz * .13f, sz * .11f), ta, outl, 1);
+                    b.Quad(FxShape.Glow, eye, sz * .32f, A(new Color(1f, .85f, .2f), .9f), 0, Seed);
+                    Glint(b, eye, sz * .2f, new Color(1f, .95f, .5f), 1, now * 90);
                 }
                 for (int k = 0; k < 36; k++)
                 {
                     float s = len * H(Seed, k + 40), a = (head - s) / 3f; if (a <= 0 || a >= 1) continue;
-                    Vector2 p = From + dir * s + nrm * (H(Seed, k + 60) - .5f) * w * 3.2f;
+                    Vector2 p = From + dir * s + nrm * (H(Seed, k + 60) - .5f) * w * 2.6f;
                     b.Quad(Bubble, p, .07f + .07f * H(Seed, k), A(Foam, .9f * (1 - a)), 0, Seed + k);
                 }
             }
         }
 
-        /// <summary>Step 8 weather. Warm sea rain: the arena tints aqua, straight silver-blue rain falls, drops bounce up where they land, slow bands of light roll across like a tide.</summary>
+        /// <summary>Step 8 weather. Warm sea rain: a light aqua tint, slanted silver-blue rain, puddles that ring with drops, slow bands of
+        /// rippling light (like sun through waves) rolling across the floor, and now and then a soft swell of spray mist drifting past.</summary>
         private sealed class Rain : FxEffect
         {
             protected override float Life => 2f;
@@ -286,23 +325,46 @@ namespace ArcaneBrigade
             {
                 float on = Env(this, now, 2.2f, 1.2f); if (on <= 0) return;
                 Rect a = Arena; float H0 = a.height + 4;
+                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(0, .08f, .14f), .18f * on), 0, Seed);
+                // bands of rippling light rolling slowly across the floor
+                for (int k = 0; k < 4; k++)
+                {
+                    float u = (H(Seed, k + 800) + now * .045f) % 1, x = a.xMin - 3 + u * (a.width + 6);
+                    for (int j = 0; j < 6; j++)
+                    {
+                        Vector2 p = new Vector2(x + Mathf.Sin(j * 1.3f + now * .8f + k) * .8f, a.yMin + a.height * (j + .5f) / 6f);
+                        b.Quad(FxShape.Glow, p, new Vector2(1.1f, 1.3f), 15, A(Aqua, .14f * on * Mathf.Sin(u * 3.14f)), 0, Seed);
+                        Glint(b, p + new Vector2(Mathf.Sin(now * 1.7f + j * 2.3f + k) * .9f, Mathf.Cos(now * 1.3f + j) * .5f), .14f, Foam, .8f * on * Mathf.Sin(u * 3.14f) * (.5f + .5f * Mathf.Sin(now * 7 + j * 3)), now * 60);
+                    }
+                }
+                // spray mist drifting past in soft swells
                 for (int k = 0; k < 6; k++)
                 {
                     float u = (H(Seed, k + 500) + now * .05f) % 1; Vector2 p = new Vector2(a.xMin - 2 + u * (a.width + 4), a.yMin + a.height * H(Seed, k + 501));
-                    Grit(b, p, 1.4f + .6f * H(Seed, k + 502), new Color(.6f, .85f, .95f), .2f * on * Mathf.Sin(u * 3.14f), now + k, Seed + k);
+                    Puff(b, p, 1.3f + .5f * H(Seed, k + 502), new Color(.6f, .85f, .95f), .22f * on * Mathf.Sin(u * 3.14f), now * .1f + k, Seed + k);
                 }
-                for (int k = 0; k < 90; k++)
+                // puddles: dark wet patches ringing with drops
+                for (int k = 0; k < 10; k++)
+                {
+                    Vector2 p = new Vector2(a.xMin + a.width * (.05f + .9f * H(Seed, k + 700)), a.yMin + a.height * (.08f + .8f * H(Seed, k + 710)));
+                    float sz = .6f + .5f * H(Seed, k + 720);
+                    b.Floor(FxShape.Shade, p, sz, A(new Color(0, .04f, .08f), .4f * on), 0, Seed + k);
+                    b.Quad(FxShape.Glow, p, new Vector2(sz * .9f, sz * .3f), 0, A(Aqua, .2f * on), 0, Seed + k);
+                    for (int j = 0; j < 1; j++) { float ru = (now * 1.1f + H(Seed, k + 730 + j)) % 1; b.Floor(FxShape.Shock, p + new Vector2((H(Seed, k + 740 + j) - .5f) * sz, 0), .3f * sz + .12f, A(Foam, .55f * on), ru, Seed + k + j); }
+                }
+                // the rain
+                for (int k = 0; k < 120; k++)
                 {
                     float sp = 15 + 5 * H(Seed, k + 300), u = (H(Seed, k) + now * sp / H0) % 1;
-                    Vector2 p = new Vector2(a.xMin + a.width * H(Seed, k + 150) + u * .3f, a.yMax + 2 - u * H0);
-                    b.Beam(p, p + new Vector2(.06f, 1f), .028f, A(new Color(.6f, .9f, 1f), .5f * on), 0, k, 0);
-
+                    Vector2 p = new Vector2(a.xMin + a.width * H(Seed, k + 150) + u * .5f, a.yMax + 2 - u * H0);
+                    b.Beam(p, p + new Vector2(-.12f, 1.1f), .034f, A(new Color(.6f, .9f, 1f), .62f * on), 0, k, 0);
                 }
-                for (int k = 0; k < 34; k++)
+                // drops landing: a little ring and two droplets bouncing up
+                for (int k = 0; k < 36; k++)
                 {
                     float cyc = .55f + .4f * H(Seed, k + 9), ph = (now + H(Seed, k) * cyc) / cyc; int n = Mathf.FloorToInt(ph); float u = ph - n;
                     Vector2 p = new Vector2(a.xMin + a.width * H(Seed + n, k + 3), a.yMin + a.height * H(Seed + n, k + 4));
-                    b.Floor(FxShape.Glow, p, .5f, A(Aqua, .35f * on * (1 - u)), 0, Seed);
+                    b.Floor(FxShape.Shock, p, .28f, A(Foam, .5f * on), u, Seed + k);
                     for (int j = -1; j <= 1; j += 2) Drip(b, p, new Vector2(j * 1f, 2.2f), 12, u * .38f, .38f, .08f, Foam, Seed + k + j);
                 }
             }

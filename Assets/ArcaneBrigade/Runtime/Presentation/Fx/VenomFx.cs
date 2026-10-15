@@ -46,6 +46,15 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>A billow of gas with volume: a dark murky underside, the toxic body, and pale lit caps up and to the left.</summary>
+        private static void Billow(FxBatch b, Vector2 p, float sz, Color body, float a, float prog, int seed)
+        {
+            if (a <= .003f) return;
+            b.Quad(FxShape.Smoke, p + new Vector2(.08f, -.22f) * sz, new Vector2(sz * 1.1f, sz * .8f), 0, A(Murk * 1.4f, .85f * a), prog, seed);
+            b.Quad(FxShape.Smoke, p, sz, 0, A(body, .85f * a), prog + .3f, seed + 1);
+            b.Quad(FxShape.Smoke, p + new Vector2(-.25f, .28f) * sz, sz * .55f, 0, A(Color.Lerp(body, new Color(.85f, 1f, .7f), .5f), .6f * a), prog + .6f, seed + 2);
+        }
+
         /// <summary>Little carrion flies buzzing in loops over something rotten: dark specks with a wing glint.</summary>
         private static void Flies(FxBatch b, Vector2 at, float r, float now, float on, int seed, int n)
         {
@@ -79,29 +88,51 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Trait on an enemy: the flesh rots. Sickly bubbles swell out of a spreading puddle of ooze and pop, drips fall from above.</summary>
+        /// <summary>Trait on an enemy: the flesh rots. A sludge puddle spreads wide under it with a glowing rim, one big boil swells on
+        /// the target and bursts in a spray, a thick column of sickly gas billows up, bubbles swell and pop all over the puddle, drips
+        /// fall into it and flies buzz round.</summary>
         private sealed class Rot : FxEffect
         {
-            protected override float Life => 1.9f;
+            protected override float Life => 2.0f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius * 1.15f;
-                float on = Rise(t, 0, .2f), off = Fade(t, 1.1f, 1.9f);
-                b.Floor(FxShape.Shade, at, r * 1.5f, A(Murk, .7f * on * off), 0, Seed);
-                b.Floor(FxShape.Smoke, at, r * (.5f + .7f * EaseOut(t * 1.6f)), A(Slime, .75f * on * off), t * .5f, Seed);
-                b.Floor(FxShape.Smoke, at + new Vector2(.3f, -.1f), r * (.35f + .6f * EaseOut(t * 1.3f)), A(Purple * .6f, .7f * on * off), t * .4f, Seed + 4);
-                b.Floor(FxShape.Glow, at, r * 1.1f, A(Toxic, .3f * on * off), 0, Seed);
-                // dark rot blotches crawling on the target
-                for (int k = 0; k < 4; k++) b.Quad(FxShape.Smoke, at + new Vector2((H(Seed, k) - .5f) * r * .9f, .2f + H(Seed, k + 9) * .8f), .4f + .25f * H(Seed, k + 3), 0, A(Murk, .85f * on * off), t, Seed + k);
-                for (int k = 0; k < 18; k++)
+                Vector2 at = At; float r = Mathf.Max(1.5f, Radius * 1.5f);
+                float on = Rise(t, 0, .2f), off = Fade(t, 1.2f, 2f), spread = EaseOut(Rise(t, 0, .6f));
+                b.Floor(FxShape.Shade, at, r * 1.35f * (.5f + .5f * spread), A(Murk, .85f * on * off), 0, Seed);
+                b.Floor(FxShape.Smoke, at, r * (.55f + .6f * spread), A(Slime, .8f * on * off), t * .5f, Seed);
+                b.Floor(FxShape.Smoke, at + new Vector2(.3f, -.1f), r * (.4f + .5f * spread), A(Purple * .6f, .75f * on * off), t * .4f, Seed + 4);
+                b.Floor(FxShape.Glow, at, r * 1.2f * (.5f + .5f * spread), A(Toxic, .35f * on * off), 0, Seed);
+                // the boil: swells on the target, wobbling, then bursts in a spray of ooze and a puff
+                float boil = Rise(t, 0, .4f), burst = Rise(t, .4f, .9f); Vector2 bc = at + Vector2.up * .55f;
+                if (boil < 1)
                 {
-                    Vector2 root = at + new Vector2((H(Seed, k + 20) - .5f) * 2 * r * .9f, (H(Seed, k + 40) - .5f) * r * .5f);
-                    float u = (t - H(Seed, k + 60) * .8f) / (.75f + .35f * H(Seed, k + 80));
-                    PoppingBubble(b, root, .12f + .1f * H(Seed, k + 100), u, Pick(Seed, k), Seed + k * 3, 1.5f + H(Seed, k + 5));
+                    float s = .2f + .5f * EaseOut(boil), wob = 1 + .1f * Mathf.Sin(t * 30);
+                    b.Quad(FxShape.Glow, bc, s * 2f, A(Toxic, .4f), 0, Seed);
+                    b.Quad(Bubble, bc, new Vector2(s * wob, s / wob), 0, A(Toxic, 1.1f), t, Seed, 0);
                 }
-                Steam(b, at, r, now, on * off, Seed + 200, 6);
-                Flies(b, at, r, now, on * off, Seed + 300, 4);
-                // drips: heavy droplets falling out of the sky into the puddle, each leaving a tiny splash
+                else if (burst < 1)
+                {
+                    b.Quad(FxShape.Glow, bc, .9f * (1 - burst), A(Toxic, .6f * (1 - burst)), 0, Seed);
+                    for (int k = 0; k < 18; k++)
+                    {
+                        Vector2 d = Dir(Seed + 2, k, 18, .9f); Vector2 p = bc + d * r * .9f * EaseOut(burst) + Vector2.down * 1.6f * burst * burst;
+                        b.Quad(Drop, p, .09f + .05f * H(Seed, k), Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg - 90 + burst * 140, A(k % 3 == 0 ? Purple : Toxic, 1.1f * (1 - burst)), 0, Seed + k);
+                    }
+                }
+                // the column of sickly gas
+                for (int k = 0; k < 7; k++)
+                {
+                    float u = (t * .55f + k / 7f) % 1, a = Mathf.Sin(u * Mathf.PI) * on * off;
+                    Vector2 p = at + new Vector2(Mathf.Sin(u * 5 + k) * .35f + (H(Seed, k + 70) - .5f) * r * .6f, .3f + u * 2.6f);
+                    Billow(b, p, .35f + .45f * u, k % 3 == 0 ? Purple * .8f : Slime, .8f * a, u + k, Seed + k * 3 + 70);
+                }
+                for (int k = 0; k < 22; k++)
+                {
+                    Vector2 root = at + new Vector2((H(Seed, k + 20) - .5f) * 2 * r * .95f, (H(Seed, k + 40) - .5f) * r * .55f);
+                    float u = (t - H(Seed, k + 60) * .9f) / (.75f + .35f * H(Seed, k + 80));
+                    PoppingBubble(b, root, .14f + .14f * H(Seed, k + 100), u, Pick(Seed, k), Seed + k * 3, 1.3f + H(Seed, k + 5));
+                }
+                Flies(b, at, r, now, on * off, Seed + 300, 6);
                 for (int k = 0; k < 8; k++)
                 {
                     float born = .1f + H(Seed, k + 120) * .8f, u = (t - born) / .55f; if (u <= 0 || u > 1.5f) continue;
@@ -112,40 +143,45 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Trait (step 8): the pandemic. A towering wall of fog rolls over the whole arena; in its wake giant spore pods swell and burst
-        /// into umbrellas of toxic droplets.</summary>
+        /// <summary>Trait (step 8): the pandemic. Two towering walls of toxic fog roll out from the hero, one each way, across the whole
+        /// arena: billowing gas with lit fronts and a glowing leading edge, spores flung ahead; a thin sickly haze lingers behind, and in
+        /// their wake giant spore pods swell and burst into umbrellas of droplets.</summary>
         private sealed class Pandemic : FxEffect
         {
-            protected override float Life => 3.6f;
+            protected override float Life => 3.4f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Rect a = Arena; float sweep = 2.2f, w = Mathf.Clamp01(t / sweep), front = Mathf.Lerp(a.xMin - 3.5f, a.xMax + 3.5f, w * w * (3 - 2 * w));
-                float outT = Fade(t, 2.6f, 3.6f);
-                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(Mauve, .2f * Rise(t, 0, .5f) * outT), 0, Seed);
-                for (int k = 0; k < 22; k++)
+                Rect a = Arena; Vector2 o = At; float outT = Fade(t, 2.4f, 3.4f), sweep = 1.6f;
+                float reach = Mathf.Max(o.x - a.xMin, a.xMax - o.x) + 2.5f, front = reach * EaseOut(Mathf.Clamp01(t / sweep));
+                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(Mauve, .16f * Rise(t, 0, .5f) * outT), 0, Seed);
+                for (int side = -1; side <= 1; side += 2)
                 {
-                    float y = a.yMin - .3f + (k / 21f) * (a.height + .6f), lag = H(Seed, k) * 2.6f, wob = Mathf.Sin(k * 1.7f + now * 3) * .35f;
-                    Vector2 p = new Vector2(front - lag + wob, y);
-                    float trail = Mathf.Clamp01(1 - (lag * .18f)) * outT;
-                    b.Quad(FxShape.Smoke, p, new Vector2(1.5f + .6f * H(Seed, k + 9), 1.05f), 0, A(k % 2 == 0 ? Slime : Mauve * 2.2f, .8f * trail), now * .15f + k, Seed + k);
-                    if (k % 2 == 0) b.Quad(FxShape.Glow, p + Vector2.right * .5f, 1.0f, A(k % 4 == 0 ? Purple : Toxic, .28f * trail), 0, Seed);
-                    // spores flicked off the front of the wall
-                    float su = (now * 1.3f + H(Seed, k + 50)) % 1;
-                    Glint(b, p + new Vector2(.8f + 1.6f * su, Mathf.Sin(su * 5 + k) * .4f), .16f, k % 3 == 0 ? Purple : Toxic, .9f * trail * (1 - su), now * 50 + k * 20);
+                    float fx = o.x + side * front; float edgeA = outT * Fade(t, sweep, sweep + .6f);
+                    // the wall: a column of gas billows the whole height of the arena, rolling forward
+                    for (int k = 0; k < 16; k++)
+                    {
+                        float y = a.yMin - .3f + (k / 15f) * (a.height + .6f), lag = H(Seed + side, k) * 1.3f, wob = Mathf.Sin(k * 1.7f + now * 3) * .3f;
+                        Vector2 p = new Vector2(fx - side * (lag + .6f) + wob, y);
+                        Billow(b, p, 1.0f + .35f * H(Seed + side, k + 9), k % 2 == 0 ? Slime : Mauve * 2.6f, .9f * outT, now * .2f + k, Seed + k * 3 + (side + 1) * 50);
+                        if (k % 2 == 0) b.Quad(FxShape.Glow, p + Vector2.right * side * .7f, 1.0f, A(k % 4 == 0 ? Purple : Toxic, .3f * edgeA), 0, Seed);
+                        float su = (now * 1.3f + H(Seed, k + 50)) % 1;
+                        Glint(b, p + new Vector2(side * (.9f + 1.8f * su), Mathf.Sin(su * 5 + k) * .4f), .16f, k % 3 == 0 ? Purple : Toxic, .9f * edgeA * (1 - su), now * 50 + k * 20);
+                    }
+                    for (int k = 0; k < 14; k++)
+                        b.Quad(FxShape.Glow, new Vector2(fx + side * .4f, a.yMin + a.height * (k + .5f) / 14f), new Vector2(.55f, 1.2f), 0, A(Toxic, .32f * edgeA), 0, Seed);
+                    // a thin haze in the wake
+                    for (int k = 0; k < 5; k++)
+                    {
+                        float x = fx - side * (2.6f + k * 3.2f); if ((x - o.x) * side < 0) break;
+                        b.Floor(FxShape.Dust, new Vector2(x, a.center.y + Mathf.Sin(k * 2.1f + side) * 3f), 2f, A(k % 2 == 0 ? Slime * .7f : Mauve * 2f, .28f * outT), now * .1f + k, Seed + k + side * 9);
+                    }
                 }
-                // a sickly haze lingers in the wake of the wall, and a bright toxic edge leads it
-                for (int k = 0; k < 7; k++)
-                {
-                    float x = front - 2.2f - k * 3.4f; if (x < a.xMin - 3) break;
-                    b.Floor(FxShape.Dust, new Vector2(x, a.center.y + Mathf.Sin(k * 2.1f) * 3f), 2.2f, A(k % 2 == 0 ? Slime * .7f : Mauve * 2f, .3f * outT), now * .1f + k, Seed + k);
-                }
-                for (int k = 0; k < 9; k++)
-                    b.Quad(FxShape.Glow, new Vector2(front + .7f, a.yMin + a.height * (k + .5f) / 9f), new Vector2(.6f, .8f), 0, A(Toxic, .45f * outT * Fade(t, sweep, sweep + .4f)), 0, Seed);
-                // spore pods in the wake of the wall
-                for (int k = 0; k < 14; k++)
+                // spore pods swell where the walls have passed and burst
+                for (int k = 0; k < 16; k++)
                 {
                     Vector2 p = new Vector2(a.xMin + 1 + (a.width - 2) * H(Seed, k + 20), a.yMin + 1 + (a.height - 2) * H(Seed, k + 40));
-                    float born = (p.x - a.xMin + 3.5f) / (a.width + 7) * sweep + .1f, u = (t - born) / 1.0f;
+                    float dist = Mathf.Abs(p.x - o.x), passT = dist < .5f ? 0 : Mathf.Clamp01(dist / reach); passT = 1 - Mathf.Sqrt(1 - passT);
+                    float born = passT * sweep + .1f, u = (t - born) / .9f;
                     if (u <= 0 || u > 1.5f) continue;
                     Color c = Pick(Seed, k);
                     if (u < 1)
@@ -158,11 +194,11 @@ namespace ArcaneBrigade
                     else
                     {
                         float s = (u - 1) / .5f;
-                        b.Quad(FxShape.Glow, p, 1.0f * (1 - s), A(White, .5f * (1 - s)), 0, Seed);
+                        b.Quad(FxShape.Glow, p, 1.0f * (1 - s), A(c, .5f * (1 - s)), 0, Seed);
                         b.Floor(FxShape.Smoke, p, .9f * EaseOut(s) + .2f, A(c * .8f, .65f * (1 - s)), s, Seed + k);
-                        for (int d = 0; d < 16; d++)
+                        for (int d = 0; d < 14; d++)
                         {
-                            Vector2 dir = Dir(Seed + k, d, 16, .9f); float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                            Vector2 dir = Dir(Seed + k, d, 14, .9f); float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
                             b.Quad(Drop, p + dir * 1.2f * EaseOut(s) + Vector2.up * (.7f * s * (1 - s)), .09f, ang + s * 160, A(c, 1.1f * (1 - s)), 0, Seed + d);
                         }
                     }
@@ -191,8 +227,26 @@ namespace ArcaneBrigade
                     b.Quad(Drop, p, .62f, u * 760, A(Glass, 1.2f), u, Seed, 1);
                     return;
                 }
-                float flash = Fade(t, 0, .25f);
-                b.Quad(FxShape.Glow, at + Vector2.up * .4f, r * 1.8f, A(Toxic, .8f * flash), 0, Seed);
+                float flash = Fade(t, 0, .18f);
+                b.Quad(FxShape.Glow, at + Vector2.up * .4f, r * .8f, A(Slime, .55f * flash), 0, Seed);
+                // the splat: a dark green puddle with a lumpy rim and blobs thrown round it, and a crown of liquid splashing up
+                float sp = EaseOut3(Rise(t, 0, .25f)), pf = Fade(t, 1.2f, 1.9f);
+                b.Floor(FxShape.Shade, at, r * 1.05f * sp, A(Murk, .85f * pf), 0, Seed + 11);
+                b.Floor(FxShape.Smoke, at, r * .95f * sp, A(Slime * .7f, .8f * pf), t, Seed + 12);
+                for (int k = 0; k < 9; k++)
+                {
+                    Vector2 d = Dir(Seed + 13, k, 9, .6f);
+                    b.Floor(FxShape.Shade, at + d * r * (.9f + .25f * H(Seed, k + 30)) * sp, .22f + .12f * H(Seed, k + 31), A(Murk, .85f * pf), 0, Seed + k);
+                    b.Floor(Drop, at + d * r * (.9f + .25f * H(Seed, k + 30)) * sp, .16f + .08f * H(Seed, k + 31), A(Toxic, .9f * pf), 0, Seed + k);
+                }
+                float cr = Rise(t, .02f, .55f);
+                if (cr < 1)
+                    for (int k = 0; k < 14; k++)
+                    {
+                        float ang = k / 14f * 6.2832f; Vector2 base0 = at + new Vector2(Mathf.Cos(ang) * r * .55f, Mathf.Sin(ang) * r * .34f);
+                        float h = (.9f + .5f * H(Seed, k + 40)) * Mathf.Sin(cr * Mathf.PI);
+                        b.Quad(Drop, base0 + Vector2.up * h * .5f + new Vector2(Mathf.Cos(ang), 0) * cr * .4f, new Vector2(.12f, .1f + h * .45f), -Mathf.Cos(ang) * 18, A(k % 3 == 0 ? Purple : Toxic, 1.05f * (1 - cr * cr)), 0, Seed + k + 40);
+                    }
                 b.Floor(FxShape.Smoke, at, r * (.5f + .7f * EaseOut(t * 2.2f)), A(Slime, .75f * Fade(t, .7f, 1.9f)), t, Seed);
                 b.Floor(FxShape.Glow, at, r * 1.3f, A(Toxic, .35f * Fade(t, .2f, 1.4f)), 0, Seed);
                 b.Floor(FxShape.Smoke, at, r * 1.2f, A(Mauve * 1.5f, .45f * Fade(t, .5f, 1.9f)), t * .4f, Seed + 3);
@@ -223,7 +277,7 @@ namespace ArcaneBrigade
                 {
                     float born = k * .06f, u = Mathf.Clamp01((t - born) / 1.2f); if (u <= 0 || u >= 1) continue;
                     float ang = k * 0.9f; Vector2 p = at + new Vector2(Mathf.Cos(ang) * r * .5f * u, 1.2f * EaseOut(u) + (k < 3 ? 0 : 1) * .9f * u + Mathf.Sin(ang) * .3f * u);
-                    b.Quad(FxShape.Smoke, p, r * (.38f + .5f * u), A(k % 2 == 0 ? Slime : Purple * .8f, .75f * (1 - u)), u, Seed + k);
+                    Billow(b, p, r * (.34f + .45f * u), k % 2 == 0 ? Slime : Purple * .8f, .85f * (1 - u), u, Seed + k * 3);
                 }
                 for (int k = 0; k < 5; k++) PoppingBubble(b, at + new Vector2((H(Seed, k + 60) - .5f) * r * 1.4f, 0), .12f + .07f * H(Seed, k), (t - .2f - k * .1f) / .8f, Pick(Seed, k), Seed + k, 1.6f);
             }
@@ -252,12 +306,12 @@ namespace ArcaneBrigade
                 {
                     float ang = now * (k % 2 == 0 ? .7f : -.5f) + k * 0.57f, rad = r * (.25f + .6f * H(Seed, k));
                     Vector2 p = at + new Vector2(Mathf.Cos(ang) * rad, Mathf.Sin(ang) * rad * .62f + .35f);
-                    b.Quad(FxShape.Smoke, p, r * (.45f + .2f * H(Seed, k + 7)), 0, A(k % 3 == 0 ? Purple * .75f : Slime, .75f * on), now * .2f + k, Seed + k);
+                    Billow(b, p + Vector2.up * .25f * H(Seed, k + 9), r * (.36f + .16f * H(Seed, k + 7)), k % 3 == 0 ? Purple * .75f : Slime, .9f * on, now * .2f + k, Seed + k * 3);
                 }
                 for (int k = 0; k < 7; k++)
                 {
                     float u = (now * .45f + H(Seed, k + 30)) % 1; Vector2 p = at + new Vector2((H(Seed, k + 40) - .5f) * r * 1.3f, .2f) + new Vector2(Mathf.Sin(u * 5 + k) * .4f, u * 3.2f);
-                    b.Quad(FxShape.Smoke, p, r * (.3f + .35f * u), A(Slime, .55f * on * (1 - u)), u, Seed + k + 20);
+                    Billow(b, p, r * (.24f + .3f * u), Slime, .7f * on * (1 - u), u, Seed + k * 3 + 60);
                 }
                 for (int k = 0; k < 8; k++)
                 {

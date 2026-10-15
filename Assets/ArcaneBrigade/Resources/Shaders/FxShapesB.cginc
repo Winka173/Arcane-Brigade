@@ -1,7 +1,7 @@
 // Shapes 30-39 of the FxProc shader (worker B: Venom, Starlight, Dusk, Carnival, Court).
 // 30 bubble (par 0) / balloon (par 1)   31 star (par = points, default 5)   32 teardrop (par 0) / potion flask (par 1)
 // 33 wax seal rosette                    34 crown                            35 rift (lens slit, q = how open)
-// 36 noisy ring (par 0..1 width), corona rays (par 1..5), crescent moon (par >= 5)
+// 36 noisy ring (par 0..1 width), corona rays (par 1..5), crescent moon (par >= 5), searchlight cone (par >= 10, source at -y)
 // 37 wavy ribbon (par = waves)           38 card (par 0) / unrolling parchment (par 1, q = unrolled) / heraldic banner cloth (par 2) / its gold trim (par 3)
 // 39 comet streak: head at u.x = .62, tail fades towards -x
 #ifndef FX_SHAPES_B
@@ -83,7 +83,17 @@ void ShapeB(float mode, float2 u, float q, float seed, float par, float r, inout
     else if (mode < 36.5)
     {
         float nz = fbm(float2(a * 3 + seed + q * 3, r * 4 - q * 2));
-        if (par >= 5)
+        if (par >= 10)
+        {
+            // a searchlight cone: born at the lamp (u.y = -1), widening upward, a soft gaussian across (never a hard column edge),
+            // a hot core line, motes of dust drifting in the light, fading out well before the far end of the quad
+            float y01 = saturate(u.y * .5 + .5), w = lerp(.05, .78, y01);
+            float x = u.x / w, across = exp(-x * x * 2.2), core = exp(-x * x * 18) * (1 - y01);
+            float motes = smoothstep(.72, .95, vnoise(float2(u.x * 14 + seed, u.y * 9 - q * 3))) * across;
+            I = (across * (.32 + .18 * vnoise(float2(x * 2 + seed, u.y * 2 - q))) + core * .5 + motes * .35) * smoothstep(1, .55, y01) * smoothstep(0, .06, y01) * (_Matter > .5 ? 0 : 1); // light only, no solid body
+            hot = float3(1, 1, .92);
+        }
+        else if (par >= 5)
         {
             float outer = smoothstep(.86, .82, r), inner = smoothstep(.8, .76, length(u - float2(.16, .05)));
             I = (saturate(outer - inner) * (.6 + .4 * (1 - r)) + exp(-pow((r - .86) / .03, 2)) * .5) * smoothstep(.97, .88, r);

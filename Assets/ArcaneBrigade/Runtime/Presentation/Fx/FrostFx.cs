@@ -70,70 +70,118 @@ namespace ArcaneBrigade
             private static FxShape Glow() => FxShape.Glow;
         }
 
-        /// <summary>A hammer blow on a frozen enemy: a white flash and a four-point starburst, glass cracks racing across the floor, nine chips of ice flung away spinning.</summary>
+        /// <summary>A faceted lump of ice: a navy ink copy a size bigger, then the facets (lit top-left) and a hint of light.</summary>
+        private static void Chunk(FxBatch b, Vector2 p, float size, float deg, Color c, float a, int seed)
+        {
+            if (a <= .003f) return;
+            b.Quad(Drop, p, Fit(new Vector2(size + .045f, size + .045f)), deg, A(new Color(.02f, .05f, .16f), a), 0, seed, 10);
+            b.Quad(Drop, p, Fit(new Vector2(size, size)), deg, A(c, a), 0, seed, 10);
+        }
+
+        /// <summary>A hammer blow on a frozen enemy: the ice block round it shows for a beat, a dark crack zig-zags across it with a
+        /// thin white line, then it splits into five big faceted chunks that slide apart and tumble, with chips, a puff of frost powder
+        /// and frost stars on the floor. No white glare: blue light only at the crack.</summary>
         private sealed class FrozenHit : FxEffect
         {
-            protected override float Life => 1.0f;
+            protected override float Life => 1.1f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                float r = Mathf.Clamp(Radius, 1f, 1.9f); Vector2 at = At;
-                b.Quad(FxShape.Glow, at, r * 1.6f, A(Snow, .6f * Fade(t, 0, .1f)), 0, Seed);
-                b.Quad(FxShape.Glow, at, r * 1.5f, A(Ice, .4f * Fade(t, 0, .6f)), 0, Seed);
-                Glint(b, at, r * 1.7f, Snow, Fade(t, 0, .35f), 45);
-                Glint(b, at, r * 1.2f, Snow, Fade(t, 0, .25f), 0);
-                b.Quad(FxShape.Cracks, at, new Vector2(r * 1.6f, r * 1f), 0, A(Snow, (.8f + .7f * Fade(t, .3f, .5f) * Rise(t, .22f, .3f)) * Fade(t, .2f, .95f)), 1, Seed, 1);
-                Puff(b, at + Vector2.up * (.2f + .5f * t), r * (.45f + .5f * t), new Color(.88f, .95f, 1f), .45f * Fade(t, .05f, .7f), t, Seed + 5);
-                Grit(b, at, r * (.7f + .5f * t), new Color(.85f, .93f, 1f), .4f * Fade(t, .3f, 1f), t, Seed + 6);
-                for (int k = 0; k < 12; k++)
+                float r = Mathf.Clamp(Radius, 1f, 1.6f); Vector2 at = At, c = at + Vector2.up * .45f;
+                float split = Rise(t, .12f, .14f), o = Fade(t, .75f, 1.1f);
+                b.Floor(FxShape.Glow, at, r * 1.2f, A(Deep, .45f * Fade(t, 0, .9f)), 0, Seed);
+                b.Floor(FxShape.Cracks, at, r * 1.1f, A(Snow, .75f * Fade(t, .3f, 1f) * Rise(t, .1f, .16f)), 1, Seed, 1);
+                // the block, whole until the crack has run across it
+                if (split < 1)
                 {
-                    Vector2 dd = Dir(Seed + 4, k, 12, .7f);
-                    Fleck(b, at + Vector2.up * .3f, new Vector2(dd.x * (2.5f + 2 * H(Seed, k + 40)), 1.5f + 3 * H(Seed, k + 41)), 9, t - .02f, .5f, .06f, k % 2 == 0 ? Snow : Ice, Seed + k + 40);
+                    Chunk(b, c, r * .95f, 8, Ice, .9f, Seed); b.Quad(FxShape.Glow, c, r * 1.1f, A(Deep, .3f), 0, Seed);
+                    float run = Rise(t, 0, .12f); Vector2 p0 = c + new Vector2(-r * .7f, r * .45f), prev = p0;
+                    for (int s = 1; s <= 6; s++)
+                    {
+                        float f = s / 6f; if (f > run + .01f) break;
+                        Vector2 p = Vector2.Lerp(p0, c + new Vector2(r * .65f, -r * .5f), f) + new Vector2(0, (s % 2 == 0 ? .12f : -.12f) * r);
+                        b.Link(prev, p, .07f, A(new Color(.02f, .05f, .16f), 1), Seed + s, 1); b.Link(prev, p, .035f, A(White, .9f), Seed + s, 1); prev = p;
+                    }
                 }
-                b.Floor(FxShape.Glow, at, r * 1.4f, A(Deep, .5f * Fade(t, 0, .8f)), 0, Seed);
-                for (int k = 0; k < 20; k++)
+                // the blow: a short blue star at the strike point, ice powder
+                Glint(b, c + new Vector2(-r * .55f, r * .4f), r * .9f, Ice, Fade(t, .05f, .3f), 20);
+                for (int k = 0; k < 4; k++)
                 {
-                    Vector2 dd = Dir(Seed, k, 20, .6f);
-                    Chip(b, at + Vector2.up * .2f, new Vector2(dd.x * (3 + 2 * H(Seed, k)), 2.5f + 3f * H(Seed, k + 7) + dd.y * 2), 11, t, .75f, .13f + .08f * H(Seed, k + 3), k % 2 == 0 ? Ice : Snow, Seed + k);
+                    float u = Rise(t, .1f + k * .04f, .9f); if (u <= 0 || u >= 1) continue;
+                    Puff(b, c + Dir(Seed + 2, k, 4, .6f) * r * (.3f + .6f * u) + Vector2.up * u * .5f, r * (.3f + .35f * u), new Color(.82f, .92f, 1f), .55f * (1 - u), u, Seed + 5 + k);
                 }
-                b.Quad(FxShape.Smoke, at + Vector2.up * .3f, r * (.7f + t), A(new Color(.75f, .88f, 1f), .35f * Fade(t, 0, .8f)), t, Seed);
+                Grit(b, at, r * (.7f + .5f * t), new Color(.85f, .93f, 1f), .45f * Fade(t, .3f, 1f), t, Seed + 6);
+                // five chunks slide apart, tip over and drop
+                if (split > 0)
+                    for (int k = 0; k < 5; k++)
+                    {
+                        Vector2 d = Dir(Seed + 7, k, 5, .8f); float u = t - .12f;
+                        Vector2 p = c + d * r * .35f + new Vector2(d.x * 2.2f, d.y * 1.2f + 1.6f) * u + Vector2.down * 6f * u * u;
+                        p.y = Mathf.Max(p.y, at.y - .2f + d.y * .3f);
+                        Chunk(b, p, r * (.36f + .1f * H(Seed, k)), 8 + d.x * u * 260, k % 2 == 0 ? Ice : Snow, o, Seed + k);
+                    }
+                for (int k = 0; k < 14; k++)
+                {
+                    Vector2 dd = Dir(Seed + 4, k, 14, .7f);
+                    Chip(b, c, new Vector2(dd.x * (2.5f + 2 * H(Seed, k + 40)), 1.5f + 2.5f * H(Seed, k + 41)), 10, t - .12f, .6f, .1f + .05f * H(Seed, k), k % 2 == 0 ? Snow : Ice, Seed + k + 40);
+                }
+                for (int k = 0; k < 5; k++) Glint(b, at + Pt(Seed, k + 60, r, r * .5f), .12f, Snow, Rise(t, .3f, .4f) * Fade(t, .7f, 1.1f) * (.5f + .5f * Mathf.Sin(t * 20 + k)), k * 40);
             }
         }
 
-        /// <summary>The frozen enemy bursts: a fountain of twenty-four big shards flung high and falling, a snowflake bloom on the floor, a spreading frost mist and flakes drifting up.</summary>
+        /// <summary>The frozen enemy bursts: an ice pillar heaves up, then blows apart into fourteen big faceted chunks thrown high that
+        /// crash down all over the footprint (each landing in a puff of frost powder), a low ring of powder rolls out, chips and glitter
+        /// rain and a column of snow dust rises.</summary>
         private sealed class Shatter : FxEffect
         {
-            protected override float Life => 1.8f;
+            protected override float Life => 1.9f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                float r = Mathf.Clamp(Radius, 1.4f, 3.2f); Vector2 at = At;
-                b.Quad(FxShape.Glow, at + Vector2.up * .4f, r * 1.7f, A(Snow, .6f * Fade(t, 0, .12f)), 0, Seed);
-                b.Quad(FxShape.Glow, at + Vector2.up * .4f, r * 1.5f, A(Ice, .4f * Fade(t, 0, .8f)), 0, Seed);
-                for (int k = 0; k < 12; k++)
+                float r = Mathf.Clamp(Radius, 1.4f, 2.4f); Vector2 at = At;
+                float heave = Overshoot(Rise(t, 0, .12f)) * (1 - Rise(t, .16f, .2f));
+                b.Floor(FxShape.Glow, at, r * 1.3f, A(Deep, .5f * Fade(t, 0, 1.5f)), 0, Seed);
+                b.Floor(FxShape.Shade, at, r * .8f, A(new Color(.01f, .03f, .1f), .5f * Fade(t, .8f, 1.8f)), 0, Seed + 1);
+                if (heave > 0)
+                    for (int k = 0; k < 5; k++)
+                    {
+                        float ang = 90 + (k - 2) * 16, h = r * (1.3f + .35f * (2 - Mathf.Abs(k - 2))) * heave;
+                        b.Quad(Shard, at + new Vector2((k - 2) * .3f, .1f) + Vec(ang) * h * .45f, new Vector2(h * .55f, h * .2f), ang, A(k % 2 == 0 ? Ice : Deep, .95f), 0, Seed + k);
+                    }
+                b.Quad(FxShape.Glow, at + Vector2.up * .8f, r * 1.1f, A(Ice, .55f * Fade(t, .15f, .45f) * Rise(t, .14f, .17f)), 0, Seed);
+                // the rolling ring of frost powder
+                float ring = EaseOut(Rise(t, .16f, 1.1f));
+                if (ring > 0 && ring < 1)
+                    for (int k = 0; k < 12; k++)
+                    {
+                        Vector2 p = at + Dir(Seed + 3, k, 12, .55f) * r * (.3f + 1f * ring);
+                        Puff(b, p + Vector2.up * .15f, r * (.22f + .2f * ring), new Color(.8f, .9f, 1f), .6f * (1 - ring), ring + k, Seed + k + 20);
+                    }
+                // snow dust column
+                for (int k = 0; k < 6; k++)
                 {
-                    float land = .55f + .6f * H(Seed, k + 50), a = (t - land) / .55f; if (a <= 0 || a >= 1) continue;
-                    Vector2 p = at + Pt(Seed, k + 50, r * 1.15f, r * .7f);
-                    Grit(b, p, .35f + .35f * a, new Color(.85f, .93f, 1f), .5f * (1 - a), a, Seed + k);
-                    Glint(b, p + Vector2.up * .1f, .28f * (1 - a), Snow, 1 - a, k * 40);
+                    float u = Rise(t, .18f + k * .05f, 1.5f); if (u <= 0 || u >= 1) continue;
+                    Puff(b, at + new Vector2((H(Seed, k + 30) - .5f) * r * .8f, .4f + u * 2.4f), r * (.25f + .3f * u), new Color(.75f, .87f, 1f), .5f * (1 - u), u, Seed + k + 30);
                 }
-                for (int k = 0; k < 16; k++)
+                // big chunks thrown up and crashing down, each landing in a puff
+                for (int k = 0; k < 14; k++)
                 {
-                    float u = Rise(t, .3f + H(Seed, k + 60) * .3f, 1.7f); if (u <= 0 || u >= 1) continue;
-                    Vector2 p = at + new Vector2((H(Seed, k + 61) - .5f) * r * 2f + Mathf.Sin(t * 3 + k) * .3f, 2.6f - u * 2.6f);
-                    Glint(b, p, .12f, Snow, .9f * (1 - u), t * 300 + k * 30);
+                    float u = t - .17f, life = .75f + .35f * H(Seed, k + 2); if (u <= 0) continue;
+                    Vector2 land = at + Pt(Seed, k + 50, r * 1.1f, r * .65f), from = at + Vector2.up * .6f;
+                    float h = 1.6f + 1.4f * H(Seed, k + 7);
+                    if (u < life)
+                    {
+                        float v = u / life; Vector2 p = Vector2.Lerp(from, land, v) + Vector2.up * (h * 4 * v * (1 - v));
+                        Chunk(b, p, .3f + .18f * H(Seed, k + 3), k * 40 + u * 400 * (k % 2 == 0 ? 1 : -1), k % 3 == 0 ? Snow : Ice, 1, Seed + k);
+                        continue;
+                    }
+                    float a = (u - life) / .6f; if (a >= 1) continue;
+                    Chunk(b, land, (.3f + .18f * H(Seed, k + 3)) * (1 - a * .3f), k * 40, k % 3 == 0 ? Snow : Ice, 1 - a * a, Seed + k);
+                    Puff(b, land + Vector2.up * .1f, .3f + .3f * a, new Color(.85f, .93f, 1f), .55f * (1 - a), a, Seed + k + 60);
+                    Glint(b, land + Vector2.up * .15f, .2f * (1 - a), Snow, 1 - a, k * 40);
                 }
-                b.Floor(Flake, at, r * 1.45f * EaseOut(Rise(t, 0, .45f)), A(Ice, .75f * Fade(t, .5f, 1.7f)), 0, Seed);
-                b.Floor(FxShape.Glow, at, r * 1.6f, A(Deep, .5f * Fade(t, 0, 1.5f)), 0, Seed);
-                b.Floor(FxShape.Smoke, at, r * (.5f + .9f * EaseOut(Rise(t, 0, .8f))), A(new Color(.7f, .85f, 1f), .5f * Fade(t, .1f, 1.4f)), t, Seed);
-                for (int k = 0; k < 40; k++)
+                for (int k = 0; k < 26; k++)
                 {
-                    Vector2 dd = Dir(Seed, k, 40, .55f);
-                    Chip(b, at + Vector2.up * .3f, new Vector2(dd.x * r * (1.6f + 1.2f * H(Seed, k)), 3f + 4.5f * H(Seed, k + 7) + dd.y * 2), 12, t, 1.15f + .4f * H(Seed, k + 2), .1f + .08f * H(Seed, k + 3), k % 3 == 0 ? Snow : (k % 3 == 1 ? Ice : Deep), Seed + k);
-                }
-                for (int k = 0; k < 8; k++)
-                {
-                    float u = Rise(t, .05f + .04f * k, 1.5f); if (u <= 0 || u >= 1) continue;
-                    Vector2 p = at + new Vector2((k - 3.5f) * r * .3f, .5f + u * (1.4f + .5f * H(Seed, k)));
-                    b.Quad(Flake, p, .2f + .08f * H(Seed, k + 4), t * 70 * (k % 2 == 0 ? 1 : -1), A(Snow, .8f * (1 - u)), 0, Seed + k, 0);
+                    Vector2 dd = Dir(Seed, k, 26, .55f);
+                    Chip(b, at + Vector2.up * .4f, new Vector2(dd.x * r * (1.4f + 1.2f * H(Seed, k)), 3f + 4f * H(Seed, k + 7) + dd.y * 2), 12, t - .16f, 1f + .4f * H(Seed, k + 2), .08f + .05f * H(Seed, k + 3), k % 3 == 0 ? Snow : (k % 3 == 1 ? Ice : Deep), Seed + k);
                 }
             }
         }
@@ -177,34 +225,39 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Step 8. Fourteen hailstones plunge slanted out of the sky onto the footprint, each with a white streak, and burst on the ground into a puff of snow, a frost splat and chips of ice.</summary>
+        /// <summary>Step 8. Fourteen faceted hailstones plunge slanted out of the sky onto the footprint, trailing white streaks; each
+        /// punches a dark dent with a star of cracks into the floor, bounces once and rolls to a stop as a lump of ice, kicking up a
+        /// puff of powder and chips.</summary>
         private sealed class Hail : FxEffect
         {
-            protected override float Life => 1.5f;
+            protected override float Life => 1.6f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 float r = Mathf.Max(1.6f, Radius); Vector2 at = At, slant = new Vector2(-3.2f, 8f);
                 if (t < 0) b.Floor(FxShape.Glow, at, r * 1.2f, A(Deep, .35f * EaseOut(pre)), 0, Seed);
-                for (int k = 0; k < 15; k++)
+                for (int k = 0; k < 14; k++)
                 {
                     Vector2 target = at + Pt(Seed, k, r * 1.05f, r * .65f); float li = -.15f + .65f * H(Seed, k + 9), fall = .4f, tt = (t - (li - fall)) / fall;
-                    float size = (k == 14 ? .75f : .3f + .2f * H(Seed, k + 2));
+                    float size = k == 13 ? .42f : .2f + .1f * H(Seed, k + 2); float spin = k * 37;
                     if (tt < 0) continue;
                     if (tt < 1)
                     {
                         Vector2 p = Vector2.Lerp(target + slant, target, tt * tt * .4f + tt * .6f);
-                        b.Link(p, p + slant.normalized * 1.8f, size * .2f, A(Snow, .7f), Seed + k, 1);
-                        b.Quad(FxShape.Glow, p, size * 2.2f, A(Ice, .55f), 0, Seed);
-                        for (int f = 0; f < 3; f++) b.Quad(Shard, p, new Vector2(size * .5f, size * .22f), tt * 200 + k * 30 + f * 60, A(f == 1 ? Snow : Ice, .95f), 0, Seed + k + f);
-                        b.Quad(FxShape.Glow, p, size * .8f, A(Snow, .6f), 0, Seed);
+                        b.Link(p, p + slant.normalized * 2f, size * .35f, A(Snow, .6f), Seed + k, 1);
+                        b.Quad(FxShape.Glow, p, size * 2.4f, A(Ice, .45f), 0, Seed);
+                        Chunk(b, p, size, spin + tt * 300, Ice, 1, Seed + k);
                         continue;
                     }
-                    float a = t - li; if (a > 1f) continue;
-                    b.Quad(FxShape.Glow, target, size * 2.6f, A(Snow, .4f * Fade(a, 0, .12f)), 0, Seed);
-                    b.Floor(Flake, target, size * 3f, A(Ice, .75f * Fade(a, .2f, 1f)), 0, Seed + k);
-                    b.Quad(FxShape.Smoke, target + Vector2.up * a * .6f, size * (2f + a * 2), A(new Color(.8f, .9f, 1f), .5f * Fade(a, 0, .7f)), a, Seed + k);
-                    Grit(b, target, size * (2.2f + 2f * a), new Color(.85f, .93f, 1f), .3f * Fade(a, .1f, .9f), a, Seed + k + 7);
-                    for (int j = 0; j < 6; j++) Chip(b, target, new Vector2((j - 2.5f) * 1.1f, 2.4f + H(Seed, k + j) * 2), 10, a, .6f, .07f + size * .2f, Ice, Seed + k * 5 + j);
+                    float a = t - li; if (a > 1.1f) continue;
+                    float o = Fade(a, .7f, 1.1f), hop = a < .35f ? .5f * size * 4 * (a / .35f) * (1 - a / .35f) : 0;
+                    Vector2 rest = target + new Vector2(-size * 1.6f * EaseOut(Rise(a, 0, .6f)), 0);
+                    b.Floor(FxShape.Shade, target, size * 2.2f, A(new Color(.01f, .03f, .1f), .6f * o), 0, Seed + k);
+                    b.Floor(FxShape.Cracks, target, size * 3.2f, A(Snow, .8f * o * Rise(a, 0, .05f)), 1, Seed + k, 2);
+                    b.Quad(FxShape.Glow, target, size * 2.4f, A(Ice, .5f * Fade(a, 0, .15f)), 0, Seed);
+                    Chunk(b, rest + Vector2.up * (hop + size * .55f), size * .9f, spin + 300 + a * 260 * (1 - a), Ice, o, Seed + k);
+                    Puff(b, target + Vector2.up * (.15f + a * .5f), size * (1.6f + a * 2.2f), new Color(.82f, .92f, 1f), .55f * Fade(a, 0, .7f), a, Seed + k);
+                    Grit(b, target, size * (2f + 2f * a), new Color(.85f, .93f, 1f), .35f * Fade(a, .1f, .9f), a, Seed + k + 7);
+                    for (int j = 0; j < 5; j++) Chip(b, target, new Vector2((j - 2) * 1.2f, 2.2f + H(Seed, k + j) * 2), 10, a, .55f, .06f + size * .15f, j % 2 == 0 ? Snow : Ice, Seed + k * 5 + j);
                 }
             }
         }
@@ -217,15 +270,10 @@ namespace ArcaneBrigade
             {
                 float on = Env(this, now, 2.5f, 1.2f); if (on <= 0) return;
                 Rect a = Arena; float H0 = a.height + 4;
-                for (int k = 0; k < 8; k++)
-                {
-                    Vector2 e = new Vector2(a.xMin + a.width * (k % 4 / 3f), k < 4 ? a.yMax : a.yMin);
-                    b.Quad(Flake, e, 1f + .4f * H(Seed, k), now * 4 * (k % 2 == 0 ? 1 : -1) + k * 20, A(Ice, .25f * on), 0, Seed + k, 0);
-                }
                 for (int k = 0; k < 7; k++)
                 {
                     float u = (H(Seed, k + 400) + now * (.07f + .03f * H(Seed, k + 401))) % 1; Vector2 p = new Vector2(a.xMax + 3 - u * (a.width + 6), a.yMin + a.height * H(Seed, k + 402));
-                    Grit(b, p, 1.3f + .6f * H(Seed, k + 403), new Color(.82f, .92f, 1f), .3f * on * Mathf.Sin(u * 3.14f), now * 1.5f + k, Seed + k);
+                    Grit(b, p, .9f + .5f * H(Seed, k + 403), new Color(.82f, .92f, 1f), .2f * on * Mathf.Sin(u * 3.14f), now * 1.5f + k, Seed + k);
                 }
                 for (int k = 0; k < 140; k++)
                 {

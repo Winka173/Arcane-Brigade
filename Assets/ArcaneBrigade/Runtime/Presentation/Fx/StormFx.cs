@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             protected override float Life => 1.7f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius * 1.1f; Vector2 cloud = at + Vector2.up * 3.7f;
+                Vector2 at = At; float r = Radius * 1.1f; Vector2 cloud = new Vector2(at.x, Mathf.Min(at.y + 2.6f, Arena.yMax - 2.2f)); // kept inside the view
                 if (t < 0)
                 {
                     float g = EaseOut(pre);
@@ -137,8 +137,8 @@ namespace ArcaneBrigade
                 }
                 for (int k = 0; k < 9; k++)
                 {
-                    float x = (k - 4) / 4f, sz = r * (.34f + .2f * H(seed, k + 20)) * grow * (1 - .35f * x * x) * (1 + .4f * spread);
-                    Vector2 p = c + new Vector2(x * r * (1.05f + spread) + Mathf.Sin(now * 1.7f + k * 2) * .1f, .15f + (1 - x * x) * .55f + H(seed, k + 30) * .3f + .2f * Mathf.Sin(now * 2 + k) + spread * .6f);
+                    float x = (k - 4) / 4f, sz = r * (.3f + .16f * H(seed, k + 20)) * grow * (1 - .35f * x * x) * (1 + .4f * spread);
+                    Vector2 p = c + new Vector2(x * r * (1.05f + spread) + Mathf.Sin(now * 1.7f + k * 2) * .1f, .1f + (1 - x * x) * .32f + H(seed, k + 30) * .15f + .12f * Mathf.Sin(now * 2 + k) + spread * .4f);
                     b.Quad(FxShape.Smoke, p, sz, 0, A(Billow, .95f * g), now * .4f + k, seed + k + 40);
                     b.Quad(FxShape.Smoke, p + new Vector2(-.18f, .2f) * sz, sz * .55f, 0, A(Cap, .55f * g), now * .5f + k, seed + k + 80);
                 }
@@ -222,42 +222,59 @@ namespace ArcaneBrigade
             private void Sky(FxBatch b, float now)
             {
                 float age = now - Born, on = Rise(age, 0, 2.2f) * Fade(now, End - 1.5f, End);
-                Rect a = Arena; Vector2 c = a.center;
-                b.Quad(FxShape.Shade, c, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.02f, .03f, .12f), .2f * on), 0, Seed);
-                // cloud ceiling along the top edge, drifting: dark bellies with lit billows on top
-                for (int k = 0; k < 11; k++)
+                Rect a = Arena;
+                b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.02f, .03f, .12f), .22f * on), 0, Seed);
+                // lightning: a flash every 1.7 s somewhere over the field (a distant forked bolt out of the cloud deck, the deck lit from
+                // inside), and its light caught by the wet floor a moment longer
+                float cyc = now / 1.7f; int n = Mathf.FloorToInt(cyc); float f = (cyc - n) * 1.7f;
+                float flash = Mathf.Max(Fade(f, 0, .14f), .75f * Fade(f - .2f, 0, .12f)) * on, glow = Fade(f, 0, .7f) * on;
+                Vector2 strike = new Vector2(a.center.x + a.width * .6f * (H(Seed, n + 5) - .5f), a.center.y + a.height * .45f * (H(Seed, n + 6) - .5f));
+                // low cloud deck: two rows of dark rolling billows across the top of the field with lit slate caps, drifting
+                for (int row = 0; row < 2; row++)
+                    for (int k = 0; k < 10; k++)
+                    {
+                        float x = a.xMin + ((k * .1f + row * .05f + now * (.012f + .006f * row)) % 1.1f) * a.width * 1.1f - a.width * .05f;
+                        Vector2 p = new Vector2(x, a.yMax - 1.1f - row * 1.4f + Mathf.Sin(k * 1.9f + now * .35f) * .25f);
+                        float lit = Mathf.Clamp01(1 - Mathf.Abs(x - strike.x) / 5f) * flash;
+                        b.Quad(FxShape.Smoke, p, new Vector2(1.9f + .7f * H(Seed, k + row * 20), .95f - .2f * row), 0, A(new Color(.09f, .09f, .17f), (.85f - .2f * row) * on), now * .05f + k, Seed + k + row * 40);
+                        b.Quad(FxShape.Smoke, p + new Vector2(.4f, .45f), new Vector2(1.2f, .65f), 0, A(Color.Lerp(new Color(.33f, .35f, .52f), new Color(.8f, .85f, 1f), lit), (.65f - .2f * row) * on), now * .06f + k, Seed + k + 30 + row * 40);
+                    }
+                if (flash > .01f)
                 {
-                    float x = a.xMin + ((k * .1f + now * .012f) % 1.1f) * a.width * 1.1f - a.width * .05f;
-                    Vector2 p = new Vector2(x, a.yMax - .5f + Mathf.Sin(k * 1.9f + now * .35f) * .3f);
-                    b.Quad(FxShape.Smoke, p, new Vector2(2f + .8f * H(Seed, k), 1.1f), 0, A(new Color(.1f, .1f, .2f), .85f * on), now * .05f + k, Seed + k);
-                    b.Quad(FxShape.Smoke, p + new Vector2(.4f, .55f), new Vector2(1.3f, .8f), 0, A(new Color(.36f, .38f, .55f), .75f * on), now * .06f + k, Seed + k + 30);
+                    Vector2 top = new Vector2(strike.x + (H(Seed, n + 8) - .5f) * 2, a.yMax - 2.3f);
+                    b.Quad(FxShape.Glow, top, new Vector2(3.4f, 1.6f), 0, A(new Color(.7f, .8f, 1f), .55f * flash), 0, Seed);
+                    Bolt(b, top, strike, .07f, Cyan, Seed + n * 7, 1.1f, .85f * flash, 12);
+                    for (int k = 0; k < 2; k++) { Vector2 root = Vector2.Lerp(top, strike, .35f + .25f * k); Bolt(b, root, root + new Vector2((k == 0 ? -1 : 1) * 1.6f, -1.2f), .04f, Cyan, Seed + n * 3 + k, .5f, .6f * flash, 6); }
+                    b.Floor(FxShape.Glow, strike, 1.6f, A(new Color(.7f, .85f, 1f), .5f * flash), 0, Seed);
                 }
-                // sheet lightning inside the clouds, a quick double flicker every few seconds, with a crawling arc
-                float cycle = now / 3.1f; int n = Mathf.FloorToInt(cycle); float f = (cycle - n) * 3.1f;
-                float sheet = Mathf.Max(Fade(f, 0, .12f), .7f * Fade(f - .2f, 0, .1f)) * (H(Seed, n) > .25f ? 1 : 0);
-                if (sheet > 0)
+                // wet floor: dark puddles with a cool sheen and rain rings; the flash lights them and drops a streak of reflection in each
+                for (int k = 0; k < 12; k++)
                 {
-                    Vector2 p = new Vector2(a.xMin + a.width * H(Seed, n + 5), a.yMax - .3f);
-                    b.Quad(FxShape.Glow, p, new Vector2(3.6f, 1.8f), 0, A(new Color(.7f, .8f, 1f), .6f * sheet * on), 0, Seed);
-                    Bolt(b, p + Vector2.left * 2.5f, p + new Vector2(2.5f, -.4f), .05f, Cyan, Seed + n, .6f, .8f * sheet * on, 8);
+                    Vector2 p = new Vector2(a.xMin + a.width * (.05f + .9f * H(Seed, k + 700)), a.yMin + a.height * (.08f + .8f * H(Seed, k + 710)));
+                    float sz = .7f + .6f * H(Seed, k + 720), near = Mathf.Clamp01(1.3f - (p - strike).magnitude / 9f);
+                    b.Floor(FxShape.Shade, p, sz * 1.05f, A(new Color(.01f, .02f, .06f), .45f * on), 0, Seed + k);
+                    b.Quad(FxShape.Glow, p, new Vector2(sz, sz * .38f), 0, A(Rain, (.07f + .6f * glow * near) * on), 0, Seed + k);
+                    if (glow * near > .02f) b.Beam(p + new Vector2(0, sz * .3f), p - new Vector2(0, sz * .3f), .06f, A(White, .7f * glow * near), 0, Seed + k, .5f);
+                    float ru = (now * .9f + H(Seed, k + 730)) % 1;
+                    b.Floor(FxShape.Shock, p + new Vector2((H(Seed, k + 740) - .5f) * sz, 0), .32f * sz + .1f, A(Rain, .45f * on), ru, Seed + k);
                 }
-                // rain: thin slanted streaks falling and wrapping
-                for (int k = 0; k < 90; k++)
+                // rain: slanted streaks falling and wrapping, a little brighter while the sky flashes
+                for (int k = 0; k < 150; k++)
                 {
                     float sp = 14 + 6 * H(Seed, k + 300), u = (H(Seed, k) + now * sp / (a.height + 4)) % 1;
                     Vector2 p = new Vector2(a.xMin + a.width * H(Seed, k + 150) + (1 - u) * 1.6f, a.yMax + 2 - u * (a.height + 4));
-                    b.Beam(p, p + new Vector2(-.18f, -.95f), .03f, A(Rain, .55f * on), 0, k, 0);
+                    b.Beam(p, p + new Vector2(-.2f, -1.2f), .042f, A(Rain, (.7f + .3f * flash) * on), 0, k, 0);
                 }
                 // splashes: tiny rings and a hop of droplets where drops hit the floor
-                for (int k = 0; k < 28; k++)
+                for (int k = 0; k < 30; k++)
                 {
                     float u = (now * 1.7f + H(Seed, k + 600)) % 1; int gen = Mathf.FloorToInt(now * 1.7f + H(Seed, k + 600));
                     Vector2 p = new Vector2(a.xMin + a.width * H(Seed + gen, k + 610), a.yMin + a.height * .85f * H(Seed + gen, k + 620));
-                    b.Floor(FxShape.Shock, p, .32f, A(Rain, .5f * on), u, Seed + k);
+                    b.Floor(FxShape.Shock, p, .3f, A(Rain, .55f * on), u, Seed + k);
                     if (u < .4f) for (int d = 0; d < 2; d++)
                     {
-                        float v = u / .4f; Vector2 q = p + new Vector2((d * 2 - 1) * .18f * v, .3f * v * (1 - v) * 4 * .25f);
-                        Glint(b, q, .05f, Rain, .7f * on * (1 - v), 0);
+                        float v = u / .4f; Vector2 q = p + new Vector2((d * 2 - 1) * .18f * v, .3f * v * (1 - v));
+                        Glint(b, q, .05f, Rain, .8f * on * (1 - v), 0);
                     }
                 }
             }

@@ -1,6 +1,8 @@
 // Shapes 20-29 of the FxProc shader (family A: Windborne, Ember, Frost, Tide, Garden).
 // 20 crescent blade (horns point +x), 21 leaf / feather (par>=1), 22 crystal shard (tip +x), 23 water drop (tip +y), 24 bubble,
-// 25 spiral streaks (par: arms, sign = turn), 26 snowflake, 27 vine curl (q = growth), 28 blossom (par >= 10: bark grain), 29 root / tentacle (+y, q = growth).
+// 25 spiral streaks (par: arms, sign = turn; par 10 tornado funnel body, 11 its light), 26 snowflake, 27 vine curl (q = growth),
+// 28 blossom (par >= 10: bark grain), 29 tube segment of a chain (u.x along, capsule, q = straight fraction; par 0 wood, 1 vine,
+// 2 serpent scales, 9 flat ink). 23 with par >= 10 is a faceted ice chunk.
 // 24 with par >= 10 is a flame tongue; par >= 20 a storybook cel flame (20 one tongue, 21 three, 22 five).
 #ifndef FX_SHAPES_A
 #define FX_SHAPES_A
@@ -34,6 +36,19 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
         float rim = smoothstep(w - .1, w, abs(u.y)) * .4;
         I = inside * (.42 * side + .25 * (x * .5 + .5) + ridge * .5 + line2 + rim);
         hot = float3(.95, 1, 1);
+    }
+    else if (mode < 23.5 && par >= 10)
+    {
+        // faceted ice chunk: an irregular polygon (radius jittered per corner), flat facets lit from the top-left, a pale lit rim
+        float a = atan2(u.y, u.x), n = 6, f = (a + 3.14159) / 6.28318 * n, k0 = floor(f), fr = frac(f);
+        float r0 = .58 + .4 * hash(float2(k0, seed)), r1 = .58 + .4 * hash(float2(fmod(k0 + 1, n), seed));
+        float R = lerp(r0, r1, fr), inside = smoothstep(R, R - .05, r);
+        float ac = (k0 + .5) / n * 6.28318 - 3.14159; float2 fn = float2(cos(ac), sin(ac));
+        float facet = .5 + .4 * dot(fn, float2(-.7071, .7071)) + .1 * hash(float2(k0, seed + 3));
+        float top = smoothstep(R * .48, R * .43, r);
+        float shade = lerp(facet, .95, top) + exp(-pow((r - R * .45) / .03, 2)) * .25 * step(0, dot(normalize(u + 1e-4), float2(-.7071, .7071)));
+        I = inside * saturate(shade) * (_Matter > .5 ? 1 : .18);
+        hot = float3(.85, .97, 1);
     }
     else if (mode < 23.5)
     {
@@ -82,6 +97,30 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
         hot = float3(1, 1, 1);
         }
     }
+    else if (mode < 25.5 && par >= 10)
+    {
+        // tornado funnel along +y: narrow ploughing foot, wide leaning top, snaking; par 10 its dusty body (solid, alpha layer),
+        // par 11 its light: a bright rim and streaks of wind wrapping round it (q = time)
+        float y01 = saturate(u.y * .5 + .5);
+        float x0 = .22 * y01 * y01 - .08 + .07 * sin(u.y * 4.5 - q * 2.6 + seed);
+        float w = lerp(.11, .86, pow(y01, 1.35)) * (1 + .06 * sin(u.y * 13 - q * 9));
+        float d = (u.x - x0) / w, ad = abs(d), en = .14 * (vnoise(float2(u.y * 7 - q * 3, seed)) - .5);
+        float inside = smoothstep(1 + en, .8 + en, ad) * smoothstep(1, .88, y01) * smoothstep(0, .05, y01);
+        float phi = asin(clamp(d, -1, 1));
+        float sw = vnoise(float2(phi * 2.5 + q * 8 + y01 * 7, y01 * 16 + seed)), sw2 = vnoise(float2(phi * 4 - q * 5 + y01 * 3, y01 * 30 + seed * 1.7));
+        float bands = smoothstep(.4, .85, sw) * .7 + smoothstep(.5, .9, sw2) * .5;
+        if (par < 10.5)
+        {
+            I = inside * (.78 + .22 * sw2 - .25 * (1 - ad) * (1 - y01 * .5)) * (_Matter > .5 ? 1 : .06);
+            hot = float3(.8, .75, .6);
+        }
+        else
+        {
+            float rim = smoothstep(.5, .93, ad) * (d < 0 ? 1 : .55);
+            I = inside * (rim * (.55 + .45 * sw) + bands * (.25 + .5 * ad)) * (_Matter > .5 ? 0 : 1);
+            hot = float3(1, 1, .95);
+        }
+    }
     else if (mode < 25.5)
     {
         float arms = 3 + floor(abs(par)), dir = par < 0 ? -1 : 1, a = atan2(u.y, u.x);
@@ -127,11 +166,34 @@ void ShapeA(float mode, float2 u, float q, float seed, float par, float r, inout
     }
     else
     {
-        float y01 = u.y * .5 + .5, x0 = .22 * (1 + par) * sin(u.y * 4.2 + seed * 1.3) * y01;
-        float w = (.34 * pow(max(1 - y01, 0), .8) + .03) * (1 + .28 * pow(.5 + .5 * sin(u.y * 18.85 + seed * 6.28), 8));
-        float d = u.x - x0, body = smoothstep(w, w - .05, abs(d)) * smoothstep(q, q - .03, y01);
-        I = body * (.55 + .45 * vnoise(float2(u.x * 6 + seed, u.y * 14))) * (.7 + .3 * saturate(-d / max(w, .03)));
-        hot = float3(.75, .6, .35);
+        // tube segment: a capsule along u.x whose straight middle is q of the half-length (round caps overlap the neighbours,
+        // so a chain of them reads as one smooth curving body). Lit along +y (the caller turns +y to the top-left), darker
+        // towards -y so the ink copy drawn under it shows through. The light layer only gets a faint sheen.
+        float k = saturate(q), cap = length(float2(max(abs(u.x) - k, 0) / max(1 - k, .05), u.y));
+        float body = smoothstep(1, .9, cap), lit = smoothstep(-1, .75, u.y), m = par;
+        float shade = 1; hot = float3(.6, .6, .6);
+        if (m < .5)
+        {
+            float gx = u.y * 3.4 + .55 * fbm(float2(u.x * .45 + seed, u.y * 1.5));
+            float g = abs(frac(gx) - .5), grain = exp(-g * g / .01) * (.55 + .45 * vnoise(float2(u.x * 2.5 + seed, u.y * 4)));
+            shade = lerp(.52, 1, lit) - grain * .3;
+            hot = float3(1, .78, .5);
+        }
+        else if (m < 1.5)
+        {
+            shade = lerp(.55, 1, lit) - exp(-pow((u.y + .2) / .1, 2)) * .12;
+            hot = float3(.8, 1, .55);
+        }
+        else if (m < 2.5)
+        {
+            float2 sc = float2(u.x * 2.6 + seed, u.y * 1.9 + .5 * frac(floor(u.x * 2.6 + seed) * .5) * 2);
+            float2 c = frac(sc) - float2(.5, 0); float scale = smoothstep(.06, 0, abs(length(c * float2(1, 1.3)) - .55));
+            float belly = smoothstep(-.2, -.6, u.y);
+            shade = lerp(.5, 1, lit) - scale * .28 * (1 - belly) + belly * .25;
+            hot = float3(.75, 1, 1);
+        }
+        // the light layer gets no light from the flat ink/highlight passes and only a faint sheen from the body
+        I = body * saturate(shade) * (_Matter > .5 ? 1 : (m > 8.5 ? 0 : .07));
     }
 }
 #endif

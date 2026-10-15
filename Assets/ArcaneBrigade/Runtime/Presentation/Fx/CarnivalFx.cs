@@ -20,7 +20,8 @@ namespace ArcaneBrigade
             map["grand-finale"] = () => new Finale();
         }
 
-        private const FxShape Balloon = (FxShape)30, Star = (FxShape)31, Ribbon = (FxShape)37, CardS = (FxShape)38, Streak = (FxShape)39;
+        private const FxShape Balloon = (FxShape)30, Star = (FxShape)31, Ribbon = (FxShape)37, CardS = (FxShape)38, Streak = (FxShape)39, Cone = (FxShape)36;
+        private static Vector2 Vec(float deg) { float r = deg * Mathf.Deg2Rad; return new Vector2(Mathf.Cos(r), Mathf.Sin(r)); }
         private static readonly Color[] Pal = { new Color(1f, .3f, .55f), new Color(.3f, .9f, 1f), new Color(1f, .9f, .25f), new Color(1f, .55f, .15f), new Color(.45f, 1f, .4f), new Color(.72f, .4f, 1f) };
         private static Color Pc(int i) => Pal[((i % 6) + 6) % 6];
         private static Vector2 Arc(Vector2 a, Vector2 b, float h, float u) => Vector2.Lerp(a, b, u) + Vector2.up * (4 * h * u * (1 - u));
@@ -148,54 +149,61 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Step 8 finale. For 1.5 seconds the whole arena is a parade: fireworks across the sky, a bunch of balloons racing up
-        /// on strings, streamer cannons from both corners, coloured spotlights sweeping and a confetti blizzard.</summary>
+        /// <summary>Step 8 finale. For 1.5 seconds the whole arena is a parade: soft coloured searchlight cones sweep up from the floor
+        /// edge, fireworks burst across the sky, balloons pop up all over the field and float up swaying on strings, streamer cannons
+        /// fire from both corners and confetti snows down. Longer finales replay the volleys.</summary>
         private sealed class Finale : FxEffect
         {
             protected override float Life => 1.5f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Rect a = Arena; float dur = Mathf.Max(.5f, Moment.Duration), g = Fade(t, dur * .7f, dur), rise = Rise(t, 0, .12f);
+                Rect a = Arena; float dur = Mathf.Max(.5f, Moment.Duration), g = Fade(t, dur - .45f, dur), rise = Rise(t, 0, .12f);
+                float tt = t % 1.6f; int vol = Mathf.FloorToInt(t / 1.6f);
                 b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.1f, .02f, .15f), .15f * rise * g), 0, Seed);
-                // spotlights from the floor edge, sweeping
-                for (int k = 0; k < 3; k++)
+                // searchlight cones from lamps along the bottom edge, sweeping to and fro (soft edges, dust in the light)
+                for (int k = 0; k < 4; k++)
                 {
-                    Vector2 from = new Vector2(a.xMin + a.width * (.2f + .3f * k), a.yMin - 1), to = new Vector2(from.x + Mathf.Sin(now * 4 + k * 2) * 5, a.yMax + 1);
-                    b.Beam(from, to, .85f, A(Pc(k * 2 + 1), .2f * rise * g), now, Seed + k, 0);
-                    b.Beam(from, to, .25f, A(White, .14f * rise * g), now, Seed + k, 0);
+                    Vector2 lamp = new Vector2(a.xMin + a.width * (.14f + .24f * k), a.yMin - .3f);
+                    float deg = Mathf.Sin(now * (1.3f + .2f * k) + k * 1.9f) * 28, L = 8.5f;
+                    Vector2 dir = Vec(90 + deg);
+                    b.Quad(Cone, lamp + dir * L * .5f, new Vector2(L * .3f, L * .5f), deg, A(Pc(k * 2 + 1), .75f * rise * g), now, Seed + k, 10);
+                    b.Quad(Cone, lamp + dir * L * .5f, new Vector2(L * .12f, L * .5f), deg, A(White, .3f * rise * g), now, Seed + k + 7, 10);
+                    b.Quad(FxShape.Glow, lamp + dir * .3f, .6f, A(White, .8f * rise * g), 0, Seed);
                 }
-                // fireworks
+                // fireworks, a volley of seven
                 for (int k = 0; k < 7; k++)
                 {
-                    float start = k * .1f; Vector2 c = new Vector2(a.xMin + a.width * (.1f + .8f * H(Seed, k + 3)), a.center.y + a.height * (.02f + .36f * H(Seed, k + 8)));
-                    float u = (t - start) / .85f;
-                    if (u > 0 && u < .12f) { b.Quad(Streak, c + Vector2.down * 1.5f * (1 - u / .12f), new Vector2(1.6f, .2f), 90, A(Pc(k), 1), now, Seed + k, 0); }
-                    Firework(b, c, 2.0f + .7f * H(Seed, k + 12), (u - .12f) / .88f, Seed + k * 13, 16, k);
-                    Powder(b, c, 1.8f, (u - .15f) / 1.2f, Seed + k * 7, 4);
+                    float start = k * .1f; Vector2 c = new Vector2(a.center.x + a.width * (H(Seed + vol, k + 3) - .5f) * .7f, a.center.y + a.height * (.02f + .3f * H(Seed + vol, k + 8)));
+                    float u = (tt - start) / .85f;
+                    if (u > 0 && u < .12f) { b.Quad(Streak, c + Vector2.down * 1.5f * (1 - u / .12f), new Vector2(1.6f, .2f), 90, A(Pc(k), g), now, Seed + k, 0); }
+                    Firework(b, c, 1.8f + .6f * H(Seed + vol, k + 12), (u - .12f) / .88f, Seed + k * 13 + vol, 16, k + vol);
+                    Powder(b, c, 1.6f, (u - .15f) / 1.2f, Seed + k * 7, 4);
                 }
-                // balloons rising on strings
-                for (int k = 0; k < 13; k++)
+                // balloons: they pop up out of the field all over and float up on strings, swaying, through the whole finale
+                for (int k = 0; k < 16; k++)
                 {
-                    float sp = 8 + 4 * H(Seed, k + 40), delay = .15f * H(Seed, k + 41);
-                    Vector2 p = new Vector2(a.xMin + a.width * (.04f + .92f * H(Seed, k)) + Mathf.Sin(t * 7 + k) * .35f, a.yMin - 1.6f + Mathf.Max(0, t - delay) * sp);
-                    if (p.y > a.yMax + 2) continue; float s = .7f + .35f * H(Seed, k + 45);
-                    b.Link(p + Vector2.down * s * .85f, p + new Vector2(Mathf.Sin(t * 9 + k) * .35f, -s * .85f - 1.8f), .03f, A(White, .7f * g), Seed + k, 1);
-                    b.Quad(Balloon, p, new Vector2(s, s * 1.1f), Mathf.Sin(t * 8 + k) * 8, A(Pc(k), 1.25f * g), 0, Seed + k, 1);
+                    float cyc = 2.6f + .8f * H(Seed, k + 44), ph = (t + H(Seed, k + 41) * .5f) / cyc; int n = Mathf.FloorToInt(ph); float u = (ph - n) * cyc;
+                    Vector2 rel = new Vector2(a.center.x + a.width * (H(Seed + n, k) - .5f) * .75f, a.yMin + 1 + (a.height - 4) * H(Seed + n, k + 3));
+                    float s = (.45f + .2f * H(Seed, k + 45)) * EaseOut(Rise(u, 0, .18f)), sp = 2.6f + 1.4f * H(Seed, k + 40);
+                    Vector2 p = rel + new Vector2(Mathf.Sin(t * 2.5f + k) * .3f, u * sp);
+                    float al = g * Fade(u, cyc - .4f, cyc);
+                    b.Link(p + Vector2.down * s * .85f, p + new Vector2(Mathf.Sin(t * 4 + k) * .3f, -s * .85f - 1.1f), .025f, A(White, .7f * al), Seed + k, 1);
+                    b.Quad(Balloon, p, new Vector2(s, s * 1.1f), Mathf.Sin(t * 3 + k) * 10, A(Pc(k), 1.25f * al), 0, Seed + k, 1);
                 }
                 // streamer cannons from both bottom corners
                 for (int side = 0; side < 2; side++)
                     for (int k = 0; k < 7; k++)
                     {
                         Vector2 origin = new Vector2(side == 0 ? a.xMin + .5f : a.xMax - .5f, a.yMin + .3f), v = new Vector2((side == 0 ? 1 : -1) * (3.5f + 3 * H(Seed, k + 60 + side)), 9 + 4 * H(Seed, k + 70 + side));
-                        Vector2 p = origin + v * t + Vector2.down * 5.5f * t * t;
-                        Vector2 vel = v + Vector2.down * 11f * t;
+                        Vector2 p = origin + v * tt + Vector2.down * 5.5f * tt * tt;
+                        Vector2 vel = v + Vector2.down * 11f * tt;
                         Streamer(b, p, .9f, .26f, Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg, Pc(k + side * 3), 1.05f * g, t * 4 + k, Seed + k + side * 9);
                     }
-                // confetti blizzard
+                // confetti snow, looping
                 for (int k = 0; k < 70; k++)
                 {
-                    float sp = 7 + 4 * H(Seed, k + 80), y0 = a.yMax + 1 - (H(Seed, k + 90) * 4) - t * sp; if (y0 < a.yMin - 1) continue;
-                    Vector2 p = new Vector2(a.xMin + a.width * H(Seed, k + 100) + Mathf.Sin(t * 9 + k) * .4f, y0);
+                    float sp = 3 + 2 * H(Seed, k + 80), y0 = a.yMax + 1 - ((H(Seed, k + 90) * (a.height + 2) + t * sp) % (a.height + 2));
+                    Vector2 p = new Vector2(a.xMin + a.width * H(Seed, k + 100) + Mathf.Sin(t * 3 + k) * .4f, y0);
                     Chip(b, p, .17f + .1f * H(Seed, k), t * 400 + k * 33, t * 14 + k, Pc(k), 1.05f * g * rise, Seed + k);
                 }
             }

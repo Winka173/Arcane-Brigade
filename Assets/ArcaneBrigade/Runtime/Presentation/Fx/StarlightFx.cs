@@ -105,7 +105,7 @@ namespace ArcaneBrigade
             protected override float Life => 1.7f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Radius, delay = Mathf.Max(.01f, Moment.Delay);
+                Vector2 at = At; float r = Mathf.Max(1.5f, Radius * 1.5f), delay = Mathf.Max(.01f, Moment.Delay);
                 Vector2 dir = new Vector2(-.3f, -1).normalized;
                 for (int i = 0; i < 3; i++)
                 {
@@ -120,23 +120,27 @@ namespace ArcaneBrigade
                     if (ai < 0 && u > 0)
                     {
                         Vector2 head = Vector2.Lerp(top, land, u * u);
-                        Trail(b, head, dir, 4.2f, .36f, i == 1 ? Pale : Gold, Seed + i, now * 6);
-                        Trail(b, head, dir, 2.8f, .14f, White, Seed + i + 9, now * 6);
-                        b.Quad(FxShape.Glow, head, .65f, A(Pale, .7f), 0, Seed);
-                        Glint(b, head, .55f, White, 1, now * 200 + i * 40);
+                        Trail(b, head, dir, 4.6f, .5f, i == 1 ? Pale : Gold, Seed + i, now * 6);
+                        Trail(b, head, dir, 3f, .2f, White, Seed + i + 9, now * 6);
+                        b.Quad(FxShape.Glow, head, .9f, A(Pale, .75f), 0, Seed);
+                        StarAt(b, head, .42f, now * 400 + i * 40, Pale, 1.1f, Seed + i, 5);
+                        Glint(b, head, .7f, White, 1, now * 200 + i * 40);
                     }
                     if (ai < 0) continue;
                     b.Quad(FxShape.Glow, land + Vector2.up * .15f, r * 1.4f, A(Gold, .8f * Fade(ai, 0, .35f)), 0, Seed);
                     b.Quad(FxShape.Glow, land, r * .8f, A(White, .9f * Fade(ai, 0, .15f)), 0, Seed);
                     b.Floor(FxShape.Glow, land, r * 1.25f, A(Gold, .4f * Fade(ai, 0, .9f)), 0, Seed);
                     float pop = EaseOut(Rise(ai, 0, .22f)) * Fade(ai, .3f, .9f);
-                    StarAt(b, land + Vector2.up * .35f, .55f * pop + .05f, ai * 260 + i * 30, Pale, 1.2f * Mathf.Clamp01(pop * 3), Seed + i, 4);
-                    for (int k = 0; k < 12; k++)
+                    StarAt(b, land + Vector2.up * .5f, 1.1f * pop + .05f, ai * 260 + i * 30, Gold, 1.2f * Mathf.Clamp01(pop * 3), Seed + i, 5);
+                    StarAt(b, land + Vector2.up * .5f, .6f * pop + .03f, ai * 260 + i * 30 + 36, Pale, 1.2f * Mathf.Clamp01(pop * 3), Seed + i + 3, 5);
+                    b.Floor(FxShape.Shock, land, r * 1.2f, A(Gold, .9f), Rise(ai, 0, .6f), Seed + i);
+                    b.Quad(FxShape.Rays, land + Vector2.up * .3f, r * 1.3f, A(Pale, .6f * Fade(ai, 0, .4f)), ai, Seed + i, 5);
+                    for (int k = 0; k < 18; k++)
                     {
                         float life = .55f + .4f * H(Seed + i, k), v = ai / life; if (v <= 0 || v >= 1) continue;
                         float spread = (H(Seed + i, k + 20) - .5f) * 2 * r * 1.1f;
                         Vector2 p = land + new Vector2(spread * EaseOut(v), 3.0f * H(Seed + i, k + 5) * v - 3.8f * v * v + .15f);
-                        if (k % 3 == 0) StarAt(b, p, .22f * (1 - v * .5f), ai * 400 + k * 30, Gold, 1.1f * (1 - v * v), Seed + k, 4);
+                        if (k % 3 == 0) StarAt(b, p, .3f * (1 - v * .5f), ai * 400 + k * 30, Gold, 1.1f * (1 - v * v), Seed + k, 4);
                         else Glint(b, p, .26f * (1 - v * .4f), k % 2 == 0 ? White : Gold, 1 - v * v, k * 40 + ai * 300);
                     }
                 }
@@ -266,11 +270,20 @@ namespace ArcaneBrigade
             {
                 Rect a = Arena; float on = Rise(t, 0, 2.5f) * Fade(now, End - 1.5f, End);
                 b.Quad(FxShape.Shade, a.center, new Vector2(a.width * .75f, a.height * .75f), 0, A(new Color(.02f, .04f, .16f), .3f * on), 0, Seed);
-                // the milky way: a band of soft blue and rose glows across the upper arena, slowly drifting
-                for (int k = 0; k < 9; k++)
+                // constellations: now and then a few of the bright stars join up with thin gold lines that draw in, hold and fade
+                for (int c = 0; c < 3; c++)
                 {
-                    float x = a.xMin + a.width * (k + .5f) / 9f, y = a.center.y + a.height * (.18f + .14f * Mathf.Sin(k * .7f + 1)) + Mathf.Sin(now * .2f + k) * .3f;
-                    b.Quad(FxShape.Glow, new Vector2(x, y), new Vector2(3.2f, 1.8f), -12, A(k % 3 == 0 ? Rose : Sky, .22f * on), 0, Seed);
+                    float cy = (now + c * 1.9f) / 5.7f; int cn = Mathf.FloorToInt(cy); float cu = (cy - cn) * 5.7f / 3.2f; if (cu >= 1) continue;
+                    Vector2 c0 = new Vector2(a.xMin + 2 + (a.width - 4) * H(Seed + cn, c + 900), a.yMin + 2 + (a.height - 4) * H(Seed + cn, c + 901)), prev = c0;
+                    float ca = Fade(cu, .7f, 1) * on;
+                    for (int s2 = 0; s2 < 5; s2++)
+                    {
+                        Vector2 p = c0 + new Vector2((s2 + .3f * H(Seed + cn, s2 + 910)) * .9f, (H(Seed + cn, s2 + 920) - .5f) * 1.6f);
+                        float draw = Rise(cu, s2 * .08f, s2 * .08f + .12f);
+                        if (s2 > 0 && draw > 0) b.Link(prev, Vector2.Lerp(prev, p, draw), .03f, A(Gold, .65f * ca), Seed + s2, .5f);
+                        StarAt(b, p, .2f, now * 15 + s2 * 40, s2 % 2 == 0 ? Pale : Sky, 1.1f * ca * Rise(cu, s2 * .08f, s2 * .08f + .05f), Seed + s2, 5);
+                        prev = p;
+                    }
                 }
                 for (int k = 0; k < 110; k++)
                 {
