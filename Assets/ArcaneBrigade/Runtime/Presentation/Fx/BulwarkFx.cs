@@ -232,43 +232,51 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Weather: a light hexagonal fortress over the hero's side. A faint honeycomb floor pulses cell by cell, six standing shields
-        /// on the corners with rivets that glint, a hovering ceiling plate, sparks that run round the rim and hex pings.</summary>
+        /// <summary>Step 8 fortress (weather while it stands). No ring on our side (owner 29/10/2026): a flying shield-wall. Five solid
+        /// steel heater shields swoop up one after another from behind the hero's shoulders and lock edge to edge in a shallow arch high
+        /// over the hero's head, bobbing gently; a gleam runs along the wall, rivets wink, a steel banner of light ripples between the
+        /// shields, and every half second one shield flares as it fires its bolt at the crowd.</summary>
         private sealed class Fortress : FxEffect
         {
             protected override float Life => 5f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 if (Moment.Kind != BondMomentKind.Weather) return;
-                Vector2 at = At; float age = now - Born, on = Rise(age, 0, .5f) * Fade(now, End - .6f, End), R = 3.0f;
-                float rise = EaseOut3(Rise(age, 0, .6f));
-                b.Quad(DKit.Hex, at, DKit.Sq(R * 1.02f), 0, A(DKit.Steel, .32f * on), now, Seed, 2);
-                b.Quad(FxShape.Glow, at + Vector2.up * .6f, new Vector2(R * 1.05f, R * .7f), 0, A(DKit.Steel, .12f * on), 0, Seed);
-                b.Quad(DKit.Hex, at, DKit.Sq(R * 1.04f), now * 4, A(DKit.Ice, .85f * on), now, Seed + 1, 1);
-                b.Quad(DKit.Hex, at, DKit.Sq(R * .96f), -now * 6, A(DKit.Steel, .5f * on), now, Seed + 2, 1);
-                Vector2[] corner = new Vector2[6];
-                for (int k = 0; k < 6; k++)
+                Vector2 at = At; float age = now - Born, on = Rise(age, 0, .4f) * Fade(now, End - .6f, End);
+                const int n = 5;
+                Vector2[] pos = new Vector2[n];
+                for (int k = 0; k < n; k++)
                 {
-                    float ang = (k * 60 + 30) * Mathf.Deg2Rad; corner[k] = at + new Vector2(Mathf.Cos(ang) * R * .98f, Mathf.Sin(ang) * R * .61f);
-                    Vector2 p = corner[k] + Vector2.up * (.45f + .1f * Mathf.Sin(now * 2 + k));
-                    float rs = rise * on;
-                    b.Quad(FxShape.Glow, p, .8f, A(DKit.Ice, .22f * rs), 0, Seed);
-                    b.Quad(DKit.Shield, p + Vector2.up * (1 - rise) * -1f, new Vector2(.46f, .62f) * (.5f + .5f * rise), 0, A(DKit.Ice, 1.0f * rs), now, Seed + k, 0);
-                    Glint(b, p + new Vector2(-.22f, .3f), .16f, White, rs * Mathf.Pow(.5f + .5f * Mathf.Sin(now * 3.1f + k * 1.7f), 6), now * 50);
+                    float x = (k - 2) * 1.2f, born = .08f * k, up = EaseOut3(Rise(age, born, born + .45f));
+                    Vector2 home = at + new Vector2(x, 2.8f - .08f * x * x + .08f * Mathf.Sin(now * 2.2f + k * 1.1f));
+                    Vector2 start = at + new Vector2(x * .25f, .6f);
+                    pos[k] = Vector2.Lerp(start, home, up);
+                    float tilt = -x * 7 + Mathf.Sin(now * 1.7f + k) * 3, al = on * Rise(age, born, born + .12f);
+                    // the swoop up leaves a steel streak
+                    if (up < 1 && up > 0) b.Link(Vector2.Lerp(start, home, Mathf.Max(0, up - .25f)), pos[k], .1f, A(DKit.Ice, .6f * al * (1 - up)), Seed + k, .6f);
+                    b.Quad(FxShape.Glow, pos[k], .9f, A(DKit.Steel, .12f * al), 0, Seed);
+                    b.Quad(DKit.Shield, pos[k], new Vector2(.8f, 1.0f) * (.6f + .4f * up), tilt, A(new Color(.62f, .7f, .82f), al), Mathf.Repeat(tilt / 360f, 1), Seed + k, 0);
+                    // the shield fires: its emblem flares and a puff of steel light kicks off its face
+                    float fire = (age * 2f + k * .4f) % 1f, flare = Mathf.Pow(Fade(fire, 0, .25f), 2) * Rise(age, .6f, .8f);
+                    if (flare > .01f) { b.Quad(FxShape.Glow, pos[k] + Vector2.up * .1f, .7f, A(DKit.Ice, .6f * flare * on), 0, Seed); Glint(b, pos[k] + Vector2.up * .1f, .5f, White, flare * on, now * 90); }
+                    Glint(b, pos[k] + new Vector2(-.3f, .45f), .18f, White, al * Mathf.Pow(.5f + .5f * Mathf.Sin(now * 3.1f + k * 1.7f), 8), now * 50);
                 }
-                // sparks run along the rim from corner to corner
-                for (int k = 0; k < 3; k++)
+                // the gleam: a band of light that sweeps along the wall every second and a half
+                float gl = (age * .7f) % 1f;
+                if (age > .6f) for (int k = 0; k < n; k++)
                 {
-                    float u = (age * .7f + k / 3f) % 1f * 6; int i = Mathf.FloorToInt(u); float f = u - i;
-                    Vector2 p = Vector2.Lerp(corner[i % 6], corner[(i + 1) % 6], f);
-                    Glint(b, p, .3f, White, on * .9f, now * 300); b.Quad(FxShape.Glow, p, .5f, A(DKit.Steel, .4f * on), 0, Seed);
+                    float d = Mathf.Abs(gl * 6 - .5f - k); if (d > 1) continue;
+                    b.Quad(FxShape.Glow, pos[k] + new Vector2(-.15f, .2f), new Vector2(.35f, .6f), -20, A(White, .45f * on * (1 - d)), 0, Seed);
                 }
-                b.Quad(DKit.Hex, at + Vector2.up * 2.3f, DKit.Sq(R * .5f), now * 10, A(DKit.Steel, .35f * on), now, Seed + 3, 0);
-                for (int k = 0; k < 2; k++)
+                // steel light knits the shields edge to edge, rippling
+                if (age > .5f) for (int k = 0; k < n - 1; k++)
+                    DKit.Chain(b, pos[k] + Vector2.right * .55f, pos[k + 1] + Vector2.left * .55f, .06f, 1.5f, now * 5 + k, .035f, DKit.Ice, .7f * on * Rise(age, .5f, .8f), Seed + k, 6, .6f);
+                // a few steel motes drift down from the wall
+                for (int k = 0; k < 10; k++)
                 {
-                    float u = ((age * .8f) + k * .5f) % 1f; b.Quad(DKit.Hex, at, DKit.Sq(R * (.2f + .8f * EaseOut(u))), 30, A(DKit.Ice, .6f * on * Fade(u, .3f, 1)), u, Seed + 5, 1);
+                    float u = (age * .45f + H(Seed, k)) % 1f;
+                    Glint(b, at + new Vector2((H(Seed, k + 9) - .5f) * 4.4f, 2.4f - u * 1.6f), .1f, DKit.Ice, .7f * on * Mathf.Sin(u * Mathf.PI), k * 40);
                 }
-                DKit.Motes(b, at, R * 1.6f, 2.6f, now, 14, DKit.Ice, Seed, .8f * on, .13f, .45f);
             }
         }
     }

@@ -1,8 +1,8 @@
 // Shapes 50-59 of the FxProc shader (worker D: Bulwark, Spirit, Melody, Gravity and the minor bonds).
 // 50 hex (par 0 plate, 1 outline, 2 honeycomb)   51 music note (par 0 quarter, 1 eighth, 2 beamed pair, 3 sharp)
-// 52 sound arcs (par = half angle, 0 = .9)       53 scythe crescent (sweeps with q)
+// 52 sound arcs (par = half angle, 0 = .9; par >= 10 an oscilloscope wave band, par - 6 = waviness)       53 scythe crescent (sweeps with q)
 // 54 ghost wisp (heads +x)                       55 black hole (par 0 accretion, 1 lensing ring, 2 streak swirl)
-// 56 shield (par 0 heater shield, 1 shard, 2 stone slab)  57 (par 0 clover, -1 leaf, 3..50 star, >=100 gear)
+// 56 shield (par 0 solid steel heater shield, q = turn; 1 shard, 2 stone slab)  57 (par 0 clover, -1 leaf, 3..50 star, >=100 gear)
 // 58 dashed pulse ring (par = dashes)            59 glyph (par 0 strokes, 1 rune circle, 2 letter card)
 #ifndef FX_SHAPES_D
 #define FX_SHAPES_D
@@ -48,10 +48,21 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
         }
         if (par > 2.5) { stem = max(max(dd_stroke(dd_seg(u, float2(-.2, -.7), float2(-.2, .7)), .06), dd_stroke(dd_seg(u, float2(.2, -.7), float2(.2, .7)), .06)), max(dd_stroke(dd_seg(u, float2(-.55, -.12), float2(.55, .12)), .1), dd_stroke(dd_seg(u, float2(-.55, .3), float2(.55, .54)), .1))); }
         float body = max(max(head, stem), flag);
-        I = (body + exp(-r * r * 3) * .22) * box;
+        // solid: pastel enamel with a dark ink outline (soft edge of the body), a white catch-light on the head; glow only as a faint halo
+        float edge = smoothstep(.15, .6, body) * smoothstep(1, .7, body);
+        float spec = exp(-pow(length(u - float2(-.38, -.42)) / .09, 2)) * head;
+        MatC(body * box, .62 + .25 * u.y * .5 - .25 * u.x * .3 + spec * .5, edge * .9, (body * .25 + spec * .8 + exp(-r * r * 3) * .12) * box, float3(1, 1, 1), I, hot);
     }
     else if (m < 2.5)                                                              // 52 sound arcs travelling along +x from the left edge
     {
+        if (par > 9.5)
+        {
+            float x01 = u.x * .5 + .5, env = smoothstep(0, .25, x01) * smoothstep(1, .7, x01);
+            float y0 = .55 * env * sin(u.x * (par - 6) - q * 18 + seed) * (.7 + .3 * sin(u.x * 3.1 + q * 5));
+            float d = abs(u.y - y0);
+            I = (exp(-d * d / .004) * 1.3 + exp(-d * d / .04) * .35) * env * box * (_Matter > .5 ? 0 : 1);
+            return;
+        }
         float2 p = u - float2(-.95, 0); float rr = length(p), a = atan2(p.y, p.x), hw = par > .01 ? par : .9;
         float wave = pow(.5 + .5 * cos((rr - q * .9) * 14), 5);
         float env = smoothstep(hw, hw * .55, abs(a)) * smoothstep(1.7, .9, rr) * smoothstep(.1, .35, rr);
@@ -106,7 +117,10 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
             float de = min(w - abs(u.x), min(.82 - u.y, (u.y + .94) * 1.2));
             float inside = smoothstep(-.015, .02, de), rim = exp(-pow((de - .06) / .05, 2)), band = exp(-pow((de - .2) / .035, 2)) * .5;
             float emblem = max(dd_stroke(dd_seg(u, float2(0, -.5), float2(0, .5)), .07), dd_stroke(dd_seg(u, float2(-.36, .12), float2(.36, .12)), .07));
-            I = inside * (.28 + .12 * fbm(u * 4 + seed) + rim * 1.1 + band + emblem * .8 + exp(-pow(length(u - float2(0, .12)) / .12, 2)) * .6);
+            // solid steel: a curved face lit from the top-left, a raised rim, a bright emblem; the light layer only catches the rim and emblem
+            float2 Ld = LightC(q); float face = .5 + .32 * dot(normalize(float2(u.x * 1.3, u.y * .4 + .3) + .001), Ld) * smoothstep(0, .6, abs(u.x) + .2) + .08 * fbm(u * 4 + seed);
+            float rivet = 0; for (int k = 0; k < 6; k++) { float2 rp = float2(k < 3 ? -.5 : .5, .55 - (k % 3) * .38); rivet = max(rivet, smoothstep(.06, .03, length(u - rp * float2(1, 1) * float2(1 - .25 * (k % 3), 1)))); }
+            MatC(inside, face + rim * .35 * saturate(dot(sign(u + .001), Ld) + .5) + emblem * .3 + rivet * .35, max(dd_stroke(de, .045) * step(-.02, de), band * .6), inside * (rim * .5 * saturate(dot(normalize(u + .001), Ld) + .4) + emblem * .55 + rivet * .4), float3(.85, .95, 1), I, hot);
         }
         else if (par < 1.5)
         {
@@ -132,7 +146,8 @@ void ShapeD(float mode, float2 u, float q, float seed, float par, float r, inout
             d = min(d, length(u - float2(.34, 0)) / .4); d = min(d, length(u + float2(.34, 0)) / .4); d = min(d, length(u - float2(0, .34)) / .4); d = min(d, length(u + float2(0, .34)) / .4);
             float seam = exp(-pow(abs(u.x) * abs(u.y) * 6, 2) * 6);
             float stem = dd_stroke(dd_seg(u, float2(.1, -.1), float2(.45, -.7)), .045) * .9;
-            I = (smoothstep(1, .55, d) * (.55 - seam * .3) + exp(-pow((d - .88) / .08, 2)) * .9 + stem) * smoothstep(.97, .8, r);
+            float leaf = smoothstep(1.02, .94, d), lit = .55 + .3 * dot(normalize(u + .001), LightC(q)) * smoothstep(.1, .6, r) - .2 * seam + .1 * fbm(u * 5 + seed);
+            MatC(max(leaf, stem) * smoothstep(.97, .8, r), lit, max(smoothstep(.9, 1., d) * leaf, seam * .45), (exp(-pow((d - .8) / .08, 2)) * .35 * saturate(dot(normalize(u + .001), LightC(q)) + .3) + exp(-r * r * 30) * .3) * leaf, float3(1, 1, .7), I, hot);
         }
         else if (par < 99)
         {

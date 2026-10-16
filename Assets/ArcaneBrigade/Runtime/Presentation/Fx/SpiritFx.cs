@@ -17,7 +17,7 @@ namespace ArcaneBrigade
             map["spirit-reaper"] = () => new Reaper();
         }
 
-        private static readonly Color Mist = new Color(.35f, .7f, .68f, 1), Robe = new Color(.02f, .07f, .09f, 1);
+        private static readonly Color Mist = new Color(.35f, .7f, .68f, 1), Robe = new Color(.1f, .2f, .23f, 1);
 
         /// <summary>A wisp: a pale teal ghost with a wavy tail and hollow eyes, pointing along <paramref name="dir"/>.</summary>
         internal static void Ghost(FxBatch b, Vector2 at, Vector2 dir, float size, float alpha, int seed, float now)
@@ -36,7 +36,7 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 at = At, from = From; float r = Mathf.Max(1.2f, Radius) * 1.0f;
-                const int N = 6;
+                const int N = 8;
                 if (t < 0)
                 {
                     Vector2 d = at - from; Vector2 n = new Vector2(-d.y, d.x).normalized;
@@ -48,10 +48,10 @@ namespace ArcaneBrigade
                         for (int s = 1; s <= 4; s++)
                         {
                             Vector2 tp = P(Mathf.Max(0, u - s * .05f));
-                            b.Quad(FxShape.Smoke, tp, .32f * (1 + s * .2f), 0, A(Mist, .3f * (1 - s / 5f)), s * .2f, Seed + k * 7 + s);
+                            b.Quad(FxShape.Smoke, tp, .45f * (1 + s * .2f), 0, A(Mist, .4f * (1 - s / 5f)), s * .2f, Seed + k * 7 + s);
                             Glint(b, tp + new Vector2(0, -.1f * s), .13f * (1 - s / 5f), DKit.Teal, .8f * (1 - s / 5f), s * 40);
                         }
-                        Ghost(b, p, p - q + Vector2.right * .001f, .55f, 1, Seed + k, now);
+                        Ghost(b, p, p - q + Vector2.right * .001f, .85f, 1, Seed + k, now);
                     }
                     b.Floor(FxShape.Glow, at, r * .8f * pre, A(DKit.Teal, .22f * pre), 0, Seed);
                     return;
@@ -64,13 +64,13 @@ namespace ArcaneBrigade
                     {
                         float rad = r * (1 - EaseOut(dive)) * .95f + .05f; Vector2 p = at + new Vector2(Mathf.Cos(a0) * rad, Mathf.Sin(a0) * rad * .62f) + Vector2.up * (1.1f * (1 - dive));
                         Vector2 tang = new Vector2(-Mathf.Sin(a0), Mathf.Cos(a0) * .62f);
-                        Ghost(b, p, tang - Vector2.up * dive * .6f, .55f * (1 - dive * .35f), 1, Seed + k, now);
+                        Ghost(b, p, tang - Vector2.up * dive * .6f, .85f * (1 - dive * .3f), 1, Seed + k, now);
                         Glint(b, p - tang * .5f, .12f, DKit.Ghost, .8f, k * 30);
                     }
                     else
                     {
                         float u = Rise(t, .42f, 1.15f); Vector2 p = at + new Vector2((H(Seed, k) - .5f) * r * .9f + Mathf.Sin(u * 7 + k) * .2f, 0) + Vector2.up * (EaseOut(u) * (2.2f + H(Seed, k + 5) * 1.0f));
-                        Ghost(b, p, Vector2.up + Vector2.right * Mathf.Sin(k + u * 6) * .4f, .52f + .15f * u, Fade(u, .45f, 1), Seed + k, now);
+                        Ghost(b, p, Vector2.up + Vector2.right * Mathf.Sin(k + u * 6) * .4f, .8f + .2f * u, Fade(u, .45f, 1), Seed + k, now);
                         for (int s = 1; s <= 3; s++) Glint(b, p + Vector2.down * (.35f + s * .25f), .1f, DKit.Teal, Fade(u, .3f, 1) * (1 - s / 4f), s * 60);
                     }
                 }
@@ -102,11 +102,12 @@ namespace ArcaneBrigade
                 Vector2 fig = at + new Vector2(-r * .55f, r * .75f) + Vector2.up * (1 - fadeIn) * -1.5f;
                 float lean = t < 0 ? -pre * .5f : Mathf.Lerp(-.5f, .9f, EaseOut(Rise(t, 0, .35f)));
                 // robe: layered dark smoke with a faint teal rim, a hood, ragged hem strips and two flickering eyes
-                b.Quad(FxShape.Shade, fig + Vector2.down * 1.2f, new Vector2(1.4f, 1.8f), 0, A(DKit.Dark, .8f * body), 0, Seed);
+                b.Quad(FxShape.Glow, fig + Vector2.down * .9f, new Vector2(1.7f, 2.2f), 0, A(DKit.Teal, .22f * body), 0, Seed);
+                b.Quad(FxShape.Shade, fig + Vector2.down * 1.2f, new Vector2(1.4f, 1.8f), 0, A(DKit.Dark, .6f * body), 0, Seed);
                 for (int k = 0; k < 6; k++)
                 {
                     Vector2 p = fig + new Vector2(Mathf.Sin(now * 2 + k) * .12f + lean * (.2f - k * .12f), -k * .36f + .3f);
-                    b.Quad(FxShape.Glow, p, .9f - k * .06f, A(DKit.Teal, .12f * body), 0, Seed);
+                    b.Quad(FxShape.Glow, p, 1.1f - k * .06f, A(DKit.Teal, .28f * body), 0, Seed);
                     b.Quad(FxShape.Smoke, p, new Vector2(.7f + k * .15f, .56f), 0, A(Robe, .98f * body), now * .3f, Seed + k);
                 }
                 for (int k = 0; k < 5; k++)
@@ -115,7 +116,8 @@ namespace ArcaneBrigade
                     for (int j = 0; j < 4; j++) b.Quad(FxShape.Shade, Vector2.Lerp(hem, rag, j / 3f), new Vector2(.16f - j * .025f, .2f), 0, A(Robe, .9f * body), 0, Seed + k);
                     b.Quad(FxShape.Smoke, rag, .2f, 0, A(Mist, .3f * body), now, Seed + k);
                 }
-                b.Quad(FxShape.Smoke, fig + new Vector2(lean * .15f, .75f), .58f, A(new Color(.01f, .04f, .06f), body), 0, Seed + 9);
+                b.Quad(FxShape.Smoke, fig + new Vector2(lean * .15f, .75f), .62f, A(new Color(.08f, .17f, .2f), body), 0, Seed + 9);
+                b.Quad(FxShape.Glow, fig + new Vector2(lean * .15f, .8f), .9f, A(DKit.Teal, .3f * body), 0, Seed);
                 float blink = .75f + .25f * Mathf.Sin(now * 23) * Mathf.Sin(now * 7);
                 b.Quad(FxShape.Glow, fig + new Vector2(lean * .15f - .14f, .72f), .16f, A(White, body * blink), 0, Seed);
                 b.Quad(FxShape.Glow, fig + new Vector2(lean * .15f + .12f, .72f), .16f, A(White, body * blink), 0, Seed);

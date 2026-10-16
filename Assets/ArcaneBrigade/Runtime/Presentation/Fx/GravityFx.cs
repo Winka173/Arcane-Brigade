@@ -20,7 +20,8 @@ namespace ArcaneBrigade
             map["gravity-heavy"] = () => new Heavy();
         }
 
-        private static readonly Color Soot = new Color(.12f, .08f, .2f, 1), Grit = new Color(.42f, .36f, .52f, 1);
+        private static readonly Color Soot = new Color(.12f, .08f, .2f, 1), Grit = new Color(.42f, .36f, .52f, 1), Basalt = new Color(.46f, .4f, .56f, 1);
+        private const FxShape Rock = (FxShape)42;
 
         /// <summary>Beams streaking inward: the 'pulled to the centre' vocabulary of the bond.</summary>
         private static void Inflow(FxBatch b, Vector2 at, float r, float u, int seed, int n, Color c, float alpha)
@@ -58,20 +59,19 @@ namespace ArcaneBrigade
                     DustIn(b, at, r * 1.3f, t * 4, Seed, 6, .6f);
                     b.Floor(FxShape.Shade, at, r * .8f * u, A(DKit.Dark, .6f * u), 0, Seed);
                     for (int k = 1; k <= 4; k++) b.Quad(FxShape.Smoke, p + Vector2.up * k * .4f, .35f + .1f * k, A(Soot, .55f * (1 - k / 5f)), u, Seed + k);
-                    b.Quad(FxShape.Glow, p, 1.0f, A(DKit.Purple, .6f), 0, Seed);
-                    b.Quad(FxShape.Smoke, p, .6f, A(new Color(.1f, .06f, .18f), 1), 0, Seed);
-                    b.Quad(DKit.Star, p, .7f, t * 300, A(DKit.Lavender, 1.1f), 0, Seed, 7);
+                    b.Quad(FxShape.Glow, p, 1.4f, A(DKit.Purple, .35f), 0, Seed);
+                    b.Quad(Rock, p, 1.0f, t * 300, A(Basalt, 1), Mathf.Repeat(t * 300 / 360f, 1), Seed, 0);
                     return;
                 }
                 float s = t - fall;
                 b.Quad(FxShape.Glow, at, r * 1.4f, A(DKit.Lavender, .75f * Fade(s, 0, .18f)), 0, Seed);
                 b.Floor(FxShape.Shade, at, r * .8f, A(DKit.Dark, .55f * Fade(s, .5f, 1f)), 0, Seed + 1);
-                b.Floor(FxShape.Cracks, at, r * 1.3f, A(DKit.Purple, 1.1f * Fade(s, .3f, 1f)), Rise(s, 0, .2f), Seed, 1);
+                b.Floor(FxShape.Cracks, at, r * 1.5f, A(DKit.Purple, 1.1f * Fade(s, .3f, 1f)), Rise(s, 0, .2f), Seed, 1);
                 b.Floor(FxShape.Shock, at, r * 1.25f, A(DKit.Lavender, .9f), Rise(s, 0, .55f), Seed);
                 DKit.DustRing(b, at, r * 1.0f, s, Grit, Seed, 9, .95f, .7f);
                 FxKit.SmokeColumn(b, at + Vector2.up * .2f, .6f, 1.3f, s, Soot, Seed + 4, 5);
-                if (s < .7f) b.Quad(DKit.Star, at + Vector2.up * .1f, .6f * (1 - s * .8f), 40, A(DKit.Lavender, .9f * Fade(s, .35f, .7f)), 0, Seed, 7);
-                DKit.Debris(b, at, s, 10, r * 1.3f, 1.4f, DKit.Purple, Seed, DKit.Star, 6, .2f, .85f, Grit);
+                b.Quad(Rock, at + Vector2.up * (.35f - .2f * Rise(s, 0, .5f)), new Vector2(1.05f, .95f) * (1 + .1f * Fade(s, 0, .15f)), 40, A(Basalt, Fade(s, .7f, 1.03f)), 40 / 360f, Seed, 0);
+                DKit.Debris(b, at, s, 12, r * 1.5f, 1.6f, Basalt, Seed, Rock, 0, .26f, .85f, Grit);
                 DKit.Sparks(b, at + Vector2.up * .2f, s, 10, 4f, 3f, DKit.Lavender, Seed, .45f, .09f);
             }
         }
@@ -129,21 +129,21 @@ namespace ArcaneBrigade
             protected override float Life => 1.9f;
             private static void Planet(FxBatch b, Vector2 p, float size, float alpha, int seed, float now)
             {
-                b.Quad(FxShape.Glow, p, size * 2.2f, A(DKit.Purple, .5f * alpha), 0, seed);
-                b.Quad(DKit.Hole, p, size * 2.0f, A(DKit.Lavender, .7f * alpha), now, seed, 1);
+                b.Quad(FxShape.Glow, p, size * 1.8f, A(DKit.Purple, .22f * alpha), 0, seed);
+                b.Quad(DKit.Hole, p, size * 1.8f, A(DKit.Lavender, .4f * alpha), now, seed, 1);
                 b.Quad(FxShape.Shade, p, size * 1.7f, A(new Color(.1f, .04f, .22f), alpha), 0, seed);
                 b.Quad(FxShape.Shade, p, size * 1.45f, A(new Color(.18f, .08f, .34f), alpha), 0, seed + 1);
                 b.Quad(FxShape.Disc, p, size, A(new Color(.4f, .2f, .8f), .35f * alpha), 0, seed);
                 b.Quad(FxShape.Disc, p + new Vector2(-.2f, .22f) * size, size * .55f, A(new Color(.6f, .45f, 1f), .3f * alpha), 0, seed);
-                b.Quad(FxShape.Glow, p + new Vector2(-.35f, .35f) * size, size * .45f, A(White, .5f * alpha), 0, seed);
+                b.Quad(FxShape.Glow, p + new Vector2(-.35f, .35f) * size, size * .35f, A(White, .25f * alpha), 0, seed);
                 for (int k = 0; k < 3; k++) b.Quad(FxShape.Smoke, p + new Vector2(0, (k - 1) * size * .4f), new Vector2(size * .9f, size * .13f), 0, A(new Color(.1f, .05f, .3f), .5f * alpha), now * .1f, seed + k);
-                b.Quad(FxShape.Shock, p, new Vector2(size * 2.1f, size * .75f), 18, A(DKit.Lavender, .9f * alpha), .3f, seed);
+                b.Quad(FxShape.Shock, p, new Vector2(size * 1.9f, size * .68f), 18, A(DKit.Lavender, .6f * alpha), .3f, seed);
                 for (int k = 0; k < 5; k++) { float a = now * 2.2f + k * 1.2566f; Vector2 o = new Vector2(Mathf.Cos(a) * size * 2.0f, Mathf.Sin(a) * size * .7f); o = new Vector2(o.x * .951f - o.y * .309f, o.x * .309f + o.y * .951f); Glint(b, p + o, .14f, White, alpha * (Mathf.Sin(a) < 0 ? .4f : 1), k * 40); }
             }
 
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Mathf.Max(1.8f, Radius) * .9f, pr = 1.0f;
+                Vector2 at = At; float r = Mathf.Max(1.8f, Radius) * .8f, pr = .8f;
                 if (t < 0)
                 {
                     float u = DKit.EaseIn(pre); Vector2 pp = at + Vector2.up * 7.5f * (1 - u);
@@ -156,7 +156,7 @@ namespace ArcaneBrigade
                     return;
                 }
                 float sink = Rise(t, .35f, 1.5f), alpha = Fade(t, .9f, 1.7f);
-                b.Quad(FxShape.Glow, at, r * 1.5f, A(White, .65f * Fade(t, 0, .2f)), 0, Seed);
+                b.Quad(FxShape.Glow, at, r * 1.2f, A(DKit.Lavender, .35f * Fade(t, 0, .2f)), 0, Seed);
                 b.Floor(FxShape.Cracks, at, r * 1.3f, A(DKit.Purple, 1.2f * Fade(t, .5f, 1.6f)), Rise(t, 0, .3f), Seed, 3);
                 for (int k = 0; k < 3; k++)
                 {
@@ -175,15 +175,16 @@ namespace ArcaneBrigade
         /// <summary>A hit that drags an enemy: short lavender streaks and a skid of grit race into a tiny dark dimple with a swirl.</summary>
         private sealed class Pull : FxEffect
         {
-            protected override float Life => .5f;
+            protected override float Life => .75f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                if (t < 0) return; Vector2 at = At; float r = Mathf.Max(.9f, Radius) * .9f, f = Fade(t, .15f, .5f);
-                b.Floor(FxShape.Shade, at, r * .55f, A(DKit.Dark, .6f * f), 0, Seed);
-                b.Quad(DKit.Hole, at, DKit.Sq(r * 1.1f), 0, A(DKit.Lavender, 1.1f * f), t * 2, Seed, 2);
-                Inflow(b, at, r * 1.2f, t * 3, Seed, 7, DKit.Lavender, f);
-                DustIn(b, at, r * 1.1f, t * 2.4f, Seed, 4, .55f * f);
-                for (int k = 0; k < 4; k++) { float v = (t * 2.5f + k * .25f) % 1f; Glint(b, at + Dir(Seed, k, 4, .62f) * r * (1 - v), .13f, White, f * Mathf.Sin(v * Mathf.PI), k * 40); }
+                if (t < 0) return; Vector2 at = At; float r = Mathf.Max(.9f, Radius) * 1.4f, f = Fade(t, .3f, .75f);
+                b.Floor(FxShape.Shade, at, r * .75f, A(DKit.Dark, .75f * f), 0, Seed);
+                b.Quad(DKit.Hole, at, DKit.Sq(r * 1.2f), 0, A(DKit.Lavender, 1.1f * f), t * 2, Seed, 2);
+                b.Floor(DKit.Hole, at, r * .9f * (1 - .3f * Rise(t, 0, .7f)), A(DKit.Purple, f), t, Seed + 1, 1);
+                Inflow(b, at, r * 1.5f, t * 3, Seed, 12, DKit.Lavender, f);
+                DustIn(b, at, r * 1.3f, t * 2.4f, Seed, 7, .7f * f);
+                for (int k = 0; k < 8; k++) { float v = (t * 2.5f + k * .125f) % 1f; Glint(b, at + Dir(Seed, k, 8, .62f) * r * 1.3f * (1 - v), .2f, White, f * Mathf.Sin(v * Mathf.PI), k * 40); }
             }
         }
 
@@ -197,13 +198,39 @@ namespace ArcaneBrigade
             {
                 if (Moment.Kind != BondMomentKind.Weather) return;
                 float age = now - Born, on = Rise(age, 0, 2f) * Fade(now, End - 1.5f, End); Rect a = Arena; Vector2 c = a.center;
-                b.Quad(FxShape.Shade, c, new Vector2(a.width * .5f, a.height * .5f), 0, A(new Color(.06f, .02f, .14f), .14f * on), 0, Seed);
+                // a slow pressure front: a soft violet band of haze presses down the field every few seconds
+                for (int k = 0; k < 2; k++)
+                {
+                    float u = (age * .16f + k * .5f) % 1f, y = a.yMax - u * a.height;
+                    for (int j = 0; j < 6; j++) b.Quad(FxShape.Smoke, new Vector2(a.xMin + a.width * (j + .5f) / 6f + Mathf.Sin(age * .4f + j) * .5f, y), new Vector2(2.6f, .9f), 0, A(new Color(.32f, .22f, .5f), .28f * on * Mathf.Sin(u * Mathf.PI)), age * .1f + j, Seed + j + k * 7);
+                }
+                // heavy stones hang in the air and sink slowly, each landing with a thud of dust
+                for (int k = 0; k < 6; k++)
+                {
+                    float cyc = 4f + 1.5f * H(Seed, k + 800), ph = (age + H(Seed, k + 801) * cyc) % cyc, n = Mathf.Floor((age + H(Seed, k + 801) * cyc) / cyc), sink = Mathf.Clamp01(ph / (cyc - 1.2f));
+                    Vector2 land = new Vector2(a.xMin + 2 + (a.width - 4) * H(Seed + (int)n, k + 810), a.yMin + 1.5f + (a.height - 3) * H(Seed + (int)n, k + 820));
+                    float s = .45f + .25f * H(Seed + (int)n, k + 830);
+                    if (sink < 1)
+                    {
+                        float hgt = 2.4f * (1 - sink * sink);
+                        b.Floor(FxShape.Shade, land, s * (1.4f - .5f * hgt / 2.4f), A(DKit.Dark, .45f * on * Rise(ph, 0, .6f)), 0, Seed + k);
+                        b.Quad(Rock, land + Vector2.up * (hgt + s * .5f), s, age * 20 + k * 50, A(Basalt, on * Rise(ph, 0, .6f)), Mathf.Repeat((age * 20 + k * 50) / 360f, 1), Seed + k, 0);
+                        b.Link(land + Vector2.up * (hgt + s * 1.2f), land + Vector2.up * (hgt + s * 2.2f), .05f, A(DKit.Lavender, .35f * on), Seed + k, .5f);
+                    }
+                    else
+                    {
+                        float u = (ph - (cyc - 1.2f)) / 1.2f;
+                        b.Quad(Rock, land + Vector2.up * s * .4f, new Vector2(s, s * .9f), k * 50, A(Basalt, on * Fade(u, .5f, 1)), Mathf.Repeat(k * 50 / 360f, 1), Seed + k, 0);
+                        b.Quad(FxShape.Dust, land, new Vector2(.6f + .8f * u, .25f + .2f * u), 0, A(Grit, .7f * on * (1 - u)), u, Seed + k);
+                        if (u < .4f) b.Floor(FxShape.Cracks, land, .9f, A(DKit.Purple, .8f * on * Fade(u, 0, .4f)), 1, Seed + k, 1);
+                    }
+                }
                 // bands of force sag across the arena and creep downward
                 for (int k = 0; k < 5; k++)
                 {
                     float u = (k / 5f + age * .05f) % 1f, y = a.yMax - u * a.height, al = on * Mathf.Sin(u * Mathf.PI);
                     Vector2 l = new Vector2(a.xMin - .5f, y), r = new Vector2(a.xMax + .5f, y);
-                    DKit.Chain(b, l, r, -.7f, .5f, 0, .05f, DKit.Purple, .4f * al, Seed + k * 9, 24, .5f);
+                    DKit.Chain(b, l, r, -.7f, .5f, 0, .07f, DKit.Purple, .55f * al, Seed + k * 9, 24, .5f);
                 }
                 // lensing ripples drift slowly over the floor
                 for (int k = 0; k < 5; k++)

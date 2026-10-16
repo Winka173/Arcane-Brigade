@@ -21,7 +21,7 @@ namespace ArcaneBrigade
             map["court-fanfare"] = () => new Fanfare();
         }
 
-        private const FxShape Drop = (FxShape)32, Seal = (FxShape)33, Crown = (FxShape)34, Ribbon = (FxShape)37, CardS = (FxShape)38;
+        private const FxShape Drop = (FxShape)32, Seal = (FxShape)33, Crown = (FxShape)34, Ribbon = (FxShape)37, CardS = (FxShape)38, Mark = (FxShape)43, Banner = (FxShape)43;
         private static readonly Color Gold = new Color(1f, .8f, .24f), Crimson = new Color(.9f, .12f, .2f), Royal = new Color(.25f, .38f, 1f),
             Parch = new Color(1f, .7f, .36f), Wood = new Color(.42f, .2f, .07f), DustC = new Color(.78f, .68f, .54f);
 
@@ -68,10 +68,14 @@ namespace ArcaneBrigade
                 if (t < .6f) DrawStamp(b, sp, Fade(t, .3f, .6f) + .01f, Seed);
                 b.Quad(FxShape.Glow, at + Vector2.up * .3f, r * 1.7f, A(Gold, .55f * Fade(t, 0, .25f)), 0, Seed);
                 float pop = 1 + .35f * Fade(t, 0, .18f);
-                b.Floor(FxShape.Glow, at, r * 1.6f, A(Crimson, .5f * imprint), 0, Seed);
-                b.Floor(Seal, at, r * 1.3f * pop, A(Crimson, 1.3f * imprint), t, Seed);
-                b.Floor(Seal, at, r * .95f * pop, A(Gold, .85f * imprint * (.8f + .2f * Mathf.Sin(now * 12))), t, Seed + 3);
-                b.Floor(FxShape.Shock, at, r * 1.7f, A(Gold, .9f), Rise(t, 0, .5f), Seed);
+                // the imprint: a square rubber-stamp mark in crimson ink (border, crown, lettering), pressed flat on the floor
+                b.Quad(Mark, at, new Vector2(r * 1.25f * pop, r * 1.25f * .62f * pop), -6, A(Crimson, imprint), 0, Seed, 2);
+                // ink squeezed out under the plate in short flat streaks
+                for (int k = 0; k < 8; k++)
+                {
+                    float u = Rise(t, 0, .25f); Vector2 d = Dir(Seed + 5, k, 8, .62f);
+                    b.Link(at + d * r * .95f, at + d * r * (1.0f + .5f * u), .06f * (1 - u * .5f), A(Crimson, .9f * imprint), Seed + k, .3f);
+                }
                 Wax(b, at, r * 1.4f, t, Seed, 10, 2f);
                 Thump(b, at, r, t, Seed);
                 for (int k = 0; k < 10; k++)
@@ -80,7 +84,7 @@ namespace ArcaneBrigade
                     Vector2 d = Dir(Seed + 2, k, 10, .5f);
                     b.Link(at + d * r * (.4f + .9f * u), at + d * r * (.25f + .9f * u * .8f), .05f, A(k % 2 == 0 ? Gold : White, 1 - u), Seed + k, .7f);
                 }
-                for (int k = 0; k < 8; k++) { float u = (t * .8f + H(Seed, k)) % 1; Glint(b, at + Dir(Seed, k, 8, .7f) * r * .9f + Vector2.up * u * 1.2f, .22f, Gold, .9f * imprint * Mathf.Sin(u * Mathf.PI), k * 40 + now * 90); }
+                for (int k = 0; k < 5; k++) { float u = (t * .8f + H(Seed, k)) % 1; Glint(b, at + Dir(Seed, k, 5, .7f) * r * .9f + Vector2.up * u * 1.2f, .2f, Gold, .8f * imprint * Mathf.Sin(u * Mathf.PI), k * 40 + now * 90); }
             }
             private static void DrawStamp(FxBatch b, Vector2 p, float alpha, int seed)
             {
@@ -182,9 +186,7 @@ namespace ArcaneBrigade
                 b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 1.8f, A(White, .55f * Fade(t, 0, .15f)), 0, Seed);
                 b.Quad(FxShape.Rays, at + Vector2.up * .8f, r * 1.9f, A(Gold, .5f * Fade(t, 0, 1.0f)), t * .7f, Seed, 6);
                 Thump(b, at, r, t, Seed + 5); Thump(b, at, r * .7f, t - .35f, Seed + 9, 5);
-                b.Floor(FxShape.Glow, at, r * 1.6f, A(Gold, .25f * seal), 0, Seed);
-                b.Floor(Seal, at, r * 1.45f * (1 + .1f * Fade(t, 0, .3f)), A(Gold, .65f * seal * Rise(t, 0, .1f)), t, Seed);
-                b.Floor(Seal, at, r * 1.0f, A(Crimson, .9f * seal * Rise(t, 0, .1f)), t, Seed + 2);
+                b.Floor(FxShape.Shade, at, r * 1.1f, A(new Color(.1f, .06f, 0), .5f * seal), 0, Seed);
                 b.Quad(FxShape.Glow, c, 1.8f, A(Gold, .3f * fade), 0, Seed);
                 b.Quad(Crown, c + Vector2.up * .4f, new Vector2(1.25f, 1.25f), Mathf.Sin(t * 20) * 4 * Fade(t, 0, .5f), A(Gold, 1.25f * fade), 0, Seed, 0);
                 // banners fall away to the sides
@@ -196,7 +198,16 @@ namespace ArcaneBrigade
                 // spinning coins
                 for (int k = 0; k < 16; k++)
                 {
-                    Vector2 d = Dir(Seed, k, 16, .8f); float life = .85f + .35f * H(Seed, k + 4), u = t / life; if (u <= 0 || u >= 1) continue;
+                    Vector2 d = Dir(Seed, k, 16, .8f); float life = .85f + .35f * H(Seed, k + 4), u = t / life;
+                    if (u >= 1)
+                    {
+                        // the coin has landed: it lies flat on the floor, winking now and then
+                        Vector2 rest = c + d * r * 1.35f + Vector2.up * (3.4f * H(Seed, k + 9) - 4.6f);
+                        b.Floor(FxShape.Disc, rest, .16f, A(Gold, seal), 0, Seed + k);
+                        Glint(b, rest + new Vector2(-.05f, .04f), .2f, White, seal * Mathf.Pow(Mathf.Max(0, Mathf.Sin(now * 3 + k * 1.7f)), 12), k * 20);
+                        continue;
+                    }
+                    if (u <= 0) continue;
                     Vector2 p = c + d * r * 1.35f * EaseOut(u) + Vector2.up * (3.4f * H(Seed, k + 9) * u - 4.6f * u * u);
                     float sz = .26f + .08f * H(Seed, k + 2), flip = Mathf.Abs(Mathf.Cos(t * 11 + k * 1.7f));
                     b.Quad(Seal, p, new Vector2(sz * (.12f + flip), sz), 0, A(Gold, 1.3f * (1 - u * u)), 0, Seed + k, 0);
@@ -222,17 +233,17 @@ namespace ArcaneBrigade
                 for (int k = 0; k < n; k++)
                 {
                     float x = a.xMin + a.width * (k + .5f) / n, start = .06f * Mathf.Abs(k - 2), drop = EaseOut3(Rise(t, start, start + .38f));
-                    float barY = a.yMax - .35f, half = 1.75f, hh = Mathf.Max(.06f, half * drop), sway = Mathf.Sin(t * 3.2f + k * 1.3f) * 2.5f * drop;
+                    float barY = a.yMax - .3f, half = 1.9f, hh = Mathf.Max(.06f, half * drop), sway = Mathf.Sin(now * 2.2f + k * 1.3f) * 4f * drop;
                     Color cloth = k % 2 == 0 ? Crimson : Royal;
                     Vector2 c = new Vector2(x, barY - hh);
                     b.Quad(FxShape.Glow, c, new Vector2(1.3f, hh * 1.2f + .3f), 0, A(cloth, .35f * g * rise), 0, Seed);
-                    b.Quad(CardS, c, new Vector2(1.1f, hh), sway, A(cloth, 1.15f * g * rise), t * 1.4f, Seed + k, 2);
-                    b.Quad(CardS, c, new Vector2(1.1f, hh), sway, A(Gold, 1.1f * g * rise), t * 1.4f, Seed + k, 3);
+                    // the cloth flutters: a wave runs down it, folds catch the light, the swallowtails whip
+                    b.Quad(Banner, c, new Vector2(1.25f, hh), sway, A(cloth, g * rise), now * 1.1f + k * .7f, Seed + k, 3);
                     // the rolled cloth at the foot while it unfurls
                     if (drop < .98f) b.Quad(CardS, new Vector2(x, barY - 2 * hh), new Vector2(.68f, .14f * (1 - drop) + .05f), 0, A(cloth, 1.2f * g), 0, Seed + k, 0);
                     // emblem: a crown or a wax seal on the cloth
                     float em = Rise(drop, .7f, 1) * g;
-                    Vector2 emp = new Vector2(x, barY - hh * 1.0f);
+                    Vector2 emp = new Vector2(x + Mathf.Sin(-hh * .1f * 4.2f + now * 1.1f * 7 + k * .7f * 7) * .07f, barY - hh * .9f);
                     b.Quad(FxShape.Glow, emp, .7f, A(Gold, .35f * em), 0, Seed);
                     if (k % 2 == 0) b.Quad(Crown, emp, new Vector2(.5f, .5f), sway, A(Gold, 1.25f * em), 0, Seed + k, 0);
                     else b.Quad(Seal, emp, new Vector2(.44f, .44f), sway, A(Gold, 1.2f * em), t, Seed + k, 0);

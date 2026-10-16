@@ -22,6 +22,7 @@ namespace ArcaneBrigade
         }
         private static void Add(Dictionary<string, Func<FxEffect>> m, string rule, float life, DrawFn d) { m[rule] = () => new Fn(life, d); }
         private static Vector2 Sq(float r) => DKit.Sq(r);
+        private const FxShape Rock = (FxShape)42, Cone = (FxShape)47, Rod = (FxShape)48;
         private static readonly Color Ink = new Color(.25f, .45f, 1f, 1), Paper = new Color(1f, .96f, .8f, 1), Wood = new Color(.75f, .45f, .2f, 1), Leaf = new Color(.45f, 1f, .4f, 1),
             Amber = new Color(1f, .7f, .25f, 1), Cloud = new Color(.85f, .9f, 1f, 1), Gold = new Color(1f, .85f, .35f, 1), Marble = new Color(.92f, .92f, 1f, 1),
             Rose = new Color(1f, .4f, .55f, 1), Candy = new Color(1f, .5f, .75f, 1), Sea = new Color(.4f, .85f, 1f, 1), Iron = new Color(.7f, .72f, .8f, 1), Spark = new Color(1f, .6f, .2f, 1),
@@ -165,13 +166,17 @@ namespace ArcaneBrigade
             Vector2 at = e.At; float r = Mathf.Max(1.3f, e.Radius) * 1.0f;
             if (t < 0) { b.Floor(FxShape.Shade, at, r * .7f * pre, A(DKit.Dark, .5f * pre), 0, e.Seed); return; }
             float drop = Rise(t, 0, .12f), sink = Fade(t, .5f, 1.0f), rune = .8f + .6f * DKit.Bump(t, .1f, .3f) + .5f * DKit.Bump(t, .38f, .6f);
-            b.Quad(FxShape.Glow, at, r * 1.1f, A(Amber, .55f * Fade(t, 0, .2f)), 0, e.Seed);
-            b.Floor(FxShape.Cracks, at, r * 1.0f, A(Amber, .9f * sink), Rise(t, 0, .15f), e.Seed, 1);
-            b.Quad(DKit.Shield, at + Vector2.up * (1.5f + 4f * (1 - drop) - .4f * (1 - sink)), new Vector2(.9f, 1.6f), 0, A(Amber, 1.1f * sink * rune), t, e.Seed, 2);
+            b.Quad(FxShape.Glow, at, r * .9f, A(Amber, .3f * Fade(t, 0, .2f)), 0, e.Seed);
+            b.Floor(FxShape.Shade, at, r * .9f, A(DKit.Dark, .55f * sink), 0, e.Seed);
+            b.Floor(FxShape.Cracks, at, r * 1.0f, A(Amber, .8f * sink), Rise(t, 0, .15f), e.Seed, 1);
+            // a carved standing stone (solid, chisel-marked) slams down; only its runes glow, flaring twice
+            Vector2 mp = at + Vector2.up * (1.35f + 4f * (1 - drop) - .35f * (1 - sink));
+            b.Quad(Rock, mp, new Vector2(1.0f, 1.65f), 0, A(Stone, sink), 0, e.Seed, 3);
+            b.Quad(FxShape.Glow, mp, new Vector2(.45f, 1.2f), 0, A(Amber, .35f * sink * (rune - .8f)), 0, e.Seed);
             b.Floor(FxShape.Shock, at, r * 1.2f, A(Amber, .9f), Rise(t, 0, .6f), e.Seed);
             DKit.DustRing(b, at, r * .95f, t, Stone, e.Seed, 9, 1.0f, .75f);
             FxKit.SmokeColumn(b, at + Vector2.up * .2f, .5f, .9f, t * 1.3f, new Color(.5f, .44f, .38f), e.Seed + 3, 4);
-            DKit.Debris(b, at, t, 9, r * 1.1f, 1.2f, Stone, e.Seed, DKit.Shield, 1, .18f, .75f, DKit.DustBrown);
+            DKit.Debris(b, at, t, 10, r * 1.2f, 1.3f, Stone, e.Seed, Rock, 0, .26f, .75f, DKit.DustBrown);
             DKit.Sparks(b, at + Vector2.up * .3f, t, 6, 3f, 2.5f, Amber, e.Seed, .4f, .08f);
         }
 
@@ -185,10 +190,10 @@ namespace ArcaneBrigade
             {
                 float u = (t * 1.4f + H(e.Seed, k)) % 1f, a = k * .78f + u * 6, rad = r * 1.15f * (1 - u);
                 Vector2 p = at + new Vector2(Mathf.Cos(a) * rad, Mathf.Sin(a) * rad * .62f), tail = at + new Vector2(Mathf.Cos(a - .5f) * rad * 1.1f, Mathf.Sin(a - .5f) * rad * .68f);
-                b.Quad(FxShape.Dust, Vector2.Lerp(tail, p, .4f), new Vector2(.4f, .18f), DKit.Deg(p - tail), A(Stone, .55f * f * (1 - u)), u, e.Seed + k);
-                b.Quad(DKit.Shield, p, new Vector2(.14f, .1f), t * 300 + k * 50, A(Amber, f * (1 - u * .4f)), 0, e.Seed + k, 1);
+                b.Quad(FxShape.Dust, Vector2.Lerp(tail, p, .4f), new Vector2(.7f, .3f), DKit.Deg(p - tail), A(Stone, .65f * f * (1 - u)), u, e.Seed + k);
+                b.Quad(Rock, p + Vector2.up * .2f, .5f + .15f * H(e.Seed, k + 3), t * 300 + k * 50, A(Stone, f), Mathf.Repeat((t * 300 + k * 50) / 360f, 1), e.Seed + k, 0);
             }
-            float puff = Rise(t, .1f, 1f); b.Quad(FxShape.Dust, at + Vector2.up * .2f * puff, new Vector2(.6f + .4f * puff, .3f + .2f * puff), 0, A(Stone, .6f * Mathf.Sin(puff * Mathf.PI) * f), puff, e.Seed + 20);
+            float puff = Rise(t, .1f, 1f); b.Quad(FxShape.Dust, at + Vector2.up * .2f * puff, new Vector2(1.1f + .6f * puff, .5f + .3f * puff), 0, A(Stone, .6f * Mathf.Sin(puff * Mathf.PI) * f), puff, e.Seed + 20);
             for (int k = 0; k < 5; k++) Glint(b, at + Dir(e.Seed, k, 5, .6f) * .35f, .16f, Amber, f * Mathf.Pow(.5f + .5f * Mathf.Sin(t * 25 + k * 2), 4), k * 40);
         }
 
@@ -201,17 +206,17 @@ namespace ArcaneBrigade
                 Vector2 p = DKit.Arc(e.From, at, pre, .7f), q = DKit.Arc(e.From, at, Mathf.Max(0, pre - .08f), .7f);
                 b.Link(q, p, .18f, A(Gold, .8f), e.Seed, .5f);
                 for (int k = 1; k <= 5; k++) Glint(b, DKit.Arc(e.From, at, Mathf.Max(0, pre - k * .03f), .7f) + Vector2.down * k * .06f, .14f, Gold, 1 - k / 6f, k * 40);
-                b.Quad(FxShape.Glow, p, 1.0f, A(Gold, .4f), 0, e.Seed); b.Quad(DKit.Shield, p, new Vector2(.85f, .6f), DKit.Deg(at - e.From), A(Gold, 1.2f), 0, e.Seed, 1);
+                b.Quad(FxShape.Glow, p, 1.2f, A(Gold, .3f), 0, e.Seed); b.Quad(DKit.Shield, p, new Vector2(1.25f, .85f), DKit.Deg(at - e.From), A(Gold, 1.2f), 0, e.Seed, 1);
                 return;
             }
             float split = Rise(t, .22f, .25f);
             b.Quad(FxShape.Glow, at, 1.4f, A(Gold, .65f * Fade(t, 0, .25f)), 0, e.Seed);
             b.Floor(FxShape.Cracks, at, .9f, A(Gold, .9f * Fade(t, .3f, .9f)), Rise(t, 0, .1f), e.Seed, 1);
-            if (split < 1) b.Quad(DKit.Shield, at + Vector2.up * .5f, new Vector2(.75f, .55f), 70 + Mathf.Sin(t * 50) * 4, A(Gold, 1.1f), 0, e.Seed, 1);
-            for (int k = 0; k < 3; k++) { float u = Rise(t, .22f, .75f); if (u > 0 && u < 1) b.Quad(DKit.Shield, at + Dir(e.Seed, k, 3, .6f) * 1.2f * EaseOut(u) + Vector2.up * (.5f + .8f * Mathf.Sin(u * 3.14f)), new Vector2(.38f, .3f), 70 + u * 400 + k * 120, A(Gold, 1 - u), 0, e.Seed + k, 1); }
+            if (split < 1) b.Quad(DKit.Shield, at + Vector2.up * .75f, new Vector2(1.2f, .85f), 70 + Mathf.Sin(t * 50) * 4, A(Gold, 1.1f), 0, e.Seed, 1);
+            for (int k = 0; k < 3; k++) { float u = Rise(t, .22f, .75f); if (u > 0 && u < 1) b.Quad(DKit.Shield, at + Dir(e.Seed, k, 3, .6f) * 1.6f * EaseOut(u) + Vector2.up * (.7f + 1.0f * Mathf.Sin(u * 3.14f)), new Vector2(.62f, .45f), 70 + u * 400 + k * 120, A(Gold, 1 - u), 0, e.Seed + k, 1); }
             DKit.Sparks(b, at + Vector2.up * .4f, t - .22f, 9, 3.5f, 2.8f, Gold, e.Seed, .45f, .09f);
             DKit.DustRing(b, at, .7f, t, Stone, e.Seed, 6, .7f, .55f);
-            b.Floor(FxShape.Shock, at, 1.4f, A(Gold, .9f), Rise(t, 0, .4f), e.Seed);
+            FxKit.SmokeColumn(b, at, .5f, 1f, t * 1.3f, new Color(.6f, .55f, .48f), e.Seed + 3, 4);
         }
 
         // a top hat flies along the line spinning like a saw: dark crown, rose ribbon trail, a whirling white blur, sparks shaved off,
@@ -242,32 +247,45 @@ namespace ArcaneBrigade
             Vector2 at = e.At;
             if (t < 0) { Vector2 p = DKit.Arc(e.From, at, pre, 2.2f); for (int k = 1; k < 6; k++) Glint(b, DKit.Arc(e.From, at, Mathf.Max(0, pre - k * .05f), 2.2f), .18f, Gold, 1 - k / 6f, k * 70); b.Quad(DKit.Star, p, .5f, pre * 500, A(Leaf, 1.2f), 0, e.Seed, 0); return; }
             float pulse = 1 + .15f * Fade(t, 0, .2f) + .1f * DKit.Bump(t, .45f, .7f);
-            b.Quad(FxShape.Glow, at, 1.6f, A(Gold, .7f * Fade(t, 0, .3f) + .3f * DKit.Bump(t, .45f, .7f)), 0, e.Seed);
-            b.Quad(DKit.Star, at, DKit.Sq(1.25f * pulse), t * 30, A(Leaf, 1.15f * Fade(t, .6f, 1.15f)), 0, e.Seed, 0);
-            b.Quad(FxShape.Rays, at, 1.9f, A(Gold, .7f * Fade(t, 0, .5f)), t, e.Seed, 5);
-            b.Floor(FxShape.Shock, at, 1.5f, A(Gold, .8f), Rise(t, 0, .45f), e.Seed);
-            for (int k = 0; k < 10; k++) { float u = t / (.5f + .5f * H(e.Seed, k)); if (u > 0 && u < 1) b.Quad(DKit.Star, at + Dir(e.Seed, k, 10, .7f) * 1.4f * EaseOut(u) + Vector2.up * u * .9f, .17f, t * 300 + k * 40, A(Gold, 1.2f * (1 - u)), 0, e.Seed + k, 5); }
+            b.Quad(FxShape.Glow, at, 1.4f, A(Gold, .3f * Fade(t, 0, .3f) + .15f * DKit.Bump(t, .45f, .7f)), 0, e.Seed);
+            b.Quad(DKit.Star, at + Vector2.up * .1f, DKit.Sq(1.3f * pulse), t * 30, A(new Color(.3f, .85f, .3f), Fade(t, .6f, 1.15f)), Mathf.Repeat(t * 30 / 360f, 1), e.Seed, 0);
+            b.Quad(FxShape.Rays, at, 1.7f, A(Gold, .3f * Fade(t, 0, .4f)), t, e.Seed, 5);
+                        for (int k = 0; k < 10; k++) { float u = t / (.5f + .5f * H(e.Seed, k)); if (u > 0 && u < 1) b.Quad(DKit.Star, at + Dir(e.Seed, k, 10, .7f) * 1.4f * EaseOut(u) + Vector2.up * u * .9f, .17f, t * 300 + k * 40, A(Gold, 1.2f * (1 - u)), 0, e.Seed + k, 5); }
             DKit.Debris(b, at, t, 6, 1.2f, 1.1f, Gold, e.Seed + 4, FxShape.Disc, 0, .1f, .8f, null);
             for (int k = 0; k < 5; k++) { float u = Rise(t, .1f + k * .06f, 1.1f); if (u <= 0 || u >= 1) continue; Vector2 p = at + new Vector2((H(e.Seed, k + 50) - .5f) * 2f + Mathf.Sin(u * 7 + k) * .3f, 1.8f * (1 - u) - .2f); b.Quad(DKit.Star, p, .16f, Mathf.Sin(u * 9 + k) * 60, A(Leaf, Mathf.Sin(u * Mathf.PI)), 0, e.Seed + k, -1); }
         }
 
-        // a stone exhibit: a marble blob under a museum spotlight with a velvet-rope ring; dust floats in the beam, the cracks breathe
+        // the enemy becomes a museum exhibit: a marble plinth rises under it, a spotlight cone pours down on it, brass posts with red velvet
+        // ropes stand at its front corners, a little gold plaque winks; the creature is washed pale as marble, dust turns in the light
         private static void Statue(FxEffect e, FxBatch b, float now, float pre, float t)
         {
             float age = now - e.Born, on = Rise(age, 0, .3f) * Fade(now, e.End - .3f, e.End); Vector2 at = e.At; float r = Mathf.Max(1.2f, e.Radius) * .9f;
-            b.Quad(FxShape.Rays, at + Vector2.up * 2.4f, new Vector2(r * 1.2f, 3.0f), 0, A(Marble, .45f * on), age * .2f, e.Seed, 1);
-            b.Floor(FxShape.Glow, at, r * 1.1f, A(Marble, .4f * on), 0, e.Seed);
-            b.Floor(FxShape.Shade, at, .7f, A(DKit.Dark, .5f * on), 0, e.Seed);
-            b.Quad(FxShape.Smoke, at + Vector2.up * .3f, new Vector2(.7f, .9f), 0, A(new Color(.78f, .78f, .88f), .95f * on), 0, e.Seed);
-            b.Quad(FxShape.Cracks, at + Vector2.up * .3f, new Vector2(.7f, .9f), 0, A(Gold, .8f * on * (.6f + .4f * Mathf.Sin(age * 6))), age, e.Seed, 1);
-            Glint(b, at + new Vector2(-.25f, .9f), .3f, White, on * Mathf.Pow(.5f + .5f * Mathf.Sin(age * 2.3f), 8), age * 30);
-            for (int k = 0; k < 12; k++)
+            float up = EaseOut3(Rise(age, 0, .35f));
+            b.Quad(Cone, at + Vector2.up * 2.6f, new Vector2(2.6f, 1.3f), -90, A(Marble, .7f * on), age, e.Seed, 10);
+            b.Floor(FxShape.Glow, at, r * .9f, A(Marble, .3f * on), 0, e.Seed);
+            // the plinth: a squat carved block under the creature, rising out of the floor
+            b.Floor(FxShape.Shade, at + Vector2.down * .3f, 1.1f, A(DKit.Dark, .55f * on), 0, e.Seed);
+            b.Quad(Rock, at + Vector2.down * (.55f + .4f * (1 - up)), new Vector2(.95f, .5f * up + .02f), 0, A(Marble, on), 0, e.Seed, 3);
+            // marble wash over the creature, cracks of gold breathing in it
+            b.Quad(FxShape.Smoke, at + Vector2.up * .35f, new Vector2(.75f, .85f), 0, A(new Color(.85f, .85f, .92f), .7f * on * up), 0, e.Seed);
+            b.Quad(FxShape.Cracks, at + Vector2.up * .35f, new Vector2(.7f, .85f), 0, A(Gold, .6f * on * (.6f + .4f * Mathf.Sin(age * 6))), age, e.Seed, 1);
+            // brass posts and sagging red velvet ropes in front of the exhibit
+            Vector2[] post = { at + new Vector2(-r * 1.05f, -.55f), at + new Vector2(0, -.85f), at + new Vector2(r * 1.05f, -.55f) };
+            for (int k = 0; k < 3; k++)
             {
-                float a = k / 12f * 6.2832f; Vector2 p = at + new Vector2(Mathf.Cos(a) * r * 1.0f, Mathf.Sin(a) * r * .62f);
-                b.Quad(FxShape.Disc, p + Vector2.up * .12f, .09f, A(Gold, .95f * on), 0, e.Seed);
-                { float a0 = (k - 1) / 12f * 6.2832f; Vector2 q = at + new Vector2(Mathf.Cos(a0) * r * 1.0f, Mathf.Sin(a0) * r * .62f); Vector2 mid = (q + p) * .5f + Vector2.down * .1f; b.Link(q + Vector2.up * .1f, mid + Vector2.up * .1f, .03f, A(Rose, .8f * on), e.Seed, .5f); b.Link(mid + Vector2.up * .1f, p + Vector2.up * .1f, .03f, A(Rose, .8f * on), e.Seed, .5f); }
+                float pu = EaseOut3(Rise(age, .15f + k * .08f, .45f + k * .08f));
+                b.Quad(Rod, post[k] + Vector2.up * .35f * pu, new Vector2(.09f, .38f * pu + .01f), 0, A(Gold, on), 0, e.Seed + k, 20);
+                b.Quad(FxShape.Disc, post[k] + Vector2.up * .75f * pu, .1f, A(Gold, on * pu), 0, e.Seed);
+                if (k < 2 && age > .6f)
+                {
+                    Vector2 a0 = post[k] + Vector2.up * .65f, a1 = post[k + 1] + Vector2.up * .65f, prev = a0;
+                    for (int s = 1; s <= 6; s++) { float f = s / 6f; Vector2 q = Vector2.Lerp(a0, a1, f) + Vector2.down * Mathf.Sin(f * Mathf.PI) * .28f; b.Link(prev, q, .06f, A(Rose, on * Rise(age, .6f, .8f)), e.Seed + s, .3f); prev = q; }
+                }
             }
-            DKit.Motes(b, at + Vector2.up * .8f, r * .9f, 3f, now, 12, White, e.Seed, .9f * on, .1f, .25f);
+            b.Quad(FxShape.Disc, at + new Vector2(.45f, -.95f), new Vector2(.28f, .1f), 0, A(Gold, on * up), 0, e.Seed);
+            Glint(b, at + new Vector2(.35f, -.92f), .25f, White, on * Mathf.Pow(.5f + .5f * Mathf.Sin(age * 2.3f), 10), age * 30);
+            Glint(b, at + new Vector2(-.25f, .9f), .3f, White, on * Mathf.Pow(.5f + .5f * Mathf.Sin(age * 1.7f + 1), 8), age * 30);
+            DKit.Motes(b, at + Vector2.up * 1.4f, 1.4f, 3f, now, 14, White, e.Seed, .9f * on, .1f, .25f);
         }
 
         // the statue shatters: marble chunks bounce, a gold flash, gravel and a billowing dust cloud
@@ -465,10 +483,12 @@ namespace ArcaneBrigade
         private static void HornRam(FxEffect e, FxBatch b, float now, float pre, float t)
         {
             if (t < 0) return; Vector2 at = e.At; float r = Mathf.Max(1.0f, e.Radius) * 1.0f, close = 1 - EaseOut(Rise(t, 0, .12f));
-            for (int s = -1; s <= 1; s += 2) b.Quad(DKit.Scythe, at + new Vector2(s * (.2f + 1.0f * close) * r, Mathf.Sin(Mathf.Max(0, t - .12f) * 50) * .05f * Fade(t, .12f, .4f)), Sq(r * 1.25f), s > 0 ? 180 : 0, A(Amber, 1.2f * Fade(t, .35f, .9f)), .85f, e.Seed + s, 0);
-            b.Quad(FxShape.Glow, at, r * 1.3f, A(Gold, .75f * Fade(t, .05f, .35f)), 0, e.Seed);
-            b.Floor(FxShape.Shock, at, r * 1.25f, A(Gold, .9f), Rise(t, .05f, .5f), e.Seed);
-            DKit.DustRing(b, at, r * .8f, t - .1f, DKit.DustBrown, e.Seed, 7, .7f, .6f);
+            for (int s = -1; s <= 1; s += 2) b.Quad(DKit.Scythe, at + new Vector2(s * (.35f + 1.0f * close) * r, .5f + Mathf.Sin(Mathf.Max(0, t - .12f) * 50) * .05f * Fade(t, .12f, .4f)), new Vector2(r * .9f, r * 1.2f), s > 0 ? 150 : 30, A(new Color(.96f, .9f, .76f), 1.1f * Fade(t, .35f, .9f)), .6f, e.Seed + s, 0);
+            b.Quad(FxShape.Glow, at, r * 1.0f, A(Gold, .45f * Fade(t, .05f, .35f)), 0, e.Seed);
+            // the bonk: a dust cloud bursts up out of the clash, impact lines flick out sideways
+            for (int k = 0; k < 5; k++) { float u = Rise(t, .1f + k * .03f, .9f); if (u > 0 && u < 1) b.Quad(FxShape.Smoke, at + new Vector2((k - 2) * .35f * r, .2f + 1.1f * EaseOut(u) * (1 - Mathf.Abs(k - 2) * .25f)), r * (.4f + .35f * u), 0, A(new Color(.62f, .52f, .42f), .8f * (1 - u)), u + k, e.Seed + k); }
+            for (int k = 0; k < 6; k++) { float l = DKit.Bump(t, .1f, .4f); float a = (k < 3 ? 160 + k * 20 : -20 + (k - 3) * 20) * Mathf.Deg2Rad; Vector2 d = new Vector2(Mathf.Cos(a), Mathf.Sin(a)); b.Link(at + Vector2.up * .4f + d * .6f * r, at + Vector2.up * .4f + d * (.6f + .6f * l) * r, .05f, A(White, .9f * l), e.Seed + k, .7f); }
+            DKit.DustRing(b, at, r * .9f, t - .1f, DKit.DustBrown, e.Seed, 9, .8f, .7f);
             DKit.Sparks(b, at + Vector2.up * .3f, t - .1f, 8, 3f, 3f, Gold, e.Seed, .4f, .08f);
             for (int k = 0; k < 3; k++) { float a = t * 9 + k * 2.09f; b.Quad(DKit.Star, at + new Vector2(Mathf.Cos(a) * r * .8f, Mathf.Sin(a) * r * .4f + 1.0f), .36f, t * 300, A(Gold, 1.2f * Fade(t, .4f, 1)), 0, e.Seed + k, 5); }
         }
@@ -492,14 +512,15 @@ namespace ArcaneBrigade
         // a demolition cap goes off: a fiery core, a dusty mushroom of smoke, flying planks, embers and soot specks
         private static void BlastCap(FxEffect e, FxBatch b, float now, float pre, float t)
         {
-            if (t < 0) return; Vector2 at = e.At; float r = Mathf.Max(1.0f, e.Radius) * 1.0f;
+            if (t < 0) return; Vector2 at = e.At; float r = Mathf.Max(1.0f, e.Radius) * 1.4f;
             b.Quad(FxShape.Glow, at, r * 1.4f, A(Spark, .75f * Fade(t, 0, .2f)), 0, e.Seed);
-            b.Quad(FxShape.Flame, at + Vector2.up * .5f, new Vector2(.7f, 1.0f) * (1 + .5f * Rise(t, 0, .2f)), 0, A(Spark, 1.1f * Fade(t, .05f, .35f)), t, e.Seed, 2);
+            for (int k = 0; k < 4; k++) b.Quad(FxShape.Flame, at + new Vector2((k - 1.5f) * .35f, .4f), new Vector2(.5f, .9f) * (1 + .6f * Rise(t, 0, .2f)) * (1 - .15f * Mathf.Abs(k - 1.5f)), (k - 1.5f) * 18, A(k % 2 == 0 ? Spark : Gold, Fade(t, .05f, .4f)), t, e.Seed + k, 2);
+            b.Quad(FxShape.Flame, at + Vector2.up * .7f, new Vector2(.9f, 1.4f) * (1 + .5f * Rise(t, 0, .2f)), 0, A(Spark, 1.1f * Fade(t, .05f, .35f)), t, e.Seed, 2);
             b.Floor(FxShape.Shade, at, r * .8f, A(DKit.Dark, .55f * Fade(t, .6f, 1.1f)), 0, e.Seed + 1);
-            for (int k = 0; k < 5; k++) b.Quad(FxShape.Smoke, at + new Vector2((k - 2) * .3f * r, 0) + Vector2.up * (EaseOut(Rise(t, 0, .9f)) * 1.3f + (k % 2) * .3f), new Vector2(r * .6f, r * .45f), 0, A(new Color(.55f, .48f, .42f), .95f * Fade(t, .2f, 1.1f)), t, e.Seed + k);
+            for (int k = 0; k < 5; k++) b.Quad(FxShape.Smoke, at + new Vector2((k - 2) * .3f * r * (1 - .5f * Rise(t, .2f, 1f)), 0) + Vector2.up * (EaseOut(Rise(t, 0, .9f)) * 2.2f * (1 - Mathf.Abs(k - 2) * .3f) + (k % 2) * .3f), new Vector2(r * .65f, r * .5f) * (1 + .4f * Rise(t, 0, 1)), 0, A(new Color(.55f, .48f, .42f), .95f * Fade(t, .2f, 1.1f)), t, e.Seed + k);
             b.Floor(FxShape.Shock, at, r * 1.25f, A(Spark, .9f), Rise(t, 0, .5f), e.Seed);
             DKit.DustRing(b, at, r * .9f, t, DKit.DustBrown, e.Seed, 8, .9f, .65f);
-            for (int k = 0; k < 6; k++) { float u = t / (.5f + .2f * H(e.Seed, k)); if (u > 0 && u < 1) b.Quad(DKit.Shield, at + Dir(e.Seed, k, 6, .6f) * r * 1.2f * EaseOut(u) + Vector2.up * 1.5f * Mathf.Sin(u * 3), new Vector2(.5f, .15f), t * 500 + k * 60, A(Gold, 1.2f * (1 - u)), 0, e.Seed + k, 1); }
+            for (int k = 0; k < 6; k++) { float u = t / (.5f + .2f * H(e.Seed, k)); if (u > 0 && u < 1) b.Quad(DKit.Shield, at + Dir(e.Seed, k, 6, .6f) * r * 1.2f * EaseOut(u) + Vector2.up * 1.8f * Mathf.Sin(u * 3), new Vector2(.75f, .22f), t * 500 + k * 60, A(Wood, 1.2f * (1 - u)), 0, e.Seed + k, 1); }
             DKit.Sparks(b, at + Vector2.up * .4f, t, 12, 4.5f, 3.5f, Spark, e.Seed + 2, .6f, .09f);
             DKit.Debris(b, at, t, 8, r * 1.0f, 1.0f, Soot, e.Seed + 4, FxShape.Shade, 0, .08f, .7f, null);
         }

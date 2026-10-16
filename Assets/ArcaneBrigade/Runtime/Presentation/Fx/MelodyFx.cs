@@ -23,8 +23,8 @@ namespace ArcaneBrigade
         private static void NoteAt(FxBatch b, Vector2 p, float size, float deg, Color c, float alpha, int kind, int seed)
         {
             if (alpha < .004f) return;
-            b.Quad(FxShape.Glow, p, size * 1.4f, A(c, .3f * alpha), 0, seed);
-            b.Quad(DKit.Note, p, size, deg, A(c, 1.2f * alpha), 0, seed, kind);
+            b.Quad(FxShape.Glow, p, size * 1.4f, A(c, .15f * alpha), 0, seed);
+            b.Quad(DKit.Note, p, size, deg, A(c, alpha), Mathf.Repeat(deg / 360f, 1), seed, kind);
         }
 
         /// <summary>Pastel confetti flecks that pop out, flutter and drift down.</summary>
@@ -57,80 +57,91 @@ namespace ArcaneBrigade
                         b.Link(prev, q, .05f, A(c, .7f * k / 8f), Seed + k, .7f); prev = q;
                     }
                     for (int k = 1; k <= 6; k++) { float v = Mathf.Max(0, pre - k * .05f); Glint(b, DKit.Arc(From, at, v, 2.2f) + Vector2.down * (k * .08f), .18f * (1 - k / 7f), DKit.Pastel(Seed + k), .9f * (1 - k / 7f), k * 55); }
-                    NoteAt(b, DKit.Arc(From, at, pre, 2.2f), .8f, Mathf.Sin(pre * 14) * 30, c, 1, kind, Seed);
+                    NoteAt(b, DKit.Arc(From, at, pre, 2.2f), 1.15f, Mathf.Sin(pre * 14) * 30, c, 1, kind, Seed);
                     b.Floor(FxShape.Shade, at, .6f * pre, A(DKit.Dark, .35f * pre), 0, Seed);
                     return;
                 }
                 float squash = Fade(t, 0, .2f);
                 Vector2 hop = at + Vector2.up * (.15f + .2f * Mathf.Abs(Mathf.Sin(t * 14)) * Fade(t, 0, .5f));
-                b.Quad(DKit.Note, hop, new Vector2(.8f * (1 + .4f * squash), .8f * (1 - .3f * squash)), 0, A(c, 1.2f * Fade(t, .45f, .9f)), 0, Seed, kind);
+                b.Quad(DKit.Note, hop + Vector2.up * .4f, new Vector2(1.15f * (1 + .4f * squash), 1.15f * (1 - .3f * squash)), 0, A(c, Fade(t, .45f, .9f)), 0, Seed, kind);
                 b.Quad(FxShape.Glow, hop, 1.0f, A(c, .35f * Fade(t, .3f, .9f)), 0, Seed);
                 for (int k = 0; k < 6; k++)
                 {
                     float a = (k * 30 + 15) * Mathf.Deg2Rad, l = DKit.Bump(t, 0, .3f); Vector2 d = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-                    b.Link(hop + d * .7f, hop + d * (.7f + .45f * l), .05f, A(White, .9f * l), Seed + k, .8f);
+                    b.Link(hop + Vector2.up * .4f + d * 1.0f, hop + Vector2.up * .4f + d * (1.0f + .55f * l), .06f, A(White, .9f * l), Seed + k, .8f);
                 }
-                b.Quad(DKit.Pulse, at, DKit.Sq(Mathf.Max(1f, Radius) * 1.6f), 0, A(c, 1.1f), Rise(t, 0, .6f), Seed, 14);
-                b.Floor(FxShape.Glow, at, 1.0f, A(DKit.Butter, .45f * Fade(t, 0, .35f)), 0, Seed);
+                                b.Floor(FxShape.Glow, at, 1.0f, A(DKit.Butter, .45f * Fade(t, 0, .35f)), 0, Seed);
                 for (int k = 0; k < 5; k++)
                 {
                     float u = t / (.55f + .05f * k); if (u <= 0 || u >= 1) continue;
-                    NoteAt(b, at + new Vector2((k - 2) * .5f * EaseOut(u), 1.8f * u - 2f * u * u + .1f), .2f, (k - 2) * 25 + Mathf.Sin(u * 10) * 15, DKit.Pastel(Seed + k + 1), 1 - u * u, (k + Seed) % 4, Seed + k);
+                    NoteAt(b, at + new Vector2((k - 2) * .75f * EaseOut(u), 2.2f * u - 2f * u * u + .3f), .45f, (k - 2) * 25 + Mathf.Sin(u * 10) * 15, DKit.Pastel(Seed + k + 1), 1 - u * u, (k + Seed) % 4, Seed + k);
                 }
                 Confetti(b, at + Vector2.up * .3f, t, 12, 1.2f, Seed);
             }
         }
 
-        /// <summary>Notes spiral in from four sides, a speaker-cone thrums in the middle (fast tight rings), then four curved fans of sound
-        /// arcs, one per compass point in its own pastel, travel out across the crowd kicking a low dust wave; a second, fainter wave train
-        /// follows a beat later and little notes ride the wave.</summary>
+        /// <summary>Step 4 sound wave. No rings (owner 29/10/2026: generic rainbow rings): a big steel tuning fork drops over the crowd and
+        /// is struck with a bright ping; its prongs blur as they hum, and the sound leaves it as oscilloscope traces, three wavy pastel
+        /// lines racing out to each side across the crowd, their wiggle growing then dying, dust shivering off the floor under them and
+        /// little notes shaken loose.</summary>
         private sealed class SoundWave : FxEffect
         {
             protected override float Life => 1.4f;
+            private static readonly FxShape Rod = (FxShape)48;
+            private static readonly Color SteelC = new Color(.72f, .8f, .92f, 1);
+            private static void Fork(FxBatch b, Vector2 c, float hum, float alpha, int seed)
+            {
+                if (alpha < .01f) return;
+                b.Floor(FxShape.Shade, c + Vector2.down * 1.9f, 1.1f, A(DKit.Dark, .35f * alpha), 0, seed);
+                for (int s = -1; s <= 1; s += 2)
+                {
+                    float wob = s * hum * .12f;
+                    b.Quad(Rod, c + new Vector2(s * .45f + wob, .8f), new Vector2(.2f, 1.1f), 0, A(SteelC, alpha), 0, seed + s, 20);
+                    if (Mathf.Abs(hum) > .05f) b.Quad(Rod, c + new Vector2(s * .45f - wob, .8f), new Vector2(.2f, 1.1f), 0, A(SteelC, .3f * alpha), 0, seed + s, 20);
+                }
+                b.Quad(Rod, c + new Vector2(0, -.3f), new Vector2(.17f, .62f), 90, A(SteelC, alpha), .25f, seed, 20);
+                b.Quad(Rod, c + new Vector2(0, -1.15f), new Vector2(.16f, .85f), 0, A(SteelC, alpha), 0, seed + 3, 20);
+            }
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
-                Vector2 at = At; float r = Mathf.Max(1.5f, Radius) * 1.0f;
+                Vector2 at = At; float r = Mathf.Max(1.5f, Radius); Vector2 fc = at + Vector2.up * 2.2f;
                 if (t < 0)
                 {
-                    for (int k = 0; k < 8; k++)
-                    {
-                        float a = k / 8f * 6.2832f + pre * 4, rad = r * 1.5f * (1 - EaseOut(pre));
-                        Vector2 p = at + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * .62f) * rad;
-                        NoteAt(b, p, .2f, 0, DKit.Pastel(k), .9f * Mathf.Min(1, pre * 4), k % 4, Seed + k);
-                        Glint(b, p + new Vector2(Mathf.Sin(a), -Mathf.Cos(a) * .62f) * .35f, .12f, DKit.Pastel(k), .8f * pre, k * 30);
-                    }
-                    b.Floor(FxShape.Glow, at, r * .7f * pre, A(DKit.Lilac, .3f * pre), 0, Seed);
+                    float d = EaseOut3(Rise(pre, 0, .6f));
+                    Fork(b, fc + Vector2.up * 3f * (1 - d), 0, d, Seed);
+                    // the striker swings in at the end of the wind-up
+                    float st = Rise(pre, .7f, 1);
+                    if (st > 0) b.Link(fc + new Vector2(1.6f - .9f * st, .9f + .5f * (1 - st)), fc + new Vector2(.5f, .7f), .07f, A(White, .7f * st), Seed, .5f);
                     return;
                 }
-                // the speaker cone: tight fast rings at the centre
-                for (int k = 0; k < 3; k++) { float u = (t * 3.2f + k / 3f) % 1f; b.Floor(FxShape.Shock, at, .3f + .6f * u, A(White, .5f * (1 - u) * Fade(t, .5f, .9f)), .3f, Seed + k); }
-                for (int w = 0; w < 2; w++)
-                {
-                    float u = Rise(t, w * .28f, 1.0f + w * .28f), fade = Fade(t, .45f + w * .28f, 1.25f + w * .15f) * (w == 0 ? 1 : .55f);
-                    for (int k = 0; k < 4; k++)
+                float hum = Fade(t, .2f, 1.1f), fade = Fade(t, .9f, 1.4f);
+                Fork(b, fc, hum * Mathf.Sin(t * 90), fade, Seed);
+                Glint(b, fc + new Vector2(.6f, 1.7f), 1.1f, White, Fade(t, 0, .2f), 30);
+                b.Quad(FxShape.Glow, fc + Vector2.up * .5f, 1.2f, A(DKit.Sky, .3f * hum), 0, Seed);
+                // the traces: three wavy lines racing out to each side across the crowd
+                for (int s = -1; s <= 1; s += 2)
+                    for (int k = 0; k < 3; k++)
                     {
-                        float ang = k * 90 + 45 + w * 12; Vector2 d = new Vector2(Mathf.Cos(ang * Mathf.Deg2Rad), Mathf.Sin(ang * Mathf.Deg2Rad));
-                        float size = r * .95f;
-                        b.Quad(DKit.Arcs, at + d * size * .93f, new Vector2(size, size * .8f), ang, A(DKit.Pastel(k + w), .95f * fade), u, Seed + k + w * 5, 1.0f);
+                        float u = Rise(t, .03f + k * .09f, .75f + k * .09f); if (u <= 0 || u >= 1) continue;
+                        float len = r * 1.1f, y = (k - 1) * .55f;
+                        Vector2 c = at + new Vector2(s * (.4f + len * (.3f + .7f * EaseOut(u))), y + .2f);
+                        b.Quad(DKit.Arcs, c, new Vector2(len * .75f, .55f), s < 0 ? 180 : 0, A(DKit.Pastel(k + (s > 0 ? 0 : 2)), 1.1f * Fade(u, .55f, 1)), t * 1.5f + k * .3f, Seed + k, 14 + 4 * k);
                     }
-                }
-                b.Floor(FxShape.Glow, at, r * 1.0f, A(DKit.Butter, .3f * Fade(t, 0, .35f)), 0, Seed);
-                b.Floor(FxShape.Shock, at, r * 1.4f, A(DKit.Pink, .7f), Rise(t, 0, .9f), Seed);
-                DKit.DustRing(b, at, r * 1.2f, t, DKit.DustBrown, Seed, 10, 1.0f, .55f);
-                for (int k = 0; k < 10; k++)
+                // the floor shivers under the traces: dust flicks up in a line each side, and notes are shaken loose
+                for (int s = -1; s <= 1; s += 2)
+                    for (int k = 0; k < 5; k++)
+                    {
+                        float u = Rise(t, .05f + k * .05f, .7f + k * .05f); if (u <= 0 || u >= 1) continue;
+                        b.Quad(FxShape.Dust, at + new Vector2(s * (.5f + k * .5f), -.3f + .2f * Mathf.Sin(u * 20 + k)), new Vector2(.45f, .22f) * (.7f + u), 0, A(DKit.DustBrown, .6f * Mathf.Sin(u * Mathf.PI)), u, Seed + k + s * 9);
+                    }
+                for (int k = 0; k < 8; k++)
                 {
-                    float v = Rise(t, k * .03f, .9f + k * .02f); if (v <= 0 || v >= 1) continue;
-                    Vector2 dir = Dir(Seed + 5, k, 10, .62f);
-                    NoteAt(b, at + dir * r * 1.4f * EaseOut(v) + Vector2.up * Mathf.Sin(v * Mathf.PI) * .7f, .18f, Mathf.Sin(v * 9 + k) * 25, DKit.Pastel(k), 1 - v * v, k % 4, Seed + k);
-                }
-                for (int k = 0; k < 12; k++)
-                {
-                    float v = Rise(t, .05f + k * .02f, .7f + k * .02f); if (v <= 0 || v >= 1) continue;
-                    Glint(b, at + Dir(Seed + 9, k, 12, .62f) * r * 1.6f * EaseOut(v), .14f, White, 1 - v, k * 30);
+                    float v = Rise(t, .1f + k * .04f, .9f + k * .03f); if (v <= 0 || v >= 1) continue;
+                    Vector2 p = at + new Vector2((k - 3.5f) * r * .3f, (H(Seed, k) - .3f) * .8f) + Vector2.up * (1.6f * v - 1.2f * v * v);
+                    NoteAt(b, p, .45f, Mathf.Sin(v * 20 + k) * 25, DKit.Pastel(k), 1 - v * v, k % 4, Seed + k);
                 }
             }
         }
-
         /// <summary>A giant drum drops onto the crowd in a cloud of dust (only the first of the three instances draws it); each of the three
         /// beats squashes the skin, flashes a new pastel, throws a dashed pulse ring and dust off the drum's foot, sparks fly off the sticks
         /// and the skin keeps rippling between beats.</summary>
@@ -201,32 +212,34 @@ namespace ArcaneBrigade
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 at = At; float age = now - Born, w = 2.6f * Mathf.Max(1f, Radius), fade = Fade(t, .9f, 1.5f);
-                float write = EaseOut(Rise(age, 0, .35f));
+                float write = EaseOut(Rise(age, 0, .35f)); w *= 1.2f;
                 for (int k = 0; k < 5; k++)
                 {
                     Vector2 a = at + new Vector2(-w * .5f, (k - 2) * .3f), z = a + new Vector2(w * write, 0);
-                    b.Beam(a, z, .06f, A(DKit.Pastel(k), 1.1f * fade), 0, Seed + k, .3f);
+                    b.Link(a, z, .035f, A(new Color(1f, .96f, .86f), fade), Seed + k, .2f);
                     if (write < 1) Glint(b, z, .2f, White, .9f, age * 300 + k * 30);
                 }
-                b.Quad(DKit.Note, at + new Vector2(-w * .5f - .25f, 0), .5f, 0, A(DKit.Lilac, 1.1f * fade * write), 0, Seed, 3);
-                b.Floor(FxShape.Glow, at, w * .5f, A(DKit.Lilac, .25f * write * fade), 0, Seed);
+                // a dark band behind the staff so its five cream lines read over the crowd, bar lines and a sharp at its head
+                for (int k = 0; k < 6; k++) b.Quad(FxShape.Shade, at + new Vector2((k / 5f - .5f) * w * write, 0), new Vector2(w * .2f, .95f), 0, A(DKit.Dark, .6f * fade * write), 0, Seed + k);
+                for (int k = 1; k < 4; k++) { float x = (k / 4f - .5f) * w; if ((x / w + .5f) < write) b.Link(at + new Vector2(x, -.6f), at + new Vector2(x, .6f), .03f, A(new Color(1f, .96f, .86f), fade), Seed, .2f); }
+                b.Quad(DKit.Note, at + new Vector2(-w * .5f - .35f, 0), .75f, 0, A(DKit.Lilac, fade * write), 0, Seed, 3);
                 for (int k = 0; k < 8; k++)
                 {
-                    float x = at.x + (k / 7f - .5f) * w * .9f; int ln = Mathf.RoundToInt(H(Seed, k) * 4 - 2); float y = at.y + ln * .3f;
+                    float x = at.x + (k / 7f - .5f) * w * .9f; int ln = Mathf.RoundToInt(H(Seed, k) * 4 - 2); float y = at.y + ln * .3f - .3f;
                     float start = .05f + k * .07f, fall = .4f, u = (age - start) / fall;
                     if (u <= 0) continue;
                     Color c = DKit.Pastel(k + Seed);
                     if (u < 1)
                     {
                         float hgt = 4.5f * (1 - DKit.EaseIn(u));
-                        NoteAt(b, new Vector2(x, y + .5f + hgt), .3f, Mathf.Sin(age * 9 + k) * 15, c, 1, k % 4, Seed + k);
+                        NoteAt(b, new Vector2(x, y + .5f + hgt), .5f, Mathf.Sin(age * 9 + k) * 15, c, 1, k % 4, Seed + k);
                         b.Beam(new Vector2(x, y + .9f + hgt), new Vector2(x, y + 1.9f + hgt + u), .05f, A(c, .6f), 0, Seed + k, .5f);
                         Glint(b, new Vector2(x + .15f, y + 1.3f + hgt), .14f, White, .8f, k * 20);
                     }
                     else
                     {
                         float s = age - start - fall; float bounce = Mathf.Abs(Mathf.Sin(s * 9)) * .3f * Fade(s, 0, 1f);
-                        NoteAt(b, new Vector2(x, y + .5f + bounce), .3f, Mathf.Sin(s * 9) * 12, c, fade * Fade(s, .6f, 1.2f), k % 4, Seed + k);
+                        NoteAt(b, new Vector2(x, y + .5f + bounce), .5f, Mathf.Sin(s * 9) * 12, c, fade * Fade(s, .6f, 1.2f), k % 4, Seed + k);
                         float rp = Rise(s, 0, .4f); if (rp > 0 && rp < 1) { b.Quad(FxShape.Shock, new Vector2(x, y), DKit.Sq(.7f), 0, A(c, .9f), rp, Seed + k); b.Quad(FxShape.Dust, new Vector2(x, y + .1f + .2f * rp), new Vector2(.35f + .3f * rp, .2f + .12f * rp), 0, A(Color.Lerp(c, White, .4f), .55f * (1 - rp)), rp, Seed + k); }
                         if (s < .35f) for (int j = 0; j < 3; j++) Glint(b, new Vector2(x, y + .2f) + Dir(Seed + k, j, 3, .7f) * .5f * EaseOut(s / .35f), .1f, c, 1 - s / .35f, j * 60);
                     }
@@ -263,7 +276,7 @@ namespace ArcaneBrigade
                 for (int k = 0; k < 6; k++)
                 {
                     float u = Rise(s, k * .04f, .75f); if (u <= 0 || u >= 1) continue;
-                    NoteAt(b, at + new Vector2((k - 2.5f) * r * .4f, 0) + Vector2.up * (EaseOut(u) * 1.9f - .8f * u * u), .26f, (k - 2.5f) * 10, DKit.Pastel(k), 1 - u * u, k % 4, Seed + k);
+                    NoteAt(b, at + new Vector2((k - 2.5f) * r * .5f, 0) + Vector2.up * (EaseOut(u) * 2.2f - .8f * u * u), .55f, (k - 2.5f) * 10, DKit.Pastel(k), 1 - u * u, k % 4, Seed + k);
                 }
                 Confetti(b, at + Vector2.up * .5f, s, 16, 1.5f, Seed + 3, .8f);
                 DKit.Sparks(b, at + Vector2.up * .3f, s, 8, 3f, 2.8f, DKit.Butter, Seed, .45f, .08f);

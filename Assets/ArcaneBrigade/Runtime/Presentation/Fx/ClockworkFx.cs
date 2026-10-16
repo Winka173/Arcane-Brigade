@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         // owner 29/10/2026: small glints and sparks were drawn far too big: small ones shrink, big set-piece flashes keep their size
         private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
             => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
-        private const FxShape Gear = (FxShape)40, Face = (FxShape)46, Coil = (FxShape)48;
+        private const FxShape Gear = (FxShape)40, Face = (FxShape)46, Coil = (FxShape)48, Rod = (FxShape)48;
         private static readonly Color Brass = new Color(1f, .74f, .26f, 1), Copper = new Color(1f, .5f, .22f, 1), Steel = new Color(.7f, .92f, 1f, 1), Teal = new Color(.3f, .95f, .85f, 1);
 
         public static void Register(Dictionary<string, Func<FxEffect>> map)
@@ -22,71 +22,85 @@ namespace ArcaneBrigade
             map["clock-pendulum"] = () => new Pendulum();
         }
 
+        /// <summary>A solid brass cog (owner 29/10/2026: gears read as glowing light): the shape is shaded metal with an ink edge, its
+        /// rotation passed so the light stays at the top-left while it turns; only a faint warm halo behind it.</summary>
         private static void Cog(FxBatch b, Vector2 p, float s, float rot, float teeth, Color c, float alpha, int seed)
         {
-            b.Quad(FxShape.Glow, p, s * 1.6f, A(c, alpha * .18f), 0, seed);
-            b.Quad(Gear, p, new Vector2(s, s), rot, A(c, alpha), 0, seed, teeth);
+            if (alpha <= .004f) return;
+            b.Quad(FxShape.Glow, p, s * 1.35f, A(c, alpha * .08f), 0, seed);
+            b.Quad(Gear, p, new Vector2(s, s), rot, A(c, alpha), Mathf.Repeat(rot / 360f, 1), seed, teeth);
         }
-
-        /// <summary>Step 2 gears. A brass cog is flung by the caster, rolling through the air on a lob with ticking sparks; it bites into
-        /// the enemy, grinds there with three tiny cogs popping off the teeth, and rusts away into steam.</summary>
+        /// <summary>Step 2 gears. A big brass cog is flung by the caster, spinning on a lob; it bites into the enemy and grinds there while
+        /// a steel pinion meshes against its teeth turning the other way, shavings curl off, oil spits, small cogs pop off and it vents
+        /// steam as it winds down.</summary>
         private sealed class ThrownGear : FxEffect
         {
-            protected override float Life => .95f;
+            protected override float Life => 1.05f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 from = From, at = At;
-                float teeth = 8 + (Seed % 3) * 2, dir = Seed % 2 == 0 ? 1 : -1;
+                float teeth = 10 + (Seed % 3) * 2, dir = Seed % 2 == 0 ? 1 : -1, R = 1.35f;
                 if (t < 0)
                 {
-                    float u = EaseOut(pre); Vector2 p = Vector2.Lerp(from, at, u) + Vector2.up * Mathf.Sin(pre * Mathf.PI) * 1.5f;
-                    Cog(b, p, .8f, dir * pre * 1100, teeth, Brass, .95f, Seed);
-                    for (int k = 1; k <= 5; k++)
+                    float u = EaseOut(pre); Vector2 p = Vector2.Lerp(from, at, u) + Vector2.up * (Mathf.Sin(pre * Mathf.PI) * 1.6f + .55f);
+                    b.Floor(FxShape.Shade, Vector2.Lerp(from, at, u), .7f, A(new Color(.06f, .04f, .02f), .45f * pre), 0, Seed);
+                    Cog(b, p, R * .85f, dir * pre * 1100, teeth, Brass, 1, Seed);
+                    for (int k = 1; k <= 6; k++)
                     {
-                        float back = Mathf.Max(0, pre - k * .05f); Vector2 q = Vector2.Lerp(from, at, EaseOut(back)) + Vector2.up * Mathf.Sin(back * Mathf.PI) * 1.5f;
-                        Glint(b, q, .16f * (1 - k / 6f), k % 2 == 0 ? Brass : Steel, .9f * (1 - k / 6f), k * 90);
+                        float back = Mathf.Max(0, pre - k * .04f); Vector2 q = Vector2.Lerp(from, at, EaseOut(back)) + Vector2.up * (Mathf.Sin(back * Mathf.PI) * 1.6f + .55f);
+                        b.Link(q + Vector2.up * R * .8f, q + Vector2.down * R * .8f, .05f, A(Brass, .25f * (1 - k / 7f)), Seed + k, .7f);
+                        Glint(b, q + Vector2.down * R * .7f, .16f * (1 - k / 7f), k % 2 == 0 ? Brass : Steel, .9f * (1 - k / 7f), k * 90);
                     }
                     return;
                 }
-                float fade = Fade(t, .55f, .95f), shake = Mathf.Sin(t * 90) * .04f * Fade(t, 0, .5f);
-                b.Floor(FxShape.Glow, at, Radius * 2f, A(Brass, .3f * fade), 0, Seed);
-                Cog(b, at + new Vector2(shake, .45f), 1.05f * (1 + .15f * Fade(t, 0, .12f)), dir * (t * 700 + 60), teeth, Brass, .75f * fade, Seed);
-                b.Quad(Gear, at + new Vector2(shake, .45f), new Vector2(.5f, .5f), -dir * t * 900, A(Copper, .8f * fade), 0, Seed + 4, 6);
-                b.Quad(FxShape.Sparkle, at + Vector2.up * .35f, new Vector2(1.3f, 1.3f), 0, A(Steel, .5f * Fade(t, 0, .25f)), 0, 0, 2);
+                float fade = Fade(t, .7f, 1.05f), shake = Mathf.Sin(t * 90) * .05f * Fade(t, 0, .5f), grind = Fade(t, .6f, 1.0f);
+                Vector2 c = at + new Vector2(shake, .6f);
+                float spin = dir * (t * 700 * grind + 60 + t * 120);
+                b.Floor(FxShape.Shade, at, 1.4f, A(new Color(.06f, .04f, .02f), .5f * fade), 0, Seed);
+                Cog(b, c, R * (1 + .12f * Fade(t, 0, .12f)), spin, teeth, Brass, fade, Seed);
+                // the meshing steel pinion on its flank turns the other way
+                Vector2 pin = c + new Vector2(dir * R * 1.42f, -.25f);
+                Cog(b, pin, R * .52f, -spin * teeth / 7f + 13, 7, Steel, fade * Rise(t, 0, .08f), Seed + 4);
+                // small cogs pop off the teeth
                 for (int k = 0; k < 3; k++)
                 {
-                    float u = (t - .05f - k * .05f) / .55f; if (u <= 0 || u >= 1) continue;
-                    Vector2 p = at + new Vector2(Mathf.Cos(k * 2.1f + Seed) * 1.1f * EaseOut(u), .35f + 1.4f * u - 2.2f * u * u + .2f);
-                    Cog(b, p, .3f, u * 900, 6, Brass, 1f * (1 - u), Seed + k);
+                    float u = (t - .05f - k * .07f) / .6f; if (u <= 0 || u >= 1) continue;
+                    Vector2 p = c + new Vector2(Mathf.Cos(k * 2.1f + Seed) * 1.6f * EaseOut(u), 1.6f * u - 2.6f * u * u + .3f);
+                    Cog(b, p, .34f, u * 900 + k * 40, 6, k == 1 ? Copper : Brass, 1f * (1 - u * u), Seed + k);
                 }
+                // the bite: hot sparks out of the teeth where they grind into the enemy
+                for (int k = 0; k < 12; k++)
+                {
+                    float u = ((t * 3.2f + H(Seed, k)) % 1); if (t > .75f) break;
+                    Vector2 d0 = Dir(Seed + 3, k, 12, .7f); Vector2 o = c + Vector2.down * R * .9f;
+                    Vector2 p = o + new Vector2(d0.x * 1.4f, Mathf.Abs(d0.y) * .9f) * EaseOut(u) + Vector2.down * u * u * .5f;
+                    b.Link(Vector2.Lerp(o, p, .65f), p, .04f, A(k % 3 == 0 ? White : Brass, 1 - u), Seed + k, .7f);
+                }
+                // metal shavings curl off as bright little streaks, oil spits
                 for (int k = 0; k < 8; k++)
                 {
-                    float u = (t - .02f) / (.35f + .2f * H(Seed, k)); if (u <= 0 || u >= 1) continue;
-                    Glint(b, at + Dir(Seed, k, 8, .6f) * .9f * EaseOut(u) + Vector2.up * .3f, .13f, k % 2 == 0 ? Steel : Brass, 1 - u, k * 30);
-                }
-                // metal shavings curl off the bite as bright little streaks, oil spits and the grinding gear vents puffs of steam
-                for (int k = 0; k < 10; k++)
-                {
-                    float u = (t - .03f - (k % 5) * .07f) / .3f; if (u <= 0 || u >= 1) continue;
-                    Vector2 d0 = Dir(Seed + 3, k, 10, .7f), p = at + Vector2.up * .45f + d0 * (.8f + 1.3f * EaseOut(u)) + Vector2.down * u * u * .6f;
-                    b.Link(p - d0 * .32f, p, .045f, A(k % 2 == 0 ? Brass : White, 1 - u), Seed + k, .7f);
+                    float u = (t - .03f - (k % 4) * .08f) / .35f; if (u <= 0 || u >= 1) continue;
+                    Vector2 d0 = Dir(Seed + 5, k, 8, .7f), p = c + d0 * (R * 1.05f + 1.1f * EaseOut(u)) + Vector2.down * u * u * .7f;
+                    b.Link(p - d0 * .3f + Vector2.up * .1f * Mathf.Sin(u * 9), p, .05f, A(k % 2 == 0 ? Brass : Steel, 1 - u), Seed + k, .7f);
                 }
                 for (int k = 0; k < 5; k++)
                 {
                     float u = (t - .1f - k * .05f) / .45f; if (u <= 0 || u >= 1) continue;
-                    Vector2 p = at + new Vector2((k - 2) * .35f, .2f) + new Vector2((k - 2) * .4f * u, 1.1f * u - 2.4f * u * u);
-                    b.Quad(FxShape.Shade, p, .1f, A(new Color(.08f, .05f, .02f), .9f * (1 - u)), 0, Seed + k);
-                    b.Quad(FxShape.Glow, p + new Vector2(-.03f, .03f), .06f, A(Brass, .8f * (1 - u)), 0, Seed + k);
+                    Vector2 p = c + new Vector2((k - 2) * .35f, -.2f) + new Vector2((k - 2) * .45f * u, 1.1f * u - 2.6f * u * u);
+                    b.Quad(FxShape.Shade, p, .12f, A(new Color(.08f, .05f, .02f), .95f * (1 - u)), 0, Seed + k);
+                    b.Quad(FxShape.Glow, p + new Vector2(-.03f, .03f), .05f, A(Brass, .8f * (1 - u)), 0, Seed + k);
                 }
+                // a low puff of grit kicked out under the bite, and steam vents as it winds down
+                float du = Rise(t, 0, .7f);
+                if (du < 1) for (int s = -1; s <= 1; s += 2) b.Quad(FxShape.Dust, at + new Vector2(s * (.5f + .9f * du), .05f), new Vector2(.55f + .4f * du, .25f + .12f * du), 0, A(new Color(.55f, .47f, .38f), .7f * (1 - du)), du, Seed + s);
                 for (int k = 0; k < 5; k++)
                 {
-                    float u = Rise(t, .08f + k * .09f, .75f + k * .05f); if (u <= 0 || u >= 1) continue;
-                    Vector2 p = at + new Vector2((H(Seed, k + 40) - .5f) * 1.2f + Mathf.Sin(u * 5 + k) * .2f, .7f + 1.5f * EaseOut(u));
-                    b.Quad(FxShape.Smoke, p, .3f + .45f * u, 0, A(new Color(.85f, .82f, .76f), .7f * Mathf.Min(1, u * 4) * (1 - u)), u + k, Seed + k);
+                    float u = Rise(t, .2f + k * .08f, .9f + k * .04f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = c + new Vector2((H(Seed, k + 40) - .5f) * 1.4f + Mathf.Sin(u * 5 + k) * .2f, .4f + 1.5f * EaseOut(u));
+                    b.Quad(FxShape.Smoke, p, .3f + .45f * u, 0, A(new Color(.85f, .82f, .76f), .65f * Mathf.Min(1, u * 4) * (1 - u)), u + k, Seed + k);
                 }
             }
         }
-
         /// <summary>Step 6 time stop. A great clock face fades onto the arena floor; its hands race, slow and stop at twelve with a tick,
         /// the room tints to cold teal, gears and sparks hang frozen in the air and a ripple of broken seconds shivers over everything.
         /// As a strike (one creature) a small face stops above it.</summary>
@@ -162,70 +176,66 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Step 8 pendulum (line). A giant brass pendulum hangs from the top of the screen on a chain of links and swings along the
-        /// lane, its heavy gear-bob dragging blurred copies of itself, ticking sparks and a brass shock behind it.</summary>
+        /// <summary>Step 8 pendulum (line). A great brass pendulum hangs from a pivot cog above the field on a solid rod; its heavy engraved
+        /// bob swings down along the lane, skimming the crowd at the bottom of its arc and rising at the far end, then swings back a little
+        /// and settles. A soft swoosh of light trails the bob, its wind drags dust along the lane and its keel strikes sparks.</summary>
         private sealed class Pendulum : FxEffect
         {
             protected override float Life => 1.9f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 a = From, z = At, mid = (a + z) * .5f; float half = (z - a).magnitude * .5f;
-                float w = Mathf.Max(.9f, Moment.Radius);
-                Vector2 pivot = mid + Vector2.up * 9.5f;
-                // swing: starts raised at the first end, crosses the lane in 1.0s, then settles
-                Func<float, Vector2> bob = u =>
+                float w = Mathf.Max(.9f, Moment.Radius), rodLen = Mathf.Max(6.5f, half * 1.2f), bobR = .95f + .25f * w;
+                Vector2 dir = (z - a).normalized, pivot = mid + Vector2.up * (rodLen + bobR * .55f);
+                float u0 = t < 0 ? 0 : Mathf.Clamp01(t / 1.0f), back = t < 1 ? 0 : Mathf.Sin(Mathf.Clamp01((t - 1) / .9f) * Mathf.PI) * .14f;
+                float s01 = t < 0 ? .02f * Mathf.Sin(now * 5) : (1 - Mathf.Cos(u0 * Mathf.PI)) * .5f - back;
+                float fade = t < 0 ? Rise(pre, 0, .4f) : Fade(t, 1.35f, 1.9f);
+                Vector2 pos = Bob(a, z, half, rodLen, bobR, Mathf.Clamp01(s01)); if (t < 0) pos += Vector2.up * (1 - pre) * 1.5f;
+                Vector2 rod = pos - pivot; float rodDeg = Mathf.Atan2(rod.y, rod.x) * Mathf.Rad2Deg + 90;
+                // the swoosh: faint arcs of light on the bob's recent path
+                if (t >= 0 && t < 1.2f) for (int g = 1; g <= 10; g++)
                 {
-                    float s = -Mathf.Cos(Mathf.Clamp01(u) * Mathf.PI);                  // -1..1
-                    return new Vector2(mid.x + s * half, mid.y + 3.2f * (1 - Mathf.Cos(s * 1.15f)) / (1 - Mathf.Cos(1.15f)) * .0f + Mathf.Abs(s) * 2.4f + .6f);
-                };
-                float u0 = t < 0 ? 0 : Mathf.Clamp01(t / 1.1f), fade = t < 0 ? Rise(pre, 0, .4f) : Fade(t, 1.4f, 1.9f);
-                Vector2 pos = t < 0 ? bob(0) + new Vector2(Mathf.Sin(now * 5) * .08f, 0) : bob(u0);
-                // the lane being swept: a warm brass wash that grows with the bob
-                float sweep = t < 0 ? 0 : u0;
-                Vector2 dir = (z - a).normalized;
-                b.Beam(a - dir * .3f, a + (z - a) * (t < 0 ? 0 : sweep), w, A(Brass, .35f * fade), t, Seed, 0);
-                if (t < 0) b.Beam(a, z, w * .5f, A(Brass, .3f * pre), now, Seed, .6f);
-                // chain
-                int links = 12;
-                for (int k = 0; k <= links; k++)
-                {
-                    Vector2 p = Vector2.Lerp(pivot, pos + Vector2.up * .5f, k / (float)links);
-                    b.Quad(Gear, p, new Vector2(.2f, .2f), k * 30 + now * 40, A(Brass, .9f * fade), 0, Seed + k, 6);
-                    if (k < links) b.Link(p, Vector2.Lerp(pivot, pos + Vector2.up * .5f, (k + 1) / (float)links), .05f, A(Copper, .7f * fade), Seed, .5f);
+                    float sg = Mathf.Clamp01((1 - Mathf.Cos(Mathf.Max(0, u0 - g * .03f) * Mathf.PI)) * .5f), sh = Mathf.Clamp01((1 - Mathf.Cos(Mathf.Max(0, u0 - (g - 1) * .03f) * Mathf.PI)) * .5f);
+                    float al = .4f * (1 - g / 11f) * Fade(t, .9f, 1.2f);
+                    Vector2 pg = Bob(a, z, half, rodLen, bobR, sg), ph = Bob(a, z, half, rodLen, bobR, sh);
+                    b.Link(pg, ph, bobR * .75f * (1 - g / 13f), A(Brass, al * .45f), Seed + g, 1);
+                    b.Link(pg + Vector2.down * bobR * .55f, ph + Vector2.down * bobR * .55f, .06f, A(White, al), Seed + g, .8f);
                 }
-                Cog(b, pivot, .7f, now * 30, 10, Copper, fade, Seed + 40);
-                // motion-blurred ghosts of the bob
-                if (t >= 0) for (int g = 5; g >= 1; g--)
-                {
-                    float ug = Mathf.Max(0, u0 - g * .045f); Vector2 gp = bob(ug);
-                    Cog(b, gp, 1.15f * w * .75f, -ug * 600, 12, Brass, .28f * fade * (1 - g / 6f), Seed + g);
-                }
-                float big = 1.4f * w;
-                Cog(b, pos, big, -u0 * 700 + now * 40, 12, Brass, 1.2f * fade, Seed + 90);
-                b.Quad(Gear, pos, new Vector2(big * .55f, big * .55f), u0 * 900, A(Copper, 1f * fade), 0, Seed + 91, 6);
-                b.Floor(FxShape.Shade, new Vector2(pos.x, mid.y), big * .9f, A(new Color(.06f, .04f, .02f), .5f * fade), 0, Seed);
-                // ticking sparks shed along the lane
-                if (t >= 0) for (int k = 0; k < 18; k++)
+                // the rod and the pivot
+                b.Quad(Rod, (pivot + pos) * .5f, new Vector2(.24f, rod.magnitude * .5f), rodDeg, A(Brass, fade), Mathf.Repeat(rodDeg / 360f, 1), Seed, 20);
+                Cog(b, pivot, .9f, now * 30 + rodDeg * 2, 12, Copper, fade, Seed + 40);
+                Cog(b, pivot, .38f, -now * 60, 8, Brass, fade, Seed + 41);
+                // the bob, and its shadow running on the floor under it
+                b.Floor(FxShape.Shade, new Vector2(pos.x, Vector2.Lerp(a, z, Mathf.Clamp01(s01)).y), bobR * (1.1f - .4f * Mathf.Clamp01((pos.y - mid.y) / 4f)), A(new Color(.06f, .04f, .02f), .55f * fade), 0, Seed);
+                b.Quad(FxShape.Glow, pos, bobR * 1.4f, A(Brass, .1f * fade), 0, Seed);
+                b.Quad(Rod, pos, new Vector2(bobR * 1.16f, bobR * 1.16f), rodDeg, A(new Color(.9f, .62f, .22f), fade), Mathf.Repeat(rodDeg / 360f, 1), Seed + 90, 21);
+                if (t < 0) return;
+                float skim = 1 - Mathf.Abs(s01 * 2 - 1);
+                // ticking sparks shed along the lane where it passed
+                for (int k = 0; k < 18; k++)
                 {
                     float spawn = H(Seed, k + 70) * u0; float u = (u0 - spawn) / .25f; if (u <= 0 || u >= 1) continue;
-                    Vector2 p = Vector2.Lerp(a, z, spawn) + new Vector2(0, (H(Seed, k) - .5f) * w) + Vector2.up * (1.4f * u - 2f * u * u);
+                    Vector2 p = Vector2.Lerp(a, z, (1 - Mathf.Cos(spawn * Mathf.PI)) * .5f) + new Vector2(0, (H(Seed, k) - .5f) * w) + Vector2.up * (1.4f * u - 2f * u * u);
                     Glint(b, p, .16f, k % 2 == 0 ? Steel : Brass, 1 - u, k * 40 + t * 200);
                 }
-                if (t >= 0) b.Floor(FxShape.Shock, new Vector2(pos.x, mid.y), w * 1.6f, A(Brass, .7f * Fade(t, 0, 1.3f)), Mathf.Min(1, t * .8f), Seed);
                 // the bob's wind drags grainy dust along the lane under it, and its keel strikes sparks where it skims lowest
-                if (t >= 0) for (int k = 0; k < 8; k++)
+                for (int k = 0; k < 10; k++)
                 {
-                    float spawn = (k + .5f) / 8f, u = (u0 - spawn) / .3f; if (u <= 0 || u >= 1) continue;
+                    float spawn = (k + .5f) / 10f, u = (s01 - spawn) / .3f; if (u <= 0 || u >= 1) continue;
                     Vector2 p = Vector2.Lerp(a, z, spawn) + dir * u * 1.2f;
                     b.Quad(FxShape.Dust, p, new Vector2(w * .9f, w * .45f) * (.6f + .7f * u), 0, A(new Color(.6f, .5f, .36f), .75f * (1 - u) * fade), u, Seed + k);
                 }
-                float skim = 1 - Mathf.Abs(-Mathf.Cos(u0 * Mathf.PI));
-                if (t >= 0 && t < 1.1f && skim > .55f) for (int k = 0; k < 6; k++)
+                if (t < 1.1f && skim > .55f) for (int k = 0; k < 8; k++)
                 {
-                    float v = (t * 5 + H(Seed, k + 300)) % 1; Vector2 o = new Vector2(pos.x, mid.y + .2f);
-                    Glint(b, o + new Vector2(-dir.x * v * 1.4f * (1 + H(Seed, k)), v * (1.2f - 1.6f * v)), .18f, k % 2 == 0 ? White : Brass, (1 - v) * skim, k * 33);
+                    float v = (t * 5 + H(Seed, k + 300)) % 1; Vector2 o = new Vector2(pos.x, pos.y - bobR * .9f);
+                    Glint(b, o + new Vector2(-dir.x * v * 1.4f * (1 + H(Seed, k)), v * (1.2f - 1.6f * v)), .2f, k % 2 == 0 ? White : Brass, (1 - v) * skim, k * 33);
                 }
-
+            }
+            /// <summary>The bob's path: along the lane, rising toward both ends on the pendulum's circle.</summary>
+            private static Vector2 Bob(Vector2 a, Vector2 z, float half, float rodLen, float bobR, float s01)
+            {
+                float x = (s01 * 2 - 1) * half, k = Mathf.Clamp(x / rodLen, -.95f, .95f);
+                return Vector2.Lerp(a, z, s01) + Vector2.up * (bobR * .55f + rodLen * (1 - Mathf.Sqrt(1 - k * k)) * 1.2f);
             }
         }
     }

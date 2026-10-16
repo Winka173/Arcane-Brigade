@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         private static void Glint(FxBatch b, Vector2 at, float size, Color tint, float alpha, float turn = 0)
             => FxKit.Glint(b, at, size <= .08f ? size : size < .5f ? .08f + (size - .08f) * .45f : size - .231f, tint, alpha, turn);
         private const FxShape Rock = (FxShape)42;
-        private static readonly Color Granite = new Color(.82f, .68f, .5f, 1), Slate = new Color(.62f, .6f, .66f, 1), Dust = new Color(.8f, .7f, .54f, 1), Pale = new Color(1f, .9f, .68f, 1);
+        private static readonly Color Granite = new Color(.68f, .6f, .52f, 1), Slate = new Color(.56f, .57f, .64f, 1), Dust = new Color(.8f, .7f, .54f, 1), Pale = new Color(1f, .9f, .68f, 1);
 
         public static void Register(Dictionary<string, Func<FxEffect>> map)
         {
@@ -28,11 +28,8 @@ namespace ArcaneBrigade
         /// and not as a glow.</summary>
         private static void Solid(FxBatch b, Vector2 p, Vector2 size, float rot, Color c, int seed, float par)
         {
-            Vector2 k = par > .5f ? new Vector2(.8f, 1f) : new Vector2(1.15f, 1.15f);
-            b.Quad(FxShape.Shade, p, size * k * 1.2f, rot, A(Under, Mathf.Min(1, c.a)), 0, seed);
-            b.Quad(FxShape.Shade, p, size * k * .95f, rot, A(Under, Mathf.Min(1, c.a)), 0, seed);
-            b.Quad(FxShape.Shade, p, size * k * .75f, rot, A(Under, Mathf.Min(1, c.a)), 0, seed);
-            b.Quad(Rock, p, size, rot, A(c, Mathf.Min(1, c.a) * .95f), 0, seed, par);
+            // the rock shape is solid itself now (shaded stone, ink edge, light at the top-left whatever its turn)
+            b.Quad(Rock, p, size, rot, A(c, Mathf.Min(1, c.a)), Mathf.Repeat(rot / 360f, 1), seed, par);
         }
         private static void Chunk(FxBatch b, Vector2 p, float s, float rot, Color c, int seed) => Solid(b, p, new Vector2(s, s), rot, c, seed, 0);
 
@@ -70,8 +67,16 @@ namespace ArcaneBrigade
                     b.Link(s0 - dir * len * Fade(t, 0, .4f), s0, .09f, A(Pale, .8f * Fade(t, .05f, .42f)), Seed + k, .8f);
                 }
                 // the slab: three blocks stacked side by side so it reads as a wall of stone
-                for (int k = -1; k <= 1; k++) Chunk(b, slab + perp * k * .8f + Vector2.up * .15f, .85f, k * 17 + t * 30, A(Granite, 1.1f * fade), Seed + k * 3);
-                b.Quad(FxShape.Glow, at, r * 1.4f, A(Pale, .7f * Fade(t, .1f, .3f)), 0, Seed);
+                for (int k = -1; k <= 1; k++) Chunk(b, slab + perp * k * .95f + Vector2.up * (.25f + (k == 0 ? .25f : 0)), k == 0 ? 1.25f : .95f, k * 17 + t * 30, A(k == 0 ? Granite : Slate, 1.1f * fade), Seed + k * 3);
+                b.Floor(FxShape.Shade, slab, 1.6f, A(Under, .5f * fade), 0, Seed + 9);
+                b.Quad(FxShape.Glow, at, r * 1.2f, A(Pale, .35f * Fade(t, .1f, .3f)), 0, Seed);
+                // the shove: a wall of dust thrown ahead of the slab and the crowd skidding in it
+                for (int k = 0; k < 7; k++)
+                {
+                    float u = Rise(t, .1f + k * .02f, .7f + k * .02f); if (u <= 0 || u >= 1) continue;
+                    Vector2 p = at + dir * (.3f + 2.2f * EaseOut(u)) + perp * (k - 3) * .45f * (1 + u);
+                    b.Quad(FxShape.Smoke, p + Vector2.up * .3f * u, new Vector2(.6f, .45f) * (.7f + .9f * u), 0, A(Dust, .75f * (1 - u)), u, Seed + k + 40);
+                }
                 // the slab skids: grainy dust ploughed up along its track, a puff billows where it stops
                 for (int k = 0; k < 6; k++)
                 {
@@ -83,11 +88,11 @@ namespace ArcaneBrigade
                 b.Quad(FxShape.Smoke, at + dir * .2f + Vector2.up * (.4f + .9f * Rise(t, .1f, .85f)), r * (.45f + .4f * Rise(t, .1f, .85f)), 0, A(new Color(.7f, .6f, .46f), .6f * Fade(t, .3f, .85f)), t, Seed + 5);
                 // chips knocked off the slab's face at the hit, and impact stars
                 for (int k = 0; k < 5; k++) Glint(b, at - dir * .3f + perp * (k - 2) * .4f + Vector2.up * .5f, .3f, Pale, Fade(t, .12f, .3f) * Rise(t, .1f, .14f), k * 37);
-                for (int k = 0; k < 12; k++)
+                for (int k = 0; k < 16; k++)
                 {
                     float u = (t - .12f) / (.45f + .25f * H(Seed, k + 8)); if (u <= 0 || u >= 1) continue;
                     Vector2 p = at + dir * (.3f + 2.4f * EaseOut(u)) * (.6f + .6f * H(Seed, k)) + perp * (H(Seed, k + 3) - .5f) * 2.2f * u + Vector2.up * (1.2f * H(Seed, k + 9) * u - 2.2f * u * u);
-                    Chunk(b, p, .13f + .09f * H(Seed, k + 5), u * 400 + k * 30, A(Granite, 1.1f * (1 - u)), Seed + k);
+                    Chunk(b, p, .2f + .14f * H(Seed, k + 5), u * 400 + k * 30, A(Granite, 1.1f * (1 - u)), Seed + k);
                 }
             }
         }
@@ -178,12 +183,12 @@ namespace ArcaneBrigade
                     b.Quad(FxShape.Smoke, p, new Vector2(w * 1.1f, w * .8f) * (.8f + back * 2), 0, A(Dust, .9f * (1 - k / 16f) * fade), run, Seed + k);
                 }
                 // the boulder: huge rock, spinning, bouncing; shadow beneath
-                float bounce = Mathf.Abs(Mathf.Sin(t * 13)) * .35f * (run < 1 ? 1 : 0), rad = w * 1.8f;
+                float bounce = Mathf.Abs(Mathf.Sin(t * 13)) * .35f * (run < 1 ? 1 : 0), rad = w * 1.45f;
                 b.Floor(FxShape.Shade, pos, rad * 1.05f, A(new Color(.05f, .03f, .02f), .6f * fade), 0, Seed);
-                float spin = -t * 520;
-                Vector2 bp = pos + Vector2.up * (rad * .55f + bounce);
-                Solid(b, bp, new Vector2(rad, rad), spin, A(Granite, 1.25f * fade), Seed + 2, 0);
-                b.Quad(Rock, bp + new Vector2(-.15f, .2f) * rad, new Vector2(rad * .35f, rad * .3f), spin * .5f + 40, A(Slate, .35f * fade), 0, Seed + 7, 0);
+                // it rolls: the turn follows the distance covered, so the cracks and facets roll over while the light stays top-left
+                float spin = -e * len / (rad * .78f) * Mathf.Rad2Deg * Mathf.Sign(dir.x + .001f);
+                Vector2 bp = pos + Vector2.up * (rad * .62f + bounce);
+                Solid(b, bp, new Vector2(rad, rad), spin, A(Granite, fade), Seed + 2, 4);
                 // rocks flung to both sides along the whole lane
                 for (int k = 0; k < 24; k++)
                 {
@@ -214,14 +219,9 @@ namespace ArcaneBrigade
             protected override float Life => 1.7f;
             private static void Foot(FxBatch b, Vector2 c, float s, float alpha, int seed, float lift)
             {
-                Vector2 o = c + Vector2.up * lift;
-                Solid(b, o + new Vector2(0, -.45f * s), new Vector2(.95f * s, .85f * s), 0, A(Granite, 1.2f * alpha), seed + 1, 0);
-                Solid(b, o + new Vector2(0, .1f * s), new Vector2(1.05f * s, .8f * s), 18, A(Granite, 1.2f * alpha), seed + 2, 0);
-                for (int k = 0; k < 5; k++)
-                {
-                    float x = (k - 2) * .45f * s, y = .78f * s - Mathf.Abs(k - 2) * .13f * s;
-                    Solid(b, o + new Vector2(x, y), new Vector2(.28f * s, .3f * s), k * 31, A(Slate, 1.2f * alpha), seed + 3 + k, 0);
-                }
+                // a chiselled stone foot seen from above, toes toward the viewer, its sole over the crowd
+                Vector2 o = c + Vector2.up * (lift + s * .25f);
+                Solid(b, o, new Vector2(1.15f * s, 1.25f * s), 0, A(Granite, alpha), seed + 1, 2);
             }
 
             public override void Draw(FxBatch b, float now, float pre, float t)
@@ -247,12 +247,12 @@ namespace ArcaneBrigade
                 float press = 1 - .06f * Fade(t, 0, .3f);
                 b.Floor(FxShape.Shade, at, r * 1.35f, A(new Color(.05f, .03f, .02f), .55f * fade), 0, Seed);
                 // star cracks and the hot rim of broken rock
-                b.Floor(FxShape.Cracks, at, r * 1.45f, A(new Color(1f, .7f, .3f), .8f * fade), Rise(t, 0, .2f), Seed, 1);
+                b.Floor(FxShape.Cracks, at, r * 1.45f, A(new Color(1f, .6f, .25f), .55f * fade), Rise(t, 0, .2f), Seed, 1);
                 float grow = EaseOut3(Rise(t, 0, .18f));
                 for (int k = 0; k < 10; k++) Crack(b, at, at + Dir(Seed, k, 10, .56f) * r * (1.1f + .7f * H(Seed, k + 5)) * grow, .045f, .95f * fade, Seed + k * 5);
                 Foot(b, at, r * .62f * press, Mathf.Min(1, fade * 1.2f), Seed, Mathf.Max(0, .25f * Fade(t, 0, .2f)));
 
-                b.Quad(FxShape.Glow, at, r * 1.6f, A(Pale, .45f * hit * hit), 0, Seed);
+                b.Quad(FxShape.Glow, at, r * 1.2f, A(Pale, .25f * hit * hit), 0, Seed);
                 // ground slabs jump up and fall back: the shake, drawn in the floor itself
                 for (int k = 0; k < 10; k++)
                 {
