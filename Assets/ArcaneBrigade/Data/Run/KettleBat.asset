@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: KettleBat
   DisplayName: Kettle Bat
-  Body: {fileID: -1153539944, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+  Body: {fileID: 1882467089, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
   AnimationFrames:
-  - {fileID: -1153539944, guid: 7c21c63310204ad40a089722746d7268, type: 3}
-  - {fileID: 1759758697, guid: 7c21c63310204ad40a089722746d7268, type: 3}
-  - {fileID: -1966036622, guid: 7c21c63310204ad40a089722746d7268, type: 3}
-  - {fileID: 1786259198, guid: 7c21c63310204ad40a089722746d7268, type: 3}
+  - {fileID: 1882467089, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  - {fileID: -971881276, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  - {fileID: -2102008284, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
+  - {fileID: 1119106692, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: c463a389dd186f24ba59be82ad813f05, type: 2}
   Weapon: {fileID: 11400000, guid: 542fe4212187c014fbbbca11b1a4b631, type: 2}
   Health: 100
@@ -55,8 +55,8 @@ MonoBehaviour:
     a coin.\r\n\nNamed talents count bodies and absorbed memories; their stated percentages
     are not multiplied by star level unless explicitly stated. Listed support modifiers
     scale separately at 1/2/4.\r\nBonds: hearth, archer, hide. Immortal. Weapon rolls
-    on recruitment; two equal-species/equal-star bodies merge unless the talent forbids
-    it."
+    on recruitment; two equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Floofy
   ExclusiveHero: 

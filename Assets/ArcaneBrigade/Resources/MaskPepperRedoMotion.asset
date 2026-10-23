@@ -13,29 +13,20 @@ MonoBehaviour:
   m_Name: MaskPepperRedoMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 1092785931, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: 1225321234, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: -1716950674, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
-  - {fileID: -47435667, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
+  - {fileID: -965578735, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1182767963, guid: 41caa1c1b27715d47955758f92680071, type: 3}
   Walk:
-  - {fileID: 1598111312, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: -112358493, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
-  - {fileID: -1945269047, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: 351558472, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
+  - {fileID: -906399397, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1481352938, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -906399397, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1481352938, guid: 41caa1c1b27715d47955758f92680071, type: 3}
   Windup:
-  - {fileID: 6448889, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: 246233945, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: 975221286, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
+  - {fileID: -1883383847, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -1517951201, guid: 41caa1c1b27715d47955758f92680071, type: 3}
   Release:
-  - {fileID: 1643532870, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: -1840044314, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
+  - {fileID: 1819660999, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: 1819660999, guid: 41caa1c1b27715d47955758f92680071, type: 3}
   Recovery:
-  - {fileID: 380625942, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  - {fileID: 386884816, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
-  - {fileID: 1092785931, guid: 311bfb21ae44afd418fc1fd2b39f68ae, type: 3}
-  Cast:
-  - {fileID: 975221286, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
-  - {fileID: 1653416291, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
-  - {fileID: 1653416291, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
-  - {fileID: 1653416291, guid: a9fd2a8cf33a8f745abf15beef3d330a, type: 3}
+  - {fileID: -285899932, guid: 41caa1c1b27715d47955758f92680071, type: 3}
+  - {fileID: -965578735, guid: 41caa1c1b27715d47955758f92680071, type: 3}
   IllustratedHeight: 0

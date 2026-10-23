@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StitchedPangolin
   DisplayName: Stitched Pangolin
-  Body: {fileID: 551043047, guid: 03bd254ae20eda142be28b3520ee4e4f, type: 3}
+  Body: {fileID: 100003, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
   AnimationFrames:
-  - {fileID: 551043047, guid: 03bd254ae20eda142be28b3520ee4e4f, type: 3}
-  - {fileID: -1210726286, guid: 03bd254ae20eda142be28b3520ee4e4f, type: 3}
-  - {fileID: -1520983219, guid: 03bd254ae20eda142be28b3520ee4e4f, type: 3}
-  - {fileID: 680774242, guid: 03bd254ae20eda142be28b3520ee4e4f, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 534bb194033422e45b4f2b559fd70336, type: 2}
+  - {fileID: 100003, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  - {fileID: 100000, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  - {fileID: 100002, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  - {fileID: 100001, guid: 00f9689fc36d4d61aa1d11d00d92040b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 200bb679515f5e04bb4633f87627195b, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4.3999996

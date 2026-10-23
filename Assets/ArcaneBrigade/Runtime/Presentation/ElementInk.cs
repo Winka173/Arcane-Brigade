@@ -71,15 +71,6 @@ namespace ArcaneBrigade
             live.Add(new Fx { Look = look, At = e.Position + Vector2.up * .25f, Dir = dir, Born = now, Size = size, Seed = ++seed });
         }
 
-        /// <summary>A rules event (bond step, skill, pickup, standing up) bursts in its look at a point; shares the rate limit.</summary>
-        public void Burst(ElementLook look, Vector2 at, Vector2 dir, float size)
-        {
-            float now = Time.time;
-            if (look == ElementLook.None || now < nextAt || live.Count >= MaxLive) return;
-            nextAt = now + (PresentationSettings.ReducedEffects ? Gap * 3 : Gap);
-            live.Add(new Fx { Look = look, At = at + Vector2.up * .25f, Dir = dir.sqrMagnitude > .001f ? dir.normalized : Vector2.right, Born = now, Size = size, Seed = ++seed });
-        }
-
         private static float Life(ElementLook l) => l == ElementLook.Dream || l == ElementLook.Time || l == ElementLook.Bloom || l == ElementLook.Paper ? .62f : .45f;
         private static Vector2 Dir(float deg) => new Vector2(Mathf.Cos(deg * Mathf.Deg2Rad), Mathf.Sin(deg * Mathf.Deg2Rad));
         private static float Out(float x) { x = Mathf.Clamp01(x); return 1 - (1 - x) * (1 - x) * (1 - x); }

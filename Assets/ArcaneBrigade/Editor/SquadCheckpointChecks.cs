@@ -52,13 +52,9 @@ namespace ArcaneBrigade.Editor
             }
             Check(true, "Continuous leash and arena bounds during movement, reversal and corners", results);
             for (int index = 1; index < simulation.Units.Count; index++) simulation.DamageFixture(simulation.Units[index], 10000f);
-            bool fallen = true;
-            for (int index = 1; index < simulation.Units.Count; index++) fallen &= !simulation.Units[index].Alive && simulation.Units[index].Health == 0 && simulation.Mortality.IsFallen(simulation.Units[index]);
-            Check(fallen && simulation.Phase == RunPhase.Combat, "All companions can fall while the standing hero keeps the wave alive", results);
-            for (int tick = 0; tick < 151; tick++) simulation.Step(.1f, Vector2.zero);
-            bool revived = true;
-            for (int index = 1; index < simulation.Units.Count; index++) revived &= simulation.Units[index].Alive && Mathf.Abs(simulation.Units[index].Health - simulation.Units[index].Definition.Health * MortalityTuning.RiseHealthFraction) < .001f;
-            Check(revived, "All fallen companions rise at 40 percent health after 15 seconds", results);
+            bool immortal = true;
+            for (int index = 1; index < simulation.Units.Count; index++) immortal &= simulation.Units[index].Alive && float.IsPositiveInfinity(simulation.Units[index].Health);
+            Check(immortal, "All squad members ignore damage", results);
             simulation.Start(123);
             var second = new CombatSimulation(catalog);
             second.Start(123);
@@ -84,10 +80,8 @@ namespace ArcaneBrigade.Editor
             }
             Check(allyFireCount >= 3, "Squad keeps auto-attacking while roaming", results);
             simulation.Start(42);
-            for (int index = simulation.CompanionCount; index < RulesV3Tuning.CompanionLimit; index++) simulation.AddCompanion(catalog.Companion);
-            bool rejected = false;
-            try { simulation.AddCompanion(catalog.Companion); } catch (InvalidOperationException) { rejected = true; }
-            Check(rejected && simulation.CompanionCount == RulesV3Tuning.CompanionLimit, "Recruit API admits ten companions and rejects the eleventh", results);
+            for (int index = 0; index < 64; index++) simulation.AddCompanion(catalog.Companion);
+            Check(simulation.CompanionCount == 67, "Recruit API has no fixed companion slot cap", results);
             simulation.Start(42);
             Check(simulation.CompanionCount == 3 && simulation.Units[1].Velocity == Vector2.zero && simulation.Units[1].NextRoamTime == 0f, "Restart clears squad additions and patrol state", results);
             UnityEngine.Object.DestroyImmediate(target);

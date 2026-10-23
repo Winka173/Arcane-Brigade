@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: KiteDragon
   DisplayName: Kite Dragon
-  Body: {fileID: -716027535, guid: 88bc73496639bb048b66882398121ee5, type: 3}
+  Body: {fileID: -581457707, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
   AnimationFrames:
-  - {fileID: -716027535, guid: 88bc73496639bb048b66882398121ee5, type: 3}
-  - {fileID: -118194686, guid: 88bc73496639bb048b66882398121ee5, type: 3}
-  - {fileID: 1382783525, guid: 88bc73496639bb048b66882398121ee5, type: 3}
-  - {fileID: 1380801059, guid: 88bc73496639bb048b66882398121ee5, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: d2f36193a45c1aa488f78fbadf0d0a43, type: 2}
+  - {fileID: -581457707, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  - {fileID: 552936325, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  - {fileID: -1930588861, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  - {fileID: 2064101415, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 584a2299cb546a646af8f70897c84b6f, type: 2}
   Weapon: {fileID: 11400000, guid: 69a9766751f89a1479e7dfa9dd65865b, type: 2}
   Health: 100
   Speed: 4

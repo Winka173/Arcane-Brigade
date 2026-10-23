@@ -8,9 +8,6 @@ namespace ArcaneBrigade
 
     public sealed partial class RunSession
     {
-        // Section 8 replaces legacy SoloMaw variants; only Lone Jelly cannot use a companion reward.
-        private bool OutsideKeepsBrigade(string heroId) => HeroRulesV3Catalog.Find(heroId) != null
-            ? heroId != "LoneJelly" : catalog.Unit(heroId).HeroMechanic != HeroMechanic.SoloMaw;
         private void ValidateOutsideStage(RunSnapshot snapshot)
         {
             if (snapshot == null) throw new InvalidOperationException("Missing run");
@@ -25,7 +22,7 @@ namespace ArcaneBrigade
             {
                 ItemDefinition item = catalog.Item(id); UnitDefinition ally = catalog.Unit(id);
                 if (item != null && item.Rarity == ItemRarity.Rainbow) continue;
-                if (ally == null || ally.Rarity != ItemRarity.Rainbow || !OutsideKeepsBrigade(snapshot.ChampionId)) throw new InvalidOperationException("Invalid prismatic reward");
+                if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(snapshot.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) throw new InvalidOperationException("Invalid prismatic reward");
             }
         }
         public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && (State.Endless || State.Wave > ActOneCanon.Waves ? State.OutsideTransfers >= 3 : State.Wave == ActOneCanon.KeeperReturnShop) && OutsideStageAssets.Current != null;
@@ -110,7 +107,7 @@ namespace ArcaneBrigade
         private List<string> RainbowChoices(int salt)
         {
             UnitDefinition hero = catalog.Unit(State.ChampionId);
-            bool brigade = OutsideKeepsBrigade(State.ChampionId);
+            bool brigade = hero.HeroMechanic != HeroMechanic.SoloMaw;
             bool Owned(string id) => State.Items.Exists(stack => stack.Id == id) || State.Roster.Exists(entry => entry.UnitId == id);
             var items = new List<string>(); var allies = new List<string>(); var others = new List<string>();
             foreach (ItemDefinition item in catalog.Items)
@@ -163,7 +160,7 @@ namespace ArcaneBrigade
             else
             {
                 UnitDefinition ally = catalog.Unit(id);
-                if (ally == null || ally.Rarity != ItemRarity.Rainbow || !OutsideKeepsBrigade(State.ChampionId)) return false;
+                if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return false;
                 var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 2 }; // a rainbow ally arrives at 2 stars (requirement 22/10/2026)
                 State.Roster.Add(entry); RememberVariant(entry); OctoberPurchase(ally);
             }

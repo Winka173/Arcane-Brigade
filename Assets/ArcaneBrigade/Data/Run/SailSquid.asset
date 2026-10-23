@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SailSquid
   DisplayName: Sail Squid
-  Body: {fileID: -1848249134, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+  Body: {fileID: 1899832850, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
   AnimationFrames:
-  - {fileID: -1848249134, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
-  - {fileID: -570794705, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
-  - {fileID: 809483769, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
-  - {fileID: -702245024, guid: 7db329dd543bc4844af8a2b68ebd5232, type: 3}
+  - {fileID: 1899832850, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  - {fileID: -362726790, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  - {fileID: -827562681, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
+  - {fileID: -1658679855, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 6335177634eb78349915cb0064066cd4, type: 2}
   Weapon: {fileID: 11400000, guid: 87c0733b128c4494cbd5888830067d47, type: 2}
   Health: 100
@@ -52,8 +52,8 @@ MonoBehaviour:
     personal passive.\r\n\nNamed talents count bodies and absorbed memories; their
     stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nBonds: tidal, resolve.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
-    unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Bullied" Sophia'
   ExclusiveHero: 

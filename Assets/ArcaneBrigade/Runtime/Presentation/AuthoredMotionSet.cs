@@ -9,8 +9,6 @@ namespace ArcaneBrigade
         public Sprite[] Windup;
         public Sprite[] Release;
         public Sprite[] Recovery;
-        /// <summary>The skill-cast pose (the extra sheet's last cell, after its peak windup): gathering power, prouder than an attack.</summary>
-        public Sprite[] Cast = new Sprite[0];
         public float IllustratedHeight;
         public float ReferenceHeight => IllustratedHeight > 0 ? IllustratedHeight : Idle != null && Idle.Length > 0 && Idle[0] != null ? Idle[0].bounds.size.y : 1;
         public Sprite Select(UnitState unit, float time, bool reduced)

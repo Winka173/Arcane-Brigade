@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LensOwl
   DisplayName: Lens Owl
-  Body: {fileID: 791546977, guid: 82f071e50cd493a45af1b2add1d61e55, type: 3}
+  Body: {fileID: 1630980197, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
   AnimationFrames:
-  - {fileID: 791546977, guid: 82f071e50cd493a45af1b2add1d61e55, type: 3}
-  - {fileID: -967978497, guid: 82f071e50cd493a45af1b2add1d61e55, type: 3}
-  - {fileID: -625018525, guid: 82f071e50cd493a45af1b2add1d61e55, type: 3}
-  - {fileID: -782487963, guid: 82f071e50cd493a45af1b2add1d61e55, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 067bb11845d545b41869bb8ee5de5688, type: 2}
+  - {fileID: 1630980197, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  - {fileID: 198837070, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  - {fileID: 1290404784, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  - {fileID: -1844564324, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: a253b6462bae59e4c988c0ca0da65724, type: 2}
   Weapon: {fileID: 11400000, guid: 7dd216bed8f97574893ee1f6654bc32d, type: 2}
   Health: 100
   Speed: 4

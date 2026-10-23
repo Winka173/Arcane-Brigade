@@ -11,7 +11,7 @@ namespace ArcaneBrigade
     /// No words for ordinary hits.</summary>
     public sealed class HitWords : MonoBehaviour
     {
-        private sealed class Word { public InkedText View; public Vector2 At; public float Age, Life, Tilt, Size; public Color Colour; public int Look; }
+        private sealed class Word { public InkedText View; public Vector2 At; public float Age, Life, Tilt, Size; public Color Colour; }
         private readonly struct Set
         {
             public readonly string[] Crit, Skill; public readonly string Finish;
@@ -60,17 +60,6 @@ namespace ArcaneBrigade
         private static readonly Color Shock = new Color(.6f, .95f, 1f), Burn = new Color(1f, .62f, .3f), Chill = new Color(.66f, .88f, 1f), Plain = new Color(1f, .95f, .82f);
 
         private readonly List<Word> words = new List<Word>();
-        private readonly Dictionary<long, float> elementSeen = new Dictionary<long, float>();
-        private FxBatch ornaments;
-        /// <summary>The word a foe says when an element first catches it (owner 29/10/2026: each element its own styled word).</summary>
-        private static string ElementWord(ElementLook look, int pick) => look switch
-        {
-            ElementLook.Fire => pick % 2 == 0 ? "SIZZLE!" : "SCORCH!", ElementLook.Storm => pick % 2 == 0 ? "ZAP!" : "KRZZT!",
-            ElementLook.Ice => pick % 2 == 0 ? "FROZEN!" : "BRRR!", ElementLook.Crystal => "SHATTER!", ElementLook.Water => pick % 2 == 0 ? "SPLASH!" : "SOAKED!",
-            ElementLook.Poison => pick % 2 == 0 ? "TOXIC!" : "BLEGH!", ElementLook.Void => "HEXED!", ElementLook.Dream => "DAZED!",
-            ElementLook.Light => "DAZZLED!", ElementLook.Gold => "KA-CHING!", ElementLook.Wind => "WHOOSH!", ElementLook.Earth => "CRACK!",
-            ElementLook.Bloom => "SNARED!", ElementLook.Paper => "INKED!", ElementLook.Sound => "BOOM!", ElementLook.Time => "TICK-TOCK!", _ => null,
-        };
         private readonly Dictionary<int, float> shockSeen = new Dictionary<int, float>();
         private float heroWordAt = -10, finishAt = -10, sharedAt = -10;
         private int pick;
@@ -78,7 +67,7 @@ namespace ArcaneBrigade
         public void Clear()
         {
             foreach (Word w in words) if (w.View != null) w.View.gameObject.SetActive(false);
-            shockSeen.Clear(); elementSeen.Clear(); heroWordAt = finishAt = sharedAt = -10;
+            shockSeen.Clear(); heroWordAt = finishAt = sharedAt = -10;
         }
 
         public void Play(CombatSimulation simulation, CombatEvent e)
@@ -109,40 +98,26 @@ namespace ArcaneBrigade
             }
             // shared words, for any of our side's blows: a foe first shocked, burned or slowed, flung hard, splatted on a wall
             if (now - sharedAt < 1f) return;
-            // an element catching a foe for the first time in a while says its own word, dressed in that element
-            if (e.Kind == CombatEventKind.Hit && friendly && e.Subject != null && CombatFeedback.ElementShape != null)
-            {
-                int look = CombatFeedback.ElementShape(e); string said = look > 0 ? ElementWord((ElementLook)look, pick) : null;
-                long key = ((long)e.Subject.Id << 8) | (uint)look;
-                if (said != null && (!elementSeen.TryGetValue(key, out float last) || now - last > 6f))
-                {
-                    elementSeen[key] = now; if (elementSeen.Count > 512) elementSeen.Clear();
-                    sharedAt = now; pick++;
-                    Color said_ = Color.Lerp(RulesV3Ink.LookColour((ElementLook)look), Color.white, .25f);
-                    Show(said, e.Position, said_, ArcadeTypography.Punch, .9f, .8f, look);
-                    return;
-                }
-            }
-            string shared = null; Color tint = Plain; int sharedLook = 0;
+            string shared = null; Color tint = Plain;
             if (e.Kind == CombatEventKind.Hit && friendly && e.Subject != null && e.Subject.KitShockedUntil > now)
             {
-                if (!shockSeen.TryGetValue(e.Subject.Id, out float seen) || seen < e.Subject.KitShockedUntil - 2.5f) { shockSeen[e.Subject.Id] = e.Subject.KitShockedUntil; shared = "ZAP!"; tint = Shock; sharedLook = (int)ElementLook.Storm; }
+                if (!shockSeen.TryGetValue(e.Subject.Id, out float seen) || seen < e.Subject.KitShockedUntil - 2.5f) { shockSeen[e.Subject.Id] = e.Subject.KitShockedUntil; shared = "ZAP!"; tint = Shock; }
             }
             else if (e.Kind == CombatEventKind.StatusApplied && friendly)
             {
-                if (e.Element == DamageElement.Ember) { shared = "SIZZLE!"; tint = Burn; sharedLook = (int)ElementLook.Fire; }
-                else if (e.Element == DamageElement.Frost) { shared = "SLOW"; tint = Chill; sharedLook = (int)ElementLook.Ice; }
+                if (e.Element == DamageElement.Ember) { shared = "SIZZLE!"; tint = Burn; }
+                else if (e.Element == DamageElement.Frost) { shared = "SLOW"; tint = Chill; }
             }
             else if (e.Kind == CombatEventKind.Knockback && e.Faction != Faction.Enemy && e.Value >= .8f) shared = "WHAM!";
             else if (e.Kind == CombatEventKind.WallSplat && e.Faction != Faction.Enemy) shared = "SPLAT!";
             if (shared == null) return;
             sharedAt = now;
-            Show(shared, e.Position, tint, ArcadeTypography.Punch, .85f, .7f, sharedLook);
+            Show(shared, e.Position, tint, ArcadeTypography.Punch, .85f, .7f);
         }
 
         private static bool Regal(string id) => id == "VelvetRegent" || id == "IvorySovereign" || id == "ArchiveCurator" || id == "PennyBroker" || id == "ThornTreasurer" || id == "PetalCitadel" || id == "HourglassStag" || id == "MirrorKeeper";
 
-        private void Show(string text, Vector2 at, Color colour, Font font, float size, float life, int look = 0)
+        private void Show(string text, Vector2 at, Color colour, Font font, float size, float life)
         {
             Word word = words.Find(w => w.Age >= w.Life);
             int live = 0; foreach (Word w in words) if (w.Age < w.Life) live++;
@@ -157,7 +132,7 @@ namespace ArcaneBrigade
             word.View.Text = text.Replace('_', ' ');
             int seed = text.Length * 31 + Mathf.RoundToInt(at.x * 17 + at.y * 7);
             word.At = at + new Vector2(((seed % 7) - 3) * .06f, .55f);
-            word.Tilt = ((seed % 5) - 2) * 6f; word.Size = size; word.Life = life; word.Age = 0; word.Colour = colour; word.Look = look;
+            word.Tilt = ((seed % 5) - 2) * 6f; word.Size = size; word.Life = life; word.Age = 0; word.Colour = colour;
             word.View.gameObject.SetActive(true);
             Place(word);
         }
@@ -172,17 +147,6 @@ namespace ArcaneBrigade
                 if (w.Age >= w.Life) { w.View.gameObject.SetActive(false); continue; }
                 Place(w);
             }
-            // a word an element said carries a piece of that element around it
-            if (ornaments == null) ornaments = new FxBatch(transform, 2379, 2378);
-            ornaments.Begin();
-            if (!PresentationSettings.ReducedEffects)
-                foreach (Word w in words)
-                {
-                    if (w.Look <= 0 || w.Age >= w.Life) continue;
-                    Vector3 p = w.View.transform.position; float h = .32f * w.Size;
-                    NumberOrnament.Draw(ornaments, w.Look, new Vector2(p.x, p.y), h, h * .55f * w.View.Text.Length, w.Age / w.Life, w.View.Color.a, w.View.GetInstanceID(), RulesV3Ink.LookColour((ElementLook)w.Look));
-                }
-            ornaments.End();
         }
 
         private static void Place(Word w)

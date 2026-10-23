@@ -27,26 +27,16 @@ namespace ArcaneBrigade.Editor
             simulation.Pause(false);
             UnitState companion = simulation.Units[1];
             simulation.DamageFixture(companion, 10000f);
-            Check(!companion.Alive && companion.Health == 0 && simulation.Mortality.IsFallen(companion) && simulation.Phase == RunPhase.Combat,
-                "A companion falls while the standing hero keeps the wave alive", results);
+            Check(companion.Alive && float.IsPositiveInfinity(companion.Health), "Immortal companion without finite HP", results);
             simulation.DamageFixture(simulation.Champion, 4f);
             simulation.DamageFixture(simulation.Champion, 5f);
             Check(simulation.Champion.Health == 91f, "Concurrent damage without global invulnerability", results);
-            for (int tick = 0; tick < 149; tick++) simulation.Step(.1f, Vector2.zero);
-            Check(!companion.Alive, "A fallen companion waits the full 15 seconds", results);
-            simulation.Step(.1f, Vector2.zero);
-            simulation.Step(.01f, Vector2.zero);
-            Check(companion.Alive && Mathf.Abs(companion.Health - companion.Definition.Health * MortalityTuning.RiseHealthFraction) < .001f,
-                "A companion rises after 15 seconds with 40 percent health", results);
             simulation.Start(42);
             companion = simulation.Units[1];
             companion.Position = new Vector2(-0.5f, 0f);
-            float companionBefore = companion.Health;
-            float received = 5f * OctoberBalance.EnemyDamageRelief * 15f / (15f + simulation.FriendArmorPoints(companion));
             simulation.ProjectileFixture(new Vector2(-2f, 0f), new Vector2(40f, 0f), 5f, Faction.Enemy);
             simulation.Step(0.1f, Vector2.zero);
-            Check(simulation.Champion.Health == catalog.Champion.Health && Mathf.Abs(companion.Health - companionBefore + received) < .001f && companion.Alive && simulation.Projectiles.Count == 0,
-                "Swept hostile projectile hits the first mortal friend with damage relief and armor", results);
+            Check(Mathf.Approximately(simulation.Champion.Health, 100f - 5f * OctoberBalance.EnemyDamageRelief) && companion.Alive && simulation.Projectiles.Count == 0, "Swept projectile passes companion and hits champion (after the hostile damage relief) " + simulation.Champion.Health, results);
             simulation.Start(42);
             UnitState contact = simulation.AddFixture(catalog.MeleeEnemy, Faction.Enemy, new Vector2(0.45f, 0f));
             foreach (UnitState ally in simulation.Units) if (ally.Faction != Faction.Enemy) ally.NextAttack = float.PositiveInfinity; // let the contact land before anyone kills it
@@ -69,9 +59,7 @@ namespace ArcaneBrigade.Editor
             for (int tick = 0; tick < 650; tick++) simulation.Step(1f / 60f, Vector2.right);
             Check((simulation.Units[1].Position - simulation.Champion.Position).magnitude <= catalog.CompanionLeash + 0.001f, "Companion stays within leash", results);
             simulation.DamageFixture(simulation.Champion, 200f);
-            Check(!simulation.Champion.Alive && simulation.Phase == RunPhase.Combat, "A standing companion prevents defeat when the hero falls", results);
-            simulation.DamageFixture(simulation.Units[1], 10000f);
-            Check(simulation.Phase == RunPhase.Defeat, "All friends fallen causes defeat", results);
+            Check(simulation.Phase == RunPhase.Defeat, "Defeat transition", results);
             simulation.Start(42);
             Check(simulation.Generation == 6 && simulation.Gold == 0 && simulation.Champion.Health == 100f && simulation.Projectiles.Count == 0, "Restart clears run state", results);
             catalog.WaveDuration = 0.1f;

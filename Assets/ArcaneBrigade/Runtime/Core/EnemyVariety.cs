@@ -152,7 +152,7 @@ namespace ArcaneBrigade
             mapEliteSpawned = true;
             float angle = (float)spawnRandom.NextDouble() * Mathf.PI * 2;
             Vector2 at = ClampPosition(Champion.Position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 8f, catalog.MapElite.Radius);
-            UnitState unit = Spawn(catalog.MapElite, Faction.Enemy, at, true);
+            UnitState unit = Spawn(catalog.MapElite, Faction.Enemy, at); unit.Elite = true;
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, Faction.Enemy, subject: unit, weapon: unit.Definition.Weapon));
         }
     }

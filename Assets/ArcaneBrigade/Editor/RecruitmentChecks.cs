@@ -48,7 +48,7 @@ namespace ArcaneBrigade.Editor
                 Check(shown != null && offer.WeaponId == shown.Id && known.OfferWeapon(offer) == shown, "Offer weapon is rolled once and kept on the offer");
                 Check(known.Buy(offer.Token) && known.State.Roster.Any(r => r.UnitId == offer.Id && r.WeaponId == shown.Id), "Buying a friend gives the weapon shown on its offer");
             }
-            foreach (int wave in new[] { 1, 2, 3, 4, 8, 18 })
+            foreach (int wave in new[] { 1, 2, 3, 4, 8, 20, 30 })
             {
                 using var s = Session(c, wave); int limit = 1;
                 string owned = ordinary[4].Id;
@@ -156,7 +156,7 @@ namespace ArcaneBrigade.Editor
             {
                 var eligible = c.Companions.Where(u => !u.SpecialRecruit && !u.GiftOnly && u.UnlockWave <= 12 && K11HeroRules.Eligible(c.Unit(s.State.ChampionId), u)).ToArray();
                 var counts = new List<int>();
-                foreach (int size in new[] { 5, 6, 9 })
+                foreach (int size in new[] { 5, 6, 12 })
                 {
                     s.State.Roster.Clear(); for (int i = 0; i < size; i++) s.State.Roster.Add(new RosterEntry { UnitId = eligible[i].Id, WeaponId = "SpoonSabre" });
                     s.State.NewRecruitsThisWave = 0; s.State.ShopRandom = 831010;
@@ -169,7 +169,7 @@ namespace ArcaneBrigade.Editor
             }
             // requirement 22/10/2026: the shop never sells what can't be bought. A new species left on the shelf when the new-species
             // quota closes is replaced in its place (a copy of an owned species within the copy quota, or a relic)
-            foreach (int wave in new[] { 2, 8, 17 })
+            foreach (int wave in new[] { 2, 8, 20 })
             {
                 using var s = Session(c, wave);
                 var first = Offer(s, ordinary[0].Id); var second = Offer(s, ordinary[1].Id); int shelf = s.State.Offers.Count;
@@ -185,16 +185,22 @@ namespace ArcaneBrigade.Editor
                     Check(s.NewRecruitsRemaining == 1 && s.State.Offers.Any(o => o.Kind == OfferKind.Companion && !s.OwnsCompanionSpecies(o.Id)), "Next wave rolls a new species from unspent allowance " + wave + "/" + roll);
                 }
             }
-            // Recruitment closes before wave 20; owned copies still use the upgrade allowance.
-            foreach (int wave in new[] { RunSession.NoNewAlliesFrom - 1, RunSession.NoNewAlliesFrom, 30 })
+            // Kettle Bat (Scavenge 0.5) once found "0 gold": at least 1, growing with stars and with the wave, and the text says so
             {
-                using var s = Session(c, wave);
-                Check(s.NewAlliesClosed && s.NewRecruitsRemaining == 0 && s.SpecialNewRecruitsRemaining == 0, "Both shops close new species before wave 20 / " + wave);
-                Check(!s.Buy(Offer(s, ordinary[0].Id).Token) && !s.Buy(Offer(s, specials[0].Id, true).Token), "Closed shops reject new species / " + wave);
-                s.State.Roster.Add(new RosterEntry { UnitId = ordinary[0].Id, WeaponId = "SpoonSabre" });
-                Check(s.Buy(Offer(s, ordinary[0].Id).Token) && s.CopyRecruitsRemaining == 0, "Owned upgrade copy remains available after recruitment closes / " + wave);
+                var bat = c.Unit("KettleBat");
+                using var early = Session(c, 1); using var late = Session(c, 20);
+                int fewer = 0;
+                for (int tier = 1; tier <= 3; tier++)
+                {
+                    int now = early.ScavengeGold(bat, tier), later = late.ScavengeGold(bat, tier);
+                    Check(now >= 1 && now > fewer && later > now, "Kettle Bat scavenges " + now + " gold at wave 1, " + later + " at wave 20, " + tier + " stars");
+                    Check(CompanionDescriptions.ShortPassive(bat, tier, c.TierSupportMultiplier, late.GoldScale).Contains(" " + later + " gold"), "Kettle Bat card shows the gold it finds " + tier);
+                    fewer = now;
+                }
+                late.State.Roster.Add(new RosterEntry { UnitId = bat.Id, WeaponId = "SpoonSabre", Tier = 1 }); late.State.Phase = SessionPhase.Combat;
+                var arena = late.PrepareCombat(); var fielded = arena.StartingCompanions.FirstOrDefault(u => u != null && u.Id == bat.Id);
+                Check(fielded != null && Mathf.RoundToInt(fielded.PassiveStrength) == late.ScavengeGold(bat, 1), "Kettle Bat in combat finds the gold its card shows");
             }
-            Check(CompanionSkillTable.TryGet("KettleBat", out var batSkill) && batSkill.Name == "Whistle Gale", "Kettle Bat uses its design skill rather than legacy scavenging");
             File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"RegularNewSpeciesPerWave\":1,\"RegularCopyPurchasesPerWave\":1,\"UnusedAllowanceCarriesOver\":true,\"NewSpeciesWaveInterval\":2,\"DreamShopIndependent\":true,\"SpecialNewSpeciesPerVisit\":1}");
             Debug.Log("RECRUITMENT_PASS " + notes.Count);
         }

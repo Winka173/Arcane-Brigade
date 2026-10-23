@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SockCyclops
   DisplayName: Sock Cyclops
-  Body: {fileID: 1870522440, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+  Body: {fileID: -639382733, guid: fa93db66613cc794594994cf3ab816af, type: 3}
   AnimationFrames:
-  - {fileID: 1870522440, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
-  - {fileID: 1614810812, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
-  - {fileID: -432537723, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
-  - {fileID: 1508631321, guid: ac1318a1716379949b54b6f3cb0f9e7e, type: 3}
+  - {fileID: -639382733, guid: fa93db66613cc794594994cf3ab816af, type: 3}
+  - {fileID: -1393117950, guid: fa93db66613cc794594994cf3ab816af, type: 3}
+  - {fileID: 1000688768, guid: fa93db66613cc794594994cf3ab816af, type: 3}
+  - {fileID: 1059144186, guid: fa93db66613cc794594994cf3ab816af, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 3f1afb857a06a094e8b63c29fe16d077, type: 2}
   Weapon: {fileID: 11400000, guid: 542fe4212187c014fbbbca11b1a4b631, type: 2}
   Health: 100
@@ -53,8 +53,8 @@ MonoBehaviour:
     apply.\r\n\nNamed talents count bodies and absorbed memories; their stated percentages
     are not multiplied by star level unless explicitly stated. Listed support modifiers
     scale separately at 1/2/4.\r\nBonds: hearth, resolve. Immortal. Weapon rolls
-    on recruitment; two equal-species/equal-star bodies merge unless the talent forbids
-    it."
+    on recruitment; two equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Cars ARE My Kids" Chris'
   ExclusiveHero: 

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WateringSnail
   DisplayName: Watering Snail
-  Body: {fileID: -175665571, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  Body: {fileID: -1919592236, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
   AnimationFrames:
-  - {fileID: -175665571, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
-  - {fileID: 1108534812, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
-  - {fileID: 1921094589, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
-  - {fileID: 294535266, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 1bb38ec5d363fc242908ee79ce40fcff, type: 2}
+  - {fileID: -1919592236, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
+  - {fileID: -1440601992, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
+  - {fileID: -1790207405, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
+  - {fileID: -885049173, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: ca2d8d6fc1740074b9a30d75acfb1704, type: 2}
   Weapon: {fileID: 11400000, guid: 551073b76ec5b224db7bbbc50ccb7a4c, type: 2}
   Health: 100
   Speed: 4

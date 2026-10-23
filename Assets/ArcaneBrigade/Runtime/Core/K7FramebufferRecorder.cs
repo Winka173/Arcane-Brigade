@@ -31,7 +31,7 @@ namespace ArcaneBrigade
         public bool Passed => Complete && !failed && encoded == goal;
         public void Begin(float seconds)
         {
-            if (!RunPaths.K7Capture && !RulesInkCapture.Requested) throw new InvalidOperationException("Framebuffer recorder requires isolated diagnostic mode");
+            if (!RunPaths.K7Capture) throw new InvalidOperationException("Framebuffer recorder requires isolated diagnostic mode");
             string[] args = Environment.GetCommandLineArgs();
             int executable = Array.IndexOf(args, "-ffmpegPath"); int output = Array.IndexOf(args, "-videoPath");
             if (executable < 0 || output < 0 || executable + 1 >= args.Length || output + 1 >= args.Length) throw new ArgumentException("Video requires -ffmpegPath and -videoPath");

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DreamCompass
   DisplayName: Dream Compass
-  Body: {fileID: -101246685, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
+  Body: {fileID: 1066924731, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
   AnimationFrames:
-  - {fileID: -101246685, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
-  - {fileID: 760723728, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
-  - {fileID: 1860291739, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
-  - {fileID: 91105477, guid: 815889a8599b2134a9743e7617daba9d, type: 3}
+  - {fileID: 1066924731, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  - {fileID: 1871813658, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  - {fileID: -247594799, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
+  - {fileID: -2091425941, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 23a641c7c14ad2a4cb8a3fcc1e52d00c, type: 2}
   Weapon: {fileID: 11400000, guid: 361db9a79aee64c40ad6a14a4976232c, type: 2}
   Health: 100
@@ -55,8 +55,8 @@ MonoBehaviour:
     personal passive.\r\n\nNamed talents count bodies and absorbed memories; their
     stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nBonds: archive, hare,
-    archer. Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    archer. Immortal. Weapon rolls on recruitment; two equal-species/equal-star
+    bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Smiley Fox
   ExclusiveHero: 

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TopBeetle
   DisplayName: Top Beetle
-  Body: {fileID: 1699947622, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
+  Body: {fileID: 267694456, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
   AnimationFrames:
-  - {fileID: 1699947622, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
-  - {fileID: 1840112422, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
-  - {fileID: 1176860277, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
-  - {fileID: -1539977712, guid: ebb0fc5aebc95b24483ca0d5abd946d6, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 01cf68db700f0b94098bce8ef5e94996, type: 2}
+  - {fileID: 267694456, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  - {fileID: 184248790, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  - {fileID: 1193810461, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  - {fileID: 2069964191, guid: 3eb2c7bc76048d5448c66e1d261d6a35, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: d1eba953af14ada4c8afa5d07c8e1a13, type: 2}
   Weapon: {fileID: 11400000, guid: 214cc9051e9acba4c8c03923575809b5, type: 2}
   Health: 100
   Speed: 4

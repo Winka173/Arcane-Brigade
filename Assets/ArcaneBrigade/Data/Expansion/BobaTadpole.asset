@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BobaTadpole
   DisplayName: Boba Tadpole
-  Body: {fileID: -2057676247, guid: 0b1719023e54bec4287208b504008e6c, type: 3}
+  Body: {fileID: -2003007768, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
   AnimationFrames:
-  - {fileID: -2057676247, guid: 0b1719023e54bec4287208b504008e6c, type: 3}
-  - {fileID: 105795669, guid: 0b1719023e54bec4287208b504008e6c, type: 3}
-  - {fileID: 1034480491, guid: 0b1719023e54bec4287208b504008e6c, type: 3}
-  - {fileID: 1877116951, guid: 0b1719023e54bec4287208b504008e6c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 0dd5bd0721453fb4ab53271a390923bc, type: 2}
+  - {fileID: -2003007768, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -66843565, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -750041087, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -241551285, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: ab29281e8ed24464a9d102fecf7b0a94, type: 2}
   Weapon: {fileID: 11400000, guid: 1ba8db90310d36f45a7dc0a997c05a97, type: 2}
   Health: 100
   Speed: 4

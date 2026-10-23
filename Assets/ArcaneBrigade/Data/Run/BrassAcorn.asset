@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BrassAcorn
   DisplayName: Brass Acorn
-  Body: {fileID: -232304712, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
+  Body: {fileID: -279728203, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
   AnimationFrames:
-  - {fileID: -232304712, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
-  - {fileID: 711316425, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
-  - {fileID: 1853120393, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
-  - {fileID: 1708000338, guid: 3c6e5d111cabeec4c80056aa29aecc43, type: 3}
+  - {fileID: -279728203, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 733977321, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: -322198577, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
+  - {fileID: 1497489406, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: f54161b751e8f8f40babb28459b7999d, type: 2}
   Weapon: {fileID: 11400000, guid: c49101b482dca144bb87b559088a45ca, type: 2}
   Health: 100
@@ -53,8 +53,8 @@ MonoBehaviour:
     passive.\r\n\nNamed talents count bodies and absorbed memories; their stated
     percentages are not multiplied by star level unless explicitly stated. Listed
     support modifiers scale separately at 1/2/4.\r\nBonds: archive, regal, mask.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
-    unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Clown
   ExclusiveHero: 

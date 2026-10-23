@@ -8,7 +8,6 @@ namespace ArcaneBrigade.Editor
 {
     public static class FullRunChecks
     {
-        private const float PlainEnemyHealth = 1000f;
         public static void Run(RunCatalog catalog)
         {
             var results = new List<string>();
@@ -47,9 +46,9 @@ namespace ArcaneBrigade.Editor
             Check(catalog.Champions.Length >= 3 && catalog.Companions.Length >= 6 && catalog.Weapons.Length >= 6 && catalog.Bosses.Length >= 5, "Content roster", results);
             var ids = new HashSet<string>();
             foreach (UnitDefinition unit in catalog.Champions)
-                Check(unit != null && (unit.Body != null || (unit.hideFlags & HideFlags.DontSave) != 0 && HeroRulesV3Catalog.Find(unit.Id) != null) && unit.Weapon != null && unit.Health > 0 && ids.Add(unit.Id), "Champion " + unit.Id, results);
+                Check(unit != null && unit.Body != null && unit.Weapon != null && ids.Add(unit.Id), "Champion " + unit.Id, results);
             foreach (UnitDefinition unit in catalog.Companions)
-                Check(unit != null && (unit.Body != null || (unit.hideFlags & HideFlags.DontSave) != 0 && CompanionSkillTable.TryGet(unit.Id, out _)) && unit.Weapon != null && unit.Health > 0 && unit.Tags.Length > 0 && ids.Add(unit.Id), "Companion " + unit.Id, results);
+                Check(unit != null && unit.Body != null && unit.Tags.Length > 0 && ids.Add(unit.Id), "Companion " + unit.Id, results);
             foreach (WeaponDefinition weapon in catalog.Weapons)
                 Check(weapon.Sprite != null && weapon.Damage > 0 && weapon.Cooldown > 0, "Weapon " + weapon.Id, results);
 
@@ -98,25 +97,11 @@ namespace ArcaneBrigade.Editor
                 Check(Mathf.Abs(ranked.PassiveStrength - catalog.Companions[0].PassiveStrength * 3f) < 0.001f, "Merge preserves three copies of healing potency", results);
                 foreach (string tag in catalog.Companions[0].Tags) Check(session.BondCounts[tag] - session.KitBondExtra(tag) == 1, "Bond counts bodies not stars (besides the hero kit's extra members): " + tag, results);
                 session.Validate(session.State);
-                // Since schema 4 the owned roster stores repeated merge ingredients; only one body per species deploys.
-                var copies = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
-                copies.Roster.Add(new RosterEntry { UnitId = copies.Roster[0].UnitId, WeaponId = copies.Roster[0].WeaponId, Tier = copies.Roster[0].Tier });
-                session.Validate(copies);
-                restored.Restore(copies);
-                Check(restored.State.Roster.Count == 2 && restored.ActiveRoster.Count == 1 &&
-                    restored.State.Roster.TrueForAll(entry => entry.UnitId == copies.Roster[0].UnitId && entry.WeaponId == copies.Roster[0].WeaponId && entry.Tier == 2),
-                    "Repeated merge ingredients survive save restore with one deployed species", results);
-                var legacy = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(copies));
-                legacy.SchemaRevision = 3;
-                CheckRejectedRoster(session, legacy, "Legacy duplicate identity save rejected", results);
-                foreach (string field in new[] { "species", "weapon", "tier" })
-                {
-                    var invalid = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
-                    if (field == "species") invalid.Roster[0].UnitId = "missing-save-species";
-                    else if (field == "weapon") invalid.Roster[0].WeaponId = "missing-save-weapon";
-                    else invalid.Roster[0].Tier = catalog.MaximumTier + 1;
-                    CheckRejectedRoster(session, invalid, "Invalid roster " + field + " save rejected", results);
-                }
+                var invalid = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
+                invalid.Roster.Add(invalid.Roster[0]);
+                bool rejected = false;
+                try { session.Validate(invalid); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "Duplicate identity save rejected", results);
 
                 string root = Path.Combine(".utmp", "FullRunChecks", Guid.NewGuid().ToString("N"));
                 var storage = new RunStorage(root);
@@ -140,14 +125,14 @@ namespace ArcaneBrigade.Editor
                 session.ContinueWave();
                 Check(session.State.Phase == SessionPhase.Combat && session.State.Offers.Count == 0, "Next hall starts combat", results);
 
-                session.State.Wave = 10;
+                session.State.Wave = catalog.BossEvery;
                 combat = session.PrepareCombat();
                 combat.EnemyBudget = 0;
                 combat.WaveDuration = 0.1f;
                 simulation = new CombatSimulation(combat);
                 simulation.Start(combat.Seed);
                 simulation.Step(0.1f, Vector2.zero);
-                Check(simulation.Boss != null && simulation.Boss.Definition.Id == "PastryTyrant" && simulation.Phase == RunPhase.Combat, "Section 9 night 10 Pastry Tyrant cannot clear on timer", results);
+                Check(simulation.Boss != null && simulation.Phase == RunPhase.Combat, "Boss hall cannot clear on timer", results);
                 simulation.DamageFixture(simulation.Boss, 100000f);
                 simulation.Step(0.1f, Vector2.zero);
                 Check(simulation.BossDefeated && simulation.Phase == RunPhase.Victory, "Boss death clears hall", results);
@@ -180,7 +165,6 @@ namespace ArcaneBrigade.Editor
                 CheckpointCatalog catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
                 catalog.RunWave = 0;
-                UsePlainEnemyFixtures(catalog);
                 float baselineLeash = catalog.CompanionLeash;
                 var simulation = new CombatSimulation(catalog);
                 simulation.Start(42);
@@ -209,20 +193,13 @@ namespace ArcaneBrigade.Editor
                 simulation.Champion.NextPassive = float.PositiveInfinity;
                 simulation.Units[1].NextPassive = float.PositiveInfinity;
                 simulation.Units[1].Position = new Vector2(-0.5f, 0f);
-                float interceptorBefore = simulation.Units[1].Health;
-                float interceptedDamage = RunModifierRules.AfterArmor(5f * OctoberBalance.EnemyDamageRelief,
-                    simulation.FriendArmorPoints(simulation.Units[1]) * RunModifierRules.ArmorPoint);
                 simulation.ProjectileFixture(new Vector2(-2f, 0), Vector2.right * 40f, 5f, Faction.Enemy);
                 simulation.Step(0.1f, Vector2.zero);
-                Check(simulation.Champion.Health == catalog.Champion.Health && simulation.Projectiles.Count == 0 &&
-                    Mathf.Abs(simulation.Units[1].Health - interceptorBefore + interceptedDamage) < .001f,
-                    "Mortal interceptor takes the projectile after relief and armor while protecting the hero", results);
-                catalog.Armor = 15 * RunModifierRules.ArmorPoint;
-                float heroBefore = simulation.Champion.Health;
-                float expectedReceived = 10 * 15 / (15 + simulation.FriendArmorPoints(simulation.Champion));
+                Check(simulation.Champion.Health == catalog.Champion.Health && simulation.Projectiles.Count == 0, "Interceptor absorbs enemy projectile without ally damage", results);
+                catalog.Armor = 1f;
                 simulation.DamageFixture(simulation.Champion, 10f);
-                Check(Mathf.Abs(simulation.Champion.Health - heroBefore + expectedReceived) < .001f, "Section 1b armor shares received damage pipeline", results);
-                Check(simulation.Events.Any(e => e.Kind == CombatEventKind.Hit && e.Subject == simulation.Champion && Mathf.Abs(e.Value - expectedReceived) < .001f), "Feedback reports damage after armor", results);
+                Check(simulation.Champion.Health == catalog.Champion.Health - 5f, "Armor shares received damage pipeline", results);
+                Check(simulation.Events[simulation.Events.Count - 1].Value == 5f, "Feedback reports damage after armor", results);
 
                 CheckpointCatalog plain = session.PrepareCombat(); float plainDamage = plain.Champion.Weapon.Damage, plainAlly = plain.StartingCompanions[0].Weapon.Damage, plainMultiplier = session.DamageMultiplier(source.Champions[0], 1, false);
                 session.State.Items.Add(new ItemStack { Id = "royal-key", Count = 2 });
@@ -240,16 +217,19 @@ namespace ArcaneBrigade.Editor
                 Check(session.PrepareCombat().EnemyBudget > 51 && session.ActiveModifier.Every == 7, "Clockstorm wave modifier is selected by rule rather than localized name", results);
                 session.State.Wave = 11;
                 Check(session.PrepareCombat().PassiveHeal >= 0.25f, "Quiet stacks wave modifier", results);
-                session.State.Wave = 10;
-                catalog = session.PrepareCombat(); catalog.EnemyBudget = 0;
-                simulation = new CombatSimulation(catalog); simulation.Start(42);
-                Check(simulation.Boss != null && simulation.EnemyRulesV3.Recognizes(simulation.Boss), "Scheduled boss uses section 9 skills and phases", results);
-                // Section 9 warnings and phased attacks replace legacy NextBossPattern timing.
-                EnemyRulesV3Checks.Run();
+                session.State.Wave = 4; // the first boss wave (Act I bosses arrive on waves 4/8/12/16/20)
+                catalog = session.PrepareCombat();
+                catalog.EnemyBudget = 0;
+                simulation = new CombatSimulation(catalog);
+                simulation.Start(42);
+                for (int tick = 0; tick < 22; tick++) simulation.Step(0.1f, Vector2.zero);
+                Check(simulation.Boss.TelegraphUntil > simulation.Elapsed, "Boss telegraph precedes firing", results);
+                // Act I bosses hold their warning longer: wait for it to resolve, then the pattern must be on cooldown
+                for (int tick = 0; tick < 40 && simulation.Boss.TelegraphUntil != 0; tick++) simulation.Step(0.1f, Vector2.zero);
+                Check(simulation.Boss.TelegraphUntil == 0 && simulation.Boss.NextBossPattern > simulation.Elapsed, "Boss telegraph commits one pattern then cooldown (" + simulation.Boss.TelegraphUntil + ", next " + simulation.Boss.NextBossPattern + ", now " + simulation.Elapsed + ")", results);
                 session.State.Wave = 1;
                 catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
-                UsePlainEnemyFixtures(catalog);
                 catalog.StartingCompanions[0].Speed = 0;
                 catalog.MeleeEnemy.Speed = 0;
                 simulation = new CombatSimulation(catalog);
@@ -280,7 +260,7 @@ namespace ArcaneBrigade.Editor
                     Check(session.State.Wave == wave && session.State.Phase == (wave == catalog.NormalWaves ? SessionPhase.Victory : SessionPhase.Shop), "Authored schedule hall " + wave + " (accelerated fixture)", results);
                     if (wave < catalog.NormalWaves) session.ContinueWave();
                 }
-                Check(session.State.BossKills == Enumerable.Range(1, catalog.NormalWaves).Count(wave => EnemyRulesV3Catalog.BossForNight(wave) != null), "Every section 9 scheduled boss reward (kills " + session.State.BossKills + " through night " + catalog.NormalWaves + ")", results);
+                Check(session.State.BossKills == Enumerable.Range(1, catalog.NormalWaves).Count(ActOneCanon.BossWave), "Every scheduled Act I boss reward (kills " + session.State.BossKills + " of " + catalog.NormalWaves + "/" + catalog.BossEvery + ")", results);
                 // Act I: the dawn ending is told (and a farewell chosen) before the endless road opens
                 if (session.EndingChoicePending) session.ChooseFarewell((NightmareFarewell)1);
                 for (int page = 0; page < 30 && session.EndingPending; page++) session.AdvanceEnding();
@@ -293,31 +273,23 @@ namespace ArcaneBrigade.Editor
         private static void Benchmark(RunCatalog source, List<string> results)
         {
             var report = new List<string> { "Editor simulation only, 600 ticks at 60 Hz; not rendering/mobile FPS. Fixture allies bypass shop identity policy. Champion and enemies have raised HP for sustained combat. Initial 50 contact + 50 ranged enemies." };
-            foreach (int count in new[] { 1, 5, RulesV3Tuning.CompanionLimit })
+            foreach (int count in new[] { 25, 50, 100, 200 })
             {
                 using (var session = new RunSession(source))
                 {
                     session.Start(source.Champions[0].Id, 92);
                     CheckpointCatalog catalog = session.PrepareCombat();
-                    UsePlainEnemyFixtures(catalog);
                     catalog.Champion.Health = 1000000;
-                    catalog.StartingCompanions[0].Health = 1000000;
                     catalog.MeleeEnemy.Health = catalog.RangedEnemy.Health = 1000000;
                     catalog.EnemyBudget = 0;
                     var simulation = new CombatSimulation(catalog);
                     simulation.Start(92);
                     for (int index = 1; index < count; index++) simulation.AddCompanion(catalog.StartingCompanions[0]);
-                    if (count == RulesV3Tuning.CompanionLimit)
-                    {
-                        bool rejected = false;
-                        try { simulation.AddCompanion(catalog.StartingCompanions[0]); } catch (InvalidOperationException) { rejected = true; }
-                        Check(rejected && simulation.CompanionCount == count, "Eleventh deployed companion is rejected without changing the team", results);
-                    }
                     for (int index = 0; index < 100; index++) simulation.AddFixture(index % 2 == 0 ? catalog.MeleeEnemy : catalog.RangedEnemy, Faction.Enemy, new Vector2((index % 20 - 10) * 0.65f, (index / 20 - 2) * 0.7f));
                     var watch = System.Diagnostics.Stopwatch.StartNew();
                     for (int tick = 0; tick < 600; tick++) simulation.Step(1f / 60f, new Vector2(Mathf.Cos(tick * 0.02f), Mathf.Sin(tick * 0.02f)));
                     watch.Stop();
-                    Check(simulation.CompanionCount == count && simulation.Elapsed > 9.9f && simulation.Units.Count == count + 101, "Ten-slot sustained army fixture " + count, results);
+                    Check(simulation.CompanionCount == count && simulation.Elapsed > 9.9f && simulation.Units.Count == count + 101, "Uncapped sustained army fixture " + count, results);
                     report.Add(count + " allies / initial 100 enemies: " + (watch.Elapsed.TotalMilliseconds / 600).ToString("0.000") + " ms/step, survivors " + simulation.Units.Count + ", projectiles " + simulation.Projectiles.Count);
                 }
             }
@@ -328,30 +300,6 @@ namespace ArcaneBrigade.Editor
         {
             if (!condition) throw new InvalidOperationException("Full run check failed: " + label);
             results.Add("PASS " + label);
-        }
-
-        private static void CheckRejectedRoster(RunSession session, RunSnapshot snapshot, string label, List<string> results)
-        {
-            bool rejected = false;
-            try { session.Validate(snapshot); } catch (InvalidOperationException) { rejected = true; }
-            Check(rejected, label, results);
-        }
-
-        private static void UsePlainEnemyFixtures(CheckpointCatalog catalog)
-        {
-            // These session-owned bodies measure weapon damage and sustained combat, rather than species skills.
-            // In particular, section 9 Crumb Swarm always has one-hit health even when a fixture raises its health.
-            catalog.MeleeEnemy.Id = "FullRunMeleeTarget";
-            catalog.RangedEnemy.Id = "FullRunRangedTarget";
-            foreach (UnitDefinition body in new[] { catalog.MeleeEnemy, catalog.RangedEnemy })
-            {
-                body.Health = PlainEnemyHealth;
-                body.IsBoss = false;
-                body.Behavior = EnemyBehavior.Standard;
-                body.Mutation = EnemyMutation.None;
-                body.SpecialEnemy = SpecialEnemyKind.None;
-                body.WaitingKind = WaitingEnemyKind.None;
-            }
         }
     }
 }

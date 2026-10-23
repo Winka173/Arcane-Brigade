@@ -384,11 +384,8 @@ namespace ArcaneBrigade
             lastDisplayTime = simulationTime;
             if (state.AwakenArt != awakenShown) SwapAwakenWeapon();
             if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
-            AuthoredMotionSet authored = state.Definition.AuthoredMotion;
-            if (authored != null && !ReducedMotion && castUntil > simulationTime && authored.Cast != null && authored.Cast.Length > 0)
-                body.sprite = authored.Cast[Mathf.Clamp(Mathf.FloorToInt((simulationTime - castStart) / Mathf.Max(.01f, castUntil - castStart) * authored.Cast.Length), 0, authored.Cast.Length - 1)];
-            else if (authored != null)
-                body.sprite = HeroPoseRepairs.Repair(authored.Select(state, simulationTime, ReducedMotion));
+            if (state.Definition.AuthoredMotion != null)
+                body.sprite = HeroPoseRepairs.Repair(state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion));
             else if (state.Definition.AnimationFrames.Length >= 4)
                 body.sprite = state.Definition.AnimationFrames[K8Motion.BodyFrame(state, simulationTime, ReducedMotion)];
             Sprite expandedFrame = expandedGait?.Select(state, simulationTime, ReducedMotion);
@@ -884,9 +881,6 @@ namespace ArcaneBrigade
         private static readonly Dictionary<int, (Vector2 at, int frame)> drawnAt = new Dictionary<int, (Vector2, int)>();
         private static readonly Dictionary<int, UnitVisual> live = new Dictionary<int, UnitVisual>();
         /// <summary>The view drawing this unit this frame or the last (null when it is not on screen).</summary>
-        private float castStart = -10, castUntil = -10;
-        /// <summary>The friend casts a skill: it strikes its skill-cast pose for a moment (when its sheets have one).</summary>
-        public void PlayCast(float seconds) { castStart = lastDisplayTime; castUntil = lastDisplayTime + seconds; }
         public static UnitVisual Live(int unitId) => live.TryGetValue(unitId, out UnitVisual v) && v != null && drawnAt.TryGetValue(unitId, out var d) && Time.frameCount - d.frame <= 1 ? v : null;
         /// <summary>The tip of a unit's weapon as drawn this frame or the last (false when it is not on screen).</summary>
         public static bool TryMuzzle(int unitId, out Vector2 tip)

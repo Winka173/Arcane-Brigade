@@ -100,14 +100,14 @@ namespace ArcaneBrigade.Editor
                         require(GlossaryUI.Find(RunModifierRules.ModifierName(effect)) != null, "All stat labels have definitions: " + effect);
                     require(GlossaryUI.Show("split") && GlossaryUI.Open, "Click route opens contextual definition");
                     GlossaryUI.Close(); require(!GlossaryUI.Open && !GlossaryUI.Show("unknown-term"), "Dismiss clears glossary without fake unknown explanation");
-                    require(original.Companions.Count(unit => unit.Body != null && unit.Body.texture.name == unit.Id && File.Exists("Assets/ArcaneBrigade/Art/K10/" + unit.Id + ".png")) == 32 && original.Weapons.Count(weapon => File.Exists("Assets/ArcaneBrigade/Art/K10/" + weapon.Id + ".png")) == 24, "32 new species and 24 new weapon identities loaded");
+                    require(original.Companions.Count(unit => unit.Body.texture.name == unit.Id && File.Exists("Assets/ArcaneBrigade/Art/K10/" + unit.Id + ".png")) == 32 && original.Weapons.Count(weapon => File.Exists("Assets/ArcaneBrigade/Art/K10/" + weapon.Id + ".png")) == 24, "32 new species and 24 new weapon identities loaded");
                     // the eight theme bonds; the small trait bonds added later (hare, archer, root...) are two or three species by design
                     foreach (BondDefinition bond in original.Bonds.Where(b => new[] { "hearth", "archive", "clock", "frost", "orchard", "astral", "tidal", "oddity" }.Contains(b.Id)))
                     {
                         int species = original.Companions.Count(unit => unit.Tags.Contains(bond.Id));
                         require(species >= 4, "Bond has at least 4 species: " + bond.Id + " (" + species + ")");
                     }
-                    foreach (UnitDefinition unit in original.Companions.Where(unit => unit.Body != null && unit.Body.texture.name != null && unit.Body.texture.name == unit.Id))
+                    foreach (UnitDefinition unit in original.Companions.Where(unit => unit.Body.texture.name != null && unit.Body.texture.name == unit.Id))
                         require(unit.AnimationFrames.Length == 4 && unit.AnimationFrames.Distinct().Count() == 4, "Distinct imported animation frames " + unit.Id);
                     require(original.Items.Where(item => item.Id.StartsWith("k10-")).SelectMany(item => item.EffectiveModifiers).Select(modifier => modifier.Effect).Distinct().Count() >= K10StatRules.Names.Length, "All added stat families have purchasable content");
                     require(original.Bonds.Where(bond => bond.Id == "orchard" || bond.Id == "astral" || bond.Id == "tidal" || bond.Id == "oddity").All(bond => bond.Icon.texture.name.StartsWith("Bond")), "New systems use dedicated icons rather than friendly portraits");
