@@ -109,3 +109,15 @@ InitTestScene*.unity*
 # local backup of the pre-resample originals (19/10/2026); the originals live in git history at f00b257c
 /ArtArchive/PreResample_2026-10-19/
 /ArtArchive/PrePack_2026-10-20/
+
+# capture images, videos and sounds in PreviewExports stay local: they filled 19.7 GB of the GitHub LFS budget; text reports (tsv, json, txt) are still tracked
+/PreviewExports/**/*.png
+/PreviewExports/**/*.jpg
+/PreviewExports/**/*.jpeg
+/PreviewExports/**/*.gif
+/PreviewExports/**/*.mp4
+/PreviewExports/**/*.webm
+/PreviewExports/**/*.mov
+/PreviewExports/**/*.wav
+/PreviewExports/**/*.ogg
+/PreviewExports/**/*.mp3
