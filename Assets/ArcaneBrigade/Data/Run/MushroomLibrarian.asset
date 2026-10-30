@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MushroomLibrarian
   DisplayName: Mushroom Librarian
-  Body: {fileID: 933422592, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
+  Body: {fileID: 1514231062, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
   AnimationFrames:
-  - {fileID: 933422592, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
-  - {fileID: 385043046, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
-  - {fileID: -1268536999, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
-  - {fileID: -526630321, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
+  - {fileID: 1514231062, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+  - {fileID: -130314029, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+  - {fileID: 1977941372, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
+  - {fileID: -282302435, guid: 956a6d73f0218244d849c25b66e40aed, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 5e47af8b00e1a1e498fd43d7481d412f, type: 2}
   Weapon: {fileID: 11400000, guid: 3b296350d6f02654f98a89ca62bf43e3, type: 2}
   Health: 120
@@ -53,8 +53,8 @@ MonoBehaviour:
     restrictions apply.\r\n\nNamed talents count bodies and absorbed memories; their
     stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nBonds: orchard, clover.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
+    unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Camo Shroom
   ExclusiveHero: 

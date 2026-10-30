@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ClockworkPiper
   DisplayName: Clockwork Piper
-  Body: {fileID: -1543454478, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  Body: {fileID: -709542817, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
   AnimationFrames:
-  - {fileID: -1543454478, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: -904527440, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: 960524914, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  - {fileID: -1805226658, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 4ebb950ed5154e04da14660340905645, type: 2}
+  - {fileID: -709542817, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
+  - {fileID: 953112436, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
+  - {fileID: 1610750630, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
+  - {fileID: 1808331114, guid: a9c150bbf8558e54192bd4a864d45557, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: e5eb36096aed47240a79a753de701fdd, type: 2}
   Weapon: {fileID: 11400000, guid: 44e23b50769665f4cad5b5478d278116, type: 2}
   Health: 100
   Speed: 4

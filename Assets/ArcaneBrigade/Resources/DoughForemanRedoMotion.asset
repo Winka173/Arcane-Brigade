@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: DoughForemanRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1031307619, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -230371869, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: 1517263155, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  - {fileID: -868065442, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  Walk:
+  - {fileID: -1063110812, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: 241518692, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  - {fileID: -299744576, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: 451420598, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  Windup:
+  - {fileID: 2142110813, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -2081510636, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -1115778256, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  Release:
+  - {fileID: 164015527, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: 1759391831, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  Recovery:
+  - {fileID: -1857768095, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  - {fileID: -834445352, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  - {fileID: 1031307619, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  Cast:
+  - {fileID: -1115778256, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  - {fileID: -987185696, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  - {fileID: -987185696, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  - {fileID: -987185696, guid: 5f930954bfd33d844b1c3f2e1ab738df, type: 3}
+  IllustratedHeight: 0

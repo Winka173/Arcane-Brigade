@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PetalCitadel
   DisplayName: Petal Citadel
-  Body: {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  Body: {fileID: -1706743760, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
   AnimationFrames:
-  - {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 826277808, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -452241988, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 279495155, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 876160275a463c943877ca4f88913ca7, type: 2}
+  - {fileID: -1706743760, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -382331798, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: 1069353283, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  - {fileID: -199235908, guid: ee558fa456cf90b4ca681cfbaf1e7dcc, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 877c76c828e884e4fbde1a2b4ef35426, type: 2}
   Weapon: {fileID: 11400000, guid: 67cce8add7333c3489fe473fa4d73fac, type: 2}
   Health: 85
   Speed: 4.5

@@ -148,6 +148,7 @@ namespace ArcaneBrigade
                     if (DrawGlyph(glyph)) VisibleCount++;
                 }
             }
+            DrawGuests(simulation, live); // our friends' skills and traits, drawn as hero skills (HeroGuestVisual)
             if (!titleDrawn) HideTitle();
             ground.Commit(); air.Commit(); vial?.Commit(); groundInk?.Commit();
             for (int i = used; i < tokens.Count; i++) tokens[i].enabled = false;
@@ -467,7 +468,8 @@ namespace ArcaneBrigade
             {
                 // the spot warms from its middle out to nothing at the edge: no ring, no hard rim (17/10/2026)
                 if (g.Finale) FinaleDrop(c, q);
-                ground.Sector(c, r, 0, 360, A(ink.Body, (.08f + .14f * q) * strength), A(ink.Body, 0));
+                // under the rules v3 our side shows no target zone before a blow: the spot does not warm, only its tokens gather
+                if (sim.SkillsV3 == null) ground.Sector(c, r, 0, 360, A(ink.Body, (.08f + .14f * q) * strength), A(ink.Body, 0));
                 if (!sparse)
                     for (int i = 0; i < 4; i++)
                     {
@@ -508,7 +510,7 @@ namespace ArcaneBrigade
             {
                 // requirement 26/10/2026: our own skills paint no hit zone ahead of the blow, only the thin gathering line
                 float reveal = still ? 1 : OutCubic(q);
-                Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
+                if (sim.SkillsV3 == null) Soft(ground, InkCanvas.Line(a, Vector2.Lerp(a, b, reveal)), 1, 0, .05f, .3f + .35f * q);
                 Gather(b, q);
                 return;
             }
@@ -632,9 +634,12 @@ namespace ArcaneBrigade
             float heading = Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, sweep = g.Seed % 2 == 0 ? 1 : -1;
             if (pre)
             {
-                ground.Sector(c, r, heading - CrescentHalf, heading + CrescentHalf, A(ink.Glow, .01f), A(ink.Body, (.05f + .11f * q) * strength));
                 float reveal = still ? 1 : OutCubic(q);
-                Soft(ground, InkCanvas.Arc(c, r - .05f, r - .05f, heading - CrescentHalf * reveal, heading + CrescentHalf * reveal), 1, 0, .05f, .3f + .3f * q);
+                if (sim.SkillsV3 == null)
+                {
+                    ground.Sector(c, r, heading - CrescentHalf, heading + CrescentHalf, A(ink.Glow, .01f), A(ink.Body, (.05f + .11f * q) * strength));
+                    Soft(ground, InkCanvas.Arc(c, r - .05f, r - .05f, heading - CrescentHalf * reveal, heading + CrescentHalf * reveal), 1, 0, .05f, .3f + .3f * q);
+                }
                 Gather(c + d * r * .62f, q);
                 return;
             }

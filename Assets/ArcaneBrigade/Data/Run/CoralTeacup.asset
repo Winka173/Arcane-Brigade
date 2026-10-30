@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CoralTeacup
   DisplayName: Coral Teacup
-  Body: {fileID: 885396682, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  Body: {fileID: 417929267, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
   AnimationFrames:
-  - {fileID: 885396682, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
-  - {fileID: -1786305146, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
-  - {fileID: 371314186, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
-  - {fileID: -1970519704, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
+  - {fileID: 417929267, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
+  - {fileID: -380574958, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
+  - {fileID: -527151079, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
+  - {fileID: 46850576, guid: d4f42315eda107a429e52b43f9f4b9df, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 2d63e186c54daf54e8a4f7403067099f, type: 2}
   Weapon: {fileID: 11400000, guid: 6ac4ac855e2e7844d8c80d1f319a316f, type: 2}
   Health: 100
@@ -53,8 +53,8 @@ MonoBehaviour:
     This is not kill loot and does not count as collecting a coin.\r\n\nNamed talents
     count bodies and absorbed memories; their stated percentages are not multiplied
     by star level unless explicitly stated. Listed support modifiers scale separately
-    at 1/2/4.\r\nBonds: tidal, gear. Immortal. Weapon rolls on recruitment; two
-    equal-species/equal-star bodies merge unless the talent forbids it."
+    at 1/2/4.\r\nBonds: tidal, gear. Immortal. Weapon rolls on recruitment; two equal-species/equal-star
+    bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: TV Head
   ExclusiveHero: 

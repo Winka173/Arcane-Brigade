@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BakerMouseRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1270990148, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 1837373440, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: -1517323993, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  - {fileID: -1755548447, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  Walk:
+  - {fileID: -1785254557, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 786247610, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  - {fileID: 35772094, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 605699281, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  Windup:
+  - {fileID: -1202606840, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: -1731554022, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 1656214653, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  Release:
+  - {fileID: 1357211562, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: -296436092, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  Recovery:
+  - {fileID: -1996618354, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 1729671974, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  - {fileID: 1270990148, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  Cast:
+  - {fileID: 1656214653, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  - {fileID: -1057769663, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  - {fileID: -1057769663, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  - {fileID: -1057769663, guid: 890470d2b6217b648906bcaaa0544d82, type: 3}
+  IllustratedHeight: 0

@@ -26,6 +26,21 @@ namespace ArcaneBrigade
                 if (RecruitWeaponEligible(offer.Id, weapon) && VariantFree(offer.Id, weapon)) choices.Add(weapon);
             if (choices.Count == 0) return null;
             if (offer.Token < 0 && unit.Weapon != null && choices.Contains(unit.Weapon)) return unit.Weapon; // a gift carries its own weapon
+            if (catalog.HeroRevision > 0)
+            {
+                // every friend always carries its own weapon, never a rolled one: its authored weapon, else one fixed by its id
+                // among the weapons of its class's kind (Guard and Striker fight in melee, the other classes shoot)
+                if (unit.Weapon != null && RecruitWeaponEligible(offer.Id, unit.Weapon)) { offer.WeaponId = unit.Weapon.Id; return unit.Weapon; }
+                bool melee = CompanionClassTuning.TryGetRole(offer.Id, out CompanionRole role) && (role == CompanionRole.Guard || role == CompanionRole.Striker);
+                var own = new List<WeaponDefinition>();
+                foreach (WeaponDefinition weapon in catalog.Weapons)
+                    if (RecruitWeaponEligible(offer.Id, weapon) && !weapon.SpecialOnly && (weapon.Kind == WeaponKind.Melee) == melee) own.Add(weapon);
+                if (own.Count == 0) own = choices;
+                own.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+                uint h = 2166136261u; unchecked { foreach (char c in offer.Id) { h ^= c; h *= 16777619u; } }
+                WeaponDefinition fixedWeapon = own[(int)(h % (uint)own.Count)];
+                offer.WeaponId = fixedWeapon.Id; return fixedWeapon;
+            }
             if (!string.IsNullOrEmpty(offer.WeaponId))
             {
                 WeaponDefinition kept = choices.Find(weapon => weapon.Id == offer.WeaponId);

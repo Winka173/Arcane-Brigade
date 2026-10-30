@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: VerdantMatron
   DisplayName: Verdant Matron
-  Body: {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Body: {fileID: 1640897381, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
   AnimationFrames:
-  - {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -224049661, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 1292546738, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 395727167, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 6467b80a71d42a844b9bd5b6a71f99c1, type: 2}
+  - {fileID: 1640897381, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: -388165260, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: -777903985, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  - {fileID: 753506663, guid: ea3419c5edb45864ba6ca00de9f9ce9a, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: fbf0906a538e20945b7e4ec37725da80, type: 2}
   Weapon: {fileID: 11400000, guid: 33bb23d863bcac446ab17cc451225cd5, type: 2}
   Health: 70
   Speed: 4.5

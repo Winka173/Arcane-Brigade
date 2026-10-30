@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CometKite
   DisplayName: Comet Kite
-  Body: {fileID: -1764163485, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
+  Body: {fileID: -1558335260, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
   AnimationFrames:
-  - {fileID: -1764163485, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
-  - {fileID: -2011021216, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
-  - {fileID: 43317477, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
-  - {fileID: -928111147, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
+  - {fileID: -1558335260, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
+  - {fileID: 1317520545, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
+  - {fileID: 400391026, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
+  - {fileID: -566659527, guid: 0c226adbc20f4d144b9b5204e3282041, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: d3323f7927dd5734f885c33dc4d32ef3, type: 2}
   Weapon: {fileID: 11400000, guid: d767d8709a798c54b9186acd9c644e90, type: 2}
   Health: 100

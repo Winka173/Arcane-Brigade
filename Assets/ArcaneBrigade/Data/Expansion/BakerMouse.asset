@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BakerMouse
   DisplayName: Baker Mouse
-  Body: {fileID: 1287979931, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  Body: {fileID: 1270990148, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
   AnimationFrames:
-  - {fileID: 1287979931, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 274267671, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 1919060046, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: -2061485112, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 2ca9cc8209c3f914292190e3419bf924, type: 2}
+  - {fileID: 1270990148, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 1837373440, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: -1785254557, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  - {fileID: 35772094, guid: 872cf16714e4ea5448b668e6329a983c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 59989c99219df4a4fbd64e490e62b309, type: 2}
   Weapon: {fileID: 11400000, guid: 8d28dba5fd561794aa04d71e253b90a1, type: 2}
   Health: 100
   Speed: 4

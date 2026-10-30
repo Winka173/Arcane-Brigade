@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CarouselPony
   DisplayName: Carousel Pony
-  Body: {fileID: 680022355, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  Body: {fileID: 1610987287, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
   AnimationFrames:
-  - {fileID: 680022355, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: 1458351326, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -470658094, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: 1343257768, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 30975948b028d884f898147d9f5f0b82, type: 2}
+  - {fileID: 1610987287, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 4747937, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: -1287178816, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  - {fileID: 1124750905, guid: 0876ce8b21be56f4485be0ef2a902a6b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 1e3bc0c4832d86940a6afaf660698dda, type: 2}
   Weapon: {fileID: 11400000, guid: 14f017f6a49b0934082a86682332d43e, type: 2}
   Health: 100
   Speed: 4
@@ -53,8 +53,8 @@ MonoBehaviour:
     percentages are not multiplied by star level unless explicitly stated. Listed
     support modifiers scale separately at 1/2/4.\r\nSource: dream shop or special
     reward, subject to hero theme and unlock wave.\r\nBonds: clock, tidal, knight.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
+    unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Pony
   ExclusiveHero: 

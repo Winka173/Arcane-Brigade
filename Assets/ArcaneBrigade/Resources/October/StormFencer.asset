@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: StormFencer
   DisplayName: Storm Fencer
-  Body: {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  Body: {fileID: -1052080586, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
   AnimationFrames:
-  - {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -358364918, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1451024881, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1753783539, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: c63638d85bb8da44a82ff7f3ff09224a, type: 2}
+  - {fileID: -1052080586, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+  - {fileID: 1006877025, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+  - {fileID: -548880072, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+  - {fileID: 165733725, guid: 26b54d1122080c14da8e7c274baa5114, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 24cec4d20a1c8854391b497170cfabf0, type: 2}
   Weapon: {fileID: 11400000, guid: cda2bf2449b03bb418574501dcd3441a, type: 2}
   Health: 85
   Speed: 4.5

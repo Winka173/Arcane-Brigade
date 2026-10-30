@@ -60,7 +60,7 @@ namespace ArcaneBrigade
             foreach (UnitState candidate in StableUnits) if (candidate.Id == cause.SourceUnitId) { source = candidate; break; }
             string unitId = source == null ? "ARENA" : source.Definition.Id;
             string weaponId = source == null ? "" : source.Definition.Weapon.Id;
-            string effectId = string.IsNullOrEmpty(cause.ItemId) ? "primary" : cause.ItemId;
+            string effectId = !string.IsNullOrEmpty(cause.AttributionId) ? cause.AttributionId : string.IsNullOrEmpty(cause.ItemId) ? "primary" : cause.ItemId;
             int tier = source == null ? 0 : source.Definition.CombatTier;
             string key = unitId + "/" + weaponId + "/" + tier + "/" + effectId;
             if (contributionIndex.TryGetValue(key, out ContributionEntry entry)) return entry;

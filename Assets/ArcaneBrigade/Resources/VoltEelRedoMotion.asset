@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: VoltEelRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -376268397, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: -234841432, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: -570491046, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  - {fileID: -313580988, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  Walk:
+  - {fileID: 382867076, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: 1605678228, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  - {fileID: 1964343979, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: 1371248321, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  Windup:
+  - {fileID: 704643365, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: -981649582, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: 347647691, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  Release:
+  - {fileID: -527601505, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: -1691044413, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  Recovery:
+  - {fileID: 2000275394, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  - {fileID: 845091555, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  - {fileID: -376268397, guid: 9c26f546a02fa6c4f948e28c782331c8, type: 3}
+  Cast:
+  - {fileID: 347647691, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  - {fileID: 70370112, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  - {fileID: 70370112, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  - {fileID: 70370112, guid: 7f0b6bb206aa06e4598f414a6e612e79, type: 3}
+  IllustratedHeight: 0

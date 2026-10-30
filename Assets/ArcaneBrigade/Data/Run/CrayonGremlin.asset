@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CrayonGremlin
   DisplayName: Crayon Gremlin
-  Body: {fileID: 2142281311, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
+  Body: {fileID: 2012353569, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
   AnimationFrames:
-  - {fileID: 2142281311, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
-  - {fileID: -615287008, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
-  - {fileID: -401593977, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
-  - {fileID: 469458534, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
+  - {fileID: 2012353569, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
+  - {fileID: -296924923, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
+  - {fileID: -1124820276, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
+  - {fileID: -2007843063, guid: ce7cc8ca536efa241bf482543336050c, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: dfe23ab4689709b47b29bfc26edef571, type: 2}
   Weapon: {fileID: 11400000, guid: 8184162313aaa4147a285272c25678ea, type: 2}
   Health: 100
@@ -53,8 +53,8 @@ MonoBehaviour:
     1.5s normally, 0.6s on bosses.\r\n\nNamed talents count bodies and absorbed memories;
     their stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nBonds: archive, resolve.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
+    unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Expert Nurturer" Daisy'
   ExclusiveHero: 

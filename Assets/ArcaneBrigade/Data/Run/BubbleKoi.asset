@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BubbleKoi
   DisplayName: Bubble Koi
-  Body: {fileID: 2049730732, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  Body: {fileID: -704268354, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
   AnimationFrames:
-  - {fileID: 2049730732, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
-  - {fileID: -163025304, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
-  - {fileID: 573510152, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
-  - {fileID: 1334763623, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
+  - {fileID: -704268354, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
+  - {fileID: -1436786371, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
+  - {fileID: 1895341119, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
+  - {fileID: -1803910425, guid: c72dbda5a07d6c949bb4f151a5f0e64b, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 954791149455dda4bbe24cce7513c990, type: 2}
   Weapon: {fileID: 11400000, guid: a9b27cddf2286b24bacaed7af9c6ba1f, type: 2}
   Health: 100

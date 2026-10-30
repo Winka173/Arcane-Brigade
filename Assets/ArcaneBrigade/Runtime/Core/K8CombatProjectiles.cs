@@ -63,6 +63,7 @@ namespace ArcaneBrigade
                     }
                     ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, projectile.Weapon, projectile.Critical, projectile.Cause);
                     OnExpandedProjectileHit(projectile, hit);
+                    if(projectile.BondBonusShot)Bonds.OnBonusShotHit(source);
                     if (projectile.Blast > 0) ProjectileBlast(projectile, hit);
                     if (projectile.SignatureShot) OnSignatureShotHit(projectile, hit);
                     if (projectile.Arsenal != ArsenalWeapon.None) OnArsenalHit(projectile, hit);
@@ -77,7 +78,7 @@ namespace ArcaneBrigade
                         projectile.Returning = true;
                         return projectile.Remaining > 0f;
                     }
-                    bool guaranteed = projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.TetherBow;
+                    bool guaranteed = projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.TetherBow || (Bonds?.BallBouncesFor(source)??0)>0;
                     bool randomBounce = projectile.Weapon != null && projectile.RandomBounces > 0 && projectile.Weapon.ProjectileBounceChance > 0 && combatRandom.NextDouble() < projectile.Weapon.ProjectileBounceChance;
                     if (randomBounce && projectile.RicochetsRemaining <= 0) projectile.RicochetsRemaining = 1;
                     bool ricochet = (guaranteed || randomBounce) && TryCombatRicochet(projectile);
@@ -108,7 +109,7 @@ namespace ArcaneBrigade
             if (nearest == null) return false;
             projectile.RicochetsRemaining--;
             projectile.Velocity = (nearest.Position - projectile.Position).normalized * projectile.Velocity.magnitude;
-            projectile.Damage *= 0.7f;
+            projectile.Damage *= Bonds!=null && Bonds.BallBouncesFor(UnitWithId(projectile.SourceUnitId))>0 ? Bonds.BounceDamageScale(UnitWithId(projectile.SourceUnitId),++projectile.BondBounceCount) : .7f;
             projectile.Cause = projectile.Cause.Child("projectile-ricochet");
             ProjectileAudioEvent(CombatEventKind.ProjectileBounce, projectile);
             return true;

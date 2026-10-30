@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RaincoatFrog
   DisplayName: Raincoat Frog
-  Body: {fileID: 2028701733, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
+  Body: {fileID: 551747151, guid: f91160f05e54a494789423f1e6d01968, type: 3}
   AnimationFrames:
-  - {fileID: 2028701733, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
-  - {fileID: 2088316815, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
-  - {fileID: 1328716461, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
-  - {fileID: -1250687013, guid: b0189d7e7d6636a48ab23e55c21ef772, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ae27163e1347f554cb855aa40096976b, type: 2}
+  - {fileID: 551747151, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 2010917424, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: -4437966, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  - {fileID: 1447356625, guid: f91160f05e54a494789423f1e6d01968, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 3e26d55a1533e54409b366b7f8e18a49, type: 2}
   Weapon: {fileID: 11400000, guid: 04ca42f50a34bb746996c8b4d810e164, type: 2}
   Health: 100
   Speed: 4

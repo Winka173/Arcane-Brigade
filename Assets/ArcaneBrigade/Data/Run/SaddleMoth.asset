@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SaddleMoth
   DisplayName: Saddle Moth
-  Body: {fileID: 100003, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
+  Body: {fileID: -57706586, guid: 2d4cbe052fb460e47a1963ae45b0bd06, type: 3}
   AnimationFrames:
-  - {fileID: 100003, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
-  - {fileID: 100000, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
-  - {fileID: 100002, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
-  - {fileID: 100001, guid: 128d6bcdbd2c494a8d72ab46ab662c7f, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: e52915e7ab4d0cb4bb8eb30595c80880, type: 2}
+  - {fileID: -57706586, guid: 2d4cbe052fb460e47a1963ae45b0bd06, type: 3}
+  - {fileID: 1624612190, guid: 2d4cbe052fb460e47a1963ae45b0bd06, type: 3}
+  - {fileID: -1496159451, guid: 2d4cbe052fb460e47a1963ae45b0bd06, type: 3}
+  - {fileID: -1822955996, guid: 2d4cbe052fb460e47a1963ae45b0bd06, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: e6a28fe12f54d5f49aa5d0015bd69c84, type: 2}
   Weapon: {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
   Health: 100
   Speed: 4.3999996

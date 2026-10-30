@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: PaperDevilRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 620059063, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: 652518582, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: -957619908, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  - {fileID: -265692404, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  Walk:
+  - {fileID: 930721157, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: 113095011, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  - {fileID: 97313170, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: -1299037238, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  Windup:
+  - {fileID: 698099107, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: 1201443965, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: -1461117699, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  Release:
+  - {fileID: -839126223, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: 849719700, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  Recovery:
+  - {fileID: 1477819395, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  - {fileID: -1812198731, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  - {fileID: 620059063, guid: b9b17a899baddda4f8bee64f341c95a2, type: 3}
+  Cast:
+  - {fileID: -1461117699, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  - {fileID: -1284800950, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  - {fileID: -1284800950, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  - {fileID: -1284800950, guid: cdb69264c618ab34782c841569e4af78, type: 3}
+  IllustratedHeight: 0

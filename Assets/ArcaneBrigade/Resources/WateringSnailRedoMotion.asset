@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: WateringSnailRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -175665571, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: 1108534812, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: 1451325308, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  - {fileID: 993431697, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  Walk:
+  - {fileID: 1921094589, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: 1267861374, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  - {fileID: 294535266, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: -33965585, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  Windup:
+  - {fileID: -1688219256, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: -713629337, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: 1064692405, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  Release:
+  - {fileID: 1171973923, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: 534575546, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  Recovery:
+  - {fileID: 1557189305, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  - {fileID: -1405097221, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  - {fileID: -175665571, guid: ba5c01b8a09c45e46ace915afb40f74e, type: 3}
+  Cast:
+  - {fileID: 1064692405, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  - {fileID: 944863642, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  - {fileID: 944863642, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  - {fileID: 944863642, guid: b99e40a867652374f99b09193678bd66, type: 3}
+  IllustratedHeight: 0

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SeedHedgehog
   DisplayName: Seed Hedgehog
-  Body: {fileID: 931523334, guid: 80d1eb891525764488eb624a2174343a, type: 3}
+  Body: {fileID: -922632213, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
   AnimationFrames:
-  - {fileID: 931523334, guid: 80d1eb891525764488eb624a2174343a, type: 3}
-  - {fileID: -685950670, guid: 80d1eb891525764488eb624a2174343a, type: 3}
-  - {fileID: 29184382, guid: 80d1eb891525764488eb624a2174343a, type: 3}
-  - {fileID: -2030878120, guid: 80d1eb891525764488eb624a2174343a, type: 3}
+  - {fileID: -922632213, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+  - {fileID: -865892829, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+  - {fileID: -291872115, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
+  - {fileID: -1855380021, guid: c76313ba48ac068498ee7b7b3a1fb105, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 7c3ad674a6a30194494be8b484ec5874, type: 2}
   Weapon: {fileID: 11400000, guid: 14f017f6a49b0934082a86682332d43e, type: 2}
   Health: 100

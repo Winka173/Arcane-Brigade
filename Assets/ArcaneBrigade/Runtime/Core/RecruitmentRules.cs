@@ -7,7 +7,7 @@ namespace ArcaneBrigade
     public sealed partial class RunSession
     {
         public int NewRecruitLimit => 1;
-        public int CompanionLimit => int.MaxValue;
+        public int CompanionLimit => RulesV3Tuning.CompanionLimit;
         public const int CopyRecruitLimit = 1;
         public const int CompanionPurchaseLimit = 2;
         public const int NewSpeciesEvery = 2;
@@ -91,7 +91,7 @@ namespace ArcaneBrigade
         }
         public bool CompanionCapacityBlocks(ShopOffer offer)
         {
-            return false; // Recruitment pacing uses purchase/species quotas, never a body cap.
+            return offer!=null && offer.Kind==OfferKind.Companion && State.ChampionId!="LoneJelly" && !OwnsCompanionSpecies(offer.Id) && ActiveRoster.Count>=CompanionLimit;
         }
         public string RecruitmentSummary => "Regular shop: " + NewRecruitsRemaining + "/1 new species this wave."
             + "\nSaved allowance: " + BankedNewSpeciesAllowance + " (one every 2 waves through wave 9, then every 3; unused allowance carries over)."

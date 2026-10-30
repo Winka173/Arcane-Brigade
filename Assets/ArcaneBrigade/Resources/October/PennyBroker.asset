@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PennyBroker
   DisplayName: Penny Broker
-  Body: {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  Body: {fileID: 610566383, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
   AnimationFrames:
-  - {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -1753582538, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 2040041727, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -1916300572, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 210f51ecc7cad8a47a6617864d2390ba, type: 2}
+  - {fileID: 610566383, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: -751475305, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: -1483904499, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  - {fileID: -1462409623, guid: 5d5e9ad97a996af48ada248e4c97769b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: b08613f0347004f4d83323f700a35564, type: 2}
   Weapon: {fileID: 11400000, guid: 59b8ac63981d1ad499637fe2e78ca340, type: 2}
   Health: 75
   Speed: 4.5

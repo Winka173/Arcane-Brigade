@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: FirstSeedRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -172388508, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: 568239315, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: 305801500, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  - {fileID: 822474575, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  Walk:
+  - {fileID: 495424919, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: -1510207512, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  - {fileID: -1331966257, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: -555233445, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  Windup:
+  - {fileID: 1741594885, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: -639498196, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: 436830349, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  Release:
+  - {fileID: 51257929, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: 310160745, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  Recovery:
+  - {fileID: -1082387998, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  - {fileID: 2026202248, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  - {fileID: -172388508, guid: 6b7f333aba3d6ee4fbe0825bc35714e2, type: 3}
+  Cast:
+  - {fileID: 436830349, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  - {fileID: 2049286798, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  - {fileID: 2049286798, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  - {fileID: 2049286798, guid: 2eb9ccb0cf0a168439a6f7f17ba70aa9, type: 3}
+  IllustratedHeight: 0

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TeaDragon
   DisplayName: Tea Dragon
-  Body: {fileID: -1243311213, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  Body: {fileID: -518087655, guid: 3f35a10c159c253439c89380f4e683b0, type: 3}
   AnimationFrames:
-  - {fileID: -1243311213, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: 450593469, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: -1233778495, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: 2002965435, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 250d1ca786904d94e940d356085c96d8, type: 2}
+  - {fileID: -518087655, guid: 3f35a10c159c253439c89380f4e683b0, type: 3}
+  - {fileID: -1696423178, guid: 3f35a10c159c253439c89380f4e683b0, type: 3}
+  - {fileID: -1935908094, guid: 3f35a10c159c253439c89380f4e683b0, type: 3}
+  - {fileID: -851366942, guid: 3f35a10c159c253439c89380f4e683b0, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 4053eebe4bf1fe845b8033e72e123d50, type: 2}
   Weapon: {fileID: 11400000, guid: a747713cefa028a449f15263ea44f190, type: 2}
   Health: 100
   Speed: 4

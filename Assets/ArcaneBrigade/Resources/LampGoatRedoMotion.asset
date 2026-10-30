@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: LampGoatRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -444528041, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 70280569, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 438232804, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  - {fileID: -1055474274, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  Walk:
+  - {fileID: 738558570, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 1442103488, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  - {fileID: 1688151393, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: -183544408, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  Windup:
+  - {fileID: 2097646862, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: -399553763, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: -1337170254, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  Release:
+  - {fileID: 723876829, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 2091739889, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  Recovery:
+  - {fileID: 286809020, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  - {fileID: 1038655040, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  - {fileID: -444528041, guid: 0e49adda240d44a43bfbeb71aeda7d15, type: 3}
+  Cast:
+  - {fileID: -1337170254, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  - {fileID: 28014940, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  - {fileID: 28014940, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  - {fileID: 28014940, guid: d76caddb3912c4b4a9157128d0ee9f55, type: 3}
+  IllustratedHeight: 0

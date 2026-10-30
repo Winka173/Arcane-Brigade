@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LittleSprout
   DisplayName: Little Sprout
-  Body: {fileID: -954448751, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  Body: {fileID: 1748727056, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
   AnimationFrames:
-  - {fileID: -954448751, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -2074636794, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -907417262, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  - {fileID: -300061792, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 92e4d683eaf17d54bb61cad7e623668b, type: 2}
+  - {fileID: 1748727056, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  - {fileID: -1847812969, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  - {fileID: -121727296, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  - {fileID: -967507825, guid: c41d198fc33fb7748804ef85e93f5d4c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 004bd7f2f37a21f4cbc1fa249039d10b, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
@@ -53,8 +53,8 @@ MonoBehaviour:
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nRecruitment exclusive: Jade Cabbage.\r\nBonds: astral,
-    sprout. Immortal. Weapon rolls on recruitment; two equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    sprout. Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Little Cabbage
   ExclusiveHero: Jade Cabbage

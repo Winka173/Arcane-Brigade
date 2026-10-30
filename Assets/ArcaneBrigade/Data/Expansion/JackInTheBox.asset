@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: JackInTheBox
   DisplayName: Ringmaster Jack
-  Body: {fileID: 336561056, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
+  Body: {fileID: -501622667, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
   AnimationFrames:
-  - {fileID: 336561056, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: 1864824090, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: 41284284, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  - {fileID: -410958483, guid: dc7718cf0f76c1044be41b0155a0fee2, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: aca05db348d6bc84c85b993ac0d9601d, type: 2}
+  - {fileID: -501622667, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -710859199, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: 382045563, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -2081662397, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: bfb4b5f168583f641a4129d113466179, type: 2}
   Weapon: {fileID: 11400000, guid: 84130a178255fb24496f848ee0490e1a, type: 2}
   Health: 100
   Speed: 4

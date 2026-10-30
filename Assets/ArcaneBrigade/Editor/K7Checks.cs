@@ -16,11 +16,11 @@ namespace ArcaneBrigade.Editor
             string root = Path.Combine(Application.temporaryCachePath, "ArcaneK7", Guid.NewGuid().ToString("N"));
             var storage = new RunStorage(root); var old = new PlayerProfile { Version = 2, BestWave = 14, Wins = 3, Cosmetic = 1 };
             storage.SaveProfile(old); PlayerProfile profile = storage.LoadProfile();
-            require(profile.Version == 3 && profile.Wins == 3 && profile.BestWave == 14 && profile.MusicVolume == 0.8f && profile.SfxVolume == 0.85f && profile.ShowDamageNumbers && profile.ShowLootIndicators, "Profile2 upgrades audio/readability defaults without touching progression");
+            require(profile.Version == PlayerProfile.CurrentVersion && profile.Wins == 3 && profile.BestWave == 14 && profile.MusicVolume == 0.8f && profile.SfxVolume == 0.85f && profile.ShowDamageNumbers && profile.ShowLootIndicators, "Profile2 upgrades audio/readability defaults without touching progression");
             profile.MusicVolume = 0; profile.SfxVolume = 0.25f; profile.ReducedAudio = true; profile.ReducedMotion = true; profile.ShowLootIndicators = false; profile.ShowDamageNumbers = false; profile.HighReadability = true;
             storage.SaveProfile(profile); PlayerProfile loaded = storage.LoadProfile();
             require(loaded.MusicVolume == 0 && loaded.SfxVolume == 0.25f && loaded.ReducedAudio && loaded.ReducedMotion && !loaded.ShowLootIndicators && !loaded.ShowDamageNumbers && loaded.HighReadability, "Every audio/accessibility option survives durable roundtrip");
-            old = new PlayerProfile { Version = 1, Wins = 4 }; storage.SaveProfile(old); require(storage.LoadProfile().Version == 3 && storage.LoadProfile().Wins == 4, "Profile1 direct migration keeps old wins");
+            old = new PlayerProfile { Version = 1, Wins = 4 }; storage.SaveProfile(old); require(storage.LoadProfile().Version == PlayerProfile.CurrentVersion && storage.LoadProfile().Wins == 4, "Profile1 direct migration keeps old wins");
             require(MovementInput.FilterPad(new Vector2(0.17f, 0)) == Vector2.zero && MovementInput.FilterPad(new Vector2(float.NaN, 1)) == Vector2.zero, "Gamepad drift/nonfinite input ignored");
             require(MovementInput.FilterPad(Vector2.one).magnitude <= 1.001f && MovementInput.FilterPad(Vector2.right).x == 1, "Analog diagonal has normalized speed and full-stick reach");
             foreach (Vector2 size in new[] { new Vector2(1920, 1080), new Vector2(3840, 2160), new Vector2(2560, 1080), new Vector2(1600, 1000), new Vector2(1334, 750) })

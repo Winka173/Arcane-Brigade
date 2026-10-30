@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HoodWisp
   DisplayName: Hood Wisp
-  Body: {fileID: 1562468698, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
+  Body: {fileID: 278621316, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
   AnimationFrames:
-  - {fileID: 1562468698, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  - {fileID: -2076530699, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  - {fileID: -895171987, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
-  - {fileID: 818367368, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
+  - {fileID: 278621316, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+  - {fileID: -1622420207, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+  - {fileID: 1502448872, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
+  - {fileID: 1820757527, guid: 0b467113bb9ee4f4b9374f8cd1b11702, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 3a597888dbba9db4c86023ff7643f9e1, type: 2}
   Weapon: {fileID: 11400000, guid: 0587a16ddceed524da237dfc27090cdb, type: 2}
   Health: 1

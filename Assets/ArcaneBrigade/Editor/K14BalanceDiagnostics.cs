@@ -15,7 +15,8 @@ namespace ArcaneBrigade.Editor
             public readonly RunSession Session;
             public readonly CombatSimulation Simulation;
             public readonly UnitState Ally;
-            private readonly List<UnitDefinition> enemies = new List<UnitDefinition>();
+            private readonly List<UnityEngine.Object> enemies = new List<UnityEngine.Object>();
+            private const float TargetHealth = 1000000;
             public Sample(RunCatalog catalog, WeaponDefinition weapon, int tier, int count)
             {
                 Session = new RunSession(catalog); Session.Start("LanternKnight", 141077);
@@ -34,10 +35,20 @@ namespace ArcaneBrigade.Editor
                 for (int index = 0; index < count; index++)
                 {
                     UnitDefinition enemy = UnityEngine.Object.Instantiate(combat.MeleeEnemy);
-                    enemies.Add(enemy); enemy.Health = 1000000; enemy.Speed = 0; enemy.Passive = PassiveKind.None; enemy.Behavior = EnemyBehavior.Standard; enemy.KnockbackResistance = 0;
+                    enemies.Add(enemy);
+                    enemy.Weapon = UnityEngine.Object.Instantiate(enemy.Weapon); enemies.Add(enemy.Weapon);
+                    // A weapon target is not a roster species: Crumb Swarm/Decoy registration sets HP to one.
+                    enemy.Id = "K14StationaryTarget" + index;
+                    enemy.Health = TargetHealth; enemy.Speed = 0; enemy.Passive = PassiveKind.None;
+                    enemy.Behavior = EnemyBehavior.Standard; enemy.Mutation = EnemyMutation.None;
+                    enemy.SpecialEnemy = SpecialEnemyKind.None; enemy.KnockbackResistance = 0;
+                    enemy.ContactDamage = enemy.CollisionDamage = enemy.Weapon.Damage = 0;
+                    enemy.Weapon.Kind = WeaponKind.Contact;
                     Vector2 position = index == 0 ? new Vector2(1.2f * MeleeBalance.Range / 1.35f, 0) /* within the shortened melee reach (19/10/2026) */ : new Vector2(1.4f + index % 3 * 0.35f, (index / 3 - 1) * 0.55f);
                     UnitState target = Simulation.AddFixture(enemy, Faction.Enemy, position);
-                    target.NextAttack = target.NextContact = float.PositiveInfinity;
+                    target.NextAttack = target.NextContact = target.NextBehavior = target.NextEvolutionAttack = float.PositiveInfinity;
+                    if (target.Health != TargetHealth || Simulation.EnemyRulesV3.Recognizes(target))
+                        throw new InvalidOperationException("Weapon sample target must retain full health without species mechanics");
                 }
             }
             public float Run(float duration, bool moving = false)
@@ -59,7 +70,7 @@ namespace ArcaneBrigade.Editor
             public void Dispose()
             {
                 Session.Dispose();
-                foreach (UnitDefinition enemy in enemies) UnityEngine.Object.DestroyImmediate(enemy);
+                foreach (UnityEngine.Object enemy in enemies) UnityEngine.Object.DestroyImmediate(enemy);
             }
         }
         public static void Measure()

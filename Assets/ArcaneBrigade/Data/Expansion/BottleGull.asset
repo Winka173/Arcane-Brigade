@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BottleGull
   DisplayName: Bottle Gull
-  Body: {fileID: -1494047034, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  Body: {fileID: 994140562, guid: 95e30013feeffc74ab38f52fee1a3ef4, type: 3}
   AnimationFrames:
-  - {fileID: -1494047034, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -226005728, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -1677213935, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  - {fileID: -795351445, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: a8d4550d7316f824998e6caaf8d4a1dc, type: 2}
+  - {fileID: 994140562, guid: 95e30013feeffc74ab38f52fee1a3ef4, type: 3}
+  - {fileID: -1520452095, guid: 95e30013feeffc74ab38f52fee1a3ef4, type: 3}
+  - {fileID: -1897286252, guid: 95e30013feeffc74ab38f52fee1a3ef4, type: 3}
+  - {fileID: 550427088, guid: 95e30013feeffc74ab38f52fee1a3ef4, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 5988a143beef2d941958c3a77dc0bb68, type: 2}
   Weapon: {fileID: 11400000, guid: fb01b09c0b50a09478c990d7ffddd538, type: 2}
   Health: 100
   Speed: 4

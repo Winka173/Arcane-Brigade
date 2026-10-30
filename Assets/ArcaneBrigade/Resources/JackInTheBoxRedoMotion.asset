@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: JackInTheBoxRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -501622667, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -710859199, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: 338542860, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  - {fileID: -2124866095, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  Walk:
+  - {fileID: 382045563, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -1657750829, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  - {fileID: -2081662397, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: 965637271, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  Windup:
+  - {fileID: -122228589, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -1596409641, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: 730550668, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  Release:
+  - {fileID: -672691279, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -1951160845, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  Recovery:
+  - {fileID: -985050541, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  - {fileID: -199880159, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  - {fileID: -501622667, guid: 5779d587e65956f449ad706b9b3d560d, type: 3}
+  Cast:
+  - {fileID: 730550668, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  - {fileID: -1570058643, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  - {fileID: -1570058643, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  - {fileID: -1570058643, guid: f38a5be5dd3b8f242b6f865f6104240c, type: 3}
+  IllustratedHeight: 0

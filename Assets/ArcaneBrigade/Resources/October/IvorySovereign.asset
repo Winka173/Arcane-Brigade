@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: IvorySovereign
   DisplayName: Ivory Sovereign
-  Body: {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  Body: {fileID: 698551793, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
   AnimationFrames:
-  - {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 314947417, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 840323804, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 825139822, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: d38326c6b4483f74b9f839c42b2ff1e3, type: 2}
+  - {fileID: 698551793, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
+  - {fileID: 806184327, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
+  - {fileID: -1852967957, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
+  - {fileID: 497150008, guid: 23c4f18abcb6cd94b9e4b580feb5b1f3, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: d6f4219fb95bdca448ef0bfbdd46be03, type: 2}
   Weapon: {fileID: 11400000, guid: 06a98b0579cc2274b9d8bb2f564bf5d4, type: 2}
   Health: 85
   Speed: 4.5

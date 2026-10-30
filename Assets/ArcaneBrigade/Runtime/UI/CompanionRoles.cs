@@ -5,8 +5,8 @@ namespace ArcaneBrigade
 {
     public enum CompanionRole { Striker, Shooter, Guard, Support, Summoner, Controller }
 
-    /// <summary>One role word per friend (play-test 20/10/2026, item 26), read from what it does: summons, slows, helps the
-    /// others, stands in front, shoots or strikes. Shown as the painted badge on its card and on the Combos page.</summary>
+    /// <summary>The design roster defines companion classes; legacy content falls back to its mechanics.
+    /// Shown as the painted badge on its card and on the Combos page.</summary>
     public static class CompanionRoles
     {
         private static readonly Dictionary<string, CompanionRole> cache = new Dictionary<string, CompanionRole>();
@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         public static CompanionRole For(UnitDefinition unit)
         {
             if (unit == null) return CompanionRole.Striker;
+            if (CompanionClassTuning.TryGetRole(unit.Id, out CompanionRole authored)) return authored;
             if (cache.TryGetValue(unit.Id, out CompanionRole known)) return known;
             string text = ((CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill) ? skill : "") + " " + CompanionDescriptions.ShortTalent(unit)).ToLowerInvariant();
             CompanionRole role;

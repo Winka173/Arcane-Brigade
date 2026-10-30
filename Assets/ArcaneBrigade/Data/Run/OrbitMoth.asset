@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: OrbitMoth
   DisplayName: Orbit Moth
-  Body: {fileID: -1033724062, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
+  Body: {fileID: 783874841, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
   AnimationFrames:
-  - {fileID: -1033724062, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
-  - {fileID: -346376081, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
-  - {fileID: 1156014178, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
-  - {fileID: 1837574974, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
+  - {fileID: 783874841, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+  - {fileID: -1369157313, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+  - {fileID: -1875276657, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
+  - {fileID: 936410315, guid: 3d4066648f9bba74b92f475efa7b246f, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 09b352562de2bbc4b8310cd0bf6939fd, type: 2}
   Weapon: {fileID: 11400000, guid: b8b75c39f98614a439f9995a95828421, type: 2}
   Health: 100
@@ -54,8 +54,8 @@ MonoBehaviour:
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nBonds: astral, regal, morning. Immortal. Weapon rolls
-    on recruitment; two equal-species/equal-star bodies merge unless the talent
-    forbids it."
+    on recruitment; two equal-species/equal-star bodies merge unless the talent forbids
+    it."
   ReferenceHero: 
   ReferenceCompanion: Princess
   ExclusiveHero: 

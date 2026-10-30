@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: VelvetRegent
   DisplayName: Velvet Regent
-  Body: {fileID: -715348687, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  Body: {fileID: 623324294, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
   AnimationFrames:
-  - {fileID: -715348687, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: 1206334693, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -335045907, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: 448824652, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 204e39cb75b65e24e8e280ee0587ed66, type: 2}
+  - {fileID: 623324294, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+  - {fileID: -215884053, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+  - {fileID: 665231751, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+  - {fileID: -1964151096, guid: 88617454ebf5df445afa315920ddc1ac, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: d831b14556f469e46b6d98f40d75b142, type: 2}
   Weapon: {fileID: 11400000, guid: 1aad1885b29b1774380d5bbc950cf02d, type: 2}
   Health: 75
   Speed: 4.5

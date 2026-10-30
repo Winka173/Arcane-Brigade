@@ -27,7 +27,7 @@ namespace ArcaneBrigade.Editor
                 {
                     view.Display(art.Form(BuildMorphKind.Chorus),shape,Vector2.zero,Vector2.right*2,Vector2.right,1.2f,0,1,.25f,Color.white,false);
                     var drawn=parent.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();
-                    Check(view.VisibleSprites>0 && drawn.All(r=>r.sortingOrder<100) && drawn.OfType<SpriteRenderer>().All(r=>r.sprite==null || !art.Forms.Contains(r.sprite)),"Mechanic area draws as clean geometry on the floor, never a painted wreath: "+shape);
+                    Check(drawn.Length>0 && drawn.All(r=>r.sortingOrder<100) && drawn.OfType<SpriteRenderer>().All(r=>r.sprite==null || !art.Forms.Contains(r.sprite)),"Mechanic area draws weapon motes or strokes on the floor, never a painted wreath: "+shape);
                 }
                 view.Hide();Check(parent.GetComponentsInChildren<Renderer>().All(r=>!r.enabled),"Pooled area layers clear completely");
             }
@@ -45,7 +45,8 @@ namespace ArcaneBrigade.Editor
                 Vector2 p=NightmareGrandStage.AnchorFor(i,c.WorldSize,171026);
                 Check(Mathf.Abs(p.x)<c.WorldSize.x*.5f && Mathf.Abs(p.y)<c.WorldSize.y*.5f,"World scenery anchor lies inside the map "+i);
             }
-            Check(WorldShop.ExitPosition.x==0 && WorldShop.ExitPosition.y<-4 && WorldShop.ExitInteractionRadius>=1.8f,"Door is at bottom centre with generous reach");
+            // The 24/10 layout moved the rift to the free floor at bottom left.
+            Check(WorldShop.ExitPosition==new Vector2(-4.7f,-4.9f) && WorldShop.ExitInteractionRadius>=1.8f,"Door uses the bottom-left rift anchor with generous reach");
             foreach(string species in c.Companions.Select(u=>u.Id))
             {
                 using var run=new RunSession(c);run.Start("LanternKnight",171026);run.State.Wave=4;run.State.Roster.Clear();
@@ -53,7 +54,7 @@ namespace ArcaneBrigade.Editor
                 var combat=run.PrepareCombat();combat.EnemyBudget=0;combat.Boss=null;combat.WaveDuration=60;combat.EnableHeroMechanics=false;combat.EnableArenaToys=false;combat.EnableSpectacles=false;
                 var sim=new CombatSimulation(combat);sim.Start(171026);sim.Champion.NextAttack=float.PositiveInfinity;
                 var ally=sim.Units.First(u=>u.Faction==Faction.Companion);
-                var dummy=UnityEngine.Object.Instantiate(combat.MeleeEnemy);dummy.Weapon=UnityEngine.Object.Instantiate(dummy.Weapon);dummy.Speed=0;dummy.Health=100000;dummy.ContactDamage=0;dummy.Behavior=EnemyBehavior.Standard;dummy.Mutation=EnemyMutation.None;
+                var dummy=UnityEngine.Object.Instantiate(combat.MeleeEnemy);dummy.Weapon=UnityEngine.Object.Instantiate(dummy.Weapon);dummy.Id="CombatRepairTarget";dummy.Speed=0;dummy.Health=100000;dummy.ContactDamage=0;dummy.Behavior=EnemyBehavior.Standard;dummy.Mutation=EnemyMutation.None;
                 var enemy=sim.AddFixture(dummy,Faction.Enemy,new Vector2(3.5f,0));enemy.Variant=null;enemy.NextAttack=enemy.NextContact=enemy.NextBehavior=enemy.NextEvolutionAttack=float.PositiveInfinity;
                 bool hit=false;
                 for(int tick=0;tick<300;tick++){sim.Step(.04f,Vector2.zero);hit|=sim.Events.Any(e=>e.Kind==CombatEventKind.Hit && e.Subject==enemy && e.Cause.SourceUnitId==ally.Id && e.Value>0);}
@@ -65,7 +66,7 @@ namespace ArcaneBrigade.Editor
                 run.Start("LanternKnight",171026);run.State.Roster.Clear();var combat=run.PrepareCombat();combat.EnemyBudget=0;combat.Boss=null;combat.EnableHeroMechanics=false;combat.EnableArenaToys=false;combat.EnableSpectacles=false;
                 combat.Champion.Weapon.Range=.4f;combat.Champion.Weapon.Cooldown=.6f;combat.Champion.Weapon.Kind=WeaponKind.Melee;
                 var sim=new CombatSimulation(combat);sim.Start(171026);
-                var dummy=UnityEngine.Object.Instantiate(combat.MeleeEnemy);dummy.Weapon=UnityEngine.Object.Instantiate(dummy.Weapon);dummy.Weapon.Kind=WeaponKind.Contact;dummy.Speed=0;dummy.Radius=.7f;dummy.Health=100000;dummy.ContactDamage=0;dummy.Behavior=EnemyBehavior.Standard;
+                var dummy=UnityEngine.Object.Instantiate(combat.MeleeEnemy);dummy.Weapon=UnityEngine.Object.Instantiate(dummy.Weapon);dummy.Id="CombatRepairTarget";dummy.Weapon.Kind=WeaponKind.Contact;dummy.Speed=0;dummy.Radius=.7f;dummy.Health=100000;dummy.ContactDamage=0;dummy.Behavior=EnemyBehavior.Standard;
                 var enemy=sim.AddFixture(dummy,Faction.Enemy,new Vector2(1,0));enemy.Variant=null;enemy.NextAttack=enemy.NextContact=enemy.NextBehavior=enemy.NextEvolutionAttack=float.PositiveInfinity;
                 bool fired=false;
                 for(int tick=0;tick<100;tick++){sim.Step(.03f,Vector2.zero);fired|=sim.Events.Any(e=>e.Kind==CombatEventKind.Fire && e.Subject==sim.Champion);}
@@ -95,7 +96,7 @@ namespace ArcaneBrigade.Editor
                 var actor=companion==null?sim.Champion:sim.Units.First(u=>u.Faction==Faction.Companion);
                 if(companion!=null)sim.Champion.NextAttack=float.PositiveInfinity;
                 var dummy=UnityEngine.Object.Instantiate(combat.MeleeEnemy);dummy.Weapon=UnityEngine.Object.Instantiate(dummy.Weapon);
-                dummy.Weapon.Kind=WeaponKind.Contact;dummy.Weapon.Damage=0;dummy.Speed=0;dummy.Health=10000000;dummy.ContactDamage=0;dummy.CollisionDamage=0;dummy.Behavior=EnemyBehavior.Standard;dummy.Mutation=EnemyMutation.None;dummy.SpecialEnemy=SpecialEnemyKind.None;
+                dummy.Id="CombatRepairTarget";dummy.Weapon.Kind=WeaponKind.Contact;dummy.Weapon.Damage=0;dummy.Speed=0;dummy.Health=10000000;dummy.ContactDamage=0;dummy.CollisionDamage=0;dummy.Behavior=EnemyBehavior.Standard;dummy.Mutation=EnemyMutation.None;dummy.SpecialEnemy=SpecialEnemyKind.None;
                 var enemy=sim.AddFixture(dummy,Faction.Enemy,actor.Position+Vector2.right*.8f);enemy.Variant=null;enemy.NextAttack=enemy.NextContact=enemy.NextBehavior=enemy.NextEvolutionAttack=float.PositiveInfinity;
                 int fires=0;float damage=0;
                 for(int tick=0;tick<600;tick++)

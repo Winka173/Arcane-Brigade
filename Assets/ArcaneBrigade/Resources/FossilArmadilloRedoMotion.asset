@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: FossilArmadilloRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1863737966, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: -388195523, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: 749836482, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  - {fileID: -349887479, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  Walk:
+  - {fileID: 1207677660, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: 75120699, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  - {fileID: -2069218691, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: -176623133, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  Windup:
+  - {fileID: 1038967582, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: 251495856, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: -1158251240, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  Release:
+  - {fileID: 396883278, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: 298648236, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  Recovery:
+  - {fileID: 2078427224, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  - {fileID: 1046623772, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  - {fileID: -1863737966, guid: a0dfb9799e79fa54a8bceef47e5ae74c, type: 3}
+  Cast:
+  - {fileID: -1158251240, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  - {fileID: -767210298, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  - {fileID: -767210298, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  - {fileID: -767210298, guid: d75ca7a446bbd064a9097978bb17ee4c, type: 3}
+  IllustratedHeight: 0

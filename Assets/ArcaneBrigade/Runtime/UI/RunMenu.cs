@@ -185,6 +185,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            if (FxSandbox.IsOpen) return; // the effects sandbox has the screen and the keys
             if (music != null) music.ForceScene(CurrentPage == Page.Roster ? ArcaneCueLibrary.SceneSelect : CurrentPage == Page.Hub ? ArcaneCueLibrary.SceneHub : null);
             RunUIHints.Refresh();
             if (CurrentPage == Page.Hub)
@@ -259,7 +260,7 @@ namespace ArcaneBrigade
 
         private void OnGUI()
         {
-            if (profile == null) return;
+            if (profile == null || FxSandbox.IsOpen) return;
             GUISkin previousSkin = GUI.skin;
             GUI.skin = ArcadeSkin.Skin;
             navigation.Begin();
@@ -321,6 +322,7 @@ namespace ArcaneBrigade
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
                 case Page.Museum:
                     museum.Draw(catalog, profile);
+                    if (Button(new Rect(1010, 98, 200, 40), "FX SANDBOX")) FxSandbox.Open();
                     if (museum.Tab == 0)
                     {
                         GUI.enabled = museum.SelectedWeapon != null;

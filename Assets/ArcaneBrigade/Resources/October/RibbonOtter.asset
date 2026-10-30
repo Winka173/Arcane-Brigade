@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RibbonOtter
   DisplayName: Ribbon Otter
-  Body: {fileID: -1750562676, guid: a2ea34db9fd328b4e9df7a691f47698b, type: 3}
+  Body: {fileID: -1797603618, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
   AnimationFrames:
-  - {fileID: -1750562676, guid: a2ea34db9fd328b4e9df7a691f47698b, type: 3}
-  - {fileID: 1852921258, guid: a2ea34db9fd328b4e9df7a691f47698b, type: 3}
-  - {fileID: 1958617265, guid: a2ea34db9fd328b4e9df7a691f47698b, type: 3}
-  - {fileID: 1720678374, guid: a2ea34db9fd328b4e9df7a691f47698b, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 2108c8484b8863c4ab1401af8b3bc7d1, type: 2}
+  - {fileID: -1797603618, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+  - {fileID: -1770412501, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+  - {fileID: 1234665000, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+  - {fileID: -2035403904, guid: dfa6f8c697c3f234abf01ada76fc3d49, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c5758d3593160884fb731429fbc5d547, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

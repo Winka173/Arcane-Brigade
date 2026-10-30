@@ -30,27 +30,16 @@ namespace ArcaneBrigade.Editor
                 require(reduced.Angle == 0 && reduced.Recoil == 0, "Reduced motion " + weapon.Id);
             }
             using (var sample = new K14BalanceDiagnostics.Sample(catalog, catalog.Weapon("SpringKnocker"), 1, 1))
-            {
-                UnitState target = sample.Simulation.Units.First(unit => unit.Faction == Faction.Enemy);
-                Vector2 before = target.Position;
-                sample.Run(0.8f);
-                require(target.Position.x > before.x + 0.2f, "Spring hammer impact applies weapon knockback");
-            }
+                CheckKnockback(sample, 0, require);
             using (var sample = new K14BalanceDiagnostics.Sample(catalog, catalog.Weapon("SpringKnocker"), 1, 1))
-            {
-                UnitState target = sample.Simulation.Units.First(unit => unit.Faction == Faction.Enemy);
-                target.Definition.KnockbackResistance = 1;
-                Vector2 before = target.Position;
-                sample.Run(0.8f);
-                require(target.Position == before, "Spring hammer respects full knockback resistance");
-            }
+                CheckKnockback(sample, 1, require);
             foreach (string id in new[] { "CoilKettle", "ThimbleMoth", "ReelOwl" })
             {
                 UnitDefinition unit = catalog.Unit(id);
                 require(unit != null && unit.AnimationFrames.Length == 4 && unit.AnimationFrames.Distinct().Count() == 4, "Four painted poses " + id);
                 require(unit.CompanionModifiers.Any(modifier => modifier.Value > 0) && unit.CompanionModifiers.Any(modifier => modifier.Value < 0), "Recruit has bonus and tradeoff " + id);
                 require(catalog.Champions.Any(champion => K11HeroRules.Eligible(champion, unit)), "Recruit matches champion theme " + id);
-                require(unit.RecruitThemeLocked, "New recruit keeps its theme in the dream pool " + id);
+                require(unit.Tags.SequenceEqual(BondV3Catalog.Tags(id)), "Recruit retains its section 2/3 bond memberships " + id);
             }
             using (var sample = new K14BalanceDiagnostics.Sample(catalog, catalog.Weapon("TwinSabres"), 1, 8))
             {
@@ -68,30 +57,52 @@ namespace ArcaneBrigade.Editor
             using (var session = new RunSession(catalog))
             {
                 session.Start("LanternKnight", 14000);
-                session.State.Wave = 8; session.State.Roster.Clear(); // Act I boss waves are 4, 8, 12, 16, 20
+                session.State.Wave = EnemyRulesV3Tuning.BossFirstNights[0]; session.State.Roster.Clear(); // Section 9's first boss is night 10.
                 CheckpointCatalog combat = session.PrepareCombat(); combat.EnemyBudget = 0; combat.WaveDuration = 1000; combat.StoryCompanions = new UnitDefinition[0];
                 combat.Champion.Health = 10000; combat.Boss.Speed = 0;
                 combat.EnableArenaToys = combat.EnableBossArenaPhase = false;
                 combat.EnableHeroIdentities = false; // the boss's recovery is measured without the hero's kit
                 var simulation = new CombatSimulation(combat); simulation.Start(14000);
                 simulation.Champion.NextAttack = float.PositiveInfinity;
-                for (int tick = 0; tick < 270; tick++) simulation.Step(0.05f, Vector2.zero);
-                require(simulation.Boss.BossVolley >= 3, "Boss completes a readable three-volley sequence");
-                require(simulation.Boss.BossRecoveryUntil > simulation.Elapsed, "Third volley opens a longer recovery window");
-                float previous = simulation.Boss.Health;
-                simulation.WeaponDamageFixture(simulation.Boss, 100, DamageElement.Physical);
-                require(Mathf.Abs(previous - simulation.Boss.Health - 115) < 0.1f, "Recovery rewards counterattack by 15 percent");
+                require(simulation.Boss != null && simulation.EnemyRulesV3.Recognizes(simulation.Boss), "Scheduled boss uses section 9 phased skills");
+                // The section 9 deterministic suite verifies warning-before-damage and all six boss phases.
+                EnemyRulesV3Checks.Run();
             }
             float previousHealth = 0;
             for (int difficulty = 0; difficulty < 5; difficulty++)
                 using (var session = new RunSession(catalog))
                 {
-                    session.Start("LanternKnight", 14001, difficulty); session.State.Wave = 10;
+                    session.Start("LanternKnight", 14001, difficulty); session.State.Wave = EnemyRulesV3Tuning.BossFirstNights[0];
                     float health = session.PrepareCombat().Boss.Health;
                     require(health > previousHealth, "Difficulty increases boss durability " + difficulty); previousHealth = health;
                 }
             Directory.CreateDirectory("PreviewExports/K14"); File.WriteAllLines("PreviewExports/K14/Checks.txt", notes);
             Debug.Log("K14_CHECKS_PASSED " + notes.Count);
+        }
+        private const float Frame = .05f, PushAfterOctober24 = .7f, PositionTolerance = .001f;
+        private const int AttackTicks = 100;
+        private static void CheckKnockback(K14BalanceDiagnostics.Sample sample, float resistance, Action<bool, string> require)
+        {
+            UnitState target = sample.Simulation.Units.First(unit => unit.Faction == Faction.Enemy);
+            target.Definition.KnockbackResistance = resistance;
+            WeaponDefinition weapon = sample.Ally.Definition.Weapon;
+            bool hit = false;
+            float displacement = 0;
+            for (int tick = 0; tick < AttackTicks && !hit; tick++)
+            {
+                Vector2 before = target.Position;
+                float expected = OctoberBalance.Push(target.Definition, weapon.PushDistance) * ImpactRules.PushScale(ImpactRules.Weight(weapon)) * PushAfterOctober24
+                    * sample.Simulation.MapEnemyFactor(target, MapEnemyAxis.Knockback);
+                sample.Simulation.Step(Frame, Vector2.zero);
+                hit = sample.Simulation.Events.Any(e => e.Kind == CombatEventKind.Hit && e.Subject == target && e.Cause.SourceUnitId == sample.Ally.Id && e.Cause.Depth == 0);
+                if (hit)
+                {
+                    displacement = Vector2.Distance(before, target.Position);
+                    require(Mathf.Abs(displacement - expected) < PositionTolerance,
+                        "Spring hammer uses the October 23/24 reduced shove and resistance " + resistance + " (" + displacement + " / " + expected + ")");
+                }
+            }
+            require(hit, "Spring hammer lands a real primary hit before measuring resistance " + resistance);
         }
     }
 }

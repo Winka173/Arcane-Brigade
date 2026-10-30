@@ -55,7 +55,7 @@ namespace ArcaneBrigade.Editor
                 // the bell rings out chimes that fly to the enemy: watch each tick for the hit
                 bool chimed = false;
                 for (int tick = 0; tick < 6; tick++) { fixture.Tick(1); chimed |= simulation.Events.Any(value => value.Kind == CombatEventKind.Hit && value.Cause.Depth == 1 && value.Cause.SourceUnitId == 0 && value.Cause.ItemId == "arena-stage-bell"); }
-                require(enemy.Health == 86f && simulation.Champion.Health == championHealth && float.IsPositiveInfinity(fixture.Source.Health), "bell only damages enemies " + enemy.Health + " projectiles " + simulation.Projectiles.Count);
+                require(enemy.Health == 86f && simulation.Champion.Health == championHealth && fixture.Source.Health == fixture.Source.Definition.Health, "bell only damages enemies " + enemy.Health + " projectiles " + simulation.Projectiles.Count);
                 require(chimed, "payoff carries secondary arena ledger cause");
                 fixture.Impact(bell, 8);
                 require(bell.Charge == 0 && bell.Mode == ArenaToyMode.Cooldown, "cooldown rejects impact");
@@ -241,6 +241,7 @@ namespace ArcaneBrigade.Editor
             {
                 Catalog = Make<CheckpointCatalog>();
                 WeaponDefinition weapon = Make<WeaponDefinition>();
+                weapon.Id = "ArenaFixtureWeapon";
                 weapon.Kind = WeaponKind.Contact;
                 Catalog.Champion = Unit(weapon);
                 Catalog.Companion = Unit(weapon);
@@ -268,6 +269,7 @@ namespace ArcaneBrigade.Editor
             private UnitDefinition Unit(WeaponDefinition weapon)
             {
                 UnitDefinition value = Make<UnitDefinition>();
+                value.Id = "ArenaFixtureUnit" + owned.Count;
                 value.Weapon = weapon;
                 value.Health = 100f;
                 value.Speed = 0f;

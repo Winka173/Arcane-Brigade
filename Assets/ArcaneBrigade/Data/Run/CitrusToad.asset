@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CitrusToad
   DisplayName: Citrus Toad
-  Body: {fileID: -1201083195, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
+  Body: {fileID: -559462720, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
   AnimationFrames:
-  - {fileID: -1201083195, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
-  - {fileID: 913343768, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
-  - {fileID: -2069167854, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
-  - {fileID: -1926483078, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
+  - {fileID: -559462720, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
+  - {fileID: -523178266, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
+  - {fileID: 1479978162, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
+  - {fileID: -497167071, guid: 129c80a7d71f5d04ebefcf1965585700, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: a720a75e5d201554e9be73077118e046, type: 2}
   Weapon: {fileID: 11400000, guid: d4c1c7772ddea7b4888b8e5cc0de4665, type: 2}
   Health: 100

@@ -32,6 +32,7 @@ namespace ArcaneBrigade
             public bool Champion;
             public TextMesh Outline;
             public TextMesh[] Outlines = new TextMesh[0]; // four-way ink outline plus a drop shadow
+            public Color Ink = new Color(0.06f, 0.035f, 0.10f);
             public Vector2 Velocity;
             public float Scale = 1f;
             public int SubjectId;
@@ -40,8 +41,11 @@ namespace ArcaneBrigade
             public float Life = 0.55f;
             public float Shake;   // a long-range critical's number trembles (RangedFeel.LongShot)
             public int Kind;      // 0 damage, 1 healing, 2 a word or a stat (rises gently instead of being thrown)
+            public int Look;      // the element of the hit (ElementLook index), 0 for none: its ornament is drawn behind the digits
+            public Color Tint;
         }
         private readonly List<DamageNumber> numbers = new List<DamageNumber>();
+        private FxBatch ornaments;
         private Font font;
         private Sprite sprite;
         private int sequence;
@@ -68,7 +72,7 @@ namespace ArcaneBrigade
             bool kill = combatEvent.Kind == CombatEventKind.Kill;
             bool pickup = combatEvent.Kind == CombatEventKind.Pickup;
             if ((hit || kill) && combatEvent.Faction == Faction.Companion) return;
-            if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
+            if (hit && combatEvent.Value > 0f) { if (IsDamageOverTime(combatEvent)) GatherDot(combatEvent); else ShowDamage(combatEvent); }
             // requirement 24/10/2026: healing reads as a green +N over the hero, a dodge as a small word
             if (combatEvent.Kind == CombatEventKind.Heal && combatEvent.Faction == Faction.Champion && combatEvent.Value >= .5f) ShowHeal(combatEvent);
             // one "Dodge" at a time: a burst of dodged hits shows the word once, not stacked
@@ -135,36 +139,72 @@ namespace ArcaneBrigade
             sequence++;
         }
 
-        private void ShowDamage(CombatEvent combatEvent)
+        /// <summary>The element colour of a hit's source, when it has one (set by the rules ink, which knows the bonds).</summary>
+        public static System.Func<CombatEvent, Color?> ElementTint;
+        /// <summary>An elemental hit's digits are painted in the element's two colours, top to bottom (ElementTint is the
+        /// bottom one, ElementTop the top one), outlined in the element's own dark ink, so no two elements read alike.</summary>
+        public static System.Func<CombatEvent, Color?> ElementTop;
+        /// <summary>The shape an elemental hit's digits take (DamageText _Mode: 1 fire, 2 lightning, 3 frost, 4 water, 5 venom, 6 dusk).</summary>
+        public static System.Func<CombatEvent, int> ElementShape;
+        public static System.Func<CombatEvent, Color?> ElementInk;
+        private Material gradientText;
+        private MaterialPropertyBlock gradientBlock;
+
+        /// <summary>Damage over time (a burn, a skill's lingering damage, venom) ticks many times a second: its ticks are added up per
+        /// enemy and shown as one number every 2 seconds instead.</summary>
+        private static bool IsDamageOverTime(CombatEvent e)
+        {
+            string attribution = e.Cause.AttributionId, item = e.Cause.ItemId;
+            return item == "skill-v3-dot" || attribution == "bond:burn" || attribution == "bond:poison" || attribution == "bond:rot";
+        }
+        private sealed class DotTally { public CombatEvent Last; public float Amount, Since; }
+        private readonly Dictionary<int, DotTally> dots = new Dictionary<int, DotTally>();
+        private const float DotEvery = 2f;
+        private void GatherDot(CombatEvent e)
+        {
+            if (!dots.TryGetValue(e.SubjectId, out DotTally tally)) dots[e.SubjectId] = tally = new DotTally();
+            tally.Last = e; tally.Amount += e.Value;
+        }
+        private void FlushDots(float deltaTime)
+        {
+            if (dots.Count == 0) return;
+            List<int> done = null;
+            foreach (var pair in dots)
+            {
+                DotTally tally = pair.Value; tally.Since += deltaTime;
+                bool gone = tally.Last.Subject == null || !tally.Last.Subject.Alive;
+                if (tally.Since < DotEvery && !gone) continue;
+                if (tally.Amount > 0) ShowDamage(tally.Last, tally.Amount, gone ? tally.Last.Position : tally.Last.Subject.Position);
+                tally.Amount = 0; tally.Since = 0;
+                if (gone) (done ??= new List<int>()).Add(pair.Key);
+            }
+            if (done != null) foreach (int id in done) dots.Remove(id);
+        }
+
+        private void ShowDamage(CombatEvent combatEvent) => ShowDamage(combatEvent, combatEvent.Value, combatEvent.Position);
+        private void ShowDamage(CombatEvent combatEvent, float amount, Vector2 position)
         {
             if (!PresentationSettings.DamageNumbers) return;
-            if (combatEvent.SubjectId != 0)
-            {
-                DamageNumber existing = numbers.Find(candidate => candidate.Kind == 0 && candidate.Age < 0.3f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
-                if (existing != null)
-                {
-                    existing.Amount += combatEvent.Value;
-                    existing.View.text = Mathf.CeilToInt(existing.Amount) + (existing.Critical ? "!" : "");
-                    foreach (TextMesh outline in existing.Outlines) outline.text = existing.View.text;
-                    existing.Age = Mathf.Min(existing.Age, 0.04f); // a merged number pops again
-                    if (RangedFeel.LongShot(combatEvent)) existing.Shake = 1;
-                    return;
-                }
-            }
+            // requirement 28/10/2026: hits are never merged into one number; every hit shows its own
             bool champion = combatEvent.Faction == Faction.Champion;
             // Readability: ordinary companion/champion hits stay small and few; crits and damage taken always read.
             // requirement 25/10/2026: the numbers are the satisfaction - many more ordinary hits stay shown (was 12)
-            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 28) return;
+            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 48) return;
             DamageNumber number = Take(champion);
             if (number == null) return;
-            number.Kind = 0;
+            number.Kind = 0; number.Look = 0;
             number.Champion = champion;
-            number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
-            number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
+            number.SubjectId = combatEvent.SubjectId; number.Amount = amount; number.Critical = combatEvent.Critical;
+            number.Position = position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
             // size and warmth follow how much of the target's life the hit took
             float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
-            float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
+            float weight = Mathf.Sqrt(Mathf.Clamp01(amount / Mathf.Max(1f, maxHealth)));
             number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
+            // our damage reads in the element that dealt it (fire orange, frost blue, venom green...); a crit is that colour, brighter
+            Color? bottom = !champion && ElementTint != null ? ElementTint(combatEvent) : null, top = bottom.HasValue && ElementTop != null ? ElementTop(combatEvent) : null;
+            number.Ink = !champion && ElementInk != null && ElementInk(combatEvent) is Color ink ? ink : new Color(0.06f, 0.035f, 0.10f);
+            bool gradient = bottom.HasValue && top.HasValue;
+            if (gradient) number.Color = Color.white; // the colours live in the digits' gradient; white only carries the fade
             number.Age = 0f;
             number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
             float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
@@ -174,24 +214,45 @@ namespace ArcaneBrigade
             float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
             number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);
             number.View.characterSize = 0.055f * size;
-            number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
-            foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = number.View.text; outline.color = new Color(0.06f, 0.035f, 0.10f); }
+            number.View.text = Mathf.CeilToInt(amount) + (combatEvent.Critical ? "!" : "");
+            foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = number.View.text; outline.color = number.Ink; }
             number.View.color = number.Color;
             number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
             number.View.transform.localScale = Vector3.one;
             number.View.gameObject.SetActive(true);
+            MeshRenderer digits = number.View.GetComponent<MeshRenderer>();
+            if (gradient && gradientText == null && Resources.Load<Shader>("Shaders/DamageText") is Shader shader) gradientText = new Material(shader) { mainTexture = font.material.mainTexture, name = "Damage text gradient" };
+            if (gradient && gradientText != null)
+            {
+                gradientBlock ??= new MaterialPropertyBlock();
+                Color t = top.Value, b = bottom.Value;
+                if (combatEvent.Critical) { t = Color.Lerp(t, Color.white, .3f); b = Color.Lerp(b, Color.white, .15f); }
+                digits.sharedMaterial = gradientText;
+                gradientBlock.Clear(); gradientBlock.SetColor("_Top", t); gradientBlock.SetColor("_Bottom", b); gradientBlock.SetFloat("_Height", number.View.characterSize * number.View.fontSize * .1f);
+                int look = ElementShape != null ? ElementShape(combatEvent) : 0;
+                gradientBlock.SetFloat("_Mode", look); gradientBlock.SetFloat("_Seed", sequence * .37f);
+                number.Look = look; number.Tint = Color.Lerp(b, t, .4f);
+                digits.SetPropertyBlock(gradientBlock);
+            }
+            else if (digits.sharedMaterial != font.material) { digits.sharedMaterial = font.material; digits.SetPropertyBlock(null); }
         }
 
         /// <summary>A free number from the pool (a priority one may take an ordinary one's place), or a new one.</summary>
         private DamageNumber Take(bool priority)
         {
             DamageNumber number = numbers.Find(candidate => candidate.Age >= candidate.Life);
-            if (number == null && numbers.Count >= 64)
+            if (number == null && numbers.Count >= 96)
             {
                 if (!priority) return null;
                 number = numbers.Find(candidate => !candidate.Champion) ?? numbers[0];
             }
-            if (number != null) return number;
+            if (number != null)
+            {
+                // a reused number starts plain: a heal or a word never keeps the last hit's element colours
+                MeshRenderer digits = number.View.GetComponent<MeshRenderer>();
+                if (digits.sharedMaterial != font.material) { digits.sharedMaterial = font.material; digits.SetPropertyBlock(null); }
+                return number;
+            }
             {
                 var child = new GameObject("DamageNumber");
                 child.transform.SetParent(transform, false);
@@ -248,7 +309,7 @@ namespace ArcaneBrigade
         {
             if (!PresentationSettings.DamageNumbers || string.IsNullOrEmpty(text)) return null;
             DamageNumber number = Take(true); if (number == null) return null;
-            number.Kind = 2; number.Champion = true; number.SubjectId = 0; number.Amount = 0; number.Critical = false; number.Shake = 0;
+            number.Kind = 2; number.Look = 0; number.Champion = true; number.SubjectId = 0; number.Amount = 0; number.Critical = false; number.Shake = 0;
             // labels arriving together stack upward instead of on top of one another
             int near = 0; foreach (DamageNumber other in numbers) if (other != number && other.Kind != 0 && other.Age < .35f && (other.Position - at).sqrMagnitude < .6f) near++;
             number.Position = at + Vector2.up * (near * .26f);
@@ -267,6 +328,7 @@ namespace ArcaneBrigade
         {
             if (deltaTime <= 0 || !float.IsFinite(deltaTime)) return;
             if (tactile != null) tactile.Advance(deltaTime);
+            FlushDots(deltaTime);
             foreach (DamageNumber number in numbers)
             {
                 if (number.Age >= number.Life) continue;
@@ -283,9 +345,22 @@ namespace ArcaneBrigade
                 float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01(1f - number.Age / 0.1f);
                 number.View.transform.localScale = new Vector3(1f + 0.55f * pop, 1f + 0.35f * pop, 1);
                 number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01((1f - number.Age / number.Life) * 3f));
-                foreach (TextMesh outline in number.Outlines) outline.color = new Color(0.06f, 0.035f, 0.10f, number.View.color.a * 0.92f);
+                foreach (TextMesh outline in number.Outlines) outline.color = new Color(number.Ink.r, number.Ink.g, number.Ink.b, number.View.color.a * 0.92f);
                 if (number.Age >= number.Life) number.View.gameObject.SetActive(false);
             }
+            // each elemental number carries a small piece of its element behind it (NumberOrnament)
+            if (ornaments == null) ornaments = new FxBatch(transform, 2597, 2596);
+            ornaments.Begin();
+            int ornament = 0; // the effect budget thins ornaments first in a crowd (Fx/FxBudget.cs)
+            if (!PresentationSettings.ReducedEffects)
+                foreach (DamageNumber number in numbers)
+                {
+                    if (number.Look <= 0 || number.Kind != 0 || number.Age >= number.Life || !FxBudget.Ornament(ornament++)) continue;
+                    float height = number.View.characterSize * number.View.fontSize * .1f, width = height * .62f * number.View.text.Length;
+                    Vector3 p = number.View.transform.position;
+                    NumberOrnament.Draw(ornaments, number.Look, new Vector2(p.x, p.y), height, width, number.Age / number.Life, number.View.color.a, number.SubjectId * 31 + (int)(number.Amount * 7), number.Tint);
+                }
+            ornaments.End();
             foreach (Spark spark in sparks)
             {
                 if (spark.Age >= spark.Duration) continue;

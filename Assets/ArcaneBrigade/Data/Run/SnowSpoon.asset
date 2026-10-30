@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SnowSpoon
   DisplayName: Snow Spoon
-  Body: {fileID: -2089024060, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  Body: {fileID: -76058480, guid: 2ab03599a11294649bc55af592d06518, type: 3}
   AnimationFrames:
-  - {fileID: -2089024060, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
-  - {fileID: 1486331458, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
-  - {fileID: -1970876487, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
-  - {fileID: -2108711747, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
+  - {fileID: -76058480, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+  - {fileID: 1239857902, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+  - {fileID: 1639338581, guid: 2ab03599a11294649bc55af592d06518, type: 3}
+  - {fileID: -61320858, guid: 2ab03599a11294649bc55af592d06518, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 13ea0f59bdecf5f489b0589fed9f18f7, type: 2}
   Weapon: {fileID: 11400000, guid: 30904810a5a93264aaeb641f7c40c51f, type: 2}
   Health: 100

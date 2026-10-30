@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: VioletRemnant
   DisplayName: Violet Remnant
-  Body: {fileID: -599732053, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  Body: {fileID: 663476832, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
   AnimationFrames:
-  - {fileID: -599732053, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  - {fileID: -2104085908, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  - {fileID: -632191619, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  - {fileID: 2108922202, guid: bed324f4d43c1bc41954324006ace866, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: dff434c38be5a0f4ba1a5189acdb5c6b, type: 2}
+  - {fileID: 663476832, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+  - {fileID: -1709263300, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+  - {fileID: 1856912738, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+  - {fileID: -1838985767, guid: 8ce0454f1b7b6c94092ab0b5d5a831f9, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 4f59b3087a9406845a3f4161fe68cd61, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4

@@ -13,20 +13,29 @@ MonoBehaviour:
   m_Name: MailboxImpRedoMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 631945764, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -1628974644, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: -655586702, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: -1423308658, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: 1280396730, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
+  - {fileID: 646550713, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
   Walk:
-  - {fileID: 332875552, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -1385106106, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: 332875552, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -1385106106, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: -766557050, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: 755937677, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
+  - {fileID: -262031268, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: -280886490, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
   Windup:
-  - {fileID: -926878328, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -607259419, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: -605582479, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: 1815356276, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: -785064517, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
   Release:
-  - {fileID: -493159080, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: -493159080, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: -1584535182, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: -72247763, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
   Recovery:
-  - {fileID: -534072415, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
-  - {fileID: 631945764, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
+  - {fileID: 825190395, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  - {fileID: -2056493966, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
+  - {fileID: -655586702, guid: b41c09bc124709646ba8be7d9f15708f, type: 3}
+  Cast:
+  - {fileID: -785064517, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
+  - {fileID: 1825938092, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
+  - {fileID: 1825938092, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
+  - {fileID: 1825938092, guid: e07e4043427c3014a8ac8e6da76b2655, type: 3}
   IllustratedHeight: 0

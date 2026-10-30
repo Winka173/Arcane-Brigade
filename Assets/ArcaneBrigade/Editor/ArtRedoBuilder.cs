@@ -17,23 +17,28 @@ namespace ArcaneBrigade.Editor
         private const string Folder = "Assets/ArcaneBrigade/Art/Playtest/Redo/";
 
         [MenuItem("Arcane Brigade/Art/Put repainted characters and weapons in")]
-        public static void Build()
+        public static void Build() { Build(Folder, null); }
+
+        /// <summary>Puts the sheets of <paramref name="folder"/> in; <paramref name="pixelsPerUnit"/> (by unit id) overrides the default 256 pixels per unit of a sheet.</summary>
+        public static void Build(string folder, IDictionary<string, float> pixelsPerUnit)
         {
-            if (!AssetDatabase.IsValidFolder(Folder.TrimEnd('/'))) { Debug.Log("ART_REDO no folder"); return; }
+            overrides = pixelsPerUnit;
+            if (!AssetDatabase.IsValidFolder(folder.TrimEnd('/'))) { Debug.Log("ART_REDO no folder"); return; }
             var units = new Dictionary<string, UnitDefinition>(); var weapons = new Dictionary<string, WeaponDefinition>();
             var allUnits = new List<UnitDefinition>(); var allWeapons = new List<WeaponDefinition>();
-            foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources/October" }))
+            foreach (string guid in AssetDatabase.FindAssets("t:UnitDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources" }))
             { var u = AssetDatabase.LoadAssetAtPath<UnitDefinition>(AssetDatabase.GUIDToAssetPath(guid)); if (u == null || string.IsNullOrEmpty(u.Id)) continue; allUnits.Add(u); if (!units.ContainsKey(u.Id)) units[u.Id] = u; }
-            foreach (string guid in AssetDatabase.FindAssets("t:WeaponDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources/October" }))
+            foreach (string guid in AssetDatabase.FindAssets("t:WeaponDefinition", new[] { "Assets/ArcaneBrigade/Data", "Assets/ArcaneBrigade/Resources" }))
             { var w = AssetDatabase.LoadAssetAtPath<WeaponDefinition>(AssetDatabase.GUIDToAssetPath(guid)); if (w == null || string.IsNullOrEmpty(w.Id)) continue; allWeapons.Add(w); if (!weapons.ContainsKey(w.Id)) weapons[w.Id] = w; }
             var actingLibrary = AssetDatabase.LoadAssetAtPath<CharacterActingLibrary>("Assets/ArcaneBrigade/Resources/CharacterActingLibrary.asset");
             var actingEntries = actingLibrary == null ? new List<CharacterActingEntry>() : actingLibrary.Entries.ToList();
             var performance = AssetDatabase.LoadAssetAtPath<ExpandedPerformanceLibrary>("Assets/ArcaneBrigade/Resources/ExpandedPerformanceLibrary.asset");
             int characters = 0, arms = 0, actingSheets = 0;
-            foreach (string path in Directory.GetFiles(Folder, "*.png").Select(p => p.Replace('\\', '/')).OrderBy(p => p, System.StringComparer.Ordinal))
+            foreach (string path in Directory.GetFiles(folder, "*.png").Select(p => p.Replace('\\', '/')).OrderBy(p => p, System.StringComparer.Ordinal))
             {
                 string name = Path.GetFileNameWithoutExtension(path);
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+                if (name.EndsWith("_Extra", System.StringComparison.Ordinal)) continue; // read together with its character sheet
                 if (name.EndsWith("_Acting", System.StringComparison.Ordinal))
                 {
                     string id = name.Substring(0, name.Length - "_Acting".Length);
@@ -62,8 +67,14 @@ namespace ArcaneBrigade.Editor
                 string motionPath = "Assets/ArcaneBrigade/Resources/" + name + "RedoMotion.asset";
                 var motion = AssetDatabase.LoadAssetAtPath<AuthoredMotionSet>(motionPath);
                 if (motion == null) { motion = ScriptableObject.CreateInstance<AuthoredMotionSet>(); AssetDatabase.CreateAsset(motion, motionPath); }
-                motion.Idle = new[] { frames[0], frames[1] }; motion.Walk = new[] { frames[2], frames[3], frames[2], frames[3] };
-                motion.Windup = new[] { frames[4], frames[5] }; motion.Release = new[] { frames[6], frames[6] }; motion.Recovery = new[] { frames[7], frames[0] };
+                // an optional <Id>_Extra.png (4×2: idle 3, idle 4, walk C, walk D, windup 3, release 2, recovery 2, skill cast) adds more frames
+                string extraPath = folder + name + "_Extra.png"; Sprite[] more = File.Exists(extraPath) ? Grid(extraPath, name + "X", 4, 2) : null;
+                motion.Idle = more == null ? new[] { frames[0], frames[1] } : new[] { frames[0], frames[1], more[0], more[1] };
+                motion.Walk = more == null ? new[] { frames[2], frames[3], frames[2], frames[3] } : new[] { frames[2], more[2], frames[3], more[3] };
+                motion.Windup = more == null ? new[] { frames[4], frames[5] } : new[] { frames[4], frames[5], more[4] };
+                motion.Release = more == null ? new[] { frames[6], frames[6] } : new[] { frames[6], more[5] };
+                motion.Recovery = more == null ? new[] { frames[7], frames[0] } : new[] { frames[7], more[6], frames[0] };
+                motion.Cast = more == null ? new Sprite[0] : new[] { more[4], more[7], more[7], more[7] }; // the peak windup, then the cast pose held
                 EditorUtility.SetDirty(motion);
                 unit.Body = frames[0]; unit.AuthoredMotion = motion; unit.AnimationFrames = new[] { frames[0], frames[1], frames[2], frames[3] };
                 // Expanded gait and acting can override AuthoredMotion during rendering. Rebind those too so
@@ -165,11 +176,18 @@ namespace ArcaneBrigade.Editor
                 throw new System.Exception("Stale or missing sprite reference; expected " + path);
         }
 
+        private static IDictionary<string, float> overrides;
+        private static float PixelsPerUnit(string path)
+        {
+            string id = Path.GetFileNameWithoutExtension(path); if (id.EndsWith("_Acting", System.StringComparison.Ordinal)) id = id.Substring(0, id.Length - 7); else if (id.EndsWith("_Extra", System.StringComparison.Ordinal)) id = id.Substring(0, id.Length - 6);
+            return overrides != null && overrides.TryGetValue(id, out float value) ? value : 256;
+        }
+
         private static TextureImporter Prepare(string path)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite; importer.alphaIsTransparency = true; importer.mipmapEnabled = false;
-            importer.spritePixelsPerUnit = 256; importer.npotScale = TextureImporterNPOTScale.None; importer.maxTextureSize = 2048;
+            importer.spritePixelsPerUnit = PixelsPerUnit(path); importer.npotScale = TextureImporterNPOTScale.None; importer.maxTextureSize = 2048;
             importer.filterMode = FilterMode.Bilinear; importer.wrapMode = TextureWrapMode.Clamp;
             importer.textureCompression = TextureImporterCompression.CompressedHQ; importer.compressionQuality = 80;
             return importer;
