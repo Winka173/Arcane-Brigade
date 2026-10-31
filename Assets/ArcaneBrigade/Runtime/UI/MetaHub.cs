@@ -246,7 +246,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Frame(new Rect(96, 18, 400, 62), KitFrame.Plaque);
             heading.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
-            FavourStars(profile, new Rect(96, 80, 400, 30));
+            if (!PanelOpen) FavourStars(profile, new Rect(96, 80, 400, 30)); // an open station's title would cover it by half
             Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
             if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "MAIN MENU ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
 

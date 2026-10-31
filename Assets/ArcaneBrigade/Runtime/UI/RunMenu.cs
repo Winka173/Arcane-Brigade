@@ -33,7 +33,10 @@ namespace ArcaneBrigade
         private GUIStyle chip;
         private int selection;
         private Vector2 scroll;
-        private string error;
+        // a short plain note for the player; technical detail goes to the log only (UI standard: no exception text on screen)
+        private string errorText;
+        private float errorAt;
+        private string error { get => errorText; set { errorText = value; errorAt = Time.unscaledTime; } }
         private bool existingSave;
         private WeaponSandbox sandbox;
         private Page sandboxReturnPage;
@@ -157,7 +160,11 @@ namespace ArcaneBrigade
             profile = storage.LoadProfile();
             difficulty = Mathf.Clamp(profile.LastDifficulty, 0, RunMeta.UnlockedDifficulty(profile)); // the difficulty chosen last time
             ArcadeSkin.Bundle = profile.Cosmetic;
-            error = storage.LastError;
+            if (!string.IsNullOrEmpty(storage.LastError))
+            {
+                Debug.LogWarning(storage.LastError); storage.ClearError();
+                error = "Your old records could not be opened, so a fresh record begins.";
+            }
             ReloadSaveSummary();
             PresentationSettings.Apply(profile);
             if (FindAnyObjectByType<AudioListener>() == null) gameObject.AddComponent<AudioListener>();
@@ -176,11 +183,33 @@ namespace ArcaneBrigade
                 {
                     session.Restore(saved); saved = session.State;
                     if ((saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat) && !profile.CompletedRuns.Contains(saved.RunId))
-                        try { storage.RecordProgress(profile, saved, catalog); } catch (Exception exception) { error = "Profile awaiting retry: " + exception.Message; }
+                        try { storage.RecordProgress(profile, saved, catalog); } catch (Exception exception) { Debug.LogWarning(exception); error = "Your progress will be saved next time."; }
                 }
             }
-            if (!string.IsNullOrEmpty(storage.LastError)) error = storage.LastError;
+            if (!string.IsNullOrEmpty(storage.LastError))
+            {
+                Debug.LogWarning(storage.LastError); storage.ClearError();
+                if (saved == null) SetAsideUnreadableRun(); // a backup that still loaded needs no note
+            }
             existingSave = File.Exists(Path.Combine(RunPaths.Root, "run.json")) || File.Exists(Path.Combine(RunPaths.Root, "run.json.bak"));
+        }
+
+        /// <summary>A run save this version cannot read is moved into ArchivedRuns (never deleted) so the menu stops tripping over it.</summary>
+        private void SetAsideUnreadableRun()
+        {
+            try
+            {
+                string archive = Path.Combine(RunPaths.Root, "ArchivedRuns", "Unreadable_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss"));
+                foreach (string name in new[] { "run.json", "run.json.bak" })
+                {
+                    string source = Path.Combine(RunPaths.Root, name);
+                    if (!File.Exists(source)) continue;
+                    Directory.CreateDirectory(archive);
+                    File.Move(source, Path.Combine(archive, name));
+                }
+                error = "An old journey could not be opened. It was put away, so a new one can begin.";
+            }
+            catch (Exception exception) { Debug.LogWarning(exception); error = "An old journey could not be opened."; }
         }
 
         private void Update()
@@ -241,7 +270,7 @@ namespace ArcaneBrigade
                         if (File.Exists(source)) File.Copy(source, Path.Combine(archive, name));
                     }
                 }
-                catch (Exception exception) { error = "Cannot back up old run: " + exception.Message; CheckpointAudio.PlayInterfaceId("ui.error"); return; }
+                catch (Exception exception) { Debug.LogWarning(exception); error = "The last journey could not be set aside. Try again."; CheckpointAudio.PlayInterfaceId("ui.error"); return; }
             }
             RunLaunch.Resume = resume;
             RunLaunch.ChampionId = catalog.Champions[selection].Id;
@@ -330,7 +359,13 @@ namespace ArcaneBrigade
                     break;
                 case Page.WeaponSandbox: sandbox.DrawPanel(text, button); break;
             }
-            if (CurrentPage != Page.WeaponSandbox && !string.IsNullOrEmpty(error)) Label(new Rect(60, 675, 1150, 28), error);
+            if (CurrentPage != Page.WeaponSandbox && !string.IsNullOrEmpty(error) && Time.unscaledTime - errorAt < 7f)
+            {
+                // a short note on a plate over the lower middle that leaves after a few seconds, never a line over the page's own buttons
+                var note = new Rect(320, 572, 640, 72);
+                ArcadeSkin.Plate(note, ArcadeSkin.Gold);
+                GUI.Label(new Rect(note.x + 32, note.y, note.width - 64, note.height), error, new GUIStyle(text) { alignment = TextAnchor.MiddleCenter });
+            }
             if (!profile.ReducedMotion)
             {
                 float alpha = Mathf.Clamp01(1 - (Time.unscaledTime - pageChangedAt) / 0.16f);
@@ -352,8 +387,11 @@ namespace ArcaneBrigade
             if (bootStarted < 0) bootStarted = Time.unscaledTime;
             float age = Time.unscaledTime - bootStarted, length = profile.ReducedMotion ? .4f : 1.8f, fade = Mathf.Clamp01((age - length) / .45f);
             if (fade >= 1) { booted = true; return; }
-            Color keep = GUI.color; GUI.color = new Color(1, 1, 1, 1 - fade);
-            RunHud.Fill(new Rect(0, 0, 1280, 720), new Color(.035f, .04f, .07f, 1));
+            Color keep = GUI.color;
+            // an opaque night (a Fill panel is see-through and showed the menu's ghost behind the loading screen), past the frame's edges
+            GUI.color = new Color(.035f, .04f, .07f, 1 - fade);
+            GUI.DrawTexture(new Rect(-2000, -1200, 5280, 3120), Texture2D.whiteTexture);
+            GUI.color = new Color(1, 1, 1, 1 - fade);
             float k = Mathf.Clamp01(age / length);
             ArcadeSkin.Glow(new Rect(440, 120, 400, 400), new Color(1f, .78f, .42f, .25f + .25f * k));
             UnitDefinition emblem = catalog.Unit("LanternKnight");
@@ -916,7 +954,7 @@ namespace ArcaneBrigade
         private bool SaveProfile()
         {
             try { storage.SaveProfile(profile); error = ""; return true; }
-            catch (Exception exception) { error = "Failed to save settings: " + exception.Message; CheckpointAudio.PlayInterfaceId("ui.error"); return false; }
+            catch (Exception exception) { Debug.LogWarning(exception); error = "Settings could not be saved. Try again."; CheckpointAudio.PlayInterfaceId("ui.error"); return false; }
         }
     }
 }

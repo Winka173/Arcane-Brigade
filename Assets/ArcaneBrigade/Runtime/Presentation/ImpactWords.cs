@@ -137,7 +137,14 @@ namespace ArcaneBrigade
                 label.Text = w.Text;
                 float pop = still ? 1 : t < .1f ? Mathf.Lerp(1.55f, 1, t / .1f) : 1;
                 Color c = w.Colour; c.a = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - .62f) / .38f)); label.Color = c;
-                label.transform.position = new Vector3(w.At.x, w.At.y + (still ? 0 : t * .45f), -2f);
+                Vector3 at = new Vector3(w.At.x, w.At.y + (still ? 0 : t * .45f), -2f);
+                Camera view = Camera.main; // a word near the screen's edge slides in so it is never cut ("FIREWORKS READ")
+                if (view != null && view.orthographic)
+                {
+                    float half = view.orthographicSize * view.aspect, reach = Mathf.Min(half * .9f, w.Text.Length * .16f * w.Scale);
+                    at.x = Mathf.Clamp(at.x, view.transform.position.x - half + reach, view.transform.position.x + half - reach);
+                }
+                label.transform.position = at;
                 label.transform.localScale = Vector3.one * pop * w.Scale * (w.Rank >= 3 ? 1.1f : w.Rank == 2 ? .95f : .8f);
                 label.transform.rotation = Quaternion.Euler(0, 0, still ? 0 : w.Angle);
             }

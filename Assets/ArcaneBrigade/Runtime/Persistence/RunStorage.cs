@@ -70,6 +70,7 @@ namespace ArcaneBrigade
     {
         private readonly string directory;
         public string LastError { get; private set; } = "";
+        public void ClearError() => LastError = "";
         public RunStorage(string root) { directory = root; }
         public void SaveRun(RunSnapshot run) => Write("run.json", JsonUtility.ToJson(run, true));
         public void SaveProfile(PlayerProfile profile) => Write("profile.json", JsonUtility.ToJson(profile, true));

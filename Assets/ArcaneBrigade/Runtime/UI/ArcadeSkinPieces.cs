@@ -334,10 +334,11 @@ namespace ArcaneBrigade
             if (style == null || string.IsNullOrEmpty(text) || width <= 0) return;
             var content = new GUIContent(text);
             if (style.CalcSize(content).x <= width) return;
-            int size = style.fontSize > 0 ? style.fontSize : 16, floor = Mathf.Max(10, Mathf.RoundToInt(size * .7f));
+            bool oneWord = text.IndexOf(' ') < 0; // a single word is never split across two lines ("TROPHIE / S")
+            int size = style.fontSize > 0 ? style.fontSize : 16, floor = Mathf.Max(10, Mathf.RoundToInt(size * (oneWord ? .55f : .7f)));
             style.fontSize = size;
             while (style.fontSize > floor && style.CalcSize(content).x > width) style.fontSize--;
-            if (style.CalcSize(content).x > width) style.wordWrap = true;
+            if (style.CalcSize(content).x > width) style.wordWrap = !oneWord;
         }
 
         private static readonly Dictionary<(GUIStyle, int, bool), GUIStyle> fittedLabels = new Dictionary<(GUIStyle, int, bool), GUIStyle>();

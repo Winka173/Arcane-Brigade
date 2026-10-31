@@ -379,8 +379,9 @@ namespace ArcaneBrigade
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
                     if (identityStyle == null) { identityStyle = new GUIStyle(small) { font = ArcadeTypography.Punch, fontSize = 22, wordWrap = false }; }
                     identityStyle.normal.textColor = Color.Lerp(HeroIdentities.For(state.ChampionId).Color, ArcadeSkin.Cream, 0.55f);
-                    ArcadeTypography.ShadowLabel(new Rect(380, 108, 440, 28), HeroIdentities.For(state.ChampionId).Name, identityStyle);
-                    ArcadeTypography.ShadowLabel(new Rect(380, 140, 440, 42), simulation.HeroIdentityStatus, small);
+                    // under the counters in the left column, clear of the tip banner at the top middle (UI standard: HUD zones)
+                    ArcadeTypography.ShadowLabel(new Rect(24, 246, 370, 28), HeroIdentities.For(state.ChampionId).Name, identityStyle);
+                    ArcadeTypography.ShadowLabel(new Rect(24, 276, 370, 48), simulation.HeroIdentityStatus, small);
                 }
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;

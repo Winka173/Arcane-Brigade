@@ -342,8 +342,8 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(x, card.y + 54, w, 28), hero != null ? RunUICopy.UnitName(hero) : "No hero yet", body);
             GUI.Label(new Rect(x, card.y + 82, w, 24), "Peaceful · same night for everyone", small);
             PactIcon(new Rect(x, card.y + 112, 40, 40), pact, catalog);
-            GUI.Label(new Rect(x + 50, card.y + 112, w - 50, 24), MetaProgression.Pacts[pact].Name, body);
-            GUI.Label(new Rect(x + 50, card.y + 136, w - 50, 22), MetaProgression.Pacts[pact].Line, small);
+            GUI.Label(new Rect(x + 50, card.y + 106, w - 50, 32), MetaProgression.Pacts[pact].Name, body); // tall enough for the body face's ascenders
+            GUI.Label(new Rect(x + 50, card.y + 138, w - 50, 24), MetaProgression.Pacts[pact].Line, small);
             RunHud.Sprite(new Rect(x + 4, card.y + 168, 32, 32), MetaIcons.Keepsake);
             GUI.Label(new Rect(x + 50, card.y + 172, w - 50, 26), MetaProgression.DailyPaid(profile, day) ? "Paid today" : "+" + MetaProgression.DailyKeepsakes + " the first dream today", number);
             GUI.Label(new Rect(x + 50, card.y + 206, w - 50, 26), best != null ? "Best today: night " + best.Score : "No dream yet today", small);

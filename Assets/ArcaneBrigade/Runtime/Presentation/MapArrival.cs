@@ -50,8 +50,9 @@ namespace ArcaneBrigade
             float rise = PresentationSettings.ReducedMotion ? 0 : (1 - Mathf.Clamp01(t / .45f)) * 18;
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             MapTheme map = MapIdentity.For(owner.Session.State.Wave);
-            ArcadeSkin.TitleBanner(new Rect(560, 150 + rise, 800, 72), MapIdentity.Name(map).ToUpperInvariant(), banner);
-            Rect plate = new Rect(580, 236 + rise, 760, 96);
+            // below the tip zone at the top middle (UI standard: HUD zones), so a tip and the map's card never print over each other
+            ArcadeSkin.TitleBanner(new Rect(560, 300 + rise, 800, 72), MapIdentity.Name(map).ToUpperInvariant(), banner);
+            Rect plate = new Rect(580, 386 + rise, 760, 96);
             ArcadeSkin.Ticket(plate, ArcadeSkin.Paper, ArcadeSkin.Accent);
             line.normal.textColor = new Color(.22f, .16f, .1f);
             GUI.Label(new Rect(plate.x + 30, plate.y + 10, plate.width - 60, plate.height - 20), Tagline(map), line); // two lines fit inside the ticket's rim

@@ -161,6 +161,15 @@ namespace ArcaneBrigade
             number.Champion = champion;
             number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
             number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
+            // hits on neighbouring targets stack upward instead of printing over each other ("40l49l8!")
+            for (int lift = 0; lift < 5; lift++) // a number is wider than tall: a box test, stepping up until the spot is free
+            {
+                bool crowded = false;
+                foreach (DamageNumber other in numbers)
+                    if (other != number && other.Kind == 0 && other.Age < .35f && Mathf.Abs(other.Position.x - number.Position.x) < .9f && Mathf.Abs(other.Position.y - number.Position.y) < .32f) { crowded = true; break; }
+                if (!crowded) break;
+                number.Position += Vector2.up * .34f;
+            }
             // size and warmth follow how much of the target's life the hit took
             float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
             float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
