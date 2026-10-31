@@ -178,6 +178,18 @@ namespace ArcaneBrigade
             yield return Focus(0); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item10_BloodPriceCard");
             owner.SetShopDetails(true); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item10_BloodPriceDetails"); owner.SetShopDetails(false);
             yield return Focus(1); yield return Shot("Item16_DreamShopEggs");
+            // 33: the ferry (see a friend home, row one across) and the Last Customer's trade
+            var ferry = owner.GetComponent<FerryDock>();
+            Check(ferry != null && ferry.Visible && ferry.Spot(0, out Vector2 jetty, out _), "The ferry stands in the shop");
+            if (ferry != null && ferry.Spot(0, out jetty, out _))
+            {
+                yield return Stand(jetty + new Vector2(.6f, .2f)); yield return Shot("Item33_FerryPrompt");
+                ferry.ShowForCapture(owner.Session.PartingSpecies().FirstOrDefault()); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item33_FerryCard");
+                typeof(FerryDock).GetField("rowing", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(ferry, true); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item33_FerryFarBank");
+                typeof(FerryDock).GetMethod("Close", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(ferry, null); yield return new WaitForSecondsRealtime(.2f);
+            }
+            owner.Session.ForceMemorySale(); yield return new WaitForSecondsRealtime(.8f); yield return Shot("Item33_LastCustomerTrade");
+            owner.DeclineMemorySale(); yield return new WaitForSecondsRealtime(.3f);
             yield return TwoStageShop();
 
             // 07: a secret event room as plates (the Impossible Tailor, a relic in the middle)

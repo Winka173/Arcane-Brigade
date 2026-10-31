@@ -54,7 +54,7 @@ namespace ArcaneBrigade
             State.VisitorRollWave = State.Wave;
             State.VisitorStage = 0; State.VisitorPick = -1; State.VisitorDone = false; State.ShelfBeforeRefresh.Clear(); State.RefreshPaid = -1;
             if (State.VisitorRandom == 0) State.VisitorRandom = unchecked((uint)State.Seed ^ 0x51B7u) | 1;
-            if (State.Wave < 3 || CustomerOfferAvailable || RelightChoiceOpen || State.OutsideStage == OutsideStageStatus.Reward) return;
+            if (State.Wave < 3 || CustomerOfferAvailable || MemorySaleOpen || RelightChoiceOpen || State.OutsideStage == OutsideStageStatus.Reward) return;
             if (TryRollRareVisitor()) return;
             int since = State.Wave - State.VisitorLastWave;
             if (since < 2 || since == 2 && Next(ref State.VisitorRandom, 2) == 0) return;

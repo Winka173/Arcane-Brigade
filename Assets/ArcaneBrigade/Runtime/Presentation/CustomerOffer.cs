@@ -4,7 +4,8 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     /// <summary>Shop 8: the Last Customer waits at the end of the platform and offers a lantern for a memory of one of the
-    /// traveller's companions (Docs/Mien_Cho_Act_One_Story.md). Selling makes that companion a stranger; refusing costs nothing.</summary>
+    /// traveller's companions (Docs/Mien_Cho_Act_One_Story.md). Selling makes that companion a stranger; refusing costs nothing.
+    /// From shop 9 he now and then comes back to buy a friend outright (RunSession.MemorySaleOpen): all it cost, in gold.</summary>
     public sealed class CustomerOffer : MonoBehaviour
     {
         private ArenaController owner;
@@ -18,15 +19,18 @@ namespace ArcaneBrigade
         /// <summary>While the offer stands, the shop does not also act on the traveller's presses.</summary>
         public bool Open => Standing && !folded;
         /// <summary>The offer stands (open, or folded away as a letter waiting on the HUD).</summary>
-        private bool Standing => owner?.Session != null && owner.Session.CustomerOfferAvailable && !owner.StoryConsumesInput && !owner.TransitionPending && !owner.Session.SecretRoomOpen;
+        private bool Standing => owner?.Session != null && (owner.Session.CustomerOfferAvailable || owner.Session.MemorySaleOpen) && !owner.StoryConsumesInput && !owner.TransitionPending && !owner.Session.SecretRoomOpen;
         // requirement 24/10/2026: Esc used to refuse for good before the letter was even read; now Esc folds it away into a letter that
         // waits on the screen (tap to reopen) - only WALK ON refuses. It unfolds from its seal each time it opens.
         private bool folded, wasOpen; private float openedAt = -10;
         private static readonly Rect LetterRect = new Rect(1640, 232, 250, 64);
 
+        private bool Sale => owner.Session.MemorySaleOpen;
+        private Sprite saleIcon;
         private void Gather()
         {
             species.Clear();
+            if (Sale) { species.AddRange(owner.Session.PartingSpecies()); return; }
             foreach (RosterEntry entry in owner.Session.State.Roster) if (!species.Contains(entry.UnitId) && !RunSession.StorySpecies(entry.UnitId)) species.Add(entry.UnitId);
         }
         private void Update()
@@ -42,7 +46,12 @@ namespace ArcaneBrigade
                 if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { picked = species[page * 9 + i]; return; }
             if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && picked != null && species.Contains(picked)) Sell();
         }
-        private void Sell() { InputConsumedFrame = Time.frameCount; if (owner.SellMemory(picked)) picked = null; }
+        private void Sell() { InputConsumedFrame = Time.frameCount; if (Sale ? owner.SellToCustomer(picked) : owner.SellMemory(picked)) picked = null; }
+        private void Seal(Vector2 at, float size)
+        {
+            if (Sale && (saleIcon ??= Resources.Load<Sprite>("UI/Items/MemorySale")) != null) RunHud.Sprite(new Rect(at.x - size * .7f, at.y - size * .7f, size * 1.4f, size * 1.4f), saleIcon);
+            else ArcadeSkin.Seal(at, size, "$");
+        }
         private void OnGUI()
         {
             if (!Standing) { folded = false; wasOpen = false; return; }
@@ -54,7 +63,7 @@ namespace ArcaneBrigade
                 if (name == null) { name = ArcadeTypography.Style(22, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true; }
                 float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 2.4f) * 3;
                 Rect letter = new Rect(LetterRect.x, LetterRect.y + bob, LetterRect.width, LetterRect.height);
-                ArcadeSkin.Ticket(letter, ArcadeSkin.Paper, ArcadeSkin.Wax); ArcadeSkin.Seal(new Vector2(letter.x + 34, letter.center.y), 34, "$");
+                ArcadeSkin.Ticket(letter, ArcadeSkin.Paper, ArcadeSkin.Wax); Seal(new Vector2(letter.x + 34, letter.center.y), 34);
                 name.normal.textColor = new Color(.25f, .19f, .14f);
                 GUI.Label(new Rect(letter.x + 60, letter.y + 6, letter.width - 76, letter.height - 12), "A letter from the Last Customer", name);
                 if (GUI.Button(letter, GUIContent.none, GUIStyle.none)) { folded = false; InputConsumedFrame = Time.frameCount; CheckpointAudio.PlayInterfaceId("ui.select"); }
@@ -81,19 +90,20 @@ namespace ArcaneBrigade
             float unfold = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01((Time.unscaledTime - openedAt) / .42f);
             if (unfold < 1) { float k = unfold - 1, sy = Mathf.Max(.04f, 1 + 2.4f * k * k * k + 1.4f * k * k); Vector3 pv = new Vector3(card.center.x, card.y + 40, 0); GUI.matrix = GUI.matrix * Matrix4x4.TRS(pv, Quaternion.identity, Vector3.one) * Matrix4x4.Scale(new Vector3(1, sy, 1)) * Matrix4x4.TRS(-pv, Quaternion.identity, Vector3.one); }
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
-            ArcadeSkin.Seal(new Vector2(card.xMax - 42, card.y + 40), 46, "$");
+            Seal(new Vector2(card.xMax - 42, card.y + 40), 46);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
-            GUI.Label(new Rect(card.x + 50, card.y + 26, card.width - 100, 120), "THE LAST CUSTOMER: 'Sell me your memory of one of them, and I'll light a lamp for you. You'd hardly miss it.'", hand);
+            GUI.Label(new Rect(card.x + 50, card.y + 26, card.width - 100, 120), Sale ? "THE LAST CUSTOMER: 'I'll take one of them off your hands. Every coin they cost you, back in your pocket.'" : "THE LAST CUSTOMER: 'Sell me your memory of one of them, and I'll light a lamp for you. You'd hardly miss it.'", hand);
             plain.normal.textColor = new Color(.18f, .14f, .1f);
-            GUI.Label(new Rect(card.x + 50, card.y + 148, card.width - 100, 84), "The one you choose stays with you, but becomes a stranger: you forget who they are, and they no longer count toward bonds. One broken lantern burns again.", plain);
+            GUI.Label(new Rect(card.x + 50, card.y + 148, card.width - 100, 84), Sale ? "The one you choose leaves for good. No letter, no new place: only gold." : "The one you choose stays with you, but becomes a stranger: you forget who they are, and they no longer count toward bonds. One broken lantern burns again.", plain);
             for (int i = 0; i < shown; i++)
             {
                 UnitDefinition unit = owner.Content.Unit(species[first + i]);
-                Rect slot = new Rect(card.x + (card.width - shown * 150) * 0.5f + i * 150 + 10, card.y + 245, 130, 150);
-                ArcadeSkin.Plate(slot, ArcadeSkin.Card);
-                if (unit != null) RunHud.Sprite(new Rect(slot.x + 15, slot.y + 8, 100, 90), unit.Body);
-                name.normal.textColor = ArcadeSkin.Cream;
-                GUI.Label(new Rect(slot.x + 4, slot.y + 100, slot.width - 8, 44), (i + 1) + " · " + (unit == null ? species[first + i] : RunUICopy.UnitName(unit)), name);
+                // the portrait in its round frame, the name in ink on the paper below it (no key numbers: phones have no keys)
+                Rect slot = new Rect(card.x + (card.width - shown * 150) * 0.5f + i * 150 + 10, card.y + 236, 130, 184), frame = new Rect(slot.x, slot.y, 130, 130);
+                ArcadeSkin.Plate(frame, ArcadeSkin.Card);
+                if (unit != null) RunHud.Sprite(new Rect(frame.x + 20, frame.y + 18, 90, 90), unit.Body);
+                name.normal.textColor = new Color(.18f, .14f, .1f);
+                GUI.Label(new Rect(slot.x - 6, frame.yMax + 2, slot.width + 12, 52), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name);
                 if (picked == species[first + i]) ArcadeSkin.WorldFocus(slot);
                 if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = species[first + i]; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
@@ -112,15 +122,16 @@ namespace ArcaneBrigade
             bool ready = picked != null && species.Contains(picked);
             UnitDefinition chosen = ready ? owner.Content.Unit(picked) : null;
             plain.normal.textColor = ready ? new Color(.55f, .12f, .1f) : new Color(.18f, .14f, .1f);
-            GUI.Label(new Rect(card.x + 50, card.y + 420, card.width - 100, 60), ready
-                ? (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " stays and fights, but no longer counts toward bonds. A broken lantern burns again."
+            GUI.Label(new Rect(card.x + 50, card.y + 436, card.width - 100, 60), ready
+                ? Sale ? (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " leaves for good. You get " + owner.Session.MemorySalePrice(picked) + " gold."
+                : (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " stays and fights, but no longer counts toward bonds. A broken lantern burns again."
                 : "Pick a friend to see what you would give up.", plain);
             float buttonsY = card.yMax - 120;
             Rect sell = new Rect(card.center.x - 380, buttonsY, 340, 88), refuse = new Rect(card.center.x + 40, buttonsY, 340, 88);
             // both answers close the letter with its motion first (requirement 25/10/2026)
-            if (ArcadeSkin.Button(sell, ready ? "SELL THE MEMORY" : "PICK ONE", KitButton.Danger, ready, name) && !CardPop.Closing("last-customer")) CardPop.CloseThen("last-customer", Sell);
-            if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name) && !CardPop.Closing("last-customer")) { InputConsumedFrame = Time.frameCount; CardPop.CloseThen("last-customer", () => owner.RefuseCustomer()); }
-            if (unfold < .5f && !PresentationSettings.ReducedMotion) ArcadeSkin.Seal(new Vector2(card.center.x, card.y + 40), 60 * (1 - unfold * 2) + 10, "$"); // the seal breaking open
+            if (ArcadeSkin.Button(sell, ready ? (Sale ? "SELL" : "SELL THE MEMORY") : "PICK ONE", KitButton.Danger, ready, name) && !CardPop.Closing("last-customer")) CardPop.CloseThen("last-customer", Sell);
+            if (ArcadeSkin.Button(refuse, "WALK ON", KitButton.Secondary, true, name) && !CardPop.Closing("last-customer")) { InputConsumedFrame = Time.frameCount; CardPop.CloseThen("last-customer", () => { if (Sale) owner.DeclineMemorySale(); else owner.RefuseCustomer(); }); }
+            if (unfold < .5f && !PresentationSettings.ReducedMotion) Seal(new Vector2(card.center.x, card.y + 40), 60 * (1 - unfold * 2) + 10); // the seal breaking open
             GUI.color = popKeep;
             GUI.matrix = previous;
         }
@@ -227,6 +238,10 @@ namespace ArcaneBrigade
         public bool ChooseColours() => CommitStory(() => session.ChooseColours(), "up.rarity.gold");
         public bool SellMemory(string unitId) => CommitStory(() => session.SellMemory(unitId), "sig.stamp");
         public bool RefuseCustomer() => CommitStory(() => session.RefuseCustomer(), "ui.close");
+        public bool SellToCustomer(string unitId) => CommitStory(() => session.SellToCustomer(unitId), "sig.stamp");
+        public bool DeclineMemorySale() => CommitStory(() => session.DeclineMemorySale(), "ui.close");
+        public bool SeeHome(string unitId) => CommitStory(() => session.SeeHome(unitId), "up.star2");
+        public bool Ferry(string unitId, string newId) => CommitStory(() => session.Ferry(unitId, newId), "up.rarity.gold");
         /// <summary>Applies a story decision, saves it, and rebuilds the shop so bonds and lanterns reflect it.</summary>
         private bool CommitStory(System.Func<bool> decision, string cue)
         {

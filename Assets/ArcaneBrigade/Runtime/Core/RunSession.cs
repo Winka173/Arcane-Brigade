@@ -783,7 +783,7 @@ namespace ArcaneBrigade
                 MergeCompanions(offer.Id);
                 TrackMergeDrought(false);
             }
-            else
+            else if (!StarlightThreadItem.Is(offer.Id)) // a thread is handed over below, never stashed
             {
                 ItemStack stack = State.Items.Find(candidate => candidate.Id == offer.Id);
                 ItemDefinition item = catalog.Item(offer.Id);
@@ -806,6 +806,7 @@ namespace ArcaneBrigade
             State.BuildScoreMultiplier = catalog.StatRevision > 0 ? K10StatRules.Factor(Bonus(ItemEffect.ScoreMultiplier), 0.1f, 100) : 1;
             Notice = offer.Kind == OfferKind.Companion ? "Purchased. One fighter per species; extra copies wait for merging." : "Upgrade stacks for this run.";
             if (stork) Notice = "The stork brought it at 2★.";
+            if (StarlightThreadItem.Is(offer.Id)) GiveRainbowThread();
             RetireClosedNewSpecies(); // the quota may have just closed: no unbuyable new friend stays on the shelf
             return true;
         }
@@ -1150,6 +1151,7 @@ namespace ArcaneBrigade
                 ItemDefinition item = specialItems[WeightedItem(specialItems)];
                 State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = SpecialItemPrice(item), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
             }
+            OfferStarlightThread(); // requirement 31/10/2026: from wave 15 the stall now and then sells a Starlight Thread
         }
 
         /// <summary>An altar item paid in HP costs a share of the hero's maximum HP, never less than its authored price. Round 2:

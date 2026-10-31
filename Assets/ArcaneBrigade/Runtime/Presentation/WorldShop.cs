@@ -89,7 +89,7 @@ namespace ArcaneBrigade
         {
             if (manual.sqrMagnitude > .01f) { walkTo = null; return manual; }
             // a card or offer already open owns the tap
-            bool modal = owner.GetComponent<WaitingRealmStage>()?.Asking == true || owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || owner.Details.Open;
+            bool modal = owner.GetComponent<WaitingRealmStage>()?.Asking == true || owner.GetComponent<VisitorCard>()?.Open == true || owner.GetComponent<LucidAltar>()?.Open == true || owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true || FerryDock.Showing || owner.Details.Open;
             if (Input.GetMouseButtonDown(0) && camera != null && GUIUtility.hotControl == 0 && !modal)
             {
                 Matrix4x4 fit = ArcadeTypography.FitViewport(camera.pixelRect, Screen.safeArea, Screen.height, 1920, 1080);
@@ -244,6 +244,8 @@ namespace ArcaneBrigade
             if (offer != null && (offer.Open || offer.InputConsumedFrame == Time.frameCount)) return false;
             MemoryReturn memory = owner.GetComponent<MemoryReturn>();
             if (memory != null && memory.Open) return false;
+            FerryDock ferry = owner.GetComponent<FerryDock>();
+            if (ferry != null && (ferry.Open || ferry.Near || ferry.InputConsumedFrame == Time.frameCount)) return false;
             VisitorCard visiting = owner.GetComponent<VisitorCard>();
             if (visiting != null && (visiting.Open || visiting.InputConsumedFrame == Time.frameCount)) return false;
             LucidAltar altar = owner.GetComponent<LucidAltar>();

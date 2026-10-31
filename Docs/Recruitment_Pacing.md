@@ -1,5 +1,7 @@
 # Nhịp tuyển companion — cập nhật 16/10/2026
 
+**31/10/2026:** [Đổi đội hình và sao thứ 5](Brigade_Changes_2026-10-31.md): tiễn về nhà, đò qua sông, Khách Cuối mua ký ức, Sợi Chỉ Sao ở chợ mộng.
+
 **Latest rules (22/10/2026):** [Two-copy merges and late recruitment](Recruitment_Two_Copy_And_Late_Pacing.md): two equal-star copies merge; wave 10+ earns a new-species allowance every three waves and permits two regular upgrade purchases; dream shop every three or four waves. Earlier rules below are historical. No tests/build run for this change.
 
 **22/10/2026:** [Luật hiện hành](Companion_Deployment_And_Recruitment_2026-10-22.md): mỗi loài một companion ra sân; bản trùng là nguyên liệu. Shop thường tích lũy 1 lượt loài mới mỗi 2 wave, tối đa 1 loài mới/wave; shop đặc biệt độc lập, 1 loài mới/lần vào. Các quota/cooldown cũ bên dưới là lịch sử.

@@ -407,6 +407,8 @@ namespace ArcaneBrigade
             if (bosses > 0) lines.Add("oil|Bosses beaten ×" + bosses + "|" + bosses * OilPerBoss);
             if (d > 0 && baseOil > 0) lines.Add("oil|" + RunMeta.DifficultyNames[d] + " ×" + DifficultyOil[d].ToString("0.0#") + "|" + (Mathf.RoundToInt(baseOil * DifficultyOil[d]) - baseOil));
             if (finds > 0) lines.Add("oil|New finds|" + finds);
+            int letters = Mathf.Min(run.Letters, RunSession.LettersCounted) * RunSession.OilPerLetter; // friends seen home left letters
+            if (letters > 0) { oil += letters; lines.Add("oil|Letters from home ×" + Mathf.Min(run.Letters, RunSession.LettersCounted) + "|" + letters); }
             float bright = TreeOil(profile);
             if (bright > 0 && oil > 0) { int more = Mathf.RoundToInt(oil * bright); lines.Add("oil|Bright oil +" + Mathf.RoundToInt(bright * 100) + "%|" + more); oil += more; }
             float pact = PactMultiplier(meta.Pacts), favour = FavourMultiplier(profile);

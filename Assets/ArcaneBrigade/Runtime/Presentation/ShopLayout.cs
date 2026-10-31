@@ -52,6 +52,9 @@ namespace ArcaneBrigade
         }
 
         /// <summary>The footprint a prop of this size covers when its floor contact is at foot (float clearance included).</summary>
+        /// <summary>The ferry stands by the right wall like a visitor (it may use another night's chair spot, rather a little
+        /// smaller and close than far away) but, unlike one, it is never left out: it then takes any free spot.</summary>
+        public const string FerryId = "ferry";
         public static Rect Footprint(Vector2 foot, Vector2 size) => new Rect(foot.x - size.x * 0.5f - 0.16f, foot.y + 0.05f, size.x + 0.32f, size.y + Hover);
 
         /// <summary>Asks for room in the shop. Returns false when this shop has no free spot for the prop (hide it);
@@ -73,7 +76,7 @@ namespace ArcaneBrigade
                 prop.Priority = priority; prop.Preferred = preferred; prop.Size = size; dirty = true;
             }
             if (prop.Shrink != shrink || prop.Rim != rim) { prop.Shrink = shrink; prop.Rim = rim; dirty = true; }
-            bool transient = id.StartsWith("story:") && id.Contains("LastCustomer");
+            bool transient = id == FerryId || id.StartsWith("story:") && id.Contains("LastCustomer");
             if (prop.Transient != transient) { prop.Transient = transient; dirty = true; }
             if (dirty && plannedFrame != Time.frameCount) Plan(); // new arrivals in the same frame join next frame's plan
             foot = prop.Planned ? prop.Foot : preferred;
@@ -180,7 +183,7 @@ namespace ArcaneBrigade
                 if (prop.Transient)
                     for (float fit = 1f; !prop.Visible && fit > 0.55f; fit -= 0.13f)
                         if (prop.Visible = Find(prop, prop.Size * fit, view, out prop.Foot, 3.5f)) prop.Fit = fit;
-                if (!prop.Visible && !prop.Transient) prop.Visible = Find(prop, prop.Size, view, out prop.Foot);
+                if (!prop.Visible && (!prop.Transient || prop.Id == FerryId)) prop.Visible = Find(prop, prop.Size, view, out prop.Foot);
                 // the journal cabinet and the lamp are part of the story: rather smaller than missing
                 for (float fit = 0.85f; !prop.Visible && prop.Shrink && !prop.Transient && fit > 0.5f; fit -= 0.13f)
                     if (prop.Visible = Find(prop, prop.Size * fit, view, out prop.Foot)) prop.Fit = fit;

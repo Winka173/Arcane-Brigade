@@ -54,6 +54,7 @@ namespace ArcaneBrigade
             gameObject.AddComponent<WaitingRealmStage>().Configure(controller);
             gameObject.AddComponent<ActOneWorldArt>().Configure(controller);
             gameObject.AddComponent<CustomerOffer>().Configure(controller);
+            gameObject.AddComponent<FerryDock>().Configure(controller);
             gameObject.AddComponent<VisitorCard>().Configure(controller);
             gameObject.AddComponent<LucidAltar>().Configure(controller);
             gameObject.AddComponent<MapArrival>().Configure(controller);
