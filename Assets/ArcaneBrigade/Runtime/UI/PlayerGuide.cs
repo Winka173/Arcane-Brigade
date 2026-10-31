@@ -123,7 +123,9 @@ namespace ArcaneBrigade
             Rect r = new Rect(560, 150, 800, 104);
             // never over an open card (the shop's details, an inspect card): the tip waits until it is closed
             Rect shown = RunHud.ShownShopCard;
-            if (shown.height > 0 && shown.Overlaps(r) || ModalOpen(owner) || owner.PresentationPaused)
+            // in the shop the tip also waits while someone in the room is talking (review 31/10/2026: banner and speech crowded the merchant)
+            bool talking = owner.Session?.State.Phase == SessionPhase.Shop && SpeechBubbles.DrawnCount > 0;
+            if (shown.height > 0 && shown.Overlaps(r) || ModalOpen(owner) || owner.PresentationPaused || talking)
             {
                 if (Event.current.type == EventType.Repaint) shownAt += Time.unscaledDeltaTime;
                 return;

@@ -514,7 +514,7 @@ namespace ArcaneBrigade
         /// <summary>The painted menu background: the waiting room at night, cropped to fill the screen.</summary>
         public static bool MenuBackdrop(Rect r, float alpha = 1)
         {
-            Sprite sprite = KitSprite("Menu/Backdrop");
+            Sprite sprite = KitSprite("Menu/DoorRoom");
             if (sprite == null || Event.current.type != EventType.Repaint) return sprite != null;
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             GUI.DrawTexture(r, sprite.texture, ScaleMode.ScaleAndCrop, false);

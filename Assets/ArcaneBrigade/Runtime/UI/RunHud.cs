@@ -729,6 +729,10 @@ namespace ArcaneBrigade
         {
             // the page is as tall as its words (UI standard: no big frame left empty), up to the screen's height
             string description = RunUICopy.SentenceLines(offerCard.Details); // UI standard: no all-capital lines
+            // the header already names the kind, rarity and stacking: the details do not repeat it on their first line
+            int firstBreak = description.IndexOf('\n'), firstDot = description.IndexOf(" · ");
+            if (firstBreak > 0 && firstDot > 0 && firstDot < firstBreak && !string.IsNullOrEmpty(offerCard.Identity) && offerCard.Identity.StartsWith(description.Substring(0, firstDot), System.StringComparison.OrdinalIgnoreCase))
+                description = description.Substring(firstBreak + 1).TrimStart('\n');
             if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
             float contentHeight = GlossaryUI.Height(description, cardLine, 1120 - 112 - 30) + 8;
             float panelHeight = Mathf.Clamp(34 + 96 + offerCard.HeaderHeight + 16 + contentHeight + 58, 380, 880);

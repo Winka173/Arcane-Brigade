@@ -124,7 +124,7 @@ namespace ArcaneBrigade
 
         private static Rect CardRect(Vector2 at)
         {
-            const float w = 290, h = 262;
+            const float w = 290, h = 300;
             float x = at.x < PanelRect.center.x ? at.x + 40 : at.x - 40 - w;
             return new Rect(x, Mathf.Clamp(at.y - h * .5f, PanelRect.y + 64, PanelRect.yMax - h - 8), w, h);
         }
@@ -168,10 +168,12 @@ namespace ArcaneBrigade
             body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .9f);
             body.alignment = TextAnchor.MiddleCenter; small.alignment = TextAnchor.UpperCenter;
             GUI.Label(new Rect(inner.x, inner.y + 58, inner.width, 26), n.Name, body);
-            GUI.Label(new Rect(inner.x, inner.y + 84, inner.width, 44), n.Line, small);
+            // the lines flow (a three-line effect pushed the tag over its last line)
+            float lineHeight = Mathf.Max(26, small.CalcHeight(new GUIContent(n.Line), inner.width));
+            GUI.Label(new Rect(inner.x, inner.y + 84, inner.width, lineHeight), n.Line, small);
             int rank = MetaProgression.LampRank(profile, n.Id);
             string tag = n.Capstone ? "CROWN" : MetaProgression.Fork(n) != null ? "PICK 1 OF 2" : n.Ranks > 1 ? "RANK " + rank + "/" + n.Ranks : null;
-            if (tag != null) { chip.normal.textColor = new Color(.55f, .18f, .12f); GUI.Label(new Rect(inner.x, inner.y + 124, inner.width, 22), tag, chip); }
+            if (tag != null) { chip.normal.textColor = new Color(.55f, .18f, .12f); GUI.Label(new Rect(inner.x, inner.y + 88 + lineHeight, inner.width, 22), tag, chip); }
             body.alignment = TextAnchor.UpperLeft; small.alignment = TextAnchor.UpperLeft;
 
             string blocked = MetaProgression.NodeBlocked(profile, n);
@@ -179,10 +181,12 @@ namespace ArcaneBrigade
             if (blocked == "MAX") ArcadeSkin.Button(button, n.Ranks > 1 ? "MAX" : "LIT", KitButton.Secondary, false, chip);
             else if (blocked == "Locked")
             {
-                ArcadeSkin.Lock(new Vector2(button.center.x, button.y - 14), 20, ink);
                 small.normal.textColor = ink; small.alignment = TextAnchor.UpperCenter;
                 string why = n.Branch < 0 ? "Light every branch first" : "Light " + MetaProgression.BranchOpensAt + " in " + MetaProgression.BranchNames[n.Branch - 1] + "\nor win " + n.Branch + " difficult" + (n.Branch == 1 ? "y" : "ies");
-                GUI.Label(new Rect(inner.x, button.y, inner.width, 44), why, small);
+                // the reason sits on the card's foot, the padlock just above it (it ran off the card's bottom)
+                float whyHeight = small.CalcHeight(new GUIContent(why), inner.width);
+                ArcadeSkin.Lock(new Vector2(button.center.x, inner.yMax - whyHeight - 16), 20, ink);
+                GUI.Label(new Rect(inner.x, inner.yMax - whyHeight, inner.width, whyHeight), why, small);
                 small.alignment = TextAnchor.UpperLeft;
             }
             else

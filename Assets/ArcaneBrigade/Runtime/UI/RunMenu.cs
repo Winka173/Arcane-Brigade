@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using System.IO;
 using UnityEngine;
@@ -384,6 +385,7 @@ namespace ArcaneBrigade
         // requirement 24/10/2026: the game opens on a loading screen - the night, the lamp lighting a row of lanterns one by one under
         // the name - then fades into the menu (once per launch; Reduced Motion shortens it to a moment)
         private static float bootStarted = -1; private static bool booted;
+        private Sprite bootLantern;
         private void DrawBootLoading()
         {
             if (booted) return;
@@ -396,28 +398,30 @@ namespace ArcaneBrigade
             GUI.DrawTexture(new Rect(-2000, -1200, 5280, 3120), Texture2D.whiteTexture);
             GUI.color = new Color(1, 1, 1, 1 - fade);
             float k = Mathf.Clamp01(age / length);
-            // the painted hall of lanterns (UI kit wave 3), darkened where the title and the lantern row stand
-            Sprite hall = ArcadeSkin.KitSprite("Menu/LoadingPainting");
-            if (hall != null)
+            // requirement 31/10/2026 (review): the night lane to the Waiting Room; the eight lanterns of the story (the HUD's own)
+            // stand along its kerb and light one by one as the progress; the title sits where the main menu keeps it
+            Sprite lane = ArcadeSkin.KitSprite("Menu/LoadingLane");
+            if (lane != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), lane.texture, ScaleMode.ScaleAndCrop);
+            if (bootLantern == null) bootLantern = Resources.Load<Sprite>("MienCho/Lanterns/Intact");
+            for (int i = 0; i < 8; i++)
             {
-                GUI.DrawTexture(new Rect(0, 0, 1280, 720), hall.texture, ScaleMode.ScaleAndCrop);
-                ArcadeSkin.Glow(new Rect(200, 330, 880, 260), new Color(0, 0, 0, .65f));
-            }
-            else
-            {
-                ArcadeSkin.Glow(new Rect(440, 120, 400, 400), new Color(1f, .78f, .42f, .25f + .25f * k));
-                UnitDefinition emblem = catalog.Unit("LanternKnight");
-                if (emblem != null) RunHud.Sprite(new Rect(555, 170, 170, 200), emblem.Body);
+                float f = i / 7f;
+                float x = Mathf.Lerp(100, 860, f);
+                Vector2 foot = new Vector2(x, 433 + .1914f * x - .0001515f * x * x); // standing on the painted kerb as it curves to the door
+                float h = Mathf.Lerp(100, 74, f); // smaller toward the door
+                float lit = Mathf.Clamp01(k * 8.4f - i); // each one fades up in turn
+                Rect at = new Rect(foot.x - h * .35f, foot.y - h, h * .7f, h);
+                if (lit > 0) ArcadeSkin.Glow(new Rect(foot.x - h * 1.4f, foot.y - h * 1.7f, h * 2.8f, h * 2.2f), new Color(1f, .78f, .4f, .85f * lit * (1 - fade)));
+                Color before = GUI.color;
+                float v = Mathf.Lerp(.5f, 1f, lit); // an unlit lantern is a dim shape on the kerb
+                GUI.color = new Color(before.r * v, before.g * v, before.b * Mathf.Lerp(.42f, 1f, lit), before.a);
+                if (bootLantern != null) RunHud.Sprite(at, bootLantern); else ArcadeSkin.Diamond(foot + Vector2.up * -h * .5f, h * .3f, new Color(1f, .8f, .4f));
+                GUI.color = before;
             }
             GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
-            TextAnchor a = logo.alignment; logo.alignment = TextAnchor.MiddleCenter; logo.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(240, 390, 800, 90), "Arcane Brigade", logo); logo.alignment = a;
-            for (int i = 0; i < 9; i++)
-            {
-                Vector2 p = new Vector2(640 + (i - 4) * 44, 520); bool lit = k * 9 > i;
-                ArcadeSkin.Diamond(p, 26, new Color(.1f, .08f, .06f, .9f)); ArcadeSkin.Diamond(p, lit ? 20 : 12, lit ? new Color(1f, .8f, .4f) : new Color(.3f, .27f, .24f));
-            }
+            TextAnchor a = logo.alignment; logo.alignment = TextAnchor.UpperLeft; logo.normal.textColor = ArcadeSkin.Cream;
+            GUI.Label(new Rect(40, 54, 760, 90), "Arcane Brigade", logo); logo.alignment = a;
             GUI.color = keep;
         }
 
@@ -511,7 +515,7 @@ namespace ArcaneBrigade
         private Texture2D Backdrop()
         {
             // the painted menu background (UI kit, item 13); after Act One the room with the turned chair keeps the story
-            if (!ActOneDone && ArcadeSkin.KitSprite("Menu/Backdrop") is Sprite menu) return menu.texture;
+            if (!ActOneDone && ArcadeSkin.KitSprite("Menu/DoorRoom") is Sprite door) return door.texture; // the door the brigade waits at
             if (ActOneDone)
             {
                 if (turnedRoom == null) turnedRoom = Resources.Load<Texture2D>("MienCho/WaitingRoom_ChairTurned");
@@ -520,6 +524,71 @@ namespace ArcaneBrigade
             if (waitingRoom == null) waitingRoom = Resources.Load<Texture2D>("MienCho/WaitingRoom");
             if (waitingRoom == null && shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
             return waitingRoom != null ? waitingRoom : shopIllustration;
+        }
+
+        // requirement 31/10/2026 (review: one still Lantern Knight read as monotonous): the brigade of your last night waits at the
+        // door - the hero in front, its friends around it, each in its own idle; the first time, a starting brigade. Different
+        // for every player and after every run.
+        private static readonly Vector3[] BrigadeSpots = // foot x, foot y, height on the 1280x720 menu (back row first)
+        {
+            new Vector3(665, 548, 130), new Vector3(880, 548, 130), new Vector3(560, 590, 142), new Vector3(985, 590, 142),
+            new Vector3(600, 650, 156), new Vector3(950, 650, 156),
+        };
+        private List<UnitDefinition> brigade; private int brigadeFor = -1;
+        private List<UnitDefinition> MenuBrigade(out UnitDefinition hero)
+        {
+            int key = profile?.History?.Count ?? 0;
+            if (brigade == null || brigadeFor != key)
+            {
+                brigadeFor = key; brigade = new List<UnitDefinition>();
+                RunRecord last = profile?.History != null && profile.History.Count > 0 ? profile.History[profile.History.Count - 1] : null;
+                heroCache = last?.Build != null ? catalog.Unit(last.Build.ChampionId) : null;
+                if (last?.Build?.Roster != null)
+                    foreach (RosterEntry entry in CompanionDeployment.Select(last.Build.Roster))
+                        if (brigade.Count < BrigadeSpots.Length && catalog.Unit(entry.UnitId) is UnitDefinition u && u.Body != null && !RunSession.StorySpecies(u.Id) && !brigade.Contains(u)) brigade.Add(u);
+                if (brigade.Count == 0)
+                    foreach (UnitDefinition u in catalog.Companions)
+                        if (brigade.Count < BrigadeSpots.Length && u != null && u.Body != null && !u.SpecialRecruit && !u.GiftOnly && string.IsNullOrEmpty(u.ExclusiveHero) && !RunSession.StorySpecies(u.Id)) brigade.Add(u);
+            }
+            hero = heroCache ?? catalog.Unit("LanternKnight") ?? catalog.Champions[0];
+            return brigade;
+        }
+        private UnitDefinition heroCache;
+
+        /// <summary>A unit standing on the menu floor: its foot at the point, its idle frame, turned to face <paramref name="faceRight"/>.</summary>
+        private static void MenuUnit(Vector2 foot, float height, UnitDefinition unit, int identity, bool faceRight, bool reduced, float hop)
+        {
+            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 2 ? unit.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, false, reduced)] : unit.Body;
+            if (pose == null) return;
+            Rect src = pose.rect; float w = height * src.width / src.height;
+            ArcadeSkin.Glow(new Rect(foot.x - w * .45f, foot.y - 12, w * .9f, 24), new Color(0, 0, 0, .55f)); // its shadow on the floor
+            Rect at = new Rect(foot.x - w * .5f, foot.y - height - hop, w, height);
+            Texture2D t = pose.texture;
+            Rect uv = new Rect(src.x / t.width, src.y / t.height, src.width / t.width, src.height / t.height);
+            if (!faceRight) uv = new Rect(uv.xMax, uv.y, -uv.width, uv.height); // the art faces right; mirrored to face left
+            GUI.DrawTextureWithTexCoords(at, t, uv);
+        }
+
+        private void DrawWaitingBrigade(bool reduced, float breathe)
+        {
+            List<UnitDefinition> friends = MenuBrigade(out UnitDefinition hero);
+            // after Act I the room with the turned chair keeps its story: the hero alone, where it always stood
+            bool door = !ActOneDone;
+            if (!door) friends = new List<UnitDefinition>();
+            Vector2 heroFoot = door ? new Vector2(772, 686) : new Vector2(965, 530); // on the carpet, in front of the open door
+            ArcadeSkin.Glow(new Rect(heroFoot.x - 330, heroFoot.y - 330, 660, 420), new Color(1f, .78f, .42f, .16f + .08f * breathe)); // the lamp's pool
+            float now = Time.unscaledTime;
+            // now and then one friend hops (one at a time, in turn)
+            int hopper = friends.Count > 0 ? Mathf.FloorToInt(now / 2.6f) % friends.Count : -1; float hopAge = Mathf.Repeat(now, 2.6f);
+            for (int i = 0; i < friends.Count; i++)
+            {
+                Vector3 spot = BrigadeSpots[i];
+                float hop = !reduced && i == hopper && hopAge < .42f ? Mathf.Sin(hopAge / .42f * Mathf.PI) * 16 : 0;
+                MenuUnit(new Vector2(spot.x, spot.y), spot.z, friends[i], 11 + i * 7, spot.x < heroFoot.x, reduced, hop);
+            }
+            float bob = reduced ? 0 : Mathf.Sin(now * 1.3f) * 3;
+            MenuUnit(heroFoot, door ? 262 : 360, hero, 3, true, reduced, bob + 3);
+            if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(now * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(heroFoot.x + Mathf.Sin(r * 7 + i * 2) * 150, heroFoot.y - r * 320), 5 + 5 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .7f * Mathf.Sin(r * Mathf.PI))); }
         }
 
         private void DrawLanding()
@@ -556,13 +625,7 @@ namespace ArcaneBrigade
             // requirement 24/10/2026: "nobody can tell what reacts to the mouse, let alone on a phone - redo the main menu, with the
             // Lantern Knight as its emblem". Every choice is a plain painted button with its icon, all visible at once (the
             // order mirrors SpotLabels for keys and pads); the Lantern Knight stands on the right holding up its lamp.
-            UnitDefinition emblem = catalog.Unit("LanternKnight") ?? catalog.Champions[0];
-            Sprite pose = emblem.AnimationFrames != null && emblem.AnimationFrames.Length >= 4 ? emblem.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, 3, false, reduced)] : emblem.Body;
-            Rect knight = new Rect(800, 150 + (reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.3f) * 5), 330, 380);
-            ArcadeSkin.Glow(new Rect(knight.x - 160, knight.y - 120, knight.width + 320, knight.height + 220), new Color(1f, .78f, .42f, .22f + .1f * breathe));
-            ArcadeSkin.Glow(new Rect(knight.x + 40, knight.yMax - 34, knight.width - 80, 56), new Color(0, 0, 0, .6f));
-            RunHud.Sprite(knight, pose);
-            if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(Time.unscaledTime * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(knight.center.x + Mathf.Sin(r * 7 + i * 2) * 120, knight.yMax - r * 420), 6 + 6 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .8f * Mathf.Sin(r * Mathf.PI))); }
+            DrawWaitingBrigade(reduced, breathe);
             if (spotPlate == null) { spotPlate = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true); }
             Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true), null };
             if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote) }; // one size for the grid, at the standard's minimum

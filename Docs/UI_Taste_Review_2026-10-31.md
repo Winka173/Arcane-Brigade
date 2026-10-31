@@ -1,0 +1,173 @@
+# Rà soát UI theo taste-skill và frontend-ui-engineering — 31/10/2026
+
+Tài liệu rà soát 66 màn hình. Ảnh lấy từ bản build mới nhất, gồm lượt chụp playtest và lượt chụp menu.
+
+Màn hình được chấm theo hai bộ tiêu chí:
+
+- **taste-skill (design-taste-frontend):**
+  - 14 bước nhìn:
+    - một giây rồi năm giây;
+    - nheo mắt;
+    - che logo;
+    - mép chữ;
+    - khoảng trống;
+    - cỡ chữ;
+    - màu;
+    - hình;
+    - độ lặp;
+    - điện thoại;
+    - độ đầy;
+    - nội dung;
+    - va chạm;
+    - đối thủ và "thứ sống".
+  - Điểm theo trọng số Awwwards: thiết kế 40, dễ dùng 30, sáng tạo 20, nội dung 10.
+- **frontend-ui-engineering (addyosmani):**
+  - trạng thái đang tải, trống, lỗi;
+  - vùng bấm;
+  - màu không phải tín hiệu duy nhất;
+  - luồng đi lại giữa các màn.
+
+Một số quy tắc của taste-skill được điều chỉnh cho game. Skill này viết cho trang web và cấm trang trí, như viền, gradient, khung và bóng đổ. Arcane Brigade lại lấy art vẽ tay làm phong cách, nên khung và viền vẽ tay được giữ. Các bước nhìn và cách chấm điểm vẫn áp dụng nguyên vẹn.
+
+## Kết luận nhanh
+
+| Màn | Kết luận | Điểm (TK/DD/ST/ND → tổng) |
+| --- | --- | --- |
+| Loading | **Làm lại** | 6 / 6 / 4 / 5 → 5.6 |
+| Main menu | **Làm lại** | 6.5 / 7 / 5 / 6 → 6.3 |
+| Hero select | Giữ, sửa nhỏ | 7.5 / 7.5 / 6.5 / 7 → 7.3 |
+| How to Play | Sửa | 6 / 7 / 6 / 6 → 6.3 |
+| Settings | Giữ | 7 / 8 / 6 / 7 → 7.1 |
+| Collection | Giữ, sửa nhỏ | 7.5 / 7.5 / 7 / 7 → 7.4 |
+| Waiting Room (hub) | Giữ | 8 / 7.5 / 8 / 7 → 7.8 |
+| Lamp Tree | **Sửa** | 6.5 / 6 / 7 / 6 → 6.4 |
+| Postbox, Bell, Window, Night Pact, Wardrobe, Museum | Giữ | khoảng 7.5 |
+| Shop | **Sửa** | 7 / 6.5 / 8 / 7 → 7.1 |
+| Thẻ mô tả món đồ và chi tiết | Sửa nhỏ | 7 / 7 / 6 / 6.5 → 6.8 |
+| HUD trận đấu, boss, bản đồ | Giữ | 8 / 7.5 / 8 / 7 → 7.7 |
+| Thẻ khách ghé, phòng bí mật, quà Keeper | Giữ | khoảng 7.5 |
+| Combos | Sửa nhỏ | 6.5 / 7 / 6 / 5 → 6.4 |
+| Tổng kết run | **Sửa** | 6.5 / 6.5 / 6 / 7.5 → 6.5 |
+| Ending | Giữ | 8 / 8 / 8 / 8 → 8.0 |
+| Bến đò, Khách Cuối | Giữ | khoảng 7.3 |
+
+## Từng màn
+
+### Loading — làm lại
+
+- **Nhìn một giây:** chỉ thấy "một sảnh". Bức tranh sảnh đèn lồng đặt vào game nào cũng được, nên trượt bước "che logo".
+- **Tiến độ:** chín hình thoi vẽ bằng code, không gắn với thế giới trong game.
+- **Bố cục:** tên game nằm giữa, khác vị trí tên ở menu chính, nên chuyển từ loading sang menu bị giật.
+- **Ý tưởng:** tám đèn lồng của mạch truyện (đèn trên HUD) biến thành thanh tiến độ. Màn hình là con hẻm đêm dẫn tới cửa Waiting Room. Tám đèn thật trong game sáng lần lượt dọc lối đi. Tên game nằm cùng vị trí với menu chính.
+
+### Main menu — làm lại
+
+- **Nhìn một giây:** "một nhân vật xanh đứng một mình". Lantern Knight đứng yên giữa khoảng trống lớn, đơn điệu.
+- **Thiếu "thứ sống":** lần nào mở game cũng thấy y hệt.
+- **Hai nền khác nhau:** sau Act I là phòng có chiếc ghế quay. Việc này có chủ ý, nên giữ.
+- **Ý tưởng:** đội của đêm gần nhất đứng chờ ở cửa:
+  - anh hùng vừa chơi đứng trước;
+  - các bạn trong đội của lần chơi trước đứng quanh, mỗi bạn có hoạt ảnh riêng;
+  - lần chơi đầu tiên dùng một đội mặc định.
+  - Mỗi lần mở game thấy đúng đội của mình. Đây là "thứ sống" của màn.
+- **Nền:** vẽ lại cho bố cục này. Một phần ba bên trái tối và yên để đặt nút. Bên phải là cửa và một khoảng sàn trống đủ cho sáu, bảy nhân vật.
+- **Nút:** giữ một nút vàng duy nhất. Các nút phụ đã đạt chuẩn.
+
+### Hero select — giữ, sửa nhỏ
+
+- Dòng "Starts with" ở cuối ô mô tả bị cắt (Item01).
+- Nhãn "Recruit themes" và ba icon nhỏ trông như một nhãn nhỏ nằm trên tiêu đề, loại mà taste-skill cấm. Nên gộp vào ô mô tả.
+
+### How to Play — sửa
+
+- Nửa phải của khung gần như trống: ba gạch đầu dòng chữ nhỏ, ảnh minh họa chỉ chiếm 40%. Màn này trượt bước "độ đầy".
+- **Sửa:** ảnh minh họa chiếm khoảng 60% chiều rộng, chữ lớn hơn, mỗi trang một ý.
+
+### Collection — giữ, sửa nhỏ
+
+- Ô chi tiết bên phải trống phần lớn diện tích. Nên cho hình món đồ to gấp đôi và trình bày chỉ số thành từng dòng có icon.
+
+### Lamp Tree — sửa
+
+- **Lỗi chồng chữ:** thẻ "Forge fire" có chữ chồng lên chữ CROWN, và câu điều kiện bị cắt (10-lamp-card-right).
+- Chín tab chữ nhỏ ("MERCHANT").
+- Cả cây là một bức tường nút giống hệt nhau, trượt bước "độ lặp". Trên điện thoại nên mở thẳng một nhánh.
+
+### Shop — sửa
+
+- Có năm khối giành sự chú ý cùng lúc: băng gợi ý, lời thoại chủ shop, bảng Bonds, thẻ mô tả món đồ và các quầy hàng.
+- Băng gợi ý nằm ngay trên đầu chủ shop, sát bong bóng lời thoại (Item04, Item06).
+- **Sửa:** băng gợi ý nhường chỗ khi người trong phòng đang nói, và chỉ hiện khi không có thẻ mô tả nào đang mở.
+
+### Thẻ chi tiết món đồ — sửa nhỏ
+
+- Dòng "Curio · rare · stackable" bị lặp lại ngay bên dưới thành "Curio · rare · stacks" (Item10, Item11). Nên bỏ dòng thứ hai.
+
+### Combos — sửa nhỏ
+
+- Sáu dòng "Unknown combo" giống hệt nhau, trượt bước "độ lặp". Dòng đầu trang nên cho biết số combo đã tìm.
+
+### Tổng kết run — sửa
+
+- Tờ giấy chỉ chiếm một phần ba giữa màn hình, chữ nhỏ, hai bên là nền tối trống, trượt bước "độ đầy".
+- **Sửa:** tờ giấy rộng khoảng 1000 trên khung 1280. Phần thưởng và đội hình chia hai cột, nút Waiting Room hiện ngay trên màn đầu.
+
+### Các màn giữ nguyên
+
+- **Hub:** biển gỗ treo xích và các trạm vẽ tay có ý tưởng rõ.
+- **Postbox, Bell, Window, Night Pact, Wardrobe, Museum:** dùng chung một khung, mỗi màn có một tranh riêng bên trái. Ổn.
+- **HUD trận đấu, boss, bản đồ, Ending:** đạt.
+
+## Luồng chơi (frontend-ui-engineering)
+
+1. **Mở game:** đi từ loading qua menu chính, Hero select rồi vào trận, mất hai lần bấm. Đạt.
+2. **Loading:** hiện chạy cố định 1,8 giây chứ không theo việc tải thật. Nên chờ tải xong rồi mới chuyển sang menu, và vẫn giữ tối thiểu 1,2 giây để đèn kịp sáng.
+3. **Waiting Room:**
+   - Cửa đi thẳng tới Hero select. Đạt.
+   - Trang của từng trạm có hai tấm tiêu đề chồng nhau ("THE WAITING ROOM" và tên trạm). Nên giữ tên trạm và thay tấm "THE WAITING ROOM" bằng nút quay lại có nhãn.
+4. **Hết run:** có nút đi Lamp Tree. Đạt.
+5. **Màn trống:**
+   - Combos trung thực nhưng đơn điệu.
+   - Collection, Records và Museum khi chưa có gì vẫn chưa được chụp (mục B7).
+6. **Trạng thái lỗi:** lỗi lưu đã dùng câu dễ hiểu. Đạt.
+7. **Vùng bấm:** tab Lamp Tree và nhãn MERCHANT nhỏ hơn mức tối thiểu của ngón tay.
+8. **Chưa rà:** Records và trang tạm dừng chưa có trong lượt chụp (mục B6).
+
+## Thứ tự làm
+
+1. Loading và main menu: vẽ nền mới, thêm đội chờ ở cửa và tám đèn lồng làm thanh tiến độ.
+2. Lỗi chữ chồng trong thẻ Lamp Tree, dòng lặp ở thẻ chi tiết, dòng "Starts with" bị cắt.
+3. Băng gợi ý trong shop nhường chỗ cho lời thoại.
+4. Tổng kết run và How to Play: làm đầy màn hình.
+5. Bỏ tấm tiêu đề "THE WAITING ROOM" bị chồng trên các trạm; tab Lamp Tree to hơn.
+
+## Đã làm (31/10/2026)
+
+- **Loading:**
+  - Bức nền mới là con hẻm đêm dẫn tới cửa Waiting Room.
+  - Tám đèn lồng của mạch truyện đứng trên bậc đá và sáng dần theo tiến độ.
+  - Tên game đặt cùng vị trí với menu chính.
+- **Main menu:**
+  - Bức nền mới vẽ cánh cửa hé sáng và thảm trống phía trước.
+  - Đội của lần chơi gần nhất đứng chờ: anh hùng ở giữa, sáu bạn quanh, mỗi bạn có hoạt ảnh riêng và quay mặt về phía anh hùng, thỉnh thoảng một bạn nhảy lên.
+  - Lần chơi đầu tiên dùng một đội mặc định.
+  - Sau Act I, phòng có chiếc ghế quay vẫn giữ nguyên và chỉ có anh hùng.
+- **Ảnh nền cũ:** đã xóa `Menu/Backdrop.png` và `LoadingPainting.jpg` để gọn build.
+- **Lamp Tree:** dòng mô tả và nhãn trong thẻ xếp theo chiều cao thật của chữ, câu điều kiện mở khóa nằm ở đáy thẻ. Hết chồng chữ.
+- **Thẻ chi tiết món đồ:** bỏ dòng loại món bị lặp.
+- **Shop:** băng gợi ý chờ tới khi người trong phòng nói xong.
+- **Chứng cứ:** `Docs/Evidence/UIAudit/menu_loading_redo.jpg`. Lượt chụp playtest đạt 85/85.
+
+**Điểm chấm lại:**
+
+| Màn | Điểm (TK/DD/ST/ND → tổng) | Ghi chú |
+| --- | --- | --- |
+| Loading | 7.5 / 7 / 8 / 7 → 7.4 | Có ý tưởng riêng: đèn lồng của mạch truyện làm thanh tiến độ. |
+| Main menu | 7.5 / 7.5 / 8 / 7 → 7.5 | Có "thứ sống": đội của chính người chơi. |
+
+**Còn lại:**
+
+- How to Play và tổng kết run chưa đủ đầy.
+- Tấm tiêu đề "THE WAITING ROOM" vẫn chồng trên trang các trạm.
+- Tab Lamp Tree còn nhỏ.
+- Loading vẫn chạy theo thời gian cố định, chưa theo việc tải thật.
