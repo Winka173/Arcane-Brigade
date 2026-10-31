@@ -131,12 +131,22 @@ namespace ArcaneBrigade
             ShownTip = r;
             Color keep = GUI.color; Matrix4x4 keepMatrix = GUI.matrix; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             LivingUI.Auto("guide-tip", r.center, false); // a tap closes it with motion (requirement 25/10/2026)
-            ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
-            Highlight(r, Time.unscaledTime - shownAt, alpha);
             Sprite icon = null; try { icon = tip.Icon(owner); } catch (Exception) { }
-            Rect inner = ArcadeSkin.Content(r, KitFrame.Dialogue); // inside the painted rim and roses
-            if (icon != null) RunHud.Sprite(new Rect(inner.x, r.center.y - 34, 68, 68), icon);
-            GUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
+            // the painted ribbon banner: the icon sits in its round socket, the words between the socket and the ribbon end
+            float k = r.height / 120;
+            if (ArcadeSkin.KitSliced(r, "HUD/TipBanner", k))
+            {
+                if (icon != null) RunHud.Sprite(new Rect(r.x + 82 * k - 30 * k, r.center.y - 30 * k, 60 * k, 60 * k), icon);
+                GUI.Label(new Rect(r.x + 148 * k, r.y, r.width - 148 * k - 64 * k, r.height), tip.Line, line);
+            }
+            else
+            {
+                ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
+                Highlight(r, Time.unscaledTime - shownAt, alpha);
+                Rect inner = ArcadeSkin.Content(r, KitFrame.Dialogue); // inside the painted rim and roses
+                if (icon != null) RunHud.Sprite(new Rect(inner.x, r.center.y - 34, 68, 68), icon);
+                GUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
+            }
             GUI.color = keep; GUI.matrix = keepMatrix;
             if (GUI.Button(r, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("guide-tip")) LivingUI.CloseThen("guide-tip", () => showing = null); // a tap closes it
         }

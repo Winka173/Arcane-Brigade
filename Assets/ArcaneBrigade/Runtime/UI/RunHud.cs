@@ -383,9 +383,11 @@ namespace ArcaneBrigade
                         identityLine = ArcadeTypography.Style(ArcadeTypography.SizeNote); identityLine.normal.textColor = ArcadeSkin.Cream;
                     }
                     identityStyle.normal.textColor = Color.Lerp(HeroIdentities.For(state.ChampionId).Color, ArcadeSkin.Cream, 0.55f);
-                    // under the counters in the left column, clear of the tip banner at the top middle (UI standard: HUD zones)
-                    ArcadeTypography.ShadowLabel(new Rect(24, 244, 370, 34), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
-                    ArcadeTypography.ShadowLabel(new Rect(24, 278, 370, 70), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
+                    // under the counters in the left column, clear of the tip banner at the top middle (UI standard: HUD zones),
+                    // on a velvet plaque so the two lines read on any floor
+                    ArcadeSkin.KitSliced(new Rect(12, 236, 396, 118), "HUD/GaugePlaque");
+                    ArcadeTypography.ShadowLabel(new Rect(32, 248, 360, 40), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
+                    ArcadeTypography.ShadowLabel(new Rect(32, 284, 360, 62), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
                 }
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
@@ -418,10 +420,13 @@ namespace ArcaneBrigade
             {
                 bool overtime = simulation.IsBossOvertime;
                 float remaining = simulation.WaveDuration - simulation.Elapsed;
-                Rect timer = new Rect(880, 80, 160, 40);
-                ArcadeSkin.Plate(timer, overtime ? ArcadeSkin.Danger : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Teal);
-                numeric.normal.textColor = overtime ? ArcadeSkin.Danger : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Cream;
-                GUI.Label(new Rect(timer.x + 10, timer.y + 1, timer.width - 20, timer.height - 2), CombatTimerCaption(overtime, remaining), numeric);
+                // the brass-and-walnut plate under the wave banner (its clock hand on the left); the number's colour tells the state
+                Rect timer = new Rect(866, 78, 188, 52);
+                bool plate = ArcadeSkin.KitSliced(timer, "HUD/TimerPlate", timer.height / 64);
+                if (!plate) ArcadeSkin.Plate(timer, overtime ? ArcadeSkin.Danger : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Teal);
+                numeric.normal.textColor = overtime ? new Color(1f, .45f, .4f) : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Cream;
+                float hand = plate ? 44 * timer.height / 64 : 10;
+                GUI.Label(new Rect(timer.x + hand, timer.y + 1, timer.width - hand - 14, timer.height - 2), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
             // the eight lanterns sit quietly under the wallet; the old wave road is gone
@@ -958,12 +963,12 @@ namespace ArcaneBrigade
             Rect card = new Rect(1900 - width, 18, width, bondSummary.Height + newBonds.Count * rowHeight);
             bool still = owner.Profile != null && owner.Profile.ReducedMotion, calm = PresentationSettings.ReducedFlashes;
             float clock = Time.unscaledTime, blink = still || calm ? .6f : .5f + .5f * Mathf.Sin(clock * 7f);
-            ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
+            if (!ArcadeSkin.KitSliced(card, "HUD/BondList")) ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Color deep = Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Ink, 0.4f);
             programStyle.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 16, card.y + 8, 160, 36), "Bonds", programStyle);
+            GUI.Label(new Rect(card.x + 40, card.y + 18, 140, 36), "Bonds", programStyle);
             bondNumber.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 170, card.y + 8, width - 186, 36), bondSummary.Active + " of " + bondSummary.Rows.Count + " active", bondNumber);
+            GUI.Label(new Rect(card.x + 170, card.y + 18, width - 210, 36), bondSummary.Active + " of " + bondSummary.Rows.Count + " active", bondNumber);
             programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;
@@ -971,11 +976,11 @@ namespace ArcaneBrigade
             for (int index = 0; index < newBonds.Count; index++)
             {
                 var row = newBonds[index];
-                Rect line = new Rect(card.x + 10, card.y + 48 + index * rowHeight, width - 20, rowHeight - 4);
+                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + index * rowHeight, width - 36, rowHeight - 4);
                 ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .18f + .3f * blink));
                 BondRowContent(line, row.Bond, 0, row.After, false, true, row.Activates, blink, 0);
                 Rect stamp = new Rect(line.xMax - 70, line.y + 6, 68, line.height - 12);
-                ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
+                if (!ArcadeSkin.KitSliced(stamp, "HUD/BondNew", stamp.height / 40)) ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
                 bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = ArcadeSkin.Ink;
                 GUI.Label(stamp, "New", bondNumber);
                 bondNumber.alignment = TextAnchor.MiddleRight;
@@ -983,7 +988,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < bondSummary.VisibleCount; index++)
             {
                 BondDefinition bond = bondSummary.Rows[index]; int count = owner.Session.BondCounts[bond.Id];
-                Rect line = new Rect(card.x + 10, card.y + 48 + (index + newBonds.Count) * rowHeight, width - 20, rowHeight - 4);
+                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + (index + newBonds.Count) * rowHeight, width - 36, rowHeight - 4);
                 int level = bond.ActiveLevel(count);
                 bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
@@ -1010,8 +1015,9 @@ namespace ArcaneBrigade
                 {
                     Rect stamp = new Rect(line.xMax - 70, line.y + 6, 68, line.height - 12);
                     bool rising = previewing && preview.Activates;
-                    ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
-                    bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.Cream;
+                    // a gold-leaf stamp for the level this purchase reaches, an oxblood wax stamp for the level held
+                    if (!ArcadeSkin.KitSliced(stamp, rising ? "HUD/BondNew" : "HUD/BondLevel", stamp.height / 40)) ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
+                    bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.KitRose;
                     GUI.Label(stamp, rising ? "Lv" + bond.ActiveLevel(preview.After) + "▲" : "Lv" + level, bondNumber);
                     bondNumber.alignment = TextAnchor.MiddleRight;
                 }
@@ -1024,7 +1030,7 @@ namespace ArcaneBrigade
                 }
             }
             programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = deep;
-            Rect footer = new Rect(card.x + 10, card.yMax - 44, width - 20, 38);
+            Rect footer = new Rect(card.x + 18, card.yMax - BondHudSummary.Foot + 6, width - 36, 34);
             string more = bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount + " more · view all" : "View all bonds";
             if (GUI.Button(footer, more, programStyle))
             {

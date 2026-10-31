@@ -24,6 +24,14 @@ namespace ArcaneBrigade
             return sprite;
         }
         public static bool HasKit => KitSprite("Panels/Dialogue") != null;
+        /// <summary>A kit piece nine-sliced over the rectangle at this border scale (UI kit wave 2: the bond list, its stamps, the
+        /// timer plate, the gauge plaque, rarity frames, the tip banner, speech bubbles). False when missing or crafted style.</summary>
+        public static bool KitSliced(Rect r, string key, float scale = 1)
+        {
+            if (Crafted) return false;
+            Sprite sprite = KitSprite(key); if (sprite == null) return false;
+            Sliced(r, sprite, scale); return true;
+        }
 
         // rows above the button's face (the crest and the curls), measured on the art by the cutter
         private static float BodyTop(KitButton kind) => kind == KitButton.Primary ? .336f : kind == KitButton.Secondary ? .30f : .345f;
@@ -199,6 +207,14 @@ namespace ArcaneBrigade
         public static void Lock(Vector2 c, float size, Color colour)
         {
             if (Event.current.type != EventType.Repaint) return;
+            // the one painted padlock everywhere something is locked (UI kit wave 2), its own colours; only the alpha is taken
+            Sprite painted = Crafted ? null : KitSprite("Info/Lock");
+            if (painted != null)
+            {
+                float s = size * 1.25f; Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * colour.a);
+                GUI.DrawTexture(new Rect(c.x - s * .5f, c.y - s * .5f, s, s), painted.texture, ScaleMode.ScaleToFit);
+                GUI.color = keep; return;
+            }
             c.y -= size * .1f; // the drawing runs from the shackle's top (-.37) to the body's foot (+.57): centre its middle on c
             Color ink = new Color(.1f, .06f, .04f, .9f * colour.a);
             Rect bodyR = new Rect(c.x - size * .42f, c.y - size * .05f, size * .84f, size * .62f);

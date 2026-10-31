@@ -8,6 +8,15 @@ namespace ArcaneBrigade
             Color tint=RunModifierRules.RarityColor(rarity);
             bool motion=!PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
             if(rarity==ItemRarity.Rainbow && motion)tint=Color.HSVToRGB(Mathf.Repeat(clock*.055f,1),.48f,1);
+            // UI kit wave 2: Common, Rare, Mythic and Crimson have painted nine-slice frames (their own rims and corners)
+            if(Painted(panel,rarity,out _))
+            {
+                // the motes and glints stay; light running along the box's straight edges would cut across the painted rim
+                paintedNow=true;
+                try{if(Event.current!=null && Event.current.type==EventType.Repaint && rarity!=ItemRarity.Common)Extras(panel,rarity,tint,clock,motion);}
+                finally{paintedNow=false;}
+                return;
+            }
             Color paper=Color.Lerp(new Color(.035f,.045f,.075f,.98f),tint,rarity==ItemRarity.Common?.08f:.19f);paper.a=.98f;
             RunHud.Fill(panel,paper);
             // requirement 23/10/2026 (the rarity frames read too quietly): a deeper band of the rarity's colour at the head of the
@@ -35,8 +44,22 @@ namespace ArcaneBrigade
 
         /// <summary>The part of a framed box clear of its painted trim (side strips, corner caps, crest and foot), so text laid
         /// out inside never runs under the ornaments. Same sizes as Ornaments below.</summary>
+        private static bool paintedNow;
+        private static string PaintedKey(ItemRarity rarity)=>rarity==ItemRarity.Common?"Info/RarityCommon":rarity==ItemRarity.Rare?"Info/RarityRare":rarity==ItemRarity.Mythic?"Info/RarityMythic":rarity==ItemRarity.Crimson?"Info/RarityCrimson":null;
+        private static float PaintedScale(Rect panel)=>Mathf.Clamp(Mathf.Min(panel.width,panel.height)/320f,.35f,1f);
+        /// <summary>Draws the painted frame of this rarity (false when it has none or the crafted style is on); rim is its inner
+        /// trim on screen.</summary>
+        private static bool Painted(Rect panel,ItemRarity rarity,out float rim)
+        {
+            rim=0; string key=PaintedKey(rarity); if(key==null || ArcadeSkin.Crafted)return false;
+            Sprite sprite=ArcadeSkin.KitSprite(key); if(sprite==null)return false;
+            float k=PaintedScale(panel); rim=sprite.border.x*.5f*k;
+            ArcadeSkin.Sliced(panel,sprite,k); return true;
+        }
         public static Rect Content(Rect panel,ItemRarity rarity,float margin=8)
         {
+            string key=PaintedKey(rarity); Sprite painted=key==null || ArcadeSkin.Crafted?null:ArcadeSkin.KitSprite(key);
+            if(painted!=null){float inset=painted.border.x*.5f*PaintedScale(panel)+margin;return new Rect(panel.x+inset,panel.y+inset,panel.width-2*inset,panel.height-2*inset);}
             Trim trim=rarity==ItemRarity.Common?null:For(rarity);
             if(trim==null || trim.Side==null)return new Rect(panel.x+margin+4,panel.y+margin+4,panel.width-2*(margin+4),panel.height-2*(margin+4));
             float size=Mathf.Clamp(panel.height/300f,.72f,1.1f), strip=trim.Width*size*(1-trim.Stem)-2;
@@ -211,7 +234,7 @@ namespace ArcaneBrigade
                 case ItemRarity.Crimson:                                                                       // a heartbeat of red light, petals falling
                 {
                     float beat=Heartbeat(clock); Color h=new Color(.95f,.18f,.22f,.55f*beat);
-                    Border(panel,4,h); h.a=.25f*beat; Border(new Rect(panel.x+4,panel.y+4,panel.width-8,panel.height-8),3,h);
+                    if(!paintedNow){Border(panel,4,h); h.a=.25f*beat; Border(new Rect(panel.x+4,panel.y+4,panel.width-8,panel.height-8),3,h);}
                     Motes(panel,rail,clock,new Color(1f,.42f,.45f),4,false,1.5f,-1);
                     break;
                 }
@@ -239,6 +262,7 @@ namespace ArcaneBrigade
         /// the bottom to its middle; p is how far the head has got (0..1), with a fading tail behind it.</summary>
         private static void EdgeRun(Rect panel,int side,float p,Color bright,float fade,float rainbowClock)
         {
+            if(paintedNow)return;
             float half=panel.width*.5f, total=half+panel.height+half, head=p*total, tail=Mathf.Max(60,total*.35f);
             const int pieces=8;
             for(int i=0;i<pieces;i++)

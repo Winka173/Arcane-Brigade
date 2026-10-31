@@ -240,13 +240,26 @@ namespace ArcaneBrigade
                 Vector2 tailBase = tailed ? ClosestEdge(rect, anchor) : rect.center;
                 if (breathe != 0) { rect.y += breathe; tailBase.y += breathe; }
                 if (pop < 0.999f) ArcadeSkin.ScaleAround(Vector2.one * pop, tailed ? Vector2.Lerp(rect.center, tailBase, 0.7f) : rect.center);
-                if (tailed) DrawTail(tailBase + new Vector2(3, 5), anchor + new Vector2(3, 5), new Color(0, 0, 0, 0.4f));
-                ArcadeSkin.Ticket(rect, paper, stamp);
-                if (tailed) DrawTail(tailBase, anchor, paper);
+                // light voices on the painted parchment bubble (its name tab grows with the name); the boss's dark and the dream's
+                // lilac paper keep the drawn ticket (painted art is never tinted)
+                bool painted = bubble.Tone != SpeechTone.Boss && bubble.Tone != SpeechTone.Dream && ArcadeSkin.KitSprite("Panels/SpeechBody") != null && !ArcadeSkin.Crafted;
+                Texture2D tailArt = painted ? ArcadeSkin.KitSprite("Panels/SpeechTail")?.texture : null;
+                if (tailed) DrawTail(tailBase + new Vector2(3, 5), anchor + new Vector2(3, 5), new Color(0, 0, 0, 0.4f), tailArt);
+                Rect body = painted && named ? new Rect(rect.x, rect.y + 20, rect.width, rect.height - 20) : rect;
+                if (painted) ArcadeSkin.KitSliced(body, "Panels/SpeechBody", .8f); else ArcadeSkin.Ticket(rect, paper, stamp);
+                if (tailed) DrawTail(tailBase, anchor, painted ? Color.white : paper, tailArt);
                 if (named)
                 {
                     nameStyle.normal.textColor = label;
-                    GUI.Label(new Rect(rect.x + 22, rect.y + 8, rect.width - 34, 28), RunUICopy.Title(bubble.Name), nameStyle);
+                    string who = RunUICopy.Title(bubble.Name);
+                    if (painted)
+                    {
+                        float nameWidth = Mathf.Min(rect.width - 30, nameStyle.CalcSize(new GUIContent(who)).x + 40);
+                        Rect tab = new Rect(rect.x + 10, rect.y - 4, nameWidth, 34);
+                        ArcadeSkin.Strip(tab, "Panels/SpeechTab", 22, 24);
+                        GUI.Label(new Rect(tab.x + 18, tab.y + 1, tab.width - 30, 32), who, nameStyle);
+                    }
+                    else GUI.Label(new Rect(rect.x + 22, rect.y + 8, rect.width - 34, 28), who, nameStyle);
                 }
                 style.normal.textColor = ink;
                 int glyphs = reduced ? bubble.Text.Length : Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 0, bubble.Text.Length);
@@ -342,7 +355,7 @@ namespace ArcaneBrigade
             return nearest == down ? new Vector2(clamped.x, rect.yMax - 6) : nearest == up ? new Vector2(clamped.x, rect.yMin + 2) : nearest == left ? new Vector2(rect.xMin + 2, clamped.y) : new Vector2(rect.xMax - 2, clamped.y);
         }
 
-        private static void DrawTail(Vector2 from, Vector2 to, Color color)
+        private static void DrawTail(Vector2 from, Vector2 to, Color color, Texture2D art = null)
         {
             Vector2 direction = to - from;
             float distance = direction.magnitude;
@@ -354,7 +367,8 @@ namespace ArcaneBrigade
             ArcadeSkin.TurnAround(angle, from);
             Color previous = GUI.color;
             GUI.color = new Color(color.r, color.g, color.b, color.a * previous.a);
-            GUI.DrawTexture(new Rect(from.x - 17, from.y - 10, 34, length + 10), tail);
+            if (art != null) GUI.DrawTexture(new Rect(from.x - 20, from.y - 8, 40, length + 8), art); // the painted point, its open top under the bubble's rim
+            else GUI.DrawTexture(new Rect(from.x - 17, from.y - 10, 34, length + 10), tail);
             GUI.color = previous;
             GUI.matrix = restore;
         }

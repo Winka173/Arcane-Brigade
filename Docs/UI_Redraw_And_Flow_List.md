@@ -9,7 +9,21 @@ Ngày 31/10/2026. Danh sách dựa trên ba nguồn:
   - **Hallmark**: không nhãn chữ hoa nhỏ đè lên tiêu đề; mỗi màn khoảng 80 chữ; không lồng thẻ trong thẻ; nút nào cũng có đủ trạng thái.
   - **Frontend UI engineering**: có đủ trạng thái đang tải, trống và lỗi; vùng bấm đủ lớn; màu không phải tín hiệu duy nhất.
 
-Tài liệu này chỉ liệt kê. Chưa vẽ gì.
+Tài liệu này ban đầu chỉ liệt kê.
+
+**Tình trạng:**
+
+- **Đợt 1 (commit 699b6d2e):** đã vẽ và gắn A1–A5.
+- **Đợt 2 (31/10/2026):** đã vẽ và gắn A6–A12:
+  - A6: bảng Bonds giấy da, có con dấu sáp Lv và con dấu vàng lá New.
+  - A7: đế đồng hồ wave.
+  - A8: tấm nhãn nhung dưới chân dung anh hùng.
+  - A9: khung 9 mảnh cho Common, Rare, Mythic và Crimson. Uncommon và Rainbow vẫn giữ khung cũ. Bỏ vệt sáng chạy theo cạnh thẳng vì cắt ngang viền vẽ tay.
+  - A10: băng gợi ý có ổ tròn để đặt icon.
+  - A11: bong bóng lời thoại, tách thành thân và tab tên co giãn theo độ dài tên, kèm đuôi vẽ tay. Lời thoại tông Boss và Dream vẫn giữ giấy vẽ bằng code, vì không được tô màu lên art.
+  - A12: một ổ khóa vẽ tay dùng chung, thay `ArcadeSkin.Lock`.
+- **Chứng cứ:** `Docs/Evidence/UIAudit/kit_wave2.jpg`.
+- **Còn lại:** A13–A16.
 
 ## A. Art UI cần vẽ lại hoặc vẽ thêm
 
