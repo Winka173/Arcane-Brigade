@@ -437,7 +437,7 @@ namespace ArcaneBrigade
                     float bossNow = (simulation.Boss.Alive ? simulation.Boss.Health : 0) + (secondUp ? second.Health : 0);
                     float bossMax = simulation.Boss.Definition.Health + (second != null ? second.Definition.Health : 0);
                     float bossShare = Mathf.Clamp01(bossNow / Mathf.Max(1, bossMax));
-                    string bossTitle = RunUICopy.UnitName(simulation.Boss.Definition); // UI standard: the name as written, not in capitals
+                    string bossTitle = RunUICopy.Title(RunUICopy.UnitName(simulation.Boss.Definition)); // UI standard: a name in title case, never all capitals
                     float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(new GUIContent(bossTitle)).x + 16, 350, 990);
                     ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
                     Sprite(new Rect(432, 906, 42, 42), simulation.Boss.Definition.Body);
@@ -716,7 +716,7 @@ namespace ArcaneBrigade
         private void DrawShopDetails(ArenaController owner, WorldShop shop, WorldShop.Station station, ItemRarity rarity, Color tag, bool blood = false)
         {
             // the page is as tall as its words (UI standard: no big frame left empty), up to the screen's height
-            string description = offerCard.Details;
+            string description = RunUICopy.SentenceLines(offerCard.Details); // UI standard: no all-capital lines
             if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
             float contentHeight = GlossaryUI.Height(description, cardLine, 1120 - 112 - 30) + 8;
             float panelHeight = Mathf.Clamp(34 + 96 + offerCard.HeaderHeight + 16 + contentHeight + 58, 380, 880);
@@ -730,7 +730,7 @@ namespace ArcaneBrigade
             RarityDescriptionFrame.Backdrop(new Rect(inner.x, inner.y, 72, 72), rarity, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y, 72, 72), offerCard.Portrait);
             GUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
-            small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 36), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
+            small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 36), RunUICopy.Sentence(offerCard.Identity), small); small.normal.textColor = ArcadeSkin.Cream;
             if (navigation.Button(new Rect(inner.xMax - 176, inner.y, 176, 72), "BACK", button)) { SetShopDetails(false); return; }
             float headerHeight = offerCard.HeaderHeight, tilesTop = inner.y + 96;
             if (headerHeight > 0) offerCard.DrawHeader(new Rect(inner.x, tilesTop, inner.width, headerHeight), owner.PresentationClock);

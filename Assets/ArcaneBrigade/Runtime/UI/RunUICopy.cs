@@ -13,6 +13,14 @@ namespace ArcaneBrigade
             for (int i = 0; i < lower.Length; i++) if (char.IsLetter(lower[i])) return lower.Substring(0, i) + char.ToUpperInvariant(lower[i]) + lower.Substring(i + 1);
             return lower;
         }
+        /// <summary>Sentence() on every line of a block that is written all in capitals ("WHILE YOU HAVE IT"); other lines stay as they are.</summary>
+        public static string SentenceLines(string block)
+        {
+            if (string.IsNullOrEmpty(block)) return block;
+            string[] lines = block.Split('\n');
+            for (int i = 0; i < lines.Length; i++) lines[i] = Sentence(lines[i]);
+            return string.Join("\n", lines);
+        }
         /// <summary>An all-capitals name in title case ("THE GUIDING LAMP" becomes "The Guiding Lamp"); mixed case is left alone.</summary>
         public static string Title(string text)
         {

@@ -204,27 +204,27 @@ namespace ArcaneBrigade
 
         private static string ProcLine(ProcRule p)
             => (p.Trigger == ProcTrigger.CoinCollected ? "Coins" : p.Trigger == ProcTrigger.ChestOpened ? "Chests" : "Kills") + ": " + (p.Chance < 1 ? (p.Chance * 100).ToString("0.#") + "% chance to " : "") + (p.Action == ProcAction.HealChampion ? "heal the hero " + p.Power.ToString("0.#") + " HP" : "blast nearby enemies for " + p.Power.ToString("0.#")) + ".";
-        public float HeaderHeight => Attack == null ? 0 : Mathf.Max(140, Mathf.CeilToInt(Bonds.Count / 3f) * 140 + 8);
+        public float HeaderHeight => Attack == null ? 0 : Mathf.Max(180, Mathf.CeilToInt(Bonds.Count / 3f) * 180 + 8); // tiles tall enough for 28-unit lines
         public void DrawHeader(Rect bounds, float clock = 0)
         {
             if (Attack == null) return;
-            label ??= ArcadeTypography.Style(17, true); value ??= ArcadeTypography.Style(20, true); muted ??= ArcadeTypography.Style(15);
-            Rect attack = new Rect(bounds.x, bounds.y, 220, 132); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
+            label ??= ArcadeTypography.Style(ArcadeTypography.SizeNote, true); value ??= ArcadeTypography.Style(ArcadeTypography.SizeNote, true); muted ??= ArcadeTypography.Style(ArcadeTypography.SizeNote);
+            Rect attack = new Rect(bounds.x, bounds.y, 260, 172); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
             Rect ai = ArcadeSkin.Content(attack, KitPiece.Tile); // inside the tile's rim with the standard padding
-            DrawSprite(new Rect(ai.x, ai.y, 24, 24), AttackIcon);
+            DrawSprite(new Rect(ai.x, ai.y + 2, 30, 30), AttackIcon);
             // the weapon this friend comes with: its name, whole damage, its pace and reach (player numbers)
-            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = 16; GUI.Label(new Rect(ai.x + 30, ai.y, ai.width - 30, 24), "WEAPON", label);
+            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = ArcadeTypography.SizeNote; GUI.Label(new Rect(ai.x + 38, ai.y, ai.width - 38, 34), "Weapon", label);
             value.normal.textColor = ArcadeSkin.Cream;
-            FitLabel(new Rect(ai.x, ai.y + 22, ai.width, 27), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, 19);
+            FitLabel(new Rect(ai.x, ai.y + 36, ai.width, 34), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, ArcadeTypography.SizeNote);
             muted.normal.textColor = ArcadeSkin.Teal;
-            FitLabel(new Rect(ai.x, ai.y + 51, ai.width, 19), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s", muted, 15);
-            GUI.Label(new Rect(ai.x, ai.y + 69, ai.width, 19), "Reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted);
+            FitLabel(new Rect(ai.x, ai.y + 72, ai.width, 32), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s", muted, ArcadeTypography.SizeNote);
+            GUI.Label(new Rect(ai.x, ai.y + 106, ai.width, 32), "Reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted);
             int columns = Mathf.Clamp(Bonds.Count, 1, 3);
-            float width = (bounds.width - 230 - (columns - 1) * 8) / columns;
+            float width = (bounds.width - 270 - (columns - 1) * 8) / columns;
             for (int i = 0; i < Bonds.Count; i++)
             {
                 var row = Bonds[i]; var bond = row.Bond;
-                Rect box = new Rect(bounds.x + 230 + i % columns * (width + 8), bounds.y + i / columns * 140, width, 132);
+                Rect box = new Rect(bounds.x + 270 + i % columns * (width + 8), bounds.y + i / columns * 180, width, 172);
                 bool activates = row.Activates;
                 Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
                 // code-drawn tile (requirement 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
@@ -235,22 +235,22 @@ namespace ArcaneBrigade
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
                 if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
                 float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
-                DrawSprite(new Rect(bi.x + 13 - 13 * grow, bi.y + 13 - 13 * grow, 26 * grow, 26 * grow), bond.Icon);
+                DrawSprite(new Rect(bi.x + 16 - 16 * grow, bi.y + 17 - 16 * grow, 32 * grow, 32 * grow), bond.Icon);
                 int target = activates ? row.Next : bond.NextThreshold(row.After);
                 // the plain count after buying ("2/2", "4/6"), no ACTIVATES / MERGE wording
                 string count = row.Preview ? row.After + "/" + target : row.Count + "/" + row.Next;
                 muted.normal.textColor = activates ? new Color(1f, .95f, .75f) : ArcadeSkin.Teal; muted.alignment = TextAnchor.MiddleRight;
-                FitLabel(new Rect(bi.xMax - 54, bi.y, 54, 26), count, muted, 17); muted.alignment = TextAnchor.MiddleLeft;
-                label.normal.textColor = ArcadeSkin.Cream; FitLabel(new Rect(bi.x + 34, bi.y, bi.width - 34 - 58, 26), bond.Name, label, 17);
-                StatGlyph.Draw(new Rect(bi.x, bi.y + 34, 23, 23), bond.Effect);
+                FitLabel(new Rect(bi.xMax - 64, bi.y, 64, 34), count, muted, ArcadeTypography.SizeNote); muted.alignment = TextAnchor.MiddleLeft;
+                label.normal.textColor = ArcadeSkin.Cream; FitLabel(new Rect(bi.x + 40, bi.y, bi.width - 40 - 68, 34), bond.Name, label, ArcadeTypography.SizeNote);
+                StatGlyph.Draw(new Rect(bi.x, bi.y + 46, 30, 30), bond.Effect);
                 value.normal.textColor = BenefitColor(bond.Effect, row.AfterReward);
                 // nothing yet: say the next step in player words ("−7% enemy speed at 2"), never "0%"
                 float stepReward = bond.BalanceReward(bond.Value);
                 if (row.AfterReward == 0) value.normal.textColor = Color.Lerp(BenefitColor(bond.Effect, stepReward), ArcadeSkin.Cream, .35f);
-                FitLabel(new Rect(bi.x + 30, bi.y + 32, bi.width - 30, 27), row.AfterReward == 0
+                FitLabel(new Rect(bi.x + 38, bi.y + 44, bi.width - 38, 34), row.AfterReward == 0
                     ? RunModifierRules.ValueText(bond.Effect, stepReward) + " " + LowerFirst(ShortOfferCopy.StatName(bond.Effect)) + " at " + target
-                    : RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + ShortOfferCopy.StatName(bond.Effect), value, 19);
-                if (!row.Preview) { muted.normal.textColor = ArcadeSkin.Teal; FitLabel(new Rect(bi.x, bi.y + 62, bi.width, 20), "Cannot be bought now", muted, 15); }
+                    : RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + ShortOfferCopy.StatName(bond.Effect), value, ArcadeTypography.SizeNote);
+                if (!row.Preview) { muted.normal.textColor = ArcadeSkin.Teal; FitLabel(new Rect(bi.x, bi.y + 86, bi.width, 32), "Cannot be bought now", muted, ArcadeTypography.SizeNote); }
             }
         }
         /// <summary>The card's weapon chip: the weapon's short name and its whole damage ("Moon Scythe · 34 dmg").</summary>
@@ -281,7 +281,7 @@ namespace ArcaneBrigade
         private static void FitLabel(Rect rect, string text, GUIStyle style, int size)
         {
             style.fontSize = size; style.wordWrap = false; style.clipping = TextClipping.Clip;
-            while (style.fontSize > 13 && style.CalcSize(new GUIContent(text)).x > rect.width) style.fontSize--;
+            while (style.fontSize > 22 && style.CalcSize(new GUIContent(text)).x > rect.width) style.fontSize--; // a long name shrinks a little, never to unreadable
             GUI.Label(rect, text, style);
         }
         public static Color BenefitColor(ItemEffect effect, float number)

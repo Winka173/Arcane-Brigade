@@ -312,8 +312,8 @@ namespace ArcaneBrigade
             if (selected == null) return;
             if (Time.unscaledTime - openedAt > 30) { Close(); return; }
             float width = Mathf.Min(620, viewport.x - 60);
-            GUIStyle heading = ArcadeTypography.Style(24, true); heading.normal.textColor = ArcadeSkin.Cream;
-            GUIStyle body = ArcadeTypography.Style(20); body.normal.textColor = ArcadeSkin.Cream;
+            GUIStyle heading = ArcadeTypography.Style(ArcadeTypography.SizeBody, true); heading.normal.textColor = ArcadeSkin.Cream;
+            GUIStyle body = ArcadeTypography.Style(ArcadeTypography.SizeNote); body.normal.textColor = ArcadeSkin.Cream;
             // below the bond list in the top-right corner (drawn later, it used to cover the card's right half) and as tall as its words
             float words = body.CalcHeight(new GUIContent(selected.Description), width - 50);
             Rect panel = new Rect(viewport.x - width - 35, 340, width, Mathf.Max(160, 95 + words + 24));

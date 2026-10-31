@@ -110,7 +110,7 @@ namespace ArcaneBrigade
             {
                 title = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 28, alignment = TextAnchor.MiddleCenter, wordWrap = true };
                 title.normal.textColor = new Color(0.68f, 1, 0.92f);
-                copy = new GUIStyle(title) { fontSize = 19 }; copy.normal.textColor = Color.white;
+                copy = new GUIStyle(title) { fontSize = ArcadeTypography.SizeNote }; copy.normal.textColor = Color.white;
             }
             Matrix4x4 matrix = GUI.matrix;
             GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
@@ -127,7 +127,7 @@ namespace ArcaneBrigade
             {
                 // the gifts stand on the floor like a shop's wares (requirement 22/10/2026): walk up to one and only its card shows,
                 // a gold TAKE in its right column like BUY; nothing is listed all at once
-                if (cardName == null) { cardName = ArcadeTypography.Style(26, true); cardName.wordWrap = true; cardName.alignment = TextAnchor.MiddleCenter; cardLine = ArcadeTypography.Style(20); identity = ArcadeTypography.Style(17); }
+                if (cardName == null) { cardName = ArcadeTypography.Style(ArcadeTypography.SizeBody, true); cardName.wordWrap = true; cardName.alignment = TextAnchor.MiddleCenter; cardLine = ArcadeTypography.Style(ArcadeTypography.SizeNote); identity = ArcadeTypography.Style(ArcadeTypography.SizeNote); } // UI standard sizes
                 // on arrival: a short announcement under the title banner, fading after a few seconds
                 float since = Time.unscaledTime - giftsSince;
                 if (since < 4.5f)
@@ -137,9 +137,9 @@ namespace ArcaneBrigade
                     ArcadeSkin.TitleBanner(new Rect(610, 120, 700, 70), owner.Session.State.OutsideBeforeGift >= 0 ? "THE COLOURS" : "THE KEEPER'S GIFTS", title);
                     Rect plate = new Rect(710, 204, 500, 56);
                     ArcadeSkin.CodePlate(plate, CodeTone.Walnut);
-                    copy.alignment = TextAnchor.MiddleCenter; copy.fontSize = 22;
+                    copy.alignment = TextAnchor.MiddleCenter; copy.fontSize = ArcadeTypography.SizeNote;
                     GUI.Label(ArcadeSkin.Content(plate, KitFrame.Card), "Choose one rainbow gift", copy);
-                    copy.fontSize = 19;
+                    copy.fontSize = ArcadeTypography.SizeNote;
                     GUI.color = keep;
                 }
                 int i = selection;
@@ -150,17 +150,17 @@ namespace ArcaneBrigade
                     ShopOffer giftOffer = giftOffers[i] ??= new ShopOffer();
                     giftOffer.Kind = item != null ? OfferKind.Item : OfferKind.Companion; giftOffer.Id = id; giftOffer.Tier = item != null ? 1 : 2; giftOffer.Token = -1 - i; giftOffer.Price = 0;
                     giftCard.Refresh(owner.Session, owner.Content, giftOffer);
-                    Rect panel = new Rect(500, 790, 920, 240);
+                    Rect panel = new Rect(500, 740, 920, 290); // tall enough for its lines at 28 units
                     Color popKeep = CardPop.Apply("gift-card-" + i, panel);
                     RarityDescriptionFrame.Draw(panel, giftCard.Rarity, owner.PresentationClock);
                     Rect picture = new Rect(panel.x + 30, panel.y + 24, 150, 150);
                     ShopDescriptionCard.DrawSprite(new Rect(picture.x + 6, picture.y + 6, 138, 138), giftCard.Portrait);
                     string kind = item != null ? RunModifierRules.RarityName(giftCard.Rarity) : giftCard.Role.HasValue ? CompanionRoles.Word(giftCard.Role.Value) : "FRIEND";
-                    ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 8, 150, 30), kind, CodeTone.Walnut, identity, RunModifierRules.RarityColor(giftCard.Rarity));
+                    ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 6, 150, 36), RunUICopy.Sentence(kind), CodeTone.Walnut, identity, RunModifierRules.RarityColor(giftCard.Rarity));
                     Rect take = new Rect(panel.xMax - 228, panel.center.y - 52, 192, 104);
                     float tx = panel.x + 208, tw = take.x - 20 - tx;
                     cardName.alignment = TextAnchor.MiddleLeft; cardName.wordWrap = false; cardName.normal.textColor = RunModifierRules.RarityColor(giftCard.Rarity);
-                    GUI.Label(new Rect(tx, panel.y + 20, tw, 40), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
+                    GUI.Label(new Rect(tx, panel.y + 16, tw, 46), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     cardLine.normal.textColor = ArcadeSkin.Cream;
                     // a friend shows the weapon it comes with, on the same walnut chip as the shop's card (requirement 25/10/2026)
                     float below = panel.y + 66;
