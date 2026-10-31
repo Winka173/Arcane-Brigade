@@ -99,9 +99,9 @@ namespace ArcaneBrigade
         private void Styles()
         {
             if (line != null) return;
-            line = ArcadeTypography.Style(26); line.wordWrap = true; line.alignment = TextAnchor.MiddleLeft; line.normal.textColor = ArcadeSkin.Cream;
+            line = ArcadeTypography.Style(ArcadeTypography.SizeNote); line.wordWrap = true; line.alignment = TextAnchor.MiddleLeft; line.normal.textColor = ArcadeSkin.Cream;
             title = ArcadeTypography.Style(36, true); title.alignment = TextAnchor.MiddleCenter; title.normal.textColor = ArcadeSkin.Gold;
-            small = ArcadeTypography.Style(24); small.wordWrap = true; small.alignment = TextAnchor.UpperCenter; small.normal.textColor = ArcadeSkin.Cream;
+            small = ArcadeTypography.Style(ArcadeTypography.SizeNote); small.wordWrap = true; small.alignment = TextAnchor.UpperCenter; small.normal.textColor = ArcadeSkin.Cream;
         }
 
         /// <summary>Any modal card on screen (one shared check): the shop's inspect card, a visitor card, the Last Customer or the

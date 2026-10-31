@@ -36,6 +36,11 @@ namespace ArcaneBrigade
             GUI.Label(rectangle, text, style);
         }
 
+        /// <summary>The UI standard's five sizes (Docs/UI_Standard.md) in units of the 1920x1080 canvas; nothing is set smaller than SizeNote.</summary>
+        public const int SizeNote = 28, SizeBody = 34, SizeItem = 44, SizeTitle = 64, SizeDisplay = 110;
+        /// <summary>The same size on the 1280x720 menu canvas.</summary>
+        public static int On720(int size) => Mathf.RoundToInt(size * 2f / 3f);
+
         public static GUIStyle Style(int size, bool title = false, bool numeric = false)
         {
             return new GUIStyle(GUI.skin.label) { font = numeric ? Numbers : title ? Heading : Body, fontSize = size, wordWrap = true, alignment = TextAnchor.UpperLeft };

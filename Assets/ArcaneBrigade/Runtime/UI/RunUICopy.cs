@@ -5,6 +5,22 @@ namespace ArcaneBrigade
 {
     public static class RunUICopy
     {
+        /// <summary>UI standard: an all-capitals line reads in sentence case ("COMPANY LIGHT · LEVEL 1/3" becomes "Company light · level 1/3"); mixed case is left alone.</summary>
+        public static string Sentence(string text)
+        {
+            if (string.IsNullOrEmpty(text) || text != text.ToUpperInvariant()) return text;
+            string lower = text.ToLowerInvariant();
+            for (int i = 0; i < lower.Length; i++) if (char.IsLetter(lower[i])) return lower.Substring(0, i) + char.ToUpperInvariant(lower[i]) + lower.Substring(i + 1);
+            return lower;
+        }
+        /// <summary>An all-capitals name in title case ("THE GUIDING LAMP" becomes "The Guiding Lamp"); mixed case is left alone.</summary>
+        public static string Title(string text)
+        {
+            if (string.IsNullOrEmpty(text) || text != text.ToUpperInvariant()) return text;
+            char[] letters = text.ToLowerInvariant().ToCharArray();
+            for (int i = 0; i < letters.Length; i++) if (char.IsLetter(letters[i]) && (i == 0 || letters[i - 1] == ' ')) letters[i] = char.ToUpperInvariant(letters[i]);
+            return new string(letters);
+        }
         public static string UnitName(UnitDefinition unit) => unit == null ? "Unknown character" : UnitName(unit.Id, unit.DisplayName);
         public static string UnitName(string id, string fallback = null)
         {

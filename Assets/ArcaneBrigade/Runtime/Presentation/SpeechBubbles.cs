@@ -131,7 +131,7 @@ namespace ArcaneBrigade
 
         // HUD furniture boxes stay clear of: wallet and lamps (top left), bonds (top right); in a fight also the wave plate,
         // timer and lamp line (top centre) and the boss bar (bottom centre)
-        private static readonly Rect[] AlwaysReserved = { new Rect(0, 0, 400, 330), new Rect(1545, 0, 375, 270) };
+        private static readonly Rect[] AlwaysReserved = { new Rect(0, 0, 400, 330), new Rect(1460, 0, 460, 330) };
         private static readonly Rect[] CombatReserved = { new Rect(560, 0, 800, 214), new Rect(410, 896, 1100, 110) };
 
         /// <summary>Draws every live bubble once per frame (the first caller wins: the shop draws them under its tooltips).</summary>

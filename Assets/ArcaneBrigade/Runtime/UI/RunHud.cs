@@ -263,9 +263,9 @@ namespace ArcaneBrigade
                 if (ArcadeTypography.Display != null) title.font = ArcadeTypography.Display;
                 title.alignment = TextAnchor.MiddleCenter;
                 button = new GUIStyle(GUI.skin.button) { fontSize = 22, font = ArcadeTypography.Heading };
-                numeric = ArcadeTypography.Style(20, false, true);
+                numeric = ArcadeTypography.Style(ArcadeTypography.SizeNote, false, true); // UI standard: nothing under 28
                 numeric.alignment = TextAnchor.MiddleCenter;
-                numericLeft = new GUIStyle(numeric) { alignment = TextAnchor.MiddleLeft, fontSize = 24 };
+                numericLeft = new GUIStyle(numeric) { alignment = TextAnchor.MiddleLeft, fontSize = 30 };
                 caption = ArcadeTypography.Style(13, false, true);
                 caption.alignment = TextAnchor.MiddleCenter;
                 caption.normal.textColor = ArcadeSkin.Teal;
@@ -346,7 +346,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(shownHealth / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
             numeric.normal.textColor = health / maximum > 0.45f ? ArcadeSkin.Ink : ArcadeSkin.Cream; // ink reads on the lantern bar
-            GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(Mathf.Min(health, maximum)) + " / " + Mathf.CeilToInt(maximum), numeric);
+            GUI.Label(new Rect(108, 34, 224, 34), Mathf.CeilToInt(Mathf.Min(health, maximum)) + " / " + Mathf.CeilToInt(maximum), numeric);
             Sprite(new Rect(92, 31, 38, 38), owner.Content.HeartSprite);
             }
             numeric.normal.textColor = ArcadeSkin.Cream;
@@ -377,11 +377,15 @@ namespace ArcaneBrigade
                 if (simulation.HeroIdentityEnabled && !owner.PresentationPaused && !PlayerGuide.ModalOpen(owner)) // a modal page covers it whole, never half
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
-                    if (identityStyle == null) { identityStyle = new GUIStyle(small) { font = ArcadeTypography.Punch, fontSize = 22, wordWrap = false }; }
+                    if (identityStyle == null)
+                    {
+                        identityStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); identityStyle.wordWrap = false;
+                        identityLine = ArcadeTypography.Style(ArcadeTypography.SizeNote); identityLine.normal.textColor = ArcadeSkin.Cream;
+                    }
                     identityStyle.normal.textColor = Color.Lerp(HeroIdentities.For(state.ChampionId).Color, ArcadeSkin.Cream, 0.55f);
                     // under the counters in the left column, clear of the tip banner at the top middle (UI standard: HUD zones)
-                    ArcadeTypography.ShadowLabel(new Rect(24, 246, 370, 28), HeroIdentities.For(state.ChampionId).Name, identityStyle);
-                    ArcadeTypography.ShadowLabel(new Rect(24, 276, 370, 48), simulation.HeroIdentityStatus, small);
+                    ArcadeTypography.ShadowLabel(new Rect(24, 244, 370, 34), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
+                    ArcadeTypography.ShadowLabel(new Rect(24, 278, 370, 70), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
                 }
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
@@ -416,9 +420,8 @@ namespace ArcaneBrigade
                 float remaining = simulation.WaveDuration - simulation.Elapsed;
                 Rect timer = new Rect(880, 80, 160, 40);
                 ArcadeSkin.Plate(timer, overtime ? ArcadeSkin.Danger : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Teal);
-                GUI.Label(new Rect(timer.x + 14, timer.y, 50, timer.height), overtime ? "" : "TIME", caption);
                 numeric.normal.textColor = overtime ? ArcadeSkin.Danger : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Cream;
-                GUI.Label(new Rect(timer.x + (overtime ? 10 : 56), timer.y + 2, overtime ? 140 : 90, timer.height - 4), CombatTimerCaption(overtime, remaining), numeric);
+                GUI.Label(new Rect(timer.x + 10, timer.y + 1, timer.width - 20, timer.height - 2), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
             // the eight lanterns sit quietly under the wallet; the old wave road is gone
@@ -582,11 +585,11 @@ namespace ArcaneBrigade
         private void ShopCardStyles()
         {
             if (cardName != null) return;
-            cardName = ArcadeTypography.Style(30, true); cardName.wordWrap = false; cardName.clipping = TextClipping.Clip;
-            cardLine = new GUIStyle(text) { fontSize = 21 };
-            cardChip = ArcadeTypography.Style(19, true); cardChip.alignment = TextAnchor.MiddleLeft; cardChip.wordWrap = false;
+            cardName = ArcadeTypography.Style(ArcadeTypography.SizeBody, true); cardName.wordWrap = false; cardName.clipping = TextClipping.Clip;
+            cardLine = new GUIStyle(text) { fontSize = ArcadeTypography.SizeNote }; // UI standard: the card shows fewer lines, never smaller ones
+            cardChip = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); cardChip.alignment = TextAnchor.MiddleLeft; cardChip.wordWrap = false;
             cardBig = ArcadeTypography.Style(30, true); cardBig.alignment = TextAnchor.MiddleCenter; cardBig.normal.textColor = ArcadeSkin.Ink;
-            cardPrice = ArcadeTypography.Style(24, false, true); cardPrice.alignment = TextAnchor.MiddleLeft; cardPrice.normal.textColor = ArcadeSkin.Ink;
+            cardPrice = ArcadeTypography.Style(ArcadeTypography.SizeNote, false, true); cardPrice.alignment = TextAnchor.MiddleLeft; cardPrice.normal.textColor = ArcadeSkin.Ink;
         }
         /// <summary>As many whole lines as fit the card (measured as drawn, wrapping included); a first line too long on its own
         /// is cut at a word with an ellipsis. The rest is counted (it waits under the i button).</summary>
@@ -648,8 +651,8 @@ namespace ArcaneBrigade
                 int size = cardChip.fontSize;
                 float Need() => Lead + cardChip.CalcSize(new GUIContent(label)).x + Tail;
                 float room = width - (cx - x);
-                while (Need() > room && cardChip.fontSize > 15) cardChip.fontSize--;
-                if (Need() > room && cx > x && rows < 2) { rows++; cx = x; rowY += H + 8; room = width; cardChip.fontSize = size; while (Need() > room && cardChip.fontSize > 15) cardChip.fontSize--; }
+                while (Need() > room && cardChip.fontSize > 24) cardChip.fontSize--;
+                if (Need() > room && cx > x && rows < 2) { rows++; cx = x; rowY += H + 8; room = width; cardChip.fontSize = size; while (Need() > room && cardChip.fontSize > 24) cardChip.fontSize--; }
                 float w = Mathf.Min(room, Need());
                 if (w < 110) { cardChip.fontSize = size; return; }
                 Rect chip = new Rect(cx, rowY, w, H);
@@ -680,7 +683,7 @@ namespace ArcaneBrigade
             string verb = station.Offer != null ? (currency == ShopCurrency.Health ? "PAY" : "BUY") : station.Action == "VISITOR" ? "MEET" : station.Action;
             if (!affordable) verb = "NOT ENOUGH"; // one line; the red price and its icon say which currency
             bool priced = price > 0 && station.Action != "VISITOR";
-            int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 20;
+            int bigSize = cardBig.fontSize; if (verb.Length > 6) cardBig.fontSize = 24;
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
             // laid out inside the plate's rim with real margins (requirement 22/10/2026): the verb on the upper half, the price on the lower
             Rect inner = ArcadeSkin.Content(button, KitPiece.Plate);
@@ -917,7 +920,8 @@ namespace ArcaneBrigade
         private void DrawBonds(ArenaController owner)
         {
             bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, owner.Simulation.VisualElapsed);
-            if (programStyle == null) { programStyle = ArcadeTypography.Style(18, true); programStyle.font = ArcadeTypography.Punch; programStyle.normal.textColor = ArcadeSkin.Ink; programStyle.wordWrap = false; programStyle.alignment = TextAnchor.MiddleLeft; }
+            if (programStyle == null) { programStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); programStyle.normal.textColor = ArcadeSkin.Ink; programStyle.wordWrap = false; programStyle.alignment = TextAnchor.MiddleLeft; }
+            if (bondNumber == null) { bondNumber = ArcadeTypography.Style(ArcadeTypography.SizeNote, false, true); bondNumber.wordWrap = false; bondNumber.alignment = TextAnchor.MiddleRight; }
             bondSummary.Refresh(owner.Content.Bonds, owner.Session.BondCounts);
             // what buying the friend you stand at would do to the bonds: those it adds to blink gold, and new ones appear on top
             previewBonds.Clear(); newBonds.Clear();
@@ -940,31 +944,30 @@ namespace ArcaneBrigade
             float clock = Time.unscaledTime, blink = still || calm ? .6f : .5f + .5f * Mathf.Sin(clock * 7f);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Color deep = Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Ink, 0.4f);
-            programStyle.fontSize = 18; programStyle.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 12, card.y + 4, 96, 27), "BONDS", programStyle);
-            programStyle.fontSize = 16;
-            programStyle.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(card.x + 110, card.y + 4, width - 124, 27), bondSummary.Active + " OF " + bondSummary.Rows.Count + " ACTIVE", programStyle);
-            programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+            programStyle.normal.textColor = deep;
+            GUI.Label(new Rect(card.x + 16, card.y + 8, 160, 36), "Bonds", programStyle);
+            bondNumber.normal.textColor = deep;
+            GUI.Label(new Rect(card.x + 170, card.y + 8, width - 186, 36), bondSummary.Active + " of " + bondSummary.Rows.Count + " active", bondNumber);
+            programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;
             // bonds the offer would start (none yet): drawn first, greyed, with a gold blink and a NEW stamp
             for (int index = 0; index < newBonds.Count; index++)
             {
                 var row = newBonds[index];
-                Rect line = new Rect(card.x + 10, card.y + 32 + index * rowHeight, width - 20, rowHeight - 4);
+                Rect line = new Rect(card.x + 10, card.y + 48 + index * rowHeight, width - 20, rowHeight - 4);
                 ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .18f + .3f * blink));
                 BondRowContent(line, row.Bond, 0, row.After, false, true, row.Activates, blink, 0);
-                Rect stamp = new Rect(line.xMax - 40, line.y + 2, 38, 21);
+                Rect stamp = new Rect(line.xMax - 70, line.y + 6, 68, line.height - 12);
                 ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
-                programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Ink;
-                GUI.Label(stamp, "NEW", programStyle);
-                programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+                bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = ArcadeSkin.Ink;
+                GUI.Label(stamp, "New", bondNumber);
+                bondNumber.alignment = TextAnchor.MiddleRight;
             }
             for (int index = 0; index < bondSummary.VisibleCount; index++)
             {
                 BondDefinition bond = bondSummary.Rows[index]; int count = owner.Session.BondCounts[bond.Id];
-                Rect line = new Rect(card.x + 10, card.y + 32 + (index + newBonds.Count) * rowHeight, width - 20, rowHeight - 4);
+                Rect line = new Rect(card.x + 10, card.y + 48 + (index + newBonds.Count) * rowHeight, width - 20, rowHeight - 4);
                 int level = bond.ActiveLevel(count);
                 bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
@@ -989,12 +992,12 @@ namespace ArcaneBrigade
                 BondRowContent(line, bond, count, previewing ? preview.After : count, level > 0, previewing, previewing && preview.Activates, blink, burst);
                 if (level > 0 || previewing && preview.Activates)
                 {
-                    Rect stamp = new Rect(line.xMax - 36, line.y + 2, 34, 21);
+                    Rect stamp = new Rect(line.xMax - 70, line.y + 6, 68, line.height - 12);
                     bool rising = previewing && preview.Activates;
                     ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
-                    programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.Cream;
-                    GUI.Label(stamp, rising ? "LV" + bond.ActiveLevel(preview.After) + "▲" : "LV" + level, programStyle);
-                    programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+                    bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.Cream;
+                    GUI.Label(stamp, rising ? "Lv" + bond.ActiveLevel(preview.After) + "▲" : "Lv" + level, bondNumber);
+                    bondNumber.alignment = TextAnchor.MiddleRight;
                 }
                 if (bondHit == null) bondHit = new GUIStyle();
                 if (GUI.Button(line, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
@@ -1004,9 +1007,9 @@ namespace ArcaneBrigade
                     tooltipTop = line.y;
                 }
             }
-            programStyle.fontSize = 16; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = deep;
-            Rect footer = new Rect(card.x + 10, card.yMax - 28, width - 20, 24);
-            string more = bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount + " MORE  ·  VIEW ALL" : "VIEW ALL BONDS";
+            programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = deep;
+            Rect footer = new Rect(card.x + 10, card.yMax - 44, width - 20, 38);
+            string more = bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount + " more · view all" : "View all bonds";
             if (GUI.Button(footer, more, programStyle))
             {
                 if (!owner.Details.Open) owner.ToggleDetails();
@@ -1017,8 +1020,8 @@ namespace ArcaneBrigade
             if (tooltip != null)
             {
                 float height = GlossaryUI.Height(tooltip, small, 385) + 24;
-                Fill(new Rect(1140, tooltipTop, 420, height), Panel);
-                GlossaryUI.Text(new Rect(1155, tooltipTop + 12, 385, height - 24), tooltip, small);
+                Fill(new Rect(card.x - 430, tooltipTop, 420, height), Panel);
+                GlossaryUI.Text(new Rect(card.x - 415, tooltipTop + 12, 385, height - 24), tooltip, small);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }
@@ -1031,24 +1034,23 @@ namespace ArcaneBrigade
             Color previous = GUI.color;
             bool grey = !active && !(previewing && activates);
             if (grey) GUI.color = new Color(.62f, .62f, .66f, previewing ? .65f + .3f * blink : .55f);
-            Sprite(new Rect(line.x + 1 - burst * 2, line.y + 1 - burst * 2, 26 + burst * 4, 26 + burst * 4), bond.Icon);
+            Sprite(new Rect(line.x + 2 - burst * 2, line.y + (line.height - 36) * .5f - burst * 2, 36 + burst * 4, 36 + burst * 4), bond.Icon);
             GUI.color = previous;
             programStyle.normal.textColor = grey ? new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .5f) : ArcadeSkin.Ink;
-            GUI.Label(new Rect(line.x + 34, line.y + 1, 190, 30), bond.Name, programStyle);
+            float countRight = active || activates ? line.xMax - 78 : line.xMax - 6; // the count ends before the level stamp
+            GUI.Label(new Rect(line.x + 46, line.y, countRight - line.x - 46 - 70, line.height - 4), bond.Name, programStyle);
             int next = Mathf.Max(after, bond.NextThreshold(after));
-            programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleRight;
-            // requirement 26/10/2026: the count ends before the LV stamp (it was cut under it: "3/")
-            float countRight = active || activates ? line.xMax - 42 : line.xMax - 6;
-            GUI.Label(new Rect(countRight - 80, line.y + 2, 80, 28), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), programStyle);
-            programStyle.fontSize = 18; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
-            Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
+            bondNumber.normal.textColor = programStyle.normal.textColor;
+            GUI.Label(new Rect(countRight - 70, line.y, 70, line.height - 4), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), bondNumber);
+            programStyle.normal.textColor = ArcadeSkin.Ink;
+            Rect progress = new Rect(line.x + 46, line.yMax - 5, line.width - 50, 3);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
             int shown = Mathf.Max(count, bond.NextThreshold(count));
             if (previewing && after > count) ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)after / next), progress.height), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .4f + .5f * blink));
             ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)count / shown), progress.height), active ? ArcadeSkin.Teal : grey ? new Color(.5f, .5f, .55f) : ArcadeSkin.Gold);
         }
 
-        private GUIStyle fallenStyle;
+        private GUIStyle fallenStyle, bondNumber, identityLine;
 
         /// <summary>B9: after the light goes out, someone in the brigade says one short thing, in their own hand.</summary>
         private void DrawFallenWord(ArenaController owner, RunSnapshot state, Rect area)

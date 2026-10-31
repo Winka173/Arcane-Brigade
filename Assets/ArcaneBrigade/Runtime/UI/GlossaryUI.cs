@@ -316,7 +316,7 @@ namespace ArcaneBrigade
             GUIStyle body = ArcadeTypography.Style(20); body.normal.textColor = ArcadeSkin.Cream;
             // below the bond list in the top-right corner (drawn later, it used to cover the card's right half) and as tall as its words
             float words = body.CalcHeight(new GUIContent(selected.Description), width - 50);
-            Rect panel = new Rect(viewport.x - width - 35, 300, width, Mathf.Max(160, 95 + words + 24));
+            Rect panel = new Rect(viewport.x - width - 35, 340, width, Mathf.Max(160, 95 + words + 24));
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - openedAt, panel.center);
             ArcadeSkin.Ticket(panel, ArcadeSkin.Ink, ArcadeSkin.Teal);
