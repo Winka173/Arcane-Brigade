@@ -137,6 +137,8 @@ namespace ArcaneBrigade
                 return;
             }
             ArcadeSkin.Frame(new Rect(640, 230, 640, 680), KitFrame.Dialogue, .6f);
+            // the lamp turned down low while the night waits (review 31/10/2026)
+            if (ArcadeSkin.KitSprite("Info/PauseLamp") is Sprite pauseLamp) Sprite(new Rect(900, 150, 120, 120), pauseLamp);
             ArcadeSkin.Header(new Rect(700, 290, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
             if (navigation.Button(new Rect(750, 410, 420, 65), "RESUME", primary)) owner.TogglePause();
             if (navigation.Button(new Rect(700, 490, 250, 64), "HOW TO PLAY", button)) pausePage = 3;
@@ -179,12 +181,19 @@ namespace ArcaneBrigade
             list.Sort((x, y) => y.members.Length != x.members.Length ? y.members.Length.CompareTo(x.members.Length) : Known(session, y.members).CompareTo(Known(session, x.members)));
             comboLine ??= new GUIStyle(text) { fontSize = ArcadeTypography.SizeNote, wordWrap = true };
             const float row = 120;
+            // review 31/10/2026: the page says how far you are, and an unfound combo names the friend you already met
+            int found = 0; foreach (var c in list) if (Known(session, c.members) > 1) found++;
+            comboLine.normal.textColor = ArcadeSkin.Cream;
+            GUI.Label(new Rect(area.x, area.y, area.width, 40), "Found " + found + " of " + list.Count + " combos" + (found == 0 ? " · bring two friends of a combo into the brigade" : ""), comboLine);
+            area = new Rect(area.x, area.y + 48, area.width, area.height - 48);
             comboScroll = ScrollPanel.Begin(area, comboScroll, new Rect(0, 0, area.width - 20, Mathf.Max(area.height, list.Count * row)));
             for (int i = 0; i < list.Count; i++)
             {
                 var c = list[i]; int known = Known(session, c.members); bool active = System.Array.TrueForAll(c.members, session.OwnsCompanionSpecies);
                 Rect r = new Rect(0, i * row, area.width - 24, row - 10);
-                ArcadeSkin.Line(r, active ? new Color(.95f, .76f, .33f, .22f) : new Color(1, 1, 1, .05f));
+                // a walnut row plate per combo (review 31/10/2026); an active one glows behind it
+                if (active) ArcadeSkin.Glow(new Rect(r.x - 8, r.y - 8, r.width + 16, r.height + 16), new Color(.95f, .76f, .33f, .35f));
+                if (!ArcadeSkin.KitSliced(r, "Info/ComboRow", .6f)) ArcadeSkin.Line(r, active ? new Color(.95f, .76f, .33f, .22f) : new Color(1, 1, 1, .05f));
                 float size = c.members.Length <= 2 ? 94 : c.members.Length == 3 ? 80 : 64, x = r.x + 8;
                 for (int k = 0; k < c.members.Length; k++)
                 {
@@ -194,7 +203,8 @@ namespace ArcaneBrigade
                 }
                 x = Mathf.Max(x + 14, r.x + 284);
                 comboLine.normal.textColor = active ? ArcadeSkin.Gold : known > 1 ? ArcadeSkin.Cream : new Color(.7f, .68f, .64f);
-                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : "Unknown combo";
+                string met = known == 1 ? RunUICopy.UnitName(catalog.Unit(System.Array.Find(c.members, m => Met(session, m)))) : null;
+                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : met != null ? met + " + ?" : "Unknown combo";
                 string count = c.members.Length > 2 && known > 1 ? "  ·  " + Combos.OwnedOf(session, c.members) + " of " + c.members.Length + " in party" : "";
                 GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  active" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
             }
@@ -483,13 +493,16 @@ namespace ArcaneBrigade
                 }
                 Matrix4x4 resultMatrix = GUI.matrix;
                 LivingUI.Pop(Time.unscaledTime - resultsAt, new Vector2(960, 575));
-                Fill(new Rect(80, 200, 630, 790), Panel);
+                // the left column on the painted navy frame (review 31/10/2026: a flat code panel beside the parchment sheet)
+                if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(80, 200, 630, 790), KitFrame.Dialogue); else Fill(new Rect(80, 200, 630, 790), Panel);
                 ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost ? "You Sat Down" : "Until You Return");
                 bool fallen = state.Phase == SessionPhase.Defeat;
-                Sprite(fallen ? new Rect(240, 345, 230, 200) : new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
-                Sprite(fallen ? new Rect(450, 450, 90, 90) : new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
-                if (fallen) DrawFallenWord(owner, state, new Rect(115, 552, 565, 96));
-                GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
+                // the hero stands on the night's emblem: a rising sun for the dawn, a candle just blown out for a run that ended
+                if (ArcadeSkin.KitSprite(fallen ? "Info/CandleOut" : "Info/DawnEmblem") is Sprite emblem) Sprite(fallen ? new Rect(225, 330, 280, 280) : new Rect(195, 336, 340, 340), emblem);
+                Sprite(fallen ? new Rect(265, 372, 200, 190) : new Rect(225, 378, 280, 280), owner.Content.Unit(state.ChampionId).Body);
+                Sprite(fallen ? new Rect(455, 500, 80, 80) : new Rect(490, 560, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
+                if (fallen) DrawFallenWord(owner, state, new Rect(115, 608, 565, 84));
+                GUI.Label(new Rect(115, 700, 565, 46), owner.MetaNotice, small);
                 if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
                 if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave

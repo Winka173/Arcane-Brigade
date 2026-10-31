@@ -46,6 +46,9 @@ namespace ArcaneBrigade
                 menu.ShowPage(RunMenu.Page.Help); yield return new WaitForSecondsRealtime(1.2f); yield return Shot("04-how-to-play");
                 menu.ShowPage(RunMenu.Page.Settings); yield return new WaitForSecondsRealtime(.6f); yield return Shot("05-settings");
                 menu.ShowPage(RunMenu.Page.Museum); yield return new WaitForSecondsRealtime(.6f); yield return Shot("06-collection");
+                // the records and the trophies (review 31/10/2026: never captured before)
+                menu.ShowPage(RunMenu.Page.Records); yield return new WaitForSecondsRealtime(.6f); yield return Shot("06b-records");
+                menu.ShowPage(RunMenu.Page.Achievements); yield return new WaitForSecondsRealtime(.6f); yield return Shot("06c-trophies");
                 // the Waiting Room and its Lamp Tree (a few lanterns lit, one fork taken, the third branch still locked)
                 var meta = new PlayerProfile { TutorialSeen = true, BestWave = 40 }; MetaProgression.Ensure(meta);
                 meta.Meta.LampOil = 2000; meta.Meta.Keepsakes = 40;
@@ -65,6 +68,14 @@ namespace ArcaneBrigade
                 foreach (MetaLetter l in MetaProgression.Letters) MetaProgression.ReadLetter(meta, l.Id);
                 menu.Hub.Close(); menu.Hub.OpenStation(MetaStation.Postbox); yield return new WaitForSecondsRealtime(.6f); yield return Shot("11-postbox");
                 menu.Hub.Close(); menu.Hub.OpenStation(MetaStation.Wardrobe); yield return new WaitForSecondsRealtime(.6f); yield return Shot("12-wardrobe");
+                // a first-time player: every page that collects things says why it is empty and how to fill it
+                menu.Hub.Close();
+                var fresh = new PlayerProfile { TutorialSeen = true }; MetaProgression.Ensure(fresh);
+                menu.ConfigureHubDiagnostics(fresh);
+                menu.ShowPage(RunMenu.Page.Museum); yield return new WaitForSecondsRealtime(.6f); yield return Shot("13-collection-empty");
+                menu.ShowPage(RunMenu.Page.Records); yield return new WaitForSecondsRealtime(.6f); yield return Shot("13b-records-empty");
+                menu.ShowPage(RunMenu.Page.Achievements); yield return new WaitForSecondsRealtime(.6f); yield return Shot("13c-trophies-empty");
+                menu.ShowPage(RunMenu.Page.Hub); menu.Hub.OpenStation(MetaStation.Museum); yield return new WaitForSecondsRealtime(.6f); yield return Shot("13d-museum-empty");
             }
             Application.Quit(0);
         }

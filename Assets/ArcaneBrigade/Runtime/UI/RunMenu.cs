@@ -385,7 +385,6 @@ namespace ArcaneBrigade
         // requirement 24/10/2026: the game opens on a loading screen - the night, the lamp lighting a row of lanterns one by one under
         // the name - then fades into the menu (once per launch; Reduced Motion shortens it to a moment)
         private static float bootStarted = -1; private static bool booted;
-        private Sprite bootLantern;
         private void DrawBootLoading()
         {
             if (booted) return;
@@ -402,21 +401,33 @@ namespace ArcaneBrigade
             // stand along its kerb and light one by one as the progress; the title sits where the main menu keeps it
             Sprite lane = ArcadeSkin.KitSprite("Menu/LoadingLane");
             if (lane != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), lane.texture, ScaleMode.ScaleAndCrop);
-            if (bootLantern == null) bootLantern = Resources.Load<Sprite>("MienCho/Lanterns/Intact");
-            for (int i = 0; i < 8; i++)
+            // eight lamp posts along the kerb, at the lane's own scale (a slender iron post with one lantern head); each lights in
+            // turn, its lit painting fading in over the unlit one
+            Sprite postDark = ArcadeSkin.KitSprite("Menu/LanePostUnlit"), postLit = ArcadeSkin.KitSprite("Menu/LanePostLit");
+            for (int i = 0; i < 8 && postDark != null; i++)
             {
                 float f = i / 7f;
-                float x = Mathf.Lerp(100, 860, f);
-                Vector2 foot = new Vector2(x, 433 + .1914f * x - .0001515f * x * x); // standing on the painted kerb as it curves to the door
-                float h = Mathf.Lerp(100, 74, f); // smaller toward the door
-                float lit = Mathf.Clamp01(k * 8.4f - i); // each one fades up in turn
-                Rect at = new Rect(foot.x - h * .35f, foot.y - h, h * .7f, h);
-                if (lit > 0) ArcadeSkin.Glow(new Rect(foot.x - h * 1.4f, foot.y - h * 1.7f, h * 2.8f, h * 2.2f), new Color(1f, .78f, .4f, .85f * lit * (1 - fade)));
-                Color before = GUI.color;
-                float v = Mathf.Lerp(.5f, 1f, lit); // an unlit lantern is a dim shape on the kerb
-                GUI.color = new Color(before.r * v, before.g * v, before.b * Mathf.Lerp(.42f, 1f, lit), before.a);
-                if (bootLantern != null) RunHud.Sprite(at, bootLantern); else ArcadeSkin.Diamond(foot + Vector2.up * -h * .5f, h * .3f, new Color(1f, .8f, .4f));
-                GUI.color = before;
+                // perspective: the kerb comes toward the viewer at the door, so the posts grow and spread out toward it
+                float x = 70 + 830 * Mathf.Pow(f, 1.25f);
+                Vector2 foot = new Vector2(x, 437 + .1914f * x - .0001515f * x * x); // its base on the painted kerb as it curves to the door
+                float h = Mathf.Lerp(160, 250, f), w = h / 3f;
+                float lit = Mathf.Clamp01(k * 8.4f - i);
+                Rect at = new Rect(foot.x - w * .27f, foot.y - h, w, h); // the post stands at 27% of its picture's width
+                Vector2 head = new Vector2(at.x + w * .8f, at.y + h * .23f); // the lantern hanging from its arm
+                if (lit > 0)
+                {
+                    Color warm = new Color(1f, .74f, .36f, lit * (1 - fade));
+                    ArcadeSkin.Glow(new Rect(head.x - h * .55f, head.y - h * .45f, h * 1.1f, h * .9f), new Color(warm.r, warm.g, warm.b, .5f * warm.a)); // the halo
+                    ArcadeSkin.Glow(new Rect(head.x - h * .18f, head.y - h * .14f, h * .36f, h * .28f), new Color(1f, .92f, .7f, .7f * warm.a)); // the hot core
+                    ArcadeSkin.Glow(new Rect(foot.x - h * .5f, foot.y + 6, h * 1.3f, h * .3f), new Color(warm.r, warm.g, warm.b, .4f * warm.a)); // its pool on the wet stones
+                }
+                GUI.DrawTexture(at, postDark.texture, ScaleMode.ScaleToFit);
+                if (postLit != null && lit > 0)
+                {
+                    Color before = GUI.color; GUI.color = new Color(before.r, before.g, before.b, before.a * lit);
+                    GUI.DrawTexture(at, postLit.texture, ScaleMode.ScaleToFit);
+                    GUI.color = before;
+                }
             }
             GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
@@ -1038,9 +1049,17 @@ namespace ArcaneBrigade
             if (profile.History.Count > 0)
             {
                 RunRecord record = profile.History[Mathf.Clamp(historySelection, 0, profile.History.Count - 1)];
-                invoice.Draw(new Rect(660, 160, 545, 520), record.Build, catalog, record.Nickname, record.Score);
+                // the summary is laid out on the 1080 canvas: drawn at two thirds on this 720 page (its title was cut)
+                Matrix4x4 keepInvoice = GUI.matrix; GUI.matrix = keepInvoice * Matrix4x4.Scale(new Vector3(2f / 3f, 2f / 3f, 1));
+                invoice.Draw(new Rect(990, 240, 818, 780), record.Build, catalog, record.Nickname, record.Score);
+                GUI.matrix = keepInvoice;
             }
-            else Label(new Rect(690, 240, 470, 200), "No journeys yet. Finish one to see your brigade here.");
+            else
+            {
+                // an empty page says why and shows what will fill it (review 31/10/2026): the empty letter rack
+                if (ArcadeSkin.KitSprite("Info/EmptyLetters") is Sprite rack) RunHud.Sprite(new Rect(700, 180, 450, 296), rack);
+                Label(new Rect(690, 490, 470, 90), "No journeys yet. Finish one and its letter waits here, with your brigade.");
+            }
         }
 
         private bool SaveProfile()

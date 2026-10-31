@@ -188,8 +188,10 @@ namespace ArcaneBrigade
         private static void Header(Action<Rect, string> label, ref float y, string caption)
         {
             y += 10;
-            label(Shift(new Rect(75, y, 600, 40)), caption);
-            ArcadeSkin.Divider(Shift(new Rect(75, y + 40, 1130, 2)), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .5f));
+            // each section opens with its painted icon (review 31/10/2026: a thin gold rule under a small word)
+            Sprite icon = ArcadeSkin.KitSprite("Info/Icon" + caption);
+            if (icon != null) { RunHud.Sprite(Shift(new Rect(75, y - 6, 48, 48)), icon); label(Shift(new Rect(133, y, 600, 40)), caption); }
+            else { label(Shift(new Rect(75, y, 600, 40)), caption); ArcadeSkin.Divider(Shift(new Rect(75, y + 40, 1130, 2)), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .5f)); }
             y += 54;
         }
 

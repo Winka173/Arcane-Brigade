@@ -108,7 +108,8 @@ namespace ArcaneBrigade
             }
             ScrollPanel.End();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));
-            ArcadeSkin.Panel(new Rect(840, 225, 375, 385), ArcadeSkin.Card);
+            // the picked thing in a big display case of its own (review 31/10/2026: a dark panel, mostly empty)
+            if (!ArcadeSkin.KitSliced(new Rect(840, 225, 375, 385), "Info/CaseSeen", .6f)) ArcadeSkin.Panel(new Rect(840, 225, 375, 385), ArcadeSkin.Card);
             if (exhibits.Count > 0)
             {
                 Exhibit exhibit = exhibits[selection];
@@ -151,7 +152,7 @@ namespace ArcaneBrigade
                     {
                         diorama.Dispose();
                         float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(time * 2.4f) * 4;
-                        Rect icon = new Rect(952, 245 + bob, 150, 110);
+                        Rect icon = new Rect(892, 252 + bob, 271, 150); // the thing itself, large
                         if (GUI.Button(icon, GUIContent.none, GUIStyle.none)) { touchedAt = time; CheckpointAudio.PlayInterfaceId("ui.page"); }
                         float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01((time - touchedAt) / 0.4f) * Mathf.PI) * 12;
                         icon = new Rect(icon.x - pop * 0.5f, icon.y - pop * 0.5f, icon.width + pop, icon.height + pop);
@@ -172,7 +173,7 @@ namespace ArcaneBrigade
                     }
                 }
                 else diorama.Dispose();
-                float titleTop = exhibit.Unit != null && exhibit.Seen ? poseCount > 5 ? 450 : 428 : 365;
+                float titleTop = exhibit.Unit != null && exhibit.Seen ? poseCount > 5 ? 450 : 428 : exhibit.Seen ? 412 : 365;
                 string heading = exhibit.Seen ? exhibit.Name : "Empty shelf";
                 float titleHeight = Mathf.Clamp(title.CalcHeight(new GUIContent(heading), 323), 24, 52);
                 GUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title);

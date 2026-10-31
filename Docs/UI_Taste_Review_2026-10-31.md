@@ -171,3 +171,52 @@ Một số quy tắc của taste-skill được điều chỉnh cho game. Skill 
 - Tấm tiêu đề "THE WAITING ROOM" vẫn chồng trên trang các trạm.
 - Tab Lamp Tree còn nhỏ.
 - Loading vẫn chạy theo thời gian cố định, chưa theo việc tải thật.
+
+## Vòng 2 (31/10/2026)
+
+**Đợt art 4 (13 món):**
+- sách tranh mở;
+- thẻ ghi nhớ thường và thẻ đã ghi;
+- dấu sáp đã đóng và chỗ trống chờ đóng dấu;
+- kệ thư trống;
+- ba icon Settings;
+- huy hiệu bình minh và nến tắt;
+- ngọn đèn thu nhỏ lửa;
+- tấm hàng combo bằng gỗ.
+
+**Cây đèn đường cho loading:** vẽ hai bản, tắt và sáng, khớp nhau từng điểm ảnh. Đèn đứng đúng phối cảnh: đèn xa nhỏ và sát nhau, đèn gần cửa to và thưa. Khi sáng có quầng sáng ở đầu đèn và vũng sáng trên nền đá ướt.
+
+**Khung mô tả theo độ hiếm:** giữ bộ khung cũ có art riêng từng độ hiếm và trang trí hai bên. Khung 9 mảnh của đợt 2 đã bỏ.
+
+**Đã sửa:**
+- How to Play thành cuốn sách tranh: ảnh dán một trang, chữ lớn ở trang đối diện, hai bên đổi chỗ qua mỗi trang.
+- Dream Journal: thẻ giấy da có chân dung anh hùng, dấu sáp và thanh tiến độ vẽ tay.
+- Records khi chưa có lượt chơi nào có tranh kệ thư trống và câu nói vì sao trống.
+- Records có lượt chơi: bảng tổng kết vẽ ở 2/3 cỡ, hết bị cắt chữ.
+- Settings: mỗi mục mở đầu bằng icon vẽ tay, bỏ đường kẻ mảnh.
+- Combos:
+  - dòng đầu trang cho biết đã tìm bao nhiêu combo;
+  - combo chưa tìm ra ghi tên bạn đã gặp ("Candle Snail + ?");
+  - mỗi combo nằm trên tấm hàng gỗ.
+- Tạm dừng: ngọn đèn thu nhỏ lửa trên thẻ.
+- Kết thúc run: anh hùng đứng trên huy hiệu bình minh hoặc nến tắt, cột trái là khung vẽ tay.
+- Collection: ô chi tiết là tủ trưng bày lớn, hình món đồ to.
+- Waiting Room: khi mở một trạm, tấm tiêu đề phòng nhường chỗ cho tiêu đề trạm.
+- Lamp Tree: tab cao 44 và viết hoa chữ đầu.
+- **Lượt chụp mới:** Records, Dream Journal, ba trang tạm dừng, bốn màn trống và hai màn kết thúc run thật. Playtest đạt 90/90.
+
+**Điểm vòng 2:**
+
+| Màn | Trước | Sau |
+| --- | --- | --- |
+| Loading | 7.4 | 7.9 |
+| How to Play | 6.3 | 7.8 |
+| Dream Journal | 6.5 | 7.6 |
+| Records khi trống | 5.8 | 7.3 |
+| Kết thúc run | 6.5 | 7.6 |
+| Combos | 6.4 | 7.2 |
+| Settings | 7.1 | 7.4 |
+| Collection | 7.4 | 7.6 |
+| Lamp Tree | 6.4 | 7.0 |
+
+**Chứng cứ:** `Docs/Evidence/UIAudit/review_round2.jpg`.

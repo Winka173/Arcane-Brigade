@@ -156,7 +156,14 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(.2f); yield return Shot("Item19_ScrollPanel"); owner.SetShopDetails(false);
             // 04: the goal card and How to play
             Hud.Guide.ShowGoalForCapture(); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item04_GoalCard"); typeof(PlayerGuide).GetField("goalAt", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud.Guide, -100f);
-            owner.TogglePause(); typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 3);
+            owner.TogglePause();
+            // the pause pages (review 31/10/2026: never captured before)
+            for (int pausePage = 0; pausePage < 3; pausePage++)
+            {
+                typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, pausePage);
+                yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item34_Pause" + pausePage);
+            }
+            typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 3);
             yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item04_HowToPlay");
             typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 4);
             yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item26_CombosPage");
@@ -298,6 +305,20 @@ namespace ArcaneBrigade
             yield return Shot("Item30_EndingLine1");
             for (int i = 0; i < 2; i++) { typeof(NightmarePresentation).GetMethod("RevealNextLine", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(owner.GetComponent<NightmarePresentation>(), null); yield return new WaitForSecondsRealtime(.5f); }
             yield return Shot("Item30_EndingLine3");
+
+            // 35: the real results screen, for a run that fell and one that reached the dawn (review 31/10/2026: never captured)
+            foreach (SessionPhase end in new[] { SessionPhase.Defeat, SessionPhase.Victory })
+            {
+                using (var s = new RunSession(catalog))
+                {
+                    s.Start("LanternKnight", 9); s.State.Wave = end == SessionPhase.Defeat ? 9 : 20; s.State.Phase = end;
+                    s.State.TotalKills = 4210; s.State.BossKills = end == SessionPhase.Defeat ? 2 : 5; s.State.CombatSeconds = 1290;
+                    try { storage.SaveRun(s.State); } catch (Exception e) { Check(false, "Results save: " + e.Message); }
+                }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(3.5f);
+                owner = FindAnyObjectByType<ArenaController>();
+                yield return Shot("Item35_Results" + end);
+            }
 
             Check(true, "Capture finished"); Application.Quit(checks.All(c => c.StartsWith("PASS ")) ? 0 : 1);
         }

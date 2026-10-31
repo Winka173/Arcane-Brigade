@@ -39,28 +39,60 @@ namespace ArcaneBrigade
             // each page its own composition: the demo on the left, on the right, or wide on top
             int layout = page % 3;
             Rect card = new Rect(area.x, area.y, area.width, area.height - 80 * scale);
+            Rect demo, text;
+            // review 31/10/2026: How to Play is a real picture book - the painted open book, the play picture glued on one page
+            // and the words on the facing page, turning sides from page to page
+            Sprite book = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("Panels/PictureBook");
+            if (book != null)
+            {
+                float k = Mathf.Min(card.width / 1600f, card.height / 660f);
+                Rect spread = new Rect(card.center.x - 800 * k, card.center.y - 330 * k, 1600 * k, 660 * k);
+                GUI.DrawTexture(spread, book.texture, ScaleMode.ScaleToFit);
+                Rect left = new Rect(spread.x + 112 * k, spread.y + 64 * k, 618 * k, 494 * k), right = new Rect(spread.x + 852 * k, spread.y + 64 * k, 600 * k, 494 * k);
+                demo = page % 2 == 0 ? left : right; text = page % 2 == 0 ? right : left;
+                text = new Rect(text.x + 14 * k, text.y, text.width - 28 * k, text.height);
+                if (!Clip(page, demo, t)) DemoPage(page, demo, t, c, heroId, accent, scale);
+                ArcadeSkin.Glow(new Rect(demo.x - 6, demo.yMax - 4, demo.width + 12, 14), new Color(0, 0, 0, .25f)); // the picture lies on the page
+                BookWords(page, text, scale, accent, true);
+                PageTurns(area, card, scale, ref page);
+                return;
+            }
             ArcadeSkin.Ticket(card, page % 2 == 0 ? ArcadeSkin.Ink : ArcadeSkin.Paper, accent);
             Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
-            Rect demo, text;
-            if (layout == 0) { demo = new Rect(inner.x, inner.y, inner.width * .52f, inner.height); text = new Rect(demo.xMax + 30 * scale, inner.y + 20 * scale, inner.width * .48f - 30 * scale, inner.height); }
-            else if (layout == 1) { text = new Rect(inner.x, inner.y + 20 * scale, inner.width * .44f, inner.height); demo = new Rect(text.xMax + 30 * scale, inner.y, inner.width * .56f - 30 * scale, inner.height); }
-            else { demo = new Rect(inner.x, inner.y, inner.width, inner.height * .62f); text = new Rect(inner.x + 20 * scale, demo.yMax + 10 * scale, inner.width - 40 * scale, inner.height * .38f - 10 * scale); }
+            // review 31/10/2026: the picture takes most of the page and the words are set large and centred in their column (the
+            // right half used to stand nearly empty under three small lines)
+            if (layout == 0) { demo = new Rect(inner.x, inner.y, inner.width * .6f, inner.height); text = new Rect(demo.xMax + 36 * scale, inner.y, inner.width * .4f - 36 * scale, inner.height); }
+            else if (layout == 1) { text = new Rect(inner.x + 8 * scale, inner.y, inner.width * .4f - 8 * scale, inner.height); demo = new Rect(text.xMax + 36 * scale, inner.y, inner.width * .6f - 36 * scale, inner.height); }
+            else { demo = new Rect(inner.x, inner.y, inner.width, inner.height * .6f); text = new Rect(inner.x + 24 * scale, demo.yMax + 16 * scale, inner.width - 48 * scale, inner.height * .4f - 16 * scale); }
             RunHud.Fill(demo, new Color(.05f, .06f, .09f, .55f));
             // requirement 24/10/2026: the pages show pictures taken from real play (HowToRecorder -> Resources/HowTo); the code-drawn
             // demo stands in where a picture is missing
             if (!Clip(page, demo, t)) DemoPage(page, demo, t, c, heroId, accent, scale);
-            Color ink = page % 2 == 0 ? ArcadeSkin.Paper : ArcadeSkin.KitInk;
-            head.fontSize = Mathf.RoundToInt(34 * scale); body.fontSize = Mathf.RoundToInt(22 * scale); pop.fontSize = Mathf.RoundToInt(26 * scale);
-            head.normal.textColor = Color.Lerp(accent, ink, page % 2 == 0 ? .1f : .55f); body.normal.textColor = ink;
-            GUI.Label(new Rect(text.x, text.y, text.width, 46 * scale), Titles[page], head);
-            float y = text.y + 58 * scale;
+            BookWords(page, text, scale, accent, false);
+            PageTurns(area, card, scale, ref page);
+        }
+
+        private static void BookWords(int page, Rect text, float scale, Color accent, bool onPaper)
+        {
+            int layout = onPaper ? 0 : page % 3;
+            Color ink = onPaper || page % 2 != 0 ? ArcadeSkin.KitInk : ArcadeSkin.Paper;
+            head.fontSize = Mathf.RoundToInt(48 * scale); body.fontSize = Mathf.RoundToInt(31 * scale); pop.fontSize = Mathf.RoundToInt(30 * scale);
+            head.normal.textColor = Color.Lerp(accent, ink, ink == ArcadeSkin.Paper ? .1f : .55f); body.normal.textColor = ink;
+            float block = 70 * scale; // the title and the lines as one block, centred in the column (the wide layout keeps its top)
+            foreach (string line in Lines[page]) block += body.CalcHeight(new GUIContent(line), text.width - 36 * scale) + 16 * scale;
+            float top = layout == 2 ? text.y : text.y + Mathf.Max(0, (text.height - block) * .5f);
+            GUI.Label(new Rect(text.x, top, text.width, 62 * scale), Titles[page], head);
+            float y = top + 70 * scale;
             foreach (string line in Lines[page])
             {
-                ArcadeSkin.Diamond(new Vector2(text.x + 8 * scale, y + 14 * scale), 12 * scale, accent);
-                float h = body.CalcHeight(new GUIContent(line), text.width - 28 * scale);
-                GUI.Label(new Rect(text.x + 26 * scale, y, text.width - 28 * scale, h), line, body);
-                y += h + 12 * scale;
+                ArcadeSkin.Diamond(new Vector2(text.x + 10 * scale, y + 19 * scale), 16 * scale, accent);
+                float h = body.CalcHeight(new GUIContent(line), text.width - 36 * scale);
+                GUI.Label(new Rect(text.x + 34 * scale, y, text.width - 36 * scale, h), line, body);
+                y += h + 16 * scale;
             }
+        }
+        private static void PageTurns(Rect area, Rect card, float scale, ref int page)
+        {
             // page turning: arrows on painted round buttons and a dot per page
             float by = card.yMax + 10 * scale, bs = 64 * scale; // a thumb-sized page turn (96 units on the 1080 canvas)
             if (ArcadeSkin.IconButton(new Rect(area.x, by, bs, bs), KitRound.Walnut, "◀")) page = (page + PageCount - 1) % PageCount;

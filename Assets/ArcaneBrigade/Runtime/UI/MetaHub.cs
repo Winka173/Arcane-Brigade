@@ -243,9 +243,13 @@ namespace ArcaneBrigade
 
             // the room's frame: back, title, purse, the way on
             if (!PanelOpen && ArcadeSkin.Medallion(new Rect(22, 18, 64, 64), KitMedallion.Back)) action = HubAction.Back;
-            ArcadeSkin.Frame(new Rect(96, 18, 400, 62), KitFrame.Plaque);
-            heading.normal.textColor = ArcadeSkin.KitCream;
-            GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
+            // an open station shows its own title: the room's plaque steps aside (review 31/10/2026: two titles stacked)
+            if (!PanelOpen)
+            {
+                ArcadeSkin.Frame(new Rect(96, 18, 400, 62), KitFrame.Plaque);
+                heading.normal.textColor = ArcadeSkin.KitCream;
+                GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
+            }
             if (!PanelOpen) FavourStars(profile, new Rect(96, 80, 400, 30)); // an open station's title would cover it by half
             Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
             if (!PanelOpen && ArcadeSkin.Button(new Rect(1016, 646, 244, 58), "NEW JOURNEY ▶", KitButton.Primary, true, body)) action = HubAction.NextNight; // the door: on to the next night (the medallion top left goes back)

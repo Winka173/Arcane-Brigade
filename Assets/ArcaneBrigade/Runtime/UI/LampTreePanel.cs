@@ -87,8 +87,9 @@ namespace ArcaneBrigade
             float col = tree.width / MetaProgression.BranchNames.Length;
             for (int b = 0; b < MetaProgression.BranchNames.Length; b++)
             {
-                Rect tab = new Rect(tree.x + col * b + 3, tree.y - 8, col - 6, 36);
-                if (ArcadeSkin.Tab(tab, MetaProgression.BranchNames[b], focusBranch == b, true, chip) | Nav(tab))
+                // a thumb-tall tab; the name in title case so the longest ("Merchant") keeps the standard size
+                Rect tab = new Rect(tree.x + col * b + 3, tree.y - 14, col - 6, 44);
+                if (ArcadeSkin.Tab(tab, BranchLabel(MetaProgression.BranchNames[b]), focusBranch == b, true, chip) | Nav(tab))
                 {
                     focusBranch = focusBranch == b ? -1 : b; treePick = null; CheckpointAudio.PlayInterfaceId("ui.select");
                 }
@@ -122,6 +123,7 @@ namespace ArcaneBrigade
             }
         }
 
+        private static string BranchLabel(string name) => string.IsNullOrEmpty(name) ? name : char.ToUpperInvariant(name[0]) + name.Substring(1).ToLowerInvariant();
         private static Rect CardRect(Vector2 at)
         {
             const float w = 290, h = 300;
