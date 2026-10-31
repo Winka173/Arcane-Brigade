@@ -149,9 +149,9 @@ namespace ArcaneBrigade
             if (heading != null) return;
             heading = ArcadeTypography.Style(26, true); heading.alignment = TextAnchor.MiddleCenter; heading.wordWrap = false;
             body = ArcadeTypography.Style(19, true); body.wordWrap = false; body.clipping = TextClipping.Clip;
-            small = ArcadeTypography.Style(15); small.wordWrap = true;
+            small = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); small.wordWrap = true;
             number = ArcadeTypography.Style(20, false, true); number.wordWrap = false;
-            chip = ArcadeTypography.Style(16, true); chip.alignment = TextAnchor.MiddleCenter; chip.wordWrap = false;
+            chip = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true); chip.alignment = TextAnchor.MiddleCenter; chip.wordWrap = false;
         }
 
         /// <summary>Draws the room and, when open, a station's cards. Returns what the traveller chose (next night / back).</summary>

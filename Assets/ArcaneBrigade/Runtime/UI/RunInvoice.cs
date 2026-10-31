@@ -109,29 +109,29 @@ namespace ArcaneBrigade
 
         /// <summary>The Waiting Room's haul of a finished run (play-test item 27): Lamp Oil and Keepsakes, line by line.</summary>
         public static bool HasHaul(RunSnapshot run) => run?.Meta != null && (run.Meta.HaulOil > 0 || run.Meta.HaulKeepsakes > 0) && run.Meta.HaulLines != null;
-        private static float HaulHeight(RunSnapshot run) => HasHaul(run) ? 58 + run.Meta.HaulLines.Count * 26 + 16 + 30 : 0;
+        private static float HaulHeight(RunSnapshot run) => HasHaul(run) ? 60 + run.Meta.HaulLines.Count * 38 + 16 + 44 : 0;
         private void DrawHaul(float y, float inner, RunSnapshot run, GUIStyle body, GUIStyle number, GUIStyle small)
         {
             ArcadeSkin.Line(new Rect(0, y, inner, HaulHeight(run) - 10), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
-            GUI.Label(new Rect(8, y + 8, inner * .5f, 28), "FOR THE WAITING ROOM", body);
+            GUI.Label(new Rect(8, y + 8, inner * .5f, 36), "For the waiting room", body);
             float x = inner - 8;
             foreach (var (icon, amount) in new[] { (MetaIcons.Keepsake, run.Meta.HaulKeepsakes), (MetaIcons.LampOil, run.Meta.HaulOil) })
             {
                 string text = "+" + amount; float w = body.CalcSize(new GUIContent(text)).x;
-                body.alignment = TextAnchor.MiddleRight; GUI.Label(new Rect(x - w - 4, y + 8, w + 4, 34), text, body); body.alignment = TextAnchor.UpperLeft;
-                RunHud.Sprite(new Rect(x - w - 44, y + 6, 36, 36), icon); x -= w + 60;
+                body.alignment = TextAnchor.MiddleRight; GUI.Label(new Rect(x - w - 4, y + 8, w + 4, 38), text, body); body.alignment = TextAnchor.UpperLeft;
+                RunHud.Sprite(new Rect(x - w - 48, y + 6, 40, 40), icon); x -= w + 64;
             }
-            float row = y + 48;
+            float row = y + 56;
             foreach (string line in run.Meta.HaulLines)
             {
                 string[] p = line.Split('|'); if (p.Length != 3) continue;
-                RunHud.Sprite(new Rect(10, row, 22, 22), p[0] == "keep" ? MetaIcons.Keepsake : MetaIcons.LampOil);
-                GUI.Label(new Rect(40, row, inner - 130, 24), p[1], small);
-                small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner - 90, row, 80, 24), "+" + p[2], small); small.alignment = TextAnchor.UpperLeft;
-                row += 26;
+                RunHud.Sprite(new Rect(10, row + 2, 30, 30), p[0] == "keep" ? MetaIcons.Keepsake : MetaIcons.LampOil);
+                GUI.Label(new Rect(50, row, inner - 150, 36), p[1], small);
+                small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner - 100, row, 90, 36), "+" + p[2], small); small.alignment = TextAnchor.UpperLeft;
+                row += 38;
             }
             // where to spend it (players did not know the permanent upgrades were there)
-            GUI.Label(new Rect(10, row + 2, inner - 20, 26), "Spend them on permanent upgrades: Main menu → WAITING ROOM → Lamp Tree.", small);
+            GUI.Label(new Rect(10, row + 4, inner - 20, 38), "Spend them in the Waiting Room, at the Lamp Tree.", small);
         }
 
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)
@@ -146,65 +146,65 @@ namespace ArcaneBrigade
                 for (float horizontal = rectangle.x; horizontal < rectangle.xMax; horizontal += 22)
                     ArcadeSkin.Line(new Rect(horizontal, rectangle.yMax - 6, 10, 6), ArcadeSkin.Ink);
             }
-            GUIStyle heading = headingStyle ?? (headingStyle = ArcadeTypography.Style(26, true));
-            GUIStyle body = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(19));
-            GUIStyle number = numericStyle ?? (numericStyle = ArcadeTypography.Style(22, false, true));
-            GUIStyle small = smallStyle ?? (smallStyle = ArcadeTypography.Style(16));
+            GUIStyle heading = headingStyle ?? (headingStyle = ArcadeTypography.Style(ArcadeTypography.SizeItem, true));
+            GUIStyle body = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote));
+            GUIStyle number = numericStyle ?? (numericStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote, false, true));
+            GUIStyle small = smallStyle ?? (smallStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote)); // UI standard: nothing under 28
             heading.normal.textColor = body.normal.textColor = number.normal.textColor = ArcadeSkin.Ink;
             small.normal.textColor = new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .72f);
             heading.wordWrap = false; heading.clipping = TextClipping.Clip;
 
             // headline: who, how far, how long, how many bosses
             float x = rectangle.x + 24, w = rectangle.width - 48;
-            GUI.Label(new Rect(x, rectangle.y + 14, w, 40), nickname ?? RunMeta.Nickname(run), heading);
+            GUI.Label(new Rect(x, rectangle.y + 12, w, 56), nickname ?? RunMeta.Nickname(run), heading);
             string journey = (run.Endless ? "Endless" : "Journey") + " · " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " · " + (run.Phase == SessionPhase.Victory ? "Dawn reached" : "Ended at wave " + run.Wave);
-            GUI.Label(new Rect(x, rectangle.y + 54, w, 28), journey, body);
-            GUI.Label(new Rect(x, rectangle.y + 86, w, 32), "WAVE " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " BOSS" : " BOSSES"), number);
-            ArcadeSkin.Divider(new Rect(x, rectangle.y + 126, w, 2), ArcadeSkin.Ink);
+            GUI.Label(new Rect(x, rectangle.y + 68, w, 36), journey, body);
+            GUI.Label(new Rect(x, rectangle.y + 104, w, 36), "Wave " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " boss" : " bosses"), number);
+            ArcadeSkin.Divider(new Rect(x, rectangle.y + 146, w, 2), ArcadeSkin.Ink);
 
-            Rect view = new Rect(rectangle.x + 16, rectangle.y + 136, rectangle.width - 32, rectangle.height - 150);
+            Rect view = new Rect(rectangle.x + 16, rectangle.y + 156, rectangle.width - 32, rectangle.height - 170);
             float inner = view.width - 14;
             int shown = cachedMembers.Count;
             var (relic, relicDamage) = BestRelic(run, catalog);
             int columns = Mathf.Max(1, Mathf.FloorToInt(inner / 76));
             int relicRows = Mathf.CeilToInt(run.Items.Count / (float)columns);
-            float bondHeight = cachedBonds.Count > 0 ? 40 + cachedBonds.Count * 54 : 0;
-            float height = 34 + shown * 66 + bondHeight + 20 + 120 + (run.Items.Count > 0 ? 40 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 44 : 0) + 10 + HaulHeight(run);
+            float bondHeight = cachedBonds.Count > 0 ? 50 + cachedBonds.Count * 76 : 0;
+            float height = 44 + shown * 96 + bondHeight + 20 + 166 + (run.Items.Count > 0 ? 50 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 50 : 0) + 10 + HaulHeight(run);
             if (scrollToEnd) { scroll.y = height; scrollToEnd = false; }
             scroll = ScrollPanel.Begin(view, scroll, new Rect(0, 0, inner, height), new Color(ArcadeSkin.Paper.r * .6f, ArcadeSkin.Paper.g * .6f, ArcadeSkin.Paper.b * .6f, .5f));
             float y = 0;
             if (HasHaul(run)) { DrawHaul(y, inner, run, body, number, small); y += HaulHeight(run); }
-            GUI.Label(new Rect(4, y, inner, 30), "YOUR BRIGADE", body); y += 34;
+            GUI.Label(new Rect(4, y, inner, 38), "Your brigade", body); y += 44;
             for (int index = 0; index < shown; index++)
             {
                 Member m = cachedMembers[index];
                 float reveal = LivingUI.Reveal(UnityEngine.Time.unscaledTime - revealedAt - Mathf.Min(index, 12) * 0.04f, PresentationSettings.ReducedMotion);
                 Color keep = GUI.color; GUI.color *= new Color(1, 1, 1, reveal);
                 UnitDefinition unit = catalog.Unit(m.UnitId);
-                RunHud.Sprite(new Rect(4, y + 4, 54, 54), unit != null ? unit.Body : null);
-                float textX = 68, right = 92;
-                GUI.Label(new Rect(textX, y, inner - textX - right, 28), (m.Hero ? "YOU · " : "") + Name(m.UnitId, catalog) + Stars(m.Stars), body);
-                Rect bar = new Rect(textX, y + 32, inner - textX - right, 12);
+                RunHud.Sprite(new Rect(4, y + 8, 70, 70), unit != null ? unit.Body : null);
+                float textX = 86, right = 100;
+                GUI.Label(new Rect(textX, y, inner - textX - right, 36), (m.Hero ? "You · " : "") + Name(m.UnitId, catalog) + Stars(m.Stars), body);
+                Rect bar = new Rect(textX, y + 40, inner - textX - right, 12);
                 ArcadeSkin.Line(bar, new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .14f));
                 ArcadeSkin.Line(new Rect(bar.x, bar.y, bar.width * m.Share * reveal, bar.height), m.Hero ? ArcadeSkin.Accent : ArcadeSkin.Teal * .85f);
                 if (m.Damage > 0 || m.Kills > 0)
-                    GUI.Label(new Rect(textX, y + 44, inner - textX - right, 20), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
+                    GUI.Label(new Rect(textX, y + 54, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
                 number.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(inner - right, y + 8, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
+                GUI.Label(new Rect(inner - right, y + 20, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
                 number.alignment = TextAnchor.UpperLeft;
                 GUI.color = keep;
-                y += 66;
+                y += 96;
             }
             if (cachedBonds.Count > 0)
             {
-                GUI.Label(new Rect(4, y + 6, inner, 30), "BONDS", body); y += 40;
+                GUI.Label(new Rect(4, y + 6, inner, 38), "Bonds", body); y += 50;
                 foreach (BondRow row in cachedBonds)
                 {
-                    RunHud.Sprite(new Rect(4, y + 4, 40, 40), row.Bond.Icon);
-                    GUI.Label(new Rect(54, y, inner - 58, 26), row.Bond.Name, body);
+                    RunHud.Sprite(new Rect(4, y + 8, 52, 52), row.Bond.Icon);
+                    GUI.Label(new Rect(68, y, inner - 72, 36), row.Bond.Name, body);
                     int level = row.Bond.ActiveLevel(row.Count);
-                    GUI.Label(new Rect(54, y + 26, inner - 58, 24), row.Count + (row.Count == 1 ? " member · " : " members · ") + (level > 0 ? "Level " + level : "Not ready"), small);
-                    y += 54;
+                    GUI.Label(new Rect(68, y + 36, inner - 72, 36), row.Count + (row.Count == 1 ? " member · " : " members · ") + (level > 0 ? "Level " + level : "Not ready"), small);
+                    y += 76;
                 }
             }
             y += 20;
@@ -212,13 +212,13 @@ namespace ArcaneBrigade
             float cardW = (inner - 24) / 3f;
             Member richest = null, slayer = null;
             foreach (Member m in cachedMembers) { if (m.Gold > 0 && (richest == null || m.Gold > richest.Gold)) richest = m; if (m.Kills > 0 && (slayer == null || m.Kills > slayer.Kills)) slayer = m; }
-            Trophy(new Rect(0, y, cardW, 108), "BEST RELIC", relic?.Icon, relic != null ? relic.Name : "No relic yet", relic != null ? Short(relicDamage) + " damage" : "", body, small);
-            Trophy(new Rect(cardW + 12, y, cardW, 108), "MOST GOLD", richest != null ? catalog.Unit(richest.UnitId)?.Body : null, richest != null ? Name(richest.UnitId, catalog) : "None yet", richest != null ? Short(richest.Gold) + " gold" : "", body, small);
-            Trophy(new Rect(cardW * 2 + 24, y, cardW, 108), "MOST DEFEATED", slayer != null ? catalog.Unit(slayer.UnitId)?.Body : null, slayer != null ? Name(slayer.UnitId, catalog) : "None yet", slayer != null ? Short(slayer.Kills) : "", body, small);
-            y += 120;
+            Trophy(new Rect(0, y, cardW, 154), "Best relic", relic?.Icon, relic != null ? relic.Name : "No relic yet", relic != null ? Short(relicDamage) + " damage" : "", body, small);
+            Trophy(new Rect(cardW + 12, y, cardW, 154), "Most gold", richest != null ? catalog.Unit(richest.UnitId)?.Body : null, richest != null ? Name(richest.UnitId, catalog) : "None yet", richest != null ? Short(richest.Gold) + " gold" : "", body, small);
+            Trophy(new Rect(cardW * 2 + 24, y, cardW, 154), "Most defeated", slayer != null ? catalog.Unit(slayer.UnitId)?.Body : null, slayer != null ? Name(slayer.UnitId, catalog) : "None yet", slayer != null ? Short(slayer.Kills) : "", body, small);
+            y += 166;
             if (run.Items.Count > 0)
             {
-                GUI.Label(new Rect(4, y, inner, 30), "RELICS", body); y += 40;
+                GUI.Label(new Rect(4, y, inner, 38), "Relics", body); y += 50;
                 for (int index = 0; index < run.Items.Count; index++)
                 {
                     ItemStack stack = run.Items[index];
@@ -229,20 +229,20 @@ namespace ArcaneBrigade
                 y += relicRows * 76;
             }
             if (run.Phase == SessionPhase.Defeat && !string.IsNullOrEmpty(run.LastDamageSource))
-                GUI.Label(new Rect(4, y + 6, inner, 32), "FELL TO  " + RunUICopy.DamageSource(run.LastDamageSource, catalog), body);
+                GUI.Label(new Rect(4, y + 6, inner, 38), "Fell to " + RunUICopy.DamageSource(run.LastDamageSource, catalog), body);
             ScrollPanel.End();
         }
 
         private static void Trophy(Rect r, string title, Sprite icon, string name, string amount, GUIStyle body, GUIStyle small)
         {
             ArcadeSkin.Line(r, new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
-            GUI.Label(new Rect(r.x + 8, r.y + 4, r.width - 16, 22), title, small);
-            if (icon != null) RunHud.Sprite(new Rect(r.x + 8, r.y + 32, 60, 60), icon);
-            float tx = icon != null ? r.x + 74 : r.x + 8;
+            GUI.Label(new Rect(r.x + 8, r.y + 4, r.width - 16, 36), title, small);
+            if (icon != null) RunHud.Sprite(new Rect(r.x + 8, r.y + 46, 66, 66), icon);
+            float tx = icon != null ? r.x + 82 : r.x + 8;
             body.wordWrap = true;
-            GUI.Label(new Rect(tx, r.y + 28, r.xMax - tx - 6, 48), name, body);
+            GUI.Label(new Rect(tx, r.y + 42, r.xMax - tx - 6, 70), name, body);
             body.wordWrap = false;
-            GUI.Label(new Rect(tx, r.y + 78, r.xMax - tx - 6, 24), amount, small);
+            GUI.Label(new Rect(tx, r.y + 112, r.xMax - tx - 6, 36), amount, small);
         }
     }
 }

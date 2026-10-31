@@ -12,7 +12,6 @@ namespace ArcaneBrigade
     {
         private static GUISkin skin;
         private static GUIStyle primary;
-        private static GUIStyle accessionStyle;
         private static GUIStyle headerStyle;
         private static GUIStyle stampStyle;
         private static GUIStyle pillStyle;
@@ -390,9 +389,7 @@ namespace ArcaneBrigade
 
         public static void Header(Rect rectangle, string eyebrow, string heading)
         {
-            GUIStyle label = accessionStyle ?? (accessionStyle = ArcadeTypography.Style(13, false, true));
-            label.normal.textColor = Accent;
-            GUI.Label(new Rect(rectangle.x, rectangle.y, rectangle.width, 24), eyebrow, label);
+            // UI standard: no small capital label above a title; the eyebrow argument is kept for callers but never drawn
             if (headerStyle == null) { headerStyle = ArcadeTypography.Style(36, true); if (ArcadeTypography.Display != null) headerStyle.font = ArcadeTypography.Display; }
             headerStyle.normal.textColor = Cream;
             Vector2 size = headerStyle.CalcSize(new GUIContent(heading));

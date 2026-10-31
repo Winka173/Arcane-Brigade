@@ -298,7 +298,7 @@ namespace ArcaneBrigade
                 text = ArcadeTypography.Style(19);
                 button = new GUIStyle(GUI.skin.button) { fontSize = 19, font = ArcadeTypography.Heading };
                 primary = ArcadeSkin.Primary(button);
-                chip = ArcadeTypography.Style(14, true);
+                chip = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true);
                 chip.alignment = TextAnchor.MiddleCenter;
                 chip.normal.textColor = ArcadeSkin.Ink;
             }
@@ -432,7 +432,6 @@ namespace ArcaneBrigade
         private int hoveredSpot = -1;
         private GUIStyle smallButton;
         private GUIStyle spotHint;
-        private GUIStyle eyebrowStyle;
         private Texture2D waitingRoom;
 
         private bool SpotEnabled(int index) => index != 1 || CanResume;
@@ -525,8 +524,7 @@ namespace ArcaneBrigade
             bool reduced = profile.ReducedMotion;
             float breathe = reduced ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 1.1f);
 
-            if (eyebrowStyle == null) { eyebrowStyle = ArcadeTypography.Style(14, false, true); eyebrowStyle.normal.textColor = ArcadeSkin.Accent; }
-            GUI.Label(new Rect(44, 34, 500, 22), "THE WAITING PLACE", eyebrowStyle);
+            // UI standard: the title alone, no small capital label above it
             GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
             logo.wordWrap = false;
@@ -551,9 +549,9 @@ namespace ArcaneBrigade
             ArcadeSkin.Glow(new Rect(knight.x + 40, knight.yMax - 34, knight.width - 80, 56), new Color(0, 0, 0, .6f));
             RunHud.Sprite(knight, pose);
             if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(Time.unscaledTime * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(knight.center.x + Mathf.Sin(r * 7 + i * 2) * 120, knight.yMax - r * 420), 6 + 6 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .8f * Mathf.Sin(r * Mathf.PI))); }
-            if (spotPlate == null) { spotPlate = ArcadeTypography.Style(15, true); }
+            if (spotPlate == null) { spotPlate = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true); }
             Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true), null };
-            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 15 }; // one size that fits the longest label, so the grid reads even
+            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote) }; // one size for the grid, at the standard's minimum
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 if (index == 7 && (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer)) continue; // a phone leaves with its own button
@@ -561,7 +559,7 @@ namespace ArcaneBrigade
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
                 Rect spot = index < 3 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 462 + (index - 3) / 2 * 72, 230, 60);
-                if (index == 2) caption = "         WAITING ROOM · PERMANENT UPGRADES";
+                if (index == 2) caption = "         WAITING ROOM";
                 else if (index >= 3) caption = "      " + caption; // room for its icon
                 if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume || index == 2 ? primary : smallButton)) ActivateSpot(index);
                 if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 14, spot.y + 8, 52, 52) : new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
@@ -583,10 +581,9 @@ namespace ArcaneBrigade
             if (catalog.Champions == null || catalog.Champions.Length == 0) { Label(new Rect(75, 200, 1100, 90), "No hero available."); return; }
             selection = Mathf.Clamp(selection, 0, catalog.Champions.Length - 1);
             RosterOverlays(false); // an open picker or details card takes the taps before the page under it
-            GUIStyle caption = portraitCaption ?? (portraitCaption = ArcadeTypography.Style(18, true));
+            GUIStyle caption = portraitCaption ?? (portraitCaption = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true));
             caption.alignment = TextAnchor.MiddleCenter;
-            GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(16));
-            Label(new Rect(65, 142, 660, 32), "CHOOSE YOUR HERO");
+            GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)));
             scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 460), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
@@ -617,10 +614,10 @@ namespace ArcaneBrigade
                     if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0)
                     {
                         // each theme icon is tappable and says what it means (requirement 24/10/2026)
-                        Rect icon = new Rect(690 - iconIndex++ * 34, 145, 28, 28); RunHud.Sprite(icon, bond.Icon);
+                        Rect icon = new Rect(250 + iconIndex++ * 36, 144, 30, 30); RunHud.Sprite(icon, bond.Icon);
                         if (GUI.Button(new Rect(icon.x - 4, icon.y - 4, 36, 36), GUIContent.none, GUIStyle.none)) Explain(icon, bond.Name + " theme", "Friends of this theme join this hero's shop more often. " + bond.Threshold + " of them together wake a bond bonus.");
                     }
-                if (iconIndex > 0) GUI.Label(new Rect(690 - iconIndex * 34 - 130, 145, 125, 28), "RECRUIT THEMES", note);
+                if (iconIndex > 0) GUI.Label(new Rect(65, 144, 180, 30), "Recruit themes", note);
             }
             // requirement 25/10/2026 (the text box was too small): the hero's panel is the whole right column; the difficulty sits
             // under the hero grid and STEP THROUGH under the panel, one bottom row
@@ -668,7 +665,7 @@ namespace ArcaneBrigade
             if (Button(new Rect(65, 656, 330, 52), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficultyPickerAt = Time.unscaledTime;
             bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile);
             // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
-            GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(15, true)); danger.alignment = TextAnchor.MiddleLeft; danger.wordWrap = true;
+            GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true)); danger.alignment = TextAnchor.MiddleLeft; danger.wordWrap = true;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
             // beside the button, what the difficulty does (its name is already on the button)
             string dangerText = sealedDifficulty ? "Light the whole Lamp Tree" : DifficultyLine(difficulty);
@@ -707,7 +704,7 @@ namespace ArcaneBrigade
             if (!details && !picker) return;
             if (paint != (Event.current.type == EventType.Repaint)) return;
             overlayTitle ??= new GUIStyle(ArcadeTypography.Style(26, true)) { alignment = TextAnchor.MiddleCenter };
-            overlayLine ??= new GUIStyle(ArcadeTypography.Style(16)) { wordWrap = true };
+            overlayLine ??= new GUIStyle(ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote))) { wordWrap = true };
             RunHud.Fill(new Rect(0, 0, 1280, 720), new Color(0, 0, 0, .5f));
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             if (details)
@@ -777,7 +774,7 @@ namespace ArcaneBrigade
         {
             if (explainText == null) return;
             if (Event.current.type == EventType.MouseDown && Time.unscaledTime - explainShown > .1f) { explainText = null; return; }
-            explainTitle ??= ArcadeTypography.Style(18, true); explainBody ??= ArcadeTypography.Style(16); explainBody.wordWrap = true;
+            explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true); explainBody ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); explainBody.wordWrap = true;
             float w = 330, h = 36 + explainBody.CalcHeight(new GUIContent(explainText), w - 36) + 18;
             Rect card = new Rect(Mathf.Clamp(explainAt.center.x - w * .5f, 20, 1260 - w), explainAt.yMax + 10, w, h); // the menu's 1280x720 space
             if (card.yMax > 704) card.y = explainAt.y - h - 10;

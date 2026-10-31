@@ -17,130 +17,162 @@ namespace ArcaneBrigade
         private static Vector2 origin;
 
         public static readonly int[] ShakeSteps = { 100, 75, 50, 25, 0 };
-        public static readonly string[] WindowNames = { "FULLSCREEN", "BORDERLESS", "WINDOWED" };
+        public static readonly string[] WindowNames = { "Fullscreen", "Borderless", "Windowed" };
 
         private static Vector2 scroll;
-        /// <summary>The settings in four groups (requirement 24/10/2026: "settings are too cramped", and the fonts' licence line read as a
-        /// mysterious "font" setting - credits belong in the credits): Sound, Screen, Comfort and Play, rows 60 apart with room
-        /// between the plates, scrolling when the sheet is taller than its space.</summary>
+        private static float contentHeight = 1500;
+        /// <summary>The settings in four groups (Sound, Screen, Comfort, Play). UI standard (Docs/UI_Standard.md): every row is its label on
+        /// the left and its choices on the right as a segmented row, the chosen one lit gold; nothing is changed by tapping the same
+        /// button round and round. The sheet scrolls when it is taller than its space.</summary>
         public static void Draw(PlayerProfile current, Vector2 at, ButtonFn buttonFn, Action<Rect, string> label, Func<bool> saveFn, bool inRun)
         {
             profile = current; button = buttonFn; save = saveFn;
-            const float viewX = 60, viewY = 140, viewW = 1160, viewH = 580, contentH = 860;
-            scroll = ScrollPanel.Begin(new Rect(at.x + viewX, at.y + viewY, viewW, viewH), scroll, new Rect(0, 0, viewW - 30, contentH));
+            const float viewX = 60, viewY = 140, viewW = 1160, viewH = 580;
+            scroll = ScrollPanel.Begin(new Rect(at.x + viewX, at.y + viewY, viewW, viewH), scroll, new Rect(0, 0, viewW - 30, contentHeight));
             origin = new Vector2(-viewX, -viewY); // the rows below keep their sheet coordinates; inside the scroll they start at its top
-            Header(label, 150, "SOUND");
-            Volume(label, 194, "Master volume", profile.Volume, value => profile.Volume = value);
-            Volume(label, 244, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
-            Volume(label, 294, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
-            Volume(label, 344, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
+            float y = 150;
+            Header(label, ref y, "Sound");
+            Volume(label, ref y, "Master volume", profile.Volume, value => profile.Volume = value);
+            Volume(label, ref y, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
+            Volume(label, ref y, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
+            Volume(label, ref y, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
 
-            Header(label, 410, "SCREEN");
+            Header(label, ref y, "Screen");
             if (Application.isMobilePlatform)
             {
                 // a phone: no windows, monitor sizes or vsync; its pace and its sharpness instead
-                if (Button(new Rect(75, 454, 360, 48), "FRAME RATE: " + (profile.FrameCap == 30 ? "30 · SAVER" : "60")))
-                {
-                    int before = profile.FrameCap; profile.FrameCap = before == 30 ? 60 : 30;
-                    Changed(() => profile.FrameCap = before, true);
-                }
-                if (Button(new Rect(460, 454, 360, 48), "SHARPNESS: " + (profile.MobileSharpness == 1 ? "BALANCED" : "FULL")))
-                {
-                    int before = profile.MobileSharpness; profile.MobileSharpness = before == 1 ? 0 : 1;
-                    Changed(() => profile.MobileSharpness = before, true);
-                }
+                int rate = Choice(label, ref y, "Frame rate", new[] { "30 · saver", "60" }, profile.FrameCap == 30 ? 0 : 1);
+                if (rate >= 0) { int before = profile.FrameCap; profile.FrameCap = rate == 0 ? 30 : 60; Changed(() => profile.FrameCap = before, true); }
+                int sharp = Choice(label, ref y, "Sharpness", new[] { "Balanced", "Full" }, profile.MobileSharpness == 1 ? 0 : 1);
+                if (sharp >= 0) { int before = profile.MobileSharpness; profile.MobileSharpness = sharp == 0 ? 1 : 0; Changed(() => profile.MobileSharpness = before, true); }
             }
-            else DesktopScreen();
+            else DesktopScreen(label, ref y);
 
-            Header(label, 530, "COMFORT");
-            Toggle(new Rect(75, 574, 360, 48), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
-            Toggle(new Rect(460, 574, 360, 48), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
-            Toggle(new Rect(845, 574, 360, 48), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
-            // screen shake: a strength, not only on/off (100 -> 75 -> 50 -> 25 -> off)
+            Header(label, ref y, "Comfort");
+            OnOff(label, ref y, "Reduced motion", profile.ReducedMotion, value => profile.ReducedMotion = value);
+            OnOff(label, ref y, "Reduced flashes", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
+            OnOff(label, ref y, "Reduced effects", profile.ReducedEffects, value => profile.ReducedEffects = value);
+            // screen shake: a strength, not only on/off
             int shake = ShakePercent(profile);
-            if (Button(new Rect(75, 634, 360, 48), "SCREEN SHAKE: " + (shake == 0 ? "OFF" : shake + "%")))
+            int[] shakes = { 0, 25, 50, 75, 100 };
+            int pickedShake = Choice(label, ref y, "Screen shake", new[] { "Off", "25%", "50%", "75%", "100%" }, Array.IndexOf(shakes, shake));
+            if (pickedShake >= 0)
             {
                 float scale = profile.ShakeScale; bool reduced = profile.ReducedShake;
-                int next = ShakeSteps[(Array.IndexOf(ShakeSteps, shake) + 1) % ShakeSteps.Length];
-                profile.ShakeScale = next / 100f; profile.ReducedShake = next == 0;
+                profile.ShakeScale = shakes[pickedShake] / 100f; profile.ReducedShake = shakes[pickedShake] == 0;
                 Changed(() => { profile.ShakeScale = scale; profile.ReducedShake = reduced; });
             }
-            Toggle(new Rect(460, 634, 360, 48), "QUIETER SOUNDS", profile.ReducedAudio, value => profile.ReducedAudio = value);
-            Toggle(new Rect(845, 634, 360, 48), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
+            OnOff(label, ref y, "Quieter sounds", profile.ReducedAudio, value => profile.ReducedAudio = value);
+            OnOff(label, ref y, "High-contrast UI", profile.HighReadability, value => profile.HighReadability = value);
 
-            Header(label, 710, "PLAY");
-            Toggle(new Rect(75, 754, 360, 48), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
-            Toggle(new Rect(460, 754, 360, 48), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
-            Toggle(new Rect(845, 754, 360, 48), "HIGHLIGHT HERO", profile.HighlightHero, value => profile.HighlightHero = value);
+            Header(label, ref y, "Play");
+            OnOff(label, ref y, "Damage numbers", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
+            OnOff(label, ref y, "Loot indicators", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
+            OnOff(label, ref y, "Highlight hero", profile.HighlightHero, value => profile.HighlightHero = value);
             // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
-            if (Button(new Rect(75, 814, 745, 48), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN BY THEMSELVES" : "NOTE ONLY")))
+            int story = Choice(label, ref y, "Story pages", new[] { "Open by themselves", "Note only" }, profile.StoryPagesAutoOpen ? 0 : 1);
+            if (story >= 0)
             {
                 bool before = profile.StoryPagesAutoOpen;
-                profile.StoryPagesAutoOpen = !before;
+                profile.StoryPagesAutoOpen = story == 0;
                 CheckpointAudio.PlayInterfaceId("ui.setting");
                 if (!save()) profile.StoryPagesAutoOpen = before;
             }
+            // the cosmetic bundle is chosen between runs (the champion is already dressed during one); a locked bundle cannot be chosen
+            int bundle = Choice(label, ref y, inRun ? "Bundle (between runs)" : "Bundle", new[] { RunMeta.CosmeticName(0), RunMeta.CosmeticName(1), RunMeta.CosmeticName(2) },
+                profile.Cosmetic, option => !inRun && RunMeta.CosmeticUnlocked(profile, option));
+            if (bundle >= 0)
+            {
+                int before = profile.Cosmetic;
+                profile.Cosmetic = bundle;
+                if (!save()) profile.Cosmetic = before;
+                PresentationSettings.Apply(profile);
+            }
+            // the UI style: the painted kit, or drawn by hand in code
+            int style = Choice(label, ref y, "UI style", new[] { "Painted", "Crafted" }, profile.UiCrafted ? 1 : 0);
+            if (style >= 0) { bool before = profile.UiCrafted; profile.UiCrafted = style == 1; Changed(() => profile.UiCrafted = before); }
             // the one-time tips and the first-run coach, shown again from the next moment they apply
-            if (Button(new Rect(845, 814, 360, 48), "SHOW TIPS AGAIN"))
+            label(Shift(new Rect(75, y + 8, 330, 36)), "Tips");
+            if (Button(new Rect(420, y, 380, RowControl), "Show tips again"))
             {
                 var tips = new List<string>(profile.TipsSeen); bool coach = profile.TutorialSeen;
                 profile.TipsSeen.Clear(); profile.TutorialSeen = false;
                 Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
             }
-            // the cosmetic bundle is chosen between runs (the champion is already dressed during one)
-            GUI.enabled = !inRun;
-            if (Button(new Rect(75, 874, 560, 48), inRun ? "BUNDLE: CHOSEN BETWEEN RUNS" : "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
-            {
-                int before = profile.Cosmetic;
-                int candidate = (before + 1) % 3;
-                while (!RunMeta.CosmeticUnlocked(profile, candidate)) candidate = (candidate + 1) % 3;
-                profile.Cosmetic = candidate;
-                if (!save()) profile.Cosmetic = before;
-                PresentationSettings.Apply(profile);
-            }
-            GUI.enabled = true;
-            // the UI style: drawn by hand in code, or the painted kit
-            if (Button(new Rect(660, 874, 545, 48), "UI STYLE: " + (profile.UiCrafted ? "CRAFTED" : "PAINTED")))
-            {
-                bool before = profile.UiCrafted; profile.UiCrafted = !before;
-                Changed(() => profile.UiCrafted = before);
-            }
+            y += RowStep;
+            contentHeight = y - 150 + 40;
             ScrollPanel.End();
             origin = at;
         }
-        /// <summary>PC: window mode, resolution, and the frame pace (vsync, or a cap of 60 / 120 / none).</summary>
-        private static void DesktopScreen()
+        private const float RowStep = 66, RowControl = 50;
+        /// <summary>PC: window mode, resolution (many sizes: a stepper with its arrows), and the frame pace.</summary>
+        private static void DesktopScreen(Action<Rect, string> label, ref float y)
         {
             int window = DisplayWindow(profile);
-            if (Button(new Rect(75, 454, 360, 48), "WINDOW: " + WindowNames[window]))
-            {
-                int before = profile.WindowMode;
-                profile.WindowMode = (window + 1) % WindowNames.Length;
-                Changed(() => profile.WindowMode = before, true);
-            }
+            int pickedWindow = Choice(label, ref y, "Window", new[] { "Fullscreen", "Borderless", "Windowed" }, window);
+            if (pickedWindow >= 0) { int before = profile.WindowMode; profile.WindowMode = pickedWindow; Changed(() => profile.WindowMode = before, true); }
             Vector2Int size = DisplaySize(profile);
-            if (Button(new Rect(460, 454, 360, 48), "RESOLUTION: " + size.x + "×" + size.y))
+            List<Vector2Int> sizes = Sizes();
+            int index = sizes.IndexOf(size);
+            label(Shift(new Rect(75, y + 8, 330, 36)), "Resolution");
+            GUI.enabled = index > 0;
+            bool smaller = Button(new Rect(420, y, 220, RowControl), "Smaller");
+            GUI.enabled = true;
+            label(Shift(new Rect(665, y + 8, 220, 36)), size.x + " × " + size.y);
+            GUI.enabled = index < sizes.Count - 1;
+            bool larger = Button(new Rect(880, y, 220, RowControl), "Larger");
+            GUI.enabled = true;
+            if (smaller || larger)
             {
                 int width = profile.ScreenWidth, height = profile.ScreenHeight;
-                List<Vector2Int> sizes = Sizes();
-                int index = sizes.IndexOf(size);
-                Vector2Int next = sizes[(index + 1) % sizes.Count];
+                Vector2Int next = sizes[Mathf.Clamp(index + (larger ? 1 : -1), 0, sizes.Count - 1)];
                 profile.ScreenWidth = next.x; profile.ScreenHeight = next.y;
                 Changed(() => { profile.ScreenWidth = width; profile.ScreenHeight = height; }, true);
             }
-            string pace = profile.VSync ? "VSYNC" : profile.FrameCap == 60 ? "60" : profile.FrameCap == 120 ? "120" : "MAX";
-            if (Button(new Rect(845, 454, 360, 48), "FRAMES: " + pace))
+            y += RowStep;
+            int pace = profile.VSync ? 0 : profile.FrameCap == 60 ? 1 : profile.FrameCap == 120 ? 2 : 3;
+            int pickedPace = Choice(label, ref y, "Frames", new[] { "Vsync", "60", "120", "Max" }, pace);
+            if (pickedPace >= 0)
             {
                 bool vsync = profile.VSync; int cap = profile.FrameCap;
-                // VSYNC -> 60 -> 120 -> MAX -> VSYNC
-                if (vsync) { profile.VSync = false; profile.FrameCap = 60; }
-                else if (cap == 60) profile.FrameCap = 120;
-                else if (cap == 120) profile.FrameCap = 0;
-                else { profile.VSync = true; profile.FrameCap = 0; }
+                profile.VSync = pickedPace == 0; profile.FrameCap = pickedPace == 1 ? 60 : pickedPace == 2 ? 120 : 0;
                 Changed(() => { profile.VSync = vsync; profile.FrameCap = cap; }, true);
             }
         }
-        private static void Header(Action<Rect, string> label, float top, string caption) => label(Shift(new Rect(75, top, 600, 36)), caption);
+        /// <summary>One settings row: the label, then its choices side by side; the chosen one glows gold. Returns the newly picked index, or -1.</summary>
+        private static int Choice(Action<Rect, string> label, ref float y, string caption, string[] options, int selected, Func<int, bool> allowed = null)
+        {
+            label(Shift(new Rect(75, y + 8, 330, 36)), caption);
+            const float left = 420, span = 785, gap = 10;
+            float width = (span - (options.Length - 1) * gap) / options.Length;
+            int picked = -1;
+            bool enabled = GUI.enabled;
+            for (int i = 0; i < options.Length; i++)
+            {
+                Rect r = new Rect(left + i * (width + gap), y, width, RowControl);
+                if (i == selected) ArcadeSkin.Glow(Shift(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20)), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .6f));
+                GUI.enabled = enabled && (allowed == null || allowed(i) || i == selected);
+                if (Button(r, options[i]) && i != selected) picked = i;
+                if (i == selected) ArcadeSkin.Line(Shift(new Rect(r.x + 14, r.yMax + 3, r.width - 28, 6)), ArcadeSkin.Gold); // the chosen one: a thick gold bar under it
+            }
+            GUI.enabled = enabled;
+            y += RowStep;
+            return picked;
+        }
+        private static void OnOff(Action<Rect, string> label, ref float y, string caption, bool value, Action<bool> setter)
+        {
+            int picked = Choice(label, ref y, caption, new[] { "Off", "On" }, value ? 1 : 0);
+            if (picked < 0) return;
+            setter(picked == 1);
+            Changed(() => setter(value));
+        }
+        private static void Header(Action<Rect, string> label, ref float y, string caption)
+        {
+            y += 10;
+            label(Shift(new Rect(75, y, 600, 40)), caption);
+            ArcadeSkin.Divider(Shift(new Rect(75, y + 40, 1130, 2)), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .5f));
+            y += 54;
+        }
 
         public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();
         public static int DisplayWindow(PlayerProfile p)
@@ -170,18 +202,13 @@ namespace ArcaneBrigade
             PresentationSettings.Apply(profile);
             if (display) PresentationSettings.ApplyDisplay(profile);
         }
-        private static void Toggle(Rect rectangle, string caption, bool value, Action<bool> setter)
+        private static void Volume(Action<Rect, string> label, ref float y, string caption, float value, Action<float> setter)
         {
-            if (!Button(rectangle, caption + (value ? ": ON" : ": OFF"))) return;
-            setter(!value);
-            Changed(() => setter(value));
-        }
-        private static void Volume(Action<Rect, string> label, float top, string caption, float value, Action<float> setter)
-        {
-            label(Shift(new Rect(75, top, 310, 36)), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
-            float changed = GUI.HorizontalSlider(Shift(new Rect(390, top + 14, 630, 25)), value, 0, 1);
-            if (Button(new Rect(1042, top, 76, 36), "−")) changed = Mathf.Max(0, value - 0.1f);
-            if (Button(new Rect(1128, top, 76, 36), "+")) changed = Mathf.Min(1, value + 0.1f);
+            label(Shift(new Rect(75, y + 8, 330, 36)), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
+            float changed = GUI.HorizontalSlider(Shift(new Rect(420, y + 16, 350, 25)), value, 0, 1); // room for wide buttons: a painted cap eats the ends
+            if (Button(new Rect(790, y, 200, RowControl), "−10%")) changed = Mathf.Max(0, value - 0.1f);
+            if (Button(new Rect(1005, y, 200, RowControl), "+10%")) changed = Mathf.Min(1, value + 0.1f);
+            y += RowStep;
             if (Mathf.Abs(changed - value) < 0.005f) return;
             setter(changed);
             Changed(() => setter(value));

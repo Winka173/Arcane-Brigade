@@ -62,8 +62,8 @@ namespace ArcaneBrigade
                     if (link.Id.StartsWith("signature-", System.StringComparison.Ordinal)) exhibits.Add(new Exhibit { Id = link.Id, Name = link.Name, Seen = profile.SeenChains.Contains(link.Id), Detail = link.Description + "\n\nDiscoveries require recorded activations/damage/healing, not merely equipping or viewing a graph." });
             if (tab == 4)
                 foreach (UnitDefinition boss in catalog.Bosses) exhibits.Add(new Exhibit { Id = boss.Id, Name = boss.DisplayName, Icon = boss.Body, Unit = boss, Seen = profile.SeenBosses.Contains(boss.Id), Detail = boss.Description + "\n" + (MidMapBossRules.Journal(boss.Id) is string night ? night + "\n" : "") + boss.Motif + " / " + boss.Material + "\nActually defeated, not previewed." });
-            GUIStyle controls = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = 13, wordWrap = false, clipping = TextClipping.Clip, alignment = TextAnchor.MiddleCenter, padding = new RectOffset(10, 10, 5, 5) };
-            GUIStyle poseControls = new GUIStyle(controls) { fontSize = 11, padding = new RectOffset(6, 6, 4, 4) };
+            GUIStyle controls = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote), wordWrap = false, clipping = TextClipping.Clip, alignment = TextAnchor.MiddleCenter, padding = new RectOffset(10, 10, 5, 5) };
+            GUIStyle poseControls = new GUIStyle(controls) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote), padding = new RectOffset(6, 6, 4, 4) };
             string[] tabs = { "WEAPONS", "RELICS", "COMPANIONS", "CHAINS", "BOSS" };
             for (int index = 0; index < tabs.Length; index++)
             {
@@ -74,9 +74,9 @@ namespace ArcaneBrigade
                 if (index == 0) { if (!PaintedStatIcons.TryDraw(tabIcon, ItemEffect.Damage)) RunHud.Sprite(tabIcon, MetaIcons.Station(MetaStation.Wardrobe, true)); }
                 else RunHud.Sprite(tabIcon, index == 1 ? MetaIcons.Keepsake : index == 2 ? MetaIcons.Station(MetaStation.Nursery, true) : index == 3 ? (catalog.Bonds != null && catalog.Bonds.Length > 0 ? catalog.Bonds[0].Icon : MetaIcons.Keepsake) : MetaIcons.Station(MetaStation.Bell, true));
             }
-            GUIStyle title = ArcadeTypography.Style(17, true);
-            GUIStyle body = ArcadeTypography.Style(14);
-            GUIStyle cardText = ArcadeTypography.Style(13);
+            GUIStyle title = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true);
+            GUIStyle body = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote));
+            GUIStyle cardText = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote));
             title.padding = body.padding = cardText.padding = new RectOffset();
             title.margin = body.margin = cardText.margin = new RectOffset();
             cardText.wordWrap = true; cardText.clipping = TextClipping.Clip;
@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                 string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : tab == 4 ? "Defeat to unlock" : tab == 3 ? "Activate to unlock" : "Find in a run";
                 Rect nameBounds = new Rect(card.x + 16, card.y + 77, card.width - 32, 31);
                 var nameStyle = new GUIStyle(cardText);
-                while (nameStyle.fontSize > 10 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
+                while (nameStyle.fontSize > 16 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
                 GUI.Label(nameBounds, caption, nameStyle);
             }
             ScrollPanel.End();
