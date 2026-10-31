@@ -251,7 +251,7 @@ namespace ArcaneBrigade
             Reserve("hud:wave", Gui(380, 18, 290, 64));
             Reserve("hud:bonds", Gui(1545, 10, 365, 260));
             Reserve("hud:continue", Gui(720, 925, 480, 110));
-            Reserve("hud:card", Gui(400, 815, 1120, 265)); // the stall's description card: nothing stands behind it
+            Reserve("hud:card", Gui(400, 795, 1120, 285)); // the stall's description card: nothing stands behind it
             if (owner.Shop != null)
             {
                 Vector2 merchant = owner.Shop.MerchantCenter; float height = owner.Shop.MerchantHeight;

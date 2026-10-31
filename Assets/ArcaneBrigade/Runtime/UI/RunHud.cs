@@ -138,16 +138,16 @@ namespace ArcaneBrigade
             }
             ArcadeSkin.Frame(new Rect(640, 230, 640, 680), KitFrame.Dialogue, .6f);
             // the lamp turned down low while the night waits (review 31/10/2026)
-            if (ArcadeSkin.KitSprite("Info/PauseLamp") is Sprite pauseLamp) Sprite(new Rect(900, 150, 120, 120), pauseLamp);
-            ArcadeSkin.Header(new Rect(700, 290, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
-            if (navigation.Button(new Rect(750, 410, 420, 65), "RESUME", primary)) owner.TogglePause();
-            if (navigation.Button(new Rect(700, 490, 250, 64), "HOW TO PLAY", button)) pausePage = 3;
-            if (navigation.Button(new Rect(970, 490, 250, 64), "COMBOS", button)) { pausePage = 4; comboScroll = Vector2.zero; }
-            if (navigation.Button(new Rect(700, 570, 250, 64), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
-            if (navigation.Button(new Rect(970, 570, 250, 64), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
-            if (navigation.Button(new Rect(700, 650, 250, 64), "SETTINGS", button)) pausePage = 1;
-            if (navigation.Button(new Rect(970, 650, 250, 64), "START OVER", button)) pausePage = 2;
-            if (navigation.Button(new Rect(750, 740, 420, 64), "MAIN MENU", button)) owner.RequestMenuReturn();
+            if (ArcadeSkin.KitSprite("Info/PauseLamp") is Sprite pauseLamp) Sprite(new Rect(928, 266, 64, 64), pauseLamp); // inside the frame, never over the room's speech
+            ArcadeSkin.Header(new Rect(700, 318, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
+            if (navigation.Button(new Rect(750, 434, 420, 65), "RESUME", primary)) owner.TogglePause();
+            if (navigation.Button(new Rect(700, 514, 250, 64), "HOW TO PLAY", button)) pausePage = 3;
+            if (navigation.Button(new Rect(970, 514, 250, 64), "COMBOS", button)) { pausePage = 4; comboScroll = Vector2.zero; }
+            if (navigation.Button(new Rect(700, 594, 250, 64), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
+            if (navigation.Button(new Rect(970, 594, 250, 64), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
+            if (navigation.Button(new Rect(700, 674, 250, 64), "SETTINGS", button)) pausePage = 1;
+            if (navigation.Button(new Rect(970, 674, 250, 64), "START OVER", button)) pausePage = 2;
+            if (navigation.Button(new Rect(750, 768, 420, 64), "MAIN MENU", button)) owner.RequestMenuReturn();
         }
 
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
@@ -571,11 +571,11 @@ namespace ArcaneBrigade
                 if (shopDetails && station.Offer != null) { DrawShopDetails(owner, shop, station, rarity, tag, blood); return; }
                 // the card, low enough to leave the stalls and their tickets in view: a picture, the name, a row of chips
                 // (weapon, bonds), a few short lines, and on the right a big BUY with its price over a smaller i
-                Rect panel = new Rect(500, 832, 920, 240);
+                Rect panel = new Rect(500, 812, 920, 260); // room inside the rarity trim on every side
                 ShownShopCard = panel;
                 RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
-                Rect picture = new Rect(panel.x + 22, panel.y + 16, 160, 160);
+                Rect picture = new Rect(panel.x + 26, panel.y + 24, 160, 160);
                 ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
                 if (station.Offer != null) RarityDescriptionFrame.Backdrop(picture, rarity, owner.PresentationClock);
                 ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 144, 144), station.Offer != null ? offerCard.Portrait : station.Icon);
@@ -589,13 +589,13 @@ namespace ArcaneBrigade
                 const float PriceH = 104, InfoH = 56, ColumnGap = 12;
                 float columnH = station.Offer != null ? PriceH + ColumnGap + InfoH : PriceH;
                 Rect buy = new Rect(panel.xMax - 214, panel.y + Mathf.Round((panel.height - columnH) * .5f), 192, PriceH);
-                float x = panel.x + 202, width = buy.x - 18 - x;
-                GUI.Label(new Rect(x, panel.y + 10, width, 44), shop.DisplayName(station), cardName);
-                float y = panel.y + 58;
+                float x = panel.x + 210, width = buy.x - 24 - x;
+                GUI.Label(new Rect(x, panel.y + 22, width, 44), shop.DisplayName(station), cardName); // clear of the frame's top rim
+                float y = panel.y + 70;
                 if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
                 string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                string body = Fit(source, width, panel.yMax - 12 - y, out int more);
-                GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 8 - y), body, cardLine);
+                string body = Fit(source, width, panel.yMax - 24 - y, out int more); // the last line stays clear of the bottom rim
+                GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 20 - y), body, cardLine);
                 // short of the price, the button is drawn dimmed so it does not read as pressable
                 Color buyTint = GUI.color; if (!Affordable(owner, station)) GUI.color = new Color(buyTint.r * .55f, buyTint.g * .55f, buyTint.b * .55f, buyTint.a);
                 if (navigation.Button(buy, "", primary)) shop.Interact();
@@ -670,7 +670,7 @@ namespace ArcaneBrigade
             // chips with real room (requirement 22/10/2026): the icon in the chip's socket, 10 px before the words, 16 after them and
             // 12 between chips; a chip that does not fit first shrinks its words, then starts a second row
             float cx = x, rowY = y; int rows = 1;
-            const float H = 50, Lead = 46, Tail = 22, Gap = 12;
+            const float H = 50, Lead = 58, Tail = 30, Gap = 14; // the words clear of the icon socket and of the end cap
             void Chip(Sprite icon, string label, bool lit)
             {
                 int size = cardChip.fontSize;
@@ -689,7 +689,7 @@ namespace ArcaneBrigade
                 cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
                 // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
                 float middle = ArcadeSkin.ChipIconRect(chip).center.y + H * .03f; // the words centre on the socket's line (they sat too low and too far right)
-                GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail + 8, H), label, cardChip);
+                GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail, H), label, cardChip);
                 cardChip.fontSize = size;
                 cx += w + Gap;
             }
@@ -712,16 +712,17 @@ namespace ArcaneBrigade
             Color bigColor = cardBig.normal.textColor; // PAY is the ordinary gold button: ink on gold, the heart beside the price
             // laid out inside the plate's rim with real margins (requirement 22/10/2026): the verb on the upper half, the price on the lower
             Rect inner = ArcadeSkin.Content(button, KitPiece.Plate);
-            Rect verbRect = priced ? new Rect(inner.x, inner.y, inner.width, inner.height * .54f) : inner;
+            Rect verbRect = priced ? new Rect(inner.x, inner.y, inner.width, inner.height * .5f) : inner; // a gap between the verb and the price
             // one line that shrinks to fit, never wrapped into a second line the plate cuts off
             cardBig.wordWrap = false;
-            while (cardBig.fontSize > 12 && cardBig.CalcSize(new GUIContent(verb)).x > verbRect.width - 6) cardBig.fontSize--;
+            // fits both ways: as wide as the plate allows and no taller than its half (BUY lost its top to the plate's rim)
+            while (cardBig.fontSize > 12 && (cardBig.CalcSize(new GUIContent(verb)).x > verbRect.width - 6 || cardBig.CalcSize(new GUIContent(verb)).y > verbRect.height + 4)) cardBig.fontSize--;
             GUI.Label(verbRect, verb, cardBig);
             cardBig.fontSize = bigSize; cardBig.normal.textColor = bigColor;
             if (!priced) return;
             string amount = price.ToString();
             float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = inner.center.x - wide * .5f;
-            Rect priceRow = new Rect(inner.x, inner.y + inner.height * .54f, inner.width, inner.height * .46f);
+            Rect priceRow = new Rect(inner.x, inner.y + inner.height * .57f, inner.width, inner.height * .43f);
             Rect icon = new Rect(left, priceRow.center.y - 14, 28, 28);
             Sprite(icon, currency == ShopCurrency.Health ? CurrencyIcons.Heart : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
             Color priceColor = cardPrice.normal.textColor;
@@ -993,10 +994,10 @@ namespace ArcaneBrigade
             for (int index = 0; index < newBonds.Count; index++)
             {
                 var row = newBonds[index];
-                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + index * rowHeight, width - 36, rowHeight - 4);
+                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + index * rowHeight, width - 36, rowHeight - 8);
                 ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .18f + .3f * blink));
                 BondRowContent(line, row.Bond, 0, row.After, false, true, row.Activates, blink, 0);
-                Rect stamp = new Rect(line.xMax - 70, line.y + 6, 68, line.height - 12);
+                Rect stamp = new Rect(line.xMax - 72, line.y + 6, 66, line.height - 20); // clear of the bar under the row
                 if (!ArcadeSkin.KitSliced(stamp, "HUD/BondNew", stamp.height / 40)) ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
                 bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = ArcadeSkin.Ink;
                 GUI.Label(stamp, "New", bondNumber);
@@ -1005,7 +1006,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < bondSummary.VisibleCount; index++)
             {
                 BondDefinition bond = bondSummary.Rows[index]; int count = owner.Session.BondCounts[bond.Id];
-                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + (index + newBonds.Count) * rowHeight, width - 36, rowHeight - 4);
+                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + (index + newBonds.Count) * rowHeight, width - 36, rowHeight - 8);
                 int level = bond.ActiveLevel(count);
                 bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
@@ -1030,7 +1031,7 @@ namespace ArcaneBrigade
                 BondRowContent(line, bond, count, previewing ? preview.After : count, level > 0, previewing, previewing && preview.Activates, blink, burst);
                 if (level > 0 || previewing && preview.Activates)
                 {
-                    Rect stamp = new Rect(line.xMax - 70, line.y + 6, 68, line.height - 12);
+                    Rect stamp = new Rect(line.xMax - 72, line.y + 6, 66, line.height - 20); // clear of the bar under the row
                     bool rising = previewing && preview.Activates;
                     // a gold-leaf stamp for the level this purchase reaches, an oxblood wax stamp for the level held
                     if (!ArcadeSkin.KitSliced(stamp, rising ? "HUD/BondNew" : "HUD/BondLevel", stamp.height / 40)) ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
@@ -1077,12 +1078,14 @@ namespace ArcaneBrigade
             GUI.color = previous;
             programStyle.normal.textColor = grey ? new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .5f) : ArcadeSkin.Ink;
             float countRight = active || activates ? line.xMax - 78 : line.xMax - 6; // the count ends before the level stamp
-            GUI.Label(new Rect(line.x + 46, line.y, countRight - line.x - 46 - 70, line.height - 4), bond.Name, programStyle);
+            // the words sit in the row's middle with room above and below (they touched the row's top), the bar under them
+            Rect words = new Rect(line.x + 48, line.y + 6, countRight - line.x - 48 - 70, line.height - 18);
+            GUI.Label(words, bond.Name, programStyle);
             int next = Mathf.Max(after, bond.NextThreshold(after));
             bondNumber.normal.textColor = programStyle.normal.textColor;
-            GUI.Label(new Rect(countRight - 70, line.y, 70, line.height - 4), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), bondNumber);
+            GUI.Label(new Rect(countRight - 70, words.y, 70, words.height), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), bondNumber);
             programStyle.normal.textColor = ArcadeSkin.Ink;
-            Rect progress = new Rect(line.x + 46, line.yMax - 5, line.width - 50, 3);
+            Rect progress = new Rect(line.x + 48, line.yMax - 9, line.width - 56, 4);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
             int shown = Mathf.Max(count, bond.NextThreshold(count));
             if (previewing && after > count) ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)after / next), progress.height), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .4f + .5f * blink));

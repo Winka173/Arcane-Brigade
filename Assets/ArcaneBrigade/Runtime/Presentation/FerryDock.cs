@@ -172,7 +172,7 @@ namespace ArcaneBrigade
             List<string> shownIds = rowing ? choices : species;
             int pages = Mathf.Max(1, (shownIds.Count + 8) / 9); page = rowing ? 0 : Mathf.Clamp(page, 0, pages - 1);
             int first = page * 9, shown = Mathf.Min(9, shownIds.Count - first);
-            float width = Mathf.Max(980, 120 + shown * 150);
+            float width = Mathf.Max(980, 140 + shown * 166); // a clear gap between the round frames
             Rect card = new Rect((1920 - width) * .5f, 200, width, 780);
             Color keep = CardPop.Apply(Key, card);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
@@ -192,9 +192,9 @@ namespace ArcaneBrigade
                 string id = shownIds[first + i];
                 UnitDefinition unit = owner.Content.Unit(id);
                 // the portrait in its round frame, the name (and stars) in ink on the paper below it
-                Rect slot = new Rect(card.x + (card.width - shown * 150) * .5f + i * 150 + 10, card.y + 190, 130, 232), frame = new Rect(slot.x, slot.y, 130, 130);
+                Rect slot = new Rect(card.x + (card.width - shown * 166) * .5f + i * 166 + 20, card.y + 190, 126, 232), frame = new Rect(slot.x + 4, slot.y, 118, 118);
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
-                if (unit != null) RunHud.Sprite(new Rect(frame.x + 20, frame.y + 18, 90, 90), unit.Body);
+                if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 names.normal.textColor = ink;
                 string stars = rowing ? "" : " " + RunSession.StarText(session.StarProgress(id)) + "★";
                 GUI.Label(new Rect(slot.x - 8, frame.yMax + 2, slot.width + 16, 100), (unit == null ? id : RunUICopy.UnitName(unit)) + stars, names);

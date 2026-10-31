@@ -177,7 +177,11 @@ namespace ArcaneBrigade
                         GUI.Label(new Rect(chip.x + 60, middle - chip.height * .5f, chip.width - 70, chip.height), giftCard.AttackLabel, chipLine);
                         below += 54;
                     }
-                    GlossaryUI.Text(new Rect(tx, below, tw, panel.yMax - 24 - below), FirstLines(giftCard.Summary, ally != null ? 3 : 4), cardLine);
+                    // as many whole lines as fit above the bottom rim (a fourth line ran onto the frame)
+                    float room = panel.yMax - 30 - below; int lines = ally != null ? 3 : 4;
+                    string summary = FirstLines(giftCard.Summary, lines);
+                    while (lines > 1 && GlossaryUI.Height(summary, cardLine, tw) > room) summary = FirstLines(giftCard.Summary, --lines);
+                    GlossaryUI.Text(new Rect(tx, below, tw, room), summary, cardLine);
                     if (takeStyle == null) takeStyle = ArcadeSkin.Primary(new GUIStyle(choiceButton) { fontSize = 30 });
                     // the gift taken closes with its motion, then it is given (requirement 25/10/2026)
                     if (ArcadeSkin.KitGuiButton(take, "TAKE", takeStyle) && !CardPop.Closing("gift-card-" + i)) { int gift = i; CardPop.CloseThen("gift-card-" + i, () => { if (owner.ClaimOutsideReward(gift)) { Clear(); mode = 0; } }); }

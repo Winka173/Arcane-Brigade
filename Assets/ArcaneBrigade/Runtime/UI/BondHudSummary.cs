@@ -5,7 +5,7 @@ namespace ArcaneBrigade
     public sealed class BondHudSummary
     {
         public const int MaximumRows = 4;
-        public const float RowHeight = 52, Width = 440; // UI standard: 28-unit text, rows a thumb can tap
+        public const float RowHeight = 58, Width = 440; // UI standard: 28-unit text, rows a thumb can tap
         private readonly List<BondDefinition> rows = new List<BondDefinition>();
         private BondDefinition[] source;
         private int signature;
@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public int Active { get; private set; }
         public int VisibleCount => Math.Min(MaximumRows, rows.Count);
         public int HiddenCount => Math.Max(0, rows.Count - MaximumRows);
-        public const float Head = 62, Foot = 64; // the painted list's header strip and its foot, clear of the brass rim
+        public const float Head = 70, Foot = 64; // the first row a clear step below the header strip // the painted list's header strip and its foot, clear of the brass rim
         public float Height => Head + VisibleCount * RowHeight + Foot;
         public void Refresh(BondDefinition[] bonds, IReadOnlyDictionary<string, int> counts)
         {

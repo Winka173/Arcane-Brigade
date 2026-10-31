@@ -269,3 +269,30 @@ Cắt từng danh sách, hàng và thẻ ở cỡ thật để soi khoảng gi�
 - Lamp Tree trên điện thoại: mở thẳng nhánh đầu tiên có thứ mua được.
 
 **Chứng cứ:** `Docs/Evidence/UIAudit/padding_pass_1.jpg` và `padding_pass_2.jpg`. Playtest đạt 90/90.
+
+## Rà khoảng đệm, vòng 2 (31/10/2026)
+
+Cắt 28 khối UI ở cỡ thật, ở hai độ phân giải là 1920×1080 và 2560×1369, rồi sửa mọi chỗ chữ hoặc icon sát viền.
+
+**Đã sửa:**
+- **Bonds:** hàng cao 58, chữ nằm giữa hàng có khoảng trống trên dưới, hàng đầu cách dải tiêu đề, giấy da bỏ đường kẻ.
+- **Menu chính:** icon trên nút nhỏ hơn và có lề quanh.
+- **Settings:** núm slider tròn lại (phần tràn trước chỉ cộng theo chiều dọc).
+- **Thẻ shop:**
+  - thẻ cao 260;
+  - tên, chip và chữ nằm trong viền khung độ hiếm;
+  - chữ BUY tự thu nhỏ cho vừa nửa trên của nút;
+  - giữa chữ BUY và giá có khoảng trống;
+  - chữ trên chip có lề.
+- **Thẻ quà của Keeper:** chỉ hiện số dòng vừa với chiều cao thẻ.
+- **Bến đò và Khách Cuối:** các khung chân dung có khoảng cách với nhau.
+- **Bảng tổng kết:** tiêu đề nằm giữa dải tiêu đề vẽ tay, các dòng bên dưới cách ra.
+- **Tạm dừng:** ngọn đèn nằm trong khung, không đè lên lời thoại.
+- **Collection:**
+  - tab có trạng thái được chọn thật, bỏ dấu chấm;
+  - icon tránh nắp tab;
+  - tên trong ô nằm trong viền tủ.
+- **Records:** hàng cao hơn và lùi vào trong để nắp hai đầu không bị cắt.
+- **Postbox:** dòng "Bring it from hero select" có đủ hai dòng.
+
+**Chứng cứ:** `padding_pass_3.jpg`, `padding_pass_4.jpg`. Playtest đạt 90/90.

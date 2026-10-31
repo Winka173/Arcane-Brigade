@@ -82,7 +82,7 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
             int pages = Mathf.Max(1, (species.Count + 8) / 9); page = Mathf.Clamp(page, 0, pages - 1);
             int first = page * 9, shown = Mathf.Min(9, species.Count - first);
-            float width = Mathf.Max(820, 120 + shown * 150);
+            float width = Mathf.Max(820, 140 + shown * 166); // a clear gap between the round frames
             Rect card = new Rect((1920 - width) * 0.5f, 300, width, 640);
             Color popKeep = CardPop.Apply("last-customer", card);
             // the letter unfolds from its seal: from a thin fold to full height with a small overshoot, scaled in the HUD's own
@@ -99,9 +99,9 @@ namespace ArcaneBrigade
             {
                 UnitDefinition unit = owner.Content.Unit(species[first + i]);
                 // the portrait in its round frame, the name in ink on the paper below it (no key numbers: phones have no keys)
-                Rect slot = new Rect(card.x + (card.width - shown * 150) * 0.5f + i * 150 + 10, card.y + 236, 130, 184), frame = new Rect(slot.x, slot.y, 130, 130);
+                Rect slot = new Rect(card.x + (card.width - shown * 166) * 0.5f + i * 166 + 20, card.y + 236, 126, 184), frame = new Rect(slot.x + 4, slot.y, 118, 118);
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
-                if (unit != null) RunHud.Sprite(new Rect(frame.x + 20, frame.y + 18, 90, 90), unit.Body);
+                if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 name.normal.textColor = new Color(.18f, .14f, .1f);
                 GUI.Label(new Rect(slot.x - 6, frame.yMax + 2, slot.width + 12, 52), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name);
                 if (picked == species[first + i]) ArcadeSkin.WorldFocus(slot);

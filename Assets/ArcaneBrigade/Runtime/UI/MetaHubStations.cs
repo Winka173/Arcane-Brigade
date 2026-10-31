@@ -180,11 +180,11 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(pc.x, pc.y + 38, pc.width, pc.height - 190), shown.Text, hand);
             hand.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(pc.x, pc.yMax - 160, pc.width, 32), "— Thursday", hand); hand.alignment = TextAnchor.UpperLeft;
             ItemDefinition keep = catalog.Item(shown.Relic);
-            Rect stand = new Rect(pc.x, pc.yMax - 118, 140, 102);
+            Rect stand = new Rect(pc.x, pc.yMax - 112, 112, 96); // narrower, so the words beside it keep two full lines
             ArcadeSkin.Pedestal(stand, Time.unscaledTime);
             if (keep?.Icon != null) RunHud.Sprite(ArcadeSkin.PedestalSeat(stand), keep.Icon);
-            GUI.Label(new Rect(stand.xMax + 10, stand.y + 22, pc.xMax - stand.xMax - 10, 28), keep?.Name ?? "", body);
-            GUI.Label(new Rect(stand.xMax + 10, stand.y + 52, pc.xMax - stand.xMax - 10, 44), "Bring it from hero select", small);
+            GUI.Label(new Rect(stand.xMax + 14, stand.y + 14, pc.xMax - stand.xMax - 14, 28), keep?.Name ?? "", body);
+            GUI.Label(new Rect(stand.xMax + 14, stand.y + 46, pc.xMax - stand.xMax - 14, 50), "Bring it from hero select", small);
         }
 
         // ---------------------------------------------------------------- the Museum

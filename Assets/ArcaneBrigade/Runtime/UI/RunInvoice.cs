@@ -139,7 +139,7 @@ namespace ArcaneBrigade
             if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; revealedAt = UnityEngine.Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
             if (cachedRun != run || cachedMembers == null) { cachedRun = run; cachedMembers = Brigade(run); cachedBonds = Bonds(run, catalog); }
             // the painted summary sheet: the run's name sits in its header strip, everything else on the paper below
-            if (ArcadeSkin.KitSliced(rectangle, "Panels/SummarySheet", .7f)) rectangle = new Rect(rectangle.x + 34, rectangle.y + 16, rectangle.width - 68, rectangle.height - 50);
+            if (ArcadeSkin.KitSliced(rectangle, "Panels/SummarySheet", .7f)) rectangle = new Rect(rectangle.x + 40, rectangle.y + 4, rectangle.width - 80, rectangle.height - 40); // the title is centred in the painted header strip (77 px at this scale)
             else if (ArcadeSkin.HasKit) { ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); rectangle = ArcadeSkin.Content(rectangle, KitFrame.Card, true, .6f); } // the cream card; the receipt sits inside its rim
             else
             {
@@ -158,13 +158,13 @@ namespace ArcaneBrigade
 
             // headline: who, how far, how long, how many bosses
             float x = rectangle.x + 24, w = rectangle.width - 48;
-            GUI.Label(new Rect(x, rectangle.y + 12, w, 56), nickname ?? RunMeta.Nickname(run), heading);
+            heading.alignment = TextAnchor.MiddleLeft; GUI.Label(new Rect(x, rectangle.y + 10, w, 60), nickname ?? RunMeta.Nickname(run), heading); heading.alignment = TextAnchor.UpperLeft;
             string journey = (run.Endless ? "Endless" : "Journey") + " · " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " · " + (run.Phase == SessionPhase.Victory ? "Dawn reached" : "Ended at wave " + run.Wave);
-            GUI.Label(new Rect(x, rectangle.y + 68, w, 36), journey, body);
-            GUI.Label(new Rect(x, rectangle.y + 104, w, 36), "Wave " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " boss" : " bosses"), number);
-            ArcadeSkin.Divider(new Rect(x, rectangle.y + 146, w, 2), ArcadeSkin.Ink);
+            GUI.Label(new Rect(x, rectangle.y + 84, w, 36), journey, body); // under the strip, with a breath
+            GUI.Label(new Rect(x, rectangle.y + 118, w, 36), "Wave " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " boss" : " bosses"), number);
+            ArcadeSkin.Divider(new Rect(x, rectangle.y + 160, w, 2), ArcadeSkin.Ink);
 
-            Rect view = new Rect(rectangle.x + 16, rectangle.y + 156, rectangle.width - 32, rectangle.height - 170);
+            Rect view = new Rect(rectangle.x + 16, rectangle.y + 172, rectangle.width - 32, rectangle.height - 186);
             float inner = view.width - 14;
             int shown = cachedMembers.Count;
             var (relic, relicDamage) = BestRelic(run, catalog);

@@ -659,7 +659,7 @@ namespace ArcaneBrigade
                 // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
                 bool main = CanResume ? index == 1 : index == 0;
                 if (navigation.Button(spot, caption, main ? primary : index < 3 && (index != 1 || CanResume) ? button : smallButton)) ActivateSpot(index);
-                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 24, spot.y + 8, 52, 52) : new Rect(spot.x + 26, spot.y + 9, 42, 42)), icons[index]); // rides with the plate, clear of its end cap
+                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 32, spot.y + 14, 40, 40) : new Rect(spot.x + 30, spot.y + 14, 32, 32)), icons[index]); // rides with the plate, clear of its end cap
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
                 if (index == 2 && HubAffordable())
                 {
@@ -1041,15 +1041,15 @@ namespace ArcaneBrigade
         {
             if (Button(new Rect(60, 620, 560, 52), "OPEN ACHIEVEMENT JOURNAL")) ShowPage(Page.Achievements);
             Label(new Rect(60, 165, 575, 80), "Wave " + profile.BestWave + " / Wins " + profile.Wins + " / Kills " + profile.TotalKills + "\nUnlocked difficulty: " + (RunMeta.UnlockedDifficulty(profile) + 1) + " / " + RunMeta.DifficultyNames.Length);
-            scroll = ScrollPanel.Begin(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 95 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
+            scroll = ScrollPanel.Begin(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 106 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
             float vertical = 0;
             for (int index = 0; index < profile.History.Count; index++)
             {
                 RunRecord record = profile.History[index];
-                if (Button(new Rect(0, vertical, 515, 85), record.Nickname + "\n" + "Night " + record.Score + " · " + RunUICopy.UnitName(record.Build.ChampionId) + " · " + (record.Build.Endless ? "Endless" : "Journey"))) historySelection = index;
-                vertical += 95;
+                if (Button(new Rect(14, vertical + 4, 486, 92), record.Nickname + "\n" + "Night " + record.Score + " · " + RunUICopy.UnitName(record.Build.ChampionId) + " · " + (record.Build.Endless ? "Endless" : "Journey"))) historySelection = index;
+                vertical += 106; // two lines with room above and below inside the plate
             }
-            Label(new Rect(0, vertical, 510, 50), "RECORDS BY HERO / MODE / DIFFICULTY"); vertical += 60;
+            Label(new Rect(0, vertical, 510, 50), "Records by hero, mode and difficulty"); vertical += 60;
             foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + "Night " + record.Score); vertical += 65; }
               foreach (string achievement in profile.Achievements) if (!achievement.StartsWith("journal-")) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
             ScrollPanel.End();

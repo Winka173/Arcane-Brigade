@@ -405,7 +405,7 @@ namespace ArcaneBrigade
             if (wideRail != null) rail = wideRail;
             var track = new GUIStyle(source) { border = new RectOffset((int)rail.border.x, (int)rail.border.z, 0, 0), fixedHeight = wideRail != null ? 36 : 30, overflow = new RectOffset(0, 0, 0, 0) };
             track.normal.background = track.hover.background = track.active.background = track.focused.background = rail.texture;
-            thumb = bigKnob != null ? new GUIStyle(GUIStyle.none) { fixedWidth = 56, fixedHeight = 56, overflow = new RectOffset(0, 0, 10, 10) } // UI standard: a thumb-sized knob
+            thumb = bigKnob != null ? new GUIStyle(GUIStyle.none) { fixedWidth = 56, fixedHeight = 56, overflow = new RectOffset(10, 10, 10, 10) } // UI standard: a thumb-sized knob, grown evenly so it stays round
                 : new GUIStyle(GUIStyle.none) { fixedWidth = 26, fixedHeight = 42, overflow = new RectOffset(0, 0, 6, 6) };
             thumb.normal.background = thumb.hover.background = thumb.active.background = thumb.focused.background = (bigKnob ?? knob).texture;
             return track;
