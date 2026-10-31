@@ -212,7 +212,8 @@ namespace ArcaneBrigade
                         ArcadeSkin.Line(m, ArcadeSkin.Gold); ArcadeSkin.Line(new Rect(m.x + mark * .3f, m.y + mark * .3f, mark * .4f, mark * .4f), ArcadeSkin.Cream);
                         GUI.matrix = keep;
                     }
-                    bool opens = horizontal == 0; horizontal += slot; if (opens) indent = horizontal; continue;
+                    bool opens = horizontal == 0; horizontal += slot; if (opens) indent = horizontal; if (tokenIndex + 1 < all.Count && all[tokenIndex + 1].Value.Trim().Length == 0 && !all[tokenIndex + 1].Value.Contains("\n")) tokenIndex++; // the space after it is the gap already left
+                    continue;
                 }
                 if (word.StartsWith("{tag:", StringComparison.Ordinal))
                 {
@@ -237,7 +238,8 @@ namespace ArcaneBrigade
                     // the card's GIVES (green) and COSTS (red) plates (play-test 20/10/2026, item 11)
                     bool gives = word == "{gives}"; string caption = gives ? "GIVES" : "COSTS";
                     FontStyle keptStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
-                    float plate = Measure(words, caption) * .82f + 16;
+                    // GIVES and COSTS plates share one width, so the words after them line up from row to row
+                    float plate = Mathf.Max(Measure(words, "GIVES"), Measure(words, "COSTS")) * .82f + 16;
                     if (draw && Seen(vertical))
                     {
                         Rect r = new Rect(bounds.x + horizontal, bounds.y + vertical + line * .12f, plate, line * .76f);
@@ -248,7 +250,8 @@ namespace ArcaneBrigade
                         GUI.color = prior; words.fontSize = size;
                     }
                     words.fontStyle = keptStyle;
-                    horizontal += plate + 8; continue;
+                    bool opensLine = horizontal == 0; horizontal += plate + 8; if (opensLine) indent = horizontal; if (tokenIndex + 1 < all.Count && all[tokenIndex + 1].Value.Trim().Length == 0 && !all[tokenIndex + 1].Value.Contains("\n")) tokenIndex++; // the space after it is the gap already left
+                    continue; // a wrapped line starts under the words
                 }
                 Entry entry = Find(word);
                 string[] bonus = word.StartsWith("{bonus:", StringComparison.Ordinal) ? word.Substring(7, word.Length - 8).Split('|') : null;
@@ -263,6 +266,15 @@ namespace ArcaneBrigade
                     float boldValue = Measure(words, bonus[2]); words.fontStyle = measuredStyle;
                     float size = Measure(words, caption) + glyph + 5 + boldValue - normalValue;
                     if (horizontal > indent && horizontal + size > bounds.width) { horizontal = indent; vertical += line; }
+                    // a stat line is one piece: when it is still too long for the rest of the line, its words shrink a little
+                    // (to 80% at most) instead of running into the card's buttons
+                    int keepSize = words.fontSize;
+                    while (horizontal + size > bounds.width && words.fontSize > keepSize * .8f)
+                    {
+                        words.fontSize--;
+                        normalValue = Measure(words, bonus[2]); words.fontStyle = FontStyle.Bold; boldValue = Measure(words, bonus[2]); words.fontStyle = measuredStyle;
+                        size = Measure(words, caption) + glyph + 5 + boldValue - normalValue;
+                    }
                     if (draw && Seen(vertical))
                     {
                         Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, size, line);
@@ -274,6 +286,7 @@ namespace ArcaneBrigade
                         GUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
                         if (GUI.Button(target, GUIContent.none, GUIStyle.none)) Show(RunModifierRules.ModifierName(effect));
                     }
+                    words.fontSize = keepSize;
                     horizontal += size; continue;
                 }
                 float icon = entry == null || entry.Name == "Effect scope" || entry.Name == "Champion" || entry.Name == "Companions" ? 0 : line * 0.85f;

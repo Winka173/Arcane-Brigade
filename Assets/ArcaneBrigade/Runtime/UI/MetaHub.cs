@@ -354,26 +354,35 @@ namespace ArcaneBrigade
             // its own walk frames as it strolls, at a size you can read (the bodies stood about 30 px tall)
             Sprite[] frames = r.unit.AnimationFrames;
             Sprite body = frames != null && frames.Length >= 4 ? frames[UnitVisual.AnimationFrame(Time.unscaledTime, Mathf.RoundToInt(r.at.x), !reduced, reduced)] : r.unit.Body;
-            float bob = reduced ? 0 : Mathf.Abs(Mathf.Sin(Time.unscaledTime * 2.2f + r.at.x)) * 3;
-            Rect rect = new Rect(r.at.x - 48, r.at.y - 104, 96, 104);
-            rect.y += FootPad(body, rect) - bob;
-            ArcadeSkin.Glow(new Rect(r.at.x - 36, r.at.y - 10, 72, 20), new Color(0, 0, 0, .5f));
-            Matrix4x4 keep = GUI.matrix;
-            if (r.left) ArcadeSkin.ScaleAround(new Vector2(-1, 1), rect.center);
-            RunHud.Sprite(rect, body);
-            GUI.matrix = keep;
+            float step = reduced ? 0 : Mathf.Abs(Mathf.Sin(Time.unscaledTime * 6f + r.at.x)) * 2; // a small step bounce, feet near the floor
+            OnFloor(body, r.at, 84, r.left, step);
         }
 
         private void DrawTraveller(UnitDefinition unit, int identity, bool reduced)
         {
             Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced)] ?? unit.Body : unit.Body;
-            Rect r = new Rect(hero.x - 58, hero.y - 128, 116, 128);
-            r.y += FootPad(pose, r); // the painting's empty strip under the feet would lift it off its shadow: the feet stand on the shadow
             ArcadeSkin.Glow(new Rect(hero.x - 120, hero.y - 150, 240, 190), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, .18f));
-            ArcadeSkin.Glow(new Rect(hero.x - 46, hero.y - 14, 92, 26), new Color(0, 0, 0, .5f));
+            OnFloor(pose, hero, 104, facingLeft, walking && !reduced ? Mathf.Abs(Mathf.Sin(Time.unscaledTime * 7f)) * 2 : 0);
+        }
+
+        /// <summary>Stands a sprite on the floor (review 31/10/2026: the room's characters looked to float): the rect is worked out from
+        /// the painting's own ink, so the lowest painted pixel (the feet) is exactly on <paramref name="foot"/> and the picture is
+        /// never letterboxed inside a box of another shape; a soft cast shadow and a dark contact shadow sit right under the feet.
+        /// <paramref name="lift"/> raises the body (a hop) while the shadow stays, shrinking a little.</summary>
+        public static void OnFloor(Sprite sprite, Vector2 foot, float inkHeight, bool faceLeft, float lift = 0)
+        {
+            if (sprite == null) return;
+            Rect ink = SpriteInkMetrics.BoundsOf(sprite); Bounds b = sprite.bounds;
+            float full = inkHeight * b.size.y / Mathf.Max(.001f, ink.height), w = full * sprite.rect.width / sprite.rect.height;
+            float padBottom = (ink.yMin - b.min.y) / b.size.y * full;
+            float inkX = (ink.center.x - b.center.x) / b.size.x * w * (faceLeft ? -1 : 1);
+            float inkW = ink.width / b.size.x * w, shrink = 1 - Mathf.Clamp01(lift / 40f) * .3f;
+            ArcadeSkin.Glow(new Rect(foot.x - inkW * .55f * shrink, foot.y - 8, inkW * 1.1f * shrink, 18), new Color(0, 0, 0, .4f));
+            ArcadeSkin.Glow(new Rect(foot.x - inkW * .36f * shrink, foot.y - 5, inkW * .72f * shrink, 10), new Color(0, 0, 0, .75f * shrink));
+            Rect r = new Rect(foot.x - w * .5f - inkX, foot.y - full + padBottom - lift, w, full);
             Matrix4x4 keep = GUI.matrix;
-            if (facingLeft) ArcadeSkin.ScaleAround(new Vector2(-1, 1), r.center);
-            RunHud.Sprite(r, pose);
+            if (faceLeft) ArcadeSkin.ScaleAround(new Vector2(-1, 1), r.center);
+            RunHud.Sprite(r, sprite);
             GUI.matrix = keep;
         }
 

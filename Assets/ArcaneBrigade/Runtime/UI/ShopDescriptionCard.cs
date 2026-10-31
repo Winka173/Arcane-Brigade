@@ -76,8 +76,8 @@ namespace ArcaneBrigade
                 // cap and condition stays under INFO (Details)
                 var copy = new StringBuilder();
                 // GIVES (green) first, then COSTS (red): a trade-off is never mixed into the bonuses (play-test 20/10/2026)
-                AppendSplit(copy, item.EffectiveModifiers, 1, item.Mechanic != RelicMechanic.None || item.SignatureRole != SignatureRelicKind.None);
-                string gm = copy.ToString().Contains("{gives}") ? "{gives} " : "{mark} "; // a gain under a GIVES plate carries the plate too
+                bool split = AppendSplit(copy, item.EffectiveModifiers, 1);
+                string gm = split ? "{gives} " : "{mark} "; // every gain line of a card with costs opens with its own GIVES plate
                 if (item.Mechanic == RelicMechanic.ChaosIncome) copy.AppendLine(gm + "Each wave start: " + session.ScaledGold(25) + "-" + session.ScaledGold(75) + " random gold."); // on the gold curve
                 else if (item.Mechanic != RelicMechanic.None) copy.AppendLine(gm + RelicDescriptions.ShortMechanic(item.Mechanic));
                 if (item.SignatureRole != SignatureRelicKind.None) copy.AppendLine(gm + RelicDescriptions.ShortSignature(item.SignatureRole));
@@ -116,9 +116,9 @@ namespace ArcaneBrigade
             // passive and where a merge stands; the full rules, the lore and the weapon preview stay under INFO (Details)
             var b = new StringBuilder();
             b.AppendLine(CompanionRoles.Tagline(Role.Value)); // what it does, first (play-test 20/10/2026, item 26)
-            AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier), true);
-            // the skill, talent and passive belong to GIVES (before the COSTS plate), never as stray lines under it
-            string gm2 = b.ToString().Contains("{gives}") ? "{gives} " : "{mark} ";
+            bool split2 = AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
+            // the skill, talent and passive are gains too: each opens with its own GIVES plate when the card has costs
+            string gm2 = split2 ? "{gives} " : "{mark} ";
             if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine(gm2 + skill);
             string talent = CompanionDescriptions.ShortTalent(unit);
             if (unit.ReferenceCompanion is "\"The Creator\" Roger" or "Smiley Fox") talent = ShopVisitors.ScaleText(talent, session.GoldScale); // their gold is on the curve
@@ -179,26 +179,25 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>The helpful stat lines, the first opened by a green GIVES plate when the card also has costs.</summary>
-        private static void AppendSplit(StringBuilder copy, StatModifier[] modifiers, float scale, bool more)
+        /// <summary>The helpful stat lines; when the card also has costs, each one opens with its own green GIVES plate (review
+        /// 31/10/2026: one plate seemed to stand for the lines under it). True when the card has costs.</summary>
+        private static bool AppendSplit(StringBuilder copy, StatModifier[] modifiers, float scale)
         {
             bool costs = modifiers.Any(m => m.Value != 0 && !RunModifierRules.Helps(m.Effect, m.Value));
-            bool first = true;
             foreach (var m in modifiers)
             {
                 if (m.Value == 0 || !RunModifierRules.Helps(m.Effect, m.Value)) continue;
-                copy.AppendLine((first && costs ? "{gives} " : "") + GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * scale)); first = false;
+                copy.AppendLine((costs ? "{gives} " : "") + GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * scale));
             }
-            if (first && costs && more) copy.Append("{gives} ");
+            return costs;
         }
-        /// <summary>The harmful stat lines, the first opened by a red COSTS plate.</summary>
+        /// <summary>The harmful stat lines, each opened by its own red COSTS plate.</summary>
         private static void AppendCosts(StringBuilder copy, StatModifier[] modifiers, float scale)
         {
-            bool first = true;
             foreach (var m in modifiers)
             {
                 if (m.Value == 0 || RunModifierRules.Helps(m.Effect, m.Value)) continue;
-                copy.AppendLine((first ? "{costs} " : "") + GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * scale)); first = false;
+                copy.AppendLine("{costs} " + GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * scale));
             }
         }
 
@@ -268,7 +267,7 @@ namespace ArcaneBrigade
             if (offer == null || offer.Currency != ShopCurrency.Health || string.IsNullOrEmpty(text)) return text;
             string line = "{costs} −" + offer.Price + " max HP for this run";
             int at = text.IndexOf("{costs} ", StringComparison.Ordinal);
-            if (at >= 0) return text.Substring(0, at) + line + "\n" + text.Substring(at + 8);
+            if (at >= 0) return text.Substring(0, at) + line + "\n" + text.Substring(at); // before the other costs, each keeping its own COSTS plate
             int owned = text.IndexOf("\nOwned ", StringComparison.Ordinal); // keep "Owned ..." the last line
             return owned >= 0 ? text.Substring(0, owned) + "\n" + line + text.Substring(owned) : text + "\n" + line;
         }
