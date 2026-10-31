@@ -21,7 +21,7 @@ namespace ArcaneBrigade
         }
     }
 
-    public enum HubAction { None, NextNight, Back, Daily }
+    public enum HubAction { None, NextNight, Back, Daily, Collection }
 
     /// <summary>The Waiting Room hub between runs (play-test item 27): a room the traveller walks in (keys, stick, or a tap on the
     /// floor), ten station objects that are restored as they level, the door to the next night. Tapping a working station

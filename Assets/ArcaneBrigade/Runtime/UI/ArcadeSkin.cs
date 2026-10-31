@@ -389,13 +389,16 @@ namespace ArcaneBrigade
 
         public static void Header(Rect rectangle, string eyebrow, string heading)
         {
-            // UI standard: no small capital label above a title; the eyebrow argument is kept for callers but never drawn
-            if (headerStyle == null) { headerStyle = ArcadeTypography.Style(36, true); if (ArcadeTypography.Display != null) headerStyle.font = ArcadeTypography.Display; }
-            headerStyle.normal.textColor = Cream;
-            Vector2 size = headerStyle.CalcSize(new GUIContent(heading));
-            GUI.Label(new Rect(rectangle.x, rectangle.y + 24, rectangle.width, rectangle.height - 24), heading, headerStyle);
-            if (HasKit) Ornament(new Rect(rectangle.x - 4, rectangle.y + 24 + Mathf.Min(size.y, 52) - 6, Mathf.Min(rectangle.width, Mathf.Max(size.x + 40, 240)), 26), KitDivider.Lantern);
-            else Divider(new Rect(rectangle.x + 2, rectangle.y + 24 + Mathf.Min(size.y, 52) + 2, Mathf.Min(rectangle.width, size.x + 8), 2), new Color(Accent.r, Accent.g, Accent.b, 0.8f));
+            // UI standard: one title style for every page, the painted plaque that titles the Waiting Room's stations; no small
+            // capital label above it (the eyebrow argument is kept for callers but never drawn)
+            if (headerStyle == null) { headerStyle = ArcadeTypography.Style(36, true); headerStyle.alignment = TextAnchor.MiddleCenter; headerStyle.wordWrap = false; }
+            headerStyle.fontSize = 36;
+            float width = Mathf.Clamp(headerStyle.CalcSize(new GUIContent(heading)).x + 170, 420, rectangle.width);
+            Rect plate = new Rect(rectangle.x, rectangle.y + 12, width, Mathf.Min(72, rectangle.height - 12));
+            if (HasKit) Frame(plate, KitFrame.Plaque); else Plate(plate, Accent);
+            headerStyle.normal.textColor = KitCream;
+            FitText(headerStyle, heading, plate.width - 130);
+            GUI.Label(plate, heading, headerStyle);
         }
 
         public static void Stamp(Rect rectangle, string caption)

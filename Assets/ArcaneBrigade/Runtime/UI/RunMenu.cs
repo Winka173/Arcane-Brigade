@@ -332,6 +332,7 @@ namespace ArcaneBrigade
                 case Page.Hub:
                     HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
                     if (chosen == HubAction.NextNight) ShowPage(Page.Landing); else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
+                    else if (chosen == HubAction.Collection) { hub.Close(); ShowPage(Page.Museum); } // the Museum counts finds for gifts; the Collection shows each one in full
                     break;
                 case Page.Resume:
                     Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + CompanionDeployment.Select(saved.Roster).Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");

@@ -197,17 +197,18 @@ namespace ArcaneBrigade
         }
         private void DrawMuseum(Rect area, RunCatalog catalog, PlayerProfile profile)
         {
-            // the painted tab's end caps hang outside its bar: tabs sit 30 apart and in from the edges (requirement 23/10/2026)
-            const float tabGap = 30, tabInset = 16;
-            float tw = (area.width - 2 * tabInset - (ShelfTabs - 1) * tabGap) / ShelfTabs;
+            // the painted tab's end caps hang outside its bar: tabs sit 30 apart and in from the edges (requirement 23/10/2026);
+            // two rows of three, wide enough for each name at full size (six in one row squeezed them unreadable)
+            const float tabGap = 30, tabInset = 16, perRow = 3;
+            float tw = (area.width - 2 * tabInset - (perRow - 1) * tabGap) / perRow;
             for (int t = 0; t < ShelfTabs; t++)
             {
-                Rect tab = new Rect(area.x + tabInset + t * (tw + tabGap), area.y, tw, 40);
+                Rect tab = new Rect(area.x + tabInset + t % 3 * (tw + tabGap), area.y + t / 3 * 46, tw, 40);
                 if (ArcadeSkin.Tab(tab, t < 5 ? MetaProgression.ShelfNames[t] : "TROPHIES", museumShelf == t, true, chip) | Nav(tab)) ShowShelf(t);
             }
             int found = MetaProgression.Discoveries(profile, catalog);
             var (damage, gold) = MetaProgression.MuseumGifts(profile, catalog);
-            Rect head = new Rect(area.x, area.y + 46, area.width, 32);
+            Rect head = new Rect(area.x, area.y + 92, area.width, 32);
             Ink(ArcadeSkin.KitCream);
             List<MuseumPiece> pieces = museumShelf < 5 ? MetaProgression.Shelf(profile, catalog, (MuseumShelf)museumShelf) : null;
             string left = pieces != null && museumPick >= 0 && museumPick < pieces.Count
@@ -219,7 +220,10 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(gift.xMax + 4, head.y + 2, 70, 28), "+" + damage + "%", number);
             RunHud.Sprite(new Rect(head.xMax - 110, head.y, 28, 28), CurrencyIcons.Coin);
             GUI.Label(new Rect(head.xMax - 78, head.y + 2, 70, 28), "+" + gold + "%", number);
-            Rect view = new Rect(area.x, area.y + 84, area.width, area.height - 84);
+            Rect view = new Rect(area.x, area.y + 130, area.width, area.height - 130 - 64);
+            // every find in full (pictures, poses, numbers, trying a weapon) is in the Collection
+            Rect browse = new Rect(area.center.x - 190, area.yMax - 56, 380, 52);
+            if (ArcadeSkin.Button(browse, "OPEN THE COLLECTION", KitButton.Secondary, true, body) | Nav(browse)) { panelAction = HubAction.Collection; CheckpointAudio.PlayInterfaceId("ui.confirm"); }
             if (pieces != null)
             {
                 const float cell = 66, gap = 8;
