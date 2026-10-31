@@ -12,13 +12,24 @@ namespace ArcaneBrigade
         private string treePick;
         private float treePickAt;
         private bool respecArmed;
+        /// <summary>The branch opened across the whole panel (UI standard: lanterns a thumb can tap on a phone), or -1 for the whole tree.</summary>
+        private static int focusBranch = -1;
         /// <summary>Diagnostics: opens a lantern's card.</summary>
         public void PickLantern(string id) { treePick = id; treePickAt = Time.unscaledTime; }
+        /// <summary>Diagnostics: opens one branch across the panel (-1: the whole tree).</summary>
+        public void FocusLampBranch(int branch) { focusBranch = branch; treePick = null; }
         private static readonly Color TreeInk = new Color(.16f, .1f, .06f, .95f), TreeBark = new Color(.42f, .28f, .15f, 1), TreeLit = new Color(1f, .82f, .45f, 1);
 
         private static Rect TreeArea => new Rect(PanelRect.x + 16, PanelRect.y + 74, PanelRect.width - 32, PanelRect.height - 84);
         private static Vector2 NodeAt(LampNode n, Rect tree)
         {
+            if (focusBranch >= 0 && n.Branch == focusBranch)
+            {
+                // one branch, tier by tier from left to right; a fork's two lanterns one above the other
+                float step = (tree.width - 180) / (MetaProgression.TreeTiers - 1), y = tree.center.y + 14;
+                if (MetaProgression.Fork(n) is LampNode pair) y += Array.IndexOf(MetaProgression.Tree, n) < Array.IndexOf(MetaProgression.Tree, pair) ? -78 : 78;
+                return new Vector2(tree.x + 100 + n.Tier * step, y);
+            }
             if (n.Branch < 0) return new Vector2(tree.center.x + (n.Tier < 2 ? -1 : 1) * (n.Tier % 3 == 0 ? 270 : 110), tree.yMax - 22); // the roots: two each side
             float col = tree.width / MetaProgression.BranchNames.Length;
             float x = tree.x + col * (n.Branch + .5f);
@@ -26,7 +37,8 @@ namespace ArcaneBrigade
             float bottom = tree.yMax - 112, top = tree.y + 44;
             return new Vector2(x, Mathf.Lerp(bottom, top, n.Tier / (float)(MetaProgression.TreeTiers - 1)));
         }
-        private static float NodeSize(LampNode n) => n.Capstone ? 46 : n.Branch < 0 ? 36 : MetaProgression.Fork(n) != null ? 34 : 40;
+        private static float NodeSize(LampNode n) => focusBranch >= 0 ? (n.Capstone ? 76 : MetaProgression.Fork(n) != null ? 62 : 68)
+            : n.Capstone ? 46 : n.Branch < 0 ? 36 : MetaProgression.Fork(n) != null ? 34 : 40;
 
         /// <summary>A bent ink branch from a to b (a quadratic bend, dark ink under bark; gold when lit).</summary>
         private static void Bough(Vector2 a, Vector2 mid, Vector2 b, float width, bool lit)
@@ -54,27 +66,37 @@ namespace ArcaneBrigade
             LampNode pick = MetaProgression.Node(treePick);
             Rect card = pick != null ? CardRect(NodeAt(pick, tree)) : Rect.zero;
 
-            // the trunk, the boughs to each branch's first lantern, the roots
-            Vector2 fork = new Vector2(tree.center.x, tree.yMax - 70), foot = new Vector2(tree.center.x, tree.yMax - 34);
             bool any = profile.Meta.Lamps.Count > 0;
-            foreach (LampNode n in MetaProgression.Roots) { Vector2 at = NodeAt(n, tree); Bough(foot, new Vector2(Mathf.Lerp(foot.x, at.x, .5f), foot.y + 4), at, 7, MetaProgression.Lit(profile, n.Id)); }
-            Bough(foot, fork, 24, any);
+            if (focusBranch < 0)
+            {
+                // the trunk, the boughs to each branch's first lantern, the roots
+                Vector2 fork = new Vector2(tree.center.x, tree.yMax - 70), foot = new Vector2(tree.center.x, tree.yMax - 34);
+                foreach (LampNode n in MetaProgression.Roots) { Vector2 at = NodeAt(n, tree); Bough(foot, new Vector2(Mathf.Lerp(foot.x, at.x, .5f), foot.y + 4), at, 7, MetaProgression.Lit(profile, n.Id)); }
+                Bough(foot, fork, 24, any);
+            }
             foreach (LampNode n in MetaProgression.Tree)
             {
-                if (n.Tier == 0) Bough(fork, new Vector2(Mathf.Lerp(fork.x, NodeAt(n, tree).x, .85f), fork.y), NodeAt(n, tree), 11, MetaProgression.Lit(profile, n.Id));
+                if (focusBranch >= 0 && n.Branch != focusBranch) continue;
+                Vector2 start = focusBranch >= 0 ? new Vector2(tree.x + 14, tree.center.y + 14) : new Vector2(tree.center.x, tree.yMax - 70);
+                if (n.Tier == 0) Bough(start, new Vector2(Mathf.Lerp(start.x, NodeAt(n, tree).x, .85f), start.y), NodeAt(n, tree), focusBranch >= 0 ? 16 : 11, MetaProgression.Lit(profile, n.Id));
                 foreach (LampNode up in MetaProgression.Tree)
                     if (up.Branch == n.Branch && up.Tier == n.Tier + 1)
-                        Bough(NodeAt(n, tree), NodeAt(up, tree), up.Capstone ? 8 : 6, MetaProgression.Lit(profile, n.Id) && MetaProgression.Lit(profile, up.Id));
+                        Bough(NodeAt(n, tree), NodeAt(up, tree), focusBranch >= 0 ? (up.Capstone ? 12 : 10) : up.Capstone ? 8 : 6, MetaProgression.Lit(profile, n.Id) && MetaProgression.Lit(profile, up.Id));
             }
-            // branch names over their crowns
-            chip.normal.textColor = ArcadeSkin.KitCream;
+            // the branch names are tabs: tap one to open it across the panel, tap it again for the whole tree
             float col = tree.width / MetaProgression.BranchNames.Length;
             for (int b = 0; b < MetaProgression.BranchNames.Length; b++)
-                GUI.Label(new Rect(tree.x + col * b, tree.y - 2, col, 22), MetaProgression.BranchNames[b], chip);
+            {
+                Rect tab = new Rect(tree.x + col * b + 3, tree.y - 8, col - 6, 36);
+                if (ArcadeSkin.Tab(tab, MetaProgression.BranchNames[b], focusBranch == b, true, chip) | Nav(tab))
+                {
+                    focusBranch = focusBranch == b ? -1 : b; treePick = null; CheckpointAudio.PlayInterfaceId("ui.select");
+                }
+            }
 
-            // the lanterns and the roots
-            foreach (LampNode n in MetaProgression.Tree) Lantern(n, tree, card, profile, t);
-            foreach (LampNode n in MetaProgression.Roots) Lantern(n, tree, card, profile, t);
+            // the lanterns and the roots (the roots belong to the whole tree)
+            foreach (LampNode n in MetaProgression.Tree) if (focusBranch < 0 || n.Branch == focusBranch) Lantern(n, tree, card, profile, t);
+            if (focusBranch < 0) foreach (LampNode n in MetaProgression.Roots) Lantern(n, tree, card, profile, t);
 
             // take the whole tree back (free; a second tap confirms)
             Rect respec = new Rect(PanelRect.x + 22, PanelRect.y + 12, 214, 46);

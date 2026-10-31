@@ -177,7 +177,7 @@ namespace ArcaneBrigade
                 list.Add((pair, move != null ? move.Name : null, move != null ? move.Line : d.Line));
             }
             list.Sort((x, y) => y.members.Length != x.members.Length ? y.members.Length.CompareTo(x.members.Length) : Known(session, y.members).CompareTo(Known(session, x.members)));
-            comboLine ??= new GUIStyle(text) { fontSize = 22, wordWrap = true };
+            comboLine ??= new GUIStyle(text) { fontSize = ArcadeTypography.SizeNote, wordWrap = true };
             const float row = 120;
             comboScroll = ScrollPanel.Begin(area, comboScroll, new Rect(0, 0, area.width - 20, Mathf.Max(area.height, list.Count * row)));
             for (int i = 0; i < list.Count; i++)
@@ -194,9 +194,9 @@ namespace ArcaneBrigade
                 }
                 x = Mathf.Max(x + 14, r.x + 284);
                 comboLine.normal.textColor = active ? ArcadeSkin.Gold : known > 1 ? ArcadeSkin.Cream : new Color(.7f, .68f, .64f);
-                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : "UNKNOWN COMBO";
+                string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : "Unknown combo";
                 string count = c.members.Length > 2 && known > 1 ? "  ·  " + Combos.OwnedOf(session, c.members) + " of " + c.members.Length + " in party" : "";
-                GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  ACTIVE" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
+                GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  active" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
             }
             ScrollPanel.End();
         }
