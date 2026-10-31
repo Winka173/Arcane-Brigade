@@ -40,3 +40,5 @@ Luật tuyển quân hiện hành (commit a23c4552): bạn mới ở wave 1, 3, 
 
 - Code: `Runtime/Core/FarewellRules.cs`, `Runtime/Presentation/FerryDock.cs`, `CustomerOffer.cs` (thẻ của Khách Cuối có thêm chế độ mua đứt).
 - Kiểm tra: `Editor/FarewellChecks.cs` đạt 124/124. Ảnh chụp mới là Item33_* trong lượt chụp playtest.
+
+> Ảnh chụp cũ nhắc trong tài liệu này đã được xóa. Toàn bộ màn hình mới nhất nằm trong `Docs/Evidence/UIAudit/full_2026-10-31/`.

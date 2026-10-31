@@ -97,3 +97,5 @@ Ghi chú khi vẽ:
    Nhỏ, rủi ro thấp, người chơi thấy ngay.
 2. **Vẽ:** đợt 1 gồm A1–A5, là các thành phần dùng ở mọi màn. Đợt 2 gồm A6–A12. Đợt 3 gồm A13–A16.
 3. **Sau khi có art:** làm B1 (chữ 28 trên các màn phụ) cùng lúc thay khung mới, vì đằng nào cũng phải bố cục lại.
+
+> Ảnh chụp cũ nhắc trong tài liệu này đã được xóa. Toàn bộ màn hình mới nhất nằm trong `Docs/Evidence/UIAudit/full_2026-10-31/`.

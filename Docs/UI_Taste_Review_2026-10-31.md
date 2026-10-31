@@ -339,3 +339,5 @@ Cắt 28 khối UI ở cỡ thật, ở hai độ phân giải là 1920×1080 v�
 - **Lamp Tree:** mở từng nhánh một, bắt đầu ở nhánh đầu tiên có thứ mua được. Chạm lại tab đang mở để xem cả cây và rễ.
 - **Hiệu ứng chọn:** bỏ bốn góc ngoặc, thay bằng quầng sáng ấm, tia sáng chạy quanh viền và một dấu vàng nhún phía trên.
 - **Ảnh chụp toàn bộ:** đã chụp lại 79 màn, trong `Docs/Evidence/UIAudit/full_2026-10-31/`.
+
+> Ảnh chụp cũ nhắc trong tài liệu này đã được xóa. Toàn bộ màn hình mới nhất nằm trong `Docs/Evidence/UIAudit/full_2026-10-31/`.
