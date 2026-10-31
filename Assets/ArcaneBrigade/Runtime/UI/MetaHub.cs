@@ -48,6 +48,12 @@ namespace ArcaneBrigade
         {
             new Decor { Name = "TeaTable", Foot = new Vector2(500, 470), Height = 120 },
             new Decor { Name = "CatCushion", Foot = new Vector2(820, 452), Height = 78 },
+            // the room of people waiting (review 31/10/2026: the floor read empty): a bench, cases, music, coats and umbrellas
+            new Decor { Name = "WaitingBench", Foot = new Vector2(640, 640), Height = 92 },
+            new Decor { Name = "LuggageStack", Foot = new Vector2(1010, 470), Height = 96 },
+            new Decor { Name = "Gramophone", Foot = new Vector2(250, 470), Height = 112 },
+            new Decor { Name = "CoatRack", Foot = new Vector2(820, 236), Height = 132 },
+            new Decor { Name = "UmbrellaStand", Foot = new Vector2(500, 234), Height = 86 },
         };
         public static readonly Rect DoorArea = new Rect(582, 4, 116, 128);
         public static readonly Vector2 DoorFoot = new Vector2(640, 168);
@@ -298,8 +304,14 @@ namespace ArcaneBrigade
             if (residentsFor != key)
             {
                 residentsFor = key; residentPool.Clear();
+                // the friends of your last night first: the room is where they wait for you
+                RunRecord last = profile.History != null && profile.History.Count > 0 ? profile.History[profile.History.Count - 1] : null;
+                if (last?.Build?.Roster != null)
+                    foreach (RosterEntry entry in last.Build.Roster)
+                        if (catalog.Unit(entry.UnitId) is UnitDefinition met && met.Body != null && !residentPool.Contains(met) && !RunSession.StorySpecies(met.Id)) residentPool.Add(met);
+                int fromLastNight = residentPool.Count;
                 foreach (UnitDefinition u in catalog.Companions) if (u != null && u.Body != null && profile.SeenUnits != null && profile.SeenUnits.Contains(u.Id) && !u.SpecialRecruit) residentPool.Add(u);
-                residentPool.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+                if (residentPool.Count > fromLastNight) residentPool.Sort(fromLastNight, residentPool.Count - fromLastNight, Comparer<UnitDefinition>.Create((a, b) => string.CompareOrdinal(a.Id, b.Id)));
                 // a new traveller has met no one yet: the first friends of the roster keep the room company so it is never empty
                 foreach (UnitDefinition u in catalog.Companions)
                 {
@@ -310,7 +322,7 @@ namespace ArcaneBrigade
             int count = Mathf.Min(5, residentPool.Count);
             for (int i = 0; i < count; i++)
             {
-                UnitDefinition u = residentPool[(i * 7) % residentPool.Count];
+                UnitDefinition u = residentPool[i % residentPool.Count];
                 float phase = i * 1.9f, speed = .09f + .02f * (i % 3);
                 Vector2 home = new Vector2(300 + i * 170, 440 + (i % 2) * 120);
                 float a = reduced ? phase : t * speed + phase, b = reduced ? phase : t * speed * 1.4f + phase;
@@ -337,11 +349,13 @@ namespace ArcaneBrigade
         }
         private void DrawResident((UnitDefinition unit, Vector2 at, bool left) r, bool reduced)
         {
-            Sprite body = r.unit.Body;
+            // its own walk frames as it strolls, at a size you can read (the bodies stood about 30 px tall)
+            Sprite[] frames = r.unit.AnimationFrames;
+            Sprite body = frames != null && frames.Length >= 4 ? frames[UnitVisual.AnimationFrame(Time.unscaledTime, Mathf.RoundToInt(r.at.x), !reduced, reduced)] : r.unit.Body;
             float bob = reduced ? 0 : Mathf.Abs(Mathf.Sin(Time.unscaledTime * 2.2f + r.at.x)) * 3;
-            Rect rect = new Rect(r.at.x - 34, r.at.y - 76, 68, 76);
+            Rect rect = new Rect(r.at.x - 48, r.at.y - 104, 96, 104);
             rect.y += FootPad(body, rect) - bob;
-            ArcadeSkin.Glow(new Rect(r.at.x - 30, r.at.y - 9, 60, 18), new Color(0, 0, 0, .5f));
+            ArcadeSkin.Glow(new Rect(r.at.x - 36, r.at.y - 10, 72, 20), new Color(0, 0, 0, .5f));
             Matrix4x4 keep = GUI.matrix;
             if (r.left) ArcadeSkin.ScaleAround(new Vector2(-1, 1), rect.center);
             RunHud.Sprite(rect, body);
@@ -433,16 +447,17 @@ namespace ArcaneBrigade
                 return;
             }
             ArcadeSkin.Glow(new Rect(PanelRect.x + 10, PanelRect.y + 60, 220, 260), new Color(1f, .8f, .45f, .22f));
-            RunHud.Sprite(new Rect(PanelRect.x + 34, PanelRect.y + 72, 172, 206), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
+            // the station's picture and its line as one group, centred down the left column (the line floated far below the picture)
+            RunHud.Sprite(new Rect(PanelRect.x + 34, PanelRect.y + 128, 172, 206), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
             ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
             heading.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), MetaProgression.StationName(station).ToUpperInvariant(), heading);
             small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 308, 200, 60), MetaProgression.StationLine(station), small); // clear of the picture above
+            GUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 344, 200, 60), MetaProgression.StationLine(station), small); // just under the picture
             small.alignment = TextAnchor.UpperLeft;
             if (ArcadeSkin.Medallion(new Rect(PanelRect.xMax - 58, PanelRect.y - 6, 60, 60), KitMedallion.Close)) { Close(); return; }
 
-            Rect area = new Rect(PanelRect.x + 240, PanelRect.y + 48, PanelRect.width - 270, PanelRect.height - 74);
+            Rect area = new Rect(PanelRect.x + 248, PanelRect.y + 66, PanelRect.width - 286, PanelRect.height - 94); // a clear step below the title plaque, inside the rim
             if (station == MetaStation.Wardrobe) { DrawWardrobe(area, catalog, profile, heroIndex); return; }
             if (station >= MetaStation.Postbox) { DrawStation(station, area, catalog, profile, heroIndex, save); return; }
             navCols = 2;

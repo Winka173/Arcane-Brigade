@@ -160,9 +160,9 @@ namespace ArcaneBrigade
             if (hand == null)
             {
                 hand = ArcadeTypography.Style(30); hand.font = ArcadeTypography.Hand; hand.alignment = TextAnchor.MiddleCenter; hand.wordWrap = true;
-                plain = ArcadeTypography.Style(22); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
-                label = ArcadeTypography.Style(22, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = true;
-                names = new GUIStyle(label) { alignment = TextAnchor.UpperCenter }; // a long name may take three lines
+                plain = ArcadeTypography.Style(ArcadeTypography.SizeNote); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
+                label = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = true;
+                names = new GUIStyle(label) { alignment = TextAnchor.UpperCenter, fontSize = 22 }; // a portrait's caption: up to three short lines
             }
             RunSession session = owner.Session;
             species.Clear(); species.AddRange(session.PartingSpecies());
@@ -173,7 +173,7 @@ namespace ArcaneBrigade
             int pages = Mathf.Max(1, (shownIds.Count + 8) / 9); page = rowing ? 0 : Mathf.Clamp(page, 0, pages - 1);
             int first = page * 9, shown = Mathf.Min(9, shownIds.Count - first);
             float width = Mathf.Max(980, 140 + shown * 166); // a clear gap between the round frames
-            Rect card = new Rect((1920 - width) * .5f, 200, width, 780);
+            Rect card = new Rect((1920 - width) * .5f, 160, width, 860);
             Color keep = CardPop.Apply(Key, card);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Sprite corner = rowing ? ferryIcon : homeIcon;
@@ -184,7 +184,7 @@ namespace ArcaneBrigade
                 ? "THE FERRYMAN: 'Three are waiting on the far bank. Who comes back with me?'"
                 : "THE FERRYMAN: 'Someone going home tonight? Or someone crossing over?'", hand);
             plain.normal.textColor = ink;
-            GUI.Label(new Rect(card.x + 60, card.y + 128, card.width - 120, 60), rowing
+            GUI.Label(new Rect(card.x + 60, card.y + 128, card.width - 120, 76), rowing
                 ? RunUICopy.UnitName(owner.Content.Unit(picked)) + " crosses, and the one you choose comes back at the same stars."
                 : "Pick a friend first.", plain);
             for (int i = 0; i < shown; i++)
@@ -192,7 +192,7 @@ namespace ArcaneBrigade
                 string id = shownIds[first + i];
                 UnitDefinition unit = owner.Content.Unit(id);
                 // the portrait in its round frame, the name (and stars) in ink on the paper below it
-                Rect slot = new Rect(card.x + (card.width - shown * 166) * .5f + i * 166 + 20, card.y + 190, 126, 232), frame = new Rect(slot.x + 4, slot.y, 118, 118);
+                Rect slot = new Rect(card.x + (card.width - shown * 166) * .5f + i * 166 + 14, card.y + 222, 138, 232), frame = new Rect(slot.x + 10, slot.y, 118, 118);
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 names.normal.textColor = ink;
@@ -204,12 +204,12 @@ namespace ArcaneBrigade
             }
             if (!rowing && pages > 1)
             {
-                Rect back = new Rect(card.x + 20, card.y + 223, 64, 64), next = new Rect(card.xMax - 84, card.y + 223, 64, 64);
+                Rect back = new Rect(card.x + 24, card.y + 249, 64, 64), next = new Rect(card.xMax - 88, card.y + 249, 64, 64);
                 if (ArcadeSkin.Button(back, "◀", KitButton.Secondary, true, label)) page = (page + pages - 1) % pages;
                 if (ArcadeSkin.Button(next, "▶", KitButton.Secondary, true, label)) page = (page + 1) % pages;
             }
             if (rowing && shown == 0) GUI.Label(new Rect(card.x + 60, card.y + 250, card.width - 120, 60), "Nobody is waiting on the far bank tonight.", plain);
-            float rowY = card.y + 432;
+            float rowY = card.y + 470; // a clear gap under the names
             if (rowing) DrawRowing(card, rowY, ink);
             else DrawChoices(card, rowY, ink);
             if (ArcadeSkin.Button(new Rect(card.center.x - 170, card.yMax - 112, 340, 80), rowing ? "BACK" : "LEAVE", KitButton.Secondary, true, label) && !CardPop.Closing(Key))

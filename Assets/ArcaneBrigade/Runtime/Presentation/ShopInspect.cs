@@ -135,9 +135,9 @@ namespace ArcaneBrigade
             Camera camera = Camera.main; if (camera == null) return;
             GUI.depth = open?.Offer != null ? -1 : 5; // purchase cards must also cover the merchant's speech bubble
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
-            name ??= ArcadeTypography.Style(22, true); name.alignment = TextAnchor.MiddleCenter;
+            name ??= ArcadeTypography.Style(ArcadeTypography.SizeNote, true); name.alignment = TextAnchor.MiddleCenter;
             title ??= ArcadeTypography.Style(26, true); title.wordWrap = true;
-            body ??= ArcadeTypography.Style(20); body.wordWrap = true;
+            body ??= ArcadeTypography.Style(ArcadeTypography.SizeNote); body.wordWrap = true;
             hint ??= ArcadeTypography.Style(24); hint.wordWrap = true;
             Event current = Event.current;
             Vector2 mouse = current.mousePosition;

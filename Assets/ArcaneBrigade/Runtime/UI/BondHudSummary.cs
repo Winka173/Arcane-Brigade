@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public int Active { get; private set; }
         public int VisibleCount => Math.Min(MaximumRows, rows.Count);
         public int HiddenCount => Math.Max(0, rows.Count - MaximumRows);
-        public const float Head = 70, Foot = 64; // the first row a clear step below the header strip // the painted list's header strip and its foot, clear of the brass rim
+        public const float Head = 82, Foot = 60; // the painted header strip runs 20-68 px (kept unstretched by the nine-slice); rows start a step below it // the painted list's header strip and its foot, clear of the brass rim
         public float Height => Head + VisibleCount * RowHeight + Foot;
         public void Refresh(BondDefinition[] bonds, IReadOnlyDictionary<string, int> counts)
         {

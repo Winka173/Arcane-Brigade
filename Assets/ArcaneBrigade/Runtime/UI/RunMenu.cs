@@ -321,7 +321,7 @@ namespace ArcaneBrigade
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub)
             {
                 // (the room and its shade are drawn across the whole screen above)
-                ArcadeSkin.Header(new Rect(60, 32, 940, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage));
+                ArcadeSkin.Header(new Rect(190, 32, 900, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage)); // centred on the 1280 page, clear of BACK on the right
             }
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub && Button(new Rect(1010, 40, 200, 50), "BACK"))
             {
@@ -704,18 +704,6 @@ namespace ArcaneBrigade
             }
             ScrollPanel.End();
             UnitDefinition champion = catalog.Champions[selection];
-            if (catalog.HeroRevision > 0)
-            {
-                int iconIndex = 0;
-                foreach (BondDefinition bond in catalog.Bonds)
-                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0)
-                    {
-                        // each theme icon is tappable and says what it means (requirement 24/10/2026)
-                        Rect icon = new Rect(250 + iconIndex++ * 36, 144, 30, 30); RunHud.Sprite(icon, bond.Icon);
-                        if (GUI.Button(new Rect(icon.x - 4, icon.y - 4, 36, 36), GUIContent.none, GUIStyle.none)) Explain(icon, bond.Name + " theme", "Friends of this theme join this hero's shop more often. " + bond.Threshold + " of them together wake a bond bonus.");
-                    }
-                if (iconIndex > 0) GUI.Label(new Rect(65, 144, 180, 30), "Recruit themes", note);
-            }
             // requirement 25/10/2026 (the text box was too small): the hero's panel is the whole right column; the difficulty sits
             // under the hero grid and STEP THROUGH under the panel, one bottom row
             Rect heroPanel = new Rect(745, 135, 490, 505);
@@ -727,7 +715,20 @@ namespace ArcaneBrigade
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
             GUI.Label(new Rect(934, 150, 286, 70), RunUICopy.UnitName(champion), rosterTitle); // right of the stage
             ArcadeSkin.Tag(new Rect(934, 222, 230, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
-            GUI.Label(new Rect(934, 256, 236, 34), HeroUnlocks.Full(profile, champion, catalog), note);
+            string unlockNote = HeroUnlocks.Full(profile, champion, catalog);
+            if (!string.IsNullOrEmpty(unlockNote)) GUI.Label(new Rect(934, 256, 236, 34), unlockNote, note);
+            else if (catalog.HeroRevision > 0)
+            {
+                // the friends this hero's shop leans to, as tappable icons under the weapon (review 31/10/2026: they floated over
+                // the hero grid with a small label, like a tag over a heading)
+                int iconIndex = 0;
+                foreach (BondDefinition bond in catalog.Bonds)
+                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0)
+                    {
+                        Rect icon = new Rect(940 + iconIndex++ * 40, 260, 32, 32); RunHud.Sprite(icon, bond.Icon); // each theme icon is tappable and says what it means (requirement 24/10/2026)
+                        if (GUI.Button(new Rect(icon.x - 4, icon.y - 4, 40, 40), GUIContent.none, GUIStyle.none)) Explain(icon, bond.Name + " theme", "Friends of this theme join this hero's shop more often. " + bond.Threshold + " of them together wake a bond bonus.");
+                    }
+            }
             // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
             string fullDescription = RunUICopy.ChampionDescription(champion);
             string description = ShortHero(champion);

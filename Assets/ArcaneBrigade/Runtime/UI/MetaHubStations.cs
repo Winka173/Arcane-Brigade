@@ -118,8 +118,9 @@ namespace ArcaneBrigade
                 case MetaStation.Postbox: DrawPostbox(area, catalog, profile, save); break;
                 case MetaStation.Museum: DrawMuseum(area, catalog, profile); break;
                 case MetaStation.NightPact: DrawPacts(area, catalog, profile, heroIndex, save); break;
-                case MetaStation.Window: DrawWindow(area, catalog, profile); break;
-                case MetaStation.Bell: DrawBell(area, profile, save); break;
+                // the two short pages sit in the middle of the panel, not stuck to its top with the lower half empty
+                case MetaStation.Window: DrawWindow(new Rect(area.x, area.y + 56, area.width, area.height - 56), catalog, profile); break;
+                case MetaStation.Bell: DrawBell(new Rect(area.x, area.y + 30, area.width, area.height - 30), profile, save); break;
             }
         }
 
@@ -176,7 +177,7 @@ namespace ArcaneBrigade
                 GUI.Label(pc, Array.Exists(letters, l => MetaProgression.LetterEarned(profile, l)) ? "A letter is waiting." : "No letters yet.\nThe first comes after a boss.", hand);
                 hand.alignment = TextAnchor.UpperLeft; return;
             }
-            GUI.Label(new Rect(pc.x, pc.y, pc.width, 28), shown.Name.ToUpperInvariant(), body);
+            body.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(pc.x, pc.y, pc.width, 28), RunUICopy.Title(shown.Name), body); body.alignment = TextAnchor.UpperLeft; // the letter's title centred over it
             GUI.Label(new Rect(pc.x, pc.y + 38, pc.width, pc.height - 190), shown.Text, hand);
             hand.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(pc.x, pc.yMax - 160, pc.width, 32), "— Thursday", hand); hand.alignment = TextAnchor.UpperLeft;
             ItemDefinition keep = catalog.Item(shown.Relic);
@@ -337,7 +338,7 @@ namespace ArcaneBrigade
             Rect card = new Rect(area.x, area.y, area.width, 252);
             ArcadeSkin.Frame(card, KitFrame.Card, .3f);
             Ink(ArcadeSkin.FrameText(KitFrame.Card));
-            GUI.Label(new Rect(card.x + 24, card.y + 16, card.width - 48, 28), "TONIGHT'S DREAM · " + day, body);
+            body.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(card.x + 24, card.y + 16, card.width - 48, 28), "Tonight's dream · " + day, body); body.alignment = TextAnchor.UpperLeft; // a card's title sits in its middle
             if (hero != null)
             {
                 ArcadeSkin.Glow(new Rect(card.x + 4, card.y + 40, 170, 190), new Color(1f, .8f, .45f, .22f));

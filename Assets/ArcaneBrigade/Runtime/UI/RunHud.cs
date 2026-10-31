@@ -105,7 +105,7 @@ namespace ArcaneBrigade
             if (pausePage == 1)
             {
                 ArcadeSkin.Frame(new Rect(330, 150, 1260, 800), KitFrame.Dialogue, .6f);
-                ArcadeSkin.Header(new Rect(390, 190, 900, 92), "THE NIGHT WAITS WITH YOU", "Light, Sound & Comfort");
+                ArcadeSkin.Header(new Rect(510, 190, 900, 92), "THE NIGHT WAITS WITH YOU", "Light, Sound & Comfort");
                 if (navigation.Button(new Rect(1330, 205, 200, 50), "BACK", button)) pausePage = 0;
                 SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => GUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true, r => navigation.Button(r, "", GUIStyle.none));
                 return;
@@ -122,7 +122,7 @@ namespace ArcaneBrigade
             if (pausePage == 4)
             {
                 ArcadeSkin.Frame(new Rect(240, 120, 1440, 860), KitFrame.Dialogue, .6f);
-                ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "Combos");
+                ArcadeSkin.Header(new Rect(510, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "Combos");
                 if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
                 DrawCombos(owner, new Rect(300, 270, 1320, 680));
                 return;
@@ -131,7 +131,7 @@ namespace ArcaneBrigade
             {
                 // How to play: six cards, one line each, any time
                 ArcadeSkin.Frame(new Rect(240, 120, 1440, 860), KitFrame.Dialogue, .6f);
-                ArcadeSkin.Header(new Rect(300, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "How to Play");
+                ArcadeSkin.Header(new Rect(510, 150, 900, 92), "THE NIGHT WAITS WITH YOU", "How to Play");
                 if (navigation.Button(new Rect(1420, 165, 200, 64), "BACK", button)) pausePage = 0;
                 HowToPlayBook.Draw(new Rect(300, 270, 1320, 680), owner.Content, owner.Session?.State.ChampionId, ref guidePage); // the picture book (requirement 24/10/2026)
                 return;
@@ -502,7 +502,7 @@ namespace ArcaneBrigade
                 Sprite(fallen ? new Rect(265, 372, 200, 190) : new Rect(225, 378, 280, 280), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(fallen ? new Rect(455, 500, 80, 80) : new Rect(490, 560, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
                 if (fallen) DrawFallenWord(owner, state, new Rect(115, 608, 565, 84));
-                GUI.Label(new Rect(115, 700, 565, 46), owner.MetaNotice, small);
+                TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(115, 700, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
                 if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
                 if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
@@ -984,9 +984,9 @@ namespace ArcaneBrigade
             if (!ArcadeSkin.KitSliced(card, "HUD/BondList")) ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Color deep = Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Ink, 0.4f);
             programStyle.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 40, card.y + 18, 140, 36), "Bonds", programStyle);
+            GUI.Label(new Rect(card.x + 34, card.y + 22, 150, 44), "Bonds", programStyle); // centred in the header strip (rows 20-68)
             bondNumber.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 170, card.y + 18, width - 210, 36), bondSummary.Active + " of " + bondSummary.Rows.Count + " active", bondNumber);
+            GUI.Label(new Rect(card.x + 170, card.y + 22, width - 210, 44), bondSummary.Active + " of " + bondSummary.Rows.Count + " active", bondNumber);
             programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;

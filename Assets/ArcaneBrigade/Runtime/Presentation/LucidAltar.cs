@@ -112,7 +112,7 @@ namespace ArcaneBrigade
             if (title != null) return;
             title = ArcadeTypography.Style(36, true); title.alignment = TextAnchor.MiddleLeft; title.wordWrap = false;
             hand = ArcadeTypography.Style(26); hand.font = ArcadeTypography.Hand; hand.alignment = TextAnchor.MiddleLeft; hand.wordWrap = true;
-            line = ArcadeTypography.Style(22, true); line.alignment = TextAnchor.MiddleCenter; line.wordWrap = true;
+            line = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); line.alignment = TextAnchor.MiddleCenter; line.wordWrap = true;
             small = ArcadeTypography.Style(22, true); small.alignment = TextAnchor.MiddleCenter; small.wordWrap = false; small.clipping = TextClipping.Clip;
             button = ArcadeTypography.Style(28, true); button.alignment = TextAnchor.MiddleCenter;
             banner = ArcadeTypography.Style(30, true); banner.alignment = TextAnchor.MiddleCenter;

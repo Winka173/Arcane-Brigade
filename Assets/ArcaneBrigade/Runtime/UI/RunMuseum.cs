@@ -176,7 +176,7 @@ namespace ArcaneBrigade
                 float titleTop = exhibit.Unit != null && exhibit.Seen ? poseCount > 5 ? 450 : 428 : exhibit.Seen ? 412 : 365;
                 string heading = exhibit.Seen ? exhibit.Name : "Empty shelf";
                 float titleHeight = Mathf.Clamp(title.CalcHeight(new GUIContent(heading), 323), 24, 52);
-                GUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title);
+                TextAnchor keepTitle = title.alignment; title.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title); title.alignment = keepTitle; // centred under the picture
                 string description = exhibit.Seen ? exhibit.Detail : tab == 4 ? "Defeat this boss in a real hall to unlock its display." : tab == 3 ? "Activate the chain in actual combat. Owning its set is not enough." : "Find this item during a run. Viewing or testing does not unlock it.";
                 if (exhibit.Seen && exhibit.Unit != null && exhibit.Unit.IsBoss) description += "\n\n" + BossPartRules.Describe(exhibit.Unit);
                 Rect details = DescriptionBounds(titleTop, titleHeight);

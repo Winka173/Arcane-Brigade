@@ -156,19 +156,19 @@ namespace ArcaneBrigade
             LivingUI.Enter(Time.unscaledTime - openedAt, new Vector2(960, 540));
             GlossaryUI.BlockUnderlying(new Vector2(1920, 1080));
             GUIStyle title = titleStyle ?? (titleStyle = ArcadeTypography.Style(44, true));
-            GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(23));
+            GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote));
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
             GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
             CardPop.Apply("brigade", new Rect(30, 20, 1860, 1040)); // the colour is restored with previousTint at the end
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(new Rect(30, 20, 1860, 1040), KitFrame.Dialogue, .7f); else RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
-            ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
+            ArcadeSkin.Header(new Rect(310, 50, 1300, 100), "", "BRIGADE");
             if (!ArcadeSkin.HasKit) ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (ArcadeSkin.KitGuiButton(new Rect(1610, 55, 220, 70), "CLOSE", button) && !CardPop.Closing("brigade")) CardPop.CloseThen("brigade", owner.ToggleDetails);
             // requirement 24/10/2026 ("FRIENDS 3, RELICS 0, LINK 55 - nobody understands"): each tab has an icon and a plain name, its
             // count in a little bubble
             string[] names = { "STATS", "FRIENDS", "RELICS", "BONDS" };
             int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
-            if (tabStyle == null) { tabStyle = ArcadeTypography.Style(23, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
+            if (tabStyle == null) { tabStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
             for (int index = 0; index < names.Length; index++)
             {
                 Rect tabRect = new Rect(75 + index * 372, 200, 320, 62); // the painted end caps hang outside the bar: 52 px apart so they never overlap

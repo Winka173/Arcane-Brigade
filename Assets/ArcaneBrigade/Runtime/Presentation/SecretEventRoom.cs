@@ -429,7 +429,7 @@ namespace ArcaneBrigade
             ItemDefinition item = owner.Content.Item(s.RewardId);
             rewardName ??= new GUIStyle(ArcadeTypography.Style(32, true)) { wordWrap = false };
             rewardKind ??= new GUIStyle(ArcadeTypography.Style(22)) { wordWrap = false };
-            rewardLine ??= new GUIStyle(ArcadeTypography.Style(22)) { wordWrap = true };
+            rewardLine ??= new GUIStyle(ArcadeTypography.Style(ArcadeTypography.SizeNote)) { wordWrap = true };
             rewardName.normal.textColor = rewardLine.normal.textColor = ArcadeSkin.Cream;
             rewardKind.normal.textColor = RunModifierRules.RarityColor(rewardCard.Rarity);
             const float width = 1000, textW = width - 120 - 190;

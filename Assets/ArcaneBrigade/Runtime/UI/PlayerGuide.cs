@@ -139,7 +139,11 @@ namespace ArcaneBrigade
             if (ArcadeSkin.KitSliced(r, "HUD/TipBanner", k))
             {
                 if (icon != null) RunHud.Sprite(new Rect(r.x + 82 * k - 30 * k, r.center.y - 30 * k, 60 * k, 60 * k), icon);
-                GUI.Label(new Rect(r.x + 148 * k, r.y, r.width - 148 * k - 64 * k, r.height), tip.Line, line);
+                Rect words = new Rect(r.x + 148 * k, r.y + 14 * k, r.width - 148 * k - 64 * k, r.height - 28 * k);
+                int size = line.fontSize;
+                while (line.fontSize > 20 && line.CalcHeight(new GUIContent(tip.Line), words.width) > words.height) line.fontSize--;
+                GUI.Label(words, tip.Line, line);
+                line.fontSize = size;
             }
             else
             {

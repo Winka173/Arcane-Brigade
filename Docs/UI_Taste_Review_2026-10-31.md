@@ -296,3 +296,34 @@ Cắt 28 khối UI ở cỡ thật, ở hai độ phân giải là 1920×1080 v�
 - **Postbox:** dòng "Bring it from hero select" có đủ hai dòng.
 
 **Chứng cứ:** `padding_pass_3.jpg`, `padding_pass_4.jpg`. Playtest đạt 90/90.
+
+## Rà toàn bộ, vòng 3 (31/10/2026)
+
+**Waiting Room:**
+- Thêm năm món đồ vẽ tay: ghế chờ, chồng vali, máy hát, giá treo áo, ống cắm ô.
+- Các bạn đi lại trong phòng to gấp rưỡi, dùng khung đi bộ của chính mình, và ưu tiên đội của đêm gần nhất.
+- Giữ phòng này vì đây là nơi tiêu Lamp Oil và chứa bảy trạm. Bỏ đi thì mất cả vòng tiến bộ.
+
+**Trang các trạm:**
+- Tranh và dòng chữ của trạm xếp thành một cụm ở giữa cột trái.
+- Nội dung cách tấm tiêu đề.
+- The Bell và The Window được hạ vào giữa khung.
+
+**Tiêu đề:**
+- Mọi tấm tiêu đề trang đều căn giữa: menu, trong trận, Brigade.
+- Tiêu đề trên thẻ cũng căn giữa: thư, giấc mơ, Collection, bảng tổng kết.
+
+**Bonds:** dải tiêu đề giữ cố định nhờ viền 9 mảnh phía trên 76 px. Chữ "Bonds" nằm giữa dải, các hàng bắt đầu dưới dải.
+
+**Băng gợi ý:** chữ tự thu nhỏ cho vừa băng.
+
+**Bến đò và Khách Cuối:**
+- Thẻ cao hơn.
+- Tên dưới chân dung dùng cỡ 22, xuống dòng đủ chỗ.
+- Các khối cách nhau.
+
+**Cỡ chữ:** thẻ khách ghé, phòng bí mật, bàn thờ, trang chi tiết đội hình và thẻ Khách Cuối được nâng lên cỡ chuẩn 28.
+
+**Hero select:** icon chủ đề tuyển quân nằm trong bảng anh hùng, dưới tag vũ khí.
+
+**Ảnh chụp toàn bộ:** 78 màn trong `Docs/Evidence/UIAudit/full_2026-10-31/` (20 tờ, mỗi tờ 4 màn). Playtest đạt 90/90.

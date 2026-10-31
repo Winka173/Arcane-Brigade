@@ -158,7 +158,7 @@ namespace ArcaneBrigade
 
             // headline: who, how far, how long, how many bosses
             float x = rectangle.x + 24, w = rectangle.width - 48;
-            heading.alignment = TextAnchor.MiddleLeft; GUI.Label(new Rect(x, rectangle.y + 10, w, 60), nickname ?? RunMeta.Nickname(run), heading); heading.alignment = TextAnchor.UpperLeft;
+            heading.alignment = TextAnchor.MiddleCenter; GUI.Label(new Rect(x, rectangle.y + 10, w, 60), nickname ?? RunMeta.Nickname(run), heading); // centred in the header strip heading.alignment = TextAnchor.UpperLeft;
             string journey = (run.Endless ? "Endless" : "Journey") + " · " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " · " + (run.Phase == SessionPhase.Victory ? "Dawn reached" : "Ended at wave " + run.Wave);
             GUI.Label(new Rect(x, rectangle.y + 84, w, 36), journey, body); // under the strip, with a breath
             GUI.Label(new Rect(x, rectangle.y + 118, w, 36), "Wave " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " boss" : " bosses"), number);
