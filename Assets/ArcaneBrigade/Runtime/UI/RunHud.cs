@@ -257,8 +257,8 @@ namespace ArcaneBrigade
             navigation.Begin();
             if (text == null)
             {
-                text = ArcadeTypography.Style(23);
-                small = new GUIStyle(text) { fontSize = 18 };
+                text = ArcadeTypography.Style(ArcadeTypography.SizeNote);
+                small = new GUIStyle(text) { fontSize = ArcadeTypography.SizeNote }; // UI standard: nothing under 28
                 title = ArcadeTypography.Style(36, true);
                 if (ArcadeTypography.Display != null) title.font = ArcadeTypography.Display;
                 title.alignment = TextAnchor.MiddleCenter;
@@ -270,7 +270,7 @@ namespace ArcaneBrigade
                 caption.alignment = TextAnchor.MiddleCenter;
                 caption.normal.textColor = ArcadeSkin.Teal;
                 primary = ArcadeSkin.Primary(button);
-                bossName = ArcadeTypography.Style(22, true);
+                bossName = ArcadeTypography.Style(ArcadeTypography.SizeNote, true);
                 bossName.alignment = TextAnchor.MiddleLeft;
                 bossName.normal.textColor = ArcadeSkin.Ink;
                 tagStyle = ArcadeTypography.Style(16, true); tagStyle.font = ArcadeTypography.Punch;
@@ -437,7 +437,7 @@ namespace ArcaneBrigade
                     float bossNow = (simulation.Boss.Alive ? simulation.Boss.Health : 0) + (secondUp ? second.Health : 0);
                     float bossMax = simulation.Boss.Definition.Health + (second != null ? second.Definition.Health : 0);
                     float bossShare = Mathf.Clamp01(bossNow / Mathf.Max(1, bossMax));
-                    string bossTitle = RunUICopy.UnitName(simulation.Boss.Definition).ToUpperInvariant();
+                    string bossTitle = RunUICopy.UnitName(simulation.Boss.Definition); // UI standard: the name as written, not in capitals
                     float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(new GUIContent(bossTitle)).x + 16, 350, 990);
                     ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
                     Sprite(new Rect(432, 906, 42, 42), simulation.Boss.Definition.Body);
@@ -455,7 +455,7 @@ namespace ArcaneBrigade
             else if (state.Phase == SessionPhase.Shop)
             {
                 // a visitor's card owns the screen: no tickets or station card over it
-                if (owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true && owner.GetComponent<WaitingRealmStage>()?.Asking != true) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
+                if (owner.GetComponent<VisitorCard>()?.Open != true && owner.GetComponent<LucidAltar>()?.Open != true && owner.GetComponent<WaitingRealmStage>()?.Asking != true) { if (!shopDetails) owner.Shop.DrawPriceTags(camera); DrawShop(owner); } // an open details page owns the screen: no price tickets over the HUD
                 if (owner.SecretRoom == null || !owner.SecretRoom.InRoom) statFeedback.Draw(owner,camera); // never over the secret room's card
             }
             else
@@ -715,7 +715,12 @@ namespace ArcaneBrigade
         /// <summary>The full rules of an offer (the i button): attack and bonds, then everything else; BACK returns.</summary>
         private void DrawShopDetails(ArenaController owner, WorldShop shop, WorldShop.Station station, ItemRarity rarity, Color tag, bool blood = false)
         {
-            Rect panel = new Rect(400, 150, 1120, 880);
+            // the page is as tall as its words (UI standard: no big frame left empty), up to the screen's height
+            string description = offerCard.Details;
+            if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
+            float contentHeight = GlossaryUI.Height(description, cardLine, 1120 - 112 - 30) + 8;
+            float panelHeight = Mathf.Clamp(34 + 96 + offerCard.HeaderHeight + 16 + contentHeight + 58, 380, 880);
+            Rect panel = new Rect(400, 150 + (880 - panelHeight) * .5f, 1120, panelHeight);
             ShownShopCard = panel;
             RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
             ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
@@ -725,14 +730,11 @@ namespace ArcaneBrigade
             RarityDescriptionFrame.Backdrop(new Rect(inner.x, inner.y, 72, 72), rarity, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y, 72, 72), offerCard.Portrait);
             GUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
-            small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 28), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
+            small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 36), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream;
             if (navigation.Button(new Rect(inner.xMax - 176, inner.y, 176, 72), "BACK", button)) { SetShopDetails(false); return; }
             float headerHeight = offerCard.HeaderHeight, tilesTop = inner.y + 96;
             if (headerHeight > 0) offerCard.DrawHeader(new Rect(inner.x, tilesTop, inner.width, headerHeight), owner.PresentationClock);
-            string description = offerCard.Details;
-            if (BuildPreview(owner, station.Offer) > 0) foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
             float top = tilesTop + headerHeight + 16 - panel.y, textWidth = inner.width - 30;
-            float contentHeight = GlossaryUI.Height(description, cardLine, textWidth) + 8;
             shopScroll = ScrollPanel.Begin(new Rect(inner.x, panel.y + top, inner.width, inner.yMax - panel.y - top), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
             GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, cardLine);
             ScrollPanel.End();
@@ -778,7 +780,7 @@ namespace ArcaneBrigade
             string hint = pause.Contains(Event.current.mousePosition) ? RunUIHints.Pause(RunUIHints.Device) : details.Contains(Event.current.mousePosition) ? RunUIHints.Details(RunUIHints.Device) : null;
             if (hint == null) return;
             Fill(new Rect(1400, 92, 435, 44), Panel);
-            GUI.Label(new Rect(1413, 99, 410, 32), hint, small);
+            GUI.Label(new Rect(1413, 99, 410, 40), hint, small);
         }
 
         private void ObserveMoments(ArenaController owner)

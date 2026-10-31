@@ -627,26 +627,26 @@ namespace ArcaneBrigade
             RunHud.Sprite(new Rect(775, 145, 132, 142), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
             GUI.Label(new Rect(918, 150, 300, 70), RunUICopy.UnitName(champion), rosterTitle);
-            ArcadeSkin.Tag(new Rect(918, 222, 280, 28), RunUICopy.WeaponName(champion.Weapon.Id).ToUpperInvariant(), CodeTone.Walnut, chip);
+            ArcadeSkin.Tag(new Rect(918, 222, 280, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
             GUI.Label(new Rect(918, 256, 250, 34), HeroUnlocks.Full(profile, champion, catalog), note);
             // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
             string fullDescription = RunUICopy.ChampionDescription(champion);
             string description = ShortHero(champion);
             if (catalog.HeroRevision > 0)
             {
-                fullDescription += "\n\nBONDS IN THIS HERO'S SHOP: ";
+                fullDescription += "\n\nBonds in this hero's shop: ";
                 foreach (BondDefinition bond in K11HeroRules.PoolBonds(catalog, champion)) fullDescription += bond.Name + " · ";
             }
             // requirement 25/10/2026: the hero's basic numbers, each with its stat icon, then any bonus it starts with
             WeaponDefinition arm = champion.Weapon;
-            description += "\n\nBASICS\n" + Basic(ItemEffect.Health, "Health", Mathf.RoundToInt(champion.Health).ToString())
+            description += "\n\nBasics\n" + Basic(ItemEffect.Health, "Health", Mathf.RoundToInt(champion.Health).ToString())
                 + Basic(ItemEffect.Damage, "Damage", Mathf.RoundToInt(FriendlyWeaponBalance.BaseDamage(arm)).ToString())
                 + Basic(ItemEffect.AttackSpeed, "Attacks a second", (1f / Mathf.Max(.05f, arm.Cooldown)).ToString("0.0"))
                 + Basic(ItemEffect.AttackRange, "Range", arm.Range.ToString("0.0"))
                 + Basic(ItemEffect.MoveSpeed, "Move speed", champion.Speed.ToString("0.0"));
             if (champion.ChampionModifiers != null && champion.ChampionModifiers.Length > 0)
             {
-                description += "\nSTARTS WITH\n";
+                description += "\nStarts with\n";
                 foreach (StatModifier modifier in champion.ChampionModifiers)
                     description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
             }
@@ -695,7 +695,7 @@ namespace ArcaneBrigade
             if (identity == null) return RunUICopy.ChampionDescription(champion);
             string first = identity.Description; int stop = first.IndexOf(". ", System.StringComparison.Ordinal); if (stop > 0) first = first.Substring(0, stop + 1);
             HeroKit kit = HeroKits.For(champion.Id);
-            return identity.Name + "\n" + first + (kit != null ? "\nTransforms into " + kit.Transformation + "." : "");
+            return RunUICopy.Title(identity.Name) + "\n" + first + (kit != null ? "\nTransforms into " + RunUICopy.Title(kit.Transformation) + "." : ""); // UI standard: no all-capital lines
         }
         /// <summary>Drawn twice a frame: first (paint false) to take the taps before the page, last (paint true) to draw on top.</summary>
         private void RosterOverlays(bool paint)
