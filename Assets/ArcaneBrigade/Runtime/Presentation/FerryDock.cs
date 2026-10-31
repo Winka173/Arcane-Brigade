@@ -138,6 +138,7 @@ namespace ArcaneBrigade
         {
             if (!Visible && !Open || owner.PresentationPaused || owner.StoryConsumesInput || Camera.main == null) { promptShown = false; return; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
+            if (!open) NameTag();
             if (!open)
             {
                 if (Near)
@@ -153,6 +154,8 @@ namespace ArcaneBrigade
             DrawCard();
             GUI.matrix = previous;
         }
+
+        private void NameTag() => PropTag.Draw(prop, Usable ? "FERRY" : "BACK TOMORROW", Usable);
 
         private void DrawCard()
         {

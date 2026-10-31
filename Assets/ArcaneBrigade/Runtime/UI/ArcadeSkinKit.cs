@@ -166,7 +166,7 @@ namespace ArcaneBrigade
             bool compact = r.height >= 40 && CompactFits(r) && KitSprite("Buttons/Compact" + kind + "Normal") != null;
             float cap = CompactCap * r.height / 120f + 8;
             Rect inner = compact ? new Rect(r.x + cap, r.y, r.width - 2 * cap, r.height) : Content(r, KitPiece.Button, false); // inside the caps, vertically centred on the face
-            float gem = !compact && kind == KitButton.Primary ? r.height * .16f : 0; // the primary plate's gem crest sits on its top rim: the word starts below it
+            float gem = !compact && kind == KitButton.Primary ? r.height * .04f : 0; // the gem crest sits on the top rim, outside the face: the words centre on the face (.16 put them low)
             if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y + gem, inner.width, r.height - gem), label, text, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }

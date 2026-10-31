@@ -69,9 +69,8 @@ namespace ArcaneBrigade
             float b = BuyBlink(clock);
             Color hot = new Color(1f, .93f, .66f);
             if (!rimOnly) Glow(new Rect(r.x - 22, r.y - 18, r.width + 44, r.height + 36), new Color(hot.r, hot.g, hot.b, .25f + .55f * b));
-            Color rim = new Color(1f, .97f, .85f, .2f + .8f * b);
-            Line(new Rect(r.x + 4, r.y, r.width - 8, 3), rim); Line(new Rect(r.x + 4, r.yMax - 3, r.width - 8, 3), rim);
-            Line(new Rect(r.x, r.y + 4, 3, r.height - 8), rim); Line(new Rect(r.xMax - 3, r.y + 4, 3, r.height - 8), rim);
+            // no rim lines (the painted pieces are not rectangles): two bright stars twinkle at the piece's ends with the beat
+            RunningLight(r, clock, hot, .3f + .7f * b);
         }
 
         /// <summary>A DO / LOSE / GET row band: cream receipt paper, oxblood with a thorn line, green-gilt with a laurel line.</summary>

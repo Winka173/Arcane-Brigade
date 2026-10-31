@@ -178,6 +178,8 @@ namespace ArcaneBrigade
         private bool promptShown; private float promptAt;
         private void OnGUI()
         {
+            if (Visible && !owner.PresentationPaused && !owner.StoryConsumesInput && active != WaitingEncounter.None)
+                PropTag.Draw(prop, active == WaitingEncounter.BreathingPhone ? "TELEPHONE" : active == WaitingEncounter.ReservedTable ? "TABLE" : "MIRROR", true);
             if (!Visible || !Near || owner.PresentationPaused || owner.StoryConsumesInput) { promptShown = false; return; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (GUI.Button(StoryPropInput.ClickRect(prop,Camera.main),GUIContent.none,GUIStyle.none)) TryInspect();

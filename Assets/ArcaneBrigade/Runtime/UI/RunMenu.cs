@@ -582,24 +582,36 @@ namespace ArcaneBrigade
 
         private void DrawWaitingBrigade(bool reduced, float breathe)
         {
-            List<UnitDefinition> friends = MenuBrigade(out UnitDefinition hero);
-            // after Act I the room with the turned chair keeps its story: the hero alone, where it always stood
-            bool door = !ActOneDone;
-            if (!door) friends = new List<UnitDefinition>();
-            Vector2 heroFoot = door ? new Vector2(772, 686) : new Vector2(965, 530); // on the carpet, in front of the open door
-            ArcadeSkin.Glow(new Rect(heroFoot.x - 330, heroFoot.y - 330, 660, 420), new Color(1f, .78f, .42f, .16f + .08f * breathe)); // the lamp's pool
-            float now = Time.unscaledTime;
-            // now and then one friend hops (one at a time, in turn)
-            int hopper = friends.Count > 0 ? Mathf.FloorToInt(now / 2.6f) % friends.Count : -1; float hopAge = Mathf.Repeat(now, 2.6f);
-            for (int i = 0; i < friends.Count; i++)
-            {
-                Vector3 spot = BrigadeSpots[i];
-                float hop = !reduced && i == hopper && hopAge < .42f ? Mathf.Sin(hopAge / .42f * Mathf.PI) * 16 : 0;
-                MenuUnit(new Vector2(spot.x, spot.y), spot.z, friends[i], 11 + i * 7, spot.x < heroFoot.x, reduced, hop);
-            }
-            float bob = reduced ? 0 : Mathf.Sin(now * 1.3f) * 3;
-            MenuUnit(heroFoot, door ? 262 : 360, hero, 3, true, reduced, bob + 3);
-            if (!reduced) for (int i = 0; i < 6; i++) { float r = Mathf.Repeat(now * .25f + i / 6f, 1); ArcadeSkin.Diamond(new Vector2(heroFoot.x + Mathf.Sin(r * 7 + i * 2) * 150, heroFoot.y - r * 320), 5 + 5 * Mathf.Sin(r * Mathf.PI), new Color(1f, .82f, .45f, .7f * Mathf.Sin(r * Mathf.PI))); }
+            // the Lantern Knight alone at the door (review 31/10/2026: one emblem, standing on the carpet, not floating): its feet on
+            // the floor with a contact shadow, a slow breath that squashes it from the feet, its own acting poses now and then, the
+            // flame on its head flickering and sending up embers, and its light pooling on the carpet around it
+            UnitDefinition hero = catalog.Unit("LanternKnight") ?? catalog.Champions[0];
+            Vector2 foot = ActOneDone ? new Vector2(965, 560) : new Vector2(800, 690);
+            float height = ActOneDone ? 300 : 280, now = Time.unscaledTime;
+            float flicker = reduced ? .8f : .75f + .15f * Mathf.Sin(now * 9.1f) + .1f * Mathf.Sin(now * 23.3f);
+            ArcadeSkin.Glow(new Rect(foot.x - 300, foot.y - 120, 600, 200), new Color(1f, .74f, .38f, .22f * flicker)); // its light on the carpet
+            Sprite pose = RosterPortrait(hero, now, 3, true, reduced);
+            if (pose == null) return;
+            // the drawn picture's own transparent rows under the feet are taken off, so the feet touch the floor
+            Rect ink = SpriteInkMetrics.BoundsOf(pose);
+            float padBottom = Mathf.Max(0, ink.yMin - pose.bounds.min.y) / Mathf.Max(.001f, pose.bounds.size.y);
+            float padTop = Mathf.Max(0, pose.bounds.max.y - ink.yMax) / Mathf.Max(.001f, pose.bounds.size.y);
+            float full = height / Mathf.Max(.2f, 1 - padBottom - padTop), w = full * pose.rect.width / pose.rect.height;
+            float squash = reduced ? 0 : Mathf.Sin(now * 1.6f) * .018f; // breathing: a little taller, a little narrower
+            float hh = full * (1 + squash), ww = w * (1 - squash * .6f);
+            Rect at = new Rect(foot.x - ww * .5f, foot.y - hh * (1 - padBottom), ww, hh);
+            ArcadeSkin.Glow(new Rect(foot.x - w * .32f, foot.y - 12, w * .64f, 24), new Color(0, 0, 0, .7f)); // the contact shadow
+            RunHud.Sprite(at, pose);
+            // the flame on its head: a hot core that flickers and embers drifting up from it
+            Vector2 flame = new Vector2(foot.x + (ink.center.x - pose.bounds.center.x) / pose.bounds.size.x * ww, at.y + padTop * hh + hh * .06f);
+            ArcadeSkin.Glow(new Rect(flame.x - 46, flame.y - 46, 92, 92), new Color(1f, .78f, .36f, .45f * flicker));
+            if (!reduced)
+                for (int i = 0; i < 7; i++)
+                {
+                    float r = Mathf.Repeat(now * .45f + i / 7f, 1);
+                    Vector2 ember = new Vector2(flame.x + Mathf.Sin(r * 6 + i * 1.7f) * (10 + 26 * r), flame.y - 8 - r * 150);
+                    ArcadeSkin.Diamond(ember, 3 + 4 * Mathf.Sin(r * Mathf.PI), new Color(1f, .7f + .2f * r, .35f, .9f * Mathf.Sin(r * Mathf.PI)));
+                }
         }
 
         private void DrawLanding()

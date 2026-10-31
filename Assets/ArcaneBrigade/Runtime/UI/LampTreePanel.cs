@@ -92,11 +92,16 @@ namespace ArcaneBrigade
                         Bough(NodeAt(n, tree), NodeAt(up, tree), focusBranch >= 0 ? (up.Capstone ? 12 : 10) : up.Capstone ? 8 : 6, MetaProgression.Lit(profile, n.Id) && MetaProgression.Lit(profile, up.Id));
             }
             // the branch names are tabs: tap one to open it across the panel, tap it again for the whole tree
-            float col = tree.width / MetaProgression.BranchNames.Length;
-            for (int b = 0; b < MetaProgression.BranchNames.Length; b++)
+            // thumb-tall tabs, each as wide as its name needs out of the row (equal widths shrank "Merchant" to a size a phone could
+            // not read), names in title case at one size
+            int names = MetaProgression.BranchNames.Length;
+            float[] need = new float[names]; float total = 0;
+            for (int b = 0; b < names; b++) { need[b] = chip.CalcSize(new GUIContent(BranchLabel(MetaProgression.BranchNames[b]))).x + 34; total += need[b]; }
+            float room = tree.width - 6 * names, spare = Mathf.Max(0, room - total) / names, squeeze = Mathf.Min(1, room / total), tx = tree.x;
+            for (int b = 0; b < names; b++)
             {
-                // a thumb-tall tab; the name in title case so the longest ("Merchant") keeps the standard size
-                Rect tab = new Rect(tree.x + col * b + 3, tree.y - 14, col - 6, 44);
+                float tw = need[b] * squeeze + spare;
+                Rect tab = new Rect(tx + 3, tree.y - 14, tw, 44); tx += tw + 6;
                 if (ArcadeSkin.Tab(tab, BranchLabel(MetaProgression.BranchNames[b]), focusBranch == b, true, chip) | Nav(tab))
                 {
                     focusBranch = focusBranch == b ? -1 : b; treePick = null; CheckpointAudio.PlayInterfaceId("ui.select");

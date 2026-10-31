@@ -12,7 +12,9 @@ namespace ArcaneBrigade
         public static Sprite LampOil => oil != null ? oil : oil = Resources.Load<Sprite>("UI/Meta/LampOil");
         public static Sprite Keepsake => keepsake != null ? keepsake : keepsake = Resources.Load<Sprite>("UI/Meta/Keepsake");
         public static Sprite Currency(MetaCurrency currency) => currency == MetaCurrency.LampOil ? LampOil : Keepsake;
-        public static Sprite Room => room != null ? room : room = Resources.Load<Sprite>("Hub/WaitingRoom");
+        public static Sprite Room => room != null ? room : room = Resources.Load<Sprite>("Hub/WaitingRoomPainted") ?? Resources.Load<Sprite>("Hub/WaitingRoom");
+        /// <summary>The room painted whole, its furniture and stations in it (review 31/10/2026: pasted pieces never shared its light).</summary>
+        public static bool Painted => Room != null && Room.name == "WaitingRoomPainted";
         public static Sprite Station(MetaStation station, bool restored)
         {
             string key = station + (restored ? "_Lit" : "_Dusty");
@@ -48,12 +50,6 @@ namespace ArcaneBrigade
         {
             new Decor { Name = "TeaTable", Foot = new Vector2(500, 470), Height = 120 },
             new Decor { Name = "CatCushion", Foot = new Vector2(820, 452), Height = 78 },
-            // the room of people waiting (review 31/10/2026: the floor read empty): a bench, cases, music, coats and umbrellas
-            new Decor { Name = "WaitingBench", Foot = new Vector2(640, 640), Height = 92 },
-            new Decor { Name = "LuggageStack", Foot = new Vector2(1010, 470), Height = 96 },
-            new Decor { Name = "Gramophone", Foot = new Vector2(250, 470), Height = 112 },
-            new Decor { Name = "CoatRack", Foot = new Vector2(820, 236), Height = 132 },
-            new Decor { Name = "UmbrellaStand", Foot = new Vector2(500, 234), Height = 86 },
         };
         public static readonly Rect DoorArea = new Rect(582, 4, 116, 128);
         public static readonly Vector2 DoorFoot = new Vector2(640, 168);
@@ -192,7 +188,7 @@ namespace ArcaneBrigade
             {
                 Decor d = Decorations[i];
                 if (!d.Tried) { d.Tried = true; d.Sprite = Resources.Load<Sprite>("Hub/Props/" + d.Name); }
-                if (d.Sprite != null) order.Add((d.Foot.y, -100 - i));
+                if (d.Sprite != null && !MetaIcons.Painted) order.Add((d.Foot.y, -100 - i)); // painted into the room
             }
             if (!reduced && Event.current.type == EventType.Repaint)
                 for (int i = 0; i < 16; i++)
@@ -211,6 +207,12 @@ namespace ArcaneBrigade
                 bool works = MetaProgression.Works(spot.Station), restored = MetaProgression.Restored(profile, spot.Station);
                 Sprite sprite = MetaIcons.Station(spot.Station, restored);
                 Rect r = Bounds(spot, sprite);
+                if (MetaIcons.Painted)
+                {
+                    // the station is painted into the room: the one you walk up to is lit by a warm light, nothing pasted on top
+                    if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .3f + .1f * breathe : .14f));
+                    continue;
+                }
                 if (restored) ArcadeSkin.Glow(new Rect(r.x - 40, r.y - 30, r.width + 80, r.height + 60), new Color(1f, .78f, .45f, .16f + .06f * breathe));
                 if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .38f : .18f));
                 // grounded (requirement 24/10/2026: the stations looked to float): a soft cast shadow falling down-right from the room's
@@ -323,12 +325,12 @@ namespace ArcaneBrigade
             for (int i = 0; i < count; i++)
             {
                 UnitDefinition u = residentPool[i % residentPool.Count];
-                float phase = i * 1.9f, speed = .09f + .02f * (i % 3);
-                Vector2 home = new Vector2(300 + i * 170, 440 + (i % 2) * 120);
-                float a = reduced ? phase : t * speed + phase, b = reduced ? phase : t * speed * 1.4f + phase;
-                Vector2 at = home + new Vector2(Mathf.Sin(a) * 90, Mathf.Cos(b) * 38);
-                at.y = Mathf.Clamp(at.y, 380, 650);
-                result.Add((u, at, Mathf.Cos(a) < 0));
+                // a lap round the rug (an ellipse round the tea table), each friend at its own place on it and its own pace
+                float lap = i * (Mathf.PI * 2 / count) + i * .4f, speed = .07f + .012f * (i % 3);
+                float a = reduced ? lap : t * speed + lap;
+                Vector2 rx = new Vector2(345 + (i % 2) * 25, 172 + (i % 2) * 14); // round the painted rug's edge (centre 645, 385)
+                Vector2 at = new Vector2(645 + Mathf.Cos(a) * rx.x, 385 + Mathf.Sin(a) * rx.y);
+                result.Add((u, at, -Mathf.Sin(a) < 0)); // facing the way round it is walking
             }
             return result;
         }

@@ -360,9 +360,11 @@ namespace ArcaneBrigade
         public static void Focus(Rect bounds)
         {
             float breathe = PresentationSettings.ReducedMotion ? 0.8f : 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 3.2f) * Mathf.Sin(Time.unscaledTime * 7.1f + 1.3f);
-            Glow(new Rect(bounds.x - 30, bounds.center.y - 22, 44, 44), new Color(Gold.r, Gold.g, Gold.b, 0.65f * breathe));
-            Slant(new Rect(bounds.x - 12, bounds.center.y - 6, 6, 12), Gold);
-            Line(new Rect(bounds.x + 14, bounds.yMax - 3, bounds.width - 28, 2), new Color(Gold.r, Gold.g, Gold.b, 0.6f + 0.4f * breathe));
+            // the focused control: warm light spilling out at both its sides onto what lies behind, and a small gold marker
+            // pointing at it from the left (no underline or box over the painted piece)
+            Glow(new Rect(bounds.x - 34, bounds.center.y - 26, 52, 52), new Color(Gold.r, Gold.g, Gold.b, 0.65f * breathe));
+            Glow(new Rect(bounds.xMax - 18, bounds.center.y - 26, 52, 52), new Color(Gold.r, Gold.g, Gold.b, 0.45f * breathe));
+            Slant(new Rect(bounds.x - 14 - (PresentationSettings.ReducedMotion ? 0 : 3 * (1 - breathe)), bounds.center.y - 6, 6, 12), Gold);
         }
 
         /// <summary>Respect fades already applied to GUI.color (page entrance, reveals) instead of overwriting them.</summary>

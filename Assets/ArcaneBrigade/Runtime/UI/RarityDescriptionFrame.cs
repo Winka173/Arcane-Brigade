@@ -16,7 +16,7 @@ namespace ArcaneBrigade
             Header(panel,tint,rarity);
             int rank=Rank(rarity);
             float breathe=motion?.72f+.28f*Mathf.Sin(clock*(1.6f+.5f*rank)):.9f;
-            if(rarity==ItemRarity.Common)Wood(panel);
+            if(rarity==ItemRarity.Common && For(rarity)?.Side==null)Wood(panel); // the painted walnut trim when it is there
             else
             {
                 Color edge=tint;edge.a=.85f*breathe;
@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         /// out inside never runs under the ornaments. Same sizes as Ornaments below.</summary>
         public static Rect Content(Rect panel,ItemRarity rarity,float margin=8)
         {
-            Trim trim=rarity==ItemRarity.Common?null:For(rarity);
+            Trim trim=For(rarity);
             if(trim==null || trim.Side==null)return new Rect(panel.x+margin+4,panel.y+margin+4,panel.width-2*(margin+4),panel.height-2*(margin+4));
             float size=Mathf.Clamp(panel.height/300f,.72f,1.1f), strip=trim.Width*size*(1-trim.Stem)-2;
             float c=Mathf.Clamp(Mathf.Min(panel.width,panel.height)*.2f,40,60), corner=trim.Corner!=null?c*.84f:0;
@@ -73,6 +73,7 @@ namespace ArcaneBrigade
             if(!loaded)
             {
                 loaded=true;
+                Load(ItemRarity.Common,"Common",48,.5f,0,.9f); // walnut and brass (review 31/10/2026: Common had only a plain wood border)
                 Load(ItemRarity.Uncommon,"Uncommon",54,.5f,6,1.4f);
                 Load(ItemRarity.Rare,"Rare",50,.5f,0,1.7f);
                 Load(ItemRarity.Mythic,"Mythic",64,.77f,0,1.1f);
@@ -89,6 +90,7 @@ namespace ArcaneBrigade
                 if(strip!=null){strip.wrapModeV=TextureWrapMode.Repeat;strip.wrapModeU=TextureWrapMode.Clamp;}
             switch(rarity) // crest rail row / lowest pixel, measured from Resources/RarityFrame/*_Crest.png
             {
+                case ItemRarity.Common: trim.CrestBase=.72f; trim.CrestBottom=.84f; break;
                 case ItemRarity.Uncommon: trim.CrestBase=.78f; trim.CrestBottom=.98f; break;
                 case ItemRarity.Rare: trim.CrestBase=.81f; trim.CrestBottom=.91f; break;
                 case ItemRarity.Mythic: trim.CrestBase=.70f; trim.CrestBottom=.95f; break;
@@ -100,7 +102,7 @@ namespace ArcaneBrigade
 
         private static void Ornaments(Rect panel,ItemRarity rarity,float clock)
         {
-            Trim trim=rarity==ItemRarity.Common?null:For(rarity);
+            Trim trim=For(rarity);
             if(trim==null || trim.Side==null)return;
             bool still=PresentationSettings.ReducedMotion, sparse=PresentationSettings.ReducedEffects;
             float size=Mathf.Clamp(panel.height/300f,.72f,1.1f);

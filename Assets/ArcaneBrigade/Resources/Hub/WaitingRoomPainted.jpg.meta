@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 84feb10d80ad4ee7b2b230ad5d2c4ef8
+guid: c78dda395ff34ed9b2f6e6a578d48bc9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,9 +108,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: 51
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -121,9 +121,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: 51
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -139,7 +139,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1ca3b2eb97e6471bb0f4c46d6ea08fd4
+    spriteID: 5826e0678ba1466ab4cc7dce28f90daa
     internalID: 0
     vertices: []
     indices: 
@@ -151,6 +151,6 @@ TextureImporter:
     nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=212;h=240;ppu=100
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1672;h=940;ppu=100;soft=1
   assetBundleName: 
   assetBundleVariant: 

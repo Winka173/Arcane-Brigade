@@ -92,24 +92,26 @@ namespace ArcaneBrigade
             transform.localScale = new Vector3(size / Mathf.Max(.001f, Mathf.Abs(inherited.x)), size / Mathf.Max(.001f, Mathf.Abs(inherited.y)), 1) * Mathf.Lerp(.8f, 1, reveal);
             transform.rotation = Quaternion.identity;
             float focus = inspected == null ? 0 : inspected.FocusAmount;
-            // a continuous cross-fade through the painted loop (linear, not held-then-jumped), plus a slow breath and sway on
-            // top so the bloom never looks like it is stepping, even with four frames
+            // review 31/10/2026 (the bloom stepped: four painted frames swapped in turn): no frame swapping at all - two different
+            // paintings of the bloom stay on, each swaying, breathing and licking upward on its own slow rhythm while their
+            // strength trades back and forth, so the flames move continuously at the screen's own frame rate
             int frames = artwork != null && artwork.PerRarity > 0 ? artwork.PerRarity : 4;
-            float frameTime = reduced ? 1 : Mathf.Repeat(time / CycleSeconds * frames, frames);
-            int frame = Mathf.FloorToInt(frameTime); float blend = reduced ? 0 : frameTime - frame;
-            float breath = reduced ? 1 : 1 + Mathf.Sin(time * 2.1f) * 0.035f, sway = reduced ? 0 : Mathf.Sin(time * 0.9f + phase) * 2.2f;
+            float trade = reduced ? .5f : .5f + .5f * Mathf.Sin(time * 1.25f + phase);
             for (int index = 0; index < painted.Length; index++)
             {
                 SpriteRenderer view = painted[index]; if (!view.enabled) continue;
-                view.sprite = artwork.Frame(rarity, (frame + index) % 4);
+                view.sprite = artwork.Frame(rarity, index == 0 ? 0 : frames / 2);
                 float width = AuraWidth(size, focus, rarity) / Mathf.Max(.01f, size);
                 float paintedScale = width / Mathf.Max(.01f, view.sprite.bounds.size.x);
-                view.transform.localScale = Vector3.one * paintedScale * breath;
-                view.transform.localPosition = new Vector3(0, -.08f + (reduced ? 0 : Mathf.Sin(time * 2.1f) * .015f), 0);
-                view.transform.localRotation = Quaternion.Euler(0, 0, sway * (index == 0 ? 1 : -0.6f));
-                view.sortingOrder = target.sortingOrder - 2;
+                float beat = reduced ? 0 : Mathf.Sin(time * (2.3f + index * .6f) + phase + index * 1.7f);
+                float lick = reduced ? 0 : Mathf.Sin(time * (3.7f + index * .9f) + index * 2.3f) * .5f + Mathf.Sin(time * 6.1f + index) * .25f;
+                view.transform.localScale = new Vector3(paintedScale * (1 + beat * .025f - lick * .02f), paintedScale * (1 + beat * .03f + lick * .07f), 1);
+                view.transform.localPosition = new Vector3(reduced ? 0 : Mathf.Sin(time * 1.1f + index * 2) * .02f, -.08f + lick * .035f, 0);
+                view.transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * (.8f + index * .35f) + phase + index) * (2.6f + index));
+                view.sortingOrder = target.sortingOrder - 2 + index;
                 Color color = rarity == ItemRarity.Crimson ? new Color(1, .2f, .2f) : Color.white;
-                color.a = (index == 0 ? 1 - blend : blend) * visibility * reveal * (soft ? .58f : .9f) * (1 + focus * .08f);
+                float share = index == 0 ? .45f + .4f * trade : .45f + .4f * (1 - trade);
+                color.a = share * visibility * reveal * (soft ? .5f : .8f) * (1 + focus * .08f);
                 view.color = color;
             }
             for (int index = 0; index < lights.Length; index++)

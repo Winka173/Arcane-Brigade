@@ -191,7 +191,7 @@ namespace ArcaneBrigade
             }
             if (draw && words.font != null && Event.current.type == EventType.Repaint) words.font.RequestCharactersInTexture(text ?? "", words.fontSize, words.fontStyle);
             float line = Mathf.Max(style.lineHeight, style.fontSize * 1.25f);
-            float horizontal = 0, vertical = 0;
+            float horizontal = 0, vertical = 0, indent = 0; // indent: where a wrapped line starts (under the words after a lozenge)
             MatchCollection all = Tokens(text);
             Rect seen = draw && ScrollPanel.Inside ? ScrollPanel.Visible : new Rect(-1e6f, -1e6f, 2e6f, 2e6f);
             bool Seen(float v) => bounds.y + v + line >= seen.yMin && bounds.y + v <= seen.yMax;
@@ -199,19 +199,20 @@ namespace ArcaneBrigade
             {
                 Match token = all[tokenIndex];
                 string word = token.Value;
-                if (word.Contains("\n")) { horizontal = 0; vertical += line; continue; }
+                if (word.Contains("\n")) { horizontal = 0; indent = 0; vertical += line; continue; }
                 if (word == "{mark}")
                 {
-                    // a small gold lozenge that opens each effect line of a shop card
-                    float mark = line * .38f;
+                    // a small gold lozenge that opens each effect line of a shop card, in a slot as wide as a stat icon so the words
+                    // after it start where they do after an icon on the line above; a wrapped line starts under those words
+                    float mark = line * .38f, slot = line * .85f + 2;
                     if (draw && Seen(vertical))
                     {
-                        Rect m = new Rect(bounds.x + horizontal + 2, bounds.y + vertical + (line - mark) * .5f, mark, mark);
+                        Rect m = new Rect(bounds.x + horizontal + (slot - mark) * .5f, bounds.y + vertical + (line - mark) * .5f, mark, mark);
                         Matrix4x4 keep = GUI.matrix; ArcadeSkin.TurnAround(45, m.center);
                         ArcadeSkin.Line(m, ArcadeSkin.Gold); ArcadeSkin.Line(new Rect(m.x + mark * .3f, m.y + mark * .3f, mark * .4f, mark * .4f), ArcadeSkin.Cream);
                         GUI.matrix = keep;
                     }
-                    horizontal += mark + 9; continue;
+                    bool opens = horizontal == 0; horizontal += slot; if (opens) indent = horizontal; continue;
                 }
                 if (word.StartsWith("{tag:", StringComparison.Ordinal))
                 {
@@ -261,7 +262,7 @@ namespace ArcaneBrigade
                     FontStyle measuredStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
                     float boldValue = Measure(words, bonus[2]); words.fontStyle = measuredStyle;
                     float size = Measure(words, caption) + glyph + 5 + boldValue - normalValue;
-                    if (horizontal > 0 && horizontal + size > bounds.width) { horizontal = 0; vertical += line; }
+                    if (horizontal > indent && horizontal + size > bounds.width) { horizontal = indent; vertical += line; }
                     if (draw && Seen(vertical))
                     {
                         Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, size, line);
@@ -279,7 +280,7 @@ namespace ArcaneBrigade
                 bool number = signedValue.IsMatch(word) || char.IsDigit(word[0]);
                 FontStyle measuredWordStyle = words.fontStyle; if (number) words.fontStyle = FontStyle.Bold;
                 float width = Measure(words, word) + icon + (entry == null ? 0 : 2); words.fontStyle = measuredWordStyle;
-                if (horizontal > 0 && horizontal + width > bounds.width) { horizontal = 0; vertical += line; }
+                if (horizontal > indent && horizontal + width > bounds.width) { horizontal = indent; vertical += line; }
                 if (draw && Seen(vertical))
                 {
                     Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, width, line);

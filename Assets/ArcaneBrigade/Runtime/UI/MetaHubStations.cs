@@ -64,14 +64,8 @@ namespace ArcaneBrigade
         {
             int index = navCount++;
             if (!navKeys || index != navIndex) return false;
+            // never a box drawn round painted art: the focused control gets the light at its sides and the marker (ArcadeSkin.Focus)
             ArcadeSkin.Focus(r);
-            if (Event.current.type == EventType.Repaint)
-            {
-                // a clear gold rim round the focused control (the kit's focus mark alone is small on big cards)
-                Color rim = new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .9f);
-                ArcadeSkin.Line(new Rect(r.x - 3, r.y - 3, r.width + 6, 3), rim); ArcadeSkin.Line(new Rect(r.x - 3, r.yMax, r.width + 6, 3), rim);
-                ArcadeSkin.Line(new Rect(r.x - 3, r.y, 3, r.height), rim); ArcadeSkin.Line(new Rect(r.xMax, r.y, 3, r.height), rim);
-            }
             if (navMoved && navInScroll) navReveal = r;
             if (navConfirm && enabled && Event.current.type == EventType.Repaint) { navConfirm = false; return true; }
             return false;

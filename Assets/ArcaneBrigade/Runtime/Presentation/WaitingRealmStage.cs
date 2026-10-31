@@ -142,6 +142,7 @@ namespace ArcaneBrigade
             if (!ShopChair || chair == null || !chair.enabled || owner.TransitionPending || owner.PresentationPaused || owner.StoryConsumesInput || Camera.main == null) return;
             var state = owner.Session.State;
             bool available = owner.Session.SitCloserAvailable;
+            if (available && !asking) PropTag.Draw(chair, "WARM CHAIR", true); // something to walk to, not scenery
             if (!Near && !asking) return;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (hand == null)
