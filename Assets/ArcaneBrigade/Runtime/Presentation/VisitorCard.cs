@@ -139,9 +139,9 @@ namespace ArcaneBrigade
             title = ArcadeTypography.Style(34, true); title.alignment = TextAnchor.MiddleLeft; title.wordWrap = false; title.clipping = TextClipping.Clip;
             verb = ArcadeTypography.Style(28, true); verb.alignment = TextAnchor.MiddleCenter; verb.wordWrap = true;
             amount = ArcadeTypography.Style(24, true); amount.alignment = TextAnchor.MiddleLeft; amount.wordWrap = false;
-            caption = ArcadeTypography.Style(15, true); caption.alignment = TextAnchor.MiddleCenter; caption.wordWrap = false; caption.normal.textColor = ArcadeSkin.Cream;
-            chip = ArcadeTypography.Style(19, true); chip.alignment = TextAnchor.MiddleCenter; chip.wordWrap = false;
-            plateName = ArcadeTypography.Style(18, true); plateName.alignment = TextAnchor.MiddleCenter; plateName.wordWrap = true;
+            caption = ArcadeTypography.Style(22, true); caption.alignment = TextAnchor.MiddleCenter; caption.wordWrap = false; caption.normal.textColor = ArcadeSkin.Cream;
+            chip = ArcadeTypography.Style(24, true); chip.alignment = TextAnchor.MiddleCenter; chip.wordWrap = false;
+            plateName = ArcadeTypography.Style(24, true); plateName.alignment = TextAnchor.MiddleCenter; plateName.wordWrap = true;
             button = ArcadeTypography.Style(24, true); button.alignment = TextAnchor.MiddleCenter; button.normal.textColor = ArcadeSkin.Cream;
             mark = ArcadeTypography.Style(26, true); mark.alignment = TextAnchor.MiddleCenter; mark.wordWrap = false;
         }

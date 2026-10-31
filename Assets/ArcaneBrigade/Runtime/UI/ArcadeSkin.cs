@@ -404,7 +404,7 @@ namespace ArcaneBrigade
         public static void Stamp(Rect rectangle, string caption)
         {
             if (HasKit) Ornament(new Rect(rectangle.x, rectangle.y - 9, rectangle.width, 18), KitDivider.Clock); else Divider(new Rect(rectangle.x, rectangle.y, rectangle.width, 1), Accent);
-            GUIStyle label = stampStyle ?? (stampStyle = ArcadeTypography.Style(15, true));
+            GUIStyle label = stampStyle ?? (stampStyle = ArcadeTypography.Style(20, true));
             label.normal.textColor = Accent;
             label.alignment = TextAnchor.MiddleCenter;
             GUI.Label(new Rect(rectangle.x, rectangle.y + 6, rectangle.width, rectangle.height - 12), caption, label);

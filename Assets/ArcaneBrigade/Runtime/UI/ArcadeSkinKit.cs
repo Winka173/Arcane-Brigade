@@ -131,6 +131,12 @@ namespace ArcaneBrigade
             GUIStyle label = KitLabel(like);
             if (like != null && !centred) label.alignment = kitShadow.alignment = like.alignment; // a button label is always centred
             FitText(label, text, r.width);
+            if (label.wordWrap && r.height < label.lineHeight * 1.8f)
+            {
+                // a one-line box never wraps (the second line fell out of the box): the words shrink a little more instead
+                label.wordWrap = false;
+                while (label.fontSize > 12 && label.CalcSize(new GUIContent(text)).x > r.width) label.fontSize--;
+            }
             kitShadow.fontSize = label.fontSize; kitShadow.wordWrap = label.wordWrap;
             bool onGold = colour.grayscale < .35f;
             kitShadow.normal.textColor = onGold ? new Color(1f, .93f, .72f, .45f * colour.a) : new Color(0, 0, 0, .6f * colour.a);

@@ -135,10 +135,10 @@ namespace ArcaneBrigade
             Camera camera = Camera.main; if (camera == null) return;
             GUI.depth = open?.Offer != null ? -1 : 5; // purchase cards must also cover the merchant's speech bubble
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
-            name ??= ArcadeTypography.Style(17, true); name.alignment = TextAnchor.MiddleCenter;
+            name ??= ArcadeTypography.Style(22, true); name.alignment = TextAnchor.MiddleCenter;
             title ??= ArcadeTypography.Style(26, true); title.wordWrap = true;
             body ??= ArcadeTypography.Style(20); body.wordWrap = true;
-            hint ??= ArcadeTypography.Style(16); hint.wordWrap = true;
+            hint ??= ArcadeTypography.Style(24); hint.wordWrap = true;
             Event current = Event.current;
             Vector2 mouse = current.mousePosition;
             bool overHud = mouse.y < 180 || mouse.y > 1000 || mouse.x < 280 && mouse.y < 300 || mouse.x > 1580 && mouse.y < 260;
@@ -190,7 +190,7 @@ namespace ArcaneBrigade
             if (entry.Offer != null) return new Rect(485, 190, 950, 430);
             const float width = 560;
             float inner = width - 40;
-            title ??= ArcadeTypography.Style(26, true); body ??= ArcadeTypography.Style(20); hint ??= ArcadeTypography.Style(16);
+            title ??= ArcadeTypography.Style(ArcadeTypography.SizeBody, true); body ??= ArcadeTypography.Style(ArcadeTypography.SizeNote); hint ??= ArcadeTypography.Style(24);
             float height = 18 + title.CalcHeight(new GUIContent(entry.Title), inner) + 8 + body.CalcHeight(new GUIContent(entry.Body), inner) + 12 + hint.CalcHeight(new GUIContent(entry.Use), inner) + 20;
             Rect box = Screen(entry.World, camera);
             float x = box.center.x < 960 ? box.xMax + 24 : box.xMin - 24 - width; // beside the thing, toward the middle of the room

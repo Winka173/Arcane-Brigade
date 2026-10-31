@@ -20,7 +20,7 @@ namespace ArcaneBrigade
             int carried = Carried; if (carried <= 0) return;
             Camera camera = Camera.main; if (camera == null) return;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
-            text ??= ArcadeTypography.Style(18, true);
+            text ??= ArcadeTypography.Style(24, true);
             icon ??= PacingArtwork.Prism(owner.Content);
             Rect plate = new Rect(22, 296, 214, 36);
             ArcadeSkin.Panel(plate, ArcadeSkin.Card);
@@ -38,7 +38,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Frame(card, KitFrame.Dialogue, .6f);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Dialogue);
                 helpTitle ??= ArcadeTypography.Style(22, true);
-                helpText ??= new GUIStyle(ArcadeTypography.Style(18)) { wordWrap = true };
+                helpText ??= new GUIStyle(ArcadeTypography.Style(24)) { wordWrap = true };
                 helpTitle.normal.textColor = new Color(0.68f, 1, 0.92f); helpText.normal.textColor = ArcadeSkin.KitCream;
                 GUI.Label(new Rect(inner.x, inner.y, inner.width, 28), "PRISM SHARDS", helpTitle);
                 GUI.Label(new Rect(inner.x, inner.y + 30, inner.width, inner.height - 30), "Collect 3 and the next shop gives you a rainbow gift. Elite enemies and won secret fights drop them.", helpText);

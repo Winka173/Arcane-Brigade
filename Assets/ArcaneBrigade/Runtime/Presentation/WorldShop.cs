@@ -776,7 +776,7 @@ namespace ArcaneBrigade
             if (priceStyle == null)
             {
                 priceStyle = ArcadeTypography.Style(25, true); priceStyle.normal.textColor = ArcadeSkin.Ink; priceStyle.alignment = TextAnchor.MiddleLeft; priceStyle.wordWrap = false;
-                categoryStyle = ArcadeTypography.Style(17, true); categoryStyle.font = ArcadeTypography.Punch; categoryStyle.normal.textColor = ArcadeSkin.Ink; categoryStyle.alignment = TextAnchor.MiddleCenter; categoryStyle.wordWrap = false;
+                categoryStyle = ArcadeTypography.Style(22, true); categoryStyle.normal.textColor = ArcadeSkin.Ink; categoryStyle.alignment = TextAnchor.MiddleCenter; categoryStyle.wordWrap = false;
                 denialStyle = ArcadeTypography.Style(20, true); denialStyle.alignment = TextAnchor.MiddleCenter; denialStyle.normal.textColor = new Color(1, 0.45f, 0.35f);
             }
             int order = 0;
@@ -831,15 +831,15 @@ namespace ArcaneBrigade
                     bool item = station.Offer.Kind == OfferKind.Item;
                     Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : owner.Content.Unit(station.Offer.Id).Rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(owner.Content.Unit(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
                     int mergeTier = merge ? ShopMergePreview.ProjectedTier(owner.Session, station.Offer) : 0;
-                    float mergeWidth = 84 + mergeTier * 15;
-                    Rect category = new Rect(point.x - (merge ? mergeWidth / 2 : fit != null ? 66 : 45), ticket.y - 29, merge ? mergeWidth : fit != null ? 132 : 90, 26);
+                    float mergeWidth = 108 + mergeTier * 18;
+                    Rect category = new Rect(point.x - (merge ? mergeWidth / 2 : fit != null ? 78 : 56), ticket.y - 35, merge ? mergeWidth : fit != null ? 156 : 112, 32); // tags sized for 22-unit words
                     ArcadeSkin.Slant(category, fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
                     if (merge)
                     {
-                        GUI.Label(new Rect(category.x + 3, category.y, 77, category.height), "MERGE", categoryStyle);
+                        GUI.Label(new Rect(category.x + 3, category.y, 92, category.height), "MERGE", categoryStyle);
                         // the stars it will make, plain and in the star's colour: silver two, gold three, purple four
                         Color keepTint = GUI.color; GUI.color = UnitVisual.StarColour(mergeTier);
-                        for (int star = 0; star < mergeTier; star++) RunHud.Sprite(new Rect(category.x + 75 + star * 15, category.y + 5, 15, 15), K8Motion.TierStar());
+                        for (int star = 0; star < mergeTier; star++) RunHud.Sprite(new Rect(category.x + 94 + star * 18, category.y + 7, 18, 18), K8Motion.TierStar());
                         GUI.color = keepTint;
                     }
                     else if (fit != null)

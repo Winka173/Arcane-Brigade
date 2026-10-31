@@ -181,9 +181,9 @@ namespace ArcaneBrigade
             panel = Solid(new Color(.055f, .065f, .105f, .96f)); paper = Solid(new Color(.93f, .86f, .71f)); disabled = Solid(new Color(.15f, .17f, .22f));
             heading = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 30, alignment = TextAnchor.MiddleCenter, wordWrap = true }; heading.normal.textColor = new Color(1, .79f, .39f);
             if (ArcadeTypography.Display != null) heading.font = ArcadeTypography.Display;
-            body = new GUIStyle(heading) { font = ArcadeTypography.Body, fontSize = 19, alignment = TextAnchor.UpperLeft }; body.normal.textColor = new Color(.95f, .92f, .84f); body.richText = true;
-            small = new GUIStyle(body) { fontSize = 16 };
-            card = new GUIStyle(ArcadeSkin.Skin.button) { font = ArcadeTypography.Body, fontSize = 20, wordWrap = true, alignment = TextAnchor.MiddleCenter };
+            body = new GUIStyle(heading) { font = ArcadeTypography.Body, fontSize = ArcadeTypography.SizeNote, alignment = TextAnchor.UpperLeft }; body.normal.textColor = new Color(.95f, .92f, .84f); body.richText = true;
+            small = new GUIStyle(body) { fontSize = 24 }; // UI standard: labels on the room read on a phone
+            card = new GUIStyle(ArcadeSkin.Skin.button) { font = ArcadeTypography.Body, fontSize = ArcadeTypography.SizeNote, wordWrap = true, alignment = TextAnchor.MiddleCenter };
             primary = ArcadeSkin.Primary(card);
             label = new GUIStyle(small) { alignment = TextAnchor.MiddleCenter };
         }
@@ -282,8 +282,8 @@ namespace ArcaneBrigade
                         float padX = cw * CardPadX, y0 = socket.y + hole * .5f + 8, y1 = plate.yMax - ch * CardPadBottom;
                         if (plateTitle == null) Row(Rect.zero, null, null, null, CodeTone.Cream);
                         Color titleTone = plateTitle.normal.textColor; plateTitle.normal.textColor = cardArt != null ? ArcadeSkin.KitInk : titleTone;
-                        int titleSize = plateTitle.fontSize; plateTitle.fontSize = 26;
-                        GUI.Label(new Rect(plate.x + padX, y0, cw - padX * 2, 34), c.Title, plateTitle);
+                        int titleSize = plateTitle.fontSize; plateTitle.fontSize = 30;
+                        GUI.Label(new Rect(plate.x + padX, y0 - 2, cw - padX * 2, 40), c.Title, plateTitle);
                         plateTitle.fontSize = titleSize; plateTitle.normal.textColor = titleTone;
                         float rowsTop = y0 + (c.Enabled ? 40 : 70), rowH = (y1 - rowsTop) / 3; // a closed deal says so under its title
                         GemRow(new Rect(plate.x + padX, rowsTop, cw - padX * 2, rowH), "DO", c.Do, CodeTone.Cream, true);
@@ -348,7 +348,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Pedestal(stand, Time.unscaledTime); // velvet cushion on a brass stand, drawn in code
             ItemDefinition relic = owner.Content.Item(s.TargetItem);
             if (relic?.Icon != null) DrawSprite(ArcadeSkin.PedestalSeat(stand), relic.Icon);
-            GUI.Label(new Rect(box.x - 40, 422, box.width + 80, 30), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  tap to change" : ""), label);
+            GUI.Label(new Rect(box.x - 80, 418, box.width + 160, 36), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  tap to change" : ""), label);
             if (!blocked && owner.Session.SecretTargets.Count > 1 && GUI.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
@@ -426,7 +426,7 @@ namespace ArcaneBrigade
             }
             ItemDefinition item = owner.Content.Item(s.RewardId);
             rewardName ??= new GUIStyle(ArcadeTypography.Style(32, true)) { wordWrap = false };
-            rewardKind ??= new GUIStyle(ArcadeTypography.Style(18)) { wordWrap = false };
+            rewardKind ??= new GUIStyle(ArcadeTypography.Style(22)) { wordWrap = false };
             rewardLine ??= new GUIStyle(ArcadeTypography.Style(22)) { wordWrap = true };
             rewardName.normal.textColor = rewardLine.normal.textColor = ArcadeSkin.Cream;
             rewardKind.normal.textColor = RunModifierRules.RarityColor(rewardCard.Rarity);
@@ -458,7 +458,7 @@ namespace ArcaneBrigade
         /// <summary>One line of a deal: its gem, the word (DO, LOSE, GET) and what it means, on parchment (ink) or navy (light).</summary>
         private void GemRow(Rect r, string tag, string text, CodeTone tone, bool parchment)
         {
-            gemTag ??= new GUIStyle(label) { fontSize = 15, fontStyle = FontStyle.Bold, alignment = TextAnchor.UpperLeft };
+            gemTag ??= new GUIStyle(label) { fontSize = 22, fontStyle = FontStyle.Bold, alignment = TextAnchor.UpperLeft };
             gemText ??= new GUIStyle(body) { wordWrap = true, richText = true, alignment = TextAnchor.UpperLeft };
             Sprite gem = ArcadeSkin.KitSprite(tone == CodeTone.Oxblood ? "SecretEvent/GemLose" : tone == CodeTone.Green ? "SecretEvent/GemGet" : "SecretEvent/GemDo");
             float g = Mathf.Min(34, r.height * .5f);
@@ -468,12 +468,12 @@ namespace ArcaneBrigade
                 : (tone == CodeTone.Oxblood ? new Color(1f, .5f, .45f) : tone == CodeTone.Green ? new Color(.55f, .95f, .55f) : ArcadeSkin.KitCream);
             gemTag.normal.textColor = tagColour;
             float x = r.x + g + 12, tw = r.xMax - x;
-            GUI.Label(new Rect(x, r.y, tw, 20), tag, gemTag);
+            GUI.Label(new Rect(x, r.y - 2, tw, 28), tag, gemTag);
             gemText.normal.textColor = parchment ? (tone == CodeTone.Cream ? ArcadeSkin.KitInk : Color.Lerp(ArcadeSkin.KitInk, tagColour, .55f)) : new Color(.96f, .93f, .86f);
             string marked = Marked(text, parchment ? CodeTone.Cream : tone);
-            Rect area = new Rect(x, r.y + 21, tw, r.height - 25);
-            gemText.fontSize = parchment ? 18 : 21;
-            while (gemText.fontSize > 13 && gemText.CalcHeight(new GUIContent(marked), area.width) > area.height) gemText.fontSize--; // it fits its line
+            Rect area = new Rect(x, r.y + 24, tw, r.height - 26);
+            gemText.fontSize = parchment ? 26 : ArcadeTypography.SizeNote;
+            while (gemText.fontSize > 20 && gemText.CalcHeight(new GUIContent(marked), area.width) > area.height) gemText.fontSize--; // it fits its line
             GUI.Label(area, marked, gemText);
         }
         /// <summary>A picture kept to its own shape inside the box, centred.</summary>
@@ -487,7 +487,7 @@ namespace ArcaneBrigade
         private void Row(Rect r, string tag, string text, Sprite icon, CodeTone tone)
         {
             text = Marked(text, tone);
-            if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 26 }; tagStyle = new GUIStyle(label) { fontSize = 16, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
+            if (plateTitle == null) { plateTitle = new GUIStyle(heading) { fontSize = 30 }; tagStyle = new GUIStyle(label) { fontSize = 22, fontStyle = FontStyle.Bold }; tagStyle.normal.textColor = Color.white; }
             if (tag == null) return;
             Rect area = ArcadeSkin.EventRow(r, tag, tone, tagStyle);
             if (icon != null) DrawSprite(new Rect(r.x + 18, r.y + 38, Mathf.Min(48, r.height - 44), Mathf.Min(48, r.height - 44)), icon);
@@ -496,7 +496,7 @@ namespace ArcaneBrigade
             body.wordWrap = true;
             area = new Rect(area.x, area.y, area.width - 14, area.height); // clear of the ribbon's right gem
             int size = body.fontSize; TextAnchor align = body.alignment;
-            while (body.fontSize > 13 && body.CalcHeight(new GUIContent(text), area.width) > area.height) body.fontSize--; // two lines stay inside the ribbon
+            while (body.fontSize > 20 && body.CalcHeight(new GUIContent(text), area.width) > area.height) body.fontSize--; // two lines stay inside the ribbon
             body.alignment = TextAnchor.MiddleLeft; // centred in its ribbon's height
             GUI.Label(area, text, body);
             body.fontSize = size; body.alignment = align; body.normal.textColor = keep;
@@ -555,7 +555,7 @@ namespace ArcaneBrigade
                 pickerName ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter };
                 GUI.Label(new Rect(cell.x - 10, cell.y + tile + 2, tile + 20, 48), choices[i].name, pickerName);
                 // what it does, in a line or two (requirement 25/10/2026: names alone told nothing)
-                pickerWhat ??= new GUIStyle(label) { fontSize = 14, wordWrap = true, alignment = TextAnchor.UpperCenter, clipping = TextClipping.Overflow };
+                pickerWhat ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter, clipping = TextClipping.Overflow };
                 pickerWhat.normal.textColor = new Color(.62f, .92f, .66f);
                 GUI.Label(new Rect(cell.x - 10, cell.y + tile + 52, tile + 20, 64), choices[i].what, pickerWhat);
                 if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;

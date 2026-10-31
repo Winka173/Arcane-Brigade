@@ -34,7 +34,7 @@ namespace ArcaneBrigade
             if (owner?.Session == null || owner.Simulation == null || owner.PresentationPaused || Camera.main == null) return;
             if (owner.Session.State.Phase != SessionPhase.Combat) return;
             if (Event.current.type != EventType.Repaint) return;
-            chip ??= new GUIStyle(ArcadeTypography.Style(15, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
+            chip ??= new GUIStyle(ArcadeTypography.Style(20, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             // the boosts still running, under the lantern row
             float x = 22, top = 232;

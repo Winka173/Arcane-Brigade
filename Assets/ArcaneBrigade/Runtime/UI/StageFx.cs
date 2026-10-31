@@ -103,7 +103,7 @@ namespace ArcaneBrigade
             if (number == null)
             {
                 number = ArcadeTypography.Style(78, true); number.alignment = TextAnchor.MiddleCenter; number.wordWrap = false; if (ArcadeTypography.Display != null) number.font = ArcadeTypography.Display;
-                label = ArcadeTypography.Style(16, false, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = false;
+                label = ArcadeTypography.Style(20, false, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = false;
             }
             if (ring == null) ring = MakeRing();
             bool reduced = PresentationSettings.ReducedMotion;

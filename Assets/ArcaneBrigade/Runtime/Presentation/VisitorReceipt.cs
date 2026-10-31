@@ -149,7 +149,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(inner.x + 150, y - 4, textW, 40), l.Text, cardName);
                 Color tag = RunModifierRules.RarityColor(shown.Rarity);
                 body.normal.textColor = tag;
-                identityStyle ??= new GUIStyle(body) { fontSize = 17, wordWrap = false };
+                identityStyle ??= new GUIStyle(body) { fontSize = 22, wordWrap = false };
                 identityStyle.normal.textColor = body.normal.textColor;
                 GUI.Label(new Rect(inner.x + 150, y + 30, textW, 24), (l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
                 GlossaryUI.Text(new Rect(inner.x + 150, y + 58, textW, rowH - 58), summary, cardLine);

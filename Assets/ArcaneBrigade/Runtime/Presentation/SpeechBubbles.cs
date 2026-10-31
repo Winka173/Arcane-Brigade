@@ -100,8 +100,8 @@ namespace ArcaneBrigade
         {
             if (copy != null) return;
             copy = ArcadeTypography.Style(31); copy.font = ArcadeTypography.Hand; copy.richText = true; copy.wordWrap = true; copy.normal.textColor = ArcadeSkin.Ink;
-            plainCopy = ArcadeTypography.Style(21); plainCopy.richText = true; plainCopy.wordWrap = true; plainCopy.normal.textColor = ArcadeSkin.Ink;
-            nameStyle = ArcadeTypography.Style(15, true); nameStyle.font = ArcadeTypography.Punch; nameStyle.wordWrap = false; nameStyle.clipping = TextClipping.Clip;
+            plainCopy = ArcadeTypography.Style(ArcadeTypography.SizeNote); plainCopy.richText = true; plainCopy.wordWrap = true; plainCopy.normal.textColor = ArcadeSkin.Ink;
+            nameStyle = ArcadeTypography.Style(22, true); nameStyle.wordWrap = false; // the speaker in title case, not tiny capitals; nameStyle.clipping = TextClipping.Clip;
             whisperStyle = ArcadeTypography.Style(29); whisperStyle.font = ArcadeTypography.Hand; whisperStyle.richText = true; whisperStyle.wordWrap = true;
             tail = new Texture2D(32, 32, TextureFormat.RGBA32, false) { name = "SpeechTail", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
             var pixels = new Color[32 * 32];
@@ -205,7 +205,7 @@ namespace ArcaneBrigade
                 textWidth = Mathf.Max(textWidth, 120);
                 float textHeight = style.CalcHeight(content, textWidth);
                 bool named = !string.IsNullOrEmpty(bubble.Name);
-                float top = named ? 30 : 12;
+                float top = named ? 38 : 12;
                 var size = new Vector2(textWidth + 44, textHeight + top + 18);
 
                 Rect rect = bubble.PlacementLocked ? bubble.Placed : tailed ? Place(anchor, size, bubble.Prefer) : Stack(new Rect(anchor.x - size.x * 0.5f, anchor.y, size.x, size.y));
@@ -246,7 +246,7 @@ namespace ArcaneBrigade
                 if (named)
                 {
                     nameStyle.normal.textColor = label;
-                    GUI.Label(new Rect(rect.x + 22, rect.y + 9, rect.width - 34, 20), bubble.Name.ToUpperInvariant(), nameStyle);
+                    GUI.Label(new Rect(rect.x + 22, rect.y + 8, rect.width - 34, 28), RunUICopy.Title(bubble.Name), nameStyle);
                 }
                 style.normal.textColor = ink;
                 int glyphs = reduced ? bubble.Text.Length : Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 0, bubble.Text.Length);

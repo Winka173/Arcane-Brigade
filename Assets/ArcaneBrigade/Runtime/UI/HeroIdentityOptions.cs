@@ -35,7 +35,7 @@ namespace ArcaneBrigade
         public void Draw(ArenaController owner, Rect area, GUIStyle text)
         {
             var s = owner.Session; var d = s.HeroIdentityDefinition; if (d == null) return;
-            if (choice == null) choice = new GUIStyle(GUI.skin.button) { fontSize = 17, wordWrap = true }; if (approachChoice == null) approachChoice = new GUIStyle(choice) { padding = new RectOffset(46, 8, choice.padding.top, choice.padding.bottom) };
+            if (choice == null) choice = new GUIStyle(GUI.skin.button) { fontSize = 22, wordWrap = true }; if (approachChoice == null) approachChoice = new GUIStyle(choice) { padding = new RectOffset(46, 8, choice.padding.top, choice.padding.bottom) };
             GUI.Label(new Rect(area.x,area.y,area.width,50),s.CanConfigureHero ? "APPROACH: tap one" : "Change the approach in the shop",text);
             bool enabled = GUI.enabled; GUI.enabled = s.CanConfigureHero;
             var style=HeroMechanicStyle.For(s.State.ChampionId);

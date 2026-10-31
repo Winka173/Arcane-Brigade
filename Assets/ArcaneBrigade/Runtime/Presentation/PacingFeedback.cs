@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             hand = ArcadeTypography.Style(30); hand.font = ArcadeTypography.Hand; hand.alignment = TextAnchor.MiddleCenter; hand.wordWrap = false;
             hand.normal.textColor = ArcadeSkin.Ink;
             numbers = ArcadeTypography.Style(26, numeric: true); numbers.alignment = TextAnchor.MiddleCenter; numbers.wordWrap = false;
-            small = ArcadeTypography.Style(15, true); small.alignment = TextAnchor.MiddleCenter; small.wordWrap = false; small.normal.textColor = ArcadeSkin.Ink;
+            small = ArcadeTypography.Style(20, true); small.alignment = TextAnchor.MiddleCenter; small.wordWrap = false; small.normal.textColor = ArcadeSkin.Ink;
         }
 
         private void OnGUI()

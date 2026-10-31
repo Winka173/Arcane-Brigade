@@ -270,7 +270,7 @@ namespace ArcaneBrigade
             if (noteHand == null)
             {
                 noteHand = ArcadeTypography.Style(27); noteHand.font = ArcadeTypography.Hand; noteHand.alignment = TextAnchor.MiddleLeft; noteHand.wordWrap = false;
-                noteKey = ArcadeTypography.Style(15, true); noteKey.alignment = TextAnchor.MiddleCenter; noteKey.wordWrap = false;
+                noteKey = ArcadeTypography.Style(20, true); noteKey.alignment = TextAnchor.MiddleCenter; noteKey.wordWrap = false;
             }
             float age = Time.unscaledTime - noticeAt;
             bool still = PresentationSettings.ReducedMotion;

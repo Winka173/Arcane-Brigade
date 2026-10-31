@@ -72,7 +72,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Dot(new Rect(candle.x - 5, candle.y - 44, 10, 16), new Color(1f, 0.88f, 0.6f));
             for (int k = back; k < seats.Count; k++) DrawSeat(rows, seats[k], counts, SeatRect(k), k == selectedSeat, rowHeight);
             int hidden = counts.Count - seats.Count;
-            if (seatName == null) { seatName = ArcadeTypography.Style(17, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
+            if (seatName == null) { seatName = ArcadeTypography.Style(22, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
             if (hidden > 0) { seatName.normal.textColor = ArcadeSkin.Cream; GUI.Label(new Rect(area.xMax - 220, area.yMax - 28, 210, 22), "+" + hidden + " MORE AT THE TABLE", seatName); }
             // the selected guest speaks
             if (selectedSeat >= 0)
@@ -106,7 +106,7 @@ namespace ArcaneBrigade
             int many = counts.TryGetValue(SeatKey(row), out int c) ? c : 1;
             if (many > 1)
             {
-                if (seatName == null) { seatName = ArcadeTypography.Style(17, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
+                if (seatName == null) { seatName = ArcadeTypography.Style(22, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
                 Rect badge = new Rect(seat.xMax - 34, seat.y + 4, 34, 22);
                 ArcadeSkin.Slant(badge, ArcadeSkin.Ink);
                 seatName.normal.textColor = ArcadeSkin.Gold;
@@ -182,7 +182,7 @@ namespace ArcaneBrigade
                 {
                     Vector2 bubble = new Vector2(tabRect.xMax - 44, tabRect.center.y);
                     ArcadeSkin.Diamond(bubble, 34, new Color(.12f, .08f, .1f, .95f)); ArcadeSkin.Diamond(bubble, 28, counts[index] > 0 ? ArcadeSkin.Accent : new Color(.4f, .36f, .32f));
-                    badgeStyle ??= ArcadeTypography.Style(17, true); badgeStyle.alignment = TextAnchor.MiddleCenter; badgeStyle.normal.textColor = ArcadeSkin.KitInk;
+                    badgeStyle ??= ArcadeTypography.Style(22, true); badgeStyle.alignment = TextAnchor.MiddleCenter; badgeStyle.normal.textColor = ArcadeSkin.KitInk;
                     GUI.Label(new Rect(bubble.x - 20, bubble.y - 14, 40, 28), counts[index].ToString(), badgeStyle);
                 }
             }
@@ -216,13 +216,13 @@ namespace ArcaneBrigade
                         ArcadeSkin.Diamond(sp, halfStar ? 14 : 18, new Color(.1f, .06f, .04f, .9f)); ArcadeSkin.Diamond(sp, halfStar ? 8 : 13, halfStar ? new Color(1f, .86f, .5f, .7f) : new Color(1f, .8f, .3f));
                     }
                 }
-                tileName ??= ArcadeTypography.Style(17, true); tileName.alignment = TextAnchor.MiddleCenter; tileName.wordWrap = true; tileName.normal.textColor = ArcadeSkin.Paper;
+                tileName ??= ArcadeTypography.Style(22, true); tileName.alignment = TextAnchor.MiddleCenter; tileName.wordWrap = true; tileName.normal.textColor = ArcadeSkin.Paper;
                 GUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
                 if (shownRarity is ItemRarity tagRarity)
                 {
                     Rect rarityTag = new Rect(tile.xMax - 104, tile.y + 8, 96, 22);
                     ArcadeSkin.Slant(rarityTag, RunModifierRules.RarityColor(tagRarity));
-                    rarityStyle ??= new GUIStyle(ArcadeTypography.Style(12, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
+                    rarityStyle ??= new GUIStyle(ArcadeTypography.Style(18, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
                     rarityStyle.normal.textColor = ArcadeSkin.Ink;
                     GUI.Label(rarityTag, RunModifierRules.RarityName(tagRarity).ToUpperInvariant(), rarityStyle);
                 }

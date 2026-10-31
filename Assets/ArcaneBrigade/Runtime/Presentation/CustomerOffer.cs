@@ -51,7 +51,7 @@ namespace ArcaneBrigade
             {
                 // the folded letter waits under the wallet: a sealed ticket; a tap opens it again
                 GUI.depth = -55; Matrix4x4 keepMatrix = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
-                if (name == null) { name = ArcadeTypography.Style(16, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true; }
+                if (name == null) { name = ArcadeTypography.Style(22, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true; }
                 float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 2.4f) * 3;
                 Rect letter = new Rect(LetterRect.x, LetterRect.y + bob, LetterRect.width, LetterRect.height);
                 ArcadeSkin.Ticket(letter, ArcadeSkin.Paper, ArcadeSkin.Wax); ArcadeSkin.Seal(new Vector2(letter.x + 34, letter.center.y), 34, "$");
@@ -68,7 +68,7 @@ namespace ArcaneBrigade
             {
                 hand = ArcadeTypography.Style(30); hand.font = ArcadeTypography.Hand; hand.alignment = TextAnchor.MiddleCenter; hand.wordWrap = true;
                 plain = ArcadeTypography.Style(20); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
-                name = ArcadeTypography.Style(16, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true;
+                name = ArcadeTypography.Style(22, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true;
             }
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
             int pages = Mathf.Max(1, (species.Count + 8) / 9); page = Mathf.Clamp(page, 0, pages - 1);
@@ -172,7 +172,7 @@ namespace ArcaneBrigade
             {
                 hand = ArcadeTypography.Style(32); hand.font = ArcadeTypography.Hand; hand.alignment = TextAnchor.MiddleCenter; hand.wordWrap = true;
                 plain = ArcadeTypography.Style(20); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
-                label = ArcadeTypography.Style(17, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = true;
+                label = ArcadeTypography.Style(22, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = true;
             }
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
             bool colours = owner.Session.ColoursAvailable; int slots = dark.Count + (colours ? 1 : 0);

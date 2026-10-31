@@ -123,7 +123,7 @@ namespace ArcaneBrigade
         /// <summary>Small flames around the hero portrait, one per companion sharing their light (15 shown, the rest counted).</summary>
         public static void LightRing(Vector2 centre, float radius, int companions)
         {
-            if (count == null) { count = ArcadeTypography.Style(12, false, true); count.alignment = TextAnchor.MiddleCenter; count.wordWrap = false; }
+            if (count == null) { count = ArcadeTypography.Style(18, false, true); count.alignment = TextAnchor.MiddleCenter; count.wordWrap = false; }
             int shown = Mathf.Min(companions, 15);
             float time = Time.unscaledTime;
             for (int index = 0; index < shown; index++)

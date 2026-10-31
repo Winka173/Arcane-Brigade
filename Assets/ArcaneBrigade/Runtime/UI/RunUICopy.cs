@@ -21,13 +21,19 @@ namespace ArcaneBrigade
             for (int i = 0; i < lines.Length; i++) lines[i] = Sentence(lines[i]);
             return string.Join("\n", lines);
         }
+        private static readonly string[] SmallWords = { "a", "an", "the", "of", "and", "or", "in", "on", "at", "to", "for", "by", "with" };
         /// <summary>An all-capitals name in title case ("THE GUIDING LAMP" becomes "The Guiding Lamp"); mixed case is left alone.</summary>
         public static string Title(string text)
         {
             if (string.IsNullOrEmpty(text) || text != text.ToUpperInvariant()) return text;
-            char[] letters = text.ToLowerInvariant().ToCharArray();
-            for (int i = 0; i < letters.Length; i++) if (char.IsLetter(letters[i]) && (i == 0 || letters[i - 1] == ' ')) letters[i] = char.ToUpperInvariant(letters[i]);
-            return new string(letters);
+            string[] words = text.ToLowerInvariant().Split(' ');
+            for (int i = 0; i < words.Length; i++)
+            {
+                string w = words[i];
+                if (w.Length == 0 || i > 0 && System.Array.IndexOf(SmallWords, w) >= 0) continue; // "Mother of a Thousand", not "Of A"
+                words[i] = char.ToUpperInvariant(w[0]) + w.Substring(1);
+            }
+            return string.Join(" ", words);
         }
         public static string UnitName(UnitDefinition unit) => unit == null ? "Unknown character" : UnitName(unit.Id, unit.DisplayName);
         public static string UnitName(string id, string fallback = null)

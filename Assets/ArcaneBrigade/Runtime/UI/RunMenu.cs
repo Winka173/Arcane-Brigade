@@ -800,7 +800,7 @@ namespace ArcaneBrigade
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - keepsakeOpenedAt, new Vector2(card.center.x, card.yMax));
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
-            explainTitle ??= ArcadeTypography.Style(18, true);
+            explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true);
             GUI.Label(new Rect(card.x + pad, card.y + 10, w - pad * 2, 26), "Bring a keepsake", explainTitle);
             for (int i = 0; i < count; i++)
             {

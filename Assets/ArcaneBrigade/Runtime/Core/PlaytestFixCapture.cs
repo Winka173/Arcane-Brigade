@@ -186,7 +186,7 @@ namespace ArcaneBrigade
             for (int seed = 0; seed < 600 && !saved; seed++)
                 using (var s = new RunSession(catalog))
                 {
-                    s.Start("LanternKnight", seed); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Gold = 400; // secret shops: 3, 8, 13, 18
+                    s.Start("LanternKnight", seed); s.State.Wave = 9; s.State.Phase = SessionPhase.Shop; s.State.Gold = 400; // secret shops: every third night (3, 6, 9, ...)
                     s.State.MienCho.ReadMask = (1 << MienChoStory.Available(s.State)) - 1; s.State.ActOne ??= new ActOneProgress(); s.State.ActOne.Offer = ActOneProgress.Refused;
                     s.State.Roster.Add(new RosterEntry { UnitId = catalog.Companions.First(u => u.Id != s.State.Roster[0].UnitId && !u.Id.StartsWith("Secret") && u.Rarity < ItemRarity.Crimson).Id, WeaponId = catalog.Weapons.First(w => w.Kind == WeaponKind.Projectile).Id });
                     foreach (var relic in catalog.Items.Where(i => !i.Id.StartsWith("Secret") && i.Rarity < ItemRarity.Crimson && i.EffectiveModifiers.Any(m => m.Value > 0)).Take(3)) s.State.Items.Add(new ItemStack { Id = relic.Id, Count = 1 });
