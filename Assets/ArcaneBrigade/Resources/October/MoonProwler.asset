@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MoonProwler
   DisplayName: Moon Prowler
-  Body: {fileID: 200964291, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
+  Body: {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
   AnimationFrames:
-  - {fileID: 200964291, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-  - {fileID: -1165113587, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-  - {fileID: 700734982, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-  - {fileID: 36867230, guid: 377dd164ea5c2a744bff82dff700dc6c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: fa4baa20e4d409e4daeccd88bc898de0, type: 2}
+  - {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: -438072472, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 759011126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 1433808218, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: dab14a14eb52410419aa313525e9737d, type: 2}
   Weapon: {fileID: 11400000, guid: 30904810a5a93264aaeb641f7c40c51f, type: 2}
   Health: 75
   Speed: 4.5

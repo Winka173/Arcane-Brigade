@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PinnedBeetle
   DisplayName: Pinned Beetle
-  Body: {fileID: -580424474, guid: d06bc8440cc155f41b7c940cb69d7d2a, type: 3}
+  Body: {fileID: 634574493, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
   AnimationFrames:
-  - {fileID: -580424474, guid: d06bc8440cc155f41b7c940cb69d7d2a, type: 3}
-  - {fileID: -1527181574, guid: d06bc8440cc155f41b7c940cb69d7d2a, type: 3}
-  - {fileID: -1424639683, guid: d06bc8440cc155f41b7c940cb69d7d2a, type: 3}
-  - {fileID: -366923915, guid: d06bc8440cc155f41b7c940cb69d7d2a, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ac78966fad1279f4ba44438ca18f7153, type: 2}
+  - {fileID: 634574493, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  - {fileID: -669587554, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  - {fileID: -1900283581, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  - {fileID: 785973483, guid: 022d64c0ecdf0d3498cff291a0426cf5, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 23a5bc450a9e4ff468ee265296070ff7, type: 2}
   Weapon: {fileID: 11400000, guid: 9aea40f2065f1734eb1452bdbb61714d, type: 2}
   Health: 100
   Speed: 4

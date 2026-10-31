@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PaperPlanePigeon
   DisplayName: Paper Plane Pigeon
-  Body: {fileID: -1218014637, guid: af67ec6c334a1ed4c82c6bf28c79154c, type: 3}
+  Body: {fileID: -986453434, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
   AnimationFrames:
-  - {fileID: -1218014637, guid: af67ec6c334a1ed4c82c6bf28c79154c, type: 3}
-  - {fileID: 73239628, guid: af67ec6c334a1ed4c82c6bf28c79154c, type: 3}
-  - {fileID: -1392785817, guid: af67ec6c334a1ed4c82c6bf28c79154c, type: 3}
-  - {fileID: 1636207148, guid: af67ec6c334a1ed4c82c6bf28c79154c, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 8e66187c84628124999a83f0996c56f8, type: 2}
+  - {fileID: -986453434, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 1872108493, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 1048994789, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -681883674, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 083b2ad8d073c5f409cc6b62b399cb4a, type: 2}
   Weapon: {fileID: 11400000, guid: 5eb2479680421f44690771befc44a9d1, type: 2}
   Health: 100
   Speed: 4

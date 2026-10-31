@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: IceCreamOwl
   DisplayName: Ice Cream Owl
-  Body: {fileID: 639199060, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+  Body: {fileID: 1238138786, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
   AnimationFrames:
-  - {fileID: 639199060, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
-  - {fileID: 1331657267, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
-  - {fileID: -1641365671, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
-  - {fileID: -1154778838, guid: 3a9d3771202cfba428f1889f64f33336, type: 3}
+  - {fileID: 1238138786, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
+  - {fileID: 538336710, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
+  - {fileID: -449621844, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
+  - {fileID: -669762484, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 5d035e550aa73ba4b9c3f4e3f9030e7e, type: 2}
   Weapon: {fileID: 11400000, guid: b851de8e90261f941b7e58cc4bd81cc8, type: 2}
   Health: 100
@@ -55,8 +55,8 @@ MonoBehaviour:
     normally, 0.6s on bosses.\r\n\nNamed talents count bodies and absorbed memories;
     their stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nBonds: frost, hat, rune.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
-    unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Little Witch
   ExclusiveHero: 

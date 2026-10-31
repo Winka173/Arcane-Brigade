@@ -61,43 +61,53 @@ namespace ArcaneBrigade.Editor
             {
                 using (var run = new RunSession(catalog))
                 {
-                    run.Start("LanternKnight", 18018); run.State.Wave = 10;
+                    run.Start("LanternKnight", 18018); run.State.Wave = 4;
                     var sim = new CombatSimulation(run.PrepareCombat()); sim.Start(18018);
                     UnitState boss = sim.Boss;
-                    Require(boss != null && boss.Definition.Id == "PastryTyrant", "Section 9 night 10 has the Pastry Tyrant to telegraph");
+                    Require(boss != null, "Wave 4 has a boss to telegraph");
                     copy = UnityEngine.Object.Instantiate(boss.Definition); boss.Definition = copy;
                     BossTelegraph telegraph = host.AddComponent<BossTelegraph>();
                     telegraph.Display(sim);
                     Require(telegraph.Windups == 0 && telegraph.Rims == 0 && telegraph.Lanes == 0, "No ink while the boss is not winding up");
                     copy.BossPattern = 5; boss.ActiveBossSignature = -1; boss.TelegraphDirection = Vector2.down; boss.TelegraphUntil = sim.Elapsed + 0.4f;
                     telegraph.Display(sim);
-                    Require(telegraph.Windups == 1 && telegraph.Lanes == 1 && telegraph.Marks == 0 && telegraph.Rims == 0, "An aimed volley paints its warning fan and arrowhead");
+                    Require(telegraph.Windups == 1 && telegraph.Lanes == 1 && telegraph.Marks == 0 && telegraph.Rims == 0, "An aimed volley: its fan's two inked edges and an arrowhead (outline only, play-test item 22)");
                     copy.BossPattern = 4; telegraph.Display(sim);
-                    Require(telegraph.Windups == 1 && telegraph.Lanes == 0 && telegraph.Rims == 1, "A ring volley paints the danger area around the body");
+                    Require(telegraph.Windups == 1 && telegraph.Lanes == 0 && telegraph.Rims == 1, "A ring volley: a dashed rim round the painted body, no lanes radiating from the boss");
                     boss.ActiveBossSignature = 0; boss.AbilityTarget = sim.Champion.Position; telegraph.Display(sim);
-                    Require(telegraph.Marks == 1 && telegraph.Lanes == 0, "A signature move paints the danger area where it lands");
+                    Require(telegraph.Marks == 1 && telegraph.Lanes == 0, "A signature move: a dashed rim where it lands");
                     boss.TelegraphUntil = 0; telegraph.Display(sim);
                     Require(telegraph.Windups == 0 && telegraph.Marks == 0 && telegraph.Rims == 0, "The ink clears when the wind-up ends");
                 }
                 string source = System.IO.File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/BossTelegraph.cs");
                 Require(!source.Contains("LineRenderer") && !source.Contains("DangerLane"), "No straight danger lanes from the boss");
-                // The 24/25 October warning readability change replaced the earlier outline-only contract.
-                Require(source.Contains("ink.FloorZone(") && source.Contains("ink.FloorLane(") && source.Contains("ink.Cone(") && !source.Contains(".Vignette("),
-                    "Boss warnings fill the circle, lane and fan danger areas without a screen vignette");
+                Require(!source.Contains(".Pool(") && !source.Contains(".Wash(") && !source.Contains(".Cone(") && !source.Contains(".Vignette("), "Boss telegraphs are outlines only: no pool, wash or filled cone (D10)");
             }
             finally
             {
                 UnityEngine.Object.DestroyImmediate(host);
                 if (copy != null) UnityEngine.Object.DestroyImmediate(copy);
             }
-            // Section 8 replaces the three-tier awakening gauge with each hero's own rule.
-            using (var run = new RunSession(catalog))
+            // the hero's gauge: an upright vial left of the hero, no taller than the hero, following them
+            var gaugeHost = new GameObject("HeroGaugeFixture");
+            try
             {
-                run.Start("DrowsySeer", 18019);
-                var sim = new CombatSimulation(run.PrepareCombat()); sim.Start(18019);
-                Require(sim.HeroRulesV3 != null && sim.HeroRulesV3.HeroId == "DrowsySeer", "Dream Breath uses the section 8 hero runtime");
-                Require(!sim.HeroIdentityEnabled && !sim.HeroAwakenEnabled, "Replaced awakening gauge stays disabled during normal fights");
+                using (var run = new RunSession(catalog))
+                {
+                    run.Start("DrowsySeer", 18019); run.State.Wave = 3;
+                    var sim = new CombatSimulation(run.PrepareCombat()); sim.Start(18019);
+                    Require(sim.HeroIdentityEnabled, "Hero identities run in a normal fight");
+                    HeroIdentityVisual visual = gaugeHost.AddComponent<HeroIdentityVisual>();
+                    visual.Display(sim);
+                    UnitState hero = sim.Champion;
+                    Vector2 bottom = visual.GaugeBottom, top = visual.GaugeTop;
+                    Require(top.y > bottom.y && top.y - bottom.y <= hero.Definition.BodyHeight + 0.001f, "The gauge stands upright and is no taller than the hero");
+                    Require(Mathf.Abs(top.x - bottom.x) < 0.001f && top.x < hero.Position.x - hero.Definition.BodyHeight * 0.3f, "The gauge stands to the hero's left");
+                    hero.Position += new Vector2(2, 1); visual.Display(sim);
+                    Require(Vector2.Distance(visual.GaugeBottom - bottom, new Vector2(2, 1)) < 0.001f, "The gauge follows the hero");
+                }
             }
+            finally { UnityEngine.Object.DestroyImmediate(gaugeHost); }
             System.IO.Directory.CreateDirectory("PreviewExports/FeelTelegraph");
             System.IO.File.WriteAllLines("PreviewExports/FeelTelegraph/Checks.txt", notes);
             Debug.Log("FEEL_TELEGRAPH_CHECKS_PASSED " + notes.Count);

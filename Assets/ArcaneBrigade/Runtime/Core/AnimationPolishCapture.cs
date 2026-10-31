@@ -158,11 +158,11 @@ namespace ArcaneBrigade
             }
             Check(deaths.ActiveCount == catalog.Champions.Length, "All champion defeat remnants render");
             foreach (SpriteRenderer part in deaths.GetComponentsInChildren<SpriteRenderer>())
-                if (part.name == "Body") Check(part.bounds.size.y > .3f && part.bounds.size.y < 3f, "Defeat frame preserves world height " + part.sprite.name);
+                if (part.name == "Body") Check(part.bounds.size.y > .5f && part.bounds.size.y < 1.8f, "Defeat frame preserves world height " + part.sprite.name);
             yield return new WaitForSecondsRealtime(.15f); yield return Shot("champions-defeat-recoil");
             yield return new WaitForSecondsRealtime(.25f); yield return Shot("champions-defeat-settle");
             foreach (SpriteRenderer part in deaths.GetComponentsInChildren<SpriteRenderer>())
-                if (part.name == "Body") Check(part.bounds.size.y > .25f && part.bounds.size.y < 3f, "Painted defeat stays readable rather than flattened " + part.sprite.name);
+                if (part.name == "Body") Check(part.bounds.size.y > .65f && part.bounds.size.y < 1.8f, "Painted defeat stays readable rather than flattened " + part.sprite.name);
             deaths.Clear(); Check(deaths.ActiveCount == 0, "Defeat pool clears on reuse");
             ClearActors();
             var selected = new HashSet<WeaponMotion>();

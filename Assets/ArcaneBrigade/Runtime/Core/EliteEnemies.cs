@@ -24,7 +24,7 @@ namespace ArcaneBrigade
             elite.DisplayName = "Indebted " + RunUICopy.UnitName(kind); // Docs/Enemy_Roster_v2.md §2.6
             float angle = (float)spawnRandom.NextDouble() * Mathf.PI * 2;
             Vector2 at = ClampPosition(Champion.Position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 8.5f, .6f);
-            UnitState unit = Spawn(elite, Faction.Enemy, at, true);
+            UnitState unit = Spawn(elite, Faction.Enemy, at); unit.Elite = true;
         }
         private void EliteFell(UnitState dead)
         {

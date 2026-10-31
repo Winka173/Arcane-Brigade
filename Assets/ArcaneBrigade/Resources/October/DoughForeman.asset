@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DoughForeman
   DisplayName: Dough Foreman
-  Body: {fileID: 1031307619, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
+  Body: {fileID: 999603117, guid: bed324f4d43c1bc41954324006ace866, type: 3}
   AnimationFrames:
-  - {fileID: 1031307619, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
-  - {fileID: -230371869, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
-  - {fileID: -1063110812, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
-  - {fileID: -299744576, guid: 4f9031563f6afae40a6c8a3c0525d998, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: f08056ebd358a55448f5232f59bb90a7, type: 2}
+  - {fileID: 999603117, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  - {fileID: 163591130, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  - {fileID: -2101846847, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  - {fileID: -2073347547, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 218ed2dd703a54e4998e630b1b67cee1, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
@@ -53,8 +53,8 @@ MonoBehaviour:
     their stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
     special reward, subject to hero theme and unlock wave.\r\nBonds: astral, resolve.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
-    unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Quick Production" Tao'
   ExclusiveHero: 

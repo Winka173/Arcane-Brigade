@@ -40,22 +40,17 @@ namespace ArcaneBrigade
         public bool SlowMotion => slow > 0;
         /// <summary>How fast presentation clocks (effects, numbers, deaths) run: a third during the final boss's slow motion.</summary>
         public float PresentationSpeed => SlowMotion ? SlowMotionSpeed : 1f;
-        private const bool NoShake = true;
         public Vector2 CameraOffset
         {
             get
             {
-                // requirement 28/10/2026: no camera shake at all
-                if (NoShake || PresentationSettings.ReducedMotion || PresentationSettings.ReducedShake || PresentationSettings.ShakeScale <= 0 || trauma <= 0.001f) return Vector2.zero;
+                if (PresentationSettings.ReducedMotion || PresentationSettings.ReducedShake || PresentationSettings.ShakeScale <= 0 || trauma <= 0.001f) return Vector2.zero;
                 float x = Mathf.PerlinNoise(clock * 22f, 0.37f) * 2 - 1, y = Mathf.PerlinNoise(1.91f, clock * 22f) * 2 - 1;
                 Vector2 shake = new Vector2(x, y) * 0.75f + bias * Mathf.Sin(clock * 55f) * 0.35f;
                 return Vector2.ClampMagnitude(shake, 1f) * MaxShake * Mathf.Pow(trauma, 1.5f) * PresentationSettings.ShakeScale;
             }
         }
         public void Clear() { trauma = slow = flash = 0; }
-        /// <summary>A rules moment with weight (a capstone, a shatter, an enemy blow landing, a boss phase): a shake and an optional
-        /// soft flash; never a held frame. Reduced Shake / Reduced Flashes still apply through CameraOffset and ScreenFlash.</summary>
-        public void Accent(float shake, float flashAmount) { AddTrauma(shake, shake < RoutineTraumaCap); flash = Mathf.Max(flash, flashAmount); }
         public void Advance(float delta)
         {
             clock += delta; trauma = Mathf.Max(0, trauma - delta * 1.8f);

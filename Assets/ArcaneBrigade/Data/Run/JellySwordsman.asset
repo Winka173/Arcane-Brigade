@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: JellySwordsman
   DisplayName: Jelly Swordsman
-  Body: {fileID: 185692149, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+  Body: {fileID: -429080671, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
   AnimationFrames:
-  - {fileID: 185692149, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
-  - {fileID: 1592347969, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
-  - {fileID: -1634652556, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
-  - {fileID: -1096044303, guid: ac597c6a3b137ab4d9ce2196f8b81b2d, type: 3}
+  - {fileID: -429080671, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  - {fileID: 88434338, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  - {fileID: 159775271, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
+  - {fileID: -300890998, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 5382b3336163dbc45b0d81db9e182085, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 1
@@ -54,8 +54,8 @@ MonoBehaviour:
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nBonds: oddity, gauntlet, hide. Immortal. Weapon rolls
-    on recruitment; two equal-species/equal-star bodies merge unless the talent forbids
-    it."
+    on recruitment; two equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Chieftain
   ExclusiveHero: 

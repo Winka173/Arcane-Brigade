@@ -84,7 +84,6 @@ namespace ArcaneBrigade
                 case ItemEffect.MoveSpeed: return "Move speed";
                 case ItemEffect.ChainChance: return "Chain chance";
                 case ItemEffect.RecordedDamage: return "Damage vs known kinds";
-                case ItemEffect.SkillHaste: return "Skill haste";
                 case ItemEffect.Crit: return "Crit chance";
                 case ItemEffect.Projectiles: return "Extra shots";
                 case ItemEffect.Health: return "Max HP";

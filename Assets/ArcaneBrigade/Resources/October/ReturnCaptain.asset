@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ReturnCaptain
   DisplayName: Return Captain
-  Body: {fileID: -280000480, guid: 9a41850d112ae57468e850821ff13601, type: 3}
+  Body: {fileID: -2110378646, guid: bed324f4d43c1bc41954324006ace866, type: 3}
   AnimationFrames:
-  - {fileID: -280000480, guid: 9a41850d112ae57468e850821ff13601, type: 3}
-  - {fileID: 978353276, guid: 9a41850d112ae57468e850821ff13601, type: 3}
-  - {fileID: 1307069053, guid: 9a41850d112ae57468e850821ff13601, type: 3}
-  - {fileID: -1014954465, guid: 9a41850d112ae57468e850821ff13601, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ee2d6974ac2686d4d96d075f6bf9d7ba, type: 2}
+  - {fileID: -2110378646, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  - {fileID: -1535975494, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  - {fileID: 85518266, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  - {fileID: 1961909158, guid: bed324f4d43c1bc41954324006ace866, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0d0d6cdb23cf4b649a18c44659dc0287, type: 2}
   Weapon: {fileID: 11400000, guid: 406a468162eb38d4e95aaeb39d1365c2, type: 2}
   Health: 100
   Speed: 4

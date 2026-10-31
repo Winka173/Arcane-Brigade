@@ -12,8 +12,7 @@ namespace ArcaneBrigade
     public sealed partial class RunSession
     {
         private string OctoberHero => catalog.Unit(State.ChampionId).ReferenceHero ?? "";
-        // Section 8 keeps Lone Jelly bodyless even after v3 removes legacy reference hero names.
-        private bool OctoberAbsorbs => State.ChampionId == "LoneJelly" || OctoberHero == "Capped Gallant";
+        private bool OctoberAbsorbs => OctoberHero == "Capped Gallant"; // Wise now buys heroes, not friends' memories (WiseHeroItems)
         /// <summary>The Dream Seekers Wise has bought (their reference names).</summary>
         private List<string> WiseHeroRefs()
         {

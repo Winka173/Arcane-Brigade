@@ -12,14 +12,11 @@ namespace ArcaneBrigade
         public readonly int SourceUnitId;
         public readonly string ItemId;
         public readonly int Depth;
-        // Measurement metadata never changes proc, execute or recursion semantics.
-        public readonly string AttributionId;
-        public CombatCause(int rootId, int sourceUnitId, string itemId = "", int depth = 0, string attributionId = null)
+        public CombatCause(int rootId, int sourceUnitId, string itemId = "", int depth = 0)
         {
-            RootId = rootId; SourceUnitId = sourceUnitId; ItemId = itemId; Depth = depth; AttributionId = attributionId;
+            RootId = rootId; SourceUnitId = sourceUnitId; ItemId = itemId; Depth = depth;
         }
         public CombatCause Child(string itemId) => new CombatCause(RootId, SourceUnitId, itemId, Depth + 1);
-        public CombatCause WithAttribution(string id) => new CombatCause(RootId, SourceUnitId, ItemId, Depth, id);
     }
 
     [Serializable]

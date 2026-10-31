@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: VelvetChampion
   DisplayName: Velvet Champion
-  Body: {fileID: -1485288459, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
+  Body: {fileID: -997322814, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
   AnimationFrames:
-  - {fileID: -1485288459, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
-  - {fileID: 61641507, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
-  - {fileID: -887014502, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
-  - {fileID: 53644582, guid: c1045768b2c231b48875a2b4e2950f6d, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 9ae0599eb0e65e141b6910166a2fdf7d, type: 2}
+  - {fileID: -997322814, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  - {fileID: 812677333, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  - {fileID: 2073155153, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  - {fileID: 1601052080, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0980bba9abd08f04ea4e49c6d9341d3d, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
   Speed: 4
@@ -53,8 +53,8 @@ MonoBehaviour:
     their stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
     special reward, subject to hero theme and unlock wave.\r\nBonds: archive, resolve.
-    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies merge
-    unless the talent forbids it."
+    Immortal. Weapon rolls on recruitment; two equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"The All-Knowing" Walter'
   ExclusiveHero: 

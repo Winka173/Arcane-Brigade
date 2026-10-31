@@ -71,10 +71,8 @@ namespace ArcaneBrigade.Editor
                 UnitState front = fixture.Enemy(new Vector2(1, 0)); UnitState back = fixture.Enemy(new Vector2(-1, 0)); UnitState far = fixture.Enemy(new Vector2(8, 0));
                 // every attack carries a lighter volley (18/10/2026; was: every third attack a full one)
                 float share = 1f / Mathf.Max(2, fixture.Weapon.SignatureBeats);
-                require(front.Health == 1000 && back.Health == 1000 && far.Health == 1000, "Signature targets retain the fixture's full health before attacking");
                 fixture.Simulation.SignatureBeatFixture(fixture.Source);
-                require(fixture.Simulation.PendingSignaturePulses == 1, "Bell schedules exactly one volley on every tier-one attack");
-                require(front.Health == 1000, "Bell schedules a volley on every attack rather than instant damage");
+                require(fixture.Simulation.PendingSignaturePulses == 1 && front.Health == 1000, "Bell schedules a volley on every attack rather than instant damage");
                 fixture.Simulation.Pause(true); fixture.Tick(20);
                 require(fixture.Simulation.Elapsed == 0 && front.Health == 1000, "Pause freezes delayed wave");
                 fixture.Simulation.Pause(false);
@@ -103,8 +101,7 @@ namespace ArcaneBrigade.Editor
                 require(front.Health < 1000 && back.Health == 1000, "Umbrella drops fly forward only, not another full ring");
                 require(front.Position.x > 1 && front.Position.x <= 1.8f, "Umbrella pushes enemy within bounded distance");
                 require(boss.Position.x - 1 < front.Position.x - 1, "Boss resists umbrella push");
-                UnitState ally = fixture.Simulation.AddCompanion(fixture.Source.Definition);
-                require(ally.Alive && ally.Health == ally.Definition.Health && !float.IsInfinity(ally.Health), "Section 1 mortal ally joins at full finite health after umbrella volley");
+                require(float.IsPositiveInfinity(fixture.Simulation.AddCompanion(fixture.Source.Definition).Health), "Ally remains immortal, no signature ally damage");
                 require(!fixture.Combat.CompanionInterceptor, "Umbrella does not silently grant bullet blocking");
                 fixture.Source.Definition.CombatTier = 2;
                 UnitState outer = fixture.Enemy(new Vector2(2.4f, 0));
@@ -177,9 +174,6 @@ namespace ArcaneBrigade.Editor
                 Combat.EnableHeroIdentities = false; // weapon rules are measured without the hero's kit
                 Combat.PassiveHeal = 0; Combat.ChestInterval = 1000; Combat.ExtendedLoot = false; Combat.Procs = new ActiveProc[0];
                 Combat.Champion.Weapon = UnityEngine.Object.Instantiate(catalog.Weapon(id)); assets.Add(Combat.Champion.Weapon);
-                // Stable neutral identities isolate weapon rules from v3 hero and enemy species mechanics.
-                // EnableHeroIdentities controls the retired kit; v3 heroes resolve their kit by unit ID.
-                Combat.Champion.Id = "K4SignatureSource";
                 Combat.Champion.Speed = 0; Combat.Champion.CriticalChance = 0;
                 Simulation = new CombatSimulation(Combat); Simulation.Start(13104);
                 Source.NextAttack = Source.NextPassive = float.PositiveInfinity; Source.AttackDirection = Vector2.right;
@@ -187,8 +181,6 @@ namespace ArcaneBrigade.Editor
             public UnitState Enemy(Vector2 position, bool boss = false)
             {
                 UnitDefinition definition = UnityEngine.Object.Instantiate(Combat.MeleeEnemy); assets.Add(definition);
-                // The first v3 enemy is CrumbSwarm, whose registration deliberately sets one-hit health.
-                definition.Id = "K4SignatureTarget";
                 definition.IsBoss = boss; definition.Health = 1000; definition.Speed = 0; definition.ContactDamage = 0;
                 UnitState enemy = Simulation.AddFixture(definition, Faction.Enemy, position);
                 enemy.NextAttack = enemy.NextContact = enemy.NextBossPattern = float.PositiveInfinity; return enemy;

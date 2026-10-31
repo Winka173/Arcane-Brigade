@@ -1,4 +1,0 @@
-Flipbook textures from the Unity Labs "Free VFX Image Sequences & Flipbooks" library (Unity Technologies),
-released under CC0 1.0 Universal (public domain): https://blog.unity.com/games/free-vfx-image-sequences-flipbooks
-Converted to one smoothed shape channel (alpha) and downscaled; the game paints them in flat cartoon colour bands.
-File names end with the grid: <Name>_<columns>x<rows>.png.

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MirrorNewt
   DisplayName: Mirror Newt
-  Body: {fileID: 1172119987, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+  Body: {fileID: 666454046, guid: e871140e44441e2428f10945694780fa, type: 3}
   AnimationFrames:
-  - {fileID: 1172119987, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
-  - {fileID: 2005659458, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
-  - {fileID: -1804856491, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
-  - {fileID: 1764936999, guid: 18010becafac09842a01f70881cfc8b3, type: 3}
+  - {fileID: 666454046, guid: e871140e44441e2428f10945694780fa, type: 3}
+  - {fileID: 165146201, guid: e871140e44441e2428f10945694780fa, type: 3}
+  - {fileID: 1203365115, guid: e871140e44441e2428f10945694780fa, type: 3}
+  - {fileID: -62641628, guid: e871140e44441e2428f10945694780fa, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 6020553ec795faf41b0d9d36e8791bea, type: 2}
   Weapon: {fileID: 11400000, guid: 252ee1ba2ef8f4f4e88dedfbe9233d03, type: 2}
   Health: 100

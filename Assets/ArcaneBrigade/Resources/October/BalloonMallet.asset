@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BalloonMallet
   DisplayName: Balloon Mallet
-  Body: {fileID: -2121015325, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
+  Body: {fileID: -1914256796, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
   AnimationFrames:
-  - {fileID: -2121015325, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
-  - {fileID: 1512715069, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
-  - {fileID: 886509475, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
-  - {fileID: -1109724250, guid: 1f1ea13ec9e58e04d83f2aa4ff5ce368, type: 3}
+  - {fileID: -1914256796, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
+  - {fileID: -454084178, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
+  - {fileID: 1008608944, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
+  - {fileID: 1111914229, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 45c8e5b6b5268f14591ed875c0e1c646, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 100
@@ -52,8 +52,8 @@ MonoBehaviour:
     stated percentages are not multiplied by star level unless explicitly stated.
     Listed support modifiers scale separately at 1/2/4.\r\nSource: gift / nursery
     / special reward; not ordinary shop stock.\r\nBonds: tidal, mask. Immortal. Weapon
-    rolls on recruitment; two equal-species/equal-star bodies merge unless the talent
-    forbids it."
+    rolls on recruitment; two equal-species/equal-star bodies merge unless the
+    talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Inflatable Hammer
   ExclusiveHero: 

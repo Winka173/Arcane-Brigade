@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ButtonBeetle
   DisplayName: Button Beetle
-  Body: {fileID: 582695047, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
+  Body: {fileID: 575741296, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
   AnimationFrames:
-  - {fileID: 582695047, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
-  - {fileID: 1239847122, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
-  - {fileID: 501242438, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
-  - {fileID: 3492662, guid: ed4f2c04b1e9f7c4a96df187092d9998, type: 3}
+  - {fileID: 575741296, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 972282023, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 2083892888, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
+  - {fileID: 864116033, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: c16c8f2496f550b4b995e68d63d93fc3, type: 2}
   Weapon: {fileID: 11400000, guid: a90f7c5f27b31c746a18531a28f165f1, type: 2}
   Health: 100
@@ -55,8 +55,8 @@ MonoBehaviour:
     apply.\r\n\nNamed talents count bodies and absorbed memories; their stated percentages
     are not multiplied by star level unless explicitly stated. Listed support modifiers
     scale separately at 1/2/4.\r\nBonds: clock, root, regal. Immortal. Weapon rolls
-    on recruitment; two equal-species/equal-star bodies merge unless the talent forbids
-    it."
+    on recruitment; two equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Iron Swordsman
   ExclusiveHero: 

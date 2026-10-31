@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PatchworkHost
   DisplayName: Patchwork Host
-  Body: {fileID: -1401857689, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
+  Body: {fileID: 1713943607, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
   AnimationFrames:
-  - {fileID: -1401857689, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
-  - {fileID: -900446915, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
-  - {fileID: 1313935402, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
-  - {fileID: -195239808, guid: 35b6414ae5487094da6cedb3eb696a10, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 3bd98d33cd5f7d14cb6335988cd0eb21, type: 2}
+  - {fileID: 1713943607, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 1928182038, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 29952925, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: -1823948168, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 9154936cb83682c4bbf52f247d3a7fc4, type: 2}
   Weapon: {fileID: 11400000, guid: ebd22f7dd2e4fdb458e7b7a3505b434c, type: 2}
   Health: 90
   Speed: 4.5

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RadishJester
   DisplayName: Radish Jester
-  Body: {fileID: -1948480205, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+  Body: {fileID: 600722751, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
   AnimationFrames:
-  - {fileID: -1948480205, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
-  - {fileID: -916439117, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
-  - {fileID: 1690824299, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
-  - {fileID: -819017433, guid: 3e56209eaad961044b68bc3ff4dde22c, type: 3}
+  - {fileID: 600722751, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
+  - {fileID: -1426626380, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
+  - {fileID: -2134181712, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
+  - {fileID: -1848109536, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: f36668afe6da8ba40a428f26d6fb53f4, type: 2}
   Weapon: {fileID: 11400000, guid: 33bb23d863bcac446ab17cc451225cd5, type: 2}
   Health: 100

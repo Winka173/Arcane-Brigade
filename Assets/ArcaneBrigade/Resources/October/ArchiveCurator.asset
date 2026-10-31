@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ArchiveCurator
   DisplayName: Archive Curator
-  Body: {fileID: -1464251587, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
+  Body: {fileID: -1895222424, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
   AnimationFrames:
-  - {fileID: -1464251587, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
-  - {fileID: -943625307, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
-  - {fileID: 1604019345, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
-  - {fileID: -627631743, guid: f2f98c044ca152641a199e984fcf35d8, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: ad5552f58e2bbb3498ba55dbcb5ad29f, type: 2}
+  - {fileID: -1895222424, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: -404157398, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 2028628798, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: -1305039143, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 436846924703deb4885b03add995a05c, type: 2}
   Weapon: {fileID: 11400000, guid: 35b4739acae34234a83b0303ee946b93, type: 2}
   Health: 70
   Speed: 4.5
@@ -43,9 +43,9 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 0.8
   Description: Shops offer memory companions. Buying one absorbs its support trait
-    instead of adding a body; your last two memories fight beside you as paper exhibits.
-    Each memory makes enemies 2% tougher (max 12%). Your positive personal modifiers
-    are 25% stronger.
+    instead of adding a body; your last two memories fight beside you as paper
+    exhibits. Each memory makes enemies 2% tougher (max 12%). Your positive personal
+    modifiers are 25% stronger.
   ReferenceHero: Wise
   ReferenceCompanion: 
   ExclusiveHero: 
