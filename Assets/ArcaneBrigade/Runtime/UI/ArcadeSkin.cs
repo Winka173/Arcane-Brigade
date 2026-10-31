@@ -343,21 +343,18 @@ namespace ArcaneBrigade
         /// <summary>Keyboard/controller focus: a small candle light to the left and a warm underline that breathes.</summary>
         /// <summary>The hover cue for a thing in the room: four small inked gold corner brackets hugging it, breathing gently
         /// (never a long rule under it: under a wide thing that read as a stray line across the floor).</summary>
+        /// <summary>The picked thing (review 31/10/2026: corner brackets read as a debug box): a warm halo breathing around it, a
+        /// spark of light running round its edge and a small gold marker bobbing above it. Reduced Motion keeps the halo still.</summary>
         public static void WorldFocus(Rect bounds)
         {
-            float breathe = PresentationSettings.ReducedMotion ? 0.85f : 0.7f + 0.3f * Mathf.Sin(Time.unscaledTime * 3.2f);
-            float arm = Mathf.Clamp(Mathf.Min(bounds.width, bounds.height) * 0.22f, 10, 26), pad = PresentationSettings.ReducedMotion ? 4 : 4 + 2 * (1 - breathe);
-            Rect r = new Rect(bounds.x - pad, bounds.y - pad, bounds.width + pad * 2, bounds.height + pad * 2);
-            Color ink = new Color(Ink.r, Ink.g, Ink.b, 0.75f), gold = new Color(Gold.r, Gold.g, Gold.b, 0.65f + 0.35f * breathe);
-            for (int pass = 0; pass < 2; pass++)
-            {
-                float t = pass == 0 ? 4 : 2, o = pass == 0 ? 1 : 0; Color c = pass == 0 ? ink : gold;
-                foreach (var (x, y, sx, sy) in new[] { (r.xMin, r.yMin, 1, 1), (r.xMax, r.yMin, -1, 1), (r.xMin, r.yMax, 1, -1), (r.xMax, r.yMax, -1, -1) })
-                {
-                    Line(new Rect(sx > 0 ? x - o : x - arm - o, sy > 0 ? y - o : y - t + o, arm + o * 2, t), c);
-                    Line(new Rect(sx > 0 ? x - o : x - t + o, sy > 0 ? y - o : y - arm - o, t, arm + o * 2), c);
-                }
-            }
+            bool still = PresentationSettings.ReducedMotion;
+            float t = Time.unscaledTime, breathe = still ? .8f : .65f + .35f * Mathf.Sin(t * 3.2f);
+            Glow(new Rect(bounds.x - 18, bounds.y - 18, bounds.width + 36, bounds.height + 36), new Color(1f, .8f, .45f, .28f * breathe));
+            if (!still) RunningLight(bounds, t, Gold, .9f);
+            float bob = still ? 0 : Mathf.Sin(t * 4f) * 4;
+            Vector2 marker = new Vector2(bounds.center.x, bounds.y - 12 + bob);
+            Diamond(marker, 16, new Color(Ink.r, Ink.g, Ink.b, .8f));
+            Diamond(marker, 11, new Color(Gold.r, Gold.g, Gold.b, .85f + .15f * breathe));
         }
 
         public static void Focus(Rect bounds)

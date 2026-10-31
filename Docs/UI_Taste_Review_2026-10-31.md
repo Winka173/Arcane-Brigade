@@ -327,3 +327,15 @@ Cắt 28 khối UI ở cỡ thật, ở hai độ phân giải là 1920×1080 v�
 **Hero select:** icon chủ đề tuyển quân nằm trong bảng anh hùng, dưới tag vũ khí.
 
 **Ảnh chụp toàn bộ:** 78 màn trong `Docs/Evidence/UIAudit/full_2026-10-31/` (20 tờ, mỗi tờ 4 màn). Playtest đạt 90/90.
+
+## Bonds, Postbox, Lamp Tree, chọn (31/10/2026)
+
+- **Bonds:** học theo ZZZ, là một hàng ô vuông ở góc trên bên phải. Mỗi ô gồm icon, số đếm bên dưới và mức nhỏ ở góc. Chạm vào ô để xem tên và tác dụng.
+  - Bond đang kích hoạt sáng và thở nhẹ.
+  - Bond mà món định mua sẽ thắp thì nhấp nháy vàng.
+  - Ô có số thay đổi thì nảy lên, ô dưới ngón tay nhô lên.
+  - Ô cuối "+N" mở danh sách đầy đủ.
+- **Postbox:** hai tab "Letters" và "Sealed", tối đa 4 thư mỗi trang, có mũi tên lật khi nhiều hơn.
+- **Lamp Tree:** mở từng nhánh một, bắt đầu ở nhánh đầu tiên có thứ mua được. Chạm lại tab đang mở để xem cả cây và rễ.
+- **Hiệu ứng chọn:** bỏ bốn góc ngoặc, thay bằng quầng sáng ấm, tia sáng chạy quanh viền và một dấu vàng nhún phía trên.
+- **Ảnh chụp toàn bộ:** đã chụp lại 79 màn, trong `Docs/Evidence/UIAudit/full_2026-10-31/`.

@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         /// <summary>Diagnostics: opens a lantern's card.</summary>
         public void PickLantern(string id) { treePick = id; treePickAt = Time.unscaledTime; }
         /// <summary>Diagnostics: opens one branch across the panel (-1: the whole tree).</summary>
-        public void FocusLampBranch(int branch) { focusBranch = branch; treePick = null; }
+        public void FocusLampBranch(int branch) { focusBranch = branch; treePick = null; phoneFocused = true; }
         private static readonly Color TreeInk = new Color(.16f, .1f, .06f, .95f), TreeBark = new Color(.42f, .28f, .15f, 1), TreeLit = new Color(1f, .82f, .45f, 1);
 
         private static Rect TreeArea => new Rect(PanelRect.x + 16, PanelRect.y + 74, PanelRect.width - 32, PanelRect.height - 84);
@@ -62,10 +62,11 @@ namespace ArcaneBrigade
         {
             navCols = 1;
             MetaProgression.Ensure(profile);
-            // on a phone the whole tree's lanterns are too small for a thumb: it opens on the first branch with something to buy
-            if (!phoneFocused && Application.isMobilePlatform && focusBranch < 0)
+            // review 31/10/2026 (nine columns of small lanterns with no room between them): the tree opens one branch at a time,
+            // on the first with something to buy, its tabs above; tapping the open tab again shows the whole tree and its roots
+            if (!phoneFocused && focusBranch < 0)
             {
-                phoneFocused = true;
+                phoneFocused = true; focusBranch = 0;
                 foreach (LampNode n in MetaProgression.Tree) if (n.Branch >= 0 && MetaProgression.NodeBlocked(profile, n) == null) { focusBranch = n.Branch; break; }
             }
             Rect tree = TreeArea;

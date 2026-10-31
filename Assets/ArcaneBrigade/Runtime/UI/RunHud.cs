@@ -977,91 +977,83 @@ namespace ArcaneBrigade
             }
             if (bondSummary.Rows.Count == 0 && newBonds.Count == 0) return;
             if (owner.PresentationPaused) return; // a pause page covers the panel whole, never under its corner
-            const float rowHeight = BondHudSummary.RowHeight, width = BondHudSummary.Width;
-            Rect card = new Rect(1900 - width, 18, width, bondSummary.Height + newBonds.Count * rowHeight);
+            // review 31/10/2026: like ZZZ, a plain row of square tiles across the top right - each bond's icon in its tile, the count
+            // under it; a tap names it and says what it does. Awake bonds glow and breathe, a bond this purchase lights blinks gold,
+            // a count that changes pops its tile, and the tile under the finger lifts.
+            const float tile = BondHudSummary.RowHeight, gap = BondHudSummary.Gap, below = 30;
+            int shownRows = newBonds.Count + bondSummary.VisibleCount;
+            int tiles = shownRows + 1;
+            Rect card = new Rect(1900 - tiles * (tile + gap) + gap, 22, tiles * (tile + gap) - gap, tile + below);
             bool still = owner.Profile != null && owner.Profile.ReducedMotion, calm = PresentationSettings.ReducedFlashes;
             float clock = Time.unscaledTime, blink = still || calm ? .6f : .5f + .5f * Mathf.Sin(clock * 7f);
-            if (!ArcadeSkin.KitSliced(card, "HUD/BondList")) ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
-            Color deep = Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Ink, 0.4f);
-            programStyle.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 34, card.y + 22, 150, 44), "Bonds", programStyle); // centred in the header strip (rows 20-68)
-            bondNumber.normal.textColor = deep;
-            GUI.Label(new Rect(card.x + 170, card.y + 22, width - 210, 44), bondSummary.Active + " of " + bondSummary.Rows.Count + " active", bondNumber);
-            programStyle.normal.textColor = ArcadeSkin.Ink;
-            string tooltip = null;
-            float tooltipTop = 0;
-            // bonds the offer would start (none yet): drawn first, greyed, with a gold blink and a NEW stamp
-            for (int index = 0; index < newBonds.Count; index++)
+            string tooltip = null; Rect tipFor = Rect.zero;
+            if (bondHit == null) bondHit = new GUIStyle();
+            bondNumber.alignment = TextAnchor.MiddleCenter;
+            for (int index = 0; index < shownRows; index++)
             {
-                var row = newBonds[index];
-                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + index * rowHeight, width - 36, rowHeight - 8);
-                ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .18f + .3f * blink));
-                BondRowContent(line, row.Bond, 0, row.After, false, true, row.Activates, blink, 0);
-                Rect stamp = new Rect(line.xMax - 72, line.y + 6, 66, line.height - 20); // clear of the bar under the row
-                if (!ArcadeSkin.KitSliced(stamp, "HUD/BondNew", stamp.height / 40)) ArcadeSkin.Slant(stamp, Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f));
-                bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = ArcadeSkin.Ink;
-                GUI.Label(stamp, "New", bondNumber);
-                bondNumber.alignment = TextAnchor.MiddleRight;
-            }
-            for (int index = 0; index < bondSummary.VisibleCount; index++)
-            {
-                BondDefinition bond = bondSummary.Rows[index]; int count = owner.Session.BondCounts[bond.Id];
-                Rect line = new Rect(card.x + 18, card.y + BondHudSummary.Head + (index + newBonds.Count) * rowHeight, width - 36, rowHeight - 8);
-                int level = bond.ActiveLevel(count);
-                bool previewing = previewBonds.TryGetValue(bond.Id, out var preview);
-                bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
-                if (flashing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.55f));
-                else if (previewing)
+                bool fresh = index < newBonds.Count;
+                BondDefinition bond = fresh ? newBonds[index].Bond : bondSummary.Rows[index - newBonds.Count];
+                int count = fresh ? 0 : owner.Session.BondCounts[bond.Id];
+                ShopDescriptionCard.BondRow row = default; bool previewing = !fresh && previewBonds.TryGetValue(bond.Id, out row);
+                int after = fresh ? newBonds[index].After : previewing ? row.After : count;
+                int level = bond.ActiveLevel(count), levelAfter = bond.ActiveLevel(after);
+                bool rising = (fresh || previewing) && levelAfter > level, active = level > 0;
+                Rect r = new Rect(card.x + index * (tile + gap), card.y, tile, tile);
+                bool hover = r.Contains(Event.current.mousePosition);
+                float burst = still ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
+                float lift = hover && !still ? 3 : 0, grow = burst * 4;
+                r = new Rect(r.x - grow, r.y - grow - lift, r.width + grow * 2, r.height + grow * 2);
+                // behind the tile: an awake bond breathes a warm light, a rising one blinks gold, a just-changed one flashes teal
+                float breathe = still ? .5f : .5f + .5f * Mathf.Sin(clock * 2.2f + index * .9f);
+                if (rising || fresh) ArcadeSkin.Glow(new Rect(r.x - 14, r.y - 14, r.width + 28, r.height + 28), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .35f + .45f * blink));
+                else if (bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed)) ArcadeSkin.Glow(new Rect(r.x - 14, r.y - 14, r.width + 28, r.height + 28), new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, .7f));
+                else if (active) ArcadeSkin.Glow(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20), new Color(1f, .74f, .4f, .2f + .2f * breathe));
+                if (!ArcadeSkin.KitSliced(r, active || rising ? "Info/NavyTileLit" : "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(r, active || rising); // a square tile
+                Color keep = GUI.color;
+                if (!active && !rising) GUI.color = new Color(keep.r * .62f, keep.g * .62f, keep.b * .66f, keep.a); // not awake yet: dim
+                ShopDescriptionCard.DrawSprite(new Rect(r.x + r.width * .18f, r.y + r.height * .18f, r.width * .64f, r.height * .64f), bond.Icon);
+                GUI.color = keep;
+                if (active || rising)
                 {
-                    ArcadeSkin.Slant(line, new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, (preview.Activates ? .25f : .12f) + (preview.Activates ? .35f : .15f) * blink));
-                    if (preview.Activates) ArcadeSkin.RunningLight(line, Time.unscaledTime, ArcadeSkin.Gold, .75f); // the bond this purchase lights
+                    // the level as a small stamp on the tile's corner
+                    Rect stamp = new Rect(r.xMax - 30, r.y - 8, 36, 22);
+                    if (!ArcadeSkin.KitSliced(stamp, rising ? "HUD/BondNew" : "HUD/BondLevel", stamp.height / 40)) ArcadeSkin.Slant(stamp, rising ? ArcadeSkin.Gold : ArcadeSkin.Accent);
+                    int size = bondNumber.fontSize; bondNumber.fontSize = 16;
+                    bondNumber.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.KitRose;
+                    GUI.Label(stamp, (rising ? levelAfter : level).ToString(), bondNumber);
+                    bondNumber.fontSize = size;
                 }
-                else if (level > 0)
+                int next = Mathf.Max(after, bond.NextThreshold(after));
+                bondNumber.normal.textColor = rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .3f) : active ? ArcadeSkin.Cream : new Color(.8f, .76f, .7f);
+                ArcadeTypography.ShadowLabel(new Rect(r.x - 10, card.y + tile + 2, tile + 20, below - 2), after + "/" + next, bondNumber);
+                if (GUI.Button(new Rect(r.x, r.y, r.width, tile + below), GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
+                if (hover || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
                 {
-                    // an active bond breathes: a soft teal wash, and now and then a light sweep runs across the row
-                    float breathe = still ? .5f : .5f + .5f * Mathf.Sin(clock * 2.2f + index);
-                    ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, .1f + .1f * breathe));
-                    if (!still && !calm)
-                    {
-                        float sweep = Mathf.Repeat(clock * .45f + index * .23f, 1.6f);
-                        if (sweep < 1) ArcadeSkin.Line(new Rect(line.x + sweep * (line.width - 18), line.y, 18, line.height), new Color(1, 1, 1, .22f * Mathf.Sin(sweep * Mathf.PI)));
-                    }
-                }
-                float burst = owner.Profile != null && owner.Profile.ReducedMotion ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
-                BondRowContent(line, bond, count, previewing ? preview.After : count, level > 0, previewing, previewing && preview.Activates, blink, burst);
-                if (level > 0 || previewing && preview.Activates)
-                {
-                    Rect stamp = new Rect(line.xMax - 72, line.y + 6, 66, line.height - 20); // clear of the bar under the row
-                    bool rising = previewing && preview.Activates;
-                    // a gold-leaf stamp for the level this purchase reaches, an oxblood wax stamp for the level held
-                    if (!ArcadeSkin.KitSliced(stamp, rising ? "HUD/BondNew" : "HUD/BondLevel", stamp.height / 40)) ArcadeSkin.Slant(stamp, rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .4f) : ArcadeSkin.Accent);
-                    bondNumber.alignment = TextAnchor.MiddleCenter; bondNumber.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.KitRose;
-                    GUI.Label(stamp, rising ? "Lv" + bond.ActiveLevel(preview.After) + "▲" : "Lv" + level, bondNumber);
-                    bondNumber.alignment = TextAnchor.MiddleRight;
-                }
-                if (bondHit == null) bondHit = new GUIStyle();
-                if (GUI.Button(line, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
-                if (line.Contains(Event.current.mousePosition) || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
-                {
-                    tooltip = count + "/" + bond.NextThreshold(count) + " · " + RunUICopy.BondDescription(bond, count);
-                    tooltipTop = line.y;
+                    tooltip = bond.Name + " · " + count + "/" + bond.NextThreshold(count) + "\n" + RunUICopy.BondDescription(bond, count);
+                    tipFor = r;
                 }
             }
-            programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = deep;
-            Rect footer = new Rect(card.x + 18, card.yMax - BondHudSummary.Foot + 6, width - 36, 34);
-            string more = bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount + " more · view all" : "View all bonds";
-            if (GUI.Button(footer, more, programStyle))
+            // the rest: one tile that opens the full list
+            Rect more = new Rect(card.x + shownRows * (tile + gap), card.y, tile, tile);
+            if (!ArcadeSkin.KitSliced(more, "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(more, false);
+            programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
+            GUI.Label(more, bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount : "···", programStyle);
+            ArcadeTypography.ShadowLabel(new Rect(more.x - 10, card.y + tile + 2, tile + 20, below - 2), "all", bondNumber);
+            if (GUI.Button(new Rect(more.x, more.y, more.width, tile + below), GUIContent.none, bondHit))
             {
                 if (!owner.Details.Open) owner.ToggleDetails();
                 owner.Details.SelectBond(bondSummary.Rows[0].Name);
             }
-            programStyle.alignment = TextAnchor.MiddleLeft;
+            programStyle.normal.textColor = ArcadeSkin.Ink; programStyle.alignment = TextAnchor.MiddleLeft;
+            bondNumber.alignment = TextAnchor.MiddleRight;
             small.normal.textColor = ArcadeSkin.Cream; small.alignment = TextAnchor.UpperLeft;
             if (tooltip != null)
             {
-                float height = GlossaryUI.Height(tooltip, small, 385) + 24;
-                Fill(new Rect(card.x - 430, tooltipTop, 420, height), Panel);
-                GlossaryUI.Text(new Rect(card.x - 415, tooltipTop + 12, 385, height - 24), tooltip, small);
+                // under the row, never off the screen's right edge
+                float height = GlossaryUI.Height(tooltip, small, 385) + 24, x = Mathf.Min(tipFor.x, 1900 - 420);
+                Rect box = new Rect(x, card.yMax + 10, 420, height);
+                if (!ArcadeSkin.KitSliced(box, "Panels/Tooltip", .4f)) Fill(box, Panel);
+                GlossaryUI.Text(new Rect(box.x + 18, box.y + 12, 384, height - 24), tooltip, small);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }

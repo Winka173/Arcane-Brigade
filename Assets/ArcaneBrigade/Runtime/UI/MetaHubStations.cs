@@ -125,18 +125,37 @@ namespace ArcaneBrigade
         }
 
         // ---------------------------------------------------------------- the Postbox
-        private int letterOpen = -1;
+        private int letterOpen = -1, letterTab, letterPage;
         private void DrawPostbox(Rect area, RunCatalog catalog, PlayerProfile profile, Func<bool> save)
         {
             navCols = 1;
             MetaLetter[] letters = MetaProgression.Letters;
             if (letterOpen < 0) letterOpen = Array.FindIndex(letters, l => MetaProgression.LetterRead(profile, l));
-            const float rowH = 74, gap = 10, listW = 320;
-            for (int i = 0; i < letters.Length; i++)
+            const float gap = 16, listW = 320, rowH = 74;
+            // review 31/10/2026 (six letters squeezed into the panel with no room): two tabs, the letters you have and the ones
+            // still sealed, each list with room between its letters (four at most a page; arrows turn longer lists)
+            var have = new List<int>(); var sealedOnes = new List<int>();
+            for (int i = 0; i < letters.Length; i++) (MetaProgression.LetterEarned(profile, letters[i]) ? have : sealedOnes).Add(i);
+            if (have.Count == 0) letterTab = 1;
+            Rect tabMine = new Rect(area.x, area.y, listW * .5f - 4, 44), tabSealed = new Rect(area.x + listW * .5f + 4, area.y, listW * .5f - 4, 44);
+            if (ArcadeSkin.Tab(tabMine, "Letters " + have.Count, letterTab == 0, have.Count > 0, small) && have.Count > 0) { letterTab = 0; letterPage = 0; }
+            if (ArcadeSkin.Tab(tabSealed, "Sealed " + sealedOnes.Count, letterTab == 1, sealedOnes.Count > 0, small) && sealedOnes.Count > 0) { letterTab = 1; letterPage = 0; }
+            List<int> listed = letterTab == 0 ? have : sealedOnes;
+            const int perPage = 4;
+            int pages = Mathf.Max(1, (listed.Count + perPage - 1) / perPage); letterPage = Mathf.Clamp(letterPage, 0, pages - 1);
+            float listTop = area.y + 62;
+            if (pages > 1)
             {
+                Rect up = new Rect(area.x + listW * .5f - 76, area.yMax - 52, 48, 48), down = new Rect(area.x + listW * .5f + 28, area.yMax - 52, 48, 48);
+                if (ArcadeSkin.IconButton(up, KitRound.Walnut, "◀")) letterPage = (letterPage + pages - 1) % pages;
+                if (ArcadeSkin.IconButton(down, KitRound.Walnut, "▶")) letterPage = (letterPage + 1) % pages;
+            }
+            for (int k = letterPage * perPage; k < Mathf.Min(listed.Count, (letterPage + 1) * perPage); k++)
+            {
+                int i = listed[k];
                 MetaLetter l = letters[i];
                 bool earned = MetaProgression.LetterEarned(profile, l), read = MetaProgression.LetterRead(profile, l), open = letterOpen == i;
-                Rect row = new Rect(area.x, area.y + i * (rowH + gap), listW, rowH);
+                Rect row = new Rect(area.x, listTop + (k - letterPage * perPage) * (rowH + gap), listW, rowH);
                 Flash(row, l.Id);
                 // the open letter glows warm behind its paper (never a rectangle drawn over the painted shape)
                 if (open) ArcadeSkin.Glow(new Rect(row.x - 16, row.y - 14, row.width + 32, row.height + 28), new Color(1f, .82f, .45f, .4f + .1f * Mathf.Sin(Time.unscaledTime * 2.4f)));
@@ -150,10 +169,10 @@ namespace ArcaneBrigade
                 Ink(earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
                 // the words start past the wax seal and stop before the folded corner; each line gets its full height
                 float past = seal.x - row.x + 52; // clear of the seal's right edge (the painted seal is about 90 px across)
-                Rect words = new Rect(row.x + past, row.y + 8, row.width - past - 66, rowH - 16); // the folded corner takes the last 60 px
+                Rect words = new Rect(row.x + past, row.y + 9, row.width - past - 66, 56); // two lines; the folded corner takes the last 60 px
                 Color words2 = earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream; // cream on the dark walnut plate of a sealed letter
-                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 32), earned ? l.Name : "Sealed", words2, body);
-                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 32, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 30), earned ? l.Name : "Sealed", words2, body);
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 30, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
                 if ((GUI.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
                 {
                     letterOpen = i;
