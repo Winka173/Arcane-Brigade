@@ -146,11 +146,11 @@ namespace ArcaneBrigade
                 if (have >= group.Members.Length - 1) b.AppendLine("{mark} " + group.Name + " " + have + "/" + group.Members.Length + (whole ? " ✓" : ""));
                 Combo |= whole;
             }
-            int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == offer.Tier);
+            int joinTier = session.CopyTier(offer); int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == joinTier);
             b.AppendLine(session.UpgradeProgress(offer));
             b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
-                : offer.Tier >= CompanionDeployment.ShopMaxTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
-                : "Owned " + copies + "/" + CompanionDeployment.MergeCopies + " at " + offer.Tier + "-star" + (copies == CompanionDeployment.MergeCopies - 1 ? " (" + offer.Tier + ".5 stars) · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
+                : joinTier >= CompanionDeployment.ShopMaxTier ? "Owned " + copies + " at " + joinTier + "-star · max stars"
+                : "Owned " + copies + "/" + CompanionDeployment.MergeCopies + " at " + joinTier + "-star" + (copies == CompanionDeployment.MergeCopies - 1 ? " (" + joinTier + ".5 stars) · buying merges them into " + (joinTier + 1) + "-star" : ""));
             Summary = WithBloodCost(b.ToString().Trim(), offer);
             RosterEntry fieldedBefore = session.ActiveRoster.Find(r => r.UnitId == unit.Id);
             RosterEntry fieldedAfter = purchased ? preview.ActiveRoster.Find(r => r.UnitId == unit.Id) : null;

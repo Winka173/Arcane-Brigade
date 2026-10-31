@@ -14,17 +14,10 @@ namespace ArcaneBrigade
         private Material threadLight, chimeLight;
         private MeshRenderer chime;
         public int ApproachingCount => identities.Count;
-        public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && offer.Tier < CompanionDeployment.ShopMaxTier
-            && session.CanBuy(offer) && session.State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == Mathf.Clamp(offer.Tier, 1, 4)).Count >= CompanionDeployment.MergeCopies - 1;
+        public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && session.CanBuy(offer) && session.StarsUpOnBuy(offer);
         public static int ProjectedTier(RunSession session, ShopOffer offer)
         {
-            if (!Ready(session, offer)) return offer == null ? 1 : Mathf.Clamp(offer.Tier, 1, 4);
-            var counts = new int[6];
-            foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == offer.Id) counts[Mathf.Clamp(entry.Tier, 1, 5)]++;
-            int result = Mathf.Clamp(offer.Tier, 1, 4); counts[result]++;
-            for (int tier = 1; tier < CompanionDeployment.ShopMaxTier; tier++)
-                if (counts[tier] >= CompanionDeployment.MergeCopies) { counts[tier + 1] += counts[tier] / CompanionDeployment.MergeCopies; counts[tier] %= CompanionDeployment.MergeCopies; result = tier + 1; }
-            return result;
+            return Ready(session, offer) ? session.ProjectTier(offer) : offer == null ? 1 : session.CopyTier(offer);
         }
         public void Configure(ArenaController controller)
         {

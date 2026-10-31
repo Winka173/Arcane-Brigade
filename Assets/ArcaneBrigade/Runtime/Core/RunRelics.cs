@@ -134,7 +134,7 @@ namespace ArcaneBrigade
                     UnitDefinition chosen = available[RecruitChoice(available)];
                     var weapons = new List<WeaponDefinition>();
                     foreach (WeaponDefinition weapon in catalog.Weapons) if (RecruitWeaponEligible(chosen.Id, weapon) && VariantFree(chosen.Id, weapon)) weapons.Add(weapon);
-                    var recruit = new RosterEntry { UnitId = chosen.Id, WeaponId = BalancedWeapon(weapons, false).Id };
+                    var recruit = new RosterEntry { UnitId = chosen.Id, WeaponId = BalancedWeapon(weapons, false).Id, Tier = JoinTier(chosen.Id, 1) };
                     bool newSpecies = !OwnsCompanionSpecies(chosen.Id);
                     State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; if (newSpecies) RegisterNewShopSpecies(false); MergeCompanions(chosen.Id);
                 }

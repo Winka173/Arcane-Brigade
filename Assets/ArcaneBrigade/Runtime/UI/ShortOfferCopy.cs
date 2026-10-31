@@ -9,14 +9,9 @@ namespace ArcaneBrigade
             if (offer.Kind == OfferKind.Companion)
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
-                var tiers = new int[catalog.MaximumTier + 1];
-                foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == unit.Id) tiers[entry.Tier]++;
-                int beforeTier = 0; for (int tier = 1; tier < tiers.Length; tier++) if (tiers[tier] > 0) beforeTier = tier;
+                int beforeTier = session.HighestOwnedTier(unit.Id);
                 float before = beforeTier > 0 ? UnitDefinition.ModifierScale(beforeTier) : 0;
-                int projected = UnityEngine.Mathf.Clamp(offer.Tier, 1, 3); tiers[projected]++;
-                for (int tier = 1; tier < CompanionDeployment.ShopMaxTier && unit.ReferenceCompanion != "Evil"; tier++)
-                    if (tiers[tier] >= CompanionDeployment.MergeCopies) { tiers[tier + 1] += tiers[tier] / CompanionDeployment.MergeCopies; tiers[tier] %= CompanionDeployment.MergeCopies; projected = tier + 1; }
-                int afterTier = 0; for (int tier = 1; tier < tiers.Length; tier++) if (tiers[tier] > 0) afterTier = tier;
+                int afterTier = session.ProjectTier(offer);
                 float after = afterTier > 0 ? UnitDefinition.ModifierScale(afterTier) : 0;
                 string result = session.UpgradeProgress(offer) + (afterTier > beforeTier && beforeTier > 0 ? "\nUpgrades the fielded friend to " + afterTier + " stars." : "");
                 StatModifier[] modifiers = unit.CompanionModifiers;

@@ -218,7 +218,7 @@ namespace ArcaneBrigade
                     foreach (WeaponDefinition w in catalog.Weapons) if (RecruitWeaponEligible(other.Id, w) && VariantFree(other.Id, w)) weapons.Add(w);
                     if (weapons.Count == 0) return false;
                     State.Roster.Remove(r);
-                    var arrival = new RosterEntry { UnitId = other.Id, Tier = 1, WeaponId = weapons[Next(ref State.VisitorRandom, weapons.Count)].Id };
+                    var arrival = new RosterEntry { UnitId = other.Id, Tier = JoinTier(other.Id, 1), WeaponId = weapons[Next(ref State.VisitorRandom, weapons.Count)].Id };
                     State.Roster.Add(arrival); RememberVariant(arrival); MergeCompanions(other.Id);
                     Notice = RunUICopy.UnitName(old) + " crossed the river; " + RunUICopy.UnitName(other) + " came back.";
                     break;

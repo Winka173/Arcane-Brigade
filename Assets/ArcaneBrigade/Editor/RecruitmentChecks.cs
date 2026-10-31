@@ -48,7 +48,8 @@ namespace ArcaneBrigade.Editor
                 Check(shown != null && offer.WeaponId == shown.Id && known.OfferWeapon(offer) == shown, "Offer weapon is rolled once and kept on the offer");
                 Check(known.Buy(offer.Token) && known.State.Roster.Any(r => r.UnitId == offer.Id && r.WeaponId == shown.Id), "Buying a friend gives the weapon shown on its offer");
             }
-            foreach (int wave in new[] { 1, 2, 3, 4, 8, 20, 30 })
+            // wave 19 is the last shop open to new friends (requirement 31/10/2026); the closing is checked in ReleaseFiveDifficultyChecks
+            foreach (int wave in new[] { 1, 2, 3, 4, 8, 19 })
             {
                 using var s = Session(c, wave); int limit = 1;
                 string owned = ordinary[4].Id;
@@ -65,16 +66,16 @@ namespace ArcaneBrigade.Editor
                 Check(s.State.Gold == gold && s.State.Roster.Count == roster, "Denied purchase leaves currency and roster unchanged " + wave);
                 Check(s.Buy(Offer(s, owned).Token), "Third copy merges after exhausted new-species quota " + wave);
                 Check(s.State.Roster.Any(r => r.UnitId == owned && r.Tier == 2) && s.State.NewSpeciesRecruitsThisWave == limit && s.State.NewRecruitsThisWave == limit + 1, "Upgrade consumes old purchase quota but not new-species quota " + wave);
-                // since 19/10/2026: one copy of an owned species per wave, so a second copy waits for the next wave
-                Check(s.CopyRecruitsRemaining == 0 && !s.Buy(Offer(s, owned).Token), "Second copy in one wave is blocked " + wave);
-                Check(s.State.NewRecruitsThisWave == 2 && s.CompanionPurchasesRemaining == 0, "At most one new species and one copy per wave " + wave);
+                // since 31/10/2026: copies have no per-wave cap (they only show up less often as more are bought)
+                Check(s.CopyRecruitsRemaining > 0 && s.Buy(Offer(s, owned).Token), "A second copy in one wave can be bought " + wave);
+                Check(s.CopyOfferChance == (wave >= 10 ? 25 : 10), "Each copy bought makes the next rarer (two bought) " + wave);
                 for(int index=0;index<specials.Length;index++)
                 {
                     var unit=specials[index];
                     var offer = Offer(s, unit.Id, true);
                     bool available=index==0;
                     Check(s.Buy(offer.Token)==available,"Special new species respects its independent visit quota " +wave+"/"+index);
-                    Check(s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase leaves regular quotas unchanged " + wave + "/" + unit.Id);
+                    Check(s.State.NewRecruitsThisWave == limit + 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase leaves regular quotas unchanged " + wave + "/" + unit.Id);
                 }
                 Check(s.Buy(Offer(s,owned,true).Token),"Special upgrade copy ignores regular and new-species quotas "+wave);
                 // Sold normal offers are not serialized beyond a shop's slot capacity.
@@ -84,8 +85,8 @@ namespace ArcaneBrigade.Editor
                 for (int roll = 0; roll < 8; roll++) // each refresh in a shop costs 50% more (play-test 20/10/2026): 8 is plenty
                 {
                     Check(s.Reroll(), "Paid refresh allowed at quota " + wave + "/" + roll);
-                    Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion), "Normal rolls show items once the new species and the copy are used " + wave + "/" + roll);
-                    Check(s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Reroll never resets either quota " + wave + "/" + roll);
+                    Check(s.State.Offers.All(o => o.Kind != OfferKind.Companion || s.OwnsCompanionSpecies(o.Id)), "Normal rolls show no new species once the allowance is used (copies may still come) " + wave + "/" + roll);
+                    Check(s.State.NewRecruitsThisWave == limit + 2 && s.State.NewSpeciesRecruitsThisWave == limit, "Reroll never resets either quota " + wave + "/" + roll);
                 }
             }
             using (var s = Session(c, 12))
@@ -123,7 +124,7 @@ namespace ArcaneBrigade.Editor
                 Check(found, "Merge drought protection still finds third copy after quota");
                 var gift = c.Items.First(i => i.Mechanic == RelicMechanic.CompanionGift);
                 var offer = new ShopOffer { Token = ++s.State.NextOffer, Id = gift.Id, Kind = OfferKind.Item, Price = 1 }; s.State.Offers.Add(offer);
-                Check(s.Buy(offer.Token) && s.State.NewRecruitsThisWave == 2 && s.State.NewSpeciesRecruitsThisWave == 1 && s.State.Roster.All(r => r.UnitId == ordinary[0].Id), "Ordinary gifts use purchase quota but upgrades do not use new-species quota");
+                Check(s.Buy(offer.Token) && s.State.NewRecruitsThisWave == 3 && s.State.NewSpeciesRecruitsThisWave == 1 && s.State.Roster.All(r => r.UnitId == ordinary[0].Id), "Ordinary gifts (two copies, no copy cap) use purchase quota but upgrades do not use new-species quota");
             }
             using (var s = Session(c, 8))
             {
@@ -136,7 +137,7 @@ namespace ArcaneBrigade.Editor
                 s.State.NewRecruitsThisWave = 3;
                 s.State.Offers.Clear();
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
-                Check(s.CopyRecruitsRemaining == 0 && s.CompanionPurchasesRemaining <= 1, "Legacy quota of three loads conservatively without granting free copies");
+                Check(s.NewRecruitsRemaining <= 1, "Legacy quota of three loads without granting extra new species");
                 s.State.Phase = SessionPhase.Combat;
                 var arena = s.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0; arena.WaveDuration = .2f;
                 var battle = new CombatSimulation(arena); battle.Start(161026);
@@ -169,7 +170,7 @@ namespace ArcaneBrigade.Editor
             }
             // requirement 22/10/2026: the shop never sells what can't be bought. A new species left on the shelf when the new-species
             // quota closes is replaced in its place (a copy of an owned species within the copy quota, or a relic)
-            foreach (int wave in new[] { 2, 8, 20 })
+            foreach (int wave in new[] { 2, 8, 18 }) // 18, then 19: the last shop open to new friends
             {
                 using var s = Session(c, wave);
                 var first = Offer(s, ordinary[0].Id); var second = Offer(s, ordinary[1].Id); int shelf = s.State.Offers.Count;

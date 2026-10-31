@@ -41,15 +41,15 @@ namespace ArcaneBrigade.Editor
             using (var run = new RunSession(c))
             {
                 run.Start("LanternKnight", 231026);
-                foreach (var milestone in new[] { (wave: 9, earned: 5), (wave: 10, earned: 5), (wave: 11, earned: 5), (wave: 12, earned: 6), (wave: 15, earned: 7), (wave: 18, earned: 8), (wave: 20, earned: 8) })
+                foreach (var milestone in new[] { (wave: 9, earned: 4), (wave: 10, earned: 4), (wave: 11, earned: 4), (wave: 12, earned: 5), (wave: 15, earned: 6), (wave: 18, earned: 6), (wave: 19, earned: 7), (wave: 20, earned: 7) })
                 {
                     Shop(run, milestone.wave);
                     Check(run.EarnedNewSpeciesAllowance == milestone.earned, "Late allowance calendar at wave " + milestone.wave);
-                    Check(run.CopyRecruitsRemaining == (milestone.wave >= 10 ? 2 : 1), "Copy quota at wave " + milestone.wave);
+                    Check(run.CopyOfferChance == (milestone.wave >= 10 ? 75 : 60), "Copy chance at wave " + milestone.wave);
                 }
                 RunSnapshot old = Copy(run.State); old.SchemaRevision = 4;
                 run.Restore(old);
-                Check(run.EarnedNewSpeciesAllowance == 10 && run.State.RegularAllowanceCarryover == 2, "Legacy wave-20 allowance is retained without taking back banked recruitment");
+                Check(run.EarnedNewSpeciesAllowance == 10 && run.State.RegularAllowanceCarryover == 3, "Legacy wave-20 allowance is retained without taking back banked recruitment");
                 Check(run.State.NextSpecialShopWave >= 23 && run.State.NextSpecialShopWave <= 24, "Legacy dream-shop schedule starts three or four waves after migration");
             }
             Check(RunMeta.UnlockedDifficulty(new PlayerProfile()) == 3 && RunMeta.UnlockedDifficulty(null) == 3, "The first four difficulties are unlocked even for a fresh profile");
@@ -73,8 +73,8 @@ namespace ArcaneBrigade.Editor
                     run.Validate(run.State);
                     var arena = run.PrepareCombat();
                     Check(arena.StartingCompanions.Count(x => x.Id == u.Id) == 1 && run.ActiveRoster.Count == 1, "Exactly one body after copy " + n);
-                    int tier = n < 2 ? 1 : n < 4 ? 2 : 3;
-                    Check(run.ActiveRoster[0].Tier == tier && CompanionDeployment.OwnedValue(run.State.Roster, u.Id) == n, "Copies preserve material value and correct stars " + n);
+                    // requirement 31/10/2026: each copy is half a star (1, 1.5, 2, 2.5); three at a star make the next
+                    Check(run.ActiveRoster[0].Tier == (n < 3 ? 1 : 2) && Mathf.Approximately(run.StarProgress(u.Id), 1 + (n - 1) * .5f), "Each copy adds half a star " + n);
                     var model = RunBuildReadModel.Capture(run, c, run.State.Health);
                     Check(model.Companions.Count(row => row.UnitId == u.Id) == 1, "Build sheet contains one row, copy " + n);
                     Check(model.ShopStats.Actors.Count == 2, "Stat snapshot has hero and one fighter, copy " + n);
@@ -86,14 +86,16 @@ namespace ArcaneBrigade.Editor
                     }
                     if (n == 3)
                     {
-                        Check(run.ActiveRoster[0].WeaponId == fieldWeapon, "Stored 1-star material does not change the deployed 2-star weapon");
-                        Check(Bonds(run) == bondBefore && run.Bonus(ItemEffect.Damage, ModifierScope.Companions) == bonusBefore && Mathf.Approximately(arena.StartingCompanions[0].Weapon.Damage, attackBefore), "Inactive copy adds no bonds, passive bonus or attack damage");
-                        Check(card.Summary.Contains("Stored for merging") && card.Bonds.All(b => b.After == b.Count), "Shop marks material inactive and does not promise extra bond members");
+                        Check(run.ActiveRoster[0].WeaponId == fieldWeapon, "A star-up keeps the fighter's own weapon");
+                        Check(Bonds(run) == bondBefore, "A copy never adds a bond member");
                     }
                     storage.SaveRun(run.State);
                     using var loaded = new RunSession(c); loaded.Restore(storage.LoadRun(loaded));
                     Check(JsonUtility.ToJson(loaded.State) == JsonUtility.ToJson(run.State) && loaded.ActiveRoster.Count == 1, "Real save/load preserves all material weapons and RNG, copy " + n);
                 }
+                // a 4-star friend takes no more copies (the fifth star comes only from a Starlight Thread)
+                string fighterWeapon = run.ActiveRoster[0].WeaponId;
+                run.State.Roster.RemoveAll(r => r.UnitId == u.Id); run.State.Roster.Add(new RosterEntry { UnitId = u.Id, WeaponId = fighterWeapon, Tier = 4 });
                 Shop(run, 10); Check(!run.CanBuy(Offer(run, u)), "Maximum-star species cannot waste money on extra shop materials");
             }
             using (var run = new RunSession(c))
@@ -126,14 +128,15 @@ namespace ArcaneBrigade.Editor
                 var weapons = c.Weapons.Where(w => run.RecruitWeaponEligible(unit.Id, w)).Take(2).ToArray();
                 run.State.Roster.Clear();
                 run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapons[0].Id });
+                run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapons[0].Id });
                 Shop(run, 7);
-                Check(run.Buy(Offer(run, unit, false, 1, weapons[1].Id).Token), "Mixed-weapon material purchase completes merge");
-                Check(run.ActiveRoster[0].Tier == 2 && weapons.Any(w => w.Id == run.ActiveRoster[0].WeaponId), "Merged weapon is from the two ingredients");
+                Check(run.Buy(Offer(run, unit, false, 1, weapons[1].Id).Token), "The third copy at a star completes the star-up");
+                Check(run.ActiveRoster[0].Tier == 2 && run.ActiveRoster[0].WeaponId == weapons[0].Id, "A star-up keeps the fighter's own weapon");
                 RunSnapshot legacy = Copy(run.State); legacy.SchemaRevision = 3;
                 legacy.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapons.First(w => w.Id != legacy.Roster[0].WeaponId).Id, Tier = 1 });
                 string before = JsonUtility.ToJson(legacy);
                 run.Restore(legacy);
-                Check(run.State.SchemaRevision == RunSnapshot.CurrentSchemaRevision && run.ActiveRoster.Count == 1 && CompanionDeployment.OwnedValue(run.State.Roster, unit.Id) == 3, "Legacy save retains every owned material and deploys the strongest one");
+                Check(run.State.SchemaRevision == RunSnapshot.CurrentSchemaRevision && run.ActiveRoster.Count == 1 && CompanionDeployment.OwnedValue(run.State.Roster, unit.Id) == 4, "Legacy save retains every owned material and deploys the strongest one");
                 Check(JsonUtility.ToJson(legacy) == before, "Restore does not mutate original legacy snapshot");
                 Check(run.State.RegularNewSpeciesPurchased == 0, "Conservative legacy quota migration excludes the first owned species");
             }
@@ -146,10 +149,14 @@ namespace ArcaneBrigade.Editor
                 string weapon = c.Weapons.First(w => run.RecruitWeaponEligible(unit.Id, w)).Id;
                 run.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapon, Tier = 2 });
                 run.State.RegularNewSpeciesPurchased = run.EarnedNewSpeciesAllowance;
-                typeof(RunSession).GetMethod("RollShop", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { false });
-                var finalMaterial = run.State.Offers.FirstOrDefault(o => o.Kind == OfferKind.Companion && o.Id == unit.Id);
-                Check(finalMaterial != null && finalMaterial.Tier == 2, "Final 2-star material is offered even after the regular new-species bank is exhausted");
-                Check(run.Buy(finalMaterial.Token) && run.ActiveRoster.Count == 1 && run.ActiveRoster[0].Tier == 3, "Buying the final 2-star material merges into one 3-star fighter");
+                ShopOffer finalMaterial = null; // a copy shows up by chance (75% at wave 16): a few rolls find it
+                for (int roll = 0; roll < 12 && finalMaterial == null; roll++)
+                {
+                    typeof(RunSession).GetMethod("RollShop", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { false });
+                    finalMaterial = run.State.Offers.FirstOrDefault(o => o.Kind == OfferKind.Companion && o.Id == unit.Id);
+                }
+                Check(finalMaterial != null && finalMaterial.Tier == 1, "A 1-star copy is offered even after the regular new-species bank is exhausted");
+                Check(run.Buy(finalMaterial.Token) && run.ActiveRoster.Count == 1 && run.ActiveRoster[0].Tier == 2 && Mathf.Approximately(run.StarProgress(unit.Id), 2.5f), "A copy raises the 2-star fighter to 2.5 stars");
             }
             foreach (var hero in c.Champions)
             using (var run = new RunSession(c))

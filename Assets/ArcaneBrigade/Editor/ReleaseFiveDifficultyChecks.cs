@@ -47,7 +47,9 @@ namespace ArcaneBrigade.Editor
                 run.State.Wave = 18;
                 Check(!run.NewAlliesClosed, "New friends still possible before the final recruitment boundary");
                 run.State.Wave = 19;
-                Check(run.NewAlliesClosed && run.NewRecruitsRemaining == 0 && run.SpecialNewRecruitsRemaining == 0, "Regular and dream new-species recruitment close before wave 20");
+                Check(!run.NewAlliesClosed, "The shop before wave 20 is the last open to new friends");
+                run.State.Wave = 20;
+                Check(run.NewAlliesClosed && run.NewRecruitsRemaining == 0 && run.SpecialNewRecruitsRemaining == 0, "Regular and dream new-species recruitment close after wave 20's shop");
             }
             int[] remap = { 0, 1, 1, 2, 3, 3, 4, 4 };
             for (int old = 0; old < remap.Length; old++)

@@ -62,7 +62,7 @@ namespace ArcaneBrigade
                 int savedValue = CompanionDeployment.OwnedValue(session.State.Roster, unit.Id);
                 int reserveCopies = session.State.Roster.FindAll(r => r.UnitId == unit.Id).Count - 1;
                 model.Companions[model.Companions.Count - 1].Summary += "\nOne fighter · " + reserveCopies + " saved materials · "
-                    + (entry.Tier >= 5 ? "ONE OF A KIND" : entry.Tier >= CompanionDeployment.ShopMaxTier ? "maximum stars" : savedValue + "/" + (entry.Tier < 2 ? 3 : entry.Tier < 3 ? 9 : 27) + " upgrade value");
+                    + (entry.Tier >= 5 ? "ONE OF A KIND" : RunSession.StarText(session.StarProgress(unit.Id)) + " stars · " + (entry.Tier >= CompanionDeployment.ShopMaxTier ? "a Starlight Thread makes it 5" : "each copy adds half a star"));
                 model.Companions[model.Companions.Count - 1].Explanation += "\nSaved materials do not attack, add bond members or provide passive stats. All purchased weapons are kept until used in a merge.";
             }
             foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])

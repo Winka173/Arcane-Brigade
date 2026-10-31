@@ -764,8 +764,10 @@ namespace ArcaneBrigade
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
                 // the weapon shown on the offer before buying (rolled once per offer); never rolled again here
                 WeaponDefinition chosen = OfferWeapon(offer) ?? BalancedWeapon(choices, catalog.Unit(offer.Id).SpecialRecruit);
-                var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = Mathf.Clamp(offer.Tier, 1, 3) };
-                stork = recruited.Tier == 1 && MetaStork(offer);
+                bool copy = OwnsCompanionSpecies(offer.Id);
+                // a copy counts at the owned friend's star (requirement 31/10/2026: each copy is half a star, 1-1.5-2-...-3.5-4)
+                var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = copy ? Mathf.Max(1, HighestOwnedTier(offer.Id)) : Mathf.Clamp(offer.Tier, 1, 3) };
+                stork = !copy && recruited.Tier == 1 && MetaStork(offer);
                 if (stork) recruited.Tier = 2;
                 MetaWelcomeStar(recruited);
                 bool ownedBefore = OwnsCompanionSpecies(offer.Id);
@@ -825,6 +827,10 @@ namespace ArcaneBrigade
         private void MergeCompanions(string id)
         {
             if (catalog.Unit(id).ReferenceCompanion == "Evil") return;
+            MergeSteps(id); // copies stop at 4 stars; the fifth only comes from a Starlight Thread (WeaveRainbow)
+        }
+        private void MergeSteps(string id)
+        {
             for (int tier = 1; tier < CompanionDeployment.ShopMaxTier; tier++)
             {
                 List<RosterEntry> materials = State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier);
@@ -844,7 +850,7 @@ namespace ArcaneBrigade
                         pool = HeroNurseryPool(pool);
                         if (pool.Length > 0) resultId = pool[Next(ref State.WeaponRandom, pool.Length)].Id;
                     }
-                    string inherited = choices[Next(ref State.WeaponRandom, choices.Count)].Id;
+                    string inherited = consumed[0].WeaponId; // the fighter keeps its own weapon when it stars up (requirement 31/10/2026)
                     State.Roster.Add(new RosterEntry { UnitId = resultId, Tier = tier + 1, WeaponId = inherited });
                     RememberVariant(State.Roster[State.Roster.Count - 1]);
                     KitMerged(); RelicMerged(resultId, tier + 1);
@@ -1082,22 +1088,18 @@ namespace ArcaneBrigade
                 var freshUnits = units.FindAll(unit => !away.Contains(unit.Id) || MergeReady(unit.Id)); if (freshUnits.Count > 0) units = freshUnits;
             }
             var foundation = State.Wave <= 5 ? items.FindAll(item => ShopFoundationRules.Useful(catalog.Unit(State.ChampionId), item)) : new List<ItemDefinition>();
+            // requirement 31/10/2026: a copy of an owned friend comes in one slot, by chance (60/30/10/1% as copies are bought this wave)
+            bool copyRoll = Next(ref State.ShopRandom, 100) < CopyOfferChance;
             for (int index = 0; index < catalog.ShopSlots + KitExtraSlots + MetaExtraSlots; index++)
             {
                 bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
-                var available = units.FindAll(unit => OwnsCompanionSpecies(unit.Id) || newRecruit);
-                var owedNewSpecies = NewRecruitsRemaining > 0 && index == 0 ? units.FindAll(unit => !OwnsCompanionSpecies(unit.Id)) : new List<UnitDefinition>();
-                if (owedNewSpecies.Count > 0) available = owedNewSpecies;
-                var owned = units.FindAll(unit => OwnsCompanionSpecies(unit.Id)
+                var fresh = units.FindAll(unit => !OwnsCompanionSpecies(unit.Id));
+                var owned = units.FindAll(unit => OwnsCompanionSpecies(unit.Id) && CanStarUp(unit.Id)
                     && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && o.Id == unit.Id));
-                int offeredCopies = State.Offers.FindAll(o => !o.Sold && o.Kind == OfferKind.Companion && OwnsCompanionSpecies(o.Id)).Count;
-                bool upgradeSlot = State.Wave >= 10 && index == 1 && offeredCopies < CopyRecruitsRemaining && owned.Count > 0 && Next(ref State.ShopRandom, 100) < 35; // a sometimes-slot (was every shop)
-                if (upgradeSlot) available = owned;
-                var mergeReady = available.FindAll(unit => MergeReady(unit.Id));
-                int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
-                // requirement 23/10/2026: a copy to merge came almost every refresh (85%); now 30% (+5% a refresh missed), sure after 6 misses
-                if (mergeReady.Count > 0 && (drought >= MergeSureAfter || Next(ref State.ShopRandom, 100) < MergeBias + drought * 5)) available = drought >= MergeSureAfter ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
-                bool recruit = available.Count > 0 && (upgradeSlot || owedNewSpecies.Count > 0 || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
+                bool owed = NewRecruitsRemaining > 0 && index == 0 && fresh.Count > 0;
+                bool copySlot = !owed && copyRoll && owned.Count > 0 && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && OwnsCompanionSpecies(o.Id));
+                var available = owed ? fresh : copySlot ? owned : newRecruit ? fresh : new List<UnitDefinition>();
+                bool recruit = available.Count > 0 && (copySlot || owed || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 var itemChoices = index == 1 && foundation.Count > 0 ? foundation : items;
                 int choice = recruit ? RecruitChoice(available) : WeightedItem(itemChoices);
                 int offerTier = recruit ? OctoberOfferTier(available[choice].Id) : 1;
@@ -1134,11 +1136,10 @@ namespace ArcaneBrigade
                 if ((catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw || OctoberAbsorbs) && unit.SpecialRecruit && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit) && unit.UnlockWave <= State.Wave && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && VariantFree(unit.Id, weapon))) specialUnits.Add(unit);
             for (int index = 0; index < 3 + Mathf.Clamp(Meta?.DreamExtra ?? 0, 0, 1); index++) // the Lamp Tree's Wide stall: a fourth
             {
-                var recruits = specialUnits.FindAll(unit => OwnsCompanionSpecies(unit.Id));
-                if (SpecialNewRecruitsRemaining>0 && Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
-                var mergeReady = recruits.FindAll(unit => MergeReady(unit.Id));
-                int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
-                if (mergeReady.Count > 0 && (drought >= MergeSureAfter || Next(ref State.ShopRandom, 100) < MergeBias + drought * 5)) recruits = drought >= MergeSureAfter ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
+                // requirement 31/10/2026: a new special friend only on a lucky visit (decided once, rerolls do not raise it);
+                // otherwise a copy of an owned one by the copy chance
+                var recruits = SpecialNewThisVisit ? specialUnits.FindAll(unit => !OwnsCompanionSpecies(unit.Id))
+                    : Next(ref State.ShopRandom, 100) < CopyOfferChance ? specialUnits.FindAll(unit => OwnsCompanionSpecies(unit.Id) && CanStarUp(unit.Id)) : new List<UnitDefinition>();
                 if (index == 0 && recruits.Count > 0)
                 {
                     UnitDefinition recruit = recruits[RecruitChoice(recruits)];

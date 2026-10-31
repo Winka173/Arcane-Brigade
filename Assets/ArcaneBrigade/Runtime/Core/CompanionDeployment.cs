@@ -60,7 +60,7 @@ namespace ArcaneBrigade
 
         private bool MergeReady(string id)
         {
-            if (HighestOwnedTier(id) >= CompanionDeployment.ShopMaxTier || catalog.Unit(id).ReferenceCompanion == "Evil") return false;
+            if (!CanStarUp(id)) return false;
             for (int tier = 1; tier < CompanionDeployment.ShopMaxTier; tier++)
                 if (State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier).Count >= CompanionDeployment.MergeCopies - 1) return true;
             return false;
@@ -80,18 +80,32 @@ namespace ArcaneBrigade
             && State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier).Count == CompanionDeployment.MergeCopies - 1;
         public static string StarText(float stars) => Mathf.Approximately(stars, Mathf.Floor(stars)) ? ((int)stars).ToString() : stars.ToString("0.0");
 
+        /// <summary>The star a bought offer joins at: a copy counts at the owned friend's star; a new friend at its own.</summary>
+        public int CopyTier(ShopOffer offer) => offer == null ? 1 : offer.Kind == OfferKind.Companion && OwnsCompanionSpecies(offer.Id) ? Mathf.Max(1, HighestOwnedTier(offer.Id)) : Mathf.Clamp(offer.Tier, 1, 3);
+        /// <summary>The friend's top star once this offer is bought (1-1.5-2-...-3.5-4: three at a star make the next; 4 is the most a copy reaches).</summary>
+        public int ProjectTier(ShopOffer offer)
+        {
+            if (offer == null) return 1;
+            int top = HighestOwnedTier(offer.Id);
+            if (top <= 0) return CopyTier(offer);
+            if (!CanStarUp(offer.Id)) return top;
+            int copies = State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == top).Count + 1;
+            return copies >= CompanionDeployment.MergeCopies ? top + 1 : top;
+        }
+        /// <summary>The star a friend joins at: a copy of an owned friend joins at that friend's star (each copy is half a star),
+        /// a new one at its own (requirement 31/10/2026). Used by gifts, visitors and kits as well as the shop.</summary>
+        public int JoinTier(string id, int tier) => OwnsCompanionSpecies(id) ? Mathf.Max(tier, Mathf.Min(HighestOwnedTier(id), CompanionDeployment.ShopMaxTier)) : tier;
+        public bool StarsUpOnBuy(ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && OwnsCompanionSpecies(offer.Id) && ProjectTier(offer) > HighestOwnedTier(offer.Id);
+
         public string UpgradeProgress(ShopOffer offer)
         {
             if (offer == null || offer.Kind != OfferKind.Companion) return "";
-            int before = CompanionDeployment.OwnedValue(State.Roster, offer.Id);
-            int added = CompanionDeployment.MaterialValue(offer.Tier);
-            int after = RunSession.BoundedCounter((long)before + added);
-            int target = before < 3 ? 3 : before < 9 ? 9 : 27;
             // in plain words (requirement 25/10/2026: "upgrade material", "extra fighter" told nothing)
             if (OctoberAbsorbs) return "Your hero takes this friend's skill.";
-            if (HighestOwnedTier(offer.Id) >= CompanionDeployment.ShopMaxTier) return "Already at max stars.";
-            return before == 0 ? "New friend."
-                : "Copy " + after + " of " + target + " for " + (target == 3 ? "2 stars" : target == 9 ? "3 stars" : "4 stars") + (after >= target ? " · stars up now!" : ".");
+            if (!OwnsCompanionSpecies(offer.Id)) return "New friend.";
+            if (!CanStarUp(offer.Id)) return "Already at max stars.";
+            float now = StarProgress(offer.Id), next = now + .5f;
+            return "Stars " + StarText(now) + " → " + StarText(next) + (StarsUpOnBuy(offer) ? " · stars up now!" : ".");
         }
     }
 }

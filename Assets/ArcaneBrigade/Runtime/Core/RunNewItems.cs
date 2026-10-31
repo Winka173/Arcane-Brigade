@@ -72,7 +72,7 @@ namespace ArcaneBrigade
             var weapons = new List<WeaponDefinition>();
             foreach (WeaponDefinition w in catalog.Weapons) if (RecruitWeaponEligible(result.Id, w) && VariantFree(result.Id, w)) weapons.Add(w);
             if (weapons.Count == 0) weapons.Add(result.Weapon);
-            var spliced = new RosterEntry { UnitId = result.Id, Tier = 2, WeaponId = weapons[Next(ref State.WeaponRandom, weapons.Count)].Id };
+            var spliced = new RosterEntry { UnitId = result.Id, Tier = JoinTier(result.Id, 2), WeaponId = weapons[Next(ref State.WeaponRandom, weapons.Count)].Id };
             State.Roster.Add(spliced); RememberVariant(spliced); MergeCompanions(result.Id);
             Notice = "Splice Kit: three friends became a two-star " + result.DisplayName + ".";
             RecountBonds();

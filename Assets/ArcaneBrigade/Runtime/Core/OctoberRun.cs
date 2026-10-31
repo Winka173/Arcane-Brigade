@@ -148,25 +148,16 @@ namespace ArcaneBrigade
         }
         private int OctoberOfferTier(string id)
         {
-            // requirement 22/10/2026 (revised): 3 stars take three copies: 1+1 make 2 stars, then the copy is offered at the owned star
-            int merge = OctoberMergeTier(id); if (merge > 0) return merge;
-            if (OctoberHero == "Card King" && !State.Roster.Exists(r => r.UnitId == id)) return 2;
-            if (ActiveRoster.Count >= 7 || State.Wave < 4 || State.Roster.Exists(r => r.UnitId == id)) return 1;
-            int roll = Next(ref State.ShopRandom, 100);
-            // a new species rolls 2 stars a little less often (55/30% -> 45/24%) and 3 stars much less (18% -> 6%) (requirement 22/10/2026)
-            return State.Wave >= 10 && ActiveRoster.Count <= 3 && roll < 6 ? 3 : roll < (ActiveRoster.Count <= 3 ? 45 : 24) ? 2 : 1;
+            // requirement 31/10/2026: a copy of an owned friend is always a 1-star copy (it raises that friend half a star when bought);
+            // a new friend is 1 star, 2 stars from wave 10 (the Card King keeps its own 2-star welcome)
+            if (State.Roster.Exists(r => r.UnitId == id)) return 1;
+            if (OctoberHero == "Card King") return 2;
+            return State.Wave >= 10 ? 2 : 1;
         }
         private void OctoberRefreshed()
         {
             State.OctoberRefreshes++;
             State.Gold = BoundedCounter((long)State.Gold + ScaledGold(Mathf.Min(6, 2 * Talent("Smiley Fox"))));
-        }
-        /// <summary>The star a copy is offered at: the highest owned star still short of a merge (Evil never merges).</summary>
-        private int OctoberMergeTier(string id)
-        {
-            if (catalog.Unit(id).ReferenceCompanion == "Evil") return 0;
-            for (int tier = CompanionDeployment.ShopMaxTier - 1; tier >= 1; tier--) if (State.Roster.FindAll(r => r.UnitId == id && r.Tier == tier).Count >= CompanionDeployment.MergeCopies - 1) return tier;
-            return 0;
         }
         private List<RosterEntry> AltarMaterials(AltarRecipe recipe)
         {
