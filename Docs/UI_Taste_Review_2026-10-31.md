@@ -243,8 +243,8 @@ Một số quy tắc của taste-skill được điều chỉnh cho game. Skill 
 
 - **Bỏ cột đèn ghép chồng lên tranh:** dù vẽ riêng, cột đèn không ăn nhập với ánh sáng và phối cảnh của bức tranh.
 - **Tranh mới:**
-  - Codex vẽ con hẻm có tám cột đèn nằm sẵn trong tranh, đèn tắt.
-  - Từ chính bức đó, Codex sửa thành bản đèn sáng. Hai bức khớp nhau gần như từng điểm ảnh.
+  - Vẽ con hẻm có tám cột đèn nằm sẵn trong tranh, đèn tắt.
+  - Từ chính bức đó, sửa thành bản đèn sáng. Hai bức khớp nhau gần như từng điểm ảnh.
 - **Tách lớp sáng:** tách phần khác nhau quanh từng đèn (đầu đèn, quầng sáng, vũng sáng trên đá) thành tám lớp có viền mờ.
 - **Trong game:**
   - Các lớp hiện dần lên bức đèn tắt.
