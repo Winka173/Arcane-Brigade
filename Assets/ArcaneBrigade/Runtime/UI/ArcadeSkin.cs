@@ -85,7 +85,8 @@ namespace ArcaneBrigade
         public static GUIStyle Primary(GUIStyle like)
         {
             GUISkin _ = Skin;
-            return new GUIStyle(primary) { font = like.font, fontSize = like.fontSize, fontStyle = like.fontStyle };
+            // a style copied from a plain skin button has no font (Unity falls back to Arial): gold buttons always speak in the heading face
+            return new GUIStyle(primary) { font = like.font != null ? like.font : ArcadeTypography.Heading, fontSize = like.fontSize, fontStyle = like.fontStyle };
         }
 
         private static GUIStyle ButtonStyle(GUIStyle source, Color face, Color edge, Color text, Color hoverFace, Color hoverEdge, Color hoverText, Color activeFace, Color activeText)
@@ -343,18 +344,130 @@ namespace ArcaneBrigade
         /// <summary>Keyboard/controller focus: a small candle light to the left and a warm underline that breathes.</summary>
         /// <summary>The hover cue for a thing in the room: four small inked gold corner brackets hugging it, breathing gently
         /// (never a long rule under it: under a wide thing that read as a stray line across the floor).</summary>
-        /// <summary>The picked thing (review 31/10/2026: corner brackets read as a debug box): a warm halo breathing around it, a
-        /// spark of light running round its edge and a small gold marker bobbing above it. Reduced Motion keeps the halo still.</summary>
+        /// <summary>A strong "this one is chosen" aura behind a piece (review 31/10/2026: a small lift could not be seen): a big warm
+        /// halo breathing out from behind it and motes of light rising past its sides (no rays: they drew as white dashes). Drawn BEFORE the
+        /// piece, so the piece stays clean on top; nothing is drawn over painted art. Reduced Motion keeps a still halo.</summary>
+        public static void SelectedAura(Rect r, Color colour, float reach = 150, bool behind = false)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            bool still = PresentationSettings.ReducedMotion;
+            float t = Time.unscaledTime, breathe = still ? .8f : .65f + .35f * Mathf.Sin(t * 3f);
+            if (behind)
+            {
+                // drawn before a rounded piece (a chip): a row of round glows along it, wide enough that their light shows well
+                // past its edge and follows its round ends (a ring round its box showed square corners)
+                float shortSide = Mathf.Min(r.width, r.height), longSide = Mathf.Max(r.width, r.height), spill = Mathf.Min(reach, shortSide * 1.1f);
+                int count = Mathf.Max(1, Mathf.CeilToInt(longSide / shortSide));
+                for (int k = 0; k < count; k++)
+                {
+                    float along = count == 1 ? (longSide - shortSide) * .5f : (longSide - shortSide) * k / (count - 1);
+                    Vector2 c = r.width >= r.height ? new Vector2(r.x + shortSide * .5f + along, r.center.y) : new Vector2(r.center.x, r.y + shortSide * .5f + along);
+                    float wide = shortSide + spill * 2;
+                    Glow(new Rect(c.x - wide * .5f, c.y - wide * .5f, wide, wide), new Color(colour.r, colour.g, colour.b, .85f * breathe));
+                    Glow(new Rect(c.x - wide * .35f, c.y - wide * .35f, wide * .7f, wide * .7f), new Color(1f, .95f, .8f, .8f * breathe));
+                }
+            }
+            else
+            {
+                // a hollow halo round the piece: clear over the piece itself (so it never washes it out, drawn before or after it),
+                // brightest at its edge and fading outward - one wide warm ring and one close pale one
+                float grow = Mathf.Clamp(Mathf.Min(r.width, r.height) * (.45f + .12f * breathe), Mathf.Min(26, reach), reach); // reach: how far it may spill (pieces packed close)
+                Halo(r, grow, new Color(colour.r, colour.g, colour.b, .95f * breathe));
+                Halo(r, grow * .45f, new Color(1f, .96f, .82f, .75f + .25f * breathe));
+            }
+            if (still) return;
+            // motes rising past both sides
+            for (int i = 0; i < 10; i++)
+            {
+                float q = Mathf.Repeat(t * .5f + i * .1f, 1), side = i % 2 == 0 ? r.x - 10 - (i % 3) * 8 : r.xMax + 10 + (i % 3) * 8;
+                Diamond(new Vector2(side + Mathf.Sin(t * 2 + i) * 6, r.yMax - q * (r.height + 40)), 4 + 4 * Mathf.Sin(q * Mathf.PI), new Color(1f, .9f, .6f, .9f * Mathf.Sin(q * Mathf.PI)));
+            }
+        }
+
+        private static Texture2D halo;
+        /// <summary>A soft light ring round a rectangle, <paramref name="grow"/> wide: nothing inside the rectangle, full at its
+        /// edge, gone at the ring's outer edge (a nine-sliced 66 px texture whose middle is clear).</summary>
+        public static void Halo(Rect r, float grow, Color colour)
+        {
+            if (Event.current.type != EventType.Repaint || grow <= 0) return;
+            if (halo == null)
+            {
+                halo = new Texture2D(66, 66, TextureFormat.RGBA32, false) { name = "SelectedHalo", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
+                var pixels = new Color[66 * 66];
+                for (int y = 0; y < 66; y++)
+                    for (int x = 0; x < 66; x++)
+                    {
+                        float dx = Mathf.Max(0, 32 - (x + .5f), (x + .5f) - 34), dy = Mathf.Max(0, 32 - (y + .5f), (y + .5f) - 34);
+                        float d = Mathf.Sqrt(dx * dx + dy * dy);
+                        pixels[y * 66 + x] = new Color(1, 1, 1, d <= 0 ? 0 : Mathf.SmoothStep(0, 1, d / 9f) * Mathf.Pow(Mathf.Clamp01(1 - d / 32f), 1.6f)); // rises softly off the edge (a full edge read as an outline)
+                    }
+                halo.SetPixels(pixels); halo.Apply(false, true);
+            }
+            Color previous = GUI.color;
+            GUI.color = Faded(colour, previous);
+            SlicedTexture(new Rect(r.x - grow, r.y - grow, r.width + grow * 2, r.height + grow * 2), halo, new Vector4(32, 32, 32, 32), grow / 32f, 0);
+            GUI.color = previous;
+        }
+
+        /// <summary>Two bright sparks running round a rounded piece's outline (a stadium path that follows its round ends, never a
+        /// box), each with a short fading tail; for a chip or tile a purchase lights.</summary>
+        public static void OrbitSparks(Rect r, Color colour)
+        {
+            if (Event.current.type != EventType.Repaint || PresentationSettings.ReducedMotion) return;
+            float t = Time.unscaledTime, rad = r.height * .5f, straight = Mathf.Max(0, r.width - r.height);
+            float perimeter = 2 * straight + 2 * Mathf.PI * rad;
+            Vector2 At(float d)
+            {
+                d = Mathf.Repeat(d, perimeter);
+                if (d < straight) return new Vector2(r.x + rad + d, r.y);
+                d -= straight; if (d < Mathf.PI * rad) { float a = -Mathf.PI * .5f + d / rad; return new Vector2(r.xMax - rad + Mathf.Cos(a) * rad, r.center.y + Mathf.Sin(a) * rad); }
+                d -= Mathf.PI * rad; if (d < straight) return new Vector2(r.xMax - rad - d, r.yMax);
+                d -= straight; { float a = Mathf.PI * .5f + d / rad; return new Vector2(r.x + rad + Mathf.Cos(a) * rad, r.center.y + Mathf.Sin(a) * rad); }
+            }
+            for (int k = 0; k < 2; k++)
+                for (int tail = 0; tail < 6; tail++)
+                {
+                    Vector2 p = At(t * perimeter * .55f + k * perimeter * .5f - tail * 7);
+                    float fade = 1 - tail / 6f, size = 12 * fade + 3;
+                    Glow(new Rect(p.x - size, p.y - size, size * 2, size * 2), new Color(colour.r, colour.g, colour.b, .8f * fade));
+                    if (tail == 0) Glow(new Rect(p.x - 4, p.y - 4, 8, 8), new Color(1, 1, 1, .95f));
+                }
+        }
+
+        /// <summary>The picked thing: the selected aura behind it and a small gold marker bobbing above it.</summary>
         public static void WorldFocus(Rect bounds)
         {
             bool still = PresentationSettings.ReducedMotion;
             float t = Time.unscaledTime, breathe = still ? .8f : .65f + .35f * Mathf.Sin(t * 3.2f);
-            Glow(new Rect(bounds.x - 18, bounds.y - 18, bounds.width + 36, bounds.height + 36), new Color(1f, .8f, .45f, .28f * breathe));
-            if (!still) RunningLight(bounds, t, Gold, .9f);
+            SelectedAura(bounds, new Color(1f, .78f, .38f));
             float bob = still ? 0 : Mathf.Sin(t * 4f) * 4;
-            Vector2 marker = new Vector2(bounds.center.x, bounds.y - 12 + bob);
-            Diamond(marker, 16, new Color(Ink.r, Ink.g, Ink.b, .8f));
-            Diamond(marker, 11, new Color(Gold.r, Gold.g, Gold.b, .85f + .15f * breathe));
+            Vector2 marker = new Vector2(bounds.center.x, bounds.y - 14 + bob);
+            Diamond(marker, 18, new Color(Ink.r, Ink.g, Ink.b, .8f));
+            Diamond(marker, 13, new Color(Gold.r, Gold.g, Gold.b, .85f + .15f * breathe));
+        }
+
+        /// <summary>The picked one of a row of round medallions: warm round light behind it (drawn before the medallion, so it
+        /// shows round its painted rim and never over it), rising motes and the bobbing marker.</summary>
+        public static void RoundFocus(Rect medallion)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            bool still = PresentationSettings.ReducedMotion;
+            float t = Time.unscaledTime, breathe = still ? .8f : .7f + .3f * Mathf.Sin(t * 3.2f), grow = medallion.width * .42f;
+            Rect wide = new Rect(medallion.x - grow, medallion.y - grow, medallion.width + grow * 2, medallion.height + grow * 2);
+            // deep amber, layered: a pale gold light vanished on cream paper
+            for (int layer = 0; layer < 3; layer++) Glow(wide, new Color(1f, .5f, .1f, .9f * breathe));
+            Glow(new Rect(medallion.x - grow * .4f, medallion.y - grow * .4f, medallion.width + grow * .8f, medallion.height + grow * .8f), new Color(1f, .62f, .18f, breathe));
+            if (!still)
+                for (int i = 0; i < 8; i++)
+                {
+                    float q = Mathf.Repeat(t * .5f + i / 8f, 1), a = i * Mathf.PI * 2 / 8 + t * .3f;
+                    Vector2 c = medallion.center + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * .3f) * medallion.width * .62f + Vector2.down * q * 40;
+                    Diamond(c, 3 + 3 * Mathf.Sin(q * Mathf.PI), new Color(.95f, .7f, .3f, .9f * Mathf.Sin(q * Mathf.PI)));
+                }
+            float bob = still ? 0 : Mathf.Sin(t * 4f) * 4;
+            Vector2 marker = new Vector2(medallion.center.x, medallion.y - 16 + bob);
+            Diamond(marker, 18, new Color(Ink.r, Ink.g, Ink.b, .8f));
+            Diamond(marker, 13, new Color(Gold.r, Gold.g, Gold.b, .85f + .15f * breathe));
         }
 
         public static void Focus(Rect bounds)

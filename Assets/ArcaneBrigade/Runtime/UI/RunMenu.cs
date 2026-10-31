@@ -707,10 +707,24 @@ namespace ArcaneBrigade
                 bool unlocked = HeroUnlocks.Open(profile, unit);
                 Rect card = RosterCardBounds(index);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .42f); else RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
-                if (index == selection) { ArcadeSkin.Glow(new Rect(card.x + 10, card.y, card.width - 20, 150), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.26f)); ArcadeSkin.Slant(new Rect(card.x + 14, card.yMax - 16, card.width - 28, 8), ArcadeSkin.Teal); }
+                // the chosen hero is lit from inside its card (a light round it in the cards' 10 px gaps drew as bars): a warm glow
+                // behind the hero, a pool of light at its feet, rising motes; the other heroes stand a little in shadow
+                if (index == selection)
+                {
+                    float breathe = profile.ReducedMotion ? .8f : .7f + .3f * Mathf.Sin(Time.unscaledTime * 3f);
+                    for (int layer = 0; layer < 3; layer++) ArcadeSkin.Glow(new Rect(card.x + 2, card.y - 4, card.width - 4, 200), new Color(1f, .78f, .42f, .75f * breathe));
+                    for (int layer = 0; layer < 2; layer++) ArcadeSkin.Glow(new Rect(card.x + 22, card.y + 118, card.width - 44, 64), new Color(1f, .9f, .6f, .95f * breathe));
+                    if (!profile.ReducedMotion)
+                        for (int m = 0; m < 6; m++)
+                        {
+                            float q = Mathf.Repeat(Time.unscaledTime * .45f + m / 6f, 1);
+                            ArcadeSkin.Diamond(new Vector2(card.x + 30 + m * (card.width - 60) / 5f + Mathf.Sin(Time.unscaledTime * 2 + m) * 6, card.y + 170 - q * 150), 3 + 3 * Mathf.Sin(q * Mathf.PI), new Color(1f, .9f, .6f, .85f * Mathf.Sin(q * Mathf.PI)));
+                        }
+                }
                 if (navigation.Button(card, "", GUIStyle.none)) { if (selection != index) rosterDescriptionScroll = Vector2.zero; selection = index; }
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
+                else if (index != selection) GUI.color = new Color(.7f, .7f, .76f); // the others stand in shadow
                 float portraitSize = index == selection ? 170 : 160; // the hero fills its card (it stood small in a big frame)
                 // portrait + name centred in the card (requirement 21/10/2026); a locked hero lifts them to leave room for its chip
                 float top = card.y + (unlocked ? 12 : 6);
@@ -1060,7 +1074,7 @@ namespace ArcaneBrigade
         private void DrawRecords()
         {
             if (Button(new Rect(60, 620, 560, 52), "OPEN ACHIEVEMENT JOURNAL")) ShowPage(Page.Achievements);
-            Label(new Rect(60, 165, 575, 80), "Wave " + profile.BestWave + " / Wins " + profile.Wins + " / Kills " + profile.TotalKills + "\nUnlocked difficulty: " + (RunMeta.UnlockedDifficulty(profile) + 1) + " / " + RunMeta.DifficultyNames.Length);
+            RecordTotals(new Rect(60, 150, 560, 92));
             scroll = ScrollPanel.Begin(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 106 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
             float vertical = 0;
             for (int index = 0; index < profile.History.Count; index++)
@@ -1069,7 +1083,7 @@ namespace ArcaneBrigade
                 if (Button(new Rect(14, vertical + 4, 486, 92), record.Nickname + "\n" + "Night " + record.Score + " · " + RunUICopy.UnitName(record.Build.ChampionId) + " · " + (record.Build.Endless ? "Endless" : "Journey"))) historySelection = index;
                 vertical += 106; // two lines with room above and below inside the plate
             }
-            Label(new Rect(0, vertical, 510, 50), "Records by hero, mode and difficulty"); vertical += 60;
+            if (profile.Records.Count > 0) { Label(new Rect(0, vertical, 510, 50), "Best by hero, mode and difficulty"); vertical += 60; }
             foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + "Night " + record.Score); vertical += 65; }
               foreach (string achievement in profile.Achievements) if (!achievement.StartsWith("journal-")) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
             ScrollPanel.End();
@@ -1088,6 +1102,30 @@ namespace ArcaneBrigade
                 Label(new Rect(690, 490, 470, 90), "No journeys yet. Finish one and its letter waits here, with your brigade.");
             }
         }
+
+        /// <summary>The totals on a paper card: best night, wins, foes and difficulties open, each a big number over its caption.</summary>
+        private void RecordTotals(Rect r)
+        {
+            ArcadeSkin.Frame(r, KitFrame.Card, .3f);
+            Rect c = ArcadeSkin.Content(r, KitFrame.Card, true, .3f);
+            if (totalNumber == null)
+            {
+                totalNumber = ArcadeTypography.Style(28, false, true); totalNumber.alignment = TextAnchor.MiddleCenter;
+                totalCaption = ArcadeTypography.Style(15); totalCaption.alignment = TextAnchor.MiddleCenter;
+            }
+            totalNumber.normal.textColor = totalCaption.normal.textColor = ArcadeSkin.FrameText(KitFrame.Card);
+            string[] numbers = { profile.BestWave.ToString(), profile.Wins.ToString(), profile.TotalKills.ToString("N0"), (RunMeta.UnlockedDifficulty(profile) + 1) + "/" + RunMeta.DifficultyNames.Length };
+            string[] captions = { "BEST NIGHT", "WINS", "FOES", "DIFFICULTIES" };
+            float w = c.width / numbers.Length;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Rect col = new Rect(c.x + i * w, c.y, w, c.height);
+                GUI.Label(new Rect(col.x, col.y, col.width, col.height * .6f), numbers[i], totalNumber);
+                GUI.Label(new Rect(col.x, col.y + col.height * .58f, col.width, col.height * .4f), captions[i], totalCaption);
+                if (i > 0) ArcadeSkin.Diamond(new Vector2(col.x, col.center.y), 5, new Color(.55f, .36f, .18f, .7f)); // a small brass stud between columns, not a ruled line
+            }
+        }
+        private GUIStyle totalNumber, totalCaption;
 
         private bool SaveProfile()
         {

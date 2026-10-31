@@ -139,6 +139,46 @@ namespace ArcaneBrigade
             next.x = Mathf.Clamp(next.x, Floor.xMin, Floor.xMax); next.y = Mathf.Clamp(next.y, Floor.yMin, Floor.yMax);
             hero = next;
         }
+        /// <summary>The room's things that are not stations (painted into the room): tap one and a small line about it appears
+        /// over it, a different one each time.</summary>
+        private sealed class Thing { public string Name; public Rect Area; public string[] Lines; public int Next; }
+        private static readonly Thing[] RoomThings =
+        {
+            new Thing { Name = "Cat", Area = new Rect(785, 375, 90, 70), Lines = new[] { "The cat is asleep. It has been asleep since before the lamp was lit.", "One ear turns towards you. The rest of the cat does not.", "Purring, very quietly, in time with the clock." } },
+            new Thing { Name = "Tea", Area = new Rect(438, 345, 112, 120), Lines = new[] { "The tea is still warm. Nobody remembers pouring it.", "Three cups. One for you, one for a friend, one for whoever comes next.", "A biscuit is missing. The cat looks innocent." } },
+            new Thing { Name = "Gramophone", Area = new Rect(195, 340, 90, 115), Lines = new[] { "A waltz, very slow, the needle almost asleep.", "It plays the same song every night. Nobody minds.", "When you come back from a long night, it skips once, like a heartbeat." } },
+            new Thing { Name = "Cases", Area = new Rect(985, 385, 120, 110), Lines = new[] { "Three cases, labelled for three different towns. None of them yours, yet.", "Something inside the top case ticks.", "A tag reads: please hold until dawn." } },
+            new Thing { Name = "Coat rack", Area = new Rect(860, 70, 60, 140), Lines = new[] { "A red scarf someone forgot. It smells of rain.", "The lantern on the hook glows a little brighter when you pass." } },
+            new Thing { Name = "Bench", Area = new Rect(550, 540, 220, 105), Lines = new[] { "Someone left a ticket on the bench. It is for tonight.", "The velvet is warm, as if someone just stood up." } },
+        };
+        private Thing spoken; private string spokenLine; private float spokenAt = -10;
+        private void Things()
+        {
+            foreach (Thing th in RoomThings)
+            {
+                if (GUI.Button(th.Area, GUIContent.none, GUIStyle.none))
+                {
+                    spoken = th; spokenLine = th.Lines[th.Next % th.Lines.Length]; th.Next++; spokenAt = Time.unscaledTime;
+                    CheckpointAudio.PlayInterfaceId("ui.select");
+                }
+            }
+            if (spoken != null && Time.unscaledTime - spokenAt < 4.5f)
+            {
+                // the line in a small paper card over the thing, popping in and fading out
+                if (thingStyle == null) { thingStyle = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); thingStyle.wordWrap = true; thingStyle.alignment = TextAnchor.MiddleCenter; thingStyle.font = ArcadeTypography.Hand; }
+                float w = 340, h = thingStyle.CalcHeight(new GUIContent(spokenLine), w - 36) + 28, age = Time.unscaledTime - spokenAt;
+                Rect card = new Rect(Mathf.Clamp(spoken.Area.center.x - w * .5f, 16, 1264 - w), Mathf.Max(96, spoken.Area.y - h - 12), w, h);
+                Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+                LivingUI.Pop(age, card.center);
+                GUI.color = new Color(keepColour.r, keepColour.g, keepColour.b, keepColour.a * Mathf.Clamp01((4.5f - age) / .4f));
+                if (!ArcadeSkin.PaperArt(card, PaperKind.Receipt)) ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
+                thingStyle.normal.textColor = ArcadeSkin.KitInk;
+                GUI.Label(new Rect(card.x + 18, card.y + 14, w - 36, h - 28), spokenLine, thingStyle);
+                GUI.matrix = keepMatrix; GUI.color = keepColour;
+            }
+        }
+        private GUIStyle thingStyle;
+
         private void WalkTo(Vector2 point, int spot, bool door)
         {
             target = new Vector2(Mathf.Clamp(point.x, Floor.xMin, Floor.xMax), Mathf.Clamp(point.y, Floor.yMin, Floor.yMax));
@@ -225,6 +265,7 @@ namespace ArcaneBrigade
                 GUI.color = keep;
             }
 
+            tagsPlaced.Clear();
             // the Lamp Tree is where the permanent upgrades are bought: it always wears a call-out above it, and a lit badge when the oil can buy something
             if (!PanelOpen)
             {
@@ -236,6 +277,24 @@ namespace ArcaneBrigade
                 if (afford) { ArcadeSkin.Glow(new Rect(lr.xMax - 54, lr.y - 14 + bob, 46, 46), new Color(1f, .82f, .45f, .6f)); ArcadeSkin.Seal(new Vector2(lr.xMax - 31, lr.y + 9 + bob), 26, "!"); }
             }
 
+            // review 31/10/2026: every station wears its name (only the Lamp Tree did), and the room's things can be tapped
+            if (!PanelOpen)
+            {
+                // the near tag and the door claim their place before the others hang theirs
+                if (Focus >= 0) { Spot fs = Spots[Focus]; Rect fr = Bounds(fs, MetaIcons.Station(fs.Station, false)); tagsPlaced.Add(TagRect(new Vector2(fs.Foot.x, fr.y - 40), StationTag(fs.Station))); }
+                if (DoorFocus) tagsPlaced.Add(TagRect(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "NEW JOURNEY"));
+                for (int i = 0; i < Spots.Length; i++)
+                {
+                    if (i == Focus || Spots[i].Station == MetaStation.Lantern) continue; // the near one pops its own tag; the Lamp Tree has its call-out
+                    Rect sr = Bounds(Spots[i], MetaIcons.Station(Spots[i].Station, false));
+                    string name = StationTag(Spots[i].Station);
+                    // above the piece, else below it; never over another sign (the walnut board reaches 14 px past the tag each side)
+                    Rect above = TagRect(new Vector2(Spots[i].Foot.x, sr.y - 40), name), below = TagRect(new Vector2(Spots[i].Foot.x, sr.yMax + 6), name);
+                    Rect chosen = Free(above) ? above : Free(below) ? below : Rect.zero;
+                    if (chosen.width > 0) TagIn(chosen, name);
+                }
+                Things();
+            }
             // what is near: a paper tag over it
             if (!PanelOpen && Focus >= 0)
             {
@@ -243,7 +302,7 @@ namespace ArcaneBrigade
                 if (focusShown != Focus) { focusShown = Focus; focusAt = Time.unscaledTime; }
                 Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
                 LivingUI.Pop(Time.unscaledTime - focusAt, new Vector2(s.Foot.x, r.y - 23));
-                Tag(new Vector2(s.Foot.x, r.y - 40), MetaProgression.Works(s.Station) ? MetaProgression.StationName(s.Station).ToUpperInvariant() : "COMING SOON");
+                Tag(new Vector2(s.Foot.x, r.y - 40), StationTag(s.Station));
                 GUI.matrix = keepMatrix; GUI.color = keepColour;
             }
             else focusShown = -2;
@@ -407,10 +466,29 @@ namespace ArcaneBrigade
             return false;
         }
 
-        private void Tag(Vector2 topCentre, string text)
+        private readonly List<Rect> tagsPlaced = new List<Rect>();
+        /// <summary>A station's sign: its short name (the room already says "the"), or COMING SOON.</summary>
+        private static string StationTag(MetaStation station)
         {
-            float w = Mathf.Max(150, chip.CalcSize(new GUIContent(text)).x + 44);
-            Rect tag = new Rect(Mathf.Clamp(topCentre.x - w * .5f, 20, 1260 - w), Mathf.Clamp(topCentre.y, 120, 680), w, 34); // its chains clear of the title plaque
+            if (!MetaProgression.Works(station)) return "COMING SOON";
+            string name = MetaProgression.StationName(station).ToUpperInvariant();
+            return name.StartsWith("THE ") ? name.Substring(4) : name;
+        }
+        private Rect TagRect(Vector2 topCentre, string text)
+        {
+            float w = Mathf.Max(130, chip.CalcSize(new GUIContent(text)).x + 44);
+            return new Rect(Mathf.Clamp(topCentre.x - w * .5f, 20, 1260 - w), Mathf.Clamp(topCentre.y, 120, 680), w, 34); // its chains clear of the title plaque
+        }
+        private bool Free(Rect tag)
+        {
+            Rect board = new Rect(tag.x - 20, tag.y - 8, tag.width + 40, tag.height + 16);
+            foreach (Rect other in tagsPlaced) if (board.Overlaps(other)) return false;
+            return true;
+        }
+        private void Tag(Vector2 topCentre, string text) => TagIn(TagRect(topCentre, text), text);
+        private void TagIn(Rect tag, string text)
+        {
+            tagsPlaced.Add(tag);
             // a walnut sign hanging on two short chains (its board, rows 46-118 of the 120 px art, is the tag)
             float k = tag.height / 72f;
             if (ArcadeSkin.Strip(new Rect(tag.x - 14, tag.y - 46 * k, tag.width + 28, 120 * k), "Menu/StationSign", 70, 70)) chip.normal.textColor = ArcadeSkin.KitCream;
@@ -495,7 +573,7 @@ namespace ArcaneBrigade
             float tx = inner.x + 60, tw = inner.xMax - tx;
             TrackIcon(new Rect(inner.x, inner.y, 48, 48), track);
             body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .85f); number.normal.textColor = ink;
-            GUI.Label(new Rect(tx, inner.y - 3, tw - 56, 26), track.Name, body);
+            GUI.Label(new Rect(tx, inner.y - 3, tw - 56, 34), track.Name, body);
             small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner.xMax - 52, inner.y, 52, 22), rank + "/" + track.Max, small); small.alignment = TextAnchor.UpperLeft;
             GUI.Label(new Rect(tx, inner.y + 23, tw, 22), track.Line, small);
             string values = rank >= track.Max ? track.Value(rank) : track.Value(rank) + "  →  " + track.Value(rank + 1);
@@ -546,7 +624,7 @@ namespace ArcaneBrigade
             Color ink = ArcadeSkin.FrameText(KitFrame.Card);
             body.normal.textColor = ink;
             BondDefinition chosen = Array.Find(catalog.Bonds, b => b.Id == profile.Meta.Heirloom);
-            GUI.Label(new Rect(r.x + 16, r.y + 8, r.width - 32, 26), "FAMILY · " + (chosen != null ? chosen.Name.ToUpperInvariant() : "TAP A CREST"), body);
+            GUI.Label(new Rect(r.x + 16, r.y + 8, r.width - 32, 34), "FAMILY · " + (chosen != null ? chosen.Name.ToUpperInvariant() : "TAP A CREST"), body);
             float x = r.x + 16;
             foreach (BondDefinition bond in catalog.Bonds)
             {
@@ -575,7 +653,7 @@ namespace ArcaneBrigade
             if (ArcadeSkin.IconButton(new Rect(area.xMax - 56, area.y, 56, 56), KitRound.Walnut, "▶") | Nav(new Rect(area.xMax - 56, area.y, 56, 56))) wardrobeHero = (wardrobeHero + 1) % catalog.Champions.Length;
             RunHud.Sprite(new Rect(area.x + 70, area.y - 4, 64, 64), hero.Body);
             body.normal.textColor = ArcadeSkin.KitCream; number.normal.textColor = ArcadeSkin.KitCream;
-            GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 26), RunUICopy.UnitName(hero), body);
+            GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 34), RunUICopy.UnitName(hero), body);
             GUI.Label(new Rect(area.x + 142, area.y + 28, area.width - 280, 26), waves + " waves together", number);
             float y = area.y + 72, ch = 116; // the three perks fill the page, each with its road to READY
             for (int i = 0; i < MetaProgression.MasteryWaves.Length; i++)
@@ -590,7 +668,7 @@ namespace ArcaneBrigade
                 body.normal.textColor = ink; small.normal.textColor = ink; number.normal.textColor = ink;
                 Sprite icon = i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition coat ? coat.Body : MetaIcons.Station(MetaStation.Wardrobe, earned);
                 RunHud.Sprite(new Rect(c.x + 22, c.y + 16, 84, 84), icon);
-                GUI.Label(new Rect(c.x + 122, c.y + 16, c.width - 330, 26), MetaProgression.MasteryNames[i], body);
+                GUI.Label(new Rect(c.x + 122, c.y + 10, c.width - 330, 36), MetaProgression.MasteryNames[i], body); // a box as tall as the line (26 cut the tops of the letters)
                 string line = MetaProgression.MasteryLines[i];
                 if (i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition alt) line = "Start with " + RunUICopy.UnitName(alt);
                 if (i == 2 && exists) line = MetaProgression.HabitAdded(HeroKits.For(hero.Id)).Text.Replace("Second habit: ", "");

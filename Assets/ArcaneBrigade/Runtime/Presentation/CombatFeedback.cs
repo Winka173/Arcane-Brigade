@@ -161,24 +161,30 @@ namespace ArcaneBrigade
             number.Champion = champion;
             number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
             number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
-            // hits on neighbouring targets stack upward instead of printing over each other ("40l49l8!")
-            for (int lift = 0; lift < 5; lift++) // a number is wider than tall: a box test, stepping up until the spot is free
-            {
-                bool crowded = false;
-                foreach (DamageNumber other in numbers)
-                    if (other != number && other.Kind == 0 && other.Age < .35f && Mathf.Abs(other.Position.x - number.Position.x) < .9f && Mathf.Abs(other.Position.y - number.Position.y) < .32f) { crowded = true; break; }
-                if (!crowded) break;
-                number.Position += Vector2.up * .34f;
-            }
             // size and warmth follow how much of the target's life the hit took
             float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
             float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
-            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
-            number.Age = 0f;
-            number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
             float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
             number.Shake = !champion && RangedFeel.LongShot(combatEvent) ? 1 : 0;
             if (number.Shake > 0) size *= 1.35f; // a long shot's critical reads bigger
+            // hits on neighbouring targets stack upward instead of printing over each other ("40l49l8!", "4949!"): a box test
+            // sized by both numbers' drawn scale and length (a critical is up to 2.5x an ordinary hit), stepping up until free
+            int digits = Mathf.CeilToInt(combatEvent.Value).ToString().Length + (combatEvent.Critical ? 1 : 0);
+            for (int lift = 0; lift < 8; lift++)
+            {
+                bool crowded = false;
+                foreach (DamageNumber other in numbers)
+                {
+                    if (other == number || other.Kind != 0 || other.Age >= other.Life * .7f || other.View == null) continue;
+                    float halfWide = .55f * (size * digits + other.Scale * other.View.text.Length) * .5f, halfTall = .41f * (size + other.Scale) * .5f; // calibrated on the old .9 x .32 box for two ordinary hits
+                    if (Mathf.Abs(other.Position.x - number.Position.x) < halfWide && Mathf.Abs(other.Position.y - number.Position.y) < halfTall) { crowded = true; break; }
+                }
+                if (!crowded) break;
+                number.Position += Vector2.up * .44f * size;
+            }
+            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
+            number.Age = 0f;
+            number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
             number.Scale = size;
             float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
             number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);

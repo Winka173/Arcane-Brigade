@@ -141,7 +141,8 @@ namespace ArcaneBrigade
         {
             const float w = 290, h = 300;
             float x = at.x < PanelRect.center.x ? at.x + 40 : at.x - 40 - w;
-            return new Rect(x, Mathf.Clamp(at.y - h * .5f, PanelRect.y + 64, PanelRect.yMax - h - 8), w, h);
+            // never over the branch tabs (they end 30 px under the tree area's top): the card starts below them
+            return new Rect(x, Mathf.Clamp(at.y - h * .5f, TreeArea.y + 38, PanelRect.yMax - h - 8), w, h);
         }
 
         private void Lantern(LampNode n, Rect tree, Rect card, PlayerProfile profile, float t)

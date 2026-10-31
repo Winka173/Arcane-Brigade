@@ -25,7 +25,7 @@ namespace ArcaneBrigade
 
         /// <summary>True while the simulation is paused (pause menu, details, focus loss). Set every frame by ArcadeMusic.SetPhase.</summary>
         public static bool SimulationPaused { get; set; }
-        private float nextCosmetic;
+        private float nextCosmetic, nextAttack; // attacks have their own lane, never waiting behind coins and deaths
         private float nextImpact;      // hits, kills and explosions have their own lane, so attack sounds never silence them
         private float coinStreakAt = -10;
         private int coinStreak;
@@ -320,7 +320,9 @@ namespace ArcaneBrigade
             if (nextById.TryGetValue(def.id, out float until) && now < until) { if (!danger) DroppedCosmeticCues++; return true; }
             bool choreography = def.id.StartsWith("shop.carpet.") || def.id.StartsWith("shop.keeper.") || def.id.StartsWith("up.ally.") || def.id.StartsWith("up.star") || def.id.StartsWith("up.merge");
             bool impact = !danger && !ui && IsImpact(def.id);
-            if (!choreography && now < (danger ? nextDanger : ui ? nextInterface : impact ? nextImpact : nextCosmetic)) { if (!danger) DroppedCosmeticCues++; return true; }
+            // requirement 31/10/2026: with fewer friends in the brigade every swing and shot should be heard
+            bool attack = !danger && !ui && !impact && (def.id.StartsWith("cmb.swing") || def.id.StartsWith("wpn."));
+            if (!choreography && now < (danger ? nextDanger : ui ? nextInterface : impact ? nextImpact : attack ? nextAttack : nextCosmetic)) { if (!danger) DroppedCosmeticCues++; return true; }
             string group = null;
             if (!danger && !ui)
             {
@@ -353,6 +355,7 @@ namespace ArcaneBrigade
             if (danger) nextDanger = now + 0.06f;
             else if (ui) nextInterface = now + 0.04f;
             else if (impact) nextImpact = now + ImpactInterval(reduced);
+            else if (attack) nextAttack = now + (reduced ? .03f : .012f);
             else nextCosmetic = now + CosmeticInterval(reduced);
             AudioSource voice = voices[voiceIndex];
             voice.Stop();
@@ -397,11 +400,12 @@ namespace ArcaneBrigade
             float interval;
             switch (group)
             {
-                case "cmb.swing": interval = 0.045f; break;
+                case "cmb.swing": interval = 0.025f; break;
                 case "cmb.hit": interval = 0.03f; break;
                 case "enemy.die": interval = 0.035f; break;
                 case "loot.coin": interval = 0.03f; break;
                 case "wpn.cast": case "sig": case "wpn": interval = 0.06f; break;
+                case "wpn.gun": case "wpn.bow": interval = 0.03f; break;
                 default: interval = 0.03f; break;
             }
             return interval * (reduced ? 2f : 1f);

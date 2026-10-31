@@ -228,7 +228,7 @@ namespace ArcaneBrigade
             string left = pieces != null && museumPick >= 0 && museumPick < pieces.Count
                 ? (pieces[museumPick].Seen ? pieces[museumPick].Name : "Not found yet")
                 : found + " found · next gift at " + (found / MetaProgression.MuseumStep + 1) * MetaProgression.MuseumStep;
-            GUI.Label(new Rect(head.x, head.y + 4, head.width - 230, 26), left, body);
+            GUI.Label(new Rect(head.x, head.y + 4, head.width - 230, 34), left, body);
             Rect gift = new Rect(head.xMax - 220, head.y, 28, 28);
             if (!PaintedStatIcons.TryDraw(gift, ItemEffect.Damage)) RunHud.Sprite(gift, MetaIcons.Station(MetaStation.Museum, true));
             GUI.Label(new Rect(gift.xMax + 4, head.y + 2, 70, 28), "+" + damage + "%", number);
@@ -273,7 +273,7 @@ namespace ArcaneBrigade
                 GUI.color = keep;
                 if (!won) ArcadeSkin.Lock(new Vector2(r.x + 32, r.y + 30), 22, new Color(.86f, .7f, .42f, .9f));
                 Ink(won ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
-                GUI.Label(new Rect(r.x + 64, r.y + 4, r.width - 74, 26), name, body);
+                GUI.Label(new Rect(r.x + 64, r.y + 4, r.width - 74, 34), name, body);
                 GUI.Label(new Rect(r.x + 64, r.y + 28, r.width - 74, 24), won ? line : line + " to earn it", small);
                 Nav(r, false);
             }
@@ -314,7 +314,7 @@ namespace ArcaneBrigade
                 }
                 PactIcon(seal, i, catalog);
                 Ink(ArcadeSkin.KitCream);
-                GUI.Label(new Rect(r.x + 86, r.y + 12, r.width - 270, 26), pact.Name, body);
+                GUI.Label(new Rect(r.x + 86, r.y + 12, r.width - 270, 34), pact.Name, body);
                 GUI.Label(new Rect(r.x + 86, r.y + 38, r.width - 270, 24), pact.Line, small);
                 GUI.Label(new Rect(r.xMax - 172, r.y + 20, 90, 28), "×" + pact.Reward.ToString("0.00"), number);
                 ArcadeSkin.CheckBox(new Rect(r.xMax - 66, r.y + 15, 38, 38), on);

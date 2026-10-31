@@ -273,9 +273,11 @@ namespace ArcaneBrigade
                         Rect plate = new Rect(960 - cw * 1.5f - gap + i * (cw + gap), top - (lit ? 10 : 0), cw, ch); // the chosen card lifts
                         Matrix4x4 plateMatrix = GUI.matrix; Color plateColour = GUI.color;
                         LivingUI.Pop(Time.unscaledTime - roomAt - .12f - i * .06f, plate.center); // the three cards land one after another
+                        // the chosen card: an aura behind it and a little larger; the others step back into the dark
+                        if (lit) { ArcadeSkin.SelectedAura(plate, new Color(1f, .78f, .38f)); ArcadeSkin.ScaleAround(Vector2.one * 1.04f, plate.center); }
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r * .7f, keep.g * .7f, keep.b * .75f, keep.a * .7f);
+                        else if (selected >= 0 && !lit) GUI.color = new Color(keep.r * .72f, keep.g * .72f, keep.b * .76f, keep.a);
                         if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
-                        if (lit) ArcadeSkin.RunningLight(plate, Time.unscaledTime, new Color(1f, .82f, .45f));
                         Vector2 socket = new Vector2(plate.center.x, plate.y + ch * CardSocketV);
                         float hole = cw * CardSocketD;
                         DrawFitted(new Rect(socket.x - hole * .4f, socket.y - hole * .4f, hole * .8f, hole * .8f), c.Icon != null ? c.Icon : SecretArt.Relic(s.Kind));
@@ -283,7 +285,8 @@ namespace ArcaneBrigade
                         if (plateTitle == null) Row(Rect.zero, null, null, null, CodeTone.Cream);
                         Color titleTone = plateTitle.normal.textColor; plateTitle.normal.textColor = cardArt != null ? ArcadeSkin.KitInk : titleTone;
                         int titleSize = plateTitle.fontSize; plateTitle.fontSize = 30;
-                        GUI.Label(new Rect(plate.x + padX, y0 - 2, cw - padX * 2, 40), c.Title, plateTitle);
+                        // one line, shrinking to fit the card (a long title wrapped into two cut lines)
+                        ArcadeSkin.KitCaption(new Rect(plate.x + padX, y0 - 2, cw - padX * 2, 40), c.Title, plateTitle.normal.textColor, plateTitle, true);
                         plateTitle.fontSize = titleSize; plateTitle.normal.textColor = titleTone;
                         float rowsTop = y0 + (c.Enabled ? 40 : 70), rowH = (y1 - rowsTop) / 3; // a closed deal says so under its title
                         // a two-line reward gets the room it needs: the GET row takes 40% (its last line ran onto the card's foot)
@@ -350,16 +353,24 @@ namespace ArcaneBrigade
             ArcadeSkin.Pedestal(stand, Time.unscaledTime); // velvet cushion on a brass stand, drawn in code
             ItemDefinition relic = owner.Content.Item(s.TargetItem);
             if (relic?.Icon != null) DrawSprite(ArcadeSkin.PedestalSeat(stand), relic.Icon);
-            GUI.Label(new Rect(box.x - 80, 418, box.width + 160, 36), (relic?.Name ?? "No relic to offer") + (owner.Session.SecretTargets.Count > 1 ? "  ·  tap to change" : ""), label);
-            if (!blocked && owner.Session.SecretTargets.Count > 1 && GUI.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
+            // the relic's name on a walnut tag under the stand; with more than one to offer, a CHANGE button beside it opens the picker
+            bool many = owner.Session.SecretTargets.Count > 1;
+            string name = relic?.Name ?? "No relic to offer";
+            float nameWidth = Mathf.Clamp(label.CalcSize(new GUIContent(name)).x + 48, 160, 340);
+            Rect nameTag = new Rect(box.center.x - nameWidth * .5f - (many ? 76 : 0), 420, nameWidth, 40);
+            ArcadeSkin.Tag(nameTag, name, CodeTone.Walnut, label, ArcadeSkin.KitCream);
+            if (many && ArcadeSkin.Button(new Rect(nameTag.xMax + 12, 416, 140, 48), "CHANGE", KitButton.Secondary) && !blocked) OpenPicker(1);
+            if (!blocked && many && GUI.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
                 Rect friend = new Rect(1130, 300, 300, 100);
                 ArcadeSkin.Plate(friend, ArcadeSkin.Accent);
                 UnitDefinition unit = owner.Content.Unit(s.TargetUnit);
                 if (unit?.Body != null) DrawSprite(new Rect(friend.x + 10, friend.y + 10, 80, 80), unit.Body);
-                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), (unit != null ? RunUICopy.UnitName(unit) : "A friend") + "\ntap to change", label);
-                if (!blocked && owner.Session.State.Roster.Count > 1 && GUI.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
+                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), unit != null ? RunUICopy.UnitName(unit) : "A friend", label);
+                bool others = owner.Session.State.Roster.Count > 1;
+                if (others && ArcadeSkin.Button(new Rect(friend.center.x - 70, friend.yMax + 8, 140, 48), "CHANGE", KitButton.Secondary) && !blocked) OpenPicker(2);
+                if (!blocked && others && GUI.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
             }
         }
         /// <summary>One LOSE (red) or GET (green) row: a coloured tag, a picture when there is one, one short line.</summary>

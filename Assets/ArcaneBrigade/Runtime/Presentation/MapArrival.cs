@@ -52,10 +52,7 @@ namespace ArcaneBrigade
             MapTheme map = MapIdentity.For(owner.Session.State.Wave);
             // below the tip zone at the top middle (UI standard: HUD zones), so a tip and the map's card never print over each other
             ArcadeSkin.TitleBanner(new Rect(560, 300 + rise, 800, 72), MapIdentity.Name(map).ToUpperInvariant(), banner);
-            Rect plate = new Rect(580, 386 + rise, 760, 96);
-            ArcadeSkin.Ticket(plate, ArcadeSkin.Paper, ArcadeSkin.Accent);
-            line.normal.textColor = new Color(.22f, .16f, .1f);
-            GUI.Label(new Rect(plate.x + 30, plate.y + 10, plate.width - 60, plate.height - 20), Tagline(map), line); // two lines fit inside the ticket's rim
+            // only the name: the map's first tip ribbon (just above) already says what is new here; a line under the name said it twice
             GUI.color = keep;
             GUI.matrix = previous;
         }

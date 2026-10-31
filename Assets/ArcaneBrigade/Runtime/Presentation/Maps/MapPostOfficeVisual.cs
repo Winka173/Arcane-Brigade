@@ -93,7 +93,8 @@ namespace ArcaneBrigade
             float clock = still ? 0 : t;
             // the draught itself: long streaks racing across the whole room
             Material sheet = sparse ? null : MapWaitingRoomLayer.Shader("MapPostOfficeWind");
-            bool shaded = layer.Quad(sheet, centre, new Vector2(halfW * 2.3f, halfH * 2.3f), 0, new Color(1f, .97f, .9f, calm ? .2f : .32f), MapWaitingRoomLayer.WindOrder, clock, 3, new Vector4(wind.x, wind.y, blow, 0));
+            // requirement 31/10/2026: a smaller, lighter wind - a band across the middle, not the whole room
+            bool shaded = layer.Quad(sheet, centre, new Vector2(halfW * 1.5f, halfH * 1.1f), 0, new Color(1f, .97f, .9f, calm ? .12f : .18f), MapWaitingRoomLayer.WindOrder, clock, 3, new Vector4(wind.x, wind.y, blow, 0));
             int streaks = shaded ? 2 : sparse ? 3 : 6; // requirement 26/10/2026: a lighter draught
             for (int k = 0; k < streaks; k++)
             {
@@ -303,7 +304,12 @@ namespace ArcaneBrigade
             foreach (MapEnvironmentState.PostPlaneStrike hit in s.PostPlaneHits)
             {
                 float p = (t - hit.At) / .4f;
-                if (p >= 0 && p < 1) ink.Draw(ArsenalInk.Moment.PaperScraps, hit.Position + Vector2.up * .4f, dir, p, .45f, hit.At * 31 % 360);
+                if (p >= 0 && p < 1)
+                {
+                    // the burst: a warm flash the size of its reach and a spray of paper
+                    ink.Draw(ArsenalInk.Moment.PaperScraps, hit.Position + Vector2.up * .4f, dir, p, .9f, hit.At * 31 % 360);
+                    ink.Wash(hit.Position, MapEnvironmentRules.PostPlaneBurst * (.4f + .6f * p), new Color(1f, .82f, .55f), .5f * (1 - p));
+                }
             }
         }
     }

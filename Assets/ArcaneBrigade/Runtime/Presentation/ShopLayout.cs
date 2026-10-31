@@ -247,7 +247,7 @@ namespace ArcaneBrigade
         private void ReserveRoom()
         {
             // screen furniture (1920x1080 HUD rects converted at the fixed shop framing)
-            Reserve("hud:wallet+note", Gui(0, 0, 385, 300));
+            Reserve("hud:wallet+note", Gui(0, 0, 410, 430));
             Reserve("hud:wave", Gui(380, 18, 290, 64));
             Reserve("hud:bonds", Gui(1380, 10, 530, 110)); // the row of bond tiles across the top right
             Reserve("hud:continue", Gui(720, 925, 480, 110));

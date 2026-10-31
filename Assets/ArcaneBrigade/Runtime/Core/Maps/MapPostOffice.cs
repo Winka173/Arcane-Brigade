@@ -75,7 +75,9 @@ namespace ArcaneBrigade
         public const float ParcelBurstRadius = 2.8f, ParcelBurstHits = 4f;
         public const int PostParcelGoldMin = 10, PostParcelGoldMax = 25;
         // paper planes: every 18 s, 8-12 along a lane 1.5 wide, warned 1.5 s; 50% of the hero hit each, at most 3 per enemy a pass
-        public const float PostPlaneEvery = 18, PostPlaneWarn = 1.5f, PostPlaneHalf = .75f, PostPlaneSpeed = 12, PostPlaneGap = .14f, PostPlaneSpread = .42f, PostPlaneHit = .5f, PostLaneHalfLength = 13;
+        // requirement 31/10/2026: slower (5 units/s), flying the wind's way, and each strike bursts over 1.3 units
+        public const float PostPlaneBurst = 1.3f, PostPlaneBurstShare = .6f;
+        public const float PostPlaneEvery = 18, PostPlaneWarn = 1.5f, PostPlaneHalf = .75f, PostPlaneSpeed = 5, PostPlaneGap = .3f, PostPlaneSpread = .42f, PostPlaneHit = .5f, PostLaneHalfLength = 13;
         public const int PostPlanesMin = 8, PostPlanesMax = 12, PostPlaneHitsPerEnemy = 3;
     }
 
@@ -343,7 +345,12 @@ namespace ArcaneBrigade
                     if (now < 0 || before > length || along < before - .3f || along > now + .3f || !s.PostPlaneVictims[i].Add(u.Id)) continue;
                     struck++;
                     ApplyDamage(u, hit, Faction.Champion, "Paper plane", dir, cause: postPlaneCause);
-                    s.PostPlaneHits.Add(new MapEnvironmentState.PostPlaneStrike { Position = u.Position, At = t });
+                    // the plane bursts where it strikes: everything else close by takes a share
+                    Vector2 burst = u.Position;
+                    foreach (UnitState o in RoomUnitsSnapshot())
+                        if (o != u && o.Alive && o.Faction == Faction.Enemy && (o.Position - burst).sqrMagnitude <= MapEnvironmentRules.PostPlaneBurst * MapEnvironmentRules.PostPlaneBurst)
+                            ApplyDamage(o, hit * MapEnvironmentRules.PostPlaneBurstShare, Faction.Champion, "Paper plane", (o.Position - burst).normalized, cause: postPlaneCause);
+                    s.PostPlaneHits.Add(new MapEnvironmentState.PostPlaneStrike { Position = burst, At = t });
                     if (s.PostPlaneHits.Count > 24) s.PostPlaneHits.RemoveAt(0);
                 }
                 s.PostPassHits[u.Id] = struck;
@@ -362,7 +369,9 @@ namespace ArcaneBrigade
                     if (o.Alive && o.Faction == Faction.Enemy && (o.Position - u.Position).sqrMagnitude < 4) near++;
                 if (near > best) { best = near; centre = u.Position; }
             }
-            float angle = (MapNext(-32, 32) + (mapRandom.Next(2) == 0 ? 0 : 180)) * Mathf.Deg2Rad;
+            // the planes ride the paper wind: the lane runs the way it last blew (a little play either side)
+            Vector2 wind = s.PostWind.sqrMagnitude > 1e-4f ? s.PostWind.normalized : Vector2.right;
+            float angle = Mathf.Atan2(wind.y, wind.x) + MapNext(-8, 8) * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             s.PostLaneFrom = centre - dir * MapEnvironmentRules.PostLaneHalfLength; s.PostLaneTo = centre + dir * MapEnvironmentRules.PostLaneHalfLength;
         }

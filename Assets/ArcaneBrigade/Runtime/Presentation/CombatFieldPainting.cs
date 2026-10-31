@@ -84,28 +84,14 @@ namespace ArcaneBrigade
             {
                 Vector2 start = field.Start, end = field.Position, along = (end - start).sqrMagnitude > .001f ? (end - start).normalized : Vector2.right, side = Vector2.Perpendicular(along);
                 float reach = Vector2.Distance(start, end) * (.25f + .75f * gather);
-                var spine = InkCanvas.Line(start, start + along * reach, r * .25f, 0, true, seed);
-                ink.GlowRibbon(spine, 1, 0, .16f, A(Night, .75f));
-                ink.GlowRibbon(InkCanvas.Line(start, start + along * reach, r * .25f, 0, true, seed), 1, 0, .05f, A(Crimson, .9f * flicker));
-                if (!sparse) for (int i = 1; i < 6; i++)
-                {
-                    float f = i / 6f; if (f * Vector2.Distance(start, end) > reach) break;
-                    Vector2 root = start + along * f * Vector2.Distance(start, end), tip = root + side * ((i % 2) * 2 - 1) * r * .9f;
-                    ink.GlowRibbon(InkCanvas.Line(root, tip, .06f, 0, true, seed + i), 1, 0, .045f, A(Crimson, .8f * flicker));
-                    ink.Sector(tip, .07f, 0, 360, A(Ember, .85f * flicker * gather), A(Ember, 0));
-                }
+                // the lane: one uniform band growing along it as the blow gathers - no crack spine, no branches
+                Color band = A(Crimson, .35f + .25f * gather);
+                ink.Band(start, start + along * reach, r, band, band);
                 ink.Commit(); inked = true;
                 return;
             }
-            int cracks = sparse ? 5 : 8;
-            for (int i = 0; i < cracks; i++)
-            {
-                float a = (i * 360f / cracks + seed * 7 + Mathf.Sin(i * 3.1f) * 14) * Mathf.Deg2Rad, len = r * (.35f + .65f * gather) * (.8f + .2f * ((i * 37) % 5) / 4f);
-                Vector2 tip = c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * len;
-                ink.GlowRibbon(InkCanvas.Line(c, tip, len * .12f, 0, true, seed + i), 1, 0, .1f, A(Night, .7f));
-                ink.GlowRibbon(InkCanvas.Line(c, tip, len * .12f, 0, true, seed + i), 1, 0, .04f, A(Crimson, .9f * flicker));
-                ink.Sector(tip, .06f + .05f * gather, 0, 360, A(Ember, .9f * flicker * gather), A(Ember, 0));
-            }
+            // the area: one uniform fill that deepens as the blow gathers - no cracks, no lines inside it
+            ink.Ellipse(c, r, r, A(Crimson, .35f + .25f * gather), A(Crimson, .35f + .25f * gather));
             ink.Commit(); inked = true;
         }
         private static readonly Color Ember = new Color(1f, .42f, .16f), Hot = new Color(1f, .86f, .55f), Crimson = new Color(.62f, .06f, .12f), Night = new Color(.2f, .05f, .2f);

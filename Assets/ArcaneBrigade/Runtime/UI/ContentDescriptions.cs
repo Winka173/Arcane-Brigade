@@ -274,16 +274,16 @@ namespace ArcaneBrigade
             _=>Mechanic(m)
         };
         public static string ShortSignature(SignatureRelicKind role)=>role switch {
-            SignatureRelicKind.HarvestReceipt=>"With a bell weapon nearby, coins quicken its beat.",
-            SignatureRelicKind.ReflectiveInk=>"Stamps add 2 marks; marks last 65% as long.",
-            SignatureRelicKind.CarbonRibbon=>"Stamp bursts pull in coins; bell pulses expose.",
-            SignatureRelicKind.OfficeLens=>"Crits on exposed enemies hit 25-50% harder.",
-            SignatureRelicKind.TeaCoaster=>"Tea trails 40% wider, 20% weaker.",
-            SignatureRelicKind.ScratchRecord=>"Music-box hits echo; bells hit marked enemies harder.",
-            SignatureRelicKind.TreasureRibbon=>"Chests heal 3 HP and power up bow hits for 4s.",
-            SignatureRelicKind.PatchSpring=>"Arena toys charge themselves every 3s.",
-            SignatureRelicKind.ThermalInk=>"Hot trails strike marked enemies.",
-            SignatureRelicKind.RepairCoupon=>"Arena-toy kills heal 1 HP.",
+            SignatureRelicKind.HarvestReceipt=>"Friends who fight with a bell: each coin you pick up makes it ring sooner.",
+            SignatureRelicKind.ReflectiveInk=>"Friends who fight with a stamp: each hit marks a foe twice, but marks fade sooner.",
+            SignatureRelicKind.CarbonRibbon=>"Stamp hits pull nearby coins to you; bell rings leave foes exposed (they take more damage).",
+            SignatureRelicKind.OfficeLens=>"Critical hits on exposed foes deal 25-50% more damage.",
+            SignatureRelicKind.TeaCoaster=>"Friends who fight with a teapot: their tea puddles are 40% wider but 20% weaker.",
+            SignatureRelicKind.ScratchRecord=>"Friends who fight with a music box: every hit echoes once more. Bell rings hit marked foes harder.",
+            SignatureRelicKind.TreasureRibbon=>"Opening a chest heals 3 HP, and bow shots hit harder for 4s.",
+            SignatureRelicKind.PatchSpring=>"Toys in the arena (bells, carts, bottles) charge up by themselves every 3s.",
+            SignatureRelicKind.ThermalInk=>"Hot trails left by your weapons burn marked foes for extra damage.",
+            SignatureRelicKind.RepairCoupon=>"Each foe a toy in the arena defeats heals the hero 1 HP.",
             _=>Signature(role)
         };
         public static string Signature(SignatureRelicKind role)=>role switch {

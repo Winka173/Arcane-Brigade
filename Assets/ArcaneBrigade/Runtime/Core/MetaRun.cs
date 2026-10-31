@@ -42,7 +42,14 @@ namespace ArcaneBrigade
                     WeaponDefinition planned = HeroLoadout.Heroes.TryGetValue(champion.Id, out HeroLoadout.Entry plan) ? catalog.Weapon(plan.FriendWeapon) : null;
                     MetaAddFriend(meta.AltStarter, planned);
                 }
-                if (!string.IsNullOrEmpty(meta.StartFriend) && catalog.Unit(meta.StartFriend) != null && !OwnsCompanionSpecies(meta.StartFriend)) MetaAddFriend(meta.StartFriend, null);
+                // requirement 31/10/2026: every hero starts with no more than one friend: the Cradle's friend comes instead of the
+                // usual starter, never beside it
+                if (!string.IsNullOrEmpty(meta.StartFriend) && catalog.Unit(meta.StartFriend) != null && !OwnsCompanionSpecies(meta.StartFriend))
+                {
+                    foreach (RosterEntry usual in State.Roster) State.AcquiredVariants.RemoveAll(v => v.UnitId == usual.UnitId && v.WeaponId == usual.WeaponId && v.Tier == usual.Tier);
+                    State.Roster.Clear();
+                    MetaAddFriend(meta.StartFriend, null);
+                }
             }
             // the Postbox's keepsake relic rides along from the first wave
             if (!string.IsNullOrEmpty(meta.Keepsake) && catalog.Item(meta.Keepsake) != null && StackCount(meta.Keepsake) == 0) State.Items.Add(new ItemStack { Id = meta.Keepsake, Count = 1 });

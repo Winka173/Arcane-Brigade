@@ -681,12 +681,13 @@ namespace ArcaneBrigade
                 float w = Mathf.Min(room, Need());
                 if (w < 110) { cardChip.fontSize = size; return; }
                 Rect chip = new Rect(cx, rowY, w, H);
-                if (lit) ArcadeSkin.BlinkStrong(chip, Time.unscaledTime); // a bond this friend lights blinks, strongly
+                // a bond this friend lights (review 31/10/2026: too faint): a gold aura breathing behind the chip and two sparks
+                // running round its rounded outline
+                if (lit) ArcadeSkin.SelectedAura(chip, new Color(1f, .8f, .35f), 60, true); // under the chip, round at its ends
                 ArcadeSkin.Chip(chip, lit); // the painted walnut chip with its icon socket
-                if (lit) ArcadeSkin.BlinkOver(chip, Time.unscaledTime);
-                if (lit) ArcadeSkin.RunningLight(chip, Time.unscaledTime, ArcadeSkin.Gold, .8f); // COMBO, a bond this friend lights
+                if (lit) ArcadeSkin.OrbitSparks(chip, new Color(1f, .85f, .45f));
                 if (icon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), icon); // on the socket's measured centre
-                cardChip.normal.textColor = lit ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .55f + .45f * ArcadeSkin.BuyBlink(Time.unscaledTime)) : ArcadeSkin.Cream;
+                cardChip.normal.textColor = lit ? new Color(1f, .9f, .55f) : ArcadeSkin.Cream; // lit words stay bright (a blink dimmed them below the unlit ones)
                 // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
                 float middle = ArcadeSkin.ChipIconRect(chip).center.y + H * .03f; // the words centre on the socket's line (they sat too low and too far right)
                 GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail, H), label, cardChip);
@@ -1029,7 +1030,7 @@ namespace ArcaneBrigade
                 if (GUI.Button(new Rect(r.x, r.y, r.width, tile + below), GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
                 if (hover || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
                 {
-                    tooltip = bond.Name + " · " + count + "/" + bond.NextThreshold(count) + "\n" + RunUICopy.BondDescription(bond, count);
+                    tooltip = RunUICopy.BondDescription(bond, count); // its first line names the bond and its level, the second the count
                     tipFor = r;
                 }
             }
@@ -1050,10 +1051,16 @@ namespace ArcaneBrigade
             if (tooltip != null)
             {
                 // under the row, never off the screen's right edge
-                float height = GlossaryUI.Height(tooltip, small, 385) + 24, x = Mathf.Min(tipFor.x, 1900 - 420);
-                Rect box = new Rect(x, card.yMax + 10, 420, height);
-                if (!ArcadeSkin.KitSliced(box, "Panels/Tooltip", .4f)) Fill(box, Panel);
-                GlossaryUI.Text(new Rect(box.x + 18, box.y + 12, 384, height - 24), tooltip, small);
+                // wide enough that a stat and its value share a line (at 420 the value wrapped alone)
+                const float TipWidth = 560;
+                float height = GlossaryUI.Height(tooltip, small, TipWidth - 44) + 32, x = Mathf.Min(tipFor.x, 1900 - TipWidth);
+                Rect box = new Rect(x, card.yMax + 10, TipWidth, height);
+                // dark ink on the painted cream tooltip (cream words on cream paper could not be read); cream on the code panel
+                bool paper = ArcadeSkin.KitSliced(box, "Panels/Tooltip", .4f);
+                if (!paper) Fill(box, Panel);
+                small.normal.textColor = paper ? ArcadeSkin.KitInk : ArcadeSkin.Cream;
+                GlossaryUI.Text(new Rect(box.x + 22, box.y + 16, TipWidth - 44, height - 32), tooltip, small);
+                small.normal.textColor = ArcadeSkin.Cream;
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }

@@ -147,6 +147,15 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(1.2f); yield return Shot("Item04_ShopHintAndTip");
             yield return Focus(0); yield return Shot("Item03_11_RelicCard_GivesCosts");
             yield return Focus(2); yield return Shot("Item03_11_FriendCard"); yield return Shot("Item26_FriendCard_RoleCombo");
+            // 36: a bond's tooltip open (tapped), to read its words on the painted paper
+            string firstBond = owner.Session.BondCounts.Keys.FirstOrDefault(k => owner.Session.BondCounts[k] > 0);
+            if (firstBond != null)
+            {
+                typeof(RunHud).GetField("selectedBond", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, firstBond);
+                typeof(RunHud).GetField("bondTooltipUntil", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, Time.unscaledTime + 30);
+                yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item36_BondTooltip");
+                typeof(RunHud).GetField("bondTooltipUntil", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, -1f);
+            }
             // 12/25: the refresh station: its price (about 8% of the shop's offers) and the new-friend pace
             var refresh = owner.Shop.Stations.FirstOrDefault(s => s.Action == "REROLL");
             if (refresh != null) { yield return Stand(refresh.Position + new Vector2(0, -.3f)); yield return Shot("Item12_25_RefreshAndFriendPace"); }

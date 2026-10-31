@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>Where the "new page" note sits on the 1920x1080 HUD (under the wallet and the lantern row).</summary>
-        public static readonly Rect NoticeRect = new Rect(22, 232, 248, 56);
+        public static readonly Rect NoticeRect = new Rect(22, 368, 248, 56); // under the hero gauge plaque (it covered the plaque's name)
         private bool NoticeAllowed => !open && owner?.Session != null && owner.Simulation != null && Unread > 0 && !owner.PresentationPaused && !owner.TransitionPending && !owner.HallExitPending && !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible && !owner.Details.Open && !owner.MenuConfirmation
             && (owner.Session.State.Phase == SessionPhase.Shop || owner.Session.State.Phase == SessionPhase.Combat);
         public bool NoticeVisible => NoticeAllowed;

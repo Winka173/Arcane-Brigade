@@ -1098,7 +1098,9 @@ namespace ArcaneBrigade
                 var owned = units.FindAll(unit => OwnsCompanionSpecies(unit.Id) && CanStarUp(unit.Id)
                     && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && o.Id == unit.Id));
                 bool owed = NewRecruitsRemaining > 0 && index == 0 && fresh.Count > 0;
-                bool copySlot = !owed && copyRoll && owned.Count > 0 && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && OwnsCompanionSpecies(o.Id));
+                // requirement 31/10/2026: a shelf never shows a new friend and a star-up copy together; a new friend comes first
+                bool newOnShelf = NewRecruitsRemaining > 0 && fresh.Count > 0 || State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && !OwnsCompanionSpecies(o.Id));
+                bool copySlot = !owed && !newOnShelf && copyRoll && owned.Count > 0 && !State.Offers.Exists(o => !o.Sold && o.Kind == OfferKind.Companion && OwnsCompanionSpecies(o.Id));
                 var available = owed ? fresh : copySlot ? owned : newRecruit ? fresh : new List<UnitDefinition>();
                 bool recruit = available.Count > 0 && (copySlot || owed || items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 var itemChoices = index == 1 && foundation.Count > 0 ? foundation : items;

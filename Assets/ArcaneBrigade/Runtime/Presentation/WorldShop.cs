@@ -829,13 +829,16 @@ namespace ArcaneBrigade
                 if (station.Offer != null)
                 {
                     bool merge = ShopMergePreview.Ready(owner.Session, station.Offer);
-                    string fit = merge ? null : owner.Session.BuildFit(station.Offer, out fitIcon);
+                    // requirement 31/10/2026: a friend's tag says plainly whether it is a NEW friend or a copy that raises stars
+                    bool friendOffer = station.Offer.Kind == OfferKind.Companion, starUp = friendOffer && owner.Session.OwnsCompanionSpecies(station.Offer.Id);
+                    string fit = merge ? null : friendOffer ? (starUp ? "STAR UP" : "NEW") : owner.Session.BuildFit(station.Offer, out fitIcon);
+                    if (friendOffer) fitIcon = null;
                     bool item = station.Offer.Kind == OfferKind.Item;
                     Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : owner.Content.Unit(station.Offer.Id).Rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(owner.Content.Unit(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
                     int mergeTier = merge ? ShopMergePreview.ProjectedTier(owner.Session, station.Offer) : 0;
                     float mergeWidth = 108 + mergeTier * 18;
                     Rect category = new Rect(point.x - (merge ? mergeWidth / 2 : fit != null ? 78 : 56), ticket.y - 35, merge ? mergeWidth : fit != null ? 156 : 112, 32); // tags sized for 22-unit words
-                    ArcadeSkin.Slant(category, fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
+                    ArcadeSkin.Slant(category, fit == "NEW" ? Color.Lerp(ArcadeSkin.Gold, Color.white, .15f) : fit == "STAR UP" ? Color.Lerp(ArcadeSkin.Teal, Color.white, .1f) : fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
                     if (merge)
                     {
                         GUI.Label(new Rect(category.x + 3, category.y, 92, category.height), "MERGE", categoryStyle);
@@ -848,7 +851,8 @@ namespace ArcaneBrigade
                     {
                         // the build-fit badge: the bond it raises (or the relic itself) and a short word
                         if (fitIcon != null) RunHud.Sprite(new Rect(category.x + 8, category.y + 2, 22, 22), fitIcon);
-                        GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
+                        if (fitIcon != null) GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
+                        else GUI.Label(category, fit, categoryStyle);
                     }
                     else GUI.Label(category, item ? "RELIC" : "FRIEND", categoryStyle);
                 }

@@ -189,6 +189,8 @@ namespace ArcaneBrigade
                 if (wordStyles.Count > 32) wordStyles.Clear();
                 words = new GUIStyle(style) { wordWrap = false, clipping = TextClipping.Overflow, padding = new RectOffset(), margin = new RectOffset() }; wordStyles[style] = words;
             }
+            // the cached copy follows the style's current colour, size and font (a tooltip on cream paper set ink after the copy was made)
+            words.normal.textColor = style.normal.textColor; words.fontSize = style.fontSize; words.font = style.font; words.fontStyle = style.fontStyle;
             if (draw && words.font != null && Event.current.type == EventType.Repaint) words.font.RequestCharactersInTexture(text ?? "", words.fontSize, words.fontStyle);
             float line = Mathf.Max(style.lineHeight, style.fontSize * 1.25f);
             float horizontal = 0, vertical = 0, indent = 0; // indent: where a wrapped line starts (under the words after a lozenge)
@@ -293,6 +295,8 @@ namespace ArcaneBrigade
                 bool number = signedValue.IsMatch(word) || char.IsDigit(word[0]);
                 FontStyle measuredWordStyle = words.fontStyle; if (number) words.fontStyle = FontStyle.Bold;
                 float width = Measure(words, word) + icon + (entry == null ? 0 : 2); words.fontStyle = measuredWordStyle;
+                // a gap never opens a wrapped line (it read " a level"): a space that would wrap is the line break itself
+                if (word.Trim().Length == 0 && (horizontal == indent || horizontal + width > bounds.width)) { if (horizontal > indent) { horizontal = indent; vertical += line; } continue; }
                 if (horizontal > indent && horizontal + width > bounds.width) { horizontal = indent; vertical += line; }
                 if (draw && Seen(vertical))
                 {

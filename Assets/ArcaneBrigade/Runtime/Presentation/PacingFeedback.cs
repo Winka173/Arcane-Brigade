@@ -163,7 +163,7 @@ namespace ArcaneBrigade
                 float width = Mathf.Max(220, 28 + count * Tile + (count - 1) * Gap);
                 Rect paper = new Rect(anchor.x - width * 0.5f, anchor.y - 132 * unroll, width, 132 * unroll);
                 Color previous = GUI.color; GUI.color = new Color(1, 1, 1, alpha);
-                if (unroll > .3f) VisitorReceipt.Rays(paper.center, 150, age, ArcadeSkin.Gold); // the chest's prize held up to the light
+                if (unroll > .3f) ArcadeSkin.SelectedAura(paper, ArcadeSkin.Gold); // the chest's prize in a warm glow (the turning rays drew as white dashes)
                 ArcadeSkin.Ticket(paper, ArcadeSkin.Cream, ArcadeSkin.Gold);
                 if (unroll > 0.95f)
                 {

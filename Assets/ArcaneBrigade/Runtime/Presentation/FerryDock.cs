@@ -196,13 +196,16 @@ namespace ArcaneBrigade
                 UnitDefinition unit = owner.Content.Unit(id);
                 // the portrait in its round frame, the name (and stars) in ink on the paper below it
                 Rect slot = new Rect(card.x + (card.width - shown * 166) * .5f + i * 166 + 14, card.y + 222, 138, 232), frame = new Rect(slot.x + 10, slot.y, 118, 118);
+                bool chosen = rowing ? crossing == id : picked == id;
+                if (chosen) ArcadeSkin.RoundFocus(frame); // warm light behind the picked friend's frame, never over it
+                Matrix4x4 unscaled = GUI.matrix;
+                if (chosen) ArcadeSkin.ScaleAround(Vector2.one * 1.1f, frame.center); // the picked one stands a little bigger
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
-                names.normal.textColor = ink;
+                GUI.matrix = unscaled;
+                names.normal.textColor = chosen ? new Color(.62f, .27f, .05f) : ink; // and its name in warm brown
                 string stars = rowing ? "" : " " + RunSession.StarText(session.StarProgress(id)) + "★";
                 GUI.Label(new Rect(slot.x - 8, frame.yMax + 2, slot.width + 16, 100), (unit == null ? id : RunUICopy.UnitName(unit)) + stars, names);
-                bool chosen = rowing ? crossing == id : picked == id;
-                if (chosen) ArcadeSkin.WorldFocus(slot);
                 if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { if (rowing) crossing = id; else picked = id; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (!rowing && pages > 1)

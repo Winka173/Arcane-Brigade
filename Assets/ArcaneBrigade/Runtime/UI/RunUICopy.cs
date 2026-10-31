@@ -183,8 +183,8 @@ namespace ArcaneBrigade
         {
             int threshold = Mathf.Max(1, bond.Threshold);
             int level = bond.ActiveLevel(count);
-            string result = bond.Name + " · " + (level > 0 ? "Activated ×" + level : "Not active yet")
-                + "\n" + count + "/" + bond.NextThreshold(count) + " friends · every " + threshold + " friends adds a level"
+            string result = bond.Name + " · " + (level > 0 ? "level " + level : "not active yet")
+                + "\n" + count + "/" + bond.NextThreshold(count) + " friends · a new level every " + threshold
                 + "\n" + RunModifierRules.Line(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.Reward(count));
             foreach (BondThresholdBonus bonus in bond.ExtraBonuses ?? new BondThresholdBonus[0])
                 result += "\nAt " + bonus.Threshold + " friends: " + RunModifierRules.ValueText(bond.Effect, bond.BalanceReward(bonus.Value)) + " more" + (count >= bonus.Threshold ? " ✓" : "");

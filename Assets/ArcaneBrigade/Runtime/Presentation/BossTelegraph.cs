@@ -165,36 +165,13 @@ namespace ArcaneBrigade
         /// blow charges, a hot spark at each tip in the last beat.</summary>
         public static void Rim(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float seed, float alpha)
         {
+            // requirement (repeated 31/10/2026): a danger zone is one uniform solid fill - no cracks or lines inside it
             Ground(ink, c, rx, ry, charge, alpha);
-            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            int cracks = Mathf.Clamp(Mathf.RoundToInt((rx + ry) * 3), 6, 14);
-            float width = Mathf.Clamp((rx + ry) * .03f, .06f, .12f) * Mathf.Lerp(.85f, 1.2f, s), a = alpha * Mathf.Lerp(.6f, 1, s);
-            for (int i = 0; i < cracks; i++)
-            {
-                float ang = (seed + i * 360f / cracks + Mathf.Sin(i * 2.3f) * 10) * Mathf.Deg2Rad;
-                Vector2 dir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)), perp = new Vector2(-dir.y, dir.x), end = c + new Vector2(dir.x * rx, dir.y * ry) * Mathf.Lerp(.25f, .8f, s); // inside the area: nothing marks its edge
-                Vector2 prev = c + new Vector2(dir.x * rx, dir.y * ry) * .12f;
-                for (int k = 1; k <= 3; k++)
-                {
-                    Vector2 p = Vector2.Lerp(c, end, k / 3f) + perp * (((i * 7 + k * 3) % 5 - 2) * .025f * (rx + ry)) * (k < 3 ? 1 : 0);
-                    ink.FloorStroke(prev, p, Danger, width * (1.15f - k * .15f), 1, 0, a, 0, seed + i * 3 + k); prev = p;
-                }
-            }
         }
         /// <summary>A lane's edge as a jagged crack that runs its whole length as the blow charges (no dashes).</summary>
         public static void DashedLine(ArsenalInk ink, Vector2 a, Vector2 b, float charge, float seed, float alpha)
         {
-            float length = Vector2.Distance(a, b); if (length < .05f) return;
-            float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            Vector2 dir = (b - a) / length, perp = new Vector2(-dir.y, dir.x), reach = a + (b - a) * Mathf.Lerp(.3f, 1, s);
-            int pieces = Mathf.Clamp(Mathf.RoundToInt(length * 1.6f), 3, 12);
-            float width = Mathf.Lerp(.07f, .11f, s), alpha2 = alpha * Mathf.Lerp(.6f, 1, s);
-            Vector2 prev = a;
-            for (int i = 1; i <= pieces; i++)
-            {
-                Vector2 p = Vector2.Lerp(a, reach, i / (float)pieces) + perp * ((((int)seed + i * 7) % 5 - 2) * .04f) * (i < pieces ? 1 : 0);
-                ink.FloorStroke(prev, p, Danger, width, 1, 0, alpha2, 0, seed + i); prev = p;
-            }
+            // no crack along a lane any more: its solid band (LaneGround) says it all
         }
         /// <summary>An inked arrowhead at the far end of a lane.</summary>
         public static void Arrow(ArsenalInk ink, Vector2 tip, Vector2 direction, float size, float charge, float alpha)

@@ -340,4 +340,25 @@ Cắt 28 khối UI ở cỡ thật, ở hai độ phân giải là 1920×1080 v�
 - **Hiệu ứng chọn:** bỏ bốn góc ngoặc, thay bằng quầng sáng ấm, tia sáng chạy quanh viền và một dấu vàng nhún phía trên.
 - **Ảnh chụp toàn bộ:** đã chụp lại 79 màn, trong `Docs/Evidence/UIAudit/full_2026-10-31/`.
 
+## Soát lại toàn bộ (31/10/2026, lượt cuối)
+
+- **Tooltip bond:**
+  - Chữ mực đậm trên nền giấy (trước đây kem trên kem).
+  - Một dòng tên kèm cấp, một dòng số đếm; khung rộng 560 để chỉ số và giá trị cùng một dòng.
+  - Dòng xuống không còn bắt đầu bằng dấu cách.
+- **Trạng thái chọn:**
+  - Quầng sáng giờ là vành rỗng: không phủ lên món được chọn, sáng dần từ mép ra ngoài.
+  - Chip bond được thắp: chữ sáng cố định, không nhấp nháy mờ.
+  - Bến đò và Khách Cuối: ánh sáng tròn nằm sau khung chân dung.
+  - Hero select: thẻ được chọn sáng từ bên trong (quầng sau nhân vật, vũng sáng dưới chân, đốm bay); các hero khác hơi tối.
+- **Waiting Room:**
+  - Tên trạm ngắn ("MUSEUM", "WARDROBE"…) và không bao giờ chồng nhau: treo trên món đồ, nếu chỗ đã có thì treo bên dưới.
+  - Tiêu đề hàng không còn bị cắt chân chữ.
+- **Lamp Tree:** thẻ nút luôn nằm dưới hàng tab.
+- **Records:** tổng kết nằm trên một thẻ giấy bốn cột (đêm xa nhất, thắng, quái, độ khó); chỉ hiện tiêu đề mục khi có dữ liệu.
+- **Phòng bí mật:** tên món trên tag gỗ, kèm nút CHANGE (bỏ chữ "tap to change").
+- **Nút vàng:** luôn dùng font tiêu đề. Nút OK của thẻ phần thưởng trước đây rơi về Arial.
+- **Thẻ bản đồ:** chỉ còn tên bản đồ. Dòng mô tả đã bị bỏ vì lặp lại dải hướng dẫn ngay trên nó.
+- **Số sát thương:** phép kiểm tra chồng nhau tính theo cỡ chữ thật, nên các số chí mạng lớn không còn in đè lên nhau.
+
 > Ảnh chụp cũ nhắc trong tài liệu này đã được xóa. Toàn bộ màn hình mới nhất nằm trong `Docs/Evidence/UIAudit/full_2026-10-31/`.

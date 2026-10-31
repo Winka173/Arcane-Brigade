@@ -112,7 +112,7 @@ namespace ArcaneBrigade
             var majors = new List<int>(); var minors = new List<int>();
             for (int i = 0; i < lines.Count; i++) (lines[i].Id != null ? majors : minors).Add(i);
             float listH = 0;
-            foreach (int i in majors) listH += Mathf.Max(130, 58 + GlossaryUI.Height(Summary(lines[i]), cardLine, textW)) + 16;
+            foreach (int i in majors) listH += Mathf.Max(130, 76 + GlossaryUI.Height(Summary(lines[i]), cardLine, textW)) + 16;
             float h = 128 + listH + minors.Count * 50 + 120;
             Rect card = new Rect(960 - width * .5f, Mathf.Max(30, (1080 - h) * .5f), width, h);
             ItemRarity rarity = majors.Count > 0 ? Card(lines[majors[0]]).Rarity : ItemRarity.Uncommon;
@@ -133,14 +133,15 @@ namespace ArcaneBrigade
             foreach (int i in majors)
             {
                 Line l = lines[i]; ShopDescriptionCard shown = Card(l); string summary = Summary(l);
-                float rowH = Mathf.Max(130, 58 + GlossaryUI.Height(summary, cardLine, textW));
+                float rowH = Mathf.Max(130, 76 + GlossaryUI.Height(summary, cardLine, textW));
                 Matrix4x4 lm = GUI.matrix; Color lc = GUI.color;
                 LivingUI.Pop(Time.unscaledTime - shownAt - .12f - step++ * .08f, new Vector2(card.center.x, y + rowH * .5f)); // each lands a beat after the last
                 // the treasure is held up to the light: rays in its rarity's colour fan out and turn slowly behind it, it rises
                 // with a little bounce and settles (requirement 25/10/2026: like finding the sword)
                 float held = Time.unscaledTime - shownAt - .1f - (step - 1) * .08f;
                 Vector2 treasure = new Vector2(inner.x + 60, y + 60);
-                Rays(treasure, 150, held, RunModifierRules.RarityColor(shown.Rarity));
+                // a soft glow in its rarity's colour behind it (the turning rays drew as white dashes round it)
+                ArcadeSkin.SelectedAura(new Rect(treasure.x - 55, treasure.y - 55, 110, 110), RunModifierRules.RarityColor(shown.Rarity));
                 RarityDescriptionFrame.Backdrop(new Rect(inner.x, y, 120, 120), shown.Rarity, Time.unscaledTime);
                 float rise = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01(held / .45f), bounce = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01(held / .7f) * Mathf.PI) * 14;
                 float scale = PresentationSettings.ReducedMotion ? 1 : Mathf.Lerp(.55f, 1, Mathf.SmoothStep(0, 1, rise)) * (1 + .08f * Mathf.Sin(Mathf.Clamp01((held - .45f) / .35f) * Mathf.PI));
@@ -151,8 +152,10 @@ namespace ArcaneBrigade
                 body.normal.textColor = tag;
                 identityStyle ??= new GUIStyle(body) { fontSize = 22, wordWrap = false };
                 identityStyle.normal.textColor = body.normal.textColor;
-                GUI.Label(new Rect(inner.x + 150, y + 30, textW, 24), (l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
-                GlossaryUI.Text(new Rect(inner.x + 150, y + 58, textW, rowH - 58), summary, cardLine);
+                // a friend you already had comes as a star-up, not a new friend; under the name with a gap
+                bool starUp = l.Friend && l.Text.Contains(" now ");
+                GUI.Label(new Rect(inner.x + 150, y + 42, textW, 26), (starUp ? "STAR UP · " : l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
+                GlossaryUI.Text(new Rect(inner.x + 150, y + 76, textW, rowH - 76), summary, cardLine);
                 GUI.matrix = lm; GUI.color = lc;
                 y += rowH + 16;
             }

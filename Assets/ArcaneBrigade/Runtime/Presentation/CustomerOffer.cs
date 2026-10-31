@@ -100,13 +100,17 @@ namespace ArcaneBrigade
                 UnitDefinition unit = owner.Content.Unit(species[first + i]);
                 // the portrait in its round frame, the name in ink on the paper below it (no key numbers: phones have no keys)
                 Rect slot = new Rect(card.x + (card.width - shown * 166) * 0.5f + i * 166 + 20, card.y + 236, 126, 184), frame = new Rect(slot.x + 4, slot.y, 118, 118);
+                bool isPicked = picked == species[first + i];
+                if (isPicked) ArcadeSkin.RoundFocus(frame); // warm light behind the picked friend's frame, never over it
+                Matrix4x4 unscaled = GUI.matrix;
+                if (isPicked) ArcadeSkin.ScaleAround(Vector2.one * 1.1f, frame.center); // the picked one stands a little bigger
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
-                name.normal.textColor = new Color(.18f, .14f, .1f);
+                GUI.matrix = unscaled;
+                name.normal.textColor = isPicked ? new Color(.62f, .27f, .05f) : new Color(.18f, .14f, .1f); // and its name in warm brown
                 TextAnchor keepName = name.alignment; name.alignment = TextAnchor.UpperCenter;
                 GUI.Label(new Rect(slot.x - 10, frame.yMax + 4, slot.width + 20, 66), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name); // two full lines, never clipped
                 name.alignment = keepName;
-                if (picked == species[first + i]) ArcadeSkin.WorldFocus(slot);
                 if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = species[first + i]; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (pages > 1)
