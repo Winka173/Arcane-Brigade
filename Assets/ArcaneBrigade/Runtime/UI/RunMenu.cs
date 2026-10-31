@@ -385,6 +385,9 @@ namespace ArcaneBrigade
         // requirement 24/10/2026: the game opens on a loading screen - the night, the lamp lighting a row of lanterns one by one under
         // the name - then fades into the menu (once per launch; Reduced Motion shortens it to a moment)
         private static float bootStarted = -1; private static bool booted;
+        // each lamp's light layer on the 1920x1080 lane painting (x, y, width, height) and its lantern head
+        private static readonly Vector4[] LaneGlows = { new Vector4(0, 501, 185, 456), new Vector4(21, 319, 277, 692), new Vector4(137, 437, 308, 636), new Vector4(254, 97, 361, 983), new Vector4(389, 299, 421, 781), new Vector4(536, 169, 483, 911), new Vector4(731, 65, 580, 1015), new Vector4(941, 0, 483, 1080) };
+        private static readonly Vector2[] LaneHeads = { new Vector2(70, 549), new Vector2(164, 539), new Vector2(289, 516), new Vector2(436, 482), new Vector2(601, 436), new Vector2(777, 371), new Vector2(1011, 284), new Vector2(1275, 195) };
         private void DrawBootLoading()
         {
             if (booted) return;
@@ -396,38 +399,33 @@ namespace ArcaneBrigade
             GUI.color = new Color(.035f, .04f, .07f, 1 - fade);
             GUI.DrawTexture(new Rect(-2000, -1200, 5280, 3120), Texture2D.whiteTexture);
             GUI.color = new Color(1, 1, 1, 1 - fade);
-            float k = Mathf.Clamp01(age / length);
+            float k = Mathf.Clamp01(age / (length * .75f)); // all eight lit before the end, held a moment before the menu
             // requirement 31/10/2026 (review): the night lane to the Waiting Room; the eight lanterns of the story (the HUD's own)
             // stand along its kerb and light one by one as the progress; the title sits where the main menu keeps it
-            Sprite lane = ArcadeSkin.KitSprite("Menu/LoadingLane");
+            // the lamps are part of the painting: the dark lane, and each lamp's own light (cut from the same painting lit) fading in
+            // over it in turn, then living - its flame flickers and a few sparks rise from it
+            Sprite lane = ArcadeSkin.KitSprite("Menu/LaneDark");
             if (lane != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), lane.texture, ScaleMode.ScaleAndCrop);
-            // eight lamp posts along the kerb, at the lane's own scale (a slender iron post with one lantern head); each lights in
-            // turn, its lit painting fading in over the unlit one
-            Sprite postDark = ArcadeSkin.KitSprite("Menu/LanePostUnlit"), postLit = ArcadeSkin.KitSprite("Menu/LanePostLit");
-            for (int i = 0; i < 8 && postDark != null; i++)
+            const float px = 1280f / 1920f; // the painting's pixels on this 1280x720 page
+            for (int i = 0; i < LaneGlows.Length && lane != null; i++)
             {
-                float f = i / 7f;
-                // perspective: the kerb comes toward the viewer at the door, so the posts grow and spread out toward it
-                float x = 70 + 830 * Mathf.Pow(f, 1.25f);
-                Vector2 foot = new Vector2(x, 437 + .1914f * x - .0001515f * x * x); // its base on the painted kerb as it curves to the door
-                float h = Mathf.Lerp(160, 250, f), w = h / 3f;
                 float lit = Mathf.Clamp01(k * 8.4f - i);
-                Rect at = new Rect(foot.x - w * .27f, foot.y - h, w, h); // the post stands at 27% of its picture's width
-                Vector2 head = new Vector2(at.x + w * .8f, at.y + h * .23f); // the lantern hanging from its arm
-                if (lit > 0)
-                {
-                    Color warm = new Color(1f, .74f, .36f, lit * (1 - fade));
-                    ArcadeSkin.Glow(new Rect(head.x - h * .55f, head.y - h * .45f, h * 1.1f, h * .9f), new Color(warm.r, warm.g, warm.b, .5f * warm.a)); // the halo
-                    ArcadeSkin.Glow(new Rect(head.x - h * .18f, head.y - h * .14f, h * .36f, h * .28f), new Color(1f, .92f, .7f, .7f * warm.a)); // the hot core
-                    ArcadeSkin.Glow(new Rect(foot.x - h * .5f, foot.y + 6, h * 1.3f, h * .3f), new Color(warm.r, warm.g, warm.b, .4f * warm.a)); // its pool on the wet stones
-                }
-                GUI.DrawTexture(at, postDark.texture, ScaleMode.ScaleToFit);
-                if (postLit != null && lit > 0)
-                {
-                    Color before = GUI.color; GUI.color = new Color(before.r, before.g, before.b, before.a * lit);
-                    GUI.DrawTexture(at, postLit.texture, ScaleMode.ScaleToFit);
-                    GUI.color = before;
-                }
+                if (lit <= 0) continue;
+                Sprite glow = ArcadeSkin.KitSprite("Menu/LaneGlow" + i);
+                if (glow == null) continue;
+                float flicker = profile.ReducedMotion ? 1 : .9f + .06f * Mathf.Sin(Time.unscaledTime * 9.3f + i * 2.1f) + .04f * Mathf.Sin(Time.unscaledTime * 23.7f + i);
+                Color before = GUI.color; GUI.color = new Color(before.r, before.g, before.b, before.a * lit * flicker);
+                Vector4 g = LaneGlows[i];
+                GUI.DrawTexture(new Rect(g.x * px, g.y * px, g.z * px, g.w * px), glow.texture);
+                GUI.color = before;
+                Vector2 head = LaneHeads[i] * px;
+                ArcadeSkin.Glow(new Rect(head.x - 14, head.y - 14, 28, 28), new Color(1f, .9f, .6f, .35f * lit * flicker * (1 - fade))); // the hot core
+                if (!profile.ReducedMotion)
+                    for (int spark = 0; spark < 2; spark++)
+                    {
+                        float r = Mathf.Repeat(Time.unscaledTime * .55f + spark * .5f + i * .17f, 1);
+                        ArcadeSkin.Diamond(new Vector2(head.x + Mathf.Sin(r * 6 + i + spark) * 8, head.y - 10 - r * 46), 3 + 2 * Mathf.Sin(r * Mathf.PI), new Color(1f, .8f, .45f, .8f * lit * Mathf.Sin(r * Mathf.PI) * (1 - fade)));
+                    }
             }
             GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;

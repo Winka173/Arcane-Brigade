@@ -32,7 +32,8 @@ namespace ArcaneBrigade
             Directory.CreateDirectory(root);
             yield return new WaitForSecondsRealtime(.5f);
             yield return Shot("01-loading");
-            yield return new WaitForSecondsRealtime(2.6f);
+            yield return new WaitForSecondsRealtime(1.1f); yield return Shot("01b-loading-lit"); // most lamps lit
+            yield return new WaitForSecondsRealtime(1.5f);
             yield return Shot("02-main-menu");
             RunMenu menu = FindAnyObjectByType<RunMenu>();
             if (menu != null)

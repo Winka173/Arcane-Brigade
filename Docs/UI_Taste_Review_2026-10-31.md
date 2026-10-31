@@ -238,3 +238,16 @@ Một số quy tắc của taste-skill được điều chỉnh cho game. Skill 
 | Main menu | 7.5 | 8.0 |
 | Lamp Tree | 7.0 | 7.6 |
 | Hero select | 7.3 | 7.6 |
+
+## Loading, lần cuối (31/10/2026)
+
+- **Bỏ cột đèn ghép chồng lên tranh:** dù vẽ riêng, cột đèn không ăn nhập với ánh sáng và phối cảnh của bức tranh.
+- **Tranh mới:**
+  - Codex vẽ con hẻm có tám cột đèn nằm sẵn trong tranh, đèn tắt.
+  - Từ chính bức đó, Codex sửa thành bản đèn sáng. Hai bức khớp nhau gần như từng điểm ảnh.
+- **Tách lớp sáng:** tách phần khác nhau quanh từng đèn (đầu đèn, quầng sáng, vũng sáng trên đá) thành tám lớp có viền mờ.
+- **Trong game:**
+  - Các lớp hiện dần lên bức đèn tắt.
+  - Đèn đã sáng có lửa chập chờn, lõi sáng nhấp nháy và đốm lửa bay lên.
+  - Tám đèn sáng hết ở 75% thời gian tải, rồi giữ một nhịp trước khi sang menu.
+- **Chứng cứ:** `Docs/Evidence/UIAudit/loading_lamps_painted.jpg`. Ảnh trái chụp giữa lúc tải, ảnh phải khi đã sáng hết.
