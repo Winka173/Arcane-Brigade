@@ -385,7 +385,7 @@ namespace ArcaneBrigade
         private void Tag(Vector2 topCentre, string text)
         {
             float w = Mathf.Max(150, chip.CalcSize(new GUIContent(text)).x + 44);
-            Rect tag = new Rect(Mathf.Clamp(topCentre.x - w * .5f, 20, 1260 - w), Mathf.Clamp(topCentre.y, 90, 680), w, 34);
+            Rect tag = new Rect(Mathf.Clamp(topCentre.x - w * .5f, 20, 1260 - w), Mathf.Clamp(topCentre.y, 120, 680), w, 34); // its chains clear of the title plaque
             // a walnut sign hanging on two short chains (its board, rows 46-118 of the 120 px art, is the tag)
             float k = tag.height / 72f;
             if (ArcadeSkin.Strip(new Rect(tag.x - 14, tag.y - 46 * k, tag.width + 28, 120 * k), "Menu/StationSign", 70, 70)) chip.normal.textColor = ArcadeSkin.KitCream;
@@ -551,10 +551,10 @@ namespace ArcaneBrigade
             body.normal.textColor = ArcadeSkin.KitCream; number.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 26), RunUICopy.UnitName(hero), body);
             GUI.Label(new Rect(area.x + 142, area.y + 28, area.width - 280, 26), waves + " waves together", number);
-            float y = area.y + 72, ch = 100;
+            float y = area.y + 72, ch = 116; // the three perks fill the page, each with its road to READY
             for (int i = 0; i < MetaProgression.MasteryWaves.Length; i++)
             {
-                Rect c = new Rect(area.x, y + i * (ch + 10), area.width, ch);
+                Rect c = new Rect(area.x, y + i * (ch + 14), area.width, ch);
                 bool earned = rank > i;
                 bool exists = i != 0 || MetaProgression.AltStarter(catalog, hero) != null;
                 if (i == 1) exists = HeroKits.For(hero.Id) != null;
@@ -563,14 +563,20 @@ namespace ArcaneBrigade
                 Color ink = ArcadeSkin.FrameText(KitFrame.Card);
                 body.normal.textColor = ink; small.normal.textColor = ink; number.normal.textColor = ink;
                 Sprite icon = i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition coat ? coat.Body : MetaIcons.Station(MetaStation.Wardrobe, earned);
-                RunHud.Sprite(new Rect(c.x + 14, c.y + 14, 70, 70), icon);
-                GUI.Label(new Rect(c.x + 96, c.y + 12, c.width - 300, 26), MetaProgression.MasteryNames[i], body);
+                RunHud.Sprite(new Rect(c.x + 22, c.y + 16, 84, 84), icon);
+                GUI.Label(new Rect(c.x + 122, c.y + 16, c.width - 330, 26), MetaProgression.MasteryNames[i], body);
                 string line = MetaProgression.MasteryLines[i];
                 if (i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition alt) line = "Start with " + RunUICopy.UnitName(alt);
                 if (i == 2 && exists) line = MetaProgression.HabitAdded(HeroKits.For(hero.Id)).Text.Replace("Second habit: ", "");
-                GUI.Label(new Rect(c.x + 96, c.y + 40, c.width - 300, 44), exists ? line : "Not for this hero", small);
+                GUI.Label(new Rect(c.x + 122, c.y + 44, c.width - 330, 40), exists ? RunUICopy.Sentence(line) : "Not for this hero", small);
+                if (exists && !earned)
+                {
+                    Rect bar = new Rect(c.x + 122, c.y + 88, c.width - 330, 14);
+                    float share = Mathf.Clamp01(waves / (float)MetaProgression.MasteryWaves[i]);
+                    if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24) && bar.width * share > bar.height) ArcadeSkin.Strip(new Rect(bar.x + 2, bar.y + 2, (bar.width - 4) * share, bar.height - 4), "Info/RatioFill", 20, 20);
+                }
                 number.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(c.xMax - 200, c.y, 180, ch), !exists ? "—" : earned ? "READY" : Mathf.Min(waves, MetaProgression.MasteryWaves[i]) + " / " + MetaProgression.MasteryWaves[i], number);
+                GUI.Label(new Rect(c.xMax - 210, c.y, 180, ch), !exists ? "—" : earned ? "READY" : Mathf.Min(waves, MetaProgression.MasteryWaves[i]) + " / " + MetaProgression.MasteryWaves[i], number);
                 number.alignment = TextAnchor.UpperLeft;
             }
         }

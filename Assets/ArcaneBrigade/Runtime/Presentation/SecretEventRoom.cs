@@ -286,9 +286,11 @@ namespace ArcaneBrigade
                         GUI.Label(new Rect(plate.x + padX, y0 - 2, cw - padX * 2, 40), c.Title, plateTitle);
                         plateTitle.fontSize = titleSize; plateTitle.normal.textColor = titleTone;
                         float rowsTop = y0 + (c.Enabled ? 40 : 70), rowH = (y1 - rowsTop) / 3; // a closed deal says so under its title
-                        GemRow(new Rect(plate.x + padX, rowsTop, cw - padX * 2, rowH), "DO", c.Do, CodeTone.Cream, true);
-                        GemRow(new Rect(plate.x + padX, rowsTop + rowH, cw - padX * 2, rowH), "LOSE", c.Lose, CodeTone.Oxblood, true);
-                        GemRow(new Rect(plate.x + padX, rowsTop + rowH * 2, cw - padX * 2, rowH), "GET", c.Get, CodeTone.Green, true);
+                        // a two-line reward gets the room it needs: the GET row takes 40% (its last line ran onto the card's foot)
+                        float getH = c.Get != null && c.Get.Contains("\n") ? (y1 - rowsTop) * .4f : rowH, oneH = (y1 - rowsTop - getH) * .5f;
+                        GemRow(new Rect(plate.x + padX, rowsTop, cw - padX * 2, oneH), "DO", c.Do, CodeTone.Cream, true);
+                        GemRow(new Rect(plate.x + padX, rowsTop + oneH, cw - padX * 2, oneH), "LOSE", c.Lose, CodeTone.Oxblood, true);
+                        GemRow(new Rect(plate.x + padX, rowsTop + oneH * 2, cw - padX * 2, getH), "GET", c.Get, CodeTone.Green, true);
                         GUI.color = keep;
                         if (!c.Enabled)
                         {

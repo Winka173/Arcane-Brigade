@@ -184,8 +184,8 @@ namespace ArcaneBrigade
             // review 31/10/2026: the page says how far you are, and an unfound combo names the friend you already met
             int found = 0; foreach (var c in list) if (Known(session, c.members) > 1) found++;
             comboLine.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(area.x, area.y, area.width, 40), "Found " + found + " of " + list.Count + " combos" + (found == 0 ? " · bring two friends of a combo into the brigade" : ""), comboLine);
-            area = new Rect(area.x, area.y + 48, area.width, area.height - 48);
+            GUI.Label(new Rect(area.x + 8, area.y, area.width - 40, 80), "Found " + found + " of " + list.Count + " combos" + (found == 0 ? " · bring two friends of a combo into the brigade" : ""), comboLine);
+            area = new Rect(area.x, area.y + 86, area.width, area.height - 86);
             comboScroll = ScrollPanel.Begin(area, comboScroll, new Rect(0, 0, area.width - 20, Mathf.Max(area.height, list.Count * row)));
             for (int i = 0; i < list.Count; i++)
             {
@@ -194,19 +194,19 @@ namespace ArcaneBrigade
                 // a walnut row plate per combo (review 31/10/2026); an active one glows behind it
                 if (active) ArcadeSkin.Glow(new Rect(r.x - 8, r.y - 8, r.width + 16, r.height + 16), new Color(.95f, .76f, .33f, .35f));
                 if (!ArcadeSkin.KitSliced(r, "Info/ComboRow", .6f)) ArcadeSkin.Line(r, active ? new Color(.95f, .76f, .33f, .22f) : new Color(1, 1, 1, .05f));
-                float size = c.members.Length <= 2 ? 94 : c.members.Length == 3 ? 80 : 64, x = r.x + 8;
+                float size = c.members.Length <= 2 ? 90 : c.members.Length == 3 ? 76 : 62, x = r.x + 44; // clear of the plate's brass end cap
                 for (int k = 0; k < c.members.Length; k++)
                 {
                     if (k > 0 && c.members.Length == 2) { Sprite(new Rect(x, r.y + 30, 52, 52), CompanionRoles.ComboBadge); x += 60; }
                     Sprite(new Rect(x, r.y + (row - 10 - size) * .5f, size, size), Met(session, c.members[k]) ? catalog.Unit(c.members[k]).Body : CompanionRoles.UnknownBadge);
                     x += size + 6;
                 }
-                x = Mathf.Max(x + 14, r.x + 284);
+                x = Mathf.Max(x + 18, r.x + 316);
                 comboLine.normal.textColor = active ? ArcadeSkin.Gold : known > 1 ? ArcadeSkin.Cream : new Color(.7f, .68f, .64f);
                 string met = known == 1 ? RunUICopy.UnitName(catalog.Unit(System.Array.Find(c.members, m => Met(session, m)))) : null;
                 string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : met != null ? met + " + ?" : "Unknown combo";
                 string count = c.members.Length > 2 && known > 1 ? "  ·  " + Combos.OwnedOf(session, c.members) + " of " + c.members.Length + " in party" : "";
-                GUI.Label(new Rect(x, r.y + 10, r.xMax - x - 16, r.height - 20), title + count + (active ? "  ·  active" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
+                GUI.Label(new Rect(x, r.y + 16, r.xMax - x - 48, r.height - 28), title + count + (active ? "  ·  active" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
             }
             ScrollPanel.End();
         }

@@ -651,15 +651,15 @@ namespace ArcaneBrigade
                 GUI.enabled = SpotEnabled(index);
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
-                Rect spot = index < 3 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 462 + (index - 3) / 2 * 72, 230, 60);
+                Rect spot = index < 3 ? new Rect(44, 214 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 476 + (index - 3) / 2 * 72, 230, 60); // a breath under the subtitle
                 // nothing to continue: still shown (honest), but a slim plate under New Journey, not a second big button
-                if (index == 1 && !CanResume) spot = new Rect(84, 290, 390, 48);
+                if (index == 1 && !CanResume) spot = new Rect(84, 304, 390, 48);
                 if (index == 2) caption = "         WAITING ROOM";
-                else if (index >= 3) caption = "      " + caption; // room for its icon
+                else if (index >= 3) caption = "        " + caption; // room for its icon
                 // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
                 bool main = CanResume ? index == 1 : index == 0;
                 if (navigation.Button(spot, caption, main ? primary : index < 3 && (index != 1 || CanResume) ? button : smallButton)) ActivateSpot(index);
-                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 14, spot.y + 8, 52, 52) : new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
+                if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 24, spot.y + 8, 52, 52) : new Rect(spot.x + 26, spot.y + 9, 42, 42)), icons[index]); // rides with the plate, clear of its end cap
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
                 if (index == 2 && HubAffordable())
                 {
@@ -725,9 +725,9 @@ namespace ArcaneBrigade
             else ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
             RunHud.Sprite(new Rect(775, 134, 132, 132), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
-            GUI.Label(new Rect(918, 150, 300, 70), RunUICopy.UnitName(champion), rosterTitle);
-            ArcadeSkin.Tag(new Rect(918, 222, 280, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
-            GUI.Label(new Rect(918, 256, 250, 34), HeroUnlocks.Full(profile, champion, catalog), note);
+            GUI.Label(new Rect(934, 150, 286, 70), RunUICopy.UnitName(champion), rosterTitle); // right of the stage
+            ArcadeSkin.Tag(new Rect(934, 222, 230, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
+            GUI.Label(new Rect(934, 256, 236, 34), HeroUnlocks.Full(profile, champion, catalog), note);
             // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
             string fullDescription = RunUICopy.ChampionDescription(champion);
             string description = ShortHero(champion);
@@ -750,8 +750,8 @@ namespace ArcaneBrigade
                     description += GlossaryUI.Modifier(modifier.Effect, modifier.Scope, modifier.Value) + "\n";
             }
             float descriptionHeight = Mathf.Max(210, GlossaryUI.Height(description, text, 425) + 8);
-            bool loadout = DrawLoadout(champion, new Rect(770, 560, 450, 44), note);
-            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(770, 298, 450, loadout ? 254 : 322), rosterDescriptionScroll, new Rect(0, 0, 430, descriptionHeight));
+            bool loadout = DrawLoadout(champion, new Rect(770, 546, 450, 44), note); // its caption keeps clear of the frame's foot
+            rosterDescriptionScroll = ScrollPanel.Begin(new Rect(770, 298, 450, loadout ? 238 : 318), rosterDescriptionScroll, new Rect(0, 0, 430, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 425, descriptionHeight), description, text);
             ScrollPanel.End();
             heroDetailsText = fullDescription; heroDetailsName = RunUICopy.UnitName(champion);

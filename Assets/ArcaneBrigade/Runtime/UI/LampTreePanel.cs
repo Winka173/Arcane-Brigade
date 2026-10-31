@@ -57,10 +57,17 @@ namespace ArcaneBrigade
         private static void Bough(Vector2 a, Vector2 b, float width, bool lit) => Bough(a, (a + b) * .5f, b, width, lit);
         private static Vector2 Q(Vector2 a, Vector2 m, Vector2 b, float t) => (1 - t) * (1 - t) * a + 2 * (1 - t) * t * m + t * t * b;
 
+        private static bool phoneFocused;
         private void DrawTree(RunCatalog catalog, PlayerProfile profile, Func<bool> save)
         {
             navCols = 1;
             MetaProgression.Ensure(profile);
+            // on a phone the whole tree's lanterns are too small for a thumb: it opens on the first branch with something to buy
+            if (!phoneFocused && Application.isMobilePlatform && focusBranch < 0)
+            {
+                phoneFocused = true;
+                foreach (LampNode n in MetaProgression.Tree) if (n.Branch >= 0 && MetaProgression.NodeBlocked(profile, n) == null) { focusBranch = n.Branch; break; }
+            }
             Rect tree = TreeArea;
             float t = Time.unscaledTime;
             LampNode pick = MetaProgression.Node(treePick);

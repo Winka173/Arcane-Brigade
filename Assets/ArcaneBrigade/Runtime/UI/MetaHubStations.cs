@@ -130,7 +130,7 @@ namespace ArcaneBrigade
             navCols = 1;
             MetaLetter[] letters = MetaProgression.Letters;
             if (letterOpen < 0) letterOpen = Array.FindIndex(letters, l => MetaProgression.LetterRead(profile, l));
-            const float rowH = 74, gap = 10, listW = 300;
+            const float rowH = 74, gap = 10, listW = 320;
             for (int i = 0; i < letters.Length; i++)
             {
                 MetaLetter l = letters[i];
@@ -149,7 +149,7 @@ namespace ArcaneBrigade
                 Ink(earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
                 // the words start past the wax seal and stop before the folded corner; each line gets its full height
                 float past = seal.x - row.x + 52; // clear of the seal's right edge (the painted seal is about 90 px across)
-                Rect words = new Rect(row.x + past, row.y + 8, row.width - past - 44, rowH - 16);
+                Rect words = new Rect(row.x + past, row.y + 8, row.width - past - 66, rowH - 16); // the folded corner takes the last 60 px
                 Color words2 = earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream; // cream on the dark walnut plate of a sealed letter
                 ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 32), earned ? l.Name : "Sealed", words2, body);
                 ArcadeSkin.KitCaption(new Rect(words.x, words.y + 32, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
@@ -271,12 +271,12 @@ namespace ArcaneBrigade
         {
             navCols = 1;
             int mask = profile.Meta.Pacts;
-            Rect sum = new Rect(area.x, area.y, area.width, 50);
+            Rect sum = new Rect(area.x, area.y, area.width, 44);
             ArcadeSkin.CodePlate(sum, CodeTone.Navy);
-            RunHud.Sprite(new Rect(sum.x + 14, sum.y + 9, 32, 32), MetaIcons.LampOil);
-            RunHud.Sprite(new Rect(sum.x + 48, sum.y + 9, 32, 32), MetaIcons.Keepsake);
+            RunHud.Sprite(new Rect(sum.x + 18, sum.y + 6, 32, 32), MetaIcons.LampOil);
+            RunHud.Sprite(new Rect(sum.x + 52, sum.y + 6, 32, 32), MetaIcons.Keepsake);
             Ink(ArcadeSkin.KitCream);
-            GUI.Label(new Rect(sum.x + 88, sum.y + 11, 120, 28), "×" + MetaProgression.PactMultiplier(mask).ToString("0.00"), number);
+            GUI.Label(new Rect(sum.x + 92, sum.y + 8, 120, 28), "×" + MetaProgression.PactMultiplier(mask).ToString("0.00"), number);
             UnitDefinition traveller = catalog.Champions[Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1)];
             MetaScore record = MetaProgression.PactRecord(profile, traveller.Id);
             small.alignment = TextAnchor.MiddleRight;
@@ -286,11 +286,12 @@ namespace ArcaneBrigade
             {
                 MetaPact pact = MetaProgression.Pacts[i];
                 bool on = MetaProgression.PactOn(mask, i);
-                Rect r = new Rect(area.x, area.y + 62 + i * 78, area.width, 70);
+                // a clear gap between rows so each plate's ornaments never touch the next one, and the words clear of its rim
+                Rect r = new Rect(area.x, area.y + 56 + i * 82, area.width, 68);
                 Flash(r, pact.Id);
                 ArcadeSkin.CodePlate(r, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
                 // a chosen pact glows round its round painted seal, sparks circling it (requirement 24/10/2026: no rectangle round round art)
-                Rect seal = new Rect(r.x + 12, r.y + 10, 50, 50);
+                Rect seal = new Rect(r.x + 18, r.y + 9, 50, 50);
                 if (on)
                 {
                     float tt = PresentationSettings.ReducedMotion ? 0 : Time.unscaledTime;
@@ -299,10 +300,10 @@ namespace ArcaneBrigade
                 }
                 PactIcon(seal, i, catalog);
                 Ink(ArcadeSkin.KitCream);
-                GUI.Label(new Rect(r.x + 76, r.y + 9, r.width - 260, 26), pact.Name, body);
-                GUI.Label(new Rect(r.x + 76, r.y + 37, r.width - 260, 26), pact.Line, small);
-                GUI.Label(new Rect(r.xMax - 168, r.y + 21, 90, 28), "×" + pact.Reward.ToString("0.00"), number);
-                ArcadeSkin.CheckBox(new Rect(r.xMax - 62, r.y + 16, 38, 38), on);
+                GUI.Label(new Rect(r.x + 86, r.y + 12, r.width - 270, 26), pact.Name, body);
+                GUI.Label(new Rect(r.x + 86, r.y + 38, r.width - 270, 24), pact.Line, small);
+                GUI.Label(new Rect(r.xMax - 172, r.y + 20, 90, 28), "×" + pact.Reward.ToString("0.00"), number);
+                ArcadeSkin.CheckBox(new Rect(r.xMax - 66, r.y + 15, 38, 38), on);
                 if (GUI.Button(r, GUIContent.none, GUIStyle.none) | Nav(r))
                 {
                     MetaProgression.TogglePact(profile, i);

@@ -251,3 +251,21 @@ Một số quy tắc của taste-skill được điều chỉnh cho game. Skill 
   - Đèn đã sáng có lửa chập chờn, lõi sáng nhấp nháy và đốm lửa bay lên.
   - Tám đèn sáng hết ở 75% thời gian tải, rồi giữ một nhịp trước khi sang menu.
 - **Chứng cứ:** `Docs/Evidence/UIAudit/loading_lamps_painted.jpg`. Ảnh trái chụp giữa lúc tải, ảnh phải khi đã sáng hết.
+
+## Rà khoảng đệm (31/10/2026)
+
+Cắt từng danh sách, hàng và thẻ ở cỡ thật để soi khoảng giữa các phần tử và khoảng giữa chữ với viền vẽ tay.
+
+**Đã sửa:**
+- Night Pact: các hàng cách nhau, phần trang trí của hàng dưới không còn chạm hàng trên, chữ cách viền.
+- Combos: biểu tượng tránh nắp đồng ở đầu hàng, chữ có lề phải, dòng đếm combo xuống dòng thay vì tràn.
+- Dream Journal: tiêu đề có lề trên, chân dung tránh dải ruy băng, tiêu đề dài tự thu nhỏ cho vừa một dòng.
+- Main menu: có khoảng thở giữa dòng chữ phụ và nút đầu tiên, icon trên nút nhỏ tránh nắp trái.
+- Hero select: tên và tag vũ khí nằm bên phải sân khấu, dòng loadout cách viền đáy.
+- Postbox: chữ dừng trước nếp gấp của phong bì.
+- Phòng bí mật: phần thưởng hai dòng có đủ chỗ.
+- Waiting Room: biển treo cách tấm tiêu đề.
+- Wardrobe: các hàng cao hơn, có thanh tiến độ tới mốc READY.
+- Lamp Tree trên điện thoại: mở thẳng nhánh đầu tiên có thứ mua được.
+
+**Chứng cứ:** `Docs/Evidence/UIAudit/padding_pass_1.jpg` và `padding_pass_2.jpg`. Playtest đạt 90/90.
