@@ -159,9 +159,11 @@ namespace ArcaneBrigade
                 float alpha = Mathf.Clamp01((2.1f - age) / 0.3f);
                 Vector2 anchor = ToDesign(receipt.World + Vector2.up * 0.9f) + Vector2.up * (reduced ? 0 : -Mathf.Min(age, 0.5f) * 30);
                 int count = 1 + (receipt.Egg ? 1 : 0) + (receipt.Heart ? 1 : 0);
-                const float Tile = 84, Gap = 10;
-                float width = Mathf.Max(220, 28 + count * Tile + (count - 1) * Gap);
-                Rect paper = new Rect(anchor.x - width * 0.5f, anchor.y - 132 * unroll, width, 132 * unroll);
+                // tiles big enough that the picture and its number each have their own room inside the tile's rim (they overlapped and
+                // were cut, review 1/11/2026)
+                const float Tile = 112, Gap = 12, PaperH = 168;
+                float width = Mathf.Max(240, 32 + count * Tile + (count - 1) * Gap);
+                Rect paper = new Rect(anchor.x - width * 0.5f, anchor.y - PaperH * unroll, width, PaperH * unroll);
                 Color previous = GUI.color; GUI.color = new Color(1, 1, 1, alpha);
                 if (unroll > .3f) ArcadeSkin.SelectedAura(paper, ArcadeSkin.Gold); // the chest's prize in a warm glow (the turning rays drew as white dashes)
                 ArcadeSkin.Ticket(paper, ArcadeSkin.Cream, ArcadeSkin.Gold);
@@ -179,18 +181,21 @@ namespace ArcaneBrigade
                         string amount = isEgg ? "+1" : isHeart ? "+" + Mathf.Max(1, receipt.Healing) : "+" + receipt.Gold.ToString("N0");
                         float stop = 0.32f + reel * 0.2f;
                         bool landed = reduced || age >= stop;
-                        Rect slot = new Rect(paper.x + 14 + reel * (Tile + Gap), paper.y + 32, Tile, Tile + 8);
+                        Rect slot = new Rect(paper.x + 16 + reel * (Tile + Gap), paper.y + 34, Tile, Tile + 12);
                         bool tile = ArcadeSkin.RewardTile(slot, landed); // the painted reward tile (cream card in brass)
                         if (!tile) ArcadeSkin.Line(slot, new Color(0.13f, 0.1f, 0.12f, 0.9f));
                         Sprite face = landed ? result : faces[(int)(age * 22 + reel * 3 + receipt.Seed) % faces.Length];
                         float drop = landed && !reduced ? Mathf.Max(0, 1 - (age - stop) / 0.08f) * -10 : 0;
-                        Rect icon = new Rect(slot.x + (Tile - 50) * 0.5f, slot.y + 6 + drop, 50, 50);
+                        Rect numberRect = ArcadeSkin.RewardNumberRect(slot);
+                        Rect inner = ArcadeSkin.RewardInner(slot);
+                        float iconSize = Mathf.Min(inner.width * .6f, numberRect.y - inner.y - 6);
+                        Rect icon = new Rect(inner.center.x - iconSize * .5f, inner.y + 4 + drop, iconSize, iconSize);
                         if (face != null) { Color tint = GUI.color; if (!landed) GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * 0.55f); RunHud.Sprite(icon, face); GUI.color = tint; }
                         if (landed && (age >= stop + 0.12f || reduced))
                         {
                             int size = numbers.fontSize; numbers.normal.textColor = tile ? (isHeart ? new Color(.62f, .08f, .1f) : isEgg ? new Color(.08f, .36f, .42f) : new Color(.52f, .33f, .04f)) : isHeart ? new Color(1f, 0.7f, 0.66f) : isEgg ? ArcadeSkin.Teal : ArcadeSkin.Gold;
-                            while (numbers.fontSize > 12 && numbers.CalcSize(new GUIContent(amount)).x > Tile - 6) numbers.fontSize--;
-                            GUI.Label(tile ? ArcadeSkin.RewardNumberRect(slot) : new Rect(slot.x, slot.y + 58, Tile, 30), amount, numbers); // inside the painted tile's rim
+                            while (numbers.fontSize > 12 && numbers.CalcSize(new GUIContent(amount)).x > numberRect.width - 6) numbers.fontSize--;
+                            GUI.Label(tile ? numberRect : new Rect(slot.x, slot.y + Tile - 30, Tile, 30), amount, numbers); // inside the painted tile's rim, under the picture
                             numbers.fontSize = size;
                         }
                         if (landed && Event.current.type == EventType.Repaint && age - stop < 0.02f && reelTicks < 64) { reelTicks++; CheckpointAudio.PlayInterfaceId(reel == count - 1 ? "ui.receipt" : "shop.ticket.sway", 0.05f); }

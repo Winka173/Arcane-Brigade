@@ -98,6 +98,11 @@ namespace ArcaneBrigade
                 if (!RunHud.ShownShopCard.Contains(design) && !(ShopPrompt.Showing && ShopPrompt.Frame.Contains(design)) && !SpeechBubbles.OverlapsDialogue(new Rect(design.x - 1, design.y - 1, 2, 2)))
                 {
                     Vector2 world = camera.ScreenToWorldPoint(Input.mousePosition);
+                    // a tap on a figure or thing with its own card (the Last Customer, a lamp, a curtain) opens that card and does
+                    // not send the traveller off to a stall nearby (the walk away closed the card at once)
+                    ShopInspect inspect = owner.GetComponent<ShopInspect>();
+                    ShopInspect.Entry under = inspect != null ? inspect.At(design, camera) : null;
+                    if (under != null && under.Offer == null && !stations.Exists(st => under.World.Contains(st.Position))) return manual;
                     Station best = null; float nearest = 1.4f;
                     foreach (Station station in stations)
                     {
@@ -115,6 +120,8 @@ namespace ArcaneBrigade
             return Vector2.ClampMagnitude(offset * 3, 1);
         }
         public int DeniedCount { get; private set; }
+        /// <summary>A tap on the shopkeeper: a line of chat (requirement 1/11/2026: everything shown in the shop answers a tap).</summary>
+        public void MerchantChat() { dialogue.Speak(Special, MerchantMoment.Inspect, owner.PresentationClock); Voiced(); }
         public void Configure(ArenaController controller)
         {
             owner = controller; art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");

@@ -150,11 +150,36 @@ namespace ArcaneBrigade
             new Thing { Name = "Cases", Area = new Rect(985, 385, 120, 110), Lines = new[] { "Three cases, labelled for three different towns. None of them yours, yet.", "Something inside the top case ticks.", "A tag reads: please hold until dawn." } },
             new Thing { Name = "Coat rack", Area = new Rect(860, 70, 60, 140), Lines = new[] { "A red scarf someone forgot. It smells of rain.", "The lantern on the hook glows a little brighter when you pass." } },
             new Thing { Name = "Bench", Area = new Rect(550, 540, 220, 105), Lines = new[] { "Someone left a ticket on the bench. It is for tonight.", "The velvet is warm, as if someone just stood up." } },
+            new Thing { Name = "Rug", Area = new Rect(330, 260, 620, 250), Lines = new[] { "The rug has a path worn round its edge, exactly one friend wide.", "A burn mark in one corner. Nobody admits to it.", "It is softer than it looks. The cat agrees." } },
         };
         private Thing spoken; private string spokenLine; private float spokenAt = -10;
+        private List<(UnitDefinition unit, Vector2 at, bool left)> shownResidents; private UnitDefinition shownHero;
+        private readonly Dictionary<string, Thing> people = new Dictionary<string, Thing>();
+        private static readonly string[] FriendLines =
+        {
+            "{0} waves at you, then pretends it did not.", "{0} is counting the rug's tassels again.", "{0}: \"Same time tomorrow night?\"",
+            "{0} hums the gramophone's waltz, a little off key.", "{0} stops to sniff the tea. Too hot, still.", "{0} yawns. Dawn was a long walk.",
+        };
+        private static readonly string[] HeroLines =
+        {
+            "{0} straightens up. The brigade is watching.", "{0} checks the lamp oil. Enough for one more night.", "{0}: \"Rest first. Then the door.\"",
+        };
+        /// <summary>A person in the room as a tappable thing: its area follows it as it walks, its lines keep their turn.</summary>
+        private Thing Person(string key, string name, Vector2 foot, float height, string[] lines)
+        {
+            if (!people.TryGetValue(key, out Thing th)) people[key] = th = new Thing { Name = name, Lines = System.Array.ConvertAll(lines, l => string.Format(l, name)) };
+            th.Area = new Rect(foot.x - 44, foot.y - height, 88, height + 8);
+            return th;
+        }
         private void Things()
         {
-            foreach (Thing th in RoomThings)
+            // the people first (they stand in front of the room's things), then the room's things, the rug last (it lies under all)
+            var tappable = new List<Thing>();
+            if (shownResidents != null)
+                foreach (var r in shownResidents) tappable.Add(Person(r.unit.Id, RunUICopy.UnitName(r.unit), r.at, 92, FriendLines));
+            if (shownHero != null) tappable.Add(Person("hero", RunUICopy.UnitName(shownHero), hero, 112, HeroLines));
+            tappable.AddRange(RoomThings);
+            foreach (Thing th in tappable)
             {
                 if (GUI.Button(th.Area, GUIContent.none, GUIStyle.none))
                 {
@@ -223,6 +248,7 @@ namespace ArcaneBrigade
             order.Add((hero.y, -1));
             // the room is lived in: friends the traveller has met wander the carpet, and warm motes drift up through the lamp light
             List<(UnitDefinition unit, Vector2 at, bool left)> residents = Residents(catalog, profile, t, reduced);
+            shownResidents = residents; shownHero = catalog.Champions[Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1)];
             for (int i = 0; i < residents.Count; i++) order.Add((residents[i].at.y, -2 - i));
             for (int i = 0; i < Decorations.Length; i++)
             {

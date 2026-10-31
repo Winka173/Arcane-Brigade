@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         public const float HalfWidth = 8.53f, HalfHeight = 4.8f; // RestViewHeight 4.8 at 16:9, camera fixed on the room
         public const float Hover = 0.7f;   // the most a floating prop rises above its floor contact
         public const float Pad = 0.06f;    // breathing room between footprints
-        private sealed class Prop { public string Id; public Vector2 Preferred; public Vector2 Size; public int Priority; public Vector2 Foot; public bool Visible; public bool Planned; public bool Shrink, Rim, Transient; public float Fit = 1; }
+        private sealed class Prop { public string Id; public Vector2 Preferred; public Vector2 Size; public int Priority; public Vector2 Foot; public bool Visible; public bool Planned; public bool Shrink, Rim, Transient; public float Fit = 1; public bool Settled; public Vector2 SettledFoot; public float SettledFit = 1; }
         private readonly Dictionary<string, Prop> props = new Dictionary<string, Prop>();
         private readonly List<Prop> order = new List<Prop>();
         private readonly List<Rect> reserved = new List<Rect>();
@@ -73,7 +73,7 @@ namespace ArcaneBrigade
             // small sprite changes (animation, damage frames) do not reshuffle the room
             if (prop.Priority != priority || (prop.Preferred - preferred).sqrMagnitude > 0.04f || Mathf.Abs(prop.Size.x - size.x) > prop.Size.x * 0.15f + 0.02f || Mathf.Abs(prop.Size.y - size.y) > prop.Size.y * 0.15f + 0.02f)
             {
-                prop.Priority = priority; prop.Preferred = preferred; prop.Size = size; dirty = true;
+                prop.Priority = priority; prop.Preferred = preferred; prop.Size = size; prop.Settled = false; dirty = true; // a real change: placed afresh
             }
             if (prop.Shrink != shrink || prop.Rim != rim) { prop.Shrink = shrink; prop.Rim = rim; dirty = true; }
             bool transient = id == FerryId || id.StartsWith("story:") && id.Contains("LastCustomer");
@@ -93,9 +93,9 @@ namespace ArcaneBrigade
 
         private void Update()
         {
-            if (!InShop) { if (roomKey != int.MinValue) { roomKey = int.MinValue; dirty = true; foreach (Prop prop in order) prop.Planned = false; } return; }
+            if (!InShop) { if (roomKey != int.MinValue) { roomKey = int.MinValue; dirty = true; foreach (Prop prop in order) { prop.Planned = false; prop.Settled = false; } } return; }
             int key = RoomKey();
-            if (key != roomKey) { roomKey = key; dirty = true; }
+            if (key != roomKey) { roomKey = key; dirty = true; foreach (Prop prop in order) prop.Settled = false; } // a new room: everything placed afresh
             if (Time.unscaledTime >= nextScan)
             {
                 nextScan = Time.unscaledTime + 0.25f;
@@ -175,6 +175,13 @@ namespace ArcaneBrigade
             Rect view = Rect.MinMaxRect(-HalfWidth + 0.05f, -HalfHeight, HalfWidth - 0.05f, HalfHeight - 0.05f);
             foreach (Prop prop in order)
             {
+                // requirement (repeated 1/11/2026): a thing in the room stands still. A re-plan (another prop moved, a train passed)
+                // keeps every prop where it already stands while that spot is still free; only a blocked prop looks again
+                if (prop.Settled && prop.Visible && Fits(Footprint(prop.SettledFoot, prop.Size * prop.SettledFit), view, prop.Rim, prop.Transient))
+                {
+                    prop.Planned = true; prop.Foot = prop.SettledFoot; prop.Fit = prop.SettledFit;
+                    placed.Add(Footprint(prop.Foot, prop.Size * prop.Fit)); continue;
+                }
                 prop.Planned = true; prop.Fit = 1; prop.Visible = false;
                 Rect wanted = Footprint(prop.Preferred, prop.Size);
                 // far outside the room (architecture standing out in the dark): nothing to arrange
@@ -188,6 +195,7 @@ namespace ArcaneBrigade
                 for (float fit = 0.85f; !prop.Visible && prop.Shrink && !prop.Transient && fit > 0.5f; fit -= 0.13f)
                     if (prop.Visible = Find(prop, prop.Size * fit, view, out prop.Foot)) prop.Fit = fit;
                 if (prop.Visible) placed.Add(Footprint(prop.Foot, prop.Size * prop.Fit)); else Hidden++;
+                prop.Settled = prop.Visible; prop.SettledFoot = prop.Foot; prop.SettledFit = prop.Fit;
             }
         }
         private bool Find(Prop prop, Vector2 size, Rect view, out Vector2 foot, float within = float.MaxValue)

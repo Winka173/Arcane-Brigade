@@ -90,7 +90,7 @@ namespace ArcaneBrigade
                 case ItemEffect.Pickup: return "Pickup range";
                 case ItemEffect.Roam: return "Friend roam range";
                 case ItemEffect.Interceptor: return "Friends block shots";
-                case ItemEffect.Heal: return "HP regen per second";
+                case ItemEffect.Heal: return "HP every 10s";
                 case ItemEffect.Interest: return "Max interest";
                 case ItemEffect.Armor: return "Armor";
                 case ItemEffect.Discount: return "Shop discount";
@@ -116,14 +116,28 @@ namespace ArcaneBrigade
         public static float ArmorShare(float armor) { float p = Mathf.Max(0, armor / ArmorPoint); return Mathf.Min(1 - ArmorFloor, p / (p + ArmorShareKnee)); }
         public static int ArmorPoints(float value) => value == 0 ? 0 : (int)Mathf.Sign(value) * Mathf.Max(1, Mathf.RoundToInt(Mathf.Abs(value) / ArmorPoint));
         public static string ArmorText(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(ArmorPoints(value));
+        public static bool Percent(ItemEffect effect) => effect >= ItemEffect.ScoreMultiplier ? K10StatRules.Percentage(effect)
+            : effect == ItemEffect.Luck || effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
+        /// <summary>A stat as a round number (requirement 1/11/2026: "+0.14", "+13.5%" read badly): percents in whole percent, flat
+        /// stats whole, HP regen in tenths per second (shown as whole HP every 10 seconds), factors in steps of 0.05. A small stat
+        /// never rounds away to nothing: it keeps one step. Each source of a stat is snapped where it adds into the run, so the
+        /// number shown is the number played.</summary>
+        public static float Nice(ItemEffect effect, float value)
+        {
+            if (value == 0 || !float.IsFinite(value) || effect == ItemEffect.Armor) return value;
+            float step = Final(effect) ? .05f : Percent(effect) ? .01f : effect == ItemEffect.Heal ? .1f : 1f;
+            float snapped = Mathf.Round(value / step) * step;
+            return snapped == 0 ? Mathf.Sign(value) * step : snapped;
+        }
         public static string ValueText(ItemEffect effect, float value)
         {
             if (effect == ItemEffect.Armor) return ArmorText(value);
-            bool percent = effect == ItemEffect.Luck || effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
-            if (effect >= ItemEffect.ScoreMultiplier) percent = K10StatRules.Percentage(effect);
+            value = Nice(effect, value);
+            if (effect == ItemEffect.Heal) return Mathf.RoundToInt(value * 10).ToString("+0;-0;0"); // HP every 10 seconds
+            bool percent = Percent(effect);
             // the "final" multipliers read as a factor: Final max HP x1.1
             if (Final(effect)) return "×" + (1 + value).ToString("0.##");
-            return (percent ? value * 100 : value).ToString("+0.##;-0.##;0") + (percent ? "%" : "");
+            return (percent ? value * 100 : value).ToString("+0;-0;0") + (percent ? "%" : "");
         }
         public static bool Final(ItemEffect effect) => effect == ItemEffect.HealthCorrection || effect == ItemEffect.DamageCorrection || effect == ItemEffect.SpeedCorrection || effect == ItemEffect.ArmorCorrection || effect == ItemEffect.HealCorrection;
         /// <summary>Who a stat line is for, in player words: "You · ", "Friends · ", or nothing when it is for everyone or the run.</summary>

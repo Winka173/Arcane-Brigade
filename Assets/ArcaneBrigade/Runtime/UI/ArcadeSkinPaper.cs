@@ -36,12 +36,18 @@ namespace ArcaneBrigade
         private static bool OnLitPainted(Rect r) => litFrame == Time.frameCount && Mathf.Abs(r.center.x - litPainted.center.x) < 10 && Mathf.Abs(r.center.y - litPainted.center.y) < 10 && Mathf.Abs(r.width - litPainted.width) < 20;
 
         /// <summary>Where a reward tile's number sits: centred in the painted tile's inner area, above its bottom rim.</summary>
-        public static Rect RewardNumberRect(Rect r)
+        /// <summary>The cream inside of a reward tile drawn at r (inside its brass rim).</summary>
+        public static Rect RewardInner(Rect r)
         {
             float aspect = 104f / 96f, w = Mathf.Min(r.width, r.height * aspect), h = w / aspect;
             Rect art = new Rect(r.center.x - w * .5f, r.center.y - h * .5f, w, h);
-            Rect inner = new Rect(art.x + w * .08f, art.y + h * .09f, w * .84f, h * .82f);
-            return new Rect(inner.x, inner.yMax - 26, inner.width, 24);
+            return new Rect(art.x + w * .1f, art.y + h * .11f, w * .8f, h * .78f);
+        }
+        /// <summary>The number's line at the foot of a reward tile's inside, tall enough for the digits and their descenders.</summary>
+        public static Rect RewardNumberRect(Rect r)
+        {
+            Rect inner = RewardInner(r);
+            return new Rect(inner.x, inner.yMax - 32, inner.width, 30);
         }
 
         /// <summary>A walnut chip with a round icon socket at its left (shop chips); lit: gold rim.</summary>

@@ -1437,6 +1437,309 @@ def _(rng, d):
     return o
 
 
+
+# --- map mechanics (requirement 1/11/2026: every map's mechanic is heard) and the elite's arrival
+def bong(m, d, g=.6):
+    return shape(smp(TUBULAR, m, 110, d), d) * g
+
+
+@cue('enemy.elite.arrive', 1.1, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, shape(smp(HORN, 41, 115, .6), .7), 0, .7); put(o, shape(smp(TUBA, 29, 120, .6), .7), 0, .6)
+    put(o, shape(smp(TAIKO, 33, 127, .6), d), .32, 1.0); put(o, tone(28, d, .25), .32, .6)
+    put(o, grit(.5, rng, 900, 120, .5), .34)
+    return o
+
+
+# Waiting Room: the numbered doors, the tickets, the wall clock
+@cue('map.room.call', .9, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, shape(smp(TUBULAR, 62, 100, .8), d), 0, .5); put(o, shape(smp(TUBULAR, 57, 95, .8), d), .22, .5)
+    for k in range(3): put(o, pitch(dk(WB_LO, 110), .6), .5 + .1 * k, .5)
+    return o
+
+
+@cue('map.room.door', .7, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, creak(.5, rng, (10, 20), ((150, 9), (380, 10), (800, 11))), 0, .7)
+    put(o, pitch(dk(KICK, 120), .7), .45, .9); put(o, tone(30, .3, .12), .45, .5)
+    return o
+
+
+@cue('map.room.ticket', .45, 3)
+def _(rng, d):
+    o = buf(d)
+    put(o, flutter(.15, rng, 60, (800, 2200)), 0, .4)
+    put(o, chime(.4, (69, 74), GLOCK, 85, .05, .4), .04)
+    return o
+
+
+@cue('map.room.clockglow', 1.0, 2)
+def _(rng, d):
+    o = buf(d)
+    for k in range(4): put(o, pitch(dk(WB_HI if k % 2 else WB_LO, 90), .75), .22 * k, .5)
+    return o
+
+
+@cue('map.room.clockstrike', 2.0, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, bong(45, d, .8), 0); put(o, bong(57, d, .4), .01); put(o, tone(33, d, .6), 0, .6)
+    put(o, shape(pitch(dk(CRASH, 100), .7), 1.5), 0, .25)
+    return o
+
+
+# Post Office: the chute, the caught letters, the gust, the paper planes, the parcel
+@cue('map.post.chute', .8, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, creak(.3, rng, (16, 30), ((300, 9), (700, 10), (1500, 11))), 0, .5)
+    put(o, flutter(.6, rng, 70, (900, 2400)), .15, .6)
+    return o
+
+
+@cue('map.post.catch', .5, 4)
+def _(rng, d):
+    o = buf(d)
+    put(o, flutter(.12, rng, 70, (900, 2400)), 0, .4)
+    put(o, chime(.45, (66 + int(rng.integers(0, 3)) * 2, 73), CELESTA, 85, .05, .45, 0), .02)
+    return o
+
+
+@cue('map.post.delivered', 1.4, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(WB_LO, 120), .6), 0, .8); put(o, pitch(dk(KICK, 110), .8), 0, .6)
+    put(o, chime(1.3, (62, 66, 69, 74, 78), GLOCK, 95, .06, .4), .08)
+    return o
+
+
+@cue('map.post.gustwarn', .9, 2)
+def _(rng, d):
+    return wind(d, rng, 420, .6, .9) * .8 + shape(smp(TREM, 50, 70, .8), d) * .2
+
+
+@cue('map.post.gust', 1.6, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, air(d, rng, 160, 900, .8, .3, 1.0), 0); put(o, flutter(1.2, rng, 90, (700, 2200)), .1, .5)
+    return o
+
+
+@cue('map.post.planes', 1.0, 2)
+def _(rng, d):
+    o = buf(d)
+    for k in range(3): put(o, air(.4, rng, 500, 2000, 2.0, .6, .6), .18 * k)
+    put(o, chime(.6, (69, 74, 78), GLOCK, 80, .06, .3), .05)
+    return o
+
+
+@cue('map.post.planehit', .5, 4)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(KICK, 115), .8), 0, .9); put(o, flutter(.3, rng, 90, (700, 2200)), 0, .6)
+    put(o, grit(.3, rng, 2000, 200, .5), .01)
+    return o
+
+
+@cue('map.post.parcel', .7, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, air(.35, rng, 250, 900, 1.2, .9, .5), 0)
+    put(o, pitch(dk(TOM_LO, 120), .7), .34, .9); put(o, pitch(dk(WB_LO, 110), .6), .36, .5)
+    return o
+
+
+# Glasshouse: sun and rain, the cracking panes, the seed turrets, a bloom picked
+@cue('map.glass.sun', 1.4, 2)
+def _(rng, d):
+    return chime(d, (62, 66, 69, 74), HARP, 90, .09, .4, 0) + shape(smp(STRINGS, 62, 70, 1.3), d) * .25
+
+
+@cue('map.glass.rain', 1.6, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, lp(noise(d, rng, 'pink'), 3500) * env_ar(d, .4, .6) * .8, 0)
+    for k in range(10): put(o, drip(rng, 800 + 600 * rng.random(), .06), rng.uniform(0, d - .1), .25)
+    return o
+
+
+@cue('map.glass.crack', .8, 2)
+def _(rng, d):
+    o = buf(d)
+    for k in range(4): put(o, pitch(dk(STICK, 90), .8 + .05 * k), .12 * k, .35)
+    put(o, shape(smp(CELESTA, 86, 50, .5), .5), .1, .2)
+    return o
+
+
+@cue('map.glass.shatter', 1.0, 3)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(KICK, 120), .8), 0, .8); put(o, grit(.8, rng, 5200, 340, .9), .01)
+    for k in range(6): put(o, shape(smp(CELESTA, 79 + 2 * k, 70, .5), .45), .02 + .04 * k, .25)
+    return o
+
+
+@cue('map.glass.seed', .3, 4)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(CONGA_HI, 100), .7), 0, .7); put(o, air(.2, rng, 500, 1600, 1.5, .2, .5), .01)
+    return o
+
+
+@cue('map.glass.bloom', .9, 3)
+def _(rng, d):
+    return chime(d, (66, 71, 74, 78), VIBES, 85, .05, .4, 0) + flutter(.2, rng, 50, (600, 1400)) * .3
+
+
+# Lamp Hall: a lamp snuffed, a flare, the carried lantern, oil picked up
+@cue('map.lamp.snuff', .8, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, breath(.5, rng) * .8, 0); put(o, shape(smp(VIBES, 50, 80, .6), .6), .25, .35)
+    return o
+
+
+@cue('map.lamp.flare', 1.0, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, air(.4, rng, 200, 1600, 1.0, .2, .9), 0); put(o, grit(.6, rng, 1600, 160, .6), .05)
+    put(o, shape(pitch(dk(CRASH, 110), .8), .8), .02, .35); put(o, tone(33, d, .3), 0, .5)
+    return o
+
+
+@cue('map.lamp.lantern', 1.0, 2)
+def _(rng, d):
+    return chime(d, (57, 62, 66, 69), CELESTA, 90, .07, .4, 0) + air(.5, rng, 200, 900, 1.0, .3, .4)
+
+
+@cue('map.lamp.oil', .6, 3)
+def _(rng, d):
+    o = buf(d)
+    put(o, drip(rng, 500, .1), 0, .6); put(o, chime(.5, (69, 74), MARIMBA, 85, .05, .4, 0), .05)
+    return o
+
+
+# Theatre: the spotlight's colour, the encore, the drum, the curtain, the stage cannon
+@cue('map.theatre.spot', .8, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(STICK, 110), .7), 0, .5); put(o, hp(noise(.4, rng), 2500) * env_ar(.4, .02, .3) * .3, .02)
+    put(o, chime(.6, (62, 69), VIBES, 80, .06, .35, 0), .05)
+    return o
+
+
+@cue('map.theatre.encore', 2.0, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, shape(smp(BRASS, 62, 110, 1.6), 1.8), 0, .5); put(o, shape(smp(BRASS, 66, 105, 1.6), 1.8), .08, .4)
+    put(o, shape(pitch(dk(CRASH, 110), .9), 1.6), 0, .3)
+    for k in range(12): put(o, pitch(dk(CLAP, 80 + int(rng.integers(0, 30))), J(rng, .9, 1.1)), .3 + rng.uniform(0, 1.2), .18)
+    return o
+
+
+@cue('map.theatre.drum', 1.0, 2)
+def _(rng, d):
+    o = buf(d)
+    for k in range(8): put(o, pitch(dk(SNARE, 90 + 4 * k), .85), .07 * k, .35)
+    put(o, shape(smp(TIMPANI, 38, 120, .5), .5), .56, .8)
+    return o
+
+
+@cue('map.theatre.curtainwarn', .9, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, creak(.8, rng, (8, 16), ((120, 9), (300, 10), (700, 11))), 0, .6)
+    put(o, shape(smp(HORN, 45, 95, .5), .5), 0, .4)
+    return o
+
+
+@cue('map.theatre.curtain', .8, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, air(.4, rng, 120, 600, .8, .7, .9), 0); put(o, flutter(.35, rng, 40, (300, 900)), .05, .6)
+    put(o, shape(smp(TAIKO, 33, 127, .5), .5), .35, 1.0); put(o, tone(28, .4, .15), .35, .6)
+    return o
+
+
+@cue('map.theatre.cannon', 1.0, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, shape(smp(TAIKO, 31, 127, .7), d), 0, 1.0); put(o, lp(noise(d, rng, 'brown'), 500) * env_exp(d, .25) * 3, 0, .7)
+    put(o, shape(pitch(dk(CRASH, 120), .8), .9), .01, .35)
+    for k in range(5): put(o, shape(smp(GLOCK, 74 + 3 * k, 70, .3), .3), .2 + .05 * k, .2)  # confetti
+    return o
+
+
+@cue('map.theatre.coin', .4, 3)
+def _(rng, d):
+    return chime(d, (79,), GLOCK, 75, .05, .35) + pitch(dk(TRI_MUTE, 70), .85)[:N(d)] * .3
+
+
+# Archive Vault: pages caught, a chapter, the drifting fog, the ink pot, the stamp, a bookworm's spit
+@cue('map.vault.page', .5, 4)
+def _(rng, d):
+    o = buf(d)
+    put(o, flutter(.2, rng, 50, (700, 2000)), 0, .5); put(o, chime(.45, (64, 71), CELESTA, 80, .05, .4, 0), .03)
+    return o
+
+
+@cue('map.vault.chapter', 1.6, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(WB_LO, 120), .55), 0, .8)
+    put(o, chime(1.4, (57, 62, 64, 69, 74), CELESTA, 90, .07, .4, 0), .1); put(o, shape(smp(CHOIR, 57, 70, 1.4), 1.4), .1, .25)
+    return o
+
+
+@cue('map.vault.fog', 1.4, 2)
+def _(rng, d):
+    return wind(d, rng, 300, .5, .4) * .7 + shape(smp(CHOIR, 50, 55, 1.3), d) * .2
+
+
+@cue('map.vault.potwarn', .9, 2)
+def _(rng, d):
+    o = buf(d)
+    for k in range(3): put(o, shape(pitch(smp(MARIMBA, 45, 100, .2), 1.0), .2), .25 * k, .5)
+    put(o, creak(.4, rng, (12, 22)), .1, .3)
+    return o
+
+
+@cue('map.vault.spill', 1.0, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(TOM_LO, 120), .65), 0, .9)
+    put(o, lp(noise(.8, rng, 'brown'), 700) * env_ar(.8, .05, .5) * 3, .02, .7)
+    for k in range(5): put(o, drip(rng, 400 + 200 * k, .08), .15 + .1 * k, .3)
+    return o
+
+
+@cue('map.vault.stampwarn', .8, 2)
+def _(rng, d):
+    o = buf(d)
+    put(o, creak(.6, rng, (14, 24), ((200, 9), (500, 10))), 0, .5); put(o, shape(smp(HORN, 43, 95, .4), .4), .1, .35)
+    return o
+
+
+@cue('map.vault.stamp', .7, 3)
+def _(rng, d):
+    o = buf(d)
+    put(o, pitch(dk(WB_LO, 127), .5), 0, 1.0); put(o, pitch(dk(KICK, 127), .7), 0, 1.0)
+    put(o, tone(28, d, .15), 0, .7); put(o, grit(.3, rng, 1200, 100, .4), .01)
+    return o
+
+
+@cue('map.vault.spit', .4, 3)
+def _(rng, d):
+    o = buf(d)
+    put(o, voiced(.15, 180, rng, ((400, 5), (1000, 6), (2400, 7)), .4) * env_exp(.15, .06), 0, .5)
+    put(o, flutter(.2, rng, 60, (800, 2000)), .05, .4)
+    return o
+
+
 # ---------------------------------------------------------------------------------------------- render
 _meter = pyloudnorm.Meter(SR)
 
@@ -1472,8 +1775,31 @@ def render(name, k):
         # the attack families sit lower still: about three semitones down and the airy top rolled off
         y = np.asarray(pitch(y, .84), dtype=float)
         lpf = min(lpf, 6000)
+    if name.startswith(PUNCH):
+        y = punch(y, rng, name)
     y = finish(y, dur, wet, -3.0, 45, lpf, .03)
-    return level(y)
+    return level(y, LEVEL + (3 if name.startswith(PUNCH) else 0))
+
+
+# requirement 1/11/2026 ("no force"): every blow gets a hard front: a short click on the attack, a sub thump under it, and a
+# little saturation so the body stays loud after the peak
+PUNCH = ('cmb.swing', 'cmb.hit', 'cmb.crit', 'wpn.', 'sig.', 'hero.', 'enemy.die', 'fx.knockback', 'fx.hazard.hit', 'fx.reaction',
+         'plr.hurt', 'enemy.big', 'enemy.elite', 'map.post.planehit', 'map.vault.stamp', 'map.theatre.cannon', 'map.theatre.curtain', 'map.glass.shatter', 'map.room.clockstrike')
+
+
+def punch(y, rng, name):
+    y = np.asarray(y, dtype=float)
+    y = y / max(np.abs(y).max(), 1e-9)
+    swing = name.startswith(('cmb.swing', 'wpn.boomerang', 'wpn.yoyo', 'wpn.ribbon', 'wpn.pierce'))
+    at = 0 if not swing else int(np.argmax(np.abs(y)) * .9)  # a swing's blow lands at its loudest moment, not at its start
+    out = np.zeros(max(len(y), at + N(.2)))
+    out[:len(y)] += y
+    t = np.arange(N(.16)) / SR
+    sub = np.sin(2 * np.pi * np.cumsum(52 * (1 + 1.2 * np.exp(-t / .018))) / SR) * np.exp(-t / .055)
+    out[at:at + len(sub)] += sub * .7
+    clk = np.asarray(hp(noise(.006, rng), 1800), dtype=float) * np.exp(-np.arange(N(.006)) / SR / .0015)
+    out[at:at + len(clk)] += clk / max(np.abs(clk).max(), 1e-9) * .45
+    return np.tanh(out * 2.2) / np.tanh(2.2)
 
 
 def clip_name(name, k):

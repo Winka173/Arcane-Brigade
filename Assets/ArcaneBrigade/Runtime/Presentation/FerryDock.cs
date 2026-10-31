@@ -138,7 +138,7 @@ namespace ArcaneBrigade
         {
             if (!Visible && !Open || owner.PresentationPaused || owner.StoryConsumesInput || Camera.main == null) { promptShown = false; return; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
-            if (!open) NameTag();
+            // no name sign over the ferry (requirement 1/11/2026): the boat itself and its prompt card say what it is
             if (!open)
             {
                 if (Near)
@@ -155,7 +155,6 @@ namespace ArcaneBrigade
             GUI.matrix = previous;
         }
 
-        private void NameTag() => PropTag.Draw(prop, Usable ? "FERRY" : "BACK TOMORROW", Usable);
 
         private void DrawCard()
         {

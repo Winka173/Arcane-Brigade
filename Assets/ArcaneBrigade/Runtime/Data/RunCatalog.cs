@@ -111,7 +111,7 @@ namespace ArcaneBrigade
             float reward = ActiveLevel(count) * Value;
             foreach (BondThresholdBonus bonus in ExtraBonuses ?? new BondThresholdBonus[0])
                 if (count >= bonus.Threshold) reward += bonus.Value;
-            return BalanceReward(reward);
+            return RunModifierRules.Nice(Effect, BalanceReward(reward)); // a round number, shown and played
         }
         /// <summary>Whole-number stats (pierce, split, shots) are floored when compiled: scaling them by 0.9 turned the first level's
         /// +1 into +0.9 = nothing (Runic School, Little Horns did nothing at two members until 19/10/2026), so they are not scaled.</summary>

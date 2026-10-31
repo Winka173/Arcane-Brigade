@@ -53,6 +53,7 @@ namespace ArcaneBrigade
             }
             // the Postbox's keepsake relic rides along from the first wave
             if (!string.IsNullOrEmpty(meta.Keepsake) && catalog.Item(meta.Keepsake) != null && StackCount(meta.Keepsake) == 0) State.Items.Add(new ItemStack { Id = meta.Keepsake, Count = 1 });
+            KeepOneStartingFriend();
             RecountBonds();
             State.Health = MaximumHealth();
         }

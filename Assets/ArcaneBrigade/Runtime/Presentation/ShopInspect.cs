@@ -63,6 +63,7 @@ namespace ArcaneBrigade
         private int customerLine;
         private void Speak(Entry entry)
         {
+            if (entry.Key == "Shopkeeper") { owner.Shop?.MerchantChat(); return; }
             if (entry.Title != "THE LAST CUSTOMER") return;
             Rect world = entry.World;
             SpeechBubbles.Show("Shop:LastCustomerTap", "THE LAST CUSTOMER", CustomerLines[customerLine++ % CustomerLines.Length],
@@ -96,6 +97,22 @@ namespace ArcaneBrigade
                     Add(id, "THE KEEPER, WHOLE", "An optional boss. Break its hand, carpet and eye and it kneels.\nWin: pick one rainbow gift.\nLast 3 minutes: no gift, no harm.\nFall: the run ends.", "Step up to it to take the test", Ink(view), view.sortingOrder);
                 else if (id.StartsWith("PrismaticReward", StringComparison.Ordinal))
                     Add(id, "AN IMPOSSIBLE GIFT", "The Keeper's reward. Take one of the three; the others go back into the dark.", "Step up to it to take it", Ink(view), view.sortingOrder);
+            }
+            // the shopkeeper (or the dream shop's keeper) answers a tap with a line of chat
+            ShopDisplayActor keeper = owner.GetComponentInChildren<ShopDisplayActor>();
+            if (keeper != null && keeper.isActiveAndEnabled)
+            {
+                Rect body = Rect.zero;
+                foreach (SpriteRenderer piece in keeper.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    if (!piece.enabled || piece.sprite == null && piece.bounds.size.x <= 0 || piece.GetComponent<GroundShadow>() != null || piece.color.a < .2f) continue;
+                    Bounds b = piece.bounds; Rect r = Rect.MinMaxRect(b.min.x, b.min.y, b.max.x, b.max.y);
+                    body = body.width <= 0 ? r : Rect.MinMaxRect(Mathf.Min(body.xMin, r.xMin), Mathf.Min(body.yMin, r.yMin), Mathf.Max(body.xMax, r.xMax), Mathf.Max(body.yMax, r.yMax));
+                }
+                bool dream = shop.Special;
+                if (body.width > 0) Add("Shopkeeper", dream ? "MOTHER OF A THOUSAND EGG-EYES" : "THE SHOPKEEPER",
+                    dream ? "She keeps the dream shop. Her eyes open only when someone remembers something." : "He keeps the night market between the waves, and he has seen every traveller who ever came through.",
+                    "Tap to chat", body, 0);
             }
             // a sold stall's ticket or a hidden prop never answers; nothing else is placed without a card
         }

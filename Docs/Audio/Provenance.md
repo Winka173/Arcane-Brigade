@@ -14,6 +14,10 @@ Các họ vũ khí, chém, trúng đòn và kỹ năng được hạ khoảng 3 
 
 Sau đó bước editor `AudioMixBuilder` dựng lại `loudness.json`, cân mọi clip về cùng một RMS.
 
+Bản 7b (2026-11-01):
+- Mọi đòn đánh có thêm tiếng nổ đầu, tiếng trầm và độ bão hòa nhẹ, nghe mạnh hơn. Các nhóm đòn đánh to hơn 4 dB, nhạc chiến đấu nhỏ đi một chút.
+- 39 cue mới (`Tools/Music/sfx7b_wire.py`): `enemy.elite.arrive` khi elite hoặc quái lớn xuất hiện, và 38 cue `map.*` cho cơ chế của 6 map, phát bởi `Runtime/Presentation/MapSounds.cs`.
+
 Giữ nguyên clip, chỉ cân lại gain: bộ boss, giọng, ambience, chuông sao. Bản nghe thử theo họ: `PreviewExports/Audio/SfxR7/*.mp3` (không đưa vào Git).
 
 ## Nhạc hiện tại: storybook v5, 2026-10-20

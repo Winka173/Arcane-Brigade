@@ -106,10 +106,10 @@ namespace ArcaneBrigade
                 case ArcaneCueLibrary.SceneMenu:
                 case ArcaneCueLibrary.SceneHub: return 0.4f;
                 case ArcaneCueLibrary.SceneSelect: return 0.35f;
-                case ArcaneCueLibrary.SceneBoss: return 0.36f;
+                case ArcaneCueLibrary.SceneBoss: return 0.32f; // fights sit a little under the blows (requirement 1/11/2026)
                 case ArcaneCueLibrary.SceneShopGold: return 0.38f;
                 case ArcaneCueLibrary.SceneShopDream: return 0.35f;
-                default: return 0.3f;
+                default: return 0.26f;
             }
         }
 

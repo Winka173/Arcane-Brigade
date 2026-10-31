@@ -34,6 +34,34 @@ namespace ArcaneBrigade
         }
         private RunHud Hud => (RunHud)typeof(ArenaController).GetField("runHud", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
 
+        /// <summary>Visible pieces of the shop (on screen, a readable size, not a unit, coin, shot, shadow or floor) with no inspect
+        /// card and no station on them.</summary>
+        private List<string> SilentThings()
+        {
+            var silent = new List<string>();
+            ShopInspect inspect = owner.GetComponent<ShopInspect>(); Camera cam = Camera.main;
+            if (cam == null || owner.Shop == null) return silent;
+            foreach (SpriteRenderer r in FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
+            {
+                if (!r.enabled || r.sprite == null || r.color.a < .2f || !r.gameObject.activeInHierarchy || r.GetComponentInParent<GroundShadow>() != null) continue;
+                if (Under(r.transform, "WorldGroundShadow") || Under(r.transform, "ItemRarityAura")) continue; // shadows and a ware's glow are not things
+                if (r.GetComponentInParent<UnitVisual>() != null || r.GetComponentInParent<CoinVisual>() != null || r.GetComponentInParent<ProjectileVisual>() != null) continue;
+                Bounds b = r.bounds; Vector3 size = b.size;
+                if (size.x < .5f && size.y < .5f || size.x > 9 || size.y > 9) continue;
+                Vector3 vp = cam.WorldToViewportPoint(b.center); if (vp.x < .02f || vp.x > .98f || vp.y < .02f || vp.y > .98f) continue;
+                Vector2 c = b.center;
+                bool covered = inspect != null && inspect.Entries.Any(e => e.World.Contains(c))
+                    || owner.Shop.Stations.Any(st => new Rect(b.min.x - .3f, b.min.y - .3f, b.size.x + .6f, b.size.y + .6f).Contains(st.Position) || Vector2.Distance(c, st.Position + Vector2.up * .4f) < 1.4f); // a ware's held weapon is its stall's
+                if (!covered)
+                {
+                    string path = r.name; for (Transform t = r.transform.parent; t != null && t != owner.transform; t = t.parent) path = t.name + "/" + path;
+                    silent.Add(path + " (" + r.sprite.name + ")");
+                }
+            }
+            return silent;
+        }
+
+        private static bool Under(Transform t, string name) { for (; t != null; t = t.parent) if (t.name == name) return true; return false; }
         private IEnumerator LoadShop(int wave, bool special, Action<RunSession> setup = null)
         {
             using (var run = new RunSession(catalog))
@@ -270,14 +298,19 @@ namespace ArcaneBrigade
             {
                 yield return LoadShop(wave - 1, false);
                 owner.NextWave(); yield return KeepAlive(2.5f);
+                int heardBefore = MapSounds.Played;
                 owner.Simulation.MapEnvironmentCaptureFixture(); yield return KeepAlive(.7f);
                 var map = owner.GetComponent<MapEnvironmentVisual>();
                 Check(owner.Simulation.MapEnvironment != null && map != null && map.Props >= 4, "Map elements on screen: " + name + " (" + (map != null ? map.Props : 0) + " props)");
                 yield return Shot("Item24_Map" + name);
+                if (MapSounds.Played == heardBefore) yield return KeepAlive(6f); // the map's clocks run on until one of its mechanics is heard
+                Debug.Log("MAP_SOUNDS " + name + " " + (MapSounds.Played - heardBefore) + " last=" + MapSounds.Last);
+                Check(MapSounds.Played > heardBefore, "Map mechanics are heard: " + name + " (" + (MapSounds.Played - heardBefore) + ", last " + MapSounds.Last + ")");
                 if (wave == 3)
                 {
                     // the wall clock struck: its held light sweeps the whole map and every enemy freezes as it passes
                     Vector2 clockAt = owner.Simulation.MapEnvironment.RoomClock;
+                    owner.Simulation.MapEnvironment.RoomClockGlowAt = owner.Simulation.Elapsed; owner.Simulation.MapEnvironment.RoomClockStruck = false; // glowing now (the shots above take a while)
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = clockAt; yield return KeepAlive(.45f);
                     Check(owner.Simulation.MapEnvironment.RoomClockStruck, "The wall clock strikes when the hero reaches it");
                     yield return Shot("Item24_ClockStruck");
@@ -329,6 +362,15 @@ namespace ArcaneBrigade
                 yield return Shot("Item35_Results" + end);
             }
 
+            // 38: everything shown in the shop answers a tap (requirement, repeated 31/10/2026): the visit nights and the dream shop
+            foreach (int night in new[] { 2, 7, 12 })
+            {
+                yield return LoadShop(night, night == 12); yield return KeepAlive(4f);
+                List<string> silent = SilentThings();
+                Debug.Log("TAP_AUDIT wave " + night + " " + silent.Count + ": " + string.Join(" | ", silent));
+                Check(silent.Count == 0, "Every shown thing in the wave " + night + " shop answers a tap (" + string.Join(", ", silent.Take(6)) + ")");
+                if (night == 2) yield return Shot("Item38_CustomerVisit");
+            }
             // 37: the second boss night (wave 8, the Chair Porter): its music keeps playing past the intro, its body hurts every
             // half second while touched, and its floor carries no lines
             yield return LoadShop(7, false);

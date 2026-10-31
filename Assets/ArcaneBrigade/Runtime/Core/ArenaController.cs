@@ -48,6 +48,7 @@ namespace ArcaneBrigade
         private CombatFeedback combatFeedback;
         private HitWords hitWords; // comic sound words over struck enemies (requirement 24/10/2026)
         private BossTelegraph bossTelegraph;
+        private MapSounds mapSounds;
         private MapEnvironmentVisual mapVisual;
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
@@ -156,6 +157,7 @@ namespace ArcaneBrigade
             pacing = gameObject.AddComponent<PacingFeedback>(); pacing.Configure(this, arenaCamera);
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             mapVisual = gameObject.AddComponent<MapEnvironmentVisual>();
+            mapSounds = gameObject.AddComponent<MapSounds>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arsenalVisual = gameObject.AddComponent<ArsenalVisual>();
@@ -315,6 +317,7 @@ namespace ArcaneBrigade
             if (footDust != null) footDust.Display(simulation, simulation.Phase == RunPhase.Paused ? 0 : Time.deltaTime);
             if (bossTelegraph != null) bossTelegraph.Display(simulation);
             if (mapVisual != null) mapVisual.Display(simulation);
+            if (mapSounds != null && simulation.Phase == RunPhase.Combat) mapSounds.Listen(simulation); // the map's mechanics are heard
             if (companionRadius != null)
             {
                 companionRadius.enabled = false;
@@ -767,7 +770,12 @@ namespace ArcaneBrigade
                     view.Bind(state, catalog);
                     if (profile != null) view.SetChampionCosmetic(profile.Cosmetic);
                     units.Add(state.Id, view);
-                    if (state.Faction == Faction.Enemy && simulation.Phase == RunPhase.Combat && simulation.Elapsed > .3f) EnemyRifts.Play(state, arenaCamera);
+                    if (state.Faction == Faction.Enemy && simulation.Phase == RunPhase.Combat && simulation.Elapsed > .3f)
+                    {
+                        EnemyRifts.Play(state, arenaCamera);
+                        // requirement 1/11/2026: an elite or a big foe arriving is heard (a horn and a heavy landing); bosses have their own entrance
+                        if (!state.Definition.IsBoss && (state.Elite || state.Definition.Radius >= .55f)) CheckpointAudio.PlayWorldId("enemy.elite.arrive", state.Position);
+                    }
                 }
                 view.ReducedMotion = profile != null && profile.ReducedMotion;
                 RaritySparkle.Ensure(view, state);

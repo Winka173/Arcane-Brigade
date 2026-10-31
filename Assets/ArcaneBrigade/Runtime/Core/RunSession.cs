@@ -141,12 +141,23 @@ namespace ArcaneBrigade
             {
                 State.Roster.Add(catalog.HeroRevision > 0 ? K11HeroRules.Starter(catalog, champion) : new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
                 RememberVariant(State.Roster[0]);
-                // a second starting friend for the heroes whose gauge runs on friends
-                if (catalog.HeroRevision > 0 && HeroLoadout.SecondFriend.TryGetValue(champion.Id, out var second) && catalog.Unit(second.Friend) is UnitDefinition two
-                    && K11HeroRules.Eligible(champion, two) && !OwnsCompanionSpecies(second.Friend)) MetaAddFriend(second.Friend, catalog.Weapon(second.Weapon));
+                // (no second starting friend any more: requirement 31/10/2026, every hero starts with no more than one friend)
             }
+            KeepOneStartingFriend();
             RecountBonds();
             State.Health = MaximumHealth();
+        }
+
+        /// <summary>Requirement (31/10/2026, repeated 1/11/2026): a run starts with no more than one friend, whatever adds them
+        /// (a hero's talent gifts, the Waiting Room's Cradle): the first stays, the rest are not brought.</summary>
+        private void KeepOneStartingFriend()
+        {
+            while (State.Roster.Count > 1)
+            {
+                RosterEntry extra = State.Roster[State.Roster.Count - 1];
+                State.AcquiredVariants.RemoveAll(v => v.UnitId == extra.UnitId && v.WeaponId == extra.WeaponId && v.Tier == extra.Tier);
+                State.Roster.RemoveAt(State.Roster.Count - 1);
+            }
         }
 
         /// <summary>Story bosses that can be fought but are not roster bosses, so never boss discoveries.</summary>
@@ -290,14 +301,14 @@ namespace ArcaneBrigade
                 if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value;
             foreach (RosterEntry entry in ActiveRoster)
                 foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
-                    if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * UnitDefinition.ModifierScale(entry.Tier);
+                    if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += RunModifierRules.Nice(effect, modifier.Value * UnitDefinition.ModifierScale(entry.Tier));
             bool loom = MechanicStacks(RelicMechanic.DreamLoom) > 0; // Dream Loom: Common items give double
             foreach (ItemStack stack in State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
                 float woven = loom && item.Rarity == ItemRarity.Common ? 2 : 1;
                 foreach (StatModifier modifier in item.EffectiveModifiers)
-                    if (!SecretItemSuspended(stack.Id) && modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * woven * item.EffectiveStacks(stack.Count) * (modifier.Value > 0 && SecretItemImproved(stack.Id) ? 1.25f : 1) * (modifier.Value > 0 ? KitItemScale(item, stack.Count, target) : 1);
+                    if (!SecretItemSuspended(stack.Id) && modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += RunModifierRules.Nice(effect, modifier.Value * woven * item.EffectiveStacks(stack.Count) * (modifier.Value > 0 && SecretItemImproved(stack.Id) ? 1.25f : 1) * (modifier.Value > 0 ? KitItemScale(item, stack.Count, target) : 1));
             }
             foreach (BondDefinition bond in catalog.Bonds)
                 if (bond.Effect == effect && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && BondCounts.TryGetValue(bond.Id, out int count)) value += bond.Reward(count);
@@ -305,7 +316,7 @@ namespace ArcaneBrigade
             value += OctoberBonus(effect, target);
             foreach (string id in State.AbsorbedSkills ?? new List<string>())
                 foreach (StatModifier m in catalog.Unit(id).CompanionModifiers ?? Array.Empty<StatModifier>())
-                    if (m.Effect == effect && RunModifierRules.Applies(m.Scope, target)) value += m.Value;
+                    if (m.Effect == effect && RunModifierRules.Applies(m.Scope, target)) value += RunModifierRules.Nice(effect, m.Value);
             value += KitBonus(effect, target);
             value += MetaBonus(effect, target); // the Waiting Room's Lantern and Ledger (play-test item 27)
             if (OctoberHero == "Wise" && target == ModifierScope.Champion && value > 0) value *= 1.25f;
