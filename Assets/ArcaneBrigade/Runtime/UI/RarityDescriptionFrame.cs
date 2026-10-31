@@ -277,9 +277,9 @@ namespace ArcaneBrigade
             bool motion=!PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
             if(rarity==ItemRarity.Rainbow && motion)tint=Color.HSVToRGB(Mathf.Repeat(clock*.055f,1),.48f,1);
             float breathe=motion?.7f+.3f*Mathf.Sin(clock*(1.6f+.5f*rank)):.9f;
-            Color edge=tint;edge.a=.9f*breathe; Border(tile,3,edge);
-            Color halo=tint;halo.a=.3f*breathe; Border(new Rect(tile.x-3,tile.y-3,tile.width+6,tile.height+6),2,halo);
             if(Event.current==null || Event.current.type!=EventType.Repaint)return;
+            // a soft oval of the rarity's light round the tile, never a ruled box (requirement, repeated 1/11/2026)
+            Color halo=tint;halo.a=.75f*breathe; ArcadeSkin.Halo(tile,Mathf.Min(tile.width,tile.height)*.18f,halo);
             Color bright=Color.Lerp(tint,Color.white,.35f); float gap=11, x0=tile.center.x-(rank-1)*gap*.5f;
             for(int i=0;i<rank;i++){Vector2 c=new Vector2(x0+i*gap,tile.y);ArcadeSkin.Diamond(c,9,new Color(.08f,.05f,.1f,.95f));ArcadeSkin.Diamond(c,6,bright);}
         }
@@ -290,7 +290,10 @@ namespace ArcaneBrigade
             int rank=Rank(rarity); if(rank<3 || Event.current==null || Event.current.type!=EventType.Repaint)return;
             bool still=PresentationSettings.ReducedMotion;
             Color tint=RunModifierRules.RarityColor(rarity);
-            Vector2[] at={new Vector2(picture.x,picture.y),new Vector2(picture.xMax,picture.y),new Vector2(picture.xMax,picture.yMax),new Vector2(picture.x,picture.yMax)};
+            // four sparkles on a circle round the picture, turning slowly (at the corners they drew a square)
+            float radius=Mathf.Max(picture.width,picture.height)*.62f, turn=still?0:clock*.35f;
+            Vector2[] at=new Vector2[4];
+            for(int k=0;k<4;k++){float a=turn+k*Mathf.PI*.5f+Mathf.PI*.25f; at[k]=picture.center+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*radius;}
             float speed=.9f+.25f*rank;
             for(int i=0;i<4;i++)
             {

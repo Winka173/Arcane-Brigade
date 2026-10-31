@@ -442,14 +442,14 @@ namespace ArcaneBrigade
             // a steady identity (its position changed every frame and made the walk frames flicker), and the step bounce in time
             // with the two walk frames (7 a second)
             int identity = Mathf.Abs(r.unit.Id.GetHashCode() % 97);
-            Sprite body = frames != null && frames.Length >= 4 ? frames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, !reduced, reduced)] : r.unit.Body;
+            Sprite body = frames != null && frames.Length >= 4 ? frames[UnitVisual.Frame(r.unit, UnitVisual.AnimationFrame(Time.unscaledTime, identity, !reduced, reduced))] : r.unit.Body;
             float step = reduced ? 0 : Mathf.Abs(Mathf.Sin((Time.unscaledTime * 7 + identity * .37f) * Mathf.PI)) * 2; // a small step bounce, feet near the floor
             OnFloor(body, r.at, 84, r.left, step);
         }
 
         private void DrawTraveller(UnitDefinition unit, int identity, bool reduced)
         {
-            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced)] ?? unit.Body : unit.Body;
+            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.Frame(unit, UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced))] ?? unit.Body : unit.Body;
             ArcadeSkin.Glow(new Rect(hero.x - 120, hero.y - 150, 240, 190), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, .18f));
             OnFloor(pose, hero, 104, facingLeft, walking && !reduced ? Mathf.Abs(Mathf.Sin(Time.unscaledTime * 7f)) * 2 : 0);
         }

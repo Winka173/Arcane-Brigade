@@ -227,6 +227,7 @@ namespace ArcaneBrigade
             Check(ferry != null && ferry.Visible && ferry.Spot(0, out Vector2 jetty, out _), "The ferry stands in the shop");
             if (ferry != null && ferry.Spot(0, out jetty, out _))
             {
+            if (ShopLayout.Active != null) Debug.Log("FERRY_SPOT blocked by: " + ShopLayout.Active.Blocking(FerryDock.Anchor, new Vector2(FerryDock.Width, FerryDock.Width * .8f)));
                 yield return Stand(jetty + new Vector2(.6f, .2f)); yield return Shot("Item33_FerryPrompt");
                 ferry.ShowForCapture(owner.Session.PartingSpecies().FirstOrDefault()); yield return new WaitForSecondsRealtime(.6f); yield return Shot("Item33_FerryCard");
                 typeof(FerryDock).GetField("rowing", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(ferry, true); yield return new WaitForSecondsRealtime(.3f); yield return Shot("Item33_FerryFarBank");
@@ -362,6 +363,31 @@ namespace ArcaneBrigade
                 yield return Shot("Item35_Results" + end);
             }
 
+            // 39: wave 9 (the Bedside, a mid-map boss): music all through the night (review 1/11/2026: none played)
+            yield return LoadShop(8, false);
+            owner.NextWave();
+            for (int probe = 0; probe < 5; probe++)
+            {
+                yield return KeepAlive(6f);
+                ArcadeMusic m9 = owner.GetComponent<ArcadeMusic>();
+                Debug.Log("WAVE9_MUSIC t=" + owner.Simulation.Elapsed.ToString("0") + " scene=" + m9?.CurrentScene + " piece=" + m9?.PlayingPiece + " boss=" + owner.Simulation.Boss?.Definition?.Id + " key=" + m9?.BossKey + " phase=" + owner.Session.State.Phase);
+                if (probe == 4) Check(m9 != null && m9.PlayingPiece != null, "Wave 9 has music (" + m9?.CurrentScene + " / " + m9?.PlayingPiece + ")");
+            }
+            // 40: the warm chair's hidden fight (the Bedside): its music plays (review 1/11/2026: none at wave 9)
+            yield return LoadShop(9, false);
+            if (owner.Session.SitCloserAvailable && owner.AcceptSitCloser())
+            {
+                float until = Time.realtimeSinceStartup + 12;
+                while ((owner.TransitionPending || owner.Simulation.Boss == null) && Time.realtimeSinceStartup < until) yield return null;
+                for (int probe = 0; probe < 3; probe++)
+                {
+                    yield return KeepAlive(5f);
+                    ArcadeMusic mb = owner.GetComponent<ArcadeMusic>();
+                    Debug.Log("BEDSIDE_MUSIC t=" + owner.Simulation.Elapsed.ToString("0") + " scene=" + mb?.CurrentScene + " piece=" + mb?.PlayingPiece + " boss=" + owner.Simulation.Boss?.Definition?.Id + " key=" + mb?.BossKey + " phase=" + owner.Session.State.Phase + " story=" + owner.StoryConsumesInput);
+                    if (probe == 2) Check(mb != null && mb.PlayingPiece != null, "The Bedside fight has music (" + mb?.CurrentScene + " / " + mb?.PlayingPiece + ")");
+                }
+            }
+            else Check(false, "The warm chair can be sat in at wave 9");
             // 38: everything shown in the shop answers a tap (requirement, repeated 31/10/2026): the visit nights and the dream shop
             foreach (int night in new[] { 2, 7, 12 })
             {

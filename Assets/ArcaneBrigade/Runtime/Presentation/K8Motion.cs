@@ -83,7 +83,10 @@ namespace ArcaneBrigade
                 return 0;
             }
             if (!unit.Definition.IsBoss)
-                return UnitVisual.AnimationFrame(time, unit.Id, (unit.Position - unit.PreviousPosition).sqrMagnitude > 0.000001f, reduced);
+            {
+                if (!reduced && UnitVisual.StrikeFrame(unit.Definition) >= 0 && Attacking(unit, time)) return UnitVisual.StrikeFrame(unit.Definition); // the painted strike pose
+                return UnitVisual.Frame(unit.Definition, UnitVisual.AnimationFrame(time, unit.Id, (unit.Position - unit.PreviousPosition).sqrMagnitude > 0.000001f, reduced));
+            }
             float windup = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;
             float age = time - unit.AttackStarted;
             if (unit.TelegraphUntil > time || unit.PendingAttack && age >= 0 && age < windup) return 2;

@@ -6,13 +6,13 @@ namespace ArcaneBrigade
     public sealed class CheckpointAudio : MonoBehaviour
     {
         private static readonly List<CheckpointAudio> interfaceOwners = new List<CheckpointAudio>();
-        private readonly AudioSource[] voices = new AudioSource[16];
+        private readonly AudioSource[] voices = new AudioSource[4 + CombatLanes]; // 2 danger, 2 interface, the combat lanes
         private readonly AudioClip[] clips = new AudioClip[39];
         private readonly bool[] ownedClips = new bool[39];
         private readonly float[] nextPlayback = new float[39];
         private readonly float[] nextDangerPlayback = new float[39];
-        private readonly float[] voiceGain = new float[16];
-        private readonly string[] voiceId = new string[16];
+        private readonly float[] voiceGain = new float[4 + CombatLanes];
+        private readonly string[] voiceId = new string[4 + CombatLanes];
         private readonly Dictionary<string, float> nextById = new Dictionary<string, float>();
         private readonly Dictionary<string, float> nextByGroup = new Dictionary<string, float>();
         private readonly List<PendingCue> pending = new List<PendingCue>();
@@ -29,7 +29,9 @@ namespace ArcaneBrigade
         private float nextImpact;      // hits, kills and explosions have their own lane, so attack sounds never silence them
         private float coinStreakAt = -10;
         private int coinStreak;
-        public const int CombatLanes = 12, ReducedCombatLanes = 4;
+        // requirement 1/11/2026 (blows sounded thin and cut each other off): 26 combat lanes, not 12 - a survivors-like plays many
+        // blows at once; the occupied mask is an int, so 4 + lanes stays under 31
+        public const int CombatLanes = 26, ReducedCombatLanes = 6;
         private float nextDanger;
         private float nextInterface;
         private int dangerVoice;
@@ -172,7 +174,7 @@ namespace ArcaneBrigade
         /// <summary>Hits, kills and explosions: the sounds that say something landed.</summary>
         public static bool IsImpact(string id) => id.StartsWith("cmb.hit") || id == "cmb.crit" || id.StartsWith("enemy.die") || id == "enemy.hurt" || id.Contains("boom") || id.StartsWith("fx.explode");
         /// <summary>Only the hero being hurt and boss moments lower the music; ordinary enemy attacks keep their priority but do not duck.</summary>
-        public static bool Ducks(string id) => id.StartsWith("plr.") || id.StartsWith("boss.") || id == "ui.cutin.boss" || id == "event.warn";
+        public static bool Ducks(string id) => id == "plr.hurt" || id == "plr.death" || id == "ui.cutin.boss" || id == "event.warn"; // a boss's every blow no longer ducks its own music
 
         // Arena only: sounds from outside the visible area (plus margin) are dropped unless they are danger cues.
         private bool OnScreen(Vector2 position)

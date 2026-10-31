@@ -385,27 +385,30 @@ namespace ArcaneBrigade
         }
 
         private static Texture2D halo;
-        /// <summary>A soft light ring round a rectangle, <paramref name="grow"/> wide: nothing inside the rectangle, full at its
-        /// edge, gone at the ring's outer edge (a nine-sliced 66 px texture whose middle is clear).</summary>
+        /// <summary>A soft oval of light round a piece, <paramref name="grow"/> past it: clear in the middle (over the piece), brightest
+        /// just outside its outline, fading out. An oval, never a box (requirement, repeated 1/11/2026: a rectangular glow round the
+        /// shopkeeper read as a frame drawn over the painting).</summary>
         public static void Halo(Rect r, float grow, Color colour)
         {
             if (Event.current.type != EventType.Repaint || grow <= 0) return;
             if (halo == null)
             {
-                halo = new Texture2D(66, 66, TextureFormat.RGBA32, false) { name = "SelectedHalo", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
-                var pixels = new Color[66 * 66];
-                for (int y = 0; y < 66; y++)
-                    for (int x = 0; x < 66; x++)
+                halo = new Texture2D(96, 96, TextureFormat.RGBA32, false) { name = "SelectedHalo", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
+                var pixels = new Color[96 * 96];
+                for (int y = 0; y < 96; y++)
+                    for (int x = 0; x < 96; x++)
                     {
-                        float dx = Mathf.Max(0, 32 - (x + .5f), (x + .5f) - 34), dy = Mathf.Max(0, 32 - (y + .5f), (y + .5f) - 34);
-                        float d = Mathf.Sqrt(dx * dx + dy * dy);
-                        pixels[y * 66 + x] = new Color(1, 1, 1, d <= 0 ? 0 : Mathf.SmoothStep(0, 1, d / 9f) * Mathf.Pow(Mathf.Clamp01(1 - d / 32f), 1.6f)); // rises softly off the edge (a full edge read as an outline)
+                        float d = Vector2.Distance(new Vector2(x + .5f, y + .5f), new Vector2(48, 48)) / 48f; // 0 centre, 1 the oval's edge
+                        float rise = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.5f, .68f, d)), fall = Mathf.Pow(Mathf.Clamp01(1 - (d - .68f) / .32f), 1.6f);
+                        pixels[y * 96 + x] = new Color(1, 1, 1, d < .68f ? rise : fall);
                     }
                 halo.SetPixels(pixels); halo.Apply(false, true);
             }
+            // the oval through the piece's corners (its inner clear part covers the piece, the light falls just outside it)
+            float w = r.width * 1.42f + grow * 2, h = r.height * 1.42f + grow * 2;
             Color previous = GUI.color;
             GUI.color = Faded(colour, previous);
-            SlicedTexture(new Rect(r.x - grow, r.y - grow, r.width + grow * 2, r.height + grow * 2), halo, new Vector4(32, 32, 32, 32), grow / 32f, 0);
+            GUI.DrawTexture(new Rect(r.center.x - w * .5f, r.center.y - h * .5f, w, h), halo);
             GUI.color = previous;
         }
 
@@ -439,7 +442,13 @@ namespace ArcaneBrigade
         {
             bool still = PresentationSettings.ReducedMotion;
             float t = Time.unscaledTime, breathe = still ? .8f : .65f + .35f * Mathf.Sin(t * 3.2f);
-            SelectedAura(bounds, new Color(1f, .78f, .38f));
+            // a large piece (a figure, the shopkeeper) is lit at its feet, a small card or slot round its edge; never a box
+            if (bounds.width > 260 || bounds.height > 260)
+            {
+                float pw = Mathf.Min(bounds.width * .9f, 420), ph = pw * .32f;
+                for (int layer = 0; layer < 2; layer++) Glow(new Rect(bounds.center.x - pw * .5f, bounds.yMax - ph * .6f, pw, ph), new Color(1f, .78f, .38f, .7f * breathe));
+            }
+            else SelectedAura(bounds, new Color(1f, .78f, .38f));
             float bob = still ? 0 : Mathf.Sin(t * 4f) * 4;
             Vector2 marker = new Vector2(bounds.center.x, bounds.y - 14 + bob);
             Diamond(marker, 18, new Color(Ink.r, Ink.g, Ink.b, .8f));

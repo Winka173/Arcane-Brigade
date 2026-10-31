@@ -228,7 +228,7 @@ namespace ArcaneBrigade
                 // code-drawn tile (requirement 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
                 if (activates) ArcadeSkin.BlinkStrong(box, clock); // the tile this purchase lights blinks strongly (requirement 22/10/2026)
                 ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
-                if (activates) { ArcadeSkin.BlinkOver(box, clock); ArcadeSkin.BlinkStrong(box, clock, true); }
+                if (activates) ArcadeSkin.BlinkStrong(box, clock, true); // (no pale box blinked over the tile: never a rectangle over painted art)
                 Rect bi = Inner(box); // clear of the tile's ornate rim
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
                 if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile

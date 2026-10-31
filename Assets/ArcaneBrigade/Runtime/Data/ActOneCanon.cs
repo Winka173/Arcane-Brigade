@@ -87,7 +87,8 @@ namespace ArcaneBrigade
             // beside the exit. Every position is reserved in ShopLayout, so no stall, offer or decoration is ever under it.
             // pulled a little in from the edges for the bigger chair (requirement 22/10/2026)
             if (wave >= 19) return new Vector2(1.9f, -4.4f);
-            Vector2[] path = { new Vector2(6.4f, 0.55f), new Vector2(6.5f, -1.7f), new Vector2(5.7f, -4.2f), new Vector2(4.5f, -4.3f) };
+            // the bottom-right corner itself is the ferry's (requirement 1/11/2026): the chair rounds it a little further in
+            Vector2[] path = { new Vector2(6.4f, 0.55f), new Vector2(6.3f, -1.7f), new Vector2(5.1f, -3.9f), new Vector2(4.2f, -4.3f) };
             float t = Mathf.Clamp01((Mathf.Clamp(wave, 1, 18) - 1) / 17f) * (path.Length - 1);
             int segment = Mathf.Min(path.Length - 2, Mathf.FloorToInt(t));
             return Vector2.Lerp(path[segment], path[segment + 1], t - segment);

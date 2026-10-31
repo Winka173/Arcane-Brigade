@@ -28,6 +28,11 @@ namespace ArcaneBrigade
             int idleFrame = reacting ? 0 : UnitVisual.AnimationFrame(time, state.Id, false, reduced);
             int headFrame = idleFrame == 1 ? 1 : legFrame;
             if (state.Faction == Faction.Enemy) headFrame = legFrame = K8Motion.BodyFrame(state, time, reduced);
+            else
+            {
+                headFrame = UnitVisual.Frame(state.Definition, headFrame); legFrame = UnitVisual.Frame(state.Definition, legFrame);
+                if (attacking && !reduced && UnitVisual.StrikeFrame(state.Definition) >= 0) headFrame = legFrame = UnitVisual.StrikeFrame(state.Definition);
+            }
             Sprite headSprite = state.Definition.AnimationFrames[headFrame];
             Sprite feetSprite = state.Definition.AnimationFrames[legFrame];
             Parts head = GetParts(headSprite);

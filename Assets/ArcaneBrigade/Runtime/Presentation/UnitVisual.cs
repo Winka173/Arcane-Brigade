@@ -186,6 +186,24 @@ namespace ArcaneBrigade
             return phase < 0.65f ? Mathf.Sin(phase / 0.65f * Mathf.PI) : 0;
         }
 
+        private static readonly System.Collections.Generic.Dictionary<UnitDefinition, bool> stepsFirst = new System.Collections.Generic.Dictionary<UnitDefinition, bool>();
+        /// <summary>True when a character's four frames are idle, step, step, strike (the painted sheets Heroes1-6 and Characters1-2)
+        /// rather than idle, blink, step, step (review 1/11/2026: 26 heroes flashed their strike pose in every walk).</summary>
+        public static bool StepsFirst(UnitDefinition unit)
+        {
+            if (unit == null || unit.AnimationFrames == null || unit.AnimationFrames.Length < 4) return false;
+            if (stepsFirst.TryGetValue(unit, out bool known)) return known;
+            Sprite second = unit.AnimationFrames[1];
+            string sheet = second != null && second.texture != null ? second.texture.name : "";
+            bool steps = sheet.StartsWith("Heroes", System.StringComparison.Ordinal) || sheet.StartsWith("Characters", System.StringComparison.Ordinal);
+            stepsFirst[unit] = steps; return steps;
+        }
+        /// <summary>The frame index to draw for a pose from <see cref="AnimationFrame"/> (0 idle, 1 blink, 2-3 the steps), in this
+        /// character's own layout.</summary>
+        public static int Frame(UnitDefinition unit, int pose) => !StepsFirst(unit) ? pose : pose == 1 ? 0 : pose == 2 ? 1 : pose == 3 ? 2 : pose;
+        /// <summary>A character's strike pose while it attacks, when its sheet has one (else -1).</summary>
+        public static int StrikeFrame(UnitDefinition unit) => StepsFirst(unit) ? 3 : -1;
+
         public static int AnimationFrame(float time, int identity, bool moving, bool reducedMotion)
         {
             if (reducedMotion) return 0;

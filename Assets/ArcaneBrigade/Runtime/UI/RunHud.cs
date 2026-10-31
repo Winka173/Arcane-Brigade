@@ -580,7 +580,7 @@ namespace ArcaneBrigade
                 RarityDescriptionFrame.Draw(panel, rarity, owner.PresentationClock); if (blood) BloodPriceFrame.Draw(panel, owner.PresentationClock);
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
                 Rect picture = new Rect(panel.x + 26, panel.y + 24, 160, 160);
-                ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
+                ArcadeSkin.Glow(new Rect(picture.x + 10, picture.y + 10, picture.width - 20, picture.height - 20), new Color(0, 0, 0, .35f)); // a soft round shadow behind the picture, not a dark square
                 if (station.Offer != null) RarityDescriptionFrame.Backdrop(picture, rarity, owner.PresentationClock);
                 ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 144, 144), station.Offer != null ? offerCard.Portrait : station.Icon);
                 if (station.Offer != null)

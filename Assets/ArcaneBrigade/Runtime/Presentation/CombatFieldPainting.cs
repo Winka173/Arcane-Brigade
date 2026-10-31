@@ -24,6 +24,8 @@ namespace ArcaneBrigade
             Hide();
             if (time > field.Until) return false;
             bool warning = time < field.At;
+            // requirement 1/11/2026: only a boss marks where its blow will land; an ordinary foe's area blow shows no warning circle
+            if (warning && field.Source != null && field.Source.Faction == Faction.Enemy && field.Source.Definition != null && !field.Source.Definition.IsBoss) return false;
             string key = field.Kind switch
             {
                 ExpandedFieldKind.Tentacle => "Tentacle", ExpandedFieldKind.Shockwave => "ShockRing",

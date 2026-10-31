@@ -45,12 +45,15 @@ namespace ArcaneBrigade
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
         private void ClearExpansion() { ClearArsenal(); fields.Clear(); flung.Clear(); ClearAirborne(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); ClearBuildMorphs(); ClearOctoberBosses(); }
 
+        public const float EnemyAreaReach = .7f;
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
             int depth = kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Strike ? cause.Depth : cause.Depth + 1;
             // our area hits are a little tighter than authored (MeleeBalance.Area); tethers, beams and enemy hazards keep theirs
             if ((source == null || source.Faction != Faction.Enemy) && (kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Echo || kind == ExpandedFieldKind.Strike || kind == ExpandedFieldKind.Tea || kind == ExpandedFieldKind.Iron || kind == ExpandedFieldKind.Ink || kind == ExpandedFieldKind.Photo))
                 radius *= MeleeBalance.Area;
+            // requirement 1/11/2026: an ordinary foe's area blow reaches 30% less (only a boss marks its reach on the floor)
+            if (source != null && source.Faction == Faction.Enemy && source.Definition != null && !source.Definition.IsBoss) radius *= EnemyAreaReach;
             fields.Add(new ExpandedField { Kind = kind, Source = source, Position = position, Start = source == null ? position : source.Position, Direction = direction, Radius = radius, Damage = damage, Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration, NextTick = Elapsed + delay, Cause = new CombatCause(cause.RootId, cause.SourceUnitId, "expanded-" + kind.ToString().ToLowerInvariant(), depth), Target = target });
         }
 

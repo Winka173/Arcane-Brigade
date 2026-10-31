@@ -226,8 +226,11 @@ namespace ArcaneBrigade
             return Vector2.Distance(point, a + segment * t);
         }
 
+        private const float ExpandedEnemyReach = .7f;
         private WaitingMark Mark(WaitingMarkKind kind, UnitState source, Vector2 a, Vector2 b, float radius, float delay, float duration, int index = 0)
         {
+            // requirement 1/11/2026: an ordinary foe's area blow reaches 30% less (it no longer shows its circle)
+            if (source != null && source.Definition != null && !source.Definition.IsBoss && (kind == WaitingMarkKind.SeatRing || kind == WaitingMarkKind.ClosedPatch || kind == WaitingMarkKind.KnockRing)) radius *= ExpandedEnemyReach;
             var mark = new WaitingMark { Kind = kind, Source = source, A = a, B = b, Radius = radius, Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration, NextTick = Elapsed + delay, Index = index };
             if (waitingMarks.Count >= 160) waitingMarks.RemoveAt(0);
             waitingMarks.Add(mark);

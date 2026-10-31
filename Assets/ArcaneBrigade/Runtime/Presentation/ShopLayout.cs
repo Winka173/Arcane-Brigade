@@ -234,6 +234,15 @@ namespace ArcaneBrigade
         private static readonly Rect Floor = Rect.MinMaxRect(-5.4f, -3.7f, 5.4f, 2.9f); // where the traveller shops
         /// <param name="transient">a figure that is only here on this one visit (the Last Customer beside the chair) may
         /// stand where the chair will be on other visits, never on today's chair</param>
+        /// <summary>For checks: what stands in the way of a prop at this foot (the reservations and placed props it overlaps).</summary>
+        public string Blocking(Vector2 foot, Vector2 size)
+        {
+            Rect rect = Footprint(foot, size); var names = new List<string>();
+            Rect padded = new Rect(rect.x - Pad, rect.y - Pad, rect.width + Pad * 2, rect.height + Pad * 2);
+            for (int i = 0; i < reserved.Count; i++) if (padded.Overlaps(reserved[i])) names.Add(reservedNames[i]);
+            foreach (Prop prop in order) if (prop.Id != FerryId && prop.Planned && prop.Visible && padded.Overlaps(Footprint(prop.Foot, prop.Size * prop.Fit))) names.Add("prop:" + prop.Id);
+            return string.Join(", ", names);
+        }
         private bool Fits(Rect rect, Rect view, bool rim = false, bool transient = false)
         {
             // things at the rim of the room (watchers, seated travellers) may lean out past the left and right edges

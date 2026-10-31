@@ -175,6 +175,9 @@ namespace ArcaneBrigade
                 if (frames.Length == 4 && speaking && !cheer && !denied && !reduced) frame = 2 + Mathf.FloorToInt(owner.PresentationClock * 9.5f) % 2;
                 if (canonMerchant) frame = denied ? 3 : cheer ? 1 : inspecting ? 2 : !reduced && Mathf.Repeat(time, 12) > 10 ? 1 : 0;
                 if (pedestalDisplay) frame = reduced ? 0 : Mathf.FloorToInt(time * 3) % frames.Length;
+                // a two-pose visitor (waiting, offering) no longer flips between them twice a second (review 1/11/2026): it waits, and
+                // holds out its offer when the hero comes close, while it speaks or cheers, and now and then as an invitation
+                else if (frames.Length == 2 && !merchantActor && !canonMerchant) frame = reduced ? 0 : inspecting || speaking || cheer || Mathf.Repeat(time, 7.5f) > 6.1f ? 1 : 0;
                 view.sprite = frames[frame];
             }
             if (view.sprite == null) return;

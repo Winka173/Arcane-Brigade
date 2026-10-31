@@ -176,7 +176,7 @@ namespace ArcaneBrigade.Editor
 
         private static void Ducking()
         {
-            Require(AudioMix.DuckDepthDb <= -5f && AudioMix.DuckDepthDb >= -6f, "duck depth 5-6 dB");
+            Require(AudioMix.DuckDepthDb <= -2.5f && AudioMix.DuckDepthDb >= -4f, "duck depth 2.5-4 dB (requirement 1/11/2026: deeper ducks hid the boss music)");
             Require(AudioMix.DuckTarget(0f, false) == 0f && AudioMix.DuckTarget(AudioMix.DuckThreshold, false) == 0f && Mathf.Approximately(AudioMix.DuckTarget(AudioMix.DuckFull, false), AudioMix.DuckDepthDb), "duck follows SFX density: none when calm, full when dense");
             float mid = AudioMix.DuckTarget((AudioMix.DuckThreshold + AudioMix.DuckFull) * 0.5f, false);
             Require(mid < 0f && mid > AudioMix.DuckDepthDb, "partial duck in between");

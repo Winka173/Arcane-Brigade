@@ -89,6 +89,6 @@ namespace ArcaneBrigade
         public static float VoiceVolume { get; private set; } = 1f;
         public static float VoiceDuckUntil { get; private set; }
         public static void VoiceDuck(float seconds) { VoiceDuckUntil = Mathf.Max(VoiceDuckUntil, Time.unscaledTime + seconds); }
-        public static float MusicDuck => Time.unscaledTime < DangerUntil ? 0.48f : Time.unscaledTime < VoiceDuckUntil ? 0.72f : 1f;
+        public static float MusicDuck => Time.unscaledTime < DangerUntil ? 0.78f : Time.unscaledTime < VoiceDuckUntil ? 0.72f : 1f;
     }
 }

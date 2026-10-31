@@ -569,7 +569,7 @@ namespace ArcaneBrigade
         /// <summary>A unit standing on the menu floor: its foot at the point, its idle frame, turned to face <paramref name="faceRight"/>.</summary>
         private static void MenuUnit(Vector2 foot, float height, UnitDefinition unit, int identity, bool faceRight, bool reduced, float hop)
         {
-            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 2 ? unit.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, false, reduced)] : unit.Body;
+            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 2 ? unit.AnimationFrames[UnitVisual.Frame(unit, UnitVisual.AnimationFrame(Time.unscaledTime, identity, false, reduced))] : unit.Body;
             if (pose == null) return;
             Rect src = pose.rect; float w = height * src.width / src.height;
             ArcadeSkin.Glow(new Rect(foot.x - w * .45f, foot.y - 12, w * .9f, 24), new Color(0, 0, 0, .55f)); // its shadow on the floor
@@ -667,12 +667,20 @@ namespace ArcaneBrigade
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 if (index == 7 && (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer)) continue; // a phone leaves with its own button
+                // requirement 1/11/2026: no "nothing to continue" button when no run waits (a button that does nothing), and EXIT is a
+                // small round icon in the top right corner, not a button in the grid
+                if (index == 1 && !CanResume) continue;
+                if (index == 7)
+                {
+                    Rect exit = new Rect(1206, 16, 58, 58);
+                    if (ArcadeSkin.Medallion(exit, KitMedallion.Close) | navigation.Button(exit, "", GUIStyle.none)) ActivateSpot(7);
+                    continue;
+                }
                 GUI.enabled = SpotEnabled(index);
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
-                Rect spot = index < 3 ? new Rect(44, 214 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 476 + (index - 3) / 2 * 72, 230, 60); // a breath under the subtitle
-                // nothing to continue: still shown (honest), but a slim plate under New Journey, not a second big button
-                if (index == 1 && !CanResume) spot = new Rect(84, 304, 390, 48);
+                float lift = CanResume ? 0 : 82; // without Continue the rest move up into its place
+                Rect spot = index < 3 ? new Rect(44, 214 + index * 82 - (index >= 2 ? lift : 0), 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 476 - lift + (index - 3) / 2 * 72, 230, 60); // a breath under the subtitle
                 if (index == 2) caption = "         WAITING ROOM";
                 else if (index >= 3 && icons[index] != null) caption = "        " + caption; // room for its icon (EXIT has none: centred)
                 // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
@@ -1059,7 +1067,7 @@ namespace ArcaneBrigade
                 return CharacterActingEntry.Frame(acting.Curious, curiosity / 1.3f);
             if (unit.AnimationFrames == null || unit.AnimationFrames.Length < 4) return unit.Body;
             bool stepping = focused && !reducedMotion && Mathf.Repeat(time + identity * 0.73f, 7f) > 6.2f;
-            return unit.AnimationFrames[UnitVisual.AnimationFrame(time, identity, stepping, reducedMotion)] ?? unit.Body;
+            return unit.AnimationFrames[UnitVisual.Frame(unit, UnitVisual.AnimationFrame(time, identity, stepping, reducedMotion))] ?? unit.Body;
         }
 
         private void DrawSettings() => SettingsSheet.Draw(profile, Vector2.zero, Button, Label, SaveProfile, false, r => navigation.Button(r, "", GUIStyle.none));

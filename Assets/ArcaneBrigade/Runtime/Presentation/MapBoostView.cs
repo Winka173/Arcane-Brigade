@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     /// <summary>What a map lends the hero, said plainly: each gain rises over the hero's head in the same words as a stat gained
     /// by a skill or mechanic (requirement 25/10/2026: the map's lines must look like those), queued a beat apart and never
-    /// dropped; the boosts still running sit in a row of small plates under the lantern row.</summary>
+    /// dropped (no row of running boosts is kept on the HUD).</summary>
     public sealed class MapBoostView : MonoBehaviour
     {
         private ArenaController owner;
@@ -36,20 +36,7 @@ namespace ArcaneBrigade
             if (Event.current.type != EventType.Repaint) return;
             chip ??= new GUIStyle(ArcadeTypography.Style(20, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
-            // the boosts still running, under the lantern row
-            float x = 22, top = 232;
-            foreach (MapBoost b in owner.Simulation.MapBoosts)
-            {
-                float left = b.Until - owner.Simulation.Elapsed; if (left <= 0) continue;
-                string text = MapBoostText.Label(b.Stat, b.Value);
-                float w = chip.CalcSize(new GUIContent(text)).x + 26;
-                if (x + w > 420) { x = 22; top += 34; }
-                Rect plate = new Rect(x, top, w, 30);
-                ArcadeSkin.Plate(plate, new Color(ArcadeSkin.Card.r, ArcadeSkin.Card.g, ArcadeSkin.Card.b, .9f));
-                chip.normal.textColor = MapBoostText.Colour(b.Stat);
-                GUI.Label(plate, text, chip);
-                x += w + 6;
-            }
+            // (no row of running boosts under the HUD any more: requirement 1/11/2026, the gain is said once over the hero's head)
             GUI.matrix = previous;
         }
     }

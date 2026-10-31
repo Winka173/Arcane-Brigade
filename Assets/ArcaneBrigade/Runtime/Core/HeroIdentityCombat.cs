@@ -96,14 +96,14 @@ namespace ArcaneBrigade
             get
             {
                 if (!HeroIdentityEnabled) return "";
-                if (HeroAwakening && Kit != null) return Kit.Transformation + " " + (awakenUntil - Elapsed).ToString("0.0") + "s";
+                if (HeroAwakening && Kit != null) return Kit.Transformation; // no seconds counting down (requirement 1/11/2026)
                 if (HeroAwakenCooling) return "RESTING";
                 // player words (requirement 22/10/2026): the gauge's own word, its steps, then the charge toward the next step
                 // what the steps lead to, in words (review 31/10/2026: "Addresses · level 1/3" read as nothing)
                 if (Kit != null) return "Gauge " + HeroAwakenTier + "/3 · then " + RunUICopy.Title(Kit.Transformation); // the gauge under the health bar shows the charge
                 if (IdentityId == "GlassDice") return "NEXT FACE " + identityFace + " / " + Mathf.FloorToInt(identityCharge) + "/6 GOLD";
                 if (IdentityId == "MirrorKeeper") return identityReflections.Count + "/3 REFLECTIONS";
-                if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAM " + (identityGhostUntil - Elapsed).ToString("0.0") + "s";
+                if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAMING";
                 if (IdentityId == "PatchworkHost") return identityLead == null ? "CHOOSE A FEATURED FRIEND IN SHOP" : "LEAD: " + identityLead.Definition.DisplayName;
                 if (IdentityId == "PetalCitadel") return "PETALS " + string.Join(" / ", catalog.HeroPetals);
                 if (IdentityId == "SupperMortar") return HeroIdentities.For(IdentityId).Approaches[IdentityApproach] + " / TWO COURSES";

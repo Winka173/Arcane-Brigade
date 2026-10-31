@@ -84,6 +84,10 @@ namespace ArcaneBrigade
             bool warning = now < m.At;
             float fade = Mathf.Clamp01((m.Until - now) / .3f);
             float seed = m.A.x * 13 + m.A.y * 7 + m.Index;
+            // requirement 1/11/2026: only a boss marks the floor where its blow lands; an ordinary foe's seat, stamp and knock
+            // circles are not drawn (the cord, slash lines and tallies are its weapon itself, and stay)
+            bool boss = m.Source != null && m.Source.Definition != null && m.Source.Definition.IsBoss;
+            if (!boss && (m.Kind == WaitingMarkKind.SeatRing || m.Kind == WaitingMarkKind.ClosedPatch || m.Kind == WaitingMarkKind.KnockRing || m.Kind == WaitingMarkKind.SlashLine || m.Kind == WaitingMarkKind.CordPreview)) return;
             switch (m.Kind)
             {
                 case WaitingMarkKind.SeatRing:

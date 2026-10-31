@@ -24,7 +24,8 @@ namespace ArcaneBrigade
         public const float MusicBoost = 1.3f;
         public const float MusicTrimDb = -3f + 2.278867f; // 20 * log10(1.3)
         /// <summary>Deepest music duck under dense combat or a boss cue, and how fast it goes down and comes back.</summary>
-        public const float DuckDepthDb = -5.5f, DuckAttack = 0.06f, DuckRelease = 0.6f;
+        public const float DuckDepthDb = -3f, // requirement 1/11/2026: boss music vanished under two stacked ducks; a gentler sidechain
+             DuckAttack = 0.06f, DuckRelease = 0.6f;
         /// <summary>Recent SFX loudness (decaying sum of start gains, time constant <see cref="EnergyDecay"/>) where the duck starts and is full.</summary>
         public const float DuckThreshold = 0.8f, DuckFull = 2.4f, EnergyDecay = 0.25f, BossHold = 0.5f;
 

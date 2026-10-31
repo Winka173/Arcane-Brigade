@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     [DefaultExecutionOrder(-55)]
     public sealed class FerryDock : MonoBehaviour, ShopFocus.ISource
     {
-        public static readonly Vector2 Anchor = new Vector2(7.2f, -.8f); // the right wall below the bonds card; an interactable, so it is placed before decoration
+        public static readonly Vector2 Anchor = new Vector2(7.35f, -4.05f); // the room's bottom right corner (requirement 1/11/2026), clear of the card and CONTINUE; an interactable, so it is placed before decoration
         public const float Reach = 1.65f, Width = 1.8f;
         private const string LayoutId = ShopLayout.FerryId, Key = "ferry-card";
         /// <summary>The ferry's card is up: the shop leaves the traveller's presses to it.</summary>
