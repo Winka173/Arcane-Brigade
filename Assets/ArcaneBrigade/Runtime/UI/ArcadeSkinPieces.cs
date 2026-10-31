@@ -315,7 +315,9 @@ namespace ArcaneBrigade
         {
             if (style == null || style.normal.background == null || Crafted || !codeKinds.TryGetValue(style.normal.background, out KitButton kind)) return style;
             int state = !GUI.enabled ? 3 : State(r, true);
-            if (!DrawPiece(r, KitPiece.Plate, "Buttons/" + kind + States[state] + "Plain")) return style;
+            // a narrow button takes the compact plate (slim caps leave its label room), a wide one the painted plain plate
+            bool drawn = r.height >= 32 && CompactFits(r) && Strip(r, "Buttons/Compact" + kind + States[state], CompactCap, CompactCap);
+            if (!drawn && !DrawPiece(r, KitPiece.Plate, "Buttons/" + kind + States[state] + "Plain")) return style;
             if (!bareStyles.TryGetValue(style, out GUIStyle bare) || bare == null)
             {
                 bare = new GUIStyle(style);

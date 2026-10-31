@@ -10,7 +10,7 @@ namespace ArcaneBrigade
         public static string ChampionId; public static bool Resume; public static int Difficulty; public static int ChallengeIndex;
         /// <summary>The Waiting Room (play-test item 27): the Nursery friend and Wardrobe choices picked in hero select, and
         /// whether the menu opens in the hub (back from a finished run).</summary>
-        public static string StartFriend; public static bool AltStarter, SecondHabit, OpenHub;
+        public static string StartFriend; public static bool AltStarter, SecondHabit, OpenHub, OpenLampTree;
         /// <summary>The Postbox's keepsake relic picked in hero select; the Daily Dream's day (null: an ordinary run).</summary>
         public static string Keepsake, Daily;
     }
@@ -172,6 +172,8 @@ namespace ArcaneBrigade
             gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();
             Screen.orientation = ScreenOrientation.LandscapeLeft;
             if (RunLaunch.OpenHub) RunLaunch.OpenHub = false; // back from a finished run: the main menu (requirement 22/10/2026)
+            // unless the run's end asked for the Waiting Room: straight to the Lamp Tree, where the haul is spent
+            if (RunLaunch.OpenLampTree) { RunLaunch.OpenLampTree = false; ShowPage(Page.Hub); hub.OpenStation(MetaStation.Lantern); }
         }
 
         public void ReloadSaveSummary()
@@ -219,7 +221,7 @@ namespace ArcaneBrigade
             if (CurrentPage == Page.Hub)
             {
                 HubAction walked = hub.Tick(Time.unscaledDeltaTime);
-                if (walked == HubAction.NextNight) ShowPage(Page.Landing); // the hub's door leads back to the main menu
+                if (walked == HubAction.NextNight) { fromHub = true; ShowPage(Page.Roster); } // the hub's door: straight on to a new journey
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) { if (hub.PanelOpen) hub.Close(); else ShowPage(Page.Landing); }
                 return;
             }
@@ -251,7 +253,7 @@ namespace ArcaneBrigade
                 else sandbox.HandleInput();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) ShowPage(BackOf(CurrentPage));
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) GoBack();
         }
 
         private void Launch(bool resume)
@@ -323,7 +325,7 @@ namespace ArcaneBrigade
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub && Button(new Rect(1010, 40, 200, 50), "BACK"))
             {
                 if (CurrentPage == Page.WeaponSandbox) CloseWeaponSandbox();
-                else ShowPage(BackOf(CurrentPage));
+                else GoBack();
             }
             switch (CurrentPage)
             {
@@ -331,8 +333,8 @@ namespace ArcaneBrigade
                 case Page.Roster: DrawRoster(); DrawKeepsakePicker(); DrawExplain(); break;
                 case Page.Hub:
                     HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
-                    if (chosen == HubAction.NextNight) ShowPage(Page.Landing); else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
-                    else if (chosen == HubAction.Collection) { hub.Close(); ShowPage(Page.Museum); } // the Museum counts finds for gifts; the Collection shows each one in full
+                    if (chosen == HubAction.NextNight) { fromHub = true; ShowPage(Page.Roster); } else if (chosen == HubAction.Back) ShowPage(Page.Landing); else if (chosen == HubAction.Daily) StartDaily();
+                    else if (chosen == HubAction.Collection) { hub.Close(); fromHub = true; ShowPage(Page.Museum); } // the Museum counts finds for gifts; the Collection shows each one in full
                     break;
                 case Page.Resume:
                     Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + CompanionDeployment.Select(saved.Roster).Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
@@ -457,6 +459,7 @@ namespace ArcaneBrigade
         private void ActivateSpot(int index)
         {
             if (!SpotEnabled(index)) { CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
+            fromHub = false; // opened from the main menu: Back returns there
             switch (index)
             {
                 case 0: ShowPage(Page.Roster); break; // the door: straight to hero select
@@ -562,7 +565,9 @@ namespace ArcaneBrigade
                 Rect spot = index < 3 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 462 + (index - 3) / 2 * 72, 230, 60);
                 if (index == 2) caption = "         WAITING ROOM";
                 else if (index >= 3) caption = "      " + caption; // room for its icon
-                if (navigation.Button(spot, caption, index == 0 || index == 1 && CanResume || index == 2 ? primary : smallButton)) ActivateSpot(index);
+                // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
+                bool main = CanResume ? index == 1 : index == 0;
+                if (navigation.Button(spot, caption, main ? primary : index < 3 ? button : smallButton)) ActivateSpot(index);
                 if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 14, spot.y + 8, 52, 52) : new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
                 if (index == 2 && HubAffordable())
@@ -596,15 +601,15 @@ namespace ArcaneBrigade
                 if (navigation.Button(card, "", GUIStyle.none)) { if (selection != index) rosterDescriptionScroll = Vector2.zero; selection = index; }
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
-                float portraitSize = index == selection ? 120 : 110;
+                float portraitSize = index == selection ? 170 : 160; // the hero fills its card (it stood small in a big frame)
                 // portrait + name centred in the card (requirement 21/10/2026); a locked hero lifts them to leave room for its chip
-                float top = card.y + (unlocked ? 30 : 12);
-                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
+                float top = card.y + (unlocked ? 12 : 6);
+                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 150), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
                 GUI.color = previousColor;
                 TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(card.x + 10, top + 120, card.width - 20, 52), RunUICopy.UnitName(unit), caption);
+                GUI.Label(new Rect(card.x + 10, top + 154, card.width - 20, unlocked ? 52 : 40), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
-                if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 186, card.width - 24, 26), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
+                if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 202, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
             }
             ScrollPanel.End();
             UnitDefinition champion = catalog.Champions[selection];
@@ -764,6 +769,20 @@ namespace ArcaneBrigade
             if (existingSave) { ShowPage(Page.ConfirmOverwrite); dailyDay = day; } else { dailyDay = day; Launch(false); }
         }
         // from the overwrite check, back goes where the run was started from: the Waiting Room for tonight's dream (requirement 23/10/2026)
+        /// <summary>Hero select or the Collection opened from the Waiting Room goes back to it (the Collection to the Museum it came
+        /// from); opened from the main menu, back to the main menu.</summary>
+        private bool fromHub;
+        private void GoBack()
+        {
+            if (fromHub && (CurrentPage == Page.Roster || CurrentPage == Page.Museum))
+            {
+                bool museumOpen = CurrentPage == Page.Museum;
+                fromHub = false; ShowPage(Page.Hub);
+                if (museumOpen) hub.OpenStation(MetaStation.Museum);
+                return;
+            }
+            ShowPage(BackOf(CurrentPage));
+        }
         private Page BackOf(Page page) => page == Page.ConfirmOverwrite ? (dailyDay != null ? Page.Hub : Page.Roster) : page == Page.Roster ? Page.Landing : Page.Landing;
 
         /// <summary>Hero select's Waiting Room row (only what is unlocked): the Nursery's three friends, the Wardrobe's spare coat
@@ -916,7 +935,7 @@ namespace ArcaneBrigade
             return unit.AnimationFrames[UnitVisual.AnimationFrame(time, identity, stepping, reducedMotion)] ?? unit.Body;
         }
 
-        private void DrawSettings() => SettingsSheet.Draw(profile, Vector2.zero, Button, Label, SaveProfile, false);
+        private void DrawSettings() => SettingsSheet.Draw(profile, Vector2.zero, Button, Label, SaveProfile, false, r => navigation.Button(r, "", GUIStyle.none));
 
         private void OnApplicationFocus(bool focus)
         {

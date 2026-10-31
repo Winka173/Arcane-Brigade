@@ -62,14 +62,14 @@ namespace ArcaneBrigade
                 y += h + 12 * scale;
             }
             // page turning: arrows on painted round buttons and a dot per page
-            float by = card.yMax + 14 * scale, bs = 56 * scale;
+            float by = card.yMax + 10 * scale, bs = 64 * scale; // a thumb-sized page turn (96 units on the 1080 canvas)
             if (ArcadeSkin.IconButton(new Rect(area.x, by, bs, bs), KitRound.Walnut, "◀")) page = (page + PageCount - 1) % PageCount;
             if (ArcadeSkin.IconButton(new Rect(area.xMax - bs, by, bs, bs), KitRound.Walnut, "▶")) page = (page + 1) % PageCount;
             for (int i = 0; i < PageCount; i++)
             {
-                Vector2 dot = new Vector2(area.center.x + (i - (PageCount - 1) * .5f) * 30 * scale, by + bs * .5f);
+                Vector2 dot = new Vector2(area.center.x + (i - (PageCount - 1) * .5f) * 44 * scale, by + bs * .5f);
                 ArcadeSkin.Diamond(dot, (i == page ? 20 : 13) * scale, i == page ? Accent[i] : new Color(.5f, .46f, .4f, .8f));
-                if (GUI.Button(new Rect(dot.x - 14 * scale, dot.y - 14 * scale, 28 * scale, 28 * scale), GUIContent.none, GUIStyle.none)) page = i;
+                if (GUI.Button(new Rect(dot.x - 22 * scale, dot.y - 22 * scale, 44 * scale, 44 * scale), GUIContent.none, GUIStyle.none)) page = i;
             }
         }
 

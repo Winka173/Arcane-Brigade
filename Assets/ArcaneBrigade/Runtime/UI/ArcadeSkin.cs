@@ -393,11 +393,11 @@ namespace ArcaneBrigade
             // capital label above it (the eyebrow argument is kept for callers but never drawn)
             if (headerStyle == null) { headerStyle = ArcadeTypography.Style(36, true); headerStyle.alignment = TextAnchor.MiddleCenter; headerStyle.wordWrap = false; }
             headerStyle.fontSize = 36;
-            float width = Mathf.Clamp(headerStyle.CalcSize(new GUIContent(heading)).x + 170, 420, rectangle.width);
+            float width = Mathf.Clamp(headerStyle.CalcSize(new GUIContent(heading)).x + 2 * 118 * 72 / 112f + 20, 420, rectangle.width);
             Rect plate = new Rect(rectangle.x, rectangle.y + 12, width, Mathf.Min(72, rectangle.height - 12));
             if (HasKit) Frame(plate, KitFrame.Plaque); else Plate(plate, Accent);
             headerStyle.normal.textColor = KitCream;
-            FitText(headerStyle, heading, plate.width - 130);
+            FitText(headerStyle, heading, PlaqueWords(plate));
             GUI.Label(plate, heading, headerStyle);
         }
 

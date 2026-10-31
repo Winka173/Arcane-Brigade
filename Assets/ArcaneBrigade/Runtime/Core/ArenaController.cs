@@ -659,6 +659,8 @@ namespace ArcaneBrigade
         /// <summary>Diagnostics only: a scripted stick for recorded clips.</summary>
         public static Vector2? ScriptedMove;
         public void ExitWithoutSaving() { RunLaunch.OpenHub = false; SceneDissolve.Load(session == null ? "Frontend" : "RunFrontend"); }
+        /// <summary>The run's end: to the Waiting Room's Lamp Tree (saved first, like the main menu button).</summary>
+        public void ReturnToWaitingRoom() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenLampTree = true; ReturnToMenu(); }
         public void ReturnToMenu() { if (session != null && !PersistBoundary()) return; RunLaunch.OpenHub = session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat); SceneDissolve.Load(session == null ? "Frontend" : "RunFrontend"); }
         /// <summary>Play again: the same hero with the Waiting Room's loadout; the Nursery hands over its first friend and the
         /// Wardrobe keeps the choices last made for this hero.</summary>

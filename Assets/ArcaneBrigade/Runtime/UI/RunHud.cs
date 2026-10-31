@@ -107,7 +107,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Frame(new Rect(330, 150, 1260, 800), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(390, 190, 900, 92), "THE NIGHT WAITS WITH YOU", "Light, Sound & Comfort");
                 if (navigation.Button(new Rect(1330, 205, 200, 50), "BACK", button)) pausePage = 0;
-                SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => GUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true);
+                SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => GUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true, r => navigation.Button(r, "", GUIStyle.none));
                 return;
             }
             if (pausePage == 2)
@@ -478,7 +478,7 @@ namespace ArcaneBrigade
                 }
                 Matrix4x4 resultMatrix = GUI.matrix;
                 LivingUI.Pop(Time.unscaledTime - resultsAt, new Vector2(960, 575));
-                Fill(new Rect(80, 200, 630, 750), Panel);
+                Fill(new Rect(80, 200, 630, 790), Panel);
                 ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost ? "You Sat Down" : "Until You Return");
                 bool fallen = state.Phase == SessionPhase.Defeat;
                 Sprite(fallen ? new Rect(240, 345, 230, 200) : new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
@@ -490,11 +490,18 @@ namespace ArcaneBrigade
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
                 if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 750, 560, 60), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
                 if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
+                // the summary names what was earned for the Waiting Room: one tap to where it is spent
+                if (navigation.Button(new Rect(115, 900, 560, 60), "WAITING ROOM · LAMP TREE", button)) owner.ReturnToWaitingRoom();
                 invoice.Draw(new Rect(770, 200, 1060, 750), state, owner.Content);
                 GUI.matrix = resultMatrix; GUI.color = resultColour;
             }
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) terminalAt = resultsAt = -1;
-            if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
+            if (!string.IsNullOrEmpty(owner.SaveError))
+            {
+                Rect note = new Rect(560, 236, 800, 64);
+                ArcadeSkin.Plate(note, ArcadeSkin.Worse);
+                GUI.Label(new Rect(note.x + 24, note.y, note.width - 48, note.height), SaveNote(owner), new GUIStyle(text) { alignment = TextAnchor.MiddleCenter });
+            }
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
             waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);
             if (state.Phase == SessionPhase.Combat && !owner.TransitionPending) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
@@ -748,6 +755,13 @@ namespace ArcaneBrigade
             return new Rect(485, 1030 - height, 950, height);
         }
         private readonly ShopDescriptionCard offerCard = new ShopDescriptionCard();
+        private string loggedSaveError;
+        /// <summary>What a failed save tells the player; the technical line goes to the log once.</summary>
+        private string SaveNote(ArenaController owner)
+        {
+            if (loggedSaveError != owner.SaveError) { loggedSaveError = owner.SaveError; Debug.LogWarning(owner.SaveError); }
+            return "Your progress could not be saved just now. It will try again at the next step.";
+        }
         public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSS" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
 
         private void DrawControls(ArenaController owner)
@@ -1109,7 +1123,7 @@ namespace ArcaneBrigade
             Fill(new Rect(470, 310, 980, 440), Panel);
             GUI.Label(new Rect(520, 345, 880, 80), "Return to the Waiting Room?", title);
             GUI.Label(new Rect(540, 445, 840, 105), "Save and return keeps this run where it stands. Leave without saving takes it back to its last save: the start of this wave, or your last shop purchase.", text);
-            if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), owner.SaveError, small);
+            if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), SaveNote(owner), small);
             // requirement 24/10/2026: a way out without saving, beside saving and staying
             if (navigation.Button(new Rect(510, 650, 280, 65), "STAY", button)) owner.CancelMenuReturn();
             if (navigation.Button(new Rect(820, 650, 280, 65), "LEAVE, DON'T SAVE", button)) owner.ExitWithoutSaving();

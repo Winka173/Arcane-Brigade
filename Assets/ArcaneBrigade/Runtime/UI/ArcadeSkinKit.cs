@@ -106,6 +106,7 @@ namespace ArcaneBrigade
         public static void ButtonArt(Rect r, KitButton kind, int state)
         {
             state = Mathf.Clamp(state, 0, 3);
+            if (r.height >= 40 && CompactFits(r) && Strip(r, "Buttons/Compact" + kind + States[state], CompactCap, CompactCap)) return;
             if (r.height >= 40 && DrawPiece(r, KitPiece.Button, "Buttons/" + kind + States[state])) return;
             CodePlate(r, kind == KitButton.Primary ? CodeTone.Gold : kind == KitButton.Danger ? CodeTone.Oxblood : CodeTone.Walnut, state);
         }
@@ -154,8 +155,10 @@ namespace ArcaneBrigade
             ButtonArt(r, kind, state);
             Color text = KitText(kind, enabled);
             if (state == 1 && kind == KitButton.Secondary) text = new Color(1f, .88f, .60f);
-            Rect inner = Content(r, KitPiece.Button, false); // inside the caps, vertically centred on the face
-            float gem = kind == KitButton.Primary ? r.height * .16f : 0; // the primary plate's gem crest sits on its top rim: the word starts below it
+            bool compact = r.height >= 40 && CompactFits(r) && KitSprite("Buttons/Compact" + kind + "Normal") != null;
+            float cap = CompactCap * r.height / 120f + 8;
+            Rect inner = compact ? new Rect(r.x + cap, r.y, r.width - 2 * cap, r.height) : Content(r, KitPiece.Button, false); // inside the caps, vertically centred on the face
+            float gem = !compact && kind == KitButton.Primary ? r.height * .16f : 0; // the primary plate's gem crest sits on its top rim: the word starts below it
             if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y + gem, inner.width, r.height - gem), label, text, like, true);
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
@@ -237,6 +240,7 @@ namespace ArcaneBrigade
         public static void Frame(Rect r, KitFrame frame, float scale = 1)
         {
             KitPiece piece = PieceOf(frame);
+            if (frame == KitFrame.Plaque && Plaque3(r)) return;
             if (DrawPiece(r, piece, KeyOf(piece), frame == KitFrame.Plaque || frame == KitFrame.WaveBanner ? 99 : scale)) return;
             if (frame == KitFrame.Tooltip) Diamond(new Vector2(r.center.x, r.yMax - 2), Mathf.Min(26, r.height * .3f), new Color(.95f, .89f, .76f)); // the tail, under the plate
             CodePlate(r, frame == KitFrame.Card || frame == KitFrame.Tooltip ? CodeTone.Cream : frame == KitFrame.Dialogue ? CodeTone.Navy : CodeTone.Oxblood);
@@ -271,10 +275,11 @@ namespace ArcaneBrigade
         {
             int state = State(r, enabled);
             string art = !enabled ? "TabDisabled" : active ? "TabActive" : state >= 1 ? "TabHover" : "TabInactive";
-            if (!DrawPiece(r, KitPiece.Tab, "Controls/" + art)) CodePlate(r, active ? CodeTone.Oxblood : art == "TabHover" ? CodeTone.Gold : CodeTone.Walnut, enabled ? 0 : 3);
+            bool slim = Strip(r, "Controls/" + art.Replace("Tab", "TabSlim"), 22, 22);
+            if (!slim && !DrawPiece(r, KitPiece.Tab, "Controls/" + art)) CodePlate(r, active ? CodeTone.Oxblood : art == "TabHover" ? CodeTone.Gold : CodeTone.Walnut, enabled ? 0 : 3);
             Color text = !enabled ? new Color(.80f, .76f, .70f, .8f) : art == "TabHover" ? KitInk : KitCream;
-            Rect inner = Content(r, KitPiece.Tab, false);
-            if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y + r.height * .24f, inner.width, r.height * .66f), label, text, like, true); // below the crest's leaves, which dip into the bar
+            Rect inner = slim ? new Rect(r.x + 22 * r.height / 96f + 6, r.y, r.width - 2 * (22 * r.height / 96f + 6), r.height) : Content(r, KitPiece.Tab, false);
+            if (!string.IsNullOrEmpty(label)) KitCaption(slim ? inner : new Rect(inner.x, r.y + r.height * .24f, inner.width, r.height * .66f), label, slim && enabled ? KitCream : text, like, true); // below the crest's leaves, which dip into the bar
             return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
         }
 
@@ -321,6 +326,51 @@ namespace ArcaneBrigade
             Sliced(thumb, grip, thumb.width / grip.texture.width);
         }
 
+        // ---------------------------------------------------------------- three-part strips (UI kit wave 1, 31/10/2026)
+        /// <summary>A narrow button (narrower than 4.5 times its height) uses the compact plates with slim caps, so its label keeps room.</summary>
+        public static bool CompactFits(Rect r) => r.width < r.height * 4.5f && !Crafted;
+        public const float CompactCap = 26; // texture pixels of each compact cap (360x120 art)
+
+        /// <summary>A painted strip at the rectangle's height in three parts: the left cap, the middle stretched to fill, the right cap
+        /// (cap widths in texture pixels). False (nothing drawn) when the art is missing or the crafted style is on.</summary>
+        public static bool Strip(Rect r, string key, float leftCap, float rightCap)
+        {
+            if (Crafted) return false;
+            Sprite sprite = KitSprite(key); if (sprite == null) return false;
+            if (Event.current.type != EventType.Repaint) return true;
+            Texture2D t = sprite.texture; float W = t.width, k = r.height / t.height;
+            float l = leftCap * k, rr = rightCap * k;
+            if (l + rr > r.width) { float s = r.width / (l + rr); l *= s; rr *= s; }
+            if (l > 0) GUI.DrawTextureWithTexCoords(new Rect(r.x, r.y, l, r.height), t, new Rect(0, 0, leftCap / W, 1));
+            if (rr > 0) GUI.DrawTextureWithTexCoords(new Rect(r.xMax - rr, r.y, rr, r.height), t, new Rect((W - rightCap) / W, 0, rightCap / W, 1));
+            Rect mid = new Rect(r.x + l, r.y, r.width - l - rr, r.height);
+            if (mid.width > 0) GUI.DrawTextureWithTexCoords(mid, t, new Rect(leftCap / W, 0, (W - leftCap - rightCap) / W, 1));
+            return true;
+        }
+
+        /// <summary>The title plaque in three pieces: its two scroll ends at full shape and the velvet band tiled between them, so a
+        /// long title never stretches the ornament.</summary>
+        public static bool Plaque3(Rect r)
+        {
+            if (Crafted) return false;
+            Sprite left = KitSprite("Panels/PlaqueLeft"), mid = KitSprite("Panels/PlaqueMiddle"), right = KitSprite("Panels/PlaqueRight");
+            if (left == null || mid == null || right == null) return false;
+            if (Event.current.type != EventType.Repaint) return true;
+            float k = r.height / left.texture.height, lw = left.texture.width * k, rw = right.texture.width * k;
+            if (lw + rw > r.width) { float s = r.width / (lw + rw); lw *= s; rw *= s; }
+            float mw = mid.texture.width * r.height / mid.texture.height;
+            for (float x = r.x + lw - 1; x < r.xMax - rw + 1; x += mw - 1)
+            {
+                float w = Mathf.Min(mw, r.xMax - rw + 1 - x);
+                GUI.DrawTextureWithTexCoords(new Rect(x, r.y, w, r.height), mid.texture, new Rect(0, 0, w / mw, 1));
+            }
+            GUI.DrawTexture(new Rect(r.x, r.y, lw, r.height), left.texture);
+            GUI.DrawTexture(new Rect(r.xMax - rw, r.y, rw, r.height), right.texture);
+            return true;
+        }
+        /// <summary>The words' room on a three-piece plaque of this rectangle: clear of the two scroll ends.</summary>
+        public static float PlaqueWords(Rect r) => Mathf.Max(80, r.width - 2 * 118 * r.height / 112f);
+
         private static GUIStyle KitSliderStyle(GUIStyle source, out GUIStyle thumb)
         {
             thumb = null;
@@ -335,10 +385,13 @@ namespace ArcaneBrigade
                 thumb.hover.background = thumb.active.background = CodeRoundTexture(CodeTone.Gold, 1);
                 return rod;
             }
-            var track = new GUIStyle(source) { border = new RectOffset((int)rail.border.x, (int)rail.border.z, 0, 0), fixedHeight = 30, overflow = new RectOffset(0, 0, 0, 0) };
+            Sprite wideRail = KitSprite("Controls/SliderTrackWide"), bigKnob = KitSprite("Controls/SliderKnobLarge");
+            if (wideRail != null) rail = wideRail;
+            var track = new GUIStyle(source) { border = new RectOffset((int)rail.border.x, (int)rail.border.z, 0, 0), fixedHeight = wideRail != null ? 36 : 30, overflow = new RectOffset(0, 0, 0, 0) };
             track.normal.background = track.hover.background = track.active.background = track.focused.background = rail.texture;
-            thumb = new GUIStyle(GUIStyle.none) { fixedWidth = 26, fixedHeight = 42, overflow = new RectOffset(0, 0, 6, 6) };
-            thumb.normal.background = thumb.hover.background = thumb.active.background = thumb.focused.background = knob.texture;
+            thumb = bigKnob != null ? new GUIStyle(GUIStyle.none) { fixedWidth = 56, fixedHeight = 56, overflow = new RectOffset(0, 0, 10, 10) } // UI standard: a thumb-sized knob
+                : new GUIStyle(GUIStyle.none) { fixedWidth = 26, fixedHeight = 42, overflow = new RectOffset(0, 0, 6, 6) };
+            thumb.normal.background = thumb.hover.background = thumb.active.background = thumb.focused.background = (bigKnob ?? knob).texture;
             return track;
         }
 

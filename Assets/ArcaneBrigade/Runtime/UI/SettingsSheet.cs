@@ -13,6 +13,8 @@ namespace ArcaneBrigade
         public delegate bool ButtonFn(Rect rectangle, string caption);
         private static PlayerProfile profile;
         private static ButtonFn button;
+        private static Func<Rect, bool> hit;
+        private static GUIStyle segmentStyle;
         private static Func<bool> save;
         private static Vector2 origin;
 
@@ -24,9 +26,9 @@ namespace ArcaneBrigade
         /// <summary>The settings in four groups (Sound, Screen, Comfort, Play). UI standard (Docs/UI_Standard.md): every row is its label on
         /// the left and its choices on the right as a segmented row, the chosen one lit gold; nothing is changed by tapping the same
         /// button round and round. The sheet scrolls when it is taller than its space.</summary>
-        public static void Draw(PlayerProfile current, Vector2 at, ButtonFn buttonFn, Action<Rect, string> label, Func<bool> saveFn, bool inRun)
+        public static void Draw(PlayerProfile current, Vector2 at, ButtonFn buttonFn, Action<Rect, string> label, Func<bool> saveFn, bool inRun, Func<Rect, bool> hitFn = null)
         {
-            profile = current; button = buttonFn; save = saveFn;
+            profile = current; button = buttonFn; save = saveFn; hit = hitFn;
             const float viewX = 60, viewY = 140, viewW = 1160, viewH = 580;
             scroll = ScrollPanel.Begin(new Rect(at.x + viewX, at.y + viewY, viewW, viewH), scroll, new Rect(0, 0, viewW - 30, contentHeight));
             origin = new Vector2(-viewX, -viewY); // the rows below keep their sheet coordinates; inside the scroll they start at its top
@@ -143,17 +145,34 @@ namespace ArcaneBrigade
         private static int Choice(Action<Rect, string> label, ref float y, string caption, string[] options, int selected, Func<int, bool> allowed = null)
         {
             label(Shift(new Rect(75, y + 8, 330, 36)), caption);
-            const float left = 420, span = 785, gap = 10;
-            float width = (span - (options.Length - 1) * gap) / options.Length;
+            // the painted segmented row (joined pieces, the chosen one gold); without the art, separate buttons with a gold bar
+            bool painted = !ArcadeSkin.Crafted && ArcadeSkin.KitSprite("Controls/SegmentMiddleNormal") != null;
+            const float left = 420, span = 785;
+            float gap = painted ? 0 : 10, width = (span - (options.Length - 1) * gap) / options.Length;
             int picked = -1;
             bool enabled = GUI.enabled;
+            segmentStyle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true);
             for (int i = 0; i < options.Length; i++)
             {
                 Rect r = new Rect(left + i * (width + gap), y, width, RowControl);
-                if (i == selected) ArcadeSkin.Glow(Shift(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20)), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .6f));
-                GUI.enabled = enabled && (allowed == null || allowed(i) || i == selected);
-                if (Button(r, options[i]) && i != selected) picked = i;
-                if (i == selected) ArcadeSkin.Line(Shift(new Rect(r.x + 14, r.yMax + 3, r.width - 28, 6)), ArcadeSkin.Gold); // the chosen one: a thick gold bar under it
+                bool can = enabled && (allowed == null || allowed(i) || i == selected);
+                GUI.enabled = can;
+                if (painted)
+                {
+                    string piece = options.Length == 1 ? "Middle" : i == 0 ? "Left" : i == options.Length - 1 ? "Right" : "Middle";
+                    Rect s = Shift(r);
+                    Color keep = GUI.color; if (!can) GUI.color = new Color(keep.r * .6f, keep.g * .6f, keep.b * .6f, keep.a);
+                    ArcadeSkin.Strip(s, "Controls/Segment" + piece + (i == selected ? "Selected" : "Normal"), piece == "Left" ? 24 : 0, piece == "Right" ? 24 : 0);
+                    GUI.color = keep;
+                    ArcadeSkin.KitCaption(new Rect(s.x + 14, s.y, s.width - 28, s.height), options[i], i == selected ? ArcadeSkin.KitInk : can ? ArcadeSkin.KitCream : new Color(.7f, .66f, .6f), segmentStyle, true);
+                    if (Hit(r) && i != selected) picked = i;
+                }
+                else
+                {
+                    if (i == selected) ArcadeSkin.Glow(Shift(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20)), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .6f));
+                    if (Button(r, options[i]) && i != selected) picked = i;
+                    if (i == selected) ArcadeSkin.Line(Shift(new Rect(r.x + 14, r.yMax + 3, r.width - 28, 6)), ArcadeSkin.Gold); // the chosen one: a thick gold bar under it
+                }
             }
             GUI.enabled = enabled;
             y += RowStep;
@@ -195,6 +214,8 @@ namespace ArcaneBrigade
 
         private static Rect Shift(Rect r) => new Rect(r.x + origin.x, r.y + origin.y, r.width, r.height);
         private static bool Button(Rect r, string caption) => button(Shift(r), caption);
+        /// <summary>A tap on a painted piece, through the menu's navigation when it gives one (keys and pads reach it too).</summary>
+        private static bool Hit(Rect r) => hit != null ? hit(Shift(r)) : GUI.Button(Shift(r), GUIContent.none, GUIStyle.none);
         private static void Changed(Action undo, bool display = false)
         {
             CheckpointAudio.PlayInterfaceId("ui.setting");
@@ -205,7 +226,7 @@ namespace ArcaneBrigade
         private static void Volume(Action<Rect, string> label, ref float y, string caption, float value, Action<float> setter)
         {
             label(Shift(new Rect(75, y + 8, 330, 36)), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
-            float changed = GUI.HorizontalSlider(Shift(new Rect(420, y + 16, 350, 25)), value, 0, 1); // room for wide buttons: a painted cap eats the ends
+            float changed = GUI.HorizontalSlider(Shift(new Rect(420, y + 7, 350, 36)), value, 0, 1); // room for wide buttons: a painted cap eats the ends
             if (Button(new Rect(790, y, 200, RowControl), "−10%")) changed = Mathf.Max(0, value - 0.1f);
             if (Button(new Rect(1005, y, 200, RowControl), "+10%")) changed = Mathf.Min(1, value + 0.1f);
             y += RowStep;

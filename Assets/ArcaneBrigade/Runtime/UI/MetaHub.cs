@@ -239,7 +239,7 @@ namespace ArcaneBrigade
                 GUI.matrix = keepMatrix; GUI.color = keepColour;
             }
             else focusShown = -2;
-            if (!PanelOpen && DoorFocus) Tag(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "MAIN MENU");
+            if (!PanelOpen && DoorFocus) Tag(new Vector2(DoorFoot.x, DoorArea.yMax + 4), "NEW JOURNEY");
 
             // the room's frame: back, title, purse, the way on
             if (!PanelOpen && ArcadeSkin.Medallion(new Rect(22, 18, 64, 64), KitMedallion.Back)) action = HubAction.Back;
@@ -248,7 +248,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
             if (!PanelOpen) FavourStars(profile, new Rect(96, 80, 400, 30)); // an open station's title would cover it by half
             Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
-            if (!PanelOpen && ArcadeSkin.Button(new Rect(1036, 646, 224, 58), "MAIN MENU ▶", KitButton.Primary, true, body)) action = HubAction.NextNight;
+            if (!PanelOpen && ArcadeSkin.Button(new Rect(1016, 646, 244, 58), "NEW JOURNEY ▶", KitButton.Primary, true, body)) action = HubAction.NextNight; // the door: on to the next night (the medallion top left goes back)
 
             // taps: a station or the door walks you there; anywhere else on the floor walks you to that spot
             if (!PanelOpen)
