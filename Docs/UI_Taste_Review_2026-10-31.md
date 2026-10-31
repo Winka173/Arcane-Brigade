@@ -220,3 +220,21 @@ Một số quy tắc của taste-skill được điều chỉnh cho game. Skill 
 | Lamp Tree | 6.4 | 7.0 |
 
 **Chứng cứ:** `Docs/Evidence/UIAudit/review_round2.jpg`.
+
+## Vòng 3 (31/10/2026)
+
+- **Logo vẽ tay "Arcane Brigade":** chữ gỗ thếp vàng, có ngọn đèn trên chữ A và hoa văn đồng bên dưới. Thay cho chữ font thường ở menu chính và màn loading, đặt cùng một vị trí ở cả hai màn.
+- **Lamp Tree:**
+  - Nền là tranh cây gỗ và đồng trong phòng đêm, phủ 70% và giữ tối để đèn nổi lên.
+  - Khi mở một nhánh, đèn chạy ngang qua thân cây vẽ tay.
+- **Hero select:** anh hùng được chọn đứng trên một sân khấu tròn có đèn rọi.
+- **Lượt chụp:** playtest đạt 90/90. Chứng cứ: `Docs/Evidence/UIAudit/review_round3.jpg`.
+
+**Điểm vòng 3:**
+
+| Màn | Trước | Sau |
+| --- | --- | --- |
+| Loading | 7.9 | 8.2 |
+| Main menu | 7.5 | 8.0 |
+| Lamp Tree | 7.0 | 7.6 |
+| Hero select | 7.3 | 7.6 |

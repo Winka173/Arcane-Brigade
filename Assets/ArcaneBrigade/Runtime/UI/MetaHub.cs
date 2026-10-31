@@ -418,7 +418,13 @@ namespace ArcaneBrigade
             ArcadeSkin.Frame(PanelRect, KitFrame.Dialogue, .5f);
             if (station == MetaStation.Lantern)
             {
-                // the Lamp Tree takes the whole panel (no station picture)
+                // the Lamp Tree takes the whole panel (no station picture), over a painting of the tree itself, kept dim so the lanterns read
+                if (ArcadeSkin.KitSprite("Menu/LampTreeBackdrop") is Sprite treeArt)
+                {
+                    Color keepTree = GUI.color; GUI.color = new Color(keepTree.r, keepTree.g, keepTree.b, keepTree.a * .7f);
+                    GUI.DrawTexture(ArcadeSkin.Content(PanelRect, KitFrame.Dialogue, false, .5f), treeArt.texture, ScaleMode.ScaleAndCrop);
+                    GUI.color = keepTree;
+                }
                 ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
                 heading.normal.textColor = ArcadeSkin.KitCream;
                 GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), "THE LAMP TREE", heading);

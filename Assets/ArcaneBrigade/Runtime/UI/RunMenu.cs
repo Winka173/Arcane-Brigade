@@ -432,7 +432,9 @@ namespace ArcaneBrigade
             GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
             TextAnchor a = logo.alignment; logo.alignment = TextAnchor.UpperLeft; logo.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(40, 54, 760, 90), "Arcane Brigade", logo); logo.alignment = a;
+            if (ArcadeSkin.KitSprite("Menu/GameLogo") is Sprite bootLogo) RunHud.Sprite(new Rect(28, 8, 440, 154), bootLogo);
+            else GUI.Label(new Rect(40, 54, 760, 90), "Arcane Brigade", logo);
+            logo.alignment = a;
             GUI.color = keep;
         }
 
@@ -625,12 +627,17 @@ namespace ArcaneBrigade
             if (logoShadow == null) { logoShadow = new GUIStyle(logo); }
             logoShadow.normal.textColor = new Color(0, 0, 0, 0.6f);
             ArcadeSkin.Glow(new Rect(-40, -10, 620, 200), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.10f + 0.04f * breathe));
-            GUI.Label(new Rect(44, 58, 620, 90), "Arcane Brigade", logoShadow);
-            logo.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
+            // the painted title lettering (review round 3); the typed title stands in without it
+            if (ArcadeSkin.KitSprite("Menu/GameLogo") is Sprite gameLogo) RunHud.Sprite(new Rect(28, 8, 440, 154), gameLogo);
+            else
+            {
+                GUI.Label(new Rect(44, 58, 620, 90), "Arcane Brigade", logoShadow);
+                logo.normal.textColor = ArcadeSkin.Cream;
+                GUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
+            }
             if (spotHint == null) { spotHint = ArcadeTypography.Style(24, false); spotHint.font = ArcadeTypography.Hand; spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; spotHint.wordWrap = false; }
             spotHint.alignment = TextAnchor.UpperLeft;
-            GUI.Label(new Rect(46, 140, 760, 32), "someone is waiting for you…", spotHint);
+            GUI.Label(new Rect(46, ArcadeSkin.KitSprite("Menu/GameLogo") != null ? 160 : 140, 760, 32), "someone is waiting for you…", spotHint);
             spotHint.alignment = TextAnchor.MiddleCenter;
 
             // requirement 24/10/2026: "nobody can tell what reacts to the mouse, let alone on a phone - redo the main menu, with the
@@ -715,8 +722,10 @@ namespace ArcaneBrigade
             // under the hero grid and STEP THROUGH under the panel, one bottom row
             Rect heroPanel = new Rect(745, 135, 490, 505);
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(heroPanel, KitFrame.Dialogue, .45f); else RunHud.Fill(heroPanel, ArcadeSkin.Card);
-            ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
-            RunHud.Sprite(new Rect(775, 145, 132, 142), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
+            // the chosen hero stands in a spotlight on a little stage (review round 3)
+            if (ArcadeSkin.KitSprite("Menu/HeroStage") is Sprite stage) RunHud.Sprite(new Rect(752, 220, 176, 74), stage);
+            else ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
+            RunHud.Sprite(new Rect(775, 134, 132, 132), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
             GUI.Label(new Rect(918, 150, 300, 70), RunUICopy.UnitName(champion), rosterTitle);
             ArcadeSkin.Tag(new Rect(918, 222, 280, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
