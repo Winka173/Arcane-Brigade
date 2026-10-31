@@ -99,7 +99,8 @@ namespace ArcaneBrigade
                 if (HeroAwakening && Kit != null) return Kit.Transformation + " " + (awakenUntil - Elapsed).ToString("0.0") + "s";
                 if (HeroAwakenCooling) return "RESTING";
                 // player words (requirement 22/10/2026): the gauge's own word, its steps, then the charge toward the next step
-                if (Kit != null) return HeroIdentities.For(IdentityId).Resource.ToUpperInvariant() + " · LEVEL " + HeroAwakenTier + "/3"; // the gauge under the health bar shows the charge
+                // what the steps lead to, in words (review 31/10/2026: "Addresses · level 1/3" read as nothing)
+                if (Kit != null) return "Gauge " + HeroAwakenTier + "/3 · then " + RunUICopy.Title(Kit.Transformation); // the gauge under the health bar shows the charge
                 if (IdentityId == "GlassDice") return "NEXT FACE " + identityFace + " / " + Mathf.FloorToInt(identityCharge) + "/6 GOLD";
                 if (IdentityId == "MirrorKeeper") return identityReflections.Count + "/3 REFLECTIONS";
                 if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAM " + (identityGhostUntil - Elapsed).ToString("0.0") + "s";
@@ -227,6 +228,7 @@ namespace ArcaneBrigade
             }
             return best;
         }
+        // its shots live 4.5s and fly 2.5x the ranged reach: homing parcels reach a target 8 away even round a curve (they vanished mid-flight)
         private void IdentityShot(Vector2 from, Vector2 direction, float totalDamage, int count = 1, float spread = 16, DamageElement element = DamageElement.Physical, int homingTarget = 0, Sprite sprite = null, Color tint = default, float blast = 0)
         {
             count = Mathf.Clamp(count, 1, 6); direction = direction.sqrMagnitude < .001f ? Vector2.right : direction.normalized;
@@ -234,7 +236,7 @@ namespace ArcaneBrigade
             {
                 Vector2 d = Quaternion.Euler(0,0,(i - (count - 1) * .5f) * spread) * direction;
                 projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Champion, Position = from, PreviousPosition = from,
-                    Velocity = d * 5.5f, Remaining = 1.65f, TravelLeft = FriendlyReach.RangedMaximum, Damage = totalDamage / count, Color = HeroIdentities.For(IdentityId).Color,
+                    Velocity = d * 5.5f, Remaining = 4.5f, TravelLeft = FriendlyReach.RangedMaximum * FriendlyReach.FlightReach, Damage = totalDamage / count, Color = HeroIdentities.For(IdentityId).Color,
                     Element = element, SourceName = HeroIdentities.For(IdentityId).Name, SourceUnitId = Champion.Id,
                     Cause = IdentityCause(), Sprite = sprite != null ? sprite : catalog.Projectile, VisualWidth = .21f, Radius = .07f, IsFragment = true, IdentityTargetId = homingTarget, Tint = tint, Blast = blast });
             }

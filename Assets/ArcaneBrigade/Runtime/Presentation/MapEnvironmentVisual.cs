@@ -158,8 +158,9 @@ namespace ArcaneBrigade
         {
             float length = Vector2.Distance(a, b); if (length < .05f) return;
             float s = Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
-            int dashes = Mathf.Clamp(Mathf.RoundToInt(length * 1.6f), 3, 18); float fill = Mathf.Lerp(.42f, 1.02f, s);
-            for (int i = 0; i < dashes; i++) ink.FloorStroke(Vector2.Lerp(a, b, i / (float)dashes), Vector2.Lerp(a, b, Mathf.Min(1, (i + fill) / dashes)), pal, .08f, 1, 0, alpha, 0, i);
+            // a solid band growing along it (no dashes)
+            Color fill = Fill(pal, s, alpha);
+            ink.FloorLane(a, Vector2.Lerp(a, b, Mathf.Max(.05f, s)), .1f, fill, fill);
             Marks++;
         }
         /// <summary>Where something will slide: its band filled, and an arrowhead.</summary>
@@ -168,8 +169,7 @@ namespace ArcaneBrigade
             Vector2 axis = to - from; if (axis.sqrMagnitude < .01f) return;
             Vector2 dir = axis.normalized, n = new Vector2(-dir.y, dir.x) * half;
             Band(from, to, half, charge, pal, alpha); // the slide's whole band, and an arrowhead for its way
-            ink.FloorStroke(to + n * 1.5f - dir * .6f, to + dir * .25f, pal, .1f, 1, 0, alpha);
-            ink.FloorStroke(to - n * 1.5f - dir * .6f, to + dir * .25f, pal, .1f, 1, 0, alpha);
+            // no arrowhead lines over the band
         }
 
         private void OnDestroy() { ink?.Destroy(); }

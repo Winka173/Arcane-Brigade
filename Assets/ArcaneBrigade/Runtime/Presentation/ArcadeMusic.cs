@@ -66,6 +66,8 @@ namespace ArcaneBrigade
         private bool dreamShop;
         private string forcedScene;
         private string scene = "";
+        /// <summary>For checks: the piece now playing (null when none is).</summary>
+        public string PlayingPiece => current >= 0 && decks[current].Live ? decks[current].piece.id : null;
         private float density;
         private float densityTarget;
         private float nextDensityRead;

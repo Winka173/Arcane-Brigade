@@ -138,9 +138,11 @@ namespace ArcaneBrigade
         private void ShowDamage(CombatEvent combatEvent)
         {
             if (!PresentationSettings.DamageNumbers) return;
+            // requirement 31/10/2026: every hit shows its own number (merging fast hits into one sum felt like fewer hits); only a
+            // flood of tiny ticks on one target in the same instant still merges
             if (combatEvent.SubjectId != 0)
             {
-                DamageNumber existing = numbers.Find(candidate => candidate.Kind == 0 && candidate.Age < 0.3f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
+                DamageNumber existing = numbers.Find(candidate => candidate.Kind == 0 && candidate.Age < 0.03f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
                 if (existing != null)
                 {
                     existing.Amount += combatEvent.Value;
@@ -154,7 +156,7 @@ namespace ArcaneBrigade
             bool champion = combatEvent.Faction == Faction.Champion;
             // Readability: ordinary companion/champion hits stay small and few; crits and damage taken always read.
             // requirement 25/10/2026: the numbers are the satisfaction - many more ordinary hits stay shown (was 12)
-            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 28) return;
+            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 48) return;
             DamageNumber number = Take(champion);
             if (number == null) return;
             number.Kind = 0;
@@ -201,7 +203,7 @@ namespace ArcaneBrigade
         private DamageNumber Take(bool priority)
         {
             DamageNumber number = numbers.Find(candidate => candidate.Age >= candidate.Life);
-            if (number == null && numbers.Count >= 64)
+            if (number == null && numbers.Count >= 96)
             {
                 if (!priority) return null;
                 number = numbers.Find(candidate => !candidate.Champion) ?? numbers[0];

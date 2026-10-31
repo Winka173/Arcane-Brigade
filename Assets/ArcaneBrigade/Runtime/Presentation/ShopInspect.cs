@@ -51,6 +51,24 @@ namespace ArcaneBrigade
         }
         public void Close() => open = null;
 
+        // a figure in the shop answers a tap in its own voice, a different line each time
+        private static readonly string[] CustomerLines =
+        {
+            "\"Don't mind me. I'm only waiting for my turn.\"",
+            "\"Your coins are warm. Someone held them a long time.\"",
+            "\"The chair isn't for sale. Not yet.\"",
+            "\"I always pay. Eventually.\"",
+            "\"Such a lovely brigade. I'd take good care of one.\"",
+        };
+        private int customerLine;
+        private void Speak(Entry entry)
+        {
+            if (entry.Title != "THE LAST CUSTOMER") return;
+            Rect world = entry.World;
+            SpeechBubbles.Show("Shop:LastCustomerTap", "THE LAST CUSTOMER", CustomerLines[customerLine++ % CustomerLines.Length],
+                () => new Vector3(world.center.x, world.yMax, 0), SpeechTone.Story, 4, 2);
+        }
+
         private void Collect()
         {
             entries.Clear();
@@ -71,7 +89,7 @@ namespace ArcaneBrigade
                 else if (id == "TheUnoccupiedChair")
                     Add(id, "THE WARM CHAIR", "It is always a little warm, as if someone has only just stood up. The shopkeeper: “Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.”",
                         owner.Session.SitCloserAvailable ? "Sit · a hidden fight; losing ends the run" : state.Wave < ActOneCanon.SitFrom ? "Not yet. It moves a little closer every night." : "Only a chair now.", Ink(view), view.sortingOrder);
-                else if (id.StartsWith("ActOne-LastCustomer", StringComparison.Ordinal))
+                else if (id.StartsWith("ActOne-LastCustomer", StringComparison.Ordinal) || id == ActOneCustomerVisits.FigureName)
                     Add(id, "THE LAST CUSTOMER", id.EndsWith("BorrowedFace", StringComparison.Ordinal) ? "It stands by the warm chair wearing a face you almost know. It has been buying all night, and it has never once paid." : "A pleasant stranger who stands by the warm chair. It buys what nobody should sell, and it would like to buy something from you.",
                         state.Wave == 8 ? "It will make you an offer once you have read the telephone page" : "It only waits", Ink(view), view.sortingOrder);
                 else if (id == "TheHandWaits")
@@ -145,7 +163,14 @@ namespace ArcaneBrigade
             hovered = overHud || RunUIHints.Device != RunUIDevice.KeyboardMouse ? null : At(mouse, camera);
             if (current.type == EventType.MouseDown && current.button == 0)
             {
-                if (hovered != null && (open == null || !CardRect(open, camera).Contains(mouse))) { open = open != null && open.Key == hovered.Key ? null : hovered; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; current.Use(); }
+                // a tap finds what is under the finger on any device (only the hover name is mouse-only): on a phone nothing in
+                // the shop answered a tap
+                Entry under = overHud ? null : At(mouse, camera);
+                if (under != null && (open == null || !CardRect(open, camera).Contains(mouse)))
+                {
+                    open = open != null && open.Key == under.Key ? null : under; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; current.Use();
+                    if (open != null) Speak(open);
+                }
                 else if (open != null && !CardRect(open, camera).Contains(mouse)) open = null;
             }
             if (hovered != null && (open == null || open.Key != hovered.Key))

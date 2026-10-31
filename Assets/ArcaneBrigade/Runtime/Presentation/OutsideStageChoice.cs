@@ -155,7 +155,7 @@ namespace ArcaneBrigade
                     RarityDescriptionFrame.Draw(panel, giftCard.Rarity, owner.PresentationClock);
                     Rect picture = new Rect(panel.x + 30, panel.y + 24, 150, 150);
                     ShopDescriptionCard.DrawSprite(new Rect(picture.x + 6, picture.y + 6, 138, 138), giftCard.Portrait);
-                    string kind = item != null ? RunModifierRules.RarityName(giftCard.Rarity) : giftCard.Role.HasValue ? CompanionRoles.Word(giftCard.Role.Value) : "FRIEND";
+                    string kind = item != null ? RunModifierRules.RarityName(giftCard.Rarity) : "FRIEND"; // no guessed role word (it could be wrong)
                     ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 6, 150, 36), RunUICopy.Sentence(kind), CodeTone.Walnut, identity, RunModifierRules.RarityColor(giftCard.Rarity));
                     Rect take = new Rect(panel.xMax - 228, panel.center.y - 52, 192, 104);
                     float tx = panel.x + 208, tw = take.x - 20 - tx;

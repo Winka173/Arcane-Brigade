@@ -92,7 +92,7 @@ namespace ArcaneBrigade
             }
             var unit = catalog.Unit(offer.Id); Rarity = unit.Rarity; Portrait = unit.Body;
             Role = CompanionRoles.For(unit);
-            Identity = CompanionRoles.Word(Role.Value) + " · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
+            Identity = RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + (offer.Tier == 1 ? " STAR" : " STARS");
             Attack = session.InspectOfferAttack(offer); // exactly the weapon this offer comes with (rolled before the preview buys it)
             // Run the real recruitment/merge/absorption rules on an isolated copy, never on the live roster or RNG.
             using var preview = new RunSession(catalog);
@@ -115,7 +115,6 @@ namespace ArcaneBrigade
             // the card: support stats with their painted icons, then one short line each for the own skill, the talent, the
             // passive and where a merge stands; the full rules, the lore and the weapon preview stay under INFO (Details)
             var b = new StringBuilder();
-            b.AppendLine(CompanionRoles.Tagline(Role.Value)); // what it does, first (play-test 20/10/2026, item 26)
             bool split2 = AppendSplit(b, unit.CompanionModifiers ?? Array.Empty<StatModifier>(), UnitDefinition.ModifierScale(offer.Tier));
             // the skill, talent and passive are gains too: each opens with its own GIVES plate when the card has costs
             string gm2 = split2 ? "{gives} " : "{mark} ";
@@ -209,15 +208,15 @@ namespace ArcaneBrigade
             if (Attack == null) return;
             label ??= ArcadeTypography.Style(ArcadeTypography.SizeNote, true); value ??= ArcadeTypography.Style(ArcadeTypography.SizeNote, true); muted ??= ArcadeTypography.Style(ArcadeTypography.SizeNote);
             Rect attack = new Rect(bounds.x, bounds.y, 260, 172); ArcadeSkin.CodePlate(attack, CodeTone.Navy);
-            Rect ai = ArcadeSkin.Content(attack, KitPiece.Tile); // inside the tile's rim with the standard padding
-            DrawSprite(new Rect(ai.x, ai.y + 2, 30, 30), AttackIcon);
-            // the weapon this friend comes with: its name, whole damage, its pace and reach (player numbers)
-            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = ArcadeTypography.SizeNote; GUI.Label(new Rect(ai.x + 38, ai.y, ai.width - 38, 34), "Weapon", label);
+            Rect ai = Inner(attack); // clear of the tile's ornate rim (its corners reach well past the art's border)
+            DrawSprite(new Rect(ai.x, ai.y + 3, 30, 30), AttackIcon);
+            // the weapon this friend comes with: its name, then its whole damage, pace and reach on one line that wraps
+            // (review 31/10/2026: the name and numbers were cut at the rim, "Reach" sat on the frame)
+            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = ArcadeTypography.SizeNote; GUI.Label(new Rect(ai.x + 38, ai.y, ai.width - 38, 38), "Weapon", label);
             value.normal.textColor = ArcadeSkin.Cream;
-            FitLabel(new Rect(ai.x, ai.y + 36, ai.width, 34), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, ArcadeTypography.SizeNote);
+            FitWrap(new Rect(ai.x, ai.y + 38, ai.width, 32), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, ArcadeTypography.SizeNote);
             muted.normal.textColor = ArcadeSkin.Teal;
-            FitLabel(new Rect(ai.x, ai.y + 72, ai.width, 32), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s", muted, ArcadeTypography.SizeNote);
-            GUI.Label(new Rect(ai.x, ai.y + 106, ai.width, 32), "Reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted);
+            FitWrap(new Rect(ai.x, ai.y + 72, ai.width, ai.height - 72), RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " damage · every " + RecruitAttackReadout.Seconds(Attack.MaxCycle) + "s · reach " + RecruitAttackReadout.Reach(Attack.MaxRange), muted, ArcadeTypography.SizeNote);
             int columns = Mathf.Clamp(Bonds.Count, 1, 3);
             float width = (bounds.width - 270 - (columns - 1) * 8) / columns;
             for (int i = 0; i < Bonds.Count; i++)
@@ -230,7 +229,7 @@ namespace ArcaneBrigade
                 if (activates) ArcadeSkin.BlinkStrong(box, clock); // the tile this purchase lights blinks strongly (requirement 22/10/2026)
                 ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
                 if (activates) { ArcadeSkin.BlinkOver(box, clock); ArcadeSkin.BlinkStrong(box, clock, true); }
-                Rect bi = ArcadeSkin.Content(box, KitPiece.Tile); // inside the tile's rim with the standard padding
+                Rect bi = Inner(box); // clear of the tile's ornate rim
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
                 if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
                 float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
@@ -246,10 +245,10 @@ namespace ArcaneBrigade
                 // nothing yet: say the next step in player words ("−7% enemy speed at 2"), never "0%"
                 float stepReward = bond.BalanceReward(bond.Value);
                 if (row.AfterReward == 0) value.normal.textColor = Color.Lerp(BenefitColor(bond.Effect, stepReward), ArcadeSkin.Cream, .35f);
-                FitLabel(new Rect(bi.x + 38, bi.y + 44, bi.width - 38, 34), row.AfterReward == 0
+                FitWrap(new Rect(bi.x + 38, bi.y + 44, bi.width - 38, bi.height - 44 - (row.Preview ? 0 : 34)), row.AfterReward == 0
                     ? RunModifierRules.ValueText(bond.Effect, stepReward) + " " + LowerFirst(ShortOfferCopy.StatName(bond.Effect)) + " at " + target
                     : RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + ShortOfferCopy.StatName(bond.Effect), value, ArcadeTypography.SizeNote);
-                if (!row.Preview) { muted.normal.textColor = ArcadeSkin.Teal; FitLabel(new Rect(bi.x, bi.y + 86, bi.width, 32), "Cannot be bought now", muted, ArcadeTypography.SizeNote); }
+                if (!row.Preview) { muted.normal.textColor = ArcadeSkin.Teal; FitLabel(new Rect(bi.x, bi.yMax - 32, bi.width, 32), "Cannot be bought now", muted, ArcadeTypography.SizeNote); }
             }
         }
         /// <summary>The card's weapon chip: the weapon's short name and its whole damage ("Moon Scythe · 34 dmg").</summary>
@@ -276,6 +275,18 @@ namespace ArcaneBrigade
         {
             foreach (UnitDefinition hero in catalog.Champions) if (hero.Id == id) return RunUICopy.UnitName(hero);
             return "one hero";
+        }
+        /// <summary>A tile's inside, well clear of its ornate rim.</summary>
+        private static Rect Inner(Rect tile) { Rect c = ArcadeSkin.Content(tile, KitPiece.Tile); return new Rect(c.x + 12, c.y + 6, c.width - 24, c.height - 12); }
+        /// <summary>Words that fit their box whole: they shrink a little first, then wrap onto the next line (never cut at the rim).</summary>
+        private static void FitWrap(Rect rect, string text, GUIStyle style, int size)
+        {
+            style.fontSize = size; style.wordWrap = true; style.clipping = TextClipping.Clip;
+            var content = new GUIContent(text);
+            while (style.fontSize > 22 && style.CalcHeight(content, rect.width) > rect.height) style.fontSize--;
+            TextAnchor keep = style.alignment; style.alignment = TextAnchor.UpperLeft;
+            GUI.Label(rect, text, style);
+            style.alignment = keep; style.wordWrap = false;
         }
         private static void FitLabel(Rect rect, string text, GUIStyle style, int size)
         {

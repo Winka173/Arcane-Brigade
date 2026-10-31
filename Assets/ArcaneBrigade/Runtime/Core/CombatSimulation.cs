@@ -953,7 +953,8 @@ namespace ArcaneBrigade
                     Muzzle = position, FiredAt = Elapsed,
                     Velocity = direction * (unit.Faction == Faction.Enemy && catalog.RunWave > 0 ? Mathf.Min(2.4f, weapon.ProjectileSpeed) : weapon.ProjectileSpeed),
                     Damage = damage,
-                    Remaining = weapon.ProjectileLifetime,
+                    // a friendly shot lives long enough to fly its whole (longer) flight
+                    Remaining = unit.Faction == Faction.Enemy || FriendlyReach.Returns(weapon) ? weapon.ProjectileLifetime : Mathf.Max(weapon.ProjectileLifetime, FriendlyReach.Flight(weapon, rotatedMuzzle.magnitude, unit.Definition.Weapon.Range) / Mathf.Max(.1f, weapon.ProjectileSpeed) + .1f),
                     TravelLeft = unit.Faction == Faction.Enemy || FriendlyReach.Returns(weapon) ? -1 : FriendlyReach.Flight(weapon, rotatedMuzzle.magnitude, unit.Definition.Weapon.Range),
                     Color = weapon.ProjectileColor,
                     Element = weapon.Element,
@@ -1012,6 +1013,9 @@ namespace ArcaneBrigade
                 if (enemy.ContactImpactAt == 0 && enemy.NextCollision > 0) StrikeChampionCollision(enemy);
                 return;
             }
+            // requirement 31/10/2026: a boss's body hurts every half second while the hero touches it (bodies are pushed apart
+            // each frame, so its wind-up kept restarting and it struck once); no wind-up for a boss
+            if (enemy.Definition.IsBoss && enemy.ContactImpactAt == 0) enemy.ContactImpactAt = Elapsed;
             if (enemy.ContactImpactAt == 0)
             {
                 enemy.ContactImpactAt = Elapsed + 0.22f;
@@ -1025,7 +1029,7 @@ namespace ArcaneBrigade
             }
             if (Elapsed < enemy.ContactImpactAt) return;
             enemy.ContactImpactAt = 0;
-            enemy.NextContact = Elapsed + enemy.Definition.ContactInterval;
+            enemy.NextContact = Elapsed + (enemy.Definition.IsBoss ? BossBodyShape.ContactTick : enemy.Definition.ContactInterval);
             Vector2 impactDirection = (Champion.Position - enemy.Position).normalized;
             float contactDamage = enemy.Definition.ContactDamage * (enemy.Definition.IsBoss ? BossBodyShape.ContactDamageScale : 1) * HeroBodyGuard();
             if (!enemy.Definition.IsBoss) contactDamage = CrowdContactLimit(contactDamage);

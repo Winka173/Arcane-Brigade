@@ -18,7 +18,7 @@ namespace ArcaneBrigade
             new Tip { Id = "merge", Line = "Three of the same friend became one, with a new star.", Icon = o => o.Session.State.Roster.Count > 0 ? o.Content.Unit(o.Session.State.Roster[0].UnitId)?.Body : null },
             new Tip { Id = "gauge", Line = "Your gauge is full: your hero's power is ready.", Icon = o => o.Content.Unit(o.Session.State.ChampionId)?.Body },
             new Tip { Id = "dream", Line = "The dream shop takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
-            new Tip { Id = "boss", Line = "A boss! Red ink marks where its blows land: step out before the rim closes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
+            new Tip { Id = "boss", Line = "A boss! A red patch shows where its blow will land: step out before it strikes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
             new Tip { Id = "visitor", Line = "A visitor waits at the table. Walk up to see the deal.", Icon = o => ExpansionArtwork.Current?.Visitor(o.Session.State.Visitor) },
             // the maps' living elements (play-test item 24): one line each, the first time it appears
             // requirement 25/10/2026: one guide line for every element of the six maps

@@ -203,6 +203,17 @@ namespace ArcaneBrigade
             return at;
         }
 
+        /// <summary>Where a round button's disc is, without drawing it: the same face IconButton centres its glyph or picture on
+        /// (the painted disc sits below the middle of its art, under the crest).</summary>
+        public static Rect RoundFace(Rect r, KitRound kind)
+        {
+            Sprite sprite = Crafted ? null : KitSprite("Buttons/Round" + kind);
+            Rect face;
+            if (sprite != null) { Rect at = Fitted(r, sprite); face = new Rect(at.x + at.width * .22f, at.y + at.height * .28f, at.width * .56f, at.height * .56f); }
+            else { float inner = r.width * .6f; face = new Rect(r.center.x - inner * .5f, r.center.y - inner * .5f, inner, inner); }
+            return new Rect(face.x, face.y - face.height * .04f, face.width, face.height);
+        }
+
         /// <summary>The painted (or crafted) round button base, art only; returns the face for a glyph or a picture.</summary>
         public static Rect RoundArt(Rect r, KitRound kind, int state)
         {

@@ -6,6 +6,9 @@ namespace ArcaneBrigade
     public static class FriendlyReach
     {
         public const float MeleeMaximum = 2.6f, RangedMaximum = 6.5f;
+        /// <summary>How far a friendly shot flies, as a share of its weapon's attack range: the range decides when a friend
+        /// fires, the shot then keeps going (requirement 31/10/2026: shots vanished at the end of the range, mid-flight).</summary>
+        public const float FlightReach = 2.5f;
         public static float Limit(float range, WeaponKind kind)
         {
             float knee = kind == WeaponKind.Melee ? 2.2f : 5f;
@@ -16,7 +19,7 @@ namespace ArcaneBrigade
         public static float Flight(WeaponDefinition weapon, float muzzleOffset, float maximum = float.PositiveInfinity)
         {
             float range = Mathf.Min(weapon.Range, maximum);
-            return Mathf.Max(.1f, range - Mathf.Min(muzzleOffset, range * .35f));
+            return Mathf.Max(.1f, range * FlightReach - Mathf.Min(muzzleOffset, range * .35f));
         }
         public static bool Returns(WeaponDefinition weapon) => weapon.Family == ExpandedWeapon.Fish || weapon.SecretRecall;
     }

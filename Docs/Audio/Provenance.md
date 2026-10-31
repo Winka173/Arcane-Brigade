@@ -1,5 +1,21 @@
 # Audio provenance — thư viện `Resources/Audio/Arcane`
 
+## Âm thanh hiệu ứng hiện tại: SFX revision 7, 2026-10-31
+
+SFX revision 7 làm lại toàn bộ 174 cue chiến đấu, vũ khí, kỹ năng, quái, nhặt đồ, nâng cấp, shop, giao diện và sự kiện (518 clip `Sfx/s7_*`). Mỗi cue có công thức riêng trong `Tools/Music/sfx7.py`:
+- Lớp chính là các nốt nhạc cụ và trống dựng từ GeneralUser GS 2.0.3 qua FluidSynth 2.6.1, tức cùng bộ âm sắc với nhạc nền.
+- Lớp phụ là foley tổng hợp bằng code (`sfx_lib.py`: gió, giấy, vải, sạn).
+
+Các họ vũ khí, chém, trúng đòn và kỹ năng được hạ khoảng 3 bán cung và cắt bớt dải cao.
+
+`Tools/Music/sfx7_wire.py` nối clip vào `cues.json` và cân mix:
+- Gain của mỗi cue được kéo một nửa về trung vị của họ.
+- Các họ đòn đánh lùi thêm 1,5 dB.
+
+Sau đó bước editor `AudioMixBuilder` dựng lại `loudness.json`, cân mọi clip về cùng một RMS.
+
+Giữ nguyên clip, chỉ cân lại gain: bộ boss, giọng, ambience, chuông sao. Bản nghe thử theo họ: `PreviewExports/Audio/SfxR7/*.mp3` (không đưa vào Git).
+
 ## Nhạc hiện tại: storybook v5, 2026-10-20
 
 Music revision 5 thay toàn bộ 15 bài (60 stem) bằng các bản soạn mới cho game trong `Tools/Music/tracks.py` (nốt nhạc viết tay, không chép, không sample), render bằng FluidSynth 2.6.1 + GeneralUser GS 2.0.3, mỗi scene mix ở −18 LUFS, loop liền mạch. Công cụ, giấy phép và bảng từng bài: [Music_Credits.md](../Music_Credits.md). Phần nhạc của revision 4 bên dưới chỉ còn là lịch sử.

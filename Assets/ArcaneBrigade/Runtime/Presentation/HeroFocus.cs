@@ -67,7 +67,7 @@ namespace ArcaneBrigade
             bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop && (owner.SecretRoom == null || !owner.SecretRoom.InRoom);
             foreach (SpriteRenderer r in props)
             {
-                if (inShop && !Shopkeeper(r)) continue;
+                if (inShop && !Shopkeeper(r) && !ShopFigure(r)) continue;
                 if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder <= heroOrder || r.sortingOrder >= 1600) continue;
                 Vector3 size = r.bounds.size;
                 if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14 || r.color.a < .05f) continue;
@@ -124,6 +124,10 @@ namespace ArcaneBrigade
             PaintRing(hero, view, body, tint);
             PaintArrow(hero, view, tint);
         }
+
+        /// <summary>A person standing in the shop (the Last Customer, standing or visiting): it fades like the shopkeeper when
+        /// the hero walks behind it (requirement, repeated 31/10/2026); the wares stay solid.</summary>
+        private static bool ShopFigure(SpriteRenderer r) => r != null && (r.name.StartsWith("ActOne-LastCustomer", System.StringComparison.Ordinal) || r.name == ActOneCustomerVisits.FigureName);
 
         private void Target(SpriteRenderer r, float alpha)
         {
@@ -198,7 +202,8 @@ namespace ArcaneBrigade
             float t = PresentationSettings.ReducedMotion ? 0 : Time.time;
             float glow = (moving ? .62f : .42f) + (PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(t * 2.4f) * .05f);
             Color light = Color.Lerp(tint, new Color(1, .93f, .7f), .45f);
-            ring.GlowRibbon(InkCanvas.Arc(feet, width * 1.04f, height * 1.04f, 0, 360, 40), 1, 0, .16f, new Color(light.r, light.g, light.b, glow * .55f));
+            // a soft pool of the hero's light under the feet, brightest in the middle (no ring: requirement, repeated 31/10/2026)
+            ring.Ellipse(feet, width * 1.1f, height * 1.1f, new Color(light.r, light.g, light.b, glow * .5f), new Color(light.r, light.g, light.b, 0));
             // (the two gapped brush strokes round the glow are gone: requirement 25/10/2026, no dashed rim round our side)
             ring.Commit();
             RingVisible = true;

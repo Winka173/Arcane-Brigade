@@ -264,16 +264,7 @@ namespace ArcaneBrigade
             // the lane: one solid teal band 1.5 units wide, filling through the warning, fading once the last plane is through
             float charge = Mathf.Clamp01((t - s.PostPlanesWarnAt) / MapEnvironmentRules.PostPlaneWarn);
             float fade = 1 - PostSmooth(s.PostPlanesEnd - .2f, s.PostPlanesEnd + .5f, t);
-            // requirement 26/10/2026: our own blows draw no hit zone; the chevrons alone show the planes' way
-            // chevrons running along it the planes' way
-            float clock = still ? 0 : t;
-            for (int k = 0; k < 9; k++)
-            {
-                float f = Mathf.Repeat(k / 9f + clock * .12f, 1); Vector2 tip = Vector2.Lerp(from, to, f);
-                float a = .7f * fade * Mathf.Sin(f * Mathf.PI) * (t < s.PostPlanesAt ? charge : 1);
-                ink.FloorStroke(tip - dir * .3f + across * .32f, tip, PostTeal, .07f, 1, 0, a);
-                ink.FloorStroke(tip - dir * .3f - across * .32f, tip, PostTeal, .07f, 1, 0, a);
-            }
+            // our own blows draw no hit zone and no lines (requirement 26/10/2026, 31/10/2026): the planes and the AIR MAIL! call say it
             if (postSaidPlanes != s.PostPlanesWarnAt) { postSaidPlanes = s.PostPlanesWarnAt; ImpactWords.Pop("AIR MAIL!", Vector2.Lerp(from, to, .5f) + Vector2.up * 1.2f, new Color(.7f, 1f, .92f), 2, .95f); }
             // the planes: each with its own place in the lane and a looping ink trail
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

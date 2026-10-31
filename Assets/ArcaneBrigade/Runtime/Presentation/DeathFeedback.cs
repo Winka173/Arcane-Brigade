@@ -73,7 +73,7 @@ namespace ArcaneBrigade
         {
             Remnant remnant = pool.Find(candidate => candidate.Age >= candidate.Duration);
             if (remnant != null) return remnant;
-            if (pool.Count >= 64)
+            if (pool.Count >= 200) // enough that every enemy on screen at the end of a night plays its own defeat (64 left most to a plain fade)
             {
                 if (!important) return null;
                 Remnant oldest = null;

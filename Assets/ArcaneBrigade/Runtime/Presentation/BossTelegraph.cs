@@ -176,11 +176,7 @@ namespace ArcaneBrigade
         /// <summary>An inked arrowhead at the far end of a lane.</summary>
         public static void Arrow(ArsenalInk ink, Vector2 tip, Vector2 direction, float size, float charge, float alpha)
         {
-            Vector2 n = new Vector2(-direction.y, direction.x);
-            float a = alpha * Mathf.Lerp(.6f, 1, Mathf.Clamp01(charge));
-            InkPalette pal = charge > .8f ? DangerHot : Danger;
-            ink.FloorStroke(tip - direction * size + n * size * .8f, tip, pal, .11f, 1, 0, a);
-            ink.FloorStroke(tip - direction * size - n * size * .8f, tip, pal, .11f, 1, 0, a);
+            // no arrowhead lines inside the danger any more (requirement, repeated 31/10/2026): the lane's solid band says it all
         }
 
         private static bool Aimed(int pattern) => pattern == 1 || pattern == 3 || pattern == 5 || pattern == 7 || pattern == 9;

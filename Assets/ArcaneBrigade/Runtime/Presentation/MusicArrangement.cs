@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     /// </summary>
     public static class MusicArrangement
     {
-        /// <summary>How long a boss's melody plays before the fight settles to base + rhythm.</summary>
+        /// <summary>How long a boss's melody plays at full level before it settles back under base + rhythm.</summary>
         public const float BossIntroSeconds = 8f;
 
         public static bool IsCombat(string scene) => scene != null && scene.StartsWith("combat_map_", System.StringComparison.Ordinal) || scene == ArcaneCueLibrary.SceneCombatEarly || scene == ArcaneCueLibrary.SceneCombatMid
@@ -29,7 +29,7 @@ namespace ArcaneBrigade
                 case ArcaneCueLibrary.SceneSelect: levels[1] = 0.7f; levels[2] = 1f; levels[3] = 0f; break;
                 case ArcaneCueLibrary.SceneShopGold: levels[1] = 0.9f; levels[2] = 1f; levels[3] = 0.75f; break;
                 case ArcaneCueLibrary.SceneShopDream: levels[1] = 0.8f; levels[2] = 1f; levels[3] = 0.7f; break;
-                case ArcaneCueLibrary.SceneBoss: levels[1] = 1f; levels[2] = bossIntro ? 1f : 0f; levels[3] = 0f; break;
+                case ArcaneCueLibrary.SceneBoss: levels[1] = 1f; levels[2] = bossIntro ? 1f : .55f; levels[3] = 0f; break; // the melody stays, softer, after the intro (base + rhythm alone read as the music stopping)
                 case ArcaneCueLibrary.SceneEndless: levels[1] = Mathf.Lerp(0.75f, 1f, density); levels[2] = 0f; levels[3] = 0f; break;
                 default: levels[1] = Mathf.Lerp(0.7f, 1f, density); levels[2] = 0f; levels[3] = 0f; break;
             }

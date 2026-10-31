@@ -274,7 +274,7 @@ namespace ArcaneBrigade
                         Matrix4x4 plateMatrix = GUI.matrix; Color plateColour = GUI.color;
                         LivingUI.Pop(Time.unscaledTime - roomAt - .12f - i * .06f, plate.center); // the three cards land one after another
                         // the chosen card: an aura behind it and a little larger; the others step back into the dark
-                        if (lit) { ArcadeSkin.SelectedAura(plate, new Color(1f, .78f, .38f)); ArcadeSkin.ScaleAround(Vector2.one * 1.04f, plate.center); }
+                        if (lit) { ArcadeSkin.SelectedAura(plate, new Color(1f, .78f, .38f), 60, true); ArcadeSkin.ScaleAround(Vector2.one * 1.04f, plate.center); } // round light under the painted card (a ring round its box ignored the medallion on top and read as a frame)
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r * .7f, keep.g * .7f, keep.b * .75f, keep.a * .7f);
                         else if (selected >= 0 && !lit) GUI.color = new Color(keep.r * .72f, keep.g * .72f, keep.b * .76f, keep.a);
                         if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);

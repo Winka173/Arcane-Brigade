@@ -197,12 +197,15 @@ namespace ArcaneBrigade.Editor
         private static void Stems()
         {
             var levels = new float[4];
-            foreach (string scene in new[] { ArcaneCueLibrary.SceneCombatEarly, ArcaneCueLibrary.SceneCombatMid, ArcaneCueLibrary.SceneCombatLate, ArcaneCueLibrary.SceneEndless, ArcaneCueLibrary.SceneBoss })
+            foreach (string scene in new[] { ArcaneCueLibrary.SceneCombatEarly, ArcaneCueLibrary.SceneCombatMid, ArcaneCueLibrary.SceneCombatLate, ArcaneCueLibrary.SceneEndless })
                 foreach (float density in new[] { 0f, 0.5f, 1f })
                 {
                     MusicArrangement.Targets(scene, density, false, levels);
                     Require(levels[0] == 1f && levels[1] > 0.5f && levels[2] == 0f && levels[3] == 0f, scene + " at density " + density + " plays base + rhythm only");
                 }
+            // requirement 31/10/2026: after its intro a boss keeps its melody, softer (base + rhythm alone read as the music stopping)
+            MusicArrangement.Targets(ArcaneCueLibrary.SceneBoss, .5f, false, levels);
+            Require(levels[0] == 1f && levels[1] > 0.5f && levels[2] > 0f && levels[2] < 1f && levels[3] == 0f, "a boss keeps a softer melody after its intro");
             MusicArrangement.Targets(ArcaneCueLibrary.SceneBoss, 1f, true, levels);
             Require(levels[2] == 1f && levels[3] == 0f, "a boss's melody plays in its intro");
             foreach (string scene in new[] { ArcaneCueLibrary.SceneMenu, ArcaneCueLibrary.SceneSelect, ArcaneCueLibrary.SceneShopGold, ArcaneCueLibrary.SceneShopDream })

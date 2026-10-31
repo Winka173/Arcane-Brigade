@@ -102,7 +102,12 @@ namespace ArcaneBrigade
             };
             // These weapons deliberately turn back or hop after their outbound flight. Their stage code owns the return.
             bool staged = weapon.Arsenal == ArsenalWeapon.TwinMoonStaff || weapon.Arsenal == ArsenalWeapon.YoYo || weapon.Arsenal == ArsenalWeapon.DreamRacket || weapon.Arsenal == ArsenalWeapon.PaperShuriken || weapon.Arsenal == ArsenalWeapon.JugglingPins;
-            if (source.Faction != Faction.Enemy && !staged) shot.TravelLeft = range;
+            if (source.Faction != Faction.Enemy && !staged)
+            {
+                // the range decides when it fires; the shot itself flies on well past it
+                shot.TravelLeft = range * FriendlyReach.FlightReach;
+                shot.Remaining = shot.TravelLeft / Mathf.Max(0.1f, speed) + .1f;
+            }
             if (projectiles.Count < 4096) projectiles.Add(shot);
             if (source.HeraldShot && source.Faction == Faction.Companion)
             {

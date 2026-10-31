@@ -395,7 +395,11 @@ namespace ArcaneBrigade
                     identityStyle.normal.textColor = Color.Lerp(HeroIdentities.For(state.ChampionId).Color, ArcadeSkin.Cream, 0.55f);
                     // under the counters in the left column, clear of the tip banner at the top middle (UI standard: HUD zones),
                     // on a velvet plaque so the two lines read on any floor
-                    ArcadeSkin.KitSliced(new Rect(12, 236, 396, 118), "HUD/GaugePlaque");
+                    // no plaque behind the two lines any more (review 31/10/2026: the red box read as nothing and covered the prism
+                    // count); the thick shadowed words read on any floor
+                    Rect plaque = new Rect(12, 236, 396, 112);
+                    // the whole plaque answers a tap with the gauge's help (what fills it, what the third step does)
+                    if (GUI.Button(plaque, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
                     ArcadeTypography.ShadowLabel(new Rect(32, 248, 360, 40), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
                     ArcadeTypography.ShadowLabel(new Rect(32, 284, 360, 62), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
                 }
@@ -579,10 +583,12 @@ namespace ArcaneBrigade
                 ArcadeSkin.Line(picture, new Color(0, 0, 0, .22f));
                 if (station.Offer != null) RarityDescriptionFrame.Backdrop(picture, rarity, owner.PresentationClock);
                 ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 144, 144), station.Offer != null ? offerCard.Portrait : station.Icon);
-                if (station.Offer != null && offerCard.Role.HasValue) Sprite(new Rect(picture.x - 10, picture.y - 10, 58, 58), CompanionRoles.Badge(offerCard.Role.Value));
                 if (station.Offer != null)
                 {
-                    string kind = item ? RunModifierRules.RarityName(rarity) : (offerCard.Role.HasValue ? CompanionRoles.Word(offerCard.Role.Value) : "FRIEND") + "  " + new string('★', Mathf.Clamp(station.Offer.Tier, 1, 3));
+                    // a friend's tag says its star rank in words (review 31/10/2026: "SUPPORT ★" read as nothing; the role was a guess
+                    // from its text and could be wrong, so the card shows what the friend itself does instead)
+                    int stars = Mathf.Clamp(station.Offer.Tier, 1, 3);
+                    string kind = item ? RunModifierRules.RarityName(rarity) : stars + (stars == 1 ? " STAR" : " STARS");
                     ArcadeSkin.Tag(new Rect(picture.x, picture.yMax + 10, 160, 32), kind, CodeTone.Walnut, tagStyle, tag); // code-drawn tag, rarity colour on walnut
                 }
                 // one fixed size for the price button and the i under it, centred in the card's right column (requirement 21/10/2026)
@@ -594,8 +600,10 @@ namespace ArcaneBrigade
                 float y = panel.y + 70;
                 if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
                 string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                string body = Fit(source, width, panel.yMax - 24 - y, out int more); // the last line stays clear of the bottom rim
+                int lineSize = cardLine.fontSize;
+                string body = Fit(source, width, panel.yMax - 24 - y, out int more); // the last line stays clear of the bottom rim (it may shrink the words a little)
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 20 - y), body, cardLine);
+                cardLine.fontSize = lineSize;
                 // short of the price, the button is drawn dimmed so it does not read as pressable
                 Color buyTint = GUI.color; if (!Affordable(owner, station)) GUI.color = new Color(buyTint.r * .55f, buyTint.g * .55f, buyTint.b * .55f, buyTint.a);
                 if (navigation.Button(buy, "", primary)) shop.Interact();
@@ -623,14 +631,15 @@ namespace ArcaneBrigade
             more = 0;
             if (string.IsNullOrEmpty(source)) return "";
             // requirement 25/10/2026: the card is fitted once per text and size, not re-measured on every GUI pass
-            if (ReferenceEquals(source, fitSource) && width == fitWidth && height == fitHeight && cardLine.fontSize == fitFont) { more = fitMore; return fitKept; }
+            if (ReferenceEquals(source, fitSource) && width == fitWidth && height == fitHeight && cardLine.fontSize == fitFont) { more = fitMore; cardLine.fontSize = fitDrawn; return fitKept; }
+            int entry = cardLine.fontSize;
             string kept = FitLines(source, width, height, out more);
-            fitSource = source; fitWidth = width; fitHeight = height; fitFont = cardLine.fontSize; fitKept = kept; fitMore = more;
+            fitSource = source; fitWidth = width; fitHeight = height; fitFont = entry; fitDrawn = cardLine.fontSize; fitKept = kept; fitMore = more;
             return kept;
         }
         private string fitSource, fitKept;
         private float fitWidth, fitHeight;
-        private int fitFont, fitMore;
+        private int fitFont, fitDrawn, fitMore;
         private string FitLines(string source, float width, float height, out int more)
         {
             more = 0;
@@ -642,6 +651,21 @@ namespace ArcaneBrigade
                 string next = taken == 0 ? all[0] : kept + "\n" + all[taken];
                 if (GlossaryUI.Height(next, cardLine, width) > height) break;
                 kept = next;
+            }
+            // a first line a little too long shrinks (to 78% at most) before it is ever cut (review 31/10/2026: "Its hits pin the
+            // enemy in place for..." lost its point)
+            if (taken == 0 && all.Length > 0)
+            {
+                int size = cardLine.fontSize, floor = Mathf.RoundToInt(size * .78f);
+                while (cardLine.fontSize > floor && GlossaryUI.Height(all[0], cardLine, width) > height) cardLine.fontSize--;
+                if (GlossaryUI.Height(all[0], cardLine, width) <= height) { kept = all[0]; taken = 1; }
+                else
+                {
+                    // then without its bracketed detail ("for 0.3s (once every 2s per enemy)": the detail waits under DETAILS)
+                    string plain = System.Text.RegularExpressions.Regex.Replace(all[0], @"\s*\([^)]*\)", "").Trim();
+                    if (plain != all[0] && GlossaryUI.Height(plain, cardLine, width) <= height) { kept = plain; taken = 1; }
+                    else cardLine.fontSize = size;
+                }
             }
             if (taken == 0)
             {
@@ -981,10 +1005,19 @@ namespace ArcaneBrigade
             // review 31/10/2026: like ZZZ, a plain row of square tiles across the top right - each bond's icon in its tile, the count
             // under it; a tap names it and says what it does. Awake bonds glow and breathe, a bond this purchase lights blinks gold,
             // a count that changes pops its tile, and the tile under the finger lifts.
-            const float tile = BondHudSummary.RowHeight, gap = BondHudSummary.Gap, below = 30;
-            int shownRows = newBonds.Count + bondSummary.VisibleCount;
-            int tiles = shownRows + 1;
-            Rect card = new Rect(1900 - tiles * (tile + gap) + gap, 22, tiles * (tile + gap) - gap, tile + below);
+            // requirement 31/10/2026: two rows of at most five tiles (right-aligned), and a bond's level is shown by the light in its
+            // tile (bronze, silver, gold), never by a number stamp
+            const float tile = BondHudSummary.RowHeight, gap = BondHudSummary.Gap, below = 30, rowStep = BondHudSummary.RowHeight + 36;
+            const int perRow = BondHudSummary.PerRow;
+            int shownRows = Mathf.Min(newBonds.Count + bondSummary.VisibleCount, perRow * 2 - 1);
+            int tiles = shownRows + 1, lines = Mathf.CeilToInt(tiles / (float)perRow);
+            Rect TileAt(int i)
+            {
+                int line = i / perRow, inLine = Mathf.Min(perRow, tiles - line * perRow), col = i % perRow;
+                return new Rect(1900 - (inLine - col) * (tile + gap) + gap, 22 + line * rowStep, tile, tile);
+            }
+            float width = Mathf.Min(perRow, tiles) * (tile + gap) - gap;
+            Rect card = new Rect(1900 - width, 22, width, (lines - 1) * rowStep + tile + below);
             bool still = owner.Profile != null && owner.Profile.ReducedMotion, calm = PresentationSettings.ReducedFlashes;
             float clock = Time.unscaledTime, blink = still || calm ? .6f : .5f + .5f * Mathf.Sin(clock * 7f);
             string tooltip = null; Rect tipFor = Rect.zero;
@@ -999,7 +1032,7 @@ namespace ArcaneBrigade
                 int after = fresh ? newBonds[index].After : previewing ? row.After : count;
                 int level = bond.ActiveLevel(count), levelAfter = bond.ActiveLevel(after);
                 bool rising = (fresh || previewing) && levelAfter > level, active = level > 0;
-                Rect r = new Rect(card.x + index * (tile + gap), card.y, tile, tile);
+                Rect r = TileAt(index); float rowY = r.y;
                 bool hover = r.Contains(Event.current.mousePosition);
                 float burst = still ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
                 float lift = hover && !still ? 3 : 0, grow = burst * 4;
@@ -1010,23 +1043,27 @@ namespace ArcaneBrigade
                 else if (bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed)) ArcadeSkin.Glow(new Rect(r.x - 14, r.y - 14, r.width + 28, r.height + 28), new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, .7f));
                 else if (active) ArcadeSkin.Glow(new Rect(r.x - 10, r.y - 10, r.width + 20, r.height + 20), new Color(1f, .74f, .4f, .2f + .2f * breathe));
                 if (!ArcadeSkin.KitSliced(r, active || rising ? "Info/NavyTileLit" : "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(r, active || rising); // a square tile
+                // the level is the light behind the icon: bronze at the first step (2), silver at the second (4), gold at the third (6)
+                int shownLevel = rising ? levelAfter : level;
+                if (shownLevel > 0)
+                {
+                    Color tierLight = shownLevel == 1 ? new Color(.95f, .55f, .25f) : shownLevel == 2 ? new Color(.7f, .88f, 1f) : new Color(1f, .86f, .35f);
+                    Rect inner = new Rect(r.x + r.width * .1f, r.y + r.height * .1f, r.width * .8f, r.height * .8f);
+                    for (int layer = 0; layer < shownLevel; layer++) ArcadeSkin.Glow(inner, new Color(tierLight.r, tierLight.g, tierLight.b, .45f + .25f * breathe));
+                    if (shownLevel >= 3 && !still)
+                        for (int m = 0; m < 4; m++) // the top step: sparkles turning round the icon
+                        {
+                            float a = clock * 1.4f + m * Mathf.PI * .5f;
+                            ArcadeSkin.Diamond(r.center + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r.width * .32f, 3, new Color(1f, .95f, .7f, .9f));
+                        }
+                }
                 Color keep = GUI.color;
                 if (!active && !rising) GUI.color = new Color(keep.r * .62f, keep.g * .62f, keep.b * .66f, keep.a); // not awake yet: dim
                 ShopDescriptionCard.DrawSprite(new Rect(r.x + r.width * .18f, r.y + r.height * .18f, r.width * .64f, r.height * .64f), bond.Icon);
                 GUI.color = keep;
-                if (active || rising)
-                {
-                    // the level as a small stamp on the tile's corner
-                    Rect stamp = new Rect(r.xMax - 30, r.y - 8, 36, 22);
-                    if (!ArcadeSkin.KitSliced(stamp, rising ? "HUD/BondNew" : "HUD/BondLevel", stamp.height / 40)) ArcadeSkin.Slant(stamp, rising ? ArcadeSkin.Gold : ArcadeSkin.Accent);
-                    int size = bondNumber.fontSize; bondNumber.fontSize = 16;
-                    bondNumber.normal.textColor = rising ? ArcadeSkin.Ink : ArcadeSkin.KitRose;
-                    GUI.Label(stamp, (rising ? levelAfter : level).ToString(), bondNumber);
-                    bondNumber.fontSize = size;
-                }
                 int next = Mathf.Max(after, bond.NextThreshold(after));
                 bondNumber.normal.textColor = rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .3f) : active ? ArcadeSkin.Cream : new Color(.8f, .76f, .7f);
-                ArcadeTypography.ShadowLabel(new Rect(r.x - 10, card.y + tile + 2, tile + 20, below - 2), after + "/" + next, bondNumber);
+                ArcadeTypography.ShadowLabel(new Rect(r.x - 10, rowY + tile + 2, tile + 20, below - 2), after + "/" + next, bondNumber);
                 if (GUI.Button(new Rect(r.x, r.y, r.width, tile + below), GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
                 if (hover || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
                 {
@@ -1035,11 +1072,12 @@ namespace ArcaneBrigade
                 }
             }
             // the rest: one tile that opens the full list
-            Rect more = new Rect(card.x + shownRows * (tile + gap), card.y, tile, tile);
+            Rect more = TileAt(shownRows);
             if (!ArcadeSkin.KitSliced(more, "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(more, false);
             programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(more, bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount : "···", programStyle);
-            ArcadeTypography.ShadowLabel(new Rect(more.x - 10, card.y + tile + 2, tile + 20, below - 2), "all", bondNumber);
+            int hidden = bondSummary.Rows.Count - (shownRows - newBonds.Count); // the bonds not on the two rows
+            GUI.Label(more, hidden > 0 ? "+" + hidden : "···", programStyle);
+            ArcadeTypography.ShadowLabel(new Rect(more.x - 10, more.y + tile + 2, tile + 20, below - 2), "all", bondNumber);
             if (GUI.Button(new Rect(more.x, more.y, more.width, tile + below), GUIContent.none, bondHit))
             {
                 if (!owner.Details.Open) owner.ToggleDetails();

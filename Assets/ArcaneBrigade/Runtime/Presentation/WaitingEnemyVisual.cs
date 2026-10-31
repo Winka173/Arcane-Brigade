@@ -100,8 +100,8 @@ namespace ArcaneBrigade
                 case WaitingMarkKind.ClosedPatch:
                     if (warning)
                     {
-                        // the stamp coming down: a seal falling onto a pulsing dashed rim
-                        for (int k = 0; k < 6; k++) floor.Stroke(InkCanvas.Arc(m.A, m.Radius, m.Radius, k * 60 + 8, k * 60 + 44), InkStroke.Of(Wine, .05f, .7f * charge, seed + k));
+                        // the stamp coming down: a seal falling onto one solid patch (danger zones carry no rims or dashes)
+                        floor.Sector(m.A, m.Radius, 0, 360, A(Wine.Body, .4f * charge), A(Wine.Body, .4f * charge));
                         ink.Token(InkToken.Seal, Wine, m.A + Vector2.up * (1 - charge) * .9f, .3f + .25f * charge, still ? 0 : -10, charge);
                     }
                     else
@@ -117,13 +117,8 @@ namespace ArcaneBrigade
                 {
                     // the telephone rings: notes jump off it and the cord's path is dotted across the floor
                     Vector2 axis = m.B - m.A; float length = axis.magnitude; if (length < .05f) break;
-                    int dashes = Mathf.Clamp(Mathf.CeilToInt(length * 2.2f), 4, 24);
-                    for (int i = 0; i < dashes; i++)
-                    {
-                        float f0 = (i + .1f) / dashes, f1 = (i + .55f) / dashes;
-                        if (f0 > charge) break;
-                        floor.Stroke(InkCanvas.Line(m.A + axis * f0, m.A + axis * f1), InkStroke.Of(Bile, .06f, .8f * charge, seed + i));
-                    }
+                    // its path as one solid band growing as it charges (no dotted line)
+                    if (charge > .01f) floor.Band(m.A, m.A + axis * Mathf.Clamp01(charge), .16f, A(Wine.Body, .4f * charge), A(Wine.Body, .4f * charge));
                     for (int i = 0; i < 2; i++)
                         ink.Token(InkToken.Note, Bile, m.A + new Vector2((i - .5f) * .4f, .95f + (still ? 0 : Mathf.Abs(Mathf.Sin(now * 14 + i)) * .2f)), .22f, still ? 0 : Mathf.Sin(now * 20 + i) * 20, charge);
                     break;
@@ -134,10 +129,8 @@ namespace ArcaneBrigade
                     float alpha = Mathf.Min(fade, Mathf.Clamp01((now - m.At) / .12f));
                     // it writhes: the coil's waves run along it, and a pulse of current travels from the phone to its catch
                     float writhe = still ? 0 : now * 9;
-                    floor.Stroke(InkCanvas.Line(m.A, m.B, .09f, 7, false, seed + writhe), InkStroke.Of(Soot, .12f, alpha, seed));
-                    floor.Stroke(InkCanvas.Line(m.A, m.B, .07f, 7, false, seed + 2 - writhe * .8f), InkStroke.Of(Bile, .06f, .85f * alpha, seed + 1));
-                    float pulse = still ? .5f : Mathf.Repeat(now * 1.6f, 1);
-                    floor.GlowRibbon(InkCanvas.Line(m.A, m.B, .08f, 7, false, seed + writhe), Mathf.Min(1, pulse + .12f), Mathf.Max(0, pulse - .12f), .22f, new Color(1f, .78f, .4f, .75f * alpha));
+                    // the hurting wire as one solid danger band (requirement 31/10/2026: the writhing inked lines went), sparks running along it
+                    floor.Band(m.A, m.B, .18f, A(Wine.Body, .5f * alpha), A(Wine.Body, .5f * alpha));
                     for (int i = 0; i < 3; i++)
                     {
                         float t = still ? (i + .5f) / 3 : Mathf.Repeat(now * 1.3f + i / 3f, 1);
@@ -163,8 +156,7 @@ namespace ArcaneBrigade
                 }
                 case WaitingMarkKind.SlashLine:
                     // the ruler line the fifth stroke will follow, drawn out over the wind-up
-                    floor.Band(m.A, m.B, m.Radius, A(Ember.Body, .04f * charge), A(Ember.Body, .2f * charge));
-                    floor.Stroke(InkCanvas.Line(m.A, m.B), new InkStroke { Width = .05f, Head = charge, Tail = 0, Taper = .6f, Alpha = .9f, Ink = Ember.Ink, Body = Ember.Body, Light = Ember.Light, LightOffset = .12f, Seed = seed });
+                    floor.Band(m.A, m.B, m.Radius, A(Ember.Body, .3f * charge), A(Ember.Body, .3f * charge)); // one uniform band, no ruler line over it
                     break;
                 case WaitingMarkKind.Slash:
                 {

@@ -329,6 +329,26 @@ namespace ArcaneBrigade
                 yield return Shot("Item35_Results" + end);
             }
 
+            // 37: the second boss night (wave 8, the Chair Porter): its music keeps playing past the intro, its body hurts every
+            // half second while touched, and its floor carries no lines
+            yield return LoadShop(7, false);
+            owner.NextWave(); yield return KeepAlive(10f);
+            ArcadeMusic music = owner.GetComponent<ArcadeMusic>();
+            UnitState porter = owner.Simulation.Boss;
+            Debug.Log("WAVE8_MUSIC scene=" + music?.CurrentScene + " piece=" + music?.PlayingPiece + " boss=" + porter?.Definition?.Id + " alive=" + (porter != null && porter.Alive));
+            Check(music != null && music.PlayingPiece != null && music.CurrentScene == ArcaneCueLibrary.SceneBoss, "Wave 8 boss music plays after its intro (" + music?.CurrentScene + " / " + music?.PlayingPiece + ")");
+            yield return Shot("Item37_Wave8Boss");
+            if (porter != null && porter.Alive)
+            {
+                porter.NextBossPattern = owner.Simulation.Elapsed + 30; porter.BossRecoveryUntil = owner.Simulation.Elapsed + 30;
+                owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health;
+                BossBodyShape.Shape shape = BossBodyShape.Of(porter.Definition);
+                float before = owner.Simulation.Champion.Health;
+                for (int i = 0; i < 24; i++) { yield return Stand(BossBodyShape.Centre(porter, shape) + new Vector2(shape.Half.x * .6f, 0)); yield return new WaitForSecondsRealtime(.1f); }
+                float lost = before - owner.Simulation.Champion.Health;
+                Debug.Log("WAVE8_CONTACT lost=" + lost + " perTick~" + porter.Definition.ContactDamage * BossBodyShape.ContactDamageScale);
+                Check(lost > porter.Definition.ContactDamage * BossBodyShape.ContactDamageScale * .3f * 2.5f, "Boss body hurts again and again while touched (lost " + lost.ToString("0") + ")");
+            }
             Check(true, "Capture finished"); Application.Quit(checks.All(c => c.StartsWith("PASS ")) ? 0 : 1);
         }
 

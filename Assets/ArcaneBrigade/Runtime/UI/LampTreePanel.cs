@@ -160,9 +160,10 @@ namespace ArcaneBrigade
             if (treePick == n.Id) ArcadeSkin.Glow(new Rect(r.x - 14, r.y - 14, r.width + 28, r.height + 28), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .6f));
             KitRound face = lit ? KitRound.Brass : !open || taken ? KitRound.Disabled : n.Currency == MetaCurrency.Keepsakes ? KitRound.Oxblood : KitRound.Walnut;
             bool tapped = ArcadeSkin.IconButton(r, face) | Nav(r);
-            Rect icon = new Rect(r.x + size * .2f, r.y + size * .2f, size * .6f, size * .6f);
+            // the picture centred on the medallion's disc (it sat high and to one side of it)
+            Rect disc = ArcadeSkin.RoundFace(r, face), icon = new Rect(disc.center.x - disc.width * .45f, disc.center.y - disc.width * .45f, disc.width * .9f, disc.width * .9f);
             Color keep = GUI.color;
-            if (!open) ArcadeSkin.Lock(r.center + Vector2.up * size * .04f, size * .3f, new Color(.86f, .78f, .62f));
+            if (!open) ArcadeSkin.Lock(disc.center, size * .3f, new Color(.86f, .78f, .62f));
             else { if (taken || !lit && !ready) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .55f); NodeIcon(icon, n); GUI.color = keep; }
             // its ranks: lozenges along the rim (the roots: a count beside them)
             if (n.Branch < 0 && open) { small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.MiddleLeft; GUI.Label(new Rect(r.xMax + 4, r.y, 56, r.height), rank + "/" + n.Ranks, small); small.alignment = TextAnchor.UpperLeft; }
@@ -198,7 +199,12 @@ namespace ArcaneBrigade
             else if (blocked == "Locked")
             {
                 small.normal.textColor = ink; small.alignment = TextAnchor.UpperCenter;
-                string why = n.Branch < 0 ? "Light every branch first" : "Light " + MetaProgression.BranchOpensAt + " in " + MetaProgression.BranchNames[n.Branch - 1] + "\nor win " + n.Branch + " difficult" + (n.Branch == 1 ? "y" : "ies");
+                // plain words (review 31/10/2026: "Light 3 in FORGE or win 7 difficulties" read as nothing, and there are only five
+                // difficulties): which branch to buy in first, and the difficulty path only when it can happen
+                string before = RunUICopy.Title(MetaProgression.BranchNames[Mathf.Max(0, n.Branch - 1)]);
+                string why = n.Branch < 0 ? "Opens when every branch is fully lit"
+                    : "Opens after " + MetaProgression.BranchOpensAt + " upgrades on the " + before + " branch"
+                      + (n.Branch <= RunMeta.DifficultyNames.Length ? "\nor after winning on " + n.Branch + (n.Branch == 1 ? " difficulty" : " different difficulties") : "");
                 // the reason sits on the card's foot, the padlock just above it (it ran off the card's bottom)
                 float whyHeight = small.CalcHeight(new GUIContent(why), inner.width);
                 ArcadeSkin.Lock(new Vector2(button.center.x, inner.yMax - whyHeight - 16), 20, ink);
@@ -223,7 +229,7 @@ namespace ArcaneBrigade
                 if (!can && blocked != "Not enough oil" && blocked != "Not enough keepsakes")
                 {
                     small.normal.textColor = new Color(.55f, .18f, .12f); small.alignment = TextAnchor.UpperCenter;
-                    GUI.Label(new Rect(inner.x, button.y - 22, inner.width, 22), blocked, small);
+                    GUI.Label(new Rect(inner.x, button.y - 44, inner.width, 26), blocked, small); // clear of the button's crest
                     small.alignment = TextAnchor.UpperLeft;
                 }
             }

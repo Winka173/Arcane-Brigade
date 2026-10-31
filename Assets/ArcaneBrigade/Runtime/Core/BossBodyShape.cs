@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         public const float Share = .85f;
         /// <summary>A boss's contact lands far more often on its painted body than on the old small circle, so each touch hurts
         /// less: the damage a boss wave deals stays where the bot sweeps had it (phase D slope).</summary>
-        public const float ContactDamageScale = .4f;
+        public const float ContactDamageScale = .6f, ContactTick = .5f; // a boss body: 60% of its contact damage, every half second while touched
         public struct Shape
         {
             public Vector2 Centre;  // from the boss's position, facing right

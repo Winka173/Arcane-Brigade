@@ -38,8 +38,9 @@ namespace ArcaneBrigade
             bool warning = now < f.At;
             float fade = Mathf.Clamp01((f.Until - now) / .35f) * (f.Resolved && f.Damage > 0 ? .55f : 1);
             float seed = f.Style * 41 + f.Start.x * 7;
-            // the path, inked over the floor while the boss winds up (and kept faint while the piece runs it)
-            float pathAlpha = warning ? Mathf.SmoothStep(0, 1, charge) * .8f : .28f * fade;
+            // the path, inked over the floor while the boss winds up, and kept at full strength while the piece runs it: the
+            // danger stays shown until the blow has really landed (requirement 31/10/2026: it faded before the piece arrived)
+            float pathAlpha = warning ? Mathf.SmoothStep(0, 1, charge) * .8f : .8f * fade;
             DrawPath(f, pathAlpha, seed);
             Paths++;
             if (warning && f.Motion != TrademarkMotion.Arc && f.Motion != TrademarkMotion.Orbit && f.Motion != TrademarkMotion.Home && f.Motion != TrademarkMotion.Rise) return;
@@ -164,17 +165,17 @@ namespace ArcaneBrigade
                             : f.Center + new Vector2(Mathf.Cos(u * Mathf.PI * 2) * f.Reach, Mathf.Sin(u * Mathf.PI * 2) * f.Reach * .62f);
                         path.Add(p);
                     }
-                    for (int i = 0; i + 1 < path.Count; i += 2) ink.FloorStroke(path[i], path[i + 1], BossTelegraph.Danger, .09f, 1, 0, alpha * .8f, 0, seed + i);
+                    // the flight path as one solid band (no dashes or lines)
+                    for (int i = 0; i + 1 < path.Count; i++) BossTelegraph.LaneGround(ink, path[i], path[i + 1], .22f, 1, alpha * .8f);
                     break;
                 }
             }
         }
 
-        /// <summary>An inked X on the floor (never a pool).</summary>
+        /// <summary>Where a piece will land: one small solid zone (an inked X drew lines inside the danger).</summary>
         private void Cross(Vector2 at, float arm, float alpha, float seed)
         {
-            ink.FloorStroke(at + new Vector2(-arm, -arm * .5f), at + new Vector2(arm, arm * .5f), BossTelegraph.Danger, .09f, 1, 0, alpha, .03f, seed);
-            ink.FloorStroke(at + new Vector2(-arm, arm * .5f), at + new Vector2(arm, -arm * .5f), BossTelegraph.Danger, .09f, 1, 0, alpha, .03f, seed + 1);
+            BossTelegraph.Rim(ink, at, arm, arm * .6f, 1, seed, alpha);
         }
         private void OnDestroy() { ink?.Destroy(); }
     }

@@ -247,9 +247,9 @@ namespace ArcaneBrigade
         private void ReserveRoom()
         {
             // screen furniture (1920x1080 HUD rects converted at the fixed shop framing)
-            Reserve("hud:wallet+note", Gui(0, 0, 410, 430));
+            Reserve("hud:wallet+note", Gui(0, 0, 410, 460));
             Reserve("hud:wave", Gui(380, 18, 290, 64));
-            Reserve("hud:bonds", Gui(1380, 10, 530, 110)); // the row of bond tiles across the top right
+            Reserve("hud:bonds", Gui(1520, 10, 390, 210)); // the row of bond tiles across the top right
             Reserve("hud:continue", Gui(720, 925, 480, 110));
             Reserve("hud:card", Gui(400, 795, 1120, 285)); // the stall's description card: nothing stands behind it
             if (owner.Shop != null)

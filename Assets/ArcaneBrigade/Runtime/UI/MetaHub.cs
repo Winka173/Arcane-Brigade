@@ -385,7 +385,8 @@ namespace ArcaneBrigade
             {
                 UnitDefinition u = residentPool[i % residentPool.Count];
                 // a lap round the rug (an ellipse round the tea table), each friend at its own place on it and its own pace
-                float lap = i * (Mathf.PI * 2 / count) + i * .4f, speed = .07f + .012f * (i % 3);
+                // one easy stroll pace for all (about 70 px/s), evenly spaced: different paces bunched them up (review 31/10/2026)
+                float lap = i * (Mathf.PI * 2 / count), speed = .2f;
                 float a = reduced ? lap : t * speed + lap;
                 Vector2 rx = new Vector2(345 + (i % 2) * 25, 172 + (i % 2) * 14); // round the painted rug's edge (centre 645, 385)
                 Vector2 at = new Vector2(645 + Mathf.Cos(a) * rx.x, 385 + Mathf.Sin(a) * rx.y);
@@ -412,8 +413,11 @@ namespace ArcaneBrigade
         {
             // its own walk frames as it strolls, at a size you can read (the bodies stood about 30 px tall)
             Sprite[] frames = r.unit.AnimationFrames;
-            Sprite body = frames != null && frames.Length >= 4 ? frames[UnitVisual.AnimationFrame(Time.unscaledTime, Mathf.RoundToInt(r.at.x), !reduced, reduced)] : r.unit.Body;
-            float step = reduced ? 0 : Mathf.Abs(Mathf.Sin(Time.unscaledTime * 6f + r.at.x)) * 2; // a small step bounce, feet near the floor
+            // a steady identity (its position changed every frame and made the walk frames flicker), and the step bounce in time
+            // with the two walk frames (7 a second)
+            int identity = Mathf.Abs(r.unit.Id.GetHashCode() % 97);
+            Sprite body = frames != null && frames.Length >= 4 ? frames[UnitVisual.AnimationFrame(Time.unscaledTime, identity, !reduced, reduced)] : r.unit.Body;
+            float step = reduced ? 0 : Mathf.Abs(Mathf.Sin((Time.unscaledTime * 7 + identity * .37f) * Mathf.PI)) * 2; // a small step bounce, feet near the floor
             OnFloor(body, r.at, 84, r.left, step);
         }
 

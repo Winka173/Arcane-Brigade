@@ -1,125 +1,125 @@
 {
-    "targetDb": -12.069999694824219,
+    "targetDb": -11.829999923706055,
     "clips": [
         {
             "clip": "boss_attack_00",
             "rmsDb": -7.659999847412109,
-            "gainDb": -4.409999847412109
+            "gainDb": -4.170000076293945
         },
         {
             "clip": "boss_attack_01",
             "rmsDb": -7.619999885559082,
-            "gainDb": -4.449999809265137
+            "gainDb": -4.210000038146973
         },
         {
             "clip": "boss_attack_02",
             "rmsDb": -7.590000152587891,
-            "gainDb": -4.480000019073486
+            "gainDb": -4.239999771118164
         },
         {
             "clip": "boss_bedside_defeat",
             "rmsDb": -12.600000381469727,
-            "gainDb": 0.5299999713897705
+            "gainDb": 0.7699999809265137
         },
         {
             "clip": "boss_bedside_entrance",
             "rmsDb": -12.210000038146973,
-            "gainDb": 0.14000000059604646
+            "gainDb": 0.3799999952316284
         },
         {
             "clip": "boss_bedside_hit",
             "rmsDb": -10.630000114440918,
-            "gainDb": -1.440000057220459
+            "gainDb": -1.2000000476837159
         },
         {
             "clip": "boss_bedside_phase",
             "rmsDb": -13.770000457763672,
-            "gainDb": 1.7000000476837159
+            "gainDb": 1.940000057220459
         },
         {
             "clip": "boss_bedside_windup",
             "rmsDb": -14.539999961853028,
-            "gainDb": 2.4700000286102297
+            "gainDb": 2.7100000381469728
         },
         {
             "clip": "boss_chairporter_defeat",
             "rmsDb": -9.329999923706055,
-            "gainDb": -2.740000009536743
+            "gainDb": -2.5
         },
         {
             "clip": "boss_chairporter_entrance",
             "rmsDb": -9.34000015258789,
-            "gainDb": -2.7300000190734865
+            "gainDb": -2.490000009536743
         },
         {
             "clip": "boss_chairporter_hit",
             "rmsDb": -12.380000114440918,
-            "gainDb": 0.3100000023841858
+            "gainDb": 0.550000011920929
         },
         {
             "clip": "boss_chairporter_phase",
             "rmsDb": -12.739999771118164,
-            "gainDb": 0.6700000166893005
+            "gainDb": 0.9100000262260437
         },
         {
             "clip": "boss_chairporter_windup",
             "rmsDb": -16.5,
-            "gainDb": 4.429999828338623
+            "gainDb": 4.670000076293945
         },
         {
             "clip": "boss_coinwidow_defeat",
             "rmsDb": -13.239999771118164,
-            "gainDb": 1.1699999570846558
+            "gainDb": 1.409999966621399
         },
         {
             "clip": "boss_coinwidow_entrance",
             "rmsDb": -14.170000076293946,
-            "gainDb": 2.0999999046325685
+            "gainDb": 2.3399999141693117
         },
         {
             "clip": "boss_coinwidow_hit",
             "rmsDb": -13.329999923706055,
-            "gainDb": 1.2599999904632569
+            "gainDb": 1.5
         },
         {
             "clip": "boss_coinwidow_phase",
             "rmsDb": -14.399999618530274,
-            "gainDb": 2.3299999237060549
+            "gainDb": 2.569999933242798
         },
         {
             "clip": "boss_coinwidow_windup",
             "rmsDb": -13.069999694824219,
-            "gainDb": 1.0
+            "gainDb": 1.2400000095367432
         },
         {
             "clip": "boss_defeat_00",
             "rmsDb": -8.539999961853028,
-            "gainDb": -3.5299999713897707
+            "gainDb": -3.2899999618530275
         },
         {
             "clip": "boss_defeat_01",
             "rmsDb": -8.550000190734864,
-            "gainDb": -3.5199999809265138
+            "gainDb": -3.2799999713897707
         },
         {
             "clip": "boss_doorthatstayedshut_defeat",
             "rmsDb": -14.630000114440918,
-            "gainDb": 2.559999942779541
+            "gainDb": 2.799999952316284
         },
         {
             "clip": "boss_doorthatstayedshut_entrance",
             "rmsDb": -14.210000038146973,
-            "gainDb": 2.140000104904175
+            "gainDb": 2.380000114440918
         },
         {
             "clip": "boss_doorthatstayedshut_hit",
             "rmsDb": -9.899999618530274,
-            "gainDb": -2.1700000762939455
+            "gainDb": -1.9299999475479127
         },
         {
             "clip": "boss_doorthatstayedshut_phase",
             "rmsDb": -15.979999542236329,
-            "gainDb": 3.9100000858306886
+            "gainDb": 4.150000095367432
         },
         {
             "clip": "boss_doorthatstayedshut_windup",
@@ -129,87 +129,87 @@
         {
             "clip": "boss_enter_00",
             "rmsDb": -9.130000114440918,
-            "gainDb": -2.940000057220459
+            "gainDb": -2.700000047683716
         },
         {
             "clip": "boss_enter_01",
             "rmsDb": -9.140000343322754,
-            "gainDb": -2.930000066757202
+            "gainDb": -2.690000057220459
         },
         {
             "clip": "boss_howlingorgan_defeat",
             "rmsDb": -10.869999885559082,
-            "gainDb": -1.2000000476837159
+            "gainDb": -0.9599999785423279
         },
         {
             "clip": "boss_howlingorgan_entrance",
             "rmsDb": -12.050000190734864,
-            "gainDb": -0.019999999552965165
+            "gainDb": 0.2199999988079071
         },
         {
             "clip": "boss_howlingorgan_hit",
             "rmsDb": -12.25,
-            "gainDb": 0.18000000715255738
+            "gainDb": 0.41999998688697817
         },
         {
             "clip": "boss_howlingorgan_phase",
             "rmsDb": -14.270000457763672,
-            "gainDb": 2.200000047683716
+            "gainDb": 2.440000057220459
         },
         {
             "clip": "boss_howlingorgan_windup",
             "rmsDb": -11.90999984741211,
-            "gainDb": -0.1599999964237213
+            "gainDb": 0.07999999821186066
         },
         {
             "clip": "boss_keeper_defeat",
             "rmsDb": -10.359999656677246,
-            "gainDb": -1.7100000381469727
+            "gainDb": -1.4700000286102296
         },
         {
             "clip": "boss_keeper_entrance",
             "rmsDb": -10.75,
-            "gainDb": -1.3200000524520875
+            "gainDb": -1.0800000429153443
         },
         {
             "clip": "boss_keeper_hit",
             "rmsDb": -11.079999923706055,
-            "gainDb": -0.9900000095367432
+            "gainDb": -0.75
         },
         {
             "clip": "boss_keeper_phase",
             "rmsDb": -11.789999961853028,
-            "gainDb": -0.2800000011920929
+            "gainDb": -0.03999999910593033
         },
         {
             "clip": "boss_keeper_windup",
             "rmsDb": -9.890000343322754,
-            "gainDb": -2.180000066757202
+            "gainDb": -1.940000057220459
         },
         {
             "clip": "boss_lastcustomer_defeat",
             "rmsDb": -13.720000267028809,
-            "gainDb": 1.649999976158142
+            "gainDb": 1.8899999856948853
         },
         {
             "clip": "boss_lastcustomer_entrance",
             "rmsDb": -13.010000228881836,
-            "gainDb": 0.9399999976158142
+            "gainDb": 1.1799999475479127
         },
         {
             "clip": "boss_lastcustomer_hit",
             "rmsDb": -13.050000190734864,
-            "gainDb": 0.9800000190734863
+            "gainDb": 1.2200000286102296
         },
         {
             "clip": "boss_lastcustomer_phase",
             "rmsDb": -16.219999313354493,
-            "gainDb": 4.150000095367432
+            "gainDb": 4.389999866485596
         },
         {
             "clip": "boss_lastcustomer_windup",
             "rmsDb": -12.729999542236329,
-            "gainDb": 0.6600000262260437
+            "gainDb": 0.8999999761581421
         },
         {
             "clip": "boss_lastlantern_defeat",
@@ -219,37 +219,37 @@
         {
             "clip": "boss_lastlantern_entrance",
             "rmsDb": -14.430000305175782,
-            "gainDb": 2.359999895095825
+            "gainDb": 2.5999999046325685
         },
         {
             "clip": "boss_lastlantern_hit",
             "rmsDb": -14.029999732971192,
-            "gainDb": 1.9600000381469727
+            "gainDb": 2.200000047683716
         },
         {
             "clip": "boss_lastlantern_phase",
             "rmsDb": -12.84000015258789,
-            "gainDb": 0.7699999809265137
+            "gainDb": 1.0099999904632569
         },
         {
             "clip": "boss_lastlantern_windup",
             "rmsDb": -15.359999656677246,
-            "gainDb": 3.2899999618530275
+            "gainDb": 3.5299999713897707
         },
         {
             "clip": "boss_marqueemaw_defeat",
             "rmsDb": -14.289999961853028,
-            "gainDb": 2.2200000286102297
+            "gainDb": 2.4600000381469728
         },
         {
             "clip": "boss_marqueemaw_entrance",
             "rmsDb": -14.539999961853028,
-            "gainDb": 2.4700000286102297
+            "gainDb": 2.7100000381469728
         },
         {
             "clip": "boss_marqueemaw_hit",
             "rmsDb": -11.949999809265137,
-            "gainDb": -0.11999999731779099
+            "gainDb": 0.11999999731779099
         },
         {
             "clip": "boss_marqueemaw_phase",
@@ -259,62 +259,62 @@
         {
             "clip": "boss_marqueemaw_windup",
             "rmsDb": -16.780000686645509,
-            "gainDb": 4.710000038146973
+            "gainDb": 4.949999809265137
         },
         {
             "clip": "boss_motherumbra_defeat",
             "rmsDb": -14.390000343322754,
-            "gainDb": 2.319999933242798
+            "gainDb": 2.559999942779541
         },
         {
             "clip": "boss_motherumbra_entrance",
             "rmsDb": -14.899999618530274,
-            "gainDb": 2.8299999237060549
+            "gainDb": 3.069999933242798
         },
         {
             "clip": "boss_motherumbra_hit",
             "rmsDb": -10.119999885559082,
-            "gainDb": -1.9500000476837159
+            "gainDb": -1.7100000381469727
         },
         {
             "clip": "boss_motherumbra_phase",
             "rmsDb": -14.5600004196167,
-            "gainDb": 2.490000009536743
+            "gainDb": 2.7300000190734865
         },
         {
             "clip": "boss_motherumbra_windup",
             "rmsDb": -12.510000228881836,
-            "gainDb": 0.4399999976158142
+            "gainDb": 0.6800000071525574
         },
         {
             "clip": "boss_phase_00",
             "rmsDb": -9.399999618530274,
-            "gainDb": -2.6700000762939455
+            "gainDb": -2.430000066757202
         },
         {
             "clip": "boss_phase_01",
             "rmsDb": -9.609999656677246,
-            "gainDb": -2.4600000381469728
+            "gainDb": -2.2200000286102297
         },
         {
             "clip": "boss_scarletindex_defeat",
             "rmsDb": -15.979999542236329,
-            "gainDb": 3.9100000858306886
+            "gainDb": 4.150000095367432
         },
         {
             "clip": "boss_scarletindex_entrance",
             "rmsDb": -16.760000228881837,
-            "gainDb": 4.690000057220459
+            "gainDb": 4.929999828338623
         },
         {
             "clip": "boss_scarletindex_hit",
             "rmsDb": -13.9399995803833,
-            "gainDb": 1.8700000047683716
+            "gainDb": 2.109999895095825
         },
         {
             "clip": "boss_scarletindex_phase",
             "rmsDb": -14.800000190734864,
-            "gainDb": 2.7300000190734865
+            "gainDb": 2.9700000286102297
         },
         {
             "clip": "boss_scarletindex_windup",
@@ -324,27 +324,27 @@
         {
             "clip": "boss_sleepcollector_defeat",
             "rmsDb": -13.90999984741211,
-            "gainDb": 1.840000033378601
+            "gainDb": 2.0799999237060549
         },
         {
             "clip": "boss_sleepcollector_entrance",
             "rmsDb": -12.399999618530274,
-            "gainDb": 0.33000001311302187
+            "gainDb": 0.5699999928474426
         },
         {
             "clip": "boss_sleepcollector_hit",
             "rmsDb": -9.8100004196167,
-            "gainDb": -2.259999990463257
+            "gainDb": -2.0199999809265138
         },
         {
             "clip": "boss_sleepcollector_phase",
             "rmsDb": -9.390000343322754,
-            "gainDb": -2.680000066757202
+            "gainDb": -2.440000057220459
         },
         {
             "clip": "boss_sleepcollector_windup",
             "rmsDb": -11.880000114440918,
-            "gainDb": -0.1899999976158142
+            "gainDb": 0.05000000074505806
         },
         {
             "clip": "boss_suitcaseleviathan_defeat",
@@ -359,127 +359,127 @@
         {
             "clip": "boss_suitcaseleviathan_hit",
             "rmsDb": -13.260000228881836,
-            "gainDb": 1.190000057220459
+            "gainDb": 1.4299999475479127
         },
         {
             "clip": "boss_suitcaseleviathan_phase",
             "rmsDb": -9.199999809265137,
-            "gainDb": -2.869999885559082
+            "gainDb": -2.630000114440918
         },
         {
             "clip": "boss_suitcaseleviathan_windup",
             "rmsDb": -15.220000267028809,
-            "gainDb": 3.1500000953674318
+            "gainDb": 3.390000104904175
         },
         {
             "clip": "boss_telegraph_00",
             "rmsDb": -10.119999885559082,
-            "gainDb": -1.9500000476837159
+            "gainDb": -1.7100000381469727
         },
         {
             "clip": "boss_telegraph_01",
             "rmsDb": -10.170000076293946,
-            "gainDb": -1.899999976158142
+            "gainDb": -1.659999966621399
         },
         {
             "clip": "boss_telegraph_02",
             "rmsDb": -10.220000267028809,
-            "gainDb": -1.850000023841858
+            "gainDb": -1.6100000143051148
         },
         {
             "clip": "boss_undeliveredking_defeat",
             "rmsDb": -17.6200008392334,
-            "gainDb": 5.550000190734863
+            "gainDb": 5.789999961853027
         },
         {
             "clip": "boss_undeliveredking_entrance",
             "rmsDb": -16.989999771118165,
-            "gainDb": 4.920000076293945
+            "gainDb": 5.159999847412109
         },
         {
             "clip": "boss_undeliveredking_hit",
             "rmsDb": -14.880000114440918,
-            "gainDb": 2.809999942779541
+            "gainDb": 3.049999952316284
         },
         {
             "clip": "boss_undeliveredking_phase",
             "rmsDb": -16.40999984741211,
-            "gainDb": 4.340000152587891
+            "gainDb": 4.579999923706055
         },
         {
             "clip": "boss_undeliveredking_windup",
             "rmsDb": -14.489999771118164,
-            "gainDb": 2.4200000762939455
+            "gainDb": 2.6600000858306886
         },
         {
             "clip": "boss_voice_choirengine_00",
             "rmsDb": -12.329999923706055,
-            "gainDb": 0.25999999046325686
+            "gainDb": 0.5
         },
         {
             "clip": "boss_voice_coinwidow_00",
             "rmsDb": -13.5600004196167,
-            "gainDb": 1.4900000095367432
+            "gainDb": 1.7300000190734864
         },
         {
             "clip": "boss_voice_lastlantern_00",
             "rmsDb": -12.25,
-            "gainDb": 0.18000000715255738
+            "gainDb": 0.41999998688697817
         },
         {
             "clip": "boss_voice_marqueemaw_00",
             "rmsDb": -10.260000228881836,
-            "gainDb": -1.809999942779541
+            "gainDb": -1.5700000524520875
         },
         {
             "clip": "boss_voice_scarletindex_00",
             "rmsDb": -13.850000381469727,
-            "gainDb": 1.7799999713897706
+            "gainDb": 2.0199999809265138
         },
         {
             "clip": "boss_voice_sleepcollector_00",
             "rmsDb": -13.420000076293946,
-            "gainDb": 1.350000023841858
+            "gainDb": 1.590000033378601
         },
         {
             "clip": "boss_voice_suitcaseleviathan_00",
             "rmsDb": -10.960000038146973,
-            "gainDb": -1.1100000143051148
+            "gainDb": -0.8700000047683716
         },
         {
             "clip": "boss_voice_umbracradle_00",
             "rmsDb": -14.609999656677246,
-            "gainDb": 2.5399999618530275
+            "gainDb": 2.7799999713897707
         },
         {
             "clip": "boss_voice_undeliveredking_00",
             "rmsDb": -9.5,
-            "gainDb": -2.569999933242798
+            "gainDb": -2.3299999237060549
         },
         {
             "clip": "boss_voice_waxadmiral_00",
             "rmsDb": -12.289999961853028,
-            "gainDb": 0.2199999988079071
+            "gainDb": 0.46000000834465029
         },
         {
             "clip": "boss_waxadmiral_defeat",
             "rmsDb": -11.90999984741211,
-            "gainDb": -0.1599999964237213
+            "gainDb": 0.07999999821186066
         },
         {
             "clip": "boss_waxadmiral_entrance",
             "rmsDb": -13.119999885559082,
-            "gainDb": 1.0499999523162842
+            "gainDb": 1.2899999618530274
         },
         {
             "clip": "boss_waxadmiral_hit",
             "rmsDb": -14.140000343322754,
-            "gainDb": 2.069999933242798
+            "gainDb": 2.309999942779541
         },
         {
             "clip": "boss_waxadmiral_phase",
             "rmsDb": -12.25,
-            "gainDb": 0.18000000715255738
+            "gainDb": 0.41999998688697817
         },
         {
             "clip": "boss_waxadmiral_windup",
@@ -487,2659 +487,2809 @@
             "gainDb": 6.0
         },
         {
-            "clip": "chr_dash_00",
-            "rmsDb": -15.57,
-            "gainDb": 3.5
+            "clip": "s7_chr_dash_0",
+            "rmsDb": -10.210000038146973,
+            "gainDb": -1.6200000047683716
         },
         {
-            "clip": "chr_dash_01",
-            "rmsDb": -18.47,
-            "gainDb": 6.4
-        },
-        {
-            "clip": "chr_dash_02",
-            "rmsDb": -14.86,
-            "gainDb": 2.79
-        },
-        {
-            "clip": "chr_dash_03",
-            "rmsDb": -16.76,
-            "gainDb": 4.69
-        },
-        {
-            "clip": "chr_jump_00",
-            "rmsDb": -10.25,
-            "gainDb": -1.82
-        },
-        {
-            "clip": "chr_jump_01",
-            "rmsDb": -10.25,
-            "gainDb": -1.82
-        },
-        {
-            "clip": "chr_jump_02",
-            "rmsDb": -10.25,
-            "gainDb": -1.82
-        },
-        {
-            "clip": "chr_land_00",
-            "rmsDb": -11.16,
-            "gainDb": -0.91
-        },
-        {
-            "clip": "chr_land_01",
-            "rmsDb": -12.04,
-            "gainDb": -0.03
-        },
-        {
-            "clip": "chr_land_02",
-            "rmsDb": -11.38,
-            "gainDb": -0.69
-        },
-        {
-            "clip": "chr_step_00",
-            "rmsDb": -14.24,
-            "gainDb": 2.17
-        },
-        {
-            "clip": "chr_step_01",
-            "rmsDb": -13.86,
-            "gainDb": 1.79
-        },
-        {
-            "clip": "chr_step_02",
-            "rmsDb": -14.74,
-            "gainDb": 2.67
-        },
-        {
-            "clip": "chr_step_03",
-            "rmsDb": -14.64,
-            "gainDb": 2.57
-        },
-        {
-            "clip": "chr_step_04",
-            "rmsDb": -13.69,
-            "gainDb": 1.62
-        },
-        {
-            "clip": "chr_step_05",
-            "rmsDb": -13.98,
-            "gainDb": 1.91
-        },
-        {
-            "clip": "cmb_hit_glass_00",
-            "rmsDb": -18.06,
-            "gainDb": 5.99
-        },
-        {
-            "clip": "cmb_hit_glass_01",
-            "rmsDb": -18.83,
-            "gainDb": 6.76
-        },
-        {
-            "clip": "cmb_hit_glass_02",
-            "rmsDb": -19.03,
-            "gainDb": 6.96
-        },
-        {
-            "clip": "cmb_hit_glass_03",
-            "rmsDb": -18.58,
-            "gainDb": 6.51
-        },
-        {
-            "clip": "cmb_hit_glass_04",
-            "rmsDb": -18.73,
-            "gainDb": 6.66
-        },
-        {
-            "clip": "cmb_hit_glass_05",
-            "rmsDb": -19.04,
-            "gainDb": 6.97
-        },
-        {
-            "clip": "cmb_hit_metal_00",
-            "rmsDb": -19.81,
-            "gainDb": 7.74
-        },
-        {
-            "clip": "cmb_hit_metal_01",
-            "rmsDb": -19.87,
-            "gainDb": 7.8
-        },
-        {
-            "clip": "cmb_hit_metal_02",
-            "rmsDb": -19.49,
-            "gainDb": 7.42
-        },
-        {
-            "clip": "cmb_hit_metal_03",
-            "rmsDb": -19.61,
-            "gainDb": 7.54
-        },
-        {
-            "clip": "cmb_hit_metal_04",
-            "rmsDb": -19.16,
-            "gainDb": 7.09
-        },
-        {
-            "clip": "cmb_hit_metal_05",
-            "rmsDb": -19.96,
-            "gainDb": 7.89
-        },
-        {
-            "clip": "cmb_hit_wax_00",
-            "rmsDb": -13.1,
-            "gainDb": 1.03
-        },
-        {
-            "clip": "cmb_hit_wax_01",
-            "rmsDb": -13.4,
-            "gainDb": 1.33
-        },
-        {
-            "clip": "cmb_hit_wax_02",
-            "rmsDb": -12.78,
-            "gainDb": 0.71
-        },
-        {
-            "clip": "cmb_hit_wax_03",
-            "rmsDb": -13.53,
-            "gainDb": 1.46
-        },
-        {
-            "clip": "cmb_hit_wax_04",
-            "rmsDb": -13.28,
-            "gainDb": 1.21
-        },
-        {
-            "clip": "cmb_hit_wax_05",
-            "rmsDb": -14.07,
-            "gainDb": 2.0
-        },
-        {
-            "clip": "cmb_hit_wood_00",
-            "rmsDb": -18.85,
-            "gainDb": 6.78
-        },
-        {
-            "clip": "cmb_hit_wood_01",
-            "rmsDb": -19.16,
-            "gainDb": 7.09
-        },
-        {
-            "clip": "cmb_hit_wood_02",
-            "rmsDb": -18.46,
-            "gainDb": 6.39
-        },
-        {
-            "clip": "cmb_hit_wood_03",
-            "rmsDb": -19.73,
-            "gainDb": 7.66
-        },
-        {
-            "clip": "cmb_hit_wood_04",
-            "rmsDb": -19.37,
-            "gainDb": 7.3
-        },
-        {
-            "clip": "cmb_hit_wood_05",
-            "rmsDb": -19.5,
-            "gainDb": 7.43
-        },
-        {
-            "clip": "cmb_miss_00",
-            "rmsDb": -14.47,
-            "gainDb": 2.4
-        },
-        {
-            "clip": "cmb_miss_01",
-            "rmsDb": -13.5,
-            "gainDb": 1.43
-        },
-        {
-            "clip": "cmb_miss_02",
-            "rmsDb": -14.91,
-            "gainDb": 2.84
-        },
-        {
-            "clip": "cmb_miss_03",
-            "rmsDb": -15.0,
-            "gainDb": 2.93
-        },
-        {
-            "clip": "cmb_swing_scissors_00",
-            "rmsDb": -13.76,
-            "gainDb": 1.69
-        },
-        {
-            "clip": "cmb_swing_scissors_01",
-            "rmsDb": -14.08,
-            "gainDb": 2.01
-        },
-        {
-            "clip": "cmb_swing_scissors_02",
-            "rmsDb": -14.58,
-            "gainDb": 2.51
-        },
-        {
-            "clip": "cmb_swing_scissors_03",
-            "rmsDb": -13.93,
-            "gainDb": 1.86
-        },
-        {
-            "clip": "cmb_swing_umbrella_00",
-            "rmsDb": -15.92,
-            "gainDb": 3.85
-        },
-        {
-            "clip": "cmb_swing_umbrella_01",
-            "rmsDb": -15.46,
-            "gainDb": 3.39
-        },
-        {
-            "clip": "cmb_swing_umbrella_02",
-            "rmsDb": -14.67,
-            "gainDb": 2.6
-        },
-        {
-            "clip": "cmb_swing_umbrella_03",
-            "rmsDb": -14.47,
-            "gainDb": 2.4
-        },
-        {
-            "clip": "cmb_swing_whip_00",
-            "rmsDb": -16.65,
-            "gainDb": 4.58
-        },
-        {
-            "clip": "cmb_swing_whip_01",
-            "rmsDb": -15.64,
-            "gainDb": 3.57
-        },
-        {
-            "clip": "cmb_swing_whip_02",
-            "rmsDb": -16.2,
-            "gainDb": 4.13
-        },
-        {
-            "clip": "cmb_swing_whip_03",
-            "rmsDb": -15.64,
-            "gainDb": 3.57
-        },
-        {
-            "clip": "cmb_windup_00",
-            "rmsDb": -7.76,
-            "gainDb": -4.31
-        },
-        {
-            "clip": "cmb_windup_01",
-            "rmsDb": -7.78,
-            "gainDb": -4.29
-        },
-        {
-            "clip": "cmb_windup_02",
-            "rmsDb": -7.76,
-            "gainDb": -4.31
-        },
-        {
-            "clip": "enemy_big_roar_00",
-            "rmsDb": -13.53,
-            "gainDb": 1.46
-        },
-        {
-            "clip": "enemy_big_roar_01",
-            "rmsDb": -13.46,
-            "gainDb": 1.39
-        },
-        {
-            "clip": "enemy_big_roar_02",
-            "rmsDb": -14.1,
-            "gainDb": 2.03
-        },
-        {
-            "clip": "enemy_big_step_00",
-            "rmsDb": -13.26,
-            "gainDb": 1.19
-        },
-        {
-            "clip": "enemy_big_step_01",
-            "rmsDb": -13.99,
-            "gainDb": 1.92
-        },
-        {
-            "clip": "enemy_big_step_02",
-            "rmsDb": -14.79,
-            "gainDb": 2.72
-        },
-        {
-            "clip": "enemy_die_fabric_00",
-            "rmsDb": -15.73,
-            "gainDb": 3.66
-        },
-        {
-            "clip": "enemy_die_fabric_01",
-            "rmsDb": -16.15,
-            "gainDb": 4.08
-        },
-        {
-            "clip": "enemy_die_fabric_02",
-            "rmsDb": -15.16,
-            "gainDb": 3.09
-        },
-        {
-            "clip": "enemy_die_glass_00",
-            "rmsDb": -18.78,
-            "gainDb": 6.71
-        },
-        {
-            "clip": "enemy_die_glass_01",
-            "rmsDb": -18.92,
-            "gainDb": 6.85
-        },
-        {
-            "clip": "enemy_die_glass_02",
-            "rmsDb": -18.92,
-            "gainDb": 6.85
-        },
-        {
-            "clip": "enemy_die_large_00",
-            "rmsDb": -15.86,
-            "gainDb": 3.79
-        },
-        {
-            "clip": "enemy_die_large_01",
-            "rmsDb": -15.67,
-            "gainDb": 3.6
-        },
-        {
-            "clip": "enemy_die_large_02",
-            "rmsDb": -16.36,
-            "gainDb": 4.29
-        },
-        {
-            "clip": "enemy_die_metal_00",
-            "rmsDb": -19.21,
-            "gainDb": 7.14
-        },
-        {
-            "clip": "enemy_die_metal_01",
-            "rmsDb": -19.47,
-            "gainDb": 7.4
-        },
-        {
-            "clip": "enemy_die_metal_02",
-            "rmsDb": -19.21,
-            "gainDb": 7.14
-        },
-        {
-            "clip": "enemy_die_paper_00",
-            "rmsDb": -20.87,
-            "gainDb": 8.8
-        },
-        {
-            "clip": "enemy_die_paper_01",
-            "rmsDb": -21.01,
-            "gainDb": 8.94
-        },
-        {
-            "clip": "enemy_die_paper_02",
-            "rmsDb": -19.89,
-            "gainDb": 7.82
-        },
-        {
-            "clip": "enemy_die_wax_00",
-            "rmsDb": -16.25,
-            "gainDb": 4.18
-        },
-        {
-            "clip": "enemy_die_wax_01",
-            "rmsDb": -16.05,
-            "gainDb": 3.98
-        },
-        {
-            "clip": "enemy_die_wax_02",
-            "rmsDb": -16.09,
-            "gainDb": 4.02
-        },
-        {
-            "clip": "enemy_die_wood_00",
-            "rmsDb": -21.09,
-            "gainDb": 9.02
-        },
-        {
-            "clip": "enemy_die_wood_01",
-            "rmsDb": -23.24,
-            "gainDb": 11.17
-        },
-        {
-            "clip": "enemy_die_wood_02",
-            "rmsDb": -20.54,
-            "gainDb": 8.47
-        },
-        {
-            "clip": "enemy_hurt_00",
-            "rmsDb": -17.94,
-            "gainDb": 5.87
-        },
-        {
-            "clip": "enemy_hurt_01",
-            "rmsDb": -17.9,
-            "gainDb": 5.83
-        },
-        {
-            "clip": "enemy_hurt_02",
-            "rmsDb": -17.76,
-            "gainDb": 5.69
-        },
-        {
-            "clip": "enemy_hurt_03",
-            "rmsDb": -17.02,
-            "gainDb": 4.95
-        },
-        {
-            "clip": "enemy_hurt_04",
-            "rmsDb": -17.64,
-            "gainDb": 5.57
-        },
-        {
-            "clip": "enemy_hurt_05",
-            "rmsDb": -16.89,
-            "gainDb": 4.82
-        },
-        {
-            "clip": "enemy_lunge_00",
-            "rmsDb": -14.11,
-            "gainDb": 2.04
-        },
-        {
-            "clip": "enemy_lunge_01",
-            "rmsDb": -17.14,
-            "gainDb": 5.07
-        },
-        {
-            "clip": "enemy_lunge_02",
-            "rmsDb": -13.76,
-            "gainDb": 1.69
-        },
-        {
-            "clip": "enemy_lunge_03",
-            "rmsDb": -14.03,
-            "gainDb": 1.96
-        },
-        {
-            "clip": "enemy_mimic_wake_00",
-            "rmsDb": -20.41,
-            "gainDb": 8.34
-        },
-        {
-            "clip": "enemy_mimic_wake_01",
-            "rmsDb": -19.52,
-            "gainDb": 7.45
-        },
-        {
-            "clip": "enemy_shot_arc_00",
-            "rmsDb": -13.32,
-            "gainDb": 1.25
-        },
-        {
-            "clip": "enemy_shot_arc_01",
-            "rmsDb": -11.89,
-            "gainDb": -0.18
-        },
-        {
-            "clip": "enemy_shot_burst_00",
-            "rmsDb": -11.84,
-            "gainDb": -0.23
-        },
-        {
-            "clip": "enemy_shot_burst_01",
-            "rmsDb": -11.85,
-            "gainDb": -0.22
-        },
-        {
-            "clip": "enemy_shot_spiral_00",
-            "rmsDb": -12.15,
-            "gainDb": 0.08
-        },
-        {
-            "clip": "enemy_shot_spiral_01",
-            "rmsDb": -12.33,
-            "gainDb": 0.26
-        },
-        {
-            "clip": "enemy_spit_fire_00",
-            "rmsDb": -14.33,
-            "gainDb": 2.26
-        },
-        {
-            "clip": "enemy_spit_fire_01",
-            "rmsDb": -13.24,
-            "gainDb": 1.17
-        },
-        {
-            "clip": "enemy_spit_fire_02",
-            "rmsDb": -13.54,
-            "gainDb": 1.47
-        },
-        {
-            "clip": "enemy_spit_fire_03",
-            "rmsDb": -14.55,
-            "gainDb": 2.48
-        },
-        {
-            "clip": "enemy_spit_fire_04",
-            "rmsDb": -14.36,
-            "gainDb": 2.29
-        },
-        {
-            "clip": "enemy_spit_windup_00",
-            "rmsDb": -7.21,
-            "gainDb": -4.86
-        },
-        {
-            "clip": "enemy_spit_windup_01",
-            "rmsDb": -7.21,
-            "gainDb": -4.86
-        },
-        {
-            "clip": "enemy_spit_windup_02",
-            "rmsDb": -7.21,
-            "gainDb": -4.86
-        },
-        {
-            "clip": "enemy_spit_windup_03",
-            "rmsDb": -7.21,
-            "gainDb": -4.86
-        },
-        {
-            "clip": "event_eclipse_start_00",
-            "rmsDb": -9.9399995803833,
-            "gainDb": -2.130000114440918
-        },
-        {
-            "clip": "event_eclipse_start_01",
-            "rmsDb": -9.489999771118164,
-            "gainDb": -2.5799999237060549
-        },
-        {
-            "clip": "event_end_00",
-            "rmsDb": -13.220000267028809,
-            "gainDb": 1.149999976158142
-        },
-        {
-            "clip": "event_end_01",
-            "rmsDb": -12.949999809265137,
-            "gainDb": 0.8799999952316284
-        },
-        {
-            "clip": "event_parade_start_00",
-            "rmsDb": -11.529999732971192,
-            "gainDb": -0.5400000214576721
-        },
-        {
-            "clip": "event_parade_start_01",
-            "rmsDb": -12.010000228881836,
-            "gainDb": -0.05999999865889549
-        },
-        {
-            "clip": "event_reward_00",
-            "rmsDb": -12.270000457763672,
-            "gainDb": 0.20000000298023225
-        },
-        {
-            "clip": "event_reward_01",
-            "rmsDb": -12.1899995803833,
-            "gainDb": 0.11999999731779099
-        },
-        {
-            "clip": "event_reward_02",
-            "rmsDb": -12.65999984741211,
-            "gainDb": 0.5899999737739563
-        },
-        {
-            "clip": "event_trap_start_00",
-            "rmsDb": -9.829999923706055,
-            "gainDb": -2.240000009536743
-        },
-        {
-            "clip": "event_trap_start_01",
-            "rmsDb": -10.220000267028809,
-            "gainDb": -1.850000023841858
-        },
-        {
-            "clip": "event_warn_00",
-            "rmsDb": -12.949999809265137,
-            "gainDb": 0.8799999952316284
-        },
-        {
-            "clip": "event_warn_01",
-            "rmsDb": -12.84000015258789,
-            "gainDb": 0.7699999809265137
-        },
-        {
-            "clip": "fx_burn_00",
-            "rmsDb": -21.12,
-            "gainDb": 9.05
-        },
-        {
-            "clip": "fx_burn_01",
-            "rmsDb": -20.46,
-            "gainDb": 8.39
-        },
-        {
-            "clip": "fx_burn_02",
-            "rmsDb": -20.67,
-            "gainDb": 8.6
-        },
-        {
-            "clip": "fx_burn_03",
-            "rmsDb": -19.01,
-            "gainDb": 6.94
-        },
-        {
-            "clip": "fx_chill_00",
-            "rmsDb": -15.62,
-            "gainDb": 3.55
-        },
-        {
-            "clip": "fx_chill_01",
-            "rmsDb": -14.13,
-            "gainDb": 2.06
-        },
-        {
-            "clip": "fx_chill_02",
-            "rmsDb": -15.64,
-            "gainDb": 3.57
-        },
-        {
-            "clip": "fx_chill_03",
-            "rmsDb": -14.74,
-            "gainDb": 2.67
-        },
-        {
-            "clip": "fx_field_zipper_00",
-            "rmsDb": -15.57,
-            "gainDb": 3.5
-        },
-        {
-            "clip": "fx_field_zipper_01",
-            "rmsDb": -16.43,
-            "gainDb": 4.36
-        },
-        {
-            "clip": "fx_field_zipper_02",
-            "rmsDb": -16.18,
-            "gainDb": 4.11
-        },
-        {
-            "clip": "fx_hazard_hit_00",
-            "rmsDb": -12.36,
-            "gainDb": 0.29
-        },
-        {
-            "clip": "fx_hazard_hit_01",
-            "rmsDb": -12.95,
-            "gainDb": 0.88
-        },
-        {
-            "clip": "fx_hazard_hit_02",
-            "rmsDb": -12.57,
-            "gainDb": 0.5
-        },
-        {
-            "clip": "fx_hazard_warn_00",
-            "rmsDb": -11.85,
-            "gainDb": -0.22
-        },
-        {
-            "clip": "fx_hazard_warn_01",
-            "rmsDb": -11.85,
-            "gainDb": -0.22
-        },
-        {
-            "clip": "fx_knockback_00",
-            "rmsDb": -12.29,
-            "gainDb": 0.22
-        },
-        {
-            "clip": "fx_knockback_01",
-            "rmsDb": -12.85,
-            "gainDb": 0.78
-        },
-        {
-            "clip": "fx_knockback_02",
-            "rmsDb": -12.51,
-            "gainDb": 0.44
-        },
-        {
-            "clip": "fx_knockback_03",
-            "rmsDb": -12.69,
-            "gainDb": 0.62
-        },
-        {
-            "clip": "fx_reaction_arcane_00",
-            "rmsDb": -16.67,
-            "gainDb": 4.6
-        },
-        {
-            "clip": "fx_reaction_arcane_01",
-            "rmsDb": -15.72,
-            "gainDb": 3.65
-        },
-        {
-            "clip": "fx_reaction_shatter_00",
-            "rmsDb": -19.45,
-            "gainDb": 7.38
-        },
-        {
-            "clip": "fx_reaction_shatter_01",
-            "rmsDb": -19.45,
-            "gainDb": 7.38
-        },
-        {
-            "clip": "fx_reaction_steam_00",
-            "rmsDb": -17.07,
-            "gainDb": 5.0
-        },
-        {
-            "clip": "fx_reaction_steam_01",
-            "rmsDb": -16.49,
-            "gainDb": 4.42
-        },
-        {
-            "clip": "hero_charge_ready_00",
-            "rmsDb": -11.729999542236329,
-            "gainDb": -0.3400000035762787
-        },
-        {
-            "clip": "hero_charge_ready_01",
-            "rmsDb": -11.770000457763672,
-            "gainDb": -0.30000001192092898
-        },
-        {
-            "clip": "hero_clock_runner_00",
-            "rmsDb": -11.289999961853028,
-            "gainDb": -0.7799999713897705
-        },
-        {
-            "clip": "hero_clock_runner_01",
-            "rmsDb": -10.970000267028809,
-            "gainDb": -1.100000023841858
-        },
-        {
-            "clip": "hero_dream_breath_00",
-            "rmsDb": -11.149999618530274,
-            "gainDb": -0.9200000166893005
-        },
-        {
-            "clip": "hero_dream_breath_01",
-            "rmsDb": -10.729999542236329,
-            "gainDb": -1.340000033378601
-        },
-        {
-            "clip": "hero_glass_gambler_00",
+            "clip": "s7_chr_dash_1",
             "rmsDb": -10.010000228881836,
-            "gainDb": -2.059999942779541
+            "gainDb": -1.8200000524520875
         },
         {
-            "clip": "hero_glass_gambler_01",
-            "rmsDb": -9.920000076293946,
-            "gainDb": -2.1500000953674318
+            "clip": "s7_chr_dash_2",
+            "rmsDb": -10.15999984741211,
+            "gainDb": -1.6699999570846558
         },
         {
-            "clip": "hero_lantern_stride_00",
-            "rmsDb": -10.4399995803833,
-            "gainDb": -1.6299999952316285
+            "clip": "s7_chr_dash_3",
+            "rmsDb": -10.539999961853028,
+            "gainDb": -1.2899999618530274
         },
         {
-            "clip": "hero_lantern_stride_01",
-            "rmsDb": -10.270000457763672,
-            "gainDb": -1.7999999523162842
-        },
-        {
-            "clip": "hero_mirror_guard_00",
-            "rmsDb": -10.479999542236329,
-            "gainDb": -1.590000033378601
-        },
-        {
-            "clip": "hero_mirror_guard_01",
-            "rmsDb": -10.420000076293946,
-            "gainDb": -1.649999976158142
-        },
-        {
-            "clip": "hero_parcel_express_00",
-            "rmsDb": -14.40999984741211,
-            "gainDb": 2.3399999141693117
-        },
-        {
-            "clip": "hero_parcel_express_01",
-            "rmsDb": -14.5,
-            "gainDb": 2.430000066757202
-        },
-        {
-            "clip": "hero_pulse_ember_00",
-            "rmsDb": -9.880000114440918,
-            "gainDb": -2.190000057220459
-        },
-        {
-            "clip": "hero_pulse_ember_01",
-            "rmsDb": -10.0,
-            "gainDb": -2.069999933242798
-        },
-        {
-            "clip": "hero_pulse_frost_00",
-            "rmsDb": -9.670000076293946,
-            "gainDb": -2.4000000953674318
-        },
-        {
-            "clip": "hero_pulse_frost_01",
-            "rmsDb": -8.779999732971192,
-            "gainDb": -3.2899999618530275
-        },
-        {
-            "clip": "hero_rooted_oracle_00",
-            "rmsDb": -10.239999771118164,
-            "gainDb": -1.8300000429153443
-        },
-        {
-            "clip": "hero_rooted_oracle_01",
-            "rmsDb": -9.539999961853028,
-            "gainDb": -2.5299999713897707
-        },
-        {
-            "clip": "hero_solo_maw_00",
-            "rmsDb": -11.510000228881836,
-            "gainDb": -0.5600000023841858
-        },
-        {
-            "clip": "hero_solo_maw_01",
-            "rmsDb": -11.100000381469727,
-            "gainDb": -0.9700000286102295
-        },
-        {
-            "clip": "hero_solo_maw_02",
-            "rmsDb": -11.579999923706055,
-            "gainDb": -0.49000000953674319
-        },
-        {
-            "clip": "hero_tide_collector_00",
-            "rmsDb": -12.710000038146973,
-            "gainDb": 0.6399999856948853
-        },
-        {
-            "clip": "hero_tide_collector_01",
-            "rmsDb": -11.4399995803833,
-            "gainDb": -0.6299999952316284
-        },
-        {
-            "clip": "hero_treasure_tax_00",
-            "rmsDb": -11.550000190734864,
-            "gainDb": -0.5199999809265137
-        },
-        {
-            "clip": "hero_treasure_tax_01",
-            "rmsDb": -12.130000114440918,
-            "gainDb": 0.05999999865889549
-        },
-        {
-            "clip": "loot_chest_appear_00",
-            "rmsDb": -18.99,
-            "gainDb": 6.92
-        },
-        {
-            "clip": "loot_chest_appear_01",
-            "rmsDb": -21.0,
-            "gainDb": 8.93
-        },
-        {
-            "clip": "loot_chest_open_00",
-            "rmsDb": -20.46,
-            "gainDb": 8.39
-        },
-        {
-            "clip": "loot_chest_open_01",
-            "rmsDb": -20.13,
-            "gainDb": 8.06
-        },
-        {
-            "clip": "loot_chest_open_02",
-            "rmsDb": -20.17,
-            "gainDb": 8.1
-        },
-        {
-            "clip": "loot_coin_bounce_00",
-            "rmsDb": -17.79,
-            "gainDb": 5.72
-        },
-        {
-            "clip": "loot_coin_bounce_01",
-            "rmsDb": -17.97,
-            "gainDb": 5.9
-        },
-        {
-            "clip": "loot_coin_bounce_02",
-            "rmsDb": -18.0,
-            "gainDb": 5.93
-        },
-        {
-            "clip": "loot_coin_bounce_03",
-            "rmsDb": -17.6,
-            "gainDb": 5.53
-        },
-        {
-            "clip": "loot_coin_bounce_04",
-            "rmsDb": -17.97,
-            "gainDb": 5.9
-        },
-        {
-            "clip": "loot_coin_drop_00",
-            "rmsDb": -18.07,
-            "gainDb": 6.0
-        },
-        {
-            "clip": "loot_coin_drop_01",
-            "rmsDb": -18.22,
-            "gainDb": 6.15
-        },
-        {
-            "clip": "loot_coin_drop_02",
-            "rmsDb": -18.2,
-            "gainDb": 6.13
-        },
-        {
-            "clip": "loot_coin_drop_03",
-            "rmsDb": -18.02,
-            "gainDb": 5.95
-        },
-        {
-            "clip": "loot_coin_vacuum_00",
-            "rmsDb": -15.89,
-            "gainDb": 3.82
-        },
-        {
-            "clip": "loot_coin_vacuum_01",
-            "rmsDb": -15.1,
-            "gainDb": 3.03
-        },
-        {
-            "clip": "loot_coin_vacuum_02",
-            "rmsDb": -15.52,
-            "gainDb": 3.45
-        },
-        {
-            "clip": "loot_heart_00",
-            "rmsDb": -18.06,
-            "gainDb": 5.99
-        },
-        {
-            "clip": "loot_heart_01",
-            "rmsDb": -18.72,
-            "gainDb": 6.65
-        },
-        {
-            "clip": "loot_heart_02",
-            "rmsDb": -18.89,
-            "gainDb": 6.82
-        },
-        {
-            "clip": "menu_spot_bell_00",
+            "clip": "s7_chr_jump_0",
             "rmsDb": -9.739999771118164,
-            "gainDb": -2.3299999237060549
+            "gainDb": -2.0899999141693117
         },
         {
-            "clip": "menu_spot_bell_01",
-            "rmsDb": -9.75,
-            "gainDb": -2.319999933242798
+            "clip": "s7_chr_jump_1",
+            "rmsDb": -8.760000228881836,
+            "gainDb": -3.069999933242798
         },
         {
-            "clip": "menu_spot_door_00",
-            "rmsDb": -14.520000457763672,
-            "gainDb": 2.450000047683716
+            "clip": "s7_chr_jump_2",
+            "rmsDb": -9.170000076293946,
+            "gainDb": -2.6600000858306886
         },
         {
-            "clip": "menu_spot_door_01",
-            "rmsDb": -13.569999694824219,
-            "gainDb": 1.5
+            "clip": "s7_chr_land_0",
+            "rmsDb": -7.769999980926514,
+            "gainDb": -4.059999942779541
         },
         {
-            "clip": "menu_spot_hero_00",
-            "rmsDb": -11.09000015258789,
-            "gainDb": -0.9800000190734863
+            "clip": "s7_chr_land_1",
+            "rmsDb": -7.760000228881836,
+            "gainDb": -4.070000171661377
         },
         {
-            "clip": "menu_spot_hero_01",
-            "rmsDb": -11.9399995803833,
-            "gainDb": -0.12999999523162843
+            "clip": "s7_chr_land_2",
+            "rmsDb": -7.760000228881836,
+            "gainDb": -4.070000171661377
         },
         {
-            "clip": "menu_spot_jar_00",
-            "rmsDb": -8.710000038146973,
-            "gainDb": -3.359999895095825
+            "clip": "s7_chr_step_0",
+            "rmsDb": -8.960000038146973,
+            "gainDb": -2.869999885559082
         },
         {
-            "clip": "menu_spot_jar_01",
-            "rmsDb": -9.15999984741211,
-            "gainDb": -2.9100000858306886
+            "clip": "s7_chr_step_1",
+            "rmsDb": -8.84000015258789,
+            "gainDb": -2.990000009536743
         },
         {
-            "clip": "menu_spot_lamp_00",
-            "rmsDb": -15.5,
-            "gainDb": 3.430000066757202
+            "clip": "s7_chr_step_2",
+            "rmsDb": -8.960000038146973,
+            "gainDb": -2.869999885559082
         },
         {
-            "clip": "menu_spot_lamp_01",
-            "rmsDb": -15.800000190734864,
-            "gainDb": 3.7300000190734865
+            "clip": "s7_chr_step_3",
+            "rmsDb": -8.859999656677246,
+            "gainDb": -2.9700000286102297
         },
         {
-            "clip": "menu_spot_printer_00",
-            "rmsDb": -15.15999984741211,
-            "gainDb": 3.0899999141693117
+            "clip": "s7_chr_step_4",
+            "rmsDb": -8.9399995803833,
+            "gainDb": -2.890000104904175
         },
         {
-            "clip": "menu_spot_printer_01",
-            "rmsDb": -14.270000457763672,
-            "gainDb": 2.200000047683716
+            "clip": "s7_chr_step_5",
+            "rmsDb": -8.859999656677246,
+            "gainDb": -2.9700000286102297
         },
         {
-            "clip": "plr_death_00",
-            "rmsDb": -18.03,
-            "gainDb": 5.96
+            "clip": "s7_cmb_crit_0",
+            "rmsDb": -7.190000057220459,
+            "gainDb": -4.639999866485596
         },
         {
-            "clip": "plr_death_01",
-            "rmsDb": -18.75,
-            "gainDb": 6.68
+            "clip": "s7_cmb_crit_1",
+            "rmsDb": -7.199999809265137,
+            "gainDb": -4.630000114440918
         },
         {
-            "clip": "plr_dodge_00",
-            "rmsDb": -15.37,
-            "gainDb": 3.3
+            "clip": "s7_cmb_crit_2",
+            "rmsDb": -7.190000057220459,
+            "gainDb": -4.639999866485596
         },
         {
-            "clip": "plr_dodge_01",
-            "rmsDb": -17.43,
-            "gainDb": 5.36
+            "clip": "s7_cmb_hit_fabric_0",
+            "rmsDb": -7.760000228881836,
+            "gainDb": -4.070000171661377
         },
         {
-            "clip": "plr_dodge_02",
-            "rmsDb": -16.04,
-            "gainDb": 3.97
+            "clip": "s7_cmb_hit_fabric_1",
+            "rmsDb": -9.319999694824219,
+            "gainDb": -2.509999990463257
         },
         {
-            "clip": "plr_heal_00",
-            "rmsDb": -18.3,
-            "gainDb": 6.23
+            "clip": "s7_cmb_hit_fabric_2",
+            "rmsDb": -7.78000020980835,
+            "gainDb": -4.050000190734863
         },
         {
-            "clip": "plr_heal_01",
-            "rmsDb": -18.78,
-            "gainDb": 6.71
+            "clip": "s7_cmb_hit_fabric_3",
+            "rmsDb": -9.470000267028809,
+            "gainDb": -2.359999895095825
         },
         {
-            "clip": "plr_heal_02",
-            "rmsDb": -18.15,
-            "gainDb": 6.08
+            "clip": "s7_cmb_hit_glass_0",
+            "rmsDb": -6.050000190734863,
+            "gainDb": -5.78000020980835
         },
         {
-            "clip": "plr_hurt_00",
-            "rmsDb": -14.4,
-            "gainDb": 2.33
+            "clip": "s7_cmb_hit_glass_1",
+            "rmsDb": -7.599999904632568,
+            "gainDb": -4.230000019073486
         },
         {
-            "clip": "plr_hurt_01",
-            "rmsDb": -14.11,
-            "gainDb": 2.04
+            "clip": "s7_cmb_hit_glass_2",
+            "rmsDb": -7.449999809265137,
+            "gainDb": -4.380000114440918
         },
         {
-            "clip": "plr_hurt_02",
-            "rmsDb": -14.64,
-            "gainDb": 2.57
+            "clip": "s7_cmb_hit_glass_3",
+            "rmsDb": -7.409999847412109,
+            "gainDb": -4.420000076293945
         },
         {
-            "clip": "plr_hurt_03",
-            "rmsDb": -13.25,
-            "gainDb": 1.18
+            "clip": "s7_cmb_hit_glass_4",
+            "rmsDb": -6.010000228881836,
+            "gainDb": -5.820000171661377
         },
         {
-            "clip": "plr_hurt_04",
-            "rmsDb": -14.19,
-            "gainDb": 2.12
+            "clip": "s7_cmb_hit_glass_5",
+            "rmsDb": -6.050000190734863,
+            "gainDb": -5.78000020980835
         },
         {
-            "clip": "plr_lowhp_00",
-            "rmsDb": -14.6,
-            "gainDb": 2.53
-        },
-        {
-            "clip": "plr_lowhp_01",
-            "rmsDb": -13.57,
-            "gainDb": 1.5
-        },
-        {
-            "clip": "sfx_big_impact_a",
-            "rmsDb": -18.72,
-            "gainDb": 6.65
-        },
-        {
-            "clip": "sfx_big_impact_b",
-            "rmsDb": -19.42,
-            "gainDb": 7.35
-        },
-        {
-            "clip": "sfx_big_impact_c",
-            "rmsDb": -19.41,
-            "gainDb": 7.34
-        },
-        {
-            "clip": "sfx_blunt_a",
-            "rmsDb": -15.15,
-            "gainDb": 3.08
-        },
-        {
-            "clip": "sfx_blunt_b",
-            "rmsDb": -14.43,
-            "gainDb": 2.36
-        },
-        {
-            "clip": "sfx_blunt_c",
-            "rmsDb": -15.22,
-            "gainDb": 3.15
-        },
-        {
-            "clip": "sfx_coin_pickup_a",
-            "rmsDb": -18.31,
-            "gainDb": 6.24
-        },
-        {
-            "clip": "sfx_coin_pickup_b",
-            "rmsDb": -18.28,
-            "gainDb": 6.21
-        },
-        {
-            "clip": "sfx_coin_pickup_c",
-            "rmsDb": -18.3,
-            "gainDb": 6.23
-        },
-        {
-            "clip": "sfx_egg_pickup_a",
-            "rmsDb": -15.38,
-            "gainDb": 3.31
-        },
-        {
-            "clip": "sfx_egg_pickup_b",
-            "rmsDb": -14.47,
-            "gainDb": 2.4
-        },
-        {
-            "clip": "sfx_egg_pickup_c",
-            "rmsDb": -14.88,
-            "gainDb": 2.81
-        },
-        {
-            "clip": "sfx_impact_a",
-            "rmsDb": -15.09,
-            "gainDb": 3.02
-        },
-        {
-            "clip": "sfx_impact_b",
-            "rmsDb": -15.55,
-            "gainDb": 3.48
-        },
-        {
-            "clip": "sfx_impact_c",
-            "rmsDb": -14.3,
-            "gainDb": 2.23
-        },
-        {
-            "clip": "sfx_ink_shot_a",
-            "rmsDb": -13.14,
-            "gainDb": 1.07
-        },
-        {
-            "clip": "sfx_ink_shot_b",
-            "rmsDb": -14.42,
-            "gainDb": 2.35
-        },
-        {
-            "clip": "sfx_ink_shot_c",
-            "rmsDb": -13.8,
-            "gainDb": 1.73
-        },
-        {
-            "clip": "sfx_paper_shot_a",
-            "rmsDb": -13.64,
-            "gainDb": 1.57
-        },
-        {
-            "clip": "sfx_paper_shot_b",
-            "rmsDb": -13.08,
-            "gainDb": 1.01
-        },
-        {
-            "clip": "sfx_paper_shot_c",
-            "rmsDb": -13.63,
-            "gainDb": 1.56
-        },
-        {
-            "clip": "sfx_slash_a",
-            "rmsDb": -15.94,
-            "gainDb": 3.87
-        },
-        {
-            "clip": "sfx_slash_b",
-            "rmsDb": -14.98,
-            "gainDb": 2.91
-        },
-        {
-            "clip": "sfx_slash_c",
-            "rmsDb": -16.72,
-            "gainDb": 4.65
-        },
-        {
-            "clip": "sfx_thrown_a",
-            "rmsDb": -16.0,
-            "gainDb": 3.93
-        },
-        {
-            "clip": "sfx_thrown_b",
-            "rmsDb": -18.56,
-            "gainDb": 6.49
-        },
-        {
-            "clip": "sfx_thrown_c",
-            "rmsDb": -17.04,
-            "gainDb": 4.97
-        },
-        {
-            "clip": "sfx_toy_gun_a",
-            "rmsDb": -14.3,
-            "gainDb": 2.23
-        },
-        {
-            "clip": "sfx_toy_gun_b",
-            "rmsDb": -13.24,
-            "gainDb": 1.17
-        },
-        {
-            "clip": "sfx_toy_gun_c",
-            "rmsDb": -13.96,
-            "gainDb": 1.89
-        },
-        {
-            "clip": "shop_approach_00",
-            "rmsDb": -13.02,
-            "gainDb": 0.95
-        },
-        {
-            "clip": "shop_approach_01",
-            "rmsDb": -13.26,
-            "gainDb": 1.19
-        },
-        {
-            "clip": "shop_approach_02",
-            "rmsDb": -13.77,
-            "gainDb": 1.7
-        },
-        {
-            "clip": "shop_approach_03",
-            "rmsDb": -13.72,
-            "gainDb": 1.65
-        },
-        {
-            "clip": "shop_buy_dream_00",
-            "rmsDb": -17.59,
-            "gainDb": 5.52
-        },
-        {
-            "clip": "shop_buy_dream_01",
-            "rmsDb": -18.16,
-            "gainDb": 6.09
-        },
-        {
-            "clip": "shop_buy_dream_02",
-            "rmsDb": -18.09,
-            "gainDb": 6.02
-        },
-        {
-            "clip": "shop_buy_gold_00",
-            "rmsDb": -19.04,
-            "gainDb": 6.97
-        },
-        {
-            "clip": "shop_buy_gold_01",
-            "rmsDb": -19.72,
-            "gainDb": 7.65
-        },
-        {
-            "clip": "shop_buy_gold_02",
-            "rmsDb": -20.31,
-            "gainDb": 8.24
-        },
-        {
-            "clip": "shop_buy_gold_03",
-            "rmsDb": -19.21,
-            "gainDb": 7.14
-        },
-        {
-            "clip": "shop_carpet_open_00",
-            "rmsDb": -15.22,
-            "gainDb": 3.15
-        },
-        {
-            "clip": "shop_carpet_open_01",
-            "rmsDb": -15.33,
-            "gainDb": 3.26
-        },
-        {
-            "clip": "shop_carpet_roll_00",
-            "rmsDb": -15.13,
-            "gainDb": 3.06
-        },
-        {
-            "clip": "shop_carpet_roll_01",
-            "rmsDb": -15.23,
-            "gainDb": 3.16
-        },
-        {
-            "clip": "shop_deny_egg_00",
-            "rmsDb": -18.61,
-            "gainDb": 6.54
-        },
-        {
-            "clip": "shop_deny_egg_01",
-            "rmsDb": -20.09,
-            "gainDb": 8.02
-        },
-        {
-            "clip": "shop_deny_gold_00",
-            "rmsDb": -18.2,
-            "gainDb": 6.13
-        },
-        {
-            "clip": "shop_deny_gold_01",
-            "rmsDb": -18.14,
-            "gainDb": 6.07
-        },
-        {
-            "clip": "shop_deny_hp_00",
-            "rmsDb": -18.82,
-            "gainDb": 6.75
-        },
-        {
-            "clip": "shop_deny_hp_01",
-            "rmsDb": -18.91,
-            "gainDb": 6.84
-        },
-        {
-            "clip": "shop_descend_00",
-            "rmsDb": -12.96,
-            "gainDb": 0.89
-        },
-        {
-            "clip": "shop_descend_01",
-            "rmsDb": -12.99,
-            "gainDb": 0.92
-        },
-        {
-            "clip": "shop_focus_00",
-            "rmsDb": -13.28,
-            "gainDb": 1.21
-        },
-        {
-            "clip": "shop_focus_01",
-            "rmsDb": -13.49,
-            "gainDb": 1.42
-        },
-        {
-            "clip": "shop_focus_02",
-            "rmsDb": -13.51,
-            "gainDb": 1.44
-        },
-        {
-            "clip": "shop_focus_03",
-            "rmsDb": -12.96,
-            "gainDb": 0.89
-        },
-        {
-            "clip": "shop_fusion_00",
-            "rmsDb": -19.4,
-            "gainDb": 7.33
-        },
-        {
-            "clip": "shop_fusion_01",
-            "rmsDb": -20.2,
-            "gainDb": 8.13
-        },
-        {
-            "clip": "shop_invalid_00",
-            "rmsDb": -18.24,
-            "gainDb": 6.17
-        },
-        {
-            "clip": "shop_invalid_01",
-            "rmsDb": -18.64,
-            "gainDb": 6.57
-        },
-        {
-            "clip": "shop_invalid_02",
-            "rmsDb": -18.81,
-            "gainDb": 6.74
-        },
-        {
-            "clip": "shop_item_pop_00",
-            "rmsDb": -12.82,
-            "gainDb": 0.75
-        },
-        {
-            "clip": "shop_item_pop_01",
-            "rmsDb": -12.53,
-            "gainDb": 0.46
-        },
-        {
-            "clip": "shop_item_pop_02",
-            "rmsDb": -12.47,
-            "gainDb": 0.4
-        },
-        {
-            "clip": "shop_item_pop_03",
-            "rmsDb": -12.54,
-            "gainDb": 0.47
-        },
-        {
-            "clip": "shop_keeper_enter_dream_00",
-            "rmsDb": -20.2,
-            "gainDb": 8.13
-        },
-        {
-            "clip": "shop_keeper_enter_dream_01",
-            "rmsDb": -19.59,
-            "gainDb": 7.52
-        },
-        {
-            "clip": "shop_keeper_enter_gold_00",
-            "rmsDb": -20.11,
-            "gainDb": 8.04
-        },
-        {
-            "clip": "shop_keeper_enter_gold_01",
-            "rmsDb": -19.94,
-            "gainDb": 7.87
-        },
-        {
-            "clip": "shop_keeper_exit_dream_00",
-            "rmsDb": -19.3,
-            "gainDb": 7.23
-        },
-        {
-            "clip": "shop_keeper_exit_dream_01",
-            "rmsDb": -19.92,
-            "gainDb": 7.85
-        },
-        {
-            "clip": "shop_keeper_exit_gold_00",
-            "rmsDb": -19.69,
-            "gainDb": 7.62
-        },
-        {
-            "clip": "shop_keeper_exit_gold_01",
-            "rmsDb": -20.78,
-            "gainDb": 8.71
-        },
-        {
-            "clip": "shop_reroll_00",
-            "rmsDb": -16.93,
-            "gainDb": 4.86
-        },
-        {
-            "clip": "shop_reroll_01",
-            "rmsDb": -16.52,
-            "gainDb": 4.45
-        },
-        {
-            "clip": "shop_reroll_02",
-            "rmsDb": -16.65,
-            "gainDb": 4.58
-        },
-        {
-            "clip": "shop_stand_appear_00",
-            "rmsDb": -19.76,
-            "gainDb": 7.69
-        },
-        {
-            "clip": "shop_stand_appear_01",
-            "rmsDb": -19.13,
-            "gainDb": 7.06
-        },
-        {
-            "clip": "shop_stand_appear_02",
-            "rmsDb": -19.55,
-            "gainDb": 7.48
-        },
-        {
-            "clip": "shop_stand_appear_03",
-            "rmsDb": -19.21,
-            "gainDb": 7.14
-        },
-        {
-            "clip": "shop_ticket_sold_00",
-            "rmsDb": -16.97,
-            "gainDb": 4.9
-        },
-        {
-            "clip": "shop_ticket_sold_01",
-            "rmsDb": -16.9,
-            "gainDb": 4.83
-        },
-        {
-            "clip": "shop_ticket_sold_02",
-            "rmsDb": -16.45,
-            "gainDb": 4.38
-        },
-        {
-            "clip": "shop_ticket_sway_00",
-            "rmsDb": -20.58,
-            "gainDb": 8.51
-        },
-        {
-            "clip": "shop_ticket_sway_01",
-            "rmsDb": -23.38,
-            "gainDb": 11.31
-        },
-        {
-            "clip": "shop_ticket_sway_02",
-            "rmsDb": -22.8,
-            "gainDb": 10.73
-        },
-        {
-            "clip": "sig_alarm_00",
-            "rmsDb": -10.890000343322754,
-            "gainDb": -1.1799999475479127
-        },
-        {
-            "clip": "sig_alarm_01",
-            "rmsDb": -10.5600004196167,
-            "gainDb": -1.5099999904632569
-        },
-        {
-            "clip": "sig_alarm_boom_00",
-            "rmsDb": -9.239999771118164,
-            "gainDb": -2.8299999237060549
-        },
-        {
-            "clip": "sig_alarm_boom_01",
-            "rmsDb": -9.359999656677246,
-            "gainDb": -2.7100000381469728
-        },
-        {
-            "clip": "sig_alarm_boom_02",
-            "rmsDb": -9.420000076293946,
+            "clip": "s7_cmb_hit_metal_0",
+            "rmsDb": -9.180000305175782,
             "gainDb": -2.6500000953674318
         },
         {
-            "clip": "sig_bell_00",
-            "rmsDb": -8.899999618530274,
-            "gainDb": -3.1700000762939455
+            "clip": "s7_cmb_hit_metal_1",
+            "rmsDb": -9.029999732971192,
+            "gainDb": -2.799999952316284
         },
         {
-            "clip": "sig_bell_01",
-            "rmsDb": -9.0600004196167,
-            "gainDb": -3.009999990463257
+            "clip": "s7_cmb_hit_metal_2",
+            "rmsDb": -9.5600004196167,
+            "gainDb": -2.2699999809265138
         },
         {
-            "clip": "sig_bell_02",
-            "rmsDb": -8.789999961853028,
-            "gainDb": -3.2799999713897707
+            "clip": "s7_cmb_hit_metal_3",
+            "rmsDb": -9.029999732971192,
+            "gainDb": -2.799999952316284
         },
         {
-            "clip": "sig_bell_03",
-            "rmsDb": -8.630000114440918,
-            "gainDb": -3.440000057220459
+            "clip": "s7_cmb_hit_metal_4",
+            "rmsDb": -8.6899995803833,
+            "gainDb": -3.140000104904175
         },
         {
-            "clip": "sig_camera_00",
-            "rmsDb": -15.819999694824219,
-            "gainDb": 3.75
+            "clip": "s7_cmb_hit_metal_5",
+            "rmsDb": -8.779999732971192,
+            "gainDb": -3.049999952316284
         },
         {
-            "clip": "sig_camera_01",
-            "rmsDb": -15.800000190734864,
-            "gainDb": 3.7300000190734865
+            "clip": "s7_cmb_hit_paper_0",
+            "rmsDb": -6.090000152587891,
+            "gainDb": -5.739999771118164
         },
         {
-            "clip": "sig_camera_02",
-            "rmsDb": -15.579999923706055,
-            "gainDb": 3.509999990463257
+            "clip": "s7_cmb_hit_paper_1",
+            "rmsDb": -6.110000133514404,
+            "gainDb": -5.71999979019165
         },
         {
-            "clip": "sig_fish_00",
-            "rmsDb": -12.039999961853028,
-            "gainDb": -0.029999999329447748
+            "clip": "s7_cmb_hit_paper_2",
+            "rmsDb": -6.059999942779541,
+            "gainDb": -5.769999980926514
         },
         {
-            "clip": "sig_fish_01",
-            "rmsDb": -10.899999618530274,
-            "gainDb": -1.1699999570846558
+            "clip": "s7_cmb_hit_paper_3",
+            "rmsDb": -6.110000133514404,
+            "gainDb": -5.71999979019165
         },
         {
-            "clip": "sig_fish_02",
-            "rmsDb": -11.460000038146973,
-            "gainDb": -0.6100000143051148
+            "clip": "s7_cmb_hit_wax_0",
+            "rmsDb": -5.760000228881836,
+            "gainDb": -6.0
         },
         {
-            "clip": "sig_hammer_00",
-            "rmsDb": -9.8100004196167,
-            "gainDb": -2.259999990463257
+            "clip": "s7_cmb_hit_wax_1",
+            "rmsDb": -5.869999885559082,
+            "gainDb": -5.960000038146973
         },
         {
-            "clip": "sig_hammer_01",
-            "rmsDb": -9.739999771118164,
-            "gainDb": -2.3299999237060549
+            "clip": "s7_cmb_hit_wax_2",
+            "rmsDb": -6.03000020980835,
+            "gainDb": -5.800000190734863
         },
         {
-            "clip": "sig_hammer_02",
-            "rmsDb": -9.930000305175782,
-            "gainDb": -2.140000104904175
+            "clip": "s7_cmb_hit_wax_3",
+            "rmsDb": -6.039999961853027,
+            "gainDb": -5.789999961853027
         },
         {
-            "clip": "sig_iron_00",
-            "rmsDb": -11.279999732971192,
-            "gainDb": -0.7900000214576721
+            "clip": "s7_cmb_hit_wax_4",
+            "rmsDb": -6.090000152587891,
+            "gainDb": -5.739999771118164
         },
         {
-            "clip": "sig_iron_01",
-            "rmsDb": -11.4399995803833,
-            "gainDb": -0.6299999952316284
+            "clip": "s7_cmb_hit_wax_5",
+            "rmsDb": -6.210000038146973,
+            "gainDb": -5.619999885559082
         },
         {
-            "clip": "sig_iron_02",
-            "rmsDb": -11.640000343322754,
-            "gainDb": -0.4300000071525574
+            "clip": "s7_cmb_hit_wood_0",
+            "rmsDb": -6.730000019073486,
+            "gainDb": -5.099999904632568
         },
         {
-            "clip": "sig_musicbox_00",
-            "rmsDb": -10.239999771118164,
-            "gainDb": -1.8300000429153443
+            "clip": "s7_cmb_hit_wood_1",
+            "rmsDb": -9.470000267028809,
+            "gainDb": -2.359999895095825
         },
         {
-            "clip": "sig_musicbox_01",
-            "rmsDb": -9.579999923706055,
-            "gainDb": -2.490000009536743
+            "clip": "s7_cmb_hit_wood_2",
+            "rmsDb": -6.679999828338623,
+            "gainDb": -5.150000095367432
         },
         {
-            "clip": "sig_musicbox_02",
-            "rmsDb": -10.390000343322754,
-            "gainDb": -1.6799999475479127
+            "clip": "s7_cmb_hit_wood_3",
+            "rmsDb": -7.769999980926514,
+            "gainDb": -4.059999942779541
         },
         {
-            "clip": "sig_scissors_00",
-            "rmsDb": -15.989999771118164,
-            "gainDb": 3.9200000762939455
+            "clip": "s7_cmb_hit_wood_4",
+            "rmsDb": -9.529999732971192,
+            "gainDb": -2.299999952316284
         },
         {
-            "clip": "sig_scissors_01",
-            "rmsDb": -15.460000038146973,
-            "gainDb": 3.390000104904175
+            "clip": "s7_cmb_hit_wood_5",
+            "rmsDb": -7.340000152587891,
+            "gainDb": -4.489999771118164
         },
         {
-            "clip": "sig_scissors_02",
-            "rmsDb": -14.850000381469727,
-            "gainDb": 2.7799999713897707
-        },
-        {
-            "clip": "sig_scissors_03",
-            "rmsDb": -14.5,
-            "gainDb": 2.430000066757202
-        },
-        {
-            "clip": "sig_stamp_00",
-            "rmsDb": -10.010000228881836,
-            "gainDb": -2.059999942779541
-        },
-        {
-            "clip": "sig_stamp_01",
-            "rmsDb": -10.069999694824219,
-            "gainDb": -2.0
-        },
-        {
-            "clip": "sig_stamp_02",
-            "rmsDb": -10.210000038146973,
-            "gainDb": -1.8600000143051148
-        },
-        {
-            "clip": "sig_tea_00",
-            "rmsDb": -11.649999618530274,
-            "gainDb": -0.41999998688697817
-        },
-        {
-            "clip": "sig_tea_01",
-            "rmsDb": -12.319999694824219,
-            "gainDb": 0.25
-        },
-        {
-            "clip": "sig_tea_02",
-            "rmsDb": -13.15999984741211,
-            "gainDb": 1.090000033378601
-        },
-        {
-            "clip": "sig_umbrella_00",
-            "rmsDb": -13.699999809265137,
-            "gainDb": 1.6299999952316285
-        },
-        {
-            "clip": "sig_umbrella_01",
-            "rmsDb": -14.180000305175782,
-            "gainDb": 2.109999895095825
-        },
-        {
-            "clip": "sig_umbrella_02",
-            "rmsDb": -14.390000343322754,
-            "gainDb": 2.319999933242798
-        },
-        {
-            "clip": "sting_defeat_00",
-            "rmsDb": -16.2,
-            "gainDb": 4.13
-        },
-        {
-            "clip": "sting_victory_00",
-            "rmsDb": -18.38,
-            "gainDb": 6.31
-        },
-        {
-            "clip": "sting_waveclear_00",
-            "rmsDb": -16.65,
-            "gainDb": 4.58
-        },
-        {
-            "clip": "sting_waveclear_01",
-            "rmsDb": -16.31,
-            "gainDb": 4.24
-        },
-        {
-            "clip": "ui_achievement_00",
-            "rmsDb": -19.65,
-            "gainDb": 7.58
-        },
-        {
-            "clip": "ui_achievement_01",
-            "rmsDb": -18.86,
-            "gainDb": 6.79
-        },
-        {
-            "clip": "ui_back_00",
-            "rmsDb": -14.04,
-            "gainDb": 1.97
-        },
-        {
-            "clip": "ui_back_01",
-            "rmsDb": -14.04,
-            "gainDb": 1.97
-        },
-        {
-            "clip": "ui_back_02",
-            "rmsDb": -14.04,
-            "gainDb": 1.97
-        },
-        {
-            "clip": "ui_close_00",
-            "rmsDb": -17.63,
-            "gainDb": 5.56
-        },
-        {
-            "clip": "ui_close_01",
-            "rmsDb": -19.79,
-            "gainDb": 7.72
-        },
-        {
-            "clip": "ui_coach_pop_00",
-            "rmsDb": -12.5,
-            "gainDb": 0.43
-        },
-        {
-            "clip": "ui_coach_pop_01",
-            "rmsDb": -12.34,
-            "gainDb": 0.27
-        },
-        {
-            "clip": "ui_coach_pop_02",
-            "rmsDb": -12.06,
-            "gainDb": -0.01
-        },
-        {
-            "clip": "ui_confirm_00",
-            "rmsDb": -16.28,
-            "gainDb": 4.21
-        },
-        {
-            "clip": "ui_confirm_01",
-            "rmsDb": -16.13,
-            "gainDb": 4.06
-        },
-        {
-            "clip": "ui_confirm_02",
-            "rmsDb": -15.52,
-            "gainDb": 3.45
-        },
-        {
-            "clip": "ui_cutin_bond_00",
-            "rmsDb": -21.64,
-            "gainDb": 9.57
-        },
-        {
-            "clip": "ui_cutin_bond_01",
-            "rmsDb": -21.47,
-            "gainDb": 9.4
-        },
-        {
-            "clip": "ui_cutin_bond_02",
-            "rmsDb": -22.11,
-            "gainDb": 10.04
-        },
-        {
-            "clip": "ui_cutin_boss_00",
-            "rmsDb": -19.9,
-            "gainDb": 7.83
-        },
-        {
-            "clip": "ui_cutin_boss_01",
-            "rmsDb": -19.83,
-            "gainDb": 7.76
-        },
-        {
-            "clip": "ui_cutin_encore_00",
-            "rmsDb": -21.97,
-            "gainDb": 9.9
-        },
-        {
-            "clip": "ui_cutin_encore_01",
-            "rmsDb": -19.91,
-            "gainDb": 7.84
-        },
-        {
-            "clip": "ui_cutin_showstopper_00",
-            "rmsDb": -20.24,
-            "gainDb": 8.17
-        },
-        {
-            "clip": "ui_cutin_showstopper_01",
-            "rmsDb": -21.43,
-            "gainDb": 9.36
-        },
-        {
-            "clip": "ui_encore_ready_00",
-            "rmsDb": -16.43,
-            "gainDb": 4.36
-        },
-        {
-            "clip": "ui_encore_ready_01",
-            "rmsDb": -16.25,
-            "gainDb": 4.18
-        },
-        {
-            "clip": "ui_error_00",
-            "rmsDb": -20.63,
-            "gainDb": 8.56
-        },
-        {
-            "clip": "ui_error_01",
-            "rmsDb": -19.6,
-            "gainDb": 7.53
-        },
-        {
-            "clip": "ui_hover_00",
-            "rmsDb": -13.52,
-            "gainDb": 1.45
-        },
-        {
-            "clip": "ui_hover_01",
-            "rmsDb": -14.95,
-            "gainDb": 2.88
-        },
-        {
-            "clip": "ui_hover_02",
-            "rmsDb": -13.66,
-            "gainDb": 1.59
-        },
-        {
-            "clip": "ui_hover_03",
-            "rmsDb": -13.99,
-            "gainDb": 1.92
-        },
-        {
-            "clip": "ui_locked_00",
-            "rmsDb": -18.94,
-            "gainDb": 6.87
-        },
-        {
-            "clip": "ui_locked_01",
-            "rmsDb": -19.3,
-            "gainDb": 7.23
-        },
-        {
-            "clip": "ui_merge_hint_00",
-            "rmsDb": -13.26,
-            "gainDb": 1.19
-        },
-        {
-            "clip": "ui_merge_hint_01",
-            "rmsDb": -13.31,
-            "gainDb": 1.24
-        },
-        {
-            "clip": "ui_open_00",
-            "rmsDb": -20.08,
-            "gainDb": 8.01
-        },
-        {
-            "clip": "ui_open_01",
-            "rmsDb": -17.82,
-            "gainDb": 5.75
-        },
-        {
-            "clip": "ui_page_00",
-            "rmsDb": -21.89,
-            "gainDb": 9.82
-        },
-        {
-            "clip": "ui_page_01",
-            "rmsDb": -20.64,
-            "gainDb": 8.57
-        },
-        {
-            "clip": "ui_page_02",
-            "rmsDb": -19.0,
-            "gainDb": 6.93
-        },
-        {
-            "clip": "ui_pause_00",
-            "rmsDb": -21.02,
-            "gainDb": 8.95
-        },
-        {
-            "clip": "ui_receipt_00",
-            "rmsDb": -18.08,
-            "gainDb": 6.01
-        },
-        {
-            "clip": "ui_receipt_01",
-            "rmsDb": -17.74,
-            "gainDb": 5.67
-        },
-        {
-            "clip": "ui_resume_00",
-            "rmsDb": -21.1,
-            "gainDb": 9.03
-        },
-        {
-            "clip": "ui_select_00",
-            "rmsDb": -19.93,
-            "gainDb": 7.86
-        },
-        {
-            "clip": "ui_select_01",
-            "rmsDb": -19.96,
-            "gainDb": 7.89
-        },
-        {
-            "clip": "ui_select_02",
-            "rmsDb": -18.3,
-            "gainDb": 6.23
-        },
-        {
-            "clip": "ui_select_03",
-            "rmsDb": -19.58,
-            "gainDb": 7.51
-        },
-        {
-            "clip": "ui_setting_00",
-            "rmsDb": -20.56,
-            "gainDb": 8.49
-        },
-        {
-            "clip": "ui_setting_01",
-            "rmsDb": -19.13,
-            "gainDb": 7.06
-        },
-        {
-            "clip": "ui_setting_02",
-            "rmsDb": -19.01,
-            "gainDb": 6.94
-        },
-        {
-            "clip": "ui_tab_00",
-            "rmsDb": -20.28,
-            "gainDb": 8.21
-        },
-        {
-            "clip": "ui_tab_01",
-            "rmsDb": -18.74,
-            "gainDb": 6.67
-        },
-        {
-            "clip": "ui_tab_02",
-            "rmsDb": -19.07,
-            "gainDb": 7.0
-        },
-        {
-            "clip": "ui_tooltip_00",
-            "rmsDb": -14.51,
-            "gainDb": 2.44
-        },
-        {
-            "clip": "ui_tooltip_01",
-            "rmsDb": -12.16,
-            "gainDb": 0.09
-        },
-        {
-            "clip": "ui_unlock_00",
-            "rmsDb": -17.94,
-            "gainDb": 5.87
-        },
-        {
-            "clip": "ui_unlock_01",
-            "rmsDb": -16.43,
-            "gainDb": 4.36
-        },
-        {
-            "clip": "ui_wave_stamp_00",
-            "rmsDb": -17.35,
-            "gainDb": 5.28
-        },
-        {
-            "clip": "ui_wave_stamp_01",
-            "rmsDb": -16.83,
-            "gainDb": 4.76
-        },
-        {
-            "clip": "up_ally_land_00",
+            "clip": "s7_cmb_miss_0",
             "rmsDb": -9.920000076293946,
-            "gainDb": -2.1500000953674318
+            "gainDb": -1.909999966621399
         },
         {
-            "clip": "up_ally_land_01",
-            "rmsDb": -10.010000228881836,
-            "gainDb": -2.059999942779541
+            "clip": "s7_cmb_miss_1",
+            "rmsDb": -9.8100004196167,
+            "gainDb": -2.0199999809265138
         },
         {
-            "clip": "up_ally_land_02",
-            "rmsDb": -9.300000190734864,
-            "gainDb": -2.7699999809265138
+            "clip": "s7_cmb_miss_2",
+            "rmsDb": -10.0600004196167,
+            "gainDb": -1.7699999809265137
         },
         {
-            "clip": "up_ally_land_03",
-            "rmsDb": -9.6899995803833,
-            "gainDb": -2.380000114440918
+            "clip": "s7_cmb_miss_3",
+            "rmsDb": -9.600000381469727,
+            "gainDb": -2.2300000190734865
         },
         {
-            "clip": "up_bond_t1_00",
-            "rmsDb": -11.199999809265137,
-            "gainDb": -0.8700000047683716
+            "clip": "s7_cmb_swing_blade_0",
+            "rmsDb": -10.899999618530274,
+            "gainDb": -0.9300000071525574
         },
         {
-            "clip": "up_bond_t1_01",
-            "rmsDb": -11.289999961853028,
-            "gainDb": -0.7799999713897705
+            "clip": "s7_cmb_swing_blade_1",
+            "rmsDb": -10.930000305175782,
+            "gainDb": -0.8999999761581421
         },
         {
-            "clip": "up_bond_t2_00",
-            "rmsDb": -10.569999694824219,
-            "gainDb": -1.5
+            "clip": "s7_cmb_swing_blade_2",
+            "rmsDb": -10.90999984741211,
+            "gainDb": -0.9200000166893005
         },
         {
-            "clip": "up_bond_t2_01",
-            "rmsDb": -10.5600004196167,
-            "gainDb": -1.5099999904632569
+            "clip": "s7_cmb_swing_blade_3",
+            "rmsDb": -10.880000114440918,
+            "gainDb": -0.949999988079071
         },
         {
-            "clip": "up_chain_00",
-            "rmsDb": -10.770000457763672,
+            "clip": "s7_cmb_swing_hammer_0",
+            "rmsDb": -10.529999732971192,
             "gainDb": -1.2999999523162842
         },
         {
-            "clip": "up_chain_01",
-            "rmsDb": -10.920000076293946,
-            "gainDb": -1.149999976158142
+            "clip": "s7_cmb_swing_hammer_1",
+            "rmsDb": -10.649999618530274,
+            "gainDb": -1.1799999475479127
         },
         {
-            "clip": "up_chain_02",
-            "rmsDb": -10.550000190734864,
-            "gainDb": -1.5199999809265137
+            "clip": "s7_cmb_swing_hammer_2",
+            "rmsDb": -10.710000038146973,
+            "gainDb": -1.1200000047683716
         },
         {
-            "clip": "up_chain_03",
-            "rmsDb": -10.84000015258789,
-            "gainDb": -1.2300000190734864
+            "clip": "s7_cmb_swing_hammer_3",
+            "rmsDb": -10.649999618530274,
+            "gainDb": -1.1799999475479127
         },
         {
-            "clip": "up_merge_00",
-            "rmsDb": -9.600000381469727,
-            "gainDb": -2.4700000286102297
+            "clip": "s7_cmb_swing_scissors_0",
+            "rmsDb": -11.5600004196167,
+            "gainDb": -0.27000001072883608
         },
         {
-            "clip": "up_merge_01",
-            "rmsDb": -9.4399995803833,
-            "gainDb": -2.630000114440918
+            "clip": "s7_cmb_swing_scissors_1",
+            "rmsDb": -11.149999618530274,
+            "gainDb": -0.6800000071525574
         },
         {
-            "clip": "up_merge_02",
-            "rmsDb": -9.529999732971192,
-            "gainDb": -2.5399999618530275
+            "clip": "s7_cmb_swing_scissors_2",
+            "rmsDb": -11.350000381469727,
+            "gainDb": -0.47999998927116396
         },
         {
-            "clip": "up_merge_gather_00",
-            "rmsDb": -14.420000076293946,
-            "gainDb": 2.3499999046325685
+            "clip": "s7_cmb_swing_scissors_3",
+            "rmsDb": -11.270000457763672,
+            "gainDb": -0.5600000023841858
         },
         {
-            "clip": "up_merge_gather_01",
-            "rmsDb": -13.180000305175782,
-            "gainDb": 1.1100000143051148
+            "clip": "s7_cmb_swing_spear_0",
+            "rmsDb": -10.800000190734864,
+            "gainDb": -1.0299999713897706
         },
         {
-            "clip": "up_merge_gather_02",
-            "rmsDb": -14.430000305175782,
-            "gainDb": 2.359999895095825
+            "clip": "s7_cmb_swing_spear_1",
+            "rmsDb": -12.319999694824219,
+            "gainDb": 0.49000000953674319
         },
         {
-            "clip": "up_rarity_blue_00",
-            "rmsDb": -10.729999542236329,
-            "gainDb": -1.340000033378601
-        },
-        {
-            "clip": "up_rarity_blue_01",
-            "rmsDb": -10.369999885559082,
-            "gainDb": -1.7000000476837159
-        },
-        {
-            "clip": "up_rarity_gold_00",
-            "rmsDb": -10.40999984741211,
-            "gainDb": -1.659999966621399
-        },
-        {
-            "clip": "up_rarity_gold_01",
-            "rmsDb": -10.1899995803833,
-            "gainDb": -1.8799999952316285
-        },
-        {
-            "clip": "up_rarity_purple_00",
-            "rmsDb": -11.890000343322754,
-            "gainDb": -0.18000000715255738
-        },
-        {
-            "clip": "up_rarity_purple_01",
-            "rmsDb": -12.260000228881836,
-            "gainDb": 0.1899999976158142
-        },
-        {
-            "clip": "up_star2_00",
-            "rmsDb": -10.609999656677246,
-            "gainDb": -1.4600000381469727
-        },
-        {
-            "clip": "up_star2_01",
-            "rmsDb": -11.109999656677246,
+            "clip": "s7_cmb_swing_spear_2",
+            "rmsDb": -10.869999885559082,
             "gainDb": -0.9599999785423279
         },
         {
-            "clip": "up_star3_00",
-            "rmsDb": -10.720000267028809,
-            "gainDb": -1.350000023841858
+            "clip": "s7_cmb_swing_spear_3",
+            "rmsDb": -10.779999732971192,
+            "gainDb": -1.0499999523162842
         },
         {
-            "clip": "up_star3_01",
+            "clip": "s7_cmb_swing_umbrella_0",
+            "rmsDb": -10.890000343322754,
+            "gainDb": -0.9399999976158142
+        },
+        {
+            "clip": "s7_cmb_swing_umbrella_1",
+            "rmsDb": -12.380000114440918,
+            "gainDb": 0.550000011920929
+        },
+        {
+            "clip": "s7_cmb_swing_umbrella_2",
+            "rmsDb": -12.359999656677246,
+            "gainDb": 0.5299999713897705
+        },
+        {
+            "clip": "s7_cmb_swing_umbrella_3",
+            "rmsDb": -12.020000457763672,
+            "gainDb": 0.1899999976158142
+        },
+        {
+            "clip": "s7_cmb_swing_whip_0",
+            "rmsDb": -13.1899995803833,
+            "gainDb": 1.3600000143051148
+        },
+        {
+            "clip": "s7_cmb_swing_whip_1",
+            "rmsDb": -11.479999542236329,
+            "gainDb": -0.3499999940395355
+        },
+        {
+            "clip": "s7_cmb_swing_whip_2",
+            "rmsDb": -11.619999885559082,
+            "gainDb": -0.20999999344348908
+        },
+        {
+            "clip": "s7_cmb_swing_whip_3",
+            "rmsDb": -13.239999771118164,
+            "gainDb": 1.409999966621399
+        },
+        {
+            "clip": "s7_cmb_windup_0",
+            "rmsDb": -10.800000190734864,
+            "gainDb": -1.0299999713897706
+        },
+        {
+            "clip": "s7_cmb_windup_1",
+            "rmsDb": -12.479999542236329,
+            "gainDb": 0.6499999761581421
+        },
+        {
+            "clip": "s7_cmb_windup_2",
+            "rmsDb": -12.350000381469727,
+            "gainDb": 0.5199999809265137
+        },
+        {
+            "clip": "s7_enemy_big_roar_0",
+            "rmsDb": -13.0600004196167,
+            "gainDb": 1.2300000190734864
+        },
+        {
+            "clip": "s7_enemy_big_roar_1",
+            "rmsDb": -12.960000038146973,
+            "gainDb": 1.1299999952316285
+        },
+        {
+            "clip": "s7_enemy_big_roar_2",
+            "rmsDb": -12.729999542236329,
+            "gainDb": 0.8999999761581421
+        },
+        {
+            "clip": "s7_enemy_big_step_0",
             "rmsDb": -10.619999885559082,
-            "gainDb": -1.4500000476837159
+            "gainDb": -1.2100000381469727
+        },
+        {
+            "clip": "s7_enemy_big_step_1",
+            "rmsDb": -10.619999885559082,
+            "gainDb": -1.2100000381469727
+        },
+        {
+            "clip": "s7_enemy_big_step_2",
+            "rmsDb": -10.619999885559082,
+            "gainDb": -1.2100000381469727
+        },
+        {
+            "clip": "s7_enemy_die_fabric_0",
+            "rmsDb": -6.25,
+            "gainDb": -5.579999923706055
+        },
+        {
+            "clip": "s7_enemy_die_fabric_1",
+            "rmsDb": -6.28000020980835,
+            "gainDb": -5.550000190734863
+        },
+        {
+            "clip": "s7_enemy_die_fabric_2",
+            "rmsDb": -6.25,
+            "gainDb": -5.579999923706055
+        },
+        {
+            "clip": "s7_enemy_die_fabric_3",
+            "rmsDb": -6.230000019073486,
+            "gainDb": -5.599999904632568
+        },
+        {
+            "clip": "s7_enemy_die_glass_0",
+            "rmsDb": -7.239999771118164,
+            "gainDb": -4.590000152587891
+        },
+        {
+            "clip": "s7_enemy_die_glass_1",
+            "rmsDb": -6.21999979019165,
+            "gainDb": -5.610000133514404
+        },
+        {
+            "clip": "s7_enemy_die_glass_2",
+            "rmsDb": -7.440000057220459,
+            "gainDb": -4.389999866485596
+        },
+        {
+            "clip": "s7_enemy_die_glass_3",
+            "rmsDb": -8.859999656677246,
+            "gainDb": -2.9700000286102297
+        },
+        {
+            "clip": "s7_enemy_die_large_0",
+            "rmsDb": -7.0,
+            "gainDb": -4.829999923706055
+        },
+        {
+            "clip": "s7_enemy_die_large_1",
+            "rmsDb": -7.010000228881836,
+            "gainDb": -4.820000171661377
+        },
+        {
+            "clip": "s7_enemy_die_large_2",
+            "rmsDb": -7.039999961853027,
+            "gainDb": -4.789999961853027
+        },
+        {
+            "clip": "s7_enemy_die_metal_0",
+            "rmsDb": -8.579999923706055,
+            "gainDb": -3.25
+        },
+        {
+            "clip": "s7_enemy_die_metal_1",
+            "rmsDb": -8.710000038146973,
+            "gainDb": -3.119999885559082
+        },
+        {
+            "clip": "s7_enemy_die_metal_2",
+            "rmsDb": -7.090000152587891,
+            "gainDb": -4.739999771118164
+        },
+        {
+            "clip": "s7_enemy_die_metal_3",
+            "rmsDb": -6.889999866485596,
+            "gainDb": -4.940000057220459
+        },
+        {
+            "clip": "s7_enemy_die_paper_0",
+            "rmsDb": -6.179999828338623,
+            "gainDb": -5.650000095367432
+        },
+        {
+            "clip": "s7_enemy_die_paper_1",
+            "rmsDb": -6.199999809265137,
+            "gainDb": -5.630000114440918
+        },
+        {
+            "clip": "s7_enemy_die_paper_2",
+            "rmsDb": -6.190000057220459,
+            "gainDb": -5.639999866485596
+        },
+        {
+            "clip": "s7_enemy_die_paper_3",
+            "rmsDb": -6.179999828338623,
+            "gainDb": -5.650000095367432
+        },
+        {
+            "clip": "s7_enemy_die_wax_0",
+            "rmsDb": -6.099999904632568,
+            "gainDb": -5.730000019073486
+        },
+        {
+            "clip": "s7_enemy_die_wax_1",
+            "rmsDb": -6.53000020980835,
+            "gainDb": -5.300000190734863
+        },
+        {
+            "clip": "s7_enemy_die_wax_2",
+            "rmsDb": -6.420000076293945,
+            "gainDb": -5.409999847412109
+        },
+        {
+            "clip": "s7_enemy_die_wax_3",
+            "rmsDb": -6.28000020980835,
+            "gainDb": -5.550000190734863
+        },
+        {
+            "clip": "s7_enemy_die_wood_0",
+            "rmsDb": -6.320000171661377,
+            "gainDb": -5.510000228881836
+        },
+        {
+            "clip": "s7_enemy_die_wood_1",
+            "rmsDb": -6.320000171661377,
+            "gainDb": -5.510000228881836
+        },
+        {
+            "clip": "s7_enemy_die_wood_2",
+            "rmsDb": -6.289999961853027,
+            "gainDb": -5.539999961853027
+        },
+        {
+            "clip": "s7_enemy_die_wood_3",
+            "rmsDb": -6.309999942779541,
+            "gainDb": -5.519999980926514
+        },
+        {
+            "clip": "s7_enemy_hurt_0",
+            "rmsDb": -11.600000381469727,
+            "gainDb": -0.23000000417232514
+        },
+        {
+            "clip": "s7_enemy_hurt_1",
+            "rmsDb": -11.65999984741211,
+            "gainDb": -0.17000000178813935
+        },
+        {
+            "clip": "s7_enemy_hurt_2",
+            "rmsDb": -11.640000343322754,
+            "gainDb": -0.1899999976158142
+        },
+        {
+            "clip": "s7_enemy_hurt_3",
+            "rmsDb": -11.829999923706055,
+            "gainDb": 0.0
+        },
+        {
+            "clip": "s7_enemy_hurt_4",
+            "rmsDb": -11.699999809265137,
+            "gainDb": -0.12999999523162843
+        },
+        {
+            "clip": "s7_enemy_hurt_5",
+            "rmsDb": -11.5600004196167,
+            "gainDb": -0.27000001072883608
+        },
+        {
+            "clip": "s7_enemy_lunge_0",
+            "rmsDb": -9.75,
+            "gainDb": -2.0799999237060549
+        },
+        {
+            "clip": "s7_enemy_lunge_1",
+            "rmsDb": -11.319999694824219,
+            "gainDb": -0.5099999904632568
+        },
+        {
+            "clip": "s7_enemy_lunge_2",
+            "rmsDb": -11.119999885559082,
+            "gainDb": -0.7099999785423279
+        },
+        {
+            "clip": "s7_enemy_lunge_3",
+            "rmsDb": -9.4399995803833,
+            "gainDb": -2.390000104904175
+        },
+        {
+            "clip": "s7_enemy_mimic_wake_0",
+            "rmsDb": -8.109999656677246,
+            "gainDb": -3.7200000286102297
+        },
+        {
+            "clip": "s7_enemy_mimic_wake_1",
+            "rmsDb": -8.109999656677246,
+            "gainDb": -3.7200000286102297
+        },
+        {
+            "clip": "s7_enemy_shot_arc_0",
+            "rmsDb": -9.989999771118164,
+            "gainDb": -1.840000033378601
+        },
+        {
+            "clip": "s7_enemy_shot_arc_1",
+            "rmsDb": -9.9399995803833,
+            "gainDb": -1.8899999856948853
+        },
+        {
+            "clip": "s7_enemy_shot_arc_2",
+            "rmsDb": -11.270000457763672,
+            "gainDb": -0.5600000023841858
+        },
+        {
+            "clip": "s7_enemy_shot_burst_0",
+            "rmsDb": -11.369999885559082,
+            "gainDb": -0.46000000834465029
+        },
+        {
+            "clip": "s7_enemy_shot_burst_1",
+            "rmsDb": -10.100000381469727,
+            "gainDb": -1.7300000190734864
+        },
+        {
+            "clip": "s7_enemy_shot_burst_2",
+            "rmsDb": -11.380000114440918,
+            "gainDb": -0.44999998807907107
+        },
+        {
+            "clip": "s7_enemy_shot_spiral_0",
+            "rmsDb": -9.869999885559082,
+            "gainDb": -1.9600000381469727
+        },
+        {
+            "clip": "s7_enemy_shot_spiral_1",
+            "rmsDb": -9.850000381469727,
+            "gainDb": -1.9800000190734864
+        },
+        {
+            "clip": "s7_enemy_shot_spiral_2",
+            "rmsDb": -9.920000076293946,
+            "gainDb": -1.909999966621399
+        },
+        {
+            "clip": "s7_enemy_spit_fire_0",
+            "rmsDb": -10.390000343322754,
+            "gainDb": -1.440000057220459
+        },
+        {
+            "clip": "s7_enemy_spit_fire_1",
+            "rmsDb": -10.420000076293946,
+            "gainDb": -1.409999966621399
+        },
+        {
+            "clip": "s7_enemy_spit_fire_2",
+            "rmsDb": -10.579999923706055,
+            "gainDb": -1.25
+        },
+        {
+            "clip": "s7_enemy_spit_fire_3",
+            "rmsDb": -10.5600004196167,
+            "gainDb": -1.2699999809265137
+        },
+        {
+            "clip": "s7_enemy_spit_fire_4",
+            "rmsDb": -10.329999923706055,
+            "gainDb": -1.5
+        },
+        {
+            "clip": "s7_enemy_spit_windup_0",
+            "rmsDb": -10.720000267028809,
+            "gainDb": -1.1100000143051148
+        },
+        {
+            "clip": "s7_enemy_spit_windup_1",
+            "rmsDb": -11.829999923706055,
+            "gainDb": 0.0
+        },
+        {
+            "clip": "s7_enemy_spit_windup_2",
+            "rmsDb": -10.470000267028809,
+            "gainDb": -1.3600000143051148
+        },
+        {
+            "clip": "s7_enemy_spit_windup_3",
+            "rmsDb": -11.680000305175782,
+            "gainDb": -0.15000000596046449
+        },
+        {
+            "clip": "s7_event_eclipse_start_0",
+            "rmsDb": -15.90999984741211,
+            "gainDb": 4.079999923706055
+        },
+        {
+            "clip": "s7_event_eclipse_start_1",
+            "rmsDb": -15.90999984741211,
+            "gainDb": 4.079999923706055
+        },
+        {
+            "clip": "s7_event_end_0",
+            "rmsDb": -14.520000457763672,
+            "gainDb": 2.690000057220459
+        },
+        {
+            "clip": "s7_event_end_1",
+            "rmsDb": -14.520000457763672,
+            "gainDb": 2.690000057220459
+        },
+        {
+            "clip": "s7_event_parade_start_0",
+            "rmsDb": -15.0600004196167,
+            "gainDb": 3.2300000190734865
+        },
+        {
+            "clip": "s7_event_parade_start_1",
+            "rmsDb": -15.0600004196167,
+            "gainDb": 3.2300000190734865
+        },
+        {
+            "clip": "s7_event_reward_0",
+            "rmsDb": -14.079999923706055,
+            "gainDb": 2.25
+        },
+        {
+            "clip": "s7_event_reward_1",
+            "rmsDb": -14.079999923706055,
+            "gainDb": 2.25
+        },
+        {
+            "clip": "s7_event_reward_2",
+            "rmsDb": -14.079999923706055,
+            "gainDb": 2.25
+        },
+        {
+            "clip": "s7_event_trap_start_0",
+            "rmsDb": -12.510000228881836,
+            "gainDb": 0.6800000071525574
+        },
+        {
+            "clip": "s7_event_trap_start_1",
+            "rmsDb": -12.510000228881836,
+            "gainDb": 0.6800000071525574
+        },
+        {
+            "clip": "s7_event_warn_0",
+            "rmsDb": -14.680000305175782,
+            "gainDb": 2.8499999046325685
+        },
+        {
+            "clip": "s7_event_warn_1",
+            "rmsDb": -14.680000305175782,
+            "gainDb": 2.8499999046325685
+        },
+        {
+            "clip": "s7_fx_burn_0",
+            "rmsDb": -13.079999923706055,
+            "gainDb": 1.25
+        },
+        {
+            "clip": "s7_fx_burn_1",
+            "rmsDb": -13.260000228881836,
+            "gainDb": 1.4299999475479127
+        },
+        {
+            "clip": "s7_fx_burn_2",
+            "rmsDb": -13.390000343322754,
+            "gainDb": 1.559999942779541
+        },
+        {
+            "clip": "s7_fx_burn_3",
+            "rmsDb": -13.220000267028809,
+            "gainDb": 1.3899999856948853
+        },
+        {
+            "clip": "s7_fx_chill_0",
+            "rmsDb": -14.020000457763672,
+            "gainDb": 2.190000057220459
+        },
+        {
+            "clip": "s7_fx_chill_1",
+            "rmsDb": -13.729999542236329,
+            "gainDb": 1.899999976158142
+        },
+        {
+            "clip": "s7_fx_chill_2",
+            "rmsDb": -14.8100004196167,
+            "gainDb": 2.9800000190734865
+        },
+        {
+            "clip": "s7_fx_chill_3",
+            "rmsDb": -16.100000381469728,
+            "gainDb": 4.269999980926514
+        },
+        {
+            "clip": "s7_fx_field_zipper_0",
+            "rmsDb": -15.640000343322754,
+            "gainDb": 3.809999942779541
+        },
+        {
+            "clip": "s7_fx_field_zipper_1",
+            "rmsDb": -14.0600004196167,
+            "gainDb": 2.2300000190734865
+        },
+        {
+            "clip": "s7_fx_field_zipper_2",
+            "rmsDb": -14.399999618530274,
+            "gainDb": 2.569999933242798
+        },
+        {
+            "clip": "s7_fx_hazard_hit_0",
+            "rmsDb": -6.369999885559082,
+            "gainDb": -5.460000038146973
+        },
+        {
+            "clip": "s7_fx_hazard_hit_1",
+            "rmsDb": -6.369999885559082,
+            "gainDb": -5.460000038146973
+        },
+        {
+            "clip": "s7_fx_hazard_hit_2",
+            "rmsDb": -6.360000133514404,
+            "gainDb": -5.46999979019165
+        },
+        {
+            "clip": "s7_fx_hazard_warn_0",
+            "rmsDb": -14.15999984741211,
+            "gainDb": 2.3299999237060549
+        },
+        {
+            "clip": "s7_fx_hazard_warn_1",
+            "rmsDb": -14.15999984741211,
+            "gainDb": 2.3299999237060549
+        },
+        {
+            "clip": "s7_fx_knockback_0",
+            "rmsDb": -7.739999771118164,
+            "gainDb": -4.090000152587891
+        },
+        {
+            "clip": "s7_fx_knockback_1",
+            "rmsDb": -7.710000038146973,
+            "gainDb": -4.119999885559082
+        },
+        {
+            "clip": "s7_fx_knockback_2",
+            "rmsDb": -7.730000019073486,
+            "gainDb": -4.099999904632568
+        },
+        {
+            "clip": "s7_fx_knockback_3",
+            "rmsDb": -7.710000038146973,
+            "gainDb": -4.119999885559082
+        },
+        {
+            "clip": "s7_fx_reaction_arcane_0",
+            "rmsDb": -13.449999809265137,
+            "gainDb": 1.6200000047683716
+        },
+        {
+            "clip": "s7_fx_reaction_arcane_1",
+            "rmsDb": -13.449999809265137,
+            "gainDb": 1.6200000047683716
+        },
+        {
+            "clip": "s7_fx_reaction_shatter_0",
+            "rmsDb": -11.90999984741211,
+            "gainDb": 0.07999999821186066
+        },
+        {
+            "clip": "s7_fx_reaction_shatter_1",
+            "rmsDb": -11.90999984741211,
+            "gainDb": 0.07999999821186066
+        },
+        {
+            "clip": "s7_fx_reaction_steam_0",
+            "rmsDb": -17.790000915527345,
+            "gainDb": 5.960000038146973
+        },
+        {
+            "clip": "s7_fx_reaction_steam_1",
+            "rmsDb": -17.739999771118165,
+            "gainDb": 5.909999847412109
+        },
+        {
+            "clip": "s7_hero_charge_ready_0",
+            "rmsDb": -14.600000381469727,
+            "gainDb": 2.7699999809265138
+        },
+        {
+            "clip": "s7_hero_charge_ready_1",
+            "rmsDb": -14.600000381469727,
+            "gainDb": 2.7699999809265138
+        },
+        {
+            "clip": "s7_hero_clock_runner_0",
+            "rmsDb": -14.770000457763672,
+            "gainDb": 2.940000057220459
+        },
+        {
+            "clip": "s7_hero_clock_runner_1",
+            "rmsDb": -14.770000457763672,
+            "gainDb": 2.940000057220459
+        },
+        {
+            "clip": "s7_hero_dream_breath_0",
+            "rmsDb": -13.5600004196167,
+            "gainDb": 1.7300000190734864
+        },
+        {
+            "clip": "s7_hero_dream_breath_1",
+            "rmsDb": -13.390000343322754,
+            "gainDb": 1.559999942779541
+        },
+        {
+            "clip": "s7_hero_glass_gambler_0",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_hero_glass_gambler_1",
+            "rmsDb": -12.390000343322754,
+            "gainDb": 0.5600000023841858
+        },
+        {
+            "clip": "s7_hero_lantern_stride_0",
+            "rmsDb": -14.5600004196167,
+            "gainDb": 2.7300000190734865
+        },
+        {
+            "clip": "s7_hero_lantern_stride_1",
+            "rmsDb": -14.40999984741211,
+            "gainDb": 2.5799999237060549
+        },
+        {
+            "clip": "s7_hero_mirror_guard_0",
+            "rmsDb": -11.979999542236329,
+            "gainDb": 0.15000000596046449
+        },
+        {
+            "clip": "s7_hero_mirror_guard_1",
+            "rmsDb": -12.180000305175782,
+            "gainDb": 0.3499999940395355
+        },
+        {
+            "clip": "s7_hero_parcel_express_0",
+            "rmsDb": -11.819999694824219,
+            "gainDb": -0.009999999776482582
+        },
+        {
+            "clip": "s7_hero_parcel_express_1",
+            "rmsDb": -11.829999923706055,
+            "gainDb": 0.0
+        },
+        {
+            "clip": "s7_hero_pulse_ember_0",
+            "rmsDb": -11.15999984741211,
+            "gainDb": -0.6700000166893005
+        },
+        {
+            "clip": "s7_hero_pulse_ember_1",
+            "rmsDb": -11.25,
+            "gainDb": -0.5799999833106995
+        },
+        {
+            "clip": "s7_hero_pulse_frost_0",
+            "rmsDb": -11.970000267028809,
+            "gainDb": 0.14000000059604646
+        },
+        {
+            "clip": "s7_hero_pulse_frost_1",
+            "rmsDb": -12.069999694824219,
+            "gainDb": 0.23999999463558198
+        },
+        {
+            "clip": "s7_hero_rooted_oracle_0",
+            "rmsDb": -14.140000343322754,
+            "gainDb": 2.309999942779541
+        },
+        {
+            "clip": "s7_hero_rooted_oracle_1",
+            "rmsDb": -14.010000228881836,
+            "gainDb": 2.180000066757202
+        },
+        {
+            "clip": "s7_hero_solo_maw_0",
+            "rmsDb": -10.819999694824219,
+            "gainDb": -1.0099999904632569
+        },
+        {
+            "clip": "s7_hero_solo_maw_1",
+            "rmsDb": -10.5600004196167,
+            "gainDb": -1.2699999809265137
+        },
+        {
+            "clip": "s7_hero_solo_maw_2",
+            "rmsDb": -10.800000190734864,
+            "gainDb": -1.0299999713897706
+        },
+        {
+            "clip": "s7_hero_tide_collector_0",
+            "rmsDb": -13.979999542236329,
+            "gainDb": 2.1500000953674318
+        },
+        {
+            "clip": "s7_hero_tide_collector_1",
+            "rmsDb": -13.5600004196167,
+            "gainDb": 1.7300000190734864
+        },
+        {
+            "clip": "s7_hero_treasure_tax_0",
+            "rmsDb": -16.729999542236329,
+            "gainDb": 4.900000095367432
+        },
+        {
+            "clip": "s7_hero_treasure_tax_1",
+            "rmsDb": -16.729999542236329,
+            "gainDb": 4.900000095367432
+        },
+        {
+            "clip": "s7_loot_chest_appear_0",
+            "rmsDb": -12.819999694824219,
+            "gainDb": 0.9900000095367432
+        },
+        {
+            "clip": "s7_loot_chest_appear_1",
+            "rmsDb": -12.819999694824219,
+            "gainDb": 0.9900000095367432
+        },
+        {
+            "clip": "s7_loot_chest_open_0",
+            "rmsDb": -12.529999732971192,
+            "gainDb": 0.699999988079071
+        },
+        {
+            "clip": "s7_loot_chest_open_1",
+            "rmsDb": -12.529999732971192,
+            "gainDb": 0.699999988079071
+        },
+        {
+            "clip": "s7_loot_chest_open_2",
+            "rmsDb": -12.529999732971192,
+            "gainDb": 0.699999988079071
+        },
+        {
+            "clip": "s7_loot_coin_bounce_0",
+            "rmsDb": -14.130000114440918,
+            "gainDb": 2.299999952316284
+        },
+        {
+            "clip": "s7_loot_coin_bounce_1",
+            "rmsDb": -14.15999984741211,
+            "gainDb": 2.3299999237060549
+        },
+        {
+            "clip": "s7_loot_coin_bounce_2",
+            "rmsDb": -14.100000381469727,
+            "gainDb": 2.2699999809265138
+        },
+        {
+            "clip": "s7_loot_coin_bounce_3",
+            "rmsDb": -14.149999618530274,
+            "gainDb": 2.319999933242798
+        },
+        {
+            "clip": "s7_loot_coin_bounce_4",
+            "rmsDb": -14.109999656677246,
+            "gainDb": 2.2799999713897707
+        },
+        {
+            "clip": "s7_loot_coin_drop_0",
+            "rmsDb": -13.149999618530274,
+            "gainDb": 1.3200000524520875
+        },
+        {
+            "clip": "s7_loot_coin_drop_1",
+            "rmsDb": -13.149999618530274,
+            "gainDb": 1.3200000524520875
+        },
+        {
+            "clip": "s7_loot_coin_drop_2",
+            "rmsDb": -13.149999618530274,
+            "gainDb": 1.3200000524520875
+        },
+        {
+            "clip": "s7_loot_coin_drop_3",
+            "rmsDb": -13.149999618530274,
+            "gainDb": 1.3200000524520875
+        },
+        {
+            "clip": "s7_loot_coin_pickup_0",
+            "rmsDb": -15.529999732971192,
+            "gainDb": 3.700000047683716
+        },
+        {
+            "clip": "s7_loot_coin_pickup_1",
+            "rmsDb": -15.529999732971192,
+            "gainDb": 3.700000047683716
+        },
+        {
+            "clip": "s7_loot_coin_pickup_2",
+            "rmsDb": -15.529999732971192,
+            "gainDb": 3.700000047683716
+        },
+        {
+            "clip": "s7_loot_coin_pickup_3",
+            "rmsDb": -15.529999732971192,
+            "gainDb": 3.700000047683716
+        },
+        {
+            "clip": "s7_loot_coin_vacuum_0",
+            "rmsDb": -15.630000114440918,
+            "gainDb": 3.799999952316284
+        },
+        {
+            "clip": "s7_loot_coin_vacuum_1",
+            "rmsDb": -15.65999984741211,
+            "gainDb": 3.8299999237060549
+        },
+        {
+            "clip": "s7_loot_coin_vacuum_2",
+            "rmsDb": -15.529999732971192,
+            "gainDb": 3.700000047683716
+        },
+        {
+            "clip": "s7_loot_egg_0",
+            "rmsDb": -12.850000381469727,
+            "gainDb": 1.0199999809265137
+        },
+        {
+            "clip": "s7_loot_egg_1",
+            "rmsDb": -12.850000381469727,
+            "gainDb": 1.0199999809265137
+        },
+        {
+            "clip": "s7_loot_egg_2",
+            "rmsDb": -12.850000381469727,
+            "gainDb": 1.0199999809265137
+        },
+        {
+            "clip": "s7_loot_heart_0",
+            "rmsDb": -11.039999961853028,
+            "gainDb": -0.7900000214576721
+        },
+        {
+            "clip": "s7_loot_heart_1",
+            "rmsDb": -11.039999961853028,
+            "gainDb": -0.7900000214576721
+        },
+        {
+            "clip": "s7_loot_heart_2",
+            "rmsDb": -11.039999961853028,
+            "gainDb": -0.7900000214576721
+        },
+        {
+            "clip": "s7_menu_spot_bell_0",
+            "rmsDb": -16.540000915527345,
+            "gainDb": 4.710000038146973
+        },
+        {
+            "clip": "s7_menu_spot_bell_1",
+            "rmsDb": -16.540000915527345,
+            "gainDb": 4.710000038146973
+        },
+        {
+            "clip": "s7_menu_spot_door_0",
+            "rmsDb": -12.75,
+            "gainDb": 0.9200000166893005
+        },
+        {
+            "clip": "s7_menu_spot_door_1",
+            "rmsDb": -12.75,
+            "gainDb": 0.9200000166893005
+        },
+        {
+            "clip": "s7_menu_spot_hero_0",
+            "rmsDb": -15.229999542236329,
+            "gainDb": 3.4000000953674318
+        },
+        {
+            "clip": "s7_menu_spot_hero_1",
+            "rmsDb": -15.229999542236329,
+            "gainDb": 3.4000000953674318
+        },
+        {
+            "clip": "s7_menu_spot_jar_0",
+            "rmsDb": -16.239999771118165,
+            "gainDb": 4.409999847412109
+        },
+        {
+            "clip": "s7_menu_spot_jar_1",
+            "rmsDb": -16.239999771118165,
+            "gainDb": 4.409999847412109
+        },
+        {
+            "clip": "s7_menu_spot_lamp_0",
+            "rmsDb": -14.960000038146973,
+            "gainDb": 3.130000114440918
+        },
+        {
+            "clip": "s7_menu_spot_lamp_1",
+            "rmsDb": -14.960000038146973,
+            "gainDb": 3.130000114440918
+        },
+        {
+            "clip": "s7_menu_spot_printer_0",
+            "rmsDb": -16.399999618530275,
+            "gainDb": 4.570000171661377
+        },
+        {
+            "clip": "s7_menu_spot_printer_1",
+            "rmsDb": -16.399999618530275,
+            "gainDb": 4.570000171661377
+        },
+        {
+            "clip": "s7_plr_death_0",
+            "rmsDb": -12.220000267028809,
+            "gainDb": 0.38999998569488528
+        },
+        {
+            "clip": "s7_plr_death_1",
+            "rmsDb": -12.220000267028809,
+            "gainDb": 0.38999998569488528
+        },
+        {
+            "clip": "s7_plr_dodge_0",
+            "rmsDb": -10.199999809265137,
+            "gainDb": -1.6299999952316285
+        },
+        {
+            "clip": "s7_plr_dodge_1",
+            "rmsDb": -10.050000190734864,
+            "gainDb": -1.7799999713897706
+        },
+        {
+            "clip": "s7_plr_dodge_2",
+            "rmsDb": -10.180000305175782,
+            "gainDb": -1.649999976158142
+        },
+        {
+            "clip": "s7_plr_heal_0",
+            "rmsDb": -12.479999542236329,
+            "gainDb": 0.6499999761581421
+        },
+        {
+            "clip": "s7_plr_heal_1",
+            "rmsDb": -12.479999542236329,
+            "gainDb": 0.6499999761581421
+        },
+        {
+            "clip": "s7_plr_heal_2",
+            "rmsDb": -12.479999542236329,
+            "gainDb": 0.6499999761581421
+        },
+        {
+            "clip": "s7_plr_hurt_0",
+            "rmsDb": -7.190000057220459,
+            "gainDb": -4.639999866485596
+        },
+        {
+            "clip": "s7_plr_hurt_1",
+            "rmsDb": -7.179999828338623,
+            "gainDb": -4.650000095367432
+        },
+        {
+            "clip": "s7_plr_hurt_2",
+            "rmsDb": -7.199999809265137,
+            "gainDb": -4.630000114440918
+        },
+        {
+            "clip": "s7_plr_hurt_3",
+            "rmsDb": -9.210000038146973,
+            "gainDb": -2.619999885559082
+        },
+        {
+            "clip": "s7_plr_hurt_4",
+            "rmsDb": -10.6899995803833,
+            "gainDb": -1.1399999856948853
+        },
+        {
+            "clip": "s7_plr_lowhp_0",
+            "rmsDb": -9.079999923706055,
+            "gainDb": -2.75
+        },
+        {
+            "clip": "s7_plr_lowhp_1",
+            "rmsDb": -9.079999923706055,
+            "gainDb": -2.75
+        },
+        {
+            "clip": "s7_shop_approach_0",
+            "rmsDb": -9.420000076293946,
+            "gainDb": -2.4100000858306886
+        },
+        {
+            "clip": "s7_shop_approach_1",
+            "rmsDb": -9.420000076293946,
+            "gainDb": -2.4100000858306886
+        },
+        {
+            "clip": "s7_shop_approach_2",
+            "rmsDb": -9.420000076293946,
+            "gainDb": -2.4100000858306886
+        },
+        {
+            "clip": "s7_shop_approach_3",
+            "rmsDb": -9.420000076293946,
+            "gainDb": -2.4100000858306886
+        },
+        {
+            "clip": "s7_shop_buy_dream_0",
+            "rmsDb": -11.640000343322754,
+            "gainDb": -0.1899999976158142
+        },
+        {
+            "clip": "s7_shop_buy_dream_1",
+            "rmsDb": -11.640000343322754,
+            "gainDb": -0.1899999976158142
+        },
+        {
+            "clip": "s7_shop_buy_dream_2",
+            "rmsDb": -11.640000343322754,
+            "gainDb": -0.1899999976158142
+        },
+        {
+            "clip": "s7_shop_buy_gold_0",
+            "rmsDb": -8.979999542236329,
+            "gainDb": -2.8499999046325685
+        },
+        {
+            "clip": "s7_shop_buy_gold_1",
+            "rmsDb": -8.979999542236329,
+            "gainDb": -2.8499999046325685
+        },
+        {
+            "clip": "s7_shop_buy_gold_2",
+            "rmsDb": -8.979999542236329,
+            "gainDb": -2.8499999046325685
+        },
+        {
+            "clip": "s7_shop_buy_gold_3",
+            "rmsDb": -8.979999542236329,
+            "gainDb": -2.8499999046325685
+        },
+        {
+            "clip": "s7_shop_carpet_open_0",
+            "rmsDb": -14.600000381469727,
+            "gainDb": 2.7699999809265138
+        },
+        {
+            "clip": "s7_shop_carpet_open_1",
+            "rmsDb": -14.0,
+            "gainDb": 2.1700000762939455
+        },
+        {
+            "clip": "s7_shop_carpet_roll_0",
+            "rmsDb": -13.569999694824219,
+            "gainDb": 1.7400000095367432
+        },
+        {
+            "clip": "s7_shop_carpet_roll_1",
+            "rmsDb": -12.100000381469727,
+            "gainDb": 0.27000001072883608
+        },
+        {
+            "clip": "s7_shop_deny_egg_0",
+            "rmsDb": -12.34000015258789,
+            "gainDb": 0.5099999904632568
+        },
+        {
+            "clip": "s7_shop_deny_egg_1",
+            "rmsDb": -12.34000015258789,
+            "gainDb": 0.5099999904632568
+        },
+        {
+            "clip": "s7_shop_deny_gold_0",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_shop_deny_gold_1",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_shop_deny_hp_0",
+            "rmsDb": -11.880000114440918,
+            "gainDb": 0.05000000074505806
+        },
+        {
+            "clip": "s7_shop_deny_hp_1",
+            "rmsDb": -11.880000114440918,
+            "gainDb": 0.05000000074505806
+        },
+        {
+            "clip": "s7_shop_descend_0",
+            "rmsDb": -14.90999984741211,
+            "gainDb": 3.0799999237060549
+        },
+        {
+            "clip": "s7_shop_descend_1",
+            "rmsDb": -14.90999984741211,
+            "gainDb": 3.0799999237060549
+        },
+        {
+            "clip": "s7_shop_focus_0",
+            "rmsDb": -9.180000305175782,
+            "gainDb": -2.6500000953674318
+        },
+        {
+            "clip": "s7_shop_focus_1",
+            "rmsDb": -9.180000305175782,
+            "gainDb": -2.6500000953674318
+        },
+        {
+            "clip": "s7_shop_focus_2",
+            "rmsDb": -9.180000305175782,
+            "gainDb": -2.6500000953674318
+        },
+        {
+            "clip": "s7_shop_focus_3",
+            "rmsDb": -9.180000305175782,
+            "gainDb": -2.6500000953674318
+        },
+        {
+            "clip": "s7_shop_fusion_0",
+            "rmsDb": -11.1899995803833,
+            "gainDb": -0.6399999856948853
+        },
+        {
+            "clip": "s7_shop_fusion_1",
+            "rmsDb": -11.1899995803833,
+            "gainDb": -0.6399999856948853
+        },
+        {
+            "clip": "s7_shop_invalid_0",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_shop_invalid_1",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_shop_invalid_2",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_shop_item_pop_0",
+            "rmsDb": -11.399999618530274,
+            "gainDb": -0.4300000071525574
+        },
+        {
+            "clip": "s7_shop_item_pop_1",
+            "rmsDb": -11.180000305175782,
+            "gainDb": -0.6499999761581421
+        },
+        {
+            "clip": "s7_shop_item_pop_2",
+            "rmsDb": -10.710000038146973,
+            "gainDb": -1.1200000047683716
+        },
+        {
+            "clip": "s7_shop_item_pop_3",
+            "rmsDb": -11.40999984741211,
+            "gainDb": -0.41999998688697817
+        },
+        {
+            "clip": "s7_shop_keeper_enter_dream_0",
+            "rmsDb": -13.550000190734864,
+            "gainDb": 1.7200000286102296
+        },
+        {
+            "clip": "s7_shop_keeper_enter_dream_1",
+            "rmsDb": -13.550000190734864,
+            "gainDb": 1.7200000286102296
+        },
+        {
+            "clip": "s7_shop_keeper_enter_gold_0",
+            "rmsDb": -12.260000228881836,
+            "gainDb": 0.4300000071525574
+        },
+        {
+            "clip": "s7_shop_keeper_enter_gold_1",
+            "rmsDb": -12.260000228881836,
+            "gainDb": 0.4300000071525574
+        },
+        {
+            "clip": "s7_shop_keeper_exit_dream_0",
+            "rmsDb": -13.510000228881836,
+            "gainDb": 1.6799999475479127
+        },
+        {
+            "clip": "s7_shop_keeper_exit_dream_1",
+            "rmsDb": -13.510000228881836,
+            "gainDb": 1.6799999475479127
+        },
+        {
+            "clip": "s7_shop_keeper_exit_gold_0",
+            "rmsDb": -13.430000305175782,
+            "gainDb": 1.600000023841858
+        },
+        {
+            "clip": "s7_shop_keeper_exit_gold_1",
+            "rmsDb": -13.430000305175782,
+            "gainDb": 1.600000023841858
+        },
+        {
+            "clip": "s7_shop_reroll_0",
+            "rmsDb": -14.699999809265137,
+            "gainDb": 2.869999885559082
+        },
+        {
+            "clip": "s7_shop_reroll_1",
+            "rmsDb": -14.699999809265137,
+            "gainDb": 2.869999885559082
+        },
+        {
+            "clip": "s7_shop_reroll_2",
+            "rmsDb": -14.699999809265137,
+            "gainDb": 2.869999885559082
+        },
+        {
+            "clip": "s7_shop_stand_appear_0",
+            "rmsDb": -10.75,
+            "gainDb": -1.0800000429153443
+        },
+        {
+            "clip": "s7_shop_stand_appear_1",
+            "rmsDb": -11.0,
+            "gainDb": -0.8299999833106995
+        },
+        {
+            "clip": "s7_shop_stand_appear_2",
+            "rmsDb": -10.989999771118164,
+            "gainDb": -0.8399999737739563
+        },
+        {
+            "clip": "s7_shop_stand_appear_3",
+            "rmsDb": -11.180000305175782,
+            "gainDb": -0.6499999761581421
+        },
+        {
+            "clip": "s7_shop_ticket_sold_0",
+            "rmsDb": -10.210000038146973,
+            "gainDb": -1.6200000047683716
+        },
+        {
+            "clip": "s7_shop_ticket_sold_1",
+            "rmsDb": -10.210000038146973,
+            "gainDb": -1.6200000047683716
+        },
+        {
+            "clip": "s7_shop_ticket_sold_2",
+            "rmsDb": -10.210000038146973,
+            "gainDb": -1.6200000047683716
+        },
+        {
+            "clip": "s7_shop_ticket_sway_0",
+            "rmsDb": -12.449999809265137,
+            "gainDb": 0.6200000047683716
+        },
+        {
+            "clip": "s7_shop_ticket_sway_1",
+            "rmsDb": -12.40999984741211,
+            "gainDb": 0.5799999833106995
+        },
+        {
+            "clip": "s7_shop_ticket_sway_2",
+            "rmsDb": -12.949999809265137,
+            "gainDb": 1.1200000047683716
+        },
+        {
+            "clip": "s7_sig_alarm_0",
+            "rmsDb": -16.829999923706056,
+            "gainDb": 5.0
+        },
+        {
+            "clip": "s7_sig_alarm_1",
+            "rmsDb": -16.829999923706056,
+            "gainDb": 5.0
+        },
+        {
+            "clip": "s7_sig_alarm_boom_0",
+            "rmsDb": -10.84000015258789,
+            "gainDb": -0.9900000095367432
+        },
+        {
+            "clip": "s7_sig_alarm_boom_1",
+            "rmsDb": -10.489999771118164,
+            "gainDb": -1.340000033378601
+        },
+        {
+            "clip": "s7_sig_alarm_boom_2",
+            "rmsDb": -11.149999618530274,
+            "gainDb": -0.6800000071525574
+        },
+        {
+            "clip": "s7_sig_bell_0",
+            "rmsDb": -13.229999542236329,
+            "gainDb": 1.399999976158142
+        },
+        {
+            "clip": "s7_sig_bell_1",
+            "rmsDb": -12.460000038146973,
+            "gainDb": 0.6299999952316284
+        },
+        {
+            "clip": "s7_sig_bell_2",
+            "rmsDb": -12.460000038146973,
+            "gainDb": 0.6299999952316284
+        },
+        {
+            "clip": "s7_sig_camera_0",
+            "rmsDb": -12.9399995803833,
+            "gainDb": 1.1100000143051148
+        },
+        {
+            "clip": "s7_sig_camera_1",
+            "rmsDb": -12.9399995803833,
+            "gainDb": 1.1100000143051148
+        },
+        {
+            "clip": "s7_sig_camera_2",
+            "rmsDb": -12.9399995803833,
+            "gainDb": 1.1100000143051148
+        },
+        {
+            "clip": "s7_sig_fish_0",
+            "rmsDb": -8.470000267028809,
+            "gainDb": -3.359999895095825
+        },
+        {
+            "clip": "s7_sig_fish_1",
+            "rmsDb": -8.529999732971192,
+            "gainDb": -3.299999952316284
+        },
+        {
+            "clip": "s7_sig_fish_2",
+            "rmsDb": -8.569999694824219,
+            "gainDb": -3.259999990463257
+        },
+        {
+            "clip": "s7_sig_hammer_0",
+            "rmsDb": -8.470000267028809,
+            "gainDb": -3.359999895095825
+        },
+        {
+            "clip": "s7_sig_hammer_1",
+            "rmsDb": -8.470000267028809,
+            "gainDb": -3.359999895095825
+        },
+        {
+            "clip": "s7_sig_hammer_2",
+            "rmsDb": -8.470000267028809,
+            "gainDb": -3.359999895095825
+        },
+        {
+            "clip": "s7_sig_iron_0",
+            "rmsDb": -9.470000267028809,
+            "gainDb": -2.359999895095825
+        },
+        {
+            "clip": "s7_sig_iron_1",
+            "rmsDb": -9.380000114440918,
+            "gainDb": -2.450000047683716
+        },
+        {
+            "clip": "s7_sig_iron_2",
+            "rmsDb": -9.319999694824219,
+            "gainDb": -2.509999990463257
+        },
+        {
+            "clip": "s7_sig_musicbox_0",
+            "rmsDb": -14.630000114440918,
+            "gainDb": 2.799999952316284
+        },
+        {
+            "clip": "s7_sig_musicbox_1",
+            "rmsDb": -14.180000305175782,
+            "gainDb": 2.3499999046325685
+        },
+        {
+            "clip": "s7_sig_musicbox_2",
+            "rmsDb": -14.630000114440918,
+            "gainDb": 2.799999952316284
+        },
+        {
+            "clip": "s7_sig_scissors_0",
+            "rmsDb": -14.020000457763672,
+            "gainDb": 2.190000057220459
+        },
+        {
+            "clip": "s7_sig_scissors_1",
+            "rmsDb": -13.8100004196167,
+            "gainDb": 1.9800000190734864
+        },
+        {
+            "clip": "s7_sig_scissors_2",
+            "rmsDb": -13.880000114440918,
+            "gainDb": 2.049999952316284
+        },
+        {
+            "clip": "s7_sig_scissors_3",
+            "rmsDb": -13.829999923706055,
+            "gainDb": 2.0
+        },
+        {
+            "clip": "s7_sig_stamp_0",
+            "rmsDb": -6.670000076293945,
+            "gainDb": -5.159999847412109
+        },
+        {
+            "clip": "s7_sig_stamp_1",
+            "rmsDb": -6.670000076293945,
+            "gainDb": -5.159999847412109
+        },
+        {
+            "clip": "s7_sig_stamp_2",
+            "rmsDb": -6.670000076293945,
+            "gainDb": -5.159999847412109
+        },
+        {
+            "clip": "s7_sig_tea_0",
+            "rmsDb": -14.050000190734864,
+            "gainDb": 2.2200000286102297
+        },
+        {
+            "clip": "s7_sig_tea_1",
+            "rmsDb": -13.90999984741211,
+            "gainDb": 2.0799999237060549
+        },
+        {
+            "clip": "s7_sig_tea_2",
+            "rmsDb": -13.869999885559082,
+            "gainDb": 2.0399999618530275
+        },
+        {
+            "clip": "s7_sig_umbrella_0",
+            "rmsDb": -10.130000114440918,
+            "gainDb": -1.7000000476837159
+        },
+        {
+            "clip": "s7_sig_umbrella_1",
+            "rmsDb": -9.729999542236329,
+            "gainDb": -2.0999999046325685
+        },
+        {
+            "clip": "s7_sig_umbrella_2",
+            "rmsDb": -9.5600004196167,
+            "gainDb": -2.2699999809265138
+        },
+        {
+            "clip": "s7_sting_defeat_0",
+            "rmsDb": -12.430000305175782,
+            "gainDb": 0.6000000238418579
+        },
+        {
+            "clip": "s7_sting_victory_0",
+            "rmsDb": -11.920000076293946,
+            "gainDb": 0.09000000357627869
+        },
+        {
+            "clip": "s7_sting_waveclear_0",
+            "rmsDb": -12.039999961853028,
+            "gainDb": 0.20999999344348908
+        },
+        {
+            "clip": "s7_sting_waveclear_1",
+            "rmsDb": -12.039999961853028,
+            "gainDb": 0.20999999344348908
+        },
+        {
+            "clip": "s7_ui_achievement_0",
+            "rmsDb": -12.069999694824219,
+            "gainDb": 0.23999999463558198
+        },
+        {
+            "clip": "s7_ui_achievement_1",
+            "rmsDb": -12.069999694824219,
+            "gainDb": 0.23999999463558198
+        },
+        {
+            "clip": "s7_ui_back_0",
+            "rmsDb": -12.819999694824219,
+            "gainDb": 0.9900000095367432
+        },
+        {
+            "clip": "s7_ui_back_1",
+            "rmsDb": -12.819999694824219,
+            "gainDb": 0.9900000095367432
+        },
+        {
+            "clip": "s7_ui_back_2",
+            "rmsDb": -12.819999694824219,
+            "gainDb": 0.9900000095367432
+        },
+        {
+            "clip": "s7_ui_close_0",
+            "rmsDb": -13.600000381469727,
+            "gainDb": 1.7699999809265137
+        },
+        {
+            "clip": "s7_ui_close_1",
+            "rmsDb": -13.59000015258789,
+            "gainDb": 1.7599999904632569
+        },
+        {
+            "clip": "s7_ui_coach_pop_0",
+            "rmsDb": -11.239999771118164,
+            "gainDb": -0.5899999737739563
+        },
+        {
+            "clip": "s7_ui_coach_pop_1",
+            "rmsDb": -11.239999771118164,
+            "gainDb": -0.5899999737739563
+        },
+        {
+            "clip": "s7_ui_coach_pop_2",
+            "rmsDb": -11.239999771118164,
+            "gainDb": -0.5899999737739563
+        },
+        {
+            "clip": "s7_ui_confirm_0",
+            "rmsDb": -11.229999542236329,
+            "gainDb": -0.6000000238418579
+        },
+        {
+            "clip": "s7_ui_confirm_1",
+            "rmsDb": -11.229999542236329,
+            "gainDb": -0.6000000238418579
+        },
+        {
+            "clip": "s7_ui_confirm_2",
+            "rmsDb": -11.229999542236329,
+            "gainDb": -0.6000000238418579
+        },
+        {
+            "clip": "s7_ui_cutin_bond_0",
+            "rmsDb": -10.550000190734864,
+            "gainDb": -1.2799999713897706
+        },
+        {
+            "clip": "s7_ui_cutin_bond_1",
+            "rmsDb": -10.550000190734864,
+            "gainDb": -1.2799999713897706
+        },
+        {
+            "clip": "s7_ui_cutin_bond_2",
+            "rmsDb": -10.550000190734864,
+            "gainDb": -1.2799999713897706
+        },
+        {
+            "clip": "s7_ui_cutin_boss_0",
+            "rmsDb": -6.699999809265137,
+            "gainDb": -5.130000114440918
+        },
+        {
+            "clip": "s7_ui_cutin_boss_1",
+            "rmsDb": -6.699999809265137,
+            "gainDb": -5.130000114440918
+        },
+        {
+            "clip": "s7_ui_cutin_encore_0",
+            "rmsDb": -12.350000381469727,
+            "gainDb": 0.5199999809265137
+        },
+        {
+            "clip": "s7_ui_cutin_encore_1",
+            "rmsDb": -12.350000381469727,
+            "gainDb": 0.5199999809265137
+        },
+        {
+            "clip": "s7_ui_cutin_showstopper_0",
+            "rmsDb": -14.979999542236329,
+            "gainDb": 3.1500000953674318
+        },
+        {
+            "clip": "s7_ui_cutin_showstopper_1",
+            "rmsDb": -14.979999542236329,
+            "gainDb": 3.1500000953674318
+        },
+        {
+            "clip": "s7_ui_encore_ready_0",
+            "rmsDb": -13.40999984741211,
+            "gainDb": 1.5800000429153443
+        },
+        {
+            "clip": "s7_ui_encore_ready_1",
+            "rmsDb": -13.40999984741211,
+            "gainDb": 1.5800000429153443
+        },
+        {
+            "clip": "s7_ui_error_0",
+            "rmsDb": -11.880000114440918,
+            "gainDb": 0.05000000074505806
+        },
+        {
+            "clip": "s7_ui_error_1",
+            "rmsDb": -11.880000114440918,
+            "gainDb": 0.05000000074505806
+        },
+        {
+            "clip": "s7_ui_hover_0",
+            "rmsDb": -9.34000015258789,
+            "gainDb": -2.490000009536743
+        },
+        {
+            "clip": "s7_ui_hover_1",
+            "rmsDb": -9.34000015258789,
+            "gainDb": -2.490000009536743
+        },
+        {
+            "clip": "s7_ui_hover_2",
+            "rmsDb": -9.34000015258789,
+            "gainDb": -2.490000009536743
+        },
+        {
+            "clip": "s7_ui_hover_3",
+            "rmsDb": -9.34000015258789,
+            "gainDb": -2.490000009536743
+        },
+        {
+            "clip": "s7_ui_locked_0",
+            "rmsDb": -12.350000381469727,
+            "gainDb": 0.5199999809265137
+        },
+        {
+            "clip": "s7_ui_locked_1",
+            "rmsDb": -12.350000381469727,
+            "gainDb": 0.5199999809265137
+        },
+        {
+            "clip": "s7_ui_merge_hint_0",
+            "rmsDb": -8.619999885559082,
+            "gainDb": -3.2100000381469728
+        },
+        {
+            "clip": "s7_ui_merge_hint_1",
+            "rmsDb": -8.619999885559082,
+            "gainDb": -3.2100000381469728
+        },
+        {
+            "clip": "s7_ui_open_0",
+            "rmsDb": -13.90999984741211,
+            "gainDb": 2.0799999237060549
+        },
+        {
+            "clip": "s7_ui_open_1",
+            "rmsDb": -13.920000076293946,
+            "gainDb": 2.0899999141693117
+        },
+        {
+            "clip": "s7_ui_page_0",
+            "rmsDb": -16.65999984741211,
+            "gainDb": 4.829999923706055
+        },
+        {
+            "clip": "s7_ui_page_1",
+            "rmsDb": -17.09000015258789,
+            "gainDb": 5.260000228881836
+        },
+        {
+            "clip": "s7_ui_page_2",
+            "rmsDb": -16.530000686645509,
+            "gainDb": 4.699999809265137
+        },
+        {
+            "clip": "s7_ui_pause_0",
+            "rmsDb": -11.869999885559082,
+            "gainDb": 0.03999999910593033
+        },
+        {
+            "clip": "s7_ui_receipt_0",
+            "rmsDb": -13.619999885559082,
+            "gainDb": 1.7899999618530274
+        },
+        {
+            "clip": "s7_ui_receipt_1",
+            "rmsDb": -13.619999885559082,
+            "gainDb": 1.7899999618530274
+        },
+        {
+            "clip": "s7_ui_resume_0",
+            "rmsDb": -12.289999961853028,
+            "gainDb": 0.46000000834465029
+        },
+        {
+            "clip": "s7_ui_select_0",
+            "rmsDb": -10.630000114440918,
+            "gainDb": -1.2000000476837159
+        },
+        {
+            "clip": "s7_ui_select_1",
+            "rmsDb": -10.630000114440918,
+            "gainDb": -1.2000000476837159
+        },
+        {
+            "clip": "s7_ui_select_2",
+            "rmsDb": -9.15999984741211,
+            "gainDb": -2.6700000762939455
+        },
+        {
+            "clip": "s7_ui_select_3",
+            "rmsDb": -10.630000114440918,
+            "gainDb": -1.2000000476837159
+        },
+        {
+            "clip": "s7_ui_setting_0",
+            "rmsDb": -12.020000457763672,
+            "gainDb": 0.1899999976158142
+        },
+        {
+            "clip": "s7_ui_setting_1",
+            "rmsDb": -12.020000457763672,
+            "gainDb": 0.1899999976158142
+        },
+        {
+            "clip": "s7_ui_setting_2",
+            "rmsDb": -12.020000457763672,
+            "gainDb": 0.1899999976158142
+        },
+        {
+            "clip": "s7_ui_tab_0",
+            "rmsDb": -11.029999732971192,
+            "gainDb": -0.800000011920929
+        },
+        {
+            "clip": "s7_ui_tab_1",
+            "rmsDb": -11.029999732971192,
+            "gainDb": -0.800000011920929
+        },
+        {
+            "clip": "s7_ui_tab_2",
+            "rmsDb": -11.029999732971192,
+            "gainDb": -0.800000011920929
+        },
+        {
+            "clip": "s7_ui_tooltip_0",
+            "rmsDb": -8.050000190734864,
+            "gainDb": -3.7799999713897707
+        },
+        {
+            "clip": "s7_ui_tooltip_1",
+            "rmsDb": -8.050000190734864,
+            "gainDb": -3.7799999713897707
+        },
+        {
+            "clip": "s7_ui_unlock_0",
+            "rmsDb": -12.109999656677246,
+            "gainDb": 0.2800000011920929
+        },
+        {
+            "clip": "s7_ui_unlock_1",
+            "rmsDb": -12.109999656677246,
+            "gainDb": 0.2800000011920929
+        },
+        {
+            "clip": "s7_ui_wave_stamp_0",
+            "rmsDb": -6.659999847412109,
+            "gainDb": -5.170000076293945
+        },
+        {
+            "clip": "s7_ui_wave_stamp_1",
+            "rmsDb": -6.659999847412109,
+            "gainDb": -5.170000076293945
+        },
+        {
+            "clip": "s7_up_ally_land_0",
+            "rmsDb": -9.289999961853028,
+            "gainDb": -2.5399999618530275
+        },
+        {
+            "clip": "s7_up_ally_land_1",
+            "rmsDb": -9.300000190734864,
+            "gainDb": -2.5299999713897707
+        },
+        {
+            "clip": "s7_up_ally_land_2",
+            "rmsDb": -9.289999961853028,
+            "gainDb": -2.5399999618530275
+        },
+        {
+            "clip": "s7_up_ally_land_3",
+            "rmsDb": -9.279999732971192,
+            "gainDb": -2.549999952316284
+        },
+        {
+            "clip": "s7_up_bond_t1_0",
+            "rmsDb": -11.380000114440918,
+            "gainDb": -0.44999998807907107
+        },
+        {
+            "clip": "s7_up_bond_t1_1",
+            "rmsDb": -11.380000114440918,
+            "gainDb": -0.44999998807907107
+        },
+        {
+            "clip": "s7_up_bond_t2_0",
+            "rmsDb": -10.510000228881836,
+            "gainDb": -1.3200000524520875
+        },
+        {
+            "clip": "s7_up_bond_t2_1",
+            "rmsDb": -10.510000228881836,
+            "gainDb": -1.3200000524520875
+        },
+        {
+            "clip": "s7_up_chain_0",
+            "rmsDb": -15.90999984741211,
+            "gainDb": 4.079999923706055
+        },
+        {
+            "clip": "s7_up_chain_1",
+            "rmsDb": -15.90999984741211,
+            "gainDb": 4.079999923706055
+        },
+        {
+            "clip": "s7_up_chain_2",
+            "rmsDb": -15.90999984741211,
+            "gainDb": 4.079999923706055
+        },
+        {
+            "clip": "s7_up_chain_3",
+            "rmsDb": -15.90999984741211,
+            "gainDb": 4.079999923706055
+        },
+        {
+            "clip": "s7_up_merge_0",
+            "rmsDb": -15.210000038146973,
+            "gainDb": 3.380000114440918
+        },
+        {
+            "clip": "s7_up_merge_1",
+            "rmsDb": -15.210000038146973,
+            "gainDb": 3.380000114440918
+        },
+        {
+            "clip": "s7_up_merge_2",
+            "rmsDb": -15.210000038146973,
+            "gainDb": 3.380000114440918
+        },
+        {
+            "clip": "s7_up_merge_gather_0",
+            "rmsDb": -15.40999984741211,
+            "gainDb": 3.5799999237060549
+        },
+        {
+            "clip": "s7_up_merge_gather_1",
+            "rmsDb": -15.180000305175782,
+            "gainDb": 3.3499999046325685
+        },
+        {
+            "clip": "s7_up_merge_gather_2",
+            "rmsDb": -15.329999923706055,
+            "gainDb": 3.5
+        },
+        {
+            "clip": "s7_up_rarity_blue_0",
+            "rmsDb": -12.180000305175782,
+            "gainDb": 0.3499999940395355
+        },
+        {
+            "clip": "s7_up_rarity_blue_1",
+            "rmsDb": -12.180000305175782,
+            "gainDb": 0.3499999940395355
+        },
+        {
+            "clip": "s7_up_rarity_gold_0",
+            "rmsDb": -12.930000305175782,
+            "gainDb": 1.100000023841858
+        },
+        {
+            "clip": "s7_up_rarity_gold_1",
+            "rmsDb": -12.930000305175782,
+            "gainDb": 1.100000023841858
+        },
+        {
+            "clip": "s7_up_rarity_purple_0",
+            "rmsDb": -13.949999809265137,
+            "gainDb": 2.119999885559082
+        },
+        {
+            "clip": "s7_up_rarity_purple_1",
+            "rmsDb": -13.949999809265137,
+            "gainDb": 2.119999885559082
+        },
+        {
+            "clip": "s7_up_star2_0",
+            "rmsDb": -10.949999809265137,
+            "gainDb": -0.8799999952316284
+        },
+        {
+            "clip": "s7_up_star2_1",
+            "rmsDb": -10.949999809265137,
+            "gainDb": -0.8799999952316284
+        },
+        {
+            "clip": "s7_up_star3_0",
+            "rmsDb": -12.239999771118164,
+            "gainDb": 0.4099999964237213
+        },
+        {
+            "clip": "s7_up_star3_1",
+            "rmsDb": -12.239999771118164,
+            "gainDb": 0.4099999964237213
+        },
+        {
+            "clip": "s7_wpn_boomerang_fly_0",
+            "rmsDb": -11.579999923706055,
+            "gainDb": -0.25
+        },
+        {
+            "clip": "s7_wpn_boomerang_fly_1",
+            "rmsDb": -11.640000343322754,
+            "gainDb": -0.1899999976158142
+        },
+        {
+            "clip": "s7_wpn_boomerang_fly_2",
+            "rmsDb": -11.449999809265137,
+            "gainDb": -0.3799999952316284
+        },
+        {
+            "clip": "s7_wpn_boomerang_return_0",
+            "rmsDb": -12.300000190734864,
+            "gainDb": 0.4699999988079071
+        },
+        {
+            "clip": "s7_wpn_boomerang_return_1",
+            "rmsDb": -12.199999809265137,
+            "gainDb": 0.3700000047683716
+        },
+        {
+            "clip": "s7_wpn_boomerang_return_2",
+            "rmsDb": -12.5,
+            "gainDb": 0.6700000166893005
+        },
+        {
+            "clip": "s7_wpn_bounce_0",
+            "rmsDb": -7.78000020980835,
+            "gainDb": -4.050000190734863
+        },
+        {
+            "clip": "s7_wpn_bounce_1",
+            "rmsDb": -7.380000114440918,
+            "gainDb": -4.449999809265137
+        },
+        {
+            "clip": "s7_wpn_bounce_2",
+            "rmsDb": -7.809999942779541,
+            "gainDb": -4.019999980926514
+        },
+        {
+            "clip": "s7_wpn_bounce_3",
+            "rmsDb": -7.75,
+            "gainDb": -4.079999923706055
+        },
+        {
+            "clip": "s7_wpn_bow_draw_0",
+            "rmsDb": -13.6899995803833,
+            "gainDb": 1.8600000143051148
+        },
+        {
+            "clip": "s7_wpn_bow_draw_1",
+            "rmsDb": -13.6899995803833,
+            "gainDb": 1.8600000143051148
+        },
+        {
+            "clip": "s7_wpn_bow_draw_2",
+            "rmsDb": -13.6899995803833,
+            "gainDb": 1.8600000143051148
+        },
+        {
+            "clip": "s7_wpn_bow_release_0",
+            "rmsDb": -9.010000228881836,
+            "gainDb": -2.819999933242798
+        },
+        {
+            "clip": "s7_wpn_bow_release_1",
+            "rmsDb": -8.850000381469727,
+            "gainDb": -2.9800000190734865
+        },
+        {
+            "clip": "s7_wpn_bow_release_2",
+            "rmsDb": -9.050000190734864,
+            "gainDb": -2.7799999713897707
+        },
+        {
+            "clip": "s7_wpn_bow_release_3",
+            "rmsDb": -9.0600004196167,
+            "gainDb": -2.7699999809265138
+        },
+        {
+            "clip": "s7_wpn_bow_release_4",
+            "rmsDb": -8.779999732971192,
+            "gainDb": -3.049999952316284
+        },
+        {
+            "clip": "s7_wpn_cast_arcane_0",
+            "rmsDb": -14.0600004196167,
+            "gainDb": 2.2300000190734865
+        },
+        {
+            "clip": "s7_wpn_cast_arcane_1",
+            "rmsDb": -13.760000228881836,
+            "gainDb": 1.9299999475479127
+        },
+        {
+            "clip": "s7_wpn_cast_arcane_2",
+            "rmsDb": -13.670000076293946,
+            "gainDb": 1.840000033378601
+        },
+        {
+            "clip": "s7_wpn_cast_arcane_3",
+            "rmsDb": -14.09000015258789,
+            "gainDb": 2.259999990463257
+        },
+        {
+            "clip": "s7_wpn_cast_fire_0",
+            "rmsDb": -13.3100004196167,
+            "gainDb": 1.4800000190734864
+        },
+        {
+            "clip": "s7_wpn_cast_fire_1",
+            "rmsDb": -13.270000457763672,
+            "gainDb": 1.440000057220459
+        },
+        {
+            "clip": "s7_wpn_cast_fire_2",
+            "rmsDb": -12.739999771118164,
+            "gainDb": 0.9100000262260437
+        },
+        {
+            "clip": "s7_wpn_cast_fire_3",
+            "rmsDb": -13.050000190734864,
+            "gainDb": 1.2200000286102296
+        },
+        {
+            "clip": "s7_wpn_cast_ice_0",
+            "rmsDb": -13.270000457763672,
+            "gainDb": 1.440000057220459
+        },
+        {
+            "clip": "s7_wpn_cast_ice_1",
+            "rmsDb": -12.15999984741211,
+            "gainDb": 0.33000001311302187
+        },
+        {
+            "clip": "s7_wpn_cast_ice_2",
+            "rmsDb": -11.880000114440918,
+            "gainDb": 0.05000000074505806
+        },
+        {
+            "clip": "s7_wpn_cast_ice_3",
+            "rmsDb": -11.819999694824219,
+            "gainDb": -0.009999999776482582
+        },
+        {
+            "clip": "s7_wpn_gun_pop_0",
+            "rmsDb": -8.390000343322754,
+            "gainDb": -3.440000057220459
+        },
+        {
+            "clip": "s7_wpn_gun_pop_1",
+            "rmsDb": -8.479999542236329,
+            "gainDb": -3.3499999046325685
+        },
+        {
+            "clip": "s7_wpn_gun_pop_2",
+            "rmsDb": -8.449999809265137,
+            "gainDb": -3.380000114440918
+        },
+        {
+            "clip": "s7_wpn_gun_pop_3",
+            "rmsDb": -8.399999618530274,
+            "gainDb": -3.430000066757202
+        },
+        {
+            "clip": "s7_wpn_launcher_0",
+            "rmsDb": -10.399999618530274,
+            "gainDb": -1.4299999475479127
+        },
+        {
+            "clip": "s7_wpn_launcher_1",
+            "rmsDb": -10.65999984741211,
+            "gainDb": -1.1699999570846558
+        },
+        {
+            "clip": "s7_wpn_launcher_2",
+            "rmsDb": -10.6899995803833,
+            "gainDb": -1.1399999856948853
+        },
+        {
+            "clip": "s7_wpn_launcher_3",
+            "rmsDb": -10.710000038146973,
+            "gainDb": -1.1200000047683716
+        },
+        {
+            "clip": "s7_wpn_magnet_pull_0",
+            "rmsDb": -13.270000457763672,
+            "gainDb": 1.440000057220459
+        },
+        {
+            "clip": "s7_wpn_magnet_pull_1",
+            "rmsDb": -13.359999656677246,
+            "gainDb": 1.5299999713897706
+        },
+        {
+            "clip": "s7_wpn_magnet_pull_2",
+            "rmsDb": -13.3100004196167,
+            "gainDb": 1.4800000190734864
+        },
+        {
+            "clip": "s7_wpn_needle_volley_0",
+            "rmsDb": -14.430000305175782,
+            "gainDb": 2.5999999046325685
+        },
+        {
+            "clip": "s7_wpn_needle_volley_1",
+            "rmsDb": -14.760000228881836,
+            "gainDb": 2.930000066757202
+        },
+        {
+            "clip": "s7_wpn_needle_volley_2",
+            "rmsDb": -14.550000190734864,
+            "gainDb": 2.7200000286102297
+        },
+        {
+            "clip": "s7_wpn_needle_volley_3",
+            "rmsDb": -14.569999694824219,
+            "gainDb": 2.740000009536743
+        },
+        {
+            "clip": "s7_wpn_pierce_0",
+            "rmsDb": -9.59000015258789,
+            "gainDb": -2.240000009536743
+        },
+        {
+            "clip": "s7_wpn_pierce_1",
+            "rmsDb": -9.569999694824219,
+            "gainDb": -2.259999990463257
+        },
+        {
+            "clip": "s7_wpn_pierce_2",
+            "rmsDb": -9.479999542236329,
+            "gainDb": -2.3499999046325685
+        },
+        {
+            "clip": "s7_wpn_pierce_3",
+            "rmsDb": -9.470000267028809,
+            "gainDb": -2.359999895095825
+        },
+        {
+            "clip": "s7_wpn_projector_cast_0",
+            "rmsDb": -11.739999771118164,
+            "gainDb": -0.09000000357627869
+        },
+        {
+            "clip": "s7_wpn_projector_cast_1",
+            "rmsDb": -13.489999771118164,
+            "gainDb": 1.659999966621399
+        },
+        {
+            "clip": "s7_wpn_projector_cast_2",
+            "rmsDb": -11.760000228881836,
+            "gainDb": -0.07000000029802323
+        },
+        {
+            "clip": "s7_wpn_ribbon_cut_0",
+            "rmsDb": -9.430000305175782,
+            "gainDb": -2.4000000953674318
+        },
+        {
+            "clip": "s7_wpn_ribbon_cut_1",
+            "rmsDb": -9.220000267028809,
+            "gainDb": -2.609999895095825
+        },
+        {
+            "clip": "s7_wpn_ribbon_cut_2",
+            "rmsDb": -9.6899995803833,
+            "gainDb": -2.140000104904175
+        },
+        {
+            "clip": "s7_wpn_ribbon_cut_3",
+            "rmsDb": -9.34000015258789,
+            "gainDb": -2.490000009536743
+        },
+        {
+            "clip": "s7_wpn_split_0",
+            "rmsDb": -8.619999885559082,
+            "gainDb": -3.2100000381469728
+        },
+        {
+            "clip": "s7_wpn_split_1",
+            "rmsDb": -9.279999732971192,
+            "gainDb": -2.549999952316284
+        },
+        {
+            "clip": "s7_wpn_split_2",
+            "rmsDb": -9.180000305175782,
+            "gainDb": -2.6500000953674318
+        },
+        {
+            "clip": "s7_wpn_split_3",
+            "rmsDb": -8.779999732971192,
+            "gainDb": -3.049999952316284
+        },
+        {
+            "clip": "s7_wpn_spring_slam_0",
+            "rmsDb": -6.420000076293945,
+            "gainDb": -5.409999847412109
+        },
+        {
+            "clip": "s7_wpn_spring_slam_1",
+            "rmsDb": -6.420000076293945,
+            "gainDb": -5.409999847412109
+        },
+        {
+            "clip": "s7_wpn_spring_slam_2",
+            "rmsDb": -6.420000076293945,
+            "gainDb": -5.409999847412109
+        },
+        {
+            "clip": "s7_wpn_yoyo_return_0",
+            "rmsDb": -12.729999542236329,
+            "gainDb": 0.8999999761581421
+        },
+        {
+            "clip": "s7_wpn_yoyo_return_1",
+            "rmsDb": -11.859999656677246,
+            "gainDb": 0.029999999329447748
+        },
+        {
+            "clip": "s7_wpn_yoyo_return_2",
+            "rmsDb": -11.420000076293946,
+            "gainDb": -0.4099999964237213
+        },
+        {
+            "clip": "s7_wpn_yoyo_throw_0",
+            "rmsDb": -13.65999984741211,
+            "gainDb": 1.8300000429153443
+        },
+        {
+            "clip": "s7_wpn_yoyo_throw_1",
+            "rmsDb": -11.65999984741211,
+            "gainDb": -0.17000000178813935
+        },
+        {
+            "clip": "s7_wpn_yoyo_throw_2",
+            "rmsDb": -12.920000076293946,
+            "gainDb": 1.090000033378601
+        },
+        {
+            "clip": "up_bell2_00",
+            "rmsDb": -14.170000076293946,
+            "gainDb": 2.3399999141693117
+        },
+        {
+            "clip": "up_bell3_00",
+            "rmsDb": -13.489999771118164,
+            "gainDb": 1.659999966621399
+        },
+        {
+            "clip": "up_bell4_00",
+            "rmsDb": -14.220000267028809,
+            "gainDb": 2.390000104904175
+        },
+        {
+            "clip": "up_bell5_00",
+            "rmsDb": -14.020000457763672,
+            "gainDb": 2.190000057220459
+        },
+        {
+            "clip": "up_bell5b_00",
+            "rmsDb": -13.289999961853028,
+            "gainDb": 1.4600000381469727
+        },
+        {
+            "clip": "up_bell_half_00",
+            "rmsDb": -12.720000267028809,
+            "gainDb": 0.8899999856948853
+        },
+        {
+            "clip": "up_note1_00",
+            "rmsDb": -12.329999923706055,
+            "gainDb": 0.5
+        },
+        {
+            "clip": "up_note2_00",
+            "rmsDb": -11.800000190734864,
+            "gainDb": -0.029999999329447748
+        },
+        {
+            "clip": "up_note3_00",
+            "rmsDb": -13.0600004196167,
+            "gainDb": 1.2300000190734864
+        },
+        {
+            "clip": "up_note4_00",
+            "rmsDb": -13.40999984741211,
+            "gainDb": 1.5800000429153443
+        },
+        {
+            "clip": "up_note5_00",
+            "rmsDb": -13.779999732971192,
+            "gainDb": 1.9500000476837159
         },
         {
             "clip": "voice_dream_farewell_00",
             "rmsDb": -12.329999923706055,
-            "gainDb": 0.25999999046325686
+            "gainDb": 0.5
         },
         {
             "clip": "voice_dream_farewell_01",
             "rmsDb": -11.1899995803833,
-            "gainDb": -0.8799999952316284
+            "gainDb": -0.6399999856948853
         },
         {
             "clip": "voice_dream_gasp_00",
             "rmsDb": -12.6899995803833,
-            "gainDb": 0.6200000047683716
+            "gainDb": 0.8600000143051148
         },
         {
             "clip": "voice_dream_gasp_01",
             "rmsDb": -12.930000305175782,
-            "gainDb": 0.8600000143051148
+            "gainDb": 1.100000023841858
         },
         {
             "clip": "voice_dream_hmm_00",
             "rmsDb": -6.78000020980835,
-            "gainDb": -5.289999961853027
+            "gainDb": -5.050000190734863
         },
         {
             "clip": "voice_dream_hmm_01",
             "rmsDb": -6.840000152587891,
-            "gainDb": -5.230000019073486
+            "gainDb": -4.989999771118164
         },
         {
             "clip": "voice_dream_laugh_00",
             "rmsDb": -13.579999923706055,
-            "gainDb": 1.5099999904632569
+            "gainDb": 1.75
         },
         {
             "clip": "voice_dream_laugh_01",
             "rmsDb": -13.619999885559082,
-            "gainDb": 1.5499999523162842
+            "gainDb": 1.7899999618530274
         },
         {
             "clip": "voice_dream_syl_00",
             "rmsDb": -13.630000114440918,
-            "gainDb": 1.559999942779541
+            "gainDb": 1.7999999523162842
         },
         {
             "clip": "voice_dream_syl_01",
             "rmsDb": -11.3100004196167,
-            "gainDb": -0.7599999904632568
+            "gainDb": -0.5199999809265137
         },
         {
             "clip": "voice_dream_syl_02",
             "rmsDb": -11.149999618530274,
-            "gainDb": -0.9200000166893005
+            "gainDb": -0.6800000071525574
         },
         {
             "clip": "voice_dream_syl_03",
             "rmsDb": -10.510000228881836,
-            "gainDb": -1.559999942779541
+            "gainDb": -1.3200000524520875
         },
         {
             "clip": "voice_dream_syl_04",
             "rmsDb": -8.8100004196167,
-            "gainDb": -3.259999990463257
+            "gainDb": -3.0199999809265138
         },
         {
             "clip": "voice_dream_syl_05",
             "rmsDb": -10.390000343322754,
-            "gainDb": -1.6799999475479127
+            "gainDb": -1.440000057220459
         },
         {
             "clip": "voice_dream_syl_06",
             "rmsDb": -11.859999656677246,
-            "gainDb": -0.20999999344348908
+            "gainDb": 0.029999999329447748
         },
         {
             "clip": "voice_dream_syl_07",
             "rmsDb": -9.579999923706055,
-            "gainDb": -2.490000009536743
+            "gainDb": -2.25
         },
         {
             "clip": "voice_gold_farewell_00",
             "rmsDb": -12.069999694824219,
-            "gainDb": 0.0
+            "gainDb": 0.23999999463558198
         },
         {
             "clip": "voice_gold_farewell_01",
             "rmsDb": -12.130000114440918,
-            "gainDb": 0.05999999865889549
+            "gainDb": 0.30000001192092898
         },
         {
             "clip": "voice_gold_gasp_00",
             "rmsDb": -11.0600004196167,
-            "gainDb": -1.0099999904632569
+            "gainDb": -0.7699999809265137
         },
         {
             "clip": "voice_gold_gasp_01",
             "rmsDb": -10.59000015258789,
-            "gainDb": -1.4800000190734864
+            "gainDb": -1.2400000095367432
         },
         {
             "clip": "voice_gold_hmm_00",
             "rmsDb": -9.199999809265137,
-            "gainDb": -2.869999885559082
+            "gainDb": -2.630000114440918
         },
         {
             "clip": "voice_gold_hmm_01",
             "rmsDb": -9.220000267028809,
-            "gainDb": -2.8499999046325685
+            "gainDb": -2.609999895095825
         },
         {
             "clip": "voice_gold_laugh_00",
             "rmsDb": -14.470000267028809,
-            "gainDb": 2.4000000953674318
+            "gainDb": 2.640000104904175
         },
         {
             "clip": "voice_gold_laugh_01",
             "rmsDb": -14.359999656677246,
-            "gainDb": 2.2899999618530275
+            "gainDb": 2.5299999713897707
         },
         {
             "clip": "voice_gold_syl_00",
             "rmsDb": -15.130000114440918,
-            "gainDb": 3.059999942779541
+            "gainDb": 3.299999952316284
         },
         {
             "clip": "voice_gold_syl_01",
             "rmsDb": -12.8100004196167,
-            "gainDb": 0.7400000095367432
+            "gainDb": 0.9800000190734863
         },
         {
             "clip": "voice_gold_syl_02",
             "rmsDb": -13.15999984741211,
-            "gainDb": 1.090000033378601
+            "gainDb": 1.3300000429153443
         },
         {
             "clip": "voice_gold_syl_03",
             "rmsDb": -11.640000343322754,
-            "gainDb": -0.4300000071525574
+            "gainDb": -0.1899999976158142
         },
         {
             "clip": "voice_gold_syl_04",
             "rmsDb": -10.850000381469727,
-            "gainDb": -1.2200000286102296
+            "gainDb": -0.9800000190734863
         },
         {
             "clip": "voice_gold_syl_05",
             "rmsDb": -13.329999923706055,
-            "gainDb": 1.2599999904632569
+            "gainDb": 1.5
         },
         {
             "clip": "voice_gold_syl_06",
             "rmsDb": -13.039999961853028,
-            "gainDb": 0.9700000286102295
+            "gainDb": 1.2100000381469727
         },
         {
             "clip": "voice_gold_syl_07",
             "rmsDb": -11.600000381469727,
-            "gainDb": -0.4699999988079071
-        },
-        {
-            "clip": "wpn_boomerang_return_00",
-            "rmsDb": -14.92,
-            "gainDb": 2.85
-        },
-        {
-            "clip": "wpn_boomerang_return_01",
-            "rmsDb": -15.71,
-            "gainDb": 3.64
-        },
-        {
-            "clip": "wpn_boomerang_return_02",
-            "rmsDb": -15.77,
-            "gainDb": 3.7
-        },
-        {
-            "clip": "wpn_bounce_00",
-            "rmsDb": -9.19,
-            "gainDb": -2.88
-        },
-        {
-            "clip": "wpn_bounce_01",
-            "rmsDb": -9.19,
-            "gainDb": -2.88
-        },
-        {
-            "clip": "wpn_bounce_02",
-            "rmsDb": -9.19,
-            "gainDb": -2.88
-        },
-        {
-            "clip": "wpn_bounce_03",
-            "rmsDb": -9.19,
-            "gainDb": -2.88
-        },
-        {
-            "clip": "wpn_bow_draw_00",
-            "rmsDb": -14.53,
-            "gainDb": 2.46
-        },
-        {
-            "clip": "wpn_bow_draw_01",
-            "rmsDb": -14.21,
-            "gainDb": 2.14
-        },
-        {
-            "clip": "wpn_bow_draw_02",
-            "rmsDb": -16.41,
-            "gainDb": 4.34
-        },
-        {
-            "clip": "wpn_bow_release_00",
-            "rmsDb": -14.26,
-            "gainDb": 2.19
-        },
-        {
-            "clip": "wpn_bow_release_01",
-            "rmsDb": -14.27,
-            "gainDb": 2.2
-        },
-        {
-            "clip": "wpn_bow_release_02",
-            "rmsDb": -14.25,
-            "gainDb": 2.18
-        },
-        {
-            "clip": "wpn_bow_release_03",
-            "rmsDb": -14.24,
-            "gainDb": 2.17
-        },
-        {
-            "clip": "wpn_bow_release_04",
-            "rmsDb": -14.25,
-            "gainDb": 2.18
-        },
-        {
-            "clip": "wpn_cast_fire_00",
-            "rmsDb": -13.06,
-            "gainDb": 0.99
-        },
-        {
-            "clip": "wpn_cast_fire_01",
-            "rmsDb": -13.35,
-            "gainDb": 1.28
-        },
-        {
-            "clip": "wpn_cast_fire_02",
-            "rmsDb": -13.24,
-            "gainDb": 1.17
-        },
-        {
-            "clip": "wpn_cast_fire_03",
-            "rmsDb": -12.96,
-            "gainDb": 0.89
-        },
-        {
-            "clip": "wpn_cast_ice_00",
-            "rmsDb": -12.94,
-            "gainDb": 0.87
-        },
-        {
-            "clip": "wpn_cast_ice_01",
-            "rmsDb": -13.43,
-            "gainDb": 1.36
-        },
-        {
-            "clip": "wpn_cast_ice_02",
-            "rmsDb": -13.2,
-            "gainDb": 1.13
-        },
-        {
-            "clip": "wpn_cast_ice_03",
-            "rmsDb": -14.61,
-            "gainDb": 2.54
-        },
-        {
-            "clip": "wpn_magnet_pull_00",
-            "rmsDb": -8.84,
-            "gainDb": -3.23
-        },
-        {
-            "clip": "wpn_magnet_pull_01",
-            "rmsDb": -8.84,
-            "gainDb": -3.23
-        },
-        {
-            "clip": "wpn_magnet_pull_02",
-            "rmsDb": -8.84,
-            "gainDb": -3.23
-        },
-        {
-            "clip": "wpn_needle_volley_00",
-            "rmsDb": -15.4,
-            "gainDb": 3.33
-        },
-        {
-            "clip": "wpn_needle_volley_01",
-            "rmsDb": -15.36,
-            "gainDb": 3.29
-        },
-        {
-            "clip": "wpn_needle_volley_02",
-            "rmsDb": -15.39,
-            "gainDb": 3.32
-        },
-        {
-            "clip": "wpn_needle_volley_03",
-            "rmsDb": -16.51,
-            "gainDb": 4.44
-        },
-        {
-            "clip": "wpn_pierce_00",
-            "rmsDb": -15.56,
-            "gainDb": 3.49
-        },
-        {
-            "clip": "wpn_pierce_01",
-            "rmsDb": -17.75,
-            "gainDb": 5.68
-        },
-        {
-            "clip": "wpn_pierce_02",
-            "rmsDb": -16.19,
-            "gainDb": 4.12
-        },
-        {
-            "clip": "wpn_pierce_03",
-            "rmsDb": -16.42,
-            "gainDb": 4.35
-        },
-        {
-            "clip": "wpn_projector_cast_00",
-            "rmsDb": -21.01,
-            "gainDb": 8.94
-        },
-        {
-            "clip": "wpn_projector_cast_01",
-            "rmsDb": -19.93,
-            "gainDb": 7.86
-        },
-        {
-            "clip": "wpn_projector_cast_02",
-            "rmsDb": -21.98,
-            "gainDb": 9.91
-        },
-        {
-            "clip": "wpn_ribbon_cut_00",
-            "rmsDb": -18.25,
-            "gainDb": 6.18
-        },
-        {
-            "clip": "wpn_ribbon_cut_01",
-            "rmsDb": -18.12,
-            "gainDb": 6.05
-        },
-        {
-            "clip": "wpn_ribbon_cut_02",
-            "rmsDb": -18.24,
-            "gainDb": 6.17
-        },
-        {
-            "clip": "wpn_ribbon_cut_03",
-            "rmsDb": -18.18,
-            "gainDb": 6.11
-        },
-        {
-            "clip": "wpn_spring_slam_00",
-            "rmsDb": -13.86,
-            "gainDb": 1.79
-        },
-        {
-            "clip": "wpn_spring_slam_01",
-            "rmsDb": -13.31,
-            "gainDb": 1.24
-        },
-        {
-            "clip": "wpn_spring_slam_02",
-            "rmsDb": -13.54,
-            "gainDb": 1.47
-        },
-        {
-            "clip": "wpn_yoyo_return_00",
-            "rmsDb": -14.82,
-            "gainDb": 2.75
-        },
-        {
-            "clip": "wpn_yoyo_return_01",
-            "rmsDb": -16.69,
-            "gainDb": 4.62
-        },
-        {
-            "clip": "wpn_yoyo_return_02",
-            "rmsDb": -14.75,
-            "gainDb": 2.68
-        },
-        {
-            "clip": "up_bell_half_00",
-            "rmsDb": -23.84,
-            "gainDb": 11.77
-        },
-        {
-            "clip": "up_bell2_00",
-            "rmsDb": -24.22,
-            "gainDb": 12.15
-        },
-        {
-            "clip": "up_bell3_00",
-            "rmsDb": -22.16,
-            "gainDb": 10.09
-        },
-        {
-            "clip": "up_bell4_00",
-            "rmsDb": -22.02,
-            "gainDb": 9.95
-        },
-        {
-            "clip": "up_bell5_00",
-            "rmsDb": -22.38,
-            "gainDb": 10.31
-        },
-        {
-            "clip": "up_bell5b_00",
-            "rmsDb": -24.0,
-            "gainDb": 11.93
-        },
-        {
-            "clip": "up_note1_00",
-            "rmsDb": -23.99,
-            "gainDb": 11.92
-        },
-        {
-            "clip": "up_note2_00",
-            "rmsDb": -22.37,
-            "gainDb": 10.3
-        },
-        {
-            "clip": "up_note3_00",
-            "rmsDb": -23.42,
-            "gainDb": 11.35
-        },
-        {
-            "clip": "up_note4_00",
-            "rmsDb": -25.59,
-            "gainDb": 13.52
-        },
-        {
-            "clip": "up_note5_00",
-            "rmsDb": -24.5,
-            "gainDb": 12.43
+            "gainDb": -0.23000000417232514
         }
     ]
 }
