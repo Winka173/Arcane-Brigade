@@ -396,9 +396,19 @@ namespace ArcaneBrigade
             GUI.DrawTexture(new Rect(-2000, -1200, 5280, 3120), Texture2D.whiteTexture);
             GUI.color = new Color(1, 1, 1, 1 - fade);
             float k = Mathf.Clamp01(age / length);
-            ArcadeSkin.Glow(new Rect(440, 120, 400, 400), new Color(1f, .78f, .42f, .25f + .25f * k));
-            UnitDefinition emblem = catalog.Unit("LanternKnight");
-            if (emblem != null) RunHud.Sprite(new Rect(555, 170, 170, 200), emblem.Body);
+            // the painted hall of lanterns (UI kit wave 3), darkened where the title and the lantern row stand
+            Sprite hall = ArcadeSkin.KitSprite("Menu/LoadingPainting");
+            if (hall != null)
+            {
+                GUI.DrawTexture(new Rect(0, 0, 1280, 720), hall.texture, ScaleMode.ScaleAndCrop);
+                ArcadeSkin.Glow(new Rect(200, 330, 880, 260), new Color(0, 0, 0, .65f));
+            }
+            else
+            {
+                ArcadeSkin.Glow(new Rect(440, 120, 400, 400), new Color(1f, .78f, .42f, .25f + .25f * k));
+                UnitDefinition emblem = catalog.Unit("LanternKnight");
+                if (emblem != null) RunHud.Sprite(new Rect(555, 170, 170, 200), emblem.Body);
+            }
             GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
             TextAnchor a = logo.alignment; logo.alignment = TextAnchor.MiddleCenter; logo.normal.textColor = ArcadeSkin.Cream;
@@ -563,11 +573,13 @@ namespace ArcaneBrigade
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
                 Rect spot = index < 3 ? new Rect(44, 200 + index * 82, 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 462 + (index - 3) / 2 * 72, 230, 60);
+                // nothing to continue: still shown (honest), but a slim plate under New Journey, not a second big button
+                if (index == 1 && !CanResume) spot = new Rect(84, 290, 390, 48);
                 if (index == 2) caption = "         WAITING ROOM";
                 else if (index >= 3) caption = "      " + caption; // room for its icon
                 // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
                 bool main = CanResume ? index == 1 : index == 0;
-                if (navigation.Button(spot, caption, main ? primary : index < 3 ? button : smallButton)) ActivateSpot(index);
+                if (navigation.Button(spot, caption, main ? primary : index < 3 && (index != 1 || CanResume) ? button : smallButton)) ActivateSpot(index);
                 if (index >= 2 && icons[index] != null) RunHud.Sprite(navigation.Moved(index == 2 ? new Rect(spot.x + 14, spot.y + 8, 52, 52) : new Rect(spot.x + 16, spot.y + 9, 42, 42)), icons[index]); // rides with the plate
                 // a small lit badge when the lamp oil can buy something in the Waiting Room
                 if (index == 2 && HubAffordable())
@@ -675,7 +687,7 @@ namespace ArcaneBrigade
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
             // beside the button, what the difficulty does (its name is already on the button)
             string dangerText = sealedDifficulty ? "Light the whole Lamp Tree" : DifficultyLine(difficulty);
-            Rect dangerRect = new Rect(410, 656, 315, 52);
+            Rect dangerRect = new Rect(410, 656, 352, 52); // one line beside the button
             if (sealedDifficulty)
             {
                 // the padlock stands just before the words, on their middle line, the pair centred together
@@ -840,7 +852,7 @@ namespace ArcaneBrigade
             GUI.matrix = keepMatrix; GUI.color = keepColour;
         }
         // what a difficulty does, in numbers (requirement 25/10/2026: the poetic lines said nothing)
-        private static string DifficultyLine(int d) => "enemies ×" + JourneyBalance.HealthFactor[Mathf.Clamp(d, 0, JourneyBalance.HealthFactor.Length - 1)].ToString("0.##") + " health, ×" + JourneyBalance.DamageFactor[Mathf.Clamp(d, 0, JourneyBalance.DamageFactor.Length - 1)].ToString("0.##") + " damage";
+        private static string DifficultyLine(int d) => "Foes ×" + JourneyBalance.HealthFactor[Mathf.Clamp(d, 0, JourneyBalance.HealthFactor.Length - 1)].ToString("0.##") + " health · ×" + JourneyBalance.DamageFactor[Mathf.Clamp(d, 0, JourneyBalance.DamageFactor.Length - 1)].ToString("0.##") + " damage";
 
         private bool DrawLoadout(UnitDefinition champion, Rect row, GUIStyle note)
         {

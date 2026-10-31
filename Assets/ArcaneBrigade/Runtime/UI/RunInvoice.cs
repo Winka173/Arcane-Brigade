@@ -138,7 +138,9 @@ namespace ArcaneBrigade
         {
             if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; revealedAt = UnityEngine.Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
             if (cachedRun != run || cachedMembers == null) { cachedRun = run; cachedMembers = Brigade(run); cachedBonds = Bonds(run, catalog); }
-            if (ArcadeSkin.HasKit) { ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); rectangle = ArcadeSkin.Content(rectangle, KitFrame.Card, true, .6f); } // the cream card; the receipt sits inside its rim
+            // the painted summary sheet: the run's name sits in its header strip, everything else on the paper below
+            if (ArcadeSkin.KitSliced(rectangle, "Panels/SummarySheet", .7f)) rectangle = new Rect(rectangle.x + 34, rectangle.y + 16, rectangle.width - 68, rectangle.height - 50);
+            else if (ArcadeSkin.HasKit) { ArcadeSkin.Frame(rectangle, KitFrame.Card, .6f); rectangle = ArcadeSkin.Content(rectangle, KitFrame.Card, true, .6f); } // the cream card; the receipt sits inside its rim
             else
             {
                 ArcadeSkin.Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), ArcadeSkin.Ink);
@@ -184,11 +186,20 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(4, y + 8, 70, 70), unit != null ? unit.Body : null);
                 float textX = 86, right = 100;
                 GUI.Label(new Rect(textX, y, inner - textX - right, 36), (m.Hero ? "You · " : "") + Name(m.UnitId, catalog) + Stars(m.Stars), body);
-                Rect bar = new Rect(textX, y + 40, inner - textX - right, 12);
-                ArcadeSkin.Line(bar, new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .14f));
-                ArcadeSkin.Line(new Rect(bar.x, bar.y, bar.width * m.Share * reveal, bar.height), m.Hero ? ArcadeSkin.Accent : ArcadeSkin.Teal * .85f);
+                Rect bar = new Rect(textX, y + 38, inner - textX - right, 18);
+                // the share of damage on a painted walnut groove with a lamp-gold fill
+                if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24))
+                {
+                    Rect fill = new Rect(bar.x + 3, bar.y + 3, (bar.width - 6) * m.Share * reveal, bar.height - 6);
+                    if (fill.width >= fill.height) ArcadeSkin.Strip(fill, "Info/RatioFill", 20, 20);
+                }
+                else
+                {
+                    ArcadeSkin.Line(bar, new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .14f));
+                    ArcadeSkin.Line(new Rect(bar.x, bar.y, bar.width * m.Share * reveal, bar.height), m.Hero ? ArcadeSkin.Accent : ArcadeSkin.Teal * .85f);
+                }
                 if (m.Damage > 0 || m.Kills > 0)
-                    GUI.Label(new Rect(textX, y + 54, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
+                    GUI.Label(new Rect(textX, y + 58, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
                 number.alignment = TextAnchor.MiddleRight;
                 GUI.Label(new Rect(inner - right, y + 20, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
                 number.alignment = TextAnchor.UpperLeft;
@@ -237,8 +248,11 @@ namespace ArcaneBrigade
         {
             ArcadeSkin.Line(r, new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
             GUI.Label(new Rect(r.x + 8, r.y + 4, r.width - 16, 36), title, small);
-            if (icon != null) RunHud.Sprite(new Rect(r.x + 8, r.y + 46, 66, 66), icon);
-            float tx = icon != null ? r.x + 82 : r.x + 8;
+            // each trophy in a brass medal socket (an empty socket when nobody earned it)
+            Sprite socket = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("Info/MedalSocket");
+            if (socket != null) GUI.DrawTexture(new Rect(r.x + 4, r.y + 40, 80, 80), socket.texture, ScaleMode.ScaleToFit);
+            if (icon != null) RunHud.Sprite(socket != null ? new Rect(r.x + 19, r.y + 50, 50, 50) : new Rect(r.x + 8, r.y + 46, 66, 66), icon);
+            float tx = icon != null || socket != null ? r.x + 92 : r.x + 8;
             body.wordWrap = true;
             GUI.Label(new Rect(tx, r.y + 42, r.xMax - tx - 6, 70), name, body);
             body.wordWrap = false;

@@ -23,7 +23,15 @@ Tài liệu này ban đầu chỉ liệt kê.
   - A11: bong bóng lời thoại, tách thành thân và tab tên co giãn theo độ dài tên, kèm đuôi vẽ tay. Lời thoại tông Boss và Dream vẫn giữ giấy vẽ bằng code, vì không được tô màu lên art.
   - A12: một ổ khóa vẽ tay dùng chung, thay `ArcadeSkin.Lock`.
 - **Chứng cứ:** `Docs/Evidence/UIAudit/kit_wave2.jpg`.
-- **Còn lại:** A13–A16.
+- **Đợt 3 (31/10/2026):** đã vẽ và gắn A13–A16:
+  - A13: ô tủ trưng bày trong Collection, kính sáng khi đã gặp, kính bụi khi chưa gặp; icon to hơn.
+  - A14: tờ tổng kết giấy da, thanh tỉ lệ rãnh gỗ có phần lấp vàng, ổ huy chương cho ba thành tích.
+  - A15: tranh màn loading, sảnh đèn lồng.
+  - A16: biển gỗ treo xích cho tên các trạm.
+- **Chứng cứ đợt 3:** `Docs/Evidence/UIAudit/kit_wave3.jpg`.
+- **Sửa thêm:**
+  - C6: khi không có lượt chơi dở, nút "Nothing to continue" là một tấm mảnh dưới New Journey.
+  - B4: chú thích độ khó ở Hero select còn một dòng.
 
 ## A. Art UI cần vẽ lại hoặc vẽ thêm
 

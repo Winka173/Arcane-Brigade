@@ -381,9 +381,11 @@ namespace ArcaneBrigade
         private void Tag(Vector2 topCentre, string text)
         {
             float w = Mathf.Max(150, chip.CalcSize(new GUIContent(text)).x + 44);
-            Rect tag = new Rect(Mathf.Clamp(topCentre.x - w * .5f, 8, 1272 - w), Mathf.Clamp(topCentre.y, 90, 680), w, 34);
-            ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent);
-            chip.normal.textColor = ArcadeSkin.Ink;
+            Rect tag = new Rect(Mathf.Clamp(topCentre.x - w * .5f, 20, 1260 - w), Mathf.Clamp(topCentre.y, 90, 680), w, 34);
+            // a walnut sign hanging on two short chains (its board, rows 46-118 of the 120 px art, is the tag)
+            float k = tag.height / 72f;
+            if (ArcadeSkin.Strip(new Rect(tag.x - 14, tag.y - 46 * k, tag.width + 28, 120 * k), "Menu/StationSign", 70, 70)) chip.normal.textColor = ArcadeSkin.KitCream;
+            else { ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent); chip.normal.textColor = ArcadeSkin.Ink; }
             GUI.Label(tag, text, chip);
         }
 

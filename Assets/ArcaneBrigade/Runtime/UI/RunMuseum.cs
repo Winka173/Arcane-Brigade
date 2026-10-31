@@ -85,21 +85,23 @@ namespace ArcaneBrigade
             {
                 Exhibit exhibit = exhibits[index];
                 Rect card = new Rect(index % 3 * 235, index / 3 * 130, 223, 118);
-                ArcadeSkin.Panel(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
+                // a painted display case (bright glass when found, dusty when not); the picked one is marked by brackets
+                if (!ArcadeSkin.KitSliced(card, exhibit.Seen ? "Info/CaseSeen" : "Info/CaseUnseen", .45f)) ArcadeSkin.Panel(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
+                else if (index == selection) ArcadeSkin.WorldFocus(card);
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
-                if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
+                if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 56, card.y + 12, 112, 62), exhibit.Icon);
                 else
                 {
                     // not yet found: its dark silhouette under a padlock, a slow gleam passing over it (never an empty card)
                     Color keepSil = GUI.color; GUI.color = new Color(0, 0, 0, .78f * keepSil.a);
-                    if (exhibit.Icon != null) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
+                    if (exhibit.Icon != null) RunHud.Sprite(new Rect(card.x + 56, card.y + 12, 112, 62), exhibit.Icon);
                     GUI.color = keepSil;
                     float gleam = Mathf.Repeat(Time.unscaledTime * .35f + index * .13f, 1);
                     if (!PresentationSettings.ReducedMotion && gleam < .3f) ArcadeSkin.Diamond(new Vector2(card.x + 60 + gleam / .3f * 100, card.y + 20 + gleam / .3f * 40), 7, new Color(1, .95f, .8f, .7f * Mathf.Sin(gleam / .3f * Mathf.PI)));
                     ArcadeSkin.Lock(new Vector2(card.x + 112, card.y + 46), 30, new Color(.86f, .7f, .42f, .95f));
                 }
                 string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : tab == 4 ? "Defeat to unlock" : tab == 3 ? "Activate to unlock" : "Find in a run";
-                Rect nameBounds = new Rect(card.x + 16, card.y + 77, card.width - 32, 31);
+                Rect nameBounds = new Rect(card.x + 20, card.y + 74, card.width - 40, 28); // clear of the case's rim
                 var nameStyle = new GUIStyle(cardText);
                 while (nameStyle.fontSize > 16 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
                 GUI.Label(nameBounds, caption, nameStyle);
