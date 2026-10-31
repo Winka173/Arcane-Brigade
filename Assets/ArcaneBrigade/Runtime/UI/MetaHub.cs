@@ -51,10 +51,10 @@ namespace ArcaneBrigade
             new Decor { Name = "TeaTable", Foot = new Vector2(500, 470), Height = 120 },
             new Decor { Name = "CatCushion", Foot = new Vector2(820, 452), Height = 78 },
         };
-        public static readonly Rect DoorArea = new Rect(582, 4, 116, 128);
+        public static readonly Rect DoorArea = new Rect(552, 0, 176, 168); // the whole door and its mat
         public static readonly Vector2 DoorFoot = new Vector2(640, 168);
         public static readonly Rect Floor = new Rect(60, 160, 1160, 545);
-        public const float Speed = 330, Reach = 82;
+        public const float Speed = 330, Reach = 150; // a station answers from well around it (review 31/10/2026: it had to be touched almost exactly)
 
         private Vector2 hero = new Vector2(640, 560);
         private Vector2? target;
@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                 float d = Vector2.Distance(hero, Spots[i].Foot + new Vector2(0, 30));
                 if (d < best) { best = d; Focus = i; }
             }
-            DoorFocus = Vector2.Distance(hero, DoorFoot) < Reach + 10;
+            DoorFocus = Vector2.Distance(hero, DoorFoot) < Reach + 20;
         }
 
         /// <summary>Once a frame from the menu's Update: walking (keys, stick, a tapped target) and using what is near.</summary>
@@ -268,7 +268,7 @@ namespace ArcaneBrigade
                 for (int i = 0; i < Spots.Length; i++)
                 {
                     Rect r = Bounds(Spots[i], MetaIcons.Station(Spots[i].Station, false));
-                    if (GUI.Button(r, GUIContent.none, GUIStyle.none)) WalkTo(Spots[i].Foot + new Vector2(0, 34), i, false);
+                    if (GUI.Button(new Rect(r.x - 44, r.y - 36, r.width + 88, r.height + 72), GUIContent.none, GUIStyle.none)) WalkTo(Spots[i].Foot + new Vector2(0, 34), i, false); // a thumb-sized margin round each station
                 }
                 if (GUI.Button(DoorArea, GUIContent.none, GUIStyle.none)) WalkTo(DoorFoot, -1, true);
                 Event e = Event.current;

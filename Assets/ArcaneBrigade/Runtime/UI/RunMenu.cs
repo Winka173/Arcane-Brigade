@@ -656,7 +656,14 @@ namespace ArcaneBrigade
             DrawWaitingBrigade(reduced, breathe);
             if (spotPlate == null) { spotPlate = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true); }
             Sprite[] icons = { null, null, MetaIcons.Station(MetaStation.Lantern, true), MetaIcons.Station(MetaStation.Museum, true), MetaIcons.Station(MetaStation.Ledger, true), MetaIcons.Station(MetaStation.Clock, true), MetaIcons.Station(MetaStation.Postbox, true), null };
-            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote) }; // one size for the grid, at the standard's minimum
+            if (smallButton == null)
+            {
+                // one size for every button in the grid: the size at which the longest caption fits (EXIT stood out larger,
+                // the longer ones having shrunk to fit)
+                smallButton = new GUIStyle(button) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote) };
+                float room = 230 - 2 * (ArcadeSkin.CompactCap * 60 / 120f + 8) - 14;
+                while (smallButton.fontSize > 12 && smallButton.CalcSize(new GUIContent("        HOW TO PLAY")).x > room) smallButton.fontSize--;
+            }
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 if (index == 7 && (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer)) continue; // a phone leaves with its own button
@@ -667,7 +674,7 @@ namespace ArcaneBrigade
                 // nothing to continue: still shown (honest), but a slim plate under New Journey, not a second big button
                 if (index == 1 && !CanResume) spot = new Rect(84, 304, 390, 48);
                 if (index == 2) caption = "         WAITING ROOM";
-                else if (index >= 3) caption = "        " + caption; // room for its icon
+                else if (index >= 3 && icons[index] != null) caption = "        " + caption; // room for its icon (EXIT has none: centred)
                 // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
                 bool main = CanResume ? index == 1 : index == 0;
                 if (navigation.Button(spot, caption, main ? primary : index < 3 && (index != 1 || CanResume) ? button : smallButton)) ActivateSpot(index);
