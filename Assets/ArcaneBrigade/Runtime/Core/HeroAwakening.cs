@@ -367,7 +367,9 @@ namespace ArcaneBrigade
         {
             if (awakenPath.Count == 0) return;
             Vector2 at = awakenPath[Mathf.Max(0, awakenPath.Count - 1 - (awakenRound++ * 7) % Mathf.Min(awakenPath.Count, 60))];
-            Hit(MorphGeometry.Disc, at, at, 1.15f, .55f, .5f, DamageElement.Ember); // 24/10: bigger meteors, .9 -> 1.15
+            var star = Hit(MorphGeometry.Disc, at, at, 1.15f, .55f, .5f, DamageElement.Ember); // 24/10: bigger meteors, .9 -> 1.15
+            // requirement 1/11/2026: each one falls as a star (the falling star: a streak in, a bounce, little stars scattered)
+            if (star != null) { star.Painted = true; star.Fx = "falling-star"; }
         }
         private void Mirrors()
         {

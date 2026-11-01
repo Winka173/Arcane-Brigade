@@ -158,6 +158,7 @@ namespace ArcaneBrigade
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             mapVisual = gameObject.AddComponent<MapEnvironmentVisual>();
             mapSounds = gameObject.AddComponent<MapSounds>();
+            gameObject.AddComponent<HeroGlyphFx>().Configure(this); // light effects that paint a hero's strikes
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arsenalVisual = gameObject.AddComponent<ArsenalVisual>();

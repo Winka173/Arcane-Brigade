@@ -17,6 +17,8 @@ namespace ArcaneBrigade
         /// <summary>Presentation only: a transformation paints this strike itself (the lighthouse beam, the clock hand, a falling
         /// scoop, a depth charge), so the generic ink glyph is not drawn over it.</summary>
         public bool Painted;
+        /// <summary>Presentation only: the light effect (FxDirector rule) that paints this strike, landing when it lands.</summary>
+        public string Fx;
         /// <summary>Presentation only: the strike felled a target (or hit a jackpot), so its signature plays big.</summary>
         public bool Big;
         /// <summary>Presentation only: the transformation's finale (its sign falls from the sky first).</summary>
