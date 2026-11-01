@@ -31,7 +31,7 @@ namespace ArcaneBrigade
 
         private sealed class EmberFall : FxEffect
         {
-            protected override float Life => 1.0f;
+            protected override float Life => 1.6f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 at = At; float r = Radius, tf = .32f, size = .46f + .2f * r;
@@ -47,20 +47,32 @@ namespace ArcaneBrigade
                     return;
                 }
                 float tb = t - tf;
-                // the landing: a hot flash, warm light on the floor, and the fireball burning down where it struck
-                b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 1.6f, A(Heat, .8f * Fade(tb, 0, .22f)), 0, Seed);
-                b.Floor(FxShape.Glow, at, r * 1.2f, A(Fire, .5f * Fade(tb, 0, .8f)), 0, Seed);
-                float burn = Fade(tb, .15f, .6f);
-                Flamelet(b, at + Vector2.up * .2f, size * 1.4f * (.5f + .5f * burn), now, Seed, burn);
-                // a few sparks flung out from the strike, each a short bright streak that slows, drops and goes out
-                for (int k = 0; k < 7; k++)
+                // the landing, wide: a big hot flash, a broad pool of firelight on the floor, rays, and a burst of flame tongues
+                b.Quad(FxShape.Glow, at + Vector2.up * .6f, r * 2.6f, A(Heat, .85f * Fade(tb, 0, .25f)), 0, Seed);
+                b.Floor(FxShape.Glow, at, r * 2.4f, A(Fire, .55f * Fade(tb, 0, .9f)), 0, Seed);
+                b.Floor(FxShape.Glow, at, r * 1.3f, A(Hot, .5f * Fade(tb, 0, .45f)), 0, Seed + 1);
+                b.Quad(FxShape.Rays, at + Vector2.up * .4f, r * 2.4f, A(Hot, .75f * Fade(tb, 0, .4f)), tb, Seed, 3);
+                for (int k = 0; k < 6; k++)
                 {
-                    float fly = .32f + .14f * H(Seed, k + 3), u = tb / fly; if (u >= 1) continue;
-                    Vector2 d = Dir(Seed, k, 7, .6f); d.y = d.y * .6f + .25f; d.Normalize();
-                    float go = r * (1.1f + .5f * H(Seed, k + 9)) * EaseOut(u);
-                    Vector2 q = at + Vector2.up * .3f + d * go + Vector2.down * (.9f * u * u);
-                    Vector2 v = (d * (1 - u) + Vector2.down * 1.2f * u).normalized;
-                    Trail(b, q, v, .5f * (1 - .6f * u), .09f, A(k % 2 == 0 ? Hot : Heat, 1 - u), Seed + k, now * 5);
+                    float life = Fade(tb, .05f * H(Seed, k + 60), .35f + .25f * H(Seed, k + 61)); if (life <= 0) continue;
+                    Vector2 q = at + Dir(Seed, k, 6, .5f) * r * (.25f + .45f * H(Seed, k + 62));
+                    Flamelet(b, q, r * (.7f + .5f * H(Seed, k + 63)) * (.6f + .4f * EaseOut(tb / .2f)), now, Seed + k * 5, life);
+                }
+                float burn = Fade(tb, .2f, .8f);
+                Flamelet(b, at + Vector2.up * .2f, size * 1.8f * (.5f + .5f * burn), now, Seed, burn);
+                // sparks thrown out like a volcano: each at its own random bearing, height and reach, rising on an arc and falling back
+                for (int k = 0; k < 14; k++)
+                {
+                    float fly = .45f + .4f * H(Seed, k + 3), u = (tb - .04f * H(Seed, k + 4)) / fly;
+                    if (u <= 0 || u >= 1.25f) continue;
+                    float ang = H(Seed, k + 5) * Mathf.PI * 2, reach = r * (.9f + 1.6f * H(Seed, k + 6)), high = .9f + 2.2f * H(Seed, k + 7);
+                    Vector2 d = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang) * .55f);
+                    Color c = H(Seed, k + 8) < .5f ? Hot : Heat;
+                    if (u >= 1) { Glint(b, at + d * reach, .22f, c, 1 - (u - 1) / .25f, now * 90 + k * 40); continue; } // lands and winks out
+                    Vector2 q = at + Vector2.up * .3f + d * reach * u + Vector2.up * high * 4 * u * (1 - u);
+                    Vector2 v = d * reach + Vector2.up * high * 4 * (1 - 2 * u);
+                    Trail(b, q, v.normalized, Mathf.Min(.9f, v.magnitude * .12f), .11f, A(c, .95f), Seed + k, now * 5);
+                    b.Quad(FxShape.Glow, q, .32f, A(Fire, .6f), 0, Seed + k);
                 }
             }
         }
