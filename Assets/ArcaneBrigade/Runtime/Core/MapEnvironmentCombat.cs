@@ -55,6 +55,7 @@ namespace ArcaneBrigade
             mapRandom = new System.Random(unchecked(runSeed * 31 + catalog.RunWave * 7907 + 11));
             int theme = catalog.MapEnvironment;
             var s = new MapEnvironmentState { Theme = System.Enum.IsDefined(typeof(MapTheme), theme) ? (MapTheme)theme : MapTheme.WaitingRoom };
+            s.Side = MapPacing.For(s.Theme, catalog.RunWave, runSeed); // one side mechanic per wave (MapPacing)
             Vector2 room = catalog.ArenaSize * .5f - new Vector2(9.6f, 6.2f);
             s.Anchor = new Vector2(Mathf.Clamp(Champion.Position.x, -Mathf.Max(0, room.x), Mathf.Max(0, room.x)), Mathf.Clamp(Champion.Position.y, -Mathf.Max(0, room.y), Mathf.Max(0, room.y)));
             switch (s.Theme)
@@ -73,6 +74,7 @@ namespace ArcaneBrigade
         {
             if (catalog.MapEnvironment < 0 || Phase != RunPhase.Combat || Champion == null) return;
             if (mapEnv == null) InitMapEnvironment();
+            StepMapPacing();
             switch (mapEnv.Theme)
             {
                 case MapTheme.WaitingRoom: StepWaitingRoom(deltaTime); break;
@@ -203,6 +205,7 @@ namespace ArcaneBrigade
         {
             if (catalog.MapEnvironment < 0 || Champion == null) return;
             if (mapEnv == null) InitMapEnvironment();
+            mapEnv.Side = MapSide.All; mapEnv.SideSaid = true; // a capture shows every mechanic at once
             switch (mapEnv.Theme)
             {
                 case MapTheme.WaitingRoom: WaitingRoomCaptureFixture(); break;

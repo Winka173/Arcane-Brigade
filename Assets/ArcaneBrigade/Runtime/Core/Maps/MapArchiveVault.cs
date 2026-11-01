@@ -77,10 +77,15 @@ namespace ArcaneBrigade
 
         private void StepArchiveVault(float deltaTime)
         {
+            MapEnvironmentState s = mapEnv;
+            MapSideHold(MapSide.VaultPages, ref s.VaultNextPage);
             StepVaultPages();
             StepVaultFog();
+            MapSideHold(MapSide.VaultWorms, ref s.VaultNextWorm);
             StepVaultWorms(deltaTime);
+            MapSideHold(MapSide.VaultPot, ref s.VaultNextPot);
             StepVaultInk();
+            MapSideHold(MapSide.VaultStamp, ref s.VaultNextStamp);
             StepVaultStamp();
         }
 

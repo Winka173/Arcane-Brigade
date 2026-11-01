@@ -342,6 +342,7 @@ namespace ArcaneBrigade
         // ------------------------------------------------------------------ the firework machine
         private void TheatreMachine(MapEnvironmentState s, float t, float now, Vector2 view, float halfW, float halfH)
         {
+            if (!sim.MapSideShown(MapSide.TheatreFirework)) return; // the machine stands only on its own waves (MapPacing)
             Vector2 m = s.TheatreMachine; int full = MapEnvironmentRules.TheatreFireworkLoad;
             bool ready = s.TheatreLoad >= full;
             float reach = MapEnvironmentRules.TheatreFireworkReach;

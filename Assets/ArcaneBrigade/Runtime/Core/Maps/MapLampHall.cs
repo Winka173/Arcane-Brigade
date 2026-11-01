@@ -63,7 +63,9 @@ namespace ArcaneBrigade
         private void StepLampHall(float deltaTime)
         {
             StepLamps(deltaTime);
+            MapSideHold(MapSide.LampOil, ref mapEnv.NextLampOil);
             StepLampOil();
+            MapSideHold(MapSide.LampLantern, ref mapEnv.NextLantern);
             StepLantern(deltaTime);
             StepNightProwlers();
         }

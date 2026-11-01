@@ -99,19 +99,19 @@ namespace ArcaneBrigade
             s.RoomClockLap = Mathf.FloorToInt((0 - s.RoomClockStart) / MapEnvironmentRules.RoomClockTurn);
             s.NextCall = 6; s.BoardNumber = 1 + mapRandom.Next(4);
             s.RoomNextTicket = 3;
-            int patches = 3 + mapRandom.Next(2);
-            for (int i = 0; i < patches; i++) s.RoomDust.Add(new MapEnvironmentState.RoomDustPatch { Seed = mapRandom.Next(1000) });
-            RoomPlaceDust(s, true);
+            if (s.Side == MapSide.RoomDust) RoomLayDust(s); // the dust lies only on its own waves (MapPacing)
             s.RoomNextDust = MapEnvironmentRules.RoomDustEvery;
         }
 
         private void StepWaitingRoom(float deltaTime)
         {
             RoomStepBoard();
+            MapSideHold(MapSide.RoomTickets, ref mapEnv.RoomNextTicket);
             RoomStepTickets();
+            MapSideHold(MapSide.RoomDust, ref mapEnv.RoomNextDust);
             if (Elapsed >= mapEnv.RoomNextDust) { mapEnv.RoomNextDust = Elapsed + MapEnvironmentRules.RoomDustEvery; RoomPlaceDust(mapEnv, false); }
-            RoomStepWaiters();
-            RoomStepClock();
+            if (MapSideOn(MapSide.RoomWaiters)) RoomStepWaiters();
+            if (MapSideShown(MapSide.RoomClock)) RoomStepClock(); // the hero's helper: it keeps running while a boss is out
         }
 
         /// <summary>A stat the hero gets while standing somewhere on this map (MapBoosts.MapStandingBoost).</summary>
@@ -230,6 +230,12 @@ namespace ArcaneBrigade
         };
 
         // ------------------------------------------------------------------ ceiling dust
+        private void RoomLayDust(MapEnvironmentState s)
+        {
+            int patches = 3 + mapRandom.Next(2);
+            for (int i = 0; i < patches; i++) s.RoomDust.Add(new MapEnvironmentState.RoomDustPatch { Seed = mapRandom.Next(1000) });
+            RoomPlaceDust(s, true);
+        }
         /// <summary>Sends every patch to a new spot round the hero (apart from each other); the first time they simply appear.</summary>
         private void RoomPlaceDust(MapEnvironmentState s, bool first)
         {
@@ -299,6 +305,7 @@ namespace ArcaneBrigade
         private void WaitingRoomCaptureFixture()
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed; Vector2 h = Champion.Position;
+            if (s.RoomDust.Count == 0) RoomLayDust(s);
             s.Board = h + new Vector2(-.6f, 2.4f);
             s.Doors[0] = h + new Vector2(-5.6f, 1.4f); s.Doors[1] = h + new Vector2(5.4f, 1.4f);
             s.Doors[2] = h + new Vector2(-6.4f, -3.4f); s.Doors[3] = h + new Vector2(6.2f, -3.4f);

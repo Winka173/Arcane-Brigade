@@ -78,9 +78,11 @@ namespace ArcaneBrigade
             mapEnv.Shown.Add(MapIdentity.Element.Spotlight);
             StepTheatreSpot(deltaTime);
             StepTheatreSmoke();
+            MapSideHold(MapSide.TheatreAudience, ref mapEnv.TheatreNextThrow);
             StepTheatreAudience(deltaTime);
+            MapSideHold(MapSide.TheatreCurtain, ref mapEnv.TheatreNextCurtain);
             StepTheatreCurtain();
-            StepTheatreFirework(deltaTime);
+            if (MapSideShown(MapSide.TheatreFirework)) StepTheatreFirework(deltaTime);
         }
 
         /// <summary>A stat the hero gets while standing in the spotlight: white +20% damage, yellow +20% attack speed, pink +3 armour.</summary>
@@ -112,7 +114,7 @@ namespace ArcaneBrigade
         /// <summary>A fallen enemy's coins on this map (unchanged); a kill inside the spotlight loads the firework machine.</summary>
         private int TheatreCoins(UnitState target, int coins)
         {
-            if (InTheatreSpot(target.Position)) TheatreLoadKill(target.Id, target.Position);
+            if (MapSideShown(MapSide.TheatreFirework) && InTheatreSpot(target.Position)) TheatreLoadKill(target.Id, target.Position);
             return coins;
         }
 

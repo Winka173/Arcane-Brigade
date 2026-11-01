@@ -307,6 +307,7 @@ namespace ArcaneBrigade
         // ------------------------------------------------------------------ the shooting flowers
         private void GlassBuds(MapEnvironmentState s, float t)
         {
+            if (!sim.MapSideShown(MapSide.GlassBuds)) return; // the turret flowers grow only on their own waves (MapPacing)
             for (int i = 0; i < s.GlassBuds.Count; i++)
             {
                 MapEnvironmentState.GlassBud bud = s.GlassBuds[i];

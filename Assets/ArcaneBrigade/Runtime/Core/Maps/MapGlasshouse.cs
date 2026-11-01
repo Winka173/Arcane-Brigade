@@ -95,9 +95,11 @@ namespace ArcaneBrigade
             bool sunny = s.GlassSunny(t);
             StepGlassWeather(s, t, sunny);
             StepGlassPots(s, t, deltaTime, sunny);
+            MapSideHold(MapSide.GlassCarriers, ref s.GlassNextCarrier);
             StepGlassCarriers(s, t);
+            MapSideHold(MapSide.GlassPanes, ref s.GlassNextPane);
             StepGlassPanes(s, t);
-            StepGlassBuds(s, t, deltaTime);
+            if (MapSideShown(MapSide.GlassBuds)) StepGlassBuds(s, t, deltaTime);
         }
 
         /// <summary>A stat the hero gets while standing in a carrier's flower bed: +15% damage and +15% attack speed.</summary>

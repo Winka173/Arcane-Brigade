@@ -92,16 +92,20 @@ namespace ArcaneBrigade
         {
             s.NextChute = 5; s.NextGust = 8; s.PostNextStamp = 6; s.PostNextPlanes = 9;
             // requirement 25/10/2026: a giant parcel lands on about a third of nights
-            s.PostParcelNight = mapRandom.NextDouble() < MapEnvironmentRules.PostParcelChance;
+            s.PostParcelNight = s.Side == MapSide.PostParcel; // the parcel's own wave (MapPacing)
             s.ParcelDue = s.PostParcelNight ? Mathf.Max(6, catalog.WaveDuration * MapEnvironmentRules.ParcelShare) : float.MaxValue;
         }
 
         private void StepPostOffice(float deltaTime)
         {
+            MapEnvironmentState s = mapEnv;
             PostStepChute(deltaTime);
+            MapSideHold(MapSide.PostWind, ref s.NextGust);
             PostStepWind(deltaTime);
+            MapSideHold(MapSide.PostStamps, ref s.PostNextStamp);
             PostStepStamps();
-            PostStepParcel();
+            if (s.ParcelState != 0 || MapSideOn(MapSide.PostParcel)) PostStepParcel();
+            MapSideHold(MapSide.PostPlanes, ref s.PostNextPlanes);
             PostStepPlanes(deltaTime);
         }
 
