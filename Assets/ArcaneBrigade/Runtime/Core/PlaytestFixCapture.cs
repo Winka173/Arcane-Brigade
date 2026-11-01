@@ -395,7 +395,17 @@ namespace ArcaneBrigade
                 List<string> silent = SilentThings();
                 Debug.Log("TAP_AUDIT wave " + night + " " + silent.Count + ": " + string.Join(" | ", silent));
                 Check(silent.Count == 0, "Every shown thing in the wave " + night + " shop answers a tap (" + string.Join(", ", silent.Take(6)) + ")");
-                if (night == 2) yield return Shot("Item38_CustomerVisit");
+                if (night == 2)
+                {
+                    yield return Shot("Item38_CustomerVisit");
+                    // standing by the Last Customer: the ferry-like card rises (requirement 1/11/2026)
+                    var figure = owner.GetComponent<ShopInspect>().Entries.FirstOrDefault(e => e.Title == "THE LAST CUSTOMER");
+                    if (figure != null) { yield return Stand(new Vector2(figure.World.center.x - .6f, figure.World.yMin + .1f)); yield return new WaitForSecondsRealtime(.5f); yield return Shot("Item38b_NearCustomer");
+                        var holder = ShopFocus.Holder(owner.Simulation.Champion.Position, out int held);
+                        Debug.Log("NEAR_CUSTOMER by=" + ShopInspect.DebugBy + " open=" + ShopInspect.DebugOpen + " hero=" + owner.Simulation.Champion.Position + " figure=" + figure.World + " holder=" + holder + "#" + held + " nearby=" + owner.Shop.Nearby?.Action + " spots=" + string.Join(" | ", ShopFocus.Spots().Select(p => p.source.GetType().Name + "@" + p.position + "r" + p.reach.ToString("0.0"))));
+                        Check(holder is ShopInspect, "Standing by the Last Customer, its card is the one that answers (" + holder + ")"); }
+                    Check(figure != null, "The Last Customer stands in the wave 2 shop");
+                }
             }
             // 37: the second boss night (wave 8, the Chair Porter): its music keeps playing past the intro, its body hurts every
             // half second while touched, and its floor carries no lines

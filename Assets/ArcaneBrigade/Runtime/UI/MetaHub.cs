@@ -57,6 +57,8 @@ namespace ArcaneBrigade
         public const float Speed = 330, Reach = 150; // a station answers from well around it (review 31/10/2026: it had to be touched almost exactly)
 
         private Vector2 hero = new Vector2(640, 560);
+        /// <summary>Captures: stand the traveller at a point of the room.</summary>
+        public void StandAt(Vector2 at) { hero = at; target = null; targetSpot = -1; targetDoor = false; UpdateFocus(); }
         private Vector2? target;
         private int targetSpot = -1;
         private bool targetDoor, walking, facingLeft;
@@ -128,6 +130,7 @@ namespace ArcaneBrigade
             {
                 if (DoorFocus) return HubAction.NextNight;
                 if (Focus >= 0) { OpenStation(Spots[Focus].Station); navKeys = PanelOpen; } // opened by keys: the focus shows at once
+                else if (NearThing() is Thing th) Say(th);
             }
             return HubAction.None;
         }
@@ -141,16 +144,16 @@ namespace ArcaneBrigade
         }
         /// <summary>The room's things that are not stations (painted into the room): tap one and a small line about it appears
         /// over it, a different one each time.</summary>
-        private sealed class Thing { public string Name; public Rect Area; public string[] Lines; public int Next; }
+        private sealed class Thing { public string Name, What; public Rect Area; public string[] Lines; public int Next; }
         private static readonly Thing[] RoomThings =
         {
-            new Thing { Name = "Cat", Area = new Rect(785, 375, 90, 70), Lines = new[] { "The cat is asleep. It has been asleep since before the lamp was lit.", "One ear turns towards you. The rest of the cat does not.", "Purring, very quietly, in time with the clock." } },
-            new Thing { Name = "Tea", Area = new Rect(438, 345, 112, 120), Lines = new[] { "The tea is still warm. Nobody remembers pouring it.", "Three cups. One for you, one for a friend, one for whoever comes next.", "A biscuit is missing. The cat looks innocent." } },
-            new Thing { Name = "Gramophone", Area = new Rect(195, 340, 90, 115), Lines = new[] { "A waltz, very slow, the needle almost asleep.", "It plays the same song every night. Nobody minds.", "When you come back from a long night, it skips once, like a heartbeat." } },
-            new Thing { Name = "Cases", Area = new Rect(985, 385, 120, 110), Lines = new[] { "Three cases, labelled for three different towns. None of them yours, yet.", "Something inside the top case ticks.", "A tag reads: please hold until dawn." } },
-            new Thing { Name = "Coat rack", Area = new Rect(860, 70, 60, 140), Lines = new[] { "A red scarf someone forgot. It smells of rain.", "The lantern on the hook glows a little brighter when you pass." } },
-            new Thing { Name = "Bench", Area = new Rect(550, 540, 220, 105), Lines = new[] { "Someone left a ticket on the bench. It is for tonight.", "The velvet is warm, as if someone just stood up." } },
-            new Thing { Name = "Rug", Area = new Rect(330, 260, 620, 250), Lines = new[] { "The rug has a path worn round its edge, exactly one friend wide.", "A burn mark in one corner. Nobody admits to it.", "It is softer than it looks. The cat agrees." } },
+            new Thing { Name = "Cat", What = "The cat that came with the room. Nobody remembers whose it is.", Area = new Rect(785, 375, 90, 70), Lines = new[] { "The cat is asleep. It has been asleep since before the lamp was lit.", "One ear turns towards you. The rest of the cat does not.", "Purring, very quietly, in time with the clock." } },
+            new Thing { Name = "Tea", What = "A pot of tea kept warm for whoever comes in from the night.", Area = new Rect(438, 345, 112, 120), Lines = new[] { "The tea is still warm. Nobody remembers pouring it.", "Three cups. One for you, one for a friend, one for whoever comes next.", "A biscuit is missing. The cat looks innocent." } },
+            new Thing { Name = "Gramophone", What = "An old gramophone. It plays the same waltz every night.", Area = new Rect(195, 340, 90, 115), Lines = new[] { "A waltz, very slow, the needle almost asleep.", "It plays the same song every night. Nobody minds.", "When you come back from a long night, it skips once, like a heartbeat." } },
+            new Thing { Name = "Cases", What = "Travel cases nobody has come back for.", Area = new Rect(985, 385, 120, 110), Lines = new[] { "Three cases, labelled for three different towns. None of them yours, yet.", "Something inside the top case ticks.", "A tag reads: please hold until dawn." } },
+            new Thing { Name = "Coat rack", What = "Coats and a scarf left by travellers who went on.", Area = new Rect(860, 70, 60, 140), Lines = new[] { "A red scarf someone forgot. It smells of rain.", "The lantern on the hook glows a little brighter when you pass." } },
+            new Thing { Name = "Bench", What = "A velvet bench where the waiting is done.", Area = new Rect(550, 540, 220, 105), Lines = new[] { "Someone left a ticket on the bench. It is for tonight.", "The velvet is warm, as if someone just stood up." } },
+            new Thing { Name = "Rug", What = "The room's big red rug. The friends walk round its edge.", Area = new Rect(330, 260, 620, 250), Lines = new[] { "The rug has a path worn round its edge, exactly one friend wide.", "A burn mark in one corner. Nobody admits to it.", "It is softer than it looks. The cat agrees." } },
         };
         private Thing spoken; private string spokenLine; private float spokenAt = -10;
         private List<(UnitDefinition unit, Vector2 at, bool left)> shownResidents; private UnitDefinition shownHero;
@@ -167,25 +170,55 @@ namespace ArcaneBrigade
         /// <summary>A person in the room as a tappable thing: its area follows it as it walks, its lines keep their turn.</summary>
         private Thing Person(string key, string name, Vector2 foot, float height, string[] lines)
         {
-            if (!people.TryGetValue(key, out Thing th)) people[key] = th = new Thing { Name = name, Lines = System.Array.ConvertAll(lines, l => string.Format(l, name)) };
+            if (!people.TryGetValue(key, out Thing th)) people[key] = th = new Thing { Name = name, What = key == "hero" ? "You, back from the night." : "A friend of the brigade, out for a stroll round the rug.", Lines = System.Array.ConvertAll(lines, l => string.Format(l, name)) };
             th.Area = new Rect(foot.x - 44, foot.y - height, 88, height + 8);
             return th;
         }
+        /// <summary>The people first (they stand in front of the room's things), then the room's things, the rug last (it lies under all).</summary>
+        private List<Thing> AllThings(bool withHero)
+        {
+            var all = new List<Thing>();
+            if (shownResidents != null)
+                foreach (var r in shownResidents) all.Add(Person(r.unit.Id, RunUICopy.UnitName(r.unit), r.at, 92, FriendLines));
+            if (withHero && shownHero != null) all.Add(Person("hero", RunUICopy.UnitName(shownHero), hero, 112, HeroLines));
+            all.AddRange(RoomThings);
+            return all;
+        }
+        private void Say(Thing th)
+        {
+            spoken = th; spokenLine = th.Lines[th.Next % th.Lines.Length]; th.Next++; spokenAt = Time.unscaledTime;
+            CheckpointAudio.PlayInterfaceId("ui.select");
+        }
+        /// <summary>The thing or friend the hero stands by (requirement 1/11/2026: like the shop's ferry, coming near shows its card
+        /// and Space looks); a station or the door nearby takes the hero first.</summary>
+        private Thing NearThing()
+        {
+            if (Focus >= 0 || DoorFocus) return null;
+            Thing best = null; float bestD = ThingReach;
+            foreach (Thing th in AllThings(false))
+            {
+                Vector2 foot = new Vector2(th.Area.center.x, th.Area.yMax);
+                float d = Vector2.Distance(hero, foot), reach = ThingReach + Mathf.Min(th.Area.width * .3f, 90);
+                if (d < reach && d < bestD + (reach - ThingReach)) { best = th; bestD = d - (reach - ThingReach); }
+            }
+            return best;
+        }
+        private const float ThingReach = 110;
+        private Thing nearShown; private float nearAt;
         private void Things()
         {
-            // the people first (they stand in front of the room's things), then the room's things, the rug last (it lies under all)
-            var tappable = new List<Thing>();
-            if (shownResidents != null)
-                foreach (var r in shownResidents) tappable.Add(Person(r.unit.Id, RunUICopy.UnitName(r.unit), r.at, 92, FriendLines));
-            if (shownHero != null) tappable.Add(Person("hero", RunUICopy.UnitName(shownHero), hero, 112, HeroLines));
-            tappable.AddRange(RoomThings);
-            foreach (Thing th in tappable)
+            foreach (Thing th in AllThings(true))
+                if (GUI.Button(th.Area, GUIContent.none, GUIStyle.none)) Say(th);
+            // the card for what the hero stands by: its name, what it is, and LOOK
+            Thing near = NearThing();
+            if (near != nearShown) { nearShown = near; nearAt = Time.unscaledTime; }
+            if (near != null)
             {
-                if (GUI.Button(th.Area, GUIContent.none, GUIStyle.none))
-                {
-                    spoken = th; spokenLine = th.Lines[th.Next % th.Lines.Length]; th.Next++; spokenAt = Time.unscaledTime;
-                    CheckpointAudio.PlayInterfaceId("ui.select");
-                }
+                Matrix4x4 keepCard = GUI.matrix;
+                GUI.matrix = keepCard * Matrix4x4.Scale(new Vector3(1280f / 1920f, 720f / 1080f, 1)); // the card is laid out on the 1920 canvas
+                bool person = shownResidents != null && shownResidents.Exists(r => RunUICopy.UnitName(r.unit) == near.Name);
+                if (ShopPrompt.Draw(near.Name.ToUpperInvariant(), near.What ?? "", person ? "TALK" : "LOOK", Time.unscaledTime - nearAt)) Say(near);
+                GUI.matrix = keepCard;
             }
             if (spoken != null && Time.unscaledTime - spokenAt < 4.5f)
             {

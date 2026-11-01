@@ -9,7 +9,7 @@ namespace ArcaneBrigade
     /// traveller shows its name; clicking opens a card with its story or what it does (and how to use it). Things in the
     /// room with nothing to say are not placed there (NightmareGrandStage keeps its map architecture out of the shop).
     /// Drawn behind the HUD's buttons (GUI.depth), so BUY, INFO, CONTINUE and the journal note always take a click first.</summary>
-    public sealed class ShopInspect : MonoBehaviour
+    public sealed class ShopInspect : MonoBehaviour, ShopFocus.ISource
     {
         public sealed class Entry
         {
@@ -28,7 +28,33 @@ namespace ArcaneBrigade
         private Vector2 offerScroll;
         public IReadOnlyList<Entry> Entries => entries;
         public Entry Open => open;
-        public void Configure(ArenaController value) => owner = value;
+        public void Configure(ArenaController value) { owner = value; ShopFocus.Register(this); }
+        private void OnDestroy() => ShopFocus.Unregister(this);
+
+        // ---- the ferry-like approach: things with nothing else to answer for them are focus spots of their own
+        private readonly List<Entry> near = new List<Entry>();
+        /// <summary>Things another system already answers for (a stall, the warm chair, a secret invitation, the Keeper and its gifts).</summary>
+        private static bool OwnAnswer(Entry e) => e.Offer != null || e.Key == "TheUnoccupiedChair" || e.Key.StartsWith("SecretInvitation_", StringComparison.Ordinal)
+            || e.Key == "TheHandWaits" || e.Key.StartsWith("PrismaticReward", StringComparison.Ordinal);
+        private static Vector2 Foot(Entry e) => new Vector2(e.World.center.x, e.World.yMin);
+        private static float ReachOf(Entry e) => Mathf.Clamp(e.World.width * .5f + .7f, 1.1f, 2.2f);
+        public int SpotCount => near.Count;
+        public bool Spot(int index, out Vector2 position, out float reach)
+        {
+            position = default; reach = 0;
+            if (index < 0 || index >= near.Count || !Allowed) return false;
+            position = Foot(near[index]); reach = ReachOf(near[index]); return true;
+        }
+        private Entry focused; private float focusedAt;
+        /// <summary>For checks: the thing whose card is up and the card open, as last painted.</summary>
+        public static string DebugBy, DebugOpen;
+        /// <summary>The thing the hero stands by, when nothing else holds the focus there.</summary>
+        private Entry Focused()
+        {
+            if (owner?.Simulation?.Champion == null || owner.Shop?.Nearby != null) return null;
+            ShopFocus.ISource holder = ShopFocus.Holder(owner.Simulation.Champion.Position, out int index);
+            return holder == (ShopFocus.ISource)this && index >= 0 && index < near.Count ? near[index] : null;
+        }
 
         private bool Allowed => owner?.Session != null && owner.Simulation != null && owner.Shop != null && owner.Session.State.Phase == SessionPhase.Shop
             && !owner.Session.SecretRoomOpen && owner.Simulation.Phase == RunPhase.Rest && !owner.StoryConsumesInput && !owner.PresentationPaused
@@ -39,6 +65,10 @@ namespace ArcaneBrigade
         {
             if (!Allowed) { entries.Clear(); hovered = open = null; return; }
             Collect();
+            near.Clear(); foreach (Entry e in entries) if (!OwnAnswer(e)) near.Add(e);
+            Entry f = Focused();
+            if (f != null && open == null && !owner.StoryConsumesInput && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)))
+            { open = f; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; Speak(f); CheckpointAudio.PlayInterfaceId("ui.open"); }
             // walking off closes the card; so does anything that takes the room away (Allowed)
             if (open != null && Vector2.Distance(owner.Simulation.Champion.Position, openedFor) > 1.6f) open = null;
             if (open != null && entries.Find(e => e.Key == open.Key) is Entry fresh) open = fresh; else open = null;
@@ -199,7 +229,18 @@ namespace ArcaneBrigade
                 if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(tag, KitFrame.Plaque); else ArcadeSkin.Panel(tag, ArcadeSkin.Card); // the velvet title plaque (UI kit)
-                name.normal.textColor = ArcadeSkin.Cream; GUI.Label(ArcadeSkin.HasKit ? ArcadeSkin.Content(tag, KitFrame.Plaque, false) : tag, hovered.Title, name);
+                ArcadeSkin.KitCaption(ArcadeSkin.HasKit ? ArcadeSkin.Content(tag, KitFrame.Plaque, false) : tag, hovered.Title, ArcadeSkin.Cream, name, true);
+            }
+            Entry by = open == null ? Focused() : null;
+            if (current.type == EventType.Repaint) { DebugBy = by?.Title; DebugOpen = open?.Title; }
+            if (by?.Key != focused?.Key) focusedAt = Time.unscaledTime; // entries are rebuilt every frame: the same thing keeps its key, not its object
+            focused = by;
+            if (by != null)
+            {
+                bool figure = by.Title == "THE LAST CUSTOMER" || by.Key == "Shopkeeper";
+                string plain = by.Body; int stop = plain.IndexOf(". ", StringComparison.Ordinal); if (stop > 0 && stop < 110) plain = plain.Substring(0, stop + 1);
+                if (ShopPrompt.Draw(by.Title, plain, figure ? "TALK" : "LOOK", Time.unscaledTime - focusedAt))
+                { open = by; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; Speak(by); }
             }
             if (open?.Key != shownKey) { shownKey = open?.Key; shownAt = Time.unscaledTime; }
             Color tint = GUI.color;

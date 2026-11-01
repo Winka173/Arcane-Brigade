@@ -59,6 +59,7 @@ namespace ArcaneBrigade
                 meta.Meta.LampOil = 180; meta.Meta.Keepsakes = 7;
                 menu.ConfigureHubDiagnostics(meta);
                 menu.ShowPage(RunMenu.Page.Hub); menu.Hub.Approach(MetaStation.Lantern); yield return new WaitForSecondsRealtime(.8f); yield return Shot("07-hub");
+                menu.Hub.StandAt(new Vector2(830, 470)); yield return new WaitForSecondsRealtime(.6f); yield return Shot("07b-hub-near-cat"); // the card for what the hero stands by
                 menu.Hub.OpenStation(MetaStation.Lantern); yield return new WaitForSecondsRealtime(.6f); yield return Shot("08-lamp-tree"); // opens on a branch
                 menu.Hub.FocusLampBranch(-1); yield return new WaitForSecondsRealtime(.3f); yield return Shot("08b-lamp-whole-tree");
                 menu.Hub.PickLantern("shield.plate"); yield return new WaitForSecondsRealtime(.3f); yield return Shot("09-lamp-card");

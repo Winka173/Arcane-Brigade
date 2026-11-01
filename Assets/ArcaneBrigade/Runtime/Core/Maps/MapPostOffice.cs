@@ -315,6 +315,7 @@ namespace ArcaneBrigade
         }
 
         // ------------------------------------------------------------------ paper planes
+        private readonly List<UnitState> burstUnits = new List<UnitState>();
         private void PostStepPlanes(float deltaTime)
         {
             MapEnvironmentState s = mapEnv; float t = Elapsed;
@@ -347,7 +348,9 @@ namespace ArcaneBrigade
                     ApplyDamage(u, hit, Faction.Champion, "Paper plane", dir, cause: postPlaneCause);
                     // the plane bursts where it strikes: everything else close by takes a share
                     Vector2 burst = u.Position;
-                    foreach (UnitState o in RoomUnitsSnapshot())
+                    // its own copy of the room: RoomUnitsSnapshot's shared list is the one the outer loop walks (refilling it broke that loop)
+                    burstUnits.Clear(); burstUnits.AddRange(units);
+                    foreach (UnitState o in burstUnits)
                         if (o != u && o.Alive && o.Faction == Faction.Enemy && (o.Position - burst).sqrMagnitude <= MapEnvironmentRules.PostPlaneBurst * MapEnvironmentRules.PostPlaneBurst)
                             ApplyDamage(o, hit * MapEnvironmentRules.PostPlaneBurstShare, Faction.Champion, "Paper plane", (o.Position - burst).normalized, cause: postPlaneCause);
                     s.PostPlaneHits.Add(new MapEnvironmentState.PostPlaneStrike { Position = burst, At = t });

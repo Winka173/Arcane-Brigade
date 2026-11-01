@@ -113,7 +113,7 @@ namespace ArcaneBrigade
                 case KitAction.Treant: Every(.35f, () => { if (walking) Hit(MorphGeometry.Disc, Champion.Position + Forward() * .4f, Champion.Position + Forward(), .9f, .42f, .1f); }); break;
                 case KitAction.Casino: Every(1f, () => Casino(target)); break;
                 case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.7f, .34f, .05f, push: .45f); /* 24/10: a bigger wave, 1.3 -> 1.7 */ }); HealEvery(.5f); break; // round 3: 1 → 2 HP/s (Tide Singer lost 6/6)
-                case KitAction.Meteors: Every(.25f, () => Meteor()); break; // round 6: a meteor every .3 -> .25 s
+                case KitAction.Meteors: Every(MeteorEvery, () => Meteor()); break; // requirement 1/11/2026: fewer stars, each aimed at a crowd
                 case KitAction.Mirrors: Mirrors(); break;
                 case KitAction.Spring: Every(.65f, () => Spring(target)); HealEvery(1); break; // round 6: blossom every .8 -> .65 s
                 case KitAction.Kintsugi: Every(.4f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position - Forward() * .8f, target.Position + Forward() * .8f, 0, .42f, .3f, element: DamageElement.Ember); }); break;
@@ -363,11 +363,34 @@ namespace ArcaneBrigade
             else if (a == b || b == c || a == c) IdentityPattern(target, IdentityPower * 1.0f * ApproachScale);
             else IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .45f * ApproachScale, 3);
         }
+        /// <summary>METEOR SHOWER: a star every .6 s (it was every .25 s, along the hero's trail) that lands on the thickest group of
+        /// foes near the hero, never twice running on the same spot; each carries the damage of the stars it replaces.</summary>
+        private const float MeteorEvery = .6f, MeteorRadius = 1.4f;
+        private Vector2 lastMeteor = new Vector2(999, 999);
+        private Vector2? MeteorSpot()
+        {
+            Vector2 best = default; int most = 0; int looked = 0;
+            for (int i = 0; i < units.Count && looked < 80; i++)
+            {
+                UnitState u = units[i]; if (!u.Alive || u.Faction != Faction.Enemy) continue;
+                Vector2 d = u.Position - Champion.Position; if (Mathf.Abs(d.x) > 8 || Mathf.Abs(d.y) > 5) continue;
+                looked++;
+                Vector2 sum = Vector2.zero; int n = 0;
+                foreach (UnitState o in EnemiesNear(u.Position, MeteorRadius)) { sum += o.Position; n++; }
+                if (n == 0) continue;
+                Vector2 centre = sum / n;
+                if ((centre - lastMeteor).sqrMagnitude < MeteorRadius * MeteorRadius) n -= 2; // a new group each time while there is one
+                if (n > most) { most = n; best = centre; }
+            }
+            return most > 0 ? best : (Vector2?)null;
+        }
         private void Meteor()
         {
-            if (awakenPath.Count == 0) return;
-            Vector2 at = awakenPath[Mathf.Max(0, awakenPath.Count - 1 - (awakenRound++ * 7) % Mathf.Min(awakenPath.Count, 60))];
-            var star = Hit(MorphGeometry.Disc, at, at, 1.15f, .55f, .5f, DamageElement.Ember); // 24/10: bigger meteors, .9 -> 1.15
+            Vector2? spot = MeteorSpot();
+            if (spot == null && awakenPath.Count == 0) return;
+            Vector2 at = spot ?? awakenPath[Mathf.Max(0, awakenPath.Count - 1 - (awakenRound++ * 7) % Mathf.Min(awakenPath.Count, 60))];
+            lastMeteor = at;
+            var star = Hit(MorphGeometry.Disc, at, at, MeteorRadius, .55f * MeteorEvery / .25f, .5f, DamageElement.Ember); // the damage of the 2.4 stars it replaces
             // requirement 1/11/2026: each one falls as a star (the falling star: a streak in, a bounce, little stars scattered)
             if (star != null) { star.Painted = true; star.Fx = "falling-star"; }
         }
