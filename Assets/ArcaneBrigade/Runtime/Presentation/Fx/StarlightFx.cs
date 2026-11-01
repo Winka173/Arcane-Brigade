@@ -25,10 +25,12 @@ namespace ArcaneBrigade
         private const FxShape Star = (FxShape)31, Streak = (FxShape)39;
         private static readonly Color Gold = new Color(1f, .8f, .22f), Pale = new Color(1f, .96f, .7f), Sky = new Color(.5f, .68f, 1f), Rose = new Color(1f, .6f, .85f);
 
-        /// <summary>A comet streak whose bright head is at <paramref name="head"/>, trailing opposite to <paramref name="dir"/>.</summary>
+        /// <summary>A comet streak trailing behind <paramref name="head"/> (opposite to <paramref name="dir"/>). The streak's own glow sits
+        /// at .62 of its length and spreads both ways, so the quad's front edge is put at the star: the star leads, the light trails it
+        /// (requirement 1/11/2026: the star sat in the middle of its streak).</summary>
         private static void Trail(FxBatch b, Vector2 head, Vector2 dir, float len, float width, Color c, int seed, float q)
         {
-            Vector2 centre = head - dir * (.62f * len);
+            Vector2 centre = head - dir * (.97f * len);
             b.Quad(Streak, centre, new Vector2(len, width), Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, c, q, seed, 0);
         }
         /// <summary>A puff of pale star-dust and grey floor dust where something lands.</summary>
