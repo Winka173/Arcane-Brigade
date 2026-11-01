@@ -4,8 +4,8 @@ namespace ArcaneBrigade
 {
     // The Glasshouse's look (requirement 25/10/2026: each map draws in its own file; MapEnvironmentVisual and MapAtmosphere
     // dispatch here). Props come from Resources/Environment/Glasshouse (Pot_Bud, Bloom_Red/Yellow/Brown/Orange/Blue, Bud_Big,
-    // Flower_Turret); until they are painted each is drawn in ink. Every effect is code: the sun and rain (MapGlasshouseSky's
-    // shader, or sprites without it), the pollen aura, the flower beds, the cracking pane and its shards, the seeds.
+    // Flower_Turret, GlassPane, GlassPaneCracked, GlassShardA/B/C); until they are painted each is drawn in ink. Every effect is
+    // code: the sun and rain (MapGlasshouseSky's shader, or sprites without it), the pollen aura, the flower beds, the seeds.
 
     public sealed partial class MapEnvironmentVisual
     {
@@ -238,7 +238,10 @@ namespace ArcaneBrigade
                     float drop = Mathf.Clamp01((t - (pane.BreakAt - .28f)) / .28f);
                     float lift = Mathf.Lerp(2.8f, .2f, drop * drop);
                     float shake = still || p < .55f ? 0 : Mathf.Sin(t * 47 + pane.Seed) * .035f * (p - .55f) / .45f;
-                    GlassPaneInk(pane.Position + new Vector2(shake, lift), p, pane.Seed, 1);
+                    // the painted pane (requirement 1/11/2026: the ink pane looked poor), cracked once the warning is half run
+                    Vector2 centre = pane.Position + new Vector2(shake, lift);
+                    if (Put(p < .45f ? "Glasshouse/GlassPane" : "Glasshouse/GlassPaneCracked", centre + Vector2.down * GlassPaneHeight * .5f, GlassPaneHeight, Air - 8, 1, pane.Seed % 2 == 0) == null)
+                        GlassPaneInk(centre, p, pane.Seed, 1);
                 }
                 else
                 {
@@ -247,7 +250,10 @@ namespace ArcaneBrigade
                 }
             }
         }
-        /// <summary>A roof pane: brushed glass, an iron frame with its mullion, two glare strokes, and cracks spreading from one point.</summary>
+        private const float GlassPaneHeight = 2f;
+        private static readonly string[] GlassShardArt = { "Glasshouse/GlassShardA", "Glasshouse/GlassShardB", "Glasshouse/GlassShardC" };
+        /// <summary>A roof pane in ink, while its art is not in: brushed glass, an iron frame with its mullion, two glare strokes, and
+        /// cracks spreading from one point.</summary>
         private void GlassPaneInk(Vector2 c, float crack, int seed, float alpha)
         {
             const float w = 1.2f, h = .78f, skew = .26f;
@@ -289,7 +295,10 @@ namespace ArcaneBrigade
                 Vector2 dir = new Vector2(Mathf.Cos(a * Mathf.Deg2Rad), Mathf.Sin(a * Mathf.Deg2Rad) * .6f);
                 Vector2 at = c + dir * reach * GlassEaseOut(p) + Vector2.up * Mathf.Sin(p * Mathf.PI) * .45f * GlassHash(seed, k + 9);
                 bool flying = p < 1;
-                ink.Token(InkToken.Shard, ArsenalInk.Glass, at, .26f * (.7f + .5f * GlassHash(k, 2)), a + (still ? 0 : p * 540 * (k % 2 == 0 ? 1 : -1)), fade, flying);
+                float size = .26f * (.7f + .5f * GlassHash(k, 2)), spin = a + (still ? 0 : p * 540 * (k % 2 == 0 ? 1 : -1));
+                // the painted shards: flying over the fight, then lying on the floor under the units
+                if (Put(GlassShardArt[k % 3], at, size * (k % 3 == 0 ? 2.1f : 1.6f), flying ? Air - 7 : Floor + 6, fade, k % 2 == 0, spin) == null)
+                    ink.Token(InkToken.Shard, ArsenalInk.Glass, at, size, spin, fade, flying);
                 if (!flying && !calm && GlassHash(k, 7) > .55f)
                     ink.TokenAt(InkToken.Glint, ArsenalInk.Glass, at + Vector2.up * .05f, .18f, 0, fade * Mathf.Pow(Mathf.Abs(Mathf.Sin(since * 7 + k)), 3));
             }
