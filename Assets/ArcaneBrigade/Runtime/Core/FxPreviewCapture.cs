@@ -29,12 +29,12 @@ namespace ArcaneBrigade
             // never the player's own save: the capture runs only on the isolated diagnostics folder
             if (!RunPaths.Root.Contains("ArcaneBrigadeDiagnostics")) { File.AppendAllText(Path.Combine(root, "log.txt"), "refused: not an isolated save\n"); Application.Quit(1); yield break; }
             var catalog = Resources.Load<RunCatalog>("RunCatalog");
-            foreach (string rule in (Arg("-rules") ?? "falling-star,comet-runner").Split(','))
+            foreach (string rule in (Arg("-rules") ?? "falling-star,ember-fall,comet-runner,boss-warning").Split(','))
             {
-                bool comet = rule == "comet-runner";
+                bool comet = rule == "comet-runner", warning = rule == "boss-warning";
                 using (var run = new RunSession(catalog))
                 {
-                    run.Start(comet ? "CometRunner" : "LanternKnight", 11011); run.State.Wave = 11; run.State.Phase = SessionPhase.Combat;
+                    run.Start(comet ? "CometRunner" : "LanternKnight", 11011); run.State.Wave = warning ? 4 : 11; run.State.Phase = SessionPhase.Combat;
                     new RunStorage(RunPaths.Root).SaveRun(run.State);
                 }
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(3f);
@@ -42,7 +42,8 @@ namespace ArcaneBrigade
                 if (owner == null) { File.AppendAllText(Path.Combine(root, "log.txt"), rule + ": no arena\n"); continue; }
                 float until = Time.realtimeSinceStartup + 10;
                 while (owner.Simulation.Units.Count(u => u.Alive && u.Faction == Faction.Enemy) < 12 && Time.realtimeSinceStartup < until) yield return null;
-                var director = comet ? null : new FxDirector(new GameObject("FxPreview").transform);
+                if (warning) { float wait = Time.realtimeSinceStartup + 8; while (owner.Simulation.Boss == null && Time.realtimeSinceStartup < wait) yield return null; }
+                var director = comet || warning ? null : new FxDirector(new GameObject("FxPreview").transform);
                 if (comet) owner.Simulation.PrimeAwakeningForCapture();
                 string dir = Path.Combine(root, rule); Directory.CreateDirectory(dir);
                 Time.captureFramerate = 30;
@@ -52,6 +53,7 @@ namespace ArcaneBrigade
                     owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health;
                     if (comet) { float a = frame / 30f * 1.6f; owner.Simulation.Champion.PreviousPosition = owner.Simulation.Champion.Position; owner.Simulation.Champion.Position = new Vector2(Mathf.Cos(a) * 3.2f, Mathf.Sin(a) * 1.8f - .5f); } // the hero runs a loop so the stars fall along its trail
                     float now = owner.Simulation.Elapsed;
+                    if (warning && frame % 60 == 0 && owner.Simulation.Boss != null && owner.Simulation.Boss.Alive) owner.Simulation.BossTelegraphCaptureFixture(); // a fresh warning every 2 s
                     if (director != null)
                     {
                         if (now >= next)

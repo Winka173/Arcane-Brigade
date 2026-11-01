@@ -85,15 +85,19 @@ namespace ArcaneBrigade
             if (lane)
             {
                 Vector2 start = field.Start, end = field.Position, along = (end - start).sqrMagnitude > .001f ? (end - start).normalized : Vector2.right, side = Vector2.Perpendicular(along);
-                float reach = Vector2.Distance(start, end) * (.25f + .75f * gather);
-                // the lane: one uniform band growing along it as the blow gathers - no crack spine, no branches
-                Color band = A(Crimson, .35f + .25f * gather);
-                ink.Band(start, start + along * reach, r, band, band);
+                float length = Vector2.Distance(start, end), k = BossTelegraph.Spread(gather);
+                // the lane: faint along its whole length, a solid band filling it from its start as the blow gathers (it counts the blow in)
+                Color faint = A(Crimson, .2f), band = A(Crimson, .45f + .2f * gather);
+                ink.Band(start, end, r, faint, faint);
+                if (k > .01f) ink.Band(start, start + along * length * k, r, band, band);
                 ink.Commit(); inked = true;
                 return;
             }
             // the area: one uniform fill that deepens as the blow gathers - no cracks, no lines inside it
-            ink.Ellipse(c, r, r, A(Crimson, .35f + .25f * gather), A(Crimson, .35f + .25f * gather));
+            // the area: faint whole, a solid fill spreading from the centre to the edge as the blow gathers (it counts the blow in)
+            float spread = BossTelegraph.Spread(gather);
+            ink.Ellipse(c, r, r, A(Crimson, .2f), A(Crimson, .2f));
+            if (spread > .01f) ink.Ellipse(c, r * spread, r * spread, A(Crimson, .45f + .2f * gather), A(Crimson, .45f + .2f * gather));
             ink.Commit(); inked = true;
         }
         private static readonly Color Ember = new Color(1f, .42f, .16f), Hot = new Color(1f, .86f, .55f), Crimson = new Color(.62f, .06f, .12f), Night = new Color(.2f, .05f, .2f);

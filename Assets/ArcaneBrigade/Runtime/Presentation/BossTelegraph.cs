@@ -143,23 +143,31 @@ namespace ArcaneBrigade
             Color c = Color.Lerp(ZoneGround, ZoneCharge, s * .75f); c.a = Mathf.Min(.95f, (.8f + .15f * s) * alpha); // dense: it reads through any crowd (requirement 25/10/2026: darker zones)
             return c;
         }
+        /// <summary>How far the fill has spread: 0 when the warning appears, 1 (the whole area) the moment the blow lands.</summary>
+        public static float Spread(float charge) => Mathf.SmoothStep(0, 1, Mathf.Clamp01(charge));
+        /// <summary>The whole area, faint, under the spreading fill: where the blow will reach.</summary>
+        private static Color Faint(float charge, float alpha) { Color c = ZoneColour(charge, alpha); c.a *= .38f; return c; }
         private static void Ground(ArsenalInk ink, Vector2 c, float rx, float ry, float charge, float alpha)
         {
-            Color fill = ZoneColour(charge, alpha);
-            ink.FloorZone(c, rx, ry, fill, fill);
+            // requirement 1/11/2026: the warning counts the blow in - a solid fill spreads from the centre to the edge
+            Color faint = Faint(charge, alpha), fill = ZoneColour(charge, alpha); float k = Spread(charge);
+            ink.FloorZone(c, rx, ry, faint, faint);
+            if (k > .01f) ink.FloorZone(c, rx * k, ry * k, fill, fill);
         }
         /// <summary>A lane's solid ground: the deep red band, filled bright from its start as the blow charges.</summary>
         public static void LaneGround(ArsenalInk ink, Vector2 a, Vector2 b, float halfWidth, float charge, float alpha)
         {
-            Color fill = ZoneColour(charge, alpha);
-            ink.FloorLane(a, b, halfWidth, fill, fill);
+            Color faint = Faint(charge, alpha), fill = ZoneColour(charge, alpha); float k = Spread(charge);
+            ink.FloorLane(a, b, halfWidth, faint, faint);
+            if (k > .01f) ink.FloorLane(a, Vector2.Lerp(a, b, k), halfWidth, fill, fill); // fills along the lane from its start
         }
         /// <summary>An aimed fan's solid ground: the wedge it will sweep, filled bright from the apex as it charges.</summary>
         public static void FanGround(ArsenalInk ink, Vector2 apex, Vector2 aim, float half, float reach, float charge, float alpha)
         {
             float mid = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg, spread = half * Mathf.Rad2Deg;
-            Color fill = ZoneColour(charge, 1);
-            ink.Cone(apex, reach, mid - spread, mid + spread, fill, fill.a * alpha, fill.a * alpha);
+            Color fill = ZoneColour(charge, 1); float k = Spread(charge);
+            ink.Cone(apex, reach, mid - spread, mid + spread, fill, fill.a * alpha * .38f, fill.a * alpha * .38f);
+            if (k > .01f) ink.Cone(apex, reach * k, mid - spread, mid + spread, fill, fill.a * alpha, fill.a * alpha); // fills out from the apex
         }
         /// <summary>Where a blow will land: the solid ground, and cracks running out from the centre to the area's true edge as the
         /// blow charges, a hot spark at each tip in the last beat.</summary>
