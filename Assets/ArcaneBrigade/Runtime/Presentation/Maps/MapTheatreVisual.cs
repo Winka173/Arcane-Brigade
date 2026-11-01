@@ -182,7 +182,15 @@ namespace ArcaneBrigade
             }
             for (int k = 0; k < 9; k++)
             {
-                Vector2 g = CombatSimulation.TheatreGhost(s, k) + new Vector2(0, .55f + Mathf.Sin(now * 1.7f + k * 1.3f) * .07f);
+                // the painted ghosts (requirement 1/11/2026: the ink wisps read as blobs): sitting on their row's cushions in front of the backs, cheering
+                // (clapping between two poses) while the hero is in the light, cross while not, the arm up as one throws a gift
+                Vector2 seat = CombatSimulation.TheatreGhost(s, k);
+                string pose = !lit ? "Theatre/GhostBoo" : still || Mathf.Sin(now * 9 + k * 1.7f) > 0 ? "Theatre/GhostCheer" : "Theatre/GhostWatch";
+                foreach (MapEnvironmentState.TheatreThrow th in s.TheatreThrows)
+                    if (th.Ghost == k && th.Coin && t - th.Born < .35f) pose = "Theatre/GhostThrow";
+                int onSeats = 1000 - Mathf.RoundToInt((seat.y - .75f + .35f) * 12) + 1;
+                if (Put(pose, seat + new Vector2(0, .25f + (still ? 0 : Mathf.Sin(now * 1.7f + k * 1.3f) * .06f)), 1f, onSeats, 1, k % 2 == 1) != null) continue;
+                Vector2 g = seat + new Vector2(0, .55f + Mathf.Sin(now * 1.7f + k * 1.3f) * .07f);
                 float look = sim.Champion != null ? Mathf.Clamp((sim.Champion.Position.x - g.x) * .02f, -.05f, .05f) : 0;
                 // a wisp of a tail, a glowing body and head (ghosts are of the enemies' violet), two ink eyes on the hero
                 ink.Stroke(g + new Vector2(0, -.1f), g + new Vector2(Mathf.Sin(now * 3 + k) * .14f, -.6f), TheatreGhostInk, .22f, 1, 0, .45f, .04f, k);
@@ -213,7 +221,7 @@ namespace ArcaneBrigade
                 if (!th.Landed && age < flight)
                 {
                     // the throwing ghost's arm swings up as it lets go
-                    if (age < .3f && !th.Coin)
+                    if (age < .3f && !th.Coin && MapIdentity.Sprite("Theatre/GhostBoo") == null)
                     {
                         Vector2 g = CombatSimulation.TheatreGhost(s, th.Ghost) + new Vector2(0, .55f);
                         ink.Stroke(g + new Vector2(.12f, .05f), g + new Vector2(.32f, .5f - age), TheatreGhostInk, .1f, 1, 0, .8f);

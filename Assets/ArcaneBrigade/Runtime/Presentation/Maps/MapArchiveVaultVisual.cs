@@ -265,9 +265,14 @@ namespace ArcaneBrigade
                 Vector2 h = Head(u) + Vector2.up * .14f;
                 float inch = still ? .1f : .07f + .08f * Mathf.Abs(Mathf.Sin(now * 5 + pair.Key));
                 Vector2 tail = h + new Vector2(-.2f, 0), nose = h + new Vector2(.2f, 0);
-                ink.Ribbon(InkCanvas.Lob(tail, nose, inch), VaultWormPal, .1f, 1, 0, .95f, false);
-                ink.Place(MechanicInk.Glow, nose + Vector2.up * .03f, .2f, 0, new Color(.88f, .8f, 1f, .95f), true);
-                ink.Stroke(nose + new Vector2(.03f, .07f), nose + new Vector2(.03f, .04f), ArsenalInk.Midnight, .045f, 1, 0, .9f);
+                // the painted bookworm (requirement 1/11/2026), inching between its stretched and arched frames
+                bool arched = !still && Mathf.Sin(now * 5 + pair.Key) > 0;
+                if (Put(arched ? "ArchiveVault/BookwormB" : "ArchiveVault/BookwormA", h + Vector2.down * .1f, .32f, Air - 10) == null)
+                {
+                    ink.Ribbon(InkCanvas.Lob(tail, nose, inch), VaultWormPal, .1f, 1, 0, .95f, false);
+                    ink.Place(MechanicInk.Glow, nose + Vector2.up * .03f, .2f, 0, new Color(.88f, .8f, 1f, .95f), true);
+                    ink.Stroke(nose + new Vector2(.03f, .07f), nose + new Vector2(.03f, .04f), ArsenalInk.Midnight, .045f, 1, 0, .9f);
+                }
                 for (int k = 0; k < worm.Pages; k++)
                     ink.TokenAt(InkToken.Page, ArsenalInk.Cream, h + new Vector2(.42f + .06f * k, -.06f + .1f * k), .26f, -12 + 9 * k, .95f);
                 if (vaultPagesSeen.TryGetValue(pair.Key, out int seen) && worm.Pages > seen)
