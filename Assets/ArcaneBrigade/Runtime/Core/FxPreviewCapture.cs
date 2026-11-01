@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             // never the player's own save: the capture runs only on the isolated diagnostics folder
             if (!RunPaths.Root.Contains("ArcaneBrigadeDiagnostics")) { File.AppendAllText(Path.Combine(root, "log.txt"), "refused: not an isolated save\n"); Application.Quit(1); yield break; }
             var catalog = Resources.Load<RunCatalog>("RunCatalog");
-            foreach (string rule in (Arg("-rules") ?? "falling-star,ember-fall,comet-runner,boss-warning").Split(','))
+            foreach (string rule in (Arg("-rules") ?? "falling-star,comet-runner,boss-warning").Split(','))
             {
                 bool comet = rule == "comet-runner", warning = rule == "boss-warning";
                 using (var run = new RunSession(catalog))
