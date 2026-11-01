@@ -31,7 +31,7 @@ namespace ArcaneBrigade
 
         private sealed class EmberFall : FxEffect
         {
-            protected override float Life => 2.0f;
+            protected override float Life => 1.0f;
             public override void Draw(FxBatch b, float now, float pre, float t)
             {
                 Vector2 at = At; float r = Radius, tf = .32f, size = .46f + .2f * r;
@@ -46,34 +46,21 @@ namespace ArcaneBrigade
                     Glint(b, head, size * 1.1f, Heat, 1f, now * 500);
                     return;
                 }
-                float tb = t - tf, hop = tb < .42f ? 1.4f * 4 * (tb / .42f) * (1 - tb / .42f) : 0, rest = Fade(tb, .9f, 1.5f);
-                Vector2 p = at + Vector2.up * (.3f + hop);
-                // the landing: a hot flash, warm light on the floor, a short ring of heat and rays
-                b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 1.7f, A(Heat, .8f * Fade(tb, 0, .2f)), 0, Seed);
-                b.Floor(FxShape.Glow, at, r * 1.3f, A(Fire, .5f * Fade(tb, 0, 1.3f)), 0, Seed);
-                b.Floor(FxShape.Shock, at, r * (.5f + .9f * EaseOut3(tb / .38f)), A(Hot, .6f * Fade(tb, .05f, .45f)), tb / .45f, Seed);
-                b.Quad(FxShape.Rays, at + Vector2.up * .3f, r * 1.6f, A(Hot, .7f * Fade(tb, 0, .55f)), tb, Seed, 3);
-                // the fireball hops once and burns down
-                Flamelet(b, p, size * 1.5f * (.6f + .4f * rest), now, Seed, rest);
-                // little flames thrown out on arcs: each lands and flickers a moment, then winks out
-                for (int k = 0; k < 9; k++)
+                float tb = t - tf;
+                // the landing: a hot flash, warm light on the floor, and the fireball burning down where it struck
+                b.Quad(FxShape.Glow, at + Vector2.up * .5f, r * 1.6f, A(Heat, .8f * Fade(tb, 0, .22f)), 0, Seed);
+                b.Floor(FxShape.Glow, at, r * 1.2f, A(Fire, .5f * Fade(tb, 0, .8f)), 0, Seed);
+                float burn = Fade(tb, .15f, .6f);
+                Flamelet(b, at + Vector2.up * .2f, size * 1.4f * (.5f + .5f * burn), now, Seed, burn);
+                // a few sparks flung out from the strike, each a short bright streak that slows, drops and goes out
+                for (int k = 0; k < 7; k++)
                 {
-                    Vector2 d = Dir(Seed, k, 9, .75f); float fly = .5f + .2f * H(Seed, k + 3), u = tb / fly;
-                    Vector2 land = at + d * r * (.7f + .65f * H(Seed, k + 9));
-                    Vector2 q = u < 1 ? Vector2.Lerp(at, land, EaseOut(u)) + Vector2.up * (1.6f * u * (1 - u)) : land;
-                    float life = Fade(tb, .95f + .06f * k, 1.55f + .06f * k);
-                    if (life <= 0) continue;
-                    float h = (.32f + .16f * H(Seed, k + 12)) * (u < 1 ? .8f : 1);
-                    Flamelet(b, q, h, now, Seed + k * 7, life);
-                    if (u >= 1) Glint(b, q + Vector2.up * h * .9f, .2f * (.6f + .4f * Mathf.Sin(now * 16 + k)), Heat, .8f * life, now * 60 + k * 70);
-                }
-                // embers sprayed up and falling back, winking
-                for (int k = 0; k < 14; k++)
-                {
-                    float u = tb / (.55f + .5f * H(Seed, k + 40)); if (u <= 0 || u >= 1) continue;
-                    Vector2 d = Dir(Seed + 3, k, 14, .8f);
-                    Vector2 q = at + d * r * 1.6f * EaseOut(u) + Vector2.up * (1.1f * u - 1.5f * u * u + .3f);
-                    Glint(b, q, .16f, k % 2 == 0 ? Hot : Heat, (1 - u) * (.6f + .4f * Mathf.Sin(now * 25 + k)), k * 50 + now * 150);
+                    float fly = .32f + .14f * H(Seed, k + 3), u = tb / fly; if (u >= 1) continue;
+                    Vector2 d = Dir(Seed, k, 7, .6f); d.y = d.y * .6f + .25f; d.Normalize();
+                    float go = r * (1.1f + .5f * H(Seed, k + 9)) * EaseOut(u);
+                    Vector2 q = at + Vector2.up * .3f + d * go + Vector2.down * (.9f * u * u);
+                    Vector2 v = (d * (1 - u) + Vector2.down * 1.2f * u).normalized;
+                    Trail(b, q, v, .5f * (1 - .6f * u), .09f, A(k % 2 == 0 ? Hot : Heat, 1 - u), Seed + k, now * 5);
                 }
             }
         }
