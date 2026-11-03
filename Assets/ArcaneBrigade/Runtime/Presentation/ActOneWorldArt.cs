@@ -65,10 +65,16 @@ namespace ArcaneBrigade
                 if (!shop)
                     for (int i = 0; i < ZoneProps[zone].Length; i++)
                         Planned(ZoneProps[zone][i], "prop" + i, ArenaLayoutPlan.ZonePropWish(i), ArenaLayoutPlan.ZonePropHeight(i), true);
-                int seated = shop ? Mathf.Clamp((state.Wave - 8) / 2, 0, 5) : ArenaLayoutPlan.SeatedCount(zone);
+                int seated = shop ? Mathf.Clamp((state.Wave - 7) / 2, 0, 5) : ArenaLayoutPlan.SeatedCount(zone); // from shop 9, when the Chair Porter's travellers come along
                 for (int i = 0; i < seated; i++)
                     if (shop) Add(ArenaLayoutPlan.SeatedName(i), new Vector2((i % 2 == 0 ? -1 : 1) * 8.4f, 3.8f - (i / 2) * 2.4f), ArenaLayoutPlan.SeatedHeight, false);
                     else Planned(ArenaLayoutPlan.SeatedName(i), "seated" + i, ArenaLayoutPlan.SeatedWish(i), ArenaLayoutPlan.SeatedHeight, false);
+                // the four travelling companions of the story stand in the shop from the night they join (story review 3/11/2026:
+                // the journal told of them while nobody was there); they do not fight, and ShopLayout finds each a free spot
+                if (shop)
+                    for (int i = 0; i < ActOneCanon.StoryIds.Length; i++)
+                        if (ActOneCanon.StoryInShop(i, state.Wave) && owner.Content?.Unit(ActOneCanon.StoryIds[i]) is UnitDefinition friend && friend.Body != null)
+                            AddSprite(ActOneCanon.CompanionFigure + ActOneCanon.StoryNames[i], friend.Body, CompanionWish[i], Mathf.Clamp(friend.BodyHeight * 1.15f, .9f, 1.5f));
             }
             foreach (var pair in floating) pair.prop.Display(pair.anchor, owner.PresentationClock, NightmareRules.Depth(state.Wave));
             foreach (var surface in surfaces)
@@ -86,9 +92,16 @@ namespace ArcaneBrigade
             if (!ArenaLayout.Place(owner, id, drawn, ref anchor, out float fit)) return;
             Add(name, anchor, hover ? height * fit : height, hover); // standing figures keep their size; only floating props shrink to fit
         }
+        /// <summary>Where each companion would like to stand: Hob by the counter, Latch on your left facing the warm chair,
+        /// Postscript by the door, Tally near the counter's foot.</summary>
+        private static readonly Vector2[] CompanionWish = { new Vector2(-2.6f, 1.6f), new Vector2(-4.8f, -1.4f), new Vector2(-6.2f, 1.2f), new Vector2(2.4f, 1.2f) };
         private void Add(string name, Vector2 anchor, float height, bool hover)
         {
             Sprite image = ActOneArtwork.Picture(name); if (image == null) return;
+            AddSprite(name, image, anchor, height, hover);
+        }
+        private void AddSprite(string name, Sprite image, Vector2 anchor, float height, bool hover = false)
+        {
             var go = new GameObject("ActOne-" + name); go.transform.SetParent(transform, false); objects.Add(go);
             var view = go.AddComponent<SpriteRenderer>(); view.sprite = image;
             surfaces.Add((view, anchor, name.StartsWith("SeatedOne_", System.StringComparison.Ordinal)));

@@ -31,6 +31,7 @@ namespace ArcaneBrigade
             ink.End();
         }
 
+        private static readonly string[] PorterChairs = { "ThrownChair_Dining", "ThrownChair_Rocking", "ThrownChair_Stool" };
         private void Draw(ExpandedField f, float now)
         {
             bool still = PresentationSettings.ReducedMotion;
@@ -51,6 +52,11 @@ namespace ArcaneBrigade
             Sprite[] frames = BossTrademarks.Prop(f.Style) is string name ? ArsenalArtwork.Frames(name) : null;
             Sprite painted = frames == null ? null : f.Style == 9 ? frames[Mathf.Abs(Mathf.RoundToInt(f.Phase * 10)) % frames.Length]
                 : still ? frames[0] : frames[Mathf.Abs(Mathf.FloorToInt(now * 6)) % frames.Length];
+            // the Chair Porter rides the Suitcase Leviathan's belt but hurls the chairs of its tower, not suitcases (story review
+            // 3/11/2026): each piece keeps one of the three chairs, as each suitcase keeps its look
+            if (f.Style == 9 && ActOneArtwork.Identity(f.Source?.Definition) == "ChairPorter"
+                && ActOneArtwork.Picture(PorterChairs[Mathf.Abs(Mathf.RoundToInt(f.Phase * 10)) % PorterChairs.Length]) is Sprite chair)
+                painted = chair;
             Pieces++;
             switch (f.Style)
             {

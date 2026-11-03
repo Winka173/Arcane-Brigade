@@ -75,7 +75,7 @@ namespace ArcaneBrigade.Editor
             root["HeroLoadouts"] = HeroLoadout.Heroes.ToDictionary(p => p.Key, p => (object)p.Value);
             root["GaugeRecipes"] = typeof(CombatSimulation).GetField("GaugeRecipes", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
             root["ActOne"] = new Dictionary<string, object> {
-                { "Zones", ActOneCanon.ZoneNames }, { "BreakWave", ActOneCanon.BreakWave }, { "LampHeld", ActOneCanon.LampHeld },
+                { "Places", ActOneCanon.PlaceNames }, { "BreakWave", ActOneCanon.BreakWave }, { "LampHeld", ActOneCanon.LampHeld },
                 { "StoryIds", ActOneCanon.StoryIds }, { "StoryNames", ActOneCanon.StoryNames }, { "JoinShop", ActOneCanon.JoinShop },
                 { "ThursdayShoes", ActOneCanon.ThursdayShoes }, { "KeeperReturnShop", ActOneCanon.KeeperReturnShop }
             };

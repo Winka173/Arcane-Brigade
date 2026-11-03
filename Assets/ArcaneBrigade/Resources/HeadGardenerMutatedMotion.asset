@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: HeadGardenerMutatedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1625299825, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: 572429405, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  Walk:
+  - {fileID: 504000283, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: -347780277, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: 504000283, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: -347780277, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  Windup:
+  - {fileID: -546363010, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: -831801458, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  Release:
+  - {fileID: -1307555935, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: -1307555935, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  Recovery:
+  - {fileID: -1109800613, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  - {fileID: -1625299825, guid: 7c9b921bce0f403c99458cbb94f8217a, type: 3}
+  IllustratedHeight: 0

@@ -67,12 +67,22 @@ Mỗi đèn vỡ, journal ghi đúng một dòng: *“You can no longer remember
 
 Hồi 1 là một cuộc đi xuống từ nơi công cộng nhất đến nơi riêng tư nhất; càng sâu càng tối, càng là chuyện của ta.
 
-| Chặng | Wave | Nơi | Chủ đề | Boss | Gia nhập |
+**Cập nhật 03/11/2026 (rà soát trước phát hành):** truyện đi theo 6 map đang có và boss mỗi 4 wave. Bảng dưới là bản đúng; bảng 4 chặng cũ (boss 5/10/15/20, sân ga) đã bỏ.
+
+| Nơi (tiêu đề nhật ký) | Map | Wave | Boss | Gia nhập | Keeper bế tiệm đi |
 | --- | --- | --- | --- | --- | --- |
-| I · THE CROSSING | 1–5 | Cửa tiệm, cổng ranh giới | Phải có ích | THE KEEPER | Hob, Latch |
-| II · THE LAST PLATFORM | 6–10 | Nhà ga của Những Người Đã Ngồi Xuống | Chờ đợi | THE CHAIR PORTER | Postscript |
-| III · THE HOUSE WITH INWARD WINDOWS | 11–15 | Ngôi nhà thời thơ ấu dựng lại sai | Tội lỗi | THE DOOR THAT STAYED SHUT | Tally |
-| IV · THE PERFECT ROOM | 16–20 | Phòng ngủ hoàn hảo, quầy Customer | Nghỉ ngơi ≠ ngồi xuống | THE LAST CUSTOMER | — |
+| THE CROSSING | Waiting Room | 1–4 | 4: THE COIN WIDOW (Keeper bị xích ở cổng, quỳ ở shop 4) | Hob (1), Latch (4) | shop 4, bàn tay |
+| THE DEAD LETTER OFFICE | Post Office | 5–8 | 8: THE CHAIR PORTER (ném ghế của tháp ghế) | Postscript (6) | shop 8, bàn tay |
+| THE HOUSE WITH INWARD WINDOWS | Glasshouse | 9–11 | — | Tally (9) | shop 11, tấm thảm |
+| THE FRONT HALL | Lamp Hall | 12–14 | 12: THE DOOR THAT STAYED SHUT | — | shop 14, con mắt (lỗ khoá) |
+| THE PERFECT ROOM | Forgotten Theatre | 15–17 | 16: THE MARQUEE MAW (gọi mọi người về chỗ ngồi xem màn cuối) | — | shop 17, lỗ khoá mở ra các kệ |
+| THE LEDGER | Archive Vault | 18–20 | 20: THE LAST CUSTOMER | Tally rời đi (18), trở lại (19) | — |
+
+- Lựa chọn: điện thoại ở shop 8 (giữ), tiếng gõ cửa trốn/mở chuyển từ shop 14 sang shop 11 (trước trận cánh cửa ở wave 12).
+- Đèn vỡ giữ nguyên wave 3, 5, 8, 10, 13, 14, 17; đèn thứ tám (cái tên) không tắt trong Act I.
+- Lời mời phòng bí mật ở shop 3, 7, 13, 18 (không ngay sau boss, không ở shop Keeper 17).
+- Bốn đồng hành truyện đứng trong shop từ shop gia nhập (không đánh); chạm vào để xem họ là ai.
+- Lời truyện chuẩn nằm trong `Runtime/Data/ActOneCanon.cs` (`Beats()`); §5 dưới đây là bản nháp cũ, giữ để tham khảo giọng văn.
 
 ## 5. Dòng thời gian (Shop n = pha mua sau wave n; 🔥 = đèn vỡ)
 

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: SeedPuff
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: SeedPuff
+  DisplayName: Seed Puff
+  Body: {fileID: -1700770750, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  AnimationFrames:
+  - {fileID: -1700770750, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: 1315122584, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -817168255, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -1615795596, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: e5997b92b52dbb545bc157844d824eed, type: 2}
+  Weapon: {fileID: 11400000, guid: f5510a633e79e1c418105f04d3228b64, type: 2}
+  Health: 55
+  Speed: 1.05
+  Radius: 0.23384616
+  BodyHeight: 0.8
+  BodyScale: 1.8
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Swells up, then bursts in a ring.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 10
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 8
+  Shot: 4
+  Material: 3
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

@@ -14,7 +14,7 @@ namespace ArcaneBrigade
     /// its living elements (MapEnvironmentCombat) and one short guide line per element.</summary>
     public static class MapIdentity
     {
-        /// <summary>Balance diagnosis only (bot sweeps): "-phased-off=pool,env,contact" switches parts of phase D off.</summary>
+        /// <summary>Balance diagnosis only (bot sweeps): "-phased-off=pool,env,contact,cap" switches parts of phase D off (cap: the species limit per wave).</summary>
         public static bool Off(string part)
         {
             if (offParts == null)
@@ -58,8 +58,8 @@ namespace ArcaneBrigade
             MapTheme.Theatre => MapTheme.LampHall, // a dark hall cut by light
             _ => map
         };
-        /// <summary>The map's named elite comes on its third wave, else its second, else its fourth: never on a story boss's
-        /// night (multiples of five) nor on the night of the map's mid-map boss (requirement 25/10/2026: one big foe a night).</summary>
+        /// <summary>The map's named elite comes on its third wave, else its second, else its fourth: never on a boss night
+        /// (4, 8, 12, 16, 20; requirement 25/10/2026: one big foe a night).</summary>
         public static bool EliteWave(int wave)
         {
             int first = FirstWave(wave), last = LastWave(wave);
@@ -90,12 +90,15 @@ namespace ArcaneBrigade
             new[] { "SewnLetter", "PartyLine", "RibbonHydra", "MoonMagnet", "BroomSkater", "ChargerRam", "BlastPuffer", "StampTick", "SealHound", "SackGolem" },
             new[] { "LampSnuffer", "InkMoth", "CurtainWisp", "RuneWisp", "LostLanternSoul", "SmokeWraith", "BlueFlameFiend", "TwinFlameFurnace", "EmberProcession", "AshSwallower", "WickImp", "LampshadeJelly", "ChandelierCrawler", "FireScreenWarden", "TwinWickLantern", "CandleShade" },
             new[] { "LedgerHound", "SmokingCoffin", "ClockBat", "BurrowBell", "RedFlameBerserker", "SirenSeal", "InkNotary", "ClipMite", "InkToad", "CabinetMimic", "SpyglassSniper", "DrawerBroodmother", "LedgerTortoise" }, // + the playtest map enemies (requirement 23/10/2026)
-            // requirement 25/10/2026: the Glasshouse's garden (spores, puffers, rain, toads, burrowers, splinters, ribbon vines)
-            new[] { "SporeBishop", "BlastPuffer", "UmbrellaStalker", "InkToad", "BurrowBell", "BristleImp", "RibbonHydra", "HopperKeg", "BroomSkater" },
+            // requirement 25/10/2026: the Glasshouse's garden; story review 3/11/2026: its own haunted plants lead it (the snapping pot,
+            // the briar, the seed puff), with the spores, puffers, rain, burrowers and ribbon vines behind them
+            new[] { "PotSnapper", "BriarCreeper", "SeedPuff", "SporeBishop", "BlastPuffer", "UmbrellaStalker", "BurrowBell", "RibbonHydra" },
             // requirement 25/10/2026: the Theatre's stage (curtains, stage smoke, footlights, the chandelier, mimics, the singer, tickets)
             new[] { "CurtainWisp", "SmokeWraith", "CandleShade", "ChandelierCrawler", "SleepMimic", "SirenSeal", "TicketMoth", "MoonMagnet", "FireScreenWarden", "CabinetMimic", "EmberProcession" },
         };
         public static IReadOnlyList<string> Family(MapTheme map) => Families[(int)map];
+        /// <summary>The family species that walk in on one wave.</summary>
+        public const int FamilyShown = 4;
         public static bool InFamily(MapTheme map, string id) => Array.IndexOf(Families[(int)map], id) >= 0;
 
         /// <summary>A roster v2 enemy of this map's family walks into the map's own waves (the Waiting Room's chairs and knockers
@@ -124,7 +127,9 @@ namespace ArcaneBrigade
         };
 
         /// <summary>Themes a wave's enemy pool: the map's family is weighted twice, and only a few other species stay as
-        /// carry-overs (the last map's family first). A pool with fewer than two family species is left as it is.</summary>
+        /// carry-overs (the last map's family first). A pool with fewer than two family species is left as it is.
+        /// Story review 3/11/2026 (up to 22 species a wave read as noise): at most <see cref="FamilyShown"/> of the family a wave (its
+        /// first three, the map's signature, and one that changes from wave to wave), two carry-overs and two kinds of brute.</summary>
         public static List<UnitDefinition> Theme(List<UnitDefinition> pool, int wave, int seed)
         {
             if (pool == null || pool.Count == 0) return pool;
@@ -137,7 +142,18 @@ namespace ArcaneBrigade
                 else if (!others.Contains(unit.Id)) others.Add(unit.Id);
             }
             if (familyIds.Count < 2) return pool;
-            int carry = Mathf.Clamp(familyIds.Count - 1, 2, 4);
+            if (familyIds.Count > FamilyShown && !Off("cap"))
+            {
+                string[] family = Families[(int)map];
+                var ranked = new List<string>(familyIds);
+                ranked.Sort((a, b) =>
+                {
+                    bool sa = Array.IndexOf(family, a) < 3, sb = Array.IndexOf(family, b) < 3;
+                    return sa != sb ? (sa ? -1 : 1) : Hash(seed, wave, a).CompareTo(Hash(seed, wave, b));
+                });
+                familyIds = new HashSet<string>(ranked.GetRange(0, FamilyShown));
+            }
+            int carry = Off("cap") ? Mathf.Clamp(familyIds.Count - 1, 2, 4) : 2;
             others.Sort((a, b) =>
             {
                 int pa = InFamily(previous, a) ? 0 : 1, pb = InFamily(previous, b) ? 0 : 1;
@@ -148,17 +164,21 @@ namespace ArcaneBrigade
             // share they had in the unthemed pool, whatever the map (phase D sweep: an Archive Vault of Wardrobe Crabs halved the
             // bots' win rate)
             var themed = new List<UnitDefinition>(); var brutes = new List<UnitDefinition>();
-            int counted = 0;
+            var bruteKinds = new List<string>();
+            foreach (UnitDefinition unit in pool) if (unit != null && Brute(unit) && !bruteKinds.Contains(unit.Id)) bruteKinds.Add(unit.Id);
+            bruteKinds.Sort((a, b) => Hash(seed, wave, a).CompareTo(Hash(seed, wave, b)));
+            if (bruteKinds.Count > 2 && !Off("cap")) bruteKinds.RemoveRange(2, bruteKinds.Count - 2);
+            int counted = 0, bruteEntries = 0;
             foreach (UnitDefinition unit in pool)
             {
                 if (unit == null) continue;
                 counted++;
-                if (Brute(unit)) { brutes.Add(unit); continue; }
+                if (Brute(unit)) { bruteEntries++; if (bruteKinds.Contains(unit.Id)) brutes.Add(unit); continue; }
                 if (familyIds.Contains(unit.Id)) { themed.Add(unit); themed.Add(unit); }
                 else if (kept.Remove(unit.Id)) themed.Add(unit); // each carry-over once
             }
             if (themed.Count == 0) return pool;
-            float share = brutes.Count / (float)Mathf.Max(1, counted);
+            float share = bruteEntries / (float)Mathf.Max(1, counted); // the brutes' share of the whole pool, whichever two kinds walk in
             int wanted = Mathf.RoundToInt(share * themed.Count / Mathf.Max(.05f, 1 - share));
             for (int i = 0; i < wanted && brutes.Count > 0; i++) themed.Add(brutes[i % brutes.Count]);
             return themed;

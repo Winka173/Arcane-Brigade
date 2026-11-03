@@ -387,7 +387,7 @@ namespace ArcaneBrigade
                 CombatCatalog.MeleeEnemy = BuildEnemy(firstContact, scaling);
                 CombatCatalog.RangedEnemy = CombatCatalog.MeleeEnemy;
             }
-            // Act I closes each of its four zones with a story boss (waves 5, 10, 15, 20); endless keeps the catalog rhythm.
+            // Act I has a story boss every fourth night (waves 4, 8, 12, 16, 20); endless keeps the catalog rhythm.
             bool actOne = !State.Endless && State.Wave <= catalog.NormalWaves;
             bool bossWave = actOne ? ActOneCanon.BossWave(State.Wave) : State.Wave % catalog.BossEvery == 0;
             int bossStage = actOne ? State.Wave / 4 - 1 : State.Wave / catalog.BossEvery - 1;
@@ -612,8 +612,9 @@ namespace ArcaneBrigade
             return value * (companion ? CarnivalBalance.RecruitDamage(unit.Rarity) : PlayerBuildBalance.HeroPower(unit.Id));
         }
 
-        /// <summary>The Keeper guards the gate at wave 5 with the strength of an ordinary wave-5 boss; the Chair Porter and the
-        /// Door That Stayed Shut use stand-in bodies (Suitcase Leviathan, Undelivered King) until their own art lands.</summary>
+        /// <summary>The story bosses of the boss nights: the Coin Widow (4), the Chair Porter (8, on the Suitcase Leviathan's rig with
+        /// its own painted body from ActOneArtwork), the Door That Stayed Shut (12, on the Undelivered King's), the Marquee Maw (16);
+        /// wave 20 is the catalogue's own last boss, the Last Customer.</summary>
         private UnitDefinition StoryBoss(UnitDefinition reference, float scaling)
         {
             if (reference == null) return null;

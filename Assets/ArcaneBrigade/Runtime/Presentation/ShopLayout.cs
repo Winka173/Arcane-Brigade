@@ -142,13 +142,14 @@ namespace ArcaneBrigade
                 if (adopted.Exists(entry => entry.Root == child)) continue;
                 var view = child.GetComponent<SpriteRenderer>(); if (view == null || view.sprite == null) continue;
                 Rect ink = Ink(view);
-                adopted.Add(new Adopted { Root = child, View = view, Shadow = child.GetComponent<GroundShadow>(), Wish = new Vector2(ink.center.x, ink.yMin), Size = ink.size, Id = "story:" + child.name, Priority = child.name.Contains("LastCustomer") ? -1 : 6, Scale = child.localScale.x });
+                adopted.Add(new Adopted { Root = child, View = view, Shadow = child.GetComponent<GroundShadow>(), Wish = new Vector2(ink.center.x, ink.yMin), Size = ink.size, Id = "story:" + child.name, Priority = child.name.Contains("LastCustomer") ? -1 : child.name.Contains(ActOneCanon.CompanionFigure) ? 0 : 6, Scale = child.localScale.x });
             }
             foreach (Adopted entry in adopted)
             {
-                // the Last Customer must be there (smaller if the room is full); the seated travellers keep to the edges
-                bool customer = entry.Priority < 0;
-                bool shown = Place(entry.Id, entry.Wish, entry.Size, entry.Priority, customer, !customer, out Vector2 foot, out float fit);
+                // the Last Customer and the story companions must be there (smaller if the room is full) and stand in the room;
+                // the seated travellers keep to the edges
+                bool customer = entry.Priority < 0, companion = entry.Priority == 0;
+                bool shown = Place(entry.Id, entry.Wish, entry.Size, entry.Priority, customer || companion, !customer && !companion, out Vector2 foot, out float fit);
                 Vector2 delta = shown ? foot - entry.Wish : Vector2.zero;
                 float scale = entry.Scale * (shown ? fit : 1);
                 if (delta != entry.Applied || Mathf.Abs(entry.Root.localScale.x - scale) > 0.001f)

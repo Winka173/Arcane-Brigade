@@ -277,6 +277,36 @@ MonoBehaviour:
     Ability: 12
     Normal: {fileID: 11400000, guid: 46cf7a7e776b8904198e59136d0fa129, type: 2}
     Mutated: {fileID: 11400000, guid: 9f8f1ffd21040bc4889eb6c86b6c78fe, type: 2}
+  - Id: PotSnapper
+    MutationName: Twin Snap
+    Summary: Leaps onto a marked spot, mouth first.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: 2a4f92b2d534c08419a6a4083a22e03e, type: 2}
+    Mutated: {fileID: 11400000, guid: e0f5a4c83c7548446a14f1bfb8759e9c, type: 2}
+  - Id: BriarCreeper
+    MutationName: Three Buds
+    Summary: Sinks into the soil and bursts up where you stand.
+    Ability: 20
+    Normal: {fileID: 11400000, guid: 6c6e3cd37e2e9d54da0ea3cc7b393cf5, type: 2}
+    Mutated: {fileID: 11400000, guid: 8d8ef1401bbabb6418cfc7a7498715c3, type: 2}
+  - Id: SeedPuff
+    MutationName: Double Puff
+    Summary: Swells up, then bursts in a ring.
+    Ability: 5
+    Normal: {fileID: 11400000, guid: e5997b92b52dbb545bc157844d824eed, type: 2}
+    Mutated: {fileID: 11400000, guid: fc290deb17ce83844851a34ce25e9aea, type: 2}
+  - Id: HeadGardener
+    MutationName: Shattered Frame
+    Summary: The Glasshouse's elite.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: d23d95845e7383d4faf139643982c842, type: 2}
+    Mutated: {fileID: 11400000, guid: ca2e160c6cf2ecf4d999c02d8a65dddb, type: 2}
+  - Id: CurtainCaller
+    MutationName: Two Curtains
+    Summary: The Forgotten Theatre's elite.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: 05e2489e931fb8d47a0de37d3af4765e, type: 2}
+    Mutated: {fileID: 11400000, guid: 327639530704791488c10842e66d2407, type: 2}
   BodyFragments:
   - {fileID: -356142078, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
   - {fileID: 432123077, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}

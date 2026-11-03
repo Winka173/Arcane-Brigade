@@ -40,6 +40,46 @@ namespace ArcaneBrigade.Editor
             S("ArchiveSentinel", "Archive Sentinel", "CabinetMimic", 2.3f, 1500, .75f, 99, EnemyBehavior.Armored, EnemyMutation.CabinetScissor, "Drawer Teeth", "The Archive Vault's elite."),
         };
 
+        /// <summary>Story review 3/11/2026: the Glasshouse gets enemies of its own (haunted greenhouse plants), and the Glasshouse
+        /// and the Forgotten Theatre their named elites (MapElites[4] and [5], by MapTheme), which they never had.</summary>
+        private static readonly Spec[] GlasshouseEnemies =
+        {
+            S("PotSnapper", "Pot Snapper", "HopperKeg", .95f, 70, 1.0f, 9, EnemyBehavior.Hopper, EnemyMutation.KegRebound, "Twin Snap", "Leaps onto a marked spot, mouth first."),
+            S("BriarCreeper", "Briar Creeper", "BurrowBell", 1.0f, 80, .95f, 9, EnemyBehavior.Burrower, EnemyMutation.BellEruption, "Three Buds", "Sinks into the soil and bursts up where you stand."),
+            S("SeedPuff", "Seed Puff", "BlastPuffer", .8f, 55, 1.05f, 10, EnemyBehavior.Puffer, EnemyMutation.MothMolting, "Double Puff", "Swells up, then bursts in a ring."),
+        };
+        private static readonly Spec[] LateElites =
+        {
+            S("HeadGardener", "Head Gardener", "WardrobeCrab", 2.2f, 1200, .8f, 99, EnemyBehavior.Shielder, EnemyMutation.CabinetScissor, "Shattered Frame", "The Glasshouse's elite."),
+            S("CurtainCaller", "Curtain Caller", "SackGolem", 2.2f, 1300, .85f, 99, EnemyBehavior.Hopper, EnemyMutation.KegRebound, "Two Curtains", "The Forgotten Theatre's elite."),
+        };
+
+        [MenuItem("Arcane Brigade/Art/Put the Glasshouse and Theatre enemies in")]
+        public static void BuildStoryFix()
+        {
+            RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
+            var library = AssetDatabase.LoadAssetAtPath<EnemyEvolutionLibrary>("Assets/ArcaneBrigade/Resources/EnemyEvolutionLibrary.asset");
+            var species = new List<EnemyEvolutionEntry>(library.Species ?? new EnemyEvolutionEntry[0]);
+            var enemies = new List<UnitDefinition>(catalog.Enemies);
+            int made = 0, elites = 0;
+            foreach (Spec s in GlasshouseEnemies)
+            {
+                UnitDefinition unit = Make(s, catalog, species, false); if (unit == null) continue;
+                if (!enemies.Contains(unit)) enemies.Add(unit); made++;
+            }
+            if (catalog.MapElites == null || catalog.MapElites.Length < 6) System.Array.Resize(ref catalog.MapElites, 6);
+            for (int m = 0; m < LateElites.Length; m++)
+            {
+                UnitDefinition unit = Make(LateElites[m], catalog, species, true); if (unit == null) continue;
+                catalog.MapElites[(int)(m == 0 ? MapTheme.Glasshouse : MapTheme.Theatre)] = unit; elites++;
+            }
+            catalog.Enemies = enemies.ToArray(); library.Species = species.ToArray();
+            EditorUtility.SetDirty(catalog); EditorUtility.SetDirty(library); EnemyEvolutionLibrary.Invalidate();
+            AssetDatabase.SaveAssets();
+            Debug.Log("ENEMY_STORY_FIX new " + made + ", elites " + elites);
+            if (Application.isBatchMode) EditorApplication.Exit(made == 3 && elites == 2 ? 0 : 1);
+        }
+
         [MenuItem("Arcane Brigade/Art/Put enemy variety in")]
         public static void Build()
         {

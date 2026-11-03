@@ -123,6 +123,8 @@ namespace ArcaneBrigade
                 else if (id.StartsWith("ActOne-LastCustomer", StringComparison.Ordinal) || id == ActOneCustomerVisits.FigureName)
                     Add(id, "THE LAST CUSTOMER", id.EndsWith("BorrowedFace", StringComparison.Ordinal) ? "It stands by the warm chair wearing a face you almost know. It has been buying all night, and it has never once paid." : "A pleasant stranger who stands by the warm chair. It buys what nobody should sell, and it would like to buy something from you.",
                         state.Wave == 8 ? "It will make you an offer once you have read the telephone page" : "It only waits", Ink(view), view.sortingOrder);
+                else if (id.StartsWith("ActOne-" + ActOneCanon.CompanionFigure, StringComparison.Ordinal) && Array.IndexOf(ActOneCanon.StoryNames, id.Substring(7 + ActOneCanon.CompanionFigure.Length)) is int who && who >= 0)
+                    Add(id, ActOneCanon.StoryNames[who].ToUpperInvariant(), ActOneCanon.StoryLines[who], "Travels with you; it does not fight", Ink(view), view.sortingOrder);
                 else if (id == "TheHandWaits")
                     Add(id, "THE KEEPER, WHOLE", "An optional boss. Break its hand, carpet and eye and it kneels.\nWin: pick one rainbow gift.\nLast 3 minutes: no gift, no harm.\nFall: the run ends.", "Step up to it to take the test", Ink(view), view.sortingOrder);
                 else if (id.StartsWith("PrismaticReward", StringComparison.Ordinal))

@@ -319,11 +319,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7a3795c3a3ac5d4c9c258b2247d8d10, type: 2}
   - {fileID: 11400000, guid: 0f9c183114613fc44929b34bdae4fb11, type: 2}
   - {fileID: 11400000, guid: 3300f637269fe2d4488accfe1abdeddd, type: 2}
+  - {fileID: 11400000, guid: c74c0a6180bfaa646b19644f0dccb1ba, type: 2}
+  - {fileID: 11400000, guid: e2f401c6a2e4fe342a809cdc21a95764, type: 2}
+  - {fileID: 11400000, guid: d8ac92c0f099aa744a99c5015a9b6896, type: 2}
   MapElites:
   - {fileID: 11400000, guid: a596a10779ed78847b210864012e524f, type: 2}
   - {fileID: 11400000, guid: 610f1504ac7858242ae03d1025c84e4e, type: 2}
   - {fileID: 11400000, guid: dbe40f1f121ad494fb7644a2cf3d4684, type: 2}
   - {fileID: 11400000, guid: 63c0e88c1f754734398c1df45a2a96c3, type: 2}
+  - {fileID: 11400000, guid: 48b0c7ca9fa33ce4dbaadadad56851c4, type: 2}
+  - {fileID: 11400000, guid: 33f9477d37b4a734196c7598ff46b39e, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}
@@ -2376,8 +2381,8 @@ MonoBehaviour:
 
       Run / Income: +6
 
-      Champion / Maximum
-      health: -5
+      Champion / Maximum health:
+      -5
 
 
       Owned effective copies: 1. Values apply before combat limits.'
@@ -2420,12 +2425,11 @@ MonoBehaviour:
 
       Run / Income: +6
 
-      Champion /
-      Maximum health: -6
+      Champion / Maximum health:
+      -6
 
 
-      Owned effective copies: 1. Values apply before combat
-      limits.'
+      Owned effective copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 35
     Value: 0.08
@@ -2467,8 +2471,8 @@ MonoBehaviour:
 
       Run / Income: +6
 
-      Champion / Maximum
-      health: -5
+      Champion / Maximum health:
+      -5
 
 
       Owned effective copies: 1. Values apply before combat limits.'

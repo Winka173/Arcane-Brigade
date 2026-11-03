@@ -145,9 +145,9 @@ namespace ArcaneBrigade
         public UnitDefinition[] Companions;
         public WeaponDefinition[] Weapons;
         public UnitDefinition[] Enemies;
-        /// <summary>One named elite per map in map order (Waiting Room, Post Office, Lamp Hall, Archive Vault); built by
+        /// <summary>One named elite per map, by MapTheme (Waiting Room, Post Office, Lamp Hall, Archive Vault, Glasshouse, Theatre); built by
         /// EnemyVarietyBuilder when its art exists, null until then.</summary>
-        public UnitDefinition[] MapElites = new UnitDefinition[4];
+        public UnitDefinition[] MapElites = new UnitDefinition[6];
         public UnitDefinition[] Bosses;
         public ItemDefinition[] Items;
         public BondDefinition[] Bonds;

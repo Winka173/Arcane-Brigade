@@ -69,9 +69,9 @@ namespace ArcaneBrigade
         private static readonly string[][] Whispers =
         {
             new[] { "The kettle is still warm.","The chair in the corner is facing you again.","A lantern on the road gutters, then holds.","Your friends know the way you walk." },
-            new[] { "Somewhere down the platform, someone almost hums.","Dust settles on a shoulder that has not moved in years.","The rails are empty in both directions.","An unopened letter waits on every lap." },
+            new[] { "Somewhere down the queue, someone almost hums.","Dust settles on a shoulder that has not moved in years.","Every counter window is shut.","An unopened letter waits on every lap." },
             new[] { "The windows show the room you are standing in.","A pencil mark on the door frame is exactly your height, once.","The letterbox rattles, though there is no wind.","Footsteps in the hall stop a moment after yours." },
-            new[] { "The sheets have been turned down for one.","The cup is exactly where your hand would reach.","A chair along the wall has your name on it.","Nobody in this room is asleep." },
+            new[] { "The sheets have been turned down for one.","The cup is exactly where your hand would reach.","A seat in the stalls has your name on it.","Nobody in this room is asleep." },
             new[] { "The last lantern is still burning.","Somebody has left a light on.","The night goes on. So do you.","Hold on to the things that know you without a receipt." }
         };
         public static string Pick(RunSnapshot state, bool special, MerchantMoment moment, int cursor)
@@ -92,9 +92,9 @@ namespace ArcaneBrigade
         private static readonly string[][] Evidence =
         {
             new[] { "Three coins rest on the folded blanket. Nobody saw them arrive.", "The receipt under the till is in a child's handwriting.", "The shopkeeper never looks at the corner. Not once.", "The warm chair is one step closer than it was." },
-            new[] { "Every traveller on the platform sits in a chair that waited for them.", "The lullaby on the speakers is older than you.", "Your name is on the departure board. DEPARTURE: DAWN.", "He tossed the coins through the window. They landed on the seat." },
+            new[] { "Every traveller in the queue sits in a chair that waited for them.", "The lullaby on the gramophone is older than you.", "Your name is on the board of undelivered names. DELIVER AT DAWN.", "He tossed the coins through the window. They landed on the seat." },
             new[] { "The front door's lock was forced from the outside.", "A reply was sewn shut and nailed into the letterbox.", "Tally marks under the table. The last row is in your hand.", "He wore a kind face that was too small for him." },
-            new[] { "One bed. One cup. A chair along the wall with your name.", "The brass key opens a door that was never in this wall.", "His ledger's first entry is his own name.", "The warm chair stands in front of the exit." },
+            new[] { "One bed on a stage. A seat with your name.", "The brass key opens the last door of the vault.", "His ledger's first entry is his own name.", "The warm chair stands in front of the exit." },
             new[] { "The last lantern still holds a name.", "Somebody came eight times.", "The shop is still open for anyone who still has a choice.", "Dawn came once. The night keeps its own hours." }
         };
         public static string Whisper(RunSnapshot state, int cursor)
@@ -163,12 +163,12 @@ namespace ArcaneBrigade
                     + (state.Secrets.LetterSent ? "The letter you sent from the stage is already on its way, addressed in your own hand." : "One unsent letter of yours waits in the shop's post tray. It will wait until you are ready to send it."),
                 _ => "MORNING, TOGETHER\nIt is a real dawn. The light does not belong to anyone.\nYou ask, out of habit: 'Is there anything else you need me to do?'\nThe shopkeeper pulls out a chair. An ordinary chair, cold from the night. 'Sit here a while.'\nFor the first time, a chair is only a chair.\n"
                     + (ActOneKnowledge.HasCompany(state) ? "Your companions decide for themselves who goes on and who stays. Nobody asks you to earn the choice." : "You carried enough light to reach the morning. There is a place for you at the table.") + "\n"
-                    + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting along the platform.\n")
+                    + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting in the queue.\n")
                     + (state.OutsideStage == OutsideStageStatus.Completed ? "The Keeper holds the frame of the gate and opens its hand." : "The Keeper stands at the open gate and lets every traveller through.")
                     + ((state.ActOne?.Offer ?? 0) == ActOneProgress.Sold ? "\nSomeone at the table pulls out a chair for you as well. You do not know who they are. They do it anyway." : "")
             };
         }
-        private static string Lantern() => "FOR WHOEVER COMES NEXT\nThe shopkeeper keeps the lantern trimmed in the window.\nAlong the platform, a few of the travellers who sat down have lifted their heads toward the light. One of them has taken off their hat.\nIt is an invitation, not a debt. You do not have to come back to prove you remember.";
+        private static string Lantern() => "FOR WHOEVER COMES NEXT\nThe shopkeeper keeps the lantern trimmed in the window.\nIn the queue at the post office, a few of the travellers who sat down have lifted their heads toward the light. One of them has taken off their hat.\nIt is an invitation, not a debt. You do not have to come back to prove you remember.";
         private static string Waking() => "THURSDAY\nYou wake on the sofa in your own flat. The armchair beside you is just an armchair.\nYour phone still shows the message: 'See you tomorrow?' You answer it: 'Yes.'\nOn the doormat there is an envelope with no stamp and no postmark, as if someone carried it to the door by hand.\nToday is Thursday.";
 
         public static int AuthoredLineCount

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SeedPuffMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1700770750, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: 1315122584, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  Walk:
+  - {fileID: -817168255, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -1615795596, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -817168255, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -1615795596, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  Windup:
+  - {fileID: 974990139, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -1676369736, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  Release:
+  - {fileID: -1782045776, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -1782045776, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  Recovery:
+  - {fileID: -737001042, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  - {fileID: -1700770750, guid: aa423a5f432440859f720df55d1bb236, type: 3}
+  IllustratedHeight: 0

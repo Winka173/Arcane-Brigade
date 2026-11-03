@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         private GUIStyle title, copy, button, small;
         private Vector2 scroll;
         private readonly Texture2D[] panels = new Texture2D[3];
-        private readonly Texture2D[] zonePanels = new Texture2D[4];
+        private readonly Texture2D[] zonePanels = new Texture2D[ActOneCanon.PlacePanel.Length];
         public bool Open => open;
         public int Chapter => chapter;
         public int Page => page;
@@ -61,7 +61,7 @@ namespace ArcaneBrigade
             panels[1] = Resources.Load<Texture2D>("MienCho/WaitingRoom");
             panels[2] = Resources.Load<Texture2D>("MienCho/OpenDawn");
             panels[2] = Resources.Load<Texture2D>("MienCho/ActOne/Panel_Dawn") ?? panels[2];
-            for (int i = 0; i < zonePanels.Length; i++) zonePanels[i] = Resources.Load<Texture2D>("MienCho/ActOne/" + ActOneCanon.ZonePanel[i]);
+            for (int i = 0; i < zonePanels.Length; i++) zonePanels[i] = Resources.Load<Texture2D>("MienCho/ActOne/" + ActOneCanon.PlacePanel[i]);
         }
         private void Update()
         {
@@ -214,12 +214,12 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(.015f, .023f, .043f, 1));
             if (lives) { DrawLives(); GUI.matrix = old; return; }
             var c = MienChoStory.For(owner.Session.State)[chapter];
-            int zone = System.Array.IndexOf(ActOneCanon.ZonePanel, c.Image);
-            var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone == 2 || zone == 3 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
+            int zone = System.Array.IndexOf(ActOneCanon.PlacePanel, c.Image);
+            var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone >= 2 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
-            GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.ZoneNames[ActOneCanon.Zone(c.Wave)] + " / " + c.Title, title);
+            GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.PlaceNames[ActOneCanon.Place(c.Wave)] + " / " + c.Title, title);
             // the lanterns still burning are shown as the HUD's own lantern row, not counted out in words
-            string evidenceArt = chapter switch { 1 or 18 or 19 => "Item_Receipt", 12 => "Item_SewnLetter", 15 => "Item_Umbrella", 16 => "Item_ExitKey", _ => null };
+            string evidenceArt = chapter switch { 1 or 18 or 19 => "Item_Receipt", 10 => "Item_SewnLetter", 12 => "Item_Umbrella", 16 => "Item_ExitKey", _ => null };
             if (chapter == ActOneCanon.HobChapter && page == 0) evidenceArt = null;
             Sprite evidence = ActOneArtwork.Picture(evidenceArt);
             if (evidence != null) RunHud.Sprite(new Rect(75, 785, 125, 105), evidence);

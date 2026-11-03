@@ -5,7 +5,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class MienChoMemory
     {
-        public const int CurrentRevision = 2;
+        public const int CurrentRevision = 3; // 3: the beats follow the six maps and the boss nights 4/8/12/16 (3/11/2026)
         public int Revision = CurrentRevision;
         public int ReadMask;
         public int FinishedMask;
