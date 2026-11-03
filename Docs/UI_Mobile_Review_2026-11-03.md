@@ -30,7 +30,8 @@ Quy đổi: canvas 1920×1080 trên điện thoại 6,5" nằm ngang thì 1 px �
 
 | Mức | Việc | Ghi chú |
 | --- | --- | --- |
-| Chặn | **Dung lượng APK 288 MB** (dữ liệu 258 MB) | Google Play giới hạn gói cơ bản 200 MB nén: cần Play Asset Delivery (chia asset thành gói tải sau) hoặc giảm tiếp art |
+| Đã xử lý | **Dung lượng APK 288 MB** (dữ liệu 258 MB) vượt giới hạn 200 MB cho gói cơ bản của Google Play | Menu `Arcane Brigade/Build Android (Play bundle)` (`MobileBuilder.BuildAndroidBundle`) tạo file `.aab`, dữ liệu game nằm trong gói asset cài cùng app (`UnityDataAssetPack`). Gói cơ bản 18,9 MB, gói asset 251,5 MB, tổng tải về khoảng 284 MB. Đã cài thử theo cách Play cài (bundletool) trên máy ảo: game đọc được dữ liệu và mở main menu. Muốn tải về nhẹ hơn thì giảm art (textures 243 MB, âm thanh 120 MB trước khi nén) |
+| Chặn | **Khoá ký (upload key) cho Google Play** | Chưa có keystore: bản `.aab` hiện ký bằng khoá debug. Cần tạo upload keystore, đặt trong Player Settings › Publishing Settings và giữ an toàn (mất khoá thì không cập nhật được app). Tăng `AndroidBundleVersionCode` mỗi lần đăng bản mới |
 | Chặn | **Chưa chạy trên máy ARM thật** | Máy ảo x86 chạy mã ARM qua lớp dịch: crash trong thư viện điều nhịp khung hình Swappy và đứng ở Vulkan. Bản thử trên máy ảo tắt Swappy và ép OpenGL ES. Cần một điện thoại Android thật để xác nhận Swappy/Vulkan và đo FPS |
 | Chặn | **Build phát hành cần Unity 6000.6** (bản có module Android); dự án đang mở bằng 6000.4.8 | Build Android hiện chạy trong bản sao `D:/ABMobile/android` |
 | Cao | **RAM khoảng 540 MB** | Máy 2 GB RAM sẽ chật; máy tầm trung ổn |

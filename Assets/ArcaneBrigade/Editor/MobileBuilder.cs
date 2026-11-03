@@ -37,8 +37,23 @@ namespace ArcaneBrigade.Editor
             Common(NamedBuildTarget.Android);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             EditorUserBuildSettings.buildAppBundle = false;
+            PlayerSettings.Android.splitApplicationBinary = false;
             Directory.CreateDirectory("Builds/Android");
             Build("Builds/Android/ArcaneBrigade.apk", BuildTarget.Android);
+        }
+
+        /// <summary>The Google Play upload (requirement 3/11/2026: the APK is 288 MB, Play takes at most 200 MB in the base module): an
+        /// app bundle whose game data rides in an install-time asset pack, so the base keeps only the code and the player still
+        /// installs once. Signed with the keystore set in Player Settings (the debug key when none is set).</summary>
+        [MenuItem("Arcane Brigade/Build Android (Play bundle)")]
+        public static void BuildAndroidBundle()
+        {
+            Common(NamedBuildTarget.Android);
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+            EditorUserBuildSettings.buildAppBundle = true;
+            PlayerSettings.Android.splitApplicationBinary = true;
+            Directory.CreateDirectory("Builds/Android");
+            Build("Builds/Android/ArcaneBrigade.aab", BuildTarget.Android);
         }
 
         [MenuItem("Arcane Brigade/Build iOS (Xcode project)")]
