@@ -76,3 +76,27 @@ Kèm theo:
 - Đồng ý cho truyện đi theo 6 map như bảng trên, kể cả tên khu vực mới?
 - Bốn đồng hành truyện: đứng trong shop, hay chỉ có trong nhật ký?
 - Glasshouse: vẽ quái cây cỏ mới, hay dùng quái có sẵn?
+
+## Kết quả sau khi sửa (03/11/2026)
+
+Đã làm hết 7 mục đề xuất (commit `c61604601`, `23803ca89`). Art mới vẽ bằng Codex: 4 tranh nhật ký (Dead Letter Office, House With Inward Windows, Front Hall, Ledger), 3 quái cây cỏ cho Glasshouse, 2 elite (Head Gardener, Curtain Caller), 3 chiếc ghế Chair Porter ném.
+
+**Kiểm tra:**
+- `ActOneContentDump`: tên nơi chốn trùng map ở cả 20 wave; mỗi wave 6–8 loài quái (trước 3–22); elite ở wave 3, 7, 11, 14, 17, 19, đủ 6 map.
+- `StoryReviewCapture` (`-arcane-story-capture`): 29/29, chụp trang nhật ký, shop có đồng hành, Chair Porter ném ghế, Glasshouse, hai elite.
+- Bộ chụp chính: PC 2560×1440 115/115, chế độ điện thoại 2400×1080 115/115, menu 23 màn; không exception; save thật không đổi.
+- `MapPacingChecks`: PASS.
+- Bot 3 seed × 6 hero × 5 độ khó: tổng 33 trận thắng với giới hạn loài mới, 34 khi tắt giới hạn (`-phased-off=cap`): độ khó chung không đổi.
+
+**Rà lại lần hai, đã sửa thêm:**
+- Trang điện thoại (shop 8) quá dài khiến thẻ lựa chọn che câu về cái điện thoại: rút gọn đoạn Chair Porter.
+- Hai tiêu đề trùng tên nơi chốn: chương 5 thành A QUEUE OF CHAIRS, chương 15 thành ONE BED.
+- Người ngồi chờ từ tháp ghế xuất hiện trong shop từ shop 9, đúng lời kể.
+- Lời thì thầm và đoạn kết còn nói sân ga, đường ray, bảng giờ tàu: đổi sang hàng chờ, quầy, bảng tên chưa gửi.
+- Last Customer "lần đầu bước qua cửa" ở shop 12 mâu thuẫn với shop 2: sửa thành lần đầu quỳ bên ghế ấm.
+- Đồng hành ban đầu bị đẩy ra mép màn: giờ đứng trong phòng.
+
+**Còn lại, nhẹ:**
+- Hob dùng thân Teapot Pilgrim; nếu người chơi có Teapot Pilgrim trong đội sẽ thấy hai ấm trà.
+- Số chương trong nhật ký là thứ tự trang (shop 4 là "CHAPTER 5"), không phải số đêm.
+- Ba file `.cs` (RainbowThread, GrandStarCeremony, VanishPoof) chưa có `.meta` trong repo.
