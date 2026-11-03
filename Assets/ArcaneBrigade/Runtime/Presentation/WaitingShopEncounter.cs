@@ -13,6 +13,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private SpriteRenderer prop, reflection, tear;
         private GroundShadow shadow;
+        private PropCall call;
         private DreamSuspension suspension;
         private readonly Sprite[] artwork = new Sprite[3];
         private Sprite tearSprite;
@@ -84,7 +85,7 @@ namespace ArcaneBrigade
         {
             if (registeredLayout) { ShopLayout.Active?.Release(LayoutId); registeredLayout=false; }
             prop.enabled = reflection.enabled = tear.enabled = false; Near = false;
-            shadow.Hide(); suspension.Hide(); voice.Stop();
+            shadow.Hide(); suspension.Hide(); voice.Stop(); call?.Hide();
         }
         private void Update()
         {
@@ -114,18 +115,23 @@ namespace ArcaneBrigade
             {
                 registeredLayout=true;
                 if (!ShopLayout.Active.Place(LayoutId,Anchor,ShopLayout.SizeAtWidth(prop.sprite,width),80,true,false,out placedAnchor,out fit))
-                { prop.enabled=false; Near=false; shadow.Hide(); suspension.Hide(); voice.Stop(); return; }
+                { prop.enabled=false; Near=false; shadow.Hide(); suspension.Hide(); voice.Stop(); call?.Hide(); return; }
                 width*=fit;
             }
             prop.transform.localScale = Vector3.one * (width / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(prop.sprite).width));
             Vector3 hover = DreamLevitation.Offset(AnimationClock, 171 + (int)kind, NightmareRules.Depth(state.Wave), PresentationSettings.ReducedMotion, .75f);
             float tilt=DreamLevitation.Tilt(AnimationClock,171+(int)kind,PresentationSettings.ReducedMotion,.65f);
             if(ShopSceneryLanding.Active!=null){hover=ShopSceneryLanding.Active.Apply(hover,171+(int)kind);tilt=ShopSceneryLanding.Active.Tilt(tilt,171+(int)kind);}
-            prop.transform.rotation = Quaternion.Euler(0,0,tilt);
+            // something to walk to calls without words (no name tag over it): the telephone shivers with a silent ring, the table's
+            // candle flickers, the mirror throws glints
+            call ??= prop.gameObject.AddComponent<PropCall>();
+            PropCallKind voiceOf = kind == WaitingEncounter.BreathingPhone ? PropCallKind.Ring : kind == WaitingEncounter.ReservedTable ? PropCallKind.Candle : PropCallKind.Glint;
+            float shiver = call.Show(prop, voiceOf, !owner.PresentationPaused && !owner.StoryConsumesInput, AnimationClock);
+            prop.transform.rotation = Quaternion.Euler(0,0,tilt + shiver);
             WorldSpriteGrounding.Place(prop, (Vector3)placedAnchor + hover);
             prop.sortingOrder = WorldSpriteGrounding.SortAt(placedAnchor.y);
             prop.color = Color.white;
-            shadow.SortingBase = prop.sortingOrder - 5;
+            shadow.SortingBase = prop.sortingOrder - 10; // its contact (+7) stays under the prop's feet
             shadow.Display(prop.sprite, placedAnchor, width * .8f, hover.y, .25f);
             suspension.Display(placedAnchor, (Vector3)placedAnchor + hover, width, AnimationClock, 171 + (int)kind, prop.sortingOrder - 1, 1, true);
             Near = ShopFocus.Has(this,0,owner.Simulation.Champion.Position);
@@ -178,8 +184,6 @@ namespace ArcaneBrigade
         private bool promptShown; private float promptAt;
         private void OnGUI()
         {
-            if (Visible && !owner.PresentationPaused && !owner.StoryConsumesInput && active != WaitingEncounter.None)
-                PropTag.Draw(prop, active == WaitingEncounter.BreathingPhone ? "TELEPHONE" : active == WaitingEncounter.ReservedTable ? "TABLE" : "MIRROR", true);
             if (!Visible || !Near || owner.PresentationPaused || owner.StoryConsumesInput) { promptShown = false; return; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (TouchTargets.Button(StoryPropInput.ClickRect(prop,Camera.main),GUIContent.none,GUIStyle.none)) TryInspect();

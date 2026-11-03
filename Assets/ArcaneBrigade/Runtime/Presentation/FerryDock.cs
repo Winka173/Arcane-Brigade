@@ -78,7 +78,7 @@ namespace ArcaneBrigade
             prop.sortingOrder = WorldSpriteGrounding.SortAt(placedAnchor.y);
             float lit = Mathf.Max(.45f, SharedLightField.Active?.SurfaceVisibility(placedAnchor) ?? 1);
             prop.color = Usable ? new Color(lit, lit, lit) : new Color(lit * .6f, lit * .6f, lit * .65f); // used up for this shop: the lantern is out
-            shadow.SortingBase = prop.sortingOrder - 5;
+            shadow.SortingBase = prop.sortingOrder - 10; // its contact (+7) stays under the prop's feet
             shadow.Display(prop.sprite, placedAnchor, width * .8f, 0, .25f);
             Farewell(width);
             Near = !open && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position) && owner.Shop?.Nearby == null && owner.Shop?.Animating != true;

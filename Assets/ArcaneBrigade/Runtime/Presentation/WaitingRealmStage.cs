@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private SpriteRenderer chair;
         private FloatingStoryProp floatingChair;
+        private PropCall call;
         private AudioSource song;
         private AudioClip waiting, morning;
         private int songWave = -1;
@@ -102,8 +103,11 @@ namespace ArcaneBrigade
                 // once the traveller has stood up out of it, it is only a chair: no warmth left in the wood
                 if ((state.ActOne?.SitCloser ?? 0) == ActOneProgress.Won) chair.color = Color.Lerp(chair.color, new Color(.55f, .62f, .72f), .6f);
                 floatingChair.Display(position,owner.PresentationClock,NightmareRules.Depth(state.Wave));
+                // a seat that can be taken calls without words: warmth curls off it (no name tag over it)
+                call ??= gameObject.AddComponent<PropCall>();
+                call.Show(chair, PropCallKind.Warmth, ShopChair && owner.Session.SitCloserAvailable && !asking && !owner.TransitionPending, owner.PresentationClock);
             }
-            else floatingChair.Display(Vector3.zero,owner.PresentationClock,0);
+            else { floatingChair.Display(Vector3.zero,owner.PresentationClock,0); call?.Hide(); }
             UpdateAsking();
             if (owner.PresentationPaused) { song.Pause(); return; }
             song.UnPause();
@@ -142,7 +146,6 @@ namespace ArcaneBrigade
             if (!ShopChair || chair == null || !chair.enabled || owner.TransitionPending || owner.PresentationPaused || owner.StoryConsumesInput || Camera.main == null) return;
             var state = owner.Session.State;
             bool available = owner.Session.SitCloserAvailable;
-            if (available && !asking) PropTag.Draw(chair, "WARM CHAIR", true); // something to walk to, not scenery
             if (!Near && !asking) return;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
             if (hand == null)
