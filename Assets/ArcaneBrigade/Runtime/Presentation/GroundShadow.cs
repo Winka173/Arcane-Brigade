@@ -96,6 +96,14 @@ namespace ArcaneBrigade
             cast.transform.localRotation = inner;
             cast.flipX = flip;
             Vector3 foot = PinCastToFoot ? WorldSpriteGrounding.Foot(silhouette) : (Vector3)silhouette.bounds.center;
+            // the ground is where the faintest paint ends; the shadow starts where the solid paint does (a glow or dust under the
+            // feet carried it off them), raised on the floor by the same step
+            if (PinCastToFoot && SpriteSolidFoot.TryGet(silhouette, out float solid) && solid > foot.y)
+            {
+                Vector3 raise = Vector3.up * (solid - foot.y) * scale.y;
+                castPivot.position += raise; contact.transform.position += raise; // the dark contact sits under the solid feet too
+                foot.y = solid;
+            }
             if (flip) foot.x = -foot.x;
             cast.transform.localPosition = -(inner * foot);
             cast.color = new Color(0.008f, 0.01f, 0.025f, strength * (PinCastToFoot ? .8f : .5f) / softness);
