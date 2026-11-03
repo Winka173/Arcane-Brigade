@@ -227,7 +227,7 @@ namespace ArcaneBrigade
 
             Beat(12, true, "THE DOOR OPENS", "A closed umbrella, still wet, on the step.",
                 "The front door fought you with its chains and its letterbox mouth, and the knocking never stopped on the other side the whole time.\n\nWhen it fell, it opened for the first time.\n\nIt is raining outside. There is nobody there. There is only an umbrella, closed and still wet, leaning against the step, as if someone stood there a long time and then had to go.\n\nYou bring it with you.",
-                "Back in the shop, the Last Customer comes through the door for the first time. He crosses to the warm chair and kneels beside it, the way you would kneel beside a child, and says something very softly.\n\nTHE LAST CUSTOMER: 'The face, please.'\n\nYou see the whole thing. Nobody stops him. You are not sure anyone could."),
+                "Back in the shop, the Last Customer crosses to the warm chair. For the first time he kneels beside it, the way you would kneel beside a child, and says something very softly.\n\nTHE LAST CUSTOMER: 'The face, please.'\n\nYou see the whole thing. Nobody stops him. You are not sure anyone could."),
 
             Beat(13, true, "KIND EYES", "He wore it as if it had always been his.",
                 "In the hallway, during the fight, the Last Customer stood watching. The face he wore was gentle and damp with rain, a little too small for his head, and you knew it before you knew why.\n\nOutside, a lantern burst.\n\nYou can no longer remember their face. You can only see it on him.\n\nTHE LAST CUSTOMER: 'They had kind eyes, didn't they?'",
