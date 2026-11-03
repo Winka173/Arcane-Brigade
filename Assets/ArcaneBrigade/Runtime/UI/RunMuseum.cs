@@ -104,7 +104,7 @@ namespace ArcaneBrigade
                 var nameStyle = new GUIStyle(cardText);
                 while (nameStyle.fontSize > 16 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
                 GUI.Label(nameBounds, caption, nameStyle);
-                if (index == selection) ArcadeSkin.ChosenNow(card); // the chosen shelf wears the chosen seal, over its art
+                if (index == selection) ArcadeSkin.PickedSeal(card); // the chosen shelf is stamped
             }
             ScrollPanel.End();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));

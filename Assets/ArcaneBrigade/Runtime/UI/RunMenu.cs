@@ -763,7 +763,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(card.x + 10, top + 154, card.width - 20, unlocked ? 52 : 40), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
                 if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 202, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
-                if (index == selection) ArcadeSkin.ChosenNow(card);
+                if (index == selection) ArcadeSkin.PickedSeal(card); // the chosen hero's card is stamped
             }
             ScrollPanel.End();
             UnitDefinition champion = catalog.Champions[selection];
@@ -932,7 +932,6 @@ namespace ArcaneBrigade
                         bool on = MetaProgression.PactOn(meta.Pacts, i);
                         ArcadeSkin.CodePlate(row, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
                         Rect seal = new Rect(row.x + 10, row.y + 6, 44, 44);
-                        if (on) ArcadeSkin.Chosen(row);
                         if (ArcadeSkin.KitSprite("Info/SigilSealWax") is Sprite wax) RunHud.Sprite(seal, wax); else RunHud.Sprite(seal, MetaIcons.Station(MetaStation.NightPact, true));
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = on ? ArcadeSkin.Gold : ArcadeSkin.KitCream;
                         GUI.Label(new Rect(row.x + 66, row.y, 220, row.height), pact.Name, overlayTitle);
@@ -959,7 +958,6 @@ namespace ArcaneBrigade
                         Rect row = new Rect(card.x + 40, card.y + 76 + i * 64, card.width - 80, 56);
                         bool sealedRow = i > unlocked, chosen = i == difficulty;
                         ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? 1 : 0);
-                        if (chosen) ArcadeSkin.Chosen(row);
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = RunMeta.DifficultyColor(i);
                         GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
                         if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);

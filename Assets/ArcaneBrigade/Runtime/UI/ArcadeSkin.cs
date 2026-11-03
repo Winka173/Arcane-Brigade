@@ -437,21 +437,14 @@ namespace ArcaneBrigade
                 }
         }
 
-        /// <summary>The picked card or plate: the chosen seal on its corner (call it after the piece's own art).</summary>
-        public static void WorldFocus(Rect bounds)
-        {
-            Chosen(bounds); // the picked thing wears the chosen seal (ChosenSeal.cs)
-        }
-
-        /// <summary>The picked one of a row of round medallions: the chosen seal on its corner (call it after the medallion).</summary>
-        public static void RoundFocus(Rect medallion)
-        {
-            Chosen(medallion); // the picked medallion wears the chosen seal (ChosenSeal.cs)
-        }
-
+        /// <summary>The keyboard or pad focus: warm light spilling out at both sides of the control and a small gold marker pointing
+        /// at it from the left (no underline or box over the painted piece; never the look of a pick).</summary>
         public static void Focus(Rect bounds)
         {
-            ChosenLater(bounds); // the keyboard or pad focus wears the chosen seal, over everything (ChosenSeal.cs)
+            float breathe = PresentationSettings.ReducedMotion ? 0.8f : 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 3.2f) * Mathf.Sin(Time.unscaledTime * 7.1f + 1.3f);
+            Glow(new Rect(bounds.x - 34, bounds.center.y - 26, 52, 52), new Color(Gold.r, Gold.g, Gold.b, 0.65f * breathe));
+            Glow(new Rect(bounds.xMax - 18, bounds.center.y - 26, 52, 52), new Color(Gold.r, Gold.g, Gold.b, 0.45f * breathe));
+            Slant(new Rect(bounds.x - 14 - (PresentationSettings.ReducedMotion ? 0 : 3 * (1 - breathe)), bounds.center.y - 6, 6, 12), Gold);
         }
 
         /// <summary>Respect fades already applied to GUI.color (page entrance, reveals) instead of overwriting them.</summary>

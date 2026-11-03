@@ -30,7 +30,6 @@ namespace ArcaneBrigade
                 bool on = picked == i;
                 if (on) ArcadeSkin.Glow(new Rect(card.x - 20, card.y - 16, card.width + 40, card.height + 32), new Color(1f, .84f, .45f, .5f));
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, on ? ArcadeSkin.Gold : ArcadeSkin.Accent);
-                if (on) ArcadeSkin.WorldFocus(card);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
                 title.normal.textColor = on ? ArcadeSkin.Wax : ink;
                 float titleH = Mathf.Min(inner.height * .45f, title.CalcHeight(new GUIContent(options[i]), inner.width) + 4);

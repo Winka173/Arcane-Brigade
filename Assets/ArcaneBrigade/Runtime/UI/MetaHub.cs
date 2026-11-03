@@ -308,10 +308,12 @@ namespace ArcaneBrigade
                 Rect r = Bounds(spot, sprite);
                 if (MetaIcons.Painted)
                 {
-                    // the station is painted into the room: nothing pasted on top (the one you stand by shows its card)
+                    // the station is painted into the room: the one you walk up to is lit by a warm light, nothing pasted on top
+                    if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .3f + .1f * breathe : .14f));
                     continue;
                 }
                 if (restored) ArcadeSkin.Glow(new Rect(r.x - 40, r.y - 30, r.width + 80, r.height + 60), new Color(1f, .78f, .45f, .16f + .06f * breathe));
+                if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .38f : .18f));
                 // grounded (requirement 24/10/2026: the stations looked to float): a soft cast shadow falling down-right from the room's
                 // lamp light, and a dark contact shadow right under the feet
                 ArcadeSkin.Glow(new Rect(r.x + r.width * .14f, spot.Foot.y - 12, r.width * .95f, 34), new Color(0, 0, 0, .42f));

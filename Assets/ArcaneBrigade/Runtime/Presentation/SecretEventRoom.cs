@@ -194,6 +194,30 @@ namespace ArcaneBrigade
         private System.Action closing;
         private void Close(System.Action then) { if (closing != null) return; closing = then; closingAt = Time.unscaledTime; }
         /// <summary>Draws one piece of the room popping in `delay` seconds after the room opened.</summary>
+        /// <summary>The secret room's own mark for a chosen deal or piece: a wax seal pressed on its top-right corner, rocking a
+        /// little over a ring of runes turning behind it (kept here only: elsewhere a pick shows in its own colours).</summary>
+        private static void Stamp(Rect piece)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            Sprite ring = ArcadeSkin.KitSprite("Info/SigilRingOuter"), wax = ArcadeSkin.KitSprite("Info/SigilSealWax");
+            float size = Mathf.Clamp(Mathf.Min(piece.width, piece.height) * .36f, 34, 62), t = Time.unscaledTime;
+            bool still = PresentationSettings.ReducedMotion;
+            Vector2 at = new Vector2(piece.xMax - size * .2f, piece.y + size * .2f);
+            Matrix4x4 keep = GUI.matrix;
+            void Turn(float degrees) => GUI.matrix = keep * Matrix4x4.TRS(at, Quaternion.Euler(0, 0, degrees), Vector3.one) * Matrix4x4.TRS(-at, Quaternion.identity, Vector3.one);
+            if (ring != null)
+            {
+                float r = size * 1.75f; Turn(still ? 0 : t * 40f);
+                GUI.DrawTexture(new Rect(at.x - r * .5f, at.y - r * .5f, r, r), ring.texture, ScaleMode.ScaleToFit);
+            }
+            if (wax != null)
+            {
+                Turn(still ? 0 : Mathf.Sin(t * 2.2f) * 8f);
+                GUI.DrawTexture(new Rect(at.x - size * .5f, at.y - size * .5f, size, size), wax.texture, ScaleMode.ScaleToFit);
+            }
+            GUI.matrix = keep;
+            if (wax == null) ArcadeSkin.Seal(at, size, "✓");
+        }
         private void Popped(float delay, Vector2 pivot, System.Action draw)
         {
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
@@ -273,7 +297,7 @@ namespace ArcaneBrigade
                         Rect plate = new Rect(960 - cw * 1.5f - gap + i * (cw + gap), top - (lit ? 10 : 0), cw, ch); // the chosen card lifts
                         Matrix4x4 plateMatrix = GUI.matrix; Color plateColour = GUI.color;
                         LivingUI.Pop(Time.unscaledTime - roomAt - .12f - i * .06f, plate.center); // the three cards land one after another
-                        // the chosen card lifts a little and wears the seal; the others step back into the dark
+                        // the chosen card lifts a little; the others step back into the dark
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r * .7f, keep.g * .7f, keep.b * .75f, keep.a * .7f);
                         else if (selected >= 0 && !lit) GUI.color = new Color(keep.r * .72f, keep.g * .72f, keep.b * .76f, keep.a);
                         if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
@@ -294,7 +318,7 @@ namespace ArcaneBrigade
                         GemRow(new Rect(plate.x + padX, rowsTop + oneH, cw - padX * 2, oneH), "LOSE", c.Lose, CodeTone.Oxblood, true);
                         GemRow(new Rect(plate.x + padX, rowsTop + oneH * 2, cw - padX * 2, getH), "GET", c.Get, CodeTone.Green, true);
                         GUI.color = keep;
-                        if (lit) ArcadeSkin.Chosen(plate); // the chosen card wears the seal on its corner, over its art
+                        if (lit) Stamp(plate); // the chosen deal is stamped
                         if (!c.Enabled)
                         {
                             // a closed deal: a lock and the words on their own line under the title, no box drawn over the card
@@ -563,7 +587,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 118 + gap), tile, tile + 118);
                 ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? 1 : 0);
                 if (choices[i].icon != null) DrawSprite(new Rect(cell.x + 22, cell.y + 22, tile - 44, tile - 44), choices[i].icon);
-                if (choices[i].chosen) ArcadeSkin.Chosen(new Rect(cell.x, cell.y, tile, tile));
+                if (choices[i].chosen) Stamp(new Rect(cell.x, cell.y, tile, tile));
                 // names and short descriptions wrap inside the tile's column and never run under each other (long names take two lines)
                 pickerName ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter };
                 GUI.Label(new Rect(cell.x - 10, cell.y + tile + 2, tile + 20, 48), choices[i].name, pickerName);

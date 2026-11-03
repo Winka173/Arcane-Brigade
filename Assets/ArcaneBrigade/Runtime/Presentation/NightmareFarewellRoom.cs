@@ -109,7 +109,6 @@ namespace ArcaneBrigade
                 Rect card = new Rect(i == 0 ? 300 : 1020, 720, 600, 230);
                 if (picked == i) { ArcadeSkin.Glow(new Rect(card.x - 26, card.y - 22, card.width + 52, card.height + 44), new Color(1f, .84f, .45f, .55f)); }
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, picked == i ? ArcadeSkin.Gold : ArcadeSkin.Accent);
-                if (picked == i) ArcadeSkin.WorldFocus(card);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
                 choiceTitle.normal.textColor = picked == i ? ArcadeSkin.Wax : ink;
                 GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), Titles[i], choiceTitle);

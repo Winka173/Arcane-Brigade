@@ -299,7 +299,6 @@ namespace ArcaneBrigade
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 // the chosen plate is gold UNDER its words (requirement 24/10/2026: the gold laid over it hid the price and the reward)
                 ArcadeSkin.Plate(plate, hover || i == picked ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
-                if (i == picked) ArcadeSkin.WorldFocus(plate); // the pointer only lights the plate; the seal marks the pick
                 Rect pc = ArcadeSkin.Content(plate, KitPiece.Dialogue);
                 float y = pc.y;
                 verb.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);
@@ -349,7 +348,7 @@ namespace ArcaneBrigade
                 Lift rise = Rise(slot, Entry(i), Slide, PickScale(first + i == picked));
                 bool hover = o.Enabled && slot.Contains(Event.current.mousePosition);
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
-                ArcadeSkin.Plate(slot, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
+                ArcadeSkin.Plate(slot, hover || first + i == picked ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed); // pointed at or picked: gold
                 if (RarityOf(o) is ItemRarity rarity) // a relic's or a friend's rarity framed like the shop's cards (requirement 23/10/2026)
                 { RarityDescriptionFrame.Edge(slot, rarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), rarity, Time.unscaledTime); }
                 Sprite icon = IconFor(o);
@@ -366,7 +365,6 @@ namespace ArcaneBrigade
                 else if (o.Tier > 0) { chip.fontSize = 22; chip.normal.textColor = ArcadeSkin.Gold; GUI.Label(foot, new string('★', Mathf.Clamp(o.Tier, 1, 5)), chip); chip.fontSize = 19; }
                 GUI.color = keep;
                 if (!o.Enabled && d != null) Missing(new Rect(slot.xMax - 50, slot.y - 12, 50, 50), v, d, state);
-                if (first + i == picked) ArcadeSkin.WorldFocus(slot);
                 if (o.Enabled && TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) Pick(first + i, options);
                 Settle(rise);
             }

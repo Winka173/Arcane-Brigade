@@ -44,7 +44,6 @@ namespace ArcaneBrigade
                 int option=i; bool chosen=s.State.HeroIdentity.Approach==i; string name=d.Approaches[i];
                 Rect button=new Rect(area.x+i*200,area.y+51,190,52);
                 if(TouchTargets.Button(button,name,approachChoice))owner.ConfigureHeroIdentity(()=>s.ChooseHeroApproach(option));
-                if(chosen)ArcadeSkin.Chosen(button); // the chosen approach is lit
                 if(Event.current.type==EventType.Repaint)ApproachIcon(new Rect(button.x+4,button.y+button.height*.5f-20,40,40),style,i,chosen,GUI.enabled);
             }
             string id=s.State.ChampionId;

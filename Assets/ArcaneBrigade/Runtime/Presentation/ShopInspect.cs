@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Everything placed in the shop can be clicked and read. Hovering any stall, machine, door, invitation,
-    /// the chair, the merchant, the lamp, the window, the curtain, the sign, a keepsake, a lantern, a watcher or a seated
-    /// traveller shows its name; clicking opens a card with its story or what it does (and how to use it). Things in the
+    /// <summary>Everything placed in the shop can be tapped and read: any stall, machine, door, invitation, the chair, the
+    /// merchant, the lamp, the window, the curtain, the sign, a keepsake, a lantern, a watcher or a seated traveller opens a
+    /// card with its story or what it does (and how to use it); nothing wears its name over its head. Things in the
     /// room with nothing to say are not placed there (NightmareGrandStage keeps its map architecture out of the shop).
     /// Drawn behind the HUD's buttons (GUI.depth), so BUY, INFO, CONTINUE and the journal note always take a click first.</summary>
     public sealed class ShopInspect : MonoBehaviour, ShopFocus.ISource
@@ -20,10 +20,10 @@ namespace ArcaneBrigade
         }
         private ArenaController owner;
         private readonly List<Entry> entries = new List<Entry>();
-        private Entry hovered, open;
+        private Entry open;
         private string shownKey; private float shownAt;   // when the open card appeared, for its pop-in
         private Vector2 openedFor;
-        private GUIStyle name, title, body, hint;
+        private GUIStyle title, body, hint;
         private readonly ShopDescriptionCard offerCard = new ShopDescriptionCard();
         private Vector2 offerScroll;
         public IReadOnlyList<Entry> Entries => entries;
@@ -63,7 +63,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
-            if (!Allowed) { entries.Clear(); hovered = open = null; return; }
+            if (!Allowed) { entries.Clear(); open = null; return; }
             Collect();
             near.Clear(); foreach (Entry e in entries) if (!OwnAnswer(e)) near.Add(e);
             Entry f = Focused();
@@ -202,17 +202,15 @@ namespace ArcaneBrigade
             Camera camera = Camera.main; if (camera == null) return;
             GUI.depth = open?.Offer != null ? -1 : 5; // purchase cards must also cover the merchant's speech bubble
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
-            name ??= ArcadeTypography.Style(ArcadeTypography.SizeNote, true); name.alignment = TextAnchor.MiddleCenter;
             title ??= ArcadeTypography.Style(26, true); title.wordWrap = true;
             body ??= ArcadeTypography.Style(ArcadeTypography.SizeNote); body.wordWrap = true;
             hint ??= ArcadeTypography.Style(24); hint.wordWrap = true;
             Event current = Event.current;
             Vector2 mouse = current.mousePosition;
             bool overHud = mouse.y < 180 || mouse.y > 1000 || mouse.x < 280 && mouse.y < 300 || mouse.x > 1580 && mouse.y < 260;
-            hovered = overHud || RunUIHints.Device != RunUIDevice.KeyboardMouse ? null : At(mouse, camera);
             if (current.type == EventType.MouseDown && current.button == 0)
             {
-                // a tap finds what is under the finger on any device (only the hover name is mouse-only): on a phone nothing in
+                // a tap finds what is under the finger on any device: on a phone nothing in
                 // the shop answered a tap
                 Entry under = overHud ? null : At(mouse, camera);
                 if (under != null && (open == null || !CardRect(open, camera).Contains(mouse)))
@@ -222,17 +220,8 @@ namespace ArcaneBrigade
                 }
                 else if (open != null && !CardRect(open, camera).Contains(mouse)) open = null;
             }
-            if (hovered != null && (open == null || open.Key != hovered.Key))
-            {
-                Rect box = Screen(hovered.World, camera);
-                // the hover marks stop above the shop's description card instead of being drawn over its BUY button
-                Rect card = RunHud.ShownShopCard;
-                if (card.height > 0 && box.Overlaps(card) && box.yMin < card.yMin) box.yMax = card.yMin - 4;
-                // pointing at a thing only names it: the chosen seal belongs to what is picked, never to what the pointer passes over
-                Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
-                if (ArcadeSkin.HasKit) ArcadeSkin.Frame(tag, KitFrame.Plaque); else ArcadeSkin.Panel(tag, ArcadeSkin.Card); // the velvet title plaque (UI kit)
-                ArcadeSkin.KitCaption(ArcadeSkin.HasKit ? ArcadeSkin.Content(tag, KitFrame.Plaque, false) : tag, hovered.Title, ArcadeSkin.Cream, name, true);
-            }
+            // nothing in the shop wears words over its head (requirement 4/11/2026): walking up shows the card at the bottom, a tap
+            // opens the thing's own card
             Entry by = open == null ? Focused() : null;
             if (current.type == EventType.Repaint) { DebugBy = by?.Title; DebugOpen = open?.Title; }
             if (by?.Key != focused?.Key) focusedAt = Time.unscaledTime; // entries are rebuilt every frame: the same thing keeps its key, not its object

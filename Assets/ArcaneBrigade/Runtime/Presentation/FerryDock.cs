@@ -201,7 +201,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 GUI.matrix = unscaled;
-                if (chosen) ArcadeSkin.RoundFocus(frame); // the picked friend's seal sits on its frame's corner
+                if (chosen) ArcadeSkin.PickedSeal(frame); // the picked friend's medallion is stamped
                 names.normal.textColor = chosen ? new Color(.62f, .27f, .05f) : ink; // and its name in warm brown
                 string stars = rowing ? "" : " " + RunSession.StarText(session.StarProgress(id)) + "★";
                 GUI.Label(new Rect(slot.x - 8, frame.yMax + 2, slot.width + 16, 100), (unit == null ? id : RunUICopy.UnitName(unit)) + stars, names);

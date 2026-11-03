@@ -157,7 +157,7 @@ namespace ArcaneBrigade
             bool ready = blocked == null, taken = blocked == "Other path taken";
             if (lit) ArcadeSkin.Glow(new Rect(r.x - 20, r.y - 20, r.width + 40, r.height + 40), new Color(1f, .78f, .4f, .4f + .08f * Mathf.Sin(t * 2 + n.Tier)));
             else if (ready) ArcadeSkin.Glow(new Rect(r.x - 12, r.y - 12, r.width + 24, r.height + 24), new Color(1f, .9f, .6f, .16f + .12f * Mathf.Sin(t * 3)));
-            if (treePick == n.Id) ArcadeSkin.Chosen(r); // the picked node wears the chosen seal (ChosenSeal.cs)
+            if (treePick == n.Id) ArcadeSkin.Glow(new Rect(r.x - 14, r.y - 14, r.width + 28, r.height + 28), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, .6f)); // the picked lantern glows gold (its card is open)
             KitRound face = lit ? KitRound.Brass : !open || taken ? KitRound.Disabled : n.Currency == MetaCurrency.Keepsakes ? KitRound.Oxblood : KitRound.Walnut;
             bool tapped = ArcadeSkin.IconButton(r, face) | Nav(r);
             // the picture centred on the medallion's disc (it sat high and to one side of it)

@@ -106,7 +106,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 GUI.matrix = unscaled;
-                if (isPicked) ArcadeSkin.RoundFocus(frame); // the picked friend's seal sits on its frame's corner
+                if (isPicked) ArcadeSkin.PickedSeal(frame); // the picked friend's medallion is stamped
                 name.normal.textColor = isPicked ? new Color(.62f, .27f, .05f) : new Color(.18f, .14f, .1f); // and its name in warm brown
                 TextAnchor keepName = name.alignment; name.alignment = TextAnchor.UpperCenter;
                 GUI.Label(new Rect(slot.x - 10, frame.yMax + 4, slot.width + 20, 66), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name); // two full lines, never clipped
@@ -205,23 +205,21 @@ namespace ArcaneBrigade
             {
                 int lamp = dark[i];
                 Rect slot = new Rect(card.x + (card.width - slots * 165) * 0.5f + i * 165 + 8, card.y + 165, 150, 190);
-                ArcadeSkin.Plate(slot, ArcadeSkin.Card);
+                ArcadeSkin.Plate(slot, picked == i ? ArcadeSkin.Gold : ArcadeSkin.Card); // the picked lamp's plate turns gold
                 if (icons[lamp] != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), icons[lamp]);
                 else ArcadeSkin.Glow(new Rect(slot.x + 35, slot.y + 20, 80, 80), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.5f));
                 label.normal.textColor = ArcadeSkin.Cream;
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (i + 1) + " · " + ActOneCanon.LampHeld[lamp], label);
-                if (picked == i) ArcadeSkin.WorldFocus(slot);
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (colours)
             {
                 Rect slot = new Rect(card.x + (card.width - slots * 165) * 0.5f + dark.Count * 165 + 8, card.y + 165, 150, 190);
-                ArcadeSkin.Plate(slot, ArcadeSkin.Card);
+                ArcadeSkin.Plate(slot, picked == dark.Count ? ArcadeSkin.Gold : ArcadeSkin.Card);
                 Sprite prism = PacingArtwork.Prism(owner.Content);
                 if (prism != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), prism);
                 label.normal.textColor = new Color(0.68f, 1, 0.92f);
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (dark.Count + 1) + " · the colours: a rainbow gift", label);
-                if (picked == dark.Count) ArcadeSkin.WorldFocus(slot);
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = dark.Count; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             // what the pick means, in plain words, then the confirm button

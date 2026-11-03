@@ -304,12 +304,8 @@ namespace ArcaneBrigade
                 Rect r = new Rect(area.x, area.y + 56 + i * 82, area.width, 68);
                 Flash(r, pact.Id);
                 ArcadeSkin.CodePlate(r, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
-                // a chosen pact glows round its round painted seal, sparks circling it (requirement 24/10/2026: no rectangle round round art)
+                // a chosen pact shows in its oxblood plate and its ticked box
                 Rect seal = new Rect(r.x + 18, r.y + 9, 50, 50);
-                if (on)
-                {
-                    ArcadeSkin.Chosen(r); // the chosen pact wears the chosen seal (it had three turning dots)
-                }
                 PactIcon(seal, i, catalog);
                 Ink(ArcadeSkin.KitCream);
                 GUI.Label(new Rect(r.x + 86, r.y + 12, r.width - 270, 34), pact.Name, body);
