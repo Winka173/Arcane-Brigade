@@ -59,7 +59,8 @@ namespace ArcaneBrigade
         {
             int index = controls.Count;
             controls.Add(new Control { Enabled = GUI.enabled, Bounds = bounds });
-            bool focused = GUI.enabled && (bounds.Contains(Event.current.mousePosition) || keyboardFocus && selected == index);
+            // a phone has no hover: its last tap is not a pointer resting on the button (it kept the last button lit and moved)
+            bool focused = GUI.enabled && (!RunUIHints.Phone && bounds.Contains(Event.current.mousePosition) || keyboardFocus && selected == index);
             string identity = index + ":" + caption;
             float amount = hover.TryGetValue(identity, out float value) ? value : 0;
             if (Event.current.type == EventType.Repaint)
@@ -69,8 +70,9 @@ namespace ArcaneBrigade
                 if (hover.Count > 256) hover.Clear();
                 hover[identity] = amount;
             }
-            float shift = PresentationSettings.ReducedMotion ? 0 : amount * 4;
-            Rect animatedBounds = new Rect(bounds.x + shift, bounds.y - shift * 0.5f, bounds.width, bounds.height);
+            // the focused button stays in its row (release testing 3/11/2026: it lifted and slid 4 px, out of line with the others);
+            // its painted hover plate says it is under the pointer, the chosen seal marks the keyboard focus
+            Rect animatedBounds = bounds;
             float compression = pressed.TryGetValue(identity, out float began) ? LivingUI.Press(Time.unscaledTime - began, PresentationSettings.ReducedMotion) * 0.025f : 0;
             animatedBounds = new Rect(animatedBounds.x + bounds.width * compression * 0.5f, animatedBounds.y + bounds.height * compression * 0.5f, bounds.width * (1 - compression), bounds.height * (1 - compression));
             lastBase = bounds; lastDrawn = animatedBounds;

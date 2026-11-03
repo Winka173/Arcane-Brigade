@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             }
         }
         /// <summary>Where the "new page" note sits on the 1920x1080 HUD (under the wallet and the lantern row).</summary>
-        public static readonly Rect NoticeRect = new Rect(22, 394, 248, 56); // under the hero's gauge lines and the prism count
+        public static Rect NoticeRect => new Rect(22, RunUIHints.Device == RunUIDevice.Touch ? 506 : 394, 248, 56); // under the hero's gauge lines and the prism count (lower on a phone, whose gauge lines sit under its buttons)
         private bool NoticeAllowed => !open && owner?.Session != null && owner.Simulation != null && Unread > 0 && !owner.PresentationPaused && !owner.TransitionPending && !owner.HallExitPending && !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible && !owner.Details.Open && !owner.MenuConfirmation
             && (owner.Session.State.Phase == SessionPhase.Shop || owner.Session.State.Phase == SessionPhase.Combat);
         public bool NoticeVisible => NoticeAllowed;
@@ -282,10 +282,9 @@ namespace ArcaneBrigade
             if (sway != 0) ArcadeSkin.TurnAround(sway, new Vector2(note.x + 12, note.y + 6));
             ArcadeSkin.Ticket(note, ArcadeSkin.Paper, ArcadeSkin.Wax);
             noteHand.normal.textColor = new Color(.25f, .19f, .14f);
-            GUI.Label(new Rect(note.x + 16, note.y + 2, note.width - 64, 34), count > 1 ? "new pages" : "a new page", noteHand);
-            noteKey.normal.textColor = new Color(.25f, .19f, .14f, .8f);
-            noteKey.alignment = TextAnchor.MiddleLeft;
-            GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "TAP TO READ", noteKey);
+            // the note says what it holds; no "tap to read" (requirement: no input hints; its small line was clipped on phones)
+            noteHand.fontSize = 30;
+            GUI.Label(new Rect(note.x + 16, note.y, note.width - 64, note.height), count > 1 ? "new pages" : "a new page", noteHand);
             ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 99 ? "99+" : count.ToString());
             GUI.matrix = before;
             if (TouchTargets.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();

@@ -39,6 +39,7 @@ namespace ArcaneBrigade
             if (menu != null)
             {
                 menu.ShowPage(RunMenu.Page.Roster); yield return new WaitForSecondsRealtime(.8f); yield return Shot("03-hero-select");
+                menu.OpenPactsForDiagnostics(); yield return new WaitForSecondsRealtime(1f); yield return Shot("03c-night-pact");
                 if (RunPaths.K7Capture)
                 {
                     // a locked hero shows its condition (requirement 27/10/2026)

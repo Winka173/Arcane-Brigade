@@ -69,7 +69,15 @@ namespace ArcaneBrigade
         public void SelectChampionForDiagnostics(int index)
         {
             if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Hero fixture requires isolated capture mode");
-            selection = index; rosterDescriptionScroll = Vector2.zero; ShowPage(Page.Roster); scroll.y = Mathf.Max(0, RosterCardBounds(index).y - 50);
+            selection = index; rosterDescriptionScroll = Vector2.zero; ShowPage(Page.Roster); scroll.y = Mathf.Max(0, RosterCardBounds(RosterSlot(index)).y - 50);
+            if (!HeroUnlocks.Open(profile, catalog.Champions[index])) ExplainLocked(catalog.Champions[index], RosterCardBounds(RosterSlot(index))); // as a tap does
+        }
+        /// <summary>Review capture: hero select with the Night Pact list open (two curses taken, on the isolated save).</summary>
+        public void OpenPactsForDiagnostics()
+        {
+            if (!MenuReviewCapture.Requested) throw new InvalidOperationException("Pact fixture requires the menu review capture");
+            MetaProgression.Ensure(profile).Pacts = (1 << MetaProgression.PactSwift) | (1 << MetaProgression.PactElites);
+            ShowPage(Page.Roster); pactPickerAt = Time.unscaledTime; // opened after the page change
         }
         public void NavigateForDiagnostics(int direction, bool submit)
         {
@@ -105,6 +113,7 @@ namespace ArcaneBrigade
         public void Configure(RunCatalog definition) { catalog = definition; }
         public void ShowPage(Page page)
         {
+            pactPickerAt = -1; // a page change closes hero select's Night Pact list
             if (page != Page.Museum) museum.Close();
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
@@ -254,7 +263,17 @@ namespace ArcaneBrigade
                 else sandbox.HandleInput();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) GoBack();
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                // a phone's Back on the front page asks before leaving (release testing 3/11/2026: it did nothing; the phone has
+                // no EXIT button); Back again while it asks closes the question
+                if (CurrentPage == Page.Landing && RunUIHints.Phone) { quitAskedAt = quitAskedAt < 0 ? Time.unscaledTime : -1; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                // an open popup closes first; Back again leaves the page
+                else if (pactPickerAt >= 0) LivingUI.CloseThen("pact-picker", () => pactPickerAt = -1);
+                else if (difficultyPickerAt >= 0) LivingUI.CloseThen("difficulty-picker", () => difficultyPickerAt = -1);
+                else if (heroDetailsAt >= 0) LivingUI.CloseThen("hero-details", () => heroDetailsAt = -1);
+                else GoBack();
+            }
         }
 
         private void Launch(bool resume)
@@ -330,7 +349,7 @@ namespace ArcaneBrigade
             }
             switch (CurrentPage)
             {
-                case Page.Landing: DrawLanding(); break;
+                case Page.Landing: GUI.enabled = quitAskedAt < 0; DrawLanding(); GUI.enabled = true; DrawQuitAsk(); break; // the question takes the taps while it asks
                 case Page.Roster: DrawRoster(); DrawKeepsakePicker(); DrawExplain(); break;
                 case Page.Hub:
                     HubAction chosen = hub.Draw(catalog, profile, selection, SaveProfile);
@@ -338,7 +357,7 @@ namespace ArcaneBrigade
                     else if (chosen == HubAction.Collection) { hub.Close(); fromHub = true; ShowPage(Page.Museum); } // the Museum counts finds for gifts; the Collection shows each one in full
                     break;
                 case Page.Resume:
-                    Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + CompanionDeployment.Select(saved.Roster).Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
+                    Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Dreamsand " + saved.Eggs + "\n" + CompanionDeployment.Select(saved.Roster).Count + " friends · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
                     GUI.enabled = CanResume;
                     if (navigation.Button(new Rect(420, 490, 440, 70), "RESUME", primary)) Launch(true);
                     GUI.enabled = true;
@@ -676,7 +695,7 @@ namespace ArcaneBrigade
                     if (ArcadeSkin.Medallion(exit, KitMedallion.Close) | navigation.Button(exit, "", GUIStyle.none)) ActivateSpot(7);
                     continue;
                 }
-                GUI.enabled = SpotEnabled(index);
+                GUI.enabled = SpotEnabled(index) && quitAskedAt < 0; // the leave question takes the taps while it asks
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
                 float lift = CanResume ? 0 : 82; // without Continue the rest move up into its place
@@ -711,28 +730,27 @@ namespace ArcaneBrigade
             GUIStyle caption = portraitCaption ?? (portraitCaption = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true));
             caption.alignment = TextAnchor.MiddleCenter;
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)));
-            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 460), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
+            if (!HeroUnlocks.Listed(catalog.Champions[selection])) selection = Mathf.Max(0, Array.FindIndex(catalog.Champions, HeroUnlocks.Listed));
+            int listed = 0; foreach (UnitDefinition u in catalog.Champions) if (HeroUnlocks.Listed(u)) listed++;
+            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 460), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(listed / 3f) * 245)));
+            int slot = -1;
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
                 UnitDefinition unit = catalog.Champions[index];
+                if (!HeroUnlocks.Listed(unit)) continue; // waits for an update or a later act: not shown at all
+                slot++;
                 bool unlocked = HeroUnlocks.Open(profile, unit);
-                Rect card = RosterCardBounds(index);
+                Rect card = RosterCardBounds(slot);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .42f); else RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 // the chosen hero is lit from inside its card (a light round it in the cards' 10 px gaps drew as bars): a warm glow
                 // behind the hero, a pool of light at its feet, rising motes; the other heroes stand a little in shadow
-                if (index == selection)
+                // the chosen hero wears the chosen seal (drawn at the end of its card); the others stand a little in shadow
+                if (navigation.Button(card, "", GUIStyle.none))
                 {
-                    float breathe = profile.ReducedMotion ? .8f : .7f + .3f * Mathf.Sin(Time.unscaledTime * 3f);
-                    for (int layer = 0; layer < 3; layer++) ArcadeSkin.Glow(new Rect(card.x + 2, card.y - 4, card.width - 4, 200), new Color(1f, .78f, .42f, .75f * breathe));
-                    for (int layer = 0; layer < 2; layer++) ArcadeSkin.Glow(new Rect(card.x + 22, card.y + 118, card.width - 44, 64), new Color(1f, .9f, .6f, .95f * breathe));
-                    if (!profile.ReducedMotion)
-                        for (int m = 0; m < 6; m++)
-                        {
-                            float q = Mathf.Repeat(Time.unscaledTime * .45f + m / 6f, 1);
-                            ArcadeSkin.Diamond(new Vector2(card.x + 30 + m * (card.width - 60) / 5f + Mathf.Sin(Time.unscaledTime * 2 + m) * 6, card.y + 170 - q * 150), 3 + 3 * Mathf.Sin(q * Mathf.PI), new Color(1f, .9f, .6f, .85f * Mathf.Sin(q * Mathf.PI)));
-                        }
+                    if (selection != index) rosterDescriptionScroll = Vector2.zero;
+                    selection = index;
+                    if (!unlocked) ExplainLocked(unit, card);
                 }
-                if (navigation.Button(card, "", GUIStyle.none)) { if (selection != index) rosterDescriptionScroll = Vector2.zero; selection = index; }
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
                 else if (index != selection) GUI.color = new Color(.7f, .7f, .76f); // the others stand in shadow
@@ -745,6 +763,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(card.x + 10, top + 154, card.width - 20, unlocked ? 52 : 40), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
                 if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 202, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
+                if (index == selection) ArcadeSkin.ChosenNow(card);
             }
             ScrollPanel.End();
             UnitDefinition champion = catalog.Champions[selection];
@@ -759,8 +778,20 @@ namespace ArcaneBrigade
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
             GUI.Label(new Rect(934, 150, 286, 70), RunUICopy.UnitName(champion), rosterTitle); // right of the stage
             ArcadeSkin.Tag(new Rect(934, 222, 230, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
-            string unlockNote = HeroUnlocks.Full(profile, champion, catalog);
-            if (!string.IsNullOrEmpty(unlockNote)) GUI.Label(new Rect(934, 256, 236, 34), unlockNote, note);
+            string unlockNote = HeroUnlocks.Full(profile, champion, catalog, false); // the count stands beside its bar
+            if (!string.IsNullOrEmpty(unlockNote))
+            {
+                // the locked hero's road, on its own line with a bar (it was one small line under the weapon)
+                GUI.Label(new Rect(934, 256, 290, 30), HeroUnlocks.Coming(champion) ? "Arrives in a later update" : unlockNote, note);
+                float share = HeroUnlocks.Share(profile, champion);
+                if (share >= 0)
+                {
+                    Rect bar = new Rect(934, 292, 160, 14);
+                    if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24) && bar.width * share > bar.height) ArcadeSkin.Strip(new Rect(bar.x + 2, bar.y + 2, (bar.width - 4) * share, bar.height - 4), "Info/RatioFill", 20, 20);
+                    var shown = HeroUnlocks.Progress(profile, HeroUnlocks.RuleOf(champion));
+                    GUI.Label(new Rect(bar.xMax + 10, 284, 120, 30), shown.have.ToString("N0") + " / " + shown.need.ToString("N0"), note);
+                }
+            }
             else if (catalog.HeroRevision > 0)
             {
                 // the friends this hero's shop leans to, as tappable icons under the weapon (review 31/10/2026: they floated over
@@ -811,23 +842,40 @@ namespace ArcaneBrigade
             // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true)); danger.alignment = TextAnchor.MiddleLeft; danger.wordWrap = true;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
-            // beside the button, what the difficulty does (its name is already on the button)
+            // beside it, the Night Pact (release testing 3/11/2026: it lived only in the Waiting Room and players starting a run never
+            // found it): its curses are chosen here, where the night is set up; what each difficulty does is in the difficulty list
             string dangerText = sealedDifficulty ? "Light the whole Lamp Tree" : DifficultyLine(difficulty);
             Rect dangerRect = new Rect(410, 656, 352, 52); // one line beside the button
-            if (sealedDifficulty)
+            if (!sealedDifficulty) DrawPactButton(new Rect(410, 656, 340, 52));
+            else
             {
                 // the padlock stands just before the words, on their middle line, the pair centred together
                 ArcadeSkin.Lock(new Vector2(dangerRect.x + 9, dangerRect.center.y), 16, danger.normal.textColor);
                 dangerRect = new Rect(dangerRect.x + 26, dangerRect.y, dangerRect.width - 26, dangerRect.height);
             }
-            GUI.Label(dangerRect, dangerText, danger);
+            if (sealedDifficulty) GUI.Label(dangerRect, dangerText, danger);
             GUI.enabled = HeroUnlocks.Open(profile, champion) && !sealedDifficulty;
             if (navigation.Button(new Rect(770, 650, 450, 62), HeroUnlocks.Open(profile, champion) && !sealedDifficulty ? "STEP THROUGH ▶" : HeroUnlocks.Coming(champion) ? "COMING SOON" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
             RosterOverlays(true);
         }
         // ---- hero select's two popups: all of a hero's details, and the difficulty list --------------------------------------
-        private float heroDetailsAt = -1, difficultyPickerAt = -1;
+        private float heroDetailsAt = -1, difficultyPickerAt = -1, pactPickerAt = -1;
+        private const string PactSeen = "seen/night-pact";
+        /// <summary>Hero select's Night Pact button: the curses taken and what they pay, a seal until it is first opened.</summary>
+        private void DrawPactButton(Rect r)
+        {
+            var meta = MetaProgression.Ensure(profile);
+            int taken = 0; for (int i = 0; i < MetaProgression.Pacts.Length; i++) if (MetaProgression.PactOn(meta.Pacts, i)) taken++;
+            string label = taken == 0 ? "NIGHT PACT" : "NIGHT PACT · " + taken + " · ×" + MetaProgression.PactMultiplier(meta.Pacts).ToString("0.##");
+            if (Button(r, label)) { pactPickerAt = Time.unscaledTime; if (!meta.Found.Contains(PactSeen)) { meta.Found.Add(PactSeen); SaveProfile(); } }
+            if (!meta.Found.Contains(PactSeen))
+            {
+                float breathe = profile.ReducedMotion ? .8f : .7f + .3f * Mathf.Sin(Time.unscaledTime * 3);
+                ArcadeSkin.Glow(navigation.Moved(new Rect(r.xMax - 46, r.y - 10, 44, 44)), new Color(1f, .82f, .45f, .6f * breathe));
+                ArcadeSkin.Seal(navigation.Moved(new Vector2(r.xMax - 24, r.y + 12)), 26, "!");
+            }
+        }
         private string heroDetailsText = "", heroDetailsName = "";
         private Vector2 heroDetailsScroll;
         private GUIStyle overlayTitle, overlayLine;
@@ -844,12 +892,12 @@ namespace ArcaneBrigade
         /// <summary>Drawn twice a frame: first (paint false) to take the taps before the page, last (paint true) to draw on top.</summary>
         private void RosterOverlays(bool paint)
         {
-            bool details = heroDetailsAt >= 0, picker = difficultyPickerAt >= 0;
-            if (!details && !picker) return;
+            bool details = heroDetailsAt >= 0, picker = difficultyPickerAt >= 0, pacts = pactPickerAt >= 0;
+            if (!details && !picker && !pacts) return;
             if (paint != (Event.current.type == EventType.Repaint)) return;
             overlayTitle ??= new GUIStyle(ArcadeTypography.Style(26, true)) { alignment = TextAnchor.MiddleCenter };
             overlayLine ??= new GUIStyle(ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote))) { wordWrap = true };
-            RunHud.Fill(new Rect(0, 0, 1280, 720), new Color(0, 0, 0, .5f));
+            RunHud.Fill(new Rect(-1280, -720, 3840, 2160), new Color(0, 0, 0, .5f)); // past the 16:9 frame: the whole screen dims, never a box
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             if (details)
             {
@@ -865,6 +913,39 @@ namespace ArcaneBrigade
                     if (ArcadeSkin.Medallion(new Rect(card.xMax - 52, card.y - 4, 56, 56), KitMedallion.Close) && !LivingUI.Closing("hero-details")) LivingUI.CloseThen("hero-details", () => heroDetailsAt = -1);
                 }
             }
+            else if (pacts)
+            {
+                // the Night Pact: curses for this run, each paying more Lamp Oil and Keepsakes; a tap turns one on or off
+                var meta = MetaProgression.Ensure(profile);
+                int count = MetaProgression.Pacts.Length;
+                Rect card = new Rect(290, 40, 700, 150 + count * 64);
+                if (LivingUI.Auto("pact-picker", card.center))
+                {
+                    ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f);
+                    GUI.Label(new Rect(card.x, card.y + 20, card.width, 40), "NIGHT PACT", overlayTitle);
+                    overlayLine.alignment = TextAnchor.MiddleCenter; overlayLine.normal.textColor = ArcadeSkin.KitCream;
+                    GUI.Label(new Rect(card.x + 40, card.y + 60, card.width - 80, 34), "Curses for this night. Lamp Oil and Keepsakes ×" + MetaProgression.PactMultiplier(meta.Pacts).ToString("0.##"), overlayLine);
+                    for (int i = 0; i < count; i++)
+                    {
+                        MetaPact pact = MetaProgression.Pacts[i];
+                        Rect row = new Rect(card.x + 40, card.y + 104 + i * 64, card.width - 80, 56);
+                        bool on = MetaProgression.PactOn(meta.Pacts, i);
+                        ArcadeSkin.CodePlate(row, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
+                        Rect seal = new Rect(row.x + 10, row.y + 6, 44, 44);
+                        if (on) ArcadeSkin.Chosen(row);
+                        if (ArcadeSkin.KitSprite("Info/SigilSealWax") is Sprite wax) RunHud.Sprite(seal, wax); else RunHud.Sprite(seal, MetaIcons.Station(MetaStation.NightPact, true));
+                        overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = on ? ArcadeSkin.Gold : ArcadeSkin.KitCream;
+                        GUI.Label(new Rect(row.x + 66, row.y, 220, row.height), pact.Name, overlayTitle);
+                        overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
+                        GUI.Label(new Rect(row.x + 280, row.y, row.width - 298, row.height), pact.Line + " · ×" + pact.Reward.ToString("0.##"), overlayLine);
+                        int pick = i;
+                        if (TouchTargets.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("pact-picker")) { MetaProgression.TogglePact(profile, pick); SaveProfile(); CheckpointAudio.PlayInterfaceId("ui.select"); }
+                    }
+                    overlayLine.alignment = TextAnchor.UpperLeft;
+                    overlayTitle.fontSize = 26; overlayTitle.alignment = TextAnchor.MiddleCenter; overlayTitle.normal.textColor = ArcadeSkin.KitCream;
+                    if (ArcadeSkin.Medallion(new Rect(card.xMax - 52, card.y - 4, 56, 56), KitMedallion.Close) && !LivingUI.Closing("pact-picker")) LivingUI.CloseThen("pact-picker", () => pactPickerAt = -1);
+                }
+            }
             else
             {
                 int count = RunMeta.DifficultyNames.Length, unlocked = RunMeta.UnlockedDifficulty(profile);
@@ -878,7 +959,7 @@ namespace ArcaneBrigade
                         Rect row = new Rect(card.x + 40, card.y + 76 + i * 64, card.width - 80, 56);
                         bool sealedRow = i > unlocked, chosen = i == difficulty;
                         ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? 1 : 0);
-                        if (chosen) ArcadeSkin.RunningLight(row, Time.unscaledTime, ArcadeSkin.Gold, .7f);
+                        if (chosen) ArcadeSkin.Chosen(row);
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = RunMeta.DifficultyColor(i);
                         GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
                         if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);
@@ -933,14 +1014,34 @@ namespace ArcaneBrigade
             if (explainText == null) return;
             if (Event.current.type == EventType.MouseDown && Time.unscaledTime - explainShown > .1f) { explainText = null; return; }
             explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true); explainBody ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); explainBody.wordWrap = true;
-            float w = 330, h = 36 + explainBody.CalcHeight(new GUIContent(explainText), w - 36) + 18;
+            // the words sit inside the frame's own padded area (release testing 3/11/2026: the title ran under the top rim)
+            float w = 360, h = 30 + 30 + explainBody.CalcHeight(new GUIContent(explainText), w - 52) + 28;
             Rect card = new Rect(Mathf.Clamp(explainAt.center.x - w * .5f, 20, 1260 - w), explainAt.yMax + 10, w, h); // the menu's 1280x720 space
             if (card.yMax > 704) card.y = explainAt.y - h - 10;
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - explainShown, new Vector2(card.center.x, card.y));
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
-            GUI.Label(new Rect(card.x + 18, card.y + 12, w - 36, 26), explainHead, explainTitle);
-            GUI.Label(new Rect(card.x + 18, card.y + 38, w - 36, h - 50), explainText, explainBody);
+            Rect inner = ArcadeSkin.HasKit ? ArcadeSkin.Content(card, KitFrame.Dialogue, true, .5f) : new Rect(card.x + 18, card.y + 12, w - 36, h - 24);
+            GUI.Label(new Rect(inner.x, inner.y, inner.width, 28), explainHead, explainTitle);
+            GUI.Label(new Rect(inner.x, inner.y + 30, inner.width, inner.yMax - inner.y - 30), explainText, explainBody);
+            GUI.matrix = keepMatrix; GUI.color = keepColour;
+        }
+        private float quitAskedAt = -1;
+        /// <summary>The phone's "leave the game?" card, opened by Back on the front page: stay, or leave.</summary>
+        private void DrawQuitAsk()
+        {
+            if (quitAskedAt < 0) return;
+            Rect card = new Rect(440, 250, 400, 220); // the menu's 1280x720 space
+            if (Event.current.type == EventType.MouseDown && !card.Contains(Event.current.mousePosition) && Time.unscaledTime - quitAskedAt > .1f) { quitAskedAt = -1; return; }
+            Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
+            LivingUI.Pop(Time.unscaledTime - quitAskedAt, card.center);
+            if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
+            explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true);
+            TextAnchor keepAlign = explainTitle.alignment; explainTitle.alignment = TextAnchor.MiddleCenter;
+            GUI.Label(new Rect(card.x + 24, card.y + 34, card.width - 48, 60), "Leave the Waiting Realm?", explainTitle);
+            explainTitle.alignment = keepAlign;
+            if (navigation.Button(new Rect(card.x + 30, card.yMax - 92, 160, 56), "STAY", primary)) quitAskedAt = -1;
+            if (navigation.Button(new Rect(card.xMax - 190, card.yMax - 92, 160, 56), "LEAVE", button)) QuitGame();
             GUI.matrix = keepMatrix; GUI.color = keepColour;
         }
         /// <summary>The keepsake picker: every relic kept from a Postbox letter, and "none", in one small card over the slot
@@ -1061,6 +1162,13 @@ namespace ArcaneBrigade
             }
         }
         private static string PageEyebrow(Page page) => page == Page.Roster ? "THE WAITING PLACE · NEW JOURNEY" : page == Page.Records ? "THE WAITING PLACE · RECORDS" : page == Page.Museum ? "THE WAITING PLACE · COLLECTION" : "THE WAITING PLACE";
+        /// <summary>A locked hero says what opens it and how far along you are, beside its card (release testing 3/11/2026: the
+        /// short chip on the card alone was hard to read).</summary>
+        private void ExplainLocked(UnitDefinition unit, Rect card) =>
+            Explain(new Rect(65 + card.x, 180 + card.y - scroll.y, card.width, card.height), "Locked · " + RunUICopy.UnitName(unit),
+                HeroUnlocks.Coming(unit) ? "Arrives in a later update." : HeroUnlocks.Full(profile, unit, catalog, false) + ".\n" + HeroUnlocks.ProgressLine(profile, unit, catalog));
+        /// <summary>A hero's place in the grid: its index among the heroes that are shown.</summary>
+        private int RosterSlot(int index) { int slot = 0; for (int i = 0; i < index && i < catalog.Champions.Length; i++) if (HeroUnlocks.Listed(catalog.Champions[i])) slot++; return slot; }
         public static Rect RosterCardBounds(int index) => new Rect(index % 3 * 210, index / 3 * 245, 200, 235);
         public static Sprite RosterPortrait(UnitDefinition unit, float time, int identity, bool focused, bool reducedMotion)
         {

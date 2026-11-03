@@ -163,7 +163,7 @@ namespace ArcaneBrigade
                 default: Add(id, "A SHELF", "The shelf is dreaming of a spine.", "It only waits", Ink(view), view.sortingOrder); break;
             }
         }
-        private static string Price(int price, ShopCurrency currency) => price + (currency == ShopCurrency.Eggs ? " eggs" : currency == ShopCurrency.Health ? " max HP" : " gold"); // round 4: an HP price is taken from maximum HP for the run
+        private static string Price(int price, ShopCurrency currency) => price + (currency == ShopCurrency.Eggs ? " dreamsand" : currency == ShopCurrency.Health ? " max HP" : " gold"); // round 4: an HP price is taken from maximum HP for the run
         // light and particles around a stall (rarity bloom, its light, drifting motes) are not the thing itself: left out of its box
         private static bool Decorative(string name) => name.Contains("Contact") || name.Contains("Shadow") || name.Contains("Glow") || name.Contains("Halo") || name.Contains("Aura") || name.Contains("Floor")
             || name.Contains("Bloom") || name.Contains("Mote") || name.Contains("RarityLight");
@@ -228,7 +228,7 @@ namespace ArcaneBrigade
                 // the hover marks stop above the shop's description card instead of being drawn over its BUY button
                 Rect card = RunHud.ShownShopCard;
                 if (card.height > 0 && box.Overlaps(card) && box.yMin < card.yMin) box.yMax = card.yMin - 4;
-                if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
+                // pointing at a thing only names it: the chosen seal belongs to what is picked, never to what the pointer passes over
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(tag, KitFrame.Plaque); else ArcadeSkin.Panel(tag, ArcadeSkin.Card); // the velvet title plaque (UI kit)
                 ArcadeSkin.KitCaption(ArcadeSkin.HasKit ? ArcadeSkin.Content(tag, KitFrame.Plaque, false) : tag, hovered.Title, ArcadeSkin.Cream, name, true);

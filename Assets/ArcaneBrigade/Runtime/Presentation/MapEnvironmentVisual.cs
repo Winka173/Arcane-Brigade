@@ -109,7 +109,13 @@ namespace ArcaneBrigade
             Vector3 hover = standing ? DreamLevitation.Offset(sim != null ? sim.Elapsed : Time.time, 40 + slot * 1.37f, 1, still, .8f) : Vector3.zero;
             r.transform.position = (Vector3)at + hover; r.transform.rotation = Quaternion.Euler(0, 0, angle + (standing ? DreamLevitation.Tilt(sim != null ? sim.Elapsed : Time.time, 40 + slot * 1.37f, still, .5f) : 0)); r.transform.localScale = new Vector3(scale, scale, 1);
             r.sortingOrder = order != int.MinValue ? order : 1000 - Mathf.RoundToInt((at.y + .35f) * 12);
-            if (standing) shadows[slot].Display(sprite, at, sprite.bounds.size.x * scale * .8f, hover.y, .32f * Mathf.Clamp01(alpha));
+            if (standing)
+            {
+                // a standing prop lies on the floor from its own feet along the one light, like every character
+                GroundShadow ground = shadows[slot]; ground.PinCastToFoot = true; ground.SilhouetteScale = new Vector2(scale, scale); ground.FlipX = flip;
+                Vector3 foot = WorldSpriteGrounding.Foot(sprite); if (flip) foot.x = -foot.x;
+                ground.Display(sprite, at + (Vector2)(foot * scale), sprite.bounds.size.x * scale * .8f, hover.y, .32f * Mathf.Clamp01(alpha));
+            }
             else shadows[slot].Hide();
             Props++;
             return r;

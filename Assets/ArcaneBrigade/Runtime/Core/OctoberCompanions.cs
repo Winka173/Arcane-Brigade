@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             "\"Cars ARE My Kids\" Chris" => "Each Carousel Pony grants this friend 30% damage and 5 contact damage, up to 3 ponies.",
             "\"Colorful Fantasy\" Pinky" => "Reduce the first hit you take every 6 seconds by 25%.",
             "\"Enduring Suffering\" Dorothy" => "Once per wave, taking damage lowers your maximum HP by 2 and heals you fully. Does not refill royal health.",
-            "\"Expert Nurturer\" Daisy" => "On purchase, gain 6 eggs once.", "\"Formatting Pixie\" Quentin" => "Friends are 12% smaller.",
+            "\"Expert Nurturer\" Daisy" => "On purchase, gain 6 dreamsand once.", "\"Formatting Pixie\" Quentin" => "Friends are 12% smaller.",
             "\"GLHF\" Nia" => "On purchase, gain one seeded random run bonus: damage, speed, luck or armor.",
             "\"Leisurely Walk\" Mary" => "Paid refreshes cost 2 less gold, minimum 1.", "\"Misfortune\" Emily" => "Taking damage grants 3 gold. at most once every 2s.",
             "\"Naming Demon\" Yan" => "Every third attack fires an unpredictable coloured echo at 25% weapon damage.",

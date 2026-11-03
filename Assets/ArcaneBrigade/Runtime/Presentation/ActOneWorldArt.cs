@@ -116,7 +116,7 @@ namespace ArcaneBrigade
             }
             else
             {
-                var shadow = go.AddComponent<GroundShadow>(); shadow.Configure(image);
+                var shadow = go.AddComponent<GroundShadow>(); shadow.PinCastToFoot = true; shadow.Configure(image); // it stands on the floor: its shadow meets its feet
                 shadow.Display(image, anchor, height * .7f, 0, .22f);
             }
         }

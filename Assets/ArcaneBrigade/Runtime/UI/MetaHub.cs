@@ -308,12 +308,10 @@ namespace ArcaneBrigade
                 Rect r = Bounds(spot, sprite);
                 if (MetaIcons.Painted)
                 {
-                    // the station is painted into the room: the one you walk up to is lit by a warm light, nothing pasted on top
-                    if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .3f + .1f * breathe : .14f));
+                    // the station is painted into the room: nothing pasted on top (the one you stand by shows its card)
                     continue;
                 }
                 if (restored) ArcadeSkin.Glow(new Rect(r.x - 40, r.y - 30, r.width + 80, r.height + 60), new Color(1f, .78f, .45f, .16f + .06f * breathe));
-                if (index == Focus && !PanelOpen) ArcadeSkin.Glow(new Rect(r.x - 30, r.y - 20, r.width + 60, r.height + 40), new Color(1f, .85f, .55f, works ? .38f : .18f));
                 // grounded (requirement 24/10/2026: the stations looked to float): a soft cast shadow falling down-right from the room's
                 // lamp light, and a dark contact shadow right under the feet
                 ArcadeSkin.Glow(new Rect(r.x + r.width * .14f, spot.Foot.y - 12, r.width * .95f, 34), new Color(0, 0, 0, .42f));
@@ -712,8 +710,12 @@ namespace ArcaneBrigade
             UnitDefinition hero = catalog.Champions[wardrobeHero];
             int waves = MetaProgression.Mastery(profile, hero.Id)?.Waves ?? 0, rank = MetaProgression.MasteryRank(waves);
             navCols = 2;
-            if (ArcadeSkin.IconButton(new Rect(area.x, area.y, 56, 56), KitRound.Walnut, "◀") | Nav(new Rect(area.x, area.y, 56, 56))) wardrobeHero = (wardrobeHero + catalog.Champions.Length - 1) % catalog.Champions.Length;
-            if (ArcadeSkin.IconButton(new Rect(area.xMax - 56, area.y, 56, 56), KitRound.Walnut, "▶") | Nav(new Rect(area.xMax - 56, area.y, 56, 56))) wardrobeHero = (wardrobeHero + 1) % catalog.Champions.Length;
+            int count = catalog.Champions.Length;
+            // the arrows step over heroes that are not in the game yet (an update or a later act)
+            if (ArcadeSkin.IconButton(new Rect(area.x, area.y, 56, 56), KitRound.Walnut, "◀") | Nav(new Rect(area.x, area.y, 56, 56)))
+                do wardrobeHero = (wardrobeHero + count - 1) % count; while (!HeroUnlocks.Listed(catalog.Champions[wardrobeHero]));
+            if (ArcadeSkin.IconButton(new Rect(area.xMax - 56, area.y, 56, 56), KitRound.Walnut, "▶") | Nav(new Rect(area.xMax - 56, area.y, 56, 56)))
+                do wardrobeHero = (wardrobeHero + 1) % count; while (!HeroUnlocks.Listed(catalog.Champions[wardrobeHero]));
             RunHud.Sprite(new Rect(area.x + 70, area.y - 4, 64, 64), hero.Body);
             body.normal.textColor = ArcadeSkin.KitCream; number.normal.textColor = ArcadeSkin.KitCream;
             GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 34), RunUICopy.UnitName(hero), body);

@@ -17,7 +17,7 @@ namespace ArcaneBrigade
             new Tip { Id = "bond", Line = "A bond is active: friends of one family give a bonus together.", Icon = o => o.Content.Bonds.Length > 0 ? o.Content.Bonds[0].Icon : null },
             new Tip { Id = "merge", Line = "Three of the same friend became one, with a new star.", Icon = o => o.Session.State.Roster.Count > 0 ? o.Content.Unit(o.Session.State.Roster[0].UnitId)?.Body : null },
             new Tip { Id = "gauge", Line = "Your gauge is full: your hero's power is ready.", Icon = o => o.Content.Unit(o.Session.State.ChampionId)?.Body },
-            new Tip { Id = "dream", Line = "The dream shop takes eggs or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
+            new Tip { Id = "dream", Line = "The dream shop takes dreamsand or HP. An HP price lowers your max HP for the rest of the run.", Icon = o => o.Content.HeartSprite },
             new Tip { Id = "boss", Line = "A boss! A red patch shows where its blow will land: step out before it strikes.", Icon = o => o.Simulation?.Boss?.Definition.Body },
             new Tip { Id = "visitor", Line = "A visitor waits at the table. Walk up to see the deal.", Icon = o => ExpansionArtwork.Current?.Visitor(o.Session.State.Visitor) },
             // the maps' living elements (play-test item 24): one line each, the first time it appears
@@ -243,7 +243,7 @@ namespace ArcaneBrigade
             {
                 (c.Unit(owner.Session.State.ChampionId)?.Body, "The goal", "Survive 20 nights. Every 4th night a boss comes."),
                 (c.Unit(owner.Session.State.ChampionId)?.Weapon?.Sprite, "Move", "Just move. Your hero and friends attack by themselves."),
-                (c.Arena.Coin, "Gold and eggs", "Pick them up. Gold buys in the shop, eggs in the dream shop."),
+                (c.Arena.Coin, "Gold and dreamsand", "Pick them up. Gold buys in the shop, dreamsand in the dream shop."),
                 (c.Bonds.Length > 0 ? c.Bonds[0].Icon : null, "Friends and bonds", "Friends of one family together unlock a bond."),
                 (c.Companions.Length > 0 ? c.Companions[0].Body : null, "Merge", "Three of the same friend become one, with a new star."),
                 (c.Items.Length > 0 ? c.Items[0].Icon : null, "Relics", "Relics give bonuses for the rest of the run."),

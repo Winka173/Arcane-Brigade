@@ -24,7 +24,7 @@ namespace ArcaneBrigade.Editor
             }
             var items = new List<ItemDefinition>(catalog.Items)
             {
-                Item("fortune-egg", "Fortune Egg", "Luck +0.2: more egg/heart loot; no hidden damage bonus.", catalog.EggSprite, ItemEffect.Luck, 0.2f, 24, 2),
+                Item("fortune-egg", "Fortune Sand", "Luck +0.2: more dreamsand/heart loot; no hidden damage bonus.", catalog.EggSprite, ItemEffect.Luck, 0.2f, 24, 2),
                 Item("treasure-whisper", "Treasure Whisper", "Treasure Detection +0.35: chests appear sooner; walk to open.", catalog.ChestSprite, ItemEffect.TreasureDetection, 0.35f, 30, 2),
                 Item("coin-salve", "Coin Salve", "Coin collected: heal 0.5 HP per stack, once per root, cooldown 0.2s.", catalog.HeartSprite, ItemEffect.Heal, 0, 28, 2),
                 Item("chest-thunder", "Chest Thunder", "Chest opened: damage pulse 14 per stack, radius 3, cooldown 1s. Cannot trigger another proc.", catalog.ChestSprite, ItemEffect.Damage, 0, 42, 4),

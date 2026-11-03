@@ -334,7 +334,7 @@ namespace ArcaneBrigade
             LowHealthVignette.Draw(new Vector2(1920, 1080), Mathf.Clamp01(danger * (1 + 0.35f * beat)));
             if (state.Phase == SessionPhase.Combat) NightHud.EdgeEyes(simulation, camera, new Vector2(1920, 1080));
             float bossFlash = owner.Feel != null ? owner.Feel.ScreenFlash : 0;
-            if (bossFlash > 0.01f) Fill(new Rect(0, 0, 1920, 1080), new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f)); // a boss falls: the night flashes white
+            if (bossFlash > 0.01f) Fill(new Rect(-1920, -1080, 5760, 3240), new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f)); // a boss falls: the night flashes white
             if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
             // healing fills the bar up over a moment (the number is already true); a hit drops it at once, the trail follows
             if (PresentationSettings.ReducedMotion || health < shownHealth) shownHealth = health;
@@ -1059,12 +1059,6 @@ namespace ArcaneBrigade
                     Color tierLight = shownLevel == 1 ? new Color(.95f, .55f, .25f) : shownLevel == 2 ? new Color(.7f, .88f, 1f) : new Color(1f, .86f, .35f);
                     Rect inner = new Rect(r.x + r.width * .1f, r.y + r.height * .1f, r.width * .8f, r.height * .8f);
                     for (int layer = 0; layer < shownLevel; layer++) ArcadeSkin.Glow(inner, new Color(tierLight.r, tierLight.g, tierLight.b, .45f + .25f * breathe));
-                    if (shownLevel >= 3 && !still)
-                        for (int m = 0; m < 4; m++) // the top step: sparkles turning round the icon
-                        {
-                            float a = clock * 1.4f + m * Mathf.PI * .5f;
-                            ArcadeSkin.Diamond(r.center + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r.width * .32f, 3, new Color(1f, .95f, .7f, .9f));
-                        }
                 }
                 Color keep = GUI.color;
                 if (!active && !rising) GUI.color = new Color(keep.r * .62f, keep.g * .62f, keep.b * .66f, keep.a); // not awake yet: dim

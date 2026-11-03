@@ -23,7 +23,8 @@ namespace ArcaneBrigade
             text ??= ArcadeTypography.Style(24, true);
             icon ??= PacingArtwork.Prism(owner.Content);
             // under the hero's gauge lines when they show (it sat inside them), else under the wallet
-            Rect plate = new Rect(22, owner.Simulation.HeroIdentityEnabled ? 350 : 240, 214, 36);
+            // under the gauge lines; on a phone everything in this column sits 112 lower, under the pause and brigade buttons
+            Rect plate = new Rect(22, (owner.Simulation.HeroIdentityEnabled ? 350 : 240) + (RunUIHints.Device == RunUIDevice.Touch ? 112 : 0), 214, 36);
             ArcadeSkin.Panel(plate, ArcadeSkin.Card);
             if (icon != null) RunHud.Sprite(new Rect(plate.x + 8, plate.y + 3, 30, 30), icon);
             text.normal.textColor = new Color(0.68f, 1, 0.92f);

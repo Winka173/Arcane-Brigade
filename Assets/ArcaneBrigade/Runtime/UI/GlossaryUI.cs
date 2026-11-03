@@ -73,7 +73,7 @@ namespace ArcaneBrigade
             Add(result, "damage", "Damage", ItemEffect.Damage, "How hard every hit lands.");
             Add(result, "bond", "Bond", ItemEffect.CompanionDamage, "Friends of the same family together unlock a bonus; the card shows how many you need.");
             Add(result, "merge", "Merge", ItemEffect.CompanionDamage, "Three of the same friend at the same stars become one friend with one more star (two of three show half a star more).");
-            Add(result, "altar", "Dream shop", ItemEffect.Luck, "A shop that takes eggs or HP instead of gold. HP prices lower your max HP for the rest of the run.");
+            Add(result, "altar", "Dream shop", ItemEffect.Luck, "A shop that takes dreamsand or HP instead of gold. HP prices lower your max HP for the rest of the run.");
             Add(result, "reroll", "Reroll", ItemEffect.Discount, "Pay gold for new offers in the shop.");
             Add(result, "stack", "Stackable", ItemEffect.Damage, "More copies add more of the same bonus.", "stackable");
             Add(result, "scope", "Who it helps", ItemEffect.CompanionDamage, "You means your hero, Friends means your brigade, no label means everyone.");
@@ -85,7 +85,7 @@ namespace ArcaneBrigade
             Add(result, "boomerang", "Returning weapon", ItemEffect.BulletDistance, "Flies out and comes back to its owner.");
             Add(result, "health", "HP", ItemEffect.Health, "Your hero's health. At 0 the run ends.");
             Add(result, "gold", "Gold", ItemEffect.Income, "Picked up in fights and earned after each wave; spend it in the shop.");
-            Add(result, "eggs", "Eggs", ItemEffect.Luck, "Spend them in the dream shop.");
+            Add(result, "eggs", "Dreamsand", ItemEffect.Luck, "Spend it in the dream shop.");
             Add(result, "immortal", "Friends never fall", ItemEffect.Interceptor, "Friends cannot be hurt; only your hero can.");
             Add(result, "endless", "Endless", ItemEffect.EnemyCount, "Keep going after dawn with the same brigade; every wave is harder.");
             Add(result, "LANTERN STRIDE", "Lantern Stride", ItemEffect.CollisionDamage, K11HeroRules.Describe(HeroMechanic.LanternStride), "Lantern stride");
@@ -107,7 +107,7 @@ namespace ArcaneBrigade
             ItemEffect.AttackSpeed or ItemEffect.CompanionAttackSpeed => "How often attacks come; higher means less waiting between hits.",
             ItemEffect.Health => "Your most HP; buying with HP lowers it.",
             ItemEffect.MoveSpeed => "How fast you walk.",
-            ItemEffect.Pickup => "How far away coins, eggs and hearts start flying to you.",
+            ItemEffect.Pickup => "How far away coins, dreamsand and hearts start flying to you.",
             ItemEffect.Roam => "How far friends wander from you to fight.",
             ItemEffect.Interceptor => "Friends catch enemy shots that would hit you.",
             ItemEffect.Heal => "HP you get back every second.",

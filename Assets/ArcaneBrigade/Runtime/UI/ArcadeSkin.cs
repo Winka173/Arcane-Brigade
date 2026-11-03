@@ -437,56 +437,21 @@ namespace ArcaneBrigade
                 }
         }
 
-        /// <summary>The picked thing: the selected aura behind it and a small gold marker bobbing above it.</summary>
+        /// <summary>The picked card or plate: the chosen seal on its corner (call it after the piece's own art).</summary>
         public static void WorldFocus(Rect bounds)
         {
-            bool still = PresentationSettings.ReducedMotion;
-            float t = Time.unscaledTime, breathe = still ? .8f : .65f + .35f * Mathf.Sin(t * 3.2f);
-            // a large piece (a figure, the shopkeeper) is lit at its feet, a small card or slot round its edge; never a box
-            if (bounds.width > 260 || bounds.height > 260)
-            {
-                float pw = Mathf.Min(bounds.width * .9f, 420), ph = pw * .32f;
-                for (int layer = 0; layer < 2; layer++) Glow(new Rect(bounds.center.x - pw * .5f, bounds.yMax - ph * .6f, pw, ph), new Color(1f, .78f, .38f, .7f * breathe));
-            }
-            else SelectedAura(bounds, new Color(1f, .78f, .38f));
-            float bob = still ? 0 : Mathf.Sin(t * 4f) * 4;
-            Vector2 marker = new Vector2(bounds.center.x, bounds.y - 14 + bob);
-            Diamond(marker, 18, new Color(Ink.r, Ink.g, Ink.b, .8f));
-            Diamond(marker, 13, new Color(Gold.r, Gold.g, Gold.b, .85f + .15f * breathe));
+            Chosen(bounds); // the picked thing wears the chosen seal (ChosenSeal.cs)
         }
 
-        /// <summary>The picked one of a row of round medallions: warm round light behind it (drawn before the medallion, so it
-        /// shows round its painted rim and never over it), rising motes and the bobbing marker.</summary>
+        /// <summary>The picked one of a row of round medallions: the chosen seal on its corner (call it after the medallion).</summary>
         public static void RoundFocus(Rect medallion)
         {
-            if (Event.current.type != EventType.Repaint) return;
-            bool still = PresentationSettings.ReducedMotion;
-            float t = Time.unscaledTime, breathe = still ? .8f : .7f + .3f * Mathf.Sin(t * 3.2f), grow = medallion.width * .42f;
-            Rect wide = new Rect(medallion.x - grow, medallion.y - grow, medallion.width + grow * 2, medallion.height + grow * 2);
-            // deep amber, layered: a pale gold light vanished on cream paper
-            for (int layer = 0; layer < 3; layer++) Glow(wide, new Color(1f, .5f, .1f, .9f * breathe));
-            Glow(new Rect(medallion.x - grow * .4f, medallion.y - grow * .4f, medallion.width + grow * .8f, medallion.height + grow * .8f), new Color(1f, .62f, .18f, breathe));
-            if (!still)
-                for (int i = 0; i < 8; i++)
-                {
-                    float q = Mathf.Repeat(t * .5f + i / 8f, 1), a = i * Mathf.PI * 2 / 8 + t * .3f;
-                    Vector2 c = medallion.center + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * .3f) * medallion.width * .62f + Vector2.down * q * 40;
-                    Diamond(c, 3 + 3 * Mathf.Sin(q * Mathf.PI), new Color(.95f, .7f, .3f, .9f * Mathf.Sin(q * Mathf.PI)));
-                }
-            float bob = still ? 0 : Mathf.Sin(t * 4f) * 4;
-            Vector2 marker = new Vector2(medallion.center.x, medallion.y - 16 + bob);
-            Diamond(marker, 18, new Color(Ink.r, Ink.g, Ink.b, .8f));
-            Diamond(marker, 13, new Color(Gold.r, Gold.g, Gold.b, .85f + .15f * breathe));
+            Chosen(medallion); // the picked medallion wears the chosen seal (ChosenSeal.cs)
         }
 
         public static void Focus(Rect bounds)
         {
-            float breathe = PresentationSettings.ReducedMotion ? 0.8f : 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 3.2f) * Mathf.Sin(Time.unscaledTime * 7.1f + 1.3f);
-            // the focused control: warm light spilling out at both its sides onto what lies behind, and a small gold marker
-            // pointing at it from the left (no underline or box over the painted piece)
-            Glow(new Rect(bounds.x - 34, bounds.center.y - 26, 52, 52), new Color(Gold.r, Gold.g, Gold.b, 0.65f * breathe));
-            Glow(new Rect(bounds.xMax - 18, bounds.center.y - 26, 52, 52), new Color(Gold.r, Gold.g, Gold.b, 0.45f * breathe));
-            Slant(new Rect(bounds.x - 14 - (PresentationSettings.ReducedMotion ? 0 : 3 * (1 - breathe)), bounds.center.y - 6, 6, 12), Gold);
+            ChosenLater(bounds); // the keyboard or pad focus wears the chosen seal, over everything (ChosenSeal.cs)
         }
 
         /// <summary>Respect fades already applied to GUI.color (page entrance, reveals) instead of overwriting them.</summary>

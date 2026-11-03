@@ -367,7 +367,7 @@ namespace ArcaneBrigade
                 if (result != null)
                 {
                     result.DeniedUntil = owner.PresentationClock + 0.65f;
-                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : owner.Session.RecruitQuotaBlocks(station.Offer) ? owner.Session.RecruitQuotaDenialFor(station.Offer) : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
+                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : owner.Session.RecruitQuotaBlocks(station.Offer) ? owner.Session.RecruitQuotaDenialFor(station.Offer) : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH DREAMSAND" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
                 }
             }
             return completed;
@@ -805,7 +805,7 @@ namespace ArcaneBrigade
                 }
                 Vector3 screen = camera.WorldToScreenPoint(TagAnchor(station, station.Action == "REROLL" ? 0.83f : 0.65f));
                 Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
-                float scale = 1 + station.Focus * 0.09f + BeatPulse.Kick * 0.035f;
+                float scale = 1 + BeatPulse.Kick * 0.035f; // the near stall's tag keeps its size (it grew 9%); the chosen seal marks it
                 point.y += 22 * scale; // the tag hangs below the feet (requirement 22/10/2026: never over the character)
                 string price = station.Price.ToString();
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
@@ -828,7 +828,7 @@ namespace ArcaneBrigade
                 Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? CurrencyIcons.Heart : owner.Content.Arena.Coin;
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 priceStyle.fontSize = 25;
-                while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;
+                while (priceStyle.fontSize > 18 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--; // a long price stays readable on a phone
                 bool short_ = station.Offer != null ? !owner.Session.CanBuy(station.Offer) : (station.Action == "VISITOR" || station.Action == "REROLL") && owner.Session.State.Gold < station.Price; // not enough gold: the price turns red
                 priceStyle.normal.textColor = short_ ? new Color(0.75f, 0.15f, 0.2f) : ArcadeSkin.Ink;
                 GUI.Label(new Rect(ticket.x + 48, ticket.y, ticket.width - 54, ticket.height), price, priceStyle); // 12 px after the coin, centred on the tag

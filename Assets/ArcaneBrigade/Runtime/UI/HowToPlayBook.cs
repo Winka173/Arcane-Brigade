@@ -16,7 +16,7 @@ namespace ArcaneBrigade
             new[] { "Survive 20 nights.", "Every 4th night a boss comes.", "Clearing a night heals you fully." },
             new[] { "Just move: your hero and your friends attack by themselves.", "Swords want you close; bows like distance." },
             new[] { "Fighting fills your hero's gauge.", "Full, the hero transforms for a few seconds: a new power and stronger stats." },
-            new[] { "Between nights, walk up to a stall to see what it sells.", "Gold buys friends and relics. Eggs pay in the dream shop." },
+            new[] { "Between nights, walk up to a stall to see what it sells.", "Gold buys friends and relics. Dreamsand pays in the dream shop." },
             new[] { "Three of the same friend merge into one with a new star.", "Each star grows its body, damage and reach." },
             new[] { "Every friend belongs to families.", "Two or more of one family wake a bond for the whole brigade." },
             new[] { "Relics are bonuses that last the whole run.", "A rarer frame holds a stronger relic." },

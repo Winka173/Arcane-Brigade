@@ -28,19 +28,25 @@ namespace ArcaneBrigade.Editor
                     host.transform.rotation = Quaternion.Euler(0, 0, 37);
                     Vector2 ground = new Vector2(2, -1);
                     shadow.Display(sprite, ground, 1.5f);
-                    require(shadow.Contact.enabled && shadow.Penumbra.enabled && shadow.Cast.enabled, "All three shadow layers visible");
+                    require(shadow.Contact.enabled && shadow.Cast.enabled, "Both shadow layers visible");
                     require(Vector2.Distance(shadow.Contact.transform.position, ground) < 0.001f, "Contact anchored to ground despite parent transform");
                     require(Quaternion.Angle(shadow.Contact.transform.rotation, Quaternion.identity) < 0.01f, "Contact does not rotate with its actor");
                     require(shadow.Contact.bounds.size.x > 1 && shadow.Contact.bounds.size.x < 1.4f, "World footprint independent of inherited scale");
-                    require(shadow.Contact.color.a >= 0.55f && shadow.Penumbra.color.a > 0.25f, "Ground contrast visible on textured floor");
+                    require(shadow.Contact.color.a >= 0.55f && shadow.Cast.color.a > 0.2f, "Ground contrast visible on textured floor");
                     float restingOpacity = shadow.Contact.color.a;
                     shadow.Display(sprite, ground, 1.5f, 2);
                     require(shadow.Contact.color.a < restingOpacity, "Airborne shadow softens");
                     shadow.Fade(0);
-                    require(shadow.Contact.color.a == 0 && shadow.Penumbra.color.a == 0 && shadow.Cast.color.a == 0, "All layers fade with actor");
+                    require(shadow.Contact.color.a == 0 && shadow.Cast.color.a == 0, "All layers fade with actor");
                     shadow.Hide();
-                    require(!shadow.Contact.enabled && !shadow.Penumbra.enabled && !shadow.Cast.enabled, "Pooling hides all layers");
+                    require(!shadow.Contact.enabled && !shadow.Cast.enabled, "Pooling hides all layers");
                 }
+                shadow.PinCastToFoot = true; host.transform.localScale = Vector3.one; host.transform.rotation = Quaternion.identity;
+                shadow.Display(sprite, new Vector2(2, -1), 1.5f);
+                Bounds standing = shadow.Cast.bounds;
+                require(standing.center.x > 2.1f && standing.center.y < -1.05f && standing.max.y < -.95f, "A standing shadow lies from the feet toward the lower right, along the one light");
+                shadow.Display(sprite, new Vector2(2, -1), 1.5f, 1);
+                require(shadow.Cast.bounds.center.x > standing.center.x + .4f && shadow.Cast.bounds.center.y < standing.center.y - .3f, "A lifted thing's shadow moves along the same light");
             }
             finally
             {

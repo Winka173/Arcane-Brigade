@@ -374,12 +374,14 @@ namespace ArcaneBrigade
         /// <summary>How far the painted feet sit above the bottom of the picture (its clear margin), in world units: shadows meet
         /// the feet, not the picture's edge (requirement 25/10/2026).</summary>
         private float FootPad() => body != null && body.sprite != null ? Mathf.Max(0, body.transform.TransformVector(new Vector3(0, WorldSpriteGrounding.Foot(body.sprite).y - body.sprite.bounds.min.y, 0)).y) : 0;
+        private Vector2 BodyScale() { Vector3 lossy = body.transform.lossyScale; return new Vector2(Mathf.Abs(lossy.x), Mathf.Abs(lossy.y)); }
         public void TransportShadow(Vector2 offset, float lift)
         {
             if (state == null || grounded == null) return;
             lift = Mathf.Min(lift, .28f); // a carried or lifted friend keeps its shadow near its feet, so it reads as standing, never flying
             float height = K8Motion.BodyHeight(state);
             Vector2 ground = state.Position + offset - Vector2.up * (height * 0.5f + lift - FootPad());
+            grounded.SilhouetteScale = BodyScale(); grounded.FlipX = body.flipX;
             grounded.Display(body.sprite, ground, height * 0.85f, lift, 0.3f);
             if (groundedWeapon != null && weapon.enabled && grip.gameObject.activeSelf)
                 groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y), K8Motion.WeaponWidth(state), lift, 0.1f);
@@ -625,11 +627,13 @@ namespace ArcaneBrigade
             grounded.Essential = state.Definition.IsBoss || state.Faction == Faction.Champion;
             float lift = entrance > 0 ? entrance * 6 : arrivalAge < 0.405f ? Mathf.Sin(Mathf.Clamp01(arrivalAge / 0.405f) * Mathf.PI) * 0.85f : 0;
             Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f + footPad - (entrance > 0 ? transform.position.y - state.Position.y : lift));
+            grounded.SilhouetteScale = BodyScale(); grounded.FlipX = body.flipX;
             grounded.Display(body.sprite, ground, height * 0.85f, lift + celebrationLift + Mathf.Abs(bob) + Mathf.Max(0, state.BodyLift), state.Definition.IsBoss ? 0.42f : 0.36f);
             if (weapon.enabled && grip.gameObject.activeSelf)
             {
                 if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
-                groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
+                Vector3 weaponScale = weapon.transform.lossyScale; groundedWeapon.SilhouetteScale = new Vector2(Mathf.Abs(weaponScale.x), Mathf.Abs(weaponScale.y)); groundedWeapon.FlipX = weapon.flipX;
+                groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), Mathf.Clamp(weapon.transform.position.y - ground.y, 0, height), 0.12f); // the held weapon's shadow falls along the same light from its own height
             }
             else if (groundedWeapon != null) groundedWeapon.Hide();
             shadow.enabled = false;

@@ -26,9 +26,12 @@ namespace ArcaneBrigade
         // (was health 2.1/2.85/3.8/5.1/6.8, damage 1.8/2.55/3.5/4.6/6)
         // requirement 27/10/2026 (too many difficulties): five now - Peaceful, Wandering, Nightmare, Sleepless, The Last Night; Restless,
         // Beyond the Lamp and Lightless are gone, the others keep their old numbers
-        public static readonly float[] HealthFactor = { .7f, 1.1f, 1.95f, 2.62f, 6.25f };
-        public static readonly float[] DamageFactor = { .38f, .92f, 1.65f, 2.35f, 5.5f };
-        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.2f, 1.3f, 1.72f };
+        // requirement 3/11/2026: each step clearly harder than the last, the top one reached by few (bot campaigns aim at about
+        // 90 / 70 / 45 / 25 / 8 % reaching dawn); the jump from Sleepless to The Last Night was too wide (0 of 18). A slower ramp
+        // for the hard levels was tried and dropped: less enemy health early also meant less gold, and the runs got harder.
+        public static readonly float[] HealthFactor = { .6f, .95f, 1.45f, 2.3f, 3.1f };
+        public static readonly float[] DamageFactor = { .3f, .75f, 1.15f, 2f, 2.9f };
+        public static readonly float[] DensityFactor = { 1f, 1.05f, 1.2f, 1.3f, 1.55f };
         private static float Level(float[] table, int difficulty) => table[Mathf.Clamp(difficulty, 0, table.Length - 1)];
 
         public static float EnemyHealth(int difficulty, int wave) => BaseHealth * (1 + (Level(HealthFactor, difficulty) - 1) * Ramp(wave));

@@ -24,7 +24,7 @@ namespace ArcaneBrigade
                 "The night can wait. Your heart cannot.","A small red promise. Nothing more.",
                 "You owe me nothing for standing in the light.","Not enough coins. There is still a place by the lamp.",
                 "A different shelf. The same little shop. Surely.","The bell rang twice. I only touched it once.",
-                "There. A clearer voice than anything outside.","They recognized each other before I did.",
+                "There. A clearer voice than anything outside.","They recognised each other before I did.",
                 "If the corridor changes, remember the way your friend walks.","I will still be here. Please come back."
             },
             new[] {

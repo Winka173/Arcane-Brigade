@@ -308,9 +308,7 @@ namespace ArcaneBrigade
                 Rect seal = new Rect(r.x + 18, r.y + 9, 50, 50);
                 if (on)
                 {
-                    float tt = PresentationSettings.ReducedMotion ? 0 : Time.unscaledTime;
-                    ArcadeSkin.Glow(new Rect(seal.x - 18, seal.y - 18, seal.width + 36, seal.height + 36), new Color(1f, .5f, .38f, .55f + .15f * Mathf.Sin(tt * 3 + i)));
-                    for (int k = 0; k < 3; k++) { float an = (tt * 140 + k * 120 + i * 40) * Mathf.Deg2Rad; Color sp = new Color(1f, .72f, .5f, .9f); ArcadeSkin.Diamond(seal.center + new Vector2(Mathf.Cos(an), Mathf.Sin(an)) * 31, 7, sp); }
+                    ArcadeSkin.Chosen(r); // the chosen pact wears the chosen seal (it had three turning dots)
                 }
                 PactIcon(seal, i, catalog);
                 Ink(ArcadeSkin.KitCream);

@@ -59,13 +59,13 @@ namespace ArcaneBrigade
                 .With(D("Bet 5", "gold:5", "gold:8", "next wave · HP 50%+"), D("Bet 10", "gold:10", "gold:20", "next wave · HP 70%+"), D("Bet 20", "gold:20", "gold:52", "next wave · HP 85%+")),
             V("Pawnbroker", "The Roadside Pawnbroker", "I'll keep it safe. Mostly.", "Pawn a relic for half its price; redeem it within 2 waves for the same.", I)
                 .With(D("Pawn a relic", "relic:1 relic", "gold:half price", "buy back within 2 waves")),
-            V("ParcelCourier", "The Unmarked Parcel", "(the parcel rustles, hopeful to be opened)", "Open it for 10 gold: 15 gold, an egg, a Common relic - or an empty box and a note.", A, 10)
+            V("ParcelCourier", "The Unmarked Parcel", "(the parcel rustles, hopeful to be opened)", "Open it for 10 gold: 15 gold, dreamsand, a Common relic - or an empty box and a note.", A, 10)
                 .With(D("Open it", "gold:10", "gold:15 / egg:1 / relic:Common / ?:empty")),
             V("TroupeLeader", "The Travelling Troupe", "Choose tonight's play, traveller!", "Pick a play for the next wave.", O, 0, "Swift friends: +10% attack speed", "Sleepy audience: enemies 10% slower", "Coin toss: double coins")
                 .With(D("Swift friends", F, "CompanionAttackSpeed:+10%", Next), D("Sleepy audience", F, "EnemySpeed:enemies -10%", Next), D("Coin toss", F, "coin:x2", Next)),
             V("Lamplighter", "The Lamplighter", "Four lamps, four corners. Shall I light them?", "Next wave: four corner lamps set passing enemies alight.", A, 6)
                 .With(D("Light the lamps", "gold:6", "lamp:4 burning", Next)),
-            V("LostToy", "The Lost Toy", "Could I walk with you for a while? I think home is that way.", "Next wave it wanders beside you: stay within 3 units of it for 20s and it finds its way (an egg).")
+            V("LostToy", "The Lost Toy", "Could I walk with you for a while? I think home is that way.", "Next wave it wanders beside you: stay within 3 units of it for 20s and it finds its way (dreamsand).")
                 .With(D("Walk with it", F, "egg:1", "next wave · near it 20s")),
             V("ToyMender", "The Toy Mender", "A stitch or two, and they'll hold their ground.", "Patch one friend: next wave its hits slow enemies 20%.", C, 8)
                 .With(D("Patch a friend", "gold:8", "EnemySpeed:-20% on hit", Next)),
@@ -83,7 +83,7 @@ namespace ArcaneBrigade
                 .With(D("Shuffle the shelf", "price:+30%", "rarity:+1", Here)),
             V("ClockRewinder", "The Clock Rewinder", "Shall we pretend that refresh never happened?", "Undo your last refresh: its gold back, the shelf as it was.", A, 4)
                 .With(D("Undo the refresh", "gold:4", "shelf:old shelf + gold:refund", Here)),
-            V("SleeplessChild", "The Sleepless Child", "Can you make the hall quiet? Then I could sleep.", "Next wave: defeat 80 enemies and earn an egg.")
+            V("SleeplessChild", "The Sleepless Child", "Can you make the hall quiet? Then I could sleep.", "Next wave: defeat 80 enemies and earn dreamsand.")
                 .With(D("Hush the hall", F, "egg:1", "next wave · 80 kills")),
             V("CandyWitch", "The Candy Witch", "A bag of sweets? They'll want them more than you.", "Next wave: every 10s a sweet drops near you and enemies crowd it for 2s.", A, 6)
                 .With(D("Take the sweets", "gold:6", "lure:sweet every 10s", Next)),
@@ -115,14 +115,14 @@ namespace ArcaneBrigade
                 .With(D("Take the key", "gold:10", "relic:Common", "next wave · first chest")),
             V("CupMagician", "The Stage Magician", "Watch closely - and now it's free!", "Make one random offer on the shelf free.", A, 6)
                 .With(D("Watch the trick", "gold:6", "price:1 offer free", Here)),
-            V("FriendSeeker", "The Friend Seeker", "Could one of yours walk with me for a while?", "Lend a friend for the next wave; it comes back with an egg and 10 gold.", C)
+            V("FriendSeeker", "The Friend Seeker", "Could one of yours walk with me for a while?", "Lend a friend for the next wave; it comes back with dreamsand and 10 gold.", C)
                 .With(D("Lend a friend", "friend:1 for a wave", "egg:1 + gold:10", "after next wave")),
             V("DreamSmith", "The Dream Smith", "I can forge a new dream into that weapon.", "Reforge one friend's weapon: choose one of three.", C, 8)
                 .With(D("Reforge a weapon", "gold:8", "weapon:pick 1 of 3")),
             V("MapSeller", "The Map Seller", "Every map shows where the chests sleep.", "Next wave chests appear more often.", A, 6)
                 .With(D("Buy a map", "gold:6", "chest:more often", Next)),
-            V("EggTrader", "The Egg Trader", "Eggs for trinkets, trinkets for eggs.", "Trade 2 eggs for an Uncommon relic, or a relic for 2 eggs.", O, 0, "Give 2 eggs", "Give a relic")
-                .With(D("Give 2 eggs", "egg:2", "relic:Uncommon"), D("Give a relic", "relic:1 relic", "egg:2")),
+            V("EggTrader", "The Sand Trader", "Sand for trinkets, trinkets for sand.", "Trade 2 dreamsand for an Uncommon relic, or a relic for 2 dreamsand.", O, 0, "Give 2 dreamsand", "Give a relic")
+                .With(D("Give 2 dreamsand", "egg:2", "relic:Uncommon"), D("Give a relic", "relic:1 relic", "egg:2")),
             V("WeatherTeller", "The Weather Teller", "Rain of teeth tomorrow. Take an umbrella.", "Learn the next wave's enemies; an umbrella brushes aside 1 in 5 hostile shots near you.", A, 6)
                 .With(D("Take the umbrella", "gold:6", "umbrella:1 in 5 shots", Next)),
             V("Knitter", "The Old Knitter", "Wrap up. Run quicker when you're warm.", "Next wave the hero runs 15% faster.", A, 8)

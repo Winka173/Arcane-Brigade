@@ -1089,7 +1089,7 @@ MonoBehaviour:
     - hearth
     - fam-crit
   - Id: fortune-egg
-    Name: Fortune Egg
+    Name: Fortune Sand
     Description: 'CURIO / COMMON / STACKABLE
 
 
@@ -6730,7 +6730,7 @@ MonoBehaviour:
       SPECIAL
       EFFECT
 
-      ON PURCHASE: receive 3 eggs immediately once per acquisition.
+      ON PURCHASE: receive 3 dreamsand immediately once per acquisition.
 
 
       Owned

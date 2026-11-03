@@ -221,7 +221,7 @@ namespace ArcaneBrigade
                     break;
                 case 2:
                     if (!combat) { Next(now); break; }
-                    message = "Gather coins and eggs. The shop takes them for companions and relics.";
+                    message = "Gather coins and dreamsand. The shop takes them for companions and relics.";
                     if (age > 5f) Next(now);
                     break;
                 case 3:

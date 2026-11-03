@@ -169,7 +169,7 @@ namespace ArcaneBrigade
             RunSession session = owner.Session;
             species.Clear(); species.AddRange(session.PartingSpecies());
             if (picked != null && !species.Contains(picked)) { picked = null; rowing = false; }
-            RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, .45f));
+            RunHud.Fill(new Rect(-1920, -1080, 5760, 3240), new Color(0, 0, 0, .45f));
             if (rowing && choicesFor != picked + session.State.Wave) { choicesFor = picked + session.State.Wave; choices = session.FerryChoices(picked); }
             List<string> shownIds = rowing ? choices : species;
             int pages = Mathf.Max(1, (shownIds.Count + 8) / 9); page = rowing ? 0 : Mathf.Clamp(page, 0, pages - 1);
@@ -196,12 +196,12 @@ namespace ArcaneBrigade
                 // the portrait in its round frame, the name (and stars) in ink on the paper below it
                 Rect slot = new Rect(card.x + (card.width - shown * 166) * .5f + i * 166 + 14, card.y + 222, 138, 232), frame = new Rect(slot.x + 10, slot.y, 118, 118);
                 bool chosen = rowing ? crossing == id : picked == id;
-                if (chosen) ArcadeSkin.RoundFocus(frame); // warm light behind the picked friend's frame, never over it
                 Matrix4x4 unscaled = GUI.matrix;
-                if (chosen) ArcadeSkin.ScaleAround(Vector2.one * 1.1f, frame.center); // the picked one stands a little bigger
+                // the picked one keeps its size and place (the chosen seal marks it)
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 GUI.matrix = unscaled;
+                if (chosen) ArcadeSkin.RoundFocus(frame); // the picked friend's seal sits on its frame's corner
                 names.normal.textColor = chosen ? new Color(.62f, .27f, .05f) : ink; // and its name in warm brown
                 string stars = rowing ? "" : " " + RunSession.StarText(session.StarProgress(id)) + "★";
                 GUI.Label(new Rect(slot.x - 8, frame.yMax + 2, slot.width + 16, 100), (unit == null ? id : RunUICopy.UnitName(unit)) + stars, names);
@@ -242,8 +242,8 @@ namespace ArcaneBrigade
                 CardPop.CloseThen(Key, SendHome);
             bool eggs = session.State.Eggs >= session.FerryEggs;
             string rowText = !session.FerryOpen ? "The ferry already crossed tonight."
-                : !eggs ? "Costs " + session.FerryEggs + " eggs. You have " + session.State.Eggs + "."
-                : "Costs " + session.FerryEggs + " eggs. A new friend at the same stars.";
+                : !eggs ? "Costs " + session.FerryEggs + " dreamsand. You have " + session.State.Eggs + "."
+                : "Costs " + session.FerryEggs + " dreamsand. A new friend at the same stars.";
             if (ferryIcon != null) RunHud.Sprite(new Rect(row.x, row.y, 56, 56), ferryIcon);
             GUI.Label(new Rect(row.x + 64, row.y, row.width - 64, 92), rowText, plain);
             bool canRow = ready && session.FerryOpen && eggs;
@@ -256,7 +256,7 @@ namespace ArcaneBrigade
             RunSession session = owner.Session;
             plain.normal.textColor = ink;
             GUI.Label(new Rect(card.x + 60, y, card.width - 120, 60), crossing == null ? "Pick who comes back."
-                : RunUICopy.UnitName(owner.Content.Unit(crossing)) + " joins at " + RunSession.StarText(session.StarProgress(picked)) + " stars for " + session.FerryEggs + " eggs.", plain);
+                : RunUICopy.UnitName(owner.Content.Unit(crossing)) + " joins at " + RunSession.StarText(session.StarProgress(picked)) + " stars for " + session.FerryEggs + " dreamsand.", plain);
             bool ready = crossing != null;
             if (ArcadeSkin.Button(new Rect(card.center.x - 220, y + 90, 440, 88), ready ? "BRING THEM ACROSS" : "PICK ONE", KitButton.Primary, ready, label) && ready && !CardPop.Closing(Key))
                 CardPop.CloseThen(Key, Row);

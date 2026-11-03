@@ -299,7 +299,7 @@ namespace ArcaneBrigade
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 // the chosen plate is gold UNDER its words (requirement 24/10/2026: the gold laid over it hid the price and the reward)
                 ArcadeSkin.Plate(plate, hover || i == picked ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
-                if (hover || i == picked) ArcadeSkin.WorldFocus(plate);
+                if (i == picked) ArcadeSkin.WorldFocus(plate); // the pointer only lights the plate; the seal marks the pick
                 Rect pc = ArcadeSkin.Content(plate, KitPiece.Dialogue);
                 float y = pc.y;
                 verb.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);
@@ -350,7 +350,6 @@ namespace ArcaneBrigade
                 bool hover = o.Enabled && slot.Contains(Event.current.mousePosition);
                 Color keep = GUI.color; if (!o.Enabled) GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * .5f);
                 ArcadeSkin.Plate(slot, hover ? ArcadeSkin.Gold : o.Enabled ? ArcadeSkin.Accent : Greyed);
-                if (hover) ArcadeSkin.WorldFocus(slot);
                 if (RarityOf(o) is ItemRarity rarity) // a relic's or a friend's rarity framed like the shop's cards (requirement 23/10/2026)
                 { RarityDescriptionFrame.Edge(slot, rarity, Time.unscaledTime); RarityDescriptionFrame.Backdrop(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), rarity, Time.unscaledTime); }
                 Sprite icon = IconFor(o);
@@ -432,12 +431,12 @@ namespace ArcaneBrigade
         private void When(Rect r, string when)
         {
             var text = new GUIContent(when);
-            chip.fontSize = 19; while (chip.fontSize > 14 && chip.CalcSize(text).x + 24 > r.width) chip.fontSize--;
+            chip.fontSize = 22; while (chip.fontSize > 18 && chip.CalcSize(text).x + 24 > r.width) chip.fontSize--; // never under 18 (readable on a phone)
             float w = Mathf.Min(r.width, chip.CalcSize(text).x + 28);
             Rect c = new Rect(r.x + (r.width - w) * .5f, r.y, w, r.height);
             ArcadeSkin.Slant(c, new Color(1, 1, 1, .1f));
             chip.normal.textColor = new Color(.88f, .85f, .78f);
-            GUI.Label(c, when, chip); chip.fontSize = 19;
+            GUI.Label(c, when, chip); chip.fontSize = 22;
         }
 
         /// <summary>A term's picture: coins, eggs, chests and lamps as the game paints them, the hero, a relic gem, a gauge,

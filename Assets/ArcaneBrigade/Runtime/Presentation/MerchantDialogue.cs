@@ -38,7 +38,7 @@ namespace ArcaneBrigade
                 choices = moment switch
                 {
                     MerchantMoment.Enter => new[] { "Shh... a dream has just opened one eye.", "Come in. I saw you inside an egg." },
-                    MerchantMoment.Inspect => new[] { "Do not stare too long. That one stares back.", "Will you take it home... or will it take you?", "I accept eggs. Some wares prefer blood." },
+                    MerchantMoment.Inspect => new[] { "Do not stare too long. That one stares back.", "Will you take it home... or will it take you?", "I accept dreamsand. Some wares prefer blood." },
                     MerchantMoment.BloodBuy => new[] { "Only a little blood. Keep the rest for dreaming.", "A beating heart makes a beautiful bargain." },
                     MerchantMoment.Buy => new[] { "Keep the shell. The dream inside is yours.", "A new owner. Do not let it remember the old name." },
                     MerchantMoment.Denied => new[] { "Not enough. I will not buy your final heartbeat.", "An empty purse echoes too. Sadly, I do not accept echoes." },

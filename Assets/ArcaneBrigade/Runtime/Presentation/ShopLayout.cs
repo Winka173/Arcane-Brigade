@@ -157,9 +157,10 @@ namespace ArcaneBrigade
                     // keep the painted feet on the planned spot whatever the scale
                     entry.Root.localScale = Vector3.one * scale;
                     entry.Root.position = (Vector3)(entry.Wish + delta) - entry.Root.TransformVector(WorldSpriteGrounding.Foot(entry.View.sprite));
-                    entry.Shadow?.TranslateGround(delta - entry.Applied); entry.Applied = delta;
+                    entry.Applied = delta;
+                    if (shown) entry.Shadow?.Redisplay(entry.Wish + delta, scale / Mathf.Max(.001f, entry.Scale)); // the shadow follows the feet and the size
                 }
-                if (entry.View.enabled != shown) { entry.View.enabled = shown; if (!shown) entry.Shadow?.Hide(); }
+                if (entry.View.enabled != shown) { entry.View.enabled = shown; if (!shown) entry.Shadow?.Hide(); else entry.Shadow?.Redisplay(entry.Wish + delta, scale / Mathf.Max(.001f, entry.Scale)); } // brought back, its shadow comes back too
             }
         }
 

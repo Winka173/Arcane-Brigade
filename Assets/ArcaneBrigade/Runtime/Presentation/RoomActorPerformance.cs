@@ -20,7 +20,7 @@ namespace ArcaneBrigade
             WorldSpriteGrounding.Place(view, floor + Vector2.up * lift);
             view.sortingOrder = WorldSpriteGrounding.SortAt(floor.y);
             var shadow = view.GetComponent<GroundShadow>();
-            if (shadow == null) { shadow = view.gameObject.AddComponent<GroundShadow>(); shadow.Configure(view.sprite); }
+            if (shadow == null) { shadow = view.gameObject.AddComponent<GroundShadow>(); shadow.PinCastToFoot = true; shadow.Configure(view.sprite); }
             shadow.SortingBase = view.sortingOrder - 10;
             shadow.Display(view.sprite, floor, Mathf.Min(1.1f,view.bounds.size.x*.8f),lift,.24f);
         }

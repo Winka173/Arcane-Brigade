@@ -159,7 +159,7 @@ namespace ArcaneBrigade
                     State.Gold -= VisitorCost(v);
                     int roll = Next(ref State.VisitorRandom, 4);
                     if (roll == 0) { int found = ScaledGold(15); State.Gold = BoundedCounter((long)State.Gold + found); Notice = "The parcel held " + found + " gold."; }
-                    else if (roll == 1) { State.Eggs = BoundedCounter((long)State.Eggs + 1); Notice = "The parcel held an egg."; }
+                    else if (roll == 1) { State.Eggs = BoundedCounter((long)State.Eggs + 1); Notice = "The parcel held a pinch of dreamsand."; }
                     else if (roll == 2 && GiveRandomItem(ItemRarity.Common, false) is ItemDefinition got) Notice = "The parcel held " + got.Name + ".";
                     else Notice = "Empty, except a note: 'Thank you for opening me.'";
                     break;
@@ -261,7 +261,7 @@ namespace ArcaneBrigade
                         else { State.VisitorStage = 1; done = false; }
                         break;
                     }
-                    { ItemStack s = State.Items[o.Value]; Notice = catalog.Item(s.Id).Name + " traded for 2 eggs."; RemoveOneItem(s); State.Eggs = BoundedCounter((long)State.Eggs + 2); }
+                    { ItemStack s = State.Items[o.Value]; Notice = catalog.Item(s.Id).Name + " traded for 2 dreamsand."; RemoveOneItem(s); State.Eggs = BoundedCounter((long)State.Eggs + 2); }
                     break;
                 case "WeatherTeller": State.Gold -= VisitorCost(v); AddVisitorEffect("Umbrella"); Notice = "Next wave: " + NextWaveForecast() + "."; break;
                 case "Knitter": State.Gold -= VisitorCost(v); AddVisitorEffect("Scarf"); break;
@@ -444,10 +444,10 @@ namespace ArcaneBrigade
             if (won && VisitorActive("Dare", w) && GiveRandomItem(w >= 12 ? ItemRarity.Uncommon : ItemRarity.Common, false) is ItemDefinition dare) notes.Add("The Gatekeeper pays: " + dare.Name);
             if (won && VisitorActive("Letter", w) && sim.OctoberInjuries <= 5) { int pay = Reward("Letter", w, 15); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("Letter delivered: " + pay + " gold"); }
             if (VisitorEffectFor("Bet", w) is VisitorEffect bet && won && sim.LowestChampionShare >= DiceHoldShare(bet.Target)) { int pay = bet.Target != null && bet.Target.StartsWith("paid") ? Mathf.RoundToInt(bet.Value) : Mathf.RoundToInt(bet.Value * 1.5f); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The Dice Elder pays " + pay + " gold"); }
-            if (VisitorActive("Toy", w) && sim.VisitorToySeconds >= 20) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The lost toy found its way home (an egg)"); }
-            if (won && VisitorActive("Lullaby", w) && sim.Kills >= 80) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The child sleeps (an egg)"); }
+            if (VisitorActive("Toy", w) && sim.VisitorToySeconds >= 20) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The lost toy found its way home (dreamsand)"); }
+            if (won && VisitorActive("Lullaby", w) && sim.Kills >= 80) { State.Eggs = BoundedCounter((long)State.Eggs + 1); notes.Add("The child sleeps (dreamsand)"); }
             if (VisitorActive("Collect", w) && sim.VisitorSpeciesKills >= 10) { int pay = Reward("Collect", w, 12); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("The collector pays " + pay + " gold"); }
-            if (VisitorActive("Away", w)) { int pay = Reward("Away", w, 10); State.Eggs = BoundedCounter((long)State.Eggs + 1); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("Your friend is back with an egg and " + pay + " gold"); }
+            if (VisitorActive("Away", w)) { int pay = Reward("Away", w, 10); State.Eggs = BoundedCounter((long)State.Eggs + 1); State.Gold = BoundedCounter((long)State.Gold + pay); notes.Add("Your friend is back with dreamsand and " + pay + " gold"); }
             if (VisitorActive("Key", w) && sim.VisitorKeyUsed && GiveRandomItem(ItemRarity.Common, false) is ItemDefinition key) notes.Add("The key opened " + key.Name);
             if (VisitorActive("Balloon", w)) { if (Next(ref State.VisitorRandom, 10) < 7 && GiveRandomItem(ItemRarity.Common, false) is ItemDefinition balloon) notes.Add("The balloon brought back " + balloon.Name); else notes.Add("The balloon came back empty"); }
             if (VisitorEffectFor("Post", w) is VisitorEffect post) { State.Gold = BoundedCounter((long)State.Gold + Mathf.RoundToInt(post.Value)); notes.Add("Post from the past: " + post.Value + " gold"); }

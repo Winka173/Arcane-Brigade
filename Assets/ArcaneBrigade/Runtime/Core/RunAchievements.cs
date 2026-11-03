@@ -21,6 +21,7 @@ namespace ArcaneBrigade
             void Add(string id, string name, string description, string metric, float goal) => entries.Add(new JourneyAchievement { Id = "journal-" + id, Name = name, Description = description, Metric = metric, Goal = goal });
             foreach (UnitDefinition u in catalog.Champions)
             {
+                if (!HeroUnlocks.Listed(u)) continue; // a hero not in the game yet has no goals to show
                 Add("dawn-" + u.Id, u.DisplayName + " / First dawn", "Finish a normal journey with " + u.DisplayName + ".", "win-" + u.Id, 1);
                 Add("master-" + u.Id, u.DisplayName + " / Night keeper", "Finish Sleepless or harder with " + u.DisplayName + ".", "master-" + u.Id, 1);
             }

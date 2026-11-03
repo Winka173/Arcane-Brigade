@@ -39,7 +39,7 @@ namespace ArcaneBrigade
 
         public bool Lucid(int rosterIndex)
         {
-            if (!CanLucid(rosterIndex)) { Notice = "The altar needs " + LucidEggCost + " eggs and " + LucidGoldCost + " gold."; return false; }
+            if (!CanLucid(rosterIndex)) { Notice = "The altar needs " + LucidEggCost + " dreamsand and " + LucidGoldCost + " gold."; return false; }
             State.Eggs -= LucidEggCost; State.Gold -= LucidGoldCost;
             State.Roster[rosterIndex].Lucid = true;
             State.LucidRites++;

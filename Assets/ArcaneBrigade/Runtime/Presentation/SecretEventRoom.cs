@@ -273,8 +273,7 @@ namespace ArcaneBrigade
                         Rect plate = new Rect(960 - cw * 1.5f - gap + i * (cw + gap), top - (lit ? 10 : 0), cw, ch); // the chosen card lifts
                         Matrix4x4 plateMatrix = GUI.matrix; Color plateColour = GUI.color;
                         LivingUI.Pop(Time.unscaledTime - roomAt - .12f - i * .06f, plate.center); // the three cards land one after another
-                        // the chosen card: an aura behind it and a little larger; the others step back into the dark
-                        if (lit) { ArcadeSkin.SelectedAura(plate, new Color(1f, .78f, .38f), 60, true); ArcadeSkin.ScaleAround(Vector2.one * 1.04f, plate.center); } // round light under the painted card (a ring round its box ignored the medallion on top and read as a frame)
+                        // the chosen card lifts a little and wears the seal; the others step back into the dark
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r * .7f, keep.g * .7f, keep.b * .75f, keep.a * .7f);
                         else if (selected >= 0 && !lit) GUI.color = new Color(keep.r * .72f, keep.g * .72f, keep.b * .76f, keep.a);
                         if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
@@ -295,6 +294,7 @@ namespace ArcaneBrigade
                         GemRow(new Rect(plate.x + padX, rowsTop + oneH, cw - padX * 2, oneH), "LOSE", c.Lose, CodeTone.Oxblood, true);
                         GemRow(new Rect(plate.x + padX, rowsTop + oneH * 2, cw - padX * 2, getH), "GET", c.Get, CodeTone.Green, true);
                         GUI.color = keep;
+                        if (lit) ArcadeSkin.Chosen(plate); // the chosen card wears the seal on its corner, over its art
                         if (!c.Enabled)
                         {
                             // a closed deal: a lock and the words on their own line under the title, no box drawn over the card
@@ -562,8 +562,8 @@ namespace ArcaneBrigade
             {
                 Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 118 + gap), tile, tile + 118);
                 ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? 1 : 0);
-                if (choices[i].chosen) ArcadeSkin.RunningLight(new Rect(cell.x - 4, cell.y - 4, tile + 8, tile + 8), Time.unscaledTime, new Color(1f, .82f, .45f));
                 if (choices[i].icon != null) DrawSprite(new Rect(cell.x + 22, cell.y + 22, tile - 44, tile - 44), choices[i].icon);
+                if (choices[i].chosen) ArcadeSkin.Chosen(new Rect(cell.x, cell.y, tile, tile));
                 // names and short descriptions wrap inside the tile's column and never run under each other (long names take two lines)
                 pickerName ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter };
                 GUI.Label(new Rect(cell.x - 10, cell.y + tile + 2, tile + 20, 48), choices[i].name, pickerName);

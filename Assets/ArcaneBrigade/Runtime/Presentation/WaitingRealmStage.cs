@@ -168,7 +168,7 @@ namespace ArcaneBrigade
                 // a card over the shop (requirement 22/10/2026: price tags showed through it and its text ran to the rims): dimmed room,
                 // above the HUD and the tags, every line inside the paper's padded area, the painted buttons apart
                 GUI.depth = -60;
-                RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, .5f));
+                RunHud.Fill(new Rect(-1920, -1080, 5760, 3240), new Color(0, 0, 0, .5f));
                 Rect card = new Rect(470, 300, 980, 500);
                 Color popKeep = CardPop.Apply("warm-chair", card);
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);

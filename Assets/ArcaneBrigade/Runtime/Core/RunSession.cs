@@ -652,6 +652,15 @@ namespace ArcaneBrigade
             unit.ContactDamage *= pressure*1.08f*1.6f; unit.Weapon.Damage *= pressure*1.08f;
             unit.ContactInterval=Mathf.Max(.45f,unit.ContactInterval*.9f);
             if (source.IsBoss) { unit.ContactDamage *= BossEncounterRules.DamageMultiplier; unit.Weapon.Damage *= BossEncounterRules.DamageMultiplier; unit.Speed *= BossEncounterRules.SpeedMultiplier; }
+            // the first two bosses on the hard difficulties hit with half of the difficulty's extra damage (balance 3/11/2026: on
+            // Sleepless and The Last Night most runs ended at the Coin Widow or the Chair Porter, before any brigade had formed;
+            // the pressure now builds where the build decides it)
+            if (source.IsBoss && !State.Endless && State.Wave <= 8 && State.Difficulty >= JourneyBalance.HighDifficulty)
+            {
+                float full = JourneyBalance.EnemyDamage(State.Difficulty, State.Wave), eased = JourneyBalance.EnemyDamage(0, State.Wave) + (full - JourneyBalance.EnemyDamage(0, State.Wave)) * .5f;
+                float mercy = eased / Mathf.Max(.01f, full);
+                unit.ContactDamage *= mercy; unit.Weapon.Damage *= mercy;
+            }
             if (catalog.StatRevision > 0)
             {
                 float late = Mathf.Max(0, State.Wave - 10);
@@ -951,7 +960,7 @@ namespace ArcaneBrigade
             RollSpecialOffers();
             State.RerollsThisShop++;
             OctoberRefreshed();
-            Notice = "Altar refreshed with gold. Eggs and HP unchanged.";
+            Notice = "Altar refreshed with gold. Dreamsand and HP unchanged.";
             return true;
         }
         // Kept for read-model/API compatibility; availability now follows the saved 3–4-wave schedule, not held eggs.
@@ -1034,7 +1043,7 @@ namespace ArcaneBrigade
             int owned = 0; foreach (ItemStack stack in State.Items) if (WiseHeroItems.Is(stack.Id)) owned++;
             if (owned >= 5) return;
             var heroes = new List<UnitDefinition>();
-            foreach (UnitDefinition c in catalog.Champions) if (c != null && c.Id != State.ChampionId && WiseHeroItems.Offerable(c) && StackCount(WiseHeroItems.IdFor(c)) == 0) heroes.Add(c);
+            foreach (UnitDefinition c in catalog.Champions) if (c != null && c.Id != State.ChampionId && HeroUnlocks.Listed(c) && WiseHeroItems.Offerable(c) && StackCount(WiseHeroItems.IdFor(c)) == 0) heroes.Add(c);
             int slot = State.Offers.FindLastIndex(o => o.Kind == OfferKind.Item && !o.Sold);
             if (heroes.Count == 0 || slot < 0) return;
             UnitDefinition pick = heroes[Next(ref State.ShopRandom, heroes.Count)];
@@ -1182,7 +1191,7 @@ namespace ArcaneBrigade
         public bool Altar(string recipeId)
         {
             if (SecretRoomOpen) return false;
-            if (!CanAltar(recipeId)) { Notice = "Altar needs eggs, eligible materials and a unique result weapon."; return false; }
+            if (!CanAltar(recipeId)) { Notice = "Altar needs dreamsand, eligible materials and a unique result weapon."; return false; }
             AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
             List<RosterEntry> materials = AltarMaterials(recipe);
             if (materials == null) return false;
@@ -1264,7 +1273,7 @@ namespace ArcaneBrigade
         {
             AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
             if (recipe == null) return "Recipe not found.";
-            var result = new System.Text.StringBuilder("Spend " + recipe.EggCost + " eggs and the listed materials:\n");
+            var result = new System.Text.StringBuilder("Spend " + recipe.EggCost + " dreamsand and the listed materials:\n");
             foreach (string id in new[] { recipe.FirstUnit, recipe.SecondUnit, recipe.ThirdUnit })
                 if (!string.IsNullOrEmpty(id)) result.Append("- ").Append(catalog.Unit(id).DisplayName).Append(" (stars ").Append(recipe.MinimumMaterialTier).Append("+)\n");
             result.Append("Result: ").Append(catalog.Unit(recipe.ResultUnit).DisplayName).Append(" / stars ").Append(recipe.ResultTier).Append("\nKeeps one random ingredient weapon.\n").Append(catalog.Unit(recipe.ResultUnit).Description).Append("\n").Append(CanAltar(recipeId) ? "READY" : "NOT READY");

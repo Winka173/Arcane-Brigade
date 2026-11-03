@@ -59,7 +59,7 @@ namespace ArcaneBrigade
             // purse
             int gold = after.Gold - before.Gold, eggs = after.Eggs - before.Eggs;
             if (gold != 0) Add(catalog.Arena.Coin, (gold > 0 ? "+" : "−") + Mathf.Abs(gold) + " gold", gold > 0);
-            if (eggs != 0) Add(catalog.EggSprite, (eggs > 0 ? "+" : "−") + Mathf.Abs(eggs) + (Mathf.Abs(eggs) == 1 ? " egg" : " eggs"), eggs > 0);
+            if (eggs != 0) Add(catalog.EggSprite, (eggs > 0 ? "+" : "−") + Mathf.Abs(eggs) + (Mathf.Abs(eggs) == 1 ? " dreamsand" : " dreamsand"), eggs > 0);
             // a deal whose gift is an effect for later says what it starts
             if (lines.Count == 0 || after.VisitorEffects.Count > before.VisitorEffects.Count)
             {
@@ -71,7 +71,7 @@ namespace ArcaneBrigade
                 {
                     string kind = amount.Groups[1].Value.ToLowerInvariant(); int count = int.Parse(amount.Groups[2].Value);
                     bool isEgg = kind.StartsWith("egg"), isGold = kind == "gold";
-                    Add(isEgg ? catalog.EggSprite : isGold ? catalog.Arena.Coin : CurrencyIcons.Heart, "+" + count + (isEgg ? count == 1 ? " egg" : " eggs" : isGold ? " gold" : " HP"), true);
+                    Add(isEgg ? catalog.EggSprite : isGold ? catalog.Arena.Coin : CurrencyIcons.Heart, "+" + count + (isEgg ? count == 1 ? " dreamsand" : " dreamsand" : isGold ? " gold" : " HP"), true);
                 }
                 else if (!string.IsNullOrEmpty(what)) Add(null, what, true);
             }

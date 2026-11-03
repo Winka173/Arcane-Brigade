@@ -79,7 +79,7 @@ namespace ArcaneBrigade
             Add("SourMandarin", "Tangy Tangerine", 3, false, RelicCategory.Food, RelicMechanic.SoloOverdrive, "Next wave: friends cannot attack, player attacks rapidly. 10 kills heal 3.");
             Add("WakefulCordial", "Wake Up!", 3, false, RelicCategory.Drink, RelicMechanic.None, "+25 contact damage, +30% knockback. -10% crit.",Stat(ItemEffect.CollisionDamage,25,ModifierScope.Champion),Stat(ItemEffect.Knockback,.3f,ModifierScope.Champion),Stat(ItemEffect.Crit,-.1f,ModifierScope.Champion));
             Add("GlassLotus", "Water Lily", 3, false, RelicCategory.Curio, RelicMechanic.FreshLotus, "+3 pierce and +30% critical chance until hurt. Resets each wave.");
-            Add("NestDumpling", "Weird Rice Ball", 3, false, RelicCategory.Food, RelicMechanic.EggGift, "Gain 3 eggs now. -0.2 armor.",Stat(ItemEffect.Armor,-.2f));
+            Add("NestDumpling", "Weird Rice Ball", 3, false, RelicCategory.Food, RelicMechanic.EggGift, "Gain 3 dreamsand now. -0.2 armor.",Stat(ItemEffect.Armor,-.2f));
             Add("VictorDraught", "Winningway", 3, false, RelicCategory.Drink, RelicMechanic.None, "+20% crit, +1 pierce. -20% damage.",Stat(ItemEffect.Crit,.2f),Stat(ItemEffect.BulletPierce,1),Stat(ItemEffect.Damage,-.2f));
             Add("WishWick", "Birthday Candle", 4, false, RelicCategory.Curio, RelicMechanic.CompanionGift, "Gain 2 random friends. -5 health, -5 income. Counts toward recruit limit.",Stat(ItemEffect.Health,-5),Stat(ItemEffect.Income,-5));
             Add("ShieldBlower", "Cooling Fan", 4, false, RelicCategory.Curio, RelicMechanic.None, "+25 contact damage. Friends block hostile bullets.",Stat(ItemEffect.CollisionDamage,25),Stat(ItemEffect.Interceptor,1));

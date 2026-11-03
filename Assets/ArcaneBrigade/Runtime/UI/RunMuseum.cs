@@ -87,7 +87,6 @@ namespace ArcaneBrigade
                 Rect card = new Rect(index % 3 * 235, index / 3 * 130, 223, 118);
                 // a painted display case (bright glass when found, dusty when not); the picked one is marked by brackets
                 if (!ArcadeSkin.KitSliced(card, exhibit.Seen ? "Info/CaseSeen" : "Info/CaseUnseen", .45f)) ArcadeSkin.Panel(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
-                else if (index == selection) ArcadeSkin.WorldFocus(card);
                 if (TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 60, card.y + 16, 104, 50), exhibit.Icon);
                 else
@@ -105,6 +104,7 @@ namespace ArcaneBrigade
                 var nameStyle = new GUIStyle(cardText);
                 while (nameStyle.fontSize > 16 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
                 GUI.Label(nameBounds, caption, nameStyle);
+                if (index == selection) ArcadeSkin.ChosenNow(card); // the chosen shelf wears the chosen seal, over its art
             }
             ScrollPanel.End();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));

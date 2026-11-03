@@ -79,7 +79,7 @@ namespace ArcaneBrigade
                 plain = ArcadeTypography.Style(ArcadeTypography.SizeNote); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
                 name = ArcadeTypography.Style(22, true); name.alignment = TextAnchor.MiddleCenter; name.wordWrap = true; // portrait captions
             }
-            RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
+            RunHud.Fill(new Rect(-1920, -1080, 5760, 3240), new Color(0, 0, 0, 0.45f));
             int pages = Mathf.Max(1, (species.Count + 8) / 9); page = Mathf.Clamp(page, 0, pages - 1);
             int first = page * 9, shown = Mathf.Min(9, species.Count - first);
             float width = Mathf.Max(820, 140 + shown * 166); // a clear gap between the round frames
@@ -101,12 +101,12 @@ namespace ArcaneBrigade
                 // the portrait in its round frame, the name in ink on the paper below it (no key numbers: phones have no keys)
                 Rect slot = new Rect(card.x + (card.width - shown * 166) * 0.5f + i * 166 + 20, card.y + 236, 126, 184), frame = new Rect(slot.x + 4, slot.y, 118, 118);
                 bool isPicked = picked == species[first + i];
-                if (isPicked) ArcadeSkin.RoundFocus(frame); // warm light behind the picked friend's frame, never over it
                 Matrix4x4 unscaled = GUI.matrix;
-                if (isPicked) ArcadeSkin.ScaleAround(Vector2.one * 1.1f, frame.center); // the picked one stands a little bigger
+                // the picked one keeps its size and place (the chosen seal marks it)
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
                 if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
                 GUI.matrix = unscaled;
+                if (isPicked) ArcadeSkin.RoundFocus(frame); // the picked friend's seal sits on its frame's corner
                 name.normal.textColor = isPicked ? new Color(.62f, .27f, .05f) : new Color(.18f, .14f, .1f); // and its name in warm brown
                 TextAnchor keepName = name.alignment; name.alignment = TextAnchor.UpperCenter;
                 GUI.Label(new Rect(slot.x - 10, frame.yMax + 4, slot.width + 20, 66), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name); // two full lines, never clipped
@@ -191,7 +191,7 @@ namespace ArcaneBrigade
                 plain = ArcadeTypography.Style(ArcadeTypography.SizeNote); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
                 label = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = true;
             }
-            RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
+            RunHud.Fill(new Rect(-1920, -1080, 5760, 3240), new Color(0, 0, 0, 0.45f));
             bool colours = owner.Session.ColoursAvailable; int slots = dark.Count + (colours ? 1 : 0);
             float width = Mathf.Max(820, 120 + slots * 165);
             Rect card = new Rect((1920 - width) * 0.5f, 300, width, 600);

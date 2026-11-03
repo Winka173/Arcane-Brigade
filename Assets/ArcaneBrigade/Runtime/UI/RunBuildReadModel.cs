@@ -38,10 +38,10 @@ namespace ArcaneBrigade
             model.Stat("Next shop interest", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " gold", "Forecast from saved gold; excludes uncommitted pickups or next-wave income.");
             model.Stat("Next reroll cost", session.RerollCost + " gold", "Rerolled " + session.State.RerollsThisShop + " times in this shop. Base cost " + catalog.RerollPrice + "; each roll adds " + catalog.RerollPriceStep + ". Coupons discount displayed wares, not reroll fees.");
             model.Stat("Next dream shop", session.SpecialShopEnabled ? "After wave " + session.State.NextSpecialShopWave : "Disabled by this pact",
-                "A dream shop opens every 3 or 4 waves. Its schedule is saved; eggs do not speed it up. Opening is free; purchases still use their listed currency.");
+                "A dream shop opens every 3 or 4 waves. Its schedule is saved; dreamsand does not speed it up. Opening is free; purchases still use their listed currency.");
             if (catalog.LootRevision > 0)
             {
-                model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Increases egg/heart drops and chest rewards. Does not change combat or shop RNG outcomes.");
+                model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Increases dreamsand/heart drops and chest rewards. Does not change combat or shop RNG outcomes.");
                 model.Stat("Treasure detection", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Makes chests appear sooner, at least 4 seconds apart. Approach to open; no skill button required.");
             }
             int companionIndex = 0;
