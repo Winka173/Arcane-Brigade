@@ -63,7 +63,7 @@ namespace ArcaneBrigade
                 Rect text=new Rect(Mathf.Clamp(bounds.center.x-150,20,1600),Mathf.Clamp(bounds.yMax+8,185,940),300,48);
                 caption.normal.textColor=new Color(.01f,.015f,.025f,.9f);GUI.Label(new Rect(text.x+1,text.y+2,text.width,text.height),label+"",caption);
                 caption.normal.textColor=ArcadeSkin.Cream;GUI.Label(text,label+"",caption);
-                if(GUI.Button(bounds,GUIContent.none,GUIStyle.none)){TryInspect(i);break;}
+                if(TouchTargets.Button(bounds,GUIContent.none,GUIStyle.none)){TryInspect(i);break;}
             }
             GUI.matrix=previous;
         }

@@ -136,19 +136,23 @@ namespace ArcaneBrigade
                 HowToPlayBook.Draw(new Rect(300, 270, 1320, 680), owner.Content, owner.Session?.State.ChampionId, ref guidePage); // the picture book (requirement 24/10/2026)
                 return;
             }
-            ArcadeSkin.Frame(new Rect(640, 230, 640, 680), KitFrame.Dialogue, .6f);
+            // the pause card at the standard text size with buttons a thumb can hit (requirement 3/11/2026: at 250 wide the
+            // longer words shrank to 1.4 mm on a phone)
+            pauseButton ??= new GUIStyle(button) { fontSize = ArcadeTypography.SizeNote };
+            ArcadeSkin.Frame(new Rect(580, 200, 760, 760), KitFrame.Dialogue, .6f);
             // the lamp turned down low while the night waits (review 31/10/2026)
-            if (ArcadeSkin.KitSprite("Info/PauseLamp") is Sprite pauseLamp) Sprite(new Rect(928, 266, 64, 64), pauseLamp); // inside the frame, never over the room's speech
-            ArcadeSkin.Header(new Rect(700, 318, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
-            if (navigation.Button(new Rect(750, 434, 420, 65), "RESUME", primary)) owner.TogglePause();
-            if (navigation.Button(new Rect(700, 514, 250, 64), "HOW TO PLAY", button)) pausePage = 3;
-            if (navigation.Button(new Rect(970, 514, 250, 64), "COMBOS", button)) { pausePage = 4; comboScroll = Vector2.zero; }
-            if (navigation.Button(new Rect(700, 594, 250, 64), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
-            if (navigation.Button(new Rect(970, 594, 250, 64), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
-            if (navigation.Button(new Rect(700, 674, 250, 64), "SETTINGS", button)) pausePage = 1;
-            if (navigation.Button(new Rect(970, 674, 250, 64), "START OVER", button)) pausePage = 2;
-            if (navigation.Button(new Rect(750, 768, 420, 64), "MAIN MENU", button)) owner.RequestMenuReturn();
+            if (ArcadeSkin.KitSprite("Info/PauseLamp") is Sprite pauseLamp) Sprite(new Rect(928, 236, 64, 64), pauseLamp); // inside the frame, never over the room's speech
+            ArcadeSkin.Header(new Rect(680, 288, 560, 100), "THE NIGHT WAITS WITH YOU", "Paused");
+            if (navigation.Button(new Rect(680, 410, 560, 80), "RESUME", primary)) owner.TogglePause();
+            if (navigation.Button(new Rect(640, 510, 310, 76), "HOW TO PLAY", pauseButton)) pausePage = 3;
+            if (navigation.Button(new Rect(970, 510, 310, 76), "COMBOS", pauseButton)) { pausePage = 4; comboScroll = Vector2.zero; }
+            if (navigation.Button(new Rect(640, 600, 310, 76), "STATS", pauseButton)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
+            if (navigation.Button(new Rect(970, 600, 310, 76), "RELICS", pauseButton)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
+            if (navigation.Button(new Rect(640, 690, 310, 76), "SETTINGS", pauseButton)) pausePage = 1;
+            if (navigation.Button(new Rect(970, 690, 310, 76), "START OVER", pauseButton)) pausePage = 2;
+            if (navigation.Button(new Rect(680, 800, 560, 76), "MAIN MENU", pauseButton)) owner.RequestMenuReturn();
         }
+        private GUIStyle pauseButton;
 
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
         private Vector2 comboScroll; private GUIStyle comboLine; private int guidePage;
@@ -283,7 +287,7 @@ namespace ArcaneBrigade
                 bossName = ArcadeTypography.Style(ArcadeTypography.SizeNote, true);
                 bossName.alignment = TextAnchor.MiddleLeft;
                 bossName.normal.textColor = ArcadeSkin.Ink;
-                tagStyle = ArcadeTypography.Style(16, true); tagStyle.font = ArcadeTypography.Punch;
+                tagStyle = ArcadeTypography.Style(22, true); tagStyle.font = ArcadeTypography.Punch;
                 tagStyle.alignment = TextAnchor.MiddleCenter;
                 tagStyle.normal.textColor = ArcadeSkin.Ink;
             }
@@ -383,7 +387,7 @@ namespace ArcaneBrigade
                 Rect help = new Rect(charge.x - 30, charge.y - 11, 26, 26);
                 Rect face = ArcadeSkin.RoundArt(help, KitRound.Brass, help.Contains(Event.current.mousePosition) ? 1 : 0);
                 ArcadeSkin.KitCaption(face, "i", ArcadeSkin.KitInk, small, true);
-                if (GUI.Button(help, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
+                if (TouchTargets.Button(help, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
                 if (simulation.HeroIdentityEnabled && !owner.PresentationPaused && !PlayerGuide.ModalOpen(owner)) // a modal page covers it whole, never half
                 {
                     // drawn straight over the floor: a thick name and a shadow under both lines so they read on any tile
@@ -397,11 +401,12 @@ namespace ArcaneBrigade
                     // on a velvet plaque so the two lines read on any floor
                     // no plaque behind the two lines any more (review 31/10/2026: the red box read as nothing and covered the prism
                     // count); the thick shadowed words read on any floor
-                    Rect plaque = new Rect(12, 236, 396, 112);
+                    float drop = RunUIHints.Device == RunUIDevice.Touch ? TouchButtonSize + 16 : 0; // under the phone's pause and brigade buttons
+                    Rect plaque = new Rect(12, 236 + drop, 396, 112);
                     // the whole plaque answers a tap with the gauge's help (what fills it, what the third step does)
-                    if (GUI.Button(plaque, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
-                    ArcadeTypography.ShadowLabel(new Rect(32, 248, 360, 40), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
-                    ArcadeTypography.ShadowLabel(new Rect(32, 284, 360, 62), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
+                    if (TouchTargets.Button(plaque, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
+                    ArcadeTypography.ShadowLabel(new Rect(32, 248 + drop, 360, 40), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
+                    ArcadeTypography.ShadowLabel(new Rect(32, 284 + drop, 360, 62), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
                 }
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
@@ -444,7 +449,7 @@ namespace ArcaneBrigade
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
             // the eight lanterns sit quietly under the wallet; the old wave road is gone
-            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { NightHud.Lanterns(LanternRow, state); if (GUI.Button(LanternRow, GUIContent.none, GUIStyle.none)) { bool same = lanternHelp && gaugeHelpAt > 0; lanternHelp = true; gaugeHelpAt = same ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); } } // tap: what the lanterns are
+            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { NightHud.Lanterns(LanternRow, state); if (TouchTargets.Button(LanternRow, GUIContent.none, GUIStyle.none)) { bool same = lanternHelp && gaugeHelpAt > 0; lanternHelp = true; gaugeHelpAt = same ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); } } // tap: what the lanterns are
             if (state.Phase == SessionPhase.Combat) { NightHud.LampLoss(new Rect(560, 150, 800, 60)); NightHud.Knocking(new Rect(610, 130, 700, 48), simulation.KnockRemaining); }
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
@@ -812,11 +817,14 @@ namespace ArcaneBrigade
         }
         public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSS" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
 
+        /// <summary>The phone's pause and brigade buttons: 96 of 1080 is 6 mm on a 6.5" phone, and TouchTargets widens the tap to 8 mm.</summary>
+        private const float TouchButtonSize = 96;
         private void DrawControls(ArenaController owner)
         {
             if (RunUIHints.Device != RunUIDevice.Touch) return;
-            Rect pause = new Rect(35, 240, 64, 64);
-            Rect details = new Rect(115, 240, 64, 64);
+            Rect pause = new Rect(32, 232, TouchButtonSize, TouchButtonSize);
+            Rect details = new Rect(32 + TouchButtonSize + 20, 232, TouchButtonSize, TouchButtonSize);
+            float k = TouchButtonSize / 64f;
             if (ArcadeSkin.HasKit)
             {
                 ArcadeSkin.MedallionArt(pause, KitMedallion.Pause, 0);
@@ -828,16 +836,17 @@ namespace ArcaneBrigade
             {
                 if (navigation.Button(pause, "", button)) owner.TogglePause();
                 if (navigation.Button(details, "", button)) owner.ToggleDetails();
-                ArcadeSkin.Line(new Rect(pause.x + 21, pause.y + 14, 8, 24), ArcadeSkin.Ink);
-                ArcadeSkin.Line(new Rect(pause.x + 36, pause.y + 14, 8, 24), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(pause.x + 21 * k, pause.y + 14 * k, 8 * k, 24 * k), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(pause.x + 36 * k, pause.y + 14 * k, 8 * k, 24 * k), ArcadeSkin.Ink);
             }
-            ArcadeSkin.Line(new Rect(details.x + 16, details.y + 12, 33, 28), ArcadeSkin.Ink);
-            ArcadeSkin.Line(new Rect(details.x + 19, details.y + 15, 27, 22), ArcadeSkin.Paper);
-            ArcadeSkin.Line(new Rect(details.x + 31, details.y + 15, 3, 22), ArcadeSkin.Ink);
+            // the brigade book, drawn on the 64 grid and scaled to the button
+            ArcadeSkin.Line(new Rect(details.x + 16 * k, details.y + 12 * k, 33 * k, 28 * k), ArcadeSkin.Ink);
+            ArcadeSkin.Line(new Rect(details.x + 19 * k, details.y + 15 * k, 27 * k, 22 * k), ArcadeSkin.Paper);
+            ArcadeSkin.Line(new Rect(details.x + 31 * k, details.y + 15 * k, 3 * k, 22 * k), ArcadeSkin.Ink);
             for (int line = 0; line < 3; line++)
             {
-                ArcadeSkin.Line(new Rect(details.x + 22, details.y + 18 + line * 6, 6, 2), ArcadeSkin.Ink);
-                ArcadeSkin.Line(new Rect(details.x + 37, details.y + 18 + line * 6, 6, 2), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(details.x + 22 * k, details.y + (18 + line * 6) * k, 6 * k, 2 * k), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(details.x + 37 * k, details.y + (18 + line * 6) * k, 6 * k, 2 * k), ArcadeSkin.Ink);
             }
             string hint = pause.Contains(Event.current.mousePosition) ? RunUIHints.Pause(RunUIHints.Device) : details.Contains(Event.current.mousePosition) ? RunUIHints.Details(RunUIHints.Device) : null;
             if (hint == null) return;
@@ -1007,7 +1016,7 @@ namespace ArcaneBrigade
             // a count that changes pops its tile, and the tile under the finger lifts.
             // requirement 31/10/2026: two rows of at most five tiles (right-aligned), and a bond's level is shown by the light in its
             // tile (bronze, silver, gold), never by a number stamp
-            const float tile = BondHudSummary.RowHeight, gap = BondHudSummary.Gap, below = 30, rowStep = BondHudSummary.RowHeight + 36;
+            float tile = BondHudSummary.RowHeight, gap = BondHudSummary.Gap, below = 30, rowStep = BondHudSummary.RowHeight + 36;
             const int perRow = BondHudSummary.PerRow;
             int shownRows = Mathf.Min(newBonds.Count + bondSummary.VisibleCount, perRow * 2 - 1);
             int tiles = shownRows + 1, lines = Mathf.CeilToInt(tiles / (float)perRow);
@@ -1064,7 +1073,7 @@ namespace ArcaneBrigade
                 int next = Mathf.Max(after, bond.NextThreshold(after));
                 bondNumber.normal.textColor = rising ? Color.Lerp(ArcadeSkin.Gold, ArcadeSkin.Cream, blink * .3f) : active ? ArcadeSkin.Cream : new Color(.8f, .76f, .7f);
                 ArcadeTypography.ShadowLabel(new Rect(r.x - 10, rowY + tile + 2, tile + 20, below - 2), after + "/" + next, bondNumber);
-                if (GUI.Button(new Rect(r.x, r.y, r.width, tile + below), GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
+                if (TouchTargets.Button(new Rect(r.x, r.y, r.width, tile + below), GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
                 if (hover || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
                 {
                     tooltip = RunUICopy.BondDescription(bond, count); // its first line names the bond and its level, the second the count
@@ -1078,7 +1087,7 @@ namespace ArcaneBrigade
             int hidden = bondSummary.Rows.Count - (shownRows - newBonds.Count); // the bonds not on the two rows
             GUI.Label(more, hidden > 0 ? "+" + hidden : "···", programStyle);
             ArcadeTypography.ShadowLabel(new Rect(more.x - 10, more.y + tile + 2, tile + 20, below - 2), "all", bondNumber);
-            if (GUI.Button(new Rect(more.x, more.y, more.width, tile + below), GUIContent.none, bondHit))
+            if (TouchTargets.Button(new Rect(more.x, more.y, more.width, tile + below), GUIContent.none, bondHit))
             {
                 if (!owner.Details.Open) owner.ToggleDetails();
                 owner.Details.SelectBond(bondSummary.Rows[0].Name);

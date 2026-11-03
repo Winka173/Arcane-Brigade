@@ -101,7 +101,7 @@ namespace ArcaneBrigade
             {
                 Vector2 dot = new Vector2(area.center.x + (i - (PageCount - 1) * .5f) * 44 * scale, by + bs * .5f);
                 ArcadeSkin.Diamond(dot, (i == page ? 20 : 13) * scale, i == page ? Accent[i] : new Color(.5f, .46f, .4f, .8f));
-                if (GUI.Button(new Rect(dot.x - 22 * scale, dot.y - 22 * scale, 44 * scale, 44 * scale), GUIContent.none, GUIStyle.none)) page = i;
+                if (TouchTargets.Button(new Rect(dot.x - 22 * scale, dot.y - 22 * scale, 44 * scale, 44 * scale), GUIContent.none, GUIStyle.none)) page = i;
             }
         }
 

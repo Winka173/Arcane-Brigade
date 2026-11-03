@@ -661,12 +661,12 @@ namespace ArcaneBrigade
                 // one size for every button in the grid: the size at which the longest caption fits (EXIT stood out larger,
                 // the longer ones having shrunk to fit)
                 smallButton = new GUIStyle(button) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote) };
-                float room = 230 - 2 * (ArcadeSkin.CompactCap * 60 / 120f + 8) - 14;
+                float room = SmallSpotWidth - 2 * (ArcadeSkin.CompactCap * 60 / 120f + 8) - 14;
                 while (smallButton.fontSize > 12 && smallButton.CalcSize(new GUIContent("        HOW TO PLAY")).x > room) smallButton.fontSize--;
             }
             for (int index = 0; index < SpotLabels.Length; index++)
             {
-                if (index == 7 && (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer)) continue; // a phone leaves with its own button
+                if (index == 7 && (RunUIHints.Phone || Application.platform == RuntimePlatform.WebGLPlayer)) continue; // a phone leaves with its own button
                 // requirement 1/11/2026: no "nothing to continue" button when no run waits (a button that does nothing), and EXIT is a
                 // small round icon in the top right corner, not a button in the grid
                 if (index == 1 && !CanResume) continue;
@@ -680,7 +680,7 @@ namespace ArcaneBrigade
                 string caption = index == 1 ? (CanResume ? "CONTINUE · WAVE " + saved.Wave : "NOTHING TO CONTINUE") : SpotLabels[index];
                 // the Waiting Room (permanent upgrades) is a big plate of its own, never one small button among the rest
                 float lift = CanResume ? 0 : 82; // without Continue the rest move up into its place
-                Rect spot = index < 3 ? new Rect(44, 214 + index * 82 - (index >= 2 ? lift : 0), 470, 68) : new Rect(44 + (index - 3) % 2 * 240, 476 - lift + (index - 3) / 2 * 72, 230, 60); // a breath under the subtitle
+                Rect spot = index < 3 ? new Rect(44, 214 + index * 82 - (index >= 2 ? lift : 0), SmallSpotWidth * 2 + 10, 68) : new Rect(44 + (index - 3) % 2 * (SmallSpotWidth + 10), 476 - lift + (index - 3) / 2 * 72, SmallSpotWidth, 60); // a breath under the subtitle
                 if (index == 2) caption = "         WAITING ROOM";
                 else if (index >= 3 && icons[index] != null) caption = "        " + caption; // room for its icon (EXIT has none: centred)
                 // UI standard: one gold button per screen; Continue when a run waits, New Journey otherwise
@@ -699,6 +699,9 @@ namespace ArcaneBrigade
             GUI.enabled = true;
         }
         private GUIStyle spotPlate;
+        /// <summary>The small menu buttons are wide enough for their words at the standard size (at 230 they shrank to 15, unreadable
+        /// on a phone; requirement 3/11/2026).</summary>
+        private const float SmallSpotWidth = 290;
 
         private void DrawRoster()
         {
@@ -767,7 +770,7 @@ namespace ArcaneBrigade
                     if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0)
                     {
                         Rect icon = new Rect(940 + iconIndex++ * 40, 260, 32, 32); RunHud.Sprite(icon, bond.Icon); // each theme icon is tappable and says what it means (requirement 24/10/2026)
-                        if (GUI.Button(new Rect(icon.x - 4, icon.y - 4, 40, 40), GUIContent.none, GUIStyle.none)) Explain(icon, bond.Name + " theme", "Friends of this theme join this hero's shop more often. " + bond.Threshold + " of them together wake a bond bonus.");
+                        if (TouchTargets.Button(new Rect(icon.x - 4, icon.y - 4, 40, 40), GUIContent.none, GUIStyle.none)) Explain(icon, bond.Name + " theme", "Friends of this theme join this hero's shop more often. " + bond.Threshold + " of them together wake a bond bonus.");
                     }
             }
             // requirement 25/10/2026: the panel says who the hero is in two lines; everything else is one tap away (the i beside it)
@@ -883,7 +886,7 @@ namespace ArcaneBrigade
                         GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), sealedRow ? "Light the whole Lamp Tree" : DifficultyLine(i), overlayLine);
                         overlayLine.alignment = TextAnchor.UpperLeft;
                         int pick = i;
-                        if (!sealedRow && GUI.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => { difficulty = pick; difficultyPickerAt = -1; });
+                        if (!sealedRow && TouchTargets.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => { difficulty = pick; difficultyPickerAt = -1; });
                     }
                     overlayTitle.fontSize = 26; overlayTitle.alignment = TextAnchor.MiddleCenter; overlayTitle.normal.textColor = ArcadeSkin.KitCream;
                     if (ArcadeSkin.Medallion(new Rect(card.xMax - 52, card.y - 4, 56, 56), KitMedallion.Close) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => difficultyPickerAt = -1);
@@ -966,7 +969,7 @@ namespace ArcaneBrigade
                 ItemDefinition relic = id == null ? null : catalog.Item(id);
                 if (relic?.Icon != null) RunHud.Sprite(new Rect(slot.x + 7, slot.y + 7, cell - 14, cell - 14), relic.Icon);
                 else if (id == null) ArcadeSkin.Stroke(new Vector2(slot.x + 18, slot.y + 18), new Vector2(slot.xMax - 18, slot.yMax - 18), 4, ArcadeSkin.KitCream); // none
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none))
+                if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none))
                 {
                     keepsakePick = id; keepsakeOpen = false; CheckpointAudio.PlayInterfaceId("ui.select");
                     Explain(keepsakeAt, relic != null ? relic.Name : "No keepsake", relic != null ? RelicDescriptions.Describe(relic, 1) + "\nKept from a Postbox letter; it rides along from the first wave." : "This run starts without a keepsake relic.");
@@ -1002,13 +1005,13 @@ namespace ArcaneBrigade
             if (friends.Count > 0)
             {
                 Rect nursery = new Rect(x, row.y + 2, 38, 40); RunHud.Sprite(nursery, MetaIcons.Station(MetaStation.Nursery, true)); x += 42;
-                if (GUI.Button(nursery, GUIContent.none, GUIStyle.none)) Explain(nursery, "Cradle friends", "From the Lamp Tree's Cradle: one of these three friends can start the run at your side. They change every run. Tap one to bring it.");
+                if (TouchTargets.Button(nursery, GUIContent.none, GUIStyle.none)) Explain(nursery, "Cradle friends", "From the Lamp Tree's Cradle: one of these three friends can start the run at your side. They change every run. Tap one to bring it.");
                 foreach (UnitDefinition friend in friends)
                 {
                     Rect cell = new Rect(x, row.y, 44, 44); bool on = nurseryPick == friend.Id;
                     if (on) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Brings " + RunUICopy.UnitName(friend); }
                     ArcadeSkin.PortraitSlot(cell, on); RunHud.Sprite(new Rect(cell.x + 6, cell.y + 6, 32, 32), friend.Body);
-                    if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { nurseryPick = on ? null : friend.Id; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, RunUICopy.UnitName(friend), on ? "Left at home." : "Starts the run at your side."); }
+                    if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) { nurseryPick = on ? null : friend.Id; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, RunUICopy.UnitName(friend), on ? "Left at home." : "Starts the run at your side."); }
                     x += 48;
                 }
                 x += 12;
@@ -1018,7 +1021,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, row.y, 44, 44);
                 if (altCoat) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Starts with " + RunUICopy.UnitName(coat); }
                 ArcadeSkin.PortraitSlot(cell, altCoat); RunHud.Sprite(new Rect(cell.x + 6, cell.y + 6, 32, 32), coat.Body);
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { altCoat = !altCoat; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second coat", (altCoat ? "Start with " + RunUICopy.UnitName(coat) + " instead of the usual first friend." : "Back to the usual first friend.") + " Earned in the Wardrobe by playing this hero."); }
+                if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) { altCoat = !altCoat; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second coat", (altCoat ? "Start with " + RunUICopy.UnitName(coat) + " instead of the usual first friend." : "Back to the usual first friend.") + " Earned in the Wardrobe by playing this hero."); }
                 x += 56;
             }
             if (canHabit)
@@ -1026,7 +1029,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, row.y, 44, 44);
                 if (habit) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "").TrimEnd('.'); }
                 ArcadeSkin.PortraitSlot(cell, habit); RunHud.Sprite(new Rect(cell.x + 4, cell.y + 4, 36, 36), MetaIcons.Station(MetaStation.Wardrobe, true));
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second habit", (habit ? MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "Swaps one hero & friends bonus: ") : "The hero keeps its usual hero & friends bonus.") + " Earned in the Wardrobe."); }
+                if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) { habit = !habit; CheckpointAudio.PlayInterfaceId("ui.select"); Explain(cell, "Second habit", (habit ? MetaProgression.HabitAdded(HeroKits.For(champion.Id)).Text.Replace("Second habit: ", "Swaps one hero & friends bonus: ") : "The hero keeps its usual hero & friends bonus.") + " Earned in the Wardrobe."); }
                 x += 56;
             }
             if (keeps.Count > 0)
@@ -1036,7 +1039,7 @@ namespace ArcaneBrigade
                 ItemDefinition relic = on ? catalog.Item(keepsakePick) : null;
                 if (on) { ArcadeSkin.Glow(new Rect(cell.x - 10, cell.y - 10, 64, 64), new Color(1f, .8f, .45f, .6f)); caption = "Brings " + relic?.Name; }
                 ArcadeSkin.PortraitSlot(cell, on); RunHud.Sprite(new Rect(cell.x + 5, cell.y + 5, 34, 34), relic?.Icon ?? MetaIcons.Station(MetaStation.Postbox, true));
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) { keepsakeOpen = !keepsakeOpen; keepsakeAt = cell; keepsakeOpenedAt = Time.unscaledTime; explainText = null; CheckpointAudio.PlayInterfaceId("ui.open"); }
+                if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) { keepsakeOpen = !keepsakeOpen; keepsakeAt = cell; keepsakeOpenedAt = Time.unscaledTime; explainText = null; CheckpointAudio.PlayInterfaceId("ui.open"); }
             }
             if (caption != null) GUI.Label(new Rect(row.x, row.yMax + 1, row.width, 22), caption, note);
             return true;
@@ -1119,16 +1122,18 @@ namespace ArcaneBrigade
             if (totalNumber == null)
             {
                 totalNumber = ArcadeTypography.Style(28, false, true); totalNumber.alignment = TextAnchor.MiddleCenter;
-                totalCaption = ArcadeTypography.Style(15); totalCaption.alignment = TextAnchor.MiddleCenter;
+                totalCaption = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); totalCaption.alignment = TextAnchor.MiddleCenter; totalCaption.wordWrap = false;
             }
             totalNumber.normal.textColor = totalCaption.normal.textColor = ArcadeSkin.FrameText(KitFrame.Card);
             string[] numbers = { profile.BestWave.ToString(), profile.Wins.ToString(), profile.TotalKills.ToString("N0"), (RunMeta.UnlockedDifficulty(profile) + 1) + "/" + RunMeta.DifficultyNames.Length };
-            string[] captions = { "BEST NIGHT", "WINS", "FOES", "DIFFICULTIES" };
+            string[] captions = { "Best night", "Wins", "Foes", "Difficulties" }; // sentence case at the standard size (15-unit capitals were unreadable on a phone)
             float w = c.width / numbers.Length;
             for (int i = 0; i < numbers.Length; i++)
             {
                 Rect col = new Rect(c.x + i * w, c.y, w, c.height);
                 GUI.Label(new Rect(col.x, col.y, col.width, col.height * .6f), numbers[i], totalNumber);
+                totalCaption.fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote);
+                while (totalCaption.fontSize > 16 && totalCaption.CalcSize(new GUIContent(captions[i])).x > col.width - 8) totalCaption.fontSize--;
                 GUI.Label(new Rect(col.x, col.y + col.height * .58f, col.width, col.height * .4f), captions[i], totalCaption);
                 if (i > 0) ArcadeSkin.Diamond(new Vector2(col.x, col.center.y), 5, new Color(.55f, .36f, .18f, .7f)); // a small brass stud between columns, not a ruled line
             }

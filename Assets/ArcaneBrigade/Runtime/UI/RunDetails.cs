@@ -112,7 +112,7 @@ namespace ArcaneBrigade
                 seatName.normal.textColor = ArcadeSkin.Gold;
                 GUI.Label(badge, "×" + many, seatName);
             }
-            if (GUI.Button(seat, GUIContent.none, GUIStyle.none))
+            if (TouchTargets.Button(seat, GUIContent.none, GUIStyle.none))
             {
                 selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero;
                 scroll.y = index * rowHeight;
@@ -220,13 +220,13 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
                 if (shownRarity is ItemRarity tagRarity)
                 {
-                    Rect rarityTag = new Rect(tile.xMax - 104, tile.y + 8, 96, 22);
+                    Rect rarityTag = new Rect(tile.xMax - 128, tile.y + 8, 120, 28);
                     ArcadeSkin.Slant(rarityTag, RunModifierRules.RarityColor(tagRarity));
-                    rarityStyle ??= new GUIStyle(ArcadeTypography.Style(18, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
+                    rarityStyle ??= new GUIStyle(ArcadeTypography.Style(20, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
                     rarityStyle.normal.textColor = ArcadeSkin.Ink;
                     GUI.Label(rarityTag, RunModifierRules.RarityName(tagRarity).ToUpperInvariant(), rarityStyle);
                 }
-                if (GUI.Button(tile, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
+                if (TouchTargets.Button(tile, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
             for (int index = 0; index < rows.Count && !grid; index++)
             {
@@ -246,7 +246,7 @@ namespace ArcaneBrigade
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(68, card.y + 62, 42, 48), row.WeaponIcon);
                 GlossaryUI.Text(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
                 GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
-                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
+                if (TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
             if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No friends yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
             ScrollPanel.End();

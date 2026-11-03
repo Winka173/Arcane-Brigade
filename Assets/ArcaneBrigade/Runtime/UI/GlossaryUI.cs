@@ -286,7 +286,7 @@ namespace ArcaneBrigade
                         Color prior = GUI.color; GUI.color *= ShopDescriptionCard.BenefitColor(effect, bonus[2].StartsWith("-") || bonus[2].StartsWith("−") || bonus[2].StartsWith("×0") ? -1 : 1);
                         FontStyle previousStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
                         GUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
-                        if (GUI.Button(target, GUIContent.none, GUIStyle.none)) Show(RunModifierRules.ModifierName(effect));
+                        if (TouchTargets.Button(target, GUIContent.none, GUIStyle.none)) Show(RunModifierRules.ModifierName(effect));
                     }
                     words.fontSize = keepSize;
                     horizontal += size; continue;
@@ -307,7 +307,7 @@ namespace ArcaneBrigade
                         Color previous = GUI.color; GUI.color *= ArcadeSkin.Teal;
                         Rect caption = new Rect(target.x + icon, target.y, width - icon, line);
                         GUI.Label(caption, word, words);
-                        if (GUI.Button(caption, GUIContent.none, GUIStyle.none)) Show(word);
+                        if (TouchTargets.Button(caption, GUIContent.none, GUIStyle.none)) Show(word);
                         GUI.color = previous;
                         if (target.Contains(Event.current.mousePosition)) ArcadeSkin.Line(new Rect(target.x + icon, target.yMax - 2, width - icon, 2), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.8f));
                     }
@@ -340,7 +340,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Ticket(panel, ArcadeSkin.Ink, ArcadeSkin.Teal);
             StatGlyph.Draw(new Rect(panel.x + 20, panel.y + 18, 36, 36), selected.Effect);
             GUI.Label(new Rect(panel.x + 68, panel.y + 20, width - 125, 40), selected.Name, heading);
-            if (GUI.Button(new Rect(panel.xMax - 55, panel.y + 15, 40, 40), "×")) Close();
+            if (TouchTargets.Button(new Rect(panel.xMax - 55, panel.y + 15, 40, 40), "×")) Close();
             if (selected != null) GUI.Label(new Rect(panel.x + 25, panel.y + 75, width - 50, words + 8), selected.Description, body);
             GUI.matrix = keepMatrix; GUI.color = keepColour;
             if (Time.unscaledTime - openedAt > 30) Close();

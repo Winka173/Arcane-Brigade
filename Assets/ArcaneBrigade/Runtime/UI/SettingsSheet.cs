@@ -40,7 +40,7 @@ namespace ArcaneBrigade
             Volume(label, ref y, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
 
             Header(label, ref y, "Screen");
-            if (Application.isMobilePlatform)
+            if (RunUIHints.Phone)
             {
                 // a phone: no windows, monitor sizes or vsync; its pace and its sharpness instead
                 int rate = Choice(label, ref y, "Frame rate", new[] { "30 · saver", "60" }, profile.FrameCap == 30 ? 0 : 1);
@@ -217,7 +217,7 @@ namespace ArcaneBrigade
         private static Rect Shift(Rect r) => new Rect(r.x + origin.x, r.y + origin.y, r.width, r.height);
         private static bool Button(Rect r, string caption) => button(Shift(r), caption);
         /// <summary>A tap on a painted piece, through the menu's navigation when it gives one (keys and pads reach it too).</summary>
-        private static bool Hit(Rect r) => hit != null ? hit(Shift(r)) : GUI.Button(Shift(r), GUIContent.none, GUIStyle.none);
+        private static bool Hit(Rect r) => hit != null ? hit(Shift(r)) : TouchTargets.Button(Shift(r), GUIContent.none, GUIStyle.none);
         private static void Changed(Action undo, bool display = false)
         {
             CheckpointAudio.PlayInterfaceId("ui.setting");

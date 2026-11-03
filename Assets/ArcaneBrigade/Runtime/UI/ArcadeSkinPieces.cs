@@ -17,7 +17,14 @@ namespace ArcaneBrigade
         public const float PadX = 16, PadY = 12;
 
         private static Rect BodyOf(string key, Texture2D texture) =>
-            KitBodies.TryGetValue(key, out RectInt b) ? new Rect(b.x, b.y, b.width, b.height) : new Rect(0, 0, texture.width, texture.height);
+            KitBodies.TryGetValue(key, out RectInt b) ? new Rect(b.x, b.y, b.width, b.height) : new Rect(Vector2.zero, PaintedSize(key, texture));
+
+        /// <summary>The kit sprite's painted size: bodies, insets and scales are measured in its pixels, whatever size the platform
+        /// imported the texture at.</summary>
+        private static Vector2 PaintedSize(string key, Texture2D texture) =>
+            KitSizes.TryGetValue(key, out Vector2Int size) ? new Vector2(size.x, size.y) : new Vector2(texture.width, texture.height);
+        /// <summary>Painted pixels per imported texture pixel: 1 on the PC, more on a phone (its kit is imported smaller).</summary>
+        private static float PaintedPerTexel(string key, Texture2D texture) => PaintedSize(key, texture).x / Mathf.Max(1, texture.width);
 
         private static string KeyOf(KitPiece piece) =>
             piece == KitPiece.Dialogue ? "Panels/Dialogue" : piece == KitPiece.Card ? "Panels/Card" : piece == KitPiece.Tooltip ? "Panels/Tooltip"
@@ -54,9 +61,9 @@ namespace ArcaneBrigade
             k = 0;
             if (Crafted) return false; // the crafted style draws every piece in code
             Rect asked = r;
-            Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
-            Vector4 b = sprite.border; float centre = CentreOf(piece) * t.width;
-            float needW = b.x + b.z + centre - (t.width - body.width), needH = b.y + b.w - (t.height - body.height);
+            Texture2D t = sprite.texture; Rect body = BodyOf(key, t); Vector2 painted = PaintedSize(key, t);
+            Vector4 b = sprite.border * PaintedPerTexel(key, t); float centre = CentreOf(piece) * painted.x;
+            float needW = b.x + b.z + centre - (painted.x - body.width), needH = b.y + b.w - (painted.y - body.height);
             if (IsFrame(piece))
             {
                 float side = Mathf.Min(r.width, r.height);
@@ -89,9 +96,9 @@ namespace ArcaneBrigade
             Sprite sprite = KitSprite(key);
             if (sprite == null || !ScaleFor(piece, sprite, key, ref r, out float k)) return false;
             if (IsFrame(piece)) k = Mathf.Min(k, limit);
-            Texture2D t = sprite.texture; Rect body = BodyOf(key, t);
-            Rect dest = new Rect(r.x - body.x * k, r.y - body.y * k, r.width + (t.width - body.width) * k, r.height + (t.height - body.height) * k);
-            Sliced(dest, sprite, k, CentreOf(piece));
+            Texture2D t = sprite.texture; Rect body = BodyOf(key, t); Vector2 painted = PaintedSize(key, t);
+            Rect dest = new Rect(r.x - body.x * k, r.y - body.y * k, r.width + (painted.x - body.width) * k, r.height + (painted.y - body.height) * k);
+            Sliced(dest, sprite, k * PaintedPerTexel(key, t), CentreOf(piece));
             return true;
         }
 
@@ -327,7 +334,7 @@ namespace ArcaneBrigade
             return bare;
         }
         /// <summary>GUI.Button through the kit: the painted plate where it fits, else the code-drawn one; the label fitted.</summary>
-        public static bool KitGuiButton(Rect r, string text, GUIStyle style) => GUI.Button(r, text, Fit(style, r, text));
+        public static bool KitGuiButton(Rect r, string text, GUIStyle style) => TouchTargets.Button(r, text, Fit(style, r, text));
 
         /// <summary>Shrinks a style's font step by step (down to 70% of its size) until the text fits the width, then lets it wrap
         /// to two lines (requirement 22/10/2026: a label never runs past its button's caps).</summary>

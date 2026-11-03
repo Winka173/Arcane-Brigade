@@ -178,7 +178,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(tile.x + 8, tile.y + 136, tileW - 16, 26), unit != null ? RunUICopy.UnitName(unit) : entry.UnitId, small);
                 small.normal.textColor = Gold;
                 GUI.Label(new Rect(tile.x + 8, tile.y + 162, tileW - 16, 24), "★★★", small);
-                if (GUI.Button(tile, GUIContent.none, GUIStyle.none)) { pick = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (TouchTargets.Button(tile, GUIContent.none, GUIStyle.none)) { pick = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (shownCount == 0) { line.normal.textColor = brown; GUI.Label(new Rect(inner.x, rowY + 60, inner.width, 60), "No 3-star friend is ready to wake.", line); }
 

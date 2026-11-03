@@ -253,6 +253,9 @@ namespace ArcaneBrigade
         private static Vector2 previousPad;
         private static Vector3 previousMouse;
         public static RunUIDevice Device { get; private set; }
+        /// <summary>The phone layout: on a phone, or on the PC with -arcane-phone so captures show what a phone shows (touch buttons,
+        /// the phone's sizes). Mobile is released first (requirement 3/11/2026), so every screen is checked in this layout.</summary>
+        public static readonly bool Phone = Application.isMobilePlatform || System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-arcane-phone") >= 0;
         public static void Refresh()
         {
             if (frame == Time.frameCount) return;
@@ -262,7 +265,7 @@ namespace ArcaneBrigade
             bool padPressed = false;
             for (int index = 0; index < 20; index++) padPressed |= Input.GetKeyDown((KeyCode)((int)KeyCode.JoystickButton0 + index));
             if (padPressed || pad.sqrMagnitude > 0.16f && (pad - previousPad).sqrMagnitude > 0.01f) Device = RunUIDevice.Controller;
-            if (Input.touchCount > 0 || Application.isMobilePlatform) Device = RunUIDevice.Touch;
+            if (Input.touchCount > 0 || Phone) Device = RunUIDevice.Touch;
             previousPad = pad; previousMouse = Input.mousePosition;
         }
         // requirement 22/10/2026: no key or button hints anywhere; a hover label only names what the icon opens

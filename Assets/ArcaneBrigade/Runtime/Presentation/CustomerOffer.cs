@@ -66,7 +66,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(letter, ArcadeSkin.Paper, ArcadeSkin.Wax); Seal(new Vector2(letter.x + 34, letter.center.y), 34);
                 name.normal.textColor = new Color(.25f, .19f, .14f);
                 GUI.Label(new Rect(letter.x + 60, letter.y + 6, letter.width - 76, letter.height - 12), "A letter from the Last Customer", name);
-                if (GUI.Button(letter, GUIContent.none, GUIStyle.none)) { folded = false; InputConsumedFrame = Time.frameCount; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (TouchTargets.Button(letter, GUIContent.none, GUIStyle.none)) { folded = false; InputConsumedFrame = Time.frameCount; CheckpointAudio.PlayInterfaceId("ui.select"); }
                 GUI.matrix = keepMatrix; wasOpen = false; return;
             }
             if (!wasOpen) { wasOpen = true; openedAt = Time.unscaledTime; }
@@ -111,7 +111,7 @@ namespace ArcaneBrigade
                 TextAnchor keepName = name.alignment; name.alignment = TextAnchor.UpperCenter;
                 GUI.Label(new Rect(slot.x - 10, frame.yMax + 4, slot.width + 20, 66), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name); // two full lines, never clipped
                 name.alignment = keepName;
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = species[first + i]; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = species[first + i]; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (pages > 1)
             {
@@ -119,8 +119,8 @@ namespace ArcaneBrigade
                 Rect previousPage = new Rect(card.x + 20, card.y + 290, 44, 60), nextPage = new Rect(card.xMax - 64, card.y + 290, 44, 60);
                 ArcadeSkin.Plate(previousPage, ArcadeSkin.Card); ArcadeSkin.Plate(nextPage, ArcadeSkin.Card);
                 name.normal.textColor = ArcadeSkin.Cream;
-                if (GUI.Button(previousPage, "◀", name)) page = (page + pages - 1) % pages;
-                if (GUI.Button(nextPage, "▶", name)) page = (page + 1) % pages;
+                if (TouchTargets.Button(previousPage, "◀", name)) page = (page + pages - 1) % pages;
+                if (TouchTargets.Button(nextPage, "▶", name)) page = (page + 1) % pages;
                 plain.normal.textColor = new Color(.18f, .14f, .1f);
                 GUI.Label(new Rect(card.x, card.y + 395, card.width, 22), (page + 1) + " / " + pages, plain);
             }
@@ -211,7 +211,7 @@ namespace ArcaneBrigade
                 label.normal.textColor = ArcadeSkin.Cream;
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (i + 1) + " · " + ActOneCanon.LampHeld[lamp], label);
                 if (picked == i) ArcadeSkin.WorldFocus(slot);
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (colours)
             {
@@ -222,7 +222,7 @@ namespace ArcaneBrigade
                 label.normal.textColor = new Color(0.68f, 1, 0.92f);
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (dark.Count + 1) + " · the colours: a rainbow gift", label);
                 if (picked == dark.Count) ArcadeSkin.WorldFocus(slot);
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { picked = dark.Count; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = dark.Count; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             // what the pick means, in plain words, then the confirm button
             if (info == null) { info = ArcadeTypography.Style(ArcadeTypography.SizeNote); info.alignment = TextAnchor.MiddleCenter; info.wordWrap = true; }

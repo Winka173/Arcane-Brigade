@@ -142,7 +142,7 @@ namespace ArcaneBrigade
         {
             if (!Rest || !visible || owner.StoryConsumesInput || owner.PresentationPaused || Camera.main == null || !ShopFocus.Has(this,0,owner.Simulation.Champion.Position)) return;
             var matrix = ArcadeTypography.BeginViewport(Camera.main.pixelRect,1920,1080);
-            if (GUI.Button(StoryPropInput.ClickRect(evidence,Camera.main),GUIContent.none,GUIStyle.none)) Inspect();
+            if (TouchTargets.Button(StoryPropInput.ClickRect(evidence,Camera.main),GUIContent.none,GUIStyle.none)) Inspect();
             // the shop's one prompt card (requirement 25/10/2026: every nearby thing uses the same card)
             string line = wave == 17 ? "HOB CHOSE THIS SEAT" : wave == 18 ? "TALLY'S PLACE IS EMPTY" : wave == 15 ? "THE UMBRELLA IS STILL WET" : "THE REPLY WAS SEWN SHUT";
             if (Time.frameCount - promptFrame > 3) promptAt = Time.unscaledTime;

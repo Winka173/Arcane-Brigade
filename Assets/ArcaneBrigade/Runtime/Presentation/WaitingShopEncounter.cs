@@ -182,7 +182,7 @@ namespace ArcaneBrigade
                 PropTag.Draw(prop, active == WaitingEncounter.BreathingPhone ? "TELEPHONE" : active == WaitingEncounter.ReservedTable ? "TABLE" : "MIRROR", true);
             if (!Visible || !Near || owner.PresentationPaused || owner.StoryConsumesInput) { promptShown = false; return; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
-            if (GUI.Button(StoryPropInput.ClickRect(prop,Camera.main),GUIContent.none,GUIStyle.none)) TryInspect();
+            if (TouchTargets.Button(StoryPropInput.ClickRect(prop,Camera.main),GUIContent.none,GUIStyle.none)) TryInspect();
             // the shop's one prompt card, as the secret rooms' (requirement 25/10/2026); each thing has its own name and verb
             if (!promptShown) { promptShown = true; promptAt = Time.unscaledTime; }
             bool table = active == WaitingEncounter.ReservedTable, phone = active == WaitingEncounter.BreathingPhone;

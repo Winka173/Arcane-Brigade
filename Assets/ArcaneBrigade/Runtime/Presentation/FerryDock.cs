@@ -143,7 +143,7 @@ namespace ArcaneBrigade
             {
                 if (Near)
                 {
-                    if (GUI.Button(StoryPropInput.ClickRect(prop, Camera.main), GUIContent.none, GUIStyle.none)) Board();
+                    if (TouchTargets.Button(StoryPropInput.ClickRect(prop, Camera.main), GUIContent.none, GUIStyle.none)) Board();
                     if (!promptShown) { promptShown = true; promptAt = Time.unscaledTime; }
                     string plain = Usable ? "Send a friend home, or row one across for a new friend at the same stars." : "The ferry has gone out for tonight. It is back in the next shop.";
                     if (ShopPrompt.Draw("THE FERRY", plain, Usable ? "BOARD" : "TOMORROW", Time.unscaledTime - promptAt)) Board();
@@ -205,7 +205,7 @@ namespace ArcaneBrigade
                 names.normal.textColor = chosen ? new Color(.62f, .27f, .05f) : ink; // and its name in warm brown
                 string stars = rowing ? "" : " " + RunSession.StarText(session.StarProgress(id)) + "★";
                 GUI.Label(new Rect(slot.x - 8, frame.yMax + 2, slot.width + 16, 100), (unit == null ? id : RunUICopy.UnitName(unit)) + stars, names);
-                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) { if (rowing) crossing = id; else picked = id; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { if (rowing) crossing = id; else picked = id; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (!rowing && pages > 1)
             {

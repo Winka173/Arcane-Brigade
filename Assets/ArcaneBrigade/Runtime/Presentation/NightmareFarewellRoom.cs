@@ -115,7 +115,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), Titles[i], choiceTitle);
                 choiceBody.normal.textColor = ink;
                 GUI.Label(new Rect(inner.x, inner.y + 52, inner.width, inner.height - 52), Meanings[i], choiceBody);
-                if (ready && GUI.Button(card, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                if (ready && TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             bool can = ready && picked >= 0;
             if (!can) ChoiceCards.Hint(new Rect(760, 968, 400, 88));

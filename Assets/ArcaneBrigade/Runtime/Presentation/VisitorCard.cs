@@ -268,7 +268,7 @@ namespace ArcaneBrigade
             }
             Rect wordsArea = ArcadeSkin.Content(r, KitPiece.Button);
             ArcadeSkin.KitCaption(new Rect(wordsArea.x, r.y, wordsArea.width - priceW, r.height), caption, ArcadeSkin.KitText(KitButton.Primary, option.Enabled), button);
-            if (option.Enabled && GUI.Button(r, GUIContent.none, GUIStyle.none)) Choose(0);
+            if (option.Enabled && TouchTargets.Button(r, GUIContent.none, GUIStyle.none)) Choose(0);
         }
 
         // ---- choices that are actions: one plate each (DO, PAY, GET, WHEN). Returns the height used.
@@ -309,7 +309,7 @@ namespace ArcaneBrigade
                 if (!string.IsNullOrEmpty(d.When)) When(new Rect(pc.x, y, pc.width, 40), d.When);
                 GUI.color = keep;
                 if (!o.Enabled) Missing(new Rect(plate.xMax - 62, plate.y - 14, 56, 56), v, d, state);
-                if (o.Enabled && GUI.Button(plate, GUIContent.none, GUIStyle.none)) Pick(i, options);
+                if (o.Enabled && TouchTargets.Button(plate, GUIContent.none, GUIStyle.none)) Pick(i, options);
                 Settle(rise);
             }
             return height;
@@ -368,7 +368,7 @@ namespace ArcaneBrigade
                 GUI.color = keep;
                 if (!o.Enabled && d != null) Missing(new Rect(slot.xMax - 50, slot.y - 12, 50, 50), v, d, state);
                 if (first + i == picked) ArcadeSkin.WorldFocus(slot);
-                if (o.Enabled && GUI.Button(slot, GUIContent.none, GUIStyle.none)) Pick(first + i, options);
+                if (o.Enabled && TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) Pick(first + i, options);
                 Settle(rise);
             }
             if (pages > 1)

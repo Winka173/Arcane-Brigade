@@ -7,7 +7,8 @@ namespace ArcaneBrigade
     public sealed class BondHudSummary
     {
         public const int MaximumRows = 9, PerRow = 5; // two rows of at most five tiles, the last tile opens the full list
-        public const float RowHeight = 64, Gap = 10; // square tiles in a row, the count under each // UI standard: 28-unit text, rows a thumb can tap
+        public static float RowHeight => RunUIHints.Phone ? 76 : 64; // a phone's tiles are a thumb's width apart (requirement 3/11/2026)
+        public const float Gap = 10; // square tiles in a row, the count under each // UI standard: 28-unit text, rows a thumb can tap
         private readonly List<BondDefinition> rows = new List<BondDefinition>();
         private BondDefinition[] source;
         private int signature;

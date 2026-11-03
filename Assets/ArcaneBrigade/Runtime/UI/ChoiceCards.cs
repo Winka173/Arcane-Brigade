@@ -41,7 +41,7 @@ namespace ArcaneBrigade
                     body.normal.textColor = ink;
                     GUI.Label(new Rect(inner.x, inner.y + titleH + 6, inner.width, inner.height - titleH - 6), meaning, body);
                 }
-                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (picked != i) CheckpointAudio.PlayInterfaceId("ui.select"); picked = i; }
+                if (TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { if (picked != i) CheckpointAudio.PlayInterfaceId("ui.select"); picked = i; }
             }
             bool ready = picked >= 0 && picked < n;
             Rect go = new Rect(area.center.x - 200, area.yMax - ButtonH, 400, ButtonH);

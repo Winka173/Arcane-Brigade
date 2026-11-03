@@ -167,7 +167,7 @@ namespace ArcaneBrigade
                 Color words2 = earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream; // cream on the dark walnut plate of a sealed letter
                 ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 30), earned ? l.Name : "Sealed", words2, body);
                 ArcadeSkin.KitCaption(new Rect(words.x, words.y + 30, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
-                if ((GUI.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
+                if ((TouchTargets.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
                 {
                     letterOpen = i;
                     if (!read && MetaProgression.ReadLetter(profile, l.Id))
@@ -255,7 +255,7 @@ namespace ArcaneBrigade
                     else RunHud.Sprite(new Rect(c.x + 7, c.y + 7, cell - 14, cell - 14), piece.Icon);
                     GUI.color = keep;
                     if (!piece.Seen) ArcadeSkin.Lock(new Vector2(c.center.x, c.center.y + 4), 24, new Color(.86f, .7f, .42f, .9f)); // a lock on what is not found yet
-                    if (GUI.Button(c, GUIContent.none, GUIStyle.none) | Nav(c)) { museumPick = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
+                    if (TouchTargets.Button(c, GUIContent.none, GUIStyle.none) | Nav(c)) { museumPick = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
                 }
                 ScrollEnd(view);
                 return;
@@ -318,7 +318,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(r.x + 86, r.y + 38, r.width - 270, 24), pact.Line, small);
                 GUI.Label(new Rect(r.xMax - 172, r.y + 20, 90, 28), "×" + pact.Reward.ToString("0.00"), number);
                 ArcadeSkin.CheckBox(new Rect(r.xMax - 66, r.y + 15, 38, 38), on);
-                if (GUI.Button(r, GUIContent.none, GUIStyle.none) | Nav(r))
+                if (TouchTargets.Button(r, GUIContent.none, GUIStyle.none) | Nav(r))
                 {
                     MetaProgression.TogglePact(profile, i);
                     if (!save()) { profile.Meta.Pacts = mask; CheckpointAudio.PlayInterfaceId("ui.error"); }

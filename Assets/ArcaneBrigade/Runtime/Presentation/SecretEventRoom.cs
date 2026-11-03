@@ -304,7 +304,7 @@ namespace ArcaneBrigade
                             GUI.Label(new Rect(mid.x - 80, mid.y - 20, 200, 40), "Not available now", label);
                             label.normal.textColor = was;
                         }
-                        else if (!shut && GUI.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
+                        else if (!shut && TouchTargets.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
                         GUI.matrix = plateMatrix; GUI.color = plateColour;
                     }
                     Popped(.3f, new Vector2(960, 922), () =>
@@ -360,7 +360,7 @@ namespace ArcaneBrigade
             Rect nameTag = new Rect(box.center.x - nameWidth * .5f - (many ? 76 : 0), 420, nameWidth, 40);
             ArcadeSkin.Tag(nameTag, name, CodeTone.Walnut, label, ArcadeSkin.KitCream);
             if (many && ArcadeSkin.Button(new Rect(nameTag.xMax + 12, 416, 140, 48), "CHANGE", KitButton.Secondary) && !blocked) OpenPicker(1);
-            if (!blocked && many && GUI.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
+            if (!blocked && many && TouchTargets.Button(box, GUIContent.none, GUIStyle.none)) OpenPicker(1);
             if (s.Kind == SecretEventKind.DeadLetters && owner.Session.State.Roster.Count > 0)
             {
                 Rect friend = new Rect(1130, 300, 300, 100);
@@ -370,7 +370,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), unit != null ? RunUICopy.UnitName(unit) : "A friend", label);
                 bool others = owner.Session.State.Roster.Count > 1;
                 if (others && ArcadeSkin.Button(new Rect(friend.center.x - 70, friend.yMax + 8, 140, 48), "CHANGE", KitButton.Secondary) && !blocked) OpenPicker(2);
-                if (!blocked && others && GUI.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
+                if (!blocked && others && TouchTargets.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
             }
         }
         /// <summary>One LOSE (red) or GET (green) row: a coloured tag, a picture when there is one, one short line.</summary>
@@ -571,7 +571,7 @@ namespace ArcaneBrigade
                 pickerWhat ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter, clipping = TextClipping.Overflow };
                 pickerWhat.normal.textColor = new Color(.62f, .92f, .66f);
                 GUI.Label(new Rect(cell.x - 10, cell.y + tile + 52, tile + 20, 64), choices[i].what, pickerWhat);
-                if (GUI.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;
+                if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;
             }
             GUI.matrix = m; GUI.color = c;
             if (picked >= 0)

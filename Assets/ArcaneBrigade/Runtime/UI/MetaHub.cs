@@ -208,7 +208,7 @@ namespace ArcaneBrigade
         private void Things()
         {
             foreach (Thing th in AllThings(true))
-                if (GUI.Button(th.Area, GUIContent.none, GUIStyle.none)) Say(th);
+                if (TouchTargets.Button(th.Area, GUIContent.none, GUIStyle.none)) Say(th);
             // the card for what the hero stands by: its name, what it is, and LOOK
             Thing near = NearThing();
             if (near != nearShown) { nearShown = near; nearAt = Time.unscaledTime; }
@@ -386,9 +386,9 @@ namespace ArcaneBrigade
                 for (int i = 0; i < Spots.Length; i++)
                 {
                     Rect r = Bounds(Spots[i], MetaIcons.Station(Spots[i].Station, false));
-                    if (GUI.Button(new Rect(r.x - 44, r.y - 36, r.width + 88, r.height + 72), GUIContent.none, GUIStyle.none)) WalkTo(Spots[i].Foot + new Vector2(0, 34), i, false); // a thumb-sized margin round each station
+                    if (TouchTargets.Button(new Rect(r.x - 44, r.y - 36, r.width + 88, r.height + 72), GUIContent.none, GUIStyle.none)) WalkTo(Spots[i].Foot + new Vector2(0, 34), i, false); // a thumb-sized margin round each station
                 }
-                if (GUI.Button(DoorArea, GUIContent.none, GUIStyle.none)) WalkTo(DoorFoot, -1, true);
+                if (TouchTargets.Button(DoorArea, GUIContent.none, GUIStyle.none)) WalkTo(DoorFoot, -1, true);
                 Event e = Event.current;
                 if (e.type == EventType.MouseDown && Floor.Contains(e.mousePosition)) { WalkTo(e.mousePosition, -1, false); e.Use(); }
             }
@@ -696,7 +696,7 @@ namespace ArcaneBrigade
                 Rect cell = new Rect(x, r.y + 38, 40, 40);
                 if (bond.Id == profile.Meta.Heirloom) ArcadeSkin.Glow(new Rect(cell.x - 8, cell.y - 8, 56, 56), new Color(1f, .8f, .4f, .7f));
                 RunHud.Sprite(cell, bond.Icon);
-                if ((GUI.Button(cell, GUIContent.none, GUIStyle.none) | Nav(cell)) && bond.Id != profile.Meta.Heirloom)
+                if ((TouchTargets.Button(cell, GUIContent.none, GUIStyle.none) | Nav(cell)) && bond.Id != profile.Meta.Heirloom)
                 {
                     string before = profile.Meta.Heirloom; profile.Meta.Heirloom = bond.Id;
                     if (!save()) profile.Meta.Heirloom = before; else CheckpointAudio.PlayInterfaceId("ui.select");

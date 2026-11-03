@@ -931,7 +931,7 @@ namespace ArcaneBrigade
             GUI.Box(new Rect(52, 30, 1816, 80), GUIContent.none);
             GUI.Label(new Rect(80, 43, 470, 50), "HP " + Mathf.CeilToInt(simulation.Champion.Health) + " / " + catalog.Champion.Health + "    GOLD " + simulation.Gold, label);
             GUI.Label(new Rect(660, 43, 970, 50), "WAVE 1   " + Mathf.Max(0, Mathf.CeilToInt(catalog.WaveDuration - simulation.Elapsed)) + "s   KILLS " + simulation.Kills + "   ALLIES " + simulation.CompanionCount + "   RADIUS " + catalog.CompanionLeash.ToString("0.0"), label);
-            if (GUI.Button(new Rect(1695, 45, 145, 48), "PAUSE", button)) SetPaused(true);
+            if (TouchTargets.Button(new Rect(1695, 45, 145, 48), "PAUSE", button)) SetPaused(true);
             GUI.Label(new Rect(70, 1015, 1780, 42), "Move: WASD / arrows / lower-left touch drag. Auto-combat.", label);
             if (simulation.Phase != RunPhase.Combat)
             {
@@ -939,11 +939,11 @@ namespace ArcaneBrigade
                 string text = simulation.Phase == RunPhase.Paused ? "PAUSED" : simulation.Phase == RunPhase.Victory ? "WAVE SURVIVED" : "BRIGADE FALLEN";
                 GUI.Label(new Rect(620, 365, 680, 65), text, heading);
                 GUI.Label(new Rect(675, 445, 650, 50), "Kills: " + simulation.Kills + "    Collected gold: " + simulation.Gold, label);
-                if (GUI.Button(new Rect(760, 520, 400, 60), simulation.Phase == RunPhase.Paused ? "RESUME" : "PLAY AGAIN", button))
+                if (TouchTargets.Button(new Rect(760, 520, 400, 60), simulation.Phase == RunPhase.Paused ? "RESUME" : "PLAY AGAIN", button))
                 {
                     if (simulation.Phase == RunPhase.Paused) SetPaused(false); else Begin();
                 }
-                if (GUI.Button(new Rect(760, 600, 400, 60), "MAIN MENU", button)) SceneManager.LoadScene("Frontend");
+                if (TouchTargets.Button(new Rect(760, 600, 400, 60), "MAIN MENU", button)) SceneManager.LoadScene("Frontend");
             }
             GUI.matrix = previous;
             DrawTouch();

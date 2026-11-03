@@ -43,19 +43,19 @@ namespace ArcaneBrigade
             {
                 int option=i; bool chosen=s.State.HeroIdentity.Approach==i; string name=d.Approaches[i];
                 Rect button=new Rect(area.x+i*200,area.y+51,190,52);
-                if(GUI.Button(button,name,approachChoice))owner.ConfigureHeroIdentity(()=>s.ChooseHeroApproach(option));
+                if(TouchTargets.Button(button,name,approachChoice))owner.ConfigureHeroIdentity(()=>s.ChooseHeroApproach(option));
                 if(chosen)ArcadeSkin.RunningLight(button,Time.unscaledTime,ArcadeSkin.Gold,.7f); // the chosen approach is lit
                 if(Event.current.type==EventType.Repaint)ApproachIcon(new Rect(button.x+4,button.y+button.height*.5f-20,40,40),style,i,chosen,GUI.enabled);
             }
             string id=s.State.ChampionId;
-            if(id=="PatchworkHost" && GUI.Button(new Rect(area.x,area.y+115,590,48),"NEXT FEATURED FRIEND",choice))owner.ConfigureHeroIdentity(s.CycleFeaturedFriend);
-            if(id=="GlassDice" && GUI.Button(new Rect(area.x,area.y+115,590,48),"REROLL NEXT FACE / 6 GOLD / ONCE PER WAVE",choice))owner.ConfigureHeroIdentity(s.RerollHeroDie);
-            if(id=="PennyBroker" && GUI.Button(new Rect(area.x,area.y+115,590,48),"PLACE ORDER / INVEST "+s.HeroOrderDeposit+" GOLD",choice))owner.ConfigureHeroIdentity(s.PlaceHeroOrder);
+            if(id=="PatchworkHost" && TouchTargets.Button(new Rect(area.x,area.y+115,590,48),"NEXT FEATURED FRIEND",choice))owner.ConfigureHeroIdentity(s.CycleFeaturedFriend);
+            if(id=="GlassDice" && TouchTargets.Button(new Rect(area.x,area.y+115,590,48),"REROLL NEXT FACE / 6 GOLD / ONCE PER WAVE",choice))owner.ConfigureHeroIdentity(s.RerollHeroDie);
+            if(id=="PennyBroker" && TouchTargets.Button(new Rect(area.x,area.y+115,590,48),"PLACE ORDER / INVEST "+s.HeroOrderDeposit+" GOLD",choice))owner.ConfigureHeroIdentity(s.PlaceHeroOrder);
             if(id=="LoneJelly")for(int i=0;i<3;i++)
             {
                 int slot=i;string organ=s.State.HeroIdentity.Organs[i];
                 string label="ORGAN "+(i+1)+" / "+(string.IsNullOrEmpty(organ)?"Auto":owner.Content.Unit(organ).DisplayName);
-                if(GUI.Button(new Rect(area.x+i*200,area.y+115,190,58),label,choice))owner.ConfigureHeroIdentity(()=>s.CycleMemoryOrgan(slot));
+                if(TouchTargets.Button(new Rect(area.x+i*200,area.y+115,190,58),label,choice))owner.ConfigureHeroIdentity(()=>s.CycleMemoryOrgan(slot));
             }
             GUI.enabled=enabled;
             // the chosen approach's text is read in the page's one scroll (Details), never in a second small scroll box

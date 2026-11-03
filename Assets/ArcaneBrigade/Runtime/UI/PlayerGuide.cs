@@ -154,7 +154,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
             }
             GUI.color = keep; GUI.matrix = keepMatrix;
-            if (GUI.Button(r, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("guide-tip")) LivingUI.CloseThen("guide-tip", () => showing = null); // a tap closes it
+            if (TouchTargets.Button(r, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("guide-tip")) LivingUI.CloseThen("guide-tip", () => showing = null); // a tap closes it
         }
 
         /// <summary>Guide text must catch the eye (requirement 20/10/2026): a gold rim with two sparks running round it, a warm glow that
@@ -231,7 +231,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(cell.x, cell.y + 110, cell.width, 80), words[i], small);
             }
             GUI.color = keep;
-            if (GUI.Button(r, GUIContent.none, GUIStyle.none)) goalAt = -100;
+            if (TouchTargets.Button(r, GUIContent.none, GUIStyle.none)) goalAt = -100;
         }
 
         /// <summary>The "How to play" cards (pause menu): six pictures, one line each, re-readable any time.</summary>

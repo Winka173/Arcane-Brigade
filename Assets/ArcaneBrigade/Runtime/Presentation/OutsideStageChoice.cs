@@ -121,7 +121,7 @@ namespace ArcaneBrigade
                 RarityDescriptionFrame.Draw(badge,ItemRarity.Rainbow,owner.PresentationClock);
                 GUI.Label(new Rect(badge.x+8,badge.y+5,354,32),HandAt==ActOneChallengePosition?"OPTIONAL BOSS / THE KEEPER, WHOLE":"OPTIONAL BOSS / THE KEEPER",copy);
                 GUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Defeat ends the run":owner.Session.State.Secrets!=null && owner.Session.State.Secrets.LetterSent?"It remembers your letter.\nWin a rainbow companion or relic":(HandAt==ActOneChallengePosition?"Break its hand, carpet and eye\nWin a rainbow companion or relic":"Approach the glowing hand\nWin a rainbow companion or relic"),copy);
-                if(Focused && GUI.Button(badge,GUIContent.none,GUIStyle.none))Interact();
+                if(Focused && TouchTargets.Button(badge,GUIContent.none,GUIStyle.none))Interact();
             }
             else
             {

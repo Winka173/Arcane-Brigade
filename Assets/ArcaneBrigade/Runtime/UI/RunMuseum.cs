@@ -88,7 +88,7 @@ namespace ArcaneBrigade
                 // a painted display case (bright glass when found, dusty when not); the picked one is marked by brackets
                 if (!ArcadeSkin.KitSliced(card, exhibit.Seen ? "Info/CaseSeen" : "Info/CaseUnseen", .45f)) ArcadeSkin.Panel(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 else if (index == selection) ArcadeSkin.WorldFocus(card);
-                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
+                if (TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 60, card.y + 16, 104, 50), exhibit.Icon);
                 else
                 {
@@ -130,12 +130,12 @@ namespace ArcaneBrigade
                             float poseWidth = 335f / Mathf.Min(5, poses.Length);
                             float poseY = poses.Length > 5 ? 354 + pose / 4 * 30 : 354;
                             if (poses.Length > 5) poseWidth = 335f / 4;
-                            if (GUI.Button(new Rect(860 + (poses.Length > 5 ? pose % 4 : pose) * poseWidth, poseY, poseWidth - 5, 26), poses[pose], poseControls)) diorama.Pose = pose;
+                            if (TouchTargets.Button(new Rect(860 + (poses.Length > 5 ? pose % 4 : pose) * poseWidth, poseY, poseWidth - 5, 26), poses[pose], poseControls)) diorama.Pose = pose;
                             GUI.color = previousColor;
                         }
                         if (!exhibit.Unit.IsBoss)
                             for (int stars = 1; stars <= 3; stars++)
-                                if (GUI.Button(new Rect(860 + (stars - 1) * 114, poses.Length > 5 ? 415 : 388, 107, 24), stars + " STAR" + (stars > 1 ? "S" : ""), controls)) previewTier = stars;
+                                if (TouchTargets.Button(new Rect(860 + (stars - 1) * 114, poses.Length > 5 ? 415 : 388, 107, 24), stars + " STAR" + (stars > 1 ? "S" : ""), controls)) previewTier = stars;
                         if (exhibit.Unit.IsBoss)
                         {
                             BossAnatomyEntry anatomy = BossAnatomy.For(exhibit.Unit);
@@ -144,7 +144,7 @@ namespace ArcaneBrigade
                                 {
                                     bool broken = (diorama.BrokenMask & 1 << part) != 0;
                                     var label = new GUIContent((broken ? "FIX " : "BREAK ") + (part + 1), anatomy.Organs[part].Name + ": " + anatomy.Organs[part].BreakSummary);
-                                    if (GUI.Button(new Rect(860 + part * 114, 388, 107, 28), label, controls)) diorama.BrokenMask ^= 1 << part;
+                                    if (TouchTargets.Button(new Rect(860 + part * 114, 388, 107, 28), label, controls)) diorama.BrokenMask ^= 1 << part;
                                 }
                         }
                     }
@@ -153,7 +153,7 @@ namespace ArcaneBrigade
                         diorama.Dispose();
                         float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(time * 2.4f) * 4;
                         Rect icon = new Rect(892, 252 + bob, 271, 150); // the thing itself, large
-                        if (GUI.Button(icon, GUIContent.none, GUIStyle.none)) { touchedAt = time; CheckpointAudio.PlayInterfaceId("ui.page"); }
+                        if (TouchTargets.Button(icon, GUIContent.none, GUIStyle.none)) { touchedAt = time; CheckpointAudio.PlayInterfaceId("ui.page"); }
                         float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01((time - touchedAt) / 0.4f) * Mathf.PI) * 12;
                         icon = new Rect(icon.x - pop * 0.5f, icon.y - pop * 0.5f, icon.width + pop, icon.height + pop);
                         Matrix4x4 previous = GUI.matrix;

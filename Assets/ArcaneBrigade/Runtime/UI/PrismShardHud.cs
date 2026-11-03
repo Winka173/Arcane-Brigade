@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             if (icon != null) RunHud.Sprite(new Rect(plate.x + 8, plate.y + 3, 30, 30), icon);
             text.normal.textColor = new Color(0.68f, 1, 0.92f);
             GUI.Label(new Rect(plate.x + 46, plate.y, plate.width - 50, plate.height), "PRISM  " + Mathf.Min(carried, 99) + " / 3", text);
-            if (GUI.Button(plate, GUIContent.none, GUIStyle.none)) { helpAt = helpAt >= 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
+            if (TouchTargets.Button(plate, GUIContent.none, GUIStyle.none)) { helpAt = helpAt >= 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
             if (helpAt >= 0 && Time.unscaledTime - helpAt > 8) helpAt = -1;
             if (helpAt >= 0)
             {

@@ -161,7 +161,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Wax);
                 hand.normal.textColor = new Color(.25f, .19f, .14f);
                 GUI.Label(tag, said, hand);
-                if (available && GUI.Button(tag, GUIContent.none, GUIStyle.none)) asking = true;
+                if (available && TouchTargets.Button(tag, GUIContent.none, GUIStyle.none)) asking = true;
             }
             else
             {

@@ -109,7 +109,7 @@ namespace ArcaneBrigade
             if (state == 1) Glow(new Rect(r.x - 8, r.y - 8, r.width + 16, r.height + 16), new Color(Gold.r, Gold.g, Gold.b, .35f));
             if (s != null) Fitted(r, s, state == 2 ? .92f : state == 1 ? 1.06f : 1);
             else { Rect face = RoundArt(r, KitRound.Brass, state); KitCaption(face, left ? "◀" : "▶", KitInk, null, true); }
-            return GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
 
         /// <summary>The wax-sealed contract ribbon (the secret room's confirm button): the seal at its left, the words on the
@@ -124,7 +124,7 @@ namespace ArcaneBrigade
             if (!painted) return Button(r, label, KitButton.Primary, enabled, like);
             Rect words = new Rect(r.x + r.height * 1.05f, r.y, r.width - r.height * 1.25f, r.height); // right of the seal
             KitCaption(words, label, enabled ? KitRose : new Color(.85f, .75f, .72f, .8f), like, true);
-            return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return enabled && TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
 
         /// <summary>The leave button: a walnut plate with a brass door tag hanging at its left (lantern on it).</summary>
@@ -137,7 +137,7 @@ namespace ArcaneBrigade
             if (tag != null) { float h = r.height * 1.15f, w = h * tag.rect.width / tag.rect.height; Fitted(new Rect(r.x + 8, r.y - r.height * .12f, w, h), tag); tagW = w + 6; }
             Rect inner = Content(r, KitPiece.Button, false);
             KitCaption(new Rect(Mathf.Max(inner.x, r.x + 8 + tagW), r.y, inner.xMax - Mathf.Max(inner.x, r.x + 8 + tagW), r.height), label, state == 1 ? new Color(1f, .88f, .60f) : KitCream, like, true);
-            return GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
     }
 }

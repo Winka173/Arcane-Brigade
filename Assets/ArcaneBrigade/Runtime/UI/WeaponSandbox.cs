@@ -318,17 +318,17 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(100, 270, 1050, 150), "No discovered weapons yet. Acquire weapons in a real run first.\nDiscovering a companion does not unlock every weapon it might receive.", text);
                 return;
             }
-            if (GUI.Button(new Rect(65, 230, 140, 55), "← PREVIOUS", button)) CycleWeapon(-1);
+            if (TouchTargets.Button(new Rect(65, 230, 140, 55), "← PREVIOUS", button)) CycleWeapon(-1);
             GUI.Label(new Rect(225, 235, 600, 50), RunUICopy.WeaponName(SelectedWeaponId) + "  (" + (selected + 1) + "/" + weapons.Count + ")", text);
-            if (GUI.Button(new Rect(1045, 230, 170, 55), "SAU →", button)) CycleWeapon(1);
+            if (TouchTargets.Button(new Rect(1045, 230, 170, 55), "SAU →", button)) CycleWeapon(1);
             if (PreviewTexture != null) GUI.DrawTexture(new Rect(65, 300, 760, 300), PreviewTexture, ScaleMode.ScaleToFit, false);
             if (descriptionText == null) descriptionText = new GUIStyle(text) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote), wordWrap = true, alignment = TextAnchor.UpperLeft };
             GUI.Label(new Rect(65, 605, 760, 95), SignatureDescription.Describe(Attacker.Definition.Weapon, Tier), descriptionText);
             GUI.Label(new Rect(850, 295, 365, 75), "Preview tier " + Tier + " · not owned yet\nNo relics, bonds or passives", text);
             for (int index = 1; index <= 3; index++)
-                if (GUI.Button(new Rect(850 + (index - 1) * 122, 380, 115, 55), "TIER " + index, button)) SetTier(index);
-            if (GUI.Button(new Rect(850, 450, 365, 55), MovingTarget ? "TARGET: MOVING" : "TARGET: STATIONARY", button)) SetMovingTarget(!MovingTarget);
-            if (GUI.Button(new Rect(850, 520, 365, 55), "RETRY · R", button)) ResetPreview();
+                if (TouchTargets.Button(new Rect(850 + (index - 1) * 122, 380, 115, 55), "TIER " + index, button)) SetTier(index);
+            if (TouchTargets.Button(new Rect(850, 450, 365, 55), MovingTarget ? "TARGET: MOVING" : "TARGET: STATIONARY", button)) SetMovingTarget(!MovingTarget);
+            if (TouchTargets.Button(new Rect(850, 520, 365, 55), "RETRY · R", button)) ResetPreview();
             if (instructionText == null) instructionText = new GUIStyle(text) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote), wordWrap = false, alignment = TextAnchor.UpperLeft };
             GUI.Label(new Rect(850, 585, 365, 110), RunUIHints.Device == RunUIDevice.Controller ? "Auto-attack · immortal\nLB/RB: weapon · A: tier\nX: target · Y: retry\nB: back" : RunUIHints.Device == RunUIDevice.Touch ? "Auto-attack · immortal\nTap buttons to change weapon, tier\nand target movement\nTap BACK to close" : "Auto-attack · immortal\nArrows: weapon · 1–3: tier\nT: target · R: retry\nEsc: back", instructionText);
         }

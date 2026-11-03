@@ -30,7 +30,7 @@ namespace ArcaneBrigade
         {
             if (Crafted) return false;
             Sprite sprite = KitSprite(key); if (sprite == null) return false;
-            Sliced(r, sprite, scale); return true;
+            Sliced(r, sprite, scale * PaintedPerTexel(key, sprite.texture)); return true; // the scale is in painted pixels
         }
 
         // rows above the button's face (the crest and the curls), measured on the art by the cutter
@@ -168,7 +168,7 @@ namespace ArcaneBrigade
             Rect inner = compact ? new Rect(r.x + cap, r.y, r.width - 2 * cap, r.height) : Content(r, KitPiece.Button, false); // inside the caps, vertically centred on the face
             float gem = !compact && kind == KitButton.Primary ? r.height * .04f : 0; // the gem crest sits on the top rim, outside the face: the words centre on the face (.16 put them low)
             if (!string.IsNullOrEmpty(label)) KitCaption(new Rect(inner.x, r.y + gem, inner.width, r.height - gem), label, text, like, true);
-            return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return enabled && TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
 
         /// <summary>A small round painted button (brass / walnut / oxblood medallion base) with a glyph or a picture in it.</summary>
@@ -185,7 +185,7 @@ namespace ArcaneBrigade
             if (arrow >= 0) Arrow(face, arrow, kind == KitRound.Brass ? KitInk : KitCream);
             else if (!string.IsNullOrEmpty(glyph))
                 KitCaption(face, glyph, kind == KitRound.Brass ? KitInk : KitCream, like, true);
-            return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return enabled && TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
         /// <summary>An arrow drawn on the painted face's exact centre (requirement 24/10/2026: the font's ◀ ▶ sat off-centre in the round
         /// buttons). The triangle's visual weight is centred, not its box, with a dark ink edge under it. dir: 0 left, 1 right, 2 up, 3 down.</summary>
@@ -246,7 +246,7 @@ namespace ArcaneBrigade
         public static bool Medallion(Rect r, KitMedallion which, bool lit = false)
         {
             MedallionArt(r, which, State(r, true), lit);
-            return GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
 
         // ---------------------------------------------------------------- frames, plaques, dividers
@@ -296,7 +296,7 @@ namespace ArcaneBrigade
             Color text = !enabled ? new Color(.80f, .76f, .70f, .8f) : art == "TabHover" ? KitInk : KitCream;
             Rect inner = slim ? new Rect(r.x + 22 * r.height / 96f + 6, r.y, r.width - 2 * (22 * r.height / 96f + 6), r.height) : Content(r, KitPiece.Tab, false);
             if (!string.IsNullOrEmpty(label)) KitCaption(slim ? inner : new Rect(inner.x, r.y + r.height * .24f, inner.width, r.height * .66f), label, slim && enabled ? KitCream : text, like, true); // below the crest's leaves, which dip into the bar
-            return enabled && GUI.Button(r, GUIContent.none, GUIStyle.none);
+            return enabled && TouchTargets.Button(r, GUIContent.none, GUIStyle.none);
         }
 
         /// <summary>A painted switch (dark velvet off, lit lantern on) with its label to the right. The whole row is the tap area.</summary>
@@ -319,7 +319,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(knob.xMax + 12, r.y, r.width - knob.width - 12, r.height), label, style);
                 style.alignment = TextAnchor.MiddleCenter;
             }
-            return GUI.Button(r, GUIContent.none, GUIStyle.none) ? !value : value;
+            return TouchTargets.Button(r, GUIContent.none, GUIStyle.none) ? !value : value;
         }
 
         /// <summary>A painted checkbox (velvet square in a brass frame, an ink tick when checked).</summary>
@@ -355,6 +355,7 @@ namespace ArcaneBrigade
             Sprite sprite = KitSprite(key); if (sprite == null) return false;
             if (Event.current.type != EventType.Repaint) return true;
             Texture2D t = sprite.texture; float W = t.width, k = r.height / t.height;
+            float perTexel = PaintedPerTexel(key, t); leftCap /= perTexel; rightCap /= perTexel; // the caps are in painted pixels
             float l = leftCap * k, rr = rightCap * k;
             if (l + rr > r.width) { float s = r.width / (l + rr); l *= s; rr *= s; }
             if (l > 0) GUI.DrawTextureWithTexCoords(new Rect(r.x, r.y, l, r.height), t, new Rect(0, 0, leftCap / W, 1));

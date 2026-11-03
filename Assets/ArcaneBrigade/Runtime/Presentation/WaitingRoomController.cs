@@ -287,7 +287,7 @@ namespace ArcaneBrigade
             string consequences="";
             for(int i=0;i<6;i++){var q=session.State.WaitingCampaign.CompanionChoices;if(q[i*3+2]>0)consequences+=WaitingCompanionQuests.Routes[i].Outcomes[4+q[i*3+2]-1]+"\n";}
             if(!rescue && !Modal && consequences.Length>0){ArcadeSkin.Plate(new Rect(60,750,1300,200),ArcadeSkin.Teal);GUI.Label(new Rect(80,770,1260,170),consequences,small);}
-            if(paused){RunHud.Fill(new Rect(450,390,1020,250),new Color(.02f,.03f,.06f));GUI.Label(new Rect(500,420,900,70),"PAUSED / THE ROOM WAITS",heading);if(GUI.Button(new Rect(650,530,620,65),"RESUME",button))paused=false;}
+            if(paused){RunHud.Fill(new Rect(450,390,1020,250),new Color(.02f,.03f,.06f));GUI.Label(new Rect(500,420,900,70),"PAUSED / THE ROOM WAITS",heading);if(TouchTargets.Button(new Rect(650,530,620,65),"RESUME",button))paused=false;}
             if(selected>=0)
             {
                 RunHud.Fill(new Rect(220,220,1480,780),new Color(.025f,.03f,.055f));

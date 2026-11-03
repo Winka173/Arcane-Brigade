@@ -288,7 +288,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "TAP TO READ", noteKey);
             ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 99 ? "99+" : count.ToString());
             GUI.matrix = before;
-            if (GUI.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();
+            if (TouchTargets.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();
         }
         private bool Press(Rect rectangle, string text)
         {
