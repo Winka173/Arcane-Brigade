@@ -9,8 +9,9 @@ namespace ArcaneBrigade
     {
         private static Sprite oil, keepsake, room;
         private static readonly Dictionary<string, Sprite> stations = new Dictionary<string, Sprite>();
-        public static Sprite LampOil => oil != null ? oil : oil = Resources.Load<Sprite>("UI/Meta/LampOil");
-        public static Sprite Keepsake => keepsake != null ? keepsake : keepsake = Resources.Load<Sprite>("UI/Meta/Keepsake");
+        // the free-standing flask and locket (review 4/11/2026: inside the same round red badge they looked alike at 30 px)
+        public static Sprite LampOil => oil != null ? oil : oil = Resources.Load<Sprite>("UI/Meta/LampOilBare") ?? Resources.Load<Sprite>("UI/Meta/LampOil");
+        public static Sprite Keepsake => keepsake != null ? keepsake : keepsake = Resources.Load<Sprite>("UI/Meta/KeepsakeBare") ?? Resources.Load<Sprite>("UI/Meta/Keepsake");
         public static Sprite Currency(MetaCurrency currency) => currency == MetaCurrency.LampOil ? LampOil : Keepsake;
         public static Sprite Room => room != null ? room : room = Resources.Load<Sprite>("Hub/WaitingRoomPainted") ?? Resources.Load<Sprite>("Hub/WaitingRoom");
         /// <summary>The room painted whole, its furniture and stations in it (review 31/10/2026: pasted pieces never shared its light).</summary>
@@ -566,7 +567,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Frame(r, KitFrame.Plaque);
             number.normal.textColor = ArcadeSkin.KitCream; number.alignment = TextAnchor.MiddleLeft;
             // requirement 24/10/2026: the icons sat on the plaque's scrolled end; lay them out inside the velvet (the frame's padded content)
-            Rect c = ArcadeSkin.Content(r, KitFrame.Plaque); float half = c.width * .5f, icon = Mathf.Min(40, c.height - 8);
+            Rect c = ArcadeSkin.Content(r, KitFrame.Plaque); float half = c.width * .5f, icon = Mathf.Min(46, c.height - 2); // big enough to tell apart
             RunHud.Sprite(new Rect(c.x + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.LampOil);
             GUI.Label(new Rect(c.x + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.LampOil.ToString("N0"), number);
             RunHud.Sprite(new Rect(c.x + half + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.Keepsake);

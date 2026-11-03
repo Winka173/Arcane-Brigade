@@ -191,9 +191,17 @@ namespace ArcaneBrigade
 
         /// <summary>A code-drawn themed plate (crisp at any size): use it where a painted piece cannot size cleanly - small chips
         /// and tags, tiny buttons, very wide or short bars, animated highlights.</summary>
+        /// <summary>The CodePlate state of a picked walnut row or tile: the same plate lacquered red (requirement 4/11/2026: a picked
+        /// row swapped the round walnut plate for the square oxblood one and changed shape).</summary>
+        public const int Chosen = 4;
         public static void CodePlate(Rect r, CodeTone tone, int state = 0)
         {
             if (Event.current.type != EventType.Repaint || r.width < 4 || r.height < 4) return;
+            if (state == Chosen)
+            {
+                if (!Crafted && DrawPiece(r, KitPiece.Plate, r.height <= 110 ? "Buttons/SecondaryChosenPlain" : "Buttons/SecondaryChosen")) return;
+                state = 1; // without the painted chosen plate, the lit one
+            }
             // the painted style: a walnut, oxblood or gold plate up to 110 px tall is the painted plain plate (it keeps its aspect;
             // DrawPiece refuses and audits any size it cannot draw cleanly)
             if (!Crafted && r.height <= 110 && (tone == CodeTone.Walnut || tone == CodeTone.Oxblood || tone == CodeTone.Gold)

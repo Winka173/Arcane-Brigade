@@ -92,7 +92,7 @@ namespace ArcaneBrigade
                 else
                 {
                     // not yet found: its dark silhouette under a padlock, a slow gleam passing over it (never an empty card)
-                    Color keepSil = GUI.color; GUI.color = new Color(0, 0, 0, .78f * keepSil.a);
+                    Color keepSil = GUI.color; GUI.color = new Color(.62f, .56f, .48f, .26f * keepSil.a); // a faint dusty shape behind the glass (a black one read as a smudge)
                     if (exhibit.Icon != null) RunHud.Sprite(new Rect(card.x + 60, card.y + 16, 104, 50), exhibit.Icon);
                     GUI.color = keepSil;
                     float gleam = Mathf.Repeat(Time.unscaledTime * .35f + index * .13f, 1);

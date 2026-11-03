@@ -22,7 +22,8 @@ namespace ArcaneBrigade
             unfinishedOnly = ArcadeSkin.Toggle(new Rect(915, 146, 320, 44), unfinishedOnly, "Show unfinished only"); // the painted switch (UI kit)
             int count = 0; foreach (var d in definitions) if (!unfinishedOnly || !profile.Achievements.Contains(d.Id)) count++;
             scroll = ScrollPanel.Begin(new Rect(60, 200, 1160, 455), scroll, new Rect(0, 0, 1120, Mathf.Max(450, Mathf.Ceil(count / 2f) * 164)));
-            Sprite sealDone = ArcadeSkin.KitSprite("Info/SealDone"), sealEmpty = ArcadeSkin.KitSprite("Info/SealEmpty");
+            // a memory kept wears its brass medal; one not yet kept the same medal, dim (an empty ring read as a radio button)
+            Sprite sealDone = ArcadeSkin.KitSprite("Info/MedalEarned") ?? ArcadeSkin.KitSprite("Info/SealDone"), sealEmpty = ArcadeSkin.KitSprite("Info/MedalUnearned") ?? ArcadeSkin.KitSprite("Info/SealEmpty");
             int index = 0;
             foreach (var d in definitions)
             {
@@ -43,7 +44,9 @@ namespace ArcaneBrigade
                 // a long title shrinks to stay on its one line (it lost its last word beside the seal)
                 ArcadeSkin.KitCaption(new Rect(left, card.y + 20, right - left, 30), (complete && seal == null ? "✓ " : "") + d.Name, title.normal.textColor, title, false);
                 text.wordWrap = true; text.clipping = TextClipping.Clip;
-                GUI.Label(new Rect(left, card.y + 50, right - left, 54), d.Description, text);
+                bool counted = d.Goal > 1; // a yes-or-no memory has no bar and no 0 / 1
+                GUI.Label(new Rect(left, card.y + 50, right - left, counted ? 54 : 84), d.Description, text);
+                if (!counted) continue;
                 float progress = complete ? d.Goal : RunAchievements.Progress(profile.AchievementEvidence, d);
                 Rect bar = new Rect(left, card.y + 114, card.xMax - 160 - left, 14);
                 if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24))

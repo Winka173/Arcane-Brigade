@@ -66,6 +66,8 @@ namespace ArcaneBrigade
         private Vector2 hallExitTarget;
         private StageTransfer stageTransfer;
         public bool PresentationPaused => pauseGate.Paused;
+        /// <summary>The player opened the pause menu (not a lost focus or a story page).</summary>
+        public bool MenuPaused => pauseGate.Manual;
         public bool TransitionPending => transitionRemaining > 0 || SceneDissolve.Busy || stageTransfer != null && stageTransfer.Active;
         /// <summary>The won fight is still on screen (the last falls, a boss's death) before it melts into the shop: the view stays on the fight.</summary>
         public bool FightStillShown => session != null && session.State.Phase == SessionPhase.Shop && transitionRemaining > 0;

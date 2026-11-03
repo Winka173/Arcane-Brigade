@@ -199,7 +199,7 @@ namespace ArcaneBrigade
                 Matrix4x4 unscaled = GUI.matrix;
                 // the picked one keeps its size and place (the chosen seal marks it)
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
-                if (unit != null) RunHud.Sprite(new Rect(frame.x + 22, frame.y + 20, 74, 74), unit.Body);
+                if (unit != null) RunHud.Sprite(new Rect(frame.x + 12, frame.y + 10, 94, 94), unit.Body); // the friend fills its medallion
                 GUI.matrix = unscaled;
                 if (chosen) ArcadeSkin.PickedSeal(frame); // the picked friend's medallion is stamped
                 names.normal.textColor = chosen ? new Color(.62f, .27f, .05f) : ink; // and its name in warm brown

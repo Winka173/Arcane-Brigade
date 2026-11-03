@@ -162,9 +162,9 @@ namespace ArcaneBrigade
                     string piece = options.Length == 1 ? "Middle" : i == 0 ? "Left" : i == options.Length - 1 ? "Right" : "Middle";
                     Rect s = Shift(r);
                     Color keep = GUI.color; if (!can) GUI.color = new Color(keep.r * .6f, keep.g * .6f, keep.b * .6f, keep.a);
-                    ArcadeSkin.Strip(s, "Controls/Segment" + piece + (i == selected ? "Selected" : "Normal"), piece == "Left" ? 24 : 0, piece == "Right" ? 24 : 0);
+                    ArcadeSkin.Strip(s, "Controls/Segment" + piece + (i == selected ? ChosenPiece : "Normal"), piece == "Left" ? 24 : 0, piece == "Right" ? 24 : 0);
                     GUI.color = keep;
-                    ArcadeSkin.KitCaption(new Rect(s.x + 14, s.y, s.width - 28, s.height), options[i], i == selected ? ArcadeSkin.KitInk : can ? ArcadeSkin.KitCream : new Color(.7f, .66f, .6f), segmentStyle, true);
+                    ArcadeSkin.KitCaption(new Rect(s.x + 14, s.y, s.width - 28, s.height), options[i], i == selected ? (ChosenPiece == "Chosen" ? new Color(1f, .9f, .62f) : ArcadeSkin.KitInk) : can ? ArcadeSkin.KitCream : new Color(.7f, .66f, .6f), segmentStyle, true);
                     if (Hit(r) && i != selected) picked = i;
                 }
                 else
@@ -225,12 +225,29 @@ namespace ArcaneBrigade
             PresentationSettings.Apply(profile);
             if (display) PresentationSettings.ApplyDisplay(profile);
         }
+        /// <summary>The chosen segment is the same piece lacquered red (gold read as the screen's main button).</summary>
+        private static string ChosenPiece => ArcadeSkin.KitSprite("Controls/SegmentMiddleChosen") != null ? "Chosen" : "Selected";
+        private static GUIStyle stepStyle;
+        /// <summary>A round walnut step button with its sign centred on the disc.</summary>
+        private static bool Step(Rect r, string sign)
+        {
+            bool pressed = Hit(r);
+            Rect at = Shift(r);
+            Sprite plate = ArcadeSkin.KitSprite("Buttons/RoundWalnut");
+            if (plate != null && !ArcadeSkin.Crafted) RunHud.Sprite(at, plate); else ArcadeSkin.CodePlate(at, CodeTone.Walnut);
+            stepStyle ??= new GUIStyle(ArcadeTypography.Style(32, true)) { alignment = TextAnchor.MiddleCenter };
+            stepStyle.normal.textColor = ArcadeSkin.KitCream;
+            GUI.Label(ArcadeSkin.RoundFace(at, KitRound.Walnut), sign, stepStyle);
+            return pressed;
+        }
         private static void Volume(Action<Rect, string> label, ref float y, string caption, float value, Action<float> setter)
         {
             label(Shift(new Rect(75, y + 8, 330, 36)), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
-            float changed = GUI.HorizontalSlider(Shift(new Rect(420, y + 7, 350, 36)), value, 0, 1); // room for wide buttons: a painted cap eats the ends
-            if (Button(new Rect(790, y, 200, RowControl), "−10%")) changed = Mathf.Max(0, value - 0.1f);
-            if (Button(new Rect(1005, y, 200, RowControl), "+10%")) changed = Mathf.Min(1, value + 0.1f);
+            // the slider is the control; a small round step button sits at each end of it (keys and pads step by 10%), never the
+            // wide flat-ended plates that crowded the row (review 4/11/2026)
+            float changed = GUI.HorizontalSlider(Shift(new Rect(500, y + 7, 625, 36)), value, 0, 1);
+            if (Step(new Rect(430, y - 3, 56, 56), "−")) changed = Mathf.Max(0, value - 0.1f);
+            if (Step(new Rect(1139, y - 3, 56, 56), "+")) changed = Mathf.Min(1, value + 0.1f);
             y += RowStep;
             if (Mathf.Abs(changed - value) < 0.005f) return;
             setter(changed);

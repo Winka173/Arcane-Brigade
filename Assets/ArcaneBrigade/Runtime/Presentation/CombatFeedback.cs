@@ -6,6 +6,7 @@ namespace ArcaneBrigade
 {
     public sealed class CombatFeedback : MonoBehaviour
     {
+        private const float HudBand = .8f; // viewport height above which the HUD sits
         private float lastDodgeWord = -10;
         private sealed class Spark
         {
@@ -296,6 +297,13 @@ namespace ArcaneBrigade
                     number.Velocity.x *= 1f - Mathf.Min(1f, deltaTime * 2.5f);
                 }
                 float tremble = number.Shake > 0 && !PresentationSettings.ReducedMotion ? Mathf.Sin(number.Age * 70f) * 0.07f * number.Shake * Mathf.Clamp01(1f - number.Age / 0.45f) : 0f;
+                // numbers stay under the HUD band at the top of the screen (they printed over the hero's health, the gold and the wave)
+                Camera view = Camera.main;
+                if (view != null)
+                {
+                    Vector3 seen = view.WorldToViewportPoint(new Vector3(number.Position.x, number.Position.y, 0));
+                    if (seen.y > HudBand) { seen.y = HudBand; number.Position.y = view.ViewportToWorldPoint(seen).y; if (number.Velocity.y > 0) number.Velocity.y = 0; }
+                }
                 number.View.transform.position = new Vector3(number.Position.x + tremble, number.Position.y, -2f);
                 float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01(1f - number.Age / 0.1f);
                 number.View.transform.localScale = new Vector3(1f + 0.55f * pop, 1f + 0.35f * pop, 1);

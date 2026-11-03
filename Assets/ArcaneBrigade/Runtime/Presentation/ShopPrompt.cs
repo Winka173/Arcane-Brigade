@@ -19,7 +19,7 @@ namespace ArcaneBrigade
             {
                 heading = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Display ?? ArcadeTypography.Body, fontSize = 30, alignment = TextAnchor.MiddleCenter, wordWrap = false };
                 heading.normal.textColor = new Color(1, .79f, .39f);
-                line = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 19, alignment = TextAnchor.MiddleCenter, wordWrap = true };
+                line = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 25, alignment = TextAnchor.MiddleCenter, wordWrap = true }; // readable on a phone (19 was too small)
                 line.normal.textColor = new Color(.95f, .92f, .84f);
                 primary = ArcadeSkin.Primary(new GUIStyle(ArcadeSkin.Skin.button) { font = ArcadeTypography.Body, fontSize = 20, wordWrap = true, alignment = TextAnchor.MiddleCenter });
             }
@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             LivingUI.Pop(age, Frame.center);
             ArcadeSkin.Frame(Frame, KitFrame.Dialogue, .6f);
             GUI.Label(new Rect(420, 858, 1080, 44), title, heading);
-            GUI.Label(new Rect(440, 906, 800, 64), plain, line);
+            GUI.Label(new Rect(430, 900, 810, 76), plain, line);
             bool pressed = ArcadeSkin.KitGuiButton(new Rect(1260, 916, 230, 56), verb, primary);
             GUI.matrix = m; GUI.color = c;
             return pressed;

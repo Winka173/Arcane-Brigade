@@ -742,9 +742,8 @@ namespace ArcaneBrigade
                 bool unlocked = HeroUnlocks.Open(profile, unit);
                 Rect card = RosterCardBounds(slot);
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .42f); else RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
-                // the chosen hero is lit from inside its card (a light round it in the cards' 10 px gaps drew as bars): a warm glow
-                // behind the hero, a pool of light at its feet, rising motes; the other heroes stand a little in shadow
-                // the chosen hero wears the chosen seal (drawn at the end of its card); the others stand a little in shadow
+                // the chosen hero's card is stamped (drawn at the end of its card); the others stand a little in shadow, and a
+                // locked hero is a dark silhouette with a lock (requirement 4/11/2026: locked heroes looked playable)
                 if (navigation.Button(card, "", GUIStyle.none))
                 {
                     if (selection != index) rosterDescriptionScroll = Vector2.zero;
@@ -752,17 +751,18 @@ namespace ArcaneBrigade
                     if (!unlocked) ExplainLocked(unit, card);
                 }
                 Color previousColor = GUI.color;
-                if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
+                if (!unlocked) GUI.color = new Color(0.22f, 0.22f, 0.28f);
                 else if (index != selection) GUI.color = new Color(.7f, .7f, .76f); // the others stand in shadow
-                float portraitSize = index == selection ? 170 : 160; // the hero fills its card (it stood small in a big frame)
-                // portrait + name centred in the card (requirement 21/10/2026); a locked hero lifts them to leave room for its chip
-                float top = card.y + (unlocked ? 12 : 6);
+                const float portraitSize = 160; // the hero fills its card; the chosen one keeps its size (nothing shifts)
+                // portrait and name at the same place on every card, locked or not; a locked one's chip sits under its name
+                float top = card.y + 8;
                 RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 150), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
                 GUI.color = previousColor;
                 TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(card.x + 10, top + 154, card.width - 20, unlocked ? 52 : 40), RunUICopy.UnitName(unit), caption);
+                GUI.Label(new Rect(card.x + 10, top + 152, card.width - 20, 40), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
                 if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 202, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
+                if (!unlocked) ArcadeSkin.Lock(new Vector2(card.x + 34, card.y + 34), 22, ArcadeSkin.KitCream); // the same lock as the collection's
                 if (index == selection) ArcadeSkin.PickedSeal(card); // the chosen hero's card is stamped
             }
             ScrollPanel.End();
@@ -930,9 +930,9 @@ namespace ArcaneBrigade
                         MetaPact pact = MetaProgression.Pacts[i];
                         Rect row = new Rect(card.x + 40, card.y + 104 + i * 64, card.width - 80, 56);
                         bool on = MetaProgression.PactOn(meta.Pacts, i);
-                        ArcadeSkin.CodePlate(row, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
+                        ArcadeSkin.CodePlate(row, CodeTone.Walnut, on ? ArcadeSkin.Chosen : 0); // the chosen pact: the same plate, lacquered red
                         Rect seal = new Rect(row.x + 10, row.y + 6, 44, 44);
-                        if (ArcadeSkin.KitSprite("Info/SigilSealWax") is Sprite wax) RunHud.Sprite(seal, wax); else RunHud.Sprite(seal, MetaIcons.Station(MetaStation.NightPact, true));
+                        if (MetaHub.CurseSeal(i) is Sprite wax) RunHud.Sprite(seal, wax); else RunHud.Sprite(seal, MetaIcons.Station(MetaStation.NightPact, true));
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = on ? ArcadeSkin.Gold : ArcadeSkin.KitCream;
                         GUI.Label(new Rect(row.x + 66, row.y, 220, row.height), pact.Name, overlayTitle);
                         overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
@@ -957,7 +957,7 @@ namespace ArcaneBrigade
                     {
                         Rect row = new Rect(card.x + 40, card.y + 76 + i * 64, card.width - 80, 56);
                         bool sealedRow = i > unlocked, chosen = i == difficulty;
-                        ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? 1 : 0);
+                        ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? ArcadeSkin.Chosen : 0);
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = RunMeta.DifficultyColor(i);
                         GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
                         if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);

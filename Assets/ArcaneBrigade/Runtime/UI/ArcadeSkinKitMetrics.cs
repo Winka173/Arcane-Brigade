@@ -33,6 +33,8 @@ namespace ArcaneBrigade
             ["Buttons/SecondaryHoverPlain"] = new UnityEngine.RectInt(13, 25, 338, 135),
             ["Buttons/SecondaryNormal"] = new UnityEngine.RectInt(7, 51, 530, 142),
             ["Buttons/SecondaryNormalPlain"] = new UnityEngine.RectInt(13, 25, 338, 135),
+            ["Buttons/SecondaryChosen"] = new UnityEngine.RectInt(7, 51, 530, 142),
+            ["Buttons/SecondaryChosenPlain"] = new UnityEngine.RectInt(13, 25, 338, 135),
             ["Buttons/SecondaryPressed"] = new UnityEngine.RectInt(7, 51, 530, 142),
             ["Buttons/SecondaryPressedPlain"] = new UnityEngine.RectInt(13, 25, 338, 135),
             ["Controls/Back"] = new UnityEngine.RectInt(20, 26, 54, 44),

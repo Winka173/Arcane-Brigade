@@ -99,7 +99,6 @@ namespace ArcaneBrigade
                 actors.Add(actor);
             }
         }
-        private GUIStyle chipLine;
         private void OnGUI()
         {
             if (mode == 0 || owner == null || owner.TransitionPending || owner.PresentationPaused) return;
@@ -162,25 +161,13 @@ namespace ArcaneBrigade
                     cardName.alignment = TextAnchor.MiddleLeft; cardName.wordWrap = false; cardName.normal.textColor = RunModifierRules.RarityColor(giftCard.Rarity);
                     GUI.Label(new Rect(tx, panel.y + 16, tw, 46), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     cardLine.normal.textColor = ArcadeSkin.Cream;
-                    // a friend shows the weapon it comes with, on the same walnut chip as the shop's card (requirement 25/10/2026)
+                    // a friend's weapon is the first line, on the WEAPON plate, as on the shop's card (requirement 4/11/2026)
                     float below = panel.y + 66;
-                    if (ally != null && !string.IsNullOrEmpty(giftCard.AttackLabel))
-                    {
-                        float chipW = Mathf.Min(tw, 62 + cardLine.CalcSize(new GUIContent(giftCard.AttackLabel)).x + 22);
-                        Rect chip = new Rect(tx, below, chipW, 46);
-                        ArcadeSkin.Chip(chip, false);
-                        if (giftCard.AttackIcon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), giftCard.AttackIcon);
-                        // the words on the chip's own middle line, as on the shop's card (requirement 25/10/2026: they rode high)
-                        chipLine ??= new GUIStyle(cardLine) { alignment = TextAnchor.MiddleLeft, wordWrap = false };
-                        chipLine.normal.textColor = cardLine.normal.textColor;
-                        float middle = ArcadeSkin.ChipIconRect(chip).center.y + chip.height * .1f;
-                        GUI.Label(new Rect(chip.x + 60, middle - chip.height * .5f, chip.width - 70, chip.height), giftCard.AttackLabel, chipLine);
-                        below += 54;
-                    }
+                    string full = (ally != null && !string.IsNullOrEmpty(giftCard.AttackLabel) ? giftCard.AttackLine + "\n" : "") + giftCard.Summary;
                     // as many whole lines as fit above the bottom rim (a fourth line ran onto the frame)
-                    float room = panel.yMax - 30 - below; int lines = ally != null ? 3 : 4;
-                    string summary = FirstLines(giftCard.Summary, lines);
-                    while (lines > 1 && GlossaryUI.Height(summary, cardLine, tw) > room) summary = FirstLines(giftCard.Summary, --lines);
+                    float room = panel.yMax - 30 - below; int lines = 4;
+                    string summary = FirstLines(full, lines);
+                    while (lines > 1 && GlossaryUI.Height(summary, cardLine, tw) > room) summary = FirstLines(full, --lines);
                     GlossaryUI.Text(new Rect(tx, below, tw, room), summary, cardLine);
                     if (takeStyle == null) takeStyle = ArcadeSkin.Primary(new GUIStyle(choiceButton) { fontSize = 30 });
                     // the gift taken closes with its motion, then it is given (requirement 25/10/2026)

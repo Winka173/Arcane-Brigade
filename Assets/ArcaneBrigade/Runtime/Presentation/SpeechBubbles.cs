@@ -204,7 +204,9 @@ namespace ArcaneBrigade
                 float textWidth = Mathf.Min(maxWidth - 44, style.CalcSize(content).x + 4);
                 textWidth = Mathf.Max(textWidth, 120);
                 float textHeight = style.CalcHeight(content, textWidth);
-                bool named = !string.IsNullOrEmpty(bubble.Name);
+                // a bubble whose tail points at its speaker carries no name tab (requirement 4/11/2026: no words over heads; the tabs
+                // were clipped and repeated the boss bar and the bottom card); a voice from off screen still says who speaks
+                bool named = !tailed && !string.IsNullOrEmpty(bubble.Name);
                 float top = named ? 38 : 12;
                 var size = new Vector2(textWidth + 44, textHeight + top + 18);
 

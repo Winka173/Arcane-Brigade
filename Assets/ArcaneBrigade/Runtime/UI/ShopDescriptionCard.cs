@@ -224,14 +224,12 @@ namespace ArcaneBrigade
                 var row = Bonds[i]; var bond = row.Bond;
                 Rect box = new Rect(bounds.x + 270 + i % columns * (width + 8), bounds.y + i / columns * 180, width, 172);
                 bool activates = row.Activates;
-                Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
                 // code-drawn tile (requirement 21/10/2026): navy plate, lit and washed in the bond's colour when this purchase lights it
                 if (activates) ArcadeSkin.BlinkStrong(box, clock); // the tile this purchase lights blinks strongly (requirement 22/10/2026)
                 ArcadeSkin.CodePlate(box, CodeTone.Navy, activates ? 1 : 0);
                 if (activates) ArcadeSkin.BlinkStrong(box, clock, true); // (no pale box blinked over the tile: never a rectangle over painted art)
                 Rect bi = Inner(box); // clear of the tile's ornate rim
                 bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
-                if (activates) ArcadeSkin.RunningLight(box, animate ? clock : 0, accent); // two sparks chase round the tile
                 float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
                 DrawSprite(new Rect(bi.x + 16 - 16 * grow, bi.y + 17 - 16 * grow, 32 * grow, 32 * grow), bond.Icon);
                 int target = activates ? row.Next : bond.NextThreshold(row.After);
@@ -257,6 +255,9 @@ namespace ArcaneBrigade
         public Sprite AttackIcon => Attack == null ? null : (Attack.Weapon != null ? Attack.Weapon.Kind != WeaponKind.Projectile : !Attack.Ranged)
             ? CompanionRoles.Badge(CompanionRole.Striker) : rangedIcon != null ? rangedIcon : rangedIcon = Resources.Load<Sprite>("MienCho/ActOne/Stat_RangedDamage");
         private static Sprite rangedIcon;
+        /// <summary>The weapon as the card's first line, on the same neutral plate as DRINK or FOOD, so it never looks like a bond
+        /// chip (requirement 4/11/2026: the weapon and the bonds wore identical chips).</summary>
+        public string AttackLine => Attack == null ? "" : "{tag:WEAPON} " + AttackLabel;
         public string AttackLabel => Attack == null ? "" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) + " · " + RecruitAttackReadout.Damage(Attack.MaxDamage) + " dmg"
             : RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " dmg";
         /// <summary>An HP-priced offer opens its COSTS with what it really costs (requirement 22/10/2026): "−N max HP for this run",

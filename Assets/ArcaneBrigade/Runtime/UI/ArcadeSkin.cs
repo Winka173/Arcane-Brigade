@@ -215,11 +215,12 @@ namespace ArcaneBrigade
                 {
                     if (lit) Glow(new Rect(rectangle.x - 18, rectangle.y - 18, rectangle.width + 36, rectangle.height + 36), new Color(Gold.r, Gold.g, Gold.b, .3f));
                     Frame(rectangle, KitFrame.Dialogue);
-                    if (lit) RunningLight(rectangle, Time.unscaledTime, Gold, .8f); // a selected plate: the light runs round it
                     return;
                 }
                 KitButton kind = danger ? KitButton.Danger : KitButton.Secondary;
                 // the painted plain plate wherever it keeps its aspect (any width, 17-110 px tall); else the code-drawn plate
+                // a picked (gold) walnut plate is the same plate lacquered red, never another shape
+                if (lit && !danger && !off && DrawPiece(rectangle, KitPiece.Plate, "Buttons/SecondaryChosenPlain")) return;
                 if (DrawPiece(rectangle, KitPiece.Plate, "Buttons/" + kind + (off ? "DisabledPlain" : lit ? "HoverPlain" : "NormalPlain"))) return;
                 CodePlate(rectangle, danger ? CodeTone.Oxblood : CodeTone.Walnut, off ? 3 : lit ? 1 : 0);
                 return;

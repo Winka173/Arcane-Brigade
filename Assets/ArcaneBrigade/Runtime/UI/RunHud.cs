@@ -95,6 +95,8 @@ namespace ArcaneBrigade
         {
             if (pausePage != pauseShown || Time.frameCount - pauseDrawnFrame > 2) { pauseShown = pausePage; pauseAt = Time.unscaledTime; }
             pauseDrawnFrame = Time.frameCount;
+            // the paused world steps back behind the menu (it drew straight over the room, a speech bubble poking out above it)
+            Fill(new Rect(-1920, -1080, 5760, 3240), new Color(.02f, .02f, .05f, .62f));
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - pauseAt, new Vector2(960, 540));
             try { DrawPausePage(owner); }
@@ -511,14 +513,15 @@ namespace ArcaneBrigade
                 Sprite(fallen ? new Rect(265, 372, 200, 190) : new Rect(225, 378, 280, 280), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(fallen ? new Rect(455, 500, 80, 80) : new Rect(490, 560, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
                 if (fallen) DrawFallenWord(owner, state, new Rect(115, 608, 565, 84));
-                TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(115, 700, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
-                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
-                if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
+                TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(115, 692, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
+                // one column of full-width plates, one shape for all (review 4/11/2026: two wide ornate plates and two square-ended ones)
+                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 744, 560, 56), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
-                if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 750, 560, 60), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
-                if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
+                if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 744, 560, 56), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
+                if (navigation.Button(new Rect(115, 806, 560, 56), "PLAY AGAIN", primary)) owner.RestartRun();
                 // the summary names what was earned for the Waiting Room: one tap to where it is spent
-                if (navigation.Button(new Rect(115, 900, 560, 60), "WAITING ROOM · LAMP TREE", button)) owner.ReturnToWaitingRoom();
+                if (navigation.Button(new Rect(115, 868, 560, 56), "WAITING ROOM · LAMP TREE", button)) owner.ReturnToWaitingRoom();
+                if (navigation.Button(new Rect(115, 930, 560, 56), "MAIN MENU", button)) owner.ReturnToMenu();
                 invoice.Draw(new Rect(770, 200, 1060, 750), state, owner.Content);
                 GUI.matrix = resultMatrix; GUI.color = resultColour;
             }
@@ -603,8 +606,8 @@ namespace ArcaneBrigade
                 float x = panel.x + 210, width = buy.x - 24 - x;
                 GUI.Label(new Rect(x, panel.y + 22, width, 44), shop.DisplayName(station), cardName); // clear of the frame's top rim
                 float y = panel.y + 70;
-                if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
-                string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                if (station.Offer != null && offerCard.Attack != null && offerCard.Bonds.Count > 0) y = ShopChips(x, y, width);
+                string source = station.Offer != null ? (offerCard.Attack != null ? offerCard.AttackLine + "\n" : "") + offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
                 int lineSize = cardLine.fontSize;
                 string body = Fit(source, width, panel.yMax - 24 - y, out int more); // the last line stays clear of the bottom rim (it may shrink the words a little)
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 20 - y), body, cardLine);
@@ -693,7 +696,7 @@ namespace ArcaneBrigade
             more = Mathf.Max(0, all.Length - lines);
             return string.Join("\n", all, 0, Mathf.Min(lines, all.Length));
         }
-        /// <summary>A companion's chips: its weapon's attack and each bond it counts toward (now / next).</summary>
+        /// <summary>A companion's bond chips: each bond it counts toward (now / next). Its weapon is a WEAPON line in the text below.</summary>
         private float ShopChips(float x, float y, float width)
         {
             // chips with real room (requirement 22/10/2026): the icon in the chip's socket, 10 px before the words, 16 after them and
@@ -710,11 +713,8 @@ namespace ArcaneBrigade
                 float w = Mathf.Min(room, Need());
                 if (w < 110) { cardChip.fontSize = size; return; }
                 Rect chip = new Rect(cx, rowY, w, H);
-                // a bond this friend lights (review 31/10/2026: too faint): a gold aura breathing behind the chip and two sparks
-                // running round its rounded outline
-                if (lit) ArcadeSkin.SelectedAura(chip, new Color(1f, .8f, .35f), 60, true); // under the chip, round at its ends
+                // a bond this friend lights wears the lit chip (its own painted gold rim); nothing circles it
                 ArcadeSkin.Chip(chip, lit); // the painted walnut chip with its icon socket
-                if (lit) ArcadeSkin.OrbitSparks(chip, new Color(1f, .85f, .45f));
                 if (icon != null) ShopDescriptionCard.DrawSprite(ArcadeSkin.ChipIconRect(chip), icon); // on the socket's measured centre
                 cardChip.normal.textColor = lit ? new Color(1f, .9f, .55f) : ArcadeSkin.Cream; // lit words stay bright (a blink dimmed them below the unlit ones)
                 // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
@@ -724,7 +724,6 @@ namespace ArcaneBrigade
                 cx += w + Gap;
             }
             // (no COMBO chip: plain counts are required; a combo is listed under the details' COMBOS)
-            Chip(offerCard.AttackIcon, offerCard.AttackLabel, false); // the weapon this friend comes with
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates);
             return rowY + H + 10;
         }

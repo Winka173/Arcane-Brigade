@@ -300,7 +300,7 @@ namespace ArcaneBrigade
                         // the chosen card lifts a little; the others step back into the dark
                         Color keep = GUI.color; if (!c.Enabled) GUI.color = new Color(keep.r * .7f, keep.g * .7f, keep.b * .75f, keep.a * .7f);
                         else if (selected >= 0 && !lit) GUI.color = new Color(keep.r * .72f, keep.g * .72f, keep.b * .76f, keep.a);
-                        if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? 1 : 0);
+                        if (cardArt != null) DrawSprite(plate, cardArt); else ArcadeSkin.CodePlate(plate, CodeTone.Walnut, !c.Enabled ? 3 : lit ? ArcadeSkin.Chosen : 0);
                         Vector2 socket = new Vector2(plate.center.x, plate.y + ch * CardSocketV);
                         float hole = cw * CardSocketD;
                         DrawFitted(new Rect(socket.x - hole * .4f, socket.y - hole * .4f, hole * .8f, hole * .8f), c.Icon != null ? c.Icon : SecretArt.Relic(s.Kind));
@@ -585,7 +585,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < choices.Count; i++)
             {
                 Rect cell = new Rect(panel.x + 40 + (i % 5) * (tile + gap), panel.y + 80 + (i / 5) * (tile + 118 + gap), tile, tile + 118);
-                ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? 1 : 0);
+                ArcadeSkin.CodePlate(new Rect(cell.x, cell.y, tile, tile), CodeTone.Walnut, choices[i].chosen ? ArcadeSkin.Chosen : 0);
                 if (choices[i].icon != null) DrawSprite(new Rect(cell.x + 22, cell.y + 22, tile - 44, tile - 44), choices[i].icon);
                 if (choices[i].chosen) Stamp(new Rect(cell.x, cell.y, tile, tile));
                 // names and short descriptions wrap inside the tile's column and never run under each other (long names take two lines)

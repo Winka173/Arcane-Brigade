@@ -335,6 +335,17 @@ namespace ArcaneBrigade
         /// <summary>The scroll thumb of a ScrollPanel: a velvet lozenge in brass along a thin walnut rail.</summary>
         public static void ScrollBar(Rect track, Rect thumb)
         {
+            // the brass rail with its jewelled knob (review 4/11/2026: a thin red pill read as a placeholder); the rail stretches
+            // between its caps, the knob keeps its shape and sits on the thumb's middle
+            Sprite brass = Crafted ? null : KitSprite("Controls/ScrollRail"), knob = Crafted ? null : KitSprite("Controls/ScrollKnob");
+            if (brass != null && knob != null)
+            {
+                float w = Mathf.Max(track.width, 16);
+                Sliced(new Rect(track.center.x - w * .5f, track.y, w, track.height), brass, w / brass.texture.width);
+                float kw = w * 1.35f, kh = kw * 1.5f, ky = Mathf.Clamp(thumb.center.y - kh * .5f, track.y, track.yMax - kh);
+                GUI.DrawTexture(new Rect(track.center.x - kw * .5f, ky, kw, kh), knob.texture, ScaleMode.ScaleToFit);
+                return;
+            }
             Sprite rail = KitSprite("Controls/ScrollTrack"), grip = KitSprite("Controls/ScrollThumb");
             if (rail == null || grip == null) { Line(new Rect(thumb.center.x - 2.5f, thumb.y, 5, thumb.height), new Color(Gold.r, Gold.g, Gold.b, .75f)); return; }
             if (Crafted) { CodePlate(track, CodeTone.Navy); CodePlate(thumb, CodeTone.Gold); return; }

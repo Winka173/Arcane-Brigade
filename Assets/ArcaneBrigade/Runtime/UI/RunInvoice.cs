@@ -171,7 +171,7 @@ namespace ArcaneBrigade
             int columns = Mathf.Max(1, Mathf.FloorToInt(inner / 76));
             int relicRows = Mathf.CeilToInt(run.Items.Count / (float)columns);
             float bondHeight = cachedBonds.Count > 0 ? 50 + cachedBonds.Count * 76 : 0;
-            float height = 44 + shown * 96 + bondHeight + 20 + 166 + (run.Items.Count > 0 ? 50 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 50 : 0) + 10 + HaulHeight(run);
+            float height = 44 + shown * 104 + bondHeight + 20 + 166 + (run.Items.Count > 0 ? 50 + relicRows * 76 : 0) + (run.Phase == SessionPhase.Defeat ? 50 : 0) + 10 + HaulHeight(run);
             if (scrollToEnd) { scroll.y = height; scrollToEnd = false; }
             scroll = ScrollPanel.Begin(view, scroll, new Rect(0, 0, inner, height), new Color(ArcadeSkin.Paper.r * .6f, ArcadeSkin.Paper.g * .6f, ArcadeSkin.Paper.b * .6f, .5f));
             float y = 0;
@@ -186,7 +186,7 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(4, y + 8, 70, 70), unit != null ? unit.Body : null);
                 float textX = 86, right = 100;
                 GUI.Label(new Rect(textX, y, inner - textX - right, 36), (m.Hero ? "You · " : "") + Name(m.UnitId, catalog) + Stars(m.Stars), body);
-                Rect bar = new Rect(textX, y + 38, inner - textX - right, 18);
+                Rect bar = new Rect(textX, y + 46, inner - textX - right, 18); // clear of the name's descenders
                 // the share of damage on a painted walnut groove with a lamp-gold fill
                 if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24))
                 {
@@ -199,12 +199,12 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(bar.x, bar.y, bar.width * m.Share * reveal, bar.height), m.Hero ? ArcadeSkin.Accent : ArcadeSkin.Teal * .85f);
                 }
                 if (m.Damage > 0 || m.Kills > 0)
-                    GUI.Label(new Rect(textX, y + 58, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
+                    GUI.Label(new Rect(textX, y + 66, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
                 number.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(inner - right, y + 20, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
+                GUI.Label(new Rect(inner - right, y + 28, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
                 number.alignment = TextAnchor.UpperLeft;
                 GUI.color = keep;
-                y += 96;
+                y += 104;
             }
             if (cachedBonds.Count > 0)
             {

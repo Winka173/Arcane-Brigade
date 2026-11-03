@@ -60,6 +60,7 @@ namespace ArcaneBrigade
             navConfirm = false; navMoved = false;
         }
         /// <summary>Registers one focusable control; true when keys confirmed it this frame.</summary>
+        private GUIStyle letterName, letterLine;
         private bool Nav(Rect r, bool enabled = true)
         {
             int index = navCount++;
@@ -152,7 +153,7 @@ namespace ArcaneBrigade
                 Rect row = new Rect(area.x, listTop + (k - letterPage * perPage) * (rowH + gap), listW, rowH);
                 Flash(row, l.Id);
                 // the open letter glows warm behind its paper (never a rectangle drawn over the painted shape)
-                if (open) ArcadeSkin.Glow(new Rect(row.x - 16, row.y - 14, row.width + 32, row.height + 28), new Color(1f, .82f, .45f, .4f + .1f * Mathf.Sin(Time.unscaledTime * 2.4f)));
+                if (open) ArcadeSkin.Glow(new Rect(row.x - 16, row.y - 14, row.width + 32, row.height + 28), new Color(1f, .82f, .45f, .6f)); // steady: the one being read
                 if (!(earned && ArcadeSkin.PaperArt(row, read ? PaperKind.LetterRead : PaperKind.LetterUnread))) // a painted letter (its wax seal under the icon)
                     ArcadeSkin.CodePlate(row, read ? CodeTone.Cream : earned ? CodeTone.Gold : CodeTone.Walnut, open ? 1 : earned ? 0 : 3);
                 ItemDefinition relic = catalog.Item(l.Relic);
@@ -165,8 +166,11 @@ namespace ArcaneBrigade
                 float past = seal.x - row.x + 52; // clear of the seal's right edge (the painted seal is about 90 px across)
                 Rect words = new Rect(row.x + past, row.y + 9, row.width - past - 66, 56); // two lines; the folded corner takes the last 60 px
                 Color words2 = earned ? ArcadeSkin.KitInk : ArcadeSkin.KitCream; // cream on the dark walnut plate of a sealed letter
-                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 30), earned ? l.Name : "Sealed", words2, body);
-                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 30, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, small);
+                // the letter's name is the line to read (bold, larger); what it keeps or needs is the quieter line under it
+                letterName ??= new GUIStyle(ArcadeTypography.Style(26, true)) { wordWrap = false, clipping = TextClipping.Clip };
+                letterLine ??= new GUIStyle(ArcadeTypography.Style(21)) { wordWrap = false, clipping = TextClipping.Clip };
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y, words.width, 30), earned ? l.Name : "Sealed", open ? ArcadeSkin.Wax : words2, letterName);
+                ArcadeSkin.KitCaption(new Rect(words.x, words.y + 30, words.width, 26), !earned ? l.Milestone : read ? "Keeps " + (relic?.Name ?? "a relic") : "NEW", words2, letterLine);
                 if ((TouchTargets.Button(row, GUIContent.none, GUIStyle.none) | Nav(row, earned)) && earned)
                 {
                     letterOpen = i;
@@ -303,7 +307,7 @@ namespace ArcaneBrigade
                 // a clear gap between rows so each plate's ornaments never touch the next one, and the words clear of its rim
                 Rect r = new Rect(area.x, area.y + 56 + i * 82, area.width, 68);
                 Flash(r, pact.Id);
-                ArcadeSkin.CodePlate(r, on ? CodeTone.Oxblood : CodeTone.Walnut, on ? 1 : 0);
+                ArcadeSkin.CodePlate(r, CodeTone.Walnut, on ? ArcadeSkin.Chosen : 0); // the chosen pact: the same plate, lacquered red
                 // a chosen pact shows in its oxblood plate and its ticked box
                 Rect seal = new Rect(r.x + 18, r.y + 9, 50, 50);
                 PactIcon(seal, i, catalog);
@@ -321,8 +325,11 @@ namespace ArcaneBrigade
                 }
             }
         }
+        /// <summary>Each curse's own wax seal (review 4/11/2026: the run-start list showed one identical seal on every row).</summary>
+        public static Sprite CurseSeal(int pact) => ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("Info/" + (pact == MetaProgression.PactSwift ? "CurseSwift" : pact == MetaProgression.PactBareShelf ? "CurseBareShelf" : pact == MetaProgression.PactNoDream ? "CurseClosedMarket" : pact == MetaProgression.PactElites ? "CurseCrowned" : "CurseTemper"));
         private static void PactIcon(Rect r, int pact, RunCatalog catalog)
         {
+            if (CurseSeal(pact) is Sprite seal) { RunHud.Sprite(r, seal); return; }
             switch (pact)
             {
                 case MetaProgression.PactSwift: if (PaintedStatIcons.TryDraw(r, ItemEffect.EnemySpeed) || PaintedStatIcons.TryDraw(r, ItemEffect.MoveSpeed)) return; break;
