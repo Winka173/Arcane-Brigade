@@ -845,23 +845,36 @@ namespace ArcaneBrigade
                     int mergeTier = merge ? ShopMergePreview.ProjectedTier(owner.Session, station.Offer) : 0;
                     float mergeWidth = 108 + mergeTier * 18;
                     Rect category = new Rect(point.x - (merge ? mergeWidth / 2 : fit != null ? 78 : 56), ticket.y - 35, merge ? mergeWidth : fit != null ? 156 : 112, 32); // tags sized for 22-unit words
-                    ArcadeSkin.Slant(category, fit == "NEW" ? Color.Lerp(ArcadeSkin.Gold, Color.white, .15f) : fit == "STAR UP" ? Color.Lerp(ArcadeSkin.Teal, Color.white, .1f) : fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
-                    if (merge)
+                    // a friend you have not got yet hangs a red ribbon, not a tag the same shape as the type and rarity tags
+                    Sprite ribbon = fit == "NEW" && !ArcadeSkin.Crafted ? ArcadeSkin.KitSprite("Controls/NewRibbon") : null;
+                    if (ribbon != null)
                     {
-                        GUI.Label(new Rect(category.x + 3, category.y, 92, category.height), "MERGE", categoryStyle);
-                        // the stars it will make, plain and in the star's colour: silver two, gold three, purple four
-                        Color keepTint = GUI.color; GUI.color = UnitVisual.StarColour(mergeTier);
-                        for (int star = 0; star < mergeTier; star++) RunHud.Sprite(new Rect(category.x + 94 + star * 18, category.y + 7, 18, 18), K8Motion.TierStar());
-                        GUI.color = keepTint;
+                        Rect band = new Rect(point.x - 62, ticket.y - 44, 124, 52);
+                        RunHud.Sprite(band, ribbon);
+                        Color keepInk = categoryStyle.normal.textColor; categoryStyle.normal.textColor = new Color(1f, .9f, .62f);
+                        GUI.Label(new Rect(band.x + 18, band.y + 2, band.width - 36, band.height - 8), "NEW", categoryStyle);
+                        categoryStyle.normal.textColor = keepInk;
                     }
-                    else if (fit != null)
+                    else
                     {
-                        // the build-fit badge: the bond it raises (or the relic itself) and a short word
-                        if (fitIcon != null) RunHud.Sprite(new Rect(category.x + 8, category.y + 2, 22, 22), fitIcon);
-                        if (fitIcon != null) GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
-                        else GUI.Label(category, fit, categoryStyle);
+                        ArcadeSkin.Slant(category, fit == "NEW" ? Color.Lerp(ArcadeSkin.Gold, Color.white, .15f) : fit == "STAR UP" ? Color.Lerp(ArcadeSkin.Teal, Color.white, .1f) : fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
+                        if (merge)
+                        {
+                            GUI.Label(new Rect(category.x + 3, category.y, 92, category.height), "MERGE", categoryStyle);
+                            // the stars it will make, plain and in the star's colour: silver two, gold three, purple four
+                            Color keepTint = GUI.color; GUI.color = UnitVisual.StarColour(mergeTier);
+                            for (int star = 0; star < mergeTier; star++) RunHud.Sprite(new Rect(category.x + 94 + star * 18, category.y + 7, 18, 18), K8Motion.TierStar());
+                            GUI.color = keepTint;
+                        }
+                        else if (fit != null)
+                        {
+                            // the build-fit badge: the bond it raises (or the relic itself) and a short word
+                            if (fitIcon != null) RunHud.Sprite(new Rect(category.x + 8, category.y + 2, 22, 22), fitIcon);
+                            if (fitIcon != null) GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
+                            else GUI.Label(category, fit, categoryStyle);
+                        }
+                        else GUI.Label(category, item ? "RELIC" : "FRIEND", categoryStyle);
                     }
-                    else GUI.Label(category, item ? "RELIC" : "FRIEND", categoryStyle);
                 }
                 GUI.matrix = unrotated;
                 if (denied) GUI.Label(new Rect(point.x - 140, ticket.y - 65, 280, 35), station.Denial, denialStyle);

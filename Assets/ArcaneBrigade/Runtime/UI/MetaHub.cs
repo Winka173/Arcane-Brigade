@@ -333,7 +333,7 @@ namespace ArcaneBrigade
                 Rect lr = Bounds(lamp, MetaIcons.Station(MetaStation.Lantern, MetaProgression.Restored(profile, MetaStation.Lantern)));
                 float bob = reduced ? 0 : Mathf.Sin(t * 2.4f) * 5;
                 bool afford = Affordable(profile);
-                if (Focus < 0 || Spots[Focus].Station != MetaStation.Lantern) Tag(new Vector2(lamp.Foot.x, lr.y - 52 + bob), afford ? "UPGRADES READY" : "PERMANENT UPGRADES");
+                if (Focus < 0 || Spots[Focus].Station != MetaStation.Lantern) Tag(new Vector2(lamp.Foot.x, lr.y - 52 + bob), "LAMP TREE"); // its name stays; the "!" seal says upgrades are ready
                 if (afford) { ArcadeSkin.Glow(new Rect(lr.xMax - 54, lr.y - 14 + bob, 46, 46), new Color(1f, .82f, .45f, .6f)); ArcadeSkin.Seal(new Vector2(lr.xMax - 31, lr.y + 9 + bob), 26, "!"); }
             }
 

@@ -133,8 +133,8 @@ namespace ArcaneBrigade
             for (int i = 0; i < letters.Length; i++) (MetaProgression.LetterEarned(profile, letters[i]) ? have : sealedOnes).Add(i);
             if (have.Count == 0) letterTab = 1;
             Rect tabMine = new Rect(area.x, area.y, listW * .5f - 4, 44), tabSealed = new Rect(area.x + listW * .5f + 4, area.y, listW * .5f - 4, 44);
-            if (ArcadeSkin.Tab(tabMine, "Letters " + have.Count, letterTab == 0, have.Count > 0, small) && have.Count > 0) { letterTab = 0; letterPage = 0; }
-            if (ArcadeSkin.Tab(tabSealed, "Sealed " + sealedOnes.Count, letterTab == 1, sealedOnes.Count > 0, small) && sealedOnes.Count > 0) { letterTab = 1; letterPage = 0; }
+            if (ArcadeSkin.Tab(tabMine, "Letters " + have.Count, letterTab == 0, have.Count > 0, chip) && have.Count > 0) { letterTab = 0; letterPage = 0; }
+            if (ArcadeSkin.Tab(tabSealed, "Sealed " + sealedOnes.Count, letterTab == 1, sealedOnes.Count > 0, chip) && sealedOnes.Count > 0) { letterTab = 1; letterPage = 0; }
             List<int> listed = letterTab == 0 ? have : sealedOnes;
             const int perPage = 4;
             int pages = Mathf.Max(1, (listed.Count + perPage - 1) / perPage); letterPage = Mathf.Clamp(letterPage, 0, pages - 1);
@@ -222,7 +222,7 @@ namespace ArcaneBrigade
             for (int t = 0; t < ShelfTabs; t++)
             {
                 Rect tab = new Rect(area.x + tabInset + t % 3 * (tw + tabGap), area.y + t / 3 * 46, tw, 40);
-                if (ArcadeSkin.Tab(tab, t < 5 ? MetaProgression.ShelfNames[t] : "TROPHIES", museumShelf == t, true, chip) | Nav(tab)) ShowShelf(t);
+                if (ArcadeSkin.Tab(tab, RunUICopy.Title(t < 5 ? MetaProgression.ShelfNames[t] : "JOURNAL"), museumShelf == t, true, chip) | Nav(tab)) ShowShelf(t); // one tab look and casing in every station
             }
             int found = MetaProgression.Discoveries(profile, catalog);
             var (damage, gold) = MetaProgression.MuseumGifts(profile, catalog);

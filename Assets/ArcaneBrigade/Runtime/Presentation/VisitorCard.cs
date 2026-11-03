@@ -384,12 +384,12 @@ namespace ArcaneBrigade
         /// terms paid or won together and "or" between alternatives. Returns the height used.</summary>
         private float Row(Rect area, string tag, string row, bool pay, bool draw)
         {
-            const float tagW = 58, tagGap = 10;
+            const float tagW = 78, tagGap = 10;
             Color tone = pay ? PayTone : GetTone;
             if (draw)
             {
                 Rect pill = new Rect(area.x, area.y + (Line - 28) * .5f, tagW, 28);
-                ArcadeSkin.Plate(pill, pay ? ArcadeSkin.Wax : ArcadeSkin.Teal); GUI.Label(pill, tag, caption);
+                GlossaryUI.DealPlate(pill, !pay, caption); // the same COSTS / GIVES plate as every card's
             }
             float left = area.x + tagW + tagGap, cx = left, cy = area.y;
             List<VisitorTerm> terms = ShopVisitors.Terms(row);

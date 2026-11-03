@@ -1153,9 +1153,9 @@ namespace ArcaneBrigade
                 case Page.ConfirmOverwrite: return "Begin Again?";
                 case Page.Settings: return "Light, Sound & Comfort";
                 case Page.Help: return "How the Night Works";
-                case Page.Records: return "Letters You Kept";
+                case Page.Records: return "Records"; // one name per place: the menu says RECORDS
                 case Page.Achievements: return "DREAM JOURNAL";
-                case Page.Museum: return "Everyone You Have Met";
+                case Page.Museum: return "The Collection"; // the menu says COLLECTION
                 default: return "Arcane Brigade";
             }
         }
@@ -1190,7 +1190,7 @@ namespace ArcaneBrigade
 
         private void DrawRecords()
         {
-            if (Button(new Rect(60, 620, 560, 52), "OPEN ACHIEVEMENT JOURNAL")) ShowPage(Page.Achievements);
+            if (Button(new Rect(60, 620, 560, 52), "OPEN DREAM JOURNAL")) ShowPage(Page.Achievements);
             RecordTotals(new Rect(60, 150, 560, 92));
             scroll = ScrollPanel.Begin(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 106 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
             float vertical = 0;

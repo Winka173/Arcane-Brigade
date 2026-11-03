@@ -238,19 +238,11 @@ namespace ArcaneBrigade
                 if (word == "{gives}" || word == "{costs}")
                 {
                     // the card's GIVES (green) and COSTS (red) plates (play-test 20/10/2026, item 11)
-                    bool gives = word == "{gives}"; string caption = gives ? "GIVES" : "COSTS";
+                    bool gives = word == "{gives}";
                     FontStyle keptStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
                     // GIVES and COSTS plates share one width, so the words after them line up from row to row
                     float plate = Mathf.Max(Measure(words, "GIVES"), Measure(words, "COSTS")) * .82f + 16;
-                    if (draw && Seen(vertical))
-                    {
-                        Rect r = new Rect(bounds.x + horizontal, bounds.y + vertical + line * .12f, plate, line * .76f);
-                        ArcadeSkin.Line(r, gives ? new Color(.14f, .40f, .25f, .95f) : new Color(.50f, .11f, .12f, .95f));
-                        int size = words.fontSize; words.fontSize = Mathf.RoundToInt(size * .8f);
-                        Color prior = GUI.color; GUI.color *= gives ? new Color(.75f, 1f, .78f) : new Color(1f, .8f, .76f);
-                        words.alignment = TextAnchor.MiddleCenter; GUI.Label(r, caption, words); words.alignment = TextAnchor.UpperLeft;
-                        GUI.color = prior; words.fontSize = size;
-                    }
+                    if (draw && Seen(vertical)) DealPlate(new Rect(bounds.x + horizontal, bounds.y + vertical + line * .12f, plate, line * .76f), gives, words);
                     words.fontStyle = keptStyle;
                     bool opensLine = horizontal == 0; horizontal += plate + 8; if (opensLine) indent = horizontal; if (tokenIndex + 1 < all.Count && all[tokenIndex + 1].Value.Trim().Length == 0 && !all[tokenIndex + 1].Value.Contains("\n")) tokenIndex++; // the space after it is the gap already left
                     continue; // a wrapped line starts under the words
@@ -324,6 +316,17 @@ namespace ArcaneBrigade
                 horizontal += width;
             }
             return vertical + line;
+        }
+        /// <summary>The GIVES (green) or COSTS (red) plate: the one look for what a deal gives and what it costs, on cards, visitors
+        /// and the secret rooms (review 4/11/2026: PAY / GET and LOSE / GET said the same thing three ways).</summary>
+        public static void DealPlate(Rect r, bool gives, GUIStyle words)
+        {
+            ArcadeSkin.Line(r, gives ? new Color(.14f, .40f, .25f, .95f) : new Color(.50f, .11f, .12f, .95f));
+            int size = words.fontSize; FontStyle style = words.fontStyle; TextAnchor align = words.alignment;
+            words.fontSize = Mathf.RoundToInt(size * .8f); words.fontStyle = FontStyle.Bold; words.alignment = TextAnchor.MiddleCenter;
+            Color prior = GUI.color; GUI.color *= gives ? new Color(.75f, 1f, .78f) : new Color(1f, .8f, .76f);
+            GUI.Label(r, gives ? "GIVES" : "COSTS", words);
+            GUI.color = prior; words.fontSize = size; words.fontStyle = style; words.alignment = align;
         }
         public static void Draw(Vector2 viewport)
         {

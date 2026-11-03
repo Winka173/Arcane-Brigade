@@ -142,9 +142,9 @@ namespace ArcaneBrigade
             foreach (LampNode n in MetaProgression.Tree) if (focusBranch < 0 || n.Branch == focusBranch) Lantern(n, tree, card, profile, t);
             if (focusBranch < 0) foreach (LampNode n in MetaProgression.Roots) Lantern(n, tree, card, profile, t);
 
-            // take the whole tree back (free; a second tap confirms)
+            // take the whole tree back (free; a second tap confirms): the warning plate, never the tabs' walnut
             Rect respec = new Rect(PanelRect.x + 22, PanelRect.y + 12, 214, 46);
-            if ((ArcadeSkin.Button(respec, respecArmed ? "TAP AGAIN · FREE" : "TAKE BACK ALL", KitButton.Secondary, any, chip) | Nav(respec, any)) && any)
+            if ((ArcadeSkin.Button(respec, respecArmed ? "TAP AGAIN · FREE" : "TAKE BACK ALL", KitButton.Danger, any, chip) | Nav(respec, any)) && any)
             {
                 if (!respecArmed) { respecArmed = true; CheckpointAudio.PlayInterfaceId("ui.select"); }
                 else

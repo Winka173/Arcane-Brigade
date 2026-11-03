@@ -315,8 +315,8 @@ namespace ArcaneBrigade
                         // a two-line reward gets the room it needs: the GET row takes 40% (its last line ran onto the card's foot)
                         float getH = c.Get != null && c.Get.Contains("\n") ? (y1 - rowsTop) * .4f : rowH, oneH = (y1 - rowsTop - getH) * .5f;
                         GemRow(new Rect(plate.x + padX, rowsTop, cw - padX * 2, oneH), "DO", c.Do, CodeTone.Cream, true);
-                        GemRow(new Rect(plate.x + padX, rowsTop + oneH, cw - padX * 2, oneH), "LOSE", c.Lose, CodeTone.Oxblood, true);
-                        GemRow(new Rect(plate.x + padX, rowsTop + oneH * 2, cw - padX * 2, getH), "GET", c.Get, CodeTone.Green, true);
+                        GemRow(new Rect(plate.x + padX, rowsTop + oneH, cw - padX * 2, oneH), "COSTS", c.Lose, CodeTone.Oxblood, true);
+                        GemRow(new Rect(plate.x + padX, rowsTop + oneH * 2, cw - padX * 2, getH), "GIVES", c.Get, CodeTone.Green, true);
                         GUI.color = keep;
                         if (lit) Stamp(plate); // the chosen deal is stamped
                         if (!c.Enabled)
@@ -443,8 +443,8 @@ namespace ArcaneBrigade
             string got = claim ? (owner.Content.Item(s.RewardId) != null ? "New relic" : owner.Session.SecretRewardLabel) + " · " + owner.Session.SecretRewardStats(s.RewardId) : s.ResultGot;
             bool paid = !claim && !string.IsNullOrEmpty(s.ResultPaid) && s.ResultPaid != "Nothing";
             float rowH = (rowsBottom - rowsTop) / (paid ? 2 : 1);
-            if (paid) GemRow(new Rect(x0, rowsTop, w, rowH), "LOSE", s.ResultPaid, CodeTone.Oxblood, false);
-            GemRow(new Rect(x0, rowsTop + (paid ? rowH : 0), w, rowH), "GET", got.Replace("\n", " · "), CodeTone.Green, false);
+            if (paid) GemRow(new Rect(x0, rowsTop, w, rowH), "COSTS", s.ResultPaid, CodeTone.Oxblood, false);
+            GemRow(new Rect(x0, rowsTop + (paid ? rowH : 0), w, rowH), "GIVES", got.Replace("\n", " · "), CodeTone.Green, false);
             Rect go = new Rect(frame.center.x - 260, bottom - buttonH, 520, buttonH);
             if (claim) { if (ArcadeSkin.KitGuiButton(go, "CLAIM", primary) && !shut) owner.ClaimSecret(); }
             else if (ArcadeSkin.KitGuiButton(go, "OK", primary) && !shut) cardClosingAt = Time.unscaledTime; // the way back is already open

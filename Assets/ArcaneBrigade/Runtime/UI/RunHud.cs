@@ -407,8 +407,26 @@ namespace ArcaneBrigade
                     Rect plaque = new Rect(12, 236 + drop, 396, 112);
                     // the whole plaque answers a tap with the gauge's help (what fills it, what the third step does)
                     if (TouchTargets.Button(plaque, GUIContent.none, GUIStyle.none)) { lanternHelp = false; gaugeHelpAt = gaugeHelpAt > 0 ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); }
-                    ArcadeTypography.ShadowLabel(new Rect(32, 248 + drop, 360, 40), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
-                    ArcadeTypography.ShadowLabel(new Rect(32, 284 + drop, 360, 62), RunUICopy.Sentence(simulation.HeroIdentityStatus), identityLine);
+                    string status = simulation.HeroIdentityStatus;
+                    Sprite gaugePlate = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("HUD/LampGaugePlate");
+                    if (gaugePlate != null && status.StartsWith("Gauge ", System.StringComparison.Ordinal))
+                    {
+                        // the three-step gauge as three lamp beads on a small plate by the counters (review 4/11/2026: bare words on the
+                        // floor that damage numbers printed over); its name and what the third step does are in its tap help
+                        Rect gaugeArea = new Rect(24, 250 + drop, 216, 61);
+                        Sprite(gaugeArea, gaugePlate);
+                        Sprite lit = ArcadeSkin.KitSprite("HUD/LampPipLit"), dark = ArcadeSkin.KitSprite("HUD/LampPipEmpty");
+                        for (int step = 0; step < 3; step++)
+                        {
+                            float cx = gaugeArea.x + gaugeArea.width * (.18f + step * .32f), size = gaugeArea.height * .58f;
+                            Sprite(new Rect(cx - size * .5f, gaugeArea.center.y - size * .5f, size, size), step < simulation.HeroAwakenTier ? lit : dark);
+                        }
+                    }
+                    else
+                    {
+                        ArcadeTypography.ShadowLabel(new Rect(32, 248 + drop, 360, 40), RunUICopy.Title(HeroIdentities.For(state.ChampionId).Name), identityStyle);
+                        ArcadeTypography.ShadowLabel(new Rect(32, 284 + drop, 360, 62), RunUICopy.Sentence(status), identityLine);
+                    }
                 }
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
@@ -465,15 +483,46 @@ namespace ArcaneBrigade
                     float bossShare = Mathf.Clamp01(bossNow / Mathf.Max(1, bossMax));
                     string bossTitle = RunUICopy.Title(RunUICopy.UnitName(simulation.Boss.Definition)); // UI standard: a name in title case, never all capitals
                     float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(new GUIContent(bossTitle)).x + 16, 350, 990);
-                    ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
-                    Sprite(new Rect(432, 906, 42, 42), simulation.Boss.Definition.Body);
-                    GUI.Label(new Rect(480, 908, bossTitleWidth, 40), bossTitle, bossName);
-                    ArcadeSkin.Line(new Rect(424, 954, 1076, 40), new Color(0.01f, 0.01f, 0.02f, 0.75f));
-                    ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
-                    ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
-                    ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
-                    // the boss's health in short numbers (330K / 331K), no divider through them and no percentage
-                    GUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
+                    // the health just lost lingers behind the fill, then drains to it
+                    if (bossShare >= bossTrail) bossTrail = bossShare; else bossTrail = Mathf.MoveTowards(bossTrail, bossShare, Time.unscaledDeltaTime * .25f);
+                    Sprite bossFrame = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("HUD/BossBarFrame");
+                    if (bossFrame != null)
+                    {
+                        // the painted boss bar (review 4/11/2026: a flat red rectangle, the one HUD piece without a frame): a brass frame
+                        // over a groove of crimson, the lost health amber behind it, the boss's medallion at its left end, its name on a ribbon
+                        Rect bossBarRect = new Rect(430, 962, 1120, 79), bossGroove = new Rect(bossBarRect.x + bossBarRect.width * .088f, bossBarRect.y + bossBarRect.height * .335f, bossBarRect.width * .824f, bossBarRect.height * .435f);
+                        void BossLiquid(string art, float share)
+                        {
+                            Sprite bossStrip = ArcadeSkin.KitSprite(art); if (bossStrip == null || share <= 0) return;
+                            float w = bossGroove.width * share, bossTile = bossGroove.height * bossStrip.texture.width / bossStrip.texture.height;
+                            GUI.DrawTextureWithTexCoords(new Rect(bossGroove.x, bossGroove.y, w, bossGroove.height), bossStrip.texture, new Rect(0, 0, w / bossTile, 1));
+                        }
+                        Sprite(bossBarRect, bossFrame); // the groove is painted solid: the health is laid over it
+                        BossLiquid("HUD/BossBarLag", bossTrail);
+                        BossLiquid("HUD/BossBarFill", bossShare);
+                        Rect bossMedal = new Rect(bossBarRect.x - 92, bossBarRect.center.y - 66, 132, 132);
+                        Sprite(new Rect(bossMedal.x + 26, bossMedal.y + 26, 80, 80), simulation.Boss.Definition.Body);
+                        if (ArcadeSkin.KitSprite("HUD/BossMedallion") is Sprite bossRing) Sprite(bossMedal, bossRing);
+                        Rect bossRibbon = new Rect(bossBarRect.center.x - Mathf.Max(260, bossTitleWidth * .5f + 70), bossBarRect.y - 50, Mathf.Max(520, bossTitleWidth + 140), 58);
+                        if (ArcadeSkin.KitSprite("HUD/BossNameRibbon") is Sprite bossBand) Sprite(bossRibbon, bossBand);
+                        TextAnchor bossAlign = bossName.alignment; bossName.alignment = TextAnchor.MiddleCenter;
+                        Color bossInk = bossName.normal.textColor; bossName.normal.textColor = new Color(1f, .9f, .66f); // cream on the red ribbon
+                        GUI.Label(new Rect(bossRibbon.x + 50, bossRibbon.y + 2, bossRibbon.width - 100, bossRibbon.height - 8), bossTitle, bossName);
+                        bossName.alignment = bossAlign; bossName.normal.textColor = bossInk;
+                        // the boss's health in short numbers (330K / 331K), no divider through them and no percentage
+                        GUI.Label(bossGroove, ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
+                    }
+                    else
+                    {
+                        ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
+                        Sprite(new Rect(432, 906, 42, 42), simulation.Boss.Definition.Body);
+                        GUI.Label(new Rect(480, 908, bossTitleWidth, 40), bossTitle, bossName);
+                        ArcadeSkin.Line(new Rect(424, 954, 1076, 40), new Color(0.01f, 0.01f, 0.02f, 0.75f));
+                        ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
+                        ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
+                        ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
+                        GUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
+                    }
                 }
                 if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
                 else pausePage = 0;
@@ -622,6 +671,7 @@ namespace ArcaneBrigade
             }
         }
         // ---- the shop card's pieces
+        private float bossTrail = 1; // the boss bar's lingering lost health (0..1)
         private GUIStyle cardName, cardLine, cardChip, cardBig, cardPrice;
         private void ShopCardStyles()
         {
