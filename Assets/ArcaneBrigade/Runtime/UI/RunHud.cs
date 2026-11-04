@@ -254,6 +254,22 @@ namespace ArcaneBrigade
             GUI.color = previous;
         }
 
+        /// <summary>Draws only a sprite's painted part (its ink bounds), as large as fits the rectangle and centred: a character
+        /// fills a medallion instead of its whole cell with its empty margins (review 3/11/2026: friends filled 30% of their frames).</summary>
+        public static void SpriteInk(Rect rectangle, Sprite sprite)
+        {
+            if (sprite == null) return;
+            Rect ink = SpriteInkMetrics.BoundsOf(sprite); float ppu = sprite.pixelsPerUnit;
+            Rect tr = sprite.textureRect; Vector2 pivot = sprite.pivot;
+            float x0 = Mathf.Clamp(pivot.x + ink.xMin * ppu, 0, tr.width), x1 = Mathf.Clamp(pivot.x + ink.xMax * ppu, 0, tr.width);
+            float y0 = Mathf.Clamp(pivot.y + ink.yMin * ppu, 0, tr.height), y1 = Mathf.Clamp(pivot.y + ink.yMax * ppu, 0, tr.height);
+            float w = x1 - x0, h = y1 - y0; if (w < 2 || h < 2) { Sprite(rectangle, sprite); return; }
+            float k = Mathf.Min(rectangle.width / w, rectangle.height / h);
+            Rect dest = new Rect(rectangle.center.x - w * k * .5f, rectangle.center.y - h * k * .5f, w * k, h * k);
+            Texture t = sprite.texture;
+            if (Event.current.type == EventType.Repaint)
+                GUI.DrawTextureWithTexCoords(dest, t, new Rect((tr.x + x0) / t.width, (tr.y + y0) / t.height, w / t.width, h / t.height));
+        }
         public static void Sprite(Rect rectangle, Sprite sprite)
         {
             if (sprite == null) return;
@@ -565,7 +581,7 @@ namespace ArcaneBrigade
                 // the hero stands on the night's emblem: a rising sun for the dawn, a candle just blown out for a run that ended
                 if (ArcadeSkin.KitSprite(fallen ? "Info/CandleOut" : "Info/DawnEmblem") is Sprite emblem) Sprite(fallen ? new Rect(225, 330, 280, 280) : new Rect(195, 336, 340, 340), emblem);
                 Sprite(fallen ? new Rect(265, 372, 200, 190) : new Rect(225, 378, 280, 280), owner.Content.Unit(state.ChampionId).Body);
-                Sprite(fallen ? new Rect(455, 500, 80, 80) : new Rect(490, 560, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
+                Sprite(fallen ? new Rect(420, 520, 70, 70) : new Rect(425, 540, 80, 80), owner.Content.Unit(state.ChampionId).Weapon.Sprite); // held inside the emblem, by the hero (review 3/11/2026: it hung outside the medallion)
                 if (fallen) DrawFallenWord(owner, state, new Rect(115, 608, 565, 84));
                 TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(115, 692, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
                 // one column of full-width plates, one shape for all (review 4/11/2026: two wide ornate plates and two square-ended ones)
@@ -1149,8 +1165,11 @@ namespace ArcaneBrigade
             }
             // the rest: one tile that opens the full list
             Rect more = TileAt(shownRows);
-            if (!ArcadeSkin.KitSliced(more, "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(more, false);
-            programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
+            // a round brass button, not another square bond tile (review 3/11/2026: it read as a bond, not as a button)
+            Sprite roundButton = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("Buttons/RoundBrass");
+            if (roundButton != null) Sprite(new Rect(more.x - 4, more.y - 4, more.width + 8, more.height + 8), roundButton);
+            else if (!ArcadeSkin.KitSliced(more, "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(more, false);
+            programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = roundButton != null ? ArcadeSkin.Ink : ArcadeSkin.Cream; // dark ink on the brass
             int hidden = bondSummary.Rows.Count - (shownRows - newBonds.Count); // the bonds not on the two rows
             GUI.Label(more, hidden > 0 ? "+" + hidden : "···", programStyle);
             ArcadeTypography.ShadowLabel(new Rect(more.x - 10, more.y + tile + 2, tile + 20, below - 2), "all", bondNumber);

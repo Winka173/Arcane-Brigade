@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 512
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,10 +139,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_00
       rect:
         serializedVersion: 2
-        x: 11
-        y: 931
-        width: 288
-        height: 297
+        x: 22
+        y: 1862
+        width: 576
+        height: 594
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_01
       rect:
         serializedVersion: 2
-        x: 331
-        y: 931
-        width: 281
-        height: 289
+        x: 662
+        y: 1862
+        width: 562
+        height: 578
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_02
       rect:
         serializedVersion: 2
-        x: 635
-        y: 931
-        width: 306
-        height: 312
+        x: 1270
+        y: 1862
+        width: 612
+        height: 624
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_03
       rect:
         serializedVersion: 2
-        x: 977
-        y: 941
-        width: 268
-        height: 303
+        x: 1954
+        y: 1882
+        width: 536
+        height: 606
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_04
       rect:
         serializedVersion: 2
-        x: 10
-        y: 616
-        width: 288
-        height: 257
+        x: 20
+        y: 1232
+        width: 576
+        height: 514
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_05
       rect:
         serializedVersion: 2
-        x: 322
-        y: 607
-        width: 302
-        height: 327
+        x: 644
+        y: 1214
+        width: 604
+        height: 654
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +271,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_06
       rect:
         serializedVersion: 2
-        x: 640
-        y: 602
-        width: 315
-        height: 337
+        x: 1280
+        y: 1204
+        width: 630
+        height: 674
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_07
       rect:
         serializedVersion: 2
-        x: 964
-        y: 612
-        width: 282
-        height: 253
+        x: 1928
+        y: 1224
+        width: 564
+        height: 506
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_08
       rect:
         serializedVersion: 2
-        x: 7
-        y: 322
-        width: 300
-        height: 283
+        x: 14
+        y: 644
+        width: 600
+        height: 566
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,10 +337,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_09
       rect:
         serializedVersion: 2
-        x: 325
-        y: 319
-        width: 302
-        height: 286
+        x: 650
+        y: 638
+        width: 604
+        height: 572
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_10
       rect:
         serializedVersion: 2
-        x: 635
-        y: 317
-        width: 307
-        height: 282
+        x: 1270
+        y: 634
+        width: 614
+        height: 564
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_11
       rect:
         serializedVersion: 2
-        x: 953
-        y: 313
-        width: 298
-        height: 292
+        x: 1906
+        y: 626
+        width: 596
+        height: 584
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,10 +403,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_12
       rect:
         serializedVersion: 2
-        x: 7
-        y: 23
-        width: 311
-        height: 287
+        x: 14
+        y: 46
+        width: 622
+        height: 574
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_13
       rect:
         serializedVersion: 2
-        x: 326
-        y: 24
-        width: 305
-        height: 316
+        x: 652
+        y: 48
+        width: 610
+        height: 632
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_14
       rect:
         serializedVersion: 2
-        x: 630
-        y: 34
-        width: 345
-        height: 279
+        x: 1260
+        y: 68
+        width: 690
+        height: 558
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,10 +469,10 @@ TextureImporter:
       name: BossCore_UmbraWidow_15
       rect:
         serializedVersion: 2
-        x: 982
-        y: 22
-        width: 267
-        height: 248
+        x: 1964
+        y: 44
+        width: 534
+        height: 496
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

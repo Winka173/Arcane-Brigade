@@ -743,7 +743,7 @@ namespace ArcaneBrigade
         private readonly HashSet<int> heldInCeremony = new HashSet<int>();
         private WaveClearInk waveClearInk;
         /// <summary>A word over the hero's head in the stat-gain style (a map's boosts and moments).</summary>
-        public void HeroWord(string text, Color colour) { if (combatFeedback != null && simulation?.Champion != null) combatFeedback.Label(VisualChampionPosition + Vector2.up * .95f, text, colour, .6f, 1.3f); }
+        public void HeroWord(string text, Color colour) { if (combatFeedback != null && simulation?.Champion != null) combatFeedback.Label(VisualChampionPosition + Vector2.up * .95f, text, colour, .85f, 1.3f); } // readable on a phone (review 3/11/2026: the map's words were tiny)
         private static string StatGainText(ItemEffect effect, float value)
         {
             string name = effect switch { ItemEffect.Health => "Max HP", ItemEffect.Heal => "Regen", ItemEffect.Armor => "Armor", ItemEffect.Damage => "Damage", ItemEffect.Luck => "Luck", ItemEffect.Crit => "Crit", _ => effect.ToString() };

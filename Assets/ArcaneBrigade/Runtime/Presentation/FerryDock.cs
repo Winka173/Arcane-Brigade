@@ -199,12 +199,25 @@ namespace ArcaneBrigade
                 Matrix4x4 unscaled = GUI.matrix;
                 // the picked one keeps its size and place (the chosen seal marks it)
                 ArcadeSkin.Plate(frame, ArcadeSkin.Card);
-                if (unit != null) RunHud.Sprite(new Rect(frame.x + 12, frame.y + 10, 94, 94), unit.Body); // the friend fills its medallion
+                if (unit != null) RunHud.SpriteInk(new Rect(frame.x + 14, frame.y + 12, 90, 92), unit.Body); // the friend fills its medallion (its painted part, not its empty cell)
                 GUI.matrix = unscaled;
                 if (chosen) ArcadeSkin.PickedSeal(frame); // the picked friend's medallion is stamped
                 names.normal.textColor = chosen ? new Color(.62f, .27f, .05f) : ink; // and its name in warm brown
-                string stars = rowing ? "" : " " + RunSession.StarText(session.StarProgress(id)) + "★";
-                GUI.Label(new Rect(slot.x - 8, frame.yMax + 2, slot.width + 16, 100), (unit == null ? id : RunUICopy.UnitName(unit)) + stars, names);
+                // its stars as small gold stars on the medallion's rim, so the name keeps to its own lines (review 3/11/2026: "1★"
+                // dropped onto a line of its own)
+                if (!rowing)
+                {
+                    float progress = session.StarProgress(id); int whole = Mathf.Clamp(Mathf.FloorToInt(progress), 1, 5); bool half = progress - whole > .01f;
+                    int count = whole + (half ? 1 : 0); float pip = 20, sx = frame.center.x - count * pip * .5f;
+                    Color keepTint = GUI.color;
+                    for (int k = 0; k < count; k++)
+                    {
+                        GUI.color = new Color(1, 1, 1, half && k == count - 1 ? .45f : 1) * UnitVisual.StarColour(whole);
+                        RunHud.Sprite(new Rect(sx + k * pip, frame.yMax - pip * .7f, pip, pip), K8Motion.TierStar());
+                    }
+                    GUI.color = keepTint;
+                }
+                GUI.Label(new Rect(slot.x - 8, frame.yMax + 8, slot.width + 16, 100), unit == null ? id : RunUICopy.UnitName(unit), names);
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { if (rowing) crossing = id; else picked = id; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (!rowing && pages > 1)

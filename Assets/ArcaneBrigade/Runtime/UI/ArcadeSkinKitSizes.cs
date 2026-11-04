@@ -111,6 +111,7 @@ namespace ArcaneBrigade
             ["HUD/TimerPlate"] = new UnityEngine.Vector2Int(200, 64),
             ["HUD/TipBanner"] = new UnityEngine.Vector2Int(800, 120),
             ["HUD/WaveBanner"] = new UnityEngine.Vector2Int(364, 92),
+            ["HUD/WaveStamp"] = new UnityEngine.Vector2Int(384, 384),
             ["Info/CandleOut"] = new UnityEngine.Vector2Int(256, 256),
             ["Info/CaseSeen"] = new UnityEngine.Vector2Int(256, 256),
             ["Info/CaseUnseen"] = new UnityEngine.Vector2Int(256, 256),
