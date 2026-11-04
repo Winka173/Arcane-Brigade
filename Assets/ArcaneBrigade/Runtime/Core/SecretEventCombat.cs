@@ -56,9 +56,9 @@ namespace ArcaneBrigade
             {
                 UnitDefinition paper = catalog.Enemies.FirstOrDefault(e => e.Material == BodyMaterial.Paper && !e.IsBoss) ?? catalog.Enemies[0];
                 UnitDefinition enemy = BuildEnemy(paper, 1 + State.Wave * .12f);
-                enemy.Health *= .65f; enemy.SpecialEnemy = SpecialEnemyKind.None; enemy.Behavior = EnemyBehavior.Standard;
+                enemy.Health *= 1.3f; // requirement 4/11/2026: secret fights were far too easy (was x0.65, 32 foes) enemy.SpecialEnemy = SpecialEnemyKind.None; enemy.Behavior = EnemyBehavior.Standard;
                 CombatCatalog.MeleeEnemy = CombatCatalog.RangedEnemy = enemy; CombatCatalog.EnemyPool = new[] { enemy };
-                CombatCatalog.EnemyBudget = 32; CombatCatalog.SpawnInterval = .7f; CombatCatalog.WaveDuration = 28; return;
+                CombatCatalog.EnemyBudget = 64; CombatCatalog.SpawnInterval = .7f; CombatCatalog.WaveDuration = 28; return;
             }
             UnitDefinition source = encounter == 2 ? CombatCatalog.Champion : assets.Guardian;
             UnitDefinition actor = Clone(source); actor.Weapon = Clone(source.Weapon);
@@ -67,10 +67,11 @@ namespace ArcaneBrigade
             actor.IsBoss = true; actor.HeroMechanic = HeroMechanic.None; actor.SpecialEnemy = SpecialEnemyKind.None; actor.Mutation = EnemyMutation.None;
             // requirement 25/10/2026: the secret actors fell too quickly - twice the base and the run's own enemy-health curve
             // requirement 25/10/2026 (again: the cabinet was still weak): three times the base
-            actor.Health = (650 + State.Wave * 140) * 3 * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave) * (encounter == 5 ? 1.3f : 1);
+            // requirement 4/11/2026: still far too easy - four times the health again, harder blows, more often
+            actor.Health = (650 + State.Wave * 140) * 12 * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave) * (encounter == 5 ? 1.3f : 1);
             actor.BodyHeight = encounter == 2 ? 1.5f : 2.3f; actor.Radius = .65f; actor.Speed = encounter == 2 ? 1.15f : .6f;
-            actor.ContactDamage = (5 + State.Wave * .12f)*1.08f*1.6f*1.25f; actor.ContactInterval = 1.17f; actor.KnockbackResistance = 1;
-            actor.Weapon.Damage*=1.08f*1.25f;
+            actor.ContactDamage = (5 + State.Wave * .12f)*1.08f*1.6f*1.25f*1.8f; actor.ContactInterval = .9f; actor.KnockbackResistance = 1;
+            actor.Weapon.Damage*=1.08f*1.25f*1.8f; actor.Weapon.Cooldown*=.8f;
             actor.Tint = encounter == 2 ? new Color(.65f, .8f, 1) : Color.white;
             CombatCatalog.Boss = actor;
             if (encounter == 6)

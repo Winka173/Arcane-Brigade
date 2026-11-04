@@ -99,6 +99,7 @@ namespace ArcaneBrigade
             Texture2D t = sprite.texture; Rect body = BodyOf(key, t); Vector2 painted = PaintedSize(key, t);
             Rect dest = new Rect(r.x - body.x * k, r.y - body.y * k, r.width + (painted.x - body.width) * k, r.height + (painted.y - body.height) * k);
             Sliced(dest, sprite, k * PaintedPerTexel(key, t), CentreOf(piece));
+            KitDrawAudit.Note(key, k, (int)painted.x, (int)painted.y);
             return true;
         }
 

@@ -67,7 +67,7 @@ namespace ArcaneBrigade
             bool inShop = owner.Session != null && owner.Session.State.Phase == SessionPhase.Shop && (owner.SecretRoom == null || !owner.SecretRoom.InRoom);
             foreach (SpriteRenderer r in props)
             {
-                if (inShop && !Shopkeeper(r) && !ShopFigure(r)) continue;
+                if (inShop && !Shopkeeper(r) && !ShopFigure(r) && !SecretInvitation(r)) continue;
                 if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder <= heroOrder || r.sortingOrder >= 1600) continue;
                 Vector3 size = r.bounds.size;
                 if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14 || r.color.a < .05f) continue;
@@ -97,11 +97,29 @@ namespace ArcaneBrigade
                         if (b.Intersects(chest)) Target(r, PropAlpha);
                     }
                 }
+            // requirement 4/11/2026 (asked many times): a prop fades for a friend behind it too, not only for the hero
+            standing.Clear();
+            foreach (SpriteRenderer r in props)
+            {
+                if (inShop && !Shopkeeper(r) && !ShopFigure(r) && !SecretInvitation(r)) continue;
+                if (r == null || !r.enabled || !r.gameObject.activeInHierarchy || r.sortingLayerID != layer || r.sortingOrder >= 1600 || r.color.a < .05f) continue;
+                Vector3 size = r.bounds.size;
+                if (size.x < .45f && size.y < .45f || size.x > 14 || size.y > 14) continue;
+                standing.Add(r);
+            }
             foreach (UnitVisual friend in owner.Views)
             {
                 if (friend == null || friend == view || friend.State == null || friend.State.Faction != Faction.Companion || !friend.State.Alive) continue;
                 SpriteRenderer fb = friend.BodyRenderer;
-                if (fb == null || !fb.enabled || fb.sortingOrder <= heroOrder) continue;
+                if (fb == null || !fb.enabled) continue;
+                Bounds fbounds = fb.bounds; fbounds.extents = new Vector3(fbounds.extents.x * .8f, fbounds.extents.y * .9f, 1000);
+                foreach (SpriteRenderer r in standing)
+                {
+                    if (r.sortingOrder <= fb.sortingOrder) continue;
+                    Bounds pb = r.bounds; pb.extents = new Vector3(pb.extents.x, pb.extents.y, 1000);
+                    if (pb.Intersects(fbounds)) Target(r, PropAlpha);
+                }
+                if (fb.sortingOrder <= heroOrder) continue;
                 Bounds b = fb.bounds; b.extents = new Vector3(b.extents.x, b.extents.y, 1000);
                 if (!b.Intersects(covered)) continue;
                 Target(fb, FriendAlpha); occluded = true;
@@ -127,6 +145,9 @@ namespace ArcaneBrigade
 
         /// <summary>A person standing in the shop (the Last Customer, standing or visiting): it fades like the shopkeeper when
         /// the hero walks behind it (requirement, repeated 31/10/2026); the wares stay solid.</summary>
+        private readonly List<SpriteRenderer> standing = new List<SpriteRenderer>();
+        /// <summary>A secret room's invitation standing in the shop: a thing in the room, not a ware, so it fades too.</summary>
+        private static bool SecretInvitation(SpriteRenderer r) => r != null && r.name.StartsWith("SecretInvitation_", System.StringComparison.Ordinal);
         private static bool ShopFigure(SpriteRenderer r) => r != null && (r.name.StartsWith("ActOne-LastCustomer", System.StringComparison.Ordinal) || r.name == ActOneCustomerVisits.FigureName);
 
         private void Target(SpriteRenderer r, float alpha)

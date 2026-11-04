@@ -19,7 +19,7 @@ namespace ArcaneBrigade
         private int picked = -1;
         private readonly ShopDescriptionCard pickedCard = new ShopDescriptionCard();
         private readonly ShopOffer pickedOffer = new ShopOffer();
-        private const float InfoH = 78;
+        private const float InfoH = 270; // the picked thing on the shop's description card (requirement 4/11/2026)
         public int InputConsumedFrame { get; private set; } = -1;
         public void Configure(ArenaController value) => owner = value;
         public bool Open => shown && owner?.Session?.Visitor != null && !owner.StoryConsumesInput && !owner.TransitionPending;
@@ -226,24 +226,48 @@ namespace ArcaneBrigade
             GUI.matrix = previous;
         }
 
-        /// <summary>What the picked relic or friend does, in two short lines (the shop card's own summary), or a hint to pick.</summary>
+        private GUIStyle pickName, pickLine, pickKind;
+        /// <summary>The picked relic or friend on the shop's own description card (requirement 4/11/2026: as detailed as the shop's
+        /// card, with its frame): its rarity frame, its picture on its rarity backdrop, the name, what kind it is, a friend's weapon
+        /// plate, and every line it gives and costs. Before a pick, the same frame holds a short hint.</summary>
         private void PickedInfo(Rect r, VisitorOption o)
         {
-            ArcadeSkin.Plate(r, new Color(.2f, .14f, .09f, .9f));
-            Rect inner = new Rect(r.x + 20, r.y + 10, r.width - 40, r.height - 20);
-            plain.normal.textColor = ArcadeSkin.Cream;
-            if (o == null) { GUI.Label(inner, "Pick one to see what it does.", plain); return; }
-            string text = NameFor(o);
-            int cut = string.IsNullOrEmpty(o.Icon) ? -1 : o.Icon.IndexOf(':');
+            pickName ??= new GUIStyle(ArcadeTypography.Style(30, true)) { wordWrap = false, clipping = TextClipping.Clip };
+            pickLine ??= new GUIStyle(ArcadeTypography.Style(22)) { wordWrap = true };
+            pickKind ??= new GUIStyle(ArcadeTypography.Style(20, true)) { wordWrap = false };
+            int cut = o == null || string.IsNullOrEmpty(o.Icon) ? -1 : o.Icon.IndexOf(':');
             string kind = cut > 0 ? o.Icon.Substring(0, cut) : "", id = cut > 0 ? o.Icon.Substring(cut + 1) : "";
-            if ((kind == "item" && owner.Content.Item(id) != null) || (kind == "unit" && owner.Content.Unit(id) != null))
+            bool known = (kind == "item" && owner.Content.Item(id) != null) || (kind == "unit" && owner.Content.Unit(id) != null);
+            if (o == null || !known)
             {
-                pickedOffer.Kind = kind == "item" ? OfferKind.Item : OfferKind.Companion; pickedOffer.Id = id; pickedOffer.Tier = Mathf.Max(1, o.Tier); pickedOffer.Token = -77; pickedOffer.Price = 0;
-                pickedCard.Refresh(owner.Session, owner.Content, pickedOffer);
-                string[] lines = (pickedCard.Summary ?? "").Replace("\r", "").Split('\n');
-                text += ": " + string.Join("  ", lines, 0, Mathf.Min(2, lines.Length)).Replace("{mark} ", "");
+                RarityDescriptionFrame.Draw(r, ItemRarity.Common, Time.unscaledTime);
+                plain.normal.textColor = ArcadeSkin.Cream; TextAnchor keep = plain.alignment; plain.alignment = TextAnchor.MiddleCenter;
+                GUI.Label(new Rect(r.x + 40, r.y + 20, r.width - 80, r.height - 40), o == null ? "Pick one to see what it does." : NameFor(o), plain);
+                plain.alignment = keep; return;
             }
-            GUI.Label(inner, text, plain);
+            pickedOffer.Kind = kind == "item" ? OfferKind.Item : OfferKind.Companion; pickedOffer.Id = id; pickedOffer.Tier = Mathf.Max(1, o.Tier); pickedOffer.Token = -77; pickedOffer.Price = 0;
+            pickedCard.Refresh(owner.Session, owner.Content, pickedOffer);
+            ItemRarity rarity = pickedCard.Rarity;
+            RarityDescriptionFrame.Draw(r, rarity, Time.unscaledTime);
+            Rect picture = new Rect(r.x + 30, r.y + (r.height - 150) * .5f, 150, 150);
+            RarityDescriptionFrame.Backdrop(picture, rarity, Time.unscaledTime);
+            ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 134, 134), pickedCard.Portrait);
+            float x = picture.xMax + 26, w = r.xMax - 30 - x, y = r.y + 22;
+            pickName.normal.textColor = ArcadeSkin.Cream;
+            GUI.Label(new Rect(x, y, w, 40), NameFor(o), pickName);
+            pickKind.normal.textColor = Color.Lerp(RunModifierRules.RarityColor(rarity), Color.white, .2f);
+            GUI.Label(new Rect(x, y + 38, w, 26), pickedCard.Identity, pickKind);
+            y += 70;
+            if (pickedCard.Attack != null)
+            {
+                const float H = 44;
+                string label = pickedCard.AttackLabel;
+                Rect plate = new Rect(x, y, Mathf.Min(w, WeaponPlate.Width(H, pickKind.CalcSize(new GUIContent(label)).x)), H);
+                WeaponPlate.Draw(plate, pickedCard.Attack.Weapon != null && pickedCard.Attack.Weapon.Sprite != null ? pickedCard.Attack.Weapon.Sprite : pickedCard.AttackIcon, label, pickKind);
+                y += H + 8;
+            }
+            pickLine.normal.textColor = ArcadeSkin.Cream;
+            GlossaryUI.Text(new Rect(x, y, w, r.yMax - 18 - y), (pickedCard.Summary ?? "").Replace("{mark} ", ""), pickLine);
         }
         /// <summary>The accept button of a take-it-or-leave-it offer: its verb and its price with the HUD coin.</summary>
         private void AcceptButton(Rect r, VisitorDefinition v, RunSnapshot state, VisitorOption option)

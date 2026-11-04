@@ -147,6 +147,7 @@ namespace ArcaneBrigade
             ["Info/SealEmpty"] = new UnityEngine.Vector2Int(96, 96),
             ["Info/SigilRingOuter"] = new UnityEngine.Vector2Int(512, 512),
             ["Info/SigilSealWax"] = new UnityEngine.Vector2Int(256, 256),
+            ["Info/WeaponPlate"] = new UnityEngine.Vector2Int(360, 64),
             ["Menu/DoorRoom"] = new UnityEngine.Vector2Int(1920, 1080),
             ["Menu/GameLogo"] = new UnityEngine.Vector2Int(1200, 420),
             ["Menu/HeroStage"] = new UnityEngine.Vector2Int(420, 200),

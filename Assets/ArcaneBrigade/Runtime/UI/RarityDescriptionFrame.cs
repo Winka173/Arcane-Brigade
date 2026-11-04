@@ -278,8 +278,7 @@ namespace ArcaneBrigade
             if(rarity==ItemRarity.Rainbow && motion)tint=Color.HSVToRGB(Mathf.Repeat(clock*.055f,1),.48f,1);
             float breathe=motion?.7f+.3f*Mathf.Sin(clock*(1.6f+.5f*rank)):.9f;
             if(Event.current==null || Event.current.type!=EventType.Repaint)return;
-            // a soft oval of the rarity's light round the tile, never a ruled box (requirement, repeated 1/11/2026)
-            Color halo=tint;halo.a=.75f*breathe; ArcadeSkin.Halo(tile,Mathf.Min(tile.width,tile.height)*.18f,halo);
+            // no light round the tile (requirement 4/11/2026, asked many times): the rarity shows as its diamonds on the top edge
             Color bright=Color.Lerp(tint,Color.white,.35f); float gap=11, x0=tile.center.x-(rank-1)*gap*.5f;
             for(int i=0;i<rank;i++){Vector2 c=new Vector2(x0+i*gap,tile.y);ArcadeSkin.Diamond(c,9,new Color(.08f,.05f,.1f,.95f));ArcadeSkin.Diamond(c,6,bright);}
         }

@@ -61,6 +61,7 @@ namespace ArcaneBrigade
                 Vector3 hovering = index == 2 ? Vector3.zero : DreamLevitation.Offset(owner.PresentationClock, 90 + index, 0, PresentationSettings.ReducedMotion);
                 view.transform.rotation = Quaternion.Euler(0, 0, index == 2 ? 0 : DreamLevitation.Tilt(owner.PresentationClock, 90 + index, PresentationSettings.ReducedMotion));
                 WorldSpriteGrounding.Place(view, (Vector3)positions[index] + Vector3.up * lift + hovering);
+                view.sortingOrder = WorldSpriteGrounding.SortAt(positions[index].y); // stands in the room: whoever walks behind it is behind it (requirement 4/11/2026)
                 view.color = new Color(1, 1, 1, enter);
                 shadows[index].Display(view.sprite, positions[index], width, lift + hovering.y, .25f * enter);
                 if(index!=2)suspensions[index].Display(positions[index],(Vector3)positions[index]+Vector3.up*lift+hovering,width,owner.PresentationClock,90+index,view.sortingOrder-1,enter,true);

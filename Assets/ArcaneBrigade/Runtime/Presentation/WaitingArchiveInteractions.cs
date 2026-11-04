@@ -9,7 +9,7 @@ namespace ArcaneBrigade
         public const float Reach=2;
         private ArenaController owner;
         private readonly SpriteRenderer[] props=new SpriteRenderer[2];
-        private GUIStyle caption;
+        private float nearSince=-1;
         public int InputConsumedFrame{get;private set;}=-1;
         public void Configure(ArenaController value){owner=value;ShopFocus.Register(this);}
         private void OnDestroy()=>ShopFocus.Unregister(this);
@@ -54,17 +54,12 @@ namespace ArcaneBrigade
         {
             if(!Allowed)return;var camera=Camera.main;if(camera==null)return;
             Matrix4x4 previous=ArcadeTypography.BeginViewport(camera.pixelRect,1920,1080);
-            caption??=ArcadeTypography.Style(19,true);caption.alignment=TextAnchor.MiddleCenter;
-            for(int i=0;i<2;i++)
-            {
-                if(!Near(i))continue;
-                Rect bounds=ClickRect(i,camera);
-                string label=i==0?"READ THE JOURNAL":"PATHS & PEOPLE";
-                Rect text=new Rect(Mathf.Clamp(bounds.center.x-150,20,1600),Mathf.Clamp(bounds.yMax+8,185,940),300,48);
-                caption.normal.textColor=new Color(.01f,.015f,.025f,.9f);GUI.Label(new Rect(text.x+1,text.y+2,text.width,text.height),label+"",caption);
-                caption.normal.textColor=ArcadeSkin.Cream;GUI.Label(text,label+"",caption);
-                if(TouchTargets.Button(bounds,GUIContent.none,GUIStyle.none)){TryInspect(i);break;}
-            }
+            // walking up shows the shop's one card at the bottom, like every other thing in the shop (no words on the floor)
+            bool near=Near(0);
+            if(!near){nearSince=-1;GUI.matrix=previous;return;}
+            if(nearSince<0)nearSince=Time.unscaledTime;
+            if(ShopPrompt.Draw("THE JOURNAL WINDOW","Every page the night has written about you is kept behind the glass.","READ",Time.unscaledTime-nearSince)
+               || TouchTargets.Button(ClickRect(0,camera),GUIContent.none,GUIStyle.none))TryInspect(0);
             GUI.matrix=previous;
         }
     }

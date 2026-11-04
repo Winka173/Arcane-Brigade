@@ -168,6 +168,9 @@ namespace ArcaneBrigade
             var obj = new GameObject(name); obj.transform.SetParent(parent, false); obj.transform.localPosition = at;
             SpriteRenderer r = obj.AddComponent<SpriteRenderer>(); r.sprite = sprite; r.sortingOrder = order;
             Fit(obj.transform, sprite, height, maxWidth);
+            // stands in the room like everything else (requirement 4/11/2026, asked many times): drawn by where it meets the floor, so
+            // whoever walks behind it is hidden by it and it fades for them (a fixed low order drew everyone over the train)
+            r.sortingOrder = WorldSpriteGrounding.SortAt(r.bounds.min.y);
             obj.AddComponent<SuspendedScenery>().Configure(owner, r, at.x * 3 + at.y * 7);
             return r;
         }

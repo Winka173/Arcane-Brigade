@@ -260,6 +260,7 @@ namespace ArcaneBrigade
             Rect source = sprite.rect;
             float ratio = source.width / source.height;
             float width = Mathf.Min(rectangle.width, rectangle.height * ratio);
+            KitDrawAudit.Note(sprite.name, width / source.width, (int)source.width, (int)source.height);
             float height = width / ratio;
             rectangle = new Rect(rectangle.center.x - width * 0.5f, rectangle.center.y - height * 0.5f, width, height);
             GUI.DrawTextureWithTexCoords(rectangle, sprite.texture, new Rect(source.x / sprite.texture.width, source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height));
@@ -468,8 +469,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(timer.x + hand, timer.y + 1, timer.width - hand - 14, timer.height - 2), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
-            // the eight lanterns sit quietly under the wallet; the old wave road is gone
-            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) { NightHud.Lanterns(LanternRow, state); if (TouchTargets.Button(LanternRow, GUIContent.none, GUIStyle.none)) { bool same = lanternHelp && gaugeHelpAt > 0; lanternHelp = true; gaugeHelpAt = same ? -1 : Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.tooltip"); } } // tap: what the lanterns are
+            // no lantern row under the wallet (requirement 4/11/2026: it only confused players); the lanterns stay in the journal
             if (state.Phase == SessionPhase.Combat) { NightHud.LampLoss(new Rect(560, 150, 800, 60)); NightHud.Knocking(new Rect(610, 130, 700, 48), simulation.KnockRemaining); }
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
@@ -653,10 +653,17 @@ namespace ArcaneBrigade
                 float columnH = station.Offer != null ? PriceH + ColumnGap + InfoH : PriceH;
                 Rect buy = new Rect(panel.xMax - 214, panel.y + Mathf.Round((panel.height - columnH) * .5f), 192, PriceH);
                 float x = panel.x + 210, width = buy.x - 24 - x;
-                GUI.Label(new Rect(x, panel.y + 22, width, 44), shop.DisplayName(station), cardName); // clear of the frame's top rim
+                // a drink or a food says so in a small tag beside its name, never as a row among what it gives and costs
+                var relic = item ? owner.Content.Item(station.Offer.Id) : null;
+                string kindWord = relic != null && relic.Category != RelicCategory.Curio ? RelicDescriptions.Category(relic).ToUpperInvariant() : null;
+                float kindW = kindWord != null ? tagStyle.CalcSize(new GUIContent(kindWord)).x + 28 : 0;
+                string shownName = shop.DisplayName(station);
+                float nameW = Mathf.Min(cardName.CalcSize(new GUIContent(shownName)).x, width - (kindWord != null ? kindW + 14 : 0));
+                GUI.Label(new Rect(x, panel.y + 22, kindWord != null ? nameW : width, 44), shownName, cardName); // clear of the frame's top rim
+                if (kindWord != null) ArcadeSkin.Tag(new Rect(x + nameW + 14, panel.y + 30, kindW, 30), kindWord, CodeTone.Walnut, tagStyle, ArcadeSkin.Cream);
                 float y = panel.y + 70;
-                if (station.Offer != null && offerCard.Attack != null && offerCard.Bonds.Count > 0) y = ShopChips(x, y, width);
-                string source = station.Offer != null ? (offerCard.Attack != null ? offerCard.AttackLine + "\n" : "") + offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
+                string source = station.Offer != null ? offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
                 int lineSize = cardLine.fontSize;
                 string body = Fit(source, width, panel.yMax - 24 - y, out int more); // the last line stays clear of the bottom rim (it may shrink the words a little)
                 GlossaryUI.Text(new Rect(x, y, width, panel.yMax - 20 - y), body, cardLine);
@@ -772,6 +779,18 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail, H), label, cardChip);
                 cardChip.fontSize = size;
                 cx += w + Gap;
+            }
+            // the weapon leads the row on its own steel plate with its own picture (requirement 4/11/2026: not a bond chip, and
+            // not a tag among the text lines)
+            {
+                int size = cardChip.fontSize;
+                string label = offerCard.AttackLabel;
+                float Need() => WeaponPlate.Width(H, cardChip.CalcSize(new GUIContent(label)).x);
+                while (Need() > width && cardChip.fontSize > 22) cardChip.fontSize--;
+                Rect plate = new Rect(cx, rowY, Mathf.Min(width, Need()), H);
+                WeaponPlate.Draw(plate, offerCard.Attack.Weapon != null && offerCard.Attack.Weapon.Sprite != null ? offerCard.Attack.Weapon.Sprite : offerCard.AttackIcon, label, cardChip);
+                cardChip.fontSize = size;
+                cx += plate.width + Gap;
             }
             // (no COMBO chip: plain counts are required; a combo is listed under the details' COMBOS)
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates);

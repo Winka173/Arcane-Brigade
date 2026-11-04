@@ -161,9 +161,16 @@ namespace ArcaneBrigade
                     cardName.alignment = TextAnchor.MiddleLeft; cardName.wordWrap = false; cardName.normal.textColor = RunModifierRules.RarityColor(giftCard.Rarity);
                     GUI.Label(new Rect(tx, panel.y + 16, tw, 46), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     cardLine.normal.textColor = ArcadeSkin.Cream;
-                    // a friend's weapon is the first line, on the WEAPON plate, as on the shop's card (requirement 4/11/2026)
+                    // a friend's weapon on its own steel plate with its picture, as on the shop's card (requirement 4/11/2026)
                     float below = panel.y + 66;
-                    string full = (ally != null && !string.IsNullOrEmpty(giftCard.AttackLabel) ? giftCard.AttackLine + "\n" : "") + giftCard.Summary;
+                    if (ally != null && giftCard.Attack != null && !string.IsNullOrEmpty(giftCard.AttackLabel))
+                    {
+                        const float PlateH = 46;
+                        Rect plate = new Rect(tx, below, Mathf.Min(tw, WeaponPlate.Width(PlateH, cardLine.CalcSize(new GUIContent(giftCard.AttackLabel)).x)), PlateH);
+                        WeaponPlate.Draw(plate, giftCard.Attack.Weapon != null && giftCard.Attack.Weapon.Sprite != null ? giftCard.Attack.Weapon.Sprite : giftCard.AttackIcon, giftCard.AttackLabel, cardLine);
+                        below += PlateH + 8;
+                    }
+                    string full = giftCard.Summary;
                     // as many whole lines as fit above the bottom rim (a fourth line ran onto the frame)
                     float room = panel.yMax - 30 - below; int lines = 4;
                     string summary = FirstLines(full, lines);

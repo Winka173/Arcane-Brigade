@@ -83,7 +83,6 @@ namespace ArcaneBrigade
                 if (item.SignatureRole != SignatureRelicKind.None) copy.AppendLine(gm + RelicDescriptions.ShortSignature(item.SignatureRole));
                 foreach (var proc in catalog.ProcRules ?? Array.Empty<ProcRule>())
                     if (proc.ItemId == item.Id) copy.AppendLine(gm + ProcLine(proc));
-                if (item.Category != RelicCategory.Curio) copy.AppendLine("{tag:" + RelicDescriptions.Category(item).ToUpperInvariant() + "}");
                 AppendCosts(copy, item.EffectiveModifiers, 1);
                 int held = session.StackCount(item.Id);
                 if (held > 0 || item.StackLimit < 100000) copy.AppendLine("Owned " + held + (item.StackLimit < 100000 ? " / " + item.StackLimit : "") + (item.Stacking == StackPolicy.Unique ? " · unique" : ""));
@@ -255,9 +254,6 @@ namespace ArcaneBrigade
         public Sprite AttackIcon => Attack == null ? null : (Attack.Weapon != null ? Attack.Weapon.Kind != WeaponKind.Projectile : !Attack.Ranged)
             ? CompanionRoles.Badge(CompanionRole.Striker) : rangedIcon != null ? rangedIcon : rangedIcon = Resources.Load<Sprite>("MienCho/ActOne/Stat_RangedDamage");
         private static Sprite rangedIcon;
-        /// <summary>The weapon as the card's first line, on the same neutral plate as DRINK or FOOD, so it never looks like a bond
-        /// chip (requirement 4/11/2026: the weapon and the bonds wore identical chips).</summary>
-        public string AttackLine => Attack == null ? "" : "{tag:WEAPON} " + AttackLabel;
         public string AttackLabel => Attack == null ? "" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) + " · " + RecruitAttackReadout.Damage(Attack.MaxDamage) + " dmg"
             : RecruitAttackReadout.DamageRange(Attack.MinDamage, Attack.MaxDamage) + " dmg";
         /// <summary>An HP-priced offer opens its COSTS with what it really costs (requirement 22/10/2026): "−N max HP for this run",
@@ -306,6 +302,7 @@ namespace ArcaneBrigade
             Rect r = sprite.textureRect; float aspect = r.width / r.height;
             if (aspect > bounds.width / bounds.height) { float h = bounds.width / aspect; bounds.y += (bounds.height - h) * .5f; bounds.height = h; }
             else { float w = bounds.height * aspect; bounds.x += (bounds.width - w) * .5f; bounds.width = w; }
+            KitDrawAudit.Note(sprite.name, bounds.width / r.width, (int)r.width, (int)r.height);
             GUI.DrawTextureWithTexCoords(bounds, sprite.texture, new Rect(r.x / sprite.texture.width, r.y / sprite.texture.height, r.width / sprite.texture.width, r.height / sprite.texture.height), true);
         }
     }

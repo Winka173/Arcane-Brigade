@@ -42,7 +42,7 @@ namespace ArcaneBrigade
             foreach (var pair in had)
             {
                 int lost = pair.Value - (has.TryGetValue(pair.Key, out int n) ? n : 0); ItemDefinition item = catalog.Item(pair.Key);
-                if (lost > 0 && item != null) Add(item.Icon, "Gave: " + item.Name, false);
+                if (lost > 0 && item != null) Add(item.Icon, "Gave: " + item.Name, false, item.Id, false, 1); // what it did is shown too (requirement 4/11/2026)
             }
             // friends: new, gone, starred up, re-armed
             foreach (RosterEntry r in after.Roster)
@@ -54,7 +54,7 @@ namespace ArcaneBrigade
                 else if (r.WeaponId != old.WeaponId) Add(catalog.Weapon(r.WeaponId)?.Sprite ?? unit.Body, RunUICopy.UnitName(unit) + " now carries " + RunUICopy.WeaponName(r.WeaponId), true);
             }
             foreach (RosterEntry r in before.Roster)
-                if (!after.Roster.Exists(o => o.UnitId == r.UnitId)) { UnitDefinition unit = catalog.Unit(r.UnitId); if (unit != null) Add(unit.Body, "Left: " + RunUICopy.UnitName(unit), false); }
+                if (!after.Roster.Exists(o => o.UnitId == r.UnitId)) { UnitDefinition unit = catalog.Unit(r.UnitId); if (unit != null) Add(unit.Body, "Left: " + RunUICopy.UnitName(unit), false, unit.Id, true, r.Tier); }
             int major = lines.Count; // relics and friends: worth the card
             // purse
             int gold = after.Gold - before.Gold, eggs = after.Eggs - before.Eggs;
@@ -140,8 +140,7 @@ namespace ArcaneBrigade
                 // with a little bounce and settles (requirement 25/10/2026: like finding the sword)
                 float held = Time.unscaledTime - shownAt - .1f - (step - 1) * .08f;
                 Vector2 treasure = new Vector2(inner.x + 60, y + 60);
-                // a soft glow in its rarity's colour behind it (the turning rays drew as white dashes round it)
-                ArcadeSkin.SelectedAura(new Rect(treasure.x - 55, treasure.y - 55, 110, 110), RunModifierRules.RarityColor(shown.Rarity));
+                // no glow round it (requirement 4/11/2026, asked many times: no rings of light round pictures)
                 RarityDescriptionFrame.Backdrop(new Rect(inner.x, y, 120, 120), shown.Rarity, Time.unscaledTime);
                 float rise = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01(held / .45f), bounce = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01(held / .7f) * Mathf.PI) * 14;
                 float scale = PresentationSettings.ReducedMotion ? 1 : Mathf.Lerp(.55f, 1, Mathf.SmoothStep(0, 1, rise)) * (1 + .08f * Mathf.Sin(Mathf.Clamp01((held - .45f) / .35f) * Mathf.PI));
@@ -154,7 +153,7 @@ namespace ArcaneBrigade
                 identityStyle.normal.textColor = body.normal.textColor;
                 // a friend you already had comes as a star-up, not a new friend; under the name with a gap
                 bool starUp = l.Friend && l.Text.Contains(" now ");
-                GUI.Label(new Rect(inner.x + 150, y + 42, textW, 26), (starUp ? "STAR UP · " : l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
+                GUI.Label(new Rect(inner.x + 150, y + 42, textW, 26), (!l.Gain ? (l.Friend ? "LEFT · " : "GAVE AWAY · ") : starUp ? "STAR UP · " : l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
                 GlossaryUI.Text(new Rect(inner.x + 150, y + 76, textW, rowH - 76), summary, cardLine);
                 GUI.matrix = lm; GUI.color = lc;
                 y += rowH + 16;
