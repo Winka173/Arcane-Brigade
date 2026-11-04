@@ -31,6 +31,29 @@ namespace ArcaneBrigade.Editor
             if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException(target + " build failed");
         }
 
+        /// <summary>Signs with the Google Play upload key (requirement 4/11/2026). The keystore and its passwords live outside the
+        /// repository, in ~/.secrets/arcane-brigade-upload.properties (keystore=, alias=, storePassword=, keyPassword=) or the
+        /// file named by the ARCANE_UPLOAD_KEY environment variable; without it the build is signed with the debug key and
+        /// cannot be uploaded to Google Play.</summary>
+        private static void Signing()
+        {
+            string file = Environment.GetEnvironmentVariable("ARCANE_UPLOAD_KEY");
+            if (string.IsNullOrEmpty(file)) file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".secrets", "arcane-brigade-upload.properties");
+            if (!File.Exists(file)) { PlayerSettings.Android.useCustomKeystore = false; Debug.LogWarning("MobileBuilder: no upload key, signed with the debug key"); return; }
+            var values = new System.Collections.Generic.Dictionary<string, string>();
+            foreach (string line in File.ReadAllLines(file))
+            {
+                int eq = line.IndexOf('='); if (eq <= 0 || line.TrimStart().StartsWith("#")) continue;
+                values[line.Substring(0, eq).Trim()] = line.Substring(eq + 1).Trim();
+            }
+            PlayerSettings.Android.useCustomKeystore = true;
+            PlayerSettings.Android.keystoreName = values["keystore"];
+            PlayerSettings.Android.keystorePass = values["storePassword"];
+            PlayerSettings.Android.keyaliasName = values["alias"];
+            PlayerSettings.Android.keyaliasPass = values["keyPassword"];
+            Debug.Log("MobileBuilder: signed with the upload key " + values["alias"]);
+        }
+
         [MenuItem("Arcane Brigade/Build Android (APK)")]
         public static void BuildAndroid()
         {
@@ -44,7 +67,7 @@ namespace ArcaneBrigade.Editor
 
         /// <summary>The Google Play upload (requirement 3/11/2026: the APK is 288 MB, Play takes at most 200 MB in the base module): an
         /// app bundle whose game data rides in an install-time asset pack, so the base keeps only the code and the player still
-        /// installs once. Signed with the keystore set in Player Settings (the debug key when none is set).</summary>
+        /// installs once. Signed with the upload key (<see cref="Signing"/>).</summary>
         [MenuItem("Arcane Brigade/Build Android (Play bundle)")]
         public static void BuildAndroidBundle()
         {
@@ -52,6 +75,7 @@ namespace ArcaneBrigade.Editor
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             EditorUserBuildSettings.buildAppBundle = true;
             PlayerSettings.Android.splitApplicationBinary = true;
+            Signing();
             Directory.CreateDirectory("Builds/Android");
             Build("Builds/Android/ArcaneBrigade.aab", BuildTarget.Android);
         }

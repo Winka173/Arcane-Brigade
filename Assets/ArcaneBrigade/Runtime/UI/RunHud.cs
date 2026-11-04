@@ -585,7 +585,18 @@ namespace ArcaneBrigade
                 if (fallen) DrawFallenWord(owner, state, new Rect(115, 608, 565, 84));
                 TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(115, 692, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
                 // one column of full-width plates, one shape for all (review 4/11/2026: two wide ornate plates and two square-ended ones)
-                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 744, 560, 56), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
+                if (state.Phase == SessionPhase.Victory)
+                {
+                    // Endless is part of Deluxe on phones (requirement 4/11/2026): the button stays, with a lock, and opens the offer
+                    Rect endless = new Rect(115, 744, 560, 56);
+                    bool locked = Deluxe.EndlessLocked;
+                    if (navigation.Button(endless, locked ? "ENDLESS · DELUXE" : "ENDLESS · KEEP BRIGADE AND RELICS", button))
+                    {
+                        if (locked) DeluxeOffer.Open("Endless is part of Deluxe: keep your brigade and relics past dawn.");
+                        else owner.ContinueEndless();
+                    }
+                    if (locked) ArcadeSkin.Lock(new Vector2(endless.center.x - button.CalcSize(new GUIContent("ENDLESS · DELUXE")).x * .5f - 20, endless.center.y), 16, ArcadeSkin.KitCream); // just before the words
+                }
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
                 if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 744, 560, 56), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
                 if (navigation.Button(new Rect(115, 806, 560, 56), "PLAY AGAIN", primary)) owner.RestartRun();

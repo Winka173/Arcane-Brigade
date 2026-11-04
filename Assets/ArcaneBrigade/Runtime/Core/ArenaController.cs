@@ -610,6 +610,7 @@ namespace ArcaneBrigade
         }
         public void ContinueEndless()
         {
+            if (Deluxe.EndlessLocked) { DeluxeOffer.Open("Endless is part of Deluxe: keep your brigade and relics past dawn."); return; }
             if (session.State.Phase != SessionPhase.Victory || !ResultsReady) return;
             if (!PersistBoundary() || !profile.CompletedRuns.Contains(session.State.RunId)) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));

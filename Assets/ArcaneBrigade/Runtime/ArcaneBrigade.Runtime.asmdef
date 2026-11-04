@@ -1,6 +1,9 @@
 {
   "name": "ArcaneBrigade.Runtime",
   "rootNamespace": "ArcaneBrigade",
-  "references": [],
+  "references": [
+    "Unity.Purchasing",
+    "Unity.Purchasing.Stores"
+  ],
   "autoReferenced": true
 }

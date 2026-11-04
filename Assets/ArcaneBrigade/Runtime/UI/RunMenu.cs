@@ -169,6 +169,7 @@ namespace ArcaneBrigade
             storage = new RunStorage(RunPaths.Root);
             profile = storage.LoadProfile();
             difficulty = Mathf.Clamp(profile.LastDifficulty, 0, RunMeta.UnlockedDifficulty(profile)); // the difficulty chosen last time
+            if (Deluxe.DifficultyLocked(difficulty)) difficulty = Deluxe.FirstDeluxeDifficulty - 1; // Deluxe was refunded or this is another device
             ArcadeSkin.Bundle = profile.Cosmetic;
             if (!string.IsNullOrEmpty(storage.LastError))
             {
@@ -278,7 +279,7 @@ namespace ArcaneBrigade
 
         private void Launch(bool resume)
         {
-            if (resume && !CanResume || !resume && (!HeroUnlocks.Open(profile, catalog.Champions[selection]) || difficulty > RunMeta.UnlockedDifficulty(profile))) return;
+            if (resume && !CanResume || !resume && (!HeroUnlocks.Open(profile, catalog.Champions[selection]) || difficulty > RunMeta.UnlockedDifficulty(profile) || Deluxe.DifficultyLocked(difficulty))) return;
             CheckpointAudio.PlayInterfaceId("ui.confirm");
             if (!resume && existingSave)
             {
@@ -715,6 +716,13 @@ namespace ArcaneBrigade
                     ArcadeSkin.Seal(navigation.Moved(new Vector2(spot.xMax - 28, spot.y + 28)), 30, "!");
                 }
             }
+            // the Deluxe entry on phones, until it is bought (requirement 4/11/2026: one place in the menu, never a pop-up of its own)
+            if (Deluxe.Sold && !Deluxe.Owned)
+            {
+                GUI.enabled = quitAskedAt < 0;
+                Rect deluxe = new Rect(44, 476 - (CanResume ? 0 : 82) + 2 * 72, SmallSpotWidth * 2 + 10, 64);
+                if (navigation.Button(deluxe, "DELUXE · " + Deluxe.Price, button)) DeluxeOffer.Open();
+            }
             GUI.enabled = true;
         }
         private GUIStyle spotPlate;
@@ -838,13 +846,14 @@ namespace ArcaneBrigade
             // every difficulty is shown in turn; the two after the whole Lamp Tree show a lock until it is lit
             // requirement 25/10/2026 (no tap-to-cycle pickers): the difficulty is chosen from a list of all of them
             if (Button(new Rect(65, 656, 330, 52), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficultyPickerAt = Time.unscaledTime;
-            bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile);
+            bool deluxeDifficulty = Deluxe.DifficultyLocked(difficulty); // requirement 4/11/2026: the two hardest difficulties are part of Deluxe on phones
+            bool sealedDifficulty = difficulty > RunMeta.UnlockedDifficulty(profile) || deluxeDifficulty;
             // the difficulty's danger colour on its name alone, never on the painted plate (requirement 24/10/2026: no tinted plates or boxes)
             GUIStyle danger = dangerStyle ?? (dangerStyle = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote), true)); danger.alignment = TextAnchor.MiddleLeft; danger.wordWrap = true;
             danger.normal.textColor = RunMeta.DifficultyColor(difficulty);
             // beside it, the Night Pact (release testing 3/11/2026: it lived only in the Waiting Room and players starting a run never
             // found it): its curses are chosen here, where the night is set up; what each difficulty does is in the difficulty list
-            string dangerText = sealedDifficulty ? "Light the whole Lamp Tree" : DifficultyLine(difficulty);
+            string dangerText = deluxeDifficulty ? "Part of Deluxe" : sealedDifficulty ? "Light the whole Lamp Tree" : DifficultyLine(difficulty);
             Rect dangerRect = new Rect(410, 656, 352, 52); // one line beside the button
             if (!sealedDifficulty) DrawPactButton(new Rect(410, 656, 340, 52));
             else
@@ -854,6 +863,7 @@ namespace ArcaneBrigade
                 dangerRect = new Rect(dangerRect.x + 26, dangerRect.y, dangerRect.width - 26, dangerRect.height);
             }
             if (sealedDifficulty) GUI.Label(dangerRect, dangerText, danger);
+            if (deluxeDifficulty && TouchTargets.Button(new Rect(410, 656, 352, 52), GUIContent.none, GUIStyle.none)) DeluxeOffer.Open("Sleepless and The Last Night are part of Deluxe.");
             GUI.enabled = HeroUnlocks.Open(profile, champion) && !sealedDifficulty;
             if (navigation.Button(new Rect(770, 650, 450, 62), HeroUnlocks.Open(profile, champion) && !sealedDifficulty ? "STEP THROUGH ▶" : HeroUnlocks.Coming(champion) ? "COMING SOON" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
@@ -956,15 +966,16 @@ namespace ArcaneBrigade
                     for (int i = 0; i < count; i++)
                     {
                         Rect row = new Rect(card.x + 40, card.y + 76 + i * 64, card.width - 80, 56);
-                        bool sealedRow = i > unlocked, chosen = i == difficulty;
+                        bool deluxeRow = Deluxe.DifficultyLocked(i), sealedRow = i > unlocked || deluxeRow, chosen = i == difficulty;
                         ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? ArcadeSkin.Chosen : 0);
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = RunMeta.DifficultyColor(i);
                         GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
                         if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);
                         overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
-                        GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), sealedRow ? "Light the whole Lamp Tree" : DifficultyLine(i), overlayLine);
+                        GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), deluxeRow ? "Part of Deluxe" : sealedRow ? "Light the whole Lamp Tree" : DifficultyLine(i), overlayLine);
                         overlayLine.alignment = TextAnchor.UpperLeft;
                         int pick = i;
+                        if (deluxeRow && TouchTargets.Button(row, GUIContent.none, GUIStyle.none)) DeluxeOffer.Open("Sleepless and The Last Night are part of Deluxe.");
                         if (!sealedRow && TouchTargets.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("difficulty-picker")) LivingUI.CloseThen("difficulty-picker", () => { difficulty = pick; difficultyPickerAt = -1; });
                     }
                     overlayTitle.fontSize = 26; overlayTitle.alignment = TextAnchor.MiddleCenter; overlayTitle.normal.textColor = ArcadeSkin.KitCream;
