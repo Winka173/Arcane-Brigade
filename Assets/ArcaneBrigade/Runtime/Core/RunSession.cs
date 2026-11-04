@@ -416,6 +416,7 @@ namespace ArcaneBrigade
                 CombatCatalog.EnemyBudget = Mathf.Min(OctoberBalance.CrowdCap, Mathf.CeilToInt(CombatCatalog.EnemyBudget * OctoberBalance.DeepCrowd));
                 CombatCatalog.SpawnInterval /= OctoberBalance.DeepCrowd;
             }
+            smoothBudgetBase = CombatCatalog.EnemyBudget; // pacts, visitors and relics after this still scale the smoothed count
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
             CombatCatalog.PickupRadius = Mathf.Max(3.2f, catalog.Arena.PickupRadius * 2.4f) + Bonus(ItemEffect.Pickup);
@@ -529,6 +530,7 @@ namespace ArcaneBrigade
             CompileOctoberRoster();
             PrepareHeroIdentity();
             PrepareMeta();
+            SmoothWave(actOne);
             ApplyEnemyDifficultyRelief();
             RunAchievements.Observe(this, catalog, CombatCatalog);
             // the arena's fixed props (none in secret rooms): toys and spectacles keep off them

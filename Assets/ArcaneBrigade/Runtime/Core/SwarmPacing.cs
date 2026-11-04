@@ -23,7 +23,8 @@ namespace ArcaneBrigade
         public const float SurgeWarning = 1.4f;
         /// <summary>Surges replace the old lulls: rare, a wall of weak bodies from one side. Never more often than every 20 s.</summary>
         public static float SurgeEvery(int wave) => Mathf.Lerp(28f, 21f, Mathf.Clamp01((wave - 2) / 16f));
-        public static int SurgeSize(int wave) => Mathf.Min(44, 10 + Mathf.RoundToInt(wave * 1.7f));
+        // requirement 4/11/2026: fewer small enemies (was min(44, 10 + 1.7 per wave))
+        public static int SurgeSize(int wave) => Mathf.Min(24, 6 + wave);
         public static float BloaterChance(int wave) => wave < 2 ? 0 : Mathf.Min(0.07f, 0.025f + wave * 0.0025f);
         public static float FuseChance(int wave) => wave < 3 ? 0 : Mathf.Min(0.12f, 0.04f + wave * 0.004f);
         /// <summary>Damage left over after a kill spills into the nearest bodies (never chains).</summary>
