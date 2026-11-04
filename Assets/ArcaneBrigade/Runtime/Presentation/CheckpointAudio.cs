@@ -323,7 +323,7 @@ namespace ArcaneBrigade
             bool choreography = def.id.StartsWith("shop.carpet.") || def.id.StartsWith("shop.keeper.") || def.id.StartsWith("up.ally.") || def.id.StartsWith("up.star") || def.id.StartsWith("up.merge");
             bool impact = !danger && !ui && IsImpact(def.id);
             // requirement 31/10/2026: with fewer friends in the brigade every swing and shot should be heard
-            bool attack = !danger && !ui && !impact && (def.id.StartsWith("cmb.swing") || def.id.StartsWith("wpn."));
+            bool attack = !danger && !ui && !impact && (def.id.StartsWith("cmb.swing") || def.id.StartsWith("wpn.") || def.id.StartsWith("hero.wpn.")); // a signature weapon's own attack sound is an attack too (4/11/2026)
             if (!choreography && now < (danger ? nextDanger : ui ? nextInterface : impact ? nextImpact : attack ? nextAttack : nextCosmetic)) { if (!danger) DroppedCosmeticCues++; return true; }
             string group = null;
             if (!danger && !ui)

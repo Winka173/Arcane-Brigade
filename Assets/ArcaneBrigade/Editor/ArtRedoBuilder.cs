@@ -188,6 +188,7 @@ namespace ArcaneBrigade.Editor
             Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             if (texture == null || texture.width % cols != 0 || texture.height % rows != 0) { Debug.Log("ART_REDO bad grid " + path); return null; }
             int w = texture.width / cols, h = texture.height / rows;
+            importer.spritePixelsPerUnit = h; // one cell is one unit tall at any resolution (requirement 4/11/2026: sheets repainted at 2x)
             var factories = new SpriteDataProviderFactories(); factories.Init();
             var provider = factories.GetSpriteEditorDataProviderFromObject(importer); provider.InitSpriteEditorDataProvider();
             var previous = provider.GetSpriteRects().ToDictionary(rect => rect.name, rect => rect.spriteID);

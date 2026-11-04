@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -140,9 +140,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 181
-        height: 200
+        y: 960
+        width: 362
+        height: 400
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,9 +162,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 684
-        width: 192
-        height: 193
+        y: 1368
+        width: 384
+        height: 386
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: ExpansionCharacters1_02
       rect:
         serializedVersion: 2
-        x: 196
-        y: 696
-        width: 201
-        height: 190
+        x: 392
+        y: 1392
+        width: 402
+        height: 380
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: ExpansionCharacters1_03
       rect:
         serializedVersion: 2
-        x: 660
-        y: 680
-        width: 227
-        height: 193
+        x: 1320
+        y: 1360
+        width: 454
+        height: 386
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: ExpansionCharacters1_04
       rect:
         serializedVersion: 2
-        x: 184
+        x: 368
         y: 0
-        width: 158
-        height: 242
+        width: 316
+        height: 484
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,8 +251,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 177
-        height: 243
+        width: 354
+        height: 486
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +271,10 @@ TextureImporter:
       name: ExpansionCharacters1_06
       rect:
         serializedVersion: 2
-        x: 560
-        y: 240
-        width: 188
-        height: 233
+        x: 1120
+        y: 480
+        width: 376
+        height: 466
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: ExpansionCharacters1_07
       rect:
         serializedVersion: 2
-        x: 348
+        x: 696
         y: 0
-        width: 206
-        height: 240
+        width: 412
+        height: 480
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: ExpansionCharacters1_08
       rect:
         serializedVersion: 2
-        x: 348
-        y: 244
-        width: 195
-        height: 227
+        x: 696
+        y: 488
+        width: 390
+        height: 454
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,10 +337,10 @@ TextureImporter:
       name: ExpansionCharacters1_09
       rect:
         serializedVersion: 2
-        x: 560
+        x: 1120
         y: 0
-        width: 193
-        height: 236
+        width: 386
+        height: 472
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: ExpansionCharacters1_10
       rect:
         serializedVersion: 2
-        x: 224
-        y: 476
-        width: 202
-        height: 213
+        x: 448
+        y: 952
+        width: 404
+        height: 426
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,9 +382,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 248
-        width: 219
-        height: 228
+        y: 496
+        width: 438
+        height: 456
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,10 +403,10 @@ TextureImporter:
       name: ExpansionCharacters1_12
       rect:
         serializedVersion: 2
-        x: 752
-        y: 460
-        width: 166
-        height: 216
+        x: 1504
+        y: 920
+        width: 332
+        height: 432
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: ExpansionCharacters1_13
       rect:
         serializedVersion: 2
-        x: 760
+        x: 1520
         y: 0
-        width: 172
-        height: 222
+        width: 344
+        height: 444
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: ExpansionCharacters1_14
       rect:
         serializedVersion: 2
-        x: 752
-        y: 240
-        width: 189
-        height: 215
+        x: 1504
+        y: 480
+        width: 378
+        height: 430
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,10 +469,10 @@ TextureImporter:
       name: ExpansionCharacters1_15
       rect:
         serializedVersion: 2
-        x: 432
-        y: 480
-        width: 221
-        height: 212
+        x: 864
+        y: 960
+        width: 442
+        height: 424
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

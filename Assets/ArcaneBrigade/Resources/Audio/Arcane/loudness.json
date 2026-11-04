@@ -1552,6 +1552,546 @@
             "gainDb": 1.5
         },
         {
+            "clip": "s7_hero_wpn_acornsling_0",
+            "rmsDb": -15.4,
+            "gainDb": 4.36
+        },
+        {
+            "clip": "s7_hero_wpn_acornsling_1",
+            "rmsDb": -14.23,
+            "gainDb": 3.19
+        },
+        {
+            "clip": "s7_hero_wpn_acornsling_2",
+            "rmsDb": -14.98,
+            "gainDb": 3.94
+        },
+        {
+            "clip": "s7_hero_wpn_alarmmortar_0",
+            "rmsDb": -13.71,
+            "gainDb": 2.67
+        },
+        {
+            "clip": "s7_hero_wpn_alarmmortar_1",
+            "rmsDb": -13.97,
+            "gainDb": 2.93
+        },
+        {
+            "clip": "s7_hero_wpn_alarmmortar_2",
+            "rmsDb": -15.0,
+            "gainDb": 3.96
+        },
+        {
+            "clip": "s7_hero_wpn_bamboovase_0",
+            "rmsDb": -16.89,
+            "gainDb": 5.85
+        },
+        {
+            "clip": "s7_hero_wpn_bamboovase_1",
+            "rmsDb": -15.87,
+            "gainDb": 4.83
+        },
+        {
+            "clip": "s7_hero_wpn_bamboovase_2",
+            "rmsDb": -15.89,
+            "gainDb": 4.85
+        },
+        {
+            "clip": "s7_hero_wpn_bubblewand_0",
+            "rmsDb": -13.32,
+            "gainDb": 2.28
+        },
+        {
+            "clip": "s7_hero_wpn_bubblewand_1",
+            "rmsDb": -13.03,
+            "gainDb": 1.99
+        },
+        {
+            "clip": "s7_hero_wpn_bubblewand_2",
+            "rmsDb": -12.68,
+            "gainDb": 1.64
+        },
+        {
+            "clip": "s7_hero_wpn_clockcrescent_0",
+            "rmsDb": -8.63,
+            "gainDb": -2.41
+        },
+        {
+            "clip": "s7_hero_wpn_clockcrescent_1",
+            "rmsDb": -10.94,
+            "gainDb": -0.1
+        },
+        {
+            "clip": "s7_hero_wpn_clockcrescent_2",
+            "rmsDb": -15.12,
+            "gainDb": 4.08
+        },
+        {
+            "clip": "s7_hero_wpn_confettiblunderbuss_0",
+            "rmsDb": -11.25,
+            "gainDb": 0.21
+        },
+        {
+            "clip": "s7_hero_wpn_confettiblunderbuss_1",
+            "rmsDb": -12.19,
+            "gainDb": 1.15
+        },
+        {
+            "clip": "s7_hero_wpn_confettiblunderbuss_2",
+            "rmsDb": -11.44,
+            "gainDb": 0.4
+        },
+        {
+            "clip": "s7_hero_wpn_corkscrewrapier_0",
+            "rmsDb": -9.76,
+            "gainDb": -1.28
+        },
+        {
+            "clip": "s7_hero_wpn_corkscrewrapier_1",
+            "rmsDb": -9.98,
+            "gainDb": -1.06
+        },
+        {
+            "clip": "s7_hero_wpn_corkscrewrapier_2",
+            "rmsDb": -9.82,
+            "gainDb": -1.22
+        },
+        {
+            "clip": "s7_hero_wpn_cuckoocannon_0",
+            "rmsDb": -15.85,
+            "gainDb": 4.81
+        },
+        {
+            "clip": "s7_hero_wpn_cuckoocannon_1",
+            "rmsDb": -16.46,
+            "gainDb": 5.42
+        },
+        {
+            "clip": "s7_hero_wpn_cuckoocannon_2",
+            "rmsDb": -15.13,
+            "gainDb": 4.09
+        },
+        {
+            "clip": "s7_hero_wpn_detonatorbox_0",
+            "rmsDb": -14.47,
+            "gainDb": 3.43
+        },
+        {
+            "clip": "s7_hero_wpn_detonatorbox_1",
+            "rmsDb": -14.55,
+            "gainDb": 3.51
+        },
+        {
+            "clip": "s7_hero_wpn_detonatorbox_2",
+            "rmsDb": -13.85,
+            "gainDb": 2.81
+        },
+        {
+            "clip": "s7_hero_wpn_dreamstamp_0",
+            "rmsDb": -10.86,
+            "gainDb": -0.18
+        },
+        {
+            "clip": "s7_hero_wpn_dreamstamp_1",
+            "rmsDb": -13.65,
+            "gainDb": 2.61
+        },
+        {
+            "clip": "s7_hero_wpn_dreamstamp_2",
+            "rmsDb": -13.76,
+            "gainDb": 2.72
+        },
+        {
+            "clip": "s7_hero_wpn_drumstickclub_0",
+            "rmsDb": -10.17,
+            "gainDb": -0.87
+        },
+        {
+            "clip": "s7_hero_wpn_drumstickclub_1",
+            "rmsDb": -9.97,
+            "gainDb": -1.07
+        },
+        {
+            "clip": "s7_hero_wpn_drumstickclub_2",
+            "rmsDb": -10.18,
+            "gainDb": -0.86
+        },
+        {
+            "clip": "s7_hero_wpn_fireextinguisher_0",
+            "rmsDb": -15.78,
+            "gainDb": 4.74
+        },
+        {
+            "clip": "s7_hero_wpn_fireextinguisher_1",
+            "rmsDb": -15.37,
+            "gainDb": 4.33
+        },
+        {
+            "clip": "s7_hero_wpn_fireextinguisher_2",
+            "rmsDb": -15.63,
+            "gainDb": 4.59
+        },
+        {
+            "clip": "s7_hero_wpn_glitchtoybox_0",
+            "rmsDb": -8.21,
+            "gainDb": -2.83
+        },
+        {
+            "clip": "s7_hero_wpn_glitchtoybox_1",
+            "rmsDb": -7.42,
+            "gainDb": -3.62
+        },
+        {
+            "clip": "s7_hero_wpn_glitchtoybox_2",
+            "rmsDb": -11.07,
+            "gainDb": 0.03
+        },
+        {
+            "clip": "s7_hero_wpn_gumballgatling_0",
+            "rmsDb": -11.83,
+            "gainDb": 0.79
+        },
+        {
+            "clip": "s7_hero_wpn_gumballgatling_1",
+            "rmsDb": -11.17,
+            "gainDb": 0.13
+        },
+        {
+            "clip": "s7_hero_wpn_gumballgatling_2",
+            "rmsDb": -16.48,
+            "gainDb": 5.44
+        },
+        {
+            "clip": "s7_hero_wpn_inkyoctopus_0",
+            "rmsDb": -12.76,
+            "gainDb": 1.72
+        },
+        {
+            "clip": "s7_hero_wpn_inkyoctopus_1",
+            "rmsDb": -11.05,
+            "gainDb": 0.01
+        },
+        {
+            "clip": "s7_hero_wpn_inkyoctopus_2",
+            "rmsDb": -15.72,
+            "gainDb": 4.68
+        },
+        {
+            "clip": "s7_hero_wpn_jugglingpins_0",
+            "rmsDb": -11.05,
+            "gainDb": 0.01
+        },
+        {
+            "clip": "s7_hero_wpn_jugglingpins_1",
+            "rmsDb": -11.73,
+            "gainDb": 0.69
+        },
+        {
+            "clip": "s7_hero_wpn_jugglingpins_2",
+            "rmsDb": -12.44,
+            "gainDb": 1.4
+        },
+        {
+            "clip": "s7_hero_wpn_keycleaver_0",
+            "rmsDb": -10.17,
+            "gainDb": -0.87
+        },
+        {
+            "clip": "s7_hero_wpn_keycleaver_1",
+            "rmsDb": -10.44,
+            "gainDb": -0.6
+        },
+        {
+            "clip": "s7_hero_wpn_keycleaver_2",
+            "rmsDb": -10.13,
+            "gainDb": -0.91
+        },
+        {
+            "clip": "s7_hero_wpn_kitespool_0",
+            "rmsDb": -15.01,
+            "gainDb": 3.97
+        },
+        {
+            "clip": "s7_hero_wpn_kitespool_1",
+            "rmsDb": -13.75,
+            "gainDb": 2.71
+        },
+        {
+            "clip": "s7_hero_wpn_kitespool_2",
+            "rmsDb": -12.63,
+            "gainDb": 1.59
+        },
+        {
+            "clip": "s7_hero_wpn_lanternstaff_0",
+            "rmsDb": -12.82,
+            "gainDb": 1.78
+        },
+        {
+            "clip": "s7_hero_wpn_lanternstaff_1",
+            "rmsDb": -12.08,
+            "gainDb": 1.04
+        },
+        {
+            "clip": "s7_hero_wpn_lanternstaff_2",
+            "rmsDb": -13.27,
+            "gainDb": 2.23
+        },
+        {
+            "clip": "s7_hero_wpn_leafcrossbow_0",
+            "rmsDb": -15.49,
+            "gainDb": 4.45
+        },
+        {
+            "clip": "s7_hero_wpn_leafcrossbow_1",
+            "rmsDb": -15.51,
+            "gainDb": 4.47
+        },
+        {
+            "clip": "s7_hero_wpn_leafcrossbow_2",
+            "rmsDb": -15.44,
+            "gainDb": 4.4
+        },
+        {
+            "clip": "s7_hero_wpn_mailboxlauncher_0",
+            "rmsDb": -11.38,
+            "gainDb": 0.34
+        },
+        {
+            "clip": "s7_hero_wpn_mailboxlauncher_1",
+            "rmsDb": -11.46,
+            "gainDb": 0.42
+        },
+        {
+            "clip": "s7_hero_wpn_mailboxlauncher_2",
+            "rmsDb": -11.14,
+            "gainDb": 0.1
+        },
+        {
+            "clip": "s7_hero_wpn_moonscythe_0",
+            "rmsDb": -12.74,
+            "gainDb": 1.7
+        },
+        {
+            "clip": "s7_hero_wpn_moonscythe_1",
+            "rmsDb": -12.66,
+            "gainDb": 1.62
+        },
+        {
+            "clip": "s7_hero_wpn_moonscythe_2",
+            "rmsDb": -12.92,
+            "gainDb": 1.88
+        },
+        {
+            "clip": "s7_hero_wpn_moonseedorb_0",
+            "rmsDb": -11.75,
+            "gainDb": 0.71
+        },
+        {
+            "clip": "s7_hero_wpn_moonseedorb_1",
+            "rmsDb": -12.02,
+            "gainDb": 0.98
+        },
+        {
+            "clip": "s7_hero_wpn_moonseedorb_2",
+            "rmsDb": -11.32,
+            "gainDb": 0.28
+        },
+        {
+            "clip": "s7_hero_wpn_musicbox_0",
+            "rmsDb": -13.32,
+            "gainDb": 2.28
+        },
+        {
+            "clip": "s7_hero_wpn_musicbox_1",
+            "rmsDb": -10.62,
+            "gainDb": -0.42
+        },
+        {
+            "clip": "s7_hero_wpn_musicbox_2",
+            "rmsDb": -17.42,
+            "gainDb": 6.0
+        },
+        {
+            "clip": "s7_hero_wpn_needlesinger_0",
+            "rmsDb": -15.06,
+            "gainDb": 4.02
+        },
+        {
+            "clip": "s7_hero_wpn_needlesinger_1",
+            "rmsDb": -14.5,
+            "gainDb": 3.46
+        },
+        {
+            "clip": "s7_hero_wpn_needlesinger_2",
+            "rmsDb": -14.62,
+            "gainDb": 3.58
+        },
+        {
+            "clip": "s7_hero_wpn_plasmatrident_0",
+            "rmsDb": -15.11,
+            "gainDb": 4.07
+        },
+        {
+            "clip": "s7_hero_wpn_plasmatrident_1",
+            "rmsDb": -16.77,
+            "gainDb": 5.73
+        },
+        {
+            "clip": "s7_hero_wpn_plasmatrident_2",
+            "rmsDb": -13.99,
+            "gainDb": 2.95
+        },
+        {
+            "clip": "s7_hero_wpn_ribbonharp_0",
+            "rmsDb": -11.59,
+            "gainDb": 0.55
+        },
+        {
+            "clip": "s7_hero_wpn_ribbonharp_1",
+            "rmsDb": -12.08,
+            "gainDb": 1.04
+        },
+        {
+            "clip": "s7_hero_wpn_ribbonharp_2",
+            "rmsDb": -12.47,
+            "gainDb": 1.43
+        },
+        {
+            "clip": "s7_hero_wpn_rosebouquet_0",
+            "rmsDb": -9.09,
+            "gainDb": -1.95
+        },
+        {
+            "clip": "s7_hero_wpn_rosebouquet_1",
+            "rmsDb": -11.23,
+            "gainDb": 0.19
+        },
+        {
+            "clip": "s7_hero_wpn_rosebouquet_2",
+            "rmsDb": -12.09,
+            "gainDb": 1.05
+        },
+        {
+            "clip": "s7_hero_wpn_scooplauncher_0",
+            "rmsDb": -15.9,
+            "gainDb": 4.86
+        },
+        {
+            "clip": "s7_hero_wpn_scooplauncher_1",
+            "rmsDb": -16.97,
+            "gainDb": 5.93
+        },
+        {
+            "clip": "s7_hero_wpn_scooplauncher_2",
+            "rmsDb": -15.85,
+            "gainDb": 4.81
+        },
+        {
+            "clip": "s7_hero_wpn_signpostslammer_0",
+            "rmsDb": -10.54,
+            "gainDb": -0.5
+        },
+        {
+            "clip": "s7_hero_wpn_signpostslammer_1",
+            "rmsDb": -10.55,
+            "gainDb": -0.49
+        },
+        {
+            "clip": "s7_hero_wpn_signpostslammer_2",
+            "rmsDb": -10.46,
+            "gainDb": -0.58
+        },
+        {
+            "clip": "s7_hero_wpn_sleepcamera_0",
+            "rmsDb": -19.68,
+            "gainDb": 6.0
+        },
+        {
+            "clip": "s7_hero_wpn_sleepcamera_1",
+            "rmsDb": -16.75,
+            "gainDb": 5.71
+        },
+        {
+            "clip": "s7_hero_wpn_sleepcamera_2",
+            "rmsDb": -17.6,
+            "gainDb": 6.0
+        },
+        {
+            "clip": "s7_hero_wpn_snowglobeorb_0",
+            "rmsDb": -17.1,
+            "gainDb": 6.0
+        },
+        {
+            "clip": "s7_hero_wpn_snowglobeorb_1",
+            "rmsDb": -15.33,
+            "gainDb": 4.29
+        },
+        {
+            "clip": "s7_hero_wpn_snowglobeorb_2",
+            "rmsDb": -18.54,
+            "gainDb": 6.0
+        },
+        {
+            "clip": "s7_hero_wpn_sonarharpoon_0",
+            "rmsDb": -11.7,
+            "gainDb": 0.66
+        },
+        {
+            "clip": "s7_hero_wpn_sonarharpoon_1",
+            "rmsDb": -12.07,
+            "gainDb": 1.03
+        },
+        {
+            "clip": "s7_hero_wpn_sonarharpoon_2",
+            "rmsDb": -12.02,
+            "gainDb": 0.98
+        },
+        {
+            "clip": "s7_hero_wpn_squirttrio_0",
+            "rmsDb": -12.9,
+            "gainDb": 1.86
+        },
+        {
+            "clip": "s7_hero_wpn_squirttrio_1",
+            "rmsDb": -12.96,
+            "gainDb": 1.92
+        },
+        {
+            "clip": "s7_hero_wpn_squirttrio_2",
+            "rmsDb": -12.56,
+            "gainDb": 1.52
+        },
+        {
+            "clip": "s7_hero_wpn_starforgeclaymore_0",
+            "rmsDb": -10.01,
+            "gainDb": -1.03
+        },
+        {
+            "clip": "s7_hero_wpn_starforgeclaymore_1",
+            "rmsDb": -10.14,
+            "gainDb": -0.9
+        },
+        {
+            "clip": "s7_hero_wpn_starforgeclaymore_2",
+            "rmsDb": -9.84,
+            "gainDb": -1.2
+        },
+        {
+            "clip": "s7_hero_wpn_teapotpopgun_0",
+            "rmsDb": -12.15,
+            "gainDb": 1.11
+        },
+        {
+            "clip": "s7_hero_wpn_teapotpopgun_1",
+            "rmsDb": -12.98,
+            "gainDb": 1.94
+        },
+        {
+            "clip": "s7_hero_wpn_teapotpopgun_2",
+            "rmsDb": -11.56,
+            "gainDb": 0.52
+        },
+        {
             "clip": "s7_loot_chest_appear_0",
             "rmsDb": -12.819999694824219,
             "gainDb": 1.7799999713897706

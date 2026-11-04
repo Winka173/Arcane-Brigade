@@ -97,7 +97,8 @@ namespace ArcaneBrigade
             if (id == null) return SfxRole.Normal;
             if (bus == AudioBus.UI && !id.StartsWith("ui.cutin.boss", StringComparison.Ordinal)) return SfxRole.UI;
             if (IsBossCue(id)) return SfxRole.Boss;
-            if (heroSource || id.StartsWith("plr.", StringComparison.Ordinal) || id.StartsWith("hero.", StringComparison.Ordinal)) return SfxRole.Hero;
+            // a signature weapon's attack (hero.wpn.*, 4/11/2026) is the hero's only when the hero fired it; a friend wielding it stays in its own role
+            if (heroSource || id.StartsWith("plr.", StringComparison.Ordinal) || id.StartsWith("hero.", StringComparison.Ordinal) && !id.StartsWith("hero.wpn.", StringComparison.Ordinal)) return SfxRole.Hero;
             if (id.StartsWith("cmb.hit", StringComparison.Ordinal) || id.StartsWith("enemy.", StringComparison.Ordinal) || id == "fx.knockback") return SfxRole.Swarm;
             return SfxRole.Normal;
         }

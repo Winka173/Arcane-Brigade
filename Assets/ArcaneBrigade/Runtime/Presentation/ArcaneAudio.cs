@@ -500,6 +500,22 @@ namespace ArcaneBrigade
             _ => null
         };
 
+        private static readonly Dictionary<string, string> ownFire = new Dictionary<string, string>();
+        /// <summary>Requirement 4/11/2026: each hero's signature weapon attacks with a sound of its own, layered from recordings of
+        /// what the weapon is and how it moves (cue hero.wpn.&lt;weapon id in lower case&gt;), whoever wields it, hero or friend.
+        /// A weapon without such a cue keeps its shared cue. Null when there is none.</summary>
+        private static string OwnFire(WeaponDefinition weapon)
+        {
+            if (string.IsNullOrEmpty(weapon.Id)) return null;
+            if (!ownFire.TryGetValue(weapon.Id, out string id))
+            {
+                id = "hero.wpn." + weapon.Id.ToLowerInvariant();
+                if (Get(id) == null) id = null;
+                ownFire[weapon.Id] = id;
+            }
+            return id;
+        }
+
         private static string FireId(CombatEvent value, bool enemy)
         {
             WeaponDefinition weapon = value.Weapon;
@@ -512,6 +528,8 @@ namespace ArcaneBrigade
                 if (value.Subject != null && value.Subject.Definition != null && value.Subject.Definition.Shot == HostileShot.Weave) return "enemy.shot.spiral";
                 return "enemy.spit.fire";
             }
+            string own = OwnFire(weapon);
+            if (own != null) return own;
             string arsenal = ArsenalFire(weapon.Arsenal);
             if (arsenal != null) return arsenal;
             switch (weapon.Mechanic)

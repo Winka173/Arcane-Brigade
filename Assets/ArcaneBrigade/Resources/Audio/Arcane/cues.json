@@ -5062,6 +5062,582 @@
     "Sfx/s7_map_vault_spit_1",
     "Sfx/s7_map_vault_spit_2"
    ]
+  },
+  {
+   "id": "hero.wpn.keycleaver",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_keycleaver_0",
+    "Sfx/s7_hero_wpn_keycleaver_1",
+    "Sfx/s7_hero_wpn_keycleaver_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.mailboxlauncher",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -13.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_mailboxlauncher_0",
+    "Sfx/s7_hero_wpn_mailboxlauncher_1",
+    "Sfx/s7_hero_wpn_mailboxlauncher_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.moonseedorb",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_moonseedorb_0",
+    "Sfx/s7_hero_wpn_moonseedorb_1",
+    "Sfx/s7_hero_wpn_moonseedorb_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.bamboovase",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -11.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_bamboovase_0",
+    "Sfx/s7_hero_wpn_bamboovase_1",
+    "Sfx/s7_hero_wpn_bamboovase_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.inkyoctopus",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -12.5,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_inkyoctopus_0",
+    "Sfx/s7_hero_wpn_inkyoctopus_1",
+    "Sfx/s7_hero_wpn_inkyoctopus_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.glitchtoybox",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_glitchtoybox_0",
+    "Sfx/s7_hero_wpn_glitchtoybox_1",
+    "Sfx/s7_hero_wpn_glitchtoybox_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.ribbonharp",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_ribbonharp_0",
+    "Sfx/s7_hero_wpn_ribbonharp_1",
+    "Sfx/s7_hero_wpn_ribbonharp_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.clockcrescent",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -14.5,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_clockcrescent_0",
+    "Sfx/s7_hero_wpn_clockcrescent_1",
+    "Sfx/s7_hero_wpn_clockcrescent_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.snowglobeorb",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_snowglobeorb_0",
+    "Sfx/s7_hero_wpn_snowglobeorb_1",
+    "Sfx/s7_hero_wpn_snowglobeorb_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.acornsling",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_acornsling_0",
+    "Sfx/s7_hero_wpn_acornsling_1",
+    "Sfx/s7_hero_wpn_acornsling_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.leafcrossbow",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_leafcrossbow_0",
+    "Sfx/s7_hero_wpn_leafcrossbow_1",
+    "Sfx/s7_hero_wpn_leafcrossbow_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.fireextinguisher",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -11.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_fireextinguisher_0",
+    "Sfx/s7_hero_wpn_fireextinguisher_1",
+    "Sfx/s7_hero_wpn_fireextinguisher_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.needlesinger",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_needlesinger_0",
+    "Sfx/s7_hero_wpn_needlesinger_1",
+    "Sfx/s7_hero_wpn_needlesinger_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.bubblewand",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_bubblewand_0",
+    "Sfx/s7_hero_wpn_bubblewand_1",
+    "Sfx/s7_hero_wpn_bubblewand_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.starforgeclaymore",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_starforgeclaymore_0",
+    "Sfx/s7_hero_wpn_starforgeclaymore_1",
+    "Sfx/s7_hero_wpn_starforgeclaymore_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.corkscrewrapier",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_corkscrewrapier_0",
+    "Sfx/s7_hero_wpn_corkscrewrapier_1",
+    "Sfx/s7_hero_wpn_corkscrewrapier_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.drumstickclub",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_drumstickclub_0",
+    "Sfx/s7_hero_wpn_drumstickclub_1",
+    "Sfx/s7_hero_wpn_drumstickclub_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.gumballgatling",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -13.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_gumballgatling_0",
+    "Sfx/s7_hero_wpn_gumballgatling_1",
+    "Sfx/s7_hero_wpn_gumballgatling_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.signpostslammer",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_signpostslammer_0",
+    "Sfx/s7_hero_wpn_signpostslammer_1",
+    "Sfx/s7_hero_wpn_signpostslammer_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.dreamstamp",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -14.0,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_dreamstamp_0",
+    "Sfx/s7_hero_wpn_dreamstamp_1",
+    "Sfx/s7_hero_wpn_dreamstamp_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.rosebouquet",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_rosebouquet_0",
+    "Sfx/s7_hero_wpn_rosebouquet_1",
+    "Sfx/s7_hero_wpn_rosebouquet_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.confettiblunderbuss",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -13.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_confettiblunderbuss_0",
+    "Sfx/s7_hero_wpn_confettiblunderbuss_1",
+    "Sfx/s7_hero_wpn_confettiblunderbuss_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.sleepcamera",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -14.5,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_sleepcamera_0",
+    "Sfx/s7_hero_wpn_sleepcamera_1",
+    "Sfx/s7_hero_wpn_sleepcamera_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.detonatorbox",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_detonatorbox_0",
+    "Sfx/s7_hero_wpn_detonatorbox_1",
+    "Sfx/s7_hero_wpn_detonatorbox_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.plasmatrident",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -11.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_plasmatrident_0",
+    "Sfx/s7_hero_wpn_plasmatrident_1",
+    "Sfx/s7_hero_wpn_plasmatrident_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.musicbox",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -15.0,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_musicbox_0",
+    "Sfx/s7_hero_wpn_musicbox_1",
+    "Sfx/s7_hero_wpn_musicbox_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.moonscythe",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_moonscythe_0",
+    "Sfx/s7_hero_wpn_moonscythe_1",
+    "Sfx/s7_hero_wpn_moonscythe_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.teapotpopgun",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_teapotpopgun_0",
+    "Sfx/s7_hero_wpn_teapotpopgun_1",
+    "Sfx/s7_hero_wpn_teapotpopgun_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.lanternstaff",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_lanternstaff_0",
+    "Sfx/s7_hero_wpn_lanternstaff_1",
+    "Sfx/s7_hero_wpn_lanternstaff_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.alarmmortar",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15.0,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_alarmmortar_0",
+    "Sfx/s7_hero_wpn_alarmmortar_1",
+    "Sfx/s7_hero_wpn_alarmmortar_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.squirttrio",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -11.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_squirttrio_0",
+    "Sfx/s7_hero_wpn_squirttrio_1",
+    "Sfx/s7_hero_wpn_squirttrio_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.kitespool",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -14.5,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_kitespool_0",
+    "Sfx/s7_hero_wpn_kitespool_1",
+    "Sfx/s7_hero_wpn_kitespool_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.scooplauncher",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -11.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_scooplauncher_0",
+    "Sfx/s7_hero_wpn_scooplauncher_1",
+    "Sfx/s7_hero_wpn_scooplauncher_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.cuckoocannon",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -11.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_cuckoocannon_0",
+    "Sfx/s7_hero_wpn_cuckoocannon_1",
+    "Sfx/s7_hero_wpn_cuckoocannon_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.jugglingpins",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -15.5,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_jugglingpins_0",
+    "Sfx/s7_hero_wpn_jugglingpins_1",
+    "Sfx/s7_hero_wpn_jugglingpins_2"
+   ]
+  },
+  {
+   "id": "hero.wpn.sonarharpoon",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -15.0,
+   "cooldown": 0.03,
+   "maxVoices": 4,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/s7_hero_wpn_sonarharpoon_0",
+    "Sfx/s7_hero_wpn_sonarharpoon_1",
+    "Sfx/s7_hero_wpn_sonarharpoon_2"
+   ]
   }
  ]
 }

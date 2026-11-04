@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,10 +139,10 @@ TextureImporter:
       name: OctoberHeroes3_00
       rect:
         serializedVersion: 2
-        x: 848
-        y: 492
-        width: 214
-        height: 202
+        x: 1696
+        y: 984
+        width: 428
+        height: 404
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: OctoberHeroes3_01
       rect:
         serializedVersion: 2
-        x: 540
-        y: 744
-        width: 216
-        height: 199
+        x: 1080
+        y: 1488
+        width: 432
+        height: 398
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,9 +184,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 752
-        width: 227
-        height: 191
+        y: 1504
+        width: 454
+        height: 382
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: OctoberHeroes3_03
       rect:
         serializedVersion: 2
-        x: 540
-        y: 532
-        width: 259
-        height: 205
+        x: 1080
+        y: 1064
+        width: 518
+        height: 410
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: OctoberHeroes3_04
       rect:
         serializedVersion: 2
-        x: 904
+        x: 1808
         y: 0
-        width: 184
-        height: 261
+        width: 368
+        height: 522
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,8 +251,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 182
-        height: 270
+        width: 364
+        height: 540
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +271,10 @@ TextureImporter:
       name: OctoberHeroes3_06
       rect:
         serializedVersion: 2
-        x: 416
-        y: 268
-        width: 213
-        height: 258
+        x: 832
+        y: 536
+        width: 426
+        height: 516
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: OctoberHeroes3_07
       rect:
         serializedVersion: 2
-        x: 456
+        x: 912
         y: 0
-        width: 235
-        height: 263
+        width: 470
+        height: 526
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: OctoberHeroes3_08
       rect:
         serializedVersion: 2
-        x: 848
-        y: 268
-        width: 235
-        height: 220
+        x: 1696
+        y: 536
+        width: 470
+        height: 440
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,10 +337,10 @@ TextureImporter:
       name: OctoberHeroes3_09
       rect:
         serializedVersion: 2
-        x: 276
-        y: 532
-        width: 258
-        height: 215
+        x: 552
+        y: 1064
+        width: 516
+        height: 430
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,9 +360,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 532
-        width: 272
-        height: 215
+        y: 1064
+        width: 544
+        height: 430
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: OctoberHeroes3_11
       rect:
         serializedVersion: 2
-        x: 804
-        y: 700
-        width: 283
-        height: 200
+        x: 1608
+        y: 1400
+        width: 566
+        height: 400
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,10 +403,10 @@ TextureImporter:
       name: OctoberHeroes3_12
       rect:
         serializedVersion: 2
-        x: 636
-        y: 268
-        width: 205
-        height: 260
+        x: 1272
+        y: 536
+        width: 410
+        height: 520
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: OctoberHeroes3_13
       rect:
         serializedVersion: 2
-        x: 696
+        x: 1392
         y: 0
-        width: 204
-        height: 263
+        width: 408
+        height: 526
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: OctoberHeroes3_14
       rect:
         serializedVersion: 2
-        x: 188
-        y: 268
-        width: 222
-        height: 258
+        x: 376
+        y: 536
+        width: 444
+        height: 516
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,10 +469,10 @@ TextureImporter:
       name: OctoberHeroes3_15
       rect:
         serializedVersion: 2
-        x: 188
+        x: 376
         y: 0
-        width: 263
-        height: 262
+        width: 526
+        height: 524
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
