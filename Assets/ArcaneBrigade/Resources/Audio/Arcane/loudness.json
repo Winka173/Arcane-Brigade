@@ -1552,6 +1552,21 @@
             "gainDb": 1.5
         },
         {
+            "clip": "s7_hero_wpn_acorncluster_0",
+            "rmsDb": -11.29,
+            "gainDb": 0.25
+        },
+        {
+            "clip": "s7_hero_wpn_acorncluster_1",
+            "rmsDb": -12.82,
+            "gainDb": 1.78
+        },
+        {
+            "clip": "s7_hero_wpn_acorncluster_2",
+            "rmsDb": -11.89,
+            "gainDb": 0.85
+        },
+        {
             "clip": "s7_hero_wpn_acornsling_0",
             "rmsDb": -15.4,
             "gainDb": 4.36
@@ -1565,6 +1580,21 @@
             "clip": "s7_hero_wpn_acornsling_2",
             "rmsDb": -14.98,
             "gainDb": 3.94
+        },
+        {
+            "clip": "s7_hero_wpn_afterimagesabre_0",
+            "rmsDb": -14.52,
+            "gainDb": 3.48
+        },
+        {
+            "clip": "s7_hero_wpn_afterimagesabre_1",
+            "rmsDb": -16.43,
+            "gainDb": 5.39
+        },
+        {
+            "clip": "s7_hero_wpn_afterimagesabre_2",
+            "rmsDb": -13.8,
+            "gainDb": 2.76
         },
         {
             "clip": "s7_hero_wpn_alarmmortar_0",
@@ -1582,6 +1612,21 @@
             "gainDb": 3.96
         },
         {
+            "clip": "s7_hero_wpn_balloonbuddy_0",
+            "rmsDb": -10.1,
+            "gainDb": -0.94
+        },
+        {
+            "clip": "s7_hero_wpn_balloonbuddy_1",
+            "rmsDb": -9.89,
+            "gainDb": -1.15
+        },
+        {
+            "clip": "s7_hero_wpn_balloonbuddy_2",
+            "rmsDb": -10.56,
+            "gainDb": -0.48
+        },
+        {
             "clip": "s7_hero_wpn_bamboovase_0",
             "rmsDb": -16.89,
             "gainDb": 5.85
@@ -1595,6 +1640,66 @@
             "clip": "s7_hero_wpn_bamboovase_2",
             "rmsDb": -15.89,
             "gainDb": 4.85
+        },
+        {
+            "clip": "s7_hero_wpn_bareknuckles_0",
+            "rmsDb": -10.25,
+            "gainDb": -0.79
+        },
+        {
+            "clip": "s7_hero_wpn_bareknuckles_1",
+            "rmsDb": -12.9,
+            "gainDb": 1.86
+        },
+        {
+            "clip": "s7_hero_wpn_bareknuckles_2",
+            "rmsDb": -10.09,
+            "gainDb": -0.95
+        },
+        {
+            "clip": "s7_hero_wpn_bellfork_0",
+            "rmsDb": -10.58,
+            "gainDb": -0.46
+        },
+        {
+            "clip": "s7_hero_wpn_bellfork_1",
+            "rmsDb": -13.79,
+            "gainDb": 2.75
+        },
+        {
+            "clip": "s7_hero_wpn_bellfork_2",
+            "rmsDb": -11.26,
+            "gainDb": 0.22
+        },
+        {
+            "clip": "s7_hero_wpn_bobastraw_0",
+            "rmsDb": -14.05,
+            "gainDb": 3.01
+        },
+        {
+            "clip": "s7_hero_wpn_bobastraw_1",
+            "rmsDb": -15.5,
+            "gainDb": 4.46
+        },
+        {
+            "clip": "s7_hero_wpn_bobastraw_2",
+            "rmsDb": -14.61,
+            "gainDb": 3.57
+        },
+        {
+            "clip": "s7_hero_wpn_bookpaddle_0",
+            "rmsDb": -12.77,
+            "gainDb": 1.73
+        },
+        {
+            "clip": "s7_hero_wpn_bookpaddle_1",
+            "rmsDb": -12.95,
+            "gainDb": 1.91
+        },
+        {
+            "clip": "s7_hero_wpn_bookpaddle_2",
+            "rmsDb": -15.05,
+            "gainDb": 4.01
         },
         {
             "clip": "s7_hero_wpn_bubblewand_0",
@@ -1612,6 +1717,81 @@
             "gainDb": 1.64
         },
         {
+            "clip": "s7_hero_wpn_buttonbow_0",
+            "rmsDb": -12.03,
+            "gainDb": 0.99
+        },
+        {
+            "clip": "s7_hero_wpn_buttonbow_1",
+            "rmsDb": -13.72,
+            "gainDb": 2.68
+        },
+        {
+            "clip": "s7_hero_wpn_buttonbow_2",
+            "rmsDb": -12.02,
+            "gainDb": 0.98
+        },
+        {
+            "clip": "s7_hero_wpn_buzzerblock_0",
+            "rmsDb": -10.02,
+            "gainDb": -1.02
+        },
+        {
+            "clip": "s7_hero_wpn_buzzerblock_1",
+            "rmsDb": -14.2,
+            "gainDb": 3.16
+        },
+        {
+            "clip": "s7_hero_wpn_buzzerblock_2",
+            "rmsDb": -14.23,
+            "gainDb": 3.19
+        },
+        {
+            "clip": "s7_hero_wpn_candydrill_0",
+            "rmsDb": -12.23,
+            "gainDb": 1.19
+        },
+        {
+            "clip": "s7_hero_wpn_candydrill_1",
+            "rmsDb": -12.9,
+            "gainDb": 1.86
+        },
+        {
+            "clip": "s7_hero_wpn_candydrill_2",
+            "rmsDb": -12.32,
+            "gainDb": 1.28
+        },
+        {
+            "clip": "s7_hero_wpn_catchermitt_0",
+            "rmsDb": -10.94,
+            "gainDb": -0.1
+        },
+        {
+            "clip": "s7_hero_wpn_catchermitt_1",
+            "rmsDb": -14.55,
+            "gainDb": 3.51
+        },
+        {
+            "clip": "s7_hero_wpn_catchermitt_2",
+            "rmsDb": -11.5,
+            "gainDb": 0.46
+        },
+        {
+            "clip": "s7_hero_wpn_cherryfusebomb_0",
+            "rmsDb": -12.03,
+            "gainDb": 0.99
+        },
+        {
+            "clip": "s7_hero_wpn_cherryfusebomb_1",
+            "rmsDb": -10.58,
+            "gainDb": -0.46
+        },
+        {
+            "clip": "s7_hero_wpn_cherryfusebomb_2",
+            "rmsDb": -10.63,
+            "gainDb": -0.41
+        },
+        {
             "clip": "s7_hero_wpn_clockcrescent_0",
             "rmsDb": -8.63,
             "gainDb": -2.41
@@ -1625,6 +1805,36 @@
             "clip": "s7_hero_wpn_clockcrescent_2",
             "rmsDb": -15.12,
             "gainDb": 4.08
+        },
+        {
+            "clip": "s7_hero_wpn_clockworkyoyo_0",
+            "rmsDb": -15.92,
+            "gainDb": 4.88
+        },
+        {
+            "clip": "s7_hero_wpn_clockworkyoyo_1",
+            "rmsDb": -15.86,
+            "gainDb": 4.82
+        },
+        {
+            "clip": "s7_hero_wpn_clockworkyoyo_2",
+            "rmsDb": -15.81,
+            "gainDb": 4.77
+        },
+        {
+            "clip": "s7_hero_wpn_cloudscissors_0",
+            "rmsDb": -12.59,
+            "gainDb": 1.55
+        },
+        {
+            "clip": "s7_hero_wpn_cloudscissors_1",
+            "rmsDb": -11.38,
+            "gainDb": 0.34
+        },
+        {
+            "clip": "s7_hero_wpn_cloudscissors_2",
+            "rmsDb": -13.0,
+            "gainDb": 1.96
         },
         {
             "clip": "s7_hero_wpn_confettiblunderbuss_0",
@@ -1642,6 +1852,21 @@
             "gainDb": 0.4
         },
         {
+            "clip": "s7_hero_wpn_corkrifle_0",
+            "rmsDb": -12.22,
+            "gainDb": 1.18
+        },
+        {
+            "clip": "s7_hero_wpn_corkrifle_1",
+            "rmsDb": -10.41,
+            "gainDb": -0.63
+        },
+        {
+            "clip": "s7_hero_wpn_corkrifle_2",
+            "rmsDb": -12.42,
+            "gainDb": 1.38
+        },
+        {
             "clip": "s7_hero_wpn_corkscrewrapier_0",
             "rmsDb": -9.76,
             "gainDb": -1.28
@@ -1655,6 +1880,36 @@
             "clip": "s7_hero_wpn_corkscrewrapier_2",
             "rmsDb": -9.82,
             "gainDb": -1.22
+        },
+        {
+            "clip": "s7_hero_wpn_crescentboomerang_0",
+            "rmsDb": -10.55,
+            "gainDb": -0.49
+        },
+        {
+            "clip": "s7_hero_wpn_crescentboomerang_1",
+            "rmsDb": -9.8,
+            "gainDb": -1.24
+        },
+        {
+            "clip": "s7_hero_wpn_crescentboomerang_2",
+            "rmsDb": -11.91,
+            "gainDb": 0.87
+        },
+        {
+            "clip": "s7_hero_wpn_crescentbow_0",
+            "rmsDb": -12.45,
+            "gainDb": 1.41
+        },
+        {
+            "clip": "s7_hero_wpn_crescentbow_1",
+            "rmsDb": -11.72,
+            "gainDb": 0.68
+        },
+        {
+            "clip": "s7_hero_wpn_crescentbow_2",
+            "rmsDb": -12.53,
+            "gainDb": 1.49
         },
         {
             "clip": "s7_hero_wpn_cuckoocannon_0",
@@ -1672,6 +1927,21 @@
             "gainDb": 4.09
         },
         {
+            "clip": "s7_hero_wpn_dartcompass_0",
+            "rmsDb": -14.02,
+            "gainDb": 2.98
+        },
+        {
+            "clip": "s7_hero_wpn_dartcompass_1",
+            "rmsDb": -15.99,
+            "gainDb": 4.95
+        },
+        {
+            "clip": "s7_hero_wpn_dartcompass_2",
+            "rmsDb": -15.69,
+            "gainDb": 4.65
+        },
+        {
             "clip": "s7_hero_wpn_detonatorbox_0",
             "rmsDb": -14.47,
             "gainDb": 3.43
@@ -1685,6 +1955,96 @@
             "clip": "s7_hero_wpn_detonatorbox_2",
             "rmsDb": -13.85,
             "gainDb": 2.81
+        },
+        {
+            "clip": "s7_hero_wpn_dowsingrod_0",
+            "rmsDb": -16.06,
+            "gainDb": 5.02
+        },
+        {
+            "clip": "s7_hero_wpn_dowsingrod_1",
+            "rmsDb": -15.21,
+            "gainDb": 4.17
+        },
+        {
+            "clip": "s7_hero_wpn_dowsingrod_2",
+            "rmsDb": -13.83,
+            "gainDb": 2.79
+        },
+        {
+            "clip": "s7_hero_wpn_dragonlanternglaive_0",
+            "rmsDb": -13.18,
+            "gainDb": 2.14
+        },
+        {
+            "clip": "s7_hero_wpn_dragonlanternglaive_1",
+            "rmsDb": -15.19,
+            "gainDb": 4.15
+        },
+        {
+            "clip": "s7_hero_wpn_dragonlanternglaive_2",
+            "rmsDb": -11.65,
+            "gainDb": 0.61
+        },
+        {
+            "clip": "s7_hero_wpn_dreamiron_0",
+            "rmsDb": -11.18,
+            "gainDb": 0.14
+        },
+        {
+            "clip": "s7_hero_wpn_dreamiron_1",
+            "rmsDb": -10.86,
+            "gainDb": -0.18
+        },
+        {
+            "clip": "s7_hero_wpn_dreamiron_2",
+            "rmsDb": -12.64,
+            "gainDb": 1.6
+        },
+        {
+            "clip": "s7_hero_wpn_dreamorbstaff_0",
+            "rmsDb": -9.99,
+            "gainDb": -1.05
+        },
+        {
+            "clip": "s7_hero_wpn_dreamorbstaff_1",
+            "rmsDb": -9.97,
+            "gainDb": -1.07
+        },
+        {
+            "clip": "s7_hero_wpn_dreamorbstaff_2",
+            "rmsDb": -9.69,
+            "gainDb": -1.35
+        },
+        {
+            "clip": "s7_hero_wpn_dreamprojector_0",
+            "rmsDb": -13.2,
+            "gainDb": 2.16
+        },
+        {
+            "clip": "s7_hero_wpn_dreamprojector_1",
+            "rmsDb": -14.73,
+            "gainDb": 3.69
+        },
+        {
+            "clip": "s7_hero_wpn_dreamprojector_2",
+            "rmsDb": -15.33,
+            "gainDb": 4.29
+        },
+        {
+            "clip": "s7_hero_wpn_dreamracket_0",
+            "rmsDb": -13.26,
+            "gainDb": 2.22
+        },
+        {
+            "clip": "s7_hero_wpn_dreamracket_1",
+            "rmsDb": -12.26,
+            "gainDb": 1.22
+        },
+        {
+            "clip": "s7_hero_wpn_dreamracket_2",
+            "rmsDb": -12.56,
+            "gainDb": 1.52
         },
         {
             "clip": "s7_hero_wpn_dreamstamp_0",
@@ -1717,6 +2077,36 @@
             "gainDb": -0.86
         },
         {
+            "clip": "s7_hero_wpn_fanfarehorn_0",
+            "rmsDb": -9.45,
+            "gainDb": -1.59
+        },
+        {
+            "clip": "s7_hero_wpn_fanfarehorn_1",
+            "rmsDb": -10.5,
+            "gainDb": -0.54
+        },
+        {
+            "clip": "s7_hero_wpn_fanfarehorn_2",
+            "rmsDb": -9.43,
+            "gainDb": -1.61
+        },
+        {
+            "clip": "s7_hero_wpn_firecrackerpinwheel_0",
+            "rmsDb": -15.39,
+            "gainDb": 4.35
+        },
+        {
+            "clip": "s7_hero_wpn_firecrackerpinwheel_1",
+            "rmsDb": -15.68,
+            "gainDb": 4.64
+        },
+        {
+            "clip": "s7_hero_wpn_firecrackerpinwheel_2",
+            "rmsDb": -16.34,
+            "gainDb": 5.3
+        },
+        {
             "clip": "s7_hero_wpn_fireextinguisher_0",
             "rmsDb": -15.78,
             "gainDb": 4.74
@@ -1730,6 +2120,66 @@
             "clip": "s7_hero_wpn_fireextinguisher_2",
             "rmsDb": -15.63,
             "gainDb": 4.59
+        },
+        {
+            "clip": "s7_hero_wpn_fizzbottle_0",
+            "rmsDb": -10.86,
+            "gainDb": -0.18
+        },
+        {
+            "clip": "s7_hero_wpn_fizzbottle_1",
+            "rmsDb": -9.3,
+            "gainDb": -1.74
+        },
+        {
+            "clip": "s7_hero_wpn_fizzbottle_2",
+            "rmsDb": -11.13,
+            "gainDb": 0.09
+        },
+        {
+            "clip": "s7_hero_wpn_flyswatter_0",
+            "rmsDb": -13.4,
+            "gainDb": 2.36
+        },
+        {
+            "clip": "s7_hero_wpn_flyswatter_1",
+            "rmsDb": -13.01,
+            "gainDb": 1.97
+        },
+        {
+            "clip": "s7_hero_wpn_flyswatter_2",
+            "rmsDb": -11.27,
+            "gainDb": 0.23
+        },
+        {
+            "clip": "s7_hero_wpn_forktrident_0",
+            "rmsDb": -11.89,
+            "gainDb": 0.85
+        },
+        {
+            "clip": "s7_hero_wpn_forktrident_1",
+            "rmsDb": -13.23,
+            "gainDb": 2.19
+        },
+        {
+            "clip": "s7_hero_wpn_forktrident_2",
+            "rmsDb": -13.12,
+            "gainDb": 2.08
+        },
+        {
+            "clip": "s7_hero_wpn_fortuneglobe_0",
+            "rmsDb": -12.17,
+            "gainDb": 1.13
+        },
+        {
+            "clip": "s7_hero_wpn_fortuneglobe_1",
+            "rmsDb": -12.15,
+            "gainDb": 1.11
+        },
+        {
+            "clip": "s7_hero_wpn_fortuneglobe_2",
+            "rmsDb": -14.53,
+            "gainDb": 3.49
         },
         {
             "clip": "s7_hero_wpn_glitchtoybox_0",
@@ -1747,6 +2197,21 @@
             "gainDb": 0.03
         },
         {
+            "clip": "s7_hero_wpn_grabberclaw_0",
+            "rmsDb": -12.82,
+            "gainDb": 1.78
+        },
+        {
+            "clip": "s7_hero_wpn_grabberclaw_1",
+            "rmsDb": -13.35,
+            "gainDb": 2.31
+        },
+        {
+            "clip": "s7_hero_wpn_grabberclaw_2",
+            "rmsDb": -12.52,
+            "gainDb": 1.48
+        },
+        {
             "clip": "s7_hero_wpn_gumballgatling_0",
             "rmsDb": -11.83,
             "gainDb": 0.79
@@ -1760,6 +2225,51 @@
             "clip": "s7_hero_wpn_gumballgatling_2",
             "rmsDb": -16.48,
             "gainDb": 5.44
+        },
+        {
+            "clip": "s7_hero_wpn_hearthbrick_0",
+            "rmsDb": -13.99,
+            "gainDb": 2.95
+        },
+        {
+            "clip": "s7_hero_wpn_hearthbrick_1",
+            "rmsDb": -13.85,
+            "gainDb": 2.81
+        },
+        {
+            "clip": "s7_hero_wpn_hearthbrick_2",
+            "rmsDb": -13.48,
+            "gainDb": 2.44
+        },
+        {
+            "clip": "s7_hero_wpn_homerunbat_0",
+            "rmsDb": -12.22,
+            "gainDb": 1.18
+        },
+        {
+            "clip": "s7_hero_wpn_homerunbat_1",
+            "rmsDb": -10.94,
+            "gainDb": -0.1
+        },
+        {
+            "clip": "s7_hero_wpn_homerunbat_2",
+            "rmsDb": -13.08,
+            "gainDb": 2.04
+        },
+        {
+            "clip": "s7_hero_wpn_inkpistol_0",
+            "rmsDb": -14.36,
+            "gainDb": 3.32
+        },
+        {
+            "clip": "s7_hero_wpn_inkpistol_1",
+            "rmsDb": -13.29,
+            "gainDb": 2.25
+        },
+        {
+            "clip": "s7_hero_wpn_inkpistol_2",
+            "rmsDb": -16.1,
+            "gainDb": 5.06
         },
         {
             "clip": "s7_hero_wpn_inkyoctopus_0",
@@ -1822,6 +2332,21 @@
             "gainDb": 1.59
         },
         {
+            "clip": "s7_hero_wpn_kunaifan_0",
+            "rmsDb": -15.87,
+            "gainDb": 4.83
+        },
+        {
+            "clip": "s7_hero_wpn_kunaifan_1",
+            "rmsDb": -15.3,
+            "gainDb": 4.26
+        },
+        {
+            "clip": "s7_hero_wpn_kunaifan_2",
+            "rmsDb": -15.07,
+            "gainDb": 4.03
+        },
+        {
             "clip": "s7_hero_wpn_lanternstaff_0",
             "rmsDb": -12.82,
             "gainDb": 1.78
@@ -1852,6 +2377,36 @@
             "gainDb": 4.4
         },
         {
+            "clip": "s7_hero_wpn_leekbaton_0",
+            "rmsDb": -10.06,
+            "gainDb": -0.98
+        },
+        {
+            "clip": "s7_hero_wpn_leekbaton_1",
+            "rmsDb": -13.54,
+            "gainDb": 2.5
+        },
+        {
+            "clip": "s7_hero_wpn_leekbaton_2",
+            "rmsDb": -14.55,
+            "gainDb": 3.51
+        },
+        {
+            "clip": "s7_hero_wpn_lollipoplance_0",
+            "rmsDb": -14.06,
+            "gainDb": 3.02
+        },
+        {
+            "clip": "s7_hero_wpn_lollipoplance_1",
+            "rmsDb": -13.46,
+            "gainDb": 2.42
+        },
+        {
+            "clip": "s7_hero_wpn_lollipoplance_2",
+            "rmsDb": -14.92,
+            "gainDb": 3.88
+        },
+        {
             "clip": "s7_hero_wpn_mailboxlauncher_0",
             "rmsDb": -11.38,
             "gainDb": 0.34
@@ -1865,6 +2420,36 @@
             "clip": "s7_hero_wpn_mailboxlauncher_2",
             "rmsDb": -11.14,
             "gainDb": 0.1
+        },
+        {
+            "clip": "s7_hero_wpn_maracahammer_0",
+            "rmsDb": -12.49,
+            "gainDb": 1.45
+        },
+        {
+            "clip": "s7_hero_wpn_maracahammer_1",
+            "rmsDb": -11.7,
+            "gainDb": 0.66
+        },
+        {
+            "clip": "s7_hero_wpn_maracahammer_2",
+            "rmsDb": -11.83,
+            "gainDb": 0.79
+        },
+        {
+            "clip": "s7_hero_wpn_moonfeatherfan_0",
+            "rmsDb": -14.61,
+            "gainDb": 3.57
+        },
+        {
+            "clip": "s7_hero_wpn_moonfeatherfan_1",
+            "rmsDb": -15.68,
+            "gainDb": 4.64
+        },
+        {
+            "clip": "s7_hero_wpn_moonfeatherfan_2",
+            "rmsDb": -13.93,
+            "gainDb": 2.89
         },
         {
             "clip": "s7_hero_wpn_moonscythe_0",
@@ -1927,6 +2512,126 @@
             "gainDb": 3.58
         },
         {
+            "clip": "s7_hero_wpn_paperfan_0",
+            "rmsDb": -11.72,
+            "gainDb": 0.68
+        },
+        {
+            "clip": "s7_hero_wpn_paperfan_1",
+            "rmsDb": -11.96,
+            "gainDb": 0.92
+        },
+        {
+            "clip": "s7_hero_wpn_paperfan_2",
+            "rmsDb": -11.37,
+            "gainDb": 0.33
+        },
+        {
+            "clip": "s7_hero_wpn_paperlanternbomb_0",
+            "rmsDb": -10.17,
+            "gainDb": -0.87
+        },
+        {
+            "clip": "s7_hero_wpn_paperlanternbomb_1",
+            "rmsDb": -11.96,
+            "gainDb": 0.92
+        },
+        {
+            "clip": "s7_hero_wpn_paperlanternbomb_2",
+            "rmsDb": -15.86,
+            "gainDb": 4.82
+        },
+        {
+            "clip": "s7_hero_wpn_paperplanesquadron_0",
+            "rmsDb": -11.13,
+            "gainDb": 0.09
+        },
+        {
+            "clip": "s7_hero_wpn_paperplanesquadron_1",
+            "rmsDb": -11.34,
+            "gainDb": 0.3
+        },
+        {
+            "clip": "s7_hero_wpn_paperplanesquadron_2",
+            "rmsDb": -12.58,
+            "gainDb": 1.54
+        },
+        {
+            "clip": "s7_hero_wpn_papershuriken_0",
+            "rmsDb": -12.97,
+            "gainDb": 1.93
+        },
+        {
+            "clip": "s7_hero_wpn_papershuriken_1",
+            "rmsDb": -13.58,
+            "gainDb": 2.54
+        },
+        {
+            "clip": "s7_hero_wpn_papershuriken_2",
+            "rmsDb": -13.48,
+            "gainDb": 2.44
+        },
+        {
+            "clip": "s7_hero_wpn_parasolneedle_0",
+            "rmsDb": -14.77,
+            "gainDb": 3.73
+        },
+        {
+            "clip": "s7_hero_wpn_parasolneedle_1",
+            "rmsDb": -15.37,
+            "gainDb": 4.33
+        },
+        {
+            "clip": "s7_hero_wpn_parasolneedle_2",
+            "rmsDb": -14.85,
+            "gainDb": 3.81
+        },
+        {
+            "clip": "s7_hero_wpn_pawmitten_0",
+            "rmsDb": -16.3,
+            "gainDb": 5.26
+        },
+        {
+            "clip": "s7_hero_wpn_pawmitten_1",
+            "rmsDb": -14.65,
+            "gainDb": 3.61
+        },
+        {
+            "clip": "s7_hero_wpn_pawmitten_2",
+            "rmsDb": -14.32,
+            "gainDb": 3.28
+        },
+        {
+            "clip": "s7_hero_wpn_pinatabomb_0",
+            "rmsDb": -10.54,
+            "gainDb": -0.5
+        },
+        {
+            "clip": "s7_hero_wpn_pinatabomb_1",
+            "rmsDb": -10.62,
+            "gainDb": -0.42
+        },
+        {
+            "clip": "s7_hero_wpn_pinatabomb_2",
+            "rmsDb": -9.53,
+            "gainDb": -1.51
+        },
+        {
+            "clip": "s7_hero_wpn_pizzawheel_0",
+            "rmsDb": -11.59,
+            "gainDb": 0.55
+        },
+        {
+            "clip": "s7_hero_wpn_pizzawheel_1",
+            "rmsDb": -11.57,
+            "gainDb": 0.53
+        },
+        {
+            "clip": "s7_hero_wpn_pizzawheel_2",
+            "rmsDb": -13.4,
+            "gainDb": 2.36
+        },
+        {
             "clip": "s7_hero_wpn_plasmatrident_0",
             "rmsDb": -15.11,
             "gainDb": 4.07
@@ -1940,6 +2645,51 @@
             "clip": "s7_hero_wpn_plasmatrident_2",
             "rmsDb": -13.99,
             "gainDb": 2.95
+        },
+        {
+            "clip": "s7_hero_wpn_plungerpopper_0",
+            "rmsDb": -13.63,
+            "gainDb": 2.59
+        },
+        {
+            "clip": "s7_hero_wpn_plungerpopper_1",
+            "rmsDb": -12.51,
+            "gainDb": 1.47
+        },
+        {
+            "clip": "s7_hero_wpn_plungerpopper_2",
+            "rmsDb": -14.09,
+            "gainDb": 3.05
+        },
+        {
+            "clip": "s7_hero_wpn_plushshark_0",
+            "rmsDb": -12.3,
+            "gainDb": 1.26
+        },
+        {
+            "clip": "s7_hero_wpn_plushshark_1",
+            "rmsDb": -13.19,
+            "gainDb": 2.15
+        },
+        {
+            "clip": "s7_hero_wpn_plushshark_2",
+            "rmsDb": -15.28,
+            "gainDb": 4.24
+        },
+        {
+            "clip": "s7_hero_wpn_poppersticks_0",
+            "rmsDb": -12.34,
+            "gainDb": 1.3
+        },
+        {
+            "clip": "s7_hero_wpn_poppersticks_1",
+            "rmsDb": -12.58,
+            "gainDb": 1.54
+        },
+        {
+            "clip": "s7_hero_wpn_poppersticks_2",
+            "rmsDb": -10.71,
+            "gainDb": -0.33
         },
         {
             "clip": "s7_hero_wpn_ribbonharp_0",
@@ -1957,6 +2707,36 @@
             "gainDb": 1.43
         },
         {
+            "clip": "s7_hero_wpn_ribbonwheel_0",
+            "rmsDb": -13.59,
+            "gainDb": 2.55
+        },
+        {
+            "clip": "s7_hero_wpn_ribbonwheel_1",
+            "rmsDb": -12.19,
+            "gainDb": 1.15
+        },
+        {
+            "clip": "s7_hero_wpn_ribbonwheel_2",
+            "rmsDb": -12.27,
+            "gainDb": 1.23
+        },
+        {
+            "clip": "s7_hero_wpn_rollingpin_0",
+            "rmsDb": -10.3,
+            "gainDb": -0.74
+        },
+        {
+            "clip": "s7_hero_wpn_rollingpin_1",
+            "rmsDb": -10.68,
+            "gainDb": -0.36
+        },
+        {
+            "clip": "s7_hero_wpn_rollingpin_2",
+            "rmsDb": -15.84,
+            "gainDb": 4.8
+        },
+        {
             "clip": "s7_hero_wpn_rosebouquet_0",
             "rmsDb": -9.09,
             "gainDb": -1.95
@@ -1972,6 +2752,66 @@
             "gainDb": 1.05
         },
         {
+            "clip": "s7_hero_wpn_rubberhammer_0",
+            "rmsDb": -11.88,
+            "gainDb": 0.84
+        },
+        {
+            "clip": "s7_hero_wpn_rubberhammer_1",
+            "rmsDb": -12.29,
+            "gainDb": 1.25
+        },
+        {
+            "clip": "s7_hero_wpn_rubberhammer_2",
+            "rmsDb": -12.16,
+            "gainDb": 1.12
+        },
+        {
+            "clip": "s7_hero_wpn_runestaff_0",
+            "rmsDb": -9.69,
+            "gainDb": -1.35
+        },
+        {
+            "clip": "s7_hero_wpn_runestaff_1",
+            "rmsDb": -10.45,
+            "gainDb": -0.59
+        },
+        {
+            "clip": "s7_hero_wpn_runestaff_2",
+            "rmsDb": -10.33,
+            "gainDb": -0.71
+        },
+        {
+            "clip": "s7_hero_wpn_satellitedisc_0",
+            "rmsDb": -15.47,
+            "gainDb": 4.43
+        },
+        {
+            "clip": "s7_hero_wpn_satellitedisc_1",
+            "rmsDb": -12.95,
+            "gainDb": 1.91
+        },
+        {
+            "clip": "s7_hero_wpn_satellitedisc_2",
+            "rmsDb": -13.47,
+            "gainDb": 2.43
+        },
+        {
+            "clip": "s7_hero_wpn_saucerblaster_0",
+            "rmsDb": -8.47,
+            "gainDb": -2.57
+        },
+        {
+            "clip": "s7_hero_wpn_saucerblaster_1",
+            "rmsDb": -8.91,
+            "gainDb": -2.13
+        },
+        {
+            "clip": "s7_hero_wpn_saucerblaster_2",
+            "rmsDb": -8.64,
+            "gainDb": -2.4
+        },
+        {
             "clip": "s7_hero_wpn_scooplauncher_0",
             "rmsDb": -15.9,
             "gainDb": 4.86
@@ -1985,6 +2825,36 @@
             "clip": "s7_hero_wpn_scooplauncher_2",
             "rmsDb": -15.85,
             "gainDb": 4.81
+        },
+        {
+            "clip": "s7_hero_wpn_scrapmagnet_0",
+            "rmsDb": -6.43,
+            "gainDb": -4.61
+        },
+        {
+            "clip": "s7_hero_wpn_scrapmagnet_1",
+            "rmsDb": -5.88,
+            "gainDb": -5.16
+        },
+        {
+            "clip": "s7_hero_wpn_scrapmagnet_2",
+            "rmsDb": -7.62,
+            "gainDb": -3.42
+        },
+        {
+            "clip": "s7_hero_wpn_shellcannon_0",
+            "rmsDb": -11.25,
+            "gainDb": 0.21
+        },
+        {
+            "clip": "s7_hero_wpn_shellcannon_1",
+            "rmsDb": -12.03,
+            "gainDb": 0.99
+        },
+        {
+            "clip": "s7_hero_wpn_shellcannon_2",
+            "rmsDb": -11.31,
+            "gainDb": 0.27
         },
         {
             "clip": "s7_hero_wpn_signpostslammer_0",
@@ -2017,6 +2887,21 @@
             "gainDb": 6.0
         },
         {
+            "clip": "s7_hero_wpn_snowglobegrenade_0",
+            "rmsDb": -10.43,
+            "gainDb": -0.61
+        },
+        {
+            "clip": "s7_hero_wpn_snowglobegrenade_1",
+            "rmsDb": -10.29,
+            "gainDb": -0.75
+        },
+        {
+            "clip": "s7_hero_wpn_snowglobegrenade_2",
+            "rmsDb": -10.5,
+            "gainDb": -0.54
+        },
+        {
             "clip": "s7_hero_wpn_snowglobeorb_0",
             "rmsDb": -17.1,
             "gainDb": 6.0
@@ -2030,6 +2915,21 @@
             "clip": "s7_hero_wpn_snowglobeorb_2",
             "rmsDb": -18.54,
             "gainDb": 6.0
+        },
+        {
+            "clip": "s7_hero_wpn_snowshovel_0",
+            "rmsDb": -11.94,
+            "gainDb": 0.9
+        },
+        {
+            "clip": "s7_hero_wpn_snowshovel_1",
+            "rmsDb": -11.29,
+            "gainDb": 0.25
+        },
+        {
+            "clip": "s7_hero_wpn_snowshovel_2",
+            "rmsDb": -12.04,
+            "gainDb": 1.0
         },
         {
             "clip": "s7_hero_wpn_sonarharpoon_0",
@@ -2047,6 +2947,51 @@
             "gainDb": 0.98
         },
         {
+            "clip": "s7_hero_wpn_spinningtop_0",
+            "rmsDb": -12.47,
+            "gainDb": 1.43
+        },
+        {
+            "clip": "s7_hero_wpn_spinningtop_1",
+            "rmsDb": -12.25,
+            "gainDb": 1.21
+        },
+        {
+            "clip": "s7_hero_wpn_spinningtop_2",
+            "rmsDb": -12.44,
+            "gainDb": 1.4
+        },
+        {
+            "clip": "s7_hero_wpn_spoonsabre_0",
+            "rmsDb": -12.6,
+            "gainDb": 1.56
+        },
+        {
+            "clip": "s7_hero_wpn_spoonsabre_1",
+            "rmsDb": -16.44,
+            "gainDb": 5.4
+        },
+        {
+            "clip": "s7_hero_wpn_spoonsabre_2",
+            "rmsDb": -14.42,
+            "gainDb": 3.38
+        },
+        {
+            "clip": "s7_hero_wpn_springknocker_0",
+            "rmsDb": -15.9,
+            "gainDb": 4.86
+        },
+        {
+            "clip": "s7_hero_wpn_springknocker_1",
+            "rmsDb": -15.66,
+            "gainDb": 4.62
+        },
+        {
+            "clip": "s7_hero_wpn_springknocker_2",
+            "rmsDb": -13.95,
+            "gainDb": 2.91
+        },
+        {
             "clip": "s7_hero_wpn_squirttrio_0",
             "rmsDb": -12.9,
             "gainDb": 1.86
@@ -2060,6 +3005,21 @@
             "clip": "s7_hero_wpn_squirttrio_2",
             "rmsDb": -12.56,
             "gainDb": 1.52
+        },
+        {
+            "clip": "s7_hero_wpn_stamphammer_0",
+            "rmsDb": -15.73,
+            "gainDb": 4.69
+        },
+        {
+            "clip": "s7_hero_wpn_stamphammer_1",
+            "rmsDb": -16.48,
+            "gainDb": 5.44
+        },
+        {
+            "clip": "s7_hero_wpn_stamphammer_2",
+            "rmsDb": -12.15,
+            "gainDb": 1.11
         },
         {
             "clip": "s7_hero_wpn_starforgeclaymore_0",
@@ -2077,6 +3037,96 @@
             "gainDb": -1.2
         },
         {
+            "clip": "s7_hero_wpn_starkazoo_0",
+            "rmsDb": -13.34,
+            "gainDb": 2.3
+        },
+        {
+            "clip": "s7_hero_wpn_starkazoo_1",
+            "rmsDb": -11.24,
+            "gainDb": 0.2
+        },
+        {
+            "clip": "s7_hero_wpn_starkazoo_2",
+            "rmsDb": -11.76,
+            "gainDb": 0.72
+        },
+        {
+            "clip": "s7_hero_wpn_starknuckle_0",
+            "rmsDb": -14.27,
+            "gainDb": 3.23
+        },
+        {
+            "clip": "s7_hero_wpn_starknuckle_1",
+            "rmsDb": -14.05,
+            "gainDb": 3.01
+        },
+        {
+            "clip": "s7_hero_wpn_starknuckle_2",
+            "rmsDb": -11.44,
+            "gainDb": 0.4
+        },
+        {
+            "clip": "s7_hero_wpn_sunlens_0",
+            "rmsDb": -6.65,
+            "gainDb": -4.39
+        },
+        {
+            "clip": "s7_hero_wpn_sunlens_1",
+            "rmsDb": -6.14,
+            "gainDb": -4.9
+        },
+        {
+            "clip": "s7_hero_wpn_sunlens_2",
+            "rmsDb": -6.79,
+            "gainDb": -4.25
+        },
+        {
+            "clip": "s7_hero_wpn_talismaningot_0",
+            "rmsDb": -16.79,
+            "gainDb": 5.75
+        },
+        {
+            "clip": "s7_hero_wpn_talismaningot_1",
+            "rmsDb": -14.21,
+            "gainDb": 3.17
+        },
+        {
+            "clip": "s7_hero_wpn_talismaningot_2",
+            "rmsDb": -15.17,
+            "gainDb": 4.13
+        },
+        {
+            "clip": "s7_hero_wpn_tapewhip_0",
+            "rmsDb": -11.69,
+            "gainDb": 0.65
+        },
+        {
+            "clip": "s7_hero_wpn_tapewhip_1",
+            "rmsDb": -12.64,
+            "gainDb": 1.6
+        },
+        {
+            "clip": "s7_hero_wpn_tapewhip_2",
+            "rmsDb": -12.68,
+            "gainDb": 1.64
+        },
+        {
+            "clip": "s7_hero_wpn_teabagflail_0",
+            "rmsDb": -12.72,
+            "gainDb": 1.68
+        },
+        {
+            "clip": "s7_hero_wpn_teabagflail_1",
+            "rmsDb": -10.27,
+            "gainDb": -0.77
+        },
+        {
+            "clip": "s7_hero_wpn_teabagflail_2",
+            "rmsDb": -14.57,
+            "gainDb": 3.53
+        },
+        {
             "clip": "s7_hero_wpn_teapotpopgun_0",
             "rmsDb": -12.15,
             "gainDb": 1.11
@@ -2090,6 +3140,171 @@
             "clip": "s7_hero_wpn_teapotpopgun_2",
             "rmsDb": -11.56,
             "gainDb": 0.52
+        },
+        {
+            "clip": "s7_hero_wpn_tinfish_0",
+            "rmsDb": -11.65,
+            "gainDb": 0.61
+        },
+        {
+            "clip": "s7_hero_wpn_tinfish_1",
+            "rmsDb": -13.12,
+            "gainDb": 2.08
+        },
+        {
+            "clip": "s7_hero_wpn_tinfish_2",
+            "rmsDb": -12.73,
+            "gainDb": 1.69
+        },
+        {
+            "clip": "s7_hero_wpn_toastcleaver_0",
+            "rmsDb": -14.73,
+            "gainDb": 3.69
+        },
+        {
+            "clip": "s7_hero_wpn_toastcleaver_1",
+            "rmsDb": -13.35,
+            "gainDb": 2.31
+        },
+        {
+            "clip": "s7_hero_wpn_toastcleaver_2",
+            "rmsDb": -15.86,
+            "gainDb": 4.82
+        },
+        {
+            "clip": "s7_hero_wpn_topiaryshears_0",
+            "rmsDb": -10.31,
+            "gainDb": -0.73
+        },
+        {
+            "clip": "s7_hero_wpn_topiaryshears_1",
+            "rmsDb": -11.09,
+            "gainDb": 0.05
+        },
+        {
+            "clip": "s7_hero_wpn_topiaryshears_2",
+            "rmsDb": -12.02,
+            "gainDb": 0.98
+        },
+        {
+            "clip": "s7_hero_wpn_twinmoonstaff_0",
+            "rmsDb": -12.14,
+            "gainDb": 1.1
+        },
+        {
+            "clip": "s7_hero_wpn_twinmoonstaff_1",
+            "rmsDb": -14.68,
+            "gainDb": 3.64
+        },
+        {
+            "clip": "s7_hero_wpn_twinmoonstaff_2",
+            "rmsDb": -14.13,
+            "gainDb": 3.09
+        },
+        {
+            "clip": "s7_hero_wpn_twinsabres_0",
+            "rmsDb": -14.76,
+            "gainDb": 3.72
+        },
+        {
+            "clip": "s7_hero_wpn_twinsabres_1",
+            "rmsDb": -12.68,
+            "gainDb": 1.64
+        },
+        {
+            "clip": "s7_hero_wpn_twinsabres_2",
+            "rmsDb": -15.57,
+            "gainDb": 4.53
+        },
+        {
+            "clip": "s7_hero_wpn_umbrellahook_0",
+            "rmsDb": -12.51,
+            "gainDb": 1.47
+        },
+        {
+            "clip": "s7_hero_wpn_umbrellahook_1",
+            "rmsDb": -13.04,
+            "gainDb": 2.0
+        },
+        {
+            "clip": "s7_hero_wpn_umbrellahook_2",
+            "rmsDb": -12.95,
+            "gainDb": 1.91
+        },
+        {
+            "clip": "s7_hero_wpn_umbrellalance_0",
+            "rmsDb": -12.88,
+            "gainDb": 1.84
+        },
+        {
+            "clip": "s7_hero_wpn_umbrellalance_1",
+            "rmsDb": -12.27,
+            "gainDb": 1.23
+        },
+        {
+            "clip": "s7_hero_wpn_umbrellalance_2",
+            "rmsDb": -13.76,
+            "gainDb": 2.72
+        },
+        {
+            "clip": "s7_hero_wpn_verdictgavel_0",
+            "rmsDb": -15.08,
+            "gainDb": 4.04
+        },
+        {
+            "clip": "s7_hero_wpn_verdictgavel_1",
+            "rmsDb": -16.9,
+            "gainDb": 5.86
+        },
+        {
+            "clip": "s7_hero_wpn_verdictgavel_2",
+            "rmsDb": -14.74,
+            "gainDb": 3.7
+        },
+        {
+            "clip": "s7_hero_wpn_wateringcan_0",
+            "rmsDb": -10.72,
+            "gainDb": -0.32
+        },
+        {
+            "clip": "s7_hero_wpn_wateringcan_1",
+            "rmsDb": -11.98,
+            "gainDb": 0.94
+        },
+        {
+            "clip": "s7_hero_wpn_wateringcan_2",
+            "rmsDb": -11.72,
+            "gainDb": 0.68
+        },
+        {
+            "clip": "s7_hero_wpn_windupwrench_0",
+            "rmsDb": -12.85,
+            "gainDb": 1.81
+        },
+        {
+            "clip": "s7_hero_wpn_windupwrench_1",
+            "rmsDb": -13.64,
+            "gainDb": 2.6
+        },
+        {
+            "clip": "s7_hero_wpn_windupwrench_2",
+            "rmsDb": -13.71,
+            "gainDb": 2.67
+        },
+        {
+            "clip": "s7_hero_wpn_yoyo_0",
+            "rmsDb": -13.79,
+            "gainDb": 2.75
+        },
+        {
+            "clip": "s7_hero_wpn_yoyo_1",
+            "rmsDb": -15.92,
+            "gainDb": 4.88
+        },
+        {
+            "clip": "s7_hero_wpn_yoyo_2",
+            "rmsDb": -11.78,
+            "gainDb": 0.74
         },
         {
             "clip": "s7_loot_chest_appear_0",
