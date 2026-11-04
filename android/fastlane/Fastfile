@@ -1,0 +1,88 @@
+# Arcane Brigade on Google Play. Run from android/:
+#
+#   fastlane android check              read-only: can the key reach the app?
+#   fastlane android bump               raise the version code by one (every upload needs a new one)
+#   fastlane android build              signed Play bundle (Unity 6000.6 in its mirror, Tools/Android/build-bundle.sh)
+#   fastlane android closed             upload the bundle to closed testing (draft)
+#   fastlane android internal           upload the bundle to internal testing (draft)
+#   fastlane android metadata           push listing text from fastlane/metadata
+#   fastlane android pull               download listing text into fastlane/metadata
+#
+# Release notes: metadata/android/{en-US,vi}/changelogs/<versionCode>.txt (at most 500 characters).
+# Releases are created as drafts: review and roll them out in Play Console. The key has no production rights, on purpose.
+
+default_platform(:android)
+
+ROOT = File.expand_path("../..", __dir__)
+SETTINGS = File.join(ROOT, "ProjectSettings/ProjectSettings.asset")
+AAB = ENV["AB_AAB"] || "D:/ABMobile/android/Builds/Android/ArcaneBrigade.aab"
+
+def unity_version
+  text = File.read(SETTINGS)
+  [text[/^  bundleVersion: (\S+)/, 1], text[/^  AndroidBundleVersionCode: (\d+)/, 1].to_i]
+end
+
+def upload_bundle(track)
+  UI.user_error!("No bundle at #{AAB}. Run `fastlane android build` first.") unless File.exist?(AAB)
+  name, code = unity_version
+  upload_to_play_store(
+    track: track,
+    aab: AAB,
+    release_status: "draft",
+    version_name: "#{code} (#{name})",
+    skip_upload_metadata: true,
+    skip_upload_images: true,
+    skip_upload_screenshots: true,
+    skip_upload_changelogs: false,
+    timeout: 1800, # the bundle is about 330 MB
+  )
+end
+
+platform :android do
+  desc "Check that the key can open the app (read-only)"
+  lane :check do
+    validate_play_store_json_key
+    name, code = unity_version
+    codes = google_play_track_version_codes(track: "alpha")
+    UI.message("ProjectSettings #{name} (#{code}); closed testing has #{codes.inspect}")
+  end
+
+  desc "Raise the Android version code by one"
+  lane :bump do
+    text = File.read(SETTINGS)
+    code = text[/^  AndroidBundleVersionCode: (\d+)/, 1].to_i + 1
+    File.write(SETTINGS, text.sub(/^  AndroidBundleVersionCode: \d+/, "  AndroidBundleVersionCode: #{code}"))
+    UI.success("version code #{code}")
+  end
+
+  desc "Build the signed Play bundle"
+  lane :build do
+    sh("bash", File.join(ROOT, "Tools/Android/build-bundle.sh"), "BuildAndroidBundle")
+  end
+
+  desc "Upload the bundle to closed testing as a draft"
+  lane :closed do
+    upload_bundle("alpha")
+  end
+
+  desc "Upload the bundle to internal testing as a draft"
+  lane :internal do
+    upload_bundle("internal")
+  end
+
+  desc "Push store listing text (no bundle, no images)"
+  lane :metadata do
+    upload_to_play_store(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+    )
+  end
+
+  desc "Download the store listing into fastlane/metadata"
+  lane :pull do
+    download_from_play_store
+  end
+end

@@ -121,3 +121,8 @@ InitTestScene*.unity*
 /PreviewExports/**/*.wav
 /PreviewExports/**/*.ogg
 /PreviewExports/**/*.mp3
+
+# fastlane (Google Play)
+android/fastlane/metadata/android/*/images/
+android/fastlane/report.xml
+android/fastlane/README.md

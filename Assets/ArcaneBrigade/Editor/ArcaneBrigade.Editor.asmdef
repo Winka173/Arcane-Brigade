@@ -1,7 +1,14 @@
 {
   "name": "ArcaneBrigade.Editor",
   "rootNamespace": "ArcaneBrigade.Editor",
-  "references": ["ArcaneBrigade.Runtime", "Unity.2D.Sprite.Editor"],
-  "includePlatforms": ["Editor"],
+  "references": [
+    "ArcaneBrigade.Runtime",
+    "Unity.2D.Sprite.Editor",
+    "Unity.Purchasing",
+    "UnityEditor.Purchasing"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
   "autoReferenced": true
 }

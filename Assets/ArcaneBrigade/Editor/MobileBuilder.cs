@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace ArcaneBrigade.Editor
 {
@@ -19,6 +20,10 @@ namespace ArcaneBrigade.Editor
         private static void Common(NamedBuildTarget target)
         {
             PlayerSettings.SetApplicationIdentifier(target, Identifier);
+            // Deluxe is bought through Google Play (requirement 5/11/2026): without a target store the Android player fell back to
+            // Unity's fake store ("$0.01", purchases that cost nothing); the package writes its choice only after the editor has
+            // finished loading, which a batch build never waits for
+            if (target == NamedBuildTarget.Android) UnityEditor.Purchasing.UnityPurchasingEditor.TargetAndroidStore(UnityEngine.Purchasing.AppStore.GooglePlay);
             if (AssetDatabase.LoadAssetAtPath<Texture2D>(IconPath) is Texture2D icon) PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { icon }, IconKind.Any);
             PlayerSettings.SetScriptingBackend(target, ScriptingImplementation.IL2CPP);
             PlayerSettings.defaultInterfaceOrientation = UIOrientation.AutoRotation;
@@ -81,6 +86,24 @@ namespace ArcaneBrigade.Editor
             Signing();
             Directory.CreateDirectory("Builds/Android");
             Build("Builds/Android/ArcaneBrigade.aab", BuildTarget.Android);
+        }
+
+        /// <summary>An APK for PC Android emulators such as BlueStacks (requirement 5/11/2026): x86-64 code next to ARM64 so the
+        /// emulator runs the game natively (its ARM translator crashed in the frame-pacing library), OpenGL ES 3 instead of Vulkan
+        /// (it stalled there), frame pacing off. Not for Google Play.</summary>
+        [MenuItem("Arcane Brigade/Build Android (emulator APK)")]
+        public static void BuildAndroidEmulator()
+        {
+            Common(NamedBuildTarget.Android);
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64 | AndroidArchitecture.X86_64;
+            PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
+            PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
+            PlayerSettings.Android.optimizedFramePacing = false;
+            EditorUserBuildSettings.buildAppBundle = false;
+            PlayerSettings.Android.splitApplicationBinary = false;
+            Signing();
+            Directory.CreateDirectory("Builds/Android");
+            Build("Builds/Android/ArcaneBrigade-Emulator.apk", BuildTarget.Android);
         }
 
         [MenuItem("Arcane Brigade/Build iOS (Xcode project)")]
