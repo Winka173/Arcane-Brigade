@@ -54,6 +54,8 @@ namespace ArcaneBrigade
             ground = new InkCanvas(parent, "Arsenal ground ink", groundOrder);
             air = new InkCanvas(parent, "Arsenal air ink", airOrder);
         }
+        /// <summary>The floor layer draws danger zones: overlapping zones tint the floor once (one uniform fill).</summary>
+        public void DangerFloor() => ground.UseWash(MechanicInk.DangerWashMaterial);
         public void Begin()
         {
             still = PresentationSettings.ReducedMotion; sparse = PresentationSettings.ReducedEffects || AnimationDetailBudget.Level >= 2; calm = PresentationSettings.ReducedFlashes;

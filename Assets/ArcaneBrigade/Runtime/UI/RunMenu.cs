@@ -732,7 +732,7 @@ namespace ArcaneBrigade
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)));
             if (!HeroUnlocks.Listed(catalog.Champions[selection])) selection = Mathf.Max(0, Array.FindIndex(catalog.Champions, HeroUnlocks.Listed));
             int listed = 0; foreach (UnitDefinition u in catalog.Champions) if (HeroUnlocks.Listed(u)) listed++;
-            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 460), scroll, new Rect(0, 0, 620, Mathf.Max(465, Mathf.CeilToInt(listed / 3f) * 245)));
+            scroll = ScrollPanel.Begin(new Rect(65, 180, 660, 460), scroll, new Rect(0, 0, 620, Mathf.Max(460, Mathf.CeilToInt(listed / 3f) * 232)));
             int slot = -1;
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
@@ -755,13 +755,13 @@ namespace ArcaneBrigade
                 else if (index != selection) GUI.color = new Color(.7f, .7f, .76f); // the others stand in shadow
                 const float portraitSize = 160; // the hero fills its card; the chosen one keeps its size (nothing shifts)
                 // portrait and name at the same place on every card, locked or not; a locked one's chip sits under its name
-                float top = card.y + 8;
-                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 150), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
+                float top = card.y + 6;
+                RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 140), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
                 GUI.color = previousColor;
                 TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(card.x + 10, top + 152, card.width - 20, 40), RunUICopy.UnitName(unit), caption);
+                GUI.Label(new Rect(card.x + 10, top + 142, card.width - 20, 38), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
-                if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 202, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
+                if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 186, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
                 if (!unlocked) ArcadeSkin.Lock(new Vector2(card.x + 34, card.y + 34), 22, ArcadeSkin.KitCream); // the same lock as the collection's
                 if (index == selection) ArcadeSkin.PickedSeal(card); // the chosen hero's card is stamped
             }
@@ -1167,7 +1167,7 @@ namespace ArcaneBrigade
                 HeroUnlocks.Coming(unit) ? "Arrives in a later update." : HeroUnlocks.Full(profile, unit, catalog, false) + ".\n" + HeroUnlocks.ProgressLine(profile, unit, catalog));
         /// <summary>A hero's place in the grid: its index among the heroes that are shown.</summary>
         private int RosterSlot(int index) { int slot = 0; for (int i = 0; i < index && i < catalog.Champions.Length; i++) if (HeroUnlocks.Listed(catalog.Champions[i])) slot++; return slot; }
-        public static Rect RosterCardBounds(int index) => new Rect(index % 3 * 210, index / 3 * 245, 200, 235);
+        public static Rect RosterCardBounds(int index) => new Rect(index % 3 * 210, index / 3 * 232, 200, 224); // two whole rows fit the 460-tall window (review 3/11/2026: the second row ran under the buttons)
         public static Sprite RosterPortrait(UnitDefinition unit, float time, int identity, bool focused, bool reducedMotion)
         {
             float curiosity = Mathf.Repeat(time + identity * .73f, 6.4f);

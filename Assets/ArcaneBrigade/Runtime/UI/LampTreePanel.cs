@@ -100,6 +100,9 @@ namespace ArcaneBrigade
             Rect card = pick != null ? CardRect(NodeAt(pick, tree)) : Rect.zero;
 
             bool any = profile.Meta.Lamps.Count > 0;
+            // on a phone the whole tree shows its trunk and roots only; each branch's lanterns open from its tab across the panel
+            // (review 3/11/2026: nine branches side by side put the lanterns about 2 mm apart)
+            bool trunkOnly = RunUIHints.Phone && focusBranch < 0;
             if (focusBranch < 0)
             {
                 // the trunk, the boughs to each branch's first lantern, the roots
@@ -110,7 +113,7 @@ namespace ArcaneBrigade
             }
             foreach (LampNode n in MetaProgression.Tree)
             {
-                if (focusBranch >= 0 && n.Branch != focusBranch) continue;
+                if (trunkOnly || focusBranch >= 0 && n.Branch != focusBranch) continue;
                 Vector2 start = focusBranch >= 0 ? new Vector2(tree.x + 14, tree.center.y + 14) : new Vector2(tree.center.x, tree.yMax - 70);
                 if (n.Tier == 0)
                 {
@@ -139,7 +142,7 @@ namespace ArcaneBrigade
             }
 
             // the lanterns and the roots (the roots belong to the whole tree)
-            foreach (LampNode n in MetaProgression.Tree) if (focusBranch < 0 || n.Branch == focusBranch) Lantern(n, tree, card, profile, t);
+            if (!trunkOnly) foreach (LampNode n in MetaProgression.Tree) if (focusBranch < 0 || n.Branch == focusBranch) Lantern(n, tree, card, profile, t);
             if (focusBranch < 0) foreach (LampNode n in MetaProgression.Roots) Lantern(n, tree, card, profile, t);
 
             // take the whole tree back (free; a second tap confirms): the warning plate, never the tabs' walnut

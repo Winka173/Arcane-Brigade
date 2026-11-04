@@ -49,8 +49,21 @@ namespace ArcaneBrigade
                 Put("PostOffice/Chute", new Vector2(s.ChuteX, s.ChuteTop + .35f), 1.25f, Air, fade);
                 // the letters' lane: one band of warm gold down the floor while the chute opens, filling as it charges (no rim)
                 float charge = Mathf.Clamp01((t - s.ChuteAt) / MapEnvironmentRules.ChuteWarn);
+                // a soft shaft of light, brightest down its middle and thinning to nothing at its sides and both ends (review 3/11/2026:
+                // a flat see-through rectangle the height of the screen)
                 if (t < s.ChuteAt + MapEnvironmentRules.ChuteWarn + 2.5f)
-                    Band(new Vector2(s.ChuteX, s.ChuteTop - .3f), new Vector2(s.ChuteX, s.ChuteBottom), .6f, charge, ArsenalInk.Gold, .8f * fade);
+                {
+                    Vector2 top = new Vector2(s.ChuteX, s.ChuteTop - .3f), bottom = new Vector2(s.ChuteX, s.ChuteBottom);
+                    Color glow = ArsenalInk.Gold.Glow; const int Pieces = 14;
+                    float strength = (.18f + .3f * charge) * fade;
+                    for (int i = 0; i < Pieces; i++)
+                    {
+                        float u0 = i / (float)Pieces, u1 = (i + 1) / (float)Pieces, along = Mathf.Sin((u0 + u1) * .5f * Mathf.PI);
+                        Color centre = new Color(glow.r, glow.g, glow.b, strength * along * along), edge = new Color(glow.r, glow.g, glow.b, 0);
+                        ink.FloorLane(Vector2.Lerp(top, bottom, u0), Vector2.Lerp(top, bottom, u1), .55f + .15f * along, centre, edge);
+                    }
+                    Marks++;
+                }
             }
             for (int i = 0; i < s.Letters.Count; i++)
             {

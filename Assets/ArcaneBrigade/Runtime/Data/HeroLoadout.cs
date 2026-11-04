@@ -37,7 +37,7 @@ namespace ArcaneBrigade
             ["TreasureAcorn"] = new Entry("AcornSling", null, "BrassAcorn", "SpoonSabre"),
             ["VerdantMatron"] = new Entry("LeafCrossbow", null, "LittleSprout", "TapeWhip"),
             ["CopperCauldron"] = new Entry("FireExtinguisher", null, "TeacupCricket", "SpringKnocker"),
-            ["ChinaMarionette"] = new Entry("NeedleSinger", null, "JellySwordsman", "TwinSabres"), // Ribbon Spider never passed the theme check; a swordsman in front of a ranged hero
+            ["ChinaMarionette"] = new Entry("NeedleSinger", null, "SnowSpoon", "MoonScythe"), // a melee friend from her own pool in front of the puppet; every hero's starting friend differs (Lone Jelly keeps the swordsman; 4/11/2026). Ribbon Spider never passed the theme check; a melee friend in front of a ranged hero
             ["SoapSkater"] = new Entry("BubbleWand", null, "SailSquid", "UmbrellaLance"),
             ["VelvetRegent"] = new Entry("StarforgeClaymore", "BellFork", "ButtonBeetle", "ButtonBow"),
             ["ButtonCavalier"] = new Entry("CorkscrewRapier", null, "TinTick", "InkPistol"),

@@ -353,7 +353,7 @@ namespace ArcaneBrigade
                     Lift rise = Rise(strip, (Time.unscaledTime - openedAt - .04f) / .24f, 0, 1);
                     ArcadeSkin.Plate(strip, ArcadeSkin.Accent);
                     verb.normal.textColor = ArcadeSkin.Cream; verb.alignment = TextAnchor.MiddleLeft;
-                    float whenW = string.IsNullOrEmpty(d.When) ? 0 : Mathf.Min(360, chip.CalcSize(new GUIContent(d.When)).x + 36);
+                    chip.fontSize = 26; float whenW = string.IsNullOrEmpty(d.When) ? 0 : Mathf.Min(420, chip.CalcSize(new GUIContent(d.When)).x + 36);
                     GUI.Label(new Rect(strip.x + 24, strip.y + 12, strip.width - 48 - whenW, 46), d.Do, verb); verb.alignment = TextAnchor.MiddleCenter;
                     if (whenW > 0) When(new Rect(strip.xMax - 16 - whenW, strip.y + 15, whenW, 40), d.When);
                     Row(new Rect(strip.x + 24, strip.y + 66, half - 16, rowsH), "PAY", d.Pay, true, true);
@@ -453,7 +453,7 @@ namespace ArcaneBrigade
         private void When(Rect r, string when)
         {
             var text = new GUIContent(when);
-            chip.fontSize = 22; while (chip.fontSize > 18 && chip.CalcSize(text).x + 24 > r.width) chip.fontSize--; // never under 18 (readable on a phone)
+            chip.fontSize = 26; while (chip.fontSize > 24 && chip.CalcSize(text).x + 24 > r.width) chip.fontSize--; // never under 24 (review 3/11/2026: it shrank to 14 on a phone)
             float w = Mathf.Min(r.width, chip.CalcSize(text).x + 28);
             Rect c = new Rect(r.x + (r.width - w) * .5f, r.y, w, r.height);
             ArcadeSkin.Slant(c, new Color(1, 1, 1, .1f));

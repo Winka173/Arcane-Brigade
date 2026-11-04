@@ -26,6 +26,18 @@ namespace ArcaneBrigade
 
         public static Material StrokeMaterial { get { if (strokeMaterial == null) strokeMaterial = Make(Stroke(), "MechanicInk stroke"); return strokeMaterial; } }
         public static Material WashMaterial { get { if (washMaterial == null) washMaterial = Make(Wash(), "MechanicInk wash"); return washMaterial; } }
+        private static Material dangerWashMaterial;
+        /// <summary>The wash for danger zones: where zones overlap the floor is tinted once, not twice (Shaders/DangerWash).</summary>
+        public static Material DangerWashMaterial
+        {
+            get
+            {
+                if (dangerWashMaterial != null) return dangerWashMaterial;
+                Shader shader = Resources.Load<Shader>("Shaders/DangerWash");
+                dangerWashMaterial = shader != null && shader.isSupported ? new Material(shader) { name = "Danger wash", mainTexture = WashMaterial.mainTexture } : WashMaterial;
+                return dangerWashMaterial;
+            }
+        }
         // the hero mechanics drawn as light (requirement 23/10/2026: they looked wrapped in plastic film): additive like the lantern's
         // beam - a fill is a smooth glow (no mottled paper, no film), a stroke a brushed band of light; dark ink adds nothing
         private static Material lightStrokeMaterial, lightWashMaterial;

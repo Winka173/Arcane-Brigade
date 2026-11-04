@@ -344,6 +344,10 @@ namespace ArcaneBrigade
             else if (Event.current.type == EventType.Repaint) shownHealth = Mathf.MoveTowards(shownHealth, health, Time.unscaledDeltaTime * maximum * 1.2f);
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
+            // the run's HUD stays off the results screen (review 3/11/2026: health, gold and the wave plate showed behind its panels)
+            bool endScreen = (state.Phase == SessionPhase.Victory || state.Phase == SessionPhase.Defeat) && owner.ResultsReady;
+            Color hudTint = GUI.color; bool hudEnabled = GUI.enabled;
+            if (endScreen) { GUI.color = Color.clear; GUI.enabled = false; }
             if (ArcadeSkin.HasKit)
             {
                 // the painted HUD (UI kit, item 13): the hero in a brass portrait slot, the health bar with its heart cap and crimson fill
@@ -472,6 +476,7 @@ namespace ArcaneBrigade
             // no lantern row under the wallet (requirement 4/11/2026: it only confused players); the lanterns stay in the journal
             if (state.Phase == SessionPhase.Combat) { NightHud.LampLoss(new Rect(560, 150, 800, 60)); NightHud.Knocking(new Rect(610, 130, 700, 48), simulation.KnockRemaining); }
             DrawControls(owner);
+            GUI.color = hudTint; GUI.enabled = hudEnabled;
             if (state.Phase == SessionPhase.Combat)
             {
                 UnitState second = simulation.SecretSecondActor; // the duet: one bar for the two of them

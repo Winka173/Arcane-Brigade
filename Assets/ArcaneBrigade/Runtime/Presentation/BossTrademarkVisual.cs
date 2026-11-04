@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             if (simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused))
                 foreach (ExpandedField f in simulation.ExpandedFields) if (f.Kind == ExpandedFieldKind.Roller) { any = true; break; }
             if (!any) { if (drawn) { ink.Begin(); ink.End(); drawn = false; } return; }
-            if (ink == null) ink = new ArsenalInk(transform);
+            if (ink == null) { ink = new ArsenalInk(transform); ink.DangerFloor(); }
             ink.Begin(); drawn = true;
             foreach (ExpandedField f in simulation.ExpandedFields) if (f.Kind == ExpandedFieldKind.Roller) Draw(f, simulation.Elapsed);
             ink.End();

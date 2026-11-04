@@ -48,6 +48,8 @@ namespace ArcaneBrigade
             strokeRenderer = Make(" / brush", light ? MechanicInk.LightStrokeMaterial : MechanicInk.StrokeMaterial, order + 1, out strokeMesh);
         }
 
+        /// <summary>Paints this canvas's fills with another material (danger zones: Shaders/DangerWash).</summary>
+        public void UseWash(Material material) { if (!light && material != null) washRenderer.sharedMaterial = material; }
         public void Clear()
         {
             sv.Clear(); suv.Clear(); sc.Clear(); wv.Clear(); wuv.Clear(); wc.Clear(); wt.Clear();

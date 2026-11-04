@@ -112,21 +112,27 @@ namespace ArcaneBrigade
             int split = caption.LastIndexOf(' ');
             string word = split > 0 ? caption.Substring(0, split) : "", digits = split > 0 ? caption.Substring(split + 1) : caption;
             Matrix4x4 previous = GUI.matrix;
-            Vector2 centre = new Vector2(960, 310); // above the hero (the camera keeps the hero at the middle), below the wave banner
+            // above the hero (the camera keeps the hero at the middle), clear of the wave banner and the hint banner under it
+            // (review 3/11/2026: the hint banner cut the top of the stamp)
+            Vector2 centre = new Vector2(960, 370);
+            Sprite painted = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("HUD/WaveStamp");
             ArcadeSkin.TurnAround(-9, centre);
             ArcadeSkin.ScaleAround(Vector2.one * press, centre);
             Color ink = new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.9f * alpha);
             ArcadeSkin.Glow(new Rect(centre.x - 170, centre.y - 170, 340, 340), new Color(0, 0, 0, 0.45f * alpha));
-            Color old = GUI.color; GUI.color = ink;
-            GUI.DrawTexture(new Rect(centre.x - 115, centre.y - 115, 230, 230), ring);
-            GUI.color = old;
-            for (int line = 0; line < 3; line++) // cancellation waves to the right of the postmark
-                for (int k = 0; k < 14; k++)
-                {
-                    float x = centre.x + 125 + k * 14, y = centre.y - 30 + line * 30 + Mathf.Sin(k * 0.9f) * 5;
-                    ArcadeSkin.Line(new Rect(x, y, 10, 3), new Color(ink.r, ink.g, ink.b, ink.a * (1 - k / 16f)));
-                }
-            label.normal.textColor = ink;
+            Color old = GUI.color;
+            if (painted != null)
+            {
+                // the painted postmark (review 3/11/2026: a code ring with a dashed outer ring read as a plain shape)
+                GUI.color = new Color(1, 1, 1, alpha); RunHud.Sprite(new Rect(centre.x - 125, centre.y - 125, 250, 250), painted); GUI.color = old;
+            }
+            else
+            {
+                GUI.color = ink;
+                GUI.DrawTexture(new Rect(centre.x - 115, centre.y - 115, 230, 230), ring);
+                GUI.color = old;
+            }
+            label.normal.textColor = painted != null ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, alpha) : ink; // gold on the painted seal's red
             GUI.Label(new Rect(centre.x - 100, centre.y - 78, 200, 24), word.Length > 0 ? word : "WAVE", label);
             number.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, alpha);
             GUI.Label(new Rect(centre.x - 110, centre.y - 50, 220, 100), digits, number);

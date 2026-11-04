@@ -167,7 +167,7 @@ namespace ArcaneBrigade
             // size and warmth follow how much of the target's life the hit took
             float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
             float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
-            float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
+            float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.95f) * (1f + (champion ? 0 : 0.85f * weight)); // an ordinary hit readable on a phone (review 3/11/2026: .78 was the smallest text in a fight)
             number.Shake = !champion && RangedFeel.LongShot(combatEvent) ? 1 : 0;
             if (number.Shake > 0) size *= 1.35f; // a long shot's critical reads bigger
             // hits on neighbouring targets stack upward instead of printing over each other ("40l49l8!", "4949!"): a box test
