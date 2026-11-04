@@ -281,6 +281,15 @@ namespace ArcaneBrigade
             rectangle = new Rect(rectangle.center.x - width * 0.5f, rectangle.center.y - height * 0.5f, width, height);
             GUI.DrawTextureWithTexCoords(rectangle, sprite.texture, new Rect(source.x / sprite.texture.width, source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height));
         }
+        /// <summary>A sprite filling the rectangle; <paramref name="keepAspect"/> false stretches it (a page or cover turning on
+        /// its edge narrows without moving its edge).</summary>
+        public static void Sprite(Rect rectangle, Sprite sprite, bool keepAspect)
+        {
+            if (keepAspect) { Sprite(rectangle, sprite); return; }
+            if (sprite == null) return;
+            Rect source = sprite.rect;
+            GUI.DrawTextureWithTexCoords(rectangle, sprite.texture, new Rect(source.x / sprite.texture.width, source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height));
+        }
 
         public void Draw(ArenaController owner, Camera camera)
         {
@@ -817,12 +826,13 @@ namespace ArcaneBrigade
             {
                 int size = cardChip.fontSize;
                 string label = offerCard.AttackLabel;
-                float Need() => WeaponPlate.Width(H, cardChip.CalcSize(new GUIContent(label)).x);
+                const float PlateH = 64; // its own row, taller than the chips (review 5/11/2026: at the chips' 50 the plate and its weapon were too small)
+                float Need() => WeaponPlate.Width(PlateH, cardChip.CalcSize(new GUIContent(label)).x);
                 while (Need() > width && cardChip.fontSize > 22) cardChip.fontSize--;
-                Rect plate = new Rect(cx, rowY, Mathf.Min(width, Need()), H);
+                Rect plate = new Rect(cx, rowY, Mathf.Min(width, Need()), PlateH);
                 WeaponPlate.Draw(plate, offerCard.Attack.Weapon != null && offerCard.Attack.Weapon.Sprite != null ? offerCard.Attack.Weapon.Sprite : offerCard.AttackIcon, label, cardChip);
                 cardChip.fontSize = size;
-                cx += plate.width + Gap;
+                rowY += PlateH + 8; cx = x; // the bond chips start on the row below
             }
             // (no COMBO chip: plain counts are required; a combo is listed under the details' COMBOS)
             foreach (var row in offerCard.Bonds) Chip(row.Bond.Icon, row.After + "/" + (row.Activates ? row.Next : Mathf.Max(row.After, row.Bond.NextThreshold(row.After))), row.Activates);

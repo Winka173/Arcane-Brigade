@@ -165,7 +165,7 @@ namespace ArcaneBrigade
                     float below = panel.y + 66;
                     if (ally != null && giftCard.Attack != null && !string.IsNullOrEmpty(giftCard.AttackLabel))
                     {
-                        const float PlateH = 46;
+                        const float PlateH = 60;
                         Rect plate = new Rect(tx, below, Mathf.Min(tw, WeaponPlate.Width(PlateH, cardLine.CalcSize(new GUIContent(giftCard.AttackLabel)).x)), PlateH);
                         WeaponPlate.Draw(plate, giftCard.Attack.Weapon != null && giftCard.Attack.Weapon.Sprite != null ? giftCard.Attack.Weapon.Sprite : giftCard.AttackIcon, giftCard.AttackLabel, cardLine);
                         below += PlateH + 8;

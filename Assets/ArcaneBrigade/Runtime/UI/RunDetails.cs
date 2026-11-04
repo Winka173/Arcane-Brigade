@@ -22,12 +22,93 @@ namespace ArcaneBrigade
         private float selectedAt;
         private readonly HeroIdentityOptions heroOptions = new HeroIdentityOptions();
         private GUIStyle rarityStyle;
-        public bool Open => model != null;
+        public bool Open => model != null || pendingCapture != null;
         public int Tab => tab;
         public bool HeroSelected => Open && tab == 0 && selection == 0;
         public const int TabCount = 4;
-        public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { if (model == null) CheckpointAudio.PlayInterfaceId("ui.open"); model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; }
-        public void Close() { if (model != null) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; GlossaryUI.Close(); }
+        public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null)
+        {
+            bool fresh = !Open;
+            if (fresh) CheckpointAudio.PlayInterfaceId("ui.open");
+            void Capture() { model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; if (pendingBond != null) { string bond = pendingBond; pendingBond = null; SelectBond(bond); } }
+            // opened fresh, the book first appears closed and its pages turn while the brigade is read (requirement 5/11/2026:
+            // the panel froze about two seconds on phones before anything showed); already open, it refreshes at once
+            if (!fresh || BookArt.Closed == null) { pendingCapture = null; introAt = -1; Capture(); return; }
+            model = null; pendingCapture = Capture; introAt = Time.unscaledTime; flipAt = -1; warmed = false;
+        }
+        private System.Action pendingCapture;
+        private string pendingBond;
+        private float introAt = -1, flipAt = -1;
+        private bool warmed;
+        /// <summary>The painted book the brigade panel opens from (Resources/UI/Book).</summary>
+        private static class BookArt
+        {
+            private static Sprite closed, spread, page; private static bool loaded;
+            private static void Load() { if (loaded) return; loaded = true; closed = Resources.Load<Sprite>("UI/Book/BookClosed"); spread = Resources.Load<Sprite>("UI/Book/BookSpread"); page = Resources.Load<Sprite>("UI/Book/BookPage"); }
+            public static Sprite Closed { get { Load(); return closed; } }
+            public static Sprite Spread { get { Load(); return spread; } }
+            public static Sprite Page { get { Load(); return page; } }
+        }
+        private const float BookPop = .28f, CoverOpen = .34f, PageTurn = .26f, Pages = 2, ContentIn = .22f;
+        /// <summary>The book's opening: true while it covers the screen (the panel is not drawn yet).</summary>
+        private bool DrawIntro(ArenaController owner, Camera camera)
+        {
+            float now = Time.unscaledTime, t = now - introAt;
+            bool reduced = PresentationSettings.ReducedMotion, repaint = Event.current.type == EventType.Repaint;
+            // the brigade is read once the closed book has been seen (the slow part happens behind it), then the panel is drawn
+            // once unseen so its first, slow draw also happens while the book is still closed
+            if (repaint && pendingCapture != null && t >= BookPop + .04f) { var capture = pendingCapture; pendingCapture = null; capture(); return true; }
+            if (repaint && model != null && !warmed)
+            {
+                warmed = true;
+                Color keep = GUI.color; GUI.color = Color.clear;
+                try { DrawContent(owner, camera); } finally { GUI.color = keep; }
+                flipAt = Time.unscaledTime;
+                return true;
+            }
+            float total = reduced ? 0 : CoverOpen + PageTurn * Pages;
+            float f = flipAt < 0 ? -1 : now - flipAt;
+            if (f >= total + ContentIn) { introAt = -1; openedAt = selectedAt = now; return false; }
+            Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
+            Color tint = GUI.color;
+            float fadeOut = f > total ? 1 - Mathf.Clamp01((f - total) / ContentIn) : 1;
+            RunHud.Fill(new Rect(-1920, -1080, 5760, 3240), new Color(0, 0, 0, .55f * Mathf.Clamp01(t / .2f)));
+            Rect spread = new Rect(960 - 760, 540 - 520, 1520, 1045), closed = new Rect(960, 540 - 480, 740, 962);
+            if (f < 0 || reduced)
+            {
+                // the closed book pops in at the right of the spine, and waits
+                float pop = reduced ? 1 : Mathf.Clamp01(t / BookPop), s = reduced ? 1 : Mathf.Lerp(.82f, 1, Mathf.SmoothStep(0, 1, pop)) + Mathf.Sin(pop * Mathf.PI) * .04f;
+                GUI.color = new Color(1, 1, 1, Mathf.Clamp01(pop * 2) * fadeOut);
+                RunHud.Sprite(Scaled(closed, s), BookArt.Closed);
+            }
+            else
+            {
+                GUI.color = new Color(1, 1, 1, fadeOut);
+                if (BookArt.Spread != null) RunHud.Sprite(spread, BookArt.Spread);
+                float gutter = 960;
+                if (f < CoverOpen)
+                {
+                    // the cover swings open on its spine: it narrows toward the gutter and darkens as it turns away
+                    float k = Mathf.SmoothStep(0, 1, f / CoverOpen), w = closed.width * Mathf.Cos(k * Mathf.PI * .5f);
+                    GUI.color = new Color(1 - .35f * k, 1 - .35f * k, 1 - .35f * k, fadeOut);
+                    if (w > 2) RunHud.Sprite(new Rect(gutter, closed.y, w, closed.height), BookArt.Closed, false);
+                }
+                else if (f < total && BookArt.Page != null)
+                {
+                    // the pages turn from right to left over the gutter
+                    float pf = (f - CoverOpen) / PageTurn, k = pf - Mathf.Floor(pf), turn = Mathf.Cos(Mathf.SmoothStep(0, 1, k) * Mathf.PI);
+                    Rect page = new Rect(gutter, spread.y + 40, 660, spread.height - 90);
+                    float w = page.width * Mathf.Abs(turn), shade = .7f + .3f * Mathf.Abs(turn);
+                    GUI.color = new Color(shade, shade, shade, fadeOut);
+                    if (w > 2) RunHud.Sprite(turn >= 0 ? new Rect(gutter, page.y, w, page.height) : new Rect(gutter - w, page.y, w, page.height), BookArt.Page, false);
+                }
+            }
+            GUI.color = tint; GUI.matrix = previous;
+            if (Event.current.isMouse) Event.current.Use(); // the world under the book takes no tap while it opens
+            return true;
+        }
+        private static Rect Scaled(Rect r, float s) => new Rect(r.center.x - r.width * s * .5f, r.center.y - r.height * s * .5f, r.width * s, r.height * s);
+        public void Close() { if (Open) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; pendingCapture = null; pendingBond = null; introAt = -1; GlossaryUI.Close(); }
         /// <summary>B11: the brigade sits at one long table, a seat per species (back row behind the table, front row before it).
         /// Clicking someone selects them; they lean in and speak their key facts and a line in their own hand.</summary>
         private GUIStyle badgeStyle, tileName;
@@ -140,13 +221,18 @@ namespace ArcaneBrigade
         }
         public void SelectBond(string name)
         {
-            if (model == null) return;
+            if (model == null) { if (pendingCapture != null) pendingBond = name; return; } // chosen while the book opens: selected once it is read
             SelectTab(3);
             selection = Mathf.Max(0, model.Links.FindIndex(row => row.Name == "Bond " + name));
             scroll.y = selection * 145; explanationScroll = Vector2.zero;
         }
 
         public void Draw(ArenaController owner, Camera camera)
+        {
+            if (introAt >= 0 && DrawIntro(owner, camera)) return;
+            DrawContent(owner, camera);
+        }
+        private void DrawContent(ArenaController owner, Camera camera)
         {
             if (model == null) return;
             GUISkin previousSkin = GUI.skin;

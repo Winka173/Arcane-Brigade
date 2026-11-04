@@ -260,7 +260,7 @@ namespace ArcaneBrigade
             y += 70;
             if (pickedCard.Attack != null)
             {
-                const float H = 44;
+                const float H = 60;
                 string label = pickedCard.AttackLabel;
                 Rect plate = new Rect(x, y, Mathf.Min(w, WeaponPlate.Width(H, pickKind.CalcSize(new GUIContent(label)).x)), H);
                 WeaponPlate.Draw(plate, pickedCard.Attack.Weapon != null && pickedCard.Attack.Weapon.Sprite != null ? pickedCard.Attack.Weapon.Sprite : pickedCard.AttackIcon, label, pickKind);
