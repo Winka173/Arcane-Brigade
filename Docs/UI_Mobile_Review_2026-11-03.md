@@ -37,7 +37,7 @@ Quy đổi: canvas 1920×1080 trên điện thoại 6,5" nằm ngang thì 1 px �
 | Cao | **RAM khoảng 540 MB** | Máy 2 GB RAM sẽ chật; máy tầm trung ổn |
 | Vừa | Chữ cỡ 20–26 ở các thẻ phụ: Visitor (chip "next wave · first 20s" co tới 14), Secret Event (DO/LOSE/GET), giá vé trong shop (co tới 12), số damage xám | Đọc được nhưng nhỏ; nên đưa về 28 khi làm lại các thẻ đó |
 | Vừa | Lamp Tree xem cả cây: nút nhánh khoảng 2 mm, đứng sát nhau | Vùng chạm mới giúp chạm trúng nút gần nhất, nhưng trên điện thoại nên mở thẳng từng nhánh (đang làm vậy khi có nhánh mua được) |
-| Thấp | iPad 4:3: Waiting Room có dải tối trên và dưới (phòng phóng to và tối đi, có chủ đích) | Có thể vẽ phòng cao hơn nếu phát hành iPad |
+| Đã xử lý | iPad 4:3 và điện thoại rộng: Waiting Room có dải tối quanh khung | 04/11: vẽ thêm phòng sang hai bên (`Hub/WaitingRoomWide`) và lên xuống (`Hub/WaitingRoomTall`), phần giữa đúng ảnh gốc nên không có đường nối; đã chụp 2400×1080 và 2048×1536 |
 | Thấp | Thẻ "a new page / TAP TO READ" cạnh HUD trong shop dùng chữ nhỏ | |
 
 ## Một bố cục hay hai?

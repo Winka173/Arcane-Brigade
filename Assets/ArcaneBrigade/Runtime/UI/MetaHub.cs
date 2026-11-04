@@ -16,6 +16,10 @@ namespace ArcaneBrigade
         public static Sprite Room => room != null ? room : room = Resources.Load<Sprite>("Hub/WaitingRoomPainted") ?? Resources.Load<Sprite>("Hub/WaitingRoom");
         /// <summary>The room painted whole, its furniture and stations in it (review 31/10/2026: pasted pieces never shared its light).</summary>
         public static bool Painted => Room != null && Room.name == "WaitingRoomPainted";
+        private static Sprite roomWide, roomTall; private static bool roomEdgesLoaded;
+        public static Sprite RoomWide { get { LoadRoomEdges(); return roomWide; } }
+        public static Sprite RoomTall { get { LoadRoomEdges(); return roomTall; } }
+        private static void LoadRoomEdges() { if (roomEdgesLoaded) return; roomEdgesLoaded = true; roomWide = Resources.Load<Sprite>("Hub/WaitingRoomWide"); roomTall = Resources.Load<Sprite>("Hub/WaitingRoomTall"); }
         public static Sprite Station(MetaStation station, bool restored)
         {
             string key = station + (restored ? "_Lit" : "_Dusty");
@@ -270,6 +274,10 @@ namespace ArcaneBrigade
                 Rect beyond = new Rect(-1280, -720, 3840, 2160);
                 GUI.DrawTexture(beyond, room.texture, ScaleMode.ScaleAndCrop);
                 GUI.DrawTexture(beyond, Texture2D.whiteTexture, ScaleMode.StretchToFill, false, 0, new Color(0.02f, 0.03f, 0.055f, 0.62f), 0, 0);
+                // the room goes on past the frame on phones and tablets (review 4/11/2026: an enlarged, darkened copy read as blur):
+                // painted extensions whose middle is the 16:9 room itself, so they meet it without a seam
+                if (MetaIcons.RoomWide is Sprite wide) GUI.DrawTexture(new Rect(-160, 0, 1600, 720), wide.texture, ScaleMode.StretchToFill);
+                if (MetaIcons.RoomTall is Sprite tall) GUI.DrawTexture(new Rect(0, -120, 1280, 960), tall.texture, ScaleMode.StretchToFill);
             }
             if (room != null) { if (Event.current.type == EventType.Repaint) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room.texture, ScaleMode.ScaleAndCrop); }
             else ArcadeSkin.MenuBackdrop(new Rect(0, 0, 1280, 720));

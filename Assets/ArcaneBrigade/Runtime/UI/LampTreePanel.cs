@@ -240,7 +240,7 @@ namespace ArcaneBrigade
                 ink = ArcadeSkin.FrameText(KitFrame.Card);
                 inner = ArcadeSkin.Content(c, KitFrame.Card, true, .3f);
             }
-            Rect close = new Rect(c.xMax - 44, c.y - 6, 44, 44);
+            Rect close = new Rect(c.xMax - 56, c.y + 10, 44, 44); // inside the parchment's corner, not over its edge
             NodeIcon(new Rect(inner.center.x - 28, inner.y, 56, 56), n);
             body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .9f);
             body.alignment = TextAnchor.MiddleCenter; small.alignment = TextAnchor.UpperCenter;
