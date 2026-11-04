@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                 Pattern = source.Faction == Faction.Enemy ? ShotPattern.None : ShotPatterns.For(weapon)
             };
             // These weapons deliberately turn back or hop after their outbound flight. Their stage code owns the return.
-            bool staged = weapon.Arsenal == ArsenalWeapon.TwinMoonStaff || weapon.Arsenal == ArsenalWeapon.YoYo || weapon.Arsenal == ArsenalWeapon.DreamRacket || weapon.Arsenal == ArsenalWeapon.PaperShuriken || weapon.Arsenal == ArsenalWeapon.JugglingPins;
+            bool staged = weapon.Arsenal == ArsenalWeapon.TwinMoonStaff || weapon.Arsenal == ArsenalWeapon.YoYo || weapon.Arsenal == ArsenalWeapon.DreamRacket || weapon.Arsenal == ArsenalWeapon.PaperShuriken || weapon.Arsenal == ArsenalWeapon.JugglingPins || weapon.Arsenal == ArsenalWeapon.PlushShark; // the shark turns home at the end of its throw (it flew on past it)
             if (source.Faction != Faction.Enemy && !staged)
             {
                 // the range decides when it fires; the shot itself flies on well past it
@@ -231,7 +231,7 @@ namespace ArcaneBrigade
                 case ArsenalWeapon.DragonLanternGlaive:
                     // every attack: a sweep that ends in a long thrust through the line
                     ArsenalSweep(source, weapon, aim, weapon.Range, 0.5f, damage * 0.75f, critical, cause);
-                    ArsenalLine(source, weapon, source.Position, source.Position + aim * 3f, 0.3f, damage * 0.6f, critical, cause.Child("glaive-thrust"));
+                    ArsenalLine(source, weapon, source.Position, source.Position + aim * 3f, 0.3f, damage * 0.6f, critical, cause.Child("glaive-thrust"), 1.45f); // the long thrust reaches past the sweep, as it is drawn
                     return true;
                 case ArsenalWeapon.TwinMoonStaff:
                     ArsenalShot(source, ArsenalMuzzle(source), aim, 6.5f, 3.2f, damage, critical, cause, 0.32f, 8);
@@ -406,7 +406,7 @@ namespace ArcaneBrigade
                     {
                         // every swipe drags three claw lines a little further
                         Vector2 side = new Vector2(-aim.y, aim.x);
-                        for (int i = -1; i <= 1; i++) ArsenalLine(source, weapon, source.Position + side * (0.18f * i), source.Position + side * (0.18f * i) + aim * (weapon.Range + 0.5f), 0.05f, damage * 0.12f, critical, cause.Child("paw-rake"));
+                        for (int i = -1; i <= 1; i++) ArsenalLine(source, weapon, source.Position + side * (0.18f * i), source.Position + side * (0.18f * i) + aim * (weapon.Range + 0.5f), 0.05f, damage * 0.12f, critical, cause.Child("paw-rake"), (weapon.Range + 0.5f) / Mathf.Max(0.1f, weapon.Range)); // the rakes run a little past the swipe
                     }
                     return true;
                 }
@@ -446,7 +446,7 @@ namespace ArcaneBrigade
                 {
                     // two quick snips: one down a short line ahead, the next at the toughest enemy in reach
                     Vector2 from = source.Position + aim * 0.2f, to = source.Position + aim * (weapon.Range + 0.3f);
-                    ArsenalLine(source, weapon, from, to, 0.18f, damage * 0.6f, critical, cause);
+                    ArsenalLine(source, weapon, from, to, 0.18f, damage * 0.6f, critical, cause, (weapon.Range + 0.3f) / Mathf.Max(0.1f, weapon.Range)); // the snip reaches a little past
                     // the second snip goes for the toughest enemy in reach (down the same line when there is none)
                     UnitState tough = null; float most = 0;
                     foreach (UnitState u in StableUnits)
@@ -593,10 +593,12 @@ namespace ArcaneBrigade
                     ApplyWeaponDamage(target, damage, source.Faction, weapon.Element, weapon.Id, aim, weapon, critical, cause);
             }
         }
-        private void ArsenalLine(UnitState source, WeaponDefinition weapon, Vector2 from, Vector2 to, float width, float damage, bool critical, CombatCause cause)
+        /// <param name="reach">How far past the wielder's range a melee line may go (1: its range; the glaive's long thrust is drawn
+        /// to about 1.4x).</param>
+        private void ArsenalLine(UnitState source, WeaponDefinition weapon, Vector2 from, Vector2 to, float width, float damage, bool critical, CombatCause cause, float reach = 1)
         {
             if (source.Faction != Faction.Enemy && weapon.Kind == WeaponKind.Melee)
-                to = from + Vector2.ClampMagnitude(to - from, source.Definition.Weapon.Range);
+                to = from + Vector2.ClampMagnitude(to - from, source.Definition.Weapon.Range * reach);
             for (int i = 0; i < units.Count; i++)
             {
                 UnitState target = units[i];
