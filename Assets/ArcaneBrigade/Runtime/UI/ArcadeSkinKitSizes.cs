@@ -56,7 +56,6 @@ namespace ArcaneBrigade
             ["Controls/CheckTicked"] = new UnityEngine.Vector2Int(64, 84),
             ["Controls/Close"] = new UnityEngine.Vector2Int(96, 96),
             ["Controls/Info"] = new UnityEngine.Vector2Int(96, 96),
-            ["Controls/NewRibbon"] = new UnityEngine.Vector2Int(96, 48),
             ["Controls/Pause"] = new UnityEngine.Vector2Int(96, 96),
             ["Controls/ScrollKnob"] = new UnityEngine.Vector2Int(64, 96),
             ["Controls/ScrollRail"] = new UnityEngine.Vector2Int(48, 512),
