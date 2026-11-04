@@ -37,6 +37,9 @@ namespace ArcaneBrigade
             float count = WaveSmoothingRules.Count(w) * density;
             int before = c.EnemyBudget;
             c.EnemyBudget = Mathf.Max(8, Mathf.CeilToInt(count * pacts));
+            // fewer enemies must not mean less gold: each coin is worth what the old crowd paid in all (bot campaign 4/11/2026:
+            // half the income left teams too weak for the bosses on waves 8, 12 and 16)
+            c.CoinValueScale *= Mathf.Clamp(before / Mathf.Max(1f, c.EnemyBudget), 1, 5);
             if (c.BossSwarmBudget > 0) c.BossSwarmBudget = Mathf.CeilToInt(c.EnemyBudget * 0.22f); // the boss night's light swarm follows
             c.SpawnInterval = Mathf.Clamp(c.SpawnInterval * before / Mathf.Max(1f, c.EnemyBudget), c.SpawnInterval, 2.5f); // the fewer enemies come over the same night
 
