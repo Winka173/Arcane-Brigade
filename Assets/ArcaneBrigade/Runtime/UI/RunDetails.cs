@@ -35,7 +35,8 @@ namespace ArcaneBrigade
             void Capture() { model = RunBuildReadModel.Capture(session, catalog, health, simulation, statsOnly: tab == 0 && fresh); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; if (pendingBond != null) { string bond = pendingBond; pendingBond = null; SelectBond(bond); } }
             // opened fresh, the book first appears closed and its pages turn while the brigade is read (requirement 5/11/2026:
             // the panel froze about two seconds on phones before anything showed); already open, it refreshes at once
-            if (!fresh || BookArt.Closed == null) { pendingCapture = null; introAt = -1; Capture(); return; }
+            // the opening animation is set aside for now (requirement 5/11/2026): the book opens at once on its first page
+            if (true) { pendingCapture = null; introAt = -1; Capture(); return; }
             model = null; pendingCapture = Capture; introAt = Time.unscaledTime; flipAt = -1; warmed = false; introFrames = 0;
         }
         private System.Action pendingCapture, completeCapture;
