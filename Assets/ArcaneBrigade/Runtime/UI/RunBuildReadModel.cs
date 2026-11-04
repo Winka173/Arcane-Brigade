@@ -15,7 +15,9 @@ namespace ArcaneBrigade
         public string BuildLinks;
         public ShopStatSnapshot ShopStats;
 
-        public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null)
+        /// <summary>True when only the first page (Stats) was read (requirement 5/11/2026: the book reads its first page as it opens).</summary>
+        public bool Partial;
+        public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null, bool statsOnly = false)
         {
             var model = new RunBuildReadModel();
             using var readSession = new RunSession(catalog);
@@ -44,6 +46,7 @@ namespace ArcaneBrigade
                 model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Increases dreamsand/heart drops and chest rewards. Does not change combat or shop RNG outcomes.");
                 model.Stat("Treasure detection", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Makes chests appear sooner, at least 4 seconds apart. Approach to open; no skill button required.");
             }
+            if (statsOnly) { model.Partial = true; return model; }
             int companionIndex = 0;
             foreach (RosterEntry entry in session.ActiveRoster)
             {

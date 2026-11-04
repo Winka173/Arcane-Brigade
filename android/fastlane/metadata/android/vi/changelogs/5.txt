@@ -1,0 +1,1 @@
+Bản thử nghiệm khép kín số 5: sổ đội hiện bìa và lật trang trước khi mở, và chỉ đọc trang đầu khi mở.

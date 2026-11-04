@@ -30,16 +30,21 @@ namespace ArcaneBrigade
         {
             bool fresh = !Open;
             if (fresh) CheckpointAudio.PlayInterfaceId("ui.open");
-            void Capture() { model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; if (pendingBond != null) { string bond = pendingBond; pendingBond = null; SelectBond(bond); } }
+            // the first page only as the book opens; the rest is read once it is open, or when another tab is chosen
+            completeCapture = () => { int keepTab = tab, keepSelection = selection; Vector2 keepScroll = scroll; model = RunBuildReadModel.Capture(session, catalog, health, simulation); tab = keepTab; selection = keepSelection; scroll = keepScroll; };
+            void Capture() { model = RunBuildReadModel.Capture(session, catalog, health, simulation, statsOnly: tab == 0 && fresh); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; if (pendingBond != null) { string bond = pendingBond; pendingBond = null; SelectBond(bond); } }
             // opened fresh, the book first appears closed and its pages turn while the brigade is read (requirement 5/11/2026:
             // the panel froze about two seconds on phones before anything showed); already open, it refreshes at once
             if (!fresh || BookArt.Closed == null) { pendingCapture = null; introAt = -1; Capture(); return; }
-            model = null; pendingCapture = Capture; introAt = Time.unscaledTime; flipAt = -1; warmed = false;
+            model = null; pendingCapture = Capture; introAt = Time.unscaledTime; flipAt = -1; warmed = false; introFrames = 0;
         }
-        private System.Action pendingCapture;
+        private System.Action pendingCapture, completeCapture;
+        /// <summary>Reads the pages the opening left out (cheap, about 20 ms).</summary>
+        private void Complete() { if (model != null && model.Partial) completeCapture?.Invoke(); }
         private string pendingBond;
         private float introAt = -1, flipAt = -1;
         private bool warmed;
+        private int introFrames;
         /// <summary>The painted book the brigade panel opens from (Resources/UI/Book).</summary>
         private static class BookArt
         {
@@ -57,7 +62,10 @@ namespace ArcaneBrigade
             bool reduced = PresentationSettings.ReducedMotion, repaint = Event.current.type == EventType.Repaint;
             // the brigade is read once the closed book has been seen (the slow part happens behind it), then the panel is drawn
             // once unseen so its first, slow draw also happens while the book is still closed
-            if (repaint && pendingCapture != null && t >= BookPop + .04f) { var capture = pendingCapture; pendingCapture = null; capture(); return true; }
+            if (repaint) introFrames++;
+            // the heavy part waits until the closed book has been drawn a few times (a slow first frame on phones passed the
+            // pop-in time before the book was ever seen, so the freeze came with nothing on screen)
+            if (repaint && pendingCapture != null && introFrames > 3 && t >= BookPop) { var capture = pendingCapture; pendingCapture = null; capture(); return true; }
             if (repaint && model != null && !warmed)
             {
                 warmed = true;
@@ -68,7 +76,7 @@ namespace ArcaneBrigade
             }
             float total = reduced ? 0 : CoverOpen + PageTurn * Pages;
             float f = flipAt < 0 ? -1 : now - flipAt;
-            if (f >= total + ContentIn) { introAt = -1; openedAt = selectedAt = now; return false; }
+            if (f >= total + ContentIn) { introAt = -1; openedAt = selectedAt = now; Complete(); return false; }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Color tint = GUI.color;
             float fadeOut = f > total ? 1 - Mathf.Clamp01((f - total) / ContentIn) : 1;
@@ -78,7 +86,7 @@ namespace ArcaneBrigade
             {
                 // the closed book pops in at the right of the spine, and waits
                 float pop = reduced ? 1 : Mathf.Clamp01(t / BookPop), s = reduced ? 1 : Mathf.Lerp(.82f, 1, Mathf.SmoothStep(0, 1, pop)) + Mathf.Sin(pop * Mathf.PI) * .04f;
-                GUI.color = new Color(1, 1, 1, Mathf.Clamp01(pop * 2) * fadeOut);
+                GUI.color = new Color(1, 1, 1, Mathf.Lerp(.6f, 1, Mathf.Clamp01(pop * 2)) * fadeOut); // seen from the first frame
                 RunHud.Sprite(Scaled(closed, s), BookArt.Closed);
             }
             else
@@ -206,6 +214,7 @@ namespace ArcaneBrigade
             int next = Mathf.Clamp(index, 0, TabCount - 1);
             if (tab != next) CheckpointAudio.PlayInterfaceId("ui.tab");
             tab = next; selection = 0; scroll = explanationScroll = Vector2.zero; selectedAt = Time.unscaledTime;
+            if (tab != 0) Complete();
         }
         public void MoveSelection(int direction)
         {
@@ -221,6 +230,7 @@ namespace ArcaneBrigade
         }
         public void SelectBond(string name)
         {
+            Complete();
             if (model == null) { if (pendingCapture != null) pendingBond = name; return; } // chosen while the book opens: selected once it is read
             SelectTab(3);
             selection = Mathf.Max(0, model.Links.FindIndex(row => row.Name == "Bond " + name));
