@@ -14,9 +14,12 @@ namespace ArcaneBrigade.Editor
     {
         public const string Identifier = "com.winka.arcanebrigade";
 
+        /// <summary>The launcher icon (requirement 4/11/2026: the bundle showed Unity's default icon): the painted Lantern Knight.</summary>
+        public const string IconPath = "Assets/ArcaneBrigade/Art/Store/AppIcon.png";
         private static void Common(NamedBuildTarget target)
         {
             PlayerSettings.SetApplicationIdentifier(target, Identifier);
+            if (AssetDatabase.LoadAssetAtPath<Texture2D>(IconPath) is Texture2D icon) PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { icon }, IconKind.Any);
             PlayerSettings.SetScriptingBackend(target, ScriptingImplementation.IL2CPP);
             PlayerSettings.defaultInterfaceOrientation = UIOrientation.AutoRotation;
             PlayerSettings.allowedAutorotateToPortrait = false;
