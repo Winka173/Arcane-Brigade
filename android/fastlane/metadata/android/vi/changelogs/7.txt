@@ -1,0 +1,3 @@
+- Lưu đám mây (tuỳ chọn): giữ tiến trình trong Google Drive của bạn và chơi tiếp trên máy khác
+- Cài đặt > Lưu đám mây: Kết nối Google, Tự đồng bộ, Đồng bộ ngay, Khôi phục
+- Hai bản lưu khác nhau không bao giờ bị ghi đè: bạn chọn bản muốn giữ

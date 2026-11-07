@@ -1,0 +1,3 @@
+- Cloud save (optional): keep your progress in your own Google Drive and continue on another phone
+- Settings > Cloud save: Connect Google, Auto sync, Sync now, Restore
+- Two different saves are never overwritten: you choose which one to keep

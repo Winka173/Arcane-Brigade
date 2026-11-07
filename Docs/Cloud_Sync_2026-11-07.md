@@ -87,6 +87,8 @@ Same design as Sticky Wall (`Sticky-Wall/docs/release/PLAY_CONSOLE_API_GUIDE.md`
 
 Until this is done, *Connect Google* shows Google's error and the game keeps saving locally.
 
+**Done 7/11/2026:** both Android clients, *Arcane Brigade (Play signing)* and *Arcane Brigade (upload key)*, were created in the shared Winka Studio project `938253534652`. Sticky Wall and Handy Bookmark use the same project. The Drive API, the `drive.appdata` scope and the consent screen come from that project, so the consent screen shows that project's app name. An iOS client must go into the same project.
+
 1. **Project.** Create a dedicated project, for example **Arcane Brigade**. Do not reuse `play-publisher-513712`: its consent screen is set up for Sticky Wall, and the consent screen shows the project's app name. Use the same project for Android and iPhone so they share one save.
 2. **APIs & Services → Library:** enable the **Google Drive API**.
 3. **Google Auth Platform (OAuth consent screen):**
@@ -146,5 +148,5 @@ Changes in Google Cloud can take minutes, sometimes hours, to reach devices.
 | Merge, conflicts, run, settings, checkpoints, restore points (`CloudSyncChecks`, 32 cases) | **Passed** 7/11/2026 |
 | Localization checks after the new strings | **Passed** |
 | Android bundle with `DriveAuth.androidlib` | **Built** (Unity 6000.6, AGP 9.1.1) |
-| Real Google Drive, two devices | **Blocked** until the owner setup above |
+| Real Google Drive, two devices | Android clients created 7/11; closed-testing build 7 carries cloud save, waiting for a device test |
 | iPhone | **Not built** (needs a Mac and the iOS client) |
